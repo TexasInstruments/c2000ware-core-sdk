@@ -3,7 +3,7 @@
 <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/TexasInstruments-Logo.svg" width="150"><br/>
 # C2000Ware
 
-[Introduction](#introduction) | [Features](#features) | [Overview](#overview) | [Learn](#learn) | [Usage](#usage) | [Contribute](#contributing-to-the-project)
+[Introduction](#introduction) | [Layout](#Repository Layout) | [Overview](#overview) | [Contribute](#contributing-to-the-project)
 
 </div>
 

@@ -3,7 +3,7 @@
 <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/TexasInstruments-Logo.svg" width="150"><br/>
 # C2000Ware
 
-[Introduction](#introduction) | [Layout](#Repository Layout) | [Overview](#overview) | [Contribute](#contributing-to-the-project)
+[Introduction](#introduction) | [Layout](#repositorylayout) | [Overview](#overview) | [Contribute](#contributing-to-the-project)
 
 </div>
 
@@ -13,10 +13,15 @@ C2000Ware for C2000 microcontrollers is a cohesive set of development software a
 It includes device-specific drivers and device peripheral examples, C2000Ware provides a solid foundation to begin development and evaluation.
 List of devices supported
 - [F280015x](https://www.ti.com/product/TMS320F2800157) 
-- [F280013x(https://www.ti.com/product/TMS320F2800137)
+- [F280013x](https://www.ti.com/product/TMS320F2800137)
 - [F28004x](https://www.ti.com/product/TMS320F280049C)
 - [F28003x](https://www.ti.com/product/TMS320F280039C)
 - [F28002x](https://www.ti.com/product/TMS320F280025C)
+- [F2838x](https://www.ti.com/product/TMS320F28388D).
+- [F2837xs](https://www.ti.com/product/TMS320F28379S).
+- [F2837xD](https://www.ti.com/product/TMS320F28379D).
+- [F2807x](https://www.ti.com/product/TMS320F28379S).
+- Other Gen2 devices such as F2806x, F2805x, F2803x, F2802x, F2823x and F2833x.
 
 The SDK includes peripheral usage examples to help users to get started quickly.
 
@@ -45,10 +50,8 @@ The SDK includes peripheral usage examples to help users to get started quickly.
 C2000Ware SDK comprises of multiple repositories with the current repository at it's core. 
 There are other repositories that need to be cloned and are listed below:
 
-- [Ethernet Low Level Driver (ENET LLD)](https://github.com/TexasInstruments/mcupsdk-enet-lld)
-- [FreeRTOS-Kernel](https://github.com/TexasInstruments/mcupsdk-FreeRTOS-Kernel)
-- [FreeRTOS-POSIX](https://github.com/TexasInstruments/mcupsdk-FreeRTOS-POSIX)
-- [FreeRTOS-FAT](https://github.com/TexasInstruments/mcupsdk-FreeRTOS-FAT)
+- [c2000ware-c2000-academy]
+- [c2000ware-rtosl]
 
 
 C2000Ware installers is available for download 

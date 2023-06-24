@@ -1,0 +1,20 @@
+/**
+ * Import the modules used in this configuration.
+ */
+const i2c  = scripting.addModule("/driverlib/i2c.js", {}, false);
+const i2c1 = i2c.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+i2c1.$name                 = "myI2C0";
+i2c1.bitCount              = "I2C_BITCOUNT_8";
+i2c1.dataCount             = 2;
+i2c1.slaveAddress          = 0x3C;
+i2c1.loopback              = true;
+i2c1.enabledFIFOInterrupts = ["I2C_INT_RXFF","I2C_INT_TXFF"];
+i2c1.txFifo                = "I2C_FIFO_TX2";
+i2c1.rxFifo                = "I2C_FIFO_RX2";
+i2c1.duty                  = "I2C_DUTYCYCLE_50";
+i2c1.i2c.$name             = "MyI2C1";
+i2c1.i2c.$assign           = "I2CA";

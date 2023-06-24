@@ -1,0 +1,46 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28004x" --package "F28004x_100PZ" --part "F28004x_100PZ" --product "C2000WARE@3.01.00.00"
+ * @versions {"tool":"1.10.0+2029"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const adc     = scripting.addModule("/driverlib/adc.js", {}, false);
+const adc1    = adc.addInstance();
+const asysctl = scripting.addModule("/driverlib/asysctl.js");
+const dac     = scripting.addModule("/driverlib/dac.js", {}, false);
+const dac1    = dac.addInstance();
+const pga     = scripting.addModule("/driverlib/pga.js", {}, false);
+const pga1    = pga.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+adc1.$name               = "myADC0";
+adc1.adcClockPrescaler   = "ADC_CLK_DIV_4_0";
+adc1.enabledSOCs         = ["ADC_SOC_NUMBER0","ADC_SOC_NUMBER1"];
+adc1.soc0SampleWindow    = 10;
+adc1.soc1SampleWindow    = 10;
+adc1.interruptPulseMode  = "ADC_PULSE_END_OF_CONV";
+adc1.enabledInts         = ["ADC_INT_NUMBER1"];
+adc1.enableInterrupt1    = true;
+adc1.interrupt1SOCSource = "ADC_SOC_NUMBER1";
+adc1.soc1Channel         = "ADC_CH_ADCIN12";
+adc1.registerInterrupts  = ["1"];
+adc1.useInterrupts       = false;
+
+asysctl.analogReference        = "INTERNAL";
+asysctl.analogReferenceVoltage = "1P65";
+
+dac1.$name            = "myDAC0";
+dac1.enableOutput     = true;
+dac1.referenceVoltage = "DAC_REF_ADC_VREFHI";
+dac1.gainMode         = "DAC_GAIN_TWO";
+dac1.shadowValue      = 500;
+
+pga1.$name     = "myPGA0";
+pga1.pgaEnable = true;
+pga1.pgaBase   = "PGA2_BASE";

@@ -1,0 +1,26 @@
+%%{
+
+var DualCore_SYSPLL 	= system.getTemplate('./dualCore_SYSPLL.xdt');
+var DualCore_AUXPLL		= system.getTemplate('./dualCore_AUXPLL.xdt');
+var DualCore_domain		= system.getTemplate('./dualCore_domain.xdt');
+
+// Device Supported : F2837xD, F2838x
+
+const PLL_type1 = ["F2837xD"]	//FMULT available 	| REFDIV unavailable
+const PLL_type2 = ["F2838x"]	//FMULT unavailable	| REFDIV available
+
+const AUXPLL_Support 		= ["F2837xD", "F2838x"]
+const EPWM_div_support 		= ["F2837xD"]
+
+const device  = system.deviceData.device
+
+
+%%}
+`DualCore_SYSPLL()`
+
+	% if(AUXPLL_Support.includes(device))
+	% {
+`DualCore_AUXPLL()`
+	% }
+	
+`DualCore_domain()`

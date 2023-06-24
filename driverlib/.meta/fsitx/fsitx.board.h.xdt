@@ -1,0 +1,24 @@
+% var moduleName = "fsitx"
+% var module = system.modules['/driverlib/' + moduleName + '.js'];
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// FSITX Configurations
+//
+//*****************************************************************************
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        % let modInst  = instance[moduleName];
+        % let solution    = modInst.$solution;
+        %let peripheral  = system.deviceData.peripherals[solution.peripheralName];
+//
+// Tx Defines
+// Pointer to be declared in example code before use
+//
+#define `instance.$name`_BASE `peripheral.name`_BASE
+#define `instance.$name`_PRESCALER_VAL `instance.clkPres`
+#define `instance.$name`_nWords `instance.softwareFrameSize`
+void `instance.$name`_init();
+    % }
+%}

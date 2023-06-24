@@ -1,0 +1,114 @@
+% var module = system.modules['/driverlib/asysctl.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% var nameOfModule = "asysctl";
+% var nameOfPeripheral = module.peripheralName;
+//*****************************************************************************
+//
+// ASYSCTL Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_init(){
+%if (module != null)
+%{
+% var stat = module.$static
+	//
+	// `nameOfModule` initialization
+%		if(stat.enableTemperatureSensor){
+	//
+	// Enables the temperature sensor output to the ADC.
+	//
+	ASysCtl_enableTemperatureSensor();
+	DEVICE_DELAY_US(500);
+%		}
+%		else{
+	//
+	// Disables the temperature sensor output to the ADC.
+	//
+	ASysCtl_disableTemperatureSensor();
+%		}
+%		if(stat.lockTemperatureSensor){
+	//
+	// Locks the temperature sensor control register.
+	//
+	ASysCtl_lockTemperatureSensor();
+%		}
+%		if(system.deviceData.deviceId.includes("F28004x")){
+%			if(stat.analogReference == "INTERNAL"){
+	//
+	// Set the analog voltage reference selection to internal.
+	//
+	ASysCtl_setAnalogReferenceInternal( ASYSCTL_VREFHIA | ASYSCTL_VREFHIB | ASYSCTL_VREFHIC );
+%			}
+%			else{
+	//
+	// Set the analog voltage reference selection to external.
+	//
+	ASysCtl_setAnalogReferenceExternal( ASYSCTL_VREFHIA | ASYSCTL_VREFHIB | ASYSCTL_VREFHIC );
+%			}
+%			if((stat.analogReference == "INTERNAL") && (stat.analogReferenceVoltage == "2P5")){
+	//
+	// Set the internal analog voltage reference selection to 2.5V.
+	//
+	ASysCtl_setAnalogReference2P5( ASYSCTL_VREFHIA | ASYSCTL_VREFHIB | ASYSCTL_VREFHIC );
+%			}
+%			else if((stat.analogReference == "INTERNAL") && (stat.analogReferenceVoltage == "1P65")){
+	//
+	// Set the internal analog voltage reference selection to 1.65V.
+	//
+	ASysCtl_setAnalogReference1P65( ASYSCTL_VREFHIA | ASYSCTL_VREFHIB | ASYSCTL_VREFHIC );
+%			}
+%		}
+%		else if(system.deviceData.deviceId.includes("F28002x")){
+%			if(stat.analogReference == "INTERNAL"){
+	//
+	// Set the analog voltage reference selection to internal.
+	//
+	ASysCtl_setAnalogReferenceInternal( ASYSCTL_VREFHIA | ASYSCTL_VREFHIC );
+%			}
+%			else{
+	//
+	// Set the analog voltage reference selection to external.
+	//
+	ASysCtl_setAnalogReferenceExternal( ASYSCTL_VREFHIA | ASYSCTL_VREFHIC );
+%			}
+%			if((stat.analogReference == "INTERNAL") && (stat.analogReferenceVoltage == "2P5")){
+	//
+	// Set the internal analog voltage reference selection to 2.5V.
+	//
+	ASysCtl_setAnalogReference2P5( ASYSCTL_VREFHIA | ASYSCTL_VREFHIC );
+%			}
+%			else if((stat.analogReference == "INTERNAL") && (stat.analogReferenceVoltage == "1P65")){
+	//
+	// Set the internal analog voltage reference selection to 1.65V.
+	//
+	ASysCtl_setAnalogReference1P65( ASYSCTL_VREFHIA | ASYSCTL_VREFHIC );
+%			}
+%		}
+% 		else if( ["F28003x", "F280013x", "F280015x"].includes(system.deviceData.deviceId)){
+%			if(stat.analogReference == "INTERNAL"){
+	//
+	// Set the analog voltage reference selection to internal.
+	//
+	ASysCtl_setAnalogReferenceInternal( ASYSCTL_VREFHI );
+%			}
+%			else{
+	//
+	// Set the analog voltage reference selection to external.
+	//
+	ASysCtl_setAnalogReferenceExternal( ASYSCTL_VREFHI );
+%			}
+%			if((stat.analogReference == "INTERNAL") && (stat.analogReferenceVoltage == "2P5")){
+	//
+	// Set the internal analog voltage reference selection to 2.5V.
+	//
+	ASysCtl_setAnalogReference2P5( ASYSCTL_VREFHI);
+%			}
+%			else if((stat.analogReference == "INTERNAL") && (stat.analogReferenceVoltage == "1P65")){
+	//
+	// Set the internal analog voltage reference selection to 1.65V.
+	//
+	ASysCtl_setAnalogReference1P65( ASYSCTL_VREFHI );
+%			}
+%		}
+%}
+}

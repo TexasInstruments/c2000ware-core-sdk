@@ -1,0 +1,38 @@
+% var moduleName = "clb_outputxbar"
+% let Common   = system.getScript("/driverlib/Common.js");
+% var module = system.modules['/driverlib/' + moduleName + '.js'];
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// CLBOUTPUTXBAR Configurations
+//
+//*****************************************************************************
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        % let modInst  = instance[moduleName];
+        % let solution    = modInst.$solution;
+        %let peripheral  = system.deviceData.peripherals[solution.peripheralName];
+void `instance.$name`_init();
+        % let driverlibName = "XBAR_OUTPUT" + peripheral.name.replace("CLB_OUTPUTXBAR", "")
+#define `instance.$name` `driverlibName`
+        % var muxesUsed = instance.muxesUsed;
+        % var enabledMuxesUsed = "";
+        % for (var muxesUsedIndex in muxesUsed)
+        % {
+        %    var usedMuxName = muxesUsed[muxesUsedIndex];
+        %    var usedMuxNumber = parseInt(usedMuxName.replace("XBAR_MUX", ""))
+        %    var muxConfigName = "mux" + usedMuxNumber + "Config"
+        %    if (instance[muxConfigName])
+        %    {               
+        %        enabledMuxesUsed += Common.stringOrEmpty(enabledMuxesUsed, " | ");
+        %        enabledMuxesUsed += usedMuxName;
+        %    }
+        % }
+        % if (enabledMuxesUsed !="")
+        % {
+#define `instance.$name`_ENABLED_MUXES (`enabledMuxesUsed`)
+        % }
+    % }
+%}
+%

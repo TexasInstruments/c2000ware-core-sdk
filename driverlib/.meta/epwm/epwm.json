@@ -1,0 +1,7536 @@
+
+{
+	"epwm": [
+	  {
+		"name": "epwmTimebase_emulationMode",
+		"driverlibFunction": "EPWM_setEmulationMode",
+		"driverlibFunctionHR": "HRPWM_setEmulationMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "emulationMode": "this"
+		},
+		"register": "TBCTL.FREE_SOFT",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTimebase_clockDiv",
+		"driverlibFunction": "EPWM_setClockPrescaler",
+		"driverlibFunctionHR": "HRPWM_setClockPrescaler",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "prescaler": "this",
+		  "highSpeedPrescaler": ""
+		},
+		"register": "TBCTL.CLKDIV",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTimebase_hsClockDiv",
+		"driverlibFunction": "EPWM_setClockPrescaler",
+		"driverlibFunctionHR": "HRPWM_setClockPrescaler",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "prescaler": "",
+		  "highSpeedPrescaler": "this"
+		},
+		"register": "TBCTL.HSPCLKDIV",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTimebase_period",
+		"driverlibFunction": "EPWM_setTimeBasePeriod",
+		"driverlibFunctionHR": "EPWM_setTimeBasePeriod",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "periodCount": "this"
+		},
+		"register": "TBPRD",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTimebase_periodLink",
+		"driverlibFunction": "EPWM_setupEPWMLinks",
+		"driverlibFunctionHR": "HRPWM_setupEPWMLinks",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "epwmLink": "this",
+		  "linkComp": "EPWM_LINK_TBPRD"
+		},
+		"register": "EPWMXLINK.TBPRDLINK",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTimebase_periodGld",
+		"driverlibFunction": "EPWM_enableGlobalLoadRegisters",
+		"driverlibFunctionAlt": "EPWM_disableGlobalLoadRegisters",
+		"driverlibFunctionHR": "HRPWM_enableGlobalLoadRegisters",
+		"driverlibFunctionHRAlt": "HRPWM_disableGlobalLoadRegisters",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "loadRegister": "EPWM_GL_REGISTER_TBPRD_TBPRDHR"
+		},
+		"register": "GLDCFG.TBPRD_TBPRDHR",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTimebase_periodLoadMode",
+		"driverlibFunction": "EPWM_setPeriodLoadMode",
+		"driverlibFunctionHR": "HRPWM_setPeriodLoadMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "loadMode": "this"
+		},
+		"register": "TBCTL.PRDLD",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTimebase_counterValue",
+		"driverlibFunction": "EPWM_setTimeBaseCounter",
+		"driverlibFunctionHR": "HRPWM_setTimeBaseCounter",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "loadMode": "this"
+		},
+		"register": "TBCTR",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTimebase_counterMode",
+		"driverlibFunction": "EPWM_setTimeBaseCounterMode",
+		"driverlibFunctionHR": "HRPWM_setTimeBaseCounterMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "counterMode": "this"
+		},
+		"register": "TBCTL.CTRMODE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTimebase_counterModeAfterSync",
+		"driverlibFunction": "EPWM_setCountModeAfterSync",
+		"driverlibFunctionHR": "HRPWM_setCountModeAfterSync",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "mode": "this"
+		},
+		"register": "TBCTL.PHSDIR",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTimebase_phaseEnable",
+		"driverlibFunction": "EPWM_enablePhaseShiftLoad",
+		"driverlibFunctionAlt": "EPWM_disablePhaseShiftLoad",
+		"driverlibFunctionHR": "HRPWM_enablePhaseShiftLoad",
+		"driverlibFunctionHRAlt": "HRPWM_disablePhaseShiftLoad",
+		"driverlibFunctionArg": {
+		  "base": ""
+		},
+		"register": "TBCTL.PHSEN",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTimebase_phaseShift",
+		"driverlibFunction": "EPWM_setPhaseShift",
+		"driverlibFunctionHR": "HRPWM_setPhaseShift",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "phaseCount": "this"
+		},
+		"register": "TBPHS.TBPHS",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTimebase_syncOutPulseMode",
+		"driverlibFunction": "EPWM_setSyncOutPulseMode",
+		"driverlibFunctionHR": "HRPWM_setSyncOutPulseMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "mode": "this"
+		},
+		"register": [
+		  "TBCTL.SYNCOSEL",
+		  "TBCTL2.SYNCOSELX"
+		],
+		"handler": "epwmTimebase_syncOutPulseMode_handler",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x"
+		]
+	  },
+	  {
+		"name": "epwmTimebase_forceSyncPulse",
+		"driverlibFunction": "EPWM_forceSyncPulse",
+		"driverlibFunctionAlt": "",
+		"driverlibFunctionHR": "EPWM_forceSyncPulse",
+		"driverlibFunctionHRAlt": "",
+		"driverlibFunctionArg": {
+		  "base": ""
+		},
+		"register": "TBCTL.SWFSYNC",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmCounterCompare_cmpA",
+		"driverlibFunction": "EPWM_setCounterCompareValue",
+		"driverlibFunctionHR": "EPWM_setCounterCompareValue",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "compModule": "EPWM_COUNTER_COMPARE_A",
+		  "compCount": "this"
+		},
+		"register": "CMPA.CMPA",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmCounterCompare_cmpAGld",
+		"driverlibFunction": "EPWM_enableGlobalLoadRegisters",
+		"driverlibFunctionAlt": "EPWM_disableGlobalLoadRegisters",
+		"driverlibFunctionHR": "HRPWM_enableGlobalLoadRegisters",
+		"driverlibFunctionHRAlt": "HRPWM_disableGlobalLoadRegisters",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "loadRegister": "EPWM_GL_REGISTER_CMPA_CMPAHR"
+		},
+		"register": "GLDCFG.CMPA_CMPAHR",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmCounterCompare_enableShadowLoadModeCMPA",
+		"driverlibFunction": "",
+		"driverlibFunctionAlt": "EPWM_disableCounterCompareShadowLoadMode",
+		"driverlibFunctionHR": "",
+		"driverlibFunctionHRAlt": "HRPWM_disableCounterCompareShadowLoadMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "compModule": "EPWM_COUNTER_COMPARE_A"
+		},
+		"register": "CMPCTL.SHDWAMODE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmCounterCompare_shadowLoadModeCMPA",
+		"driverlibFunction": "EPWM_setCounterCompareShadowLoadMode",
+		"driverlibFunctionHR": "HRPWM_setCounterCompareShadowLoadMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "compModule": "EPWM_COUNTER_COMPARE_A",
+		  "loadMode": "this"
+		},
+		"register": [
+		  "CMPCTL.LOADAMODE",
+		  "CMPCTL.LOADASYNC"
+		],
+		"handler": "epwmCounterCompare_ShadowLoadMode_Handler",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmCounterCompare_cmpALink",
+		"driverlibFunction": "EPWM_setupEPWMLinks",
+		"driverlibFunctionHR": "HRPWM_setupEPWMLinks",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "epwmLink": "this",
+		  "linkComp": "EPWM_LINK_COMP_A"
+		},
+		"register": "EPWMXLINK.CMPALINK",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmCounterCompare_cmpB",
+		"driverlibFunction": "EPWM_setCounterCompareValue",
+		"driverlibFunctionHR": "EPWM_setCounterCompareValue",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "compModule": "EPWM_COUNTER_COMPARE_B",
+		  "compCount": "this"
+		},
+		"register": "CMPB.CMPB",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmCounterCompare_cmpBGld",
+		"driverlibFunction": "EPWM_enableGlobalLoadRegisters",
+		"driverlibFunctionHR": "HRPWM_enableGlobalLoadRegisters",
+		"driverlibFunctionAlt": "EPWM_disableGlobalLoadRegisters",
+		"driverlibFunctionHRAlt": "HRPWM_disableGlobalLoadRegisters",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "loadRegister": "EPWM_GL_REGISTER_CMPB_CMPBHR"
+		},
+		"register": "GLDCFG.CMPB_CMPBHR",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmCounterCompare_enableShadowLoadModeCMPB",
+		"driverlibFunction": "",
+		"driverlibFunctionHR": "",
+		"driverlibFunctionAlt": "EPWM_disableCounterCompareShadowLoadMode",
+		"driverlibFunctionHRAlt": "HRPWM_disableCounterCompareShadowLoadMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "compModule": "EPWM_COUNTER_COMPARE_B"
+		},
+		"register": "CMPCTL.SHDWBMODE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmCounterCompare_shadowLoadModeCMPB",
+		"driverlibFunction": "EPWM_setCounterCompareShadowLoadMode",
+		"driverlibFunctionHR": "HRPWM_setCounterCompareShadowLoadMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "compModule": "EPWM_COUNTER_COMPARE_B",
+		  "loadMode": "this"
+		},
+		"register": [
+		  "CMPCTL.LOADBMODE",
+		  "CMPCTL.LOADBSYNC"
+		],
+		"handler": "epwmCounterCompare_ShadowLoadMode_Handler",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmCounterCompare_cmpBLink",
+		"driverlibFunction": "EPWM_setupEPWMLinks",
+		"driverlibFunctionHR": "EPWM_setupEPWMLinks",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "epwmLink": "this",
+		  "linkComp": "EPWM_LINK_COMP_B"
+		},
+		"register": "EPWMXLINK.CMPBLINK",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmCounterCompare_cmpC",
+		"driverlibFunction": "EPWM_setCounterCompareValue",
+		"driverlibFunctionHR": "EPWM_setCounterCompareValue",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "compModule": "EPWM_COUNTER_COMPARE_C",
+		  "compCount": "this"
+		},
+		"register": "CMPC",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmCounterCompare_cmpCGld",
+		"driverlibFunction": "EPWM_enableGlobalLoadRegisters",
+		"driverlibFunctionAlt": "EPWM_disableGlobalLoadRegisters",
+		"driverlibFunctionHR": "HRPWM_enableGlobalLoadRegisters",
+		"driverlibFunctionHRAlt": "HRPWM_disableGlobalLoadRegisters",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "loadRegister": "EPWM_GL_REGISTER_CMPC"
+		},
+		"register": "GLDCFG.CMPC",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmCounterCompare_enableShadowLoadModeCMPC",
+		"driverlibFunction": "",
+		"driverlibFunctionAlt": "EPWM_disableCounterCompareShadowLoadMode",
+		"driverlibFunctionHR": "",
+		"driverlibFunctionHRAlt": "HRPWM_disableCounterCompareShadowLoadMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "compModule": "EPWM_COUNTER_COMPARE_C"
+		},
+		"register": "CMPCTL2.SHDWCMODE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmCounterCompare_shadowLoadModeCMPC",
+		"driverlibFunction": "EPWM_setCounterCompareShadowLoadMode",
+		"driverlibFunctionHR": "HRPWM_setCounterCompareShadowLoadMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "compModule": "EPWM_COUNTER_COMPARE_C",
+		  "loadMode": "this"
+		},
+		"register": [
+		  "CMPCTL.LOADCMODE",
+		  "CMPCTL.LOADCSYNC"
+		],
+		"handler": "epwmCounterCompare_ShadowLoadMode_Handler",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmCounterCompare_cmpCLink",
+		"driverlibFunction": "EPWM_setupEPWMLinks",
+		"driverlibFunctionHR": "HRPWM_setupEPWMLinks",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "epwmLink": "this",
+		  "linkComp": "EPWM_LINK_COMP_C"
+		},
+		"register": "EPWMXLINK.CMPCLINK",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmCounterCompare_cmpD",
+		"driverlibFunction": "EPWM_setCounterCompareValue",
+		"driverlibFunctionHR": "EPWM_setCounterCompareValue",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "compModule": "EPWM_COUNTER_COMPARE_D",
+		  "compCount": "this"
+		},
+		"register": "CMPD",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmCounterCompare_cmpDGld",
+		"driverlibFunction": "EPWM_enableGlobalLoadRegisters",
+		"driverlibFunctionAlt": "EPWM_disableGlobalLoadRegisters",
+		"driverlibFunctionHR": "HRPWM_enableGlobalLoadRegisters",
+		"driverlibFunctionHRAlt": "HRPWM_disableGlobalLoadRegisters",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "loadRegister": "EPWM_GL_REGISTER_CMPD"
+		},
+		"register": "GLDCFG.CMPD",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmCounterCompare_enableShadowLoadModeCMPD",
+		"driverlibFunction": "",
+		"driverlibFunctionAlt": "EPWM_disableCounterCompareShadowLoadMode",
+		"driverlibFunctionHR": "",
+		"driverlibFunctionHRAlt": "HRPWM_disableCounterCompareShadowLoadMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "compModule": "EPWM_COUNTER_COMPARE_D"
+		},
+		"register": "CMPCTL2.SHDWDMODE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmCounterCompare_shadowLoadModeCMPD",
+		"driverlibFunction": "EPWM_setCounterCompareShadowLoadMode",
+		"driverlibFunctionHR": "HRPWM_setCounterCompareShadowLoadMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "compModule": "EPWM_COUNTER_COMPARE_D",
+		  "loadMode": "this"
+		},
+		"register": [
+		  "CMPCTL.LOADDMODE",
+		  "CMPCTL.LOADDSYNC"
+		],
+		"handler": "epwmCounterCompare_ShadowLoadMode_Handler",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmCounterCompare_cmpDLink",
+		"driverlibFunction": "EPWM_setupEPWMLinks",
+		"driverlibFunctionHR": "HRPWM_setupEPWMLinks",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "epwmLink": "this",
+		  "linkComp": "EPWM_LINK_COMP_D"
+		},
+		"register": "EPWMXLINK.CMPDLINK",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_continousSwForceReloadModeGld",
+		"driverlibFunction": "EPWM_enableGlobalLoadRegisters",
+		"driverlibFunctionAlt": "EPWM_disableGlobalLoadRegisters",
+		"driverlibFunctionHR": "HRPWM_enableGlobalLoadRegisters",
+		"driverlibFunctionHRAlt": "HRPWM_disableGlobalLoadRegisters",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "loadRegister": "EPWM_GL_REGISTER_AQCSFRC"
+		},
+		"register": "GLDCFG.AQCSFRC",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_continousSwForceReloadMode",
+		"driverlibFunction": "EPWM_setActionQualifierContSWForceShadowMode",
+		"driverlibFunctionHR": "HRPWM_setActionQualifierContSWForceShadowMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "mode": "this"
+		},
+		"register": "AQSFRC.RLDCSF",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_EPWM_AQ_OUTPUT_A_gld",
+		"driverlibFunction": "EPWM_enableGlobalLoadRegisters",
+		"driverlibFunctionAlt": "EPWM_disableGlobalLoadRegisters",
+		"driverlibFunctionHR": "HRPWM_enableGlobalLoadRegisters",
+		"driverlibFunctionHRAlt": "HRPWM_disableGlobalLoadRegisters",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "loadRegister": "EPWM_GL_REGISTER_AQCTLA_AQCTLA2"
+		},
+		"register": "GLDCFG.AQCTLA_AQCTLA2",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_EPWM_AQ_OUTPUT_A_shadowMode",
+		"driverlibFunction": "",
+		"driverlibFunctionAlt": "EPWM_disableActionQualifierShadowLoadMode",
+		"driverlibFunctionHR": "",
+		"driverlibFunctionHRAlt": "HRPWM_disableActionQualifierShadowLoadMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "aqModule": "EPWM_ACTION_QUALIFIER_A"
+		},
+		"register": "AQCTL.SHDWAQAMODE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_EPWM_AQ_OUTPUT_A_shadowEvent",
+		"driverlibFunction": "EPWM_setActionQualifierShadowLoadMode",
+		"driverlibFunctionHR": "HRPWM_setActionQualifierShadowLoadMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "aqModule": "EPWM_ACTION_QUALIFIER_A",
+		  "loadMode": "this"
+		},
+		"register": "AQCTL.LDAQASYNC",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_t1Source",
+		"driverlibFunction": "EPWM_setActionQualifierT1TriggerSource",
+		"driverlibFunctionHR": "HRPWM_setActionQualifierT1TriggerSource",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "trigger": "this"
+		},
+		"register": "AQTSRCSEL.T1SEL",
+		"handler": "epwmAQ_Output_X_Source_handler",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_t2Source",
+		"driverlibFunction": "EPWM_setActionQualifierT2TriggerSource",
+		"driverlibFunctionHR": "HRPWM_setActionQualifierT2TriggerSource",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "trigger": "this"
+		},
+		"register": "AQTSRCSEL.T2SEL",
+		"handler": "epwmAQ_Output_X_Source_handler",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_EPWM_AQ_OUTPUT_A_onetimeSwForceAction",
+		"driverlibFunction": "EPWM_setActionQualifierSWAction",
+		"driverlibFunctionHR": "EPWM_setActionQualifierSWAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "epwmOutput": "EPWM_AQ_OUTPUT_A",
+		  "output": "this"
+		},
+		"register": "AQSFRC.ACTSFA",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_EPWM_AQ_OUTPUT_A_continuousSwForceAction",
+		"driverlibFunction": "EPWM_setActionQualifierContSWForceAction",
+		"driverlibFunctionHR": "HRPWM_setActionQualifierContSWForceAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "epwmOutput": "EPWM_AQ_OUTPUT_A",
+		  "output": "this"
+		},
+		"register": "AQCSFRC.CSFA",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_ZERO",
+		"driverlibFunction": "EPWM_setActionQualifierAction",
+		"driverlibFunctionHR": "HRPWM_setActionQualifierAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "epwmOutput": "EPWM_AQ_OUTPUT_A",
+		  "output": "this",
+		  "event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_ZERO"
+		},
+		"register": "AQCTLA.ZRO",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_PERIOD",
+		"driverlibFunction": "EPWM_setActionQualifierAction",
+		"driverlibFunctionHR": "HRPWM_setActionQualifierAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "epwmOutput": "EPWM_AQ_OUTPUT_A",
+		  "output": "this",
+		  "event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_PERIOD"
+		},
+		"register": "AQCTLA.PRD",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_UP_CMPA",
+		"driverlibFunction": "EPWM_setActionQualifierAction",
+		"driverlibFunctionHR": "HRPWM_setActionQualifierAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "epwmOutput": "EPWM_AQ_OUTPUT_A",
+		  "output": "this",
+		  "event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPA"
+		},
+		"register": "AQCTLA.CAU",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_DOWN_CMPA",
+		"driverlibFunction": "EPWM_setActionQualifierAction",
+		"driverlibFunctionHR": "HRPWM_setActionQualifierAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "epwmOutput": "EPWM_AQ_OUTPUT_A",
+		  "output": "this",
+		  "event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPA"
+		},
+		"register": "AQCTLA.CAD",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_UP_CMPB",
+		"driverlibFunction": "EPWM_setActionQualifierAction",
+		"driverlibFunctionHR": "HRPWM_setActionQualifierAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "epwmOutput": "EPWM_AQ_OUTPUT_A",
+		  "output": "this",
+		  "event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPB"
+		},
+		"register": "AQCTLA.CBU",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_DOWN_CMPB",
+		"driverlibFunction": "EPWM_setActionQualifierAction",
+		"driverlibFunctionHR": "HRPWM_setActionQualifierAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "epwmOutput": "EPWM_AQ_OUTPUT_A",
+		  "output": "this",
+		  "event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPB"
+		},
+		"register": "AQCTLA.CBD",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_T1_COUNT_UP",
+		"driverlibFunction": "EPWM_setActionQualifierAction",
+		"driverlibFunctionHR": "HRPWM_setActionQualifierAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "epwmOutput": "EPWM_AQ_OUTPUT_A",
+		  "output": "this",
+		  "event": "EPWM_AQ_OUTPUT_ON_T1_COUNT_UP"
+		},
+		"register": "AQCTLA2.T1U",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_T1_COUNT_DOWN",
+		"driverlibFunction": "EPWM_setActionQualifierAction",
+		"driverlibFunctionHR": "HRPWM_setActionQualifierAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "epwmOutput": "EPWM_AQ_OUTPUT_A",
+		  "output": "this",
+		  "event": "EPWM_AQ_OUTPUT_ON_T1_COUNT_DOWN"
+		},
+		"register": "AQCTLA2.T1D",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_T2_COUNT_UP",
+		"driverlibFunction": "EPWM_setActionQualifierAction",
+		"driverlibFunctionHR": "HRPWM_setActionQualifierAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "epwmOutput": "EPWM_AQ_OUTPUT_A",
+		  "output": "this",
+		  "event": "EPWM_AQ_OUTPUT_ON_T2_COUNT_UP"
+		},
+		"register": "AQCTLA2.T2U",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_T2_COUNT_DOWN",
+		"driverlibFunction": "EPWM_setActionQualifierAction",
+		"driverlibFunctionHR": "HRPWM_setActionQualifierAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "epwmOutput": "EPWM_AQ_OUTPUT_A",
+		  "output": "this",
+		  "event": "EPWM_AQ_OUTPUT_ON_T2_COUNT_DOWN"
+		},
+		"register": "AQCTLA2.T2D",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_EPWM_AQ_OUTPUT_B_gld",
+		"driverlibFunction": "EPWM_enableGlobalLoadRegisters",
+		"driverlibFunctionHR": "HRPWM_enableGlobalLoadRegisters",
+		"driverlibFunctionAlt": "EPWM_disableGlobalLoadRegisters",
+		"driverlibFunctionHRAlt": "HRPWM_disableGlobalLoadRegisters",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "loadRegister": "EPWM_GL_REGISTER_AQCTLB_AQCTLB2"
+		},
+		"register": "GLDCFG.AQCTLB_AQCTLB2",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_EPWM_AQ_OUTPUT_B_shadowMode",
+		"driverlibFunction": "",
+		"driverlibFunctionAlt": "EPWM_disableActionQualifierShadowLoadMode",
+		"driverlibFunctionHR": "",
+		"driverlibFunctionHRAlt": "HRPWM_disableActionQualifierShadowLoadMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "aqModule": "EPWM_ACTION_QUALIFIER_B"
+		},
+		"register": "AQCTL.SHDWAQBMODE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_EPWM_AQ_OUTPUT_B_shadowEvent",
+		"driverlibFunction": "EPWM_setActionQualifierShadowLoadMode",
+		"driverlibFunctionHR": "HRPWM_setActionQualifierShadowLoadMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "aqModule": "EPWM_ACTION_QUALIFIER_B",
+		  "loadMode": "this"
+		},
+		"register": "AQCTL.LDAQBSYNC",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_EPWM_AQ_OUTPUT_B_onetimeSwForceAction",
+		"driverlibFunction": "EPWM_setActionQualifierSWAction",
+		"driverlibFunctionHR": "EPWM_setActionQualifierSWAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "epwmOutput": "EPWM_AQ_OUTPUT_B",
+		  "output": "this"
+		},
+		"register": "AQSFRC.ACTSFB",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_EPWM_AQ_OUTPUT_B_continuousSwForceAction",
+		"driverlibFunction": "EPWM_setActionQualifierContSWForceAction",
+		"driverlibFunctionHR": "HRPWM_setActionQualifierContSWForceAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "epwmOutput": "EPWM_AQ_OUTPUT_B",
+		  "output": "this"
+		},
+		"register": "AQCSFRC.CSFB",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_ZERO",
+		"driverlibFunction": "EPWM_setActionQualifierAction",
+		"driverlibFunctionHR": "HRPWM_setActionQualifierAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "epwmOutput": "EPWM_AQ_OUTPUT_B",
+		  "output": "this",
+		  "event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_ZERO"
+		},
+		"register": "AQCTLB.ZRO",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_PERIOD",
+		"driverlibFunction": "EPWM_setActionQualifierAction",
+		"driverlibFunctionHR": "HRPWM_setActionQualifierAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "epwmOutput": "EPWM_AQ_OUTPUT_B",
+		  "output": "this",
+		  "event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_PERIOD"
+		},
+		"register": "AQCTLB.PRD",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_UP_CMPA",
+		"driverlibFunction": "EPWM_setActionQualifierAction",
+		"driverlibFunctionHR": "HRPWM_setActionQualifierAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "epwmOutput": "EPWM_AQ_OUTPUT_B",
+		  "output": "this",
+		  "event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPA"
+		},
+		"register": "AQCTLB.CAU",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_DOWN_CMPA",
+		"driverlibFunction": "EPWM_setActionQualifierAction",
+		"driverlibFunctionHR": "HRPWM_setActionQualifierAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "epwmOutput": "EPWM_AQ_OUTPUT_B",
+		  "output": "this",
+		  "event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPA"
+		},
+		"register": "AQCTLB.CAD",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_UP_CMPB",
+		"driverlibFunction": "EPWM_setActionQualifierAction",
+		"driverlibFunctionHR": "HRPWM_setActionQualifierAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "epwmOutput": "EPWM_AQ_OUTPUT_B",
+		  "output": "this",
+		  "event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPB"
+		},
+		"register": "AQCTLB.CBU",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_DOWN_CMPB",
+		"driverlibFunction": "EPWM_setActionQualifierAction",
+		"driverlibFunctionHR": "HRPWM_setActionQualifierAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "epwmOutput": "EPWM_AQ_OUTPUT_B",
+		  "output": "this",
+		  "event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPB"
+		},
+		"register": "AQCTLB.CBD",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_T1_COUNT_UP",
+		"driverlibFunction": "EPWM_setActionQualifierAction",
+		"driverlibFunctionHR": "HRPWM_setActionQualifierAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "epwmOutput": "EPWM_AQ_OUTPUT_B",
+		  "output": "this",
+		  "event": "EPWM_AQ_OUTPUT_ON_T1_COUNT_UP"
+		},
+		"register": "AQCTLB2.T1U",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_T1_COUNT_DOWN",
+		"driverlibFunction": "EPWM_setActionQualifierAction",
+		"driverlibFunctionHR": "HRPWM_setActionQualifierAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "epwmOutput": "EPWM_AQ_OUTPUT_B",
+		  "output": "this",
+		  "event": "EPWM_AQ_OUTPUT_ON_T1_COUNT_DOWN"
+		},
+		"register": "AQCTLB2.T1D",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_T2_COUNT_UP",
+		"driverlibFunction": "EPWM_setActionQualifierAction",
+		"driverlibFunctionHR": "HRPWM_setActionQualifierAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "epwmOutput": "EPWM_AQ_OUTPUT_B",
+		  "output": "this",
+		  "event": "EPWM_AQ_OUTPUT_ON_T2_COUNT_UP"
+		},
+		"register": "AQCTLB2.T2U",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_T2_COUNT_DOWN",
+		"driverlibFunction": "EPWM_setActionQualifierAction",
+		"driverlibFunctionHR": "HRPWM_setActionQualifierAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "epwmOutput": "EPWM_AQ_OUTPUT_B",
+		  "output": "this",
+		  "event": "EPWM_AQ_OUTPUT_ON_T2_COUNT_DOWN"
+		},
+		"register": "AQCTLB2.T2D",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTripZone_useAdvancedEPWMTripZoneActions",
+		"driverlibFunction": "EPWM_enableTripZoneAdvAction",
+		"driverlibFunctionAlt": "EPWM_disableTripZoneAdvAction",
+		"driverlibFunctionHR": "EPWM_enableTripZoneAdvAction",
+		"driverlibFunctionHRAlt": "EPWM_disableTripZoneAdvAction",
+		"driverlibFunctionArg": {
+		  "base": ""
+		},
+		"register": "TZCTL2.ETZE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTripZone_EPWM_TZ_ADV_ACTION_EVENT_TZB_D",
+		"driverlibFunction": "EPWM_setTripZoneAdvAction",
+		"driverlibFunctionHR": "HRPWM_setTripZoneAdvAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "tzAdvEvent": "EPWM_TZ_ADV_ACTION_EVENT_TZB_D",
+		  "tzAdvAction": "this"
+		},
+		"register": "TZCTL2.TZBD",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTripZone_EPWM_TZ_ADV_ACTION_EVENT_TZB_U",
+		"driverlibFunction": "EPWM_setTripZoneAdvAction",
+		"driverlibFunctionHR": "HRPWM_setTripZoneAdvAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "tzAdvEvent": "EPWM_TZ_ADV_ACTION_EVENT_TZB_U",
+		  "tzAdvAction": "this"
+		},
+		"register": "TZCTL2.TZBU",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTripZone_EPWM_TZ_ADV_ACTION_EVENT_TZA_D",
+		"driverlibFunction": "EPWM_setTripZoneAdvAction",
+		"driverlibFunctionHR": "HRPWM_setTripZoneAdvAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "tzAdvEvent": "EPWM_TZ_ADV_ACTION_EVENT_TZA_D",
+		  "tzAdvAction": "this"
+		},
+		"register": "TZCTL2.TZAD",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTripZone_EPWM_TZ_ADV_ACTION_EVENT_TZA_U",
+		"driverlibFunction": "EPWM_setTripZoneAdvAction",
+		"driverlibFunctionHR": "HRPWM_setTripZoneAdvAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "tzAdvEvent": "EPWM_TZ_ADV_ACTION_EVENT_TZA_U",
+		  "tzAdvAction": "this"
+		},
+		"register": "TZCTL2.TZAU",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTripZone_EPWM_TZ_ADV_ACTION_EVENT_DCxEVT1_U_A",
+		"driverlibFunction": "EPWM_setTripZoneAdvDigitalCompareActionA",
+		"driverlibFunctionHR": "HRPWM_setTripZoneAdvDigitalCompareActionA",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "tzAdvDCEvent": "EPWM_TZ_ADV_ACTION_EVENT_DCxEVT1_U",
+		  "tzAdvDCAction": "this"
+		},
+		"register": "TZCTLDCA.DCAEVT1U",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTripZone_EPWM_TZ_ADV_ACTION_EVENT_DCxEVT1_D_A",
+		"driverlibFunction": "EPWM_setTripZoneAdvDigitalCompareActionA",
+		"driverlibFunctionHR": "HRPWM_setTripZoneAdvDigitalCompareActionA",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "tzAdvDCEvent": "EPWM_TZ_ADV_ACTION_EVENT_DCxEVT1_D",
+		  "tzAdvDCAction": "this"
+		},
+		"register": "TZCTLDCA.DCAEVT1D",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTripZone_EPWM_TZ_ADV_ACTION_EVENT_DCxEVT2_U_A",
+		"driverlibFunction": "EPWM_setTripZoneAdvDigitalCompareActionA",
+		"driverlibFunctionHR": "HRPWM_setTripZoneAdvDigitalCompareActionA",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "tzAdvDCEvent": "EPWM_TZ_ADV_ACTION_EVENT_DCxEVT2_U",
+		  "tzAdvDCAction": "this"
+		},
+		"register": "TZCTLDCA.DCAEVT2U",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTripZone_EPWM_TZ_ADV_ACTION_EVENT_DCxEVT2_D_A",
+		"driverlibFunction": "EPWM_setTripZoneAdvDigitalCompareActionA",
+		"driverlibFunctionHR": "HRPWM_setTripZoneAdvDigitalCompareActionA",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "tzAdvDCEvent": "EPWM_TZ_ADV_ACTION_EVENT_DCxEVT2_D",
+		  "tzAdvDCAction": "this"
+		},
+		"register": "TZCTLDCA.DCAEVT2D",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTripZone_EPWM_TZ_ADV_ACTION_EVENT_DCxEVT1_U_B",
+		"driverlibFunction": "EPWM_setTripZoneAdvDigitalCompareActionB",
+		"driverlibFunctionHR": "HRPWM_setTripZoneAdvDigitalCompareActionB",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "tzAdvDCEvent": "EPWM_TZ_ADV_ACTION_EVENT_DCxEVT1_U",
+		  "tzAdvDCAction": "this"
+		},
+		"register": "TZCTLDCB.DCBEVT1U",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTripZone_EPWM_TZ_ADV_ACTION_EVENT_DCxEVT1_D_B",
+		"driverlibFunction": "EPWM_setTripZoneAdvDigitalCompareActionB",
+		"driverlibFunctionHR": "HRPWM_setTripZoneAdvDigitalCompareActionB",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "tzAdvDCEvent": "EPWM_TZ_ADV_ACTION_EVENT_DCxEVT1_D",
+		  "tzAdvDCAction": "this"
+		},
+		"register": "TZCTLDCB.DCBEVT1D",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTripZone_EPWM_TZ_ADV_ACTION_EVENT_DCxEVT2_U_B",
+		"driverlibFunction": "EPWM_setTripZoneAdvDigitalCompareActionB",
+		"driverlibFunctionHR": "HRPWM_setTripZoneAdvDigitalCompareActionB",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "tzAdvDCEvent": "EPWM_TZ_ADV_ACTION_EVENT_DCxEVT2_U",
+		  "tzAdvDCAction": "this"
+		},
+		"register": "TZCTLDCB.DCBEVT2U",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTripZone_EPWM_TZ_ADV_ACTION_EVENT_DCxEVT2_D_B",
+		"driverlibFunction": "EPWM_setTripZoneAdvDigitalCompareActionB",
+		"driverlibFunctionHR": "HRPWM_setTripZoneAdvDigitalCompareActionB",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "tzAdvDCEvent": "EPWM_TZ_ADV_ACTION_EVENT_DCxEVT2_D",
+		  "tzAdvDCAction": "this"
+		},
+		"register": "TZCTLDCB.DCBEVT2D",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTripZone_EPWM_TZ_ACTION_EVENT_TZA",
+		"driverlibFunction": "EPWM_setTripZoneAction",
+		"driverlibFunctionHR": "HRPWM_setTripZoneAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "tzEvent": "EPWM_TZ_ACTION_EVENT_TZA",
+		  "tzAction": "this"
+		},
+		"register": "TZCTL.TZA",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTripZone_EPWM_TZ_ACTION_EVENT_TZB",
+		"driverlibFunction": "EPWM_setTripZoneAction",
+		"driverlibFunctionHR": "HRPWM_setTripZoneAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "tzEvent": "EPWM_TZ_ACTION_EVENT_TZB",
+		  "tzAction": "this"
+		},
+		"register": "TZCTL.TZB",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTripZone_EPWM_TZ_ACTION_EVENT_DCAEVT1",
+		"driverlibFunction": "EPWM_setTripZoneAction",
+		"driverlibFunctionHR": "HRPWM_setTripZoneAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "tzEvent": "EPWM_TZ_ACTION_EVENT_DCAEVT1",
+		  "tzAction": "this"
+		},
+		"register": "TZCTL.DCAEVT1",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTripZone_EPWM_TZ_ACTION_EVENT_DCAEVT2",
+		"driverlibFunction": "EPWM_setTripZoneAction",
+		"driverlibFunctionHR": "HRPWM_setTripZoneAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "tzEvent": "EPWM_TZ_ACTION_EVENT_DCAEVT2",
+		  "tzAction": "this"
+		},
+		"register": "TZCTL.DCAEVT2",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTripZone_EPWM_TZ_ACTION_EVENT_DCBEVT1",
+		"driverlibFunction": "EPWM_setTripZoneAction",
+		"driverlibFunctionHR": "HRPWM_setTripZoneAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "tzEvent": "EPWM_TZ_ACTION_EVENT_DCBEVT1",
+		  "tzAction": "this"
+		},
+		"register": "TZCTL.DCBEVT1",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTripZone_EPWM_TZ_ACTION_EVENT_DCBEVT2",
+		"driverlibFunction": "EPWM_setTripZoneAction",
+		"driverlibFunctionHR": "HRPWM_setTripZoneAction",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "tzEvent": "EPWM_TZ_ACTION_EVENT_DCBEVT2",
+		  "tzAction": "this"
+		},
+		"register": "TZCTL.DCBEVT2",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTripZone_oneShotSource",
+		"driverlibFunction": "EPWM_enableTripZoneSignals",
+		"driverlibFunctionAlt": "EPWM_disableTripZoneSignals",
+		"driverlibFunctionHR": "EPWM_enableTripZoneSignals",
+		"driverlibFunctionHRAlt": "EPWM_disableTripZoneSignals",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "tzSignal": "this"
+		},
+		"register": [
+		  "TZSEL.OSHT1",
+		  "TZSEL.OSHT2",
+		  "TZSEL.OSHT3",
+		  "TZSEL.OSHT4",
+		  "TZSEL.OSHT5",
+		  "TZSEL.OSHT6",
+		  "TZSEL.DCAEVT1",
+		  "TZSEL.DCBEVT1"
+		],
+		"handler": "epwmTripZone_oneShotSource_handler",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTripZone_cbcSource",
+		"driverlibFunction": "EPWM_enableTripZoneSignals",
+		"driverlibFunctionAlt": "EPWM_disableTripZoneSignals",
+		"driverlibFunctionHR": "EPWM_enableTripZoneSignals",
+		"driverlibFunctionHRAlt": "EPWM_disableTripZoneSignals",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "tzSignal": "this"
+		},
+		"register": [
+		  "TZSEL.CBC1",
+		  "TZSEL.CBC2",
+		  "TZSEL.CBC3",
+		  "TZSEL.CBC4",
+		  "TZSEL.CBC5",
+		  "TZSEL.CBC6",
+		  "TZSEL.DCAEVT2",
+		  "TZSEL.DCBEVT2"
+		],
+		"handler": "epwmTripZone_cbcSource_handler",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTripZone_cbcPulse",
+		"driverlibFunction": "EPWM_selectCycleByCycleTripZoneClearEvent",
+		"driverlibFunctionHR": "HRPWM_selectCycleByCycleTripZoneClearEvent",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "clearEvent": "this"
+		},
+		"register": "TZCLR.CBCPULSE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTripZone_tzInterruptSource",
+		"driverlibFunction": "EPWM_enableTripZoneInterrupt",
+		"driverlibFunctionAlt": "EPWM_disableTripZoneInterrupt",
+		"driverlibFunctionHR": "HRPWM_enableTripZoneInterrupt",
+		"driverlibFunctionHRAlt": "HRPWM_disableTripZoneInterrupt",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "tzInterrupt": "this"
+		},
+		"register": [
+		  "TZEINT.CBC",
+		  "TZEINT.OST",
+		  "TZEINT.DCAEVT1",
+		  "TZEINT.DCAEVT2",
+		  "TZEINT.DCBEVT1",
+		  "TZEINT.DCBEVT2"
+		],
+		"handler": "epwmTripZone_tzISHandler",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_dcFilterInput",
+		"driverlibFunction": "EPWM_setDigitalCompareFilterInput",
+		"driverlibFunctionHR": "HRPWM_setDigitalCompareFilterInput",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "filterInput": "this"
+		},
+		"register": "DCFCTL.SRCSEL",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_useBlankingWindow",
+		"driverlibFunction": "EPWM_enableDigitalCompareBlankingWindow",
+		"driverlibFunctionAlt": "EPWM_disableDigitalCompareBlankingWindow",
+		"driverlibFunctionHR": "HRPWM_enableDigitalCompareBlankingWindow",
+		"driverlibFunctionHRAlt": "HRPWM_disableDigitalCompareBlankingWindow",
+		"driverlibFunctionArg": {
+		  "base": ""
+		},
+		"register": "DCFCTL.BLANKE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_blankingWindowEvent",
+		"driverlibFunction": "EPWM_setDigitalCompareBlankingEvent",
+		"driverlibFunctionHR": "HRPWM_setDigitalCompareBlankingEvent",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "blankingPulse": "this"
+		},
+		"register": "DCFCTL.PULSESEL",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_blankingWindowOffset",
+		"driverlibFunction": "EPWM_setDigitalCompareWindowOffset",
+		"driverlibFunctionHR": "HRPWM_setDigitalCompareWindowOffset",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "windowOffsetCount": "this"
+		},
+		"register": "DCFOFFSET",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_blankingWindowLength",
+		"driverlibFunction": "EPWM_setDigitalCompareWindowLength",
+		"driverlibFunctionHR": "HRPWM_setDigitalCompareWindowLength",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "windowLengthCount": "this"
+		},
+		"register": "DCFWINDOW",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_invertBlankingWindow",
+		"driverlibFunction": "EPWM_enableDigitalCompareWindowInverseMode",
+		"driverlibFunctionAlt": "EPWM_disableDigitalCompareWindowInverseMode",
+		"driverlibFunctionHR": "HRPWM_enableDigitalCompareWindowInverseMode",
+		"driverlibFunctionHRAlt": "HRPWM_disableDigitalCompareWindowInverseMode",
+		"driverlibFunctionArg": {
+		  "base": ""
+		},
+		"register": "DCFCTL.BLANKINV",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_useDCCounterCapture",
+		"driverlibFunction": "EPWM_enableDigitalCompareCounterCapture",
+		"driverlibFunctionAlt": "EPWM_disableDigitalCompareCounterCapture",
+		"driverlibFunctionHR": "HRPWM_enableDigitalCompareCounterCapture",
+		"driverlibFunctionHRAlt": "HRPWM_disableDigitalCompareCounterCapture",
+		"driverlibFunctionArg": {
+		  "base": ""
+		},
+		"register": "DCCAPCTL.CAPE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_dCCounterCaptureShadow",
+		"driverlibFunction": "EPWM_setDigitalCompareCounterShadowMode",
+		"driverlibFunctionHR": "HRPWM_setDigitalCompareCounterShadowMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "enableShadowMode": "this"
+		},
+		"register": "DCCAPCTL.SHDWMODE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_useEdgeFilter",
+		"driverlibFunction": "EPWM_enableDigitalCompareEdgeFilter",
+		"driverlibFunctionAlt": "EPWM_disableDigitalCompareEdgeFilter",
+		"driverlibFunctionHR": "EPWM_enableDigitalCompareEdgeFilter",
+		"driverlibFunctionHRAlt": "EPWM_disableDigitalCompareEdgeFilter",
+		"driverlibFunctionArg": {
+		  "base": ""
+		},
+		"register": "DCFCTL.EDGEFILTSEL",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_edgeFilterMode",
+		"driverlibFunction": "EPWM_setDigitalCompareEdgeFilterMode",
+		"driverlibFunctionHR": "EPWM_setDigitalCompareEdgeFilterMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "edgeMode": "this"
+		},
+		"register": "DCFCTL.EDGEMODE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_edgeFilterEdgeCount",
+		"driverlibFunction": "EPWM_setDigitalCompareEdgeFilterEdgeCount",
+		"driverlibFunctionHR": "EPWM_setDigitalCompareEdgeFilterEdgeCount",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "edgeCount": "this"
+		},
+		"register": "DCFCTL.EDGECOUNT",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_enableValleyCapture",
+		"driverlibFunction": "EPWM_enableValleyCapture",
+		"driverlibFunctionAlt": "EPWM_disableValleyCapture",
+		"driverlibFunctionHR": "HRPWM_enableValleyCapture",
+		"driverlibFunctionHRAlt": "HRPWM_disableValleyCapture",
+		"driverlibFunctionArg": {
+		  "base": ""
+		},
+		"register": "VCAPCTL.VCAPE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_valleyCaptureSource",
+		"driverlibFunction": "EPWM_setValleyTriggerSource",
+		"driverlibFunctionHR": "HRPWM_setValleyTriggerSource",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "trigger": "this"
+		},
+		"register": "VCAPCTL.TRIGSEL",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_startValleyCapture",
+		"driverlibFunction": "EPWM_startValleyCapture",
+		"driverlibFunctionAlt": "",
+		"driverlibFunctionHR": "HRPWM_startValleyCapture",
+		"driverlibFunctionHRAlt": "",
+		"driverlibFunctionArg": {
+		  "base": ""
+		},
+		"register": "VCAPCTL.VCAPSTART",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_startValleyCaptureTriggerCount",
+		"driverlibFunction": "EPWM_setValleyTriggerEdgeCounts",
+		"driverlibFunctionHR": "HRPWM_setValleyTriggerEdgeCounts",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "startCount": "this",
+		  "stopCount": ""
+		},
+		"register": "VCNTCFG.STARTEDGE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_stopValleyCaptureTriggerCount",
+		"driverlibFunction": "EPWM_setValleyTriggerEdgeCounts",
+		"driverlibFunctionHR": "HRPWM_setValleyTriggerEdgeCounts",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "startCount": "",
+		  "stopCount": "this"
+		},
+		"register": "VCNTCFG.STOPEDGE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_enableEdgeFilterDelay",
+		"driverlibFunction": "EPWM_enableValleyHWDelay",
+		"driverlibFunctionAlt": "EPWM_disableValleyHWDelay",
+		"driverlibFunctionHR": "HRPWM_enableValleyHWDelay",
+		"driverlibFunctionHRAlt": "HRPWM_disableValleyHWDelay",
+		"driverlibFunctionArg": {
+		  "base": ""
+		},
+		"register": "VCAPCTL.EDGEFILTDLYSEL",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_SWVDELVAL",
+		"driverlibFunction": "EPWM_setValleySWDelayValue",
+		"driverlibFunctionHR": "HRPWM_setValleySWDelayValue",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "delayOffsetValue": "this"
+		},
+		"register": "SWVDELVAL",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_valleyDelayDivider",
+		"driverlibFunction": "EPWM_setValleyDelayDivider",
+		"driverlibFunctionHR": "HRPWM_setValleyDelayDivider",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "delayMode": "this"
+		},
+		"register": "VCAPCTL.VDELAYDIV",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_EPWM_DC_TYPE_DCAH",
+		"driverlibFunction": "EPWM_selectDigitalCompareTripInput",
+		"driverlibFunctionHR": "HRPWM_selectDigitalCompareTripInput",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "tripSource": "this",
+		  "dcType": "EPWM_DC_TYPE_DCAH"
+		},
+		"register": "DCTRIPSEL.DCAHCOMPSEL",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_EPWM_DC_TYPE_DCAH_combinationInputConfig",
+		"driverlibFunction": "EPWM_enableDigitalCompareTripCombinationInput",
+		"driverlibFunctionHR": "HRPWM_enableDigitalCompareTripCombinationInput",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "tripInput": "this",
+		  "dcType": "EPWM_DC_TYPE_DCAH"
+		},
+		"register": [
+		  "DCAHTRIPSEL.TRIPINPUT1",
+		  "DCAHTRIPSEL.TRIPINPUT2",
+		  "DCAHTRIPSEL.TRIPINPUT3",
+		  "DCAHTRIPSEL.TRIPINPUT4",
+		  "DCAHTRIPSEL.TRIPINPUT5",
+		  "DCAHTRIPSEL.TRIPINPUT6",
+		  "DCAHTRIPSEL.TRIPINPUT7",
+		  "DCAHTRIPSEL.TRIPINPUT8",
+		  "DCAHTRIPSEL.TRIPINPUT9",
+		  "DCAHTRIPSEL.TRIPINPUT10",
+		  "DCAHTRIPSEL.TRIPINPUT11",
+		  "DCAHTRIPSEL.TRIPINPUT12",
+		  "DCAHTRIPSEL.TRIPINPUT13",
+		  "DCAHTRIPSEL.TRIPINPUT14",
+		  "DCAHTRIPSEL.TRIPINPUT15"
+		],
+		"handler": "epwmDigitalCompare_combinationInputConfigHandler",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_EPWM_DC_TYPE_DCAL",
+		"driverlibFunction": "EPWM_selectDigitalCompareTripInput",
+		"driverlibFunctionHR": "HRPWM_selectDigitalCompareTripInput",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "tripSource": "this",
+		  "dcType": "EPWM_DC_TYPE_DCAL"
+		},
+		"register": "DCTRIPSEL.DCALCOMPSEL",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_EPWM_DC_TYPE_DCAL_combinationInputConfig",
+		"driverlibFunction": "EPWM_enableDigitalCompareTripCombinationInput",
+		"driverlibFunctionHR": "HRPWM_enableDigitalCompareTripCombinationInput",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "tripInput": "this",
+		  "dcType": "EPWM_DC_TYPE_DCAL"
+		},
+		"register": [
+		  "DCALTRIPSEL.TRIPINPUT1",
+		  "DCALTRIPSEL.TRIPINPUT2",
+		  "DCALTRIPSEL.TRIPINPUT3",
+		  "DCALTRIPSEL.TRIPINPUT4",
+		  "DCALTRIPSEL.TRIPINPUT5",
+		  "DCALTRIPSEL.TRIPINPUT6",
+		  "DCALTRIPSEL.TRIPINPUT7",
+		  "DCALTRIPSEL.TRIPINPUT8",
+		  "DCALTRIPSEL.TRIPINPUT9",
+		  "DCALTRIPSEL.TRIPINPUT10",
+		  "DCALTRIPSEL.TRIPINPUT11",
+		  "DCALTRIPSEL.TRIPINPUT12",
+		  "DCALTRIPSEL.TRIPINPUT13",
+		  "DCALTRIPSEL.TRIPINPUT14",
+		  "DCALTRIPSEL.TRIPINPUT15"
+		],
+		"handler": "epwmDigitalCompare_combinationInputConfigHandler",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_EPWM_TZ_DC_OUTPUT_A1",
+		"driverlibFunction": "EPWM_setTripZoneDigitalCompareEventCondition",
+		"driverlibFunctionHR": "HRPWM_setTripZoneDigitalCompareEventCondition",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "dcType": "EPWM_TZ_DC_OUTPUT_A1",
+		  "dcEvent": "this"
+		},
+		"register": "TZDCSEL.DCAEVT1",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_EPWM_TZ_DC_OUTPUT_A2",
+		"driverlibFunction": "EPWM_setTripZoneDigitalCompareEventCondition",
+		"driverlibFunctionHR": "HRPWM_setTripZoneDigitalCompareEventCondition",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "dcType": "EPWM_TZ_DC_OUTPUT_A2",
+		  "dcEvent": "this"
+		},
+		"register": "TZDCSEL.DCAEVT2",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_EPWM_DC_MODULE_A_EPWM_DC_EVENT_1_adcTrig",
+		"driverlibFunction": "EPWM_enableDigitalCompareADCTrigger",
+		"driverlibFunctionAlt": "EPWM_disableDigitalCompareADCTrigger",
+		"driverlibFunctionHR": "HRPWM_enableDigitalCompareADCTrigger",
+		"driverlibFunctionHRAlt": "HRPWM_disableDigitalCompareADCTrigger",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "dcModule": "EPWM_DC_MODULE_A"
+		},
+		"register": "DCACTL.EVT1SOCE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_EPWM_DC_MODULE_A_EPWM_DC_EVENT_1_syncTrig",
+		"driverlibFunction": "EPWM_enableDigitalCompareSyncEvent",
+		"driverlibFunctionAlt": "EPWM_disableDigitalCompareSyncEvent",
+		"driverlibFunctionHR": "HRPWM_enableDigitalCompareSyncEvent",
+		"driverlibFunctionHRAlt": "HRPWM_disableDigitalCompareSyncEvent",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "dcModule": "EPWM_DC_MODULE_A"
+		},
+		"register": "DCACTL.EVT1SYNCE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_EPWM_DC_MODULE_A_EPWM_DC_EVENT_1_eventSync",
+		"driverlibFunction": "EPWM_setDigitalCompareEventSyncMode",
+		"driverlibFunctionHR": "HRPWM_setDigitalCompareEventSyncMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "dcModule": "EPWM_DC_MODULE_A",
+		  "dcEvent": "EPWM_DC_EVENT_1",
+		  "syncMode": "this"
+		},
+		"register": "DCACTL.EVT1FRCSYNCSEL",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_EPWM_DC_MODULE_A_EPWM_DC_EVENT_1_eventSource",
+		"driverlibFunction": "EPWM_setDigitalCompareEventSource",
+		"driverlibFunctionHR": "HRPWM_setDigitalCompareEventSource",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "dcModule": "EPWM_DC_MODULE_A",
+		  "dcEvent": "EPWM_DC_EVENT_1",
+		  "dcEventSource": "this"
+		},
+		"register": "DCACTL.EVT1SRCSEL",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_EPWM_DC_MODULE_A_EPWM_DC_EVENT_2_eventSync",
+		"driverlibFunction": "EPWM_setDigitalCompareEventSyncMode",
+		"driverlibFunctionHR": "HRPWM_setDigitalCompareEventSyncMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "dcModule": "EPWM_DC_MODULE_A",
+		  "dcEvent": "EPWM_DC_EVENT_2",
+		  "syncMode": "this"
+		},
+		"register": "DCACTL.EVT2FRCSYNCSEL",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_EPWM_DC_MODULE_A_EPWM_DC_EVENT_2_eventSource",
+		"driverlibFunction": "EPWM_setDigitalCompareEventSource",
+		"driverlibFunctionHR": "HRPWM_setDigitalCompareEventSource",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "dcModule": "EPWM_DC_MODULE_A",
+		  "dcEvent": "EPWM_DC_EVENT_2",
+		  "dcEventSource": "this"
+		},
+		"register": "DCACTL.EVT2SRCSEL",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_EPWM_DC_TYPE_DCBH",
+		"driverlibFunction": "EPWM_selectDigitalCompareTripInput",
+		"driverlibFunctionHR": "HRPWM_selectDigitalCompareTripInput",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "tripSource": "this",
+		  "dcType": "EPWM_DC_TYPE_DCBH"
+		},
+		"register": "DCTRIPSEL.DCBHCOMPSEL",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_EPWM_DC_TYPE_DCBH_combinationInputConfig",
+		"driverlibFunction": "EPWM_enableDigitalCompareTripCombinationInput",
+		"driverlibFunctionHR": "HRPWM_enableDigitalCompareTripCombinationInput",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "tripInput": "this",
+		  "dcType": "EPWM_DC_TYPE_DCBH"
+		},
+		"register": [
+		  "DCBHTRIPSEL.TRIPINPUT1",
+		  "DCBHTRIPSEL.TRIPINPUT2",
+		  "DCBHTRIPSEL.TRIPINPUT3",
+		  "DCBHTRIPSEL.TRIPINPUT4",
+		  "DCBHTRIPSEL.TRIPINPUT5",
+		  "DCBHTRIPSEL.TRIPINPUT6",
+		  "DCBHTRIPSEL.TRIPINPUT7",
+		  "DCBHTRIPSEL.TRIPINPUT8",
+		  "DCBHTRIPSEL.TRIPINPUT9",
+		  "DCBHTRIPSEL.TRIPINPUT10",
+		  "DCBHTRIPSEL.TRIPINPUT11",
+		  "DCBHTRIPSEL.TRIPINPUT12",
+		  "DCBHTRIPSEL.TRIPINPUT13",
+		  "DCBHTRIPSEL.TRIPINPUT14",
+		  "DCBHTRIPSEL.TRIPINPUT15"
+		],
+		"handler": "epwmDigitalCompare_combinationInputConfigHandler",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_EPWM_DC_TYPE_DCBL",
+		"driverlibFunction": "EPWM_selectDigitalCompareTripInput",
+		"driverlibFunctionHR": "HRPWM_selectDigitalCompareTripInput",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "tripSource": "this",
+		  "dcType": "EPWM_DC_TYPE_DCBL"
+		},
+		"register": "DCTRIPSEL.DCBLCOMPSEL",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_EPWM_DC_TYPE_DCBL_combinationInputConfig",
+		"driverlibFunction": "EPWM_enableDigitalCompareTripCombinationInput",
+		"driverlibFunctionHR": "HRPWM_enableDigitalCompareTripCombinationInput",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "tripInput": "this",
+		  "dcType": "EPWM_DC_TYPE_DCBL"
+		},
+		"register": [
+		  "DCBLTRIPSEL.TRIPINPUT1",
+		  "DCBLTRIPSEL.TRIPINPUT2",
+		  "DCBLTRIPSEL.TRIPINPUT3",
+		  "DCBLTRIPSEL.TRIPINPUT4",
+		  "DCBLTRIPSEL.TRIPINPUT5",
+		  "DCBLTRIPSEL.TRIPINPUT6",
+		  "DCBLTRIPSEL.TRIPINPUT7",
+		  "DCBLTRIPSEL.TRIPINPUT8",
+		  "DCBLTRIPSEL.TRIPINPUT9",
+		  "DCBLTRIPSEL.TRIPINPUT10",
+		  "DCBLTRIPSEL.TRIPINPUT11",
+		  "DCBLTRIPSEL.TRIPINPUT12",
+		  "DCBLTRIPSEL.TRIPINPUT13",
+		  "DCBLTRIPSEL.TRIPINPUT14",
+		  "DCBLTRIPSEL.TRIPINPUT15"
+		],
+		"handler": "epwmDigitalCompare_combinationInputConfigHandler",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_EPWM_TZ_DC_OUTPUT_B1",
+		"driverlibFunction": "EPWM_setTripZoneDigitalCompareEventCondition",
+		"driverlibFunctionHR": "HRPWM_setTripZoneDigitalCompareEventCondition",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "dcType": "EPWM_TZ_DC_OUTPUT_B1",
+		  "dcEvent": "this"
+		},
+		"register": "TZDCSEL.DCBEVT1",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_EPWM_TZ_DC_OUTPUT_B2",
+		"driverlibFunction": "EPWM_setTripZoneDigitalCompareEventCondition",
+		"driverlibFunctionHR": "HRPWM_setTripZoneDigitalCompareEventCondition",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "dcType": "EPWM_TZ_DC_OUTPUT_B2",
+		  "dcEvent": "this"
+		},
+		"register": "TZDCSEL.DCBEVT2",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_EPWM_DC_MODULE_B_EPWM_DC_EVENT_1_adcTrig",
+		"driverlibFunction": "EPWM_enableDigitalCompareADCTrigger",
+		"driverlibFunctionAlt": "EPWM_disableDigitalCompareADCTrigger",
+		"driverlibFunctionHR": "HRPWM_enableDigitalCompareADCTrigger",
+		"driverlibFunctionHRAlt": "HRPWM_disableDigitalCompareADCTrigger",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "dcModule": "EPWM_DC_MODULE_B"
+		},
+		"register": "DCBCTL.EVT1SOCE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_EPWM_DC_MODULE_B_EPWM_DC_EVENT_1_syncTrig",
+		"driverlibFunction": "EPWM_enableDigitalCompareSyncEvent",
+		"driverlibFunctionAlt": "EPWM_disableDigitalCompareSyncEvent",
+		"driverlibFunctionHR": "HRPWM_enableDigitalCompareSyncEvent",
+		"driverlibFunctionHRAlt": "HRPWM_disableDigitalCompareSyncEvent",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "dcModule": "EPWM_DC_MODULE_B"
+		},
+		"register": "DCBCTL.EVT1SYNCE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_EPWM_DC_MODULE_B_EPWM_DC_EVENT_1_eventSync",
+		"driverlibFunction": "EPWM_setDigitalCompareEventSyncMode",
+		"driverlibFunctionHR": "HRPWM_setDigitalCompareEventSyncMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "dcModule": "EPWM_DC_MODULE_B",
+		  "dcEvent": "EPWM_DC_EVENT_1",
+		  "syncMode": "this"
+		},
+		"register": "DCBCTL.EVT1FRCSYNCSEL",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_EPWM_DC_MODULE_B_EPWM_DC_EVENT_1_eventSource",
+		"driverlibFunction": "EPWM_setDigitalCompareEventSource",
+		"driverlibFunctionHR": "HRPWM_setDigitalCompareEventSource",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "dcModule": "EPWM_DC_MODULE_B",
+		  "dcEvent": "EPWM_DC_EVENT_1",
+		  "dcEventSource": "this"
+		},
+		"register": "DCBCTL.EVT1SRCSEL",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_EPWM_DC_MODULE_B_EPWM_DC_EVENT_2_eventSync",
+		"driverlibFunction": "EPWM_setDigitalCompareEventSyncMode",
+		"driverlibFunctionHR": "HRPWM_setDigitalCompareEventSyncMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "dcModule": "EPWM_DC_MODULE_B",
+		  "dcEvent": "EPWM_DC_EVENT_2",
+		  "syncMode": "this"
+		},
+		"register": "DCBCTL.EVT2FRCSYNCSEL",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_EPWM_DC_MODULE_B_EPWM_DC_EVENT_2_eventSource",
+		"driverlibFunction": "EPWM_setDigitalCompareEventSource",
+		"driverlibFunctionHR": "HRPWM_setDigitalCompareEventSource",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "dcModule": "EPWM_DC_MODULE_B",
+		  "dcEvent": "EPWM_DC_EVENT_2",
+		  "dcEventSource": "this"
+		},
+		"register": "DCBCTL.EVT2SRCSEL",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDeadband_inputRED",
+		"driverlibFunction": "EPWM_setRisingEdgeDeadBandDelayInput",
+		"driverlibFunctionHR": "HRPWM_setRisingEdgeDeadBandDelayInput",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "input": "this"
+		},
+		"register": "DBCTL.IN_MODE",
+		"handler": "epwmDeadband_InputX_Handler",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDeadband_inputFED",
+		"driverlibFunction": "EPWM_setFallingEdgeDeadBandDelayInput",
+		"driverlibFunctionHR": "HRPWM_setFallingEdgeDeadBandDelayInput",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "input": "this"
+		},
+		"register": "DBCTL.IN_MODE",
+		"handler": "epwmDeadband_InputX_Handler",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDeadband_polarityRED",
+		"driverlibFunction": "EPWM_setDeadBandDelayPolarity",
+		"driverlibFunctionHR": "HRPWM_setDeadBandDelayPolarity",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "delayMode": "EPWM_DB_RED",
+		  "polarity": "this"
+		},
+		"register": "DBCTL.POLSEL",
+		"handler": "epwmDeadband_PolarityX_Handler",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDeadband_polarityFED",
+		"driverlibFunction": "EPWM_setDeadBandDelayPolarity",
+		"driverlibFunctionHR": "HRPWM_setDeadBandDelayPolarity",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "delayMode": "EPWM_DB_FED",
+		  "polarity": "this"
+		},
+		"register": "DBCTL.POLSEL",
+		"handler": "epwmDeadband_PolarityX_Handler",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDeadband_enableRED",
+		"driverlibFunction": "EPWM_setDeadBandDelayMode",
+		"driverlibFunctionHR": "HRPWM_setDeadBandDelayMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "delayMode": "EPWM_DB_RED",
+		  "enableDelayMode": "this"
+		},
+		"register": "DBCTL.OUT_MODE",
+		"handler": "epwmDeadband_OutputX_Handler",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDeadband_delayRED",
+		"driverlibFunction": "EPWM_setRisingEdgeDelayCount",
+		"driverlibFunctionHR": "HRPWM_setRisingEdgeDelayCount",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "redCount": "this"
+		},
+		"register": "DBRED.DBRED",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDeadband_enableFED",
+		"driverlibFunction": "EPWM_setDeadBandDelayMode",
+		"driverlibFunctionHR": "HRPWM_setDeadBandDelayMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "delayMode": "EPWM_DB_FED",
+		  "enableDelayMode": "this"
+		},
+		"register": "DBCTL.OUT_MODE",
+		"handler": "epwmDeadband_OutputX_Handler",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDeadband_delayFED",
+		"driverlibFunction": "EPWM_setFallingEdgeDelayCount",
+		"driverlibFunctionHR": "HRPWM_setFallingEdgeDelayCount",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "fedCount": "this"
+		},
+		"register": "DBFED.DBFED",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDeadband_outputSwapOutA",
+		"driverlibFunction": "EPWM_setDeadBandOutputSwapMode",
+		"driverlibFunctionHR": "HRPWM_setDeadBandOutputSwapMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "output": "EPWM_DB_OUTPUT_A",
+		  "enableSwapMode": "this"
+		},
+		"register": "DBCTL.OUTSWAP",
+		"handler": "epwmDeadband_OutputSwapX_Handler",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDeadband_outputSwapOutB",
+		"driverlibFunction": "EPWM_setDeadBandOutputSwapMode",
+		"driverlibFunctionHR": "HRPWM_setDeadBandOutputSwapMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "output": "EPWM_DB_OUTPUT_B",
+		  "enableSwapMode": "this"
+		},
+		"register": "DBCTL.OUTSWAP",
+		"handler": "epwmDeadband_OutputSwapX_Handler",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDeadband_dbControlGld",
+		"driverlibFunction": "EPWM_enableGlobalLoadRegisters",
+		"driverlibFunctionAlt": "",
+		"driverlibFunctionHR": "HRPWM_enableGlobalLoadRegisters",
+		"driverlibFunctionHRAlt": "",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "loadRegister": "EPWM_GL_REGISTER_DBCTL"
+		},
+		"register": "GLDCFG.DBCTL",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDeadband_controlShadowMode",
+		"driverlibFunction": "",
+		"driverlibFunctionAlt": "EPWM_disableDeadBandControlShadowLoadMode",
+		"driverlibFunctionHR": "",
+		"driverlibFunctionHRAlt": "HRPWM_disableDeadBandControlShadowLoadMode",
+		"driverlibFunctionArg": {
+		  "base": ""
+		},
+		"register": "DBCTL2.SHDWDBCTLMODE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDeadband_controlShadowLoadEvent",
+		"driverlibFunction": "EPWM_setDeadBandControlShadowLoadMode",
+		"driverlibFunctionHR": "HRPWM_setDeadBandControlShadowLoadMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "loadMode": "this"
+		},
+		"register": "DBCTL2.LOADDBCTLMODE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDeadband_redGld",
+		"driverlibFunction": "EPWM_enableGlobalLoadRegisters",
+		"driverlibFunctionAlt": "",
+		"driverlibFunctionHR": "HRPWM_enableGlobalLoadRegisters",
+		"driverlibFunctionHRAlt": "",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "loadRegister": "EPWM_GL_REGISTER_DBRED_DBREDHR"
+		},
+		"register": "GLDCFG.DBRED_DBREDHR",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDeadband_redShadowMode",
+		"driverlibFunction": "",
+		"driverlibFunctionAlt": "EPWM_disableRisingEdgeDelayCountShadowLoadMode",
+		"driverlibFunctionHR": "",
+		"driverlibFunctionHRAlt": "HRPWM_disableRisingEdgeDelayCountShadowLoadMode",
+		"driverlibFunctionArg": {
+		  "base": ""
+		},
+		"register": "DBCTL.SHDWDBREDMODE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDeadband_redShadowLoadEvent",
+		"driverlibFunction": "EPWM_setRisingEdgeDelayCountShadowLoadMode",
+		"driverlibFunctionHR": "HRPWM_setRisingEdgeDelayCountShadowLoadMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "loadMode": "this"
+		},
+		"register": "DBCTL.LOADREDMODE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDeadband_fedGld",
+		"driverlibFunction": "EPWM_enableGlobalLoadRegisters",
+		"driverlibFunctionAlt": "",
+		"driverlibFunctionHR": "HRPWM_enableGlobalLoadRegisters",
+		"driverlibFunctionHRAlt": "",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "loadRegister": "EPWM_GL_REGISTER_DBFED_DBFEDHR"
+		},
+		"register": "GLDCFG.DBFED_DBFEDHR",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDeadband_fedShadowMode",
+		"driverlibFunction": "",
+		"driverlibFunctionAlt": "EPWM_disableFallingEdgeDelayCountShadowLoadMode",
+		"driverlibFunctionHR": "",
+		"driverlibFunctionHRAlt": "HRPWM_disableFallingEdgeDelayCountShadowLoadMode",
+		"driverlibFunctionArg": {
+		  "base": ""
+		},
+		"register": "DBCTL.SHDWDBFEDMODE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDeadband_fedShadowLoadEvent",
+		"driverlibFunction": "EPWM_setFallingEdgeDelayCountShadowLoadMode",
+		"driverlibFunctionHR": "HRPWM_setFallingEdgeDeadBandDelayInput",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "loadMode": "this"
+		},
+		"register": "DBCTL.LOADFEDMODE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDeadband_deadbandCounterClockRate",
+		"driverlibFunction": "EPWM_setDeadBandCounterClock",
+		"driverlibFunctionHR": "HRPWM_setDeadBandCounterClock",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "clockMode": "this"
+		},
+		"register": "DBCTL.HALFCYCLE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmChopper_useChopper",
+		"driverlibFunction": "EPWM_enableChopper",
+		"driverlibFunctionAlt": "EPWM_disableChopper",
+		"driverlibFunctionHR": "HRPWM_enableChopper",
+		"driverlibFunctionHRAlt": "HRPWM_disableChopper",
+		"driverlibFunctionArg": {
+		  "base": ""
+		},
+		"register": "PCCTL.CHPEN",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmChopper_chopperDuty",
+		"driverlibFunction": "EPWM_setChopperDutyCycle",
+		"driverlibFunctionHR": "HRPWM_setChopperDutyCycle",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "dutyCycleCount": "this"
+		},
+		"register": "PCCTL.CHPDUTY",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmChopper_chopperFreq",
+		"driverlibFunction": "EPWM_setChopperFreq",
+		"driverlibFunctionHR": "HRPWM_setChopperFreq",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "freqDiv": "this"
+		},
+		"register": "PCCTL.CHPFREQ",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmChopper_chopperFirstPulseWidth",
+		"driverlibFunction": "EPWM_setChopperFirstPulseWidth",
+		"driverlibFunctionHR": "HRPWM_setChopperFirstPulseWidt",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "firstPulseWidth": "this"
+		},
+		"register": "PCCTL.OSHTWTH",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmEventTrigger_enableInterrupt",
+		"driverlibFunction": "EPWM_enableInterrupt",
+		"driverlibFunctionAlt": "EPWM_disableInterrupt",
+		"driverlibFunctionHR": "HRPWM_enableInterrupt",
+		"driverlibFunctionHRAlt": "HRPWM_disableInterrupt",
+		"driverlibFunctionArg": {
+		  "base": ""
+		},
+		"register": "ETSEL.INTEN",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmEventTrigger_interruptSource",
+		"driverlibFunction": "EPWM_setInterruptSource",
+		"driverlibFunctionHR": "HRPWM_setInterruptSource",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "interruptSource": "this"
+		},
+		"register": "ETSEL.INTSEL",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmEventTrigger_interruptEventCount",
+		"driverlibFunction": "EPWM_setInterruptEventCount",
+		"driverlibFunctionHR": "HRPWM_setInterruptEventCount",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "eventCount": "this"
+		},
+		"register": "ETINTPS.INTPRD2",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmEventTrigger_interruptEventCountInitEnable",
+		"driverlibFunction": "EPWM_enableInterruptEventCountInit",
+		"driverlibFunctionAlt": "EPWM_disableInterruptEventCountInit",
+		"driverlibFunctionHR": "HRPWM_enableInterruptEventCountInit",
+		"driverlibFunctionHRAlt": "HRPWM_disableInterruptEventCountInit",
+		"driverlibFunctionArg": {
+		  "base": ""
+		},
+		"register": "ETCNTINITCTL.INTINITEN",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmEventTrigger_interruptEventCountInitValue",
+		"driverlibFunction": "EPWM_setInterruptEventCountInitValue",
+		"driverlibFunctionHR": "HRPWM_setInterruptEventCountInitValue",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "eventCount": "this"
+		},
+		"register": "ETCNTINIT.INTINIT",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmEventTrigger_interruptEventCountInitForce",
+		"driverlibFunction": "EPWM_forceInterruptEventCountInit",
+		"driverlibFunctionAlt": "",
+		"driverlibFunctionHR": "HRPWM_forceInterruptEventCountInit",
+		"driverlibFunctionHRAlt": "",
+		"driverlibFunctionArg": {
+		  "base": ""
+		},
+		"register": "ETCNTINITCTL.INTINITFRC",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmEventTrigger_EPWM_SOC_A_triggerEnable",
+		"driverlibFunction": "EPWM_enableADCTrigger",
+		"driverlibFunctionAlt": "EPWM_disableADCTrigger",
+		"driverlibFunctionHR": "HRPWM_enableADCTrigger",
+		"driverlibFunctionHRAlt": "HRPWM_disableADCTrigger",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "adcSOCType": "EPWM_SOC_A"
+		},
+		"register": "ETSEL.SOCAEN",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmEventTrigger_EPWM_SOC_A_triggerSource",
+		"driverlibFunction": "EPWM_setADCTriggerSource",
+		"driverlibFunctionHR": "HRPWM_setADCTriggerSource",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "adcSOCType": "EPWM_SOC_A",
+		  "socSource": "this"
+		},
+		"register": [
+		  "ETSEL.SOCASEL",
+		  "ETSEL.SOCASELCMP"
+		],
+		"handler": "epwmEventTrigger_SOC_triggerSource_Handler",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmEventTrigger_EPWM_SOC_A_triggerEventPrescalar",
+		"driverlibFunction": "EPWM_setADCTriggerEventPrescale",
+		"driverlibFunctionHR": "HRPWM_setADCTriggerEventPrescale",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "adcSOCType": "EPWM_SOC_A",
+		  "preScaleCount": "this"
+		},
+		"register": "ETSOCPS.SOCAPRD2",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmEventTrigger_EPWM_SOC_A_triggerEventCountInitEnable",
+		"driverlibFunction": "EPWM_enableADCTriggerEventCountInit",
+		"driverlibFunctionAlt": "EPWM_disableADCTriggerEventCountInit",
+		"driverlibFunctionHR": "HRPWM_enableADCTriggerEventCountInit",
+		"driverlibFunctionHRAlt": "HRPWM_disableADCTriggerEventCountInit",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "adcSOCType": "EPWM_SOC_A"
+		},
+		"register": "ETCNTINITCTL.SOCAINITEN",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmEventTrigger_EPWM_SOC_A_triggerEventCountInitValue",
+		"driverlibFunction": "EPWM_setADCTriggerEventCountInitValue",
+		"driverlibFunctionHR": "HRPWM_setADCTriggerEventCountInitValue",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "adcSOCType": "EPWM_SOC_A",
+		  "eventCount": "this"
+		},
+		"register": "ETCNTINIT.SOCAINIT",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmEventTrigger_EPWM_SOC_A_triggerEventCountInitForce",
+		"driverlibFunction": "EPWM_forceADCTriggerEventCountInit",
+		"driverlibFunctionAlt": "",
+		"driverlibFunctionHR": "HRPWM_forceADCTriggerEventCountInit",
+		"driverlibFunctionHRAlt": "",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "adcSOCType": "EPWM_SOC_A"
+		},
+		"register": "ETCNTINITCTL.SOCAINITFRC",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmEventTrigger_EPWM_SOC_B_triggerEnable",
+		"driverlibFunction": "EPWM_enableADCTrigger",
+		"driverlibFunctionAlt": "EPWM_disableADCTrigger",
+		"driverlibFunctionHR": "HRPWM_enableADCTrigger",
+		"driverlibFunctionHRAlt": "HRPWM_disableADCTrigger",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "adcSOCType": "EPWM_SOC_B"
+		},
+		"register": "ETSEL.SOCBEN",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmEventTrigger_EPWM_SOC_B_triggerSource",
+		"driverlibFunction": "EPWM_setADCTriggerSource",
+		"driverlibFunctionHR": "HRPWM_setADCTriggerSource",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "adcSOCType": "EPWM_SOC_B",
+		  "socSource": "this"
+		},
+		"register": [
+		  "ETSEL.SOCBSEL",
+		  "ETSEL.SOCBSELCMP"
+		],
+		"handler": "epwmEventTrigger_SOC_triggerSource_Handler",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmEventTrigger_EPWM_SOC_B_triggerEventPrescalar",
+		"driverlibFunction": "EPWM_setADCTriggerEventPrescale",
+		"driverlibFunctionHR": "HRPWM_setADCTriggerEventPrescale",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "adcSOCType": "EPWM_SOC_B",
+		  "preScaleCount": "this"
+		},
+		"register": "ETSOCPS.SOCBPRD2",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmEventTrigger_EPWM_SOC_B_triggerEventCountInitEnable",
+		"driverlibFunction": "EPWM_enableADCTriggerEventCountInit",
+		"driverlibFunctionAlt": "EPWM_disableADCTriggerEventCountInit",
+		"driverlibFunctionHR": "HRPWM_enableADCTriggerEventCountInit",
+		"driverlibFunctionHRAlt": "HRPWM_disableADCTriggerEventCountInit",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "adcSOCType": "EPWM_SOC_B"
+		},
+		"register": "ETCNTINITCTL.SOCBINITEN",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmEventTrigger_EPWM_SOC_B_triggerEventCountInitValue",
+		"driverlibFunction": "EPWM_setADCTriggerEventCountInitValue",
+		"driverlibFunctionHR": "HRPWM_setADCTriggerEventCountInitValue",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "adcSOCType": "EPWM_SOC_B",
+		  "eventCount": "this"
+		},
+		"register": "ETCNTINIT.SOCBINIT",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmEventTrigger_EPWM_SOC_B_triggerEventCountInitForce",
+		"driverlibFunction": "EPWM_forceADCTriggerEventCountInit",
+		"driverlibFunctionAlt": "",
+		"driverlibFunctionHR": "HRPWM_forceADCTriggerEventCountInit",
+		"driverlibFunctionHRAlt": "",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "adcSOCType": "EPWM_SOC_B"
+		},
+		"register": "ETCNTINITCTL.SOCBINITFRC",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmGlobalLoad_gld",
+		"driverlibFunction": "EPWM_enableGlobalLoad",
+		"driverlibFunctionAlt": "EPWM_disableGlobalLoad",
+		"driverlibFunctionHR": "HRPWM_enableGlobalLoad",
+		"driverlibFunctionHRAlt": "HRPWM_disableGlobalLoad",
+		"driverlibFunctionArg": {
+		  "base": ""
+		},
+		"register": "GLDCTL.GLD",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmGlobalLoad_gldMode",
+		"driverlibFunction": "EPWM_setGlobalLoadTrigger",
+		"driverlibFunctionHR": "HRPWM_setGlobalLoadTrigger",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "loadTrigger": "this"
+		},
+		"register": "GLDCTL.GLDMODE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmGlobalLoad_gldPeriod",
+		"driverlibFunction": "EPWM_setGlobalLoadEventPrescale",
+		"driverlibFunctionHR": "HRPWM_setGlobalLoadEventPrescale",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "prescalePulseCount": "this"
+		},
+		"register": "GLDCTL.GLDPRD",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmGlobalLoad_enableOneShot",
+		"driverlibFunction": "EPWM_enableGlobalLoadOneShotMode",
+		"driverlibFunctionAlt": "EPWM_disableGlobalLoadOneShotMode",
+		"driverlibFunctionHR": "HRPWM_enableGlobalLoadOneShotMode",
+		"driverlibFunctionHRAlt": "HRPWM_disableGlobalLoadOneShotMode",
+		"driverlibFunctionArg": {
+		  "base": ""
+		},
+		"register": "GLDCTL.OSHTMODE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmGlobalLoad_oneShotMode",
+		"driverlibFunction": "EPWM_setGlobalLoadOneShotLatch",
+		"driverlibFunctionAlt": "",
+		"driverlibFunctionHR": "HRPWM_setGlobalLoadOneShotLatch",
+		"driverlibFunctionHRAlt": "",
+		"driverlibFunctionArg": {
+		  "base": ""
+		},
+		"register": "GLDCTL2.OSHTLD",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmGlobalLoad_oneShotForce",
+		"driverlibFunction": "EPWM_forceGlobalLoadOneShotEvent",
+		"driverlibFunctionAlt": "",
+		"driverlibFunctionHR": "HRPWM_forceGlobalLoadOneShotEvent",
+		"driverlibFunctionHRAlt": "",
+		"driverlibFunctionArg": {
+		  "base": ""
+		},
+		"register": "GLDCTL2.GFRCLD",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmGlobalLoad_globalePWMLoadLink",
+		"driverlibFunction": "EPWM_setupEPWMLinks",
+		"driverlibFunctionHR": "HRPWM_setupEPWMLinks",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "epwmLink": "this",
+		  "linkComp": "EPWM_LINK_GLDCTL2"
+		},
+		"register": "EPWMXLINK.GLDCTL2LINK",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmLock",
+		"driverlibFunction": "EPWM_lockRegisters",
+		"driverlibFunctionHR": "HRPWM_lockRegisters",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "registerGroup": "this"
+		},
+		"register": [
+		  "EPWMLOCK.HRLOCK",
+		  "EPWMLOCK.GLLOCK",
+		  "EPWMLOCK.TZCFGLOCK",
+		  "EPWMLOCK.TZCLRLOCK",
+		  "EPWMLOCK.DCLOCK"
+		],
+		"handler": "epwmLock_handler",
+		"devices": [
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTimebase_syncInPulseSource",
+		"driverlibFunction": "EPWM_setSyncInPulseSource",
+		"driverlibFunctionHR": "EPWM_setSyncInPulseSource",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "source": "this"
+		},
+		"register": "SYNCINSEL.SEL",
+		"devices": [
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTimebase_syncOutPulseMode",
+		"driverlibFunction": "EPWM_enableSyncOutPulseSource",
+		"driverlibFunctionHR": "EPWM_enableSyncOutPulseSource",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "source": "this"
+		},
+		"register": [
+		  "SYNCOUTEN.SWEN",
+		  "SYNCOUTEN.ZEROEN",
+		  "SYNCOUTEN.CMPBEN",
+		  "SYNCOUTEN.CMPCEN",
+		  "SYNCOUTEN.CMPDEN",
+		  "SYNCOUTEN.DCAEVT1EN",
+		  "SYNCOUTEN.DCBEVT1EN"
+		],
+		"handler": "epwmTimebase_syncOutPulseModeExpanded_handler",
+		"devices": [
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmTimebase_oneShotSyncOutTrigger",
+		"driverlibFunction": "EPWM_setOneShotSyncOutTrigger",
+		"driverlibFunctionHR": "EPWM_setOneShotSyncOutTrigger",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "trigger": "this"
+		},
+		"register": "TBCTL3.OSSFRCEN",
+		"devices": [
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_EPWM_DC_MODULE_A_EPWM_DC_EVENT_1_latchMode",
+		"driverlibFunction": "EPWM_setDigitalCompareCBCLatchMode",
+		"driverlibFunctionHR": "",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "dcModule": "EPWM_DC_MODULE_A",
+		  "dcEvent": "EPWM_DC_EVENT_1",
+		  "latchMode": "this"
+		},
+		"register": "DCACTL.EVT1LATSEL",
+		"devices": [
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_EPWM_DC_MODULE_A_EPWM_DC_EVENT_1_latchClearEvent",
+		"driverlibFunction": "EPWM_selectDigitalCompareCBCLatchClearEvent",
+		"driverlibFunctionHR": "",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "dcModule": "EPWM_DC_MODULE_A",
+		  "dcEvent": "EPWM_DC_EVENT_1",
+		  "clearEvent": "this"
+		},
+		"register": "DCACTL.EVT1LATCLRSEL",
+		"devices": [
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_EPWM_DC_MODULE_A_EPWM_DC_EVENT_2_latchMode",
+		"driverlibFunction": "EPWM_setDigitalCompareCBCLatchMode",
+		"driverlibFunctionHR": "",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "dcModule": "EPWM_DC_MODULE_A",
+		  "dcEvent": "EPWM_DC_EVENT_2",
+		  "latchMode": "this"
+		},
+		"register": "DCACTL.EVT2LATSEL",
+		"devices": [
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_EPWM_DC_MODULE_A_EPWM_DC_EVENT_2_latchClearEvent",
+		"driverlibFunction": "EPWM_selectDigitalCompareCBCLatchClearEvent",
+		"driverlibFunctionHR": "",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "dcModule": "EPWM_DC_MODULE_A",
+		  "dcEvent": "EPWM_DC_EVENT_2",
+		  "clearEvent": "this"
+		},
+		"register": "DCACTL.EVT2LATCLRSEL",
+		"devices": [
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_EPWM_DC_MODULE_B_EPWM_DC_EVENT_1_latchMode",
+		"driverlibFunction": "EPWM_setDigitalCompareCBCLatchMode",
+		"driverlibFunctionHR": "",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "dcModule": "EPWM_DC_MODULE_B",
+		  "dcEvent": "EPWM_DC_EVENT_1",
+		  "latchMode": "this"
+		},
+		"register": "DCBCTL.EVT1LATSEL",
+		"devices": [
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_EPWM_DC_MODULE_B_EPWM_DC_EVENT_1_latchClearEvent",
+		"driverlibFunction": "EPWM_selectDigitalCompareCBCLatchClearEvent",
+		"driverlibFunctionHR": "",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "dcModule": "EPWM_DC_MODULE_B",
+		  "dcEvent": "EPWM_DC_EVENT_1",
+		  "clearEvent": "this"
+		},
+		"register": "DCBCTL.EVT1LATCLRSEL",
+		"devices": [
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_EPWM_DC_MODULE_B_EPWM_DC_EVENT_2_latchMode",
+		"driverlibFunction": "EPWM_setDigitalCompareCBCLatchMode",
+		"driverlibFunctionHR": "",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "dcModule": "EPWM_DC_MODULE_B",
+		  "dcEvent": "EPWM_DC_EVENT_2",
+		  "latchMode": "this"
+		},
+		"register": "DCBCTL.EVT2LATSEL",
+		"devices": [
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "epwmDigitalCompare_EPWM_DC_MODULE_B_EPWM_DC_EVENT_2_latchClearEvent",
+		"driverlibFunction": "EPWM_selectDigitalCompareCBCLatchClearEvent",
+		"driverlibFunctionHR": "",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "dcModule": "EPWM_DC_MODULE_B",
+		  "dcEvent": "EPWM_DC_EVENT_2",
+		  "clearEvent": "this"
+		},
+		"register": "DCBCTL.EVT2LATCLRSEL",
+		"devices": [
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "hrpwm_autoConv",
+		"driverlibFunctionHR": "HRPWM_enableAutoConversion",
+		"driverlibFunctionHRAlt": "HRPWM_disableAutoConversion",
+		"driverlibFunctionArg": {
+		  "base": "HRCNFG.AUTOCONV"
+		},
+		"register": "",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "hrpwm_controlModeA",
+		"driverlibFunctionHR": "HRPWM_setMEPControlMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "channel": "HRPWM_CHANNEL_A",
+		  "mepCtrlMode": "this"
+		},
+		"register": "HRCNFG.CTLMODE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "hrpwm_controlModeB",
+		"driverlibFunctionHR": "HRPWM_setMEPControlMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "channel": "HRPWM_CHANNEL_B",
+		  "mepCtrlMode": "this"
+		},
+		"register": "HRCNFG.CTLMODEB",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "hrpwm_tbphsHR",
+		"driverlibFunctionHR": "HRPWM_setHiResPhaseShiftOnly",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "hrPhaseCount": "this"
+		},
+		"register": "TBPHS.TBPHSHR",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "hrpwm_syncSource",
+		"driverlibFunction": "EPWM_setSyncPulseSource",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "syncPulseSource": "this"
+		},
+		"register": "HRPCTL.PWMSYNCSEL",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "hrpwm_phaseLoadEnable",
+		"driverlibFunctionHR": "HRPWM_enablePhaseShiftLoad",
+		"driverlibFunctionHRAlt": "HRPWM_disablePhaseShiftLoad",
+		"driverlibFunctionArg": {
+		  "base": ""
+		},
+		"register": "HRPCTL.TBPHSHRLOADE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "hrpwm_edgeModeA",
+		"driverlibFunctionHR": "HRPWM_setMEPEdgeSelect",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "channel": "HRPWM_CHANNEL_A",
+		  "mepEdgeMode": "this"
+		},
+		"register": "HRCNFG.EDGMODE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "hrpwm_edgeModeB",
+		"driverlibFunctionHR": "HRPWM_setMEPEdgeSelect",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "channel": "HRPWM_CHANNEL_B",
+		  "mepEdgeMode": "this"
+		},
+		"register": "HRCNFG.EDGMODEB",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "hrpwm_cmpaHR",
+		"driverlibFunctionHR": "HRPWM_setHiResCounterCompareValueOnly",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "compModule": "HRPWM_COUNTER_COMPARE_A",
+		  "hrCompCount": "this"
+		},
+		"register": "CMPA.CMPAHR",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "hrpwm_cmpbHR",
+		"driverlibFunctionHR": "HRPWM_setHiResCounterCompareValueOnly",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "compModule": "HRPWM_COUNTER_COMPARE_B",
+		  "hrCompCount": "this"
+		},
+		"register": "CMPB.CMPBHR",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "hrpwm_HRLoadA",
+		"driverlibFunctionHR": "HRPWM_setCounterCompareShadowLoadEvent",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "channel": "HRPWM_CHANNEL_A",
+		  "loadEvent": "this"
+		},
+		"register": "HRCNFG.HRLOAD",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "hrpwm_HRLoadB",
+		"driverlibFunctionHR": "HRPWM_setCounterCompareShadowLoadEvent",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "channel": "HRPWM_CHANNEL_B",
+		  "loadEvent": "this"
+		},
+		"register": "HRCNFG.HRLOADB",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "hrpwm_periodEnable",
+		"driverlibFunctionHR": "HRPWM_enablePeriodControl",
+		"driverlibFunctionHRAlt": "HRPWM_disablePeriodControl",
+		"driverlibFunctionArg": {
+		  "base": ""
+		},
+		"register": "HRPCTL.HRPE",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "hrpwm_tbprdHR",
+		"driverlibFunctionHR": "HRPWM_setHiResTimeBasePeriodOnly",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "hrPeriodCount": "this"
+		},
+		"register": "TBPRDHR",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "hrpwm_edgeModeDB",
+		"driverlibFunctionHR": "HRPWM_setDeadbandMEPEdgeSelect",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "mepDBEdge": "this"
+		},
+		"register": "HRCNFG2.EDGMODEDB",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "hrpwm_DBredHR",
+		"driverlibFunctionHR": "HRPWM_setHiResRisingEdgeDelayOnly",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "hrRedCount": "this"
+		},
+		"register": "DBREDHR.DBREDHR",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "hrpwm_controlModeDBA",
+		"driverlibFunctionHR": "HRPWM_setRisingEdgeDelayLoadMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "loadEvent": "this"
+		},
+		"register": "HRCNFG2.CTLMODEDBRED",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "hrpwm_DBfedHR",
+		"driverlibFunctionHR": "HRPWM_setHiResFallingEdgeDelayOnly",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "hrFedCount": "this"
+		},
+		"register": "DBFEDHR.DBFEDHR",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "hrpwm_controlModeDBB",
+		"driverlibFunctionHR": "HRPWM_setFallingEdgeDelayLoadMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "loadEvent": "this"
+		},
+		"register": "HRCNFG2.CTLMODEDBFED",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+	  {
+		"name": "hrpwm_swapDBOutputs",
+		"driverlibFunctionHR": "HRPWM_setOutputSwapMode",
+		"driverlibFunctionArg": {
+		  "base": "",
+		  "enableOutputSwap": "this"
+		},
+		"register": "HRCNFG.SWAPAB",
+		"devices": [
+		  "F2807x",
+		  "F2837xS",
+		  "F2837xD",
+		  "F28004x",
+		  "F28002x",
+		  "F28003x",
+		  "F280013x",
+		  "F280015x",
+		  "F2838x",
+		  "F28P65x"
+		]
+	  },
+		{
+		"name": "hrpwm_DBBOutput",
+		"driverlibFunctionHR": "HRPWM_setChannelBOutputPath",
+		"driverlibFunctionArg": {
+			"base": "",
+			"outputOnB": "this"
+		},
+		"register": "HRCNFG.SELOUTB",
+		"devices": [
+			"F2807x",
+			"F2837xS",
+			"F2837xD",
+			"F28004x",
+			"F28002x",
+			"F28003x",
+			"F280013x",
+			"F280015x",
+			"F2838x",
+			"F28P65x"
+		]
+		},
+		{
+		"name": "epwmXCMP_enable",
+		"driverlibFunction": "EPWM_enableXCMPMode",
+		"driverlibFunctionArg": {
+			"base": ""
+		},
+		"register": "XCMPCTL1.XCMPEN",
+		"devices": [
+			"F28P65x"
+		]
+		},
+		{
+		"name": "epwmXCMP_RegisterSplit_enable",
+		"driverlibFunction": "EPWM_enableSplitXCMP",
+		"driverlibFunctionAlt": "EPWM_disableSplitXCMP",
+		"driverlibFunctionArg": {
+			"base": ""
+		},
+		"register": "XCMPCTL1.XCMPSPLIT",
+		"devices": [
+			"F28P65x"
+		]
+		},
+		{
+			"name": "epwmXCMP_selectAllocationXCMPA_NoSplitorSplit",
+			"driverlibFunction": "EPWM_allocAXCMP",
+			"driverlibFunctionArg": {
+			"base": "",
+			"alloctype": "this"
+			},
+			"register": "XCMPCTL1.XCMPA_ALLOC",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_selectAllocationXCMPB_Split",
+			"driverlibFunction": "EPWM_allocBXCMP",
+			"driverlibFunctionArg": {
+			"base": "",
+			"alloctype": "this"
+			},
+			"register": "XCMPCTL1.XCMPB_ALLOC",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPA_XCMP1_ACTIVE",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP1_ACTIVE",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP1_ACTIVE.XCMP1_ACTIVE",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPA_XCMP2_ACTIVE",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP2_ACTIVE",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP2_ACTIVE.XCMP2_ACTIVE",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPA_XCMP3_ACTIVE",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP3_ACTIVE",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP3_ACTIVE.XCMP3_ACTIVE",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPA_XCMP4_ACTIVE",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP4_ACTIVE",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP4_ACTIVE.XCMP4_ACTIVE",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPA_XCMP5_ACTIVE",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP5_ACTIVE",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP5_ACTIVE.XCMP5_ACTIVE",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPA_XCMP6_ACTIVE",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP6_ACTIVE",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP6_ACTIVE.XCMP6_ACTIVE",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPA_XCMP7_ACTIVE",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP7_ACTIVE",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP7_ACTIVE.XCMP7_ACTIVE",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPA_XCMP8_ACTIVE",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP8_ACTIVE",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP8_ACTIVE.XCMP8_ACTIVE",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPA_XCMP1_SHADOW1",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP1_SHADOW1",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP1_SHDW1.XCMP1_SHDW1",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPA_XCMP2_SHADOW1",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP2_SHADOW1",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP2_SHDW1.XCMP2_SHDW1",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPA_XCMP3_SHADOW1",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP3_SHADOW1",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP3_SHDW1.XCMP3_SHDW1",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPA_XCMP4_SHADOW1",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP4_SHADOW1",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP4_SHDW1.XCMP4_SHDW1",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPA_XCMP5_SHADOW1",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP5_SHADOW1",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP5_SHDW1.XCMP5_SHDW1",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPA_XCMP6_SHADOW1",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP6_SHADOW1",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP6_SHDW1.XCMP6_SHDW1",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPA_XCMP7_SHADOW1",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP7_SHADOW1",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP7_SHDW1.XCMP7_SHDW1",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPA_XCMP8_SHADOW1",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP8_SHADOW1",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP8_SHDW1.XCMP8_SHDW1",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPA_XCMP1_SHADOW2",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP1_SHADOW2",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP1_SHDW2.XCMP1_SHDW2",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPA_XCMP2_SHADOW2",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP2_SHADOW2",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP2_SHDW2.XCMP2_SHDW2",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPA_XCMP3_SHADOW2",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP3_SHADOW2",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP3_SHDW2.XCMP3_SHDW2",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPA_XCMP4_SHADOW2",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP4_SHADOW2",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP4_SHDW2.XCMP4_SHDW2",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPA_XCMP5_SHADOW2",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP5_SHADOW2",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP5_SHDW2.XCMP5_SHDW2",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPA_XCMP6_SHADOW2",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP6_SHADOW2",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP6_SHDW2.XCMP6_SHDW2",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPA_XCMP7_SHADOW2",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP7_SHADOW2",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP7_SHDW2.XCMP7_SHDW2",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPA_XCMP8_SHADOW2",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP8_SHADOW2",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP8_SHDW2.XCMP8_SHDW2",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPA_XCMP1_SHADOW3",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP1_SHADOW3",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP1_SHDW3.XCMP1_SHDW3",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPA_XCMP2_SHADOW3",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP2_SHADOW3",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP2_SHDW3.XCMP2_SHDW3",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPA_XCMP3_SHADOW3",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP3_SHADOW3",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP3_SHDW3.XCMP3_SHDW3",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPA_XCMP4_SHADOW3",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP4_SHADOW3",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP4_SHDW3.XCMP4_SHDW3",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPA_XCMP5_SHADOW3",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP5_SHADOW3",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP5_SHDW3.XCMP5_SHDW3",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPA_XCMP6_SHADOW3",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP6_SHADOW3",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP6_SHDW3.XCMP6_SHDW3",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPA_XCMP7_SHADOW3",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP7_SHADOW3",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP7_SHDW3.XCMP7_SHDW3",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPA_XCMP8_SHADOW3",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP8_SHADOW3",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP8_SHDW3.XCMP8_SHDW3",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPB_XCMP5_ACTIVE",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP5_ACTIVE",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP5_ACTIVE.XCMP5_ACTIVE",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPB_XCMP6_ACTIVE",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP6_ACTIVE",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP6_ACTIVE.XCMP6_ACTIVE",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPB_XCMP7_ACTIVE",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP7_ACTIVE",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP7_ACTIVE.XCMP7_ACTIVE",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPB_XCMP8_ACTIVE",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP8_ACTIVE",
+			"xcmpvalue": "this"
+			},
+			"register": "XCMP8_ACTIVE.XCMP8_ACTIVE",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPB_XCMP5_SHADOW1",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP5_SHADOW1",
+			"xcmpvalue": "this"
+			},
+			"register": "EPWM_XCMP5_SHADOW1.EPWM_XCMP5_SHADOW1",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPB_XCMP6_SHADOW1",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP6_SHADOW1",
+			"xcmpvalue": "this"
+			},
+			"register": "EPWM_XCMP6_SHADOW1.EPWM_XCMP6_SHADOW1",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPB_XCMP7_SHADOW1",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP7_SHADOW1",
+			"xcmpvalue": "this"
+			},
+			"register": "EPWM_XCMP7_SHADOW1.EPWM_XCMP7_SHADOW1",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPB_XCMP8_SHADOW1",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP8_SHADOW1",
+			"xcmpvalue": "this"
+			},
+			"register": "EPWM_XCMP8_SHADOW1.EPWM_XCMP8_SHADOW1",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPB_XCMP5_SHADOW2",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP5_SHADOW2",
+			"xcmpvalue": "this"
+			},
+			"register": "EPWM_XCMP5_SHADOW2.EPWM_XCMP5_SHADOW2",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPB_XCMP6_SHADOW2",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP6_SHADOW2",
+			"xcmpvalue": "this"
+			},
+			"register": "EPWM_XCMP6_SHADOW2.EPWM_XCMP6_SHADOW2",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPB_XCMP7_SHADOW2",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP7_SHADOW2",
+			"xcmpvalue": "this"
+			},
+			"register": "EPWM_XCMP7_SHADOW2.EPWM_XCMP7_SHADOW2",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPB_XCMP8_SHADOW2",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP8_SHADOW2",
+			"xcmpvalue": "this"
+			},
+			"register": "EPWM_XCMP8_SHADOW2.EPWM_XCMP8_SHADOW2",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPB_XCMP5_SHADOW3",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP5_SHADOW3",
+			"xcmpvalue": "this"
+			},
+			"register": "EPWM_XCMP5_SHADOW3.EPWM_XCMP5_SHADOW3",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPB_XCMP6_SHADOW3",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP6_SHADOW3",
+			"xcmpvalue": "this"
+			},
+			"register": "EPWM_XCMP6_SHADOW3.EPWM_XCMP6_SHADOW3",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPB_XCMP7_SHADOW3",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP7_SHADOW3",
+			"xcmpvalue": "this"
+			},
+			"register": "EPWM_XCMP7_SHADOW3.EPWM_XCMP7_SHADOW3",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPB_XCMP8_SHADOW3",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XCMP8_SHADOW3",
+			"xcmpvalue": "this"
+			},
+			"register": "EPWM_XCMP8_SHADOW3.EPWM_XCMP8_SHADOW3",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPC",
+			"driverlibFunction": "EPWM_setCounterCompareValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"compModule": "EPWM_COUNTER_COMPARE_C",
+			"compCount": "this"
+			},
+			"register": "CMPC.CMPC",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setShadowRegisters1XCMPC",
+			"driverlibFunction": "EPWM_setCMPShadowRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"cmpReg": "EPWM_CMPC_SHADOW1",
+			"cmpvalue": "this"
+			},
+			"register": "CMPC_SHDW1.CMPC_SHDW1",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setShadowRegisters2XCMPC",
+			"driverlibFunction": "EPWM_setCMPShadowRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"cmpReg": "EPWM_CMPC_SHADOW2",
+			"cmpvalue": "this"
+			},
+			"register": "CMPC_SHDW2.CMPC_SHDW2",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setShadowRegisters3XCMPC",
+			"driverlibFunction": "EPWM_setCMPShadowRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"cmpReg": "EPWM_CMPC_SHADOW3",
+			"cmpvalue": "this"
+			},
+			"register": "CMPC_SHDW3.CMPC_SHDW3",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setXCMPD",
+			"driverlibFunction": "EPWM_setCounterCompareValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"compModule": "EPWM_COUNTER_COMPARE_D",
+			"compCount": "this"
+			},
+			"register": "CMPD.CMPD",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setShadowRegisters1XCMPD",
+			"driverlibFunction": "EPWM_setCMPShadowRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"cmpReg": "EPWM_CMPD_SHADOW1",
+			"cmpvalue": "this"
+			},
+			"register": "CMPD_SHDW1.CMPD_SHDW1",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setShadowRegisters2XCMPD",
+			"driverlibFunction": "EPWM_setCMPShadowRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"cmpReg": "EPWM_CMPD_SHADOW2",
+			"cmpvalue": "this"
+			},
+			"register": "CMPD_SHDW2.CMPD_SHDW2",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setShadowRegisters3XCMPD",
+			"driverlibFunction": "EPWM_setCMPShadowRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"cmpReg": "EPWM_CMPD_SHADOW3",
+			"cmpvalue": "this"
+			},
+			"register": "CMPD_SHDW3.CMPD_SHDW3",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setRegisters_XTBPRD",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XTBPRD_ACTIVE",
+			"xcmpvalue": "this"
+			},
+			"register": "XTBPRD_ACTIVE.XTBPRD_ACTIVE",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setShadowRegisters1_XTBPRD",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XTBPRD_SHADOW1",
+			"xcmpvalue": "this"
+			},
+			"register": "XTBPRD_SHDW1.XTBPRD_SHDW1",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setShadowRegisters2_XTBPRD",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XTBPRD_SHADOW2",
+			"xcmpvalue": "this"
+			},
+			"register": "XTBPRD_SHDW2.XTBPRD_SHDW2",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setShadowRegisters3_XTBPRD",
+			"driverlibFunction": "EPWM_setXCMPRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xcmpReg": "EPWM_XTBPRD_SHADOW3",
+			"xcmpvalue": "this"
+			},
+			"register": "XTBPRD_SHDW3.XTBPRD_SHDW3",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setRegisters_XMIN",
+			"driverlibFunction": "EPWM_setXMINMAXRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xminmaxReg": "EPWM_XMIN_ACTIVE",
+			"xcmpvalue": "this"
+			},
+			"register": "XMINMAX_ACTIVE.XMIN_ACTIVE",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setShadowRegisters1_XMIN",
+			"driverlibFunction": "EPWM_setXMINMAXRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xminmaxReg": "EPWM_XMIN_SHADOW1",
+			"xcmpvalue": "this"
+			},
+			"register": "XMINMAX_SHDW1.XMIN_SHDW1",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setShadowRegisters2_XMIN",
+			"driverlibFunction": "EPWM_setXMINMAXRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xminmaxReg": "EPWM_XMIN_SHADOW2",
+			"xcmpvalue": "this"
+			},
+			"register": "XMINMAX_SHDW2.XMIN_SHDW2",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setShadowRegisters3_XMIN",
+			"driverlibFunction": "EPWM_setXMINMAXRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xminmaxReg": "EPWM_XMIN_SHADOW3",
+			"xcmpvalue": "this"
+			},
+			"register": "XMINMAX_SHDW3.XMIN_SHDW3",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setRegisters_XMAX",
+			"driverlibFunction": "EPWM_setXMINMAXRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xminmaxReg": "EPWM_XMAX_ACTIVE",
+			"xcmpvalue": "this"
+			},
+			"register": "XMINMAX_ACTIVE.XMAX_ACTIVE",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setShadowRegisters1_XMAX",
+			"driverlibFunction": "EPWM_setXMINMAXRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xminmaxReg": "EPWM_XMAX_SHADOW1",
+			"xcmpvalue": "this"
+			},
+			"register": "XMINMAX_SHDW1.XMAX_SHDW1",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setShadowRegisters2_XMAX",
+			"driverlibFunction": "EPWM_setXMINMAXRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xminmaxReg": "EPWM_XMAX_SHADOW2",
+			"xcmpvalue": "this"
+			},
+			"register": "XMINMAX_SHDW2.XMAX_SHDW2",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_setShadowRegisters3_XMAX",
+			"driverlibFunction": "EPWM_setXMINMAXRegValue",
+			"driverlibFunctionArg": {
+			"base": "",
+			"xminmaxReg": "EPWM_XMAX_SHADOW3",
+			"xcmpvalue": "this"
+			},
+			"register": "XMINMAX_SHDW3.XMAX_SHDW3",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPA_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP1",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"shadowset": "EPWM_XCMP_ACTIVE",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP1"
+			},
+			"register": "XAQCTLA_ACTIVE.XCMP1",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPA_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP2",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"shadowset": "EPWM_XCMP_ACTIVE",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP2"
+			},
+			"register": "XAQCTLA_ACTIVE.XCMP2",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPA_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP3",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"shadowset": "EPWM_XCMP_ACTIVE",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP3"
+			},
+			"register": "XAQCTLA_ACTIVE.XCMP3",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPA_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP4",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"shadowset": "EPWM_XCMP_ACTIVE",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP4"
+			},
+			"register": "XAQCTLA_ACTIVE.XCMP4",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPA_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP5",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"shadowset": "EPWM_XCMP_ACTIVE",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP5"
+			},
+			"register": "XAQCTLA_ACTIVE.XCMP5",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPA_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP6",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"shadowset": "EPWM_XCMP_ACTIVE",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP6"
+			},
+			"register": "XAQCTLA_ACTIVE.XCMP6",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPA_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP7",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"shadowset": "EPWM_XCMP_ACTIVE",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP7"
+			},
+			"register": "XAQCTLA_ACTIVE.XCMP7",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPA_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP8",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"shadowset": "EPWM_XCMP_ACTIVE",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP8"
+			},
+			"register": "XAQCTLA_ACTIVE.XCMP8",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPA_SHADOW1_OUTPUT_ON_TIMEBASE_XCMP1",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"shadowset": "EPWM_XCMP_SHADOW1",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP1"
+			},
+			"register": "XAQCTLA_SHDW1.XCMP1",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPA_SHADOW1_OUTPUT_ON_TIMEBASE_XCMP2",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"shadowset": "EPWM_XCMP_SHADOW1",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP2"
+			},
+			"register": "XAQCTLA_SHDW1.XCMP2",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPA_SHADOW1_OUTPUT_ON_TIMEBASE_XCMP3",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"shadowset": "EPWM_XCMP_SHADOW1",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP3"
+			},
+			"register": "XAQCTLA_SHDW1.XCMP3",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPA_SHADOW1_OUTPUT_ON_TIMEBASE_XCMP4",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"shadowset": "EPWM_XCMP_SHADOW1",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP4"
+			},
+			"register": "XAQCTLA_SHDW1.XCMP4",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPA_SHADOW1_OUTPUT_ON_TIMEBASE_XCMP5",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"shadowset": "EPWM_XCMP_SHADOW1",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP5"
+			},
+			"register": "XAQCTLA_SHDW1.XCMP5",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPA_SHADOW1_OUTPUT_ON_TIMEBASE_XCMP6",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"shadowset": "EPWM_XCMP_SHADOW1",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP6"
+			},
+			"register": "XAQCTLA_SHDW1.XCMP6",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPA_SHADOW1_OUTPUT_ON_TIMEBASE_XCMP7",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"shadowset": "EPWM_XCMP_SHADOW1",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP7"
+			},
+			"register": "XAQCTLA_SHDW1.XCMP7",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPA_SHADOW1_OUTPUT_ON_TIMEBASE_XCMP8",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"shadowset": "EPWM_XCMP_SHADOW1",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP8"
+			},
+			"register": "XAQCTLA_SHDW2.XCMP8",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPA_SHADOW2_OUTPUT_ON_TIMEBASE_XCMP1",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"shadowset": "EPWM_XCMP_SHADOW2",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP1"
+			},
+			"register": "XAQCTLA_SHDW2.XCMP1",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPA_SHADOW2_OUTPUT_ON_TIMEBASE_XCMP2",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"shadowset": "EPWM_XCMP_SHADOW2",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP2"
+			},
+			"register": "XAQCTLA_SHDW2.XCMP2",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPA_SHADOW2_OUTPUT_ON_TIMEBASE_XCMP3",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"shadowset": "EPWM_XCMP_SHADOW2",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP3"
+			},
+			"register": "XAQCTLA_SHDW2.XCMP3",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPA_SHADOW2_OUTPUT_ON_TIMEBASE_XCMP4",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"shadowset": "EPWM_XCMP_SHADOW2",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP4"
+			},
+			"register": "XAQCTLA_SHDW2.XCMP4",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPA_SHADOW2_OUTPUT_ON_TIMEBASE_XCMP5",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"shadowset": "EPWM_XCMP_SHADOW2",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP5"
+			},
+			"register": "XAQCTLA_SHDW2.XCMP5",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPA_SHADOW2_OUTPUT_ON_TIMEBASE_XCMP6",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"shadowset": "EPWM_XCMP_SHADOW2",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP6"
+			},
+			"register": "XAQCTLA_SHDW2.XCMP6",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPA_SHADOW2_OUTPUT_ON_TIMEBASE_XCMP7",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"shadowset": "EPWM_XCMP_SHADOW2",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP7"
+			},
+			"register": "XAQCTLA_SHDW2.XCMP7",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPA_SHADOW2_OUTPUT_ON_TIMEBASE_XCMP8",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"shadowset": "EPWM_XCMP_SHADOW2",
+			"output": "this",
+			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP8"
+			},
+			"register": "XAQCTLA_SHDW2.XCMP8",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPA_SHADOW3_OUTPUT_ON_TIMEBASE_XCMP1",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"shadowset": "EPWM_XCMP_SHADOW3",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP1"
+			},
+			"register": "XAQCTLA_SHDW3.XCMP1",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPA_SHADOW3_OUTPUT_ON_TIMEBASE_XCMP2",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"shadowset": "EPWM_XCMP_SHADOW3",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP2"
+			},
+			"register": "XAQCTLA_SHDW3.XCMP2",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPA_SHADOW3_OUTPUT_ON_TIMEBASE_XCMP3",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"shadowset": "EPWM_XCMP_SHADOW3",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP3"
+			},
+			"register": "XAQCTLA_SHDW3.XCMP3",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPA_SHADOW3_OUTPUT_ON_TIMEBASE_XCMP4",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"shadowset": "EPWM_XCMP_SHADOW3",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP4"
+			},
+			"register": "XAQCTLA_SHDW3.XCMP4",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPA_SHADOW3_OUTPUT_ON_TIMEBASE_XCMP5",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"shadowset": "EPWM_XCMP_SHADOW3",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP5"
+			},
+			"register": "XAQCTLA_SHDW3.XCMP5",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPA_SHADOW3_OUTPUT_ON_TIMEBASE_XCMP6",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"shadowset": "EPWM_XCMP_SHADOW3",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP6"
+			},
+			"register": "XAQCTLA_SHDW3.XCMP6",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPA_SHADOW3_OUTPUT_ON_TIMEBASE_XCMP7",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"shadowset": "EPWM_XCMP_SHADOW3",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP7"
+			},
+			"register": "XAQCTLA_SHDW3.XCMP7",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPA_SHADOW3_OUTPUT_ON_TIMEBASE_XCMP8",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"shadowset": "EPWM_XCMP_SHADOW3",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP8"
+			},
+			"register": "XAQCTLA_SHDW3.XCMP8",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPB_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP5",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_B",
+			"shadowset": "EPWM_XCMP_ACTIVE",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP5"
+			},
+			"register": "XAQCTLB_ACTIVE.XCMP5",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPB_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP6",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_B",
+			"shadowset": "EPWM_XCMP_ACTIVE",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP6"
+			},
+			"register": "XAQCTLB_ACTIVE.XCMP6",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPB_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP7",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_B",
+			"shadowset": "EPWM_XCMP_ACTIVE",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP7"
+			},
+			"register": "XAQCTLB_ACTIVE.XCMP7",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPB_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP8",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_B",
+			"shadowset": "EPWM_XCMP_ACTIVE",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP8"
+			},
+			"register": "XAQCTLB_ACTIVE.XCMP8",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPB_SHADOW1_OUTPUT_ON_TIMEBASE_XCMP5",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_B",
+			"shadowset": "EPWM_XCMP_SHADOW1",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP5"
+			},
+			"register": "XAQCTLB_SHDW1.XCMP5",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPB_SHADOW1_OUTPUT_ON_TIMEBASE_XCMP6",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_B",
+			"shadowset": "EPWM_XCMP_SHADOW1",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP6"
+			},
+			"register": "XAQCTLB_SHDW1.XCMP6",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPB_SHADOW1_OUTPUT_ON_TIMEBASE_XCMP7",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_B",
+			"shadowset": "EPWM_XCMP_SHADOW1",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP7"
+			},
+			"register": "XAQCTLB_SHDW1.XCMP7",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPB_SHADOW1_OUTPUT_ON_TIMEBASE_XCMP8",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_B",
+			"shadowset": "EPWM_XCMP_SHADOW1",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP8"
+			},
+			"register": "XAQCTLB_SHDW1.XCMP8",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPB_SHADOW2_OUTPUT_ON_TIMEBASE_XCMP5",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_B",
+			"shadowset": "EPWM_XCMP_SHADOW2",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP5"
+			},
+			"register": "XAQCTLB_SHDW2.XCMP5",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPB_SHADOW2_OUTPUT_ON_TIMEBASE_XCMP6",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_B",
+			"shadowset": "EPWM_XCMP_SHADOW2",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP6"
+			},
+			"register": "XAQCTLB_SHDW2.XCMP6",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPB_SHADOW2_OUTPUT_ON_TIMEBASE_XCMP7",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_B",
+			"shadowset": "EPWM_XCMP_SHADOW2",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP7"
+			},
+			"register": "XAQCTLB_SHDW2.XCMP7",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPB_SHADOW2_OUTPUT_ON_TIMEBASE_XCMP8",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_B",
+			"shadowset": "EPWM_XCMP_SHADOW2",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP8"
+			},
+			"register": "XAQCTLB_SHDW2.XCMP8",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPB_SHADOW3_OUTPUT_ON_TIMEBASE_XCMP5",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_B",
+			"shadowset": "EPWM_XCMP_SHADOW3",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP5"
+			},
+			"register": "XAQCTLB_SHDW3.XCMP5",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPB_SHADOW3_OUTPUT_ON_TIMEBASE_XCMP6",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_B",
+			"shadowset": "EPWM_XCMP_SHADOW3",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP6"
+			},
+			"register": "XAQCTLB_SHDW3.XCMP6",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPB_SHADOW3_OUTPUT_ON_TIMEBASE_XCMP7",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_B",
+			"shadowset": "EPWM_XCMP_SHADOW3",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP7"
+			},
+			"register": "XAQCTLB_SHDW3.XCMP7",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "XCMPB_SHADOW3_OUTPUT_ON_TIMEBASE_XCMP8",
+			"driverlibFunction": "EPWM_setXCMPActionQualifierAction",
+			"driverlibFunctionArg": {
+			"base": "",
+			"epwmOutput": "EPWM_AQ_OUTPUT_B",
+			"shadowset": "EPWM_XCMP_SHADOW3",
+			"output": "this",
+			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP8"
+			},
+			"register": "XAQCTLB_SHDW3.XCMP8",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_RegisterLoad_enable",
+			"driverlibFunction": "EPWM_enableXLoad",
+			"driverlibFunctionAlt": "EPWM_disableXLoad",
+			"driverlibFunctionArg": {
+			"base": ""
+			},
+			"register": "XLOAD.STARTLD",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_selectNumberShadowRegisterLevels",
+			"driverlibFunction": "EPWM_setXCMPShadowLevel",
+			"driverlibFunctionArg": {
+			"base": "",
+			"level": "this"
+			},
+			"register": "XLOADCTL.SHDWLEVEL",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_selectLoadMode",
+			"driverlibFunction": "EPWM_setXCMPLoadMode",
+			"driverlibFunctionArg": {
+			"base": "",
+			"mode": "this"
+			},
+			"register": "XLOAD.LOADMODE",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_selectShadowRegisterLevelLoad",
+			"driverlibFunction": "EPWM_setXCMPShadowBufPtrLoadOnce",
+			"driverlibFunctionArg": {
+			"base": "",
+			"LOADMODE": "this"
+			},
+			"register": "XLOADCTL.SHDWBUFPTR_LOADONCE",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_selectRepeatCountShadowRegisterLevel2",
+			"driverlibFunction": "EPWM_setXCMPShadowRepeatBufxCount",
+			"driverlibFunctionArg": {
+			"base": "",
+			"bufferset": "EPWM_XCMP_SHADOW2",
+			"count": "this"
+			},
+			"register": "XLOAD.RPTBUF2PRD",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_selectRepeatCountShadowRegisterLevel3",
+			"driverlibFunction": "EPWM_setXCMPShadowRepeatBufxCount",
+			"driverlibFunctionArg": {
+			"base": "",
+			"bufferset": "EPWM_XCMP_SHADOW3",
+			"count": "this"
+			},
+			"register": "XLOAD.RPTBUF3PRD",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmMinDeadBand_EnableA",
+			"driverlibFunction": "EPWM_enableMinimumDeadBand",
+			"driverlibFunctionAlt": "EPWM_disableMinimumDeadBand",
+			"driverlibFunctionArg": {
+			"base": "",
+			"block": "EPWM_MINDBCFG_ENABLEA"
+			},
+			"register": "MINDBCFG.ENABLEA",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmMinDeadBand_EnableB",
+			"driverlibFunction": "EPWM_enableMinimumDeadBand",
+			"driverlibFunctionAlt": "EPWM_disableMinimumDeadBand",
+			"driverlibFunctionArg": {
+			"base": "",
+			"block": "EPWM_MINDBCFG_ENABLEB"
+			},
+			"register": "MINDBCFG.ENABLEB",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmMinDeadBand_A_invertInput",
+			"driverlibFunction": "EPWM_invertMinimumDeadBandSignal",
+			"driverlibFunctionArg": {
+			"base": "",
+			"block": "EPWM_MINDB_BLOCK_A",
+			"invert": "this"
+			},
+			"register": "MINDBCFG.INVERTA",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmMinDeadBand_B_invertInput",
+			"driverlibFunction": "EPWM_invertMinimumDeadBandSignal",
+			"driverlibFunctionArg": {
+			"base": "",
+			"block": "EPWM_MINDB_BLOCK_B",
+			"invert": "this"
+			},
+			"register": "MINDBCFG.INVERTB",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmMinDeadBand_A_configANDOR",
+			"driverlibFunction": "EPWM_selectMinimumDeadBandAndOrLogic",
+			"driverlibFunctionArg": {
+			"base": "",
+			"block": "EPWM_MINDB_BLOCK_A",
+			"logic": "this"
+			},
+			"register": "MINDBCFG.POLSELA",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmMinDeadBand_B_configANDOR",
+			"driverlibFunction": "EPWM_selectMinimumDeadBandAndOrLogic",
+			"driverlibFunctionArg": {
+			"base": "",
+			"block": "EPWM_MINDB_BLOCK_B",
+			"logic": "this"
+			},
+			"register": "MINDBCFG.POLSELB",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmMinDeadBand_A_configBlockSignal",
+			"driverlibFunction": "EPWM_selectMinimumDeadBandBlockingSignal",
+			"driverlibFunctionArg": {
+			"base": "",
+			"block": "EPWM_MINDB_BLOCK_A",
+			"blockingSignal": "this"
+			},
+			"register": "MINDBCFG.SELBLOCKA",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmMinDeadBand_B_configBlockSignal",
+			"driverlibFunction": "EPWM_selectMinimumDeadBandBlockingSignal",
+			"driverlibFunctionArg": {
+			"base": "",
+			"block": "EPWM_MINDB_BLOCK_B",
+			"blockingSignal": "this"
+			},
+			"register": "MINDBCFG.SELBLOCKB",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmMinDeadBand_A_inputRefSignal",
+			"driverlibFunction": "EPWM_selectMinimumDeadBandReferenceSignal",
+			"driverlibFunctionArg": {
+			"base": "",
+			"block": "EPWM_MINDB_BLOCK_A",
+			"reference": "this"
+			},
+			"register": "MINDBCFG.SELA",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmMinDeadBand_B_inputRefSignal",
+			"driverlibFunction": "EPWM_selectMinimumDeadBandReferenceSignal",
+			"driverlibFunctionArg": {
+			"base": "",
+			"block": "EPWM_MINDB_BLOCK_B",
+			"reference": "this"
+			},
+			"register": "MINDBCFG.SELB",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmMinDeadBand_A_setDelay",
+			"driverlibFunction": "EPWM_getMinDeadBandDelay",
+			"driverlibFunctionArg": {
+			"base": "",
+			"block": "EPWM_MINDB_BLOCK_A",
+			"delay": "this"
+			},
+			"register": "MINDBDLY.DELAYA",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmMinDeadBand_B_setDelay",
+			"driverlibFunction": "EPWM_getMinDeadBandDelay",
+			"driverlibFunctionArg": {
+			"base": "",
+			"block": "EPWM_MINDB_BLOCK_A",
+			"delay": "this"
+			},
+			"register": "MINDBDLY.DELAYB",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmICL_EnableA",
+			"driverlibFunction": "EPWM_enableIllegalComboLogic",
+			"driverlibFunctionArg": {
+			"base": "",
+			"block": "EPWM_MINDB_BLOCK_A"
+			},
+			"register": "LUTCTLA.BYPASS",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmICL_EnableB",
+			"driverlibFunction": "EPWM_enableIllegalComboLogic",
+			"driverlibFunctionArg": {
+			"base": "",
+			"block": "EPWM_MINDB_BLOCK_B"
+			},
+			"register": "LUTCTLB.BYPASS",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmICL_A_selXBAR",
+			"driverlibFunction": "EPWM_selectXbarInput",
+			"driverlibFunctionArg": {
+			"base": "",
+			"block": "EPWM_MINDB_BLOCK_A",
+			"xbarInput":"this"
+			},
+			"register": "LUTCTLA.SELXBAR",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmICL_B_selXBAR",
+			"driverlibFunction": "EPWM_selectXbarInput",
+			"driverlibFunctionAlt": "",
+			"driverlibFunctionArg": {
+			"base": "",
+			"block": "EPWM_MINDB_BLOCK_B",
+			"xbarInput":"this"
+			},
+			"register": "LUTCTLB.SELXBAR",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmICL_LUT0A",
+			"driverlibFunction": "EPWM_setLutDecX",
+			"driverlibFunctionArg": {
+			"base": "",
+			"block": "EPWM_MINDB_BLOCK_A",
+			"decx": "EPWM_MINDB_ICSS_LUT_DEC0",
+			"force":"this"
+			},
+			"register": "LUTCTLA.LUTDEC0",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmICL_LUT1A",
+			"driverlibFunction": "EPWM_setLutDecX",
+			"driverlibFunctionArg": {
+			"base": "",
+			"block": "EPWM_MINDB_BLOCK_A",
+			"decx": "EPWM_MINDB_ICSS_LUT_DEC1",
+			"force":"this"
+			},
+			"register": "LUTCTLA.LUTDEC1",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmICL_LUT2A",
+			"driverlibFunction": "EPWM_setLutDecX",
+			"driverlibFunctionArg": {
+			"base": "",
+			"block": "EPWM_MINDB_BLOCK_A",
+			"decx": "EPWM_MINDB_ICSS_LUT_DEC2",
+			"force":"this"
+			},
+			"register": "LUTCTLA.LUTDEC2",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmICL_LUT3A",
+			"driverlibFunction": "EPWM_setLutDecX",
+			"driverlibFunctionArg": {
+			"base": "",
+			"block": "EPWM_MINDB_BLOCK_A",
+			"decx": "EPWM_MINDB_ICSS_LUT_DEC3",
+			"force":"this"
+			},
+			"register": "LUTCTLA.LUTDEC3",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmICL_LUT4A",
+			"driverlibFunction": "EPWM_setLutDecX",
+			"driverlibFunctionArg": {
+			"base": "",
+			"block": "EPWM_MINDB_BLOCK_A",
+			"decx": "EPWM_MINDB_ICSS_LUT_DEC4",
+			"force":"this"
+			},
+			"register": "LUTCTLA.LUTDEC4",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmICL_LUT5A",
+			"driverlibFunction": "EPWM_setLutDecX",
+			"driverlibFunctionArg": {
+			"base": "",
+			"block": "EPWM_MINDB_BLOCK_A",
+			"decx": "EPWM_MINDB_ICSS_LUT_DEC5",
+			"force":"this"
+			},
+			"register": "LUTCTLA.LUTDEC5",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmICL_LUT6A",
+			"driverlibFunction": "EPWM_setLutDecX",
+			"driverlibFunctionArg": {
+			"base": "",
+			"block": "EPWM_MINDB_BLOCK_A",
+			"decx": "EPWM_MINDB_ICSS_LUT_DEC6",
+			"force":"this"
+			},
+			"register": "LUTCTLA.LUTDEC6",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmICL_LUT7A",
+			"driverlibFunction": "EPWM_setLutDecX",
+			"driverlibFunctionArg": {
+			"base": "",
+			"block": "EPWM_MINDB_BLOCK_A",
+			"decx": "EPWM_MINDB_ICSS_LUT_DEC7",
+			"force":"this"
+			},
+			"register": "LUTCTLA.LUTDEC7",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmICL_LUT0B",
+			"driverlibFunction": "EPWM_setLutDecX",
+			"driverlibFunctionArg": {
+			"base": "",
+			"block": "EPWM_MINDB_BLOCK_B",
+			"decx": "EPWM_MINDB_ICSS_LUT_DEC0",
+			"force":"this"
+			},
+			"register": "LUTCTLB.LUTDEC0",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmICL_LUT1B",
+			"driverlibFunction": "EPWM_setLutDecX",
+			"driverlibFunctionArg": {
+			"base": "",
+			"block": "EPWM_MINDB_BLOCK_B",
+			"decx": "EPWM_MINDB_ICSS_LUT_DEC1",
+			"force":"this"
+			},
+			"register": "LUTCTLB.LUTDEC1",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmICL_LUT2B",
+			"driverlibFunction": "EPWM_setLutDecX",
+			"driverlibFunctionArg": {
+			"base": "",
+			"block": "EPWM_MINDB_BLOCK_B",
+			"decx": "EPWM_MINDB_ICSS_LUT_DEC2",
+			"force":"this"
+			},
+			"register": "LUTCTLB.LUTDEC2",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmICL_LUT3B",
+			"driverlibFunction": "EPWM_setLutDecX",
+			"driverlibFunctionArg": {
+			"base": "",
+			"block": "EPWM_MINDB_BLOCK_B",
+			"decx": "EPWM_MINDB_ICSS_LUT_DEC3",
+			"force":"this"
+			},
+			"register": "LUTCTLB.LUTDEC3",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmICL_LUT4B",
+			"driverlibFunction": "EPWM_setLutDecX",
+			"driverlibFunctionArg": {
+			"base": "",
+			"block": "EPWM_MINDB_BLOCK_B",
+			"decx": "EPWM_MINDB_ICSS_LUT_DEC4",
+			"force":"this"
+			},
+			"register": "LUTCTLB.LUTDEC4",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmICL_LUT5B",
+			"driverlibFunction": "EPWM_setLutDecX",
+			"driverlibFunctionArg": {
+			"base": "",
+			"block": "EPWM_MINDB_BLOCK_B",
+			"decx": "EPWM_MINDB_ICSS_LUT_DEC5",
+			"force":"this"
+			},
+			"register": "LUTCTLB.LUTDEC5",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmICL_LUT6B",
+			"driverlibFunction": "EPWM_setLutDecX",
+			"driverlibFunctionArg": {
+			"base": "",
+			"block": "EPWM_MINDB_BLOCK_B",
+			"decx": "EPWM_MINDB_ICSS_LUT_DEC6",
+			"force":"this"
+			},
+			"register": "LUTCTLB.LUTDEC6",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmICL_LUT7B",
+			"driverlibFunction": "EPWM_setLutDecX",
+			"driverlibFunctionArg": {
+			"base": "",
+			"block": "EPWM_MINDB_BLOCK_B",
+			"decx": "EPWM_MINDB_ICSS_LUT_DEC7",
+			"force":"this"
+			},
+			"register": "LUTCTLB.LUTDEC7",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmDiodeEmulation_enablePWMTrip",
+			"driverlibFunction": "EPWM_nobypassDiodeEmulationLogic",
+			"driverlibFunctionAlt": "EPWM_bypassDiodeEmulationLogic",
+			"driverlibFunctionArg": {
+			"base": ""
+			},
+			"register": "DEACTCTL.ENABLE",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmDiodeEmulation_selExitMode",
+			"driverlibFunction": "EPWM_setDiodeEmulationMode",
+			"driverlibFunctionArg": {
+			"base": "",
+			"mode": "this"
+			},
+			"register": "DEMONCTL.MODE",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmDiodeEmulation_Reentrycnt",
+			"driverlibFunction": "EPWM_setDiodeEmulationReentryDelay",
+			"driverlibFunctionArg": {
+			"base": "",
+			"delay": "this"
+			},
+			"register": "DEMONCTL.REENTRYDLY",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmDiodeEmulation_TripLSelect",
+			"driverlibFunction": "EPWM_configureDiodeEmulationTripSources",
+			"driverlibFunctionArg": {
+			"base": "",
+			"source": "this",
+			"tripLorH": "EPWM_DE_TRIPL"
+			},
+			"register": "DECOMPSEL.TRIPL",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmDiodeEmulation_TripHSelect",
+			"driverlibFunction": "EPWM_configureDiodeEmulationTripSources",
+			"driverlibFunctionArg": {
+			"base": "",
+			"source": "this",
+			"tripLorH": "EPWM_DE_TRIPH"
+			},
+			"register": "DECOMPSEL.TRIPH",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmDiodeEmulation_enableDiodeEmulationModeCounter",
+			"driverlibFunction": "EPWM_enableDiodeEmulationMonitorModeControl",
+			"driverlibFunctionAlt": "EPWM_disableDiodeEmulationMonitorModeControl",
+			"driverlibFunctionArg": {
+			"base": ""
+			},
+			"register": "DEMONCTL.ENABLE",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmDiodeEmulation_enableDE",
+			"driverlibFunction": "EPWM_enableDiodeEmulationMode",
+			"driverlibFunctionAlt": "EPWM_disableDiodeEmulationMode",
+			"driverlibFunctionArg": {
+			"base": ""
+			},
+			"register": "DECTL.ENABLE",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmDiodeEmulation_stepIncr",
+			"driverlibFunction": "EPWM_setDiodeEmulationMonitorModeStep",
+			"driverlibFunctionArg": {
+			"base": "",
+			"direction":"EPWM_DE_COUNT_UP",
+			"stepsize": "this"
+			},
+			"register": "DEMONSTEP.INCSTEP",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmDiodeEmulation_stepDecr",
+			"driverlibFunction": "EPWM_setDiodeEmulationMonitorModeStep",
+			"driverlibFunctionArg": {
+			"base": "",
+			"direction":"EPWM_DE_COUNT_DOWN",
+			"stepsize": "this"
+			},
+			"register": "DEMONSTEP.DECSTEP",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmDiodeEmulation_stepThreshold",
+			"driverlibFunction": "EPWM_setDiodeEmulationMonitorCounterThreshold",
+			"driverlibFunctionArg": {
+			"base": "",
+			"threshold":"this"
+			},
+			"register": "DEMONTHRES.THRESHOLD",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmDiodeEmulation_EPWM_DE_CHANNEL_A_selTrip",
+			"driverlibFunction": "EPWM_selectDiodeEmulationPWMsignal",
+			"driverlibFunctionArg": {
+			"base": "",
+			"channel":"EPWM_DE_CHANNEL_A",
+			"signal": "this"
+			},
+			"register": "DEACTCTL.PWMA",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmDiodeEmulation_EPWM_DE_CHANNEL_A_configOutput",
+			"driverlibFunction": "EPWM_selectDiodeEmulationTripSignal",
+			"driverlibFunctionArg": {
+			"base": "",
+			"channel":"EPWM_DE_CHANNEL_A",
+			"signal":"this"
+			},
+			"register": "DEACTCTL.TRIPSELA",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmDiodeEmulation_EPWM_DE_CHANNEL_B_selTrip",
+			"driverlibFunction": "EPWM_selectDiodeEmulationPWMsignal",
+			"driverlibFunctionArg": {
+			"base": "",
+			"channel":"EPWM_DE_CHANNEL_B",
+			"signal": "this"
+			},
+			"register": "DEACTCTL.PWMB",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmDiodeEmulation_EPWM_DE_CHANNEL_B_configOutput",
+			"driverlibFunction": "EPWM_selectDiodeEmulationTripSignal",
+			"driverlibFunctionArg": {
+			"base": "",
+			"channel":"EPWM_DE_CHANNEL_B",
+			"signal":"this"
+			},
+			"register": "DEACTCTL.TRIPSELB",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmDigitalCompare_enableEventDetection",
+			"driverlibFunction": "EPWM_enableCaptureInEvent",
+			"driverlibFunctionAlt": "EPWM_disableCaptureInEvent",
+			"driverlibFunctionArg": {
+			"base": ""
+			},
+			"register": "CAPCTL.SRCSEL",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmDigitalCompare_CAPGATETripInput",
+			"driverlibFunction": "EPWM_selectCaptureTripInput",
+			"driverlibFunctionArg": {
+			"base": "",
+			"tripInput":"this",
+			"dcType":"EPWM_CAPTURE_GATE"
+			},
+			"register": "CAPTRIPSEL.CAPGATECOMPSEL",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmDigitalCompare_CAPGATE_combinationInputConfig",
+			"driverlibFunction": "EPWM_enableCaptureTripCombinationInput",
+			"driverlibFunctionAlt": "EPWM_disableCaptureTripCombinationInput",
+			"driverlibFunctionArg": {
+			"base": "",
+			"tripInput":"this",
+			"dcType":"EPWM_CAPTURE_GATE"
+			},
+			"register": [
+				"CAPGATETRIPSEL.TRIPINPUT1",
+				"CAPGATETRIPSEL.TRIPINPUT2",
+				"CAPGATETRIPSEL.TRIPINPUT3",
+				"CAPGATETRIPSEL.TRIPINPUT4",
+				"CAPGATETRIPSEL.TRIPINPUT5",
+				"CAPGATETRIPSEL.TRIPINPUT6",
+				"CAPGATETRIPSEL.TRIPINPUT7",
+				"CAPGATETRIPSEL.TRIPINPUT8",
+				"CAPGATETRIPSEL.TRIPINPUT9",
+				"CAPGATETRIPSEL.TRIPINPUT10",
+				"CAPGATETRIPSEL.TRIPINPUT11",
+				"CAPGATETRIPSEL.TRIPINPUT12",
+				"CAPGATETRIPSEL.TRIPINPUT13",
+				"CAPGATETRIPSEL.TRIPINPUT14",
+				"CAPGATETRIPSEL.TRIPINPUT15"
+			],
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmDigitalCompare_configCAPGATE",
+			"driverlibFunction": "EPWM_configCaptureGateInputPolarity",
+			"driverlibFunctionArg": {
+			"base": "",
+			"polSel":"this"
+			},
+			"register": "CAPCTL.CAPGATEPOL",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmDigitalCompare_CAPINTripInput",
+			"driverlibFunction": "EPWM_selectCaptureTripInput",
+			"driverlibFunctionArg": {
+			"base": "",
+			"tripInput":"this",
+			"dcType":"EPWM_CAPTURE_INPUT"
+			},
+			"register": "CAPTRIPSEL.CAPINCOMPSEL",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmDigitalCompare_CAPIN_combinationInputConfig",
+			"driverlibFunction": "EPWM_enableCaptureTripCombinationInput",
+			"driverlibFunctionArg": {
+			"base": "",
+			"dcType":"EPWM_CAPTURE_INPUT",
+			"tripInput":"this"
+			},
+			"register": [
+				"CAPINTRIPSEL.TRIPINPUT1",
+				"CAPINTRIPSEL.TRIPINPUT2",
+				"CAPINTRIPSEL.TRIPINPUT3",
+				"CAPINTRIPSEL.TRIPINPUT4",
+				"CAPINTRIPSEL.TRIPINPUT5",
+				"CAPINTRIPSEL.TRIPINPUT6",
+				"CAPINTRIPSEL.TRIPINPUT7",
+				"CAPINTRIPSEL.TRIPINPUT8",
+				"CAPINTRIPSEL.TRIPINPUT9",
+				"CAPINTRIPSEL.TRIPINPUT10",
+				"CAPINTRIPSEL.TRIPINPUT11",
+				"CAPINTRIPSEL.TRIPINPUT12",
+				"CAPINTRIPSEL.TRIPINPUT13",
+				"CAPINTRIPSEL.TRIPINPUT14",
+				"CAPINTRIPSEL.TRIPINPUT15"
+			],
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmDigitalCompare_invertCAPIN",
+			"driverlibFunction": "EPWM_invertCaptureInputPolarity",
+			"driverlibFunctionArg": {
+			"base": "",
+			"polSel":"this"
+			},
+			"register": "CAPCTL.CAPINPOL",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmDigitalCompare_dCCounterCapturePulseLogic",
+			"driverlibFunction": "EPWM_enableIndependentPulseLogic",
+			"driverlibFunctionAlt": "EPWM_disableIndependentPulseLogic",
+			"driverlibFunctionArg": {
+			"base": ""
+			},
+			"register": "CAPCTL.PULSECTL",
+			"devices": [
+			"F28P65x"
+			]
+		},
+		{
+			"name": "epwmXCMP_RegisterFrcLoad_enable",
+			"driverlibFunction": "EPWM_forceXLoad",
+			"driverlibFunctionArg": {
+			"base": ""
+			},
+			"register": "XLOAD.FRCLD",
+			"devices": [
+			"F28P65x"
+			]
+		}
+	]
+  }

@@ -1,0 +1,39 @@
+<projectSpec>
+  <project
+        name="sci_ex1_loopback"
+        device="TMS320F280049C"
+        cgtVersion="22.6.0.LTS"
+        products="c2000ware_software_package"
+        outputFormat="ELF"
+        launchWizard="False"
+        enableSysConfigTool="true"
+        sysConfigBuildOptions="--product ${C2000WARE_ROOT}/.metadata/sdk.json --device F28004x --package F28004x_100PZ --part F28004x_100PZ"
+        >
+    <configuration name="CPU1_RAM" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} -v28 -ml -mt --define=DEBUG --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu0 --define=CPU1 --diag_warning=225 --diag_suppress=10063 --display_error_number" linkerBuildOptions="--entry_point code_start --stack_size=0x100  " />
+    <configuration name="CPU1_FLASH" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} -v28 -ml -mt --define=DEBUG --define=_FLASH --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu0 --define=CPU1 --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--entry_point code_start --stack_size=0x100  " />
+
+    <configuration name="CPU1_CLB" postBuildStep="mkdir &quot;${BuildDirectory}/simulation&quot;
+    ;${CLB_SIM_COMPILER}/g++  -c -DCLB_SIM -I${SYSTEMC_INSTALL}/src -I${C2000WARE_ROOT}/utilities/clb_tool/clb_syscfg/systemc/include/type2 -I${PROJECT_ROOT} -I${CLB_SIM_COMPILER}/include -Og -g -gdwarf-3 -gstrict-dwarf -Wall -MMD -MP -MF${BuildDirectory}/simulation/clb_sim.d -MT${BuildDirectory}/simulation/clb_sim.o -I${BuildDirectory}/syscfg   -fno-threadsafe-statics  -o${BuildDirectory}/simulation/clb_sim.o ${BuildDirectory}/syscfg/clb_sim.cpp
+    ;${CLB_SIM_COMPILER}/g++ -DCLB_SIM -Og -g -gdwarf-3 -gstrict-dwarf -Wall -Wl,-Map,${BuildDirectory}/simulation/simulation_output.map -L${SYSTEMC_INSTALL}/build/src -o${BuildDirectory}/simulation/simulation_output.exe ${BuildDirectory}/simulation/clb_sim.o ${C2000WARE_ROOT}/utilities/clb_tool/clb_syscfg/systemc/src/type2/CLB_FSM_SC_model.o ${C2000WARE_ROOT}/utilities/clb_tool/clb_syscfg/systemc/src/type2/CLB_HLC_SC_model.o ${C2000WARE_ROOT}/utilities/clb_tool/clb_syscfg/systemc/src/type2/CLB_LUT4_SC_model.o ${C2000WARE_ROOT}/utilities/clb_tool/clb_syscfg/systemc/src/type2/CLB_OutputLUT_SC_model.o ${C2000WARE_ROOT}/utilities/clb_tool/clb_syscfg/systemc/src/type2/CLB_counter_SC_model.o ${C2000WARE_ROOT}/utilities/clb_tool/clb_syscfg/systemc/src/type2/CLB_counter_top_SC_model.o ${C2000WARE_ROOT}/utilities/clb_tool/clb_syscfg/systemc/src/type2/CLB_FSM_top_SC_model.o ${C2000WARE_ROOT}/utilities/clb_tool/clb_syscfg/systemc/src/type2/CLB_LUT4_top_SC_model.o ${C2000WARE_ROOT}/utilities/clb_tool/clb_syscfg/systemc/src/type2/CLB_OutputLUT_top_SC_model.o  -Wl,--start-group -lsystemc -Wl,--end-group;./simulation/simulation_output.exe
+    ;${NODE_TOOL} &quot;${CLB_SYSCFG_ROOT}/dot_file_libraries/clbDotUtility.js&quot;  &quot;${CLB_SYSCFG_ROOT}&quot; &quot;${BuildDirectory}/syscfg&quot; &quot;${BuildDirectory}/syscfg/clb.dot&quot;"
+    compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} -v28 -ml -mt --define=DEBUG --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu0 --define=CPU1 --diag_warning=225 --diag_suppress=10063 --display_error_number" linkerBuildOptions="--entry_point code_start --stack_size=0x100  " />
+    
+    <pathVariable name="CLB_SYSCFG_ROOT" path="../../../../../utilities/clb_tool/clb_syscfg/" scope="project" />
+    <pathVariable name="SYSTEMC_INSTALL" path="../../../../../utilities/clb_tool/clb_syscfg/systemc-2.3.3" scope="project" />
+    <pathVariable name="CLB_SIM_COMPILER" path="C:/TDM-GCC-64/bin" scope="project" />
+
+    <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../driverlib/" scope="project" />  
+    <pathVariable name="C2000WARE_ROOT" path="../../../../../" scope="project" />      
+    <file action="copy" path="../../../../../device_support/f28004x/common/include/driverlib.h" targetDirectory="device" />
+    <file action="copy" path="../../../../../device_support/f28004x/common/include/device.h" targetDirectory="device" />
+    <file action="copy" path="../../../../../device_support/f28004x/common/source/device.c" targetDirectory="device" />
+    <file action="copy" path="../../../../../device_support/f28004x/common/source/f28004x_codestartbranch.asm" targetDirectory="device" />
+    <file action="copy" path="../../../../../device_support/f28004x/common/targetConfigs/TMS320F280049C.ccxml" targetDirectory="targetConfigs" />
+    <file action="copy" path="../../../../../device_support/f28004x/common/cmd/28004x_generic_ram_lnk.cmd" targetDirectory="" applicableConfigurations="CPU1_RAM,CPU1_CLB" />
+    <file action="copy" path="../../../../../device_support/f28004x/common/cmd/28004x_generic_flash_lnk.cmd" targetDirectory="" applicableConfigurations="CPU1_FLASH" />
+    <file action="link" path="../../../driverlib/ccs/Debug/driverlib.lib" targetDirectory="" />
+    <file action="copy" path="../../../driverlib/" targetDirectory="device" excludeFromBuild="True"/>    
+    <file action="copy" path="../sci_ex1_loopback.c" targetDirectory="" />
+    <file action="copy" path="../sci_ex1_loopback.syscfg" targetDirectory="" />
+  </project>
+</projectSpec>

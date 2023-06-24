@@ -1,0 +1,46 @@
+%%{ 
+var moduleName = "erad"
+var module = system.modules['/driverlib/' + moduleName + '.js'];
+var instance = null;
+if (module != null)
+{
+    for(var i = 0; i < module.$instances.length; i++) {
+        instance = module.$instances[i];
+     }
+}
+var usedCtms = null;
+var usedHwbps = null;
+if (instance != null)
+{
+    usedCtms = instance.ctmsUsed;
+    usedHwbps = instance.hwbpsUsed;
+    for (var ctm_i in usedCtms)
+    {
+        var ctmName = usedCtms[ctm_i];
+        var ctmNumber = ctmName[7];
+%%}
+//*****************************************************************************
+//
+// ERAD Configurations
+//
+//*****************************************************************************
+#define `instance.$name`_`ctmName`_BASE      ERAD_COUNTER`ctmNumber`_BASE
+%%{
+    }
+    for (var hwbp_i in usedHwbps)
+    {
+        var hwbpName = usedHwbps[hwbp_i];
+        var hwbpNumber = hwbpName[7];
+        var hwbp = instance["erad"+hwbpName];
+        if (hwbp.hwbpAddressInputMode != "MANUAL")
+        {
+%%}
+extern void* `hwbp.hwbpRefCodeName`;
+%%{
+        }
+%%}
+#define `instance.$name`_`hwbpName`_BASE     ERAD_HWBP`hwbpNumber`_BASE
+%%{
+    }
+}
+%%}

@@ -1,0 +1,224 @@
+//#############################################################################
+//
+// FILE:   cla_ex5_adc_just_in_time_cla.cla
+//
+// TITLE:  Just-in-time ADC sampling with CLA
+//
+// Task 1 reads ADC result, do filtering and updates the duty of PWM output
+//
+//
+// Task 8 initializes the global variables used in CLA
+//
+//#############################################################################
+//
+//
+// $Copyright:
+// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+//
+// Redistribution and use in source and binary forms, with or without 
+// modification, are permitted provided that the following conditions 
+// are met:
+// 
+//   Redistributions of source code must retain the above copyright 
+//   notice, this list of conditions and the following disclaimer.
+// 
+//   Redistributions in binary form must reproduce the above copyright
+//   notice, this list of conditions and the following disclaimer in the 
+//   documentation and/or other materials provided with the   
+//   distribution.
+// 
+//   Neither the name of Texas Instruments Incorporated nor the names of
+//   its contributors may be used to endorse or promote products derived
+//   from this software without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+// $
+//#############################################################################
+
+//
+// Included Files
+//
+#include <stdint.h>
+#include "cla_ex5_adc_just_in_time_shared.h"
+
+//
+// Globals
+//
+float duty ;  // duty of PWM output
+//
+// Variables used to read ADC result and implement 3-point filter
+//
+uint16_t data_read, data_read_prev, data_read_prev2, data_read_total;
+
+
+//-----------------------------------------------------------------------------
+//
+// Task 1
+//
+// Description : Task 1 reads the ADC result just-in-time and implements a
+// 3-point moving average filter on it. The filtered output is used to compute
+// the duty value based on linear conversion in the range of 0.1-0.9
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt)) void Cla1Task1 ( void )
+{
+    //
+    // Setting Profiling GPIO2 : Takes 3 cycles
+    //
+    HWREG(GPIODATA_BASE  + GPIO_O_GPASET) = 4;
+
+    //
+    // Uncomment this to debug the CLA while connected to the debugger
+    //
+    //__mdebugstop();
+
+    //
+    // Pre-processing for implementing moving average filter, takes 13 cycles
+    // This is just to illustrate how cycles can be utilized to do some pre-
+    // processing before ADC result latches. Based on the cycles taken by
+    // pre-processing code, ADC interrupt offset need to be programmed
+    //
+    data_read_total = data_read + data_read_prev;
+    data_read_prev2 = data_read_prev;
+    data_read_prev = data_read;
+
+    //
+    // Reading ADC just-in-time
+    //
+    data_read = HWREGH(ADCARESULT_BASE + ADC_RESULTx_OFFSET_BASE + ADC_SOC_NUMBER0);
+
+    //
+    // "data_read_total" stores the cumulative sum of current and last 2 data elements
+    //
+    data_read_total += data_read;
+
+    //
+    // Taking average of 3 elements, normalizing for 12-bit and mapping to output duty
+    // linearly in the range  0.1-0.9
+    // duty = 0.1 + (0.9-0.1) * ((data_read_total / 3) / 2^12 )
+    //
+    duty = 0.1f + (data_read_total / (15360.0f));
+
+    //
+    // Writing to the COMPA register for realizing computed duty value
+    //
+    __meallow();
+    HWREGH(EPWM1_BASE + EPWM_O_CMPA + 0x1U) = (uint16_t)(duty * EPWM1_PERIOD + 0.5f);
+    __medis();
+
+    //
+    // Resetting Profiling GPIO2
+    //
+    HWREG(GPIODATA_BASE  + GPIO_O_GPACLEAR) = 4;
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 2 - Title Here
+//
+// Description: Description/steps here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task2 ( void )
+{
+
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 3 - Title Here
+//
+// Description: Description/steps here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task3 ( void )
+{
+
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 4 - Title Here
+//
+// Description: Description/steps here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task4 ( void )
+{
+
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 5 - Title Here
+//
+// Description: Description/steps here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task5 ( void )
+{
+
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 6 - Title Here
+//
+// Description: Description/steps here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task6 ( void )
+{
+
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 7 - Title Here
+//
+// Description: Description/steps here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task7 ( void )
+{
+
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 8 - One Time Initialization Task
+//
+// Description: This task initialize the CLA global variables used in Task 1
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task8 ( void )
+{
+
+    //
+    // Uncomment this to debug the CLA while connected to the debugger
+    //
+    //__mdebugstop();
+
+    //
+    // Initializing CLA global variables
+    //
+    data_read = 0;
+    data_read_total = 0;
+    data_read_prev = 0;
+    data_read_prev2 = 0;
+    duty = 0.1f;
+}
+
+//
+// End of File
+//

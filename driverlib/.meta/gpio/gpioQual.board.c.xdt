@@ -1,0 +1,39 @@
+% let Common   = system.getScript("/driverlib/Common.js");
+% var instance = args[0];
+% var gpioMacro = args[1]
+%if (instance != null)
+%{
+%if(instance.padConfig == "STD")
+%{
+	GPIO_setPadConfig(`gpioMacro`, GPIO_PIN_TYPE_`instance.padConfig`);
+%}
+%else if(instance.padConfig == "PULLUP")
+%{
+	GPIO_setPadConfig(`gpioMacro`, GPIO_PIN_TYPE_STD | GPIO_PIN_TYPE_PULLUP);
+%}
+%else if(instance.padConfig == "INVERT")
+%{
+	GPIO_setPadConfig(`gpioMacro`, GPIO_PIN_TYPE_STD | GPIO_PIN_TYPE_INVERT);
+%}
+%else if(instance.padConfig == "PULLUP_INVERT")
+%{
+	GPIO_setPadConfig(`gpioMacro`, GPIO_PIN_TYPE_STD | GPIO_PIN_TYPE_PULLUP | GPIO_PIN_TYPE_INVERT);
+%}
+%else if(instance.padConfig == "OD")
+%{
+	GPIO_setPadConfig(`gpioMacro`, GPIO_PIN_TYPE_`instance.padConfig`);
+%}
+%else if(instance.padConfig == "OD_PULLUP")
+%{
+	GPIO_setPadConfig(`gpioMacro`, GPIO_PIN_TYPE_OD | GPIO_PIN_TYPE_PULLUP);
+%}
+%else if(instance.padConfig == "OD_INVERT")
+%{
+	GPIO_setPadConfig(`gpioMacro`, GPIO_PIN_TYPE_OD | GPIO_PIN_TYPE_INVERT);
+%}
+%else if(instance.padConfig == "OD_PULLUP_INVERT")
+%{
+	GPIO_setPadConfig(`gpioMacro`, GPIO_PIN_TYPE_OD | GPIO_PIN_TYPE_PULLUP | GPIO_PIN_TYPE_INVERT);
+%}
+	GPIO_setQualificationMode(`gpioMacro`, `instance.qualMode`);
+%}

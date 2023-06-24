@@ -1,0 +1,24 @@
+%let Common   = system.getScript("/driverlib/Common.js");
+%if (["F2837xD"].includes(Common.getDeviceName())){
+#ifdef CPU1
+//*****************************************************************************
+//!
+//! @brief Function to implement Analog trim of TMX devices
+//!
+//! @param None
+//! @return None
+//
+//*****************************************************************************
+extern void Device_configureTMXAnalogTrim(void);
+%}
+%else if(["F2837xS","F2807x"].includes(Common.getDeviceName())){
+//*****************************************************************************
+//!
+//! @brief Function to implement Analog trim of TMX devices
+//!
+//! @param None
+//! @return None
+//
+//*****************************************************************************
+extern void Device_configureTMXAnalogTrim(void);
+%}

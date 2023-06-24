@@ -1,0 +1,87 @@
+% var module = system.modules['/driverlib/can.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% var nameOfModule = "can";
+% var nameOfPeripheral = module.peripheralName;
+//*****************************************************************************
+//
+// CAN Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_init(){
+%   for(var i = 0; i < module.$instances.length; i++) 
+%   {
+%      var instance = module.$instances[i];
+	`instance.$name`_init();
+%   }
+}
+
+%if (module != null)
+%{
+	% for(var i = 0; i < module.$instances.length; i++) {
+		% var instance = module.$instances[i];
+void `instance.$name`_init(){
+	CAN_initModule(`instance.$name`_BASE);
+	//
+	// Refer to the Driver Library User Guide for information on how to set
+	// tighter timing control. Additionally, consult the device data sheet
+	// for more information about the CAN module clocking.
+	//
+	CAN_setBitTiming(`instance.$name`_BASE, `instance.bitRatePrescaler`, `instance.bitRatePrescalerExtension`, `instance.bitTimeSeg1`, `instance.bitTimeSeg2`, `instance.sjw`);
+		% if (instance.enableLoopback){
+	//
+	// Enable CAN test mode
+	//
+	CAN_enableTestMode(`instance.$name`_BASE, `instance.loopbackMode`);
+		%}
+		% if (instance.enableInterrupt){
+	//
+	// Enable CAN Interrupts
+	//
+		% let x = String(instance.interruptFlags).split(",").join("|");
+		% if (!x) { x = "0";}
+	CAN_enableInterrupt(`instance.$name`_BASE, `x`);
+			% for (var int_index in instance.interruptLine)
+			   %{
+	CAN_enableGlobalInterrupt(`instance.$name`_BASE, `instance.interruptLine[int_index]`);
+			   %}
+			%}
+		% var MailBoxInterruptLineAssert = 0;
+		% for(var i2 in instance.msgObjsUsed) {
+			% var msgObjInstance = instance["msgObj" + instance.msgObjsUsed[i2]];
+	//
+	// Initialize the transmit message object used for sending CAN messages.
+	// Message Object Parameters:
+	//      Message Object ID Number: `instance.msgObjsUsed[i2]`
+	//      Message Identifier: `msgObjInstance.msgID`
+	//      Message Frame: `msgObjInstance.frameType`
+	//      Message Type: `msgObjInstance.msgType`
+	//      Message ID Mask: `msgObjInstance.msgIDMask`
+	//      Message Object Flags: `msgObjInstance.flags`
+	//      Message Data Length: `msgObjInstance.msgLen` Bytes
+	//
+			% let x = String(msgObjInstance.flags).split(",").join("|");
+			% if (!x) { x = "0";}
+	CAN_setupMessageObject(`instance.$name`_BASE, `instance.msgObjsUsed[i2]`, `instance.$name`_MessageObj`instance.msgObjsUsed[i2]`_ID, `msgObjInstance.frameType`,`msgObjInstance.msgType`, `msgObjInstance.msgIDMask`, `x`,`msgObjInstance.msgLen`);
+		% MailBoxInterruptLineAssert |= msgObjInstance.intLine << instance.msgObjsUsed[i2];
+		%}
+		% if (instance.enableInterrupt){
+	CAN_setInterruptMux(`instance.$name`_BASE, `MailBoxInterruptLineAssert`);
+		% }
+		% if(instance.startModule){
+	//
+	// Start CAN module operations
+	//
+	CAN_startModule(`instance.$name`_BASE);
+		% let instancePinmux = instance[nameOfModule];
+		% let solution    = instancePinmux.$solution;
+		% let peripheral  = system.deviceData.peripherals[solution.peripheralName];
+	%} else{
+	//
+	// The CAN module is not started in this function.
+	// The application SW must call the CAN_startModule when needed.
+	// CAN_startModule(`instance.$name`_BASE);
+	//
+	%}
+}
+	%}
+%}

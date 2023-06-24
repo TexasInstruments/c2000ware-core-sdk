@@ -1,0 +1,17 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F2837xD" --package "F2837xD_100PTP" --part "F2837xD_100PTP" --context "CPU1" --product "C2000WARE@4.02.00.00"
+ * @versions {"tool":"1.13.0+2553"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const ipc    = scripting.addModule("/driverlib/ipc.js");
+const sysctl = scripting.addModule("/driverlib/sysctl.js");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+sysctl.enableNMIGlobalInterrupt = true;

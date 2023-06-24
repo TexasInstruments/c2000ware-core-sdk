@@ -1,0 +1,159 @@
+%%{
+var deviceData = system.deviceData
+let pinmuxContent = system.getTemplate("/driverlib/pinmux/pinmux.board.c.xdt");
+let Common   = system.getScript("/driverlib/Common.js");
+var replaceCommaWith = "/"
+//console.log(deviceData)
+var output = ""
+for (var devicePinIndex in deviceData.devicePins){
+    var devicePin = deviceData.devicePins[devicePinIndex]
+    if (!isNaN(devicePin.designSignalName)){
+        continue
+    }
+    output += devicePin.name.replace(/,/g, replaceCommaWith)
+    output += "," + devicePin.designSignalName.replace(/,/g, replaceCommaWith)
+    if (devicePin.mux == null)
+    {
+        output += "," + devicePin.designSignalName.replace(/,/g, replaceCommaWith) + "\n"
+        continue
+    }
+    var muxSetting = devicePin.mux.muxSetting
+    if (muxSetting.length > 0)
+    {        
+        if (devicePin.designSignalName.includes("GPIO"))
+        {
+            var gpioName = devicePin.designSignalName.substring(devicePin.designSignalName.indexOf("GPIO"))
+            var gpioNumber = gpioName.substring(4); // determine which GPIO
+            var gpioNumber = Common.gpioNameToNumber(gpioNumber);
+            var gpioName = "GPIO" + gpioNumber
+            output += "," + pinmuxContent("function", gpioName).replace("\n", "").replace("\r", "").replace(/,/g, replaceCommaWith)
+        }
+        else
+        {
+            var selectedMode = ""
+            for (var muxSettingIndex in muxSetting)
+            {
+                var muxSettingMode = muxSetting[muxSettingIndex].mode;
+                var muxSettingName = muxSetting[muxSettingIndex].peripheralPin.name;
+                if ((muxSettingMode.includes("ALT") && !muxSettingMode.includes("_")) && muxSettingName.includes("AIO"))
+                {
+                    selectedMode = pinmuxContent("function", muxSettingName).replace("\n", "").replace("\r", "").replace(/,/g, replaceCommaWith)
+                    if (selectedMode.length > 0)
+                    {
+                        break;
+                    }
+                }
+                
+            }
+            output += "," + selectedMode;
+        }
+        for (var mode = 0; mode < 16; mode++)
+        {
+            var modeFound = false
+            for (var muxSettingIndex in muxSetting)
+            {
+                var muxSettingMode = muxSetting[muxSettingIndex].mode;
+                if (mode.toString() == muxSettingMode)
+                {
+                    modeFound = true
+                    var muxSettingName = muxSetting[muxSettingIndex].peripheralPin.name;
+                    output += "," + muxSettingName.replace(/,/g, replaceCommaWith)
+                }
+            }
+            if (!modeFound)
+            {
+                output += ","
+            }
+        }
+        //------------------------------------------------------------------
+        // Double-bonded GPIOs on a single pin - add extra rows
+        //------------------------------------------------------------------
+        // get a dictionary of all the GPIO_ mux rows (double-bonded mux 
+        // entries) available like GPIO228_3. Store in object like:
+        // Example for triple-bonded pin, with GPIO226_0/4/5 + GPIO228_0/3/4
+        // otherMuxes:{
+        //      226:{0:"GPIO226", 4:"GPIO226", 5:"EPWM6_A",  ...}
+        //      228:{0:"GPIO228", 3:"ADCSOCAO", 4:"GPIO228", ...}
+        // }
+        var otherMuxes = {};
+        for (var i = 0; i<muxSetting.length; i++)
+        {
+            if((muxSetting[i]['mode'].includes("GPIO") ||  muxSetting[i]['mode'].includes("AIO")) && !muxSetting[i]['mode'].includes("ALT"))
+            {
+                if(muxSetting[i]['mode'].includes("GPIO"))
+                {
+                    var gpio_num_and_mux_pos = muxSetting[i]['mode'].match(/(GPIO)(\d+)_(\d+)$/);
+                }
+                else if(muxSetting[i]['mode'].includes("AIO"))
+                {
+                    var gpio_num_and_mux_pos = muxSetting[i]['mode'].match(/(AIO)(\d+)_(\d+)$/);
+                }
+                var per_type        = gpio_num_and_mux_pos[1];
+                var gpio_num        = gpio_num_and_mux_pos[2];
+                var mux_pos         = gpio_num_and_mux_pos[3];
+                var mux_entry_name  = muxSetting[i]['peripheralPin']['name'];
+                // otherMuxes.push({ 'per_type':per_type, 'gpio_num':parseInt(gpio_num), 'mux_pos':parseInt(mux_pos), 'mux_entry_name':mux_entry_name })
+                // if this GPIO hasn't been added yet, add it, along with the mux information
+                if (!(per_type in otherMuxes))
+                {
+                    otherMuxes[per_type] = {};
+                }
+                // if this GPIO hasn't been added yet, add it, along with the mux information
+                if (!(gpio_num in otherMuxes[per_type]))
+                {
+                    otherMuxes[per_type][gpio_num] = {};
+                }
+                // add the mux position and its name
+                otherMuxes[per_type][gpio_num][mux_pos] = mux_entry_name;
+            }
+        }
+        //console.log(otherMuxes)
+        // if there were any additional mux rows, sort them and print them as new rows
+        if (Object.keys(otherMuxes).length > 0)
+        {
+            // sort the additional GPIOs on this pin if more than one
+            Object.keys(otherMuxes).sort().forEach(function(per_type, i) {
+                // sort the additional GPIOs on this pin if more than one
+                Object.keys(otherMuxes[per_type]).sort().forEach(function(gpio_num, i) {
+                    // now output the mux entries as a new row
+                    //----------------------------------------------------------
+                    // new row
+                    output += "\n";
+                    // re-add the Pin column entry (same pin as other mux)
+                    output += devicePin.name.replace(/,/g, replaceCommaWith);
+                    // re-add the Name column entry (same name as other mux)
+                    output += "," + devicePin.designSignalName.replace(/,/g, replaceCommaWith);
+                    // Get the "Selected Mode" (if any) for THIS peripheral, since it is technically a different GPIO/AIO
+                    gpioName = per_type + gpio_num
+                    var muxSettingName = muxSetting[muxSettingIndex].peripheralPin.name;
+                    output += "," + pinmuxContent("function", muxSettingName).replace("\n", "").replace("\r", "").replace(/,/g, replaceCommaWith)
+                    // now iterate through the columns and add them where applicable
+                    for (var mode = 0; mode < 16; mode++)
+                    {
+                        if (mode in otherMuxes[per_type][gpio_num])
+                        {
+                            output += "," + otherMuxes[per_type][gpio_num][mode].replace(/,/g, replaceCommaWith);
+                        }
+                        else
+                        {
+                            output += ",";
+                        }
+                    }
+                });
+            });
+        }
+    }
+    else
+    {
+        output += "," + devicePin.designSignalName.replace(/,/g, replaceCommaWith)
+    }
+    output += "\n"
+}
+%%}
+% if (Common.isContextCPU1()){
+All device pins and their pinmux options
+Pin,Name,Selected Mode,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15
+`output`
+% } else {
+PinMux is done on CPU1  
+% }

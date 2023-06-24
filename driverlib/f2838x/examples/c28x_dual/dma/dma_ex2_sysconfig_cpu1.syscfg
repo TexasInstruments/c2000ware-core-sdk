@@ -1,0 +1,56 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F2838x" --package "337bga" --part "F2838x_337bga" --context "CPU1" --product "C2000WARE@4.02.00.00"
+ * @versions {"tool":"1.13.0+2553"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const dma    = scripting.addModule("/driverlib/dma.js", {}, false);
+const dma1   = dma.addInstance();
+const epwm   = scripting.addModule("/driverlib/epwm.js", {}, false);
+const epwm1  = epwm.addInstance();
+const ipc    = scripting.addModule("/driverlib/ipc.js");
+const memcfg = scripting.addModule("/driverlib/memcfg.js");
+const sync   = scripting.addModule("/driverlib/sync.js");
+const sysctl = scripting.addModule("/driverlib/sysctl.js");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+dma1.$name                = "myDMA5";
+dma1.dmaBase              = "DMA_CH5_BASE";
+dma1.enableTriggers       = true;
+dma1.triggerSource        = "DMA_TRIGGER_SPIATX";
+dma1.continuousModeConfig = "DMA_CFG_CONTINUOUS_ENABLE";
+dma1.destAddressVariable  = "destAddr";
+dma1.destBurstStep        = 1;
+dma1.srcBurstStep         = 1;
+dma1.srcTransferStep      = 1;
+dma1.destTransferStep     = 1;
+dma1.oneShotConfig        = "DMA_CFG_ONESHOT_ENABLE";
+dma1.useInterrupts        = true;
+dma1.interruptMode        = "DMA_INT_AT_END";
+dma1.enableInterrupts     = true;
+dma1.startChannel         = true;
+
+epwm1.epwmTimebase_period                                        = 6000;
+epwm1.epwmTimebase_counterMode                                   = "EPWM_COUNTER_MODE_UP_DOWN";
+epwm1.epwmTimebase_clockDiv                                      = "EPWM_CLOCK_DIVIDER_4";
+epwm1.epwmTimebase_hsClockDiv                                    = "EPWM_HSCLOCK_DIVIDER_4";
+epwm1.epwmCounterCompare_cmpA                                    = 3000;
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_UP_CMPA   = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_DOWN_CMPA = "EPWM_AQ_OUTPUT_LOW";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_UP_CMPA   = "EPWM_AQ_OUTPUT_LOW";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_DOWN_CMPA = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.$name                                                      = "my_EPWM1";
+epwm1.epwm.$assign                                               = "EPWM1";
+epwm1.epwm.epwmaPin.$assign                                      = "GPIO0";
+epwm1.epwm.epwmbPin.$assign                                      = "GPIO1";
+
+memcfg.config_MEMCFG_SECT_GS1 = "MEMCFG_GSRAMMASTER_CPU2";
+
+sysctl.cpuSel_SPIA                        = "SYSCTL_CPUSEL_CPU2";
+sysctl.enable_SYSCTL_PERIPH_CLK_TBCLKSYNC = true;

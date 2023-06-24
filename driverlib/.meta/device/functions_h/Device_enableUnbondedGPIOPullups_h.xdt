@@ -1,0 +1,15 @@
+%let Common   = system.getScript("/driverlib/Common.js");
+%if (["F2838x", "F2807x","F2837xD","F2837xS"].includes(Common.getDeviceName())){
+//*****************************************************************************
+//!
+//! @brief Function to enable pullups for the unbonded GPIOs on the
+//! 176PTP package.
+//!
+//! @param None
+//! @return None
+//
+//*****************************************************************************
+extern void Device_enableUnbondedGPIOPullups(void);
+%}
+%else{
+%}

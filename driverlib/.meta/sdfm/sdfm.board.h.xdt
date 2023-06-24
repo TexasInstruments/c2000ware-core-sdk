@@ -1,0 +1,29 @@
+% let sd_device_info = system.getScript("/driverlib/sdfm/sd_device_info.js");
+% var moduleName = "sd"
+% var module = system.modules['/driverlib/' + moduleName + '.js'];
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// SDFM Configurations
+//
+//*****************************************************************************
+%if(sd_device_info.peripheralType != "Type0") 
+%{
+#define SDFM_HTLZ_ENABLE  0x8000 //High Threshold (Z) enabled
+#define SDFM_HTLZ_DISABLE 0x0000 //High Threshold (Z) disabled
+ 
+%}
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        % let modInst  = instance[moduleName];
+        % let solution    = modInst.$solution;
+        % let peripheral  = system.deviceData.peripherals[solution.peripheralName];
+        % var nameOfPeripheral = module.peripheralName;
+#define `instance.$name`_BASE `peripheral.name.replace("SD","SDFM")`_BASE
+        %  if(instance["Use_FilterChannel_1"] || instance["Use_FilterChannel_2"] || instance["Use_FilterChannel_3"] || instance["Use_FilterChannel_4"])
+        % {
+void    `instance.$name`_init(void);
+        % }
+    % }
+%}

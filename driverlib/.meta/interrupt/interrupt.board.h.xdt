@@ -1,0 +1,109 @@
+%%{
+let interrupt_common = system.getScript("/driverlib/interrupt/interrupt_common.js");
+var moduleName = "interrupt";
+var module = system.modules['/driverlib/' + moduleName + '.js'];
+var module_sys_err = system.modules['/driverlib/interrupt/interrupt_sys_err.js'];
+var module_wake = system.modules['/driverlib/interrupt/interrupt_wake.js'];
+let Common   = system.getScript("/driverlib/Common.js");
+let device_driverlib_peripheral = 
+    system.getScript("/driverlib/device_driverlib_peripherals/" + 
+        Common.getDeviceName().toLowerCase() + "_interrupt.js");
+if (module != null)
+{
+%%}
+//*****************************************************************************
+//
+// INTERRUPT Configurations
+//
+//*****************************************************************************
+%%{
+    for(var i = 0; i < module.$instances.length; i++) {
+        var instance = module.$instances[i];
+        let modInst  = instance[moduleName];
+        let owner = instance.$ownedBy;
+        //console.log("Interrupt OWNER")
+        //console.log(owner.$name);
+        //while(owner.$ownedBy)
+        //{
+        //    //console.log("OWNER's Owner:")
+        //    owner = owner.$ownedBy;
+        //    //console.log(owner.$name);
+        //}
+        var driverlibInt = instance.driverlibInt;
+        if (instance.pinmuxPeripheralModule)
+        {
+            let ownerSolution = owner[instance.pinmuxPeripheralModule].$solution;
+            var ownerPeripheral = ownerSolution.peripheralName;
+            ownerPeripheral = interrupt_common.renameInterrupt(instance.pinmuxPeripheralModule, ownerPeripheral)
+            driverlibInt = driverlibInt.replace("#", ownerPeripheral);
+        }
+        var interruptInfo = device_driverlib_peripheral.interrupts.find((input) => {
+            if (driverlibInt == input.int_define_name)
+                return input
+        })
+        var interupt_ack_group = "";
+        if (interruptInfo.int_group_number)
+        {
+            interupt_ack_group = "INTERRUPT_ACK_GROUP" + interruptInfo.int_group_number;
+        }
+        var interrupt_handler = instance.interruptHandler
+%%}
+
+// Interrupt Settings for `instance.interruptName`
+#define `instance.interruptName` `driverlibInt`
+% if (interupt_ack_group) {
+#define `instance.interruptName`_INTERRUPT_ACK_GROUP `interupt_ack_group`
+% }
+extern __interrupt void `interrupt_handler`(void);
+%%{
+    }
+}
+if (module_sys_err != null)
+{
+    for(var i = 0; i < module_sys_err.$instances.length; i++) {
+        var instance = module_sys_err.$instances[i];
+        var interrupt_handler = instance.interruptHandler
+        var interruptInfo = device_driverlib_peripheral.interrupts.find((input) => {
+            if (instance.driverlibInt == input.int_define_name)
+                return input
+        })
+        var interupt_ack_group = "";
+        if (interruptInfo.int_group_number)
+        {
+            interupt_ack_group = "INTERRUPT_ACK_GROUP" + interruptInfo.int_group_number;
+        }
+%%}
+
+// Interrupt Setings for `instance.interruptName`
+% if (interupt_ack_group) {
+#define `instance.interruptName`_INTERRUPT_ACK_GROUP `interupt_ack_group`
+% }
+extern __interrupt void `interrupt_handler`(void);
+%%{
+    }
+}
+if (module_wake != null)
+{
+    for(var i = 0; i < module_wake.$instances.length; i++) {
+        var instance = module_wake.$instances[i];
+        var interrupt_handler = instance.interruptHandler
+        var interruptInfo = device_driverlib_peripheral.interrupts.find((input) => {
+            if (instance.driverlibInt == input.int_define_name)
+                return input
+        })
+        var interupt_ack_group = "";
+        if (interruptInfo.int_group_number)
+        {
+            interupt_ack_group = "INTERRUPT_ACK_GROUP" + interruptInfo.int_group_number;
+        }
+%%}
+
+// Interrupt Setings for `instance.interruptName`
+% if (interupt_ack_group) {
+#define `instance.interruptName`_INTERRUPT_ACK_GROUP `interupt_ack_group`
+% }
+extern __interrupt void `interrupt_handler`(void);
+%%{
+    }
+}
+%%}

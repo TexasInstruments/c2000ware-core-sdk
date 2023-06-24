@@ -1,0 +1,51 @@
+% var moduleName = "cla"
+% var module = system.modules['/driverlib/' + moduleName + '.js'];
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// CLA Configurations
+//
+//*****************************************************************************
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        % let modInst  = instance[moduleName];
+#define `instance.$name`_BASE `instance.claBase`
+
+//
+// The following are symbols defined in the CLA assembly code
+// Including them in the shared header file makes them global
+// and the main CPU can make use of them.
+//
+%       var configs=[]
+%	    module.config.forEach((element, index) =>
+%	    {
+%       	configs[element.name] = element.config
+%	    });
+%       configs["claTaskGroup"].forEach((element, index) =>
+%       {
+%           if (element.name.includes("group"))
+%           {
+%               var enabletask = element.name.replace("group_", "enable_");
+%               if (instance[enabletask])
+%               {
+%                   var isrname = element.name.replace("group_", "name_");
+%                   if (isrname.includes("8") && instance[element.name.replace("group_", "background_")])
+%                   {
+#if defined(__TMS320C28XX__)
+__attribute__((interrupt)) void `instance[isrname]`();                   
+#else
+__attribute__((interrupt("background"))) void `instance[isrname]`();                   
+#endif
+%                   }
+%                   else
+%                   {
+__attribute__((interrupt)) void `instance[isrname]`();
+%                   }
+%               }    
+%           }
+%       });
+void `instance.$name`_init();
+
+% }
+%}

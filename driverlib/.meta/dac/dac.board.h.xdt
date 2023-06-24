@@ -1,0 +1,16 @@
+% var moduleName = "dac"
+% var module = system.modules['/driverlib/' + moduleName + '.js'];
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// DAC Configurations
+//
+//*****************************************************************************
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        % let modInst  = instance[moduleName];
+#define `instance.$name`_BASE `instance.dacBase`
+void `instance.$name`_init();
+    % }
+%}

@@ -1,0 +1,59 @@
+
+/**
+ * Import the modules used in this configuration.
+ */
+const adc     = scripting.addModule("/driverlib/adc.js", {}, false);
+const adc1    = adc.addInstance();
+const asysctl = scripting.addModule("/driverlib/asysctl.js");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+adc1.$name                          = "myADC0";
+adc1.adcClockPrescaler              = "ADC_CLK_DIV_2_0";
+adc1.interruptPulseMode             = "ADC_PULSE_END_OF_CONV";
+adc1.soc0SampleWindow               = 30;
+adc1.soc1SampleWindow               = 30;
+adc1.soc2SampleWindow               = 30;
+adc1.soc3SampleWindow               = 30;
+adc1.soc4SampleWindow               = 30;
+adc1.soc5SampleWindow               = 30;
+adc1.soc6SampleWindow               = 30;
+adc1.soc7SampleWindow               = 30;
+adc1.soc8SampleWindow               = 30;
+adc1.soc9SampleWindow               = 30;
+adc1.soc10SampleWindow              = 30;
+adc1.soc11SampleWindow              = 30;
+adc1.soc12SampleWindow              = 30;
+adc1.soc13SampleWindow              = 30;
+adc1.soc14SampleWindow              = 30;
+adc1.soc15SampleWindow              = 30;
+adc1.enabledSOCs                    = ["ADC_SOC_NUMBER0","ADC_SOC_NUMBER1","ADC_SOC_NUMBER10","ADC_SOC_NUMBER11","ADC_SOC_NUMBER12","ADC_SOC_NUMBER13","ADC_SOC_NUMBER14","ADC_SOC_NUMBER15","ADC_SOC_NUMBER2","ADC_SOC_NUMBER3","ADC_SOC_NUMBER4","ADC_SOC_NUMBER5","ADC_SOC_NUMBER6","ADC_SOC_NUMBER7","ADC_SOC_NUMBER8","ADC_SOC_NUMBER9"];
+adc1.soc0InterruptTrigger           = "ADC_INT_SOC_TRIGGER_ADCINT2";
+adc1.soc1InterruptTrigger           = "ADC_INT_SOC_TRIGGER_ADCINT2";
+adc1.soc2InterruptTrigger           = "ADC_INT_SOC_TRIGGER_ADCINT2";
+adc1.soc3InterruptTrigger           = "ADC_INT_SOC_TRIGGER_ADCINT2";
+adc1.soc4InterruptTrigger           = "ADC_INT_SOC_TRIGGER_ADCINT2";
+adc1.soc5InterruptTrigger           = "ADC_INT_SOC_TRIGGER_ADCINT2";
+adc1.soc6InterruptTrigger           = "ADC_INT_SOC_TRIGGER_ADCINT2";
+adc1.soc7InterruptTrigger           = "ADC_INT_SOC_TRIGGER_ADCINT2";
+adc1.soc8InterruptTrigger           = "ADC_INT_SOC_TRIGGER_ADCINT1";
+adc1.soc9InterruptTrigger           = "ADC_INT_SOC_TRIGGER_ADCINT1";
+adc1.soc10InterruptTrigger          = "ADC_INT_SOC_TRIGGER_ADCINT1";
+adc1.soc11InterruptTrigger          = "ADC_INT_SOC_TRIGGER_ADCINT1";
+adc1.soc12InterruptTrigger          = "ADC_INT_SOC_TRIGGER_ADCINT1";
+adc1.soc13InterruptTrigger          = "ADC_INT_SOC_TRIGGER_ADCINT1";
+adc1.soc14InterruptTrigger          = "ADC_INT_SOC_TRIGGER_ADCINT1";
+adc1.soc15InterruptTrigger          = "ADC_INT_SOC_TRIGGER_ADCINT1";
+adc1.enabledInts                    = ["ADC_INT_NUMBER1","ADC_INT_NUMBER2","ADC_INT_NUMBER3","ADC_INT_NUMBER4"];
+adc1.enableInterrupt1ContinuousMode = true;
+adc1.enableInterrupt2ContinuousMode = true;
+adc1.enableInterrupt3ContinuousMode = true;
+adc1.enableInterrupt4ContinuousMode = true;
+adc1.interrupt1SOCSource            = "ADC_SOC_NUMBER6";
+adc1.interrupt2SOCSource            = "ADC_SOC_NUMBER14";
+adc1.interrupt3SOCSource            = "ADC_SOC_NUMBER7";
+adc1.interrupt4SOCSource            = "ADC_SOC_NUMBER15";
+
+asysctl.analogReference         = "INTERNAL";
+asysctl.analogReferenceVoltage  = "1P65";

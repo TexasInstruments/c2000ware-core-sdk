@@ -1,0 +1,61 @@
+% var module = system.modules['/driverlib/aio.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+//*****************************************************************************
+//
+// AIO Configurations
+//
+//*****************************************************************************
+void `module.peripheralName`_init(){
+%   for(var i = 0; i < module.$instances.length; i++) 
+%   {
+%      var instance = module.$instances[i];
+	`instance.$name`_init();
+%   }
+}
+
+%if (module != null)
+%{
+	% for(var i = 0; i < module.$instances.length; i++) {
+	    % var instance = module.$instances[i];
+void `instance.$name`_init(){
+	GPIO_setAnalogMode(`instance.$name`, GPIO_ANALOG_DISABLED);
+	GPIO_setDirectionMode(`instance.$name`, GPIO_DIR_MODE_IN);
+%if(instance.padConfig == "STD")
+%{
+	GPIO_setPadConfig(`instance.$name`, GPIO_PIN_TYPE_`instance.padConfig`);
+%}
+%else if(instance.padConfig == "PULLUP")
+%{
+	GPIO_setPadConfig(`instance.$name`, GPIO_PIN_TYPE_STD | GPIO_PIN_TYPE_PULLUP);
+%}
+%else if(instance.padConfig == "INVERT")
+%{
+	GPIO_setPadConfig(`instance.$name`, GPIO_PIN_TYPE_STD | GPIO_PIN_TYPE_INVERT);
+%}
+%else if(instance.padConfig == "PULLUP_INVERT")
+%{
+	GPIO_setPadConfig(`instance.$name`, GPIO_PIN_TYPE_STD | GPIO_PIN_TYPE_PULLUP | GPIO_PIN_TYPE_INVERT);
+%}
+%else if(instance.padConfig == "OD")
+%{
+	GPIO_setPadConfig(`instance.$name`, GPIO_PIN_TYPE_`instance.padConfig`);
+%}
+%else if(instance.padConfig == "OD_PULLUP")
+%{
+	GPIO_setPadConfig(`instance.$name`, GPIO_PIN_TYPE_OD | GPIO_PIN_TYPE_PULLUP);
+%}
+%else if(instance.padConfig == "OD_INVERT")
+%{
+	GPIO_setPadConfig(`instance.$name`, GPIO_PIN_TYPE_OD | GPIO_PIN_TYPE_INVERT);
+%}
+%else if(instance.padConfig == "OD_PULLUP_INVERT")
+%{
+	GPIO_setPadConfig(`instance.$name`, GPIO_PIN_TYPE_OD | GPIO_PIN_TYPE_PULLUP | GPIO_PIN_TYPE_INVERT);
+%}
+		% if (!["F28002x", "F280013x", "F280015x"].includes(Common.getDeviceName())) {
+	GPIO_setControllerCore(`instance.$name`, `instance.controllerCore`);
+		% }
+	GPIO_setQualificationMode(`instance.$name`, `instance.qualMode`);
+}
+ 	%}
+%}

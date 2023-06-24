@@ -1,0 +1,70 @@
+%let Common   = system.getScript("/driverlib/Common.js");
+%if (["F2838x"].includes(Common.getDeviceName())){
+//*****************************************************************************
+//
+// Function to enable pullups for the unbonded GPIOs on the
+// 176PTP package.
+//
+//*****************************************************************************
+void Device_enableUnbondedGPIOPullups(void)
+{
+    //
+    // bits 8-10 have pin count
+    //
+    uint16_t pinCount = ((HWREG(DEVCFG_BASE + SYSCTL_O_PARTIDL) &
+                          (uint32_t)SYSCTL_PARTIDL_PIN_COUNT_M) >>
+                         SYSCTL_PARTIDL_PIN_COUNT_S);
+
+    /*
+     * 6 = 176 pin
+     * 7 = 337 pin
+     */
+    if (pinCount == 6)
+    {
+        Device_enableUnbondedGPIOPullupsFor176Pin();
+    }
+    else
+    {
+        //
+        // Do nothing - this is 337 pin package
+        //
+    }
+}
+%}
+%else if(["F2837xD", "F2837xS", "F2807x"].includes(Common.getDeviceName())){
+//*****************************************************************************
+//
+// Function to enable pullups for the unbonded GPIOs on the 100PZ or
+// 176PTP package.
+//
+//*****************************************************************************
+void Device_enableUnbondedGPIOPullups(void)
+{
+    //
+    // bits 8-10 have pin count
+    //
+    uint16_t pinCount = ((HWREG(DEVCFG_BASE + SYSCTL_O_PARTIDL) &
+                          (uint32_t)SYSCTL_PARTIDL_PIN_COUNT_M) >>
+                         SYSCTL_PARTIDL_PIN_COUNT_S);
+
+    /*
+     * 5 = 100 pin
+     * 6 = 176 pin
+     * 7 = 337 pin
+     */
+    if(pinCount == 5)
+    {
+        Device_enableUnbondedGPIOPullupsFor100Pin();
+    }
+    else if(pinCount == 6)
+    {
+        Device_enableUnbondedGPIOPullupsFor176Pin();
+    }
+    else
+    {
+        //
+        // Do nothing - this is 337 pin package
+        //
+    }
+}
+%}else{}

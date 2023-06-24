@@ -1,0 +1,51 @@
+/**
+ * Import the modules used in this configuration.
+ */
+const ecap       = scripting.addModule("/driverlib/ecap.js", {}, false);
+const ecap1      = ecap.addInstance();
+const gpio       = scripting.addModule("/driverlib/gpio.js", {}, false);
+const gpio1      = gpio.addInstance();
+const inputxbar  = scripting.addModule("/driverlib/inputxbar.js", {}, false);
+const inputxbar1 = inputxbar.addInstance();
+const other      = scripting.addModule("/driverlib/other.js", {}, false);
+const other1     = other.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+ecap1.$name                               = "myECAP0";
+ecap1.registerInterrupts                  = true;
+ecap1.enableInterrupt                     = true;
+ecap1.captureMode                         = "ECAP_ONE_SHOT_CAPTURE_MODE";
+ecap1.eventStop                           = "ECAP_EVENT_4";
+ecap1.eventTwoPolarity                    = "ECAP_EVNT_FALLING_EDGE";
+ecap1.eventFourPolarity                   = "ECAP_EVNT_FALLING_EDGE";
+ecap1.ecapInput                           = "ECAP_INPUT_INPUTXBAR7";
+ecap1.enableLoadCounter                   = true;
+ecap1.resetCounters                       = true;
+ecap1.interruptSourceCapture              = ["ECAP_ISR_SOURCE_CAPTURE_EVENT_4"];
+ecap1.hrcapEnable                         = true;
+ecap1.ecapBase                            = "ECAP7_BASE";
+ecap1.hrcapCalibrationEnable              = true;
+ecap1.enabledCalibrationInterrupts        = ["HRCAP_CALIBRATION_DONE","HRCAP_CALIBRATION_PERIOD_OVERFLOW"];
+ecap1.ecapInt.enableInterrupt             = true;
+ecap1.hrcapCalibrationInt.enableInterrupt = true;
+
+gpio1.$name           = "myGPIO0";
+gpio1.qualMode        = "GPIO_QUAL_ASYNC";
+gpio1.gpioPin.$assign = "GPIO2";
+
+inputxbar1.$name          = "myINPUTXBAR0";
+inputxbar1.inputsUsed     = ["inputxbar7Gpio"];
+inputxbar1.inputxbar7Gpio = "GPIO2";
+
+other1.$name            = "myOTHER0";
+other1.useCase          = "CUSTOM";
+other1.useInterfacePins = ["XCLKOUT"];
+other1.other.$assign    = "OTHER";
+
+/**
+ * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
+ * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
+ * re-solve from scratch.
+ */

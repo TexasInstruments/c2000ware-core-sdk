@@ -1,0 +1,14 @@
+/**
+ * Import the modules used in this configuration.
+ */
+const sci  = scripting.addModule("/driverlib/sci.js", {}, false);
+const sci1 = sci.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+sci1.$name     = "mySCI0";
+sci1.baudRates = 9600;
+sci1.loopback  = true;
+sci1.sci.$name = "MySCI1";
+sci1.sci.$assign = "SCIA";

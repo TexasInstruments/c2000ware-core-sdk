@@ -1,0 +1,41 @@
+
+/**
+ * Import the modules used in this configuration.
+ */
+const ecap        = scripting.addModule("/driverlib/ecap.js", {}, false);
+const ecap1       = ecap.addInstance();
+const ecap2       = ecap.addInstance();
+const outputxbar  = scripting.addModule("/driverlib/outputxbar.js", {}, false);
+const outputxbar1 = outputxbar.addInstance();
+const outputxbar2 = outputxbar.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+ecap1.$name        = "myECAP0";
+ecap1.ecapMode     = "APWM";
+ecap1.syncOutMode  = "ECAP_SYNC_OUT_COUNTER_PRD";
+ecap1.apwmPolarity = "ECAP_APWM_ACTIVE_LOW";
+ecap1.apwmPeriod   = 10000;
+ecap1.apwmCompare  = 5000;
+
+ecap2.$name             = "myECAP1";
+ecap2.ecapBase          = "ECAP2_BASE";
+ecap2.ecapMode          = "APWM";
+ecap2.enableLoadCounter = true;
+ecap2.apwmPeriod        = 10000;
+ecap2.apwmCompare       = 5000;
+ecap2.apwmPolarity      = "ECAP_APWM_ACTIVE_LOW";
+ecap2.phaseShiftCount   = 3000;
+
+outputxbar1.$name                            = "myOUTPUTXBAR0";
+outputxbar1.muxesUsed                        = ["XBAR_MUX00"];
+outputxbar1.mux0Config                       = "XBAR_OUT_MUX00_ECAP1_OUT";
+outputxbar1.outputxbar.$assign               = "OUTPUTXBAR3";
+outputxbar1.outputxbar.outputxbarPin.$assign = "GPIO5";
+
+outputxbar2.$name                            = "myOUTPUTXBAR1";
+outputxbar2.muxesUsed                        = ["XBAR_MUX02"];
+outputxbar2.mux2Config                       = "XBAR_OUT_MUX02_ECAP2_OUT";
+outputxbar2.outputxbar.$assign               = "OUTPUTXBAR4";
+outputxbar2.outputxbar.outputxbarPin.$assign = "GPIO6";

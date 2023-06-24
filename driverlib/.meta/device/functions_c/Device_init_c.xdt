@@ -1,0 +1,169 @@
+%let Common = system.getScript("/driverlib/Common.js");
+% var Clock_tree_template = system.getTemplate("/driverlib/device/functions_c/Device_clocktree_c.xdt");
+% var nameOfFlashModule = "flash";
+% var flashModule = system.modules['/driverlib/' + nameOfFlashModule + '.js'];
+//*****************************************************************************
+//
+// Function to initialize the device. Primarily initializes system control to a
+// known state by disabling the watchdog, setting up the SYSCLKOUT frequency,
+// and enabling the clocks to the peripherals.
+%if (["F280013x", "F280015x", "F28004x", "F28003x"].includes(Common.getDeviceName())){
+%if (["F280013x", "F280015x"].includes(Common.getDeviceName())){
+// The function also configures the AGPIO pins 12, 13, 20, 21, 28 in digital mode.
+%}
+%if (["F28004x", "F28003x"].includes(Common.getDeviceName())){
+// The function also configures the GPIO pins 22 and 23 in digital mode.
+%}
+// To configure these pins as analog pins, use the function GPIO_setAnalogMode
+%}if(["F28002x", "F28003x", "F28004x"].includes(Common.getDeviceName())){
+//
+// Note : In case XTAL is used as the PLL source, it is recommended to invoke
+// the Device_verifyXTAL() before configuring PLL
+//
+%}
+//
+//*****************************************************************************
+void Device_init(void)
+{
+    //
+    // Disable the watchdog
+    //
+    SysCtl_disableWatchdog();
+%if(["F2838x","F28002x", "F28003x", "F28004x", "F280013x", "F280015x", "F2807x", "F2837xD", "F2837xS"].includes(Common.getDeviceName())){
+#ifdef CMDTOOL
+    CMD_init();
+#endif
+%}
+
+#ifdef _FLASH
+%if(["F28002x", "F28003x", "F28004x", "F280013x", "F280015x", "F2838x", "F2807x", "F2837xD", "F2837xS"].includes(Common.getDeviceName())){
+#ifndef CMDTOOL
+%}
+    //
+    // Copy time critical code and flash setup code to RAM. This includes the
+    // following functions: InitFlash();
+    //
+    // The RamfuncsLoadStart, RamfuncsLoadSize, and RamfuncsRunStart symbols
+    // are created by the linker. Refer to the device .cmd file.
+    //
+    memcpy(&RamfuncsRunStart, &RamfuncsLoadStart, (size_t)&RamfuncsLoadSize);
+%if(["F28002x", "F28003x", "F28004x", "F280013x", "F280015x", "F2838x", "F2807x", "F2837xD", "F2837xS"].includes(Common.getDeviceName())){
+#endif
+%}
+%if(!flashModule){
+    //
+    // Call Flash Initialization to setup flash waitstates. This function must
+    // reside in RAM.
+    //
+    Flash_initModule(FLASH0CTRL_BASE, FLASH0ECC_BASE, DEVICE_FLASH_WAITSTATES);
+%}
+#endif
+%if(flashModule){
+    //
+    // Call Flash Initialization to setup flash waitstates. This function must
+    // reside in RAM.
+    //
+    FLASH_init();
+%}
+%if(["F2838x"].includes(Common.getDeviceName()) && Common.isContextCPU1()){
+#ifdef CPU1
+    //
+    // Verify the crystal frequency.
+    // Note: This check can be removed if you are not using XTAL as the PLL
+    // source
+    //
+    if( ((DEVICE_SETCLOCK_CFG & SYSCTL_OSCSRC_M) == SYSCTL_OSCSRC_XTAL) ||
+        ((DEVICE_SETCLOCK_CFG & SYSCTL_OSCSRC_M) == SYSCTL_OSCSRC_XTAL_SE))
+    {
+        if(!Device_verifyXTAL(DEVICE_OSCSRC_FREQ / 1000000))
+        {
+            //
+            // The actual XTAL frequency does not match DEVICE_OSCSRC_FREQ!!
+            // Please check the XTAL frequency used.
+            //
+            // By default, the Device_init function assumes 25MHz XTAL.
+            // If a 20MHz crystal is used, please add a predefined symbol
+            // "USE_20MHZ_XTAL" in your CCS project.
+            // If a different XTAL is used, please update the DEVICE_SETCLOCK_CFG
+            // macro accordingly.
+            //
+            // Note that the latest F2838x controlCARDs (Rev.B and later) have been
+            // updated to use 25MHz XTAL by default. If you have an older 20MHz XTAL
+            // controlCARD (E1, E2, or Rev.A), refer to the controlCARD
+            // documentation on steps to reconfigure the controlCARD from 20MHz to
+            // 25MHz.
+            //
+            ESTOP0;
+            while(1);
+        }
+    }
+    
+%} 
+%if(["F2837xD", "F2837xS"].includes(Common.getDeviceName()) && Common.isContextCPU1()){
+#ifdef CPU1
+%}
+`Clock_tree_template()`
+%if(["F2837xD", "F2837xS"].includes(Common.getDeviceName()) && Common.isContextCPU1()){
+#endif
+%}
+%if(["F2838x"].includes(Common.getDeviceName()) && Common.isContextCPU1()){
+#endif
+%}
+
+%if(["F28002x","F28003x","F280013x","F280015x"].includes(Common.getDeviceName())){
+
+    //
+    // Lock VREGCTL Register
+    // The register VREGCTL is not supported in this device. It is locked to
+    // prevent any writes to this register
+    //
+    ASysCtl_lockVREG();
+%}else if(["F28004x"].includes(Common.getDeviceName())){
+
+    //
+    //Disable DC DC in Analog block
+    //
+    ASysCtl_disableDCDC();
+
+    //
+    //Configure GPIO in Push Pull,Output Mode
+    //
+    GPIO_setPadConfig(22U, GPIO_PIN_TYPE_STD);
+    GPIO_setPadConfig(23U, GPIO_PIN_TYPE_STD);
+    GPIO_setDirectionMode(22U, GPIO_DIR_MODE_OUT);
+    GPIO_setDirectionMode(23U, GPIO_DIR_MODE_OUT);
+
+    //
+    // Configure GPIO22 and GPIO23 as digital pins
+    //
+    GPIO_setAnalogMode(22U, GPIO_ANALOG_DISABLED);
+    GPIO_setAnalogMode(23U, GPIO_ANALOG_DISABLED);
+%}else if(["F2838x"].includes(Common.getDeviceName())){
+    Device_initGPIO();    
+%}
+%if(["F28003x"].includes(Common.getDeviceName())){
+    
+    //
+    // Configure GPIO20 and GPIO21 as digital pins
+    //
+    GPIO_setAnalogMode(20U, GPIO_ANALOG_DISABLED);
+    GPIO_setAnalogMode(21U, GPIO_ANALOG_DISABLED);
+%} else if(["F280013x","F280015x"].includes(Common.getDeviceName())){
+
+    //
+    // Configure the portA AGPIOs as digital pins
+    //
+    GPIO_setAnalogMode(12U, GPIO_ANALOG_DISABLED);
+    GPIO_setAnalogMode(13U, GPIO_ANALOG_DISABLED);
+    GPIO_setAnalogMode(20U, GPIO_ANALOG_DISABLED);
+    GPIO_setAnalogMode(21U, GPIO_ANALOG_DISABLED);
+    GPIO_setAnalogMode(28U, GPIO_ANALOG_DISABLED);
+%}
+%if(["F280015x"].includes(Common.getDeviceName())){
+    
+    //
+    // Enable lockstep compare module
+    //
+    HWREG_BP(LCM_CPU1_BASE + LCM_O_CONTROL) |= LCM_CONTROL_CMPEN;
+%}
+}

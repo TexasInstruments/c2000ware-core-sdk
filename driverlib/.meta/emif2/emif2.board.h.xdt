@@ -1,0 +1,53 @@
+% var moduleName = "emif2"
+% var module = system.modules['/driverlib/' + moduleName + '.js'];
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// EMIF2 Configurations
+//
+//*****************************************************************************
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        % let modInst  = instance[moduleName];
+        % let solution    = modInst.$solution;
+        % let peripheral  = system.deviceData.peripherals[solution.peripheralName];
+#define `instance.$name`_WAITPOL        `instance.waitPolarity`
+#define `instance.$name`_MAXWAIT        `instance.maxWait`U
+#define `instance.$name`_BASE           `peripheral.name`_BASE
+#define `instance.$name`_CONFIGBASE     `peripheral.name`CONFIG_BASE
+#define `instance.$name`_CLKDIV         `instance.clkDiv`
+#define `instance.$name`_SELACCESS      `instance.selAccess`
+% var asyncIntFlg = ["0"].concat(instance.asyncIntFlags)
+#define `instance.$name`_ASYNCINTFLAGS (`asyncIntFlg.join("|")`)
+//
+//CS0 Parameters
+//
+#define `instance.$name`_CS0REFRESH     `instance.cs0Refresh`U
+#define `instance.$name`_CS0SIZE        `instance.cs0Narrow`
+#define `instance.$name`_CS0NUMBANKS    `instance.cs0Banks`
+#define `instance.$name`_CS0CAS         `instance.cs0CAS`
+#define `instance.$name`_CS0CAWIDTH     `instance.cs0CAWidth`
+#define `instance.$name`_CS0TRFC        (`instance.cs0tRFC`U - 1U)
+#define `instance.$name`_CS0TRP         (`instance.cs0tRP`U - 1U)
+#define `instance.$name`_CS0TRCD        (`instance.cs0tRCD`U - 1U)
+#define `instance.$name`_CS0TWR         (`instance.cs0tWR`U - 1U)
+#define `instance.$name`_CS0TRAS        (`instance.cs0tRAS`U - 1U)
+#define `instance.$name`_CS0TRC         (`instance.cs0tRC`U - 1U)
+#define `instance.$name`_CS0TRRD        (`instance.cs0tRRD`U - 1U)
+#define `instance.$name`_CS0TXSR        (`instance.cs0tXSR`U - 1U)
+//
+//CS2 Parameters
+//
+#define `instance.$name`_CS2ASYNCMODE   `instance.cs2SelStrobe`
+#define `instance.$name`_CS2WORDSIZE    `instance.cs2WordSize`
+#define `instance.$name`_CS2WSETUP      (`instance.cs2WriteSetup`U - 1U)
+#define `instance.$name`_CS2WSTROBE     (`instance.cs2WriteStrobe`U - 1U)
+#define `instance.$name`_CS2WHOLD       (`instance.cs2WriteHold`U - 1U)
+#define `instance.$name`_CS2RSETUP      (`instance.cs2ReadSetup`U - 1U)
+#define `instance.$name`_CS2RSTROBE     (`instance.cs2ReadStrobe`U - 1U)
+#define `instance.$name`_CS2RHOLD       (`instance.cs2ReadHold`U - 1U)
+#define `instance.$name`_CS2TURNAROUND  (`instance.cs2TurnAround`U - 1U)
+    % }
+%}
+%

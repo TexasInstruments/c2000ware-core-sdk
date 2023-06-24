@@ -1,0 +1,27 @@
+
+/**
+ * Import the modules used in this configuration.
+ */
+ const eqep  = scripting.addModule("/driverlib/eqep.js", {}, false);
+ const eqep1 = eqep.addInstance();
+ 
+ /**
+  * Write custom configuration values to the imported modules.
+  */
+ eqep1.$name                = "myEQEP0";
+ eqep1.registerInterrupts   = true;
+ eqep1.enableInterrupt      = true;
+ eqep1.interruptSources     = ["EQEP_INT_UNIT_TIME_OUT"];
+ eqep1.eqepResolution       = "EQEP_CONFIG_1X_RESOLUTION";
+ eqep1.emulationMode        = "EQEP_EMULATIONMODE_RUNFREE";
+ eqep1.positionCounterMax   = 4294967295;
+ eqep1.enableUnitTimer      = true;
+eqep1.unitTimerPeriod      = 1000000;
+ eqep1.latchPositionCounter = "EQEP_LATCH_UNIT_TIME_OUT";
+ eqep1.swPositionInit       = true;
+ eqep1.enableModule         = true;
+ eqep1.eqep.$assign         = "EQEP1";
+eqep1.eqep.eqep_aPin.$assign     = "GPIO6";
+eqep1.eqep.eqep_bPin.$assign     = "GPIO7";
+eqep1.eqepInt.enableInterrupt = true;
+  

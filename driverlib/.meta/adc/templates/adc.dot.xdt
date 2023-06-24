@@ -1,0 +1,197 @@
+%%{
+    var module = system.modules['/driverlib/adc.js'];
+    let device_adc_char = 
+        system.getScript("/driverlib/adc/adc_char.js");
+    let Common   = system.getScript("/driverlib/Common.js");
+    let device_driverlib_peripheral = 
+        system.getScript("/driverlib/device_driverlib_peripherals/" + 
+            Common.getDeviceName().toLowerCase() + "_adc.js");
+    var nameOfModule = "adc";
+    var nameOfPeripheral = module.peripheralName;
+    var width = 3;
+    var total_number_socs = 16;
+    var high_priority_x_offset = 6;
+    var timing_x_offset = 8;
+    var sysclk_width = 0.5;
+    var instance_x_offset = 0;
+    var instance_y_offset = 0;
+    var colors = [
+        '#FFA0A0',
+        '#A0FFA0',
+        '#A0A0FF',
+        '#FFFFA0',
+        '#A0FFFF',
+        '#FFA0FF',
+        '#5EE0BE'
+    ]
+
+    if (module != null)
+    {
+%%}
+digraph {
+    graph [fontname = "helvetica"];
+    node  [fontname = "helvetica"];
+    edge  [fontname = "helvetica"];
+    graph [mclimit=50 nodesep=0.5 rankdir=LR ranksep=1.25]
+
+    node [shape = circle style=filled];
+
+%%{
+        for(var instanceIndex = 0; instanceIndex < module.$instances.length; instanceIndex++) {
+            var instance = module.$instances[instanceIndex];
+            var instanceName = instance.adcBase.replace("_BASE", "");
+            var instanceNamePrepend = instanceName.toLowerCase() + "_"
+            var highPri = instance.socHighPriorityMode;
+            var number_highpri_socs = device_driverlib_peripheral.ADC_PriorityMode.findIndex(x => x.name == highPri);
+            var number_roundrobin_socs = total_number_socs - number_highpri_socs
+            var alpha = Math.PI*2/number_roundrobin_socs
+            var r = width/2/Math.sin(alpha/2)
+            if (number_roundrobin_socs < 2)
+            {
+                r = width;
+                angle = 0;
+            }
+            var angle = 0;
+            var x = 0;
+            var y = 0;
+%%}
+%%{
+            for (var i = number_highpri_socs; i < total_number_socs; i++) {
+                x = r*Math.sin(angle) + instance_x_offset;
+                y = r*Math.cos(angle) + instance_y_offset;
+                angle = angle + alpha
+%%}
+        `instanceNamePrepend`SOC`i.toString()` [label="`instanceName + " SOC" + i.toString()`" fillcolor="`colors[instanceIndex]`" pos="`x.toFixed(3)`,`y.toFixed(3)`!"]
+%%{
+            }
+            
+            y = r
+            for (var i = 0; i < number_highpri_socs; i++)
+            {
+
+%%}
+        `instanceNamePrepend`SOC`i.toString()` [fillcolor="`colors[instanceIndex]`" pos="`(high_priority_x_offset*width + instance_x_offset).toFixed(3)`, `(y + instance_y_offset).toFixed(3)`!"]
+%%{
+                y = y - width
+            }
+
+            for (var i = number_highpri_socs; i < total_number_socs; i++) {
+                if (i < total_number_socs - 1){
+%%}
+        `instanceNamePrepend`SOC`(i).toString()` -> `instanceNamePrepend`SOC`(i+1).toString()`
+%%{
+                }
+                else {
+%%}
+        `instanceNamePrepend`SOC`(i).toString()` -> `instanceNamePrepend`SOC`number_highpri_socs.toString()`
+%%{
+                }
+            }      
+%%}
+%%{
+            instance_x_offset = 0;
+            instance_y_offset = instance_y_offset - ((total_number_socs + 1)*width);
+        }
+%%}
+    node [shape=rect style=filled];
+%%{
+        instance_y_offset = 0;
+        instance_x_offset = 0;
+        for (var adcTrigger of device_driverlib_peripheral.ADC_Trigger)
+        {
+            var adcTriggerDisplayName = adcTrigger.displayName;
+            var adcTriggerName = adcTrigger.name;
+            var triggerNameInserted = false;
+            
+            instance_x_offset = 0;
+
+            for (var instanceIndex = 0; instanceIndex < module.$instances.length; instanceIndex++) {
+                var instance = module.$instances[instanceIndex];
+                var instanceName = instance.adcBase.replace("_BASE", "");
+                var instanceNamePrepend = instanceName.toLowerCase() + "_"
+                var instanceClockDiv = parseFloat(instance.adcClockPrescaler.replace("ADC_CLK_DIV_", "").replace("_", "."))
+                var instanceAdcClockPrescaler = instance.adcClockPrescaler
+                var highPri = instance.socHighPriorityMode;
+                var number_highpri_socs = device_driverlib_peripheral.ADC_PriorityMode.findIndex(x => x.name == highPri);
+
+                var conversion_time = device_adc_char.tEOC_12bit_SYSCLK[instanceAdcClockPrescaler];
+                if (["F2837xD", "F2837xS", "F2838x"].includes(Common.getDeviceName()))
+                {
+                    if (instance.adcResolutionMode == "ADC_RESOLUTION_16BIT")
+                    {
+                        conversion_time = device_adc_char.tEOC_16bit_SYSCLK[instanceAdcClockPrescaler];
+                    }
+                }
+                var adc_socs_with_trigger_rr = [];
+                var adc_socs_with_trigger_hp = [];
+                for (var socIndex = 0; socIndex < 16; socIndex++) {
+                    if (instance["enableBurstMode"])
+                    {
+                        if (socIndex >= number_highpri_socs)
+                        {
+                            if (instance["burstTrigger"] == adcTriggerName)
+                            {
+                                adc_socs_with_trigger_rr.push(
+                                    {
+                                        soc: "soc" + socIndex,
+                                        window: instance["soc" + socIndex.toString() + "SampleWindow"]
+                                    }
+                                );
+                            }
+                        }
+                    }                    
+                    if (instance["soc" + socIndex.toString() + "Trigger"] == adcTriggerName)
+                    {
+                        if (socIndex < number_highpri_socs)
+                        {
+                            adc_socs_with_trigger_hp.push(
+                                {
+                                    soc: "soc" + socIndex,
+                                    window: instance["soc" + socIndex.toString() + "SampleWindow"]
+                                }
+                            );
+                        }
+                        else
+                        {
+                            if (!instance["enableBurstMode"])
+                            {
+                                adc_socs_with_trigger_rr.push(
+                                    {
+                                        soc: "soc" + socIndex,
+                                        window: instance["soc" + socIndex.toString() + "SampleWindow"]
+                                    }
+                                );
+                            }
+                        }
+                    }
+                };
+                if (adc_socs_with_trigger_rr.length > 0) {
+                    instance_x_offset = 0;
+                    if (!triggerNameInserted) {
+                        instance_y_offset = instance_y_offset - width
+%%}
+        `adcTriggerName`[label="`adcTriggerDisplayName`" fillcolor="yellow"  fontsize="40" color="white" pos="`(timing_x_offset*width + instance_x_offset).toFixed(3)`,`instance_y_offset.toFixed(3)`!"]
+%%{
+                        instance_y_offset = instance_y_offset - width
+                        triggerNameInserted = true;
+                    }
+                    instance_y_offset = instance_y_offset - width
+%%}          
+        `instanceNamePrepend + adcTriggerName`[label="`instanceName`"  fontsize="40" fillcolor="white" color="white" pos="`(timing_x_offset*width + instance_x_offset).toFixed(3)`,`instance_y_offset.toFixed(3)`!"]
+%%{
+                    instance_x_offset = instance_x_offset + width
+                    for (var adc_soc_info of adc_socs_with_trigger_rr){
+                        var adc_soc = adc_soc_info.soc;
+                        var soc_width = conversion_time*sysclk_width + adc_soc_info.window*sysclk_width
+                        var soc_pos = timing_x_offset*width + soc_width/2 + instance_x_offset
+%%}          
+        `instanceNamePrepend + adcTriggerName + "_" + adc_soc`[label="`adc_soc` (S+H[SYSCLK]: `adc_soc_info.window.toString()`, Conv[SYSCLK]: `conversion_time.toString()`)" fillcolor="`colors[instanceIndex]`" width="`(soc_width).toFixed(3)`" pos="`(soc_pos).toFixed(3)`,`instance_y_offset.toFixed(3)`!"]
+%%{
+                        instance_x_offset = instance_x_offset + soc_width
+                    }
+                }
+            }
+        }
+    }
+%%}
+}

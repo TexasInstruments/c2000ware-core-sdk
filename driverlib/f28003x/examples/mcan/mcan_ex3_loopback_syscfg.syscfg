@@ -1,0 +1,26 @@
+/**
+ * Import the modules used in this configuration.
+ */
+const mcan  = scripting.addModule("/driverlib/mcan.js", {}, false);
+const mcan1 = mcan.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+mcan1.$name                     = "myMCAN0";
+mcan1.enableInterrupt           = true;
+mcan1.interruptFlags            = ["MCAN_INTR_MASK_ALL"];
+mcan1.interruptLine             = ["MCAN_INTR_LINE_NUM_1"];
+mcan1.interruptLine1Flag        = ["MCAN_INTR_MASK_ALL"];
+mcan1.registerInterruptLine1    = true;
+mcan1.registerInterruptLine0    = true;
+mcan1.additionalCoreConfig      = true;
+mcan1.stdFiltsUsed              = [0];
+mcan1.msgRamConfig              = true;
+mcan1.mcanInt1.interruptHandler = "MCANIntr1ISR";
+mcan1.mcanInt1.enableInterrupt  = true;
+mcan1.mcanInt0.interruptHandler = "MCANIntr0ISR";
+mcan1.mcanInt0.enableInterrupt  = true;
+mcan1.stdFilt0.$name            = "stdFilt0";
+mcan1.stdFilt0.sfec             = "MCAN_STDFILTEC_RXBUFF";
+mcan1.stdFilt0.sfid1            = 4;

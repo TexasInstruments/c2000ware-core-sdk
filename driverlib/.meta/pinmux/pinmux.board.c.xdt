@@ -1,0 +1,388 @@
+% let Common   = system.getScript("/driverlib/Common.js");
+% let Pinmux   = system.getScript("/driverlib/pinmux.js");
+% let PinmuxMigrations   = system.getScript("/driverlib/pinmux/pinmux_migration.js");
+% let DriverlibPinmap   = system.getScript("/driverlib/pinmux/driverlib_pinmap.js");
+% let skipPinMuxPeripheral = ["inputxbar", "inputxbar_input", "clb_inputxbar", "clb_inputxbar_input", "iclxbar", "mindbxbar", "usb", "dcdc", "cputimer", "interrupt", "asysctl", "sysctl", "sync", "adc", "cmpss", "cmpss_lite", "dcc", "watchdog", "cla", "memcfg", "dma", "bgcrc", "flash", "xint"];
+% var gpioQualTemplateC = system.getTemplate("/driverlib/gpio/gpioQual.board.c.xdt");
+% let skipPinMuxPeripheralIfIncludes = ["interrupt"];
+% let pinmux_h_source_mode = 3
+% let csv_mode = 1
+% let function_mode = 2
+% let pinmux_c_source_mode = 0
+% var output_mode = pinmux_c_source_mode
+% var gpio_to_find = ""
+% if (args[0] == "csv")
+% {
+%	output_mode = csv_mode
+Used GPIO,Selected Mode
+% }
+% else if (args[0] == "function")
+% {
+%	output_mode = function_mode
+%	gpio_to_find = args[1]
+% }
+% else if (args[0] == "header")
+% {
+%	output_mode = pinmux_h_source_mode
+% }
+% else
+% {
+%	output_mode = pinmux_c_source_mode
+% }
+% var modulesCPU2 = []
+% if (Common.isMultiCoreDevice())
+% {
+%	modulesCPU2 = Common.getAllModulesForCore(Common.CONTEXT_CPU2);	
+% 	let cpu2Keys = Common.getModulePaths(modulesCPU2);
+% }
+% var contextNames = Common.getContextNames()
+% for (var cntx of contextNames)
+% {
+	% if (output_mode == pinmux_c_source_mode) {
+	//
+	// PinMux for modules assigned to `Common.getContextDisplayName(cntx)`
+	//
+	
+	% }
+	% let keys = Object.keys(Common.getAllModulesForCore(cntx)).sort();
+	% /* loop over all modules in the current configuration */
+% /* loop over all modules in the current configuration */
+% for (let modIndex = 0; modIndex < keys.length; modIndex++) {
+	% let module = Common.getModuleForCore(keys[modIndex], cntx);
+	% var nameOfPeripheral = module.peripheralName;
+	% var nameOfModule = module.$name.replace("/driverlib/", "").replace(".js", "");
+	% var skip = false;
+	% for (var skipModuleIndex in skipPinMuxPeripheral)
+	% {
+	%	//console.log("Skipping: ");
+	%	//console.log(skipPinMuxPeripheral[skipModuleIndex]);
+	%	if (skipPinMuxPeripheral[skipModuleIndex] == nameOfModule)
+	%	{	skip = true;	}
+	% }
+	% for (var skipModuleIndex in skipPinMuxPeripheralIfIncludes)
+	% {
+	%	//console.log("Skipping: ");
+	%	//console.log(skipPinMuxPeripheralIfIncludes[skipModuleIndex]);
+	%	if (nameOfModule.includes(skipPinMuxPeripheralIfIncludes[skipModuleIndex]))
+	%	{	skip = true;	}
+	% }
+	%if (module != null && module.peripheralName != "GPIO" && 
+	%	 module.peripheralName != "AIO" && 
+	%	 !skip && module.peripheralName != null &&
+	%	 module.peripheralName != "EPWMXBAR" &&
+	%	 module.peripheralName != "CLBXBAR" &&
+	%	 module.peripheralName != "CLB" &&
+	%	 module.peripheralName != "DAC" &&
+	%	 module.peripheralName != "ECAP" &&
+	%    module.peripheralName != "ERAD" &&
+	%	 module.peripheralName != "PGA")
+	%{
+		% //console.log("Standard Pinmux");
+		% for(var i = 0; i < module.$instances.length; i++) {
+			% var instance = module.$instances[i];
+			% let instancePinmux = instance[nameOfModule];
+			% let solution    = instancePinmux.$solution;
+			% let peripheral  = system.deviceData.peripherals[solution.peripheralName];
+			% var InterfaceNames = Object.keys(system.deviceData.interfaces[nameOfPeripheral].interfacePins);
+			% if (output_mode == pinmux_h_source_mode) {
+
+//
+// `peripheral.name` -> `instance.$name` Pinmux
+//
+			% }
+			% if (output_mode == pinmux_c_source_mode) {
+	//
+	// `peripheral.name` -> `instance.$name` Pinmux
+	//
+			% }
+			% for (var interfaceNumber in InterfaceNames)
+			% {
+			%	var interfaceName = InterfaceNames[interfaceNumber];
+			%	var interfaceRenameCompleted = PinmuxMigrations.interfacePinMuxMigrationRenameCompleted(interfaceName, nameOfPeripheral)
+			%	var legacyInclusiveNames = PinmuxMigrations.interfaceInclusiveRename(interfaceRenameCompleted, nameOfPeripheral);
+			%	let pinName =  legacyInclusiveNames.inclusiveName.toLowerCase().replace("#", "").replace("@", "") + "Pin";
+			% 	if (instance[nameOfModule][pinName] != null){
+				%	var isAioPin = false;
+				%	var isAgpioPin = false;
+				%	var aioName;
+				%	var gpioName;
+				%	var gpioNumber;
+				%	var gpioNumberForDoubleBonded = [];
+				%	if (!instance[nameOfModule][pinName].$solution.devicePinName.includes("GPIO"))
+				%	{
+				%		isAioPin = true;
+				%		//AIO used for digital				
+				% 		var selectedName = instance[nameOfModule][pinName].$solution.devicePinName;
+				%		var selecteddevicePin = null;
+				%		for (const pinNumber in system.deviceData.devicePins) {
+				%			if (system.deviceData.devicePins[pinNumber].designSignalName == selectedName)
+				%			{
+				%				selecteddevicePin = system.deviceData.devicePins[pinNumber];
+				%				break;
+				%			}
+				%		}
+				%		if (selecteddevicePin != null)
+				%		{
+				%			aioName = selecteddevicePin.mux.muxSetting[0].peripheralPin.name;
+				%			//console.log(aioName);
+				%			gpioName = aioName.replace("AIO", "GPIO");
+				% 			gpioNumber = gpioName.substring(4);
+				%			//console.log(gpioName);
+				%			gpioNumber = Common.gpioNameToNumber(gpioNumber);
+				%			//console.log(gpioNumber);
+				%		}
+				%	} else 
+				%	{
+				% 		gpioName = instance[nameOfModule][pinName].$solution.devicePinName;
+				%		if (!gpioName.startsWith("GPIO"))
+				%		{ isAgpioPin = true }
+				%		gpioName = gpioName.substring(gpioName.indexOf("GPIO"))
+				%		if ((gpioName.match(/GPIO/g) || []).length > 1)
+				%		{ 
+				%			//console.log("DUAL PIN");
+				%			//console.log("Interface Name: " + interfaceName)
+				%			//console.log("Peripheral Name: " + peripheral.name)
+				%			//console.log("GPIOs are ");
+				%			var gpiosOnThisPin = gpioName.split("GPIO");
+				%			gpiosOnThisPin.splice(0, 1)
+				%			//console.log(gpiosOnThisPin);
+				%			for (const pinNumber in system.deviceData.devicePins) {
+				%				if (system.deviceData.devicePins[pinNumber].designSignalName == 
+				%					instance[nameOfModule][pinName].$solution.devicePinName)
+				%				{
+				%					selecteddevicePin = system.deviceData.devicePins[pinNumber];
+				%					break;
+				%				}
+				%			}
+				%			//console.log(selecteddevicePin)
+				%			for (var gpioOnThisPin of gpiosOnThisPin)
+				%			{
+				%				var gpioNumberOnThisPin = Common.gpioNameToNumber(gpioOnThisPin);
+				%				//console.log(gpioNumberOnThisPin);
+				%				gpioName = "GPIO" + gpioNumberOnThisPin;
+				%				gpioNumberForDoubleBonded.push(gpioNumberOnThisPin);
+				%				var gpioOptions = selecteddevicePin.mux.muxSetting.filter(muxOption => muxOption.mode.includes(gpioName));
+				%				if (gpioOptions.length == 0)
+				%				{
+				%					gpioOptions = selecteddevicePin.mux.muxSetting.filter(
+				%						muxOption => Number.isInteger(parseInt(muxOption.mode)) || muxOption.mode == "ALT");
+				%				}
+				%				var correctGpioFound = false;
+				%				for (var gpioOption of gpioOptions)
+				%				{
+				%					if (gpioOption.peripheralPin.interfacePin.name == interfaceName &&
+				%						gpioOption.peripheralPin.peripheralName == peripheral.name)
+				%					{
+				%						correctGpioFound = true;
+				%						break;
+				%					}
+				%				}
+				%				if (correctGpioFound) { break; }
+				%				//console.log(gpioOptions)
+				%			}
+				%			
+				% 		}
+				% 		gpioNumber = gpioName.substring(4); // determine which GPIO
+				%		gpioNumber = Common.gpioNameToNumber(gpioNumber);
+				%	}
+				%   if (output_mode == pinmux_c_source_mode) {
+				%		if (peripheral.name == "ANALOG") {
+	// Analog PinMux for `interfaceName`
+	GPIO_setPinConfig(GPIO_`gpioNumber`_`"GPIO" + gpioNumber`);
+				%			if (isAioPin || isAgpioPin) {
+				%				if (isAgpioPin) {
+	// AGPIO -> Analog mode selected
+				%				}
+				%				if (isAioPin) {
+	// AIO -> Analog mode selected
+				%				}	
+				%				if (isAgpioPin && Common.getDevicePart() == "F28003x_100PZ") {
+	// On 100PZ package for F28003x, if both "B5, GPIO20" and "B5" are selected as analog,
+	// "B5, GPIO20" will drive the ADC instead of "B5"
+	// On 100PZ package for F28003x, if both "B11, GPIO21" and "B11" are selected as analog,
+	// "B11, GPIO21" will drive the ADC instead of "B11"
+				%				}
+	GPIO_setAnalogMode(`gpioNumber`, GPIO_ANALOG_ENABLED);
+				%			if (gpioNumberForDoubleBonded.length > 1)
+				%				for (var gpNumDb of gpioNumberForDoubleBonded) {
+				%					if (gpNumDb != gpioNumber) {
+	// Multi-bonded AGPIO, unused GPIO is also configured in analog mode
+	GPIO_setPinConfig(GPIO_`gpNumDb`_`"GPIO" + gpNumDb`);
+	GPIO_setAnalogMode(`gpNumDb`, GPIO_ANALOG_ENABLED);
+				%					}
+				%				}
+				%			}
+				%		} else{
+	GPIO_setPinConfig(`instance.$name`_`DriverlibPinmap.getInterfaceCCodeName(interfaceName, nameOfPeripheral)`_PIN_CONFIG);
+				%			if (isAioPin || isAgpioPin) {
+				%				if (isAgpioPin) {
+	// AGPIO -> GPIO mode selected
+				%				}
+				%				if (isAioPin) {
+	// AIO -> Digital mode selected
+				%				}
+				%				if (isAgpioPin && Common.getDevicePart() == "F28003x_100PZ") {
+	// On 100PZ package for F28003x, if "B5, GPIO20" is used in peripheral signal digital mode, 
+	// then "B5" can be used for ADC
+	// On 100PZ package for F28003x, if "B11, GPIO21" is used in peripheral signal digital mode, 
+	// then "B11" can be used for ADC
+	GPIO_setAnalogMode(`gpioNumber`, GPIO_ANALOG_DISABLED);
+				%				} else {
+	GPIO_setAnalogMode(`gpioNumber`, GPIO_ANALOG_DISABLED);
+				%				}
+				%			}
+				%		}
+				%		var gpioQualInstance = instance[Pinmux.interfaceNameToQualModeName(legacyInclusiveNames.inclusiveName, nameOfPeripheral)]
+				%		if (gpioQualInstance) {
+				%			var gpioMacro = instance.$name + "_" + DriverlibPinmap.getInterfaceCCodeName(interfaceName, nameOfPeripheral) + "_GPIO"
+`gpioQualTemplateC(gpioQualInstance, gpioMacro)`
+				%		}
+				%   } else if (output_mode == pinmux_h_source_mode) {
+				%		if (peripheral.name != "ANALOG") {
+//
+// `DriverlibPinmap.getDriverlibName(interfaceName, peripheral.name, nameOfPeripheral)` - GPIO Settings
+//
+#define GPIO_PIN_`DriverlibPinmap.getDriverlibName(interfaceName, peripheral.name, nameOfPeripheral)` `gpioNumber`
+#define `instance.$name`_`DriverlibPinmap.getInterfaceCCodeName(interfaceName, nameOfPeripheral)`_GPIO `gpioNumber`
+#define `instance.$name`_`DriverlibPinmap.getInterfaceCCodeName(interfaceName, nameOfPeripheral)`_PIN_CONFIG GPIO_`gpioNumber`_`DriverlibPinmap.getDriverlibName(interfaceName, peripheral.name, "NOPERIPHERAL")`
+				%		}
+				%   } else if (output_mode == function_mode) { 
+				%		if (gpio_to_find == ("GPIO"+gpioNumber)) {
+`DriverlibPinmap.getDriverlibName(interfaceName, peripheral.name, nameOfPeripheral)`
+				%		}
+				% 	} else if (output_mode == csv_mode) {
+GPIO`gpioNumber`,`DriverlibPinmap.getDriverlibName(interfaceName, peripheral.name, nameOfPeripheral)`
+				%	}
+				%}
+			% }
+		%}
+	%}
+	%else if (module != null && module.peripheralName == "GPIO")
+	%{
+		% for(var i = 0; i < module.$instances.length; i++) {
+			% var instance = module.$instances[i];
+			% var gpioName = instance.gpioPin.$solution.devicePinName;
+			% var isAgpioPin = false;
+			% if (gpioName == null) { 
+			%	// TopoAria double bonded GPIOs
+			%	gpioName = instance.gpioPin.$solution.peripheralName; 
+			%	if (!instance.gpioPin["GPIO#"].$solution.devicePinName.startsWith("GPIO"))
+			%	{
+			%		isAgpioPin = true;
+			%	}
+			%	
+			% } else
+			% {
+			%	if (!gpioName.startsWith("GPIO"))
+			%	{
+			%		isAgpioPin = true;
+			%	}
+			% }
+			%   if (output_mode == pinmux_c_source_mode) {
+	// `gpioName` -> `instance.$name` Pinmux
+			%	}
+			% gpioName = gpioName.substring(gpioName.indexOf("GPIO"))
+			% var gpioNumber = gpioName.substring(4);
+			% gpioNumber = Common.gpioNameToNumber(gpioNumber);
+			% if (output_mode == pinmux_c_source_mode) {
+			%	var gpioDriverlibName = DriverlibPinmap.getGPIODriverlibName(gpioNumber);
+	GPIO_setPinConfig(GPIO_`gpioNumber`_`gpioDriverlibName`);
+			%	if (isAgpioPin) {
+	// AGPIO -> GPIO mode selected
+			%		if (Common.getDevicePart() == "F28003x_100PZ") {
+	// On 100PZ package for F28003x, if "B5, GPIO20" is used in 
+	// GPIO mode, then "B5" can be used for ADC
+	// On 100PZ package for F28003x, if "B11, GPIO21" is used in 
+	// GPIO mode, then "B11" can be used for ADC
+	GPIO_setAnalogMode(`gpioNumber`, GPIO_ANALOG_DISABLED);
+			%		} else {
+	GPIO_setAnalogMode(`gpioNumber`, GPIO_ANALOG_DISABLED);
+			%		}
+			%	}
+			% } else if (output_mode == pinmux_h_source_mode) {
+//
+// GPIO`gpioNumber` - GPIO Settings
+//
+#define `instance.$name`_GPIO_PIN_CONFIG GPIO_`gpioNumber`_`"GPIO" + gpioNumber`
+			% } else if (output_mode == function_mode) {
+			%		if (gpio_to_find == "GPIO"+gpioNumber) {
+GPIO`gpioNumber`
+			%		}
+			% }	else if (output_mode == csv_mode){
+GPIO`gpioNumber`,GPIO`gpioNumber`
+			% }
+		%}
+	%}
+	%else if (module != null && module.peripheralName == "AIO")
+	%{
+		% for(var i = 0; i < module.$instances.length; i++) {
+			% var instance = module.$instances[i];
+			% let peripheral  = system.deviceData.peripherals[instance.aioPin.$solution.peripheralName];
+			% var aioName = peripheral.name;
+			% if (output_mode == pinmux_c_source_mode) {
+	// `aioName` -> `instance.$name` Pinmux
+			% }
+			% var gpioNumber = aioName.substring(2);
+			% gpioNumber = Common.gpioNameToNumber(gpioNumber);
+			% if (output_mode == pinmux_h_source_mode) {
+//
+// AIO`gpioNumber` - GPIO Settings
+//
+#define GPIO_PIN_AIO`gpioNumber` `gpioNumber`
+#define `instance.$name`_AIO_PIN_CONFIG GPIO_`gpioNumber`_`"GPIO" + gpioNumber`
+			% } else if (output_mode == pinmux_c_source_mode) {
+	GPIO_setPinConfig(GPIO_`gpioNumber`_`"GPIO" + gpioNumber`);
+	GPIO_setAnalogMode(`gpioNumber`, GPIO_ANALOG_DISABLED);
+			% } else if (output_mode == function_mode) {
+			%		if (gpio_to_find == "AIO"+gpioNumber) {
+AIO`gpioNumber`
+			%		}
+			% } else if (output_mode == csv_mode){
+GPIO`gpioNumber`,GPIO`gpioNumber` 
+			% }
+		%}
+	%}
+	%else if (module != null && module.peripheralName == "USB")
+	%{
+		% for(var i = 0; i < module.$instances.length; i++) {
+			% var instance = module.$instances[i];
+			% if (output_mode == pinmux_c_source_mode) {
+	// USB pinmux
+	GPIO_setAnalogMode(42, GPIO_ANALOG_ENABLED);
+	GPIO_setAnalogMode(43, GPIO_ANALOG_ENABLED);
+			% } else if (output_mode == function_mode) {
+			%		if (gpio_to_find == "GPIO42") {
+USB
+			%		}
+			%		else if (gpio_to_find == "GPIO43") {
+USB
+			%		}				
+			%} else if (output_mode == csv_mode){
+GPIO42,USB
+GPIO43,USB
+			% }
+		%}
+	%}
+	%else if (module != null && module.peripheralName == "DC-DC")
+	%{
+		% for(var i = 0; i < module.$instances.length; i++) {
+			% var instance = module.$instances[i];
+			% if (output_mode == pinmux_c_source_mode) {
+	// DC-DC pinmux
+	GPIO_setAnalogMode(22, GPIO_ANALOG_ENABLED);
+	GPIO_setAnalogMode(23, GPIO_ANALOG_ENABLED);
+			% } else if (output_mode == function_mode) {
+			%		if (gpio_to_find == "GPIO22_VFBSW") {
+DCDC
+			%		}
+			%		else if (gpio_to_find == "GPIO23_VSW") {
+DCDC
+			%		}				
+			%} else if (output_mode == csv_mode){
+GPIO22,DCDC
+GPIO23,DCDC
+			% }
+		%}
+	%}
+%}
+%}

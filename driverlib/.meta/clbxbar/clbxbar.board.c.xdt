@@ -1,0 +1,53 @@
+% var module = system.modules['/driverlib/clbxbar.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% var nameOfModule = "clbxbar";
+% var nameOfPeripheral = module.peripheralName;
+//*****************************************************************************
+//
+// CLBXBAR Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_init(){
+%   for(var i = 0; i < module.$instances.length; i++) 
+%   {
+%      var instance = module.$instances[i];
+	`instance.$name`_init();
+%   }
+}
+
+%if (module != null)
+%{
+	% for(var i = 0; i < module.$instances.length; i++) {
+		% var instance = module.$instances[i];
+		% let instancePinmux = instance[nameOfModule];
+void `instance.$name`_init(){
+		% if(instance.invertMode){
+	XBAR_invertCLBSignal(`instance.$name`, true);
+		%}
+		%%{
+			var muxConfigurationOutput = "\n";
+			var muxesUsed = instance.muxesUsed;
+			var enabledMuxesUsed = "";
+			for (var muxesUsedIndex in muxesUsed)
+			{
+				var usedMuxName = muxesUsed[muxesUsedIndex];
+				var usedMuxNumber = parseInt(usedMuxName.replace("XBAR_MUX", ""))
+				var muxConfigName = "mux" + usedMuxNumber + "Config"
+
+				if (instance[muxConfigName])
+				{            	
+					enabledMuxesUsed += Common.stringOrEmpty(enabledMuxesUsed, " | ");
+					enabledMuxesUsed += usedMuxName;
+					var muxSource = instance[muxConfigName]
+					muxConfigurationOutput += "\tXBAR_setCLBMuxConfig(" + instance.$name + ", " + muxSource + ");\n"
+				}
+			}
+			if (enabledMuxesUsed != "")
+			{
+				muxConfigurationOutput += "\tXBAR_enableCLBMux(" + instance.$name + ", " + instance.$name + "_ENABLED_MUXES);"
+			}
+		%%}
+`muxConfigurationOutput`
+}
+	%}
+%}

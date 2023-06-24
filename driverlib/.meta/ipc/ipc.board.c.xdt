@@ -1,0 +1,35 @@
+% var nameOfModule = "ipc";
+% var module = system.modules['/driverlib/' + nameOfModule + '.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% var nameOfPeripheral = module.peripheralName;
+//*****************************************************************************
+//
+// IPC Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_SYSCFG_init(){
+%   for(var i = 0; i < module.$instances.length; i++) 
+%   {
+%      var instance = module.$instances[i];
+	`instance.$name`_init();
+%   }
+%if (module != null)
+%{
+% 	var stat = module.$static
+%	var configs=[]
+%	module.moduleStatic.config.forEach((element, index) =>
+%	{
+%    	configs[element.name] = element.config
+%	});
+%
+%   if(Common.isContextCPU1()) {
+%       var boot_mode = stat.bootModeSelect;
+    //
+    // Paste the following line in your main() function after device_init, if you would like CPU2 to boot
+    // Device_bootCPU2(BOOT_MODE_CPU2);           
+    //
+%       
+%   }
+%
+%}
+}

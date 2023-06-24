@@ -1,0 +1,25 @@
+
+/**
+ * Import the modules used in this configuration.
+ */
+const eqep  = scripting.addModule("/driverlib/eqep.js", {}, false);
+const eqep1 = eqep.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+eqep1.$name                = "myEQEP0";
+eqep1.eqepOperationMode    = "EQEP_CONFIG_UP_COUNT";
+eqep1.emulationMode        = "EQEP_EMULATIONMODE_RUNFREE";
+eqep1.positionCounterMode  = "EQEP_POSITION_RESET_1ST_IDX";
+eqep1.positionCounterMax   = 4294967295;
+eqep1.enableUnitTimer      = true;
+eqep1.unitTimerPeriod      = 1000000;
+eqep1.latchPositionCounter = "EQEP_LATCH_UNIT_TIME_OUT";
+eqep1.enableModule         = true;
+eqep1.swPositionInit       = true;
+eqep1.captureConfig        = true;
+eqep1.capPrescale          = "EQEP_CAPTURE_CLK_DIV_128";
+eqep1.evntPrescale         = "EQEP_UNIT_POS_EVNT_DIV_8";
+eqep1.enableCapture        = true;
+eqep1.eqep.$assign         = "EQEP1";

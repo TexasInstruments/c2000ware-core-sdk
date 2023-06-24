@@ -1,0 +1,89 @@
+% var module = system.modules['/driverlib/pmbus.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% var nameOfModule = "pmbus";
+% var nameOfPeripheral = module.peripheralName;
+% var stat = module.$static
+% var sysclk_Hz = stat.sysClock * 1000000;
+//*****************************************************************************
+//
+// PMBUS Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_init(){
+%   for(var i = 0; i < module.$instances.length; i++) 
+%   {
+%      var instance = module.$instances[i];
+	`instance.$name`_init();
+%   }
+}
+
+%if (module != null)
+%{
+	% for(var i = 0; i < module.$instances.length; i++) {
+		% var instance = module.$instances[i];
+void `instance.$name`_init(){
+		uint32_t moduleFreq = 0U;
+		PMBus_disableModule(`instance.$name`_BASE);
+		% if (instance.enableI2CMode)
+		% {
+		PMBus_enableI2CMode(`instance.$name`_BASE);
+		% }
+		% else
+		% {
+		PMBus_disableI2CMode(`instance.$name`_BASE);	
+		% }
+		% if(instance.ALERT_EN)
+		% {
+		PMBus_assertAlertLine(`instance.$name`_BASE);
+		%}
+		% else
+		%{
+		PMBus_deassertAlertLine(`instance.$name`_BASE);	
+		%}
+		PMBus_setOwnAddress(`instance.$name`_BASE, `instance.$name`_OWN_ADDRESS);
+		% var moduleFreq = "";
+		moduleFreq = PMBus_configModuleClock(`instance.$name`_BASE, `instance.$name`_BAUDRATE, `sysclk_Hz`);
+		PMBus_configBusClock(`instance.$name`_BASE, PMBUS_CLOCKMODE_STANDARD, moduleFreq);
+		% if (instance.mode == "Controller")
+		%{
+		PMBus_initControllerMode(`instance.$name`_BASE);
+		//
+		// config target address 
+		//
+		PMBus_setTargetAddress(`instance.$name`_BASE, `instance.$name`_TARGET_ADDRESS);
+		%}
+		% else
+		%{
+		PMBus_initTargetMode(`instance.$name`_BASE, `instance.$name`_TARGET_ADDRESS, `instance.$name`_TARGET_ADDRESS_MASK);
+			% var configWord_target = "";
+			% for (var int_index in instance.configTarget)
+			% {
+				%	configWord_target += ((configWord_target == "")?"":" | ") + instance.configTarget[int_index];
+			% }
+		% if (configWord_target !=""){	
+		PMBus_configTarget(`instance.$name`_BASE, `configWord_target`);
+		%}
+		%}
+		% if (instance.useInterrupts)
+		%{
+			% var interrupts = "";
+			% for (var int_index in instance.enabledInterrupts)
+			% {
+				%	interrupts += ((interrupts == "")?"":" | ") + instance.enabledInterrupts[int_index];
+			% }
+			% if (interrupts != "")
+			% {
+		PMBus_disableInterrupt(`instance.$name`_BASE, `interrupts`);
+			% }
+			% if (interrupts != "")
+			%{
+		PMBus_enableInterrupt(`instance.$name`_BASE, `interrupts`);
+			% }
+		% }
+		% if(instance.enablePMBus)
+		% {
+		PMBus_enableModule(`instance.$name`_BASE);
+		%}
+}
+	%}
+%}

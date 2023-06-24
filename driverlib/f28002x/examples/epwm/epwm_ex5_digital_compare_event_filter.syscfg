@@ -1,0 +1,49 @@
+
+/**
+ * Import the modules used in this configuration.
+ */
+const epwm       = scripting.addModule("/driverlib/epwm.js", {}, false);
+const epwm1      = epwm.addInstance();
+const gpio       = scripting.addModule("/driverlib/gpio.js", {}, false);
+const gpio1      = gpio.addInstance();
+const inputxbar  = scripting.addModule("/driverlib/inputxbar.js", {}, false);
+const inputxbar1 = inputxbar.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+epwm1.$name                                                           = "myEPWM1";
+epwm1.epwmTimebase_period                                             = 12000;
+epwm1.epwmTimebase_counterMode                                        = "EPWM_COUNTER_MODE_UP_DOWN";
+epwm1.epwmTimebase_clockDiv                                           = "EPWM_CLOCK_DIVIDER_4";
+epwm1.epwmTimebase_hsClockDiv                                         = "EPWM_HSCLOCK_DIVIDER_4";
+epwm1.epwmCounterCompare_cmpA                                         = 2000;
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_UP_CMPA        = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_DOWN_CMPA      = "EPWM_AQ_OUTPUT_LOW";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_UP_CMPA        = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_DOWN_CMPA      = "EPWM_AQ_OUTPUT_LOW";
+epwm1.epwmDigitalCompare_EPWM_TZ_DC_OUTPUT_A1                         = "EPWM_TZ_EVENT_DCXH_LOW";
+epwm1.epwmDigitalCompare_EPWM_DC_MODULE_A_EPWM_DC_EVENT_1_eventSync   = "EPWM_DC_EVENT_INPUT_NOT_SYNCED";
+epwm1.epwmDigitalCompare_EPWM_TZ_DC_OUTPUT_B1                         = "EPWM_TZ_EVENT_DCXH_LOW";
+epwm1.epwmDigitalCompare_dcFilterInput                                = "EPWM_DC_WINDOW_SOURCE_DCBEVT1";
+epwm1.epwmDigitalCompare_useBlankingWindow                            = true;
+epwm1.epwmDigitalCompare_blankingWindowLength                         = 6000;
+epwm1.epwmDigitalCompare_EPWM_DC_MODULE_B_EPWM_DC_EVENT_1_eventSource = "EPWM_DC_EVENT_SOURCE_FILT_SIGNAL";
+epwm1.epwmDigitalCompare_EPWM_DC_MODULE_B_EPWM_DC_EVENT_1_eventSync   = "EPWM_DC_EVENT_INPUT_NOT_SYNCED";
+epwm1.epwmTripZone_EPWM_TZ_ACTION_EVENT_DCAEVT1                       = "EPWM_TZ_ACTION_LOW";
+epwm1.epwmTripZone_EPWM_TZ_ACTION_EVENT_DCBEVT1                       = "EPWM_TZ_ACTION_LOW";
+epwm1.epwmTripZone_tzInterruptSource                                  = ["EPWM_TZ_INTERRUPT_DCAEVT1"];
+epwm1.epwmDigitalCompare_blankingWindowEvent                          = "EPWM_DC_WINDOW_START_TBCTR_ZERO";
+epwm1.epwm.$assign                                                  = "EPWM1";
+epwm1.epwm.epwm_aPin.$assign                                      = "GPIO0";
+epwm1.epwm.epwm_bPin.$assign                                      = "GPIO1";
+
+gpio1.$name           = "myGPIO25";
+gpio1.padConfig       = "PULLUP";
+gpio1.qualMode        = "GPIO_QUAL_ASYNC";
+gpio1.gpioPin.$assign = "GPIO25";
+
+inputxbar1.$name          = "myINPUTXBAR1";
+inputxbar1.inputsUsed     = ["inputxbar1Gpio"];
+inputxbar1.inputxbar1Gpio = "GPIO25";
+

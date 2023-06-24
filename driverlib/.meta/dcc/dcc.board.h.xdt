@@ -1,0 +1,24 @@
+% var moduleName = "dcc"
+% var module = system.modules['/driverlib/' + moduleName + '.js'];
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// DCC Configurations
+//
+//*****************************************************************************
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        % let modInst  = instance[moduleName];
+#define `instance.$name`_BASE `instance.dccBase`
+#define `instance.$name`_COUNTER0SEED `instance.counter0seed`
+#define `instance.$name`_VALIDCOUNTER0SEED `instance.validCounter0seed`
+#define `instance.$name`_COUNTER1SEED `instance.counter1seed`
+#define `instance.$name`_FSYSCLK `instance.fsysclk`
+#define `instance.$name`_FCLK0 `instance.fclk0`
+#define `instance.$name`_FCLK1 `instance.fclk1`
+#define `instance.$name`_DCCERRTOL `instance.dccerrtol`
+#define `instance.$name`_FREQERRTOL `instance.freqerrtol`
+void `instance.$name`_init();
+    % }
+%}

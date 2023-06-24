@@ -1,0 +1,52 @@
+% var module = system.modules['/driverlib/mcan.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// MCAN Configurations
+//
+//*****************************************************************************
+% for(var i = 0; i < module.$instances.length; i++) {
+	% var instance = module.$instances[i];
+	% let mcan        	= instance.mcan;
+	% let solution    		= mcan.$solution;
+	% let peripheral 	 	= system.deviceData.peripherals[solution.peripheralName];
+    % if(["F28006x"].includes(Common.getDeviceName())){
+#define `instance.$name`_BASE `peripheral.name`_DRIVER_BASE
+    % } else {
+#define `instance.$name`_BASE `peripheral.name`A_DRIVER_BASE
+    % }
+//
+// Defines
+//
+#define `instance.$name`_MCAN_STD_ID_FILT_START_ADDR     (`instance.flssa`)
+#define `instance.$name`_MCAN_STD_ID_FILTER_NUM          (`instance.lss`)
+#define `instance.$name`_MCAN_EXT_ID_FILT_START_ADDR     (`instance.flesa`)
+#define `instance.$name`_MCAN_EXT_ID_FILTER_NUM          (`instance.lse`)
+#define `instance.$name`_MCAN_TX_BUFF_START_ADDR         (`instance.txStartAddr`)
+#define `instance.$name`_MCAN_TX_BUFF_SIZE               (`instance.txBufNum`)
+#define `instance.$name`_MCAN_FIFO_1_START_ADDR          (`instance.rxFIFO1startAddr`)
+#define `instance.$name`_MCAN_FIFO_1_NUM                 (`instance.rxFIFO1size`)
+#define `instance.$name`_MCAN_TX_EVENT_START_ADDR        (`instance.txEventFIFOStartAddr`)
+#define `instance.$name`_MCAN_TX_EVENT_SIZE              (`instance.txEventFIFOSize`)
+#define `instance.$name`_MCAN_RX_BUFF_START_ADDR         (`instance.rxBufStartAddr`)
+#define `instance.$name`_MCAN_FIFO_0_START_ADDR          (`instance.rxFIFO0startAddr`)
+#define `instance.$name`_MCAN_FIFO_0_NUM                 (`instance.rxFIFO0size`)
+
+    % if (instance.enableInterrupt){
+        % for (var int_index in instance.interruptLine)
+           %{
+           		% let x;
+                % let line = instance.interruptLine[int_index];
+                % if (line == "MCAN_INTR_LINE_NUM_0")
+                % x = String(instance.interruptLine0Flag).split(",").join("|");
+                % else if (line == "MCAN_INTR_LINE_NUM_1")
+                % x = String(instance.interruptLine1Flag).split(",").join("|");
+                % if (!x) { x = "0";}
+#define `instance.$name`_`line`_INT (`x`)
+           %}
+        %}
+void `instance.$name`_init();
+% }
+%}

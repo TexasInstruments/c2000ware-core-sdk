@@ -1,0 +1,21 @@
+% var moduleName = "i2c"
+% var module = system.modules['/driverlib/' + moduleName + '.js'];
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// I2C Configurations
+//
+//*****************************************************************************
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        % let modInst  = instance[moduleName];
+        % let solution    = modInst.$solution;
+        %let peripheral  = system.deviceData.peripherals[solution.peripheralName];
+#define `instance.$name`_BASE `peripheral.name`_BASE
+#define `instance.$name`_BITRATE `parseInt(instance.bitRate)`
+#define `instance.$name`_TARGET_ADDRESS `instance.targetAddress`
+#define `instance.$name`_OWN_TARGET_ADDRESS `instance.ownTargetAddress`
+void `instance.$name`_init();
+    % }
+%}

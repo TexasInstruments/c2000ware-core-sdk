@@ -1,0 +1,166 @@
+% var module = system.modules['/driverlib/interrupt_nesting.js'];
+%if (module != null)
+%{
+% 	var stat = module.$static
+%
+//###########################################################################
+//
+// FILE:    sw_prioritized_defaultisr.c
+//
+// TITLE:   Default Software Prioritized Interrupt Service Routines.
+//
+//###########################################################################
+
+//
+// NOTE !!!!
+// The application must define the ISR routines. The following functions can be
+// used a reference.
+// Any updates done to this file will be overwritten by the Syscfg tool
+//
+
+%
+%   var interrupts = []
+%
+%   if(stat["IntPri_Global_13"] != 0)
+%       interrupts.push({name : "CPU Timer 1 Interrupt", priority : 100*stat["IntPri_Global_13"], channel : "INT13", ISR : "TIMER1_ISR"})
+%   if(stat["IntPri_Global_14"] != 0)
+%       interrupts.push({name : "CPU Timer 2 Interrupt", priority : 100*stat["IntPri_Global_14"], channel : "INT14", ISR : "TIMER2_ISR"})
+%   if(stat["IntPri_Global_15"] != 0)
+%       interrupts.push({name : "DATALOG Interrupt",     priority : 100*stat["IntPri_Global_15"], channel : "INT15", ISR : "DATALOG_ISR"})
+%   if(stat["IntPri_Global_16"] != 0)
+%       interrupts.push({name : "RTOS Interrupt",        priority : 100*stat["IntPri_Global_16"], channel : "INT16", ISR : "RTOS_ISR"})
+%
+%   for (var i=0; i<=12; i++)
+%   {
+%       var globalPri = stat["IntPri_Global_" + i.toString()]
+%       for (var int of module.functions.getInterruptsInGroup(i))
+%       {
+%           var groupPri  = stat["IntPri_Group_" + int.int_define_name]
+%           if(globalPri != 0 && groupPri != 0)
+%           {
+%               interrupts.push({name     : int.int_description,
+%                                priority : 10000*globalPri + 100*parseInt(int.int_group_number) + groupPri,
+%                                channel  : "PIE Channel " + int.int_group_channel_number,
+%                                ISR      : int.int_define_name.replace("INT_","") + "_ISR"})
+%           }
+%       }
+%   }
+%
+%   if( interrupts.length > 0)
+%   {
+//
+// Interrupts in the order of priority (Highest to Lowest) :
+%       for (i of interrupts.sort((a,b) => (a.priority - b.priority)))
+%       {
+%           var intName = i.name + " (" + i.channel + ")"
+%           var spaces = " ".repeat(Math.max(45 - intName.length, 1))
+//      - `intName` `spaces` GlobalPriority = `Math.floor(i.priority/10000)`   GroupPriority = `i.priority%100`
+%       }
+//
+%   }
+%
+%
+
+#include "sw_prioritized_isr_levels.h"
+
+
+#ifdef TRACE_ISR_ENABLE
+
+//
+// This array will be used as a trace to check the order that the interrupts were serviced
+//
+uint16_t  traceISR[TRACE_SIZE];
+
+//
+// Index to update an element in the trace buffer
+//
+uint16_t  traceISRIndex = 0;
+
+#endif
+
+
+#if 0
+
+%   for(var i of interrupts)
+%   {
+//
+//  `i.name` (`i.channel`)
+//
+__interrupt void `i.ISR`(void)
+{
+%       if(i.channel.startsWith("INT"))
+%       {
+%           var ch = i.channel.replace("INT","")
+    //
+    // Set the global priority to allow CPU interrupts with higher priority
+    //
+    IER &= MINT`ch`;
+    EINT;
+
+    //
+    // Insert ISR Code here ..
+    //
+
+    //
+    // Disable Interrupts
+    //
+    DINT;
+
+    #ifdef TRACE_ISR_ENABLE
+        //
+        //  Add ISR to Trace
+        //
+        traceISR[traceISRIndex % TRACE_SIZE] = 0x`ch`00;
+        traceISRIndex++;
+    #endif
+%       }
+%       else
+%       {
+%           var ch = i.channel.replace("PIE Channel ","").replace(".", "_")
+%           var pieGroup = ch.split("_")[0]
+%           var traceID  = ch.split("_")[0].padStart(2,"0") + ch.split("_")[1].padStart(2,"0")
+    //
+    // Save IER register on stack
+    //
+    volatile uint16_t tempPIEIER = HWREGH(PIECTRL_BASE + PIE_O_IER`pieGroup`);
+
+    //
+    // Set the global and group priority to allow CPU interrupts
+    // with higher priority
+    //
+    IER |= M_INT`pieGroup`;
+    IER &= MINT`pieGroup`;
+    HWREGH(PIECTRL_BASE + PIE_O_IER`pieGroup`) &= MG`ch`;
+
+    //
+    // Enable Interrupts
+    //
+    Interrupt_clearACKGroup(0xFFFFU);
+    __asm("  NOP");
+    EINT;
+
+    //
+    // Insert ISR Code here ..
+    //
+
+
+    //
+    // Disable interrupts and restore registers saved:
+    //
+    DINT;
+    HWREGH(PIECTRL_BASE + PIE_O_IER`pieGroup`) = tempPIEIER;
+
+    #ifdef TRACE_ISR_ENABLE
+        //
+        //  Add ISR to Trace
+        //
+        traceISR[traceISRIndex % TRACE_SIZE] = 0x`traceID`;
+        traceISRIndex++;
+    #endif
+%       }
+}
+
+
+%   }
+#endif
+%}

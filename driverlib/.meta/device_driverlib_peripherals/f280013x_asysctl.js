@@ -1,0 +1,59 @@
+let ASysCtl_CMPHPMuxSelect = [
+	{ name: "ASYSCTL_CMPHPMUX_SELECT_1", displayName: "CMPHPMUX select 1" },
+	{ name: "ASYSCTL_CMPHPMUX_SELECT_2", displayName: "CMPHPMUX select 2" },
+	{ name: "ASYSCTL_CMPHPMUX_SELECT_3", displayName: "CMPHPMUX select 3" },
+	{ name: "ASYSCTL_CMPHPMUX_SELECT_4", displayName: "CMPHPMUX select 4" },
+]
+let ASysCtl_CMPLPMuxSelect = [
+	{ name: "ASYSCTL_CMPLPMUX_SELECT_1", displayName: "CMPLPMUX select 1" },
+	{ name: "ASYSCTL_CMPLPMUX_SELECT_2", displayName: "CMPLPMUX select 2" },
+	{ name: "ASYSCTL_CMPLPMUX_SELECT_3", displayName: "CMPLPMUX select 3" },
+	{ name: "ASYSCTL_CMPLPMUX_SELECT_4", displayName: "CMPLPMUX select 4" },
+]
+let ASYSCTL_EXTR = [
+	{ name: "ASYSCTL_EXTR_COUNTER_DELAY_0", displayName: "EXTR COUNTER DELAY 0" },
+	{ name: "ASYSCTL_EXTR_COUNTER_DELAY_64", displayName: "EXTR COUNTER DELAY 64" },
+	{ name: "ASYSCTL_EXTR_COUNTER_DELAY_128", displayName: "EXTR COUNTER DELAY 128" },
+	{ name: "ASYSCTL_EXTR_COUNTER_DELAY_256", displayName: "EXTR COUNTER DELAY 256" },
+	{ name: "ASYSCTL_EXTR_COUNTER_DELAY_512", displayName: "EXTR COUNTER DELAY 512" },
+	{ name: "ASYSCTL_EXTR_COUNTER_DELAY_1024", displayName: "EXTR COUNTER DELAY 1024" },
+	{ name: "ASYSCTL_EXTR_COUNTER_DELAY_2048", displayName: "EXTR COUNTER DELAY 2048" },
+	{ name: "ASYSCTL_EXTR_COUNTER_DELAY_4096", displayName: "EXTR COUNTER DELAY 4096" },
+	{ name: "ASYSCTL_EXTR_COUNTER_DIV_4", displayName: "EXTR COUNTER DIV 4" },
+	{ name: "ASYSCTL_EXTR_COUNTER_DIV_8", displayName: "EXTR COUNTER DIV 8" },
+	{ name: "ASYSCTL_EXTR_COUNTER_DIV_16", displayName: "EXTR COUNTER DIV 16" },
+	{ name: "ASYSCTL_EXTR_OSCSTATUS_EN_EXTR_CLOCKED", displayName: "EXTR OSCSTATUS EN EXTR CLOCKED" },
+	{ name: "ASYSCTL_EXTR_OSCSTATUS_COUNT1", displayName: "EXTR OSCSTATUS COUNT1" },
+	{ name: "ASYSCTL_EXTR_OSCSTATUS_COUNT2", displayName: "EXTR OSCSTATUS COUNT2" },
+	{ name: "ASYSCTL_EXTR_OSCSTATUS_COUNT3", displayName: "EXTR OSCSTATUS COUNT3" },
+	{ name: "ASYSCTL_EXTR_OSCSTATUS_EN_GPIO_CAN", displayName: "EXTR OSCSTATUS EN GPIO CAN" },
+	{ name: "ASYSCTL_EXTR_OSCSTATUS_EN_EXTR", displayName: "EXTR OSCSTATUS EN EXTR" },
+	{ name: "ASYSCTL_EXTR_ENABLE_COMPLETE", displayName: "EXTR ENABLE COMPLETE" },
+]
+let ASYSCTL_VREFHI = [
+	{ name: "ASYSCTL_VREFHI", displayName: "VREFHI" },
+]
+let ASYSCTL_CMPSS1_DACL = [
+	{ name: "ASYSCTL_CMPSS1_DACL", displayName: "CMPSS1.DACL" },
+]
+let ASYSCTL_CMPHNMUX_SELECT = [
+	{ name: "ASYSCTL_CMPHNMUX_SELECT_1", displayName: "CMPHNMUX select 1" },
+	{ name: "ASYSCTL_CMPHNMUX_SELECT_2", displayName: "CMPHNMUX select 2" },
+	{ name: "ASYSCTL_CMPHNMUX_SELECT_3", displayName: "CMPHNMUX select 3" },
+	{ name: "ASYSCTL_CMPHNMUX_SELECT_4", displayName: "CMPHNMUX select 4" },
+]
+let ASYSCTL_CMPLNMUX_SELECT = [
+	{ name: "ASYSCTL_CMPLNMUX_SELECT_1", displayName: "CMPLNMUX select 1" },
+	{ name: "ASYSCTL_CMPLNMUX_SELECT_2", displayName: "CMPLNMUX select 2" },
+	{ name: "ASYSCTL_CMPLNMUX_SELECT_3", displayName: "CMPLNMUX select 3" },
+	{ name: "ASYSCTL_CMPLNMUX_SELECT_4", displayName: "CMPLNMUX select 4" },
+]
+module.exports = {
+	ASysCtl_CMPHPMuxSelect: ASysCtl_CMPHPMuxSelect,
+	ASysCtl_CMPLPMuxSelect: ASysCtl_CMPLPMuxSelect,
+	ASYSCTL_EXTR: ASYSCTL_EXTR,
+	ASYSCTL_VREFHI: ASYSCTL_VREFHI,
+	ASYSCTL_CMPSS1_DACL: ASYSCTL_CMPSS1_DACL,
+	ASYSCTL_CMPHNMUX_SELECT: ASYSCTL_CMPHNMUX_SELECT,
+	ASYSCTL_CMPLNMUX_SELECT: ASYSCTL_CMPLNMUX_SELECT,
+}

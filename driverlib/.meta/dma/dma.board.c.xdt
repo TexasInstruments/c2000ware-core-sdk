@@ -1,0 +1,90 @@
+% var nameOfModule = "dma";
+% var module = system.modules['/driverlib/' + nameOfModule + '.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% var nameOfPeripheral = module.peripheralName;
+//*****************************************************************************
+//
+// DMA Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_init(){
+    DMA_initController();
+%   for(var i = 0; i < module.$instances.length; i++) 
+%   {
+%      var instance = module.$instances[i];
+	`instance.$name`_init();
+%   }
+}
+
+%if (module != null)
+%{
+    %
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+void `instance.$name`_init(){
+        % let instancePinmux = instance[nameOfModule];
+        %
+    DMA_setEmulationMode(`instance.emulationMode`);
+        %
+        % var srcAddress = 0;
+        % var destAddress = 0;
+        % if (instance.srcAddressInputMode == "MANUAL") {
+        %   srcAddress = instance.srcAddressManual;
+        % } if (instance.srcAddressInputMode == "VARIABLE") {
+        %   srcAddress = instance.srcAddressVariable;      
+        % } if (instance.srcAddressInputMode == "LINKED") {
+        %   srcAddress = instance.$name + "_ADDRESS" ;      
+        % } if (instance.destAddressInputMode == "MANUAL") {
+        %   destAddress = instance.destAddressManual;
+        % } if (instance.destAddressInputMode == "VARIABLE") {
+        %   destAddress = instance.destAddressVariable;      
+        % } if (instance.destAddressInputMode == "LINKED") {  
+        %   destAddress = instance.$name + "_ADDRESS"; 
+        % }
+    DMA_configAddresses(`instance.$name`_BASE, `destAddress`, `srcAddress`);
+        %
+    DMA_configBurst(`instance.$name`_BASE, `instance.burstSize`U, `instance.srcBurstStep`, `instance.destBurstStep`);
+        %
+    DMA_configTransfer(`instance.$name`_BASE, `instance.transferSize`U, `instance.srcTransferStep`, `instance.destTransferStep`);
+        %
+    DMA_configWrap(`instance.$name`_BASE, `instance.srcWrapSize`U, `instance.srcWrapStep`, `instance.destWrapSize`U, `instance.destWrapStep`);
+        %
+        % var config = instance.oneShotConfig + " | " + instance.continuousModeConfig + " | " + instance.databusWidthConfig;
+        % if (instance.triggerSource == "DMA_TRIGGER_LINKED") {
+        %   var linkedTrigger = instance.$name + "_TRIGGER";
+    DMA_configMode(`instance.$name`_BASE, `linkedTrigger`, `config`);
+        % } else {
+    DMA_configMode(`instance.$name`_BASE, `instance.triggerSource`, `config`);
+        % }
+        %
+        % if (instance.useInterrupts) {
+    DMA_setInterruptMode(`instance.$name`_BASE, `instance.interruptMode`);
+        %   if (instance.enableInterrupts) {
+    DMA_enableInterrupt(`instance.$name`_BASE);
+        %   } else {
+    DMA_disableInterrupt(`instance.$name`_BASE);
+        %   }
+        %   if (instance.enableOverrunInterrupt) {
+    DMA_enableOverrunInterrupt(`instance.$name`_BASE);
+        %   } else {
+    DMA_disableOverrunInterrupt(`instance.$name`_BASE);
+        %   }
+        % }
+        %
+        % if (instance.enableTriggers) {
+    DMA_enableTrigger(`instance.$name`_BASE);
+        % } else {
+    DMA_disableTrigger(`instance.$name`_BASE);
+        % }
+        %
+        % if (instance.enablePriority) {
+    DMA_setPriorityMode(1);
+        % }
+        % if (instance.startChannel) {
+    DMA_startChannel(`instance.$name`_BASE);
+        % } else {
+    DMA_stopChannel(`instance.$name`_BASE);
+        % }
+}
+    %}
+%}

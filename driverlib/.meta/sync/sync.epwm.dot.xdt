@@ -1,0 +1,99 @@
+%%{
+    var epwmModule = system.modules['/driverlib/epwm.js'];
+    var syncModule = system.modules['/driverlib/sync.js'];
+    let Common   = system.getScript("/driverlib/Common.js");
+    var nameOfPeripheral = epwmModule.peripheralName;
+    var syncStat = null;
+    if (syncModule){
+      syncStat = syncModule.$static
+    }
+    var ePWMInstances = Common.peripheralCount("EPWM")
+    var syncRenameSignal = {
+      EXTSYNCIN1 : "EXTSYNCIN1",
+      EXTSYNCIN2 : "EXTSYNCIN2",
+      EPWM1SYNCOUT : "SYNCOUT_EPWM1",
+      EPWM4SYNCOUT : "SYNCOUT_EPWM4",
+      EPWM7SYNCOUT : "SYNCOUT_EPWM7",
+      EPWM10SYNCOUT  : "SYNCOUT_EPWM10",
+      ECAP1SYNCOUT : "SYNCOUT_ECAP1",
+      ECAP4SYNCOUT : "SYNCOUT_ECAP4",
+      INPUTXBAR_OUT5 : "EXTSYNCIN1",
+      INPUTXBAR_OUT6 : "EXTSYNCIN2",
+    }
+
+    function renameSignalIfExists(name)
+    {
+      if (syncRenameSignal[name])
+      {
+        return syncRenameSignal[name];
+      }
+      else
+      {
+        return name;
+      }
+    }
+%%}
+% for(var i = 0; i < epwmModule.$instances.length; i++) {
+%   var epwm_instance = epwmModule.$instances[i];
+%   let epwm_instancePinmux = epwm_instance["epwm"];
+%   let epwm_solution = epwm_instancePinmux.$solution;
+%   let epwm_peripheral  = system.deviceData.peripherals[epwm_solution.peripheralName];
+%   let epwm_InstanceName = epwm_solution.peripheralName.toLowerCase();
+%   var timebase = epwm_instance;
+%   if (["F28002x", "F2838x"].includes(Common.getDeviceName())) {
+    `renameSignalIfExists(timebase.epwmTimebase_syncInPulseSource.replace("EPWM_SYNC_IN_PULSE_SRC_", ""))` -> `epwm_InstanceName`_TB:`epwm_InstanceName`_syncin
+%   } else {
+%     if (syncModule) {
+%        if (epwm_InstanceName == "epwm1"){
+%           if (syncStat.epwm1SyncInSource)
+%           {
+    `syncRenameSignal[syncStat.epwm1SyncInSource.replace("SYSCTL_SYNC_IN_SRC_", "")]` -> `epwm_InstanceName`_TB:`epwm_InstanceName`_syncin
+%           }
+%        } else if (epwm_InstanceName == "epwm4"){
+%           if (syncStat.epwm4SyncInSource)
+%           {
+    `syncRenameSignal[syncStat.epwm4SyncInSource.replace("SYSCTL_SYNC_IN_SRC_", "")]` -> `epwm_InstanceName`_TB:`epwm_InstanceName`_syncin
+%           }
+%        } else if (epwm_InstanceName == "epwm7"){
+%           if (syncStat.epwm7SyncInSource)
+%           {
+    `syncRenameSignal[syncStat.epwm7SyncInSource.replace("SYSCTL_SYNC_IN_SRC_", "")]` -> `epwm_InstanceName`_TB:`epwm_InstanceName`_syncin
+%           }
+%        } else if (epwm_InstanceName == "epwm10"){
+%           if (syncStat.epwm1SyncInSource)
+%           {
+    `syncRenameSignal[syncStat.epwm10SyncInSource.replace("SYSCTL_SYNC_IN_SRC_", "")]` -> `epwm_InstanceName`_TB:`epwm_InstanceName`_syncin
+%           }
+%        } else if (epwm_InstanceName == "epwm2"){
+    SYNCOUT_EPWM1 -> `epwm_InstanceName`_TB:`epwm_InstanceName`_syncin
+%	  		 }
+%        else if (epwm_InstanceName == "epwm3"){
+    SYNCOUT_EPWM2 -> `epwm_InstanceName`_TB:`epwm_InstanceName`_syncin
+%        }
+%        else if (epwm_InstanceName == "epwm5"){
+    SYNCOUT_EPWM4 -> `epwm_InstanceName`_TB:`epwm_InstanceName`_syncin
+%        }
+%        else if (epwm_InstanceName == "epwm6"){
+    SYNCOUT_EPWM5 -> `epwm_InstanceName`_TB:`epwm_InstanceName`_syncin
+%        }
+%        else if (epwm_InstanceName == "epwm8"){
+    SYNCOUT_EPWM7 -> `epwm_InstanceName`_TB:`epwm_InstanceName`_syncin
+%        }
+%        else if (epwm_InstanceName == "epwm9"){
+    SYNCOUT_EPWM8 -> `epwm_InstanceName`_TB:`epwm_InstanceName`_syncin
+%        }
+%        else if (epwm_InstanceName == "epwm11"){
+    SYNCOUT_EPWM10 -> `epwm_InstanceName`_TB:`epwm_InstanceName`_syncin
+%        }
+%        else if (epwm_InstanceName == "epwm12"){
+    SYNCOUT_EPWM11 -> `epwm_InstanceName`_TB:`epwm_InstanceName`_syncin
+%        }
+%        else if (epwm_InstanceName == "epwm14"){
+    SYNCOUT_EPWM13 -> `epwm_InstanceName`_TB:`epwm_InstanceName`_syncin
+%        }
+%        else if (epwm_InstanceName == "epwm15"){
+    SYNCOUT_EPWM14 -> `epwm_InstanceName`_TB:`epwm_InstanceName`_syncin
+%        }
+%	  	}
+%   }
+% }

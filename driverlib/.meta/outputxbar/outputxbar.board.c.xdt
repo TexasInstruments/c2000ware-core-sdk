@@ -1,0 +1,77 @@
+% var module = system.modules['/driverlib/outputxbar.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% var nameOfModule = "outputxbar";
+% var nameOfPeripheral = module.peripheralName;
+%%{
+function addBaseAddress(){
+	if (["F280015x", "F280013x", "F28003x", "F28002x", "F2838x", "F28P65x"].includes(Common.getDeviceName()))
+	{
+		return "OUTPUTXBAR_BASE, "
+	}
+	return ""
+}
+%%}
+//*****************************************************************************
+//
+// OUTPUTXBAR Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_init(){
+%   for(var i = 0; i < module.$instances.length; i++) 
+%   {
+%      var instance = module.$instances[i];
+	`instance.$name`_init();
+%   }
+}
+
+%if (module != null)
+%{
+	% for(var i = 0; i < module.$instances.length; i++) {
+		% var instance = module.$instances[i];
+		% let instancePinmux = instance[nameOfModule];
+		% let solution    = instancePinmux.$solution;
+		% let peripheral  = system.deviceData.peripherals[solution.peripheralName];
+		% let driverlibName = addBaseAddress() + instance.$name
+void `instance.$name`_init(){
+		% if(instance.latchMode){
+	XBAR_setOutputLatchMode(`driverlibName`, true);
+		%}
+		% else{
+	XBAR_setOutputLatchMode(`driverlibName`, false);
+		%}
+		% if(instance.invertMode){
+	XBAR_invertOutputSignal(`driverlibName`, true);
+		%} else{
+	XBAR_invertOutputSignal(`driverlibName`, false);
+		%}
+		%%{
+			var muxConfigurationOutput = "";
+			if(instance.muxesUsed.length > 0)
+			{
+				muxConfigurationOutput = "\n\t//\n\t//Mux configuration\n\t//\n";
+				var muxesUsed = instance.muxesUsed;
+				var enabledMuxesUsed = "";
+				for (var muxesUsedIndex in muxesUsed)
+				{
+					var usedMuxName = muxesUsed[muxesUsedIndex];
+					var usedMuxNumber = parseInt(usedMuxName.replace("XBAR_MUX", ""))
+					var muxConfigName = "mux" + usedMuxNumber + "Config"
+
+					if (instance[muxConfigName])
+					{            	
+						enabledMuxesUsed += Common.stringOrEmpty(enabledMuxesUsed, " | ");
+						enabledMuxesUsed += usedMuxName;
+						var muxSource = instance[muxConfigName]
+						muxConfigurationOutput += "\tXBAR_setOutputMuxConfig(" + driverlibName + ", " + muxSource + ");\n"
+					}
+				}
+				if (enabledMuxesUsed != "")
+				{
+					muxConfigurationOutput += "\tXBAR_enableOutputMux(" + driverlibName + ", " + enabledMuxesUsed + ");"
+				}
+			}
+		%%}
+`muxConfigurationOutput`
+}
+	%}
+%}

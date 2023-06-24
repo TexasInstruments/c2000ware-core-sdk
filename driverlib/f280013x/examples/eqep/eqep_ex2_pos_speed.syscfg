@@ -1,0 +1,34 @@
+
+/**
+ * Import the modules used in this configuration.
+ */
+ const eqep  = scripting.addModule("/driverlib/eqep.js", {}, false);
+ const eqep1 = eqep.addInstance();
+ const gpio  = scripting.addModule("/driverlib/gpio.js", {}, false);
+ const gpio1 = gpio.addInstance();
+ 
+ /**
+  * Write custom configuration values to the imported modules.
+  */
+ eqep1.$name                  = "myEQEP0";
+ eqep1.eqepResolution         = "EQEP_CONFIG_1X_RESOLUTION";
+ eqep1.emulationMode          = "EQEP_EMULATIONMODE_RUNFREE";
+ eqep1.positionCounterMax     = 4294967295;
+ eqep1.enableUnitTimer        = true;
+eqep1.unitTimerPeriod      = 1000000;
+ eqep1.latchPositionCounter   = "EQEP_LATCH_UNIT_TIME_OUT";
+ eqep1.swPositionInit         = true;
+ eqep1.enableModule           = true;
+ eqep1.captureConfig          = true;
+ eqep1.capPrescale            = "EQEP_CAPTURE_CLK_DIV_64";
+ eqep1.evntPrescale           = "EQEP_UNIT_POS_EVNT_DIV_32";
+ eqep1.enableCapture          = true;
+ eqep1.eqep.$assign           = "EQEP1";
+eqep1.eqep.eqep_aPin.$assign     = "GPIO6";
+eqep1.eqep.eqep_bPin.$assign     = "GPIO7";
+eqep1.eqep.eqep_indexPin.$assign = "GPIO9";
+
+gpio1.$name             = "myGPIO0";
+gpio1.direction         = "GPIO_DIR_MODE_OUT";
+gpio1.writeInitialValue = true;
+gpio1.gpioPin.$assign   = "GPIO4";

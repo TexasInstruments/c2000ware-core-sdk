@@ -1,0 +1,26 @@
+% let Common   = system.getScript("/driverlib/Common.js");
+% var contextNames = Common.getContextNames();
+% for (var cntx of contextNames) {
+% 	var module = Common.getModuleForCore('/driverlib/gpio.js', cntx);
+	%if (module != null)
+	%{
+//*****************************************************************************
+//
+// GPIO Configurations
+//
+//*****************************************************************************
+	% for(var i = 0; i < module.$instances.length; i++) {
+		% var instance = module.$instances[i];
+		% var gpioName = instance.gpioPin.$solution.devicePinName;
+		% if (gpioName == null) { gpioName = instance.gpioPin.$solution.peripheralName;}
+		% else { gpioName = gpioName.substring(gpioName.indexOf("GPIO"))}
+		% var gpioNumber = gpioName.substring(4);
+		% gpioNumber = Common.gpioNameToNumber(gpioNumber);
+#define `instance.$name` `gpioNumber`
+		% if(Common.isContextCPU1()){
+void `instance.$name`_init();
+		%}
+	% }
+	%}
+%}
+%

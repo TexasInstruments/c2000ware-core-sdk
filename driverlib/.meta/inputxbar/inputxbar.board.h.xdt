@@ -1,0 +1,43 @@
+% var moduleName = "inputxbar"
+% var module = system.modules['/driverlib/' + moduleName + '.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% var nameOfPeripheral = module.peripheralName;
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// INPUTXBAR Configurations
+//
+//*****************************************************************************
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        % let modInst  = instance[moduleName];
+        % var inputs = "";
+        % var InterfaceNames = Object.keys(system.deviceData.interfaces[nameOfPeripheral].interfacePins);
+        % for (var interfaceNumber in InterfaceNames)
+        % {
+        %   var interfaceName = InterfaceNames[interfaceNumber];
+        %   let pinName =  interfaceName.toLowerCase().replace("#", "").replace("@", "") + "Gpio";
+        %   let lockName =  interfaceName.toLowerCase().replace("#", "").replace("@", "") + "Lock";
+        %   var gpioName = instance[pinName];
+        %   var gpioNumber = "";
+        %   if (gpioName.includes("IO")){
+            %   var aioOrGpio = (gpioName.includes("AIO"))?3:4;
+            %   gpioNumber = gpioName.substring(aioOrGpio);
+            %   gpioNumber = Common.gpioNameToNumber(gpioNumber);
+        %   } else {
+            %   gpioNumber = gpioName;
+            %}
+        %   if (instance.inputsUsed.indexOf(pinName) != -1)
+        %   {
+                % inputs += Common.stringOrEmpty(inputs, " | ");
+                % inputs += "XBAR_INPUT" + interfaceName.replace("INPUTXBAR", "");
+            %}
+        % }
+        % if (inputs !="")
+        %{
+#define `instance.$name`_INPUTS_USED (`inputs`)
+        %}
+    % }
+%}
+%

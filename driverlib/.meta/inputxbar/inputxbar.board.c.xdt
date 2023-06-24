@@ -1,0 +1,51 @@
+% var module = system.modules['/driverlib/inputxbar.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% var nameOfModule = "inputxbar";
+% var nameOfPeripheral = module.peripheralName;
+%%{
+function addBaseAddress(){
+	if (["F280015x", "F280013x", "F28003x", "F28002x", "F2838x"].includes(Common.getDeviceName()))
+	{
+		return "INPUTXBAR_BASE, "
+	}
+	return ""
+}
+%%}
+//*****************************************************************************
+//
+// INPUTXBAR Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_init(){
+%if (module != null)
+%{
+	% for(var i = 0; i < module.$instances.length; i++) {
+		% var instance = module.$instances[i];
+	
+	//`instance.$name` initialization
+		% var InterfaceNames = Object.keys(system.deviceData.interfaces[nameOfPeripheral].interfacePins);
+		% for (var interfaceNumber in InterfaceNames)
+		% {
+		%	var interfaceName = InterfaceNames[interfaceNumber];
+		%	let pinName =  interfaceName.toLowerCase().replace("#", "").replace("@", "") + "Gpio";
+		%	let lockName =  interfaceName.toLowerCase().replace("#", "").replace("@", "") + "Lock";
+		% 	var gpioName = instance[pinName];
+		%	var gpioNumber = "";
+		%	if (gpioName.includes("IO")){
+			%	var aioOrGpio = (gpioName.includes("AIO"))?3:4;
+			% 	gpioNumber = gpioName.substring(aioOrGpio);
+			%	gpioNumber = Common.gpioNameToNumber(gpioNumber);
+		%	} else {
+			%	gpioNumber = gpioName;
+			%}
+		%	if (instance.inputsUsed.indexOf(pinName) != -1)
+		%	{
+	XBAR_setInputPin(`addBaseAddress()`XBAR_INPUT`interfaceName.replace("INPUTXBAR", "")`, `gpioNumber`);
+				% if (instance[lockName]){
+	XBAR_lockInput(`addBaseAddress()`XBAR_INPUT`interfaceName.replace("INPUTXBAR", "")`);
+				% }
+			%}
+		%}
+	%}
+%}
+}

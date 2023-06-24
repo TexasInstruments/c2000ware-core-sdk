@@ -1,0 +1,71 @@
+% var moduleName = "epwm"
+% var module = system.modules['/driverlib/' + moduleName + '.js'];
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// EPWM Configurations
+//
+//*****************************************************************************
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        % let modInst  = instance[moduleName];
+        % let solution    = modInst.$solution;
+        %let peripheral  = system.deviceData.peripherals[solution.peripheralName];
+#define `instance.$name`_BASE `peripheral.name`_BASE
+#define `instance.$name`_TBPRD `instance["epwmTimebase_period"]`
+#define `instance.$name`_COUNTER_MODE `instance["epwmTimebase_counterMode"]`
+#define `instance.$name`_TBPHS `instance["epwmTimebase_phaseShift"]`
+#define `instance.$name`_CMPA `instance["epwmCounterCompare_cmpA"]`
+#define `instance.$name`_CMPB `instance["epwmCounterCompare_cmpB"]`
+#define `instance.$name`_CMPC `instance["epwmCounterCompare_cmpC"]`
+#define `instance.$name`_CMPD `instance["epwmCounterCompare_cmpD"]`
+#define `instance.$name`_DBRED `instance["epwmDeadband_delayRED"]`
+#define `instance.$name`_DBFED `instance["epwmDeadband_delayFED"]`
+#define `instance.$name`_TZA_ACTION `instance["epwmTripZone_EPWM_TZ_ACTION_EVENT_TZA"]`
+#define `instance.$name`_TZB_ACTION `instance["epwmTripZone_EPWM_TZ_ACTION_EVENT_TZB"]`
+% if (instance["epwmTripZone_oneShotSource"].length !=0){
+% if (instance["epwmTripZone_oneShotSource"].length > 1){
+% var OSHTSources = ""
+% for (var x = 0; x < instance["epwmTripZone_oneShotSource"].length ; x++){
+%    OSHTSources = OSHTSources + String(instance["epwmTripZone_oneShotSource"][x]) + " | "
+% }
+#define `instance.$name`_OSHT_SOURCES (`OSHTSources.slice(0, -3)`)
+% } else {
+#define `instance.$name`_OSHT_SOURCES `instance["epwmTripZone_oneShotSource"]`
+% }
+% }
+% if (instance["epwmTripZone_cbcSource"].length !=0){
+% if (instance["epwmTripZone_cbcSource"].length > 1){
+% var CBCSources = ""
+% for (var x = 0; x < instance["epwmTripZone_cbcSource"].length ; x++){
+%    CBCSources = CBCSources + String(instance["epwmTripZone_cbcSource"][x]) + " | "
+% }
+#define `instance.$name`_CBC_SOURCES (`CBCSources.slice(0, -3)`)
+% } else {
+#define `instance.$name`_CBC_SOURCES `instance["epwmTripZone_cbcSource"]`
+% }
+% }
+% if (instance["epwmTripZone_tzInterruptSource"].length !=0){
+% if (instance["epwmTripZone_tzInterruptSource"].length > 1){
+% var TZSources = ""
+% for (var x = 0; x < instance["epwmTripZone_tzInterruptSource"].length ; x++){
+%    TZSources = TZSources + String(instance["epwmTripZone_tzInterruptSource"][x]) + " | "
+% }
+#define `instance.$name`_TZ_INTERRUPT_SOURCES (`TZSources.slice(0, -3)`)
+% } else {
+#define `instance.$name`_TZ_INTERRUPT_SOURCES `instance["epwmTripZone_tzInterruptSource"]`
+% }
+% }
+#define `instance.$name`_INTERRUPT_SOURCE `instance["epwmEventTrigger_interruptSource"]`
+    	% if (instance.generateCodeTemplate) {
+// `instance.$name` Configuration Template
+void `instance.codeTemplateName`(uint32_t base);
+    	% }
+        % if (module.$static["generateInitFunctions"])
+        % {
+void `instance.$name`_init();
+        % }
+    % }
+%}
+%

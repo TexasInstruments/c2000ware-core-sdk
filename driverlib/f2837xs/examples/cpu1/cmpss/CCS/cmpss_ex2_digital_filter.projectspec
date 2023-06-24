@@ -1,0 +1,28 @@
+<projectSpec>
+  <project
+        name="cmpss_ex2_digital_filter"
+        device="TMS320F28377S"
+        cgtVersion="22.6.0.LTS"
+        products="c2000ware_software_package"
+        outputFormat="ELF"
+        launchWizard="False"
+        linkerCommandFile=""
+        enableSysConfigTool="true"
+        sysConfigBuildOptions="--product ${C2000WARE_ROOT}/.metadata/sdk.json --device F2837xS"
+        >
+    <configuration name="CPU1_RAM" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT}  -v28 -ml -mt  --float_support=fpu32  --define=DEBUG  --define=CPU1 --diag_warning=225 --diag_suppress=10063 --display_error_number" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 --define RAM" />
+    <configuration name="CPU1_FLASH" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT}  -v28 -ml -mt  --float_support=fpu32  --define=DEBUG  --define=CPU1 --define=_FLASH --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 " />
+    <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../../driverlib/" scope="project" />
+    <pathVariable name="C2000WARE_ROOT" path="../../../../../../" scope="project" />
+    <file action="copy" path="../../../../../../device_support/f2837xs/common/include/driverlib.h" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/f2837xs/common/include/device.h" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/f2837xs/common/source/device.c" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/f2837xs/common/targetConfigs/TMS320F28377S.ccxml" targetDirectory="targetConfigs" />
+    <file action="copy" path="../../../../../../device_support/f2837xs/common/cmd/2837xS_Generic_RAM_lnk.cmd" targetDirectory="" applicableConfigurations="CPU1_RAM" />
+    <file action="copy" path="../../../../../../device_support/f2837xs/common/cmd/2837xS_Generic_FLASH_lnk.cmd" targetDirectory="" applicableConfigurations="CPU1_FLASH" />
+    <file action="copy" path="../../../../driverlib/" targetDirectory="device" excludeFromBuild="True" />
+    <file action="copy" path="../../../../../../device_support/f2837xs/common/source/F2837xS_CodeStartBranch.asm" targetDirectory="device" />
+    <file action="link" path="../../../../driverlib/ccs/Debug/driverlib.lib" targetDirectory="" />
+    <file action="copy" path="../cmpss_ex2_digital_filter.c" targetDirectory="" />
+  </project>
+</projectSpec>

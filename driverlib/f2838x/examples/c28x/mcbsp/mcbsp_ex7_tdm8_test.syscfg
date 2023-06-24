@@ -1,0 +1,42 @@
+/**
+ * Import the modules used in this configuration.
+ */
+const mcbsp  = scripting.addModule("/driverlib/mcbsp.js", {}, false);
+const mcbsp1 = mcbsp.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+mcbsp1.$name                       = "myMCBSP0";
+mcbsp1.enableReceiver              = true;
+mcbsp1.enableRxInterrupt           = true;
+mcbsp1.registerRxInterrupts        = true;
+mcbsp1.enableTransmitter           = true;
+mcbsp1.enableTxInterrupt           = true;
+mcbsp1.registerTxInterrupts        = true;
+mcbsp1.rxDataBitsPerWordPhase1     = "MCBSP_BITS_PER_WORD_32";
+mcbsp1.emulationMode               = "MCBSP_EMULATION_FREE_RUN";
+mcbsp1.enableFrameSyncLogic        = true;
+mcbsp1.frameSyncPulsePeriodDivider = 255;
+mcbsp1.txClockPolarity             = "MCBSP_TX_POLARITY_FALLING_EDGE";
+mcbsp1.txDataBitsPerWordPhase1     = "MCBSP_BITS_PER_WORD_32";
+mcbsp1.txDataBitsPerWordPhase2     = "MCBSP_BITS_PER_WORD_32";
+mcbsp1.txWordsPerFramePhase1       = 7;
+mcbsp1.rxWordsPerFramePhase1       = 7;
+mcbsp1.enableSampleRateGenerator   = true;
+mcbsp1.srgDataClockDivider         = 3;
+mcbsp1.txFrameSyncSource           = "MCBSP_TX_INTERNAL_FRAME_SYNC_SOURCE";
+mcbsp1.txInternalFrameSyncSource   = "MCBSP_TX_INTERNAL_FRAME_SYNC_SRG";
+mcbsp1.txClockSource               = "MCBSP_INTERNAL_TX_CLOCK_SOURCE";
+mcbsp1.rxClockPolarity             = "MCBSP_RX_POLARITY_RISING_EDGE";
+mcbsp1.mcbsp.$assign               = "MCBSPA";
+mcbsp1.mcbsp.mdxPin.$assign        = "GPIO20";
+mcbsp1.mcbsp.mdrPin.$assign        = "GPIO21";
+mcbsp1.mcbsp.mclkxPin.$assign      = "GPIO22";
+mcbsp1.mcbsp.mclkrPin.$assign      = "GPIO58";
+mcbsp1.mcbsp.mfsxPin.$assign       = "GPIO23";
+mcbsp1.mcbsp.mfsrPin.$assign       = "GPIO59";
+mcbsp1.mcbspRXInt.enableInterrupt  = true;
+mcbsp1.mcbspRXInt.interruptHandler = "localMcbspRxIntISR";
+mcbsp1.mcbspTXInt.enableInterrupt  = true;
+mcbsp1.mcbspTXInt.interruptHandler = "localMcbspTxIntISR";

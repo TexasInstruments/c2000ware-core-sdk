@@ -1,0 +1,25 @@
+<projectSpec>
+  <project
+        name="can_ex2_loopback_interrupts"
+        device="Cortex M.TMS320F28388D"
+        cgtVersion="20.2.7.LTS"
+        products="c2000ware_software_package"
+        endianness="little"
+        launchWizard="False"
+        linkerCommandFile=""
+        >
+    <configuration name="CM_RAM" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=DEBUG --float_support=none -mv7M4 -me --diag_warning=225 " linkerBuildOptions="--stack_size=512 --heap_size=1024  --library=libc.a --define RAM" />
+    <configuration name="CM_FLASH" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=DEBUG --float_support=none --define=_FLASH  -mv7M4 -me --diag_warning=225 " linkerBuildOptions="--stack_size=512 --heap_size=1024  --library=libc.a " />
+    <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../../../../driverlib/f2838x/driverlib_cm/" scope="project" />
+    <file action="copy" path="../../../../../../device_support/f2838x/common/include/driverlib_cm.h" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/f2838x/common/include/cm.h" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/f2838x/common/source/cm.c" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/f2838x/common/targetConfigs/TMS320F28388D.ccxml" targetDirectory="targetConfigs" />
+    <file action="copy" path="../../../../../../device_support/f2838x/common/cmd/2838x_RAM_lnk_cm.cmd" targetDirectory="" applicableConfigurations="CM_RAM" />
+    <file action="copy" path="../../../../../../device_support/f2838x/common/cmd/2838x_FLASH_lnk_cm.cmd" targetDirectory="" applicableConfigurations="CM_FLASH" />
+    <file action="copy" path="../../../../../../driverlib/f2838x/driverlib_cm/" targetDirectory="device" excludeFromBuild="True" />
+    <file action="link" path="../../../../../../driverlib/f2838x/driverlib_cm/ccs/Debug/driverlib_cm.lib" targetDirectory="" />
+    <file action="copy" path="../can_ex2_loopback_interrupts.c" targetDirectory="" />
+    <file action="copy" path="../../../../../../device_support/f2838x/common/source/startup_cm.c" targetDirectory="" />
+  </project>
+</projectSpec>

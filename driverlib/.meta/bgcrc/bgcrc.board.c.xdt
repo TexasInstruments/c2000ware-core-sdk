@@ -1,0 +1,121 @@
+% var nameOfModule = "bgcrc";
+% var module = system.modules['/driverlib/' + nameOfModule + '.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% var nameOfPeripheral = module.peripheralName;
+//*****************************************************************************
+//
+// BGCRC Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_init(){
+%   for(var i = 0; i < module.$instances.length; i++) 
+%   {
+%      var instance = module.$instances[i];
+	`instance.$name`_init();
+%   }
+}
+
+%if (module != null)
+%{
+    % for(var i = 0; i < module.$instances.length; i++) {
+void `instance.$name`_init(){
+        % var instance = module.$instances[i];
+        % var baseName = instance.$name + "_BASE"; 
+        % var blockSizeString = "";
+        % var numBlks = instance.blockSize / 256;
+        % var numKB = (numBlks / 4) >> 0;
+        % var remBytes = numBlks % 4;
+        %
+        % if ( numBlks >= 1 ){
+            % if ( numKB >= 1 ){
+                % if (remBytes == 1){
+                    % blockSizeString = "BGCRC_SIZE_KBYTES(" + numKB + ") + BGCRC_SIZE_BYTES_256";
+                % } else if (remBytes == 2){
+                    % blockSizeString = "BGCRC_SIZE_KBYTES(" + numKB + ") + BGCRC_SIZE_BYTES_512";
+                % } else if (remBytes == 3){
+                    % blockSizeString = "BGCRC_SIZE_KBYTES(" + numKB + ") + BGCRC_SIZE_BYTES_768";
+                % } else{
+                    % blockSizeString = "BGCRC_SIZE_KBYTES(" + numKB + ")";
+                % }
+            %} else{
+                % if (remBytes == 1){
+                    % blockSizeString = "BGCRC_SIZE_BYTES_256";
+                % } else if (remBytes == 2){
+                    % blockSizeString = "BGCRC_SIZE_BYTES_512";
+                % } else {
+                    % blockSizeString = "BGCRC_SIZE_BYTES_768";
+                % }
+            % }
+            %         
+        % } else{
+            % blockSizeString = "BGCRC_SIZE_BYTES_0";
+        % }
+        %
+    % //`instance.$name` initialization
+        % let instancePinmux = instance[nameOfModule];
+        %//handle interrupt flags
+        % if (instance.enableWatchdog) {
+    BGCRC_enableWatchdog(`baseName`);
+    //
+    //config watchdog settings
+    //
+    BGCRC_setWatchdogWindow(`baseName`, `instance.$name`_WDMIN, `instance.$name`_WDMAX);
+        % } else {
+    BGCRC_disableWatchdog(`baseName`);
+    //
+    //config watchdog settings
+    //
+    BGCRC_setWatchdogWindow(`baseName`, `instance.$name`_WDMIN, `instance.$name`_WDMAX);
+        % }
+        %
+    //
+    //run BGCRC_setConfig
+    //
+    BGCRC_setConfig(`baseName`, `instance.$name`_NMIMODE, `instance.$name`_EMUCTRL);
+        %
+    //
+    //run BGCRC_setRegion
+    //
+    %
+    BGCRC_setRegion(`baseName`, `instance.$name`_STARTADDR, `blockSizeString`, `instance.$name`_MODE);
+    %
+    //
+    //call BGCRC_setGoldenCRCValue
+    //
+    BGCRC_setGoldenCRCValue(`baseName`, `instance.$name`_GOLDENVALUE);
+    //
+    //call BGCRC_setSeedValue
+    //
+    BGCRC_setSeedValue(`baseName`, `instance.$name`_SEEDVALUE);
+        %
+        %
+        % if ((instance.intFlags).length > 0){
+    //
+    //handle interrupt flags
+    //
+	BGCRC_enableInterrupt(`baseName`, `instance.$name`_INTFLAGS);
+		% }
+        %
+        % if ((instance.lockRegs).length > 0){
+    //
+    //lock selected BGCRC regs
+    //
+	BGCRC_lockRegister(`baseName`, `instance.$name`_LOCKREGS);
+        % }
+        %
+        % if (instance.commitRegs){
+    //
+    //commit the current register config
+    //
+    BGCRC_commitRegisterLock(`baseName`, `instance.$name`_LOCKREGS);
+        % }
+        %
+        % if (instance.startBGCRC){
+    //
+    //start BGCRC calculation
+    //
+    BGCRC_start(`baseName`);
+        % }
+}
+    %}
+%}

@@ -1,0 +1,149 @@
+%%{
+// Device Supported : F2837xS, F2807x, F28004x, F28002x, F28003x, F280013x, F280015x
+
+
+const PLL_type1 = ["F2837xS", "F2807x", "F28004x"]					//FMULT available 	| REFDIV unavailable		
+const PLL_type2 = ["F28002x", "F28003x", "F280013x", "F280015x"]	//FMULT unavailable	| REFDIV available
+
+const device  = system.deviceData.device
+
+//////////////////////////////////////////////////
+// Frequency lables
+//////////////////////////////////////////////////
+const AUXOSCCLK_d	 = system.clockTree.AUXOSCCLK.in
+const AUXPLLRAWCLK_d = system.clockTree.AUXPLLRAWCLK.in
+const AUXPLLCLK_d    = system.clockTree.AUXPLLCLK.in
+
+//////////////////////////////////////////////////
+// AUXOSCCLK source
+//////////////////////////////////////////////////
+
+var AUXOSCCLKSRCSEL	= system.clockTree.AUXOSCCLKSRCSEL
+
+var auxoscclkSrc = "SYSCTL_OSCSRC_OSC2"
+var auxoscclksource
+var auxoscclk = 10
+
+switch(AUXOSCCLKSRCSEL.inputSelect){
+	case "AUXCLK":
+		auxoscclkSrc = "SYSCTL_AUXPLL_OSCSRC_AUXCLKIN"
+		auxoscclksource = AUXOSCCLKSRCSEL.inputSelect
+		auxoscclk = 10
+		break
+	case "INTOSC2":
+		auxoscclkSrc = "SYSCTL_AUXPLL_OSCSRC_OSC2"
+		auxoscclksource = AUXOSCCLKSRCSEL.inputSelect
+		auxoscclk = 10
+		break
+	case "X1_XTAL":
+		auxoscclkSrc = "SYSCTL_AUXPLL_OSCSRC_XTAL"
+		auxoscclksource = system.clockTree.XTAL_OR_X1.inputSelect
+		auxoscclk = system.clockTree.XTAL_OR_X1.External_Clock
+		break
+}
+
+//////////////////////////////////////////////////
+// IMULT, FMULT (AUXRAWCLK) source
+//////////////////////////////////////////////////
+
+
+var AUX_PLLEN  		= system.clockTree.AUX_PLLEN 
+var AUX_IMULT_mv  	= system.clockTree.AUX_IMULT.multiplyValue
+var AUX_IMULT 		= "SYSCTL_AUXPLL_IMULT(" + AUX_IMULT_mv + ")"
+
+var AUXCLKDIVSEL_dv = system.clockTree.AUXCLKDIVSEL.divideValue
+
+var AUX_DIVSEL		= "SYSCTL_SYSDIV(" + AUXCLKDIVSEL_dv + ")"
+
+
+var AUX_FMULT
+if(PLL_type1.includes(device))
+{
+var AUX_FMULT_mv    = system.clockTree.AUX_FMULT.multiplyValue
+	switch(system.clockTree.AUX_FMULT.multiplyValue){
+		case 0:
+			AUX_FMULT = "SYSCTL_AUXPLL_FMULT_NONE"
+			break
+		case 0.25:
+			AUX_FMULT = "SYSCTL_AUXPLL_FMULT_1_4"
+			break
+		case 0.5:
+			AUX_FMULT = "SYSCTL_AUXPLL_FMULT_1_2"
+			break
+		case 0.75:
+			AUX_FMULT = "SYSCTL_AUXPLL_FMULT_3_4"
+			break
+	}
+}
+
+if(PLL_type2.includes(device))
+{
+	var AUX_REFDIV_dv = system.clockTree.AUX_REFDIV.divideValue
+	var AUX_REFDIV    = "SYSCTL_REFDIV(" + AUX_REFDIV_dv + ")"
+	
+	var AUX_ODIV_dv = system.clockTree.AUX_ODIV.divideValue
+	var AUX_ODIV    = "SYSCTL_ODIV(" + AUX_ODIV_dv + ")"
+	
+	var AUXCLKDIVSEL_dv = system.clockTree.AUXCLKDIVSEL.divideValue	
+}
+
+var AUXPLL_STS = 'SYSCTL_AUXPLL_ENABLE'
+var AUXPLL_Status = 'DISABLED'
+
+if(AUX_PLLEN.inputSelect == 'AUXOSCCLK')
+{
+	AUXPLL_STS = 'SYSCTL_AUXPLL_DISABLE'
+	AUXPLL_Status = 'DISABLED'
+}
+else
+{
+	AUXPLL_STS = 'SYSCTL_AUXPLL_ENABLE'
+	AUXPLL_Status = 'ENABLED'
+}
+
+%%}
+%
+//*****************************************************************************
+//
+// Summary of AUXPLL related clock configuration
+//
+//*****************************************************************************
+//
+// Input Clock to AUXOSCCLK	= `AUXOSCCLK_d` MHz (`auxoscclksource` provides AUXOSCCLK)  
+//
+//##### AUXPLL `AUXPLL_Status` #####
+//
+// AUXPLLRAWCLK				= `AUXPLLRAWCLK_d` MHz (Output of AUXPLL if enabled)
+// AUXPLLCLK				= `AUXPLLCLK_d` MHz 
+//
+//*****************************************************************************
+//
+// Macro definitions used in device.c (AUXPLL)
+//
+//*****************************************************************************
+//
+//	Input Clock to AUXPLL (AUXOSCCLK) = `auxoscclksource` = `AUXOSCCLK_d` MHz
+//
+#define DEVICE_AUXOSCSRC_FREQ 		`AUXOSCCLK_d`000000U
+%
+% if(PLL_type1.includes(device))
+% {
+//
+// Define to pass to SysCtl_setAuxClock(). Will configure the clock as follows:
+	%if(AUXPLL_STS == 'SYSCTL_AUXPLL_ENABLE')
+	%	{
+// AUXPLL ENABLED
+// AUXPLLCLK = `AUXPLLCLK_d` MHz = `AUXOSCCLK_d` MHz (AUXOSCCLK) * (`AUX_IMULT_mv` (AUX_IMULT) + `AUX_FMULT_mv` (AUX_FMULT)) / `AUXCLKDIVSEL_dv` (AUXCLKDIVSEL)
+#define DEVICE_AUXCLK_FREQ			((DEVICE_AUXOSCSRC_FREQ * (`AUX_IMULT_mv` + `AUX_FMULT_mv`)) / `AUXCLKDIVSEL_dv`)
+	%	}
+	%else
+	% 	{
+// AUXPLL DISABLED
+// AUXPLLCLK = `AUXPLLCLK_d` MHz = `AUXOSCCLK_d` MHz `auxoscclksource` / `AUXCLKDIVSEL_dv` (AUXCLKDIVSEL)
+#define DEVICE_AUXCLK_FREQ			(DEVICE_AUXOSCSRC_FREQ  / `AUXCLKDIVSEL_dv`)
+	%   }
+//
+#define DEVICE_SETAUXCLOCK_CFG      (`auxoscclkSrc` | `AUX_IMULT` | \
+									 `AUX_FMULT` | SYSCTL_AUXPLL_DIV_`AUXCLKDIVSEL_dv` | \
+									 `AUXPLL_STS`)
+% }

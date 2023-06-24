@@ -1,0 +1,36 @@
+% var moduleName = "bgcrc"
+% var module = system.modules['/driverlib/' + moduleName + '.js'];
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// BGCRC Configurations
+//
+//*****************************************************************************
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        % let modInst  = instance[moduleName];
+#define `instance.$name`_BASE `instance.bgcrcBase`
+#define `instance.$name`_EMUCTRL `instance.emuCtl`
+#define `instance.$name`_NMIMODE `instance.nmiMode`
+#define `instance.$name`_MODE `instance.crcMode`
+#define `instance.$name`_WDMIN `instance.wdMin`
+#define `instance.$name`_WDMAX `instance.wdMax`
+#define `instance.$name`_BLOCKSIZE `instance.blockSize`
+#define `instance.$name`_GOLDENVALUE `instance.goldVal`
+#define `instance.$name`_SEEDVALUE `instance.seedVal`
+% var intFlg = ["0"].concat(instance.intFlags)
+#define `instance.$name`_INTFLAGS (`intFlg.join("|")`)
+% var lckReg = ["0"].concat(instance.lockRegs)
+#define `instance.$name`_LOCKREGS (`lckReg.join("|")`)
+        %if (instance.startAddrInputMode == "MANUAL"){
+#define `instance.$name`_STARTADDR `instance.startAddr`
+        % } else{
+extern const void *`instance.startAddrVariable`;
+#define `instance.$name`_STARTADDR (uint32_t)`instance.startAddrVariable`      
+        % }
+void `instance.$name`_init();
+
+    % }
+%}
+%

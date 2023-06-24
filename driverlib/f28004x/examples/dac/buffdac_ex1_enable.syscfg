@@ -1,0 +1,12 @@
+
+/**
+ * Import the modules used in this configuration.
+ */
+const dac  = scripting.addModule("/driverlib/dac.js", {}, false);
+const dac1 = dac.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+dac1.$name        = "myDAC0";
+dac1.enableOutput = true;

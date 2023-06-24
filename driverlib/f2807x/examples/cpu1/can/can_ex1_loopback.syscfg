@@ -1,0 +1,21 @@
+/**
+ * Import the modules used in this configuration.
+ */
+const can  = scripting.addModule("/driverlib/can.js", {}, false);
+const can1 = can.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+can1.$name           = "myCAN0";
+can1.enableLoopback  = true;
+can1.loopbackMode    = "CAN_TEST_EXL";
+can1.msgObjs         = 2;
+can1.msgObj1.$name   = "msgObj0";
+can1.msgObj1.msgID   = 660;
+can1.msgObj1.msgType = "CAN_MSG_OBJ_TYPE_TX";
+can1.msgObj1.msgLen  = 2;
+can1.msgObj2.$name   = "msgObj1";
+can1.msgObj2.msgID   = 660;
+can1.msgObj2.msgType = "CAN_MSG_OBJ_TYPE_RX";
+can1.msgObj2.msgLen  = 2;

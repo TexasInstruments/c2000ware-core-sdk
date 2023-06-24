@@ -1,0 +1,171 @@
+/*
+ * Copyright (c) 2020 Texas Instruments Incorporated - http://www.ti.com
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * *  Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ * *  Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * *  Neither the name of Texas Instruments Incorporated nor the names of
+ *    its contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ */
+
+% let Common   = system.getScript("/driverlib/Common.js");
+#include "board.h"
+
+//*****************************************************************************
+//
+// Board Configurations
+// Initializes the rest of the modules. 
+// Call this function in your application if you wish to do all module 
+// initialization.
+// If you wish to not use some of the initializations, instead of the 
+// Board_init use the individual Module_inits
+//
+//*****************************************************************************
+void Board_init()
+{
+	EALLOW;
+
+% if (Common.isContextCPU1()) {
+	PinMux_init();
+% }
+% if (!Common.onlyPinmux())
+% {
+%	let keys = Object.keys(system.modules).sort();
+%	
+%%{
+	// Ordered list of peripherals to initialize first, any peripherals outside will be added after in alphabetical order
+	var prioritizedPeripherals = [
+        { name: "sysctl",  peripheralName: "SYSCTL" },
+        { name: "inputxbar_input", peripheralName: "INPUTXBAR" },
+        { name: "sync", peripheralName: "SYNC" },
+        { name: "asysctl", peripheralName: "ASYSCTL" },
+        { name: "cla", peripheralName: "CLA" },
+        { name: "memcfg", peripheralName: "MEMCFG" },
+    ]
+    var prioritizedPeripheralsNames = prioritizedPeripherals.map(element => element.name)
+    var prioritizedPeripheralsPeripheralNames = prioritizedPeripherals.map(element => element.peripheralName)
+	// Ordered list for prioritize last
+	var lastPrioritized = ["INTERRUPT"]
+	// Skip in list
+	var skipPeripherals = ["ANALOG"]
+%%}
+% for(var currentPer in prioritizedPeripherals){
+    % let mod = system.modules["/driverlib/"+prioritizedPeripherals[currentPer].name.toLowerCase()+".js"] 
+	% if (mod != null) {
+	`mod.peripheralName.replace("-","_")`_init();
+	% }
+% }
+%   
+%	var peripheralsCodeGenerated = []
+%	for (let i = 0; i < keys.length; i++) {
+%		let mod = system.modules[keys[i]];
+%       if (skipPeripherals.includes(mod.peripheralName))
+%           continue;
+%       if (peripheralsCodeGenerated.includes(mod.peripheralName))
+%       {
+%           peripheralsCodeGenerated.push(mod.peripheralName);
+%           continue;
+%       }
+%		if (mod.peripheralName != null) {
+%			if (mod.peripheralName == "FLASH"){
+	// FLASH Initialization:
+	// The "FLASH_init()" should be called after or during initialization functions like 
+	// Device_init() or Device_enableAllPeripherals().
+%			}
+% 			else if (mod.peripheralName == "DC-DC"){
+	// DC-DC Initialization:
+	// The procedure to enable the internal DC-DC regulator should be completed 
+	// prior to other initialization functions. This is in order for the
+	// DC-DC initialization to happen during low current operation. 
+	// "DC_DC_init()" should be called before initialization functions like 
+	// Device_init() or Device_enableAllPeripherals().
+%			}
+%			else if (mod.peripheralName == "IPC"){
+	`mod.peripheralName.replace("-","_")`_SYSCFG_init();
+%			}
+%			else if (mod.peripheralName == "MCAN"){
+	`mod.peripheralName.replace("-","_")`_SYSCFG_init();
+%			}
+%			else if(!(prioritizedPeripheralsPeripheralNames.includes(mod.peripheralName) || lastPrioritized.includes(mod.peripheralName))){
+	`mod.peripheralName.replace("-","_")`_init();
+%			}
+%		}
+%	}
+%	var lastPrioritizedPeripheralsCodeGenerated = []
+%	for (let i = 0; i < keys.length; i++) {
+%		let mod = system.modules[keys[i]];
+% 		if (lastPrioritized.includes(mod.peripheralName)) {
+%			if (!lastPrioritizedPeripheralsCodeGenerated.includes(mod.peripheralName)) {
+%				lastPrioritizedPeripheralsCodeGenerated.push(mod.peripheralName);
+	`mod.peripheralName.replace("-","_")`_init();
+%			}
+%		}
+%	}
+% }
+% else if (system.modules["/driverlib/inputxbar.js"] != null) {
+	INPUTXBAR_init();
+% }
+
+	EDIS;
+}
+
+% if (Common.isContextCPU1()) {
+//*****************************************************************************
+//
+// PINMUX Configurations
+//
+//*****************************************************************************
+void PinMux_init()
+{
+%   let pinmuxContent = system.getTemplate("/driverlib/pinmux/pinmux.board.c.xdt");
+`pinmuxContent("")`
+}
+% }
+
+% if (!Common.onlyPinmux())
+% {
+%	let keys = Object.keys(system.modules).sort();
+%	
+%   var interruptCodeGenerated = false;
+%	for (let i = 0; i < keys.length; i++) {
+%		let mod = system.modules[keys[i]];
+%       if (skipPeripherals.includes(mod.peripheralName))
+%           continue;
+%       if (mod.peripheralName == "INTERRUPT")
+%       {
+%           if (interruptCodeGenerated) {continue;}
+%           interruptCodeGenerated = true;
+%       }
+%		if (mod.templates && mod.templates.boardc) {
+%			let gen = system.getTemplate(mod.templates.boardc);
+`gen(mod)`
+%		}
+%	}
+% }
+% else if (system.modules["/driverlib/inputxbar.js"] != null){
+% let inputxbargen = system.getTemplate(system.modules["/driverlib/inputxbar.js"].templates.boardc);
+`inputxbargen()`
+% }

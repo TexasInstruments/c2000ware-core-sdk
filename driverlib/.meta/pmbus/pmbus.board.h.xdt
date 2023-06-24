@@ -1,0 +1,22 @@
+% var module = system.modules['/driverlib/pmbus.js'];
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// PMBUS Configurations
+//
+//*****************************************************************************
+% for(var i = 0; i < module.$instances.length; i++) {
+	% var instance = module.$instances[i];
+	% let pmbus        	= instance.pmbus;
+	% let solution    		= pmbus.$solution;
+	%let peripheral 	 	= system.deviceData.peripherals[solution.peripheralName];
+#define `instance.$name`_BASE `peripheral.name`_BASE
+#define `instance.$name`_BAUDRATE `parseInt(instance.BaudRate)`
+#define `instance.$name`_TARGET_ADDRESS `instance.TargetAddress`
+#define `instance.$name`_TARGET_ADDRESS_MASK `instance.TargetAddressMask`
+#define `instance.$name`_OWN_ADDRESS `instance.OwnAddress`
+#define `instance.$name`_ENABLE_I2C_MODE `instance.enableI2CMode`
+void `instance.$name`_init();
+% }
+%}

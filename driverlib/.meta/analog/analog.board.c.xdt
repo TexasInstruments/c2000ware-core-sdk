@@ -1,0 +1,22 @@
+% var module = system.modules['/driverlib/analog.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% var nameOfModule = "analog";
+% var nameOfPeripheral = module.peripheralName;
+//*****************************************************************************
+//
+// Analog PinMux Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_init(){
+%if (module != null)
+%{
+	% for(var i = 0; i < module.$instances.length; i++) {
+	    % var instance = module.$instances[i];
+	//`instance.$name` initialization
+	    
+		% let instancePinmux = instance[nameOfModule];
+		% let solution    = instancePinmux.$solution;
+		% let peripheral  = system.deviceData.peripherals[solution.peripheralName];
+	%}
+%}
+}

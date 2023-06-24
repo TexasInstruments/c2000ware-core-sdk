@@ -1,0 +1,31 @@
+% var moduleName = "pga"
+% var module = system.modules['/driverlib/' + moduleName + '.js'];
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// PGA Configurations
+//
+//*****************************************************************************
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        % let modInst  = instance[moduleName];
+#define `instance.$name`_BASE `instance.pgaBase`
+#define `instance.$name`_GAIN `instance.gainMode`
+            % if (instance.enableFilter) {
+#define `instance.$name`_FILTER `instance.filterMode`
+            % } else {
+#define `instance.$name`_FILTER PGA_LOW_PASS_FILTER_DISABLED
+            % }
+            % if (instance.useSignalConditionCalculator) {
+#define `instance.$name`_CONDITIONEDPGAINMIN `instance.calculatedInputSignalConditionMin`f //Conditioned PGA_IN signal minimum
+#define `instance.$name`_CONDITIONEDPGAINMAX `instance.calculatedInputSignalConditionMax`f //Conditioned PGA_IN signal maximum              
+#define `instance.$name`_CONDITIONEDPGAOUTMIN `instance.calculatedOutputSignalConditionMin`f //Conditioned PGA_OUT signal minimum
+#define `instance.$name`_CONDITIONEDPGAOUTMAX `instance.calculatedOutputSignalConditionMax`f //Conditioned PGA_OUT signal maximum
+            % }
+            % if (instance.useCutoffFreqCalculator) {
+#define `instance.$name`_CUTOFFFREQ `instance.calculatedCutoffFreq`f //Calculated cutoff frequency of low-pass filter
+            % }
+void `instance.$name`_init();
+    % }
+%}

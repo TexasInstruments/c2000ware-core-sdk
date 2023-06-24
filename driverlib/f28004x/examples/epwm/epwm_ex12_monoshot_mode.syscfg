@@ -1,0 +1,41 @@
+/**
+ * Import the modules used in this configuration.
+ */
+const epwm       = scripting.addModule("/driverlib/epwm.js", {}, false);
+const epwm1      = epwm.addInstance();
+const epwm2      = epwm.addInstance();
+const inputxbar  = scripting.addModule("/driverlib/inputxbar.js", {}, false);
+const inputxbar1 = inputxbar.addInstance();
+const sync       = scripting.addModule("/driverlib/sync.js");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+epwm1.$name                                                   = "myEPWM1";
+epwm1.useCase                                                 = "CUSTOM";
+epwm1.useInterfacePins                                        = ["EPWM#_A"];
+epwm1.epwmTimebase_period                                     = 49;
+epwm1.epwmTimebase_hsClockDiv                                 = "EPWM_HSCLOCK_DIVIDER_1";
+epwm1.epwmTimebase_counterMode                                = "EPWM_COUNTER_MODE_UP";
+epwm1.epwmTimebase_phaseEnable                                = true;
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_PERIOD = "EPWM_AQ_OUTPUT_LOW";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_T1_COUNT_UP     = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_A_t1Source           = "EPWM_AQ_TRIGGER_EVENT_TRIG_EPWM_SYNCIN";
+epwm1.epwm.$assign                                            = "EPWM1";
+epwm1.epwm.epwm_aPin.$assign                                   = "GPIO0";
+
+epwm2.$name                                                    = "myEPWM2";
+epwm2.useCase                                                  = "CUSTOM";
+epwm2.useInterfacePins                                        = ["EPWM#_A"];
+epwm2.epwmTimebase_period                                      = 999;
+epwm2.epwmTimebase_hsClockDiv                                  = "EPWM_HSCLOCK_DIVIDER_1";
+epwm2.epwmTimebase_counterMode                                 = "EPWM_COUNTER_MODE_UP";
+epwm2.epwmCounterCompare_cmpA                                  = 10;
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_ZERO    = "EPWM_AQ_OUTPUT_HIGH";
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_UP_CMPA = "EPWM_AQ_OUTPUT_LOW";
+epwm2.epwm.$assign                                             = "EPWM2";
+epwm2.epwm.epwm_aPin.$assign                                   = "GPIO2";
+
+inputxbar1.$name          = "myINPUTXBAR1";
+inputxbar1.inputsUsed     = ["inputxbar5Gpio"];
+inputxbar1.inputxbar5Gpio = "GPIO2";

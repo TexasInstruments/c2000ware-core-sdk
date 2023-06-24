@@ -1,0 +1,27 @@
+%%{
+
+var SingleCore_SYSPLL 		= system.getTemplate('./singleCore_SYSPLL.xdt');
+var SingleCore_AUXPLL		= system.getTemplate('./singleCore_AUXPLL.xdt');
+var SingleCore_domain		= system.getTemplate('./singleCore_domain.xdt');
+
+// Device Supported : F2837xS, F2807x, F28004x, F28002x, F28003x, F280013x, F280015x
+
+const PLL_type1 = ["F2837xS", "F2807x", "F28004x"]					//FMULT available 	| REFDIV unavailable
+const PLL_type2 = ["F28002x", "F28003x", "F280013x", "F280015x"]	//FMULT unavailable	| REFDIV available
+
+const AUXPLL_Support 		= ["F2837xS", "F2807x"]
+const EPWM_div_support 		= ["F2837xS", "F2807x"]
+
+const device  = system.deviceData.device
+
+
+%%}
+%
+`SingleCore_SYSPLL()`
+	%
+	% if(AUXPLL_Support.includes(device))
+	% {
+`SingleCore_AUXPLL()`
+	% }
+	%
+`SingleCore_domain()`

@@ -1,0 +1,13 @@
+% var module = system.modules['/driverlib/epwm.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% var nameOfModule = "epwm";
+% var nameOfPeripheral = module.peripheralName;
+void `nameOfPeripheral`_init(){
+%if (module != null)
+%{
+	% for(var i = 0; i < module.$instances.length; i++) {
+	    % var instance = module.$instances[i];
+	//`instance.$name` initialization
+	%}
+%}
+}

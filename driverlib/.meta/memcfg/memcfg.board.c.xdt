@@ -1,0 +1,350 @@
+% var module = system.modules['/driverlib/memcfg.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% let device_driverlib_peripheral = 
+%    system.getScript("/driverlib/device_driverlib_peripherals/" + 
+%        Common.getDeviceName().toLowerCase() + "_memcfg.js");
+% let Memcfg   = system.getScript("/driverlib/memcfg.js");
+%
+% 	var ownedBy2 = [];  // fill this array with the GSRAMs owned By CPU2 
+% 	var doOn2 = [];    // array of Initialized GSRAMs owned by CPU2
+%	var accessValues2 = []; // Access Configuration of GSRAMs owned by CPU2
+%	var lockValues2 = [];   // Lock Configurations of GSRAMs owned by CPU2
+%
+% if (Common.isMultiCoreSysConfig())   // only look for things owned by CPU2 if multicore sysconfig
+% {
+%	var contextNames = Common.getContextNames();
+%	var thisContext = "";
+%	for (var cntx of contextNames) 
+%	{
+%		if (cntx.slice(-1) == "1")       // Look for CPU1 Context 
+%		{
+%		thisContext = cntx;
+%		}	
+%	}
+%
+%	var CPU1_mod = Common.getModuleForCore('/driverlib/memcfg.js', thisContext);   // getting modules from core
+%		
+%	var configs_1 = []    // empty array for configs
+%	if (CPU1_mod != null)
+%	{
+%		var stat_1 = CPU1_mod.$static;
+%		CPU1_mod.moduleStatic.config.forEach((element, index) =>        // get configs from module
+%		{
+%    	configs_1[element.name] = element.config            // putting configs into array
+%		});
+%
+%		if(configs_1["GSRAM_Config"])    // Find GSRAMs owned by CPU 2, first check if config was in module
+%		{
+%			configs_1["GSRAM_Config"].forEach((element, index) =>
+%			{
+%				var ram = element.name.replace("config_", "");
+%				var value = stat_1[element.name];
+%				console.log(value);
+%				if (value.slice(-1) == "2")                     // Which CPU GSRAMS ownership to remember
+%				{
+%					var sliced = ram.slice(14);         // Slice GSRAM names, only keep numbers 
+%					ownedBy2.push(sliced);            // Store numbers of GSRAM owned by CPU2 in an array
+%				}	
+%			});
+%		}
+%
+%		configs_1["InitRAM"].forEach((element, index) =>  // Finding Initialized GSRAMs owned by CPU2
+%		{										
+%			var ram = element.name.replace("init_", "")
+%			if(stat_1[element.name])
+%			{
+%				if (ram[12] == "G")           // Only looking at Initialized GSRAMs 
+%				{
+%					var GSnum = ram.slice(14);       // Slice numbers from GSRAM names 
+%					if (ownedBy2.includes(GSnum))   // only put the C code for GSRAM owned by CPU1
+%					{
+%						doOn2.push(GSnum);       // we need a list of INITIALIZED GSRAM owned by CPU2
+%					}
+%				} 
+%			}
+%		});
+%
+%		configs_1["Access_Config"].forEach((element, index) =>    // Finding Access Configurations for GSRAM owned by CPU2
+%		{
+%			var ram = element.name.replace("access_", "")
+%			var options = element.options.map(a=>a.name)
+%			var checked = stat_1[element.name]
+%			var value =""
+%			for(var i in options)      
+%			{
+%				if(checked.includes(options[i]))
+%					value += ((value == "")?"":" | ") + options[i]
+%				else
+%					value += ((value == "")?"":" | ") + options[i].replace("ALLOW","BLOCK")
+%			}
+%			if (ram[12] == "G")  // only want to check global RAM
+%			{
+%				var GSnum = ram.slice(14);       // take numbers from global RAM 
+%				if (ownedBy2.includes(GSnum))   // Collect numbers for GSRAM owned by CPU2
+%				{
+%					accessValues2.push(value);
+%				}
+%			}
+%		});
+%
+%
+%		configs_1["Lock_Config"].forEach((element, index) =>   // Find lock configurations for GSRAM owned by CPU2
+%		{
+%			var ram = element.name.replace("lock_", "")
+%			var value = stat_1[element.name]
+%			if (ram[12] == "G")                  // only check GSRAM
+%			{
+%				var GSnum = ram.slice(14);       // take numbers from global RAM 
+%				if (ownedBy2.includes(GSnum))   // only put the C code for GSRAM owned by CPU1
+%				{
+%					lockValues2.push(value);
+%				}	
+%			}
+%		});
+%
+%	}
+% }
+%
+% var nameOfModule = "memcfg";
+% var nameOfPeripheral = module.peripheralName;
+//*****************************************************************************
+//
+// MEMCFG Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_init(){
+%if (module != null)
+%{
+% 	var stat = module.$static              
+%	var configs=[]                     
+%	module.moduleStatic.config.forEach((element, index) =>
+%	{
+%    	configs[element.name] = element.config              // getting configs fore current module
+%	});
+%
+%	if(configs["InitRAM"])
+%	{
+	//
+	// Initialize RAMs
+	//
+%		configs["InitRAM"].forEach((element, index) =>      // check "InitRAM" config
+%		{
+%		var ram = element.name.replace("init_", "") 
+%		if(stat[element.name]) 
+%			{
+	MemCfg_initSections(`ram`);
+%			}
+%		});
+%
+%
+%		configs["InitRAM"].forEach((element, index) =>       // second part of RAM initialization  
+%		{
+%			var ram = element.name.replace("init_", "")
+%			if(stat[element.name])
+%			{
+	while(!MemCfg_getInitStatus(`ram`));
+%			}
+%		});
+%	}
+%
+%
+%	if(configs["LSRAM_Config"])
+%	{
+	//
+	// Configure LSRAMs
+	//
+%		configs["LSRAM_Config"].forEach((element, index) =>
+%		{
+%			var ram = element.name.replace("config_", "")
+%			var value = stat[element.name]
+%			if(value == "CPU_memory")
+%			{
+	MemCfg_setLSRAMControllerSel(`ram`, MEMCFG_LSRAMCONTROLLER_CPU_ONLY);
+%			}
+%			if(value == "CLA_data")
+%			{
+	MemCfg_setLSRAMControllerSel(`ram`, MEMCFG_LSRAMCONTROLLER_CPU_CLA1);
+	MemCfg_setCLAMemType(`ram`, MEMCFG_CLA_MEM_DATA);
+%			}
+%			if(value == "CLA_prog")
+%			{
+	MemCfg_setLSRAMControllerSel(`ram`, MEMCFG_LSRAMCONTROLLER_CPU_CLA1);
+	MemCfg_setCLAMemType(`ram`, MEMCFG_CLA_MEM_PROGRAM);
+%			}
+%		});
+%	}
+%
+%
+%
+%	if(configs["GSRAM_Config"])
+%	{
+	//
+	// Configure GSRAMs
+	//
+%		configs["GSRAM_Config"].forEach((element, index) =>  // all GSRAM configuration code goes to CPU1
+%		{
+%			var ram = element.name.replace("config_", "")
+%			var value = stat[element.name]   // print all GSRAM config stuff for CPU1
+	MemCfg_setGSRAMControllerSel(`ram`, `value`);
+%		});
+%	}
+%  
+%
+%	if(["F2838x"].includes(Common.getDeviceName()) || ["F2837xS"].includes(Common.getDeviceName()) || ["F2837xD"].includes(Common.getDeviceName()) || ["F2807x"].includes(Common.getDeviceName()))
+%	{
+%		if(configs["ROM_Config"])
+%		{
+	//
+	// ROM Access Configuration
+	//
+%			if(stat.rom_waitstate)
+%			{
+	MemCfg_enableROMWaitState();
+%			}
+%			else
+%			{
+	MemCfg_disableROMWaitState();
+%			}
+%			if(stat.rom_prefetch)
+%			{
+	MemCfg_enableROMPrefetch();
+%			}
+%			else
+%			{
+	MemCfg_disableROMPrefetch();
+%			}
+%		}
+%	}
+	//
+	// Configure Access Protection for RAMs
+	//
+%	configs["Access_Config"].forEach((element, index) =>
+%	{
+%		var ram = element.name.replace("access_", "")
+%		var options = element.options.map(a=>a.name)
+%		var checked = stat[element.name]
+%		var value =""
+%		for(var i in options)
+%		{
+%			if(checked.includes(options[i]))
+%				value += ((value == "")?"":" | ") + options[i]
+%			else
+%				value += ((value == "")?"":" | ") + options[i].replace("ALLOW","BLOCK")
+%		}
+%		if (ram[12] == "G")   
+%		{
+%			var GSnum = ram.slice(14);       // take numbers from global RAM 
+%			if (!(ownedBy2.includes(GSnum)))   // only put the C code for GSRAM owned by CPU1
+%			{
+	MemCfg_setProtection(`ram`, `value`);
+%			}
+%		} else {        // Put access protection for RAM other than GSRAM 
+	MemCfg_setProtection(`ram`, `value`);
+%		}
+%
+%	});
+%
+%
+% 	if (Common.isContextCPU2())   // GSRAM access protection for CPU2 
+%	{
+%		for(var in2 in ownedBy2)
+%		{
+%		var gsramName = "MEMCFG_SECT_GS" + ownedBy2[in2];
+%		var value2 = accessValues2[in2];            // generate access protection code for CPU2 for GSRAM owned by CPU2
+	MemCfg_setProtection(`gsramName`, `value2`);
+%		}
+%	}
+%
+%
+%	if(configs["Lock_Config"])
+%	{
+	//
+	// Lock/Commit Registers
+	//
+%		configs["Lock_Config"].forEach((element, index) =>
+%		{
+%			var ram = element.name.replace("lock_", "")
+%			var value = stat[element.name]
+%			if (ram[12] == "G")
+%			{
+%				var GSnum = ram.slice(14);       // take numbers from global RAM 
+%				if (!(ownedBy2.includes(GSnum)))   // only put the C code for GSRAM owned by CPU1
+%				{
+%			
+%					if(value == "Lock")
+%					{
+	MemCfg_lockConfig(`ram`);
+%					}
+%					if(value == "LockCommit")
+%					{
+	MemCfg_lockConfig(`ram`);
+	MemCfg_commitConfig(`ram`);
+%					}
+%				}
+%			} else {               //  still put code for RAM that isn't GSRAM
+%				if(value == "Lock")
+%				{
+	MemCfg_lockConfig(`ram`);
+%				}
+%				if(value == "LockCommit")
+%				{
+	MemCfg_lockConfig(`ram`);
+	MemCfg_commitConfig(`ram`);
+%				}
+%			}
+%		});
+%
+% 		if (Common.isContextCPU2())   // Lock GSRAM control for CPU2 
+%		{
+%			for(var in2 in ownedBy2)      // check to see which GSRAM is owned by CPU 2
+%			{
+%				var gsramName = "MEMCFG_SECT_GS" + ownedBy2[in2];
+%				var value2 = lockValues2[in2];
+%				if(value2 == "Lock")
+%				{
+	MemCfg_lockConfig(`gsramName`);
+%				}
+%				if(value2 == "LockCommit")
+%				{
+	MemCfg_lockConfig(`gsramName`);
+	MemCfg_commitConfig(`gsramName`);
+%				}
+%			}
+%		}
+%	}
+%
+%	if(configs["ViolInt_Config"])
+%	{
+	//
+	// Enable Access Violation Interrupt
+	//
+%		var value = ""
+%		configs["ViolInt_Config"].forEach((element, index) =>
+%		{
+%			var ram = element.name.replace("int_", "")
+%			if(stat[element.name])
+%			{
+%				value += ((value == "")?"":" | ") + ram
+%			}
+%		});
+%		if(value != "")
+%		{
+	MemCfg_enableViolationInterrupt(`value`);
+%		}
+%	}
+%
+	//
+	// Correctable error Interrupt
+	//
+	MemCfg_setCorrErrorThreshold(`stat.errInt_thres`);
+%	if(stat.errInt_enable)
+%	{
+	MemCfg_enableCorrErrorInterrupt(MEMCFG_CERR_CPUREAD);
+%	}
+%	else
+%	{
+	MemCfg_disableCorrErrorInterrupt(MEMCFG_CERR_CPUREAD);
+%	}
+%
+%}                       // end of if (module != null) statement 
+}        

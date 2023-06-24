@@ -1,0 +1,24 @@
+% var moduleName = "can"
+% var module = system.modules['/driverlib/' + moduleName + '.js'];
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// CAN Configurations
+//
+//*****************************************************************************
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        % let modInst  = instance[moduleName];
+        % let solution    = modInst.$solution;
+        %let peripheral  = system.deviceData.peripherals[solution.peripheralName];
+#define `instance.$name`_BASE `peripheral.name`_BASE
+
+        % for(var i2 in instance.msgObjsUsed) {
+            % var msgObjInstance = instance["msgObj" + instance.msgObjsUsed[i2]];
+#define `instance.$name`_MessageObj`instance.msgObjsUsed[i2]`_ID `msgObjInstance.msgID`
+        %}
+void `instance.$name`_init();
+
+    % }
+%}

@@ -1,0 +1,23 @@
+% var moduleName = "iclxbar"
+% var module = system.modules['/driverlib/' + moduleName + '.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% var nameOfPeripheral = module.peripheralName;
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// ICL XBAR Configurations
+//
+//*****************************************************************************
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        % let modInst  = instance[moduleName];
+        % var inputs = "";
+        % var inputSignalName = instance.iclxbarInput;
+        
+#define `instance.$name`_SOURCE XBAR_ICL_`inputSignalName`
+#define `instance.$name`_INPUT `instance.iclxbarInstance`
+void `instance.$name`_init();
+    % }
+%}
+%

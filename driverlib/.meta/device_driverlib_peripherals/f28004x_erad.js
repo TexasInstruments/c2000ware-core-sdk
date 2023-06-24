@@ -1,0 +1,86 @@
+let ERAD_Owner = [
+	{ name: "ERAD_OWNER_NOOWNER", displayName: "No owner" },
+	{ name: "ERAD_OWNER_APPLICATION", displayName: "Application owned" },
+	{ name: "ERAD_OWNER_DEBUGGER", displayName: "Debugger owned" },
+]
+let ERAD_Status = [
+	{ name: "ERAD_STATE_IDLE", displayName: "Module is idle" },
+	{ name: "ERAD_STATE_ENABLED", displayName: "Module is enabled" },
+	{ name: "ERAD_STATE_COMPLETED", displayName: "Module was enabled and an event occurred" },
+]
+let ERAD_BusComp_Bus_Select = [
+	{ name: "ERAD_BUSCOMP_BUS_PAB", displayName: "Use the Program Address Bus" },
+	{ name: "ERAD_BUSCOMP_BUS_VPC", displayName: "Use the Virtual Program Counter" },
+	{ name: "ERAD_BUSCOMP_BUS_DWAB", displayName: "Use the Data Write Address Bus" },
+	{ name: "ERAD_BUSCOMP_BUS_DRAB", displayName: "Use the Data Read Address Bus" },
+	{ name: "ERAD_BUSCOMP_BUS_DWDB", displayName: "Use the Data Write Data Bus" },
+]
+let ERAD_BusComp_Comp_Mode = [
+	{ name: "ERAD_BUSCOMP_COMPMODE_GT", displayName: "Check for greater than" },
+	{ name: "ERAD_BUSCOMP_COMPMODE_GE", displayName: "Check for greater than equal to" },
+	{ name: "ERAD_BUSCOMP_COMPMODE_LT", displayName: "Check for lesser than" },
+	{ name: "ERAD_BUSCOMP_COMPMODE_LE", displayName: "Check for lesser than equal to" },
+	{ name: "ERAD_BUSCOMP_COMPMODE_EQ", displayName: "Check for only equality" },
+]
+let ERAD_Counter_Event_Mode = [
+	{ name: "ERAD_COUNTER_MODE_ACTIVE", displayName: "Count number of CPU" },
+	{ name: "ERAD_COUNTER_MODE_RISING_EDGE", displayName: "Count number of Rising" },
+]
+let ERAD_Counter_Input_Event = [
+	{ name: "ERAD_EVENT_HWBP1", displayName: "EVENT HWBP1" },
+	{ name: "ERAD_EVENT_HWBP2", displayName: "EVENT HWBP2" },
+	{ name: "ERAD_EVENT_HWBP3", displayName: "EVENT HWBP3" },
+	{ name: "ERAD_EVENT_HWBP4", displayName: "EVENT HWBP4" },
+	{ name: "ERAD_EVENT_HWBP5", displayName: "EVENT HWBP5" },
+	{ name: "ERAD_EVENT_HWBP6", displayName: "EVENT HWBP6" },
+	{ name: "ERAD_EVENT_HWBP7", displayName: "EVENT HWBP7" },
+	{ name: "ERAD_EVENT_HWBP8", displayName: "EVENT HWBP8" },
+	{ name: "ERAD_EVENT_COUNTER1_EVENT", displayName: "EVENT COUNTER1 EVENT" },
+	{ name: "ERAD_EVENT_COUNTER2_EVENT", displayName: "EVENT COUNTER2 EVENT" },
+	{ name: "ERAD_EVENT_COUNTER3_EVENT", displayName: "EVENT COUNTER3 EVENT" },
+	{ name: "ERAD_EVENT_COUNTER4_EVENT", displayName: "EVENT COUNTER4 EVENT" },
+	{ name: "ERAD_EVENT_PIE_INT1", displayName: "EVENT PIE INT1" },
+	{ name: "ERAD_EVENT_PIE_INT2", displayName: "EVENT PIE INT2" },
+	{ name: "ERAD_EVENT_PIE_INT3", displayName: "EVENT PIE INT3" },
+	{ name: "ERAD_EVENT_PIE_INT4", displayName: "EVENT PIE INT4" },
+	{ name: "ERAD_EVENT_PIE_INT5", displayName: "EVENT PIE INT5" },
+	{ name: "ERAD_EVENT_PIE_INT6", displayName: "EVENT PIE INT6" },
+	{ name: "ERAD_EVENT_PIE_INT7", displayName: "EVENT PIE INT7" },
+	{ name: "ERAD_EVENT_PIE_INT8", displayName: "EVENT PIE INT8" },
+	{ name: "ERAD_EVENT_PIE_INT9", displayName: "EVENT PIE INT9" },
+	{ name: "ERAD_EVENT_PIE_INT10", displayName: "EVENT PIE INT10" },
+	{ name: "ERAD_EVENT_PIE_INT11", displayName: "EVENT PIE INT11" },
+	{ name: "ERAD_EVENT_PIE_INT12", displayName: "EVENT PIE INT12" },
+	{ name: "ERAD_EVENT_TIMER1_TINT1", displayName: "EVENT TIMER1 TINT1" },
+	{ name: "ERAD_EVENT_TIMER2_TINT2", displayName: "EVENT TIMER2 TINT2" },
+	{ name: "ERAD_EVENT_CLA_INTERRUPT1", displayName: "EVENT CLA INTERRUPT1" },
+	{ name: "ERAD_EVENT_CLA_INTERRUPT2", displayName: "EVENT CLA INTERRUPT2" },
+	{ name: "ERAD_EVENT_CLA_INTERRUPT3", displayName: "EVENT CLA INTERRUPT3" },
+	{ name: "ERAD_EVENT_CLA_INTERRUPT4", displayName: "EVENT CLA INTERRUPT4" },
+	{ name: "ERAD_EVENT_CLA_INTERRUPT5", displayName: "EVENT CLA INTERRUPT5" },
+	{ name: "ERAD_EVENT_CLA_INTERRUPT8", displayName: "EVENT CLA INTERRUPT8" },
+	{ name: "ERAD_EVENT_NO_EVENT", displayName: "EVENT NO EVENT" },
+]
+let ERAD_INST = [
+	{ name: "ERAD_INST_BUSCOMP1", displayName: "Instance for bus comparator 1" },
+	{ name: "ERAD_INST_BUSCOMP2", displayName: "Instance for bus comparator 2" },
+	{ name: "ERAD_INST_BUSCOMP3", displayName: "Instance for bus comparator 3" },
+	{ name: "ERAD_INST_BUSCOMP4", displayName: "Instance for bus comparator 4" },
+	{ name: "ERAD_INST_BUSCOMP5", displayName: "Instance for bus comparator 5" },
+	{ name: "ERAD_INST_BUSCOMP6", displayName: "Instance for bus comparator 6" },
+	{ name: "ERAD_INST_BUSCOMP7", displayName: "Instance for bus comparator 7" },
+	{ name: "ERAD_INST_BUSCOMP8", displayName: "Instance for bus comparator 8" },
+	{ name: "ERAD_INST_COUNTER1", displayName: "Instance for counter 1" },
+	{ name: "ERAD_INST_COUNTER2", displayName: "Instance for counter 2" },
+	{ name: "ERAD_INST_COUNTER3", displayName: "Instance for counter 3" },
+	{ name: "ERAD_INST_COUNTER4", displayName: "Instance for counter 4" },
+]
+module.exports = {
+	ERAD_Owner: ERAD_Owner,
+	ERAD_Status: ERAD_Status,
+	ERAD_BusComp_Bus_Select: ERAD_BusComp_Bus_Select,
+	ERAD_BusComp_Comp_Mode: ERAD_BusComp_Comp_Mode,
+	ERAD_Counter_Event_Mode: ERAD_Counter_Event_Mode,
+	ERAD_Counter_Input_Event: ERAD_Counter_Input_Event,
+	ERAD_INST: ERAD_INST,
+}

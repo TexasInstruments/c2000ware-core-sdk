@@ -1,0 +1,239 @@
+%%{ 
+var moduleName = "erad"
+var module = system.modules['/driverlib/' + moduleName + '.js'];
+let Common   = system.getScript("/driverlib/Common.js");
+
+var nameOfPeripheral = module.peripheralName;
+var instance = null;
+if (module != null)
+{
+    for(var i = 0; i < module.$instances.length; i++) {
+        instance = module.$instances[i];
+     }
+}
+var usedCtms = null;
+var usedHwbps = null;
+var usedANDMasks = null;
+var usedORMasks = null;
+if (instance != null)
+{
+%%}
+//*****************************************************************************
+//
+// ERAD Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_init(){
+    //
+	// `instance.$name` initialization
+    //
+    ERAD_initModule(ERAD_OWNER_APPLICATION);
+%%{
+    var enable_assignment = "ERAD_enableModules(";
+    var NMI_enable = "ERAD_enableNMI(";
+    var enables = "";
+    var NMIIntLine = ""
+    usedCtms = instance.ctmsUsed;
+    usedHwbps = instance.hwbpsUsed;
+    if(["F2838x", "F28002x", "F28003x"].includes(system.deviceData.deviceId))
+    {
+        usedANDMasks = instance.ANDmasksUsed;
+        usedORMasks = instance.ORmasksUsed;
+    }
+    if (usedCtms != 0)
+    {
+%%}
+    ERAD_Counter_Config counter_params;
+%%{
+    }
+    if (usedHwbps != 0)
+    {
+%%}
+    ERAD_BusComp_Config buscomp_params;
+%%{
+    }    
+    for (var ctm_i in usedCtms)
+    {
+        var ctmName = usedCtms[ctm_i];
+        var ctmNumber = ctmName[7];
+        var ctm = instance["erad"+ctmName];
+        var baseName = instance.$name + "_" + ctmName + "_BASE"
+        
+        enables +=  Common.stringOrEmpty(enables, " | ") + "ERAD_INST_" + ctmName
+
+        var haltCPULine = "counter_params.enable_stop = " + ctm.haltCPU.toString() + ";"
+
+        var rtosIntLine = "counter_params.enable_int = " + ctm.rtosInterrupt.toString() + ";"
+
+        if(["F2838x", "F28002x", "F28003x"].includes(system.deviceData.deviceId))
+        {
+            if(ctm.NMIInterrupt == true)
+            {
+                NMIIntLine += Common.stringOrEmpty(NMIIntLine, " | ") + "ERAD_INST_" + ctmName
+            }
+        }
+
+        var resetLine = ""
+
+        if (ctm.useExternalResetSource)
+        {
+            resetLine += "ERAD_enableCounterResetInput(" + baseName + ", " + ctm.externalResetSource + ");"  
+        }
+
+        var externalClockSourceLine = ""
+        if (ctm.clockSource == 0)
+        {
+            externalClockSourceLine += "counter_params.event = ERAD_EVENT_NO_EVENT;\n\t"
+            
+        }
+        else
+        {
+            externalClockSourceLine += "counter_params.event = " + ctm.externalClockSource + ";\n\t"
+        }
+        externalClockSourceLine += "counter_params.event_mode = " + ctm.countMode + ";"
+		var referenceLine = ""
+        var modeLines = ""
+        if (ctm.ctmMode == 0)
+        {
+            modeLines += "counter_params.rst_on_match = " + ctm.counterMode + ";\n\t"
+            modeLines += "ERAD_configCounterInCountingMode(" + baseName + ", counter_params);"
+            referenceLine = "counter_params.reference = " + ctm.counterPeriod.toString() + ";"
+        }
+        else
+        {
+            modeLines += "counter_params.rst_on_match = false;\n\t"
+            if(ctm.ctmMode == 1)
+            {
+                modeLines += "ERAD_configCounterInStartStopMode(" + baseName + ", counter_params, " + ctm.swStart + ", " + ctm.swStop + ");"
+            }
+            else
+            {
+                modeLines += "ERAD_configCounterInCumulativeMode(" + baseName + ", counter_params, " + ctm.swStart + ", " + ctm.swStop + ");"
+            }
+            referenceLine = "counter_params.reference = " + ctm.swReferenceCount.toString() + ";"
+        }
+%%}
+    //
+    // `instance.$name`_`ctmName` initialization
+    //
+    `haltCPULine`
+    `rtosIntLine`
+    `resetLine`
+    `externalClockSourceLine`
+    `referenceLine`
+    `modeLines`
+%%{
+    }
+    for (var hwbp_i in usedHwbps)
+    {
+        var hwbpName = usedHwbps[hwbp_i];
+        var hwbpNumber = hwbpName[7];
+        var hwbp = instance["erad"+hwbpName];
+        var baseName = instance.$name + "_" + hwbpName + "_BASE";
+        
+        enables +=  Common.stringOrEmpty(enables, " | ") + "ERAD_INST_" + hwbpName
+
+        var addressMonitoringTypeLine = ""      
+        addressMonitoringTypeLine = "buscomp_params.bus_sel = " + hwbp.hwbpBusSel + ";"
+
+        var comparisonModeTypeLine = "buscomp_params.comp_mode = " + hwbp.hwbpCompMode + ";"
+        
+        var haltCPULine = "buscomp_params.enable_stop = " + hwbp.haltCPU.toString() + ";"
+
+        var rtosIntLine = "buscomp_params.enable_int = " + hwbp.rtosInterrupt.toString() + ";"
+        if(["F2838x", "F28002x", "F28003x"].includes(system.deviceData.deviceId))
+        {
+            if(hwbp.NMIInterrupt == true)
+            {
+                NMIIntLine += Common.stringOrEmpty(NMIIntLine, " | ") + "ERAD_INST_" + hwbpName
+            }
+        }
+        
+        var addressLine = ""
+        if (hwbp.hwbpAddressInputMode == "MANUAL")
+        {
+            if (hwbp.hwbpCompMode == "ERAD_BUSCOMP_COMPMODE_EQ")
+            {
+                // Masked compare
+                addressLine += "buscomp_params.mask = " + hwbp.hwbpMask + ";\n\t"
+            }
+            addressLine += "buscomp_params.reference = " + hwbp.hwbpRef + ";"
+        }
+        else
+        {
+            addressLine += "buscomp_params.mask = 0x0;\n\t"
+            addressLine += "buscomp_params.reference = (uint32_t)" + hwbp.hwbpRefCodeName + ";"
+        }
+%%}
+    //
+    // `instance.$name`_`hwbpName` initialization
+    //
+    `addressMonitoringTypeLine`
+    `comparisonModeTypeLine`
+    `addressLine`
+    `haltCPULine`
+    `rtosIntLine`
+    ERAD_configBusComp(`baseName`, buscomp_params);
+%%{
+    }
+    var RTOSenable = "ERAD_enableInterruptForMask(" 
+    for(var and_masks_i in usedANDMasks)
+    {
+        var ANDmaskName = usedANDMasks[and_masks_i]
+        var ANDmaskNumber = ANDmaskName[8]
+        var andMask = instance["erad"+ANDmaskName];
+        var mask_base = "ERAD_" + ANDmaskName
+
+        var andmaskLine = ""
+        var configandMaskLine = "ERAD_configMask(" + mask_base + ", "
+        for(var buscomp in andMask.busComptoAND)
+        {
+            andmaskLine +=  Common.stringOrEmpty(andmaskLine, " | ") + "ERAD_INST_" + andMask.busComptoAND[buscomp]
+        }
+        andmaskLine = Common.stringOrEmpty(andmaskLine, configandMaskLine) + 
+                Common.stringOrEmpty(andmaskLine, andmaskLine) + 
+                Common.stringOrEmpty(andmaskLine, ", " + andMask.rtosInterrupt.toString()) + 
+                Common.stringOrEmpty(andmaskLine, ");")
+                
+%%}
+    //
+    // AND MASK initialization
+    //
+    `andmaskLine`
+%%{
+    }
+    for(var or_masks_i in usedORMasks)
+    {
+        var ORmaskName = usedORMasks[or_masks_i]
+        var ORmaskNumber = ORmaskName[8]
+        var orMask = instance["erad"+ORmaskName];
+        var mask_base = "ERAD_" + ORmaskName
+
+        var ormaskLine = ""
+        var configorMaskLine = "ERAD_configMask(" + mask_base + ", "
+        for(var buscomp in orMask.busComptoOR)
+        {
+            ormaskLine +=  Common.stringOrEmpty(ormaskLine, " | ") + "ERAD_INST_" + orMask.busComptoOR[buscomp]
+        }
+        ormaskLine = Common.stringOrEmpty(ormaskLine, configorMaskLine) + 
+                Common.stringOrEmpty(ormaskLine, ormaskLine) + 
+                Common.stringOrEmpty(ormaskLine, ", " + orMask.rtosInterrupt.toString()) + 
+                Common.stringOrEmpty(ormaskLine, ");")
+%%}
+    //
+    // OR MASK initialization
+    //
+    `ormaskLine`
+%%{
+    }
+}
+    enables = Common.stringOrEmpty(enables, enable_assignment) + 
+                Common.stringOrEmpty(enables, enables) + 
+                Common.stringOrEmpty(enables, ");")
+    NMIIntLine = Common.stringOrEmpty(NMIIntLine, NMI_enable) + 
+                Common.stringOrEmpty(NMIIntLine, NMIIntLine) + 
+                Common.stringOrEmpty(NMIIntLine, ");")
+%%}
+    `enables`
+    `NMIIntLine`
+}

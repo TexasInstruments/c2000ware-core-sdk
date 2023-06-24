@@ -1,0 +1,19 @@
+
+/**
+ * Import the modules used in this configuration.
+ */
+const spi  = scripting.addModule("/driverlib/spi.js", {}, false);
+const spi1 = spi.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+spi1.$name         = "mySPI0";
+spi1.mode          = "SPI_MODE_MASTER";
+spi1.emulationMode = "SPI_EMULATION_STOP_AFTER_TRANSMIT";
+spi1.bitRate       = 1000000;
+spi1.useInterrupts = false;
+spi1.useFifo       = false;
+spi1.loopback      = true;
+spi1.spi.$name     = "MySPI1";
+spi1.spi.$assign   = "SPIA";

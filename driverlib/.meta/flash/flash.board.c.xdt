@@ -1,0 +1,121 @@
+% var nameOfModule = "flash";
+% var module = system.modules['/driverlib/' + nameOfModule + '.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% var nameOfPeripheral = module.peripheralName;
+% let device_driverlib_peripheral =
+%       system.getScript("/driverlib/device_driverlib_peripherals/" +
+%                Common.getDeviceName().toLowerCase() + "_flash.js");
+//*****************************************************************************
+//
+// FLASH Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_init(){
+%if (module != null)
+%{
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        %
+    //
+    // `instance.$name` Initialization
+    // 
+        %if (["F2837xS"].includes(Common.getDeviceName()) || ["F2837xD"].includes(Common.getDeviceName()))
+        %{
+    //
+    // Set the bank power up delay so that the bank will power up properly.
+    //
+    Flash_setBankPowerUpDelay(`instance.$name`_BASE, 0x14);
+        %}
+        %if (!["F280015x", "F280013x"].includes(Common.getDeviceName())){
+    //
+    // This function sets the fallback power mode of the flash bank specified by
+    // the bank parameter. The power mode is specified by the powerMode
+    // parameter
+    //
+    
+            % if (device_driverlib_peripheral.Flash_BankNumber) {
+    //
+    // Set available banks to active power mode
+    // 
+                % for (var j = 0; j < device_driverlib_peripheral.Flash_BankNumber.length; j++){
+    Flash_setBankPowerMode(`instance.$name`_BASE, `device_driverlib_peripheral.Flash_BankNumber[j].name`, FLASH_BANK_PWR_ACTIVE);
+                % }
+            % }
+    //
+    // Sets the fallback power mode of the charge pump.
+    //
+    // Set pump power mode to active
+    //
+    Flash_setPumpPowerMode(`instance.$name`_BASE, FLASH_PUMP_PWR_ACTIVE);
+        %}
+    //
+    // Disable cache and prefetch mechanism before changing wait states
+    //
+    Flash_disableCache(`instance.$name`_BASE);
+    Flash_disablePrefetch(`instance.$name`_BASE);
+    //
+    // This function sets the number of wait states for a flash read access. The
+    // waitstates parameter is a number between 0 and 15. It is important
+    // to look at your device's datasheet for information about what the required
+    // minimum flash wait-state is for your selected SYSCLK frequency.
+    //
+    // By default the wait state amount is configured to the maximum 15. 
+    //
+    // Set flash wait states
+    //
+    Flash_setWaitstates(`instance.$name`_BASE, `instance.$name`_WAITSTATES); 
+        %if (["F280015x", "F280013x"].includes(Common.getDeviceName())){
+    //
+    // Set Engr waitstates according to frequency.
+    //
+    Flash_setEngrWaitstates(`instance.$name`_BASE, 5);
+        %}
+            % if (instance.enablePrefetch){
+    //
+    // Enable prefetch
+    //
+    Flash_enablePrefetch(`instance.$name`_BASE);
+            % } else{
+    //
+    // Disable prefetch
+    //
+    Flash_disablePrefetch(`instance.$name`_BASE);           
+            % }
+            %
+            % if (instance.enableCache){
+    //
+    // Enable cache
+    //
+    Flash_enableCache(`instance.$name`_BASE);
+            % } else{
+    //
+    // Disable cache
+    //
+    Flash_disableCache(`instance.$name`_BASE);           
+            % }  
+            %
+            % if (instance.enableECC){
+    //
+    // Enables flash error correction code (ECC) protection.
+    //
+    Flash_enableECC(`instance.$name`_ECCBASE);
+            % } else{
+    //
+    // Disables flash error correction code (ECC) protection.
+    //
+    Flash_disableECC(`instance.$name`_ECCBASE);           
+            % } 
+        %if (!["F280015x", "F280013x"].includes(Common.getDeviceName())){
+    //
+    // Sets the single bit error threshold. Valid ranges are from 0-65535.
+    //
+    Flash_setErrorThreshold(`instance.$name`_ECCBASE, `instance.$name`_ERRORTHRESHOLD);
+        %}
+    //
+    // Force a pipeline flush to ensure that the write to the last register
+    // configured occurs before returning.
+    //
+    FLASH_DELAY_CONFIG;
+    % }
+% }
+}

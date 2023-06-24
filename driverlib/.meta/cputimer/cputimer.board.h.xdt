@@ -1,0 +1,18 @@
+% var moduleName = "cputimer"
+% var module = system.modules['/driverlib/' + moduleName + '.js'];
+% var freertos = system.modules['/kernel/freertos_tool/FREERTOS'];
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// CPUTIMER Configurations
+//
+//*****************************************************************************
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        % if ((instance.cputimerBase == "CPUTIMER2_BASE") && (freertos != null)) continue;
+        % let modInst  = instance[moduleName];
+#define `instance.$name`_BASE `instance.cputimerBase`
+void `instance.$name`_init();
+    % }
+%}

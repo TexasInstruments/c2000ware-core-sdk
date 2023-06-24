@@ -1,0 +1,257 @@
+%%{
+    var module = system.modules['/driverlib/epwm.js'];
+    let Common   = system.getScript("/driverlib/Common.js");
+    let Pinmux   = system.getScript("/driverlib/pinmux.js");
+    let PinmuxMigrations   = system.getScript("/driverlib/pinmux/pinmux_migration.js");
+
+    var nameOfModule = "epwm";
+    var nameOfPeripheral = module.peripheralName;
+
+    function getConfigAndValue(arrayConfigs, subModule)
+    {
+        var selectedSettingsSummary = "";
+    	for (var modConfig of arrayConfigs)
+        {
+            //console.log(modConfig);
+            //Common.printDebugObject(modConfig);
+			
+			if (modConfig.config && !modConfig.config.deprecated)
+	        {
+	        	selectedSettingsSummary += getConfigAndValue(modConfig.config, subModule)
+	        }
+	        else
+	        {
+                if (!modConfig.deprecated)
+                {
+    	            var modConfigName = modConfig.name;
+    	            var modConfigDisplayName = modConfig.displayName;
+
+    	        	//console.log(modConfigDisplayName);
+    	        	//console.log(subModule[modConfigName]);
+    	        	selectedSettingsSummary += modConfigDisplayName + ": " + subModule[modConfigName] + "<br align=\"left\" />";
+                }
+	        }
+        }
+
+        return selectedSettingsSummary;
+    }
+
+    function getSubModuleDescriptionSummary(instance, subModule)
+    {
+    	var topModule = instance.$module;
+        var selectedSettingsSummary = "";
+        var submoduleConfig = null;
+
+        //console.log(subModule)
+
+        topModule.config.find(input => {
+            if (input.name === subModule)
+            {
+                submoduleConfig = input.config;
+            }
+        })
+
+        selectedSettingsSummary = getConfigAndValue(submoduleConfig, instance);
+
+        return selectedSettingsSummary;
+    }
+
+
+    if (module != null)
+    {
+%%}
+digraph {
+    graph [fontname = "helvetica"];
+    node  [fontname = "helvetica"];
+    edge  [fontname = "helvetica"];
+    graph [mclimit=50 nodesep=0.5 rankdir=LR ranksep=1.25]
+                   
+    EPWMXBAR [label= <<TABLE BORDER='0' CELLBORDER='1' CELLPADDING='3' CELLSPACING='0'>
+                       <TR><TD PORT='epwmxbar_title' ROWSPAN='9'><br/><br/>  EPWM XBAR<br/><br/><br/></TD></TR>
+                       <TR><TD PORT='trip4'>TRIP4</TD></TR>
+                       <TR><TD PORT='trip5'>TRIP5</TD></TR>
+                       <TR><TD PORT='trip7'>TRIP7</TD></TR>
+                       <TR><TD PORT='trip8'>TRIP8</TD></TR>
+                       <TR><TD PORT='trip9'>TRIP9</TD></TR>
+                       <TR><TD PORT='trip10'>TRIP10</TD></TR>
+                       <TR><TD PORT='trip11'>TRIP11</TD></TR>
+                       <TR><TD PORT='trip12'>TRIP12</TD></TR>
+                       </TABLE>> 
+               color=black shape=plaintext fillcolor="#F0F0F0" style=filled]
+
+%%{
+        for(var i = 0; i < module.$instances.length; i++) {
+            var instance = module.$instances[i];
+            let instancePinmux = instance[nameOfModule];
+            let solution    = instancePinmux.$solution;
+            let peripheral  = system.deviceData.peripherals[solution.peripheralName];
+            let epwmInstanceName = solution.peripheralName.toLowerCase();
+
+            var timebase = "GROUP_EPWM_TB";
+            var timebaseSelectedSettingsSummary = getSubModuleDescriptionSummary(instance, timebase);
+
+            var digitalCompare = "GROUP_EPWM_DC";
+            var digitalCompareSelectedSettingsSummary = getSubModuleDescriptionSummary(instance, digitalCompare);
+
+            var counterCompare = "GROUP_EPWM_CC";
+            var counterCompareSelectedSettingsSummary = getSubModuleDescriptionSummary(instance, counterCompare);
+
+            var actionQualifier = "GROUP_EPWM_AQ";
+            var actionQualifierSelectedSettingsSummary = getSubModuleDescriptionSummary(instance, actionQualifier);
+
+            var deadband = "GROUP_EPWM_DB";
+            var deadbandSelectedSettingsSummary = getSubModuleDescriptionSummary(instance, deadband);
+
+            var tripZone = "GROUP_EPWM_TZ";
+            var tripZoneSelectedSettingsSummary = getSubModuleDescriptionSummary(instance, tripZone);
+
+            var chopper = "GROUP_EPWM_PC";
+            var chopperSelectedSettingsSummary = getSubModuleDescriptionSummary(instance, chopper);
+
+            var eventTrigger = "GROUP_EPWM_ET";
+            var eventTriggerSelectedSettingsSummary = getSubModuleDescriptionSummary(instance, eventTrigger);
+
+%%}       
+    subgraph cluster_`epwmInstanceName` {
+        label = "`epwmInstanceName.toUpperCase()` = `instance.$name`";
+        color=red;
+        
+        
+        `epwmInstanceName`_TB [label= <<TABLE BORDER='0' CELLBORDER='1' CELLPADDING='3' CELLSPACING='0'>
+                        <TR><TD PORT='' COLSPAN='3'><br/><br/>  Time Base <br/><br/><br/></TD></TR>
+                        <TR><TD PORT='`epwmInstanceName`_syncin'>SYNCIN</TD><TD ROWSPAN='3'>`timebaseSelectedSettingsSummary`</TD><TD PORT='`epwmInstanceName`_tb_prd'>CTR==PRD</TD></TR>
+                        <TR><TD PORT='`epwmInstanceName`_syncout'>SYNCOUT</TD><TD COL='3' PORT='`epwmInstanceName`_tb_zero'>CTR==ZRO</TD></TR>
+                        <TR><TD PORT=''>Digital Compare sync</TD><TD COL='3' PORT='`epwmInstanceName`_tb_dir'>CTR_DIR</TD></TR>
+                       </TABLE>> 
+               color=black shape=plaintext fillcolor="#F0F0F0" style=filled]
+        
+        
+        `epwmInstanceName`_DC [label= <<TABLE BORDER='0' CELLBORDER='1' CELLPADDING='3' CELLSPACING='0'>
+                       <TR><TD PORT='`epwmInstanceName`_dc_title' COLSPAN='3'><br/><br/>  EPWM Digital Compare<br/><br/><br/></TD></TR>
+                       <TR><TD PORT='`epwmInstanceName`_dcah'>DCAH</TD><TD ROWSPAN='12'>`digitalCompareSelectedSettingsSummary`</TD><TD COL='3' PORT='`epwmInstanceName`_dcaevt1frc'>DCAEVT1.force</TD></TR>
+                       <TR><TD PORT='`epwmInstanceName`_dcal'>DCAL</TD>                                 <TD COL='3' PORT=''>DCAEVT2.force</TD></TR>
+                       <TR><TD ROWSPAN='4'></TD>                                                        <TD COL='3' PORT=''>DCAEVT1.sync</TD></TR>
+                       <TR>                                                                             <TD COL='3' PORT=''>DCAEVT2.sync</TD></TR>
+                       <TR>                                                                             <TD COL='3' PORT=''>DCAEVT1.inter</TD></TR>
+                       <TR>                                                                             <TD COL='3' PORT=''>DCAEVT1.soc</TD></TR>
+                       <TR><TD PORT='`epwmInstanceName`_dcbh'>DCBH</TD>                                 <TD PORT='`epwmInstanceName`_dcbevt1frc'>DCBEVT1.force</TD></TR>
+                       <TR><TD PORT='`epwmInstanceName`_dcbl'>DCBL</TD>                                 <TD PORT=''>DCBEVT2.force</TD></TR>
+                       <TR><TD ROWSPAN='4'></TD>                                                        <TD COL='3' PORT=''>DCBEVT1.sync</TD></TR>
+                       <TR>                                                                             <TD COL='3' PORT=''>DCBEVT2.sync</TD></TR>
+                       <TR>                                                                             <TD COL='3' PORT=''>DCBEVT1.inter</TD></TR>
+                       <TR>                                                                             <TD COL='3' PORT=''>DCBEVT1.soc</TD></TR>
+                       </TABLE>> 
+               color=black shape=plaintext fillcolor="#F0F0F0" style=filled]
+        
+
+        `epwmInstanceName`_CC [label= <<TABLE BORDER='0' CELLBORDER='1' CELLPADDING='3' CELLSPACING='0'>
+                       <TR><TD PORT='`epwmInstanceName`_cc_title' COLSPAN='3'><br/><br/>  EPWM Counter Compare<br/><br/><br/></TD></TR>
+                       <TR><TD PORT='' COLSPAN='2' ROWSPAN='4'>`counterCompareSelectedSettingsSummary`</TD><TD COL='3' PORT='`epwmInstanceName`_cc_cmpa'>CTR == CMPA</TD></TR>
+                       <TR><TD COL='3' PORT='`epwmInstanceName`_cc_cmpb'>CTR == CMPB</TD></TR>
+                       <TR><TD COL='3' PORT='`epwmInstanceName`_cc_cmpc'>CTR == CMPC</TD></TR>
+                       <TR><TD COL='3' PORT='`epwmInstanceName`_cc_cmpd'>CTR == CMPD</TD></TR>
+                       </TABLE>> 
+               color=black shape=plaintext fillcolor="#F0F0F0" style=filled]
+
+
+        `epwmInstanceName`_AQ [label= <<TABLE BORDER='0' CELLBORDER='1' CELLPADDING='3' CELLSPACING='0'>
+                       <TR><TD PORT='`epwmInstanceName`_aq_title' COLSPAN='3'><br/><br/>  EPWM Action Qualifier<br/><br/><br/></TD></TR>
+                       <TR><TD PORT='`epwmInstanceName`_aq_prd'>PRD</TD><TD PORT='' ROWSPAN='7'>`actionQualifierSelectedSettingsSummary`</TD><TD COL='3' PORT='`epwmInstanceName`_aq_epwma'>EPWMA</TD></TR>
+                       <TR><TD PORT='`epwmInstanceName`_aq_zero'>ZERO</TD>                                    <TD COL='3' PORT='`epwmInstanceName`_aq_epwmb'>EPWMB</TD></TR>
+                       <TR><TD PORT='`epwmInstanceName`_aq_dir'>DIR</TD>                                    </TR>
+                       <TR><TD PORT='`epwmInstanceName`_aq_t1'>T1</TD>                                    </TR>
+                       <TR><TD PORT='`epwmInstanceName`_aq_t2'>T2</TD>                                    </TR>
+                       <TR><TD PORT='`epwmInstanceName`_aq_cmpa'>CMPA</TD>                                    </TR>
+                       <TR><TD PORT='`epwmInstanceName`_aq_cmpb'>CMPB</TD>                                    </TR>
+                       </TABLE>> 
+               color=black shape=plaintext fillcolor="#F0F0F0" style=filled]
+
+
+        `epwmInstanceName`_DB [label= <<TABLE BORDER='0' CELLBORDER='1' CELLPADDING='3' CELLSPACING='0'>
+                       <TR><TD PORT='`epwmInstanceName`_db_title' COLSPAN='3'><br/><br/>  EPWM Deadband<br/><br/><br/></TD></TR>
+                       <TR><TD PORT='`epwmInstanceName`_db_epwma_in'>EPWMA IN</TD><TD PORT='' ROWSPAN='2'>`deadbandSelectedSettingsSummary`</TD><TD COL='3' PORT='`epwmInstanceName`_db_epwma_out'>EPWMA</TD></TR>
+                       <TR><TD PORT='`epwmInstanceName`_db_epwmb_in'>EPWMB IN</TD>                                    <TD COL='3' PORT='`epwmInstanceName`_db_epwmb_out'>EPWMB</TD></TR>
+                       </TABLE>> 
+               color=black shape=plaintext fillcolor="#F0F0F0" style=filled]
+
+
+        `epwmInstanceName`_PC [label= <<TABLE BORDER='0' CELLBORDER='1' CELLPADDING='3' CELLSPACING='0'>
+                       <TR><TD PORT='`epwmInstanceName`_pc_title' COLSPAN='3'><br/><br/>  EPWM Chopper<br/><br/><br/></TD></TR>
+                       <TR><TD PORT='`epwmInstanceName`_pc_epwma_in'>EPWMA IN</TD><TD PORT='' ROWSPAN='2'>`chopperSelectedSettingsSummary`</TD><TD COL='3' PORT='`epwmInstanceName`_pc_epwma_out'>EPWMA</TD></TR>
+                       <TR><TD PORT='`epwmInstanceName`_pc_epwmb_in'>EPWMB IN</TD>                                    <TD COL='3' PORT='`epwmInstanceName`_pc_epwmb_out'>EPWMB</TD></TR>
+                       </TABLE>> 
+               color=black shape=plaintext fillcolor="#F0F0F0" style=filled]
+
+
+        `epwmInstanceName`_TZ [label= <<TABLE BORDER='0' CELLBORDER='1' CELLPADDING='3' CELLSPACING='0'>
+                       <TR><TD PORT='`epwmInstanceName`_tz_title' COLSPAN='3'><br/><br/>  EPWM Trip-Zone<br/><br/><br/></TD></TR>
+                       <TR><TD PORT='`epwmInstanceName`_tz_epwma_in'>EPWMA IN</TD><TD PORT='' ROWSPAN='4'>`tripZoneSelectedSettingsSummary`</TD><TD COL='3' PORT='`epwmInstanceName`_tz_epwma_out'>EPWMA</TD></TR>
+                       <TR><TD PORT='`epwmInstanceName`_tz_epwmb_in'>EPWMB IN</TD>                                    <TD COL='3' PORT='`epwmInstanceName`_tz_epwmb_out'>EPWMB</TD></TR>
+                       <TR><TD PORT='`epwmInstanceName`_tz_int'>TZINT</TD>                                    </TR>
+                       <TR><TD PORT='`epwmInstanceName`_tz_dcforce'>Digital Compare force</TD>                                    </TR>
+                       </TABLE>> 
+               color=black shape=plaintext fillcolor="#F0F0F0" style=filled]
+
+
+        `epwmInstanceName`_ET [label= <<TABLE BORDER='0' CELLBORDER='1' CELLPADDING='3' CELLSPACING='0'>
+                       <TR><TD PORT='`epwmInstanceName`_et_title' COLSPAN='3'><br/><br/>  EPWM Event Trigger<br/><br/><br/></TD></TR>
+                       <TR><TD PORT='`epwmInstanceName`_et_tb'>Timebase Signals</TD><TD PORT='' ROWSPAN='3'>`eventTriggerSelectedSettingsSummary`</TD><TD COL='3' PORT='`epwmInstanceName`_et_int'>INT</TD></TR>
+                       <TR><TD PORT='`epwmInstanceName`_et_cc'>Counter Compare Signals</TD>                                    <TD COL='3' PORT='`epwmInstanceName`_et_soca'>SOCA</TD></TR>
+                       <TR><TD PORT='`epwmInstanceName`_et_dc'>Digital Compare Signals</TD>                                    <TD COL='3' PORT='`epwmInstanceName`_et_socb'>SOCB</TD></TR>
+                       </TABLE>> 
+               color=black shape=plaintext fillcolor="#F0F0F0" style=filled]
+
+
+        {rank=same `epwmInstanceName`_TB; `epwmInstanceName`_CC};
+        {rank=same `epwmInstanceName`_TZ; `epwmInstanceName`_DC};
+        {rank=same `epwmInstanceName`_DB; `epwmInstanceName`_ET};
+    }
+
+    `epwmInstanceName`_TB:s -> `epwmInstanceName`_CC:n [label="TBCTR"];
+    `epwmInstanceName`_DC:n -> `epwmInstanceName`_TZ:`epwmInstanceName`_tz_dcforce:s;
+
+
+    `epwmInstanceName`_TB:`epwmInstanceName`_tb_prd:e -> `epwmInstanceName`_AQ:`epwmInstanceName`_aq_prd:w;
+    `epwmInstanceName`_TB:`epwmInstanceName`_tb_zero:e -> `epwmInstanceName`_AQ:`epwmInstanceName`_aq_zero:w;
+    `epwmInstanceName`_TB:`epwmInstanceName`_tb_dir:e -> `epwmInstanceName`_AQ:`epwmInstanceName`_aq_dir:w;
+    `epwmInstanceName`_CC:`epwmInstanceName`_cc_cmpa:e -> `epwmInstanceName`_AQ:`epwmInstanceName`_aq_cmpa:w;
+    `epwmInstanceName`_CC:`epwmInstanceName`_cc_cmpb:e -> `epwmInstanceName`_AQ:`epwmInstanceName`_aq_cmpb:w;
+
+    `epwmInstanceName`_AQ:`epwmInstanceName`_aq_epwma:e -> `epwmInstanceName`_DB:`epwmInstanceName`_db_epwma_in:w
+    `epwmInstanceName`_DB:`epwmInstanceName`_db_epwma_out:e -> `epwmInstanceName`_PC:`epwmInstanceName`_pc_epwma_in:w
+    `epwmInstanceName`_PC:`epwmInstanceName`_pc_epwma_out:e -> `epwmInstanceName`_TZ:`epwmInstanceName`_tz_epwma_in:w
+
+    
+    `epwmInstanceName`_AQ:`epwmInstanceName`_aq_epwmb:e -> `epwmInstanceName`_DB:`epwmInstanceName`_db_epwmb_in:w
+    `epwmInstanceName`_DB:`epwmInstanceName`_db_epwmb_out:e -> `epwmInstanceName`_PC:`epwmInstanceName`_pc_epwmb_in:w
+    `epwmInstanceName`_PC:`epwmInstanceName`_pc_epwmb_out:e -> `epwmInstanceName`_TZ:`epwmInstanceName`_tz_epwmb_in:w
+
+
+ 	`epwmInstanceName`_TB:`epwmInstanceName`_syncout -> SYNCOUT_`epwmInstanceName.toUpperCase()`
+
+%%{
+            var InterfaceNames = Object.keys(system.deviceData.interfaces["EPWM"].interfacePins);
+            for (var interfaceNumber in InterfaceNames)
+            {
+                var interfaceName = InterfaceNames[interfaceNumber];
+                var interfaceRenameCompleted = PinmuxMigrations.interfacePinMuxMigrationRenameCompleted(interfaceName, "EPWM")
+                var legacyInclusiveNames = PinmuxMigrations.interfaceInclusiveRename(interfaceRenameCompleted, "EPWM");
+                let pinName =  legacyInclusiveNames.inclusiveName.toLowerCase().replace("#", "").replace("@", "") + "Pin";
+
+                var a_or_b = (pinName.replace("_", "").includes("epwma"))?'a':'b';
+                if (instance[nameOfModule][pinName] != null){
+                    var gpioName = instance[nameOfModule][pinName].$solution.devicePinName;
+%%}
+    `epwmInstanceName`_TZ:`epwmInstanceName`_tz_epwm`a_or_b`_out:e -> `gpioName`
+%%{
+                }
+            }
+        }
+    }
+%%} 
+ 	
+	%	let syncGen = system.getTemplate("/driverlib/sync/sync.epwm.dot.xdt");
+`syncGen()`
+	%
+
+}

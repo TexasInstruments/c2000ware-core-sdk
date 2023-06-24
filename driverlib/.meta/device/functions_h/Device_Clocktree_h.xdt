@@ -1,0 +1,6 @@
+%let Common = system.getScript("/driverlib/Common.js");
+#define DEVICE_CLK_ECAT_DIV               SYSCTL_ECATCLKOUT_DIV_4
+#define DEVICE_CLK_ENET_DIV               SYSCTL_ENETCLKOUT_DIV_4
+%if (["F2838x","F28P65x","F2807x","F2837xD","F2837xS"].includes(Common.getDeviceName())){
+#define DEVICE_CLK_EPWM_DIV               SYSCTL_EPWMCLK_DIV_2
+%}

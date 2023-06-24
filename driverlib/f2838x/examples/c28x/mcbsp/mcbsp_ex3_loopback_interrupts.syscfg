@@ -1,0 +1,47 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F2838x" --package "337bga" --part "F2838x_337bga" --product "C2000WARE@4.00.00.00"
+ * @versions {"tool":"1.12.0+2295"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const mcbsp  = scripting.addModule("/driverlib/mcbsp.js", {}, false);
+const mcbsp1 = mcbsp.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+mcbsp1.$name                           = "myMCBSP0";
+mcbsp1.enableReceiver                  = true;
+mcbsp1.enableTransmitter               = true;
+mcbsp1.enableSampleRateGenerator       = true;
+mcbsp1.enableFrameSyncLogic            = true;
+mcbsp1.enableTxInterrupt               = true;
+mcbsp1.enableRxInterrupt               = true;
+mcbsp1.frameSyncPulsePeriodDivider     = 320;
+mcbsp1.rxDataDelayBits                 = "MCBSP_DATA_DELAY_BIT_1";
+mcbsp1.txDataDelayBits                 = "MCBSP_DATA_DELAY_BIT_1";
+mcbsp1.txClockSource                   = "MCBSP_INTERNAL_TX_CLOCK_SOURCE";
+mcbsp1.txFrameSyncSource               = "MCBSP_TX_INTERNAL_FRAME_SYNC_SOURCE";
+mcbsp1.srgDataClockDivider             = 15;
+mcbsp1.enableLoopback                  = true;
+mcbsp1.emulationMode                   = "MCBSP_EMULATION_SOFT_STOP";
+mcbsp1.frameSyncPulseWidthDivider      = 1;
+mcbsp1.txInternalFrameSyncSource       = "MCBSP_TX_INTERNAL_FRAME_SYNC_SRG";
+mcbsp1.enableTxFrameSyncErrorDetection = true;
+mcbsp1.registerTxInterrupts            = true;
+mcbsp1.registerRxInterrupts            = true;
+mcbsp1.mcbsp.$assign                   = "MCBSPA";
+mcbsp1.mcbsp.mdxPin.$assign            = "GPIO20";
+mcbsp1.mcbsp.mdrPin.$assign            = "GPIO21";
+mcbsp1.mcbsp.mclkxPin.$assign          = "GPIO86";
+mcbsp1.mcbsp.mclkrPin.$assign          = "GPIO58";
+mcbsp1.mcbsp.mfsxPin.$assign           = "GPIO87";
+mcbsp1.mcbsp.mfsrPin.$assign           = "GPIO59";
+mcbsp1.mcbspTXInt.enableInterrupt      = true;
+mcbsp1.mcbspTXInt.interruptHandler     = "localMcBSPTxINTAISR";
+mcbsp1.mcbspRXInt.enableInterrupt      = true;
+mcbsp1.mcbspRXInt.interruptHandler     = "localMcBSPRxINTAISR";

@@ -1,0 +1,46 @@
+% var nameOfModule = "cputimer";
+% var module = system.modules['/driverlib/' + nameOfModule + '.js'];
+% var freertos = system.modules['/kernel/freertos_tool/FREERTOS'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% var nameOfPeripheral = module.peripheralName;
+//*****************************************************************************
+//
+// CPUTIMER Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_init(){
+%   for(var i = 0; i < module.$instances.length; i++) 
+%   {
+%      var instance = module.$instances[i];
+       % if ((instance.cputimerBase == "CPUTIMER2_BASE") && (freertos != null)) continue;
+	`instance.$name`_init();
+%   }
+}
+
+%if (module != null)
+%{
+	% for(var i = 0; i < module.$instances.length; i++) {
+	    % var instance = module.$instances[i];
+        % if ((instance.cputimerBase == "CPUTIMER2_BASE") && (freertos != null)) continue;
+void `instance.$name`_init(){
+		% let instancePinmux = instance[nameOfModule];
+	CPUTimer_setEmulationMode(`instance.$name`_BASE, `instance.emulationMode`);
+		% if (instance.cputimerBase == "CPUTIMER2_BASE") {
+	CPUTimer_selectClockSource(`instance.$name`_BASE, `instance.clockSource`, `instance.clockPrescaler`);
+		% }
+	CPUTimer_setPreScaler(`instance.$name`_BASE, `instance.timerPrescaler`U);
+	CPUTimer_setPeriod(`instance.$name`_BASE, `instance.timerPeriod`U);
+		% if (instance.enableInterrupt) {
+	CPUTimer_enableInterrupt(`instance.$name`_BASE);
+		% } else {
+	CPUTimer_disableInterrupt(`instance.$name`_BASE);
+		% }
+	CPUTimer_stopTimer(`instance.$name`_BASE);
+
+	CPUTimer_reloadTimerCounter(`instance.$name`_BASE);
+		% if (instance.startTimer) {
+	CPUTimer_startTimer(`instance.$name`_BASE);
+		% }
+}
+	% }
+%}

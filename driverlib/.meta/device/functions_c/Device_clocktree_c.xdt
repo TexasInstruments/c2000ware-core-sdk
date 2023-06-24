@@ -1,0 +1,158 @@
+%let Common = system.getScript("/driverlib/Common.js");
+% var nameOfEcatModule = "ecat";
+% var nameOfCANModule = "can";
+% var ecatModule = system.modules['/driverlib/' + nameOfEcatModule + '.js'];
+% var canModule = system.modules['/driverlib/' + nameOfCANModule + '.js']
+%const OSCCLK_d 		 = system.clockTree.OSCCLK.in;
+%var XTAL_OR_X1 		= system.clockTree.XTAL_OR_X1;
+%var OSCCLKSRCSEL	= system.clockTree.OSCCLKSRCSEL;
+%var DIVSRCSEL	= system.clockTree.DIVSRCSEL;
+%var CANASRCSEL	= system.clockTree.CANABCLKSEL;
+%var CANBSRCSEL	= system.clockTree.CANBBCLKSEL;
+%var oscclkSrc = "SYSCTL_OSCSRC_OSC2";
+%var ecatclkSrc = "SYSCTL_SOURCE_AUXPLL";
+%var enetclkSrc = "SYSCTL_SOURCE_AUXPLL";
+%var canAclkSrc
+%var canBclkSrc
+%var oscclksource
+%var oscclk = 10
+%switch(OSCCLKSRCSEL.inputSelect){
+%	case "INTOSC1":
+%		oscclkSrc 		= "SYSCTL_OSCSRC_OSC1";
+%		oscclksource 	= OSCCLKSRCSEL.inputSelect;
+%		oscclk = 10;
+%		break
+%	case "INTOSC2":
+%		oscclkSrc 	 	= "SYSCTL_OSCSRC_OSC2"
+%		oscclksource 	= OSCCLKSRCSEL.inputSelect
+%		oscclk = 10
+%		break
+%	case "X1_XTAL":
+%		oscclkSrc 	 	= "SYSCTL_OSCSRC_XTAL"
+%		oscclksource 	= XTAL_OR_X1.inputSelect
+%		oscclk 			= XTAL_OR_X1.External_Clock
+%		break
+%}
+%if (["F2838x"].includes(Common.getDeviceName())){
+%switch(DIVSRCSEL.inputSelect){
+%	case "AUXPLLRAWCLK":
+%		ecatclkSrc 		= "SYSCTL_SOURCE_AUXPLL"
+%		enetclkSrc 		= "SYSCTL_SOURCE_AUXPLL"
+%		break
+%	case "PLLSYSCLK":
+%		ecatclkSrc 	 	= "SYSCTL_SOURCE_SYSPLL"
+%		enetclkSrc 	 	= "SYSCTL_SOURCE_SYSPLL"
+%		break
+%}
+%}
+%if (["F280013x", "F280015x", "F28002x", "F28003x", "F28004x", "F2838x", "F2837xD", "F2807x", "F2837xS"].includes(Common.getDeviceName())){
+%switch(CANASRCSEL.inputSelect){
+%	case "SYSCLK":
+%		canAclkSrc 		= "CAN_CLOCK_SOURCE_SYS"
+%		break
+%	case "XTAL":
+%		canAclkSrc 	 	= "CAN_CLOCK_SOURCE_XTAL"
+%		break
+%   case "AUXCLKIN":
+%		canAclkSrc 	 	= "CAN_CLOCK_SOURCE_AUX"
+%		break
+%}
+%}
+%if (["F2838x", "F2837xD", "F2807x", "F2837xS"].includes(Common.getDeviceName())){
+%switch(CANBSRCSEL.inputSelect){
+%	case "SYSCLK":
+%		canBclkSrc 		= "CAN_CLOCK_SOURCE_SYS"
+%		break
+%	case "XTAL":
+%		canBclkSrc 	 	= "CAN_CLOCK_SOURCE_XTAL"
+%		break
+%   case "AUXCLKIN":
+%		canBclkSrc 	 	= "CAN_CLOCK_SOURCE_AUX"
+%		break
+%}
+%}
+%if(["F2807x", "F2837xD", "F2837xS"].includes(Common.getDeviceName())){
+    //
+    // Configure Analog Trim in case of untrimmed or TMX sample
+    //
+    if((SysCtl_getDeviceParametric(SYSCTL_DEVICE_QUAL) == 0x0U)       &&
+       (HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_ANAREFTRIMA) == 0x0U))
+    {
+        Device_configureTMXAnalogTrim();
+    }
+
+%}
+    //
+    // Set up PLL control and clock dividers
+    //
+    SysCtl_setClock(DEVICE_SETCLOCK_CFG);
+
+    //
+    // Make sure the LSPCLK divider is set to the default (divide by 4)
+    //
+    SysCtl_setLowSpeedClock(DEVICE_LSPCLK_CFG);
+
+%if(["F2838x"].includes(Common.getDeviceName())){
+    //
+    // Set up AUXPLL control and clock dividers needed for CMCLK
+    //
+    SysCtl_setAuxClock(DEVICE_AUXSETCLOCK_CFG);
+
+    //
+    // Set up CMCLK to use AUXPLL as the clock source and set the
+    // clock divider to 1.
+    //
+    SysCtl_setCMClk(SYSCTL_CMCLKOUT_DIV_1,SYSCTL_SOURCE_AUXPLL);
+
+%}
+%if(["F2838x"].includes(Common.getDeviceName())){
+    // These asserts will check that the #defines for the clock rates in
+    // device.h match the actual rates that have been configured. If they do
+    // not match, check that the calculations of DEVICE_SYSCLK_FREQ, 
+    // DEVICE_LSPCLK_FREQ and DEVICE_AUXCLK_FREQ are accurate. Some
+    // examples will not perform as expected if these are not correct.
+    //
+%}else{
+    //
+    // These asserts will check that the #defines for the clock rates in
+    // device.h match the actual rates that have been configured. If they do
+    // not match, check that the calculations of DEVICE_SYSCLK_FREQ and
+    // DEVICE_LSPCLK_FREQ are accurate. Some examples will not perform as
+    // expected if these are not correct.
+    //
+%}
+%if(["F2838x", "F2837xD", "F2807x", "F2837xS"].includes(Common.getDeviceName())){
+    //
+    // From ClockTree Configurations
+    //
+    SysCtl_selectOscSourceAuxPLL(`oscclkSrc`);
+%}
+%if(["F280013x", "F280015x", "F28002x", "F28003x", "F28004x", "F2838x", "F2837xD", "F2807x", "F2837xS"].includes(Common.getDeviceName())){
+    CAN_selectClockSource(CANA_BASE, `canAclkSrc`);
+%}
+%if(["F2838x", "F2837xD", "F2807x", "F2837xS"].includes(Common.getDeviceName())){
+    CAN_selectClockSource(CANB_BASE, `canBclkSrc`); 
+    SysCtl_setEPWMClockDivider(DEVICE_CLK_EPWM_DIV);
+%}
+%if(["F2838x"].includes(Common.getDeviceName())){
+    SysCtl_setECatClk(DEVICE_CLK_ECAT_DIV, `ecatclkSrc`, 0x1U);
+%}
+%if(["F2838x"].includes(Common.getDeviceName())){
+    SysCtl_setEnetClk(DEVICE_CLK_ENET_DIV, `enetclkSrc`);
+%}
+    ASSERT(SysCtl_getClock(DEVICE_OSCSRC_FREQ) == DEVICE_SYSCLK_FREQ);
+    ASSERT(SysCtl_getLowSpeedClock(DEVICE_OSCSRC_FREQ) == DEVICE_LSPCLK_FREQ);
+%if(["F2838x"].includes(Common.getDeviceName())){
+    ASSERT(SysCtl_getAuxClock(DEVICE_OSCSRC_FREQ) == DEVICE_AUXCLK_FREQ);
+%}
+#ifndef _FLASH
+    //
+    // Call Device_cal function when run using debugger
+    // This function is called as part of the Boot code. The function is called
+    // in the Device_init function since during debug time resets, the boot code
+    // will not be executed and the gel script will reinitialize all the
+    // registers and the calibrated values will be lost.
+    // Sysctl_deviceCal is a wrapper function for Device_Cal
+    //
+    SysCtl_deviceCal();
+#endif

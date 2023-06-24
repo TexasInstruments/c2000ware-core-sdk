@@ -1,0 +1,28 @@
+/**
+ * Import the modules used in this configuration.
+ */
+const gpio  = scripting.addModule("/driverlib/gpio.js", {}, false);
+const gpio1 = gpio.addInstance();
+const spi   = scripting.addModule("/driverlib/spi.js", {}, false);
+const spi1  = spi.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+gpio1.$name           = "SPI_CS_GPIO";
+gpio1.direction       = "GPIO_DIR_MODE_OUT";
+gpio1.gpioPin.$assign = "GPIO11";
+
+spi1.$name                   = "SPI_EEPROM";
+spi1.useCase                 = "CUSTOM";
+spi1.useInterfacePins        = ["SPI@_CLK","SPI@_SIMO","SPI@_SOMI"];
+spi1.transferProtocol        = "SPI_PROT_POL0PHA1";
+spi1.mode                    = "SPI_MODE_CONTROLLER";
+spi1.bitRate                 = 1000000;
+spi1.dataWidth               = "8";
+spi1.useInterrupts           = false;
+spi1.useFifo                 = false;
+spi1.spi.$assign             = "SPIA";
+spi1.spi.spi_picoPin.$assign = "GPIO16";
+spi1.spi.spi_pociPin.$assign = "GPIO17";
+spi1.spi.spi_clkPin.$assign  = "GPIO56";

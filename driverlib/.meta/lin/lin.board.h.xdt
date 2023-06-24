@@ -1,0 +1,17 @@
+% var module = system.modules['/driverlib/lin.js'];
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// LIN Configurations
+//
+//*****************************************************************************
+% for(var i = 0; i < module.$instances.length; i++) {
+	% var instance = module.$instances[i];
+	% let lin        	= instance.lin;
+	% let solution    		= lin.$solution;
+	%let peripheral 	 	= system.deviceData.peripherals[solution.peripheralName];
+#define `instance.$name`_BASE `peripheral.name`_BASE
+void `instance.$name`_init();
+% }
+%}

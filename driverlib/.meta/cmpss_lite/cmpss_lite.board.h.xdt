@@ -1,0 +1,15 @@
+% var moduleName = "cmpss_lite"
+% var module = system.modules['/driverlib/' + moduleName + '.js'];
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// CMPSS-LITE Configurations
+//
+//*****************************************************************************
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+#define `instance.$name`_BASE `instance.cmpssLiteBase`
+void `instance.$name`_init();
+    % }
+%}

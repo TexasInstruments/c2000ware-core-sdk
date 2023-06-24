@@ -1,0 +1,30 @@
+% let Common   = system.getScript("/driverlib/Common.js");
+% var module = system.modules['/driverlib/xint.js'];
+//*****************************************************************************
+//
+// XINT Configurations
+//
+//*****************************************************************************
+void `module.peripheralName`_init(){
+%   for(var i = 0; i < module.$instances.length; i++) 
+%   {
+%      var instance = module.$instances[i];
+	`instance.$name`_init();
+%   }
+}
+
+%if (module != null)
+%{
+	% for(var i = 0; i < module.$instances.length; i++) {
+		% var instance = module.$instances[i];
+void `instance.$name`_init(){
+	GPIO_setInterruptType(`instance.$name`, `instance.intType`);
+	GPIO_setInterruptPin(`instance.$name.substring(0, instance.$name.length - "_XINT".length)`, `instance.$name`);
+		% if (instance.enableInt){
+	GPIO_enableInterrupt(`instance.$name`);
+		% } else {
+	GPIO_disableInterrupt(`instance.$name`);
+		% }
+}
+	%}
+%}

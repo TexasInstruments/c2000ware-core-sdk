@@ -1,0 +1,38 @@
+% var module = system.modules['/driverlib/dcdc.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% var nameOfModule = "dcdc";
+% var nameOfPeripheral = module.peripheralName;
+//*****************************************************************************
+//
+// DCDC Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral.replace("-","_")`_init(){
+%if (module != null)
+%{
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+    //
+    // `instance.$name` initialization
+    //
+        % if (instance.enableDCDC) {
+    bool enable_status = ASysCtl_enableDCDC();
+    if (!enable_status)
+    {
+        //
+        // Error enabling the DC-DC module
+        //
+        ESTOP0;
+    }
+        % } else {
+    ASysCtl_disableDCDC();
+        % }
+        % if (instance.lockDCDC) {
+    ASysCtl_lockDCDC();
+        % }
+        % let instancePinmux = instance[nameOfModule];
+        % let solution    = instancePinmux.$solution;
+        % let peripheral  = system.deviceData.peripherals[solution.peripheralName];
+    %}
+%}
+}

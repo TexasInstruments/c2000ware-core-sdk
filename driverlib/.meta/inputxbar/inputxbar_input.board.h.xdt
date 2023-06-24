@@ -1,0 +1,30 @@
+% var moduleName = "inputxbar_input"
+% var module = system.modules['/driverlib/' + moduleName + '.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% var nameOfPeripheral = module.peripheralName;
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// INPUTXBAR Configurations
+//
+//*****************************************************************************
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        % let modInst  = instance[moduleName];
+        % var inputs = "";
+        % var gpioName = instance.inputxbarGpio;
+        % var gpioNumber = "";
+        % if (gpioName.includes("IO")){
+            %   var aioOrGpio = (gpioName.includes("AIO"))?3:4;
+            %   gpioNumber = gpioName.substring(aioOrGpio);
+            %   gpioNumber = Common.gpioNameToNumber(gpioNumber);
+        %   } else {
+            %   gpioNumber = gpioName;
+        % }
+#define `instance.$name`_SOURCE `gpioNumber`
+#define `instance.$name`_INPUT `instance.inputxbarInput`
+void `instance.$name`_init();
+    % }
+%}
+%

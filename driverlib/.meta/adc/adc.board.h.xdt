@@ -1,0 +1,63 @@
+% var moduleName = "adc"
+% var module = system.modules['/driverlib/' + moduleName + '.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% var device_driverlib_peripheral = system.getScript("/driverlib/device_driverlib_peripherals/" + Common.getDeviceName().toLowerCase() + "_adc.js");
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// ADC Configurations
+//
+//*****************************************************************************
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+#define `instance.$name`_BASE `instance.adcBase`
+#define `instance.$name`_RESULT_BASE `instance.adcBase.replace("_BASE", "RESULT_BASE")`
+        % for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){ 
+            % var currentSOC = device_driverlib_peripheral.ADC_SOCNumber[socIndex].name
+            % var socNumber = (currentSOC).replace(/[^0-9]/g,'')
+            % if((instance.enabledSOCs).includes(currentSOC)){ 
+                % var soc_name = instance["soc" + socIndex.toString() + "Name"].replace(/\s/g, '')
+                % if (soc_name != "")
+                % {
+                    % if (!instance["soc" + socIndex.toString() + "IndependentNameMode"])
+                    % {
+#define `instance.$name`_`soc_name` ADC_SOC_NUMBER`socNumber`
+#define `instance.$name`_FORCE_`soc_name` ADC_FORCE_SOC`socNumber`
+#define `instance.$name`_SAMPLE_WINDOW_`soc_name` `instance["soc" + socIndex.toString() + "SampleTime"]`
+#define `instance.$name`_TRIGGER_SOURCE_`soc_name` `instance["soc" + socIndex.toString() + "Trigger"]`
+#define `instance.$name`_CHANNEL_`soc_name` `instance["soc" + socIndex.toString() + "Channel"]`
+                    % } else {
+#define `soc_name` ADC_SOC_NUMBER`socNumber`
+#define `soc_name`_FORCE ADC_FORCE_SOC`socNumber`
+#define `soc_name`_ADC_BASE `instance.adcBase`
+#define `soc_name`_RESULT_BASE `instance.adcBase.replace("_BASE", "RESULT_BASE")`
+#define `soc_name`_SAMPLE_WINDOW `instance["soc" + socIndex.toString() + "SampleTime"]`
+#define `soc_name`_TRIGGER_SOURCE `instance["soc" + socIndex.toString() + "Trigger"]`
+#define `soc_name`_CHANNEL `instance["soc" + socIndex.toString() + "Channel"]`
+                    % }
+                % }
+            % }
+        % }
+        % for(var ppbIndex in device_driverlib_peripheral.ADC_PPBNumber){ 
+            % var currentPPB = device_driverlib_peripheral.ADC_PPBNumber[ppbIndex].name
+            % var ppbNumber  = (currentPPB).replace(/[^0-9]/g,'')
+            % if((instance.enabledPPBs).includes(currentPPB)){ 
+                % var ppb_name = instance["ppb" + ppbNumber.toString() + "Name"].replace(/\s/g, '')
+                % if (ppb_name != "")
+                % {
+                    % if (!instance["ppb" + ppbNumber.toString() + "IndependentNameMode"])
+                    % {
+#define `instance.$name`_`ppb_name` ADC_PPB_NUMBER`ppbNumber`
+#define `instance.$name`_SOC_`ppb_name` `instance["ppb" + ppbNumber.toString() + "SOCNumber"]`
+                    % } else {
+#define `ppb_name` ADC_PPB_NUMBER`ppbNumber`
+#define `ppb_name`_SOC `instance["ppb" + ppbNumber.toString() + "SOCNumber"]`
+                    % }
+                % }
+            % }
+        % }
+void `instance.$name`_init();
+
+    % }
+%}

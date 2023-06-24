@@ -1,0 +1,217 @@
+%%{
+var module = system.modules['/driverlib/uart.js'];
+let Common   = system.getScript("/driverlib/Common.js");
+var nameOfModule = "uart";
+var nameOfPeripheral = module.peripheralName;
+let pinmuxOnlyDevices = ["F2838x"];
+var data = []
+
+/** given an array of [[name1:desc1],[name2:desc2],[name3:desc3]] pairs, return a string of 
+ * the format:
+ * (name1 | // desc1
+ *  name2 | // desc2
+ *  name3) // desc3
+ */
+function orSeparatedVars(arr)
+{
+    var s = ""
+    for (var i=0; i<arr.length; i++)
+    {
+        var valAndDesc          = arr[i];
+        var configVal           = undefined;
+        var configDescription   = undefined;
+        // when user provides a list, split into a val and description strings
+        if(Object.prototype.toString.call(valAndDesc) === "[object Array]")
+        {
+            configVal           = valAndDesc[0];
+            configDescription   = valAndDesc[1];
+        }
+        // if user just provides a string, then just provide the val
+        if(Object.prototype.toString.call(valAndDesc) === "[object String]")
+        {
+            configVal           = valAndDesc;
+        }
+        
+        // start the string with a parentheses
+        if (i==0){s += "(";}
+        // add the value
+        s += configVal;
+
+        // if it's not the last line and not a single entry, always add an or symbol
+        if (i!=(arr.length-1) && arr.length>1){
+            s += " |";
+        }
+
+        // end the string with parentheses if this is the last line
+        if (i==(arr.length-1)){
+            s += ")";
+        }
+
+        // add the description as a comment after all the symbols 
+        // (if it exists)
+        if (configDescription)
+        {
+            s += " // " + configDescription;
+        }
+
+        // if it's not the last line, add a newline and spaces to align text
+        if (i!=(arr.length-1)){
+            s += "\n             ";
+        }
+    }
+    return s;
+}
+
+// determine which devices should get full configurability
+if (!pinmuxOnlyDevices.includes(Common.getDeviceName()))
+{
+    // get the data for all modules
+    for (var inst of module.$instances)
+    {
+        // store the data for this instance in an object
+        var idat = {};
+        
+        idat['BASE']    = inst.$name + "_BASE";
+        idat['baud']    = inst.baud;
+        idat['uartclk'] = parseInt(Common.SYSCLK_getMaxMHz())*1e6;
+        
+        //******************************************************************
+        // CONFIG STRING FOR UART_setConfig()
+        // gather up all the configuration names based on sysconfig input
+        idat['configArr']    = [];
+        idat['configArr'].push([inst.wlen, "word length"]);
+        idat['configArr'].push([inst.stp2, "stop bits"]);
+        
+        // PARITY SELECTION
+        // stick parity 0
+        if (inst.sps && inst.stickParityVal == "0")
+        {
+            idat['configArr'].push(["UART_CONFIG_PAR_ZERO", "stick parity zero"]);
+        }
+        // stick parity 1
+        else if (inst.sps && inst.stickParityVal == "1")
+        {
+            idat['configArr'].push(["UART_CONFIG_PAR_ONE", "stick parity one"]);
+        }
+        // if normal parity, then add that instead of stick parity
+        else if (inst.pen)
+        {
+            idat['configArr'].push([inst.eps, "Parity"]);
+        }
+        // convert the array to a string
+        idat['configStr'] = "";
+        idat['configStr'] = orSeparatedVars(idat['configArr']);
+
+        //******************************************************************
+        // FIFO RELATED ITEMS
+        if (inst.fen)
+        {
+            idat.fen = true;
+        }
+        // set txiflsel to default UART_FIFO_TX4_8 value if EOT is selected
+        // (because txiflsel gets ignored by UART when EOT is set anyways)
+        if (inst.txiflsel=="EOT")
+        {
+            idat.txiflsel = "UART_FIFO_TX4_8";
+        }
+        // if there's another value, use that value
+        else
+        {
+            idat.txiflsel = inst.txiflsel;
+        }
+
+        // set rxiflsel
+        idat.rxiflsel = inst.rxiflsel;
+        
+        //******************************************************************
+        // INTERRUPT RELATED ITEMS
+        var allInts = inst.enabledInterrupts;
+        // add in the EOT interrupt flag if it was chosen in the tx fifo dropdown
+        if (inst.txiflsel=="EOT")
+        {
+            allInts = allInts.concat("UART_INT_EOT");
+        }
+        idat.enabledInterruptsStr = orSeparatedVars(allInts);
+
+        // store the results in the data object
+        data[inst.$name] = idat;
+    }
+}
+%%}
+
+//*****************************************************************************
+//
+// UART Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_init(){
+%   for(var inst of module.$instances) 
+%   {
+    `inst.$name`_init();
+%   }
+}
+
+% if (module != null)
+% {
+    % for(var inst of module.$instances) 
+    % {
+void `inst.$name`_init(){
+    % // determine which devices should get full configurability
+    % if (data && data[inst.$name])
+    % {
+        % idat = data[inst.$name]
+        //
+        // Set `inst.$name` baud rate and configuration
+        //
+        UART_setConfig(
+            `idat['BASE']`, // base address
+            `idat['uartclk']`, // UART source clock
+            `idat['baud']`, // baud rate
+            `idat['configStr']`
+        );
+        % if (inst.fen)
+        % {
+        
+        //
+        // FIFO enable
+        //
+        UART_enableFIFO(`idat['BASE']`);
+            % if (inst.enInterrupt)
+            % {
+        
+        //
+        // FIFO interrupt levels
+        //
+        UART_setFIFOLevel(`idat['BASE']`, `idat.txiflsel`, `idat.rxiflsel`);
+            % }
+        % }
+        % if (inst.enInterrupt)
+        % {
+        
+        //
+        // Configure interrupts
+        //
+        UART_clearInterruptStatus(`idat['BASE']`, 0xFFFF);
+        UART_enableInterrupt(`idat['BASE']`,
+            `idat.enabledInterruptsStr`
+        );
+        % }
+        % if (inst.loopback)
+        % {
+        
+        //
+        // Enable loopback mode
+        //
+        UART_enableLoopback(`idat['BASE']`);
+        % }
+        
+        % // NOTE: replace this code with UART_enableModuleNonFIFO when this
+        % // function is created
+        //
+        // Enable RX, TX, and the UART.
+        //
+        HWREG(`idat['BASE']` + UART_O_CTL) |= (UART_CTL_UARTEN | UART_CTL_TXE | UART_CTL_RXE);
+    % }
+}
+    % }
+% }

@@ -1,0 +1,57 @@
+% var module = system.modules['/driverlib/sync.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% var nameOfModule = "sync";
+% var nameOfPeripheral = module.peripheralName;
+//*****************************************************************************
+//
+// SYNC Scheme Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_init(){
+%if (module != null)
+%{
+	% var stat = module.$static
+	SysCtl_setSyncOutputConfig(`stat.syncOutSource`);
+	% if (stat.epwm1SyncInSource) {
+	//
+	// For EPWM1, the sync input is: `stat.epwm1SyncInSource`
+	//
+	% }
+	% if (stat.epwm1SyncInSource) {
+	SysCtl_setSyncInputConfig(SYSCTL_SYNC_IN_EPWM4, `stat.epwm4SyncInSource`);
+	% }
+	% if (stat.epwm7SyncInSource) {
+	SysCtl_setSyncInputConfig(SYSCTL_SYNC_IN_EPWM7, `stat.epwm7SyncInSource`);
+	% }
+	% if (stat.epwm10SyncInSource) {
+	SysCtl_setSyncInputConfig(SYSCTL_SYNC_IN_EPWM10, `stat.epwm10SyncInSource`);
+	% }
+	% if (stat.ecap1SyncInSource) {
+	SysCtl_setSyncInputConfig(SYSCTL_SYNC_IN_ECAP1, `stat.ecap1SyncInSource`);
+	% }
+	% if (stat.ecap4SyncInSource) {
+	SysCtl_setSyncInputConfig(SYSCTL_SYNC_IN_ECAP4, `stat.ecap4SyncInSource`);
+	% }
+	% if (stat.ecap6SyncInSource) {
+	SysCtl_setSyncInputConfig(SYSCTL_SYNC_IN_ECAP6, `stat.ecap6SyncInSource`);
+	% }
+	% if (stat.ADCSOCAOutputSelect) {
+	//
+	// SOCA
+	//
+	SysCtl_enableExtADCSOCSource(`(stat.ADCSOCAOutputSelect.length > 0)?stat.ADCSOCAOutputSelect.toString().replace(/,/gi, "|"):0`);
+	% }
+	% if (stat.ADCSOCBOutputSelect) {
+	//
+	// SOCB
+	//
+	SysCtl_enableExtADCSOCSource(`(stat.ADCSOCBOutputSelect.length > 0)?stat.ADCSOCBOutputSelect.toString().replace(/,/gi, "|"):0`);
+	% }
+	% if (stat.ADCSOCOutputLock) {
+	SysCtl_lockExtADCSOCSelect();
+	% }
+	% if (stat.syncOutLock) {
+	SysCtl_lockSyncSelect();
+	% }
+%}
+}

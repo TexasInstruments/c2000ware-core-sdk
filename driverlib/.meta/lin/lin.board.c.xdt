@@ -1,0 +1,94 @@
+% var module = system.modules['/driverlib/lin.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% var nameOfModule = "lin";
+% var nameOfPeripheral = module.peripheralName;
+//*****************************************************************************
+//
+// LIN Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_init(){
+%   for(var i = 0; i < module.$instances.length; i++) 
+%   {
+%      var instance = module.$instances[i];
+	`instance.$name`_init();
+%   }
+}
+
+%if (module != null)
+%{
+	% for(var i = 0; i < module.$instances.length; i++) {
+	    % var instance = module.$instances[i];
+void `instance.$name`_init(){
+    LIN_initModule(`instance.$name`_BASE);
+     % if (!instance.useDefaultLin){
+	//
+    // Enter Software Reset State
+    //
+    LIN_enterSoftwareReset(`instance.$name`_BASE);
+    LIN_setLINMode(`instance.$name`_BASE, `instance.linMode`);
+    LIN_setCommMode(`instance.$name`_BASE, `instance.linCommMode`);
+    LIN_setDebugSuspendMode(`instance.$name`_BASE, `instance.linDebugMode`);
+    LIN_setChecksumType(`instance.$name`_BASE, `instance.linChecksumType`);
+    LIN_setMessageFiltering(`instance.$name`_BASE, `instance.linMessageFilter`);
+	% if (instance.enableParity)
+	% {
+    LIN_enableParity(`instance.$name`_BASE);
+	%} else {
+	LIN_disableParity(`instance.$name`_BASE);
+	%}
+    //
+    // Finally exit SW reset and enter LIN ready state
+    //
+    LIN_exitSoftwareReset(`instance.$name`_BASE);
+     %}
+        % if (instance.enableLoopback){
+    //
+    // Enable LIN test mode
+    	% if (instance.loopbackMode == "LIN_TEST_INTERNAL")
+    	% {
+    //
+    // Enable Internal Loopback mode
+    //
+    LIN_enableIntLoopback(`instance.$name`_BASE);
+    	%} else {
+    //
+    // Enable External Loopback mode
+    //
+	LIN_enableExtLoopback(`instance.$name`_BASE, `instance.loopbackType`, `instance.analogLoopbackPath`);
+    	%}
+        %}
+      % if (instance.enableInterrupt){
+    //
+    // Enable LIN Interrupts
+    //
+        % let x = String(instance.interruptFlags).split(",").join("|");
+        % if (!x) { x = "0";}
+    LIN_enableInterrupt(`instance.$name`_BASE, `x`);
+            % for (var int_index in instance.interruptLine)
+               %{
+    //
+    // Set the interrupt priority line
+    //
+               % if (instance.interruptLine[int_index] == "LIN_INTERRUPT_LINE0")
+               %{
+               % let y = String(instance.interruptPriorityLine0).split(",").join("|");
+        	   % if (!y) { y = "LIN_INT_ALL";}
+    LIN_setInterruptLevel0(`instance.$name`_BASE, `y`);           
+               %}
+               %else if (instance.interruptLine[int_index] == "LIN_INTERRUPT_LINE1")
+               %{
+               % let y = String(instance.interruptPriorityLine1).split(",").join("|");
+        	   % if (!y) { y = "0";}
+    LIN_setInterruptLevel1(`instance.$name`_BASE, `y`);           
+               %}
+    LIN_enableGlobalInterrupt(`instance.$name`_BASE, `instance.interruptLine[int_index]`);
+    LIN_clearGlobalInterruptStatus(`instance.$name`_BASE, `instance.interruptLine[int_index]`);            
+               %}
+            %}   
+		% let instancePinmux = instance[nameOfModule];
+		% let solution    = instancePinmux.$solution;
+		% let peripheral  = system.deviceData.peripherals[solution.peripheralName];
+}
+	%}
+%}

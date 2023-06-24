@@ -1,0 +1,36 @@
+
+/**
+ * Import the modules used in this configuration.
+ */
+const ecap       = scripting.addModule("/driverlib/ecap.js", {}, false);
+const ecap1      = ecap.addInstance();
+const gpio       = scripting.addModule("/driverlib/gpio.js", {}, false);
+const gpio1      = gpio.addInstance();
+const inputxbar  = scripting.addModule("/driverlib/inputxbar.js", {}, false);
+const inputxbar1 = inputxbar.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+ecap1.$name                  = "myECAP0";
+ecap1.enableInterrupt        = true;
+ecap1.captureMode            = "ECAP_ONE_SHOT_CAPTURE_MODE";
+ecap1.eventStop              = "ECAP_EVENT_4";
+ecap1.eventOnePolarity       = "ECAP_EVNT_FALLING_EDGE";
+ecap1.eventThreePolarity     = "ECAP_EVNT_FALLING_EDGE";
+ecap1.interruptSourceCapture = ["ECAP_ISR_SOURCE_CAPTURE_EVENT_4"];
+ecap1.counterResetOnEvent    = ["ECAP_EVENT_1","ECAP_EVENT_2","ECAP_EVENT_3","ECAP_EVENT_4"];
+ecap1.enableLoadCounter      = true;
+ecap1.reArm                  = true;
+ecap1.ecapInput              = "ECAP_INPUT_INPUTXBAR7";
+ecap1.registerInterrupts     = true;
+ecap1.ecapInt.enableInterrupt = true;
+
+gpio1.$name           = "myGPIO0";
+gpio1.qualMode        = "GPIO_QUAL_ASYNC";
+gpio1.gpioPin.$assign = "GPIO16";
+
+inputxbar1.$name          = "myINPUTXBAR0";
+inputxbar1.inputsUsed     = ["inputxbar7Gpio"];
+inputxbar1.inputxbar7Gpio = "GPIO16";
+

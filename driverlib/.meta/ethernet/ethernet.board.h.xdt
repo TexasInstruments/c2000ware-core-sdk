@@ -1,0 +1,16 @@
+% var module = system.modules['/driverlib/ethernet.js'];
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// ETHERNET Configurations
+//
+//*****************************************************************************
+% for(var i = 0; i < module.$instances.length; i++) {
+	% var instance = module.$instances[i];
+	% let ethernet        	= instance.ethernet;
+	% let solution    		= ethernet.$solution;
+	%let peripheral 	 	= system.deviceData.peripherals[solution.peripheralName];
+void `instance.$name`_init();
+% }
+%}

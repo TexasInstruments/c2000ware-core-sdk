@@ -1,0 +1,115 @@
+%%{
+var module = system.modules['/driverlib/dac.js'];
+let Common   = system.getScript("/driverlib/Common.js");
+var nameOfModule = "dac";
+var nameOfPeripheral = module.peripheralName;
+if( ["F28004x", "F28003x"].includes(Common.getDeviceName())){
+	var staticModule = system.modules['/driverlib/asysctl.js']
+	var stat = staticModule.$static
+}
+var varDelay = 500
+%%}
+//*****************************************************************************
+//
+// DAC Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_init(){
+%   for(var i = 0; i < module.$instances.length; i++) 
+%   {
+%      var instance = module.$instances[i];
+	`instance.$name`_init();
+%   }
+}
+
+%{
+%if (module != null)
+%{
+	% for(var i = 0; i < module.$instances.length; i++) {
+	    % var instance = module.$instances[i];
+		% var baseName = instance.$name + "_BASE";
+void `instance.$name`_init(){
+	//
+	// Set DAC reference voltage.
+	//
+	DAC_setReferenceVoltage(`baseName`, `instance.referenceVoltage`);
+			%if(["F28004x", "F28003x"].includes(Common.getDeviceName())&& (instance.referenceVoltage == "DAC_REF_ADC_VREFHI")){
+	//
+	// Set DAC gain mode.
+	//
+	DAC_setGainMode(`baseName`, `instance.gainMode`);
+			%}	
+	//
+	// Set DAC load mode.
+	//
+	DAC_setLoadMode(`baseName`, `instance.loadMode`);
+			% if (instance.loadMode == "DAC_LOAD_PWMSYNC") {
+	//
+	// Set DAC ePWMSYNC signal.
+	//
+	//  - ePWM module must be configured before using here.
+	//
+	DAC_setPWMSyncSignal(`baseName`, `instance.ePWMSyncSignal`U);
+			%}
+			% if (instance.enableOutput) {
+	//
+	// Enable the DAC output
+	//
+	DAC_enableOutput(`baseName`);
+			% } else {
+	//
+	// Disable the DAC output
+	//
+	DAC_disableOutput(`baseName`);
+			%}
+	//
+	// Set the DAC shadow output
+	//
+	DAC_setShadowValue(`baseName`, `instance.shadowValue`U);
+			% // preparing `registersToLockOR` for DAC_lockRegister()
+			% if (instance.lockedRegisters.length>0)
+			%{
+%%{		
+			var regCount = 0
+			var registersToLockOR = "("
+			for (var registerToLock in instance.lockedRegisters)
+			{
+				if (regCount == 0)
+				{
+					registersToLockOR += instance.lockedRegisters[regCount]
+				}
+				else
+				{
+					registersToLockOR += " | " + instance.lockedRegisters[regCount]
+				}
+				regCount++
+			}
+			registersToLockOR += ")"
+%%}
+	//
+	// Lock write-access to DAC Register
+	//
+	DAC_lockRegister(`baseName`, `registersToLockOR`);
+			%}
+
+	%%{
+	//
+	// delay depends on analog reference
+	//
+	if( ["F28004x", "F28003x"].includes(Common.getDeviceName())){
+	 if(stat.analogReference == "EXTERNAL"){
+		varDelay = 500
+		}
+	else{
+		varDelay = 5000
+		}
+	}
+	%%}
+//
+	// Delay for buffered DAC to power up.
+	//
+	DEVICE_DELAY_US(`varDelay`);
+}
+	%}	 
+%}
+%}

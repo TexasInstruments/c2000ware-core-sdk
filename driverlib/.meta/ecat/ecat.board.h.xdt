@@ -1,0 +1,16 @@
+% var module = system.modules['/driverlib/ecat.js'];
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// ECAT Configurations
+//
+//*****************************************************************************
+% for(var i = 0; i < module.$instances.length; i++) {
+	% var instance = module.$instances[i];
+	% let ecat        	= instance.ecat;
+	% let solution    		= ecat.$solution;
+	%let peripheral 	 	= system.deviceData.peripherals[solution.peripheralName];
+void `instance.$name`_init();
+% }
+%}

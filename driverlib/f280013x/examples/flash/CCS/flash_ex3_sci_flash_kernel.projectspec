@@ -1,0 +1,41 @@
+<projectSpec>
+  <project
+        name="flash_kernel_ex3_sci_flash_kernel"
+        device="TMS320F2800137"
+        cgtVersion="22.6.0.LTS"
+        launchWizard="False"
+        enableHexTool="True"
+        linkerCommandFile=""
+        outputFormat="ELF"
+		    postBuildStep="&quot;${CG_TOOL_HEX}&quot; &quot;${BuildArtifactFileName}&quot; -boot -sci8 -a -o &quot;${BuildArtifactFileBaseName}.txt&quot;"
+        >
+    <configuration name="CPU1_RAM" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} -I${C2000WARE_DLIB_INC} -I${BootROM_INC_PATH} -I${FlashAPI_INCLUDE_ROOT} -v28 -ml -mt --define=CPU1 --cla_support=cla2 --float_support=fpu32 --define=CPU1 --diag_warning=225  --diag_suppress=10063" linkerBuildOptions="-I${FlashAPI_LIB_ROOT} --entry_point code_start --stack_size=0x200 --heap_size=0x100" hexBuildOptions="--boot --sci8 --ascii --outfile=${BuildArtifactFileBaseName}.txt" />
+    <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../../f280013x/driverlib" scope="project"/>
+    <pathVariable name="C2000WARE_DLIB_INC" path="../../../../f280013x/driverlib/inc" scope="project"/>
+    <pathVariable name="BootROM_INC_PATH" path="../../../../../libraries/boot_rom/f280013x/revb/rom_sources/F280013x_ROM/bootROM/include" scope="project"/>
+    <pathVariable name="FlashAPI_INCLUDE_ROOT" path="../../../../../libraries/flash_api/f280013x/include/FlashAPI" scope="project"/>
+    <pathVariable name="FlashAPI_LIB_ROOT" path="../../../../../libraries/flash_api/f280013x/lib" scope="project" />
+    <file action="copy" path="../../../../../libraries/flash_api/f280013x/lib/FAPI_F280013x_EABI_v2.00.00.lib" targetDirectory="" />
+    <file action="copy" path="../../../../../device_support/f280013x/common/include/driverlib.h" targetDirectory="device"/>
+    <file action="copy" path="../../../../../device_support/f280013x/common/include/device.h" targetDirectory="device"/>
+    <file action="copy" path="../../../../../device_support/f280013x/common/source/device.c" targetDirectory="device"/>
+    <file action="copy" path="../../../../../device_support/f280013x/common/targetConfigs/TMS320F2800137.ccxml" targetDirectory="targetConfigs" />
+    <file action="copy" path="../../../../../device_support/f280013x/common/cmd/280013x_flash_kernel_ram_lnk.cmd" targetDirectory="" applicableConfigurations="CPU1_RAM"  />
+    <file action="link" path="../../../../../driverlib/f280013x/driverlib/ccs/Debug/driverlib.lib" targetDirectory=""/>
+    <file action="copy" path="../../../../../driverlib/f280013x/driverlib/" targetDirectory="device" excludeFromBuild="True"/>
+    <file action="copy" path="../cpu1bootrom.h"/>
+    <file action="copy" path="../../../../../libraries/boot_rom/f280013x/revb/rom_sources/F280013x_ROM/bootROM/include/cpu1brom_boot_modes.h"/>
+    <file action="copy" path = "../flash_programming_f280013x.h"/>
+    <file action="copy" path="../flash_kernel_ex3_codestartbranch.asm" targetDirectory="" applicableConfigurations="CPU1_RAM"/>
+    <file action="copy" path="../flash_kernel_ex3_sci_flash_kernel.c" targetDirectory=""/>
+    <file action="copy" path="../flash_kernel_ex3_boot.c" targetDirectory="" applicableConfigurations="CPU1_RAM" />
+    <file action="copy" path="../flash_kernel_ex3_erase.c" targetDirectory="" applicableConfigurations="CPU1_RAM" />
+    <file action="copy" path="../flash_kernel_ex3_erase.h" targetDirectory="" applicableConfigurations="CPU1_RAM"/>
+    <file action="copy" path="../flash_kernel_ex3_sci_get_function.c" targetDirectory="" />
+    <file action="copy" path="../flash_kernel_ex3_verify.h" targetDirectory="" applicableConfigurations="CPU1_RAM"/>
+    <file action="copy" path="../flash_kernel_ex3_verify.c" targetDirectory="" applicableConfigurations="CPU1_RAM"/>
+    <file action="copy" path="../flash_kernel_ex3_sci_boot.c" targetDirectory="" applicableConfigurations="CPU1_RAM" />
+    <file action="copy" path="../flash_kernel_ex3_commands.h" targetDirectory="" />
+    <file action="copy" path="../../../driverlib/dcsm.c" targetDirectory="" applicableConfigurations="CPU1_RAM"  />
+  </project>
+</projectSpec>

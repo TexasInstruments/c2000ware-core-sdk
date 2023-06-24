@@ -1,0 +1,244 @@
+% var module = system.modules['/driverlib/sysctl.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% let device_driverlib_peripheral = 
+%    system.getScript("/driverlib/device_driverlib_peripherals/" + 
+%        Common.getDeviceName().toLowerCase() + "_sysctl.js");
+% var nameOfModule = "sysctl";
+% var nameOfPeripheral = module.peripheralName;
+% if ((args[1] != null) || ((args[1] == null) && (module != null) && (!module.$static.splitCode))) {
+//*****************************************************************************
+//
+// SYSCTL Configurations
+//
+//*****************************************************************************
+%var selectAccessOption = device_driverlib_peripheral.SysCtl_AccessController
+%if(!selectAccessOption)
+%{
+%    selectAccessOption = device_driverlib_peripheral.SysCtl_AccessMaster
+%}         
+%
+%var selectControllerOption = device_driverlib_peripheral.SYSCTL_SEC_CONTROLLER;
+%if(!selectControllerOption)
+%{
+%    selectControllerOption = device_driverlib_peripheral.SYSCTL_SEC_MASTER;
+%}
+void `nameOfPeripheral`_init(){
+%if (module != null)
+%{
+%   var stat = module.$static
+	//
+    // `nameOfModule` initialization
+	//
+%   for (var gpioIndex = 0; gpioIndex < stat["lpmWakeUpPin"].length; gpioIndex++) {
+    SysCtl_enableLPMWakeupPin(`stat["lpmWakeUpPin"][gpioIndex]`);
+%   }
+%   if (!["F28004x"].includes(Common.getDeviceName())) {
+    SysCtl_setStandbyQualificationPeriod(`stat["standbyQualificationPeriod"]`);
+%   }
+%   if (stat["enableNMIGlobalInterrupt"]) {
+    SysCtl_enableNMIGlobalInterrupt();
+%   }
+%   if (device_driverlib_peripheral.SysCtl_SelType){
+%       var enaleSeltype = true;
+%       if (["F2837xD", "F2838x"].includes(Common.getDeviceName()) && Common.isContextCPU2()){
+%           enaleSeltype = false;
+%       }
+%       if(enaleSeltype == true){
+%           device_driverlib_peripheral.SysCtl_SelType.forEach((element, index) => 
+%           {
+    SysCtl_configureType(`element.name`, `stat["selType_" + element.name]?1:0`, `stat["selTypeLock_" + element.name]?1:0`);
+%           });
+%       }
+%   }
+%   if (["F2838x"].includes(Common.getDeviceName()) && Common.isContextCPU1()){
+    SysCtl_setSemOwner(`stat["semOwner"]`);
+%       if (stat["enableCMtoCPU1NMI"].length > 0) {
+    SysCtl_enableCMtoCPUNMI(`stat["enableCMtoCPU1NMI"].join('|')`);
+%       }
+%       if (stat["enableCMtoCPUInterrupt"].length > 0) {
+    SysCtl_enableCMtoCPUInterrupt(`stat["enableCMtoCPUInterrupt"].join('|')`);
+%       }
+%       if (stat["lockCMConfig"]) {
+    SysCtl_lockCMConfig();
+%       }
+%       if (stat["setCMInterruptStatusMask"].length > 0) {
+    SysCtl_setCMInterruptStatusMask(`stat["setCMInterruptStatusMask"].join('|')`);
+%       }
+%   }
+%   if (!["F2837xS", "F2837xD", "F2807x", "F28004x"].includes(Common.getDeviceName())) {
+%       var enableErrorSts = true;
+%       if (["F2837xD","F2838x"].includes(Common.getDeviceName()) && Common.isContextCPU2()){
+%           enableErrorSts = false;
+%       }
+%       if(enableErrorSts == true){
+    SysCtl_selectErrPinPolarity(`stat["errorPinPolarity"]`);
+%           if (stat["lockErrorControl"]) {
+    SysCtl_lockErrControl();
+%           }
+%       }
+%   }
+
+%   if(Common.isContextCPU1()){
+%       if (stat["enableMCD"]) {
+    SysCtl_enableMCD();
+%       } else {
+    SysCtl_disableMCD();
+%       }
+%   }
+
+%   if (device_driverlib_peripheral.SysCtl_CPUSelPeripheral)
+%   {
+%       var enableCpuSel = true;
+%       if(["F2837xD", "F2838x"].includes(Common.getDeviceName()) &&
+%               Common.isContextCPU2()){
+%               enableCpuSel = false;
+%           }
+%       if (enableCpuSel == true){
+%           device_driverlib_peripheral.SysCtl_CPUSelPeripheral.
+%           forEach((element, index) => 
+%           {
+%               var peripheralInsts = Common.peripheralListFromSysCtl(element.name.split("_").slice(-1)[0], device_driverlib_peripheral)
+%               peripheralInsts.forEach((element_periphInst, index) => {
+    SysCtl_selectCPUForPeripheral(`element.name`, `index+1`, `stat["cpuSel_" + element_periphInst]`);
+%                   });
+%               }
+%           );
+%       }
+%   }
+%   if (device_driverlib_peripheral.SysCtl_AccessPeripheral)
+%   {
+
+%       device_driverlib_peripheral.SysCtl_AccessPeripheral.
+%       forEach((element, index) => 
+%           {
+%               selectAccessOption.forEach((accMast, accMastIndex) => {
+%%{
+                    var skipAccess = false;
+                    if (["F28003x"].includes(Common.getDeviceName()))
+                    {
+                        if (
+                            (element.name == "SYSCTL_ACCESS_HICA" && accMast.name == "SYSCTL_ACCESS_HIC") ||
+                            (element.name == "SYSCTL_ACCESS_AESA" && accMast.name == "SYSCTL_ACCESS_HIC") ||
+                            (element.name == "SYSCTL_ACCESS_MCANA" && accMast.name == "SYSCTL_ACCESS_DMA1") ||
+                            (element.name.includes("SYSCTL_ACCESS_I2C") && accMast.name == "SYSCTL_ACCESS_DMA1") ||
+                            (element.name.includes("SYSCTL_ACCESS_SCI") && accMast.name == "SYSCTL_ACCESS_DMA1")||
+                            (element.name == "SYSCTL_ACCESS_CANA" && accMast.name == "SYSCTL_ACCESS_CLA1") ||
+                            (element.name.includes("SYSCTL_ACCESS_CLB") && accMast.name == "SYSCTL_ACCESS_DMA1") ||
+                            (element.name.includes("SYSCTL_ACCESS_ADC") && accMast.name == "SYSCTL_ACCESS_DMA1") ||
+                            (element.name.includes("SYSCTL_ACCESS_ADC") && accMast.name == "SYSCTL_ACCESS_HIC")
+                            )
+                        {
+                            skipAccess = true;
+                        }
+                    }
+                    if (["F28004x"].includes(Common.getDeviceName()))
+                    {
+                        if (
+                            (element.name.includes("SYSCTL_ACCESS_CLB") && accMast.name == "SYSCTL_ACCESS_DMA1") ||
+                            (element.name == "SYSCTL_ACCESS_CLA1PROMCRC" && accMast.name == "SYSCTL_ACCESS_DMA1")||
+                            (element.name.includes("SYSCTL_ACCESS_CAN") && accMast.name == "SYSCTL_ACCESS_CLA1")
+                            )
+                        {
+                            skipAccess = true;
+                        }
+                    }
+                    if (!skipAccess) {
+%%}
+    SysCtl_setPeripheralAccessControl(`element.name`, 
+        `accMast.name`, `stat["accessPermission_" + element.name + "_" + accMast.name]`);
+%                   }
+%               })
+%           }
+%       );
+%   }
+%   if (selectControllerOption)
+%   {
+
+    SysCtl_selectSecController(`stat["secControllerFrame1"]`, `stat["secControllerFrame2"]`);
+%   }
+%   if (device_driverlib_peripheral.SysCtl_SharedPeripheral)
+%   {
+%       var enableSharedPeripheral = true;
+%       if(["F2837xD", "F2838x"].includes(Common.getDeviceName()) &&
+%               Common.isContextCPU2()){
+%               enableSharedPeripheral = false;
+%       }
+%       if(enableSharedPeripheral == true) {
+%           device_driverlib_peripheral.SysCtl_SharedPeripheral.forEach((element, index) => 
+%           {
+    SysCtl_allocateSharedPeripheral(`element.name`, `stat["sharedPeripheralAllocate_" + element.name]? "1" : "0"`);
+%           })
+%       }
+%   }
+
+%   device_driverlib_peripheral.SysCtl_PeripheralPCLOCKCR.
+%       forEach((element, index) => 
+%       {
+%            var skipCpu2Enable = false;
+%            if(["F2837xD"].includes(Common.getDeviceName()) &&
+%               Common.isContextCPU2() &&
+%               ((element.name == "SYSCTL_PERIPH_CLK_HRPWM" ||
+%                 element.name == "SYSCTL_PERIPH_CLK_EMIF1" ||
+%                 element.name == "SYSCTL_PERIPH_CLK_EMIF2" ||
+%                 element.name == "SYSCTL_PERIPH_CLK_USBA"  ||
+%                 element.name == "SYSCTL_PERIPH_CLK_UPPA"
+%                 ))) {
+%                     skipCpu2Enable = true;
+%            }
+%            if(["F2838x"].includes(Common.getDeviceName()) &&
+%               Common.isContextCPU2() &&
+%               ((element.name == "SYSCTL_PERIPH_CLK_HRCAL" ||
+%                 element.name == "SYSCTL_PERIPH_CLK_EMIF1" ||
+%                 element.name == "SYSCTL_PERIPH_CLK_EMIF2" ||
+%                 element.name == "SYSCTL_PERIPH_CLK_USBA"  ||
+%                 element.name == "SYSCTL_PERIPH_CLK_DCC0"  ||
+%                 element.name == "SYSCTL_PERIPH_CLK_DCC1"  ||
+%                 element.name == "SYSCTL_PERIPH_CLK_DCC2"  ||
+%                 element.name == "SYSCTL_PERIPH_CLK_ECAT"  ||
+%                 element.name == "SYSCTL_PERIPH_CLK_MCANA"
+%                 ))) {
+%                     skipCpu2Enable = true;
+%            }
+%
+%           if (stat["enable_" + element.name]) {
+    SysCtl_enablePeripheral(`element.name`);
+%           } else {
+%               if(!skipCpu2Enable){
+    SysCtl_disablePeripheral(`element.name`);
+%               }
+%           }
+%       }
+%   );
+
+%   if (device_driverlib_peripheral.SysCtl_ClkRegSel)
+%   {
+
+%       device_driverlib_peripheral.SysCtl_ClkRegSel.forEach((element, index) => 
+%       {
+%           if (stat["lockClk_" + element.name]) {
+    SysCtl_lockClkConfig(`element.name`);
+%           }
+%       })
+%   }
+%   if (device_driverlib_peripheral.SysCtl_CpuRegSel)
+%   {
+
+%       device_driverlib_peripheral.SysCtl_CpuRegSel.forEach((element, index) => 
+%       {
+%           if (stat["sysClk_" + element.name]) {
+    SysCtl_lockSysConfig(`element.name`);
+%           }
+%       })
+%   }
+%   if (stat.lockAccessControlRegs)
+%   {
+    SysCtl_lockAccessControlRegs();
+%   }
+%}
+}
+%}
+% else if (((args[1] == null) && (module != null) && (module.$static.splitCode))) {
+//
+// SYSCTL_init is generated in a separate file.
+//
+%}

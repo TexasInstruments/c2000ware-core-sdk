@@ -1,0 +1,23 @@
+% var moduleName = "mindbxbar"
+% var module = system.modules['/driverlib/' + moduleName + '.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% var nameOfPeripheral = module.peripheralName;
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// MINDB XBAR Configurations
+//
+//*****************************************************************************
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        % let modInst  = instance[moduleName];
+        % var inputs = "";
+        % var inputSignalName = instance.mindbxbarInput;
+        
+#define `instance.$name`_SOURCE XBAR_MINDB_`inputSignalName`
+#define `instance.$name`_INPUT `instance.mindbxbarInstance`
+void `instance.$name`_init();
+    % }
+%}
+%

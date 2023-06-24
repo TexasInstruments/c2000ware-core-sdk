@@ -1,0 +1,16 @@
+% var module = system.modules['/driverlib/xint.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// XINT Configurations
+//
+//*****************************************************************************
+% for(var i = 0; i < module.$instances.length; i++) {
+	% var instance = module.$instances[i];
+#define `instance.$name` `instance.xintNum`
+#define `instance.$name`_TYPE `instance.intType`
+void `instance.$name`_init();
+% }
+%}

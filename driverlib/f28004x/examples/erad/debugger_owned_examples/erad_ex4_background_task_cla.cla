@@ -1,0 +1,251 @@
+//#############################################################################
+//
+// FILE:   erad_ex4_background_task_cla.cla
+//
+// TITLE:  CLA ADC Sampling and Filtering with Buffering in a Background Task
+//
+// Task 1 implements a Finite Impulse Response Filter while the background
+// task simply buffers the filtered output in a circular buffer
+//
+//#############################################################################
+//
+//
+// $Copyright:
+// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+//
+// Redistribution and use in source and binary forms, with or without 
+// modification, are permitted provided that the following conditions 
+// are met:
+// 
+//   Redistributions of source code must retain the above copyright 
+//   notice, this list of conditions and the following disclaimer.
+// 
+//   Redistributions in binary form must reproduce the above copyright
+//   notice, this list of conditions and the following disclaimer in the 
+//   documentation and/or other materials provided with the   
+//   distribution.
+// 
+//   Neither the name of Texas Instruments Incorporated nor the names of
+//   its contributors may be used to endorse or promote products derived
+//   from this software without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+// $
+//#############################################################################
+
+//
+// Included Files
+//
+#include <stdint.h>
+#include "erad_ex4_background_task.h"
+#include "adc.h"
+
+//
+// Constants
+//
+// Generated using fdatool
+// LPF FIR Equiripple (Minimum order)
+// Fs = 1 KHz
+// Fp = 100 Hz
+// Fs = 150 Hz
+// Ap = 1dB
+// As = 40dB
+const float coeffs[FILTER_LENGTH] = {
+    -0.00626161322, 0.004758020397,  0.01360770315,  0.02281877026,
+    0.02540917136,   0.01582550257,-0.005789283663, -0.03123718128,
+    -0.04604700953, -0.03544506058, 0.007868565619,  0.07814154029,
+      0.1567010134,   0.2183543742,   0.2416974753,   0.2183543742,
+      0.1567010134,  0.07814154029, 0.007868565619, -0.03544506058,
+    -0.04604700953, -0.03123718128,-0.005789283663,  0.01582550257,
+     0.02540917136,  0.02281877026,  0.01360770315, 0.004758020397,
+     -0.00626161322
+};
+
+//
+// Globals
+//
+// Note that the globals defined in the .cla source are global to the cla source
+// file.  i.e. they may be shared across tasks. All of the data shared between
+// the CLA and the C28x CPU must be defined in the C (or C++) code, and not the
+// CLA code.
+//
+// Filter output
+float filter_out;
+
+// Filter delay line
+float D[FILTER_LENGTH];
+
+// Circular buffer index
+uint16_t index;
+
+// Flag to indicate filtered value is available
+bool f_filteredValueReady;
+
+//-----------------------------------------------------------------------------
+//
+// Task 1 - FIR Filter
+//
+// Description: A low pass Finite Impulse Response (FIR) filter.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt)) void Cla1Task1 ( void )
+{
+    //Local Variables
+    int16_t i, filter_in;
+
+    __mdebugstop();
+
+    filter_out = 0.0;
+    filter_in  = ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER0);;
+#if 1
+    filter_in  = filter_in  - (1 << 11); // Read ADC value minus bias
+    //Shift the delay line to the right by 1
+    #pragma UNROLL(FILTER_LENGTH-1)
+    for(i = FILTER_LENGTH-1; i > 0; i--){
+        D[i] = D[i-1];
+        //Multiply coefficients with the delay line and accumulate
+        filter_out   += coeffs[i] * D[i];
+    }
+
+    __mdebugstop();
+    //Get adc input into start of the delay line
+    D[0] = (float)filter_in; //convert to single precision float
+    filter_out  += coeffs[0] * D[0];
+    f_filteredValueReady = true;
+#else
+    // Pass through unfiltered
+    filter_out = (float)filter_in;
+    f_filteredValueReady = true;
+#endif
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 2 - Title Here
+//
+// Description: Description/steps here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task2 ( void )
+{
+
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 3 - Title Here
+//
+// Description: Description/steps here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task3 ( void )
+{
+
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 4 - Title Here
+//
+// Description: Description/steps here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task4 ( void )
+{
+
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 5 - Title Here
+//
+// Description: Description/steps here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task5 ( void )
+{
+
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 6 - Title Here
+//
+// Description: Description/steps here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task6 ( void )
+{
+
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 7 - One Time Initialization Task
+//
+// Description: This task will clear out the delay line and reset the index
+// and any flags
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task7 ( void )
+{
+    // Locals
+    int16_t i;
+
+    __mdebugstop();
+    for(i = 0; i < FILTER_LENGTH; i++){
+        D[i] = 0.0;
+    }
+
+    index = 0U;
+    f_filteredValueReady = false;
+}
+
+//-----------------------------------------------------------------------------
+//
+// Background Task
+//
+// Description: This task will buffer the filtered output in a circular buffer
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt("background")))  void Cla1BackgroundTask ( void )
+{
+    while(1)
+    {
+        if (f_filteredValueReady == true)
+        {
+            //
+            // Reset the flag
+            //
+            f_filteredValueReady = false;
+
+            //
+            // store the filtered output. Make this portion un-interruptible
+            //
+            __disable_interrupts();
+            buffer[index++] = filter_out;
+            __enable_interrupts();
+
+            //
+            // Since BUFFER_SIZE is a power of two, we can use unsigned modulo
+            // arithmetic to wrap the index around
+            //
+            index = index & (BUFFER_SIZE - 1U);
+        }
+    }
+}
+
+
+//
+// End of File
+//

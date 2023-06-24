@@ -1,0 +1,69 @@
+/**
+ * Import the modules used in this configuration.
+ */
+const epwm       = scripting.addModule("/driverlib/epwm.js", {}, false);
+const epwm1      = epwm.addInstance();
+const epwm2      = epwm.addInstance();
+const gpio       = scripting.addModule("/driverlib/gpio.js", {}, false);
+const gpio1      = gpio.addInstance();
+const gpio2      = gpio.addInstance();
+const inputxbar  = scripting.addModule("/driverlib/inputxbar.js", {}, false);
+const inputxbar1 = inputxbar.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+epwm1.useCase                                                                        = "CUSTOM";
+epwm1.useInterfacePins                                                               = ["EPWM#_A"];
+epwm1.$name                                                                          = "myEPWM1";
+epwm1.epwmTimebase_period                                               = 12000;
+epwm1.epwmTimebase_counterMode                                          = "EPWM_COUNTER_MODE_UP_DOWN";
+epwm1.epwmTimebase_clockDiv                                             = "EPWM_CLOCK_DIVIDER_4";
+epwm1.epwmTimebase_hsClockDiv                                           = "EPWM_HSCLOCK_DIVIDER_4";
+epwm1.epwmCounterCompare_cmpA                                     = 6000;
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_UP_CMPA   = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_DOWN_CMPA = "EPWM_AQ_OUTPUT_LOW";
+epwm1.epwmTripZone_registerInterrupts                                   = true;
+epwm1.epwmTripZone_oneShotSource                                        = ["EPWM_TZ_SIGNAL_OSHT1"];
+epwm1.epwmTripZone_EPWM_TZ_ACTION_EVENT_TZA                             = "EPWM_TZ_ACTION_HIGH";
+epwm1.epwmTripZone_tzInterruptSource                                    = ["EPWM_TZ_INTERRUPT_OST"];
+epwm1.epwm.$assign                                                                   = "EPWM1";
+epwm1.epwm.epwm_aPin.$assign                                      = "GPIO0";
+epwm1.epwmTZInt.interruptHandler                                 = "epwm1TZISR";
+epwm1.epwmTZInt.enableInterrupt                                  = true;
+
+epwm2.useCase                                                                        = "CUSTOM";
+epwm2.useInterfacePins                                                               = ["EPWM#_A"];
+epwm2.$name                                                                          = "myEPWM2";
+epwm2.epwmTimebase_period                                               = 6000;
+epwm2.epwmTimebase_counterMode                                          = "EPWM_COUNTER_MODE_UP_DOWN";
+epwm2.epwmTimebase_clockDiv                                             = "EPWM_CLOCK_DIVIDER_4";
+epwm2.epwmTimebase_hsClockDiv                                           = "EPWM_HSCLOCK_DIVIDER_4";
+epwm2.epwmCounterCompare_cmpA                                     = 3000;
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_UP_CMPA   = "EPWM_AQ_OUTPUT_HIGH";
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_DOWN_CMPA = "EPWM_AQ_OUTPUT_LOW";
+epwm2.epwmTripZone_registerInterrupts                                   = true;
+epwm2.epwmTripZone_cbcSource                                            = ["EPWM_TZ_SIGNAL_CBC1"];
+epwm2.epwmTripZone_EPWM_TZ_ACTION_EVENT_TZA                             = "EPWM_TZ_ACTION_HIGH";
+epwm2.epwmTripZone_tzInterruptSource                                    = ["EPWM_TZ_INTERRUPT_CBC"];
+epwm2.epwm.$assign                                                                   = "EPWM2";
+epwm2.epwm.epwm_aPin.$assign                                      = "GPIO2";
+epwm2.epwmTZInt.interruptHandler                                 = "epwm2TZISR";
+epwm2.epwmTZInt.enableInterrupt                                  = true;
+
+
+gpio1.$name           = "myGPIO12";
+gpio1.qualMode        = "GPIO_QUAL_ASYNC";
+gpio1.padConfig       = "PULLUP";
+gpio1.gpioPin.$assign = "GPIO12";
+
+gpio2.$name           = "myGPIO11";
+gpio2.direction       = "GPIO_DIR_MODE_OUT";
+gpio2.qualMode        = "GPIO_QUAL_ASYNC";
+gpio2.gpioPin.$assign = "GPIO11";
+
+inputxbar1.$name          = "myINPUTXBAR1";
+inputxbar1.inputsUsed     = ["inputxbar1Gpio"];
+inputxbar1.inputxbar1Gpio = "GPIO12";
+
+

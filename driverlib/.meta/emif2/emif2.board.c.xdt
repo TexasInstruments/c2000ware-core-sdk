@@ -1,0 +1,101 @@
+% var nameOfModule = "emif2";
+% var module = system.modules['/driverlib/' + nameOfModule + '.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% var nameOfPeripheral = module.peripheralName;
+//*****************************************************************************
+//
+// EMIF2 Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_init(){
+%if (module != null)
+%{
+	% for(var i = 0; i < module.$instances.length; i++) {
+	    % var instance = module.$instances[i];
+	//
+	//`instance.$name` initialization 
+	//
+		% let instancePinmux = instance[nameOfModule];
+		% let solution    = instancePinmux.$solution;
+	SysCtl_setEMIF2ClockDivider(`instance.$name`_CLKDIV);
+	EMIF_setAccessProtection(`instance.$name`_CONFIGBASE, `instance.$name`_SELACCESS);
+		% if (instance.enableCS0){
+			% if (instance.enableSyncSelfrefresh){
+	EMIF_enableSyncSelfRefresh(`instance.$name`_BASE);
+			% } else{
+	EMIF_disableSyncSelfRefresh(`instance.$name`_BASE);
+			% }
+			% if (instance.enableSyncPowerDown){
+	EMIF_enableSyncPowerDown(`instance.$name`_BASE);
+			% } else{
+	EMIF_disableSyncPowerDown(`instance.$name`_BASE);
+			% }
+			% if (instance.enableSyncRefreshInPowerDown){
+	EMIF_enableSyncRefreshInPowerDown(`instance.$name`_BASE);
+			% } else{
+	EMIF_disableSyncRefreshInPowerDown(`instance.$name`_BASE);
+			% }
+	//
+	//CS0 timing definitions
+	//
+	EMIF_SyncTimingParams `instance.$name`_Cs0Timings = {`instance.$name`_CS0TRFC, 
+										`instance.$name`_CS0TRP, 
+										`instance.$name`_CS0TRCD,
+										`instance.$name`_CS0TWR,
+										`instance.$name`_CS0TRAS,
+										`instance.$name`_CS0TRC,
+										`instance.$name`_CS0TRRD};
+	//	
+	//CS0 config
+	//
+	EMIF_SyncConfig `instance.$name`_Cs0Config = {`instance.$name`_CS0SIZE, 
+										`instance.$name`_CS0NUMBANKS, 
+										`instance.$name`_CS0CAS,
+										`instance.$name`_CS0CAWIDTH};
+	//
+	//CSO config functions
+	//
+	EMIF_setSyncTimingParams(`instance.$name`_BASE, &`instance.$name`_Cs0Timings);
+	EMIF_setSyncSelfRefreshExitTmng(`instance.$name`_BASE, `instance.$name`_CS0TXSR);
+	EMIF_setSyncRefreshRate(`instance.$name`_BASE, `instance.$name`_CS0REFRESH);
+	EMIF_setSyncMemoryConfig(`instance.$name`_BASE, &`instance.$name`_Cs0Config);
+		% }
+		% if (instance.enableCS2 || instance.enableCS3 || instance.enableCS4){
+	//set global Async parameters
+	EMIF_setAsyncWaitPolarity(`instance.$name`_BASE, `instance.$name`_WAITPOL);
+	EMIF_setAsyncMaximumWaitCycles(`instance.$name`_BASE, `instance.$name`_MAXWAIT);
+	//
+	//handle interrupt flags
+	//
+			% if ((instance.asyncIntFlags).length > 0){
+	EMIF_enableAsyncInterrupt(`instance.$name`_BASE, `instance.$name`_ASYNCINTFLAGS);
+			% } else{
+	EMIF_disableAsyncInterrupt(`instance.$name`_BASE, `instance.$name`_ASYNCINTFLAGS);      
+			% }
+		% }
+		% if (instance.enableCS2){
+	//
+	//CS2 Timings
+	//
+	EMIF_AsyncTimingParams `instance.$name`_Cs2Timings = {`instance.$name`_CS2RSETUP, 
+										`instance.$name`_CS2RSTROBE, 
+										`instance.$name`_CS2RHOLD,
+										`instance.$name`_CS2WSETUP,
+										`instance.$name`_CS2WSTROBE,
+										`instance.$name`_CS2WHOLD,
+										`instance.$name`_CS2TURNAROUND};
+	//
+	//CS2 config functions
+	//
+	EMIF_setAsyncMode(`instance.$name`_BASE, EMIF_ASYNC_CS2_OFFSET, `instance.$name`_CS2ASYNCMODE);
+	EMIF_setAsyncDataBusWidth(`instance.$name`_BASE, EMIF_ASYNC_CS2_OFFSET, `instance.$name`_CS2WORDSIZE);
+	EMIF_setAsyncTimingParams(`instance.$name`_BASE, EMIF_ASYNC_CS2_OFFSET, &`instance.$name`_Cs2Timings);
+			% if (instance.cs2enableExtWait){
+	EMIF_enableAsyncExtendedWait(`instance.$name`_BASE, EMIF_ASYNC_CS2_OFFSET);
+			% } else {
+	EMIF_disableAsyncExtendedWait(`instance.$name`_BASE, EMIF_ASYNC_CS2_OFFSET);
+			% }
+		% }	
+	%}
+%}
+}

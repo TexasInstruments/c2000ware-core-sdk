@@ -1,0 +1,37 @@
+<projectSpec>
+  <project
+        name="f2838x_driverlib_cm"
+        device="Generic CortexM4 Device"
+        cgtVersion="20.2.6.LTS"
+        products="c2000ware_software_package"		
+        launchWizard="False"
+        outputType="staticLibrary"
+        location="."
+        >
+    <configuration name="Debug" compilerBuildOptions=" -I../ -mv7M4 --float_support=none -me --opt_level=off --gen_func_subsections=on --gen_data_subsections=on " archiverBuildOptions="driverlib_cm.lib" />
+    <configuration name="Release" compilerBuildOptions=" -I../ -mv7M4 -me -O2 --float_support=none --advice:power=all --diag_warning=225 --diag_wrap=off --display_error_number --gen_func_subsections=on --gen_data_subsections=on --ual" archiverBuildOptions="driverlib_cm.lib" />
+    <file action="link" path="../aes.c"  targetDirectory="." />
+    <file action="link" path="../can.c"  targetDirectory="." />
+    <file action="link" path="../cmmpu.c"  targetDirectory="." />
+    <file action="link" path="../cputimer.c"  targetDirectory="." />
+    <file action="link" path="../dcsm.c"  targetDirectory="." />
+    <file action="link"  path="../escss.c"  targetDirectory="." />
+    <file action="link"  path="../ethernet.c"  targetDirectory="." />
+    <file action="link"  path="../flash.c"  targetDirectory="." />
+    <file action="link"  path="../gcrc.c"  targetDirectory="." />
+    <file action="link"  path="../gpio.c"  targetDirectory="." />
+    <file action="link"  path="../i2c.c"  targetDirectory="." />
+    <file action="link"  path="../interrupt.c"  targetDirectory="." />
+    <file action="link"  path="../ipc.c"  targetDirectory="." />
+    <file action="link"  path="../mcan.c"  targetDirectory="." />
+    <file action="link"  path="../memcfg.c"  targetDirectory="." />
+    <file action="link"  path="../mpu.c"  targetDirectory="." />
+    <file action="link"  path="../platform_port.c"  targetDirectory="." />
+    <file action="link"  path="../ssi.c"  targetDirectory="." />
+    <file action="link"  path="../sysctl.c"  targetDirectory="." />
+    <file action="link"  path="../systick.c"  targetDirectory="." />
+    <file action="link"  path="../uart.c"  targetDirectory="." />
+    <file action="link"  path="../udma.c"  targetDirectory="." />
+    <file action="link"  path="../usb.c"  targetDirectory="." />
+  </project>
+</projectSpec>

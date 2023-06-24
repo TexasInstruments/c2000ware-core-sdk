@@ -1,0 +1,174 @@
+%%{
+var module = system.modules['/driverlib/cla.js'];
+let Common   = system.getScript("/driverlib/Common.js");
+var nameOfModule = "cla";
+var nameOfPeripheral = module.peripheralName;
+//var device_driverlib_peripheral = system.getScript("/driverlib/device_driverlib_peripherals/" + Common.getDeviceName().toLowerCase() + "_cla.js");
+//var device_driverlib_interrupt = system.getScript("/driverlib/device_driverlib_peripherals/" + Common.getDeviceName().toLowerCase() + "_interrupt.js");
+%%}
+%
+%
+//*****************************************************************************
+//
+// CLA Configurations
+//
+//*****************************************************************************
+
+%if (module != null)
+%{
+%   var configs=[]
+%	module.config.forEach((element, index) =>
+%	{
+%    	configs[element.name] = element.config
+%	});
+%   
+%
+%	for(var i = 0; i < module.$instances.length; i++)
+%	{
+%	var instance = module.$instances[i];
+%	var baseName = instance.$name + "_BASE";
+void `instance.$name`_init(){
+	//
+    // Configure all CLA task vectors
+    // On Type-1 and Type-2 CLAs the MVECT registers accept full 16-bit task addresses as
+    // opposed to offsets used on older Type-0 CLAs
+    //
+#pragma diag_suppress=770
+%
+%   var taskflaglist = "";
+%
+%   configs["claTaskGroup"].forEach((element, index) =>
+%   {
+%       if (element.name.includes("group"))
+%       {
+%           var clataskconfig = [];
+%           element.config.forEach((taskconfig,configindex) => {
+%               clataskconfig[taskconfig.name] = taskconfig;
+%           });
+%
+%           var enabletask = element.name.replace("group_", "enable_");
+%           if (instance[enabletask])
+%           {
+%
+%               // Add task to taskflasg list
+%               taskflaglist += "CLA_TASKFLAG_" + element.name[element.name.length-1] + " | ";
+%
+%               var taskname = element.name.replace("group_", "");
+%               var mvectname = element.name.replace("group_", "mvect_");
+%               var isrname = element.name.replace("group_", "name_");
+%               var trigname = element.name.replace("group_", "trigger_");
+%               var bgname = element.name.replace("group_", "background_");
+%
+%               if (element.name.includes("8") && typeof instance[bgname] !== 'undefined')
+%               {               
+%                   if (instance[bgname]) // Background task enabled
+%                   {
+    //
+    // CLA Task `element.name[element.name.length-1]`
+    //
+    CLA_mapBackgroundTaskVector(`baseName`, (uint16_t)&`instance[isrname]`);
+%                       if (instance[trigname] != "CLA_TRIGGER_SOFTWARE")
+%                       {
+    CLA_enableHardwareTrigger(`baseName`);
+%                       }
+%
+    CLA_setTriggerSource(`taskname`, `instance[trigname]`);
+    //
+    // Enable background task
+    //
+    CLA_enableBackgroundTask(`baseName`);
+%                   }
+%                   else // Background task disabled
+%                   {
+    //
+    // CLA Task `element.name[element.name.length-1]`
+    //      
+    CLA_mapTaskVector(`baseName`, `instance[mvectname]`, (uint16_t)&`instance[isrname]`);
+    CLA_setTriggerSource(`taskname`, `instance[trigname]`);
+    //
+    // Disable background task
+    //
+    CLA_disableBackgroundTask(`baseName`);
+%                   }
+%               }
+%               else
+%               {
+    //
+    // CLA Task `element.name[element.name.length-1]`
+    //
+    CLA_mapTaskVector(`baseName`, `instance[mvectname]`, (uint16_t)&`instance[isrname]`);
+    CLA_setTriggerSource(`taskname`, `instance[trigname]`);
+%               }
+%           }
+%       }
+%   });
+#pragma diag_warning=770
+	//
+    // Enable the IACK instruction to start a task on CLA in software
+    // for all  8 CLA tasks. Also, globally enable all 8 tasks (or a
+    // subset of tasks) by writing to their respective bits in the
+    // MIER register
+    //
+	CLA_enableIACK(`baseName`);
+%
+%   taskflaglist = taskflaglist.substring(0, taskflaglist.length-2);
+%
+%   if (taskflaglist == "CLA_TASKFLAG_1 | CLA_TASKFLAG_2 | CLA_TASKFLAG_3 | CLA_TASKFLAG_4 | CLA_TASKFLAG_5 | CLA_TASKFLAG_6 | CLA_TASKFLAG_7 | CLA_TASKFLAG_8 ")
+%   {
+    CLA_enableTasks(`baseName`, CLA_TASKFLAG_ALL);
+%   }
+%   else
+%   {
+    CLA_enableTasks(`baseName`, `taskflaglist`);
+%   }
+}
+%	}
+%}
+
+
+void `nameOfPeripheral`_init()
+{
+#ifdef _FLASH
+#ifndef CMDTOOL // Linker command tool is not used
+
+%var CLA_funcs_list = ["f2838x","f2837xd","f2837xs","f2807x"];
+%if (CLA_funcs_list.includes(Common.getDeviceName().toLowerCase()))
+%{
+    extern uint32_t Cla1funcsRunStart, Cla1funcsLoadStart, Cla1funcsLoadSize;
+    extern uint32_t Cla1ConstRunStart, Cla1ConstLoadStart, Cla1ConstLoadSize;
+
+    //
+    // Copy the program and constants from FLASH to RAM before configuring
+    // the CLA
+    //
+    memcpy((uint32_t *)&Cla1funcsRunStart, (uint32_t *)&Cla1funcsLoadStart,
+           (uint32_t)&Cla1funcsLoadSize);
+    memcpy((uint32_t *)&Cla1ConstRunStart, (uint32_t *)&Cla1ConstLoadStart,
+        (uint32_t)&Cla1ConstLoadSize );
+
+%}
+%else
+%{
+    extern uint32_t Cla1ProgRunStart, Cla1ProgLoadStart, Cla1ProgLoadSize;
+    extern uint32_t Cla1ConstRunStart, Cla1ConstLoadStart, Cla1ConstLoadSize;
+
+    //
+    // Copy the program and constants from FLASH to RAM before configuring
+    // the CLA
+    //
+    memcpy((uint32_t *)&Cla1ProgRunStart, (uint32_t *)&Cla1ProgLoadStart,
+           (uint32_t)&Cla1ProgLoadSize);
+    memcpy((uint32_t *)&Cla1ConstRunStart, (uint32_t *)&Cla1ConstLoadStart,
+        (uint32_t)&Cla1ConstLoadSize );
+
+%}
+
+#endif //CMDTOOL
+#endif //_FLASH
+
+%   for(var i = 0; i < module.$instances.length; i++) 
+%   {
+%      var instance = module.$instances[i];
+	`instance.$name`_init();
+%   }
+}

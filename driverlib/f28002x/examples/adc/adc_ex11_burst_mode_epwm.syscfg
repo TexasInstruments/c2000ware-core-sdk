@@ -1,0 +1,76 @@
+
+/**
+ * Import the modules used in this configuration.
+ */
+const adc     = scripting.addModule("/driverlib/adc.js", {}, false);
+const adc1    = adc.addInstance();
+const asysctl = scripting.addModule("/driverlib/asysctl.js");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+adc1.$name                   = "myADC0";
+adc1.adcBase                 = "ADCA_BASE";
+
+adc1.adcClockPrescaler       = "ADC_CLK_DIV_2_0";
+adc1.interruptPulseMode      = "ADC_PULSE_END_OF_CONV";
+
+
+adc1.enableBurstMode          = true;
+adc1.burstTrigger             = "ADC_TRIGGER_EPWM1_SOCA";
+adc1.burstSize                = 2;
+adc1.socHighPriorityMode      = "ADC_PRI_THRU_SOC6_HIPRI";
+
+adc1.enabledSOCs              = ["ADC_SOC_NUMBER10","ADC_SOC_NUMBER11","ADC_SOC_NUMBER12","ADC_SOC_NUMBER13","ADC_SOC_NUMBER14","ADC_SOC_NUMBER15","ADC_SOC_NUMBER7","ADC_SOC_NUMBER8","ADC_SOC_NUMBER9"];
+
+adc1.soc7Channel              = "ADC_CH_ADCIN0";
+adc1.soc8Channel              = "ADC_CH_ADCIN1";
+adc1.soc9Channel              = "ADC_CH_ADCIN2";
+adc1.soc10Channel             = "ADC_CH_ADCIN0";
+adc1.soc11Channel             = "ADC_CH_ADCIN1";
+adc1.soc12Channel             = "ADC_CH_ADCIN3";
+adc1.soc13Channel             = "ADC_CH_ADCIN0";
+adc1.soc14Channel             = "ADC_CH_ADCIN1";
+adc1.soc15Channel             = "ADC_CH_ADCIN4";
+
+adc1.soc7SampleWindow         = 8;
+adc1.soc8SampleWindow         = 8;
+adc1.soc9SampleWindow         = 8;
+adc1.soc10SampleWindow        = 8;
+adc1.soc11SampleWindow        = 8;
+adc1.soc12SampleWindow        = 8;
+adc1.soc13SampleWindow        = 8;
+adc1.soc14SampleWindow        = 8;
+adc1.soc15SampleWindow        = 8;
+
+adc1.enabledInts              = ["ADC_INT_NUMBER1","ADC_INT_NUMBER2","ADC_INT_NUMBER3"];
+
+adc1.enableInterrupt1         = true;
+adc1.enableInterrupt2         = true;
+adc1.enableInterrupt3         = true;
+
+adc1.interrupt1SOCSource      = "ADC_SOC_NUMBER9";
+adc1.interrupt2SOCSource      = "ADC_SOC_NUMBER12";
+adc1.interrupt3SOCSource      = "ADC_SOC_NUMBER15";
+
+adc1.registerInterrupts       = ["1","2","3"];
+
+adc1.adcInt1.enableInterrupt = true;
+adc1.adcInt1.interruptHandler = "adcABurstISR";
+adc1.adcInt2.enableInterrupt  = true;
+adc1.adcInt2.interruptHandler = "adcABurstISR";
+adc1.adcInt3.enableInterrupt  = true;
+adc1.adcInt3.interruptHandler = "adcABurstISR";
+
+asysctl.analogReference        = "INTERNAL";
+asysctl.analogReferenceVoltage = "1P65";
+
+scripting.suppress("SOC7 is configured for Round Robin\. With burst mode enabled, the  burst mode trigger will override the selected trigger for this SOC",adc1,"soc7Trigger");
+scripting.suppress("SOC8 is configured for Round Robin\. With burst mode enabled, the  burst mode trigger will override the selected trigger for this SOC",adc1,"soc8Trigger");
+scripting.suppress("SOC9 is configured for Round Robin\. With burst mode enabled, the  burst mode trigger will override the selected trigger for this SOC",adc1,"soc9Trigger");
+scripting.suppress("SOC10 is configured for Round Robin\. With burst mode enabled, the  burst mode trigger will override the selected trigger for this SOC",adc1,"soc10Trigger");
+scripting.suppress("SOC11 is configured for Round Robin\. With burst mode enabled, the  burst mode trigger will override the selected trigger for this SOC",adc1,"soc11Trigger");
+scripting.suppress("SOC12 is configured for Round Robin\. With burst mode enabled, the  burst mode trigger will override the selected trigger for this SOC",adc1,"soc12Trigger");
+scripting.suppress("SOC13 is configured for Round Robin\. With burst mode enabled, the  burst mode trigger will override the selected trigger for this SOC",adc1,"soc13Trigger");
+scripting.suppress("SOC14 is configured for Round Robin\. With burst mode enabled, the  burst mode trigger will override the selected trigger for this SOC",adc1,"soc14Trigger");
+scripting.suppress("SOC15 is configured for Round Robin\. With burst mode enabled, the  burst mode trigger will override the selected trigger for this SOC",adc1,"soc15Trigger");

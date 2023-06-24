@@ -1,0 +1,42 @@
+% var moduleName = "clb_inputxbar"
+% var module = system.modules['/driverlib/' + moduleName + '.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// CLBINPUTXBAR Configurations
+//
+//*****************************************************************************
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        % let modInst  = instance[moduleName];
+        % var inputs = "";
+        % for (var clb_inputxbar_index = 1; clb_inputxbar_index <= 16; clb_inputxbar_index++)
+        % {
+        %   var interfaceName = "CLB_INPUTXBAR" + clb_inputxbar_index.toString();
+        %   let pinName =  "CLB_INPUTXBAR" + clb_inputxbar_index.toString() + "Gpio";
+        %   let lockName =  "CLB_INPUTXBAR" + clb_inputxbar_index.toString() + "Lock";
+        %   var gpioName = instance[pinName];
+        %   var gpioNumber = "";
+        %   if (gpioName.includes("IO")){
+            %   var aioOrGpio = (gpioName.includes("AIO"))?3:4;
+            %   gpioNumber = gpioName.substring(aioOrGpio);
+            %   gpioNumber = Common.gpioNameToNumber(gpioNumber);
+        %   } else {
+            %   gpioNumber = gpioName;
+            %}
+        %   if (instance.inputsUsed.indexOf(pinName) != -1)
+        %   {
+        %       inputs += Common.stringOrEmpty(inputs, " | ");
+        %       inputs += "XBAR_INPUT" + interfaceName.replace("CLB_INPUTXBAR", "");
+        %   }
+        %}
+        % if (inputs !="")
+        %{
+#define `instance.$name`_INPUTS_USED (`inputs`)
+        %}
+    % }
+%}
+%

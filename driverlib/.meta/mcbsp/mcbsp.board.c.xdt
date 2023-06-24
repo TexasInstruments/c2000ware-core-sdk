@@ -1,0 +1,153 @@
+% var nameOfModule = "mcbsp";
+% var module = system.modules['/driverlib/' + nameOfModule + '.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% var nameOfPeripheral = module.peripheralName;
+//*****************************************************************************
+//
+// MCBSP Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_init(){
+%   for(var i = 0; i < module.$instances.length; i++) 
+%   {
+%      var instance = module.$instances[i];
+	`instance.$name`_init();
+%   }
+}
+
+%if (module != null)
+%{
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+void `instance.$name`_init(){
+	McBSP_resetFrameSyncLogic(`instance.$name`_BASE);
+	McBSP_resetSampleRateGenerator(`instance.$name`_BASE);
+	McBSP_resetTransmitter(`instance.$name`_BASE);
+	McBSP_resetReceiver(`instance.$name`_BASE);
+	McBSP_setEmulationMode(`instance.$name`_BASE, `instance.emulationMode`);
+		%if (instance.enableReceiver || instance.enableTransmitter) {
+	McBSP_ClockParams `instance.$name`_ClockParamsTemp = {
+                `instance.enableSRGSyncFSR`, 
+                `instance.srgDataClockDivider`, 
+                `instance.txClockSource`,
+                `instance.rxClockSource`,
+                `instance.rxSRGClockSource`,
+                `instance.txSRGClockSource`,
+                `instance.txClockPolarity`,
+                `instance.rxClockPolarity`};
+    % }
+		% if (instance.enableTransmitter) {
+	McBSP_TxFsyncParams `instance.$name`_FsyncParamsTXTemp = {
+                `instance.enableSRGSyncFSR`,
+                `instance.enableTxFrameSyncErrorDetection`,
+                `instance.frameSyncPulsePeriodDivider`,
+                `instance.frameSyncPulseWidthDivider`,
+                `instance.txFrameSyncSource`,
+                `instance.txInternalFrameSyncSource`,
+                `instance.txFrameSyncPolarity`};
+    McBSP_TxDataParams `instance.$name`_DataParamsTXTemp = {
+                `instance.enableLoopback`,
+                `instance.enableTwoPhaseTX`,
+                `instance.enableDxPinDelay`,
+                `instance.txWordsPerFramePhase1`,
+                `instance.txWordsPerFramePhase2`,
+                `instance.clockStopMode`,
+                `instance.txDataBitsPerWordPhase1`,
+                `instance.txDataBitsPerWordPhase2`,
+                `instance.txCompandingMode`,
+                `instance.txDataDelayBits`,
+                `instance.txInterruptSource`};
+	% }										
+		% if (instance.enableReceiver) {
+	McBSP_RxFsyncParams `instance.$name`_FsyncParamsRXTemp = {
+                `instance.enableSRGSyncFSR`,
+                `instance.enableRxFrameSyncErrorDetection`,
+                `instance.frameSyncPulsePeriodDivider`,
+                `instance.frameSyncPulseWidthDivider`,
+                `instance.rxFrameSyncSource`,
+                `instance.rxFrameSyncPolarity`};										
+    McBSP_RxDataParams `instance.$name`_DataParamsRXTemp = {
+                `instance.enableLoopback`,
+                `instance.enableTwoPhaseRX`,
+                `instance.rxWordsPerFramePhase1`,
+                `instance.rxWordsPerFramePhase2`,
+                `instance.clockStopMode`,
+                `instance.rxDataBitsPerWordPhase1`,
+                `instance.rxDataBitsPerWordPhase2`,
+                `instance.rxCompandingMode`,
+                `instance.rxDataDelayBits`,
+                `instance.rxSignExtension`,
+                `instance.rxInterruptSource`};
+    % }
+		% if (instance.txChannelMode != "MCBSP_ALL_TX_CHANNELS_ENABLED") {
+    uint16_t channelCountTx = `instance.txChannelSelect.length`;
+    uint16_t channelsListTx[`instance.txChannelSelect.length`] = {`instance.txChannelSelect`};
+    uint16_t *ptrChannelsListTx = channelsListTx;
+    McBSP_TxMultichannelParams `instance.$name`_MultichannelParamsTXTemp = {
+                channelCountTx,
+                ptrChannelsListTx,
+                `instance.txChannelMode`,
+                `instance.txMultichannelPartition`};
+        % }
+        % if (instance.rxChannelMode != "MCBSP_ALL_RX_CHANNELS_ENABLED") {
+    uint16_t channelCountRx = `instance.rxChannelSelect.length`;
+    uint16_t channelsListRx[`instance.rxChannelSelect.length`] = {`instance.rxChannelSelect`};
+    uint16_t *ptrChannelsListRx = channelsListRx;
+    McBSP_RxMultichannelParams `instance.$name`_MultichannelParamsRXTemp = {
+                channelCountRx,
+                ptrChannelsListRx,
+                `instance.rxChannelMode`,
+                `instance.rxMultichannelPartition`};
+        % }
+        % if (instance.enableSPIController) {
+    McBSP_SPIMasterModeParams `instance.$name`_SPIControllerModeParamsTemp = {
+                `instance.enableLoopback`,
+                `instance.srgDataClockDivider`,
+                `instance.clockStopMode`,
+                `instance.txDataBitsPerWordPhase1`,
+                `instance.txClockPolarity`};
+        % }
+        % if (instance.enableSPIPeripheral) {
+    McBSP_SPISlaveModeParams `instance.$name`_SPIPeripheralModeParamsTemp = {
+                `instance.enableLoopback`,
+                `instance.clockStopMode`,
+                `instance.rxDataBitsPerWordPhase1`,
+                `instance.txClockPolarity`};
+        % }
+        % if (instance.enableReceiver) {
+    //
+    // Receiver Setup
+    //
+    McBSP_configureRxClock(`instance.$name`_BASE, &`instance.$name`_ClockParamsTemp);
+    McBSP_configureRxFrameSync(`instance.$name`_BASE, &`instance.$name`_FsyncParamsRXTemp);
+    McBSP_configureRxDataFormat(`instance.$name`_BASE, &`instance.$name`_DataParamsRXTemp);
+            % if (instance.rxChannelMode != "MCBSP_ALL_RX_CHANNELS_ENABLED") {
+    McBSP_configureRxMultichannel(`instance.$name`_BASE, &`instance.$name`_MultichannelParamsRXTemp);
+            %}
+            % if (instance.enableSPIPeripheral) {
+    McBSP_configureSPISlaveMode(`instance.$name`_BASE, &`instance.$name`_SPIPeripheralModeParamsTemp);
+            %}
+            % if (instance.enableRxInterrupt) {
+    McBSP_enableRxInterrupt(`instance.$name`_BASE);
+            %}
+        %}
+        % if (instance.enableTransmitter) {
+    //
+    // Transmitter Setup
+    //
+    McBSP_configureTxClock(`instance.$name`_BASE, &`instance.$name`_ClockParamsTemp);
+    McBSP_configureTxFrameSync(`instance.$name`_BASE, &`instance.$name`_FsyncParamsTXTemp);
+    McBSP_configureTxDataFormat(`instance.$name`_BASE, &`instance.$name`_DataParamsTXTemp);
+            % if (instance.txChannelMode != "MCBSP_ALL_TX_CHANNELS_ENABLED") {
+    McBSP_configureTxMultichannel(`instance.$name`_BASE, &`instance.$name`_MultichannelParamsTXTemp);
+            %}
+            % if (instance.enableSPIController) {
+    McBSP_configureSPIMasterMode(`instance.$name`_BASE, &`instance.$name`_SPIControllerModeParamsTemp);
+            %}
+            % if (instance.enableTxInterrupt) {
+    McBSP_enableTxInterrupt(`instance.$name`_BASE);
+            %}
+        %}
+}
+    %}
+%}

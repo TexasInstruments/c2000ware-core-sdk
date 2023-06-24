@@ -1,0 +1,21 @@
+% var module = system.modules['/driverlib/aio.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// AIO Configurations
+//
+//*****************************************************************************
+% for(var i = 0; i < module.$instances.length; i++) {
+	% var instance = module.$instances[i];
+	% let aioPin        = instance.aioPin;
+	% let solution    = aioPin.$solution;
+	% let peripheral  = system.deviceData.peripherals[instance.aioPin.$solution.peripheralName];
+	% var aioName = peripheral.name;
+	% var gpioNumber = aioName.substring(2);
+	% gpioNumber = Common.gpioNameToNumber(gpioNumber);
+#define `instance.$name` `gpioNumber`
+void `instance.$name`_init();
+% }
+%}

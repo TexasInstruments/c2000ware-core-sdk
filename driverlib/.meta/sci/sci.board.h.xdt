@@ -1,0 +1,26 @@
+% var moduleName = "sci"
+% var module = system.modules['/driverlib/' + moduleName + '.js'];
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// SCI Configurations
+//
+//*****************************************************************************
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        % let modInst  = instance[moduleName];
+        % let solution    = modInst.$solution;
+        % let peripheral  = system.deviceData.peripherals[solution.peripheralName];
+#define `instance.$name`_BASE `peripheral.name`_BASE
+#define `instance.$name`_BAUDRATE `instance.baudRates`
+#define `instance.$name`_CONFIG_WLEN `"SCI_CONFIG_WLEN_" + instance.wordLenght`
+#define `instance.$name`_CONFIG_STOP `"SCI_CONFIG_STOP_" + instance.stop`
+#define `instance.$name`_CONFIG_PAR `instance.parity`
+        % if (instance.useInterrupts && instance.useFifo) {
+#define `instance.$name`_FIFO_TX_LVL `instance.txFifo`
+#define `instance.$name`_FIFO_RX_LVL `instance.rxFifo`
+        % }
+void `instance.$name`_init();
+    % }
+%}

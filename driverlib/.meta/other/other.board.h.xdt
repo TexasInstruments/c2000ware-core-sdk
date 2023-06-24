@@ -1,0 +1,17 @@
+% var module = system.modules['/driverlib/other.js'];
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// OTHER Configurations
+//
+//*****************************************************************************
+% for(var i = 0; i < module.$instances.length; i++) {
+	% var instance = module.$instances[i];
+	% let other        	= instance.other;
+	% let solution    		= other.$solution;
+	%let peripheral 	 	= system.deviceData.peripherals[solution.peripheralName];
+%//#define `instance.$name`_BASE `peripheral.name`_BASE
+% }
+%}
+%

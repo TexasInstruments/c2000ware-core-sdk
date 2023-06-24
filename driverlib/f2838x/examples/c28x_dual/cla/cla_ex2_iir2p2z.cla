@@ -1,0 +1,163 @@
+//#############################################################################
+//
+// FILE: cla_ex2_iir2p2z.cla
+//
+// TITLE:  2-Pole 2-Zero IIR Filter Example
+//
+//#############################################################################
+// $Copyright:
+// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+//
+// Redistribution and use in source and binary forms, with or without 
+// modification, are permitted provided that the following conditions 
+// are met:
+// 
+//   Redistributions of source code must retain the above copyright 
+//   notice, this list of conditions and the following disclaimer.
+// 
+//   Redistributions in binary form must reproduce the above copyright
+//   notice, this list of conditions and the following disclaimer in the 
+//   documentation and/or other materials provided with the   
+//   distribution.
+// 
+//   Neither the name of Texas Instruments Incorporated nor the names of
+//   its contributors may be used to endorse or promote products derived
+//   from this software without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+// $
+//###########################################################################
+
+//
+// Included Files
+//
+#include "cla_ex2_iir2p2z_shared.h"
+
+//
+// Globals
+//
+// Note that the globals defined in the .cla source are global to the cla source
+// file.  i.e. they may be shared across tasks. All of the data shared between
+// the CLA and the C28x CPU must be defined in the C (or C++) code, and not the
+// CLA code.  
+//
+float W2[2]; //w2(n) and w2(n-1)
+float W1[2]; //w1(n) and w1(n-1)
+
+//
+// function definitions
+//
+
+//Task 1 : 2p2z IIR Transposed Direct Form II Filter
+// ALGORITHM:
+//
+// Difference Equation :
+//
+// The operations for each biquad, in order, is as follows
+// 1. yn  = xn*b(0) + q4
+// 2. q3 = xn*b(1) + yn*a(1) + q2
+// 3. q4 = q3
+// 4. q1 = xn*b(2) + yn*a(2)
+// 5. q2 = q1
+//      where
+//              yn =output sample of the filter at index n
+//              xn =input sample of the filter at index n
+//               qx =intermediate values stored in the delay buffer
+//
+// Transfer Function :
+//   The difference equation is split up into multiple Second-Order Sections(SOS)
+//   Each SOS represents a Biquad with the following transfer function
+//                                  -1        -2
+//              Y(z)   b(0) + b(1) z  + b(2) z
+//              ----- = -----------------------
+//               X(z)                   -1       -2
+//                      a(0) + a(1) z  + a(2) z
+//
+//   For a detailed treatment of Direct II Forms see
+//   [1]Digital Signal Processing, Proakis, J. G. and Manolakis, D. G. - Chapter 7
+//   [2]Understanding Digital Signal Processing 3rd ed, Lyons, R. G.
+//
+//     Network Diagram  :
+//
+// xn------>(x)--->(+)--------------->yn
+//      |    ^      ^             |
+//      |    |      |q4           |
+//      |    b(0)  (z)            |
+//      |           ^             |
+//      |           |q3           |
+//      |-->(x)--->(+)<-----(x)---|
+//      |    ^      ^        ^    |
+//      |    |      |q2      |    |
+//      |    b(1)  (z)       a(1) |
+//      |           ^             |
+//      |           |q1           |
+//      --->(x)--->(+)<-----(x)----
+//           ^               ^
+//           |               |
+//           b(2)            a(2)
+interrupt void Cla1Task1 ( void )
+{
+    //Local Variables
+
+    //Code
+    __mdebugstop();
+    yn    = xn*S1_B[0] + W2[1];
+    W2[0] = xn*S1_B[1] + yn*S1_A[1] + W1[1];
+    W2[1] = W2[0];
+    W1[0] = xn*S1_B[2] + yn*S1_A[2];
+    W1[1] = W1[0];
+//    __mnop();
+//    __mnop();
+//    __mnop();
+}
+
+interrupt void Cla1Task2 ( void )
+{
+
+}
+
+interrupt void Cla1Task3 ( void )
+{
+
+}
+
+interrupt void Cla1Task4 ( void )
+{
+
+}
+
+interrupt void Cla1Task5 ( void )
+{
+
+}
+
+interrupt void Cla1Task6 ( void )
+{
+
+}
+
+interrupt void Cla1Task7 ( void )
+{
+
+}
+
+//Task 8 will initialize the variables used in Task 1
+interrupt void Cla1Task8 ( void )
+{
+    W2[0] = 0; W2[1] = 0;
+    W1[0] = 0; W1[1] = 0;
+}
+
+//
+// End of file
+//

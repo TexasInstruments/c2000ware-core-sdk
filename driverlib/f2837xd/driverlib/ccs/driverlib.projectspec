@@ -1,0 +1,46 @@
+<projectSpec>
+  <project
+        name="f2837xd_driverlib"
+        device="Generic C28xx Device"
+        cgtVersion="22.6.0.LTS"
+        products="c2000ware_software_package"
+        launchWizard="False"
+        outputType="staticLibrary"
+        location="."
+        >
+    <configuration name="Debug" compilerBuildOptions="--opt_level=off -I../ -v28 -ml -mt --float_support=fpu32 --define=DEBUG -g --diag_warning=225 --diag_wrap=off --display_error_number --gen_func_subsections=on --gen_data_subsections=on --abi=coffabi" archiverBuildOptions="driverlib_coff.lib" outputFormat="COFF" postBuildStep="if exist driverlib_eabi.lib ${C2000_CG_ROOT}/bin/libinfo2000.exe -o driverlib.lib driverlib_eabi.lib driverlib_coff.lib"/>
+    <configuration name="Debug_EABI" compilerBuildOptions="--opt_level=off -I../ -v28 -ml -mt --float_support=fpu32 --define=DEBUG -g --diag_warning=225 --diag_wrap=off --display_error_number --gen_func_subsections=on --gen_data_subsections=on --abi=eabi" archiverBuildOptions="../Debug/driverlib_eabi.lib" outputFormat="ELF" postBuildStep="if exist ../Debug/driverlib_coff.lib ${C2000_CG_ROOT}/bin/libinfo2000.exe -o ../Debug/driverlib.lib ../Debug/driverlib_eabi.lib ../Debug/driverlib_coff.lib"/>
+    <configuration name="Release" compilerBuildOptions="-O2  -I../ -v28 -ml -mt  --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number --gen_func_subsections=on --gen_data_subsections=on --abi=coffabi" archiverBuildOptions="driverlib_coff.lib" outputFormat="COFF" postBuildStep="if exist driverlib_eabi.lib ${C2000_CG_ROOT}/bin/libinfo2000.exe -o driverlib.lib driverlib_eabi.lib driverlib_coff.lib" />
+    <configuration name="Release_EABI" compilerBuildOptions="-O2 -I../ -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number --gen_func_subsections=on --gen_data_subsections=on --abi=eabi" archiverBuildOptions="../Release/driverlib_eabi.lib" outputFormat="ELF" postBuildStep="if exist ../Release/driverlib_coff.lib ${C2000_CG_ROOT}/bin/libinfo2000.exe -o ../Release/driverlib.lib ../Release/driverlib_eabi.lib ../Release/driverlib_coff.lib"  />
+    <file action="link" path="../adc.c"  targetDirectory="." />
+    <file action="link" path="../asysctl.c"  targetDirectory="." />
+    <file action="link" path="../can.c"  targetDirectory="." />
+    <file action="link" path="../cla.c"  targetDirectory="." />
+    <file action="link" path="../clb.c"  targetDirectory="." />
+    <file action="link" path="../cmpss.c"  targetDirectory="." />
+    <file action="link" path="../cputimer.c"  targetDirectory="." />
+    <file action="link" path="../dac.c"  targetDirectory="." />
+    <file action="link" path="../dcsm.c"  targetDirectory="." />
+    <file action="link" path="../dma.c"  targetDirectory="." />
+    <file action="link" path="../ecap.c"  targetDirectory="." />
+    <file action="link" path="../emif.c"  targetDirectory="." />
+    <file action="link"  path="../epwm.c"  targetDirectory="." />
+    <file action="link"  path="../eqep.c"  targetDirectory="." />
+    <file action="link"  path="../flash.c"  targetDirectory="." />
+    <file action="link"  path="../gpio.c"  targetDirectory="." />
+    <file action="link"  path="../hrpwm.c"  targetDirectory="." />
+    <file action="link"  path="../i2c.c"  targetDirectory="." />
+    <file action="link"  path="../ipc.c"  targetDirectory="." />
+    <file action="link"  path="../interrupt.c"  targetDirectory="." />
+    <file action="link"  path="../mcbsp.c"  targetDirectory="." />
+    <file action="link"  path="../memcfg.c"  targetDirectory="." />
+    <file action="link"  path="../sci.c"  targetDirectory="." />
+    <file action="link"  path="../sdfm.c"  targetDirectory="." />
+    <file action="link"  path="../spi.c"  targetDirectory="." />
+    <file action="link"  path="../sysctl.c"  targetDirectory="." />
+    <file action="link"  path="../upp.c"  targetDirectory="." />
+    <file action="link"  path="../usb.c"  targetDirectory="." />
+    <file action="link"  path="../version.c"  targetDirectory="." />
+    <file action="link"  path="../xbar.c"  targetDirectory="." />
+  </project>
+</projectSpec>

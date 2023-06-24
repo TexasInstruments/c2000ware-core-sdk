@@ -1,0 +1,22 @@
+% var module = system.modules['/driverlib/other.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% var nameOfModule = "other";
+% var nameOfPeripheral = module.peripheralName;
+//*****************************************************************************
+//
+// OTHER Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_init(){
+%if (module != null)
+%{
+	% for(var i = 0; i < module.$instances.length; i++) {
+	    % var instance = module.$instances[i];
+	//`instance.$name` initialization
+	    
+		% let instancePinmux = instance[nameOfModule];
+		% let solution    = instancePinmux.$solution;
+		% let peripheral  = system.deviceData.peripherals[solution.peripheralName];
+	%}
+%}
+}

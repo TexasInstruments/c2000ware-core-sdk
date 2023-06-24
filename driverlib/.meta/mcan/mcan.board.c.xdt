@@ -1,0 +1,247 @@
+% var module = system.modules['/driverlib/mcan.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% var nameOfModule = "mcan";
+% var nameOfPeripheral = module.peripheralName;
+//*****************************************************************************
+//
+// MCAN Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_SYSCFG_init(){
+%   for(var i = 0; i < module.$instances.length; i++)
+%   {
+%      var instance = module.$instances[i];
+    `instance.$name`_init();
+%   }
+}
+
+%if (module != null)
+%{
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+void `instance.$name`_init(){
+        % let instancePinmux = instance[nameOfModule];
+        % let solution    = instancePinmux.$solution;
+        % let peripheral  = system.deviceData.peripherals[solution.peripheralName];
+    MCAN_RevisionId revid_`instance.$name`;
+    MCAN_InitParams initParams_`instance.$name`;
+    % if (instance.additionalCoreConfig){
+    MCAN_ConfigParams configParams_`instance.$name`;
+    % }
+        % if(instance.stdFiltsUsed.length){
+    MCAN_StdMsgIDFilterElement stdFiltelem_`instance.$name`;
+        % }
+    % if (instance.msgRamConfig){
+    MCAN_MsgRAMConfigParams    msgRAMConfigParams_`instance.$name`;
+    % }
+    MCAN_BitTimingParams       bitTimes_`instance.$name`;
+    //
+    // Initialize MCAN Init parameters.
+    //
+    initParams_`instance.$name`.fdMode            = `instance.fdMode`;
+    initParams_`instance.$name`.brsEnable         = `instance.brsEnable`;
+    initParams_`instance.$name`.txpEnable         = `instance.txpEnable`;
+    initParams_`instance.$name`.efbi              = `instance.efbi`;
+    initParams_`instance.$name`.pxhddisable       = `instance.pxhddisable`;
+    initParams_`instance.$name`.darEnable         = `instance.darEnable`;
+    initParams_`instance.$name`.wkupReqEnable     = `instance.wkupReqEnable`;
+    initParams_`instance.$name`.autoWkupEnable    = `instance.autoWkupEnable`;
+    initParams_`instance.$name`.emulationEnable   = `instance.emulationEnable`;
+    initParams_`instance.$name`.tdcEnable         = `instance.tdcEnable`;
+    initParams_`instance.$name`.wdcPreload        = `instance.wdcPreload`;
+    //
+    // Transmitter Delay Compensation parameters.
+    //
+    initParams_`instance.$name`.tdcConfig.tdcf    = `instance.tdcConfig_tdcf`;
+    initParams_`instance.$name`.tdcConfig.tdco    = `instance.tdcConfig_tdco`;
+% if (instance.additionalCoreConfig){
+    //
+    // Initialize MCAN Config parameters.
+    //
+    configParams_`instance.$name`.monEnable         = `instance.monEnable`;
+    configParams_`instance.$name`.asmEnable         = `instance.asmEnable`;
+    configParams_`instance.$name`.tsPrescalar       = `instance.tsPrescalar`;
+    configParams_`instance.$name`.tsSelect          = `instance.tsSelect`;
+    configParams_`instance.$name`.timeoutSelect     = `instance.timeoutSelect`;
+    configParams_`instance.$name`.timeoutPreload    = `instance.timeoutPreload`;
+    configParams_`instance.$name`.timeoutCntEnable  = `instance.timeoutCntEnable`;
+    configParams_`instance.$name`.filterConfig.rrfs = `instance.rrfs`;
+    configParams_`instance.$name`.filterConfig.rrfe = `instance.rrfe`;
+    configParams_`instance.$name`.filterConfig.anfe = `instance.anfe`;
+    configParams_`instance.$name`.filterConfig.anfs = `instance.flssa`;
+% }
+    % if (instance.msgRamConfig){
+    //
+    // Initialize Message RAM Sections Configuration Parameters.
+    //
+    msgRAMConfigParams_`instance.$name`.flssa                = `instance.$name`_MCAN_STD_ID_FILT_START_ADDR;
+    //
+    // Standard ID Filter List Start Address.
+    //
+    msgRAMConfigParams_`instance.$name`.lss                  = `instance.$name`_MCAN_STD_ID_FILTER_NUM;
+    //
+    // List Size: Standard ID.
+    //
+    msgRAMConfigParams_`instance.$name`.flesa                = `instance.$name`_MCAN_EXT_ID_FILT_START_ADDR;
+    //
+    // Extended ID Filter List Start Address.
+    //
+    msgRAMConfigParams_`instance.$name`.lse                  = `instance.$name`_MCAN_EXT_ID_FILTER_NUM;
+    //
+    // List Size: Extended ID.
+    //
+    msgRAMConfigParams_`instance.$name`.txStartAddr          = `instance.$name`_MCAN_TX_BUFF_START_ADDR;
+    //
+    // Tx Buffers Start Address.
+    //
+    msgRAMConfigParams_`instance.$name`.txBufNum             = `instance.$name`_MCAN_TX_BUFF_SIZE;
+    //
+    // Number of Dedicated Transmit Buffers.
+    //
+    msgRAMConfigParams_`instance.$name`.txFIFOSize           = `instance.txFIFOSize`;
+    msgRAMConfigParams_`instance.$name`.txBufMode            = `instance.txBufMode`;
+    msgRAMConfigParams_`instance.$name`.txBufElemSize        = `instance.txBufElemSize`;
+    //
+    // Tx Buffer Element Size.
+    //
+    msgRAMConfigParams_`instance.$name`.txEventFIFOStartAddr = `instance.$name`_MCAN_TX_EVENT_START_ADDR;
+    //
+    // Tx Event FIFO Start Address.
+    //
+    msgRAMConfigParams_`instance.$name`.txEventFIFOSize      = `instance.$name`_MCAN_TX_EVENT_SIZE;
+    //
+    // Event FIFO Size.
+    //
+    msgRAMConfigParams_`instance.$name`.txEventFIFOWaterMark = `instance.txEventFIFOWaterMark`;
+    //
+    // Level for Tx Event FIFO watermark interrupt.
+    //
+    msgRAMConfigParams_`instance.$name`.rxFIFO0startAddr     = `instance.$name`_MCAN_FIFO_0_START_ADDR;
+    //
+    // Rx FIFO0 Start Address.
+    //
+    msgRAMConfigParams_`instance.$name`.rxFIFO0size          = `instance.$name`_MCAN_FIFO_0_NUM;
+    //
+    // Number of Rx FIFO elements.
+    //
+    msgRAMConfigParams_`instance.$name`.rxFIFO0waterMark     = `instance.rxFIFO0waterMark`; // Rx FIFO0 Watermark.
+    msgRAMConfigParams_`instance.$name`.rxFIFO0OpMode        = `instance.rxFIFO0OpMode`;
+    msgRAMConfigParams_`instance.$name`.rxFIFO1startAddr     = `instance.$name`_MCAN_FIFO_1_START_ADDR;
+    //
+    // Rx FIFO1 Start Address.
+    //
+    msgRAMConfigParams_`instance.$name`.rxFIFO1size          = `instance.$name`_MCAN_FIFO_1_NUM;
+    //
+    // Number of Rx FIFO elements.
+    //
+    msgRAMConfigParams_`instance.$name`.rxFIFO1waterMark     = `instance.rxFIFO1waterMark`; // Level for Rx FIFO 1
+                                                  // watermark interrupt.
+    msgRAMConfigParams_`instance.$name`.rxFIFO1OpMode        = `instance.rxFIFO1OpMode`; // FIFO blocking mode.
+    msgRAMConfigParams_`instance.$name`.rxBufStartAddr       = `instance.$name`_MCAN_RX_BUFF_START_ADDR;
+    //
+    // Rx Buffer Start Address.
+    //
+    msgRAMConfigParams_`instance.$name`.rxBufElemSize        = `instance.rxBufElemSize`;
+    //
+    // Rx Buffer Element Size.
+    //
+    msgRAMConfigParams_`instance.$name`.rxFIFO0ElemSize      = `instance.rxFIFO0ElemSize`;
+    //
+    // Rx FIFO0 Element Size.
+    //
+    msgRAMConfigParams_`instance.$name`.rxFIFO1ElemSize      = `instance.rxFIFO1ElemSize`;
+    //
+    // Rx FIFO1 Element Size.
+    //
+    % }
+    //
+    // Initialize bit timings.
+    //
+    bitTimes_`instance.$name`.nomRatePrescalar   = `instance.nomRatePrescalar`; // Nominal Baud Rate Pre-scaler.
+    bitTimes_`instance.$name`.nomTimeSeg1        = `instance.nomTimeSeg1`; // Nominal Time segment before sample point.
+    bitTimes_`instance.$name`.nomTimeSeg2        = `instance.nomTimeSeg2`; // Nominal Time segment after sample point.
+    bitTimes_`instance.$name`.nomSynchJumpWidth  = `instance.nomSynchJumpWidth`; // Nominal (Re)Synchronization Jump Width Range.
+    bitTimes_`instance.$name`.dataRatePrescalar  = `instance.dataRatePrescalar`; // Data Baud Rate Pre-scaler.
+    bitTimes_`instance.$name`.dataTimeSeg1       = `instance.dataTimeSeg1`; // Data Time segment before sample point.
+    bitTimes_`instance.$name`.dataTimeSeg2       = `instance.dataTimeSeg2`; // Data Time segment after sample point.
+    bitTimes_`instance.$name`.dataSynchJumpWidth = `instance.dataSynchJumpWidth`; // Data (Re)Synchronization Jump Width.
+    //
+    // Get MCANSS Revision ID.
+    //
+    MCAN_getRevisionId(`instance.$name`_BASE, &revid_`instance.$name`);
+    //
+    // Wait for Memory initialization to be completed.
+    //
+    while(0 == MCAN_isMemInitDone(`instance.$name`_BASE));
+    //
+    // Put MCAN in SW initialization mode.
+    //
+    MCAN_setOpMode(`instance.$name`_BASE, MCAN_OPERATION_MODE_SW_INIT);
+    //
+    // Wait till MCAN is not initialized.
+    //
+    while (MCAN_OPERATION_MODE_SW_INIT != MCAN_getOpMode(`instance.$name`_BASE));
+    //
+    // Initialize MCAN module.
+    //
+    MCAN_init(`instance.$name`_BASE, &initParams_`instance.$name`);
+% if (instance.additionalCoreConfig){
+    //
+    // Configure MCAN module.
+    //
+    MCAN_config(`instance.$name`_BASE, &configParams_`instance.$name`);
+% }
+    //
+    // Configure Bit timings.
+    //
+    MCAN_setBitTime(`instance.$name`_BASE, &bitTimes_`instance.$name`);
+    % if (instance.msgRamConfig){
+    //
+    // Configure Message RAM Sections
+    //
+    MCAN_msgRAMConfig(`instance.$name`_BASE, &msgRAMConfigParams_`instance.$name`);
+    % }
+    % for(var i in instance.stdFiltsUsed){
+        % var stdFiltInstance = instance["stdFilt" + instance.stdFiltsUsed[i]];
+
+    stdFiltelem_`instance.$name`.sft = `stdFiltInstance.sft`;
+    stdFiltelem_`instance.$name`.sfec = `stdFiltInstance.sfec`;
+    stdFiltelem_`instance.$name`.sfid1 = `stdFiltInstance.sfid1`;
+    stdFiltelem_`instance.$name`.sfid2 = `stdFiltInstance.sfid2`;
+
+    //
+    // Configure Standard ID filter element `instance.stdFiltsUsed[i]`
+    //
+    MCAN_addStdMsgIDFilter(`instance.$name`_BASE, `instance.stdFiltsUsed[i]`U, &stdFiltelem_`instance.$name`);
+        % }
+    //
+    // Internal loopback mode
+    //
+    MCAN_lpbkModeEnable(`instance.$name`_BASE, MCAN_LPBK_MODE_EXTERNAL, `instance.loopbackMode`);
+    //
+    // Take MCAN out of the SW initialization mode
+    //
+    MCAN_setOpMode(`instance.$name`_BASE, MCAN_OPERATION_MODE_NORMAL);
+    while (MCAN_OPERATION_MODE_NORMAL != MCAN_getOpMode(`instance.$name`_BASE));
+        % if (instance.enableInterrupt){
+    //
+    // Enable MCAN Interrupts
+    //
+        % let x = String(instance.interruptFlags).split(",").join("|");
+        % if (!x) { x = "0";}
+    MCAN_enableIntr(`instance.$name`_BASE, `x`, 1U);
+            % for (var int_index in instance.interruptLine)
+               %{
+                    % let line = instance.interruptLine[int_index];
+                    % if (line == "MCAN_INTR_LINE_NUM_0")
+                    % x = String(instance.interruptLine0Flag).split(",").join("|");
+                    % else if (line == "MCAN_INTR_LINE_NUM_1")
+                    % x = String(instance.interruptLine1Flag).split(",").join("|");
+                    % if (!x) { x = "0";}
+    MCAN_selectIntrLine(`instance.$name`_BASE, `x`, `line`);
+    MCAN_enableIntrLine(`instance.$name`_BASE, `line`, 1U);
+               %}
+            %}
+}
+    %}
+%}

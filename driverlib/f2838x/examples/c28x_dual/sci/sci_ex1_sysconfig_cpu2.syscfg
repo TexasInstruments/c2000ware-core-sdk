@@ -1,0 +1,32 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F2838x" --package "176pin" --part "F2838x_176pin" --context "CPU2" --product "C2000WARE@4.02.00.00"
+ * @versions {"tool":"1.15.999+71"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const ipc  = scripting.addModule("/driverlib/ipc.js");
+const sci  = scripting.addModule("/driverlib/sci.js", {}, false);
+const sci1 = sci.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+ipc.ipcRegisterFlag = ["IPC_FLAG31"];
+ipc.flagHandler31   = "SYNC_FLAG";
+
+sci1.$name         = "mySCI0";
+sci1.baudRates     = 9600;
+sci1.useInterrupts = false;
+sci1.sci.$assign   = "SCIA";
+
+/**
+ * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
+ * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
+ * re-solve from scratch.
+ */
+sci1.sci.sci_rxPin.$suggestSolution = "GPIO28";
+sci1.sci.sci_txPin.$suggestSolution = "GPIO29";

@@ -1,0 +1,37 @@
+% var moduleName = "clbxbar"
+% var module = system.modules['/driverlib/' + moduleName + '.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// CLBXBAR Configurations
+//
+//*****************************************************************************
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        % let modInst  = instance[moduleName];
+        % let driverlibName = instance.auxInput
+void `instance.$name`_init();
+#define `instance.$name` `driverlibName`
+        %var muxesUsed = instance.muxesUsed;
+        %var enabledMuxesUsed = "";
+        %for (var muxesUsedIndex in muxesUsed)
+        %{
+            %var usedMuxName = muxesUsed[muxesUsedIndex];
+            %var usedMuxNumber = parseInt(usedMuxName.replace("XBAR_MUX", ""))
+            %var muxConfigName = "mux" + usedMuxNumber + "Config"
+
+            %if (instance[muxConfigName])
+            %{               
+                %enabledMuxesUsed += Common.stringOrEmpty(enabledMuxesUsed, " | ");
+                %enabledMuxesUsed += usedMuxName;
+                %var muxSource = instance[muxConfigName];
+            %}
+        %}
+        %if (enabledMuxesUsed != "")
+        %{
+#define `instance.$name`_ENABLED_MUXES (`enabledMuxesUsed`)
+        %}
+    % }
+%}

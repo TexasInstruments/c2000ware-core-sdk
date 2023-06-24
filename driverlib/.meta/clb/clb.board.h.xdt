@@ -1,0 +1,26 @@
+% var moduleName = "clb"
+% var module = system.modules['/driverlib/' + moduleName + '.js'];
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// CLB Configurations
+//
+//*****************************************************************************
+%   var clb_config_h = false;
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        % let modInst  = instance[moduleName];
+        % if (instance.attachTile) {
+        %   clb_config_h = true;
+        % }
+#define `instance.$name`_BASE `instance.clbBase`
+void `instance.$name`_init();
+    % }
+    % if (clb_config_h) {
+//
+// Tile Configurations for all CLBs are in this file
+//
+#include "clb_config.h"
+    % }
+%}

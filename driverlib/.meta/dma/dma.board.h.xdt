@@ -1,0 +1,28 @@
+% var moduleName = "dma"
+% var module = system.modules['/driverlib/' + moduleName + '.js'];
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// DMA Configurations
+//
+//*****************************************************************************
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        % let modInst  = instance[moduleName];
+        % if (instance.srcAddressInputMode == "MANUAL") {
+#define `instance.$name`_SRCADDRESS `instance.srcAddressManual` 
+        % } if (instance.destAddressInputMode == "MANUAL") {
+#define `instance.$name`_DESTADDRESS `instance.destAddressManual` 
+        % }
+        % if (instance.srcAddressInputMode == "VARIABLE") {
+extern const void *`instance.srcAddressVariable`;
+        % } if (instance.destAddressInputMode == "VARIABLE") {
+extern const void *`instance.destAddressVariable`;
+        % }
+#define `instance.$name`_BASE `instance.dmaBase` 
+#define `instance.$name`_BURSTSIZE `instance.burstSize`U
+#define `instance.$name`_TRANSFERSIZE `instance.transferSize`U
+void `instance.$name`_init();
+    %}
+%}

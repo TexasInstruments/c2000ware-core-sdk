@@ -1,0 +1,27 @@
+
+/**
+ * Import the modules used in this configuration.
+ */
+const dma  = scripting.addModule("/driverlib/dma.js", {}, false);
+const dma1 = dma.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+dma1.$name                = "myDMA0";
+dma1.srcAddressInputMode  = "VARIABLE";
+dma1.destAddressInputMode = "VARIABLE";
+dma1.srcAddressVariable   = "srcAddr";
+dma1.destAddressVariable  = "destAddr";
+dma1.destBurstStep        = 1;
+dma1.destTransferStep     = 1;
+dma1.srcBurstStep         = 1;
+dma1.srcTransferStep      = 1;
+dma1.dmaBase              = "DMA_CH6_BASE";
+dma1.useInterrupts        = true;
+dma1.interruptMode        = "DMA_INT_AT_END";
+dma1.registerInterrupts   = true;
+dma1.enableInterrupts     = true;
+dma1.enableTriggers       = true;
+dma1.burstSize            = 8;
+dma1.transferSize         = 16;

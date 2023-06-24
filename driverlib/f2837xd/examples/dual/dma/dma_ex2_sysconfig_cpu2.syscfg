@@ -1,0 +1,43 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F2837xD" --package "F2837xD_337ZWT" --part "F2837xD_337ZWT" --context "CPU2" --product "C2000WARE@4.03.00.00"
+ * @versions {"tool":"1.15.999+71"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const cputimer  = scripting.addModule("/driverlib/cputimer.js", {}, false);
+const cputimer1 = cputimer.addInstance();
+const ipc       = scripting.addModule("/driverlib/ipc.js");
+const spi       = scripting.addModule("/driverlib/spi.js", {}, false);
+const spi1      = spi.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+cputimer1.timerPeriod     = 4294967295;
+cputimer1.enableInterrupt = true;
+cputimer1.cputimerBase    = "CPUTIMER1_BASE";
+cputimer1.$name           = "myCPUTIMER1";
+
+spi1.$name                 = "mySPI0";
+spi1.mode                  = "SPI_MODE_CONTROLLER";
+spi1.emulationMode         = "SPI_EMULATION_STOP_AFTER_TRANSMIT";
+spi1.bitRate               = 500000;
+spi1.txFifo                = "SPI_FIFO_TX2";
+spi1.rxFifo                = "SPI_FIFO_RX2";
+spi1.loopback              = true;
+spi1.enabledFIFOInterrupts = ["SPI_INT_RXFF","SPI_INT_TXFF"];
+
+/**
+ * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
+ * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
+ * re-solve from scratch.
+ */
+spi1.spi.$suggestSolution             = "SPIA";
+spi1.spi.spi_picoPin.$suggestSolution = "GPIO16";
+spi1.spi.spi_pociPin.$suggestSolution = "GPIO17";
+spi1.spi.spi_clkPin.$suggestSolution  = "GPIO18";
+spi1.spi.spi_ptePin.$suggestSolution  = "GPIO19";

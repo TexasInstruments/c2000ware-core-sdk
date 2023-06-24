@@ -1,0 +1,39 @@
+
+/**
+ * Import the modules used in this configuration.
+ */
+const adc     = scripting.addModule("/driverlib/adc.js", {}, false);
+const adc1    = adc.addInstance();
+const adc2    = adc.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+adc1.$name               = "myADC0";
+adc1.adcClockPrescaler   = "ADC_CLK_DIV_4_0";
+adc1.enabledSOCs         = ["ADC_SOC_NUMBER0","ADC_SOC_NUMBER1"];
+adc1.soc1Channel         = "ADC_CH_ADCIN1";
+adc1.soc0SampleWindow    = 15;
+adc1.soc1SampleWindow    = 15;
+adc1.enabledInts         = ["ADC_INT_NUMBER1"];
+adc1.interruptPulseMode  = "ADC_PULSE_END_OF_CONV";
+adc1.enableInterrupt1    = true;
+adc1.interrupt1SOCSource = "ADC_SOC_NUMBER1";
+adc1.adcSignalMode     = "ADC_MODE_SINGLE_ENDED";
+adc1.adcResolutionMode = "ADC_RESOLUTION_12BIT";
+
+adc2.$name               = "myADC1";
+adc2.adcBase             = "ADCC_BASE";
+adc2.adcClockPrescaler   = "ADC_CLK_DIV_4_0";
+adc2.enabledSOCs         = ["ADC_SOC_NUMBER0","ADC_SOC_NUMBER1"];
+adc2.soc0SampleWindow    = 15;
+adc2.soc1SampleWindow    = 15;
+adc2.soc1Channel         = "ADC_CH_ADCIN3";
+adc2.soc0Channel         = "ADC_CH_ADCIN2";
+adc2.enabledInts         = ["ADC_INT_NUMBER1"];
+adc2.interruptPulseMode  = "ADC_PULSE_END_OF_CONV";
+adc2.enableInterrupt1    = true;
+adc2.interrupt1SOCSource = "ADC_SOC_NUMBER1";
+adc2.adcSignalMode     = "ADC_MODE_SINGLE_ENDED";
+adc2.adcResolutionMode = "ADC_RESOLUTION_12BIT";
+

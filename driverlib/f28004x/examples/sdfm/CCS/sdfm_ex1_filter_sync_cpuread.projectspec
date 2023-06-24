@@ -1,0 +1,29 @@
+<projectSpec>
+  <project
+        name="sdfm_ex1_filter_sync_cpuread"
+        device="TMS320F280049C"
+        cgtVersion="22.6.0.LTS"
+        products="c2000ware_software_package"
+        outputFormat="ELF"
+        launchWizard="False"
+        linkerCommandFile=""
+        enableSysConfigTool="true"
+        sysConfigBuildOptions="--product ${C2000WARE_ROOT}/.metadata/sdk.json --device F28004x"
+        >
+    <configuration name="CPU1_RAM" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT}  -v28 -ml -mt --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu0 --define=DEBUG   --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 --define RAM" />
+    <configuration name="CPU1_FLASH" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT}  -v28 -ml -mt --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu0 --define=DEBUG --define=_FLASH --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 " />
+    <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../driverlib/" scope="project" />
+    <pathVariable name="C2000WARE_ROOT" path="../../../../../" scope="project" />
+    <file action="copy" path="../../../../../device_support/f28004x/common/include/driverlib.h" targetDirectory="device" />
+    <file action="copy" path="../../../../../device_support/f28004x/common/include/device.h" targetDirectory="device" />
+    <file action="copy" path="../../../../../device_support/f28004x/common/source/device.c" targetDirectory="device" />
+    <file action="copy" path="../../../../../device_support/f28004x/common/source/f28004x_codestartbranch.asm" targetDirectory="device" />
+    <file action="copy" path="../../../../../device_support/f28004x/common/targetConfigs/TMS320F280049C.ccxml" targetDirectory="targetConfigs" />
+    <file action="copy" path="../../../../../device_support/f28004x/common/cmd/28004x_sdfm_ram_lnk.cmd" targetDirectory="" applicableConfigurations="CPU1_RAM" />
+    <file action="copy" path="../../../../../device_support/f28004x/common/cmd/28004x_sdfm_flash_lnk.cmd" targetDirectory="" applicableConfigurations="CPU1_FLASH" />
+    <file action="link" path="../../../driverlib/ccs/Debug/driverlib.lib" targetDirectory="" />
+    <file action="copy" path="../../../driverlib/" targetDirectory="device" excludeFromBuild="True"/>
+    <file action="copy" path="../sdfm_ex1_filter_sync_cpuread.c" targetDirectory="" />
+    <file action="copy" path="../../empty_projects/c2000.syscfg" targetDirectory="" />
+  </project>
+</projectSpec>

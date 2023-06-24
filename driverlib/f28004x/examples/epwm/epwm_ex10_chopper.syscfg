@@ -1,0 +1,80 @@
+/**
+ * Import the modules used in this configuration.
+ */
+const epwm  = scripting.addModule("/driverlib/epwm.js", {}, false);
+const epwm1 = epwm.addInstance();
+const epwm2 = epwm.addInstance();
+const epwm3 = epwm.addInstance();
+const epwm4 = epwm.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+epwm1.$name                                                                          = "myEPWM1";
+epwm1.epwm.$assign                                                                   = "EPWM1";
+epwm1.epwm.epwm_aPin.$assign                                      = "GPIO0";
+epwm1.epwm.epwm_bPin.$assign                                      = "GPIO1";
+epwm1.epwmTimebase_clockDiv                                             = "EPWM_CLOCK_DIVIDER_4";
+epwm1.epwmTimebase_hsClockDiv                                           = "EPWM_HSCLOCK_DIVIDER_4";
+epwm1.epwmTimebase_period                                               = 500;
+epwm1.epwmTimebase_counterMode                                          = "EPWM_COUNTER_MODE_UP_DOWN";
+epwm1.epwmCounterCompare_cmpA                                     = 125;
+epwm1.epwmCounterCompare_cmpB                                     = 375;
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_UP_CMPA   = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_DOWN_CMPA = "EPWM_AQ_OUTPUT_LOW";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_UP_CMPA   = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_DOWN_CMPA = "EPWM_AQ_OUTPUT_LOW";
+
+epwm2.$name                                                                          = "myEPWM2";
+epwm2.epwm.$assign                                                                   = "EPWM2";
+epwm2.epwm.epwm_aPin.$assign                                      = "GPIO2";
+epwm2.epwm.epwm_bPin.$assign                                      = "GPIO3";
+epwm2.epwmTimebase_clockDiv                                       = "EPWM_CLOCK_DIVIDER_4";
+epwm2.epwmTimebase_hsClockDiv                                     = "EPWM_HSCLOCK_DIVIDER_4";
+epwm2.epwmTimebase_period                                         = 500;
+epwm2.epwmTimebase_counterMode                                    = "EPWM_COUNTER_MODE_UP_DOWN";
+epwm2.epwmCounterCompare_cmpA                                     = 125;
+epwm2.epwmCounterCompare_cmpB                                     = 375;
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_UP_CMPA   = "EPWM_AQ_OUTPUT_HIGH";
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_DOWN_CMPA = "EPWM_AQ_OUTPUT_LOW";
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_UP_CMPA   = "EPWM_AQ_OUTPUT_HIGH";
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_DOWN_CMPA = "EPWM_AQ_OUTPUT_LOW";
+epwm2.epwmChopper_useChopper                                     = true;
+epwm2.epwmChopper_chopperFreq                                    = "3";
+
+epwm3.$name                                                                          = "myEPWM3";
+epwm3.epwm.$assign                                                                   = "EPWM3";
+epwm3.epwm.epwm_aPin.$assign                                      = "GPIO4";
+epwm3.epwm.epwm_bPin.$assign                                      = "GPIO5";
+epwm3.epwmTimebase_clockDiv                                             = "EPWM_CLOCK_DIVIDER_4";
+epwm3.epwmTimebase_hsClockDiv                                           = "EPWM_HSCLOCK_DIVIDER_4";
+epwm3.epwmTimebase_period                                               = 500;
+epwm3.epwmTimebase_counterMode                                          = "EPWM_COUNTER_MODE_UP_DOWN";
+epwm3.epwmCounterCompare_cmpA                                     = 125;
+epwm3.epwmCounterCompare_cmpB                                     = 375;
+epwm3.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_UP_CMPA   = "EPWM_AQ_OUTPUT_HIGH";
+epwm3.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_DOWN_CMPA = "EPWM_AQ_OUTPUT_LOW";
+epwm3.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_UP_CMPA   = "EPWM_AQ_OUTPUT_HIGH";
+epwm3.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_DOWN_CMPA = "EPWM_AQ_OUTPUT_LOW";
+epwm3.epwmChopper_useChopper                                             = true;
+epwm3.epwmChopper_chopperDuty                                            = "5";
+epwm3.epwmChopper_chopperFreq                                            = "3";
+
+epwm4.$name                                                                          = "myEPWM4";
+epwm4.epwm.$assign                                                                   = "EPWM4";
+epwm4.epwm.epwm_aPin.$assign                                      = "GPIO6";
+epwm4.epwm.epwm_bPin.$assign                                      = "GPIO7";
+epwm4.epwmTimebase_clockDiv                                             = "EPWM_CLOCK_DIVIDER_4";
+epwm4.epwmTimebase_hsClockDiv                                           = "EPWM_HSCLOCK_DIVIDER_4";
+epwm4.epwmTimebase_period                                               = 500;
+epwm4.epwmTimebase_counterMode                                          = "EPWM_COUNTER_MODE_UP_DOWN";
+epwm4.epwmCounterCompare_cmpA                                     = 125;
+epwm4.epwmCounterCompare_cmpB                                     = 375;
+epwm4.epwmChopper_useChopper                                     = true;
+epwm4.epwmChopper_chopperDuty                                    = "3";
+epwm4.epwmChopper_chopperFreq                                    = "3";
+epwm4.epwmChopper_chopperFirstPulseWidth                         = "10";
+epwm4.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_UP_CMPA   = "EPWM_AQ_OUTPUT_HIGH";
+epwm4.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_DOWN_CMPA = "EPWM_AQ_OUTPUT_LOW";
+epwm4.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_UP_CMPA   = "EPWM_AQ_OUTPUT_HIGH";
+epwm4.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_DOWN_CMPA = "EPWM_AQ_OUTPUT_LOW";

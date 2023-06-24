@@ -1,0 +1,31 @@
+<projectSpec>
+  <project
+        name="boot_ex2_customBootConfig"
+        device="TMS320F280049C"
+        cgtVersion="22.6.0.LTS"
+        products="c2000ware_software_package"
+        outputFormat="ELF"
+        launchWizard="False"
+        linkerCommandFile=""
+        enableSysConfigTool="true"
+        sysConfigBuildOptions="--product ${C2000WARE_ROOT}/.metadata/sdk.json --device F28004x"
+        >
+     <configuration name="ZERO_BMSPS" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT}  -v28 -ml -mt --define=DEBUG --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu0 --define=CPU1 --define=ZERO_BMSPS  --diag_warning=225  --diag_suppress=10063 --display_error_number"  linkerBuildOptions="--entry_point code_start --stack_size=0x100 " />
+     <configuration name="ONE_BMSP" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT}  -v28 -ml -mt --define=DEBUG --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu0 --define=CPU1 --define=ONE_BMSP  --diag_warning=225  --diag_suppress=10063 --display_error_number"  linkerBuildOptions="--entry_point code_start --stack_size=0x100 " />
+     <configuration name="THREE_BMSPS" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT}  -v28 -ml -mt --define=DEBUG --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu0 --define=CPU1 --define=THREE_BMSPS  --diag_warning=225  --diag_suppress=10063 --display_error_number"  linkerBuildOptions="--entry_point code_start --stack_size=0x100 " />
+    <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../driverlib/" scope="project" />
+    <pathVariable name="C2000WARE_ROOT" path="../../../../../" scope="project" />
+    <file action="copy" path="../../../../../device_support/f28004x/common/include/driverlib.h" targetDirectory="device" />
+    <file action="copy" path="../../../../../device_support/f28004x/common/include/device.h" targetDirectory="device" />
+    <file action="copy" path="../../../../../device_support/f28004x/common/source/device.c" targetDirectory="device" />
+    <file action="copy" path="../../../../../device_support/f28004x/common/source/f28004x_codestartbranch.asm" targetDirectory="device" />
+    <file action="copy" path="../../../../../device_support/f28004x/common/targetConfigs/TMS320F280049C.ccxml" targetDirectory="targetConfigs" />
+    <file action="copy" path="../../../../../device_support/f28004x/common/cmd/28004x_generic_ram_lnk.cmd" targetDirectory="" applicableConfigurations="ZERO_BMSPS,ONE_BMSP,THREE_BMSPS" />
+    <file action="copy" path="../../../../../device_support/f28004x/common/cmd/28004x_dcsm_lnk.cmd" targetDirectory="" />
+    <file action="link" path="../../../driverlib/ccs/Debug/driverlib.lib" targetDirectory="" />
+    <file action="copy" path="../../../driverlib/" targetDirectory="device" excludeFromBuild="True"/>
+    <file action="copy" path="../boot_ex2_customBootConfig.c" targetDirectory="" />
+    <file action="copy" path="../boot_ex2_customBootConfig.h" targetDirectory="" />
+    <file action="copy" path="../../../../../device_support/f28004x/common/source/f28004x_dcsm_z1otp.asm" targetDirectory="" />
+  </project>
+</projectSpec>

@@ -1,0 +1,16 @@
+% var module = system.modules['/driverlib/analog.js'];
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// Analog PinMux Configurations
+//
+//*****************************************************************************
+% for(var i = 0; i < module.$instances.length; i++) {
+	% var instance = module.$instances[i];
+	% let analog        	= instance.analog;
+	% let solution    		= analog.$solution;
+	%let peripheral 	 	= system.deviceData.peripherals[solution.peripheralName];
+% }
+%}
+%

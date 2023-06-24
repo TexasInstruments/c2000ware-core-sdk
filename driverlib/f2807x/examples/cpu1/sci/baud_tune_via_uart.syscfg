@@ -1,0 +1,14 @@
+/**
+ * Import the modules used in this configuration.
+ */
+var sci = scripting.addModule("/driverlib/sci.js", {}, false);
+var sci1 = sci.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+sci1.$name = "mySCI0";
+sci1.baudRates = 9600;
+sci1.sci.$name = "MySCI1";
+sci1.sci.scirxdPin.$assign = "GPIO9";
+sci1.sci.scitxdPin.$assign = "GPIO8";

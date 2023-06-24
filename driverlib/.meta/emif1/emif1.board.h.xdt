@@ -1,0 +1,80 @@
+% var moduleName = "emif1"
+% var module = system.modules['/driverlib/' + moduleName + '.js'];
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// EMIF1 Configurations
+//
+//*****************************************************************************
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        % let modInst  = instance[moduleName];
+        % let solution    = modInst.$solution;
+        % let peripheral  = system.deviceData.peripherals[solution.peripheralName];
+#define `instance.$name`_WAITPOL        `instance.waitPolarity`
+#define `instance.$name`_MAXWAIT        `instance.maxWait`U
+#define `instance.$name`_BASE           `peripheral.name`_BASE
+#define `instance.$name`_CONFIGBASE     `peripheral.name`CONFIG_BASE
+#define `instance.$name`_CLKDIV         `instance.clkDiv`
+        % if(instance.selController){
+#define `instance.$name`_SELCONTROLLER      `instance.selController`      
+        % }
+#define `instance.$name`_SELACCESS      `instance.selAccess`
+% var asyncIntFlg = ["0"].concat(instance.asyncIntFlags)
+#define `instance.$name`_ASYNCINTFLAGS (`asyncIntFlg.join("|")`)
+//
+//CS0 Parameters
+//
+#define `instance.$name`_CS0REFRESH     `instance.cs0Refresh`U
+#define `instance.$name`_CS0SIZE        `instance.cs0Narrow`
+#define `instance.$name`_CS0NUMBANKS    `instance.cs0Banks`
+#define `instance.$name`_CS0CAS         `instance.cs0CAS`
+#define `instance.$name`_CS0CAWIDTH     `instance.cs0CAWidth`
+#define `instance.$name`_CS0TRFC        (`instance.cs0tRFC`U - 1U)
+#define `instance.$name`_CS0TRP         (`instance.cs0tRP`U - 1U)
+#define `instance.$name`_CS0TRCD        (`instance.cs0tRCD`U - 1U)
+#define `instance.$name`_CS0TWR         (`instance.cs0tWR`U - 1U)
+#define `instance.$name`_CS0TRAS        (`instance.cs0tRAS`U - 1U)
+#define `instance.$name`_CS0TRC         (`instance.cs0tRC`U - 1U)
+#define `instance.$name`_CS0TRRD        (`instance.cs0tRRD`U - 1U)
+#define `instance.$name`_CS0TXSR        (`instance.cs0tXSR`U - 1U)
+//
+//CS2 Parameters
+//
+#define `instance.$name`_CS2ASYNCMODE   `instance.cs2SelStrobe`
+#define `instance.$name`_CS2WORDSIZE    `instance.cs2WordSize`
+#define `instance.$name`_CS2WSETUP      (`instance.cs2WriteSetup`U - 1U)
+#define `instance.$name`_CS2WSTROBE     (`instance.cs2WriteStrobe`U - 1U)
+#define `instance.$name`_CS2WHOLD       (`instance.cs2WriteHold`U - 1U)
+#define `instance.$name`_CS2RSETUP      (`instance.cs2ReadSetup`U - 1U)
+#define `instance.$name`_CS2RSTROBE     (`instance.cs2ReadStrobe`U - 1U)
+#define `instance.$name`_CS2RHOLD       (`instance.cs2ReadHold`U - 1U)
+#define `instance.$name`_CS2TURNAROUND  (`instance.cs2TurnAround`U - 1U)
+//
+//CS3 Parameters
+//
+#define `instance.$name`_CS3ASYNCMODE   `instance.cs3SelStrobe`
+#define `instance.$name`_CS3WORDSIZE    `instance.cs3WordSize`
+#define `instance.$name`_CS3WSETUP      (`instance.cs3WriteSetup`U - 1U)
+#define `instance.$name`_CS3WSTROBE     (`instance.cs3WriteStrobe`U - 1U)
+#define `instance.$name`_CS3WHOLD       (`instance.cs3WriteHold`U - 1U)
+#define `instance.$name`_CS3RSETUP      (`instance.cs3ReadSetup`U - 1U)
+#define `instance.$name`_CS3RSTROBE     (`instance.cs3ReadStrobe`U - 1U)
+#define `instance.$name`_CS3RHOLD       (`instance.cs3ReadHold`U - 1U)
+#define `instance.$name`_CS3TURNAROUND  (`instance.cs3TurnAround`U - 1U)
+//
+//CS4 Parameters
+//
+#define `instance.$name`_CS4ASYNCMODE   `instance.cs4SelStrobe`
+#define `instance.$name`_CS4WORDSIZE    `instance.cs4WordSize`
+#define `instance.$name`_CS4WSETUP      (`instance.cs4WriteSetup`U - 1U)
+#define `instance.$name`_CS4WSTROBE     (`instance.cs4WriteStrobe`U - 1U)
+#define `instance.$name`_CS4WHOLD       (`instance.cs4WriteHold`U - 1U)
+#define `instance.$name`_CS4RSETUP      (`instance.cs4ReadSetup`U - 1U)
+#define `instance.$name`_CS4RSTROBE     (`instance.cs4ReadStrobe`U - 1U)
+#define `instance.$name`_CS4RHOLD       (`instance.cs4ReadHold`U - 1U)
+#define `instance.$name`_CS4TURNAROUND  (`instance.cs4TurnAround`U - 1U)
+    % }
+%}
+%

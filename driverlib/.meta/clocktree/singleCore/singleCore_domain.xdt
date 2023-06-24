@@ -1,0 +1,77 @@
+%%{
+// Device Supported : F2837xD, F2838x
+
+const PLL_type1 = ["F2837xD"]	//FMULT available 	| REFDIV unavailable
+const PLL_type2 = ["F2838x"]	//FMULT unavailable	| REFDIV available
+
+const EPWM_div_support 		= ["F2837xD"]
+
+const device  = system.deviceData.device
+
+const PLLSYSCLK_d	 = system.clockTree.PLLSYSCLK.in
+const LSPCLK_d 		 = system.clockTree.LSPCLK.in
+const CPUCLK_d	 	 = system.clockTree.CPUCLK.in
+const SYSCLK_d	 	 = system.clockTree.SYSCLK.in
+
+%%}
+	%
+	%if(EPWM_div_support.includes(device))
+	%{
+	% var   EPWMCLK_d       = system.clockTree.PLLSYSCLK.in / system.clockTree.EPWMCLKDIV.divideValue
+	%}
+//*****************************************************************************
+//
+// CPUCLK Domain (`CPUCLK_d` MHz)
+//
+//*****************************************************************************
+% var max, i
+% max = system.clockTree.CPUCLK_domain.$ipInstance.modulePins.length
+% for(i=0; i<max; i++)
+	% {
+// `system.clockTree.CPUCLK_domain.$ipInstance.modulePins[i].name`
+	% }
+//	
+//*****************************************************************************
+//
+// SYSCLK Domain (`SYSCLK_d` MHz)
+//
+//*****************************************************************************
+% max = system.clockTree.SYSCLK_domain.$ipInstance.modulePins.length
+% for(i=0; i<max; i++)
+	% {
+// `system.clockTree.SYSCLK_domain.$ipInstance.modulePins[i].name`
+	% }
+//	
+
+/////////////////////	
+// Gated CPU1 SYSCLK
+/////////////////////
+% max = system.clockTree.PERx_SYSCLK_domain.$ipInstance.modulePins.length
+% for(i=0; i<max; i++)
+	% {
+// `system.clockTree.PERx_SYSCLK_domain.$ipInstance.modulePins[i].name`
+	% }
+//
+
+//*****************************************************************************
+//
+// Gated Peripheral SYSCLK Domain (`PLLSYSCLK_d` MHz) 
+//
+//*****************************************************************************
+% max = system.clockTree.PERx_SYSCLK_domain.$ipInstance.modulePins.length
+% for(i=0; i<max; i++)
+	% {
+// `system.clockTree.PERx_SYSCLK_domain.$ipInstance.modulePins[i].name`
+	% }
+//	
+
+//*****************************************************************************
+//
+// Gated LSPCLK Domain (`LSPCLK_d` MHz) 
+//
+//*****************************************************************************
+% max = system.clockTree.LSPCLK_domain.$ipInstance.modulePins.length
+% for(i=0; i<max; i++)
+	% {
+// `system.clockTree.LSPCLK_domain.$ipInstance.modulePins[i].name`
+	% }

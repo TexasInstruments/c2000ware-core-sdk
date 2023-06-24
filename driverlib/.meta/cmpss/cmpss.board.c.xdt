@@ -1,0 +1,280 @@
+% var module = system.modules['/driverlib/cmpss.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% var nameOfModule = "cmpss";
+% var nameOfPeripheral = module.peripheralName;
+%
+%var clkDivs = [
+%    {name: "CMPSS_RAMP_CLOCK_DIV1", displayName: "Divide SYSCLK by 1"},
+%    {name: "CMPSS_RAMP_CLOCK_DIV2", displayName: "Divide SYSCLK by 2"},
+%    {name: "CMPSS_RAMP_CLOCK_DIV3", displayName: "Divide SYSCLK by 3"},
+%    {name: "CMPSS_RAMP_CLOCK_DIV4", displayName: "Divide SYSCLK by 4"},
+%    {name: "CMPSS_RAMP_CLOCK_DIV5", displayName: "Divide SYSCLK by 5"},
+%    {name: "CMPSS_RAMP_CLOCK_DIV6", displayName: "Divide SYSCLK by 6"},
+%    {name: "CMPSS_RAMP_CLOCK_DIV7", displayName: "Divide SYSCLK by 7"},
+%    {name: "CMPSS_RAMP_CLOCK_DIV8", displayName: "Divide SYSCLK by 8"},
+%    {name: "CMPSS_RAMP_CLOCK_DIV9", displayName: "Divide SYSCLK by 9"},
+%    {name: "CMPSS_RAMP_CLOCK_DIV10", displayName: "Divide SYSCLK by 10"},
+%    {name: "CMPSS_RAMP_CLOCK_DIV11", displayName: "Divide SYSCLK by 11"},
+%    {name: "CMPSS_RAMP_CLOCK_DIV12", displayName: "Divide SYSCLK by 12"},
+%    {name: "CMPSS_RAMP_CLOCK_DIV13", displayName: "Divide SYSCLK by 13"},
+%    {name: "CMPSS_RAMP_CLOCK_DIV14", displayName: "Divide SYSCLK by 14"},
+%    {name: "CMPSS_RAMP_CLOCK_DIV15", displayName: "Divide SYSCLK by 15"},
+%    {name: "CMPSS_RAMP_CLOCK_DIV16", displayName: "Divide SYSCLK by 16"}
+%]
+%%{
+%%}
+//*****************************************************************************
+//
+// CMPSS Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_init(){
+%   for(var i = 0; i < module.$instances.length; i++) 
+%   {
+%      var instance = module.$instances[i];
+	`instance.$name`_init();
+%   }
+}
+
+%if (module != null)
+% {
+        % for(var i = 0; i < module.$instances.length; i++) {
+            % var instance = module.$instances[i];
+            % var instanceNumber = instance.cmpssBase.match(/\d+/)[0]
+void `instance.$name`_init(){
+    % if( ["F28002x", "F28003x", "F28004x", "F280013x", "F280015x", "F28P65x"].includes(system.deviceData.deviceId)){
+    //
+    // Select the value for CMP`instanceNumber`HPMXSEL.
+    //
+            % var tempPositiveInstance = "ASYSCTL_CMPHPMUX_SELECT_"+instanceNumber
+    ASysCtl_selectCMPHPMux(`tempPositiveInstance`,`instance.asysCMPHPMXSELValue`U);
+        %if (instance.highCompNegative != "CMPSS_INSRC_DAC"){
+    //
+    // Select the value for CMP`instanceNumber`HNMXSEL.
+    //
+            % var tempNegativeInstance = "ASYSCTL_CMPHNMUX_SELECT_"+instanceNumber
+    ASysCtl_selectCMPHNMuxValue(`tempNegativeInstance`,`instance.asysCMPHNMXSELValue`U);
+        %}
+    //
+    // Select the value for CMP`instanceNumber`LPMXSEL.
+    //
+            % tempPositiveInstance = "ASYSCTL_CMPLPMUX_SELECT_"+instanceNumber
+    ASysCtl_selectCMPLPMux(`tempPositiveInstance`,`instance.asysCMPLPMXSELValue`U);
+        %if (instance.lowCompNegative != "CMPSS_INSRC_DAC"){
+    //
+    // Select the value for CMP`instanceNumber`LNMXSEL.
+    //
+            % tempNegativeInstance = "ASYSCTL_CMPLNMUX_SELECT_"+instanceNumber
+    ASysCtl_selectCMPLNMuxValue(`tempNegativeInstance`,`instance.asysCMPLNMXSELValue`U);
+        %}
+    % }
+        % var baseName = instance.$name + "_BASE";
+%%{
+    var configHighString = "("
+    configHighString += instance.highCompNegative
+    if (instance.highCompInvert){
+        configHighString += " | CMPSS_INV_INVERTED"
+    }
+    if (instance.highCompAsynch){
+        configHighString += " | CMPSS_OR_ASYNC_OUT_W_FILT"
+    }
+    configHighString += ")"
+%%}
+    //
+    // Sets the configuration for the high comparator.
+    //
+    CMPSS_configHighComparator(`baseName`,`configHighString`);
+%%{
+    var configLowString = "("
+    configLowString += instance.lowCompNegative
+    if (instance.lowCompInvert){
+        configLowString += " | CMPSS_INV_INVERTED"
+    }
+    if (instance.lowCompAsynch){
+        configLowString += " | CMPSS_OR_ASYNC_OUT_W_FILT"
+    }
+    configLowString += ")"
+%%}
+    //
+    // Sets the configuration for the low comparator.
+    //
+    CMPSS_configLowComparator(`baseName`,`configLowString`);
+    //
+    // Sets the configuration for the internal comparator DACs.
+    //
+        % if(instance.dacValLoad == "CMPSS_DACVAL_PWMSYNC"){
+    //
+    //  - ePWM module must be configured before using here.
+    //
+        % }
+        % if(["F280013x", "F280015x", "F28P65x"].includes(system.deviceData.deviceId)){
+    CMPSS_configDAC(`baseName`,(`instance.dacValLoad` | `instance.dacValSource`));
+        % }
+        % else{
+    CMPSS_configDAC(`baseName`,(`instance.dacValLoad` | `instance.dacRefVoltage` | `instance.dacValSource`));
+        % }
+    //
+    // Sets the value of the internal DAC of the high comparator.
+    //
+    CMPSS_setDACValueHigh(`baseName`,`instance.dacValHigh`U);
+    //
+    // Sets the value of the internal DAC of the low comparator.
+    //
+    CMPSS_setDACValueLow(`baseName`,`instance.dacValLow`U);
+    % if((["F28P65x"].includes(system.deviceData.deviceId)) && (instance.deEnable == true)){
+    //
+    // Enable Diode Emulation Support for CMPSS
+    //
+    CMPSS_enableDEmode(`baseName`);
+    %}
+    % if(["F28P65x"].includes(system.deviceData.deviceId)){
+    //
+    // Sets the value of the internal DAC of the high comparator for Diode Emulation Support.
+    //
+    CMPSS_configHighDACShadowValue2(`baseName`,`instance.deDACValHigh`U);
+    //
+    // Sets the value of the internal DAC of the low comparator for Diode Emulation Support.
+    //
+    CMPSS_configLowDACShadowValue2(`baseName`,`instance.deDACValLow`U);
+    //
+    // Set the DEACTIVE signal source for CMPSS
+    //
+    CMPSS_selectDEACTIVESource(`baseName`, `instance.deactiveSel`);
+    % }
+    //
+    //  Configures the digital filter of the high comparator.
+    //
+    CMPSS_configFilterHigh(`baseName`, `instance.samplePrescaleHigh`U, `instance.sampleWindowHigh`U, `instance.thresholdHigh`U);
+    //
+    // Configures the digital filter of the low comparator.
+    //
+    CMPSS_configFilterLow(`baseName`, `instance.samplePrescaleLow`U, `instance.sampleWindowLow`U, `instance.thresholdLow`U);
+        % if(instance.initFilterHigh){
+    //
+    // Initializes the digital filter of the high comparator.
+    //
+    CMPSS_initFilterHigh(`baseName`);
+        % }
+        % if(instance.initFilterLow){
+    //
+    // Initializes the digital filter of the low comparator.
+    //
+    CMPSS_initFilterLow(`baseName`);
+        % }
+    //
+    // Sets the output signal configuration for the high comparator.
+    //
+    CMPSS_configOutputsHigh(`baseName`,(`instance.highCTRIPOUT` | `instance.highCTRIP`));
+    //
+    // Sets the output signal configuration for the low comparator.
+    //
+    CMPSS_configOutputsLow(`baseName`,(`instance.lowCTRIPOUT` | `instance.lowCTRIP`));
+    //
+    // Sets the comparator hysteresis settings.
+    //
+    CMPSS_setHysteresis(`baseName`,`instance.hysteresisVal`U);
+    % if(["F280015x", "F28P65x"].includes(system.deviceData.deviceId)){
+    //
+    // Configures the comparator subsystem's high ramp generator.
+    //
+    CMPSS_configRampHigh(`baseName`, `instance.rampHighDir`, `instance.maxRampVal`U,`instance.ramDecVal`U,`instance.rampDelayVal`U,`instance.pwmSyncSrc`U,`instance.useRampValShdw`);
+    //
+    // Configures the comparator subsystem's low ramp generator.
+    //
+    CMPSS_configRampLow(`baseName`, `instance.rampLowDir`, `instance.maxRampValLow`U,`instance.ramDecValLow`U,`instance.rampDelayValLow`U,`instance.pwmSyncSrcLow`U,`instance.useRampValShdwLow`);
+    %}
+    %else
+    %{
+    //
+    // Configures the comparator subsystem's ramp generator.
+    //
+    CMPSS_configRamp(`baseName`,`instance.maxRampVal`U,`instance.ramDecVal`U,`instance.rampDelayVal`U,`instance.pwmSyncSrc`U,`instance.useRampValShdw`);
+    %}
+    % if( ["F28P65x"].includes(system.deviceData.deviceId)){
+    //
+    // Configures the high comparator's ramp generator clock divider
+    //
+    CMPSS_setRampClockDividerHigh(`baseName`, `instance.rampClkDiv`)
+    //
+    // Configures the low comparator's ramp generator clock divider
+    //
+    CMPSS_setRampClockDividerLow(`baseName`, `instance.rampClkDivLow`)
+    %}
+        % if(instance.latchResetHigh){
+    //
+    // Enables reset of HIGH comparator digital filter output latch on PWMSYNC
+    //
+    CMPSS_enableLatchResetOnPWMSYNCHigh(`baseName`);
+        % }
+        % else{
+    //
+    // Disables reset of HIGH comparator digital filter output latch on PWMSYNC
+    //
+    CMPSS_disableLatchResetOnPWMSYNCHigh(`baseName`);
+        % }
+        % if(instance.latchResetLow){
+    //
+    // Enables reset of LOW comparator digital filter output latch on PWMSYNC
+    //
+    CMPSS_enableLatchResetOnPWMSYNCLow(`baseName`);
+        % }
+        % else{
+    //
+    // Disables reset of LOW comparator digital filter output latch on PWMSYNC
+    //
+    CMPSS_disableLatchResetOnPWMSYNCLow(`baseName`);
+        % }
+        % if( ["F28002x", "F28003x", "F28004x","F2838x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName())){
+    //
+    // Sets the ePWM module blanking signal that holds trip in reset.
+    //
+    CMPSS_configBlanking(`baseName`,`instance.configBlanking`U);
+            % if(instance.enableBlanking){
+    //
+    // Enables an ePWM blanking signal to hold trip in reset.
+    //
+    CMPSS_enableBlanking(`baseName`);
+            % }
+            % else{
+    //
+    // Disables an ePWM blanking signal from holding trip in reset.
+    //
+    CMPSS_disableBlanking(`baseName`);
+            % }
+        % }
+    //
+    // Configures whether or not the digital filter latches are reset by PWMSYNC
+    //
+    CMPSS_configLatchOnPWMSYNC(`baseName`,`instance.configLatchHigh`,`instance.configLatchLow`);
+        % if(instance.enableModule){
+    //
+    // Enables the CMPSS module.
+    //
+    CMPSS_enableModule(`baseName`);
+        % }
+        % else{
+    //
+    // Disables the CMPSS module.
+    //
+    CMPSS_disableModule(`baseName`);
+
+        % }
+    //
+    // Delay for CMPSS DAC to power up.
+    //
+    DEVICE_DELAY_US(500);
+        % if(instance.clearFilterLatchHigh){
+    //
+    // Causes a software reset of the high comparator digital filter output latch.
+    //
+    CMPSS_clearFilterLatchHigh(`baseName`);
+    % }
+        % if(instance.clearFilterLatchLow){
+    //
+    // Causes a software reset of the low comparator digital filter output latch.
+    //
+    CMPSS_clearFilterLatchLow(`baseName`);
+    % }
+}
+    % }
+% }

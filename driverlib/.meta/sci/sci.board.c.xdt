@@ -1,0 +1,91 @@
+% var module = system.modules['/driverlib/sci.js'];
+//*****************************************************************************
+//
+// SCI Configurations
+//
+//*****************************************************************************
+void `module.peripheralName`_init(){
+%   for(var i = 0; i < module.$instances.length; i++) 
+%   {
+%      var instance = module.$instances[i];
+	`instance.$name`_init();
+%   }
+}
+
+%if (module != null)
+%{
+	% for(var i = 0; i < module.$instances.length; i++) {
+		% var instance = module.$instances[i];
+		% var options = "(";
+		% options += "SCI_CONFIG_WLEN_" + instance.wordLenght;
+		% options += "|SCI_CONFIG_STOP_" + instance.stop;
+		% options += "|"+ instance.parity;
+		% options += ")"
+void `instance.$name`_init(){
+	SCI_clearInterruptStatus(`instance.$name`_BASE, SCI_INT_RXFF | SCI_INT_TXFF | SCI_INT_FE | SCI_INT_OE | SCI_INT_PE | SCI_INT_RXERR | SCI_INT_RXRDY_BRKDT | SCI_INT_TXRDY);
+	SCI_clearOverflowStatus(`instance.$name`_BASE);
+		%if (instance.useFifo)
+		%{
+	SCI_resetTxFIFO(`instance.$name`_BASE);
+	SCI_resetRxFIFO(`instance.$name`_BASE);
+		%}
+		%else
+		%{
+	SCI_disableFIFO(`instance.$name`_BASE);
+		%}
+	SCI_resetChannels(`instance.$name`_BASE);
+	SCI_setConfig(`instance.$name`_BASE, DEVICE_LSPCLK_FREQ, `instance.$name`_BAUDRATE, `options`);
+		%if (instance.loopback)
+		%{
+	SCI_enableLoopback(`instance.$name`_BASE);
+		%}
+		%else
+		%{
+	SCI_disableLoopback(`instance.$name`_BASE);
+		%}
+	SCI_performSoftwareReset(`instance.$name`_BASE);
+		%if (instance.useInterrupts && instance.useFifo)
+		%{
+			% var interrupts = ""
+			% for (var int_index in instance.enabledFIFOInterrupts)
+			% {
+			%	interrupts += ((interrupts == "")?"":" | ") + instance.enabledFIFOInterrupts[int_index];
+			% }
+			%if (interrupts != "")
+			%{
+	SCI_enableInterrupt(`instance.$name`_BASE, `interrupts`);
+			%}
+	SCI_setFIFOInterruptLevel(`instance.$name`_BASE, `instance.txFifo`, `instance.rxFifo`);
+		%}
+		%if (instance.useInterrupts && !instance.useFifo)
+		%{
+			% var interrupts = ""
+			% for (var int_index in instance.enabledInterrupts)
+			% {
+			%	interrupts += ((interrupts == "")?"":" | ") + instance.enabledInterrupts[int_index];
+			% }
+			%if (interrupts != "")
+			%{
+	SCI_enableInterrupt(`instance.$name`_BASE, `interrupts`);
+			%}
+		%}
+		%if (instance.useInterrupts)
+		%{
+			% var interrupts = ""
+			% for (var int_index in instance.enabledErrorInterrupts)
+			% {
+			%	interrupts += ((interrupts == "")?"":" | ") + instance.enabledErrorInterrupts[int_index];
+			% }
+			%if (interrupts != "")
+			%{
+	SCI_enableInterrupt(`instance.$name`_BASE, `interrupts`);
+			%}
+		%}
+		%if (instance.useFifo)
+		%{
+	SCI_enableFIFO(`instance.$name`_BASE);
+		%}
+	SCI_enableModule(`instance.$name`_BASE);
+}
+	%}
+%}

@@ -1,0 +1,21 @@
+% var moduleName = "ecap"
+% var module = system.modules['/driverlib/' + moduleName + '.js'];
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// ECAP Configurations
+//
+//*****************************************************************************
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        % let modInst  = instance[moduleName];
+#define `instance.$name`_BASE `instance.ecapBase`
+        % // next get the digit of the absolute ecapBase name (like "ECAP7_BASE"), to use as the "HRCAP#_BASE" value
+        % if (instance.hrcapEnable == true) {
+            % var baseNumber = instance.ecapBase.match(/\d+/)[0]
+#define `instance.$name`_HR_BASE HRCAP`baseNumber`_BASE
+        % }
+void `instance.$name`_init();
+    % }
+%}

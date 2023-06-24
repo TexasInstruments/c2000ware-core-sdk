@@ -1,0 +1,16 @@
+% var nameOfModule = "adcsafetycheckertile";
+% var module = system.modules['/driverlib/' + nameOfModule + '.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// ADC Safety Checker Configurations
+//
+//*****************************************************************************
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+#define `instance.$name`_BASE `instance.adcscBase`
+void `instance.$name`_init();
+    % }
+%}

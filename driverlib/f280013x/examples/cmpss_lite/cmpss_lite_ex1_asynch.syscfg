@@ -1,0 +1,22 @@
+
+/**
+ * Import the modules used in this configuration.
+ */
+const cmpss_lite  = scripting.addModule("/driverlib/cmpss_lite.js", {}, false);
+const cmpss_lite1 = cmpss_lite.addInstance();
+const outputxbar  = scripting.addModule("/driverlib/outputxbar.js", {}, false);
+const outputxbar1 = outputxbar.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+cmpss_lite1.$name               = "myCMPSSLite0";
+cmpss_lite1.enableModule        = true;
+cmpss_lite1.dacValHigh          = 2048;
+cmpss_lite1.asysCMPLPMXSELValue = "1";
+cmpss_lite1.asysCMPHPMXSELValue = "2";
+
+outputxbar1.$name                            = "myOUTPUTXBAR0";
+outputxbar1.muxesUsed                        = ["XBAR_MUX02"];
+outputxbar1.outputxbar.$assign               = "OUTPUTXBAR3";
+outputxbar1.outputxbar.outputxbarPin.$assign = "GPIO4";

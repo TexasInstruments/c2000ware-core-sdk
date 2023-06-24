@@ -1,0 +1,375 @@
+% var moduleName = "sd"
+% var module = system.modules['/driverlib/sd.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% let sd_device_info = system.getScript("/driverlib/sdfm/sd_device_info.js");
+% let sd_definition  = system.getScript("/driverlib/sdfm/sdfm_board_definition_c.js");
+% let device_driverlib_peripheral = 
+%    system.getScript("/driverlib/device_driverlib_peripherals/" + 
+%        Common.getDeviceName().toLowerCase() + "_sdfm.js");		
+% var nameOfModule = "sd";
+% var nameOfPeripheral = module.peripheralName;
+%
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// SDFM Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_init() 
+{
+%  for(var i = 0; i < module.$instances.length; i++) 
+		%  {
+		% 	var instance = module.$instances[i];
+		%
+		%  if(instance["Use_FilterChannel_1"] || instance["Use_FilterChannel_2"] || instance["Use_FilterChannel_3"] || instance["Use_FilterChannel_4"])
+		%  {
+	`instance.$name`_init();
+		%  }
+% }
+}
+		%  for(var i = 0; i < module.$instances.length; i++) 
+		%  {
+		%    let modInst  = instance[moduleName];
+        %    let solution    = modInst.$solution;
+        %    let peripheral  = system.deviceData.peripherals[solution.peripheralName];	
+		%
+		%    var instance = module.$instances[i];
+		%
+		%    var base = instance.$name + "_BASE";
+		%  if(instance["Use_FilterChannel_1"] || instance["Use_FilterChannel_2"] || instance["Use_FilterChannel_3"] || instance["Use_FilterChannel_4"])
+		%  {
+		%  
+//****************************************
+// `instance.$name` initialization
+//****************************************
+void `instance.$name`_init(void)
+{
+	//
+	// Set modulator clock mode
+	//
+		%	generateCode("SDFM_setupModulatorClock","Chx_Mode", "useInstance");
+		%
+		%	if(sd_device_info.peripheralType == "Type2") 
+		%	{
+	//
+	// Set Input Synchronizer
+	//
+		%	generateCode("SDFM_enableSynchronizer","SDFM_CLOCK_SYNCHRONIZER | SDFM_DATA_SYNCHRONIZER", "");
+		%	
+	//
+	// Selects clock source for SDFM channels
+	//
+		%	generateCode("SDFM_selectClockSource","Chx_SDCLKSEL", "useInstance");
+		%	}
+		%/////////////////////
+		%// Comparator Filter
+		%/////////////////////
+		%   if(instance["Ch1_ComparatorEnable"] || instance["Ch2_ComparatorEnable"] || instance["Ch3_ComparatorEnable"] || instance["Ch4_ComparatorEnable"] || sd_device_info.peripheralType == "Type0") 
+		%   {
+	//
+	// Configure comparator filter settings
+	//
+	    %
+		%	}
+		%
+		%	for(var channel = 1; channel <= 4; channel++)
+		%	{
+		%	if((sd_device_info.peripheralType == "Type0" || instance["Ch" + channel.toString() + "_ComparatorEnable"]) && instance["Use_FilterChannel_" + channel.toString()])
+		%   {
+		%		var filter_HTLZ = (instance["Ch" + channel.toString() + "_HLTZ_Enable"]) ? "SDFM_HTLZ_ENABLE " : "SDFM_HTLZ_DISABLE";
+		%
+		%   if(sd_device_info.peripheralType == "Type0") 
+		%   {
+		%		var comparatorSettings = ["Chx_FilterType", "Chx_COSR", "Chx_HLT", "Chx_LLT"];
+		%		comparatorSettings = generateArguments(comparatorSettings, channel);
+		%
+	SDFM_configComparator(`base`, (`device_driverlib_peripheral.SDFM_FilterNumber[channel-1].name` | `instance[comparatorSettings[0]]` | SDFM_SET_OSR(`instance[comparatorSettings[1]]`)), SDFM_THRESHOLD(`instance[comparatorSettings[2]]`,`instance[comparatorSettings[3]]`));
+		%   }
+		%   if(sd_device_info.peripheralType == "Type1") 
+		%   {
+		%		var comparatorSettings = ["Chx_FilterType", "Chx_COSR", "Chx_HLT", "Chx_LLT", "filter_HTLZ" , "Chx_HLTZ"];
+		%		comparatorSettings = generateArguments(comparatorSettings, channel);
+	SDFM_configComparator(`base`, (`device_driverlib_peripheral.SDFM_FilterNumber[channel-1].name` | `instance[comparatorSettings[0]]` | SDFM_SET_OSR(`instance[comparatorSettings[1]]`)), SDFM_THRESHOLD(`instance[comparatorSettings[2]]`,`instance[comparatorSettings[3]]`), (`filter_HTLZ` | `instance[comparatorSettings[5]]`));
+	SDFM_enableComparator(`base`, (`device_driverlib_peripheral.SDFM_FilterNumber[channel-1].name`));
+		%   }
+		%	if(sd_device_info.peripheralType == "Type2") 
+		%	{
+		%		var comparatorSettings = ["Chx_FilterType", "Chx_COSR", "Chx_HLT1", "Chx_LLT1", "Chx_HLT2", "Chx_LLT2", "filter_HTLZ" , "Chx_HLTZ"];
+		%		comparatorSettings = generateArguments(comparatorSettings, channel);
+		%
+	//
+	// FILTER`channel` Comparator filter settings
+	//
+    SDFM_configEnhancedComparator(`base`, (`device_driverlib_peripheral.SDFM_FilterNumber[channel-1].name` | `instance[comparatorSettings[0]]` | SDFM_SET_OSR(`instance[comparatorSettings[1]]`)), SDFM_THRESHOLD(`instance[comparatorSettings[2]]`,`instance[comparatorSettings[3]]`), SDFM_THRESHOLD(`instance[comparatorSettings[4]]`,`instance[comparatorSettings[5]]`), (`filter_HTLZ` | `instance[comparatorSettings[7]]`));
+		%
+	//
+	// CEVT1 settings
+	//
+    SDFM_selectCompEventSource(`base`, `device_driverlib_peripheral.SDFM_FilterNumber[channel-1].name` , SDFM_COMP_EVENT_1 , `instance["Ch" + channel.toString() + "_CEVT1_SourceSelect"]`); 
+		%	
+		%   if(instance["Ch" + channel.toString() + "_Use_CEVT1_Digital_Filter"])
+		%   {
+	SDFM_CompEventFilterConfig CEVT1;
+	//
+	// CEVT1 Digital Filter settings
+	//
+	CEVT1.clkPrescale  = `instance["Ch" + channel.toString() + "_SamplePrescale_CEVT1"]`;
+	CEVT1.threshold    = `instance["Ch" + channel.toString() + "_Threshold_CEVT1"]`;
+	CEVT1.sampleWindow = `instance["Ch" + channel.toString() + "_SampleWindow_CEVT1"]`;
+	SDFM_configCompEventHighFilter(`base`, `device_driverlib_peripheral.SDFM_FilterNumber[channel-1].name`, &CEVT1);
+	SDFM_initCompEventHighFilter(`base`, `device_driverlib_peripheral.SDFM_FilterNumber[channel-1].name`);
+		%	} //if(instance["Ch" + channel.toString() + "_Use_CEVT1_Digital_Filter"])
+		%
+	//
+	// CEVT2 settings
+	//
+	SDFM_selectCompEventSource(`base`, `device_driverlib_peripheral.SDFM_FilterNumber[channel-1].name` , SDFM_COMP_EVENT_2 , `instance["Ch" + channel.toString() + "_CEVT2_SourceSelect"]`); 
+		%	
+		%   if(instance["Ch" + channel.toString() + "_Use_CEVT2_Digital_Filter"])
+		%   {		
+	SDFM_CompEventFilterConfig CEVT2;
+	//
+	// CEVT2 Digital Filter settings
+	//
+	CEVT2.clkPrescale  = `instance["Ch" + channel.toString() + "_SamplePrescale_CEVT2"]`;
+	CEVT2.threshold    = `instance["Ch" + channel.toString() + "_Threshold_CEVT2"]`;
+	CEVT2.sampleWindow = `instance["Ch" + channel.toString() + "_SampleWindow_CEVT2"]`; 
+	SDFM_configCompEventLowFilter(`base`, `device_driverlib_peripheral.SDFM_FilterNumber[channel-1].name`, &CEVT2);
+	SDFM_initCompEventLowFilter(`base`, `device_driverlib_peripheral.SDFM_FilterNumber[channel-1].name`);
+		%	} //if(instance["Ch" + channel.toString() + "_Use_CEVT2_Digital_Filter"])
+		%   } //if(sd_device_info.peripheralType == "Type2")
+		%   } //if(instance["Ch" + channel.toString() + "_ComparatorEnable"] && instance["Use_FilterChannel_" + channel.toString()])
+		%   } //for(var channel = 1; channel <= 4; channel++)
+		%
+		%//////////////////
+		%// Data Filter
+		%//////////////////
+		%   if(instance["Ch1_DataFilterEnable"] || instance["Ch2_DataFilterEnable"] || instance["Ch3_DataFilterEnable"] || instance["Ch4_DataFilterEnable"])
+		%   {
+	//
+	// Configure data filter settings
+	//
+		%	}	
+		%	for(var channel = 1; channel <= 4; channel++)
+		%	{	
+		%	   if(instance["Ch" + channel.toString() + "_DataFilterEnable"] && instance["Use_FilterChannel_" + channel.toString()])
+		%	   {			
+		%	   var Datafilter_status  = (instance["Ch" + channel.toString() + "_DataFilterEnable"]) ? "SDFM_FILTER_ENABLE" : "SDFM_FILTER_DISABLE";
+		%	   var shiftValue		  = sd_definition.getShiftvalue(instance["Ch" + channel.toString() + "_FilterType_D"], instance["Ch" + channel.toString() + "_DOSR"], 1 , instance["Ch" + channel.toString() + "_DataFilter_Representation"]);
+		%	   var DataFilterSettings   = ["Chx_FilterType_D", "Chx_DOSR", "Datafilter_status", "Chx_DataFilter_Representation", "shiftValue", "Chx_SDFFIL"];
+		%
+		%      DataFilterSettings = generateArguments(DataFilterSettings, channel);
+		%		  
+		%  	  if(instance["Ch" + channel.toString() + "_FIFO_Enable"])
+		%  	  {
+	SDFM_configDataFilterFIFO(`base`, (`device_driverlib_peripheral.SDFM_FilterNumber[channel-1].name` | `instance[DataFilterSettings[0]]` | SDFM_SET_OSR(`instance[DataFilterSettings[1]]`)), (`Datafilter_status` | `instance[DataFilterSettings[3]]` | SDFM_SHIFT_VALUE(`shiftValue`) | SDFM_SET_FIFO_LEVEL(`instance[DataFilterSettings[5]]`)));
+		%     }
+		%	  else
+		%	  {
+	SDFM_configDataFilter(`base`, (`device_driverlib_peripheral.SDFM_FilterNumber[channel-1].name` | `instance[DataFilterSettings[0]]` | SDFM_SET_OSR(`instance[DataFilterSettings[1]]`)), (`Datafilter_status` | `instance[DataFilterSettings[3]]` | SDFM_SHIFT_VALUE(`shiftValue`)));	  
+		%	  }
+		%	  }    
+		%	}//for(var channel = 1; channel <= 4; channel++)
+		%
+		%   if(instance["Ch1_DataFilterEnable"] || instance["Ch2_DataFilterEnable"] || instance["Ch3_DataFilterEnable"] || instance["Ch4_DataFilterEnable"])
+		%   {
+	//
+	// Master Filter Enable
+	//
+    SDFM_enableMasterFilter(`base`);
+		%	}
+		%
+		%//////////////////
+		%// SDSYNC
+		%//////////////////
+		%   if(instance["Ch1_SDSYNC_Enable"] || instance["Ch2_SDSYNC_Enable"] || instance["Ch3_SDSYNC_Enable"] || instance["Ch4_SDSYNC_Enable"])
+		%   {
+	//
+	// Configure SDSYNC (Filter reset from PWM)
+	//
+		%   }
+		%	for(var channel = 1; channel <= 4; channel++)
+		%	{
+		%     var WTFLG_AUTOCLR_EN = (instance["Ch" + channel.toString() + "_WTSCLREN"])? "SDFM_AUTO_CLEAR_WAIT_FOR_SYNC" : "SDFM_MANUAL_CLEAR_WAIT_FOR_SYNC";
+		%     var FIFO_CLREN   = (instance["Ch" + channel.toString() + "_FFSYNCCLREN"])? "SDFM_FIFO_CLEARED_ON_SYNC"  : "SDFM_FIFO_NOT_CLEARED_ON_SYNC";
+		%
+		%     if(instance["Ch" + channel.toString() + "_DataFilterEnable"] && instance["Ch" + channel.toString() + "_SDSYNC_Enable"])
+		%     {
+		%     if(sd_device_info.peripheralType == "Type0" && instance["Ch" + channel.toString() + "_SDSYNC_Enable"])
+		%     {
+    SDFM_enableExternalReset(`base`, `device_driverlib_peripheral.SDFM_FilterNumber[channel-1].name`);
+		%     }
+		%     if(sd_device_info.peripheralType == "Type0" && !instance["Ch" + channel.toString() + "_SDSYNC_Enable"])
+		%	  {
+	SDFM_disableExternalReset(`base`, `device_driverlib_peripheral.SDFM_FilterNumber[channel-1].name`);
+		%     }
+		%     }//if(instance["Ch" + channel.toString() + "_DataFilterEnable"])
+		%	  if(instance["Ch" + channel.toString() + "_SDSYNC_Enable"])
+		%     {
+	    %     if(sd_device_info.peripheralType == "Type1" || sd_device_info.peripheralType == "Type2")  
+		%     {
+	//
+	// FILTER`channel` SDSYNC settings
+	//
+    SDFM_setPWMSyncSource(`base`, `device_driverlib_peripheral.SDFM_FilterNumber[channel-1].name`, `instance["Ch" + channel.toString() + "_SDSYNC_source"]`); 
+	SDFM_enableWaitForSync(`base`, `device_driverlib_peripheral.SDFM_FilterNumber[channel-1].name`);
+	    %    if(instance["Ch" + channel.toString() + "_WTSCLREN"])
+	    %    {
+	SDFM_setWaitForSyncClearMode(`base`, `device_driverlib_peripheral.SDFM_FilterNumber[channel-1].name`, SDFM_MANUAL_CLEAR_WAIT_FOR_SYNC);
+	    %    }
+		%    if(instance["Ch" + channel.toString() + "_FFSYNCCLREN"])
+		%    {
+    SDFM_setFIFOClearOnSyncMode(`base`, `device_driverlib_peripheral.SDFM_FilterNumber[channel-1].name`, SDFM_FIFO_CLEARED_ON_SYNC); 
+	    %    }
+	    %    } //if(sd_device_info.peripheralType == "Type1" || sd_device_info.peripheralType == "Type2")  
+		%	 } //if(instance["Ch" + channel.toString() + "_SDSYNC_Enable"])  
+		%   } //for(var channel = 1; channel <= 4; channel++)
+		% if(instance["useInterrupts"])
+		% {
+	//
+	// Configure SDFM interrupt source
+	//
+		%	for(var channel = 1; channel <= 4; channel++)
+		%   {
+		%	   if(instance["Use_FilterChannel_" + channel.toString()])
+		%      {
+	//
+	// FILTER`channel` interrupt settings
+	//
+		%         //MFIE
+		%         if(instance.MFIE.includes("FILTER"+channel))
+		%	      {
+	SDFM_enableInterrupt(`base`, `device_driverlib_peripheral.SDFM_FilterNumber[channel-1].name`, SDFM_MODULATOR_FAILURE_INTERRUPT);  
+		%	      }
+		%      if(sd_device_info.peripheralType == "Type0" || sd_device_info.peripheralType == "Type1")
+		%      {
+		%		  //IEL
+		%         if(instance.IEL.includes("FILTER"+channel))
+		%         {
+	SDFM_enableInterrupt(`base`, `device_driverlib_peripheral.SDFM_FilterNumber[channel-1].name`, SDFM_LOW_LEVEL_THRESHOLD_INTERRUPT); 
+		%         }
+		%         //IEH
+		%         if(instance.IEH.includes("FILTER"+channel))
+		%         {
+	SDFM_enableInterrupt(`base`, `device_driverlib_peripheral.SDFM_FilterNumber[channel-1].name`, SDFM_HIGH_LEVEL_THRESHOLD_INTERRUPT); 
+		%         }
+		%      if(sd_device_info.peripheralType == "Type0")
+		%      {
+		%         //AE
+		%   	  if(instance.AE.includes("FILTER"+channel))
+		%         {
+	SDFM_enableInterrupt(`base`, `device_driverlib_peripheral.SDFM_FilterNumber[channel-1].name`, SDFM_DATA_FILTER_ACKNOWLEDGE_INTERRUPT); 
+		%         }
+		%      }
+		%      }
+		%
+		%     if(sd_device_info.peripheralType == "Type1" || sd_device_info.peripheralType == "Type2")
+		%     {
+		%       
+		%     if(sd_device_info.peripheralType == "Type2")
+		%     {
+		%         //CEVT1
+		%   	  if(instance.CEVT1.includes("FILTER"+channel))
+		%         {
+	SDFM_enableInterrupt(`base`, `device_driverlib_peripheral.SDFM_FilterNumber[channel-1].name`, SDFM_HIGH_LEVEL_THRESHOLD_INTERRUPT); 
+		%         }
+		%         //CEVT2
+		%   	  if(instance.CEVT2.includes("FILTER"+channel))
+		%         {
+	SDFM_enableInterrupt(`base`, `device_driverlib_peripheral.SDFM_FilterNumber[channel-1].name`, SDFM_LOW_LEVEL_THRESHOLD_INTERRUPT); 
+		%         }
+		%     }
+		%	    //FIFO condition
+		%       if(instance["Ch" + channel.toString() + "_FIFO_Enable"])
+		%       {
+		%         //FIFO Overflow
+		%   	  if(instance.SDFFOVF.includes("FILTER"+channel))
+		%         {
+	SDFM_enableInterrupt(`base`, `device_driverlib_peripheral.SDFM_FilterNumber[channel-1].name`, SDFM_FIFO_OVERFLOW_INTERRUPT); 
+		%         }
+		%         //FIFO Data ready
+		%   	  if(instance.SDFFINT.includes("FILTER"+channel))
+		%         {
+	SDFM_enableInterrupt(`base`, `device_driverlib_peripheral.SDFM_FilterNumber[channel-1].name`, SDFM_FIFO_INTERRUPT);
+	SDFM_setDataReadyInterruptSource(`base`, `device_driverlib_peripheral.SDFM_FilterNumber[channel-1].name`, SDFM_DATA_READY_SOURCE_FIFO);
+		%         }
+		%       }
+		%       else
+		%       {
+		%         //non-FIFO Data ready
+		%   	  if(instance.AE.includes("FILTER"+channel))
+		%         {
+	SDFM_enableInterrupt(`base`, `device_driverlib_peripheral.SDFM_FilterNumber[channel-1].name`, SDFM_DATA_FILTER_ACKNOWLEDGE_INTERRUPT);
+	SDFM_setDataReadyInterruptSource(`base`, `device_driverlib_peripheral.SDFM_FilterNumber[channel-1].name`, SDFM_DATA_READY_SOURCE_DIRECT);
+	    %         }
+	    %       }
+		%     }
+		%       } //if(instance["Use_FilterChannel_" + channel.toString()])
+		% } //for(var channel = 1; channel <= 4; channel++)
+		% //var delaytime = Math.round((1000/instance.SDCLK_freq)*256*4); 
+		%
+		%
+		% var delaytime = Math.round(Math.max(instance.Ch1_Latency_DF, instance.Ch2_Latency_DF, instance.Ch3_Latency_DF, instance.Ch4_Latency_DF) + (10/instance["Ch1_SD_modulatorFrequency"]))
+		% 
+	DEVICE_DELAY_US(`delaytime`U);
+	//
+	// Master Interrupt Enable
+	//
+	SDFM_enableMasterInterrupt(`base`);
+	    % 
+		%} //if(instance["useInterrupts"])
+} 	
+		%} //if(instance["Use_FilterChannel_1"] || instance["Use_FilterChannel_2"] || instance["Use_FilterChannel_3"] || instance["Use_FilterChannel_4"])
+		%} //for(var i = 0; i < module.$instances.length; i++)
+		%} //if (module != null)	
+%
+%
+%function generateInterruptArray(array, flag)
+%{
+%  var tmp = [];
+%  for (var i = 1; i <= 4; i++)
+%  {
+%    if(array.includes("FILTER"+i))
+%    {
+%      tmp[i-1] = flag+"_ENABLE";
+%    }
+%    else
+%    {
+%      tmp[i-1] = flag+"_DISABLE";      
+%    }
+%  }
+%  return tmp;
+%}
+%
+%function generateCode(functionName, argument, inst)
+%{
+%	for(var channel = 1; channel <= 4; channel++)
+%	{
+%	  if(instance["Use_FilterChannel_" + channel.toString()])
+%	  {
+%	  	if(inst == "useInstance")
+%	  	{
+%		   var newStr = argument.replace('x', channel);
+	`functionName`(`base`, `device_driverlib_peripheral.SDFM_FilterNumber[channel-1].name`, `instance[newStr]`);
+%	  	}
+%	  	else
+%	  	{
+	`functionName`(`base`, `device_driverlib_peripheral.SDFM_FilterNumber[channel-1].name`, `argument`);
+%	  	}
+%	  }
+%   }
+%}
+%
+%function generateArguments(argument, channel)
+%{
+%	  if(instance["Use_FilterChannel_" + channel.toString()])
+%	  {
+%		var actualArgument = [];
+%		for(var i=0; i<argument.length ; i++)
+%		{
+%			actualArgument = actualArgument.concat(argument[i].replace('x', channel));
+%		}
+%	  }
+% return(actualArgument);
+%}

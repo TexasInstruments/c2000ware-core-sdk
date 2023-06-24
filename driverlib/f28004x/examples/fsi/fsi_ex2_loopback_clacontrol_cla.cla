@@ -1,0 +1,172 @@
+//#############################################################################
+//
+// FILE:   fsi_ex2_loopback_clacontrol_cla.cla
+//
+// TITLE:  CLA code to control FSI data frame transfers
+//
+// Task 8 made as background task to keep on triggering FSI data transfers
+//
+//#############################################################################
+//
+//
+// $Copyright:
+// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+//
+// Redistribution and use in source and binary forms, with or without 
+// modification, are permitted provided that the following conditions 
+// are met:
+// 
+//   Redistributions of source code must retain the above copyright 
+//   notice, this list of conditions and the following disclaimer.
+// 
+//   Redistributions in binary form must reproduce the above copyright
+//   notice, this list of conditions and the following disclaimer in the 
+//   documentation and/or other materials provided with the   
+//   distribution.
+// 
+//   Neither the name of Texas Instruments Incorporated nor the names of
+//   its contributors may be used to endorse or promote products derived
+//   from this software without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+// $
+//#############################################################################
+
+//
+// Included Files
+//
+#include <stdint.h>
+#include "f28004x_device.h"
+#include "fsi_ex2_loopback_clacontrol_cla_shared.h"
+
+//-----------------------------------------------------------------------------
+//
+// Task 1 - Title Here
+//
+// Description: Description/steps here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt)) void Cla1Task1 ( void )
+{
+
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 2 - Title Here
+//
+// Description: Description/steps here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task2 ( void )
+{
+
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 3 - Title Here
+//
+// Description: Description/steps here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task3 ( void )
+{
+
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 4 - Title Here
+//
+// Description: Description/steps here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task4 ( void )
+{
+
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 5 - Title Here
+//
+// Description: Description/steps here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task5 ( void )
+{
+
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 6 - Title Here
+//
+// Description: Description/steps here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task6 ( void )
+{
+
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 7 - Title Here
+//
+// Description: Description/steps here.
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt))  void Cla1Task7 ( void )
+{
+
+}
+
+//-----------------------------------------------------------------------------
+//
+// Task 8 - Infinite loop to trigger FSI data transfers iteratively
+//
+// Description: Before triggering next data transfer, execution waits to see if
+// a flag is set(to notify the previous data is transmitted/received)
+//
+//-----------------------------------------------------------------------------
+__attribute__((interrupt("background")))  void Cla1Task8()
+{
+    //
+    // Now, start transmitting data frames
+    //
+    while(1)
+    {
+        //
+        // Trigger Data Frame Transfer
+        //
+        FsiTxaRegs.TX_FRAME_CTRL.bit.START = 1;
+
+        //
+        // Wait till frame done event is received by both Tx/Rx modules
+        //
+        while(fsiTxInt1Received != 1U);
+        while(fsiRxInt1Received != 1U);
+
+        //
+        // Re-initialize flags and buffer pointer before next transmission
+        //
+        fsiTxInt1Received = 0U;
+        fsiRxInt1Received = 0U;
+    }
+}
+
+//
+// End of File
+//

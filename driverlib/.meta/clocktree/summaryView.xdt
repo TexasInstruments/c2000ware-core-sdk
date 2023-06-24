@@ -1,0 +1,27 @@
+%%{
+	const signals = _.chain(system.deviceData.clockTree.connectivity).filter((c)=>!_.isEmpty(c.displayName)).map((c)=>c.name).value();
+
+	function freqToString(freq) {
+		if (_.isArray(freq)) {
+			if (freq[0] !== freq[1]) {
+				return `${freq[0]} - ${freq[1]} MHz`;
+			}
+
+			return freq[0] + " MHz"
+		}
+		return freq + " MHz"
+	}
+%%}
+
+Signal | Frequency (MHz) | Min (MHz) | Max (MHz)
+--- | --- | --- | ---
+% for (var signal of signals) {
+% // This generates a link - stuff in the [] is the link name, and we're using system.getReference for the location
+% // This allows us to name the signal, but also allow clicking on it to see where to configure it
+% var temp = system.clockTree[signal].in
+% var min  = system.clockTree[signal].Min
+% min = min.replace('MHz','')
+% var max  = system.clockTree[signal].Max
+% max = max.replace('MHz','')
+`signal` | `temp` | `min` | `max`
+% }

@@ -1,0 +1,54 @@
+% var nameOfModule = "dcc";
+% var module = system.modules['/driverlib/' + nameOfModule + '.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% var nameOfPeripheral = module.peripheralName;
+//*****************************************************************************
+//
+// DCC Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_init(){
+%   for(var i = 0; i < module.$instances.length; i++) 
+%   {
+%      var instance = module.$instances[i];
+	`instance.$name`_init();
+%   }
+}
+
+%if (module != null)
+%{
+	% for(var i = 0; i < module.$instances.length; i++) {
+		% var instance = module.$instances[i];
+void `instance.$name`_init(){
+		% let instancePinmux = instance[nameOfModule];
+	DCC_disableModule(`instance.$name`_BASE);
+	DCC_disableErrorSignal(`instance.$name`_BASE);
+	DCC_disableDoneSignal(`instance.$name`_BASE);
+	DCC_setCounter0ClkSource(`instance.$name`_BASE, `instance.setCounter0ClkSource`);
+	DCC_setCounter1ClkSource(`instance.$name`_BASE, `instance.setCounter1ClkSource`);
+	DCC_setCounterSeeds(`instance.$name`_BASE, `instance.counter0seed`, `instance.validCounter0seed`, `instance.counter1seed`);	
+		% if (instance.enableSingleShotMode) {
+	DCC_enableSingleShotMode(`instance.$name`_BASE, `instance.singleShotModeSource`);
+		% } else {
+	DCC_disableSingleShotMode(`instance.$name`_BASE);
+		% }
+	 % if (instance.enableInterrupts){
+		% if (instance.enableErrorSignalInterrupt) {
+	DCC_enableErrorSignal(`instance.$name`_BASE);
+		% } 
+		% if (instance.enableDoneSignalInterrupt) {
+	DCC_enableDoneSignal(`instance.$name`_BASE);
+		% }
+		%}
+	% if (instance.enableModule) {
+	DCC_enableModule(`instance.$name`_BASE);
+		% } else{
+	//
+	// This DCC is not started in this function.
+	// The application SW must call the DCC_enableModule when needed.
+	// DCC_enableModule(`instance.$name`_BASE);
+	//
+		% } 
+}	
+	%}
+%}

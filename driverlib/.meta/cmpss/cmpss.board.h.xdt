@@ -1,0 +1,29 @@
+% var moduleName = "cmpss"
+% var module = system.modules['/driverlib/' + moduleName + '.js'];
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// CMPSS Configurations
+//
+//*****************************************************************************
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+#define `instance.$name`_BASE `instance.cmpssBase`
+% if (instance["cmpssHighName"] != "")
+% {
+#define `instance["cmpssHighName"]`_BASE `instance.cmpssBase`    
+% }
+% else {
+#define `instance.$name`_HIGH_COMP_BASE `instance.cmpssBase`    
+% }
+% if (instance["cmpssLowName"] != "")
+% {
+#define `instance["cmpssLowName"]`_BASE `instance.cmpssBase`    
+% }
+% else {
+#define `instance.$name`_LOW_COMP_BASE `instance.cmpssBase`    
+% }
+void `instance.$name`_init();
+    % }
+%}

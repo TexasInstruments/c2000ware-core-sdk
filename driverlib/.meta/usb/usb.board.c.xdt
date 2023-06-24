@@ -1,0 +1,18 @@
+% var module = system.modules['/driverlib/usb.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% var nameOfModule = "usb";
+% var nameOfPeripheral = module.peripheralName;
+//*****************************************************************************
+//
+// USB Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_init(){
+%if (module != null)
+%{
+    //
+    // Set the clocking to run from the PLL at 60MHz
+    //
+    SysCtl_setAuxClock(DEVICE_AUXSETCLOCK_CFG_USB);
+%}
+}

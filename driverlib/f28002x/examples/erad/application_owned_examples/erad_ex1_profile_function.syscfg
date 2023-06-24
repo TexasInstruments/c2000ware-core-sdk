@@ -1,0 +1,34 @@
+/**
+ * Import the modules used in this configuration.
+ */
+const erad  = scripting.addModule("/driverlib/erad.js", {}, false);
+const erad1 = erad.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+erad1.$name                             = "myERAD0";
+erad1.hwbpsUsed                         = ["BUSCOMP1","BUSCOMP2","BUSCOMP3","BUSCOMP4"];
+erad1.ctmsUsed                          = ["COUNTER1","COUNTER2"];
+erad1.eradBUSCOMP1.$name                = "ERAD_HWBP0";
+erad1.eradBUSCOMP1.hwbpAddressInputMode = "CODE";
+erad1.eradBUSCOMP1.hwbpRefCodeName      = "addr_delayFuncStart";
+erad1.eradBUSCOMP2.$name                = "ERAD_HWBP1";
+erad1.eradBUSCOMP2.hwbpAddressInputMode = "CODE";
+erad1.eradBUSCOMP2.hwbpRefCodeName      = "addr_delayFuncEnd";
+erad1.eradBUSCOMP3.$name                = "ERAD_HWBP2";
+erad1.eradBUSCOMP3.hwbpBusSel           = "ERAD_BUSCOMP_BUS_DWAB";
+erad1.eradBUSCOMP3.hwbpAddressInputMode = "CODE";
+erad1.eradBUSCOMP3.hwbpRefCodeName      = "addr_startCount";
+erad1.eradBUSCOMP4.$name                = "ERAD_HWBP3";
+erad1.eradBUSCOMP4.hwbpBusSel           = "ERAD_BUSCOMP_BUS_DWAB";
+erad1.eradBUSCOMP4.hwbpAddressInputMode = "CODE";
+erad1.eradBUSCOMP4.hwbpRefCodeName      = "addr_endCount";
+erad1.eradCOUNTER1.$name                = "ERAD_CTM0";
+erad1.eradCOUNTER1.ctmMode              = "1";
+erad1.eradCOUNTER2.swStart              = "ERAD_EVENT_HWBP1";
+erad1.eradCOUNTER1.swStop               = "ERAD_EVENT_HWBP2";
+erad1.eradCOUNTER2.$name                = "ERAD_CTM1";
+erad1.eradCOUNTER2.ctmMode              = "1";
+erad1.eradCOUNTER2.swStart              = "ERAD_EVENT_HWBP3";
+erad1.eradCOUNTER2.swStop               = "ERAD_EVENT_HWBP4";

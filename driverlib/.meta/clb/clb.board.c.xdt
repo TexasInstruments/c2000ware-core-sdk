@@ -1,0 +1,187 @@
+%%{
+var module = system.modules['/driverlib/clb.js'];
+let Common   = system.getScript("/driverlib/Common.js");
+var nameOfModule = "clb";
+var nameOfPeripheral = module.peripheralName;
+%%}
+//*****************************************************************************
+//
+// CLB Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_init(){
+%   for(var i = 0; i < module.$instances.length; i++) 
+%   {
+%      var instance = module.$instances[i];
+	`instance.$name`_init();
+%   }
+}
+
+%%{
+if (module != null)
+{
+	for(var i = 0; i < module.$instances.length; i++) {
+	    var instance = module.$instances[i];
+		var baseName = instance.$name + "_BASE";
+		var enableCLBLine = "CLB_disableCLB(" + baseName + ");"
+		var tileInitLine = ""
+		var gpRegValue = 0;
+		var nmi = "";
+		var clken = "";
+		var strb = "";
+		var spiBufferEnable = "";
+		var spiBufferTrigger = "";
+		var spiBufferShift = "";
+%%}
+void `instance.$name`_init(){
+%%{
+		if (instance.attachTile)
+		{
+			if (instance.initTile)
+			{
+				var tileName = instance.tile.$name;
+				tileInitLine = "init" + tileName + "(" + baseName + ");"
+			}
+		}
+		if(instance.enableCLB)
+		{
+			enableCLBLine = "CLB_enableCLB(" + baseName + ");"
+		}
+		if (Common.CLB_isType1_Type2())
+		{
+			if (instance.hlcNMI){
+				nmi = "CLB_enableNMI(" + baseName + ");";
+			}
+			if (instance.clken){
+				clken = "CLB_configureClockPrescalar(" + baseName + ", " + instance.prescale + ");";
+			}
+			if (instance.strb){
+				strb = "CLB_configureStrobeMode(" + baseName + ", " + instance.tap + ");";
+			}
+		}
+		if (Common.CLB_isType2()){
+			if (instance.spiBufferAccess){
+				spiBufferEnable = "CLB_enableSPIBufferAccess(" + baseName + ");";
+			}
+			else{
+				spiBufferEnable = "CLB_disableSPIBufferAccess(" + baseName + ");";
+			}
+			spiBufferTrigger = "CLB_configSPIBufferLoadSignal(" + baseName + ", " + instance.spiBufferLoadTriggerSignal + ");";
+			spiBufferShift = "CLB_configSPIBufferShift(" + baseName + ", " + instance.spiBufferR0Shift + ");";
+		}
+%%}
+%		if(Common.CLB_isType1_Type2()){
+%			if(nmi != ""){
+	`nmi`
+%			}
+%			if(clken != ""){
+	`clken`
+%			}
+%			if(strb != ""){
+	`strb`
+%			}
+%		}
+%%{
+		var outputs = "(0UL << 0UL)"
+		for (var outputUsed_i in instance.outputsToOverridePeripheral)
+		{
+			var clbOutputName = instance.outputsToOverridePeripheral[outputUsed_i]
+			outputs = outputs + " | \n\t\t\t\t" + "(1UL << " + clbOutputName.replace("CLB_OUT", "") + "UL)"
+		}
+		var outputLine = "CLB_setOutputMask(" + baseName + ",\n\t\t\t\t" + outputs + ", true);"
+%%}
+	`outputLine`
+%		if (Common.CLB_isType2()) {
+%			var lockOutputLine = "";
+%			if (instance.lockOutputsToOverridePeripheral){
+%				lockOutputLine = "CLB_disableOutputMaskUpdates(" + baseName + ");"
+%			} else {
+%				lockOutputLine = "CLB_enableOutputMaskUpdates(" + baseName + ");"
+%			}		
+	`lockOutputLine`
+% 		}
+%		if (Common.CLB_isType2() && ["CLB1_BASE", "CLB2_BASE", "CLB3_BASE", "CLB4_BASE"].includes(instance.clbBase)) {
+	`spiBufferEnable`
+	`spiBufferTrigger`
+	`spiBufferShift`
+%		}
+%%{
+	    for (var inputUsed_i in instance.inputsUsed)
+		{
+			var clbInputName = instance.inputsUsed[inputUsed_i]
+			var clbInputNumber = parseInt(Common.removeNonNumber(clbInputName));
+			var inputType = instance["inputType" + clbInputName]
+			var localInput = "";
+			var globalInput = "";
+			var gpInput = "";
+			var syncInput = "";
+			var inputPipeline = "";
+			if (Common.CLB_isType2())
+			{
+				if (instance["inputPipelineConfig" + clbInputName]){
+					inputPipeline = "CLB_enableInputPipelineMode(" + baseName + ", " + clbInputName + ");"
+				}
+				else{
+					inputPipeline = "CLB_disableInputPipelineMode(" + baseName + ", " + clbInputName + ");"
+				}
+			}
+			if (instance["synchronize" + clbInputName])
+			{
+				syncInput = "CLB_enableSynchronization(" + baseName + ", " + clbInputName + ");"
+			}
+			if (inputType == "GP")
+			{
+				localInput = "CLB_configLocalInputMux(" + baseName + 
+							 ", " + clbInputName + ", CLB_LOCAL_IN_MUX_GLOBAL_IN);"
+				globalInput = "CLB_configGlobalInputMux(" + baseName + 
+							 ", " +  clbInputName + ", CLB_GLOBAL_IN_MUX_EPWM1A);"
+				gpInput = "CLB_configGPInputMux(" + baseName + 
+							 ", " + clbInputName + ", CLB_GP_IN_MUX_GP_REG);"
+			}
+			else if (inputType == "GLOBAL")
+			{
+				localInput = "CLB_configLocalInputMux(" + baseName + 
+							 ", " + clbInputName + ", CLB_LOCAL_IN_MUX_GLOBAL_IN);"
+				globalInput = "CLB_configGlobalInputMux(" + baseName + 
+							 ", " +  clbInputName + ", " + instance["globalConfig" + clbInputName] + ");"
+				gpInput = "CLB_configGPInputMux(" + baseName + 
+							 ", " + clbInputName + ", CLB_GP_IN_MUX_EXTERNAL);"
+			}
+			else if (inputType == "LOCAL")
+			{
+				localInput = "CLB_configLocalInputMux(" + baseName + 
+							 ", " + clbInputName + ", " + instance["localConfig" + clbInputName] + ");"
+				globalInput = "CLB_configGlobalInputMux(" + baseName + 
+							 ", " +  clbInputName + ", CLB_GLOBAL_IN_MUX_EPWM1A);"
+				gpInput = "CLB_configGPInputMux(" + baseName + 
+							 ", " + clbInputName + ", CLB_GP_IN_MUX_EXTERNAL);"
+			}
+			var inputFilterLine = "CLB_selectInputFilter(" + baseName + 
+							 ", " + clbInputName + ", " + instance["filterConfig" + clbInputName] + ");"
+			gpRegValue +=  instance["gpStartValueConfig" + clbInputName] << clbInputNumber
+%%}
+	//
+	// `instance.$name` `clbInputName` initialization
+	//
+	`localInput`
+	`globalInput`
+	`gpInput`
+	`syncInput`
+	`inputFilterLine`
+%	if (Common.CLB_isType2()) {
+	`inputPipeline`
+% }
+%%{
+		}
+		var gpRegLine = "CLB_setGPREG(" + baseName + "," + gpRegValue.toString() + ");"
+%%}
+	`gpRegLine`
+% if (tileInitLine) {
+	`tileInitLine`
+% }
+	`enableCLBLine`
+}
+%%{
+	}
+}
+%%}

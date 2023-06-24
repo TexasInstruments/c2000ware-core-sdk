@@ -1,0 +1,45 @@
+
+/**
+ * Import the modules used in this configuration.
+ */
+const spi  = scripting.addModule("/driverlib/spi.js", {}, false);
+const spi1 = spi.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+spi1.$name                         = "mySPI0";
+spi1.mode                          = "SPI_MODE_CONTROLLER";
+spi1.bitRate                       = 500000;
+spi1.loopback                      = true;
+spi1.useDMARX                      = true;
+spi1.useDMATX                      = true;
+spi1.txFifo                        = "SPI_FIFO_TX8";
+spi1.rxFifo                        = "SPI_FIFO_RX8";
+spi1.spi.$assign                   = "SPIA";
+spi1.spiRXDMA.databusWidthConfig   = scripting.forceWrite("DMA_CFG_SIZE_16BIT");
+spi1.spiRXDMA.dmaBase              = "DMA_CH6_BASE";
+spi1.spiRXDMA.burstSize            = 8;
+spi1.spiRXDMA.transferSize         = 16;
+spi1.spiRXDMA.destAddressInputMode = "VARIABLE";
+spi1.spiRXDMA.destBurstStep        = 1;
+spi1.spiRXDMA.destTransferStep     = 1;
+spi1.spiRXDMA.destAddressVariable  = "destAddr";
+spi1.spiRXDMA.useInterrupts        = true;
+spi1.spiRXDMA.interruptMode        = "DMA_INT_AT_END";
+spi1.spiRXDMA.enableTriggers       = true;
+spi1.spiRXDMA.enableInterrupts     = true;
+spi1.spiRXDMA.registerInterrupts   = true;
+spi1.spiTXDMA.databusWidthConfig   = scripting.forceWrite("DMA_CFG_SIZE_16BIT");
+spi1.spiTXDMA.srcAddressInputMode  = "VARIABLE";
+spi1.spiTXDMA.srcAddressVariable   = "srcAddr";
+spi1.spiTXDMA.burstSize            = 8;
+spi1.spiTXDMA.transferSize         = 16;
+spi1.spiTXDMA.srcBurstStep         = 1;
+spi1.spiTXDMA.srcTransferStep      = 1;
+spi1.spiTXDMA.dmaBase              = "DMA_CH5_BASE";
+spi1.spiTXDMA.useInterrupts        = true;
+spi1.spiTXDMA.interruptMode        = "DMA_INT_AT_END";
+spi1.spiTXDMA.enableTriggers       = true;
+spi1.spiTXDMA.registerInterrupts   = true;
+spi1.spiTXDMA.enableInterrupts     = true;

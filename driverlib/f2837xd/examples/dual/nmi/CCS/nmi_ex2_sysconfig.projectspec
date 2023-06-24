@@ -1,0 +1,71 @@
+<projectSpec>
+  <project
+        name="nmi_ex2_sysconfig_multi"
+        configurations="
+            FLASH,
+            RAM,
+        "
+        device="TMS320F28377D"
+        outputType="system"
+        cgtVersion="20.2.1.LTS"
+        >
+        <pathVariable name="C2000WARE_ROOT" path="../../../../../../" scope="project" />
+        <file path="../system.xml" action="copy" openOnCreation="true"/>
+        <configuration name="FLASH"
+        ></configuration>
+        <configuration name="RAM"
+        ></configuration>
+  </project>
+  <project
+        name="nmi_ex2_sysconfig_cpu1"
+        device="TMS320F28377D"
+        cgtVersion="20.2.1.LTS"
+        outputFormat="ELF"
+        launchWizard="False"
+        linkerCommandFile=""
+	enableSysConfigTool="true"
+	sysConfigBuildOptions="--product ${C2000WARE_ROOT}/.metadata/sdk.json"
+        >
+    <configuration name="FLASH" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=_FLASH --define=CPU1 -v28 -ml -mt --cla_support=cla1 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu2 --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--entry_point code_start --stack_size=0x100" />
+    <configuration name="RAM" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=CPU1 -v28 -ml -mt --cla_support=cla1 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu2 --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--entry_point code_start --stack_size=0x100" />                
+    <pathVariable name="C2000WARE_ROOT" path="../../../../../../" scope="project" />
+    <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../../driverlib" scope="project" />        
+    <file action="copy" path="../../../../../../device_support/F2837xD/common/include/driverlib.h" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/F2837xD/common/include/device.h" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/F2837xD/common/source/device.c" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/F2837xD/common/targetConfigs/TMS320F28377D.ccxml" targetDirectory="targetConfigs" />
+    <file action="copy" path="../../../../../../device_support/F2837xD/common/cmd/2837xD_FLASH_lnk_cpu1.cmd" targetDirectory="" applicableConfigurations="FLASH" />
+    <file action="copy" path="../../../../../../device_support/F2837xD/common/cmd/2837xD_RAM_lnk_cpu1.cmd" targetDirectory="" applicableConfigurations="RAM" />
+    <file action="copy" path="../../../../../../device_support/F2837xD/common/source/F2837xD_CodeStartBranch.asm" targetDirectory="device" />
+    <file action="link" path="../../../../driverlib/ccs/Debug/driverlib.lib" targetDirectory="" />
+    <file action="copy" path="../../../../driverlib/" targetDirectory="device" excludeFromBuild="True" />
+    <file action="copy" path="../nmi_ex2_sysconfig_cpu1.c" targetDirectory="" />
+    <file action="copy" path="../nmi_ex2_sysconfig_cpu1.syscfg" targetDirectory="" />
+  </project>
+  <project
+        name="nmi_ex2_sysconfig_cpu2"
+        device="TMS320F28377D"
+        cgtVersion="20.2.1.LTS"
+        outputFormat="ELF"
+        launchWizard="False"
+        linkerCommandFile=""
+	enableSysConfigTool="true"
+	sysConfigBuildOptions="--product ${C2000WARE_ROOT}/.metadata/sdk.json"
+        >
+    <configuration name="FLASH" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=_FLASH --define=CPU2 -v28 -ml -mt --cla_support=cla1 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu2 --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--entry_point code_start --stack_size=0x100" />
+    <configuration name="RAM" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=CPU2 -v28 -ml -mt --cla_support=cla1 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu2 --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--entry_point code_start --stack_size=0x100" />                  
+    <pathVariable name="C2000WARE_ROOT" path="../../../../../../" scope="project" />
+    <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../../driverlib" scope="project" />        
+    <file action="copy" path="../../../../../../device_support/F2837xD/common/include/driverlib.h" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/F2837xD/common/include/device.h" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/F2837xD/common/source/device.c" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/F2837xD/common/targetConfigs/TMS320F28377D.ccxml" targetDirectory="targetConfigs" />
+    <file action="copy" path="../../../../../../device_support/F2837xD/common/cmd/2837xD_FLASH_lnk_cpu2.cmd" targetDirectory="" applicableConfigurations="FLASH" />
+    <file action="copy" path="../../../../../../device_support/F2837xD/common/cmd/2837xD_RAM_lnk_cpu2.cmd" targetDirectory="" applicableConfigurations="RAM" />
+    <file action="copy" path="../../../../../../device_support/F2837xD/common/source/F2837xD_CodeStartBranch.asm" targetDirectory="device" />
+    <file action="link" path="../../../../driverlib/ccs/Debug/driverlib.lib" targetDirectory="" />
+    <file action="copy" path="../../../../driverlib/" targetDirectory="device" excludeFromBuild="True" />
+    <file action="copy" path="../nmi_ex2_sysconfig_cpu2.c" targetDirectory="" />
+    <file action="copy" path="../nmi_ex2_sysconfig_cpu2.syscfg" targetDirectory="" />
+  </project>
+</projectSpec>

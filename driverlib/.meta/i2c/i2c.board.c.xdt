@@ -1,0 +1,82 @@
+% var module = system.modules['/driverlib/i2c.js'];
+//*****************************************************************************
+//
+// I2C Configurations
+//
+//*****************************************************************************
+void `module.peripheralName`_init(){
+%   for(var i = 0; i < module.$instances.length; i++) 
+%   {
+%      var instance = module.$instances[i];
+	`instance.$name`_init();
+%   }
+}
+
+%if (module != null)
+%{
+	% for(var i = 0; i < module.$instances.length; i++) {
+		% var instance = module.$instances[i];
+void `instance.$name`_init(){
+	I2C_disableModule(`instance.$name`_BASE);
+		% if (instance.mode == "CONTROLLER")
+		%{
+	I2C_initController(`instance.$name`_BASE, DEVICE_SYSCLK_FREQ, `parseInt(instance.bitRate)`, `instance.duty`);
+	I2C_setConfig(`instance.$name`_BASE, I2C_CONTROLLER_`instance.initialMode`);
+	I2C_setTargetAddress(`instance.$name`_BASE, `instance.targetAddress`);
+			% if (instance.loopback){
+	I2C_enableLoopback(`instance.$name`_BASE);
+	I2C_setOwnAddress(`instance.$name`_BASE, `instance.ownTargetAddress`);
+			%} else {
+	I2C_disableLoopback(`instance.$name`_BASE);
+			%}
+		%}
+		% else{
+	I2C_configureModuleFrequency(`instance.$name`_BASE, DEVICE_SYSCLK_FREQ);
+	I2C_setConfig(`instance.$name`_BASE, I2C_TARGET_`instance.initialMode`);
+	I2C_setOwnAddress(`instance.$name`_BASE, `instance.ownTargetAddress`);
+		%}
+	I2C_setBitCount(`instance.$name`_BASE, `instance.bitCount`);
+	I2C_setDataCount(`instance.$name`_BASE, `instance.dataCount`);
+	I2C_setAddressMode(`instance.$name`_BASE, `instance.addressMode`);
+		% if (instance.useFifo){
+	I2C_enableFIFO(`instance.$name`_BASE);
+			% if (instance.useInterrupts){
+				% var interrupts = "";
+				% for (var int_index in instance.enabledInterrupts)
+				% {
+				%	interrupts += ((interrupts == "")?"":" | ") + instance.enabledInterrupts[int_index];
+				% }
+				% for (var int_index in instance.enabledFIFOInterrupts)
+				% {
+				%	interrupts += ((interrupts == "")?"":" | ") + instance.enabledFIFOInterrupts[int_index];
+				% }
+				% 
+				% if (interrupts != ""){
+	I2C_clearInterruptStatus(`instance.$name`_BASE, `interrupts`);
+				% }
+	I2C_setFIFOInterruptLevel(`instance.$name`_BASE, `instance.txFifo`, `instance.rxFifo`);
+				% if (interrupts != ""){
+	I2C_enableInterrupt(`instance.$name`_BASE, `interrupts`);
+				% }
+			% }
+		%} else {
+	I2C_disableFIFO(`instance.$name`_BASE);
+			% if (instance.useInterrupts){
+				% var interrupts = "";
+				% for (var int_index in instance.enabledInterrupts)
+				% {
+				%	interrupts += ((interrupts == "")?"":" | ") + instance.enabledInterrupts[int_index];
+				% }
+				% if (interrupts != ""){
+	I2C_clearInterruptStatus(`instance.$name`_BASE, `interrupts`);
+				% }
+				% if (interrupts != ""){
+	I2C_enableInterrupt(`instance.$name`_BASE, `interrupts`);
+				% }
+			% }
+		%}
+	I2C_setEmulationMode(`instance.$name`_BASE, `instance.emulationMode`);
+	I2C_enableModule(`instance.$name`_BASE);
+}
+	%}
+%}

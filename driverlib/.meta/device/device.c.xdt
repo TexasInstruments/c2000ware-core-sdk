@@ -1,0 +1,61 @@
+% let Common   = system.getScript("/driverlib/Common.js");
+% var module = system.modules['/driverlib/device_support.js'];
+% var Device_include_c_template = system.getTemplate("/driverlib/device/functions_c/Device_include_c.xdt");
+% var Device_init_c_template = system.getTemplate("/driverlib/device/functions_c/Device_init_c.xdt");
+% var Device_bootCPU2_c_template = system.getTemplate("/driverlib/device/functions_c/Device_bootCPU2_c.xdt");
+% var Device_bootCM_c_template = system.getTemplate("/driverlib/device/functions_c/Device_bootCM_c.xdt");
+% var Device_enableAllPeripherals_c_template = system.getTemplate("/driverlib/device/functions_c/Device_enableAllPeripherals_c.xdt");
+% var Device_initGPIO_c_template = system.getTemplate("/driverlib/device/functions_c/Device_initGPIO_c.xdt");
+% var Device_enableUnbondedGPIOPullupsFor176Pin_c_template = system.getTemplate("/driverlib/device/functions_c/Device_enableUnbondedGPIOPullupsFor176Pin_c.xdt");
+% var Device_enableUnbondedGPIOPullups_c_template = system.getTemplate("/driverlib/device/functions_c/Device_enableUnbondedGPIOPullups_c.xdt");
+% var Device_enableUnbondedGPIOPullupsFor100Pin_c_template = system.getTemplate("/driverlib/device/functions_c/Device_enableUnbondedGPIOPullupsfor100Pin_c.xdt");
+% var Device_verifyXTAL_c_template = system.getTemplate("/driverlib/device/functions_c/Device_verifyXTAL_c.xdt");
+% var Device_configureTMXAnalogTrim_c_template = system.getTemplate("/driverlib/device/functions_c/Device_configureTMXAnalogTrim_c.xdt")
+% var Device_error_c_template = system.getTemplate("/driverlib/device/functions_c/Device_error_c.xdt")
+%
+`Device_include_c_template()`
+`Device_init_c_template()`
+%if (Device_enableAllPeripherals_c_template() != "") {
+`Device_enableAllPeripherals_c_template()`
+%}
+%if (Device_initGPIO_c_template() != "") {
+`Device_initGPIO_c_template()`
+%}
+%
+%if (Device_enableUnbondedGPIOPullupsFor100Pin_c_template() != "") {
+`Device_enableUnbondedGPIOPullupsFor100Pin_c_template()`
+%}
+%
+%if (Device_enableUnbondedGPIOPullupsFor176Pin_c_template() != "") {
+`Device_enableUnbondedGPIOPullupsFor176Pin_c_template()`
+%}
+%if (Device_enableUnbondedGPIOPullups_c_template() != "") {
+`Device_enableUnbondedGPIOPullups_c_template()`
+%}
+%
+%if (Device_verifyXTAL_c_template() != "") {
+`Device_verifyXTAL_c_template()`
+%}
+%if(["F2837xD"].includes(Common.getDeviceName()) && Common.isContextCPU1()){
+#ifdef CPU1	
+%}
+%if (Device_configureTMXAnalogTrim_c_template() != "") {
+`Device_configureTMXAnalogTrim_c_template()`
+%}
+%if(["F2838x"].includes(Common.getDeviceName()) && Common.isContextCPU1()){
+#ifdef CPU1	
+%}
+%if (Device_bootCPU2_c_template() != "") {
+`Device_bootCPU2_c_template()`
+%}
+%
+%if (Device_bootCM_c_template() != "") {
+`Device_bootCM_c_template()`
+%}
+%
+%if(["F2837xD"].includes(Common.getDeviceName()) && Common.isContextCPU1()){
+#endif
+%}
+%if (Device_error_c_template() != "") {
+`Device_error_c_template()`
+%}

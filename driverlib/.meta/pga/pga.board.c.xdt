@@ -1,0 +1,69 @@
+% var nameOfModule = "pga";
+% var module = system.modules['/driverlib/' + nameOfModule + '.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% var nameOfPeripheral = module.peripheralName;
+//*****************************************************************************
+//
+// PGA Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_init(){
+%   for(var i = 0; i < module.$instances.length; i++) 
+%   {
+%      var instance = module.$instances[i];
+	`instance.$name`_init();
+%   }
+}
+
+%if (module != null)
+%{
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+void `instance.$name`_init(){
+        % let instancePinmux = instance[nameOfModule];
+        %
+    PGA_setGain(`instance.$name`_BASE, `instance.gainMode`);
+        %
+        % if (instance.enableFilter) {
+    PGA_setFilterResistor(`instance.$name`_BASE, `instance.filterMode`);
+        % } else {
+    PGA_setFilterResistor(`instance.$name`_BASE, PGA_LOW_PASS_FILTER_DISABLED);
+        % }
+        %
+        % // preparing `registersToLockOR` for PGA_lockRegisters()
+        % if (instance.lockedRegisters.length>0)
+        %{
+%%{		
+        var regCount = 0
+        var registersToLockOR = "("
+        for (var registerToLock in instance.lockedRegisters)
+        {
+            if (regCount == 0)
+            {
+                registersToLockOR += instance.lockedRegisters[regCount]
+            }
+            else
+            {
+                registersToLockOR += " | " + instance.lockedRegisters[regCount]
+            }
+            regCount++
+        }
+        registersToLockOR += ")"
+%%}
+    //
+    // Lock write-access to PGA Registers
+    //
+    PGA_lockRegisters(`instance.$name`_BASE, `registersToLockOR`);
+        % }	
+        % if (instance.pgaEnable) {
+    PGA_enable(`instance.$name`_BASE);
+        % } else {
+    PGA_disable(`instance.$name`_BASE);    
+        % }
+    //
+    // Delay for PGA to power up.
+    //
+	DEVICE_DELAY_US(500);
+}
+    %}
+%}

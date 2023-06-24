@@ -1,0 +1,37 @@
+% var moduleName = "uart"
+% var module = system.modules['/driverlib/' + moduleName + '.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% let pinmuxOnlyDevices = ["F2838x"];
+%if (module != null)
+% {
+//*****************************************************************************
+//
+// UART Configurations
+//
+//*****************************************************************************
+% for(var inst of module.$instances) {
+        % let modInst  = inst[moduleName];
+        % let solution    = modInst.$solution;
+        % let peripheral  = system.deviceData.peripherals[solution.peripheralName];
+        % if(!pinmuxOnlyDevices.includes(Common.getDeviceName())) {
+//
+// `inst.$name` Configuration
+//
+#define `inst.$name`_BASE `peripheral.name`_BASE
+#define `inst.$name`_BAUDRATE `inst.baud`
+#define `inst.$name`_CONFIG_WLEN `inst.wlen`
+#define `inst.$name`_CONFIG_STP2 `inst.stp2`
+#define `inst.$name`_CONFIG_EPS `inst.eps`
+#define `inst.$name`_CONFIG_SPS `inst.sps == true ? "1" : "0"`
+    % if (inst.enInterrupt && inst.fen)
+    % {
+    %   // if the user chose EOT, set txifsel to the default value of UART_FIFO_TX4_8
+    %   // otherwise just use the value the user chose
+    %   var actual_txiflsel = (inst.txiflsel == "EOT") ? "UART_FIFO_TX4_8" : inst.txiflsel;
+#define `inst.$name`_FIFO_TXIFLSEL `actual_txiflsel`
+#define `inst.$name`_FIFO_RXIFLSEL `inst.rxiflsel`
+    % }
+% }
+void    `inst.$name`_init();
+% }
+% }

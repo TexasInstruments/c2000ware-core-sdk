@@ -1,0 +1,38 @@
+/**
+ * Import the modules used in this configuration.
+ */
+const spi  = scripting.addModule("/driverlib/spi.js", {}, false);
+const spi1 = spi.addInstance();
+const spi2 = spi.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+spi1.bitRate                 = 500000;
+spi1.txFifo                  = "SPI_FIFO_TX2";
+spi1.rxFifo                  = "SPI_FIFO_RX2";
+spi1.emulationMode           = "SPI_EMULATION_FREE_RUN";
+spi1.$name                   = "SPIA_peripheral";
+spi1.enabledFIFOInterrupts   = ["SPI_INT_RXFF"];
+spi1.useInterrupts           = false;
+spi1.useFifo                 = false;
+spi1.spi.$assign             = "SPIA";
+spi1.spi.spi_picoPin.$assign = "GPIO16";
+spi1.spi.spi_pociPin.$assign = "GPIO17";
+spi1.spi.spi_clkPin.$assign  = "GPIO56";
+spi1.spi.spi_stePin.$assign  = "GPIO57";
+
+spi2.$name                   = "SPIB_controller";
+spi2.mode                    = "SPI_MODE_CONTROLLER";
+spi2.emulationMode           = "SPI_EMULATION_FREE_RUN";
+spi2.bitRate                 = 500000;
+spi2.enabledFIFOInterrupts   = ["SPI_INT_TXFF"];
+spi2.txFifo                  = "SPI_FIFO_TX2";
+spi2.rxFifo                  = "SPI_FIFO_RX2";
+spi2.useInterrupts           = false;
+spi2.useFifo                 = false;
+spi2.spi.$assign             = "SPIB";
+spi2.spi.spi_picoPin.$assign = "GPIO24";
+spi2.spi.spi_pociPin.$assign = "GPIO31";
+spi2.spi.spi_clkPin.$assign  = "GPIO22_VFBSW";
+spi2.spi.spi_stePin.$assign  = "GPIO27";

@@ -1,0 +1,21 @@
+
+/**
+ * Import the modules used in this configuration.
+ */
+const dcdc  = scripting.addModule("/driverlib/dcdc.js", {}, false);
+const dcdc1 = dcdc.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+dcdc1.$name      = "myDCDC0";
+dcdc1.enableDCDC = true;
+
+/**
+ * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
+ * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
+ * re-solve from scratch.
+ */
+dcdc1.dcdc.$suggestSolution          = "DC-DC";
+dcdc1.dcdc.vfbswPin.$suggestSolution = "GPIO22_VFBSW";
+dcdc1.dcdc.vswPin.$suggestSolution   = "GPIO23_VSW";

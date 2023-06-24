@@ -1,0 +1,43 @@
+
+/**
+ * Import the modules used in this configuration.
+ */
+const adc     = scripting.addModule("/driverlib/adc.js", {}, false);
+const adc1    = adc.addInstance();
+const asysctl = scripting.addModule("/driverlib/asysctl.js");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+adc1.$name                   = "myADC0";
+adc1.adcBase                 = "ADCA_BASE";
+
+adc1.adcClockPrescaler       = "ADC_CLK_DIV_2_0";
+adc1.interruptPulseMode      = "ADC_PULSE_END_OF_CONV";
+
+
+adc1.enabledSOCs              = ["ADC_SOC_NUMBER0","ADC_SOC_NUMBER1"];
+
+adc1.soc0Trigger              = "ADC_TRIGGER_EPWM1_SOCA";
+adc1.soc1Trigger              = "ADC_TRIGGER_EPWM2_SOCA";
+
+adc1.soc0Channel              = "ADC_CH_ADCIN0";
+adc1.soc1Channel              = "ADC_CH_ADCIN2";
+
+adc1.soc0SampleWindow         = 8;
+adc1.soc1SampleWindow         = 8;
+
+adc1.enabledInts              = ["ADC_INT_NUMBER1","ADC_INT_NUMBER2"];
+adc1.enableInterrupt1         = true;
+adc1.enableInterrupt2         = true;
+adc1.interrupt1SOCSource      = "ADC_SOC_NUMBER0";
+adc1.interrupt2SOCSource      = "ADC_SOC_NUMBER1";
+adc1.enabledPPBs              = ["ADC_PPB_NUMBER1"];
+adc1.registerInterrupts       = ["1","2"];
+adc1.adcInt1.enableInterrupt  = true;
+adc1.adcInt1.interruptHandler = "adcA1ISR";
+adc1.adcInt2.interruptHandler = "adcA2ISR";
+adc1.adcInt2.enableInterrupt  = true;
+
+asysctl.analogReference        = "INTERNAL";
+asysctl.analogReferenceVoltage = "1P65";

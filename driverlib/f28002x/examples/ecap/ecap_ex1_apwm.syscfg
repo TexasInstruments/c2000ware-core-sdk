@@ -1,0 +1,22 @@
+
+/**
+ * Import the modules used in this configuration.
+ */
+const ecap        = scripting.addModule("/driverlib/ecap.js", {}, false);
+const ecap1       = ecap.addInstance();
+const outputxbar  = scripting.addModule("/driverlib/outputxbar.js", {}, false);
+const outputxbar1 = outputxbar.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+ecap1.$name       = "myECAP0";
+ecap1.ecapMode    = "APWM";
+ecap1.apwmPeriod  = 20000000;
+ecap1.apwmCompare = 10000000;
+
+outputxbar1.$name                            = "myOUTPUTXBAR0";
+outputxbar1.muxesUsed                        = ["XBAR_MUX00"];
+outputxbar1.mux0Config                       = "XBAR_OUT_MUX00_ECAP1_OUT";
+outputxbar1.outputxbar.$assign               = "OUTPUTXBAR3";
+outputxbar1.outputxbar.outputxbarPin.$assign = "GPIO5";

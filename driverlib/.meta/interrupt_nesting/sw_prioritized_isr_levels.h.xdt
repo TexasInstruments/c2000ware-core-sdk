@@ -1,0 +1,154 @@
+% var module = system.modules['/driverlib/interrupt_nesting.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+%if (module != null)
+%{
+% 	var stat = module.$static
+%	var configs=[]
+%	module.moduleStatic.config.forEach((element, index) =>
+%	{
+%    	configs[element.name] = element.config
+%	});
+%
+//###########################################################################
+//
+// FILE:    sw_prioritized_isr_levels.h
+//
+// TITLE:   Software Prioritized Interrupt Service Routine Level
+//          definitions.
+//
+//#############################################################################
+#ifndef SW_PRIORITZIED_ISR_LEVELS_H
+#define SW_PRIORITZIED_ISR_LEVELS_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#include <stdint.h>
+
+%   if(stat["traceEnable"])
+%   {
+#define TRACE_ISR_ENABLE
+%   }
+#define TRACE_SIZE `stat["traceLength"]`
+
+#ifdef TRACE_ISR_ENABLE
+extern uint16_t  traceISR[TRACE_SIZE];
+extern uint16_t  traceISRIndex;
+#endif
+
+
+//
+// Mask for interrupt groups
+//
+#define M_INT1      0x0001  // INT1 Mask
+#define M_INT2      0x0002  // INT2 Mask
+#define M_INT3      0x0004  // INT3 Mask
+#define M_INT4      0x0008  // INT4 Mask
+#define M_INT5      0x0010  // INT5 Mask
+#define M_INT6      0x0020  // INT6 Mask
+#define M_INT7      0x0040  // INT7 Mask
+#define M_INT8      0x0080  // INT8 Mask
+#define M_INT9      0x0100  // INT9 Mask
+#define M_INT10     0x0200  // INT10 Mask
+#define M_INT11     0x0400  // INT11 Mask
+#define M_INT12     0x0800  // INT12 Mask
+#define M_INT13     0x1000  // INT13 Mask
+#define M_INT14     0x2000  // INT14 Mask
+#define M_DLOG      0x4000  // DLOGINT Mask
+#define M_RTOS      0x8000  // RTOSINT Mask
+
+//
+// Interrupt Enable Register Allocation:
+// Interrupts can be enabled/disabled using the CPU interrupt enable register
+// (IER) and the PIE interrupt enable registers (PIEIER1 to PIEIER12).
+//
+
+//
+// Set "Global" Interrupt Priority Level (IER register):
+//
+// The user must set the appropriate priority level for each of the CPU
+// interrupts. This is termed as the "global" priority. The priority level
+// must be a number between 1 (highest) to 16 (lowest). A value of 0 must
+// be entered for reserved interrupts or interrupts that are not used.
+//
+// Note: The priority levels below are used to calculate the IER register
+//       interrupt masks MINT1 to MINT16.
+//
+// 0  = not used
+// 1  = highest priority
+// ...
+// 16 = lowest priority
+//
+%   configs["GlobalPriorities"].forEach((element, index) =>
+%	{
+%       var group = element.name.replace("IntPri_Global_", "")
+%       var pri = stat[element.name]
+#define INT`group`PL  `pri`   // `element.displayName`
+%	})
+
+
+//
+// Set "Group" Interrupt Priority Level (PIEIER1 to PIEIER12 registers):
+//
+// The user must set the appropriate priority level for each of the PIE
+// interrupts. This is termed as the "group" priority. The priority level
+// must be a number between 1 (highest) to 16 (lowest). A value of 0 must
+// be entered for reserved interrupts or interrupts that are not used.
+//
+// Note: The priority levels below are used to calculate the following
+//       PIEIER register interrupt masks:
+//       MG1_1 to MG1_16
+//       MG2_1 to MG2_16
+//       MG3_1 to MG3_16
+//       MG4_1 to MG4_16
+//       MG5_1 to MG5_16
+//       MG6_1 to MG6_16
+//       MG7_1 to MG7_16
+//       MG8_1 to MG8_16
+//       MG9_1 to MG9_16
+//       MG10_1 to MG10_16
+//       MG11_1 to MG11_16
+//       MG12_1 to MG12_16
+//
+// 0  = not used
+// 1  = highest priority
+// ...
+// 16  = lowest priority
+//
+%   for (var i = 1; i <= 12; i++)
+%	{
+%      for (var j = 1; j <= 16; j++)
+%       {
+%           var ch = i.toString() + "_" + j.toString()
+%           var macro = "G" + ch + "PL" + " ".repeat(10-ch.length)
+%           var desc = "Reserved"
+%           var pri = 0
+%           var int = module.functions.getInterrupt(i,j)
+%
+%           if(int != undefined)
+%           {
+%               desc = int.int_description
+%               pri = stat["IntPri_Group_" + int.int_define_name]
+%           }
+#define `macro`  `pri`  // `desc`
+%       }
+
+%	}
+
+//
+// Include the header file with software interrupt prioritization logic
+//
+#include "device_support\`Common.getDeviceName().toLowerCase()`\common\include\sw_interrupt_prioritization_logic.h"
+
+#ifdef __cplusplus
+}
+#endif /* extern "C" */
+
+#endif // eof
+
+//
+// End of file
+//
+
+%}

@@ -1,0 +1,23 @@
+% var moduleName = "fsirx"
+% var module = system.modules['/driverlib/' + moduleName + '.js'];
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// FSIRX Configurations
+//
+//*****************************************************************************
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        % let modInst  = instance[moduleName];
+        % let solution    = modInst.$solution;
+        %let peripheral  = system.deviceData.peripherals[solution.peripheralName];
+//
+// Rx Defines
+// Pointer to be declared in example code before use
+//
+#define `instance.$name`_BASE `peripheral.name`_BASE
+#define `instance.$name`_nWords `instance.softwareFrameSize`
+void `instance.$name`_init();
+    % }
+%}

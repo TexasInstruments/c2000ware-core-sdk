@@ -1,0 +1,34 @@
+% var module = system.modules['/driverlib/mindbxbar.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% var nameOfModule = "mindbxbar";
+% var nameOfPeripheral = module.peripheralName;
+%%{
+function addBaseAddress(){
+		return "MINDBXBAR_BASE, "
+}
+%%}
+//*****************************************************************************
+//
+// MINDB XBAR Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_init(){
+%   for(var i = 0; i < module.$instances.length; i++) 
+%   {
+%      var instance = module.$instances[i];
+	`instance.$name`_init();
+%   }
+}
+
+%if (module != null)
+%{
+	% for(var i = 0; i < module.$instances.length; i++) {
+		% var instance = module.$instances[i];
+void `instance.$name`_init(){
+	XBAR_setInputSignal(`addBaseAddress()``instance.$name`_INPUT, `instance.$name`_SOURCE);
+		% if (instance.mindbxbarLock){
+	XBAR_lockInput(`addBaseAddress()``instance.$name`_INPUT);
+		% }
+}
+	%}
+%}

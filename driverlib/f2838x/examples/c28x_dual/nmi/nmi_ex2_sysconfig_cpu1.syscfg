@@ -1,0 +1,23 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F2838x" --package "176pin" --part "F2838x_176pin" --context "CPU1" --product "C2000WARE@4.02.00.00"
+ * @versions {"tool":"1.13.0+2553"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const gpio  = scripting.addModule("/driverlib/gpio.js", {}, false);
+const gpio1 = gpio.addInstance();
+const ipc   = scripting.addModule("/driverlib/ipc.js");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+gpio1.$name           = "CPU2_LED";
+gpio1.direction       = "GPIO_DIR_MODE_OUT";
+gpio1.masterCore      = "GPIO_CORE_CPU2";
+gpio1.gpioPin.$assign = "GPIO31";
+
+ipc.ipcRegisterFlag = ["IPC_FLAG0","IPC_FLAG1","IPC_FLAG10","IPC_FLAG11","IPC_FLAG12","IPC_FLAG13","IPC_FLAG14","IPC_FLAG15","IPC_FLAG16","IPC_FLAG17","IPC_FLAG18","IPC_FLAG19","IPC_FLAG2","IPC_FLAG20","IPC_FLAG21","IPC_FLAG22","IPC_FLAG23","IPC_FLAG24","IPC_FLAG25","IPC_FLAG26","IPC_FLAG27","IPC_FLAG28","IPC_FLAG29","IPC_FLAG3","IPC_FLAG30","IPC_FLAG31","IPC_FLAG4","IPC_FLAG5","IPC_FLAG6","IPC_FLAG7","IPC_FLAG8","IPC_FLAG9"];

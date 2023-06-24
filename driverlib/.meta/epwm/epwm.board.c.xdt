@@ -1,0 +1,262 @@
+% var module = system.modules['/driverlib/epwm.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% var nameOfModule = "epwm";
+% var nameOfPeripheral = module.peripheralName;
+% let epwm_json_resolver = system.getScript("/driverlib/epwm/epwm_json_resolver.js");
+% var nonCommented = ["epwmTimebase_hsClockDiv", "epwmTimebase_period","epwmTimebase_counterMode", "epwmTimebase_counterValue", "epwmTimebase_phaseEnable", "epwmTimebase_phaseShift", "epwmCounterCompare_cmpA", "epwmCounterCompare_shadowLoadModeCMPA", "epwmCounterCompare_cmpB", "epwmCounterCompare_shadowLoadModeCMPB", "epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_ZERO", "epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_PERIOD", "epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_UP_CMPA", "epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_DOWN_CMPA", "epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_UP_CMPB", "epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_DOWN_CMPB", "epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_ZERO", "epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_PERIOD", "epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_UP_CMPA", "epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_DOWN_CMPA", "epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_UP_CMPB", "epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_DOWN_CMPB"];
+%
+% function GenerateOutput(inst, name, showCode, template, duplicates, commentStatus, indicies)
+% {
+%    if (!template)
+%      {
+%	      var code = epwm_json_resolver.getCode(inst, inst, name, commentStatus, indicies); 
+%      }
+%    else if (template)
+%      {
+%         var code = epwm_json_resolver.getCode(inst, inst, name, commentStatus, indicies).replace(instance.$name + "_BASE", "base"); 
+%      }
+%    if (code != "" && linkCheck(inst, name) && !duplicateCodeCheck(inst, name, showCode, commentStatus, duplicates))
+%    {
+    `code`	
+%    }            
+%}
+%
+% function check_if_nested(obj) 
+% {
+%   if (obj.hasOwnProperty('config'))
+%	{return true;}
+%	else
+%	{ return false;}
+% }
+%
+% function returnNestedElements(obj)
+% {
+%	var elements = [];
+%   var key, Length = 0;
+%     for(key in obj) {if(obj.hasOwnProperty(key)) {Length++;}}
+%     for (var Index = 0; Index < Length; Index++)
+%     {
+%         elements.push(obj[Index]);
+%     }
+%     return elements;
+% }
+%
+% function linkCheck(inst, ui_ele_name)
+% {
+%    var nonLink = true;
+%    var links = ["epwmTimebase_periodLink", "epwmCounterCompare_cmpALink", "epwmCounterCompare_cmpBLink", "epwmCounterCompare_cmpCLink", 
+%                  "epwmCounterCompare_cmpDLink", "epwmGlobalLoad_globalePWMLoadLink"];
+%    if (links.includes(ui_ele_name))
+%	 {
+%	     if (inst[ui_ele_name] == "EPWM_LINK_WITH_DISABLE")
+%        {
+%          nonLink = false;
+%        }
+%	 }
+%     return nonLink;	 
+% }
+%
+% function duplicateCodeCheck(inst, ui_ele_name, showCode, commentStatus, duplicateList)
+% {
+%    var duplicate = false;
+%	 if (showCode == true && duplicateList.includes(ui_ele_name))
+%    {
+%       duplicate = true;
+%    }
+%   return duplicate;
+% }
+%
+% function defaultStatus(inst, showAllCode, commentOutDefaultCode, templateGen, duplicateList, nonCommented)
+% {
+%    var modkey, moduleLength = 0;
+%    for(modkey in inst.$module.config) {if(inst.$module.config.hasOwnProperty(modkey)) {moduleLength++;}}
+%    var hasEPWMLock = "false";
+%    for (var y=0; y < moduleLength; y++)
+%		{
+%	       if (inst.$module.config[y].name == "epwmLock")
+%			{
+%	            hasEPWMLock = "true";
+%	            var EPWMLockPos = y;
+%			}
+%           else if (inst.$module.config[y].name == "GROUP_EPWM_GL")
+%           {
+%                var startPos = y;
+%           }
+%           else if (inst.$module.config[y].name == "GROUP_HRPWM")
+%           {
+%                var endPos = y;
+%           }
+%		}
+%     if (hasEPWMLock == "true")
+%       {
+%          if (inst[inst.$module.config[EPWMLockPos].name] != inst.$module.config[EPWMLockPos].default && showAllCode == false)
+%             {
+%                GenerateOutput(inst, inst.$module.config[EPWMLockPos].name, showAllCode, templateGen, duplicateList); 
+%             }
+%          else if (showAllCode)
+%             {
+%                GenerateOutput(inst, inst.$module.config[EPWMLockPos].name, showAllCode, templateGen, duplicateList); 
+%             }
+%        }
+%
+%    for (var modIndex = startPos; modIndex <= endPos; modIndex++)
+%    {
+%        var indicies = [];
+%		 var submodkey, subModLength = 0;
+%        for(submodkey in inst.$module.config[modIndex].config) {if(inst.$module.config[modIndex].config.hasOwnProperty(submodkey)) {subModLength++;}}
+%        for (var submodIndex = 0; submodIndex < subModLength; submodIndex++)
+%        {
+%           if (check_if_nested(inst.$module.config[modIndex].config[submodIndex]) == false)
+%           {
+%                if (!inst.$module.config[modIndex].config[submodIndex].deprecated)
+%                {
+%                	if (inst[inst.$module.config[modIndex].config[submodIndex].name] != inst.$module.config[modIndex].config[submodIndex].default && (showAllCode == false || (showAllCode == true 
+%						&& commentOutDefaultCode == true)))
+%				 	{ 
+%                    	if (duplicateList.includes(inst.$module.config[modIndex].config[submodIndex].name)) 
+%					 	{
+%							if (inst[inst.$module.config[modIndex].config[submodIndex-1].name] == inst.$module.config[modIndex].config[submodIndex-1].default && (showAllCode == false || 
+%							(showAllCode == true && commentOutDefaultCode == true)))
+%							{
+%                           	indicies = [];
+%                           	indicies.push(modIndex, submodIndex);
+%						    	GenerateOutput(inst, inst.$module.config[modIndex].config[submodIndex].name, showAllCode, templateGen, duplicateList, false, indicies);  
+%							}
+%					 	}
+%						 else
+%                    	{
+%                       	indicies = [];
+%                       	indicies.push(modIndex, submodIndex);
+%                 	    	GenerateOutput(inst, inst.$module.config[modIndex].config[submodIndex].name, showAllCode, templateGen, duplicateList, false, indicies);                    
+%                    	}
+%                	}
+%                	else if (showAllCode || nonCommented.includes(inst.$module.config[modIndex].config[submodIndex].name))
+%                	{
+%                   	indicies = [];
+%                   	indicies.push(modIndex, submodIndex);
+%                   	GenerateOutput(inst, inst.$module.config[modIndex].config[submodIndex].name, showAllCode, templateGen, duplicateList, commentOutDefaultCode, indicies);
+%                	}
+%               }
+%           }
+%           else
+%           {
+%		         var subContent = inst.$module.config[modIndex].config[submodIndex].config;
+%                for (var x = 0; x < subContent.length; x++)
+%                {
+%                    if (check_if_nested(inst.$module.config[modIndex].config[submodIndex].config[x]) == false)
+%                    {
+%                       if (!inst.$module.config[modIndex].config[submodIndex].config[x].deprecated)
+%                       {
+%                       	if (inst[inst.$module.config[modIndex].config[submodIndex].config[x].name] != inst.$module.config[modIndex].config[submodIndex].config[x].default && 
+%							(showAllCode == false || ( showAllCode == true && commentOutDefaultCode == true)))
+%				        	{
+%                          		indicies = [];
+%                          		indicies.push(modIndex, submodIndex, x);
+%                 	        	GenerateOutput(inst, inst.$module.config[modIndex].config[submodIndex].config[x].name, showAllCode, templateGen, duplicateList, false, indicies);
+%                       	}
+%                       	else if (showAllCode || nonCommented.includes(inst.$module.config[modIndex].config[submodIndex].config[x].name))
+%                       	{
+%                          		indicies = [];
+%                          		indicies.push(modIndex, submodIndex, x);
+%                          		GenerateOutput(inst, inst.$module.config[modIndex].config[submodIndex].config[x].name, showAllCode, templateGen, duplicateList, commentOutDefaultCode, indicies);
+%                       	}
+%                       }
+%                    }
+%					else
+%					{
+%					  var subContent2 = inst.$module.config[modIndex].config[submodIndex].config[x].config;
+%                	  for (var y = 0; y < subContent2.length; y++)
+%                     {
+%                        if (!inst.$module.config[modIndex].config[submodIndex].config[x].config[y].deprecated)
+%                        {
+%                        	if (inst[inst.$module.config[modIndex].config[submodIndex].config[x].config[y].name] != inst.$module.config[modIndex].config[submodIndex].config[x].config[y].default 
+%                            	&& (showAllCode == false || (showAllCode == true && commentOutDefaultCode == true)))
+%				         	{
+%                            	indicies = [];
+%                            	indicies.push(modIndex, submodIndex, x, y);
+%                 	         	GenerateOutput(inst, inst.$module.config[modIndex].config[submodIndex].config[x].config[y].name, showAllCode, templateGen, duplicateList, false, indicies);
+%                        	}
+%                        	else if (showAllCode || nonCommented.includes(inst.$module.config[modIndex].config[submodIndex].config[x].config[y].name))
+%                        	{
+%                            	indicies = [];
+%                            	indicies.push(modIndex, submodIndex, x, y);
+%                            	GenerateOutput(inst, inst.$module.config[modIndex].config[submodIndex].config[x].config[y].name, showAllCode, templateGen, duplicateList, commentOutDefaultCode, indicies);
+%                        	}
+%                        }
+%					  }
+%                  }
+%               }
+%           }
+%       }
+%    }
+% }
+%
+% if (module != null){
+%   if (module.$static["generateInitFunctions"]){
+//*****************************************************************************
+//
+// EPWM Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_init(){
+%   for(var i = 0; i < module.$instances.length; i++) 
+%   {
+%      var instance = module.$instances[i];
+	`instance.$name`_init();
+%   }
+}
+%   for(var i = 0; i < module.$instances.length; i++) 
+%   {
+%     var instance = module.$instances[i];
+%     let instancePinmux = instance[nameOfModule];
+%     let solution    = instancePinmux.$solution;
+void `instance.$name`_init(){
+%     let peripheral  = system.deviceData.peripherals[solution.peripheralName];
+%     var genCodeTemplate = false;
+%     var output = instance.$module.$static["enableAllCode"];
+%     var outputComment = instance.$module.$static["commentOutDefaultCode"];
+%     var duplicate_inst = ["epwmTimebase_hsClockDiv", "epwmDigitalCompare_stopValleyCaptureTriggerCount"];
+%     defaultStatus(instance, output, outputComment, genCodeTemplate, duplicate_inst, nonCommented);
+}
+%
+%  }
+%}
+%else{
+//*****************************************************************************
+//
+// EPWM Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_init(){
+% for(var i = 0; i < module.$instances.length; i++) 
+% 	{
+% 	var instance = module.$instances[i];
+% 	let instancePinmux = instance[nameOfModule];
+% 	let solution    = instancePinmux.$solution;
+% 	let peripheral  = system.deviceData.peripherals[solution.peripheralName];
+% 	var genCodeTemplate = false;
+% 	var output = instance.$module.$static["enableAllCode"];
+% 	var outputComment = instance.$module.$static["commentOutDefaultCode"];
+% 	var duplicate_inst = ["epwmTimebase_hsClockDiv", "epwmDigitalCompare_stopValleyCaptureTriggerCount"];
+% 	defaultStatus(instance, output, outputComment, genCodeTemplate, duplicate_inst, nonCommented);
+% 	}
+}
+%}
+%}
+%
+%if (module != null)
+%{
+%   for(var i = 0; i < module.$instances.length; i++) {
+%   var instance = module.$instances[i];
+%   if (instance.generateCodeTemplate) {
+%       var genCodeTemplate = true;
+%       var output = instance.$module.$static["enableAllCode"];
+%       var outputComment = instance.$module.$static["commentOutDefaultCode"];
+%       var duplicate_inst = ["epwmTimebase_hsClockDiv", "epwmDigitalCompare_stopValleyCaptureTriggerCount"];
+// `instance.$name` Configuration Template
+void `instance.codeTemplateName`(uint32_t base){
+% 		defaultStatus(instance, output, outputComment, genCodeTemplate,duplicate_inst, nonCommented);
+}
+%  	}
+%  }
+%}

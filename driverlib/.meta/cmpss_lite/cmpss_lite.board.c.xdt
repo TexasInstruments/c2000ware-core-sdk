@@ -1,0 +1,234 @@
+% var module = system.modules['/driverlib/cmpss_lite.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% var nameOfModule = "cmpss_lite";
+% var nameOfPeripheral = module.peripheralName;
+%%{
+var hnMuxes = []
+var lnMuxes = []
+var hnMuxesOR = ""
+var lnMuxesOR = ""
+%%}
+//*****************************************************************************
+//
+// CMPSS-LITE Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_init(){
+%   for(var i = 0; i < module.$instances.length; i++) 
+%   {
+%      var instance = module.$instances[i];
+	`instance.$name`_init();
+%   }
+}
+
+%if (module != null)
+% {
+%    for(var i = 0; i < module.$instances.length; i++) {
+    %   var instance = module.$instances[i];
+    %   var instanceNumber = instance.cmpssLiteBase.match(/\d+/)[0]
+void `instance.$name`_init(){
+%   if( ["F280013x", "F280015x"].includes(system.deviceData.deviceId)){
+%%{
+        
+            if (i == 0)
+            {
+                lnMuxesOR += "ASYSCTL_CMPLNMUX_SELECT_"+instanceNumber
+                hnMuxesOR += "ASYSCTL_CMPHNMUX_SELECT_"+instanceNumber
+            }
+            else
+            {
+                lnMuxesOR += " | " + "ASYSCTL_CMPLNMUX_SELECT_"+instanceNumber
+                hnMuxesOR += " | " + "ASYSCTL_CMPHNMUX_SELECT_"+instanceNumber
+            }
+%%}
+    //
+    // Select the value for CMP`instanceNumber`HPMXSEL.
+    //
+            % var tempPositiveInstance = "ASYSCTL_CMPHPMUX_SELECT_"+instanceNumber
+    ASysCtl_selectCMPHPMux(`tempPositiveInstance`,`instance.asysCMPHPMXSELValue`U);
+        %if (instance.highCompNegative != "CMPSS_INSRC_DAC"){
+    //
+    // Select the value for CMP`instanceNumber`HNMXSEL.
+    //
+            % var tempNegativeInstance = "ASYSCTL_CMPHNMUX_SELECT_"+instanceNumber
+    ASysCtl_selectCMPHNMuxValue(`tempNegativeInstance`,`instance.asysCMPHNMXSELValue`U);
+        %}
+    //
+    // Select the value for CMP`instanceNumber`LPMXSEL.
+    //
+            % tempPositiveInstance = "ASYSCTL_CMPLPMUX_SELECT_"+instanceNumber
+    ASysCtl_selectCMPLPMux(`tempPositiveInstance`,`instance.asysCMPLPMXSELValue`U);
+        %if (instance.lowCompNegative != "CMPSS_INSRC_DAC"){
+    //
+    // Select the value for CMP`instanceNumber`LNMXSEL.
+    //
+            % tempNegativeInstance = "ASYSCTL_CMPLNMUX_SELECT_"+instanceNumber
+    ASysCtl_selectCMPLNMuxValue(`tempNegativeInstance`,`instance.asysCMPLNMXSELValue`U);
+        %}
+    % }
+        % var baseName = instance.$name + "_BASE";
+%%{
+    var configHighString = "("
+    configHighString += instance.highCompNegative
+    if (instance.highCompInvert){
+        configHighString += " | CMPSS_INV_INVERTED"
+    }
+    if (instance.highCompAsynch){
+        configHighString += " | CMPSS_OR_ASYNC_OUT_W_FILT"
+    }
+    configHighString += ")"
+%%}
+    //
+    // Sets the configuration for the high comparator.
+    //
+    CMPSSLITE_configHighComparator(`baseName`,`configHighString`);
+%%{
+    var configLowString = "("
+    configLowString += instance.lowCompNegative
+    if (instance.lowCompInvert){
+        configLowString += " | CMPSS_INV_INVERTED"
+    }
+    if (instance.lowCompAsynch){
+        configLowString += " | CMPSS_OR_ASYNC_OUT_W_FILT"
+    }
+    configLowString += ")"
+%%}
+    //
+    // Sets the configuration for the low comparator.
+    //
+    CMPSSLITE_configLowComparator(`baseName`,`configLowString`);
+    //
+    // Sets the configuration for the internal comparator DACs.
+    //
+        % if(instance.dacValLoad == "CMPSSLITE_DACVAL_PWMSYNC"){
+    //
+    //  - ePWM module must be configured before using here.
+    //
+        % }
+        % if(["F280013x", "F280015x"].includes(system.deviceData.deviceId)){
+    CMPSSLITE_configDAC(`baseName`, `instance.dacValLoad`);
+        % }
+        % else{
+    CMPSSLITE_configDAC(`baseName`,(`instance.dacValLoad` | `instance.dacRefVoltage` | `instance.dacValSource`));
+        % }
+    //
+    // Sets the value of the internal DAC of the high comparator.
+    //
+    CMPSSLITE_setDACValueHigh(`baseName`,`instance.dacValHigh`U);
+    //
+    // Sets the value of the internal DAC of the low comparator.
+    //
+    CMPSSLITE_setDACValueLow(`baseName`,`instance.dacValLow`U);
+    //
+    //  Configures the digital filter of the high comparator.
+    //
+    CMPSSLITE_configFilterHigh(`baseName`, `instance.samplePrescaleHigh`U, `instance.sampleWindowHigh`U, `instance.thresholdHigh`U);
+    //
+    // Configures the digital filter of the low comparator.
+    //
+    CMPSSLITE_configFilterLow(`baseName`, `instance.samplePrescaleLow`U, `instance.sampleWindowLow`U, `instance.thresholdLow`U);
+        % if(instance.initFilterHigh){
+    //
+    // Initializes the digital filter of the high comparator.
+    //
+    CMPSSLITE_initFilterHigh(`baseName`);
+        % }
+        % if(instance.initFilterLow){
+    //
+    // Initializes the digital filter of the low comparator.
+    //
+    CMPSSLITE_initFilterLow(`baseName`);
+        % }
+        % if((instance.highCTRIPOUT != "CMPSS_TRIPOUT_ASYNC_COMP") || (instance.highCTRIP != "CMPSS_TRIP_ASYNC_COMP")){
+    //
+    // Sets the output signal configuration for the high comparator.
+    //
+    CMPSSLITE_configOutputsHigh(`baseName`,(`instance.highCTRIPOUT` | `instance.highCTRIP`));
+        % }
+        % if((instance.lowCTRIPOUT != "CMPSS_TRIPOUT_ASYNC_COMP") || (instance.lowCTRIP != "CMPSS_TRIP_ASYNC_COMP")){
+    //
+    // Sets the output signal configuration for the low comparator.
+    //
+    CMPSSLITE_configOutputsLow(`baseName`,(`instance.lowCTRIPOUT` | `instance.lowCTRIP`));
+        % }
+    //
+    // Sets the comparator hysteresis settings.
+    //
+    CMPSSLITE_setHysteresis(`baseName`,`instance.hysteresisVal`U);
+        % if(instance.latchResetHigh){
+    //
+    // Enables reset of HIGH comparator digital filter output latch on PWMSYNC
+    //
+    CMPSSLITE_enableLatchResetOnPWMSYNCHigh(`baseName`);
+        % }
+        % else{
+    //
+    // Disables reset of HIGH comparator digital filter output latch on PWMSYNC
+    //
+    CMPSSLITE_disableLatchResetOnPWMSYNCHigh(`baseName`);
+        % }
+        % if(instance.latchResetLow){
+    //
+    // Enables reset of LOW comparator digital filter output latch on PWMSYNC
+    //
+    CMPSSLITE_enableLatchResetOnPWMSYNCLow(`baseName`);
+        % }
+        % else{
+    //
+    // Disables reset of LOW comparator digital filter output latch on PWMSYNC
+    //
+    CMPSSLITE_disableLatchResetOnPWMSYNCLow(`baseName`);
+        % }
+        % if( ["F28002x", "F28003x", "F28004x","F2838x", "F280013x", "F280015x"].includes(Common.getDeviceName())){
+    //
+    // Sets the ePWM module blanking signal that holds trip in reset.
+    //
+    CMPSSLITE_configBlanking(`baseName`,`instance.configBlanking`U);
+            % if(instance.enableBlanking){
+    //
+    // Enables an ePWM blanking signal to hold trip in reset.
+    //
+    CMPSSLITE_enableBlanking(`baseName`);
+            % }
+            % else{
+    //
+    // Disables an ePWM blanking signal from holding trip in reset.
+    //
+    CMPSSLITE_disableBlanking(`baseName`);
+            % }
+        % }
+    //
+    // Configures whether or not the digital filter latches are reset by PWMSYNC
+    //
+    CMPSSLITE_configLatchOnPWMSYNC(`baseName`,`instance.configLatchHigh`,`instance.configLatchLow`);
+        % if(instance.enableModule){
+    //
+    // Enables the CMPSSLITE module.
+    //
+    CMPSSLITE_enableModule(`baseName`);
+        % }
+        % else{
+    //
+    // Disables the CMPSSLITE module.
+    //
+    CMPSSLITE_disableModule(`baseName`);
+        % }
+    //
+    // Delay for CMPSSLITE DAC to power up.
+    //
+    DEVICE_DELAY_US(500);
+        % if(instance.clearFilterLatchHigh){
+    //
+    // Causes a software reset of the high comparator digital filter output latch.
+    //
+    CMPSSLITE_clearFilterLatchHigh(`baseName`);
+    % }
+        % if(instance.clearFilterLatchLow){
+    //
+    // Causes a software reset of the low comparator digital filter output latch.
+    //
+    CMPSSLITE_clearFilterLatchLow(`baseName`);
+    % }
+}
+% }
+%}

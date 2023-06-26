@@ -1,0 +1,925 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>MPU Module &mdash; F2838x CM API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F2838x CM API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="SSI Module" href="ssi.html"/>
+        <link rel="prev" title="MCAN Module" href="mcan.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F2838x CM API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="aes.html">AES Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmmpu.html">CM-MPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpu.html">CPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="escss.html">ESCSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ethernet.html">Ethernet Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="udma.html">UDMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gcrc.html">GCRC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipc.html">IPC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcan.html">MCAN Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">MPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssi.html">SSI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="systick.html">SysTick Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uart.html">UART Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F2838x CM API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>MPU Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="mpu-module">
+<span id="mpu"></span><h1>MPU Module<a class="headerlink" href="#mpu-module" title="Permalink to this headline">¶</a></h1>
+<p>The Memory Protection Unit (MPU) API provides functions to configure the MPU.
+The MPU is tightly coupled to the Cortex-M processor core and provides a means
+to establish access permissions on regions of memory.</p>
+<p>Up to eight memory regions can be defined. Each region has a base address and a
+size. The size is specified as a power of 2 between 32 bytes and 4 GB,
+inclusive. The region’s base address must be aligned to the size of the region.
+Each region also has access permissions. Code execution can be allowed or
+disallowed for a region. A region can be configured for read-only access,
+read/write access, or no access for both privileged and user modes. Access
+permissions can be used to create an environment where only kernel or system
+code can access certain hardware registers or sections of code.</p>
+<p>The MPU creates 8 sub-regions within each region. Any sub-region or combination
+of sub-regions can be disabled, allowing creation of “holes” or complex
+overlaying regions with different permissions. The sub-regions can also be used
+to create an unaligned beginning or ending of a region by disabling one or more
+of the leading or trailing sub-regions. Once the regions are defined and the
+MPU is enabled, any access violation of a region causes a memory management
+fault, and the fault handler is activated.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__mpu__api"></span><em>group</em> <code class="sig-name descname">mpu_api</code></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.MPU_CONFIG_PRIV_DEFAULT">
+<span class="target" id="group__mpu__api_1ga360a7bc66885fa499128e66678531a62"></span><code class="sig-name descname">MPU_CONFIG_PRIV_DEFAULT</code> 0x4U<a class="headerlink" href="#c.MPU_CONFIG_PRIV_DEFAULT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>region for priv sw access. </p>
+<p>Enable default memory map as bg </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_CONFIG_HARDFLT_NMI">
+<span class="target" id="group__mpu__api_1gaecd48948da5ff4d30a1b669bd52575f5"></span><code class="sig-name descname">MPU_CONFIG_HARDFLT_NMI</code> 0x2U<a class="headerlink" href="#c.MPU_CONFIG_HARDFLT_NMI" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>NMI and FAULTMASK handlers. </p>
+<p>MPU is enabled during hard fault, </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_CONFIG_NONE">
+<span class="target" id="group__mpu__api_1ga63faeaed9a2f9500cb544f3a35e455d7"></span><code class="sig-name descname">MPU_CONFIG_NONE</code> 0x0U<a class="headerlink" href="#c.MPU_CONFIG_NONE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>None of the above configurations. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_0">
+<span class="target" id="group__mpu__api_1ga75a9f6d2078006f1ce8ab9c5753f24a1"></span><code class="sig-name descname">MPU_RGN_0</code> 0x0U<a class="headerlink" href="#c.MPU_RGN_0" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_1">
+<span class="target" id="group__mpu__api_1ga005a6cb5d4c07ee4df1b0ad891e69238"></span><code class="sig-name descname">MPU_RGN_1</code> 0x1U<a class="headerlink" href="#c.MPU_RGN_1" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_2">
+<span class="target" id="group__mpu__api_1gac265b5d2eb923a0410486a8b49429a1a"></span><code class="sig-name descname">MPU_RGN_2</code> 0x2U<a class="headerlink" href="#c.MPU_RGN_2" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_3">
+<span class="target" id="group__mpu__api_1ga31d40d806427e2f118e63233818f0507"></span><code class="sig-name descname">MPU_RGN_3</code> 0x3U<a class="headerlink" href="#c.MPU_RGN_3" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_4">
+<span class="target" id="group__mpu__api_1ga9c744612ac10200fc1911268b6483c38"></span><code class="sig-name descname">MPU_RGN_4</code> 0x4U<a class="headerlink" href="#c.MPU_RGN_4" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_5">
+<span class="target" id="group__mpu__api_1ga03853d0a18b28215ab3d933f0b0541a0"></span><code class="sig-name descname">MPU_RGN_5</code> 0x5U<a class="headerlink" href="#c.MPU_RGN_5" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_6">
+<span class="target" id="group__mpu__api_1ga46c45246262c9bb2c040816a64904d38"></span><code class="sig-name descname">MPU_RGN_6</code> 0x6U<a class="headerlink" href="#c.MPU_RGN_6" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_7">
+<span class="target" id="group__mpu__api_1ga17d03c33af454c91691186b784a3ebad"></span><code class="sig-name descname">MPU_RGN_7</code> 0x7U<a class="headerlink" href="#c.MPU_RGN_7" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_SIZE_32B">
+<span class="target" id="group__mpu__api_1gaf6ee2db476c1ca3b2d651988364a3b3c"></span><code class="sig-name descname">MPU_RGN_SIZE_32B</code> (4U &lt;&lt; 1U)<a class="headerlink" href="#c.MPU_RGN_SIZE_32B" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 32-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_SIZE_64B">
+<span class="target" id="group__mpu__api_1ga27d871c2089b2cfe08349333774794ec"></span><code class="sig-name descname">MPU_RGN_SIZE_64B</code> (5U &lt;&lt; 1U)<a class="headerlink" href="#c.MPU_RGN_SIZE_64B" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 64-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_SIZE_128B">
+<span class="target" id="group__mpu__api_1ga10b3f4cea2ecc8d20e357e0f0a563434"></span><code class="sig-name descname">MPU_RGN_SIZE_128B</code> (6U &lt;&lt; 1U)<a class="headerlink" href="#c.MPU_RGN_SIZE_128B" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 128-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_SIZE_256B">
+<span class="target" id="group__mpu__api_1ga0e9126af117cab8b9f4442efbd6111ff"></span><code class="sig-name descname">MPU_RGN_SIZE_256B</code> (7U &lt;&lt; 1U)<a class="headerlink" href="#c.MPU_RGN_SIZE_256B" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 256-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_SIZE_512B">
+<span class="target" id="group__mpu__api_1ga4ab76519745bed4ff57eb4d212551ad7"></span><code class="sig-name descname">MPU_RGN_SIZE_512B</code> (8U &lt;&lt; 1U)<a class="headerlink" href="#c.MPU_RGN_SIZE_512B" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 512-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_SIZE_1K">
+<span class="target" id="group__mpu__api_1gae1b8b38451edd36be59442a8c94e9d6e"></span><code class="sig-name descname">MPU_RGN_SIZE_1K</code> (9U &lt;&lt; 1U)<a class="headerlink" href="#c.MPU_RGN_SIZE_1K" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 1K-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_SIZE_2K">
+<span class="target" id="group__mpu__api_1gac2daf1ffdfd025e940d7f1e68e34f7ff"></span><code class="sig-name descname">MPU_RGN_SIZE_2K</code> (10U &lt;&lt; 1U)<a class="headerlink" href="#c.MPU_RGN_SIZE_2K" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 2K-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_SIZE_4K">
+<span class="target" id="group__mpu__api_1ga43cb236859d95fe83f2d7c71602aedc9"></span><code class="sig-name descname">MPU_RGN_SIZE_4K</code> (11U &lt;&lt; 1U)<a class="headerlink" href="#c.MPU_RGN_SIZE_4K" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 4K-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_SIZE_8K">
+<span class="target" id="group__mpu__api_1ga6ba0a77fc8fc7cc5cb84c0f4cc768f41"></span><code class="sig-name descname">MPU_RGN_SIZE_8K</code> (12U &lt;&lt; 1U)<a class="headerlink" href="#c.MPU_RGN_SIZE_8K" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 8K-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_SIZE_16K">
+<span class="target" id="group__mpu__api_1ga48beb3341cc79acc3395da64c9aeda5d"></span><code class="sig-name descname">MPU_RGN_SIZE_16K</code> (13U &lt;&lt; 1U)<a class="headerlink" href="#c.MPU_RGN_SIZE_16K" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 16K-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_SIZE_32K">
+<span class="target" id="group__mpu__api_1gab59a3e82a7b2f06c6ab50864a73b595e"></span><code class="sig-name descname">MPU_RGN_SIZE_32K</code> (14U &lt;&lt; 1U)<a class="headerlink" href="#c.MPU_RGN_SIZE_32K" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 32K-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_SIZE_64K">
+<span class="target" id="group__mpu__api_1gac419333fa662a560ab1bf6f048fa2dd3"></span><code class="sig-name descname">MPU_RGN_SIZE_64K</code> (15U &lt;&lt; 1U)<a class="headerlink" href="#c.MPU_RGN_SIZE_64K" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 64K-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_SIZE_128K">
+<span class="target" id="group__mpu__api_1gab6fe5a71af0a0163afe227209d450e64"></span><code class="sig-name descname">MPU_RGN_SIZE_128K</code> (16U &lt;&lt; 1U)<a class="headerlink" href="#c.MPU_RGN_SIZE_128K" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 128K-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_SIZE_256K">
+<span class="target" id="group__mpu__api_1ga79f27d918df11d0a02e3b3d0cea45497"></span><code class="sig-name descname">MPU_RGN_SIZE_256K</code> (17U &lt;&lt; 1U)<a class="headerlink" href="#c.MPU_RGN_SIZE_256K" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 256K-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_SIZE_512K">
+<span class="target" id="group__mpu__api_1gaa8f048aafecb2e1ea82a46caa949cf11"></span><code class="sig-name descname">MPU_RGN_SIZE_512K</code> (18U &lt;&lt; 1U)<a class="headerlink" href="#c.MPU_RGN_SIZE_512K" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 512K-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_SIZE_1M">
+<span class="target" id="group__mpu__api_1gaef5e1e48090041b770126095906b436c"></span><code class="sig-name descname">MPU_RGN_SIZE_1M</code> (19U &lt;&lt; 1U)<a class="headerlink" href="#c.MPU_RGN_SIZE_1M" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 1M-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_SIZE_2M">
+<span class="target" id="group__mpu__api_1ga62f8f852d945c25d25b35fe7138675e5"></span><code class="sig-name descname">MPU_RGN_SIZE_2M</code> (20U &lt;&lt; 1U)<a class="headerlink" href="#c.MPU_RGN_SIZE_2M" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 2M-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_SIZE_4M">
+<span class="target" id="group__mpu__api_1ga4d2168621beeaeb540d43ba98441da5d"></span><code class="sig-name descname">MPU_RGN_SIZE_4M</code> (21U &lt;&lt; 1U)<a class="headerlink" href="#c.MPU_RGN_SIZE_4M" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 4M-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_SIZE_8M">
+<span class="target" id="group__mpu__api_1ga498d17405d8f283e5ee125753e785f42"></span><code class="sig-name descname">MPU_RGN_SIZE_8M</code> (22U &lt;&lt; 1U)<a class="headerlink" href="#c.MPU_RGN_SIZE_8M" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 8M-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_SIZE_16M">
+<span class="target" id="group__mpu__api_1ga2f3a9381c5bb68fa2778100c8cabe76c"></span><code class="sig-name descname">MPU_RGN_SIZE_16M</code> (23U &lt;&lt; 1U)<a class="headerlink" href="#c.MPU_RGN_SIZE_16M" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 16M-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_SIZE_32M">
+<span class="target" id="group__mpu__api_1gacf03afb2edaff0cf507bccbabbb0f4b7"></span><code class="sig-name descname">MPU_RGN_SIZE_32M</code> (24U &lt;&lt; 1U)<a class="headerlink" href="#c.MPU_RGN_SIZE_32M" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 32M-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_SIZE_64M">
+<span class="target" id="group__mpu__api_1gaee13adb95bedb691fdd11273016742d1"></span><code class="sig-name descname">MPU_RGN_SIZE_64M</code> (25U &lt;&lt; 1U)<a class="headerlink" href="#c.MPU_RGN_SIZE_64M" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 64M-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_SIZE_128M">
+<span class="target" id="group__mpu__api_1gadbc73a523d1ac8abd7ab3bea21904fbb"></span><code class="sig-name descname">MPU_RGN_SIZE_128M</code> (26U &lt;&lt; 1U)<a class="headerlink" href="#c.MPU_RGN_SIZE_128M" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 128M-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_SIZE_256M">
+<span class="target" id="group__mpu__api_1ga1fa20f9c4192d2730602ba7cefab7f19"></span><code class="sig-name descname">MPU_RGN_SIZE_256M</code> (27U &lt;&lt; 1U)<a class="headerlink" href="#c.MPU_RGN_SIZE_256M" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 256M-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_SIZE_512M">
+<span class="target" id="group__mpu__api_1ga79ab91dbdfaf57cee82a50cc4667dc04"></span><code class="sig-name descname">MPU_RGN_SIZE_512M</code> (28U &lt;&lt; 1U)<a class="headerlink" href="#c.MPU_RGN_SIZE_512M" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 512M-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_SIZE_1G">
+<span class="target" id="group__mpu__api_1ga35e1829a734561e168d1fba19a252fe4"></span><code class="sig-name descname">MPU_RGN_SIZE_1G</code> (29U &lt;&lt; 1U)<a class="headerlink" href="#c.MPU_RGN_SIZE_1G" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 1G-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_SIZE_2G">
+<span class="target" id="group__mpu__api_1ga712dda8cf246bf3385caa6a15892274e"></span><code class="sig-name descname">MPU_RGN_SIZE_2G</code> (30U &lt;&lt; 1U)<a class="headerlink" href="#c.MPU_RGN_SIZE_2G" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 2G-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_SIZE_4G">
+<span class="target" id="group__mpu__api_1ga56cccc1b338298110a20ccdcc2f2ff52"></span><code class="sig-name descname">MPU_RGN_SIZE_4G</code> (31U &lt;&lt; 1U)<a class="headerlink" href="#c.MPU_RGN_SIZE_4G" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 4G-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_PERM_EXEC">
+<span class="target" id="group__mpu__api_1gae2896afe5f7feefe85651b51d4d69944"></span><code class="sig-name descname">MPU_RGN_PERM_EXEC</code> 0x00000000U<a class="headerlink" href="#c.MPU_RGN_PERM_EXEC" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Inst. fetches are enabled. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_PERM_NOEXEC">
+<span class="target" id="group__mpu__api_1ga06cf9eafa1fd23006277ae6d07ee7fab"></span><code class="sig-name descname">MPU_RGN_PERM_NOEXEC</code> 0x10000000U<a class="headerlink" href="#c.MPU_RGN_PERM_NOEXEC" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Inst. fetches are disabled. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_PERM_PRV_NO_USR_NO">
+<span class="target" id="group__mpu__api_1gad5d4534a13fe0aec3521b98269459a1a"></span><code class="sig-name descname">MPU_RGN_PERM_PRV_NO_USR_NO</code> 0x00000000U<a class="headerlink" href="#c.MPU_RGN_PERM_PRV_NO_USR_NO" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>unprivileged access </p>
+<p>No access to privileged &amp; </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_PERM_PRV_RW_USR_NO">
+<span class="target" id="group__mpu__api_1ga04bfe4704e37f7ccf06ab731ccb9b47f"></span><code class="sig-name descname">MPU_RGN_PERM_PRV_RW_USR_NO</code> 0x01000000U<a class="headerlink" href="#c.MPU_RGN_PERM_PRV_RW_USR_NO" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>access to unprivileged sw </p>
+<p>R/W to privileged sw, no </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_PERM_PRV_RW_USR_RO">
+<span class="target" id="group__mpu__api_1ga761a28dbb5a99db3eea9ab3bc7c3bffa"></span><code class="sig-name descname">MPU_RGN_PERM_PRV_RW_USR_RO</code> 0x02000000U<a class="headerlink" href="#c.MPU_RGN_PERM_PRV_RW_USR_RO" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>access to unpriv sw </p>
+<p>R/W access to priv sw, no </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_PERM_PRV_RW_USR_RW">
+<span class="target" id="group__mpu__api_1gac944ec4ccba8fd84465b7eccab0ebc2c"></span><code class="sig-name descname">MPU_RGN_PERM_PRV_RW_USR_RW</code> 0x03000000U<a class="headerlink" href="#c.MPU_RGN_PERM_PRV_RW_USR_RW" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>access to unpriv sw </p>
+<p>R/W access to priv sw, R/W </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_PERM_PRV_RO_USR_NO">
+<span class="target" id="group__mpu__api_1ga76be7d5049e3cf2ef6f6592a7fa9f882"></span><code class="sig-name descname">MPU_RGN_PERM_PRV_RO_USR_NO</code> 0x05000000U<a class="headerlink" href="#c.MPU_RGN_PERM_PRV_RO_USR_NO" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>access to unpriv sw </p>
+<p>RO access to priv sw, no </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_PERM_PRV_RO_USR_RO">
+<span class="target" id="group__mpu__api_1ga427631e2c24e1d3649215eec1021cf99"></span><code class="sig-name descname">MPU_RGN_PERM_PRV_RO_USR_RO</code> 0x06000000U<a class="headerlink" href="#c.MPU_RGN_PERM_PRV_RO_USR_RO" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>access to unpriv sw </p>
+<p>RO access to priv sw, RO </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_SUB_RGN_DISABLE_0">
+<span class="target" id="group__mpu__api_1gabb10950f483be0e6456c83f3bcb2bf47"></span><code class="sig-name descname">MPU_SUB_RGN_DISABLE_0</code> 0x00000100U<a class="headerlink" href="#c.MPU_SUB_RGN_DISABLE_0" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable sub-region 0. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_SUB_RGN_DISABLE_1">
+<span class="target" id="group__mpu__api_1gaf9430b3276f63a8857bd208cf45903ba"></span><code class="sig-name descname">MPU_SUB_RGN_DISABLE_1</code> 0x00000200U<a class="headerlink" href="#c.MPU_SUB_RGN_DISABLE_1" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable sub-region 1. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_SUB_RGN_DISABLE_2">
+<span class="target" id="group__mpu__api_1ga216b7b739668631011f2189ac499bf1c"></span><code class="sig-name descname">MPU_SUB_RGN_DISABLE_2</code> 0x00000400U<a class="headerlink" href="#c.MPU_SUB_RGN_DISABLE_2" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable sub-region 2. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_SUB_RGN_DISABLE_3">
+<span class="target" id="group__mpu__api_1gad439f3b7e3b9a610e2355c93fa33e27e"></span><code class="sig-name descname">MPU_SUB_RGN_DISABLE_3</code> 0x00000800U<a class="headerlink" href="#c.MPU_SUB_RGN_DISABLE_3" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable sub-region 3. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_SUB_RGN_DISABLE_4">
+<span class="target" id="group__mpu__api_1ga239088e42d22b57f3e027395dbb815a4"></span><code class="sig-name descname">MPU_SUB_RGN_DISABLE_4</code> 0x00001000U<a class="headerlink" href="#c.MPU_SUB_RGN_DISABLE_4" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable sub-region 4. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_SUB_RGN_DISABLE_5">
+<span class="target" id="group__mpu__api_1ga3eaa7009f2ce82dec8cc91bec1b615c3"></span><code class="sig-name descname">MPU_SUB_RGN_DISABLE_5</code> 0x00002000U<a class="headerlink" href="#c.MPU_SUB_RGN_DISABLE_5" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable sub-region 5. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_SUB_RGN_DISABLE_6">
+<span class="target" id="group__mpu__api_1ga4462dcf96857a94f303e157536cc8f9a"></span><code class="sig-name descname">MPU_SUB_RGN_DISABLE_6</code> 0x00004000U<a class="headerlink" href="#c.MPU_SUB_RGN_DISABLE_6" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable sub-region 6. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_SUB_RGN_DISABLE_7">
+<span class="target" id="group__mpu__api_1ga9c13383d8ec5ac8650b57d1627072f7d"></span><code class="sig-name descname">MPU_SUB_RGN_DISABLE_7</code> 0x00008000U<a class="headerlink" href="#c.MPU_SUB_RGN_DISABLE_7" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable sub-region 7. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_ENABLE">
+<span class="target" id="group__mpu__api_1gaabd353655cb3c7cccaf9737e4148b93e"></span><code class="sig-name descname">MPU_RGN_ENABLE</code> 1U<a class="headerlink" href="#c.MPU_RGN_ENABLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable MPU Region. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_DISABLE">
+<span class="target" id="group__mpu__api_1gab8c953720ad67fb7ce33dcdc45b59008"></span><code class="sig-name descname">MPU_RGN_DISABLE</code> 0U<a class="headerlink" href="#c.MPU_RGN_DISABLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable MPU Region. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MPU_RGN_CONFIG_M">
+<span class="target" id="group__mpu__api_1gaf2f78e4b959c4c0320d731cfa9f6ea2e"></span><code class="sig-name descname">MPU_RGN_CONFIG_M</code> ((uint32_t)NVIC_MPU_RASR_ENABLE<p> |                  \</p>
+<p>                             (uint32_t)</p>
+NVIC_MPU_RASR_SIZE_M<p> |                  \</p>
+<p>                             (uint32_t)</p>
+NVIC_MPU_RASR_SRD_M<p>  |                  \</p>
+<p>                             (uint32_t)</p>
+NVIC_MPU_RASR_B<p>      |                  \</p>
+<p>                             (uint32_t)</p>
+NVIC_MPU_RASR_C<p>      |                  \</p>
+<p>                             (uint32_t)</p>
+NVIC_MPU_RASR_S<p>      |                  \</p>
+<p>                             (uint32_t)</p>
+NVIC_MPU_RASR_TEX_M<p>  |                  \</p>
+<p>                             (uint32_t)</p>
+NVIC_MPU_RASR_AP_M<p>   |                  \</p>
+<p>                             (uint32_t)</p>
+NVIC_MPU_RASR_XN)<a class="headerlink" href="#c.MPU_RGN_CONFIG_M" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv410MPU_enable8uint32_t">
+<span id="_CPPv310MPU_enable8uint32_t"></span><span id="_CPPv210MPU_enable8uint32_t"></span><span id="MPU_enable__uint32_t"></span><span class="target" id="group__mpu__api_1gad991163f1123a983ae41e681a7a4daf8"></span>void <code class="sig-name descname">MPU_enable</code><span class="sig-paren">(</span>uint32_t <em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410MPU_enable8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables and configures the MPU for use.</p>
+<p><p>This function enables the Cortex-M memory protection unit. It also configures the default behavior when in privileged mode and while handling a hard fault or NMI. Prior to enabling the MPU, at least one region must be set by calling </p>
+<a class="reference internal" href="#group__mpu__api_1ga27d21c8d781c1d5e4370e2cd93138815"><span class="std std-ref">MPU_setRegionAttributes()</span></a> or else by enabling the default region for privileged mode by passing the <strong>MPU_CONFIG_PRIV_DEFAULT</strong> flag to <a class="reference internal" href="#group__mpu__api_1gad991163f1123a983ae41e681a7a4daf8"><span class="std std-ref">MPU_enable()</span></a>. Once the MPU is enabled, a memory management fault is generated for memory access violations.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code>: is the logical OR of the possible configurations.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>config</em> parameter should be the logical OR of any of the following:<ul class="simple">
+<li><p><strong>MPU_CONFIG_PRIV_DEFAULT</strong> enables the default memory map when in privileged mode and when no other regions are defined. If this option is not enabled, then there must be at least one valid region already defined when the MPU is enabled.</p></li>
+<li><p><strong>MPU_CONFIG_HARDFLT_NMI</strong> enables the MPU while in a hard fault or NMI exception handler. If this option is not enabled, then the MPU is disabled while in one of these exception handlers and the default memory map is applied.</p></li>
+<li><p><strong>MPU_CONFIG_NONE</strong> chooses none of the above options. In this case, no default memory map is provided in privileged mode, and the MPU is not enabled in the fault handlers.</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv411MPU_disablev">
+<span id="_CPPv311MPU_disablev"></span><span id="_CPPv211MPU_disablev"></span><span id="MPU_disable__void"></span><span class="target" id="group__mpu__api_1gadca0c8a3b3331b853d5c90401783af85"></span>void <code class="sig-name descname">MPU_disable</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411MPU_disablev" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the MPU for use.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">None</span></code>: This function disables the Cortex-M memory protection unit. When the MPU is disabled, the default memory map is used and memory management faults are not generated.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418MPU_getRegionCountv">
+<span id="_CPPv318MPU_getRegionCountv"></span><span id="_CPPv218MPU_getRegionCountv"></span><span id="MPU_getRegionCount__void"></span><span class="target" id="group__mpu__api_1gacdf5357a4945e77d8ab5abe915b9067e"></span>uint32_t <code class="sig-name descname">MPU_getRegionCount</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418MPU_getRegionCountv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the count of regions supported by the MPU.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The number of memory protection regions that are available for programming using <a class="reference internal" href="#group__mpu__api_1ga27d21c8d781c1d5e4370e2cd93138815"><span class="std std-ref">MPU_setRegionAttributes()</span></a>. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">None</span></code>: This function is used to get the total number of regions that are supported by the MPU, including regions that are already programmed.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416MPU_enableRegion8uint32_t">
+<span id="_CPPv316MPU_enableRegion8uint32_t"></span><span id="_CPPv216MPU_enableRegion8uint32_t"></span><span id="MPU_enableRegion__uint32_t"></span><span class="target" id="group__mpu__api_1gad8503b2b27b327c81b063d870a4d92e1"></span>void <code class="sig-name descname">MPU_enableRegion</code><span class="sig-paren">(</span>uint32_t <em>regionNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416MPU_enableRegion8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables a specific region.</p>
+<p><p>This function is used to enable a memory protection region. The region should already be configured with the </p>
+<a class="reference internal" href="#group__mpu__api_1ga27d21c8d781c1d5e4370e2cd93138815"><span class="std std-ref">MPU_setRegionAttributes()</span></a> function. Once enabled, the memory protection rules of the region are applied and access violations cause a memory management fault.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">regionNum</span></code>: is the region number to enable.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417MPU_disableRegion8uint32_t">
+<span id="_CPPv317MPU_disableRegion8uint32_t"></span><span id="_CPPv217MPU_disableRegion8uint32_t"></span><span id="MPU_disableRegion__uint32_t"></span><span class="target" id="group__mpu__api_1gaa25d3c79b1aa930660763c1a08004f7e"></span>void <code class="sig-name descname">MPU_disableRegion</code><span class="sig-paren">(</span>uint32_t <em>regionNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417MPU_disableRegion8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables a specific region.</p>
+<p><p>This function is used to disable a previously enabled memory protection region. The region remains configured if it is not overwritten with another call to </p>
+<a class="reference internal" href="#group__mpu__api_1ga27d21c8d781c1d5e4370e2cd93138815"><span class="std std-ref">MPU_setRegionAttributes()</span></a>, and can be enabled again by calling <a class="reference internal" href="#group__mpu__api_1gad8503b2b27b327c81b063d870a4d92e1"><span class="std std-ref">MPU_enableRegion()</span></a>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">regionNum</span></code>: is the region number to disable.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423MPU_setRegionAttributes8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv323MPU_setRegionAttributes8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv223MPU_setRegionAttributes8uint32_t8uint32_t8uint32_t"></span><span id="MPU_setRegionAttributes__uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__mpu__api_1ga27d21c8d781c1d5e4370e2cd93138815"></span>void <code class="sig-name descname">MPU_setRegionAttributes</code><span class="sig-paren">(</span>uint32_t <em>regionNum</em>, uint32_t <em>baseAddr</em>, uint32_t <em>attrFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423MPU_setRegionAttributes8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets up the access rules for a specific region.</p>
+<p><p>This function sets up the protection rules for a region. The region has a base address and a set of attributes including the size.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">regionNum</span></code>: is the region number to set up. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: is the base address of the region. It must be aligned according to the size of the region specified in attrFlags. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">attrFlags</span></code>: is a set of flags to define the attributes of the region.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The region number parameter, <em>regionNum</em> specifies the region number to be setup. Valid values for <em>regionNum</em> parameter are:<ul class="simple">
+<li><p><strong>MPU_RGN_0</strong> </p></li>
+<li><p><strong>MPU_RGN_1</strong> </p></li>
+<li><p><strong>MPU_RGN_2</strong> </p></li>
+<li><p><strong>MPU_RGN_3</strong> </p></li>
+<li><p><strong>MPU_RGN_4</strong> </p></li>
+<li><p><strong>MPU_RGN_5</strong> </p></li>
+<li><p><strong>MPU_RGN_6</strong> </p></li>
+<li><p><strong>MPU_RGN_7</strong> </p></li>
+</ul>
+</p>
+<p>The base address parameter, <em>baseAddr</em>, must be aligned according to the size, and the size must be a power of 2.</p>
+<p>The <em>attrFlags</em> parameter is the logical OR of all of the attributes of the region. It is a combination of choices for region size, execute permission, read/write permissions, disabled sub-regions, and a flag to determine if the region is enabled.</p>
+<p>The size flag determines the size of a region and must be one of the following:<ul class="simple">
+<li><p><strong>MPU_RGN_SIZE_32B</strong> </p></li>
+<li><p><strong>MPU_RGN_SIZE_64B</strong> </p></li>
+<li><p><strong>MPU_RGN_SIZE_128B</strong> </p></li>
+<li><p><strong>MPU_RGN_SIZE_256B</strong> </p></li>
+<li><p><strong>MPU_RGN_SIZE_512B</strong> </p></li>
+<li><p><strong>MPU_RGN_SIZE_1K</strong> </p></li>
+<li><p><strong>MPU_RGN_SIZE_2K</strong> </p></li>
+<li><p><strong>MPU_RGN_SIZE_4K</strong> </p></li>
+<li><p><strong>MPU_RGN_SIZE_8K</strong> </p></li>
+<li><p><strong>MPU_RGN_SIZE_16K</strong> </p></li>
+<li><p><strong>MPU_RGN_SIZE_32K</strong> </p></li>
+<li><p><strong>MPU_RGN_SIZE_64K</strong> </p></li>
+<li><p><strong>MPU_RGN_SIZE_128K</strong> </p></li>
+<li><p><strong>MPU_RGN_SIZE_256K</strong> </p></li>
+<li><p><strong>MPU_RGN_SIZE_512K</strong> </p></li>
+<li><p><strong>MPU_RGN_SIZE_1M</strong> </p></li>
+<li><p><strong>MPU_RGN_SIZE_2M</strong> </p></li>
+<li><p><strong>MPU_RGN_SIZE_4M</strong> </p></li>
+<li><p><strong>MPU_RGN_SIZE_8M</strong> </p></li>
+<li><p><strong>MPU_RGN_SIZE_16M</strong> </p></li>
+<li><p><strong>MPU_RGN_SIZE_32M</strong> </p></li>
+<li><p><strong>MPU_RGN_SIZE_64M</strong> </p></li>
+<li><p><strong>MPU_RGN_SIZE_128M</strong> </p></li>
+<li><p><strong>MPU_RGN_SIZE_256M</strong> </p></li>
+<li><p><strong>MPU_RGN_SIZE_512M</strong> </p></li>
+<li><p><strong>MPU_RGN_SIZE_1G</strong> </p></li>
+<li><p><strong>MPU_RGN_SIZE_2G</strong> </p></li>
+<li><p><strong>MPU_RGN_SIZE_4G</strong> </p></li>
+</ul>
+</p>
+<p>The execute permission flag must be one of the following:<ul class="simple">
+<li><p><strong>MPU_RGN_PERM_EXEC</strong> enables the region for execution of code</p></li>
+<li><p><strong>MPU_RGN_PERM_NOEXEC</strong> disables the region for execution of code</p></li>
+</ul>
+</p>
+<p>The read/write access permissions are applied separately for the privileged and user modes. The read/write access flags must be one of the following:<ul class="simple">
+<li><p><strong>MPU_RGN_PERM_PRV_NO_USR_NO</strong> - no access in privileged or user mode</p></li>
+<li><p><strong>MPU_RGN_PERM_PRV_RW_USR_NO</strong> - privileged read/write, user no access</p></li>
+<li><p><strong>MPU_RGN_PERM_PRV_RW_USR_RO</strong> - privileged read/write, user read-only</p></li>
+<li><p><strong>MPU_RGN_PERM_PRV_RW_USR_RW</strong> - privileged read/write, user read/write</p></li>
+<li><p><strong>MPU_RGN_PERM_PRV_RO_USR_NO</strong> - privileged read-only, user no access</p></li>
+<li><p><strong>MPU_RGN_PERM_PRV_RO_USR_RO</strong> - privileged read-only, user read-only</p></li>
+</ul>
+</p>
+<p>The region is automatically divided into 8 equally-sized sub-regions by the MPU. Sub-regions can only be used in regions of size 256 bytes or larger. Any of these 8 sub-regions can be disabled, allowing for creation of `holes’ in a region which can be left open, or overlaid by another region with different attributes. Any of the 8 sub-regions can be disabled with a logical OR of any of the following flags:<ul class="simple">
+<li><p><strong>MPU_SUB_RGN_DISABLE_0</strong> </p></li>
+<li><p><strong>MPU_SUB_RGN_DISABLE_1</strong> </p></li>
+<li><p><strong>MPU_SUB_RGN_DISABLE_2</strong> </p></li>
+<li><p><strong>MPU_SUB_RGN_DISABLE_3</strong> </p></li>
+<li><p><strong>MPU_SUB_RGN_DISABLE_4</strong> </p></li>
+<li><p><strong>MPU_SUB_RGN_DISABLE_5</strong> </p></li>
+<li><p><strong>MPU_SUB_RGN_DISABLE_6</strong> </p></li>
+<li><p><strong>MPU_SUB_RGN_DISABLE_7</strong> </p></li>
+</ul>
+</p>
+<p>Finally, the region can be initially enabled or disabled with one of the following flags:<ul class="simple">
+<li><p><strong>MPU_RGN_ENABLE</strong> </p></li>
+<li><p><strong>MPU_RGN_DISABLE</strong> </p></li>
+</ul>
+</p>
+<p>As an example, to set a region with the following attributes: size of 32 KB, execution enabled, read-only for both privileged and user, one sub-region disabled, and initially enabled; the <em>attrFlags</em> parameter would have the following value:</p>
+<p><code class="docutils literal notranslate"> <span class="pre">(MPU_RGN_SIZE_32K</span> <span class="pre">|</span> <span class="pre">MPU_RGN_PERM_EXEC</span> <span class="pre">|</span> <span class="pre">MPU_RGN_PERM_PRV_RO_USR_RO</span> <span class="pre">|</span> <span class="pre">MPU_SUB_RGN_DISABLE_2</span> <span class="pre">|</span> <span class="pre">MPU_RGN_ENABLE)</span> </code></p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>This function writes to multiple registers and is not protected from interrupts. It is possible that an interrupt which accesses a region may occur while that region is in the process of being changed. The safest way to handle this is to disable a region before changing it. Refer to the discussion of this in the API Detailed Description section.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423MPU_getRegionAttributes8uint32_tP8uint32_tP8uint32_t">
+<span id="_CPPv323MPU_getRegionAttributes8uint32_tP8uint32_tP8uint32_t"></span><span id="_CPPv223MPU_getRegionAttributes8uint32_tP8uint32_tP8uint32_t"></span><span id="MPU_getRegionAttributes__uint32_t.uint32_tP.uint32_tP"></span><span class="target" id="group__mpu__api_1ga6bdada25ebe64151356cf2ed59ff9e3f"></span>void <code class="sig-name descname">MPU_getRegionAttributes</code><span class="sig-paren">(</span>uint32_t <em>regionNum</em>, uint32_t *<em>baseAddr</em>, uint32_t *<em>attrFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423MPU_getRegionAttributes8uint32_tP8uint32_tP8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the current settings for a specific region.</p>
+<p><p>This function retrieves the configuration of a specific region. The meanings and format of the parameters is the same as that of the </p>
+<a class="reference internal" href="#group__mpu__api_1ga27d21c8d781c1d5e4370e2cd93138815"><span class="std std-ref">MPU_setRegionAttributes()</span></a> function.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">regionNum</span></code>: is the region number to get. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: points to storage for the base address of the region. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">attrFlags</span></code>: points to the attribute flags for the region.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>This function can be used to save the configuration of a region for later use with the <a class="reference internal" href="#group__mpu__api_1ga27d21c8d781c1d5e4370e2cd93138815"><span class="std std-ref">MPU_setRegionAttributes()</span></a> function. The region’s enable state is preserved in the attributes that are saved.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419MPU_registerHandler8uint32_tPFvvE">
+<span id="_CPPv319MPU_registerHandler8uint32_tPFvvE"></span><span id="_CPPv219MPU_registerHandler8uint32_tPFvvE"></span><span class="target" id="group__mpu__api_1gac4e81ff569daf555fe261504c32aa9b0"></span>void <code class="sig-name descname">MPU_registerHandler</code><span class="sig-paren">(</span>uint32_t <em>intNum</em>, void (*<em>fnHandler</em>)<span class="sig-paren">(</span>void<span class="sig-paren">)</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419MPU_registerHandler8uint32_tPFvvE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Registers an interrupt handler for the memory management fault.</p>
+<p><p>This function sets and enables the handler to be called when the MPU generates a memory management fault due to a protection region access violation. The param intNum can take value FAULT_MPU.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">intNum</span></code>: is the interrupt number to be registered. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fnHandler</span></code>: is a pointer to the function to be called when the memory management fault occurs.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="interrupt.html#group__interrupt__api_1ga97b4cb74e7e152d031bcdbc4e4428127"><span class="std std-ref">Interrupt_registerHandler()</span></a> for important information about registering interrupt handlers.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421MPU_unregisterHandler8uint32_t">
+<span id="_CPPv321MPU_unregisterHandler8uint32_t"></span><span id="_CPPv221MPU_unregisterHandler8uint32_t"></span><span id="MPU_unregisterHandler__uint32_t"></span><span class="target" id="group__mpu__api_1ga7692d33c46db91fb67f51d24ed27f16d"></span>void <code class="sig-name descname">MPU_unregisterHandler</code><span class="sig-paren">(</span>uint32_t <em>intNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421MPU_unregisterHandler8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Unregisters an interrupt handler for the memory management fault.</p>
+<p><p>This function disables and clears the handler to be called when a memory management fault occurs. The param intNum can take value FAULT_MPU.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">intNum</span></code>: is the interrupt number to be unregistered.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="interrupt.html#group__interrupt__api_1ga97b4cb74e7e152d031bcdbc4e4428127"><span class="std std-ref">Interrupt_registerHandler()</span></a> for important information about registering interrupt handlers.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>APIs are available to set/get MPU region attributes, enable/disable MPU regions,
+enable/disable MPU and register/unregister interrupt handler for MPU faults.</p>
+<p>The code for this module is contained in driverlib_cm/mpu.c and
+driverlib_cm/mpu.h.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="mcan.html" class="btn btn-neutral float-left" title="MCAN Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ssi.html" class="btn btn-neutral float-right" title="SSI Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

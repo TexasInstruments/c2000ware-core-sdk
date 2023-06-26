@@ -1,0 +1,459 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>SysTick Module &mdash; F2838x CM API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F2838x CM API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="UART Module" href="uart.html"/>
+        <link rel="prev" title="SYSCTL Module" href="sysctl.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F2838x CM API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="aes.html">AES Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmmpu.html">CM-MPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpu.html">CPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="escss.html">ESCSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ethernet.html">Ethernet Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="udma.html">UDMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gcrc.html">GCRC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipc.html">IPC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcan.html">MCAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mpu.html">MPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssi.html">SSI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">SysTick Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uart.html">UART Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F2838x CM API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>SysTick Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="systick-module">
+<span id="systick"></span><h1>SysTick Module<a class="headerlink" href="#systick-module" title="Permalink to this headline">¶</a></h1>
+<p>The SysTick API provides a set of functions for configuring the SysTick module in the Cortex M core.
+Functions are provided to configure the systick module including the period and interrupts</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__systick__api"></span><em>group</em> <code class="sig-name descname">systick_api</code></dt>
+<dd><p>This module is used for configurating Systick. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="cpp enum">
+<dt id="_CPPv419SYSTICK_ClockSource">
+<span id="_CPPv319SYSTICK_ClockSource"></span><span id="_CPPv219SYSTICK_ClockSource"></span><span class="target" id="group__systick__api_1gaa92f9c2c64ed5d1df9a6591a0217a7e8"></span><em class="property">enum </em><code class="sig-name descname">SYSTICK_ClockSource</code><a class="headerlink" href="#_CPPv419SYSTICK_ClockSource" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__systick__api_1ga37ee17cc56483bd584aac51d7b529566"><span class="std std-ref">SYSTICK_setClockSource()</span></a> as the <em>clkSrc</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19SYSTICK_ClockSource29SYSTICK_CLOCK_SOURCE_EXTERNALE">
+<span id="_CPPv3N19SYSTICK_ClockSource29SYSTICK_CLOCK_SOURCE_EXTERNALE"></span><span id="_CPPv2N19SYSTICK_ClockSource29SYSTICK_CLOCK_SOURCE_EXTERNALE"></span><span class="target" id="group__systick__api_1ggaa92f9c2c64ed5d1df9a6591a0217a7e8a6c7319b7ea5e03bc2e4dd1a8528cfee3"></span><em class="property">enumerator </em><code class="sig-name descname">SYSTICK_CLOCK_SOURCE_EXTERNAL</code> = 0x0U<a class="headerlink" href="#_CPPv4N19SYSTICK_ClockSource29SYSTICK_CLOCK_SOURCE_EXTERNALE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>External clock is used. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19SYSTICK_ClockSource29SYSTICK_CLOCK_SOURCE_INTERNALE">
+<span id="_CPPv3N19SYSTICK_ClockSource29SYSTICK_CLOCK_SOURCE_INTERNALE"></span><span id="_CPPv2N19SYSTICK_ClockSource29SYSTICK_CLOCK_SOURCE_INTERNALE"></span><span class="target" id="group__systick__api_1ggaa92f9c2c64ed5d1df9a6591a0217a7e8a7acfc92c8d75fbde21c19ee37205bae2"></span><em class="property">enumerator </em><code class="sig-name descname">SYSTICK_CLOCK_SOURCE_INTERNAL</code> = 0x4U<a class="headerlink" href="#_CPPv4N19SYSTICK_ClockSource29SYSTICK_CLOCK_SOURCE_INTERNALE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Internal clock is used. </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv422SYSTICK_setClockSource19SYSTICK_ClockSource">
+<span id="_CPPv322SYSTICK_setClockSource19SYSTICK_ClockSource"></span><span id="_CPPv222SYSTICK_setClockSource19SYSTICK_ClockSource"></span><span id="SYSTICK_setClockSource__SYSTICK_ClockSource"></span><span class="target" id="group__systick__api_1ga37ee17cc56483bd584aac51d7b529566"></span>void <code class="sig-name descname">SYSTICK_setClockSource</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv419SYSTICK_ClockSource" title="SYSTICK_ClockSource">SYSTICK_ClockSource</a> <em>clkSrc</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422SYSTICK_setClockSource19SYSTICK_ClockSource" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the clokc source for SysTick counter.</p>
+<p><p>This function sets the clokc source for SysTick counter. The Systick clock can be set as either internal clock or external. The param clkSrc can take following values:SYSTICK_CLOCK_SOURCE_EXTERNAL and SYSTICK_CLOCK_SOURCE_INTERNAL.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">clkSrc</span></code>: specifies the clock source type.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421SYSTICK_enableCounterv">
+<span id="_CPPv321SYSTICK_enableCounterv"></span><span id="_CPPv221SYSTICK_enableCounterv"></span><span id="SYSTICK_enableCounter__void"></span><span class="target" id="group__systick__api_1ga218f0a93dc227be16db04362f4fce4ec"></span>void <code class="sig-name descname">SYSTICK_enableCounter</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421SYSTICK_enableCounterv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the SysTick counter.</p>
+<p>This function starts the SysTick counter. If an interrupt handler has been registered, it is called when the SysTick counter rolls over.</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Calling this function causes the SysTick counter to (re)commence counting from its current value. The counter is not automatically reloaded with the period as specified in a previous call to SysTick_setPeriod(). If an immediate reload is required, the <strong>NVIC_O_SYST_CVR</strong> register must be written to force the reload. Any write to this register clears the SysTick counter to 0 and causes a reload with the supplied period on the next clock.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422SYSTICK_disableCounterv">
+<span id="_CPPv322SYSTICK_disableCounterv"></span><span id="_CPPv222SYSTICK_disableCounterv"></span><span id="SYSTICK_disableCounter__void"></span><span class="target" id="group__systick__api_1ga4b221eaabe9a3deef767d2a2d741b3d8"></span>void <code class="sig-name descname">SYSTICK_disableCounter</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422SYSTICK_disableCounterv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the SysTick counter.</p>
+<p>This function stops the SysTick counter. If an interrupt handler has been registered, it is not called until SysTick is restarted.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417SYSTICK_setPeriod8uint32_t">
+<span id="_CPPv317SYSTICK_setPeriod8uint32_t"></span><span id="_CPPv217SYSTICK_setPeriod8uint32_t"></span><span id="SYSTICK_setPeriod__uint32_t"></span><span class="target" id="group__systick__api_1gad0e8020c8268fae9c57e4165bb5e35da"></span>void <code class="sig-name descname">SYSTICK_setPeriod</code><span class="sig-paren">(</span>uint32_t <em>period</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417SYSTICK_setPeriod8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the period of the SysTick counter.</p>
+<p><p>This function sets the rate at which the SysTick counter wraps, which equates to the number of processor clocks between interrupts.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">period</span></code>: is the number of clock ticks in each period of the SysTick counter and must be between 1 and 16,777,216, inclusive.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Calling this function does not cause the SysTick counter to reload immediately. If an immediate reload is required, the <strong>NVIC_O_SYST_CVR</strong> register must be written. Any write to this register clears the SysTick counter to 0 and causes a reload with the <em>period</em> supplied here on the next clock after SysTick is enabled.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417SYSTICK_getPeriodv">
+<span id="_CPPv317SYSTICK_getPeriodv"></span><span id="_CPPv217SYSTICK_getPeriodv"></span><span id="SYSTICK_getPeriod__void"></span><span class="target" id="group__systick__api_1ga5119a5e2d6d99aba4977ca7ea7fe45dd"></span>uint32_t <code class="sig-name descname">SYSTICK_getPeriod</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417SYSTICK_getPeriodv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the period of the SysTick counter.</p>
+<p>This function returns the rate at which the SysTick counter wraps, which equates to the number of processor clocks between interrupts.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the period of the SysTick counter. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423SYSTICK_getCurrentValuev">
+<span id="_CPPv323SYSTICK_getCurrentValuev"></span><span id="_CPPv223SYSTICK_getCurrentValuev"></span><span id="SYSTICK_getCurrentValue__void"></span><span class="target" id="group__systick__api_1gafef2939876a1127a52bea0e6b872a03b"></span>uint32_t <code class="sig-name descname">SYSTICK_getCurrentValue</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423SYSTICK_getCurrentValuev" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the current value of the SysTick counter.</p>
+<p>This function returns the current value of the SysTick counter, which is a value between the period - 1 and zero, inclusive.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the current value of the SysTick counter. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423SYSTICK_enableInterruptv">
+<span id="_CPPv323SYSTICK_enableInterruptv"></span><span id="_CPPv223SYSTICK_enableInterruptv"></span><span id="SYSTICK_enableInterrupt__void"></span><span class="target" id="group__systick__api_1gaf778de5500f4aa1f398724396c0b3174"></span>void <code class="sig-name descname">SYSTICK_enableInterrupt</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423SYSTICK_enableInterruptv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the SysTick interrupt.</p>
+<p>This function enables the SysTick interrupt, allowing it to be reflected to the processor.</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>The SysTick interrupt handler is not required to clear the SysTick interrupt source because it is cleared automatically by the NVIC when the interrupt handler is called.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424SYSTICK_disableInterruptv">
+<span id="_CPPv324SYSTICK_disableInterruptv"></span><span id="_CPPv224SYSTICK_disableInterruptv"></span><span id="SYSTICK_disableInterrupt__void"></span><span class="target" id="group__systick__api_1ga7f0bf89ab9292ba2a919b9c901154d1b"></span>void <code class="sig-name descname">SYSTICK_disableInterrupt</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424SYSTICK_disableInterruptv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the SysTick interrupt.</p>
+<p>This function disables the SysTick interrupt, preventing it from being reflected to the processor.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv432SYSTICK_registerInterruptHandlerPFvvE">
+<span id="_CPPv332SYSTICK_registerInterruptHandlerPFvvE"></span><span id="_CPPv232SYSTICK_registerInterruptHandlerPFvvE"></span><span class="target" id="group__systick__api_1gacdae9529d2157e1836e3401b8e5be27a"></span>void <code class="sig-name descname">SYSTICK_registerInterruptHandler</code><span class="sig-paren">(</span>void (*<em>fnHandler</em>)<span class="sig-paren">(</span>void<span class="sig-paren">)</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv432SYSTICK_registerInterruptHandlerPFvvE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Registers an interrupt handler for the SysTick interrupt.</p>
+<p><p>This function registers the handler to be called when a SysTick interrupt occurs.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">fnHandler</span></code>: is a pointer to the function to be called when the SysTick interrupt occurs.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="interrupt.html#group__interrupt__api_1ga97b4cb74e7e152d031bcdbc4e4428127"><span class="std std-ref">Interrupt_registerHandler()</span></a> for important information about registering interrupt handlers.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv434SYSTICK_unregisterInterruptHandlerv">
+<span id="_CPPv334SYSTICK_unregisterInterruptHandlerv"></span><span id="_CPPv234SYSTICK_unregisterInterruptHandlerv"></span><span id="SYSTICK_unregisterInterruptHandler__void"></span><span class="target" id="group__systick__api_1ga014a8e293e46cade0881699c8fac2dff"></span>void <code class="sig-name descname">SYSTICK_unregisterInterruptHandler</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv434SYSTICK_unregisterInterruptHandlerv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Unregisters the interrupt handler for the SysTick interrupt.</p>
+<p>This function unregisters the handler to be called when a SysTick interrupt occurs.</p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="interrupt.html#group__interrupt__api_1ga97b4cb74e7e152d031bcdbc4e4428127"><span class="std std-ref">Interrupt_registerHandler()</span></a> for important information about registering interrupt handlers.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>The code for this module is contained in driverlib_cm/systick.c, with
+driverlib_cm/systick.h containing the API declarations for use by
+applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="sysctl.html" class="btn btn-neutral float-left" title="SYSCTL Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="uart.html" class="btn btn-neutral float-right" title="UART Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

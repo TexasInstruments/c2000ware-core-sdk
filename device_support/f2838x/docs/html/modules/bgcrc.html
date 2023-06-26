@@ -1,0 +1,1065 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>BGCRC Module &mdash; F2838x API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F2838x API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="CAN Module" href="can.html"/>
+        <link rel="prev" title="ASysCtl Module" href="asysctl.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F2838x API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="adc.html">ADC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asysctl.html">ASysCtl Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">BGCRC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla.html">CLA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clb.html">CLB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmpss.html">CMPSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dac.html">DAC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcc.html">DCC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dma.html">DMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ecap.html">ECAP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emif.html">EMIF Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="epwm.html">EPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqep.html">EQEP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="escss.html">ESCSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fsi.html">FSI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hrcap.html">HRCAP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hrpwm.html">HRPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipc.html">IPC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcan.html">MCAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcbsp.html">MCBSP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pmbus.html">PMBUS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci.html">SCI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdfm.html">SDFM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">SPI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version.html">Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xbar.html">XBAR Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F2838x API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>BGCRC Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="bgcrc-module">
+<span id="bgcrc"></span><h1>BGCRC Module<a class="headerlink" href="#bgcrc-module" title="Permalink to this headline">¶</a></h1>
+<p>The  BackGround CRC (BGCRC) API provides a set of functions for configuring the BGCRC module.
+It provides various functions to configure the memory blocks to be checked, the mode of operation,
+interrupt/NMI configuration and to start, resume and halt the BGCRC omputation</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__bgcrc__api"></span><em>group</em> <code class="sig-name descname">bgcrc_api</code></dt>
+<dd><p>This module is used for configuring BGCRC. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.BGCRC_NMI_ENABLE">
+<span class="target" id="group__bgcrc__api_1gae1cdf8085bd107aa158109463b3829af"></span><code class="sig-name descname">BGCRC_NMI_ENABLE</code> 0x5U<a class="headerlink" href="#c.BGCRC_NMI_ENABLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Generate NMI on memory check failure. </p>
+<p>Values that can be passed to <a class="reference internal" href="#group__bgcrc__api_1gae0c8653602075842743624fde5143ce5"><span class="std std-ref">BGCRC_setConfig()</span></a> as the <em>nmiConfig</em> parameter </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_NMI_DISABLE">
+<span class="target" id="group__bgcrc__api_1gab695e62e6ad70610938bcd3f0351ee2a"></span><code class="sig-name descname">BGCRC_NMI_DISABLE</code> 0xAU<a class="headerlink" href="#c.BGCRC_NMI_DISABLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>failure </p>
+<p>Do not generate NMI on memory check </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_EMUCTRL_SOFT">
+<span class="target" id="group__bgcrc__api_1gaefeace22119dd0e197d8cdefbdb3f077"></span><code class="sig-name descname">BGCRC_EMUCTRL_SOFT</code> 0x00U<a class="headerlink" href="#c.BGCRC_EMUCTRL_SOFT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__bgcrc__api_1gae0c8653602075842743624fde5143ce5"><span class="std std-ref">BGCRC_setConfig()</span></a> as the <em>emuCtrl</em> parameter. </p>
+<p>CRC module and CRC watchdog stops immediately on DEBUG SUSPEND </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_EMUCTRL_FREE">
+<span class="target" id="group__bgcrc__api_1ga1a321ada99ef4d71b160b4baf93e82a3"></span><code class="sig-name descname">BGCRC_EMUCTRL_FREE</code> 0x10U<a class="headerlink" href="#c.BGCRC_EMUCTRL_FREE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>not affected by DEBUG HALT </p>
+<p>CRC calculation and CRC watchdog is </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_SCRUB_MODE">
+<span class="target" id="group__bgcrc__api_1ga76c1bb64a0b1b2178e84605f1e0ca901"></span><code class="sig-name descname">BGCRC_SCRUB_MODE</code> 0xAU<a class="headerlink" href="#c.BGCRC_SCRUB_MODE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__bgcrc__api_1ga5df33b5f54ecfb67585738a978dd28e7"><span class="std std-ref">BGCRC_setRegion()</span></a> as the <em>mode</em> parameter. </p>
+<p>CRC of data is not compared with the golden CRC. Error check is done using the ECC/Parity logic. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_CRC_MODE">
+<span class="target" id="group__bgcrc__api_1gafa2e6e80612fcb0ab948fc4dc31a4803"></span><code class="sig-name descname">BGCRC_CRC_MODE</code> 0x5U<a class="headerlink" href="#c.BGCRC_CRC_MODE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CRC value is compared with golden CRC at the end in addition to the data correctness check by ECC/Parity logic </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_GLOBAL_INT">
+<span class="target" id="group__bgcrc__api_1gae85a087fdee8f1bf778cce7e1c63e243"></span><code class="sig-name descname">BGCRC_GLOBAL_INT</code> 0x01U<a class="headerlink" href="#c.BGCRC_GLOBAL_INT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Global Interrupt. </p>
+<p>Values that can be passed to all interrupt/NMI functions as <em>intflags</em> or <em>nmiflags</em> parameter </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_TEST_DONE">
+<span class="target" id="group__bgcrc__api_1ga3153e94068ae596a6c3da16816f35978"></span><code class="sig-name descname">BGCRC_TEST_DONE</code> 0x02U<a class="headerlink" href="#c.BGCRC_TEST_DONE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Test done interrupt. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_CRC_FAIL">
+<span class="target" id="group__bgcrc__api_1ga6694eb73e85d9a5708afa6653d9048d5"></span><code class="sig-name descname">BGCRC_CRC_FAIL</code> 0x04U<a class="headerlink" href="#c.BGCRC_CRC_FAIL" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CRC Fail Interrupt/NMI. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_UNCORR_ERR">
+<span class="target" id="group__bgcrc__api_1gaee59cd707770649f303d54a6c43448db"></span><code class="sig-name descname">BGCRC_UNCORR_ERR</code> 0x08U<a class="headerlink" href="#c.BGCRC_UNCORR_ERR" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Uncorrectable Error Interrupt/NMI. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_CORR_ERR">
+<span class="target" id="group__bgcrc__api_1ga904c205a402f2f8bf32fc10d2a748701"></span><code class="sig-name descname">BGCRC_CORR_ERR</code> 0x10U<a class="headerlink" href="#c.BGCRC_CORR_ERR" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Correctable Error Interrupt/NMI. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_WD_UNDERFLOW">
+<span class="target" id="group__bgcrc__api_1gab2b9da8200d76d0ee37d3b225fcb40f5"></span><code class="sig-name descname">BGCRC_WD_UNDERFLOW</code> 0x20U<a class="headerlink" href="#c.BGCRC_WD_UNDERFLOW" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Watchdog Underflow Error Interrupt/NMI. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_WD_OVERFLOW">
+<span class="target" id="group__bgcrc__api_1ga4af0885b6901970ad0638ef9afe0d58a"></span><code class="sig-name descname">BGCRC_WD_OVERFLOW</code> 0x40U<a class="headerlink" href="#c.BGCRC_WD_OVERFLOW" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Watchdog Overflow Error Interrupt/NMI. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_ALL_ERROR_FLAGS">
+<span class="target" id="group__bgcrc__api_1ga5abf1c1be8c7c3fbd02574bc6fc799e9"></span><code class="sig-name descname">BGCRC_ALL_ERROR_FLAGS</code> (<a class="reference internal" href="#group__bgcrc__api_1ga6694eb73e85d9a5708afa6653d9048d5"><span class="std std-ref">BGCRC_CRC_FAIL</span></a> | <a class="reference internal" href="#group__bgcrc__api_1gaee59cd707770649f303d54a6c43448db"><span class="std std-ref">BGCRC_UNCORR_ERR</span></a><p> |            \</p>
+<a class="reference internal" href="#group__bgcrc__api_1ga904c205a402f2f8bf32fc10d2a748701"><span class="std std-ref">BGCRC_CORR_ERR</span></a> | <a class="reference internal" href="#group__bgcrc__api_1gab2b9da8200d76d0ee37d3b225fcb40f5"><span class="std std-ref">BGCRC_WD_UNDERFLOW</span></a><p> |          \</p>
+<a class="reference internal" href="#group__bgcrc__api_1ga4af0885b6901970ad0638ef9afe0d58a"><span class="std std-ref">BGCRC_WD_OVERFLOW</span></a>)<a class="headerlink" href="#c.BGCRC_ALL_ERROR_FLAGS" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_SIZE_BYTES_0">
+<span class="target" id="group__bgcrc__api_1gaba10234e45f455f37105b9904accc25b"></span><code class="sig-name descname">BGCRC_SIZE_BYTES_0</code> 0U<a class="headerlink" href="#c.BGCRC_SIZE_BYTES_0" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to BGCRC_setRegion as the <em>blockSize</em> parameter For example, to configure a region of size 2.5KB, set <em>blockSize</em> as <a class="reference internal" href="#group__bgcrc__api_1gaacf76d9d5bb4e66fcac71da8d790d28d"><span class="std std-ref">BGCRC_SIZE_KBYTES(2)</span></a> + BGCRC_SIZE_BYTES_512 </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_SIZE_BYTES_256">
+<span class="target" id="group__bgcrc__api_1ga46b1d063775acc99bf6c3ae4b2c9f8d0"></span><code class="sig-name descname">BGCRC_SIZE_BYTES_256</code> 1U<a class="headerlink" href="#c.BGCRC_SIZE_BYTES_256" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_SIZE_BYTES_512">
+<span class="target" id="group__bgcrc__api_1ga661d3680232d09c8db6be174fd670ad4"></span><code class="sig-name descname">BGCRC_SIZE_BYTES_512</code> 2U<a class="headerlink" href="#c.BGCRC_SIZE_BYTES_512" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_SIZE_BYTES_768">
+<span class="target" id="group__bgcrc__api_1ga2b3ebe405e87d0f740f1cfa1a56f7244"></span><code class="sig-name descname">BGCRC_SIZE_BYTES_768</code> 3U<a class="headerlink" href="#c.BGCRC_SIZE_BYTES_768" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_SIZE_KBYTES">
+<span class="target" id="group__bgcrc__api_1gaacf76d9d5bb4e66fcac71da8d790d28d"></span><code class="sig-name descname">BGCRC_SIZE_KBYTES</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span> (4U * (x))<a class="headerlink" href="#c.BGCRC_SIZE_KBYTES" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_ACTIVE">
+<span class="target" id="group__bgcrc__api_1ga0bd3a0ac6b9e140629f34cfd63c4b4fb"></span><code class="sig-name descname">BGCRC_ACTIVE</code> 0x80000000U<a class="headerlink" href="#c.BGCRC_ACTIVE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values returned by the function BGCRC_getRunStatus. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_IDLE">
+<span class="target" id="group__bgcrc__api_1gaa7127c15f04b3088de13a10d5d302bf9"></span><code class="sig-name descname">BGCRC_IDLE</code> 0x00000000U<a class="headerlink" href="#c.BGCRC_IDLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_REG_EN">
+<span class="target" id="group__bgcrc__api_1ga740205ec4263631544f724af89570ea9"></span><code class="sig-name descname">BGCRC_REG_EN</code> 0x00000001U<a class="headerlink" href="#c.BGCRC_REG_EN" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__bgcrc__api_1ga412e67556e75f146efa6829134311a6d"><span class="std std-ref">BGCRC_lockRegister()</span></a>, <a class="reference internal" href="#group__bgcrc__api_1gad855fa4a1804d3425e9149b84d4db401"><span class="std std-ref">BGCRC_unlockRegister()</span></a> and BGCRC_commitLockRegister() as the <em>regs</em> parameter </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_REG_CTRL1">
+<span class="target" id="group__bgcrc__api_1ga459ba5e2fa323de5d6e5b9997885f42a"></span><code class="sig-name descname">BGCRC_REG_CTRL1</code> 0x00000002U<a class="headerlink" href="#c.BGCRC_REG_CTRL1" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_REG_CTRL2">
+<span class="target" id="group__bgcrc__api_1ga9c4972bb318ffd42a342d30fa8a2e58d"></span><code class="sig-name descname">BGCRC_REG_CTRL2</code> 0x00000004U<a class="headerlink" href="#c.BGCRC_REG_CTRL2" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_REG_START_ADDR">
+<span class="target" id="group__bgcrc__api_1ga05c1eb11dfc252bd8f62d3799b92c2cf"></span><code class="sig-name descname">BGCRC_REG_START_ADDR</code> 0x00000008U<a class="headerlink" href="#c.BGCRC_REG_START_ADDR" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_REG_SEED">
+<span class="target" id="group__bgcrc__api_1ga72935d04277742ffcd3e7ee91889bba6"></span><code class="sig-name descname">BGCRC_REG_SEED</code> 0x00000010U<a class="headerlink" href="#c.BGCRC_REG_SEED" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_REG_GOLDEN">
+<span class="target" id="group__bgcrc__api_1gaab0a26c5866701e6eecb30d2693bb910"></span><code class="sig-name descname">BGCRC_REG_GOLDEN</code> 0x00000080U<a class="headerlink" href="#c.BGCRC_REG_GOLDEN" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_REG_WD_CFG">
+<span class="target" id="group__bgcrc__api_1ga5285319d3a4e5edb06de80dcef5e7964"></span><code class="sig-name descname">BGCRC_REG_WD_CFG</code> 0x00004000U<a class="headerlink" href="#c.BGCRC_REG_WD_CFG" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_REG_WD_MIN">
+<span class="target" id="group__bgcrc__api_1ga494b5f7e963f4cf880ba8b2884ea7c04"></span><code class="sig-name descname">BGCRC_REG_WD_MIN</code> 0x00008000U<a class="headerlink" href="#c.BGCRC_REG_WD_MIN" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_REG_WD_MAX">
+<span class="target" id="group__bgcrc__api_1ga74a02edd993d283e99c00bc17c449493"></span><code class="sig-name descname">BGCRC_REG_WD_MAX</code> 0x00010000U<a class="headerlink" href="#c.BGCRC_REG_WD_MAX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_REG_NMIFRC">
+<span class="target" id="group__bgcrc__api_1ga9a0d35ad76ba761350868ad689a37c3d"></span><code class="sig-name descname">BGCRC_REG_NMIFRC</code> 0x00800000U<a class="headerlink" href="#c.BGCRC_REG_NMIFRC" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_REG_INTEN">
+<span class="target" id="group__bgcrc__api_1ga97cdc95e215dc4fd0361f1c84c14d3cc"></span><code class="sig-name descname">BGCRC_REG_INTEN</code> 0x04000000U<a class="headerlink" href="#c.BGCRC_REG_INTEN" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_REG_INTFRC">
+<span class="target" id="group__bgcrc__api_1ga0839eb724cd68f46b1c1072858b13275"></span><code class="sig-name descname">BGCRC_REG_INTFRC</code> 0x20000000U<a class="headerlink" href="#c.BGCRC_REG_INTFRC" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_REG_ALL">
+<span class="target" id="group__bgcrc__api_1gabb211df338cebb89dc343dcbd22c03c1"></span><code class="sig-name descname">BGCRC_REG_ALL</code> 0xFFFFFFFFU<a class="headerlink" href="#c.BGCRC_REG_ALL" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_WD_ENABLE">
+<span class="target" id="group__bgcrc__api_1ga97eb155e073dd891f710ea9b63befb1a"></span><code class="sig-name descname">BGCRC_WD_ENABLE</code> 0x5UL<a class="headerlink" href="#c.BGCRC_WD_ENABLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that are used by the BGCRC APIs. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_WD_DISABLE">
+<span class="target" id="group__bgcrc__api_1ga417d5d8a041d486e3619876dedf0f9a2"></span><code class="sig-name descname">BGCRC_WD_DISABLE</code> 0xAUL<a class="headerlink" href="#c.BGCRC_WD_DISABLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_START_KEY">
+<span class="target" id="group__bgcrc__api_1gab9790fa43571db0207b7bfaefb77d479"></span><code class="sig-name descname">BGCRC_START_KEY</code> 0xAUL<a class="headerlink" href="#c.BGCRC_START_KEY" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.BGCRC_HALT_KEY">
+<span class="target" id="group__bgcrc__api_1gaf246db2f8ca6c0c9b911445269925181"></span><code class="sig-name descname">BGCRC_HALT_KEY</code> 0xAUL<a class="headerlink" href="#c.BGCRC_HALT_KEY" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv415BGCRC_setConfig8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv315BGCRC_setConfig8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv215BGCRC_setConfig8uint32_t8uint32_t8uint32_t"></span><span id="BGCRC_setConfig__uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__bgcrc__api_1gae0c8653602075842743624fde5143ce5"></span>void <code class="sig-name descname">BGCRC_setConfig</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>nmiConfig</em>, uint32_t <em>emuCtrl</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415BGCRC_setConfig8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the NMI and emulation control configurations</p>
+<p><p>This function configures the NMI and emulation control configurations for the BGCRC module.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the BGCRC module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nmiConfig</span></code>: specifies whether NMI needs to be enabled or not for memory check failure </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">emuCtrl</span></code>: specifies the behaviour of CRC during emulation</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><em>nmiConfig</em> can take values <strong>BGCRC_NMI_ENABLE</strong> or <strong>BGCRC_NMI_DISABLE</strong>. NMI is enabled by default for the memory check failures.</p>
+<p><em>emuCtrl</em> can take values <strong>BGCRC_EMUCTRL_FREE</strong> or <strong>BGCRC_EMUCTRL_SOFT</strong>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420BGCRC_enableWatchdog8uint32_t">
+<span id="_CPPv320BGCRC_enableWatchdog8uint32_t"></span><span id="_CPPv220BGCRC_enableWatchdog8uint32_t"></span><span id="BGCRC_enableWatchdog__uint32_t"></span><span class="target" id="group__bgcrc__api_1ga25adf237b691bbb0cb257e18ebc545a3"></span>void <code class="sig-name descname">BGCRC_enableWatchdog</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420BGCRC_enableWatchdog8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the watchdog</p>
+<p><p>This function enables the BGCRC watchdog timer. The counter is started when the BGCRC test starts</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the BGCRC module base address.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>The watchDog window can be configured using the function <a class="reference internal" href="#group__bgcrc__api_1ga314a408859c52ecf51dd44335fe1a845"><span class="std std-ref">BGCRC_setWatchdogWindow()</span></a></p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421BGCRC_disableWatchdog8uint32_t">
+<span id="_CPPv321BGCRC_disableWatchdog8uint32_t"></span><span id="_CPPv221BGCRC_disableWatchdog8uint32_t"></span><span id="BGCRC_disableWatchdog__uint32_t"></span><span class="target" id="group__bgcrc__api_1gad426fb0687400ff134a12ddcd69bc53d"></span>void <code class="sig-name descname">BGCRC_disableWatchdog</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421BGCRC_disableWatchdog8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the watchdog</p>
+<p><p>This function disables the BGCRC watchdog.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the BGCRC module base address.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423BGCRC_setWatchdogWindow8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv323BGCRC_setWatchdogWindow8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv223BGCRC_setWatchdogWindow8uint32_t8uint32_t8uint32_t"></span><span id="BGCRC_setWatchdogWindow__uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__bgcrc__api_1ga314a408859c52ecf51dd44335fe1a845"></span>void <code class="sig-name descname">BGCRC_setWatchdogWindow</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>min</em>, uint32_t <em>max</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423BGCRC_setWatchdogWindow8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the BGCRC watchdog window</p>
+<p><p>This function configures the BGCRC windowed watchdog</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the BGCRC module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min</span></code>: is minimum value configuration for the windowed watchdog </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max</span></code>: is maximum value configuration for the windowed watchdog</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415BGCRC_setRegion8uint32_t8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv315BGCRC_setRegion8uint32_t8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv215BGCRC_setRegion8uint32_t8uint32_t8uint32_t8uint32_t"></span><span id="BGCRC_setRegion__uint32_t.uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__bgcrc__api_1ga5df33b5f54ecfb67585738a978dd28e7"></span>void <code class="sig-name descname">BGCRC_setRegion</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>startAddr</em>, uint32_t <em>blockSize</em>, uint32_t <em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415BGCRC_setRegion8uint32_t8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the memory region for check</p>
+<p><p>This function configures the memory region to be checked</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the BGCRC module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">startAddr</span></code>: is the start address of the block </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">blockSize</span></code>: is the size of the block </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: is the BGCRC test mode</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><em>blockSize</em> can take values <strong><a class="reference internal" href="#group__bgcrc__api_1gaacf76d9d5bb4e66fcac71da8d790d28d"><span class="std std-ref">BGCRC_SIZE_KBYTES(x)</span></a></strong> and/or <strong>BGCRC_SIZE_BYTES_x</strong>. For example, to configure a region of size 2.5KB, set <em>blockSize</em> as <a class="reference internal" href="#group__bgcrc__api_1gaacf76d9d5bb4e66fcac71da8d790d28d"><span class="std std-ref">BGCRC_SIZE_KBYTES(2)</span></a> + BGCRC_SIZE_BYTES_512</p>
+<p><em>mode</em> can take values <strong>BGCRC_SCRUB_MODE</strong> or <strong>BGCRC_CRC_MODE</strong>. In Scrub mode, CRC of data is not compared with the golden CRC. Error check is done using the ECC/Parity logic. In CRC mode, value is compared with golden CRC at the end in addition to the data correctness check by ECC/Parity logic.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429BGCRC_getWatchdogCounterValue8uint32_t">
+<span id="_CPPv329BGCRC_getWatchdogCounterValue8uint32_t"></span><span id="_CPPv229BGCRC_getWatchdogCounterValue8uint32_t"></span><span id="BGCRC_getWatchdogCounterValue__uint32_t"></span><span class="target" id="group__bgcrc__api_1gad65308957030c13e52d2d0b0201e9feb"></span>uint32_t <code class="sig-name descname">BGCRC_getWatchdogCounterValue</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429BGCRC_getWatchdogCounterValue8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the BGCRC watchdog counter value</p>
+<p><p>This function returns the BGCRC watchdog counter value</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the BGCRC module base address.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Watchdog counter value. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421BGCRC_enableInterrupt8uint32_t8uint32_t">
+<span id="_CPPv321BGCRC_enableInterrupt8uint32_t8uint32_t"></span><span id="_CPPv221BGCRC_enableInterrupt8uint32_t8uint32_t"></span><span id="BGCRC_enableInterrupt__uint32_t.uint32_t"></span><span class="target" id="group__bgcrc__api_1ga692141f7b2a765aca6d4b0c445986013"></span>void <code class="sig-name descname">BGCRC_enableInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421BGCRC_enableInterrupt8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables individual BGCRC interrupt sources</p>
+<p><p>This function enables the indicated BGCRC interrupt sources. Only the sources that are enabled can be reflected to the processor interrupt, disabled sources have no effect on the processor.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the BGCRC module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is the bit mask of the interrupt sources to be disabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>intFlags</em> parameter is the logical OR of any of the following:</p>
+<p><ul class="simple">
+<li><p><strong>BGCRC_TEST_DONE</strong> - Test done interrupt</p></li>
+<li><p><strong>BGCRC_CRC_FAIL</strong> - CRC Fail Interrupt</p></li>
+<li><p><strong>BGCRC_UNCORR_ERR</strong> - Uncorrectable Error Interrupt</p></li>
+<li><p><strong>BGCRC_CORR_ERR</strong> - Correctable Error Interrupt</p></li>
+<li><p><strong>BGCRC_WD_UNDERFLOW</strong> - Watchdog Underflow Error Interrupt</p></li>
+<li><p><strong>BGCRC_WD_OVERFLOW</strong> - Watchdog Overflow Error Interrupt</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422BGCRC_disableInterrupt8uint32_t8uint32_t">
+<span id="_CPPv322BGCRC_disableInterrupt8uint32_t8uint32_t"></span><span id="_CPPv222BGCRC_disableInterrupt8uint32_t8uint32_t"></span><span id="BGCRC_disableInterrupt__uint32_t.uint32_t"></span><span class="target" id="group__bgcrc__api_1ga395bc072f658a9022ff9b3557400fee7"></span>void <code class="sig-name descname">BGCRC_disableInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422BGCRC_disableInterrupt8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables individual BGCRC interrupt sources.</p>
+<p><p>This function disables the indicated BGCRC interrupt sources. Only the sources that are enabled can be reflected to the processor interrupt disabled sources have no effect on the processor.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the BGCRC module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is the bit mask of the interrupt sources to be disabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>intFlags</em> parameter has the same definition as the <em>intFlags</em> parameter to <a class="reference internal" href="#group__bgcrc__api_1ga692141f7b2a765aca6d4b0c445986013"><span class="std std-ref">BGCRC_enableInterrupt()</span></a>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424BGCRC_getInterruptStatus8uint32_t">
+<span id="_CPPv324BGCRC_getInterruptStatus8uint32_t"></span><span id="_CPPv224BGCRC_getInterruptStatus8uint32_t"></span><span id="BGCRC_getInterruptStatus__uint32_t"></span><span class="target" id="group__bgcrc__api_1gaec4c4de0cd97d31e95fb1fadabeb3764"></span>uint32_t <code class="sig-name descname">BGCRC_getInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424BGCRC_getInterruptStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the current BGCRC interrupt status</p>
+<p><p>This function returns the status of the BGCRC interrupts</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the BGCRC module base address</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p><strong>BGCRC_GLOBAL_INT</strong> - Global Interrupt</p></li>
+<li><p><strong>BGCRC_TEST_DONE</strong> - Test done interrupt</p></li>
+<li><p><strong>BGCRC_CRC_FAIL</strong> - CRC Fail Interrupt</p></li>
+<li><p><strong>BGCRC_UNCORR_ERR</strong> - Uncorrectable Error Interrupt</p></li>
+<li><p><strong>BGCRC_CORR_ERR</strong> - Correctable Error Interrupt</p></li>
+<li><p><strong>BGCRC_WD_UNDERFLOW</strong> - Watchdog Underflow Error Interrupt</p></li>
+<li><p><strong>BGCRC_WD_OVERFLOW</strong> - Watchdog Overflow Error Interrupt </p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The current interrupt status, which is a logical OR of any of the following:</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426BGCRC_clearInterruptStatus8uint32_t8uint32_t">
+<span id="_CPPv326BGCRC_clearInterruptStatus8uint32_t8uint32_t"></span><span id="_CPPv226BGCRC_clearInterruptStatus8uint32_t8uint32_t"></span><span id="BGCRC_clearInterruptStatus__uint32_t.uint32_t"></span><span class="target" id="group__bgcrc__api_1ga18b9f0e187299d72e868300742595939"></span>void <code class="sig-name descname">BGCRC_clearInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426BGCRC_clearInterruptStatus8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears the BGCRC interrupt sources</p>
+<p><p>The specified BGCRC interrupt sources are cleared, so that they no longer assert. This function must be called in the interrupt handler to keep the interrupt from being triggered again immediately upon exit.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the BGCRC module base address </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is a bit mask of the interrupt sources to be cleared.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>intFlags</em> parameter has the same definition as the <em>intFlags</em> parameter to <a class="reference internal" href="#group__bgcrc__api_1gaec4c4de0cd97d31e95fb1fadabeb3764"><span class="std std-ref">BGCRC_getInterruptStatus()</span></a>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420BGCRC_forceInterrupt8uint32_t8uint32_t">
+<span id="_CPPv320BGCRC_forceInterrupt8uint32_t8uint32_t"></span><span id="_CPPv220BGCRC_forceInterrupt8uint32_t8uint32_t"></span><span id="BGCRC_forceInterrupt__uint32_t.uint32_t"></span><span class="target" id="group__bgcrc__api_1ga26831e273709bee744a7350edbef9159"></span>void <code class="sig-name descname">BGCRC_forceInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420BGCRC_forceInterrupt8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Force the BGCRC interrupt flag</p>
+<p><p>This function forces the specified interrupt flags</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the BGCRC module base address </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is a bit mask of the interrupt flags to be forced.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>intFlags</em> parameter has the same definition as the <em>intFlags</em> parameter to <a class="reference internal" href="#group__bgcrc__api_1ga692141f7b2a765aca6d4b0c445986013"><span class="std std-ref">BGCRC_enableInterrupt()</span></a>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418BGCRC_getNMIStatus8uint32_t">
+<span id="_CPPv318BGCRC_getNMIStatus8uint32_t"></span><span id="_CPPv218BGCRC_getNMIStatus8uint32_t"></span><span id="BGCRC_getNMIStatus__uint32_t"></span><span class="target" id="group__bgcrc__api_1gace75da41f027100263d5d505c540fdad"></span>uint32_t <code class="sig-name descname">BGCRC_getNMIStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418BGCRC_getNMIStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the current BGCRC NMI status</p>
+<p><p>This function returns the status of the BGCRC NMI flags</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the BGCRC module base address</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p><strong>BGCRC_CRC_FAIL</strong> - CRC Fail NMI</p></li>
+<li><p><strong>BGCRC_UNCORR_ERR</strong> - Uncorrectable Error NMI</p></li>
+<li><p><strong>BGCRC_CORR_ERR</strong> - Correctable Error NMI</p></li>
+<li><p><strong>BGCRC_WD_UNDERFLOW</strong> - Watchdog Underflow Error NMI</p></li>
+<li><p><strong>BGCRC_WD_OVERFLOW</strong> - Watchdog Overflow Error NMI </p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The current NMI status, which is a logical OR of any of the following:</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420BGCRC_clearNMIStatus8uint32_t8uint32_t">
+<span id="_CPPv320BGCRC_clearNMIStatus8uint32_t8uint32_t"></span><span id="_CPPv220BGCRC_clearNMIStatus8uint32_t8uint32_t"></span><span id="BGCRC_clearNMIStatus__uint32_t.uint32_t"></span><span class="target" id="group__bgcrc__api_1ga9a0eb282db5624426679b49132b5c4e5"></span>void <code class="sig-name descname">BGCRC_clearNMIStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>nmiFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420BGCRC_clearNMIStatus8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears the BGCRC NMI sources</p>
+<p><p>The specified BGCRC NMI sources are cleared, so that they no longer assert. This function must be called in the NMI handler to keep the NMI from being triggered again immediately upon exit.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the BGCRC module base address </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nmiFlags</span></code>: is a bit mask of the NMI sources to be cleared.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>nmiFlags</em> parameter has the same definition as the <em>nmiFlags</em> parameter to <a class="reference internal" href="#group__bgcrc__api_1gace75da41f027100263d5d505c540fdad"><span class="std std-ref">BGCRC_getNMIStatus()</span></a>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414BGCRC_forceNMI8uint32_t8uint32_t">
+<span id="_CPPv314BGCRC_forceNMI8uint32_t8uint32_t"></span><span id="_CPPv214BGCRC_forceNMI8uint32_t8uint32_t"></span><span id="BGCRC_forceNMI__uint32_t.uint32_t"></span><span class="target" id="group__bgcrc__api_1gae12b5d6f37dab4008e4f8fd46e2df230"></span>void <code class="sig-name descname">BGCRC_forceNMI</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>nmiFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414BGCRC_forceNMI8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Force the BGCRC NMI flag</p>
+<p><p>This function forces the specified interrupt flags</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the BGCRC module base address </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nmiFlags</span></code>: is a bit mask of the NMI flags to be forced.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>nmiFlags</em> parameter has the same definition as the <em>nmiFlags</em> parameter to <a class="reference internal" href="#group__bgcrc__api_1gace75da41f027100263d5d505c540fdad"><span class="std std-ref">BGCRC_getNMIStatus()</span></a>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423BGCRC_setGoldenCRCValue8uint32_t8uint32_t">
+<span id="_CPPv323BGCRC_setGoldenCRCValue8uint32_t8uint32_t"></span><span id="_CPPv223BGCRC_setGoldenCRCValue8uint32_t8uint32_t"></span><span id="BGCRC_setGoldenCRCValue__uint32_t.uint32_t"></span><span class="target" id="group__bgcrc__api_1gaaa3f2c11485fc550a546eea669634d7b"></span>void <code class="sig-name descname">BGCRC_setGoldenCRCValue</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>crcVal</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423BGCRC_setGoldenCRCValue8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the golden CRC value</p>
+<p><p>This function sets the golden CRC value of the memory block being tested. If run in CRC mode, the calculated CRC value is compared with golden CRC and status is updated.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the BGCRC module base address </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">crcVal</span></code>: is a golden CRC value to be programmed</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv411BGCRC_start8uint32_t">
+<span id="_CPPv311BGCRC_start8uint32_t"></span><span id="_CPPv211BGCRC_start8uint32_t"></span><span id="BGCRC_start__uint32_t"></span><span class="target" id="group__bgcrc__api_1ga9074334df337e5bd3eaa9dfeca432361"></span>void <code class="sig-name descname">BGCRC_start</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411BGCRC_start8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Starts the module operation</p>
+<p><p>This function starts the module operation. Calling this function during the CRC calculation will reset and re-start the CRC calculation. This also resets the watchdog timer.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the BGCRC module base address</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv410BGCRC_halt8uint32_t">
+<span id="_CPPv310BGCRC_halt8uint32_t"></span><span id="_CPPv210BGCRC_halt8uint32_t"></span><span id="BGCRC_halt__uint32_t"></span><span class="target" id="group__bgcrc__api_1gac670186b23145692d9ef665ffaa01fc3"></span>void <code class="sig-name descname">BGCRC_halt</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410BGCRC_halt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Halts the module operation</p>
+<p><p>This function halts the module operation. This function does not stall the watchdog timer.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the BGCRC module base address</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv412BGCRC_resume8uint32_t">
+<span id="_CPPv312BGCRC_resume8uint32_t"></span><span id="_CPPv212BGCRC_resume8uint32_t"></span><span id="BGCRC_resume__uint32_t"></span><span class="target" id="group__bgcrc__api_1gaf128f9c52341baa916d0381fa71ec847"></span>void <code class="sig-name descname">BGCRC_resume</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412BGCRC_resume8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Resumes the module operation</p>
+<p><p>This function resumes the module operation. The CRC calculation will continue/resume from where it was halted</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the BGCRC module base address</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418BGCRC_getRunStatus8uint32_t">
+<span id="_CPPv318BGCRC_getRunStatus8uint32_t"></span><span id="_CPPv218BGCRC_getRunStatus8uint32_t"></span><span id="BGCRC_getRunStatus__uint32_t"></span><span class="target" id="group__bgcrc__api_1gab58c7887649b9a8706b1981c9074ff1a"></span>uint32_t <code class="sig-name descname">BGCRC_getRunStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418BGCRC_getRunStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the running status of the module</p>
+<p><p>This function returns whether the module is in ACTIVE or IDLE state</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the BGCRC module base address</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p><strong>BGCRC_ACTIVE</strong> if CRC module is active, <strong>BGCRC_IDLE</strong> if CRC module is idle </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418BGCRC_setSeedValue8uint32_t8uint32_t">
+<span id="_CPPv318BGCRC_setSeedValue8uint32_t8uint32_t"></span><span id="_CPPv218BGCRC_setSeedValue8uint32_t8uint32_t"></span><span id="BGCRC_setSeedValue__uint32_t.uint32_t"></span><span class="target" id="group__bgcrc__api_1ga853edfff19dbd5c908646e6a5e5485a6"></span>void <code class="sig-name descname">BGCRC_setSeedValue</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>seed</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418BGCRC_setSeedValue8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the seed value for CRC calculations</p>
+<p><p>This function sets the seed value for the CRC calculations</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the BGCRC module base address </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">seed</span></code>: is the seed value to be set</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415BGCRC_getResult8uint32_t">
+<span id="_CPPv315BGCRC_getResult8uint32_t"></span><span id="_CPPv215BGCRC_getResult8uint32_t"></span><span id="BGCRC_getResult__uint32_t"></span><span class="target" id="group__bgcrc__api_1gad848fb3f472edd65c6eb38e4553e3e89"></span>uint32_t <code class="sig-name descname">BGCRC_getResult</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415BGCRC_getResult8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the calculated CRC value</p>
+<p><p>This function returns the calculated CRC value</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the BGCRC module base address</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>32-bit CRC result </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423BGCRC_getCurrentAddress8uint32_t">
+<span id="_CPPv323BGCRC_getCurrentAddress8uint32_t"></span><span id="_CPPv223BGCRC_getCurrentAddress8uint32_t"></span><span id="BGCRC_getCurrentAddress__uint32_t"></span><span class="target" id="group__bgcrc__api_1ga319002d7c5a34a69faed58c7425f61da"></span>uint32_t <code class="sig-name descname">BGCRC_getCurrentAddress</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423BGCRC_getCurrentAddress8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the current address</p>
+<p><p>This function returns the current address from where the data is fetched</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the BGCRC module base address</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>32-bit address </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418BGCRC_lockRegister8uint32_t8uint32_t">
+<span id="_CPPv318BGCRC_lockRegister8uint32_t8uint32_t"></span><span id="_CPPv218BGCRC_lockRegister8uint32_t8uint32_t"></span><span id="BGCRC_lockRegister__uint32_t.uint32_t"></span><span class="target" id="group__bgcrc__api_1ga412e67556e75f146efa6829134311a6d"></span>void <code class="sig-name descname">BGCRC_lockRegister</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>regs</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418BGCRC_lockRegister8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Locks the register configuration</p>
+<p><p>This function locks the register configuration. The register once locked, cannot be updated until the lock is removed</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the BGCRC module base address </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">regs</span></code>: is the configuration registers to be locked</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>regs</em> parameter is the logical OR of any of the following:</p>
+<p><ul class="simple">
+<li><p><strong>BGCRC_REG_EN</strong> </p></li>
+<li><p><strong>BGCRC_REG_CTRL1</strong> </p></li>
+<li><p><strong>BGCRC_REG_CTRL2</strong> </p></li>
+<li><p><strong>BGCRC_REG_START_ADDR</strong> </p></li>
+<li><p><strong>BGCRC_REG_SEED</strong> </p></li>
+<li><p><strong>BGCRC_REG_GOLDEN</strong> </p></li>
+<li><p><strong>BGCRC_REG_WD_CFG</strong> </p></li>
+<li><p><strong>BGCRC_REG_WD_MIN</strong> </p></li>
+<li><p><strong>BGCRC_REG_WD_MAX</strong> </p></li>
+<li><p><strong>BGCRC_REG_NMIFRC</strong> </p></li>
+<li><p><strong>BGCRC_REG_INTEN</strong> </p></li>
+<li><p><strong>BGCRC_REG_INTFRC</strong> </p></li>
+<li><p><strong>BGCRC_REG_ALL</strong> </p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420BGCRC_unlockRegister8uint32_t8uint32_t">
+<span id="_CPPv320BGCRC_unlockRegister8uint32_t8uint32_t"></span><span id="_CPPv220BGCRC_unlockRegister8uint32_t8uint32_t"></span><span id="BGCRC_unlockRegister__uint32_t.uint32_t"></span><span class="target" id="group__bgcrc__api_1gad855fa4a1804d3425e9149b84d4db401"></span>void <code class="sig-name descname">BGCRC_unlockRegister</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>regs</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420BGCRC_unlockRegister8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Unlocks the register configuration</p>
+<p><p>This function unlocks the register configuration.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the BGCRC module base address </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">regs</span></code>: is the configuration registers to be unlocked</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>regs</em> parameter has the same definition as the <em>regs</em> parameter to <a class="reference internal" href="#group__bgcrc__api_1ga412e67556e75f146efa6829134311a6d"><span class="std std-ref">BGCRC_lockRegister()</span></a>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424BGCRC_commitRegisterLock8uint32_t8uint32_t">
+<span id="_CPPv324BGCRC_commitRegisterLock8uint32_t8uint32_t"></span><span id="_CPPv224BGCRC_commitRegisterLock8uint32_t8uint32_t"></span><span id="BGCRC_commitRegisterLock__uint32_t.uint32_t"></span><span class="target" id="group__bgcrc__api_1gaf5ff300e918132f2e7c977b8f93e52ed"></span>void <code class="sig-name descname">BGCRC_commitRegisterLock</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>regs</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424BGCRC_commitRegisterLock8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Commits the register configuration</p>
+<p><p>This function commits the register configuration. Once configuration is committed, only reset can change the configuration.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the BGCRC module base address </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">regs</span></code>: is the configuration registers to be unlocked</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>regs</em> parameter has the same definition as the <em>regs</em> parameter to <a class="reference internal" href="#group__bgcrc__api_1ga412e67556e75f146efa6829134311a6d"><span class="std std-ref">BGCRC_lockRegister()</span></a>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>The code for this module is contained in driverlib/bgcrc.c, with driverlib/bgcrc.h containing the API declarations for use by applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="asysctl.html" class="btn btn-neutral float-left" title="ASysCtl Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="can.html" class="btn btn-neutral float-right" title="CAN Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

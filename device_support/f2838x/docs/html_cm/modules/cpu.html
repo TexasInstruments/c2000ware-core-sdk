@@ -1,0 +1,436 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CPU Module &mdash; F2838x CM API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F2838x CM API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="CPU Timer Module" href="cputimer.html"/>
+        <link rel="prev" title="CAN Module" href="can.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F2838x CM API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="aes.html">AES Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmmpu.html">CM-MPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">CPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="escss.html">ESCSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ethernet.html">Ethernet Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="udma.html">UDMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gcrc.html">GCRC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipc.html">IPC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcan.html">MCAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mpu.html">MPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssi.html">SSI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="systick.html">SysTick Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uart.html">UART Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F2838x CM API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>CPU Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cpu-module">
+<span id="cpu"></span><h1>CPU Module<a class="headerlink" href="#cpu-module" title="Permalink to this headline">¶</a></h1>
+<p>The cpu API includes a header file with basic functions to read and set some core registers like enabling or disabling interrupts, reading or setting PRIMASK, BASEPRI registers etc.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__cpu__api"></span><em>group</em> <code class="sig-name descname">cpu_api</code></dt>
+<dd><p>The module is used for configuring Cortex-M core registers. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.NOP">
+<span class="target" id="group__cpu__api_1ga700f88377bf36711b711f69b06c52f5d"></span><code class="sig-name descname">NOP</code> __asm(&quot; NOP&quot;)<a class="headerlink" href="#c.NOP" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv416CPU_setFAULTMASKv">
+<span id="_CPPv316CPU_setFAULTMASKv"></span><span id="_CPPv216CPU_setFAULTMASKv"></span><span id="CPU_setFAULTMASK__void"></span><span class="target" id="group__cpu__api_1gae885876067e3fb4baf287e4c394b920f"></span>uint32_t <code class="sig-name descname">CPU_setFAULTMASK</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416CPU_setFAULTMASKv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the state of FAULTMASK register on entry and disable all interrupts except NMI.</p>
+<p>This function is wrapper function for the CPSID instruction. It returns the state of FAULTMASK on entry and disable all interrupts except NMI.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the state of FAULTMASK register. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416CPU_getFAULTMASKv">
+<span id="_CPPv316CPU_getFAULTMASKv"></span><span id="_CPPv216CPU_getFAULTMASKv"></span><span id="CPU_getFAULTMASK__void"></span><span class="target" id="group__cpu__api_1ga642aee1e16aaa48a8b1b39447fb0df9b"></span>uint32_t <code class="sig-name descname">CPU_getFAULTMASK</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416CPU_getFAULTMASKv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the state of FAULTMASK register</p>
+<p>This function is wrapper function for returning the state of FAULTMASK register(indicating whether interrupts except NMI are enabled or disabled).</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the state of FAULTMASK register. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418CPU_clearFAULTMASKv">
+<span id="_CPPv318CPU_clearFAULTMASKv"></span><span id="_CPPv218CPU_clearFAULTMASKv"></span><span id="CPU_clearFAULTMASK__void"></span><span class="target" id="group__cpu__api_1ga7d60934853e80029721ff1add810a9c1"></span>uint32_t <code class="sig-name descname">CPU_clearFAULTMASK</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418CPU_clearFAULTMASKv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the state of FAULTMASK register and enable the interrupts</p>
+<p>This function is wrapper function for returning the state of FAULTMASK register and enabling the interrupts.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the state of FAULTMASK register. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414CPU_setPRIMASKv">
+<span id="_CPPv314CPU_setPRIMASKv"></span><span id="_CPPv214CPU_setPRIMASKv"></span><span id="CPU_setPRIMASK__void"></span><span class="target" id="group__cpu__api_1ga642df0cb3c7f88f6fa0930657b6c6334"></span>uint32_t <code class="sig-name descname">CPU_setPRIMASK</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414CPU_setPRIMASKv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the state of PRIMASK register on entry and disable interrupts</p>
+<p>This function is wrapper function for the CPSID instruction. It returns the state of PRIMASK on entry and disable interrupts.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the state of PRIMASK register. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414CPU_getPRIMASKv">
+<span id="_CPPv314CPU_getPRIMASKv"></span><span id="_CPPv214CPU_getPRIMASKv"></span><span id="CPU_getPRIMASK__void"></span><span class="target" id="group__cpu__api_1ga1e8686e55c9d4b3ad8d53dfdc445043d"></span>uint32_t <code class="sig-name descname">CPU_getPRIMASK</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414CPU_getPRIMASKv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the state of PRIMASK register</p>
+<p>This function is wrapper function for returning the state of PRIMASK register(indicating whether interrupts are enabled or disabled).</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the state of PRIMASK register. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416CPU_clearPRIMASKv">
+<span id="_CPPv316CPU_clearPRIMASKv"></span><span id="_CPPv216CPU_clearPRIMASKv"></span><span id="CPU_clearPRIMASK__void"></span><span class="target" id="group__cpu__api_1gac8a9fa7ac5287dfb26d66b8fa5636df6"></span>uint32_t <code class="sig-name descname">CPU_clearPRIMASK</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416CPU_clearPRIMASKv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the state of PRIMASK register and enable the interrupts</p>
+<p>This function is wrapper function for returning the state of PRIMASK register and enabling the interrupts.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the state of PRIMASK register. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv47CPU_wfiv">
+<span id="_CPPv37CPU_wfiv"></span><span id="_CPPv27CPU_wfiv"></span><span id="CPU_wfi__void"></span><span class="target" id="group__cpu__api_1gac262c2e415e048b7d59298627438ff30"></span>void <code class="sig-name descname">CPU_wfi</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv47CPU_wfiv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Wrapper function for the WFI instruction</p>
+<p>This function is wrapper function for the WFI instruction.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414CPU_setBASEPRI8uint32_t">
+<span id="_CPPv314CPU_setBASEPRI8uint32_t"></span><span id="_CPPv214CPU_setBASEPRI8uint32_t"></span><span id="CPU_setBASEPRI__uint32_t"></span><span class="target" id="group__cpu__api_1gadaf8d9b56161d2ca962945a85f5bb291"></span>void <code class="sig-name descname">CPU_setBASEPRI</code><span class="sig-paren">(</span>uint32_t <em>basePriority</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414CPU_setBASEPRI8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Writes the BASEPRI register</p>
+<p><p>This function is wrapper function for writing the BASEPRI register. MSB 3-bits are enabled for setting the priority and non-implemented low-order bits read as zero and ignore writes. To set the base priority of 0x2U, the param </p>
+<em>basePriority</em> to be passed should be 0x20U.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">basePriority</span></code>: is the value to be set</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414CPU_getBASEPRIv">
+<span id="_CPPv314CPU_getBASEPRIv"></span><span id="_CPPv214CPU_getBASEPRIv"></span><span id="CPU_getBASEPRI__void"></span><span class="target" id="group__cpu__api_1ga4257874e732a3c9c115646dfadda8fb4"></span>uint32_t <code class="sig-name descname">CPU_getBASEPRI</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414CPU_getBASEPRIv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the state of BASEPRI register</p>
+<p>This function is wrapper function for reading the BASEPRI register.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the state of BASEPRI register </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv413__get_PRIMASKv">
+<span id="_CPPv313__get_PRIMASKv"></span><span id="_CPPv213__get_PRIMASKv"></span><span id="__get_PRIMASK__void"></span><span class="target" id="group__cpu__api_1ga799b5d9a2ae75e459264c8512c7c0e02"></span>uint32_t <code class="sig-name descname">__get_PRIMASK</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413__get_PRIMASKv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419_disable_interruptsv">
+<span id="_CPPv319_disable_interruptsv"></span><span id="_CPPv219_disable_interruptsv"></span><span id="_disable_interrupts__void"></span><span class="target" id="group__cpu__api_1ga16d8ba498c00e387d4751f64bda2ad30"></span>uint32_t <code class="sig-name descname">_disable_interrupts</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419_disable_interruptsv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418_enable_interruptsv">
+<span id="_CPPv318_enable_interruptsv"></span><span id="_CPPv218_enable_interruptsv"></span><span id="_enable_interrupts"></span><span class="target" id="group__cpu__api_1gae67ac6de5f05eea67d1ffd7ad030135e"></span>uint32_t <code class="sig-name descname">_enable_interrupts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418_enable_interruptsv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv412_disable_IRQv">
+<span id="_CPPv312_disable_IRQv"></span><span id="_CPPv212_disable_IRQv"></span><span id="_disable_IRQ"></span><span class="target" id="group__cpu__api_1gadbc4c2e37071a6dc9997b27a28cc0d9a"></span>uint32_t <code class="sig-name descname">_disable_IRQ</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412_disable_IRQv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv411_enable_IRQv">
+<span id="_CPPv311_enable_IRQv"></span><span id="_CPPv211_enable_IRQv"></span><span id="_enable_IRQ"></span><span class="target" id="group__cpu__api_1ga68d746be94b1a1bf2c6fe38116806278"></span>uint32_t <code class="sig-name descname">_enable_IRQ</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411_enable_IRQv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423_set_interrupt_priority8uint32_t">
+<span id="_CPPv323_set_interrupt_priority8uint32_t"></span><span id="_CPPv223_set_interrupt_priority8uint32_t"></span><span id="_set_interrupt_priority__uint32_t"></span><span class="target" id="group__cpu__api_1ga9f521b6b71630fec5d69a05abbb4e5b1"></span>uint32_t <code class="sig-name descname">_set_interrupt_priority</code><span class="sig-paren">(</span>uint32_t <em>priority</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423_set_interrupt_priority8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<p>The code for this module is contained in driverlib_cm/cpu.h</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="can.html" class="btn btn-neutral float-left" title="CAN Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cputimer.html" class="btn btn-neutral float-right" title="CPU Timer Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

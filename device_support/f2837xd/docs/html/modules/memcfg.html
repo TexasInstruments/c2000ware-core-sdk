@@ -1,0 +1,1537 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>MEMCFG Module &mdash; F2837xd API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F2837xd API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="SCI Module" href="sci.html"/>
+        <link rel="prev" title="MCBSP Module" href="mcbsp.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F2837xd API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="adc.html">ADC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asysctl.html">ASysCtl Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla.html">CLA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clb.html">CLB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmpss.html">CMPSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dac.html">DAC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dma.html">DMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ecap.html">ECAP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emif.html">EMIF Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="epwm.html">EPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hrpwm.html">HRPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqep.html">EQEP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcbsp.html">MCBSP Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci.html">SCI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdfm.html">SDFM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">SPI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upp.html">UPP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version.html">Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xbar.html">XBAR Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F2837xd API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>MEMCFG Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="memcfg-module">
+<span id="memcfg"></span><h1>MEMCFG Module<a class="headerlink" href="#memcfg-module" title="Permalink to this headline">¶</a></h1>
+<p>The MemCfg module provides an API to configure the device’s Memory Control
+Module. The functions that are provided fall into three main categories: RAM
+section configuration, access violation status and interrupts, and memory error
+status an interrupts. The RAM section configuration functions can initialize
+RAM, configure access protection settings, and configure section ownership. The
+access violation and memory error categories contain functions that can return
+violation and error status and address information as well as configure
+interrupts that can be generated as a result of these issues.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__memcfg__api"></span><em>group</em> <code class="sig-name descname">memcfg_api</code></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_TYPE_MASK">
+<span class="target" id="group__memcfg__api_1ga57516d4b825e111820133a57e235a699"></span><code class="sig-name descname">MEMCFG_SECT_TYPE_MASK</code> 0xFF000000U<a class="headerlink" href="#c.MEMCFG_SECT_TYPE_MASK" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_TYPE_D">
+<span class="target" id="group__memcfg__api_1ga69faeeb155b957ad139e3f11608bd2f4"></span><code class="sig-name descname">MEMCFG_SECT_TYPE_D</code> 0x00000000U<a class="headerlink" href="#c.MEMCFG_SECT_TYPE_D" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_TYPE_LS">
+<span class="target" id="group__memcfg__api_1gac6192971eeea98b52e076528dc04db39"></span><code class="sig-name descname">MEMCFG_SECT_TYPE_LS</code> 0x01000000U<a class="headerlink" href="#c.MEMCFG_SECT_TYPE_LS" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_TYPE_GS">
+<span class="target" id="group__memcfg__api_1ga3572c6832b1ed76d76479a18e652df98"></span><code class="sig-name descname">MEMCFG_SECT_TYPE_GS</code> 0x02000000U<a class="headerlink" href="#c.MEMCFG_SECT_TYPE_GS" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_TYPE_MSG">
+<span class="target" id="group__memcfg__api_1gaf6b6b9bd10c8a91145524f4275a6d612"></span><code class="sig-name descname">MEMCFG_SECT_TYPE_MSG</code> 0x03000000U<a class="headerlink" href="#c.MEMCFG_SECT_TYPE_MSG" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_NUM_MASK">
+<span class="target" id="group__memcfg__api_1ga5bf0eaad7546a507e379b3f06d3883b7"></span><code class="sig-name descname">MEMCFG_SECT_NUM_MASK</code> 0x00FFFFFFU<a class="headerlink" href="#c.MEMCFG_SECT_NUM_MASK" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_XACCPROTX_M">
+<span class="target" id="group__memcfg__api_1ga986073aaa67e4f019d21fff75d0b128e"></span><code class="sig-name descname">MEMCFG_XACCPROTX_M</code> ((uint32_t)MEMCFG_GSXACCPROT0_FETCHPROT_GS0<p> | \</p>
+<p>                                 (uint32_t)</p>
+MEMCFG_GSXACCPROT0_CPUWRPROT_GS0<p> | \</p>
+<p>                                 (uint32_t)</p>
+MEMCFG_GSXACCPROT0_DMAWRPROT_GS0)<a class="headerlink" href="#c.MEMCFG_XACCPROTX_M" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_XTEST_M">
+<span class="target" id="group__memcfg__api_1ga6069681be70b43c9aced0f5c7029d8b5"></span><code class="sig-name descname">MEMCFG_XTEST_M</code> MEMCFG_DXTEST_TEST_M0_M<a class="headerlink" href="#c.MEMCFG_XTEST_M" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_NMVIOL_MASK">
+<span class="target" id="group__memcfg__api_1gae421e1777c39ff92af5896b3ff37aaf1"></span><code class="sig-name descname">MEMCFG_NMVIOL_MASK</code> 0x0000FFFFU<a class="headerlink" href="#c.MEMCFG_NMVIOL_MASK" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_MVIOL_MASK">
+<span class="target" id="group__memcfg__api_1ga68657b489302b169dab06c563241a4d3"></span><code class="sig-name descname">MEMCFG_MVIOL_MASK</code> 0x000F0000U<a class="headerlink" href="#c.MEMCFG_MVIOL_MASK" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_MVIOL_SHIFT">
+<span class="target" id="group__memcfg__api_1ga3454e451fa65a25bcea608bc6ec87557"></span><code class="sig-name descname">MEMCFG_MVIOL_SHIFT</code> 16U<a class="headerlink" href="#c.MEMCFG_MVIOL_SHIFT" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_M0">
+<span class="target" id="group__memcfg__api_1gaf00796be7d52702a2c66caaa9a5bb478"></span><code class="sig-name descname">MEMCFG_SECT_M0</code> 0x00000001U<a class="headerlink" href="#c.MEMCFG_SECT_M0" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>M0 RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_M1">
+<span class="target" id="group__memcfg__api_1ga6f9c175e77727a6cf2eb7e9cfdc40ec7"></span><code class="sig-name descname">MEMCFG_SECT_M1</code> 0x00000002U<a class="headerlink" href="#c.MEMCFG_SECT_M1" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>M1 RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_D0">
+<span class="target" id="group__memcfg__api_1ga58b293cd2ebc6df456f8e816135cac77"></span><code class="sig-name descname">MEMCFG_SECT_D0</code> 0x00000004U<a class="headerlink" href="#c.MEMCFG_SECT_D0" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>D0 RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_D1">
+<span class="target" id="group__memcfg__api_1gab43aa9e7d10e4e7b80641658932da22d"></span><code class="sig-name descname">MEMCFG_SECT_D1</code> 0x00000008U<a class="headerlink" href="#c.MEMCFG_SECT_D1" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>D1 RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_DX_ALL">
+<span class="target" id="group__memcfg__api_1ga2c476e3d90e342091cedfe5e3f152b50"></span><code class="sig-name descname">MEMCFG_SECT_DX_ALL</code> 0x0000000FU<a class="headerlink" href="#c.MEMCFG_SECT_DX_ALL" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>All M and D RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_LS0">
+<span class="target" id="group__memcfg__api_1ga56c40baef0e886aed27ff8a638b6b8eb"></span><code class="sig-name descname">MEMCFG_SECT_LS0</code> 0x01000001U<a class="headerlink" href="#c.MEMCFG_SECT_LS0" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>LS0 RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_LS1">
+<span class="target" id="group__memcfg__api_1ga702d04dd63e81d73bebb34f38f05ed6c"></span><code class="sig-name descname">MEMCFG_SECT_LS1</code> 0x01000002U<a class="headerlink" href="#c.MEMCFG_SECT_LS1" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>LS1 RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_LS2">
+<span class="target" id="group__memcfg__api_1ga910403ffd5d7baec01b4174c29a8b09b"></span><code class="sig-name descname">MEMCFG_SECT_LS2</code> 0x01000004U<a class="headerlink" href="#c.MEMCFG_SECT_LS2" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>LS2 RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_LS3">
+<span class="target" id="group__memcfg__api_1gac5432bb0972a307c7fde564f113b4d33"></span><code class="sig-name descname">MEMCFG_SECT_LS3</code> 0x01000008U<a class="headerlink" href="#c.MEMCFG_SECT_LS3" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>LS3 RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_LS4">
+<span class="target" id="group__memcfg__api_1gaaf1aabf1dee1ddb63bf1ad33a2e42dbe"></span><code class="sig-name descname">MEMCFG_SECT_LS4</code> 0x01000010U<a class="headerlink" href="#c.MEMCFG_SECT_LS4" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>LS4 RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_LS5">
+<span class="target" id="group__memcfg__api_1gab0e74b9b2bb8cdd8a428a402fd18abf7"></span><code class="sig-name descname">MEMCFG_SECT_LS5</code> 0x01000020U<a class="headerlink" href="#c.MEMCFG_SECT_LS5" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>LS5 RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_LSX_ALL">
+<span class="target" id="group__memcfg__api_1gac15982f28fb784721f5acbdded80c427"></span><code class="sig-name descname">MEMCFG_SECT_LSX_ALL</code> 0x0100003FU<a class="headerlink" href="#c.MEMCFG_SECT_LSX_ALL" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>All LS RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_GS0">
+<span class="target" id="group__memcfg__api_1ga7110897de3bf5f933931cfd17cdfe944"></span><code class="sig-name descname">MEMCFG_SECT_GS0</code> 0x02000001U<a class="headerlink" href="#c.MEMCFG_SECT_GS0" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GS0 RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_GS1">
+<span class="target" id="group__memcfg__api_1gaefc88380fb82a87d8eabc197fbe4b7c0"></span><code class="sig-name descname">MEMCFG_SECT_GS1</code> 0x02000002U<a class="headerlink" href="#c.MEMCFG_SECT_GS1" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GS1 RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_GS2">
+<span class="target" id="group__memcfg__api_1ga51da7c7d3d15df0d65de2c953538cf76"></span><code class="sig-name descname">MEMCFG_SECT_GS2</code> 0x02000004U<a class="headerlink" href="#c.MEMCFG_SECT_GS2" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GS2 RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_GS3">
+<span class="target" id="group__memcfg__api_1ga5f9e04fb39ea9d46fd31bb75f5ef4e30"></span><code class="sig-name descname">MEMCFG_SECT_GS3</code> 0x02000008U<a class="headerlink" href="#c.MEMCFG_SECT_GS3" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GS3 RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_GS4">
+<span class="target" id="group__memcfg__api_1ga7b34f23a949d400b2a7ceb1c6f360b5d"></span><code class="sig-name descname">MEMCFG_SECT_GS4</code> 0x02000010U<a class="headerlink" href="#c.MEMCFG_SECT_GS4" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GS4 RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_GS5">
+<span class="target" id="group__memcfg__api_1gac2df5c1a089aee924ad9f017df18a8e1"></span><code class="sig-name descname">MEMCFG_SECT_GS5</code> 0x02000020U<a class="headerlink" href="#c.MEMCFG_SECT_GS5" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GS5 RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_GS6">
+<span class="target" id="group__memcfg__api_1ga1b2ceb58a001d60a19268743f5478357"></span><code class="sig-name descname">MEMCFG_SECT_GS6</code> 0x02000040U<a class="headerlink" href="#c.MEMCFG_SECT_GS6" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GS6 RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_GS7">
+<span class="target" id="group__memcfg__api_1gab3bbf5ad648758ebdc0062b4ec4f6ff6"></span><code class="sig-name descname">MEMCFG_SECT_GS7</code> 0x02000080U<a class="headerlink" href="#c.MEMCFG_SECT_GS7" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GS7 RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_GS8">
+<span class="target" id="group__memcfg__api_1ga328d1d71da222ebaf18c36c543f995ec"></span><code class="sig-name descname">MEMCFG_SECT_GS8</code> 0x02000100U<a class="headerlink" href="#c.MEMCFG_SECT_GS8" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GS8 RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_GS9">
+<span class="target" id="group__memcfg__api_1gac8e1b5c74128e1f3ee805adae703886b"></span><code class="sig-name descname">MEMCFG_SECT_GS9</code> 0x02000200U<a class="headerlink" href="#c.MEMCFG_SECT_GS9" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GS9 RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_GS10">
+<span class="target" id="group__memcfg__api_1ga61e58c536378ddef2abef1576221094d"></span><code class="sig-name descname">MEMCFG_SECT_GS10</code> 0x02000400U<a class="headerlink" href="#c.MEMCFG_SECT_GS10" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GS10 RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_GS11">
+<span class="target" id="group__memcfg__api_1ga783da5c1b013c4eb73f407cc20497b6b"></span><code class="sig-name descname">MEMCFG_SECT_GS11</code> 0x02000800U<a class="headerlink" href="#c.MEMCFG_SECT_GS11" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GS11 RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_GS12">
+<span class="target" id="group__memcfg__api_1gae55200438bdb94d26856d0adad4a927e"></span><code class="sig-name descname">MEMCFG_SECT_GS12</code> 0x02001000U<a class="headerlink" href="#c.MEMCFG_SECT_GS12" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GS12 RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_GS13">
+<span class="target" id="group__memcfg__api_1ga33aead27f3fb57c3d181c781c0c9d58e"></span><code class="sig-name descname">MEMCFG_SECT_GS13</code> 0x02002000U<a class="headerlink" href="#c.MEMCFG_SECT_GS13" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GS13 RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_GS14">
+<span class="target" id="group__memcfg__api_1ga12c5b0382908d47bcf31fd1bbf23ed7f"></span><code class="sig-name descname">MEMCFG_SECT_GS14</code> 0x02004000U<a class="headerlink" href="#c.MEMCFG_SECT_GS14" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GS14 RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_GS15">
+<span class="target" id="group__memcfg__api_1ga66cdb56879a5e2f569d3ca3b3360c935"></span><code class="sig-name descname">MEMCFG_SECT_GS15</code> 0x02008000U<a class="headerlink" href="#c.MEMCFG_SECT_GS15" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GS15 RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_GSX_ALL">
+<span class="target" id="group__memcfg__api_1ga04dfeecebd5f6230c6f910bc50852957"></span><code class="sig-name descname">MEMCFG_SECT_GSX_ALL</code> 0x0200FFFFU<a class="headerlink" href="#c.MEMCFG_SECT_GSX_ALL" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>All GS RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_MSGCPUTOCPU">
+<span class="target" id="group__memcfg__api_1gaad2a770f5bcd5b227b9763e1bbdf2ad7"></span><code class="sig-name descname">MEMCFG_SECT_MSGCPUTOCPU</code> 0x03000001U<a class="headerlink" href="#c.MEMCFG_SECT_MSGCPUTOCPU" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPU-to-CPU message RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_MSGCPUTOCLA1">
+<span class="target" id="group__memcfg__api_1ga82378673e3aa4c88cea5286f8b5d9f06"></span><code class="sig-name descname">MEMCFG_SECT_MSGCPUTOCLA1</code> 0x03000002U<a class="headerlink" href="#c.MEMCFG_SECT_MSGCPUTOCLA1" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPU-to-CLA1 message RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_MSGCLA1TOCPU">
+<span class="target" id="group__memcfg__api_1ga96128287cb3d8d725320d40358a31d4a"></span><code class="sig-name descname">MEMCFG_SECT_MSGCLA1TOCPU</code> 0x03000004U<a class="headerlink" href="#c.MEMCFG_SECT_MSGCLA1TOCPU" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA1-to-CPU message RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_MSGX_ALL">
+<span class="target" id="group__memcfg__api_1ga77248c38e2587b3d87dcaccfacf09be7"></span><code class="sig-name descname">MEMCFG_SECT_MSGX_ALL</code> 0x03000007U<a class="headerlink" href="#c.MEMCFG_SECT_MSGX_ALL" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>All message RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_ALL">
+<span class="target" id="group__memcfg__api_1ga7d5705d05c74a6942e33ae3842b85f28"></span><code class="sig-name descname">MEMCFG_SECT_ALL</code> 0xFFFFFFFFU<a class="headerlink" href="#c.MEMCFG_SECT_ALL" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>All configurable RAM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_PROT_ALLOWCPUFETCH">
+<span class="target" id="group__memcfg__api_1ga3d8ea08c6b1a8d97c786d93d12bf9d0b"></span><code class="sig-name descname">MEMCFG_PROT_ALLOWCPUFETCH</code> 0x00000000U<a class="headerlink" href="#c.MEMCFG_PROT_ALLOWCPUFETCH" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPU fetch allowed. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_PROT_BLOCKCPUFETCH">
+<span class="target" id="group__memcfg__api_1gab55f87f10675ed4b3c204039377784ce"></span><code class="sig-name descname">MEMCFG_PROT_BLOCKCPUFETCH</code> 0x00000001U<a class="headerlink" href="#c.MEMCFG_PROT_BLOCKCPUFETCH" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPU fetch blocked. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_PROT_ALLOWCPUWRITE">
+<span class="target" id="group__memcfg__api_1ga3f3bc8f6fd1025f56151ef512298499f"></span><code class="sig-name descname">MEMCFG_PROT_ALLOWCPUWRITE</code> 0x00000000U<a class="headerlink" href="#c.MEMCFG_PROT_ALLOWCPUWRITE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPU write allowed. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_PROT_BLOCKCPUWRITE">
+<span class="target" id="group__memcfg__api_1gad029e5f6be9b34ef40dd29704f1f9963"></span><code class="sig-name descname">MEMCFG_PROT_BLOCKCPUWRITE</code> 0x00000002U<a class="headerlink" href="#c.MEMCFG_PROT_BLOCKCPUWRITE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPU write blocked. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_PROT_ALLOWDMAWRITE">
+<span class="target" id="group__memcfg__api_1ga46a57f7635ded799b9b2c70f633f0b46"></span><code class="sig-name descname">MEMCFG_PROT_ALLOWDMAWRITE</code> 0x00000000U<a class="headerlink" href="#c.MEMCFG_PROT_ALLOWDMAWRITE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>DMA write allowed (GSxRAM) </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_PROT_BLOCKDMAWRITE">
+<span class="target" id="group__memcfg__api_1ga779015aeef76019107ffac991e267e0b"></span><code class="sig-name descname">MEMCFG_PROT_BLOCKDMAWRITE</code> 0x00000004U<a class="headerlink" href="#c.MEMCFG_PROT_BLOCKDMAWRITE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>DMA write blocked (GSxRAM) </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_NMVIOL_CPUREAD">
+<span class="target" id="group__memcfg__api_1gae0c2e65bb7d4d9cf1770f82e87abbf2f"></span><code class="sig-name descname">MEMCFG_NMVIOL_CPUREAD</code> 0x00000001U<a class="headerlink" href="#c.MEMCFG_NMVIOL_CPUREAD" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Non-master CPU read access. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_NMVIOL_CPUWRITE">
+<span class="target" id="group__memcfg__api_1ga4381fa11322fec3dde8b7ed6b20cd189"></span><code class="sig-name descname">MEMCFG_NMVIOL_CPUWRITE</code> 0x00000002U<a class="headerlink" href="#c.MEMCFG_NMVIOL_CPUWRITE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Non-master CPU write access. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_NMVIOL_CPUFETCH">
+<span class="target" id="group__memcfg__api_1ga925245994527b9420bf0312bb161551d"></span><code class="sig-name descname">MEMCFG_NMVIOL_CPUFETCH</code> 0x00000004U<a class="headerlink" href="#c.MEMCFG_NMVIOL_CPUFETCH" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Non-master CPU fetch access. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_NMVIOL_DMAWRITE">
+<span class="target" id="group__memcfg__api_1ga33c6f9a69315703ee9195780a9c15a64"></span><code class="sig-name descname">MEMCFG_NMVIOL_DMAWRITE</code> 0x00000008U<a class="headerlink" href="#c.MEMCFG_NMVIOL_DMAWRITE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Non-master DMA write access. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_NMVIOL_CLA1READ">
+<span class="target" id="group__memcfg__api_1ga100d059b715e0682dffae83b2a556a13"></span><code class="sig-name descname">MEMCFG_NMVIOL_CLA1READ</code> 0x00000010U<a class="headerlink" href="#c.MEMCFG_NMVIOL_CLA1READ" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Non-master CLA1 read access. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_NMVIOL_CLA1WRITE">
+<span class="target" id="group__memcfg__api_1ga8f8edf5abcc4124c0a34fd71f6aaf881"></span><code class="sig-name descname">MEMCFG_NMVIOL_CLA1WRITE</code> 0x00000020U<a class="headerlink" href="#c.MEMCFG_NMVIOL_CLA1WRITE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Non-master CLA1 write access. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_NMVIOL_CLA1FETCH">
+<span class="target" id="group__memcfg__api_1ga3bb3c1574c0b755817f4e0b66065b0d6"></span><code class="sig-name descname">MEMCFG_NMVIOL_CLA1FETCH</code> 0x00000040U<a class="headerlink" href="#c.MEMCFG_NMVIOL_CLA1FETCH" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Non-master CLA1 fetch access. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_MVIOL_CPUFETCH">
+<span class="target" id="group__memcfg__api_1ga22d218b1f86826f14d78677a55ac5bbf"></span><code class="sig-name descname">MEMCFG_MVIOL_CPUFETCH</code> 0x00010000U<a class="headerlink" href="#c.MEMCFG_MVIOL_CPUFETCH" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Master CPU fetch access. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_MVIOL_CPUWRITE">
+<span class="target" id="group__memcfg__api_1gadddb35f541cdedccdd7ab595d0635ee7"></span><code class="sig-name descname">MEMCFG_MVIOL_CPUWRITE</code> 0x00020000U<a class="headerlink" href="#c.MEMCFG_MVIOL_CPUWRITE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Master CPU write access. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_MVIOL_DMAWRITE">
+<span class="target" id="group__memcfg__api_1ga5079bae2a10efff851c81f0133cf1727"></span><code class="sig-name descname">MEMCFG_MVIOL_DMAWRITE</code> 0x00040000U<a class="headerlink" href="#c.MEMCFG_MVIOL_DMAWRITE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Master DMA write access. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_CERR_CPUREAD">
+<span class="target" id="group__memcfg__api_1gac89d92f5414c77aeae3dd1a8a8bdb58d"></span><code class="sig-name descname">MEMCFG_CERR_CPUREAD</code> 0x0001U<a class="headerlink" href="#c.MEMCFG_CERR_CPUREAD" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Correctable CPU read error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_CERR_DMAREAD">
+<span class="target" id="group__memcfg__api_1ga215937a7f7195b799bc8b8d9911b23ad"></span><code class="sig-name descname">MEMCFG_CERR_DMAREAD</code> 0x0002U<a class="headerlink" href="#c.MEMCFG_CERR_DMAREAD" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Correctable DMA read error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_CERR_CLA1READ">
+<span class="target" id="group__memcfg__api_1gad0acb4df38af550984bfb1ed773fe6fe"></span><code class="sig-name descname">MEMCFG_CERR_CLA1READ</code> 0x0004U<a class="headerlink" href="#c.MEMCFG_CERR_CLA1READ" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Correctable CLA1 read error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_UCERR_CPUREAD">
+<span class="target" id="group__memcfg__api_1ga2db35aad553ee59a5c51fd80b04df0dc"></span><code class="sig-name descname">MEMCFG_UCERR_CPUREAD</code> 0x0001U<a class="headerlink" href="#c.MEMCFG_UCERR_CPUREAD" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Uncorrectable CPU read error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_UCERR_DMAREAD">
+<span class="target" id="group__memcfg__api_1ga992dd6471219cdfd4d28f251bb0aaf8b"></span><code class="sig-name descname">MEMCFG_UCERR_DMAREAD</code> 0x0002U<a class="headerlink" href="#c.MEMCFG_UCERR_DMAREAD" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Uncorrectable DMA read error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MEMCFG_UCERR_CLA1READ">
+<span class="target" id="group__memcfg__api_1ga6766f1a46092fbf886b4c0c62b1940bc"></span><code class="sig-name descname">MEMCFG_UCERR_CLA1READ</code> 0x0004U<a class="headerlink" href="#c.MEMCFG_UCERR_CLA1READ" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Uncorrectable CLA1 read error. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="cpp enum">
+<dt id="_CPPv420MemCfg_CLAMemoryType">
+<span id="_CPPv320MemCfg_CLAMemoryType"></span><span id="_CPPv220MemCfg_CLAMemoryType"></span><span class="target" id="group__memcfg__api_1gabcebbfdb57ea69bdbf66ad3ac7517bed"></span><em class="property">enum </em><code class="sig-name descname">MemCfg_CLAMemoryType</code><a class="headerlink" href="#_CPPv420MemCfg_CLAMemoryType" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__memcfg__api_1gad2770cb83e903fe67541370fa8292e63"><span class="std std-ref">MemCfg_setCLAMemType()</span></a> as the <em>claMemType</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20MemCfg_CLAMemoryType19MEMCFG_CLA_MEM_DATAE">
+<span id="_CPPv3N20MemCfg_CLAMemoryType19MEMCFG_CLA_MEM_DATAE"></span><span id="_CPPv2N20MemCfg_CLAMemoryType19MEMCFG_CLA_MEM_DATAE"></span><span class="target" id="group__memcfg__api_1ggabcebbfdb57ea69bdbf66ad3ac7517beda0acade7835face18bf3577f222ada556"></span><em class="property">enumerator </em><code class="sig-name descname">MEMCFG_CLA_MEM_DATA</code><a class="headerlink" href="#_CPPv4N20MemCfg_CLAMemoryType19MEMCFG_CLA_MEM_DATAE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Section is CLA data memory. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20MemCfg_CLAMemoryType22MEMCFG_CLA_MEM_PROGRAME">
+<span id="_CPPv3N20MemCfg_CLAMemoryType22MEMCFG_CLA_MEM_PROGRAME"></span><span id="_CPPv2N20MemCfg_CLAMemoryType22MEMCFG_CLA_MEM_PROGRAME"></span><span class="target" id="group__memcfg__api_1ggabcebbfdb57ea69bdbf66ad3ac7517beda89f1e78d37c0777246b722c9c89fdd9d"></span><em class="property">enumerator </em><code class="sig-name descname">MEMCFG_CLA_MEM_PROGRAM</code><a class="headerlink" href="#_CPPv4N20MemCfg_CLAMemoryType22MEMCFG_CLA_MEM_PROGRAME" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Section is CLA program memory. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv421MemCfg_LSRAMMasterSel">
+<span id="_CPPv321MemCfg_LSRAMMasterSel"></span><span id="_CPPv221MemCfg_LSRAMMasterSel"></span><span class="target" id="group__memcfg__api_1gab41eb9f39d29780059551d5eba41eef8"></span><em class="property">enum </em><code class="sig-name descname">MemCfg_LSRAMMasterSel</code><a class="headerlink" href="#_CPPv421MemCfg_LSRAMMasterSel" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__memcfg__api_1ga3649aa9e2e152708fa2eee01b024d413"><span class="std std-ref">MemCfg_setLSRAMMasterSel()</span></a> as the <em>masterSel</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N21MemCfg_LSRAMMasterSel27MEMCFG_LSRAMMASTER_CPU_ONLYE">
+<span id="_CPPv3N21MemCfg_LSRAMMasterSel27MEMCFG_LSRAMMASTER_CPU_ONLYE"></span><span id="_CPPv2N21MemCfg_LSRAMMasterSel27MEMCFG_LSRAMMASTER_CPU_ONLYE"></span><span class="target" id="group__memcfg__api_1ggab41eb9f39d29780059551d5eba41eef8a61b1f123eb644893fa7f09774f3711cf"></span><em class="property">enumerator </em><code class="sig-name descname">MEMCFG_LSRAMMASTER_CPU_ONLY</code><a class="headerlink" href="#_CPPv4N21MemCfg_LSRAMMasterSel27MEMCFG_LSRAMMASTER_CPU_ONLYE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPU is the master of the section. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N21MemCfg_LSRAMMasterSel27MEMCFG_LSRAMMASTER_CPU_CLA1E">
+<span id="_CPPv3N21MemCfg_LSRAMMasterSel27MEMCFG_LSRAMMASTER_CPU_CLA1E"></span><span id="_CPPv2N21MemCfg_LSRAMMasterSel27MEMCFG_LSRAMMASTER_CPU_CLA1E"></span><span class="target" id="group__memcfg__api_1ggab41eb9f39d29780059551d5eba41eef8a5d1a08f759c0ee68eee5f7528249590b"></span><em class="property">enumerator </em><code class="sig-name descname">MEMCFG_LSRAMMASTER_CPU_CLA1</code><a class="headerlink" href="#_CPPv4N21MemCfg_LSRAMMasterSel27MEMCFG_LSRAMMASTER_CPU_CLA1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPU and CLA1 share this section. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv421MemCfg_GSRAMMasterSel">
+<span id="_CPPv321MemCfg_GSRAMMasterSel"></span><span id="_CPPv221MemCfg_GSRAMMasterSel"></span><span class="target" id="group__memcfg__api_1ga932062485b3dd3ee9d5d97de9146b696"></span><em class="property">enum </em><code class="sig-name descname">MemCfg_GSRAMMasterSel</code><a class="headerlink" href="#_CPPv421MemCfg_GSRAMMasterSel" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__memcfg__api_1ga0d9064ee182d5f422f07b78ffe755f72"><span class="std std-ref">MemCfg_setGSRAMMasterSel()</span></a> as the <em>masterSel</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N21MemCfg_GSRAMMasterSel23MEMCFG_GSRAMMASTER_CPU1E">
+<span id="_CPPv3N21MemCfg_GSRAMMasterSel23MEMCFG_GSRAMMASTER_CPU1E"></span><span id="_CPPv2N21MemCfg_GSRAMMasterSel23MEMCFG_GSRAMMASTER_CPU1E"></span><span class="target" id="group__memcfg__api_1gga932062485b3dd3ee9d5d97de9146b696a81debd96043de10dcecdfd8b531b9300"></span><em class="property">enumerator </em><code class="sig-name descname">MEMCFG_GSRAMMASTER_CPU1</code><a class="headerlink" href="#_CPPv4N21MemCfg_GSRAMMasterSel23MEMCFG_GSRAMMASTER_CPU1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPU1 is master of the section. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N21MemCfg_GSRAMMasterSel23MEMCFG_GSRAMMASTER_CPU2E">
+<span id="_CPPv3N21MemCfg_GSRAMMasterSel23MEMCFG_GSRAMMASTER_CPU2E"></span><span id="_CPPv2N21MemCfg_GSRAMMasterSel23MEMCFG_GSRAMMASTER_CPU2E"></span><span class="target" id="group__memcfg__api_1gga932062485b3dd3ee9d5d97de9146b696ae7de53417d937219283b045389c89014"></span><em class="property">enumerator </em><code class="sig-name descname">MEMCFG_GSRAMMASTER_CPU2</code><a class="headerlink" href="#_CPPv4N21MemCfg_GSRAMMasterSel23MEMCFG_GSRAMMASTER_CPU2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPU2 is master of the section. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv415MemCfg_TestMode">
+<span id="_CPPv315MemCfg_TestMode"></span><span id="_CPPv215MemCfg_TestMode"></span><span class="target" id="group__memcfg__api_1ga962a00b98ede70d1e8edf086694cd9bc"></span><em class="property">enum </em><code class="sig-name descname">MemCfg_TestMode</code><a class="headerlink" href="#_CPPv415MemCfg_TestMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__memcfg__api_1ga7635d170151ecaa29d551df8b7a57eca"><span class="std std-ref">MemCfg_setTestMode()</span></a> as the <em>testMode</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15MemCfg_TestMode22MEMCFG_TEST_FUNCTIONALE">
+<span id="_CPPv3N15MemCfg_TestMode22MEMCFG_TEST_FUNCTIONALE"></span><span id="_CPPv2N15MemCfg_TestMode22MEMCFG_TEST_FUNCTIONALE"></span><span class="target" id="group__memcfg__api_1gga962a00b98ede70d1e8edf086694cd9bca59d9b92bce37a364e0ba336e48ac113a"></span><em class="property">enumerator </em><code class="sig-name descname">MEMCFG_TEST_FUNCTIONAL</code> = 0<a class="headerlink" href="#_CPPv4N15MemCfg_TestMode22MEMCFG_TEST_FUNCTIONALE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Functional mode. Test mode is disabled. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15MemCfg_TestMode22MEMCFG_TEST_WRITE_DATAE">
+<span id="_CPPv3N15MemCfg_TestMode22MEMCFG_TEST_WRITE_DATAE"></span><span id="_CPPv2N15MemCfg_TestMode22MEMCFG_TEST_WRITE_DATAE"></span><span class="target" id="group__memcfg__api_1gga962a00b98ede70d1e8edf086694cd9bca703eb59f0c6bc3f6637292969a6ea31c"></span><em class="property">enumerator </em><code class="sig-name descname">MEMCFG_TEST_WRITE_DATA</code> = 1<a class="headerlink" href="#_CPPv4N15MemCfg_TestMode22MEMCFG_TEST_WRITE_DATAE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Writes allowed to data only. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15MemCfg_TestMode21MEMCFG_TEST_WRITE_ECCE">
+<span id="_CPPv3N15MemCfg_TestMode21MEMCFG_TEST_WRITE_ECCE"></span><span id="_CPPv2N15MemCfg_TestMode21MEMCFG_TEST_WRITE_ECCE"></span><span class="target" id="group__memcfg__api_1gga962a00b98ede70d1e8edf086694cd9bca79ee067642ce8beff3ce5bf3a5eee635"></span><em class="property">enumerator </em><code class="sig-name descname">MEMCFG_TEST_WRITE_ECC</code> = 2<a class="headerlink" href="#_CPPv4N15MemCfg_TestMode21MEMCFG_TEST_WRITE_ECCE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Writes allowed to ECC only (for DxRAM/MxRAM) </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15MemCfg_TestMode24MEMCFG_TEST_WRITE_PARITYE">
+<span id="_CPPv3N15MemCfg_TestMode24MEMCFG_TEST_WRITE_PARITYE"></span><span id="_CPPv2N15MemCfg_TestMode24MEMCFG_TEST_WRITE_PARITYE"></span><span class="target" id="group__memcfg__api_1gga962a00b98ede70d1e8edf086694cd9bcab2c446ffdc22ab474cdfc650c47cd050"></span><em class="property">enumerator </em><code class="sig-name descname">MEMCFG_TEST_WRITE_PARITY</code> = 2<a class="headerlink" href="#_CPPv4N15MemCfg_TestMode24MEMCFG_TEST_WRITE_PARITYE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Writes allowed to parity only (for LSxRAM, GSxRAM, and MSGxRAM) </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv420MemCfg_setCLAMemType8uint32_t20MemCfg_CLAMemoryType">
+<span id="_CPPv320MemCfg_setCLAMemType8uint32_t20MemCfg_CLAMemoryType"></span><span id="_CPPv220MemCfg_setCLAMemType8uint32_t20MemCfg_CLAMemoryType"></span><span id="MemCfg_setCLAMemType__uint32_t.MemCfg_CLAMemoryType"></span><span class="target" id="group__memcfg__api_1gad2770cb83e903fe67541370fa8292e63"></span>void <code class="sig-name descname">MemCfg_setCLAMemType</code><span class="sig-paren">(</span>uint32_t <em>ramSections</em>, <a class="reference internal" href="#_CPPv420MemCfg_CLAMemoryType" title="MemCfg_CLAMemoryType">MemCfg_CLAMemoryType</a> <em>claMemType</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420MemCfg_setCLAMemType8uint32_t20MemCfg_CLAMemoryType" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the CLA memory type of the specified RAM section.</p>
+<p><p>This function sets the CLA memory type configuration of the RAM section. If the </p>
+<em>claMemType</em> parameter is <strong>MEMCFG_CLA_MEM_DATA</strong>, the RAM section will be configured as CLA data memory. If <strong>MEMCFG_CLA_MEM_PROGRAM</strong>, the RAM section will be configured as CLA program memory.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ramSections</span></code>: is the logical OR of the sections to be configured. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">claMemType</span></code>: indicates data memory or program memory.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>ramSections</em> parameter is an OR of the following indicators: <strong>MEMCFG_SECT_LS0</strong> through <strong>MEMCFG_SECT_LSx</strong>.</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>This API only applies to LSx RAM and has no effect if the CLA isn’t master of the memory section.</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#group__memcfg__api_1ga3649aa9e2e152708fa2eee01b024d413"><span class="std std-ref">MemCfg_setLSRAMMasterSel()</span></a></p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv431MemCfg_enableViolationInterrupt8uint32_t">
+<span id="_CPPv331MemCfg_enableViolationInterrupt8uint32_t"></span><span id="_CPPv231MemCfg_enableViolationInterrupt8uint32_t"></span><span id="MemCfg_enableViolationInterrupt__uint32_t"></span><span class="target" id="group__memcfg__api_1gab053b39c323a34322719cf23c80bec06"></span>void <code class="sig-name descname">MemCfg_enableViolationInterrupt</code><span class="sig-paren">(</span>uint32_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431MemCfg_enableViolationInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables individual RAM access violation interrupt sources.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is a bit mask of the interrupt sources to be enabled. Can be a logical OR any of the following values:<ul>
+<li><p><strong>MEMCFG_NMVIOL_CPUREAD</strong> - Non-master CPU read access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_CPUWRITE</strong> - Non-master CPU write access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_CPUFETCH</strong> - Non-master CPU fetch access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_DMAWRITE</strong> - Non-master DMA write access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_CLA1READ</strong> - Non-master CLA1 read access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_CLA1WRITE</strong> - Non-master CLA1 write access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_CLA1FETCH</strong> - Non-master CLA1 fetch access</p></li>
+<li><p><strong>MEMCFG_MVIOL_CPUFETCH</strong> - Master CPU fetch access</p></li>
+<li><p><strong>MEMCFG_MVIOL_CPUWRITE</strong> - Master CPU write access</p></li>
+<li><p><strong>MEMCFG_MVIOL_DMAWRITE</strong> - Master DMA write access This function enables the indicated RAM access violation interrupt sources. Only the sources that are enabled can be reflected to the processor interrupt; disabled sources have no effect on the processor.</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv432MemCfg_disableViolationInterrupt8uint32_t">
+<span id="_CPPv332MemCfg_disableViolationInterrupt8uint32_t"></span><span id="_CPPv232MemCfg_disableViolationInterrupt8uint32_t"></span><span id="MemCfg_disableViolationInterrupt__uint32_t"></span><span class="target" id="group__memcfg__api_1ga5614727f2e479d32d5b1a47428339edc"></span>void <code class="sig-name descname">MemCfg_disableViolationInterrupt</code><span class="sig-paren">(</span>uint32_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv432MemCfg_disableViolationInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables individual RAM access violation interrupt sources.</p>
+<p><p>This function disables the indicated RAM access violation interrupt sources. Only the sources that are enabled can be reflected to the processor interrupt; disabled sources have no effect on the processor.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is a bit mask of the interrupt sources to be disabled. Can be a logical OR any of the following values:<ul>
+<li><p><strong>MEMCFG_NMVIOL_CPUREAD</strong> - Non-master CPU read access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_CPUWRITE</strong> - Non-master CPU write access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_CPUFETCH</strong> - Non-master CPU fetch access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_DMAWRITE</strong> - Non-master DMA write access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_CLA1READ</strong> - Non-master CLA1 read access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_CLA1WRITE</strong> - Non-master CLA1 write access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_CLA1FETCH</strong> - Non-master CLA1 fetch access</p></li>
+<li><p><strong>MEMCFG_MVIOL_CPUFETCH</strong> - Master CPU fetch access</p></li>
+<li><p><strong>MEMCFG_MVIOL_CPUWRITE</strong> - Master CPU write access</p></li>
+<li><p><strong>MEMCFG_MVIOL_DMAWRITE</strong> - Master DMA write access</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Note that only non-master violations may generate interrupts.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv434MemCfg_getViolationInterruptStatusv">
+<span id="_CPPv334MemCfg_getViolationInterruptStatusv"></span><span id="_CPPv234MemCfg_getViolationInterruptStatusv"></span><span id="MemCfg_getViolationInterruptStatus__void"></span><span class="target" id="group__memcfg__api_1ga44249a1c6c6602a308530ffdf5832284"></span>uint32_t <code class="sig-name descname">MemCfg_getViolationInterruptStatus</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv434MemCfg_getViolationInterruptStatusv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the current RAM access violation status.</p>
+<p>This function returns the RAM access violation status. This function will return flags for both master and non-master access violations although only the non-master flags have the ability to cause the generation of an interrupt.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the current violation status, enumerated as a bit field of the values:<ul class="simple">
+<li><p><strong>MEMCFG_NMVIOL_CPUREAD</strong> - Non-master CPU read access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_CPUWRITE</strong> - Non-master CPU write access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_CPUFETCH</strong> - Non-master CPU fetch access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_DMAWRITE</strong> - Non-master DMA write access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_CLA1READ</strong> - Non-master CLA1 read access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_CLA1WRITE</strong> - Non-master CLA1 write access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_CLA1FETCH</strong> - Non-master CLA1 fetch access</p></li>
+<li><p><strong>MEMCFG_MVIOL_CPUFETCH</strong> - Master CPU fetch access</p></li>
+<li><p><strong>MEMCFG_MVIOL_CPUWRITE</strong> - Master CPU write access</p></li>
+<li><p><strong>MEMCFG_MVIOL_DMAWRITE</strong> - Master DMA write access </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv430MemCfg_forceViolationInterrupt8uint32_t">
+<span id="_CPPv330MemCfg_forceViolationInterrupt8uint32_t"></span><span id="_CPPv230MemCfg_forceViolationInterrupt8uint32_t"></span><span id="MemCfg_forceViolationInterrupt__uint32_t"></span><span class="target" id="group__memcfg__api_1gaa0abb7f6bce7b04eef47cdd853bccb81"></span>void <code class="sig-name descname">MemCfg_forceViolationInterrupt</code><span class="sig-paren">(</span>uint32_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430MemCfg_forceViolationInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the RAM access violation status.</p>
+<p><p>This function sets the RAM access violation status. This function will set flags for both master and non-master access violations, and an interrupt will be generated if it is enabled.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is a bit mask of the access violation flags to be set. Can be a logical OR any of the following values:<ul>
+<li><p><strong>MEMCFG_NMVIOL_CPUREAD</strong> - Non-master CPU read access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_CPUWRITE</strong> - Non-master CPU write access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_CPUFETCH</strong> - Non-master CPU fetch access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_DMAWRITE</strong> - Non-master DMA write access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_CLA1READ</strong> - Non-master CLA1 read access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_CLA1WRITE</strong> - Non-master CLA1 write access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_CLA1FETCH</strong> - Non-master CLA1 fetch access</p></li>
+<li><p><strong>MEMCFG_MVIOL_CPUFETCH</strong> - Master CPU fetch access</p></li>
+<li><p><strong>MEMCFG_MVIOL_CPUWRITE</strong> - Master CPU write access</p></li>
+<li><p><strong>MEMCFG_MVIOL_DMAWRITE</strong> - Master DMA write access</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv436MemCfg_clearViolationInterruptStatus8uint32_t">
+<span id="_CPPv336MemCfg_clearViolationInterruptStatus8uint32_t"></span><span id="_CPPv236MemCfg_clearViolationInterruptStatus8uint32_t"></span><span id="MemCfg_clearViolationInterruptStatus__uint32_t"></span><span class="target" id="group__memcfg__api_1gadf56b2355e5207a719624542752856a4"></span>void <code class="sig-name descname">MemCfg_clearViolationInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv436MemCfg_clearViolationInterruptStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears RAM access violation flags.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is a bit mask of the access violation flags to be cleared. Can be a logical OR any of the following values:<ul>
+<li><p><strong>MEMCFG_NMVIOL_CPUREAD</strong> - Non-master CPU read access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_CPUWRITE</strong> - Non-master CPU write access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_CPUFETCH</strong> - Non-master CPU fetch access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_DMAWRITE</strong> - Non-master DMA write access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_CLA1READ</strong> - Non-master CLA1 read access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_CLA1WRITE</strong> - Non-master CLA1 write access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_CLA1FETCH</strong> - Non-master CLA1 fetch access</p></li>
+<li><p><strong>MEMCFG_MVIOL_CPUFETCH</strong> - Master CPU fetch access</p></li>
+<li><p><strong>MEMCFG_MVIOL_CPUWRITE</strong> - Master CPU write access</p></li>
+<li><p><strong>MEMCFG_MVIOL_DMAWRITE</strong> - Master DMA write access</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428MemCfg_setCorrErrorThreshold8uint32_t">
+<span id="_CPPv328MemCfg_setCorrErrorThreshold8uint32_t"></span><span id="_CPPv228MemCfg_setCorrErrorThreshold8uint32_t"></span><span id="MemCfg_setCorrErrorThreshold__uint32_t"></span><span class="target" id="group__memcfg__api_1ga8496e659e6df1b5d8320b96726251ef0"></span>void <code class="sig-name descname">MemCfg_setCorrErrorThreshold</code><span class="sig-paren">(</span>uint32_t <em>threshold</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428MemCfg_setCorrErrorThreshold8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the correctable error threshold value.</p>
+<p><p>This value sets the error-count threshold at which a correctable error interrupt is generated. That is when the error count register reaches the value specified by the </p>
+<em>threshold</em> parameter, an interrupt is generated if it is enabled.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">threshold</span></code>: is the correctable error threshold.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424MemCfg_getCorrErrorCountv">
+<span id="_CPPv324MemCfg_getCorrErrorCountv"></span><span id="_CPPv224MemCfg_getCorrErrorCountv"></span><span id="MemCfg_getCorrErrorCount__void"></span><span class="target" id="group__memcfg__api_1gada23e496b1bc237b2e6acc24e7874149"></span>uint32_t <code class="sig-name descname">MemCfg_getCorrErrorCount</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424MemCfg_getCorrErrorCountv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the correctable error count.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the number of correctable error have occurred. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv431MemCfg_enableCorrErrorInterrupt8uint32_t">
+<span id="_CPPv331MemCfg_enableCorrErrorInterrupt8uint32_t"></span><span id="_CPPv231MemCfg_enableCorrErrorInterrupt8uint32_t"></span><span id="MemCfg_enableCorrErrorInterrupt__uint32_t"></span><span class="target" id="group__memcfg__api_1gad3f95d42a0af192c5b5b207788748e75"></span>void <code class="sig-name descname">MemCfg_enableCorrErrorInterrupt</code><span class="sig-paren">(</span>uint32_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431MemCfg_enableCorrErrorInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables individual RAM correctable error interrupt sources.</p>
+<p><p>This function enables the indicated RAM correctable error interrupt sources. Only the sources that are enabled can be reflected to the processor interrupt; disabled sources have no effect on the processor.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is a bit mask of the interrupt sources to be enabled. Can take the value <strong>MEMCFG_CERR_CPUREAD</strong> only. Other values are reserved.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Note that only correctable errors may generate interrupts.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv432MemCfg_disableCorrErrorInterrupt8uint32_t">
+<span id="_CPPv332MemCfg_disableCorrErrorInterrupt8uint32_t"></span><span id="_CPPv232MemCfg_disableCorrErrorInterrupt8uint32_t"></span><span id="MemCfg_disableCorrErrorInterrupt__uint32_t"></span><span class="target" id="group__memcfg__api_1ga343ccaed79b3c6108111591e2f33a7f3"></span>void <code class="sig-name descname">MemCfg_disableCorrErrorInterrupt</code><span class="sig-paren">(</span>uint32_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv432MemCfg_disableCorrErrorInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables individual RAM correctable error interrupt sources.</p>
+<p><p>This function disables the indicated RAM correctable error interrupt sources. Only the sources that are enabled can be reflected to the processor interrupt; disabled sources have no effect on the processor.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is a bit mask of the interrupt sources to be disabled. Can take the value <strong>MEMCFG_CERR_CPUREAD</strong> only. Other values are reserved.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Note that only correctable errors may generate interrupts.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv434MemCfg_getCorrErrorInterruptStatusv">
+<span id="_CPPv334MemCfg_getCorrErrorInterruptStatusv"></span><span id="_CPPv234MemCfg_getCorrErrorInterruptStatusv"></span><span id="MemCfg_getCorrErrorInterruptStatus__void"></span><span class="target" id="group__memcfg__api_1ga8ba986b1428801f4a02dc47c588cf0fb"></span>uint32_t <code class="sig-name descname">MemCfg_getCorrErrorInterruptStatus</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv434MemCfg_getCorrErrorInterruptStatusv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the current RAM correctable error interrupt status.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the current error interrupt status. Will return a value of <strong>MEMCFG_CERR_CPUREAD</strong> if an interrupt has been generated. If not, the function will return 0. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv430MemCfg_forceCorrErrorInterrupt8uint32_t">
+<span id="_CPPv330MemCfg_forceCorrErrorInterrupt8uint32_t"></span><span id="_CPPv230MemCfg_forceCorrErrorInterrupt8uint32_t"></span><span id="MemCfg_forceCorrErrorInterrupt__uint32_t"></span><span class="target" id="group__memcfg__api_1ga441298d10f7dab155471f0433b06fcb4"></span>void <code class="sig-name descname">MemCfg_forceCorrErrorInterrupt</code><span class="sig-paren">(</span>uint32_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430MemCfg_forceCorrErrorInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the RAM correctable error interrupt status.</p>
+<p><p>This function sets the correctable error interrupt flag.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is a bit mask of the interrupt sources to be set. Can take the value <strong>MEMCFG_CERR_CPUREAD</strong> only. Other values are reserved.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Note that only correctable errors may generate interrupts.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv436MemCfg_clearCorrErrorInterruptStatus8uint32_t">
+<span id="_CPPv336MemCfg_clearCorrErrorInterruptStatus8uint32_t"></span><span id="_CPPv236MemCfg_clearCorrErrorInterruptStatus8uint32_t"></span><span id="MemCfg_clearCorrErrorInterruptStatus__uint32_t"></span><span class="target" id="group__memcfg__api_1gabd72e2146424e8ef04679855b8bfd0b2"></span>void <code class="sig-name descname">MemCfg_clearCorrErrorInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv436MemCfg_clearCorrErrorInterruptStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears the RAM correctable error interrupt status.</p>
+<p><p>This function clears the correctable error interrupt flag.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is a bit mask of the interrupt sources to be cleared. Can take the value <strong>MEMCFG_CERR_CPUREAD</strong> only. Other values are reserved.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Note that only correctable errors may generate interrupts.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425MemCfg_getCorrErrorStatusv">
+<span id="_CPPv325MemCfg_getCorrErrorStatusv"></span><span id="_CPPv225MemCfg_getCorrErrorStatusv"></span><span id="MemCfg_getCorrErrorStatus__void"></span><span class="target" id="group__memcfg__api_1ga9f3ea5c48e532a430104d3bdb975caf6"></span>uint32_t <code class="sig-name descname">MemCfg_getCorrErrorStatus</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425MemCfg_getCorrErrorStatusv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the current correctable RAM error status.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the current error status, enumerated as a bit field of <strong>MEMCFG_CERR_CPUREAD</strong>, <strong>MEMCFG_CERR_DMAREAD</strong>, or <strong>MEMCFG_CERR_CLA1READ</strong> </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427MemCfg_getUncorrErrorStatusv">
+<span id="_CPPv327MemCfg_getUncorrErrorStatusv"></span><span id="_CPPv227MemCfg_getUncorrErrorStatusv"></span><span id="MemCfg_getUncorrErrorStatus__void"></span><span class="target" id="group__memcfg__api_1ga7a9728223107a0fd68e2e8c11f6969be"></span>uint32_t <code class="sig-name descname">MemCfg_getUncorrErrorStatus</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427MemCfg_getUncorrErrorStatusv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the current uncorrectable RAM error status.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the current error status, enumerated as a bit field of <strong>MEMCFG_UCERR_CPUREAD</strong>, <strong>MEMCFG_UCERR_DMAREAD</strong>, <strong>MEMCFG_UCERR_CLA1READ</strong>, or <strong>MEMCFG_UCERR_ECATMEMREAD</strong>. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427MemCfg_forceCorrErrorStatus8uint32_t">
+<span id="_CPPv327MemCfg_forceCorrErrorStatus8uint32_t"></span><span id="_CPPv227MemCfg_forceCorrErrorStatus8uint32_t"></span><span id="MemCfg_forceCorrErrorStatus__uint32_t"></span><span class="target" id="group__memcfg__api_1gad1f5e7a8c9fa8045b3f1b70e8890fdcc"></span>void <code class="sig-name descname">MemCfg_forceCorrErrorStatus</code><span class="sig-paren">(</span>uint32_t <em>stsFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427MemCfg_forceCorrErrorStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the specified correctable RAM error status flag.</p>
+<p><p>This function sets the specified correctable RAM error status flag.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">stsFlags</span></code>: is a bit mask of the error sources. This parameter can be any of the following values: <strong>MEMCFG_CERR_CPUREAD</strong>, <strong>MEMCFG_CERR_DMAREAD</strong>, or <strong>MEMCFG_CERR_CLA1READ</strong> </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429MemCfg_forceUncorrErrorStatus8uint32_t">
+<span id="_CPPv329MemCfg_forceUncorrErrorStatus8uint32_t"></span><span id="_CPPv229MemCfg_forceUncorrErrorStatus8uint32_t"></span><span id="MemCfg_forceUncorrErrorStatus__uint32_t"></span><span class="target" id="group__memcfg__api_1ga632cd6426b4c9496a26aec3751c9b80a"></span>void <code class="sig-name descname">MemCfg_forceUncorrErrorStatus</code><span class="sig-paren">(</span>uint32_t <em>stsFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429MemCfg_forceUncorrErrorStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the specified uncorrectable RAM error status flag.</p>
+<p><p>This function sets the specified uncorrectable RAM error status flag.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">stsFlags</span></code>: is a bit mask of the error sources. This parameter can be any of the following values: <strong>MEMCFG_UCERR_CPUREAD</strong>, <strong>MEMCFG_UCERR_DMAREAD</strong>, <strong>MEMCFG_UCERR_CLA1READ</strong>, or <strong>MEMCFG_UCERR_ECATMEMREAD</strong>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427MemCfg_clearCorrErrorStatus8uint32_t">
+<span id="_CPPv327MemCfg_clearCorrErrorStatus8uint32_t"></span><span id="_CPPv227MemCfg_clearCorrErrorStatus8uint32_t"></span><span id="MemCfg_clearCorrErrorStatus__uint32_t"></span><span class="target" id="group__memcfg__api_1ga4d9bb807f3601ca5e9fd57c0ef719cf1"></span>void <code class="sig-name descname">MemCfg_clearCorrErrorStatus</code><span class="sig-paren">(</span>uint32_t <em>stsFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427MemCfg_clearCorrErrorStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears correctable RAM error flags.</p>
+<p><p>This function clears the specified correctable RAM error flags.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">stsFlags</span></code>: is a bit mask of the status flags to be cleared. This parameter can be any of the following : <strong>MEMCFG_CERR_CPUREAD</strong>, <strong>MEMCFG_CERR_DMAREAD</strong>, or <strong>MEMCFG_CERR_CLA1READ</strong> </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429MemCfg_clearUncorrErrorStatus8uint32_t">
+<span id="_CPPv329MemCfg_clearUncorrErrorStatus8uint32_t"></span><span id="_CPPv229MemCfg_clearUncorrErrorStatus8uint32_t"></span><span id="MemCfg_clearUncorrErrorStatus__uint32_t"></span><span class="target" id="group__memcfg__api_1ga8333448d0a35332ecef988849b8b01f7"></span>void <code class="sig-name descname">MemCfg_clearUncorrErrorStatus</code><span class="sig-paren">(</span>uint32_t <em>stsFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429MemCfg_clearUncorrErrorStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears uncorrectable RAM error flags.</p>
+<p><p>This function clears the specified uncorrectable RAM error flags.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">stsFlags</span></code>: is a bit mask of the status flags to be cleared. This parameter can be any of the following : <strong>MEMCFG_UCERR_CPUREAD</strong>, <strong>MEMCFG_UCERR_DMAREAD</strong>, <strong>MEMCFG_UCERR_CLA1READ</strong>, or <strong>MEMCFG_UCERR_ECATMEMREAD</strong>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425MemCfg_enableROMWaitStatev">
+<span id="_CPPv325MemCfg_enableROMWaitStatev"></span><span id="_CPPv225MemCfg_enableROMWaitStatev"></span><span id="MemCfg_enableROMWaitState__void"></span><span class="target" id="group__memcfg__api_1ga9d89a1f2cc5ae71a69c21eecb54e291e"></span>void <code class="sig-name descname">MemCfg_enableROMWaitState</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425MemCfg_enableROMWaitStatev" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables ROM wait state.</p>
+<p>This function enables the ROM wait state. This mean CPU accesses to ROM are 1-wait.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426MemCfg_disableROMWaitStatev">
+<span id="_CPPv326MemCfg_disableROMWaitStatev"></span><span id="_CPPv226MemCfg_disableROMWaitStatev"></span><span id="MemCfg_disableROMWaitState__void"></span><span class="target" id="group__memcfg__api_1ga45c0cdfa37a61be2dfcd5119a114e80d"></span>void <code class="sig-name descname">MemCfg_disableROMWaitState</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426MemCfg_disableROMWaitStatev" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables ROM wait state.</p>
+<p>This function enables the ROM wait state. This mean CPU accesses to ROM are 0-wait.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424MemCfg_enableROMPrefetchv">
+<span id="_CPPv324MemCfg_enableROMPrefetchv"></span><span id="_CPPv224MemCfg_enableROMPrefetchv"></span><span id="MemCfg_enableROMPrefetch__void"></span><span class="target" id="group__memcfg__api_1ga2b4c29a48eb54218567515f0a89ecff1"></span>void <code class="sig-name descname">MemCfg_enableROMPrefetch</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424MemCfg_enableROMPrefetchv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables ROM prefetch.</p>
+<p>This function enables the ROM prefetch for both secure ROM and boot ROM.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425MemCfg_disableROMPrefetchv">
+<span id="_CPPv325MemCfg_disableROMPrefetchv"></span><span id="_CPPv225MemCfg_disableROMPrefetchv"></span><span id="MemCfg_disableROMPrefetch__void"></span><span class="target" id="group__memcfg__api_1ga86d0bf61fdbb55196fbf58f22d3e7951"></span>void <code class="sig-name descname">MemCfg_disableROMPrefetch</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425MemCfg_disableROMPrefetchv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables ROM prefetch.</p>
+<p>This function enables the ROM prefetch for both secure ROM and boot ROM.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417MemCfg_lockConfig8uint32_t">
+<span id="_CPPv317MemCfg_lockConfig8uint32_t"></span><span id="_CPPv217MemCfg_lockConfig8uint32_t"></span><span id="MemCfg_lockConfig__uint32_t"></span><span class="target" id="group__memcfg__api_1ga9814daed4697abe866776e4cabb20dfc"></span>void <code class="sig-name descname">MemCfg_lockConfig</code><span class="sig-paren">(</span>uint32_t <em>memSections</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417MemCfg_lockConfig8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Locks the writes to the configuration of specified memory sections.</p>
+<p><p>This function locks writes to the access protection and master select configuration of a memory section.That means calling </p>
+<a class="reference internal" href="#group__memcfg__api_1ga99d704ec8ab016365ccb868f9f163a59"><span class="std std-ref">MemCfg_setProtection()</span></a> or <a class="reference internal" href="#group__memcfg__api_1ga3649aa9e2e152708fa2eee01b024d413"><span class="std std-ref">MemCfg_setLSRAMMasterSel()</span></a> for a locked memory section will have no effect until <a class="reference internal" href="#group__memcfg__api_1gae00348f30b6d43dc012624eaef77e866"><span class="std std-ref">MemCfg_unlockConfig()</span></a> is called.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">memSections</span></code>: is the logical OR of the sections to be configured.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>memSections</em> parameter is an OR of one of the following sets of indicators:<ul class="simple">
+<li><p><strong>MEMCFG_SECT_D0</strong> and <strong>MEMCFG_SECT_D1</strong> or <strong>MEMCFG_SECT_DX_ALL</strong> </p></li>
+<li><p><strong>MEMCFG_SECT_LS0</strong> through <strong>MEMCFG_SECT_LSx</strong> or <strong>MEMCFG_SECT_LSX_ALL</strong> </p></li>
+<li><p><strong>MEMCFG_SECT_GS0</strong> through <strong>MEMCFG_SECT_GSx</strong> or <strong>MEMCFG_SECT_GSX_ALL</strong> </p></li>
+<li><p><strong>OR</strong> use <strong>MEMCFG_SECT_ALL</strong> to configure all possible sections.</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419MemCfg_unlockConfig8uint32_t">
+<span id="_CPPv319MemCfg_unlockConfig8uint32_t"></span><span id="_CPPv219MemCfg_unlockConfig8uint32_t"></span><span id="MemCfg_unlockConfig__uint32_t"></span><span class="target" id="group__memcfg__api_1gae00348f30b6d43dc012624eaef77e866"></span>void <code class="sig-name descname">MemCfg_unlockConfig</code><span class="sig-paren">(</span>uint32_t <em>memSections</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419MemCfg_unlockConfig8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Unlocks the writes to the configuration of a memory section.</p>
+<p><p>This function unlocks writes to the access protection and master select configuration of a memory section that has been locked using </p>
+<a class="reference internal" href="#group__memcfg__api_1ga9814daed4697abe866776e4cabb20dfc"><span class="std std-ref">MemCfg_lockConfig()</span></a>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">memSections</span></code>: is the logical OR of the sections to be configured.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>memSections</em> parameter is an OR of one of the following sets of indicators:<ul class="simple">
+<li><p><strong>MEMCFG_SECT_D0</strong> and <strong>MEMCFG_SECT_D1</strong> or <strong>MEMCFG_SECT_DX_ALL</strong> </p></li>
+<li><p><strong>MEMCFG_SECT_LS0</strong> through <strong>MEMCFG_SECT_LSx</strong> or <strong>MEMCFG_SECT_LSX_ALL</strong> </p></li>
+<li><p><strong>MEMCFG_SECT_GS0</strong> through <strong>MEMCFG_SECT_GSx</strong> or <strong>MEMCFG_SECT_GSX_ALL</strong> </p></li>
+<li><p><strong>OR</strong> use <strong>MEMCFG_SECT_ALL</strong> to configure all possible sections.</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419MemCfg_commitConfig8uint32_t">
+<span id="_CPPv319MemCfg_commitConfig8uint32_t"></span><span id="_CPPv219MemCfg_commitConfig8uint32_t"></span><span id="MemCfg_commitConfig__uint32_t"></span><span class="target" id="group__memcfg__api_1ga8ce8c0219db8129547acfdc304bac7eb"></span>void <code class="sig-name descname">MemCfg_commitConfig</code><span class="sig-paren">(</span>uint32_t <em>memSections</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419MemCfg_commitConfig8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Permanently locks writes to the configuration of a memory section.</p>
+<p><p>This function permanently locks writes to the access protection and master select configuration of a memory section. That means calling </p>
+<a class="reference internal" href="#group__memcfg__api_1ga99d704ec8ab016365ccb868f9f163a59"><span class="std std-ref">MemCfg_setProtection()</span></a> or <a class="reference internal" href="#group__memcfg__api_1ga3649aa9e2e152708fa2eee01b024d413"><span class="std std-ref">MemCfg_setLSRAMMasterSel()</span></a> for a locked memory section will have no effect. To lock the configuration in a nonpermanent way, use <a class="reference internal" href="#group__memcfg__api_1ga9814daed4697abe866776e4cabb20dfc"><span class="std std-ref">MemCfg_lockConfig()</span></a>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">memSections</span></code>: is the logical OR of the sections to be configured.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>memSections</em> parameter is an OR of one of the following sets of indicators:<ul class="simple">
+<li><p><strong>MEMCFG_SECT_D0</strong> and <strong>MEMCFG_SECT_D1</strong> or <strong>MEMCFG_SECT_DX_ALL</strong> </p></li>
+<li><p><strong>MEMCFG_SECT_LS0</strong> through <strong>MEMCFG_SECT_LSx</strong> or <strong>MEMCFG_SECT_LSX_ALL</strong> </p></li>
+<li><p><strong>MEMCFG_SECT_GS0</strong> through <strong>MEMCFG_SECT_GSx</strong> or <strong>MEMCFG_SECT_GSX_ALL</strong> </p></li>
+<li><p><strong>OR</strong> use <strong>MEMCFG_SECT_ALL</strong> to configure all possible sections.</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420MemCfg_setProtection8uint32_t8uint32_t">
+<span id="_CPPv320MemCfg_setProtection8uint32_t8uint32_t"></span><span id="_CPPv220MemCfg_setProtection8uint32_t8uint32_t"></span><span id="MemCfg_setProtection__uint32_t.uint32_t"></span><span class="target" id="group__memcfg__api_1ga99d704ec8ab016365ccb868f9f163a59"></span>void <code class="sig-name descname">MemCfg_setProtection</code><span class="sig-paren">(</span>uint32_t <em>memSection</em>, uint32_t <em>protectMode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420MemCfg_setProtection8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the access protection mode of a single memory section.</p>
+<p><p>This function sets the access protection mode of a specified memory section. The mode is passed into the </p>
+<em>protectMode</em> parameter as the logical OR of the following values:<ul class="simple">
+<li><p><strong>MEMCFG_PROT_ALLOWCPUFETCH</strong> or <strong>MEMCFG_PROT_BLOCKCPUFETCH</strong> - CPU fetch</p></li>
+<li><p><strong>MEMCFG_PROT_ALLOWCPUWRITE</strong> or <strong>MEMCFG_PROT_BLOCKCPUWRITE</strong> - CPU write</p></li>
+<li><p><strong>MEMCFG_PROT_ALLOWDMAWRITE</strong> or <strong>MEMCFG_PROT_BLOCKDMAWRITE</strong> - DMA write</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">memSection</span></code>: is the memory section to be configured. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">protectMode</span></code>: is the logical OR of the settings to be applied.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>memSection</em> parameter is one of the following indicators:<ul class="simple">
+<li><p><strong>MEMCFG_SECT_D0</strong> or <strong>MEMCFG_SECT_D1</strong> </p></li>
+<li><p><strong>MEMCFG_SECT_LS0</strong> through <strong>MEMCFG_SECT_LSx</strong> </p></li>
+<li><p><strong>MEMCFG_SECT_GS0</strong> through <strong>MEMCFG_SECT_GSx</strong> </p></li>
+</ul>
+</p>
+<p>This function will have no effect if the associated registers have been locked by <a class="reference internal" href="#group__memcfg__api_1ga9814daed4697abe866776e4cabb20dfc"><span class="std std-ref">MemCfg_lockConfig()</span></a> or <a class="reference internal" href="#group__memcfg__api_1ga8ce8c0219db8129547acfdc304bac7eb"><span class="std std-ref">MemCfg_commitConfig()</span></a> or if the memory is configured as CLA program memory.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424MemCfg_setLSRAMMasterSel8uint32_t21MemCfg_LSRAMMasterSel">
+<span id="_CPPv324MemCfg_setLSRAMMasterSel8uint32_t21MemCfg_LSRAMMasterSel"></span><span id="_CPPv224MemCfg_setLSRAMMasterSel8uint32_t21MemCfg_LSRAMMasterSel"></span><span id="MemCfg_setLSRAMMasterSel__uint32_t.MemCfg_LSRAMMasterSel"></span><span class="target" id="group__memcfg__api_1ga3649aa9e2e152708fa2eee01b024d413"></span>void <code class="sig-name descname">MemCfg_setLSRAMMasterSel</code><span class="sig-paren">(</span>uint32_t <em>ramSection</em>, <a class="reference internal" href="#_CPPv421MemCfg_LSRAMMasterSel" title="MemCfg_LSRAMMasterSel">MemCfg_LSRAMMasterSel</a> <em>masterSel</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424MemCfg_setLSRAMMasterSel8uint32_t21MemCfg_LSRAMMasterSel" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the master of the specified LSxRAM section.</p>
+<p><p>This function sets the master select configuration of the LSxRAM section.If the </p>
+<em>masterSel</em> parameter is <strong>MEMCFG_LSRAMMASTER_CPU_ONLY</strong>, the LSxRAM section passed into the <em>ramSection</em> parameter will be dedicated to the CPU. If <strong>MEMCFG_LSRAMMASTER_CPU_CLA1</strong>, the memory section will be shared between the CPU and the CLA.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ramSection</span></code>: is the LSxRAM section to be configured. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">masterSel</span></code>: is the sharing selection.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>ramSection</em> parameter should be a value from <strong>MEMCFG_SECT_LS0</strong> through <strong>MEMCFG_SECT_LSx</strong>.</p>
+<p>This function will have no effect if the associated registers have been locked by <a class="reference internal" href="#group__memcfg__api_1ga9814daed4697abe866776e4cabb20dfc"><span class="std std-ref">MemCfg_lockConfig()</span></a> or <a class="reference internal" href="#group__memcfg__api_1ga8ce8c0219db8129547acfdc304bac7eb"><span class="std std-ref">MemCfg_commitConfig()</span></a>.</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>This API only applies to LSxRAM.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424MemCfg_setGSRAMMasterSel8uint32_t21MemCfg_GSRAMMasterSel">
+<span id="_CPPv324MemCfg_setGSRAMMasterSel8uint32_t21MemCfg_GSRAMMasterSel"></span><span id="_CPPv224MemCfg_setGSRAMMasterSel8uint32_t21MemCfg_GSRAMMasterSel"></span><span id="MemCfg_setGSRAMMasterSel__uint32_t.MemCfg_GSRAMMasterSel"></span><span class="target" id="group__memcfg__api_1ga0d9064ee182d5f422f07b78ffe755f72"></span>void <code class="sig-name descname">MemCfg_setGSRAMMasterSel</code><span class="sig-paren">(</span>uint32_t <em>ramSections</em>, <a class="reference internal" href="#_CPPv421MemCfg_GSRAMMasterSel" title="MemCfg_GSRAMMasterSel">MemCfg_GSRAMMasterSel</a> <em>masterSel</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424MemCfg_setGSRAMMasterSel8uint32_t21MemCfg_GSRAMMasterSel" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the master of the specified GSxRAM section.</p>
+<p><p>This function sets the master select configuration of the GSxRAM section.If the </p>
+<em>masterSel</em> parameter is <strong>MEMCFG_GSRAMMASTER_CPU1</strong>, the GSRAM sections passed into the <em>ramSections</em> parameter will be dedicated to CPU1. If <strong>MEMCFG_GSRAMMASTER_CPU2</strong>, the memory section will be dedicated to CPU2.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ramSections</span></code>: is the logical OR of the sections to be configured. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">masterSel</span></code>: is the sharing selection.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>ramSections</em> parameter should be a logical OR of values from <strong>MEMCFG_SECT_GS0</strong> through <strong>MEMCFG_SECT_GSx</strong>.</p>
+<p>This function will have no effect if the associated registers have been locked by <a class="reference internal" href="#group__memcfg__api_1ga9814daed4697abe866776e4cabb20dfc"><span class="std std-ref">MemCfg_lockConfig()</span></a> or <a class="reference internal" href="#group__memcfg__api_1ga8ce8c0219db8129547acfdc304bac7eb"><span class="std std-ref">MemCfg_commitConfig()</span></a>.</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>This API only applies to GSxRAM.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418MemCfg_setTestMode8uint32_t15MemCfg_TestMode">
+<span id="_CPPv318MemCfg_setTestMode8uint32_t15MemCfg_TestMode"></span><span id="_CPPv218MemCfg_setTestMode8uint32_t15MemCfg_TestMode"></span><span id="MemCfg_setTestMode__uint32_t.MemCfg_TestMode"></span><span class="target" id="group__memcfg__api_1ga7635d170151ecaa29d551df8b7a57eca"></span>void <code class="sig-name descname">MemCfg_setTestMode</code><span class="sig-paren">(</span>uint32_t <em>memSection</em>, <a class="reference internal" href="#_CPPv415MemCfg_TestMode" title="MemCfg_TestMode">MemCfg_TestMode</a> <em>testMode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418MemCfg_setTestMode8uint32_t15MemCfg_TestMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the test mode of the specified memory section.</p>
+<p><p>This function sets the test mode configuration of the RAM section. The </p>
+<em>testMode</em> parameter can take one of the following values:<ul class="simple">
+<li><p><strong>MEMCFG_TEST_FUNCTIONAL</strong> </p></li>
+<li><p><strong>MEMCFG_TEST_WRITE_DATA</strong> </p></li>
+<li><p><strong>MEMCFG_TEST_WRITE_ECC</strong> </p></li>
+<li><p><strong>MEMCFG_TEST_WRITE_PARITY</strong> </p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">memSection</span></code>: is the memory section to be configured. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">testMode</span></code>: is the test mode selected.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>memSection</em> parameter is one of the following indicators:<ul class="simple">
+<li><p><strong>MEMCFG_SECT_M0</strong>, <strong>MEMCFG_SECT_M1</strong> </p></li>
+<li><p><strong>MEMCFG_SECT_D0</strong>, <strong>MEMCFG_SECT_D1</strong> </p></li>
+<li><p><strong>MEMCFG_SECT_LS0</strong> through <strong>MEMCFG_SECT_LSx</strong> </p></li>
+<li><p><strong>MEMCFG_SECT_GS0</strong> through <strong>MEMCFG_SECT_GSx</strong> </p></li>
+<li><p><strong>MEMCFG_SECT_MSGCPUTOCPU</strong>, <strong>MEMCFG_SECT_MSGCPUTOCLA1</strong>, or <strong>MEMCFG_SECT_MSGCLA1TOCPU</strong> </p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419MemCfg_initSections8uint32_t">
+<span id="_CPPv319MemCfg_initSections8uint32_t"></span><span id="_CPPv219MemCfg_initSections8uint32_t"></span><span id="MemCfg_initSections__uint32_t"></span><span class="target" id="group__memcfg__api_1gaea9bf75bdd02de7783ea1bb22995203a"></span>void <code class="sig-name descname">MemCfg_initSections</code><span class="sig-paren">(</span>uint32_t <em>ramSections</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419MemCfg_initSections8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Starts the initialization the specified RAM sections.</p>
+<p><p>This function starts the initialization of the specified RAM sections. Use </p>
+<a class="reference internal" href="#group__memcfg__api_1ga15681f6f2648448cdf1d1c3c0669439d"><span class="std std-ref">MemCfg_getInitStatus()</span></a> to check if the initialization is done.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ramSections</span></code>: is the logical OR of the sections to be initialized.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>ramSections</em> parameter is an OR of one of the following sets of indicators:<ul class="simple">
+<li><p><strong>MEMCFG_SECT_M0</strong>, <strong>MEMCFG_SECT_M1</strong>, <strong>MEMCFG_SECT_D0</strong>, <strong>MEMCFG_SECT_D1</strong>, or <strong>MEMCFG_SECT_DX_ALL</strong> </p></li>
+<li><p><strong>MEMCFG_SECT_LS0</strong> through <strong>MEMCFG_SECT_LSx</strong>, or <strong>MEMCFG_SECT_LSX_ALL</strong> </p></li>
+<li><p><strong>MEMCFG_SECT_GS0</strong> through <strong>MEMCFG_SECT_GSx</strong>, or <strong>MEMCFG_SECT_GSX_ALL</strong> </p></li>
+<li><p><strong>MEMCFG_SECT_MSGCPUTOCPU</strong>, <strong>MEMCFG_SECT_MSGCPUTOCLA1</strong>, or <strong>MEMCFG_SECT_MSGCLA1TOCPU</strong> </p></li>
+<li><p><strong>OR</strong> use <strong>MEMCFG_SECT_ALL</strong> to configure all possible sections.</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420MemCfg_getInitStatus8uint32_t">
+<span id="_CPPv320MemCfg_getInitStatus8uint32_t"></span><span id="_CPPv220MemCfg_getInitStatus8uint32_t"></span><span id="MemCfg_getInitStatus__uint32_t"></span><span class="target" id="group__memcfg__api_1ga15681f6f2648448cdf1d1c3c0669439d"></span>bool <code class="sig-name descname">MemCfg_getInitStatus</code><span class="sig-paren">(</span>uint32_t <em>ramSections</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420MemCfg_getInitStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the status of initialized RAM sections.</p>
+<p><p>This function gets the initialization status of the RAM sections specified by the </p>
+<em>ramSections</em> parameter.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ramSections</span></code>: is the logical OR of the sections to be checked.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>ramSections</em> parameter is an OR of one of the following sets of indicators:<ul class="simple">
+<li><p><strong>MEMCFG_SECT_M0</strong>, <strong>MEMCFG_SECT_M1</strong>, <strong>MEMCFG_SECT_D0</strong>, <strong>MEMCFG_SECT_D1</strong>, or <strong>MEMCFG_SECT_DX_ALL</strong> </p></li>
+<li><p><strong>MEMCFG_SECT_LS0</strong> through <strong>MEMCFG_SECT_LSx</strong>, or <strong>MEMCFG_SECT_LSX_ALL</strong> </p></li>
+<li><p><strong>MEMCFG_SECT_GS0</strong> through <strong>MEMCFG_SECT_GSx</strong>, or <strong>MEMCFG_SECT_GSX_ALL</strong> </p></li>
+<li><p><strong>MEMCFG_SECT_MSGCPUTOCPU</strong>, <strong>MEMCFG_SECT_MSGCPUTOCLA1</strong>, or <strong>MEMCFG_SECT_MSGCLA1TOCPU</strong> </p></li>
+<li><p><strong>OR</strong> use <strong>MEMCFG_SECT_ALL</strong> to get status of all possible sections.</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Use <a class="reference internal" href="#group__memcfg__api_1gaea9bf75bdd02de7783ea1bb22995203a"><span class="std std-ref">MemCfg_initSections()</span></a> to start the initialization.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if all the sections specified by <em>ramSections</em> have been initialized and <strong>false</strong> if not. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426MemCfg_getViolationAddress8uint32_t">
+<span id="_CPPv326MemCfg_getViolationAddress8uint32_t"></span><span id="_CPPv226MemCfg_getViolationAddress8uint32_t"></span><span id="MemCfg_getViolationAddress__uint32_t"></span><span class="target" id="group__memcfg__api_1ga7f0e947ea70319ac1f65ae780d4922ad"></span>uint32_t <code class="sig-name descname">MemCfg_getViolationAddress</code><span class="sig-paren">(</span>uint32_t <em>intFlag</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426MemCfg_getViolationAddress8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the violation address associated with a intFlag.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the violation address associated with the <em>intFlag</em>. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlag</span></code>: is the type of access violation as indicated by ONE of these values:<ul>
+<li><p><strong>MEMCFG_NMVIOL_CPUREAD</strong> - Non-master CPU read access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_CPUWRITE</strong> - Non-master CPU write access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_CPUFETCH</strong> - Non-master CPU fetch access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_DMAWRITE</strong> - Non-master DMA write access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_CLA1READ</strong> - Non-master CLA1 read access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_CLA1WRITE</strong> - Non-master CLA1 write access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_CLA1FETCH</strong> - Non-master CLA1 fetch access</p></li>
+<li><p><strong>MEMCFG_MVIOL_CPUFETCH</strong> - Master CPU fetch access</p></li>
+<li><p><strong>MEMCFG_MVIOL_CPUWRITE</strong> - Master CPU write access</p></li>
+<li><p><strong>MEMCFG_MVIOL_DMAWRITE</strong> - Master DMA write access</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426MemCfg_getCorrErrorAddress8uint32_t">
+<span id="_CPPv326MemCfg_getCorrErrorAddress8uint32_t"></span><span id="_CPPv226MemCfg_getCorrErrorAddress8uint32_t"></span><span id="MemCfg_getCorrErrorAddress__uint32_t"></span><span class="target" id="group__memcfg__api_1ga1c95e96bfc682c53446ead21b649ef1e"></span>uint32_t <code class="sig-name descname">MemCfg_getCorrErrorAddress</code><span class="sig-paren">(</span>uint32_t <em>stsFlag</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426MemCfg_getCorrErrorAddress8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the correctable error address associated with a stsFlag.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the error address associated with the stsFlag. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">stsFlag</span></code>: is the type of error to which the returned address will correspond. Can currently take the value <strong>MEMCFG_CERR_CPUREAD</strong> only. Other values are reserved.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428MemCfg_getUncorrErrorAddress8uint32_t">
+<span id="_CPPv328MemCfg_getUncorrErrorAddress8uint32_t"></span><span id="_CPPv228MemCfg_getUncorrErrorAddress8uint32_t"></span><span id="MemCfg_getUncorrErrorAddress__uint32_t"></span><span class="target" id="group__memcfg__api_1ga59361b035c46cc0c2847ff663806f95b"></span>uint32_t <code class="sig-name descname">MemCfg_getUncorrErrorAddress</code><span class="sig-paren">(</span>uint32_t <em>stsFlag</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428MemCfg_getUncorrErrorAddress8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the uncorrectable error address associated with a stsFlag.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the error address associated with the stsFlag. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">stsFlag</span></code>: is the type of error to which the returned address will correspond. It may be passed one of these values: <strong>MEMCFG_UCERR_CPUREAD</strong>, <strong>MEMCFG_UCERR_DMAREAD</strong>, or <strong>MEMCFG_UCERR_CLA1READ</strong> values</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>Many of the functions provided by this API to configure RAM sections’ settings
+will take a RAM section identifier or an OR of several identifiers as a
+parameter. These are #defines with names in the format  MEMCFG_SECT_X.
+Take care to read the function description to learn which functions can operate
+on multiple sections of the same type at a time and which ones can only
+configure one section at a time. A quick way to check this is to see if the
+parameter says e ramSection or the plural e ramSections. Some functions may
+also be able to take a  MEMCFG_SECT_ALL value to indicate that all RAM
+sections should be operated on at the same time. Again, read the function’s
+detailed description to be sure.</p>
+<p>The code for this module is contained in driverlib/memcfg.c, with driverlib/memcfg.h containing the API declarations for use by applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="mcbsp.html" class="btn btn-neutral float-left" title="MCBSP Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sci.html" class="btn btn-neutral float-right" title="SCI Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

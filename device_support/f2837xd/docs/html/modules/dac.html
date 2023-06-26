@@ -1,0 +1,668 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>DAC Module &mdash; F2837xd API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F2837xd API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="DCSM Module" href="dcsm.html"/>
+        <link rel="prev" title="CPU Timer Module" href="cputimer.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F2837xd API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="adc.html">ADC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asysctl.html">ASysCtl Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla.html">CLA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clb.html">CLB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmpss.html">CMPSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">DAC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dma.html">DMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ecap.html">ECAP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emif.html">EMIF Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="epwm.html">EPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hrpwm.html">HRPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqep.html">EQEP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcbsp.html">MCBSP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci.html">SCI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdfm.html">SDFM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">SPI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upp.html">UPP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version.html">Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xbar.html">XBAR Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F2837xd API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>DAC Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="dac-module">
+<span id="dac"></span><h1>DAC Module<a class="headerlink" href="#dac-module" title="Permalink to this headline">¶</a></h1>
+<p>The buffered digital to analog converter (DAC) API provides a set of functions
+for programming the digital circuits of the DAC. Functions are provided to set
+the reference voltage, the synchronization mode, the internal 12-bit DAC value,
+and set the state of the DAC output.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__dac__api"></span><em>group</em> <code class="sig-name descname">dac_api</code></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.DAC_REG_BYTE_MASK">
+<span class="target" id="group__dac__api_1ga55e5e07886e03226b921bbbfb7beafab"></span><code class="sig-name descname">DAC_REG_BYTE_MASK</code> (0xFFU)<a class="headerlink" href="#c.DAC_REG_BYTE_MASK" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Register Byte Mask. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DAC_LOCK_KEY">
+<span class="target" id="group__dac__api_1ga54a9da9d4ad33f97bdc55659fd3cc44a"></span><code class="sig-name descname">DAC_LOCK_KEY</code> (0xA000U)<a class="headerlink" href="#c.DAC_LOCK_KEY" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>DAC Lock Key. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DAC_LOCK_CONTROL">
+<span class="target" id="group__dac__api_1gae96bc0110e0d07f9a0a89e2fdc20ee7e"></span><code class="sig-name descname">DAC_LOCK_CONTROL</code> (0x1U)<a class="headerlink" href="#c.DAC_LOCK_CONTROL" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Lock the control register. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DAC_LOCK_SHADOW">
+<span class="target" id="group__dac__api_1gab1d0208b2b8886ce1ccb641c950f8739"></span><code class="sig-name descname">DAC_LOCK_SHADOW</code> (0x2U)<a class="headerlink" href="#c.DAC_LOCK_SHADOW" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Lock the shadow value register. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DAC_LOCK_OUTPUT">
+<span class="target" id="group__dac__api_1ga4a656d3e836c49285cae5be09fd51d44"></span><code class="sig-name descname">DAC_LOCK_OUTPUT</code> (0x4U)<a class="headerlink" href="#c.DAC_LOCK_OUTPUT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Lock the output enable register. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="cpp enum">
+<dt id="_CPPv420DAC_ReferenceVoltage">
+<span id="_CPPv320DAC_ReferenceVoltage"></span><span id="_CPPv220DAC_ReferenceVoltage"></span><span class="target" id="group__dac__api_1ga050286066cbfe396b9f3bf046247347f"></span><em class="property">enum </em><code class="sig-name descname">DAC_ReferenceVoltage</code><a class="headerlink" href="#_CPPv420DAC_ReferenceVoltage" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__dac__api_1ga77cfbc074fcc649200bd43cc6d941b75"><span class="std std-ref">DAC_setReferenceVoltage()</span></a> as the <em>source</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20DAC_ReferenceVoltage12DAC_REF_VDACE">
+<span id="_CPPv3N20DAC_ReferenceVoltage12DAC_REF_VDACE"></span><span id="_CPPv2N20DAC_ReferenceVoltage12DAC_REF_VDACE"></span><span class="target" id="group__dac__api_1gga050286066cbfe396b9f3bf046247347fa3ca1e6520daf0ca2d479db2e373935d8"></span><em class="property">enumerator </em><code class="sig-name descname">DAC_REF_VDAC</code> = 0<a class="headerlink" href="#_CPPv4N20DAC_ReferenceVoltage12DAC_REF_VDACE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>VDAC reference voltage. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20DAC_ReferenceVoltage18DAC_REF_ADC_VREFHIE">
+<span id="_CPPv3N20DAC_ReferenceVoltage18DAC_REF_ADC_VREFHIE"></span><span id="_CPPv2N20DAC_ReferenceVoltage18DAC_REF_ADC_VREFHIE"></span><span class="target" id="group__dac__api_1gga050286066cbfe396b9f3bf046247347facd970a5ddda12f7950c4745bb4e61a8b"></span><em class="property">enumerator </em><code class="sig-name descname">DAC_REF_ADC_VREFHI</code> = 1<a class="headerlink" href="#_CPPv4N20DAC_ReferenceVoltage18DAC_REF_ADC_VREFHIE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>ADC VREFHI reference voltage. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv412DAC_LoadMode">
+<span id="_CPPv312DAC_LoadMode"></span><span id="_CPPv212DAC_LoadMode"></span><span class="target" id="group__dac__api_1ga015ca6d4a2b55bd66d1a4effb180313e"></span><em class="property">enum </em><code class="sig-name descname">DAC_LoadMode</code><a class="headerlink" href="#_CPPv412DAC_LoadMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__dac__api_1gaaaac0e28836841d9f77e086bb8508be4"><span class="std std-ref">DAC_setLoadMode()</span></a> as the <em>mode</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12DAC_LoadMode15DAC_LOAD_SYSCLKE">
+<span id="_CPPv3N12DAC_LoadMode15DAC_LOAD_SYSCLKE"></span><span id="_CPPv2N12DAC_LoadMode15DAC_LOAD_SYSCLKE"></span><span class="target" id="group__dac__api_1gga015ca6d4a2b55bd66d1a4effb180313ea0a0ced6aebc4887d4c6ae5b76d2de5f3"></span><em class="property">enumerator </em><code class="sig-name descname">DAC_LOAD_SYSCLK</code> = 0<a class="headerlink" href="#_CPPv4N12DAC_LoadMode15DAC_LOAD_SYSCLKE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Load on next SYSCLK. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12DAC_LoadMode16DAC_LOAD_PWMSYNCE">
+<span id="_CPPv3N12DAC_LoadMode16DAC_LOAD_PWMSYNCE"></span><span id="_CPPv2N12DAC_LoadMode16DAC_LOAD_PWMSYNCE"></span><span class="target" id="group__dac__api_1gga015ca6d4a2b55bd66d1a4effb180313ea2bf545e512d58c2ddcc697e17ccb35a3"></span><em class="property">enumerator </em><code class="sig-name descname">DAC_LOAD_PWMSYNC</code> = 4<a class="headerlink" href="#_CPPv4N12DAC_LoadMode16DAC_LOAD_PWMSYNCE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Load on next PWMSYNC specified by SYNCSEL. </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv415DAC_getRevision8uint32_t">
+<span id="_CPPv315DAC_getRevision8uint32_t"></span><span id="_CPPv215DAC_getRevision8uint32_t"></span><span id="DAC_getRevision__uint32_t"></span><span class="target" id="group__dac__api_1gabcf208b6278f0a6c9e24a821281e3e5a"></span>uint16_t <code class="sig-name descname">DAC_getRevision</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415DAC_getRevision8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the DAC Revision value</p>
+<p><p>This function gets the DAC revision value.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the DAC module base address</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the DAC revision value. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423DAC_setReferenceVoltage8uint32_t20DAC_ReferenceVoltage">
+<span id="_CPPv323DAC_setReferenceVoltage8uint32_t20DAC_ReferenceVoltage"></span><span id="_CPPv223DAC_setReferenceVoltage8uint32_t20DAC_ReferenceVoltage"></span><span id="DAC_setReferenceVoltage__uint32_t.DAC_ReferenceVoltage"></span><span class="target" id="group__dac__api_1ga77cfbc074fcc649200bd43cc6d941b75"></span>void <code class="sig-name descname">DAC_setReferenceVoltage</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv420DAC_ReferenceVoltage" title="DAC_ReferenceVoltage">DAC_ReferenceVoltage</a> <em>source</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423DAC_setReferenceVoltage8uint32_t20DAC_ReferenceVoltage" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the DAC Reference Voltage</p>
+<p><p>This function sets the DAC reference voltage.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the DAC module base address </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source</span></code>: is the selected reference voltage</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>source</em> parameter can have one of two values:<ul class="simple">
+<li><p><strong>DAC_REF_VDAC</strong> - The VDAC reference voltage</p></li>
+<li><p><strong>DAC_REF_ADC_VREFHI</strong> - The ADC VREFHI reference voltage</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415DAC_setLoadMode8uint32_t12DAC_LoadMode">
+<span id="_CPPv315DAC_setLoadMode8uint32_t12DAC_LoadMode"></span><span id="_CPPv215DAC_setLoadMode8uint32_t12DAC_LoadMode"></span><span id="DAC_setLoadMode__uint32_t.DAC_LoadMode"></span><span class="target" id="group__dac__api_1gaaaac0e28836841d9f77e086bb8508be4"></span>void <code class="sig-name descname">DAC_setLoadMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv412DAC_LoadMode" title="DAC_LoadMode">DAC_LoadMode</a> <em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415DAC_setLoadMode8uint32_t12DAC_LoadMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the DAC Load Mode</p>
+<p><p>This function sets the DAC load mode.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the DAC module base address </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: is the selected load mode</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>mode</em> parameter can have one of two values:<ul class="simple">
+<li><p><strong>DAC_LOAD_SYSCLK</strong> - Load on next SYSCLK</p></li>
+<li><p><strong>DAC_LOAD_PWMSYNC</strong> - Load on next PWMSYNC specified by SYNCSEL</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420DAC_setPWMSyncSignal8uint32_t8uint16_t">
+<span id="_CPPv320DAC_setPWMSyncSignal8uint32_t8uint16_t"></span><span id="_CPPv220DAC_setPWMSyncSignal8uint32_t8uint16_t"></span><span id="DAC_setPWMSyncSignal__uint32_t.uint16_t"></span><span class="target" id="group__dac__api_1ga894e42503fa367c433cfbd60b5335923"></span>void <code class="sig-name descname">DAC_setPWMSyncSignal</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>signal</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420DAC_setPWMSyncSignal8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the DAC PWMSYNC Signal</p>
+<p><p>This function sets the DAC PWMSYNC signal.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the DAC module base address </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">signal</span></code>: is the selected PWM signal</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>signal</em> parameter must be set to a number that represents the PWM signal that will be set. For instance, passing 2 into <em>signal</em> will select PWM sync signal 2.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418DAC_getActiveValue8uint32_t">
+<span id="_CPPv318DAC_getActiveValue8uint32_t"></span><span id="_CPPv218DAC_getActiveValue8uint32_t"></span><span id="DAC_getActiveValue__uint32_t"></span><span class="target" id="group__dac__api_1ga4bbe4c35a3578bb9a4ad0413764aa90a"></span>uint16_t <code class="sig-name descname">DAC_getActiveValue</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418DAC_getActiveValue8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the DAC Active Output Value</p>
+<p><p>This function gets the DAC active output value.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the DAC module base address</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the DAC active output value. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418DAC_setShadowValue8uint32_t8uint16_t">
+<span id="_CPPv318DAC_setShadowValue8uint32_t8uint16_t"></span><span id="_CPPv218DAC_setShadowValue8uint32_t8uint16_t"></span><span id="DAC_setShadowValue__uint32_t.uint16_t"></span><span class="target" id="group__dac__api_1ga12d9dffb62b325ddc1b320435aefcb8b"></span>void <code class="sig-name descname">DAC_setShadowValue</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418DAC_setShadowValue8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set the DAC Shadow Output Value</p>
+<p><p>This function sets the DAC shadow output value.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the DAC module base address </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: is the 12-bit code to be loaded into the active value register</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418DAC_getShadowValue8uint32_t">
+<span id="_CPPv318DAC_getShadowValue8uint32_t"></span><span id="_CPPv218DAC_getShadowValue8uint32_t"></span><span id="DAC_getShadowValue__uint32_t"></span><span class="target" id="group__dac__api_1gaa8f9b6b182680770cee2850ff4311106"></span>uint16_t <code class="sig-name descname">DAC_getShadowValue</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418DAC_getShadowValue8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the DAC Shadow Output Value</p>
+<p><p>This function gets the DAC shadow output value.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the DAC module base address</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the DAC shadow output value. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416DAC_enableOutput8uint32_t">
+<span id="_CPPv316DAC_enableOutput8uint32_t"></span><span id="_CPPv216DAC_enableOutput8uint32_t"></span><span id="DAC_enableOutput__uint32_t"></span><span class="target" id="group__dac__api_1ga12f9f3a884fa5bdebf6d94df8c2223d9"></span>void <code class="sig-name descname">DAC_enableOutput</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416DAC_enableOutput8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable the DAC Output</p>
+<p><p>This function enables the DAC output.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the DAC module base address</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>A delay is required after enabling the DAC. Further details regarding the exact delay time length can be found in the device datasheet.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417DAC_disableOutput8uint32_t">
+<span id="_CPPv317DAC_disableOutput8uint32_t"></span><span id="_CPPv217DAC_disableOutput8uint32_t"></span><span id="DAC_disableOutput__uint32_t"></span><span class="target" id="group__dac__api_1gac9b8d692a84f19a3d56017d22ca43c03"></span>void <code class="sig-name descname">DAC_disableOutput</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417DAC_disableOutput8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable the DAC Output</p>
+<p><p>This function disables the DAC output.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the DAC module base address</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417DAC_setOffsetTrim8uint32_t7int16_t">
+<span id="_CPPv317DAC_setOffsetTrim8uint32_t7int16_t"></span><span id="_CPPv217DAC_setOffsetTrim8uint32_t7int16_t"></span><span id="DAC_setOffsetTrim__uint32_t.int16_t"></span><span class="target" id="group__dac__api_1ga9c3a8bc1177626cfe433e859c1f51239"></span>void <code class="sig-name descname">DAC_setOffsetTrim</code><span class="sig-paren">(</span>uint32_t <em>base</em>, int16_t <em>offset</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417DAC_setOffsetTrim8uint32_t7int16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set DAC Offset Trim</p>
+<p><p>This function sets the DAC offset trim. The </p>
+<em>offset</em> value should be a signed number in the range of -128 to 127.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the DAC module base address </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">offset</span></code>: is the specified value for the offset trim</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>The offset should not be modified unless specifically indicated by TI Errata or other documentation. Modifying the offset value could cause this module to operate outside of the datasheet specifications.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417DAC_getOffsetTrim8uint32_t">
+<span id="_CPPv317DAC_getOffsetTrim8uint32_t"></span><span id="_CPPv217DAC_getOffsetTrim8uint32_t"></span><span id="DAC_getOffsetTrim__uint32_t"></span><span class="target" id="group__dac__api_1ga0950f801ddb49b8f54d3ba2806a47311"></span>int16_t <code class="sig-name descname">DAC_getOffsetTrim</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417DAC_getOffsetTrim8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get DAC Offset Trim</p>
+<p><p>This function gets the DAC offset trim value.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the DAC module base address</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416DAC_lockRegister8uint32_t8uint16_t">
+<span id="_CPPv316DAC_lockRegister8uint32_t8uint16_t"></span><span id="_CPPv216DAC_lockRegister8uint32_t8uint16_t"></span><span id="DAC_lockRegister__uint32_t.uint16_t"></span><span class="target" id="group__dac__api_1ga621868901853b971d84e3f1ac6980688"></span>void <code class="sig-name descname">DAC_lockRegister</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>reg</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416DAC_lockRegister8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Lock write-access to DAC Register</p>
+<p><p>This function locks the write-access to the specified DAC register. Only a system reset can unlock the register once locked.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the DAC module base address </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reg</span></code>: is the selected DAC registers</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>reg</em> parameter can be an ORed combination of any of the following values:<ul class="simple">
+<li><p><strong>DAC_LOCK_CONTROL</strong> - Lock the DAC control register</p></li>
+<li><p><strong>DAC_LOCK_SHADOW</strong> - Lock the DAC shadow value register</p></li>
+<li><p><strong>DAC_LOCK_OUTPUT</strong> - Lock the DAC output enable/disable register</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420DAC_isRegisterLocked8uint32_t8uint16_t">
+<span id="_CPPv320DAC_isRegisterLocked8uint32_t8uint16_t"></span><span id="_CPPv220DAC_isRegisterLocked8uint32_t8uint16_t"></span><span id="DAC_isRegisterLocked__uint32_t.uint16_t"></span><span class="target" id="group__dac__api_1ga23b784679131976f9f91e5654dd423e8"></span>bool <code class="sig-name descname">DAC_isRegisterLocked</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>reg</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420DAC_isRegisterLocked8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Check if DAC Register is locked</p>
+<p><p>This function checks if write-access has been locked on the specified DAC register.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the DAC module base address </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reg</span></code>: is the selected DAC register locks to check</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>reg</em> parameter can be an ORed combination of any of the following values:<ul class="simple">
+<li><p><strong>DAC_LOCK_CONTROL</strong> - Lock the DAC control register</p></li>
+<li><p><strong>DAC_LOCK_SHADOW</strong> - Lock the DAC shadow value register</p></li>
+<li><p><strong>DAC_LOCK_OUTPUT</strong> - Lock the DAC output enable/disable register</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if any of the registers specified are locked, and <strong>false</strong> if all specified registers aren’t locked. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418DAC_tuneOffsetTrim8uint32_t9float32_t">
+<span id="_CPPv318DAC_tuneOffsetTrim8uint32_t9float32_t"></span><span id="_CPPv218DAC_tuneOffsetTrim8uint32_t9float32_t"></span><span id="DAC_tuneOffsetTrim__uint32_t.float32_t"></span><span class="target" id="group__dac__api_1gafeb01961a37d91db7adf3f0815574035"></span>void <code class="sig-name descname">DAC_tuneOffsetTrim</code><span class="sig-paren">(</span>uint32_t <em>base</em>, float32_t <em>referenceVoltage</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418DAC_tuneOffsetTrim8uint32_t9float32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Tune DAC Offset Trim</p>
+<p><p>This function adjusts/tunes the DAC offset trim. The </p>
+<em>referenceVoltage</em> value should be a floating point number in the range specified in the device data manual.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the DAC module base address </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">referenceVoltage</span></code>: is the reference voltage the DAC module is operating at.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Use this function to adjust the DAC offset trim if operating at a reference voltage other than 2.5v. Since this function modifies the DAC offset trim register, it should only be called once after Device_cal. If it is called multiple times after Device_cal, the offset value scaled would be the wrong value.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>The code for this module is contained in driverlib/dac.c, with driverlib/dac.h containing the API declarations for use by applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cputimer.html" class="btn btn-neutral float-left" title="CPU Timer Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dcsm.html" class="btn btn-neutral float-right" title="DCSM Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

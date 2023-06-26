@@ -1,0 +1,310 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CLA Module &mdash; F280013x API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F280013x API Guide" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F280013x API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Modules</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F280013x API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>CLA Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cla-module">
+<span id="cla"></span><h1>CLA Module<a class="headerlink" href="#cla-module" title="Permalink to this headline">¶</a></h1>
+<p>The Control Law Accelerator (CLA) API provides a set of functions to configure
+the CLA. The CLA is an independent accelerator with its own buses, ALU and
+register set. It does share memory, both program and data, with the main
+processor; it comes out of a power reset with no memory assets and therefore
+the C28x must configure how the CLA runs, which memory spaces it uses, and when
+code must run.</p>
+<p>The primary use of the CLA is to implement small, fast control loops that run
+periodically, responding to specific trigger sources like the PWM or an ADC
+conversion in a deterministic (fixed and low latency) fashion.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygengroup: Cannot find namespace “cla_api” in doxygen xml output for project “F280013x_API” from directory: ../imports/doxy_out/xml/</p>
+</div>
+<p>The next few paragraphs describe configuration options that are
+accessible via the main processor (the C28x).</p>
+<p>The CLA code is broken up into a main background task and a set of 7 tasks,
+each of which requires a trigger source either from a hardware peripheral or
+software. Each task begins at an address that is given by its vector register.
+The vector for the background task can be configured using the
+CLA_mapBackgroundTaskVector(), and the task’s vector is set using
+CLA_mapTaskVector(). The trigger source for all the tasks can be set
+with CLA_setTriggerSource(). If using a software trigger, the user must
+first enable the feature with CLA_enableIACK(), and then trigger the
+task with the assembly instruction,</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">align</dt>
+<dd class="field-odd"><p>center</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>__asm(” IACK #&lt;Task&gt;”);
+Task refers to the task to trigger; it is one less than the actual task.
+For example, if attempting to trigger task 1 you would issue,</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">align</dt>
+<dd class="field-odd"><p>center</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>__asm(” IACK #0”);</p>
+<p>A task will only start to execute if it is globally enabled. This is done
+through CLA_enableTasks(). Once enabled, a task will respond to a
+peripheral trigger (if configured to do so), a software force (with the IACK
+instruction), or through CLA_forceTasks().</p>
+<p>In this type of CLA, a background task is always running. It is enabled using
+CLA_enableBackgroundTask() and subsequently kicked off by
+CLA_startBackgroundTask(), or through a peripheral trigger (it takes
+the same trigger as task 8 on older CLAs). The user may enable the background
+task peripheral trigger feature using  CLA_enableHardwareTrigger().</p>
+<p>The tasks (1 to 7) have a fixed priority, with 1 being the highest
+and 7 the lowest. They will interrupt the background task, when triggered, in
+priority order. The user may query the status of all tasks with
+CLA_getAllTaskRunStatus() or a particular task with
+CLA_getTaskRunStatus() to determine if its pending, running or idle.</p>
+<p>Each task (1 through 7) can issue an interrupt to the main CPU after it
+completes execution. This is configured through the PIE module, and
+registering the handler (ISR) for each end-of-task interrupt with
+CLA_registerEndOfTaskInterrupt().</p>
+<p>The CLA can undergo a soft reset with  CLA_performSoftReset() or emulate
+a power cycle or hard reset with  CLA_performHardReset().</p>
+<p>The CLA can access and configure a few configuration registers (the C28x
+can read but not alter these registers). A task can force another’s end-of-task
+interrupt to the main CPU by enabling that task’s software interrupt using
+CLA_enableSoftwareInterrupt() and subsequently forcing it using
+CLA_forceSoftwareInterrupt(). Its important to keep in mind that
+enabling a software interrupt for a given task disables its ability to generate
+an interrupt to the main CPU once it completes execution.</p>
+<p>The code for this module is contained in driverlib/cla.c, with driverlib/cla.h containing the API declarations for use by applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

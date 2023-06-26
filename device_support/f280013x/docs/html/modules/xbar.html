@@ -1,0 +1,1815 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>XBAR Module &mdash; F280013x API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F280013x API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="prev" title="Version" href="version.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F280013x API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="adc.html">ADC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asysctl.html">ASysCtl Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmpss.html">CMPSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcc.html">DCC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ecap.html">ECAP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="epg.html">EPG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="epwm.html">EPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqep.html">EQEP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hrpwm.html">HRPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci.html">SCI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">SPI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version.html">Version</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">XBAR Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F280013x API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>XBAR Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="xbar-module">
+<span id="xbar"></span><h1>XBAR Module<a class="headerlink" href="#xbar-module" title="Permalink to this headline">¶</a></h1>
+<p>The crossbar or X-BAR API is a set of functions to configure the three X-BARs
+on the device–the Input X-BAR, the Output X-BAR, and the ePWM X-BAR. The
+X-BARs route both signals from pins and internal signals from IP blocks to a
+degree beyond what is possible with GPIO muxing alone. Functions are provided
+by the API to configure the various muxes, enable and disable signals, and lock
+in the configurations selected.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__xbar__api"></span><em>group</em> <code class="sig-name descname">xbar_api</code></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.XBAR_EPWM_CFG_REG_BASE">
+<span class="target" id="group__xbar__api_1ga1f12545179941895e4e5baf914891b27"></span><code class="sig-name descname">XBAR_EPWM_CFG_REG_BASE</code> (EPWMXBAR_BASE + XBAR_O_TRIP4MUX0TO15CFG)<a class="headerlink" href="#c.XBAR_EPWM_CFG_REG_BASE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_EPWM_EN_REG_BASE">
+<span class="target" id="group__xbar__api_1ga0bac4f412e83955e15ffe12dd3cdf65c"></span><code class="sig-name descname">XBAR_EPWM_EN_REG_BASE</code> (EPWMXBAR_BASE + XBAR_O_TRIP4MUXENABLE)<a class="headerlink" href="#c.XBAR_EPWM_EN_REG_BASE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_INPUT_FLG_INPUT_M">
+<span class="target" id="group__xbar__api_1ga3b5bdbfe1ed242da0dc05dace2c0811d"></span><code class="sig-name descname">XBAR_INPUT_FLG_INPUT_M</code> 0x00FFU<a class="headerlink" href="#c.XBAR_INPUT_FLG_INPUT_M" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_INPUT_FLG_REG_M">
+<span class="target" id="group__xbar__api_1gadd389c651b05cfedbc54ab0bec060510"></span><code class="sig-name descname">XBAR_INPUT_FLG_REG_M</code> 0xFF00U<a class="headerlink" href="#c.XBAR_INPUT_FLG_REG_M" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_INPUT_FLG_REG_1">
+<span class="target" id="group__xbar__api_1ga0d895b9c51884a756cd1a6378172f13e"></span><code class="sig-name descname">XBAR_INPUT_FLG_REG_1</code> 0x0000U<a class="headerlink" href="#c.XBAR_INPUT_FLG_REG_1" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_INPUT_FLG_REG_2">
+<span class="target" id="group__xbar__api_1ga5c0397b07e474e10bcb041298bb9d274"></span><code class="sig-name descname">XBAR_INPUT_FLG_REG_2</code> 0x0100U<a class="headerlink" href="#c.XBAR_INPUT_FLG_REG_2" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_INPUT_FLG_REG_3">
+<span class="target" id="group__xbar__api_1ga14f68da8c9a0eec528ce9fe73d194698"></span><code class="sig-name descname">XBAR_INPUT_FLG_REG_3</code> 0x0200U<a class="headerlink" href="#c.XBAR_INPUT_FLG_REG_3" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_INPUT_FLG_REG_4">
+<span class="target" id="group__xbar__api_1ga2be58f0d2a52d4ab87643a00a2d3ecf4"></span><code class="sig-name descname">XBAR_INPUT_FLG_REG_4</code> 0x0300U<a class="headerlink" href="#c.XBAR_INPUT_FLG_REG_4" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_GPIO_MAX_CNT">
+<span class="target" id="group__xbar__api_1ga07d999bb0894b1fe7e6bca3210124182"></span><code class="sig-name descname">XBAR_GPIO_MAX_CNT</code> 41U<a class="headerlink" href="#c.XBAR_GPIO_MAX_CNT" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_GPIO_AIO_MIN_CNT">
+<span class="target" id="group__xbar__api_1ga5859b964a2522a5af4ca4d31d0f79713"></span><code class="sig-name descname">XBAR_GPIO_AIO_MIN_CNT</code> 224U<a class="headerlink" href="#c.XBAR_GPIO_AIO_MIN_CNT" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_GPIO_AIO_MAX_CNT">
+<span class="target" id="group__xbar__api_1gad59c081ff77e724993e33c2d4697669a"></span><code class="sig-name descname">XBAR_GPIO_AIO_MAX_CNT</code> 245U<a class="headerlink" href="#c.XBAR_GPIO_AIO_MAX_CNT" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_NON_GPIO_MIN_CNT">
+<span class="target" id="group__xbar__api_1ga5b025d73f645373652e8e2d39afa06d7"></span><code class="sig-name descname">XBAR_NON_GPIO_MIN_CNT</code> 0xFFFDU<a class="headerlink" href="#c.XBAR_NON_GPIO_MIN_CNT" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_NON_GPIO_MAX_CNT">
+<span class="target" id="group__xbar__api_1ga49a2b8f8040933de96a18341fa89bde6"></span><code class="sig-name descname">XBAR_NON_GPIO_MAX_CNT</code> 0xFFFFU<a class="headerlink" href="#c.XBAR_NON_GPIO_MAX_CNT" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_MUX00">
+<span class="target" id="group__xbar__api_1ga5263b52367c7a465f8a6269b5c8b8de5"></span><code class="sig-name descname">XBAR_MUX00</code> 0x00000001U<a class="headerlink" href="#c.XBAR_MUX00" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for X-BAR mux 0. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_MUX01">
+<span class="target" id="group__xbar__api_1gaa7960d250521e450951d2ef6e3b62682"></span><code class="sig-name descname">XBAR_MUX01</code> 0x00000002U<a class="headerlink" href="#c.XBAR_MUX01" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for X-BAR mux 1. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_MUX02">
+<span class="target" id="group__xbar__api_1gaddbf359cb117572aae8c18a82c15c700"></span><code class="sig-name descname">XBAR_MUX02</code> 0x00000004U<a class="headerlink" href="#c.XBAR_MUX02" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for X-BAR mux 2. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_MUX03">
+<span class="target" id="group__xbar__api_1gaa2da9bf5342873d222053cca8feb7771"></span><code class="sig-name descname">XBAR_MUX03</code> 0x00000008U<a class="headerlink" href="#c.XBAR_MUX03" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for X-BAR mux 3. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_MUX04">
+<span class="target" id="group__xbar__api_1ga1be9c6cd79bb0a21528bad9338893845"></span><code class="sig-name descname">XBAR_MUX04</code> 0x00000010U<a class="headerlink" href="#c.XBAR_MUX04" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for X-BAR mux 4. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_MUX05">
+<span class="target" id="group__xbar__api_1ga48fff6e7eb9dd9d7a614176e752ee2e6"></span><code class="sig-name descname">XBAR_MUX05</code> 0x00000020U<a class="headerlink" href="#c.XBAR_MUX05" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for X-BAR mux 5. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_MUX06">
+<span class="target" id="group__xbar__api_1ga6bf2998a05dd2d48828b08202c5aaba3"></span><code class="sig-name descname">XBAR_MUX06</code> 0x00000040U<a class="headerlink" href="#c.XBAR_MUX06" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for X-BAR mux 6. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_MUX07">
+<span class="target" id="group__xbar__api_1ga9ce7263ec4061ee74e3b1e2d57b277f6"></span><code class="sig-name descname">XBAR_MUX07</code> 0x00000080U<a class="headerlink" href="#c.XBAR_MUX07" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for X-BAR mux 7. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_MUX08">
+<span class="target" id="group__xbar__api_1ga6778e456422b63928754f90b7c249f2f"></span><code class="sig-name descname">XBAR_MUX08</code> 0x00000100U<a class="headerlink" href="#c.XBAR_MUX08" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for X-BAR mux 8. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_MUX09">
+<span class="target" id="group__xbar__api_1ga0797830136ecfc473e1fadf5d70523c0"></span><code class="sig-name descname">XBAR_MUX09</code> 0x00000200U<a class="headerlink" href="#c.XBAR_MUX09" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for X-BAR mux 9. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_MUX10">
+<span class="target" id="group__xbar__api_1ga538dfe40ed8c90220c728447034e1a5a"></span><code class="sig-name descname">XBAR_MUX10</code> 0x00000400U<a class="headerlink" href="#c.XBAR_MUX10" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for X-BAR mux 10. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_MUX11">
+<span class="target" id="group__xbar__api_1gaee9835d71d5a827e840f33cd436a7803"></span><code class="sig-name descname">XBAR_MUX11</code> 0x00000800U<a class="headerlink" href="#c.XBAR_MUX11" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for X-BAR mux 11. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_MUX12">
+<span class="target" id="group__xbar__api_1ga79116c0a2ff79c217eab640bde29ad40"></span><code class="sig-name descname">XBAR_MUX12</code> 0x00001000U<a class="headerlink" href="#c.XBAR_MUX12" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for X-BAR mux 12. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_MUX13">
+<span class="target" id="group__xbar__api_1ga83d4bba013f57b2369700b4f38dbafad"></span><code class="sig-name descname">XBAR_MUX13</code> 0x00002000U<a class="headerlink" href="#c.XBAR_MUX13" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for X-BAR mux 13. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_MUX14">
+<span class="target" id="group__xbar__api_1ga73e097f8a43c779033d87e555bb6251a"></span><code class="sig-name descname">XBAR_MUX14</code> 0x00004000U<a class="headerlink" href="#c.XBAR_MUX14" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for X-BAR mux 14. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_MUX15">
+<span class="target" id="group__xbar__api_1ga58f349b8397f597c4312a5677c4167a1"></span><code class="sig-name descname">XBAR_MUX15</code> 0x00008000U<a class="headerlink" href="#c.XBAR_MUX15" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for X-BAR mux 15. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_MUX16">
+<span class="target" id="group__xbar__api_1ga161adb8dce8fe2ced09d2a29890ce8f9"></span><code class="sig-name descname">XBAR_MUX16</code> 0x00010000U<a class="headerlink" href="#c.XBAR_MUX16" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for X-BAR mux 16. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_MUX17">
+<span class="target" id="group__xbar__api_1ga02d497129989b49394a5a24bea965997"></span><code class="sig-name descname">XBAR_MUX17</code> 0x00020000U<a class="headerlink" href="#c.XBAR_MUX17" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for X-BAR mux 17. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_MUX18">
+<span class="target" id="group__xbar__api_1ga07bd79689c6abf2e3b2ba972f7735605"></span><code class="sig-name descname">XBAR_MUX18</code> 0x00040000U<a class="headerlink" href="#c.XBAR_MUX18" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for X-BAR mux 18. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_MUX19">
+<span class="target" id="group__xbar__api_1ga9d8269f2d8ea15e492d131886bb36df9"></span><code class="sig-name descname">XBAR_MUX19</code> 0x00080000U<a class="headerlink" href="#c.XBAR_MUX19" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for X-BAR mux 19. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_MUX20">
+<span class="target" id="group__xbar__api_1gac4358c7896bfa2ec27d2b630e89bc8d7"></span><code class="sig-name descname">XBAR_MUX20</code> 0x00100000U<a class="headerlink" href="#c.XBAR_MUX20" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for X-BAR mux 20. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_MUX21">
+<span class="target" id="group__xbar__api_1gad1a76f1eb96bf28189bb0ffaace64e99"></span><code class="sig-name descname">XBAR_MUX21</code> 0x00200000U<a class="headerlink" href="#c.XBAR_MUX21" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for X-BAR mux 21. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_MUX22">
+<span class="target" id="group__xbar__api_1ga268115933190df0a2620e350b1c6f39b"></span><code class="sig-name descname">XBAR_MUX22</code> 0x00400000U<a class="headerlink" href="#c.XBAR_MUX22" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for X-BAR mux 22. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_MUX23">
+<span class="target" id="group__xbar__api_1ga9ac98e95a8487c5ce124d56105c69979"></span><code class="sig-name descname">XBAR_MUX23</code> 0x00800000U<a class="headerlink" href="#c.XBAR_MUX23" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for X-BAR mux 23. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_MUX24">
+<span class="target" id="group__xbar__api_1ga1aa02fb3a428ed2bed0d4bed748b256b"></span><code class="sig-name descname">XBAR_MUX24</code> 0x01000000U<a class="headerlink" href="#c.XBAR_MUX24" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for X-BAR mux 24. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_MUX25">
+<span class="target" id="group__xbar__api_1ga02904834db02e543c00702cafc35b611"></span><code class="sig-name descname">XBAR_MUX25</code> 0x02000000U<a class="headerlink" href="#c.XBAR_MUX25" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for X-BAR mux 25. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_MUX26">
+<span class="target" id="group__xbar__api_1ga05ac7b7716e0e09e134858d013a3be48"></span><code class="sig-name descname">XBAR_MUX26</code> 0x04000000U<a class="headerlink" href="#c.XBAR_MUX26" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for X-BAR mux 26. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_MUX27">
+<span class="target" id="group__xbar__api_1gae263717a95f72c80b2e8632da85c5e53"></span><code class="sig-name descname">XBAR_MUX27</code> 0x08000000U<a class="headerlink" href="#c.XBAR_MUX27" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for X-BAR mux 27. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_MUX28">
+<span class="target" id="group__xbar__api_1gaa04ff950a6ffe3306a204b6f3768bafd"></span><code class="sig-name descname">XBAR_MUX28</code> 0x10000000U<a class="headerlink" href="#c.XBAR_MUX28" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for X-BAR mux 28. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_MUX29">
+<span class="target" id="group__xbar__api_1ga0cccea1d1a5de7b230e840dcc78b9e94"></span><code class="sig-name descname">XBAR_MUX29</code> 0x20000000U<a class="headerlink" href="#c.XBAR_MUX29" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for X-BAR mux 29. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_MUX30">
+<span class="target" id="group__xbar__api_1ga26253caee6c8dec093cc9993502df3a2"></span><code class="sig-name descname">XBAR_MUX30</code> 0x40000000U<a class="headerlink" href="#c.XBAR_MUX30" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for X-BAR mux 30. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.XBAR_MUX31">
+<span class="target" id="group__xbar__api_1ga1a65954ce074d2cff568ab05220f1822"></span><code class="sig-name descname">XBAR_MUX31</code> 0x80000000U<a class="headerlink" href="#c.XBAR_MUX31" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for X-BAR mux 31. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="cpp enum">
+<dt id="_CPPv414XBAR_OutputNum">
+<span id="_CPPv314XBAR_OutputNum"></span><span id="_CPPv214XBAR_OutputNum"></span><span class="target" id="group__xbar__api_1gaf558e538c7ed2f5d87446851793773ba"></span><em class="property">enum </em><code class="sig-name descname">XBAR_OutputNum</code><a class="headerlink" href="#_CPPv414XBAR_OutputNum" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The following values define the <em>output</em> parameter for <a class="reference internal" href="#group__xbar__api_1gaee661191f3b94e2c02ce0f4996657524"><span class="std std-ref">XBAR_setOutputMuxConfig()</span></a>, <a class="reference internal" href="#group__xbar__api_1ga0487e229f76dc7d7d7f2115a28ab6ab3"><span class="std std-ref">XBAR_enableOutputMux()</span></a>, and <a class="reference internal" href="#group__xbar__api_1gae36c13d0cc38ab78859bb46c7a561f66"><span class="std std-ref">XBAR_disableOutputMux()</span></a>. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_OutputNum12XBAR_OUTPUT1E">
+<span id="_CPPv3N14XBAR_OutputNum12XBAR_OUTPUT1E"></span><span id="_CPPv2N14XBAR_OutputNum12XBAR_OUTPUT1E"></span><span class="target" id="group__xbar__api_1ggaf558e538c7ed2f5d87446851793773baab6b365ab272ace22148b891f0dd6b2e0"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUTPUT1</code> = 0<a class="headerlink" href="#_CPPv4N14XBAR_OutputNum12XBAR_OUTPUT1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>OUTPUT1 of the Output X-BAR. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_OutputNum12XBAR_OUTPUT2E">
+<span id="_CPPv3N14XBAR_OutputNum12XBAR_OUTPUT2E"></span><span id="_CPPv2N14XBAR_OutputNum12XBAR_OUTPUT2E"></span><span class="target" id="group__xbar__api_1ggaf558e538c7ed2f5d87446851793773baa7f9c426ff3021a2fc46170b83b23d8ea"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUTPUT2</code> = 2<a class="headerlink" href="#_CPPv4N14XBAR_OutputNum12XBAR_OUTPUT2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>OUTPUT2 of the Output X-BAR. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_OutputNum12XBAR_OUTPUT3E">
+<span id="_CPPv3N14XBAR_OutputNum12XBAR_OUTPUT3E"></span><span id="_CPPv2N14XBAR_OutputNum12XBAR_OUTPUT3E"></span><span class="target" id="group__xbar__api_1ggaf558e538c7ed2f5d87446851793773baa6611f3c16aecc5dc595b038105b3aee3"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUTPUT3</code> = 4<a class="headerlink" href="#_CPPv4N14XBAR_OutputNum12XBAR_OUTPUT3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>OUTPUT3 of the Output X-BAR. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_OutputNum12XBAR_OUTPUT4E">
+<span id="_CPPv3N14XBAR_OutputNum12XBAR_OUTPUT4E"></span><span id="_CPPv2N14XBAR_OutputNum12XBAR_OUTPUT4E"></span><span class="target" id="group__xbar__api_1ggaf558e538c7ed2f5d87446851793773baa6c22072082fb3527f46bd733288db1be"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUTPUT4</code> = 6<a class="headerlink" href="#_CPPv4N14XBAR_OutputNum12XBAR_OUTPUT4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>OUTPUT4 of the Output X-BAR. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_OutputNum12XBAR_OUTPUT5E">
+<span id="_CPPv3N14XBAR_OutputNum12XBAR_OUTPUT5E"></span><span id="_CPPv2N14XBAR_OutputNum12XBAR_OUTPUT5E"></span><span class="target" id="group__xbar__api_1ggaf558e538c7ed2f5d87446851793773baa3132c98d27cfdcf7680ce5bb34aaec4e"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUTPUT5</code> = 8<a class="headerlink" href="#_CPPv4N14XBAR_OutputNum12XBAR_OUTPUT5E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>OUTPUT5 of the Output X-BAR. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_OutputNum12XBAR_OUTPUT6E">
+<span id="_CPPv3N14XBAR_OutputNum12XBAR_OUTPUT6E"></span><span id="_CPPv2N14XBAR_OutputNum12XBAR_OUTPUT6E"></span><span class="target" id="group__xbar__api_1ggaf558e538c7ed2f5d87446851793773baa9bc7e4d25f3af02df2987d63daadc9c0"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUTPUT6</code> = 10<a class="headerlink" href="#_CPPv4N14XBAR_OutputNum12XBAR_OUTPUT6E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>OUTPUT6 of the Output X-BAR. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_OutputNum12XBAR_OUTPUT7E">
+<span id="_CPPv3N14XBAR_OutputNum12XBAR_OUTPUT7E"></span><span id="_CPPv2N14XBAR_OutputNum12XBAR_OUTPUT7E"></span><span class="target" id="group__xbar__api_1ggaf558e538c7ed2f5d87446851793773baa1ed56ff1fcc84a60270186a8ef98d1f1"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUTPUT7</code> = 12<a class="headerlink" href="#_CPPv4N14XBAR_OutputNum12XBAR_OUTPUT7E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>OUTPUT7 of the Output X-BAR. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_OutputNum12XBAR_OUTPUT8E">
+<span id="_CPPv3N14XBAR_OutputNum12XBAR_OUTPUT8E"></span><span id="_CPPv2N14XBAR_OutputNum12XBAR_OUTPUT8E"></span><span class="target" id="group__xbar__api_1ggaf558e538c7ed2f5d87446851793773baafe62a906034e4f9c6886e5909fe88aed"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUTPUT8</code> = 14<a class="headerlink" href="#_CPPv4N14XBAR_OutputNum12XBAR_OUTPUT8E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>OUTPUT8 of the Output X-BAR. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv412XBAR_TripNum">
+<span id="_CPPv312XBAR_TripNum"></span><span id="_CPPv212XBAR_TripNum"></span><span class="target" id="group__xbar__api_1gafbc2ac86889dd94795835aeef4d928ab"></span><em class="property">enum </em><code class="sig-name descname">XBAR_TripNum</code><a class="headerlink" href="#_CPPv412XBAR_TripNum" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The following values define the <em>trip</em> parameter for <a class="reference internal" href="#group__xbar__api_1ga5f6bcfcd44109dd6b153da49b2defb67"><span class="std std-ref">XBAR_setEPWMMuxConfig()</span></a>, <a class="reference internal" href="#group__xbar__api_1gae3754474c71dfbcd03c07c96b0021863"><span class="std std-ref">XBAR_enableEPWMMux()</span></a>, and <a class="reference internal" href="#group__xbar__api_1ga61cfc702b7f44e689c7a2be858866f90"><span class="std std-ref">XBAR_disableEPWMMux()</span></a>. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12XBAR_TripNum10XBAR_TRIP4E">
+<span id="_CPPv3N12XBAR_TripNum10XBAR_TRIP4E"></span><span id="_CPPv2N12XBAR_TripNum10XBAR_TRIP4E"></span><span class="target" id="group__xbar__api_1ggafbc2ac86889dd94795835aeef4d928aba9e6f9f93aac81bae322c0fb46b300657"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_TRIP4</code> = 0<a class="headerlink" href="#_CPPv4N12XBAR_TripNum10XBAR_TRIP4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>TRIP4 of the ePWM X-BAR. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12XBAR_TripNum10XBAR_TRIP5E">
+<span id="_CPPv3N12XBAR_TripNum10XBAR_TRIP5E"></span><span id="_CPPv2N12XBAR_TripNum10XBAR_TRIP5E"></span><span class="target" id="group__xbar__api_1ggafbc2ac86889dd94795835aeef4d928aba1397edc3e85b48af28d729cbef309466"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_TRIP5</code> = 2<a class="headerlink" href="#_CPPv4N12XBAR_TripNum10XBAR_TRIP5E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>TRIP5 of the ePWM X-BAR. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12XBAR_TripNum10XBAR_TRIP7E">
+<span id="_CPPv3N12XBAR_TripNum10XBAR_TRIP7E"></span><span id="_CPPv2N12XBAR_TripNum10XBAR_TRIP7E"></span><span class="target" id="group__xbar__api_1ggafbc2ac86889dd94795835aeef4d928aba984e61bfda863ab362640a8d4a109d8c"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_TRIP7</code> = 4<a class="headerlink" href="#_CPPv4N12XBAR_TripNum10XBAR_TRIP7E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>TRIP7 of the ePWM X-BAR. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12XBAR_TripNum10XBAR_TRIP8E">
+<span id="_CPPv3N12XBAR_TripNum10XBAR_TRIP8E"></span><span id="_CPPv2N12XBAR_TripNum10XBAR_TRIP8E"></span><span class="target" id="group__xbar__api_1ggafbc2ac86889dd94795835aeef4d928abafc5f6f591c895481e01b83789a36723a"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_TRIP8</code> = 6<a class="headerlink" href="#_CPPv4N12XBAR_TripNum10XBAR_TRIP8E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>TRIP8 of the ePWM X-BAR. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12XBAR_TripNum10XBAR_TRIP9E">
+<span id="_CPPv3N12XBAR_TripNum10XBAR_TRIP9E"></span><span id="_CPPv2N12XBAR_TripNum10XBAR_TRIP9E"></span><span class="target" id="group__xbar__api_1ggafbc2ac86889dd94795835aeef4d928abab407016e3f8f16a857d9952e0ef06da3"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_TRIP9</code> = 8<a class="headerlink" href="#_CPPv4N12XBAR_TripNum10XBAR_TRIP9E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>TRIP9 of the ePWM X-BAR. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12XBAR_TripNum11XBAR_TRIP10E">
+<span id="_CPPv3N12XBAR_TripNum11XBAR_TRIP10E"></span><span id="_CPPv2N12XBAR_TripNum11XBAR_TRIP10E"></span><span class="target" id="group__xbar__api_1ggafbc2ac86889dd94795835aeef4d928abac5e09be6cacb62d133f53f1024ad9b84"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_TRIP10</code> = 10<a class="headerlink" href="#_CPPv4N12XBAR_TripNum11XBAR_TRIP10E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>TRIP10 of the ePWM X-BAR. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12XBAR_TripNum11XBAR_TRIP11E">
+<span id="_CPPv3N12XBAR_TripNum11XBAR_TRIP11E"></span><span id="_CPPv2N12XBAR_TripNum11XBAR_TRIP11E"></span><span class="target" id="group__xbar__api_1ggafbc2ac86889dd94795835aeef4d928aba96fbb70446f5c62959bbdec2a3805e56"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_TRIP11</code> = 12<a class="headerlink" href="#_CPPv4N12XBAR_TripNum11XBAR_TRIP11E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>TRIP11 of the ePWM X-BAR. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12XBAR_TripNum11XBAR_TRIP12E">
+<span id="_CPPv3N12XBAR_TripNum11XBAR_TRIP12E"></span><span id="_CPPv2N12XBAR_TripNum11XBAR_TRIP12E"></span><span class="target" id="group__xbar__api_1ggafbc2ac86889dd94795835aeef4d928aba87d6ec7d21552d988e7cf7f261873b99"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_TRIP12</code> = 14<a class="headerlink" href="#_CPPv4N12XBAR_TripNum11XBAR_TRIP12E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>TRIP12 of the ePWM X-BAR. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv414XBAR_AuxSigNum">
+<span id="_CPPv314XBAR_AuxSigNum"></span><span id="_CPPv214XBAR_AuxSigNum"></span><span class="target" id="group__xbar__api_1gafa4968677e82b5d458507035de4f82de"></span><em class="property">enum </em><code class="sig-name descname">XBAR_AuxSigNum</code><a class="headerlink" href="#_CPPv414XBAR_AuxSigNum" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_AuxSigNum12XBAR_AUXSIG0E">
+<span id="_CPPv3N14XBAR_AuxSigNum12XBAR_AUXSIG0E"></span><span id="_CPPv2N14XBAR_AuxSigNum12XBAR_AUXSIG0E"></span><span class="target" id="group__xbar__api_1ggafa4968677e82b5d458507035de4f82dea063589bbbdf3f3c4f40bd1627bde8ea5"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_AUXSIG0</code> = 0<a class="headerlink" href="#_CPPv4N14XBAR_AuxSigNum12XBAR_AUXSIG0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_AuxSigNum12XBAR_AUXSIG1E">
+<span id="_CPPv3N14XBAR_AuxSigNum12XBAR_AUXSIG1E"></span><span id="_CPPv2N14XBAR_AuxSigNum12XBAR_AUXSIG1E"></span><span class="target" id="group__xbar__api_1ggafa4968677e82b5d458507035de4f82dea5041b8463b6191e61eae9c5464db96e0"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_AUXSIG1</code> = 2<a class="headerlink" href="#_CPPv4N14XBAR_AuxSigNum12XBAR_AUXSIG1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_AuxSigNum12XBAR_AUXSIG2E">
+<span id="_CPPv3N14XBAR_AuxSigNum12XBAR_AUXSIG2E"></span><span id="_CPPv2N14XBAR_AuxSigNum12XBAR_AUXSIG2E"></span><span class="target" id="group__xbar__api_1ggafa4968677e82b5d458507035de4f82dea527498c55bc8db5dfe9348860f7d5d07"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_AUXSIG2</code> = 4<a class="headerlink" href="#_CPPv4N14XBAR_AuxSigNum12XBAR_AUXSIG2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_AuxSigNum12XBAR_AUXSIG3E">
+<span id="_CPPv3N14XBAR_AuxSigNum12XBAR_AUXSIG3E"></span><span id="_CPPv2N14XBAR_AuxSigNum12XBAR_AUXSIG3E"></span><span class="target" id="group__xbar__api_1ggafa4968677e82b5d458507035de4f82deade74d550fcbbd2e80ebcae399ce2f6c1"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_AUXSIG3</code> = 6<a class="headerlink" href="#_CPPv4N14XBAR_AuxSigNum12XBAR_AUXSIG3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_AuxSigNum12XBAR_AUXSIG4E">
+<span id="_CPPv3N14XBAR_AuxSigNum12XBAR_AUXSIG4E"></span><span id="_CPPv2N14XBAR_AuxSigNum12XBAR_AUXSIG4E"></span><span class="target" id="group__xbar__api_1ggafa4968677e82b5d458507035de4f82dea6238f24a0d5ad1d7b5b85120d892e1b8"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_AUXSIG4</code> = 8<a class="headerlink" href="#_CPPv4N14XBAR_AuxSigNum12XBAR_AUXSIG4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_AuxSigNum12XBAR_AUXSIG5E">
+<span id="_CPPv3N14XBAR_AuxSigNum12XBAR_AUXSIG5E"></span><span id="_CPPv2N14XBAR_AuxSigNum12XBAR_AUXSIG5E"></span><span class="target" id="group__xbar__api_1ggafa4968677e82b5d458507035de4f82deaedd7552c67f43601f34478f32f3cbef6"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_AUXSIG5</code> = 10<a class="headerlink" href="#_CPPv4N14XBAR_AuxSigNum12XBAR_AUXSIG5E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_AuxSigNum12XBAR_AUXSIG6E">
+<span id="_CPPv3N14XBAR_AuxSigNum12XBAR_AUXSIG6E"></span><span id="_CPPv2N14XBAR_AuxSigNum12XBAR_AUXSIG6E"></span><span class="target" id="group__xbar__api_1ggafa4968677e82b5d458507035de4f82dead58c565d6d787e67eca490ce2d23ce2b"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_AUXSIG6</code> = 12<a class="headerlink" href="#_CPPv4N14XBAR_AuxSigNum12XBAR_AUXSIG6E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_AuxSigNum12XBAR_AUXSIG7E">
+<span id="_CPPv3N14XBAR_AuxSigNum12XBAR_AUXSIG7E"></span><span id="_CPPv2N14XBAR_AuxSigNum12XBAR_AUXSIG7E"></span><span class="target" id="group__xbar__api_1ggafa4968677e82b5d458507035de4f82dead9a2fc3a4ada38a3e2cece0ca7b19cd7"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_AUXSIG7</code> = 14<a class="headerlink" href="#_CPPv4N14XBAR_AuxSigNum12XBAR_AUXSIG7E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv413XBAR_InputNum">
+<span id="_CPPv313XBAR_InputNum"></span><span id="_CPPv213XBAR_InputNum"></span><span class="target" id="group__xbar__api_1gaf09ac9a52685256a427594223621ce01"></span><em class="property">enum </em><code class="sig-name descname">XBAR_InputNum</code><a class="headerlink" href="#_CPPv413XBAR_InputNum" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The following values define the <em>input</em> parameter for <a class="reference internal" href="#group__xbar__api_1gaf58bb7588ce93e311ec81f5ad6c0dea9"><span class="std std-ref">XBAR_setInputPin()</span></a>. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13XBAR_InputNum11XBAR_INPUT1E">
+<span id="_CPPv3N13XBAR_InputNum11XBAR_INPUT1E"></span><span id="_CPPv2N13XBAR_InputNum11XBAR_INPUT1E"></span><span class="target" id="group__xbar__api_1ggaf09ac9a52685256a427594223621ce01ab0c14a91da100f2be75690d4c9b5ad67"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT1</code><a class="headerlink" href="#_CPPv4N13XBAR_InputNum11XBAR_INPUT1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>ePWM[TZ1], ePWM[TRIP1], X-BARs, eCAPs </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13XBAR_InputNum11XBAR_INPUT2E">
+<span id="_CPPv3N13XBAR_InputNum11XBAR_INPUT2E"></span><span id="_CPPv2N13XBAR_InputNum11XBAR_INPUT2E"></span><span class="target" id="group__xbar__api_1ggaf09ac9a52685256a427594223621ce01aa34576546c65c9d6213e2df94de42562"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT2</code><a class="headerlink" href="#_CPPv4N13XBAR_InputNum11XBAR_INPUT2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>ePWM[TZ2], ePWM[TRIP2], X-BARs, eCAPs </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13XBAR_InputNum11XBAR_INPUT3E">
+<span id="_CPPv3N13XBAR_InputNum11XBAR_INPUT3E"></span><span id="_CPPv2N13XBAR_InputNum11XBAR_INPUT3E"></span><span class="target" id="group__xbar__api_1ggaf09ac9a52685256a427594223621ce01a13d4fa756a1a18619e1f2fd6a625a1f3"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT3</code><a class="headerlink" href="#_CPPv4N13XBAR_InputNum11XBAR_INPUT3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>ePWM[TZ3], ePWM[TRIP3], X-BARs, eCAPs </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13XBAR_InputNum11XBAR_INPUT4E">
+<span id="_CPPv3N13XBAR_InputNum11XBAR_INPUT4E"></span><span id="_CPPv2N13XBAR_InputNum11XBAR_INPUT4E"></span><span class="target" id="group__xbar__api_1ggaf09ac9a52685256a427594223621ce01ae5c59f77343660a9f5e2f737fd178931"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT4</code><a class="headerlink" href="#_CPPv4N13XBAR_InputNum11XBAR_INPUT4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>ADC wrappers, X-BARs, XINT1, eCAPs. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13XBAR_InputNum11XBAR_INPUT5E">
+<span id="_CPPv3N13XBAR_InputNum11XBAR_INPUT5E"></span><span id="_CPPv2N13XBAR_InputNum11XBAR_INPUT5E"></span><span class="target" id="group__xbar__api_1ggaf09ac9a52685256a427594223621ce01a674589a08b175c5cb5711c28d7aa0481"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT5</code><a class="headerlink" href="#_CPPv4N13XBAR_InputNum11XBAR_INPUT5E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EXTSYNCIN1, X-BARs, XINT2, eCAPs. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13XBAR_InputNum11XBAR_INPUT6E">
+<span id="_CPPv3N13XBAR_InputNum11XBAR_INPUT6E"></span><span id="_CPPv2N13XBAR_InputNum11XBAR_INPUT6E"></span><span class="target" id="group__xbar__api_1ggaf09ac9a52685256a427594223621ce01a96c60cf9749cbf16b84269030e1dbc50"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT6</code><a class="headerlink" href="#_CPPv4N13XBAR_InputNum11XBAR_INPUT6E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EXTSYNCIN2, ePWM[TRIP6], X-BARs, XINT3, eCAPs. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13XBAR_InputNum11XBAR_INPUT7E">
+<span id="_CPPv3N13XBAR_InputNum11XBAR_INPUT7E"></span><span id="_CPPv2N13XBAR_InputNum11XBAR_INPUT7E"></span><span class="target" id="group__xbar__api_1ggaf09ac9a52685256a427594223621ce01ad755ea3e7546129b695f74d96b914f00"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT7</code><a class="headerlink" href="#_CPPv4N13XBAR_InputNum11XBAR_INPUT7E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>X-BARs, eCAPs. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13XBAR_InputNum11XBAR_INPUT8E">
+<span id="_CPPv3N13XBAR_InputNum11XBAR_INPUT8E"></span><span id="_CPPv2N13XBAR_InputNum11XBAR_INPUT8E"></span><span class="target" id="group__xbar__api_1ggaf09ac9a52685256a427594223621ce01a181a5e004414ab8621a94f2ebe26374b"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT8</code><a class="headerlink" href="#_CPPv4N13XBAR_InputNum11XBAR_INPUT8E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>X-BARs, eCAPs. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13XBAR_InputNum11XBAR_INPUT9E">
+<span id="_CPPv3N13XBAR_InputNum11XBAR_INPUT9E"></span><span id="_CPPv2N13XBAR_InputNum11XBAR_INPUT9E"></span><span class="target" id="group__xbar__api_1ggaf09ac9a52685256a427594223621ce01a5703e1376c912f641bb50dc285aab02e"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT9</code><a class="headerlink" href="#_CPPv4N13XBAR_InputNum11XBAR_INPUT9E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>X-BARs, eCAPs. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13XBAR_InputNum12XBAR_INPUT10E">
+<span id="_CPPv3N13XBAR_InputNum12XBAR_INPUT10E"></span><span id="_CPPv2N13XBAR_InputNum12XBAR_INPUT10E"></span><span class="target" id="group__xbar__api_1ggaf09ac9a52685256a427594223621ce01a6580e3f6e40e97329db59bb71dd1e3be"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT10</code><a class="headerlink" href="#_CPPv4N13XBAR_InputNum12XBAR_INPUT10E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>X-BARs, eCAPs. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13XBAR_InputNum12XBAR_INPUT11E">
+<span id="_CPPv3N13XBAR_InputNum12XBAR_INPUT11E"></span><span id="_CPPv2N13XBAR_InputNum12XBAR_INPUT11E"></span><span class="target" id="group__xbar__api_1ggaf09ac9a52685256a427594223621ce01a7c9d79536beac811f4b04d6edc37971d"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT11</code><a class="headerlink" href="#_CPPv4N13XBAR_InputNum12XBAR_INPUT11E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>X-BARs, eCAPs. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13XBAR_InputNum12XBAR_INPUT12E">
+<span id="_CPPv3N13XBAR_InputNum12XBAR_INPUT12E"></span><span id="_CPPv2N13XBAR_InputNum12XBAR_INPUT12E"></span><span class="target" id="group__xbar__api_1ggaf09ac9a52685256a427594223621ce01a18c4545df4fd9e587fda6eb7bfe50377"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT12</code><a class="headerlink" href="#_CPPv4N13XBAR_InputNum12XBAR_INPUT12E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>X-BARs, eCAPs. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13XBAR_InputNum12XBAR_INPUT13E">
+<span id="_CPPv3N13XBAR_InputNum12XBAR_INPUT13E"></span><span id="_CPPv2N13XBAR_InputNum12XBAR_INPUT13E"></span><span class="target" id="group__xbar__api_1ggaf09ac9a52685256a427594223621ce01a547b504100ae995047aee583410e4e6c"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT13</code><a class="headerlink" href="#_CPPv4N13XBAR_InputNum12XBAR_INPUT13E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>XINT4, X-BARs, eCAPs. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13XBAR_InputNum12XBAR_INPUT14E">
+<span id="_CPPv3N13XBAR_InputNum12XBAR_INPUT14E"></span><span id="_CPPv2N13XBAR_InputNum12XBAR_INPUT14E"></span><span class="target" id="group__xbar__api_1ggaf09ac9a52685256a427594223621ce01a4db94a60993ee150a589668c1976b97d"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT14</code><a class="headerlink" href="#_CPPv4N13XBAR_InputNum12XBAR_INPUT14E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>XINT5, X-BARs, eCAPs. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13XBAR_InputNum12XBAR_INPUT15E">
+<span id="_CPPv3N13XBAR_InputNum12XBAR_INPUT15E"></span><span id="_CPPv2N13XBAR_InputNum12XBAR_INPUT15E"></span><span class="target" id="group__xbar__api_1ggaf09ac9a52685256a427594223621ce01a24b3ac0a57793232c692c11cff4f7302"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT15</code><a class="headerlink" href="#_CPPv4N13XBAR_InputNum12XBAR_INPUT15E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>eCAPs </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13XBAR_InputNum12XBAR_INPUT16E">
+<span id="_CPPv3N13XBAR_InputNum12XBAR_INPUT16E"></span><span id="_CPPv2N13XBAR_InputNum12XBAR_INPUT16E"></span><span class="target" id="group__xbar__api_1ggaf09ac9a52685256a427594223621ce01aa658b93638d6d6d9ee8774ab39c9994f"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT16</code><a class="headerlink" href="#_CPPv4N13XBAR_InputNum12XBAR_INPUT16E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>eCAPs </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv420XBAR_OutputMuxConfig">
+<span id="_CPPv320XBAR_OutputMuxConfig"></span><span id="_CPPv220XBAR_OutputMuxConfig"></span><span class="target" id="group__xbar__api_1ga0e74405c5ebbd87324000177efcc1789"></span><em class="property">enum </em><code class="sig-name descname">XBAR_OutputMuxConfig</code><a class="headerlink" href="#_CPPv420XBAR_OutputMuxConfig" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The following values define the <em>muxConfig</em> parameter for <a class="reference internal" href="#group__xbar__api_1gaee661191f3b94e2c02ce0f4996657524"><span class="std std-ref">XBAR_setOutputMuxConfig()</span></a>. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig31XBAR_OUT_MUX00_CMPSS1_CTRIPOUTHE">
+<span id="_CPPv3N20XBAR_OutputMuxConfig31XBAR_OUT_MUX00_CMPSS1_CTRIPOUTHE"></span><span id="_CPPv2N20XBAR_OutputMuxConfig31XBAR_OUT_MUX00_CMPSS1_CTRIPOUTHE"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789ac67b6e51d19d0fe90e0bc54b9ca8b616"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX00_CMPSS1_CTRIPOUTH</code> = 0x0000<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig31XBAR_OUT_MUX00_CMPSS1_CTRIPOUTHE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig36XBAR_OUT_MUX00_CMPSS1_CTRIPOUTH_OR_LE">
+<span id="_CPPv3N20XBAR_OutputMuxConfig36XBAR_OUT_MUX00_CMPSS1_CTRIPOUTH_OR_LE"></span><span id="_CPPv2N20XBAR_OutputMuxConfig36XBAR_OUT_MUX00_CMPSS1_CTRIPOUTH_OR_LE"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789ad5ce0d32696d7e8b51ca56808fa3706a"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX00_CMPSS1_CTRIPOUTH_OR_L</code> = 0x0001<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig36XBAR_OUT_MUX00_CMPSS1_CTRIPOUTH_OR_LE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig23XBAR_OUT_MUX00_ADCAEVT1E">
+<span id="_CPPv3N20XBAR_OutputMuxConfig23XBAR_OUT_MUX00_ADCAEVT1E"></span><span id="_CPPv2N20XBAR_OutputMuxConfig23XBAR_OUT_MUX00_ADCAEVT1E"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789a36ba3b2d2139de38b88c4f08a27ebff7"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX00_ADCAEVT1</code> = 0x0002<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig23XBAR_OUT_MUX00_ADCAEVT1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig24XBAR_OUT_MUX00_ECAP1_OUTE">
+<span id="_CPPv3N20XBAR_OutputMuxConfig24XBAR_OUT_MUX00_ECAP1_OUTE"></span><span id="_CPPv2N20XBAR_OutputMuxConfig24XBAR_OUT_MUX00_ECAP1_OUTE"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789a383f67a82a392cf5a40e7bf5612e3e8a"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX00_ECAP1_OUT</code> = 0x0003<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig24XBAR_OUT_MUX00_ECAP1_OUTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig31XBAR_OUT_MUX01_CMPSS1_CTRIPOUTLE">
+<span id="_CPPv3N20XBAR_OutputMuxConfig31XBAR_OUT_MUX01_CMPSS1_CTRIPOUTLE"></span><span id="_CPPv2N20XBAR_OutputMuxConfig31XBAR_OUT_MUX01_CMPSS1_CTRIPOUTLE"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789ae6eabcabd9b11c9c1768a5a0c4bd5554"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX01_CMPSS1_CTRIPOUTL</code> = 0x0200<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig31XBAR_OUT_MUX01_CMPSS1_CTRIPOUTLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig25XBAR_OUT_MUX01_INPUTXBAR1E">
+<span id="_CPPv3N20XBAR_OutputMuxConfig25XBAR_OUT_MUX01_INPUTXBAR1E"></span><span id="_CPPv2N20XBAR_OutputMuxConfig25XBAR_OUT_MUX01_INPUTXBAR1E"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789ab6e555fe844a226c5b374b308ada1dca"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX01_INPUTXBAR1</code> = 0x0201<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig25XBAR_OUT_MUX01_INPUTXBAR1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig23XBAR_OUT_MUX01_ADCCEVT1E">
+<span id="_CPPv3N20XBAR_OutputMuxConfig23XBAR_OUT_MUX01_ADCCEVT1E"></span><span id="_CPPv2N20XBAR_OutputMuxConfig23XBAR_OUT_MUX01_ADCCEVT1E"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789acb9443644a50928ff3dacf58441da845"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX01_ADCCEVT1</code> = 0x0203<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig23XBAR_OUT_MUX01_ADCCEVT1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig31XBAR_OUT_MUX02_CMPSS2_CTRIPOUTHE">
+<span id="_CPPv3N20XBAR_OutputMuxConfig31XBAR_OUT_MUX02_CMPSS2_CTRIPOUTHE"></span><span id="_CPPv2N20XBAR_OutputMuxConfig31XBAR_OUT_MUX02_CMPSS2_CTRIPOUTHE"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789af67fce0ade624b167bdc7c0466aefa7f"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX02_CMPSS2_CTRIPOUTH</code> = 0x0400<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig31XBAR_OUT_MUX02_CMPSS2_CTRIPOUTHE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig36XBAR_OUT_MUX02_CMPSS2_CTRIPOUTH_OR_LE">
+<span id="_CPPv3N20XBAR_OutputMuxConfig36XBAR_OUT_MUX02_CMPSS2_CTRIPOUTH_OR_LE"></span><span id="_CPPv2N20XBAR_OutputMuxConfig36XBAR_OUT_MUX02_CMPSS2_CTRIPOUTH_OR_LE"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789a3436da15212e5af349fec95b95db4389"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX02_CMPSS2_CTRIPOUTH_OR_L</code> = 0x0401<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig36XBAR_OUT_MUX02_CMPSS2_CTRIPOUTH_OR_LE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig23XBAR_OUT_MUX02_ADCAEVT2E">
+<span id="_CPPv3N20XBAR_OutputMuxConfig23XBAR_OUT_MUX02_ADCAEVT2E"></span><span id="_CPPv2N20XBAR_OutputMuxConfig23XBAR_OUT_MUX02_ADCAEVT2E"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789abb55468ad54a05091e3722e8c58c5118"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX02_ADCAEVT2</code> = 0x0402<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig23XBAR_OUT_MUX02_ADCAEVT2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig24XBAR_OUT_MUX02_ECAP2_OUTE">
+<span id="_CPPv3N20XBAR_OutputMuxConfig24XBAR_OUT_MUX02_ECAP2_OUTE"></span><span id="_CPPv2N20XBAR_OutputMuxConfig24XBAR_OUT_MUX02_ECAP2_OUTE"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789a1d35d92b259791464add335fc5f20b09"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX02_ECAP2_OUT</code> = 0x0403<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig24XBAR_OUT_MUX02_ECAP2_OUTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig31XBAR_OUT_MUX03_CMPSS2_CTRIPOUTLE">
+<span id="_CPPv3N20XBAR_OutputMuxConfig31XBAR_OUT_MUX03_CMPSS2_CTRIPOUTLE"></span><span id="_CPPv2N20XBAR_OutputMuxConfig31XBAR_OUT_MUX03_CMPSS2_CTRIPOUTLE"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789a8995c7ef3dde9dee9e3edf1ba228b81c"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX03_CMPSS2_CTRIPOUTL</code> = 0x0600<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig31XBAR_OUT_MUX03_CMPSS2_CTRIPOUTLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig25XBAR_OUT_MUX03_INPUTXBAR2E">
+<span id="_CPPv3N20XBAR_OutputMuxConfig25XBAR_OUT_MUX03_INPUTXBAR2E"></span><span id="_CPPv2N20XBAR_OutputMuxConfig25XBAR_OUT_MUX03_INPUTXBAR2E"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789a799a8733140ad09c1b63e1f1aee9e5f5"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX03_INPUTXBAR2</code> = 0x0601<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig25XBAR_OUT_MUX03_INPUTXBAR2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig23XBAR_OUT_MUX03_ADCCEVT2E">
+<span id="_CPPv3N20XBAR_OutputMuxConfig23XBAR_OUT_MUX03_ADCCEVT2E"></span><span id="_CPPv2N20XBAR_OutputMuxConfig23XBAR_OUT_MUX03_ADCCEVT2E"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789a399bd22b83faeea1df6b443dcecb5a26"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX03_ADCCEVT2</code> = 0x0603<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig23XBAR_OUT_MUX03_ADCCEVT2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig31XBAR_OUT_MUX04_CMPSS3_CTRIPOUTHE">
+<span id="_CPPv3N20XBAR_OutputMuxConfig31XBAR_OUT_MUX04_CMPSS3_CTRIPOUTHE"></span><span id="_CPPv2N20XBAR_OutputMuxConfig31XBAR_OUT_MUX04_CMPSS3_CTRIPOUTHE"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789a2a77352ad566026a23943064b132facf"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX04_CMPSS3_CTRIPOUTH</code> = 0x0800<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig31XBAR_OUT_MUX04_CMPSS3_CTRIPOUTHE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig36XBAR_OUT_MUX04_CMPSS3_CTRIPOUTH_OR_LE">
+<span id="_CPPv3N20XBAR_OutputMuxConfig36XBAR_OUT_MUX04_CMPSS3_CTRIPOUTH_OR_LE"></span><span id="_CPPv2N20XBAR_OutputMuxConfig36XBAR_OUT_MUX04_CMPSS3_CTRIPOUTH_OR_LE"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789a652bb29738a70fc625fdf394a0779643"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX04_CMPSS3_CTRIPOUTH_OR_L</code> = 0x0801<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig36XBAR_OUT_MUX04_CMPSS3_CTRIPOUTH_OR_LE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig23XBAR_OUT_MUX04_ADCAEVT3E">
+<span id="_CPPv3N20XBAR_OutputMuxConfig23XBAR_OUT_MUX04_ADCAEVT3E"></span><span id="_CPPv2N20XBAR_OutputMuxConfig23XBAR_OUT_MUX04_ADCAEVT3E"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789a5902e0af9950b5f01348a7d6855cc7bf"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX04_ADCAEVT3</code> = 0x0802<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig23XBAR_OUT_MUX04_ADCAEVT3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig31XBAR_OUT_MUX05_CMPSS3_CTRIPOUTLE">
+<span id="_CPPv3N20XBAR_OutputMuxConfig31XBAR_OUT_MUX05_CMPSS3_CTRIPOUTLE"></span><span id="_CPPv2N20XBAR_OutputMuxConfig31XBAR_OUT_MUX05_CMPSS3_CTRIPOUTLE"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789ab3c4c45c35a191b0e4f5cb8c5e89cf3a"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX05_CMPSS3_CTRIPOUTL</code> = 0x0A00<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig31XBAR_OUT_MUX05_CMPSS3_CTRIPOUTLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig25XBAR_OUT_MUX05_INPUTXBAR3E">
+<span id="_CPPv3N20XBAR_OutputMuxConfig25XBAR_OUT_MUX05_INPUTXBAR3E"></span><span id="_CPPv2N20XBAR_OutputMuxConfig25XBAR_OUT_MUX05_INPUTXBAR3E"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789a19c0ff87ef5f776cebee037589618d27"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX05_INPUTXBAR3</code> = 0x0A01<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig25XBAR_OUT_MUX05_INPUTXBAR3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig23XBAR_OUT_MUX05_ADCCEVT3E">
+<span id="_CPPv3N20XBAR_OutputMuxConfig23XBAR_OUT_MUX05_ADCCEVT3E"></span><span id="_CPPv2N20XBAR_OutputMuxConfig23XBAR_OUT_MUX05_ADCCEVT3E"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789a9b5cff9b6889ea68af407500b2e95b6e"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX05_ADCCEVT3</code> = 0x0A03<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig23XBAR_OUT_MUX05_ADCCEVT3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig31XBAR_OUT_MUX06_CMPSS4_CTRIPOUTHE">
+<span id="_CPPv3N20XBAR_OutputMuxConfig31XBAR_OUT_MUX06_CMPSS4_CTRIPOUTHE"></span><span id="_CPPv2N20XBAR_OutputMuxConfig31XBAR_OUT_MUX06_CMPSS4_CTRIPOUTHE"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789a41018c7317e4a496799fb0579b417066"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX06_CMPSS4_CTRIPOUTH</code> = 0x0C00<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig31XBAR_OUT_MUX06_CMPSS4_CTRIPOUTHE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig36XBAR_OUT_MUX06_CMPSS4_CTRIPOUTH_OR_LE">
+<span id="_CPPv3N20XBAR_OutputMuxConfig36XBAR_OUT_MUX06_CMPSS4_CTRIPOUTH_OR_LE"></span><span id="_CPPv2N20XBAR_OutputMuxConfig36XBAR_OUT_MUX06_CMPSS4_CTRIPOUTH_OR_LE"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789a70d7b39d9816d53d0170c2dcde86faff"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX06_CMPSS4_CTRIPOUTH_OR_L</code> = 0x0C01<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig36XBAR_OUT_MUX06_CMPSS4_CTRIPOUTH_OR_LE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig23XBAR_OUT_MUX06_ADCAEVT4E">
+<span id="_CPPv3N20XBAR_OutputMuxConfig23XBAR_OUT_MUX06_ADCAEVT4E"></span><span id="_CPPv2N20XBAR_OutputMuxConfig23XBAR_OUT_MUX06_ADCAEVT4E"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789a84836083cefa8d34472f35308ed2c455"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX06_ADCAEVT4</code> = 0x0C02<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig23XBAR_OUT_MUX06_ADCAEVT4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig31XBAR_OUT_MUX07_CMPSS4_CTRIPOUTLE">
+<span id="_CPPv3N20XBAR_OutputMuxConfig31XBAR_OUT_MUX07_CMPSS4_CTRIPOUTLE"></span><span id="_CPPv2N20XBAR_OutputMuxConfig31XBAR_OUT_MUX07_CMPSS4_CTRIPOUTLE"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789a55abbef55d65608334765ca4f2664abc"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX07_CMPSS4_CTRIPOUTL</code> = 0x0E00<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig31XBAR_OUT_MUX07_CMPSS4_CTRIPOUTLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig25XBAR_OUT_MUX07_INPUTXBAR4E">
+<span id="_CPPv3N20XBAR_OutputMuxConfig25XBAR_OUT_MUX07_INPUTXBAR4E"></span><span id="_CPPv2N20XBAR_OutputMuxConfig25XBAR_OUT_MUX07_INPUTXBAR4E"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789a144b9f59871370c28880466cd5137197"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX07_INPUTXBAR4</code> = 0x0E01<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig25XBAR_OUT_MUX07_INPUTXBAR4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig23XBAR_OUT_MUX07_ADCCEVT4E">
+<span id="_CPPv3N20XBAR_OutputMuxConfig23XBAR_OUT_MUX07_ADCCEVT4E"></span><span id="_CPPv2N20XBAR_OutputMuxConfig23XBAR_OUT_MUX07_ADCCEVT4E"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789a790a5782a99a4932ab056e8993d4c826"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX07_ADCCEVT4</code> = 0x0E03<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig23XBAR_OUT_MUX07_ADCCEVT4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig25XBAR_OUT_MUX09_INPUTXBAR5E">
+<span id="_CPPv3N20XBAR_OutputMuxConfig25XBAR_OUT_MUX09_INPUTXBAR5E"></span><span id="_CPPv2N20XBAR_OutputMuxConfig25XBAR_OUT_MUX09_INPUTXBAR5E"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789a0ede725748ef6fc639a0bef02ac3a2a0"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX09_INPUTXBAR5</code> = 0x1201<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig25XBAR_OUT_MUX09_INPUTXBAR5E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig25XBAR_OUT_MUX11_INPUTXBAR6E">
+<span id="_CPPv3N20XBAR_OutputMuxConfig25XBAR_OUT_MUX11_INPUTXBAR6E"></span><span id="_CPPv2N20XBAR_OutputMuxConfig25XBAR_OUT_MUX11_INPUTXBAR6E"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789a7322ceb5ace948da7a1da5e5c0bdb314"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX11_INPUTXBAR6</code> = 0x1601<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig25XBAR_OUT_MUX11_INPUTXBAR6E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig25XBAR_OUT_MUX14_EXTSYNCOUTE">
+<span id="_CPPv3N20XBAR_OutputMuxConfig25XBAR_OUT_MUX14_EXTSYNCOUTE"></span><span id="_CPPv2N20XBAR_OutputMuxConfig25XBAR_OUT_MUX14_EXTSYNCOUTE"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789a94e1cbed1218c9a482f7ae4c9407d1ee"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX14_EXTSYNCOUT</code> = 0x1C03<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig25XBAR_OUT_MUX14_EXTSYNCOUTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig22XBAR_OUT_MUX13_ADCSOCAE">
+<span id="_CPPv3N20XBAR_OutputMuxConfig22XBAR_OUT_MUX13_ADCSOCAE"></span><span id="_CPPv2N20XBAR_OutputMuxConfig22XBAR_OUT_MUX13_ADCSOCAE"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789a3cf3d44cf4a4b1bcaba74971e8c47f58"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX13_ADCSOCA</code> = 0x1A01<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig22XBAR_OUT_MUX13_ADCSOCAE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig22XBAR_OUT_MUX15_ADCSOCBE">
+<span id="_CPPv3N20XBAR_OutputMuxConfig22XBAR_OUT_MUX15_ADCSOCBE"></span><span id="_CPPv2N20XBAR_OutputMuxConfig22XBAR_OUT_MUX15_ADCSOCBE"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789af8de30e4a5b666ac39b43d6f7d66e568"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX15_ADCSOCB</code> = 0x1E01<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig22XBAR_OUT_MUX15_ADCSOCBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig21XBAR_OUT_MUX19_ERRSTSE">
+<span id="_CPPv3N20XBAR_OutputMuxConfig21XBAR_OUT_MUX19_ERRSTSE"></span><span id="_CPPv2N20XBAR_OutputMuxConfig21XBAR_OUT_MUX19_ERRSTSE"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789a9ee7b3d3635afa32d13aef8804d77cfd"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX19_ERRSTS</code> = 0x2603<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig21XBAR_OUT_MUX19_ERRSTSE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig24XBAR_OUT_MUX30_EPG1_OUT0E">
+<span id="_CPPv3N20XBAR_OutputMuxConfig24XBAR_OUT_MUX30_EPG1_OUT0E"></span><span id="_CPPv2N20XBAR_OutputMuxConfig24XBAR_OUT_MUX30_EPG1_OUT0E"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789a16223c8eb1374d0a285337673144cac5"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX30_EPG1_OUT0</code> = 0x3C03<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig24XBAR_OUT_MUX30_EPG1_OUT0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig21XBAR_OUT_MUX31_ERRSTSE">
+<span id="_CPPv3N20XBAR_OutputMuxConfig21XBAR_OUT_MUX31_ERRSTSE"></span><span id="_CPPv2N20XBAR_OutputMuxConfig21XBAR_OUT_MUX31_ERRSTSE"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789afeb985a4ea196bbd2194bdbc03bb7612"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX31_ERRSTS</code> = 0x3E02<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig21XBAR_OUT_MUX31_ERRSTSE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20XBAR_OutputMuxConfig24XBAR_OUT_MUX31_EPG1_OUT1E">
+<span id="_CPPv3N20XBAR_OutputMuxConfig24XBAR_OUT_MUX31_EPG1_OUT1E"></span><span id="_CPPv2N20XBAR_OutputMuxConfig24XBAR_OUT_MUX31_EPG1_OUT1E"></span><span class="target" id="group__xbar__api_1gga0e74405c5ebbd87324000177efcc1789abb5a1b0f7e2e5070c37669ae175fb371"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_OUT_MUX31_EPG1_OUT1</code> = 0x3E03<a class="headerlink" href="#_CPPv4N20XBAR_OutputMuxConfig24XBAR_OUT_MUX31_EPG1_OUT1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv418XBAR_EPWMMuxConfig">
+<span id="_CPPv318XBAR_EPWMMuxConfig"></span><span id="_CPPv218XBAR_EPWMMuxConfig"></span><span class="target" id="group__xbar__api_1ga23c312b232a090d84fbdf3eede671349"></span><em class="property">enum </em><code class="sig-name descname">XBAR_EPWMMuxConfig</code><a class="headerlink" href="#_CPPv418XBAR_EPWMMuxConfig" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The following values define the <em>muxConfig</em> parameter for <a class="reference internal" href="#group__xbar__api_1ga5f6bcfcd44109dd6b153da49b2defb67"><span class="std std-ref">XBAR_setEPWMMuxConfig()</span></a>. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig29XBAR_EPWM_MUX00_CMPSS1_CTRIPHE">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig29XBAR_EPWM_MUX00_CMPSS1_CTRIPHE"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig29XBAR_EPWM_MUX00_CMPSS1_CTRIPHE"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349a456f493d33e81e0427146319574971c9"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX00_CMPSS1_CTRIPH</code> = 0x0000<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig29XBAR_EPWM_MUX00_CMPSS1_CTRIPHE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig34XBAR_EPWM_MUX00_CMPSS1_CTRIPH_OR_LE">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig34XBAR_EPWM_MUX00_CMPSS1_CTRIPH_OR_LE"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig34XBAR_EPWM_MUX00_CMPSS1_CTRIPH_OR_LE"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349a74e01585a34860c8b6f8d92169cbc6f0"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX00_CMPSS1_CTRIPH_OR_L</code> = 0x0001<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig34XBAR_EPWM_MUX00_CMPSS1_CTRIPH_OR_LE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX00_ADCAEVT1E">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX00_ADCAEVT1E"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX00_ADCAEVT1E"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349a205d21c6257d47bdbfadf38d4d8aec5d"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX00_ADCAEVT1</code> = 0x0002<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX00_ADCAEVT1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig25XBAR_EPWM_MUX00_ECAP1_OUTE">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig25XBAR_EPWM_MUX00_ECAP1_OUTE"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig25XBAR_EPWM_MUX00_ECAP1_OUTE"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349aad2197cc98dbd65287fb66ccf82bf07f"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX00_ECAP1_OUT</code> = 0x0003<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig25XBAR_EPWM_MUX00_ECAP1_OUTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig29XBAR_EPWM_MUX01_CMPSS1_CTRIPLE">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig29XBAR_EPWM_MUX01_CMPSS1_CTRIPLE"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig29XBAR_EPWM_MUX01_CMPSS1_CTRIPLE"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349aa2cfbf4f5483006fa71e571954851f4f"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX01_CMPSS1_CTRIPL</code> = 0x0200<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig29XBAR_EPWM_MUX01_CMPSS1_CTRIPLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX01_INPUTXBAR1E">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX01_INPUTXBAR1E"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX01_INPUTXBAR1E"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349aa9cf8284e851c4b9784821c4a2327b8d"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX01_INPUTXBAR1</code> = 0x0201<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX01_INPUTXBAR1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX01_ADCCEVT1E">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX01_ADCCEVT1E"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX01_ADCCEVT1E"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349ab125b1cfdaa3336fbe51514f98cf9f71"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX01_ADCCEVT1</code> = 0x0203<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX01_ADCCEVT1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig29XBAR_EPWM_MUX02_CMPSS2_CTRIPHE">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig29XBAR_EPWM_MUX02_CMPSS2_CTRIPHE"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig29XBAR_EPWM_MUX02_CMPSS2_CTRIPHE"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349a297e36fb7f5cbc807e823459b3cd5c15"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX02_CMPSS2_CTRIPH</code> = 0x0400<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig29XBAR_EPWM_MUX02_CMPSS2_CTRIPHE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig34XBAR_EPWM_MUX02_CMPSS2_CTRIPH_OR_LE">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig34XBAR_EPWM_MUX02_CMPSS2_CTRIPH_OR_LE"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig34XBAR_EPWM_MUX02_CMPSS2_CTRIPH_OR_LE"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349a74af044af24a0e9a9241adeb0739d7f9"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX02_CMPSS2_CTRIPH_OR_L</code> = 0x0401<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig34XBAR_EPWM_MUX02_CMPSS2_CTRIPH_OR_LE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX02_ADCAEVT2E">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX02_ADCAEVT2E"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX02_ADCAEVT2E"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349a32487904b44ed7389f744a87986009af"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX02_ADCAEVT2</code> = 0x0402<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX02_ADCAEVT2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig25XBAR_EPWM_MUX02_ECAP2_OUTE">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig25XBAR_EPWM_MUX02_ECAP2_OUTE"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig25XBAR_EPWM_MUX02_ECAP2_OUTE"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349a7c21b29adb813b8ead3103798fa921f4"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX02_ECAP2_OUT</code> = 0x0403<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig25XBAR_EPWM_MUX02_ECAP2_OUTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig29XBAR_EPWM_MUX03_CMPSS2_CTRIPLE">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig29XBAR_EPWM_MUX03_CMPSS2_CTRIPLE"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig29XBAR_EPWM_MUX03_CMPSS2_CTRIPLE"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349a52d6a0d8de67f72db2b9ff65e3c938b8"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX03_CMPSS2_CTRIPL</code> = 0x0600<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig29XBAR_EPWM_MUX03_CMPSS2_CTRIPLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX03_INPUTXBAR2E">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX03_INPUTXBAR2E"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX03_INPUTXBAR2E"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349aed076bda2a35bb3570a3a7d305cdcf09"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX03_INPUTXBAR2</code> = 0x0601<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX03_INPUTXBAR2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX03_ADCCEVT2E">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX03_ADCCEVT2E"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX03_ADCCEVT2E"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349a30d25b6af8479a3b89587c8d2faf51be"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX03_ADCCEVT2</code> = 0x0603<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX03_ADCCEVT2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig29XBAR_EPWM_MUX04_CMPSS3_CTRIPHE">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig29XBAR_EPWM_MUX04_CMPSS3_CTRIPHE"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig29XBAR_EPWM_MUX04_CMPSS3_CTRIPHE"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349ab900b34c499cefadd2549a58e4f13591"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX04_CMPSS3_CTRIPH</code> = 0x0800<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig29XBAR_EPWM_MUX04_CMPSS3_CTRIPHE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig34XBAR_EPWM_MUX04_CMPSS3_CTRIPH_OR_LE">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig34XBAR_EPWM_MUX04_CMPSS3_CTRIPH_OR_LE"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig34XBAR_EPWM_MUX04_CMPSS3_CTRIPH_OR_LE"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349aa1fc3a25896c120e59e15f717d28457d"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX04_CMPSS3_CTRIPH_OR_L</code> = 0x0801<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig34XBAR_EPWM_MUX04_CMPSS3_CTRIPH_OR_LE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX04_ADCAEVT3E">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX04_ADCAEVT3E"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX04_ADCAEVT3E"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349af551e1b988db1a24b560aa7d7626a26a"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX04_ADCAEVT3</code> = 0x0802<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX04_ADCAEVT3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig29XBAR_EPWM_MUX05_CMPSS3_CTRIPLE">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig29XBAR_EPWM_MUX05_CMPSS3_CTRIPLE"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig29XBAR_EPWM_MUX05_CMPSS3_CTRIPLE"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349a90a9e8554bd03cd1468b4c61bf43f043"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX05_CMPSS3_CTRIPL</code> = 0x0A00<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig29XBAR_EPWM_MUX05_CMPSS3_CTRIPLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX05_INPUTXBAR3E">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX05_INPUTXBAR3E"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX05_INPUTXBAR3E"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349ab1345fb604a58cf4dd69e854e386800d"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX05_INPUTXBAR3</code> = 0x0A01<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX05_INPUTXBAR3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX05_ADCCEVT3E">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX05_ADCCEVT3E"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX05_ADCCEVT3E"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349a2fb6dbdff54c6878165749d67a488a06"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX05_ADCCEVT3</code> = 0x0A03<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX05_ADCCEVT3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig29XBAR_EPWM_MUX06_CMPSS4_CTRIPHE">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig29XBAR_EPWM_MUX06_CMPSS4_CTRIPHE"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig29XBAR_EPWM_MUX06_CMPSS4_CTRIPHE"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349a43ca546a1fddbb64942fb503a756b9ea"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX06_CMPSS4_CTRIPH</code> = 0x0C00<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig29XBAR_EPWM_MUX06_CMPSS4_CTRIPHE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig34XBAR_EPWM_MUX06_CMPSS4_CTRIPH_OR_LE">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig34XBAR_EPWM_MUX06_CMPSS4_CTRIPH_OR_LE"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig34XBAR_EPWM_MUX06_CMPSS4_CTRIPH_OR_LE"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349a44ce081e76d53a35a0ce0c3446b2cfe0"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX06_CMPSS4_CTRIPH_OR_L</code> = 0x0C01<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig34XBAR_EPWM_MUX06_CMPSS4_CTRIPH_OR_LE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX06_ADCAEVT4E">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX06_ADCAEVT4E"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX06_ADCAEVT4E"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349ac00b201a8b80327318af16e50447daf7"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX06_ADCAEVT4</code> = 0x0C02<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX06_ADCAEVT4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig29XBAR_EPWM_MUX07_CMPSS4_CTRIPLE">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig29XBAR_EPWM_MUX07_CMPSS4_CTRIPLE"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig29XBAR_EPWM_MUX07_CMPSS4_CTRIPLE"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349aa998ecb4c543b300f8d7398519c0b320"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX07_CMPSS4_CTRIPL</code> = 0x0E00<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig29XBAR_EPWM_MUX07_CMPSS4_CTRIPLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX07_INPUTXBAR4E">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX07_INPUTXBAR4E"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX07_INPUTXBAR4E"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349af4bbe64c6fbdf7efdcbe2cb063f63278"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX07_INPUTXBAR4</code> = 0x0E01<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX07_INPUTXBAR4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX07_ADCCEVT4E">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX07_ADCCEVT4E"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX07_ADCCEVT4E"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349a7c54eb17642d85ac5a44033567c56f79"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX07_ADCCEVT4</code> = 0x0E03<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX07_ADCCEVT4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX09_INPUTXBAR5E">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX09_INPUTXBAR5E"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX09_INPUTXBAR5E"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349a533946bf89029a29e77b10dce2aff43a"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX09_INPUTXBAR5</code> = 0x1201<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX09_INPUTXBAR5E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX11_INPUTXBAR6E">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX11_INPUTXBAR6E"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX11_INPUTXBAR6E"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349a682515cbd0c43c0398f06b028be1c9e4"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX11_INPUTXBAR6</code> = 0x1601<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX11_INPUTXBAR6E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig23XBAR_EPWM_MUX13_ADCSOCAE">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig23XBAR_EPWM_MUX13_ADCSOCAE"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig23XBAR_EPWM_MUX13_ADCSOCAE"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349a15780627cf27df6f7122cfe7ea545899"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX13_ADCSOCA</code> = 0x1A01<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig23XBAR_EPWM_MUX13_ADCSOCAE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX14_EXTSYNCOUTE">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX14_EXTSYNCOUTE"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX14_EXTSYNCOUTE"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349a86153583ced68a50de3edbde6cacb445"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX14_EXTSYNCOUT</code> = 0x1C03<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX14_EXTSYNCOUTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig23XBAR_EPWM_MUX15_ADCSOCBE">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig23XBAR_EPWM_MUX15_ADCSOCBE"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig23XBAR_EPWM_MUX15_ADCSOCBE"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349a44a9847558d44675886701cfe6b9963a"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX15_ADCSOCB</code> = 0x1E01<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig23XBAR_EPWM_MUX15_ADCSOCBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX17_INPUTXBAR7E">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX17_INPUTXBAR7E"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX17_INPUTXBAR7E"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349ac7b20bf2779612c1abcef7fc60e48fe6"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX17_INPUTXBAR7</code> = 0x2201<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX17_INPUTXBAR7E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX19_INPUTXBAR8E">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX19_INPUTXBAR8E"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX19_INPUTXBAR8E"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349a5d47279101ec4995198af632d7733a07"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX19_INPUTXBAR8</code> = 0x2601<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX19_INPUTXBAR8E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX19_ERRORSTSE">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX19_ERRORSTSE"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX19_ERRORSTSE"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349a31a3a33caeea0270ea9b61c2b28b959b"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX19_ERRORSTS</code> = 0x2603<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX19_ERRORSTSE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX21_INPUTXBAR9E">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX21_INPUTXBAR9E"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX21_INPUTXBAR9E"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349a740ec0f423108da13ffd8cf98f0159a2"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX21_INPUTXBAR9</code> = 0x2A01<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig26XBAR_EPWM_MUX21_INPUTXBAR9E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig27XBAR_EPWM_MUX23_INPUTXBAR10E">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig27XBAR_EPWM_MUX23_INPUTXBAR10E"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig27XBAR_EPWM_MUX23_INPUTXBAR10E"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349a4902055fabea599c6d76785629a99655"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX23_INPUTXBAR10</code> = 0x2E01<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig27XBAR_EPWM_MUX23_INPUTXBAR10E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig27XBAR_EPWM_MUX25_INPUTXBAR11E">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig27XBAR_EPWM_MUX25_INPUTXBAR11E"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig27XBAR_EPWM_MUX25_INPUTXBAR11E"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349a64d79c3b62188bed3fcb52c6d68e7350"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX25_INPUTXBAR11</code> = 0x3201<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig27XBAR_EPWM_MUX25_INPUTXBAR11E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig27XBAR_EPWM_MUX27_INPUTXBAR12E">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig27XBAR_EPWM_MUX27_INPUTXBAR12E"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig27XBAR_EPWM_MUX27_INPUTXBAR12E"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349ade290a5c1781210689d8ac010b58e7ab"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX27_INPUTXBAR12</code> = 0x3601<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig27XBAR_EPWM_MUX27_INPUTXBAR12E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig27XBAR_EPWM_MUX29_INPUTXBAR13E">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig27XBAR_EPWM_MUX29_INPUTXBAR13E"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig27XBAR_EPWM_MUX29_INPUTXBAR13E"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349a0fa62a250db2c7490fbe74029ffdc01d"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX29_INPUTXBAR13</code> = 0x3A01<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig27XBAR_EPWM_MUX29_INPUTXBAR13E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX31_ERRORSTSE">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX31_ERRORSTSE"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX31_ERRORSTSE"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349a8e9b3d75fc957130089b230e25507d9e"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX31_ERRORSTS</code> = 0x3E02<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig24XBAR_EPWM_MUX31_ERRORSTSE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18XBAR_EPWMMuxConfig27XBAR_EPWM_MUX31_INPUTXBAR14E">
+<span id="_CPPv3N18XBAR_EPWMMuxConfig27XBAR_EPWM_MUX31_INPUTXBAR14E"></span><span id="_CPPv2N18XBAR_EPWMMuxConfig27XBAR_EPWM_MUX31_INPUTXBAR14E"></span><span class="target" id="group__xbar__api_1gga23c312b232a090d84fbdf3eede671349adf33875ece95f2928406475c69945f2a"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_EPWM_MUX31_INPUTXBAR14</code> = 0x3E01<a class="headerlink" href="#_CPPv4N18XBAR_EPWMMuxConfig27XBAR_EPWM_MUX31_INPUTXBAR14E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv414XBAR_InputFlag">
+<span id="_CPPv314XBAR_InputFlag"></span><span id="_CPPv214XBAR_InputFlag"></span><span class="target" id="group__xbar__api_1ga7a597343d1c59d9fa35f4459f9920e67"></span><em class="property">enum </em><code class="sig-name descname">XBAR_InputFlag</code><a class="headerlink" href="#_CPPv414XBAR_InputFlag" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The following values define the <em>inputFlag</em> parameter for <a class="reference internal" href="#group__xbar__api_1ga42314dc0448f4ecbf5fe6a0af67e9bfb"><span class="std std-ref">XBAR_getInputFlagStatus()</span></a> and <a class="reference internal" href="#group__xbar__api_1gaecc03a3444244aaebe0341811922ca1a"><span class="std std-ref">XBAR_clearInputFlag()</span></a>. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag28XBAR_INPUT_FLG_CMPSS1_CTRIPLE">
+<span id="_CPPv3N14XBAR_InputFlag28XBAR_INPUT_FLG_CMPSS1_CTRIPLE"></span><span id="_CPPv2N14XBAR_InputFlag28XBAR_INPUT_FLG_CMPSS1_CTRIPLE"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67aee333c330591838a30651ab300e67367"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_CMPSS1_CTRIPL</code> = 0x0000<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag28XBAR_INPUT_FLG_CMPSS1_CTRIPLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag28XBAR_INPUT_FLG_CMPSS1_CTRIPHE">
+<span id="_CPPv3N14XBAR_InputFlag28XBAR_INPUT_FLG_CMPSS1_CTRIPHE"></span><span id="_CPPv2N14XBAR_InputFlag28XBAR_INPUT_FLG_CMPSS1_CTRIPHE"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67a500629a69e5adabeabf2fc04cdc6d749"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_CMPSS1_CTRIPH</code> = 0x0001<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag28XBAR_INPUT_FLG_CMPSS1_CTRIPHE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag28XBAR_INPUT_FLG_CMPSS2_CTRIPLE">
+<span id="_CPPv3N14XBAR_InputFlag28XBAR_INPUT_FLG_CMPSS2_CTRIPLE"></span><span id="_CPPv2N14XBAR_InputFlag28XBAR_INPUT_FLG_CMPSS2_CTRIPLE"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67a7b54287bbc7b1cb60381841e67c86a64"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_CMPSS2_CTRIPL</code> = 0x0002<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag28XBAR_INPUT_FLG_CMPSS2_CTRIPLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag28XBAR_INPUT_FLG_CMPSS2_CTRIPHE">
+<span id="_CPPv3N14XBAR_InputFlag28XBAR_INPUT_FLG_CMPSS2_CTRIPHE"></span><span id="_CPPv2N14XBAR_InputFlag28XBAR_INPUT_FLG_CMPSS2_CTRIPHE"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67a8356495e0b74a8308444053550f71fc5"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_CMPSS2_CTRIPH</code> = 0x0003<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag28XBAR_INPUT_FLG_CMPSS2_CTRIPHE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag28XBAR_INPUT_FLG_CMPSS3_CTRIPLE">
+<span id="_CPPv3N14XBAR_InputFlag28XBAR_INPUT_FLG_CMPSS3_CTRIPLE"></span><span id="_CPPv2N14XBAR_InputFlag28XBAR_INPUT_FLG_CMPSS3_CTRIPLE"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67ae36d29dec48cd1be6e090ef7f611f594"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_CMPSS3_CTRIPL</code> = 0x0004<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag28XBAR_INPUT_FLG_CMPSS3_CTRIPLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag28XBAR_INPUT_FLG_CMPSS3_CTRIPHE">
+<span id="_CPPv3N14XBAR_InputFlag28XBAR_INPUT_FLG_CMPSS3_CTRIPHE"></span><span id="_CPPv2N14XBAR_InputFlag28XBAR_INPUT_FLG_CMPSS3_CTRIPHE"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67aeee3b37a98a0afb29fb289327f78f8aa"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_CMPSS3_CTRIPH</code> = 0x0005<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag28XBAR_INPUT_FLG_CMPSS3_CTRIPHE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag28XBAR_INPUT_FLG_CMPSS4_CTRIPLE">
+<span id="_CPPv3N14XBAR_InputFlag28XBAR_INPUT_FLG_CMPSS4_CTRIPLE"></span><span id="_CPPv2N14XBAR_InputFlag28XBAR_INPUT_FLG_CMPSS4_CTRIPLE"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67aa2bb8bdfb6f3bdd1355374bc5440a9cc"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_CMPSS4_CTRIPL</code> = 0x0006<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag28XBAR_INPUT_FLG_CMPSS4_CTRIPLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag28XBAR_INPUT_FLG_CMPSS4_CTRIPHE">
+<span id="_CPPv3N14XBAR_InputFlag28XBAR_INPUT_FLG_CMPSS4_CTRIPHE"></span><span id="_CPPv2N14XBAR_InputFlag28XBAR_INPUT_FLG_CMPSS4_CTRIPHE"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67a4b6ec6a99fbaa7fd3935a9bb0fcc93f8"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_CMPSS4_CTRIPH</code> = 0x0007<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag28XBAR_INPUT_FLG_CMPSS4_CTRIPHE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag31XBAR_INPUT_FLG_CMPSS1_CTRIPOUTLE">
+<span id="_CPPv3N14XBAR_InputFlag31XBAR_INPUT_FLG_CMPSS1_CTRIPOUTLE"></span><span id="_CPPv2N14XBAR_InputFlag31XBAR_INPUT_FLG_CMPSS1_CTRIPOUTLE"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67a4049378f1c6d3a8fd6d5ae04ba702f8f"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_CMPSS1_CTRIPOUTL</code> = 0x0010<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag31XBAR_INPUT_FLG_CMPSS1_CTRIPOUTLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag31XBAR_INPUT_FLG_CMPSS1_CTRIPOUTHE">
+<span id="_CPPv3N14XBAR_InputFlag31XBAR_INPUT_FLG_CMPSS1_CTRIPOUTHE"></span><span id="_CPPv2N14XBAR_InputFlag31XBAR_INPUT_FLG_CMPSS1_CTRIPOUTHE"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67a65b7e80593717049f0dcb1f8c551d520"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_CMPSS1_CTRIPOUTH</code> = 0x0011<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag31XBAR_INPUT_FLG_CMPSS1_CTRIPOUTHE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag31XBAR_INPUT_FLG_CMPSS2_CTRIPOUTLE">
+<span id="_CPPv3N14XBAR_InputFlag31XBAR_INPUT_FLG_CMPSS2_CTRIPOUTLE"></span><span id="_CPPv2N14XBAR_InputFlag31XBAR_INPUT_FLG_CMPSS2_CTRIPOUTLE"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67affab83ede61f883d8875d81bb608a281"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_CMPSS2_CTRIPOUTL</code> = 0x0012<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag31XBAR_INPUT_FLG_CMPSS2_CTRIPOUTLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag31XBAR_INPUT_FLG_CMPSS2_CTRIPOUTHE">
+<span id="_CPPv3N14XBAR_InputFlag31XBAR_INPUT_FLG_CMPSS2_CTRIPOUTHE"></span><span id="_CPPv2N14XBAR_InputFlag31XBAR_INPUT_FLG_CMPSS2_CTRIPOUTHE"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67ab93d6a691e6578815717bae4a1f1eb9b"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_CMPSS2_CTRIPOUTH</code> = 0x0013<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag31XBAR_INPUT_FLG_CMPSS2_CTRIPOUTHE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag31XBAR_INPUT_FLG_CMPSS3_CTRIPOUTLE">
+<span id="_CPPv3N14XBAR_InputFlag31XBAR_INPUT_FLG_CMPSS3_CTRIPOUTLE"></span><span id="_CPPv2N14XBAR_InputFlag31XBAR_INPUT_FLG_CMPSS3_CTRIPOUTLE"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67a52cdaa7393c23f621c282ce5ad54c17a"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_CMPSS3_CTRIPOUTL</code> = 0x0014<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag31XBAR_INPUT_FLG_CMPSS3_CTRIPOUTLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag31XBAR_INPUT_FLG_CMPSS3_CTRIPOUTHE">
+<span id="_CPPv3N14XBAR_InputFlag31XBAR_INPUT_FLG_CMPSS3_CTRIPOUTHE"></span><span id="_CPPv2N14XBAR_InputFlag31XBAR_INPUT_FLG_CMPSS3_CTRIPOUTHE"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67a1171afbc8b8e3501b58175044a354984"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_CMPSS3_CTRIPOUTH</code> = 0x0015<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag31XBAR_INPUT_FLG_CMPSS3_CTRIPOUTHE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag31XBAR_INPUT_FLG_CMPSS4_CTRIPOUTLE">
+<span id="_CPPv3N14XBAR_InputFlag31XBAR_INPUT_FLG_CMPSS4_CTRIPOUTLE"></span><span id="_CPPv2N14XBAR_InputFlag31XBAR_INPUT_FLG_CMPSS4_CTRIPOUTLE"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67a679201f88b7d1595b1e9e93999de9686"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_CMPSS4_CTRIPOUTL</code> = 0x0016<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag31XBAR_INPUT_FLG_CMPSS4_CTRIPOUTLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag31XBAR_INPUT_FLG_CMPSS4_CTRIPOUTHE">
+<span id="_CPPv3N14XBAR_InputFlag31XBAR_INPUT_FLG_CMPSS4_CTRIPOUTHE"></span><span id="_CPPv2N14XBAR_InputFlag31XBAR_INPUT_FLG_CMPSS4_CTRIPOUTHE"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67afff90ad35d3690cfd9f8a50dde3e7dba"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_CMPSS4_CTRIPOUTH</code> = 0x0017<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag31XBAR_INPUT_FLG_CMPSS4_CTRIPOUTHE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT1E">
+<span id="_CPPv3N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT1E"></span><span id="_CPPv2N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT1E"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67a72f730db40a435b095a040c94b725482"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_INPUT1</code> = 0x0100<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT2E">
+<span id="_CPPv3N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT2E"></span><span id="_CPPv2N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT2E"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67a4d609323f76099233a987b25d850d82b"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_INPUT2</code> = 0x0101<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT3E">
+<span id="_CPPv3N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT3E"></span><span id="_CPPv2N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT3E"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67a8db92f9eb48bd2f9d33c6d36141252ba"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_INPUT3</code> = 0x0102<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT4E">
+<span id="_CPPv3N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT4E"></span><span id="_CPPv2N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT4E"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67a356531850ad71b48665404e50dd732e0"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_INPUT4</code> = 0x0103<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT5E">
+<span id="_CPPv3N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT5E"></span><span id="_CPPv2N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT5E"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67aededdced7dd9ee2dcdd1095adcb40491"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_INPUT5</code> = 0x0104<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT5E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT6E">
+<span id="_CPPv3N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT6E"></span><span id="_CPPv2N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT6E"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67adf8fa2c8f8fcfec547dbd54b11d812e9"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_INPUT6</code> = 0x0105<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT6E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag22XBAR_INPUT_FLG_ADCSOCAE">
+<span id="_CPPv3N14XBAR_InputFlag22XBAR_INPUT_FLG_ADCSOCAE"></span><span id="_CPPv2N14XBAR_InputFlag22XBAR_INPUT_FLG_ADCSOCAE"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67a6c3cf047768d53d7642913259eb2a837"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_ADCSOCA</code> = 0x0106<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag22XBAR_INPUT_FLG_ADCSOCAE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag22XBAR_INPUT_FLG_ADCSOCBE">
+<span id="_CPPv3N14XBAR_InputFlag22XBAR_INPUT_FLG_ADCSOCBE"></span><span id="_CPPv2N14XBAR_InputFlag22XBAR_INPUT_FLG_ADCSOCBE"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67ac12062d22b5f7d616ad9a96508fa7c22"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_ADCSOCB</code> = 0x0107<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag22XBAR_INPUT_FLG_ADCSOCBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT7E">
+<span id="_CPPv3N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT7E"></span><span id="_CPPv2N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT7E"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67aff76d4fd06329ad26829bb8072dbbee7"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_INPUT7</code> = 0x0108<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT7E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT8E">
+<span id="_CPPv3N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT8E"></span><span id="_CPPv2N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT8E"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67a2e2e2455a71da036299b46eb15038be6"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_INPUT8</code> = 0x0109<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT8E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT9E">
+<span id="_CPPv3N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT9E"></span><span id="_CPPv2N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT9E"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67a9a8972b302e63bd1f9d093ad9868fc6a"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_INPUT9</code> = 0x010A<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag21XBAR_INPUT_FLG_INPUT9E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag22XBAR_INPUT_FLG_INPUT10E">
+<span id="_CPPv3N14XBAR_InputFlag22XBAR_INPUT_FLG_INPUT10E"></span><span id="_CPPv2N14XBAR_InputFlag22XBAR_INPUT_FLG_INPUT10E"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67a0e5d364d7d0c7029cd9471f1a0b12e2f"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_INPUT10</code> = 0x010B<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag22XBAR_INPUT_FLG_INPUT10E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag22XBAR_INPUT_FLG_INPUT11E">
+<span id="_CPPv3N14XBAR_InputFlag22XBAR_INPUT_FLG_INPUT11E"></span><span id="_CPPv2N14XBAR_InputFlag22XBAR_INPUT_FLG_INPUT11E"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67aee12d41abbf3f4f136501b142eb848d1"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_INPUT11</code> = 0x010C<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag22XBAR_INPUT_FLG_INPUT11E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag22XBAR_INPUT_FLG_INPUT12E">
+<span id="_CPPv3N14XBAR_InputFlag22XBAR_INPUT_FLG_INPUT12E"></span><span id="_CPPv2N14XBAR_InputFlag22XBAR_INPUT_FLG_INPUT12E"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67a1c0e5e5c8092ea5f22a9c4a541468b70"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_INPUT12</code> = 0x010D<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag22XBAR_INPUT_FLG_INPUT12E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag22XBAR_INPUT_FLG_INPUT13E">
+<span id="_CPPv3N14XBAR_InputFlag22XBAR_INPUT_FLG_INPUT13E"></span><span id="_CPPv2N14XBAR_InputFlag22XBAR_INPUT_FLG_INPUT13E"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67a6939bfe8e73d54c2309e369b4db6da11"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_INPUT13</code> = 0x010E<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag22XBAR_INPUT_FLG_INPUT13E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag22XBAR_INPUT_FLG_INPUT14E">
+<span id="_CPPv3N14XBAR_InputFlag22XBAR_INPUT_FLG_INPUT14E"></span><span id="_CPPv2N14XBAR_InputFlag22XBAR_INPUT_FLG_INPUT14E"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67ad7f14a1c5852546f138de75e441aa134"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_INPUT14</code> = 0x010F<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag22XBAR_INPUT_FLG_INPUT14E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag24XBAR_INPUT_FLG_ECAP1_OUTE">
+<span id="_CPPv3N14XBAR_InputFlag24XBAR_INPUT_FLG_ECAP1_OUTE"></span><span id="_CPPv2N14XBAR_InputFlag24XBAR_INPUT_FLG_ECAP1_OUTE"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67a321b901fbed068ab790cc6df886ef660"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_ECAP1_OUT</code> = 0x0110<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag24XBAR_INPUT_FLG_ECAP1_OUTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag24XBAR_INPUT_FLG_ECAP2_OUTE">
+<span id="_CPPv3N14XBAR_InputFlag24XBAR_INPUT_FLG_ECAP2_OUTE"></span><span id="_CPPv2N14XBAR_InputFlag24XBAR_INPUT_FLG_ECAP2_OUTE"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67a14f34459233236726b27576168dea2a4"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_ECAP2_OUT</code> = 0x0111<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag24XBAR_INPUT_FLG_ECAP2_OUTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag25XBAR_INPUT_FLG_EXTSYNCOUTE">
+<span id="_CPPv3N14XBAR_InputFlag25XBAR_INPUT_FLG_EXTSYNCOUTE"></span><span id="_CPPv2N14XBAR_InputFlag25XBAR_INPUT_FLG_EXTSYNCOUTE"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67a89f90a4bf20a6348427023eeb17941c7"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_EXTSYNCOUT</code> = 0x0116<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag25XBAR_INPUT_FLG_EXTSYNCOUTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag23XBAR_INPUT_FLG_ADCAEVT1E">
+<span id="_CPPv3N14XBAR_InputFlag23XBAR_INPUT_FLG_ADCAEVT1E"></span><span id="_CPPv2N14XBAR_InputFlag23XBAR_INPUT_FLG_ADCAEVT1E"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67aa07fded9ae559500ae156c121d23a793"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_ADCAEVT1</code> = 0x0117<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag23XBAR_INPUT_FLG_ADCAEVT1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag23XBAR_INPUT_FLG_ADCAEVT2E">
+<span id="_CPPv3N14XBAR_InputFlag23XBAR_INPUT_FLG_ADCAEVT2E"></span><span id="_CPPv2N14XBAR_InputFlag23XBAR_INPUT_FLG_ADCAEVT2E"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67afef000d3748bb0c4f27bbf69b0f9c36f"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_ADCAEVT2</code> = 0x0118<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag23XBAR_INPUT_FLG_ADCAEVT2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag23XBAR_INPUT_FLG_ADCAEVT3E">
+<span id="_CPPv3N14XBAR_InputFlag23XBAR_INPUT_FLG_ADCAEVT3E"></span><span id="_CPPv2N14XBAR_InputFlag23XBAR_INPUT_FLG_ADCAEVT3E"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67aff1051d5e048c801c0dc2637ac327ce5"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_ADCAEVT3</code> = 0x0119<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag23XBAR_INPUT_FLG_ADCAEVT3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag23XBAR_INPUT_FLG_ADCAEVT4E">
+<span id="_CPPv3N14XBAR_InputFlag23XBAR_INPUT_FLG_ADCAEVT4E"></span><span id="_CPPv2N14XBAR_InputFlag23XBAR_INPUT_FLG_ADCAEVT4E"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67a7711b6cc5a4185f063489b44176f39e1"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_ADCAEVT4</code> = 0x011A<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag23XBAR_INPUT_FLG_ADCAEVT4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag23XBAR_INPUT_FLG_ADCCEVT1E">
+<span id="_CPPv3N14XBAR_InputFlag23XBAR_INPUT_FLG_ADCCEVT1E"></span><span id="_CPPv2N14XBAR_InputFlag23XBAR_INPUT_FLG_ADCCEVT1E"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67a50ca0318d131c1460cdf08cd8f1c78ff"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_ADCCEVT1</code> = 0x011F<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag23XBAR_INPUT_FLG_ADCCEVT1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag23XBAR_INPUT_FLG_ADCCEVT2E">
+<span id="_CPPv3N14XBAR_InputFlag23XBAR_INPUT_FLG_ADCCEVT2E"></span><span id="_CPPv2N14XBAR_InputFlag23XBAR_INPUT_FLG_ADCCEVT2E"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67af1042426d3b196e99f4ebbcd9da18c5f"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_ADCCEVT2</code> = 0x0200<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag23XBAR_INPUT_FLG_ADCCEVT2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag23XBAR_INPUT_FLG_ADCCEVT3E">
+<span id="_CPPv3N14XBAR_InputFlag23XBAR_INPUT_FLG_ADCCEVT3E"></span><span id="_CPPv2N14XBAR_InputFlag23XBAR_INPUT_FLG_ADCCEVT3E"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67aba9fb2de50882303b431672f03fa2201"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_ADCCEVT3</code> = 0x0201<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag23XBAR_INPUT_FLG_ADCCEVT3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag23XBAR_INPUT_FLG_ADCCEVT4E">
+<span id="_CPPv3N14XBAR_InputFlag23XBAR_INPUT_FLG_ADCCEVT4E"></span><span id="_CPPv2N14XBAR_InputFlag23XBAR_INPUT_FLG_ADCCEVT4E"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67a394d29475c5d88135858af7866262b4f"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_ADCCEVT4</code> = 0x0202<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag23XBAR_INPUT_FLG_ADCCEVT4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14XBAR_InputFlag29XBAR_INPUT_FLG_ERRORSTS_ERRORE">
+<span id="_CPPv3N14XBAR_InputFlag29XBAR_INPUT_FLG_ERRORSTS_ERRORE"></span><span id="_CPPv2N14XBAR_InputFlag29XBAR_INPUT_FLG_ERRORSTS_ERRORE"></span><span class="target" id="group__xbar__api_1gga7a597343d1c59d9fa35f4459f9920e67aa8745a3551efc6dce146def9d749a11f"></span><em class="property">enumerator </em><code class="sig-name descname">XBAR_INPUT_FLG_ERRORSTS_ERROR</code> = 0x031C<a class="headerlink" href="#_CPPv4N14XBAR_InputFlag29XBAR_INPUT_FLG_ERRORSTS_ERRORE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv420XBAR_enableOutputMux8uint32_t14XBAR_OutputNum8uint32_t">
+<span id="_CPPv320XBAR_enableOutputMux8uint32_t14XBAR_OutputNum8uint32_t"></span><span id="_CPPv220XBAR_enableOutputMux8uint32_t14XBAR_OutputNum8uint32_t"></span><span id="XBAR_enableOutputMux__uint32_t.XBAR_OutputNum.uint32_t"></span><span class="target" id="group__xbar__api_1ga0487e229f76dc7d7d7f2115a28ab6ab3"></span>void <code class="sig-name descname">XBAR_enableOutputMux</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv414XBAR_OutputNum" title="XBAR_OutputNum">XBAR_OutputNum</a> <em>output</em>, uint32_t <em>muxes</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420XBAR_enableOutputMux8uint32_t14XBAR_OutputNum8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the Output X-BAR mux values to be passed to the output signal.</p>
+<p><p>This function enables the mux values to be passed to the X-BAR output signal. The </p>
+<em>output</em> parameter is a value <strong>XBAR_OUTPUTy</strong> where y is the output number between 1 and 8 inclusive.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the X-BAR Enable register base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">output</span></code>: is the X-BAR output being configured. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">muxes</span></code>: is a bit field of the muxes to be enabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>base</em> parameter can take base addresses OUTPUTXBAR_BASE or CLBOUTPUTXBAR_BASE.</p>
+<p>The <em>muxes</em> parameter is a bit field of the muxes being enabled where bit 0 represents mux 0, bit 1 represents mux 1 and so on. Defines are provided in the form of <strong>XBAR_MUXnn</strong> that can be OR’d together to enable several muxes on an output at the same time. For example, passing this function ( <strong>XBAR_MUX04</strong> | <strong>XBAR_MUX10</strong> ) would enable muxes 4 and 10.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421XBAR_disableOutputMux8uint32_t14XBAR_OutputNum8uint32_t">
+<span id="_CPPv321XBAR_disableOutputMux8uint32_t14XBAR_OutputNum8uint32_t"></span><span id="_CPPv221XBAR_disableOutputMux8uint32_t14XBAR_OutputNum8uint32_t"></span><span id="XBAR_disableOutputMux__uint32_t.XBAR_OutputNum.uint32_t"></span><span class="target" id="group__xbar__api_1gae36c13d0cc38ab78859bb46c7a561f66"></span>void <code class="sig-name descname">XBAR_disableOutputMux</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv414XBAR_OutputNum" title="XBAR_OutputNum">XBAR_OutputNum</a> <em>output</em>, uint32_t <em>muxes</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421XBAR_disableOutputMux8uint32_t14XBAR_OutputNum8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the Output X-BAR mux values from being passed to the output.</p>
+<p><p>This function disables the mux values from being passed to the X-BAR output signal. The </p>
+<em>output</em> parameter is a value <strong>XBAR_OUTPUTy</strong> where y is the output number between 1 and 8 inclusive.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the X-BAR Enable Register base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">output</span></code>: is the X-BAR output being configured. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">muxes</span></code>: is a bit field of the muxes to be disabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>base</em> parameter can take base addresses OUTPUTXBAR_BASE or CLBOUTPUTXBAR_BASE.</p>
+<p>The <em>muxes</em> parameter is a bit field of the muxes being disabled where bit 0 represents mux 0, bit 1 represents mux 1 and so on. Defines are provided in the form of <strong>XBAR_MUXnn</strong> that can be OR’d together to disable several muxes on an output at the same time. For example, passing this function ( <strong>XBAR_MUX04</strong> | <strong>XBAR_MUX10</strong> ) would disable muxes 4 and 10.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423XBAR_setOutputLatchMode8uint32_t14XBAR_OutputNumb">
+<span id="_CPPv323XBAR_setOutputLatchMode8uint32_t14XBAR_OutputNumb"></span><span id="_CPPv223XBAR_setOutputLatchMode8uint32_t14XBAR_OutputNumb"></span><span id="XBAR_setOutputLatchMode__uint32_t.XBAR_OutputNum.b"></span><span class="target" id="group__xbar__api_1ga3014d464ed29de6138afe4ca942f84e7"></span>void <code class="sig-name descname">XBAR_setOutputLatchMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv414XBAR_OutputNum" title="XBAR_OutputNum">XBAR_OutputNum</a> <em>output</em>, bool <em>enable</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423XBAR_setOutputLatchMode8uint32_t14XBAR_OutputNumb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables or disables the output latch to drive the selected output.</p>
+<p><p>The </p>
+<em>base</em> parameter can take base addresses OUTPUTXBAR_BASE or CLBOUTPUTXBAR_BASE.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the X-BAR base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">output</span></code>: is the X-BAR output being configured. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enable</span></code>: is a flag that determines whether or not the latch is selected to drive the X-BAR output.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>This function sets the Output X-BAR output signal latch mode. If the <em>enable</em> parameter is <strong>true</strong>, the output specified by <em>output</em> will be driven by the output latch.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425XBAR_getOutputLatchStatus8uint32_t14XBAR_OutputNum">
+<span id="_CPPv325XBAR_getOutputLatchStatus8uint32_t14XBAR_OutputNum"></span><span id="_CPPv225XBAR_getOutputLatchStatus8uint32_t14XBAR_OutputNum"></span><span id="XBAR_getOutputLatchStatus__uint32_t.XBAR_OutputNum"></span><span class="target" id="group__xbar__api_1gaba88b298884976b83b0aafa839fc10d4"></span>bool <code class="sig-name descname">XBAR_getOutputLatchStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv414XBAR_OutputNum" title="XBAR_OutputNum">XBAR_OutputNum</a> <em>output</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425XBAR_getOutputLatchStatus8uint32_t14XBAR_OutputNum" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the status of the output latch</p>
+<p><p>The </p>
+<em>base</em> parameter can take base addresses OUTPUTXBAR_BASE or CLBOUTPUTXBAR_BASE.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the X-BAR base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">output</span></code>: is the X-BAR output being checked.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if the output corresponding to <em>output</em> was triggered. If not, it will return <strong>false</strong>. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421XBAR_clearOutputLatch8uint32_t14XBAR_OutputNum">
+<span id="_CPPv321XBAR_clearOutputLatch8uint32_t14XBAR_OutputNum"></span><span id="_CPPv221XBAR_clearOutputLatch8uint32_t14XBAR_OutputNum"></span><span id="XBAR_clearOutputLatch__uint32_t.XBAR_OutputNum"></span><span class="target" id="group__xbar__api_1gaa8b34364003bdf2110783473546fdce3"></span>void <code class="sig-name descname">XBAR_clearOutputLatch</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv414XBAR_OutputNum" title="XBAR_OutputNum">XBAR_OutputNum</a> <em>output</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421XBAR_clearOutputLatch8uint32_t14XBAR_OutputNum" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears the output latch for the specified output.</p>
+<p><p>The </p>
+<em>base</em> parameter can take base addresses OUTPUTXBAR_BASE or CLBOUTPUTXBAR_BASE.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the X-BAR base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">output</span></code>: is the X-BAR output being configured.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>This function clears the Output X-BAR output latch. The output to be configured is specified by the <em>output</em> parameter.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421XBAR_forceOutputLatch8uint32_t14XBAR_OutputNum">
+<span id="_CPPv321XBAR_forceOutputLatch8uint32_t14XBAR_OutputNum"></span><span id="_CPPv221XBAR_forceOutputLatch8uint32_t14XBAR_OutputNum"></span><span id="XBAR_forceOutputLatch__uint32_t.XBAR_OutputNum"></span><span class="target" id="group__xbar__api_1gab2dedeb028ecc75e6915550471a4eaca"></span>void <code class="sig-name descname">XBAR_forceOutputLatch</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv414XBAR_OutputNum" title="XBAR_OutputNum">XBAR_OutputNum</a> <em>output</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421XBAR_forceOutputLatch8uint32_t14XBAR_OutputNum" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Forces the output latch for the specified output.</p>
+<p><p>The </p>
+<em>base</em> parameter can take base addresses OUTPUTXBAR_BASE or CLBOUTPUTXBAR_BASE.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the X-BAR base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">output</span></code>: is the X-BAR output being configured.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>This function forces the Output X-BAR output latch. The output to be configured is specified by the <em>output</em> parameter.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423XBAR_invertOutputSignal8uint32_t14XBAR_OutputNumb">
+<span id="_CPPv323XBAR_invertOutputSignal8uint32_t14XBAR_OutputNumb"></span><span id="_CPPv223XBAR_invertOutputSignal8uint32_t14XBAR_OutputNumb"></span><span id="XBAR_invertOutputSignal__uint32_t.XBAR_OutputNum.b"></span><span class="target" id="group__xbar__api_1ga2f21329c995c9b79ee8b99bfc7865eb9"></span>void <code class="sig-name descname">XBAR_invertOutputSignal</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv414XBAR_OutputNum" title="XBAR_OutputNum">XBAR_OutputNum</a> <em>output</em>, bool <em>invert</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423XBAR_invertOutputSignal8uint32_t14XBAR_OutputNumb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the polarity of an Output X-BAR output.</p>
+<p><p>The </p>
+<em>base</em> parameter can take base addresses OUTPUTXBAR_BASE or CLBOUTPUTXBAR_BASE.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the X-BAR base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">output</span></code>: is the X-BAR output being configured. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">invert</span></code>: is a flag that determines whether the output is active-high or active-low.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>This function inverts the Output X-BAR signal if the <em>invert</em> parameter is <strong>true</strong>. If <em>invert</em> is <strong>false</strong>, the signal will be passed as is. The <em>output</em> parameter is a value <strong>XBAR_OUTPUTy</strong> where y is the output number between 1 and 8 inclusive.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418XBAR_enableEPWMMux12XBAR_TripNum8uint32_t">
+<span id="_CPPv318XBAR_enableEPWMMux12XBAR_TripNum8uint32_t"></span><span id="_CPPv218XBAR_enableEPWMMux12XBAR_TripNum8uint32_t"></span><span id="XBAR_enableEPWMMux__XBAR_TripNum.uint32_t"></span><span class="target" id="group__xbar__api_1gae3754474c71dfbcd03c07c96b0021863"></span>void <code class="sig-name descname">XBAR_enableEPWMMux</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv412XBAR_TripNum" title="XBAR_TripNum">XBAR_TripNum</a> <em>trip</em>, uint32_t <em>muxes</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418XBAR_enableEPWMMux12XBAR_TripNum8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the ePWM X-BAR mux values to be passed to an ePWM module.</p>
+<p><p>This function enables the mux values to be passed to the X-BAR trip signal. The </p>
+<em>trip</em> parameter is a value <strong>XBAR_TRIPy</strong> where y is the number of the trip signal on the ePWM.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">trip</span></code>: is the X-BAR output being configured. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">muxes</span></code>: is a bit field of the muxes to be enabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>muxes</em> parameter is a bit field of the muxes being enabled where bit 0 represents mux 0, bit 1 represents mux 1 and so on. Defines are provided in the form of <strong>XBAR_MUXnn</strong> that can be logically OR’d together to enable several muxes on an output at the same time.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419XBAR_disableEPWMMux12XBAR_TripNum8uint32_t">
+<span id="_CPPv319XBAR_disableEPWMMux12XBAR_TripNum8uint32_t"></span><span id="_CPPv219XBAR_disableEPWMMux12XBAR_TripNum8uint32_t"></span><span id="XBAR_disableEPWMMux__XBAR_TripNum.uint32_t"></span><span class="target" id="group__xbar__api_1ga61cfc702b7f44e689c7a2be858866f90"></span>void <code class="sig-name descname">XBAR_disableEPWMMux</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv412XBAR_TripNum" title="XBAR_TripNum">XBAR_TripNum</a> <em>trip</em>, uint32_t <em>muxes</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419XBAR_disableEPWMMux12XBAR_TripNum8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the ePWM X-BAR mux values to be passed to an ePWM module.</p>
+<p><p>This function disables the mux values to be passed to the X-BAR trip signal. The </p>
+<em>trip</em> parameter is a value <strong>XBAR_TRIPy</strong> where y is the number of the trip signal on the ePWM.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">trip</span></code>: is the X-BAR output being configured. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">muxes</span></code>: is a bit field of the muxes to be disabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>muxes</em> parameter is a bit field of the muxes being disabled where bit 0 represents mux 0, bit 1 represents mux 1 and so on. Defines are provided in the form of <strong>XBAR_MUXnn</strong> that can be logically OR’d together to disable several muxes on an output at the same time.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421XBAR_invertEPWMSignal12XBAR_TripNumb">
+<span id="_CPPv321XBAR_invertEPWMSignal12XBAR_TripNumb"></span><span id="_CPPv221XBAR_invertEPWMSignal12XBAR_TripNumb"></span><span id="XBAR_invertEPWMSignal__XBAR_TripNum.b"></span><span class="target" id="group__xbar__api_1gafe6d9775a068a8c4783897c4465bf6a1"></span>void <code class="sig-name descname">XBAR_invertEPWMSignal</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv412XBAR_TripNum" title="XBAR_TripNum">XBAR_TripNum</a> <em>trip</em>, bool <em>invert</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421XBAR_invertEPWMSignal12XBAR_TripNumb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the polarity of an ePWM X-BAR output.</p>
+<p><p>This function inverts the ePWM X-BAR trip signal if the </p>
+<em>invert</em> parameter is <strong>true</strong>. If <em>invert</em> is <strong>false</strong>, the signal will be passed as is. The <em>trip</em> parameter is a value <strong>XBAR_TRIPy</strong> where y is the number of the trip signal on the ePWM X-BAR that is being configured.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">trip</span></code>: is the X-BAR output being configured. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">invert</span></code>: is a flag that determines whether the output is active-high or active-low.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416XBAR_setInputPin8uint32_t13XBAR_InputNum8uint16_t">
+<span id="_CPPv316XBAR_setInputPin8uint32_t13XBAR_InputNum8uint16_t"></span><span id="_CPPv216XBAR_setInputPin8uint32_t13XBAR_InputNum8uint16_t"></span><span id="XBAR_setInputPin__uint32_t.XBAR_InputNum.uint16_t"></span><span class="target" id="group__xbar__api_1gaf58bb7588ce93e311ec81f5ad6c0dea9"></span>void <code class="sig-name descname">XBAR_setInputPin</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv413XBAR_InputNum" title="XBAR_InputNum">XBAR_InputNum</a> <em>input</em>, uint16_t <em>pin</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416XBAR_setInputPin8uint32_t13XBAR_InputNum8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the GPIO / non-GPIO pin for an Input X-BAR input.</p>
+<p><p>The </p>
+<em>base</em> parameter can take base addresses INPUTXBAR_BASE or CLBINPUTXBAR_BASE.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the X-BAR base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">input</span></code>: is the X-BAR input being configured. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pin</span></code>: is the identifying number of the pin.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>This function configures which GPIO is assigned to an Input X-BAR input. The <em>input</em> parameter is a value in the form of a define <strong>XBAR_INPUTy</strong> where y is a the input number for the Input X-BAR.</p>
+<p>The pin is specified by its numerical value. For example, GPIO34 is specified by passing 34 as <em>pin</em>.</p>
+<p>For the other non - GPIO values: 0xFFFD: ‘1’ will be driven to the destination 0xFFFE: ‘1’ will be driven to the destination 0xFFFF: ‘0’ will be driven to the destination NOTE: Pin value greater than the available number of GPIO pins on a device (except 0xFFFF) will cause the destination to be driven ‘1’.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414XBAR_lockInput8uint32_t13XBAR_InputNum">
+<span id="_CPPv314XBAR_lockInput8uint32_t13XBAR_InputNum"></span><span id="_CPPv214XBAR_lockInput8uint32_t13XBAR_InputNum"></span><span id="XBAR_lockInput__uint32_t.XBAR_InputNum"></span><span class="target" id="group__xbar__api_1ga25e475dedad1f4ee0cf56d912cf414a1"></span>void <code class="sig-name descname">XBAR_lockInput</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv413XBAR_InputNum" title="XBAR_InputNum">XBAR_InputNum</a> <em>input</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414XBAR_lockInput8uint32_t13XBAR_InputNum" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Locks an input to the Input X-BAR.</p>
+<p><p>This function locks the specific input on the Input X-BAR.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the X-BAR base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">input</span></code>: is an input to the Input X-BAR.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>base</em> parameter can take base addresses INPUTXBAR_BASE or CLBINPUTXBAR_BASE .</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415XBAR_lockOutput8uint32_t">
+<span id="_CPPv315XBAR_lockOutput8uint32_t"></span><span id="_CPPv215XBAR_lockOutput8uint32_t"></span><span id="XBAR_lockOutput__uint32_t"></span><span class="target" id="group__xbar__api_1ga9d70dfed42193489516818a0896c5dd8"></span>void <code class="sig-name descname">XBAR_lockOutput</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415XBAR_lockOutput8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Locks the Output X-BAR.</p>
+<p><p>The </p>
+<em>base</em> parameter can take base addresses OUTPUTXBAR_BASE or CLBOUTPUTXBAR_BASE.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the X-BAR base address. This function locks the Output X-BAR.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv413XBAR_lockEPWMv">
+<span id="_CPPv313XBAR_lockEPWMv"></span><span id="_CPPv213XBAR_lockEPWMv"></span><span id="XBAR_lockEPWM__void"></span><span class="target" id="group__xbar__api_1gaa6d84776a4f24856e84248a545070e40"></span>void <code class="sig-name descname">XBAR_lockEPWM</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413XBAR_lockEPWMv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Locks the ePWM X-BAR.</p>
+<p>This function locks the ePWM X-BAR.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423XBAR_setOutputMuxConfig8uint32_t14XBAR_OutputNum20XBAR_OutputMuxConfig">
+<span id="_CPPv323XBAR_setOutputMuxConfig8uint32_t14XBAR_OutputNum20XBAR_OutputMuxConfig"></span><span id="_CPPv223XBAR_setOutputMuxConfig8uint32_t14XBAR_OutputNum20XBAR_OutputMuxConfig"></span><span id="XBAR_setOutputMuxConfig__uint32_t.XBAR_OutputNum.XBAR_OutputMuxConfig"></span><span class="target" id="group__xbar__api_1gaee661191f3b94e2c02ce0f4996657524"></span>void <code class="sig-name descname">XBAR_setOutputMuxConfig</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv414XBAR_OutputNum" title="XBAR_OutputNum">XBAR_OutputNum</a> <em>output</em>, <a class="reference internal" href="#_CPPv420XBAR_OutputMuxConfig" title="XBAR_OutputMuxConfig">XBAR_OutputMuxConfig</a> <em>muxConfig</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423XBAR_setOutputMuxConfig8uint32_t14XBAR_OutputNum20XBAR_OutputMuxConfig" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the Output X-BAR mux that determines the signals passed to an output.</p>
+<p><p>This function configures an Output X-BAR mux. This determines which signal(s) should be passed through the X-BAR to a GPIO. The </p>
+<em>output</em> parameter is a value <strong>XBAR_OUTPUTy</strong> where y is a the output number between 1 and 8 inclusive.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the X-BAR Config Register base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">output</span></code>: is the X-BAR output being configured. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">muxConfig</span></code>: is mux configuration that specifies the signal.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>base</em> parameter can take base addresses OUTPUTXBAR_BASE or CLBOUTPUTXBAR_BASE.</p>
+<p>The <em>muxConfig</em> parameter for OUTPUT XBAR is the mux configuration value that specifies which signal will be passed from the mux. The values have the format of <strong>XBAR_OUT_MUXnn_xx</strong> where the ‘xx’ is the signal and nn is the mux number.</p>
+<p>The <em>muxConfig</em> parameter for the CLB OUTPUT XBAR have the similar format as <strong>XBAR_OUT_MUXnn_xx</strong> where the ‘xx’ is the signal and nn is the mux number.</p>
+<p>This function may be called for each mux of an output and their values will be logically OR’d before being passed to the output signal. This means that this function may be called, for example, with the argument <strong>XBAR_OUT_MUX00_ECAP1_OUT</strong> and then with the argument <strong>XBAR_OUT_MUX01_INPUTXBAR1</strong>, resulting in the values of MUX00 and MUX01 being logically OR’d if both are enabled. Calling the function twice for the same mux on the output will result in the configuration in the second call overwriting the first.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421XBAR_setEPWMMuxConfig12XBAR_TripNum18XBAR_EPWMMuxConfig">
+<span id="_CPPv321XBAR_setEPWMMuxConfig12XBAR_TripNum18XBAR_EPWMMuxConfig"></span><span id="_CPPv221XBAR_setEPWMMuxConfig12XBAR_TripNum18XBAR_EPWMMuxConfig"></span><span id="XBAR_setEPWMMuxConfig__XBAR_TripNum.XBAR_EPWMMuxConfig"></span><span class="target" id="group__xbar__api_1ga5f6bcfcd44109dd6b153da49b2defb67"></span>void <code class="sig-name descname">XBAR_setEPWMMuxConfig</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv412XBAR_TripNum" title="XBAR_TripNum">XBAR_TripNum</a> <em>trip</em>, <a class="reference internal" href="#_CPPv418XBAR_EPWMMuxConfig" title="XBAR_EPWMMuxConfig">XBAR_EPWMMuxConfig</a> <em>muxConfig</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421XBAR_setEPWMMuxConfig12XBAR_TripNum18XBAR_EPWMMuxConfig" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the ePWM X-BAR mux that determines the signals passed to an ePWM module.</p>
+<p><p>This function configures an ePWM X-BAR mux. This determines which signal(s) should be passed through the X-BAR to an ePWM module. The </p>
+<em>trip</em> parameter is a value <strong>XBAR_TRIPy</strong> where y is a the number of the trip signal on the ePWM.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">trip</span></code>: is the X-BAR output being configured. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">muxConfig</span></code>: is mux configuration that specifies the signal.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>muxConfig</em> parameter is the mux configuration value that specifies which signal will be passed from the mux. The values have the format of <strong>XBAR_EPWM_MUXnn_xx</strong> where the ‘xx’ is the signal and nn is the mux number (0 through 31). The possible values are found in <code class="docutils literal notranslate"><span class="pre">xbar.h</span></code></p>
+<p>This function may be called for each mux of an output and their values will be logically OR’d before being passed to the trip signal. This means that this function may be called, for example, with the argument <strong>XBAR_EPWM_MUX00_ECAP1_OUT</strong> and then with the argument <strong>XBAR_EPWM_MUX01_INPUTXBAR1</strong>, resulting in the values of MUX00 and MUX03 being logically OR’d if both are enabled. Calling the function twice for the same mux on the output will result in the configuration in the second call overwriting the first.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423XBAR_getInputFlagStatus14XBAR_InputFlag">
+<span id="_CPPv323XBAR_getInputFlagStatus14XBAR_InputFlag"></span><span id="_CPPv223XBAR_getInputFlagStatus14XBAR_InputFlag"></span><span id="XBAR_getInputFlagStatus__XBAR_InputFlag"></span><span class="target" id="group__xbar__api_1ga42314dc0448f4ecbf5fe6a0af67e9bfb"></span>bool <code class="sig-name descname">XBAR_getInputFlagStatus</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414XBAR_InputFlag" title="XBAR_InputFlag">XBAR_InputFlag</a> <em>inputFlag</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423XBAR_getInputFlagStatus14XBAR_InputFlag" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the status of the input latch.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if the X-BAR input corresponding to the <em>inputFlag</em> has been triggered. If not, it will return <strong>false</strong>. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">inputFlag</span></code>: is the X-BAR input latch being checked. Values are in the format of /b XBAR_INPUT_FLG_XXXX where “XXXX” is name of the signal.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419XBAR_clearInputFlag14XBAR_InputFlag">
+<span id="_CPPv319XBAR_clearInputFlag14XBAR_InputFlag"></span><span id="_CPPv219XBAR_clearInputFlag14XBAR_InputFlag"></span><span id="XBAR_clearInputFlag__XBAR_InputFlag"></span><span class="target" id="group__xbar__api_1gaecc03a3444244aaebe0341811922ca1a"></span>void <code class="sig-name descname">XBAR_clearInputFlag</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414XBAR_InputFlag" title="XBAR_InputFlag">XBAR_InputFlag</a> <em>inputFlag</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419XBAR_clearInputFlag14XBAR_InputFlag" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears the input latch for the specified input latch.</p>
+<p><p>This function clears the Input X-BAR input latch. The input latch to be cleared is specified by the </p>
+<em>inputFlag</em> parameter.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">inputFlag</span></code>: is the X-BAR input latch being cleared.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>The functions used to configure the ePWM and the Output X-BAR are identifiable
+as their names will either contain the word EPWM or Output. Both of these
+X-BARs have multiple output signals that have 32 associated muxes. The select
+signal of these muxes is configured using the XBAR_setEPWMMuxConfig() and
+XBAR_setOutputMuxConfig() functions. Each of these mux signals can be enabled
+and disabled before they are logically OR’d together to arrive at the output
+signal using XBAR_enableOutputMux() and XBAR_disableOutputMux() and
+XBAR_enableEPWMMux() and XBAR_disableEPWMMux().</p>
+<p>The functions XBAR_getInputFlagStatus() and XBAR_clearInputFlag(), despite
+their names, are not related to the Input X-BAR. They provide a way to get and
+clear the status of the signals that are inputs to the ePWM and Output X-BARs.
+Since these two X-BARs share nearly all of their inputs, they share this set of
+flags.</p>
+<p>The Input X-BAR takes a signal of a GPIO and routes it to an IP block
+destination. This pin can be selected for each input using the
+XBAR_setInputPin() function. Note that the descriptions for the values of the
+XBAR_InputNum enumerated type provide a list of the possible destinations for
+each input.</p>
+<p>The code for this module is contained in driverlib/xbar.c, with driverlib/xbar.h containing the API declarations for use by applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="version.html" class="btn btn-neutral float-left" title="Version" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

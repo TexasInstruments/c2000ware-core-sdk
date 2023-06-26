@@ -1,0 +1,1176 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ECAP Module &mdash; F2837xd API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F2837xd API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="EMIF Module" href="emif.html"/>
+        <link rel="prev" title="DMA Module" href="dma.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F2837xd API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="adc.html">ADC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asysctl.html">ASysCtl Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla.html">CLA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clb.html">CLB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmpss.html">CMPSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dac.html">DAC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dma.html">DMA Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ECAP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emif.html">EMIF Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="epwm.html">EPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hrpwm.html">HRPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqep.html">EQEP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcbsp.html">MCBSP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci.html">SCI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdfm.html">SDFM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">SPI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upp.html">UPP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version.html">Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xbar.html">XBAR Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F2837xd API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>ECAP Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ecap-module">
+<span id="ecap"></span><h1>ECAP Module<a class="headerlink" href="#ecap-module" title="Permalink to this headline">¶</a></h1>
+<p>The Enhanced Capture (eCAP) API provides a set of functions for configuring
+and using the eCAP module.
+Functions are provided to utilize both the capture and PWM capability of the
+eCAP module.
+The APIs allow for the selection and characterization of the input signal to be
+captured. A provision is also made to provide DMA trigger sources based on the
+eCAP events.
+The necessary APIs are also provided for PWM mode of operation.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__ecap__api"></span><em>group</em> <code class="sig-name descname">ecap_api</code></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.ECAP_MAX_PRESCALER_VALUE">
+<span class="target" id="group__ecap__api_1ga020e31c9d1c25171cb6f74b8fa7eafa2"></span><code class="sig-name descname">ECAP_MAX_PRESCALER_VALUE</code> 32U<a class="headerlink" href="#c.ECAP_MAX_PRESCALER_VALUE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ECAP_ISR_SOURCE_CAPTURE_EVENT_1">
+<span class="target" id="group__ecap__api_1ga48c07a9bdb706ea86d09027024daf532"></span><code class="sig-name descname">ECAP_ISR_SOURCE_CAPTURE_EVENT_1</code> 0x2U<a class="headerlink" href="#c.ECAP_ISR_SOURCE_CAPTURE_EVENT_1" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Event 1 ISR source </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ECAP_ISR_SOURCE_CAPTURE_EVENT_2">
+<span class="target" id="group__ecap__api_1gaf7f231cbd40d909ce2a2347533cf3625"></span><code class="sig-name descname">ECAP_ISR_SOURCE_CAPTURE_EVENT_2</code> 0x4U<a class="headerlink" href="#c.ECAP_ISR_SOURCE_CAPTURE_EVENT_2" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Event 2 ISR source </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ECAP_ISR_SOURCE_CAPTURE_EVENT_3">
+<span class="target" id="group__ecap__api_1ga81f1fee3d3f5ac946361094cd5fa221d"></span><code class="sig-name descname">ECAP_ISR_SOURCE_CAPTURE_EVENT_3</code> 0x8U<a class="headerlink" href="#c.ECAP_ISR_SOURCE_CAPTURE_EVENT_3" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Event 3 ISR source </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ECAP_ISR_SOURCE_CAPTURE_EVENT_4">
+<span class="target" id="group__ecap__api_1ga18116b7d4b675d31ccaa89ab65dc6e13"></span><code class="sig-name descname">ECAP_ISR_SOURCE_CAPTURE_EVENT_4</code> 0x10U<a class="headerlink" href="#c.ECAP_ISR_SOURCE_CAPTURE_EVENT_4" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Event 4 ISR source </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ECAP_ISR_SOURCE_COUNTER_OVERFLOW">
+<span class="target" id="group__ecap__api_1gac41d1a3aa7f926374903c0801d183d6f"></span><code class="sig-name descname">ECAP_ISR_SOURCE_COUNTER_OVERFLOW</code> 0x20U<a class="headerlink" href="#c.ECAP_ISR_SOURCE_COUNTER_OVERFLOW" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Counter overflow ISR source </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ECAP_ISR_SOURCE_COUNTER_PERIOD">
+<span class="target" id="group__ecap__api_1ga1fbe7c38c371e96adc06ffecbd448958"></span><code class="sig-name descname">ECAP_ISR_SOURCE_COUNTER_PERIOD</code> 0x40U<a class="headerlink" href="#c.ECAP_ISR_SOURCE_COUNTER_PERIOD" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Counter equals period ISR source </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ECAP_ISR_SOURCE_COUNTER_COMPARE">
+<span class="target" id="group__ecap__api_1gabead4b701c7a637dec72d535ae770f56"></span><code class="sig-name descname">ECAP_ISR_SOURCE_COUNTER_COMPARE</code> 0x80U<a class="headerlink" href="#c.ECAP_ISR_SOURCE_COUNTER_COMPARE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Counter equals compare ISR source </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="cpp enum">
+<dt id="_CPPv418ECAP_EmulationMode">
+<span id="_CPPv318ECAP_EmulationMode"></span><span id="_CPPv218ECAP_EmulationMode"></span><span class="target" id="group__ecap__api_1gafe3cbee44a90b3d086cbfa77675c88ba"></span><em class="property">enum </em><code class="sig-name descname">ECAP_EmulationMode</code><a class="headerlink" href="#_CPPv418ECAP_EmulationMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__ecap__api_1gacda7e8d137a05f23fd285ac655d493c5"><span class="std std-ref">ECAP_setEmulationMode()</span></a> as the <em>mode</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ECAP_EmulationMode19ECAP_EMULATION_STOPE">
+<span id="_CPPv3N18ECAP_EmulationMode19ECAP_EMULATION_STOPE"></span><span id="_CPPv2N18ECAP_EmulationMode19ECAP_EMULATION_STOPE"></span><span class="target" id="group__ecap__api_1ggafe3cbee44a90b3d086cbfa77675c88baafa030aadfc125a617876900be11c60cd"></span><em class="property">enumerator </em><code class="sig-name descname">ECAP_EMULATION_STOP</code> = 0x0U<a class="headerlink" href="#_CPPv4N18ECAP_EmulationMode19ECAP_EMULATION_STOPE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>TSCTR is stopped on emulation suspension. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ECAP_EmulationMode26ECAP_EMULATION_RUN_TO_ZEROE">
+<span id="_CPPv3N18ECAP_EmulationMode26ECAP_EMULATION_RUN_TO_ZEROE"></span><span id="_CPPv2N18ECAP_EmulationMode26ECAP_EMULATION_RUN_TO_ZEROE"></span><span class="target" id="group__ecap__api_1ggafe3cbee44a90b3d086cbfa77675c88baab8e16593de14416f5bd645fd6c1a1f33"></span><em class="property">enumerator </em><code class="sig-name descname">ECAP_EMULATION_RUN_TO_ZERO</code> = 0x1U<a class="headerlink" href="#_CPPv4N18ECAP_EmulationMode26ECAP_EMULATION_RUN_TO_ZEROE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>TSCTR runs until 0 before stopping on emulation suspension. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ECAP_EmulationMode23ECAP_EMULATION_FREE_RUNE">
+<span id="_CPPv3N18ECAP_EmulationMode23ECAP_EMULATION_FREE_RUNE"></span><span id="_CPPv2N18ECAP_EmulationMode23ECAP_EMULATION_FREE_RUNE"></span><span class="target" id="group__ecap__api_1ggafe3cbee44a90b3d086cbfa77675c88baa015989a4413d8ea4543039b2a7a96385"></span><em class="property">enumerator </em><code class="sig-name descname">ECAP_EMULATION_FREE_RUN</code> = 0x2U<a class="headerlink" href="#_CPPv4N18ECAP_EmulationMode23ECAP_EMULATION_FREE_RUNE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>TSCTR is not affected by emulation suspension. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv416ECAP_CaptureMode">
+<span id="_CPPv316ECAP_CaptureMode"></span><span id="_CPPv216ECAP_CaptureMode"></span><span class="target" id="group__ecap__api_1gadec1bfe3dcb4cb346ba3149d0c359e7e"></span><em class="property">enum </em><code class="sig-name descname">ECAP_CaptureMode</code><a class="headerlink" href="#_CPPv416ECAP_CaptureMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__ecap__api_1gac5994e5867e046e98be8261c9a91b238"><span class="std std-ref">ECAP_setCaptureMode()</span></a> as the <em>mode</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N16ECAP_CaptureMode28ECAP_CONTINUOUS_CAPTURE_MODEE">
+<span id="_CPPv3N16ECAP_CaptureMode28ECAP_CONTINUOUS_CAPTURE_MODEE"></span><span id="_CPPv2N16ECAP_CaptureMode28ECAP_CONTINUOUS_CAPTURE_MODEE"></span><span class="target" id="group__ecap__api_1ggadec1bfe3dcb4cb346ba3149d0c359e7ea6bb93ba6f860cdbbc41224625f397437"></span><em class="property">enumerator </em><code class="sig-name descname">ECAP_CONTINUOUS_CAPTURE_MODE</code> = 0U<a class="headerlink" href="#_CPPv4N16ECAP_CaptureMode28ECAP_CONTINUOUS_CAPTURE_MODEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>eCAP operates in continuous capture mode </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N16ECAP_CaptureMode26ECAP_ONE_SHOT_CAPTURE_MODEE">
+<span id="_CPPv3N16ECAP_CaptureMode26ECAP_ONE_SHOT_CAPTURE_MODEE"></span><span id="_CPPv2N16ECAP_CaptureMode26ECAP_ONE_SHOT_CAPTURE_MODEE"></span><span class="target" id="group__ecap__api_1ggadec1bfe3dcb4cb346ba3149d0c359e7ea495cd7bc64dbd6551aa1a31e5f94ebe8"></span><em class="property">enumerator </em><code class="sig-name descname">ECAP_ONE_SHOT_CAPTURE_MODE</code> = 1U<a class="headerlink" href="#_CPPv4N16ECAP_CaptureMode26ECAP_ONE_SHOT_CAPTURE_MODEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>eCAP operates in one shot capture mode </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv411ECAP_Events">
+<span id="_CPPv311ECAP_Events"></span><span id="_CPPv211ECAP_Events"></span><span class="target" id="group__ecap__api_1gaf84d48584bb1432ede6c502395f538f1"></span><em class="property">enum </em><code class="sig-name descname">ECAP_Events</code><a class="headerlink" href="#_CPPv411ECAP_Events" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__ecap__api_1ga8cbaa5b5427c96adea11f5ddd9e4b788"><span class="std std-ref">ECAP_setEventPolarity()</span></a>,<a class="reference internal" href="#group__ecap__api_1gac5994e5867e046e98be8261c9a91b238"><span class="std std-ref">ECAP_setCaptureMode()</span></a>, <a class="reference internal" href="#group__ecap__api_1ga9a08b2c9d3f2ac7c82df651897740bd6"><span class="std std-ref">ECAP_enableCounterResetOnEvent()</span></a>,<a class="reference internal" href="#group__ecap__api_1ga841281e729c8e70f9fcd76b1c3ce2529"><span class="std std-ref">ECAP_disableCounterResetOnEvent()</span></a>, <a class="reference internal" href="#group__ecap__api_1gad97295535b95e152c80b4caec1e2a9c2"><span class="std std-ref">ECAP_getEventTimeStamp()</span></a>,ECAP_setDMASource() as the <em>event</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11ECAP_Events12ECAP_EVENT_1E">
+<span id="_CPPv3N11ECAP_Events12ECAP_EVENT_1E"></span><span id="_CPPv2N11ECAP_Events12ECAP_EVENT_1E"></span><span class="target" id="group__ecap__api_1ggaf84d48584bb1432ede6c502395f538f1aa67bf52eb0e219210fa41cec5b509090"></span><em class="property">enumerator </em><code class="sig-name descname">ECAP_EVENT_1</code> = 0U<a class="headerlink" href="#_CPPv4N11ECAP_Events12ECAP_EVENT_1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>eCAP event 1 </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11ECAP_Events12ECAP_EVENT_2E">
+<span id="_CPPv3N11ECAP_Events12ECAP_EVENT_2E"></span><span id="_CPPv2N11ECAP_Events12ECAP_EVENT_2E"></span><span class="target" id="group__ecap__api_1ggaf84d48584bb1432ede6c502395f538f1a79cf74a41e6285a917868b0456b6222a"></span><em class="property">enumerator </em><code class="sig-name descname">ECAP_EVENT_2</code> = 1U<a class="headerlink" href="#_CPPv4N11ECAP_Events12ECAP_EVENT_2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>eCAP event 2 </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11ECAP_Events12ECAP_EVENT_3E">
+<span id="_CPPv3N11ECAP_Events12ECAP_EVENT_3E"></span><span id="_CPPv2N11ECAP_Events12ECAP_EVENT_3E"></span><span class="target" id="group__ecap__api_1ggaf84d48584bb1432ede6c502395f538f1a1f0adb6a52104b1f5eba37ed33ad46ff"></span><em class="property">enumerator </em><code class="sig-name descname">ECAP_EVENT_3</code> = 2U<a class="headerlink" href="#_CPPv4N11ECAP_Events12ECAP_EVENT_3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>eCAP event 3 </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11ECAP_Events12ECAP_EVENT_4E">
+<span id="_CPPv3N11ECAP_Events12ECAP_EVENT_4E"></span><span id="_CPPv2N11ECAP_Events12ECAP_EVENT_4E"></span><span class="target" id="group__ecap__api_1ggaf84d48584bb1432ede6c502395f538f1a275a95809a4915aad084e29ef73b6fc5"></span><em class="property">enumerator </em><code class="sig-name descname">ECAP_EVENT_4</code> = 3U<a class="headerlink" href="#_CPPv4N11ECAP_Events12ECAP_EVENT_4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>eCAP event 4 </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv416ECAP_SyncOutMode">
+<span id="_CPPv316ECAP_SyncOutMode"></span><span id="_CPPv216ECAP_SyncOutMode"></span><span class="target" id="group__ecap__api_1ga3b974cda173284f4c703b9faaf81903b"></span><em class="property">enum </em><code class="sig-name descname">ECAP_SyncOutMode</code><a class="headerlink" href="#_CPPv416ECAP_SyncOutMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__ecap__api_1gae51b45d2b52d8a559d3354793df14e27"><span class="std std-ref">ECAP_setSyncOutMode()</span></a> as the <em>mode</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N16ECAP_SyncOutMode19ECAP_SYNC_OUT_SYNCIE">
+<span id="_CPPv3N16ECAP_SyncOutMode19ECAP_SYNC_OUT_SYNCIE"></span><span id="_CPPv2N16ECAP_SyncOutMode19ECAP_SYNC_OUT_SYNCIE"></span><span class="target" id="group__ecap__api_1gga3b974cda173284f4c703b9faaf81903ba07b50a4703932e30ce3c5aeb10c9f4bd"></span><em class="property">enumerator </em><code class="sig-name descname">ECAP_SYNC_OUT_SYNCI</code> = 0x00U<a class="headerlink" href="#_CPPv4N16ECAP_SyncOutMode19ECAP_SYNC_OUT_SYNCIE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>sync out on the sync in signal and software force </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N16ECAP_SyncOutMode25ECAP_SYNC_OUT_COUNTER_PRDE">
+<span id="_CPPv3N16ECAP_SyncOutMode25ECAP_SYNC_OUT_COUNTER_PRDE"></span><span id="_CPPv2N16ECAP_SyncOutMode25ECAP_SYNC_OUT_COUNTER_PRDE"></span><span class="target" id="group__ecap__api_1gga3b974cda173284f4c703b9faaf81903bad358b137c3f24f0d0534c9bcdf2a7801"></span><em class="property">enumerator </em><code class="sig-name descname">ECAP_SYNC_OUT_COUNTER_PRD</code> = 0x40U<a class="headerlink" href="#_CPPv4N16ECAP_SyncOutMode25ECAP_SYNC_OUT_COUNTER_PRDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>sync out on counter equals period </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N16ECAP_SyncOutMode22ECAP_SYNC_OUT_DISABLEDE">
+<span id="_CPPv3N16ECAP_SyncOutMode22ECAP_SYNC_OUT_DISABLEDE"></span><span id="_CPPv2N16ECAP_SyncOutMode22ECAP_SYNC_OUT_DISABLEDE"></span><span class="target" id="group__ecap__api_1gga3b974cda173284f4c703b9faaf81903ba274c19a1e77b373d0ebe9b8ea7fb7818"></span><em class="property">enumerator </em><code class="sig-name descname">ECAP_SYNC_OUT_DISABLED</code> = 0x80U<a class="headerlink" href="#_CPPv4N16ECAP_SyncOutMode22ECAP_SYNC_OUT_DISABLEDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable sync out signal. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv417ECAP_APWMPolarity">
+<span id="_CPPv317ECAP_APWMPolarity"></span><span id="_CPPv217ECAP_APWMPolarity"></span><span class="target" id="group__ecap__api_1ga721df1b285568425f14b777252fa3ef4"></span><em class="property">enum </em><code class="sig-name descname">ECAP_APWMPolarity</code><a class="headerlink" href="#_CPPv417ECAP_APWMPolarity" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__ecap__api_1ga5bbc4002878cfa92058d76580f49f6b5"><span class="std std-ref">ECAP_setAPWMPolarity()</span></a> as the <em>polarity</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17ECAP_APWMPolarity21ECAP_APWM_ACTIVE_HIGHE">
+<span id="_CPPv3N17ECAP_APWMPolarity21ECAP_APWM_ACTIVE_HIGHE"></span><span id="_CPPv2N17ECAP_APWMPolarity21ECAP_APWM_ACTIVE_HIGHE"></span><span class="target" id="group__ecap__api_1gga721df1b285568425f14b777252fa3ef4a18b250bbf0df88c15efc75dcfdabef0e"></span><em class="property">enumerator </em><code class="sig-name descname">ECAP_APWM_ACTIVE_HIGH</code> = 0x000<a class="headerlink" href="#_CPPv4N17ECAP_APWMPolarity21ECAP_APWM_ACTIVE_HIGHE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>APWM is active high. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17ECAP_APWMPolarity20ECAP_APWM_ACTIVE_LOWE">
+<span id="_CPPv3N17ECAP_APWMPolarity20ECAP_APWM_ACTIVE_LOWE"></span><span id="_CPPv2N17ECAP_APWMPolarity20ECAP_APWM_ACTIVE_LOWE"></span><span class="target" id="group__ecap__api_1gga721df1b285568425f14b777252fa3ef4ae3ed35eb413cd08d74ea4bb52d41f4f9"></span><em class="property">enumerator </em><code class="sig-name descname">ECAP_APWM_ACTIVE_LOW</code> = 0x400<a class="headerlink" href="#_CPPv4N17ECAP_APWMPolarity20ECAP_APWM_ACTIVE_LOWE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>APWM is active low. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv418ECAP_EventPolarity">
+<span id="_CPPv318ECAP_EventPolarity"></span><span id="_CPPv218ECAP_EventPolarity"></span><span class="target" id="group__ecap__api_1ga74157b9f7ea65fa58756b73d7b94c859"></span><em class="property">enum </em><code class="sig-name descname">ECAP_EventPolarity</code><a class="headerlink" href="#_CPPv418ECAP_EventPolarity" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__ecap__api_1ga8cbaa5b5427c96adea11f5ddd9e4b788"><span class="std std-ref">ECAP_setEventPolarity()</span></a> as the <em>polarity</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ECAP_EventPolarity21ECAP_EVNT_RISING_EDGEE">
+<span id="_CPPv3N18ECAP_EventPolarity21ECAP_EVNT_RISING_EDGEE"></span><span id="_CPPv2N18ECAP_EventPolarity21ECAP_EVNT_RISING_EDGEE"></span><span class="target" id="group__ecap__api_1gga74157b9f7ea65fa58756b73d7b94c859a1b770e0d2568f86a3ef19d27b74f83c5"></span><em class="property">enumerator </em><code class="sig-name descname">ECAP_EVNT_RISING_EDGE</code> = 0U<a class="headerlink" href="#_CPPv4N18ECAP_EventPolarity21ECAP_EVNT_RISING_EDGEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Rising edge polarity. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ECAP_EventPolarity22ECAP_EVNT_FALLING_EDGEE">
+<span id="_CPPv3N18ECAP_EventPolarity22ECAP_EVNT_FALLING_EDGEE"></span><span id="_CPPv2N18ECAP_EventPolarity22ECAP_EVNT_FALLING_EDGEE"></span><span class="target" id="group__ecap__api_1gga74157b9f7ea65fa58756b73d7b94c859a1bf60bd8868be3c2b4ecb3c4f08cbda1"></span><em class="property">enumerator </em><code class="sig-name descname">ECAP_EVNT_FALLING_EDGE</code> = 1U<a class="headerlink" href="#_CPPv4N18ECAP_EventPolarity22ECAP_EVNT_FALLING_EDGEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Falling edge polarity. </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv422ECAP_setEventPrescaler8uint32_t8uint16_t">
+<span id="_CPPv322ECAP_setEventPrescaler8uint32_t8uint16_t"></span><span id="_CPPv222ECAP_setEventPrescaler8uint32_t8uint16_t"></span><span id="ECAP_setEventPrescaler__uint32_t.uint16_t"></span><span class="target" id="group__ecap__api_1ga62ecef786efdba670057287f06961b16"></span>void <code class="sig-name descname">ECAP_setEventPrescaler</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>preScalerValue</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422ECAP_setEventPrescaler8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the input prescaler.</p>
+<p><p>This function divides the ECAP input scaler. The pre scale value is doubled inside the module. For example a preScalerValue of 5 will divide the scaler by 10. Use a value of 1 to divide the pre scaler by 1. The </p>
+<em>preScalerValue</em> should be less than <strong>ECAP_MAX_PRESCALER_VALUE</strong>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ECAP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">preScalerValue</span></code>: is the pre scaler value for ECAP input</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421ECAP_setEventPolarity8uint32_t11ECAP_Events18ECAP_EventPolarity">
+<span id="_CPPv321ECAP_setEventPolarity8uint32_t11ECAP_Events18ECAP_EventPolarity"></span><span id="_CPPv221ECAP_setEventPolarity8uint32_t11ECAP_Events18ECAP_EventPolarity"></span><span id="ECAP_setEventPolarity__uint32_t.ECAP_Events.ECAP_EventPolarity"></span><span class="target" id="group__ecap__api_1ga8cbaa5b5427c96adea11f5ddd9e4b788"></span>void <code class="sig-name descname">ECAP_setEventPolarity</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv411ECAP_Events" title="ECAP_Events">ECAP_Events</a> <em>event</em>, <a class="reference internal" href="#_CPPv418ECAP_EventPolarity" title="ECAP_EventPolarity">ECAP_EventPolarity</a> <em>polarity</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421ECAP_setEventPolarity8uint32_t11ECAP_Events18ECAP_EventPolarity" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the Capture event polarity.</p>
+<p><p>This function sets the polarity of a given event. The value of event is between </p>
+<strong>ECAP_EVENT_1</strong> and <strong>ECAP_EVENT_4</strong> inclusive corresponding to the four available events.For each event the polarity value determines the edge on which the capture is activated. For a rising edge use a polarity value of <strong>ECAP_EVNT_RISING_EDGE</strong> and for a falling edge use a polarity of <strong>ECAP_EVNT_FALLING_EDGE</strong>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ECAP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">event</span></code>: is the event number. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">polarity</span></code>: is the polarity of the event.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419ECAP_setCaptureMode8uint32_t16ECAP_CaptureMode11ECAP_Events">
+<span id="_CPPv319ECAP_setCaptureMode8uint32_t16ECAP_CaptureMode11ECAP_Events"></span><span id="_CPPv219ECAP_setCaptureMode8uint32_t16ECAP_CaptureMode11ECAP_Events"></span><span id="ECAP_setCaptureMode__uint32_t.ECAP_CaptureMode.ECAP_Events"></span><span class="target" id="group__ecap__api_1gac5994e5867e046e98be8261c9a91b238"></span>void <code class="sig-name descname">ECAP_setCaptureMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv416ECAP_CaptureMode" title="ECAP_CaptureMode">ECAP_CaptureMode</a> <em>mode</em>, <a class="reference internal" href="#_CPPv411ECAP_Events" title="ECAP_Events">ECAP_Events</a> <em>event</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419ECAP_setCaptureMode8uint32_t16ECAP_CaptureMode11ECAP_Events" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the capture mode.</p>
+<p><p>This function sets the eCAP module to a continuous or one-shot mode. The value of mode should be either </p>
+<strong>ECAP_CONTINUOUS_CAPTURE_MODE</strong> or <strong>ECAP_ONE_SHOT_CAPTURE_MODE</strong> corresponding to continuous or one-shot mode respectively.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ECAP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: is the capture mode. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">event</span></code>: is the event number at which the counter stops or wraps.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The value of event determines the event number at which the counter stops (in one-shot mode) or the counter wraps (in continuous mode). The value of event should be between <strong>ECAP_EVENT_1</strong> and <strong>ECAP_EVENT_4</strong> corresponding to the valid event numbers.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv410ECAP_reArm8uint32_t">
+<span id="_CPPv310ECAP_reArm8uint32_t"></span><span id="_CPPv210ECAP_reArm8uint32_t"></span><span id="ECAP_reArm__uint32_t"></span><span class="target" id="group__ecap__api_1gaaa5cd279370b0cbc35b5979c0a3f81d0"></span>void <code class="sig-name descname">ECAP_reArm</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410ECAP_reArm8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Re-arms the eCAP module.</p>
+<p><p>This function re-arms the eCAP module.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ECAP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420ECAP_enableInterrupt8uint32_t8uint16_t">
+<span id="_CPPv320ECAP_enableInterrupt8uint32_t8uint16_t"></span><span id="_CPPv220ECAP_enableInterrupt8uint32_t8uint16_t"></span><span id="ECAP_enableInterrupt__uint32_t.uint16_t"></span><span class="target" id="group__ecap__api_1ga7345bdf60bc4ced84edbd01c36ac1528"></span>void <code class="sig-name descname">ECAP_enableInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420ECAP_enableInterrupt8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables interrupt source.</p>
+<p><p>This function sets and enables eCAP interrupt source. The following are valid interrupt sources.</p>
+<ul class="simple">
+<li><p>ECAP_ISR_SOURCE_CAPTURE_EVENT_1 - Event 1 generates interrupt</p></li>
+<li><p>ECAP_ISR_SOURCE_CAPTURE_EVENT_2 - Event 2 generates interrupt</p></li>
+<li><p>ECAP_ISR_SOURCE_CAPTURE_EVENT_3 - Event 3 generates interrupt</p></li>
+<li><p>ECAP_ISR_SOURCE_CAPTURE_EVENT_4 - Event 4 generates interrupt</p></li>
+<li><p>ECAP_ISR_SOURCE_COUNTER_OVERFLOW - Counter overflow generates interrupt</p></li>
+<li><p>ECAP_ISR_SOURCE_COUNTER_PERIOD - Counter equal period generates interrupt</p></li>
+<li><p>ECAP_ISR_SOURCE_COUNTER_COMPARE - Counter equal compare generates interrupt</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ECAP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is the interrupt source to be enabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421ECAP_disableInterrupt8uint32_t8uint16_t">
+<span id="_CPPv321ECAP_disableInterrupt8uint32_t8uint16_t"></span><span id="_CPPv221ECAP_disableInterrupt8uint32_t8uint16_t"></span><span id="ECAP_disableInterrupt__uint32_t.uint16_t"></span><span class="target" id="group__ecap__api_1ga5799120e3442c2a696672715c61b2780"></span>void <code class="sig-name descname">ECAP_disableInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421ECAP_disableInterrupt8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables interrupt source.</p>
+<p><p>This function clears and disables eCAP interrupt source. The following are valid interrupt sources.</p>
+<ul class="simple">
+<li><p>ECAP_ISR_SOURCE_CAPTURE_EVENT_1 - Event 1 generates interrupt</p></li>
+<li><p>ECAP_ISR_SOURCE_CAPTURE_EVENT_2 - Event 2 generates interrupt</p></li>
+<li><p>ECAP_ISR_SOURCE_CAPTURE_EVENT_3 - Event 3 generates interrupt</p></li>
+<li><p>ECAP_ISR_SOURCE_CAPTURE_EVENT_4 - Event 4 generates interrupt</p></li>
+<li><p>ECAP_ISR_SOURCE_COUNTER_OVERFLOW - Counter overflow generates interrupt</p></li>
+<li><p>ECAP_ISR_SOURCE_COUNTER_PERIOD - Counter equal period generates interrupt</p></li>
+<li><p>ECAP_ISR_SOURCE_COUNTER_COMPARE - Counter equal compare generates interrupt</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ECAP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is the interrupt source to be disabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423ECAP_getInterruptSource8uint32_t">
+<span id="_CPPv323ECAP_getInterruptSource8uint32_t"></span><span id="_CPPv223ECAP_getInterruptSource8uint32_t"></span><span id="ECAP_getInterruptSource__uint32_t"></span><span class="target" id="group__ecap__api_1ga6ca1a51fa56640b8e9a5450b61b4119f"></span>uint16_t <code class="sig-name descname">ECAP_getInterruptSource</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423ECAP_getInterruptSource8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the interrupt flag.</p>
+<p><p>This function returns the eCAP interrupt flag. The following are valid interrupt sources corresponding to the eCAP interrupt flag.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ECAP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the eCAP interrupt that has occurred. The following are valid return values.<ul class="simple">
+<li><p>ECAP_ISR_SOURCE_CAPTURE_EVENT_1 - Event 1 generates interrupt</p></li>
+<li><p>ECAP_ISR_SOURCE_CAPTURE_EVENT_2 - Event 2 generates interrupt</p></li>
+<li><p>ECAP_ISR_SOURCE_CAPTURE_EVENT_3 - Event 3 generates interrupt</p></li>
+<li><p>ECAP_ISR_SOURCE_CAPTURE_EVENT_4 - Event 4 generates interrupt</p></li>
+<li><p>ECAP_ISR_SOURCE_COUNTER_OVERFLOW - Counter overflow generates interrupt</p></li>
+<li><p>ECAP_ISR_SOURCE_COUNTER_PERIOD - Counter equal period generates interrupt</p></li>
+<li><p>ECAP_ISR_SOURCE_COUNTER_COMPARE - Counter equal compare generates interrupt</p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>- User can check if a combination of various interrupts have occurred by ORing the above return values. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429ECAP_getGlobalInterruptStatus8uint32_t">
+<span id="_CPPv329ECAP_getGlobalInterruptStatus8uint32_t"></span><span id="_CPPv229ECAP_getGlobalInterruptStatus8uint32_t"></span><span id="ECAP_getGlobalInterruptStatus__uint32_t"></span><span class="target" id="group__ecap__api_1gaef1cb19e30bf402f0d7e6ad59164ccda"></span>bool <code class="sig-name descname">ECAP_getGlobalInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429ECAP_getGlobalInterruptStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the Global interrupt flag.</p>
+<p><p>This function returns the eCAP Global interrupt flag.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ECAP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns true if there is a global eCAP interrupt, false otherwise. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419ECAP_clearInterrupt8uint32_t8uint16_t">
+<span id="_CPPv319ECAP_clearInterrupt8uint32_t8uint16_t"></span><span id="_CPPv219ECAP_clearInterrupt8uint32_t8uint16_t"></span><span id="ECAP_clearInterrupt__uint32_t.uint16_t"></span><span class="target" id="group__ecap__api_1ga6df979b146722014392716f435c9e318"></span>void <code class="sig-name descname">ECAP_clearInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419ECAP_clearInterrupt8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears interrupt flag.</p>
+<p><p>This function clears eCAP interrupt flags. The following are valid interrupt sources.</p>
+<ul class="simple">
+<li><p>ECAP_ISR_SOURCE_CAPTURE_EVENT_1 - Event 1 generates interrupt</p></li>
+<li><p>ECAP_ISR_SOURCE_CAPTURE_EVENT_2 - Event 2 generates interrupt</p></li>
+<li><p>ECAP_ISR_SOURCE_CAPTURE_EVENT_3 - Event 3 generates interrupt</p></li>
+<li><p>ECAP_ISR_SOURCE_CAPTURE_EVENT_4 - Event 4 generates interrupt</p></li>
+<li><p>ECAP_ISR_SOURCE_COUNTER_OVERFLOW - Counter overflow generates interrupt</p></li>
+<li><p>ECAP_ISR_SOURCE_COUNTER_PERIOD - Counter equal period generates interrupt</p></li>
+<li><p>ECAP_ISR_SOURCE_COUNTER_COMPARE - Counter equal compare generates interrupt</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ECAP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is the interrupt source.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425ECAP_clearGlobalInterrupt8uint32_t">
+<span id="_CPPv325ECAP_clearGlobalInterrupt8uint32_t"></span><span id="_CPPv225ECAP_clearGlobalInterrupt8uint32_t"></span><span id="ECAP_clearGlobalInterrupt__uint32_t"></span><span class="target" id="group__ecap__api_1ga71ada92fd0a3060cf416b5669f2867b5"></span>void <code class="sig-name descname">ECAP_clearGlobalInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425ECAP_clearGlobalInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears global interrupt flag</p>
+<p><p>This function clears the global interrupt bit.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ECAP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419ECAP_forceInterrupt8uint32_t8uint16_t">
+<span id="_CPPv319ECAP_forceInterrupt8uint32_t8uint16_t"></span><span id="_CPPv219ECAP_forceInterrupt8uint32_t8uint16_t"></span><span id="ECAP_forceInterrupt__uint32_t.uint16_t"></span><span class="target" id="group__ecap__api_1ga8fb5bbc7c8090c1782c0c12c3b0136a5"></span>void <code class="sig-name descname">ECAP_forceInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419ECAP_forceInterrupt8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Forces interrupt source.</p>
+<p><p>This function forces and enables eCAP interrupt source. The following are valid interrupt sources.</p>
+<ul class="simple">
+<li><p>ECAP_ISR_SOURCE_CAPTURE_EVENT_1 - Event 1 generates interrupt</p></li>
+<li><p>ECAP_ISR_SOURCE_CAPTURE_EVENT_2 - Event 2 generates interrupt</p></li>
+<li><p>ECAP_ISR_SOURCE_CAPTURE_EVENT_3 - Event 3 generates interrupt</p></li>
+<li><p>ECAP_ISR_SOURCE_CAPTURE_EVENT_4 - Event 4 generates interrupt</p></li>
+<li><p>ECAP_ISR_SOURCE_COUNTER_OVERFLOW - Counter overflow generates interrupt</p></li>
+<li><p>ECAP_ISR_SOURCE_COUNTER_PERIOD - Counter equal period generates interrupt</p></li>
+<li><p>ECAP_ISR_SOURCE_COUNTER_COMPARE - Counter equal compare generates interrupt</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ECAP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is the interrupt source.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422ECAP_enableCaptureMode8uint32_t">
+<span id="_CPPv322ECAP_enableCaptureMode8uint32_t"></span><span id="_CPPv222ECAP_enableCaptureMode8uint32_t"></span><span id="ECAP_enableCaptureMode__uint32_t"></span><span class="target" id="group__ecap__api_1gaf3255e38df7900eebd3775fcb0a3b13c"></span>void <code class="sig-name descname">ECAP_enableCaptureMode</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422ECAP_enableCaptureMode8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets eCAP in Capture mode.</p>
+<p><p>This function sets the eCAP module to operate in Capture mode.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ECAP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419ECAP_enableAPWMMode8uint32_t">
+<span id="_CPPv319ECAP_enableAPWMMode8uint32_t"></span><span id="_CPPv219ECAP_enableAPWMMode8uint32_t"></span><span id="ECAP_enableAPWMMode__uint32_t"></span><span class="target" id="group__ecap__api_1ga886af56dcea5014903cc2adb12661006"></span>void <code class="sig-name descname">ECAP_enableAPWMMode</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419ECAP_enableAPWMMode8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets eCAP in APWM mode.</p>
+<p><p>This function sets the eCAP module to operate in APWM mode.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ECAP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv430ECAP_enableCounterResetOnEvent8uint32_t11ECAP_Events">
+<span id="_CPPv330ECAP_enableCounterResetOnEvent8uint32_t11ECAP_Events"></span><span id="_CPPv230ECAP_enableCounterResetOnEvent8uint32_t11ECAP_Events"></span><span id="ECAP_enableCounterResetOnEvent__uint32_t.ECAP_Events"></span><span class="target" id="group__ecap__api_1ga9a08b2c9d3f2ac7c82df651897740bd6"></span>void <code class="sig-name descname">ECAP_enableCounterResetOnEvent</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv411ECAP_Events" title="ECAP_Events">ECAP_Events</a> <em>event</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430ECAP_enableCounterResetOnEvent8uint32_t11ECAP_Events" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables counter reset on an event.</p>
+<p><p>This function enables the base timer, TSCTR, to be reset on capture event provided by the variable event. Valid inputs for event are </p>
+<strong>ECAP_EVENT_1</strong> to <strong>ECAP_EVENT_4</strong>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ECAP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">event</span></code>: is the event number the time base gets reset.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv431ECAP_disableCounterResetOnEvent8uint32_t11ECAP_Events">
+<span id="_CPPv331ECAP_disableCounterResetOnEvent8uint32_t11ECAP_Events"></span><span id="_CPPv231ECAP_disableCounterResetOnEvent8uint32_t11ECAP_Events"></span><span id="ECAP_disableCounterResetOnEvent__uint32_t.ECAP_Events"></span><span class="target" id="group__ecap__api_1ga841281e729c8e70f9fcd76b1c3ce2529"></span>void <code class="sig-name descname">ECAP_disableCounterResetOnEvent</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv411ECAP_Events" title="ECAP_Events">ECAP_Events</a> <em>event</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431ECAP_disableCounterResetOnEvent8uint32_t11ECAP_Events" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables counter reset on events.</p>
+<p><p>This function disables the base timer, TSCTR, from being reset on capture event provided by the variable event. Valid inputs for event are </p>
+<strong>ECAP_EVENT_1</strong> to <strong>ECAP_EVENT_4</strong>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ECAP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">event</span></code>: is the event number the time base gets reset.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427ECAP_enableTimeStampCapture8uint32_t">
+<span id="_CPPv327ECAP_enableTimeStampCapture8uint32_t"></span><span id="_CPPv227ECAP_enableTimeStampCapture8uint32_t"></span><span id="ECAP_enableTimeStampCapture__uint32_t"></span><span class="target" id="group__ecap__api_1gaf6c0a363eebd8790068f8b85feb92a11"></span>void <code class="sig-name descname">ECAP_enableTimeStampCapture</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427ECAP_enableTimeStampCapture8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables time stamp capture.</p>
+<p><p>This function enables time stamp count to be captured</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ECAP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428ECAP_disableTimeStampCapture8uint32_t">
+<span id="_CPPv328ECAP_disableTimeStampCapture8uint32_t"></span><span id="_CPPv228ECAP_disableTimeStampCapture8uint32_t"></span><span id="ECAP_disableTimeStampCapture__uint32_t"></span><span class="target" id="group__ecap__api_1ga6f2fd96fa823096442f64d0e99e30c20"></span>void <code class="sig-name descname">ECAP_disableTimeStampCapture</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428ECAP_disableTimeStampCapture8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables time stamp capture.</p>
+<p><p>This function disables time stamp count to be captured</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ECAP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423ECAP_setPhaseShiftCount8uint32_t8uint32_t">
+<span id="_CPPv323ECAP_setPhaseShiftCount8uint32_t8uint32_t"></span><span id="_CPPv223ECAP_setPhaseShiftCount8uint32_t8uint32_t"></span><span id="ECAP_setPhaseShiftCount__uint32_t.uint32_t"></span><span class="target" id="group__ecap__api_1gac746b5c6a5780223c7061334b8131efc"></span>void <code class="sig-name descname">ECAP_setPhaseShiftCount</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>shiftCount</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423ECAP_setPhaseShiftCount8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets a phase shift value count.</p>
+<p><p>This function writes a phase shift value to be loaded into the main time stamp counter.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ECAP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">shiftCount</span></code>: is the phase shift value.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422ECAP_enableLoadCounter8uint32_t">
+<span id="_CPPv322ECAP_enableLoadCounter8uint32_t"></span><span id="_CPPv222ECAP_enableLoadCounter8uint32_t"></span><span id="ECAP_enableLoadCounter__uint32_t"></span><span class="target" id="group__ecap__api_1ga713d19d4f76ad7f7b18137c1f9ed9475"></span>void <code class="sig-name descname">ECAP_enableLoadCounter</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422ECAP_enableLoadCounter8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable counter loading with phase shift value.</p>
+<p><p>This function enables loading of the counter with the value present in the phase shift counter as defined by the </p>
+<a class="reference internal" href="#group__ecap__api_1gac746b5c6a5780223c7061334b8131efc"><span class="std std-ref">ECAP_setPhaseShiftCount()</span></a> function.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ECAP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423ECAP_disableLoadCounter8uint32_t">
+<span id="_CPPv323ECAP_disableLoadCounter8uint32_t"></span><span id="_CPPv223ECAP_disableLoadCounter8uint32_t"></span><span id="ECAP_disableLoadCounter__uint32_t"></span><span class="target" id="group__ecap__api_1gaca86dba3054e00d662a13e9c1f49a2d2"></span>void <code class="sig-name descname">ECAP_disableLoadCounter</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423ECAP_disableLoadCounter8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable counter loading with phase shift value.</p>
+<p><p>This function disables loading of the counter with the value present in the phase shift counter as defined by the </p>
+<a class="reference internal" href="#group__ecap__api_1gac746b5c6a5780223c7061334b8131efc"><span class="std std-ref">ECAP_setPhaseShiftCount()</span></a> function.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ECAP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416ECAP_loadCounter8uint32_t">
+<span id="_CPPv316ECAP_loadCounter8uint32_t"></span><span id="_CPPv216ECAP_loadCounter8uint32_t"></span><span id="ECAP_loadCounter__uint32_t"></span><span class="target" id="group__ecap__api_1ga4009fdcbdcca5750fdb1d57650a54a77"></span>void <code class="sig-name descname">ECAP_loadCounter</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416ECAP_loadCounter8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Load time stamp counter</p>
+<p><p>This function forces the value in the phase shift counter register to be loaded into Time stamp counter register. Make sure to enable loading of Time stamp counter by calling </p>
+<a class="reference internal" href="#group__ecap__api_1ga713d19d4f76ad7f7b18137c1f9ed9475"><span class="std std-ref">ECAP_enableLoadCounter()</span></a> function before calling this function.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ECAP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419ECAP_setSyncOutMode8uint32_t16ECAP_SyncOutMode">
+<span id="_CPPv319ECAP_setSyncOutMode8uint32_t16ECAP_SyncOutMode"></span><span id="_CPPv219ECAP_setSyncOutMode8uint32_t16ECAP_SyncOutMode"></span><span id="ECAP_setSyncOutMode__uint32_t.ECAP_SyncOutMode"></span><span class="target" id="group__ecap__api_1gae51b45d2b52d8a559d3354793df14e27"></span>void <code class="sig-name descname">ECAP_setSyncOutMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv416ECAP_SyncOutMode" title="ECAP_SyncOutMode">ECAP_SyncOutMode</a> <em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419ECAP_setSyncOutMode8uint32_t16ECAP_SyncOutMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures Sync out signal mode.</p>
+<p><p>This function sets the sync out mode. Valid parameters for mode are:</p>
+<ul class="simple">
+<li><p>ECAP_SYNC_OUT_SYNCI - Trigger sync out on sync-in event.</p></li>
+<li><p>ECAP_SYNC_OUT_COUNTER_PRD - Trigger sync out when counter equals period.</p></li>
+<li><p>ECAP_SYNC_OUT_DISABLED - Disable sync out.</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ECAP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: is the sync out mode.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416ECAP_stopCounter8uint32_t">
+<span id="_CPPv316ECAP_stopCounter8uint32_t"></span><span id="_CPPv216ECAP_stopCounter8uint32_t"></span><span id="ECAP_stopCounter__uint32_t"></span><span class="target" id="group__ecap__api_1ga30dc80033512b249ddaf41aa65f5f2e6"></span>void <code class="sig-name descname">ECAP_stopCounter</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416ECAP_stopCounter8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Stops Time stamp counter.</p>
+<p><p>This function stops the time stamp counter.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ECAP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417ECAP_startCounter8uint32_t">
+<span id="_CPPv317ECAP_startCounter8uint32_t"></span><span id="_CPPv217ECAP_startCounter8uint32_t"></span><span id="ECAP_startCounter__uint32_t"></span><span class="target" id="group__ecap__api_1gaa76a546e94b7af20769b5a2018703acc"></span>void <code class="sig-name descname">ECAP_startCounter</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417ECAP_startCounter8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Starts Time stamp counter.</p>
+<p><p>This function starts the time stamp counter.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ECAP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420ECAP_setAPWMPolarity8uint32_t17ECAP_APWMPolarity">
+<span id="_CPPv320ECAP_setAPWMPolarity8uint32_t17ECAP_APWMPolarity"></span><span id="_CPPv220ECAP_setAPWMPolarity8uint32_t17ECAP_APWMPolarity"></span><span id="ECAP_setAPWMPolarity__uint32_t.ECAP_APWMPolarity"></span><span class="target" id="group__ecap__api_1ga5bbc4002878cfa92058d76580f49f6b5"></span>void <code class="sig-name descname">ECAP_setAPWMPolarity</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv417ECAP_APWMPolarity" title="ECAP_APWMPolarity">ECAP_APWMPolarity</a> <em>polarity</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420ECAP_setAPWMPolarity8uint32_t17ECAP_APWMPolarity" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set eCAP APWM polarity.</p>
+<p><p>This function sets the polarity of the eCAP in APWM mode. Valid inputs for polarity are:</p>
+<ul class="simple">
+<li><p>ECAP_APWM_ACTIVE_HIGH - For active high.</p></li>
+<li><p>ECAP_APWM_ACTIVE_LOW - For active low.</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ECAP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">polarity</span></code>: is the polarity of APWM</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418ECAP_setAPWMPeriod8uint32_t8uint32_t">
+<span id="_CPPv318ECAP_setAPWMPeriod8uint32_t8uint32_t"></span><span id="_CPPv218ECAP_setAPWMPeriod8uint32_t8uint32_t"></span><span id="ECAP_setAPWMPeriod__uint32_t.uint32_t"></span><span class="target" id="group__ecap__api_1ga91e6196b4970568f9f205c0b4f6c1f8b"></span>void <code class="sig-name descname">ECAP_setAPWMPeriod</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>periodCount</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418ECAP_setAPWMPeriod8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set eCAP APWM period.</p>
+<p><p>This function sets the period count of the APWM waveform. periodCount takes the actual count which is written to the register. The user is responsible for converting the desired frequency or time into the period count.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ECAP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">periodCount</span></code>: is the period count for APWM.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419ECAP_setAPWMCompare8uint32_t8uint32_t">
+<span id="_CPPv319ECAP_setAPWMCompare8uint32_t8uint32_t"></span><span id="_CPPv219ECAP_setAPWMCompare8uint32_t8uint32_t"></span><span id="ECAP_setAPWMCompare__uint32_t.uint32_t"></span><span class="target" id="group__ecap__api_1ga559342b88e57b3850c5857b098545f8d"></span>void <code class="sig-name descname">ECAP_setAPWMCompare</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>compareCount</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419ECAP_setAPWMCompare8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set eCAP APWM on or off time count.</p>
+<p><p>This function sets the on or off time count of the APWM waveform depending on the polarity of the output. If the output , as set by </p>
+<a class="reference internal" href="#group__ecap__api_1ga5bbc4002878cfa92058d76580f49f6b5"><span class="std std-ref">ECAP_setAPWMPolarity()</span></a>, is active high then compareCount determines the on time. If the output is active low then compareCount determines the off time. compareCount takes the actual count which is written to the register. The user is responsible for converting the desired frequency or time into the appropriate count value.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ECAP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compareCount</span></code>: is the on or off count for APWM.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424ECAP_setAPWMShadowPeriod8uint32_t8uint32_t">
+<span id="_CPPv324ECAP_setAPWMShadowPeriod8uint32_t8uint32_t"></span><span id="_CPPv224ECAP_setAPWMShadowPeriod8uint32_t8uint32_t"></span><span id="ECAP_setAPWMShadowPeriod__uint32_t.uint32_t"></span><span class="target" id="group__ecap__api_1gaff8992e974b399555a00f9d333f99c07"></span>void <code class="sig-name descname">ECAP_setAPWMShadowPeriod</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>periodCount</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424ECAP_setAPWMShadowPeriod8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Load eCAP APWM shadow period.</p>
+<p><p>This function sets the shadow period count of the APWM waveform. periodCount takes the actual count which is written to the register. The user is responsible for converting the desired frequency or time into the period count.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ECAP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">periodCount</span></code>: is the shadow period count for APWM.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425ECAP_setAPWMShadowCompare8uint32_t8uint32_t">
+<span id="_CPPv325ECAP_setAPWMShadowCompare8uint32_t8uint32_t"></span><span id="_CPPv225ECAP_setAPWMShadowCompare8uint32_t8uint32_t"></span><span id="ECAP_setAPWMShadowCompare__uint32_t.uint32_t"></span><span class="target" id="group__ecap__api_1ga3c43b08f620a2650e7a6d5e819c57bda"></span>void <code class="sig-name descname">ECAP_setAPWMShadowCompare</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>compareCount</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425ECAP_setAPWMShadowCompare8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set eCAP APWM shadow on or off time count.</p>
+<p><p>This function sets the shadow on or off time count of the APWM waveform depending on the polarity of the output. If the output , as set by </p>
+<a class="reference internal" href="#group__ecap__api_1ga5bbc4002878cfa92058d76580f49f6b5"><span class="std std-ref">ECAP_setAPWMPolarity()</span></a> , is active high then compareCount determines the on time. If the output is active low then compareCount determines the off time. compareCount takes the actual count which is written to the register. The user is responsible for converting the desired frequency or time into the appropriate count value.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ECAP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compareCount</span></code>: is the on or off count for APWM.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423ECAP_getTimeBaseCounter8uint32_t">
+<span id="_CPPv323ECAP_getTimeBaseCounter8uint32_t"></span><span id="_CPPv223ECAP_getTimeBaseCounter8uint32_t"></span><span id="ECAP_getTimeBaseCounter__uint32_t"></span><span class="target" id="group__ecap__api_1gacce7a668617181453944a47e64c4ab60"></span>uint32_t <code class="sig-name descname">ECAP_getTimeBaseCounter</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423ECAP_getTimeBaseCounter8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the time base counter value.</p>
+<p><p>This function returns the time base counter value.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ECAP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the time base counter value. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422ECAP_getEventTimeStamp8uint32_t11ECAP_Events">
+<span id="_CPPv322ECAP_getEventTimeStamp8uint32_t11ECAP_Events"></span><span id="_CPPv222ECAP_getEventTimeStamp8uint32_t11ECAP_Events"></span><span id="ECAP_getEventTimeStamp__uint32_t.ECAP_Events"></span><span class="target" id="group__ecap__api_1gad97295535b95e152c80b4caec1e2a9c2"></span>uint32_t <code class="sig-name descname">ECAP_getEventTimeStamp</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv411ECAP_Events" title="ECAP_Events">ECAP_Events</a> <em>event</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422ECAP_getEventTimeStamp8uint32_t11ECAP_Events" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns event time stamp.</p>
+<p><p>This function returns the current time stamp count of the given event. Valid values for event are </p>
+<strong>ECAP_EVENT_1</strong> to <strong>ECAP_EVENT_4</strong>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ECAP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">event</span></code>: is the event number.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Event time stamp value or 0 if <em>event</em> is invalid. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421ECAP_setEmulationMode8uint32_t18ECAP_EmulationMode">
+<span id="_CPPv321ECAP_setEmulationMode8uint32_t18ECAP_EmulationMode"></span><span id="_CPPv221ECAP_setEmulationMode8uint32_t18ECAP_EmulationMode"></span><span id="ECAP_setEmulationMode__uint32_t.ECAP_EmulationMode"></span><span class="target" id="group__ecap__api_1gacda7e8d137a05f23fd285ac655d493c5"></span>void <code class="sig-name descname">ECAP_setEmulationMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv418ECAP_EmulationMode" title="ECAP_EmulationMode">ECAP_EmulationMode</a> <em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421ECAP_setEmulationMode8uint32_t18ECAP_EmulationMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures emulation mode.</p>
+<p><p>This function configures the eCAP counter, TSCTR, to the desired emulation mode when emulation suspension occurs. Valid inputs for mode are:</p>
+<ul class="simple">
+<li><p>ECAP_EMULATION_STOP - Counter is stopped immediately.</p></li>
+<li><p>ECAP_EMULATION_RUN_TO_ZERO - Counter runs till it reaches 0.</p></li>
+<li><p>ECAP_EMULATION_FREE_RUN - Counter is not affected.</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ECAP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: is the emulation mode.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>The code for this module is contained in driverlib/ecap.c, with driverlib/ecap.h containing the API declarations for use by applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dma.html" class="btn btn-neutral float-left" title="DMA Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="emif.html" class="btn btn-neutral float-right" title="EMIF Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

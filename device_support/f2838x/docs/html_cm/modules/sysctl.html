@@ -1,0 +1,1450 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>SYSCTL Module &mdash; F2838x CM API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F2838x CM API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="SysTick Module" href="systick.html"/>
+        <link rel="prev" title="SSI Module" href="ssi.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F2838x CM API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="aes.html">AES Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmmpu.html">CM-MPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpu.html">CPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="escss.html">ESCSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ethernet.html">Ethernet Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="udma.html">UDMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gcrc.html">GCRC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipc.html">IPC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcan.html">MCAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mpu.html">MPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssi.html">SSI Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="systick.html">SysTick Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uart.html">UART Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F2838x CM API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>SYSCTL Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="sysctl-module">
+<span id="sysctl"></span><h1>SYSCTL Module<a class="headerlink" href="#sysctl-module" title="Permalink to this headline">¶</a></h1>
+<p>System Control (SysCtl) determines the overall operation of the communication
+manager (CM). The API provides functions to configure the set of peripherals
+that are enabled, the windowed watchdog, the NMI watchdog, and WFI. It also
+provides functions to handle and obtain information about resets and
+peripheral clock requests.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__sysctl__api"></span><em>group</em> <code class="sig-name descname">sysctl_api</code></dt>
+<dd><p>The System Control module is used for miscellaneous system configurations. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.SYSCTL_WD_CHKBITS">
+<span class="target" id="group__sysctl__api_1ga4ff66bcd10dff57f6a8a882ac63d2961"></span><code class="sig-name descname">SYSCTL_WD_CHKBITS</code> 0x0028U<a class="headerlink" href="#c.SYSCTL_WD_CHKBITS" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_WD_ENRSTKEY">
+<span class="target" id="group__sysctl__api_1ga7a99a2a52229f6685b80e5b6c043124e"></span><code class="sig-name descname">SYSCTL_WD_ENRSTKEY</code> 0x0055U<a class="headerlink" href="#c.SYSCTL_WD_ENRSTKEY" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_WD_RSTKEY">
+<span class="target" id="group__sysctl__api_1ga3e3d924aaf5398366979108ec11ea9f4"></span><code class="sig-name descname">SYSCTL_WD_RSTKEY</code> 0x00AAU<a class="headerlink" href="#c.SYSCTL_WD_RSTKEY" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_PERIPH_REG_M">
+<span class="target" id="group__sysctl__api_1gab969646d59b5a23f2a4c35ca4f310c91"></span><code class="sig-name descname">SYSCTL_PERIPH_REG_M</code> 0x001FU<a class="headerlink" href="#c.SYSCTL_PERIPH_REG_M" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_PERIPH_REG_S">
+<span class="target" id="group__sysctl__api_1ga5913805479477ff8cf016fd0bd5815a1"></span><code class="sig-name descname">SYSCTL_PERIPH_REG_S</code> 0x0000U<a class="headerlink" href="#c.SYSCTL_PERIPH_REG_S" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_PERIPH_BIT_M">
+<span class="target" id="group__sysctl__api_1ga16550cd8daebf0dfa1f24424631dad61"></span><code class="sig-name descname">SYSCTL_PERIPH_BIT_M</code> 0x1F00U<a class="headerlink" href="#c.SYSCTL_PERIPH_BIT_M" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_PERIPH_BIT_S">
+<span class="target" id="group__sysctl__api_1ga1c5fbb6f112bd99b64f5729107b9ed23"></span><code class="sig-name descname">SYSCTL_PERIPH_BIT_S</code> 0x0008U<a class="headerlink" href="#c.SYSCTL_PERIPH_BIT_S" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_CMNMIFLGCLR_KEY">
+<span class="target" id="group__sysctl__api_1gaa0dc014e14efb183f28d532592ebd812"></span><code class="sig-name descname">SYSCTL_CMNMIFLGCLR_KEY</code> 0x5674U<a class="headerlink" href="#c.SYSCTL_CMNMIFLGCLR_KEY" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_CMNMIFLGFRC_KEY">
+<span class="target" id="group__sysctl__api_1gaf635b33371108a7ba342e0340ef29118"></span><code class="sig-name descname">SYSCTL_CMNMIFLGFRC_KEY</code> 0x2732U<a class="headerlink" href="#c.SYSCTL_CMNMIFLGFRC_KEY" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_CMNMICFG_KEY">
+<span class="target" id="group__sysctl__api_1ga9b6206c95c8cbdf3f6c79ecf660a94b3"></span><code class="sig-name descname">SYSCTL_CMNMICFG_KEY</code> 0x6789U<a class="headerlink" href="#c.SYSCTL_CMNMICFG_KEY" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_CMNMIWDPRD_KEY">
+<span class="target" id="group__sysctl__api_1gae4053653437dc809cfde0f1babfca70b"></span><code class="sig-name descname">SYSCTL_CMNMIWDPRD_KEY</code> 0x9238U<a class="headerlink" href="#c.SYSCTL_CMNMIWDPRD_KEY" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_CMSYSCTL_KEY">
+<span class="target" id="group__sysctl__api_1gaaa06c7c394aaabe6919016fe785a1b38"></span><code class="sig-name descname">SYSCTL_CMSYSCTL_KEY</code> 0x5634U<a class="headerlink" href="#c.SYSCTL_CMSYSCTL_KEY" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_WWD_KEY">
+<span class="target" id="group__sysctl__api_1ga535b8ea0742ad325b3619b29f4048139"></span><code class="sig-name descname">SYSCTL_WWD_KEY</code> 0x1234U<a class="headerlink" href="#c.SYSCTL_WWD_KEY" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_ETHERCAT_I2C_LOOPBACK">
+<span class="target" id="group__sysctl__api_1ga18289cf5c1e903c88f16c83ece3fc90b"></span><code class="sig-name descname">SYSCTL_ETHERCAT_I2C_LOOPBACK</code> 0x1U<a class="headerlink" href="#c.SYSCTL_ETHERCAT_I2C_LOOPBACK" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_NMI_GLOBAL">
+<span class="target" id="group__sysctl__api_1gad42bb3b5a0afd14ec4c224b878e42b7e"></span><code class="sig-name descname">SYSCTL_NMI_GLOBAL</code> 0x1U<a class="headerlink" href="#c.SYSCTL_NMI_GLOBAL" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_NMI_NMIINT">
+<span class="target" id="group__sysctl__api_1ga9a096df0c13fde22e240ba37645c1772"></span><code class="sig-name descname">SYSCTL_NMI_NMIINT</code> 0x0001U<a class="headerlink" href="#c.SYSCTL_NMI_NMIINT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Non-maskable interrupt. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_NMI_CLOCKFAIL">
+<span class="target" id="group__sysctl__api_1gafe456d7acc08d766e20e1d0db2e3411e"></span><code class="sig-name descname">SYSCTL_NMI_CLOCKFAIL</code> 0x0002U<a class="headerlink" href="#c.SYSCTL_NMI_CLOCKFAIL" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clock Failure. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_NMI_MEMUNCERR">
+<span class="target" id="group__sysctl__api_1ga1f946e5282415ceb3784c52083252756"></span><code class="sig-name descname">SYSCTL_NMI_MEMUNCERR</code> 0x0004U<a class="headerlink" href="#c.SYSCTL_NMI_MEMUNCERR" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>RAM/ROM Uncorrectable error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_NMI_FLUNCERR">
+<span class="target" id="group__sysctl__api_1ga377cf8cb6d062bcec026780bfdca0d77"></span><code class="sig-name descname">SYSCTL_NMI_FLUNCERR</code> 0x0008U<a class="headerlink" href="#c.SYSCTL_NMI_FLUNCERR" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Uncorrectable Flash error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_NMI_MCANUNCERR">
+<span class="target" id="group__sysctl__api_1ga8e13243749594100b692f0e39820e1a0"></span><code class="sig-name descname">SYSCTL_NMI_MCANUNCERR</code> 0x0010U<a class="headerlink" href="#c.SYSCTL_NMI_MCANUNCERR" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>MCAN Uncorrectable Error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_NMI_WWDNMI">
+<span class="target" id="group__sysctl__api_1gabf90e340a46147b0942fe9366d37c605"></span><code class="sig-name descname">SYSCTL_NMI_WWDNMI</code> 0x0020U<a class="headerlink" href="#c.SYSCTL_NMI_WWDNMI" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CM Windowed Watchdog. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_NMI_ECATNMI">
+<span class="target" id="group__sysctl__api_1gaafb497f918c3d6b61f1b53dd7df4cfea"></span><code class="sig-name descname">SYSCTL_NMI_ECATNMI</code> 0x0040U<a class="headerlink" href="#c.SYSCTL_NMI_ECATNMI" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EtherCAT reset out. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_CAUSE_PORESETN">
+<span class="target" id="group__sysctl__api_1ga8eef88a55e3c0eddb9b8469956db2dab"></span><code class="sig-name descname">SYSCTL_CAUSE_PORESETN</code> 0x00000001U<a class="headerlink" href="#c.SYSCTL_CAUSE_PORESETN" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Power-on reset. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_CAUSE_XRSN">
+<span class="target" id="group__sysctl__api_1ga1e2fc521c34fba40fcb780102e126933"></span><code class="sig-name descname">SYSCTL_CAUSE_XRSN</code> 0x00000002U<a class="headerlink" href="#c.SYSCTL_CAUSE_XRSN" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>External reset pin. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_CAUSE_CPU1WDRSN">
+<span class="target" id="group__sysctl__api_1gac6e2b386bde5bed4e26238b5887e8044"></span><code class="sig-name descname">SYSCTL_CAUSE_CPU1WDRSN</code> 0x00000004U<a class="headerlink" href="#c.SYSCTL_CAUSE_CPU1WDRSN" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPU1 Watchdog reset. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_CAUSE_CPU1NMIWDRSN">
+<span class="target" id="group__sysctl__api_1ga3a1c3930794f1663e81a56805cfbab2e"></span><code class="sig-name descname">SYSCTL_CAUSE_CPU1NMIWDRSN</code> 0x00000008U<a class="headerlink" href="#c.SYSCTL_CAUSE_CPU1NMIWDRSN" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPU1 NMI WD reset. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_CAUSE_CPU1SYSRSN">
+<span class="target" id="group__sysctl__api_1ga54163427eeb7d9e1af9500812e3796dc"></span><code class="sig-name descname">SYSCTL_CAUSE_CPU1SYSRSN</code> 0x00000010U<a class="headerlink" href="#c.SYSCTL_CAUSE_CPU1SYSRSN" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPU1 System reset. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_CAUSE_CPU1SCCRESETN">
+<span class="target" id="group__sysctl__api_1gaaffe27859049ebba56bc18910d82f487"></span><code class="sig-name descname">SYSCTL_CAUSE_CPU1SCCRESETN</code> 0x00000020U<a class="headerlink" href="#c.SYSCTL_CAUSE_CPU1SCCRESETN" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPU1 SCCRESETn reset. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_CAUSE_ECAT_RESET_OUT">
+<span class="target" id="group__sysctl__api_1ga1f727ff33a2f18e74511ac3a2d93ba6d"></span><code class="sig-name descname">SYSCTL_CAUSE_ECAT_RESET_OUT</code> 0x00000040U<a class="headerlink" href="#c.SYSCTL_CAUSE_ECAT_RESET_OUT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>ECAT Reset. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_CAUSE_CPU1SIMRESET_CPURSN">
+<span class="target" id="group__sysctl__api_1ga10092fb57c4455e810a44ff0cb369ef7"></span><code class="sig-name descname">SYSCTL_CAUSE_CPU1SIMRESET_CPURSN</code> 0x00000080U<a class="headerlink" href="#c.SYSCTL_CAUSE_CPU1SIMRESET_CPURSN" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>SIMRESET_CPURSn-CPU1. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_CAUSE_CMRSTCTLRESETREQ">
+<span class="target" id="group__sysctl__api_1ga7430d17acde4634fefa00446af8f8daa"></span><code class="sig-name descname">SYSCTL_CAUSE_CMRSTCTLRESETREQ</code> 0x00000100U<a class="headerlink" href="#c.SYSCTL_CAUSE_CMRSTCTLRESETREQ" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reset req from CM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_CAUSE_CMVECTRESETN">
+<span class="target" id="group__sysctl__api_1ga56de58f84b6c4f7da185de9d20ff57d6"></span><code class="sig-name descname">SYSCTL_CAUSE_CMVECTRESETN</code> 0x00010000U<a class="headerlink" href="#c.SYSCTL_CAUSE_CMVECTRESETN" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CM Vector Reset. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_CAUSE_CMSYSRESETREQ">
+<span class="target" id="group__sysctl__api_1gaa8406823083202e25773aade22f89c89"></span><code class="sig-name descname">SYSCTL_CAUSE_CMSYSRESETREQ</code> 0x00020000U<a class="headerlink" href="#c.SYSCTL_CAUSE_CMSYSRESETREQ" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CM System reset. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_CAUSE_CMNMIWDRSTN">
+<span class="target" id="group__sysctl__api_1ga95122f2638286cb2b37c4f687195d2df"></span><code class="sig-name descname">SYSCTL_CAUSE_CMNMIWDRSTN</code> 0x00040000U<a class="headerlink" href="#c.SYSCTL_CAUSE_CMNMIWDRSTN" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CM NMI WD Reset. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_CAUSE_CMEOLRESETN">
+<span class="target" id="group__sysctl__api_1ga18fb1e5848c0b4062be8f02313b1802f"></span><code class="sig-name descname">SYSCTL_CAUSE_CMEOLRESETN</code> 0x00080000U<a class="headerlink" href="#c.SYSCTL_CAUSE_CMEOLRESETN" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Logic reset. </p>
+<p>CM Execute Override </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_CMECATCTL_LOCK">
+<span class="target" id="group__sysctl__api_1ga1d12cb20aa62dec2a53b5e7e3be21c16"></span><code class="sig-name descname">SYSCTL_CMECATCTL_LOCK</code> 0x1U<a class="headerlink" href="#c.SYSCTL_CMECATCTL_LOCK" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>block writes to CM-Ethercat control Reg </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CM_CLK_FREQ">
+<span class="target" id="group__sysctl__api_1ga857fcdff514fc98cb3596a17f061734b"></span><code class="sig-name descname">CM_CLK_FREQ</code> 125000000U<a class="headerlink" href="#c.CM_CLK_FREQ" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_DELAY">
+<span class="target" id="group__sysctl__api_1ga7ad44397ab09a01daf8e902be527cdc9"></span><code class="sig-name descname">SYSCTL_DELAY</code> __asm<p>(  ”    .sect &quot;.TI.ramfunc&quot;\n”                    \</p>
+<p>                              ”    .clink\n”                                   \</p>
+<p>                              ”    .thumbfunc SysCtl_delay\n”                  \</p>
+<p>                              ”    .thumb\n”                                   \</p>
+<p>                              ”    .global SysCtl_delay\n”                     \</p>
+<p>                              “SysCtl_delay:\n”                                \</p>
+<p>                              ”    subs r0, #1\n”                              \</p>
+<p>                              ”    bne.n SysCtl_delay\n”                       \</p>
+<p>                              ”    bx lr\n”);</p>
+<a class="headerlink" href="#c.SYSCTL_DELAY" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="cpp enum">
+<dt id="_CPPv425SysCtl_PeripheralPCLOCKCR">
+<span id="_CPPv325SysCtl_PeripheralPCLOCKCR"></span><span id="_CPPv225SysCtl_PeripheralPCLOCKCR"></span><span class="target" id="group__sysctl__api_1gabda7c864eeed2819e9dfecf398397632"></span><em class="property">enum </em><code class="sig-name descname">SysCtl_PeripheralPCLOCKCR</code><a class="headerlink" href="#_CPPv425SysCtl_PeripheralPCLOCKCR" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The following are values that can be passed to <a class="reference internal" href="#group__sysctl__api_1ga4adbe915c1de3c2ceadc676ccf8c4fca"><span class="std std-ref">SysCtl_enablePeripheral()</span></a> and <a class="reference internal" href="#group__sysctl__api_1gaf9a8c96d3aa98f835a9bc6ac9bf2026f"><span class="std std-ref">SysCtl_disablePeripheral()</span></a> as the <em>peripheral</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N25SysCtl_PeripheralPCLOCKCR23SYSCTL_PERIPH_CLK_UART0E">
+<span id="_CPPv3N25SysCtl_PeripheralPCLOCKCR23SYSCTL_PERIPH_CLK_UART0E"></span><span id="_CPPv2N25SysCtl_PeripheralPCLOCKCR23SYSCTL_PERIPH_CLK_UART0E"></span><span class="target" id="group__sysctl__api_1ggabda7c864eeed2819e9dfecf398397632ae2183279993d165c02e518611575adad"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_PERIPH_CLK_UART0</code> = 0x0000U<a class="headerlink" href="#_CPPv4N25SysCtl_PeripheralPCLOCKCR23SYSCTL_PERIPH_CLK_UART0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>UART0 clock. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N25SysCtl_PeripheralPCLOCKCR22SYSCTL_PERIPH_CLK_SSI0E">
+<span id="_CPPv3N25SysCtl_PeripheralPCLOCKCR22SYSCTL_PERIPH_CLK_SSI0E"></span><span id="_CPPv2N25SysCtl_PeripheralPCLOCKCR22SYSCTL_PERIPH_CLK_SSI0E"></span><span class="target" id="group__sysctl__api_1ggabda7c864eeed2819e9dfecf398397632abf5810ed98088b99fda684a315d961f9"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_PERIPH_CLK_SSI0</code> = 0x0400U<a class="headerlink" href="#_CPPv4N25SysCtl_PeripheralPCLOCKCR22SYSCTL_PERIPH_CLK_SSI0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>SSI0 clock. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N25SysCtl_PeripheralPCLOCKCR22SYSCTL_PERIPH_CLK_I2C0E">
+<span id="_CPPv3N25SysCtl_PeripheralPCLOCKCR22SYSCTL_PERIPH_CLK_I2C0E"></span><span id="_CPPv2N25SysCtl_PeripheralPCLOCKCR22SYSCTL_PERIPH_CLK_I2C0E"></span><span class="target" id="group__sysctl__api_1ggabda7c864eeed2819e9dfecf398397632ac40a9987c65f942f2044a99a06f8f6ad"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_PERIPH_CLK_I2C0</code> = 0x0800U<a class="headerlink" href="#_CPPv4N25SysCtl_PeripheralPCLOCKCR22SYSCTL_PERIPH_CLK_I2C0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>I2C0 clock. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N25SysCtl_PeripheralPCLOCKCR21SYSCTL_PERIPH_CLK_USBE">
+<span id="_CPPv3N25SysCtl_PeripheralPCLOCKCR21SYSCTL_PERIPH_CLK_USBE"></span><span id="_CPPv2N25SysCtl_PeripheralPCLOCKCR21SYSCTL_PERIPH_CLK_USBE"></span><span class="target" id="group__sysctl__api_1ggabda7c864eeed2819e9dfecf398397632a4da683d67370c5775b3c4d0ffb217f3a"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_PERIPH_CLK_USB</code> = 0x0C00U<a class="headerlink" href="#_CPPv4N25SysCtl_PeripheralPCLOCKCR21SYSCTL_PERIPH_CLK_USBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>USB clock. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N25SysCtl_PeripheralPCLOCKCR22SYSCTL_PERIPH_CLK_ENETE">
+<span id="_CPPv3N25SysCtl_PeripheralPCLOCKCR22SYSCTL_PERIPH_CLK_ENETE"></span><span id="_CPPv2N25SysCtl_PeripheralPCLOCKCR22SYSCTL_PERIPH_CLK_ENETE"></span><span class="target" id="group__sysctl__api_1ggabda7c864eeed2819e9dfecf398397632a0cf44df93531c02d228bb91ab597b737"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_PERIPH_CLK_ENET</code> = 0x0001U<a class="headerlink" href="#_CPPv4N25SysCtl_PeripheralPCLOCKCR22SYSCTL_PERIPH_CLK_ENETE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>ENET clock. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N25SysCtl_PeripheralPCLOCKCR22SYSCTL_PERIPH_CLK_ECATE">
+<span id="_CPPv3N25SysCtl_PeripheralPCLOCKCR22SYSCTL_PERIPH_CLK_ECATE"></span><span id="_CPPv2N25SysCtl_PeripheralPCLOCKCR22SYSCTL_PERIPH_CLK_ECATE"></span><span class="target" id="group__sysctl__api_1ggabda7c864eeed2819e9dfecf398397632ab2522cc10aacc913f13d1b5d6acb8ffd"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_PERIPH_CLK_ECAT</code> = 0x0201U<a class="headerlink" href="#_CPPv4N25SysCtl_PeripheralPCLOCKCR22SYSCTL_PERIPH_CLK_ECATE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>ECAT clock. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N25SysCtl_PeripheralPCLOCKCR23SYSCTL_PERIPH_CLK_CAN_AE">
+<span id="_CPPv3N25SysCtl_PeripheralPCLOCKCR23SYSCTL_PERIPH_CLK_CAN_AE"></span><span id="_CPPv2N25SysCtl_PeripheralPCLOCKCR23SYSCTL_PERIPH_CLK_CAN_AE"></span><span class="target" id="group__sysctl__api_1ggabda7c864eeed2819e9dfecf398397632a5f4ec62ecd86e0e6d7f856af5f33c1c6"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_PERIPH_CLK_CAN_A</code> = 0x0401U<a class="headerlink" href="#_CPPv4N25SysCtl_PeripheralPCLOCKCR23SYSCTL_PERIPH_CLK_CAN_AE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CAN_A clock. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N25SysCtl_PeripheralPCLOCKCR23SYSCTL_PERIPH_CLK_CAN_BE">
+<span id="_CPPv3N25SysCtl_PeripheralPCLOCKCR23SYSCTL_PERIPH_CLK_CAN_BE"></span><span id="_CPPv2N25SysCtl_PeripheralPCLOCKCR23SYSCTL_PERIPH_CLK_CAN_BE"></span><span class="target" id="group__sysctl__api_1ggabda7c864eeed2819e9dfecf398397632a935e38e8987e8cc021a91b5a3034594a"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_PERIPH_CLK_CAN_B</code> = 0x0501U<a class="headerlink" href="#_CPPv4N25SysCtl_PeripheralPCLOCKCR23SYSCTL_PERIPH_CLK_CAN_BE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CAN_B clock. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N25SysCtl_PeripheralPCLOCKCR24SYSCTL_PERIPH_CLK_MCAN_AE">
+<span id="_CPPv3N25SysCtl_PeripheralPCLOCKCR24SYSCTL_PERIPH_CLK_MCAN_AE"></span><span id="_CPPv2N25SysCtl_PeripheralPCLOCKCR24SYSCTL_PERIPH_CLK_MCAN_AE"></span><span class="target" id="group__sysctl__api_1ggabda7c864eeed2819e9dfecf398397632adf5b26b1afb2acc8158a739414a53f68"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_PERIPH_CLK_MCAN_A</code> = 0x0801U<a class="headerlink" href="#_CPPv4N25SysCtl_PeripheralPCLOCKCR24SYSCTL_PERIPH_CLK_MCAN_AE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>MCAN_A clock. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N25SysCtl_PeripheralPCLOCKCR24SYSCTL_PERIPH_CLK_TIMER0E">
+<span id="_CPPv3N25SysCtl_PeripheralPCLOCKCR24SYSCTL_PERIPH_CLK_TIMER0E"></span><span id="_CPPv2N25SysCtl_PeripheralPCLOCKCR24SYSCTL_PERIPH_CLK_TIMER0E"></span><span class="target" id="group__sysctl__api_1ggabda7c864eeed2819e9dfecf398397632a97a263b18510598661052aed287507af"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_PERIPH_CLK_TIMER0</code> = 0x0002U<a class="headerlink" href="#_CPPv4N25SysCtl_PeripheralPCLOCKCR24SYSCTL_PERIPH_CLK_TIMER0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPUtimer0 clock. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N25SysCtl_PeripheralPCLOCKCR24SYSCTL_PERIPH_CLK_TIMER1E">
+<span id="_CPPv3N25SysCtl_PeripheralPCLOCKCR24SYSCTL_PERIPH_CLK_TIMER1E"></span><span id="_CPPv2N25SysCtl_PeripheralPCLOCKCR24SYSCTL_PERIPH_CLK_TIMER1E"></span><span class="target" id="group__sysctl__api_1ggabda7c864eeed2819e9dfecf398397632ac1d582914bbc93cdcf2f5f2f6803d079"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_PERIPH_CLK_TIMER1</code> = 0x0102U<a class="headerlink" href="#_CPPv4N25SysCtl_PeripheralPCLOCKCR24SYSCTL_PERIPH_CLK_TIMER1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPUtimer1 clock. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N25SysCtl_PeripheralPCLOCKCR24SYSCTL_PERIPH_CLK_TIMER2E">
+<span id="_CPPv3N25SysCtl_PeripheralPCLOCKCR24SYSCTL_PERIPH_CLK_TIMER2E"></span><span id="_CPPv2N25SysCtl_PeripheralPCLOCKCR24SYSCTL_PERIPH_CLK_TIMER2E"></span><span class="target" id="group__sysctl__api_1ggabda7c864eeed2819e9dfecf398397632afb23c9bbf09b1d2c8b3944b0c2a93c68"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_PERIPH_CLK_TIMER2</code> = 0x0202U<a class="headerlink" href="#_CPPv4N25SysCtl_PeripheralPCLOCKCR24SYSCTL_PERIPH_CLK_TIMER2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPUtimer2 clock. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N25SysCtl_PeripheralPCLOCKCR22SYSCTL_PERIPH_CLK_UDMAE">
+<span id="_CPPv3N25SysCtl_PeripheralPCLOCKCR22SYSCTL_PERIPH_CLK_UDMAE"></span><span id="_CPPv2N25SysCtl_PeripheralPCLOCKCR22SYSCTL_PERIPH_CLK_UDMAE"></span><span class="target" id="group__sysctl__api_1ggabda7c864eeed2819e9dfecf398397632af968da20e56b7cc658cba352f50f2cec"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_PERIPH_CLK_UDMA</code> = 0x0402U<a class="headerlink" href="#_CPPv4N25SysCtl_PeripheralPCLOCKCR22SYSCTL_PERIPH_CLK_UDMAE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>UDMA clock. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N25SysCtl_PeripheralPCLOCKCR23SYSCTL_PERIPH_CLK_AESIPE">
+<span id="_CPPv3N25SysCtl_PeripheralPCLOCKCR23SYSCTL_PERIPH_CLK_AESIPE"></span><span id="_CPPv2N25SysCtl_PeripheralPCLOCKCR23SYSCTL_PERIPH_CLK_AESIPE"></span><span class="target" id="group__sysctl__api_1ggabda7c864eeed2819e9dfecf398397632a6d3825bb2fd54c560cb386a33766a125"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_PERIPH_CLK_AESIP</code> = 0x0602U<a class="headerlink" href="#_CPPv4N25SysCtl_PeripheralPCLOCKCR23SYSCTL_PERIPH_CLK_AESIPE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>AESIP clock. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N25SysCtl_PeripheralPCLOCKCR22SYSCTL_PERIPH_CLK_GCRCE">
+<span id="_CPPv3N25SysCtl_PeripheralPCLOCKCR22SYSCTL_PERIPH_CLK_GCRCE"></span><span id="_CPPv2N25SysCtl_PeripheralPCLOCKCR22SYSCTL_PERIPH_CLK_GCRCE"></span><span class="target" id="group__sysctl__api_1ggabda7c864eeed2819e9dfecf398397632ada7d5612151b546d2de7c9fb63127d76"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_PERIPH_CLK_GCRC</code> = 0x0802U<a class="headerlink" href="#_CPPv4N25SysCtl_PeripheralPCLOCKCR22SYSCTL_PERIPH_CLK_GCRCE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GCRC clock. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv425SysCtl_PeripheralSOFTPRES">
+<span id="_CPPv325SysCtl_PeripheralSOFTPRES"></span><span id="_CPPv225SysCtl_PeripheralSOFTPRES"></span><span class="target" id="group__sysctl__api_1ga54ee7d33eb760f838f036ecd3bc7c53d"></span><em class="property">enum </em><code class="sig-name descname">SysCtl_PeripheralSOFTPRES</code><a class="headerlink" href="#_CPPv425SysCtl_PeripheralSOFTPRES" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The following are values that can be passed to <a class="reference internal" href="#group__sysctl__api_1ga98da731e66b19a5037e24c832ebca4a3"><span class="std std-ref">SysCtl_resetPeripheral()</span></a> as the <em>peripheral</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N25SysCtl_PeripheralSOFTPRES23SYSCTL_PERIPH_RES_UART0E">
+<span id="_CPPv3N25SysCtl_PeripheralSOFTPRES23SYSCTL_PERIPH_RES_UART0E"></span><span id="_CPPv2N25SysCtl_PeripheralSOFTPRES23SYSCTL_PERIPH_RES_UART0E"></span><span class="target" id="group__sysctl__api_1gga54ee7d33eb760f838f036ecd3bc7c53dac1013b108f74d71e3899a5a17bd0cec1"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_PERIPH_RES_UART0</code> = 0x0000U<a class="headerlink" href="#_CPPv4N25SysCtl_PeripheralSOFTPRES23SYSCTL_PERIPH_RES_UART0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>UART0 Reset. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N25SysCtl_PeripheralSOFTPRES22SYSCTL_PERIPH_RES_SSI0E">
+<span id="_CPPv3N25SysCtl_PeripheralSOFTPRES22SYSCTL_PERIPH_RES_SSI0E"></span><span id="_CPPv2N25SysCtl_PeripheralSOFTPRES22SYSCTL_PERIPH_RES_SSI0E"></span><span class="target" id="group__sysctl__api_1gga54ee7d33eb760f838f036ecd3bc7c53da202507c31bc5c722a6f85296c2e2e3eb"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_PERIPH_RES_SSI0</code> = 0x0400U<a class="headerlink" href="#_CPPv4N25SysCtl_PeripheralSOFTPRES22SYSCTL_PERIPH_RES_SSI0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>SSI0 Reset. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N25SysCtl_PeripheralSOFTPRES22SYSCTL_PERIPH_RES_I2C0E">
+<span id="_CPPv3N25SysCtl_PeripheralSOFTPRES22SYSCTL_PERIPH_RES_I2C0E"></span><span id="_CPPv2N25SysCtl_PeripheralSOFTPRES22SYSCTL_PERIPH_RES_I2C0E"></span><span class="target" id="group__sysctl__api_1gga54ee7d33eb760f838f036ecd3bc7c53da8a01048d6aea5a6000fa42c2b47b8166"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_PERIPH_RES_I2C0</code> = 0x0800U<a class="headerlink" href="#_CPPv4N25SysCtl_PeripheralSOFTPRES22SYSCTL_PERIPH_RES_I2C0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>I2C0 Reset. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N25SysCtl_PeripheralSOFTPRES21SYSCTL_PERIPH_RES_USBE">
+<span id="_CPPv3N25SysCtl_PeripheralSOFTPRES21SYSCTL_PERIPH_RES_USBE"></span><span id="_CPPv2N25SysCtl_PeripheralSOFTPRES21SYSCTL_PERIPH_RES_USBE"></span><span class="target" id="group__sysctl__api_1gga54ee7d33eb760f838f036ecd3bc7c53da613f67731e6810bcdad522278b1a4c69"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_PERIPH_RES_USB</code> = 0x0C00U<a class="headerlink" href="#_CPPv4N25SysCtl_PeripheralSOFTPRES21SYSCTL_PERIPH_RES_USBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>USB Reset. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N25SysCtl_PeripheralSOFTPRES22SYSCTL_PERIPH_RES_ENETE">
+<span id="_CPPv3N25SysCtl_PeripheralSOFTPRES22SYSCTL_PERIPH_RES_ENETE"></span><span id="_CPPv2N25SysCtl_PeripheralSOFTPRES22SYSCTL_PERIPH_RES_ENETE"></span><span class="target" id="group__sysctl__api_1gga54ee7d33eb760f838f036ecd3bc7c53dad929755c66ddc29ac60ef9e053bd6388"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_PERIPH_RES_ENET</code> = 0x0001U<a class="headerlink" href="#_CPPv4N25SysCtl_PeripheralSOFTPRES22SYSCTL_PERIPH_RES_ENETE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>ENET Reset. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N25SysCtl_PeripheralSOFTPRES22SYSCTL_PERIPH_RES_ECATE">
+<span id="_CPPv3N25SysCtl_PeripheralSOFTPRES22SYSCTL_PERIPH_RES_ECATE"></span><span id="_CPPv2N25SysCtl_PeripheralSOFTPRES22SYSCTL_PERIPH_RES_ECATE"></span><span class="target" id="group__sysctl__api_1gga54ee7d33eb760f838f036ecd3bc7c53da53f248c5b2f4837c16549747f942cae0"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_PERIPH_RES_ECAT</code> = 0x0201U<a class="headerlink" href="#_CPPv4N25SysCtl_PeripheralSOFTPRES22SYSCTL_PERIPH_RES_ECATE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>ECAT Reset. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N25SysCtl_PeripheralSOFTPRES23SYSCTL_PERIPH_RES_CAN_AE">
+<span id="_CPPv3N25SysCtl_PeripheralSOFTPRES23SYSCTL_PERIPH_RES_CAN_AE"></span><span id="_CPPv2N25SysCtl_PeripheralSOFTPRES23SYSCTL_PERIPH_RES_CAN_AE"></span><span class="target" id="group__sysctl__api_1gga54ee7d33eb760f838f036ecd3bc7c53daa5238d4020875daa7538b48e2bdf3d2a"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_PERIPH_RES_CAN_A</code> = 0x0401U<a class="headerlink" href="#_CPPv4N25SysCtl_PeripheralSOFTPRES23SYSCTL_PERIPH_RES_CAN_AE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CAN_A Reset. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N25SysCtl_PeripheralSOFTPRES23SYSCTL_PERIPH_RES_CAN_BE">
+<span id="_CPPv3N25SysCtl_PeripheralSOFTPRES23SYSCTL_PERIPH_RES_CAN_BE"></span><span id="_CPPv2N25SysCtl_PeripheralSOFTPRES23SYSCTL_PERIPH_RES_CAN_BE"></span><span class="target" id="group__sysctl__api_1gga54ee7d33eb760f838f036ecd3bc7c53da1b4df580f93c61320310db126d7ba1e8"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_PERIPH_RES_CAN_B</code> = 0x0501U<a class="headerlink" href="#_CPPv4N25SysCtl_PeripheralSOFTPRES23SYSCTL_PERIPH_RES_CAN_BE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CAN_B Reset. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N25SysCtl_PeripheralSOFTPRES24SYSCTL_PERIPH_RES_MCAN_AE">
+<span id="_CPPv3N25SysCtl_PeripheralSOFTPRES24SYSCTL_PERIPH_RES_MCAN_AE"></span><span id="_CPPv2N25SysCtl_PeripheralSOFTPRES24SYSCTL_PERIPH_RES_MCAN_AE"></span><span class="target" id="group__sysctl__api_1gga54ee7d33eb760f838f036ecd3bc7c53da534b496dcd7c7eb470c79b18b924ad41"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_PERIPH_RES_MCAN_A</code> = 0x0801U<a class="headerlink" href="#_CPPv4N25SysCtl_PeripheralSOFTPRES24SYSCTL_PERIPH_RES_MCAN_AE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>MCAN_A Reset. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N25SysCtl_PeripheralSOFTPRES23SYSCTL_PERIPH_RES_AESIPE">
+<span id="_CPPv3N25SysCtl_PeripheralSOFTPRES23SYSCTL_PERIPH_RES_AESIPE"></span><span id="_CPPv2N25SysCtl_PeripheralSOFTPRES23SYSCTL_PERIPH_RES_AESIPE"></span><span class="target" id="group__sysctl__api_1gga54ee7d33eb760f838f036ecd3bc7c53da9c37749d727bb3ff9df9ffe24611550c"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_PERIPH_RES_AESIP</code> = 0x0602U<a class="headerlink" href="#_CPPv4N25SysCtl_PeripheralSOFTPRES23SYSCTL_PERIPH_RES_AESIPE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>AESIP Reset. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N25SysCtl_PeripheralSOFTPRES22SYSCTL_PERIPH_RES_GCRCE">
+<span id="_CPPv3N25SysCtl_PeripheralSOFTPRES22SYSCTL_PERIPH_RES_GCRCE"></span><span id="_CPPv2N25SysCtl_PeripheralSOFTPRES22SYSCTL_PERIPH_RES_GCRCE"></span><span class="target" id="group__sysctl__api_1gga54ee7d33eb760f838f036ecd3bc7c53da7ca3c774d74f87d5d7b7ce6f18f9bdf8"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_PERIPH_RES_GCRC</code> = 0x0802U<a class="headerlink" href="#_CPPv4N25SysCtl_PeripheralSOFTPRES22SYSCTL_PERIPH_RES_GCRCE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GCRC Reset. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv429SysCtl_PeripheralCMCLKSTOPACK">
+<span id="_CPPv329SysCtl_PeripheralCMCLKSTOPACK"></span><span id="_CPPv229SysCtl_PeripheralCMCLKSTOPACK"></span><span class="target" id="group__sysctl__api_1ga7a0bc1a41c9439e32d954cfb82be73b9"></span><em class="property">enum </em><code class="sig-name descname">SysCtl_PeripheralCMCLKSTOPACK</code><a class="headerlink" href="#_CPPv429SysCtl_PeripheralCMCLKSTOPACK" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The following are values that can be passed to <a class="reference internal" href="#group__sysctl__api_1ga83cb6085ccdfb3925c0d20be8a745d04"><span class="std std-ref">SysCtl_isPeripheralClockStopAcked()</span></a>as the <em>peripheral</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N29SysCtl_PeripheralCMCLKSTOPACK24SYSCTL_PERIPH_ACK_MCAN_AE">
+<span id="_CPPv3N29SysCtl_PeripheralCMCLKSTOPACK24SYSCTL_PERIPH_ACK_MCAN_AE"></span><span id="_CPPv2N29SysCtl_PeripheralCMCLKSTOPACK24SYSCTL_PERIPH_ACK_MCAN_AE"></span><span class="target" id="group__sysctl__api_1gga7a0bc1a41c9439e32d954cfb82be73b9a40d2f6523f4e903ca5f88848dc6cf41b"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_PERIPH_ACK_MCAN_A</code> = 0x0800U<a class="headerlink" href="#_CPPv4N29SysCtl_PeripheralCMCLKSTOPACK24SYSCTL_PERIPH_ACK_MCAN_AE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>MCAN_A clock. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv429SysCtl_PeripheralCMCLKSTOPREQ">
+<span id="_CPPv329SysCtl_PeripheralCMCLKSTOPREQ"></span><span id="_CPPv229SysCtl_PeripheralCMCLKSTOPREQ"></span><span class="target" id="group__sysctl__api_1gabb499fff7cc4cab14a6b949d75de6b0c"></span><em class="property">enum </em><code class="sig-name descname">SysCtl_PeripheralCMCLKSTOPREQ</code><a class="headerlink" href="#_CPPv429SysCtl_PeripheralCMCLKSTOPREQ" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The following are values that can be passed to SysCtl_reqPeripheralClockStop()as the <em>peripheral</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N29SysCtl_PeripheralCMCLKSTOPREQ24SYSCTL_PERIPH_REQ_MCAN_AE">
+<span id="_CPPv3N29SysCtl_PeripheralCMCLKSTOPREQ24SYSCTL_PERIPH_REQ_MCAN_AE"></span><span id="_CPPv2N29SysCtl_PeripheralCMCLKSTOPREQ24SYSCTL_PERIPH_REQ_MCAN_AE"></span><span class="target" id="group__sysctl__api_1ggabb499fff7cc4cab14a6b949d75de6b0ca306b139cbb2a96f360be2c6fbbd86d2d"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_PERIPH_REQ_MCAN_A</code> = 0x0801U<a class="headerlink" href="#_CPPv4N29SysCtl_PeripheralCMCLKSTOPREQ24SYSCTL_PERIPH_REQ_MCAN_AE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>MCAN_A clock. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv419SysCtl_WDPredivider">
+<span id="_CPPv319SysCtl_WDPredivider"></span><span id="_CPPv219SysCtl_WDPredivider"></span><span class="target" id="group__sysctl__api_1ga31d67715f0625a756ee649adb7c9430d"></span><em class="property">enum </em><code class="sig-name descname">SysCtl_WDPredivider</code><a class="headerlink" href="#_CPPv419SysCtl_WDPredivider" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The following are values that can be passed to <a class="reference internal" href="#group__sysctl__api_1gac359009ec34b621e28b234b1d46c403f"><span class="std std-ref">SysCtl_setWatchdogPredivider()</span></a> as the <em>predivider</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19SysCtl_WDPredivider18SYSCTL_WD_PREDIV_2E">
+<span id="_CPPv3N19SysCtl_WDPredivider18SYSCTL_WD_PREDIV_2E"></span><span id="_CPPv2N19SysCtl_WDPredivider18SYSCTL_WD_PREDIV_2E"></span><span class="target" id="group__sysctl__api_1gga31d67715f0625a756ee649adb7c9430da61fdab06e3ee42e67f4b2e36bdee7659"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_WD_PREDIV_2</code> = 0x800U<a class="headerlink" href="#_CPPv4N19SysCtl_WDPredivider18SYSCTL_WD_PREDIV_2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PREDIVCLK = INTOSC1 / 2. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19SysCtl_WDPredivider18SYSCTL_WD_PREDIV_4E">
+<span id="_CPPv3N19SysCtl_WDPredivider18SYSCTL_WD_PREDIV_4E"></span><span id="_CPPv2N19SysCtl_WDPredivider18SYSCTL_WD_PREDIV_4E"></span><span class="target" id="group__sysctl__api_1gga31d67715f0625a756ee649adb7c9430dab6c30ff1cf28906dae66fe7b0a7b6eec"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_WD_PREDIV_4</code> = 0x900U<a class="headerlink" href="#_CPPv4N19SysCtl_WDPredivider18SYSCTL_WD_PREDIV_4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PREDIVCLK = INTOSC1 / 4. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19SysCtl_WDPredivider18SYSCTL_WD_PREDIV_8E">
+<span id="_CPPv3N19SysCtl_WDPredivider18SYSCTL_WD_PREDIV_8E"></span><span id="_CPPv2N19SysCtl_WDPredivider18SYSCTL_WD_PREDIV_8E"></span><span class="target" id="group__sysctl__api_1gga31d67715f0625a756ee649adb7c9430da12ddcd1ec254373a359773394702e076"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_WD_PREDIV_8</code> = 0xA00U<a class="headerlink" href="#_CPPv4N19SysCtl_WDPredivider18SYSCTL_WD_PREDIV_8E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PREDIVCLK = INTOSC1 / 8. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19SysCtl_WDPredivider19SYSCTL_WD_PREDIV_16E">
+<span id="_CPPv3N19SysCtl_WDPredivider19SYSCTL_WD_PREDIV_16E"></span><span id="_CPPv2N19SysCtl_WDPredivider19SYSCTL_WD_PREDIV_16E"></span><span class="target" id="group__sysctl__api_1gga31d67715f0625a756ee649adb7c9430da102cfe36f7d7097b8826ecd135e6b704"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_WD_PREDIV_16</code> = 0xB00U<a class="headerlink" href="#_CPPv4N19SysCtl_WDPredivider19SYSCTL_WD_PREDIV_16E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PREDIVCLK = INTOSC1 / 16. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19SysCtl_WDPredivider19SYSCTL_WD_PREDIV_32E">
+<span id="_CPPv3N19SysCtl_WDPredivider19SYSCTL_WD_PREDIV_32E"></span><span id="_CPPv2N19SysCtl_WDPredivider19SYSCTL_WD_PREDIV_32E"></span><span class="target" id="group__sysctl__api_1gga31d67715f0625a756ee649adb7c9430da9ac7a652e2457b05bf70514483d2c80b"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_WD_PREDIV_32</code> = 0xC00U<a class="headerlink" href="#_CPPv4N19SysCtl_WDPredivider19SYSCTL_WD_PREDIV_32E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PREDIVCLK = INTOSC1 / 32. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19SysCtl_WDPredivider19SYSCTL_WD_PREDIV_64E">
+<span id="_CPPv3N19SysCtl_WDPredivider19SYSCTL_WD_PREDIV_64E"></span><span id="_CPPv2N19SysCtl_WDPredivider19SYSCTL_WD_PREDIV_64E"></span><span class="target" id="group__sysctl__api_1gga31d67715f0625a756ee649adb7c9430da8e595406615573fbaac22ede64231560"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_WD_PREDIV_64</code> = 0xD00U<a class="headerlink" href="#_CPPv4N19SysCtl_WDPredivider19SYSCTL_WD_PREDIV_64E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PREDIVCLK = INTOSC1 / 64. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19SysCtl_WDPredivider20SYSCTL_WD_PREDIV_128E">
+<span id="_CPPv3N19SysCtl_WDPredivider20SYSCTL_WD_PREDIV_128E"></span><span id="_CPPv2N19SysCtl_WDPredivider20SYSCTL_WD_PREDIV_128E"></span><span class="target" id="group__sysctl__api_1gga31d67715f0625a756ee649adb7c9430da7e9e3ff10b6667ca06ab31caf0d60056"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_WD_PREDIV_128</code> = 0xE00U<a class="headerlink" href="#_CPPv4N19SysCtl_WDPredivider20SYSCTL_WD_PREDIV_128E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PREDIVCLK = INTOSC1 / 128. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19SysCtl_WDPredivider20SYSCTL_WD_PREDIV_256E">
+<span id="_CPPv3N19SysCtl_WDPredivider20SYSCTL_WD_PREDIV_256E"></span><span id="_CPPv2N19SysCtl_WDPredivider20SYSCTL_WD_PREDIV_256E"></span><span class="target" id="group__sysctl__api_1gga31d67715f0625a756ee649adb7c9430da1751a4239b4146d013b0f412c82d6410"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_WD_PREDIV_256</code> = 0xF00U<a class="headerlink" href="#_CPPv4N19SysCtl_WDPredivider20SYSCTL_WD_PREDIV_256E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PREDIVCLK = INTOSC1 / 256. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19SysCtl_WDPredivider20SYSCTL_WD_PREDIV_512E">
+<span id="_CPPv3N19SysCtl_WDPredivider20SYSCTL_WD_PREDIV_512E"></span><span id="_CPPv2N19SysCtl_WDPredivider20SYSCTL_WD_PREDIV_512E"></span><span class="target" id="group__sysctl__api_1gga31d67715f0625a756ee649adb7c9430da7d5a20d84eb9ee595963dda1e6b80775"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_WD_PREDIV_512</code> = 0x000U<a class="headerlink" href="#_CPPv4N19SysCtl_WDPredivider20SYSCTL_WD_PREDIV_512E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PREDIVCLK = INTOSC1 / 512. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19SysCtl_WDPredivider21SYSCTL_WD_PREDIV_1024E">
+<span id="_CPPv3N19SysCtl_WDPredivider21SYSCTL_WD_PREDIV_1024E"></span><span id="_CPPv2N19SysCtl_WDPredivider21SYSCTL_WD_PREDIV_1024E"></span><span class="target" id="group__sysctl__api_1gga31d67715f0625a756ee649adb7c9430da10626d58b1eab984a9cd8bba60088a0f"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_WD_PREDIV_1024</code> = 0x100U<a class="headerlink" href="#_CPPv4N19SysCtl_WDPredivider21SYSCTL_WD_PREDIV_1024E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PREDIVCLK = INTOSC1 / 1024. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19SysCtl_WDPredivider21SYSCTL_WD_PREDIV_2048E">
+<span id="_CPPv3N19SysCtl_WDPredivider21SYSCTL_WD_PREDIV_2048E"></span><span id="_CPPv2N19SysCtl_WDPredivider21SYSCTL_WD_PREDIV_2048E"></span><span class="target" id="group__sysctl__api_1gga31d67715f0625a756ee649adb7c9430da22949bdefd949a9577f4a8ddaa675a86"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_WD_PREDIV_2048</code> = 0x200U<a class="headerlink" href="#_CPPv4N19SysCtl_WDPredivider21SYSCTL_WD_PREDIV_2048E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PREDIVCLK = INTOSC1 / 2048. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19SysCtl_WDPredivider21SYSCTL_WD_PREDIV_4096E">
+<span id="_CPPv3N19SysCtl_WDPredivider21SYSCTL_WD_PREDIV_4096E"></span><span id="_CPPv2N19SysCtl_WDPredivider21SYSCTL_WD_PREDIV_4096E"></span><span class="target" id="group__sysctl__api_1gga31d67715f0625a756ee649adb7c9430dae666dcbdea07309b8a5b313d881555bb"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_WD_PREDIV_4096</code> = 0x300U<a class="headerlink" href="#_CPPv4N19SysCtl_WDPredivider21SYSCTL_WD_PREDIV_4096E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PREDIVCLK = INTOSC1 / 4096. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv418SysCtl_WDPrescaler">
+<span id="_CPPv318SysCtl_WDPrescaler"></span><span id="_CPPv218SysCtl_WDPrescaler"></span><span class="target" id="group__sysctl__api_1gaad355f0335e50fd3157277781b3a432c"></span><em class="property">enum </em><code class="sig-name descname">SysCtl_WDPrescaler</code><a class="headerlink" href="#_CPPv418SysCtl_WDPrescaler" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The following are values that can be passed to <a class="reference internal" href="#group__sysctl__api_1gaddfa7f6f3265d168e23211705b869974"><span class="std std-ref">SysCtl_setWatchdogPrescaler()</span></a> as the <em>prescaler</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18SysCtl_WDPrescaler20SYSCTL_WD_PRESCALE_1E">
+<span id="_CPPv3N18SysCtl_WDPrescaler20SYSCTL_WD_PRESCALE_1E"></span><span id="_CPPv2N18SysCtl_WDPrescaler20SYSCTL_WD_PRESCALE_1E"></span><span class="target" id="group__sysctl__api_1ggaad355f0335e50fd3157277781b3a432cac21092e82cfc1d95e72026922b27f56e"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_WD_PRESCALE_1</code> = 1U<a class="headerlink" href="#_CPPv4N18SysCtl_WDPrescaler20SYSCTL_WD_PRESCALE_1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>WDCLK = PREDIVCLK / 1. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18SysCtl_WDPrescaler20SYSCTL_WD_PRESCALE_2E">
+<span id="_CPPv3N18SysCtl_WDPrescaler20SYSCTL_WD_PRESCALE_2E"></span><span id="_CPPv2N18SysCtl_WDPrescaler20SYSCTL_WD_PRESCALE_2E"></span><span class="target" id="group__sysctl__api_1ggaad355f0335e50fd3157277781b3a432cabc30113c1aa6776f9d16c64196b66049"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_WD_PRESCALE_2</code> = 2U<a class="headerlink" href="#_CPPv4N18SysCtl_WDPrescaler20SYSCTL_WD_PRESCALE_2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>WDCLK = PREDIVCLK / 2. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18SysCtl_WDPrescaler20SYSCTL_WD_PRESCALE_4E">
+<span id="_CPPv3N18SysCtl_WDPrescaler20SYSCTL_WD_PRESCALE_4E"></span><span id="_CPPv2N18SysCtl_WDPrescaler20SYSCTL_WD_PRESCALE_4E"></span><span class="target" id="group__sysctl__api_1ggaad355f0335e50fd3157277781b3a432ca71449a5f1de0bad2d9f384a94aa78163"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_WD_PRESCALE_4</code> = 3U<a class="headerlink" href="#_CPPv4N18SysCtl_WDPrescaler20SYSCTL_WD_PRESCALE_4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>WDCLK = PREDIVCLK / 4. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18SysCtl_WDPrescaler20SYSCTL_WD_PRESCALE_8E">
+<span id="_CPPv3N18SysCtl_WDPrescaler20SYSCTL_WD_PRESCALE_8E"></span><span id="_CPPv2N18SysCtl_WDPrescaler20SYSCTL_WD_PRESCALE_8E"></span><span class="target" id="group__sysctl__api_1ggaad355f0335e50fd3157277781b3a432caa6945aa85b54e8c973f75cf7bc34488b"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_WD_PRESCALE_8</code> = 4U<a class="headerlink" href="#_CPPv4N18SysCtl_WDPrescaler20SYSCTL_WD_PRESCALE_8E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>WDCLK = PREDIVCLK / 8. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18SysCtl_WDPrescaler21SYSCTL_WD_PRESCALE_16E">
+<span id="_CPPv3N18SysCtl_WDPrescaler21SYSCTL_WD_PRESCALE_16E"></span><span id="_CPPv2N18SysCtl_WDPrescaler21SYSCTL_WD_PRESCALE_16E"></span><span class="target" id="group__sysctl__api_1ggaad355f0335e50fd3157277781b3a432ca26fe96f4f05be5ae2e6f529deec1fbd7"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_WD_PRESCALE_16</code> = 5U<a class="headerlink" href="#_CPPv4N18SysCtl_WDPrescaler21SYSCTL_WD_PRESCALE_16E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>WDCLK = PREDIVCLK / 16. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18SysCtl_WDPrescaler21SYSCTL_WD_PRESCALE_32E">
+<span id="_CPPv3N18SysCtl_WDPrescaler21SYSCTL_WD_PRESCALE_32E"></span><span id="_CPPv2N18SysCtl_WDPrescaler21SYSCTL_WD_PRESCALE_32E"></span><span class="target" id="group__sysctl__api_1ggaad355f0335e50fd3157277781b3a432ca0e33debe85f1d26871aec8fc7b228520"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_WD_PRESCALE_32</code> = 6U<a class="headerlink" href="#_CPPv4N18SysCtl_WDPrescaler21SYSCTL_WD_PRESCALE_32E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>WDCLK = PREDIVCLK / 32. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18SysCtl_WDPrescaler21SYSCTL_WD_PRESCALE_64E">
+<span id="_CPPv3N18SysCtl_WDPrescaler21SYSCTL_WD_PRESCALE_64E"></span><span id="_CPPv2N18SysCtl_WDPrescaler21SYSCTL_WD_PRESCALE_64E"></span><span class="target" id="group__sysctl__api_1ggaad355f0335e50fd3157277781b3a432caed1467ca008366209fca1f67c3dc497a"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_WD_PRESCALE_64</code> = 7U<a class="headerlink" href="#_CPPv4N18SysCtl_WDPrescaler21SYSCTL_WD_PRESCALE_64E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>WDCLK = PREDIVCLK / 64. </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv420SysCtl_getResetCausev">
+<span id="_CPPv320SysCtl_getResetCausev"></span><span id="_CPPv220SysCtl_getResetCausev"></span><span id="SysCtl_getResetCause__void"></span><span class="target" id="group__sysctl__api_1ga9f99f0e5438928c222c99340dc46a253"></span>uint32_t <code class="sig-name descname">SysCtl_getResetCause</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420SysCtl_getResetCausev" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the reason for a reset.</p>
+<p>This function will return the reason(s) for a reset. Since the reset reasons are sticky until either cleared by software or an external reset, multiple reset reasons may be returned if multiple resets have occurred. The reset reason will be a logical OR of<ul class="simple">
+<li><p><strong>SYSCTL_CAUSE_PORESETN</strong> - Power-on reset</p></li>
+<li><p><strong>SYSCTL_CAUSE_XRSN</strong> - External reset pin</p></li>
+<li><p><strong>SYSCTL_CAUSE_CPU1WDRSN</strong> - Watchdog reset from CPU1</p></li>
+<li><p><strong>SYSCTL_CAUSE_CPU1NMIWDRSN</strong> -NMI Watchdog reset from CPU1</p></li>
+<li><p><strong>SYSCTL_CAUSE_CPU1SYSRSN</strong> - System reset from CPU1</p></li>
+<li><p><strong>SYSCTL_CAUSE_CPU1SCCRESETN</strong> - SCCRESETn from CPU1</p></li>
+<li><p><strong>SYSCTL_CAUSE_ECAT_RESET_OUT</strong> - ECAT reset</p></li>
+<li><p><strong>SYSCTL_CAUSE_CPU1SIMRESET_CPURSN</strong> - SIMRESET from CPU1</p></li>
+<li><p><strong>SYSCTL_CAUSE_CMRSTCTLRESETREQ</strong> - System reset request from CM4</p></li>
+<li><p><strong>SYSCTL_CAUSE_CMVECTRESETN</strong> - Vectreset from CM4</p></li>
+<li><p><strong>SYSCTL_CAUSE_CMSYSRESETREQ</strong> - System reset request from CPU1</p></li>
+<li><p><strong>SYSCTL_CAUSE_CMNMIWDRSTN</strong> - NMI watchdog reset from CM4</p></li>
+<li><p><strong>SYSCTL_CAUSE_CMEOLRESETN</strong> - EOLRESETn reset from CM4</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the reason(s) for a reset. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422SysCtl_clearResetCause8uint32_t">
+<span id="_CPPv322SysCtl_clearResetCause8uint32_t"></span><span id="_CPPv222SysCtl_clearResetCause8uint32_t"></span><span id="SysCtl_clearResetCause__uint32_t"></span><span class="target" id="group__sysctl__api_1ga1190782fb493d99eb6ccf16a3c27692a"></span>void <code class="sig-name descname">SysCtl_clearResetCause</code><span class="sig-paren">(</span>uint32_t <em>rstCauses</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422SysCtl_clearResetCause8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears reset reasons.</p>
+<p><p>This function clears the specified sticky reset reasons. Once cleared, another reset for the same reason can be detected, and a reset for a different reason can be distinguished (instead of having two reset causes set). If the reset reason is used by an application, all reset causes should be cleared after they are retrieved with </p>
+<a class="reference internal" href="#group__sysctl__api_1ga9f99f0e5438928c222c99340dc46a253"><span class="std std-ref">SysCtl_getResetCause()</span></a>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">rstCauses</span></code>: are the reset causes to be cleared; must be a logical OR of <strong>SYSCTL_CAUSE_PORESETN</strong>, <strong>SYSCTL_CAUSE_XRSN</strong>, <strong>SYSCTL_CAUSE_CPU1WDRSN</strong>,<strong>SYSCTL_CAUSE_CPU1NMIWDRSN</strong>, <strong>SYSCTL_CAUSE_CPU1SYSRSN</strong> ,<strong>SYSCTL_CAUSE_CPU1SCCRESETN</strong>, <strong>SYSCTL_CAUSE_ECAT_RESET_OUT</strong> , <strong>SYSCTL_CAUSE_CPU1SIMRESET_CPURSN</strong>, <strong>SYSCTL_CAUSE_CMRSTCTLRESETREQ</strong> ,<strong>SYSCTL_CAUSE_CMVECTRESETN</strong>, <strong>SYSCTL_CAUSE_CMSYSRESETREQ</strong>, <strong>SYSCTL_CAUSE_CMNMIWDRSN</strong> and/or <strong>SYSCTL_CAUSE_CMEOLRESETN</strong>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422SysCtl_disableWatchdogv">
+<span id="_CPPv322SysCtl_disableWatchdogv"></span><span id="_CPPv222SysCtl_disableWatchdogv"></span><span id="SysCtl_disableWatchdog__void"></span><span class="target" id="group__sysctl__api_1ga09d8ef03c43a6f4f98cbd2c9f0e949ca"></span>void <code class="sig-name descname">SysCtl_disableWatchdog</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422SysCtl_disableWatchdogv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the watchdog.</p>
+<p>This function disables the watchdog timer. Note that the watchdog timer is enabled on reset.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421SysCtl_enableWatchdogv">
+<span id="_CPPv321SysCtl_enableWatchdogv"></span><span id="_CPPv221SysCtl_enableWatchdogv"></span><span id="SysCtl_enableWatchdog__void"></span><span class="target" id="group__sysctl__api_1gae4c4ce93ddb47fc8604a931bbc499151"></span>void <code class="sig-name descname">SysCtl_enableWatchdog</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421SysCtl_enableWatchdogv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the watchdog.</p>
+<p>This function enables the watchdog timer. Note that the watchdog timer is enabled on reset.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422SysCtl_serviceWatchdogv">
+<span id="_CPPv322SysCtl_serviceWatchdogv"></span><span id="_CPPv222SysCtl_serviceWatchdogv"></span><span id="SysCtl_serviceWatchdog__void"></span><span class="target" id="group__sysctl__api_1ga9748f435e7f7427a097bada323c112df"></span>void <code class="sig-name descname">SysCtl_serviceWatchdog</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422SysCtl_serviceWatchdogv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Services the watchdog.</p>
+<p>This function resets the watchdog.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428SysCtl_setWatchdogPredivider19SysCtl_WDPredivider">
+<span id="_CPPv328SysCtl_setWatchdogPredivider19SysCtl_WDPredivider"></span><span id="_CPPv228SysCtl_setWatchdogPredivider19SysCtl_WDPredivider"></span><span id="SysCtl_setWatchdogPredivider__SysCtl_WDPredivider"></span><span class="target" id="group__sysctl__api_1gac359009ec34b621e28b234b1d46c403f"></span>void <code class="sig-name descname">SysCtl_setWatchdogPredivider</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv419SysCtl_WDPredivider" title="SysCtl_WDPredivider">SysCtl_WDPredivider</a> <em>predivider</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428SysCtl_setWatchdogPredivider19SysCtl_WDPredivider" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets up watchdog clock (WDCLK) pre-divider.</p>
+<p><p>This function sets up the watchdog clock (WDCLK) pre-divider. There are two dividers that scale INTOSC1 to WDCLK. The </p>
+<em>predivider</em> parameter divides INTOSC1 down to PREDIVCLK and the prescaler (set by the <a class="reference internal" href="#group__sysctl__api_1gaddfa7f6f3265d168e23211705b869974"><span class="std std-ref">SysCtl_setWatchdogPrescaler()</span></a> function) divides PREDIVCLK down to WDCLK.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">predivider</span></code>: is the value that configures the pre-divider.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427SysCtl_setWatchdogPrescaler18SysCtl_WDPrescaler">
+<span id="_CPPv327SysCtl_setWatchdogPrescaler18SysCtl_WDPrescaler"></span><span id="_CPPv227SysCtl_setWatchdogPrescaler18SysCtl_WDPrescaler"></span><span id="SysCtl_setWatchdogPrescaler__SysCtl_WDPrescaler"></span><span class="target" id="group__sysctl__api_1gaddfa7f6f3265d168e23211705b869974"></span>void <code class="sig-name descname">SysCtl_setWatchdogPrescaler</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv418SysCtl_WDPrescaler" title="SysCtl_WDPrescaler">SysCtl_WDPrescaler</a> <em>prescaler</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427SysCtl_setWatchdogPrescaler18SysCtl_WDPrescaler" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets up watchdog clock (WDCLK) prescaler.</p>
+<p><p>This function sets up the watchdog clock (WDCLK) prescaler. There are two dividers that scale INTOSC1 to WDCLK. The predivider (set with the </p>
+<a class="reference internal" href="#group__sysctl__api_1gac359009ec34b621e28b234b1d46c403f"><span class="std std-ref">SysCtl_setWatchdogPredivider()</span></a> function) divides INTOSC1 down to PREDIVCLK and the <em>prescaler</em> parameter divides PREDIVCLK down to WDCLK.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">prescaler</span></code>: is the value that configures the watchdog clock relative to the value from the pre-divider.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv430SysCtl_getWatchdogCounterValuev">
+<span id="_CPPv330SysCtl_getWatchdogCounterValuev"></span><span id="_CPPv230SysCtl_getWatchdogCounterValuev"></span><span id="SysCtl_getWatchdogCounterValue__void"></span><span class="target" id="group__sysctl__api_1ga61e6f9926383a2b36699e011ed06ba55"></span>uint16_t <code class="sig-name descname">SysCtl_getWatchdogCounterValue</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430SysCtl_getWatchdogCounterValuev" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the watchdog counter value.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the current value of the 8-bit watchdog counter. If this count value overflows, a watchdog output pulse is generated. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424SysCtl_getWatchdogStatusv">
+<span id="_CPPv324SysCtl_getWatchdogStatusv"></span><span id="_CPPv224SysCtl_getWatchdogStatusv"></span><span id="SysCtl_getWatchdogStatus__void"></span><span class="target" id="group__sysctl__api_1gaf0586250f47e475aab80efaf74aaa77d"></span>bool <code class="sig-name descname">SysCtl_getWatchdogStatus</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424SysCtl_getWatchdogStatusv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the watchdog status.</p>
+<p>This function returns the watchdog status. This bit, if set, indicates a NMI was fired to CM4 from WWD. This bit remains latched until the user writes a 1 to clear the condition. Writes of 0 will be ignored.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if the watchdog generated the NMI condition. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426SysCtl_clearWatchdogStatusv">
+<span id="_CPPv326SysCtl_clearWatchdogStatusv"></span><span id="_CPPv226SysCtl_clearWatchdogStatusv"></span><span id="SysCtl_clearWatchdogStatus__void"></span><span class="target" id="group__sysctl__api_1ga3d1128ef1af236b7b222ca07a1ac235a"></span>void <code class="sig-name descname">SysCtl_clearWatchdogStatus</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426SysCtl_clearWatchdogStatusv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears the watchdog status.</p>
+<p>This function clears the watchdog status. To check if it was set first, see <a class="reference internal" href="#group__sysctl__api_1gaf0586250f47e475aab80efaf74aaa77d"><span class="std std-ref">SysCtl_getWatchdogStatus()</span></a>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429SysCtl_setWatchdogWindowValue8uint16_t">
+<span id="_CPPv329SysCtl_setWatchdogWindowValue8uint16_t"></span><span id="_CPPv229SysCtl_setWatchdogWindowValue8uint16_t"></span><span id="SysCtl_setWatchdogWindowValue__uint16_t"></span><span class="target" id="group__sysctl__api_1ga6a8bcbbbe055d27660ec05a245061416"></span>void <code class="sig-name descname">SysCtl_setWatchdogWindowValue</code><span class="sig-paren">(</span>uint16_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429SysCtl_setWatchdogWindowValue8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set the minimum threshold value for windowed watchdog</p>
+<p><p>This function sets the minimum threshold value used to define the lower limit of the windowed watchdog functionality.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: is the value to set the window threshold</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419SysCtl_getNMIStatusv">
+<span id="_CPPv319SysCtl_getNMIStatusv"></span><span id="_CPPv219SysCtl_getNMIStatusv"></span><span id="SysCtl_getNMIStatus__void"></span><span class="target" id="group__sysctl__api_1ga4220c02fd125ebb1a77d6647fec83e90"></span>bool <code class="sig-name descname">SysCtl_getNMIStatus</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419SysCtl_getNMIStatusv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Read NMI interrupts.</p>
+<p>Read the current state of NMI interrupt.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p><strong>true</strong> if NMI interrupt is triggered, <strong>false</strong> if not. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423SysCtl_getNMIFlagStatusv">
+<span id="_CPPv323SysCtl_getNMIFlagStatusv"></span><span id="_CPPv223SysCtl_getNMIFlagStatusv"></span><span id="SysCtl_getNMIFlagStatus__void"></span><span class="target" id="group__sysctl__api_1gafa88edb9de25d570e2cc4371f5cf4a0e"></span>uint16_t <code class="sig-name descname">SysCtl_getNMIFlagStatus</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423SysCtl_getNMIFlagStatusv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Read NMI Flags.</p>
+<p>Read the current state of individual NMI interrupts</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Value of NMIFLG register. These defines are provided to decode the value:<ul class="simple">
+<li><p><strong>SYSCTL_NMI_NMIINT</strong> - Non-maskable interrupt</p></li>
+<li><p><strong>SYSCTL_NMI_CLOCKFAIL</strong> - Clock Failure</p></li>
+<li><p><strong>SYSCTL_NMI_MEMUNCERR</strong> - RAM, ROM Uncorrectable Error</p></li>
+<li><p><strong>SYSCTL_NMI_FLUNCERR</strong> - Uncorrectable Flash error</p></li>
+<li><p><strong>SYSCTL_NMI_MCANUNCERR</strong> -MCAN Uncorrectable Error</p></li>
+<li><p><strong>SYSCTL_NMI_WWDNMI-</strong> CM WWD</p></li>
+<li><p><strong>SYSCTL_NMI_ECATNMI</strong> -EtherCAT reset out </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419SysCtl_isNMIFlagSet8uint32_t">
+<span id="_CPPv319SysCtl_isNMIFlagSet8uint32_t"></span><span id="_CPPv219SysCtl_isNMIFlagSet8uint32_t"></span><span id="SysCtl_isNMIFlagSet__uint32_t"></span><span class="target" id="group__sysctl__api_1ga0c017f903bc536b142cf13d314e2bc3b"></span>bool <code class="sig-name descname">SysCtl_isNMIFlagSet</code><span class="sig-paren">(</span>uint32_t <em>nmiFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419SysCtl_isNMIFlagSet8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Check if the individual NMI interrupts are set.</p>
+<p><p>Check if interrupt flags corresponding to the passed in bit mask are asserted.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nmiFlags</span></code>: Bit mask of the NMI interrupts that user wants to clear. The bit format of this parameter is same as of the NMIFLG register. These defines are provided:<ul>
+<li><p><strong>SYSCTL_NMI_NMIINT</strong> - Non-maskable interrupt</p></li>
+<li><p><strong>SYSCTL_NMI_CLOCKFAIL</strong> - Clock Failure</p></li>
+<li><p><strong>SYSCTL_NMI_MEMUNCERR</strong> -RAM, ROM Uncorrectable Error</p></li>
+<li><p><strong>SYSCTL_NMI_FLUNCERR</strong> - Uncorrectable Flash error</p></li>
+<li><p><strong>SYSCTL_NMI_MCANUNCERR</strong> -MCAN Uncorrectable Error</p></li>
+<li><p><strong>SYSCTL_NMI_WWDNMI-</strong> CM WWD</p></li>
+<li><p><strong>SYSCTL_NMI_ECATNMI</strong> -EtherCAT reset out</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p><strong>true</strong> if any of the NMI asked for in the parameter bit mask is set. <strong>false</strong> if none of the NMI requested in the parameter bit mask are set. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421SysCtl_clearNMIStatus8uint32_t">
+<span id="_CPPv321SysCtl_clearNMIStatus8uint32_t"></span><span id="_CPPv221SysCtl_clearNMIStatus8uint32_t"></span><span id="SysCtl_clearNMIStatus__uint32_t"></span><span class="target" id="group__sysctl__api_1gab6e6d50fe175cf132ba21a17fc24b774"></span>void <code class="sig-name descname">SysCtl_clearNMIStatus</code><span class="sig-paren">(</span>uint32_t <em>nmiFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421SysCtl_clearNMIStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Function to clear individual NMI interrupts.</p>
+<p><p>Clear NMI interrupt flags that correspond with the passed in bit mask.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nmiFlags</span></code>: Bit mask of the NMI interrupts that user wants to clear. The bit format of this parameter is same as of the CMNMIFLG register. These defines are provided:<ul>
+<li><p><strong>SYSCTL_NMI_NMIINT</strong> - Non-maskable interrupt</p></li>
+<li><p><strong>SYSCTL_NMI_CLOCKFAIL</strong> -Clock Failure</p></li>
+<li><p><strong>SYSCTL_NMI_MEMUNCERR</strong> - RAM, ROM Uncorrectable Error</p></li>
+<li><p><strong>SYSCTL_NMI_FLUNCERR</strong> - Uncorrectable Flash error</p></li>
+<li><p><strong>SYSCTL_NMI_MCANUNCERR</strong> -MCAN Uncorrectable Error</p></li>
+<li><p><strong>SYSCTL_NMI_WWDNMI-</strong> CM WWD</p></li>
+<li><p><strong>SYSCTL_NMI_ECATNMI</strong> -EtherCAT reset out</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423SysCtl_clearAllNMIFlagsv">
+<span id="_CPPv323SysCtl_clearAllNMIFlagsv"></span><span id="_CPPv223SysCtl_clearAllNMIFlagsv"></span><span id="SysCtl_clearAllNMIFlags__void"></span><span class="target" id="group__sysctl__api_1ga28844f840d5a42c15dbae077a3e39fcc"></span>void <code class="sig-name descname">SysCtl_clearAllNMIFlags</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423SysCtl_clearAllNMIFlagsv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clear all the NMI Flags.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420SysCtl_forceNMIFlags8uint32_t">
+<span id="_CPPv320SysCtl_forceNMIFlags8uint32_t"></span><span id="_CPPv220SysCtl_forceNMIFlags8uint32_t"></span><span id="SysCtl_forceNMIFlags__uint32_t"></span><span class="target" id="group__sysctl__api_1ga1aab9be1964d756e2ade86d6c920019c"></span>void <code class="sig-name descname">SysCtl_forceNMIFlags</code><span class="sig-paren">(</span>uint32_t <em>nmiFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420SysCtl_forceNMIFlags8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Function to force individual NMI interrupt fail flags</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nmiFlags</span></code>: Bit mask of the NMI interrupts that user wants to clear. The bit format of this parameter is same as of the NMIFLG register. These defines are provided:<ul>
+<li><p><strong>SYSCTL_NMI_NMIINT</strong> - Non-maskable interrupt</p></li>
+<li><p><strong>SYSCTL_NMI_CLOCKFAIL</strong> - Clock Failure</p></li>
+<li><p><strong>SYSCTL_NMI_MEMUNCERR</strong> - RAM, ROM Uncorrectable Error</p></li>
+<li><p><strong>SYSCTL_NMI_FLUNCERR</strong> - Uncorrectable Flash error</p></li>
+<li><p><strong>SYSCTL_NMI_MCANUNCERR</strong> -MCAN Uncorrectable Error</p></li>
+<li><p><strong>SYSCTL_NMI_WWDNMI-</strong> CM WWD</p></li>
+<li><p><strong>SYSCTL_NMI_ECATNMI</strong> -EtherCAT reset out</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428SysCtl_getNMIWatchdogCounterv">
+<span id="_CPPv328SysCtl_getNMIWatchdogCounterv"></span><span id="_CPPv228SysCtl_getNMIWatchdogCounterv"></span><span id="SysCtl_getNMIWatchdogCounter__void"></span><span class="target" id="group__sysctl__api_1ga32d41f174f71ab0291370b78d2052bd2"></span>uint16_t <code class="sig-name descname">SysCtl_getNMIWatchdogCounter</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428SysCtl_getNMIWatchdogCounterv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the NMI watchdog counter value.</p>
+<p><strong>Note:</strong> The counter is clocked at the SYSCLKOUT rate.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the NMI watchdog counter register’s current value. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427SysCtl_setNMIWatchdogPeriod8uint16_t">
+<span id="_CPPv327SysCtl_setNMIWatchdogPeriod8uint16_t"></span><span id="_CPPv227SysCtl_setNMIWatchdogPeriod8uint16_t"></span><span id="SysCtl_setNMIWatchdogPeriod__uint16_t"></span><span class="target" id="group__sysctl__api_1gab3c2b3ea0516329c524912152fd8d9b1"></span>void <code class="sig-name descname">SysCtl_setNMIWatchdogPeriod</code><span class="sig-paren">(</span>uint16_t <em>wdPeriod</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427SysCtl_setNMIWatchdogPeriod8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the NMI watchdog period value.</p>
+<p><p>This function writes to the NMI watchdog period register that holds the value to which the NMI watchdog counter is compared. When the two registers match, a reset is generated. By default, the period is 0xFFFF.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">wdPeriod</span></code>: is the 16-bit value at which a reset is generated.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>If a value smaller than the current counter value is passed into the <em>wdPeriod</em> parameter, a NMIRSn will be forced.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427SysCtl_getNMIWatchdogPeriodv">
+<span id="_CPPv327SysCtl_getNMIWatchdogPeriodv"></span><span id="_CPPv227SysCtl_getNMIWatchdogPeriodv"></span><span id="SysCtl_getNMIWatchdogPeriod__void"></span><span class="target" id="group__sysctl__api_1gaabf62201f2d6686ddd6b37f32170e090"></span>uint16_t <code class="sig-name descname">SysCtl_getNMIWatchdogPeriod</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427SysCtl_getNMIWatchdogPeriodv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the NMI watchdog period value.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the NMI watchdog period register’s current value. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429SysCtl_getNMIShadowFlagStatusv">
+<span id="_CPPv329SysCtl_getNMIShadowFlagStatusv"></span><span id="_CPPv229SysCtl_getNMIShadowFlagStatusv"></span><span id="SysCtl_getNMIShadowFlagStatus__void"></span><span class="target" id="group__sysctl__api_1ga42a6449b46fcea4a916fe34e7d4dbbc9"></span>uint16_t <code class="sig-name descname">SysCtl_getNMIShadowFlagStatus</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429SysCtl_getNMIShadowFlagStatusv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Read NMI Shadow Flags.</p>
+<p>Read the current state of individual NMI interrupts</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Value of CMNMISHDFLG register. These defines are provided to decode the value:<ul class="simple">
+<li><p><strong>SYSCTL_NMI_NMIINT</strong> - Non-maskable interrupt</p></li>
+<li><p><strong>SYSCTL_NMI_CLOCKFAIL</strong> - Clock Failure</p></li>
+<li><p><strong>SYSCTL_NMI_MEMUNCERR</strong> - RAM, ROM Uncorrectable Error</p></li>
+<li><p><strong>SYSCTL_NMI_FLUNCERR</strong> - Uncorrectable Flash error</p></li>
+<li><p><strong>SYSCTL_NMI_MCANUNCERR</strong> -MCAN Uncorrectable Error</p></li>
+<li><p><strong>SYSCTL_NMI_WWDNMI-</strong> CM WWD</p></li>
+<li><p><strong>SYSCTL_NMI_ECATNMI</strong> -EtherCAT reset out </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425SysCtl_isNMIShadowFlagSet8uint32_t">
+<span id="_CPPv325SysCtl_isNMIShadowFlagSet8uint32_t"></span><span id="_CPPv225SysCtl_isNMIShadowFlagSet8uint32_t"></span><span id="SysCtl_isNMIShadowFlagSet__uint32_t"></span><span class="target" id="group__sysctl__api_1gaf5d6c04aedbf0d778eb4b57a3e5fb755"></span>bool <code class="sig-name descname">SysCtl_isNMIShadowFlagSet</code><span class="sig-paren">(</span>uint32_t <em>nmiFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425SysCtl_isNMIShadowFlagSet8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Check if the individual NMI shadow flags are set.</p>
+<p><p>Check if interrupt flags corresponding to the passed in bit mask are asserted.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">nmiFlags</span></code>: Bit mask of the NMI interrupts that user wants to clear. The bit format of this parameter is same as of the CMNMIFLG register. These defines are provided:<ul>
+<li><p><strong>SYSCTL_NMI_NMIINT</strong> - Non-maskable interrupt</p></li>
+<li><p><strong>SYSCTL_NMI_CLOCKFAIL</strong> - Clock Failure</p></li>
+<li><p><strong>SYSCTL_NMI_MEMUNCERR</strong> - RAM, ROM Uncorrectable Error</p></li>
+<li><p><strong>SYSCTL_NMI_FLUNCERR</strong> - Uncorrectable Flash error</p></li>
+<li><p><strong>SYSCTL_NMI_MCANUNCERR</strong> -MCAN Uncorrectable Error</p></li>
+<li><p><strong>SYSCTL_NMI_WWDNMI-</strong> CM WWD</p></li>
+<li><p><strong>SYSCTL_NMI_ECATNMI</strong> -EtherCAT reset out</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p><strong>true</strong> if any of the NMI asked for in the parameter bit mask is set. <strong>false</strong> if none of the NMI requested in the parameter bit mask are set. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428SysCtl_lockAccessControlRegs8uint16_t">
+<span id="_CPPv328SysCtl_lockAccessControlRegs8uint16_t"></span><span id="_CPPv228SysCtl_lockAccessControlRegs8uint16_t"></span><span id="SysCtl_lockAccessControlRegs__uint16_t"></span><span class="target" id="group__sysctl__api_1ga9d25577036cbe99f26371bdf26922e72"></span>void <code class="sig-name descname">SysCtl_lockAccessControlRegs</code><span class="sig-paren">(</span>uint16_t <em>controlreg</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428SysCtl_lockAccessControlRegs8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Blocks writes to the CM System control registers</p>
+<p><p>This function locks the configuration registers of CM System Control register.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">controlreg</span></code>: is the Control Register whose access is blocked. SYSCTL_CMECATCTL_LOCK is for the CMECATCTL register</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><strong>Note:</strong> Today only writes to the CMECATCTL register are blocked . <strong>Writes</strong> to CMECATCTL register is unblocked on reset .</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv412SysCtl_sleepv">
+<span id="_CPPv312SysCtl_sleepv"></span><span id="_CPPv212SysCtl_sleepv"></span><span id="SysCtl_sleep__void"></span><span class="target" id="group__sysctl__api_1gaf01b645baf39d78346919a45d0290b30"></span>void <code class="sig-name descname">SysCtl_sleep</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412SysCtl_sleepv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Puts the processor into sleep mode.</p>
+<p>This function places the processor into sleep mode</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422SysCtl_enableGlobalNMIv">
+<span id="_CPPv322SysCtl_enableGlobalNMIv"></span><span id="_CPPv222SysCtl_enableGlobalNMIv"></span><span id="SysCtl_enableGlobalNMI__void"></span><span class="target" id="group__sysctl__api_1gad57bd3a573ab084d66489664f67e40f1"></span>void <code class="sig-name descname">SysCtl_enableGlobalNMI</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422SysCtl_enableGlobalNMIv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable the Global NMI</p>
+<p>This function writes to the NMI configuration register that enables the global NMI.</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Global NMI is disabled on reset</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv438SysCtl_isWatchdogFirstKeyDetectFlagsetv">
+<span id="_CPPv338SysCtl_isWatchdogFirstKeyDetectFlagsetv"></span><span id="_CPPv238SysCtl_isWatchdogFirstKeyDetectFlagsetv"></span><span id="SysCtl_isWatchdogFirstKeyDetectFlagset__void"></span><span class="target" id="group__sysctl__api_1gaf70eb73b7652c75829415c5f931ccd2b"></span>bool <code class="sig-name descname">SysCtl_isWatchdogFirstKeyDetectFlagset</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv438SysCtl_isWatchdogFirstKeyDetectFlagsetv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Check if the Watchdog First Valid Key Detect Flag is set or not.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p><strong>true</strong> if the First Valid key after non-zero MIN configuration got detected <strong>false</strong> if the First Valid Key after non-zero MIN configuration has not happened </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426SysCtl_isMCANWakeStatusSetv">
+<span id="_CPPv326SysCtl_isMCANWakeStatusSetv"></span><span id="_CPPv226SysCtl_isMCANWakeStatusSetv"></span><span id="SysCtl_isMCANWakeStatusSet__void"></span><span class="target" id="group__sysctl__api_1ga38fdd08990194509e205e8ef6af7f8f3"></span>bool <code class="sig-name descname">SysCtl_isMCANWakeStatusSet</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426SysCtl_isMCANWakeStatusSetv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Check if the MCAN wakeup event has occured.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p><strong>true</strong> if the MCAN wakeup event has occured. <strong>false</strong> if the MCAN wakeup event has not occured. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426SysCtl_clearMCANWakeStatusv">
+<span id="_CPPv326SysCtl_clearMCANWakeStatusv"></span><span id="_CPPv226SysCtl_clearMCANWakeStatusv"></span><span id="SysCtl_clearMCANWakeStatus__void"></span><span class="target" id="group__sysctl__api_1gaf8924a4818e0417bc60a1643a3e117bf"></span>void <code class="sig-name descname">SysCtl_clearMCANWakeStatus</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426SysCtl_clearMCANWakeStatusv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears the MCAN wakeup event status.</p>
+<p>This function clears the MCAN wakeup event status. To check if it was set first, see <a class="reference internal" href="#group__sysctl__api_1ga38fdd08990194509e205e8ef6af7f8f3"><span class="std std-ref">SysCtl_isMCANWakeStatusSet()</span></a>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv412SysCtl_delay8uint32_t">
+<span id="_CPPv312SysCtl_delay8uint32_t"></span><span id="_CPPv212SysCtl_delay8uint32_t"></span><span id="SysCtl_delay__uint32_t"></span><span class="target" id="group__sysctl__api_1gaba2186034e7c3b3b219d3b7a3f33aa1d"></span>void <code class="sig-name descname">SysCtl_delay</code><span class="sig-paren">(</span>uint32_t <em>count</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412SysCtl_delay8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Delays for a fixed number of cycles.</p>
+<p><p>This function generates a constant length delay using assembly code. The loop takes around 6 cycles per iteration plus 9 cycles of overhead.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">count</span></code>: is the number of delay loop iterations to perform.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>It is important to note that this function is a fairly accurate timing mechanism. Although the delay loop is deterministic, the execution time of the loop will vary dramatically depending upon the application’s interrupt environment (the loop will be interrupted unless run with interrupts disabled and this is generally an unwise thing to do) and also the current system clock rate and flash timings (wait states and the operation of the prefetch buffer affect the timing).</p>
+<p>For best accuracy, a system timer should be used with code either polling for a particular timer value being exceeded or processing the timer interrupt to determine when a particular time period has elapsed.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422SysCtl_resetPeripheral25SysCtl_PeripheralSOFTPRES">
+<span id="_CPPv322SysCtl_resetPeripheral25SysCtl_PeripheralSOFTPRES"></span><span id="_CPPv222SysCtl_resetPeripheral25SysCtl_PeripheralSOFTPRES"></span><span id="SysCtl_resetPeripheral__SysCtl_PeripheralSOFTPRES"></span><span class="target" id="group__sysctl__api_1ga98da731e66b19a5037e24c832ebca4a3"></span>void <code class="sig-name descname">SysCtl_resetPeripheral</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv425SysCtl_PeripheralSOFTPRES" title="SysCtl_PeripheralSOFTPRES">SysCtl_PeripheralSOFTPRES</a> <em>peripheral</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422SysCtl_resetPeripheral25SysCtl_PeripheralSOFTPRES" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Resets a peripheral</p>
+<p><p>This function uses the SOFTPRESx registers to reset a specified peripheral. Module registers will be returned to their reset states.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">peripheral</span></code>: is the peripheral to reset.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>This includes registers containing trim values.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423SysCtl_enablePeripheral25SysCtl_PeripheralPCLOCKCR">
+<span id="_CPPv323SysCtl_enablePeripheral25SysCtl_PeripheralPCLOCKCR"></span><span id="_CPPv223SysCtl_enablePeripheral25SysCtl_PeripheralPCLOCKCR"></span><span id="SysCtl_enablePeripheral__SysCtl_PeripheralPCLOCKCR"></span><span class="target" id="group__sysctl__api_1ga4adbe915c1de3c2ceadc676ccf8c4fca"></span>void <code class="sig-name descname">SysCtl_enablePeripheral</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv425SysCtl_PeripheralPCLOCKCR" title="SysCtl_PeripheralPCLOCKCR">SysCtl_PeripheralPCLOCKCR</a> <em>peripheral</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423SysCtl_enablePeripheral25SysCtl_PeripheralPCLOCKCR" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables a peripheral.</p>
+<p><p>Peripherals are enabled with this function. At power-up, all peripherals are disabled; they must be enabled in order to operate or respond to register reads/writes.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">peripheral</span></code>: is the peripheral to enable.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424SysCtl_disablePeripheral25SysCtl_PeripheralPCLOCKCR">
+<span id="_CPPv324SysCtl_disablePeripheral25SysCtl_PeripheralPCLOCKCR"></span><span id="_CPPv224SysCtl_disablePeripheral25SysCtl_PeripheralPCLOCKCR"></span><span id="SysCtl_disablePeripheral__SysCtl_PeripheralPCLOCKCR"></span><span class="target" id="group__sysctl__api_1gaf9a8c96d3aa98f835a9bc6ac9bf2026f"></span>void <code class="sig-name descname">SysCtl_disablePeripheral</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv425SysCtl_PeripheralPCLOCKCR" title="SysCtl_PeripheralPCLOCKCR">SysCtl_PeripheralPCLOCKCR</a> <em>peripheral</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424SysCtl_disablePeripheral25SysCtl_PeripheralPCLOCKCR" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables a peripheral.</p>
+<p><p>Peripherals are disabled with this function. Once disabled, they will not operate or respond to register reads/writes.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">peripheral</span></code>: is the peripheral to disable.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv433SysCtl_requestPeripheralClockStop29SysCtl_PeripheralCMCLKSTOPREQ8uint16_t">
+<span id="_CPPv333SysCtl_requestPeripheralClockStop29SysCtl_PeripheralCMCLKSTOPREQ8uint16_t"></span><span id="_CPPv233SysCtl_requestPeripheralClockStop29SysCtl_PeripheralCMCLKSTOPREQ8uint16_t"></span><span id="SysCtl_requestPeripheralClockStop__SysCtl_PeripheralCMCLKSTOPREQ.uint16_t"></span><span class="target" id="group__sysctl__api_1ga5da4f03be03ba162138ee1b21a8144dd"></span>void <code class="sig-name descname">SysCtl_requestPeripheralClockStop</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv429SysCtl_PeripheralCMCLKSTOPREQ" title="SysCtl_PeripheralCMCLKSTOPREQ">SysCtl_PeripheralCMCLKSTOPREQ</a> <em>peripheral</em>, uint16_t <em>enable</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433SysCtl_requestPeripheralClockStop29SysCtl_PeripheralCMCLKSTOPREQ8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Request to stop the clock to a Peripheral.</p>
+<p><p>Once set, this bit is cleared either explicitly by passing a 0U to the API or when clock to peripheral is turned on as a result of a wakeup event in hardware</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">peripheral</span></code>: is the peripheral to which the Stop clock request is sent. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enable</span></code>: is the value to be written to the Clk stop request register. This can take values of either 1U(enable) or 0U(disable).</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv433SysCtl_isPeripheralClockStopAcked29SysCtl_PeripheralCMCLKSTOPACK">
+<span id="_CPPv333SysCtl_isPeripheralClockStopAcked29SysCtl_PeripheralCMCLKSTOPACK"></span><span id="_CPPv233SysCtl_isPeripheralClockStopAcked29SysCtl_PeripheralCMCLKSTOPACK"></span><span id="SysCtl_isPeripheralClockStopAcked__SysCtl_PeripheralCMCLKSTOPACK"></span><span class="target" id="group__sysctl__api_1ga83cb6085ccdfb3925c0d20be8a745d04"></span>bool <code class="sig-name descname">SysCtl_isPeripheralClockStopAcked</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv429SysCtl_PeripheralCMCLKSTOPACK" title="SysCtl_PeripheralCMCLKSTOPACK">SysCtl_PeripheralCMCLKSTOPACK</a> <em>peripheral</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433SysCtl_isPeripheralClockStopAcked29SysCtl_PeripheralCMCLKSTOPACK" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Check if request to stop the clock to a Peripheral is Acked or Not.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p><strong>true</strong> if the peripheral acked the Stop clock Request <strong>false</strong> if peripheral did not ack the Stop clock Request </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">peripheral</span></code>: is the peripheral which acked the Stop clock Req or not .</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429SysCtl_getPeripheralClockStop29SysCtl_PeripheralCMCLKSTOPREQ">
+<span id="_CPPv329SysCtl_getPeripheralClockStop29SysCtl_PeripheralCMCLKSTOPREQ"></span><span id="_CPPv229SysCtl_getPeripheralClockStop29SysCtl_PeripheralCMCLKSTOPREQ"></span><span id="SysCtl_getPeripheralClockStop__SysCtl_PeripheralCMCLKSTOPREQ"></span><span class="target" id="group__sysctl__api_1ga38624f4920e2da554628a538e2a81cac"></span>uint16_t <code class="sig-name descname">SysCtl_getPeripheralClockStop</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv429SysCtl_PeripheralCMCLKSTOPREQ" title="SysCtl_PeripheralCMCLKSTOPREQ">SysCtl_PeripheralCMCLKSTOPREQ</a> <em>peripheral</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429SysCtl_getPeripheralClockStop29SysCtl_PeripheralCMCLKSTOPREQ" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the value of the Peripheral clock Stop register.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Value of CMCLKSTOPREQ register. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">peripheral</span></code>: is the peripheral to which the Stop clock request is sent.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>Many of the functions provided by the SysCtl API are related to CM
+configuration. The ability to enable (turn on the module clock), disable
+(gate off the module clock), and perform a software reset on most of
+the peripherals on a device is provided by SysCtl_enablePeripheral(),
+SysCtl_disablePeripheral(), and SysCtl_resetPeripheral() respectively.</p>
+<p>The CM’s windowed watchdog is enabled and disabled by
+SysCtl_enableWatchdog() and SysCtl_disableWatchdog() respectively. The
+watchdog can be serviced by SysCtl_serviceWatchdog(). Several functions are
+also provided to configure the watchdog’s clock and windowed functionality.</p>
+<p>This section will give further details of these functions and each of the
+others used for the configuration of SysCtl.</p>
+<p>The code for this module is contained in driverlib_cm/sysctl.c, with driverlib_cm/sysctl.h containing the API declarations for use by applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ssi.html" class="btn btn-neutral float-left" title="SSI Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="systick.html" class="btn btn-neutral float-right" title="SysTick Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

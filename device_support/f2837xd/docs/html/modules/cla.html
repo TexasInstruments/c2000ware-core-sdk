@@ -1,0 +1,1340 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CLA Module &mdash; F2837xd API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F2837xd API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="CLB Module" href="clb.html"/>
+        <link rel="prev" title="CAN Module" href="can.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F2837xd API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="adc.html">ADC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asysctl.html">ASysCtl Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">CLA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clb.html">CLB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmpss.html">CMPSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dac.html">DAC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dma.html">DMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ecap.html">ECAP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emif.html">EMIF Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="epwm.html">EPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hrpwm.html">HRPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqep.html">EQEP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcbsp.html">MCBSP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci.html">SCI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdfm.html">SDFM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">SPI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upp.html">UPP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version.html">Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xbar.html">XBAR Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F2837xd API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>CLA Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cla-module">
+<span id="cla"></span><h1>CLA Module<a class="headerlink" href="#cla-module" title="Permalink to this headline">¶</a></h1>
+<p>The Control Law Accelerator (CLA) API provides a set of functions to configure
+the CLA. The CLA is an independent accelerator with its own buses, ALU and
+register set. It does share memory, both program and data, with the main
+processor; it comes out of a power reset with no memory assets and therefore
+the C28x must configure how the CLA runs, which memory spaces it uses, and when
+code must run.</p>
+<p>The primary use of the CLA is to implement small, fast control loops that run
+periodically, responding to specific trigger sources like the PWM or an ADC
+conversion in a deterministic (fixed and low latency) fashion.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__cla__api"></span><em>group</em> <code class="sig-name descname">cla_api</code></dt>
+<dd><p>This module is used for configurating CLA. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.CLA_NUM_EOT_INTERRUPTS">
+<span class="target" id="group__cla__api_1ga1cbb35dc426c73cb79d2cbdf689fc7ef"></span><code class="sig-name descname">CLA_NUM_EOT_INTERRUPTS</code> (8U)<a class="headerlink" href="#c.CLA_NUM_EOT_INTERRUPTS" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLA_TASKFLAG_1">
+<span class="target" id="group__cla__api_1ga648c9ee38b23c8222bbd699b63d92308"></span><code class="sig-name descname">CLA_TASKFLAG_1</code> (0x01U)<a class="headerlink" href="#c.CLA_TASKFLAG_1" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task 1 Flag. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLA_TASKFLAG_2">
+<span class="target" id="group__cla__api_1ga08f93464f973e0d6d0734ac7ec55839a"></span><code class="sig-name descname">CLA_TASKFLAG_2</code> (0x02U)<a class="headerlink" href="#c.CLA_TASKFLAG_2" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task 2 Flag. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLA_TASKFLAG_3">
+<span class="target" id="group__cla__api_1ga0f01ca259964754a53599379ca529ce1"></span><code class="sig-name descname">CLA_TASKFLAG_3</code> (0x04U)<a class="headerlink" href="#c.CLA_TASKFLAG_3" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task 3 Flag. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLA_TASKFLAG_4">
+<span class="target" id="group__cla__api_1gaef8a1fda579e5e1f3756e869a42695f5"></span><code class="sig-name descname">CLA_TASKFLAG_4</code> (0x08U)<a class="headerlink" href="#c.CLA_TASKFLAG_4" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task 4 Flag. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLA_TASKFLAG_5">
+<span class="target" id="group__cla__api_1gafe22148b8125e6757e7990b44d13b477"></span><code class="sig-name descname">CLA_TASKFLAG_5</code> (0x10U)<a class="headerlink" href="#c.CLA_TASKFLAG_5" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task 5 Flag. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLA_TASKFLAG_6">
+<span class="target" id="group__cla__api_1ga02f900775e3f258624b33eea9d4c03df"></span><code class="sig-name descname">CLA_TASKFLAG_6</code> (0x20U)<a class="headerlink" href="#c.CLA_TASKFLAG_6" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task 6 Flag. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLA_TASKFLAG_7">
+<span class="target" id="group__cla__api_1ga38c802204df64a49a9735a36040f07fd"></span><code class="sig-name descname">CLA_TASKFLAG_7</code> (0x40U)<a class="headerlink" href="#c.CLA_TASKFLAG_7" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task 7 Flag. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLA_TASKFLAG_8">
+<span class="target" id="group__cla__api_1ga888a24d4eb1e07f1bb340117c897a3c3"></span><code class="sig-name descname">CLA_TASKFLAG_8</code> (0x80U)<a class="headerlink" href="#c.CLA_TASKFLAG_8" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task 8 Flag. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLA_TASKFLAG_ALL">
+<span class="target" id="group__cla__api_1gad3e074005a99d4914bfc61906f450b51"></span><code class="sig-name descname">CLA_TASKFLAG_ALL</code> (0xFFU)<a class="headerlink" href="#c.CLA_TASKFLAG_ALL" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA All Task Flag. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="cpp enum">
+<dt id="_CPPv414CLA_TaskNumber">
+<span id="_CPPv314CLA_TaskNumber"></span><span id="_CPPv214CLA_TaskNumber"></span><span class="target" id="group__cla__api_1ga74b35d7ed82ad63af912657d121c6265"></span><em class="property">enum </em><code class="sig-name descname">CLA_TaskNumber</code><a class="headerlink" href="#_CPPv414CLA_TaskNumber" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__cla__api_1gaf4b224ffb4b17ea798ca231c300c3416"><span class="std std-ref">CLA_getPendingTaskFlag()</span></a>, <a class="reference internal" href="#group__cla__api_1gac80a61ef871def9d0635f0562c68646d"><span class="std std-ref">CLA_getTaskOverflowFlag()</span></a>, <a class="reference internal" href="#group__cla__api_1ga51fa5ee7bc3d41f3a10a96eb5814dee9"><span class="std std-ref">CLA_getTaskRunStatus()</span></a>, <a class="reference internal" href="#group__cla__api_1gabf458fd69327b158eab7df7204a5f9cb"><span class="std std-ref">CLA_setTriggerSource()</span></a>, CLA_registerEndOfTaskInterrupt(), and CLA_unregisterEndOfTaskInterrupt() as the taskNumber parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14CLA_TaskNumber10CLA_TASK_1E">
+<span id="_CPPv3N14CLA_TaskNumber10CLA_TASK_1E"></span><span id="_CPPv2N14CLA_TaskNumber10CLA_TASK_1E"></span><span class="target" id="group__cla__api_1gga74b35d7ed82ad63af912657d121c6265a36a3564f95dc6ed95d5be56ec6a086a7"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TASK_1</code><a class="headerlink" href="#_CPPv4N14CLA_TaskNumber10CLA_TASK_1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task 1. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14CLA_TaskNumber10CLA_TASK_2E">
+<span id="_CPPv3N14CLA_TaskNumber10CLA_TASK_2E"></span><span id="_CPPv2N14CLA_TaskNumber10CLA_TASK_2E"></span><span class="target" id="group__cla__api_1gga74b35d7ed82ad63af912657d121c6265a9faeb9d1d2bdae3a4dc9ed927a7811ff"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TASK_2</code><a class="headerlink" href="#_CPPv4N14CLA_TaskNumber10CLA_TASK_2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task 2. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14CLA_TaskNumber10CLA_TASK_3E">
+<span id="_CPPv3N14CLA_TaskNumber10CLA_TASK_3E"></span><span id="_CPPv2N14CLA_TaskNumber10CLA_TASK_3E"></span><span class="target" id="group__cla__api_1gga74b35d7ed82ad63af912657d121c6265a5f52f86d9f4151375cfd6c0032f669a0"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TASK_3</code><a class="headerlink" href="#_CPPv4N14CLA_TaskNumber10CLA_TASK_3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task 3. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14CLA_TaskNumber10CLA_TASK_4E">
+<span id="_CPPv3N14CLA_TaskNumber10CLA_TASK_4E"></span><span id="_CPPv2N14CLA_TaskNumber10CLA_TASK_4E"></span><span class="target" id="group__cla__api_1gga74b35d7ed82ad63af912657d121c6265acecbfa58a451eedfd39ff44931719a66"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TASK_4</code><a class="headerlink" href="#_CPPv4N14CLA_TaskNumber10CLA_TASK_4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task 4. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14CLA_TaskNumber10CLA_TASK_5E">
+<span id="_CPPv3N14CLA_TaskNumber10CLA_TASK_5E"></span><span id="_CPPv2N14CLA_TaskNumber10CLA_TASK_5E"></span><span class="target" id="group__cla__api_1gga74b35d7ed82ad63af912657d121c6265a03bc7da466942c430afce80c230eb1a5"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TASK_5</code><a class="headerlink" href="#_CPPv4N14CLA_TaskNumber10CLA_TASK_5E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task 5. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14CLA_TaskNumber10CLA_TASK_6E">
+<span id="_CPPv3N14CLA_TaskNumber10CLA_TASK_6E"></span><span id="_CPPv2N14CLA_TaskNumber10CLA_TASK_6E"></span><span class="target" id="group__cla__api_1gga74b35d7ed82ad63af912657d121c6265ac63fd1d500b6e626f101b49838877a8e"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TASK_6</code><a class="headerlink" href="#_CPPv4N14CLA_TaskNumber10CLA_TASK_6E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task 6. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14CLA_TaskNumber10CLA_TASK_7E">
+<span id="_CPPv3N14CLA_TaskNumber10CLA_TASK_7E"></span><span id="_CPPv2N14CLA_TaskNumber10CLA_TASK_7E"></span><span class="target" id="group__cla__api_1gga74b35d7ed82ad63af912657d121c6265a051f660f1dc3712db69204fbb6638df2"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TASK_7</code><a class="headerlink" href="#_CPPv4N14CLA_TaskNumber10CLA_TASK_7E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task 7. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14CLA_TaskNumber10CLA_TASK_8E">
+<span id="_CPPv3N14CLA_TaskNumber10CLA_TASK_8E"></span><span id="_CPPv2N14CLA_TaskNumber10CLA_TASK_8E"></span><span class="target" id="group__cla__api_1gga74b35d7ed82ad63af912657d121c6265a5375dd6366ba1e22acf6ec6a2b16ba1b"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TASK_8</code><a class="headerlink" href="#_CPPv4N14CLA_TaskNumber10CLA_TASK_8E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task 8. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv415CLA_MVECTNumber">
+<span id="_CPPv315CLA_MVECTNumber"></span><span id="_CPPv215CLA_MVECTNumber"></span><span class="target" id="group__cla__api_1ga370b1c19bc4ff01dda88c7cd3e6db0ee"></span><em class="property">enum </em><code class="sig-name descname">CLA_MVECTNumber</code><a class="headerlink" href="#_CPPv415CLA_MVECTNumber" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__cla__api_1gae4ff0b7a476e3bf43a0466f7dbb3d73d"><span class="std std-ref">CLA_mapTaskVector()</span></a> as the <em>claIntVect</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15CLA_MVECTNumber11CLA_MVECT_1E">
+<span id="_CPPv3N15CLA_MVECTNumber11CLA_MVECT_1E"></span><span id="_CPPv2N15CLA_MVECTNumber11CLA_MVECT_1E"></span><span class="target" id="group__cla__api_1gga370b1c19bc4ff01dda88c7cd3e6db0eeaf3b4779fdc5ab77ddcac4abf3bf78294"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_MVECT_1</code> = 0x0U<a class="headerlink" href="#_CPPv4N15CLA_MVECTNumber11CLA_MVECT_1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Task Interrupt Vector 1. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15CLA_MVECTNumber11CLA_MVECT_2E">
+<span id="_CPPv3N15CLA_MVECTNumber11CLA_MVECT_2E"></span><span id="_CPPv2N15CLA_MVECTNumber11CLA_MVECT_2E"></span><span class="target" id="group__cla__api_1gga370b1c19bc4ff01dda88c7cd3e6db0eea41a0cc31a1016bfd5f5b2cee763e7b4b"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_MVECT_2</code> = 0x1U<a class="headerlink" href="#_CPPv4N15CLA_MVECTNumber11CLA_MVECT_2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Task Interrupt Vector 2. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15CLA_MVECTNumber11CLA_MVECT_3E">
+<span id="_CPPv3N15CLA_MVECTNumber11CLA_MVECT_3E"></span><span id="_CPPv2N15CLA_MVECTNumber11CLA_MVECT_3E"></span><span class="target" id="group__cla__api_1gga370b1c19bc4ff01dda88c7cd3e6db0eea9f6f950f2280bbc8d7fdfb0486b56140"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_MVECT_3</code> = 0x2U<a class="headerlink" href="#_CPPv4N15CLA_MVECTNumber11CLA_MVECT_3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Task Interrupt Vector 3. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15CLA_MVECTNumber11CLA_MVECT_4E">
+<span id="_CPPv3N15CLA_MVECTNumber11CLA_MVECT_4E"></span><span id="_CPPv2N15CLA_MVECTNumber11CLA_MVECT_4E"></span><span class="target" id="group__cla__api_1gga370b1c19bc4ff01dda88c7cd3e6db0eea2890598a4e5a132bd1896b649e1b2c11"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_MVECT_4</code> = 0x3U<a class="headerlink" href="#_CPPv4N15CLA_MVECTNumber11CLA_MVECT_4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Task Interrupt Vector 4. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15CLA_MVECTNumber11CLA_MVECT_5E">
+<span id="_CPPv3N15CLA_MVECTNumber11CLA_MVECT_5E"></span><span id="_CPPv2N15CLA_MVECTNumber11CLA_MVECT_5E"></span><span class="target" id="group__cla__api_1gga370b1c19bc4ff01dda88c7cd3e6db0eeae03cb6e76508867fa9c02066bff3702c"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_MVECT_5</code> = 0x4U<a class="headerlink" href="#_CPPv4N15CLA_MVECTNumber11CLA_MVECT_5E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Task Interrupt Vector 5. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15CLA_MVECTNumber11CLA_MVECT_6E">
+<span id="_CPPv3N15CLA_MVECTNumber11CLA_MVECT_6E"></span><span id="_CPPv2N15CLA_MVECTNumber11CLA_MVECT_6E"></span><span class="target" id="group__cla__api_1gga370b1c19bc4ff01dda88c7cd3e6db0eea6eac30b0bae5d644887a7e17d195e4df"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_MVECT_6</code> = 0x5U<a class="headerlink" href="#_CPPv4N15CLA_MVECTNumber11CLA_MVECT_6E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Task Interrupt Vector 6. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15CLA_MVECTNumber11CLA_MVECT_7E">
+<span id="_CPPv3N15CLA_MVECTNumber11CLA_MVECT_7E"></span><span id="_CPPv2N15CLA_MVECTNumber11CLA_MVECT_7E"></span><span class="target" id="group__cla__api_1gga370b1c19bc4ff01dda88c7cd3e6db0eeac0179a3fe63605743c2d6d9c58617be7"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_MVECT_7</code> = 0x6U<a class="headerlink" href="#_CPPv4N15CLA_MVECTNumber11CLA_MVECT_7E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Task Interrupt Vector 7. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15CLA_MVECTNumber11CLA_MVECT_8E">
+<span id="_CPPv3N15CLA_MVECTNumber11CLA_MVECT_8E"></span><span id="_CPPv2N15CLA_MVECTNumber11CLA_MVECT_8E"></span><span class="target" id="group__cla__api_1gga370b1c19bc4ff01dda88c7cd3e6db0eeac1fd34bea753b04d99e009b00d3e31d3"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_MVECT_8</code> = 0x7U<a class="headerlink" href="#_CPPv4N15CLA_MVECTNumber11CLA_MVECT_8E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Task Interrupt Vector 8. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv411CLA_Trigger">
+<span id="_CPPv311CLA_Trigger"></span><span id="_CPPv211CLA_Trigger"></span><span class="target" id="group__cla__api_1gac52526fbf7850ba3cf3d06716bf8c704"></span><em class="property">enum </em><code class="sig-name descname">CLA_Trigger</code><a class="headerlink" href="#_CPPv411CLA_Trigger" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__cla__api_1gabf458fd69327b158eab7df7204a5f9cb"><span class="std std-ref">CLA_setTriggerSource()</span></a> as the <em>trigger</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger20CLA_TRIGGER_SOFTWAREE">
+<span id="_CPPv3N11CLA_Trigger20CLA_TRIGGER_SOFTWAREE"></span><span id="_CPPv2N11CLA_Trigger20CLA_TRIGGER_SOFTWAREE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704abbc0687b6a9b11cc6ab39f27119a1974"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_SOFTWARE</code> = 0U<a class="headerlink" href="#_CPPv4N11CLA_Trigger20CLA_TRIGGER_SOFTWAREE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is Software. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger17CLA_TRIGGER_ADCA1E">
+<span id="_CPPv3N11CLA_Trigger17CLA_TRIGGER_ADCA1E"></span><span id="_CPPv2N11CLA_Trigger17CLA_TRIGGER_ADCA1E"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704ad943c80e46470be3bc2292c20f4e4bb8"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_ADCA1</code> = 1U<a class="headerlink" href="#_CPPv4N11CLA_Trigger17CLA_TRIGGER_ADCA1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is ADCA1. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger17CLA_TRIGGER_ADCA2E">
+<span id="_CPPv3N11CLA_Trigger17CLA_TRIGGER_ADCA2E"></span><span id="_CPPv2N11CLA_Trigger17CLA_TRIGGER_ADCA2E"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704af9a748aef7186f3b9a27d5545d7e4bc0"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_ADCA2</code> = 2U<a class="headerlink" href="#_CPPv4N11CLA_Trigger17CLA_TRIGGER_ADCA2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is ADCA2. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger17CLA_TRIGGER_ADCA3E">
+<span id="_CPPv3N11CLA_Trigger17CLA_TRIGGER_ADCA3E"></span><span id="_CPPv2N11CLA_Trigger17CLA_TRIGGER_ADCA3E"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a21b36f6771557f3a84584a4a42dd4817"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_ADCA3</code> = 3U<a class="headerlink" href="#_CPPv4N11CLA_Trigger17CLA_TRIGGER_ADCA3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is ADCA3. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger17CLA_TRIGGER_ADCA4E">
+<span id="_CPPv3N11CLA_Trigger17CLA_TRIGGER_ADCA4E"></span><span id="_CPPv2N11CLA_Trigger17CLA_TRIGGER_ADCA4E"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704ac16198525dfde101644f67f153bcd768"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_ADCA4</code> = 4U<a class="headerlink" href="#_CPPv4N11CLA_Trigger17CLA_TRIGGER_ADCA4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is ADCA4. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger19CLA_TRIGGER_ADCAEVTE">
+<span id="_CPPv3N11CLA_Trigger19CLA_TRIGGER_ADCAEVTE"></span><span id="_CPPv2N11CLA_Trigger19CLA_TRIGGER_ADCAEVTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704ae1c1848b2cd7f6c34671cd05010cea2e"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_ADCAEVT</code> = 5U<a class="headerlink" href="#_CPPv4N11CLA_Trigger19CLA_TRIGGER_ADCAEVTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is ADCAEVT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger17CLA_TRIGGER_ADCB1E">
+<span id="_CPPv3N11CLA_Trigger17CLA_TRIGGER_ADCB1E"></span><span id="_CPPv2N11CLA_Trigger17CLA_TRIGGER_ADCB1E"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a387050299e756d0bddb02cd1a8c4ffd0"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_ADCB1</code> = 6U<a class="headerlink" href="#_CPPv4N11CLA_Trigger17CLA_TRIGGER_ADCB1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is ADCB1. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger17CLA_TRIGGER_ADCB2E">
+<span id="_CPPv3N11CLA_Trigger17CLA_TRIGGER_ADCB2E"></span><span id="_CPPv2N11CLA_Trigger17CLA_TRIGGER_ADCB2E"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704ab92c857c29aa67de6d64b54e1b6c733e"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_ADCB2</code> = 7U<a class="headerlink" href="#_CPPv4N11CLA_Trigger17CLA_TRIGGER_ADCB2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is ADCB2. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger17CLA_TRIGGER_ADCB3E">
+<span id="_CPPv3N11CLA_Trigger17CLA_TRIGGER_ADCB3E"></span><span id="_CPPv2N11CLA_Trigger17CLA_TRIGGER_ADCB3E"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a7f96bd00c1f2a010d3b5c2bc826de7a9"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_ADCB3</code> = 8U<a class="headerlink" href="#_CPPv4N11CLA_Trigger17CLA_TRIGGER_ADCB3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is ADCB3. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger17CLA_TRIGGER_ADCB4E">
+<span id="_CPPv3N11CLA_Trigger17CLA_TRIGGER_ADCB4E"></span><span id="_CPPv2N11CLA_Trigger17CLA_TRIGGER_ADCB4E"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a13331c758b751dd5dd1eeb9d6dd11a73"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_ADCB4</code> = 9U<a class="headerlink" href="#_CPPv4N11CLA_Trigger17CLA_TRIGGER_ADCB4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is ADCB4. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger19CLA_TRIGGER_ADCBEVTE">
+<span id="_CPPv3N11CLA_Trigger19CLA_TRIGGER_ADCBEVTE"></span><span id="_CPPv2N11CLA_Trigger19CLA_TRIGGER_ADCBEVTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704abcbfc627cb61749986a36df74f8269fb"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_ADCBEVT</code> = 10U<a class="headerlink" href="#_CPPv4N11CLA_Trigger19CLA_TRIGGER_ADCBEVTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is ADCBEVT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger17CLA_TRIGGER_ADCC1E">
+<span id="_CPPv3N11CLA_Trigger17CLA_TRIGGER_ADCC1E"></span><span id="_CPPv2N11CLA_Trigger17CLA_TRIGGER_ADCC1E"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a96b391fde405ea973000e01b65bda2b8"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_ADCC1</code> = 11U<a class="headerlink" href="#_CPPv4N11CLA_Trigger17CLA_TRIGGER_ADCC1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is ADCC1. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger17CLA_TRIGGER_ADCC2E">
+<span id="_CPPv3N11CLA_Trigger17CLA_TRIGGER_ADCC2E"></span><span id="_CPPv2N11CLA_Trigger17CLA_TRIGGER_ADCC2E"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704ab477285b832bfe01ece5cb8944ab5e04"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_ADCC2</code> = 12U<a class="headerlink" href="#_CPPv4N11CLA_Trigger17CLA_TRIGGER_ADCC2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is ADCC2. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger17CLA_TRIGGER_ADCC3E">
+<span id="_CPPv3N11CLA_Trigger17CLA_TRIGGER_ADCC3E"></span><span id="_CPPv2N11CLA_Trigger17CLA_TRIGGER_ADCC3E"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704ab5528e59c7128435bf70ee91203a61dc"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_ADCC3</code> = 13U<a class="headerlink" href="#_CPPv4N11CLA_Trigger17CLA_TRIGGER_ADCC3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is ADCC3. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger17CLA_TRIGGER_ADCC4E">
+<span id="_CPPv3N11CLA_Trigger17CLA_TRIGGER_ADCC4E"></span><span id="_CPPv2N11CLA_Trigger17CLA_TRIGGER_ADCC4E"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a302c44183d4689eeb8d9a2b29c5597c4"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_ADCC4</code> = 14U<a class="headerlink" href="#_CPPv4N11CLA_Trigger17CLA_TRIGGER_ADCC4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is ADCC4. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger19CLA_TRIGGER_ADCCEVTE">
+<span id="_CPPv3N11CLA_Trigger19CLA_TRIGGER_ADCCEVTE"></span><span id="_CPPv2N11CLA_Trigger19CLA_TRIGGER_ADCCEVTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a787c1df5f2f1bc11a551721fccda5838"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_ADCCEVT</code> = 15U<a class="headerlink" href="#_CPPv4N11CLA_Trigger19CLA_TRIGGER_ADCCEVTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is ADCCEVT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger17CLA_TRIGGER_ADCD1E">
+<span id="_CPPv3N11CLA_Trigger17CLA_TRIGGER_ADCD1E"></span><span id="_CPPv2N11CLA_Trigger17CLA_TRIGGER_ADCD1E"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a57585ddfa4531f804100f39910aef0c3"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_ADCD1</code> = 16U<a class="headerlink" href="#_CPPv4N11CLA_Trigger17CLA_TRIGGER_ADCD1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is ADCD1. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger17CLA_TRIGGER_ADCD2E">
+<span id="_CPPv3N11CLA_Trigger17CLA_TRIGGER_ADCD2E"></span><span id="_CPPv2N11CLA_Trigger17CLA_TRIGGER_ADCD2E"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a117d44a4081a80ee626f11fdbc02327a"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_ADCD2</code> = 17U<a class="headerlink" href="#_CPPv4N11CLA_Trigger17CLA_TRIGGER_ADCD2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is ADCD2. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger17CLA_TRIGGER_ADCD3E">
+<span id="_CPPv3N11CLA_Trigger17CLA_TRIGGER_ADCD3E"></span><span id="_CPPv2N11CLA_Trigger17CLA_TRIGGER_ADCD3E"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a37183fd9c8d2f91146f9979a5db58c42"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_ADCD3</code> = 18U<a class="headerlink" href="#_CPPv4N11CLA_Trigger17CLA_TRIGGER_ADCD3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is ADCD3. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger17CLA_TRIGGER_ADCD4E">
+<span id="_CPPv3N11CLA_Trigger17CLA_TRIGGER_ADCD4E"></span><span id="_CPPv2N11CLA_Trigger17CLA_TRIGGER_ADCD4E"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704aea8d3d81c7abb232bfc09652c57f1ef2"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_ADCD4</code> = 19U<a class="headerlink" href="#_CPPv4N11CLA_Trigger17CLA_TRIGGER_ADCD4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is ADCD4. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger19CLA_TRIGGER_ADCDEVTE">
+<span id="_CPPv3N11CLA_Trigger19CLA_TRIGGER_ADCDEVTE"></span><span id="_CPPv2N11CLA_Trigger19CLA_TRIGGER_ADCDEVTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704afcc7a0bbea6e9543584f98e0db82a48c"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_ADCDEVT</code> = 20U<a class="headerlink" href="#_CPPv4N11CLA_Trigger19CLA_TRIGGER_ADCDEVTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is ADCDEVT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger17CLA_TRIGGER_XINT1E">
+<span id="_CPPv3N11CLA_Trigger17CLA_TRIGGER_XINT1E"></span><span id="_CPPv2N11CLA_Trigger17CLA_TRIGGER_XINT1E"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704aedec933c0d36f2ffe9fcce159cf9c5e9"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_XINT1</code> = 29U<a class="headerlink" href="#_CPPv4N11CLA_Trigger17CLA_TRIGGER_XINT1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is XINT1. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger17CLA_TRIGGER_XINT2E">
+<span id="_CPPv3N11CLA_Trigger17CLA_TRIGGER_XINT2E"></span><span id="_CPPv2N11CLA_Trigger17CLA_TRIGGER_XINT2E"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a68b704960b351388f89f433605d46ddb"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_XINT2</code> = 30U<a class="headerlink" href="#_CPPv4N11CLA_Trigger17CLA_TRIGGER_XINT2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is XINT2. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger17CLA_TRIGGER_XINT3E">
+<span id="_CPPv3N11CLA_Trigger17CLA_TRIGGER_XINT3E"></span><span id="_CPPv2N11CLA_Trigger17CLA_TRIGGER_XINT3E"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704abb60361026e5b8889ef97437a6f730e9"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_XINT3</code> = 31U<a class="headerlink" href="#_CPPv4N11CLA_Trigger17CLA_TRIGGER_XINT3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is XINT3. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger17CLA_TRIGGER_XINT4E">
+<span id="_CPPv3N11CLA_Trigger17CLA_TRIGGER_XINT4E"></span><span id="_CPPv2N11CLA_Trigger17CLA_TRIGGER_XINT4E"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a4227f38f0fb9ce3e3646bb989a24f1b2"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_XINT4</code> = 32U<a class="headerlink" href="#_CPPv4N11CLA_Trigger17CLA_TRIGGER_XINT4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is XINT4. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger17CLA_TRIGGER_XINT5E">
+<span id="_CPPv3N11CLA_Trigger17CLA_TRIGGER_XINT5E"></span><span id="_CPPv2N11CLA_Trigger17CLA_TRIGGER_XINT5E"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a037fede58f933572a50029aa2248bb07"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_XINT5</code> = 33U<a class="headerlink" href="#_CPPv4N11CLA_Trigger17CLA_TRIGGER_XINT5E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is XINT5. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger20CLA_TRIGGER_EPWM1INTE">
+<span id="_CPPv3N11CLA_Trigger20CLA_TRIGGER_EPWM1INTE"></span><span id="_CPPv2N11CLA_Trigger20CLA_TRIGGER_EPWM1INTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a2e5f1ed91ac273c47c725552634bec55"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_EPWM1INT</code> = 36U<a class="headerlink" href="#_CPPv4N11CLA_Trigger20CLA_TRIGGER_EPWM1INTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is EPWM1INT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger20CLA_TRIGGER_EPWM2INTE">
+<span id="_CPPv3N11CLA_Trigger20CLA_TRIGGER_EPWM2INTE"></span><span id="_CPPv2N11CLA_Trigger20CLA_TRIGGER_EPWM2INTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a3b6bac4ac0b39572a20f4657410ee40d"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_EPWM2INT</code> = 37U<a class="headerlink" href="#_CPPv4N11CLA_Trigger20CLA_TRIGGER_EPWM2INTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is EPWM2INT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger20CLA_TRIGGER_EPWM3INTE">
+<span id="_CPPv3N11CLA_Trigger20CLA_TRIGGER_EPWM3INTE"></span><span id="_CPPv2N11CLA_Trigger20CLA_TRIGGER_EPWM3INTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a0af907035ab54cf81f6e3a8c6e7bb71c"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_EPWM3INT</code> = 38U<a class="headerlink" href="#_CPPv4N11CLA_Trigger20CLA_TRIGGER_EPWM3INTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is EPWM3INT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger20CLA_TRIGGER_EPWM4INTE">
+<span id="_CPPv3N11CLA_Trigger20CLA_TRIGGER_EPWM4INTE"></span><span id="_CPPv2N11CLA_Trigger20CLA_TRIGGER_EPWM4INTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704af38c1420f4dfb52748dffc50f261479d"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_EPWM4INT</code> = 39U<a class="headerlink" href="#_CPPv4N11CLA_Trigger20CLA_TRIGGER_EPWM4INTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is EPWM4INT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger20CLA_TRIGGER_EPWM5INTE">
+<span id="_CPPv3N11CLA_Trigger20CLA_TRIGGER_EPWM5INTE"></span><span id="_CPPv2N11CLA_Trigger20CLA_TRIGGER_EPWM5INTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a17900fa89037885bfe1583093a279353"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_EPWM5INT</code> = 40U<a class="headerlink" href="#_CPPv4N11CLA_Trigger20CLA_TRIGGER_EPWM5INTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is EPWM5INT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger20CLA_TRIGGER_EPWM6INTE">
+<span id="_CPPv3N11CLA_Trigger20CLA_TRIGGER_EPWM6INTE"></span><span id="_CPPv2N11CLA_Trigger20CLA_TRIGGER_EPWM6INTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a1f0ec26ad624be36dc11717d7f01b733"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_EPWM6INT</code> = 41U<a class="headerlink" href="#_CPPv4N11CLA_Trigger20CLA_TRIGGER_EPWM6INTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is EPWM6INT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger20CLA_TRIGGER_EPWM7INTE">
+<span id="_CPPv3N11CLA_Trigger20CLA_TRIGGER_EPWM7INTE"></span><span id="_CPPv2N11CLA_Trigger20CLA_TRIGGER_EPWM7INTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a5a7e9a229829151856f49dc73149292d"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_EPWM7INT</code> = 42U<a class="headerlink" href="#_CPPv4N11CLA_Trigger20CLA_TRIGGER_EPWM7INTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is EPWM7INT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger20CLA_TRIGGER_EPWM8INTE">
+<span id="_CPPv3N11CLA_Trigger20CLA_TRIGGER_EPWM8INTE"></span><span id="_CPPv2N11CLA_Trigger20CLA_TRIGGER_EPWM8INTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a8048f80d3ad8a488b28becfc04b68b90"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_EPWM8INT</code> = 43U<a class="headerlink" href="#_CPPv4N11CLA_Trigger20CLA_TRIGGER_EPWM8INTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is EPWM8INT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger20CLA_TRIGGER_EPWM9INTE">
+<span id="_CPPv3N11CLA_Trigger20CLA_TRIGGER_EPWM9INTE"></span><span id="_CPPv2N11CLA_Trigger20CLA_TRIGGER_EPWM9INTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704ad33443e8330860bf8f9fcb333e5f8e0e"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_EPWM9INT</code> = 44U<a class="headerlink" href="#_CPPv4N11CLA_Trigger20CLA_TRIGGER_EPWM9INTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is EPWM9INT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger21CLA_TRIGGER_EPWM10INTE">
+<span id="_CPPv3N11CLA_Trigger21CLA_TRIGGER_EPWM10INTE"></span><span id="_CPPv2N11CLA_Trigger21CLA_TRIGGER_EPWM10INTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a7ed10ffc32443fd3ff4d7464e1a2b0f0"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_EPWM10INT</code> = 45U<a class="headerlink" href="#_CPPv4N11CLA_Trigger21CLA_TRIGGER_EPWM10INTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is EPWM10INT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger21CLA_TRIGGER_EPWM11INTE">
+<span id="_CPPv3N11CLA_Trigger21CLA_TRIGGER_EPWM11INTE"></span><span id="_CPPv2N11CLA_Trigger21CLA_TRIGGER_EPWM11INTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a83f34245b753063bc11940e973eb7955"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_EPWM11INT</code> = 46U<a class="headerlink" href="#_CPPv4N11CLA_Trigger21CLA_TRIGGER_EPWM11INTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is EPWM11INT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger21CLA_TRIGGER_EPWM12INTE">
+<span id="_CPPv3N11CLA_Trigger21CLA_TRIGGER_EPWM12INTE"></span><span id="_CPPv2N11CLA_Trigger21CLA_TRIGGER_EPWM12INTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704add04f5a464e7144c3946ab11ead2c534"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_EPWM12INT</code> = 47U<a class="headerlink" href="#_CPPv4N11CLA_Trigger21CLA_TRIGGER_EPWM12INTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is EPWM12INT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger17CLA_TRIGGER_TINT0E">
+<span id="_CPPv3N11CLA_Trigger17CLA_TRIGGER_TINT0E"></span><span id="_CPPv2N11CLA_Trigger17CLA_TRIGGER_TINT0E"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a6ffbc1baf14d86258311410181f87875"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_TINT0</code> = 68U<a class="headerlink" href="#_CPPv4N11CLA_Trigger17CLA_TRIGGER_TINT0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is TINT0. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger17CLA_TRIGGER_TINT1E">
+<span id="_CPPv3N11CLA_Trigger17CLA_TRIGGER_TINT1E"></span><span id="_CPPv2N11CLA_Trigger17CLA_TRIGGER_TINT1E"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a4a6b48b5783c4c8bc7203e599b2b68b9"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_TINT1</code> = 69U<a class="headerlink" href="#_CPPv4N11CLA_Trigger17CLA_TRIGGER_TINT1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is TINT1. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger17CLA_TRIGGER_TINT2E">
+<span id="_CPPv3N11CLA_Trigger17CLA_TRIGGER_TINT2E"></span><span id="_CPPv2N11CLA_Trigger17CLA_TRIGGER_TINT2E"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a95a8f28c284b4034000cf9e58c5d675a"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_TINT2</code> = 70U<a class="headerlink" href="#_CPPv4N11CLA_Trigger17CLA_TRIGGER_TINT2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is TINT2. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger18CLA_TRIGGER_MXINTAE">
+<span id="_CPPv3N11CLA_Trigger18CLA_TRIGGER_MXINTAE"></span><span id="_CPPv2N11CLA_Trigger18CLA_TRIGGER_MXINTAE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a85dc1cdfd112c7d520aebd62dd435050"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_MXINTA</code> = 71U<a class="headerlink" href="#_CPPv4N11CLA_Trigger18CLA_TRIGGER_MXINTAE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is MXINTA. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger18CLA_TRIGGER_MRINTAE">
+<span id="_CPPv3N11CLA_Trigger18CLA_TRIGGER_MRINTAE"></span><span id="_CPPv2N11CLA_Trigger18CLA_TRIGGER_MRINTAE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704aaf4f1ad94705d6d84c86b909c5c955ec"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_MRINTA</code> = 72U<a class="headerlink" href="#_CPPv4N11CLA_Trigger18CLA_TRIGGER_MRINTAE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is MRINTA. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger18CLA_TRIGGER_MXINTBE">
+<span id="_CPPv3N11CLA_Trigger18CLA_TRIGGER_MXINTBE"></span><span id="_CPPv2N11CLA_Trigger18CLA_TRIGGER_MXINTBE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a0f8a6429dccba204dfb35e2c46ab808e"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_MXINTB</code> = 73U<a class="headerlink" href="#_CPPv4N11CLA_Trigger18CLA_TRIGGER_MXINTBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is MXINTB. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger18CLA_TRIGGER_MRINTBE">
+<span id="_CPPv3N11CLA_Trigger18CLA_TRIGGER_MRINTBE"></span><span id="_CPPv2N11CLA_Trigger18CLA_TRIGGER_MRINTBE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704aad26779b7bf0c2a3bbabd7ca42ce4e57"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_MRINTB</code> = 74U<a class="headerlink" href="#_CPPv4N11CLA_Trigger18CLA_TRIGGER_MRINTBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is MRINTB. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger20CLA_TRIGGER_ECAP1INTE">
+<span id="_CPPv3N11CLA_Trigger20CLA_TRIGGER_ECAP1INTE"></span><span id="_CPPv2N11CLA_Trigger20CLA_TRIGGER_ECAP1INTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a9e7a362f36c0f3339dbfe28e87393892"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_ECAP1INT</code> = 75U<a class="headerlink" href="#_CPPv4N11CLA_Trigger20CLA_TRIGGER_ECAP1INTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is ECAP1INT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger20CLA_TRIGGER_ECAP2INTE">
+<span id="_CPPv3N11CLA_Trigger20CLA_TRIGGER_ECAP2INTE"></span><span id="_CPPv2N11CLA_Trigger20CLA_TRIGGER_ECAP2INTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a10919c2ebb2ad5ecf641ad996daa5565"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_ECAP2INT</code> = 76U<a class="headerlink" href="#_CPPv4N11CLA_Trigger20CLA_TRIGGER_ECAP2INTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is ECAP2INT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger20CLA_TRIGGER_ECAP3INTE">
+<span id="_CPPv3N11CLA_Trigger20CLA_TRIGGER_ECAP3INTE"></span><span id="_CPPv2N11CLA_Trigger20CLA_TRIGGER_ECAP3INTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704ae292436e17f9a595ff12a5f317036c1c"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_ECAP3INT</code> = 77U<a class="headerlink" href="#_CPPv4N11CLA_Trigger20CLA_TRIGGER_ECAP3INTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is ECAP3INT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger20CLA_TRIGGER_ECAP4INTE">
+<span id="_CPPv3N11CLA_Trigger20CLA_TRIGGER_ECAP4INTE"></span><span id="_CPPv2N11CLA_Trigger20CLA_TRIGGER_ECAP4INTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704ad3623c0bbd7408590b1fefdc911194aa"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_ECAP4INT</code> = 78U<a class="headerlink" href="#_CPPv4N11CLA_Trigger20CLA_TRIGGER_ECAP4INTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is ECAP4INT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger20CLA_TRIGGER_ECAP5INTE">
+<span id="_CPPv3N11CLA_Trigger20CLA_TRIGGER_ECAP5INTE"></span><span id="_CPPv2N11CLA_Trigger20CLA_TRIGGER_ECAP5INTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a451f9eb38de1b4765131ddee44684247"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_ECAP5INT</code> = 79U<a class="headerlink" href="#_CPPv4N11CLA_Trigger20CLA_TRIGGER_ECAP5INTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is ECAP5INT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger20CLA_TRIGGER_ECAP6INTE">
+<span id="_CPPv3N11CLA_Trigger20CLA_TRIGGER_ECAP6INTE"></span><span id="_CPPv2N11CLA_Trigger20CLA_TRIGGER_ECAP6INTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a89c42ae0ea6689ffd4665aa3d5e3f3a7"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_ECAP6INT</code> = 80U<a class="headerlink" href="#_CPPv4N11CLA_Trigger20CLA_TRIGGER_ECAP6INTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is ECAP6INT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger20CLA_TRIGGER_EQEP1INTE">
+<span id="_CPPv3N11CLA_Trigger20CLA_TRIGGER_EQEP1INTE"></span><span id="_CPPv2N11CLA_Trigger20CLA_TRIGGER_EQEP1INTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704ae4f5290165314a8860274a6893bf9f89"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_EQEP1INT</code> = 83U<a class="headerlink" href="#_CPPv4N11CLA_Trigger20CLA_TRIGGER_EQEP1INTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is EQEP1INT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger20CLA_TRIGGER_EQEP2INTE">
+<span id="_CPPv3N11CLA_Trigger20CLA_TRIGGER_EQEP2INTE"></span><span id="_CPPv2N11CLA_Trigger20CLA_TRIGGER_EQEP2INTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a8495a68239e1e4578e4915eb83ffef26"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_EQEP2INT</code> = 84U<a class="headerlink" href="#_CPPv4N11CLA_Trigger20CLA_TRIGGER_EQEP2INTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is EQEP2INT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger20CLA_TRIGGER_EQEP3INTE">
+<span id="_CPPv3N11CLA_Trigger20CLA_TRIGGER_EQEP3INTE"></span><span id="_CPPv2N11CLA_Trigger20CLA_TRIGGER_EQEP3INTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a46d450018e12a85336376235891d6a70"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_EQEP3INT</code> = 85U<a class="headerlink" href="#_CPPv4N11CLA_Trigger20CLA_TRIGGER_EQEP3INTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is EQEP3INT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger20CLA_TRIGGER_SDFM1INTE">
+<span id="_CPPv3N11CLA_Trigger20CLA_TRIGGER_SDFM1INTE"></span><span id="_CPPv2N11CLA_Trigger20CLA_TRIGGER_SDFM1INTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704ac2189dbb59f9a0ae137b7d2880bdb5d7"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_SDFM1INT</code> = 95U<a class="headerlink" href="#_CPPv4N11CLA_Trigger20CLA_TRIGGER_SDFM1INTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is SDFM1INT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger20CLA_TRIGGER_SDFM2INTE">
+<span id="_CPPv3N11CLA_Trigger20CLA_TRIGGER_SDFM2INTE"></span><span id="_CPPv2N11CLA_Trigger20CLA_TRIGGER_SDFM2INTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a94629d4e585c6af647cd519aed3d3c32"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_SDFM2INT</code> = 96U<a class="headerlink" href="#_CPPv4N11CLA_Trigger20CLA_TRIGGER_SDFM2INTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is SDFM2INT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger19CLA_TRIGGER_UPP1INTE">
+<span id="_CPPv3N11CLA_Trigger19CLA_TRIGGER_UPP1INTE"></span><span id="_CPPv2N11CLA_Trigger19CLA_TRIGGER_UPP1INTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a06a55dc33172c7cff5375b058ecbd6e7"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_UPP1INT</code> = 107U<a class="headerlink" href="#_CPPv4N11CLA_Trigger19CLA_TRIGGER_UPP1INTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is UPP1INT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger21CLA_TRIGGER_SPITXAINTE">
+<span id="_CPPv3N11CLA_Trigger21CLA_TRIGGER_SPITXAINTE"></span><span id="_CPPv2N11CLA_Trigger21CLA_TRIGGER_SPITXAINTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a10ea8b76a4cfb8711dabf6ac13fceff5"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_SPITXAINT</code> = 109U<a class="headerlink" href="#_CPPv4N11CLA_Trigger21CLA_TRIGGER_SPITXAINTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is SPITXAINT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger21CLA_TRIGGER_SPIRXAINTE">
+<span id="_CPPv3N11CLA_Trigger21CLA_TRIGGER_SPIRXAINTE"></span><span id="_CPPv2N11CLA_Trigger21CLA_TRIGGER_SPIRXAINTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704ab957a49f40f3ef08a8f59a3e35a1d0f2"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_SPIRXAINT</code> = 110U<a class="headerlink" href="#_CPPv4N11CLA_Trigger21CLA_TRIGGER_SPIRXAINTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is SPIRXAINT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger21CLA_TRIGGER_SPITXBINTE">
+<span id="_CPPv3N11CLA_Trigger21CLA_TRIGGER_SPITXBINTE"></span><span id="_CPPv2N11CLA_Trigger21CLA_TRIGGER_SPITXBINTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704af436c031d9cc2c76da43acd99cbef10a"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_SPITXBINT</code> = 111U<a class="headerlink" href="#_CPPv4N11CLA_Trigger21CLA_TRIGGER_SPITXBINTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is SPITXBINT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger21CLA_TRIGGER_SPIRXBINTE">
+<span id="_CPPv3N11CLA_Trigger21CLA_TRIGGER_SPIRXBINTE"></span><span id="_CPPv2N11CLA_Trigger21CLA_TRIGGER_SPIRXBINTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a7302e6627d8bde856eced61266bc3958"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_SPIRXBINT</code> = 112U<a class="headerlink" href="#_CPPv4N11CLA_Trigger21CLA_TRIGGER_SPIRXBINTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is SPIRXBINT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger21CLA_TRIGGER_SPITXCINTE">
+<span id="_CPPv3N11CLA_Trigger21CLA_TRIGGER_SPITXCINTE"></span><span id="_CPPv2N11CLA_Trigger21CLA_TRIGGER_SPITXCINTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a7a8ce98d7c77e288d5d2817dd922e64c"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_SPITXCINT</code> = 113U<a class="headerlink" href="#_CPPv4N11CLA_Trigger21CLA_TRIGGER_SPITXCINTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is SPITXCINT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger21CLA_TRIGGER_SPIRXCINTE">
+<span id="_CPPv3N11CLA_Trigger21CLA_TRIGGER_SPIRXCINTE"></span><span id="_CPPv2N11CLA_Trigger21CLA_TRIGGER_SPIRXCINTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704ae0d6cecdcce805cfeb822597225d849d"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_SPIRXCINT</code> = 114U<a class="headerlink" href="#_CPPv4N11CLA_Trigger21CLA_TRIGGER_SPIRXCINTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is SPIRXCINT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger19CLA_TRIGGER_CLB1INTE">
+<span id="_CPPv3N11CLA_Trigger19CLA_TRIGGER_CLB1INTE"></span><span id="_CPPv2N11CLA_Trigger19CLA_TRIGGER_CLB1INTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704a464cb00b32cded38d91abf49c45dbde9"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_CLB1INT</code> = 127<a class="headerlink" href="#_CPPv4N11CLA_Trigger19CLA_TRIGGER_CLB1INTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is CLB1INT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger19CLA_TRIGGER_CLB2INTE">
+<span id="_CPPv3N11CLA_Trigger19CLA_TRIGGER_CLB2INTE"></span><span id="_CPPv2N11CLA_Trigger19CLA_TRIGGER_CLB2INTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704ab3a2ed6fefd8bf6e61145917cc3f3ba7"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_CLB2INT</code> = 128<a class="headerlink" href="#_CPPv4N11CLA_Trigger19CLA_TRIGGER_CLB2INTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is CLB2INT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger19CLA_TRIGGER_CLB3INTE">
+<span id="_CPPv3N11CLA_Trigger19CLA_TRIGGER_CLB3INTE"></span><span id="_CPPv2N11CLA_Trigger19CLA_TRIGGER_CLB3INTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704ae4b84d83c146947ff9b67253111c03e3"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_CLB3INT</code> = 129<a class="headerlink" href="#_CPPv4N11CLA_Trigger19CLA_TRIGGER_CLB3INTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is CLB3INT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLA_Trigger19CLA_TRIGGER_CLB4INTE">
+<span id="_CPPv3N11CLA_Trigger19CLA_TRIGGER_CLB4INTE"></span><span id="_CPPv2N11CLA_Trigger19CLA_TRIGGER_CLB4INTE"></span><span class="target" id="group__cla__api_1ggac52526fbf7850ba3cf3d06716bf8c704abf581c10c3dfbe123b8d815d5b9ef533"></span><em class="property">enumerator </em><code class="sig-name descname">CLA_TRIGGER_CLB4INT</code> = 130<a class="headerlink" href="#_CPPv4N11CLA_Trigger19CLA_TRIGGER_CLB4INTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLA Task Trigger Source is CLB4INT. </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv417CLA_mapTaskVector8uint32_t15CLA_MVECTNumber8uint16_t">
+<span id="_CPPv317CLA_mapTaskVector8uint32_t15CLA_MVECTNumber8uint16_t"></span><span id="_CPPv217CLA_mapTaskVector8uint32_t15CLA_MVECTNumber8uint16_t"></span><span id="CLA_mapTaskVector__uint32_t.CLA_MVECTNumber.uint16_t"></span><span class="target" id="group__cla__api_1gae4ff0b7a476e3bf43a0466f7dbb3d73d"></span>void <code class="sig-name descname">CLA_mapTaskVector</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv415CLA_MVECTNumber" title="CLA_MVECTNumber">CLA_MVECTNumber</a> <em>claIntVect</em>, uint16_t <em>claTaskAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417CLA_mapTaskVector8uint32_t15CLA_MVECTNumber8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Map CLA Task Interrupt Vector</p>
+<p><p>Each CLA Task (1 to 8) has its own MVECTx register. When a task is triggered, the CLA loads the MVECTx register of the task in question to the MPC (CLA program counter) and begins execution from that point. The CLA has a 16-bit address bus, and can therefore, access the lower 64 KW space. The MVECTx registers take an address anywhere in this space.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLA controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">claIntVect</span></code>: is CLA interrupt vector (MVECT1 to MVECT8) the value of claIntVect can be any of the following:<ul>
+<li><p><strong>CLA_MVECT_1</strong> - Task Interrupt Vector 1</p></li>
+<li><p><strong>CLA_MVECT_2</strong> - Task Interrupt Vector 2</p></li>
+<li><p><strong>CLA_MVECT_3</strong> - Task Interrupt Vector 3</p></li>
+<li><p><strong>CLA_MVECT_4</strong> - Task Interrupt Vector 4</p></li>
+<li><p><strong>CLA_MVECT_5</strong> - Task Interrupt Vector 5</p></li>
+<li><p><strong>CLA_MVECT_6</strong> - Task Interrupt Vector 6</p></li>
+<li><p><strong>CLA_MVECT_7</strong> - Task Interrupt Vector 7</p></li>
+<li><p><strong>CLA_MVECT_8</strong> - Task Interrupt Vector 8 </p></li>
+</ul>
+</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">claTaskAddr</span></code>: is the start address of the code for task</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420CLA_performHardReset8uint32_t">
+<span id="_CPPv320CLA_performHardReset8uint32_t"></span><span id="_CPPv220CLA_performHardReset8uint32_t"></span><span id="CLA_performHardReset__uint32_t"></span><span class="target" id="group__cla__api_1ga41606ba0a47510295aeab9edf0088565"></span>void <code class="sig-name descname">CLA_performHardReset</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420CLA_performHardReset8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Hard Reset</p>
+<p><p>This function will cause a hard reset of the CLA and set all CLA registers to their default state.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLA controller.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420CLA_performSoftReset8uint32_t">
+<span id="_CPPv320CLA_performSoftReset8uint32_t"></span><span id="_CPPv220CLA_performSoftReset8uint32_t"></span><span id="CLA_performSoftReset__uint32_t"></span><span class="target" id="group__cla__api_1ga5a205490cb37b8158ce8b3109d9c29a1"></span>void <code class="sig-name descname">CLA_performSoftReset</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420CLA_performSoftReset8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Soft Reset</p>
+<p><p>This function will cause a soft reset of the CLA. This will stop the current task, clear the MIRUN flag and clear all bits in the MIER register.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLA controller.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414CLA_enableIACK8uint32_t">
+<span id="_CPPv314CLA_enableIACK8uint32_t"></span><span id="_CPPv214CLA_enableIACK8uint32_t"></span><span id="CLA_enableIACK__uint32_t"></span><span class="target" id="group__cla__api_1ga0fc5eea7061fa146af6737d35541e7b8"></span>void <code class="sig-name descname">CLA_enableIACK</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414CLA_enableIACK8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IACK enable</p>
+<p><p>This function enables the main CPU to use the IACK #16bit instruction to set MIFR bits in the same manner as writing to the MIFRC register.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLA controller.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415CLA_disableIACK8uint32_t">
+<span id="_CPPv315CLA_disableIACK8uint32_t"></span><span id="_CPPv215CLA_disableIACK8uint32_t"></span><span id="CLA_disableIACK__uint32_t"></span><span class="target" id="group__cla__api_1ga9d822be2b7ae6cbaa6d892b6a8cb2279"></span>void <code class="sig-name descname">CLA_disableIACK</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415CLA_disableIACK8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IACK disable</p>
+<p><p>This function disables the main CPU to use the IACK #16bit instruction to set MIFR bits in the same manner as writing to the MIFRC register.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLA controller.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422CLA_getPendingTaskFlag8uint32_t14CLA_TaskNumber">
+<span id="_CPPv322CLA_getPendingTaskFlag8uint32_t14CLA_TaskNumber"></span><span id="_CPPv222CLA_getPendingTaskFlag8uint32_t14CLA_TaskNumber"></span><span id="CLA_getPendingTaskFlag__uint32_t.CLA_TaskNumber"></span><span class="target" id="group__cla__api_1gaf4b224ffb4b17ea798ca231c300c3416"></span>bool <code class="sig-name descname">CLA_getPendingTaskFlag</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv414CLA_TaskNumber" title="CLA_TaskNumber">CLA_TaskNumber</a> <em>taskNumber</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422CLA_getPendingTaskFlag8uint32_t14CLA_TaskNumber" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Query task N to see if it is flagged and pending execution</p>
+<p><p>This function gets the status of each bit in the interrupt flag register corresponds to a CLA task. The corresponding bit is automatically set when the task is triggered (either from a peripheral, through software, or through the MIFRC register). The bit gets cleared when the CLA starts to execute the flagged task.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLA controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">taskNumber</span></code>: is the number of the task CLA_TASK_N where N is a number from 1 to 8. Do not use CLA_TASKFLAG_ALL.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p><strong>True</strong> if the queried task has been triggered but pending execution. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426CLA_getAllPendingTaskFlags8uint32_t">
+<span id="_CPPv326CLA_getAllPendingTaskFlags8uint32_t"></span><span id="_CPPv226CLA_getAllPendingTaskFlags8uint32_t"></span><span id="CLA_getAllPendingTaskFlags__uint32_t"></span><span class="target" id="group__cla__api_1gae2320dde9fc21d0442518341a62a1df8"></span>uint16_t <code class="sig-name descname">CLA_getAllPendingTaskFlags</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426CLA_getAllPendingTaskFlags8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get status of All Task Interrupt Flag</p>
+<p><p>This function gets the value of the interrupt flag register (MIFR)</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLA controller.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>the value of Interrupt Flag Register (MIFR) </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423CLA_getTaskOverflowFlag8uint32_t14CLA_TaskNumber">
+<span id="_CPPv323CLA_getTaskOverflowFlag8uint32_t14CLA_TaskNumber"></span><span id="_CPPv223CLA_getTaskOverflowFlag8uint32_t14CLA_TaskNumber"></span><span id="CLA_getTaskOverflowFlag__uint32_t.CLA_TaskNumber"></span><span class="target" id="group__cla__api_1gac80a61ef871def9d0635f0562c68646d"></span>bool <code class="sig-name descname">CLA_getTaskOverflowFlag</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv414CLA_TaskNumber" title="CLA_TaskNumber">CLA_TaskNumber</a> <em>taskNumber</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423CLA_getTaskOverflowFlag8uint32_t14CLA_TaskNumber" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get status of Task n Interrupt Overflow Flag</p>
+<p><p>This function gets the status of each bit in the overflow flag register corresponds to a CLA task, This bit is set when an interrupt overflow event has occurred for the specific task.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLA controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">taskNumber</span></code>: is the number of the task CLA_TASK_N where N is a number from 1 to 8. Do not use CLA_TASKFLAG_ALL.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>True if any of task interrupt overflow has occurred. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427CLA_getAllTaskOverflowFlags8uint32_t">
+<span id="_CPPv327CLA_getAllTaskOverflowFlags8uint32_t"></span><span id="_CPPv227CLA_getAllTaskOverflowFlags8uint32_t"></span><span id="CLA_getAllTaskOverflowFlags__uint32_t"></span><span class="target" id="group__cla__api_1gabe73a629babe76fc1aee25e3b03d84a5"></span>uint16_t <code class="sig-name descname">CLA_getAllTaskOverflowFlags</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427CLA_getAllTaskOverflowFlags8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get status of All Task Interrupt Overflow Flag</p>
+<p><p>This function gets the value of the Interrupt Overflow Flag Register</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLA controller.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>the value of Interrupt Overflow Flag Register(MIOVF) </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418CLA_clearTaskFlags8uint32_t8uint16_t">
+<span id="_CPPv318CLA_clearTaskFlags8uint32_t8uint16_t"></span><span id="_CPPv218CLA_clearTaskFlags8uint32_t8uint16_t"></span><span id="CLA_clearTaskFlags__uint32_t.uint16_t"></span><span class="target" id="group__cla__api_1ga0cff99bd7aca4774c504e2061f703cde"></span>void <code class="sig-name descname">CLA_clearTaskFlags</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>taskFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418CLA_clearTaskFlags8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clear the task interrupt flag</p>
+<p><p>This function is used to manually clear bits in the interrupt flag (MIFR) register</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLA controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">taskFlags</span></code>: is the bitwise OR of the tasks’ flags to be cleared CLA_TASKFLAG_N where N is the task number from 1 to 8, or CLA_TASKFLAG_ALL to clear all flags.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414CLA_forceTasks8uint32_t8uint16_t">
+<span id="_CPPv314CLA_forceTasks8uint32_t8uint16_t"></span><span id="_CPPv214CLA_forceTasks8uint32_t8uint16_t"></span><span id="CLA_forceTasks__uint32_t.uint16_t"></span><span class="target" id="group__cla__api_1ga346a968fb92bf32a85c8a196b6295e05"></span>void <code class="sig-name descname">CLA_forceTasks</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>taskFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414CLA_forceTasks8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Force a CLA Task</p>
+<p><p>This function forces a task through software.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLA controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">taskFlags</span></code>: is the bitwise OR of the tasks’ flags to be forced CLA_TASKFLAG_N where N is the task number from 1 to 8, or CLA_TASKFLAG_ALL to force all tasks.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415CLA_enableTasks8uint32_t8uint16_t">
+<span id="_CPPv315CLA_enableTasks8uint32_t8uint16_t"></span><span id="_CPPv215CLA_enableTasks8uint32_t8uint16_t"></span><span id="CLA_enableTasks__uint32_t.uint16_t"></span><span class="target" id="group__cla__api_1ga6636ae039fb65dd31692e1846f008c0f"></span>void <code class="sig-name descname">CLA_enableTasks</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>taskFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415CLA_enableTasks8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable CLA task(s)</p>
+<p><p>This function allows an incoming interrupt or main CPU software to start the corresponding CLA task.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLA controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">taskFlags</span></code>: is the bitwise OR of the tasks’ flags to be enabled CLA_TASKFLAG_N where N is the task number from 1 to 8, or CLA_TASKFLAG_ALL to enable all tasks</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416CLA_disableTasks8uint32_t8uint16_t">
+<span id="_CPPv316CLA_disableTasks8uint32_t8uint16_t"></span><span id="_CPPv216CLA_disableTasks8uint32_t8uint16_t"></span><span id="CLA_disableTasks__uint32_t.uint16_t"></span><span class="target" id="group__cla__api_1ga91be96a9697f0289e09b9498a3842965"></span>void <code class="sig-name descname">CLA_disableTasks</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>taskFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416CLA_disableTasks8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable CLA task interrupt</p>
+<p><p>This function disables CLA task interrupt by setting the MIER register bit to 0, while the corresponding task is executing this will have no effect on the task. The task will continue to run until it hits the MSTOP instruction.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLA controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">taskFlags</span></code>: is the bitwise OR of the tasks’ flags to be disabled CLA_TASKFLAG_N where N is the task number from 1 to 8, or CLA_TASKFLAG_ALL to disable all tasks</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420CLA_getTaskRunStatus8uint32_t14CLA_TaskNumber">
+<span id="_CPPv320CLA_getTaskRunStatus8uint32_t14CLA_TaskNumber"></span><span id="_CPPv220CLA_getTaskRunStatus8uint32_t14CLA_TaskNumber"></span><span id="CLA_getTaskRunStatus__uint32_t.CLA_TaskNumber"></span><span class="target" id="group__cla__api_1ga51fa5ee7bc3d41f3a10a96eb5814dee9"></span>bool <code class="sig-name descname">CLA_getTaskRunStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv414CLA_TaskNumber" title="CLA_TaskNumber">CLA_TaskNumber</a> <em>taskNumber</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420CLA_getTaskRunStatus8uint32_t14CLA_TaskNumber" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the value of a task run status</p>
+<p><p>This function gets the status of each bit in the Interrupt Run Status Register which indicates whether the task is currently executing</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLA controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">taskNumber</span></code>: is the number of the task CLA_TASK_N where N is a number from 1 to 8. Do not use CLA_TASKFLAG_ALL.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>True if the task is executing. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423CLA_getAllTaskRunStatus8uint32_t">
+<span id="_CPPv323CLA_getAllTaskRunStatus8uint32_t"></span><span id="_CPPv223CLA_getAllTaskRunStatus8uint32_t"></span><span id="CLA_getAllTaskRunStatus__uint32_t"></span><span class="target" id="group__cla__api_1ga5127f412d97f0a1a5adae3890b4b3d5b"></span>uint16_t <code class="sig-name descname">CLA_getAllTaskRunStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423CLA_getAllTaskRunStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the value of all task run status</p>
+<p><p>This function indicates which task is currently executing.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLA controller.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>the value of Interrupt Run Status Register (MIRUN) </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427CLA_enableSoftwareInterrupt8uint32_t8uint16_t">
+<span id="_CPPv327CLA_enableSoftwareInterrupt8uint32_t8uint16_t"></span><span id="_CPPv227CLA_enableSoftwareInterrupt8uint32_t8uint16_t"></span><span id="CLA_enableSoftwareInterrupt__uint32_t.uint16_t"></span><span class="target" id="group__cla__api_1ga1d7e54dfbdc8dca9fa0158f83312d855"></span>void <code class="sig-name descname">CLA_enableSoftwareInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>taskFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427CLA_enableSoftwareInterrupt8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable the Software Interrupt for a given CLA Task</p>
+<p><p>This function enables the Software Interrupt for a single, or set of, CLA task(s). It does this by writing a 1 to the task’s bit in the CLA1SOFTINTEN register. By setting a task’s SOFTINT bit, you disable its ability to generate an end-of-task interrupt For example, if we enable Task 2’s SOFTINT bit, we disable its ability to generate an end-of-task interrupt, but now any running CLA task has the ability to force task 2’s interrupt (through the CLA1INTFRC register) to the main CPU. This interrupt will be handled by the End-of-Task 2 interrupt handler even though the interrupt was not caused by Task 2 running to completion. This allows programmers to generate interrupts while a control task is running.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLA controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">taskFlags</span></code>: is the bitwise OR of the tasks for which software interrupts are to be enabled, CLA_TASKFLAG_N where N is the task number from 1 to 8, or CLA_TASKFLAG_ALL to enable software interrupts of all tasks</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p><ol class="loweralpha simple">
+<li><p>The CLA1SOFTINTEN and CLA1INTFRC are only writable from the CLA.</p></li>
+<li><p>Enabling a given task’s software interrupt enable bit disables that task’s ability to generate an End-of-Task interrupt to the main CPU, however, should another task force its interrupt (through the CLA1INTFRC register), it will be handled by that task’s End-of-Task Interrupt Handler.</p></li>
+</ol>
+</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428CLA_disableSoftwareInterrupt8uint32_t8uint16_t">
+<span id="_CPPv328CLA_disableSoftwareInterrupt8uint32_t8uint16_t"></span><span id="_CPPv228CLA_disableSoftwareInterrupt8uint32_t8uint16_t"></span><span id="CLA_disableSoftwareInterrupt__uint32_t.uint16_t"></span><span class="target" id="group__cla__api_1gafc606813b5546396a2e666f6d63ff147"></span>void <code class="sig-name descname">CLA_disableSoftwareInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>taskFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428CLA_disableSoftwareInterrupt8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable the Software Interrupt for a given CLA Task</p>
+<p><p>This function disables the Software Interrupt for a single, or set of, CLA task(s). It does this by writing a 0 to the task’s bit in the CLA1SOFTINTEN register.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLA controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">taskFlags</span></code>: is the bitwise OR of the tasks for which software interrupts are to be disabled, CLA_TASKFLAG_N where N is the task number from 1 to 8, or CLA_TASKFLAG_ALL to disable software interrupts of all tasks</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p><ol class="loweralpha simple">
+<li><p>The CLA1SOFTINTEN and CLA1INTFRC are only writable from the CLA.</p></li>
+<li><p>Disabling a given task’s software interrupt ability allows that task to generate an End-of-Task interrupt to the main CPU.</p></li>
+</ol>
+</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426CLA_forceSoftwareInterrupt8uint32_t8uint16_t">
+<span id="_CPPv326CLA_forceSoftwareInterrupt8uint32_t8uint16_t"></span><span id="_CPPv226CLA_forceSoftwareInterrupt8uint32_t8uint16_t"></span><span id="CLA_forceSoftwareInterrupt__uint32_t.uint16_t"></span><span class="target" id="group__cla__api_1gae43ee7dac3ce8112443c5c564bfd6636"></span>void <code class="sig-name descname">CLA_forceSoftwareInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>taskFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426CLA_forceSoftwareInterrupt8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Force a particular Task’s Software Interrupt</p>
+<p><p>This function forces the Software Interrupt for a single, or set of, CLA task(s). It does this by writing a 1 to the task’s bit in the CLA1INTFRC register. For example, if we enable Task 2’s SOFTINT bit, we disable its ability to generate an end-of-task interrupt, but now any running CLA task has the ability to force task 2’s interrupt (through the CLA1INTFRC register) to the main CPU. This interrupt will be handled by the End-of-Task 2 interrupt handler even though the interrupt was not caused by Task 2 running to completion. This allows programmers to generate interrupts while a control task is running.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLA controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">taskFlags</span></code>: is the bitwise OR of the task’s whose software interrupts are to be forced, CLA_TASKFLAG_N where N is the task number from 1 to 8, or CLA_TASKFLAG_ALL to force software interrupts for all tasks</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p><ol class="loweralpha simple">
+<li><p>The CLA1SOFTINTEN and CLA1INTFRC are only writable from the CLA.</p></li>
+<li><p>Enabling a given task’s software interrupt enable bit disables that task’s ability to generate an End-of-Task interrupt to the main CPU, however, should another task force its interrupt (through the CLA1INTFRC register), it will be handled by that task’s End-of-Task Interrupt Handler.</p></li>
+<li><p>This function will set the INTFRC bit for a task, but does not check that its SOFTINT bit is set. It falls to the user to ensure that software interrupt for a given task is enabled before it can be forced.</p></li>
+</ol>
+</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420CLA_setTriggerSource14CLA_TaskNumber11CLA_Trigger">
+<span id="_CPPv320CLA_setTriggerSource14CLA_TaskNumber11CLA_Trigger"></span><span id="_CPPv220CLA_setTriggerSource14CLA_TaskNumber11CLA_Trigger"></span><span id="CLA_setTriggerSource__CLA_TaskNumber.CLA_Trigger"></span><span class="target" id="group__cla__api_1gabf458fd69327b158eab7df7204a5f9cb"></span>void <code class="sig-name descname">CLA_setTriggerSource</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414CLA_TaskNumber" title="CLA_TaskNumber">CLA_TaskNumber</a> <em>taskNumber</em>, <a class="reference internal" href="#_CPPv411CLA_Trigger" title="CLA_Trigger">CLA_Trigger</a> <em>trigger</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420CLA_setTriggerSource14CLA_TaskNumber11CLA_Trigger" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures CLA task triggers.</p>
+<p><p>This function configures the trigger source of a CLA task. The </p>
+<em>taskNumber</em> parameter indicates which task is being configured, and the <em>trigger</em> parameter is the interrupt source from a specific peripheral interrupt (or software) that will trigger the task.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">taskNumber</span></code>: is the number of the task CLA_TASK_N where N is a number from 1 to 8. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">trigger</span></code>: is the trigger source to be assigned to the selected task.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>The next few paragraphs describe configuration options that are
+accessible via the main processor (the C28x).</p>
+<p>The CLA code is broken up into a main background task and a set of 7 tasks,
+each of which requires a trigger source either from a hardware peripheral or
+software. Each task begins at an address that is given by its vector register.
+The vector for the background task can be configured using the
+CLA_mapBackgroundTaskVector(), and the task’s vector is set using
+CLA_mapTaskVector(). The trigger source for all the tasks can be set
+with CLA_setTriggerSource(). If using a software trigger, the user must
+first enable the feature with CLA_enableIACK(), and then trigger the
+task with the assembly instruction,</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">align</dt>
+<dd class="field-odd"><p>center</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>__asm(” IACK #&lt;Task&gt;”);
+Task refers to the task to trigger; it is one less than the actual task.
+For example, if attempting to trigger task 1 you would issue,</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">align</dt>
+<dd class="field-odd"><p>center</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>__asm(” IACK #0”);</p>
+<p>A task will only start to execute if it is globally enabled. This is done
+through CLA_enableTasks(). Once enabled, a task will respond to a
+peripheral trigger (if configured to do so), a software force (with the IACK
+instruction), or through CLA_forceTasks().</p>
+<p>In this type of CLA, a background task is always running. It is enabled using
+CLA_enableBackgroundTask() and subsequently kicked off by
+CLA_startBackgroundTask(), or through a peripheral trigger (it takes
+the same trigger as task 8 on older CLAs). The user may enable the background
+task peripheral trigger feature using  CLA_enableHardwareTrigger().</p>
+<p>The tasks (1 to 7) have a fixed priority, with 1 being the highest
+and 7 the lowest. They will interrupt the background task, when triggered, in
+priority order. The user may query the status of all tasks with
+CLA_getAllTaskRunStatus() or a particular task with
+CLA_getTaskRunStatus() to determine if its pending, running or idle.</p>
+<p>Each task (1 through 7) can issue an interrupt to the main CPU after it
+completes execution. This is configured through the PIE module, and
+registering the handler (ISR) for each end-of-task interrupt with
+CLA_registerEndOfTaskInterrupt().</p>
+<p>The CLA can undergo a soft reset with  CLA_performSoftReset() or emulate
+a power cycle or hard reset with  CLA_performHardReset().</p>
+<p>The CLA can access and configure a few configuration registers (the C28x
+can read but not alter these registers). A task can force another’s end-of-task
+interrupt to the main CPU by enabling that task’s software interrupt using
+CLA_enableSoftwareInterrupt() and subsequently forcing it using
+CLA_forceSoftwareInterrupt(). Its important to keep in mind that
+enabling a software interrupt for a given task disables its ability to generate
+an interrupt to the main CPU once it completes execution.</p>
+<p>The code for this module is contained in driverlib/cla.c, with driverlib/cla.h containing the API declarations for use by applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="can.html" class="btn btn-neutral float-left" title="CAN Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="clb.html" class="btn btn-neutral float-right" title="CLB Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,749 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Interrupt Module &mdash; F2838x CM API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F2838x CM API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="IPC Module" href="ipc.html"/>
+        <link rel="prev" title="I2C Module" href="i2c.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F2838x CM API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="aes.html">AES Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmmpu.html">CM-MPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpu.html">CPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="escss.html">ESCSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ethernet.html">Ethernet Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="udma.html">UDMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gcrc.html">GCRC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipc.html">IPC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcan.html">MCAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mpu.html">MPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssi.html">SSI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="systick.html">SysTick Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uart.html">UART Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F2838x CM API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>Interrupt Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="interrupt-module">
+<span id="interrupt"></span><h1>Interrupt Module<a class="headerlink" href="#interrupt-module" title="Permalink to this headline">¶</a></h1>
+<p>The Interrupt API provides a set of functions for configuring the NVIC module in the Cortex M core.
+Functions are provided to configure various interrupts and exceptions in the system</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__interrupt__api"></span><em>group</em> <code class="sig-name descname">interrupt_api</code></dt>
+<dd><p>This module configures the NVIC interrupt controller. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.NVIC_OFFSET_INC">
+<span class="target" id="group__interrupt__api_1gaaf0426dfde867c250fa1eeaa11fc958c"></span><code class="sig-name descname">NVIC_OFFSET_INC</code> 0x4U<a class="headerlink" href="#c.NVIC_OFFSET_INC" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>8-bit offset increment </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.NVIC_AIRCR_VECTKEY">
+<span class="target" id="group__interrupt__api_1ga2f8cb12ddfff6c13cf3fefd1c7d490f4"></span><code class="sig-name descname">NVIC_AIRCR_VECTKEY</code> 0x05FA0000U<a class="headerlink" href="#c.NVIC_AIRCR_VECTKEY" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="cpp enum">
+<dt id="_CPPv426Interrupt_PriorityGrouping">
+<span id="_CPPv326Interrupt_PriorityGrouping"></span><span id="_CPPv226Interrupt_PriorityGrouping"></span><span class="target" id="group__interrupt__api_1ga98821decc91ad76b270965df93076a3c"></span><em class="property">enum </em><code class="sig-name descname">Interrupt_PriorityGrouping</code><a class="headerlink" href="#_CPPv426Interrupt_PriorityGrouping" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__interrupt__api_1gabeea31eb2bb97c54b500a9108fb012ba"><span class="std std-ref">Interrupt_setPriorityGrouping()</span></a> as priGroup parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N26Interrupt_PriorityGrouping30Interrupt_PriorityGrouping_7_1E">
+<span id="_CPPv3N26Interrupt_PriorityGrouping30Interrupt_PriorityGrouping_7_1E"></span><span id="_CPPv2N26Interrupt_PriorityGrouping30Interrupt_PriorityGrouping_7_1E"></span><span class="target" id="group__interrupt__api_1gga98821decc91ad76b270965df93076a3ca208fbff6df867753d5e7ff14307e307d"></span><em class="property">enumerator </em><code class="sig-name descname">Interrupt_PriorityGrouping_7_1</code> = 0x00000000U<a class="headerlink" href="#_CPPv4N26Interrupt_PriorityGrouping30Interrupt_PriorityGrouping_7_1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Priority group 7.1 split. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N26Interrupt_PriorityGrouping30Interrupt_PriorityGrouping_6_2E">
+<span id="_CPPv3N26Interrupt_PriorityGrouping30Interrupt_PriorityGrouping_6_2E"></span><span id="_CPPv2N26Interrupt_PriorityGrouping30Interrupt_PriorityGrouping_6_2E"></span><span class="target" id="group__interrupt__api_1gga98821decc91ad76b270965df93076a3ca3be96e77165f2b1360c4ed764c487882"></span><em class="property">enumerator </em><code class="sig-name descname">Interrupt_PriorityGrouping_6_2</code> = 0x00000100U<a class="headerlink" href="#_CPPv4N26Interrupt_PriorityGrouping30Interrupt_PriorityGrouping_6_2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Priority group 6.2 split. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N26Interrupt_PriorityGrouping30Interrupt_PriorityGrouping_5_3E">
+<span id="_CPPv3N26Interrupt_PriorityGrouping30Interrupt_PriorityGrouping_5_3E"></span><span id="_CPPv2N26Interrupt_PriorityGrouping30Interrupt_PriorityGrouping_5_3E"></span><span class="target" id="group__interrupt__api_1gga98821decc91ad76b270965df93076a3ca890d0ac577add4ff34a6b2c5bbad329e"></span><em class="property">enumerator </em><code class="sig-name descname">Interrupt_PriorityGrouping_5_3</code> = 0x00000200U<a class="headerlink" href="#_CPPv4N26Interrupt_PriorityGrouping30Interrupt_PriorityGrouping_5_3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Priority group 5.3 split. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N26Interrupt_PriorityGrouping30Interrupt_PriorityGrouping_4_4E">
+<span id="_CPPv3N26Interrupt_PriorityGrouping30Interrupt_PriorityGrouping_4_4E"></span><span id="_CPPv2N26Interrupt_PriorityGrouping30Interrupt_PriorityGrouping_4_4E"></span><span class="target" id="group__interrupt__api_1gga98821decc91ad76b270965df93076a3cac7f7f096004223b6aa4ef31d44d4075d"></span><em class="property">enumerator </em><code class="sig-name descname">Interrupt_PriorityGrouping_4_4</code> = 0x00000300U<a class="headerlink" href="#_CPPv4N26Interrupt_PriorityGrouping30Interrupt_PriorityGrouping_4_4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Priority group 4.4 split. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N26Interrupt_PriorityGrouping30Interrupt_PriorityGrouping_3_5E">
+<span id="_CPPv3N26Interrupt_PriorityGrouping30Interrupt_PriorityGrouping_3_5E"></span><span id="_CPPv2N26Interrupt_PriorityGrouping30Interrupt_PriorityGrouping_3_5E"></span><span class="target" id="group__interrupt__api_1gga98821decc91ad76b270965df93076a3ca3a0a523846e676a3095a94d458b5e327"></span><em class="property">enumerator </em><code class="sig-name descname">Interrupt_PriorityGrouping_3_5</code> = 0x00000400U<a class="headerlink" href="#_CPPv4N26Interrupt_PriorityGrouping30Interrupt_PriorityGrouping_3_5E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Priority group 3.5 split. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N26Interrupt_PriorityGrouping30Interrupt_PriorityGrouping_2_6E">
+<span id="_CPPv3N26Interrupt_PriorityGrouping30Interrupt_PriorityGrouping_2_6E"></span><span id="_CPPv2N26Interrupt_PriorityGrouping30Interrupt_PriorityGrouping_2_6E"></span><span class="target" id="group__interrupt__api_1gga98821decc91ad76b270965df93076a3ca120a51f2dce066765a4ad87daa2784d7"></span><em class="property">enumerator </em><code class="sig-name descname">Interrupt_PriorityGrouping_2_6</code> = 0x00000500U<a class="headerlink" href="#_CPPv4N26Interrupt_PriorityGrouping30Interrupt_PriorityGrouping_2_6E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Priority group 2.6 split. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N26Interrupt_PriorityGrouping30Interrupt_PriorityGrouping_1_7E">
+<span id="_CPPv3N26Interrupt_PriorityGrouping30Interrupt_PriorityGrouping_1_7E"></span><span id="_CPPv2N26Interrupt_PriorityGrouping30Interrupt_PriorityGrouping_1_7E"></span><span class="target" id="group__interrupt__api_1gga98821decc91ad76b270965df93076a3cad948505853ce4f4184814ab910415bbc"></span><em class="property">enumerator </em><code class="sig-name descname">Interrupt_PriorityGrouping_1_7</code> = 0x00000600U<a class="headerlink" href="#_CPPv4N26Interrupt_PriorityGrouping30Interrupt_PriorityGrouping_1_7E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Priority group 1.7 split. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N26Interrupt_PriorityGrouping30Interrupt_PriorityGrouping_0_8E">
+<span id="_CPPv3N26Interrupt_PriorityGrouping30Interrupt_PriorityGrouping_0_8E"></span><span id="_CPPv2N26Interrupt_PriorityGrouping30Interrupt_PriorityGrouping_0_8E"></span><span class="target" id="group__interrupt__api_1gga98821decc91ad76b270965df93076a3cac60a075a250bb72b9e976df5da85e5c4"></span><em class="property">enumerator </em><code class="sig-name descname">Interrupt_PriorityGrouping_0_8</code> = 0x00000700U<a class="headerlink" href="#_CPPv4N26Interrupt_PriorityGrouping30Interrupt_PriorityGrouping_0_8E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Priority group 0.8 split. </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv424Interrupt_defaultHandlerv">
+<span id="_CPPv324Interrupt_defaultHandlerv"></span><span id="_CPPv224Interrupt_defaultHandlerv"></span><span id="Interrupt_defaultHandler__void"></span><span class="target" id="group__interrupt__api_1gab242b5e261f22d2009692da94a330ec2"></span>void <code class="sig-name descname">Interrupt_defaultHandler</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424Interrupt_defaultHandlerv" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427Interrupt_enableInProcessorv">
+<span id="_CPPv327Interrupt_enableInProcessorv"></span><span id="_CPPv227Interrupt_enableInProcessorv"></span><span id="Interrupt_enableInProcessor__void"></span><span class="target" id="group__interrupt__api_1ga02d8037087a5ec45f0080bc8a0d5cba0"></span>bool <code class="sig-name descname">Interrupt_enableInProcessor</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427Interrupt_enableInProcessorv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the processor interrupt.</p>
+<p>This function allows the processor to respond to interrupts. This function does not affect the set of interrupts enabled in the interrupt controller, it just gates the single interrupt from the controller to the processor.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if interrupts were disabled when the function was called or <strong>false</strong> if they were initially enabled. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428Interrupt_disableInProcessorv">
+<span id="_CPPv328Interrupt_disableInProcessorv"></span><span id="_CPPv228Interrupt_disableInProcessorv"></span><span id="Interrupt_disableInProcessor__void"></span><span class="target" id="group__interrupt__api_1ga0ebb58eb909ab996aeb03a9d720b752d"></span>bool <code class="sig-name descname">Interrupt_disableInProcessor</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428Interrupt_disableInProcessorv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the processor interrupt.</p>
+<p>This function prevents the processor from receiving interrupts. This function does not affect the set of interrupts enabled in the interrupt controller; it just gates the single interrupt from the controller to the processor.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if interrupts were already disabled when the function was called or <strong>false</strong> if they were initially enabled. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428Interrupt_setSoftwareTrigger8uint32_t">
+<span id="_CPPv328Interrupt_setSoftwareTrigger8uint32_t"></span><span id="_CPPv228Interrupt_setSoftwareTrigger8uint32_t"></span><span id="Interrupt_setSoftwareTrigger__uint32_t"></span><span class="target" id="group__interrupt__api_1gadbb0e2eb4f9016bc5302f0fb944dc82a"></span>void <code class="sig-name descname">Interrupt_setSoftwareTrigger</code><span class="sig-paren">(</span>uint32_t <em>interruptNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428Interrupt_setSoftwareTrigger8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Triggers an interrupt.</p>
+<p><p>This function performs a software trigger of an interrupt.The interrupt controller behaves as if the corresponding interrupt line was asserted, and the interrupt is handled in the same manner (meaning that it must be enabled in order to be processed, and the processing is based on its priority with respect to other unhandled interrupts).</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">interruptNum</span></code>: specifies the interrupt to be triggered.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv430Interrupt_setVectorTableOffset8uint32_t">
+<span id="_CPPv330Interrupt_setVectorTableOffset8uint32_t"></span><span id="_CPPv230Interrupt_setVectorTableOffset8uint32_t"></span><span id="Interrupt_setVectorTableOffset__uint32_t"></span><span class="target" id="group__interrupt__api_1ga046ac8ea9920be881bbdbda7b60bc2f5"></span>void <code class="sig-name descname">Interrupt_setVectorTableOffset</code><span class="sig-paren">(</span>uint32_t <em>addr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430Interrupt_setVectorTableOffset8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the offset address of the vector table.</p>
+<p><p>Sets the address of the vector table. This function is for advanced users who might want to switch between multiple instances of vector tables (perhaps between flash/ram). The param addr can take following values: (uint32_t)vectorTableFlash - Offset address for Flash Vector Table (uint32_t)vectorTableRAM - Offset address for RAM Vector Table</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">addr</span></code>: is the new address of the vector table.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv430Interrupt_getVectorTableOffsetv">
+<span id="_CPPv330Interrupt_getVectorTableOffsetv"></span><span id="_CPPv230Interrupt_getVectorTableOffsetv"></span><span id="Interrupt_getVectorTableOffset__void"></span><span class="target" id="group__interrupt__api_1ga8098d5505c4c4ccdd62c1cbbb6358bef"></span>uint32_t <code class="sig-name descname">Interrupt_getVectorTableOffset</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430Interrupt_getVectorTableOffsetv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the offset address of the interrupt vector table.</p>
+<p>This function returns the offset address of the interrupt vector table.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Offset address of the vector table. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429Interrupt_setPriorityGrouping26Interrupt_PriorityGrouping">
+<span id="_CPPv329Interrupt_setPriorityGrouping26Interrupt_PriorityGrouping"></span><span id="_CPPv229Interrupt_setPriorityGrouping26Interrupt_PriorityGrouping"></span><span id="Interrupt_setPriorityGrouping__Interrupt_PriorityGrouping"></span><span class="target" id="group__interrupt__api_1gabeea31eb2bb97c54b500a9108fb012ba"></span>void <code class="sig-name descname">Interrupt_setPriorityGrouping</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv426Interrupt_PriorityGrouping" title="Interrupt_PriorityGrouping">Interrupt_PriorityGrouping</a> <em>priGrouping</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429Interrupt_setPriorityGrouping26Interrupt_PriorityGrouping" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the priority grouping of the interrupt controller.</p>
+<p><p>This function specifies the split between preemptable priority levels and sub-priority levels in the interrupt priority specification. The range of the grouping values are dependent upon the hardware implementation; on the MSP432 family, three bits are available for hardware interrupt prioritization and therefore priority grouping values of three through seven have the same effect.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">priGrouping</span></code>: specifies the required priority grouping</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429Interrupt_getPriorityGroupingv">
+<span id="_CPPv329Interrupt_getPriorityGroupingv"></span><span id="_CPPv229Interrupt_getPriorityGroupingv"></span><span id="Interrupt_getPriorityGrouping__void"></span><span class="target" id="group__interrupt__api_1gafda23884c48f8c7f06cc7d21c2e3a53f"></span>uint32_t <code class="sig-name descname">Interrupt_getPriorityGrouping</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429Interrupt_getPriorityGroupingv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the priority grouping of the interrupt controller.</p>
+<p>This function returns the split between preemptable priority levels and sub-priority levels in the interrupt priority specification.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The number of bits of preemptable priority. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428Interrupt_requestSystemResetv">
+<span id="_CPPv328Interrupt_requestSystemResetv"></span><span id="_CPPv228Interrupt_requestSystemResetv"></span><span id="Interrupt_requestSystemReset__void"></span><span class="target" id="group__interrupt__api_1ga505aa4f26dfabf490a3150c24de022d5"></span>void <code class="sig-name descname">Interrupt_requestSystemReset</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428Interrupt_requestSystemResetv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Resets the core and all on-chip peripherals except Debug interface.</p>
+<p>This function will perform a software reset of the entire device. The processor and all peripherals will be reset and all device registers will return to their default values (with the exception of the reset cause register, which will maintain its current value but have the software reset bit set as well).</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425Interrupt_setPriorityMask8uint32_t">
+<span id="_CPPv325Interrupt_setPriorityMask8uint32_t"></span><span id="_CPPv225Interrupt_setPriorityMask8uint32_t"></span><span id="Interrupt_setPriorityMask__uint32_t"></span><span class="target" id="group__interrupt__api_1ga60abe50005dc7fa2728b4535c24c8c2e"></span>void <code class="sig-name descname">Interrupt_setPriorityMask</code><span class="sig-paren">(</span>uint32_t <em>priorityMask</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425Interrupt_setPriorityMask8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the priority masking level.</p>
+<p><p>This function sets the interrupt priority masking level so that all interrupts at the specified or lesser priority level are masked. Masking interrupts can be used to globally disable a set of interrupts with priority below a predetermined threshold. A value of 0 disables priority masking.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">priorityMask</span></code>: is the priority level that is masked.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>Smaller numbers correspond to higher interrupt priorities. So for example a priority level mask of 4 allows interrupts of priority level 0-3, and interrupts with a numerical priority of 4 and greater are blocked.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425Interrupt_getPriorityMaskv">
+<span id="_CPPv325Interrupt_getPriorityMaskv"></span><span id="_CPPv225Interrupt_getPriorityMaskv"></span><span id="Interrupt_getPriorityMask__void"></span><span class="target" id="group__interrupt__api_1ga6efa88c501583fc895c6a87ee1fe0124"></span>uint32_t <code class="sig-name descname">Interrupt_getPriorityMask</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425Interrupt_getPriorityMaskv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the priority masking level.</p>
+<p>This function gets the current setting of the interrupt priority masking level. The value returned is the priority level such that all interrupts of that and lesser priority are masked. A value of 0 means that priority masking is disabled.</p>
+<p>Smaller numbers correspond to higher interrupt priorities. So for example a priority level mask of 4 allows interrupts of priority level 0-3, and interrupts with a numerical priority of 4 and greater are blocked.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the value of the interrupt priority level mask. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv430Interrupt_enableSleepOnISRExitv">
+<span id="_CPPv330Interrupt_enableSleepOnISRExitv"></span><span id="_CPPv230Interrupt_enableSleepOnISRExitv"></span><span id="Interrupt_enableSleepOnISRExit__void"></span><span class="target" id="group__interrupt__api_1ga09786168ff9d466a8f83fd02ce7dccbb"></span>void <code class="sig-name descname">Interrupt_enableSleepOnISRExit</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430Interrupt_enableSleepOnISRExitv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the processor to sleep when exiting an ISR.</p>
+<p>This function enables the processor to sleep when exiting an ISR. For low power operation, this is ideal as power cycles are not wasted with the processing required for waking up from an ISR and going back to sleep.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv431Interrupt_disableSleepOnISRExitv">
+<span id="_CPPv331Interrupt_disableSleepOnISRExitv"></span><span id="_CPPv231Interrupt_disableSleepOnISRExitv"></span><span id="Interrupt_disableSleepOnISRExit__void"></span><span class="target" id="group__interrupt__api_1gac74045a4b06e49443ba2629fcddccb4a"></span>void <code class="sig-name descname">Interrupt_disableSleepOnISRExit</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431Interrupt_disableSleepOnISRExitv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the processor to sleep when exiting an ISR.</p>
+<p>This function disables the processor to sleep when exiting an ISR.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427Interrupt_unregisterHandler8uint32_t">
+<span id="_CPPv327Interrupt_unregisterHandler8uint32_t"></span><span id="_CPPv227Interrupt_unregisterHandler8uint32_t"></span><span id="Interrupt_unregisterHandler__uint32_t"></span><span class="target" id="group__interrupt__api_1gafe4a15dac3703808414f15a64db4d7a4"></span>void <code class="sig-name descname">Interrupt_unregisterHandler</code><span class="sig-paren">(</span>uint32_t <em>interruptNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427Interrupt_unregisterHandler8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Unregisters the function to be called when an interrupt occurs.</p>
+<p>This function is used to indicate that no handler should be called when the given interrupt is asserted to the processor. The interrupt source is automatically disabled (via Interrupt_disableInterrupt()) if necessary.</p>
+<p><p>See </p>
+<a class="reference internal" href="#group__interrupt__api_1gab57e8a2020ec5760ec9bf54deb3bda72"><span class="std std-ref">Interrupt_enable()</span></a> for details about the interrupt parameter<dl class="simple">
+<dt><strong>See</strong></dt><dd><p>Interrupt_registerInterrupt() for important information about registering interrupt handlers.</p>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425Interrupt_registerHandler8uint32_tPFvvE">
+<span id="_CPPv325Interrupt_registerHandler8uint32_tPFvvE"></span><span id="_CPPv225Interrupt_registerHandler8uint32_tPFvvE"></span><span class="target" id="group__interrupt__api_1ga97b4cb74e7e152d031bcdbc4e4428127"></span>void <code class="sig-name descname">Interrupt_registerHandler</code><span class="sig-paren">(</span>uint32_t <em>interruptNum</em>, void (*<em>intHandler</em>)<span class="sig-paren">(</span>void<span class="sig-paren">)</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425Interrupt_registerHandler8uint32_tPFvvE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Registers a function to be called when an interrupt occurs.</p>
+<p><p>See </p>
+<a class="reference internal" href="#group__interrupt__api_1gab57e8a2020ec5760ec9bf54deb3bda72"><span class="std std-ref">Interrupt_enable()</span></a> for details about the interrupt parameter<dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>The use of this function (directly or indirectly via a peripheral driver interrupt register function) moves the interrupt vector table from flash to SRAM. Therefore, care must be taken when linking the application to ensure that the SRAM vector table is located at the beginning of SRAM, otherwise the NVIC does not look in the correct portion of memory for the vector table (it requires the vector table be on a 1 kB memory alignment). Normally, the SRAM vector table is so placed via the use of linker scripts. See the discussion of compile-time versus run-time interrupt handler registration in the introduction to this chapter.</p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>This function is only used if the customer wants to specify the interrupt handler at run time. In most cases, this is done through means of the user setting the ISR function pointer in the startup file. Refer Refer to the Module Operation section for more details.</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">interruptNum</span></code>: specifies the interrupt in question. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intHandler</span></code>: is a pointer to the function to be called.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416Interrupt_enable8uint32_t">
+<span id="_CPPv316Interrupt_enable8uint32_t"></span><span id="_CPPv216Interrupt_enable8uint32_t"></span><span id="Interrupt_enable__uint32_t"></span><span class="target" id="group__interrupt__api_1gab57e8a2020ec5760ec9bf54deb3bda72"></span>void <code class="sig-name descname">Interrupt_enable</code><span class="sig-paren">(</span>uint32_t <em>interruptNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416Interrupt_enable8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables an interrupt in interrupt controller.</p>
+<p><p>This function enables the specified interrupt in the interrupt controller. The parameter interruptNum can take any of the valid interrupts from </p>
+hw_ints.h file. Other enables for the interrupt (such as at the peripheral level) are unaffected by this function.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">interruptNum</span></code>: is the interrupt to be enabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417Interrupt_disable8uint32_t">
+<span id="_CPPv317Interrupt_disable8uint32_t"></span><span id="_CPPv217Interrupt_disable8uint32_t"></span><span id="Interrupt_disable__uint32_t"></span><span class="target" id="group__interrupt__api_1gae4e8f38298302618354ec4691c4c8765"></span>void <code class="sig-name descname">Interrupt_disable</code><span class="sig-paren">(</span>uint32_t <em>interruptNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417Interrupt_disable8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables an interrupt in interrupt controller.</p>
+<p><p>This function disables the specified interrupt in the interrupt controller. The parameter interruptNum can take any of the valid interrupts from </p>
+hw_ints.h file. Other enables for the interrupt (such as at the peripheral level) are unaffected by this function.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">interruptNum</span></code>: is the interrupt to be disabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419Interrupt_isEnabled8uint32_t">
+<span id="_CPPv319Interrupt_isEnabled8uint32_t"></span><span id="_CPPv219Interrupt_isEnabled8uint32_t"></span><span id="Interrupt_isEnabled__uint32_t"></span><span class="target" id="group__interrupt__api_1ga88f5d392758f13d12a14b2d9d359a903"></span>bool <code class="sig-name descname">Interrupt_isEnabled</code><span class="sig-paren">(</span>uint32_t <em>interruptNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419Interrupt_isEnabled8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns if a peripheral interrupt is enabled.</p>
+<p><p>This function checks if the specified interrupt is enabled in the interrupt controller. The </p>
+<em>interruptNum</em> parameter must be one of the valid interrupts defined in the inc/hw_ints.h header file.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">interruptNum</span></code>: is the interrupt to be checked.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414Interrupt_pend8uint32_t">
+<span id="_CPPv314Interrupt_pend8uint32_t"></span><span id="_CPPv214Interrupt_pend8uint32_t"></span><span id="Interrupt_pend__uint32_t"></span><span class="target" id="group__interrupt__api_1ga873c23d2395fcaf920740636e4a7c82e"></span>void <code class="sig-name descname">Interrupt_pend</code><span class="sig-paren">(</span>uint32_t <em>interruptNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414Interrupt_pend8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Pends an interrupt.</p>
+<p><p>The specified interrupt is pended in the interrupt controller. Pending an interrupt causes the interrupt controller to execute the corresponding interrupt handler at the next available time, based on the current interrupt state priorities. For example, if called by a higher priority interrupt handler, the specified interrupt handler is not called until after the current interrupt handler has completed execution. The interrupt must have been enabled for it to be called.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">interruptNum</span></code>: specifies the interrupt to be pended.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>See <a class="reference internal" href="#group__interrupt__api_1gab57e8a2020ec5760ec9bf54deb3bda72"><span class="std std-ref">Interrupt_enable()</span></a> for details about the interrupt parameter</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416Interrupt_unpend8uint32_t">
+<span id="_CPPv316Interrupt_unpend8uint32_t"></span><span id="_CPPv216Interrupt_unpend8uint32_t"></span><span id="Interrupt_unpend__uint32_t"></span><span class="target" id="group__interrupt__api_1gad061334d846dd60fabf18f146b784155"></span>void <code class="sig-name descname">Interrupt_unpend</code><span class="sig-paren">(</span>uint32_t <em>interruptNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416Interrupt_unpend8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Un-pends an interrupt.</p>
+<p><p>The specified interrupt is un-pended in the interrupt controller. This will cause any previously generated interrupts that have not been handled yet (due to higher priority interrupts or the interrupt no having been enabled yet) to be discarded.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">interruptNum</span></code>: specifies the interrupt to be un-pended.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>See <a class="reference internal" href="#group__interrupt__api_1gab57e8a2020ec5760ec9bf54deb3bda72"><span class="std std-ref">Interrupt_enable()</span></a> for details about the interrupt parameter</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421Interrupt_setPriority8uint32_t8uint32_t">
+<span id="_CPPv321Interrupt_setPriority8uint32_t8uint32_t"></span><span id="_CPPv221Interrupt_setPriority8uint32_t8uint32_t"></span><span id="Interrupt_setPriority__uint32_t.uint32_t"></span><span class="target" id="group__interrupt__api_1gabc77da9268628e49ea57c992156a81c1"></span>void <code class="sig-name descname">Interrupt_setPriority</code><span class="sig-paren">(</span>uint32_t <em>interruptNum</em>, uint32_t <em>priority</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421Interrupt_setPriority8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the priority of an interrupt.</p>
+<p><p>This function is used to set the priority of an interrupt. When multiple interrupts are asserted simultaneously, the ones with the highest priority are processed before the lower priority interrupts. Smaller numbers correspond to higher interrupt priorities; priority 0 is the highest interrupt priority.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">interruptNum</span></code>: specifies the interrupt in question. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">priority</span></code>: specifies the priority of the interrupt.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The hardware priority mechanism only looks at the upper N bits of the priority level, so any prioritization must be performed in those bits. The remaining bits can be used to sub-prioritize the interrupt sources, and may be used by the hardware priority mechanism on a future part. This arrangement allows priorities to migrate to different NVIC implementations without changing the gross prioritization of the interrupts.</p>
+<p>See <a class="reference internal" href="#group__interrupt__api_1gab57e8a2020ec5760ec9bf54deb3bda72"><span class="std std-ref">Interrupt_enable()</span></a> for details about the interrupt parameter</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421Interrupt_getPriority8uint32_t">
+<span id="_CPPv321Interrupt_getPriority8uint32_t"></span><span id="_CPPv221Interrupt_getPriority8uint32_t"></span><span id="Interrupt_getPriority__uint32_t"></span><span class="target" id="group__interrupt__api_1ga9d4cc231eb9f30517c9201dc599f3135"></span>uint32_t <code class="sig-name descname">Interrupt_getPriority</code><span class="sig-paren">(</span>uint32_t <em>interruptNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421Interrupt_getPriority8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the priority of an interrupt.</p>
+<p><p>This function gets the priority of an interrupt. See </p>
+<a class="reference internal" href="#group__interrupt__api_1gabc77da9268628e49ea57c992156a81c1"><span class="std std-ref">Interrupt_setPriority()</span></a> for a definition of the priority value.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">interruptNum</span></code>: specifies the interrupt in question.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>See <a class="reference internal" href="#group__interrupt__api_1gab57e8a2020ec5760ec9bf54deb3bda72"><span class="std std-ref">Interrupt_enable()</span></a> for details about the interrupt parameter</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the interrupt priority, or -1 if an invalid interrupt was specified. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428Interrupt_initRAMVectorTableA_PFvvEA_PFvvE">
+<span id="_CPPv328Interrupt_initRAMVectorTableA_PFvvEA_PFvvE"></span><span id="_CPPv228Interrupt_initRAMVectorTableA_PFvvEA_PFvvE"></span><span class="target" id="group__interrupt__api_1ga4eef2be520d99a6fe5dfd4e5763dfd91"></span>void <code class="sig-name descname">Interrupt_initRAMVectorTable</code><span class="sig-paren">(</span>void (*<em>srcVectorTable</em>[])<span class="sig-paren">(</span>void<span class="sig-paren">)</span>, void (*<em>dstVectorTable</em>[])<span class="sig-paren">(</span>void<span class="sig-paren">)</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428Interrupt_initRAMVectorTableA_PFvvEA_PFvvE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Initializes all the ISRs in the RAM vector table.</p>
+<p><p>This function initializes all the ISRs in the RAM vector table. It copies the ISR addresses from temporary source table to destination RAM vector table. The </p>
+<em>srcVectorTable</em> can be preinitialised table which can be used to initialize vector table in one go. <em>dstVectorTable</em> can be the RAM vector table to be populated.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">srcVectorTable</span></code>: is source vector table array </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dstVectorTable</span></code>: is destination vector table array</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Variables</p>
+<dl class="cpp var">
+<dt id="_CPPv416vectorTableFlash">
+<span id="_CPPv316vectorTableFlash"></span><span id="_CPPv216vectorTableFlash"></span><span class="target" id="group__interrupt__api_1ga7b2a9c71b4c3ce293964b6f89ff22164"></span>void (*<code class="sig-name descname">vectorTableFlash</code>[80U])<span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416vectorTableFlash" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt id="_CPPv414vectorTableRAM">
+<span id="_CPPv314vectorTableRAM"></span><span id="_CPPv214vectorTableRAM"></span><span class="target" id="group__interrupt__api_1ga21977d33b7ac438c131792e8f5b22137"></span>void (*<code class="sig-name descname">vectorTableRAM</code>[80U])<span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414vectorTableRAM" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<p>The code for this module is contained in driverlib_cm/interrupt.c, with driverlib_cm/interrupt.h containing the API declarations for use by applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="i2c.html" class="btn btn-neutral float-left" title="I2C Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ipc.html" class="btn btn-neutral float-right" title="IPC Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

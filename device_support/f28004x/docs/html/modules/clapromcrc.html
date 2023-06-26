@@ -1,0 +1,671 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CLAPROMCRC Module &mdash; F28004x API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F28004x API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="CLA Module" href="cla.html"/>
+        <link rel="prev" title="ASysCtl Module" href="asysctl.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F28004x API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="adc.html">ADC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asysctl.html">ASysCtl Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">CLAPROMCRC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla.html">CLA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clb.html">CLB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmpss.html">CMPSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dac.html">DAC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcc.html">DCC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dma.html">DMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ecap.html">ECAP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hrcap.html">HRCAP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="epwm.html">EPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hrpwm.html">HRPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqep.html">EQEP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fsi.html">FSI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lin.html">LIN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pga.html">PGA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pmbus.html">PMBUS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci.html">SCI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdfm.html">SDFM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">SPI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version.html">Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xbar.html">XBAR Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F28004x API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>CLAPROMCRC Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="clapromcrc-module">
+<span id="clapromcrc"></span><h1>CLAPROMCRC Module<a class="headerlink" href="#clapromcrc-module" title="Permalink to this headline">¶</a></h1>
+<p>The CLAPROMCRC is a non-intrusive CRC engine for the CLA Program ROM. It
+calculates the CRC-32 value of a configurable block of memory of
+the CLA Program ROM and can be used to validate the contents of the CLA Program
+ROM. The CLAPROMCRC driver provides functions to use the CLAPROMCRC and can be
+used from either the CLA or the C28x. The driver can be used to configure the
+start address of the CRC and the block size of the CRC in 1kB increments. It
+also provides functions to start, halt and check the status and result of the
+CLAPROMCRC calculation.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__clapromcrc__api"></span><em>group</em> <code class="sig-name descname">clapromcrc_api</code></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="cpp enum">
+<dt id="_CPPv424CLAPROMCRC_EmulationMode">
+<span id="_CPPv324CLAPROMCRC_EmulationMode"></span><span id="_CPPv224CLAPROMCRC_EmulationMode"></span><span class="target" id="group__clapromcrc__api_1ga431e1267c61169cca07464e751c2fd29"></span><em class="property">enum </em><code class="sig-name descname">CLAPROMCRC_EmulationMode</code><a class="headerlink" href="#_CPPv424CLAPROMCRC_EmulationMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__clapromcrc__api_1ga5f9918cd8a59cdbae4ffc41481ce371f"><span class="std std-ref">CLAPROMCRC_setEmulationMode()</span></a>. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N24CLAPROMCRC_EmulationMode20CLAPROMCRC_MODE_SOFTE">
+<span id="_CPPv3N24CLAPROMCRC_EmulationMode20CLAPROMCRC_MODE_SOFTE"></span><span id="_CPPv2N24CLAPROMCRC_EmulationMode20CLAPROMCRC_MODE_SOFTE"></span><span class="target" id="group__clapromcrc__api_1gga431e1267c61169cca07464e751c2fd29ac8f2b383118306b7712630b99ca9fa86"></span><em class="property">enumerator </em><code class="sig-name descname">CLAPROMCRC_MODE_SOFT</code> = 0x00<a class="headerlink" href="#_CPPv4N24CLAPROMCRC_EmulationMode20CLAPROMCRC_MODE_SOFTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Soft Mode. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N24CLAPROMCRC_EmulationMode20CLAPROMCRC_MODE_FREEE">
+<span id="_CPPv3N24CLAPROMCRC_EmulationMode20CLAPROMCRC_MODE_FREEE"></span><span id="_CPPv2N24CLAPROMCRC_EmulationMode20CLAPROMCRC_MODE_FREEE"></span><span class="target" id="group__clapromcrc__api_1gga431e1267c61169cca07464e751c2fd29a4bf64e70648c088f50d19499b9de1946"></span><em class="property">enumerator </em><code class="sig-name descname">CLAPROMCRC_MODE_FREE</code> = 0x10<a class="headerlink" href="#_CPPv4N24CLAPROMCRC_EmulationMode20CLAPROMCRC_MODE_FREEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Free Mode. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv418CLAPROMCRC_IntFlag">
+<span id="_CPPv318CLAPROMCRC_IntFlag"></span><span id="_CPPv218CLAPROMCRC_IntFlag"></span><span class="target" id="group__clapromcrc__api_1gadc24e97eb32531131d87f5874b3758d8"></span><em class="property">enum </em><code class="sig-name descname">CLAPROMCRC_IntFlag</code><a class="headerlink" href="#_CPPv418CLAPROMCRC_IntFlag" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__clapromcrc__api_1gae3a02dedcaf2a8103be0fbc9e7530ffa"><span class="std std-ref">CLAPROMCRC_getInterruptStatus()</span></a> and <a class="reference internal" href="#group__clapromcrc__api_1ga627ccd8d0b9fdf32d592577b959492c8"><span class="std std-ref">CLAPROMCRC_clearInterruptFlag()</span></a>. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLAPROMCRC_IntFlag18CLAPROMCRC_INT_FLGE">
+<span id="_CPPv3N18CLAPROMCRC_IntFlag18CLAPROMCRC_INT_FLGE"></span><span id="_CPPv2N18CLAPROMCRC_IntFlag18CLAPROMCRC_INT_FLGE"></span><span class="target" id="group__clapromcrc__api_1ggadc24e97eb32531131d87f5874b3758d8adc0a4fb4c3dc22fb95de561341474f58"></span><em class="property">enumerator </em><code class="sig-name descname">CLAPROMCRC_INT_FLG</code> = 0x01<a class="headerlink" href="#_CPPv4N18CLAPROMCRC_IntFlag18CLAPROMCRC_INT_FLGE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Global Interrupt Flag. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLAPROMCRC_IntFlag22CLAPROMCRC_CRCDONE_FLGE">
+<span id="_CPPv3N18CLAPROMCRC_IntFlag22CLAPROMCRC_CRCDONE_FLGE"></span><span id="_CPPv2N18CLAPROMCRC_IntFlag22CLAPROMCRC_CRCDONE_FLGE"></span><span class="target" id="group__clapromcrc__api_1ggadc24e97eb32531131d87f5874b3758d8a5895828daec0d3f653c4de77f615aa12"></span><em class="property">enumerator </em><code class="sig-name descname">CLAPROMCRC_CRCDONE_FLG</code> = 0x02<a class="headerlink" href="#_CPPv4N18CLAPROMCRC_IntFlag22CLAPROMCRC_CRCDONE_FLGE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CRCDONE Interrupt Flag. </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv427CLAPROMCRC_setEmulationMode8uint32_t24CLAPROMCRC_EmulationMode">
+<span id="_CPPv327CLAPROMCRC_setEmulationMode8uint32_t24CLAPROMCRC_EmulationMode"></span><span id="_CPPv227CLAPROMCRC_setEmulationMode8uint32_t24CLAPROMCRC_EmulationMode"></span><span id="CLAPROMCRC_setEmulationMode__uint32_t.CLAPROMCRC_EmulationMode"></span><span class="target" id="group__clapromcrc__api_1ga5f9918cd8a59cdbae4ffc41481ce371f"></span>void <code class="sig-name descname">CLAPROMCRC_setEmulationMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv424CLAPROMCRC_EmulationMode" title="CLAPROMCRC_EmulationMode">CLAPROMCRC_EmulationMode</a> <em>emulationMode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427CLAPROMCRC_setEmulationMode8uint32_t24CLAPROMCRC_EmulationMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the Emulation Mode.</p>
+<p><p>This function sets the emulation mode which controls the behaviour of the CRC32 calculation during emulation. CLAPROMCRC_MODE_SOFT mode will stop the CLAPROMCRC module on CLA debug suspend. CLAPROMCRC_MODE_FREE mode sets the CLAPROMCRC module so that the CRC32 calculation is not affected by debug halt of the CLA.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLAPROMCRC module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">emulationMode</span></code>: is soft mode or free mode. It can take values CLAPROMCRC_MODE_SOFT or CLAPROMCRC_MODE_FREE.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416CLAPROMCRC_start8uint32_t">
+<span id="_CPPv316CLAPROMCRC_start8uint32_t"></span><span id="_CPPv216CLAPROMCRC_start8uint32_t"></span><span id="CLAPROMCRC_start__uint32_t"></span><span class="target" id="group__clapromcrc__api_1ga4b683d06aece785e5e872a125f4957bd"></span>void <code class="sig-name descname">CLAPROMCRC_start</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416CLAPROMCRC_start8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Starts the CRC32 calculation.</p>
+<p><p>This function starts CRC32 calculation.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLAPROMCRC module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415CLAPROMCRC_halt8uint32_t">
+<span id="_CPPv315CLAPROMCRC_halt8uint32_t"></span><span id="_CPPv215CLAPROMCRC_halt8uint32_t"></span><span id="CLAPROMCRC_halt__uint32_t"></span><span class="target" id="group__clapromcrc__api_1gac2c6fbbea00addde17dabab4f8f01c16"></span>void <code class="sig-name descname">CLAPROMCRC_halt</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415CLAPROMCRC_halt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Halts the CRC32 calculations.</p>
+<p><p>This function halts the CRC32 calculation.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLAPROMCRC module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417CLAPROMCRC_resume8uint32_t">
+<span id="_CPPv317CLAPROMCRC_resume8uint32_t"></span><span id="_CPPv217CLAPROMCRC_resume8uint32_t"></span><span id="CLAPROMCRC_resume__uint32_t"></span><span class="target" id="group__clapromcrc__api_1ga376e28a53e8c406352c123c3e2a322b5"></span>void <code class="sig-name descname">CLAPROMCRC_resume</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417CLAPROMCRC_resume8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Resumes the CRC32 calculations.</p>
+<p><p>This function resumes the CRC32 calculation.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLAPROMCRC module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423CLAPROMCRC_setBlockSize8uint32_t8uint16_t">
+<span id="_CPPv323CLAPROMCRC_setBlockSize8uint32_t8uint16_t"></span><span id="_CPPv223CLAPROMCRC_setBlockSize8uint32_t8uint16_t"></span><span id="CLAPROMCRC_setBlockSize__uint32_t.uint16_t"></span><span class="target" id="group__clapromcrc__api_1ga8327073ed63ed0905441e5bdc435e604"></span>void <code class="sig-name descname">CLAPROMCRC_setBlockSize</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>blockSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423CLAPROMCRC_setBlockSize8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the Block Size of the CRC32 calculation.</p>
+<p><p>This function sets the block size for the CRC32 calculation.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLAPROMCRC module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">blockSize</span></code>: is the number of KB. The maximum value is 128 KB</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426CLAPROMCRC_setStartAddress8uint32_t8uint32_t">
+<span id="_CPPv326CLAPROMCRC_setStartAddress8uint32_t8uint32_t"></span><span id="_CPPv226CLAPROMCRC_setStartAddress8uint32_t8uint32_t"></span><span id="CLAPROMCRC_setStartAddress__uint32_t.uint32_t"></span><span class="target" id="group__clapromcrc__api_1ga2558898b2bb156489c49d7cf2a17847a"></span>void <code class="sig-name descname">CLAPROMCRC_setStartAddress</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>startAddress</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426CLAPROMCRC_setStartAddress8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the Start Address of the CRC32 calculation.</p>
+<p><p>This function sets the start address with </p>
+<em>startAddress</em> for the CRC32 calculation.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLAPROMCRC module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">startAddress</span></code>: defines the starting point for the CRC32 calculation. A startAddress corresponding to the CLA memory map is to be used. startAddress has to be a 1KB aligned address. If it is not aligned, then the LSB bits are ignored to get a 1KB aligned address.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418CLAPROMCRC_setSeed8uint32_t8uint32_t">
+<span id="_CPPv318CLAPROMCRC_setSeed8uint32_t8uint32_t"></span><span id="_CPPv218CLAPROMCRC_setSeed8uint32_t8uint32_t"></span><span id="CLAPROMCRC_setSeed__uint32_t.uint32_t"></span><span class="target" id="group__clapromcrc__api_1ga5842e9b56eb564460245037b61674a44"></span>void <code class="sig-name descname">CLAPROMCRC_setSeed</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>seed</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418CLAPROMCRC_setSeed8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the Seed of the CRC32 calculation.</p>
+<p><p>This function sets the seed with </p>
+<em>Seed</em> for CRC32 calculation.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLAPROMCRC module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">seed</span></code>: is the initial value of the CRC32 calculation.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428CLAPROMCRC_getCurrentAddress8uint32_t">
+<span id="_CPPv328CLAPROMCRC_getCurrentAddress8uint32_t"></span><span id="_CPPv228CLAPROMCRC_getCurrentAddress8uint32_t"></span><span id="CLAPROMCRC_getCurrentAddress__uint32_t"></span><span class="target" id="group__clapromcrc__api_1ga8a20bdd5644599a84997ef49f39c22fc"></span>uint16_t <code class="sig-name descname">CLAPROMCRC_getCurrentAddress</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428CLAPROMCRC_getCurrentAddress8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the Current Address of the CRC32 calculation.</p>
+<p><p>This function returns the current CLA memory map address of the data fetch unit of the CLAPROMCRC.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLAPROMCRC module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the current address. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422CLAPROMCRC_checkStatus8uint32_t">
+<span id="_CPPv322CLAPROMCRC_checkStatus8uint32_t"></span><span id="_CPPv222CLAPROMCRC_checkStatus8uint32_t"></span><span id="CLAPROMCRC_checkStatus__uint32_t"></span><span class="target" id="group__clapromcrc__api_1ga6f49356de559713bdb784e12d0e1548a"></span>bool <code class="sig-name descname">CLAPROMCRC_checkStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422CLAPROMCRC_checkStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Check the status of the CRC32 calculation.</p>
+<p><p>This function returns the status for the CLAPROMCRC. Return value of true means PASS. Return value of false means FAIL. The comparison is enabled after CRC calculation is completed.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLAPROMCRC module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns true (PASS) or false (FAIL) as the status of the CRC32 calculation. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423CLAPROMCRC_getRunStatus8uint32_t">
+<span id="_CPPv323CLAPROMCRC_getRunStatus8uint32_t"></span><span id="_CPPv223CLAPROMCRC_getRunStatus8uint32_t"></span><span id="CLAPROMCRC_getRunStatus__uint32_t"></span><span class="target" id="group__clapromcrc__api_1ga508238fc18826eeb65930c63b3ff4668"></span>bool <code class="sig-name descname">CLAPROMCRC_getRunStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423CLAPROMCRC_getRunStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the Run Status of the CRC32 calculation.</p>
+<p><p>This function returns the run status for the CLAPROMCRC with the base address passed in the </p>
+<em>base</em> parameter. Return value of false means IDLE. Return value of true means ACTIVE.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLAPROMCRC module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns true (Active) or false (Idle) as the run status of the CRC32 calculation. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420CLAPROMCRC_getResult8uint32_t">
+<span id="_CPPv320CLAPROMCRC_getResult8uint32_t"></span><span id="_CPPv220CLAPROMCRC_getResult8uint32_t"></span><span id="CLAPROMCRC_getResult__uint32_t"></span><span class="target" id="group__clapromcrc__api_1ga3f1e2530e6eeeb6c34764ffc97b4e3fb"></span>uint32_t <code class="sig-name descname">CLAPROMCRC_getResult</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420CLAPROMCRC_getResult8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the Result of the CRC32 calculation.</p>
+<p><p>This function returns the result of the CRC32 calculation.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLAPROMCRC module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the result of the CRC32 calculation. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423CLAPROMCRC_setGoldenCRC8uint32_t8uint32_t">
+<span id="_CPPv323CLAPROMCRC_setGoldenCRC8uint32_t8uint32_t"></span><span id="_CPPv223CLAPROMCRC_setGoldenCRC8uint32_t8uint32_t"></span><span id="CLAPROMCRC_setGoldenCRC__uint32_t.uint32_t"></span><span class="target" id="group__clapromcrc__api_1ga6c98c9397debfe75a89d58c16a8fdfd2"></span>void <code class="sig-name descname">CLAPROMCRC_setGoldenCRC</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>goldenCRC</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423CLAPROMCRC_setGoldenCRC8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the Golden CRC of the CRC32 calculation.</p>
+<p><p>This function sets the GOLDENCRC register with </p>
+<em>goldenCRC</em> for the CLAPROMCRC module. The value of GOLDENCRC is compared with CRCRESULT to determine a PASS or FAIL.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLAPROMCRC module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">goldenCRC</span></code>: is value which will be compared with CRCRESULT.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv431CLAPROMCRC_disableDoneInterrupt8uint32_t">
+<span id="_CPPv331CLAPROMCRC_disableDoneInterrupt8uint32_t"></span><span id="_CPPv231CLAPROMCRC_disableDoneInterrupt8uint32_t"></span><span id="CLAPROMCRC_disableDoneInterrupt__uint32_t"></span><span class="target" id="group__clapromcrc__api_1ga5381e9062f25de82d1ef27d1ae20066a"></span>void <code class="sig-name descname">CLAPROMCRC_disableDoneInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431CLAPROMCRC_disableDoneInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables Interrupts the CRC32 calculations.</p>
+<p><p>This function disables interrupts for the CRC32 calculation.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLAPROMCRC module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv430CLAPROMCRC_enableDoneInterrupt8uint32_t">
+<span id="_CPPv330CLAPROMCRC_enableDoneInterrupt8uint32_t"></span><span id="_CPPv230CLAPROMCRC_enableDoneInterrupt8uint32_t"></span><span id="CLAPROMCRC_enableDoneInterrupt__uint32_t"></span><span class="target" id="group__clapromcrc__api_1ga62d0ed4ad30216338604025389a808d5"></span>void <code class="sig-name descname">CLAPROMCRC_enableDoneInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430CLAPROMCRC_enableDoneInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables Interrupts the CRC32 calculations.</p>
+<p><p>This function enables interrupts for the CRC32 calculation.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLAPROMCRC module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429CLAPROMCRC_getInterruptStatus8uint32_t18CLAPROMCRC_IntFlag">
+<span id="_CPPv329CLAPROMCRC_getInterruptStatus8uint32_t18CLAPROMCRC_IntFlag"></span><span id="_CPPv229CLAPROMCRC_getInterruptStatus8uint32_t18CLAPROMCRC_IntFlag"></span><span id="CLAPROMCRC_getInterruptStatus__uint32_t.CLAPROMCRC_IntFlag"></span><span class="target" id="group__clapromcrc__api_1gae3a02dedcaf2a8103be0fbc9e7530ffa"></span>bool <code class="sig-name descname">CLAPROMCRC_getInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv418CLAPROMCRC_IntFlag" title="CLAPROMCRC_IntFlag">CLAPROMCRC_IntFlag</a> <em>intFlag</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429CLAPROMCRC_getInterruptStatus8uint32_t18CLAPROMCRC_IntFlag" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the Interrupt Status of of flag.</p>
+<p><p>This function returns the interrupt status for </p>
+<em>intFlag</em>. Return value of false means no interrupt generated. Return value of true means interrupt was generated.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLAPROMCRC module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlag</span></code>: is a CLAPROMCRC_IntFlag type and is either CLAPROMCRC_INT_FLG or CLAPROMCRC_CRCDONE_FLG.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the interrupt status. True means interrupt was generated and false means no interrupt was generated. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429CLAPROMCRC_clearInterruptFlag8uint32_t18CLAPROMCRC_IntFlag">
+<span id="_CPPv329CLAPROMCRC_clearInterruptFlag8uint32_t18CLAPROMCRC_IntFlag"></span><span id="_CPPv229CLAPROMCRC_clearInterruptFlag8uint32_t18CLAPROMCRC_IntFlag"></span><span id="CLAPROMCRC_clearInterruptFlag__uint32_t.CLAPROMCRC_IntFlag"></span><span class="target" id="group__clapromcrc__api_1ga627ccd8d0b9fdf32d592577b959492c8"></span>void <code class="sig-name descname">CLAPROMCRC_clearInterruptFlag</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv418CLAPROMCRC_IntFlag" title="CLAPROMCRC_IntFlag">CLAPROMCRC_IntFlag</a> <em>intFlag</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429CLAPROMCRC_clearInterruptFlag8uint32_t18CLAPROMCRC_IntFlag" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears the Global Interrupt Flag of the CLAPROMCRC.</p>
+<p><p>This function clears the interrupt flag for the CLAPROMCRC with the base address passed in the </p>
+<em>base</em> parameter.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLAPROMCRC module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlag</span></code>: is either CLAPROMCRC_INT_FLG or CLAPROMCRC_CRCDONE_FLG.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424CLAPROMCRC_forceDoneFlag8uint32_t">
+<span id="_CPPv324CLAPROMCRC_forceDoneFlag8uint32_t"></span><span id="_CPPv224CLAPROMCRC_forceDoneFlag8uint32_t"></span><span id="CLAPROMCRC_forceDoneFlag__uint32_t"></span><span class="target" id="group__clapromcrc__api_1gab09d3c468e0c401d6dfc44f6b594ea9b"></span>void <code class="sig-name descname">CLAPROMCRC_forceDoneFlag</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424CLAPROMCRC_forceDoneFlag8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Force the CRCDONE Interrupt Flag of the CLAPROMCRC.</p>
+<p><p>This function forces the CRCDONE interrupt flag for the CLAPROMCRC with the base address passed in the </p>
+<em>base</em> parameter.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CLAPROMCRC module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>The code for this module is contained in driverlib/clapromcrc.c, with
+driverlib/clapromcrc.h containing the API declarations for use by
+applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="asysctl.html" class="btn btn-neutral float-left" title="ASysCtl Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cla.html" class="btn btn-neutral float-right" title="CLA Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

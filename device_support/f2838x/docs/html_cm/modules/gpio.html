@@ -1,0 +1,604 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>GPIO Module &mdash; F2838x CM API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F2838x CM API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="I2C Module" href="i2c.html"/>
+        <link rel="prev" title="GCRC Module" href="gcrc.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F2838x CM API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="aes.html">AES Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmmpu.html">CM-MPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpu.html">CPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="escss.html">ESCSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ethernet.html">Ethernet Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="udma.html">UDMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gcrc.html">GCRC Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipc.html">IPC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcan.html">MCAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mpu.html">MPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssi.html">SSI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="systick.html">SysTick Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uart.html">UART Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F2838x CM API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>GPIO Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="gpio-module">
+<span id="gpio"></span><h1>GPIO Module<a class="headerlink" href="#gpio-module" title="Permalink to this headline">¶</a></h1>
+<p>The GPIO module provides an API to read from, and write to the GPIO pins.
+Functions fall into the two categories, control and data. Control
+functions configure properties like direction, pin muxing, and qualification.
+Data functions allow you to read the value on a pin or write a value to it.</p>
+<p>GPIO module on CM side supports only data functions i.e. to read from or write to GPIO
+pin. Please use GPIO module on C28x side for control functions.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__gpio__api"></span><em>group</em> <code class="sig-name descname">gpio_api</code></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.GPIO_DATA_REGS_STEP">
+<span class="target" id="group__gpio__api_1gae902efec17fb8858cbcd574ca2992ad1"></span><code class="sig-name descname">GPIO_DATA_REGS_STEP</code> ((GPIO_O_GPBDAT - GPIO_O_GPADAT) / 4U)<a class="headerlink" href="#c.GPIO_DATA_REGS_STEP" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GPIO_DATA_READ_REGS_STEP">
+<span class="target" id="group__gpio__api_1ga1f82df22e7fda61515b9deb0dbb2093a"></span><code class="sig-name descname">GPIO_DATA_READ_REGS_STEP</code> ((GPIO_O_GPBDAT_R - GPIO_O_GPADAT_R) / 4U)<a class="headerlink" href="#c.GPIO_DATA_READ_REGS_STEP" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GPIO_GPxDAT_INDEX">
+<span class="target" id="group__gpio__api_1gad5ad64e243ae4833ad830efad4022181"></span><code class="sig-name descname">GPIO_GPxDAT_INDEX</code> (GPIO_O_GPADAT / 4U)<a class="headerlink" href="#c.GPIO_GPxDAT_INDEX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GPIO_GPxSET_INDEX">
+<span class="target" id="group__gpio__api_1gad82d17aebb8d5a9ede5552605b61094f"></span><code class="sig-name descname">GPIO_GPxSET_INDEX</code> (GPIO_O_GPASET / 4U)<a class="headerlink" href="#c.GPIO_GPxSET_INDEX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GPIO_GPxCLEAR_INDEX">
+<span class="target" id="group__gpio__api_1ga6c300ad8c789c81a018d415a8b386877"></span><code class="sig-name descname">GPIO_GPxCLEAR_INDEX</code> (GPIO_O_GPACLEAR / 4U)<a class="headerlink" href="#c.GPIO_GPxCLEAR_INDEX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GPIO_GPxTOGGLE_INDEX">
+<span class="target" id="group__gpio__api_1ga90935cc23e2e0707c46d04cc6867733a"></span><code class="sig-name descname">GPIO_GPxTOGGLE_INDEX</code> (GPIO_O_GPATOGGLE / 4U)<a class="headerlink" href="#c.GPIO_GPxTOGGLE_INDEX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GPIO_GPxDAT_R_INDEX">
+<span class="target" id="group__gpio__api_1gacf8520c037e5d725bd8a06162b13e1ca"></span><code class="sig-name descname">GPIO_GPxDAT_R_INDEX</code> (GPIO_O_GPADAT_R / 4U)<a class="headerlink" href="#c.GPIO_GPxDAT_R_INDEX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GPIO_PIN_TYPE_STD">
+<span class="target" id="group__gpio__api_1gafa6d2e3683888ad9a64a8a6ce8e2ccf6"></span><code class="sig-name descname">GPIO_PIN_TYPE_STD</code> 0x0000U<a class="headerlink" href="#c.GPIO_PIN_TYPE_STD" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Push-pull output or floating input. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GPIO_PIN_TYPE_PULLUP">
+<span class="target" id="group__gpio__api_1ga38350dd6366b1642062208bcaf8e133a"></span><code class="sig-name descname">GPIO_PIN_TYPE_PULLUP</code> 0x0001U<a class="headerlink" href="#c.GPIO_PIN_TYPE_PULLUP" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Pull-up enable for input. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GPIO_PIN_TYPE_INVERT">
+<span class="target" id="group__gpio__api_1ga19e485baf2db852c7bbf06054fb9975d"></span><code class="sig-name descname">GPIO_PIN_TYPE_INVERT</code> 0x0002U<a class="headerlink" href="#c.GPIO_PIN_TYPE_INVERT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Invert polarity on input. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GPIO_PIN_TYPE_OD">
+<span class="target" id="group__gpio__api_1ga0aa97c9b013cfc6b5fb3f81cf0dedd7f"></span><code class="sig-name descname">GPIO_PIN_TYPE_OD</code> 0x0004U<a class="headerlink" href="#c.GPIO_PIN_TYPE_OD" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Open-drain on output. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="cpp enum">
+<dt id="_CPPv49GPIO_Port">
+<span id="_CPPv39GPIO_Port"></span><span id="_CPPv29GPIO_Port"></span><span class="target" id="group__gpio__api_1gaf164c756418dde00ac07fd47d0962150"></span><em class="property">enum </em><code class="sig-name descname">GPIO_Port</code><a class="headerlink" href="#_CPPv49GPIO_Port" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__gpio__api_1ga248b8f6bbaabb86f8626817bb8d892e7"><span class="std std-ref">GPIO_readPortData()</span></a>, <a class="reference internal" href="#group__gpio__api_1ga9cb784265bd06b7cf62d3847e39b3eee"><span class="std std-ref">GPIO_setPortPins()</span></a>, <a class="reference internal" href="#group__gpio__api_1gafa45dea38012153b735c99bce4f8c53d"><span class="std std-ref">GPIO_clearPortPins()</span></a>, and <a class="reference internal" href="#group__gpio__api_1ga7d1b922486278b297bc6041b6fadf628"><span class="std std-ref">GPIO_togglePortPins()</span></a> as the <em>port</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N9GPIO_Port11GPIO_PORT_AE">
+<span id="_CPPv3N9GPIO_Port11GPIO_PORT_AE"></span><span id="_CPPv2N9GPIO_Port11GPIO_PORT_AE"></span><span class="target" id="group__gpio__api_1ggaf164c756418dde00ac07fd47d0962150a8b07bc36836f09ea3bf685aa40bb2a1c"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_PORT_A</code> = 0<a class="headerlink" href="#_CPPv4N9GPIO_Port11GPIO_PORT_AE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GPIO port A. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N9GPIO_Port11GPIO_PORT_BE">
+<span id="_CPPv3N9GPIO_Port11GPIO_PORT_BE"></span><span id="_CPPv2N9GPIO_Port11GPIO_PORT_BE"></span><span class="target" id="group__gpio__api_1ggaf164c756418dde00ac07fd47d0962150af5a83964a6998f346c504ea8a14aa420"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_PORT_B</code> = 1<a class="headerlink" href="#_CPPv4N9GPIO_Port11GPIO_PORT_BE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GPIO port B. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N9GPIO_Port11GPIO_PORT_CE">
+<span id="_CPPv3N9GPIO_Port11GPIO_PORT_CE"></span><span id="_CPPv2N9GPIO_Port11GPIO_PORT_CE"></span><span class="target" id="group__gpio__api_1ggaf164c756418dde00ac07fd47d0962150aa6d64325a6ea4d520a8f7c2f8d9b82ba"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_PORT_C</code> = 2<a class="headerlink" href="#_CPPv4N9GPIO_Port11GPIO_PORT_CE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GPIO port C. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N9GPIO_Port11GPIO_PORT_DE">
+<span id="_CPPv3N9GPIO_Port11GPIO_PORT_DE"></span><span id="_CPPv2N9GPIO_Port11GPIO_PORT_DE"></span><span class="target" id="group__gpio__api_1ggaf164c756418dde00ac07fd47d0962150a28839778b06b58a1b3ece28f39dade8f"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_PORT_D</code> = 3<a class="headerlink" href="#_CPPv4N9GPIO_Port11GPIO_PORT_DE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GPIO port D. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N9GPIO_Port11GPIO_PORT_EE">
+<span id="_CPPv3N9GPIO_Port11GPIO_PORT_EE"></span><span id="_CPPv2N9GPIO_Port11GPIO_PORT_EE"></span><span class="target" id="group__gpio__api_1ggaf164c756418dde00ac07fd47d0962150a9cdccb3f86f1326ee286709c135995c8"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_PORT_E</code> = 4<a class="headerlink" href="#_CPPv4N9GPIO_Port11GPIO_PORT_EE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GPIO port E. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N9GPIO_Port11GPIO_PORT_FE">
+<span id="_CPPv3N9GPIO_Port11GPIO_PORT_FE"></span><span id="_CPPv2N9GPIO_Port11GPIO_PORT_FE"></span><span class="target" id="group__gpio__api_1ggaf164c756418dde00ac07fd47d0962150a2e0f525fddb580bff30dc9dd84f3fa5b"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_PORT_F</code> = 5<a class="headerlink" href="#_CPPv4N9GPIO_Port11GPIO_PORT_FE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GPIO port F. </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv412GPIO_readPin8uint32_t">
+<span id="_CPPv312GPIO_readPin8uint32_t"></span><span id="_CPPv212GPIO_readPin8uint32_t"></span><span id="GPIO_readPin__uint32_t"></span><span class="target" id="group__gpio__api_1ga34589426d39e585686fcb1b793b4fb18"></span>uint32_t <code class="sig-name descname">GPIO_readPin</code><span class="sig-paren">(</span>uint32_t <em>pin</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412GPIO_readPin8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reads the value present on the specified pin.</p>
+<p><p>The value at the specified pin are read, as specified by </p>
+<em>pin</em>. The value is returned for both input and output pins.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pin</span></code>: is the identifying GPIO number of the pin.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The pin is specified by its numerical value. For example, GPIO34 is specified by passing 34 as <em>pin</em>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the value in the data register for the specified pin. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424GPIO_readPinDataRegister8uint32_t">
+<span id="_CPPv324GPIO_readPinDataRegister8uint32_t"></span><span id="_CPPv224GPIO_readPinDataRegister8uint32_t"></span><span id="GPIO_readPinDataRegister__uint32_t"></span><span class="target" id="group__gpio__api_1ga9ee82ba44c3f17c8fde9b2d42c6f11a4"></span>uint32_t <code class="sig-name descname">GPIO_readPinDataRegister</code><span class="sig-paren">(</span>uint32_t <em>pin</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424GPIO_readPinDataRegister8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reads the data register value for specified pin.</p>
+<p><p>The value available at the data register for the specified pin is read, as specified by </p>
+<em>pin</em>. The value is returned for both input and output pins.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pin</span></code>: is the identifying GPIO number of the pin.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The pin is specified by its numerical value. For example, GPIO34 is specified by passing 34 as <em>pin</em>.</p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#group__gpio__api_1ga34589426d39e585686fcb1b793b4fb18"><span class="std std-ref">GPIO_readPin()</span></a></p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>Returns the value in the data register for the specified pin. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv413GPIO_writePin8uint32_t8uint32_t">
+<span id="_CPPv313GPIO_writePin8uint32_t8uint32_t"></span><span id="_CPPv213GPIO_writePin8uint32_t8uint32_t"></span><span id="GPIO_writePin__uint32_t.uint32_t"></span><span class="target" id="group__gpio__api_1gab10f7a152de476c22496e94b6f80c6c3"></span>void <code class="sig-name descname">GPIO_writePin</code><span class="sig-paren">(</span>uint32_t <em>pin</em>, uint32_t <em>outVal</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413GPIO_writePin8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Writes a value to the specified pin.</p>
+<p><p>Writes the corresponding bit values to the output pin specified by </p>
+<em>pin</em>. Writing to a pin configured as an input pin has no effect.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pin</span></code>: is the identifying GPIO number of the pin. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">outVal</span></code>: is the value to write to the pin.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The pin is specified by its numerical value. For example, GPIO34 is specified by passing 34 as <em>pin</em>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414GPIO_togglePin8uint32_t">
+<span id="_CPPv314GPIO_togglePin8uint32_t"></span><span id="_CPPv214GPIO_togglePin8uint32_t"></span><span id="GPIO_togglePin__uint32_t"></span><span class="target" id="group__gpio__api_1gae9a250b29dd561eb14c8448b446572a0"></span>void <code class="sig-name descname">GPIO_togglePin</code><span class="sig-paren">(</span>uint32_t <em>pin</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414GPIO_togglePin8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Toggles the specified pin.</p>
+<p><p>Writes the corresponding bit values to the output pin specified by </p>
+<em>pin</em>. Writing to a pin configured as an input pin has no effect.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pin</span></code>: is the identifying GPIO number of the pin.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The pin is specified by its numerical value. For example, GPIO34 is specified by passing 34 as <em>pin</em>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417GPIO_readPortData9GPIO_Port">
+<span id="_CPPv317GPIO_readPortData9GPIO_Port"></span><span id="_CPPv217GPIO_readPortData9GPIO_Port"></span><span id="GPIO_readPortData__GPIO_Port"></span><span class="target" id="group__gpio__api_1ga248b8f6bbaabb86f8626817bb8d892e7"></span>uint32_t <code class="sig-name descname">GPIO_readPortData</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv49GPIO_Port" title="GPIO_Port">GPIO_Port</a> <em>port</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417GPIO_readPortData9GPIO_Port" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reads the data on the specified port.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the value available on pin for the specified port. Each bit of the the return value represents a pin on the port, where bit 0 represents GPIO port pin 0, bit 1 represents GPIO port pin 1, and so on. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">port</span></code>: is the GPIO port being accessed in the form of <strong>GPIO_PORT_X</strong> where X is the port letter.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425GPIO_readPortDataRegister9GPIO_Port">
+<span id="_CPPv325GPIO_readPortDataRegister9GPIO_Port"></span><span id="_CPPv225GPIO_readPortDataRegister9GPIO_Port"></span><span id="GPIO_readPortDataRegister__GPIO_Port"></span><span class="target" id="group__gpio__api_1ga4c5df600aff832b90a0ae3855c631ae0"></span>uint32_t <code class="sig-name descname">GPIO_readPortDataRegister</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv49GPIO_Port" title="GPIO_Port">GPIO_Port</a> <em>port</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425GPIO_readPortDataRegister9GPIO_Port" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reads the data written in GPIO Data Register.</p>
+<p><p>Reads the data written in GPIO Data Register for the specified port. In previous devices, read of GPIO data registers resulted in read of corespoinding pins. The function </p>
+<strong><a class="reference internal" href="#group__gpio__api_1ga248b8f6bbaabb86f8626817bb8d892e7"><span class="std std-ref">GPIO_readPortData()</span></a></strong> returns the value on pin.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">port</span></code>: is the GPIO port being accessed in the form of <strong>GPIO_PORT_X</strong> where X is the port letter.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#group__gpio__api_1ga248b8f6bbaabb86f8626817bb8d892e7"><span class="std std-ref">GPIO_readPortData()</span></a></p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>Returns the value in the data register for the specified port. Each bit of the the return value represents a pin on the port, where bit 0 represents GPIO port pin 0, bit 1 represents GPIO port pin 1, and so on. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418GPIO_writePortData9GPIO_Port8uint32_t">
+<span id="_CPPv318GPIO_writePortData9GPIO_Port8uint32_t"></span><span id="_CPPv218GPIO_writePortData9GPIO_Port8uint32_t"></span><span id="GPIO_writePortData__GPIO_Port.uint32_t"></span><span class="target" id="group__gpio__api_1ga9ad3626ced10620acc6663792c1317be"></span>void <code class="sig-name descname">GPIO_writePortData</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv49GPIO_Port" title="GPIO_Port">GPIO_Port</a> <em>port</em>, uint32_t <em>outVal</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418GPIO_writePortData9GPIO_Port8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Writes a value to the specified port.</p>
+<p><p>This function writes the value </p>
+<em>outVal</em> to the port specified by the <em>port</em> parameter which takes a value in the form of <strong>GPIO_PORT_X</strong> where X is the port letter. For example, use <strong>GPIO_PORT_A</strong> to affect port A (GPIOs 0-31).<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">port</span></code>: is the GPIO port being accessed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">outVal</span></code>: is the value to write to the port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>outVal</em> is a bit-packed value, where each bit represents a bit on a GPIO port. Bit 0 represents GPIO port pin 0, bit 1 represents GPIO port pin 1, and so on.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416GPIO_setPortPins9GPIO_Port8uint32_t">
+<span id="_CPPv316GPIO_setPortPins9GPIO_Port8uint32_t"></span><span id="_CPPv216GPIO_setPortPins9GPIO_Port8uint32_t"></span><span id="GPIO_setPortPins__GPIO_Port.uint32_t"></span><span class="target" id="group__gpio__api_1ga9cb784265bd06b7cf62d3847e39b3eee"></span>void <code class="sig-name descname">GPIO_setPortPins</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv49GPIO_Port" title="GPIO_Port">GPIO_Port</a> <em>port</em>, uint32_t <em>pinMask</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416GPIO_setPortPins9GPIO_Port8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets all of the specified pins on the specified port.</p>
+<p><p>This function sets all of the pins specified by the </p>
+<em>pinMask</em> parameter on the port specified by the <em>port</em> parameter which takes a value in the form of <strong>GPIO_PORT_X</strong> where X is the port letter. For example, use <strong>GPIO_PORT_A</strong> to affect port A (GPIOs 0-31).<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">port</span></code>: is the GPIO port being accessed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pinMask</span></code>: is a mask of which of the 32 pins on the port are affected.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>pinMask</em> is a bit-packed value, where each bit that is set identifies the pin to be set. Bit 0 represents GPIO port pin 0, bit 1 represents GPIO port pin 1, and so on.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418GPIO_clearPortPins9GPIO_Port8uint32_t">
+<span id="_CPPv318GPIO_clearPortPins9GPIO_Port8uint32_t"></span><span id="_CPPv218GPIO_clearPortPins9GPIO_Port8uint32_t"></span><span id="GPIO_clearPortPins__GPIO_Port.uint32_t"></span><span class="target" id="group__gpio__api_1gafa45dea38012153b735c99bce4f8c53d"></span>void <code class="sig-name descname">GPIO_clearPortPins</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv49GPIO_Port" title="GPIO_Port">GPIO_Port</a> <em>port</em>, uint32_t <em>pinMask</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418GPIO_clearPortPins9GPIO_Port8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears all of the specified pins on the specified port.</p>
+<p><p>This function clears all of the pins specified by the </p>
+<em>pinMask</em> parameter on the port specified by the <em>port</em> parameter which takes a value in the form of <strong>GPIO_PORT_X</strong> where X is the port letter. For example, use <strong>GPIO_PORT_A</strong> to affect port A (GPIOs 0-31).<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">port</span></code>: is the GPIO port being accessed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pinMask</span></code>: is a mask of which of the 32 pins on the port are affected.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>pinMask</em> is a bit-packed value, where each bit that is <strong>set</strong> identifies the pin to be cleared. Bit 0 represents GPIO port pin 0, bit 1 represents GPIO port pin 1, and so on.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419GPIO_togglePortPins9GPIO_Port8uint32_t">
+<span id="_CPPv319GPIO_togglePortPins9GPIO_Port8uint32_t"></span><span id="_CPPv219GPIO_togglePortPins9GPIO_Port8uint32_t"></span><span id="GPIO_togglePortPins__GPIO_Port.uint32_t"></span><span class="target" id="group__gpio__api_1ga7d1b922486278b297bc6041b6fadf628"></span>void <code class="sig-name descname">GPIO_togglePortPins</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv49GPIO_Port" title="GPIO_Port">GPIO_Port</a> <em>port</em>, uint32_t <em>pinMask</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419GPIO_togglePortPins9GPIO_Port8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Toggles all of the specified pins on the specified port.</p>
+<p><p>This function toggles all of the pins specified by the </p>
+<em>pinMask</em> parameter on the port specified by the <em>port</em> parameter which takes a value in the form of <strong>GPIO_PORT_X</strong> where X is the port letter. For example, use <strong>GPIO_PORT_A</strong> to affect port A (GPIOs 0-31).<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">port</span></code>: is the GPIO port being accessed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pinMask</span></code>: is a mask of which of the 32 pins on the port are affected.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>pinMask</em> is a bit-packed value, where each bit that is set identifies the pin to be toggled. Bit 0 represents GPIO port pin 0, bit 1 represents GPIO port pin 1, and so on.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>Most functions operate on one pin at a time. However, there are a few functions
+that can operate on an entire port at once for the sake of efficiency. These
+are the data functions GPIO_readPortData(), GPIO_writePortData(),
+GPIO_setPortPins(), GPIO_clearPortPins(), and GPIO_togglePortPins(). Other
+data functions that affect a single pin at a time are GPIO_readPin(),
+GPIO_writePin(), and GPIO_togglePin().</p>
+<p>The code for this module is contained in driverlib_cm/gpio.c, with driverlib_cm/gpio.h containing the API declarations for use by applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="gcrc.html" class="btn btn-neutral float-left" title="GCRC Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="i2c.html" class="btn btn-neutral float-right" title="I2C Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

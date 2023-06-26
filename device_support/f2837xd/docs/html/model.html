@@ -1,0 +1,367 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Programming Models &mdash; F2837xd API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="F2837xd API Guide" href="index.html"/>
+        <link rel="next" title="Driver Library Usage" href="usage.html"/>
+        <link rel="prev" title="Introduction" href="intro.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> F2837xd API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Programming Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#direct-register-access-model">Direct Register Access Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#software-driver-model">Software Driver Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#combining-the-models">Combining The Models</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/index.html">Modules</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">F2837xd API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Programming Models</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="programming-models">
+<span id="model"></span><h1>Programming Models<a class="headerlink" href="#programming-models" title="Permalink to this headline">¶</a></h1>
+<p>The peripheral driver library provides support for two programming models: the
+direct register access model and the software driver model.  Each model can be
+used independently or combined, based on the needs of the application or the
+programming environment desired by the developer.</p>
+<p>Each programming model has advantages and disadvantages.  Use of the direct
+register access model generally results in smaller and more efficient code than
+using the software driver model.  However, the direct register access model
+requires detailed knowledge of the operation of each register and bit field,
+as well as their interactions and any sequencing required for proper operation
+of the peripheral; the developer is somewhat more insulated from these details
+by the software driver model, generally requiring less time to develop
+applications. The software driver model also results in more readable code.</p>
+<div class="section" id="direct-register-access-model">
+<h2>Direct Register Access Model<a class="headerlink" href="#direct-register-access-model" title="Permalink to this headline">¶</a></h2>
+<p>In the direct register access model, the peripherals are programmed by the
+application by writing values directly into the peripheral’s registers.  A set
+of macros is provided that simplifies this process.  These macros are stored in
+several header files contained in the inc directory.  By
+including the header files inc/hw_types.h and inc/hw_memmap.h,
+macros are available for accessing all registers.  Individual bitfield accesses
+can easily be added by simply including the inc/hw_peripheral.h header
+file for the desired peripheral.</p>
+<p>The defines used by the direct register access model follow a naming convention
+that makes it easier to know how to use a particular macro.  The rules are as
+follows:</p>
+<ul class="simple">
+<li><p>Values that end in _BASE and are found in inc/hw_memmap.h
+are module instance base addresses. For example, SPIA_BASE and
+SPIB_BASE are the base addresses of instances A and B of the SPI
+module respectively.</p></li>
+<li><p>Values that contain an _O_ are register address offsets used to
+access the value of a register. For example, SPI_O_CCR is used to
+access the CCR register in a SPI module. These can be added to the
+base address values to get the register address.</p></li>
+<li><p>Values that end in _M represent the mask for a multi-bit field in
+a register.  For example, SPI_CCR_SPICHAR_M is a mask for the
+SPICHAR field in the CCR register. Note that fields that
+are the whole width of the register are not given masks.</p></li>
+<li><p>Values that end in _S represent the number of bits to shift a value
+in order to align it with a multi-bit field.  These values match the macro
+with the same base name but ending with _M.</p></li>
+<li><p>All others are single-bit field masks. For example, SPI_CCR_SPILBK
+corresponds to the SPILBK bit in the CCR register.</p></li>
+</ul>
+<p>The inchw_types.h file contains macros to access a register. They are
+as follows where x is the address to be accessed:</p>
+<ul class="simple">
+<li><p>HWREG(x) is used for 32-bit accesses, such as reading a value from a
+32-bit counter register.</p></li>
+<li><p>HWREGH(x) is used for 16-bit accesses. This can be used to access
+a 16-bit register or the upper or lower words of a 32-bit register. This is
+usually the most efficient.</p></li>
+<li><p>HWREGB(x) is used for 8-bit accesses using the __byte() intrinsic
+(see the TMS320C28x Optimizing C/C++ Compiler User’s Guide). It typically
+should only be used when an 8-bit access is required by the hardware.
+Otherwise, use HWREGH() and mask and shift out the unwanted bits.</p></li>
+<li><p>HWREG_BP(x) is another macro used for 32-bit accesses, but it uses
+the __byte_peripheral_32() compiler intrinsic. This is intended for use with
+peripherals that use a special addressing scheme to support byte accesses
+such as CAN or USB.</p></li>
+</ul>
+<p>Given these definitions, the CCR register can be programmed as
+follows:</p>
+<dl class="simple">
+<dt>// Enable loopback mode on SPI A</dt><dd><p>HWREGH(SPIA_BASE + SPI_O_CCR) <a href="#id1"><span class="problematic" id="id2">|</span></a>= SPI_CCR_SPILBK;</p>
+</dd>
+</dl>
+<p>// Change the number of bits that make up a character to 8
+// * First clear the field
+// * Then shift the new value into place and write it into the register</p>
+<blockquote>
+<div><p>HWREGH(SPIA_BASE + SPI_O_CCR) &amp;= ~SPI_CCR_SPICHAR_M;
+HWREGH(SPIA_BASE + SPI_O_CCR) <a href="#id3"><span class="problematic" id="id4">|</span></a>= 8 &lt;&lt; SPI_CCR_SPICHAR_S;</p>
+</div></blockquote>
+<p>Extracting the value of the SPICHAR field in the CCR register
+is as follows:</p>
+<blockquote>
+<div><p>x = (HWREGH(SPIA_BASE + SPI_O_CCR) &amp; SPI_CCR_SPICHAR_M) &gt;&gt; SPI_CCR_SPICHAR_S;</p>
+</div></blockquote>
+</div>
+<div class="section" id="software-driver-model">
+<h2>Software Driver Model<a class="headerlink" href="#software-driver-model" title="Permalink to this headline">¶</a></h2>
+<p>In the software driver model, the API provided by the peripheral driver library
+is used by applications to control the peripherals.  Because these drivers
+provide complete control of the peripherals in their normal mode of operation,
+it is possible to write an entire application without direct access to the
+hardware.  This method provides for rapid development of the application
+without requiring detailed knowledge of the registers.</p>
+<p>The following function call programs the SPICHAR field of CCR
+register mentioned in the direct register access model as well as a few other
+fields and registers.</p>
+<blockquote>
+<div><p>SPI_setConfig(SPIA_BASE, 100000000, SPI_PROT_POL0PHA0,SPI_MODE_MASTER, 500000, 16);</p>
+</div></blockquote>
+<p>The drivers in the peripheral driver library are described in the remaining
+chapters in this document.  They combine to form the software driver model.</p>
+</div>
+<div class="section" id="combining-the-models">
+<h2>Combining The Models<a class="headerlink" href="#combining-the-models" title="Permalink to this headline">¶</a></h2>
+<p>The direct register access model and software driver model can be used together
+in a single application, allowing the most appropriate model to be applied as
+needed to any particular situation within the application.  For example, the
+software driver model can be used to configure the peripherals (because this is
+not performance critical) and the direct register access model can be used for
+operation of the peripheral (which may be more performance critical).  Or, the
+software driver model can be used for peripherals that are not performance
+critical (such as SCI used for data logging) and the direct register access
+model for performance critical peripherals.</p>
+<p>Additionally, the direct register access model can be used when there is no
+suitable driver library API for the desired task. Although an API may be available
+that performs a specific function on an individual bit or register, it could be
+more beneficial to use the direct register access programming model when
+performing tasks on entire registers or multiple bits at a given time.
+However, if there is an API available for the intended task it should be used
+as it will provide for more rapid development of the application without going
+into depth on programming the peripherals.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="intro.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="usage.html" class="btn btn-neutral float-right" title="Driver Library Usage" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,1727 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>EQEP Module &mdash; F2837xd API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F2837xd API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="FLASH Module" href="flash.html"/>
+        <link rel="prev" title="HRPWM Module" href="hrpwm.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F2837xd API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="adc.html">ADC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asysctl.html">ASysCtl Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla.html">CLA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clb.html">CLB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmpss.html">CMPSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dac.html">DAC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dma.html">DMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ecap.html">ECAP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emif.html">EMIF Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="epwm.html">EPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hrpwm.html">HRPWM Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">EQEP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcbsp.html">MCBSP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci.html">SCI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdfm.html">SDFM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">SPI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upp.html">UPP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version.html">Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xbar.html">XBAR Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F2837xd API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>EQEP Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="eqep-module">
+<span id="eqep"></span><h1>EQEP Module<a class="headerlink" href="#eqep-module" title="Permalink to this headline">¶</a></h1>
+<p>The enhanced quadrature encoder pulse (eQEP) API provides a set of functions to
+configure an interface to an encoder. The functions provide the ability to
+configure the device’s eQEP module to properly decode incoming pulse signals,
+to configure module outputs, and to get direction, position, and speed
+information. There are also APIs to setup the possible interrupt events that
+the module can generate.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__eqep__api"></span><em>group</em> <code class="sig-name descname">eqep_api</code></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.EQEP_CONFIG_QUADRATURE">
+<span class="target" id="group__eqep__api_1ga06a1dfb9bb738e28c380b1b252cecaac"></span><code class="sig-name descname">EQEP_CONFIG_QUADRATURE</code> 0x0000U<a class="headerlink" href="#c.EQEP_CONFIG_QUADRATURE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Quadrature-clock mode. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_CONFIG_CLOCK_DIR">
+<span class="target" id="group__eqep__api_1gaac74d64ff17154c73829fe8063d71760"></span><code class="sig-name descname">EQEP_CONFIG_CLOCK_DIR</code> 0x4000U<a class="headerlink" href="#c.EQEP_CONFIG_CLOCK_DIR" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Direction-count mode. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_CONFIG_UP_COUNT">
+<span class="target" id="group__eqep__api_1gad3b2ab72eae292bddeb1a31cd50aebd4"></span><code class="sig-name descname">EQEP_CONFIG_UP_COUNT</code> 0x8000U<a class="headerlink" href="#c.EQEP_CONFIG_UP_COUNT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Up-count mode, QDIR = 1. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_CONFIG_DOWN_COUNT">
+<span class="target" id="group__eqep__api_1ga87becf509624c77afa90b8c654480084"></span><code class="sig-name descname">EQEP_CONFIG_DOWN_COUNT</code> 0xC000U<a class="headerlink" href="#c.EQEP_CONFIG_DOWN_COUNT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Down-count mode, QDIR = 0. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_CONFIG_2X_RESOLUTION">
+<span class="target" id="group__eqep__api_1ga92bf5742c11594580cf5a06b53506445"></span><code class="sig-name descname">EQEP_CONFIG_2X_RESOLUTION</code> 0x0000U<a class="headerlink" href="#c.EQEP_CONFIG_2X_RESOLUTION" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Count rising and falling edge. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_CONFIG_1X_RESOLUTION">
+<span class="target" id="group__eqep__api_1gace6eacaf8731c212937269360c20de07"></span><code class="sig-name descname">EQEP_CONFIG_1X_RESOLUTION</code> 0x0800U<a class="headerlink" href="#c.EQEP_CONFIG_1X_RESOLUTION" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Count rising edge only. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_CONFIG_NO_SWAP">
+<span class="target" id="group__eqep__api_1gae6e8b01df1b88620e0ba79b9be751682"></span><code class="sig-name descname">EQEP_CONFIG_NO_SWAP</code> 0x0000U<a class="headerlink" href="#c.EQEP_CONFIG_NO_SWAP" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Do not swap QEPA and QEPB. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_CONFIG_SWAP">
+<span class="target" id="group__eqep__api_1gad36204dbbb3ba201f122f1e741deafbb"></span><code class="sig-name descname">EQEP_CONFIG_SWAP</code> 0x0400U<a class="headerlink" href="#c.EQEP_CONFIG_SWAP" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Swap QEPA and QEPB. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_CONFIG_IGATE_DISABLE">
+<span class="target" id="group__eqep__api_1gad05604cf5d479a42b0914b6163c5ee33"></span><code class="sig-name descname">EQEP_CONFIG_IGATE_DISABLE</code> 0x0000U<a class="headerlink" href="#c.EQEP_CONFIG_IGATE_DISABLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable gating of Index pulse. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_CONFIG_IGATE_ENABLE">
+<span class="target" id="group__eqep__api_1gaa93612db69a97bf404913dfedb6f5397"></span><code class="sig-name descname">EQEP_CONFIG_IGATE_ENABLE</code> 0x0200U<a class="headerlink" href="#c.EQEP_CONFIG_IGATE_ENABLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gate the index pin with strobe. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_COMPARE_NO_SYNC_OUT">
+<span class="target" id="group__eqep__api_1ga491cdfbfe78402c9350fac55a7227dfb"></span><code class="sig-name descname">EQEP_COMPARE_NO_SYNC_OUT</code> 0x0000U<a class="headerlink" href="#c.EQEP_COMPARE_NO_SYNC_OUT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable sync output. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_COMPARE_IDX_SYNC_OUT">
+<span class="target" id="group__eqep__api_1gadec3038f4d3b85abec37fa41764a81a8"></span><code class="sig-name descname">EQEP_COMPARE_IDX_SYNC_OUT</code> 0x2000U<a class="headerlink" href="#c.EQEP_COMPARE_IDX_SYNC_OUT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sync output on index pin. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_COMPARE_STROBE_SYNC_OUT">
+<span class="target" id="group__eqep__api_1ga14be285d6e139588cf4315889a6b2935"></span><code class="sig-name descname">EQEP_COMPARE_STROBE_SYNC_OUT</code> 0x3000U<a class="headerlink" href="#c.EQEP_COMPARE_STROBE_SYNC_OUT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sync output on strobe pin. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_COMPARE_NO_SHADOW">
+<span class="target" id="group__eqep__api_1gab7a264ea0011fc79cfdab47e29050cab"></span><code class="sig-name descname">EQEP_COMPARE_NO_SHADOW</code> 0x0000U<a class="headerlink" href="#c.EQEP_COMPARE_NO_SHADOW" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable shadow of QPOSCMP. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_COMPARE_LOAD_ON_ZERO">
+<span class="target" id="group__eqep__api_1ga98a073f90226a6dbc9624bc3779471f4"></span><code class="sig-name descname">EQEP_COMPARE_LOAD_ON_ZERO</code> 0x8000U<a class="headerlink" href="#c.EQEP_COMPARE_LOAD_ON_ZERO" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Load on QPOSCNT = 0. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_COMPARE_LOAD_ON_MATCH">
+<span class="target" id="group__eqep__api_1gacbc6eb43dbd510c35636155744a8b2f0"></span><code class="sig-name descname">EQEP_COMPARE_LOAD_ON_MATCH</code> 0xC000U<a class="headerlink" href="#c.EQEP_COMPARE_LOAD_ON_MATCH" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Load on QPOSCNT = QPOSCMP. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_INT_GLOBAL">
+<span class="target" id="group__eqep__api_1gafb4d72a593351ce58f4c502509517c77"></span><code class="sig-name descname">EQEP_INT_GLOBAL</code> 0x0001U<a class="headerlink" href="#c.EQEP_INT_GLOBAL" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Global interrupt flag. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_INT_POS_CNT_ERROR">
+<span class="target" id="group__eqep__api_1gae2241ac024d06818885714b3665ec067"></span><code class="sig-name descname">EQEP_INT_POS_CNT_ERROR</code> 0x0002U<a class="headerlink" href="#c.EQEP_INT_POS_CNT_ERROR" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Position counter error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_INT_PHASE_ERROR">
+<span class="target" id="group__eqep__api_1ga2e4c0b607970f908e9328426180e3dbd"></span><code class="sig-name descname">EQEP_INT_PHASE_ERROR</code> 0x0004U<a class="headerlink" href="#c.EQEP_INT_PHASE_ERROR" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Quadrature phase error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_INT_DIR_CHANGE">
+<span class="target" id="group__eqep__api_1gacc660346f799ebae82fcf2186ed48cef"></span><code class="sig-name descname">EQEP_INT_DIR_CHANGE</code> 0x0008U<a class="headerlink" href="#c.EQEP_INT_DIR_CHANGE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Quadrature direction change. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_INT_WATCHDOG">
+<span class="target" id="group__eqep__api_1gaa282d346aa69480bbd99cbeec2909467"></span><code class="sig-name descname">EQEP_INT_WATCHDOG</code> 0x0010U<a class="headerlink" href="#c.EQEP_INT_WATCHDOG" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Watchdog time-out. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_INT_UNDERFLOW">
+<span class="target" id="group__eqep__api_1ga50c34e6d8a17f072edf288e484a06937"></span><code class="sig-name descname">EQEP_INT_UNDERFLOW</code> 0x0020U<a class="headerlink" href="#c.EQEP_INT_UNDERFLOW" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Position counter underflow. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_INT_OVERFLOW">
+<span class="target" id="group__eqep__api_1gac9b1f1a3e68938688dfe473a7efd33b3"></span><code class="sig-name descname">EQEP_INT_OVERFLOW</code> 0x0040U<a class="headerlink" href="#c.EQEP_INT_OVERFLOW" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Position counter overflow. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_INT_POS_COMP_READY">
+<span class="target" id="group__eqep__api_1ga7592455507882733828681193ab17fa7"></span><code class="sig-name descname">EQEP_INT_POS_COMP_READY</code> 0x0080U<a class="headerlink" href="#c.EQEP_INT_POS_COMP_READY" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Position-compare ready. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_INT_POS_COMP_MATCH">
+<span class="target" id="group__eqep__api_1gad91945dfa5dd3a26fd0fb7d6f36de435"></span><code class="sig-name descname">EQEP_INT_POS_COMP_MATCH</code> 0x0100U<a class="headerlink" href="#c.EQEP_INT_POS_COMP_MATCH" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Position-compare match. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_INT_STROBE_EVNT_LATCH">
+<span class="target" id="group__eqep__api_1ga92a962027b2e47b8a65841c6d107428e"></span><code class="sig-name descname">EQEP_INT_STROBE_EVNT_LATCH</code> 0x0200U<a class="headerlink" href="#c.EQEP_INT_STROBE_EVNT_LATCH" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Strobe event latch. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_INT_INDEX_EVNT_LATCH">
+<span class="target" id="group__eqep__api_1ga2691109a16737ee55d56447f79e26fe2"></span><code class="sig-name descname">EQEP_INT_INDEX_EVNT_LATCH</code> 0x0400U<a class="headerlink" href="#c.EQEP_INT_INDEX_EVNT_LATCH" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Index event latch. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_INT_UNIT_TIME_OUT">
+<span class="target" id="group__eqep__api_1ga9841365ddb3ce855aeb6781e55f10d4f"></span><code class="sig-name descname">EQEP_INT_UNIT_TIME_OUT</code> 0x0800U<a class="headerlink" href="#c.EQEP_INT_UNIT_TIME_OUT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Unit time-out. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_STS_UNIT_POS_EVNT">
+<span class="target" id="group__eqep__api_1ga219add3fb5ae0c13308ff1c5333946cb"></span><code class="sig-name descname">EQEP_STS_UNIT_POS_EVNT</code> 0x0080U<a class="headerlink" href="#c.EQEP_STS_UNIT_POS_EVNT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Unit position event detected. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_STS_DIR_ON_1ST_IDX">
+<span class="target" id="group__eqep__api_1ga0f7edb03875c1e2289cb1f90cd6181c4"></span><code class="sig-name descname">EQEP_STS_DIR_ON_1ST_IDX</code> 0x0040U<a class="headerlink" href="#c.EQEP_STS_DIR_ON_1ST_IDX" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Direction was clockwise on first index event. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_STS_DIR_FLAG">
+<span class="target" id="group__eqep__api_1ga57ce9437cfd844a871af657b98add53f"></span><code class="sig-name descname">EQEP_STS_DIR_FLAG</code> 0x0020U<a class="headerlink" href="#c.EQEP_STS_DIR_FLAG" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Direction is CW (forward) </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_STS_DIR_LATCH">
+<span class="target" id="group__eqep__api_1ga219eff4a9ccf8326efe2824ad5171a31"></span><code class="sig-name descname">EQEP_STS_DIR_LATCH</code> 0x0010U<a class="headerlink" href="#c.EQEP_STS_DIR_LATCH" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Direction was CW on index. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_STS_CAP_OVRFLW_ERROR">
+<span class="target" id="group__eqep__api_1gac7346cc47f343f0717517b3bffbedc17"></span><code class="sig-name descname">EQEP_STS_CAP_OVRFLW_ERROR</code> 0x0008U<a class="headerlink" href="#c.EQEP_STS_CAP_OVRFLW_ERROR" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Capture timer overflow. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_STS_CAP_DIR_ERROR">
+<span class="target" id="group__eqep__api_1gaae4ae137605354b7b528f686f9e9ca0b"></span><code class="sig-name descname">EQEP_STS_CAP_DIR_ERROR</code> 0x0004U<a class="headerlink" href="#c.EQEP_STS_CAP_DIR_ERROR" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Direction changed between position capture events. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_STS_1ST_IDX_FLAG">
+<span class="target" id="group__eqep__api_1ga17bb62e70645e005a29f645ed29c2bd2"></span><code class="sig-name descname">EQEP_STS_1ST_IDX_FLAG</code> 0x0002U<a class="headerlink" href="#c.EQEP_STS_1ST_IDX_FLAG" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>First index pulse occurred. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_STS_POS_CNT_ERROR">
+<span class="target" id="group__eqep__api_1gac3fb4dcfa5768a317caf53caa90c8795"></span><code class="sig-name descname">EQEP_STS_POS_CNT_ERROR</code> 0x0001U<a class="headerlink" href="#c.EQEP_STS_POS_CNT_ERROR" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Position counter error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_LATCH_CNT_READ_BY_CPU">
+<span class="target" id="group__eqep__api_1gae4d172d03e542618f6eb83e63a3f5e0a"></span><code class="sig-name descname">EQEP_LATCH_CNT_READ_BY_CPU</code> 0x0000U<a class="headerlink" href="#c.EQEP_LATCH_CNT_READ_BY_CPU" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>On position counter read. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_LATCH_UNIT_TIME_OUT">
+<span class="target" id="group__eqep__api_1gaae2720e92123830a97d15f50da10af2b"></span><code class="sig-name descname">EQEP_LATCH_UNIT_TIME_OUT</code> 0x0004U<a class="headerlink" href="#c.EQEP_LATCH_UNIT_TIME_OUT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>On unit time-out event. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_LATCH_RISING_STROBE">
+<span class="target" id="group__eqep__api_1gad7de34d73c83b353e0d13fad1c3610a0"></span><code class="sig-name descname">EQEP_LATCH_RISING_STROBE</code> 0x0000U<a class="headerlink" href="#c.EQEP_LATCH_RISING_STROBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>On rising edge of strobe. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_LATCH_EDGE_DIR_STROBE">
+<span class="target" id="group__eqep__api_1gaf396c8b64e253363ac4778d05d287fd1"></span><code class="sig-name descname">EQEP_LATCH_EDGE_DIR_STROBE</code> 0x0040U<a class="headerlink" href="#c.EQEP_LATCH_EDGE_DIR_STROBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>On rising edge when clockwise, on falling when counter clockwise. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_LATCH_RISING_INDEX">
+<span class="target" id="group__eqep__api_1ga2f447448b6dadf2d85a1d99bd9f09420"></span><code class="sig-name descname">EQEP_LATCH_RISING_INDEX</code> 0x0010U<a class="headerlink" href="#c.EQEP_LATCH_RISING_INDEX" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>On rising edge of index. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_LATCH_FALLING_INDEX">
+<span class="target" id="group__eqep__api_1gab9dbd9374a6a41602e8d0fafd5dba128"></span><code class="sig-name descname">EQEP_LATCH_FALLING_INDEX</code> 0x0020U<a class="headerlink" href="#c.EQEP_LATCH_FALLING_INDEX" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>On falling edge of index. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_LATCH_SW_INDEX_MARKER">
+<span class="target" id="group__eqep__api_1gabccb6ba1f58783f68b6a02323700a804"></span><code class="sig-name descname">EQEP_LATCH_SW_INDEX_MARKER</code> 0x0030U<a class="headerlink" href="#c.EQEP_LATCH_SW_INDEX_MARKER" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>On software index marker. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_INIT_DO_NOTHING">
+<span class="target" id="group__eqep__api_1ga6a713657fcffe8371ea1866c9671414c"></span><code class="sig-name descname">EQEP_INIT_DO_NOTHING</code> 0x0000U<a class="headerlink" href="#c.EQEP_INIT_DO_NOTHING" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Action is disabled. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_INIT_RISING_STROBE">
+<span class="target" id="group__eqep__api_1ga96a23478757f3f4456a72cb373f9c0f8"></span><code class="sig-name descname">EQEP_INIT_RISING_STROBE</code> 0x0800U<a class="headerlink" href="#c.EQEP_INIT_RISING_STROBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>On rising edge of strobe. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_INIT_EDGE_DIR_STROBE">
+<span class="target" id="group__eqep__api_1ga3664028f11634ef8692c1959256f66ce"></span><code class="sig-name descname">EQEP_INIT_EDGE_DIR_STROBE</code> 0x0C00U<a class="headerlink" href="#c.EQEP_INIT_EDGE_DIR_STROBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>On rising edge when clockwise, on falling when counter clockwise. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_INIT_RISING_INDEX">
+<span class="target" id="group__eqep__api_1gaa5c8be8d304e87d24b3b6b656d39e5a5"></span><code class="sig-name descname">EQEP_INIT_RISING_INDEX</code> 0x0200U<a class="headerlink" href="#c.EQEP_INIT_RISING_INDEX" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>On rising edge of index. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EQEP_INIT_FALLING_INDEX">
+<span class="target" id="group__eqep__api_1ga63dcf477643364154405c4e4cf73ceb9"></span><code class="sig-name descname">EQEP_INIT_FALLING_INDEX</code> 0x0300U<a class="headerlink" href="#c.EQEP_INIT_FALLING_INDEX" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>On falling edge of index. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="cpp enum">
+<dt id="_CPPv422EQEP_PositionResetMode">
+<span id="_CPPv322EQEP_PositionResetMode"></span><span id="_CPPv222EQEP_PositionResetMode"></span><span class="target" id="group__eqep__api_1gaf3573c2969413508df1a45272dcd299a"></span><em class="property">enum </em><code class="sig-name descname">EQEP_PositionResetMode</code><a class="headerlink" href="#_CPPv422EQEP_PositionResetMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__eqep__api_1ga696c6d0a7907439ddc3e1aad2b03b500"><span class="std std-ref">EQEP_setPositionCounterConfig()</span></a> as the <em>mode</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22EQEP_PositionResetMode23EQEP_POSITION_RESET_IDXE">
+<span id="_CPPv3N22EQEP_PositionResetMode23EQEP_POSITION_RESET_IDXE"></span><span id="_CPPv2N22EQEP_PositionResetMode23EQEP_POSITION_RESET_IDXE"></span><span class="target" id="group__eqep__api_1ggaf3573c2969413508df1a45272dcd299aaec22ce0da25fced042f227a7842a0975"></span><em class="property">enumerator </em><code class="sig-name descname">EQEP_POSITION_RESET_IDX</code> = 0x0000<a class="headerlink" href="#_CPPv4N22EQEP_PositionResetMode23EQEP_POSITION_RESET_IDXE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reset position on index pulse. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22EQEP_PositionResetMode27EQEP_POSITION_RESET_MAX_POSE">
+<span id="_CPPv3N22EQEP_PositionResetMode27EQEP_POSITION_RESET_MAX_POSE"></span><span id="_CPPv2N22EQEP_PositionResetMode27EQEP_POSITION_RESET_MAX_POSE"></span><span class="target" id="group__eqep__api_1ggaf3573c2969413508df1a45272dcd299aacca54610aa18978dab825649c37df40c"></span><em class="property">enumerator </em><code class="sig-name descname">EQEP_POSITION_RESET_MAX_POS</code> = 0x1000<a class="headerlink" href="#_CPPv4N22EQEP_PositionResetMode27EQEP_POSITION_RESET_MAX_POSE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reset position on maximum position. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22EQEP_PositionResetMode27EQEP_POSITION_RESET_1ST_IDXE">
+<span id="_CPPv3N22EQEP_PositionResetMode27EQEP_POSITION_RESET_1ST_IDXE"></span><span id="_CPPv2N22EQEP_PositionResetMode27EQEP_POSITION_RESET_1ST_IDXE"></span><span class="target" id="group__eqep__api_1ggaf3573c2969413508df1a45272dcd299aa9a0a40da5ec8f2d567fdcd669f17f4b8"></span><em class="property">enumerator </em><code class="sig-name descname">EQEP_POSITION_RESET_1ST_IDX</code> = 0x2000<a class="headerlink" href="#_CPPv4N22EQEP_PositionResetMode27EQEP_POSITION_RESET_1ST_IDXE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reset position on the first index pulse. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22EQEP_PositionResetMode33EQEP_POSITION_RESET_UNIT_TIME_OUTE">
+<span id="_CPPv3N22EQEP_PositionResetMode33EQEP_POSITION_RESET_UNIT_TIME_OUTE"></span><span id="_CPPv2N22EQEP_PositionResetMode33EQEP_POSITION_RESET_UNIT_TIME_OUTE"></span><span class="target" id="group__eqep__api_1ggaf3573c2969413508df1a45272dcd299aa8be01fb4e6743e0e15387176949acf90"></span><em class="property">enumerator </em><code class="sig-name descname">EQEP_POSITION_RESET_UNIT_TIME_OUT</code> = 0x3000<a class="headerlink" href="#_CPPv4N22EQEP_PositionResetMode33EQEP_POSITION_RESET_UNIT_TIME_OUTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reset position on a unit time event. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv419EQEP_CAPCLKPrescale">
+<span id="_CPPv319EQEP_CAPCLKPrescale"></span><span id="_CPPv219EQEP_CAPCLKPrescale"></span><span class="target" id="group__eqep__api_1ga2e04c0498d140cf387ec6ae8faa75bc1"></span><em class="property">enum </em><code class="sig-name descname">EQEP_CAPCLKPrescale</code><a class="headerlink" href="#_CPPv419EQEP_CAPCLKPrescale" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__eqep__api_1gab2b1786f80bfe40d31b6c7c126e88a86"><span class="std std-ref">EQEP_setCaptureConfig()</span></a> as the <em>capPrescale</em> parameter. CAPCLK is the capture timer clock frequency. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19EQEP_CAPCLKPrescale22EQEP_CAPTURE_CLK_DIV_1E">
+<span id="_CPPv3N19EQEP_CAPCLKPrescale22EQEP_CAPTURE_CLK_DIV_1E"></span><span id="_CPPv2N19EQEP_CAPCLKPrescale22EQEP_CAPTURE_CLK_DIV_1E"></span><span class="target" id="group__eqep__api_1gga2e04c0498d140cf387ec6ae8faa75bc1aa081a90e2a97906dd653e7f6f3af6aff"></span><em class="property">enumerator </em><code class="sig-name descname">EQEP_CAPTURE_CLK_DIV_1</code> = 0x00<a class="headerlink" href="#_CPPv4N19EQEP_CAPCLKPrescale22EQEP_CAPTURE_CLK_DIV_1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CAPCLK = SYSCLKOUT/1. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19EQEP_CAPCLKPrescale22EQEP_CAPTURE_CLK_DIV_2E">
+<span id="_CPPv3N19EQEP_CAPCLKPrescale22EQEP_CAPTURE_CLK_DIV_2E"></span><span id="_CPPv2N19EQEP_CAPCLKPrescale22EQEP_CAPTURE_CLK_DIV_2E"></span><span class="target" id="group__eqep__api_1gga2e04c0498d140cf387ec6ae8faa75bc1a1d303dc00e63dc7d52e62665c54c703d"></span><em class="property">enumerator </em><code class="sig-name descname">EQEP_CAPTURE_CLK_DIV_2</code> = 0x10<a class="headerlink" href="#_CPPv4N19EQEP_CAPCLKPrescale22EQEP_CAPTURE_CLK_DIV_2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CAPCLK = SYSCLKOUT/2. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19EQEP_CAPCLKPrescale22EQEP_CAPTURE_CLK_DIV_4E">
+<span id="_CPPv3N19EQEP_CAPCLKPrescale22EQEP_CAPTURE_CLK_DIV_4E"></span><span id="_CPPv2N19EQEP_CAPCLKPrescale22EQEP_CAPTURE_CLK_DIV_4E"></span><span class="target" id="group__eqep__api_1gga2e04c0498d140cf387ec6ae8faa75bc1a0b9e9febfe566db25b3f689906bafcfd"></span><em class="property">enumerator </em><code class="sig-name descname">EQEP_CAPTURE_CLK_DIV_4</code> = 0x20<a class="headerlink" href="#_CPPv4N19EQEP_CAPCLKPrescale22EQEP_CAPTURE_CLK_DIV_4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CAPCLK = SYSCLKOUT/4. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19EQEP_CAPCLKPrescale22EQEP_CAPTURE_CLK_DIV_8E">
+<span id="_CPPv3N19EQEP_CAPCLKPrescale22EQEP_CAPTURE_CLK_DIV_8E"></span><span id="_CPPv2N19EQEP_CAPCLKPrescale22EQEP_CAPTURE_CLK_DIV_8E"></span><span class="target" id="group__eqep__api_1gga2e04c0498d140cf387ec6ae8faa75bc1ac399eee146c48306ae0920eac0f2cf12"></span><em class="property">enumerator </em><code class="sig-name descname">EQEP_CAPTURE_CLK_DIV_8</code> = 0x30<a class="headerlink" href="#_CPPv4N19EQEP_CAPCLKPrescale22EQEP_CAPTURE_CLK_DIV_8E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CAPCLK = SYSCLKOUT/8. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19EQEP_CAPCLKPrescale23EQEP_CAPTURE_CLK_DIV_16E">
+<span id="_CPPv3N19EQEP_CAPCLKPrescale23EQEP_CAPTURE_CLK_DIV_16E"></span><span id="_CPPv2N19EQEP_CAPCLKPrescale23EQEP_CAPTURE_CLK_DIV_16E"></span><span class="target" id="group__eqep__api_1gga2e04c0498d140cf387ec6ae8faa75bc1a5e7b558655786e5eb5094ba76878a0b4"></span><em class="property">enumerator </em><code class="sig-name descname">EQEP_CAPTURE_CLK_DIV_16</code> = 0x40<a class="headerlink" href="#_CPPv4N19EQEP_CAPCLKPrescale23EQEP_CAPTURE_CLK_DIV_16E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CAPCLK = SYSCLKOUT/16. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19EQEP_CAPCLKPrescale23EQEP_CAPTURE_CLK_DIV_32E">
+<span id="_CPPv3N19EQEP_CAPCLKPrescale23EQEP_CAPTURE_CLK_DIV_32E"></span><span id="_CPPv2N19EQEP_CAPCLKPrescale23EQEP_CAPTURE_CLK_DIV_32E"></span><span class="target" id="group__eqep__api_1gga2e04c0498d140cf387ec6ae8faa75bc1a7ac6ae576c80c960574ac3f896d406b5"></span><em class="property">enumerator </em><code class="sig-name descname">EQEP_CAPTURE_CLK_DIV_32</code> = 0x50<a class="headerlink" href="#_CPPv4N19EQEP_CAPCLKPrescale23EQEP_CAPTURE_CLK_DIV_32E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CAPCLK = SYSCLKOUT/32. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19EQEP_CAPCLKPrescale23EQEP_CAPTURE_CLK_DIV_64E">
+<span id="_CPPv3N19EQEP_CAPCLKPrescale23EQEP_CAPTURE_CLK_DIV_64E"></span><span id="_CPPv2N19EQEP_CAPCLKPrescale23EQEP_CAPTURE_CLK_DIV_64E"></span><span class="target" id="group__eqep__api_1gga2e04c0498d140cf387ec6ae8faa75bc1ac2218dfd4b41be308f2447536712b7fc"></span><em class="property">enumerator </em><code class="sig-name descname">EQEP_CAPTURE_CLK_DIV_64</code> = 0x60<a class="headerlink" href="#_CPPv4N19EQEP_CAPCLKPrescale23EQEP_CAPTURE_CLK_DIV_64E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CAPCLK = SYSCLKOUT/64. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19EQEP_CAPCLKPrescale24EQEP_CAPTURE_CLK_DIV_128E">
+<span id="_CPPv3N19EQEP_CAPCLKPrescale24EQEP_CAPTURE_CLK_DIV_128E"></span><span id="_CPPv2N19EQEP_CAPCLKPrescale24EQEP_CAPTURE_CLK_DIV_128E"></span><span class="target" id="group__eqep__api_1gga2e04c0498d140cf387ec6ae8faa75bc1a1d901bc10ebf684609bd5395f92e0257"></span><em class="property">enumerator </em><code class="sig-name descname">EQEP_CAPTURE_CLK_DIV_128</code> = 0x70<a class="headerlink" href="#_CPPv4N19EQEP_CAPCLKPrescale24EQEP_CAPTURE_CLK_DIV_128E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CAPCLK = SYSCLKOUT/128. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv419EQEP_UPEVNTPrescale">
+<span id="_CPPv319EQEP_UPEVNTPrescale"></span><span id="_CPPv219EQEP_UPEVNTPrescale"></span><span class="target" id="group__eqep__api_1gac389cd58696ad8a131ac771c05c2ce41"></span><em class="property">enum </em><code class="sig-name descname">EQEP_UPEVNTPrescale</code><a class="headerlink" href="#_CPPv419EQEP_UPEVNTPrescale" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__eqep__api_1gab2b1786f80bfe40d31b6c7c126e88a86"><span class="std std-ref">EQEP_setCaptureConfig()</span></a> as the <em>evntPrescale</em> parameter. UPEVNT is the unit position event frequency. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19EQEP_UPEVNTPrescale24EQEP_UNIT_POS_EVNT_DIV_1E">
+<span id="_CPPv3N19EQEP_UPEVNTPrescale24EQEP_UNIT_POS_EVNT_DIV_1E"></span><span id="_CPPv2N19EQEP_UPEVNTPrescale24EQEP_UNIT_POS_EVNT_DIV_1E"></span><span class="target" id="group__eqep__api_1ggac389cd58696ad8a131ac771c05c2ce41a33a2e6fa6be68da99feaf242d885d7a5"></span><em class="property">enumerator </em><code class="sig-name descname">EQEP_UNIT_POS_EVNT_DIV_1</code><a class="headerlink" href="#_CPPv4N19EQEP_UPEVNTPrescale24EQEP_UNIT_POS_EVNT_DIV_1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>UPEVNT = QCLK/1. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19EQEP_UPEVNTPrescale24EQEP_UNIT_POS_EVNT_DIV_2E">
+<span id="_CPPv3N19EQEP_UPEVNTPrescale24EQEP_UNIT_POS_EVNT_DIV_2E"></span><span id="_CPPv2N19EQEP_UPEVNTPrescale24EQEP_UNIT_POS_EVNT_DIV_2E"></span><span class="target" id="group__eqep__api_1ggac389cd58696ad8a131ac771c05c2ce41ab201900100ebdc69cdf236c596b5b371"></span><em class="property">enumerator </em><code class="sig-name descname">EQEP_UNIT_POS_EVNT_DIV_2</code><a class="headerlink" href="#_CPPv4N19EQEP_UPEVNTPrescale24EQEP_UNIT_POS_EVNT_DIV_2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>UPEVNT = QCLK/2. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19EQEP_UPEVNTPrescale24EQEP_UNIT_POS_EVNT_DIV_4E">
+<span id="_CPPv3N19EQEP_UPEVNTPrescale24EQEP_UNIT_POS_EVNT_DIV_4E"></span><span id="_CPPv2N19EQEP_UPEVNTPrescale24EQEP_UNIT_POS_EVNT_DIV_4E"></span><span class="target" id="group__eqep__api_1ggac389cd58696ad8a131ac771c05c2ce41a93129f19d3b2c3672514632f14f07ecf"></span><em class="property">enumerator </em><code class="sig-name descname">EQEP_UNIT_POS_EVNT_DIV_4</code><a class="headerlink" href="#_CPPv4N19EQEP_UPEVNTPrescale24EQEP_UNIT_POS_EVNT_DIV_4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>UPEVNT = QCLK/4. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19EQEP_UPEVNTPrescale24EQEP_UNIT_POS_EVNT_DIV_8E">
+<span id="_CPPv3N19EQEP_UPEVNTPrescale24EQEP_UNIT_POS_EVNT_DIV_8E"></span><span id="_CPPv2N19EQEP_UPEVNTPrescale24EQEP_UNIT_POS_EVNT_DIV_8E"></span><span class="target" id="group__eqep__api_1ggac389cd58696ad8a131ac771c05c2ce41a56cc134d5ef7336d498dbe0ceecd5e6d"></span><em class="property">enumerator </em><code class="sig-name descname">EQEP_UNIT_POS_EVNT_DIV_8</code><a class="headerlink" href="#_CPPv4N19EQEP_UPEVNTPrescale24EQEP_UNIT_POS_EVNT_DIV_8E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>UPEVNT = QCLK/8. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19EQEP_UPEVNTPrescale25EQEP_UNIT_POS_EVNT_DIV_16E">
+<span id="_CPPv3N19EQEP_UPEVNTPrescale25EQEP_UNIT_POS_EVNT_DIV_16E"></span><span id="_CPPv2N19EQEP_UPEVNTPrescale25EQEP_UNIT_POS_EVNT_DIV_16E"></span><span class="target" id="group__eqep__api_1ggac389cd58696ad8a131ac771c05c2ce41ab4430e043dd293b5f0e0e45caa68874d"></span><em class="property">enumerator </em><code class="sig-name descname">EQEP_UNIT_POS_EVNT_DIV_16</code><a class="headerlink" href="#_CPPv4N19EQEP_UPEVNTPrescale25EQEP_UNIT_POS_EVNT_DIV_16E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>UPEVNT = QCLK/16. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19EQEP_UPEVNTPrescale25EQEP_UNIT_POS_EVNT_DIV_32E">
+<span id="_CPPv3N19EQEP_UPEVNTPrescale25EQEP_UNIT_POS_EVNT_DIV_32E"></span><span id="_CPPv2N19EQEP_UPEVNTPrescale25EQEP_UNIT_POS_EVNT_DIV_32E"></span><span class="target" id="group__eqep__api_1ggac389cd58696ad8a131ac771c05c2ce41a2b1192a1635b593258557ffbe670a654"></span><em class="property">enumerator </em><code class="sig-name descname">EQEP_UNIT_POS_EVNT_DIV_32</code><a class="headerlink" href="#_CPPv4N19EQEP_UPEVNTPrescale25EQEP_UNIT_POS_EVNT_DIV_32E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>UPEVNT = QCLK/32. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19EQEP_UPEVNTPrescale25EQEP_UNIT_POS_EVNT_DIV_64E">
+<span id="_CPPv3N19EQEP_UPEVNTPrescale25EQEP_UNIT_POS_EVNT_DIV_64E"></span><span id="_CPPv2N19EQEP_UPEVNTPrescale25EQEP_UNIT_POS_EVNT_DIV_64E"></span><span class="target" id="group__eqep__api_1ggac389cd58696ad8a131ac771c05c2ce41aa47daf7f8ba1ecf9a191ba219833f0d0"></span><em class="property">enumerator </em><code class="sig-name descname">EQEP_UNIT_POS_EVNT_DIV_64</code><a class="headerlink" href="#_CPPv4N19EQEP_UPEVNTPrescale25EQEP_UNIT_POS_EVNT_DIV_64E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>UPEVNT = QCLK/64. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19EQEP_UPEVNTPrescale26EQEP_UNIT_POS_EVNT_DIV_128E">
+<span id="_CPPv3N19EQEP_UPEVNTPrescale26EQEP_UNIT_POS_EVNT_DIV_128E"></span><span id="_CPPv2N19EQEP_UPEVNTPrescale26EQEP_UNIT_POS_EVNT_DIV_128E"></span><span class="target" id="group__eqep__api_1ggac389cd58696ad8a131ac771c05c2ce41aa108063ed31464b77fb9a323cdfb55e3"></span><em class="property">enumerator </em><code class="sig-name descname">EQEP_UNIT_POS_EVNT_DIV_128</code><a class="headerlink" href="#_CPPv4N19EQEP_UPEVNTPrescale26EQEP_UNIT_POS_EVNT_DIV_128E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>UPEVNT = QCLK/128. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19EQEP_UPEVNTPrescale26EQEP_UNIT_POS_EVNT_DIV_256E">
+<span id="_CPPv3N19EQEP_UPEVNTPrescale26EQEP_UNIT_POS_EVNT_DIV_256E"></span><span id="_CPPv2N19EQEP_UPEVNTPrescale26EQEP_UNIT_POS_EVNT_DIV_256E"></span><span class="target" id="group__eqep__api_1ggac389cd58696ad8a131ac771c05c2ce41ac879545a7ae1cf81d9a1b5bedf856289"></span><em class="property">enumerator </em><code class="sig-name descname">EQEP_UNIT_POS_EVNT_DIV_256</code><a class="headerlink" href="#_CPPv4N19EQEP_UPEVNTPrescale26EQEP_UNIT_POS_EVNT_DIV_256E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>UPEVNT = QCLK/256. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19EQEP_UPEVNTPrescale26EQEP_UNIT_POS_EVNT_DIV_512E">
+<span id="_CPPv3N19EQEP_UPEVNTPrescale26EQEP_UNIT_POS_EVNT_DIV_512E"></span><span id="_CPPv2N19EQEP_UPEVNTPrescale26EQEP_UNIT_POS_EVNT_DIV_512E"></span><span class="target" id="group__eqep__api_1ggac389cd58696ad8a131ac771c05c2ce41a90f439d9fa67eb69947b6036d8dbc9b2"></span><em class="property">enumerator </em><code class="sig-name descname">EQEP_UNIT_POS_EVNT_DIV_512</code><a class="headerlink" href="#_CPPv4N19EQEP_UPEVNTPrescale26EQEP_UNIT_POS_EVNT_DIV_512E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>UPEVNT = QCLK/512. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19EQEP_UPEVNTPrescale27EQEP_UNIT_POS_EVNT_DIV_1024E">
+<span id="_CPPv3N19EQEP_UPEVNTPrescale27EQEP_UNIT_POS_EVNT_DIV_1024E"></span><span id="_CPPv2N19EQEP_UPEVNTPrescale27EQEP_UNIT_POS_EVNT_DIV_1024E"></span><span class="target" id="group__eqep__api_1ggac389cd58696ad8a131ac771c05c2ce41a5a466d7e06fdd017532b97c06373d5d2"></span><em class="property">enumerator </em><code class="sig-name descname">EQEP_UNIT_POS_EVNT_DIV_1024</code><a class="headerlink" href="#_CPPv4N19EQEP_UPEVNTPrescale27EQEP_UNIT_POS_EVNT_DIV_1024E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>UPEVNT = QCLK/1024. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19EQEP_UPEVNTPrescale27EQEP_UNIT_POS_EVNT_DIV_2048E">
+<span id="_CPPv3N19EQEP_UPEVNTPrescale27EQEP_UNIT_POS_EVNT_DIV_2048E"></span><span id="_CPPv2N19EQEP_UPEVNTPrescale27EQEP_UNIT_POS_EVNT_DIV_2048E"></span><span class="target" id="group__eqep__api_1ggac389cd58696ad8a131ac771c05c2ce41a27c5cee51ab363aef1ddb535b03db197"></span><em class="property">enumerator </em><code class="sig-name descname">EQEP_UNIT_POS_EVNT_DIV_2048</code><a class="headerlink" href="#_CPPv4N19EQEP_UPEVNTPrescale27EQEP_UNIT_POS_EVNT_DIV_2048E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>UPEVNT = QCLK/2048. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv418EQEP_EmulationMode">
+<span id="_CPPv318EQEP_EmulationMode"></span><span id="_CPPv218EQEP_EmulationMode"></span><span class="target" id="group__eqep__api_1ga1a29cdf5b9ee72eeb0befcb3b1255842"></span><em class="property">enum </em><code class="sig-name descname">EQEP_EmulationMode</code><a class="headerlink" href="#_CPPv418EQEP_EmulationMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__eqep__api_1ga978db2221b196b54f478c553981ad442"><span class="std std-ref">EQEP_setEmulationMode()</span></a> as the <em>emuMode</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18EQEP_EmulationMode34EQEP_EMULATIONMODE_STOPIMMEDIATELYE">
+<span id="_CPPv3N18EQEP_EmulationMode34EQEP_EMULATIONMODE_STOPIMMEDIATELYE"></span><span id="_CPPv2N18EQEP_EmulationMode34EQEP_EMULATIONMODE_STOPIMMEDIATELYE"></span><span class="target" id="group__eqep__api_1gga1a29cdf5b9ee72eeb0befcb3b1255842a1816971ae42ef1163a87b57c0a7fa530"></span><em class="property">enumerator </em><code class="sig-name descname">EQEP_EMULATIONMODE_STOPIMMEDIATELY</code><a class="headerlink" href="#_CPPv4N18EQEP_EmulationMode34EQEP_EMULATIONMODE_STOPIMMEDIATELYE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Counters stop immediately. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18EQEP_EmulationMode33EQEP_EMULATIONMODE_STOPATROLLOVERE">
+<span id="_CPPv3N18EQEP_EmulationMode33EQEP_EMULATIONMODE_STOPATROLLOVERE"></span><span id="_CPPv2N18EQEP_EmulationMode33EQEP_EMULATIONMODE_STOPATROLLOVERE"></span><span class="target" id="group__eqep__api_1gga1a29cdf5b9ee72eeb0befcb3b1255842ac7fa4c3373dd5f1429fbd72c209052cb"></span><em class="property">enumerator </em><code class="sig-name descname">EQEP_EMULATIONMODE_STOPATROLLOVER</code><a class="headerlink" href="#_CPPv4N18EQEP_EmulationMode33EQEP_EMULATIONMODE_STOPATROLLOVERE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Counters stop at period rollover. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18EQEP_EmulationMode26EQEP_EMULATIONMODE_RUNFREEE">
+<span id="_CPPv3N18EQEP_EmulationMode26EQEP_EMULATIONMODE_RUNFREEE"></span><span id="_CPPv2N18EQEP_EmulationMode26EQEP_EMULATIONMODE_RUNFREEE"></span><span class="target" id="group__eqep__api_1gga1a29cdf5b9ee72eeb0befcb3b1255842a210fb7c32be207b01e6aa5ee403790e7"></span><em class="property">enumerator </em><code class="sig-name descname">EQEP_EMULATIONMODE_RUNFREE</code><a class="headerlink" href="#_CPPv4N18EQEP_EmulationMode26EQEP_EMULATIONMODE_RUNFREEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Counter unaffected by suspend. </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv417EQEP_enableModule8uint32_t">
+<span id="_CPPv317EQEP_enableModule8uint32_t"></span><span id="_CPPv217EQEP_enableModule8uint32_t"></span><span id="EQEP_enableModule__uint32_t"></span><span class="target" id="group__eqep__api_1ga4368ab746b3e28a341a8c4abef10ca7b"></span>void <code class="sig-name descname">EQEP_enableModule</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417EQEP_enableModule8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the eQEP module.</p>
+<p><p>This function enables operation of the enhanced quadrature encoder pulse (eQEP) module. The module must be configured before it is enabled.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p>EQEP_setConfig()</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418EQEP_disableModule8uint32_t">
+<span id="_CPPv318EQEP_disableModule8uint32_t"></span><span id="_CPPv218EQEP_disableModule8uint32_t"></span><span id="EQEP_disableModule__uint32_t"></span><span class="target" id="group__eqep__api_1ga572befdf4bda946401ccd89ddb541dc3"></span>void <code class="sig-name descname">EQEP_disableModule</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418EQEP_disableModule8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the eQEP module.</p>
+<p><p>This function disables operation of the eQEP module.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the enhanced quadrature encoder pulse (eQEP) module</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421EQEP_setDecoderConfig8uint32_t8uint16_t">
+<span id="_CPPv321EQEP_setDecoderConfig8uint32_t8uint16_t"></span><span id="_CPPv221EQEP_setDecoderConfig8uint32_t8uint16_t"></span><span id="EQEP_setDecoderConfig__uint32_t.uint16_t"></span><span class="target" id="group__eqep__api_1gaa5c19b56cbafcd5e37006a015168370e"></span>void <code class="sig-name descname">EQEP_setDecoderConfig</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421EQEP_setDecoderConfig8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures eQEP module’s quadrature decoder unit.</p>
+<p><p>This function configures the operation of the eQEP module’s quadrature decoder unit. The </p>
+<em>config</em> parameter provides the configuration of the decoder and is the logical OR of several values:<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code>: is the configuration for the eQEP module decoder unit.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p><strong>EQEP_CONFIG_2X_RESOLUTION</strong> or <strong>EQEP_CONFIG_1X_RESOLUTION</strong> specify if both rising and falling edges should be counted or just rising edges.</p></li>
+<li><p><strong>EQEP_CONFIG_QUADRATURE</strong>, <strong>EQEP_CONFIG_CLOCK_DIR</strong>, <strong>EQEP_CONFIG_UP_COUNT</strong>, or <strong>EQEP_CONFIG_DOWN_COUNT</strong> specify if quadrature signals are being provided on QEPA and QEPB, if a direction signal and a clock are being provided, or if the direction should be hard-wired for a single direction with QEPA used for input.</p></li>
+<li><p><strong>EQEP_CONFIG_NO_SWAP</strong> or <strong>EQEP_CONFIG_SWAP</strong> to specify if the signals provided on QEPA and QEPB should be swapped before being processed.</p></li>
+<li><p><strong>EQEP_CONFIG_IGATE_DISABLE</strong> or <strong>EQEP_CONFIG_IGATE_ENABLE</strong> to specify if the gating of the index pulse should be enabled or disabled</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429EQEP_setPositionCounterConfig8uint32_t22EQEP_PositionResetMode8uint32_t">
+<span id="_CPPv329EQEP_setPositionCounterConfig8uint32_t22EQEP_PositionResetMode8uint32_t"></span><span id="_CPPv229EQEP_setPositionCounterConfig8uint32_t22EQEP_PositionResetMode8uint32_t"></span><span id="EQEP_setPositionCounterConfig__uint32_t.EQEP_PositionResetMode.uint32_t"></span><span class="target" id="group__eqep__api_1ga696c6d0a7907439ddc3e1aad2b03b500"></span>void <code class="sig-name descname">EQEP_setPositionCounterConfig</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv422EQEP_PositionResetMode" title="EQEP_PositionResetMode">EQEP_PositionResetMode</a> <em>mode</em>, uint32_t <em>maxPosition</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429EQEP_setPositionCounterConfig8uint32_t22EQEP_PositionResetMode8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures eQEP module position counter unit.</p>
+<p><p>This function configures the operation of the eQEP module position counter. The </p>
+<em>mode</em> parameter determines the event on which the position counter gets reset. It should be passed one of the following values: <strong>EQEP_POSITION_RESET_IDX</strong>, <strong>EQEP_POSITION_RESET_MAX_POS</strong>, <strong>EQEP_POSITION_RESET_1ST_IDX</strong>, or <strong>EQEP_POSITION_RESET_UNIT_TIME_OUT</strong>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: is the configuration for the eQEP module position counter. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">maxPosition</span></code>: specifies the maximum position value.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><em>maxPosition</em> is the maximum value of the position counter and is the value used to reset the position capture when moving in the reverse (negative) direction.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416EQEP_getPosition8uint32_t">
+<span id="_CPPv316EQEP_getPosition8uint32_t"></span><span id="_CPPv216EQEP_getPosition8uint32_t"></span><span id="EQEP_getPosition__uint32_t"></span><span class="target" id="group__eqep__api_1gab36917fc64ac73f3d82915393a01dcf0"></span>uint32_t <code class="sig-name descname">EQEP_getPosition</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416EQEP_getPosition8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the current encoder position.</p>
+<p><p>This function returns the current position of the encoder. Depending upon the configuration of the encoder, and the incident of an index pulse, this value may or may not contain the expected data (that is, if in reset on index mode, if an index pulse has not been encountered, the position counter is not yet aligned with the index pulse).</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The current position of the encoder. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416EQEP_setPosition8uint32_t8uint32_t">
+<span id="_CPPv316EQEP_setPosition8uint32_t8uint32_t"></span><span id="_CPPv216EQEP_setPosition8uint32_t8uint32_t"></span><span id="EQEP_setPosition__uint32_t.uint32_t"></span><span class="target" id="group__eqep__api_1ga76afa29c083a508a2c11e9d5c4e02c39"></span>void <code class="sig-name descname">EQEP_setPosition</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>position</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416EQEP_setPosition8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the current encoder position.</p>
+<p><p>This function sets the current position of the encoder; the encoder position is then measured relative to this value.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">position</span></code>: is the new position for the encoder.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417EQEP_getDirection8uint32_t">
+<span id="_CPPv317EQEP_getDirection8uint32_t"></span><span id="_CPPv217EQEP_getDirection8uint32_t"></span><span id="EQEP_getDirection__uint32_t"></span><span class="target" id="group__eqep__api_1gae65f4dd3398764726a377e9181aa92cf"></span>int16_t <code class="sig-name descname">EQEP_getDirection</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417EQEP_getDirection8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the current direction of rotation.</p>
+<p><p>This function returns the current direction of rotation. In this case, current means the most recently detected direction of the encoder; it may not be presently moving but this is the direction it last moved before it stopped.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns 1 if moving in the forward direction or -1 if moving in the reverse direction. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420EQEP_enableInterrupt8uint32_t8uint16_t">
+<span id="_CPPv320EQEP_enableInterrupt8uint32_t8uint16_t"></span><span id="_CPPv220EQEP_enableInterrupt8uint32_t8uint16_t"></span><span id="EQEP_enableInterrupt__uint32_t.uint16_t"></span><span class="target" id="group__eqep__api_1ga1dc01831c8efa4176aa983327ff4f200"></span>void <code class="sig-name descname">EQEP_enableInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420EQEP_enableInterrupt8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables individual eQEP module interrupt sources.</p>
+<p><p>This function enables eQEP module interrupt sources. The </p>
+<em>intFlags</em> parameter can be any of the following values OR’d together:<ul class="simple">
+<li><p><strong>EQEP_INT_POS_CNT_ERROR</strong> - Position counter error</p></li>
+<li><p><strong>EQEP_INT_PHASE_ERROR</strong> - Quadrature phase error</p></li>
+<li><p><strong>EQEP_INT_DIR_CHANGE</strong> - Quadrature direction change</p></li>
+<li><p><strong>EQEP_INT_WATCHDOG</strong> - Watchdog time-out</p></li>
+<li><p><strong>EQEP_INT_UNDERFLOW</strong> - Position counter underflow</p></li>
+<li><p><strong>EQEP_INT_OVERFLOW</strong> - Position counter overflow</p></li>
+<li><p><strong>EQEP_INT_POS_COMP_READY</strong> - Position-compare ready</p></li>
+<li><p><strong>EQEP_INT_POS_COMP_MATCH</strong> - Position-compare match</p></li>
+<li><p><strong>EQEP_INT_STROBE_EVNT_LATCH</strong> - Strobe event latch</p></li>
+<li><p><strong>EQEP_INT_INDEX_EVNT_LATCH</strong> - Index event latch</p></li>
+<li><p><strong>EQEP_INT_UNIT_TIME_OUT</strong> - Unit time-out</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is a bit mask of the interrupt sources to be enabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421EQEP_disableInterrupt8uint32_t8uint16_t">
+<span id="_CPPv321EQEP_disableInterrupt8uint32_t8uint16_t"></span><span id="_CPPv221EQEP_disableInterrupt8uint32_t8uint16_t"></span><span id="EQEP_disableInterrupt__uint32_t.uint16_t"></span><span class="target" id="group__eqep__api_1ga016bf9838bf3f583883d10ae08ed65b9"></span>void <code class="sig-name descname">EQEP_disableInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421EQEP_disableInterrupt8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables individual eQEP module interrupt sources.</p>
+<p><p>This function disables eQEP module interrupt sources. The </p>
+<em>intFlags</em> parameter can be any of the following values OR’d together:<ul class="simple">
+<li><p><strong>EQEP_INT_POS_CNT_ERROR</strong> - Position counter error</p></li>
+<li><p><strong>EQEP_INT_PHASE_ERROR</strong> - Quadrature phase error</p></li>
+<li><p><strong>EQEP_INT_DIR_CHANGE</strong> - Quadrature direction change</p></li>
+<li><p><strong>EQEP_INT_WATCHDOG</strong> - Watchdog time-out</p></li>
+<li><p><strong>EQEP_INT_UNDERFLOW</strong> - Position counter underflow</p></li>
+<li><p><strong>EQEP_INT_OVERFLOW</strong> - Position counter overflow</p></li>
+<li><p><strong>EQEP_INT_POS_COMP_READY</strong> - Position-compare ready</p></li>
+<li><p><strong>EQEP_INT_POS_COMP_MATCH</strong> - Position-compare match</p></li>
+<li><p><strong>EQEP_INT_STROBE_EVNT_LATCH</strong> - Strobe event latch</p></li>
+<li><p><strong>EQEP_INT_INDEX_EVNT_LATCH</strong> - Index event latch</p></li>
+<li><p><strong>EQEP_INT_UNIT_TIME_OUT</strong> - Unit time-out</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is a bit mask of the interrupt sources to be disabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423EQEP_getInterruptStatus8uint32_t">
+<span id="_CPPv323EQEP_getInterruptStatus8uint32_t"></span><span id="_CPPv223EQEP_getInterruptStatus8uint32_t"></span><span id="EQEP_getInterruptStatus__uint32_t"></span><span class="target" id="group__eqep__api_1ga983a1a813a61375efa9f8dc25ff54c3f"></span>uint16_t <code class="sig-name descname">EQEP_getInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423EQEP_getInterruptStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the current interrupt status.</p>
+<p><p>This function returns the interrupt status for the eQEP module module.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the current interrupt status, enumerated as a bit field of the following values:<ul class="simple">
+<li><p><strong>EQEP_INT_GLOBAL</strong> - Global interrupt flag</p></li>
+<li><p><strong>EQEP_INT_POS_CNT_ERROR</strong> - Position counter error</p></li>
+<li><p><strong>EQEP_INT_PHASE_ERROR</strong> - Quadrature phase error</p></li>
+<li><p><strong>EQEP_INT_DIR_CHANGE</strong> - Quadrature direction change</p></li>
+<li><p><strong>EQEP_INT_WATCHDOG</strong> - Watchdog time-out</p></li>
+<li><p><strong>EQEP_INT_UNDERFLOW</strong> - Position counter underflow</p></li>
+<li><p><strong>EQEP_INT_OVERFLOW</strong> - Position counter overflow</p></li>
+<li><p><strong>EQEP_INT_POS_COMP_READY</strong> - Position-compare ready</p></li>
+<li><p><strong>EQEP_INT_POS_COMP_MATCH</strong> - Position-compare match</p></li>
+<li><p><strong>EQEP_INT_STROBE_EVNT_LATCH</strong> - Strobe event latch</p></li>
+<li><p><strong>EQEP_INT_INDEX_EVNT_LATCH</strong> - Index event latch</p></li>
+<li><p><strong>EQEP_INT_UNIT_TIME_OUT</strong> - Unit time-out </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425EQEP_clearInterruptStatus8uint32_t8uint16_t">
+<span id="_CPPv325EQEP_clearInterruptStatus8uint32_t8uint16_t"></span><span id="_CPPv225EQEP_clearInterruptStatus8uint32_t8uint16_t"></span><span id="EQEP_clearInterruptStatus__uint32_t.uint16_t"></span><span class="target" id="group__eqep__api_1ga4c073cac90fa47dcbb66326bcf87980e"></span>void <code class="sig-name descname">EQEP_clearInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425EQEP_clearInterruptStatus8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears eQEP module interrupt sources.</p>
+<p><p>This function clears eQEP module interrupt flags. The </p>
+<em>intFlags</em> parameter can be any of the following values OR’d together:<ul class="simple">
+<li><p><strong>EQEP_INT_GLOBAL</strong> - Global interrupt flag</p></li>
+<li><p><strong>EQEP_INT_POS_CNT_ERROR</strong> - Position counter error</p></li>
+<li><p><strong>EQEP_INT_PHASE_ERROR</strong> - Quadrature phase error</p></li>
+<li><p><strong>EQEP_INT_DIR_CHANGE</strong> - Quadrature direction change</p></li>
+<li><p><strong>EQEP_INT_WATCHDOG</strong> - Watchdog time-out</p></li>
+<li><p><strong>EQEP_INT_UNDERFLOW</strong> - Position counter underflow</p></li>
+<li><p><strong>EQEP_INT_OVERFLOW</strong> - Position counter overflow</p></li>
+<li><p><strong>EQEP_INT_POS_COMP_READY</strong> - Position-compare ready</p></li>
+<li><p><strong>EQEP_INT_POS_COMP_MATCH</strong> - Position-compare match</p></li>
+<li><p><strong>EQEP_INT_STROBE_EVNT_LATCH</strong> - Strobe event latch</p></li>
+<li><p><strong>EQEP_INT_INDEX_EVNT_LATCH</strong> - Index event latch</p></li>
+<li><p><strong>EQEP_INT_UNIT_TIME_OUT</strong> - Unit time-out</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is a bit mask of the interrupt sources to be cleared.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>Note that the <strong>EQEP_INT_GLOBAL</strong> value is the global interrupt flag. In order to get any further eQEP interrupts, this flag must be cleared.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419EQEP_forceInterrupt8uint32_t8uint16_t">
+<span id="_CPPv319EQEP_forceInterrupt8uint32_t8uint16_t"></span><span id="_CPPv219EQEP_forceInterrupt8uint32_t8uint16_t"></span><span id="EQEP_forceInterrupt__uint32_t.uint16_t"></span><span class="target" id="group__eqep__api_1ga339790705b5a774f285be2c386e35624"></span>void <code class="sig-name descname">EQEP_forceInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419EQEP_forceInterrupt8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Forces individual eQEP module interrupts.</p>
+<p><p>This function forces eQEP module interrupt flags. The </p>
+<em>intFlags</em> parameter can be any of the following values OR’d together:<ul class="simple">
+<li><p><strong>EQEP_INT_POS_CNT_ERROR</strong> </p></li>
+<li><p><strong>EQEP_INT_PHASE_ERROR</strong> </p></li>
+<li><p><strong>EQEP_INT_DIR_CHANGE</strong> </p></li>
+<li><p><strong>EQEP_INT_WATCHDOG</strong> </p></li>
+<li><p><strong>EQEP_INT_UNDERFLOW</strong> </p></li>
+<li><p><strong>EQEP_INT_OVERFLOW</strong> </p></li>
+<li><p><strong>EQEP_INT_POS_COMP_READY</strong> </p></li>
+<li><p><strong>EQEP_INT_POS_COMP_MATCH</strong> </p></li>
+<li><p><strong>EQEP_INT_STROBE_EVNT_LATCH</strong> </p></li>
+<li><p><strong>EQEP_INT_INDEX_EVNT_LATCH</strong> </p></li>
+<li><p><strong>EQEP_INT_UNIT_TIME_OUT</strong> </p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is a bit mask of the interrupt sources to be forced.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv413EQEP_getError8uint32_t">
+<span id="_CPPv313EQEP_getError8uint32_t"></span><span id="_CPPv213EQEP_getError8uint32_t"></span><span id="EQEP_getError__uint32_t"></span><span class="target" id="group__eqep__api_1gae0868da515272abb10cb06c720d719e8"></span>bool <code class="sig-name descname">EQEP_getError</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413EQEP_getError8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the encoder error indicator.</p>
+<p><p>This function returns the error indicator for the eQEP module. It is an error for both of the signals of the quadrature input to change at the same time.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if an error has occurred and <strong>false</strong> otherwise. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414EQEP_getStatus8uint32_t">
+<span id="_CPPv314EQEP_getStatus8uint32_t"></span><span id="_CPPv214EQEP_getStatus8uint32_t"></span><span id="EQEP_getStatus__uint32_t"></span><span class="target" id="group__eqep__api_1gad5ab2bce7ba238f47e2cb488080e2d81"></span>uint16_t <code class="sig-name descname">EQEP_getStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414EQEP_getStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns content of the eQEP module status register</p>
+<p><p>This function returns the contents of the status register. The value it returns is an OR of the following values:</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p><strong>EQEP_STS_UNIT_POS_EVNT</strong> - Unit position event detected</p></li>
+<li><p><strong>EQEP_STS_DIR_ON_1ST_IDX</strong> - If set, clockwise rotation (forward movement) occurred on the first index event</p></li>
+<li><p><strong>EQEP_STS_DIR_FLAG</strong> - If set, movement is clockwise rotation</p></li>
+<li><p><strong>EQEP_STS_DIR_LATCH</strong> - If set, clockwise rotation occurred on last index event marker</p></li>
+<li><p><strong>EQEP_STS_CAP_OVRFLW_ERROR</strong> - Overflow occurred in eQEP capture timer</p></li>
+<li><p><strong>EQEP_STS_CAP_DIR_ERROR</strong> - Direction change occurred between position capture events</p></li>
+<li><p><strong>EQEP_STS_1ST_IDX_FLAG</strong> - Set by the occurrence of the first index pulse</p></li>
+<li><p><strong>EQEP_STS_POS_CNT_ERROR</strong> - Position counter error occurred</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the value of the QEP status register. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416EQEP_clearStatus8uint32_t8uint16_t">
+<span id="_CPPv316EQEP_clearStatus8uint32_t8uint16_t"></span><span id="_CPPv216EQEP_clearStatus8uint32_t8uint16_t"></span><span id="EQEP_clearStatus__uint32_t.uint16_t"></span><span class="target" id="group__eqep__api_1ga860e14bd2cc5a6f46b207388c046fce7"></span>void <code class="sig-name descname">EQEP_clearStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>statusFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416EQEP_clearStatus8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears selected fields of the eQEP module status register</p>
+<p><p>This function clears the status register fields indicated by </p>
+<em>statusFlags</em>. The <em>statusFlags</em> parameter is the logical OR of any of the following:<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">statusFlags</span></code>: is the bit mask of the status flags to be cleared.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p><strong>EQEP_STS_UNIT_POS_EVNT</strong> - Unit position event detected</p></li>
+<li><p><strong>EQEP_STS_CAP_OVRFLW_ERROR</strong> - Overflow occurred in eQEP capture timer</p></li>
+<li><p><strong>EQEP_STS_CAP_DIR_ERROR</strong> - Direction change occurred between position capture events</p></li>
+<li><p><strong>EQEP_STS_1ST_IDX_FLAG</strong> - Set by the occurrence of the first index pulse</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Only the above status fields can be cleared. All others are read-only, non-sticky fields.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421EQEP_setCaptureConfig8uint32_t19EQEP_CAPCLKPrescale19EQEP_UPEVNTPrescale">
+<span id="_CPPv321EQEP_setCaptureConfig8uint32_t19EQEP_CAPCLKPrescale19EQEP_UPEVNTPrescale"></span><span id="_CPPv221EQEP_setCaptureConfig8uint32_t19EQEP_CAPCLKPrescale19EQEP_UPEVNTPrescale"></span><span id="EQEP_setCaptureConfig__uint32_t.EQEP_CAPCLKPrescale.EQEP_UPEVNTPrescale"></span><span class="target" id="group__eqep__api_1gab2b1786f80bfe40d31b6c7c126e88a86"></span>void <code class="sig-name descname">EQEP_setCaptureConfig</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv419EQEP_CAPCLKPrescale" title="EQEP_CAPCLKPrescale">EQEP_CAPCLKPrescale</a> <em>capPrescale</em>, <a class="reference internal" href="#_CPPv419EQEP_UPEVNTPrescale" title="EQEP_UPEVNTPrescale">EQEP_UPEVNTPrescale</a> <em>evntPrescale</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421EQEP_setCaptureConfig8uint32_t19EQEP_CAPCLKPrescale19EQEP_UPEVNTPrescale" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures eQEP module edge-capture unit.</p>
+<p><p>This function configures the operation of the eQEP module edge-capture unit. The </p>
+<em>capPrescale</em> parameter provides the configuration of the eQEP capture timer clock rate. It determines by which power of 2 between 1 and 128 inclusive SYSCLKOUT is divided. The macros for this parameter are in the format of EQEP_CAPTURE_CLK_DIV_X, where X is the divide value. For example, <strong>EQEP_CAPTURE_CLK_DIV_32</strong> will give a capture timer clock frequency that is SYSCLKOUT/32.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">capPrescale</span></code>: is the prescaler setting of the eQEP capture timer clk. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">evntPrescale</span></code>: is the prescaler setting of the unit position event frequency.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>evntPrescale</em> parameter determines how frequently a unit position event occurs. The macro that can be passed this parameter is in the format EQEP_UNIT_POS_EVNT_DIV_X, where X is the number of quadrature clock periods between unit position events. For example, <strong>EQEP_UNIT_POS_EVNT_DIV_16</strong> will result in a unit position event frequency of QCLK/16.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418EQEP_enableCapture8uint32_t">
+<span id="_CPPv318EQEP_enableCapture8uint32_t"></span><span id="_CPPv218EQEP_enableCapture8uint32_t"></span><span id="EQEP_enableCapture__uint32_t"></span><span class="target" id="group__eqep__api_1ga8ccd982069c5c42defffb6debc3adcad"></span>void <code class="sig-name descname">EQEP_enableCapture</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418EQEP_enableCapture8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the eQEP module edge-capture unit.</p>
+<p><p>This function enables operation of the eQEP module’s edge-capture unit.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419EQEP_disableCapture8uint32_t">
+<span id="_CPPv319EQEP_disableCapture8uint32_t"></span><span id="_CPPv219EQEP_disableCapture8uint32_t"></span><span id="EQEP_disableCapture__uint32_t"></span><span class="target" id="group__eqep__api_1gae12141021250bf146f6dca9ef8d952f4"></span>void <code class="sig-name descname">EQEP_disableCapture</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419EQEP_disableCapture8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the eQEP module edge-capture unit.</p>
+<p><p>This function disables operation of the eQEP module’s edge-capture unit.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421EQEP_getCapturePeriod8uint32_t">
+<span id="_CPPv321EQEP_getCapturePeriod8uint32_t"></span><span id="_CPPv221EQEP_getCapturePeriod8uint32_t"></span><span id="EQEP_getCapturePeriod__uint32_t"></span><span class="target" id="group__eqep__api_1ga2bec8bf079b35cf3c6692bd028d09e49"></span>uint16_t <code class="sig-name descname">EQEP_getCapturePeriod</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421EQEP_getCapturePeriod8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the encoder capture period.</p>
+<p><p>This function returns the period count value between the last successive eQEP position events.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The period count value between the last successive position events. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420EQEP_getCaptureTimer8uint32_t">
+<span id="_CPPv320EQEP_getCaptureTimer8uint32_t"></span><span id="_CPPv220EQEP_getCaptureTimer8uint32_t"></span><span id="EQEP_getCaptureTimer__uint32_t"></span><span class="target" id="group__eqep__api_1gaa046af8dc1439863456bc28d536594d8"></span>uint16_t <code class="sig-name descname">EQEP_getCaptureTimer</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420EQEP_getCaptureTimer8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the encoder capture timer value.</p>
+<p><p>This function returns the time base for the edge capture unit.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The capture timer value. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418EQEP_enableCompare8uint32_t">
+<span id="_CPPv318EQEP_enableCompare8uint32_t"></span><span id="_CPPv218EQEP_enableCompare8uint32_t"></span><span id="EQEP_enableCompare__uint32_t"></span><span class="target" id="group__eqep__api_1gaee38258a4d9717164569e88b1bc2c0ce"></span>void <code class="sig-name descname">EQEP_enableCompare</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418EQEP_enableCompare8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the eQEP module position-compare unit.</p>
+<p><p>This function enables operation of the eQEP module’s position-compare unit.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419EQEP_disableCompare8uint32_t">
+<span id="_CPPv319EQEP_disableCompare8uint32_t"></span><span id="_CPPv219EQEP_disableCompare8uint32_t"></span><span id="EQEP_disableCompare__uint32_t"></span><span class="target" id="group__eqep__api_1ga7db7ce7c8b2a58c2067a5459b9d90540"></span>void <code class="sig-name descname">EQEP_disableCompare</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419EQEP_disableCompare8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the eQEP module position-compare unit.</p>
+<p><p>This function disables operation of the eQEP module’s position-compare unit.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425EQEP_setComparePulseWidth8uint32_t8uint16_t">
+<span id="_CPPv325EQEP_setComparePulseWidth8uint32_t8uint16_t"></span><span id="_CPPv225EQEP_setComparePulseWidth8uint32_t8uint16_t"></span><span id="EQEP_setComparePulseWidth__uint32_t.uint16_t"></span><span class="target" id="group__eqep__api_1gafa98354bc7fb6edeeaafe09d158b8417"></span>void <code class="sig-name descname">EQEP_setComparePulseWidth</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>cycles</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425EQEP_setComparePulseWidth8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the position-compare unit’s sync output pulse width.</p>
+<p><p>This function configures the width of the sync output pulse. The width of the pulse will be </p>
+<em>cycles</em> * 4 * the width of a SYSCLKOUT cycle. The maximum width is 4096 * 4 * SYSCLKOUT cycles.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cycles</span></code>: is the width of the pulse that can be generated on a position-compare event. It is in units of 4 SYSCLKOUT cycles.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418EQEP_loadUnitTimer8uint32_t8uint32_t">
+<span id="_CPPv318EQEP_loadUnitTimer8uint32_t8uint32_t"></span><span id="_CPPv218EQEP_loadUnitTimer8uint32_t8uint32_t"></span><span id="EQEP_loadUnitTimer__uint32_t.uint32_t"></span><span class="target" id="group__eqep__api_1gadc650c7570cc1d3b8e24f9006e878b54"></span>void <code class="sig-name descname">EQEP_loadUnitTimer</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>period</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418EQEP_loadUnitTimer8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Loads the eQEP module unit timer period as number of SYSCLK cycles.</p>
+<p><p>This function sets the unit time-out interrupt when it matches the value specified by </p>
+<em>period</em> The unit timer is clocked by SYSCLKOUT<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">period</span></code>: is period value at which a unit time-out interrupt is set.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420EQEP_enableUnitTimer8uint32_t8uint32_t">
+<span id="_CPPv320EQEP_enableUnitTimer8uint32_t8uint32_t"></span><span id="_CPPv220EQEP_enableUnitTimer8uint32_t8uint32_t"></span><span id="EQEP_enableUnitTimer__uint32_t.uint32_t"></span><span class="target" id="group__eqep__api_1ga9833bd1d1984b2d23f88ad718c360a34"></span>void <code class="sig-name descname">EQEP_enableUnitTimer</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>period</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420EQEP_enableUnitTimer8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the eQEP module unit timer.</p>
+<p><p>This function enables operation of the eQEP module’s peripheral unit timer. The unit timer is clocked by SYSCLKOUT and will set the unit time-out interrupt when it matches the value specified by </p>
+<em>period</em>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">period</span></code>: is period value at which a unit time-out interrupt is set.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421EQEP_disableUnitTimer8uint32_t">
+<span id="_CPPv321EQEP_disableUnitTimer8uint32_t"></span><span id="_CPPv221EQEP_disableUnitTimer8uint32_t"></span><span id="EQEP_disableUnitTimer__uint32_t"></span><span class="target" id="group__eqep__api_1ga5022e70f2f3f9cb233c979bb46a189f3"></span>void <code class="sig-name descname">EQEP_disableUnitTimer</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421EQEP_disableUnitTimer8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the eQEP module unit timer.</p>
+<p><p>This function disables operation of the eQEP module’s peripheral unit timer.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419EQEP_enableWatchdog8uint32_t8uint16_t">
+<span id="_CPPv319EQEP_enableWatchdog8uint32_t8uint16_t"></span><span id="_CPPv219EQEP_enableWatchdog8uint32_t8uint16_t"></span><span id="EQEP_enableWatchdog__uint32_t.uint16_t"></span><span class="target" id="group__eqep__api_1ga95e160174d6cc1d3bc2d8f74848fd0fa"></span>void <code class="sig-name descname">EQEP_enableWatchdog</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>period</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419EQEP_enableWatchdog8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the eQEP module watchdog timer.</p>
+<p><p>This function enables operation of the eQEP module’s peripheral watchdog timer.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">period</span></code>: is watchdog period value at which a time-out will occur if no quadrature-clock event is detected.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>When selecting <em>period</em>, note that the watchdog timer is clocked from SYSCLKOUT/64.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420EQEP_disableWatchdog8uint32_t">
+<span id="_CPPv320EQEP_disableWatchdog8uint32_t"></span><span id="_CPPv220EQEP_disableWatchdog8uint32_t"></span><span id="EQEP_disableWatchdog__uint32_t"></span><span class="target" id="group__eqep__api_1ga58fa25214257bff3b4214d1c9c223c84"></span>void <code class="sig-name descname">EQEP_disableWatchdog</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420EQEP_disableWatchdog8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the eQEP module watchdog timer.</p>
+<p><p>This function disables operation of the eQEP module’s peripheral watchdog timer.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426EQEP_setWatchdogTimerValue8uint32_t8uint16_t">
+<span id="_CPPv326EQEP_setWatchdogTimerValue8uint32_t8uint16_t"></span><span id="_CPPv226EQEP_setWatchdogTimerValue8uint32_t8uint16_t"></span><span id="EQEP_setWatchdogTimerValue__uint32_t.uint16_t"></span><span class="target" id="group__eqep__api_1ga684c5fa3399a102085215ed03b384178"></span>void <code class="sig-name descname">EQEP_setWatchdogTimerValue</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426EQEP_setWatchdogTimerValue8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the eQEP module watchdog timer value.</p>
+<p><p>This function sets the eQEP module’s watchdog timer value.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: is the value to be written to the watchdog timer.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426EQEP_getWatchdogTimerValue8uint32_t">
+<span id="_CPPv326EQEP_getWatchdogTimerValue8uint32_t"></span><span id="_CPPv226EQEP_getWatchdogTimerValue8uint32_t"></span><span id="EQEP_getWatchdogTimerValue__uint32_t"></span><span class="target" id="group__eqep__api_1gaca28a097caedd9e5623d2404888cc9ca"></span>uint16_t <code class="sig-name descname">EQEP_getWatchdogTimerValue</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426EQEP_getWatchdogTimerValue8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the eQEP module watchdog timer value.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the current watchdog timer value. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424EQEP_setPositionInitMode8uint32_t8uint16_t">
+<span id="_CPPv324EQEP_setPositionInitMode8uint32_t8uint16_t"></span><span id="_CPPv224EQEP_setPositionInitMode8uint32_t8uint16_t"></span><span id="EQEP_setPositionInitMode__uint32_t.uint16_t"></span><span class="target" id="group__eqep__api_1gaab233867516087ab014506d70e5b2a77"></span>void <code class="sig-name descname">EQEP_setPositionInitMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>initMode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424EQEP_setPositionInitMode8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the mode in which the position counter is initialized.</p>
+<p><p>This function configures the events on which the position count can be initialized. The </p>
+<em>initMode</em> parameter provides the mode as either <strong>EQEP_INIT_DO_NOTHING</strong> (no action configured) or one of the following strobe events, index events, or a logical OR of both a strobe event and an index event.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">initMode</span></code>: is the configuration for initializing the position count. See below for a description of this parameter.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p><strong>EQEP_INIT_RISING_STROBE</strong> or <strong>EQEP_INIT_EDGE_DIR_STROBE</strong> specify which strobe event will initialize the position counter.</p></li>
+<li><p><strong>EQEP_INIT_RISING_INDEX</strong> or <strong>EQEP_INIT_FALLING_INDEX</strong> specify which index event will initialize the position counter.</p></li>
+</ul>
+</p>
+<p>Use <a class="reference internal" href="#group__eqep__api_1ga6356cc545cdcd532b1adee9827e54b71"><span class="std std-ref">EQEP_setSWPositionInit()</span></a> to cause a software initialization and <a class="reference internal" href="#group__eqep__api_1ga8f73b2a57e453342ad3fb72cf59f1409"><span class="std std-ref">EQEP_setInitialPosition()</span></a> to set the value that gets loaded into the position counter upon initialization.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422EQEP_setSWPositionInit8uint32_tb">
+<span id="_CPPv322EQEP_setSWPositionInit8uint32_tb"></span><span id="_CPPv222EQEP_setSWPositionInit8uint32_tb"></span><span id="EQEP_setSWPositionInit__uint32_t.b"></span><span class="target" id="group__eqep__api_1ga6356cc545cdcd532b1adee9827e54b71"></span>void <code class="sig-name descname">EQEP_setSWPositionInit</code><span class="sig-paren">(</span>uint32_t <em>base</em>, bool <em>initialize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422EQEP_setSWPositionInit8uint32_tb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the software initialization of the encoder position counter.</p>
+<p><p>This function does a software initialization of the position counter when the </p>
+<em>initialize</em> parameter is <strong>true</strong>. When <strong>false</strong>, the QEPCTL[SWI] bit is cleared and no action is taken.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">initialize</span></code>: is a flag to specify if software initialization of the position counter is enabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The init value to be loaded into the position counter can be set with <a class="reference internal" href="#group__eqep__api_1ga8f73b2a57e453342ad3fb72cf59f1409"><span class="std std-ref">EQEP_setInitialPosition()</span></a>. Additional initialization causes can be configured with <a class="reference internal" href="#group__eqep__api_1gaab233867516087ab014506d70e5b2a77"><span class="std std-ref">EQEP_setPositionInitMode()</span></a>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423EQEP_setInitialPosition8uint32_t8uint32_t">
+<span id="_CPPv323EQEP_setInitialPosition8uint32_t8uint32_t"></span><span id="_CPPv223EQEP_setInitialPosition8uint32_t8uint32_t"></span><span id="EQEP_setInitialPosition__uint32_t.uint32_t"></span><span class="target" id="group__eqep__api_1ga8f73b2a57e453342ad3fb72cf59f1409"></span>void <code class="sig-name descname">EQEP_setInitialPosition</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>position</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423EQEP_setInitialPosition8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the init value for the encoder position counter.</p>
+<p><p>This function sets the init value for position of the encoder. See </p>
+<a class="reference internal" href="#group__eqep__api_1gaab233867516087ab014506d70e5b2a77"><span class="std std-ref">EQEP_setPositionInitMode()</span></a> to set the initialization cause or <a class="reference internal" href="#group__eqep__api_1ga6356cc545cdcd532b1adee9827e54b71"><span class="std std-ref">EQEP_setSWPositionInit()</span></a> to cause a software initialization.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">position</span></code>: is the value to be written to the position counter upon. initialization.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417EQEP_setLatchMode8uint32_t8uint32_t">
+<span id="_CPPv317EQEP_setLatchMode8uint32_t8uint32_t"></span><span id="_CPPv217EQEP_setLatchMode8uint32_t8uint32_t"></span><span id="EQEP_setLatchMode__uint32_t.uint32_t"></span><span class="target" id="group__eqep__api_1ga843cfd0fa3bd6e83a26f538464667a84"></span>void <code class="sig-name descname">EQEP_setLatchMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>latchMode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417EQEP_setLatchMode8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the quadrature modes in which the position count can be latched.</p>
+<p><p>This function configures the events on which the position count and several other registers can be latched. The </p>
+<em>latchMode</em> parameter provides the mode as the logical OR of several values.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">latchMode</span></code>: is the configuration for latching of the position count and several other registers. See below for a description of this parameter.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p><strong>EQEP_LATCH_CNT_READ_BY_CPU</strong> or <strong>EQEP_LATCH_UNIT_TIME_OUT</strong> specify the event that latches the position counter. This latch register can be read using <a class="reference internal" href="#group__eqep__api_1gab9661724135f749f9180e3b623dc2368"><span class="std std-ref">EQEP_getPositionLatch()</span></a>. The capture timer and capture period are also latched based on this setting, and can be read using <a class="reference internal" href="#group__eqep__api_1ga70e4b9a5a768f6db2d82718fe63dc8e7"><span class="std std-ref">EQEP_getCaptureTimerLatch()</span></a> and <a class="reference internal" href="#group__eqep__api_1ga82dda6fbf8dcb3f8f97f08ce80f58934"><span class="std std-ref">EQEP_getCapturePeriodLatch()</span></a>.</p></li>
+<li><p><strong>EQEP_LATCH_RISING_STROBE</strong> or <strong>EQEP_LATCH_EDGE_DIR_STROBE</strong> specify which strobe event will latch the position counter into the strobe position latch register. This register can be read with <a class="reference internal" href="#group__eqep__api_1ga3baca8f23be6ac826d67de2b4c5ea51e"><span class="std std-ref">EQEP_getStrobePositionLatch()</span></a>.</p></li>
+<li><p><strong>EQEP_LATCH_RISING_INDEX</strong>, <strong>EQEP_LATCH_FALLING_INDEX</strong>, or <strong>EQEP_LATCH_SW_INDEX_MARKER</strong> specify which index event will latch the position counter into the index position latch register. This register can be read with <a class="reference internal" href="#group__eqep__api_1ga98e98255ee71a31b9e26029a2416d326"><span class="std std-ref">EQEP_getIndexPositionLatch()</span></a>.</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426EQEP_getIndexPositionLatch8uint32_t">
+<span id="_CPPv326EQEP_getIndexPositionLatch8uint32_t"></span><span id="_CPPv226EQEP_getIndexPositionLatch8uint32_t"></span><span id="EQEP_getIndexPositionLatch__uint32_t"></span><span class="target" id="group__eqep__api_1ga98e98255ee71a31b9e26029a2416d326"></span>uint32_t <code class="sig-name descname">EQEP_getIndexPositionLatch</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426EQEP_getIndexPositionLatch8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the encoder position that was latched on an index event.</p>
+<p><p>This function returns the value in the index position latch register. The position counter is latched into this register on either a rising index edge, a falling index edge, or a software index marker. This is configured using </p>
+<a class="reference internal" href="#group__eqep__api_1ga843cfd0fa3bd6e83a26f538464667a84"><span class="std std-ref">EQEP_setLatchMode()</span></a>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The position count latched on an index event. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427EQEP_getStrobePositionLatch8uint32_t">
+<span id="_CPPv327EQEP_getStrobePositionLatch8uint32_t"></span><span id="_CPPv227EQEP_getStrobePositionLatch8uint32_t"></span><span id="EQEP_getStrobePositionLatch__uint32_t"></span><span class="target" id="group__eqep__api_1ga3baca8f23be6ac826d67de2b4c5ea51e"></span>uint32_t <code class="sig-name descname">EQEP_getStrobePositionLatch</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427EQEP_getStrobePositionLatch8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the encoder position that was latched on a strobe event.</p>
+<p><p>This function returns the value in the strobe position latch register. The position counter can be configured to be latched into this register on rising strobe edges only or on rising strobe edges while moving clockwise and falling strobe edges while moving counter-clockwise. This is configured using </p>
+<a class="reference internal" href="#group__eqep__api_1ga843cfd0fa3bd6e83a26f538464667a84"><span class="std std-ref">EQEP_setLatchMode()</span></a>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The position count latched on a strobe event. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421EQEP_getPositionLatch8uint32_t">
+<span id="_CPPv321EQEP_getPositionLatch8uint32_t"></span><span id="_CPPv221EQEP_getPositionLatch8uint32_t"></span><span id="EQEP_getPositionLatch__uint32_t"></span><span class="target" id="group__eqep__api_1gab9661724135f749f9180e3b623dc2368"></span>uint32_t <code class="sig-name descname">EQEP_getPositionLatch</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421EQEP_getPositionLatch8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the encoder position that was latched on a unit time-out event.</p>
+<p><p>This function returns the value in the position latch register. The position counter is latched into this register either on a unit time-out event.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The position count latch register value. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425EQEP_getCaptureTimerLatch8uint32_t">
+<span id="_CPPv325EQEP_getCaptureTimerLatch8uint32_t"></span><span id="_CPPv225EQEP_getCaptureTimerLatch8uint32_t"></span><span id="EQEP_getCaptureTimerLatch__uint32_t"></span><span class="target" id="group__eqep__api_1ga70e4b9a5a768f6db2d82718fe63dc8e7"></span>uint16_t <code class="sig-name descname">EQEP_getCaptureTimerLatch</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425EQEP_getCaptureTimerLatch8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the encoder capture timer latch.</p>
+<p><p>This function returns the value in the capture timer latch register. The capture timer value is latched into this register either on a unit time-out event or upon the CPU reading the eQEP position counter. This is configured using </p>
+<a class="reference internal" href="#group__eqep__api_1ga843cfd0fa3bd6e83a26f538464667a84"><span class="std std-ref">EQEP_setLatchMode()</span></a>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The edge-capture timer latch value. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426EQEP_getCapturePeriodLatch8uint32_t">
+<span id="_CPPv326EQEP_getCapturePeriodLatch8uint32_t"></span><span id="_CPPv226EQEP_getCapturePeriodLatch8uint32_t"></span><span id="EQEP_getCapturePeriodLatch__uint32_t"></span><span class="target" id="group__eqep__api_1ga82dda6fbf8dcb3f8f97f08ce80f58934"></span>uint16_t <code class="sig-name descname">EQEP_getCapturePeriodLatch</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426EQEP_getCapturePeriodLatch8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the encoder capture period latch.</p>
+<p><p>This function returns the value in the capture period latch register. The capture period value is latched into this register either on a unit time-out event or upon the CPU reading the eQEP position counter. This is configured using </p>
+<a class="reference internal" href="#group__eqep__api_1ga843cfd0fa3bd6e83a26f538464667a84"><span class="std std-ref">EQEP_setLatchMode()</span></a>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The edge-capture period latch value. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421EQEP_setEmulationMode8uint32_t18EQEP_EmulationMode">
+<span id="_CPPv321EQEP_setEmulationMode8uint32_t18EQEP_EmulationMode"></span><span id="_CPPv221EQEP_setEmulationMode8uint32_t18EQEP_EmulationMode"></span><span id="EQEP_setEmulationMode__uint32_t.EQEP_EmulationMode"></span><span class="target" id="group__eqep__api_1ga978db2221b196b54f478c553981ad442"></span>void <code class="sig-name descname">EQEP_setEmulationMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv418EQEP_EmulationMode" title="EQEP_EmulationMode">EQEP_EmulationMode</a> <em>emuMode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421EQEP_setEmulationMode8uint32_t18EQEP_EmulationMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set the emulation mode of the eQEP module.</p>
+<p><p>This function sets the eQEP module’s emulation mode. This mode determines how the timers are affected by an emulation suspend. Valid values for the </p>
+<em>emuMode</em> parameter are the following:<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">emuMode</span></code>: is the mode operation upon an emulation suspend.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p><strong>EQEP_EMULATIONMODE_STOPIMMEDIATELY</strong> - The position counter, watchdog counter, unit timer, and capture timer all stop immediately.</p></li>
+<li><p><strong>EQEP_EMULATIONMODE_STOPATROLLOVER</strong> - The position counter, watchdog counter, unit timer all count until period rollover. The capture timer counts until the next unit period event.</p></li>
+<li><p><strong>EQEP_EMULATIONMODE_RUNFREE</strong> - The position counter, watchdog counter, unit timer, and capture timer are all unaffected by an emulation suspend.</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421EQEP_setCompareConfig8uint32_t8uint16_t8uint32_t8uint16_t">
+<span id="_CPPv321EQEP_setCompareConfig8uint32_t8uint16_t8uint32_t8uint16_t"></span><span id="_CPPv221EQEP_setCompareConfig8uint32_t8uint16_t8uint32_t8uint16_t"></span><span id="EQEP_setCompareConfig__uint32_t.uint16_t.uint32_t.uint16_t"></span><span class="target" id="group__eqep__api_1gaa8787d771e69ad29d74734ebe438d1d3"></span>void <code class="sig-name descname">EQEP_setCompareConfig</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>config</em>, uint32_t <em>compareValue</em>, uint16_t <em>cycles</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421EQEP_setCompareConfig8uint32_t8uint16_t8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures eQEP module position-compare unit.</p>
+<p><p>This function configures the operation of the eQEP module position-compare unit. The </p>
+<em>config</em> parameter provides the configuration of the position-compare unit and is the logical OR of several values:<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code>: is the configuration for the eQEP module position-compare unit. See below for a description of this parameter. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compareValue</span></code>: is the value to which the position count value is compared for a position-compare event. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cycles</span></code>: is the width of the pulse that can be generated on a position-compare event. It is in units of 4 SYSCLKOUT cycles.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p><strong>EQEP_COMPARE_NO_SYNC_OUT</strong>, <strong>EQEP_COMPARE_IDX_SYNC_OUT</strong>, or <strong>EQEP_COMPARE_STROBE_SYNC_OUT</strong> specify if there is a sync output pulse and which pin should be used.</p></li>
+<li><p><strong>EQEP_COMPARE_NO_SHADOW</strong>, <strong>EQEP_COMPARE_LOAD_ON_ZERO</strong>, or <strong>EQEP_COMPARE_LOAD_ON_MATCH</strong> specify if a shadow is enabled and when should the load should occurQPOSCNT = 0 or QPOSCNT = QPOSCOMP.</p></li>
+</ul>
+</p>
+<p>The <em>cycles</em> is used to select the width of the sync output pulse. The width of the resulting pulse will be <em>cycles</em> * 4 * the width of a SYSCLKOUT cycle. The maximum width is 4096 * 4 * SYSCLKOUT cycles.</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>You can set the sync pulse width independently using the <a class="reference internal" href="#group__eqep__api_1gafa98354bc7fb6edeeaafe09d158b8417"><span class="std std-ref">EQEP_setComparePulseWidth()</span></a> function.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421EQEP_setInputPolarity8uint32_tbbbb">
+<span id="_CPPv321EQEP_setInputPolarity8uint32_tbbbb"></span><span id="_CPPv221EQEP_setInputPolarity8uint32_tbbbb"></span><span id="EQEP_setInputPolarity__uint32_t.b.b.b.b"></span><span class="target" id="group__eqep__api_1ga00c9bf4bd5ca0fcbb89948ec424904b3"></span>void <code class="sig-name descname">EQEP_setInputPolarity</code><span class="sig-paren">(</span>uint32_t <em>base</em>, bool <em>invertQEPA</em>, bool <em>invertQEPB</em>, bool <em>invertIndex</em>, bool <em>invertStrobe</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421EQEP_setInputPolarity8uint32_tbbbb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the polarity of the eQEP module’s input signals.</p>
+<p><p>This function configures the polarity of the inputs to the eQEP module. To negate the polarity of any of the input signals, pass </p>
+<strong>true</strong> into its corresponding parameter in this function. Pass <strong>false</strong> to leave it as-is.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the eQEP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">invertQEPA</span></code>: is the flag to negate the QEPA input. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">invertQEPB</span></code>: is the flag to negate the QEPA input. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">invertIndex</span></code>: is the flag to negate the index input. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">invertStrobe</span></code>: is the flag to negate the strobe input.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>The code for this module is contained in driverlib/eqep.c, with driverlib/eqep.h containing the API declarations for use by applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="hrpwm.html" class="btn btn-neutral float-left" title="HRPWM Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="flash.html" class="btn btn-neutral float-right" title="FLASH Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,567 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>GCRC Module &mdash; F2838x CM API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F2838x CM API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="GPIO Module" href="gpio.html"/>
+        <link rel="prev" title="UDMA Module" href="udma.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F2838x CM API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="aes.html">AES Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmmpu.html">CM-MPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpu.html">CPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="escss.html">ESCSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ethernet.html">Ethernet Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="udma.html">UDMA Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">GCRC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipc.html">IPC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcan.html">MCAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mpu.html">MPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssi.html">SSI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="systick.html">SysTick Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uart.html">UART Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F2838x CM API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>GCRC Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="gcrc-module">
+<span id="gcrc"></span><h1>GCRC Module<a class="headerlink" href="#gcrc-module" title="Permalink to this headline">¶</a></h1>
+<p>The Generic CRC (GCRC) API provides a set of functions for configuring the GCRC cmodule.
+Functions are provided for configuring the CRC parameters and for providing tha data for which CRC needs to be calculated.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__gcrc__api"></span><em>group</em> <code class="sig-name descname">gcrc_api</code></dt>
+<dd><p>This module is used for CRC calculations using GCRC. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.GCRC_ENDIANNESS_LITTLE">
+<span class="target" id="group__gcrc__api_1gad628a7efdb90bd6ad1bffabdb46d2453"></span><code class="sig-name descname">GCRC_ENDIANNESS_LITTLE</code> 0x00000000U<a class="headerlink" href="#c.GCRC_ENDIANNESS_LITTLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Little Endian. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GCRC_ENDIANNESS_BIG">
+<span class="target" id="group__gcrc__api_1ga27b1ad2f2af880acdfb1b4da795781d4"></span><code class="sig-name descname">GCRC_ENDIANNESS_BIG</code> 0x00000040U<a class="headerlink" href="#c.GCRC_ENDIANNESS_BIG" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Big Endian. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GCRC_DATATYPE_8BIT">
+<span class="target" id="group__gcrc__api_1ga85a7992dd1c9d7a6669de158aa1dbebe"></span><code class="sig-name descname">GCRC_DATATYPE_8BIT</code> 0x00000000U<a class="headerlink" href="#c.GCRC_DATATYPE_8BIT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Byte data type. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GCRC_DATATYPE_16BIT">
+<span class="target" id="group__gcrc__api_1ga96b81b6bf877767866fcd853a82118c4"></span><code class="sig-name descname">GCRC_DATATYPE_16BIT</code> 0x00000100U<a class="headerlink" href="#c.GCRC_DATATYPE_16BIT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>16-bit data type </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GCRC_DATATYPE_32BIT">
+<span class="target" id="group__gcrc__api_1ga3294f7d386c2e17b192df0f317c71f8c"></span><code class="sig-name descname">GCRC_DATATYPE_32BIT</code> 0x00000200U<a class="headerlink" href="#c.GCRC_DATATYPE_32BIT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>32 bit data type </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GCRC_FIXEDPATH_POLY">
+<span class="target" id="group__gcrc__api_1gaa0636b95c22a5484ba1d41d65e3f37fb"></span><code class="sig-name descname">GCRC_FIXEDPATH_POLY</code> 0x04c11db7U<a class="headerlink" href="#c.GCRC_FIXEDPATH_POLY" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>32 bit polynomial </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GCRC_FIXEDPATH_POLYSIZE">
+<span class="target" id="group__gcrc__api_1ga1f25a97a1828197e38146cece5f66b2e"></span><code class="sig-name descname">GCRC_FIXEDPATH_POLYSIZE</code> 0x00000020U<a class="headerlink" href="#c.GCRC_FIXEDPATH_POLYSIZE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>32 bit polynomial </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GCRC_FIXEDPATH_ENDIANNESS">
+<span class="target" id="group__gcrc__api_1ga2087b1e4dd9af11fd881038084cb09b6"></span><code class="sig-name descname">GCRC_FIXEDPATH_ENDIANNESS</code> <a class="reference internal" href="#group__gcrc__api_1gad628a7efdb90bd6ad1bffabdb46d2453"><span class="std std-ref">GCRC_ENDIANNESS_LITTLE</span></a><a class="headerlink" href="#c.GCRC_FIXEDPATH_ENDIANNESS" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Little Endian. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GCRC_FIXEDPATH_BITREVERSE">
+<span class="target" id="group__gcrc__api_1gaf660de2115aeceba0d827cc73ac46530"></span><code class="sig-name descname">GCRC_FIXEDPATH_BITREVERSE</code> 0U<a class="headerlink" href="#c.GCRC_FIXEDPATH_BITREVERSE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>No bit reversal. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GCRC_FIXEDPATH_DATATYPE">
+<span class="target" id="group__gcrc__api_1ga0ed0f55c9f65cc0f262088fef7b17376"></span><code class="sig-name descname">GCRC_FIXEDPATH_DATATYPE</code> <a class="reference internal" href="#group__gcrc__api_1ga3294f7d386c2e17b192df0f317c71f8c"><span class="std std-ref">GCRC_DATATYPE_32BIT</span></a><a class="headerlink" href="#c.GCRC_FIXEDPATH_DATATYPE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>32 bit datatype </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GCRC_FIXEDPATH_DATAMASK">
+<span class="target" id="group__gcrc__api_1ga601fea047194d4d08a66d8c6a7bcbaeb"></span><code class="sig-name descname">GCRC_FIXEDPATH_DATAMASK</code> 0U<a class="headerlink" href="#c.GCRC_FIXEDPATH_DATAMASK" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>No masking. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GCRC_POLYSIZE_MAXVALUE">
+<span class="target" id="group__gcrc__api_1ga0b853d7b8c525230482ed181d29934b0"></span><code class="sig-name descname">GCRC_POLYSIZE_MAXVALUE</code> 0x20U<a class="headerlink" href="#c.GCRC_POLYSIZE_MAXVALUE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>field in CRCCTRL register </p>
+<p>Max value possible for POLYSIZE </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv418GCRC_setPolynomial8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv318GCRC_setPolynomial8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv218GCRC_setPolynomial8uint32_t8uint32_t8uint32_t"></span><span id="GCRC_setPolynomial__uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__gcrc__api_1ga85490ac46defa0eb51282011acc196f2"></span>void <code class="sig-name descname">GCRC_setPolynomial</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>poly</em>, uint32_t <em>polySize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418GCRC_setPolynomial8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the generator polynomial.</p>
+<p><p>This function sets the generator polynomial for computing CRC.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the GCRC instance used </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">poly</span></code>: is the generator polynomial </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">polySize</span></code>: is the order of the polynomial (1 - 32)</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422GCRC_setDataEndianness8uint32_t8uint32_t">
+<span id="_CPPv322GCRC_setDataEndianness8uint32_t8uint32_t"></span><span id="_CPPv222GCRC_setDataEndianness8uint32_t8uint32_t"></span><span id="GCRC_setDataEndianness__uint32_t.uint32_t"></span><span class="target" id="group__gcrc__api_1gae507b0a79a63803ef654453f3cdfe28e"></span>void <code class="sig-name descname">GCRC_setDataEndianness</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>endianness</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422GCRC_setDataEndianness8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the endianness of the data.</p>
+<p><p>This function sets the endianness of the data.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the GCRC instance used </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">endianness</span></code>: is the data endianness. Use macros GCRC_ENDIANNESS_LITTLE or GCRC_ENDIANNESS_BIG</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416GCRC_setDataType8uint32_t8uint32_t">
+<span id="_CPPv316GCRC_setDataType8uint32_t8uint32_t"></span><span id="_CPPv216GCRC_setDataType8uint32_t8uint32_t"></span><span id="GCRC_setDataType__uint32_t.uint32_t"></span><span class="target" id="group__gcrc__api_1gae569c147098a48aa8c0e8b5d754d8af8"></span>void <code class="sig-name descname">GCRC_setDataType</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>dataType</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416GCRC_setDataType8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the datatype of the data.</p>
+<p><p>This function set the data type of the element of the data array, on which CRC is to be computed..</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the GCRC instance used </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataType</span></code>: is the data type of the input data. Use macros GCRC_DATATYPE_8BIT, GCRC_DATATYPE_16BIT, GCRC_DATATYPE_32BIT</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421GCRC_enableBitReverse8uint32_tb">
+<span id="_CPPv321GCRC_enableBitReverse8uint32_tb"></span><span id="_CPPv221GCRC_enableBitReverse8uint32_tb"></span><span id="GCRC_enableBitReverse__uint32_t.b"></span><span class="target" id="group__gcrc__api_1gab1f92bbc6bbb312df3edff207331938a"></span>void <code class="sig-name descname">GCRC_enableBitReverse</code><span class="sig-paren">(</span>uint32_t <em>base</em>, bool <em>enable</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421GCRC_enableBitReverse8uint32_tb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable/Disable bit reverse feature.</p>
+<p><p>This function enables/disables the bit reverse of the input data</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the GCRC instance used </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enable</span></code>: : TRUE if bit reverse needs to be enabled. : FALSE if bit reverse needs to be disabled</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416GCRC_setDataMask8uint32_t8uint32_t">
+<span id="_CPPv316GCRC_setDataMask8uint32_t8uint32_t"></span><span id="_CPPv216GCRC_setDataMask8uint32_t8uint32_t"></span><span id="GCRC_setDataMask__uint32_t.uint32_t"></span><span class="target" id="group__gcrc__api_1ga868e67249aec0c037b9222bd5e9ca97d"></span>void <code class="sig-name descname">GCRC_setDataMask</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>dataMask</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416GCRC_setDataMask8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the data mask for the input data.</p>
+<p><p>This function set the data mask for the input data. For example, dataMask equals 0x3, 3 most significant bits of data will be masked.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the GCRC instance used </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataMask</span></code>: is the number of bits to be masked.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417GCRC_setSeedValue8uint32_t8uint32_t">
+<span id="_CPPv317GCRC_setSeedValue8uint32_t8uint32_t"></span><span id="_CPPv217GCRC_setSeedValue8uint32_t8uint32_t"></span><span id="GCRC_setSeedValue__uint32_t.uint32_t"></span><span class="target" id="group__gcrc__api_1gab63a277569e82e0343945620a94ea8a6"></span>void <code class="sig-name descname">GCRC_setSeedValue</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417GCRC_setSeedValue8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the seed value.</p>
+<p><p>This function sets the seed value for CRC computation.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the GCRC instance used </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: is the seed value that needs to be set.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415GCRC_readResult8uint32_t">
+<span id="_CPPv315GCRC_readResult8uint32_t"></span><span id="_CPPv215GCRC_readResult8uint32_t"></span><span id="GCRC_readResult__uint32_t"></span><span class="target" id="group__gcrc__api_1gaec4e6759faf53441e50dc7f8e8915cff"></span>uint32_t <code class="sig-name descname">GCRC_readResult</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415GCRC_readResult8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reads the computed CRC value.</p>
+<p><p>This function read the computed CRC value.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the GCRC instance used</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Reads from CRCDATAOUT register will be stalled if CRC engine is busy computing CRC</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417GCRC_getTransData8uint32_t">
+<span id="_CPPv317GCRC_getTransData8uint32_t"></span><span id="_CPPv217GCRC_getTransData8uint32_t"></span><span id="GCRC_getTransData__uint32_t"></span><span class="target" id="group__gcrc__api_1gaaca9c94b3d43a81a870447d78e9d8faa"></span>uint32_t <code class="sig-name descname">GCRC_getTransData</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417GCRC_getTransData8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reads the transformed data</p>
+<p><p>This function returns the data value as seen by the core CRC engine after endianess, bit reversal and masking transformation</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the GCRC instance used</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv431GCRC_setFixedPolynomialDataPath8uint32_t">
+<span id="_CPPv331GCRC_setFixedPolynomialDataPath8uint32_t"></span><span id="_CPPv231GCRC_setFixedPolynomialDataPath8uint32_t"></span><span id="GCRC_setFixedPolynomialDataPath__uint32_t"></span><span class="target" id="group__gcrc__api_1gaa0ea51855191187ea66d4ad4e08feee3"></span>void <code class="sig-name descname">GCRC_setFixedPolynomialDataPath</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431GCRC_setFixedPolynomialDataPath8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the fixed polynomial data path.</p>
+<p><p>This function sets the fixed polynomial data path which computes the CRC in a single cycle.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the GCRC instance used</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Only 32-bit writes. Byte and halfword accesses would take the generic CRC data path.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414GCRC_writeData8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv314GCRC_writeData8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv214GCRC_writeData8uint32_t8uint32_t8uint32_t"></span><span id="GCRC_writeData__uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__gcrc__api_1ga62ec9088db13b6ec409b345aceeaf825"></span>void <code class="sig-name descname">GCRC_writeData</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>data</em>, uint32_t <em>dataSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414GCRC_writeData8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Writes the input data.</p>
+<p><p>This function writes the input data for the CRC computation.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the GCRC instance used </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: is value that needs to be written. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataSize</span></code>: is the size of the data. Use macros GCRC_DATATYPE_8BIT, GCRC_DATATYPE_16BIT, GCRC_DATATYPE_32BIT</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Writes to CRCDATAIN register will be stalled if CRC engine is busy computing CRC</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>The code for this module is contained in driverlib_cm/gcrc.c, with
+driverlib_cm/gcrc.h containing the API declarations for use by
+applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="udma.html" class="btn btn-neutral float-left" title="UDMA Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="gpio.html" class="btn btn-neutral float-right" title="GPIO Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

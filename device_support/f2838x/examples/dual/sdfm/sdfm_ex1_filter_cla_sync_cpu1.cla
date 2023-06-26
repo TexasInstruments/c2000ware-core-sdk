@@ -1,0 +1,219 @@
+//#############################################################################
+// \file sdfm_ex1_filter_cla_sync_cpu1.cla
+//
+// \brief  SDFM filter sync
+//
+//  Group:            C2000
+//  Target Family:    F2838x
+//
+//#############################################################################
+//
+//
+// $Copyright:
+// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+//
+// Redistribution and use in source and binary forms, with or without 
+// modification, are permitted provided that the following conditions 
+// are met:
+// 
+//   Redistributions of source code must retain the above copyright 
+//   notice, this list of conditions and the following disclaimer.
+// 
+//   Redistributions in binary form must reproduce the above copyright
+//   notice, this list of conditions and the following disclaimer in the 
+//   documentation and/or other materials provided with the   
+//   distribution.
+// 
+//   Neither the name of Texas Instruments Incorporated nor the names of
+//   its contributors may be used to endorse or promote products derived
+//   from this software without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+// $
+//#############################################################################
+
+//
+// Included Files
+//
+#include <sdfm_ex1_filter_cla_sync_shared_cpu1.h>
+#include "f2838x_cla.h"
+#include "f2838x_piectrl.h"
+#include "f2838x_sdfm_drivers.h"
+#include "f2838x_struct.h"
+
+//
+// Defines
+//
+#define CLA_DEBUG       0
+#define PIEACK_GROUP5   0x0010
+
+#pragma DATA_SECTION(Filter1_Result_CPU1,"Filter1_RegsFile");
+#pragma DATA_SECTION(Filter2_Result_CPU1,"Filter2_RegsFile");
+#pragma DATA_SECTION(Filter3_Result_CPU1,"Filter3_RegsFile");
+#pragma DATA_SECTION(Filter4_Result_CPU1,"Filter4_RegsFile");
+
+//
+// Globals
+//
+// Note that the globals defined in the .cla source are global to the cla source
+// file.  i.e. they may be shared across tasks. All of the data shared between
+// the CLA and the C28x CPU must be defined in the C (or C++) code, and not the
+// CLA code.  
+//
+short  Filter1_Result_CPU1[MAX_SAMPLES];
+short  Filter2_Result_CPU1[MAX_SAMPLES];
+short  Filter3_Result_CPU1[MAX_SAMPLES];
+short  Filter4_Result_CPU1[MAX_SAMPLES];
+
+int16 loopCounter1;
+int16 loopCounter2;
+
+//
+// Task 1
+//
+__interrupt void Cla1Task1 ( void )
+{
+#if (CLA_DEBUG==1)
+__mdebugstop();
+#endif
+    Uint32 sdfmReadFlagRegister;
+
+    //
+    // Read SDIFLG of SDFM1
+    //
+    sdfmReadFlagRegister = Sdfm1Regs.SDIFLG.all;
+
+    //
+    // Reset the loop counter
+    //
+    if(loopCounter1 >= MAX_SAMPLES)
+    {
+        loopCounter1 = 0;
+    }
+
+    //
+    // Read 16-bit result from SDFM1 filter1-4 data registers & store in
+    // result arrays
+    //
+    Filter1_Result_CPU1[loopCounter1] = *(Uint16 *)((Uint16)0x5E17);
+    Filter2_Result_CPU1[loopCounter1] = *(Uint16 *)((Uint16)0x5E27);
+    Filter3_Result_CPU1[loopCounter1] = *(Uint16 *)((Uint16)0x5E37);
+    Filter4_Result_CPU1[loopCounter1++] = *(Uint16 *)((Uint16)0x5E47);
+
+    //
+    // Clear SDFM1.SDIFLG register
+    //
+    Sdfm1Regs.SDIFLGCLR.all = sdfmReadFlagRegister;
+}
+
+//
+// Task 2
+//
+__interrupt void Cla1Task2 ( void )
+{
+#if (CLA_DEBUG==1)
+__mdebugstop();
+#endif
+
+    Uint32 sdfmReadFlagRegister;
+
+    //
+    // Read SDIFLG of SDFM2
+    //
+    sdfmReadFlagRegister = Sdfm2Regs.SDIFLG.all;
+
+    //
+    // Reset the loop counter
+    //
+    if(loopCounter2 >= MAX_SAMPLES)
+    {
+        loopCounter2 = 0;
+    }
+
+    //
+    // Read 16-bit result from SDFM2 filter1-4 data registers & store in
+    // result arrays
+    //
+    Filter1_Result_CPU1[loopCounter2] = *(Uint16 *)((Uint16)0x5E97);
+    Filter2_Result_CPU1[loopCounter2] = *(Uint16 *)((Uint16)0x5EA7);
+    Filter3_Result_CPU1[loopCounter2] = *(Uint16 *)((Uint16)0x5EB7);
+    Filter4_Result_CPU1[loopCounter2++] = *(Uint16 *)((Uint16)0x5EC7);
+
+    //
+    // Clear SDFM2.SDIFLG register
+    //
+    Sdfm2Regs.SDIFLGCLR.all = sdfmReadFlagRegister;
+}
+
+//
+// Task 3
+//
+__interrupt void Cla1Task3 ( void )
+{
+    #if (CLA_DEBUG==1)
+    __mdebugstop();
+    #endif
+}
+
+//
+// Task 4
+//
+__interrupt void Cla1Task4 ( void )
+{
+    #if (CLA_DEBUG==1)
+    __mdebugstop();
+    #endif
+}
+
+//
+// Task 5
+//
+__interrupt void Cla1Task5 ( void )
+{
+    #if (CLA_DEBUG==1)
+    __mdebugstop();
+    #endif
+}
+
+//
+// Task 6
+//
+__interrupt void Cla1Task6 ( void )
+{
+    #if (CLA_DEBUG==1)
+    __mdebugstop();
+    #endif
+}
+
+//
+// Task 7
+//
+__interrupt void Cla1Task7 ( void )
+{
+    #if (CLA_DEBUG==1)
+    __mdebugstop();
+    #endif
+}
+
+//
+// Task 8
+//
+__interrupt void Cla1Task8 ( void )
+{
+    loopCounter1 = 0;
+    loopCounter2 = 0;
+}
+
+//
+// End of file
+//

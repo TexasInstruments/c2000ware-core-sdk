@@ -1,0 +1,34 @@
+<projectSpec>
+  <project
+        name="empty_bitfield_driverlib_project"
+        device="TMS320F28075"
+        cgtVersion="22.6.0.LTS"
+        products="c2000ware_software_package"
+        launchWizard="False"
+        linkerCommandFile=""
+        >
+    <configuration name="CPU1_RAM" compilerBuildOptions="--opt_level=off -I${C2000WARE_COMMON_INCLUDE} -I${C2000WARE_HEADERS_INCLUDE} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=DEBUG  -ml -mt -v28 --float_support=fpu32 --cla_support=cla1 --vcu_support=vcu2 --tmu_support=tmu0  --define=DEBUG --define=_DUAL_HEADERS --define=CPU1  --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--stack_size=0x100  " />
+    <configuration name="CPU1_FLASH" compilerBuildOptions="--opt_level=off -I${C2000WARE_COMMON_INCLUDE} -I${C2000WARE_HEADERS_INCLUDE} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=DEBUG  -ml -mt -v28 --float_support=fpu32 --cla_support=cla1 --vcu_support=vcu2 --tmu_support=tmu0  --define=DEBUG --define=_DUAL_HEADERS --define=CPU1  --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--stack_size=0x100  " />
+    <pathVariable name="C2000WARE_COMMON_INCLUDE" path="../../../../../common/include/" scope="project" />
+    <pathVariable name="C2000WARE_HEADERS_INCLUDE" path="../../../../../headers/include/" scope="project" />
+    <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../../../../../driverlib/f2807x/driverlib/" scope="project" />
+    <file action="copy" path="../../../../../common/include/driverlib.h" targetDirectory="device" />
+    <file action="copy" path="../../../../../common/include/device.h" targetDirectory="device" />
+    <file action="copy" path="../../../../../common/source/device.c" targetDirectory="device" />
+    <file action="copy" path="../../../../../common/source/F2807x_CodeStartBranch.asm" targetDirectory="" />
+    <file action="copy" path="../../../../../common/source/F2807x_DefaultISR.c" targetDirectory="" />
+    <file action="copy" path="../../../../../common/source/F2807x_Gpio.c" targetDirectory="" />
+    <file action="copy" path="../../../../../common/source/F2807x_PieCtrl.c" targetDirectory="" />
+    <file action="copy" path="../../../../../common/source/F2807x_PieVect.c" targetDirectory="" />
+    <file action="copy" path="../../../../../common/source/F2807x_SysCtrl.c" targetDirectory="" />
+    <file action="copy" path="../../../../../common/source/F2807x_usDelay.asm" targetDirectory="" />
+    <file action="copy" path="../../../../../headers/cmd/F2807x_Headers_nonBIOS.cmd" targetDirectory="" />    
+    <file action="copy" path="../../../../../headers/source/F2807x_GlobalVariableDefs.c" targetDirectory="" />
+    <file action="copy" path="../../../../../common/targetConfigs/TMS320F28075.ccxml" targetDirectory="targetConfigs" />
+    <file action="copy" path="../../../../../common/cmd/2807x_Generic_RAM_lnk.cmd" targetDirectory="" applicableConfigurations="CPU1_RAM" />
+    <file action="copy" path="../../../../../common/cmd/2807x_Generic_FLASH_lnk.cmd" targetDirectory="" applicableConfigurations="CPU1_FLASH" />    
+    <file action="link" path="../../../../../../../driverlib/f2807x/driverlib/ccs/Debug/driverlib.lib" targetDirectory="" />
+    <file action="copy" path="../../../../../../../driverlib/f2807x/driverlib/" targetDirectory="device" excludeFromBuild="True" />
+    <file action="copy" path="../empty_bitfield_driverlib_main.c" targetDirectory="" />
+  </project>
+</projectSpec>

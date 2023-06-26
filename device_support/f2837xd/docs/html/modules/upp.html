@@ -1,0 +1,1609 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>UPP Module &mdash; F2837xd API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F2837xd API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="Version" href="version.html"/>
+        <link rel="prev" title="USB Module" href="usb.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F2837xd API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="adc.html">ADC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asysctl.html">ASysCtl Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla.html">CLA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clb.html">CLB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmpss.html">CMPSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dac.html">DAC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dma.html">DMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ecap.html">ECAP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emif.html">EMIF Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="epwm.html">EPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hrpwm.html">HRPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqep.html">EQEP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcbsp.html">MCBSP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci.html">SCI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdfm.html">SDFM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">SPI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">UPP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version.html">Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xbar.html">XBAR Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F2837xd API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>UPP Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="upp-module">
+<span id="upp"></span><h1>UPP Module<a class="headerlink" href="#upp-module" title="Permalink to this headline">¶</a></h1>
+<p>The universal parallel port (UPP) API provides a set of functions to configure
+device’s UPP module. The driver provides functions to initialize the module,
+obtain status information and to manage interrupts. Both transmitter and
+receiver modes are supported.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__upp__api"></span><em>group</em> <code class="sig-name descname">upp_api</code></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.UPP_DMA_TX_MSGRAM_STARTADDR">
+<span class="target" id="group__upp__api_1gad4b6138f238b9e37c93a761fa58e649a"></span><code class="sig-name descname">UPP_DMA_TX_MSGRAM_STARTADDR</code> UPP_TX_MSG_RAM_BASE<a class="headerlink" href="#c.UPP_DMA_TX_MSGRAM_STARTADDR" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UPP_DMA_RX_MSGRAM_STARTADDR">
+<span class="target" id="group__upp__api_1gaa435d79b75fa52dfc612d20b81eaedd2"></span><code class="sig-name descname">UPP_DMA_RX_MSGRAM_STARTADDR</code> 0x00007000U<a class="headerlink" href="#c.UPP_DMA_RX_MSGRAM_STARTADDR" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UPP_CPU_TX_MSGRAM_STARTADDR">
+<span class="target" id="group__upp__api_1ga070148aeef92fcb8c168655025b10f31"></span><code class="sig-name descname">UPP_CPU_TX_MSGRAM_STARTADDR</code> UPP_TX_MSG_RAM_BASE<a class="headerlink" href="#c.UPP_CPU_TX_MSGRAM_STARTADDR" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UPP_CPU_RX_MSGRAM_STARTADDR">
+<span class="target" id="group__upp__api_1ga3b6e05861855ce507debb62b108454f0"></span><code class="sig-name descname">UPP_CPU_RX_MSGRAM_STARTADDR</code> UPP_RX_MSG_RAM_BASE<a class="headerlink" href="#c.UPP_CPU_RX_MSGRAM_STARTADDR" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UPP_TX_MSGRAM_MAX_SIZE">
+<span class="target" id="group__upp__api_1ga508b0f5e68d83057c46c982f615bbe5d"></span><code class="sig-name descname">UPP_TX_MSGRAM_MAX_SIZE</code> 0x200U<a class="headerlink" href="#c.UPP_TX_MSGRAM_MAX_SIZE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UPP_RX_MSGRAM_MAX_SIZE">
+<span class="target" id="group__upp__api_1ga396fb03118a5e36e0baf9108957fa0a5"></span><code class="sig-name descname">UPP_RX_MSGRAM_MAX_SIZE</code> 0x200U<a class="headerlink" href="#c.UPP_RX_MSGRAM_MAX_SIZE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UPP_32_CYCLE_NOP">
+<span class="target" id="group__upp__api_1gab1cf2854c55121bb7fe9829e27add502"></span><code class="sig-name descname">UPP_32_CYCLE_NOP</code> __asm(&quot; RPT #31 || NOP&quot;)<a class="headerlink" href="#c.UPP_32_CYCLE_NOP" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UPP_SOFT_FREE_M">
+<span class="target" id="group__upp__api_1ga2ac26a4b07c82b32d98812197866608b"></span><code class="sig-name descname">UPP_SOFT_FREE_M</code> ((uint16_t)UPP_PERCTL_SOFT<p> |                   \</p>
+<p>                                (uint16_t)</p>
+UPP_PERCTL_FREE)<a class="headerlink" href="#c.UPP_SOFT_FREE_M" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UPP_TX_SIGNAL_MODE_M">
+<span class="target" id="group__upp__api_1ga4c4cdb53b3ff143ac3478a6a49933c09"></span><code class="sig-name descname">UPP_TX_SIGNAL_MODE_M</code> UPP_IFCFG_WAITA<a class="headerlink" href="#c.UPP_TX_SIGNAL_MODE_M" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UPP_RX_SIGNAL_MODE_M">
+<span class="target" id="group__upp__api_1gafa4b1ee047b631892d708ea9c25783c0"></span><code class="sig-name descname">UPP_RX_SIGNAL_MODE_M</code> ((uint16_t)UPP_IFCFG_STARTA<p> |                   \</p>
+<p>                                (uint16_t)</p>
+UPP_IFCFG_ENAA)<a class="headerlink" href="#c.UPP_RX_SIGNAL_MODE_M" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UPP_SIGNAL_POLARITY_M">
+<span class="target" id="group__upp__api_1gadf32a8df1237fa92f39ddd1a547a8221"></span><code class="sig-name descname">UPP_SIGNAL_POLARITY_M</code> ((uint16_t)UPP_IFCFG_WAITPOLA<p> |                 \</p>
+<p>                                (uint16_t)</p>
+UPP_IFCFG_ENAPOLA<p>  |                 \</p>
+<p>                                (uint16_t)</p>
+UPP_IFCFG_STARTPOLA)<a class="headerlink" href="#c.UPP_SIGNAL_POLARITY_M" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UPP_INT_M">
+<span class="target" id="group__upp__api_1ga105b1328d46118a5a0a250ef5be96783"></span><code class="sig-name descname">UPP_INT_M</code> ((uint16_t)UPP_ENINTST_DPEI | (uint16_t)UPP_ENINTST_UOEI<p> | \</p>
+<p>                    (uint16_t)</p>
+UPP_ENINTST_EOWI | (uint16_t)UPP_ENINTST_EOLI<p> | \</p>
+<p>                    (uint16_t)</p>
+UPP_ENINTST_DPEQ | (uint16_t)UPP_ENINTST_UOEQ<p> | \</p>
+<p>                    (uint16_t)</p>
+UPP_ENINTST_EOWQ | (uint16_t)UPP_ENINTST_EOLQ)<a class="headerlink" href="#c.UPP_INT_M" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UPP_INT_CHI_DMA_PROG_ERR">
+<span class="target" id="group__upp__api_1ga867430499f170c777dfa8dd180e95627"></span><code class="sig-name descname">UPP_INT_CHI_DMA_PROG_ERR</code> 0x0001U<a class="headerlink" href="#c.UPP_INT_CHI_DMA_PROG_ERR" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>DMA Channel I Programming Error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UPP_INT_CHI_UNDER_OVER_RUN">
+<span class="target" id="group__upp__api_1gaf746b527e55d0b3b51d99de28e8f39bb"></span><code class="sig-name descname">UPP_INT_CHI_UNDER_OVER_RUN</code> 0x0002U<a class="headerlink" href="#c.UPP_INT_CHI_UNDER_OVER_RUN" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>DMA Channel I Underrun/Overrun. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UPP_INT_CHI_END_OF_WINDOW">
+<span class="target" id="group__upp__api_1ga8d925a5734c16b2734ca1bc37bb5fc33"></span><code class="sig-name descname">UPP_INT_CHI_END_OF_WINDOW</code> 0x0008U<a class="headerlink" href="#c.UPP_INT_CHI_END_OF_WINDOW" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>DMA Channel I EndOfWindow Event. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UPP_INT_CHI_END_OF_LINE">
+<span class="target" id="group__upp__api_1gab5d421396ee49ef0329d585c7ddc1180"></span><code class="sig-name descname">UPP_INT_CHI_END_OF_LINE</code> 0x0010U<a class="headerlink" href="#c.UPP_INT_CHI_END_OF_LINE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>DMA Channel I EndOfLine Event. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UPP_INT_CHQ_DMA_PROG_ERR">
+<span class="target" id="group__upp__api_1ga3f9469cd4f4cb251cc93ee5fe709bdf0"></span><code class="sig-name descname">UPP_INT_CHQ_DMA_PROG_ERR</code> 0x0100U<a class="headerlink" href="#c.UPP_INT_CHQ_DMA_PROG_ERR" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>DMA Channel Q Programming Error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UPP_INT_CHQ_UNDER_OVER_RUN">
+<span class="target" id="group__upp__api_1gafd60f5079224754515e9d6d07ebda4b3"></span><code class="sig-name descname">UPP_INT_CHQ_UNDER_OVER_RUN</code> 0x0200U<a class="headerlink" href="#c.UPP_INT_CHQ_UNDER_OVER_RUN" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>DMA Channel Q Underrun/Overrun. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UPP_INT_CHQ_END_OF_WINDOW">
+<span class="target" id="group__upp__api_1ga9760462d4d49b38b3e74e7f6b384b403"></span><code class="sig-name descname">UPP_INT_CHQ_END_OF_WINDOW</code> 0x0800U<a class="headerlink" href="#c.UPP_INT_CHQ_END_OF_WINDOW" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>DMA Channel Q EndOfWindow Event. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UPP_INT_CHQ_END_OF_LINE">
+<span class="target" id="group__upp__api_1gadc30a6eb6637c55d6ef860fe8db93ebe"></span><code class="sig-name descname">UPP_INT_CHQ_END_OF_LINE</code> 0x1000U<a class="headerlink" href="#c.UPP_INT_CHQ_END_OF_LINE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>DMA Channel Q EndOfLine Event. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="cpp enum">
+<dt id="_CPPv417UPP_EmulationMode">
+<span id="_CPPv317UPP_EmulationMode"></span><span id="_CPPv217UPP_EmulationMode"></span><span class="target" id="group__upp__api_1ga75908220b8a4513c7b3109c45bec4b44"></span><em class="property">enum </em><code class="sig-name descname">UPP_EmulationMode</code><a class="headerlink" href="#_CPPv417UPP_EmulationMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__upp__api_1ga9788f179ce44937606cff1a11571a373"><span class="std std-ref">UPP_setEmulationMode()</span></a> as <em>emuMode</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17UPP_EmulationMode26UPP_EMULATIONMODE_HARDSTOPE">
+<span id="_CPPv3N17UPP_EmulationMode26UPP_EMULATIONMODE_HARDSTOPE"></span><span id="_CPPv2N17UPP_EmulationMode26UPP_EMULATIONMODE_HARDSTOPE"></span><span class="target" id="group__upp__api_1gga75908220b8a4513c7b3109c45bec4b44a5ce82ce70d33a6c38d5cc54f36fb82b5"></span><em class="property">enumerator </em><code class="sig-name descname">UPP_EMULATIONMODE_HARDSTOP</code> = 0x0U<a class="headerlink" href="#_CPPv4N17UPP_EmulationMode26UPP_EMULATIONMODE_HARDSTOPE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>uPP stops immediately </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17UPP_EmulationMode25UPP_EMULATIONMODE_RUNFREEE">
+<span id="_CPPv3N17UPP_EmulationMode25UPP_EMULATIONMODE_RUNFREEE"></span><span id="_CPPv2N17UPP_EmulationMode25UPP_EMULATIONMODE_RUNFREEE"></span><span class="target" id="group__upp__api_1gga75908220b8a4513c7b3109c45bec4b44aa4a39d44e2ac781553e52c23980408e3"></span><em class="property">enumerator </em><code class="sig-name descname">UPP_EMULATIONMODE_RUNFREE</code> = 0x1U<a class="headerlink" href="#_CPPv4N17UPP_EmulationMode25UPP_EMULATIONMODE_RUNFREEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>uPP unaffected by suspend </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17UPP_EmulationMode26UPP_EMULATIONMODE_SOFTSTOPE">
+<span id="_CPPv3N17UPP_EmulationMode26UPP_EMULATIONMODE_SOFTSTOPE"></span><span id="_CPPv2N17UPP_EmulationMode26UPP_EMULATIONMODE_SOFTSTOPE"></span><span class="target" id="group__upp__api_1gga75908220b8a4513c7b3109c45bec4b44a850d5ed91d64ac8b25b13372aa8ea03a"></span><em class="property">enumerator </em><code class="sig-name descname">UPP_EMULATIONMODE_SOFTSTOP</code> = 0x2U<a class="headerlink" href="#_CPPv4N17UPP_EmulationMode26UPP_EMULATIONMODE_SOFTSTOPE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>uPP stops at DMA transaction finish </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv417UPP_OperationMode">
+<span id="_CPPv317UPP_OperationMode"></span><span id="_CPPv217UPP_OperationMode"></span><span class="target" id="group__upp__api_1ga0242b7c3b8742693fe3f083abe1dbb07"></span><em class="property">enum </em><code class="sig-name descname">UPP_OperationMode</code><a class="headerlink" href="#_CPPv417UPP_OperationMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__upp__api_1ga799abe253dc22a4e0321f3298de04295"><span class="std std-ref">UPP_setOperationMode()</span></a> as <em>opMode</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17UPP_OperationMode16UPP_RECEIVE_MODEE">
+<span id="_CPPv3N17UPP_OperationMode16UPP_RECEIVE_MODEE"></span><span id="_CPPv2N17UPP_OperationMode16UPP_RECEIVE_MODEE"></span><span class="target" id="group__upp__api_1gga0242b7c3b8742693fe3f083abe1dbb07a31ffff004f5ce445d8f63ffc15eb8f81"></span><em class="property">enumerator </em><code class="sig-name descname">UPP_RECEIVE_MODE</code> = 0x0U<a class="headerlink" href="#_CPPv4N17UPP_OperationMode16UPP_RECEIVE_MODEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>uPP to be configured as Receiver </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17UPP_OperationMode17UPP_TRANSMIT_MODEE">
+<span id="_CPPv3N17UPP_OperationMode17UPP_TRANSMIT_MODEE"></span><span id="_CPPv2N17UPP_OperationMode17UPP_TRANSMIT_MODEE"></span><span class="target" id="group__upp__api_1gga0242b7c3b8742693fe3f083abe1dbb07a0cc0ce7ac0a91c495ff2c8ce81b1c26c"></span><em class="property">enumerator </em><code class="sig-name descname">UPP_TRANSMIT_MODE</code> = 0x1U<a class="headerlink" href="#_CPPv4N17UPP_OperationMode17UPP_TRANSMIT_MODEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>uPP to be configured as Transmitter </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv412UPP_DataRate">
+<span id="_CPPv312UPP_DataRate"></span><span id="_CPPv212UPP_DataRate"></span><span class="target" id="group__upp__api_1ga9daca3506029f3fafa28e4c81efff41d"></span><em class="property">enum </em><code class="sig-name descname">UPP_DataRate</code><a class="headerlink" href="#_CPPv412UPP_DataRate" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__upp__api_1gac098f2f524d75269f005e27abfd6a088"><span class="std std-ref">UPP_setDataRate()</span></a> as <em>dataRate</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12UPP_DataRate17UPP_DATA_RATE_SDRE">
+<span id="_CPPv3N12UPP_DataRate17UPP_DATA_RATE_SDRE"></span><span id="_CPPv2N12UPP_DataRate17UPP_DATA_RATE_SDRE"></span><span class="target" id="group__upp__api_1gga9daca3506029f3fafa28e4c81efff41da797a599381bfcb6b4596160b82e6a60d"></span><em class="property">enumerator </em><code class="sig-name descname">UPP_DATA_RATE_SDR</code> = 0x00000U<a class="headerlink" href="#_CPPv4N12UPP_DataRate17UPP_DATA_RATE_SDRE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>uPP to operate in Single Data Rate Mode </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12UPP_DataRate17UPP_DATA_RATE_DDRE">
+<span id="_CPPv3N12UPP_DataRate17UPP_DATA_RATE_DDRE"></span><span id="_CPPv2N12UPP_DataRate17UPP_DATA_RATE_DDRE"></span><span class="target" id="group__upp__api_1gga9daca3506029f3fafa28e4c81efff41da8194c63fdefda547b365d382cc3ced07"></span><em class="property">enumerator </em><code class="sig-name descname">UPP_DATA_RATE_DDR</code> = 0x10000U<a class="headerlink" href="#_CPPv4N12UPP_DataRate17UPP_DATA_RATE_DDRE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>uPP to operate in Double Data Rate Mode </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv423UPP_TxSDRInterleaveMode">
+<span id="_CPPv323UPP_TxSDRInterleaveMode"></span><span id="_CPPv223UPP_TxSDRInterleaveMode"></span><span class="target" id="group__upp__api_1gaad44d7f30f5f7cb63818ac27f744f622"></span><em class="property">enum </em><code class="sig-name descname">UPP_TxSDRInterleaveMode</code><a class="headerlink" href="#_CPPv423UPP_TxSDRInterleaveMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__upp__api_1ga8be19b8aeff6b79fd7a6a555bde1ba3c"><span class="std std-ref">UPP_setTxSDRInterleaveMode()</span></a> as <em>mode</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N23UPP_TxSDRInterleaveMode29UPP_TX_SDR_INTERLEAVE_DISABLEE">
+<span id="_CPPv3N23UPP_TxSDRInterleaveMode29UPP_TX_SDR_INTERLEAVE_DISABLEE"></span><span id="_CPPv2N23UPP_TxSDRInterleaveMode29UPP_TX_SDR_INTERLEAVE_DISABLEE"></span><span class="target" id="group__upp__api_1ggaad44d7f30f5f7cb63818ac27f744f622a8659b7ffd53db287938987ea595bd31d"></span><em class="property">enumerator </em><code class="sig-name descname">UPP_TX_SDR_INTERLEAVE_DISABLE</code> = 0x0U<a class="headerlink" href="#_CPPv4N23UPP_TxSDRInterleaveMode29UPP_TX_SDR_INTERLEAVE_DISABLEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Interleaving disabled in Tx SDR. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N23UPP_TxSDRInterleaveMode28UPP_TX_SDR_INTERLEAVE_ENABLEE">
+<span id="_CPPv3N23UPP_TxSDRInterleaveMode28UPP_TX_SDR_INTERLEAVE_ENABLEE"></span><span id="_CPPv2N23UPP_TxSDRInterleaveMode28UPP_TX_SDR_INTERLEAVE_ENABLEE"></span><span class="target" id="group__upp__api_1ggaad44d7f30f5f7cb63818ac27f744f622a4c96dbecc0edfa977d34c067d85c2751"></span><em class="property">enumerator </em><code class="sig-name descname">UPP_TX_SDR_INTERLEAVE_ENABLE</code> = 0x8U<a class="headerlink" href="#_CPPv4N23UPP_TxSDRInterleaveMode28UPP_TX_SDR_INTERLEAVE_ENABLEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Interleaving enabled in Tx SDR. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv416UPP_DDRDemuxMode">
+<span id="_CPPv316UPP_DDRDemuxMode"></span><span id="_CPPv216UPP_DDRDemuxMode"></span><span class="target" id="group__upp__api_1gae6bc532aa645b003cb4e96ba867c7d68"></span><em class="property">enum </em><code class="sig-name descname">UPP_DDRDemuxMode</code><a class="headerlink" href="#_CPPv416UPP_DDRDemuxMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__upp__api_1ga2e451b7d3d0d9bb9d729ab1497ef980b"><span class="std std-ref">UPP_setDDRDemuxMode()</span></a> as <em>mode</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N16UPP_DDRDemuxMode21UPP_DDR_DEMUX_DISABLEE">
+<span id="_CPPv3N16UPP_DDRDemuxMode21UPP_DDR_DEMUX_DISABLEE"></span><span id="_CPPv2N16UPP_DDRDemuxMode21UPP_DDR_DEMUX_DISABLEE"></span><span class="target" id="group__upp__api_1ggae6bc532aa645b003cb4e96ba867c7d68adfe9783abdb7e020edea8cdf68cca164"></span><em class="property">enumerator </em><code class="sig-name descname">UPP_DDR_DEMUX_DISABLE</code> = 0x00U<a class="headerlink" href="#_CPPv4N16UPP_DDRDemuxMode21UPP_DDR_DEMUX_DISABLEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Demultiplexing disabled in DDR mode. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N16UPP_DDRDemuxMode20UPP_DDR_DEMUX_ENABLEE">
+<span id="_CPPv3N16UPP_DDRDemuxMode20UPP_DDR_DEMUX_ENABLEE"></span><span id="_CPPv2N16UPP_DDRDemuxMode20UPP_DDR_DEMUX_ENABLEE"></span><span class="target" id="group__upp__api_1ggae6bc532aa645b003cb4e96ba867c7d68a6fc51f3c0262989db840122b1ce296d9"></span><em class="property">enumerator </em><code class="sig-name descname">UPP_DDR_DEMUX_ENABLE</code> = 0x10U<a class="headerlink" href="#_CPPv4N16UPP_DDRDemuxMode20UPP_DDR_DEMUX_ENABLEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Demultiplexing enabled in DDR mode. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv418UPP_SignalPolarity">
+<span id="_CPPv318UPP_SignalPolarity"></span><span id="_CPPv218UPP_SignalPolarity"></span><span class="target" id="group__upp__api_1gae4d1ed792b62a569e5b1273a23fe7d38"></span><em class="property">enum </em><code class="sig-name descname">UPP_SignalPolarity</code><a class="headerlink" href="#_CPPv418UPP_SignalPolarity" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__upp__api_1gafb894d66a7ada2781bb4b021a525afd2"><span class="std std-ref">UPP_setControlSignalPolarity()</span></a> as <em>waitPola</em>, <em>enablePola</em> &amp; <em>startPola</em> parameters. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18UPP_SignalPolarity24UPP_SIGNAL_POLARITY_HIGHE">
+<span id="_CPPv3N18UPP_SignalPolarity24UPP_SIGNAL_POLARITY_HIGHE"></span><span id="_CPPv2N18UPP_SignalPolarity24UPP_SIGNAL_POLARITY_HIGHE"></span><span class="target" id="group__upp__api_1ggae4d1ed792b62a569e5b1273a23fe7d38af3ad2908b58a5937bce998169cadb64c"></span><em class="property">enumerator </em><code class="sig-name descname">UPP_SIGNAL_POLARITY_HIGH</code> = 0x0U<a class="headerlink" href="#_CPPv4N18UPP_SignalPolarity24UPP_SIGNAL_POLARITY_HIGHE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Signal polarity is active high. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18UPP_SignalPolarity23UPP_SIGNAL_POLARITY_LOWE">
+<span id="_CPPv3N18UPP_SignalPolarity23UPP_SIGNAL_POLARITY_LOWE"></span><span id="_CPPv2N18UPP_SignalPolarity23UPP_SIGNAL_POLARITY_LOWE"></span><span class="target" id="group__upp__api_1ggae4d1ed792b62a569e5b1273a23fe7d38a72f4f1cc556898eeafd9f7a76898af85"></span><em class="property">enumerator </em><code class="sig-name descname">UPP_SIGNAL_POLARITY_LOW</code> = 0x1U<a class="headerlink" href="#_CPPv4N18UPP_SignalPolarity23UPP_SIGNAL_POLARITY_LOWE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Signal polarity is active low. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv414UPP_SignalMode">
+<span id="_CPPv314UPP_SignalMode"></span><span id="_CPPv214UPP_SignalMode"></span><span class="target" id="group__upp__api_1ga31bc1acfaefe9905e43ff44826eb0608"></span><em class="property">enum </em><code class="sig-name descname">UPP_SignalMode</code><a class="headerlink" href="#_CPPv414UPP_SignalMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__upp__api_1ga4c973412aadd361e733afb77bbedccae"><span class="std std-ref">UPP_setTxControlSignalMode()</span></a> &amp; <a class="reference internal" href="#group__upp__api_1gab140b590dfff3696786e9eb624942dd3"><span class="std std-ref">UPP_setRxControlSignalMode()</span></a> as <em>waitMode</em> &amp; <em>startMode</em>, <em>enableMode</em> parameters respectively. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14UPP_SignalMode18UPP_SIGNAL_DISABLEE">
+<span id="_CPPv3N14UPP_SignalMode18UPP_SIGNAL_DISABLEE"></span><span id="_CPPv2N14UPP_SignalMode18UPP_SIGNAL_DISABLEE"></span><span class="target" id="group__upp__api_1gga31bc1acfaefe9905e43ff44826eb0608a8a6adf1ddbfcd05748416a2b0e9ecd64"></span><em class="property">enumerator </em><code class="sig-name descname">UPP_SIGNAL_DISABLE</code> = 0x0U<a class="headerlink" href="#_CPPv4N14UPP_SignalMode18UPP_SIGNAL_DISABLEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Control Signal is disabled for uPP. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14UPP_SignalMode17UPP_SIGNAL_ENABLEE">
+<span id="_CPPv3N14UPP_SignalMode17UPP_SIGNAL_ENABLEE"></span><span id="_CPPv2N14UPP_SignalMode17UPP_SIGNAL_ENABLEE"></span><span class="target" id="group__upp__api_1gga31bc1acfaefe9905e43ff44826eb0608a55478887372e7be848a7aec49a5bc4ad"></span><em class="property">enumerator </em><code class="sig-name descname">UPP_SIGNAL_ENABLE</code> = 0x1U<a class="headerlink" href="#_CPPv4N14UPP_SignalMode17UPP_SIGNAL_ENABLEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Control Signal is enabled for uPP. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv417UPP_ClockPolarity">
+<span id="_CPPv317UPP_ClockPolarity"></span><span id="_CPPv217UPP_ClockPolarity"></span><span class="target" id="group__upp__api_1ga0d1834a48d3761a1ae85c62e14de99d3"></span><em class="property">enum </em><code class="sig-name descname">UPP_ClockPolarity</code><a class="headerlink" href="#_CPPv417UPP_ClockPolarity" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__upp__api_1ga0c4cbdd9c82b8ac909584faf39af711f"><span class="std std-ref">UPP_setClockPolarity()</span></a> as <em>clkPolarity</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17UPP_ClockPolarity20UPP_CLK_NOT_INVERTEDE">
+<span id="_CPPv3N17UPP_ClockPolarity20UPP_CLK_NOT_INVERTEDE"></span><span id="_CPPv2N17UPP_ClockPolarity20UPP_CLK_NOT_INVERTEDE"></span><span class="target" id="group__upp__api_1gga0d1834a48d3761a1ae85c62e14de99d3a76a333eee39045fa05683514d70aa7e8"></span><em class="property">enumerator </em><code class="sig-name descname">UPP_CLK_NOT_INVERTED</code> = 0x0000U<a class="headerlink" href="#_CPPv4N17UPP_ClockPolarity20UPP_CLK_NOT_INVERTEDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>uPP Clock is not inverted </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17UPP_ClockPolarity16UPP_CLK_INVERTEDE">
+<span id="_CPPv3N17UPP_ClockPolarity16UPP_CLK_INVERTEDE"></span><span id="_CPPv2N17UPP_ClockPolarity16UPP_CLK_INVERTEDE"></span><span class="target" id="group__upp__api_1gga0d1834a48d3761a1ae85c62e14de99d3a0868004708cfc2e576bdb88011ee7075"></span><em class="property">enumerator </em><code class="sig-name descname">UPP_CLK_INVERTED</code> = 0x1000U<a class="headerlink" href="#_CPPv4N17UPP_ClockPolarity16UPP_CLK_INVERTEDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>uPP clock is inverted </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv418UPP_TxIdleDataMode">
+<span id="_CPPv318UPP_TxIdleDataMode"></span><span id="_CPPv218UPP_TxIdleDataMode"></span><span class="target" id="group__upp__api_1ga590d61fc0f0fd79dd35c425ff08b91f9"></span><em class="property">enum </em><code class="sig-name descname">UPP_TxIdleDataMode</code><a class="headerlink" href="#_CPPv418UPP_TxIdleDataMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__upp__api_1ga5e74a0e31c8aa5a404555691c6539c03"><span class="std std-ref">UPP_configTxIdleDataMode()</span></a> as <em>config</em> parameter. It specifies whether the data lines will drive idle value or get tri-stated when uPP goes to idle state. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18UPP_TxIdleDataMode21UPP_TX_IDLE_DATA_IDLEE">
+<span id="_CPPv3N18UPP_TxIdleDataMode21UPP_TX_IDLE_DATA_IDLEE"></span><span id="_CPPv2N18UPP_TxIdleDataMode21UPP_TX_IDLE_DATA_IDLEE"></span><span class="target" id="group__upp__api_1gga590d61fc0f0fd79dd35c425ff08b91f9ad8d169a385b821f392ec1f4c5ce93077"></span><em class="property">enumerator </em><code class="sig-name descname">UPP_TX_IDLE_DATA_IDLE</code> = 0x0000U<a class="headerlink" href="#_CPPv4N18UPP_TxIdleDataMode21UPP_TX_IDLE_DATA_IDLEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Data lines will drive idle val. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18UPP_TxIdleDataMode26UPP_TX_IDLE_DATA_TRISTATEDE">
+<span id="_CPPv3N18UPP_TxIdleDataMode26UPP_TX_IDLE_DATA_TRISTATEDE"></span><span id="_CPPv2N18UPP_TxIdleDataMode26UPP_TX_IDLE_DATA_TRISTATEDE"></span><span class="target" id="group__upp__api_1gga590d61fc0f0fd79dd35c425ff08b91f9a6d9d31eacb0feebaaffee63e1dd757e9"></span><em class="property">enumerator </em><code class="sig-name descname">UPP_TX_IDLE_DATA_TRISTATED</code> = 0x2000U<a class="headerlink" href="#_CPPv4N18UPP_TxIdleDataMode26UPP_TX_IDLE_DATA_TRISTATEDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Data lines will be tristated. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv414UPP_DMAChannel">
+<span id="_CPPv314UPP_DMAChannel"></span><span id="_CPPv214UPP_DMAChannel"></span><span class="target" id="group__upp__api_1ga3d339fa86ba3830a81a8e60a0742cd40"></span><em class="property">enum </em><code class="sig-name descname">UPP_DMAChannel</code><a class="headerlink" href="#_CPPv414UPP_DMAChannel" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__upp__api_1gabff5d769f05dd6b33c0f130431460019"><span class="std std-ref">UPP_setDMAReadThreshold()</span></a>, <a class="reference internal" href="#group__upp__api_1gae35783b3d80c3089b06245c5b6f1a2f4"><span class="std std-ref">UPP_getDMAChannelStatus()</span></a>, <a class="reference internal" href="#group__upp__api_1gae1bddda9d9fd4f776bb8cf30f994b0e7"><span class="std std-ref">UPP_setDMADescriptor()</span></a>, <a class="reference internal" href="#group__upp__api_1ga9b046ec4872edefa115d50b3d051bbe3"><span class="std std-ref">UPP_isDescriptorPending()</span></a>, <a class="reference internal" href="#group__upp__api_1ga477af601929bd1c7097f8637ba8d8c8d"><span class="std std-ref">UPP_isDescriptorActive()</span></a> &amp; <a class="reference internal" href="#group__upp__api_1gab193e906f3e31a4e18eb160223b06fe3"><span class="std std-ref">UPP_getDMAFIFOWatermark()</span></a> as <em>channel</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14UPP_DMAChannel17UPP_DMA_CHANNEL_IE">
+<span id="_CPPv3N14UPP_DMAChannel17UPP_DMA_CHANNEL_IE"></span><span id="_CPPv2N14UPP_DMAChannel17UPP_DMA_CHANNEL_IE"></span><span class="target" id="group__upp__api_1gga3d339fa86ba3830a81a8e60a0742cd40a162ddd37e103cfd878f2c60b50fa57c3"></span><em class="property">enumerator </em><code class="sig-name descname">UPP_DMA_CHANNEL_I</code> = 0U<a class="headerlink" href="#_CPPv4N14UPP_DMAChannel17UPP_DMA_CHANNEL_IE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>uPP internal DMA channel I </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14UPP_DMAChannel17UPP_DMA_CHANNEL_QE">
+<span id="_CPPv3N14UPP_DMAChannel17UPP_DMA_CHANNEL_QE"></span><span id="_CPPv2N14UPP_DMAChannel17UPP_DMA_CHANNEL_QE"></span><span class="target" id="group__upp__api_1gga3d339fa86ba3830a81a8e60a0742cd40ae930cf6e6e73b291e9aaa86a1ac9f35a"></span><em class="property">enumerator </em><code class="sig-name descname">UPP_DMA_CHANNEL_Q</code> = 1U<a class="headerlink" href="#_CPPv4N14UPP_DMAChannel17UPP_DMA_CHANNEL_QE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>uPP internal DMA channel Q </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv417UPP_ThresholdSize">
+<span id="_CPPv317UPP_ThresholdSize"></span><span id="_CPPv217UPP_ThresholdSize"></span><span class="target" id="group__upp__api_1ga4d7159492ada922e8ab7cf9406d987c3"></span><em class="property">enum </em><code class="sig-name descname">UPP_ThresholdSize</code><a class="headerlink" href="#_CPPv417UPP_ThresholdSize" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__upp__api_1ga6490b6c76b04300fcdde10721cc9e6cb"><span class="std std-ref">UPP_setTxThreshold()</span></a> and <a class="reference internal" href="#group__upp__api_1gabff5d769f05dd6b33c0f130431460019"><span class="std std-ref">UPP_setDMAReadThreshold()</span></a> as <em>size</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17UPP_ThresholdSize19UPP_THR_SIZE_64BYTEE">
+<span id="_CPPv3N17UPP_ThresholdSize19UPP_THR_SIZE_64BYTEE"></span><span id="_CPPv2N17UPP_ThresholdSize19UPP_THR_SIZE_64BYTEE"></span><span class="target" id="group__upp__api_1gga4d7159492ada922e8ab7cf9406d987c3ac4a220da343a59a7f36c0950f6b288af"></span><em class="property">enumerator </em><code class="sig-name descname">UPP_THR_SIZE_64BYTE</code> = 0x0U<a class="headerlink" href="#_CPPv4N17UPP_ThresholdSize19UPP_THR_SIZE_64BYTEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Tx threshold size is 64 bytes. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17UPP_ThresholdSize20UPP_THR_SIZE_128BYTEE">
+<span id="_CPPv3N17UPP_ThresholdSize20UPP_THR_SIZE_128BYTEE"></span><span id="_CPPv2N17UPP_ThresholdSize20UPP_THR_SIZE_128BYTEE"></span><span class="target" id="group__upp__api_1gga4d7159492ada922e8ab7cf9406d987c3a148e93d4579eb841c06ecccd1b11ce97"></span><em class="property">enumerator </em><code class="sig-name descname">UPP_THR_SIZE_128BYTE</code> = 0x1U<a class="headerlink" href="#_CPPv4N17UPP_ThresholdSize20UPP_THR_SIZE_128BYTEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Tx threshold size is 128 bytes. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17UPP_ThresholdSize20UPP_THR_SIZE_256BYTEE">
+<span id="_CPPv3N17UPP_ThresholdSize20UPP_THR_SIZE_256BYTEE"></span><span id="_CPPv2N17UPP_ThresholdSize20UPP_THR_SIZE_256BYTEE"></span><span class="target" id="group__upp__api_1gga4d7159492ada922e8ab7cf9406d987c3aec7f9b870af49fe7cb96ed0768b3157b"></span><em class="property">enumerator </em><code class="sig-name descname">UPP_THR_SIZE_256BYTE</code> = 0x3U<a class="headerlink" href="#_CPPv4N17UPP_ThresholdSize20UPP_THR_SIZE_256BYTEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Tx threshold size is 256 bytes. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv414UPP_InputDelay">
+<span id="_CPPv314UPP_InputDelay"></span><span id="_CPPv214UPP_InputDelay"></span><span class="target" id="group__upp__api_1gaa900bc91c184bd36a78bf0cb4765a91a"></span><em class="property">enum </em><code class="sig-name descname">UPP_InputDelay</code><a class="headerlink" href="#_CPPv414UPP_InputDelay" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__upp__api_1gaba66b056f96a1b1ef87a9ec9d6ac8ce9"><span class="std std-ref">UPP_setInputDelay()</span></a> as <em>delay</em> parameter. All the following values lead to 2 cycle delay on clock pin. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14UPP_InputDelay15UPP_INPUT_DLY_4E">
+<span id="_CPPv3N14UPP_InputDelay15UPP_INPUT_DLY_4E"></span><span id="_CPPv2N14UPP_InputDelay15UPP_INPUT_DLY_4E"></span><span class="target" id="group__upp__api_1ggaa900bc91c184bd36a78bf0cb4765a91aa36ae130ce8a645542fae923332507fe3"></span><em class="property">enumerator </em><code class="sig-name descname">UPP_INPUT_DLY_4</code> = 0x0U<a class="headerlink" href="#_CPPv4N14UPP_InputDelay15UPP_INPUT_DLY_4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>4 cycle delay for data &amp; control pins </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14UPP_InputDelay15UPP_INPUT_DLY_6E">
+<span id="_CPPv3N14UPP_InputDelay15UPP_INPUT_DLY_6E"></span><span id="_CPPv2N14UPP_InputDelay15UPP_INPUT_DLY_6E"></span><span class="target" id="group__upp__api_1ggaa900bc91c184bd36a78bf0cb4765a91aa7d2a73a8bd69eb6c89026c09c19ec89f"></span><em class="property">enumerator </em><code class="sig-name descname">UPP_INPUT_DLY_6</code> = 0x2U<a class="headerlink" href="#_CPPv4N14UPP_InputDelay15UPP_INPUT_DLY_6E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>6 cycle delay for data &amp; control pins </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14UPP_InputDelay15UPP_INPUT_DLY_9E">
+<span id="_CPPv3N14UPP_InputDelay15UPP_INPUT_DLY_9E"></span><span id="_CPPv2N14UPP_InputDelay15UPP_INPUT_DLY_9E"></span><span class="target" id="group__upp__api_1ggaa900bc91c184bd36a78bf0cb4765a91aaf8fba292c886934a088f79a7cd4bdcb1"></span><em class="property">enumerator </em><code class="sig-name descname">UPP_INPUT_DLY_9</code> = 0x4U<a class="headerlink" href="#_CPPv4N14UPP_InputDelay15UPP_INPUT_DLY_9E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>9 cycle delay for data &amp; control pins </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14UPP_InputDelay16UPP_INPUT_DLY_14E">
+<span id="_CPPv3N14UPP_InputDelay16UPP_INPUT_DLY_14E"></span><span id="_CPPv2N14UPP_InputDelay16UPP_INPUT_DLY_14E"></span><span class="target" id="group__upp__api_1ggaa900bc91c184bd36a78bf0cb4765a91aaaa8c681804e37ea6cc7b555e7573cfcf"></span><em class="property">enumerator </em><code class="sig-name descname">UPP_INPUT_DLY_14</code> = 0x6U<a class="headerlink" href="#_CPPv4N14UPP_InputDelay16UPP_INPUT_DLY_14E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>14 cycle delay for data &amp; control pins </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv415UPP_isDMAActive8uint32_t">
+<span id="_CPPv315UPP_isDMAActive8uint32_t"></span><span id="_CPPv215UPP_isDMAActive8uint32_t"></span><span id="UPP_isDMAActive__uint32_t"></span><span class="target" id="group__upp__api_1gaa9d8a1e42fb6f838e98c816d0c90570a"></span>bool <code class="sig-name descname">UPP_isDMAActive</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415UPP_isDMAActive8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns uPP internal DMA state machine status.</p>
+<p><p>This function returns whether the uPP internal DMA state machine status is idle or burst transaction is active.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the DMA machine status. It can return following values:<ul class="simple">
+<li><p><strong>true</strong> - DMA burst transaction is active</p></li>
+<li><p><strong>false</strong> - DMA is idle </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420UPP_performSoftReset8uint32_t">
+<span id="_CPPv320UPP_performSoftReset8uint32_t"></span><span id="_CPPv220UPP_performSoftReset8uint32_t"></span><span id="UPP_performSoftReset__uint32_t"></span><span class="target" id="group__upp__api_1ga19fb0e01540fa458ad4caf1b90eac04f"></span>void <code class="sig-name descname">UPP_performSoftReset</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420UPP_performSoftReset8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Resets the uPP module.</p>
+<p><p>This function initiates software reset in uPP.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416UPP_enableModule8uint32_t">
+<span id="_CPPv316UPP_enableModule8uint32_t"></span><span id="_CPPv216UPP_enableModule8uint32_t"></span><span id="UPP_enableModule__uint32_t"></span><span class="target" id="group__upp__api_1ga06ab654a185fa48c7849e70ff5541151"></span>void <code class="sig-name descname">UPP_enableModule</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416UPP_enableModule8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the uPP module.</p>
+<p><p>This function enables the uPP module.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417UPP_disableModule8uint32_t">
+<span id="_CPPv317UPP_disableModule8uint32_t"></span><span id="_CPPv217UPP_disableModule8uint32_t"></span><span id="UPP_disableModule__uint32_t"></span><span class="target" id="group__upp__api_1gacd198f336b1ad14fcc94f50f815ea2d3"></span>void <code class="sig-name descname">UPP_disableModule</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417UPP_disableModule8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the uPP module.</p>
+<p><p>This function disables the uPP module.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423UPP_enableEmulationMode8uint32_t">
+<span id="_CPPv323UPP_enableEmulationMode8uint32_t"></span><span id="_CPPv223UPP_enableEmulationMode8uint32_t"></span><span id="UPP_enableEmulationMode__uint32_t"></span><span class="target" id="group__upp__api_1gac02dee06f6b2527615f48ea192b6f263"></span>void <code class="sig-name descname">UPP_enableEmulationMode</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423UPP_enableEmulationMode8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables real time emulation mode for uPP module.</p>
+<p><p>This function enables real time emulation mode in uPP module.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424UPP_disableEmulationMode8uint32_t">
+<span id="_CPPv324UPP_disableEmulationMode8uint32_t"></span><span id="_CPPv224UPP_disableEmulationMode8uint32_t"></span><span id="UPP_disableEmulationMode__uint32_t"></span><span class="target" id="group__upp__api_1ga0f438849d3382c4340e2719dbfc6552a"></span>void <code class="sig-name descname">UPP_disableEmulationMode</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424UPP_disableEmulationMode8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables real time emulation mode for uPP module.</p>
+<p><p>This function disables real time emulation mode for uPP module.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420UPP_setEmulationMode8uint32_t17UPP_EmulationMode">
+<span id="_CPPv320UPP_setEmulationMode8uint32_t17UPP_EmulationMode"></span><span id="_CPPv220UPP_setEmulationMode8uint32_t17UPP_EmulationMode"></span><span id="UPP_setEmulationMode__uint32_t.UPP_EmulationMode"></span><span class="target" id="group__upp__api_1ga9788f179ce44937606cff1a11571a373"></span>void <code class="sig-name descname">UPP_setEmulationMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv417UPP_EmulationMode" title="UPP_EmulationMode">UPP_EmulationMode</a> <em>emuMode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420UPP_setEmulationMode8uint32_t17UPP_EmulationMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the emulation mode for the uPP module.</p>
+<p><p>This function sets the uPP module’s emulation mode. This mode determines how the uPP module is affected by an emulation suspend. Valid values for </p>
+<em>emuMode</em> parameter are the following:<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">emuMode</span></code>: is the mode of operation upon an emulation suspend.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p><strong>UPP_EMULATIONMODE_HARDSTOP</strong> - The uPP module stops immediately.</p></li>
+<li><p><strong>UPP_EMULATIONMODE_RUNFREE</strong> - The uPP module is unaffected by an emulation suspend.</p></li>
+<li><p><strong>UPP_EMULATIONMODE_SOFTSTOP</strong> - The uPP module stops after completing current DMA burst transaction.</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420UPP_setOperationMode8uint32_t17UPP_OperationMode">
+<span id="_CPPv320UPP_setOperationMode8uint32_t17UPP_OperationMode"></span><span id="_CPPv220UPP_setOperationMode8uint32_t17UPP_OperationMode"></span><span id="UPP_setOperationMode__uint32_t.UPP_OperationMode"></span><span class="target" id="group__upp__api_1ga799abe253dc22a4e0321f3298de04295"></span>void <code class="sig-name descname">UPP_setOperationMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv417UPP_OperationMode" title="UPP_OperationMode">UPP_OperationMode</a> <em>opMode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420UPP_setOperationMode8uint32_t17UPP_OperationMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets uPP mode of operation.</p>
+<p><p>This function sets the uPP mode of opeartion. The </p>
+<em>opMode</em> parameter determines whether uPP module should be configured as transmitter or receiver. It should be passed any of the following values:<ul class="simple">
+<li><p><strong>UPP_RECEIVE_MODE</strong> - uPP is to be operated in Rx mode.</p></li>
+<li><p><strong>UPP_TRANSMIT_MODE</strong> - uPP is to be operated in Tx mode.</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">opMode</span></code>: is mode of operation for uPP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415UPP_setDataRate8uint32_t12UPP_DataRate">
+<span id="_CPPv315UPP_setDataRate8uint32_t12UPP_DataRate"></span><span id="_CPPv215UPP_setDataRate8uint32_t12UPP_DataRate"></span><span id="UPP_setDataRate__uint32_t.UPP_DataRate"></span><span class="target" id="group__upp__api_1gac098f2f524d75269f005e27abfd6a088"></span>void <code class="sig-name descname">UPP_setDataRate</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv412UPP_DataRate" title="UPP_DataRate">UPP_DataRate</a> <em>dataRate</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415UPP_setDataRate8uint32_t12UPP_DataRate" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets uPP data rate mode.</p>
+<p><p>This function sets the data rate mode for uPP module as single data rate or double data rate mode. It should be passed any of the following values:</p>
+<ul class="simple">
+<li><p><strong>UPP_DATA_RATE_SDR</strong> - uPP is to be operated in single data rate mode.</p></li>
+<li><p><strong>UPP_DATA_RATE_DDR</strong> - uPP is to be operated in double data rate mode.</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataRate</span></code>: is the required uPP data rate mode.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426UPP_setTxSDRInterleaveMode8uint32_t23UPP_TxSDRInterleaveMode">
+<span id="_CPPv326UPP_setTxSDRInterleaveMode8uint32_t23UPP_TxSDRInterleaveMode"></span><span id="_CPPv226UPP_setTxSDRInterleaveMode8uint32_t23UPP_TxSDRInterleaveMode"></span><span id="UPP_setTxSDRInterleaveMode__uint32_t.UPP_TxSDRInterleaveMode"></span><span class="target" id="group__upp__api_1ga8be19b8aeff6b79fd7a6a555bde1ba3c"></span>void <code class="sig-name descname">UPP_setTxSDRInterleaveMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv423UPP_TxSDRInterleaveMode" title="UPP_TxSDRInterleaveMode">UPP_TxSDRInterleaveMode</a> <em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426UPP_setTxSDRInterleaveMode8uint32_t23UPP_TxSDRInterleaveMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets Tx SDR interleave mode for uPP module.</p>
+<p><p>This function sets the required interleave mode for SDR Tx uPP. It is valid only for Tx SDR mode &amp; not for Rx SDR mode. The </p>
+<em>mode</em> parameter determines whether interleaving should be enabled or disabled for SDR Tx uPP mode. It should be passed any of the following values:<ul class="simple">
+<li><p><strong>UPP_TX_SDR_INTERLEAVE_DISABLE</strong> - specifies interleaving is disabled</p></li>
+<li><p><strong>UPP_TX_SDR_INTERLEAVE_ENABLE</strong> - specifies interleaving is enabled</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: is the required SDR interleave mode.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419UPP_setDDRDemuxMode8uint32_t16UPP_DDRDemuxMode">
+<span id="_CPPv319UPP_setDDRDemuxMode8uint32_t16UPP_DDRDemuxMode"></span><span id="_CPPv219UPP_setDDRDemuxMode8uint32_t16UPP_DDRDemuxMode"></span><span id="UPP_setDDRDemuxMode__uint32_t.UPP_DDRDemuxMode"></span><span class="target" id="group__upp__api_1ga2e451b7d3d0d9bb9d729ab1497ef980b"></span>void <code class="sig-name descname">UPP_setDDRDemuxMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv416UPP_DDRDemuxMode" title="UPP_DDRDemuxMode">UPP_DDRDemuxMode</a> <em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419UPP_setDDRDemuxMode8uint32_t16UPP_DDRDemuxMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets DDR de-multiplexing mode for uPP module.</p>
+<p><p>This function sets the demultiplexing mode for uPP DDR mode. The </p>
+<em>mode</em> parameter determines whether demuliplexing to enabled or disabled in DDR mode. It should take following values:<ul class="simple">
+<li><p><strong>UPP_DDR_DEMUX_DISABLE</strong> - specifies demultiplexing is disabled</p></li>
+<li><p><strong>UPP_DDR_DEMUX_ENABLE</strong> - specifies demultiplexing is enabled</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: is the required DDR de-multiplexing mode.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428UPP_setControlSignalPolarity8uint32_t18UPP_SignalPolarity18UPP_SignalPolarity18UPP_SignalPolarity">
+<span id="_CPPv328UPP_setControlSignalPolarity8uint32_t18UPP_SignalPolarity18UPP_SignalPolarity18UPP_SignalPolarity"></span><span id="_CPPv228UPP_setControlSignalPolarity8uint32_t18UPP_SignalPolarity18UPP_SignalPolarity18UPP_SignalPolarity"></span><span id="UPP_setControlSignalPolarity__uint32_t.UPP_SignalPolarity.UPP_SignalPolarity.UPP_SignalPolarity"></span><span class="target" id="group__upp__api_1gafb894d66a7ada2781bb4b021a525afd2"></span>void <code class="sig-name descname">UPP_setControlSignalPolarity</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv418UPP_SignalPolarity" title="UPP_SignalPolarity">UPP_SignalPolarity</a> <em>waitPola</em>, <a class="reference internal" href="#_CPPv418UPP_SignalPolarity" title="UPP_SignalPolarity">UPP_SignalPolarity</a> <em>enablePola</em>, <a class="reference internal" href="#_CPPv418UPP_SignalPolarity" title="UPP_SignalPolarity">UPP_SignalPolarity</a> <em>startPola</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428UPP_setControlSignalPolarity8uint32_t18UPP_SignalPolarity18UPP_SignalPolarity18UPP_SignalPolarity" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets control signal polarity for uPP module.</p>
+<p><p>This function sets the control signal polarity for uPP module. The </p>
+<em>waitPola</em>, <em>enablePola</em>, <em>startPola</em> parameters determines the control signal polarities. Valid values for these parameters are the following:<ul class="simple">
+<li><p><strong>UPP_SIGNAL_POLARITY_HIGH</strong> - Signal polarity to be set as active high.</p></li>
+<li><p><strong>UPP_SIGNAL_POLARITY_LOW</strong> - Signal polarity to be set as active low.</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">waitPola</span></code>: is the required wait signal polarity. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enablePola</span></code>: is the required enable signal polarity. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">startPola</span></code>: is the required start signal polarity.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426UPP_setTxControlSignalMode8uint32_t14UPP_SignalMode">
+<span id="_CPPv326UPP_setTxControlSignalMode8uint32_t14UPP_SignalMode"></span><span id="_CPPv226UPP_setTxControlSignalMode8uint32_t14UPP_SignalMode"></span><span id="UPP_setTxControlSignalMode__uint32_t.UPP_SignalMode"></span><span class="target" id="group__upp__api_1ga4c973412aadd361e733afb77bbedccae"></span>void <code class="sig-name descname">UPP_setTxControlSignalMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv414UPP_SignalMode" title="UPP_SignalMode">UPP_SignalMode</a> <em>waitMode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426UPP_setTxControlSignalMode8uint32_t14UPP_SignalMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the mode for optional control signals for uPP module in Tx mode.</p>
+<p><p>This function sets the mode for optional control signals in Tx mode for uPP module. The </p>
+<em>waitMode</em> parameter determine whether the wait signal is to be enabled or disabled while uPP is in transmit mode. It can take following values:<ul class="simple">
+<li><p><strong>UPP_SIGNAL_DISABLE</strong> - Wait signal will be disabled.</p></li>
+<li><p><strong>UPP_SIGNAL_ENABLE</strong> - Wait signal will be enabled.</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">waitMode</span></code>: is the required mode for wait signal.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426UPP_setRxControlSignalMode8uint32_t14UPP_SignalMode14UPP_SignalMode">
+<span id="_CPPv326UPP_setRxControlSignalMode8uint32_t14UPP_SignalMode14UPP_SignalMode"></span><span id="_CPPv226UPP_setRxControlSignalMode8uint32_t14UPP_SignalMode14UPP_SignalMode"></span><span id="UPP_setRxControlSignalMode__uint32_t.UPP_SignalMode.UPP_SignalMode"></span><span class="target" id="group__upp__api_1gab140b590dfff3696786e9eb624942dd3"></span>void <code class="sig-name descname">UPP_setRxControlSignalMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv414UPP_SignalMode" title="UPP_SignalMode">UPP_SignalMode</a> <em>enableMode</em>, <a class="reference internal" href="#_CPPv414UPP_SignalMode" title="UPP_SignalMode">UPP_SignalMode</a> <em>startMode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426UPP_setRxControlSignalMode8uint32_t14UPP_SignalMode14UPP_SignalMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the mode for optional control signals for uPP module in Rx mode.</p>
+<p><p>This function sets the mode for optional control signal mode in Rx mode for uPP module.The </p>
+<em>enableMode</em> &amp; <em>startMode</em> parameter determine whether the enable &amp; start signals are to be enabled or disabled while uPP is in receive mode. These can take following values:<ul class="simple">
+<li><p><strong>UPP_SIGNAL_DISABLE</strong> - Signal will be disabled.</p></li>
+<li><p><strong>UPP_SIGNAL_ENABLE</strong> - Signal will be enabled.</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enableMode</span></code>: is the required mode for enable signal. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">startMode</span></code>: is the required mode for start signal.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421UPP_setTxClockDivider8uint32_t8uint16_t">
+<span id="_CPPv321UPP_setTxClockDivider8uint32_t8uint16_t"></span><span id="_CPPv221UPP_setTxClockDivider8uint32_t8uint16_t"></span><span id="UPP_setTxClockDivider__uint32_t.uint16_t"></span><span class="target" id="group__upp__api_1ga82e7c175d7374424b37a52fac4b5d4f1"></span>void <code class="sig-name descname">UPP_setTxClockDivider</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>divider</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421UPP_setTxClockDivider8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the clock divider when uPP is in Tx mode.</p>
+<p><p>This function configures the clock rate of uPP when it is operating in Tx mode. The </p>
+<em>divider</em> parameter is the value by which SYSCLK rate is divided to get the desired uPP Tx clock rate.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">divider</span></code>: is the value by which PLLSYSCLK (or CPU1.SYSCLK on a dual core device) is divided.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420UPP_setClockPolarity8uint32_t17UPP_ClockPolarity">
+<span id="_CPPv320UPP_setClockPolarity8uint32_t17UPP_ClockPolarity"></span><span id="_CPPv220UPP_setClockPolarity8uint32_t17UPP_ClockPolarity"></span><span id="UPP_setClockPolarity__uint32_t.UPP_ClockPolarity"></span><span class="target" id="group__upp__api_1ga0c4cbdd9c82b8ac909584faf39af711f"></span>void <code class="sig-name descname">UPP_setClockPolarity</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv417UPP_ClockPolarity" title="UPP_ClockPolarity">UPP_ClockPolarity</a> <em>clkPolarity</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420UPP_setClockPolarity8uint32_t17UPP_ClockPolarity" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the uPP clock polarity.</p>
+<p><p>This function sets the uPP clock polarity. The </p>
+<em>clkPolarity</em> parameter in Tx mode determines whether output Tx clock is to be inverted or not, while in Rx mode it determines whether the Rx input clock is to be treated as inverted or not.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">clkPolarity</span></code>: is the required clock polarity.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424UPP_configTxIdleDataMode8uint32_t18UPP_TxIdleDataMode">
+<span id="_CPPv324UPP_configTxIdleDataMode8uint32_t18UPP_TxIdleDataMode"></span><span id="_CPPv224UPP_configTxIdleDataMode8uint32_t18UPP_TxIdleDataMode"></span><span id="UPP_configTxIdleDataMode__uint32_t.UPP_TxIdleDataMode"></span><span class="target" id="group__upp__api_1ga5e74a0e31c8aa5a404555691c6539c03"></span>void <code class="sig-name descname">UPP_configTxIdleDataMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv418UPP_TxIdleDataMode" title="UPP_TxIdleDataMode">UPP_TxIdleDataMode</a> <em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424UPP_configTxIdleDataMode8uint32_t18UPP_TxIdleDataMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures data line behaviour when uPP goes to idle state in Tx mode.</p>
+<p><p>This function configures the Tx mode data line behaviour in uPP. The </p>
+<em>config</em> determines whether tri-state is enabled or disabled for uPP idlle time. It can take following values:<ul class="simple">
+<li><p><strong>UPP_TX_IDLE_DATA_IDLE</strong> - uPP will drive idle values to data lines when it goes to idle mode while operating in Tx mode.</p></li>
+<li><p><strong>UPP_TX_IDLE_DATA_TRISTATED</strong> - uPP will tri-state data lines when it goes to idle mode while operating in Tx mode.</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code>: is the required idle mode data line behaviour.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418UPP_setTxIdleValue8uint32_t8uint16_t">
+<span id="_CPPv318UPP_setTxIdleValue8uint32_t8uint16_t"></span><span id="_CPPv218UPP_setTxIdleValue8uint32_t8uint16_t"></span><span id="UPP_setTxIdleValue__uint32_t.uint16_t"></span><span class="target" id="group__upp__api_1ga0033c2ad16aab8798512fda93eab63be"></span>void <code class="sig-name descname">UPP_setTxIdleValue</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>idleVal</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418UPP_setTxIdleValue8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets idle value to be driven by data line when uPP goes to idle state when operating in Tx mode.</p>
+<p><p>This function sets idle value to be driven in idle state while uPP is operating in Tx mode. The parameter </p>
+<em>idleVal</em> is the value to be driven <em>when</em> Tx uPP is in idle state.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">idleVal</span></code>: is the required idle value to be driven in Tx idle state.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418UPP_setTxThreshold8uint32_t17UPP_ThresholdSize">
+<span id="_CPPv318UPP_setTxThreshold8uint32_t17UPP_ThresholdSize"></span><span id="_CPPv218UPP_setTxThreshold8uint32_t17UPP_ThresholdSize"></span><span id="UPP_setTxThreshold__uint32_t.UPP_ThresholdSize"></span><span class="target" id="group__upp__api_1ga6490b6c76b04300fcdde10721cc9e6cb"></span>void <code class="sig-name descname">UPP_setTxThreshold</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv417UPP_ThresholdSize" title="UPP_ThresholdSize">UPP_ThresholdSize</a> <em>size</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418UPP_setTxThreshold8uint32_t17UPP_ThresholdSize" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the I/O transmit threshold.</p>
+<p><p>This function sets the i/o transmit threshold. The </p>
+<em>size</em> parameter determines the required size for the threshold to reach in transmit buffer before the tranmission begins. It can take following values:<ul class="simple">
+<li><p><strong>UPP_THR_SIZE_64BYTE</strong> - Sets the Tx threshold to 64 bytes.</p></li>
+<li><p><strong>UPP_THR_SIZE_128BYTE</strong> - Sets the Tx threshold to 128 bytes.</p></li>
+<li><p><strong>UPP_THR_SIZE_256BYTE</strong> - Sets the Tx threshold to 256 bytes.</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">size</span></code>: is the required Tx threshold size in bytes.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419UPP_enableInterrupt8uint32_t8uint16_t">
+<span id="_CPPv319UPP_enableInterrupt8uint32_t8uint16_t"></span><span id="_CPPv219UPP_enableInterrupt8uint32_t8uint16_t"></span><span id="UPP_enableInterrupt__uint32_t.uint16_t"></span><span class="target" id="group__upp__api_1ga9e3fd4258ed06096ba6e24b51db1eb15"></span>void <code class="sig-name descname">UPP_enableInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419UPP_enableInterrupt8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables individual uPP module interrupts.</p>
+<p><p>This function enables uPP module interrupt sources. The </p>
+<em>intFlags</em> parameter can be any of the following values OR’d together:<ul class="simple">
+<li><p><strong>UPP_INT_CHI_DMA_PROG_ERR</strong> - DMA Channel I Programming Error</p></li>
+<li><p><strong>UPP_INT_CHI_UNDER_OVER_RUN</strong> - DMA Channel I Underrun/Overrun</p></li>
+<li><p><strong>UPP_INT_CHI_END_OF_WINDOW</strong> - DMA Channel I End of Window Event</p></li>
+<li><p><strong>UPP_INT_CHI_END_OF_LINE</strong> - DMA Channel I End of Line Event</p></li>
+<li><p><strong>UPP_INT_CHQ_DMA_PROG_ERR</strong> - DMA Channel Q Programming Error</p></li>
+<li><p><strong>UPP_INT_CHQ_UNDER_OVER_RUN</strong> - DMA Channel Q Underrun/Overrun</p></li>
+<li><p><strong>UPP_INT_CHQ_END_OF_WINDOW</strong> - DMA Channel Q End of Window Event</p></li>
+<li><p><strong>UPP_INT_CHQ_END_OF_LINE</strong> - DMA Channel Q End of Line Event</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is a bit mask of the interrupt sources to be enabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420UPP_disableInterrupt8uint32_t8uint16_t">
+<span id="_CPPv320UPP_disableInterrupt8uint32_t8uint16_t"></span><span id="_CPPv220UPP_disableInterrupt8uint32_t8uint16_t"></span><span id="UPP_disableInterrupt__uint32_t.uint16_t"></span><span class="target" id="group__upp__api_1gac13658b628b9aa61562d57e6cc70a53c"></span>void <code class="sig-name descname">UPP_disableInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420UPP_disableInterrupt8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables individual uPP module interrupts.</p>
+<p><p>This function disables uPP module interrupt sources. The </p>
+<em>intFlags</em> parameter can be any of the following values OR’d together:<ul class="simple">
+<li><p><strong>UPP_INT_CHI_DMA_PROG_ERR</strong> - DMA Channel I Programming Error</p></li>
+<li><p><strong>UPP_INT_CHI_UNDER_OVER_RUN</strong> - DMA Channel I Underrun/Overrun</p></li>
+<li><p><strong>UPP_INT_CHI_END_OF_WINDOW</strong> - DMA Channel I End of Window Event</p></li>
+<li><p><strong>UPP_INT_CHI_END_OF_LINE</strong> - DMA Channel I End of Line Event</p></li>
+<li><p><strong>UPP_INT_CHQ_DMA_PROG_ERR</strong> - DMA Channel Q Programming Error</p></li>
+<li><p><strong>UPP_INT_CHQ_UNDER_OVER_RUN</strong> - DMA Channel Q Underrun/Overrun</p></li>
+<li><p><strong>UPP_INT_CHQ_END_OF_WINDOW</strong> - DMA Channel Q End of Window Event</p></li>
+<li><p><strong>UPP_INT_CHQ_END_OF_LINE</strong> - DMA Channel Q End of Line Event</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is a bit mask of the interrupt sources to be disabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422UPP_getInterruptStatus8uint32_t">
+<span id="_CPPv322UPP_getInterruptStatus8uint32_t"></span><span id="_CPPv222UPP_getInterruptStatus8uint32_t"></span><span id="UPP_getInterruptStatus__uint32_t"></span><span class="target" id="group__upp__api_1gae9c83221bc62271bbcfd699e9d4972ad"></span>uint16_t <code class="sig-name descname">UPP_getInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422UPP_getInterruptStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the current uPP interrupt status for enabled interrupts.</p>
+<p><p>This function returns the interrupt status of enabled interrupts for the uPP module.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns current interrupt status for enabled interrupts, enumerated as a bit field of any of the following values:<ul class="simple">
+<li><p><strong>UPP_INT_CHI_DMA_PROG_ERR</strong> - DMA Channel I Programming Error</p></li>
+<li><p><strong>UPP_INT_CHI_UNDER_OVER_RUN</strong> - DMA Channel I Underrun/Overrun</p></li>
+<li><p><strong>UPP_INT_CHI_END_OF_WINDOW</strong> - DMA Channel I End of Window Event</p></li>
+<li><p><strong>UPP_INT_CHI_END_OF_LINE</strong> - DMA Channel I End of Line Event</p></li>
+<li><p><strong>UPP_INT_CHQ_DMA_PROG_ERR</strong> - DMA Channel Q Programming Error</p></li>
+<li><p><strong>UPP_INT_CHQ_UNDER_OVER_RUN</strong> - DMA Channel Q Underrun/Overrun</p></li>
+<li><p><strong>UPP_INT_CHQ_END_OF_WINDOW</strong> - DMA Channel Q End of Window Event</p></li>
+<li><p><strong>UPP_INT_CHQ_END_OF_LINE</strong> - DMA Channel Q End of Line Event </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425UPP_getRawInterruptStatus8uint32_t">
+<span id="_CPPv325UPP_getRawInterruptStatus8uint32_t"></span><span id="_CPPv225UPP_getRawInterruptStatus8uint32_t"></span><span id="UPP_getRawInterruptStatus__uint32_t"></span><span class="target" id="group__upp__api_1gae24b05924a38341665985ce629d138b8"></span>uint16_t <code class="sig-name descname">UPP_getRawInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425UPP_getRawInterruptStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the current uPP interrupt status for all the interrupts.</p>
+<p><p>This function returns the interrupt status of all the interrupts for the uPP module.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns current interrupt status for all the interrupts, enumerated as a bit field of any of the following values:<ul class="simple">
+<li><p><strong>UPP_INT_CHI_DMA_PROG_ERR</strong> - DMA Channel I Programming Error</p></li>
+<li><p><strong>UPP_INT_CHI_UNDER_OVER_RUN</strong> - DMA Channel I Underrun/Overrun</p></li>
+<li><p><strong>UPP_INT_CHI_END_OF_WINDOW</strong> - DMA Channel I End of Window Event</p></li>
+<li><p><strong>UPP_INT_CHI_END_OF_LINE</strong> - DMA Channel I End of Line Event</p></li>
+<li><p><strong>UPP_INT_CHQ_DMA_PROG_ERR</strong> - DMA Channel Q Programming Error</p></li>
+<li><p><strong>UPP_INT_CHQ_UNDER_OVER_RUN</strong> - DMA Channel Q Underrun/Overrun</p></li>
+<li><p><strong>UPP_INT_CHQ_END_OF_WINDOW</strong> - DMA Channel Q End of Window Event</p></li>
+<li><p><strong>UPP_INT_CHQ_END_OF_LINE</strong> - DMA Channel Q End of Line Event </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424UPP_clearInterruptStatus8uint32_t8uint16_t">
+<span id="_CPPv324UPP_clearInterruptStatus8uint32_t8uint16_t"></span><span id="_CPPv224UPP_clearInterruptStatus8uint32_t8uint16_t"></span><span id="UPP_clearInterruptStatus__uint32_t.uint16_t"></span><span class="target" id="group__upp__api_1gacbcf6bd952d77d00d783a7fc1c38d001"></span>void <code class="sig-name descname">UPP_clearInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424UPP_clearInterruptStatus8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears individual uPP module interrupts.</p>
+<p><p>This function clears uPP module interrupt flags. The </p>
+<em>intFlags</em> parameter can be any of the following values OR’d together:<ul class="simple">
+<li><p><strong>UPP_INT_CHI_DMA_PROG_ERR</strong> - DMA Channel I Programming Error</p></li>
+<li><p><strong>UPP_INT_CHI_UNDER_OVER_RUN</strong> - DMA Channel I Underrun/Overrun</p></li>
+<li><p><strong>UPP_INT_CHI_END_OF_WINDOW</strong> - DMA Channel I End of Window Event</p></li>
+<li><p><strong>UPP_INT_CHI_END_OF_LINE</strong> - DMA Channel I End of Line Event</p></li>
+<li><p><strong>UPP_INT_CHQ_DMA_PROG_ERR</strong> - DMA Channel Q Programming Error</p></li>
+<li><p><strong>UPP_INT_CHQ_UNDER_OVER_RUN</strong> - DMA Channel Q Underrun/Overrun</p></li>
+<li><p><strong>UPP_INT_CHQ_END_OF_WINDOW</strong> - DMA Channel Q End of Window Event</p></li>
+<li><p><strong>UPP_INT_CHQ_END_OF_LINE</strong> - DMA Channel Q End of Line Event</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is a bit mask of the interrupt sources to be cleared.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425UPP_enableGlobalInterrupt8uint32_t">
+<span id="_CPPv325UPP_enableGlobalInterrupt8uint32_t"></span><span id="_CPPv225UPP_enableGlobalInterrupt8uint32_t"></span><span id="UPP_enableGlobalInterrupt__uint32_t"></span><span class="target" id="group__upp__api_1gaf7b33d92a16a4f0d618d3e770ab92f2c"></span>void <code class="sig-name descname">UPP_enableGlobalInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425UPP_enableGlobalInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables uPP global interrupt.</p>
+<p><p>This function enables the global interrupt for uPP module which allows uPP to generate interrupts.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426UPP_disableGlobalInterrupt8uint32_t">
+<span id="_CPPv326UPP_disableGlobalInterrupt8uint32_t"></span><span id="_CPPv226UPP_disableGlobalInterrupt8uint32_t"></span><span id="UPP_disableGlobalInterrupt__uint32_t"></span><span class="target" id="group__upp__api_1gaa112e8866628a793dd6382aaf8917c53"></span>void <code class="sig-name descname">UPP_disableGlobalInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426UPP_disableGlobalInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables uPP global interrupt.</p>
+<p><p>This function disables global interrupt for uPP module which restricts uPP to generate any interrupts.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424UPP_isInterruptGenerated8uint32_t">
+<span id="_CPPv324UPP_isInterruptGenerated8uint32_t"></span><span id="_CPPv224UPP_isInterruptGenerated8uint32_t"></span><span id="UPP_isInterruptGenerated__uint32_t"></span><span class="target" id="group__upp__api_1ga02e2f41ed815fa5223406e2f0e920df5"></span>bool <code class="sig-name descname">UPP_isInterruptGenerated</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424UPP_isInterruptGenerated8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get uPP global interrupt status.</p>
+<p><p>This function returns whether any of the uPP interrupt is generated.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns global interrupt status. It can return following values:<ul class="simple">
+<li><p><strong>true</strong> - Interrupt has been generated.</p></li>
+<li><p><strong>false</strong> - No interrupt has been generated. </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv430UPP_clearGlobalInterruptStatus8uint32_t">
+<span id="_CPPv330UPP_clearGlobalInterruptStatus8uint32_t"></span><span id="_CPPv230UPP_clearGlobalInterruptStatus8uint32_t"></span><span id="UPP_clearGlobalInterruptStatus__uint32_t"></span><span class="target" id="group__upp__api_1gacd1b277f7cc365645d4a0b2f5790bbc9"></span>void <code class="sig-name descname">UPP_clearGlobalInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430UPP_clearGlobalInterruptStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears uPP global interrupt status.</p>
+<p><p>This function clears global interrupt status for uPP module.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420UPP_enableInputDelay8uint32_t">
+<span id="_CPPv320UPP_enableInputDelay8uint32_t"></span><span id="_CPPv220UPP_enableInputDelay8uint32_t"></span><span id="UPP_enableInputDelay__uint32_t"></span><span class="target" id="group__upp__api_1ga5fc99a69f6b8b6fcdd4904c880c8429e"></span>void <code class="sig-name descname">UPP_enableInputDelay</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420UPP_enableInputDelay8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables extra delay on uPP input pins.</p>
+<p><p>This function enables configurable extra delay on uPP input pins.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421UPP_disableInputDelay8uint32_t">
+<span id="_CPPv321UPP_disableInputDelay8uint32_t"></span><span id="_CPPv221UPP_disableInputDelay8uint32_t"></span><span id="UPP_disableInputDelay__uint32_t"></span><span class="target" id="group__upp__api_1ga3a43aeeeb15fecbca475a57d5e3e1399"></span>void <code class="sig-name descname">UPP_disableInputDelay</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421UPP_disableInputDelay8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables extra delay on uPP input pins.</p>
+<p><p>This function disables extra delay on uPP input pins.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417UPP_setInputDelay8uint32_t14UPP_InputDelay">
+<span id="_CPPv317UPP_setInputDelay8uint32_t14UPP_InputDelay"></span><span id="_CPPv217UPP_setInputDelay8uint32_t14UPP_InputDelay"></span><span id="UPP_setInputDelay__uint32_t.UPP_InputDelay"></span><span class="target" id="group__upp__api_1gaba66b056f96a1b1ef87a9ec9d6ac8ce9"></span>void <code class="sig-name descname">UPP_setInputDelay</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv414UPP_InputDelay" title="UPP_InputDelay">UPP_InputDelay</a> <em>delay</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417UPP_setInputDelay8uint32_t14UPP_InputDelay" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures delay for uPP input pins.</p>
+<p><p>This function sets input delay for uPP input pins. The </p>
+<em>delay</em> parameter specifies the delay to be introduced to input &amp; clock pins. It can take following values. All the following values lead to 2 cycle delay on clock pin.<ul class="simple">
+<li><p><strong>UPP_INPUT_DLY_4</strong> - 4 cycle delay for data &amp; control pins</p></li>
+<li><p><strong>UPP_INPUT_DLY_6</strong> - 6 cycle delay for data &amp; control pins</p></li>
+<li><p><strong>UPP_INPUT_DLY_9</strong> - 9 cycle delay for data &amp; control pins</p></li>
+<li><p><strong>UPP_INPUT_DLY_14</strong> - 14 cycle delay for data &amp; control pins</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">delay</span></code>: is the delay to be introduced in input &amp; clock pins.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423UPP_setDMAReadThreshold8uint32_t14UPP_DMAChannel17UPP_ThresholdSize">
+<span id="_CPPv323UPP_setDMAReadThreshold8uint32_t14UPP_DMAChannel17UPP_ThresholdSize"></span><span id="_CPPv223UPP_setDMAReadThreshold8uint32_t14UPP_DMAChannel17UPP_ThresholdSize"></span><span id="UPP_setDMAReadThreshold__uint32_t.UPP_DMAChannel.UPP_ThresholdSize"></span><span class="target" id="group__upp__api_1gabff5d769f05dd6b33c0f130431460019"></span>void <code class="sig-name descname">UPP_setDMAReadThreshold</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv414UPP_DMAChannel" title="UPP_DMAChannel">UPP_DMAChannel</a> <em>channel</em>, <a class="reference internal" href="#_CPPv417UPP_ThresholdSize" title="UPP_ThresholdSize">UPP_ThresholdSize</a> <em>size</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423UPP_setDMAReadThreshold8uint32_t14UPP_DMAChannel17UPP_ThresholdSize" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the read threshold for uPP internal DMA channels.</p>
+<p><p>This function sets the read threshold for DMA channel I or Q. The </p>
+<em>size</em> parameter specifies the read threshold in bytes. It can following values:<ul class="simple">
+<li><p><strong>UPP_THR_SIZE_64BYTE</strong> - Sets the DMA read threshold to 64 bytes.</p></li>
+<li><p><strong>UPP_THR_SIZE_128BYTE</strong> - Sets the DMA read threshold to 128 bytes.</p></li>
+<li><p><strong>UPP_THR_SIZE_256BYTE</strong> - Sets the DMA read threshold to 256 bytes.</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">channel</span></code>: is the required uPP internal DMA channel to be configured. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">size</span></code>: is the required read threshold size in bytes.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420UPP_setDMADescriptor8uint32_t14UPP_DMAChannelPCK17UPP_DMADescriptor">
+<span id="_CPPv320UPP_setDMADescriptor8uint32_t14UPP_DMAChannelPCK17UPP_DMADescriptor"></span><span id="_CPPv220UPP_setDMADescriptor8uint32_t14UPP_DMAChannelPCK17UPP_DMADescriptor"></span><span id="UPP_setDMADescriptor__uint32_t.UPP_DMAChannel.UPP_DMADescriptorCPC"></span><span class="target" id="group__upp__api_1gae1bddda9d9fd4f776bb8cf30f994b0e7"></span>void <code class="sig-name descname">UPP_setDMADescriptor</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv414UPP_DMAChannel" title="UPP_DMAChannel">UPP_DMAChannel</a> <em>channel</em>, <em class="property">const</em> <a class="reference internal" href="#_CPPv417UPP_DMADescriptor" title="UPP_DMADescriptor">UPP_DMADescriptor</a> *<em class="property">const</em> <em>desc</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420UPP_setDMADescriptor8uint32_t14UPP_DMAChannelPCK17UPP_DMADescriptor" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets uPP Internal DMA Channel Descriptors.</p>
+<p><p>This function configures DMA descriptors for either channel I or Q which includes starting address of DMA transfer, line count, byte count &amp; line offset address for DMA transfer. In Tx mode, starting address is the address of data buffer to be transmitted while in Rx mode it is the address of buffer where recieved data is to be copied. The </p>
+<em>channel</em> parameter can take any of the following values:<ul class="simple">
+<li><p><strong>UPP_DMA_CHANNEL_I</strong> - uPP DMA channel I</p></li>
+<li><p><strong>UPP_DMA_CHANNEL_Q</strong> - uPP DMA channel Q</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">channel</span></code>: is the required uPP internal DMA channel to be configured. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">desc</span></code>: is the required DMA descriptor setting.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423UPP_getDMAChannelStatus8uint32_t14UPP_DMAChannelPC20UPP_DMAChannelStatus">
+<span id="_CPPv323UPP_getDMAChannelStatus8uint32_t14UPP_DMAChannelPC20UPP_DMAChannelStatus"></span><span id="_CPPv223UPP_getDMAChannelStatus8uint32_t14UPP_DMAChannelPC20UPP_DMAChannelStatus"></span><span id="UPP_getDMAChannelStatus__uint32_t.UPP_DMAChannel.UPP_DMAChannelStatusPC"></span><span class="target" id="group__upp__api_1gae35783b3d80c3089b06245c5b6f1a2f4"></span>void <code class="sig-name descname">UPP_getDMAChannelStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv414UPP_DMAChannel" title="UPP_DMAChannel">UPP_DMAChannel</a> <em>channel</em>, <a class="reference internal" href="#_CPPv420UPP_DMAChannelStatus" title="UPP_DMAChannelStatus">UPP_DMAChannelStatus</a> *<em class="property">const</em> <em>status</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423UPP_getDMAChannelStatus8uint32_t14UPP_DMAChannelPC20UPP_DMAChannelStatus" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns current status of uPP internal DMA channel transfer.</p>
+<p><p>This function returns the current status for either channel I or Q active transfer which includes current DMA transfer address, current line &amp; byte number of the transfer. The </p>
+<em>channel</em> parameter can take any of the following values:<ul class="simple">
+<li><p><strong>UPP_DMA_CHANNEL_I</strong> - uPP DMA channel I</p></li>
+<li><p><strong>UPP_DMA_CHANNEL_Q</strong> - uPP DMA channel Q</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">channel</span></code>: is the required uPP internal DMA channel. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">status</span></code>: is current status for DMA channel returned by the api.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423UPP_isDescriptorPending8uint32_t14UPP_DMAChannel">
+<span id="_CPPv323UPP_isDescriptorPending8uint32_t14UPP_DMAChannel"></span><span id="_CPPv223UPP_isDescriptorPending8uint32_t14UPP_DMAChannel"></span><span id="UPP_isDescriptorPending__uint32_t.UPP_DMAChannel"></span><span class="target" id="group__upp__api_1ga9b046ec4872edefa115d50b3d051bbe3"></span>bool <code class="sig-name descname">UPP_isDescriptorPending</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv414UPP_DMAChannel" title="UPP_DMAChannel">UPP_DMAChannel</a> <em>channel</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423UPP_isDescriptorPending8uint32_t14UPP_DMAChannel" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns Pend status of uPP internal DMA channel descriptor.</p>
+<p><p>This function returns the Pend status for DMA channel I or Q descriptor which specifies whether previous descriptor is copied from shadow register to original register &amp; new descriptor can be programmed or the previous descriptor is still pending &amp; new descriptor cannot be programmed. The </p>
+<em>channel</em> parameter can take following values:<ul class="simple">
+<li><p><strong>UPP_DMA_CHANNEL_I</strong> - uPP DMA channel I</p></li>
+<li><p><strong>UPP_DMA_CHANNEL_Q</strong> - uPP DMA channel Q</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">channel</span></code>: is the required uPP internal DMA channel.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns pend status of DMA channel I descriptor. It can return following values:<ul class="simple">
+<li><p><strong>true</strong> - specifies that writing of new DMA descriptor is not allowed.</p></li>
+<li><p><strong>false</strong> - specifies that writing of new DMA descriptor is allowed. </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422UPP_isDescriptorActive8uint32_t14UPP_DMAChannel">
+<span id="_CPPv322UPP_isDescriptorActive8uint32_t14UPP_DMAChannel"></span><span id="_CPPv222UPP_isDescriptorActive8uint32_t14UPP_DMAChannel"></span><span id="UPP_isDescriptorActive__uint32_t.UPP_DMAChannel"></span><span class="target" id="group__upp__api_1ga477af601929bd1c7097f8637ba8d8c8d"></span>bool <code class="sig-name descname">UPP_isDescriptorActive</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv414UPP_DMAChannel" title="UPP_DMAChannel">UPP_DMAChannel</a> <em>channel</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422UPP_isDescriptorActive8uint32_t14UPP_DMAChannel" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns active status of uPP Internal DMA Channel descriptor.</p>
+<p><p>This function returns the active status of uPP internal DMA channel I or Q descriptor which specifies whether the descriptor is being currently active(transferring data) or idle. The </p>
+<em>channel</em> parameter can take following values:<ul class="simple">
+<li><p><strong>UPP_DMA_CHANNEL_I</strong> - uPP DMA channel I</p></li>
+<li><p><strong>UPP_DMA_CHANNEL_Q</strong> - uPP DMA channel Q</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">channel</span></code>: is the required uPP internal DMA channel to be configured.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns active status of uPP internal DMA channel descriptor. It can return following values:<ul class="simple">
+<li><p><strong>true</strong> - specifies that desciptor is currently active.</p></li>
+<li><p><strong>false</strong> - specifies that desciptor is currently idle. </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423UPP_getDMAFIFOWatermark8uint32_t14UPP_DMAChannel">
+<span id="_CPPv323UPP_getDMAFIFOWatermark8uint32_t14UPP_DMAChannel"></span><span id="_CPPv223UPP_getDMAFIFOWatermark8uint32_t14UPP_DMAChannel"></span><span id="UPP_getDMAFIFOWatermark__uint32_t.UPP_DMAChannel"></span><span class="target" id="group__upp__api_1gab193e906f3e31a4e18eb160223b06fe3"></span>uint16_t <code class="sig-name descname">UPP_getDMAFIFOWatermark</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv414UPP_DMAChannel" title="UPP_DMAChannel">UPP_DMAChannel</a> <em>channel</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423UPP_getDMAFIFOWatermark8uint32_t14UPP_DMAChannel" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns watermark for FIFO block count for uPP internal DMA Channel.</p>
+<p><p>This function returns watermark for FIFO block count for uPP internal DMA Channel I or Q based on </p>
+<em>channel</em> parameter. The <em>channel</em> paramter can take following values:<ul class="simple">
+<li><p><strong>UPP_DMA_CHANNEL_I</strong> - uPP DMA channel I</p></li>
+<li><p><strong>UPP_DMA_CHANNEL_Q</strong> - uPP DMA channel Q</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the configuration address of the uPP instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">channel</span></code>: is the required uPP internal DMA channel.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns active status of DMA channel I descriptor. It can return following values:<ul class="simple">
+<li><p><strong>true</strong> - specifies that desciptor is currently active.</p></li>
+<li><p><strong>false</strong> - specifies that desciptor is currently idle. </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416UPP_readRxMsgRAM8uint32_tA_8uint16_t8uint16_t8uint16_t">
+<span id="_CPPv316UPP_readRxMsgRAM8uint32_tA_8uint16_t8uint16_t8uint16_t"></span><span id="_CPPv216UPP_readRxMsgRAM8uint32_tA_8uint16_t8uint16_t8uint16_t"></span><span id="UPP_readRxMsgRAM__uint32_t.uint16_tA.uint16_t.uint16_t"></span><span class="target" id="group__upp__api_1ga54fdfef393b0f1a7c39acb09897019b9"></span>void <code class="sig-name descname">UPP_readRxMsgRAM</code><span class="sig-paren">(</span>uint32_t <em>rxBase</em>, uint16_t <em>array</em>[], uint16_t <em>length</em>, uint16_t <em>offset</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416UPP_readRxMsgRAM8uint32_tA_8uint16_t8uint16_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reads the received data from uPP Rx MSG RAM.</p>
+<p><p>This function reads the received data from uPP Rx MSG RAM. The sum of parameters </p>
+<em>length</em> &amp; <em>offset</em> should be less than the size of the Rx MSG RAM.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">rxBase</span></code>: is the uPP Rx MSG RAM base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">array</span></code>: is the address of the array of words to be transmitted. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">length</span></code>: is the number of words in the array to be transmitted. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">offset</span></code>: is offset in Rx Data RAM from where data read will start.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417UPP_writeTxMsgRAM8uint32_tA_K8uint16_t8uint16_t8uint16_t">
+<span id="_CPPv317UPP_writeTxMsgRAM8uint32_tA_K8uint16_t8uint16_t8uint16_t"></span><span id="_CPPv217UPP_writeTxMsgRAM8uint32_tA_K8uint16_t8uint16_t8uint16_t"></span><span id="UPP_writeTxMsgRAM__uint32_t.uint16_tCA.uint16_t.uint16_t"></span><span class="target" id="group__upp__api_1gadcb2668c9e1c7d3f90a22de6da10d589"></span>void <code class="sig-name descname">UPP_writeTxMsgRAM</code><span class="sig-paren">(</span>uint32_t <em>txBase</em>, <em class="property">const</em> uint16_t <em>array</em>[], uint16_t <em>length</em>, uint16_t <em>offset</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417UPP_writeTxMsgRAM8uint32_tA_K8uint16_t8uint16_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Writes the data to be transmitted in uPP Tx MSG RAM.</p>
+<p><p>This function writes the data to be transmitted to uPP Rx MSG RAM. The sum of parameters </p>
+<em>length</em> &amp; <em>offset</em> should be less than the size of the Tx MSG RAM.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">txBase</span></code>: is the uPP Tx MSG RAM base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">array</span></code>: is the address of the array of words to be transmitted. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">length</span></code>: is the number of words in the array to be transmitted. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">offset</span></code>: is offset in Tx Data RAM from where data write will start.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt id="_CPPv417UPP_DMADescriptor">
+<span id="_CPPv317UPP_DMADescriptor"></span><span id="_CPPv217UPP_DMADescriptor"></span><span id="UPP_DMADescriptor"></span><span class="target" id="struct_u_p_p___d_m_a_descriptor"></span><em class="property">struct </em><code class="sig-name descname">UPP_DMADescriptor</code><a class="headerlink" href="#_CPPv417UPP_DMADescriptor" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;upp.h&gt;</em><p>Values that can be passed to <a class="reference internal" href="#group__upp__api_1gae1bddda9d9fd4f776bb8cf30f994b0e7"><span class="std std-ref">UPP_setDMADescriptor()</span></a> as <em>desc</em> parameter. </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv420UPP_DMAChannelStatus">
+<span id="_CPPv320UPP_DMAChannelStatus"></span><span id="_CPPv220UPP_DMAChannelStatus"></span><span id="UPP_DMAChannelStatus"></span><span class="target" id="struct_u_p_p___d_m_a_channel_status"></span><em class="property">struct </em><code class="sig-name descname">UPP_DMAChannelStatus</code><a class="headerlink" href="#_CPPv420UPP_DMAChannelStatus" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;upp.h&gt;</em><p>Values that can be returned by <a class="reference internal" href="#group__upp__api_1gae35783b3d80c3089b06245c5b6f1a2f4"><span class="std std-ref">UPP_getDMAChannelStatus()</span></a> as uPP internal DMA channel current status. </p>
+</dd></dl>
+
+</dd></dl>
+
+<p>The UPP API includes functions to enable/disable uPP module, perform software
+reset, configure uPP as Transmitter or Receiver, set data rate to SDR or DDR,set
+interleaving &amp; demultiplexing configurations, set control signal polarities,
+enable/disable optional control signals, set Tx clock value &amp; polarity,
+configure idle Tx dataline values, enable/disable, clear &amp; get status for uPP
+interrupts.</p>
+<p>The code for this module is contained in driverlib/upp.c, with driverlib/upp.h containing the API declarations for use by applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="usb.html" class="btn btn-neutral float-left" title="USB Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="version.html" class="btn btn-neutral float-right" title="Version" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

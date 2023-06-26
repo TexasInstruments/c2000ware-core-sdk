@@ -1,0 +1,165 @@
+//###########################################################################
+// Description:
+//
+// Task 1: Calculate 10^(X)
+//
+//###########################################################################
+// $TI Release:  $
+// $Release Date:  $
+// $Copyright:
+// Copyright (C) 2009-2023 Texas Instruments Incorporated - http://www.ti.com/
+//
+// Redistribution and use in source and binary forms, with or without 
+// modification, are permitted provided that the following conditions 
+// are met:
+// 
+//   Redistributions of source code must retain the above copyright 
+//   notice, this list of conditions and the following disclaimer.
+// 
+//   Redistributions in binary form must reproduce the above copyright
+//   notice, this list of conditions and the following disclaimer in the 
+//   documentation and/or other materials provided with the   
+//   distribution.
+// 
+//   Neither the name of Texas Instruments Incorporated nor the names of
+//   its contributors may be used to endorse or promote products derived
+//   from this software without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+// $
+//###########################################################################
+
+//
+// Included Files
+//
+#include "DSP28x_Project.h"
+
+//
+// Include the test header file whose name is based on the test name
+// which is defined by the macro TEST on the command line
+//
+#include XSTRINGIZE(XCONCAT(TEST_NAME,_shared.h))
+
+//
+// Task 1 : 10^(X)
+//
+// * Derivation: 
+// *  X = X.1
+// *    = X.log10(10)
+// *    = log10(10^X)
+// *    = ln(10^X)/ln(10)
+// * Multiplying both sides by ln(10) we get
+// * X.ln(10) = ln(10^X)
+// * Taking the exponential of both sides we get
+// * e^(X.ln(10)) = e^(ln(10^X))
+// * 10^X = e^(X.ln(10))
+// * Also note that ln(10) = log10(10)/log10(e) = 1/log10(e)
+// * Therefore, 10^X = e^(X.ln(10)) or e^(X/log10(e)), whichever proves to be easier
+// * 
+// * 10^X = e^(2.30258509.X)
+// * 
+// * Description: 
+// *  Step(1):   Calculate absolute of x/LOG10(e) (or x*LN(10))
+// * 
+// *  Step(2):   Identify the integer and mantissa of the input
+// * 
+// *  Step(3):   Obtain the e^integer(x) from the table
+// *  
+// *  Step(4):   Calculate the value of e^(mantissa)by using the 
+// *             polynomial approx = 1 + x*(1+x*0.5(1+(x/3)(1+x/4*(1+Xm/5*(1+Xm/6*(1+Xm/7))))))
+// * 
+// *  Step(5):   The value of e^x is the product of results from (3)&(4)
+//
+ 
+//
+// Cla1Task1 - 
+//
+__interrupt void 
+Cla1Task1 ( void )
+{
+    //
+    // Local Variables
+    //
+    float X;        //Exponent
+    float Xm;       //Residue
+    int Idx;        //index into EXP table
+
+    float Ei,Em;    //Exponent(Integer), Exponent(Mantissa)
+    float result;
+    float temp;
+
+    __mdebugstop();
+
+    //
+    // Step(1):    Calculate absolute of x/LOG10(e) (or x*LN(10))
+    //
+    X = fabs(Val*CLALOG10_E);
+
+    //
+    // Step(2):   Identify the integer and mantissa of the input
+    //
+    Idx = (int)X;
+    Xm = __mfracf32(X);
+
+    //
+    // Step(3):   Obtain the e^integer(x) from the table 
+    //
+    Ei = CLAexpTable[Idx];
+    Em = CLAINV1 + Xm*(CLAINV1 + Xm*CLAINV2 *(CLAINV1+(Xm*CLAINV3) \
+                 *(CLAINV1+(Xm*CLAINV4)*(CLAINV1+(Xm*CLAINV5) \
+                 *(CLAINV1+(Xm*CLAINV6)*(CLAINV1+Xm*CLAINV7))))));
+    result = Ei*Em;
+
+    temp = 1/result;
+    if(Val < 0.0)
+    {
+        result = temp;
+    }
+
+    ExpRes  = result;
+    //READ_CLOCK(ulCycleCount[1]);
+}
+
+__interrupt void Cla1Task2 ( void )
+{
+
+}
+__interrupt void Cla1Task3 ( void )
+{
+
+}
+__interrupt void Cla1Task4 ( void )
+{
+
+}
+__interrupt void Cla1Task5 ( void )
+{
+
+}
+__interrupt void Cla1Task6 ( void )
+{
+
+}
+__interrupt void Cla1Task7 ( void )
+{
+
+}
+__interrupt void Cla1Task8 ( void )
+{
+
+}
+
+//
+// End of File
+//
+

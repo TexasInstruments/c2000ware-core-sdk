@@ -1,0 +1,947 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CM-MPU Module &mdash; F2838x CM API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F2838x CM API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="CAN Module" href="can.html"/>
+        <link rel="prev" title="AES Module" href="aes.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F2838x CM API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="aes.html">AES Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">CM-MPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpu.html">CPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="escss.html">ESCSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ethernet.html">Ethernet Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="udma.html">UDMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gcrc.html">GCRC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipc.html">IPC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcan.html">MCAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mpu.html">MPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssi.html">SSI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="systick.html">SysTick Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uart.html">UART Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F2838x CM API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>CM-MPU Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cm-mpu-module">
+<span id="cmmpuan"></span><h1>CM-MPU Module<a class="headerlink" href="#cm-mpu-module" title="Permalink to this headline">¶</a></h1>
+<p>This device has dedicated MPU for each bus-master for access protection. The
+Cortex-M4 comes with in-built MPU and has a separate driver. The CMMPU has been
+added for other AHB bus masters such as uDMA(DMPU) &amp; Ethernet(EMPU). Access
+permission for each region is programmable. CM-MPU supports following
+protections: Read only; Full access where both Read and Write access is allowed;
+and No access where Read and Write access is not allowed.</p>
+<p>CM-MPU supports 8 regions with programmable start address &amp; size. Start address
+of a region must be aligned to its size. Min size of the region is limited to
+1KB to optimize address decode logic, 1KB granularity should suffice
+requirements on uDMA and EtherNET DMA.</p>
+<p>Regions can overlap, when regions are overlapped, a fixed priority scheme is
+used to resolve the access protections. Region-7 is highest priority and
+region-0 is lowest priority. This feature is useful to define different set of
+access permissions for a part of already defined bigger region. This feature
+can be used to work around any limitations with any aligned start address to
+its size.</p>
+<p>There are 8 sub-regions for every region. Sub-regions are useful to protect
+memory regions smaller than 2^N KB size with fewer numbers of regions. E.g.,
+defining protection for 6K region can be achieved with single region otherwise
+3 regions would be needed.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__cmmpu__api"></span><em>group</em> <code class="sig-name descname">cmmpu_api</code></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.CMMPU_ACC_VIO_KEY">
+<span class="target" id="group__cmmpu__api_1ga1de651175e0ce0c47eb651379b134f42"></span><code class="sig-name descname">CMMPU_ACC_VIO_KEY</code> 0xA5A50000U<a class="headerlink" href="#c.CMMPU_ACC_VIO_KEY" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Key for ACC VIO Registers. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_ACC_VIO_FLAGS_READ">
+<span class="target" id="group__cmmpu__api_1gad65866fd44acf286080ff82c32978671"></span><code class="sig-name descname">CMMPU_ACC_VIO_FLAGS_READ</code> CMMPU_ACC_VIO_FLAGS_RD<a class="headerlink" href="#c.CMMPU_ACC_VIO_FLAGS_READ" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Read Violation. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_ACC_VIO_FLAGS_WRITE">
+<span class="target" id="group__cmmpu__api_1gaf1c89ba892a9a5a01c047a2cc27c8290"></span><code class="sig-name descname">CMMPU_ACC_VIO_FLAGS_WRITE</code> CMMPU_ACC_VIO_FLAGS_WR<a class="headerlink" href="#c.CMMPU_ACC_VIO_FLAGS_WRITE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Write Violation. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_0">
+<span class="target" id="group__cmmpu__api_1ga3bf3e195fd79fe899b62d4974f2b3bb5"></span><code class="sig-name descname">CMMPU_RGN_0</code> 0x0U<a class="headerlink" href="#c.CMMPU_RGN_0" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select uDMA/EMAC MPU Region 0. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_1">
+<span class="target" id="group__cmmpu__api_1ga715df0fad0a98b5e45f7fbc998866fe8"></span><code class="sig-name descname">CMMPU_RGN_1</code> 0x1U<a class="headerlink" href="#c.CMMPU_RGN_1" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select uDMA/EMAC MPU Region 1. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_2">
+<span class="target" id="group__cmmpu__api_1gae166f45f9263740a4678bb401f4c2f53"></span><code class="sig-name descname">CMMPU_RGN_2</code> 0x2U<a class="headerlink" href="#c.CMMPU_RGN_2" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select uDMA/EMAC MPU Region 2. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_3">
+<span class="target" id="group__cmmpu__api_1gaf32e2370327915bbcff4d49b156633f9"></span><code class="sig-name descname">CMMPU_RGN_3</code> 0x3U<a class="headerlink" href="#c.CMMPU_RGN_3" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select uDMA/EMAC MPU Region 3. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_4">
+<span class="target" id="group__cmmpu__api_1gaf07b094d5fbab2ef1088f8db2c855597"></span><code class="sig-name descname">CMMPU_RGN_4</code> 0x4U<a class="headerlink" href="#c.CMMPU_RGN_4" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select uDMA/EMAC MPU Region 4. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_5">
+<span class="target" id="group__cmmpu__api_1ga61f78ba86c3e18303435409e227e0972"></span><code class="sig-name descname">CMMPU_RGN_5</code> 0x5U<a class="headerlink" href="#c.CMMPU_RGN_5" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select uDMA/EMAC MPU Region 5. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_6">
+<span class="target" id="group__cmmpu__api_1ga9f6698e740059d943a3a89fd71e814dd"></span><code class="sig-name descname">CMMPU_RGN_6</code> 0x6U<a class="headerlink" href="#c.CMMPU_RGN_6" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select uDMA/EMAC MPU Region 6. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_7">
+<span class="target" id="group__cmmpu__api_1ga4378d0fd8a508b3462e319ad1461da11"></span><code class="sig-name descname">CMMPU_RGN_7</code> 0x7U<a class="headerlink" href="#c.CMMPU_RGN_7" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select uDMA/EMAC MPU Region 7. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_ENABLE">
+<span class="target" id="group__cmmpu__api_1ga6cd4ee8cb4d3f04f99d3d295e9fbf3d6"></span><code class="sig-name descname">CMMPU_RGN_ENABLE</code> 0x1U<a class="headerlink" href="#c.CMMPU_RGN_ENABLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable MPU Region. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_DISABLE">
+<span class="target" id="group__cmmpu__api_1ga2f30a75868fa4687f13f9a27cae08d1d"></span><code class="sig-name descname">CMMPU_RGN_DISABLE</code> 0x0U<a class="headerlink" href="#c.CMMPU_RGN_DISABLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable MPU Region. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_PERM_READ_ONLY">
+<span class="target" id="group__cmmpu__api_1gae52ce84358750894d364e71ec03a274d"></span><code class="sig-name descname">CMMPU_RGN_PERM_READ_ONLY</code> 0x00U<a class="headerlink" href="#c.CMMPU_RGN_PERM_READ_ONLY" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Read Only Access. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_PERM_NO_ACCESS">
+<span class="target" id="group__cmmpu__api_1gace12e58864a8d894fcf85c6ffab870ea"></span><code class="sig-name descname">CMMPU_RGN_PERM_NO_ACCESS</code> 0x20U<a class="headerlink" href="#c.CMMPU_RGN_PERM_NO_ACCESS" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>No Access(R/W) </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_PERM_FULL_ACCESS">
+<span class="target" id="group__cmmpu__api_1ga8a112a9e5d5111ceb8ec9fc232e86d98"></span><code class="sig-name descname">CMMPU_RGN_PERM_FULL_ACCESS</code> 0x10U<a class="headerlink" href="#c.CMMPU_RGN_PERM_FULL_ACCESS" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Full Access(R/W) </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_SIZE_1K">
+<span class="target" id="group__cmmpu__api_1ga1f907d625daacfe5ae8150fedb3bf2a6"></span><code class="sig-name descname">CMMPU_RGN_SIZE_1K</code> (0x0U  &lt;&lt; 8U)<a class="headerlink" href="#c.CMMPU_RGN_SIZE_1K" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 1K-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_SIZE_2K">
+<span class="target" id="group__cmmpu__api_1ga321e7ebcf3b32a2ffcbadb827e9803fd"></span><code class="sig-name descname">CMMPU_RGN_SIZE_2K</code> (0x1U  &lt;&lt; 8U)<a class="headerlink" href="#c.CMMPU_RGN_SIZE_2K" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 2K-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_SIZE_4K">
+<span class="target" id="group__cmmpu__api_1ga95a7ef12057cfe9ec59c08e5f842fe10"></span><code class="sig-name descname">CMMPU_RGN_SIZE_4K</code> (0x2U  &lt;&lt; 8U)<a class="headerlink" href="#c.CMMPU_RGN_SIZE_4K" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 4K-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_SIZE_8K">
+<span class="target" id="group__cmmpu__api_1ga3c974801468ce2a7840b9527ab9a0d06"></span><code class="sig-name descname">CMMPU_RGN_SIZE_8K</code> (0x3U  &lt;&lt; 8U)<a class="headerlink" href="#c.CMMPU_RGN_SIZE_8K" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 8K-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_SIZE_16K">
+<span class="target" id="group__cmmpu__api_1ga8bc50bd747a9feacfc058c409756548b"></span><code class="sig-name descname">CMMPU_RGN_SIZE_16K</code> (0x4U  &lt;&lt; 8U)<a class="headerlink" href="#c.CMMPU_RGN_SIZE_16K" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 16K-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_SIZE_32K">
+<span class="target" id="group__cmmpu__api_1ga49955665925774fbef5fd59628d55c8a"></span><code class="sig-name descname">CMMPU_RGN_SIZE_32K</code> (0x5U  &lt;&lt; 8U)<a class="headerlink" href="#c.CMMPU_RGN_SIZE_32K" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 32K-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_SIZE_64K">
+<span class="target" id="group__cmmpu__api_1gae182aec77359872cc3858dc5485f33bd"></span><code class="sig-name descname">CMMPU_RGN_SIZE_64K</code> (0x6U  &lt;&lt; 8U)<a class="headerlink" href="#c.CMMPU_RGN_SIZE_64K" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 64K-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_SIZE_128K">
+<span class="target" id="group__cmmpu__api_1gabf03ece9695d950a6fcfc7f8a4e4b0b6"></span><code class="sig-name descname">CMMPU_RGN_SIZE_128K</code> (0x7U  &lt;&lt; 8U)<a class="headerlink" href="#c.CMMPU_RGN_SIZE_128K" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 128K-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_SIZE_256K">
+<span class="target" id="group__cmmpu__api_1gac282247415ddd352859c32e34cf3960d"></span><code class="sig-name descname">CMMPU_RGN_SIZE_256K</code> (0x8U  &lt;&lt; 8U)<a class="headerlink" href="#c.CMMPU_RGN_SIZE_256K" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 256K-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_SIZE_512K">
+<span class="target" id="group__cmmpu__api_1gac0460e1efc771da1145427e666aceeca"></span><code class="sig-name descname">CMMPU_RGN_SIZE_512K</code> (0x9U  &lt;&lt; 8U)<a class="headerlink" href="#c.CMMPU_RGN_SIZE_512K" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 512K-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_SIZE_1M">
+<span class="target" id="group__cmmpu__api_1ga97710c3dceca9b9958a79ac1c3729e56"></span><code class="sig-name descname">CMMPU_RGN_SIZE_1M</code> (0xAU  &lt;&lt; 8U)<a class="headerlink" href="#c.CMMPU_RGN_SIZE_1M" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 1M-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_SIZE_2M">
+<span class="target" id="group__cmmpu__api_1gaa03bab114b3e28d48c18b8f68092d113"></span><code class="sig-name descname">CMMPU_RGN_SIZE_2M</code> (0xBU  &lt;&lt; 8U)<a class="headerlink" href="#c.CMMPU_RGN_SIZE_2M" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 2M-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_SIZE_4M">
+<span class="target" id="group__cmmpu__api_1ga0824a5253267d14425985e1f1a5d4974"></span><code class="sig-name descname">CMMPU_RGN_SIZE_4M</code> (0xCU  &lt;&lt; 8U)<a class="headerlink" href="#c.CMMPU_RGN_SIZE_4M" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 4M-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_SIZE_8M">
+<span class="target" id="group__cmmpu__api_1ga238bc53f12689852ea9e555e635dafa1"></span><code class="sig-name descname">CMMPU_RGN_SIZE_8M</code> (0xDU  &lt;&lt; 8U)<a class="headerlink" href="#c.CMMPU_RGN_SIZE_8M" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 8M-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_SIZE_16M">
+<span class="target" id="group__cmmpu__api_1ga129db04cbdbfdbf210abfa2466420541"></span><code class="sig-name descname">CMMPU_RGN_SIZE_16M</code> (0xEU  &lt;&lt; 8U)<a class="headerlink" href="#c.CMMPU_RGN_SIZE_16M" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 16M-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_SIZE_32M">
+<span class="target" id="group__cmmpu__api_1gab104c6ae3d8335a2ad3ae0577fd20338"></span><code class="sig-name descname">CMMPU_RGN_SIZE_32M</code> (0xFU  &lt;&lt; 8U)<a class="headerlink" href="#c.CMMPU_RGN_SIZE_32M" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 32M-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_SIZE_64M">
+<span class="target" id="group__cmmpu__api_1gad8d14c231837db6f2d0bedff7da5b39f"></span><code class="sig-name descname">CMMPU_RGN_SIZE_64M</code> (0x10U &lt;&lt; 8U)<a class="headerlink" href="#c.CMMPU_RGN_SIZE_64M" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 64M-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_SIZE_128M">
+<span class="target" id="group__cmmpu__api_1gabf1e0b6edd631ac75cf4e379f0579daa"></span><code class="sig-name descname">CMMPU_RGN_SIZE_128M</code> (0x11U &lt;&lt; 8U)<a class="headerlink" href="#c.CMMPU_RGN_SIZE_128M" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 128M-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_SIZE_256M">
+<span class="target" id="group__cmmpu__api_1ga8fbcf3d65aa1aabb199dc2a1aa6506d1"></span><code class="sig-name descname">CMMPU_RGN_SIZE_256M</code> (0x12U &lt;&lt; 8U)<a class="headerlink" href="#c.CMMPU_RGN_SIZE_256M" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 256M-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_SIZE_512M">
+<span class="target" id="group__cmmpu__api_1ga17bab629149aad8d2d8c1d2d0b5a73d4"></span><code class="sig-name descname">CMMPU_RGN_SIZE_512M</code> (0x13U &lt;&lt; 8U)<a class="headerlink" href="#c.CMMPU_RGN_SIZE_512M" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 512M-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_SIZE_1G">
+<span class="target" id="group__cmmpu__api_1gaedc3af6da2be77d53517cb4829e51bdf"></span><code class="sig-name descname">CMMPU_RGN_SIZE_1G</code> (0x14U &lt;&lt; 8U)<a class="headerlink" href="#c.CMMPU_RGN_SIZE_1G" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 1G-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_SIZE_2G">
+<span class="target" id="group__cmmpu__api_1ga39a826e6cf42d79de7349779ffcf594d"></span><code class="sig-name descname">CMMPU_RGN_SIZE_2G</code> (0x15U &lt;&lt; 8U)<a class="headerlink" href="#c.CMMPU_RGN_SIZE_2G" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 2G-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_SIZE_4G">
+<span class="target" id="group__cmmpu__api_1gaa666522747b40cec44721d3360cb5aed"></span><code class="sig-name descname">CMMPU_RGN_SIZE_4G</code> (0x16U &lt;&lt; 8U)<a class="headerlink" href="#c.CMMPU_RGN_SIZE_4G" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Region Size is 4G-bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_SUB_RGN_DISABLE_0">
+<span class="target" id="group__cmmpu__api_1ga0692a8c3966b3b572d453485c70f0af8"></span><code class="sig-name descname">CMMPU_SUB_RGN_DISABLE_0</code> 0x00010000U<a class="headerlink" href="#c.CMMPU_SUB_RGN_DISABLE_0" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable sub-region 0. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_SUB_RGN_DISABLE_1">
+<span class="target" id="group__cmmpu__api_1gaa5bcb585376c4815bbbe21c821b3efb0"></span><code class="sig-name descname">CMMPU_SUB_RGN_DISABLE_1</code> 0x00020000U<a class="headerlink" href="#c.CMMPU_SUB_RGN_DISABLE_1" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable sub-region 1. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_SUB_RGN_DISABLE_2">
+<span class="target" id="group__cmmpu__api_1ga5f29b08c091de2c209909adb5fec4b66"></span><code class="sig-name descname">CMMPU_SUB_RGN_DISABLE_2</code> 0x00040000U<a class="headerlink" href="#c.CMMPU_SUB_RGN_DISABLE_2" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable sub-region 2. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_SUB_RGN_DISABLE_3">
+<span class="target" id="group__cmmpu__api_1gafe4e3c1aed46fccea59af381119a4913"></span><code class="sig-name descname">CMMPU_SUB_RGN_DISABLE_3</code> 0x00080000U<a class="headerlink" href="#c.CMMPU_SUB_RGN_DISABLE_3" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable sub-region 3. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_SUB_RGN_DISABLE_4">
+<span class="target" id="group__cmmpu__api_1gafaf47a8f8c8e4784ebb260ecbbc08078"></span><code class="sig-name descname">CMMPU_SUB_RGN_DISABLE_4</code> 0x00100000U<a class="headerlink" href="#c.CMMPU_SUB_RGN_DISABLE_4" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable sub-region 4. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_SUB_RGN_DISABLE_5">
+<span class="target" id="group__cmmpu__api_1ga4ae74f0ded3a9cac781b5cf09eb6c4c0"></span><code class="sig-name descname">CMMPU_SUB_RGN_DISABLE_5</code> 0x00200000U<a class="headerlink" href="#c.CMMPU_SUB_RGN_DISABLE_5" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable sub-region 5. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_SUB_RGN_DISABLE_6">
+<span class="target" id="group__cmmpu__api_1gad5763d5b64a1daf0cacc4606f78c4b10"></span><code class="sig-name descname">CMMPU_SUB_RGN_DISABLE_6</code> 0x00400000U<a class="headerlink" href="#c.CMMPU_SUB_RGN_DISABLE_6" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable sub-region 6. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_SUB_RGN_DISABLE_7">
+<span class="target" id="group__cmmpu__api_1ga056f2c4bf224655f56f8b81f845a7309"></span><code class="sig-name descname">CMMPU_SUB_RGN_DISABLE_7</code> 0x00800000U<a class="headerlink" href="#c.CMMPU_SUB_RGN_DISABLE_7" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable sub-region 7. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CMMPU_RGN_CONFIG_M">
+<span class="target" id="group__cmmpu__api_1ga2cc17e3b39fed98770a63446c64107e7"></span><code class="sig-name descname">CMMPU_RGN_CONFIG_M</code> ((uint32_t)CMMPU_REGION0_CONFIG_ENABLE<p>       |   \</p>
+<p>                               (uint32_t)</p>
+CMMPU_REGION0_CONFIG_PROT_TYPE_M<p>  |   \</p>
+<p>                               (uint32_t)</p>
+CMMPU_REGION0_CONFIG_SIZE_M<p>       |   \</p>
+<p>                               (uint32_t)0xFF0000U)</p>
+<a class="headerlink" href="#c.CMMPU_RGN_CONFIG_M" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv412CMMPU_enable8uint32_t">
+<span id="_CPPv312CMMPU_enable8uint32_t"></span><span id="_CPPv212CMMPU_enable8uint32_t"></span><span id="CMMPU_enable__uint32_t"></span><span class="target" id="group__cmmpu__api_1ga5f36eb2e3cb484154b94344fca9ff807"></span>void <code class="sig-name descname">CMMPU_enable</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412CMMPU_enable8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables and configures the MPU for use.</p>
+<p><p>This function enables either the DMA or EMAC memory protection unit. Prior to enabling the MPU, at least one region must be set by calling </p>
+<a class="reference internal" href="#group__cmmpu__api_1ga28aa323b8dd9f707818b0af405fe9e28"><span class="std std-ref">CMMPU_setRegionAttributes()</span></a>. Once the MPU is enabled, access violation interrupts are generated if enabled.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the MPU instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv413CMMPU_disable8uint32_t">
+<span id="_CPPv313CMMPU_disable8uint32_t"></span><span id="_CPPv213CMMPU_disable8uint32_t"></span><span id="CMMPU_disable__uint32_t"></span><span class="target" id="group__cmmpu__api_1gaf17e647159475d13a082750015f5796b"></span>void <code class="sig-name descname">CMMPU_disable</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413CMMPU_disable8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the MPU for use.</p>
+<p><p>This function disables either the DMA or EMAC memory protection unit. When the MPU is disabled, the default memory map is used and access violation interrupts are not generated.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the MPU instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv436CMMPU_enableAccessViolationInterrupt8uint32_t">
+<span id="_CPPv336CMMPU_enableAccessViolationInterrupt8uint32_t"></span><span id="_CPPv236CMMPU_enableAccessViolationInterrupt8uint32_t"></span><span id="CMMPU_enableAccessViolationInterrupt__uint32_t"></span><span class="target" id="group__cmmpu__api_1ga390b1a0ae0787d0e25b83e43d2dd2beb"></span>void <code class="sig-name descname">CMMPU_enableAccessViolationInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv436CMMPU_enableAccessViolationInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the MPU RD/WR Access Violation Interrupts.</p>
+<p><p>This function enables either the DMA or EMAC MPU read/write access violation interrupts.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the MPU instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv437CMMPU_disableAccessViolationInterrupt8uint32_t">
+<span id="_CPPv337CMMPU_disableAccessViolationInterrupt8uint32_t"></span><span id="_CPPv237CMMPU_disableAccessViolationInterrupt8uint32_t"></span><span id="CMMPU_disableAccessViolationInterrupt__uint32_t"></span><span class="target" id="group__cmmpu__api_1ga29479970070d3988e9f09bc536579c61"></span>void <code class="sig-name descname">CMMPU_disableAccessViolationInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv437CMMPU_disableAccessViolationInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the MPU RD/WR Access Violation Interrupts.</p>
+<p><p>This function enables either the DMA or EMAC MPU read/write access violation interrupts.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the MPU instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429CMMPU_getAccessViolationFlags8uint32_t">
+<span id="_CPPv329CMMPU_getAccessViolationFlags8uint32_t"></span><span id="_CPPv229CMMPU_getAccessViolationFlags8uint32_t"></span><span id="CMMPU_getAccessViolationFlags__uint32_t"></span><span class="target" id="group__cmmpu__api_1ga1d8131448f0dadea5fb3c78830db9922"></span>uint32_t <code class="sig-name descname">CMMPU_getAccessViolationFlags</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429CMMPU_getAccessViolationFlags8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the status of MPU RD/WR Access Violation Interrupts.</p>
+<p><p>This function return the status of either the DMA or EMAC MPU read/write access violation interrupts.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the MPU instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the access violation interrupt status. It can return following values: CMMPU_ACC_VIO_FLAGS_READ, CMMPU_ACC_VIO_FLAGS_WRITE </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429CMMPU_setAccessViolationFlags8uint32_t8uint32_t">
+<span id="_CPPv329CMMPU_setAccessViolationFlags8uint32_t8uint32_t"></span><span id="_CPPv229CMMPU_setAccessViolationFlags8uint32_t8uint32_t"></span><span id="CMMPU_setAccessViolationFlags__uint32_t.uint32_t"></span><span class="target" id="group__cmmpu__api_1ga6580930b7726ec1cdb4ac257b5b71b64"></span>void <code class="sig-name descname">CMMPU_setAccessViolationFlags</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>flags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429CMMPU_setAccessViolationFlags8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the MPU RD/WR Access Violation Interrupts.</p>
+<p><p>This function sets either the DMA or EMAC MPU read/write access violation interrupts. The parameter </p>
+<strong>flags</strong> can take following values: CMMPU_ACC_VIO_FLAGS_READ, or CMMPU_ACC_VIO_FLAGS_WRITE.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the MPU instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flags</span></code>: is the flag for rd/wr violation.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv431CMMPU_clearAccessViolationFlags8uint32_t8uint32_t">
+<span id="_CPPv331CMMPU_clearAccessViolationFlags8uint32_t8uint32_t"></span><span id="_CPPv231CMMPU_clearAccessViolationFlags8uint32_t8uint32_t"></span><span id="CMMPU_clearAccessViolationFlags__uint32_t.uint32_t"></span><span class="target" id="group__cmmpu__api_1gacb1cb11702d8ac334e515a30ce5081a4"></span>void <code class="sig-name descname">CMMPU_clearAccessViolationFlags</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>flags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431CMMPU_clearAccessViolationFlags8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears the MPU RD/WR Access Violation Interrupt Status.</p>
+<p><p>This function clears either the DMA or EMAC MPU read/write access violation interrupt status.The parameter </p>
+<em>flags</em> can take following values: CMMPU_ACC_VIO_FLAGS_READ, or CMMPU_ACC_VIO_FLAGS_WRITE.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the MPU instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flags</span></code>: is the flag for rd/wr violation.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428CMMPU_getAccessViolationAddr8uint32_t">
+<span id="_CPPv328CMMPU_getAccessViolationAddr8uint32_t"></span><span id="_CPPv228CMMPU_getAccessViolationAddr8uint32_t"></span><span id="CMMPU_getAccessViolationAddr__uint32_t"></span><span class="target" id="group__cmmpu__api_1gae18d33801467330da64318bc71b2fdb0"></span>uint32_t <code class="sig-name descname">CMMPU_getAccessViolationAddr</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428CMMPU_getAccessViolationAddr8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the MPU RD/WR Access Violation Address.</p>
+<p><p>This function enables either the DMA or EMAC MPU read/write access violation interrupts.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the MPU instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the MPU RD/WR access violation address. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425CMMPU_setRegionAttributes8uint32_t8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv325CMMPU_setRegionAttributes8uint32_t8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv225CMMPU_setRegionAttributes8uint32_t8uint32_t8uint32_t8uint32_t"></span><span id="CMMPU_setRegionAttributes__uint32_t.uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__cmmpu__api_1ga28aa323b8dd9f707818b0af405fe9e28"></span>void <code class="sig-name descname">CMMPU_setRegionAttributes</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>regionNum</em>, uint32_t <em>baseAddr</em>, uint32_t <em>attrFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425CMMPU_setRegionAttributes8uint32_t8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets up the access rules for a specific region.</p>
+<p><p>This function sets up the protection rules for a region. The region has a base address and a set of attributes including the size.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the MPU instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">regionNum</span></code>: is the region number to set up. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: is the base address of the region. It must be aligned according to the size of the region specified in attrFlags. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">attrFlags</span></code>: is a set of flags to define the attributes of the region.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The region number parameter, <em>regionNum</em> specifies region number to setup. Valid values for <em>regionNum</em> paramter are:<ul class="simple">
+<li><p><strong>CMMPU_RGN_0</strong> </p></li>
+<li><p><strong>CMMPU_RGN_1</strong> </p></li>
+<li><p><strong>CMMPU_RGN_2</strong> </p></li>
+<li><p><strong>CMMPU_RGN_3</strong> </p></li>
+<li><p><strong>CMMPU_RGN_4</strong> </p></li>
+<li><p><strong>CMMPU_RGN_5</strong> </p></li>
+<li><p><strong>CMMPU_RGN_6</strong> </p></li>
+<li><p><strong>CMMPU_RGN_7</strong> </p></li>
+</ul>
+</p>
+<p>The base address parameter, <em>baseAddr</em>, must be aligned according to the size, and the size must be a power of 2.</p>
+<p>The <em>attrFlags</em> parameter is the logical OR of all of the attributes of the region. It is a combination of choices for region size, read/write permissions, disabled sub-regions, and a flag to determine if the region is enabled.</p>
+<p>The size flag determines the size of a region and must be one of the following:<ul class="simple">
+<li><p><strong>CMMPU_RGN_SIZE_1K</strong> </p></li>
+<li><p><strong>CMMPU_RGN_SIZE_2K</strong> </p></li>
+<li><p><strong>CMMPU_RGN_SIZE_4K</strong> </p></li>
+<li><p><strong>CMMPU_RGN_SIZE_8K</strong> </p></li>
+<li><p><strong>CMMPU_RGN_SIZE_16K</strong> </p></li>
+<li><p><strong>CMMPU_RGN_SIZE_32K</strong> </p></li>
+<li><p><strong>CMMPU_RGN_SIZE_64K</strong> </p></li>
+<li><p><strong>CMMPU_RGN_SIZE_128K</strong> </p></li>
+<li><p><strong>CMMPU_RGN_SIZE_256K</strong> </p></li>
+<li><p><strong>CMMPU_RGN_SIZE_512K</strong> </p></li>
+<li><p><strong>CMMPU_RGN_SIZE_1M</strong> </p></li>
+<li><p><strong>CMMPU_RGN_SIZE_2M</strong> </p></li>
+<li><p><strong>CMMPU_RGN_SIZE_4M</strong> </p></li>
+<li><p><strong>CMMPU_RGN_SIZE_8M</strong> </p></li>
+<li><p><strong>CMMPU_RGN_SIZE_16M</strong> </p></li>
+<li><p><strong>CMMPU_RGN_SIZE_32M</strong> </p></li>
+<li><p><strong>CMMPU_RGN_SIZE_64M</strong> </p></li>
+<li><p><strong>CMMPU_RGN_SIZE_128M</strong> </p></li>
+<li><p><strong>CMMPU_RGN_SIZE_256M</strong> </p></li>
+<li><p><strong>CMMPU_RGN_SIZE_512M</strong> </p></li>
+<li><p><strong>CMMPU_RGN_SIZE_1G</strong> </p></li>
+<li><p><strong>CMMPU_RGN_SIZE_2G</strong> </p></li>
+<li><p><strong>CMMPU_RGN_SIZE_4G</strong> </p></li>
+</ul>
+</p>
+<p>The read/write access permission flag must be one of the following:<ul class="simple">
+<li><p><strong>CMMPU_RGN_PERM_READ_ONLY-</strong> read only permission to MPU region</p></li>
+<li><p><strong>CMMPU_RGN_PERM_NO_ACCESS-</strong> disables read/write permission to MPU region</p></li>
+<li><p><strong>CMMPU_RGN_PERM_FULL_ACCESS-</strong> read/write permission to MPU region</p></li>
+</ul>
+</p>
+<p>The region is automatically divided into 8 equally-sized sub-regions by the MPU. Sub-regions can only be used in regions of size 256 bytes or larger. Any of these 8 sub-regions can be disabled, allowing for creation of “holes” in a region which can be left open, or overlaid by another region with different attributes. Any of the 8 sub-regions can be disabled with a logical OR of any of the following flags:<ul class="simple">
+<li><p><strong>CMMPU_SUB_RGN_DISABLE_0</strong> </p></li>
+<li><p><strong>CMMPU_SUB_RGN_DISABLE_1</strong> </p></li>
+<li><p><strong>CMMPU_SUB_RGN_DISABLE_2</strong> </p></li>
+<li><p><strong>CMMPU_SUB_RGN_DISABLE_3</strong> </p></li>
+<li><p><strong>CMMPU_SUB_RGN_DISABLE_4</strong> </p></li>
+<li><p><strong>CMMPU_SUB_RGN_DISABLE_5</strong> </p></li>
+<li><p><strong>CMMPU_SUB_RGN_DISABLE_6</strong> </p></li>
+<li><p><strong>CMMPU_SUB_RGN_DISABLE_7</strong> </p></li>
+</ul>
+</p>
+<p>Finally, the region can be initially enabled or disabled with one of the following flags:<ul class="simple">
+<li><p><strong>CMMPU_RGN_ENABLE</strong> </p></li>
+<li><p><strong>CMMPU_RGN_DISABLE</strong> </p></li>
+</ul>
+</p>
+<p>As an example, to set a region with the following attributes: size of 32 KB, read-only access, one sub-region disabled, and initially enabled, the <em>attrFlags</em> parameter would have the following value: <code class="docutils literal notranslate"> <span class="pre">(CMMPU_RGN_SIZE_32K</span> <span class="pre">|</span> <span class="pre">CMMPU_RGN_PERM_READ_ONLY</span> <span class="pre">|</span> <span class="pre">CMMPU_SUB_RGN_DISABLE_2</span> <span class="pre">|</span> <span class="pre">CMMPU_RGN_ENABLE)</span> </code></p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>This function writes to multiple registers and is not protected from interrupts. It is possible that an interrupt which accesses a region may occur while that region is in the process of being changed. The safest way to handle this is to disable a region before changing it. Refer to the discussion of this in the API Detailed Description section.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425CMMPU_getRegionAttributes8uint32_t8uint32_tP8uint32_tP8uint32_t">
+<span id="_CPPv325CMMPU_getRegionAttributes8uint32_t8uint32_tP8uint32_tP8uint32_t"></span><span id="_CPPv225CMMPU_getRegionAttributes8uint32_t8uint32_tP8uint32_tP8uint32_t"></span><span id="CMMPU_getRegionAttributes__uint32_t.uint32_t.uint32_tP.uint32_tP"></span><span class="target" id="group__cmmpu__api_1ga3b5145bbcf2c2a53ec987b49d604e72b"></span>void <code class="sig-name descname">CMMPU_getRegionAttributes</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>regionNum</em>, uint32_t *<em>baseAddr</em>, uint32_t *<em>attrFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425CMMPU_getRegionAttributes8uint32_t8uint32_tP8uint32_tP8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the current settings for a specific region.</p>
+<p><p>This function retrieves the configuration of a specific region. The meanings and format of the parameters is the same as that of the </p>
+<a class="reference internal" href="#group__cmmpu__api_1ga28aa323b8dd9f707818b0af405fe9e28"><span class="std std-ref">CMMPU_setRegionAttributes()</span></a> function.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the MPU instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">regionNum</span></code>: is the region number to get. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: points to storage for the base address of the region. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">attrFlags</span></code>: points to the attribute flags for the region.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>This function can be used to save the configuration of a region for later use with the <a class="reference internal" href="#group__cmmpu__api_1ga28aa323b8dd9f707818b0af405fe9e28"><span class="std std-ref">CMMPU_setRegionAttributes()</span></a> function. The region’s enable state is preserved in the attributes that are saved.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418CMMPU_enableRegion8uint32_t8uint32_t">
+<span id="_CPPv318CMMPU_enableRegion8uint32_t8uint32_t"></span><span id="_CPPv218CMMPU_enableRegion8uint32_t8uint32_t"></span><span id="CMMPU_enableRegion__uint32_t.uint32_t"></span><span class="target" id="group__cmmpu__api_1ga42ab91e6fb66061182aa6ead9c2a4e7b"></span>void <code class="sig-name descname">CMMPU_enableRegion</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>regionNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418CMMPU_enableRegion8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables a specific region.</p>
+<p><p>This function is used to enable a memory protection region. The region should already be configured with the </p>
+<a class="reference internal" href="#group__cmmpu__api_1ga28aa323b8dd9f707818b0af405fe9e28"><span class="std std-ref">CMMPU_setRegionAttributes()</span></a> function. Once enabled, the memory protection rules of the region are applied and access violations cause a bus fault.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the MPU instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">regionNum</span></code>: is the region number to enable.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419CMMPU_disableRegion8uint32_t8uint32_t">
+<span id="_CPPv319CMMPU_disableRegion8uint32_t8uint32_t"></span><span id="_CPPv219CMMPU_disableRegion8uint32_t8uint32_t"></span><span id="CMMPU_disableRegion__uint32_t.uint32_t"></span><span class="target" id="group__cmmpu__api_1gafdb5c5428af49b3e77ef0f45d5911642"></span>void <code class="sig-name descname">CMMPU_disableRegion</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>regionNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419CMMPU_disableRegion8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables a specific region.</p>
+<p><p>This function is used to disable a previously enabled memory protection region. The region remains configured if it is not overwritten with another call to </p>
+<a class="reference internal" href="#group__cmmpu__api_1ga28aa323b8dd9f707818b0af405fe9e28"><span class="std std-ref">CMMPU_setRegionAttributes()</span></a>, and can be enabled again by calling <a class="reference internal" href="#group__cmmpu__api_1ga42ab91e6fb66061182aa6ead9c2a4e7b"><span class="std std-ref">CMMPU_enableRegion()</span></a>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the MPU instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">regionNum</span></code>: is the region number to disable.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421CMMPU_registerHandler8uint32_tPFvvE">
+<span id="_CPPv321CMMPU_registerHandler8uint32_tPFvvE"></span><span id="_CPPv221CMMPU_registerHandler8uint32_tPFvvE"></span><span class="target" id="group__cmmpu__api_1gadf702b6785a1dea1fdf538bb9d87affc"></span>void <code class="sig-name descname">CMMPU_registerHandler</code><span class="sig-paren">(</span>uint32_t <em>intNum</em>, void (*<em>fnHandler</em>)<span class="sig-paren">(</span>void<span class="sig-paren">)</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421CMMPU_registerHandler8uint32_tPFvvE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Registers an interrupt handler for the memory management fault.</p>
+<p><p>This function sets and enables the handler to be called when the MPU generates a bus fault due to a protection region access violation.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">intNum</span></code>: is the interrupt number to be registered. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fnHandler</span></code>: is a pointer to the function to be called when the memory management fault occurs.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="interrupt.html#group__interrupt__api_1ga97b4cb74e7e152d031bcdbc4e4428127"><span class="std std-ref">Interrupt_registerHandler()</span></a> for important information about registering interrupt handlers.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423CMMPU_unregisterHandler8uint32_t">
+<span id="_CPPv323CMMPU_unregisterHandler8uint32_t"></span><span id="_CPPv223CMMPU_unregisterHandler8uint32_t"></span><span id="CMMPU_unregisterHandler__uint32_t"></span><span class="target" id="group__cmmpu__api_1ga8a6e769a851329a9ec05f1426b74f226"></span>void <code class="sig-name descname">CMMPU_unregisterHandler</code><span class="sig-paren">(</span>uint32_t <em>intNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423CMMPU_unregisterHandler8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Unregisters an interrupt handler for the memory management fault.</p>
+<p><p>This function disables and clears the handler to be called when a memory management fault occurs.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">intNum</span></code>: is the interrupt number to be unregistered.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="interrupt.html#group__interrupt__api_1ga97b4cb74e7e152d031bcdbc4e4428127"><span class="std std-ref">Interrupt_registerHandler()</span></a> for important information about registering interrupt handlers.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>APIs are available to set/get CM-MPU region attributes, enable/disable CM-MPU
+regions, enable/disable CM-MPU and register/unregister interrupt handler for
+CM-MPU access violation faults.</p>
+<p>The code for this module is contained in driverlib_cm/cmmpu.c and
+driverlib_cm/cmmpu.h.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="aes.html" class="btn btn-neutral float-left" title="AES Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="can.html" class="btn btn-neutral float-right" title="CAN Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

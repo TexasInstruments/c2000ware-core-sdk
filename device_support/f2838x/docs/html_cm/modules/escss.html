@@ -1,0 +1,2386 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ESCSS Module &mdash; F2838x CM API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F2838x CM API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="Ethernet Module" href="ethernet.html"/>
+        <link rel="prev" title="DCSM Module" href="dcsm.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F2838x CM API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="aes.html">AES Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmmpu.html">CM-MPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpu.html">CPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ESCSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ethernet.html">Ethernet Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="udma.html">UDMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gcrc.html">GCRC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipc.html">IPC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcan.html">MCAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mpu.html">MPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssi.html">SSI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="systick.html">SysTick Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uart.html">UART Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F2838x CM API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>ESCSS Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="escss-module">
+<span id="escss"></span><h1>ESCSS Module<a class="headerlink" href="#escss-module" title="Permalink to this headline">¶</a></h1>
+<p>The EtherCAT Sub-System (escss) API provides a set of functions for configuring
+and using the Sub System module. These contain EtherCAT Sub-System and Sub-System Control Registers.
+The Control registers configure GPIN and GPOUT Pad Select, Phy and Clock Source Select, Sync and
+Latch Signal Selects.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__escss__api"></span><em>group</em> <code class="sig-name descname">escss_api</code></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.ESCSS_IPREV_MASK">
+<span class="target" id="group__escss__api_1ga23d9ffb6a7dbf6717ac9d92a9f750625"></span><code class="sig-name descname">ESCSS_IPREV_MASK</code> (ESCSS_IPREVNUM_IP_REV_MINOR_S<p> |\</p>
+ESCSS_IPREVNUM_IP_REV_MINOR_M)<a class="headerlink" href="#c.ESCSS_IPREV_MASK" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_RAW_INTERRUPT_MASK">
+<span class="target" id="group__escss__api_1gaa997f30cdc65d16e0c15220a1939d9a7"></span><code class="sig-name descname">ESCSS_RAW_INTERRUPT_MASK</code> (ESCSS_INTR_RIS_SYNC0_RIS<p> |\</p>
+ESCSS_INTR_RIS_SYNC1_RIS<p> |\</p>
+ESCSS_INTR_RIS_IRQ_RIS<p> |\</p>
+ESCSS_INTR_RIS_DMA_DONE_RIS<p> |\</p>
+ESCSS_INTR_RIS_TIMEOUT_ERR_RIS<p> |\</p>
+ESCSS_INTR_RIS_MASTER_RESET_RIS)<a class="headerlink" href="#c.ESCSS_RAW_INTERRUPT_MASK" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GRP_CAP_SELECT0_MASK">
+<span class="target" id="group__escss__api_1ga049af5ff159c306e43f448c93a393239"></span><code class="sig-name descname">ESCSS_GRP_CAP_SELECT0_MASK</code> ESCSS_GPIN_GRP_CAP_SEL_GPI_GRP_CAP_SEL0_M<a class="headerlink" href="#c.ESCSS_GRP_CAP_SELECT0_MASK" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GRP_CAP_SELECT1_MASK">
+<span class="target" id="group__escss__api_1gacbea86c48225e024557154a0bdca53b8"></span><code class="sig-name descname">ESCSS_GRP_CAP_SELECT1_MASK</code> ESCSS_GPIN_GRP_CAP_SEL_GPI_GRP_CAP_SEL1_M<a class="headerlink" href="#c.ESCSS_GRP_CAP_SELECT1_MASK" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GRP_CAP_SELECT2_MASK">
+<span class="target" id="group__escss__api_1ga618333ad2e6acbfbb1e4d8d6038f9f90"></span><code class="sig-name descname">ESCSS_GRP_CAP_SELECT2_MASK</code> ESCSS_GPIN_GRP_CAP_SEL_GPI_GRP_CAP_SEL2_M<a class="headerlink" href="#c.ESCSS_GRP_CAP_SELECT2_MASK" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GRP_CAP_SELECT3_MASK">
+<span class="target" id="group__escss__api_1ga1009007d587d6840fb67fa10f85f3e1e"></span><code class="sig-name descname">ESCSS_GRP_CAP_SELECT3_MASK</code> ESCSS_GPIN_GRP_CAP_SEL_GPI_GRP_CAP_SEL3_M<a class="headerlink" href="#c.ESCSS_GRP_CAP_SELECT3_MASK" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_API_SUCCESS">
+<span class="target" id="group__escss__api_1gad331310476b1b667c1b0a92a017fe646"></span><code class="sig-name descname">ESCSS_API_SUCCESS</code> 0x01U<a class="headerlink" href="#c.ESCSS_API_SUCCESS" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_API_FAIL">
+<span class="target" id="group__escss__api_1ga7b3ea3a208ce9f3d8026f7fc79318f49"></span><code class="sig-name descname">ESCSS_API_FAIL</code> 0x00U<a class="headerlink" href="#c.ESCSS_API_FAIL" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_VALID_KEY_VALUE">
+<span class="target" id="group__escss__api_1ga5c1ba6c1e6ec3c7bfb9ecb7055588a78"></span><code class="sig-name descname">ESCSS_VALID_KEY_VALUE</code> 0xA5U<a class="headerlink" href="#c.ESCSS_VALID_KEY_VALUE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPIN_0">
+<span class="target" id="group__escss__api_1ga912e441b919e5bbc14332c1c00665f4a"></span><code class="sig-name descname">ESCSS_GPIN_0</code> 0x1U<a class="headerlink" href="#c.ESCSS_GPIN_0" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPIN_1">
+<span class="target" id="group__escss__api_1gab693318ca623e9bfa2e7d60d478a37a3"></span><code class="sig-name descname">ESCSS_GPIN_1</code> 0x2U<a class="headerlink" href="#c.ESCSS_GPIN_1" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPIN_2">
+<span class="target" id="group__escss__api_1ga6f38e16592dcc004aa4befb46c8ced8a"></span><code class="sig-name descname">ESCSS_GPIN_2</code> 0x4U<a class="headerlink" href="#c.ESCSS_GPIN_2" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPIN_3">
+<span class="target" id="group__escss__api_1gaa2eb98e505b5d729e559a0257d6cca0e"></span><code class="sig-name descname">ESCSS_GPIN_3</code> 0x8U<a class="headerlink" href="#c.ESCSS_GPIN_3" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPIN_4">
+<span class="target" id="group__escss__api_1ga822101aff19212c606a79db9401db87a"></span><code class="sig-name descname">ESCSS_GPIN_4</code> 0x10U<a class="headerlink" href="#c.ESCSS_GPIN_4" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPIN_5">
+<span class="target" id="group__escss__api_1ga361a5fa8bb5e9e15bf15bb5655163aa4"></span><code class="sig-name descname">ESCSS_GPIN_5</code> 0x20U<a class="headerlink" href="#c.ESCSS_GPIN_5" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPIN_6">
+<span class="target" id="group__escss__api_1ga65579722a7e67b0dce0f3a8942a9a6ae"></span><code class="sig-name descname">ESCSS_GPIN_6</code> 0x40U<a class="headerlink" href="#c.ESCSS_GPIN_6" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPIN_7">
+<span class="target" id="group__escss__api_1ga6a2bc35b580dcd941451458b9bff1d9f"></span><code class="sig-name descname">ESCSS_GPIN_7</code> 0x80U<a class="headerlink" href="#c.ESCSS_GPIN_7" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPIN_8">
+<span class="target" id="group__escss__api_1gac3c343eb113be149fc9900a020d8cffd"></span><code class="sig-name descname">ESCSS_GPIN_8</code> 0x100U<a class="headerlink" href="#c.ESCSS_GPIN_8" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPIN_9">
+<span class="target" id="group__escss__api_1ga83da4cd0cb61a298347a4dd11ed7180b"></span><code class="sig-name descname">ESCSS_GPIN_9</code> 0x200U<a class="headerlink" href="#c.ESCSS_GPIN_9" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPIN_10">
+<span class="target" id="group__escss__api_1gad5a7ecad366fd617b056ad94cae39aa7"></span><code class="sig-name descname">ESCSS_GPIN_10</code> 0x400U<a class="headerlink" href="#c.ESCSS_GPIN_10" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPIN_11">
+<span class="target" id="group__escss__api_1gab15158728181437e25ff20cab69572f0"></span><code class="sig-name descname">ESCSS_GPIN_11</code> 0x800U<a class="headerlink" href="#c.ESCSS_GPIN_11" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPIN_12">
+<span class="target" id="group__escss__api_1ga78523d758e63d2c5d6cfe27738af71d1"></span><code class="sig-name descname">ESCSS_GPIN_12</code> 0x1000U<a class="headerlink" href="#c.ESCSS_GPIN_12" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPIN_13">
+<span class="target" id="group__escss__api_1ga4553263d1438537b4475f9dc668470e5"></span><code class="sig-name descname">ESCSS_GPIN_13</code> 0x2000U<a class="headerlink" href="#c.ESCSS_GPIN_13" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPIN_14">
+<span class="target" id="group__escss__api_1ga015e3d8dfe3e88d89d2742e4f78739a0"></span><code class="sig-name descname">ESCSS_GPIN_14</code> 0x4000U<a class="headerlink" href="#c.ESCSS_GPIN_14" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPIN_15">
+<span class="target" id="group__escss__api_1ga4d3ddf651431a1c1b9a7bd9e0b0d7376"></span><code class="sig-name descname">ESCSS_GPIN_15</code> 0x8000U<a class="headerlink" href="#c.ESCSS_GPIN_15" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPIN_16">
+<span class="target" id="group__escss__api_1ga49b6d6d258102d921f401f38c078b80a"></span><code class="sig-name descname">ESCSS_GPIN_16</code> 0x10000U<a class="headerlink" href="#c.ESCSS_GPIN_16" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPIN_17">
+<span class="target" id="group__escss__api_1gafc200a6e85a015c5e93ebba76a692ee0"></span><code class="sig-name descname">ESCSS_GPIN_17</code> 0x20000U<a class="headerlink" href="#c.ESCSS_GPIN_17" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPIN_18">
+<span class="target" id="group__escss__api_1ga0bcc3f814cc6aa690b5a78655cc58793"></span><code class="sig-name descname">ESCSS_GPIN_18</code> 0x40000U<a class="headerlink" href="#c.ESCSS_GPIN_18" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPIN_19">
+<span class="target" id="group__escss__api_1gaff93459ab8aeb7c1109d164a3044891c"></span><code class="sig-name descname">ESCSS_GPIN_19</code> 0x80000U<a class="headerlink" href="#c.ESCSS_GPIN_19" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPIN_20">
+<span class="target" id="group__escss__api_1gafd2020b281abc703ad3a806e44ff91fe"></span><code class="sig-name descname">ESCSS_GPIN_20</code> 0x100000U<a class="headerlink" href="#c.ESCSS_GPIN_20" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPIN_21">
+<span class="target" id="group__escss__api_1ga8ff6762b187eb2997657a24da6c5774f"></span><code class="sig-name descname">ESCSS_GPIN_21</code> 0x200000U<a class="headerlink" href="#c.ESCSS_GPIN_21" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPIN_22">
+<span class="target" id="group__escss__api_1ga3671e607b40b615404f7b12057a62cc1"></span><code class="sig-name descname">ESCSS_GPIN_22</code> 0x400000U<a class="headerlink" href="#c.ESCSS_GPIN_22" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPIN_23">
+<span class="target" id="group__escss__api_1ga0b559623a7d8bfad3b71c61801095bbd"></span><code class="sig-name descname">ESCSS_GPIN_23</code> 0x800000U<a class="headerlink" href="#c.ESCSS_GPIN_23" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPIN_24">
+<span class="target" id="group__escss__api_1ga53fadb3606810cc30fa0c56bb8ac8d5f"></span><code class="sig-name descname">ESCSS_GPIN_24</code> 0x1000000U<a class="headerlink" href="#c.ESCSS_GPIN_24" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPIN_25">
+<span class="target" id="group__escss__api_1gad3f1182f38add58b66180c3f3880aeb9"></span><code class="sig-name descname">ESCSS_GPIN_25</code> 0x2000000U<a class="headerlink" href="#c.ESCSS_GPIN_25" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPIN_26">
+<span class="target" id="group__escss__api_1ga43257af7d19d69f3454f5ec89fc41e34"></span><code class="sig-name descname">ESCSS_GPIN_26</code> 0x4000000U<a class="headerlink" href="#c.ESCSS_GPIN_26" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPIN_27">
+<span class="target" id="group__escss__api_1ga7c73ba72dc893c4047ba983abfe0fc2f"></span><code class="sig-name descname">ESCSS_GPIN_27</code> 0x8000000U<a class="headerlink" href="#c.ESCSS_GPIN_27" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPIN_28">
+<span class="target" id="group__escss__api_1ga8d44aea9b1db55591c18e05526d65d33"></span><code class="sig-name descname">ESCSS_GPIN_28</code> 0x10000000U<a class="headerlink" href="#c.ESCSS_GPIN_28" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPIN_29">
+<span class="target" id="group__escss__api_1gac552414e2d03cf9af8691ed93824248d"></span><code class="sig-name descname">ESCSS_GPIN_29</code> 0x20000000U<a class="headerlink" href="#c.ESCSS_GPIN_29" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPIN_30">
+<span class="target" id="group__escss__api_1gaa2134f8e4d422c5ff3a1760ba8d23364"></span><code class="sig-name descname">ESCSS_GPIN_30</code> 0x40000000U<a class="headerlink" href="#c.ESCSS_GPIN_30" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPIN_31">
+<span class="target" id="group__escss__api_1ga14cff0d11b2cacf631dfb86e9990ba1d"></span><code class="sig-name descname">ESCSS_GPIN_31</code> 0x80000000U<a class="headerlink" href="#c.ESCSS_GPIN_31" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPOUT_0">
+<span class="target" id="group__escss__api_1ga358aace912cf17d1f38657172cad00d4"></span><code class="sig-name descname">ESCSS_GPOUT_0</code> 0x1U<a class="headerlink" href="#c.ESCSS_GPOUT_0" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPOUT_1">
+<span class="target" id="group__escss__api_1gaa875aa821f1b35bb5a5a64d11475be36"></span><code class="sig-name descname">ESCSS_GPOUT_1</code> 0x2U<a class="headerlink" href="#c.ESCSS_GPOUT_1" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPOUT_2">
+<span class="target" id="group__escss__api_1ga24428934e20909937de8ae1e391086ff"></span><code class="sig-name descname">ESCSS_GPOUT_2</code> 0x4U<a class="headerlink" href="#c.ESCSS_GPOUT_2" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPOUT_3">
+<span class="target" id="group__escss__api_1gaeb866623493cac5a7353a8f2c7157d3a"></span><code class="sig-name descname">ESCSS_GPOUT_3</code> 0x8U<a class="headerlink" href="#c.ESCSS_GPOUT_3" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPOUT_4">
+<span class="target" id="group__escss__api_1ga3124aa11f8b2302842393c16bfdaac9b"></span><code class="sig-name descname">ESCSS_GPOUT_4</code> 0x10U<a class="headerlink" href="#c.ESCSS_GPOUT_4" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPOUT_5">
+<span class="target" id="group__escss__api_1gac3c0fb32a88b3bf888055bbe4bb2a496"></span><code class="sig-name descname">ESCSS_GPOUT_5</code> 0x20U<a class="headerlink" href="#c.ESCSS_GPOUT_5" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPOUT_6">
+<span class="target" id="group__escss__api_1gaf715f3d57cbdb44cfbef8dba1cdc4647"></span><code class="sig-name descname">ESCSS_GPOUT_6</code> 0x40U<a class="headerlink" href="#c.ESCSS_GPOUT_6" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPOUT_7">
+<span class="target" id="group__escss__api_1ga4595921695e4d2c10d7755840e2c600d"></span><code class="sig-name descname">ESCSS_GPOUT_7</code> 0x80U<a class="headerlink" href="#c.ESCSS_GPOUT_7" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPOUT_8">
+<span class="target" id="group__escss__api_1gaf4ebeca84640abb599aed5a1ed8e7693"></span><code class="sig-name descname">ESCSS_GPOUT_8</code> 0x100U<a class="headerlink" href="#c.ESCSS_GPOUT_8" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPOUT_9">
+<span class="target" id="group__escss__api_1ga3b4185696ee78b7fcc1e6795f43b24a3"></span><code class="sig-name descname">ESCSS_GPOUT_9</code> 0x200U<a class="headerlink" href="#c.ESCSS_GPOUT_9" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPOUT_10">
+<span class="target" id="group__escss__api_1ga2f023dc3f4d6f8dcb6af829b4d259cf0"></span><code class="sig-name descname">ESCSS_GPOUT_10</code> 0x400U<a class="headerlink" href="#c.ESCSS_GPOUT_10" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPOUT_11">
+<span class="target" id="group__escss__api_1ga848f4cc16c4dd37836a2b4807076d021"></span><code class="sig-name descname">ESCSS_GPOUT_11</code> 0x800U<a class="headerlink" href="#c.ESCSS_GPOUT_11" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPOUT_12">
+<span class="target" id="group__escss__api_1ga043acb8f16c5a3813c6a34d206138ab3"></span><code class="sig-name descname">ESCSS_GPOUT_12</code> 0x1000U<a class="headerlink" href="#c.ESCSS_GPOUT_12" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPOUT_13">
+<span class="target" id="group__escss__api_1gac228744cf4c548a952ec68cb9f0def66"></span><code class="sig-name descname">ESCSS_GPOUT_13</code> 0x2000U<a class="headerlink" href="#c.ESCSS_GPOUT_13" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPOUT_14">
+<span class="target" id="group__escss__api_1ga5a820008d2f088946772211056c44057"></span><code class="sig-name descname">ESCSS_GPOUT_14</code> 0x4000U<a class="headerlink" href="#c.ESCSS_GPOUT_14" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPOUT_15">
+<span class="target" id="group__escss__api_1ga10c74d90d7589b599f058b1f047792ab"></span><code class="sig-name descname">ESCSS_GPOUT_15</code> 0x8000U<a class="headerlink" href="#c.ESCSS_GPOUT_15" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPOUT_16">
+<span class="target" id="group__escss__api_1gaabf256febf2c409f9458c6bf43ad3915"></span><code class="sig-name descname">ESCSS_GPOUT_16</code> 0x10000U<a class="headerlink" href="#c.ESCSS_GPOUT_16" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPOUT_17">
+<span class="target" id="group__escss__api_1ga0b4edd508480cb117e057c3cd8e4fa0d"></span><code class="sig-name descname">ESCSS_GPOUT_17</code> 0x20000U<a class="headerlink" href="#c.ESCSS_GPOUT_17" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPOUT_18">
+<span class="target" id="group__escss__api_1gaa9337521bfedb5446bd8622928136c6d"></span><code class="sig-name descname">ESCSS_GPOUT_18</code> 0x40000U<a class="headerlink" href="#c.ESCSS_GPOUT_18" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPOUT_19">
+<span class="target" id="group__escss__api_1ga7edddc4996385d4c70eb678065a687bc"></span><code class="sig-name descname">ESCSS_GPOUT_19</code> 0x80000U<a class="headerlink" href="#c.ESCSS_GPOUT_19" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPOUT_20">
+<span class="target" id="group__escss__api_1gaa656327a8a89f324ff9cde56a9677c04"></span><code class="sig-name descname">ESCSS_GPOUT_20</code> 0x100000U<a class="headerlink" href="#c.ESCSS_GPOUT_20" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPOUT_21">
+<span class="target" id="group__escss__api_1ga5a8b5be632f95ec882c1dc0717651ccd"></span><code class="sig-name descname">ESCSS_GPOUT_21</code> 0x200000U<a class="headerlink" href="#c.ESCSS_GPOUT_21" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPOUT_22">
+<span class="target" id="group__escss__api_1ga610a93b8d2aea95dc899746f07b1f699"></span><code class="sig-name descname">ESCSS_GPOUT_22</code> 0x400000U<a class="headerlink" href="#c.ESCSS_GPOUT_22" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPOUT_23">
+<span class="target" id="group__escss__api_1gaf36f9119981f65ac5175f8ee008ca33b"></span><code class="sig-name descname">ESCSS_GPOUT_23</code> 0x800000U<a class="headerlink" href="#c.ESCSS_GPOUT_23" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPOUT_24">
+<span class="target" id="group__escss__api_1gac5f3ed688daff0591ef1ddd2e3441c2a"></span><code class="sig-name descname">ESCSS_GPOUT_24</code> 0x1000000U<a class="headerlink" href="#c.ESCSS_GPOUT_24" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPOUT_25">
+<span class="target" id="group__escss__api_1ga4a5b675237d3c2981d071b99c6dec553"></span><code class="sig-name descname">ESCSS_GPOUT_25</code> 0x2000000U<a class="headerlink" href="#c.ESCSS_GPOUT_25" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPOUT_26">
+<span class="target" id="group__escss__api_1gac6f9fc71f32737ad2ce2fc877590f1ea"></span><code class="sig-name descname">ESCSS_GPOUT_26</code> 0x4000000U<a class="headerlink" href="#c.ESCSS_GPOUT_26" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPOUT_27">
+<span class="target" id="group__escss__api_1ga0c40eb0c671dccdb1f5efd4c6f1e2012"></span><code class="sig-name descname">ESCSS_GPOUT_27</code> 0x8000000U<a class="headerlink" href="#c.ESCSS_GPOUT_27" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPOUT_28">
+<span class="target" id="group__escss__api_1ga7f2e46221a92e1b8a2a02362a14530f1"></span><code class="sig-name descname">ESCSS_GPOUT_28</code> 0x10000000U<a class="headerlink" href="#c.ESCSS_GPOUT_28" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPOUT_29">
+<span class="target" id="group__escss__api_1gae75afe4b4c5c02adb2b2524d210830ec"></span><code class="sig-name descname">ESCSS_GPOUT_29</code> 0x20000000U<a class="headerlink" href="#c.ESCSS_GPOUT_29" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPOUT_30">
+<span class="target" id="group__escss__api_1ga0e3ebd24097d1b8842f5e16afc7c46b2"></span><code class="sig-name descname">ESCSS_GPOUT_30</code> 0x40000000U<a class="headerlink" href="#c.ESCSS_GPOUT_30" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GPOUT_31">
+<span class="target" id="group__escss__api_1ga571fbc7304ce23f22bd4053b84497111"></span><code class="sig-name descname">ESCSS_GPOUT_31</code> 0x80000000U<a class="headerlink" href="#c.ESCSS_GPOUT_31" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="cpp enum">
+<dt id="_CPPv418ESCSS_LatchTrigger">
+<span id="_CPPv318ESCSS_LatchTrigger"></span><span id="_CPPv218ESCSS_LatchTrigger"></span><span class="target" id="group__escss__api_1gad65ff37db4051e5bbb40869b89e2ee8e"></span><em class="property">enum </em><code class="sig-name descname">ESCSS_LatchTrigger</code><a class="headerlink" href="#_CPPv418ESCSS_LatchTrigger" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This data type is used to define the signal hookup to 32 possible LATCH0/1 trigger sources. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ESCSS_LatchTrigger20ESCSS_TRIGGER_LATCH0E">
+<span id="_CPPv3N18ESCSS_LatchTrigger20ESCSS_TRIGGER_LATCH0E"></span><span id="_CPPv2N18ESCSS_LatchTrigger20ESCSS_TRIGGER_LATCH0E"></span><span class="target" id="group__escss__api_1ggad65ff37db4051e5bbb40869b89e2ee8ead9b6a5c37eb0539514c833716e20b1bc"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_TRIGGER_LATCH0</code> = 0U<a class="headerlink" href="#_CPPv4N18ESCSS_LatchTrigger20ESCSS_TRIGGER_LATCH0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Latch0 Trigger. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ESCSS_LatchTrigger20ESCSS_TRIGGER_LATCH1E">
+<span id="_CPPv3N18ESCSS_LatchTrigger20ESCSS_TRIGGER_LATCH1E"></span><span id="_CPPv2N18ESCSS_LatchTrigger20ESCSS_TRIGGER_LATCH1E"></span><span class="target" id="group__escss__api_1ggad65ff37db4051e5bbb40869b89e2ee8ea0a94e5369f3a51b20981bee5507c21cd"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_TRIGGER_LATCH1</code> = 1U<a class="headerlink" href="#_CPPv4N18ESCSS_LatchTrigger20ESCSS_TRIGGER_LATCH1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Latch1 Trigger. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ESCSS_LatchTrigger20ESCSS_TRIGGER_CPUNMIE">
+<span id="_CPPv3N18ESCSS_LatchTrigger20ESCSS_TRIGGER_CPUNMIE"></span><span id="_CPPv2N18ESCSS_LatchTrigger20ESCSS_TRIGGER_CPUNMIE"></span><span class="target" id="group__escss__api_1ggad65ff37db4051e5bbb40869b89e2ee8ea46d88ca6f2841eeda21c98ffac040d9c"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_TRIGGER_CPUNMI</code> = 2U<a class="headerlink" href="#_CPPv4N18ESCSS_LatchTrigger20ESCSS_TRIGGER_CPUNMIE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPUNMI Trigger. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ESCSS_LatchTrigger19ESCSS_TRIGGER_CMNMIE">
+<span id="_CPPv3N18ESCSS_LatchTrigger19ESCSS_TRIGGER_CMNMIE"></span><span id="_CPPv2N18ESCSS_LatchTrigger19ESCSS_TRIGGER_CMNMIE"></span><span class="target" id="group__escss__api_1ggad65ff37db4051e5bbb40869b89e2ee8ea6414f07a34bb286bece8ad79ecdc14ed"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_TRIGGER_CMNMI</code> = 3U<a class="headerlink" href="#_CPPv4N18ESCSS_LatchTrigger19ESCSS_TRIGGER_CMNMIE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMNMI Trigger. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ESCSS_LatchTrigger22ESCSS_TRIGGER_ERRORSTSE">
+<span id="_CPPv3N18ESCSS_LatchTrigger22ESCSS_TRIGGER_ERRORSTSE"></span><span id="_CPPv2N18ESCSS_LatchTrigger22ESCSS_TRIGGER_ERRORSTSE"></span><span class="target" id="group__escss__api_1ggad65ff37db4051e5bbb40869b89e2ee8ea19cf056ff2ef609bfd473859acd6520a"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_TRIGGER_ERRORSTS</code> = 4U<a class="headerlink" href="#_CPPv4N18ESCSS_LatchTrigger22ESCSS_TRIGGER_ERRORSTSE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>ERRORSTS Trigger. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT0E">
+<span id="_CPPv3N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT0E"></span><span id="_CPPv2N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT0E"></span><span class="target" id="group__escss__api_1ggad65ff37db4051e5bbb40869b89e2ee8ea4c2da36b8775980f556f3d44eac27644"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_TRIGGER_GPTRIPOUT0</code> = 5U<a class="headerlink" href="#_CPPv4N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GPTRIPOUT0 Trigger. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT1E">
+<span id="_CPPv3N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT1E"></span><span id="_CPPv2N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT1E"></span><span class="target" id="group__escss__api_1ggad65ff37db4051e5bbb40869b89e2ee8ea4c59eb79fc9b5833522580bd55fb3f23"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_TRIGGER_GPTRIPOUT1</code> = 6U<a class="headerlink" href="#_CPPv4N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GPTRIPOUT1 Trigger. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT2E">
+<span id="_CPPv3N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT2E"></span><span id="_CPPv2N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT2E"></span><span class="target" id="group__escss__api_1ggad65ff37db4051e5bbb40869b89e2ee8ea6724db5e9406108ac0ca5f22f11ea11c"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_TRIGGER_GPTRIPOUT2</code> = 7U<a class="headerlink" href="#_CPPv4N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GPTRIPOUT2 Trigger. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT3E">
+<span id="_CPPv3N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT3E"></span><span id="_CPPv2N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT3E"></span><span class="target" id="group__escss__api_1ggad65ff37db4051e5bbb40869b89e2ee8ea0b178f31ac99e7fe9d202d359087db8b"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_TRIGGER_GPTRIPOUT3</code> = 8U<a class="headerlink" href="#_CPPv4N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GPTRIPOUT3 Trigger. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT4E">
+<span id="_CPPv3N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT4E"></span><span id="_CPPv2N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT4E"></span><span class="target" id="group__escss__api_1ggad65ff37db4051e5bbb40869b89e2ee8ea06c4e6b3be79fd20cdadabfc7deb9346"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_TRIGGER_GPTRIPOUT4</code> = 9U<a class="headerlink" href="#_CPPv4N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GPTRIPOUT4 Trigger. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT5E">
+<span id="_CPPv3N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT5E"></span><span id="_CPPv2N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT5E"></span><span class="target" id="group__escss__api_1ggad65ff37db4051e5bbb40869b89e2ee8ea1037f1b1cd719fbbaa60e45fd6ddd292"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_TRIGGER_GPTRIPOUT5</code> = 10U<a class="headerlink" href="#_CPPv4N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT5E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GPTRIPOUT5 Trigger. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT6E">
+<span id="_CPPv3N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT6E"></span><span id="_CPPv2N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT6E"></span><span class="target" id="group__escss__api_1ggad65ff37db4051e5bbb40869b89e2ee8ea57c16c80761f0af8beaeb3808d4e9e79"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_TRIGGER_GPTRIPOUT6</code> = 11U<a class="headerlink" href="#_CPPv4N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT6E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GPTRIPOUT6 Trigger. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT7E">
+<span id="_CPPv3N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT7E"></span><span id="_CPPv2N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT7E"></span><span class="target" id="group__escss__api_1ggad65ff37db4051e5bbb40869b89e2ee8ea0efbb4d97743e6d5074462eaea956b6b"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_TRIGGER_GPTRIPOUT7</code> = 12U<a class="headerlink" href="#_CPPv4N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT7E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GPTRIPOUT7 Trigger. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT8E">
+<span id="_CPPv3N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT8E"></span><span id="_CPPv2N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT8E"></span><span class="target" id="group__escss__api_1ggad65ff37db4051e5bbb40869b89e2ee8ea3d18510346134af877da623b162e2bce"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_TRIGGER_GPTRIPOUT8</code> = 13U<a class="headerlink" href="#_CPPv4N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT8E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GPTRIPOUT8 Trigger. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT9E">
+<span id="_CPPv3N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT9E"></span><span id="_CPPv2N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT9E"></span><span class="target" id="group__escss__api_1ggad65ff37db4051e5bbb40869b89e2ee8ea1c91711595c84f290c3f4e63b9d9c922"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_TRIGGER_GPTRIPOUT9</code> = 14U<a class="headerlink" href="#_CPPv4N18ESCSS_LatchTrigger24ESCSS_TRIGGER_GPTRIPOUT9E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GPTRIPOUT9 Trigger. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ESCSS_LatchTrigger25ESCSS_TRIGGER_GPTRIPOUT10E">
+<span id="_CPPv3N18ESCSS_LatchTrigger25ESCSS_TRIGGER_GPTRIPOUT10E"></span><span id="_CPPv2N18ESCSS_LatchTrigger25ESCSS_TRIGGER_GPTRIPOUT10E"></span><span class="target" id="group__escss__api_1ggad65ff37db4051e5bbb40869b89e2ee8ea35efe417510c8e0fc8d3466894cd58ca"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_TRIGGER_GPTRIPOUT10</code> = 15U<a class="headerlink" href="#_CPPv4N18ESCSS_LatchTrigger25ESCSS_TRIGGER_GPTRIPOUT10E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GPTRIPOUT10 Trigger. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ESCSS_LatchTrigger25ESCSS_TRIGGER_GPTRIPOUT11E">
+<span id="_CPPv3N18ESCSS_LatchTrigger25ESCSS_TRIGGER_GPTRIPOUT11E"></span><span id="_CPPv2N18ESCSS_LatchTrigger25ESCSS_TRIGGER_GPTRIPOUT11E"></span><span class="target" id="group__escss__api_1ggad65ff37db4051e5bbb40869b89e2ee8ea51e1b2fee06d20727b241db4531791bd"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_TRIGGER_GPTRIPOUT11</code> = 16U<a class="headerlink" href="#_CPPv4N18ESCSS_LatchTrigger25ESCSS_TRIGGER_GPTRIPOUT11E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GPTRIPOUT11 Trigger. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ESCSS_LatchTrigger25ESCSS_TRIGGER_GPTRIPOUT12E">
+<span id="_CPPv3N18ESCSS_LatchTrigger25ESCSS_TRIGGER_GPTRIPOUT12E"></span><span id="_CPPv2N18ESCSS_LatchTrigger25ESCSS_TRIGGER_GPTRIPOUT12E"></span><span class="target" id="group__escss__api_1ggad65ff37db4051e5bbb40869b89e2ee8ea9cf3299d3b9f63fd7d261236fa26493f"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_TRIGGER_GPTRIPOUT12</code> = 17U<a class="headerlink" href="#_CPPv4N18ESCSS_LatchTrigger25ESCSS_TRIGGER_GPTRIPOUT12E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GPTRIPOUT12 Trigger. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ESCSS_LatchTrigger25ESCSS_TRIGGER_GPTRIPOUT13E">
+<span id="_CPPv3N18ESCSS_LatchTrigger25ESCSS_TRIGGER_GPTRIPOUT13E"></span><span id="_CPPv2N18ESCSS_LatchTrigger25ESCSS_TRIGGER_GPTRIPOUT13E"></span><span class="target" id="group__escss__api_1ggad65ff37db4051e5bbb40869b89e2ee8ea08c5e99b49909a80e747845f33d84e4a"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_TRIGGER_GPTRIPOUT13</code> = 18U<a class="headerlink" href="#_CPPv4N18ESCSS_LatchTrigger25ESCSS_TRIGGER_GPTRIPOUT13E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GPTRIPOUT13 Trigger. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ESCSS_LatchTrigger25ESCSS_TRIGGER_GPTRIPOUT14E">
+<span id="_CPPv3N18ESCSS_LatchTrigger25ESCSS_TRIGGER_GPTRIPOUT14E"></span><span id="_CPPv2N18ESCSS_LatchTrigger25ESCSS_TRIGGER_GPTRIPOUT14E"></span><span class="target" id="group__escss__api_1ggad65ff37db4051e5bbb40869b89e2ee8ea4f42c24a7738a991960ab23609849034"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_TRIGGER_GPTRIPOUT14</code> = 19U<a class="headerlink" href="#_CPPv4N18ESCSS_LatchTrigger25ESCSS_TRIGGER_GPTRIPOUT14E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GPTRIPOUT14 Trigger. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ESCSS_LatchTrigger25ESCSS_TRIGGER_GPTRIPOUT15E">
+<span id="_CPPv3N18ESCSS_LatchTrigger25ESCSS_TRIGGER_GPTRIPOUT15E"></span><span id="_CPPv2N18ESCSS_LatchTrigger25ESCSS_TRIGGER_GPTRIPOUT15E"></span><span class="target" id="group__escss__api_1ggad65ff37db4051e5bbb40869b89e2ee8eaeab8ee376d7df3f0ee496592445cc95b"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_TRIGGER_GPTRIPOUT15</code> = 20U<a class="headerlink" href="#_CPPv4N18ESCSS_LatchTrigger25ESCSS_TRIGGER_GPTRIPOUT15E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GPTRIPOUT15 Trigger. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ESCSS_LatchTrigger25ESCSS_TRIGGER_PWMXBAROUT0E">
+<span id="_CPPv3N18ESCSS_LatchTrigger25ESCSS_TRIGGER_PWMXBAROUT0E"></span><span id="_CPPv2N18ESCSS_LatchTrigger25ESCSS_TRIGGER_PWMXBAROUT0E"></span><span class="target" id="group__escss__api_1ggad65ff37db4051e5bbb40869b89e2ee8ea479a9b14fe2f9905c0b5f14b6a746a01"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_TRIGGER_PWMXBAROUT0</code> = 21U<a class="headerlink" href="#_CPPv4N18ESCSS_LatchTrigger25ESCSS_TRIGGER_PWMXBAROUT0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PWMXBAROUT0 Trigger. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ESCSS_LatchTrigger25ESCSS_TRIGGER_PWMXBAROUT1E">
+<span id="_CPPv3N18ESCSS_LatchTrigger25ESCSS_TRIGGER_PWMXBAROUT1E"></span><span id="_CPPv2N18ESCSS_LatchTrigger25ESCSS_TRIGGER_PWMXBAROUT1E"></span><span class="target" id="group__escss__api_1ggad65ff37db4051e5bbb40869b89e2ee8ea76b9662b84fd9c174457fc7616f21811"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_TRIGGER_PWMXBAROUT1</code> = 22U<a class="headerlink" href="#_CPPv4N18ESCSS_LatchTrigger25ESCSS_TRIGGER_PWMXBAROUT1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PWMXBAROUT1 Trigger. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ESCSS_LatchTrigger25ESCSS_TRIGGER_PWMXBAROUT2E">
+<span id="_CPPv3N18ESCSS_LatchTrigger25ESCSS_TRIGGER_PWMXBAROUT2E"></span><span id="_CPPv2N18ESCSS_LatchTrigger25ESCSS_TRIGGER_PWMXBAROUT2E"></span><span class="target" id="group__escss__api_1ggad65ff37db4051e5bbb40869b89e2ee8eaddf4f4321b9a32647843adc24a9df36c"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_TRIGGER_PWMXBAROUT2</code> = 23U<a class="headerlink" href="#_CPPv4N18ESCSS_LatchTrigger25ESCSS_TRIGGER_PWMXBAROUT2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PWMXBAROUT2 Trigger. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ESCSS_LatchTrigger25ESCSS_TRIGGER_PWMXBAROUT3E">
+<span id="_CPPv3N18ESCSS_LatchTrigger25ESCSS_TRIGGER_PWMXBAROUT3E"></span><span id="_CPPv2N18ESCSS_LatchTrigger25ESCSS_TRIGGER_PWMXBAROUT3E"></span><span class="target" id="group__escss__api_1ggad65ff37db4051e5bbb40869b89e2ee8ea275eb96dfd289eef0eafde2f70df2c17"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_TRIGGER_PWMXBAROUT3</code> = 24U<a class="headerlink" href="#_CPPv4N18ESCSS_LatchTrigger25ESCSS_TRIGGER_PWMXBAROUT3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PWMXBAROUT3 Trigger. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ESCSS_LatchTrigger25ESCSS_TRIGGER_PWMXBAROUT4E">
+<span id="_CPPv3N18ESCSS_LatchTrigger25ESCSS_TRIGGER_PWMXBAROUT4E"></span><span id="_CPPv2N18ESCSS_LatchTrigger25ESCSS_TRIGGER_PWMXBAROUT4E"></span><span class="target" id="group__escss__api_1ggad65ff37db4051e5bbb40869b89e2ee8ea1b5a66d1b6346681b9c3e65da1aacc04"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_TRIGGER_PWMXBAROUT4</code> = 25U<a class="headerlink" href="#_CPPv4N18ESCSS_LatchTrigger25ESCSS_TRIGGER_PWMXBAROUT4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PWMXBAROUT4 Trigger. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ESCSS_LatchTrigger25ESCSS_TRIGGER_PWMXBAROUT5E">
+<span id="_CPPv3N18ESCSS_LatchTrigger25ESCSS_TRIGGER_PWMXBAROUT5E"></span><span id="_CPPv2N18ESCSS_LatchTrigger25ESCSS_TRIGGER_PWMXBAROUT5E"></span><span class="target" id="group__escss__api_1ggad65ff37db4051e5bbb40869b89e2ee8eaeccc1b8a42fc1824eebe95b36c486d13"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_TRIGGER_PWMXBAROUT5</code> = 26U<a class="headerlink" href="#_CPPv4N18ESCSS_LatchTrigger25ESCSS_TRIGGER_PWMXBAROUT5E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PWMXBAROUT5 Trigger. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ESCSS_LatchTrigger25ESCSS_TRIGGER_PWMXBAROUT6E">
+<span id="_CPPv3N18ESCSS_LatchTrigger25ESCSS_TRIGGER_PWMXBAROUT6E"></span><span id="_CPPv2N18ESCSS_LatchTrigger25ESCSS_TRIGGER_PWMXBAROUT6E"></span><span class="target" id="group__escss__api_1ggad65ff37db4051e5bbb40869b89e2ee8eadb7ace332ab24c11bcd42d29fce79e7d"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_TRIGGER_PWMXBAROUT6</code> = 27U<a class="headerlink" href="#_CPPv4N18ESCSS_LatchTrigger25ESCSS_TRIGGER_PWMXBAROUT6E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PWMXBAROUT6 Trigger. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18ESCSS_LatchTrigger25ESCSS_TRIGGER_PWMXBAROUT7E">
+<span id="_CPPv3N18ESCSS_LatchTrigger25ESCSS_TRIGGER_PWMXBAROUT7E"></span><span id="_CPPv2N18ESCSS_LatchTrigger25ESCSS_TRIGGER_PWMXBAROUT7E"></span><span class="target" id="group__escss__api_1ggad65ff37db4051e5bbb40869b89e2ee8ea1db9be1bd74d5fa33db461b4c077ee3d"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_TRIGGER_PWMXBAROUT7</code> = 28U<a class="headerlink" href="#_CPPv4N18ESCSS_LatchTrigger25ESCSS_TRIGGER_PWMXBAROUT7E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PWMXBAROUT7 Trigger. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv420ESCSS_CaptureTrigger">
+<span id="_CPPv320ESCSS_CaptureTrigger"></span><span id="_CPPv220ESCSS_CaptureTrigger"></span><span class="target" id="group__escss__api_1ga9b086f2df99dd106baef035509d0e8ef"></span><em class="property">enum </em><code class="sig-name descname">ESCSS_CaptureTrigger</code><a class="headerlink" href="#_CPPv420ESCSS_CaptureTrigger" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The definitions are used to select the capture trigger. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20ESCSS_CaptureTrigger25ESCSS_SOF_CAPTURE_TRIGGERE">
+<span id="_CPPv3N20ESCSS_CaptureTrigger25ESCSS_SOF_CAPTURE_TRIGGERE"></span><span id="_CPPv2N20ESCSS_CaptureTrigger25ESCSS_SOF_CAPTURE_TRIGGERE"></span><span class="target" id="group__escss__api_1gga9b086f2df99dd106baef035509d0e8efa2314abdb32d97acc3c029cdc5d0adcd9"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_SOF_CAPTURE_TRIGGER</code> = 0U<a class="headerlink" href="#_CPPv4N20ESCSS_CaptureTrigger25ESCSS_SOF_CAPTURE_TRIGGERE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Start of Frame as Capture Trigger Select. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20ESCSS_CaptureTrigger27ESCSS_SYNC0_CAPTURE_TRIGGERE">
+<span id="_CPPv3N20ESCSS_CaptureTrigger27ESCSS_SYNC0_CAPTURE_TRIGGERE"></span><span id="_CPPv2N20ESCSS_CaptureTrigger27ESCSS_SYNC0_CAPTURE_TRIGGERE"></span><span class="target" id="group__escss__api_1gga9b086f2df99dd106baef035509d0e8efaf0bf0245a1e42ae97e075cd0e12929c4"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_SYNC0_CAPTURE_TRIGGER</code> = 4U<a class="headerlink" href="#_CPPv4N20ESCSS_CaptureTrigger27ESCSS_SYNC0_CAPTURE_TRIGGERE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>SYNC0 as Capture Trigger Select. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20ESCSS_CaptureTrigger27ESCSS_SYNC1_CAPTURE_TRIGGERE">
+<span id="_CPPv3N20ESCSS_CaptureTrigger27ESCSS_SYNC1_CAPTURE_TRIGGERE"></span><span id="_CPPv2N20ESCSS_CaptureTrigger27ESCSS_SYNC1_CAPTURE_TRIGGERE"></span><span class="target" id="group__escss__api_1gga9b086f2df99dd106baef035509d0e8efa2b9b80dc27879fc8eb0f27ef0186e6a1"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_SYNC1_CAPTURE_TRIGGER</code> = 5U<a class="headerlink" href="#_CPPv4N20ESCSS_CaptureTrigger27ESCSS_SYNC1_CAPTURE_TRIGGERE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>SYNC1 as Capture Trigger Select. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20ESCSS_CaptureTrigger28ESCSS_LATCH0_CAPTURE_TRIGGERE">
+<span id="_CPPv3N20ESCSS_CaptureTrigger28ESCSS_LATCH0_CAPTURE_TRIGGERE"></span><span id="_CPPv2N20ESCSS_CaptureTrigger28ESCSS_LATCH0_CAPTURE_TRIGGERE"></span><span class="target" id="group__escss__api_1gga9b086f2df99dd106baef035509d0e8efa339b4cf37f6099ff1f4d465a3027dcba"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_LATCH0_CAPTURE_TRIGGER</code> = 6U<a class="headerlink" href="#_CPPv4N20ESCSS_CaptureTrigger28ESCSS_LATCH0_CAPTURE_TRIGGERE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>LATCH0 as Capture Trigger Select. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20ESCSS_CaptureTrigger28ESCSS_LATCH1_CAPTURE_TRIGGERE">
+<span id="_CPPv3N20ESCSS_CaptureTrigger28ESCSS_LATCH1_CAPTURE_TRIGGERE"></span><span id="_CPPv2N20ESCSS_CaptureTrigger28ESCSS_LATCH1_CAPTURE_TRIGGERE"></span><span class="target" id="group__escss__api_1gga9b086f2df99dd106baef035509d0e8efa532ce24b30c1feb9e11a8d40779dcbd1"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_LATCH1_CAPTURE_TRIGGER</code> = 7U<a class="headerlink" href="#_CPPv4N20ESCSS_CaptureTrigger28ESCSS_LATCH1_CAPTURE_TRIGGERE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>LATCH1 as Capture Trigger Select. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv419ESCSS_PortSelection">
+<span id="_CPPv319ESCSS_PortSelection"></span><span id="_CPPv219ESCSS_PortSelection"></span><span class="target" id="group__escss__api_1gaa09ffbc5a67ac4b73d02dcd515df13ab"></span><em class="property">enum </em><code class="sig-name descname">ESCSS_PortSelection</code><a class="headerlink" href="#_CPPv419ESCSS_PortSelection" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The definition are there to select number of Ports. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19ESCSS_PortSelection24ESCSS_ONE_PORT_SELECTIONE">
+<span id="_CPPv3N19ESCSS_PortSelection24ESCSS_ONE_PORT_SELECTIONE"></span><span id="_CPPv2N19ESCSS_PortSelection24ESCSS_ONE_PORT_SELECTIONE"></span><span class="target" id="group__escss__api_1ggaa09ffbc5a67ac4b73d02dcd515df13aba558c2519b94c1f3186c43be438e86a5f"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_ONE_PORT_SELECTION</code> = 0U<a class="headerlink" href="#_CPPv4N19ESCSS_PortSelection24ESCSS_ONE_PORT_SELECTIONE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>One port operation(Port0). </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19ESCSS_PortSelection24ESCSS_TWO_PORT_SELECTIONE">
+<span id="_CPPv3N19ESCSS_PortSelection24ESCSS_TWO_PORT_SELECTIONE"></span><span id="_CPPv2N19ESCSS_PortSelection24ESCSS_TWO_PORT_SELECTIONE"></span><span class="target" id="group__escss__api_1ggaa09ffbc5a67ac4b73d02dcd515df13aba2403dd5ecf7c0e6ca3d3d602ff789287"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_TWO_PORT_SELECTION</code> = 1U<a class="headerlink" href="#_CPPv4N19ESCSS_PortSelection24ESCSS_TWO_PORT_SELECTIONE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Two port operation(Port0,Port1). </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv416ESCSS_SizeSelect">
+<span id="_CPPv316ESCSS_SizeSelect"></span><span id="_CPPv216ESCSS_SizeSelect"></span><span class="target" id="group__escss__api_1ga80983c99c3ded6ef0b8c1c0a63f28bd5"></span><em class="property">enum </em><code class="sig-name descname">ESCSS_SizeSelect</code><a class="headerlink" href="#_CPPv416ESCSS_SizeSelect" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The definition values are there to select the size to pass as a parameter to <a class="reference internal" href="#group__escss__api_1gaf6d188d1ac338a701eade7e5390701ad"><span class="std std-ref">ESCSS_configureEEPROMSize()</span></a>. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N16ESCSS_SizeSelect19ESCSS_LESS_THAN_16KE">
+<span id="_CPPv3N16ESCSS_SizeSelect19ESCSS_LESS_THAN_16KE"></span><span id="_CPPv2N16ESCSS_SizeSelect19ESCSS_LESS_THAN_16KE"></span><span class="target" id="group__escss__api_1gga80983c99c3ded6ef0b8c1c0a63f28bd5a5207f16ed73c6bdf1fb95b6cce70c49f"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_LESS_THAN_16K</code><a class="headerlink" href="#_CPPv4N16ESCSS_SizeSelect19ESCSS_LESS_THAN_16KE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EEPROMs of size 16K bits or less. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N16ESCSS_SizeSelect22ESCSS_GREATER_THAN_16KE">
+<span id="_CPPv3N16ESCSS_SizeSelect22ESCSS_GREATER_THAN_16KE"></span><span id="_CPPv2N16ESCSS_SizeSelect22ESCSS_GREATER_THAN_16KE"></span><span class="target" id="group__escss__api_1gga80983c99c3ded6ef0b8c1c0a63f28bd5a29b03889127af82cc59a510f3970bf6d"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_GREATER_THAN_16K</code><a class="headerlink" href="#_CPPv4N16ESCSS_SizeSelect22ESCSS_GREATER_THAN_16KE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EEPROMs of size greater than 16K bits. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv424ESCSS_GroupCaptureSelect">
+<span id="_CPPv324ESCSS_GroupCaptureSelect"></span><span id="_CPPv224ESCSS_GroupCaptureSelect"></span><span class="target" id="group__escss__api_1ga4c5c081cff0251f4da1209183d0e096e"></span><em class="property">enum </em><code class="sig-name descname">ESCSS_GroupCaptureSelect</code><a class="headerlink" href="#_CPPv424ESCSS_GroupCaptureSelect" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The definition values is there to select the Group Capture Trigger for the ESCSS_setGPINGroupCaptureTriggerSelect and ESCSS_setGPOUTGroupCaptureTriggerSelect APIs. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N24ESCSS_GroupCaptureSelect27ESCSS_GROUP_CAPTURE_SELECT0E">
+<span id="_CPPv3N24ESCSS_GroupCaptureSelect27ESCSS_GROUP_CAPTURE_SELECT0E"></span><span id="_CPPv2N24ESCSS_GroupCaptureSelect27ESCSS_GROUP_CAPTURE_SELECT0E"></span><span class="target" id="group__escss__api_1gga4c5c081cff0251f4da1209183d0e096eabca041a2de1b2e197fcbac4ada5a0942"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_GROUP_CAPTURE_SELECT0</code> = 0U<a class="headerlink" href="#_CPPv4N24ESCSS_GroupCaptureSelect27ESCSS_GROUP_CAPTURE_SELECT0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N24ESCSS_GroupCaptureSelect27ESCSS_GROUP_CAPTURE_SELECT1E">
+<span id="_CPPv3N24ESCSS_GroupCaptureSelect27ESCSS_GROUP_CAPTURE_SELECT1E"></span><span id="_CPPv2N24ESCSS_GroupCaptureSelect27ESCSS_GROUP_CAPTURE_SELECT1E"></span><span class="target" id="group__escss__api_1gga4c5c081cff0251f4da1209183d0e096ea709074a8ed45ad88fe446750eb435597"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_GROUP_CAPTURE_SELECT1</code> = 4U<a class="headerlink" href="#_CPPv4N24ESCSS_GroupCaptureSelect27ESCSS_GROUP_CAPTURE_SELECT1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N24ESCSS_GroupCaptureSelect27ESCSS_GROUP_CAPTURE_SELECT2E">
+<span id="_CPPv3N24ESCSS_GroupCaptureSelect27ESCSS_GROUP_CAPTURE_SELECT2E"></span><span id="_CPPv2N24ESCSS_GroupCaptureSelect27ESCSS_GROUP_CAPTURE_SELECT2E"></span><span class="target" id="group__escss__api_1gga4c5c081cff0251f4da1209183d0e096ea88a0d082f7d4dbb1aae68dd59d96d94a"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_GROUP_CAPTURE_SELECT2</code> = 8U<a class="headerlink" href="#_CPPv4N24ESCSS_GroupCaptureSelect27ESCSS_GROUP_CAPTURE_SELECT2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N24ESCSS_GroupCaptureSelect27ESCSS_GROUP_CAPTURE_SELECT3E">
+<span id="_CPPv3N24ESCSS_GroupCaptureSelect27ESCSS_GROUP_CAPTURE_SELECT3E"></span><span id="_CPPv2N24ESCSS_GroupCaptureSelect27ESCSS_GROUP_CAPTURE_SELECT3E"></span><span class="target" id="group__escss__api_1gga4c5c081cff0251f4da1209183d0e096ea2548f453372ef6c6945e8a8d14341319"></span><em class="property">enumerator </em><code class="sig-name descname">ESCSS_GROUP_CAPTURE_SELECT3</code> = 12U<a class="headerlink" href="#_CPPv4N24ESCSS_GroupCaptureSelect27ESCSS_GROUP_CAPTURE_SELECT3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv426ESCSS_readIPMinorRevNumber8uint32_t">
+<span id="_CPPv326ESCSS_readIPMinorRevNumber8uint32_t"></span><span id="_CPPv226ESCSS_readIPMinorRevNumber8uint32_t"></span><span id="ESCSS_readIPMinorRevNumber__uint32_t"></span><span class="target" id="group__escss__api_1ga86f6563eeba4e0f44988bb1be9a2e995"></span>uint16_t <code class="sig-name descname">ESCSS_readIPMinorRevNumber</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426ESCSS_readIPMinorRevNumber8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reads the Minor IP Revision Number for EtherCAT.</p>
+<p><p>This function returns the Minor IP Revision Number. Reset value for this are Hard Coded and increments with minor changes to the IP.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the EtherCAT Minor IP Revision Number. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426ESCSS_readIPMajorRevNumber8uint32_t">
+<span id="_CPPv326ESCSS_readIPMajorRevNumber8uint32_t"></span><span id="_CPPv226ESCSS_readIPMajorRevNumber8uint32_t"></span><span id="ESCSS_readIPMajorRevNumber__uint32_t"></span><span class="target" id="group__escss__api_1gafe6c20def7ebe94482425c88b9310b17"></span>uint16_t <code class="sig-name descname">ESCSS_readIPMajorRevNumber</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426ESCSS_readIPMajorRevNumber8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reads the Major IP Revision Number for EtherCAT.</p>
+<p><p>This function returns the Major IP Revision Number. Reset value for this are Hard Coded and increments with minor changes to the IP.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the EtherCAT Major IP Revision Number. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421ESCSS_readIPRevNumber8uint32_t">
+<span id="_CPPv321ESCSS_readIPRevNumber8uint32_t"></span><span id="_CPPv221ESCSS_readIPRevNumber8uint32_t"></span><span id="ESCSS_readIPRevNumber__uint32_t"></span><span class="target" id="group__escss__api_1ga1dc960eaae2a3ea6bbe220ce9ee854eb"></span>uint32_t <code class="sig-name descname">ESCSS_readIPRevNumber</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421ESCSS_readIPRevNumber8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reads the Major and Minor IP Revision Number for EtherCAT.</p>
+<p><p>This function returns the IP Revision Number. Reset value for this are Hard Coded and increments with minor changes to the IP.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the EtherCAT IP Revision Number. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427ESCSS_getRawInterruptStatus8uint32_t8uint16_t">
+<span id="_CPPv327ESCSS_getRawInterruptStatus8uint32_t8uint16_t"></span><span id="_CPPv227ESCSS_getRawInterruptStatus8uint32_t8uint16_t"></span><span id="ESCSS_getRawInterruptStatus__uint32_t.uint16_t"></span><span class="target" id="group__escss__api_1ga98d89a34d113ff99bd9e15ac986a95f6"></span>uint16_t <code class="sig-name descname">ESCSS_getRawInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>interruptMask</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427ESCSS_getRawInterruptStatus8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the Raw Interrupt Status for selected interrupts.</p>
+<p><p>This function returns the Raw Interrupt Status of all the different interrupt triggers.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">interruptMask</span></code>: is the mask value to select the different type of interrupt.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the Raw Interrupt Status Value. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428ESCSS_readRawInterruptStatus8uint32_t">
+<span id="_CPPv328ESCSS_readRawInterruptStatus8uint32_t"></span><span id="_CPPv228ESCSS_readRawInterruptStatus8uint32_t"></span><span id="ESCSS_readRawInterruptStatus__uint32_t"></span><span class="target" id="group__escss__api_1gae8f11d15ca6c460dff6674404d3d59b4"></span>uint32_t <code class="sig-name descname">ESCSS_readRawInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428ESCSS_readRawInterruptStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reads the Raw Interrupt Status for different interrupt triggers.</p>
+<p><p>This function returns the Raw Interrupt Status of individual interrupt triggers.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The Raw interrupt Status can have the following valid options for <em>interruptMask</em> can be OR’ed together: <strong>ESCSS_INTR_RIS_SYNC0_RIS</strong>, <strong>ESCSS_INTR_RIS_SYNC1_RIS</strong>, <strong>ESCSS_INTR_RIS_IRQ_RIS</strong>, <strong>ESCSS_INTR_RIS_DMA_DONE_RIS</strong>, <strong>ESCSS_INTR_RIS_TIMEOUT_ERR_RIS</strong>, <strong>ESCSS_INTR_RIS_MASTER_RESET_RIS</strong>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the Raw Interrupt Status Value. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv430ESCSS_setMaskedInterruptStatus8uint32_t8uint16_t">
+<span id="_CPPv330ESCSS_setMaskedInterruptStatus8uint32_t8uint16_t"></span><span id="_CPPv230ESCSS_setMaskedInterruptStatus8uint32_t8uint16_t"></span><span id="ESCSS_setMaskedInterruptStatus__uint32_t.uint16_t"></span><span class="target" id="group__escss__api_1ga1b390d1faa707a5802268ba76f3ba679"></span>void <code class="sig-name descname">ESCSS_setMaskedInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>interruptMask</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430ESCSS_setMaskedInterruptStatus8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Allows to mask individual interrupt cause impacting the interrupt.</p>
+<p><p>This function sets the Masked Interrupt Status of the different interrupt triggers as per the input mask value.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">interruptMask</span></code>: is the mask value to select the different type of interrupt.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The Masked interrupt Status can have the following valid options for <em>interruptMask</em> can be OR’ed together:<ul class="simple">
+<li><p><strong>ESCSS_INTR_MASK_SYNC0_MASK</strong> - Masks SYNC0 to have effect on interrupts or other CPU/DMA Trigger,</p></li>
+<li><p><strong>ESCSS_INTR_MASK_SYNC1_MASK</strong> - Masks SYNC1 to have effect on interrupts or other CPU/DMA Trigger,</p></li>
+<li><p><strong>ESCSS_INTR_MASK_IRQ_MASK</strong> - Masks EtherCATSS IRQ to have effect on interrupts or other CPU/DMA Trigger,</p></li>
+<li><p><strong>ESCSS_INTR_MASK_DMA_DONE_MASK</strong> - Masks DMA Done to have effect on interrupts or other CPU/DMA Trigger,</p></li>
+<li><p><strong>ESCSS_INTR_MASK_TIMEOUT_ERR_MASK</strong> - Masks PDI access timeout Error to have effect on interrupts or other CPU/DMA Trigger,</p></li>
+<li><p><strong>ESCSS_INTR_MASK_MASTER_RESET_MASK</strong> - Masks EtherCAT Master reset event against any effect on interrupts or other CPU Interrupts.</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv432ESCSS_resetMaskedInterruptStatus8uint32_t8uint16_t">
+<span id="_CPPv332ESCSS_resetMaskedInterruptStatus8uint32_t8uint16_t"></span><span id="_CPPv232ESCSS_resetMaskedInterruptStatus8uint32_t8uint16_t"></span><span id="ESCSS_resetMaskedInterruptStatus__uint32_t.uint16_t"></span><span class="target" id="group__escss__api_1ga0bd57ce4992d4507eac548d71f154bf2"></span>void <code class="sig-name descname">ESCSS_resetMaskedInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>interruptMask</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv432ESCSS_resetMaskedInterruptStatus8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Allows to reset the mask individual interrupt cause impacting the interrupt.</p>
+<p><p>This function resets the Masked Interrupt Status of the different interrupt triggers as per the input mask value passed as parameter.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">interruptMask</span></code>: is the mask value to select the different type of interrupt.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The Masked interrupt Status can have the following valid options for <em>interruptMask</em> can be OR’ed together:<ul class="simple">
+<li><p><strong>ESCSS_INTR_MASK_SYNC0_MASK</strong> - Masks SYNC0 to have effect on interrupts or other CPU/DMA Trigger,</p></li>
+<li><p><strong>ESCSS_INTR_MASK_SYNC1_MASK</strong> - Masks SYNC1 to have effect on interrupts or other CPU/DMA Trigger,</p></li>
+<li><p><strong>ESCSS_INTR_MASK_IRQ_MASK</strong> - Masks EtherCATSS IRQ to have effect on interrupts or other CPU/DMA Trigger,</p></li>
+<li><p><strong>ESCSS_INTR_MASK_DMA_DONE_MASK</strong> - Masks DMA Done to have effect on interrupts or other CPU/DMA Trigger,</p></li>
+<li><p><strong>ESCSS_INTR_MASK_TIMEOUT_ERR_MASK</strong> - Masks PDI access timeout Error to have effect on interrupts or other CPU/DMA Trigger,</p></li>
+<li><p><strong>ESCSS_INTR_MASK_MASTER_RESET_MASK</strong> - Masks EtherCAT Master reset event against any effect on interrupts or other CPU Interrupts.</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv430ESCSS_getMaskedInterruptStatus8uint32_t8uint16_t">
+<span id="_CPPv330ESCSS_getMaskedInterruptStatus8uint32_t8uint16_t"></span><span id="_CPPv230ESCSS_getMaskedInterruptStatus8uint32_t8uint16_t"></span><span id="ESCSS_getMaskedInterruptStatus__uint32_t.uint16_t"></span><span class="target" id="group__escss__api_1ga7ad4f5f8bd437e702f7064bb82b25191"></span>uint16_t <code class="sig-name descname">ESCSS_getMaskedInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>interruptMask</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430ESCSS_getMaskedInterruptStatus8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the Masked Interrupt Status all interrupt triggers.</p>
+<p><p>This function returns the Masked Interrupt Status of the different interrupt triggers as per the input mask value.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">interruptMask</span></code>: is the mask value to select the different type of interrupt.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The Masked interrupt Status can have the following valid options for <em>interruptMask</em> can be OR’ed together: <strong>ESCSS_INTR_MIS_SYNC0_MIS</strong>, <strong>ESCSS_INTR_MIS_SYNC1_MIS</strong>, <strong>ESCSS_INTR_MIS_IRQ_MIS</strong>, <strong>ESCSS_INTR_MIS_DMA_DONE_MIS</strong>, <strong>ESCSS_INTR_MIS_TIMEOUT_ERR_MIS</strong>, <strong>ESCSS_INTR_MIS_MASTER_RESET_MIS</strong>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the Masked Interrupt Status Value. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429ESCSS_clearRawInterruptStatus8uint32_t8uint16_t">
+<span id="_CPPv329ESCSS_clearRawInterruptStatus8uint32_t8uint16_t"></span><span id="_CPPv229ESCSS_clearRawInterruptStatus8uint32_t8uint16_t"></span><span id="ESCSS_clearRawInterruptStatus__uint32_t.uint16_t"></span><span class="target" id="group__escss__api_1ga8f5901bbc7b927727adddc91f39524ed"></span>void <code class="sig-name descname">ESCSS_clearRawInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>interruptMask</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429ESCSS_clearRawInterruptStatus8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears the individual interrupt cause.</p>
+<p><p>This function clears the individual interrupt cause based on the mask value passed. Writing a 1 clears the Raw Status.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">interruptMask</span></code>: is the mask value to select the different type of interrupt.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The interrupt Status Mask parameter can have the following valid options for <em>interruptMask</em> can be OR’ed together: <strong>ESCSS_INTR_CLR_SYNC0_CLR</strong>, <strong>ESCSS_INTR_CLR_SYNC1_CLR</strong>, <strong>ESCSS_INTR_CLR_IRQ_CLR</strong>, <strong>ESCSS_INTR_CLR_DMA_DONE_CLR</strong>, <strong>ESCSS_INTR_CLR_TIMEOUT_ERR_CLR</strong>, <strong>ESCSS_INTR_CLR_MASTER_RESET_CLR</strong>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421ESCSS_selectLatch0Mux8uint32_t18ESCSS_LatchTrigger">
+<span id="_CPPv321ESCSS_selectLatch0Mux8uint32_t18ESCSS_LatchTrigger"></span><span id="_CPPv221ESCSS_selectLatch0Mux8uint32_t18ESCSS_LatchTrigger"></span><span id="ESCSS_selectLatch0Mux__uint32_t.ESCSS_LatchTrigger"></span><span class="target" id="group__escss__api_1gad0d803edbfd2a4a04ba83307d48c51d8"></span>void <code class="sig-name descname">ESCSS_selectLatch0Mux</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv418ESCSS_LatchTrigger" title="ESCSS_LatchTrigger">ESCSS_LatchTrigger</a> <em>muxSelectValue</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421ESCSS_selectLatch0Mux8uint32_t18ESCSS_LatchTrigger" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Selects the LATCH0 Inputs Mux Select.</p>
+<p><p>This function sets the Mux Select value for LATCH0 input to ESC SS.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">muxSelectValue</span></code>: is the mux select value for Latch0.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>muxSelectValue</em> parameter can be one of the possible values from the ESCSS_LatchTrigger enum.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421ESCSS_selectLatch1Mux8uint32_t18ESCSS_LatchTrigger">
+<span id="_CPPv321ESCSS_selectLatch1Mux8uint32_t18ESCSS_LatchTrigger"></span><span id="_CPPv221ESCSS_selectLatch1Mux8uint32_t18ESCSS_LatchTrigger"></span><span id="ESCSS_selectLatch1Mux__uint32_t.ESCSS_LatchTrigger"></span><span class="target" id="group__escss__api_1ga4ba637ff848e02b679f3f7a4383159a1"></span>void <code class="sig-name descname">ESCSS_selectLatch1Mux</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv418ESCSS_LatchTrigger" title="ESCSS_LatchTrigger">ESCSS_LatchTrigger</a> <em>muxSelectValue</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421ESCSS_selectLatch1Mux8uint32_t18ESCSS_LatchTrigger" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select the LATCH1 Inputs Mux Select.</p>
+<p><p>This function sets the Mux Select value for LATCH1 input to ESC SS.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">muxSelectValue</span></code>: is the mux select value for Latch1.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>muxSelectValue</em> parameter can be one of the possible values from the ESCSS_LatchTrigger enum.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv440ESCSS_configure16BitAsyncAccessWaitState8uint32_t8uint16_t">
+<span id="_CPPv340ESCSS_configure16BitAsyncAccessWaitState8uint32_t8uint16_t"></span><span id="_CPPv240ESCSS_configure16BitAsyncAccessWaitState8uint32_t8uint16_t"></span><span id="ESCSS_configure16BitAsyncAccessWaitState__uint32_t.uint16_t"></span><span class="target" id="group__escss__api_1ga5a50e3a6d154ebf8977568fde39f27fd"></span>void <code class="sig-name descname">ESCSS_configure16BitAsyncAccessWaitState</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>waitState</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv440ESCSS_configure16BitAsyncAccessWaitState8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the Wait State on the 16 bit Asynchronous Interface.</p>
+<p><p>This function configures the predefined minimum number of wait-states which the VBUS bridge will put out accesses on the 16-bit Asynchronous interface.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">waitState</span></code>: is the minimum wait state value.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428ESCSS_enablePDIAccessTimeOut8uint32_t">
+<span id="_CPPv328ESCSS_enablePDIAccessTimeOut8uint32_t"></span><span id="_CPPv228ESCSS_enablePDIAccessTimeOut8uint32_t"></span><span id="ESCSS_enablePDIAccessTimeOut__uint32_t"></span><span class="target" id="group__escss__api_1ga09f3408360a82d8abc088ac2fa388660"></span>void <code class="sig-name descname">ESCSS_enablePDIAccessTimeOut</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428ESCSS_enablePDIAccessTimeOut8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the PDI Timeout Feature.</p>
+<p><p>Enables the Timeout features which counts programmed number of Sys clocks before the Local host aborts the transaction. The timeout counter starts counting upon BUSY is asserted by EtherCAT IP.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429ESCSS_disablePDIAccessTimeOut8uint32_t">
+<span id="_CPPv329ESCSS_disablePDIAccessTimeOut8uint32_t"></span><span id="_CPPv229ESCSS_disablePDIAccessTimeOut8uint32_t"></span><span id="ESCSS_disablePDIAccessTimeOut__uint32_t"></span><span class="target" id="group__escss__api_1ga44df5f4afc0ba18606248dbf081ae85b"></span>void <code class="sig-name descname">ESCSS_disablePDIAccessTimeOut</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429ESCSS_disablePDIAccessTimeOut8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the PDI Timeout Feature.</p>
+<p><p>Disables the Timeout features which counts programmed number of Sys clocks before the Local host aborts the transaction on PDI interface.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423ESCSS_enableDebugAccess8uint32_t">
+<span id="_CPPv323ESCSS_enableDebugAccess8uint32_t"></span><span id="_CPPv223ESCSS_enableDebugAccess8uint32_t"></span><span id="ESCSS_enableDebugAccess__uint32_t"></span><span class="target" id="group__escss__api_1gaeb2e8451347be7b42bc34afc2ec0384d"></span>void <code class="sig-name descname">ESCSS_enableDebugAccess</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423ESCSS_enableDebugAccess8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the Debug Access through the PDI Controller.</p>
+<p><p>This function configures the debug accesses to be allowed to go through.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424ESCSS_disableDebugAccess8uint32_t">
+<span id="_CPPv324ESCSS_disableDebugAccess8uint32_t"></span><span id="_CPPv224ESCSS_disableDebugAccess8uint32_t"></span><span id="ESCSS_disableDebugAccess__uint32_t"></span><span class="target" id="group__escss__api_1gaaf876057f18c980b4976e92f56059adb"></span>void <code class="sig-name descname">ESCSS_disableDebugAccess</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424ESCSS_disableDebugAccess8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the Debug Access through the PDI Controller.</p>
+<p><p>This function configures the debug accesses to be not allowed to go through.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418ESCSS_readGPINData8uint32_t">
+<span id="_CPPv318ESCSS_readGPINData8uint32_t"></span><span id="_CPPv218ESCSS_readGPINData8uint32_t"></span><span id="ESCSS_readGPINData__uint32_t"></span><span class="target" id="group__escss__api_1gaa4f406029feea465a15a02a073d2191b"></span>uint32_t <code class="sig-name descname">ESCSS_readGPINData</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418ESCSS_readGPINData8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reads the GPIN Data.</p>
+<p><p>This function returns the GPIN Data. Local GPIN data register connects to GPIN pipelined register for debug &amp; override purposes.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the GPIN Data Value. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417ESCSS_setGPINData8uint32_t8uint32_t">
+<span id="_CPPv317ESCSS_setGPINData8uint32_t8uint32_t"></span><span id="_CPPv217ESCSS_setGPINData8uint32_t8uint32_t"></span><span id="ESCSS_setGPINData__uint32_t.uint32_t"></span><span class="target" id="group__escss__api_1gafce0060cf45d9434c52a85db2945a647"></span>void <code class="sig-name descname">ESCSS_setGPINData</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>pinValue</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417ESCSS_setGPINData8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the GPIN Data Register Value.</p>
+<p><p>This function writes the GPIN Data. Local GPIN data register connects to GPIN pipelined register for debug &amp; override purposes.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pinValue</span></code>: is the value to be written in the GPIN Register.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>pinValue</em> can have the respective GPIN Defines OR’ed to select which PIN to write to. The defines are ESCSS_GPIN_x where x is from 0 to 31.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419ESCSS_resetGPINData8uint32_t8uint32_t">
+<span id="_CPPv319ESCSS_resetGPINData8uint32_t8uint32_t"></span><span id="_CPPv219ESCSS_resetGPINData8uint32_t8uint32_t"></span><span id="ESCSS_resetGPINData__uint32_t.uint32_t"></span><span class="target" id="group__escss__api_1ga9b1c27faf2521da7108f11e2982d1258"></span>void <code class="sig-name descname">ESCSS_resetGPINData</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>pinValue</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419ESCSS_resetGPINData8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Resets the GPIN Data Register Value.</p>
+<p><p>This function writes the GPIN Data. Local GPIN data register connects to GPIN pipelined register for debug &amp; override purposes.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pinValue</span></code>: is the value to be written in the GPIN Register.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>pinValue</em> can have the respective GPIN Defines OR’ed to select which PIN to write to. The defines are ESCSS_GPIN_x where x is from 0 to 31.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv441ESCSS_enableGPIPipelinedRegCaptureOnEvent8uint32_t8uint32_t">
+<span id="_CPPv341ESCSS_enableGPIPipelinedRegCaptureOnEvent8uint32_t8uint32_t"></span><span id="_CPPv241ESCSS_enableGPIPipelinedRegCaptureOnEvent8uint32_t8uint32_t"></span><span id="ESCSS_enableGPIPipelinedRegCaptureOnEvent__uint32_t.uint32_t"></span><span class="target" id="group__escss__api_1gae2e02b842aebe0fa046aa562f7cf2fc9"></span>void <code class="sig-name descname">ESCSS_enableGPIPipelinedRegCaptureOnEvent</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>pipelineMask</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv441ESCSS_enableGPIPipelinedRegCaptureOnEvent8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the connection of GPIN to EtherCATSS through pipelined register as against the direct from IO.</p>
+<p><p>This function enables that the connection is through the pipelined register which is captured on programmed event.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pipelineMask</span></code>: is the mask to enable connection is through pipelined register.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>pipelineMask</em> can have the respective GPIN Defines OR’ed to select which PIN to write to. The defines are ESCSS_GPIN_x where x is from 0 to 31.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv442ESCSS_disableGPIPipelinedRegCaptureOnEvent8uint32_t8uint32_t">
+<span id="_CPPv342ESCSS_disableGPIPipelinedRegCaptureOnEvent8uint32_t8uint32_t"></span><span id="_CPPv242ESCSS_disableGPIPipelinedRegCaptureOnEvent8uint32_t8uint32_t"></span><span id="ESCSS_disableGPIPipelinedRegCaptureOnEvent__uint32_t.uint32_t"></span><span class="target" id="group__escss__api_1ga6aad7c6d21feb56ca431600ab1e974de"></span>void <code class="sig-name descname">ESCSS_disableGPIPipelinedRegCaptureOnEvent</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>pipelineMask</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv442ESCSS_disableGPIPipelinedRegCaptureOnEvent8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the connection of GPIN to EtherCATSS through pipelined register and is direct from the IO Pad.</p>
+<p><p>This function disables the connection through the pipelined register and connection is directly from the IO pad.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pipelineMask</span></code>: is the mask to enable connection is through pipelined register.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>pipelineMask</em> can have the respective GPIN Defines OR’ed to select which PIN to write to. The defines are ESCSS_GPIN_x where x is from 0 to 31.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419ESCSS_readGPOUTData8uint32_t">
+<span id="_CPPv319ESCSS_readGPOUTData8uint32_t"></span><span id="_CPPv219ESCSS_readGPOUTData8uint32_t"></span><span id="ESCSS_readGPOUTData__uint32_t"></span><span class="target" id="group__escss__api_1gabff5c6796337f74a424c007f510aeab2"></span>uint32_t <code class="sig-name descname">ESCSS_readGPOUTData</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419ESCSS_readGPOUTData8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reads the GPOUT Data.</p>
+<p><p>This function returns the GPOUT Data. Local GPOUT data register which is synchronized version on SysClk, each bit is represents GPOUT IORead is allowed for CPU to process (IO extender or so if required).</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the GPOUT Data Value. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv443ESCSS_enableGPOUTPipelinedRegCaptureOnEvent8uint32_t8uint32_t">
+<span id="_CPPv343ESCSS_enableGPOUTPipelinedRegCaptureOnEvent8uint32_t8uint32_t"></span><span id="_CPPv243ESCSS_enableGPOUTPipelinedRegCaptureOnEvent8uint32_t8uint32_t"></span><span id="ESCSS_enableGPOUTPipelinedRegCaptureOnEvent__uint32_t.uint32_t"></span><span class="target" id="group__escss__api_1ga0afa809c8b81e292a353353c6fe255d5"></span>void <code class="sig-name descname">ESCSS_enableGPOUTPipelinedRegCaptureOnEvent</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>pipelineMask</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv443ESCSS_enableGPOUTPipelinedRegCaptureOnEvent8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the connection of EtherCATSS GPOUT output to the IO pad through pipelined register as against the direct connection.</p>
+<p><p>This function enables the connection to be through the pipelined register which captures EtherCATSS o/p on programmed event.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pipelineMask</span></code>: is the mask to enable connection is through pipelined register.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>pipelineMask</em> can have the respective GPOUT Defines OR’ed to select which PIN to write to. The defines are ESCSS_GPOUT_x where x is from 0 to 31.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv444ESCSS_disableGPOUTPipelinedRegCaptureOnEvent8uint32_t8uint32_t">
+<span id="_CPPv344ESCSS_disableGPOUTPipelinedRegCaptureOnEvent8uint32_t8uint32_t"></span><span id="_CPPv244ESCSS_disableGPOUTPipelinedRegCaptureOnEvent8uint32_t8uint32_t"></span><span id="ESCSS_disableGPOUTPipelinedRegCaptureOnEvent__uint32_t.uint32_t"></span><span class="target" id="group__escss__api_1ga0e597052d145485e00c166495f969d91"></span>void <code class="sig-name descname">ESCSS_disableGPOUTPipelinedRegCaptureOnEvent</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>pipelineMask</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv444ESCSS_disableGPOUTPipelinedRegCaptureOnEvent8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the connection of GPOUT to EtherCATSS through pipelined register and is direct from the IO Pad.</p>
+<p><p>This function disables the connection through the pipelined register and connection is directly from the IO pad.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pipelineMask</span></code>: is the mask to enable connection is through pipelined register.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>pipelineMask</em> can have the respective GPOUT Defines OR’ed to select which PIN to write to. The defines are ESCSS_GPOUT_x where x is from 0 to 31.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416ESCSS_initMemory8uint32_t">
+<span id="_CPPv316ESCSS_initMemory8uint32_t"></span><span id="_CPPv216ESCSS_initMemory8uint32_t"></span><span id="ESCSS_initMemory__uint32_t"></span><span class="target" id="group__escss__api_1gaa668752c736e7c368063421631711667"></span>void <code class="sig-name descname">ESCSS_initMemory</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416ESCSS_initMemory8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Initializes the Memory Init.</p>
+<p><p>This function starts the initialization when set.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv440ESCSS_getMemoryInitDoneStatusNonBlocking8uint32_t">
+<span id="_CPPv340ESCSS_getMemoryInitDoneStatusNonBlocking8uint32_t"></span><span id="_CPPv240ESCSS_getMemoryInitDoneStatusNonBlocking8uint32_t"></span><span id="ESCSS_getMemoryInitDoneStatusNonBlocking__uint32_t"></span><span class="target" id="group__escss__api_1ga28faf606cf1e06b96183cfefc1402680"></span>bool <code class="sig-name descname">ESCSS_getMemoryInitDoneStatusNonBlocking</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv440ESCSS_getMemoryInitDoneStatusNonBlocking8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the memory init status.</p>
+<p><p>This function returns the status of the memory initialization.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> indicating memory initialization completion, and <strong>false</strong> if not ye completed. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv437ESCSS_getMemoryInitDoneStatusBlocking8uint32_t8uint32_t">
+<span id="_CPPv337ESCSS_getMemoryInitDoneStatusBlocking8uint32_t8uint32_t"></span><span id="_CPPv237ESCSS_getMemoryInitDoneStatusBlocking8uint32_t8uint32_t"></span><span id="ESCSS_getMemoryInitDoneStatusBlocking__uint32_t.uint32_t"></span><span class="target" id="group__escss__api_1ga43a1aeb3649460b9dd704465714713ad"></span>uint32_t <code class="sig-name descname">ESCSS_getMemoryInitDoneStatusBlocking</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>loopCount</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv437ESCSS_getMemoryInitDoneStatusBlocking8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Waits for the memory init status to be set till the loop count.</p>
+<p><p>This function returns the status of the memory initialization after waiting till a loop count.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">loopCount</span></code>: is the count till which the loop will run till the Memory init is done.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> indicating memory initialization completion, and <strong>false</strong> if not ye completed. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv432ESCSS_isConfigurationLockEnabled8uint32_t">
+<span id="_CPPv332ESCSS_isConfigurationLockEnabled8uint32_t"></span><span id="_CPPv232ESCSS_isConfigurationLockEnabled8uint32_t"></span><span id="ESCSS_isConfigurationLockEnabled__uint32_t"></span><span class="target" id="group__escss__api_1ga37119b613fddab3cf421a9c2ebb07155"></span>bool <code class="sig-name descname">ESCSS_isConfigurationLockEnabled</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv432ESCSS_isConfigurationLockEnabled8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Checks if lock configuration is done.</p>
+<p><p>This function checks if the lock configuration is done and returns the status.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422ESCSS_enableLEDOptions8uint32_t8uint16_t">
+<span id="_CPPv322ESCSS_enableLEDOptions8uint32_t8uint16_t"></span><span id="_CPPv222ESCSS_enableLEDOptions8uint32_t8uint16_t"></span><span id="ESCSS_enableLEDOptions__uint32_t.uint16_t"></span><span class="target" id="group__escss__api_1ga5238e1432c44c3b7d13af5a83dc1dc9c"></span>uint16_t <code class="sig-name descname">ESCSS_enableLEDOptions</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>ledSelectConfig</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422ESCSS_enableLEDOptions8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the selection of LED o/p connect to IO Pad.</p>
+<p><p>This function enables the selection of LED o/p connect to IO Pad. This selection assumes both buffer input and buffer enable connection as required.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT configuration Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ledSelectConfig</span></code>: is the Mux Selection Value.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The LED Configuration Mask parameter can have the following valid options for <em>ledSelectConfig</em> can be OR’ed together:<ul class="simple">
+<li><p><strong>ESCSS_LED_CONFIG_LINKACT0</strong> - GPIO enable for LINKACT0 LED,</p></li>
+<li><p><strong>ESCSS_LED_CONFIG_LINKACT1</strong> - GPIO enable for LINKACT1 LED,</p></li>
+<li><p><strong>ESCSS_LED_CONFIG_STATE</strong> - GPIO enable for STATE LED,</p></li>
+<li><p><strong>ESCSS_LED_CONFIG_ERR</strong> - GPIO enable for ERR LED,</p></li>
+<li><p><strong>ESCSS_LED_CONFIG_RUN</strong> - GPIO enable for RUN LED.</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423ESCSS_disableLEDOptions8uint32_t8uint16_t">
+<span id="_CPPv323ESCSS_disableLEDOptions8uint32_t8uint16_t"></span><span id="_CPPv223ESCSS_disableLEDOptions8uint32_t8uint16_t"></span><span id="ESCSS_disableLEDOptions__uint32_t.uint16_t"></span><span class="target" id="group__escss__api_1ga12ce4e04c0f0bb5bcd433fcc00bf20d2"></span>uint16_t <code class="sig-name descname">ESCSS_disableLEDOptions</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>ledSelectConfig</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423ESCSS_disableLEDOptions8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the selection of LED o/p connect to IO Pad.</p>
+<p><p>This function disables the selection of LED o/p connect to IO Pad. The non-EtherCAT function is selected on the IO.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT configuration Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ledSelectConfig</span></code>: is the Mux Selection Value.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The LED Configuration Mask parameter can have the following valid options for <em>ledSelectConfig</em> can be OR’ed together:<ul class="simple">
+<li><p><strong>ESCSS_LED_CONFIG_LINKACT0</strong>,</p></li>
+<li><p><strong>ESCSS_LED_CONFIG_LINKACT1</strong>,</p></li>
+<li><p><strong>ESCSS_LED_CONFIG_STATE</strong>,</p></li>
+<li><p><strong>ESCSS_LED_CONFIG_ERR</strong>,</p></li>
+<li><p><strong>ESCSS_LED_CONFIG_RUN</strong>.</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416ESCSS_enableGPIN8uint32_t8uint32_t">
+<span id="_CPPv316ESCSS_enableGPIN8uint32_t8uint32_t"></span><span id="_CPPv216ESCSS_enableGPIN8uint32_t8uint32_t"></span><span id="ESCSS_enableGPIN__uint32_t.uint32_t"></span><span class="target" id="group__escss__api_1gafe0fc4635b87fd9a87dcc2f7c903375d"></span>uint16_t <code class="sig-name descname">ESCSS_enableGPIN</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>selectValue</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416ESCSS_enableGPIN8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable for GPIN Connection to IO pad.</p>
+<p><p>This function allows bit-wise selection of the GPIN be connected from GPIO PAD. Once those are not driven by GPIO, will be driven from register writable from local Host.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT configuration Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">selectValue</span></code>: is the mask for the mux select.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>selectValue</em> can have the respective GPIN Defines OR’ed to select which PIN to enable. The defines are ESCSS_GPIN_x where x is from 0 to 31.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417ESCSS_disableGPIN8uint32_t8uint32_t">
+<span id="_CPPv317ESCSS_disableGPIN8uint32_t8uint32_t"></span><span id="_CPPv217ESCSS_disableGPIN8uint32_t8uint32_t"></span><span id="ESCSS_disableGPIN__uint32_t.uint32_t"></span><span class="target" id="group__escss__api_1ga7dcf4494e631821d1139165ea5789eb4"></span>uint16_t <code class="sig-name descname">ESCSS_disableGPIN</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>selectValue</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417ESCSS_disableGPIN8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable for GPIN Connection to IO pad.</p>
+<p><p>This function disables connection to GPIO PAD, but connects to ESCSS_GPIN_DAT.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT configuration Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">selectValue</span></code>: is the mask for the mux select.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>selectValue</em> can have the respective GPIN Defines OR’ed to select which GPIN to disable. The defines are ESCSS_GPIN_x where x is from 0 to 31.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417ESCSS_enableGPOUT8uint32_t8uint32_t">
+<span id="_CPPv317ESCSS_enableGPOUT8uint32_t8uint32_t"></span><span id="_CPPv217ESCSS_enableGPOUT8uint32_t8uint32_t"></span><span id="ESCSS_enableGPOUT__uint32_t.uint32_t"></span><span class="target" id="group__escss__api_1ga0e6a3edd7aec18548e07979259858b6b"></span>uint16_t <code class="sig-name descname">ESCSS_enableGPOUT</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>selectValue</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417ESCSS_enableGPOUT8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable GPOUT selection between register or GPIO pad.</p>
+<p><p>This function is to allow the EtherCAT GPOUT output be driven to either of the two IO-pads allocated.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT configuration Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">selectValue</span></code>: is the mask for the mux select.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>selectValue</em> can have the respective GPOUT Defines OR’ed to select which GPOUT to enable. The defines are ESCSS_GPOUT_x where x is from 0 to 31.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418ESCSS_disableGPOUT8uint32_t8uint32_t">
+<span id="_CPPv318ESCSS_disableGPOUT8uint32_t8uint32_t"></span><span id="_CPPv218ESCSS_disableGPOUT8uint32_t8uint32_t"></span><span id="ESCSS_disableGPOUT__uint32_t.uint32_t"></span><span class="target" id="group__escss__api_1ga4ffb577f77f968d565b3b32f3ca6043b"></span>uint16_t <code class="sig-name descname">ESCSS_disableGPOUT</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>selectValue</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418ESCSS_disableGPOUT8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable GPOUT selection between register or GPIO pad.</p>
+<p><p>This function is to disable the EtherCAT GPOUT output be driven to either of the two IO-pads allocated.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT configuration Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">selectValue</span></code>: is the mask for the mux select.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>selectValue</em> can have the respective GPOUT Defines OR’ed to select which GPOUT to disable. The defines are ESCSS_GPOUT_x where x is from 0 to 31.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv440ESCSS_configureTX0ShiftForTxEnaAndTxData8uint32_t8uint32_t">
+<span id="_CPPv340ESCSS_configureTX0ShiftForTxEnaAndTxData8uint32_t8uint32_t"></span><span id="_CPPv240ESCSS_configureTX0ShiftForTxEnaAndTxData8uint32_t8uint32_t"></span><span id="ESCSS_configureTX0ShiftForTxEnaAndTxData__uint32_t.uint32_t"></span><span class="target" id="group__escss__api_1gab1348d783801bfde8310ce88e9c3dbe1"></span>uint16_t <code class="sig-name descname">ESCSS_configureTX0ShiftForTxEnaAndTxData</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>shiftValue</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv440ESCSS_configureTX0ShiftForTxEnaAndTxData8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configure the TX for shift for Port 0.</p>
+<p><p>This function is to configure the TX for shift for Port 0. Two bit TX_SHIFT configuration in terms of 10ns counts for port0. This is the shift added to TX_ENA &amp; TX_DATA to match delay of PHY TX_CLK w.r.t. device internal clock.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT configuration Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">shiftValue</span></code>: is the shift in 10ns terms.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv440ESCSS_configureTX1ShiftForTxEnaAndTxData8uint32_t8uint32_t">
+<span id="_CPPv340ESCSS_configureTX1ShiftForTxEnaAndTxData8uint32_t8uint32_t"></span><span id="_CPPv240ESCSS_configureTX1ShiftForTxEnaAndTxData8uint32_t8uint32_t"></span><span id="ESCSS_configureTX1ShiftForTxEnaAndTxData__uint32_t.uint32_t"></span><span class="target" id="group__escss__api_1ga9017f44c2ebfb72084f52156261406f5"></span>uint16_t <code class="sig-name descname">ESCSS_configureTX1ShiftForTxEnaAndTxData</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>shiftValue</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv440ESCSS_configureTX1ShiftForTxEnaAndTxData8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configure the TX for shift for Port 1.</p>
+<p><p>This function is to configure the TX for shift for Port 1. Two bit TX_SHIFT configuration in terms of 10ns counts for port1. This is the shift added to TX_ENA &amp; TX_DATA to match delay of PHY TX_CLK w.r.t. device internal clock.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT configuration Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">shiftValue</span></code>: is the shift in 10ns terms.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424ESCSS_enablePDIEmulation8uint32_t">
+<span id="_CPPv324ESCSS_enablePDIEmulation8uint32_t"></span><span id="_CPPv224ESCSS_enablePDIEmulation8uint32_t"></span><span id="ESCSS_enablePDIEmulation__uint32_t"></span><span class="target" id="group__escss__api_1ga74d8a1104de709c16e7df07c81393cd3"></span>uint16_t <code class="sig-name descname">ESCSS_enablePDIEmulation</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424ESCSS_enablePDIEmulation8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable the PDI Emulation.</p>
+<p><p>This function will be hooked up to the PDI_EMULATION input of the EtherCAT IP.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT configuration Registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425ESCSS_disablePDIEmulation8uint32_t">
+<span id="_CPPv325ESCSS_disablePDIEmulation8uint32_t"></span><span id="_CPPv225ESCSS_disablePDIEmulation8uint32_t"></span><span id="ESCSS_disablePDIEmulation__uint32_t"></span><span class="target" id="group__escss__api_1ga9fa28536d108188520d871f68c1fb810"></span>uint16_t <code class="sig-name descname">ESCSS_disablePDIEmulation</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425ESCSS_disablePDIEmulation8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable the PDI Emulation.</p>
+<p><p>This function will not allow hooking up to the PDI_EMULATION input of the EtherCAT IP.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT configuration Registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv431ESCSS_configurePhyAddressOffset8uint32_t8uint16_t">
+<span id="_CPPv331ESCSS_configurePhyAddressOffset8uint32_t8uint16_t"></span><span id="_CPPv231ESCSS_configurePhyAddressOffset8uint32_t8uint16_t"></span><span id="ESCSS_configurePhyAddressOffset__uint32_t.uint16_t"></span><span class="target" id="group__escss__api_1gaf176cb78edd26501dfc2dc0665cf0330"></span>uint16_t <code class="sig-name descname">ESCSS_configurePhyAddressOffset</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>registerOffset</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431ESCSS_configurePhyAddressOffset8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configure the Physical Address Offset.</p>
+<p><p>This function will set the PHY_OFFSET[4:0] input of the EtherCAT IP.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT configuration Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">registerOffset</span></code>: is the register offset value.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427ESCSS_setRawInterruptStatus8uint32_t8uint16_t8uint16_t">
+<span id="_CPPv327ESCSS_setRawInterruptStatus8uint32_t8uint16_t8uint16_t"></span><span id="_CPPv227ESCSS_setRawInterruptStatus8uint32_t8uint16_t8uint16_t"></span><span id="ESCSS_setRawInterruptStatus__uint32_t.uint16_t.uint16_t"></span><span class="target" id="group__escss__api_1ga1d4da261888c552af3aaaa230682efde"></span>uint16_t <code class="sig-name descname">ESCSS_setRawInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>interruptMask</em>, uint16_t <em>writeKey</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427ESCSS_setRawInterruptStatus8uint32_t8uint16_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the Raw Interrupt Cause Status.</p>
+<p><p>This function sets the individual interrupt cause based on the mask value passed to emulate the interrupt cause.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">interruptMask</span></code>: is the mask value to select the different type of interrupt. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">writeKey</span></code>: is the key Value which decides if the writes to this register are to take affect.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The interrupt Status Mask parameter can have the following valid options for <em>interruptMask</em> can be OR’ed together: <strong>ESCSS_INTR_SET_SYNC0_SET</strong>, <strong>ESCSS_INTR_SET_SYNC1_SET</strong>, <strong>ESCSS_INTR_SET_IRQ_SET</strong>, <strong>ESCSS_INTR_SET_DMA_DONE_SET</strong>, <strong>ESCSS_INTR_SET_TIMEOUT_ERR_SET</strong>, <strong>ESCSS_INTR_SET_MASTER_RESET_SET</strong>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv438ESCSS_setGPINGroupCaptureTriggerSelect8uint32_t24ESCSS_GroupCaptureSelect20ESCSS_CaptureTrigger">
+<span id="_CPPv338ESCSS_setGPINGroupCaptureTriggerSelect8uint32_t24ESCSS_GroupCaptureSelect20ESCSS_CaptureTrigger"></span><span id="_CPPv238ESCSS_setGPINGroupCaptureTriggerSelect8uint32_t24ESCSS_GroupCaptureSelect20ESCSS_CaptureTrigger"></span><span id="ESCSS_setGPINGroupCaptureTriggerSelect__uint32_t.ESCSS_GroupCaptureSelect.ESCSS_CaptureTrigger"></span><span class="target" id="group__escss__api_1ga4b531d8acb2f0cf79cd51e88d1c285e4"></span>void <code class="sig-name descname">ESCSS_setGPINGroupCaptureTriggerSelect</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv424ESCSS_GroupCaptureSelect" title="ESCSS_GroupCaptureSelect">ESCSS_GroupCaptureSelect</a> <em>selectGPIN</em>, <a class="reference internal" href="#_CPPv420ESCSS_CaptureTrigger" title="ESCSS_CaptureTrigger">ESCSS_CaptureTrigger</a> <em>triggerCapSelect</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv438ESCSS_setGPINGroupCaptureTriggerSelect8uint32_t24ESCSS_GroupCaptureSelect20ESCSS_CaptureTrigger" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the GPIN pipe group capture trigger.</p>
+<p><p>This function selects the trigger to capture the IO input in pipeline register for GPIN. The </p>
+<em>selectGPIN</em> parameter takes the following parameters: <strong>ESCSS_GROUP_CAPTURE_SELECT0</strong>, <strong>ESCSS_GROUP_CAPTURE_SELECT1</strong>, <strong>ESCSS_GROUP_CAPTURE_SELECT2</strong> and <strong>ESCSS_GROUP_CAPTURE_SELECT3</strong>. The <em>ESCSS_CaptureTrigger</em> parameter takes the values: <strong>ESCSS_SOF_CAPTURE_TRIGGER</strong>, <strong>ESCSS_SYNC0_CAPTURE_TRIGGER</strong>, <strong>ESCSS_SYNC1_CAPTURE_TRIGGER</strong>, <strong>ESCSS_LATCH0_CAPTURE_TRIGGER</strong>, <strong>ESCSS_LATCH1_CAPTURE_TRIGGER</strong>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">selectGPIN</span></code>: is to select the trigger to capture the IO input in pipeline register for selective GPIN. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">triggerCapSelect</span></code>: is the GPIN Data to be written.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv439ESCSS_setGPOUTGroupCaptureTriggerSelect8uint32_t24ESCSS_GroupCaptureSelect20ESCSS_CaptureTrigger">
+<span id="_CPPv339ESCSS_setGPOUTGroupCaptureTriggerSelect8uint32_t24ESCSS_GroupCaptureSelect20ESCSS_CaptureTrigger"></span><span id="_CPPv239ESCSS_setGPOUTGroupCaptureTriggerSelect8uint32_t24ESCSS_GroupCaptureSelect20ESCSS_CaptureTrigger"></span><span id="ESCSS_setGPOUTGroupCaptureTriggerSelect__uint32_t.ESCSS_GroupCaptureSelect.ESCSS_CaptureTrigger"></span><span class="target" id="group__escss__api_1gae40dfd14a44ed035d53bc43edee0979f"></span>void <code class="sig-name descname">ESCSS_setGPOUTGroupCaptureTriggerSelect</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv424ESCSS_GroupCaptureSelect" title="ESCSS_GroupCaptureSelect">ESCSS_GroupCaptureSelect</a> <em>selectGPOUT</em>, <a class="reference internal" href="#_CPPv420ESCSS_CaptureTrigger" title="ESCSS_CaptureTrigger">ESCSS_CaptureTrigger</a> <em>triggerCapSelect</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv439ESCSS_setGPOUTGroupCaptureTriggerSelect8uint32_t24ESCSS_GroupCaptureSelect20ESCSS_CaptureTrigger" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GPOUT pipe group capture trigger.</p>
+<p><p>This function selects the trigger to capture the IO input in pipeline register for GPOUT. The </p>
+<em>selectGPOUT</em> parameter takes the following parameters: <strong>ESCSS_GROUP_CAPTURE_SELECT0</strong>, <strong>ESCSS_GROUP_CAPTURE_SELECT1</strong>, <strong>ESCSS_GROUP_CAPTURE_SELECT2</strong> and <strong>ESCSS_GROUP_CAPTURE_SELECT3</strong>. The <em>ESCSS_CaptureTrigger</em> parameter takes the values: <strong>ESCSS_SOF_CAPTURE_TRIGGER</strong>, <strong>ESCSS_SYNC0_CAPTURE_TRIGGER</strong>, <strong>ESCSS_SYNC1_CAPTURE_TRIGGER</strong>, <strong>ESCSS_LATCH0_CAPTURE_TRIGGER</strong>, <strong>ESCSS_LATCH1_CAPTURE_TRIGGER</strong>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">selectGPOUT</span></code>: is to select the trigger to capture the IO input in pipeline register for selective GPIN. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">triggerCapSelect</span></code>: is the GPIN Data to be written.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420ESCSS_enableCPUReset8uint32_t8uint16_t">
+<span id="_CPPv320ESCSS_enableCPUReset8uint32_t8uint16_t"></span><span id="_CPPv220ESCSS_enableCPUReset8uint32_t8uint16_t"></span><span id="ESCSS_enableCPUReset__uint32_t.uint16_t"></span><span class="target" id="group__escss__api_1gaaf775d5217eedbee172097081af88ec8"></span>uint16_t <code class="sig-name descname">ESCSS_enableCPUReset</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>writeKey</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420ESCSS_enableCPUReset8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables EtherCAT Reset drives to EtherCAT IP and PHY Reset.</p>
+<p><p>This function enables the EtherCAT Reset to drive the IP &amp; PHY reset.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">writeKey</span></code>: is the key Value which decides if the writes to this register are to take affect.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421ESCSS_disableCPUReset8uint32_t8uint16_t">
+<span id="_CPPv321ESCSS_disableCPUReset8uint32_t8uint16_t"></span><span id="_CPPv221ESCSS_disableCPUReset8uint32_t8uint16_t"></span><span id="ESCSS_disableCPUReset__uint32_t.uint16_t"></span><span class="target" id="group__escss__api_1gaa6904d3c9140239b2d4709a8cf17fa44"></span>uint16_t <code class="sig-name descname">ESCSS_disableCPUReset</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>writeKey</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421ESCSS_disableCPUReset8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EtherCAT Reset does not drive to EtherCAT IP and PHY Reset.</p>
+<p><p>This function configures the EtherCAT Reset not to drive to EtherCAT IP and PHY Reset. The application shall configure NMI/Interrupt to eventually complete the reset through system control soft reset.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">writeKey</span></code>: is the key Value which decides if the writes to this register are to take affect.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422ESCSS_enableResetToNMI8uint32_t8uint16_t">
+<span id="_CPPv322ESCSS_enableResetToNMI8uint32_t8uint16_t"></span><span id="_CPPv222ESCSS_enableResetToNMI8uint32_t8uint16_t"></span><span id="ESCSS_enableResetToNMI__uint32_t.uint16_t"></span><span class="target" id="group__escss__api_1ga78471c32152c5bc37df7621d27a672be"></span>uint16_t <code class="sig-name descname">ESCSS_enableResetToNMI</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>writeKey</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422ESCSS_enableResetToNMI8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables for reset out to drive the CPU NMI.</p>
+<p><p>This function configures the EtherCAT Reset to drive the CPU NMI. IP Reset out drives CPU NMI to which it belongs. NMI handler is expected to complete the required tasks or context save if any and then reset the EtherCAT through the system control soft reset.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">writeKey</span></code>: is the key Value which decides if the writes to this register are to take affect.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423ESCSS_disableResetToNMI8uint32_t8uint16_t">
+<span id="_CPPv323ESCSS_disableResetToNMI8uint32_t8uint16_t"></span><span id="_CPPv223ESCSS_disableResetToNMI8uint32_t8uint16_t"></span><span id="ESCSS_disableResetToNMI__uint32_t.uint16_t"></span><span class="target" id="group__escss__api_1ga85c6133c922a08944dcf27b4f4040e6a"></span>uint16_t <code class="sig-name descname">ESCSS_disableResetToNMI</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>writeKey</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423ESCSS_disableResetToNMI8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables for reset out to drive the CPU NMI</p>
+<p><p>This function configures the EtherCAT Reset not to drive the CPU NMI.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">writeKey</span></code>: is the key Value which decides if the writes to this register are to take affect.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428ESCSS_enableResetToInterrupt8uint32_t8uint16_t">
+<span id="_CPPv328ESCSS_enableResetToInterrupt8uint32_t8uint16_t"></span><span id="_CPPv228ESCSS_enableResetToInterrupt8uint32_t8uint16_t"></span><span id="ESCSS_enableResetToInterrupt__uint32_t.uint16_t"></span><span class="target" id="group__escss__api_1gaa80f945a1b90207e75922331bba4bbff"></span>uint16_t <code class="sig-name descname">ESCSS_enableResetToInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>writeKey</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428ESCSS_enableResetToInterrupt8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables for reset out to drive the interrupt to CPU which it belongs to.</p>
+<p><p>This function enables the EtherCAT Reset to drive the interrupt to CPU which it belongs to.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">writeKey</span></code>: is the key Value which decides if the writes to this register are to take affect.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429ESCSS_disableResetToInterrupt8uint32_t8uint16_t">
+<span id="_CPPv329ESCSS_disableResetToInterrupt8uint32_t8uint16_t"></span><span id="_CPPv229ESCSS_disableResetToInterrupt8uint32_t8uint16_t"></span><span id="ESCSS_disableResetToInterrupt__uint32_t.uint16_t"></span><span class="target" id="group__escss__api_1ga0e23dc53a0af46a0b49cdebe4183b37a"></span>uint16_t <code class="sig-name descname">ESCSS_disableResetToInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>writeKey</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429ESCSS_disableResetToInterrupt8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables for reset out to drive the interrupt to CPU which it belongs to.</p>
+<p><p>This function configures the EtherCAT Reset not to drive the interrupt to CPU which it belongs to.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">writeKey</span></code>: is the key Value which decides if the writes to this register are to take affect.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv431ESCSS_configureSync0Connections8uint32_t8uint16_t8uint16_t">
+<span id="_CPPv331ESCSS_configureSync0Connections8uint32_t8uint16_t8uint16_t"></span><span id="_CPPv231ESCSS_configureSync0Connections8uint32_t8uint16_t8uint16_t"></span><span id="ESCSS_configureSync0Connections__uint32_t.uint16_t.uint16_t"></span><span class="target" id="group__escss__api_1gabd6bef4aee580df523ded18cc51c9312"></span>uint16_t <code class="sig-name descname">ESCSS_configureSync0Connections</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>connectionInterrupt</em>, uint16_t <em>writeKey</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431ESCSS_configureSync0Connections8uint32_t8uint16_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the EtherCAT connection from SYNC0 to a particular interrupt.</p>
+<p><p>This function configures the connection from SYNC0 to the interrupt to the respective selection made. The following valid options for </p>
+<em>connectionInterrupt</em> are:<ul class="simple">
+<li><p><strong>ESCSS_SYNC0_CONFIG_C28X_PIE_EN</strong> - Connects the SYNC0 to C28x PIE Interrupt</p></li>
+<li><p><strong>ESCSS_SYNC0_CONFIG_CLA_INT_EN</strong> - Connects the SYNC0 to CLA Interrupt</p></li>
+<li><p><strong>ESCSS_SYNC0_CONFIG_C28X_DMA_EN</strong> - Connects the SYNC0 to C28x DMA Trigger</p></li>
+<li><p><strong>ESCSS_SYNC0_CONFIG_CM4_NVIC_EN</strong> - Connects the SYNC0 to CM4 NVIC Interrupt</p></li>
+<li><p><strong>ESCSS_SYNC0_CONFIG_UDMA_TRIG_EN</strong> - Connects the SYNC0 to uDMA Trigger</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">connectionInterrupt</span></code>: is the interrupt to which SYNC0 output is connected to. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">writeKey</span></code>: is the key Value which decides if the writes to this register are to take affect.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv431ESCSS_configureSync1Connections8uint32_t8uint16_t8uint16_t">
+<span id="_CPPv331ESCSS_configureSync1Connections8uint32_t8uint16_t8uint16_t"></span><span id="_CPPv231ESCSS_configureSync1Connections8uint32_t8uint16_t8uint16_t"></span><span id="ESCSS_configureSync1Connections__uint32_t.uint16_t.uint16_t"></span><span class="target" id="group__escss__api_1ga3fe3ebae48fb76c6c28eff710b803cc3"></span>uint16_t <code class="sig-name descname">ESCSS_configureSync1Connections</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>connectionInterrupt</em>, uint16_t <em>writeKey</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431ESCSS_configureSync1Connections8uint32_t8uint16_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the EtherCAT connection from SYNC1 to a particular interrupt.</p>
+<p><p>This function configures the connection from SYNC1 to the interrupt to the respective selection made. The following valid options for </p>
+<em>connectionInterrupt</em> are:<ul class="simple">
+<li><p><strong>ESCSS_SYNC1_CONFIG_C28X_PIE_EN</strong> - Connects the SYNC1 to C28x PIE Interrupt</p></li>
+<li><p><strong>ESCSS_SYNC1_CONFIG_CLA_INT_EN</strong> - Connects the SYNC1 to CLA Interrupt</p></li>
+<li><p><strong>ESCSS_SYNC1_CONFIG_C28X_DMA_EN</strong> - Connects the SYNC1 to C28x DMA Trigger</p></li>
+<li><p><strong>ESCSS_SYNC1_CONFIG_CM4_NVIC_EN</strong> - Connects the SYNC1 to CM4 NVIC Interrupt</p></li>
+<li><p><strong>ESCSS_SYNC1_CONFIG_UDMA_TRIG_EN</strong> - Connects the SYNC1 to uDMA Trigger</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">connectionInterrupt</span></code>: is the interrupt to which SYNC1 output is connected to. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">writeKey</span></code>: is the key Value which decides if the writes to this register are to take affect.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429ESCSS_enableConfigurationLock8uint32_t8uint16_t">
+<span id="_CPPv329ESCSS_enableConfigurationLock8uint32_t8uint16_t"></span><span id="_CPPv229ESCSS_enableConfigurationLock8uint32_t8uint16_t"></span><span id="ESCSS_enableConfigurationLock__uint32_t.uint16_t"></span><span class="target" id="group__escss__api_1ga13b14aea13a608d72a3cd9b0674123c7"></span>uint16_t <code class="sig-name descname">ESCSS_enableConfigurationLock</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>writeKey</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429ESCSS_enableConfigurationLock8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the configuration lock.</p>
+<p><p>This bit enables locking the contents of all the EtherCAT configuration registers. This bit can be set only once after ecatXRSN and gets reset after the next ecatXRSN.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT Sub-System. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">writeKey</span></code>: is the key Value to enable the writing lock.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428ESCSS_enableIOConnectionLock8uint32_t8uint16_t">
+<span id="_CPPv328ESCSS_enableIOConnectionLock8uint32_t8uint16_t"></span><span id="_CPPv228ESCSS_enableIOConnectionLock8uint32_t8uint16_t"></span><span id="ESCSS_enableIOConnectionLock__uint32_t.uint16_t"></span><span class="target" id="group__escss__api_1ga2c6f8353f88052d7c91db69e8f93def6"></span>uint16_t <code class="sig-name descname">ESCSS_enableIOConnectionLock</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>writeKey</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428ESCSS_enableIOConnectionLock8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Locking the IO Configuration.</p>
+<p><p>This function leads to locking of the IO Configurations. Changing IO selections or IO configurations after this bit is set can have unpredictable IO behavior on the device IOs.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT configuration Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">writeKey</span></code>: is the key Value to enable the writing lock.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429ESCSS_disableIOConnectionLock8uint32_t8uint16_t">
+<span id="_CPPv329ESCSS_disableIOConnectionLock8uint32_t8uint16_t"></span><span id="_CPPv229ESCSS_disableIOConnectionLock8uint32_t8uint16_t"></span><span id="ESCSS_disableIOConnectionLock__uint32_t.uint16_t"></span><span class="target" id="group__escss__api_1ga22f7b024784239c4f4baaa8cbab51594"></span>uint16_t <code class="sig-name descname">ESCSS_disableIOConnectionLock</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>writeKey</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429ESCSS_disableIOConnectionLock8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable Lock on the IO Configuration.</p>
+<p><p>This function leads to disabling of the locking of the IO Configurations. EtherCAT ports are not connected to the IO pad.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT configuration Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">writeKey</span></code>: is the key Value to enable the writing lock.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv433ESCSS_enableResetInputFromGpioPad8uint32_t8uint16_t">
+<span id="_CPPv333ESCSS_enableResetInputFromGpioPad8uint32_t8uint16_t"></span><span id="_CPPv233ESCSS_enableResetInputFromGpioPad8uint32_t8uint16_t"></span><span id="ESCSS_enableResetInputFromGpioPad__uint32_t.uint16_t"></span><span class="target" id="group__escss__api_1gad2632918bb9efe07a2d050fc5f7e073f"></span>uint16_t <code class="sig-name descname">ESCSS_enableResetInputFromGpioPad</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>writeKey</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433ESCSS_enableResetInputFromGpioPad8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enabled ResetIN from GPIO.</p>
+<p><p>This function enables the RESET_IN GPIO pad input to be connected in reset input cone.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT configuration Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">writeKey</span></code>: is the key Value to enable the writing lock.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv434ESCSS_disableResetInputFromGpioPad8uint32_t8uint16_t">
+<span id="_CPPv334ESCSS_disableResetInputFromGpioPad8uint32_t8uint16_t"></span><span id="_CPPv234ESCSS_disableResetInputFromGpioPad8uint32_t8uint16_t"></span><span id="ESCSS_disableResetInputFromGpioPad__uint32_t.uint16_t"></span><span class="target" id="group__escss__api_1gacc7fc6c23341a0ef601b0be0873b0598"></span>uint16_t <code class="sig-name descname">ESCSS_disableResetInputFromGpioPad</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>writeKey</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv434ESCSS_disableResetInputFromGpioPad8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable ResetIN from GPIO.</p>
+<p><p>This function leads to RESET_IN GPIO pad to not be enabled, only SW &amp; PMM resets affect EtherCAT reset.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT configuration Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">writeKey</span></code>: is the key Value to enable the writing lock.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv439ESCSS_enableESCEEPROMI2CIoPadConnection8uint32_t8uint16_t">
+<span id="_CPPv339ESCSS_enableESCEEPROMI2CIoPadConnection8uint32_t8uint16_t"></span><span id="_CPPv239ESCSS_enableESCEEPROMI2CIoPadConnection8uint32_t8uint16_t"></span><span id="ESCSS_enableESCEEPROMI2CIoPadConnection__uint32_t.uint16_t"></span><span class="target" id="group__escss__api_1ga22879ac8ae2fe3ecb2717d7c908b72bb"></span>uint16_t <code class="sig-name descname">ESCSS_enableESCEEPROMI2CIoPadConnection</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>writeKey</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv439ESCSS_enableESCEEPROMI2CIoPadConnection8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the EEPROM I2C IOPAD connection.</p>
+<p><p>This function leads to EEPROM I2C connections driving the IOPAD connections.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT configuration Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">writeKey</span></code>: is the key Value to enable the writing lock.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv440ESCSS_disableESCEEPROMI2CIoPadConnection8uint32_t8uint16_t">
+<span id="_CPPv340ESCSS_disableESCEEPROMI2CIoPadConnection8uint32_t8uint16_t"></span><span id="_CPPv240ESCSS_disableESCEEPROMI2CIoPadConnection8uint32_t8uint16_t"></span><span id="ESCSS_disableESCEEPROMI2CIoPadConnection__uint32_t.uint16_t"></span><span class="target" id="group__escss__api_1ga6fa6b4f8edab402fab47e89d0dec8479"></span>uint16_t <code class="sig-name descname">ESCSS_disableESCEEPROMI2CIoPadConnection</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>writeKey</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv440ESCSS_disableESCEEPROMI2CIoPadConnection8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable the EEPROM I2C IOPAD connection.</p>
+<p><p>This function leads to EEPROM I2C Connections not connected to IOPAD.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT configuration Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">writeKey</span></code>: is the key Value to enable the writing lock.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424ESCSS_configurePortCount8uint32_t19ESCSS_PortSelection8uint16_t">
+<span id="_CPPv324ESCSS_configurePortCount8uint32_t19ESCSS_PortSelection8uint16_t"></span><span id="_CPPv224ESCSS_configurePortCount8uint32_t19ESCSS_PortSelection8uint16_t"></span><span id="ESCSS_configurePortCount__uint32_t.ESCSS_PortSelection.uint16_t"></span><span class="target" id="group__escss__api_1gaf06a8649e74a1ea0a827eaf956bc0860"></span>uint16_t <code class="sig-name descname">ESCSS_configurePortCount</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv419ESCSS_PortSelection" title="ESCSS_PortSelection">ESCSS_PortSelection</a> <em>portConfig</em>, uint16_t <em>writeKey</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424ESCSS_configurePortCount8uint32_t19ESCSS_PortSelection8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Number of PHY port counts.</p>
+<p><p>Indicates the number of PHY ports selected for operation in addition to Port0 which is default. The various values for the selection of </p>
+<em>portConfig</em> are: <strong>ESCSS_ONE_PORT_SELECTION</strong>, <strong>ESCSS_TWO_PORT_SELECTION</strong>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT configuration Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">portConfig</span></code>: indicating the number of PHY Ports to be selected. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">writeKey</span></code>: is the key Value to enable the writing lock.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv438ESCSS_enableAutoCompensationTxClkIOPad8uint32_t8uint16_t">
+<span id="_CPPv338ESCSS_enableAutoCompensationTxClkIOPad8uint32_t8uint16_t"></span><span id="_CPPv238ESCSS_enableAutoCompensationTxClkIOPad8uint32_t8uint16_t"></span><span id="ESCSS_enableAutoCompensationTxClkIOPad__uint32_t.uint16_t"></span><span class="target" id="group__escss__api_1ga1991c533391a4868e9f237b0e316388c"></span>uint16_t <code class="sig-name descname">ESCSS_enableAutoCompensationTxClkIOPad</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>writeKey</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv438ESCSS_enableAutoCompensationTxClkIOPad8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Auto Compensation based on sampling of TX_CLK.</p>
+<p><p>This setting is used to allocate the IO pad for TX_CLK for doing the Auto compensation for the sampling of TXEN &amp; TXDATA.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT configuration Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">writeKey</span></code>: is the key Value to enable the writing lock.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv439ESCSS_disableAutoCompensationTxClkIOPad8uint32_t8uint16_t">
+<span id="_CPPv339ESCSS_disableAutoCompensationTxClkIOPad8uint32_t8uint16_t"></span><span id="_CPPv239ESCSS_disableAutoCompensationTxClkIOPad8uint32_t8uint16_t"></span><span id="ESCSS_disableAutoCompensationTxClkIOPad__uint32_t.uint16_t"></span><span class="target" id="group__escss__api_1ga7ad9cc6e67e9b4c40f7105728b14b058"></span>uint16_t <code class="sig-name descname">ESCSS_disableAutoCompensationTxClkIOPad</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>writeKey</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv439ESCSS_disableAutoCompensationTxClkIOPad8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Manual Compensation is there using CLK_IN.</p>
+<p><p>This function sets the manual compensation using CLK_IN no TX_CLK Pad, IP input is tied to ‘0’.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT configuration Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">writeKey</span></code>: is the key Value to enable the writing lock.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv434ESCSS_enableSync0GpioMuxConnection8uint32_t8uint16_t">
+<span id="_CPPv334ESCSS_enableSync0GpioMuxConnection8uint32_t8uint16_t"></span><span id="_CPPv234ESCSS_enableSync0GpioMuxConnection8uint32_t8uint16_t"></span><span id="ESCSS_enableSync0GpioMuxConnection__uint32_t.uint16_t"></span><span class="target" id="group__escss__api_1gac4d43654627776e874255dbc2abb04cd"></span>uint16_t <code class="sig-name descname">ESCSS_enableSync0GpioMuxConnection</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>writeKey</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv434ESCSS_enableSync0GpioMuxConnection8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>SYNC0 connection to OUT pad enabled.</p>
+<p><p>This function enables the direct mux between Sync0 output of EtherCAT and other GPIO functions.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT configuration Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">writeKey</span></code>: is the key Value to enable the writing lock.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv435ESCSS_disableSync0GpioMuxConnection8uint32_t8uint16_t">
+<span id="_CPPv335ESCSS_disableSync0GpioMuxConnection8uint32_t8uint16_t"></span><span id="_CPPv235ESCSS_disableSync0GpioMuxConnection8uint32_t8uint16_t"></span><span id="ESCSS_disableSync0GpioMuxConnection__uint32_t.uint16_t"></span><span class="target" id="group__escss__api_1ga3a7b3904fbbb9f9c867e207d3a67442e"></span>uint16_t <code class="sig-name descname">ESCSS_disableSync0GpioMuxConnection</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>writeKey</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv435ESCSS_disableSync0GpioMuxConnection8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>SYNC0 connection to OUT pad disabled.</p>
+<p><p>This function does not enables the direct mux between Sync0 output of EtherCAT and other GPIO functions.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT configuration Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">writeKey</span></code>: is the key Value to enable the writing lock.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv434ESCSS_enableSync1GpioMuxConnection8uint32_t8uint16_t">
+<span id="_CPPv334ESCSS_enableSync1GpioMuxConnection8uint32_t8uint16_t"></span><span id="_CPPv234ESCSS_enableSync1GpioMuxConnection8uint32_t8uint16_t"></span><span id="ESCSS_enableSync1GpioMuxConnection__uint32_t.uint16_t"></span><span class="target" id="group__escss__api_1ga43a3147dcf4a3d0af04a6fe2affaae13"></span>uint16_t <code class="sig-name descname">ESCSS_enableSync1GpioMuxConnection</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>writeKey</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv434ESCSS_enableSync1GpioMuxConnection8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>SYNC1 connection to OUT pad enabled.</p>
+<p><p>This function enables the direct mux between Sync1 output of EtherCAT and other GPIO functions.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT configuration Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">writeKey</span></code>: is the key Value to enable the writing lock.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv435ESCSS_disableSync1GpioMuxConnection8uint32_t8uint16_t">
+<span id="_CPPv335ESCSS_disableSync1GpioMuxConnection8uint32_t8uint16_t"></span><span id="_CPPv235ESCSS_disableSync1GpioMuxConnection8uint32_t8uint16_t"></span><span id="ESCSS_disableSync1GpioMuxConnection__uint32_t.uint16_t"></span><span class="target" id="group__escss__api_1gac99176ec7c39b1111efc3f3f8e9ba97a"></span>uint16_t <code class="sig-name descname">ESCSS_disableSync1GpioMuxConnection</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>writeKey</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv435ESCSS_disableSync1GpioMuxConnection8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>SYNC1 connection to OUT pad disabled.</p>
+<p><p>This function does not enables the direct mux between Sync1 output of EtherCAT and other GPIO functions.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT configuration Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">writeKey</span></code>: is the key Value to enable the writing lock.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv435ESCSS_enableLatch0GpioMuxConnection8uint32_t8uint16_t">
+<span id="_CPPv335ESCSS_enableLatch0GpioMuxConnection8uint32_t8uint16_t"></span><span id="_CPPv235ESCSS_enableLatch0GpioMuxConnection8uint32_t8uint16_t"></span><span id="ESCSS_enableLatch0GpioMuxConnection__uint32_t.uint16_t"></span><span class="target" id="group__escss__api_1ga9a595e73ccd01014824c82a015d65506"></span>uint16_t <code class="sig-name descname">ESCSS_enableLatch0GpioMuxConnection</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>writeKey</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv435ESCSS_enableLatch0GpioMuxConnection8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>LATCH0 connection to IN pad enabled.</p>
+<p><p>This function enables the direct mux between LATCH0 input from IOPAD and other GPIO functions to the EtherCATSS input.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT configuration Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">writeKey</span></code>: is the key Value to enable the writing lock.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv436ESCSS_disableLatch0GpioMuxConnection8uint32_t8uint16_t">
+<span id="_CPPv336ESCSS_disableLatch0GpioMuxConnection8uint32_t8uint16_t"></span><span id="_CPPv236ESCSS_disableLatch0GpioMuxConnection8uint32_t8uint16_t"></span><span id="ESCSS_disableLatch0GpioMuxConnection__uint32_t.uint16_t"></span><span class="target" id="group__escss__api_1ga044d21c72192cdad81cb404ceb6f439d"></span>uint16_t <code class="sig-name descname">ESCSS_disableLatch0GpioMuxConnection</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>writeKey</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv436ESCSS_disableLatch0GpioMuxConnection8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>LATCH0 connection to IN pad disabled.</p>
+<p><p>This function does not enable the direct mux between LATCH0 input from IOPAD and other GPIO functions to the EtherCATSS input.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT configuration Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">writeKey</span></code>: is the key Value to enable the writing lock.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv435ESCSS_enableLatch1GpioMuxConnection8uint32_t8uint16_t">
+<span id="_CPPv335ESCSS_enableLatch1GpioMuxConnection8uint32_t8uint16_t"></span><span id="_CPPv235ESCSS_enableLatch1GpioMuxConnection8uint32_t8uint16_t"></span><span id="ESCSS_enableLatch1GpioMuxConnection__uint32_t.uint16_t"></span><span class="target" id="group__escss__api_1ga5fd9833a655551fde658fe4ee00d3180"></span>uint16_t <code class="sig-name descname">ESCSS_enableLatch1GpioMuxConnection</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>writeKey</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv435ESCSS_enableLatch1GpioMuxConnection8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>LATCH1 connection to IN pad enabled.</p>
+<p><p>This function enables the direct mux between LATCH1 input from IOPAD and other GPIO functions to the EtherCATSS input.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT configuration Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">writeKey</span></code>: is the key Value to enable the writing lock.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv436ESCSS_disableLatch1GpioMuxConnection8uint32_t8uint16_t">
+<span id="_CPPv336ESCSS_disableLatch1GpioMuxConnection8uint32_t8uint16_t"></span><span id="_CPPv236ESCSS_disableLatch1GpioMuxConnection8uint32_t8uint16_t"></span><span id="ESCSS_disableLatch1GpioMuxConnection__uint32_t.uint16_t"></span><span class="target" id="group__escss__api_1gaed5e700e21e1373bbcabf440de500178"></span>uint16_t <code class="sig-name descname">ESCSS_disableLatch1GpioMuxConnection</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>writeKey</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv436ESCSS_disableLatch1GpioMuxConnection8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>LATCH1 connection to IN pad disabled.</p>
+<p><p>This function does not enable the direct mux between LATCH1 input from IOPAD and other GPIO functions to the EtherCATSS input.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT configuration Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">writeKey</span></code>: is the key Value to enable the writing lock.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425ESCSS_configureEEPROMSize8uint32_t16ESCSS_SizeSelect">
+<span id="_CPPv325ESCSS_configureEEPROMSize8uint32_t16ESCSS_SizeSelect"></span><span id="_CPPv225ESCSS_configureEEPROMSize8uint32_t16ESCSS_SizeSelect"></span><span id="ESCSS_configureEEPROMSize__uint32_t.ESCSS_SizeSelect"></span><span class="target" id="group__escss__api_1gaf6d188d1ac338a701eade7e5390701ad"></span>void <code class="sig-name descname">ESCSS_configureEEPROMSize</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv416ESCSS_SizeSelect" title="ESCSS_SizeSelect">ESCSS_SizeSelect</a> <em>eepromSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425ESCSS_configureEEPROMSize8uint32_t16ESCSS_SizeSelect" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configure EEPROM Size bound as per the select.</p>
+<p><p>This function set the bit which will be hooked up to the EEPROM_SIZE input of the EtherCAT IP . This is set to 0 for EEPROMs of size 16K bits or lower and set to 1 for EEPROMs of size above 16K bits.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of EtherCAT configuration Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">eepromSize</span></code>: is the shift in 10ns terms.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>The following describes important details and recommendations when using the ESCSS API.</p>
+<p>Once system control enables the ESCSS module, ESCSS_initMemory() needs to be called
+to put the controller in the init state, initialize the memory doesn’t get initialized. Next, use ESCSS_enableDebugAccess()
+which configures the debug accesses to be allowed to go through. The API ESCSS_enableGPIPipelinedRegCaptureOnEvent() enables the
+connection of GPIN to EtherCATSS through pipelined register as against the direct from IO. The ESCSS_setGPINData() sets the GPIN
+Data Register Value.</p>
+<p>The code for this module is contained in driverlib_cm/escss.c, with driverlib_cm/escss.h containing the API declarations for use by applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dcsm.html" class="btn btn-neutral float-left" title="DCSM Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ethernet.html" class="btn btn-neutral float-right" title="Ethernet Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

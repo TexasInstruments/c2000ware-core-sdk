@@ -1,0 +1,664 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CPU Timer Module &mdash; F2837xd API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F2837xd API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="DAC Module" href="dac.html"/>
+        <link rel="prev" title="CMPSS Module" href="cmpss.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F2837xd API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="adc.html">ADC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asysctl.html">ASysCtl Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla.html">CLA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clb.html">CLB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmpss.html">CMPSS Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dac.html">DAC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dma.html">DMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ecap.html">ECAP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emif.html">EMIF Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="epwm.html">EPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hrpwm.html">HRPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqep.html">EQEP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcbsp.html">MCBSP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci.html">SCI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdfm.html">SDFM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">SPI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upp.html">UPP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version.html">Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xbar.html">XBAR Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F2837xd API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>CPU Timer Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cpu-timer-module">
+<span id="cputimer"></span><h1>CPU Timer Module<a class="headerlink" href="#cpu-timer-module" title="Permalink to this headline">¶</a></h1>
+<p>The CPU timer API provides a set of functions for configuring and using the CPU
+Timer module.
+Functions are provided to setup and configure the timer module operating
+conditions along with functions to get the status of the module and to clear
+overflow flag.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__cputimer__api"></span><em>group</em> <code class="sig-name descname">cputimer_api</code></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="cpp enum">
+<dt id="_CPPv422CPUTimer_EmulationMode">
+<span id="_CPPv322CPUTimer_EmulationMode"></span><span id="_CPPv222CPUTimer_EmulationMode"></span><span class="target" id="group__cputimer__api_1ga108fe1191ffed926840ac00928024644"></span><em class="property">enum </em><code class="sig-name descname">CPUTimer_EmulationMode</code><a class="headerlink" href="#_CPPv422CPUTimer_EmulationMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__cputimer__api_1ga8e9243f5ea3917004c5b3205a2a72894"><span class="std std-ref">CPUTimer_setEmulationMode()</span></a> as the <em>mode</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22CPUTimer_EmulationMode45CPUTIMER_EMULATIONMODE_STOPAFTERNEXTDECREMENTE">
+<span id="_CPPv3N22CPUTimer_EmulationMode45CPUTIMER_EMULATIONMODE_STOPAFTERNEXTDECREMENTE"></span><span id="_CPPv2N22CPUTimer_EmulationMode45CPUTIMER_EMULATIONMODE_STOPAFTERNEXTDECREMENTE"></span><span class="target" id="group__cputimer__api_1gga108fe1191ffed926840ac00928024644a9e8b546a384b59d2095cd666961dedac"></span><em class="property">enumerator </em><code class="sig-name descname">CPUTIMER_EMULATIONMODE_STOPAFTERNEXTDECREMENT</code> = 0x0000<a class="headerlink" href="#_CPPv4N22CPUTimer_EmulationMode45CPUTIMER_EMULATIONMODE_STOPAFTERNEXTDECREMENTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Denotes that the timer will stop after the next decrement. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22CPUTimer_EmulationMode33CPUTIMER_EMULATIONMODE_STOPATZEROE">
+<span id="_CPPv3N22CPUTimer_EmulationMode33CPUTIMER_EMULATIONMODE_STOPATZEROE"></span><span id="_CPPv2N22CPUTimer_EmulationMode33CPUTIMER_EMULATIONMODE_STOPATZEROE"></span><span class="target" id="group__cputimer__api_1gga108fe1191ffed926840ac00928024644a240bcacad635eddb1aaa852c5f7e8397"></span><em class="property">enumerator </em><code class="sig-name descname">CPUTIMER_EMULATIONMODE_STOPATZERO</code> = 0x0400<a class="headerlink" href="#_CPPv4N22CPUTimer_EmulationMode33CPUTIMER_EMULATIONMODE_STOPATZEROE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Denotes that the timer will stop when it reaches zero. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22CPUTimer_EmulationMode30CPUTIMER_EMULATIONMODE_RUNFREEE">
+<span id="_CPPv3N22CPUTimer_EmulationMode30CPUTIMER_EMULATIONMODE_RUNFREEE"></span><span id="_CPPv2N22CPUTimer_EmulationMode30CPUTIMER_EMULATIONMODE_RUNFREEE"></span><span class="target" id="group__cputimer__api_1gga108fe1191ffed926840ac00928024644a7bdf30431f93bfaa5d277aab530c587c"></span><em class="property">enumerator </em><code class="sig-name descname">CPUTIMER_EMULATIONMODE_RUNFREE</code> = 0x0800<a class="headerlink" href="#_CPPv4N22CPUTimer_EmulationMode30CPUTIMER_EMULATIONMODE_RUNFREEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Denotes that the timer will run free. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv420CPUTimer_ClockSource">
+<span id="_CPPv320CPUTimer_ClockSource"></span><span id="_CPPv220CPUTimer_ClockSource"></span><span class="target" id="group__cputimer__api_1ga214aff735b0acf172ffe29ebe591fe61"></span><em class="property">enum </em><code class="sig-name descname">CPUTimer_ClockSource</code><a class="headerlink" href="#_CPPv420CPUTimer_ClockSource" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The following are values that can be passed to <a class="reference internal" href="#group__cputimer__api_1ga956f3be8d7c0e2883cc9912fed947fee"><span class="std std-ref">CPUTimer_selectClockSource()</span></a> as the <em>source</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20CPUTimer_ClockSource25CPUTIMER_CLOCK_SOURCE_SYSE">
+<span id="_CPPv3N20CPUTimer_ClockSource25CPUTIMER_CLOCK_SOURCE_SYSE"></span><span id="_CPPv2N20CPUTimer_ClockSource25CPUTIMER_CLOCK_SOURCE_SYSE"></span><span class="target" id="group__cputimer__api_1gga214aff735b0acf172ffe29ebe591fe61a560d4a2c75937be8db9a1d70b97982d9"></span><em class="property">enumerator </em><code class="sig-name descname">CPUTIMER_CLOCK_SOURCE_SYS</code> = 0x0<a class="headerlink" href="#_CPPv4N20CPUTimer_ClockSource25CPUTIMER_CLOCK_SOURCE_SYSE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>System Clock Source. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20CPUTimer_ClockSource29CPUTIMER_CLOCK_SOURCE_INTOSC1E">
+<span id="_CPPv3N20CPUTimer_ClockSource29CPUTIMER_CLOCK_SOURCE_INTOSC1E"></span><span id="_CPPv2N20CPUTimer_ClockSource29CPUTIMER_CLOCK_SOURCE_INTOSC1E"></span><span class="target" id="group__cputimer__api_1gga214aff735b0acf172ffe29ebe591fe61a1db3cd183910648e548ef8ca595d57b4"></span><em class="property">enumerator </em><code class="sig-name descname">CPUTIMER_CLOCK_SOURCE_INTOSC1</code> = 0x1<a class="headerlink" href="#_CPPv4N20CPUTimer_ClockSource29CPUTIMER_CLOCK_SOURCE_INTOSC1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Internal Oscillator 1 Clock Source. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20CPUTimer_ClockSource29CPUTIMER_CLOCK_SOURCE_INTOSC2E">
+<span id="_CPPv3N20CPUTimer_ClockSource29CPUTIMER_CLOCK_SOURCE_INTOSC2E"></span><span id="_CPPv2N20CPUTimer_ClockSource29CPUTIMER_CLOCK_SOURCE_INTOSC2E"></span><span class="target" id="group__cputimer__api_1gga214aff735b0acf172ffe29ebe591fe61a42b1e8ae6ad98462ca9f8a7e3c99696e"></span><em class="property">enumerator </em><code class="sig-name descname">CPUTIMER_CLOCK_SOURCE_INTOSC2</code> = 0x2<a class="headerlink" href="#_CPPv4N20CPUTimer_ClockSource29CPUTIMER_CLOCK_SOURCE_INTOSC2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Internal Oscillator 2 Clock Source. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20CPUTimer_ClockSource26CPUTIMER_CLOCK_SOURCE_XTALE">
+<span id="_CPPv3N20CPUTimer_ClockSource26CPUTIMER_CLOCK_SOURCE_XTALE"></span><span id="_CPPv2N20CPUTimer_ClockSource26CPUTIMER_CLOCK_SOURCE_XTALE"></span><span class="target" id="group__cputimer__api_1gga214aff735b0acf172ffe29ebe591fe61a92cf2e75fbd905b71f4df1f809eca0fa"></span><em class="property">enumerator </em><code class="sig-name descname">CPUTIMER_CLOCK_SOURCE_XTAL</code> = 0x3<a class="headerlink" href="#_CPPv4N20CPUTimer_ClockSource26CPUTIMER_CLOCK_SOURCE_XTALE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>External Clock Source. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20CPUTimer_ClockSource25CPUTIMER_CLOCK_SOURCE_AUXE">
+<span id="_CPPv3N20CPUTimer_ClockSource25CPUTIMER_CLOCK_SOURCE_AUXE"></span><span id="_CPPv2N20CPUTimer_ClockSource25CPUTIMER_CLOCK_SOURCE_AUXE"></span><span class="target" id="group__cputimer__api_1gga214aff735b0acf172ffe29ebe591fe61a2153da39f85e4cc3038f0e576edbf28e"></span><em class="property">enumerator </em><code class="sig-name descname">CPUTIMER_CLOCK_SOURCE_AUX</code> = 0x6<a class="headerlink" href="#_CPPv4N20CPUTimer_ClockSource25CPUTIMER_CLOCK_SOURCE_AUXE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Auxiliary PLL Clock Source. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv418CPUTimer_Prescaler">
+<span id="_CPPv318CPUTimer_Prescaler"></span><span id="_CPPv218CPUTimer_Prescaler"></span><span class="target" id="group__cputimer__api_1gafa70b7d5a2a5b33b6bd56e84ff1cec4d"></span><em class="property">enum </em><code class="sig-name descname">CPUTimer_Prescaler</code><a class="headerlink" href="#_CPPv418CPUTimer_Prescaler" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The following are values that can be passed to <a class="reference internal" href="#group__cputimer__api_1ga956f3be8d7c0e2883cc9912fed947fee"><span class="std std-ref">CPUTimer_selectClockSource()</span></a> as the <em>prescaler</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CPUTimer_Prescaler26CPUTIMER_CLOCK_PRESCALER_1E">
+<span id="_CPPv3N18CPUTimer_Prescaler26CPUTIMER_CLOCK_PRESCALER_1E"></span><span id="_CPPv2N18CPUTimer_Prescaler26CPUTIMER_CLOCK_PRESCALER_1E"></span><span class="target" id="group__cputimer__api_1ggafa70b7d5a2a5b33b6bd56e84ff1cec4da33340a58dd0e4e4cbde4fba33e0de7b6"></span><em class="property">enumerator </em><code class="sig-name descname">CPUTIMER_CLOCK_PRESCALER_1</code> = 0<a class="headerlink" href="#_CPPv4N18CPUTimer_Prescaler26CPUTIMER_CLOCK_PRESCALER_1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Prescaler value of / 1. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CPUTimer_Prescaler26CPUTIMER_CLOCK_PRESCALER_2E">
+<span id="_CPPv3N18CPUTimer_Prescaler26CPUTIMER_CLOCK_PRESCALER_2E"></span><span id="_CPPv2N18CPUTimer_Prescaler26CPUTIMER_CLOCK_PRESCALER_2E"></span><span class="target" id="group__cputimer__api_1ggafa70b7d5a2a5b33b6bd56e84ff1cec4dad5a1ddb1f79aa8d56cec23324333dd49"></span><em class="property">enumerator </em><code class="sig-name descname">CPUTIMER_CLOCK_PRESCALER_2</code> = 1<a class="headerlink" href="#_CPPv4N18CPUTimer_Prescaler26CPUTIMER_CLOCK_PRESCALER_2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Prescaler value of / 2. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CPUTimer_Prescaler26CPUTIMER_CLOCK_PRESCALER_4E">
+<span id="_CPPv3N18CPUTimer_Prescaler26CPUTIMER_CLOCK_PRESCALER_4E"></span><span id="_CPPv2N18CPUTimer_Prescaler26CPUTIMER_CLOCK_PRESCALER_4E"></span><span class="target" id="group__cputimer__api_1ggafa70b7d5a2a5b33b6bd56e84ff1cec4da585b094e951b2761735f0e6f20f12de7"></span><em class="property">enumerator </em><code class="sig-name descname">CPUTIMER_CLOCK_PRESCALER_4</code> = 2<a class="headerlink" href="#_CPPv4N18CPUTimer_Prescaler26CPUTIMER_CLOCK_PRESCALER_4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Prescaler value of / 4. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CPUTimer_Prescaler26CPUTIMER_CLOCK_PRESCALER_8E">
+<span id="_CPPv3N18CPUTimer_Prescaler26CPUTIMER_CLOCK_PRESCALER_8E"></span><span id="_CPPv2N18CPUTimer_Prescaler26CPUTIMER_CLOCK_PRESCALER_8E"></span><span class="target" id="group__cputimer__api_1ggafa70b7d5a2a5b33b6bd56e84ff1cec4dae82ed2a72019c42716c153e592368021"></span><em class="property">enumerator </em><code class="sig-name descname">CPUTIMER_CLOCK_PRESCALER_8</code> = 3<a class="headerlink" href="#_CPPv4N18CPUTimer_Prescaler26CPUTIMER_CLOCK_PRESCALER_8E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Prescaler value of / 8. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CPUTimer_Prescaler27CPUTIMER_CLOCK_PRESCALER_16E">
+<span id="_CPPv3N18CPUTimer_Prescaler27CPUTIMER_CLOCK_PRESCALER_16E"></span><span id="_CPPv2N18CPUTimer_Prescaler27CPUTIMER_CLOCK_PRESCALER_16E"></span><span class="target" id="group__cputimer__api_1ggafa70b7d5a2a5b33b6bd56e84ff1cec4da9cf1593619914c85d583a6e58ec58614"></span><em class="property">enumerator </em><code class="sig-name descname">CPUTIMER_CLOCK_PRESCALER_16</code> = 4<a class="headerlink" href="#_CPPv4N18CPUTimer_Prescaler27CPUTIMER_CLOCK_PRESCALER_16E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Prescaler value of / 16. </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv426CPUTimer_clearOverflowFlag8uint32_t">
+<span id="_CPPv326CPUTimer_clearOverflowFlag8uint32_t"></span><span id="_CPPv226CPUTimer_clearOverflowFlag8uint32_t"></span><span id="CPUTimer_clearOverflowFlag__uint32_t"></span><span class="target" id="group__cputimer__api_1gae3b2e219398e21ab7dd29787f035ff59"></span>void <code class="sig-name descname">CPUTimer_clearOverflowFlag</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426CPUTimer_clearOverflowFlag8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears CPU timer overflow flag.</p>
+<p><p>This function clears the CPU timer overflow flag.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the timer module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425CPUTimer_disableInterrupt8uint32_t">
+<span id="_CPPv325CPUTimer_disableInterrupt8uint32_t"></span><span id="_CPPv225CPUTimer_disableInterrupt8uint32_t"></span><span id="CPUTimer_disableInterrupt__uint32_t"></span><span class="target" id="group__cputimer__api_1ga58192d248e0d0de4054dd5bde76954b8"></span>void <code class="sig-name descname">CPUTimer_disableInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425CPUTimer_disableInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables CPU timer interrupt.</p>
+<p><p>This function disables the CPU timer interrupt.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the timer module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424CPUTimer_enableInterrupt8uint32_t">
+<span id="_CPPv324CPUTimer_enableInterrupt8uint32_t"></span><span id="_CPPv224CPUTimer_enableInterrupt8uint32_t"></span><span id="CPUTimer_enableInterrupt__uint32_t"></span><span class="target" id="group__cputimer__api_1ga0a7c39ff546820eb43035b572ecc5a7c"></span>void <code class="sig-name descname">CPUTimer_enableInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424CPUTimer_enableInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables CPU timer interrupt.</p>
+<p><p>This function enables the CPU timer interrupt.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the timer module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427CPUTimer_reloadTimerCounter8uint32_t">
+<span id="_CPPv327CPUTimer_reloadTimerCounter8uint32_t"></span><span id="_CPPv227CPUTimer_reloadTimerCounter8uint32_t"></span><span id="CPUTimer_reloadTimerCounter__uint32_t"></span><span class="target" id="group__cputimer__api_1ga06a8d5536106ea72ce195c8fc72c93a4"></span>void <code class="sig-name descname">CPUTimer_reloadTimerCounter</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427CPUTimer_reloadTimerCounter8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reloads CPU timer counter.</p>
+<p><p>This function reloads the CPU timer counter with the values contained in the CPU timer period register.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the timer module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418CPUTimer_stopTimer8uint32_t">
+<span id="_CPPv318CPUTimer_stopTimer8uint32_t"></span><span id="_CPPv218CPUTimer_stopTimer8uint32_t"></span><span id="CPUTimer_stopTimer__uint32_t"></span><span class="target" id="group__cputimer__api_1gab7d3df1344d594548b0dda9455ba9dae"></span>void <code class="sig-name descname">CPUTimer_stopTimer</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418CPUTimer_stopTimer8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Stops CPU timer.</p>
+<p><p>This function stops the CPU timer.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the timer module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420CPUTimer_resumeTimer8uint32_t">
+<span id="_CPPv320CPUTimer_resumeTimer8uint32_t"></span><span id="_CPPv220CPUTimer_resumeTimer8uint32_t"></span><span id="CPUTimer_resumeTimer__uint32_t"></span><span class="target" id="group__cputimer__api_1ga62a7963fafabc7fbb0452253617c4016"></span>void <code class="sig-name descname">CPUTimer_resumeTimer</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420CPUTimer_resumeTimer8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Starts(restarts) CPU timer.</p>
+<p><p>This function starts (restarts) the CPU timer.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the timer module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><strong>Note:</strong> This function doesn’t reset the timer counter.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419CPUTimer_startTimer8uint32_t">
+<span id="_CPPv319CPUTimer_startTimer8uint32_t"></span><span id="_CPPv219CPUTimer_startTimer8uint32_t"></span><span id="CPUTimer_startTimer__uint32_t"></span><span class="target" id="group__cputimer__api_1ga7b48c39c1c03126fc5800d11f5c994bd"></span>void <code class="sig-name descname">CPUTimer_startTimer</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419CPUTimer_startTimer8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Starts(restarts) CPU timer.</p>
+<p><p>This function starts (restarts) the CPU timer.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the timer module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><strong>Note:</strong> This function reloads the timer counter.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418CPUTimer_setPeriod8uint32_t8uint32_t">
+<span id="_CPPv318CPUTimer_setPeriod8uint32_t8uint32_t"></span><span id="_CPPv218CPUTimer_setPeriod8uint32_t8uint32_t"></span><span id="CPUTimer_setPeriod__uint32_t.uint32_t"></span><span class="target" id="group__cputimer__api_1ga246fa1d4f1f3f4de27bf856d0dc95227"></span>void <code class="sig-name descname">CPUTimer_setPeriod</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>periodCount</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418CPUTimer_setPeriod8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets CPU timer period.</p>
+<p><p>This function sets the CPU timer period count.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the timer module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">periodCount</span></code>: is the CPU timer period count.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422CPUTimer_getTimerCount8uint32_t">
+<span id="_CPPv322CPUTimer_getTimerCount8uint32_t"></span><span id="_CPPv222CPUTimer_getTimerCount8uint32_t"></span><span id="CPUTimer_getTimerCount__uint32_t"></span><span class="target" id="group__cputimer__api_1ga5ec7266a6de00db24c8d1d1a18be3dd1"></span>uint32_t <code class="sig-name descname">CPUTimer_getTimerCount</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422CPUTimer_getTimerCount8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the current CPU timer counter value.</p>
+<p><p>This function returns the current CPU timer counter value.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the timer module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the current CPU timer count value. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421CPUTimer_setPreScaler8uint32_t8uint16_t">
+<span id="_CPPv321CPUTimer_setPreScaler8uint32_t8uint16_t"></span><span id="_CPPv221CPUTimer_setPreScaler8uint32_t8uint16_t"></span><span id="CPUTimer_setPreScaler__uint32_t.uint16_t"></span><span class="target" id="group__cputimer__api_1gae2b419bee3c160e639cf41697e88362e"></span>void <code class="sig-name descname">CPUTimer_setPreScaler</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>prescaler</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421CPUTimer_setPreScaler8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set CPU timer pre-scaler value.</p>
+<p><p>This function sets the pre-scaler value for the CPU timer. For every value of (prescaler + 1), the CPU timer counter decrements by 1.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the timer module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">prescaler</span></code>: is the CPU timer pre-scaler value.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv431CPUTimer_getTimerOverflowStatus8uint32_t">
+<span id="_CPPv331CPUTimer_getTimerOverflowStatus8uint32_t"></span><span id="_CPPv231CPUTimer_getTimerOverflowStatus8uint32_t"></span><span id="CPUTimer_getTimerOverflowStatus__uint32_t"></span><span class="target" id="group__cputimer__api_1gab3614f19c2b8f346b3b75979b3c4433d"></span>bool <code class="sig-name descname">CPUTimer_getTimerOverflowStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431CPUTimer_getTimerOverflowStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the CPU timer overflow status.</p>
+<p><p>This function returns the CPU timer overflow status.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the timer module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns true if the CPU timer has overflowed, false if not. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426CPUTimer_selectClockSource8uint32_t20CPUTimer_ClockSource18CPUTimer_Prescaler">
+<span id="_CPPv326CPUTimer_selectClockSource8uint32_t20CPUTimer_ClockSource18CPUTimer_Prescaler"></span><span id="_CPPv226CPUTimer_selectClockSource8uint32_t20CPUTimer_ClockSource18CPUTimer_Prescaler"></span><span id="CPUTimer_selectClockSource__uint32_t.CPUTimer_ClockSource.CPUTimer_Prescaler"></span><span class="target" id="group__cputimer__api_1ga956f3be8d7c0e2883cc9912fed947fee"></span>void <code class="sig-name descname">CPUTimer_selectClockSource</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv420CPUTimer_ClockSource" title="CPUTimer_ClockSource">CPUTimer_ClockSource</a> <em>source</em>, <a class="reference internal" href="#_CPPv418CPUTimer_Prescaler" title="CPUTimer_Prescaler">CPUTimer_Prescaler</a> <em>prescaler</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426CPUTimer_selectClockSource8uint32_t20CPUTimer_ClockSource18CPUTimer_Prescaler" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select CPU Timer 2 Clock Source and Prescaler</p>
+<p><p>This function selects the specified clock source and prescaler value for the CPU timer (CPU timer 2 only).</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the timer module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source</span></code>: is the clock source to use for CPU Timer 2 </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">prescaler</span></code>: is the value that configures the selected clock source relative to the system clock</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>source</em> parameter can be any one of the following:<ul class="simple">
+<li><p><strong>CPUTIMER_CLOCK_SOURCE_SYS</strong> - System Clock</p></li>
+<li><p><strong>CPUTIMER_CLOCK_SOURCE_INTOSC1</strong> - Internal Oscillator 1 Clock</p></li>
+<li><p><strong>CPUTIMER_CLOCK_SOURCE_INTOSC2</strong> - Internal Oscillator 2 Clock</p></li>
+<li><p><strong>CPUTIMER_CLOCK_SOURCE_XTAL</strong> - External Clock</p></li>
+<li><p><strong>CPUTIMER_CLOCK_SOURCE_AUX</strong> - Auxiliary PLL Clock</p></li>
+</ul>
+</p>
+<p>The <em>prescaler</em> parameter can be any one of the following:<ul class="simple">
+<li><p><strong>CPUTIMER_CLOCK_PRESCALER_1</strong> - Prescaler value of / 1</p></li>
+<li><p><strong>CPUTIMER_CLOCK_PRESCALER_2</strong> - Prescaler value of / 2</p></li>
+<li><p><strong>CPUTIMER_CLOCK_PRESCALER_4</strong> - Prescaler value of / 4</p></li>
+<li><p><strong>CPUTIMER_CLOCK_PRESCALER_8</strong> - Prescaler value of / 8</p></li>
+<li><p><strong>CPUTIMER_CLOCK_PRESCALER_16</strong> - Prescaler value of / 16</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425CPUTimer_setEmulationMode8uint32_t22CPUTimer_EmulationMode">
+<span id="_CPPv325CPUTimer_setEmulationMode8uint32_t22CPUTimer_EmulationMode"></span><span id="_CPPv225CPUTimer_setEmulationMode8uint32_t22CPUTimer_EmulationMode"></span><span id="CPUTimer_setEmulationMode__uint32_t.CPUTimer_EmulationMode"></span><span class="target" id="group__cputimer__api_1ga8e9243f5ea3917004c5b3205a2a72894"></span>void <code class="sig-name descname">CPUTimer_setEmulationMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv422CPUTimer_EmulationMode" title="CPUTimer_EmulationMode">CPUTimer_EmulationMode</a> <em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425CPUTimer_setEmulationMode8uint32_t22CPUTimer_EmulationMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets Emulation mode for CPU timer.</p>
+<p><p>This function sets the behaviour of CPU timer during emulation. Valid values mode are: CPUTIMER_EMULATIONMODE_STOPAFTERNEXTDECREMENT, CPUTIMER_EMULATIONMODE_STOPATZERO and CPUTIMER_EMULATIONMODE_RUNFREE.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the timer module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: is the emulation mode of the timer.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>The code for this module is contained in driverlib/cputimer.c, with driverlib/cputimer.h containing the API declarations for use by applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cmpss.html" class="btn btn-neutral float-left" title="CMPSS Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dac.html" class="btn btn-neutral float-right" title="DAC Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

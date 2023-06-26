@@ -1,0 +1,1394 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>UDMA Module &mdash; F2838x CM API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F2838x CM API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="GCRC Module" href="gcrc.html"/>
+        <link rel="prev" title="FLASH Module" href="flash.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F2838x CM API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="aes.html">AES Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmmpu.html">CM-MPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpu.html">CPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="escss.html">ESCSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ethernet.html">Ethernet Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">UDMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gcrc.html">GCRC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipc.html">IPC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcan.html">MCAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mpu.html">MPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssi.html">SSI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="systick.html">SysTick Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uart.html">UART Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F2838x CM API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>UDMA Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="udma-module">
+<span id="udma"></span><h1>UDMA Module<a class="headerlink" href="#udma-module" title="Permalink to this headline">¶</a></h1>
+<p>The microDMA(UDMA) API provides a set of functions for configuring
+and using the UDMA module. Functions are provided to configure which event triggers a DMA
+transfer, to configure the locations, sizes, and behaviors of the transfers,
+and to set up and handle interrupts.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__udma__api"></span><em>group</em> <code class="sig-name descname">udma_api</code></dt>
+<dd><p>This module is used for configuring the microDMA. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.UDMA_SW_INT">
+<span class="target" id="group__udma__api_1ga9891e02f96184fff7729d1356a07fbb5"></span><code class="sig-name descname">UDMA_SW_INT</code> 41U<a class="headerlink" href="#c.UDMA_SW_INT" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_ERR_INT">
+<span class="target" id="group__udma__api_1ga1d3a345b5cd53a33e084ddba9c90d4d1"></span><code class="sig-name descname">UDMA_ERR_INT</code> 42U<a class="headerlink" href="#c.UDMA_ERR_INT" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_0">
+<span class="target" id="group__udma__api_1ga8368d50950b0e1a4725e8035835f5704"></span><code class="sig-name descname">UDMA_CHANNEL_0</code> 0U<a class="headerlink" href="#c.UDMA_CHANNEL_0" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_1">
+<span class="target" id="group__udma__api_1ga47401065caeaf4465ff4c4eebd695d8d"></span><code class="sig-name descname">UDMA_CHANNEL_1</code> 1U<a class="headerlink" href="#c.UDMA_CHANNEL_1" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_2">
+<span class="target" id="group__udma__api_1gae0efd393c6eb80fdb56ddc9afbb883f8"></span><code class="sig-name descname">UDMA_CHANNEL_2</code> 2U<a class="headerlink" href="#c.UDMA_CHANNEL_2" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_3">
+<span class="target" id="group__udma__api_1ga42449e761af22ea9ee04205ca8ee06d6"></span><code class="sig-name descname">UDMA_CHANNEL_3</code> 3U<a class="headerlink" href="#c.UDMA_CHANNEL_3" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_4">
+<span class="target" id="group__udma__api_1ga355744e0997dbe74a49665f049f09895"></span><code class="sig-name descname">UDMA_CHANNEL_4</code> 4U<a class="headerlink" href="#c.UDMA_CHANNEL_4" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_5">
+<span class="target" id="group__udma__api_1gafcb71dbef71111a4e994f562e8f44d18"></span><code class="sig-name descname">UDMA_CHANNEL_5</code> 5U<a class="headerlink" href="#c.UDMA_CHANNEL_5" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_6">
+<span class="target" id="group__udma__api_1gafbce256e51daa8546de6925dded25977"></span><code class="sig-name descname">UDMA_CHANNEL_6</code> 6U<a class="headerlink" href="#c.UDMA_CHANNEL_6" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_7">
+<span class="target" id="group__udma__api_1ga111132bbf542515cdfe1963681d15e1e"></span><code class="sig-name descname">UDMA_CHANNEL_7</code> 7U<a class="headerlink" href="#c.UDMA_CHANNEL_7" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_8">
+<span class="target" id="group__udma__api_1ga3c1fb430746e54b494ec42c86d76087a"></span><code class="sig-name descname">UDMA_CHANNEL_8</code> 8U<a class="headerlink" href="#c.UDMA_CHANNEL_8" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_9">
+<span class="target" id="group__udma__api_1ga0cf2716cf07db362901f407342ace713"></span><code class="sig-name descname">UDMA_CHANNEL_9</code> 9U<a class="headerlink" href="#c.UDMA_CHANNEL_9" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_10">
+<span class="target" id="group__udma__api_1gad619e998f6b4b53c4a6b62939cd781a9"></span><code class="sig-name descname">UDMA_CHANNEL_10</code> 10U<a class="headerlink" href="#c.UDMA_CHANNEL_10" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_11">
+<span class="target" id="group__udma__api_1ga5166a87fcfacd98d16fe8e43b4a3d7bc"></span><code class="sig-name descname">UDMA_CHANNEL_11</code> 11U<a class="headerlink" href="#c.UDMA_CHANNEL_11" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_12">
+<span class="target" id="group__udma__api_1ga3df1a4f838b2ffb96dd05eeea40e0455"></span><code class="sig-name descname">UDMA_CHANNEL_12</code> 12U<a class="headerlink" href="#c.UDMA_CHANNEL_12" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_13">
+<span class="target" id="group__udma__api_1ga2b5b7b6d972af37ba84b159ea207a33b"></span><code class="sig-name descname">UDMA_CHANNEL_13</code> 13U<a class="headerlink" href="#c.UDMA_CHANNEL_13" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_14">
+<span class="target" id="group__udma__api_1gad664948033e80229cdc1e3ac462bfd2a"></span><code class="sig-name descname">UDMA_CHANNEL_14</code> 14U<a class="headerlink" href="#c.UDMA_CHANNEL_14" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_15">
+<span class="target" id="group__udma__api_1gacec2aeed6fb43e1ea1adfadb82a6030e"></span><code class="sig-name descname">UDMA_CHANNEL_15</code> 15U<a class="headerlink" href="#c.UDMA_CHANNEL_15" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_16">
+<span class="target" id="group__udma__api_1ga34dea2c4ac8835f01c4fa2a85d9c2757"></span><code class="sig-name descname">UDMA_CHANNEL_16</code> 16U<a class="headerlink" href="#c.UDMA_CHANNEL_16" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_17">
+<span class="target" id="group__udma__api_1gab98e357abac5d21b5c2ab43a5905a804"></span><code class="sig-name descname">UDMA_CHANNEL_17</code> 17U<a class="headerlink" href="#c.UDMA_CHANNEL_17" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_18">
+<span class="target" id="group__udma__api_1gaf7982b49a0082794974d919be821fb10"></span><code class="sig-name descname">UDMA_CHANNEL_18</code> 18U<a class="headerlink" href="#c.UDMA_CHANNEL_18" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_19">
+<span class="target" id="group__udma__api_1ga84e4d3bcc01ffcd09717ddb394674149"></span><code class="sig-name descname">UDMA_CHANNEL_19</code> 19U<a class="headerlink" href="#c.UDMA_CHANNEL_19" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_20">
+<span class="target" id="group__udma__api_1gab2e8c99ed2b79994da35dcd935a75cbf"></span><code class="sig-name descname">UDMA_CHANNEL_20</code> 20U<a class="headerlink" href="#c.UDMA_CHANNEL_20" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_21">
+<span class="target" id="group__udma__api_1ga29b9a6da32eee0c1baed2a254ba94cbc"></span><code class="sig-name descname">UDMA_CHANNEL_21</code> 21U<a class="headerlink" href="#c.UDMA_CHANNEL_21" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_22">
+<span class="target" id="group__udma__api_1ga23344d28f8684927f0e18f8f45794d73"></span><code class="sig-name descname">UDMA_CHANNEL_22</code> 22U<a class="headerlink" href="#c.UDMA_CHANNEL_22" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_23">
+<span class="target" id="group__udma__api_1gab318c5904a04e2706c352f1199c1b195"></span><code class="sig-name descname">UDMA_CHANNEL_23</code> 23U<a class="headerlink" href="#c.UDMA_CHANNEL_23" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_24">
+<span class="target" id="group__udma__api_1ga2c9429e42ab05c063a95cf9ce5164ed7"></span><code class="sig-name descname">UDMA_CHANNEL_24</code> 24U<a class="headerlink" href="#c.UDMA_CHANNEL_24" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_25">
+<span class="target" id="group__udma__api_1gab33f0591e2b4099998b049d59de98128"></span><code class="sig-name descname">UDMA_CHANNEL_25</code> 25U<a class="headerlink" href="#c.UDMA_CHANNEL_25" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_26">
+<span class="target" id="group__udma__api_1ga335da12270e1509968a4466afb462c3b"></span><code class="sig-name descname">UDMA_CHANNEL_26</code> 26U<a class="headerlink" href="#c.UDMA_CHANNEL_26" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_27">
+<span class="target" id="group__udma__api_1gaf5f67c57ad8ca9b02c1a5e98365a2951"></span><code class="sig-name descname">UDMA_CHANNEL_27</code> 27U<a class="headerlink" href="#c.UDMA_CHANNEL_27" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_28">
+<span class="target" id="group__udma__api_1gaa251da6cb89a49a5ecc53dc9921bf42b"></span><code class="sig-name descname">UDMA_CHANNEL_28</code> 28U<a class="headerlink" href="#c.UDMA_CHANNEL_28" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_29">
+<span class="target" id="group__udma__api_1gaa80fd6249e67dfb3c836abf13eb6065e"></span><code class="sig-name descname">UDMA_CHANNEL_29</code> 29U<a class="headerlink" href="#c.UDMA_CHANNEL_29" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_30">
+<span class="target" id="group__udma__api_1gae066722919cc259689b78221e4d71ce7"></span><code class="sig-name descname">UDMA_CHANNEL_30</code> 30U<a class="headerlink" href="#c.UDMA_CHANNEL_30" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_31">
+<span class="target" id="group__udma__api_1gaab8636e4e0d2ca75e890a74a5b05635f"></span><code class="sig-name descname">UDMA_CHANNEL_31</code> 31U<a class="headerlink" href="#c.UDMA_CHANNEL_31" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_USBEP1_RX">
+<span class="target" id="group__udma__api_1gac28db35b534002ab3c813df717e47be2"></span><code class="sig-name descname">UDMA_CHANNEL_USBEP1_RX</code> <a class="reference internal" href="#group__udma__api_1ga8368d50950b0e1a4725e8035835f5704"><span class="std std-ref">UDMA_CHANNEL_0</span></a><a class="headerlink" href="#c.UDMA_CHANNEL_USBEP1_RX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_USBEP1_TX">
+<span class="target" id="group__udma__api_1gacd3860846f461924160e318a61571b7f"></span><code class="sig-name descname">UDMA_CHANNEL_USBEP1_TX</code> <a class="reference internal" href="#group__udma__api_1ga47401065caeaf4465ff4c4eebd695d8d"><span class="std std-ref">UDMA_CHANNEL_1</span></a><a class="headerlink" href="#c.UDMA_CHANNEL_USBEP1_TX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_USBEP2_RX">
+<span class="target" id="group__udma__api_1ga4372b1c5cb39a4f189f884ab33ae1521"></span><code class="sig-name descname">UDMA_CHANNEL_USBEP2_RX</code> <a class="reference internal" href="#group__udma__api_1gae0efd393c6eb80fdb56ddc9afbb883f8"><span class="std std-ref">UDMA_CHANNEL_2</span></a><a class="headerlink" href="#c.UDMA_CHANNEL_USBEP2_RX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_USBEP2_TX">
+<span class="target" id="group__udma__api_1gaf10a2184a07e6b303afe3810074c5bc6"></span><code class="sig-name descname">UDMA_CHANNEL_USBEP2_TX</code> <a class="reference internal" href="#group__udma__api_1ga42449e761af22ea9ee04205ca8ee06d6"><span class="std std-ref">UDMA_CHANNEL_3</span></a><a class="headerlink" href="#c.UDMA_CHANNEL_USBEP2_TX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_USBEP3_RX">
+<span class="target" id="group__udma__api_1ga1bbcaba4040b1b4e27a7580695a38bc1"></span><code class="sig-name descname">UDMA_CHANNEL_USBEP3_RX</code> <a class="reference internal" href="#group__udma__api_1ga355744e0997dbe74a49665f049f09895"><span class="std std-ref">UDMA_CHANNEL_4</span></a><a class="headerlink" href="#c.UDMA_CHANNEL_USBEP3_RX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_USBEP3_TX">
+<span class="target" id="group__udma__api_1gaa629b94506e76b35b7a48a9ab080d7ee"></span><code class="sig-name descname">UDMA_CHANNEL_USBEP3_TX</code> <a class="reference internal" href="#group__udma__api_1gafcb71dbef71111a4e994f562e8f44d18"><span class="std std-ref">UDMA_CHANNEL_5</span></a><a class="headerlink" href="#c.UDMA_CHANNEL_USBEP3_TX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_UART0_RX">
+<span class="target" id="group__udma__api_1ga0d00f4ef7f8128db60dc78601346c034"></span><code class="sig-name descname">UDMA_CHANNEL_UART0_RX</code> <a class="reference internal" href="#group__udma__api_1ga3c1fb430746e54b494ec42c86d76087a"><span class="std std-ref">UDMA_CHANNEL_8</span></a><a class="headerlink" href="#c.UDMA_CHANNEL_UART0_RX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_UART0_TX">
+<span class="target" id="group__udma__api_1ga7401900aa60f88da8613fc145c1f2f30"></span><code class="sig-name descname">UDMA_CHANNEL_UART0_TX</code> <a class="reference internal" href="#group__udma__api_1ga0cf2716cf07db362901f407342ace713"><span class="std std-ref">UDMA_CHANNEL_9</span></a><a class="headerlink" href="#c.UDMA_CHANNEL_UART0_TX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_SSI0_RX">
+<span class="target" id="group__udma__api_1gaab5de8fb7847d636c97da535928185ad"></span><code class="sig-name descname">UDMA_CHANNEL_SSI0_RX</code> <a class="reference internal" href="#group__udma__api_1gad619e998f6b4b53c4a6b62939cd781a9"><span class="std std-ref">UDMA_CHANNEL_10</span></a><a class="headerlink" href="#c.UDMA_CHANNEL_SSI0_RX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_SSI0_TX">
+<span class="target" id="group__udma__api_1gaf9a4834ee8c27469e913c3cc69071d3b"></span><code class="sig-name descname">UDMA_CHANNEL_SSI0_TX</code> <a class="reference internal" href="#group__udma__api_1ga5166a87fcfacd98d16fe8e43b4a3d7bc"><span class="std std-ref">UDMA_CHANNEL_11</span></a><a class="headerlink" href="#c.UDMA_CHANNEL_SSI0_TX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_SW_CH12">
+<span class="target" id="group__udma__api_1ga81c6293c00eeff100218c59c377dbd52"></span><code class="sig-name descname">UDMA_CHANNEL_SW_CH12</code> <a class="reference internal" href="#group__udma__api_1ga3df1a4f838b2ffb96dd05eeea40e0455"><span class="std std-ref">UDMA_CHANNEL_12</span></a><a class="headerlink" href="#c.UDMA_CHANNEL_SW_CH12" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_SW_CH13">
+<span class="target" id="group__udma__api_1ga5a8cd8b98268d75fd110f45c22472a6a"></span><code class="sig-name descname">UDMA_CHANNEL_SW_CH13</code> <a class="reference internal" href="#group__udma__api_1ga2b5b7b6d972af37ba84b159ea207a33b"><span class="std std-ref">UDMA_CHANNEL_13</span></a><a class="headerlink" href="#c.UDMA_CHANNEL_SW_CH13" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_AES_CTXIN">
+<span class="target" id="group__udma__api_1ga3998a303fa7519212f36198183d4f4c7"></span><code class="sig-name descname">UDMA_CHANNEL_AES_CTXIN</code> <a class="reference internal" href="#group__udma__api_1ga29b9a6da32eee0c1baed2a254ba94cbc"><span class="std std-ref">UDMA_CHANNEL_21</span></a><a class="headerlink" href="#c.UDMA_CHANNEL_AES_CTXIN" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_AES_DIN">
+<span class="target" id="group__udma__api_1ga1b23393a75b45f13623bd36a383e6a27"></span><code class="sig-name descname">UDMA_CHANNEL_AES_DIN</code> <a class="reference internal" href="#group__udma__api_1ga23344d28f8684927f0e18f8f45794d73"><span class="std std-ref">UDMA_CHANNEL_22</span></a><a class="headerlink" href="#c.UDMA_CHANNEL_AES_DIN" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_AES_CTXOUT">
+<span class="target" id="group__udma__api_1gaf375b10c88526af01bf2d36e9f3d4c2d"></span><code class="sig-name descname">UDMA_CHANNEL_AES_CTXOUT</code> <a class="reference internal" href="#group__udma__api_1gab318c5904a04e2706c352f1199c1b195"><span class="std std-ref">UDMA_CHANNEL_23</span></a><a class="headerlink" href="#c.UDMA_CHANNEL_AES_CTXOUT" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_AES_DOUT">
+<span class="target" id="group__udma__api_1gafa79be0f99008218cd2e06d21347e9f6"></span><code class="sig-name descname">UDMA_CHANNEL_AES_DOUT</code> <a class="reference internal" href="#group__udma__api_1ga2c9429e42ab05c063a95cf9ce5164ed7"><span class="std std-ref">UDMA_CHANNEL_24</span></a><a class="headerlink" href="#c.UDMA_CHANNEL_AES_DOUT" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_SW_CH26">
+<span class="target" id="group__udma__api_1ga1d2f466c2ca77f046acff58c49421fa9"></span><code class="sig-name descname">UDMA_CHANNEL_SW_CH26</code> <a class="reference internal" href="#group__udma__api_1ga335da12270e1509968a4466afb462c3b"><span class="std std-ref">UDMA_CHANNEL_26</span></a><a class="headerlink" href="#c.UDMA_CHANNEL_SW_CH26" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_SW_CH27">
+<span class="target" id="group__udma__api_1ga5c9119fb327cc8afc68e21fc5f0cf4e5"></span><code class="sig-name descname">UDMA_CHANNEL_SW_CH27</code> <a class="reference internal" href="#group__udma__api_1gaf5f67c57ad8ca9b02c1a5e98365a2951"><span class="std std-ref">UDMA_CHANNEL_27</span></a><a class="headerlink" href="#c.UDMA_CHANNEL_SW_CH27" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_I2C0_RX">
+<span class="target" id="group__udma__api_1gae5ba983bc460d62b0019591f89dfbfa7"></span><code class="sig-name descname">UDMA_CHANNEL_I2C0_RX</code> <a class="reference internal" href="#group__udma__api_1gaa251da6cb89a49a5ecc53dc9921bf42b"><span class="std std-ref">UDMA_CHANNEL_28</span></a><a class="headerlink" href="#c.UDMA_CHANNEL_I2C0_RX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_I2C0_TX">
+<span class="target" id="group__udma__api_1ga66ae29055045b9875d97e49ba881923c"></span><code class="sig-name descname">UDMA_CHANNEL_I2C0_TX</code> <a class="reference internal" href="#group__udma__api_1gaa80fd6249e67dfb3c836abf13eb6065e"><span class="std std-ref">UDMA_CHANNEL_29</span></a><a class="headerlink" href="#c.UDMA_CHANNEL_I2C0_TX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CHANNEL_SW_CH30">
+<span class="target" id="group__udma__api_1ga290bd11215b1e8da1052bdd9e6123976"></span><code class="sig-name descname">UDMA_CHANNEL_SW_CH30</code> <a class="reference internal" href="#group__udma__api_1gae066722919cc259689b78221e4d71ce7"><span class="std std-ref">UDMA_CHANNEL_30</span></a><a class="headerlink" href="#c.UDMA_CHANNEL_SW_CH30" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CH_MAPPING_0">
+<span class="target" id="group__udma__api_1ga3e97845c17e4207e8b0e22c067820496"></span><code class="sig-name descname">UDMA_CH_MAPPING_0</code> 0x0U<a class="headerlink" href="#c.UDMA_CH_MAPPING_0" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CH_MAPPING_1">
+<span class="target" id="group__udma__api_1gac8afa7356ceba8f825cab4609848c495"></span><code class="sig-name descname">UDMA_CH_MAPPING_1</code> 0x1U<a class="headerlink" href="#c.UDMA_CH_MAPPING_1" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CH_ATTR_USEBURST">
+<span class="target" id="group__udma__api_1ga788cfc153fc585ec6ed97d71725b614c"></span><code class="sig-name descname">UDMA_CH_ATTR_USEBURST</code> 0x00000001U<a class="headerlink" href="#c.UDMA_CH_ATTR_USEBURST" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>burst requests only </p>
+<p>uDMA channel responds to </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CH_ATTR_ALTSELECT">
+<span class="target" id="group__udma__api_1ga9a419aa0ce2de14290e3f5877643a1cd"></span><code class="sig-name descname">UDMA_CH_ATTR_ALTSELECT</code> 0x00000002U<a class="headerlink" href="#c.UDMA_CH_ATTR_ALTSELECT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>alternate control structure </p>
+<p>uDMA channel is using </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CH_ATTR_HIGH_PRIORITY">
+<span class="target" id="group__udma__api_1gaec8ee73ecf7b20b72c75ee695bc3dfac"></span><code class="sig-name descname">UDMA_CH_ATTR_HIGH_PRIORITY</code> 0x00000004U<a class="headerlink" href="#c.UDMA_CH_ATTR_HIGH_PRIORITY" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>priority level </p>
+<p>uDMA channel uses high </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CH_ATTR_REQMASK">
+<span class="target" id="group__udma__api_1ga54266410298e73552f65a035ff697941"></span><code class="sig-name descname">UDMA_CH_ATTR_REQMASK</code> 0x00000008U<a class="headerlink" href="#c.UDMA_CH_ATTR_REQMASK" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>for associated peripheral </p>
+<p>uDMA channel is masked </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_CH_ATTR_ALL">
+<span class="target" id="group__udma__api_1gaef950b811f267391e0cd2f5d3928c055"></span><code class="sig-name descname">UDMA_CH_ATTR_ALL</code> 0x0000000FU<a class="headerlink" href="#c.UDMA_CH_ATTR_ALL" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>attributes </p>
+<p>OR of all the above </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_MODE_STOP">
+<span class="target" id="group__udma__api_1gaaacbc3941fdd50d20aa17e3e5bc926d0"></span><code class="sig-name descname">UDMA_MODE_STOP</code> 0x00000000U<a class="headerlink" href="#c.UDMA_MODE_STOP" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Stop Mode. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_MODE_BASIC">
+<span class="target" id="group__udma__api_1ga0d0916171d90267e53ad4c455f81ab85"></span><code class="sig-name descname">UDMA_MODE_BASIC</code> 0x00000001U<a class="headerlink" href="#c.UDMA_MODE_BASIC" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Basic Mode. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_MODE_AUTO">
+<span class="target" id="group__udma__api_1ga7eea31eaa16cc6da8aa6900fe25457e1"></span><code class="sig-name descname">UDMA_MODE_AUTO</code> 0x00000002U<a class="headerlink" href="#c.UDMA_MODE_AUTO" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Auto-Request Mode. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_MODE_PINGPONG">
+<span class="target" id="group__udma__api_1gaa427935aa273233ad525788a36653e48"></span><code class="sig-name descname">UDMA_MODE_PINGPONG</code> 0x00000003U<a class="headerlink" href="#c.UDMA_MODE_PINGPONG" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Ping-Pong Mode. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_MODE_MEM_SCATTER_GATHER">
+<span class="target" id="group__udma__api_1gab99c1f842fc5873d9639dd5c81f52e96"></span><code class="sig-name descname">UDMA_MODE_MEM_SCATTER_GATHER</code> 0x00000004U<a class="headerlink" href="#c.UDMA_MODE_MEM_SCATTER_GATHER" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mem Scatter-Gather Mode. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_MODE_PER_SCATTER_GATHER">
+<span class="target" id="group__udma__api_1ga45c6f39ddeb623a7d1df04d3e0b15998"></span><code class="sig-name descname">UDMA_MODE_PER_SCATTER_GATHER</code> 0x00000006U<a class="headerlink" href="#c.UDMA_MODE_PER_SCATTER_GATHER" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Per Scatter-Gather Mode. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_MODE_ALT_SELECT">
+<span class="target" id="group__udma__api_1gade8eb75e2d128f81131a52832c9046d7"></span><code class="sig-name descname">UDMA_MODE_ALT_SELECT</code> 0x00000001U<a class="headerlink" href="#c.UDMA_MODE_ALT_SELECT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Specifies Alternate Scatter-Gather Mode when OR’d with either of above two attributes </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_DST_INC_8">
+<span class="target" id="group__udma__api_1ga8df004d5dabcc2302bc3170f228d6a8e"></span><code class="sig-name descname">UDMA_DST_INC_8</code> 0x00000000U<a class="headerlink" href="#c.UDMA_DST_INC_8" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Dest addr increment of 8-bit. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_DST_INC_16">
+<span class="target" id="group__udma__api_1ga1bb3e5e5a3db6f792bf5e40ab09e82e6"></span><code class="sig-name descname">UDMA_DST_INC_16</code> 0x40000000U<a class="headerlink" href="#c.UDMA_DST_INC_16" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Dest addr increment of 16-bit. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_DST_INC_32">
+<span class="target" id="group__udma__api_1ga28528189359043e802103c66367e20ec"></span><code class="sig-name descname">UDMA_DST_INC_32</code> 0x80000000U<a class="headerlink" href="#c.UDMA_DST_INC_32" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Dest addr increment of 32-bit. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_DST_INC_NONE">
+<span class="target" id="group__udma__api_1gaff850520540f2dd5ef6c016ac9bc85f8"></span><code class="sig-name descname">UDMA_DST_INC_NONE</code> 0xc0000000U<a class="headerlink" href="#c.UDMA_DST_INC_NONE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Dest addr increment of 0-bit. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_SRC_INC_8">
+<span class="target" id="group__udma__api_1ga3a2ecfdeedc93963d2c5b6dcf3598d80"></span><code class="sig-name descname">UDMA_SRC_INC_8</code> 0x00000000U<a class="headerlink" href="#c.UDMA_SRC_INC_8" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Src add increment of 8-bit. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_SRC_INC_16">
+<span class="target" id="group__udma__api_1ga3c996d62c8beb6bffb08f77ab3c5a065"></span><code class="sig-name descname">UDMA_SRC_INC_16</code> 0x04000000U<a class="headerlink" href="#c.UDMA_SRC_INC_16" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Src add increment of 16-bit. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_SRC_INC_32">
+<span class="target" id="group__udma__api_1ga1649b66fc982e4b86dda0bf69c8e9114"></span><code class="sig-name descname">UDMA_SRC_INC_32</code> 0x08000000U<a class="headerlink" href="#c.UDMA_SRC_INC_32" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Src add increment of 32-bit. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_SRC_INC_NONE">
+<span class="target" id="group__udma__api_1gace9a62c226f2e73cc1a7c56d80efa361"></span><code class="sig-name descname">UDMA_SRC_INC_NONE</code> 0x0C000000U<a class="headerlink" href="#c.UDMA_SRC_INC_NONE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Src add increment of 0-bit. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_SIZE_8">
+<span class="target" id="group__udma__api_1gacfd5e57fa4a0c7e33d76c9f0f663c70e"></span><code class="sig-name descname">UDMA_SIZE_8</code> 0x00000000U<a class="headerlink" href="#c.UDMA_SIZE_8" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Src &amp; dest Data size is 8-bit. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_SIZE_16">
+<span class="target" id="group__udma__api_1ga5d30e9898b6f4262435af81eefb39b08"></span><code class="sig-name descname">UDMA_SIZE_16</code> 0x11000000U<a class="headerlink" href="#c.UDMA_SIZE_16" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Src &amp; dest data size is 16-bit. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_SIZE_32">
+<span class="target" id="group__udma__api_1gaebf5d35c70d33881a0cb58c42f2165b6"></span><code class="sig-name descname">UDMA_SIZE_32</code> 0x22000000U<a class="headerlink" href="#c.UDMA_SIZE_32" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Src &amp; dest data size is 32-bit. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_DST_PROT_PRIV">
+<span class="target" id="group__udma__api_1ga14cbeaf5c00fcadd973794dc8a51b543"></span><code class="sig-name descname">UDMA_DST_PROT_PRIV</code> 0x00200000U<a class="headerlink" href="#c.UDMA_DST_PROT_PRIV" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Dest addr access is privileged. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_SRC_PROT_PRIV">
+<span class="target" id="group__udma__api_1ga9c247ec6abddee40e4877b8d628a5d79"></span><code class="sig-name descname">UDMA_SRC_PROT_PRIV</code> 0x00040000U<a class="headerlink" href="#c.UDMA_SRC_PROT_PRIV" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Src addr access is privileged. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_ARB_1">
+<span class="target" id="group__udma__api_1ga7f6b49a2d847e22edec70ab798365bb0"></span><code class="sig-name descname">UDMA_ARB_1</code> 0x00000000U<a class="headerlink" href="#c.UDMA_ARB_1" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Arbitrate after 1 transfer. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_ARB_2">
+<span class="target" id="group__udma__api_1ga06a426feec6bae050e1ceec32feb6524"></span><code class="sig-name descname">UDMA_ARB_2</code> 0x00004000U<a class="headerlink" href="#c.UDMA_ARB_2" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Arbitrate after 2 transfers. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_ARB_4">
+<span class="target" id="group__udma__api_1ga54624c18043cb15f52b95faad3251f6d"></span><code class="sig-name descname">UDMA_ARB_4</code> 0x00008000U<a class="headerlink" href="#c.UDMA_ARB_4" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Arbitrate after 4 transfers. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_ARB_8">
+<span class="target" id="group__udma__api_1ga2916ea30baef012589a249563e3aeba3"></span><code class="sig-name descname">UDMA_ARB_8</code> 0x0000c000U<a class="headerlink" href="#c.UDMA_ARB_8" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Arbitrate after 8 transfers. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_ARB_16">
+<span class="target" id="group__udma__api_1gafdd9101017857dd819259f5f39c7344c"></span><code class="sig-name descname">UDMA_ARB_16</code> 0x00010000U<a class="headerlink" href="#c.UDMA_ARB_16" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Arbitrate after 16 transfers. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_ARB_32">
+<span class="target" id="group__udma__api_1ga72a4a803f84c3436fd5f61a8bd043ce2"></span><code class="sig-name descname">UDMA_ARB_32</code> 0x00014000U<a class="headerlink" href="#c.UDMA_ARB_32" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Arbitrate after 32 transfers. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_ARB_64">
+<span class="target" id="group__udma__api_1ga664bac0c4a98b74a71498283fcb13f31"></span><code class="sig-name descname">UDMA_ARB_64</code> 0x00018000U<a class="headerlink" href="#c.UDMA_ARB_64" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Arbitrate after 64 transfers. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_ARB_128">
+<span class="target" id="group__udma__api_1ga580890ab43c7d4fa894f96490e42993a"></span><code class="sig-name descname">UDMA_ARB_128</code> 0x0001c000U<a class="headerlink" href="#c.UDMA_ARB_128" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Arbitrate after 128 transfers. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_ARB_256">
+<span class="target" id="group__udma__api_1ga31c6be7a344410dcac108dd22443fee3"></span><code class="sig-name descname">UDMA_ARB_256</code> 0x00020000U<a class="headerlink" href="#c.UDMA_ARB_256" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Arbitrate after 256 transfers. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_ARB_512">
+<span class="target" id="group__udma__api_1ga446e921f25e23444b16f28714a3fe0d0"></span><code class="sig-name descname">UDMA_ARB_512</code> 0x00024000U<a class="headerlink" href="#c.UDMA_ARB_512" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Arbitrate after 512 transfers. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_ARB_1024">
+<span class="target" id="group__udma__api_1ga1782295578f0f6a25b294a30c0923e0e"></span><code class="sig-name descname">UDMA_ARB_1024</code> 0x00028000U<a class="headerlink" href="#c.UDMA_ARB_1024" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Arbitrate after 1024 transfers. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_NEXT_USEBURST">
+<span class="target" id="group__udma__api_1ga17360df910e59381c665786868ff94aa"></span><code class="sig-name descname">UDMA_NEXT_USEBURST</code> 0x00000008U<a class="headerlink" href="#c.UDMA_NEXT_USEBURST" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>last transfer. </p>
+<p>Use burst transfer to complete </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_PRI_SELECT">
+<span class="target" id="group__udma__api_1gace46317707b0fda2f1eed512698308a4"></span><code class="sig-name descname">UDMA_PRI_SELECT</code> 0x00000000U<a class="headerlink" href="#c.UDMA_PRI_SELECT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Use primary control structure. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_ALT_SELECT">
+<span class="target" id="group__udma__api_1ga771b6d461c641f0902ce146fe41a3321"></span><code class="sig-name descname">UDMA_ALT_SELECT</code> 0x00000020U<a class="headerlink" href="#c.UDMA_ALT_SELECT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Use alternate control structure. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UDMA_TASK_STRUCT_ENTRY">
+<span class="target" id="group__udma__api_1ga0ee8584aa9ac8e88f7d11b8281b32bb0"></span><code class="sig-name descname">UDMA_TASK_STRUCT_ENTRY</code><span class="sig-paren">(</span><em>transferCount</em>, <em>itemSize</em>, <em>srcIncrement</em>, <em>srcAddr</em>, <em>dstIncrement</em>, <em>dstAddr</em>, <em>arbSize</em>, <em>mode</em><span class="sig-paren">)</span> <p>{                                                                          \</p>
+<p>        (((srcIncrement) == </p>
+<a class="reference internal" href="#group__udma__api_1gace9a62c226f2e73cc1a7c56d80efa361"><span class="std std-ref">UDMA_SRC_INC_NONE</span></a><p>) ? (void *)(srcAddr) :           \</p>
+<p>            ((void *)(&amp;((uint8_t *)(srcAddr))[((transferCount) &lt;&lt;              \</p>
+<p>             ((srcIncrement) &gt;&gt; </p>
+UDMA_DMACHCTL_SRCINC_S<p>)) - 1]))),              \</p>
+<p>        (((dstIncrement) == </p>
+<a class="reference internal" href="#group__udma__api_1gaff850520540f2dd5ef6c016ac9bc85f8"><span class="std std-ref">UDMA_DST_INC_NONE</span></a><p>) ? (void *)(dstAddr) :           \</p>
+<p>            ((void *)(&amp;((uint8_t *)(dstAddr))[((transferCount) &lt;&lt;              \</p>
+<p>             ((dstIncrement) &gt;&gt; </p>
+UDMA_DMACHCTL_DSTINC_S<p>)) - 1]))),              \</p>
+<p>        (srcIncrement) | (dstIncrement) | (itemSize) | (arbSize) |             \</p>
+<p>        (((transferCount) - 1) &lt;&lt; 4) |                                         \</p>
+<p>        ((((mode) == </p>
+<a class="reference internal" href="#group__udma__api_1gab99c1f842fc5873d9639dd5c81f52e96"><span class="std std-ref">UDMA_MODE_MEM_SCATTER_GATHER</span></a><p>) ||                          \</p>
+<p>          ((mode) == </p>
+<a class="reference internal" href="#group__udma__api_1ga45c6f39ddeb623a7d1df04d3e0b15998"><span class="std std-ref">UDMA_MODE_PER_SCATTER_GATHER</span></a><p>)) ?                          \</p>
+<p>          (mode) | </p>
+<a class="reference internal" href="#group__udma__api_1gade8eb75e2d128f81131a52832c9046d7"><span class="std std-ref">UDMA_MODE_ALT_SELECT</span></a><p> : (mode)), 0                           \</p>
+<p>    }</p>
+<a class="headerlink" href="#c.UDMA_TASK_STRUCT_ENTRY" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A helper macro for building scatter-gather task table entries.</p>
+<p><p>This macro is intended to be used to help populate a table of uDMA tasks for a scatter-gather transfer. This macro will calculate the values for the fields of a task structure entry based on the input parameters.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">transferCount</span></code>: is the count of items to transfer for this task. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">itemSize</span></code>: is the bit size of the items to transfer for this task. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">srcIncrement</span></code>: is the bit size increment for source data. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">srcAddr</span></code>: is the starting address of the data to transfer. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dstIncrement</span></code>: is the bit size increment for destination data. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dstAddr</span></code>: is the starting address of the destination data. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">arbSize</span></code>: is the arbitration size to use for the transfer task. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: is the transfer mode for this task.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>There are specific requirements for the values of each parameter. No checking is done so it is up to the caller to ensure that correct values are used for the parameters.</p>
+<p>The <em>transferCount</em> parameter is the number of items that will be transferred by this task. It must be in the range 1-1024.</p>
+<p>The <em>itemSize</em> parameter is the bit size of the transfer data. It must be one of <strong>UDMA_SIZE_8</strong>, <strong>UDMA_SIZE_16</strong>, or <strong>UDMA_SIZE_32</strong>.</p>
+<p>The <em>srcIncrement</em> parameter is the increment size for the source data. It must be one of <strong>UDMA_SRC_INC_8</strong>, <strong>UDMA_SRC_INC_16</strong>, <strong>UDMA_SRC_INC_32</strong>, or <strong>UDMA_SRC_INC_NONE</strong>.</p>
+<p>The <em>srcAddr</em> parameter is a void pointer to the beginning of the source data.</p>
+<p>The <em>dstIncrement</em> parameter is the increment size for the destination data. It must be one of <strong>UDMA_DST_INC_8</strong>, <strong>UDMA_DST_INC_16</strong>, <strong>UDMA_DST_INC_32</strong>, or <strong>UDMA_DST_INC_NONE</strong>.</p>
+<p>The <em>dstAddr</em> parameter is a void pointer to the beginning of the location where the data will be transferred.</p>
+<p>The <em>arbSize</em> parameter is the arbitration size for the transfer, and must be one of <strong>UDMA_ARB_1</strong>, <strong>UDMA_ARB_2</strong>, <strong>UDMA_ARB_4</strong>, and so on up to <strong>UDMA_ARB_1024</strong>. This is used to select the arbitration size in powers of 2, from 1 to 1024.</p>
+<p>The <em>mode</em> parameter is the mode to use for this transfer task. It must be one of <strong>UDMA_MODE_BASIC</strong>, <strong>UDMA_MODE_AUTO</strong>, <strong>UDMA_MODE_MEM_SCATTER_GATHER</strong>, or <strong>UDMA_MODE_PER_SCATTER_GATHER</strong>. Note that normally all tasks will be one of the scatter-gather modes while the last task is a task list will be AUTO or BASIC.</p>
+<p>This macro is intended to be used to initialize individual entries of a structure of <a class="reference internal" href="#struct_u_d_m_a___control_table"><span class="std std-ref">UDMA_ControlTable</span></a> type, like this:</p>
+<p><div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">//!     UDMA_ControlTable MyTaskList[] =</span>
+<span class="c1">//!     {</span>
+<span class="c1">//!         UDMA_TASK_STRUCT_ENTRY(Task1Count, UDMA_SIZE_8,</span>
+<span class="c1">//!                             UDMA_SRC_INC_8, MySourceBuf,</span>
+<span class="c1">//!                             UDMA_DST_INC_8, MyDestBuf,</span>
+<span class="c1">//!                             UDMA_ARB_8, UDMA_MODE_MEM_SCATTER_GATHER),</span>
+<span class="c1">//!         UDMA_TASK_STRUCT_ENTRY(Task2Count, ...),</span>
+<span class="c1">//!     }</span>
+<span class="c1">//!</span>
+</pre></div>
+</div>
+ <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>\return Nothing; this is not a function.
+</pre></div>
+</div>
+ </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv411UDMA_enable8uint32_t">
+<span id="_CPPv311UDMA_enable8uint32_t"></span><span id="_CPPv211UDMA_enable8uint32_t"></span><span id="UDMA_enable__uint32_t"></span><span class="target" id="group__udma__api_1ga8e977038895aaa2b2eff1cbc260fec9f"></span>void <code class="sig-name descname">UDMA_enable</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411UDMA_enable8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the uDMA controller for use.</p>
+<p><p>This function enables the uDMA controller. The uDMA controller must be enabled before it can be configured and used.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the uDMA instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv412UDMA_disable8uint32_t">
+<span id="_CPPv312UDMA_disable8uint32_t"></span><span id="_CPPv212UDMA_disable8uint32_t"></span><span id="UDMA_disable__uint32_t"></span><span class="target" id="group__udma__api_1ga143ac587104233778c57e074b5ac223b"></span>void <code class="sig-name descname">UDMA_disable</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412UDMA_disable8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the uDMA controller for use.</p>
+<p><p>This function disables the uDMA controller. Once disabled, the uDMA controller cannot operate until re-enabled with </p>
+<a class="reference internal" href="#group__udma__api_1ga8e977038895aaa2b2eff1cbc260fec9f"><span class="std std-ref">UDMA_enable()</span></a>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the uDMA instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419UDMA_getErrorStatus8uint32_t">
+<span id="_CPPv319UDMA_getErrorStatus8uint32_t"></span><span id="_CPPv219UDMA_getErrorStatus8uint32_t"></span><span id="UDMA_getErrorStatus__uint32_t"></span><span class="target" id="group__udma__api_1gacdec153d6e7f8ad56dbc75bda98f6368"></span>uint32_t <code class="sig-name descname">UDMA_getErrorStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419UDMA_getErrorStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the uDMA error status.</p>
+<p><p>This function returns the uDMA error status. It should be called from within the uDMA error interrupt handler to determine if a uDMA error occurred.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the uDMA instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns non-zero if a uDMA error is pending. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421UDMA_clearErrorStatus8uint32_t">
+<span id="_CPPv321UDMA_clearErrorStatus8uint32_t"></span><span id="_CPPv221UDMA_clearErrorStatus8uint32_t"></span><span id="UDMA_clearErrorStatus__uint32_t"></span><span class="target" id="group__udma__api_1ga49d9f3e080a9375e39c90506de6b3d36"></span>void <code class="sig-name descname">UDMA_clearErrorStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421UDMA_clearErrorStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears the uDMA error interrupt.</p>
+<p><p>This function clears a pending uDMA error interrupt. This function should be called from within the uDMA error interrupt handler to clear the interrupt.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the uDMA instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418UDMA_enableChannel8uint32_t8uint32_t">
+<span id="_CPPv318UDMA_enableChannel8uint32_t8uint32_t"></span><span id="_CPPv218UDMA_enableChannel8uint32_t8uint32_t"></span><span id="UDMA_enableChannel__uint32_t.uint32_t"></span><span class="target" id="group__udma__api_1ga6a7b41c493cd104cff48570e50e75cfd"></span>void <code class="sig-name descname">UDMA_enableChannel</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>channelNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418UDMA_enableChannel8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables a uDMA channel for operation.</p>
+<p><p>This function enables a specific uDMA channel for use. This function must be used to enable a channel before it can be used to perform a uDMA transfer.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the uDMA instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">channelNum</span></code>: is the channel number to enable.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>When a uDMA transfer is completed, the channel is automatically disabled by the uDMA controller. Therefore, this function should be called prior to starting up any new transfer.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419UDMA_disableChannel8uint32_t8uint32_t">
+<span id="_CPPv319UDMA_disableChannel8uint32_t8uint32_t"></span><span id="_CPPv219UDMA_disableChannel8uint32_t8uint32_t"></span><span id="UDMA_disableChannel__uint32_t.uint32_t"></span><span class="target" id="group__udma__api_1ga8345f2b8b298139095bd4df260c9559f"></span>void <code class="sig-name descname">UDMA_disableChannel</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>channelNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419UDMA_disableChannel8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables a uDMA channel for operation.</p>
+<p><p>This function disables a specific uDMA channel. Once disabled, a channel cannot respond to uDMA transfer requests until re-enabled via </p>
+<a class="reference internal" href="#group__udma__api_1ga6a7b41c493cd104cff48570e50e75cfd"><span class="std std-ref">UDMA_enableChannel()</span></a>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the uDMA instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">channelNum</span></code>: is the channel number to disable.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421UDMA_isChannelEnabled8uint32_t8uint32_t">
+<span id="_CPPv321UDMA_isChannelEnabled8uint32_t8uint32_t"></span><span id="_CPPv221UDMA_isChannelEnabled8uint32_t8uint32_t"></span><span id="UDMA_isChannelEnabled__uint32_t.uint32_t"></span><span class="target" id="group__udma__api_1ga0f058eef1e188e1473b7c84765483d15"></span>bool <code class="sig-name descname">UDMA_isChannelEnabled</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>channelNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421UDMA_isChannelEnabled8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Checks if a uDMA channel is enabled for operation.</p>
+<p><p>This function checks to see if a specific uDMA channel is enabled. This function can be used to check the status of a transfer, as the channel is automatically disabled at the end of a transfer.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the uDMA instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">channelNum</span></code>: is the channel number to check.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if the channel is enabled, <strong>false</strong> if disabled. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419UDMA_setControlBase8uint32_tPKv">
+<span id="_CPPv319UDMA_setControlBase8uint32_tPKv"></span><span id="_CPPv219UDMA_setControlBase8uint32_tPKv"></span><span id="UDMA_setControlBase__uint32_t.voidCP"></span><span class="target" id="group__udma__api_1ga54416a60af04276fe4b2b5dc5da5a290"></span>void <code class="sig-name descname">UDMA_setControlBase</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <em class="property">const</em> void *<em>controlTable</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419UDMA_setControlBase8uint32_tPKv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the base address for the channel control table.</p>
+<p><p>This function configures the base address of the channel control table. This table resides in system memory and holds control information for each uDMA channel. The table must be aligned on a 1024-byte boundary. The base address must be configured before any of the channel functions can be used.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the uDMA instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">controlTable</span></code>: is a pointer to the 1024-byte-aligned base address of the uDMA channel control table.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The size of the channel control table depends on the number of uDMA channels and the transfer modes that are used. Refer to the introductory text and the microcontroller datasheet for more information about the channel control table.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419UDMA_getControlBase8uint32_t">
+<span id="_CPPv319UDMA_getControlBase8uint32_t"></span><span id="_CPPv219UDMA_getControlBase8uint32_t"></span><span id="UDMA_getControlBase__uint32_t"></span><span class="target" id="group__udma__api_1ga0c4adc4c7076bc34c6984886d3cd4a3e"></span>void *<code class="sig-name descname">UDMA_getControlBase</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419UDMA_getControlBase8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the base address for the channel control table.</p>
+<p><p>This function gets the base address of the channel control table. This table resides in system memory and holds control information for each uDMA channel.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the uDMA instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns a pointer to the base address of the channel control table. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428UDMA_getAlternateControlBase8uint32_t">
+<span id="_CPPv328UDMA_getAlternateControlBase8uint32_t"></span><span id="_CPPv228UDMA_getAlternateControlBase8uint32_t"></span><span id="UDMA_getAlternateControlBase__uint32_t"></span><span class="target" id="group__udma__api_1ga58a663314abfd6bb905b833393adefa5"></span>void *<code class="sig-name descname">UDMA_getAlternateControlBase</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428UDMA_getAlternateControlBase8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the base address for the channel control table alternate structures.</p>
+<p><p>This function gets the base address of the second half of the channel control table that holds the alternate control structures for each channel.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the uDMA instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns a pointer to the base address of the second half of the channel control table. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428UDMA_requestSoftwareTransfer8uint32_t8uint32_t">
+<span id="_CPPv328UDMA_requestSoftwareTransfer8uint32_t8uint32_t"></span><span id="_CPPv228UDMA_requestSoftwareTransfer8uint32_t8uint32_t"></span><span id="UDMA_requestSoftwareTransfer__uint32_t.uint32_t"></span><span class="target" id="group__udma__api_1gae08896db0fd7f6885c2920a41b44831e"></span>void <code class="sig-name descname">UDMA_requestSoftwareTransfer</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>channelNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428UDMA_requestSoftwareTransfer8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Requests a uDMA channel to start a transfer.</p>
+<p><p>This function allows software to request a uDMA channel to begin a transfer. This function could be used for performing a memory-to-memory transfer, or if for some reason a transfer needs to be initiated by software instead of the peripheral associated with that channel.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the uDMA instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">channelNum</span></code>: is the channel number on which to request a uDMA transfer.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>If the software channel and interrupts are used, then the completion is signaled on the uDMA dedicated interrupt. If a peripheral channel is used, then the completion is signaled on the peripheral’s interrupt.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428UDMA_setChannelControlParams8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv328UDMA_setChannelControlParams8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv228UDMA_setChannelControlParams8uint32_t8uint32_t8uint32_t"></span><span id="UDMA_setChannelControlParams__uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__udma__api_1ga1e40b110c44f515506b3b7337393bf1e"></span>void <code class="sig-name descname">UDMA_setChannelControlParams</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>index</em>, uint32_t <em>chControlAttr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428UDMA_setChannelControlParams8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the control parameters for a uDMA channel control structure.</p>
+<p><p>This function is used to set control parameters for a uDMA transfer. These parameters are typically not changed often.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the uDMA instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">index</span></code>: is the control table structure index. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">chControlAttr</span></code>: specifies the channel control parameters.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>index</em> parameter should be the logical OR of the channel number with one of <strong>UDMA_PRI_SELECT</strong> or <strong>UDMA_ALT_SELECT</strong> to choose whether the primary or alternate data structure is used.</p>
+<p>The <em>chControlAttr</em> parameter is the logical OR of five values: the data size, the source address increment, the destination address increment, the arbitration size, and the use burst flag. The choices available for each of these values is described below.</p>
+<p>Choose the data size from one of <strong>UDMA_SIZE_8</strong>, <strong>UDMA_SIZE_16</strong>, or <strong>UDMA_SIZE_32</strong> to select a data size of 8, 16, or 32 bits.</p>
+<p>Choose the source address increment from one of <strong>UDMA_SRC_INC_8</strong>, <strong>UDMA_SRC_INC_16</strong>, <strong>UDMA_SRC_INC_32</strong>, or <strong>UDMA_SRC_INC_NONE</strong> to select an address increment of 8-bit bytes, 16-bit half-words, 32-bit words, or to select non-incrementing.</p>
+<p>Choose the destination address increment from one of <strong>UDMA_DST_INC_8</strong>, <strong>UDMA_DST_INC_16</strong>, <strong>UDMA_DST_INC_32</strong>, or <strong>UDMA_DST_INC_NONE</strong> to select an address increment of 8-bit bytes, 16-bit half-words, 32-bit words, or to select non-incrementing.</p>
+<p>The arbitration size determines how many items are transferred before the uDMA controller re-arbitrates for the bus. Choose the arbitration size from one of <strong>UDMA_ARB_1</strong>, <strong>UDMA_ARB_2</strong>, <strong>UDMA_ARB_4</strong>, <strong>UDMA_ARB_8</strong>, through <strong>UDMA_ARB_1024</strong> to select the arbitration size from 1 to 1024 items, in powers of 2.</p>
+<p>The value <strong>UDMA_NEXT_USEBURST</strong> is used to force the channel to only respond to burst requests at the tail end of a scatter-gather transfer.</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>The address increment cannot be smaller than the data size.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427UDMA_getChannelTransferMode8uint32_t8uint32_t">
+<span id="_CPPv327UDMA_getChannelTransferMode8uint32_t8uint32_t"></span><span id="_CPPv227UDMA_getChannelTransferMode8uint32_t8uint32_t"></span><span id="UDMA_getChannelTransferMode__uint32_t.uint32_t"></span><span class="target" id="group__udma__api_1gaa72035aa0e23f91f896ae90be6cbda76"></span>uint32_t <code class="sig-name descname">UDMA_getChannelTransferMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427UDMA_getChannelTransferMode8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the transfer mode for a uDMA channel control structure.</p>
+<p><p>This function is used to get the transfer mode for the uDMA channel and to query the status of a transfer on a channel. When the transfer is complete the mode is </p>
+<strong>UDMA_MODE_STOP</strong>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the uDMA instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">index</span></code>: is the index for channel control structure.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the transfer mode of the specified channel and control structure, which is one of the following values: <strong>UDMA_MODE_STOP</strong>, <strong>UDMA_MODE_BASIC</strong>, <strong>UDMA_MODE_AUTO</strong>, <strong>UDMA_MODE_PINGPONG</strong>, <strong>UDMA_MODE_MEM_SCATTER_GATHER</strong>, <strong>UDMA_MODE_PER_SCATTER_GATHER</strong>. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425UDMA_changeChannelMapping8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv325UDMA_changeChannelMapping8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv225UDMA_changeChannelMapping8uint32_t8uint32_t8uint32_t"></span><span id="UDMA_changeChannelMapping__uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__udma__api_1ga44b09dcdc4a1ecf7f27879992fa4bcf3"></span>void <code class="sig-name descname">UDMA_changeChannelMapping</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>channelNum</em>, uint32_t <em>chMapping</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425UDMA_changeChannelMapping8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures peripheral mapping for any uDMA channel.</p>
+<p><p>This function configures peripheral mapping for any uDMA channel. Each uDMA channel can be mapped to a fixed set of peripherals. Refer device datasheet for all the possible configurations for a channel. The param </p>
+<em>channelNum</em> can take values 0U-31U specifying uDMA channels. The param <em>chMapping</em> specifies possible peripheral assignmentes for a channel. For selecting primary or secondary channel assignment UDMA_CH_MAPPING_0 or UDMA_CH_MAPPING_1 macros can be used.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the uDMA instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">channelNum</span></code>: is the uDMA channel to be assigned. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">chMapping</span></code>: specifies the peripheral assignment for the channel.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>This function is only available on devices that have the DMA Channel Map Select registers (DMACHMAP0-3). Please consult the data sheet for your part.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422UDMA_registerInterrupt8uint32_tPFvvE">
+<span id="_CPPv322UDMA_registerInterrupt8uint32_tPFvvE"></span><span id="_CPPv222UDMA_registerInterrupt8uint32_tPFvvE"></span><span class="target" id="group__udma__api_1ga37319b100e1b521d289510f499dcb810"></span>void <code class="sig-name descname">UDMA_registerInterrupt</code><span class="sig-paren">(</span>uint32_t <em>channelInt</em>, void (*<em>fnHandler</em>)<span class="sig-paren">(</span>void<span class="sig-paren">)</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422UDMA_registerInterrupt8uint32_tPFvvE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Registers an interrupt handler for the uDMA controller.</p>
+<p><p>This function registers and enables the handler to be called when the uDMA controller generates an interrupt. The param </p>
+<em>channelInt</em> can take following values: UDMA_SW_INT or UDMA_ERR_INT.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">channelInt</span></code>: identifies which uDMA interrupt is to be registered. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fnHandler</span></code>: is a pointer to the function to be called when the interrupt is activated.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="interrupt.html#group__interrupt__api_1ga97b4cb74e7e152d031bcdbc4e4428127"><span class="std std-ref">Interrupt_registerHandler()</span></a> for important information about registering interrupt handlers.</p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>The interrupt handler for the uDMA is for transfer completion when the software channel is used and for error interrupts. The interrupts for each peripheral channel are handled through the individual peripheral interrupt handlers.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424UDMA_unregisterInterrupt8uint32_t">
+<span id="_CPPv324UDMA_unregisterInterrupt8uint32_t"></span><span id="_CPPv224UDMA_unregisterInterrupt8uint32_t"></span><span id="UDMA_unregisterInterrupt__uint32_t"></span><span class="target" id="group__udma__api_1gae2526e01d72110ce5a02eedda808f077"></span>void <code class="sig-name descname">UDMA_unregisterInterrupt</code><span class="sig-paren">(</span>uint32_t <em>channelInt</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424UDMA_unregisterInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Unregisters an interrupt handler for the uDMA controller.</p>
+<p><p>This function disables and unregisters the handler to be called for the specified uDMA interrupt. The param </p>
+<em>channelInt</em> can take following values: UDMA_SW_INT or UDMA_ERR_INT.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">channelInt</span></code>: identifies which uDMA interrupt to unregister.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="interrupt.html#group__interrupt__api_1ga97b4cb74e7e152d031bcdbc4e4428127"><span class="std std-ref">Interrupt_registerHandler()</span></a> for important information about registering interrupt handlers.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427UDMA_enableChannelAttribute8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv327UDMA_enableChannelAttribute8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv227UDMA_enableChannelAttribute8uint32_t8uint32_t8uint32_t"></span><span id="UDMA_enableChannelAttribute__uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__udma__api_1ga6b4368e53018a973810a7e4c8205a394"></span>void <code class="sig-name descname">UDMA_enableChannelAttribute</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>channelNum</em>, uint32_t <em>channelAttr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427UDMA_enableChannelAttribute8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables attributes of a uDMA channel.</p>
+<p><p>This function is used to enable attributes of a uDMA channel.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the uDMA instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">channelNum</span></code>: is the channel to configure. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">channelAttr</span></code>: is a combination of attributes for the channel.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>channelAttr</em> parameter is the logical OR of any of the following:</p>
+<p><ul class="simple">
+<li><p><strong>UDMA_CH_ATTR_USEBURST</strong> is used to restrict transfers to use only burst mode</p></li>
+<li><p><strong>UDMA_CH_ATTR_ALTSELECT</strong> is used to select the alternate control structure for this channel (it is very unlikely that this flag should be used)</p></li>
+<li><p><strong>UDMA_CH_ATTR_HIGH_PRIORITY</strong> is used to set this channel to high priority</p></li>
+<li><p><strong>UDMA_CH_ATTR_REQMASK</strong> is used to mask the hardware request signal from the peripheral for this channel.</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428UDMA_disableChannelAttribute8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv328UDMA_disableChannelAttribute8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv228UDMA_disableChannelAttribute8uint32_t8uint32_t8uint32_t"></span><span id="UDMA_disableChannelAttribute__uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__udma__api_1ga431c1cfc9546d4bdd50265e2415ce974"></span>void <code class="sig-name descname">UDMA_disableChannelAttribute</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>channelNum</em>, uint32_t <em>channelAttr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428UDMA_disableChannelAttribute8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables attributes of a uDMA channel.</p>
+<p><p>This function is used to disable attributes of a uDMA channel.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the uDMA instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">channelNum</span></code>: is the channel to configure. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">channelAttr</span></code>: is a combination of attributes for the channel.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>channelAttr</em> parameter is the logical OR of any of the following:</p>
+<p><ul class="simple">
+<li><p><strong>UDMA_CH_ATTR_USEBURST</strong> is used to restrict transfers to use only burst mode.</p></li>
+<li><p><strong>UDMA_CH_ATTR_ALTSELECT</strong> is used to select the alternate control structure for this channel.</p></li>
+<li><p><strong>UDMA_CH_ATTR_HIGH_PRIORITY</strong> is used to set this channel to high priority.</p></li>
+<li><p><strong>UDMA_CH_ATTR_REQMASK</strong> is used to mask the hardware request signal from the peripheral for this channel.</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424UDMA_getChannelAttribute8uint32_t8uint32_t">
+<span id="_CPPv324UDMA_getChannelAttribute8uint32_t8uint32_t"></span><span id="_CPPv224UDMA_getChannelAttribute8uint32_t8uint32_t"></span><span id="UDMA_getChannelAttribute__uint32_t.uint32_t"></span><span class="target" id="group__udma__api_1ga551decd336d9cd7ee1c1773e0f739aa6"></span>uint32_t <code class="sig-name descname">UDMA_getChannelAttribute</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>channelNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424UDMA_getChannelAttribute8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the enabled attributes of a uDMA channel.</p>
+<p><p>This function returns a combination of flags representing the attributes of the uDMA channel.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the uDMA instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">channelNum</span></code>: is the channel to configure.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the logical OR of the attributes of the uDMA channel, which can be any of the following:<ul class="simple">
+<li><p><strong>UDMA_CH_ATTR_USEBURST</strong> is used to restrict transfers to use only burst mode</p></li>
+<li><p><strong>UDMA_CH_ATTR_ALTSELECT</strong> is used to select the alternate control structure for this channel</p></li>
+<li><p><strong>UDMA_CH_ATTR_HIGH_PRIORITY</strong> is used to set this channel to high priority</p></li>
+<li><p><strong>UDMA_CH_ATTR_REQMASK</strong> is used to mask the hardware request signal from the peripheral for this channel </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429UDMA_setChannelTransferParams8uint32_t8uint32_tPvPv8uint32_t8uint32_t">
+<span id="_CPPv329UDMA_setChannelTransferParams8uint32_t8uint32_tPvPv8uint32_t8uint32_t"></span><span id="_CPPv229UDMA_setChannelTransferParams8uint32_t8uint32_tPvPv8uint32_t8uint32_t"></span><span id="UDMA_setChannelTransferParams__uint32_t.uint32_t.voidP.voidP.uint32_t.uint32_t"></span><span class="target" id="group__udma__api_1ga6fec508d99b2f88d558f26f3f1379ea5"></span>void <code class="sig-name descname">UDMA_setChannelTransferParams</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>index</em>, void *<em>srcAddr</em>, void *<em>dstAddr</em>, uint32_t <em>transferMode</em>, uint32_t <em>transferSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429UDMA_setChannelTransferParams8uint32_t8uint32_tPvPv8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the transfer parameters for a uDMA channel control structure.</p>
+<p><p>This function is used to configure the parameters for a uDMA transfer. These parameters are not typically changed often. The function </p>
+<a class="reference internal" href="#group__udma__api_1ga1e40b110c44f515506b3b7337393bf1e"><span class="std std-ref">UDMA_setChannelControlParams()</span></a> MUST be called at least once for this channel prior to calling this function.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the uDMA instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">index</span></code>: is the index for channel control structure. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">transferMode</span></code>: is the type of uDMA transfer mode. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">srcAddr</span></code>: is the source address for the transfer. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dstAddr</span></code>: is the destination address for the transfer. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">transferSize</span></code>: is the number of data items to transfer.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>index</em> parameter should be the logical OR of the channel number with one of <strong>UDMA_PRI_SELECT</strong> or <strong>UDMA_ALT_SELECT</strong> to choose whether the primary or alternate data structure is used.</p>
+<p>The <em>mode</em> parameter should be one of the following values:</p>
+<p><ul class="simple">
+<li><p><strong>UDMA_MODE_STOP</strong> stops the uDMA transfer. The controller sets the mode to this value at the end of a transfer.</p></li>
+<li><p><strong>UDMA_MODE_BASIC</strong> to perform a basic transfer based on request.</p></li>
+<li><p><strong>UDMA_MODE_AUTO</strong> to perform a transfer that always completes once started even if the request is removed.</p></li>
+<li><p><strong>UDMA_MODE_PINGPONG</strong> to set up a transfer that switches between the primary and alternate control structures for the channel. This mode allows use of ping-pong buffering for uDMA transfers.</p></li>
+<li><p><strong>UDMA_MODE_MEM_SCATTER_GATHER</strong> to set up a memory scatter-gather transfer.</p></li>
+<li><p><strong>UDMA_MODE_PER_SCATTER_GATHER</strong> to set up a peripheral scatter-gather transfer.</p></li>
+</ul>
+</p>
+<p>The <em>srcAddr</em> and <em>dstAddr</em> parameters are pointers to the first location of the data to be transferred. These addresses should be aligned according to the item size. The compiler takes care of this alignment if the pointers are pointing to storage of the appropriate data type.</p>
+<p>The <em>transferSize</em> parameter is the number of data items, not the number of bytes.</p>
+<p>The two scatter-gather modes, memory and peripheral, are actually different depending on whether the primary or alternate control structure is selected. This function looks for the <strong>UDMA_PRI_SELECT</strong> and <strong>UDMA_ALT_SELECT</strong> flag along with the channel number and sets the scatter-gather mode as appropriate for the primary or alternate control structure.</p>
+<p>The channel must also be enabled using <a class="reference internal" href="#group__udma__api_1ga6a7b41c493cd104cff48570e50e75cfd"><span class="std std-ref">UDMA_enableChannel()</span></a> after calling this function. The transfer does not begin until the channel has been configured and enabled. Note that the channel is automatically disabled after the transfer is completed, meaning that <a class="reference internal" href="#group__udma__api_1ga6a7b41c493cd104cff48570e50e75cfd"><span class="std std-ref">UDMA_enableChannel()</span></a> must be called again after setting up the next transfer.</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Great care must be taken to not modify a channel control structure that is in use or else the results are unpredictable, including the possibility of undesired data transfers to or from memory or peripherals. For BASIC and AUTO modes, it is safe to make changes when the channel is disabled, or the uDMA_getChannelMode() returns <strong>UDMA_MODE_STOP</strong>. For PINGPONG or one of the SCATTER_GATHER modes, it is safe to modify the primary or alternate control structure only when the other is being used. The uDMA_getChannelMode() function returns <strong>UDMA_MODE_STOP</strong> when a channel control structure is inactive and safe to modify.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427UDMA_getChannelTransferSize8uint32_t8uint32_t">
+<span id="_CPPv327UDMA_getChannelTransferSize8uint32_t8uint32_t"></span><span id="_CPPv227UDMA_getChannelTransferSize8uint32_t8uint32_t"></span><span id="UDMA_getChannelTransferSize__uint32_t.uint32_t"></span><span class="target" id="group__udma__api_1ga9d07b0419f979571fa411d0d922d08d5"></span>uint32_t <code class="sig-name descname">UDMA_getChannelTransferSize</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427UDMA_getChannelTransferSize8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the current transfer size for a uDMA channel control structure.</p>
+<p><p>This function is used to get the uDMA transfer size for a channel. The transfer size is the number of items to transfer, where the size of an item might be 8, 16, or 32 bits. If a partial transfer has already occurred, then the number of remaining items is returned. If the transfer is complete, then 0 is returned.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the uDMA instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">index</span></code>: is the index for channel control structure.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the number of items remaining to transfer. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv432UDMA_setChannelScatterGatherMode8uint32_t8uint32_t8uint32_tP17UDMA_ControlTableb">
+<span id="_CPPv332UDMA_setChannelScatterGatherMode8uint32_t8uint32_t8uint32_tP17UDMA_ControlTableb"></span><span id="_CPPv232UDMA_setChannelScatterGatherMode8uint32_t8uint32_t8uint32_tP17UDMA_ControlTableb"></span><span id="UDMA_setChannelScatterGatherMode__uint32_t.uint32_t.uint32_t.UDMA_ControlTableP.b"></span><span class="target" id="group__udma__api_1ga83a8025100383d393baef076ee6009c2"></span>void <code class="sig-name descname">UDMA_setChannelScatterGatherMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>channelNum</em>, uint32_t <em>taskCount</em>, <a class="reference internal" href="#_CPPv417UDMA_ControlTable" title="UDMA_ControlTable">UDMA_ControlTable</a> *<em>taskList</em>, bool <em>isPeriphScatterGather</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv432UDMA_setChannelScatterGatherMode8uint32_t8uint32_t8uint32_tP17UDMA_ControlTableb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures a uDMA channel for scatter-gather mode.</p>
+<p><p>This function is used to configure a channel for scatter-gather mode. The caller must have already set up a task list and must pass a pointer to the start of the task list as the </p>
+<em>taskList</em> parameter. The <em>taskCount</em> parameter is the count of tasks in the task list, not the size of the task list. The flag <em>isPeriphScatterGather</em> should be used to indicate if scatter-gather should be configured for peripheral or memory operation.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the uDMA instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">channelNum</span></code>: is the uDMA channel number. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">taskCount</span></code>: is the number of scatter-gather tasks to execute. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">taskList</span></code>: is a pointer to the beginning of the scatter-gather task list. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">isPeriphScatterGather</span></code>: is a flag to indicate it is a peripheral scatter-gather transfer (else it is memory scatter-gather transfer)</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#group__udma__api_1ga0ee8584aa9ac8e88f7d11b8281b32bb0"><span class="std std-ref">UDMA_TASK_STRUCT_ENTRY</span></a></p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt id="_CPPv417UDMA_ControlTable">
+<span id="_CPPv317UDMA_ControlTable"></span><span id="_CPPv217UDMA_ControlTable"></span><span id="UDMA_ControlTable"></span><span class="target" id="struct_u_d_m_a___control_table"></span><em class="property">struct </em><code class="sig-name descname">UDMA_ControlTable</code><a class="headerlink" href="#_CPPv417UDMA_ControlTable" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;udma.h&gt;</em><p>A structure that defines an entry in the channel control table. These fields are used by the uDMA controller and normally it is not necessary for software to directly read or write fields in the table. </p>
+</dd></dl>
+
+</dd></dl>
+
+<p>The code for this module is contained in driverlib_cm/udma.c, with
+driverlib_cm/udma.h containing the API declarations for use by
+applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="flash.html" class="btn btn-neutral float-left" title="FLASH Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="gcrc.html" class="btn btn-neutral float-right" title="GCRC Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

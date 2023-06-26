@@ -1,0 +1,236 @@
+//###########################################################################
+// Description:
+//
+// Task 1: Logic Tests
+//
+//###########################################################################
+// $TI Release:  $
+// $Release Date:  $
+// $Copyright:
+// Copyright (C) 2009-2023 Texas Instruments Incorporated - http://www.ti.com/
+//
+// Redistribution and use in source and binary forms, with or without 
+// modification, are permitted provided that the following conditions 
+// are met:
+// 
+//   Redistributions of source code must retain the above copyright 
+//   notice, this list of conditions and the following disclaimer.
+// 
+//   Redistributions in binary form must reproduce the above copyright
+//   notice, this list of conditions and the following disclaimer in the 
+//   documentation and/or other materials provided with the   
+//   distribution.
+// 
+//   Neither the name of Texas Instruments Incorporated nor the names of
+//   its contributors may be used to endorse or promote products derived
+//   from this software without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+// $
+//###########################################################################
+
+//
+// Included Files
+//
+#include "DSP28x_Project.h"
+
+//
+// Include the test header file whose name is based on the test name
+// which is defined by the macro TEST on the command line
+//
+#include XSTRINGIZE(XCONCAT(TEST_NAME,_shared.h))
+
+//
+// CLA Local functions
+//
+int foo(int , int );
+int bar(float , float );
+void tau(int *, int *);
+
+//
+// Cla1Task1 - logic tests
+// see http://graphics.stanford.edu/~seander/bithacks.html#OperationCounting
+//
+__interrupt void 
+Cla1Task1 ( void )
+{
+    //
+    // Local Variables
+    //
+    int a,b,mask,r;
+    int p,f;
+
+    //
+    // Starting
+    //
+    __mdebugstop();
+    p = 0; f = 0;
+    
+    //
+    // 1. Compute sign of an integer
+    //
+    a = -12;
+    (-(a<0) == -1)?p++:f++;
+
+    //
+    // 2.Detect if two integers have opposite signs by xor'ing them
+    // the sign bits of both must be opposite to give a 1 in the MSB
+    //
+    a = -12; b =12;
+    ((a^b) < 0)?p++:f++;
+
+    //
+    // 3.compute absolute value of 'a' . first create a mask from the MSB
+    // mask = a >> 31. if a is -ive then mask = smallest negative number else 
+    // its all zeros for a +ive. (>> sign extends the number)
+    // a -ive : mask = least -ve number(-1), a += mask -> a += -1, 
+    // a = a^-1 , ones compliment of a gives the abs(a) -1
+    // so lets assume we have a 4 bit system: -6 : 1010. if we take its 1s 
+    // complement
+    // i.e. 1010(-6) ^ 1111(-1) = 0101(5) so obviously to get +6 we need to 
+    // take the 1s complement of -7 hence we add in the -1 first
+    // a +ive you are adding and xor'ing with zero which does nothing
+    //
+    a = -13; b = 4;
+    mask = a >> 31;
+    r = (a + mask)^mask;
+    (r == 13)? p++ : f++;
+    mask = b >> 31;
+    r = (b + mask)^mask;
+    (r == 4)? p++ : f++;
+
+    //
+    // 4.Compute min of two integers
+    //  -> first figure out which bit positions are different between the two 
+    //     x = (a^b),
+    //  -> if (a < b) then i can get back a by b^x otherwise ill just go with a
+    //
+    a = 5; b = 2;
+    r = b^((a ^ b) & -( a < b ));
+    (r == 2)? p++ : f++;
+    r = b^((a^b) & -(a>b));
+    (r == 5)? p++ : f++;
+
+    //
+    // 5. determine if a number is a power of 2. i.e it should have a single 
+    // binary 1 in it
+    //   e.g. 2^3 = 8 (0x1000), we subtract 1 to get 7 (0x0111). and(&) the two 
+    //   numbers and you get 0. A power of 2 number at the nth position always 
+    //   gives a string of 1s in the [n-1:0] bit position when you subtract a 1
+    //   from it. you can use this to find other bits in the[0:n-1] positions  
+    //   with a logical and operation
+    //
+    a = 64; b = 37;
+    r = ((a & (a -1)) == 0); //do a boolean operation
+    (r == 1)? p++ : f++;
+    r = ((b & (b -1)) == 0); //do a boolean operation
+    (r == 0)? p++ : f++;
+
+    cla_fail_count = f;
+    cla_pass_count = p;
+}
+
+__interrupt void Cla1Task2 ( void )
+{
+
+}
+__interrupt void Cla1Task3 ( void )
+{
+
+}
+__interrupt void Cla1Task4 ( void )
+{
+
+}
+__interrupt void Cla1Task5 ( void )
+{
+
+}
+__interrupt void Cla1Task6 ( void )
+{
+
+}
+__interrupt void Cla1Task7 ( void )
+{
+
+}
+__interrupt void Cla1Task8 ( void )
+{
+
+}
+
+//
+// CLA local functions
+//
+
+//
+// foo -
+//
+int 
+foo(int a, int b)
+{
+    if(a < b) return 0x11111111;
+    if(a > b) return 0x22222222;
+    if(a == b) return 0x33333333;
+  
+    return 0xBAADBAAD;
+}
+
+//
+// bar -
+//
+int 
+bar(float a, float b)
+{
+    if(a < b) return 0x11111111;
+    if(a > b) return 0x22222222;
+    if(a == b) return 0x33333333; 
+  
+    return 0xBAADBAAD; 
+}
+
+//
+// tau -
+//
+void 
+tau(int *a, int *b)
+{
+    int tmp;
+    if(*a < *b)
+    {
+        tmp = *a;
+        *a = *b;
+        *b = tmp;
+        return;
+    }
+    else if(*a > *b)
+    {
+        *b += (*a - *b);
+        return;
+    }
+    else if(*a == *b)
+    {
+        return;
+    }
+    
+    //
+    // it should never hit this point
+    //
+    *a = 0xBAADBAAD; *b = 0xBAADBAAD;
+    return;   
+}
+
+//
+// End of File
+//
+

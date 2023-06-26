@@ -1,0 +1,177 @@
+//###########################################################################
+// Description:
+//
+// Task 1: Copy the vector to cla to cpu message RAM
+// Task 2: Sort the array - shell short with mswapf intrinsic
+// Task 3: Similar - but the vector is integer instead of float
+//
+//###########################################################################
+// $TI Release:  $
+// $Release Date:  $
+// $Copyright:
+// Copyright (C) 2009-2023 Texas Instruments Incorporated - http://www.ti.com/
+//
+// Redistribution and use in source and binary forms, with or without 
+// modification, are permitted provided that the following conditions 
+// are met:
+// 
+//   Redistributions of source code must retain the above copyright 
+//   notice, this list of conditions and the following disclaimer.
+// 
+//   Redistributions in binary form must reproduce the above copyright
+//   notice, this list of conditions and the following disclaimer in the 
+//   documentation and/or other materials provided with the   
+//   distribution.
+// 
+//   Neither the name of Texas Instruments Incorporated nor the names of
+//   its contributors may be used to endorse or promote products derived
+//   from this software without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+// $
+//###########################################################################
+
+//
+// Included Files
+//
+#include "DSP28x_Project.h"
+
+//
+// Include the test header file whose name is based on the test name
+// which is defined by the macro TEST on the command line
+//
+#include XSTRINGIZE(XCONCAT(TEST_NAME,_shared.h))
+
+//
+// Defines
+//
+#define ARRAY_SIZE ((sizeof(vector1[])/sizeof(vector1[0])))
+
+//
+// Cla1Task1 - 
+//
+__interrupt void 
+Cla1Task1 ( void )
+{
+    int32 gap, index, j;
+    float temp;
+    
+    //  
+    // Copy the vector to cla to cpu message RAM
+    //
+    for(index=0; index < LENGTH1; index++)
+    {
+        vector1_sorted[index] = vector1[index];
+    }
+    //
+    // Sort the array - shell sort
+    //
+    for(gap = LENGTH1/2; gap > 0; gap /= 2)
+    {
+        for (index = gap; index < LENGTH1; index++)
+        {
+            for (j = index-gap; j >= 0 && vector1_sorted[j] > 
+                    vector1_sorted[j+gap]; j-= gap)
+            {
+                temp = vector1_sorted[j];
+                vector1_sorted[j] = vector1_sorted[j+gap];
+                vector1_sorted[j+gap] = temp;
+            } 
+        }
+    }
+}
+
+//
+// Cla1Task2 - Sort the array (shell short with mswapf intrinsic)
+//
+__interrupt void
+Cla1Task2 ( void )
+{
+    int32 gap, index, j;
+    
+    //  
+    // Copy the vector to cla to cpu message RAM
+    //
+    for(index=0; index < LENGTH2; index++)
+    {
+        vector2_sorted[index] = vector2[index];
+    }
+    
+    //
+    // Sort the array - shell sort use swapf32 intrinsic
+    //
+    for(gap = LENGTH2/2; gap > 0; gap /= 2)
+    {
+        for (index = gap; index < LENGTH2; index++)
+        {
+            for (j = index-gap; j >= 0 && vector2_sorted[j] < 
+                    vector2_sorted[j+gap]; j-= gap)
+            {
+                __mswapf(vector2_sorted[j], vector2_sorted[j+1]);
+            } 
+        }
+    }  	
+}
+
+//
+// Similar - but the vector is integer instead of float
+// Use one vector in data RAM for both in/out
+//
+__interrupt void 
+Cla1Task3 ( void )
+{
+    int32 gap, index, j;
+    int32 temp;
+
+    //
+    // Sort the array - shell sort
+    //
+    for(gap = LENGTH3/2; gap > 0; gap /= 2)
+    {
+        for (index = gap; index < LENGTH3; index++)
+        {
+            for (j = index-gap; j >= 0 && vector3[j] < vector3[j+gap]; j-= gap)
+            {
+                temp = vector3[j];
+                vector3[j] = vector3[j+gap];
+                vector3[j+gap] = temp;
+            } 
+        }
+    }
+}
+
+__interrupt void Cla1Task4 ( void )
+{
+
+}
+__interrupt void Cla1Task5 ( void )
+{
+
+}
+__interrupt void Cla1Task6 ( void )
+{
+
+}
+__interrupt void Cla1Task7 ( void )
+{
+
+}
+__interrupt void Cla1Task8 ( void )
+{
+
+}
+
+//
+// End of File
+//
+

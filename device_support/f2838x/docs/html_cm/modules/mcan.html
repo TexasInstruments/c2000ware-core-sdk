@@ -1,0 +1,2193 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>MCAN Module &mdash; F2838x CM API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F2838x CM API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="MPU Module" href="mpu.html"/>
+        <link rel="prev" title="MEMCFG Module" href="memcfg.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F2838x CM API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="aes.html">AES Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmmpu.html">CM-MPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpu.html">CPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="escss.html">ESCSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ethernet.html">Ethernet Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="udma.html">UDMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gcrc.html">GCRC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipc.html">IPC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">MCAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mpu.html">MPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ssi.html">SSI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="systick.html">SysTick Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uart.html">UART Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F2838x CM API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>MCAN Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="mcan-module">
+<span id="mcan"></span><h1>MCAN Module<a class="headerlink" href="#mcan-module" title="Permalink to this headline">¶</a></h1>
+<p>The Modular Controller Area Network (MCAN) module supports both classic CAN and CAN FD (CAN with Flexible Data-Rate) specifications.
+CAN FD feature allows high throughput and increased payload per data frame. The classic CAN and CAN
+FD devices can coexist on the same network without any conflict. Functions are provided
+to setup and configure the module operating options, setup the different types of message
+objects, send and read messages, and setup and handle interrupts and events.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__mcan__api"></span><em>group</em> <code class="sig-name descname">mcan_api</code></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.MCANSS_MSG_RAM_NUM">
+<span class="target" id="group__mcan__api_1ga0527d934e2f0fb7251de76682cc56aa1"></span><code class="sig-name descname">MCANSS_MSG_RAM_NUM</code> (0U)<a class="headerlink" href="#c.MCANSS_MSG_RAM_NUM" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>MCAN MSG RAM BANK number for ECC AGGR. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MCANSS_RX_BUFFER_MAX">
+<span class="target" id="group__mcan__api_1gac1bc852f27da460c8d54f0b428741e64"></span><code class="sig-name descname">MCANSS_RX_BUFFER_MAX</code> (64U)<a class="headerlink" href="#c.MCANSS_RX_BUFFER_MAX" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Maximum Number of Rx Buffers. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MCANSS_TX_BUFFER_MAX">
+<span class="target" id="group__mcan__api_1gad7249d497cbec53c03d906136fdf1585"></span><code class="sig-name descname">MCANSS_TX_BUFFER_MAX</code> (32U)<a class="headerlink" href="#c.MCANSS_TX_BUFFER_MAX" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Maximum Number of Tx Buffers. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MCANSS_STD_ID_FILTER_SIZE_WORDS">
+<span class="target" id="group__mcan__api_1gadc5201738ed189bec4eada2cd9112d89"></span><code class="sig-name descname">MCANSS_STD_ID_FILTER_SIZE_WORDS</code> (1U)<a class="headerlink" href="#c.MCANSS_STD_ID_FILTER_SIZE_WORDS" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Macro for standard Message ID filter. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MCANSS_EXT_ID_FILTER_SIZE_WORDS">
+<span class="target" id="group__mcan__api_1ga2342c76bf73c8e5e7c756afb344304ac"></span><code class="sig-name descname">MCANSS_EXT_ID_FILTER_SIZE_WORDS</code> (2U)<a class="headerlink" href="#c.MCANSS_EXT_ID_FILTER_SIZE_WORDS" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Macro for extended Message ID filter. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MCANSS_TX_EVENT_FIFO_SIZE_WORDS">
+<span class="target" id="group__mcan__api_1ga3f3f8635b73a2142aad7c9af85782e36"></span><code class="sig-name descname">MCANSS_TX_EVENT_FIFO_SIZE_WORDS</code> (2U)<a class="headerlink" href="#c.MCANSS_TX_EVENT_FIFO_SIZE_WORDS" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Macro for Tx Event FIFO element size. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MCANSS_INTR_LINE_EN_MASK">
+<span class="target" id="group__mcan__api_1ga2121b86fac8b14dfcddc03f40d178c0f"></span><code class="sig-name descname">MCANSS_INTR_LINE_EN_MASK</code> ((MCAN_ILE_EINT0_MASK | MCAN_ILE_EINT1_MASK))<a class="headerlink" href="#c.MCANSS_INTR_LINE_EN_MASK" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Macro for Interrupt Line enable mask. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MCAN_INTR_MASK_ALL">
+<span class="target" id="group__mcan__api_1ga925f8d15bf700b4d3674f7c7728f36a6"></span><code class="sig-name descname">MCAN_INTR_MASK_ALL</code> (MCAN_IR_RF0N_MASK<p> |                              \</p>
+MCAN_IR_RF0W_MASK<p> |                              \</p>
+MCAN_IR_RF0F_MASK<p> |                              \</p>
+MCAN_IR_RF0L_MASK<p> |                              \</p>
+MCAN_IR_RF1N_MASK<p> |                              \</p>
+MCAN_IR_RF1W_MASK<p> |                              \</p>
+MCAN_IR_RF1F_MASK<p> |                              \</p>
+MCAN_IR_RF1L_MASK<p> |                              \</p>
+MCAN_IR_HPM_MASK<p> |                               \</p>
+MCAN_IR_TC_MASK<p> |                                \</p>
+MCAN_IR_TCF_MASK<p> |                               \</p>
+MCAN_IR_TFE_MASK<p> |                               \</p>
+MCAN_IR_TEFN_MASK<p> |                              \</p>
+MCAN_IR_TEFW_MASK<p> |                              \</p>
+MCAN_IR_TEFF_MASK<p> |                              \</p>
+MCAN_IR_TEFL_MASK<p> |                              \</p>
+MCAN_IR_TSW_MASK<p> |                               \</p>
+MCAN_IR_MRAF_MASK<p> |                              \</p>
+MCAN_IR_TOO_MASK<p> |                               \</p>
+MCAN_IR_DRX_MASK<p> |                               \</p>
+MCAN_IR_BEC_MASK<p> |                               \</p>
+MCAN_IR_BEU_MASK<p> |                               \</p>
+MCAN_IR_ELO_MASK<p> |                               \</p>
+MCAN_IR_EP_MASK<p> |                                \</p>
+MCAN_IR_EW_MASK<p> |                                \</p>
+MCAN_IR_BO_MASK<p> |                                \</p>
+MCAN_IR_WDI_MASK<p> |                               \</p>
+MCAN_IR_PEA_MASK<p> |                               \</p>
+MCAN_IR_PED_MASK<p> |                               \</p>
+MCAN_IR_ARA_MASK)<a class="headerlink" href="#c.MCAN_INTR_MASK_ALL" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Macro defines mask for all the interrupts status for MCAN. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MCAN_MAX_PAYLOAD_BYTES">
+<span class="target" id="group__mcan__api_1gaae9ff297ab474d1d5bb2901e53415cbf"></span><code class="sig-name descname">MCAN_MAX_PAYLOAD_BYTES</code> (64U)<a class="headerlink" href="#c.MCAN_MAX_PAYLOAD_BYTES" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Maximum payload supported by CAn-FD protocol in bytes. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="cpp enum">
+<dt id="_CPPv416MCAN_IntrLineNum">
+<span id="_CPPv316MCAN_IntrLineNum"></span><span id="_CPPv216MCAN_IntrLineNum"></span><span class="target" id="group__mcan__api_1ga50277dbe3ad4d2068d640fa016dc113c"></span><em class="property">enum </em><code class="sig-name descname">MCAN_IntrLineNum</code><a class="headerlink" href="#_CPPv416MCAN_IntrLineNum" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enum to select the MCAN interrupt lines. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N16MCAN_IntrLineNum20MCAN_INTR_LINE_NUM_0E">
+<span id="_CPPv3N16MCAN_IntrLineNum20MCAN_INTR_LINE_NUM_0E"></span><span id="_CPPv2N16MCAN_IntrLineNum20MCAN_INTR_LINE_NUM_0E"></span><span class="target" id="group__mcan__api_1gga50277dbe3ad4d2068d640fa016dc113cae42dd8c81703bfe5547fb8ce040427d0"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_INTR_LINE_NUM_0</code> = 0U<a class="headerlink" href="#_CPPv4N16MCAN_IntrLineNum20MCAN_INTR_LINE_NUM_0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>MCAN interrupt line 0 </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N16MCAN_IntrLineNum20MCAN_INTR_LINE_NUM_1E">
+<span id="_CPPv3N16MCAN_IntrLineNum20MCAN_INTR_LINE_NUM_1E"></span><span id="_CPPv2N16MCAN_IntrLineNum20MCAN_INTR_LINE_NUM_1E"></span><span class="target" id="group__mcan__api_1gga50277dbe3ad4d2068d640fa016dc113cae1786dd2918426d3d9d2c4579f3ede79"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_INTR_LINE_NUM_1</code> = 1U<a class="headerlink" href="#_CPPv4N16MCAN_IntrLineNum20MCAN_INTR_LINE_NUM_1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>MCAN interrupt line 1 </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv411MCAN_IdType">
+<span id="_CPPv311MCAN_IdType"></span><span id="_CPPv211MCAN_IdType"></span><span class="target" id="group__mcan__api_1ga9186b63cbf1c12579bc4b4037e6fcd7c"></span><em class="property">enum </em><code class="sig-name descname">MCAN_IdType</code><a class="headerlink" href="#_CPPv411MCAN_IdType" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enum to represent the MCAN Identifier Type. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11MCAN_IdType19MCAN_ID_TYPE_11_BITE">
+<span id="_CPPv3N11MCAN_IdType19MCAN_ID_TYPE_11_BITE"></span><span id="_CPPv2N11MCAN_IdType19MCAN_ID_TYPE_11_BITE"></span><span class="target" id="group__mcan__api_1gga9186b63cbf1c12579bc4b4037e6fcd7ca32813fc798b547c3e154b5f4d838e176"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_ID_TYPE_11_BIT</code> = 0U<a class="headerlink" href="#_CPPv4N11MCAN_IdType19MCAN_ID_TYPE_11_BITE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>11bit MCAN Identifier </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11MCAN_IdType19MCAN_ID_TYPE_29_BITE">
+<span id="_CPPv3N11MCAN_IdType19MCAN_ID_TYPE_29_BITE"></span><span id="_CPPv2N11MCAN_IdType19MCAN_ID_TYPE_29_BITE"></span><span class="target" id="group__mcan__api_1gga9186b63cbf1c12579bc4b4037e6fcd7cad1384409947a27ed151e60f3defe62a8"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_ID_TYPE_29_BIT</code> = 1U<a class="headerlink" href="#_CPPv4N11MCAN_IdType19MCAN_ID_TYPE_29_BITE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>29bit MCAN Identifier </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv418MCAN_OperationMode">
+<span id="_CPPv318MCAN_OperationMode"></span><span id="_CPPv218MCAN_OperationMode"></span><span class="target" id="group__mcan__api_1ga862b6a68c57fdd1c9dd9e3c339355cd9"></span><em class="property">enum </em><code class="sig-name descname">MCAN_OperationMode</code><a class="headerlink" href="#_CPPv418MCAN_OperationMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enum to represent the MCAN mode of operation. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18MCAN_OperationMode26MCAN_OPERATION_MODE_NORMALE">
+<span id="_CPPv3N18MCAN_OperationMode26MCAN_OPERATION_MODE_NORMALE"></span><span id="_CPPv2N18MCAN_OperationMode26MCAN_OPERATION_MODE_NORMALE"></span><span class="target" id="group__mcan__api_1gga862b6a68c57fdd1c9dd9e3c339355cd9a39609178d2dfd32ca1859ff6ef6aa2cf"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_OPERATION_MODE_NORMAL</code> = 0U<a class="headerlink" href="#_CPPv4N18MCAN_OperationMode26MCAN_OPERATION_MODE_NORMALE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>MCAN normal mode </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18MCAN_OperationMode27MCAN_OPERATION_MODE_SW_INITE">
+<span id="_CPPv3N18MCAN_OperationMode27MCAN_OPERATION_MODE_SW_INITE"></span><span id="_CPPv2N18MCAN_OperationMode27MCAN_OPERATION_MODE_SW_INITE"></span><span class="target" id="group__mcan__api_1gga862b6a68c57fdd1c9dd9e3c339355cd9a8e73f750e1cbe9aab77fc18e578f2ae3"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_OPERATION_MODE_SW_INIT</code> = 1U<a class="headerlink" href="#_CPPv4N18MCAN_OperationMode27MCAN_OPERATION_MODE_SW_INITE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>MCAN SW initialization mode </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv412MCAN_MemType">
+<span id="_CPPv312MCAN_MemType"></span><span id="_CPPv212MCAN_MemType"></span><span class="target" id="group__mcan__api_1gad42a8d40e35b466e1f793db78e234221"></span><em class="property">enum </em><code class="sig-name descname">MCAN_MemType</code><a class="headerlink" href="#_CPPv412MCAN_MemType" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enum to represent the MCAN Message RAM type. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_MemType17MCAN_MEM_TYPE_BUFE">
+<span id="_CPPv3N12MCAN_MemType17MCAN_MEM_TYPE_BUFE"></span><span id="_CPPv2N12MCAN_MemType17MCAN_MEM_TYPE_BUFE"></span><span class="target" id="group__mcan__api_1ggad42a8d40e35b466e1f793db78e234221a2a503ac15542094f70137059502a6613"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_MEM_TYPE_BUF</code> = 0U<a class="headerlink" href="#_CPPv4N12MCAN_MemType17MCAN_MEM_TYPE_BUFE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>MCAN Msg RAM buffers </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_MemType18MCAN_MEM_TYPE_FIFOE">
+<span id="_CPPv3N12MCAN_MemType18MCAN_MEM_TYPE_FIFOE"></span><span id="_CPPv2N12MCAN_MemType18MCAN_MEM_TYPE_FIFOE"></span><span class="target" id="group__mcan__api_1ggad42a8d40e35b466e1f793db78e234221a0b7d009b549b11a68643bf788f4156cd"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_MEM_TYPE_FIFO</code> = 1U<a class="headerlink" href="#_CPPv4N12MCAN_MemType18MCAN_MEM_TYPE_FIFOE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>MCAN Msg RAM FIFO/Queue </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv414MCAN_RxFIFONum">
+<span id="_CPPv314MCAN_RxFIFONum"></span><span id="_CPPv214MCAN_RxFIFONum"></span><span class="target" id="group__mcan__api_1ga7d6a7687d5642db7286275702ebcbd7a"></span><em class="property">enum </em><code class="sig-name descname">MCAN_RxFIFONum</code><a class="headerlink" href="#_CPPv414MCAN_RxFIFONum" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enum to represent the MCAN Rx FIFO number. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14MCAN_RxFIFONum18MCAN_RX_FIFO_NUM_0E">
+<span id="_CPPv3N14MCAN_RxFIFONum18MCAN_RX_FIFO_NUM_0E"></span><span id="_CPPv2N14MCAN_RxFIFONum18MCAN_RX_FIFO_NUM_0E"></span><span class="target" id="group__mcan__api_1gga7d6a7687d5642db7286275702ebcbd7aa7efdda3e4ff084968dd631d2caece2c7"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_RX_FIFO_NUM_0</code> = 0U<a class="headerlink" href="#_CPPv4N14MCAN_RxFIFONum18MCAN_RX_FIFO_NUM_0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>MCAN Rx FIFO 0 </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14MCAN_RxFIFONum18MCAN_RX_FIFO_NUM_1E">
+<span id="_CPPv3N14MCAN_RxFIFONum18MCAN_RX_FIFO_NUM_1E"></span><span id="_CPPv2N14MCAN_RxFIFONum18MCAN_RX_FIFO_NUM_1E"></span><span class="target" id="group__mcan__api_1gga7d6a7687d5642db7286275702ebcbd7aac8538e418c24bef54fec3119f775dc23"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_RX_FIFO_NUM_1</code> = 1U<a class="headerlink" href="#_CPPv4N14MCAN_RxFIFONum18MCAN_RX_FIFO_NUM_1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>MCAN Rx FIFO 1 </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv412MCAN_PinType">
+<span id="_CPPv312MCAN_PinType"></span><span id="_CPPv212MCAN_PinType"></span><span class="target" id="group__mcan__api_1gacde4ea7efc5c4338bfc842de62960cff"></span><em class="property">enum </em><code class="sig-name descname">MCAN_PinType</code><a class="headerlink" href="#_CPPv412MCAN_PinType" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enum to represent the MCAN pin type. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_PinType16MCAN_PIN_TYPE_RXE">
+<span id="_CPPv3N12MCAN_PinType16MCAN_PIN_TYPE_RXE"></span><span id="_CPPv2N12MCAN_PinType16MCAN_PIN_TYPE_RXE"></span><span class="target" id="group__mcan__api_1ggacde4ea7efc5c4338bfc842de62960cffa813a7a35f0c7b398124e7e85cbcd8c60"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_PIN_TYPE_RX</code> = 0U<a class="headerlink" href="#_CPPv4N12MCAN_PinType16MCAN_PIN_TYPE_RXE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>MCAN Rx Pin </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_PinType16MCAN_PIN_TYPE_TXE">
+<span id="_CPPv3N12MCAN_PinType16MCAN_PIN_TYPE_TXE"></span><span id="_CPPv2N12MCAN_PinType16MCAN_PIN_TYPE_TXE"></span><span class="target" id="group__mcan__api_1ggacde4ea7efc5c4338bfc842de62960cffa5fb40af69178553e82df23f4d474b603"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_PIN_TYPE_TX</code> = 1U<a class="headerlink" href="#_CPPv4N12MCAN_PinType16MCAN_PIN_TYPE_TXE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>MCAN Tx Pin </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv413MCAN_ElemSize">
+<span id="_CPPv313MCAN_ElemSize"></span><span id="_CPPv213MCAN_ElemSize"></span><span class="target" id="group__mcan__api_1ga07a9f1568e21a958b61058d730153832"></span><em class="property">enum </em><code class="sig-name descname">MCAN_ElemSize</code><a class="headerlink" href="#_CPPv413MCAN_ElemSize" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enum to represent FIFO/Buffer element Size. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13MCAN_ElemSize21MCAN_ELEM_SIZE_8BYTESE">
+<span id="_CPPv3N13MCAN_ElemSize21MCAN_ELEM_SIZE_8BYTESE"></span><span id="_CPPv2N13MCAN_ElemSize21MCAN_ELEM_SIZE_8BYTESE"></span><span class="target" id="group__mcan__api_1gga07a9f1568e21a958b61058d730153832acff1e5f7500dc64cd1f8575157d98419"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_ELEM_SIZE_8BYTES</code> = 0U<a class="headerlink" href="#_CPPv4N13MCAN_ElemSize21MCAN_ELEM_SIZE_8BYTESE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>8 byte data field </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13MCAN_ElemSize22MCAN_ELEM_SIZE_12BYTESE">
+<span id="_CPPv3N13MCAN_ElemSize22MCAN_ELEM_SIZE_12BYTESE"></span><span id="_CPPv2N13MCAN_ElemSize22MCAN_ELEM_SIZE_12BYTESE"></span><span class="target" id="group__mcan__api_1gga07a9f1568e21a958b61058d730153832a6fc4c8c052dc95546d526c992d278c94"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_ELEM_SIZE_12BYTES</code> = 1U<a class="headerlink" href="#_CPPv4N13MCAN_ElemSize22MCAN_ELEM_SIZE_12BYTESE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>12 byte data field </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13MCAN_ElemSize22MCAN_ELEM_SIZE_16BYTESE">
+<span id="_CPPv3N13MCAN_ElemSize22MCAN_ELEM_SIZE_16BYTESE"></span><span id="_CPPv2N13MCAN_ElemSize22MCAN_ELEM_SIZE_16BYTESE"></span><span class="target" id="group__mcan__api_1gga07a9f1568e21a958b61058d730153832a2dfb3756b22c54d12434416f54b61957"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_ELEM_SIZE_16BYTES</code> = 2U<a class="headerlink" href="#_CPPv4N13MCAN_ElemSize22MCAN_ELEM_SIZE_16BYTESE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>16 byte data field </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13MCAN_ElemSize22MCAN_ELEM_SIZE_20BYTESE">
+<span id="_CPPv3N13MCAN_ElemSize22MCAN_ELEM_SIZE_20BYTESE"></span><span id="_CPPv2N13MCAN_ElemSize22MCAN_ELEM_SIZE_20BYTESE"></span><span class="target" id="group__mcan__api_1gga07a9f1568e21a958b61058d730153832a87865224a947520dd557b5ffb75df9be"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_ELEM_SIZE_20BYTES</code> = 3U<a class="headerlink" href="#_CPPv4N13MCAN_ElemSize22MCAN_ELEM_SIZE_20BYTESE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>20 byte data field </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13MCAN_ElemSize22MCAN_ELEM_SIZE_24BYTESE">
+<span id="_CPPv3N13MCAN_ElemSize22MCAN_ELEM_SIZE_24BYTESE"></span><span id="_CPPv2N13MCAN_ElemSize22MCAN_ELEM_SIZE_24BYTESE"></span><span class="target" id="group__mcan__api_1gga07a9f1568e21a958b61058d730153832a0b68fb96cbaee7b11425d75731aedc7d"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_ELEM_SIZE_24BYTES</code> = 4U<a class="headerlink" href="#_CPPv4N13MCAN_ElemSize22MCAN_ELEM_SIZE_24BYTESE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>24 byte data field </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13MCAN_ElemSize22MCAN_ELEM_SIZE_32BYTESE">
+<span id="_CPPv3N13MCAN_ElemSize22MCAN_ELEM_SIZE_32BYTESE"></span><span id="_CPPv2N13MCAN_ElemSize22MCAN_ELEM_SIZE_32BYTESE"></span><span class="target" id="group__mcan__api_1gga07a9f1568e21a958b61058d730153832ab98f0f7500dfc65e5fa1d5408cb8e32d"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_ELEM_SIZE_32BYTES</code> = 5U<a class="headerlink" href="#_CPPv4N13MCAN_ElemSize22MCAN_ELEM_SIZE_32BYTESE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>32 byte data field </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13MCAN_ElemSize22MCAN_ELEM_SIZE_48BYTESE">
+<span id="_CPPv3N13MCAN_ElemSize22MCAN_ELEM_SIZE_48BYTESE"></span><span id="_CPPv2N13MCAN_ElemSize22MCAN_ELEM_SIZE_48BYTESE"></span><span class="target" id="group__mcan__api_1gga07a9f1568e21a958b61058d730153832ad27aa8bfce210465bcfc5ebc9d36119f"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_ELEM_SIZE_48BYTES</code> = 6U<a class="headerlink" href="#_CPPv4N13MCAN_ElemSize22MCAN_ELEM_SIZE_48BYTESE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>48 byte data field </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13MCAN_ElemSize22MCAN_ELEM_SIZE_64BYTESE">
+<span id="_CPPv3N13MCAN_ElemSize22MCAN_ELEM_SIZE_64BYTESE"></span><span id="_CPPv2N13MCAN_ElemSize22MCAN_ELEM_SIZE_64BYTESE"></span><span class="target" id="group__mcan__api_1gga07a9f1568e21a958b61058d730153832a06448de589a0fe4d48b06ca1e9d3a777"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_ELEM_SIZE_64BYTES</code> = 7U<a class="headerlink" href="#_CPPv4N13MCAN_ElemSize22MCAN_ELEM_SIZE_64BYTESE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>64 byte data field </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv418MCAN_TimeOutSelect">
+<span id="_CPPv318MCAN_TimeOutSelect"></span><span id="_CPPv218MCAN_TimeOutSelect"></span><span class="target" id="group__mcan__api_1ga2f1fe19f38e071bdfc44a4e1a933d4e1"></span><em class="property">enum </em><code class="sig-name descname">MCAN_TimeOutSelect</code><a class="headerlink" href="#_CPPv418MCAN_TimeOutSelect" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enum to represent the MCAN time-out counter configuration. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18MCAN_TimeOutSelect24MCAN_TIMEOUT_SELECT_CONTE">
+<span id="_CPPv3N18MCAN_TimeOutSelect24MCAN_TIMEOUT_SELECT_CONTE"></span><span id="_CPPv2N18MCAN_TimeOutSelect24MCAN_TIMEOUT_SELECT_CONTE"></span><span class="target" id="group__mcan__api_1gga2f1fe19f38e071bdfc44a4e1a933d4e1a6c91cd7eae6f6350aaf81206f496fd2a"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_TIMEOUT_SELECT_CONT</code> = 0U<a class="headerlink" href="#_CPPv4N18MCAN_TimeOutSelect24MCAN_TIMEOUT_SELECT_CONTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Continuous operation Mode </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18MCAN_TimeOutSelect33MCAN_TIMEOUT_SELECT_TX_EVENT_FIFOE">
+<span id="_CPPv3N18MCAN_TimeOutSelect33MCAN_TIMEOUT_SELECT_TX_EVENT_FIFOE"></span><span id="_CPPv2N18MCAN_TimeOutSelect33MCAN_TIMEOUT_SELECT_TX_EVENT_FIFOE"></span><span class="target" id="group__mcan__api_1gga2f1fe19f38e071bdfc44a4e1a933d4e1a06260df86e4f01085ff7b25acb6a2ff1"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_TIMEOUT_SELECT_TX_EVENT_FIFO</code> = 1U<a class="headerlink" href="#_CPPv4N18MCAN_TimeOutSelect33MCAN_TIMEOUT_SELECT_TX_EVENT_FIFOE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Timeout controlled by Tx Event FIFO </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18MCAN_TimeOutSelect28MCAN_TIMEOUT_SELECT_RX_FIFO0E">
+<span id="_CPPv3N18MCAN_TimeOutSelect28MCAN_TIMEOUT_SELECT_RX_FIFO0E"></span><span id="_CPPv2N18MCAN_TimeOutSelect28MCAN_TIMEOUT_SELECT_RX_FIFO0E"></span><span class="target" id="group__mcan__api_1gga2f1fe19f38e071bdfc44a4e1a933d4e1a42d5174c8588201fb67389c1ce1669cc"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_TIMEOUT_SELECT_RX_FIFO0</code> = 2U<a class="headerlink" href="#_CPPv4N18MCAN_TimeOutSelect28MCAN_TIMEOUT_SELECT_RX_FIFO0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Timeout controlled by Rx FIFO 0 </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18MCAN_TimeOutSelect28MCAN_TIMEOUT_SELECT_RX_FIFO1E">
+<span id="_CPPv3N18MCAN_TimeOutSelect28MCAN_TIMEOUT_SELECT_RX_FIFO1E"></span><span id="_CPPv2N18MCAN_TimeOutSelect28MCAN_TIMEOUT_SELECT_RX_FIFO1E"></span><span class="target" id="group__mcan__api_1gga2f1fe19f38e071bdfc44a4e1a933d4e1af7bdc3188a2a6915913104a414aebca9"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_TIMEOUT_SELECT_RX_FIFO1</code> = 3U<a class="headerlink" href="#_CPPv4N18MCAN_TimeOutSelect28MCAN_TIMEOUT_SELECT_RX_FIFO1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Timeout controlled by Rx FIFO 1 </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv412MCAN_IntrSrc">
+<span id="_CPPv312MCAN_IntrSrc"></span><span id="_CPPv212MCAN_IntrSrc"></span><span class="target" id="group__mcan__api_1ga74dec9f93ee026f811d5359a2ce4bd14"></span><em class="property">enum </em><code class="sig-name descname">MCAN_IntrSrc</code><a class="headerlink" href="#_CPPv412MCAN_IntrSrc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enum for MCAN interrupts. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_IntrSrc30MCAN_INTR_SRC_RX_FIFO0_NEW_MSGE">
+<span id="_CPPv3N12MCAN_IntrSrc30MCAN_INTR_SRC_RX_FIFO0_NEW_MSGE"></span><span id="_CPPv2N12MCAN_IntrSrc30MCAN_INTR_SRC_RX_FIFO0_NEW_MSGE"></span><span class="target" id="group__mcan__api_1gga74dec9f93ee026f811d5359a2ce4bd14a96883fb5816f3d6620991c628a861a19"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_INTR_SRC_RX_FIFO0_NEW_MSG</code> = (0x00000001U)<a class="headerlink" href="#_CPPv4N12MCAN_IntrSrc30MCAN_INTR_SRC_RX_FIFO0_NEW_MSGE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Rx FIFO 0 New Message interrupt </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_IntrSrc32MCAN_INTR_SRC_RX_FIFO0_WATERMARKE">
+<span id="_CPPv3N12MCAN_IntrSrc32MCAN_INTR_SRC_RX_FIFO0_WATERMARKE"></span><span id="_CPPv2N12MCAN_IntrSrc32MCAN_INTR_SRC_RX_FIFO0_WATERMARKE"></span><span class="target" id="group__mcan__api_1gga74dec9f93ee026f811d5359a2ce4bd14aa07560df3b717cc36fa02ec9bad83c3f"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_INTR_SRC_RX_FIFO0_WATERMARK</code> = (0x00000002U)<a class="headerlink" href="#_CPPv4N12MCAN_IntrSrc32MCAN_INTR_SRC_RX_FIFO0_WATERMARKE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Rx FIFO 0 Watermark Reached interrupt </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_IntrSrc27MCAN_INTR_SRC_RX_FIFO0_FULLE">
+<span id="_CPPv3N12MCAN_IntrSrc27MCAN_INTR_SRC_RX_FIFO0_FULLE"></span><span id="_CPPv2N12MCAN_IntrSrc27MCAN_INTR_SRC_RX_FIFO0_FULLE"></span><span class="target" id="group__mcan__api_1gga74dec9f93ee026f811d5359a2ce4bd14a06f4be93b6e390eb92c38671b4825212"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_INTR_SRC_RX_FIFO0_FULL</code> = (0x00000004U)<a class="headerlink" href="#_CPPv4N12MCAN_IntrSrc27MCAN_INTR_SRC_RX_FIFO0_FULLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Rx FIFO 0 Full interrupt </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_IntrSrc31MCAN_INTR_SRC_RX_FIFO0_MSG_LOSTE">
+<span id="_CPPv3N12MCAN_IntrSrc31MCAN_INTR_SRC_RX_FIFO0_MSG_LOSTE"></span><span id="_CPPv2N12MCAN_IntrSrc31MCAN_INTR_SRC_RX_FIFO0_MSG_LOSTE"></span><span class="target" id="group__mcan__api_1gga74dec9f93ee026f811d5359a2ce4bd14a683753650105bd03073315159245a816"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_INTR_SRC_RX_FIFO0_MSG_LOST</code> = (0x00000008U)<a class="headerlink" href="#_CPPv4N12MCAN_IntrSrc31MCAN_INTR_SRC_RX_FIFO0_MSG_LOSTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Rx FIFO 0 Message Lost interrupt </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_IntrSrc30MCAN_INTR_SRC_RX_FIFO1_NEW_MSGE">
+<span id="_CPPv3N12MCAN_IntrSrc30MCAN_INTR_SRC_RX_FIFO1_NEW_MSGE"></span><span id="_CPPv2N12MCAN_IntrSrc30MCAN_INTR_SRC_RX_FIFO1_NEW_MSGE"></span><span class="target" id="group__mcan__api_1gga74dec9f93ee026f811d5359a2ce4bd14a226b39e55c89e3c6f609a75bb9e4c918"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_INTR_SRC_RX_FIFO1_NEW_MSG</code> = (0x00000010U)<a class="headerlink" href="#_CPPv4N12MCAN_IntrSrc30MCAN_INTR_SRC_RX_FIFO1_NEW_MSGE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Rx FIFO 1 New Message interrupt </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_IntrSrc32MCAN_INTR_SRC_RX_FIFO1_WATERMARKE">
+<span id="_CPPv3N12MCAN_IntrSrc32MCAN_INTR_SRC_RX_FIFO1_WATERMARKE"></span><span id="_CPPv2N12MCAN_IntrSrc32MCAN_INTR_SRC_RX_FIFO1_WATERMARKE"></span><span class="target" id="group__mcan__api_1gga74dec9f93ee026f811d5359a2ce4bd14a772a2b99d8bc833bd1816f89591586fc"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_INTR_SRC_RX_FIFO1_WATERMARK</code> = (0x00000020U)<a class="headerlink" href="#_CPPv4N12MCAN_IntrSrc32MCAN_INTR_SRC_RX_FIFO1_WATERMARKE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Rx FIFO 1 Watermark Reached interrupt </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_IntrSrc27MCAN_INTR_SRC_RX_FIFO1_FULLE">
+<span id="_CPPv3N12MCAN_IntrSrc27MCAN_INTR_SRC_RX_FIFO1_FULLE"></span><span id="_CPPv2N12MCAN_IntrSrc27MCAN_INTR_SRC_RX_FIFO1_FULLE"></span><span class="target" id="group__mcan__api_1gga74dec9f93ee026f811d5359a2ce4bd14ae562293642d3a221b6007263ffc56e2c"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_INTR_SRC_RX_FIFO1_FULL</code> = (0x00000040U)<a class="headerlink" href="#_CPPv4N12MCAN_IntrSrc27MCAN_INTR_SRC_RX_FIFO1_FULLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Rx FIFO 1 Full interrupt </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_IntrSrc31MCAN_INTR_SRC_RX_FIFO1_MSG_LOSTE">
+<span id="_CPPv3N12MCAN_IntrSrc31MCAN_INTR_SRC_RX_FIFO1_MSG_LOSTE"></span><span id="_CPPv2N12MCAN_IntrSrc31MCAN_INTR_SRC_RX_FIFO1_MSG_LOSTE"></span><span class="target" id="group__mcan__api_1gga74dec9f93ee026f811d5359a2ce4bd14a1ef03c29e64926254ab2166c4877df03"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_INTR_SRC_RX_FIFO1_MSG_LOST</code> = (0x00000080U)<a class="headerlink" href="#_CPPv4N12MCAN_IntrSrc31MCAN_INTR_SRC_RX_FIFO1_MSG_LOSTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Rx FIFO 1 Message Lost interrupt </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_IntrSrc27MCAN_INTR_SRC_HIGH_PRIO_MSGE">
+<span id="_CPPv3N12MCAN_IntrSrc27MCAN_INTR_SRC_HIGH_PRIO_MSGE"></span><span id="_CPPv2N12MCAN_IntrSrc27MCAN_INTR_SRC_HIGH_PRIO_MSGE"></span><span class="target" id="group__mcan__api_1gga74dec9f93ee026f811d5359a2ce4bd14a9bb53f14e0a1e1e2e4ea67cee5a97396"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_INTR_SRC_HIGH_PRIO_MSG</code> = (0x00000100U)<a class="headerlink" href="#_CPPv4N12MCAN_IntrSrc27MCAN_INTR_SRC_HIGH_PRIO_MSGE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>High Priority Message interrupt </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_IntrSrc28MCAN_INTR_SRC_TRANS_COMPLETEE">
+<span id="_CPPv3N12MCAN_IntrSrc28MCAN_INTR_SRC_TRANS_COMPLETEE"></span><span id="_CPPv2N12MCAN_IntrSrc28MCAN_INTR_SRC_TRANS_COMPLETEE"></span><span class="target" id="group__mcan__api_1gga74dec9f93ee026f811d5359a2ce4bd14a845a200f3757a4a791c34e4b0c624a7a"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_INTR_SRC_TRANS_COMPLETE</code> = (0x00000200U)<a class="headerlink" href="#_CPPv4N12MCAN_IntrSrc28MCAN_INTR_SRC_TRANS_COMPLETEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmission Completed interrupt </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_IntrSrc33MCAN_INTR_SRC_TRANS_CANCEL_FINISHE">
+<span id="_CPPv3N12MCAN_IntrSrc33MCAN_INTR_SRC_TRANS_CANCEL_FINISHE"></span><span id="_CPPv2N12MCAN_IntrSrc33MCAN_INTR_SRC_TRANS_CANCEL_FINISHE"></span><span class="target" id="group__mcan__api_1gga74dec9f93ee026f811d5359a2ce4bd14abdd83b4aefb46128e25bf2a31c9c457a"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_INTR_SRC_TRANS_CANCEL_FINISH</code> = (0x00000400U)<a class="headerlink" href="#_CPPv4N12MCAN_IntrSrc33MCAN_INTR_SRC_TRANS_CANCEL_FINISHE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmission Cancellation Finished interrupt </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_IntrSrc27MCAN_INTR_SRC_TX_FIFO_EMPTYE">
+<span id="_CPPv3N12MCAN_IntrSrc27MCAN_INTR_SRC_TX_FIFO_EMPTYE"></span><span id="_CPPv2N12MCAN_IntrSrc27MCAN_INTR_SRC_TX_FIFO_EMPTYE"></span><span class="target" id="group__mcan__api_1gga74dec9f93ee026f811d5359a2ce4bd14a7edc295af7a09be904ba20a059f742d7"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_INTR_SRC_TX_FIFO_EMPTY</code> = (0x00000800U)<a class="headerlink" href="#_CPPv4N12MCAN_IntrSrc27MCAN_INTR_SRC_TX_FIFO_EMPTYE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Tx FIFO Empty interrupt </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_IntrSrc35MCAN_INTR_SRC_TX_EVT_FIFO_NEW_ENTRYE">
+<span id="_CPPv3N12MCAN_IntrSrc35MCAN_INTR_SRC_TX_EVT_FIFO_NEW_ENTRYE"></span><span id="_CPPv2N12MCAN_IntrSrc35MCAN_INTR_SRC_TX_EVT_FIFO_NEW_ENTRYE"></span><span class="target" id="group__mcan__api_1gga74dec9f93ee026f811d5359a2ce4bd14a9b9d2d3e1cde47d224af9274ccdfde4f"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_INTR_SRC_TX_EVT_FIFO_NEW_ENTRY</code> = (0x00001000U)<a class="headerlink" href="#_CPPv4N12MCAN_IntrSrc35MCAN_INTR_SRC_TX_EVT_FIFO_NEW_ENTRYE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Tx Event FIFO New Entry interrupt </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_IntrSrc35MCAN_INTR_SRC_TX_EVT_FIFO_WATERMARKE">
+<span id="_CPPv3N12MCAN_IntrSrc35MCAN_INTR_SRC_TX_EVT_FIFO_WATERMARKE"></span><span id="_CPPv2N12MCAN_IntrSrc35MCAN_INTR_SRC_TX_EVT_FIFO_WATERMARKE"></span><span class="target" id="group__mcan__api_1gga74dec9f93ee026f811d5359a2ce4bd14a3716816a24582273760e530d223bc556"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_INTR_SRC_TX_EVT_FIFO_WATERMARK</code> = (0x00002000U)<a class="headerlink" href="#_CPPv4N12MCAN_IntrSrc35MCAN_INTR_SRC_TX_EVT_FIFO_WATERMARKE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Tx Event FIFO Watermark Reached interrupt </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_IntrSrc30MCAN_INTR_SRC_TX_EVT_FIFO_FULLE">
+<span id="_CPPv3N12MCAN_IntrSrc30MCAN_INTR_SRC_TX_EVT_FIFO_FULLE"></span><span id="_CPPv2N12MCAN_IntrSrc30MCAN_INTR_SRC_TX_EVT_FIFO_FULLE"></span><span class="target" id="group__mcan__api_1gga74dec9f93ee026f811d5359a2ce4bd14a13de29f3c81b7439c7b9765fa5317761"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_INTR_SRC_TX_EVT_FIFO_FULL</code> = (0x00004000U)<a class="headerlink" href="#_CPPv4N12MCAN_IntrSrc30MCAN_INTR_SRC_TX_EVT_FIFO_FULLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Tx Event FIFO Full interrupt </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_IntrSrc35MCAN_INTR_SRC_TX_EVT_FIFO_ELEM_LOSTE">
+<span id="_CPPv3N12MCAN_IntrSrc35MCAN_INTR_SRC_TX_EVT_FIFO_ELEM_LOSTE"></span><span id="_CPPv2N12MCAN_IntrSrc35MCAN_INTR_SRC_TX_EVT_FIFO_ELEM_LOSTE"></span><span class="target" id="group__mcan__api_1gga74dec9f93ee026f811d5359a2ce4bd14ac8556d2b6bb83b8410970bd020ad6120"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_INTR_SRC_TX_EVT_FIFO_ELEM_LOST</code> = (0x00008000U)<a class="headerlink" href="#_CPPv4N12MCAN_IntrSrc35MCAN_INTR_SRC_TX_EVT_FIFO_ELEM_LOSTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Tx Event FIFO Element Lost interrupt </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_IntrSrc34MCAN_INTR_SRC_TIMESTAMP_WRAPAROUNDE">
+<span id="_CPPv3N12MCAN_IntrSrc34MCAN_INTR_SRC_TIMESTAMP_WRAPAROUNDE"></span><span id="_CPPv2N12MCAN_IntrSrc34MCAN_INTR_SRC_TIMESTAMP_WRAPAROUNDE"></span><span class="target" id="group__mcan__api_1gga74dec9f93ee026f811d5359a2ce4bd14a9e7d37e2ba1845f1d7c2d8f0b3b2ebe9"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_INTR_SRC_TIMESTAMP_WRAPAROUND</code> = (0x00010000U)<a class="headerlink" href="#_CPPv4N12MCAN_IntrSrc34MCAN_INTR_SRC_TIMESTAMP_WRAPAROUNDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Timestamp Wraparound interrupt </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_IntrSrc36MCAN_INTR_SRC_MSG_RAM_ACCESS_FAILUREE">
+<span id="_CPPv3N12MCAN_IntrSrc36MCAN_INTR_SRC_MSG_RAM_ACCESS_FAILUREE"></span><span id="_CPPv2N12MCAN_IntrSrc36MCAN_INTR_SRC_MSG_RAM_ACCESS_FAILUREE"></span><span class="target" id="group__mcan__api_1gga74dec9f93ee026f811d5359a2ce4bd14ac35a74223bef800f33d2f684a37395ec"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_INTR_SRC_MSG_RAM_ACCESS_FAILURE</code> = (0x00020000U)<a class="headerlink" href="#_CPPv4N12MCAN_IntrSrc36MCAN_INTR_SRC_MSG_RAM_ACCESS_FAILUREE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Message RAM Access Failure interrupt </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_IntrSrc21MCAN_INTR_SRC_TIMEOUTE">
+<span id="_CPPv3N12MCAN_IntrSrc21MCAN_INTR_SRC_TIMEOUTE"></span><span id="_CPPv2N12MCAN_IntrSrc21MCAN_INTR_SRC_TIMEOUTE"></span><span class="target" id="group__mcan__api_1gga74dec9f93ee026f811d5359a2ce4bd14a0d64d482332c43746a6351045bf322ca"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_INTR_SRC_TIMEOUT</code> = (0x00040000U)<a class="headerlink" href="#_CPPv4N12MCAN_IntrSrc21MCAN_INTR_SRC_TIMEOUTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Timeout Occurred interrupt </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_IntrSrc35MCAN_INTR_SRC_DEDICATED_RX_BUFF_MSGE">
+<span id="_CPPv3N12MCAN_IntrSrc35MCAN_INTR_SRC_DEDICATED_RX_BUFF_MSGE"></span><span id="_CPPv2N12MCAN_IntrSrc35MCAN_INTR_SRC_DEDICATED_RX_BUFF_MSGE"></span><span class="target" id="group__mcan__api_1gga74dec9f93ee026f811d5359a2ce4bd14a57b82a44bf13fd347a0efdf5da493bde"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_INTR_SRC_DEDICATED_RX_BUFF_MSG</code> = (0x00080000U)<a class="headerlink" href="#_CPPv4N12MCAN_IntrSrc35MCAN_INTR_SRC_DEDICATED_RX_BUFF_MSGE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Message stored to Dedicated Rx Buffer interrupt </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_IntrSrc31MCAN_INTR_SRC_BIT_ERR_CORRECTEDE">
+<span id="_CPPv3N12MCAN_IntrSrc31MCAN_INTR_SRC_BIT_ERR_CORRECTEDE"></span><span id="_CPPv2N12MCAN_IntrSrc31MCAN_INTR_SRC_BIT_ERR_CORRECTEDE"></span><span class="target" id="group__mcan__api_1gga74dec9f93ee026f811d5359a2ce4bd14a2cb2c76a250fcabeacf404f96b52d733"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_INTR_SRC_BIT_ERR_CORRECTED</code> = (0x00100000U)<a class="headerlink" href="#_CPPv4N12MCAN_IntrSrc31MCAN_INTR_SRC_BIT_ERR_CORRECTEDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Bit Error Corrected interrupt </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_IntrSrc33MCAN_INTR_SRC_BIT_ERR_UNCORRECTEDE">
+<span id="_CPPv3N12MCAN_IntrSrc33MCAN_INTR_SRC_BIT_ERR_UNCORRECTEDE"></span><span id="_CPPv2N12MCAN_IntrSrc33MCAN_INTR_SRC_BIT_ERR_UNCORRECTEDE"></span><span class="target" id="group__mcan__api_1gga74dec9f93ee026f811d5359a2ce4bd14acdda251e10302153d97c0e282789d499"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_INTR_SRC_BIT_ERR_UNCORRECTED</code> = (0x00200000U)<a class="headerlink" href="#_CPPv4N12MCAN_IntrSrc33MCAN_INTR_SRC_BIT_ERR_UNCORRECTEDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Bit Error Uncorrected interrupt </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_IntrSrc28MCAN_INTR_SRC_ERR_LOG_OVRFLWE">
+<span id="_CPPv3N12MCAN_IntrSrc28MCAN_INTR_SRC_ERR_LOG_OVRFLWE"></span><span id="_CPPv2N12MCAN_IntrSrc28MCAN_INTR_SRC_ERR_LOG_OVRFLWE"></span><span class="target" id="group__mcan__api_1gga74dec9f93ee026f811d5359a2ce4bd14ae553c1b8110c67851e19eb14fc07079f"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_INTR_SRC_ERR_LOG_OVRFLW</code> = (0x00400000U)<a class="headerlink" href="#_CPPv4N12MCAN_IntrSrc28MCAN_INTR_SRC_ERR_LOG_OVRFLWE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Error Logging Overflow interrupt </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_IntrSrc25MCAN_INTR_SRC_ERR_PASSIVEE">
+<span id="_CPPv3N12MCAN_IntrSrc25MCAN_INTR_SRC_ERR_PASSIVEE"></span><span id="_CPPv2N12MCAN_IntrSrc25MCAN_INTR_SRC_ERR_PASSIVEE"></span><span class="target" id="group__mcan__api_1gga74dec9f93ee026f811d5359a2ce4bd14a6c736087b42c58d21de6a6593496eb83"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_INTR_SRC_ERR_PASSIVE</code> = (0x00800000U)<a class="headerlink" href="#_CPPv4N12MCAN_IntrSrc25MCAN_INTR_SRC_ERR_PASSIVEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Error Passive interrupt </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_IntrSrc28MCAN_INTR_SRC_WARNING_STATUSE">
+<span id="_CPPv3N12MCAN_IntrSrc28MCAN_INTR_SRC_WARNING_STATUSE"></span><span id="_CPPv2N12MCAN_IntrSrc28MCAN_INTR_SRC_WARNING_STATUSE"></span><span class="target" id="group__mcan__api_1gga74dec9f93ee026f811d5359a2ce4bd14a2a2d5ed0a7004d7bdd18c6e0a87c9212"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_INTR_SRC_WARNING_STATUS</code> = (0x01000000U)<a class="headerlink" href="#_CPPv4N12MCAN_IntrSrc28MCAN_INTR_SRC_WARNING_STATUSE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Warning Status interrupt </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_IntrSrc28MCAN_INTR_SRC_BUS_OFF_STATUSE">
+<span id="_CPPv3N12MCAN_IntrSrc28MCAN_INTR_SRC_BUS_OFF_STATUSE"></span><span id="_CPPv2N12MCAN_IntrSrc28MCAN_INTR_SRC_BUS_OFF_STATUSE"></span><span class="target" id="group__mcan__api_1gga74dec9f93ee026f811d5359a2ce4bd14a33cbb7fd677030b1b6d042002294a144"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_INTR_SRC_BUS_OFF_STATUS</code> = (0x02000000U)<a class="headerlink" href="#_CPPv4N12MCAN_IntrSrc28MCAN_INTR_SRC_BUS_OFF_STATUSE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Bus_Off Status interrupt </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_IntrSrc22MCAN_INTR_SRC_WATCHDOGE">
+<span id="_CPPv3N12MCAN_IntrSrc22MCAN_INTR_SRC_WATCHDOGE"></span><span id="_CPPv2N12MCAN_IntrSrc22MCAN_INTR_SRC_WATCHDOGE"></span><span class="target" id="group__mcan__api_1gga74dec9f93ee026f811d5359a2ce4bd14a65efa455c3e19e1c030d22f88a2f437c"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_INTR_SRC_WATCHDOG</code> = (0x04000000U)<a class="headerlink" href="#_CPPv4N12MCAN_IntrSrc22MCAN_INTR_SRC_WATCHDOGE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Watchdog Interrupt interrupt </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_IntrSrc30MCAN_INTR_SRC_PROTOCOL_ERR_ARBE">
+<span id="_CPPv3N12MCAN_IntrSrc30MCAN_INTR_SRC_PROTOCOL_ERR_ARBE"></span><span id="_CPPv2N12MCAN_IntrSrc30MCAN_INTR_SRC_PROTOCOL_ERR_ARBE"></span><span class="target" id="group__mcan__api_1gga74dec9f93ee026f811d5359a2ce4bd14a2bf834cc0fa950af3db3861ae788049a"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_INTR_SRC_PROTOCOL_ERR_ARB</code> = (0x08000000U)<a class="headerlink" href="#_CPPv4N12MCAN_IntrSrc30MCAN_INTR_SRC_PROTOCOL_ERR_ARBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Protocol Error in Arbitration Phase interrupt </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_IntrSrc31MCAN_INTR_SRC_PROTOCOL_ERR_DATAE">
+<span id="_CPPv3N12MCAN_IntrSrc31MCAN_INTR_SRC_PROTOCOL_ERR_DATAE"></span><span id="_CPPv2N12MCAN_IntrSrc31MCAN_INTR_SRC_PROTOCOL_ERR_DATAE"></span><span class="target" id="group__mcan__api_1gga74dec9f93ee026f811d5359a2ce4bd14adc7330416f536fe4ddd7bba1388a8d4a"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_INTR_SRC_PROTOCOL_ERR_DATA</code> = (0x10000000U)<a class="headerlink" href="#_CPPv4N12MCAN_IntrSrc31MCAN_INTR_SRC_PROTOCOL_ERR_DATAE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Protocol Error in Data Phase interrupt </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_IntrSrc29MCAN_INTR_SRC_RES_ADDR_ACCESSE">
+<span id="_CPPv3N12MCAN_IntrSrc29MCAN_INTR_SRC_RES_ADDR_ACCESSE"></span><span id="_CPPv2N12MCAN_IntrSrc29MCAN_INTR_SRC_RES_ADDR_ACCESSE"></span><span class="target" id="group__mcan__api_1gga74dec9f93ee026f811d5359a2ce4bd14aae3b745c7524ef7709186c220ffdc577"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_INTR_SRC_RES_ADDR_ACCESS</code> = (0x20000000U)<a class="headerlink" href="#_CPPv4N12MCAN_IntrSrc29MCAN_INTR_SRC_RES_ADDR_ACCESSE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Access to Reserved Address interrupt </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv415MCAN_ECCErrType">
+<span id="_CPPv315MCAN_ECCErrType"></span><span id="_CPPv215MCAN_ECCErrType"></span><span class="target" id="group__mcan__api_1ga70d7bcf1acb2d99122534e980134c324"></span><em class="property">enum </em><code class="sig-name descname">MCAN_ECCErrType</code><a class="headerlink" href="#_CPPv415MCAN_ECCErrType" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enum to represent the ECC Error Types. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15MCAN_ECCErrType21MCAN_ECC_ERR_TYPE_SECE">
+<span id="_CPPv3N15MCAN_ECCErrType21MCAN_ECC_ERR_TYPE_SECE"></span><span id="_CPPv2N15MCAN_ECCErrType21MCAN_ECC_ERR_TYPE_SECE"></span><span class="target" id="group__mcan__api_1gga70d7bcf1acb2d99122534e980134c324a65c0da8d576ec03ca6b2e574385abca4"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_ECC_ERR_TYPE_SEC</code> = 0U<a class="headerlink" href="#_CPPv4N15MCAN_ECCErrType21MCAN_ECC_ERR_TYPE_SECE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>ECC Single Error Correction </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15MCAN_ECCErrType21MCAN_ECC_ERR_TYPE_DEDE">
+<span id="_CPPv3N15MCAN_ECCErrType21MCAN_ECC_ERR_TYPE_DEDE"></span><span id="_CPPv2N15MCAN_ECCErrType21MCAN_ECC_ERR_TYPE_DEDE"></span><span class="target" id="group__mcan__api_1gga70d7bcf1acb2d99122534e980134c324a7675eb0897b05a42b2b4216b6a50c814"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_ECC_ERR_TYPE_DED</code> = 1U<a class="headerlink" href="#_CPPv4N15MCAN_ECCErrType21MCAN_ECC_ERR_TYPE_DEDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>ECC Single Error Detection </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv413MCAN_LpbkMode">
+<span id="_CPPv313MCAN_LpbkMode"></span><span id="_CPPv213MCAN_LpbkMode"></span><span class="target" id="group__mcan__api_1ga3ff2a050938cc5ae333348f509434381"></span><em class="property">enum </em><code class="sig-name descname">MCAN_LpbkMode</code><a class="headerlink" href="#_CPPv413MCAN_LpbkMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enum to select the MCAN Loopback mode. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13MCAN_LpbkMode23MCAN_LPBK_MODE_INTERNALE">
+<span id="_CPPv3N13MCAN_LpbkMode23MCAN_LPBK_MODE_INTERNALE"></span><span id="_CPPv2N13MCAN_LpbkMode23MCAN_LPBK_MODE_INTERNALE"></span><span class="target" id="group__mcan__api_1gga3ff2a050938cc5ae333348f509434381ad853627dc7d19f95a6c4cc916329eb92"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_LPBK_MODE_INTERNAL</code> = 0U<a class="headerlink" href="#_CPPv4N13MCAN_LpbkMode23MCAN_LPBK_MODE_INTERNALE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Internal Loop Back Mode This mode can be used for hot self-test and this mode will not affect bus state. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13MCAN_LpbkMode23MCAN_LPBK_MODE_EXTERNALE">
+<span id="_CPPv3N13MCAN_LpbkMode23MCAN_LPBK_MODE_EXTERNALE"></span><span id="_CPPv2N13MCAN_LpbkMode23MCAN_LPBK_MODE_EXTERNALE"></span><span class="target" id="group__mcan__api_1gga3ff2a050938cc5ae333348f509434381a63d42d52d1c38458d0fb8ff1b65702e4"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_LPBK_MODE_EXTERNAL</code> = 1U<a class="headerlink" href="#_CPPv4N13MCAN_LpbkMode23MCAN_LPBK_MODE_EXTERNALE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>External Loop Back Mode In this mode, MCAN the M_CAN treats its own transmitted messages as received messages and stores them (if they pass acceptance filtering) into an Rx Buffer or an Rx FIFO. This mode will affect bus state </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv413MCAN_ComState">
+<span id="_CPPv313MCAN_ComState"></span><span id="_CPPv213MCAN_ComState"></span><span class="target" id="group__mcan__api_1gab8f3f22eafe291e71a8dbe5490e60df6"></span><em class="property">enum </em><code class="sig-name descname">MCAN_ComState</code><a class="headerlink" href="#_CPPv413MCAN_ComState" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enum to represent MCAN’s communication state. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13MCAN_ComState28MCAN_COM_STATE_SYNCHRONIZINGE">
+<span id="_CPPv3N13MCAN_ComState28MCAN_COM_STATE_SYNCHRONIZINGE"></span><span id="_CPPv2N13MCAN_ComState28MCAN_COM_STATE_SYNCHRONIZINGE"></span><span class="target" id="group__mcan__api_1ggab8f3f22eafe291e71a8dbe5490e60df6ae981c99d2c08d234463fed0ca733cd74"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_COM_STATE_SYNCHRONIZING</code> = 0U<a class="headerlink" href="#_CPPv4N13MCAN_ComState28MCAN_COM_STATE_SYNCHRONIZINGE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>MCAN is synchronizing on CAN communication </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13MCAN_ComState19MCAN_COM_STATE_IDLEE">
+<span id="_CPPv3N13MCAN_ComState19MCAN_COM_STATE_IDLEE"></span><span id="_CPPv2N13MCAN_ComState19MCAN_COM_STATE_IDLEE"></span><span class="target" id="group__mcan__api_1ggab8f3f22eafe291e71a8dbe5490e60df6a224eab18b320cb5c4053e921b6d92873"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_COM_STATE_IDLE</code> = 1U<a class="headerlink" href="#_CPPv4N13MCAN_ComState19MCAN_COM_STATE_IDLEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>MCAN is neither receiver nor transmitter </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13MCAN_ComState23MCAN_COM_STATE_RECEIVERE">
+<span id="_CPPv3N13MCAN_ComState23MCAN_COM_STATE_RECEIVERE"></span><span id="_CPPv2N13MCAN_ComState23MCAN_COM_STATE_RECEIVERE"></span><span class="target" id="group__mcan__api_1ggab8f3f22eafe291e71a8dbe5490e60df6a79ffb7850dae63ba046cad12d1732841"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_COM_STATE_RECEIVER</code> = 2U<a class="headerlink" href="#_CPPv4N13MCAN_ComState23MCAN_COM_STATE_RECEIVERE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>MCAN is operating as receiver </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13MCAN_ComState26MCAN_COM_STATE_TRANSMITTERE">
+<span id="_CPPv3N13MCAN_ComState26MCAN_COM_STATE_TRANSMITTERE"></span><span id="_CPPv2N13MCAN_ComState26MCAN_COM_STATE_TRANSMITTERE"></span><span class="target" id="group__mcan__api_1ggab8f3f22eafe291e71a8dbe5490e60df6a976e2951fe6b30981b1f872c7c7cbf5b"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_COM_STATE_TRANSMITTER</code> = 3U<a class="headerlink" href="#_CPPv4N13MCAN_ComState26MCAN_COM_STATE_TRANSMITTERE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>MCAN is operating as transmitter </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv412MCAN_ErrCode">
+<span id="_CPPv312MCAN_ErrCode"></span><span id="_CPPv212MCAN_ErrCode"></span><span class="target" id="group__mcan__api_1gaa71d6bc3f084aef2c369e4a64b1b54de"></span><em class="property">enum </em><code class="sig-name descname">MCAN_ErrCode</code><a class="headerlink" href="#_CPPv412MCAN_ErrCode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enum to represent MCAN’s Error Code. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_ErrCode22MCAN_ERR_CODE_NO_ERRORE">
+<span id="_CPPv3N12MCAN_ErrCode22MCAN_ERR_CODE_NO_ERRORE"></span><span id="_CPPv2N12MCAN_ErrCode22MCAN_ERR_CODE_NO_ERRORE"></span><span class="target" id="group__mcan__api_1ggaa71d6bc3f084aef2c369e4a64b1b54dea64f9a2522ab8536a4e58ef14e30a144b"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_ERR_CODE_NO_ERROR</code> = 0U<a class="headerlink" href="#_CPPv4N12MCAN_ErrCode22MCAN_ERR_CODE_NO_ERRORE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>No error occurred since LEC has been reset by successful reception or transmission. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_ErrCode25MCAN_ERR_CODE_STUFF_ERRORE">
+<span id="_CPPv3N12MCAN_ErrCode25MCAN_ERR_CODE_STUFF_ERRORE"></span><span id="_CPPv2N12MCAN_ErrCode25MCAN_ERR_CODE_STUFF_ERRORE"></span><span class="target" id="group__mcan__api_1ggaa71d6bc3f084aef2c369e4a64b1b54deaf4e33b27efa69d251b3a157df1e82cda"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_ERR_CODE_STUFF_ERROR</code> = 1U<a class="headerlink" href="#_CPPv4N12MCAN_ErrCode25MCAN_ERR_CODE_STUFF_ERRORE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>More than 5 equal bits in a sequence have occurred in a part of a received message where this is not allowed. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_ErrCode24MCAN_ERR_CODE_FORM_ERRORE">
+<span id="_CPPv3N12MCAN_ErrCode24MCAN_ERR_CODE_FORM_ERRORE"></span><span id="_CPPv2N12MCAN_ErrCode24MCAN_ERR_CODE_FORM_ERRORE"></span><span class="target" id="group__mcan__api_1ggaa71d6bc3f084aef2c369e4a64b1b54dea07464969f10b87561fbcea4217139ab6"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_ERR_CODE_FORM_ERROR</code> = 2U<a class="headerlink" href="#_CPPv4N12MCAN_ErrCode24MCAN_ERR_CODE_FORM_ERRORE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A fixed format part of a received frame has the wrong format. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_ErrCode23MCAN_ERR_CODE_ACK_ERRORE">
+<span id="_CPPv3N12MCAN_ErrCode23MCAN_ERR_CODE_ACK_ERRORE"></span><span id="_CPPv2N12MCAN_ErrCode23MCAN_ERR_CODE_ACK_ERRORE"></span><span class="target" id="group__mcan__api_1ggaa71d6bc3f084aef2c369e4a64b1b54dea3771cd48234c4952f5792ccb7d908cc0"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_ERR_CODE_ACK_ERROR</code> = 3U<a class="headerlink" href="#_CPPv4N12MCAN_ErrCode23MCAN_ERR_CODE_ACK_ERRORE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The message transmitted by the M_CAN was not acknowledged by another node. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_ErrCode24MCAN_ERR_CODE_BIT1_ERRORE">
+<span id="_CPPv3N12MCAN_ErrCode24MCAN_ERR_CODE_BIT1_ERRORE"></span><span id="_CPPv2N12MCAN_ErrCode24MCAN_ERR_CODE_BIT1_ERRORE"></span><span class="target" id="group__mcan__api_1ggaa71d6bc3f084aef2c369e4a64b1b54dea896dc6480e34f1072a4a7a133b54e42e"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_ERR_CODE_BIT1_ERROR</code> = 4U<a class="headerlink" href="#_CPPv4N12MCAN_ErrCode24MCAN_ERR_CODE_BIT1_ERRORE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>During the transmission of a message (with the exception of the arbitration field), the device wanted to send a recessive level (bit of logical value ‘1’), but the monitored bus value was dominant. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_ErrCode24MCAN_ERR_CODE_BIT0_ERRORE">
+<span id="_CPPv3N12MCAN_ErrCode24MCAN_ERR_CODE_BIT0_ERRORE"></span><span id="_CPPv2N12MCAN_ErrCode24MCAN_ERR_CODE_BIT0_ERRORE"></span><span class="target" id="group__mcan__api_1ggaa71d6bc3f084aef2c369e4a64b1b54deabe1e81e221302fc4518cbc43fa847fe7"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_ERR_CODE_BIT0_ERROR</code> = 5U<a class="headerlink" href="#_CPPv4N12MCAN_ErrCode24MCAN_ERR_CODE_BIT0_ERRORE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>During the transmission of a message (or acknowledge bit, or active error flag, or overload flag), the device wanted to send a dominant level (data or identifier bit logical value ‘0’), but the monitored bus value was recessive. During Bus_Off recovery this status is set each time a sequence of 11 recessive bits has been monitored. This enables the CPU to monitor the proceeding of the Bus_Off recovery sequence (indicating the bus is not stuck at dominant or continuously disturbed). </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_ErrCode23MCAN_ERR_CODE_CRC_ERRORE">
+<span id="_CPPv3N12MCAN_ErrCode23MCAN_ERR_CODE_CRC_ERRORE"></span><span id="_CPPv2N12MCAN_ErrCode23MCAN_ERR_CODE_CRC_ERRORE"></span><span class="target" id="group__mcan__api_1ggaa71d6bc3f084aef2c369e4a64b1b54dea33931bc76c4f21d4ff1cf14aa0a3abc4"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_ERR_CODE_CRC_ERROR</code> = 6U<a class="headerlink" href="#_CPPv4N12MCAN_ErrCode23MCAN_ERR_CODE_CRC_ERRORE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The CRC check sum of a received message was incorrect. The CRC of an incoming message does not match with the CRC calculated from the received data. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12MCAN_ErrCode23MCAN_ERR_CODE_NO_CHANGEE">
+<span id="_CPPv3N12MCAN_ErrCode23MCAN_ERR_CODE_NO_CHANGEE"></span><span id="_CPPv2N12MCAN_ErrCode23MCAN_ERR_CODE_NO_CHANGEE"></span><span class="target" id="group__mcan__api_1ggaa71d6bc3f084aef2c369e4a64b1b54deaec25be629c8460056b980e499ffa21ae"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_ERR_CODE_NO_CHANGE</code> = 7U<a class="headerlink" href="#_CPPv4N12MCAN_ErrCode23MCAN_ERR_CODE_NO_CHANGEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Any read access to the Protocol Status Register re-initializes the LEC to ‘7’. When the LEC shows the value ‘7’, no CAN bus event was detected since the last CPU read access to the Protocol Status Register. </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv414MCAN_isInReset8uint32_t">
+<span id="_CPPv314MCAN_isInReset8uint32_t"></span><span id="_CPPv214MCAN_isInReset8uint32_t"></span><span id="MCAN_isInReset__uint32_t"></span><span class="target" id="group__mcan__api_1ga08ee0dc199511d5d177b3b90b0d3f03f"></span>uint32_t <code class="sig-name descname">MCAN_isInReset</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414MCAN_isInReset8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This function checks if the MCAN module is in Reset. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers.</p></li>
+</ul>
+</dd>
+<dt><strong>Return Value</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">state</span></code>: Returns TRUE if reset is in progress. Else returns FALSE. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417MCAN_isFDOpEnable8uint32_t">
+<span id="_CPPv317MCAN_isFDOpEnable8uint32_t"></span><span id="_CPPv217MCAN_isFDOpEnable8uint32_t"></span><span id="MCAN_isFDOpEnable__uint32_t"></span><span class="target" id="group__mcan__api_1gae4c98324477a1a659d9c296c1cb9a70c"></span>uint32_t <code class="sig-name descname">MCAN_isFDOpEnable</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417MCAN_isFDOpEnable8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will return flexible data rate operation status MCAN module. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>state Returns TRUE if flexible data rate operation is enabled. Else returns FALSE. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418MCAN_isMemInitDone8uint32_t">
+<span id="_CPPv318MCAN_isMemInitDone8uint32_t"></span><span id="_CPPv218MCAN_isMemInitDone8uint32_t"></span><span id="MCAN_isMemInitDone__uint32_t"></span><span class="target" id="group__mcan__api_1gaf04553a1ba2b96bb8c1512fae64c39b8"></span>uint32_t <code class="sig-name descname">MCAN_isMemInitDone</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418MCAN_isMemInitDone8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This function checks if the memory initialization is done for MCAN module. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers.</p></li>
+</ul>
+</dd>
+<dt><strong>Return Value</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">state</span></code>: Returns TRUE if memory initialization is done. Else returns FALSE. </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414MCAN_setOpMode8uint32_t8uint32_t">
+<span id="_CPPv314MCAN_setOpMode8uint32_t8uint32_t"></span><span id="_CPPv214MCAN_setOpMode8uint32_t8uint32_t"></span><span id="MCAN_setOpMode__uint32_t.uint32_t"></span><span class="target" id="group__mcan__api_1ga52f4bfed414d1b93b83efb62beca24ae"></span>void <code class="sig-name descname">MCAN_setOpMode</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, uint32_t <em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414MCAN_setOpMode8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will set MCAN module mode of operation. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: Mode of operation. Refer enum <a class="reference internal" href="#group__mcan__api_1ga862b6a68c57fdd1c9dd9e3c339355cd9"><span class="std std-ref">MCAN_OperationMode</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414MCAN_getOpMode8uint32_t">
+<span id="_CPPv314MCAN_getOpMode8uint32_t"></span><span id="_CPPv214MCAN_getOpMode8uint32_t"></span><span id="MCAN_getOpMode__uint32_t"></span><span class="target" id="group__mcan__api_1ga1d1773a279357c36d3f6f920572bfabd"></span>uint32_t <code class="sig-name descname">MCAN_getOpMode</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414MCAN_getOpMode8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will return MCAN module mode of operation. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>mode Mode of operation. Refer enum <a class="reference internal" href="#group__mcan__api_1ga862b6a68c57fdd1c9dd9e3c339355cd9"><span class="std std-ref">MCAN_OperationMode</span></a>. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv49MCAN_init8uint32_tPK15MCAN_InitParams">
+<span id="_CPPv39MCAN_init8uint32_tPK15MCAN_InitParams"></span><span id="_CPPv29MCAN_init8uint32_tPK15MCAN_InitParams"></span><span id="MCAN_init__uint32_t.MCAN_InitParamsCP"></span><span class="target" id="group__mcan__api_1ga1285d840ec4a2b5354b3a1e656ed1226"></span>int32_t <code class="sig-name descname">MCAN_init</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, <em class="property">const</em> <a class="reference internal" href="#_CPPv415MCAN_InitParams" title="MCAN_InitParams">MCAN_InitParams</a> *<em>initParams</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv49MCAN_init8uint32_tPK15MCAN_InitParams" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will initialize MCAN module. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>status Initialization status. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">initParams</span></code>: Initialization parameters. Refer struct <a class="reference internal" href="#struct_m_c_a_n___init_params"><span class="std std-ref">MCAN_InitParams</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv411MCAN_config8uint32_tPK17MCAN_ConfigParams">
+<span id="_CPPv311MCAN_config8uint32_tPK17MCAN_ConfigParams"></span><span id="_CPPv211MCAN_config8uint32_tPK17MCAN_ConfigParams"></span><span id="MCAN_config__uint32_t.MCAN_ConfigParamsCP"></span><span class="target" id="group__mcan__api_1ga40a0cbf1c2cfe9b36a325230f2557ace"></span>int32_t <code class="sig-name descname">MCAN_config</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, <em class="property">const</em> <a class="reference internal" href="#_CPPv417MCAN_ConfigParams" title="MCAN_ConfigParams">MCAN_ConfigParams</a> *<em>configParams</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411MCAN_config8uint32_tPK17MCAN_ConfigParams" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will configure MCAN module. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>status Configuration status. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">configParams</span></code>: configuration parameters. Refer struct <a class="reference internal" href="#struct_m_c_a_n___config_params"><span class="std std-ref">MCAN_ConfigParams</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414MCAN_eccConfig8uint32_tPK20MCAN_ECCConfigParams">
+<span id="_CPPv314MCAN_eccConfig8uint32_tPK20MCAN_ECCConfigParams"></span><span id="_CPPv214MCAN_eccConfig8uint32_tPK20MCAN_ECCConfigParams"></span><span id="MCAN_eccConfig__uint32_t.MCAN_ECCConfigParamsCP"></span><span class="target" id="group__mcan__api_1gaa3191de21a9625087e58d2dc2579e3ee"></span>void <code class="sig-name descname">MCAN_eccConfig</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, <em class="property">const</em> <a class="reference internal" href="#_CPPv420MCAN_ECCConfigParams" title="MCAN_ECCConfigParams">MCAN_ECCConfigParams</a> *<em>configParams</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414MCAN_eccConfig8uint32_tPK20MCAN_ECCConfigParams" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will enable/disable ECC on the Message RAM. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">configParams</span></code>: MCAN ECC Configuration Parameters. Refer #struct <a class="reference internal" href="#struct_m_c_a_n___e_c_c_config_params"><span class="std std-ref">MCAN_ECCConfigParams</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415MCAN_setBitTime8uint32_tPK20MCAN_BitTimingParams">
+<span id="_CPPv315MCAN_setBitTime8uint32_tPK20MCAN_BitTimingParams"></span><span id="_CPPv215MCAN_setBitTime8uint32_tPK20MCAN_BitTimingParams"></span><span id="MCAN_setBitTime__uint32_t.MCAN_BitTimingParamsCP"></span><span class="target" id="group__mcan__api_1ga5d02770f3a59e923d8ad6cb646b6de10"></span>int32_t <code class="sig-name descname">MCAN_setBitTime</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, <em class="property">const</em> <a class="reference internal" href="#_CPPv420MCAN_BitTimingParams" title="MCAN_BitTimingParams">MCAN_BitTimingParams</a> *<em>configParams</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415MCAN_setBitTime8uint32_tPK20MCAN_BitTimingParams" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will configure a bit timings for MCAN module. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>status Bit Timings configuration status. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">configParams</span></code>: Configuration parameters for MCAN bit timing. Refer struct <a class="reference internal" href="#struct_m_c_a_n___bit_timing_params"><span class="std std-ref">MCAN_BitTimingParams</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417MCAN_msgRAMConfig8uint32_tPK23MCAN_MsgRAMConfigParams">
+<span id="_CPPv317MCAN_msgRAMConfig8uint32_tPK23MCAN_MsgRAMConfigParams"></span><span id="_CPPv217MCAN_msgRAMConfig8uint32_tPK23MCAN_MsgRAMConfigParams"></span><span id="MCAN_msgRAMConfig__uint32_t.MCAN_MsgRAMConfigParamsCP"></span><span class="target" id="group__mcan__api_1gaed7ee11095cee9395e99831c9c0e23d9"></span>int32_t <code class="sig-name descname">MCAN_msgRAMConfig</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, <em class="property">const</em> <a class="reference internal" href="#_CPPv423MCAN_MsgRAMConfigParams" title="MCAN_MsgRAMConfigParams">MCAN_MsgRAMConfigParams</a> *<em>msgRAMConfigParams</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417MCAN_msgRAMConfig8uint32_tPK23MCAN_MsgRAMConfigParams" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will configure Different sections of Message RAM. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>status Configuration Status. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">msgRAMConfigParams</span></code>: Message RAM Configuration parameters. Refer struct <a class="reference internal" href="#struct_m_c_a_n___msg_r_a_m_config_params"><span class="std std-ref">MCAN_MsgRAMConfigParams</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420MCAN_setExtIDAndMask8uint32_t8uint32_t">
+<span id="_CPPv320MCAN_setExtIDAndMask8uint32_t8uint32_t"></span><span id="_CPPv220MCAN_setExtIDAndMask8uint32_t8uint32_t"></span><span id="MCAN_setExtIDAndMask__uint32_t.uint32_t"></span><span class="target" id="group__mcan__api_1ga629777764bddddbd259f8130305eb4c0"></span>int32_t <code class="sig-name descname">MCAN_setExtIDAndMask</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, uint32_t <em>idMask</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420MCAN_setExtIDAndMask8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will configure Extended ID AND Mask. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>status Extended ID AND Mask configuration status. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">idMask</span></code>: Configuration parameters for MCAN Extended Id mask. This value is 29 bit wide.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416MCAN_writeMsgRam8uint32_t8uint32_t8uint32_tPK17MCAN_TxBufElement">
+<span id="_CPPv316MCAN_writeMsgRam8uint32_t8uint32_t8uint32_tPK17MCAN_TxBufElement"></span><span id="_CPPv216MCAN_writeMsgRam8uint32_t8uint32_t8uint32_tPK17MCAN_TxBufElement"></span><span id="MCAN_writeMsgRam__uint32_t.uint32_t.uint32_t.MCAN_TxBufElementCP"></span><span class="target" id="group__mcan__api_1gae37ac29182dea3a49e228272633e123a"></span>void <code class="sig-name descname">MCAN_writeMsgRam</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, uint32_t <em>memType</em>, uint32_t <em>bufNum</em>, <em class="property">const</em> <a class="reference internal" href="#_CPPv417MCAN_TxBufElement" title="MCAN_TxBufElement">MCAN_TxBufElement</a> *<em>elem</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416MCAN_writeMsgRam8uint32_t8uint32_t8uint32_tPK17MCAN_TxBufElement" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API is used to write Tx message to message RAM. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">memType</span></code>: Part of message ram to which given message to write. Refer enum <a class="reference internal" href="#group__mcan__api_1gad42a8d40e35b466e1f793db78e234221"><span class="std std-ref">MCAN_MemType</span></a>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bufNum</span></code>: Buffer number where message to write. This parameter will ignored if memType is FIFO/Q. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">elem</span></code>: Message Object. Refer struct <a class="reference internal" href="#struct_m_c_a_n___tx_buf_element"><span class="std std-ref">MCAN_TxBufElement</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416MCAN_txBufAddReq8uint32_t8uint32_t">
+<span id="_CPPv316MCAN_txBufAddReq8uint32_t8uint32_t"></span><span id="_CPPv216MCAN_txBufAddReq8uint32_t8uint32_t"></span><span id="MCAN_txBufAddReq__uint32_t.uint32_t"></span><span class="target" id="group__mcan__api_1ga0d7adb1bdda7cbec3a4a92363ca17048"></span>int32_t <code class="sig-name descname">MCAN_txBufAddReq</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, uint32_t <em>bufNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416MCAN_txBufAddReq8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will set Tx Buffer Add Request. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>status Configuration Status. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bufNum</span></code>: Tx Buffer number for which request is to be added.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421MCAN_getNewDataStatus8uint32_tP20MCAN_RxNewDataStatus">
+<span id="_CPPv321MCAN_getNewDataStatus8uint32_tP20MCAN_RxNewDataStatus"></span><span id="_CPPv221MCAN_getNewDataStatus8uint32_tP20MCAN_RxNewDataStatus"></span><span id="MCAN_getNewDataStatus__uint32_t.MCAN_RxNewDataStatusP"></span><span class="target" id="group__mcan__api_1ga92c8acea1ffc5c0bdc926503b780f2d8"></span>void <code class="sig-name descname">MCAN_getNewDataStatus</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, <a class="reference internal" href="#_CPPv420MCAN_RxNewDataStatus" title="MCAN_RxNewDataStatus">MCAN_RxNewDataStatus</a> *<em>newDataStatus</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421MCAN_getNewDataStatus8uint32_tP20MCAN_RxNewDataStatus" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will return New Data Message Status. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">newDataStatus</span></code>: Rx Buffer new data status. Refer struct <a class="reference internal" href="#struct_m_c_a_n___rx_new_data_status"><span class="std std-ref">MCAN_RxNewDataStatus</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423MCAN_clearNewDataStatus8uint32_tPK20MCAN_RxNewDataStatus">
+<span id="_CPPv323MCAN_clearNewDataStatus8uint32_tPK20MCAN_RxNewDataStatus"></span><span id="_CPPv223MCAN_clearNewDataStatus8uint32_tPK20MCAN_RxNewDataStatus"></span><span id="MCAN_clearNewDataStatus__uint32_t.MCAN_RxNewDataStatusCP"></span><span class="target" id="group__mcan__api_1ga5209c8b871cb2b6a4d8237f467581e1d"></span>void <code class="sig-name descname">MCAN_clearNewDataStatus</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, <em class="property">const</em> <a class="reference internal" href="#_CPPv420MCAN_RxNewDataStatus" title="MCAN_RxNewDataStatus">MCAN_RxNewDataStatus</a> *<em>newDataStatus</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423MCAN_clearNewDataStatus8uint32_tPK20MCAN_RxNewDataStatus" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API clear New Data Message Status. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">newDataStatus</span></code>: Rx Buffer new data status. Refer struct <a class="reference internal" href="#struct_m_c_a_n___rx_new_data_status"><span class="std std-ref">MCAN_RxNewDataStatus</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415MCAN_readMsgRam8uint32_t8uint32_t8uint32_t8uint32_tP17MCAN_RxBufElement">
+<span id="_CPPv315MCAN_readMsgRam8uint32_t8uint32_t8uint32_t8uint32_tP17MCAN_RxBufElement"></span><span id="_CPPv215MCAN_readMsgRam8uint32_t8uint32_t8uint32_t8uint32_tP17MCAN_RxBufElement"></span><span id="MCAN_readMsgRam__uint32_t.uint32_t.uint32_t.uint32_t.MCAN_RxBufElementP"></span><span class="target" id="group__mcan__api_1gab7f5ca9e1bf82489a130afbb64a675cf"></span>void <code class="sig-name descname">MCAN_readMsgRam</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, uint32_t <em>memType</em>, uint32_t <em>bufNum</em>, uint32_t <em>fifoNum</em>, <a class="reference internal" href="#_CPPv417MCAN_RxBufElement" title="MCAN_RxBufElement">MCAN_RxBufElement</a> *<em>elem</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415MCAN_readMsgRam8uint32_t8uint32_t8uint32_t8uint32_tP17MCAN_RxBufElement" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API is used to read received message form message RAM. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">memType</span></code>: Part of message ram to which given message to write. Refer enum <a class="reference internal" href="#group__mcan__api_1gad42a8d40e35b466e1f793db78e234221"><span class="std std-ref">MCAN_MemType</span></a>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bufNum</span></code>: Buffer number from where message is to read. This parameter will ignored if memType is FIFO/Q. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fifoNum</span></code>: FIFOs number from where message is to read. Refer enum <a class="reference internal" href="#group__mcan__api_1ga7d6a7687d5642db7286275702ebcbd7a"><span class="std std-ref">MCAN_RxFIFONum</span></a>. This parameter will ignored if memType is buffer. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">elem</span></code>: Message Object. Refer struct <a class="reference internal" href="#struct_m_c_a_n___rx_buf_element"><span class="std std-ref">MCAN_RxBufElement</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420MCAN_readTxEventFIFO8uint32_tP23MCAN_TxEventFIFOElement">
+<span id="_CPPv320MCAN_readTxEventFIFO8uint32_tP23MCAN_TxEventFIFOElement"></span><span id="_CPPv220MCAN_readTxEventFIFO8uint32_tP23MCAN_TxEventFIFOElement"></span><span id="MCAN_readTxEventFIFO__uint32_t.MCAN_TxEventFIFOElementP"></span><span class="target" id="group__mcan__api_1ga4a86d17e792e22905cdd13d826bc4302"></span>void <code class="sig-name descname">MCAN_readTxEventFIFO</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, <a class="reference internal" href="#_CPPv423MCAN_TxEventFIFOElement" title="MCAN_TxEventFIFOElement">MCAN_TxEventFIFOElement</a> *<em>txEventElem</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420MCAN_readTxEventFIFO8uint32_tP23MCAN_TxEventFIFOElement" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API is used to read message form Tx Event FIFO. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">txEventElem</span></code>: Tx Event FIFO Message Object. Refer struct <a class="reference internal" href="#struct_m_c_a_n___tx_event_f_i_f_o_element"><span class="std std-ref">MCAN_TxEventFIFOElement</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422MCAN_addStdMsgIDFilter8uint32_t8uint32_tPK26MCAN_StdMsgIDFilterElement">
+<span id="_CPPv322MCAN_addStdMsgIDFilter8uint32_t8uint32_tPK26MCAN_StdMsgIDFilterElement"></span><span id="_CPPv222MCAN_addStdMsgIDFilter8uint32_t8uint32_tPK26MCAN_StdMsgIDFilterElement"></span><span id="MCAN_addStdMsgIDFilter__uint32_t.uint32_t.MCAN_StdMsgIDFilterElementCP"></span><span class="target" id="group__mcan__api_1ga606040beae4ecbfd3198362673c69f04"></span>void <code class="sig-name descname">MCAN_addStdMsgIDFilter</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, uint32_t <em>filtNum</em>, <em class="property">const</em> <a class="reference internal" href="#_CPPv426MCAN_StdMsgIDFilterElement" title="MCAN_StdMsgIDFilterElement">MCAN_StdMsgIDFilterElement</a> *<em>elem</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422MCAN_addStdMsgIDFilter8uint32_t8uint32_tPK26MCAN_StdMsgIDFilterElement" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API is used to add Standard Message ID Filter Element. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">filtNum</span></code>: Filter number. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">elem</span></code>: Filter Object. Refer struct <a class="reference internal" href="#struct_m_c_a_n___std_msg_i_d_filter_element"><span class="std std-ref">MCAN_StdMsgIDFilterElement</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422MCAN_addExtMsgIDFilter8uint32_t8uint32_tPK26MCAN_ExtMsgIDFilterElement">
+<span id="_CPPv322MCAN_addExtMsgIDFilter8uint32_t8uint32_tPK26MCAN_ExtMsgIDFilterElement"></span><span id="_CPPv222MCAN_addExtMsgIDFilter8uint32_t8uint32_tPK26MCAN_ExtMsgIDFilterElement"></span><span id="MCAN_addExtMsgIDFilter__uint32_t.uint32_t.MCAN_ExtMsgIDFilterElementCP"></span><span class="target" id="group__mcan__api_1ga670b65382044b0d4e02cb2ad409895fe"></span>void <code class="sig-name descname">MCAN_addExtMsgIDFilter</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, uint32_t <em>filtNum</em>, <em class="property">const</em> <a class="reference internal" href="#_CPPv426MCAN_ExtMsgIDFilterElement" title="MCAN_ExtMsgIDFilterElement">MCAN_ExtMsgIDFilterElement</a> *<em>elem</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422MCAN_addExtMsgIDFilter8uint32_t8uint32_tPK26MCAN_ExtMsgIDFilterElement" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API is used to add Extended Message ID Filter Element. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">filtNum</span></code>: Filter number. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">elem</span></code>: Filter Object. Refer struct <a class="reference internal" href="#struct_m_c_a_n___ext_msg_i_d_filter_element"><span class="std std-ref">MCAN_ExtMsgIDFilterElement</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419MCAN_lpbkModeEnable8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv319MCAN_lpbkModeEnable8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv219MCAN_lpbkModeEnable8uint32_t8uint32_t8uint32_t"></span><span id="MCAN_lpbkModeEnable__uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__mcan__api_1ga6fa88e0a4ba1aa69335990bec01f965a"></span>void <code class="sig-name descname">MCAN_lpbkModeEnable</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, uint32_t <em>lpbkMode</em>, uint32_t <em>enable</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419MCAN_lpbkModeEnable8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will enable/disable Loop Back Test Mode for MCAN module. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>This API can be called only when MCAN is in Software Initialization mode of operation. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lpbkMode</span></code>: Loopback mode for MCAN. Refer #enum MCAN_LpbkMode. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enable</span></code>: Loop Back Mode is enabled if it is TRUE. Loop Back Mode is disabled if it is FALSE.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419MCAN_getErrCounters8uint32_tP17MCAN_ErrCntStatus">
+<span id="_CPPv319MCAN_getErrCounters8uint32_tP17MCAN_ErrCntStatus"></span><span id="_CPPv219MCAN_getErrCounters8uint32_tP17MCAN_ErrCntStatus"></span><span id="MCAN_getErrCounters__uint32_t.MCAN_ErrCntStatusP"></span><span class="target" id="group__mcan__api_1gac04588f726e192414d7e964c65680e58"></span>void <code class="sig-name descname">MCAN_getErrCounters</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, <a class="reference internal" href="#_CPPv417MCAN_ErrCntStatus" title="MCAN_ErrCntStatus">MCAN_ErrCntStatus</a> *<em>errCounter</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419MCAN_getErrCounters8uint32_tP17MCAN_ErrCntStatus" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will return error counter status for MCAN module. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">errCounter</span></code>: Error Counter Status. Refer struct <a class="reference internal" href="#struct_m_c_a_n___err_cnt_status"><span class="std std-ref">MCAN_ErrCntStatus</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422MCAN_getProtocolStatus8uint32_tP19MCAN_ProtocolStatus">
+<span id="_CPPv322MCAN_getProtocolStatus8uint32_tP19MCAN_ProtocolStatus"></span><span id="_CPPv222MCAN_getProtocolStatus8uint32_tP19MCAN_ProtocolStatus"></span><span id="MCAN_getProtocolStatus__uint32_t.MCAN_ProtocolStatusP"></span><span class="target" id="group__mcan__api_1gacc2eac3ee3fa5a59298e6480a5fefb25"></span>void <code class="sig-name descname">MCAN_getProtocolStatus</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, <a class="reference internal" href="#_CPPv419MCAN_ProtocolStatus" title="MCAN_ProtocolStatus">MCAN_ProtocolStatus</a> *<em>protStatus</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422MCAN_getProtocolStatus8uint32_tP19MCAN_ProtocolStatus" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will return protocol status for MCAN module. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">protStatus</span></code>: Protocol Status. Refer struct <a class="reference internal" href="#struct_m_c_a_n___protocol_status"><span class="std std-ref">MCAN_ProtocolStatus</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415MCAN_enableIntr8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv315MCAN_enableIntr8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv215MCAN_enableIntr8uint32_t8uint32_t8uint32_t"></span><span id="MCAN_enableIntr__uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__mcan__api_1gad798df9ac0cc9e737248d4c19b30454c"></span>void <code class="sig-name descname">MCAN_enableIntr</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, uint32_t <em>intrMask</em>, uint32_t <em>enable</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415MCAN_enableIntr8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API is used to enable/disable interrupts. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intrMask</span></code>: Interrupts to enable. Refer enum <a class="reference internal" href="#group__mcan__api_1ga74dec9f93ee026f811d5359a2ce4bd14"><span class="std std-ref">MCAN_IntrSrc</span></a>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enable</span></code>: Interrupt is enabled if it is TRUE. Interrupt is disabled if it is FALSE.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419MCAN_selectIntrLine8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv319MCAN_selectIntrLine8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv219MCAN_selectIntrLine8uint32_t8uint32_t8uint32_t"></span><span id="MCAN_selectIntrLine__uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__mcan__api_1ga795df86062cb110ea9b0b5c282d1254f"></span>void <code class="sig-name descname">MCAN_selectIntrLine</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, uint32_t <em>intrMask</em>, uint32_t <em>lineNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419MCAN_selectIntrLine8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API is used to select interrupt line. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intrMask</span></code>: Interrupt Number for which interrupt line is to be selected. Refer enum <a class="reference internal" href="#group__mcan__api_1ga74dec9f93ee026f811d5359a2ce4bd14"><span class="std std-ref">MCAN_IntrSrc</span></a>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lineNum</span></code>: Interrupt Line to select. Refer enum <a class="reference internal" href="#group__mcan__api_1ga50277dbe3ad4d2068d640fa016dc113c"><span class="std std-ref">MCAN_IntrLineNum</span></a>,</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428MCAN_getIntrLineSelectStatus8uint32_t">
+<span id="_CPPv328MCAN_getIntrLineSelectStatus8uint32_t"></span><span id="_CPPv228MCAN_getIntrLineSelectStatus8uint32_t"></span><span id="MCAN_getIntrLineSelectStatus__uint32_t"></span><span class="target" id="group__mcan__api_1gabf5d9a908d84cff8d0c11e31c63400d3"></span>uint32_t <code class="sig-name descname">MCAN_getIntrLineSelectStatus</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428MCAN_getIntrLineSelectStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API is used to get interrupt line selected for each interrupt. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>status Interrupt Line Select Status. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419MCAN_enableIntrLine8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv319MCAN_enableIntrLine8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv219MCAN_enableIntrLine8uint32_t8uint32_t8uint32_t"></span><span id="MCAN_enableIntrLine__uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__mcan__api_1ga4280930d2abeaf49a43f28f723ac8c9a"></span>void <code class="sig-name descname">MCAN_enableIntrLine</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, uint32_t <em>lineNum</em>, uint32_t <em>enable</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419MCAN_enableIntrLine8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API is used to enable/disable selected interrupt line. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lineNum</span></code>: Interrupt Line to select. Refer enum <a class="reference internal" href="#group__mcan__api_1ga50277dbe3ad4d2068d640fa016dc113c"><span class="std std-ref">MCAN_IntrLineNum</span></a>, </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enable</span></code>: Interrupt Line is enabled if it is 1. Interrupt Line is disabled if it is 0.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418MCAN_getIntrStatus8uint32_t">
+<span id="_CPPv318MCAN_getIntrStatus8uint32_t"></span><span id="_CPPv218MCAN_getIntrStatus8uint32_t"></span><span id="MCAN_getIntrStatus__uint32_t"></span><span class="target" id="group__mcan__api_1gabd0b62d9b8f921ccadd722ea40cc6c5a"></span>uint32_t <code class="sig-name descname">MCAN_getIntrStatus</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418MCAN_getIntrStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will return interrupt status. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>status Interrupt Status. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420MCAN_clearIntrStatus8uint32_t8uint32_t">
+<span id="_CPPv320MCAN_clearIntrStatus8uint32_t8uint32_t"></span><span id="_CPPv220MCAN_clearIntrStatus8uint32_t8uint32_t"></span><span id="MCAN_clearIntrStatus__uint32_t.uint32_t"></span><span class="target" id="group__mcan__api_1gad1a4de6f54132076a132c5b314c3455f"></span>void <code class="sig-name descname">MCAN_clearIntrStatus</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, uint32_t <em>intrMask</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420MCAN_clearIntrStatus8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API is used to clear the interrupt status. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intrMask</span></code>: Interrupts to clear status.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419MCAN_clearInterrupt8uint32_t8uint16_t">
+<span id="_CPPv319MCAN_clearInterrupt8uint32_t8uint16_t"></span><span id="_CPPv219MCAN_clearInterrupt8uint32_t8uint16_t"></span><span id="MCAN_clearInterrupt__uint32_t.uint16_t"></span><span class="target" id="group__mcan__api_1gad17fa907cc20aa41f5fb669674577ea7"></span>void <code class="sig-name descname">MCAN_clearInterrupt</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, uint16_t <em>intrNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419MCAN_clearInterrupt8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API is used to clear the interrupt. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intrMask</span></code>: Interrupts to clear. 0x00 External TS Interrupt is cleared 0x01 Interrupt Line 0 is cleared 0x02 Interrupt Line 1 is cleared Other writes are ignored</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429MCAN_getHighPriorityMsgStatus8uint32_tP24MCAN_HighPriorityMsgInfo">
+<span id="_CPPv329MCAN_getHighPriorityMsgStatus8uint32_tP24MCAN_HighPriorityMsgInfo"></span><span id="_CPPv229MCAN_getHighPriorityMsgStatus8uint32_tP24MCAN_HighPriorityMsgInfo"></span><span id="MCAN_getHighPriorityMsgStatus__uint32_t.MCAN_HighPriorityMsgInfoP"></span><span class="target" id="group__mcan__api_1ga8ad45bb1c8eb770f601b81274bfe4db8"></span>void <code class="sig-name descname">MCAN_getHighPriorityMsgStatus</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, <a class="reference internal" href="#_CPPv424MCAN_HighPriorityMsgInfo" title="MCAN_HighPriorityMsgInfo">MCAN_HighPriorityMsgInfo</a> *<em>hpm</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429MCAN_getHighPriorityMsgStatus8uint32_tP24MCAN_HighPriorityMsgInfo" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will return High Priority Message Status. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hpm</span></code>: High Priority Message Status. Refer struct <a class="reference internal" href="#struct_m_c_a_n___high_priority_msg_info"><span class="std std-ref">MCAN_HighPriorityMsgInfo</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420MCAN_getRxFIFOStatus8uint32_tP17MCAN_RxFIFOStatus">
+<span id="_CPPv320MCAN_getRxFIFOStatus8uint32_tP17MCAN_RxFIFOStatus"></span><span id="_CPPv220MCAN_getRxFIFOStatus8uint32_tP17MCAN_RxFIFOStatus"></span><span id="MCAN_getRxFIFOStatus__uint32_t.MCAN_RxFIFOStatusP"></span><span class="target" id="group__mcan__api_1gaefbff5d60072f7b330b0976b2389c283"></span>void <code class="sig-name descname">MCAN_getRxFIFOStatus</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, <a class="reference internal" href="#_CPPv417MCAN_RxFIFOStatus" title="MCAN_RxFIFOStatus">MCAN_RxFIFOStatus</a> *<em>fifoStatus</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420MCAN_getRxFIFOStatus8uint32_tP17MCAN_RxFIFOStatus" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will Rx FIFO status. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fifoStatus</span></code>: Rx FIFO Status. Refer struct <a class="reference internal" href="#struct_m_c_a_n___rx_f_i_f_o_status"><span class="std std-ref">MCAN_RxFIFOStatus</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419MCAN_writeRxFIFOAck8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv319MCAN_writeRxFIFOAck8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv219MCAN_writeRxFIFOAck8uint32_t8uint32_t8uint32_t"></span><span id="MCAN_writeRxFIFOAck__uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__mcan__api_1gaf58b4fcb5b5a402a928b4a7ee193ada3"></span>int32_t <code class="sig-name descname">MCAN_writeRxFIFOAck</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, uint32_t <em>fifoNum</em>, uint32_t <em>idx</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419MCAN_writeRxFIFOAck8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will write Rx FIFO Acknowledgement. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>status Acknowledgement Status. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. Refer enum <a class="reference internal" href="#group__mcan__api_1ga7d6a7687d5642db7286275702ebcbd7a"><span class="std std-ref">MCAN_RxFIFONum</span></a>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fifoNum</span></code>: FIFO Number. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">idx</span></code>: Rx FIFO Acknowledge Index</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423MCAN_getTxFIFOQueStatus8uint32_tP17MCAN_TxFIFOStatus">
+<span id="_CPPv323MCAN_getTxFIFOQueStatus8uint32_tP17MCAN_TxFIFOStatus"></span><span id="_CPPv223MCAN_getTxFIFOQueStatus8uint32_tP17MCAN_TxFIFOStatus"></span><span id="MCAN_getTxFIFOQueStatus__uint32_t.MCAN_TxFIFOStatusP"></span><span class="target" id="group__mcan__api_1ga912036192baf3acd7a70f788857573fb"></span>void <code class="sig-name descname">MCAN_getTxFIFOQueStatus</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, <a class="reference internal" href="#_CPPv417MCAN_TxFIFOStatus" title="MCAN_TxFIFOStatus">MCAN_TxFIFOStatus</a> *<em>fifoStatus</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423MCAN_getTxFIFOQueStatus8uint32_tP17MCAN_TxFIFOStatus" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will Tx FIFO status. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fifoStatus</span></code>: Tx FIFO Status. Refer struct <a class="reference internal" href="#struct_m_c_a_n___tx_f_i_f_o_status"><span class="std std-ref">MCAN_TxFIFOStatus</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420MCAN_getTxBufReqPend8uint32_t">
+<span id="_CPPv320MCAN_getTxBufReqPend8uint32_t"></span><span id="_CPPv220MCAN_getTxBufReqPend8uint32_t"></span><span id="MCAN_getTxBufReqPend__uint32_t"></span><span class="target" id="group__mcan__api_1gad3e70b435c0b010e13b6455f90c66560"></span>uint32_t <code class="sig-name descname">MCAN_getTxBufReqPend</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420MCAN_getTxBufReqPend8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will return Tx Buffer Request Pending status. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>status Tx Buffer Request Pending status. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425MCAN_txBufCancellationReq8uint32_t8uint32_t">
+<span id="_CPPv325MCAN_txBufCancellationReq8uint32_t8uint32_t"></span><span id="_CPPv225MCAN_txBufCancellationReq8uint32_t8uint32_t"></span><span id="MCAN_txBufCancellationReq__uint32_t.uint32_t"></span><span class="target" id="group__mcan__api_1gaab277800e6026c24950a7e4a03a24181"></span>int32_t <code class="sig-name descname">MCAN_txBufCancellationReq</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, uint32_t <em>buffNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425MCAN_txBufCancellationReq8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will set Tx Buffer Cancellation Request. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>status Configuration Status. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">buffNum</span></code>: Tx Buffer number for which request is to be added.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv431MCAN_getTxBufTransmissionStatus8uint32_t">
+<span id="_CPPv331MCAN_getTxBufTransmissionStatus8uint32_t"></span><span id="_CPPv231MCAN_getTxBufTransmissionStatus8uint32_t"></span><span id="MCAN_getTxBufTransmissionStatus__uint32_t"></span><span class="target" id="group__mcan__api_1gad5cac8da74e417ed57b97b383ea05b3c"></span>uint32_t <code class="sig-name descname">MCAN_getTxBufTransmissionStatus</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431MCAN_getTxBufTransmissionStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will return Tx Buffer Transmission Occurred status. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>status Tx Buffer Transmission Occurred status. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428MCAN_txBufCancellationStatus8uint32_t">
+<span id="_CPPv328MCAN_txBufCancellationStatus8uint32_t"></span><span id="_CPPv228MCAN_txBufCancellationStatus8uint32_t"></span><span id="MCAN_txBufCancellationStatus__uint32_t"></span><span class="target" id="group__mcan__api_1gaabf7d9d4fbb4267ea283e7bc805c9f4a"></span>uint32_t <code class="sig-name descname">MCAN_txBufCancellationStatus</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428MCAN_txBufCancellationStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will return Transmit Buffer Cancellation Finished status. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>status Transmit Buffer Cancellation Finished status. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425MCAN_txBufTransIntrEnable8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv325MCAN_txBufTransIntrEnable8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv225MCAN_txBufTransIntrEnable8uint32_t8uint32_t8uint32_t"></span><span id="MCAN_txBufTransIntrEnable__uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__mcan__api_1gabf368836838698660cf233ef8d99b30d"></span>int32_t <code class="sig-name descname">MCAN_txBufTransIntrEnable</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, uint32_t <em>bufNum</em>, uint32_t <em>enable</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425MCAN_txBufTransIntrEnable8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API is used to enable/disable Tx Buffer Transmission Interrupt. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>status Configuration status. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bufNum</span></code>: Buffer number for which interrupt is to enable. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enable</span></code>: Interrupt is enabled if it is TRUE. Interrupt is disabled if it is FALSE.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv435MCAN_getTxBufCancellationIntrEnable8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv335MCAN_getTxBufCancellationIntrEnable8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv235MCAN_getTxBufCancellationIntrEnable8uint32_t8uint32_t8uint32_t"></span><span id="MCAN_getTxBufCancellationIntrEnable__uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__mcan__api_1ga962b9fd66f3ad226c89c2573eb8f36f8"></span>int32_t <code class="sig-name descname">MCAN_getTxBufCancellationIntrEnable</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, uint32_t <em>bufNum</em>, uint32_t <em>enable</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv435MCAN_getTxBufCancellationIntrEnable8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API is used to enable/disable Tx Buffer Cancellation Finished Interrupt. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>status Configuration status. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bufNum</span></code>: Buffer number for which interrupt is to enable. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enable</span></code>: Interrupt is enabled if it is TRUE. Interrupt is disabled if it is FALSE.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424MCAN_addClockStopRequest8uint32_t8uint32_t">
+<span id="_CPPv324MCAN_addClockStopRequest8uint32_t8uint32_t"></span><span id="_CPPv224MCAN_addClockStopRequest8uint32_t8uint32_t"></span><span id="MCAN_addClockStopRequest__uint32_t.uint32_t"></span><span class="target" id="group__mcan__api_1ga1bb97578eac9c6318585e5778d304521"></span>void <code class="sig-name descname">MCAN_addClockStopRequest</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, uint32_t <em>enable</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424MCAN_addClockStopRequest8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API add clock stop request for MCAN module to put it in power down mode. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enable</span></code>: Add CLock Stop Request. Adds Clock Clock stop Request is TRUE otherwise removes it.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425MCAN_getTxEventFIFOStatus8uint32_tP22MCAN_TxEventFIFOStatus">
+<span id="_CPPv325MCAN_getTxEventFIFOStatus8uint32_tP22MCAN_TxEventFIFOStatus"></span><span id="_CPPv225MCAN_getTxEventFIFOStatus8uint32_tP22MCAN_TxEventFIFOStatus"></span><span id="MCAN_getTxEventFIFOStatus__uint32_t.MCAN_TxEventFIFOStatusP"></span><span class="target" id="group__mcan__api_1gac507c500a55ef657aab0782a6ab08fbd"></span>void <code class="sig-name descname">MCAN_getTxEventFIFOStatus</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, <a class="reference internal" href="#_CPPv422MCAN_TxEventFIFOStatus" title="MCAN_TxEventFIFOStatus">MCAN_TxEventFIFOStatus</a> *<em>fifoStatus</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425MCAN_getTxEventFIFOStatus8uint32_tP22MCAN_TxEventFIFOStatus" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will Tx Event FIFO status. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fifoStatus</span></code>: Tx Event FIFO Status. Refer struct <a class="reference internal" href="#struct_m_c_a_n___tx_event_f_i_f_o_status"><span class="std std-ref">MCAN_TxEventFIFOStatus</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424MCAN_writeTxEventFIFOAck8uint32_t8uint32_t">
+<span id="_CPPv324MCAN_writeTxEventFIFOAck8uint32_t8uint32_t"></span><span id="_CPPv224MCAN_writeTxEventFIFOAck8uint32_t8uint32_t"></span><span id="MCAN_writeTxEventFIFOAck__uint32_t.uint32_t"></span><span class="target" id="group__mcan__api_1gac4fcf77a9bfa506aa96c90b0cf949fb4"></span>int32_t <code class="sig-name descname">MCAN_writeTxEventFIFOAck</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, uint32_t <em>idx</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424MCAN_writeTxEventFIFOAck8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will write Event FIFO Acknowledge Index. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>status Acknowledgement Status. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">idx</span></code>: Event FIFO Acknowledge Index</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418MCAN_eccForceError8uint32_tPK22MCAN_ECCErrForceParams">
+<span id="_CPPv318MCAN_eccForceError8uint32_tPK22MCAN_ECCErrForceParams"></span><span id="_CPPv218MCAN_eccForceError8uint32_tPK22MCAN_ECCErrForceParams"></span><span id="MCAN_eccForceError__uint32_t.MCAN_ECCErrForceParamsCP"></span><span class="target" id="group__mcan__api_1ga88ba551d9895796a214f3d8d9a4a1a4e"></span>void <code class="sig-name descname">MCAN_eccForceError</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, <em class="property">const</em> <a class="reference internal" href="#_CPPv422MCAN_ECCErrForceParams" title="MCAN_ECCErrForceParams">MCAN_ECCErrForceParams</a> *<em>eccErr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418MCAN_eccForceError8uint32_tPK22MCAN_ECCErrForceParams" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will Force Error on ECC. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>status configuration status. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">eccErr</span></code>: Force Error on ECC configuration. Refer struct <a class="reference internal" href="#struct_m_c_a_n___e_c_c_err_force_params"><span class="std std-ref">MCAN_ECCErrForceParams</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422MCAN_eccGetErrorStatus8uint32_tP17MCAN_ECCErrStatus">
+<span id="_CPPv322MCAN_eccGetErrorStatus8uint32_tP17MCAN_ECCErrStatus"></span><span id="_CPPv222MCAN_eccGetErrorStatus8uint32_tP17MCAN_ECCErrStatus"></span><span id="MCAN_eccGetErrorStatus__uint32_t.MCAN_ECCErrStatusP"></span><span class="target" id="group__mcan__api_1ga69d68185b734bfbd372e65cc562ebc6c"></span>void <code class="sig-name descname">MCAN_eccGetErrorStatus</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, <a class="reference internal" href="#_CPPv417MCAN_ECCErrStatus" title="MCAN_ECCErrStatus">MCAN_ECCErrStatus</a> *<em>eccErr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422MCAN_eccGetErrorStatus8uint32_tP17MCAN_ECCErrStatus" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will return ECC Error status. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">eccErr</span></code>: ECC error status. Refer struct <a class="reference internal" href="#struct_m_c_a_n___e_c_c_err_status"><span class="std std-ref">MCAN_ECCErrStatus</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424MCAN_eccClearErrorStatus8uint32_t8uint32_t">
+<span id="_CPPv324MCAN_eccClearErrorStatus8uint32_t8uint32_t"></span><span id="_CPPv224MCAN_eccClearErrorStatus8uint32_t8uint32_t"></span><span id="MCAN_eccClearErrorStatus__uint32_t.uint32_t"></span><span class="target" id="group__mcan__api_1ga9f34ca1bcb646465b68c3bba9acdb37f"></span>void <code class="sig-name descname">MCAN_eccClearErrorStatus</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, uint32_t <em>errType</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424MCAN_eccClearErrorStatus8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API is used to clear the ECC Error status. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">errType</span></code>: Error type to clear status. Refer enum <a class="reference internal" href="#group__mcan__api_1ga70d7bcf1acb2d99122534e980134c324"><span class="std std-ref">MCAN_ECCErrType</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416MCAN_eccWriteEOI8uint32_t8uint32_t">
+<span id="_CPPv316MCAN_eccWriteEOI8uint32_t8uint32_t"></span><span id="_CPPv216MCAN_eccWriteEOI8uint32_t8uint32_t"></span><span id="MCAN_eccWriteEOI__uint32_t.uint32_t"></span><span class="target" id="group__mcan__api_1gaf7f47612d29d8f5b151d91e72f77d8e4"></span>void <code class="sig-name descname">MCAN_eccWriteEOI</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, uint32_t <em>errType</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416MCAN_eccWriteEOI8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API is used to write End of Interrupt for ECC interrupt. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">errType</span></code>: Interrupt to enable. Refer enum <a class="reference internal" href="#group__mcan__api_1ga70d7bcf1acb2d99122534e980134c324"><span class="std std-ref">MCAN_ECCErrType</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418MCAN_eccEnableIntr8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv318MCAN_eccEnableIntr8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv218MCAN_eccEnableIntr8uint32_t8uint32_t8uint32_t"></span><span id="MCAN_eccEnableIntr__uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__mcan__api_1gadb4c500f3cdfc1814ec6558b409fa760"></span>void <code class="sig-name descname">MCAN_eccEnableIntr</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, uint32_t <em>errType</em>, uint32_t <em>enable</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418MCAN_eccEnableIntr8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API is used to enable ECC interrupt. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">errType</span></code>: Interrupt to enable. Refer enum <a class="reference internal" href="#group__mcan__api_1ga70d7bcf1acb2d99122534e980134c324"><span class="std std-ref">MCAN_ECCErrType</span></a>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enable</span></code>: ECC Interrupt is enabled if it is TRUE. ECC Interrupt is disabled if it is FALSE.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421MCAN_eccGetIntrStatus8uint32_t8uint32_t">
+<span id="_CPPv321MCAN_eccGetIntrStatus8uint32_t8uint32_t"></span><span id="_CPPv221MCAN_eccGetIntrStatus8uint32_t8uint32_t"></span><span id="MCAN_eccGetIntrStatus__uint32_t.uint32_t"></span><span class="target" id="group__mcan__api_1gabdcd1d83ef03bda78490ca7883e9a837"></span>uint32_t <code class="sig-name descname">MCAN_eccGetIntrStatus</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, uint32_t <em>errType</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421MCAN_eccGetIntrStatus8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API is used to get ECC interrupt status. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">errType</span></code>: Interrupt status to read. Refer enum <a class="reference internal" href="#group__mcan__api_1ga70d7bcf1acb2d99122534e980134c324"><span class="std std-ref">MCAN_ECCErrType</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423MCAN_eccClearIntrStatus8uint32_t8uint32_t">
+<span id="_CPPv323MCAN_eccClearIntrStatus8uint32_t8uint32_t"></span><span id="_CPPv223MCAN_eccClearIntrStatus8uint32_t8uint32_t"></span><span id="MCAN_eccClearIntrStatus__uint32_t.uint32_t"></span><span class="target" id="group__mcan__api_1ga8e432bc26fefcf47e16faaaceb5f969d"></span>void <code class="sig-name descname">MCAN_eccClearIntrStatus</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, uint32_t <em>errType</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423MCAN_eccClearIntrStatus8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API is used to clear ECC interrupt status. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">errType</span></code>: Interrupt status to clear. Refer enum <a class="reference internal" href="#group__mcan__api_1ga70d7bcf1acb2d99122534e980134c324"><span class="std std-ref">MCAN_ECCErrType</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423MCAN_extTSCounterConfig8uint32_t8uint32_t">
+<span id="_CPPv323MCAN_extTSCounterConfig8uint32_t8uint32_t"></span><span id="_CPPv223MCAN_extTSCounterConfig8uint32_t8uint32_t"></span><span id="MCAN_extTSCounterConfig__uint32_t.uint32_t"></span><span class="target" id="group__mcan__api_1gaec0f7c9cc1952966f8228813c302d5ea"></span>void <code class="sig-name descname">MCAN_extTSCounterConfig</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, uint32_t <em>prescalar</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423MCAN_extTSCounterConfig8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will configure external timestamp counter for MCAN module. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None.</p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>Actual value programmed prescalar values is (prescalar - 1). </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">prescalar</span></code>: Timestamp Counter Prescaler. Range:[0x0-0xFFFFFF]</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423MCAN_extTSCounterEnable8uint32_t8uint32_t">
+<span id="_CPPv323MCAN_extTSCounterEnable8uint32_t8uint32_t"></span><span id="_CPPv223MCAN_extTSCounterEnable8uint32_t8uint32_t"></span><span id="MCAN_extTSCounterEnable__uint32_t.uint32_t"></span><span class="target" id="group__mcan__api_1gac088bd2293a23eeac1a4cd3b9a752b2b"></span>void <code class="sig-name descname">MCAN_extTSCounterEnable</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, uint32_t <em>enable</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423MCAN_extTSCounterEnable8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will enable/disable fast external time stamp counter for MCAN module. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enable</span></code>: External TS is enabled if it is 1. External TS is disabled if it is 0.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420MCAN_extTSEnableIntr8uint32_t8uint32_t">
+<span id="_CPPv320MCAN_extTSEnableIntr8uint32_t8uint32_t"></span><span id="_CPPv220MCAN_extTSEnableIntr8uint32_t8uint32_t"></span><span id="MCAN_extTSEnableIntr__uint32_t.uint32_t"></span><span class="target" id="group__mcan__api_1ga7ed216de64316d34c57d541552cef717"></span>void <code class="sig-name descname">MCAN_extTSEnableIntr</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, uint32_t <em>enable</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420MCAN_extTSEnableIntr8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will enable/disable External TimeStamp Counter Overflow Interrupt for MCAN module. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enable</span></code>: External TimeStamp Counter Overflow Interrupt is enabled if it is TRUE. External TimeStamp Counter Overflow Interrupt is disabled if it is FALSE.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418MCAN_extTSWriteEOI8uint32_t">
+<span id="_CPPv318MCAN_extTSWriteEOI8uint32_t"></span><span id="_CPPv218MCAN_extTSWriteEOI8uint32_t"></span><span id="MCAN_extTSWriteEOI__uint32_t"></span><span class="target" id="group__mcan__api_1gaf6ea986f86eb956c793dcc61c6ebee5c"></span>void <code class="sig-name descname">MCAN_extTSWriteEOI</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418MCAN_extTSWriteEOI8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API is used to write End of Interrupt for External TimeStamp Counter Overflow Interrupt. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv432MCAN_extTSGetUnservicedIntrCount8uint32_t">
+<span id="_CPPv332MCAN_extTSGetUnservicedIntrCount8uint32_t"></span><span id="_CPPv232MCAN_extTSGetUnservicedIntrCount8uint32_t"></span><span id="MCAN_extTSGetUnservicedIntrCount__uint32_t"></span><span class="target" id="group__mcan__api_1gace11da0f2c9bed53a204b0773efd1a15"></span>uint32_t <code class="sig-name descname">MCAN_extTSGetUnservicedIntrCount</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv432MCAN_extTSGetUnservicedIntrCount8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API returns Number of unserviced rollover/overflow interrupts for external TimeStamp counter. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>status Returns Number of unserviced rollover/overflow interrupts for external TimeStamp counter. Maximum number of unserviced interrupts is 0xF. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418MCAN_getRevisionId8uint32_tP15MCAN_RevisionId">
+<span id="_CPPv318MCAN_getRevisionId8uint32_tP15MCAN_RevisionId"></span><span id="_CPPv218MCAN_getRevisionId8uint32_tP15MCAN_RevisionId"></span><span id="MCAN_getRevisionId__uint32_t.MCAN_RevisionIdP"></span><span class="target" id="group__mcan__api_1ga7d673735e4cec0d500cdd72a37fc6b71"></span>void <code class="sig-name descname">MCAN_getRevisionId</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, <a class="reference internal" href="#_CPPv415MCAN_RevisionId" title="MCAN_RevisionId">MCAN_RevisionId</a> *<em>revId</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418MCAN_getRevisionId8uint32_tP15MCAN_RevisionId" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API is used get the MCAN revision ID. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">revId</span></code>: Contains Revision ID of MCAN module. Refer struct <a class="reference internal" href="#struct_m_c_a_n___revision_id"><span class="std std-ref">MCAN_RevisionId</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420MCAN_getClockStopAck8uint32_t">
+<span id="_CPPv320MCAN_getClockStopAck8uint32_t"></span><span id="_CPPv220MCAN_getClockStopAck8uint32_t"></span><span id="MCAN_getClockStopAck__uint32_t"></span><span class="target" id="group__mcan__api_1gae46700c2531f363cdc61e1b28d97b703"></span>uint32_t <code class="sig-name descname">MCAN_getClockStopAck</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420MCAN_getClockStopAck8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API get clock stop acknowledgement for MCAN module. It return whether MCAN is power down mode or not. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>status Return Clock Stop Acknowledgement status. Return ‘1’ if M_CAN is set in power down mode else returns ‘0’. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422MCAN_extTSSetRawStatus8uint32_t">
+<span id="_CPPv322MCAN_extTSSetRawStatus8uint32_t"></span><span id="_CPPv222MCAN_extTSSetRawStatus8uint32_t"></span><span id="MCAN_extTSSetRawStatus__uint32_t"></span><span class="target" id="group__mcan__api_1ga8d6558af69c57e1d66e37bf3042dbecf"></span>void <code class="sig-name descname">MCAN_extTSSetRawStatus</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422MCAN_extTSSetRawStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will set External TimeStamp Counter Overflow Interrupt Raw status for MCAN module. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424MCAN_extTSClearRawStatus8uint32_t">
+<span id="_CPPv324MCAN_extTSClearRawStatus8uint32_t"></span><span id="_CPPv224MCAN_extTSClearRawStatus8uint32_t"></span><span id="MCAN_extTSClearRawStatus__uint32_t"></span><span class="target" id="group__mcan__api_1gaf102e6a9d6e0b0cdc00b56e9bed20375"></span>void <code class="sig-name descname">MCAN_extTSClearRawStatus</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424MCAN_extTSClearRawStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will clear External TimeStamp Counter Overflow Interrupt raw status for MCAN module. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418MCAN_getRxPinState8uint32_t">
+<span id="_CPPv318MCAN_getRxPinState8uint32_t"></span><span id="_CPPv218MCAN_getRxPinState8uint32_t"></span><span id="MCAN_getRxPinState__uint32_t"></span><span class="target" id="group__mcan__api_1ga0ef38aa3cddc4d8a3faa9a4e75daa370"></span>uint32_t <code class="sig-name descname">MCAN_getRxPinState</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418MCAN_getRxPinState8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will return Rx pin state of MCAN module. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>state MCAN Rx Pin State. 0= The CAN bus is dominant 1= The CAN bus is recessive </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418MCAN_setTxPinState8uint32_t8uint32_t">
+<span id="_CPPv318MCAN_setTxPinState8uint32_t8uint32_t"></span><span id="_CPPv218MCAN_setTxPinState8uint32_t8uint32_t"></span><span id="MCAN_setTxPinState__uint32_t.uint32_t"></span><span class="target" id="group__mcan__api_1ga8d934eafa55d5da22c05e50c502e2ac5"></span>void <code class="sig-name descname">MCAN_setTxPinState</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, uint32_t <em>state</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418MCAN_setTxPinState8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will set Tx pin state of MCAN module. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">state</span></code>: MCAN Tx Pin State. 00= Reset value 01= Sample Point can be monitored at tx pin 10= The CAN bus is dominant 11= The CAN bus is recessive other= It will treated as 11.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418MCAN_getTxPinState8uint32_t">
+<span id="_CPPv318MCAN_getTxPinState8uint32_t"></span><span id="_CPPv218MCAN_getTxPinState8uint32_t"></span><span id="MCAN_getTxPinState__uint32_t"></span><span class="target" id="group__mcan__api_1ga50cce714ddc0fb98fa3de7baa7bd9a05"></span>uint32_t <code class="sig-name descname">MCAN_getTxPinState</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418MCAN_getTxPinState8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will return Tx pin state of MCAN module. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>state MCAN Tx Pin State. 00= Reset value 01= Sample Point can be monitored at tx pin 10= The CAN bus is dominant 11= The CAN bus is recessive </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420MCAN_getTSCounterVal8uint32_t">
+<span id="_CPPv320MCAN_getTSCounterVal8uint32_t"></span><span id="_CPPv220MCAN_getTSCounterVal8uint32_t"></span><span id="MCAN_getTSCounterVal__uint32_t"></span><span class="target" id="group__mcan__api_1ga234861add56ba6828192fc225bf6466e"></span>uint32_t <code class="sig-name descname">MCAN_getTSCounterVal</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420MCAN_getTSCounterVal8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will return current timestamp counter value. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>val Current Timestamp counter value. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418MCAN_getClkStopAck8uint32_t">
+<span id="_CPPv318MCAN_getClkStopAck8uint32_t"></span><span id="_CPPv218MCAN_getClkStopAck8uint32_t"></span><span id="MCAN_getClkStopAck__uint32_t"></span><span class="target" id="group__mcan__api_1ga24cda4fd7e3b8c2240ec7d3561b2d070"></span>uint32_t <code class="sig-name descname">MCAN_getClkStopAck</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418MCAN_getClkStopAck8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will return clock stop acknowledgement for MCAN module. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>ack Clock Stop Acknowledge 0= No clock stop acknowledged 1= M_CAN may be set in power down </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415MCAN_getBitTime8uint32_tP20MCAN_BitTimingParams">
+<span id="_CPPv315MCAN_getBitTime8uint32_tP20MCAN_BitTimingParams"></span><span id="_CPPv215MCAN_getBitTime8uint32_tP20MCAN_BitTimingParams"></span><span id="MCAN_getBitTime__uint32_t.MCAN_BitTimingParamsP"></span><span class="target" id="group__mcan__api_1ga4324091aff0a212b59599ac53b2a16a2"></span>void <code class="sig-name descname">MCAN_getBitTime</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, <a class="reference internal" href="#_CPPv420MCAN_BitTimingParams" title="MCAN_BitTimingParams">MCAN_BitTimingParams</a> *<em>configParams</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415MCAN_getBitTime8uint32_tP20MCAN_BitTimingParams" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will get the configured bit timings for MCAN module. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">configParams</span></code>: Configuration parameters for MCAN bit timing. Refer struct <a class="reference internal" href="#struct_m_c_a_n___bit_timing_params"><span class="std std-ref">MCAN_BitTimingParams</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419MCAN_resetTSCounter8uint32_t">
+<span id="_CPPv319MCAN_resetTSCounter8uint32_t"></span><span id="_CPPv219MCAN_resetTSCounter8uint32_t"></span><span id="MCAN_resetTSCounter__uint32_t"></span><span class="target" id="group__mcan__api_1gaea9da909ae7294e1df5c4f17bbc090d1"></span>void <code class="sig-name descname">MCAN_resetTSCounter</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419MCAN_resetTSCounter8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will reset timestamp counter value. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420MCAN_getTOCounterVal8uint32_t">
+<span id="_CPPv320MCAN_getTOCounterVal8uint32_t"></span><span id="_CPPv220MCAN_getTOCounterVal8uint32_t"></span><span id="MCAN_getTOCounterVal__uint32_t"></span><span class="target" id="group__mcan__api_1gaada8e3971731ae2157b188dca6a2fcae"></span>uint32_t <code class="sig-name descname">MCAN_getTOCounterVal</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420MCAN_getTOCounterVal8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will return current time-out counter value. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>val Current Time-out counter value. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425MCAN_eccAggrGetRevisionId8uint32_tP22MCAN_ECCAggrRevisionId">
+<span id="_CPPv325MCAN_eccAggrGetRevisionId8uint32_tP22MCAN_ECCAggrRevisionId"></span><span id="_CPPv225MCAN_eccAggrGetRevisionId8uint32_tP22MCAN_ECCAggrRevisionId"></span><span id="MCAN_eccAggrGetRevisionId__uint32_t.MCAN_ECCAggrRevisionIdP"></span><span class="target" id="group__mcan__api_1gafbd72dbe3b6787b4f4410bd852e217d0"></span>void <code class="sig-name descname">MCAN_eccAggrGetRevisionId</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, <a class="reference internal" href="#_CPPv422MCAN_ECCAggrRevisionId" title="MCAN_ECCAggrRevisionId">MCAN_ECCAggrRevisionId</a> *<em>revId</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425MCAN_eccAggrGetRevisionId8uint32_tP22MCAN_ECCAggrRevisionId" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API is used get the ECC AGGR revision ID. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">revId</span></code>: Contains Revision ID of ECC AGGR. Refer struct <a class="reference internal" href="#struct_m_c_a_n___e_c_c_aggr_revision_id"><span class="std std-ref">MCAN_ECCAggrRevisionId</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425MCAN_eccWrapGetRevisionId8uint32_tP22MCAN_ECCWrapRevisionId">
+<span id="_CPPv325MCAN_eccWrapGetRevisionId8uint32_tP22MCAN_ECCWrapRevisionId"></span><span id="_CPPv225MCAN_eccWrapGetRevisionId8uint32_tP22MCAN_ECCWrapRevisionId"></span><span id="MCAN_eccWrapGetRevisionId__uint32_t.MCAN_ECCWrapRevisionIdP"></span><span class="target" id="group__mcan__api_1ga9c9d21d07b7ae335a346dcdfabf7cfec"></span>void <code class="sig-name descname">MCAN_eccWrapGetRevisionId</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, <a class="reference internal" href="#_CPPv422MCAN_ECCWrapRevisionId" title="MCAN_ECCWrapRevisionId">MCAN_ECCWrapRevisionId</a> *<em>revId</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425MCAN_eccWrapGetRevisionId8uint32_tP22MCAN_ECCWrapRevisionId" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API is used get the ECC Wrapper revision ID. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">revId</span></code>: Contains Revision ID of ECC Wrapper Refer struct <a class="reference internal" href="#struct_m_c_a_n___e_c_c_wrap_revision_id"><span class="std std-ref">MCAN_ECCWrapRevisionId</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422MCAN_extTSIsIntrEnable8uint32_t">
+<span id="_CPPv322MCAN_extTSIsIntrEnable8uint32_t"></span><span id="_CPPv222MCAN_extTSIsIntrEnable8uint32_t"></span><span id="MCAN_extTSIsIntrEnable__uint32_t"></span><span class="target" id="group__mcan__api_1ga0ff7478807ca29f173b467d690ea1996"></span>uint32_t <code class="sig-name descname">MCAN_extTSIsIntrEnable</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422MCAN_extTSIsIntrEnable8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API returns External TimeStamp Counter Overflow Interrupt enable status for MCAN module. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>status Returns TRUE if External TimeStamp Counter Overflow Interrupt is enabled. Else returns FALSE. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417MCAN_getEndianVal8uint32_t">
+<span id="_CPPv317MCAN_getEndianVal8uint32_t"></span><span id="_CPPv217MCAN_getEndianVal8uint32_t"></span><span id="MCAN_getEndianVal__uint32_t"></span><span class="target" id="group__mcan__api_1ga8af04551a1059ac8f4c3b48906a8e291"></span>uint32_t <code class="sig-name descname">MCAN_getEndianVal</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417MCAN_getEndianVal8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This function return endianness value of MCAN module. </p>
+<p><dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers.</p></li>
+</ul>
+</dd>
+<dt><strong>Return Value</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">val</span></code>: Endianness value. (0x87654321) </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420MCAN_getExtIDANDMask8uint32_t">
+<span id="_CPPv320MCAN_getExtIDANDMask8uint32_t"></span><span id="_CPPv220MCAN_getExtIDANDMask8uint32_t"></span><span id="MCAN_getExtIDANDMask__uint32_t"></span><span class="target" id="group__mcan__api_1ga03d9c27dfee797d8ee00b36231414233"></span>uint32_t <code class="sig-name descname">MCAN_getExtIDANDMask</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420MCAN_getExtIDANDMask8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will get the configured Extended ID AND Mask. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>idMask Extended ID AND Mask. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418MCAN_getMsgObjSize8uint32_t">
+<span id="_CPPv318MCAN_getMsgObjSize8uint32_t"></span><span id="_CPPv218MCAN_getMsgObjSize8uint32_t"></span><span id="MCAN_getMsgObjSize__uint32_t"></span><span class="target" id="group__mcan__api_1ga31f55d94bfaa9e180fe23639c5836f86"></span>uint32_t <code class="sig-name descname">MCAN_getMsgObjSize</code><span class="sig-paren">(</span>uint32_t <em>elemSize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418MCAN_getMsgObjSize8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will return message object size. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>message object size Size of the message object stored in Message RAM. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">elemSize</span></code>: Element Size.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt id="_CPPv420MCAN_BitTimingParams">
+<span id="_CPPv320MCAN_BitTimingParams"></span><span id="_CPPv220MCAN_BitTimingParams"></span><span id="MCAN_BitTimingParams"></span><span class="target" id="struct_m_c_a_n___bit_timing_params"></span><em class="property">struct </em><code class="sig-name descname">MCAN_BitTimingParams</code><a class="headerlink" href="#_CPPv420MCAN_BitTimingParams" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;mcan.h&gt;</em><p>Structure for bit timing calculation. Bit timing related to data phase will be valid only in case where MCAN is put in CAN-FD mode and will be ‘0’ otherwise. </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv414MCAN_TDCConfig">
+<span id="_CPPv314MCAN_TDCConfig"></span><span id="_CPPv214MCAN_TDCConfig"></span><span id="MCAN_TDCConfig"></span><span class="target" id="struct_m_c_a_n___t_d_c_config"></span><em class="property">struct </em><code class="sig-name descname">MCAN_TDCConfig</code><a class="headerlink" href="#_CPPv414MCAN_TDCConfig" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;mcan.h&gt;</em><p>Structure for MCAN Transmitter Delay Compensation parameters. </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv421MCAN_GlobalFiltConfig">
+<span id="_CPPv321MCAN_GlobalFiltConfig"></span><span id="_CPPv221MCAN_GlobalFiltConfig"></span><span id="MCAN_GlobalFiltConfig"></span><span class="target" id="struct_m_c_a_n___global_filt_config"></span><em class="property">struct </em><code class="sig-name descname">MCAN_GlobalFiltConfig</code><a class="headerlink" href="#_CPPv421MCAN_GlobalFiltConfig" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;mcan.h&gt;</em><p>Structure for MCAN Global Filter Configuration parameters. </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv415MCAN_InitParams">
+<span id="_CPPv315MCAN_InitParams"></span><span id="_CPPv215MCAN_InitParams"></span><span id="MCAN_InitParams"></span><span class="target" id="struct_m_c_a_n___init_params"></span><em class="property">struct </em><code class="sig-name descname">MCAN_InitParams</code><a class="headerlink" href="#_CPPv415MCAN_InitParams" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;mcan.h&gt;</em><p>Structure for MCAN initialization parameters. </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv417MCAN_ConfigParams">
+<span id="_CPPv317MCAN_ConfigParams"></span><span id="_CPPv217MCAN_ConfigParams"></span><span id="MCAN_ConfigParams"></span><span class="target" id="struct_m_c_a_n___config_params"></span><em class="property">struct </em><code class="sig-name descname">MCAN_ConfigParams</code><a class="headerlink" href="#_CPPv417MCAN_ConfigParams" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;mcan.h&gt;</em><p>Structure for MCAN configuration parameters. </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv417MCAN_ErrCntStatus">
+<span id="_CPPv317MCAN_ErrCntStatus"></span><span id="_CPPv217MCAN_ErrCntStatus"></span><span id="MCAN_ErrCntStatus"></span><span class="target" id="struct_m_c_a_n___err_cnt_status"></span><em class="property">struct </em><code class="sig-name descname">MCAN_ErrCntStatus</code><a class="headerlink" href="#_CPPv417MCAN_ErrCntStatus" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;mcan.h&gt;</em><p>Structure for MCAN error logging counters status. </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv419MCAN_ProtocolStatus">
+<span id="_CPPv319MCAN_ProtocolStatus"></span><span id="_CPPv219MCAN_ProtocolStatus"></span><span id="MCAN_ProtocolStatus"></span><span class="target" id="struct_m_c_a_n___protocol_status"></span><em class="property">struct </em><code class="sig-name descname">MCAN_ProtocolStatus</code><a class="headerlink" href="#_CPPv419MCAN_ProtocolStatus" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;mcan.h&gt;</em><p>Structure for MCAN protocol status. </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv423MCAN_MsgRAMConfigParams">
+<span id="_CPPv323MCAN_MsgRAMConfigParams"></span><span id="_CPPv223MCAN_MsgRAMConfigParams"></span><span id="MCAN_MsgRAMConfigParams"></span><span class="target" id="struct_m_c_a_n___msg_r_a_m_config_params"></span><em class="property">struct </em><code class="sig-name descname">MCAN_MsgRAMConfigParams</code><a class="headerlink" href="#_CPPv423MCAN_MsgRAMConfigParams" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;mcan.h&gt;</em><p>Structure for MCAN Message RAM Configuration Parameters. Message RAM can contain following sections: Standard ID filters, Extended ID filters, TX FIFO(or TX Q), TX Buffers, TX EventFIFO, RX FIFO0, RX FIFO1, RX Buffer. Note: If particular section in the RAM is not used then it’s size should be initialized to ‘0’ (Number of buffers in case of Tx/Rx buffer). </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv424MCAN_HighPriorityMsgInfo">
+<span id="_CPPv324MCAN_HighPriorityMsgInfo"></span><span id="_CPPv224MCAN_HighPriorityMsgInfo"></span><span id="MCAN_HighPriorityMsgInfo"></span><span class="target" id="struct_m_c_a_n___high_priority_msg_info"></span><em class="property">struct </em><code class="sig-name descname">MCAN_HighPriorityMsgInfo</code><a class="headerlink" href="#_CPPv424MCAN_HighPriorityMsgInfo" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;mcan.h&gt;</em><p>Structure for MCAN High Priority Message. </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv420MCAN_RxNewDataStatus">
+<span id="_CPPv320MCAN_RxNewDataStatus"></span><span id="_CPPv220MCAN_RxNewDataStatus"></span><span id="MCAN_RxNewDataStatus"></span><span class="target" id="struct_m_c_a_n___rx_new_data_status"></span><em class="property">struct </em><code class="sig-name descname">MCAN_RxNewDataStatus</code><a class="headerlink" href="#_CPPv420MCAN_RxNewDataStatus" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;mcan.h&gt;</em><p>Structure for MCAN new data flag for Rx buffer. </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv417MCAN_RxFIFOStatus">
+<span id="_CPPv317MCAN_RxFIFOStatus"></span><span id="_CPPv217MCAN_RxFIFOStatus"></span><span id="MCAN_RxFIFOStatus"></span><span class="target" id="struct_m_c_a_n___rx_f_i_f_o_status"></span><em class="property">struct </em><code class="sig-name descname">MCAN_RxFIFOStatus</code><a class="headerlink" href="#_CPPv417MCAN_RxFIFOStatus" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;mcan.h&gt;</em><p>Structure for MCAN Rx FIFO Status. </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv417MCAN_TxFIFOStatus">
+<span id="_CPPv317MCAN_TxFIFOStatus"></span><span id="_CPPv217MCAN_TxFIFOStatus"></span><span id="MCAN_TxFIFOStatus"></span><span class="target" id="struct_m_c_a_n___tx_f_i_f_o_status"></span><em class="property">struct </em><code class="sig-name descname">MCAN_TxFIFOStatus</code><a class="headerlink" href="#_CPPv417MCAN_TxFIFOStatus" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;mcan.h&gt;</em><p>Structure for MCAN Tx FIFO Status. </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv422MCAN_TxEventFIFOStatus">
+<span id="_CPPv322MCAN_TxEventFIFOStatus"></span><span id="_CPPv222MCAN_TxEventFIFOStatus"></span><span id="MCAN_TxEventFIFOStatus"></span><span class="target" id="struct_m_c_a_n___tx_event_f_i_f_o_status"></span><em class="property">struct </em><code class="sig-name descname">MCAN_TxEventFIFOStatus</code><a class="headerlink" href="#_CPPv422MCAN_TxEventFIFOStatus" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;mcan.h&gt;</em><p>Structure for MCAN Tx Event FIFO Status. </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv422MCAN_ECCErrForceParams">
+<span id="_CPPv322MCAN_ECCErrForceParams"></span><span id="_CPPv222MCAN_ECCErrForceParams"></span><span id="MCAN_ECCErrForceParams"></span><span class="target" id="struct_m_c_a_n___e_c_c_err_force_params"></span><em class="property">struct </em><code class="sig-name descname">MCAN_ECCErrForceParams</code><a class="headerlink" href="#_CPPv422MCAN_ECCErrForceParams" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;mcan.h&gt;</em><p>Structure for ECC Error forcing. </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv417MCAN_ECCErrStatus">
+<span id="_CPPv317MCAN_ECCErrStatus"></span><span id="_CPPv217MCAN_ECCErrStatus"></span><span id="MCAN_ECCErrStatus"></span><span class="target" id="struct_m_c_a_n___e_c_c_err_status"></span><em class="property">struct </em><code class="sig-name descname">MCAN_ECCErrStatus</code><a class="headerlink" href="#_CPPv417MCAN_ECCErrStatus" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;mcan.h&gt;</em><p>Structure for ECC Error Status. </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv415MCAN_RevisionId">
+<span id="_CPPv315MCAN_RevisionId"></span><span id="_CPPv215MCAN_RevisionId"></span><span id="MCAN_RevisionId"></span><span class="target" id="struct_m_c_a_n___revision_id"></span><em class="property">struct </em><code class="sig-name descname">MCAN_RevisionId</code><a class="headerlink" href="#_CPPv415MCAN_RevisionId" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;mcan.h&gt;</em><p>Structure for accessing Revision ID and Core Release Info. of MCAN module. </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv422MCAN_ECCAggrRevisionId">
+<span id="_CPPv322MCAN_ECCAggrRevisionId"></span><span id="_CPPv222MCAN_ECCAggrRevisionId"></span><span id="MCAN_ECCAggrRevisionId"></span><span class="target" id="struct_m_c_a_n___e_c_c_aggr_revision_id"></span><em class="property">struct </em><code class="sig-name descname">MCAN_ECCAggrRevisionId</code><a class="headerlink" href="#_CPPv422MCAN_ECCAggrRevisionId" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;mcan.h&gt;</em><p>Structure for accessing Revision ID of ECC AGGR. </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv420MCAN_ECCConfigParams">
+<span id="_CPPv320MCAN_ECCConfigParams"></span><span id="_CPPv220MCAN_ECCConfigParams"></span><span id="MCAN_ECCConfigParams"></span><span class="target" id="struct_m_c_a_n___e_c_c_config_params"></span><em class="property">struct </em><code class="sig-name descname">MCAN_ECCConfigParams</code><a class="headerlink" href="#_CPPv420MCAN_ECCConfigParams" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;mcan.h&gt;</em><p>Structure for MCAN ECC configuration parameters. </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv422MCAN_ECCWrapRevisionId">
+<span id="_CPPv322MCAN_ECCWrapRevisionId"></span><span id="_CPPv222MCAN_ECCWrapRevisionId"></span><span id="MCAN_ECCWrapRevisionId"></span><span class="target" id="struct_m_c_a_n___e_c_c_wrap_revision_id"></span><em class="property">struct </em><code class="sig-name descname">MCAN_ECCWrapRevisionId</code><a class="headerlink" href="#_CPPv422MCAN_ECCWrapRevisionId" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;mcan.h&gt;</em><p>Structure for accessing Revision ID of ECC wrapper. </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv417MCAN_TxBufElement">
+<span id="_CPPv317MCAN_TxBufElement"></span><span id="_CPPv217MCAN_TxBufElement"></span><span id="MCAN_TxBufElement"></span><span class="target" id="struct_m_c_a_n___tx_buf_element"></span><em class="property">struct </em><code class="sig-name descname">MCAN_TxBufElement</code><a class="headerlink" href="#_CPPv417MCAN_TxBufElement" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;mcan.h&gt;</em><p>Structure for MCAN Tx Buffer element. </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv417MCAN_RxBufElement">
+<span id="_CPPv317MCAN_RxBufElement"></span><span id="_CPPv217MCAN_RxBufElement"></span><span id="MCAN_RxBufElement"></span><span class="target" id="struct_m_c_a_n___rx_buf_element"></span><em class="property">struct </em><code class="sig-name descname">MCAN_RxBufElement</code><a class="headerlink" href="#_CPPv417MCAN_RxBufElement" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;mcan.h&gt;</em><p>Structure for MCAN Rx Buffer element. </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv423MCAN_TxEventFIFOElement">
+<span id="_CPPv323MCAN_TxEventFIFOElement"></span><span id="_CPPv223MCAN_TxEventFIFOElement"></span><span id="MCAN_TxEventFIFOElement"></span><span class="target" id="struct_m_c_a_n___tx_event_f_i_f_o_element"></span><em class="property">struct </em><code class="sig-name descname">MCAN_TxEventFIFOElement</code><a class="headerlink" href="#_CPPv423MCAN_TxEventFIFOElement" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;mcan.h&gt;</em><p>Structure for MCAN Tx Event FIFO element. </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv426MCAN_StdMsgIDFilterElement">
+<span id="_CPPv326MCAN_StdMsgIDFilterElement"></span><span id="_CPPv226MCAN_StdMsgIDFilterElement"></span><span id="MCAN_StdMsgIDFilterElement"></span><span class="target" id="struct_m_c_a_n___std_msg_i_d_filter_element"></span><em class="property">struct </em><code class="sig-name descname">MCAN_StdMsgIDFilterElement</code><a class="headerlink" href="#_CPPv426MCAN_StdMsgIDFilterElement" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;mcan.h&gt;</em><p>Structure for MCAN Standard Message ID Filter Element. </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv426MCAN_ExtMsgIDFilterElement">
+<span id="_CPPv326MCAN_ExtMsgIDFilterElement"></span><span id="_CPPv226MCAN_ExtMsgIDFilterElement"></span><span id="MCAN_ExtMsgIDFilterElement"></span><span class="target" id="struct_m_c_a_n___ext_msg_i_d_filter_element"></span><em class="property">struct </em><code class="sig-name descname">MCAN_ExtMsgIDFilterElement</code><a class="headerlink" href="#_CPPv426MCAN_ExtMsgIDFilterElement" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;mcan.h&gt;</em><p>Structure for MCAN Extended Message ID Filter Element. </p>
+</dd></dl>
+
+</dd></dl>
+
+<p>The following describes important details and recommendations when using the MCAN API.</p>
+<p>Once system control enables the MCAN module, MCAN_setOpMode() needs to be called
+to put the controller in SW initialization mode. The MCAN_init() intializes the CAN Controller
+and MCAN_config() configures the CAN Module  which sets the MCAN bit timing values for the bit
+rate and timing parameters. For tighter timing requirements, use MCAN_setBitTime() and to configure
+the Message RAM use the API MCAN_msgRAMConfig.</p>
+<p>Once all of the module configurations are setup, MCAN_setOpMode() starts the
+MCAN module’s operations and disables access to the configuration registers.</p>
+<p>The code for this module is contained in driverlib_cm/mcan.c, with
+driverlib_cm/mcan.h containing the API declarations for use by
+applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="memcfg.html" class="btn btn-neutral float-left" title="MEMCFG Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="mpu.html" class="btn btn-neutral float-right" title="MPU Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

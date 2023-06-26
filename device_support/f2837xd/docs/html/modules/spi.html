@@ -1,0 +1,1882 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>SPI Module &mdash; F2837xd API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F2837xd API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="SYSCTL Module" href="sysctl.html"/>
+        <link rel="prev" title="SDFM Module" href="sdfm.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F2837xd API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="adc.html">ADC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asysctl.html">ASysCtl Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla.html">CLA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clb.html">CLB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmpss.html">CMPSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dac.html">DAC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dma.html">DMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ecap.html">ECAP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emif.html">EMIF Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="epwm.html">EPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hrpwm.html">HRPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqep.html">EQEP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcbsp.html">MCBSP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci.html">SCI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdfm.html">SDFM Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">SPI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upp.html">UPP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version.html">Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xbar.html">XBAR Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F2837xd API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>SPI Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="spi-module">
+<span id="spi"></span><h1>SPI Module<a class="headerlink" href="#spi-module" title="Permalink to this headline">¶</a></h1>
+<p>The serial peripheral interface (SPI) API provides a set of functions to
+configure the device’s SPI module. Functions are provided to initialize the
+module, to send and receive data, to obtain status information, and to manage
+interrupts. Both master and slave modes are supported.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__spi__api"></span><em>group</em> <code class="sig-name descname">spi_api</code></dt>
+<dd><p>This module is used for SPI configurations. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.SPI_INT_RX_OVERRUN">
+<span class="target" id="group__spi__api_1gaf4692979b38b20e3c0e9ee3d90fd4267"></span><code class="sig-name descname">SPI_INT_RX_OVERRUN</code> 0x0001U<a class="headerlink" href="#c.SPI_INT_RX_OVERRUN" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive overrun interrupt. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SPI_INT_RX_DATA_TX_EMPTY">
+<span class="target" id="group__spi__api_1gaccf4ba71a326c2fc84ad2a4fcd867bba"></span><code class="sig-name descname">SPI_INT_RX_DATA_TX_EMPTY</code> 0x0002U<a class="headerlink" href="#c.SPI_INT_RX_DATA_TX_EMPTY" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Data received, transmit empty. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SPI_INT_RXFF">
+<span class="target" id="group__spi__api_1ga8d7e1f5fabb3ba8a82743ce0cb8fea0a"></span><code class="sig-name descname">SPI_INT_RXFF</code> 0x0004U<a class="headerlink" href="#c.SPI_INT_RXFF" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>RX FIFO level interrupt. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SPI_INT_TXFF">
+<span class="target" id="group__spi__api_1gab0e46560a0931e57bead8009ecbcf9a6"></span><code class="sig-name descname">SPI_INT_TXFF</code> 0x0008U<a class="headerlink" href="#c.SPI_INT_TXFF" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>TX FIFO level interrupt. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SPI_INT_RXFF_OVERFLOW">
+<span class="target" id="group__spi__api_1ga7eb46fff567509fff4fe673cc637229d"></span><code class="sig-name descname">SPI_INT_RXFF_OVERFLOW</code> 0x0010U<a class="headerlink" href="#c.SPI_INT_RXFF_OVERFLOW" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>RX FIFO overflow. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SPI_transmitByte">
+<span class="target" id="group__spi__api_1gac2a607ec0caa4932aa104ba2d6d86ddd"></span><code class="sig-name descname">SPI_transmitByte</code><span class="sig-paren">(</span><em>base</em>, <em>txData</em><span class="sig-paren">)</span> <a class="reference internal" href="#group__spi__api_1ga4895a230620eee7ed4cd542adb75e40c"><span class="std std-ref">SPI_pollingNonFIFOTransaction</span></a>(base, 8U,  txData)<a class="headerlink" href="#c.SPI_transmitByte" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This macro definition is used to transmit a byte of data</p>
+<p><p>This macro definition is to transmit a byte of data. This macro uses SPI_pollingNonFIFOTransaction function SPI character length is hardcoded to 8 (1 byte = 8 bits)of character length</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">txData</span></code>: is the data to be transmitted over SPI</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SPI_transmit16Bits">
+<span class="target" id="group__spi__api_1ga3409d09dc697cddbcd367486512dc333"></span><code class="sig-name descname">SPI_transmit16Bits</code><span class="sig-paren">(</span><em>base</em>, <em>txData</em><span class="sig-paren">)</span> <a class="reference internal" href="#group__spi__api_1ga4895a230620eee7ed4cd542adb75e40c"><span class="std std-ref">SPI_pollingNonFIFOTransaction</span></a>(base, 16U, txData)<a class="headerlink" href="#c.SPI_transmit16Bits" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This macro definition is used to transmit a 16-bit word of data</p>
+<p><p>This macro definition is to transmit a 16-bit word of data. This macro uses SPI_pollingNonFIFOTransaction function SPI character length is hardcoded to 16 (16bit word) of character length</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">txData</span></code>: is the data to be transmitted over SPI</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SPI_transmitNBytes">
+<span class="target" id="group__spi__api_1ga5324ba994390800daa7d5fca0f304aaa"></span><code class="sig-name descname">SPI_transmitNBytes</code><span class="sig-paren">(</span><em>base</em>, <em>txBuffer</em>, <em>numOfWords</em>, <em>txDelay</em><span class="sig-paren">)</span> <a class="reference internal" href="#group__spi__api_1ga1b1aec6f36f2b7606cc71f0909fda5b7"><span class="std std-ref">SPI_pollingFIFOTransaction</span></a>(base, 8U,  txBuffer, NULL, numOfWords, txDelay)<a class="headerlink" href="#c.SPI_transmitNBytes" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This macro definition can be used to transmit ‘N’ bytes of data</p>
+<p><p>This macro definition can be used to transmit ‘N’ bytes of data. This macro definition uses SPI_pollingFIFOTransaction function.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">txBuffer</span></code>: is the transmit buffer to be transmitted over SPI </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numOfWords</span></code>: is the number of bytes to be transmitted </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">txDelay</span></code>: specifies the number of serial clock cycles delay time after completion of perious word</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>SPI character length is hardcoded to 8 (8bits) of character length</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SPI_transmitN16BitWord">
+<span class="target" id="group__spi__api_1ga4ec0b76f75154db24a1f9da6dad1104a"></span><code class="sig-name descname">SPI_transmitN16BitWord</code><span class="sig-paren">(</span><em>base</em>, <em>txBuffer</em>, <em>numOfWords</em>, <em>txDelay</em><span class="sig-paren">)</span> <a class="reference internal" href="#group__spi__api_1ga1b1aec6f36f2b7606cc71f0909fda5b7"><span class="std std-ref">SPI_pollingFIFOTransaction</span></a>(base, 16U, txBuffer, NULL, numOfWords, txDelay)<a class="headerlink" href="#c.SPI_transmitN16BitWord" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This macro definition can be used to transmit ‘N’ 16-bit words of data</p>
+<p><p>This function can be used to transmit ‘N’ 16-bit words of data. This function uses SPI_pollingFIFOTransaction function. SPI character length is hardcoded to 16 (16-bit word)</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">txBuffer</span></code>: is the transmit buffer to be transmitted over SPI </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numOfWords</span></code>: is the number of 16-bit word to be transmitted </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">txDelay</span></code>: specifies the number of serial clock cycles delay time after completion of perious word</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SPI_transmitNWordsWithCharLength">
+<span class="target" id="group__spi__api_1ga7c6f68b0edf68f8e3d2c8f5072368d43"></span><code class="sig-name descname">SPI_transmitNWordsWithCharLength</code><span class="sig-paren">(</span><em>base</em>, <em>charLength</em>, <em>txBuffer</em>, <em>numOfWords</em>, <em>txDelay</em><span class="sig-paren">)</span> <a class="reference internal" href="#group__spi__api_1ga1b1aec6f36f2b7606cc71f0909fda5b7"><span class="std std-ref">SPI_pollingFIFOTransaction</span></a>(base, charLength, txBuffer, NULL<p>,     \</p>
+<p>                                         numOfWords, txDelay)</p>
+<a class="headerlink" href="#c.SPI_transmitNWordsWithCharLength" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This macro definition can be used to transmit ‘N’ with configurable SPI character length</p>
+<p><p>This macro definition can be used to transmit ‘N’ with configurable SPI character length.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">charLength</span></code>: specifies the SPI character length </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">txBuffer</span></code>: is the transmit buffer to be transmitted over SPI </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numOfWords</span></code>: is the number of 16-bit word to be transmitted </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">txDelay</span></code>: specifies the number of serial clock cycles delay time after completion of perious word</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>This macro uses SPIpolling_FIFO_Transaction function. SPI character length is configurable using charLength variable.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SPI_receiveByte">
+<span class="target" id="group__spi__api_1gae3bf1cc0af38af4e055d5e2d91f5e3c0"></span><code class="sig-name descname">SPI_receiveByte</code><span class="sig-paren">(</span><em>base</em>, <em>dummyData</em><span class="sig-paren">)</span> <a class="reference internal" href="#group__spi__api_1ga4895a230620eee7ed4cd542adb75e40c"><span class="std std-ref">SPI_pollingNonFIFOTransaction</span></a>(base, 8U, dummyData)<a class="headerlink" href="#c.SPI_receiveByte" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This macro definition is used to receive a byte of data</p>
+<p><p>This macro definition is to receive a byte of data. This macro uses SPI_pollingNonFIFOTransaction function SPI character length is hardcoded to 8 (1byte = 8bits) of character length</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dummyData</span></code>: is the data which is transmitted to initiate SPI transaction to receive SPI data</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>the received byte. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SPI_receiveNBytes">
+<span class="target" id="group__spi__api_1gad2234544c52a09fa686ff55fb7cc3a6e"></span><code class="sig-name descname">SPI_receiveNBytes</code><span class="sig-paren">(</span><em>base</em>, <em>rxBuffer</em>, <em>numOfWords</em>, <em>txDelay</em><span class="sig-paren">)</span> <a class="reference internal" href="#group__spi__api_1ga1b1aec6f36f2b7606cc71f0909fda5b7"><span class="std std-ref">SPI_pollingFIFOTransaction</span></a>(base, 8U,  NULL, rxBuffer, numOfWords, txDelay)<a class="headerlink" href="#c.SPI_receiveNBytes" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This macro is used to receive ‘N’ bytes of data</p>
+<p><p>This function is used to receive ‘N’ bytes of data This function uses SPIpolling_FIFO_Transaction function. SPI character length is hardcoded to 8 (1 byte = 8 bits)</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rxBuffer</span></code>: specifies receive buffer which will store the received bytes </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numOfWords</span></code>: specifies the number of bytes to be received </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">txDelay</span></code>: specifies the number of serial clock cycles delay time after completion of perious word</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SPI_receiveN16BitWord">
+<span class="target" id="group__spi__api_1gab82f821e6416d2301199fab02562b0a5"></span><code class="sig-name descname">SPI_receiveN16BitWord</code><span class="sig-paren">(</span><em>base</em>, <em>rxBuffer</em>, <em>numOfWords</em>, <em>txDelay</em><span class="sig-paren">)</span> <a class="reference internal" href="#group__spi__api_1ga1b1aec6f36f2b7606cc71f0909fda5b7"><span class="std std-ref">SPI_pollingFIFOTransaction</span></a>(base, 16U, NULL, rxBuffer, numOfWords, txDelay)<a class="headerlink" href="#c.SPI_receiveN16BitWord" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This macro is used to receive ‘N’ 16-bits words of data</p>
+<p><p>This function is used to receive ‘N’ 16-bit words of data This function uses SPIpolling_FIFO_Transaction function. SPI character length is hardcoded to 16bits</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rxBuffer</span></code>: specifies receive buffer which will store the received bytes </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numOfWords</span></code>: specifies the number of 16-bit words to be received </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">txDelay</span></code>: specifies the number of serial clock cycles delay time after completion of perious word</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SPI_receiveNWordsWithcharLength">
+<span class="target" id="group__spi__api_1ga759d67c315bb1e4570ead8467871bf0b"></span><code class="sig-name descname">SPI_receiveNWordsWithcharLength</code><span class="sig-paren">(</span><em>base</em>, <em>charLength</em>, <em>rxBuffer</em>, <em>numOfWords</em>, <em>txDelay</em><span class="sig-paren">)</span> <a class="reference internal" href="#group__spi__api_1ga1b1aec6f36f2b7606cc71f0909fda5b7"><span class="std std-ref">SPI_pollingFIFOTransaction</span></a>(base, charLength, NULL<p>, rxBuffer,       \</p>
+<p>                                       numOfWords, txDelay)</p>
+<a class="headerlink" href="#c.SPI_receiveNWordsWithcharLength" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This macro is used to receive ‘N’ words with specified character length</p>
+<p><p>This function is used to receive ‘N’ words with specified character length This function uses SPIpolling_FIFO_Transaction function. SPI character length is configurable using charLength variable</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">charLength</span></code>: specifies the SPI character length of SPI transaction </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rxBuffer</span></code>: specifies receive buffer which will store the received bytes </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numOfWords</span></code>: specifies the number of words with specified character length </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">txDelay</span></code>: specifies the number of serial clock cycles delay time after completion of perious word</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="cpp enum">
+<dt id="_CPPv420SPI_TransferProtocol">
+<span id="_CPPv320SPI_TransferProtocol"></span><span id="_CPPv220SPI_TransferProtocol"></span><span class="target" id="group__spi__api_1ga799f6216550a736a4cf0fb4ed75cbe78"></span><em class="property">enum </em><code class="sig-name descname">SPI_TransferProtocol</code><a class="headerlink" href="#_CPPv420SPI_TransferProtocol" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__spi__api_1ga985446cc44839750f1b8a073a8e949c4"><span class="std std-ref">SPI_setConfig()</span></a> as the <em>protocol</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20SPI_TransferProtocol17SPI_PROT_POL0PHA0E">
+<span id="_CPPv3N20SPI_TransferProtocol17SPI_PROT_POL0PHA0E"></span><span id="_CPPv2N20SPI_TransferProtocol17SPI_PROT_POL0PHA0E"></span><span class="target" id="group__spi__api_1gga799f6216550a736a4cf0fb4ed75cbe78abd3bebdf8b1e5fbe5d66b112cd8f9441"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_PROT_POL0PHA0</code> = 0x0000U<a class="headerlink" href="#_CPPv4N20SPI_TransferProtocol17SPI_PROT_POL0PHA0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mode 0. Polarity 0, phase 0. Rising edge without delay. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20SPI_TransferProtocol17SPI_PROT_POL0PHA1E">
+<span id="_CPPv3N20SPI_TransferProtocol17SPI_PROT_POL0PHA1E"></span><span id="_CPPv2N20SPI_TransferProtocol17SPI_PROT_POL0PHA1E"></span><span class="target" id="group__spi__api_1gga799f6216550a736a4cf0fb4ed75cbe78a0535adeeeb6e82551b81f79fc66b7c77"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_PROT_POL0PHA1</code> = 0x0002U<a class="headerlink" href="#_CPPv4N20SPI_TransferProtocol17SPI_PROT_POL0PHA1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mode 1. Polarity 0, phase 1. Rising edge with delay. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20SPI_TransferProtocol17SPI_PROT_POL1PHA0E">
+<span id="_CPPv3N20SPI_TransferProtocol17SPI_PROT_POL1PHA0E"></span><span id="_CPPv2N20SPI_TransferProtocol17SPI_PROT_POL1PHA0E"></span><span class="target" id="group__spi__api_1gga799f6216550a736a4cf0fb4ed75cbe78af2baaf3792318e8a983d2a58f83def74"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_PROT_POL1PHA0</code> = 0x0001U<a class="headerlink" href="#_CPPv4N20SPI_TransferProtocol17SPI_PROT_POL1PHA0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mode 2. Polarity 1, phase 0. Falling edge without delay. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20SPI_TransferProtocol17SPI_PROT_POL1PHA1E">
+<span id="_CPPv3N20SPI_TransferProtocol17SPI_PROT_POL1PHA1E"></span><span id="_CPPv2N20SPI_TransferProtocol17SPI_PROT_POL1PHA1E"></span><span class="target" id="group__spi__api_1gga799f6216550a736a4cf0fb4ed75cbe78a130c98b2d6f1cd791f242bf9f4868338"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_PROT_POL1PHA1</code> = 0x0003U<a class="headerlink" href="#_CPPv4N20SPI_TransferProtocol17SPI_PROT_POL1PHA1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mode 3. Polarity 1, phase 1. Falling edge with delay. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv48SPI_Mode">
+<span id="_CPPv38SPI_Mode"></span><span id="_CPPv28SPI_Mode"></span><span class="target" id="group__spi__api_1ga60a7e3d74577b38aa79ea6983362f942"></span><em class="property">enum </em><code class="sig-name descname">SPI_Mode</code><a class="headerlink" href="#_CPPv48SPI_Mode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__spi__api_1ga985446cc44839750f1b8a073a8e949c4"><span class="std std-ref">SPI_setConfig()</span></a> as the <em>mode</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N8SPI_Mode14SPI_MODE_SLAVEE">
+<span id="_CPPv3N8SPI_Mode14SPI_MODE_SLAVEE"></span><span id="_CPPv2N8SPI_Mode14SPI_MODE_SLAVEE"></span><span class="target" id="group__spi__api_1gga60a7e3d74577b38aa79ea6983362f942ad1131ed33ad43ab3f667070b04454439"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_MODE_SLAVE</code> = 0x0002U<a class="headerlink" href="#_CPPv4N8SPI_Mode14SPI_MODE_SLAVEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>SPI slave. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N8SPI_Mode15SPI_MODE_MASTERE">
+<span id="_CPPv3N8SPI_Mode15SPI_MODE_MASTERE"></span><span id="_CPPv2N8SPI_Mode15SPI_MODE_MASTERE"></span><span class="target" id="group__spi__api_1gga60a7e3d74577b38aa79ea6983362f942ae68a8adf6e5b67a7bdbe9526b15dae99"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_MODE_MASTER</code> = 0x0006U<a class="headerlink" href="#_CPPv4N8SPI_Mode15SPI_MODE_MASTERE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>SPI master. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N8SPI_Mode17SPI_MODE_SLAVE_ODE">
+<span id="_CPPv3N8SPI_Mode17SPI_MODE_SLAVE_ODE"></span><span id="_CPPv2N8SPI_Mode17SPI_MODE_SLAVE_ODE"></span><span class="target" id="group__spi__api_1gga60a7e3d74577b38aa79ea6983362f942aa2a7c14029be3738d2f71ac2b13d1805"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_MODE_SLAVE_OD</code> = 0x0000U<a class="headerlink" href="#_CPPv4N8SPI_Mode17SPI_MODE_SLAVE_ODE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>SPI slave w/ output (TALK) disabled. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N8SPI_Mode18SPI_MODE_MASTER_ODE">
+<span id="_CPPv3N8SPI_Mode18SPI_MODE_MASTER_ODE"></span><span id="_CPPv2N8SPI_Mode18SPI_MODE_MASTER_ODE"></span><span class="target" id="group__spi__api_1gga60a7e3d74577b38aa79ea6983362f942a6cae8f4b7a2f4fee3ec1cd2a5c256052"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_MODE_MASTER_OD</code> = 0x0004U<a class="headerlink" href="#_CPPv4N8SPI_Mode18SPI_MODE_MASTER_ODE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>SPI master w/ output (TALK) disabled. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv415SPI_TxFIFOLevel">
+<span id="_CPPv315SPI_TxFIFOLevel"></span><span id="_CPPv215SPI_TxFIFOLevel"></span><span class="target" id="group__spi__api_1ga36e17a38150b8f065d2770c68497ba77"></span><em class="property">enum </em><code class="sig-name descname">SPI_TxFIFOLevel</code><a class="headerlink" href="#_CPPv415SPI_TxFIFOLevel" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__spi__api_1ga4e1fde09eb8da4a77d161d7ce1e62ba4"><span class="std std-ref">SPI_setFIFOInterruptLevel()</span></a> as the <em>txLevel</em> parameter, returned by <a class="reference internal" href="#group__spi__api_1gaaeed550c837f349fd66266224e26f501"><span class="std std-ref">SPI_getFIFOInterruptLevel()</span></a> in the <em>txLevel</em> parameter, and returned by <a class="reference internal" href="#group__spi__api_1gafa7ea494f00eb7dda320503e05495ffb"><span class="std std-ref">SPI_getTxFIFOStatus()</span></a>. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_TxFIFOLevel16SPI_FIFO_TXEMPTYE">
+<span id="_CPPv3N15SPI_TxFIFOLevel16SPI_FIFO_TXEMPTYE"></span><span id="_CPPv2N15SPI_TxFIFOLevel16SPI_FIFO_TXEMPTYE"></span><span class="target" id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77a2dab05215eb8a86ff8a0690e980619c6"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_TXEMPTY</code> = 0x0000U<a class="headerlink" href="#_CPPv4N15SPI_TxFIFOLevel16SPI_FIFO_TXEMPTYE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit FIFO empty. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_TxFIFOLevel12SPI_FIFO_TX0E">
+<span id="_CPPv3N15SPI_TxFIFOLevel12SPI_FIFO_TX0E"></span><span id="_CPPv2N15SPI_TxFIFOLevel12SPI_FIFO_TX0E"></span><span class="target" id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77a39eff8cb76f31452f019a6e0f8954840"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_TX0</code> = 0x0000U<a class="headerlink" href="#_CPPv4N15SPI_TxFIFOLevel12SPI_FIFO_TX0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit FIFO empty. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_TxFIFOLevel12SPI_FIFO_TX1E">
+<span id="_CPPv3N15SPI_TxFIFOLevel12SPI_FIFO_TX1E"></span><span id="_CPPv2N15SPI_TxFIFOLevel12SPI_FIFO_TX1E"></span><span class="target" id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77aa6e6bfa3c55c435a76bbda054871608f"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_TX1</code> = 0x0001U<a class="headerlink" href="#_CPPv4N15SPI_TxFIFOLevel12SPI_FIFO_TX1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit FIFO 1/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_TxFIFOLevel12SPI_FIFO_TX2E">
+<span id="_CPPv3N15SPI_TxFIFOLevel12SPI_FIFO_TX2E"></span><span id="_CPPv2N15SPI_TxFIFOLevel12SPI_FIFO_TX2E"></span><span class="target" id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77a0d81c6441105f7c2255449a827a99836"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_TX2</code> = 0x0002U<a class="headerlink" href="#_CPPv4N15SPI_TxFIFOLevel12SPI_FIFO_TX2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit FIFO 2/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_TxFIFOLevel12SPI_FIFO_TX3E">
+<span id="_CPPv3N15SPI_TxFIFOLevel12SPI_FIFO_TX3E"></span><span id="_CPPv2N15SPI_TxFIFOLevel12SPI_FIFO_TX3E"></span><span class="target" id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77ab25fa295f17ae9ba13f833d4abd349a3"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_TX3</code> = 0x0003U<a class="headerlink" href="#_CPPv4N15SPI_TxFIFOLevel12SPI_FIFO_TX3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit FIFO 3/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_TxFIFOLevel12SPI_FIFO_TX4E">
+<span id="_CPPv3N15SPI_TxFIFOLevel12SPI_FIFO_TX4E"></span><span id="_CPPv2N15SPI_TxFIFOLevel12SPI_FIFO_TX4E"></span><span class="target" id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77a887c490b26a85348d9a6ec886c755a60"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_TX4</code> = 0x0004U<a class="headerlink" href="#_CPPv4N15SPI_TxFIFOLevel12SPI_FIFO_TX4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit FIFO 4/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_TxFIFOLevel12SPI_FIFO_TX5E">
+<span id="_CPPv3N15SPI_TxFIFOLevel12SPI_FIFO_TX5E"></span><span id="_CPPv2N15SPI_TxFIFOLevel12SPI_FIFO_TX5E"></span><span class="target" id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77aac7644afc9aa28b7c444fd05b66f6d3d"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_TX5</code> = 0x0005U<a class="headerlink" href="#_CPPv4N15SPI_TxFIFOLevel12SPI_FIFO_TX5E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit FIFO 5/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_TxFIFOLevel12SPI_FIFO_TX6E">
+<span id="_CPPv3N15SPI_TxFIFOLevel12SPI_FIFO_TX6E"></span><span id="_CPPv2N15SPI_TxFIFOLevel12SPI_FIFO_TX6E"></span><span class="target" id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77a47949bb99031320a72b2c39d906b6303"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_TX6</code> = 0x0006U<a class="headerlink" href="#_CPPv4N15SPI_TxFIFOLevel12SPI_FIFO_TX6E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit FIFO 6/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_TxFIFOLevel12SPI_FIFO_TX7E">
+<span id="_CPPv3N15SPI_TxFIFOLevel12SPI_FIFO_TX7E"></span><span id="_CPPv2N15SPI_TxFIFOLevel12SPI_FIFO_TX7E"></span><span class="target" id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77ac1f603a830d6a5b25f1bd3950b7dab5b"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_TX7</code> = 0x0007U<a class="headerlink" href="#_CPPv4N15SPI_TxFIFOLevel12SPI_FIFO_TX7E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit FIFO 7/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_TxFIFOLevel12SPI_FIFO_TX8E">
+<span id="_CPPv3N15SPI_TxFIFOLevel12SPI_FIFO_TX8E"></span><span id="_CPPv2N15SPI_TxFIFOLevel12SPI_FIFO_TX8E"></span><span class="target" id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77a885016b19ddd80c6256036f20a28fe30"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_TX8</code> = 0x0008U<a class="headerlink" href="#_CPPv4N15SPI_TxFIFOLevel12SPI_FIFO_TX8E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit FIFO 8/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_TxFIFOLevel12SPI_FIFO_TX9E">
+<span id="_CPPv3N15SPI_TxFIFOLevel12SPI_FIFO_TX9E"></span><span id="_CPPv2N15SPI_TxFIFOLevel12SPI_FIFO_TX9E"></span><span class="target" id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77a66e59ac869dafb13625bbe21ed4131ec"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_TX9</code> = 0x0009U<a class="headerlink" href="#_CPPv4N15SPI_TxFIFOLevel12SPI_FIFO_TX9E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit FIFO 9/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_TxFIFOLevel13SPI_FIFO_TX10E">
+<span id="_CPPv3N15SPI_TxFIFOLevel13SPI_FIFO_TX10E"></span><span id="_CPPv2N15SPI_TxFIFOLevel13SPI_FIFO_TX10E"></span><span class="target" id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77a77ce9519f70bb71074e274a1b10ef4e9"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_TX10</code> = 0x000AU<a class="headerlink" href="#_CPPv4N15SPI_TxFIFOLevel13SPI_FIFO_TX10E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit FIFO 10/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_TxFIFOLevel13SPI_FIFO_TX11E">
+<span id="_CPPv3N15SPI_TxFIFOLevel13SPI_FIFO_TX11E"></span><span id="_CPPv2N15SPI_TxFIFOLevel13SPI_FIFO_TX11E"></span><span class="target" id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77a60da0dbb50f66bab0d54de7aa13b26cc"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_TX11</code> = 0x000BU<a class="headerlink" href="#_CPPv4N15SPI_TxFIFOLevel13SPI_FIFO_TX11E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit FIFO 11/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_TxFIFOLevel13SPI_FIFO_TX12E">
+<span id="_CPPv3N15SPI_TxFIFOLevel13SPI_FIFO_TX12E"></span><span id="_CPPv2N15SPI_TxFIFOLevel13SPI_FIFO_TX12E"></span><span class="target" id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77abfc98f7c9c9c98324ace5ec3eebefd21"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_TX12</code> = 0x000CU<a class="headerlink" href="#_CPPv4N15SPI_TxFIFOLevel13SPI_FIFO_TX12E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit FIFO 12/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_TxFIFOLevel13SPI_FIFO_TX13E">
+<span id="_CPPv3N15SPI_TxFIFOLevel13SPI_FIFO_TX13E"></span><span id="_CPPv2N15SPI_TxFIFOLevel13SPI_FIFO_TX13E"></span><span class="target" id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77aa5e90654d6728d7b1c1ac18ea8830bfb"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_TX13</code> = 0x000DU<a class="headerlink" href="#_CPPv4N15SPI_TxFIFOLevel13SPI_FIFO_TX13E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit FIFO 13/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_TxFIFOLevel13SPI_FIFO_TX14E">
+<span id="_CPPv3N15SPI_TxFIFOLevel13SPI_FIFO_TX14E"></span><span id="_CPPv2N15SPI_TxFIFOLevel13SPI_FIFO_TX14E"></span><span class="target" id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77a7bf50fb7e4a03d8883bf8eaf2a4e6239"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_TX14</code> = 0x000EU<a class="headerlink" href="#_CPPv4N15SPI_TxFIFOLevel13SPI_FIFO_TX14E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit FIFO 14/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_TxFIFOLevel13SPI_FIFO_TX15E">
+<span id="_CPPv3N15SPI_TxFIFOLevel13SPI_FIFO_TX15E"></span><span id="_CPPv2N15SPI_TxFIFOLevel13SPI_FIFO_TX15E"></span><span class="target" id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77a5d56150c162e2bf4d74b30ef3bd38501"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_TX15</code> = 0x000FU<a class="headerlink" href="#_CPPv4N15SPI_TxFIFOLevel13SPI_FIFO_TX15E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit FIFO 15/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_TxFIFOLevel13SPI_FIFO_TX16E">
+<span id="_CPPv3N15SPI_TxFIFOLevel13SPI_FIFO_TX16E"></span><span id="_CPPv2N15SPI_TxFIFOLevel13SPI_FIFO_TX16E"></span><span class="target" id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77a3eb338b69b7ee05099ad18fbcfba14e6"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_TX16</code> = 0x0010U<a class="headerlink" href="#_CPPv4N15SPI_TxFIFOLevel13SPI_FIFO_TX16E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit FIFO full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_TxFIFOLevel15SPI_FIFO_TXFULLE">
+<span id="_CPPv3N15SPI_TxFIFOLevel15SPI_FIFO_TXFULLE"></span><span id="_CPPv2N15SPI_TxFIFOLevel15SPI_FIFO_TXFULLE"></span><span class="target" id="group__spi__api_1gga36e17a38150b8f065d2770c68497ba77aa6dfa21657f0d968a4a17928cba606f3"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_TXFULL</code> = 0x0010U<a class="headerlink" href="#_CPPv4N15SPI_TxFIFOLevel15SPI_FIFO_TXFULLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit FIFO full. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv415SPI_RxFIFOLevel">
+<span id="_CPPv315SPI_RxFIFOLevel"></span><span id="_CPPv215SPI_RxFIFOLevel"></span><span class="target" id="group__spi__api_1ga335ad38fd0e0483abed9adc7dcf7bf8e"></span><em class="property">enum </em><code class="sig-name descname">SPI_RxFIFOLevel</code><a class="headerlink" href="#_CPPv415SPI_RxFIFOLevel" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__spi__api_1ga4e1fde09eb8da4a77d161d7ce1e62ba4"><span class="std std-ref">SPI_setFIFOInterruptLevel()</span></a> as the <em>rxLevel</em> parameter, returned by <a class="reference internal" href="#group__spi__api_1gaaeed550c837f349fd66266224e26f501"><span class="std std-ref">SPI_getFIFOInterruptLevel()</span></a> in the <em>rxLevel</em> parameter, and returned by <a class="reference internal" href="#group__spi__api_1gaf360ed7e2d70ba0061aed40ff2b03da0"><span class="std std-ref">SPI_getRxFIFOStatus()</span></a>. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_RxFIFOLevel16SPI_FIFO_RXEMPTYE">
+<span id="_CPPv3N15SPI_RxFIFOLevel16SPI_FIFO_RXEMPTYE"></span><span id="_CPPv2N15SPI_RxFIFOLevel16SPI_FIFO_RXEMPTYE"></span><span class="target" id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8ea1550ff47b4be9b3ba3ac50a649a740dd"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_RXEMPTY</code> = 0x0000U<a class="headerlink" href="#_CPPv4N15SPI_RxFIFOLevel16SPI_FIFO_RXEMPTYE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive FIFO empty. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_RxFIFOLevel12SPI_FIFO_RX0E">
+<span id="_CPPv3N15SPI_RxFIFOLevel12SPI_FIFO_RX0E"></span><span id="_CPPv2N15SPI_RxFIFOLevel12SPI_FIFO_RX0E"></span><span class="target" id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8ea9131dc3a39f8663fa25ab796464c10b1"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_RX0</code> = 0x0000U<a class="headerlink" href="#_CPPv4N15SPI_RxFIFOLevel12SPI_FIFO_RX0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive FIFO empty. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_RxFIFOLevel12SPI_FIFO_RX1E">
+<span id="_CPPv3N15SPI_RxFIFOLevel12SPI_FIFO_RX1E"></span><span id="_CPPv2N15SPI_RxFIFOLevel12SPI_FIFO_RX1E"></span><span class="target" id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8ea664d9ab330a72fc7d7d971aa0c8bb466"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_RX1</code> = 0x0001U<a class="headerlink" href="#_CPPv4N15SPI_RxFIFOLevel12SPI_FIFO_RX1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive FIFO 1/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_RxFIFOLevel12SPI_FIFO_RX2E">
+<span id="_CPPv3N15SPI_RxFIFOLevel12SPI_FIFO_RX2E"></span><span id="_CPPv2N15SPI_RxFIFOLevel12SPI_FIFO_RX2E"></span><span class="target" id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8ea31d78a14aed8e08c981fd2b9cb47bc2d"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_RX2</code> = 0x0002U<a class="headerlink" href="#_CPPv4N15SPI_RxFIFOLevel12SPI_FIFO_RX2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive FIFO 2/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_RxFIFOLevel12SPI_FIFO_RX3E">
+<span id="_CPPv3N15SPI_RxFIFOLevel12SPI_FIFO_RX3E"></span><span id="_CPPv2N15SPI_RxFIFOLevel12SPI_FIFO_RX3E"></span><span class="target" id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8ea500ea32ba7c00d1c8ed389862e126dc5"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_RX3</code> = 0x0003U<a class="headerlink" href="#_CPPv4N15SPI_RxFIFOLevel12SPI_FIFO_RX3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive FIFO 3/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_RxFIFOLevel12SPI_FIFO_RX4E">
+<span id="_CPPv3N15SPI_RxFIFOLevel12SPI_FIFO_RX4E"></span><span id="_CPPv2N15SPI_RxFIFOLevel12SPI_FIFO_RX4E"></span><span class="target" id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8ea92d7a39ffe3bd4b793cf85f8b52671b1"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_RX4</code> = 0x0004U<a class="headerlink" href="#_CPPv4N15SPI_RxFIFOLevel12SPI_FIFO_RX4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive FIFO 4/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_RxFIFOLevel12SPI_FIFO_RX5E">
+<span id="_CPPv3N15SPI_RxFIFOLevel12SPI_FIFO_RX5E"></span><span id="_CPPv2N15SPI_RxFIFOLevel12SPI_FIFO_RX5E"></span><span class="target" id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8eac1d5bef5da27dcdaf507ce2fd14abe10"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_RX5</code> = 0x0005U<a class="headerlink" href="#_CPPv4N15SPI_RxFIFOLevel12SPI_FIFO_RX5E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive FIFO 5/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_RxFIFOLevel12SPI_FIFO_RX6E">
+<span id="_CPPv3N15SPI_RxFIFOLevel12SPI_FIFO_RX6E"></span><span id="_CPPv2N15SPI_RxFIFOLevel12SPI_FIFO_RX6E"></span><span class="target" id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8eac7958e746cfabe03ebe3791bb716ad5c"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_RX6</code> = 0x0006U<a class="headerlink" href="#_CPPv4N15SPI_RxFIFOLevel12SPI_FIFO_RX6E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive FIFO 6/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_RxFIFOLevel12SPI_FIFO_RX7E">
+<span id="_CPPv3N15SPI_RxFIFOLevel12SPI_FIFO_RX7E"></span><span id="_CPPv2N15SPI_RxFIFOLevel12SPI_FIFO_RX7E"></span><span class="target" id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8eafe723a9d81e94912c642428ddcf5c3a9"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_RX7</code> = 0x0007U<a class="headerlink" href="#_CPPv4N15SPI_RxFIFOLevel12SPI_FIFO_RX7E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive FIFO 7/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_RxFIFOLevel12SPI_FIFO_RX8E">
+<span id="_CPPv3N15SPI_RxFIFOLevel12SPI_FIFO_RX8E"></span><span id="_CPPv2N15SPI_RxFIFOLevel12SPI_FIFO_RX8E"></span><span class="target" id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8ea999da6c162406684dbbb69fc76717dea"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_RX8</code> = 0x0008U<a class="headerlink" href="#_CPPv4N15SPI_RxFIFOLevel12SPI_FIFO_RX8E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive FIFO 8/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_RxFIFOLevel12SPI_FIFO_RX9E">
+<span id="_CPPv3N15SPI_RxFIFOLevel12SPI_FIFO_RX9E"></span><span id="_CPPv2N15SPI_RxFIFOLevel12SPI_FIFO_RX9E"></span><span class="target" id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8ea507fca8f36563017c5b900d0df4f94f9"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_RX9</code> = 0x0009U<a class="headerlink" href="#_CPPv4N15SPI_RxFIFOLevel12SPI_FIFO_RX9E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive FIFO 9/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_RxFIFOLevel13SPI_FIFO_RX10E">
+<span id="_CPPv3N15SPI_RxFIFOLevel13SPI_FIFO_RX10E"></span><span id="_CPPv2N15SPI_RxFIFOLevel13SPI_FIFO_RX10E"></span><span class="target" id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8ea7e0dce0405c8231c0c54ea609a56b95f"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_RX10</code> = 0x000AU<a class="headerlink" href="#_CPPv4N15SPI_RxFIFOLevel13SPI_FIFO_RX10E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive FIFO 10/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_RxFIFOLevel13SPI_FIFO_RX11E">
+<span id="_CPPv3N15SPI_RxFIFOLevel13SPI_FIFO_RX11E"></span><span id="_CPPv2N15SPI_RxFIFOLevel13SPI_FIFO_RX11E"></span><span class="target" id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8ea7b73222b4330255f5243cd9696ccb03d"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_RX11</code> = 0x000BU<a class="headerlink" href="#_CPPv4N15SPI_RxFIFOLevel13SPI_FIFO_RX11E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive FIFO 11/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_RxFIFOLevel13SPI_FIFO_RX12E">
+<span id="_CPPv3N15SPI_RxFIFOLevel13SPI_FIFO_RX12E"></span><span id="_CPPv2N15SPI_RxFIFOLevel13SPI_FIFO_RX12E"></span><span class="target" id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8eaeebb97895b47923511989168d6661893"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_RX12</code> = 0x000CU<a class="headerlink" href="#_CPPv4N15SPI_RxFIFOLevel13SPI_FIFO_RX12E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive FIFO 12/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_RxFIFOLevel13SPI_FIFO_RX13E">
+<span id="_CPPv3N15SPI_RxFIFOLevel13SPI_FIFO_RX13E"></span><span id="_CPPv2N15SPI_RxFIFOLevel13SPI_FIFO_RX13E"></span><span class="target" id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8ea80b794a376d71f94bd53b10572afc71e"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_RX13</code> = 0x000DU<a class="headerlink" href="#_CPPv4N15SPI_RxFIFOLevel13SPI_FIFO_RX13E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive FIFO 13/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_RxFIFOLevel13SPI_FIFO_RX14E">
+<span id="_CPPv3N15SPI_RxFIFOLevel13SPI_FIFO_RX14E"></span><span id="_CPPv2N15SPI_RxFIFOLevel13SPI_FIFO_RX14E"></span><span class="target" id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8ea4b3a34d3e42fa3aa9350b096153e1e95"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_RX14</code> = 0x000EU<a class="headerlink" href="#_CPPv4N15SPI_RxFIFOLevel13SPI_FIFO_RX14E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive FIFO 14/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_RxFIFOLevel13SPI_FIFO_RX15E">
+<span id="_CPPv3N15SPI_RxFIFOLevel13SPI_FIFO_RX15E"></span><span id="_CPPv2N15SPI_RxFIFOLevel13SPI_FIFO_RX15E"></span><span class="target" id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8ea9a5bf425c75dcd388a8a7a32570b333d"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_RX15</code> = 0x000FU<a class="headerlink" href="#_CPPv4N15SPI_RxFIFOLevel13SPI_FIFO_RX15E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive FIFO 15/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_RxFIFOLevel13SPI_FIFO_RX16E">
+<span id="_CPPv3N15SPI_RxFIFOLevel13SPI_FIFO_RX16E"></span><span id="_CPPv2N15SPI_RxFIFOLevel13SPI_FIFO_RX16E"></span><span class="target" id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8ea360a29a651be258712a098be23d2d187"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_RX16</code> = 0x0010U<a class="headerlink" href="#_CPPv4N15SPI_RxFIFOLevel13SPI_FIFO_RX16E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive FIFO full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_RxFIFOLevel15SPI_FIFO_RXFULLE">
+<span id="_CPPv3N15SPI_RxFIFOLevel15SPI_FIFO_RXFULLE"></span><span id="_CPPv2N15SPI_RxFIFOLevel15SPI_FIFO_RXFULLE"></span><span class="target" id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8eae000b191ee66f729985b045540d83aff"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_RXFULL</code> = 0x0010U<a class="headerlink" href="#_CPPv4N15SPI_RxFIFOLevel15SPI_FIFO_RXFULLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive FIFO full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_RxFIFOLevel18SPI_FIFO_RXDEFAULTE">
+<span id="_CPPv3N15SPI_RxFIFOLevel18SPI_FIFO_RXDEFAULTE"></span><span id="_CPPv2N15SPI_RxFIFOLevel18SPI_FIFO_RXDEFAULTE"></span><span class="target" id="group__spi__api_1gga335ad38fd0e0483abed9adc7dcf7bf8eacb4586d4412b16461ba0b867c7f7b56a"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_FIFO_RXDEFAULT</code> = 0x001FU<a class="headerlink" href="#_CPPv4N15SPI_RxFIFOLevel18SPI_FIFO_RXDEFAULTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>To prevent interrupt at reset. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv417SPI_EmulationMode">
+<span id="_CPPv317SPI_EmulationMode"></span><span id="_CPPv217SPI_EmulationMode"></span><span class="target" id="group__spi__api_1gae30dfc51d749eae0dc63914e092f134e"></span><em class="property">enum </em><code class="sig-name descname">SPI_EmulationMode</code><a class="headerlink" href="#_CPPv417SPI_EmulationMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__spi__api_1gaddbfb995f8dfc9ded4074b5884fcb328"><span class="std std-ref">SPI_setEmulationMode()</span></a> as the <em>mode</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17SPI_EmulationMode25SPI_EMULATION_STOP_MIDWAYE">
+<span id="_CPPv3N17SPI_EmulationMode25SPI_EMULATION_STOP_MIDWAYE"></span><span id="_CPPv2N17SPI_EmulationMode25SPI_EMULATION_STOP_MIDWAYE"></span><span class="target" id="group__spi__api_1ggae30dfc51d749eae0dc63914e092f134eaaa3a1dbbc1505d8703ee763355b89955"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_EMULATION_STOP_MIDWAY</code> = 0x0000U<a class="headerlink" href="#_CPPv4N17SPI_EmulationMode25SPI_EMULATION_STOP_MIDWAYE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmission stops after midway in the bit stream. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17SPI_EmulationMode22SPI_EMULATION_FREE_RUNE">
+<span id="_CPPv3N17SPI_EmulationMode22SPI_EMULATION_FREE_RUNE"></span><span id="_CPPv2N17SPI_EmulationMode22SPI_EMULATION_FREE_RUNE"></span><span class="target" id="group__spi__api_1ggae30dfc51d749eae0dc63914e092f134ea6b638fc86f1bc40788a73c87822e0f9f"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_EMULATION_FREE_RUN</code> = 0x0010U<a class="headerlink" href="#_CPPv4N17SPI_EmulationMode22SPI_EMULATION_FREE_RUNE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Continue SPI operation regardless. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17SPI_EmulationMode33SPI_EMULATION_STOP_AFTER_TRANSMITE">
+<span id="_CPPv3N17SPI_EmulationMode33SPI_EMULATION_STOP_AFTER_TRANSMITE"></span><span id="_CPPv2N17SPI_EmulationMode33SPI_EMULATION_STOP_AFTER_TRANSMITE"></span><span class="target" id="group__spi__api_1ggae30dfc51d749eae0dc63914e092f134ea2ef6c15c8d6efc9bd85165b0a636d541"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_EMULATION_STOP_AFTER_TRANSMIT</code> = 0x0020U<a class="headerlink" href="#_CPPv4N17SPI_EmulationMode33SPI_EMULATION_STOP_AFTER_TRANSMITE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmission will stop after a started transmission completes. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv415SPI_STEPolarity">
+<span id="_CPPv315SPI_STEPolarity"></span><span id="_CPPv215SPI_STEPolarity"></span><span class="target" id="group__spi__api_1gae17eba171e334f1fce240ec8bd15e91f"></span><em class="property">enum </em><code class="sig-name descname">SPI_STEPolarity</code><a class="headerlink" href="#_CPPv415SPI_STEPolarity" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__spi__api_1ga3a1ef44b00adc657e7aec84db73e79fa"><span class="std std-ref">SPI_setSTESignalPolarity()</span></a> as the <em>polarity</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_STEPolarity18SPI_STE_ACTIVE_LOWE">
+<span id="_CPPv3N15SPI_STEPolarity18SPI_STE_ACTIVE_LOWE"></span><span id="_CPPv2N15SPI_STEPolarity18SPI_STE_ACTIVE_LOWE"></span><span class="target" id="group__spi__api_1ggae17eba171e334f1fce240ec8bd15e91fac6cdb2eefb046a5d83bc51a8806a8e17"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_STE_ACTIVE_LOW</code> = 0x0000U<a class="headerlink" href="#_CPPv4N15SPI_STEPolarity18SPI_STE_ACTIVE_LOWE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>SPISTE is active low (normal) </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SPI_STEPolarity19SPI_STE_ACTIVE_HIGHE">
+<span id="_CPPv3N15SPI_STEPolarity19SPI_STE_ACTIVE_HIGHE"></span><span id="_CPPv2N15SPI_STEPolarity19SPI_STE_ACTIVE_HIGHE"></span><span class="target" id="group__spi__api_1ggae17eba171e334f1fce240ec8bd15e91fa32802d88e250f81292ae7f4add61fca4"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_STE_ACTIVE_HIGH</code> = 0x2U<a class="headerlink" href="#_CPPv4N15SPI_STEPolarity19SPI_STE_ACTIVE_HIGHE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>SPISTE is active high (inverted) </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv413SPI_endianess">
+<span id="_CPPv313SPI_endianess"></span><span id="_CPPv213SPI_endianess"></span><span class="target" id="group__spi__api_1gac3e39d2245fa82e5aee50c8ce7af5f62"></span><em class="property">enum </em><code class="sig-name descname">SPI_endianess</code><a class="headerlink" href="#_CPPv413SPI_endianess" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__spi__api_1ga33536bd1a5789526594a99837703d5c0"><span class="std std-ref">SPI_receive16Bits()</span></a>, <a class="reference internal" href="#group__spi__api_1gada6fa624c167254f8aa108d0da2974ad"><span class="std std-ref">SPI_receive24Bits()</span></a>, <a class="reference internal" href="#group__spi__api_1ga3f59b257fbbe444f9c276ac08e88ea56"><span class="std std-ref">SPI_receive32Bits()</span></a> </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13SPI_endianess22SPI_DATA_LITTLE_ENDIANE">
+<span id="_CPPv3N13SPI_endianess22SPI_DATA_LITTLE_ENDIANE"></span><span id="_CPPv2N13SPI_endianess22SPI_DATA_LITTLE_ENDIANE"></span><span class="target" id="group__spi__api_1ggac3e39d2245fa82e5aee50c8ce7af5f62afc536e1d444d1bebf1e87ea3e8095542"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_DATA_LITTLE_ENDIAN</code> = 0U<a class="headerlink" href="#_CPPv4N13SPI_endianess22SPI_DATA_LITTLE_ENDIANE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>LITTLE ENDIAN. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13SPI_endianess19SPI_DATA_BIG_ENDIANE">
+<span id="_CPPv3N13SPI_endianess19SPI_DATA_BIG_ENDIANE"></span><span id="_CPPv2N13SPI_endianess19SPI_DATA_BIG_ENDIANE"></span><span class="target" id="group__spi__api_1ggac3e39d2245fa82e5aee50c8ce7af5f62a56154e2e0519083d58585d88e5a4e1ba"></span><em class="property">enumerator </em><code class="sig-name descname">SPI_DATA_BIG_ENDIAN</code> = 1U<a class="headerlink" href="#_CPPv4N13SPI_endianess19SPI_DATA_BIG_ENDIANE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>BIG ENDIAN. </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv416SPI_enableModule8uint32_t">
+<span id="_CPPv316SPI_enableModule8uint32_t"></span><span id="_CPPv216SPI_enableModule8uint32_t"></span><span id="SPI_enableModule__uint32_t"></span><span class="target" id="group__spi__api_1gabaf56e9f70511b62bfbdc80f7a953597"></span>void <code class="sig-name descname">SPI_enableModule</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416SPI_enableModule8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the serial peripheral interface.</p>
+<p><p>This function enables operation of the serial peripheral interface. The serial peripheral interface must be configured before it is enabled.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417SPI_disableModule8uint32_t">
+<span id="_CPPv317SPI_disableModule8uint32_t"></span><span id="_CPPv217SPI_disableModule8uint32_t"></span><span id="SPI_disableModule__uint32_t"></span><span class="target" id="group__spi__api_1gaceb3f98ed4417a5a25f58e84ec2d21bb"></span>void <code class="sig-name descname">SPI_disableModule</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417SPI_disableModule8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the serial peripheral interface.</p>
+<p><p>This function disables operation of the serial peripheral interface. Call this function before doing any configuration.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417SPI_setcharLength8uint32_t8uint16_t">
+<span id="_CPPv317SPI_setcharLength8uint32_t8uint16_t"></span><span id="_CPPv217SPI_setcharLength8uint32_t8uint16_t"></span><span id="SPI_setcharLength__uint32_t.uint16_t"></span><span class="target" id="group__spi__api_1gac02e87766225bb036e3e74808f103007"></span>void <code class="sig-name descname">SPI_setcharLength</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>charLength</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417SPI_setcharLength8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the character length of SPI transaction</p>
+<p><p>This function configures the character length of SPI transaction. SPI character length can be from anywhere between 1-bit word to 16 bit word of character length</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">charLength</span></code>: specifies the character length of SPI transaction</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414SPI_enableFIFO8uint32_t">
+<span id="_CPPv314SPI_enableFIFO8uint32_t"></span><span id="_CPPv214SPI_enableFIFO8uint32_t"></span><span id="SPI_enableFIFO__uint32_t"></span><span class="target" id="group__spi__api_1gadc0d662cf9f039959baf9d24827c1356"></span>void <code class="sig-name descname">SPI_enableFIFO</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414SPI_enableFIFO8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the transmit and receive FIFOs.</p>
+<p><p>This functions enables the transmit and receive FIFOs in the SPI.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SPI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415SPI_disableFIFO8uint32_t">
+<span id="_CPPv315SPI_disableFIFO8uint32_t"></span><span id="_CPPv215SPI_disableFIFO8uint32_t"></span><span id="SPI_disableFIFO__uint32_t"></span><span class="target" id="group__spi__api_1gaa831b8ef7f9767282871d292975a36a7"></span>void <code class="sig-name descname">SPI_disableFIFO</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415SPI_disableFIFO8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the transmit and receive FIFOs.</p>
+<p><p>This functions disables the transmit and receive FIFOs in the SPI.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SPI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415SPI_resetTxFIFO8uint32_t">
+<span id="_CPPv315SPI_resetTxFIFO8uint32_t"></span><span id="_CPPv215SPI_resetTxFIFO8uint32_t"></span><span id="SPI_resetTxFIFO__uint32_t"></span><span class="target" id="group__spi__api_1ga08e77fb24cae5c8a7f28beae9a9b664a"></span>void <code class="sig-name descname">SPI_resetTxFIFO</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415SPI_resetTxFIFO8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Resets the transmit FIFO.</p>
+<p><p>This function resets the transmit FIFO, setting the FIFO pointer back to zero.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SPI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415SPI_resetRxFIFO8uint32_t">
+<span id="_CPPv315SPI_resetRxFIFO8uint32_t"></span><span id="_CPPv215SPI_resetRxFIFO8uint32_t"></span><span id="SPI_resetRxFIFO__uint32_t"></span><span class="target" id="group__spi__api_1ga372711acfdc1ba004bb146bee2ea9063"></span>void <code class="sig-name descname">SPI_resetRxFIFO</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415SPI_resetRxFIFO8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Resets the receive FIFO.</p>
+<p><p>This function resets the receive FIFO, setting the FIFO pointer back to zero.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SPI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425SPI_setFIFOInterruptLevel8uint32_t15SPI_TxFIFOLevel15SPI_RxFIFOLevel">
+<span id="_CPPv325SPI_setFIFOInterruptLevel8uint32_t15SPI_TxFIFOLevel15SPI_RxFIFOLevel"></span><span id="_CPPv225SPI_setFIFOInterruptLevel8uint32_t15SPI_TxFIFOLevel15SPI_RxFIFOLevel"></span><span id="SPI_setFIFOInterruptLevel__uint32_t.SPI_TxFIFOLevel.SPI_RxFIFOLevel"></span><span class="target" id="group__spi__api_1ga4e1fde09eb8da4a77d161d7ce1e62ba4"></span>void <code class="sig-name descname">SPI_setFIFOInterruptLevel</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv415SPI_TxFIFOLevel" title="SPI_TxFIFOLevel">SPI_TxFIFOLevel</a> <em>txLevel</em>, <a class="reference internal" href="#_CPPv415SPI_RxFIFOLevel" title="SPI_RxFIFOLevel">SPI_RxFIFOLevel</a> <em>rxLevel</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425SPI_setFIFOInterruptLevel8uint32_t15SPI_TxFIFOLevel15SPI_RxFIFOLevel" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the FIFO level at which interrupts are generated.</p>
+<p><p>This function sets the FIFO level at which transmit and receive interrupts are generated.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SPI port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">txLevel</span></code>: is the transmit FIFO interrupt level, specified as <strong>SPI_FIFO_TX0</strong>, <strong>SPI_FIFO_TX1</strong>, <strong>SPI_FIFO_TX2</strong>, … or <strong>SPI_FIFO_TX16</strong>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rxLevel</span></code>: is the receive FIFO interrupt level, specified as <strong>SPI_FIFO_RX0</strong>, <strong>SPI_FIFO_RX1</strong>, <strong>SPI_FIFO_RX2</strong>, … or <strong>SPI_FIFO_RX16</strong>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425SPI_getFIFOInterruptLevel8uint32_tP15SPI_TxFIFOLevelP15SPI_RxFIFOLevel">
+<span id="_CPPv325SPI_getFIFOInterruptLevel8uint32_tP15SPI_TxFIFOLevelP15SPI_RxFIFOLevel"></span><span id="_CPPv225SPI_getFIFOInterruptLevel8uint32_tP15SPI_TxFIFOLevelP15SPI_RxFIFOLevel"></span><span id="SPI_getFIFOInterruptLevel__uint32_t.SPI_TxFIFOLevelP.SPI_RxFIFOLevelP"></span><span class="target" id="group__spi__api_1gaaeed550c837f349fd66266224e26f501"></span>void <code class="sig-name descname">SPI_getFIFOInterruptLevel</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv415SPI_TxFIFOLevel" title="SPI_TxFIFOLevel">SPI_TxFIFOLevel</a> *<em>txLevel</em>, <a class="reference internal" href="#_CPPv415SPI_RxFIFOLevel" title="SPI_RxFIFOLevel">SPI_RxFIFOLevel</a> *<em>rxLevel</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425SPI_getFIFOInterruptLevel8uint32_tP15SPI_TxFIFOLevelP15SPI_RxFIFOLevel" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the FIFO level at which interrupts are generated.</p>
+<p><p>This function gets the FIFO level at which transmit and receive interrupts are generated.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SPI port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">txLevel</span></code>: is a pointer to storage for the transmit FIFO level, returned as one of <strong>SPI_FIFO_TX0</strong>, <strong>SPI_FIFO_TX1</strong>, <strong>SPI_FIFO_TX2</strong>, … or <strong>SPI_FIFO_TX16</strong>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rxLevel</span></code>: is a pointer to storage for the receive FIFO level, returned as one of <strong>SPI_FIFO_RX0</strong>, <strong>SPI_FIFO_RX1</strong>, <strong>SPI_FIFO_RX2</strong>, … or <strong>SPI_FIFO_RX16</strong>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419SPI_getTxFIFOStatus8uint32_t">
+<span id="_CPPv319SPI_getTxFIFOStatus8uint32_t"></span><span id="_CPPv219SPI_getTxFIFOStatus8uint32_t"></span><span id="SPI_getTxFIFOStatus__uint32_t"></span><span class="target" id="group__spi__api_1gafa7ea494f00eb7dda320503e05495ffb"></span><a class="reference internal" href="#_CPPv415SPI_TxFIFOLevel" title="SPI_TxFIFOLevel">SPI_TxFIFOLevel</a> <code class="sig-name descname">SPI_getTxFIFOStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419SPI_getTxFIFOStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the transmit FIFO status</p>
+<p><p>This function gets the current number of words in the transmit FIFO.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SPI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the current number of words in the transmit FIFO specified as one of the following: <strong>SPI_FIFO_TX0</strong>, <strong>SPI_FIFO_TX1</strong>, <strong>SPI_FIFO_TX2</strong>, <strong>SPI_FIFO_TX3</strong>, …, or <strong>SPI_FIFO_TX16</strong> </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419SPI_getRxFIFOStatus8uint32_t">
+<span id="_CPPv319SPI_getRxFIFOStatus8uint32_t"></span><span id="_CPPv219SPI_getRxFIFOStatus8uint32_t"></span><span id="SPI_getRxFIFOStatus__uint32_t"></span><span class="target" id="group__spi__api_1gaf360ed7e2d70ba0061aed40ff2b03da0"></span><a class="reference internal" href="#_CPPv415SPI_RxFIFOLevel" title="SPI_RxFIFOLevel">SPI_RxFIFOLevel</a> <code class="sig-name descname">SPI_getRxFIFOStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419SPI_getRxFIFOStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the receive FIFO status</p>
+<p><p>This function gets the current number of words in the receive FIFO.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SPI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the current number of words in the receive FIFO specified as one of the following: <strong>SPI_FIFO_RX0</strong>, <strong>SPI_FIFO_RX1</strong>, <strong>SPI_FIFO_RX2</strong>, <strong>SPI_FIFO_RX3</strong>, …, or <strong>SPI_FIFO_RX16</strong> </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv410SPI_isBusy8uint32_t">
+<span id="_CPPv310SPI_isBusy8uint32_t"></span><span id="_CPPv210SPI_isBusy8uint32_t"></span><span id="SPI_isBusy__uint32_t"></span><span class="target" id="group__spi__api_1ga2e6fc28f6e555930de491f2b7fc5bf7d"></span>bool <code class="sig-name descname">SPI_isBusy</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410SPI_isBusy8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Determines whether the SPI transmitter is busy or not.</p>
+<p><p>This function allows the caller to determine whether all transmitted bytes have cleared the transmitter hardware. If </p>
+<strong>false</strong> is returned, then the transmit FIFO is empty and all bits of the last transmitted word have left the hardware shift register. This function is only valid when operating in FIFO mode.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SPI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if the SPI is transmitting or <strong>false</strong> if all transmissions are complete. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424SPI_writeDataNonBlocking8uint32_t8uint16_t">
+<span id="_CPPv324SPI_writeDataNonBlocking8uint32_t8uint16_t"></span><span id="_CPPv224SPI_writeDataNonBlocking8uint32_t8uint16_t"></span><span id="SPI_writeDataNonBlocking__uint32_t.uint16_t"></span><span class="target" id="group__spi__api_1ga05ba29699e4fa08adcbcf1ff49212316"></span>void <code class="sig-name descname">SPI_writeDataNonBlocking</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424SPI_writeDataNonBlocking8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Puts a data element into the SPI transmit buffer.</p>
+<p><p>This function places the supplied data into the transmit buffer of the specified SPI module.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: is the left-justified data to be transmitted over SPI.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>The data being sent must be left-justified in <em>data</em>. The lower 16 - N bits will be discarded where N is the data width selected in <a class="reference internal" href="#group__spi__api_1ga985446cc44839750f1b8a073a8e949c4"><span class="std std-ref">SPI_setConfig()</span></a>. For example, if configured for a 6-bit data width, the lower 10 bits of data will be discarded.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423SPI_readDataNonBlocking8uint32_t">
+<span id="_CPPv323SPI_readDataNonBlocking8uint32_t"></span><span id="_CPPv223SPI_readDataNonBlocking8uint32_t"></span><span id="SPI_readDataNonBlocking__uint32_t"></span><span class="target" id="group__spi__api_1ga7a57915903b18dba052696278ec2c0e1"></span>uint16_t <code class="sig-name descname">SPI_readDataNonBlocking</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423SPI_readDataNonBlocking8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets a data element from the SPI receive buffer.</p>
+<p><p>This function gets received data from the receive buffer of the specified SPI module and returns it.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Only the lower N bits of the value written to <em>data</em> contain valid data, where N is the data width as configured by <a class="reference internal" href="#group__spi__api_1ga985446cc44839750f1b8a073a8e949c4"><span class="std std-ref">SPI_setConfig()</span></a>. For example, if the interface is configured for 8-bit data width, only the lower 8 bits of the value written to <em>data</em> contain valid data.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>Returns the word of data read from the SPI receive buffer. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425SPI_writeDataBlockingFIFO8uint32_t8uint16_t">
+<span id="_CPPv325SPI_writeDataBlockingFIFO8uint32_t8uint16_t"></span><span id="_CPPv225SPI_writeDataBlockingFIFO8uint32_t8uint16_t"></span><span id="SPI_writeDataBlockingFIFO__uint32_t.uint16_t"></span><span class="target" id="group__spi__api_1ga34c43777654aa2fcaee92dd4716b435d"></span>void <code class="sig-name descname">SPI_writeDataBlockingFIFO</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425SPI_writeDataBlockingFIFO8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Waits for space in the FIFO and then puts data into the transmit buffer.</p>
+<p><p>This function places the supplied data into the transmit buffer of the specified SPI module once space is available in the transmit FIFO. This function should only be used when the FIFO is enabled.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: is the left-justified data to be transmitted over SPI.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>The data being sent must be left-justified in <em>data</em>. The lower 16 - N bits will be discarded where N is the data width selected in <a class="reference internal" href="#group__spi__api_1ga985446cc44839750f1b8a073a8e949c4"><span class="std std-ref">SPI_setConfig()</span></a>. For example, if configured for a 6-bit data width, the lower 10 bits of data will be discarded.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424SPI_readDataBlockingFIFO8uint32_t">
+<span id="_CPPv324SPI_readDataBlockingFIFO8uint32_t"></span><span id="_CPPv224SPI_readDataBlockingFIFO8uint32_t"></span><span id="SPI_readDataBlockingFIFO__uint32_t"></span><span class="target" id="group__spi__api_1ga418133cac5bc8ad7a859ea520a23c626"></span>uint16_t <code class="sig-name descname">SPI_readDataBlockingFIFO</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424SPI_readDataBlockingFIFO8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Waits for data in the FIFO and then reads it from the receive buffer.</p>
+<p><p>This function waits until there is data in the receive FIFO and then reads received data from the receive buffer. This function should only be used when FIFO mode is enabled.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Only the lower N bits of the value written to <em>data</em> contain valid data, where N is the data width as configured by <a class="reference internal" href="#group__spi__api_1ga985446cc44839750f1b8a073a8e949c4"><span class="std std-ref">SPI_setConfig()</span></a>. For example, if the interface is configured for 8-bit data width, only the lower 8 bits of the value written to <em>data</em> contain valid data.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>Returns the word of data read from the SPI receive buffer. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428SPI_writeDataBlockingNonFIFO8uint32_t8uint16_t">
+<span id="_CPPv328SPI_writeDataBlockingNonFIFO8uint32_t8uint16_t"></span><span id="_CPPv228SPI_writeDataBlockingNonFIFO8uint32_t8uint16_t"></span><span id="SPI_writeDataBlockingNonFIFO__uint32_t.uint16_t"></span><span class="target" id="group__spi__api_1ga9293a42b5f06e76c482b083dbffc5591"></span>void <code class="sig-name descname">SPI_writeDataBlockingNonFIFO</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428SPI_writeDataBlockingNonFIFO8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Waits for the transmit buffer to empty and then writes data to it.</p>
+<p><p>This function places the supplied data into the transmit buffer of the specified SPI module once it is empty. This function should not be used when FIFO mode is enabled.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: is the left-justified data to be transmitted over SPI.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>The data being sent must be left-justified in <em>data</em>. The lower 16 - N bits will be discarded where N is the data width selected in <a class="reference internal" href="#group__spi__api_1ga985446cc44839750f1b8a073a8e949c4"><span class="std std-ref">SPI_setConfig()</span></a>. For example, if configured for a 6-bit data width, the lower 10 bits of data will be discarded.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427SPI_readDataBlockingNonFIFO8uint32_t">
+<span id="_CPPv327SPI_readDataBlockingNonFIFO8uint32_t"></span><span id="_CPPv227SPI_readDataBlockingNonFIFO8uint32_t"></span><span id="SPI_readDataBlockingNonFIFO__uint32_t"></span><span class="target" id="group__spi__api_1gae18e22991663c27c9ce75444b8da4938"></span>uint16_t <code class="sig-name descname">SPI_readDataBlockingNonFIFO</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427SPI_readDataBlockingNonFIFO8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Waits for data to be received and then reads it from the buffer.</p>
+<p><p>This function waits for data to be received and then reads it from the receive buffer of the specified SPI module. This function should not be used when FIFO mode is enabled.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Only the lower N bits of the value written to <em>data</em> contain valid data, where N is the data width as configured by <a class="reference internal" href="#group__spi__api_1ga985446cc44839750f1b8a073a8e949c4"><span class="std std-ref">SPI_setConfig()</span></a>. For example, if the interface is configured for 8-bit data width, only the lower 8 bits of the value written to <em>data</em> contain valid data.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>Returns the word of data read from the SPI receive buffer. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417SPI_enableTriWire8uint32_t">
+<span id="_CPPv317SPI_enableTriWire8uint32_t"></span><span id="_CPPv217SPI_enableTriWire8uint32_t"></span><span id="SPI_enableTriWire__uint32_t"></span><span class="target" id="group__spi__api_1ga6931b9c117738c731c7319c882bdbd54"></span>void <code class="sig-name descname">SPI_enableTriWire</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417SPI_enableTriWire8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables SPI 3-wire mode.</p>
+<p><p>This function enables 3-wire mode. When in master mode, this allows SPISIMO to become SPIMOMI and SPISOMI to become free for non-SPI use. When in slave mode, SPISOMI because the SPISISO pin and SPISIMO is free for non-SPI use.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SPI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418SPI_disableTriWire8uint32_t">
+<span id="_CPPv318SPI_disableTriWire8uint32_t"></span><span id="_CPPv218SPI_disableTriWire8uint32_t"></span><span id="SPI_disableTriWire__uint32_t"></span><span class="target" id="group__spi__api_1ga0d4faf9ca5cffda1a569eb7d14b6511b"></span>void <code class="sig-name descname">SPI_disableTriWire</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418SPI_disableTriWire8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables SPI 3-wire mode.</p>
+<p><p>This function disables 3-wire mode. SPI will operate in normal 4-wire mode.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SPI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418SPI_enableLoopback8uint32_t">
+<span id="_CPPv318SPI_enableLoopback8uint32_t"></span><span id="_CPPv218SPI_enableLoopback8uint32_t"></span><span id="SPI_enableLoopback__uint32_t"></span><span class="target" id="group__spi__api_1ga109f54faebee50016173c009e4a85a48"></span>void <code class="sig-name descname">SPI_enableLoopback</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418SPI_enableLoopback8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables SPI loopback mode.</p>
+<p><p>This function enables loopback mode. This mode is only valid during master mode and is helpful during device testing as it internally connects SIMO and SOMI.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SPI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419SPI_disableLoopback8uint32_t">
+<span id="_CPPv319SPI_disableLoopback8uint32_t"></span><span id="_CPPv219SPI_disableLoopback8uint32_t"></span><span id="SPI_disableLoopback__uint32_t"></span><span class="target" id="group__spi__api_1ga5989fc1b9e4182e8b07fcb1f5e6ea566"></span>void <code class="sig-name descname">SPI_disableLoopback</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419SPI_disableLoopback8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables SPI loopback mode.</p>
+<p><p>This function disables loopback mode. Loopback mode is disabled by default after reset.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SPI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424SPI_setSTESignalPolarity8uint32_t15SPI_STEPolarity">
+<span id="_CPPv324SPI_setSTESignalPolarity8uint32_t15SPI_STEPolarity"></span><span id="_CPPv224SPI_setSTESignalPolarity8uint32_t15SPI_STEPolarity"></span><span id="SPI_setSTESignalPolarity__uint32_t.SPI_STEPolarity"></span><span class="target" id="group__spi__api_1ga3a1ef44b00adc657e7aec84db73e79fa"></span>void <code class="sig-name descname">SPI_setSTESignalPolarity</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv415SPI_STEPolarity" title="SPI_STEPolarity">SPI_STEPolarity</a> <em>polarity</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424SPI_setSTESignalPolarity8uint32_t15SPI_STEPolarity" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set the slave select (SPISTE) signal polarity.</p>
+<p><p>This function sets the polarity of the slave select (SPISTE) signal. The two modes to choose from for the </p>
+<em>polarity</em> parameter are <strong>SPI_STE_ACTIVE_LOW</strong> for active-low polarity (typical) and <strong>SPI_STE_ACTIVE_HIGH</strong> for active-high polarity (considered inverted).<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SPI port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">polarity</span></code>: is the SPISTE signal polarity.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>This has no effect on the STE signal when in master mode. It is only applicable to slave mode.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423SPI_enableHighSpeedMode8uint32_t">
+<span id="_CPPv323SPI_enableHighSpeedMode8uint32_t"></span><span id="_CPPv223SPI_enableHighSpeedMode8uint32_t"></span><span id="SPI_enableHighSpeedMode__uint32_t"></span><span class="target" id="group__spi__api_1ga6f676970c11f148a957a1fbe226e3e5b"></span>void <code class="sig-name descname">SPI_enableHighSpeedMode</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423SPI_enableHighSpeedMode8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables SPI high speed mode.</p>
+<p><p>This function enables high speed mode.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SPI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424SPI_disableHighSpeedMode8uint32_t">
+<span id="_CPPv324SPI_disableHighSpeedMode8uint32_t"></span><span id="_CPPv224SPI_disableHighSpeedMode8uint32_t"></span><span id="SPI_disableHighSpeedMode__uint32_t"></span><span class="target" id="group__spi__api_1ga33dd696528b49788d173c26dd371994a"></span>void <code class="sig-name descname">SPI_disableHighSpeedMode</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424SPI_disableHighSpeedMode8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables SPI high speed mode.</p>
+<p><p>This function disables high speed mode. High speed mode is disabled by default after reset.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SPI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420SPI_setEmulationMode8uint32_t17SPI_EmulationMode">
+<span id="_CPPv320SPI_setEmulationMode8uint32_t17SPI_EmulationMode"></span><span id="_CPPv220SPI_setEmulationMode8uint32_t17SPI_EmulationMode"></span><span id="SPI_setEmulationMode__uint32_t.SPI_EmulationMode"></span><span class="target" id="group__spi__api_1gaddbfb995f8dfc9ded4074b5884fcb328"></span>void <code class="sig-name descname">SPI_setEmulationMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv417SPI_EmulationMode" title="SPI_EmulationMode">SPI_EmulationMode</a> <em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420SPI_setEmulationMode8uint32_t17SPI_EmulationMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets SPI emulation mode.</p>
+<p><p>This function sets the behavior of the SPI operation when an emulation suspend occurs. The </p>
+<em>mode</em> parameter can be one of the following:<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SPI port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: is the emulation mode.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p><strong>SPI_EMULATION_STOP_MIDWAY</strong> - Transmission stops midway through the bit stream. The rest of the bits will be transmitting after the suspend is deasserted.</p></li>
+<li><p><strong>SPI_EMULATION_STOP_AFTER_TRANSMIT</strong> - If the suspend occurs before the first SPICLK pulse, the transmission will not start. If it occurs later, the transmission will be completed.</p></li>
+<li><p><strong>SPI_EMULATION_FREE_RUN</strong> - SPI operation continues regardless of a the suspend.</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426SPI_setTxFifoTransmitDelay8uint32_t8uint16_t">
+<span id="_CPPv326SPI_setTxFifoTransmitDelay8uint32_t8uint16_t"></span><span id="_CPPv226SPI_setTxFifoTransmitDelay8uint32_t8uint16_t"></span><span id="SPI_setTxFifoTransmitDelay__uint32_t.uint16_t"></span><span class="target" id="group__spi__api_1ga592b9e1266470a1b50ef7c38f817ec78"></span>void <code class="sig-name descname">SPI_setTxFifoTransmitDelay</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>delay</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426SPI_setTxFifoTransmitDelay8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the FIFO Transmit Delay</p>
+<p><p>This function sets the delay between every transfer from FIFO transmit buffer to transmit shift register. The delay is defined in number SPI serial clock cycles.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SPI port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">delay</span></code>: Tx FIFO delay to be configured in cycles (0..0xFF)</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425SPI_readRxEmulationBuffer8uint32_t">
+<span id="_CPPv325SPI_readRxEmulationBuffer8uint32_t"></span><span id="_CPPv225SPI_readRxEmulationBuffer8uint32_t"></span><span id="SPI_readRxEmulationBuffer__uint32_t"></span><span class="target" id="group__spi__api_1ga25f756f5f99b40a034731566ede73952"></span>uint16_t <code class="sig-name descname">SPI_readRxEmulationBuffer</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425SPI_readRxEmulationBuffer8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the Emulation Buffer Received Data</p>
+<p><p>This function returns the Emulation Buffer Received Data</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SPI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Rx emulation buffer data </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414SPI_enableTalk8uint32_t">
+<span id="_CPPv314SPI_enableTalk8uint32_t"></span><span id="_CPPv214SPI_enableTalk8uint32_t"></span><span id="SPI_enableTalk__uint32_t"></span><span class="target" id="group__spi__api_1ga1243947c1a217892f360f1769a6cb653"></span>void <code class="sig-name descname">SPI_enableTalk</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414SPI_enableTalk8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable Trasnmit</p>
+<p><p>This function sets the TALK bit enabling the data trasnmission. This bit is enabled by SPI_setConfig if the parameter \r mode is selected as SPI_MODE_SLAVE or SPI_MODE_MASTER.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SPI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415SPI_disableTalk8uint32_t">
+<span id="_CPPv315SPI_disableTalk8uint32_t"></span><span id="_CPPv215SPI_disableTalk8uint32_t"></span><span id="SPI_disableTalk__uint32_t"></span><span class="target" id="group__spi__api_1gac298eca1cbf12d3ecbb01bb2103fde59"></span>void <code class="sig-name descname">SPI_disableTalk</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415SPI_disableTalk8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable Trasnmit</p>
+<p><p>This function clears the TALK bit disabling the data trasnmission. The output pin will be put in high-impedance state. This bit is enabled by SPI_setConfig if the parameter \r mode is selected as SPI_MODE_SLAVE or SPI_MODE_MASTER.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SPI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv49SPI_reset8uint32_t">
+<span id="_CPPv39SPI_reset8uint32_t"></span><span id="_CPPv29SPI_reset8uint32_t"></span><span id="SPI_reset__uint32_t"></span><span class="target" id="group__spi__api_1gab67276c8c5b9ff473366326a2af321b9"></span>void <code class="sig-name descname">SPI_reset</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv49SPI_reset8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reset SPI transmit and receive channels</p>
+<p><p>This function resets the SPI transmit and receive channels.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SPI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv413SPI_setConfig8uint32_t8uint32_t20SPI_TransferProtocol8SPI_Mode8uint32_t8uint16_t">
+<span id="_CPPv313SPI_setConfig8uint32_t8uint32_t20SPI_TransferProtocol8SPI_Mode8uint32_t8uint16_t"></span><span id="_CPPv213SPI_setConfig8uint32_t8uint32_t20SPI_TransferProtocol8SPI_Mode8uint32_t8uint16_t"></span><span id="SPI_setConfig__uint32_t.uint32_t.SPI_TransferProtocol.SPI_Mode.uint32_t.uint16_t"></span><span class="target" id="group__spi__api_1ga985446cc44839750f1b8a073a8e949c4"></span>void <code class="sig-name descname">SPI_setConfig</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>lspclkHz</em>, <a class="reference internal" href="#_CPPv420SPI_TransferProtocol" title="SPI_TransferProtocol">SPI_TransferProtocol</a> <em>protocol</em>, <a class="reference internal" href="#_CPPv48SPI_Mode" title="SPI_Mode">SPI_Mode</a> <em>mode</em>, uint32_t <em>bitRate</em>, uint16_t <em>dataWidth</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413SPI_setConfig8uint32_t8uint32_t20SPI_TransferProtocol8SPI_Mode8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the serial peripheral interface.</p>
+<p><p>This function configures the serial peripheral interface. It sets the SPI protocol, mode of operation, bit rate, and data width.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lspclkHz</span></code>: is the rate of the clock supplied to the SPI module (LSPCLK) in Hz. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">protocol</span></code>: specifies the data transfer protocol. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: specifies the mode of operation. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bitRate</span></code>: specifies the clock rate in Hz. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataWidth</span></code>: specifies number of bits transferred per frame.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>protocol</em> parameter defines the data frame format. The <em>protocol</em> parameter can be one of the following values: <strong>SPI_PROT_POL0PHA0</strong>, <strong>SPI_PROT_POL0PHA1</strong>, <strong>SPI_PROT_POL1PHA0</strong>, or <strong>SPI_PROT_POL1PHA1</strong>. These frame formats encode the following polarity and phase configurations:</p>
+<p></p>
+<p>The <em>mode</em> parameter defines the operating mode of the SPI module. The SPI module can operate as a master or slave; the SPI can also be be configured to disable output on its serial output line. The <em>mode</em> parameter can be one of the following values: <strong>SPI_MODE_MASTER</strong>, <strong>SPI_MODE_SLAVE</strong>, <strong>SPI_MODE_MASTER_OD</strong> or <strong>SPI_MODE_SLAVE_OD</strong> (“OD” indicates “output disabled”).</p>
+<p>The <em>bitRate</em> parameter defines the bit rate for the SPI. This bit rate must satisfy the following clock ratio criteria:</p>
+<p><ul class="simple">
+<li><p><em>bitRate</em> can be no greater than lspclkHz divided by 4.</p></li>
+<li><p><em>lspclkHz</em> / <em>bitRate</em> cannot be greater than 128.</p></li>
+</ul>
+</p>
+<p>The <em>dataWidth</em> parameter defines the width of the data transfers and can be a value between 1 and 16, inclusive.</p>
+<p>The peripheral clock is the low speed peripheral clock. This value is returned by <a class="reference internal" href="sysctl.html#group__sysctl__api_1ga70606ae075b1e015e3a63f8e83320321"><span class="std std-ref">SysCtl_getLowSpeedClock()</span></a>, or it can be explicitly hard coded if it is constant and known (to save the code/execution overhead of a call to <a class="reference internal" href="sysctl.html#group__sysctl__api_1ga70606ae075b1e015e3a63f8e83320321"><span class="std std-ref">SysCtl_getLowSpeedClock()</span></a>).</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>SPI operation should be disabled via <a class="reference internal" href="#group__spi__api_1gaceb3f98ed4417a5a25f58e84ec2d21bb"><span class="std std-ref">SPI_disableModule()</span></a> before any changes to its configuration.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415SPI_setBaudRate8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv315SPI_setBaudRate8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv215SPI_setBaudRate8uint32_t8uint32_t8uint32_t"></span><span id="SPI_setBaudRate__uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__spi__api_1ga866e6000de4d1d303fd4dcb5f83434be"></span>void <code class="sig-name descname">SPI_setBaudRate</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>lspclkHz</em>, uint32_t <em>bitRate</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415SPI_setBaudRate8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the baud rate of the serial peripheral interface.</p>
+<p><p>This function configures the SPI baud rate. The </p>
+<em>bitRate</em> parameter defines the bit rate for the SPI. This bit rate must satisfy the following clock ratio criteria:<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lspclkHz</span></code>: is the rate of the clock supplied to the SPI module (LSPCLK) in Hz. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bitRate</span></code>: specifies the clock rate in Hz.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p><em>bitRate</em> can be no greater than <em>lspclkHz</em> divided by 4.</p></li>
+<li><p><em>lspclkHz</em> / <em>bitRate</em> cannot be greater than 128.</p></li>
+</ul>
+</p>
+<p>The peripheral clock is the low speed peripheral clock. This value is returned by <a class="reference internal" href="sysctl.html#group__sysctl__api_1ga70606ae075b1e015e3a63f8e83320321"><span class="std std-ref">SysCtl_getLowSpeedClock()</span></a>, or it can be explicitly hard coded if it is constant and known (to save the code/execution overhead of a call to <a class="reference internal" href="sysctl.html#group__sysctl__api_1ga70606ae075b1e015e3a63f8e83320321"><span class="std std-ref">SysCtl_getLowSpeedClock()</span></a>).</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p><a class="reference internal" href="#group__spi__api_1ga985446cc44839750f1b8a073a8e949c4"><span class="std std-ref">SPI_setConfig()</span></a> also sets the baud rate. Use <a class="reference internal" href="#group__spi__api_1ga866e6000de4d1d303fd4dcb5f83434be"><span class="std std-ref">SPI_setBaudRate()</span></a> if you wish to configure it separately from protocol and mode.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419SPI_enableInterrupt8uint32_t8uint32_t">
+<span id="_CPPv319SPI_enableInterrupt8uint32_t8uint32_t"></span><span id="_CPPv219SPI_enableInterrupt8uint32_t8uint32_t"></span><span id="SPI_enableInterrupt__uint32_t.uint32_t"></span><span class="target" id="group__spi__api_1gaab48db2de2544c5abfe4503d2c92e1c2"></span>void <code class="sig-name descname">SPI_enableInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419SPI_enableInterrupt8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables individual SPI interrupt sources.</p>
+<p><p>This function enables the indicated SPI interrupt sources. Only the sources that are enabled can be reflected to the processor interrupt; disabled sources have no effect on the processor. The </p>
+<em>intFlags</em> parameter can be any of the following values:<ul class="simple">
+<li><p><strong>SPI_INT_RX_OVERRUN</strong> - Receive overrun interrupt</p></li>
+<li><p><strong>SPI_INT_RX_DATA_TX_EMPTY</strong> - Data received, transmit empty</p></li>
+<li><p><strong>SPI_INT_RXFF</strong> (also enables <strong>SPI_INT_RXFF_OVERFLOW</strong>) - RX FIFO level interrupt (and RX FIFO overflow)</p></li>
+<li><p><strong>SPI_INT_TXFF</strong> - TX FIFO level interrupt</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is a bit mask of the interrupt sources to be enabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p><strong>SPI_INT_RX_OVERRUN</strong>, <strong>SPI_INT_RX_DATA_TX_EMPTY</strong>, <strong>SPI_INT_RXFF_OVERFLOW</strong>, and <strong>SPI_INT_RXFF</strong> are associated with <strong>SPIRXINT</strong>; <strong>SPI_INT_TXFF</strong> is associated with <strong>SPITXINT</strong>.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420SPI_disableInterrupt8uint32_t8uint32_t">
+<span id="_CPPv320SPI_disableInterrupt8uint32_t8uint32_t"></span><span id="_CPPv220SPI_disableInterrupt8uint32_t8uint32_t"></span><span id="SPI_disableInterrupt__uint32_t.uint32_t"></span><span class="target" id="group__spi__api_1gaaa8e5ef5f2bb567c1215b6000a5bb933"></span>void <code class="sig-name descname">SPI_disableInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420SPI_disableInterrupt8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables individual SPI interrupt sources.</p>
+<p><p>This function disables the indicated SPI interrupt sources. The </p>
+<em>intFlags</em> parameter can be any of the following values:<ul class="simple">
+<li><p><strong>SPI_INT_RX_OVERRUN</strong> </p></li>
+<li><p><strong>SPI_INT_RX_DATA_TX_EMPTY</strong> </p></li>
+<li><p><strong>SPI_INT_RXFF</strong> (also disables <strong>SPI_INT_RXFF_OVERFLOW</strong>)</p></li>
+<li><p><strong>SPI_INT_TXFF</strong> </p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is a bit mask of the interrupt sources to be disabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p><strong>SPI_INT_RX_OVERRUN</strong>, <strong>SPI_INT_RX_DATA_TX_EMPTY</strong>, <strong>SPI_INT_RXFF_OVERFLOW</strong>, and <strong>SPI_INT_RXFF</strong> are associated with <strong>SPIRXINT</strong>; <strong>SPI_INT_TXFF</strong> is associated with <strong>SPITXINT</strong>.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422SPI_getInterruptStatus8uint32_t">
+<span id="_CPPv322SPI_getInterruptStatus8uint32_t"></span><span id="_CPPv222SPI_getInterruptStatus8uint32_t"></span><span id="SPI_getInterruptStatus__uint32_t"></span><span class="target" id="group__spi__api_1gadd7e6fe10fa730622f533ead94e8e8f9"></span>uint32_t <code class="sig-name descname">SPI_getInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422SPI_getInterruptStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the current interrupt status.</p>
+<p><p>This function returns the interrupt status for the SPI module.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The current interrupt status, enumerated as a bit field of the following values:<ul class="simple">
+<li><p><strong>SPI_INT_RX_OVERRUN</strong> - Receive overrun interrupt</p></li>
+<li><p><strong>SPI_INT_RX_DATA_TX_EMPTY</strong> - Data received, transmit empty</p></li>
+<li><p><strong>SPI_INT_RXFF</strong> - RX FIFO level interrupt</p></li>
+<li><p><strong>SPI_INT_RXFF_OVERFLOW</strong> - RX FIFO overflow</p></li>
+<li><p><strong>SPI_INT_TXFF</strong> - TX FIFO level interrupt </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424SPI_clearInterruptStatus8uint32_t8uint32_t">
+<span id="_CPPv324SPI_clearInterruptStatus8uint32_t8uint32_t"></span><span id="_CPPv224SPI_clearInterruptStatus8uint32_t8uint32_t"></span><span id="SPI_clearInterruptStatus__uint32_t.uint32_t"></span><span class="target" id="group__spi__api_1ga4ec4660abc56014aa5fd333a9203789b"></span>void <code class="sig-name descname">SPI_clearInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424SPI_clearInterruptStatus8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears SPI interrupt sources.</p>
+<p><p>This function clears the specified SPI interrupt sources so that they no longer assert. This function must be called in the interrupt handler to keep the interrupts from being triggered again immediately upon exit. The </p>
+<em>intFlags</em> parameter can consist of a bit field of the following values:<ul class="simple">
+<li><p><strong>SPI_INT_RX_OVERRUN</strong> </p></li>
+<li><p><strong>SPI_INT_RX_DATA_TX_EMPTY</strong> </p></li>
+<li><p><strong>SPI_INT_RXFF</strong> </p></li>
+<li><p><strong>SPI_INT_RXFF_OVERFLOW</strong> </p></li>
+<li><p><strong>SPI_INT_TXFF</strong> </p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is a bit mask of the interrupt sources to be cleared.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p><strong>SPI_INT_RX_DATA_TX_EMPTY</strong> is cleared by a read of the receive receive buffer, so it usually doesn’t need to be cleared using this function.</p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>Also note that <strong>SPI_INT_RX_OVERRUN</strong>, <strong>SPI_INT_RX_DATA_TX_EMPTY</strong>, <strong>SPI_INT_RXFF_OVERFLOW</strong>, and <strong>SPI_INT_RXFF</strong> are associated with <strong>SPIRXINT</strong>; <strong>SPI_INT_TXFF</strong> is associated with <strong>SPITXINT</strong>.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418SPI_transmit24Bits8uint32_t8uint32_t8uint16_t">
+<span id="_CPPv318SPI_transmit24Bits8uint32_t8uint32_t8uint16_t"></span><span id="_CPPv218SPI_transmit24Bits8uint32_t8uint32_t8uint16_t"></span><span id="SPI_transmit24Bits__uint32_t.uint32_t.uint16_t"></span><span class="target" id="group__spi__api_1gac7bae53ae5e6790160827b25f568c7ff"></span>void <code class="sig-name descname">SPI_transmit24Bits</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>data</em>, uint16_t <em>txDelay</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418SPI_transmit24Bits8uint32_t8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This function can be used to transmit a 24-bit word of data</p>
+<p><p>This function can be used to transmit a 24-bit word of data. 24-bit word data is divided into three bytes of data.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">txData</span></code>: is the data to be transmitted over SPI </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">txDelay</span></code>: specifies the number of serial clock cycles delay time after completion of perious word</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>This function uses SPI_pollingFIFOTransaction function. SPI character length is hardcoded to 8 (8bits) of character length</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418SPI_transmit32Bits8uint32_t8uint32_t8uint16_t">
+<span id="_CPPv318SPI_transmit32Bits8uint32_t8uint32_t8uint16_t"></span><span id="_CPPv218SPI_transmit32Bits8uint32_t8uint32_t8uint16_t"></span><span id="SPI_transmit32Bits__uint32_t.uint32_t.uint16_t"></span><span class="target" id="group__spi__api_1gab928644ccad772ac7ae24fb6ccb772b4"></span>void <code class="sig-name descname">SPI_transmit32Bits</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>data</em>, uint16_t <em>txDelay</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418SPI_transmit32Bits8uint32_t8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This function can be used to transmit a 32-bit word of data</p>
+<p><p>This function can be used to transmit a 32-bit word of data. 32-bit word data is divided into four bytes of data.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">txData</span></code>: is the data to be transmitted over SPI </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">txDelay</span></code>: specifies the number of serial clock cycles delay time after completion of perious word</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>This function uses SPI_pollingFIFOTransaction function. SPI character length is hardcoded to 8 (8bits) of character length</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417SPI_receive16Bits8uint32_t13SPI_endianess8uint16_t8uint16_t">
+<span id="_CPPv317SPI_receive16Bits8uint32_t13SPI_endianess8uint16_t8uint16_t"></span><span id="_CPPv217SPI_receive16Bits8uint32_t13SPI_endianess8uint16_t8uint16_t"></span><span id="SPI_receive16Bits__uint32_t.SPI_endianess.uint16_t.uint16_t"></span><span class="target" id="group__spi__api_1ga33536bd1a5789526594a99837703d5c0"></span>uint16_t <code class="sig-name descname">SPI_receive16Bits</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv413SPI_endianess" title="SPI_endianess">SPI_endianess</a> <em>endianness</em>, uint16_t <em>dummyData</em>, uint16_t <em>txDelay</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417SPI_receive16Bits8uint32_t13SPI_endianess8uint16_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This function is used to receive a 16-bit word of data</p>
+<p><p>This function is used to receive a 16-bit word of data. This function uses SPIpolling_FIFO_Transaction function. SPI character length is hardcoded to 8 (1 byte = 8 bits)of character length</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">endianness</span></code>: specifies the endianess of received data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dummyData</span></code>: is the data which is transmitted to initiate SPI transaction to receive SPI data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">txDelay</span></code>: specifies the number of serial clock cycles delay time after completion of perious word</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>the received 16-bit word. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417SPI_receive24Bits8uint32_t13SPI_endianess8uint16_t8uint16_t">
+<span id="_CPPv317SPI_receive24Bits8uint32_t13SPI_endianess8uint16_t8uint16_t"></span><span id="_CPPv217SPI_receive24Bits8uint32_t13SPI_endianess8uint16_t8uint16_t"></span><span id="SPI_receive24Bits__uint32_t.SPI_endianess.uint16_t.uint16_t"></span><span class="target" id="group__spi__api_1gada6fa624c167254f8aa108d0da2974ad"></span>uint32_t <code class="sig-name descname">SPI_receive24Bits</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv413SPI_endianess" title="SPI_endianess">SPI_endianess</a> <em>endianness</em>, uint16_t <em>dummyData</em>, uint16_t <em>txDelay</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417SPI_receive24Bits8uint32_t13SPI_endianess8uint16_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This function is used to receive a 24-bit word of data</p>
+<p><p>This function is used to receive a 24-bit word of data. This function uses SPIpolling_FIFO_Transaction function. SPI character length is hardcoded to 8 (1 byte = 8 bits)of character length</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">endianness</span></code>: specifies the endianess of received data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dummyData</span></code>: is the data which is transmitted to initiate SPI transaction to receive SPI data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">txDelay</span></code>: specifies the number of serial clock cycles delay time after completion of perious word</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>the received 24-bit word. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417SPI_receive32Bits8uint32_t13SPI_endianess8uint16_t8uint16_t">
+<span id="_CPPv317SPI_receive32Bits8uint32_t13SPI_endianess8uint16_t8uint16_t"></span><span id="_CPPv217SPI_receive32Bits8uint32_t13SPI_endianess8uint16_t8uint16_t"></span><span id="SPI_receive32Bits__uint32_t.SPI_endianess.uint16_t.uint16_t"></span><span class="target" id="group__spi__api_1ga3f59b257fbbe444f9c276ac08e88ea56"></span>uint32_t <code class="sig-name descname">SPI_receive32Bits</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv413SPI_endianess" title="SPI_endianess">SPI_endianess</a> <em>endianness</em>, uint16_t <em>dummyData</em>, uint16_t <em>txDelay</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417SPI_receive32Bits8uint32_t13SPI_endianess8uint16_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This function is used to receive a 32-bit word of data</p>
+<p><p>This function is used to receive a 32-bit word of data. This function uses SPIpolling_FIFO_Transaction function. SPI character length is hardcoded to 8 (1 byte = 8 bits)of character length</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">endianness</span></code>: specifies the endianess of received data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dummyData</span></code>: is the data which is transmitted to initiate SPI transaction to receive SPI data </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">txDelay</span></code>: specifies the number of serial clock cycles delay time after completion of perious word</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>the received 32-bit word. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429SPI_pollingNonFIFOTransaction8uint32_t8uint16_t8uint16_t">
+<span id="_CPPv329SPI_pollingNonFIFOTransaction8uint32_t8uint16_t8uint16_t"></span><span id="_CPPv229SPI_pollingNonFIFOTransaction8uint32_t8uint16_t8uint16_t"></span><span id="SPI_pollingNonFIFOTransaction__uint32_t.uint16_t.uint16_t"></span><span class="target" id="group__spi__api_1ga4895a230620eee7ed4cd542adb75e40c"></span>uint16_t <code class="sig-name descname">SPI_pollingNonFIFOTransaction</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>charLength</em>, uint16_t <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429SPI_pollingNonFIFOTransaction8uint32_t8uint16_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This function is used to initiate SPI transaction of specified character length</p>
+<p><p>This function is used to initiate SPI transaction of specified character. SPI character length is configurable using charLength variable</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">charLength</span></code>: specifies the SPI character length of SPI transaction </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: specified the data to be transmitted</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426SPI_pollingFIFOTransaction8uint32_t8uint16_tP8uint16_tP8uint16_t8uint16_t8uint16_t">
+<span id="_CPPv326SPI_pollingFIFOTransaction8uint32_t8uint16_tP8uint16_tP8uint16_t8uint16_t8uint16_t"></span><span id="_CPPv226SPI_pollingFIFOTransaction8uint32_t8uint16_tP8uint16_tP8uint16_t8uint16_t8uint16_t"></span><span id="SPI_pollingFIFOTransaction__uint32_t.uint16_t.uint16_tP.uint16_tP.uint16_t.uint16_t"></span><span class="target" id="group__spi__api_1ga1b1aec6f36f2b7606cc71f0909fda5b7"></span>void <code class="sig-name descname">SPI_pollingFIFOTransaction</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>charLength</em>, uint16_t *<em>pTxBuffer</em>, uint16_t *<em>pRxBuffer</em>, uint16_t <em>numOfWords</em>, uint16_t <em>txDelay</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426SPI_pollingFIFOTransaction8uint32_t8uint16_tP8uint16_tP8uint16_t8uint16_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This function is used to initiate SPI transaction of specified character length and ‘N’ words of transaction</p>
+<p><p>SPI character length is configurable using charLength variable</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">charLength</span></code>: specifies the SPI character length of SPI transaction </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pTxBuffer</span></code>: specifies the pointer to transmit buffer </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pRxBuffer</span></code>: specifies the pointer to receive buffer </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">numOfWords</span></code>: specified the number of data to be transmitted / received</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>Before initializing the SPI module, the user first must put the module into the
+reset state by calling SPI_disableModule(). The next call should be to
+SPI_setConfig() to set properties like master or slave mode, bit rate of the
+SPI clock signal, data width, and the number of bits per frame.</p>
+<p>The next step is to do any any FIFO or interrupt configuration. FIFOs are
+configured using SPI_enableFIFO() and SPI_disableFIFO() and
+SPI_setFIFOInterruptLevel() if interrupts are desired. The functions
+SPI_enableInterrupt(), SPI_disableInterrupt(), SPI_clearInterruptStatus(),
+and SPI_getInterruptStatus() are for management of interrupts. Note that the
+SPI module uses separate interrupt lines for its receive and transmit
+interrupts when in FIFO mode, but only the “receive” interrupt line when not
+in FIFO mode.</p>
+<p>When configuration is complete, SPI_enableModule() should be called to enable
+the operation of the module.</p>
+<p>To transmit data, there are a few options. SPI_writeDataNonBlocking() will
+simply write the specified data to the transmit buffer and return. It is left
+up to the user to check beforehand that the module is ready for a new piece of
+data to be written to the buffer. This means checking the buffer-full flag is
+not set or, if in FIFO mode, checking how full the FIFO is using
+SPI_getTxFIFOStatus() when in FIFO mode. The other option is to use one of the
+two functions SPI_writeDataBlockingNonFIFO() and SPI_writeDataBlockingFIFO()
+that will wait in a while-loop for the module to be ready.</p>
+<p>When receiving data, again, there are a few options. SPI_readDataNonBlocking()
+will immediately return the contents of the receive buffer. The user should
+check that there is in fact data ready by checking the buffer-full flag or, if
+in FIFO mode, checking how full the FIFO is using SPI_getRxFIFOStatus().
+SPI_readDataBlockingNonFIFO() and SPI_readDataBlockingFIFO(), however, will
+wait in a while-loop for data to become available.</p>
+<p>The code for this module is contained in driverlib/spi.c, with driverlib/spi.h containing the API declarations for use by applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="sdfm.html" class="btn btn-neutral float-left" title="SDFM Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sysctl.html" class="btn btn-neutral float-right" title="SYSCTL Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

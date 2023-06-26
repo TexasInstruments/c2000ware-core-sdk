@@ -1,0 +1,21 @@
+; tidfu.def : Declares the module parameters for the DLL.
+
+LIBRARY      "tidfu"
+
+EXPORTS
+    TIDFUInit                   @1
+    TIDFUDeviceOpen             @2
+    TIDFUDeviceClose            @3
+    TIDFUDeviceStringGet        @4
+    TIDFUDeviceASCIIStringGet   @5
+    TIDFUParamsGet              @6
+    TIDFUDownload               @7
+    TIDFUDownloadBin            @8	
+    TIDFUDownloadHex            @9
+    TIDFUErase                  @10
+    TIDFUUpload                 @11
+    TIDFUIsValidImage           @12
+    TIDFUStatusGet              @13
+    TIDFUErrorStringGet         @14
+    TIDFUBlankCheck             @15
+    TIDFUModeSwitch             @16

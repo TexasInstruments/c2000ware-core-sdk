@@ -1,0 +1,1681 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CAN Module &mdash; F2837xd API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F2837xd API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="CLA Module" href="cla.html"/>
+        <link rel="prev" title="ASysCtl Module" href="asysctl.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F2837xd API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="adc.html">ADC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asysctl.html">ASysCtl Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla.html">CLA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clb.html">CLB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmpss.html">CMPSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dac.html">DAC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dma.html">DMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ecap.html">ECAP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emif.html">EMIF Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="epwm.html">EPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hrpwm.html">HRPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqep.html">EQEP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcbsp.html">MCBSP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci.html">SCI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdfm.html">SDFM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">SPI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upp.html">UPP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version.html">Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xbar.html">XBAR Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F2837xd API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>CAN Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="can-module">
+<span id="can"></span><h1>CAN Module<a class="headerlink" href="#can-module" title="Permalink to this headline">¶</a></h1>
+<p>The controller area network (CAN) API provides a set of functions for configuring
+and using the CAN module, a serial communications protocol. Functions are provided
+to setup and configure the module operating options, setup the different types of message
+objects, send and read messages, and setup and handle interrupts and events.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__can__api"></span><em>group</em> <code class="sig-name descname">can_api</code></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.CAN_RAM_INIT_KEY">
+<span class="target" id="group__can__api_1gace9e60b5e9ca33b8014f09acfa824c51"></span><code class="sig-name descname">CAN_RAM_INIT_KEY</code> (0xAU)<a class="headerlink" href="#c.CAN_RAM_INIT_KEY" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_RAM_INIT_MASK">
+<span class="target" id="group__can__api_1ga9a36aed4271a062d0283713c4f07b3ea"></span><code class="sig-name descname">CAN_RAM_INIT_MASK</code> (0x003FU)<a class="headerlink" href="#c.CAN_RAM_INIT_MASK" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_INIT_PARITY_DISABLE">
+<span class="target" id="group__can__api_1ga1246d610824ffb8b945910cf43c077cf"></span><code class="sig-name descname">CAN_INIT_PARITY_DISABLE</code> (0x1400U)<a class="headerlink" href="#c.CAN_INIT_PARITY_DISABLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_MSG_OBJ_TX_INT_ENABLE">
+<span class="target" id="group__can__api_1gaf589564c85e0cb39e765bcc25d24d891"></span><code class="sig-name descname">CAN_MSG_OBJ_TX_INT_ENABLE</code> CAN_IF1MCTL_TXIE<a class="headerlink" href="#c.CAN_MSG_OBJ_TX_INT_ENABLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This indicates that transmit interrupts should be enabled, or are enabled. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_MSG_OBJ_RX_INT_ENABLE">
+<span class="target" id="group__can__api_1ga108dd327e3e632e409683f85aa205667"></span><code class="sig-name descname">CAN_MSG_OBJ_RX_INT_ENABLE</code> CAN_IF1MCTL_RXIE<a class="headerlink" href="#c.CAN_MSG_OBJ_RX_INT_ENABLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This indicates that receive interrupts should be enabled, or are enabled. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_MSG_OBJ_USE_ID_FILTER">
+<span class="target" id="group__can__api_1ga43430eae0323c367da30641ce8aa5f98"></span><code class="sig-name descname">CAN_MSG_OBJ_USE_ID_FILTER</code> (0x00000001U)<a class="headerlink" href="#c.CAN_MSG_OBJ_USE_ID_FILTER" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This indicates that a message object will use or is using filtering based on the object’s message identifier. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_MSG_OBJ_USE_DIR_FILTER">
+<span class="target" id="group__can__api_1ga11f0585b867f9f91f9cc8512736f7ba5"></span><code class="sig-name descname">CAN_MSG_OBJ_USE_DIR_FILTER</code> CAN_IF1MSK_MDIR<a class="headerlink" href="#c.CAN_MSG_OBJ_USE_DIR_FILTER" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This indicates that a message object will use or is using filtering based on the direction of the transfer. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_MSG_OBJ_USE_EXT_FILTER">
+<span class="target" id="group__can__api_1ga7eef73f96eb0494825cd8415513eb68d"></span><code class="sig-name descname">CAN_MSG_OBJ_USE_EXT_FILTER</code> CAN_IF1MSK_MXTD<a class="headerlink" href="#c.CAN_MSG_OBJ_USE_EXT_FILTER" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This indicates that a message object will use or is using message identifier filtering based on the extended identifier. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_MSG_OBJ_FIFO">
+<span class="target" id="group__can__api_1ga0c879ebaf16f90d69c18356577ce18c4"></span><code class="sig-name descname">CAN_MSG_OBJ_FIFO</code> (0x00000002U)<a class="headerlink" href="#c.CAN_MSG_OBJ_FIFO" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This indicates that this message object is part of a FIFO structure and not the final message object in a FIFO. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_MSG_OBJ_NO_FLAGS">
+<span class="target" id="group__can__api_1gab384ed31d3a007b8674cedb494ebe6e2"></span><code class="sig-name descname">CAN_MSG_OBJ_NO_FLAGS</code> (0x00000000U)<a class="headerlink" href="#c.CAN_MSG_OBJ_NO_FLAGS" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This indicates that a message object has no flags set. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_INT_ERROR">
+<span class="target" id="group__can__api_1gaaeedfcc6f76b6f3edc4e389eb66969a7"></span><code class="sig-name descname">CAN_INT_ERROR</code> (0x00000008UL)<a class="headerlink" href="#c.CAN_INT_ERROR" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This flag is used to allow a CAN controller to generate error interrupts. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_INT_STATUS">
+<span class="target" id="group__can__api_1ga9b574346c3ba9d87d77e39051c7361ef"></span><code class="sig-name descname">CAN_INT_STATUS</code> (0x00000004UL)<a class="headerlink" href="#c.CAN_INT_STATUS" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This flag is used to allow a CAN controller to generate status interrupts. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_INT_IE0">
+<span class="target" id="group__can__api_1ga84739025436b55451ad39dabd4c3aa18"></span><code class="sig-name descname">CAN_INT_IE0</code> (0x00000002UL)<a class="headerlink" href="#c.CAN_INT_IE0" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This flag is used to allow a CAN controller to generate interrupts on interrupt line 0 </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_INT_IE1">
+<span class="target" id="group__can__api_1ga12d8bc37315e35e8c5ba22b7156f2ea4"></span><code class="sig-name descname">CAN_INT_IE1</code> (0x00020000UL)<a class="headerlink" href="#c.CAN_INT_IE1" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This flag is used to allow a CAN controller to generate interrupts on interrupt line 1 </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_STATUS_PERR">
+<span class="target" id="group__can__api_1ga90bc05b770fc470fac3f7255a054763e"></span><code class="sig-name descname">CAN_STATUS_PERR</code> (0x00000100U)<a class="headerlink" href="#c.CAN_STATUS_PERR" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CAN controller has detected a parity error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_STATUS_BUS_OFF">
+<span class="target" id="group__can__api_1ga128af659ae92e97d117a488dbe31655c"></span><code class="sig-name descname">CAN_STATUS_BUS_OFF</code> (0x00000080U)<a class="headerlink" href="#c.CAN_STATUS_BUS_OFF" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CAN controller has entered a Bus Off state. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_STATUS_EWARN">
+<span class="target" id="group__can__api_1ga598142e112fd7dcdf29227ddc3a18628"></span><code class="sig-name descname">CAN_STATUS_EWARN</code> (0x00000040U)<a class="headerlink" href="#c.CAN_STATUS_EWARN" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CAN controller error level has reached warning level. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_STATUS_EPASS">
+<span class="target" id="group__can__api_1ga0ad72c583aeccf70ca41a458a4c4a418"></span><code class="sig-name descname">CAN_STATUS_EPASS</code> (0x00000020U)<a class="headerlink" href="#c.CAN_STATUS_EPASS" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CAN controller error level has reached error passive level. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_STATUS_RXOK">
+<span class="target" id="group__can__api_1ga780dfd5173c3ca51be021325fcb301e6"></span><code class="sig-name descname">CAN_STATUS_RXOK</code> (0x00000010U)<a class="headerlink" href="#c.CAN_STATUS_RXOK" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A message was received successfully since the last read of this status. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_STATUS_TXOK">
+<span class="target" id="group__can__api_1gae8a21b993556fac574a61c600c41d860"></span><code class="sig-name descname">CAN_STATUS_TXOK</code> (0x00000008U)<a class="headerlink" href="#c.CAN_STATUS_TXOK" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A message was transmitted successfully since the last read of this status. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_STATUS_LEC_MSK">
+<span class="target" id="group__can__api_1ga09d4f385b401cb9e226b9f52d0c7c8ef"></span><code class="sig-name descname">CAN_STATUS_LEC_MSK</code> (0x00000007U)<a class="headerlink" href="#c.CAN_STATUS_LEC_MSK" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This is the mask for the last error code field. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_STATUS_LEC_NONE">
+<span class="target" id="group__can__api_1ga1b5513adc24698aa0e2c32d67d7c730f"></span><code class="sig-name descname">CAN_STATUS_LEC_NONE</code> (0x00000000U)<a class="headerlink" href="#c.CAN_STATUS_LEC_NONE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>There was no error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_STATUS_LEC_STUFF">
+<span class="target" id="group__can__api_1ga881c00803433a71131fcdae8bcd55fdc"></span><code class="sig-name descname">CAN_STATUS_LEC_STUFF</code> (0x00000001U)<a class="headerlink" href="#c.CAN_STATUS_LEC_STUFF" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A bit stuffing error has occurred. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_STATUS_LEC_FORM">
+<span class="target" id="group__can__api_1ga09ffe0100093929da99dc790c0c1c155"></span><code class="sig-name descname">CAN_STATUS_LEC_FORM</code> (0x00000002U)<a class="headerlink" href="#c.CAN_STATUS_LEC_FORM" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A formatting error has occurred. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_STATUS_LEC_ACK">
+<span class="target" id="group__can__api_1ga09678c99a5e937f8af5ec659f2a2ea44"></span><code class="sig-name descname">CAN_STATUS_LEC_ACK</code> (0x00000003U)<a class="headerlink" href="#c.CAN_STATUS_LEC_ACK" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>An acknowledge error has occurred. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_STATUS_LEC_BIT1">
+<span class="target" id="group__can__api_1ga8a78754c15f75b6b422116055116e661"></span><code class="sig-name descname">CAN_STATUS_LEC_BIT1</code> (0x00000004U)<a class="headerlink" href="#c.CAN_STATUS_LEC_BIT1" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The bus remained a bit level of 1 for longer than is allowed. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_STATUS_LEC_BIT0">
+<span class="target" id="group__can__api_1gadb270e9f4ea428522ec8cef106160729"></span><code class="sig-name descname">CAN_STATUS_LEC_BIT0</code> (0x00000005U)<a class="headerlink" href="#c.CAN_STATUS_LEC_BIT0" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The bus remained a bit level of 0 for longer than is allowed. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_STATUS_LEC_CRC">
+<span class="target" id="group__can__api_1ga8658d447348d87ecfd5c1386c48ee781"></span><code class="sig-name descname">CAN_STATUS_LEC_CRC</code> (0x00000006U)<a class="headerlink" href="#c.CAN_STATUS_LEC_CRC" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>A CRC error has occurred. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_GLOBAL_INT_CANINT0">
+<span class="target" id="group__can__api_1ga7784ae642e14bed29c82b278f6fa92e4"></span><code class="sig-name descname">CAN_GLOBAL_INT_CANINT0</code> (0x00000001U)<a class="headerlink" href="#c.CAN_GLOBAL_INT_CANINT0" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CANINT0 global interrupt bit. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_GLOBAL_INT_CANINT1">
+<span class="target" id="group__can__api_1gadb67d1fb28e4b93df29eb3d8d337856f"></span><code class="sig-name descname">CAN_GLOBAL_INT_CANINT1</code> (0x00000002U)<a class="headerlink" href="#c.CAN_GLOBAL_INT_CANINT1" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CANINT1 global interrupt bit. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_INT_INT0ID_STATUS">
+<span class="target" id="group__can__api_1ga6e456cbad21f011dc6d190af68463d65"></span><code class="sig-name descname">CAN_INT_INT0ID_STATUS</code> (0x8000U)<a class="headerlink" href="#c.CAN_INT_INT0ID_STATUS" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Status of INT0ID. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_IF1ARB_STD_ID_S">
+<span class="target" id="group__can__api_1gac9a6f9aa66bad8e955f5b4eaf58704fe"></span><code class="sig-name descname">CAN_IF1ARB_STD_ID_S</code> (18U)<a class="headerlink" href="#c.CAN_IF1ARB_STD_ID_S" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IF1 Arbitration Standard ID Shift Offset. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_IF1ARB_STD_ID_M">
+<span class="target" id="group__can__api_1gabad87b473826eec1e228b805273ab7a7"></span><code class="sig-name descname">CAN_IF1ARB_STD_ID_M</code> (0x1FFC0000U)<a class="headerlink" href="#c.CAN_IF1ARB_STD_ID_M" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IF1 Arbitration Standard ID Mask. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_IF2ARB_STD_ID_S">
+<span class="target" id="group__can__api_1ga5832bf0c91084fd42ffdb81748fd4d1b"></span><code class="sig-name descname">CAN_IF2ARB_STD_ID_S</code> (18U)<a class="headerlink" href="#c.CAN_IF2ARB_STD_ID_S" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IF2 Arbitration Standard ID Shift Offset. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CAN_IF2ARB_STD_ID_M">
+<span class="target" id="group__can__api_1ga031796e63d81522f38e7c66c646927a0"></span><code class="sig-name descname">CAN_IF2ARB_STD_ID_M</code> (0x1FFC0000U)<a class="headerlink" href="#c.CAN_IF2ARB_STD_ID_M" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IF2 Arbitration Standard ID Mask. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="cpp enum">
+<dt id="_CPPv416CAN_MsgFrameType">
+<span id="_CPPv316CAN_MsgFrameType"></span><span id="_CPPv216CAN_MsgFrameType"></span><span class="target" id="group__can__api_1ga2a3dfc7f5f385a6fcc9f417b3cab79ce"></span><em class="property">enum </em><code class="sig-name descname">CAN_MsgFrameType</code><a class="headerlink" href="#_CPPv416CAN_MsgFrameType" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This data type is used to decide between STD_ID or EXT_ID for a mailbox. This is used when calling the <a class="reference internal" href="#group__can__api_1gae5dafa527b0271d8c01ed5a5bf4ad768"><span class="std std-ref">CAN_setupMessageObject()</span></a> function. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N16CAN_MsgFrameType17CAN_MSG_FRAME_STDE">
+<span id="_CPPv3N16CAN_MsgFrameType17CAN_MSG_FRAME_STDE"></span><span id="_CPPv2N16CAN_MsgFrameType17CAN_MSG_FRAME_STDE"></span><span class="target" id="group__can__api_1gga2a3dfc7f5f385a6fcc9f417b3cab79ceacf68c806ca59f1b4901c8c2664c978d6"></span><em class="property">enumerator </em><code class="sig-name descname">CAN_MSG_FRAME_STD</code><a class="headerlink" href="#_CPPv4N16CAN_MsgFrameType17CAN_MSG_FRAME_STDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set the message ID frame to standard. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N16CAN_MsgFrameType17CAN_MSG_FRAME_EXTE">
+<span id="_CPPv3N16CAN_MsgFrameType17CAN_MSG_FRAME_EXTE"></span><span id="_CPPv2N16CAN_MsgFrameType17CAN_MSG_FRAME_EXTE"></span><span class="target" id="group__can__api_1gga2a3dfc7f5f385a6fcc9f417b3cab79cea2590086b3d69bbe0458aceb23b7c1c1b"></span><em class="property">enumerator </em><code class="sig-name descname">CAN_MSG_FRAME_EXT</code><a class="headerlink" href="#_CPPv4N16CAN_MsgFrameType17CAN_MSG_FRAME_EXTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set the message ID frame to extended. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv414CAN_MsgObjType">
+<span id="_CPPv314CAN_MsgObjType"></span><span id="_CPPv214CAN_MsgObjType"></span><span class="target" id="group__can__api_1gaea90f1c28fdb70398220a911db89c971"></span><em class="property">enum </em><code class="sig-name descname">CAN_MsgObjType</code><a class="headerlink" href="#_CPPv414CAN_MsgObjType" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This definition is used to determine the type of message object that will be set up via a call to the <a class="reference internal" href="#group__can__api_1gae5dafa527b0271d8c01ed5a5bf4ad768"><span class="std std-ref">CAN_setupMessageObject()</span></a> API. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14CAN_MsgObjType19CAN_MSG_OBJ_TYPE_TXE">
+<span id="_CPPv3N14CAN_MsgObjType19CAN_MSG_OBJ_TYPE_TXE"></span><span id="_CPPv2N14CAN_MsgObjType19CAN_MSG_OBJ_TYPE_TXE"></span><span class="target" id="group__can__api_1ggaea90f1c28fdb70398220a911db89c971a46ef25a65511cde7ffbca8f704aa1e6d"></span><em class="property">enumerator </em><code class="sig-name descname">CAN_MSG_OBJ_TYPE_TX</code><a class="headerlink" href="#_CPPv4N14CAN_MsgObjType19CAN_MSG_OBJ_TYPE_TXE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit message object. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14CAN_MsgObjType26CAN_MSG_OBJ_TYPE_TX_REMOTEE">
+<span id="_CPPv3N14CAN_MsgObjType26CAN_MSG_OBJ_TYPE_TX_REMOTEE"></span><span id="_CPPv2N14CAN_MsgObjType26CAN_MSG_OBJ_TYPE_TX_REMOTEE"></span><span class="target" id="group__can__api_1ggaea90f1c28fdb70398220a911db89c971a78b265bb5ddfd00ce5adbd440d35f65b"></span><em class="property">enumerator </em><code class="sig-name descname">CAN_MSG_OBJ_TYPE_TX_REMOTE</code><a class="headerlink" href="#_CPPv4N14CAN_MsgObjType26CAN_MSG_OBJ_TYPE_TX_REMOTEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit remote request message object. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14CAN_MsgObjType19CAN_MSG_OBJ_TYPE_RXE">
+<span id="_CPPv3N14CAN_MsgObjType19CAN_MSG_OBJ_TYPE_RXE"></span><span id="_CPPv2N14CAN_MsgObjType19CAN_MSG_OBJ_TYPE_RXE"></span><span class="target" id="group__can__api_1ggaea90f1c28fdb70398220a911db89c971aa45196a96b368ccb232d19702062e698"></span><em class="property">enumerator </em><code class="sig-name descname">CAN_MSG_OBJ_TYPE_RX</code><a class="headerlink" href="#_CPPv4N14CAN_MsgObjType19CAN_MSG_OBJ_TYPE_RXE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive message object. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14CAN_MsgObjType28CAN_MSG_OBJ_TYPE_RXTX_REMOTEE">
+<span id="_CPPv3N14CAN_MsgObjType28CAN_MSG_OBJ_TYPE_RXTX_REMOTEE"></span><span id="_CPPv2N14CAN_MsgObjType28CAN_MSG_OBJ_TYPE_RXTX_REMOTEE"></span><span class="target" id="group__can__api_1ggaea90f1c28fdb70398220a911db89c971a2406c6538b0825d6397967a89330758b"></span><em class="property">enumerator </em><code class="sig-name descname">CAN_MSG_OBJ_TYPE_RXTX_REMOTE</code><a class="headerlink" href="#_CPPv4N14CAN_MsgObjType28CAN_MSG_OBJ_TYPE_RXTX_REMOTEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Remote frame receive remote, with auto-transmit message object. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv415CAN_ClockSource">
+<span id="_CPPv315CAN_ClockSource"></span><span id="_CPPv215CAN_ClockSource"></span><span class="target" id="group__can__api_1ga1422a9fd10ef0660607596a2a9159f17"></span><em class="property">enum </em><code class="sig-name descname">CAN_ClockSource</code><a class="headerlink" href="#_CPPv415CAN_ClockSource" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This definition is used to determine the clock source that will be set up via a call to the <a class="reference internal" href="#group__can__api_1ga4a6944af48816635a3cb75ea4d793a45"><span class="std std-ref">CAN_selectClockSource()</span></a> API. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15CAN_ClockSource20CAN_CLOCK_SOURCE_SYSE">
+<span id="_CPPv3N15CAN_ClockSource20CAN_CLOCK_SOURCE_SYSE"></span><span id="_CPPv2N15CAN_ClockSource20CAN_CLOCK_SOURCE_SYSE"></span><span class="target" id="group__can__api_1gga1422a9fd10ef0660607596a2a9159f17aefc5af9782a284d155a0da500cc83b88"></span><em class="property">enumerator </em><code class="sig-name descname">CAN_CLOCK_SOURCE_SYS</code> = 0x0<a class="headerlink" href="#_CPPv4N15CAN_ClockSource20CAN_CLOCK_SOURCE_SYSE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Peripheral System Clock Source. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15CAN_ClockSource21CAN_CLOCK_SOURCE_XTALE">
+<span id="_CPPv3N15CAN_ClockSource21CAN_CLOCK_SOURCE_XTALE"></span><span id="_CPPv2N15CAN_ClockSource21CAN_CLOCK_SOURCE_XTALE"></span><span class="target" id="group__can__api_1gga1422a9fd10ef0660607596a2a9159f17a24009e9e115d8e048f0d9157e9c91202"></span><em class="property">enumerator </em><code class="sig-name descname">CAN_CLOCK_SOURCE_XTAL</code> = 0x1<a class="headerlink" href="#_CPPv4N15CAN_ClockSource21CAN_CLOCK_SOURCE_XTALE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>External Oscillator Clock Source. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15CAN_ClockSource20CAN_CLOCK_SOURCE_AUXE">
+<span id="_CPPv3N15CAN_ClockSource20CAN_CLOCK_SOURCE_AUXE"></span><span id="_CPPv2N15CAN_ClockSource20CAN_CLOCK_SOURCE_AUXE"></span><span class="target" id="group__can__api_1gga1422a9fd10ef0660607596a2a9159f17a293d2977090e760b91f9a5cf97fbec81"></span><em class="property">enumerator </em><code class="sig-name descname">CAN_CLOCK_SOURCE_AUX</code> = 0x2<a class="headerlink" href="#_CPPv4N15CAN_ClockSource20CAN_CLOCK_SOURCE_AUXE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Auxiliary Clock Input Source. </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv416CAN_writeDataRegPCK8uint16_t8uint32_t8uint32_t">
+<span id="_CPPv316CAN_writeDataRegPCK8uint16_t8uint32_t8uint32_t"></span><span id="_CPPv216CAN_writeDataRegPCK8uint16_t8uint32_t8uint32_t"></span><span id="CAN_writeDataReg__uint16_tCPC.uint32_t.uint32_t"></span><span class="target" id="group__can__api_1ga145d786895b27562419e90868cdea35c"></span>void <code class="sig-name descname">CAN_writeDataReg</code><span class="sig-paren">(</span><em class="property">const</em> uint16_t *<em class="property">const</em> <em>data</em>, uint32_t <em>address</em>, uint32_t <em>size</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416CAN_writeDataRegPCK8uint16_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422CAN_writeDataReg_16bitPCK8uint16_t8uint32_t8uint32_t">
+<span id="_CPPv322CAN_writeDataReg_16bitPCK8uint16_t8uint32_t8uint32_t"></span><span id="_CPPv222CAN_writeDataReg_16bitPCK8uint16_t8uint32_t8uint32_t"></span><span id="CAN_writeDataReg_16bit__uint16_tCPC.uint32_t.uint32_t"></span><span class="target" id="group__can__api_1gaabf5bc4e82c60a69eefecf13db25e22e"></span>void <code class="sig-name descname">CAN_writeDataReg_16bit</code><span class="sig-paren">(</span><em class="property">const</em> uint16_t *<em class="property">const</em> <em>data</em>, uint32_t <em>address</em>, uint32_t <em>size</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422CAN_writeDataReg_16bitPCK8uint16_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422CAN_writeDataReg_32bitPCK8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv322CAN_writeDataReg_32bitPCK8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv222CAN_writeDataReg_32bitPCK8uint32_t8uint32_t8uint32_t"></span><span id="CAN_writeDataReg_32bit__uint32_tCPC.uint32_t.uint32_t"></span><span class="target" id="group__can__api_1gade29e07b13002913f82ff24803e6558f"></span>void <code class="sig-name descname">CAN_writeDataReg_32bit</code><span class="sig-paren">(</span><em class="property">const</em> uint32_t *<em class="property">const</em> <em>data</em>, uint32_t <em>address</em>, uint32_t <em>size</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422CAN_writeDataReg_32bitPCK8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415CAN_readDataRegP8uint16_tK8uint32_t8uint32_t">
+<span id="_CPPv315CAN_readDataRegP8uint16_tK8uint32_t8uint32_t"></span><span id="_CPPv215CAN_readDataRegP8uint16_tK8uint32_t8uint32_t"></span><span id="CAN_readDataReg__uint16_tP.uint32_tC.uint32_t"></span><span class="target" id="group__can__api_1ga65b14b9f83936ac1676fe187ececedac"></span>void <code class="sig-name descname">CAN_readDataReg</code><span class="sig-paren">(</span>uint16_t *<em>data</em>, <em class="property">const</em> uint32_t <em>address</em>, uint32_t <em>size</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415CAN_readDataRegP8uint16_tK8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv411CAN_initRAM8uint32_t">
+<span id="_CPPv311CAN_initRAM8uint32_t"></span><span id="_CPPv211CAN_initRAM8uint32_t"></span><span id="CAN_initRAM__uint32_t"></span><span class="target" id="group__can__api_1gaea5aeddf39ec3860642b2ad183df09dc"></span>void <code class="sig-name descname">CAN_initRAM</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411CAN_initRAM8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Initializes the CAN controller’s RAM.</p>
+<p><p>Performs the initialization of the RAM used for the CAN message objects.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421CAN_selectClockSource8uint32_t15CAN_ClockSource">
+<span id="_CPPv321CAN_selectClockSource8uint32_t15CAN_ClockSource"></span><span id="_CPPv221CAN_selectClockSource8uint32_t15CAN_ClockSource"></span><span id="CAN_selectClockSource__uint32_t.CAN_ClockSource"></span><span class="target" id="group__can__api_1ga4a6944af48816635a3cb75ea4d793a45"></span>void <code class="sig-name descname">CAN_selectClockSource</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv415CAN_ClockSource" title="CAN_ClockSource">CAN_ClockSource</a> <em>source</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421CAN_selectClockSource8uint32_t15CAN_ClockSource" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select CAN Clock Source</p>
+<p><p>This function selects the specified clock source for the CAN controller.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source</span></code>: is the clock source to use for the CAN controller.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>source</em> parameter can be any one of the following:<ul class="simple">
+<li><p><strong>CAN_CLOCK_SOURCE_SYS</strong> - Peripheral System Clock</p></li>
+<li><p><strong>CAN_CLOCK_SOURCE_XTAL</strong> - External Oscillator</p></li>
+<li><p><strong>CAN_CLOCK_SOURCE_AUX</strong> - Auxiliary Clock Input from GPIO</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415CAN_startModule8uint32_t">
+<span id="_CPPv315CAN_startModule8uint32_t"></span><span id="_CPPv215CAN_startModule8uint32_t"></span><span id="CAN_startModule__uint32_t"></span><span class="target" id="group__can__api_1ga82959c632f46864b8d7fbdcbe4448174"></span>void <code class="sig-name descname">CAN_startModule</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415CAN_startModule8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Starts the CAN Module’s Operations</p>
+<p><p>This function starts the CAN module’s operations after initialization, which includes the CAN protocol controller state machine of the CAN core and the message handler state machine to begin controlling the CAN’s internal data flow.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420CAN_enableController8uint32_t">
+<span id="_CPPv320CAN_enableController8uint32_t"></span><span id="_CPPv220CAN_enableController8uint32_t"></span><span id="CAN_enableController__uint32_t"></span><span class="target" id="group__can__api_1ga4b43b7144670cd3ac55d0924a45798e4"></span>void <code class="sig-name descname">CAN_enableController</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420CAN_enableController8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the CAN controller.</p>
+<p><p>Enables the CAN controller for message processing. Once enabled, the controller will automatically transmit any pending frames, and process any received frames. The controller can be stopped by calling </p>
+<a class="reference internal" href="#group__can__api_1gad00e09cb0b2e07571d7850c533abac43"><span class="std std-ref">CAN_disableController()</span></a>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller to enable.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421CAN_disableController8uint32_t">
+<span id="_CPPv321CAN_disableController8uint32_t"></span><span id="_CPPv221CAN_disableController8uint32_t"></span><span id="CAN_disableController__uint32_t"></span><span class="target" id="group__can__api_1gad00e09cb0b2e07571d7850c533abac43"></span>void <code class="sig-name descname">CAN_disableController</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421CAN_disableController8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the CAN controller.</p>
+<p><p>Disables the CAN controller for message processing. When disabled, the controller will no longer automatically process data on the CAN bus. The controller can be restarted by calling </p>
+<a class="reference internal" href="#group__can__api_1ga4b43b7144670cd3ac55d0924a45798e4"><span class="std std-ref">CAN_enableController()</span></a>. The state of the CAN controller and the message objects in the controller are left as they were before this call was made.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller to disable.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418CAN_enableTestMode8uint32_t8uint16_t">
+<span id="_CPPv318CAN_enableTestMode8uint32_t8uint16_t"></span><span id="_CPPv218CAN_enableTestMode8uint32_t8uint16_t"></span><span id="CAN_enableTestMode__uint32_t.uint16_t"></span><span class="target" id="group__can__api_1ga84e2c5538471141bf8b05153990bcdbb"></span>void <code class="sig-name descname">CAN_enableTestMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418CAN_enableTestMode8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the test modes of the CAN controller.</p>
+<p><p>Enables test modes within the controller. The following valid options for </p>
+<em>mode</em> can be OR’ed together:<ul class="simple">
+<li><p><strong>CAN_TEST_SILENT</strong> - Silent Mode</p></li>
+<li><p><strong>CAN_TEST_LBACK</strong> - Loopback Mode</p></li>
+<li><p><strong>CAN_TEST_EXL</strong> - External Loopback Mode</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: are the the test modes to enable.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Loopback mode and external loopback mode <strong>can</strong> <strong>not</strong> be enabled at the same time.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419CAN_disableTestMode8uint32_t">
+<span id="_CPPv319CAN_disableTestMode8uint32_t"></span><span id="_CPPv219CAN_disableTestMode8uint32_t"></span><span id="CAN_disableTestMode__uint32_t"></span><span class="target" id="group__can__api_1ga90e583884bc1b17f3758177a1e28f009"></span>void <code class="sig-name descname">CAN_disableTestMode</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419CAN_disableTestMode8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the test modes of the CAN controller.</p>
+<p><p>Disables test modes within the controller and clears the test bits.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416CAN_getBitTiming8uint32_t">
+<span id="_CPPv316CAN_getBitTiming8uint32_t"></span><span id="_CPPv216CAN_getBitTiming8uint32_t"></span><span id="CAN_getBitTiming__uint32_t"></span><span class="target" id="group__can__api_1gac594673ce57118708f2d7905e1abf044"></span>uint32_t <code class="sig-name descname">CAN_getBitTiming</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416CAN_getBitTiming8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the current settings for the CAN controller bit timing.</p>
+<p><p>This function reads the current configuration of the CAN controller bit clock timing.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the value of the bit timing register. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426CAN_enableMemoryAccessMode8uint32_t">
+<span id="_CPPv326CAN_enableMemoryAccessMode8uint32_t"></span><span id="_CPPv226CAN_enableMemoryAccessMode8uint32_t"></span><span id="CAN_enableMemoryAccessMode__uint32_t"></span><span class="target" id="group__can__api_1gab21f3a327d71b0d4de368a1bc638b916"></span>void <code class="sig-name descname">CAN_enableMemoryAccessMode</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426CAN_enableMemoryAccessMode8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables direct access to the RAM.</p>
+<p><p>Enables direct access to the RAM while in Test mode.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Test Mode must first be enabled to use this function.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427CAN_disableMemoryAccessMode8uint32_t">
+<span id="_CPPv327CAN_disableMemoryAccessMode8uint32_t"></span><span id="_CPPv227CAN_disableMemoryAccessMode8uint32_t"></span><span id="CAN_disableMemoryAccessMode__uint32_t"></span><span class="target" id="group__can__api_1ga9459f749f2fe18446284950fe44e51ab"></span>void <code class="sig-name descname">CAN_disableMemoryAccessMode</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427CAN_disableMemoryAccessMode8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables direct access to the RAM.</p>
+<p><p>Disables direct access to the RAM while in Test mode.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428CAN_setInterruptionDebugMode8uint32_tb">
+<span id="_CPPv328CAN_setInterruptionDebugMode8uint32_tb"></span><span id="_CPPv228CAN_setInterruptionDebugMode8uint32_tb"></span><span id="CAN_setInterruptionDebugMode__uint32_t.b"></span><span class="target" id="group__can__api_1gabe8b584fb6f73d488d28ea8e027ff2ab"></span>void <code class="sig-name descname">CAN_setInterruptionDebugMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, bool <em>enable</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428CAN_setInterruptionDebugMode8uint32_tb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the interruption debug mode of the CAN controller.</p>
+<p><p>This function sets the interruption debug mode of the CAN controller. When the </p>
+<em>enable</em> parameter is <strong>true</strong>, CAN will be configured to interrupt any transmission or reception and enter debug mode immediately after it is requested. When <strong>false</strong>, CAN will wait for a started transmission or reception to be completed before entering debug mode.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enable</span></code>: is a flag to enable or disable the interruption debug mode.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420CAN_disableAutoBusOn8uint32_t">
+<span id="_CPPv320CAN_disableAutoBusOn8uint32_t"></span><span id="_CPPv220CAN_disableAutoBusOn8uint32_t"></span><span id="CAN_disableAutoBusOn__uint32_t"></span><span class="target" id="group__can__api_1ga9af2f2efa72fe6722c9084921c31d892"></span>void <code class="sig-name descname">CAN_disableAutoBusOn</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420CAN_disableAutoBusOn8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables Auto-Bus-On.</p>
+<p><p>Disables the Auto-Bus-On feature of the CAN controller.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419CAN_enableAutoBusOn8uint32_t">
+<span id="_CPPv319CAN_enableAutoBusOn8uint32_t"></span><span id="_CPPv219CAN_enableAutoBusOn8uint32_t"></span><span id="CAN_enableAutoBusOn__uint32_t"></span><span class="target" id="group__can__api_1ga83f2b6428496241a577ec56488d77a7d"></span>void <code class="sig-name descname">CAN_enableAutoBusOn</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419CAN_enableAutoBusOn8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables Auto-Bus-On.</p>
+<p><p>Enables the Auto-Bus-On feature of the CAN controller. Be sure to also configure the Auto-Bus-On time using the CAN_setAutoBusOnTime function.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420CAN_setAutoBusOnTime8uint32_t8uint32_t">
+<span id="_CPPv320CAN_setAutoBusOnTime8uint32_t8uint32_t"></span><span id="_CPPv220CAN_setAutoBusOnTime8uint32_t8uint32_t"></span><span id="CAN_setAutoBusOnTime__uint32_t.uint32_t"></span><span class="target" id="group__can__api_1gae8cc46ea93fdc943f06a874a3f857011"></span>void <code class="sig-name descname">CAN_setAutoBusOnTime</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>time</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420CAN_setAutoBusOnTime8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the time before a Bus-Off recovery sequence is started.</p>
+<p><p>This function sets the number of clock cycles before a Bus-Off recovery sequence is started by clearing the Init bit.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">time</span></code>: is number of clock cycles before a Bus-Off recovery sequence is started.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>To enable this functionality, use <a class="reference internal" href="#group__can__api_1ga83f2b6428496241a577ec56488d77a7d"><span class="std std-ref">CAN_enableAutoBusOn()</span></a>.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419CAN_enableInterrupt8uint32_t8uint32_t">
+<span id="_CPPv319CAN_enableInterrupt8uint32_t8uint32_t"></span><span id="_CPPv219CAN_enableInterrupt8uint32_t8uint32_t"></span><span id="CAN_enableInterrupt__uint32_t.uint32_t"></span><span class="target" id="group__can__api_1ga9e51a9daff249d5a8d8bd997b916f8e8"></span>void <code class="sig-name descname">CAN_enableInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419CAN_enableInterrupt8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables individual CAN controller interrupt sources.</p>
+<p><p>Enables specific interrupt sources of the CAN controller. Only enabled sources will cause a processor interrupt.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is the bit mask of the interrupt sources to be enabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>intFlags</em> parameter is the logical OR of any of the following:<ul class="simple">
+<li><p><strong>CAN_INT_ERROR</strong> - a controller error condition has occurred</p></li>
+<li><p><strong>CAN_INT_STATUS</strong> - a message transfer has completed, or a bus error has been detected</p></li>
+<li><p><strong>CAN_INT_IE0</strong> - allow CAN controller to generate interrupts on interrupt line 0</p></li>
+<li><p><strong>CAN_INT_IE1</strong> - allow CAN controller to generate interrupts on interrupt line 1</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420CAN_disableInterrupt8uint32_t8uint32_t">
+<span id="_CPPv320CAN_disableInterrupt8uint32_t8uint32_t"></span><span id="_CPPv220CAN_disableInterrupt8uint32_t8uint32_t"></span><span id="CAN_disableInterrupt__uint32_t.uint32_t"></span><span class="target" id="group__can__api_1gaef4f5ccffce15a30e15649ee6c2c9c20"></span>void <code class="sig-name descname">CAN_disableInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420CAN_disableInterrupt8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables individual CAN controller interrupt sources.</p>
+<p><p>Disables the specified CAN controller interrupt sources. Only enabled interrupt sources can cause a processor interrupt.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is the bit mask of the interrupt sources to be disabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>intFlags</em> parameter has the same definition as in the <a class="reference internal" href="#group__can__api_1ga9e51a9daff249d5a8d8bd997b916f8e8"><span class="std std-ref">CAN_enableInterrupt()</span></a> function.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419CAN_getInterruptMux8uint32_t">
+<span id="_CPPv319CAN_getInterruptMux8uint32_t"></span><span id="_CPPv219CAN_getInterruptMux8uint32_t"></span><span id="CAN_getInterruptMux__uint32_t"></span><span class="target" id="group__can__api_1ga9299c69f7dbe5cda872c0cf688517d08"></span>uint32_t <code class="sig-name descname">CAN_getInterruptMux</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419CAN_getInterruptMux8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the CAN controller Interrupt Line set for each mailbox</p>
+<p><p>Gets which interrupt line each message object should assert when an interrupt occurs. Bit 0 corresponds to message object 32 and then bits 1 to 31 correspond to message object 1 through 31 respectively. Bits that are asserted indicate the message object should generate an interrupt on interrupt line 1, while bits that are not asserted indicate the message object should generate an interrupt on line 0.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the value of the interrupt muxing register. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419CAN_setInterruptMux8uint32_t8uint32_t">
+<span id="_CPPv319CAN_setInterruptMux8uint32_t8uint32_t"></span><span id="_CPPv219CAN_setInterruptMux8uint32_t8uint32_t"></span><span id="CAN_setInterruptMux__uint32_t.uint32_t"></span><span class="target" id="group__can__api_1gab2255ffd3c08617f4b3235cf10d6547a"></span>void <code class="sig-name descname">CAN_setInterruptMux</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>mux</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419CAN_setInterruptMux8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set the CAN controller Interrupt Line for each mailbox</p>
+<p><p>Selects which interrupt line each message object should assert when an interrupt occurs. Bit 0 corresponds to message object 32 and then bits 1 to 31 correspond to message object 1 through 31 respectively. Bits that are asserted indicate the message object should generate an interrupt on interrupt line 1, while bits that are not asserted indicate the message object should generate an interrupt on line 0.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mux</span></code>: bit packed representation of which message objects should generate an interrupt on a given interrupt line.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415CAN_enableRetry8uint32_t">
+<span id="_CPPv315CAN_enableRetry8uint32_t"></span><span id="_CPPv215CAN_enableRetry8uint32_t"></span><span id="CAN_enableRetry__uint32_t"></span><span class="target" id="group__can__api_1ga435667f885ea3e80a2c734c2abb2bbe2"></span>void <code class="sig-name descname">CAN_enableRetry</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415CAN_enableRetry8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the CAN controller automatic retransmission behavior.</p>
+<p><p>Enables the automatic retransmission of messages with detected errors.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416CAN_disableRetry8uint32_t">
+<span id="_CPPv316CAN_disableRetry8uint32_t"></span><span id="_CPPv216CAN_disableRetry8uint32_t"></span><span id="CAN_disableRetry__uint32_t"></span><span class="target" id="group__can__api_1ga62ab43edba077c7a33e532c449f10240"></span>void <code class="sig-name descname">CAN_disableRetry</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416CAN_disableRetry8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the CAN controller automatic retransmission behavior.</p>
+<p><p>Disables the automatic retransmission of messages with detected errors.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418CAN_isRetryEnabled8uint32_t">
+<span id="_CPPv318CAN_isRetryEnabled8uint32_t"></span><span id="_CPPv218CAN_isRetryEnabled8uint32_t"></span><span id="CAN_isRetryEnabled__uint32_t"></span><span class="target" id="group__can__api_1ga1b54b1cac5146fe00c0642e21f6250f8"></span>bool <code class="sig-name descname">CAN_isRetryEnabled</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418CAN_isRetryEnabled8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the current setting for automatic retransmission.</p>
+<p><p>Reads the current setting for the automatic retransmission in the CAN controller and returns it to the caller.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if automatic retransmission is enabled, <strong>false</strong> otherwise. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417CAN_getErrorCount8uint32_tP8uint32_tP8uint32_t">
+<span id="_CPPv317CAN_getErrorCount8uint32_tP8uint32_tP8uint32_t"></span><span id="_CPPv217CAN_getErrorCount8uint32_tP8uint32_tP8uint32_t"></span><span id="CAN_getErrorCount__uint32_t.uint32_tP.uint32_tP"></span><span class="target" id="group__can__api_1ga5cd8e9e09a502c1fc81460ab8cfc3a63"></span>bool <code class="sig-name descname">CAN_getErrorCount</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t *<em>rxCount</em>, uint32_t *<em>txCount</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417CAN_getErrorCount8uint32_tP8uint32_tP8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reads the CAN controller error counter register.</p>
+<p><p>Reads the error counter register and returns the transmit and receive error counts to the caller along with a flag indicating if the controller receive counter has reached the error passive limit. The values of the receive and transmit error counters are returned through the pointers provided as parameters.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rxCount</span></code>: is a pointer to storage for the receive error counter. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">txCount</span></code>: is a pointer to storage for the transmit error counter.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>After this call, <em>rxCount</em> will hold the current receive error count and <em>txCount</em> will hold the current transmit error count.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if the receive error count has reached the error passive limit, and <strong>false</strong> if the error count is below the error passive limit. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv413CAN_getStatus8uint32_t">
+<span id="_CPPv313CAN_getStatus8uint32_t"></span><span id="_CPPv213CAN_getStatus8uint32_t"></span><span id="CAN_getStatus__uint32_t"></span><span class="target" id="group__can__api_1gaa0fdf1827400bf7abf13e44343beccde"></span>uint16_t <code class="sig-name descname">CAN_getStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413CAN_getStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reads the CAN controller error and status register.</p>
+<p><p>Reads the error and status register of the CAN controller.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the value of the register. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417CAN_getTxRequests8uint32_t">
+<span id="_CPPv317CAN_getTxRequests8uint32_t"></span><span id="_CPPv217CAN_getTxRequests8uint32_t"></span><span id="CAN_getTxRequests__uint32_t"></span><span class="target" id="group__can__api_1gad65fa352d91de16f3cf699dcfebcac21"></span>uint32_t <code class="sig-name descname">CAN_getTxRequests</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417CAN_getTxRequests8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reads the CAN controller TX request register.</p>
+<p><p>Reads the TX request register of the CAN controller.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the value of the register. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419CAN_getNewDataFlags8uint32_t">
+<span id="_CPPv319CAN_getNewDataFlags8uint32_t"></span><span id="_CPPv219CAN_getNewDataFlags8uint32_t"></span><span id="CAN_getNewDataFlags__uint32_t"></span><span class="target" id="group__can__api_1ga1a6d109c9f88774d30d3e9ce5188c798"></span>uint32_t <code class="sig-name descname">CAN_getNewDataFlags</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419CAN_getNewDataFlags8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reads the CAN controller new data status register.</p>
+<p><p>Reads the new data status register of the CAN controller for all message objects.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the value of the register. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426CAN_getValidMessageObjects8uint32_t">
+<span id="_CPPv326CAN_getValidMessageObjects8uint32_t"></span><span id="_CPPv226CAN_getValidMessageObjects8uint32_t"></span><span id="CAN_getValidMessageObjects__uint32_t"></span><span class="target" id="group__can__api_1ga6f41aa817b71c379784d6908556d09e2"></span>uint32_t <code class="sig-name descname">CAN_getValidMessageObjects</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426CAN_getValidMessageObjects8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reads the CAN controller valid message object register.</p>
+<p><p>Reads the valid message object register of the CAN controller.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the value of the register. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421CAN_getInterruptCause8uint32_t">
+<span id="_CPPv321CAN_getInterruptCause8uint32_t"></span><span id="_CPPv221CAN_getInterruptCause8uint32_t"></span><span id="CAN_getInterruptCause__uint32_t"></span><span class="target" id="group__can__api_1ga0f22785ce6eb8ff808398cb1dbea5d4c"></span>uint32_t <code class="sig-name descname">CAN_getInterruptCause</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421CAN_getInterruptCause8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the CAN controller interrupt cause.</p>
+<p><p>This function returns the value of the interrupt register that indicates the cause of the interrupt.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the value of the interrupt register. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429CAN_getInterruptMessageSource8uint32_t">
+<span id="_CPPv329CAN_getInterruptMessageSource8uint32_t"></span><span id="_CPPv229CAN_getInterruptMessageSource8uint32_t"></span><span id="CAN_getInterruptMessageSource__uint32_t"></span><span class="target" id="group__can__api_1ga746085a3f9106c91a1e1e0ac5e333672"></span>uint32_t <code class="sig-name descname">CAN_getInterruptMessageSource</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429CAN_getInterruptMessageSource8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the CAN controller pending interrupt message source.</p>
+<p><p>Returns the value of the pending interrupts register that indicates which messages are the source of pending interrupts.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the value of the pending interrupts register. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425CAN_enableGlobalInterrupt8uint32_t8uint16_t">
+<span id="_CPPv325CAN_enableGlobalInterrupt8uint32_t8uint16_t"></span><span id="_CPPv225CAN_enableGlobalInterrupt8uint32_t8uint16_t"></span><span id="CAN_enableGlobalInterrupt__uint32_t.uint16_t"></span><span class="target" id="group__can__api_1ga5a8bf0260ef3203fe4f2485ac38a20a4"></span>void <code class="sig-name descname">CAN_enableGlobalInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425CAN_enableGlobalInterrupt8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CAN Global interrupt Enable function.</p>
+<p><p>Enables specific CAN interrupt in the global interrupt enable register</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is the bit mask of the interrupt sources to be enabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>intFlags</em> parameter is the logical OR of any of the following:<ul class="simple">
+<li><p><strong>CAN_GLOBAL_INT_CANINT0</strong> - Global Interrupt Enable bit for CAN INT0</p></li>
+<li><p><strong>CAN_GLOBAL_INT_CANINT1</strong> - Global Interrupt Enable bit for CAN INT1</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426CAN_disableGlobalInterrupt8uint32_t8uint16_t">
+<span id="_CPPv326CAN_disableGlobalInterrupt8uint32_t8uint16_t"></span><span id="_CPPv226CAN_disableGlobalInterrupt8uint32_t8uint16_t"></span><span id="CAN_disableGlobalInterrupt__uint32_t.uint16_t"></span><span class="target" id="group__can__api_1ga1f292cebb1ab1617dd555168a8bda87e"></span>void <code class="sig-name descname">CAN_disableGlobalInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426CAN_disableGlobalInterrupt8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CAN Global interrupt Disable function.</p>
+<p><p>Disables the specific CAN interrupt in the global interrupt enable register</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is the bit mask of the interrupt sources to be disabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>intFlags</em> parameter is the logical OR of any of the following:<ul class="simple">
+<li><p><strong>CAN_GLOBAL_INT_CANINT0</strong> - Global Interrupt bit for CAN INT0</p></li>
+<li><p><strong>CAN_GLOBAL_INT_CANINT1</strong> - Global Interrupt bit for CAN INT1</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv430CAN_clearGlobalInterruptStatus8uint32_t8uint16_t">
+<span id="_CPPv330CAN_clearGlobalInterruptStatus8uint32_t8uint16_t"></span><span id="_CPPv230CAN_clearGlobalInterruptStatus8uint32_t8uint16_t"></span><span id="CAN_clearGlobalInterruptStatus__uint32_t.uint16_t"></span><span class="target" id="group__can__api_1ga3def314b331ebd1a6f31bf47d1019db8"></span>void <code class="sig-name descname">CAN_clearGlobalInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430CAN_clearGlobalInterruptStatus8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CAN Global interrupt Clear function.</p>
+<p><p>Clear the specific CAN interrupt bit in the global interrupt flag register.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is the bit mask of the interrupt sources to be cleared.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>intFlags</em> parameter is the logical OR of any of the following:<ul class="simple">
+<li><p><strong>CAN_GLOBAL_INT_CANINT0</strong> - Global Interrupt bit for CAN INT0</p></li>
+<li><p><strong>CAN_GLOBAL_INT_CANINT1</strong> - Global Interrupt bit for CAN INT1</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428CAN_getGlobalInterruptStatus8uint32_t8uint16_t">
+<span id="_CPPv328CAN_getGlobalInterruptStatus8uint32_t8uint16_t"></span><span id="_CPPv228CAN_getGlobalInterruptStatus8uint32_t8uint16_t"></span><span id="CAN_getGlobalInterruptStatus__uint32_t.uint16_t"></span><span class="target" id="group__can__api_1ga497cd0c27827a575101fc2e08077019e"></span>bool <code class="sig-name descname">CAN_getGlobalInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428CAN_getGlobalInterruptStatus8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the CAN Global Interrupt status.</p>
+<p><p>Check if any interrupt bit is set in the global interrupt flag register.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is the bit mask of the interrupt sources to be enabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>intFlags</em> parameter is the logical OR of any of the following:<ul class="simple">
+<li><p><strong>CAN_GLOBAL_INT_CANINT0</strong> - Global Interrupt bit for CAN INT0</p></li>
+<li><p><strong>CAN_GLOBAL_INT_CANINT1</strong> - Global Interrupt bit for CAN INT1</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>True if any of the requested interrupt bits are set. False, if none of the requested bits are set. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414CAN_initModule8uint32_t">
+<span id="_CPPv314CAN_initModule8uint32_t"></span><span id="_CPPv214CAN_initModule8uint32_t"></span><span id="CAN_initModule__uint32_t"></span><span class="target" id="group__can__api_1gaedffc3e687e7e79e30dea050bb463888"></span>void <code class="sig-name descname">CAN_initModule</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414CAN_initModule8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Initializes the CAN controller</p>
+<p><p>This function initializes the message RAM, which also clears all the message objects, and places the CAN controller in an init state. Write access to the configuration registers is available as a result, allowing the bit timing and message objects to be setup.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>To exit the initialization mode and start the CAN module, use the <a class="reference internal" href="#group__can__api_1ga82959c632f46864b8d7fbdcbe4448174"><span class="std std-ref">CAN_startModule()</span></a> function.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414CAN_setBitRate8uint32_t8uint32_t8uint32_t8uint16_t">
+<span id="_CPPv314CAN_setBitRate8uint32_t8uint32_t8uint32_t8uint16_t"></span><span id="_CPPv214CAN_setBitRate8uint32_t8uint32_t8uint32_t8uint16_t"></span><span id="CAN_setBitRate__uint32_t.uint32_t.uint32_t.uint16_t"></span><span class="target" id="group__can__api_1ga7c24ef95e3c9c661977dee0038f40d9c"></span>void <code class="sig-name descname">CAN_setBitRate</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>clock</em>, uint32_t <em>bitRate</em>, uint16_t <em>bitTime</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414CAN_setBitRate8uint32_t8uint32_t8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the CAN Bit Timing based on requested Bit Rate.</p>
+<p><p>This function sets the CAN bit timing values for the bit rate passed in the </p>
+<em>bitRate</em> and <em>bitTime</em> parameters based on the <em>clock</em> parameter. The CAN bit clock is calculated to be an average timing value that should work for most systems. If tighter timing requirements are needed, then the <a class="reference internal" href="#group__can__api_1gac2da3e3b3c5a04c73b33c1f11d7a57ae"><span class="std std-ref">CAN_setBitTiming()</span></a> function is available for full customization of all of the CAN bit timing values.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">clock</span></code>: is the CAN module clock frequency before the bit rate prescaler (Hertz) </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bitRate</span></code>: is the desired bit rate (bits/sec) </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bitTime</span></code>: is the number of time quanta per bit required for desired bit time (Tq) and must be in the range from 8 to 25</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Not all bit-rate and bit-time combinations are valid. For combinations that would yield the correct bit-rate, refer to the DCAN_CANBTR_values.xlsx file in the “docs” directory. The CANBTR register values calculated by the function CAN_setBitRate may not be suitable for your network parameters. If this is the case and you have computed the correct values for your network, you could directly write those parameters in CANBTR register using the function CAN_setBitTiming.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416CAN_setBitTiming8uint32_t8uint16_t8uint16_t8uint16_t8uint16_t8uint16_t">
+<span id="_CPPv316CAN_setBitTiming8uint32_t8uint16_t8uint16_t8uint16_t8uint16_t8uint16_t"></span><span id="_CPPv216CAN_setBitTiming8uint32_t8uint16_t8uint16_t8uint16_t8uint16_t8uint16_t"></span><span id="CAN_setBitTiming__uint32_t.uint16_t.uint16_t.uint16_t.uint16_t.uint16_t"></span><span class="target" id="group__can__api_1gac2da3e3b3c5a04c73b33c1f11d7a57ae"></span>void <code class="sig-name descname">CAN_setBitTiming</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>prescaler</em>, uint16_t <em>prescalerExtension</em>, uint16_t <em>tSeg1</em>, uint16_t <em>tSeg2</em>, uint16_t <em>sjw</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416CAN_setBitTiming8uint32_t8uint16_t8uint16_t8uint16_t8uint16_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Manually set the CAN controller bit timing.</p>
+<p><p>This function sets the various timing parameters for the CAN bus bit timing: baud rate prescaler, prescaler extension, time segment 1, time segment 2, and the Synchronization Jump Width.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">prescaler</span></code>: is the baud rate prescaler </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">prescalerExtension</span></code>: is the baud rate prescaler extension </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tSeg1</span></code>: is the time segment 1 </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tSeg2</span></code>: is the time segment 2 </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sjw</span></code>: is the synchronization jump width</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424CAN_clearInterruptStatus8uint32_t8uint32_t">
+<span id="_CPPv324CAN_clearInterruptStatus8uint32_t8uint32_t"></span><span id="_CPPv224CAN_clearInterruptStatus8uint32_t8uint32_t"></span><span id="CAN_clearInterruptStatus__uint32_t.uint32_t"></span><span class="target" id="group__can__api_1ga8351eefb5a853da06a7f02ff451f7b9f"></span>void <code class="sig-name descname">CAN_clearInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>intClr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424CAN_clearInterruptStatus8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears a CAN interrupt source.</p>
+<p><p>This function can be used to clear a specific interrupt source. The </p>
+<em>intClr</em> parameter should be either a number from 1 to 32 to clear a specific message object interrupt or can be the following:<ul class="simple">
+<li><p><strong>CAN_INT_INT0ID_STATUS</strong> - Clears a status interrupt.</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intClr</span></code>: is a value indicating which interrupt source to clear.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>It is not necessary to use this function to clear an interrupt. This should only be used if the application wants to clear an interrupt source without taking the normal interrupt action.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422CAN_setupMessageObject8uint32_t8uint32_t8uint32_t16CAN_MsgFrameType14CAN_MsgObjType8uint32_t8uint32_t8uint16_t">
+<span id="_CPPv322CAN_setupMessageObject8uint32_t8uint32_t8uint32_t16CAN_MsgFrameType14CAN_MsgObjType8uint32_t8uint32_t8uint16_t"></span><span id="_CPPv222CAN_setupMessageObject8uint32_t8uint32_t8uint32_t16CAN_MsgFrameType14CAN_MsgObjType8uint32_t8uint32_t8uint16_t"></span><span id="CAN_setupMessageObject__uint32_t.uint32_t.uint32_t.CAN_MsgFrameType.CAN_MsgObjType.uint32_t.uint32_t.uint16_t"></span><span class="target" id="group__can__api_1gae5dafa527b0271d8c01ed5a5bf4ad768"></span>void <code class="sig-name descname">CAN_setupMessageObject</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>objID</em>, uint32_t <em>msgID</em>, <a class="reference internal" href="#_CPPv416CAN_MsgFrameType" title="CAN_MsgFrameType">CAN_MsgFrameType</a> <em>frame</em>, <a class="reference internal" href="#_CPPv414CAN_MsgObjType" title="CAN_MsgObjType">CAN_MsgObjType</a> <em>msgType</em>, uint32_t <em>msgIDMask</em>, uint32_t <em>flags</em>, uint16_t <em>msgLen</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422CAN_setupMessageObject8uint32_t8uint32_t8uint32_t16CAN_MsgFrameType14CAN_MsgObjType8uint32_t8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Setup a Message Object</p>
+<p><p>This function sets the various values required for a message object.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">objID</span></code>: is the message object number to configure (1-32). </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">msgID</span></code>: is the CAN message identifier used for the 11 or 29 bit identifiers </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">frame</span></code>: is the CAN ID frame type </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">msgType</span></code>: is the message object type </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">msgIDMask</span></code>: is the CAN message identifier mask used when identifier filtering is enabled </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flags</span></code>: is the various flags and settings to be set for the message object </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">msgLen</span></code>: is the number of bytes of data in the message object (0-8)</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>frame</em> parameter can be one of the following values:<ul class="simple">
+<li><p><strong>CAN_MSG_FRAME_STD</strong> - Standard 11 bit identifier</p></li>
+<li><p><strong>CAN_MSG_FRAME_EXT</strong> - Extended 29 bit identifier</p></li>
+</ul>
+</p>
+<p>The <em>msgType</em> parameter can be one of the following values:<ul class="simple">
+<li><p><strong>CAN_MSG_OBJ_TYPE_TX</strong> - Transmit Message</p></li>
+<li><p><strong>CAN_MSG_OBJ_TYPE_TX_REMOTE</strong> - Transmit Remote Message</p></li>
+<li><p><strong>CAN_MSG_OBJ_TYPE_RX</strong> - Receive Message</p></li>
+<li><p><strong>CAN_MSG_OBJ_TYPE_RXTX_REMOTE</strong> - Receive Remote message with auto-transmit</p></li>
+</ul>
+</p>
+<p>The <em>flags</em> parameter can be set as <strong>CAN_MSG_OBJ_NO_FLAGS</strong> if no flags are required or the parameter can be a logical OR of any of the following values:<ul class="simple">
+<li><p><strong>CAN_MSG_OBJ_TX_INT_ENABLE</strong> - Enable Transmit Interrupts</p></li>
+<li><p><strong>CAN_MSG_OBJ_RX_INT_ENABLE</strong> - Enable Receive Interrupts</p></li>
+<li><p><strong>CAN_MSG_OBJ_USE_ID_FILTER</strong> - Use filtering based on the Message ID</p></li>
+<li><p><strong>CAN_MSG_OBJ_USE_EXT_FILTER</strong> - Use filtering based on the Extended Message ID</p></li>
+<li><p><strong>CAN_MSG_OBJ_USE_DIR_FILTER</strong> - Use filtering based on the direction of the transfer</p></li>
+<li><p><strong>CAN_MSG_OBJ_FIFO</strong> - Message object is part of a FIFO structure and isn’t the final message object in FIFO</p></li>
+</ul>
+</p>
+<p>If filtering is based on message identifier, the value <strong>CAN_MSG_OBJ_USE_ID_FILTER</strong> has to be logically ORed with the <em>flag</em> parameter and <strong>CAN_MSG_OBJ_USE_EXT_FILTER</strong> also has to be ORed for message identifier filtering to be based on the extended identifier.</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>The <strong>msgLen</strong><p> Parameter for the Receive Message Object is a “don’t</p>
+<p>      care” but its value should be between 0-8 due to the assert.</p>
+</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415CAN_sendMessage8uint32_t8uint32_t8uint16_tPK8uint16_t">
+<span id="_CPPv315CAN_sendMessage8uint32_t8uint32_t8uint16_tPK8uint16_t"></span><span id="_CPPv215CAN_sendMessage8uint32_t8uint32_t8uint16_tPK8uint16_t"></span><span id="CAN_sendMessage__uint32_t.uint32_t.uint16_t.uint16_tCP"></span><span class="target" id="group__can__api_1gac18a81e9009b2a4fa0bd8144c4d4c3c2"></span>void <code class="sig-name descname">CAN_sendMessage</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>objID</em>, uint16_t <em>msgLen</em>, <em class="property">const</em> uint16_t *<em>msgData</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415CAN_sendMessage8uint32_t8uint32_t8uint16_tPK8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sends a Message Object</p>
+<p><p>This function is used to transmit a message object and the message data, if applicable.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">objID</span></code>: is the object number to configure (1-32). </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">msgLen</span></code>: is the number of bytes of data in the message object (0-8) </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">msgData</span></code>: is a pointer to the message object’s data</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>The message object requested by the <em>objID</em> must first be setup using the <a class="reference internal" href="#group__can__api_1gae5dafa527b0271d8c01ed5a5bf4ad768"><span class="std std-ref">CAN_setupMessageObject()</span></a> function.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421CAN_sendMessage_16bit8uint32_t8uint32_t8uint16_tPK8uint16_t">
+<span id="_CPPv321CAN_sendMessage_16bit8uint32_t8uint32_t8uint16_tPK8uint16_t"></span><span id="_CPPv221CAN_sendMessage_16bit8uint32_t8uint32_t8uint16_tPK8uint16_t"></span><span id="CAN_sendMessage_16bit__uint32_t.uint32_t.uint16_t.uint16_tCP"></span><span class="target" id="group__can__api_1gad7cbf78b746572ed1582ab7f95ad6135"></span>void <code class="sig-name descname">CAN_sendMessage_16bit</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>objID</em>, uint16_t <em>msgLen</em>, <em class="property">const</em> uint16_t *<em>msgData</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421CAN_sendMessage_16bit8uint32_t8uint32_t8uint16_tPK8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sends a Message Object</p>
+<p><p>This function is used to transmit a message object and the message data, if applicable.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">objID</span></code>: is the object number to configure (1-32). </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">msgLen</span></code>: is the number of bytes of data in the message object (0-8) </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">msgData</span></code>: is a pointer to the message object’s data (all 16 bits are sent)</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>The message object requested by the <em>objID</em> must first be setup using the <a class="reference internal" href="#group__can__api_1gae5dafa527b0271d8c01ed5a5bf4ad768"><span class="std std-ref">CAN_setupMessageObject()</span></a> function.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421CAN_sendMessage_32bit8uint32_t8uint32_t8uint16_tPK8uint32_t">
+<span id="_CPPv321CAN_sendMessage_32bit8uint32_t8uint32_t8uint16_tPK8uint32_t"></span><span id="_CPPv221CAN_sendMessage_32bit8uint32_t8uint32_t8uint16_tPK8uint32_t"></span><span id="CAN_sendMessage_32bit__uint32_t.uint32_t.uint16_t.uint32_tCP"></span><span class="target" id="group__can__api_1ga66b486b9c49f5c672344db38cc285cac"></span>void <code class="sig-name descname">CAN_sendMessage_32bit</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>objID</em>, uint16_t <em>msgLen</em>, <em class="property">const</em> uint32_t *<em>msgData</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421CAN_sendMessage_32bit8uint32_t8uint32_t8uint16_tPK8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sends a Message Object</p>
+<p><p>This function is used to transmit a message object and the message data, if applicable.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">objID</span></code>: is the object number to configure (1-32). </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">msgLen</span></code>: is the number of bytes of data in the message object (0-8) </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">msgData</span></code>: is a pointer to the message object’s data (all 32 bits are sent)</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>The message object requested by the <em>objID</em> must first be setup using the <a class="reference internal" href="#group__can__api_1gae5dafa527b0271d8c01ed5a5bf4ad768"><span class="std std-ref">CAN_setupMessageObject()</span></a> function.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425CAN_sendMessage_updateDLC8uint32_t8uint32_t8uint16_tPK8uint16_t">
+<span id="_CPPv325CAN_sendMessage_updateDLC8uint32_t8uint32_t8uint16_tPK8uint16_t"></span><span id="_CPPv225CAN_sendMessage_updateDLC8uint32_t8uint32_t8uint16_tPK8uint16_t"></span><span id="CAN_sendMessage_updateDLC__uint32_t.uint32_t.uint16_t.uint16_tCP"></span><span class="target" id="group__can__api_1ga4d27001afe88b905a0fde4afd39e1ab3"></span>void <code class="sig-name descname">CAN_sendMessage_updateDLC</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>objID</em>, uint16_t <em>msgLen</em>, <em class="property">const</em> uint16_t *<em>msgData</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425CAN_sendMessage_updateDLC8uint32_t8uint32_t8uint16_tPK8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sends a Message Object while dynamically updating data length</p>
+<p><p>This function is used to transmit a message object and the message data, if applicable and can be used to dynamically update the data length for every subsequent call of this function.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">objID</span></code>: is the object number to configure (1-32). </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">msgLen</span></code>: is the number of bytes of data in the message object (0-8) </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">msgData</span></code>: is a pointer to the message object’s data</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>The message object requested by the <em>objID</em> must first be setup using the <a class="reference internal" href="#group__can__api_1gae5dafa527b0271d8c01ed5a5bf4ad768"><span class="std std-ref">CAN_setupMessageObject()</span></a> function.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428CAN_sendRemoteRequestMessage8uint32_t8uint32_t">
+<span id="_CPPv328CAN_sendRemoteRequestMessage8uint32_t8uint32_t"></span><span id="_CPPv228CAN_sendRemoteRequestMessage8uint32_t8uint32_t"></span><span id="CAN_sendRemoteRequestMessage__uint32_t.uint32_t"></span><span class="target" id="group__can__api_1ga3694d6c365d98bcef2e19dadb38bc9ef"></span>void <code class="sig-name descname">CAN_sendRemoteRequestMessage</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>objID</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428CAN_sendRemoteRequestMessage8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sends a Remote Request Message Object</p>
+<p><p>This function is used to transmit a remote request message object.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">objID</span></code>: is the object number to configure (1-32).</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>The message object requested by the <em>objID</em> must first be setup using the <a class="reference internal" href="#group__can__api_1gae5dafa527b0271d8c01ed5a5bf4ad768"><span class="std std-ref">CAN_setupMessageObject()</span></a> function with CAN_MSG_OBJ_TYPE_TX_REMOTE as msgType flag.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415CAN_readMessage8uint32_t8uint32_tP8uint16_t">
+<span id="_CPPv315CAN_readMessage8uint32_t8uint32_tP8uint16_t"></span><span id="_CPPv215CAN_readMessage8uint32_t8uint32_tP8uint16_t"></span><span id="CAN_readMessage__uint32_t.uint32_t.uint16_tP"></span><span class="target" id="group__can__api_1gad1c06660a1903d00c673b061662373e4"></span>bool <code class="sig-name descname">CAN_readMessage</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>objID</em>, uint16_t *<em>msgData</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415CAN_readMessage8uint32_t8uint32_tP8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reads the data in a Message Object</p>
+<p><p>This function is used to read the data contents of the specified message object in the CAN controller. The data returned is stored in the </p>
+<em>msgData</em> parameter.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">objID</span></code>: is the object number to read (1-32). </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">msgData</span></code>: is a pointer to the array to store the message data</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p><ol class="loweralpha simple">
+<li><p>The message object requested by the <em>objID</em> must first be setup using the <a class="reference internal" href="#group__can__api_1gae5dafa527b0271d8c01ed5a5bf4ad768"><span class="std std-ref">CAN_setupMessageObject()</span></a> function.</p></li>
+<li><p>If the DLC of the received message is larger than the <em>msgData</em> buffer provided, then it is possible for a buffer overflow to occur.</p></li>
+</ol>
+</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if new data was retrieved, else returns <strong>false</strong> to indicate no new data was retrieved. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421CAN_readMessageWithID8uint32_t8uint32_tP16CAN_MsgFrameTypeP8uint32_tP8uint16_t">
+<span id="_CPPv321CAN_readMessageWithID8uint32_t8uint32_tP16CAN_MsgFrameTypeP8uint32_tP8uint16_t"></span><span id="_CPPv221CAN_readMessageWithID8uint32_t8uint32_tP16CAN_MsgFrameTypeP8uint32_tP8uint16_t"></span><span id="CAN_readMessageWithID__uint32_t.uint32_t.CAN_MsgFrameTypeP.uint32_tP.uint16_tP"></span><span class="target" id="group__can__api_1gafa856866a6b49a96d1619fab1a80f2da"></span>bool <code class="sig-name descname">CAN_readMessageWithID</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>objID</em>, <a class="reference internal" href="#_CPPv416CAN_MsgFrameType" title="CAN_MsgFrameType">CAN_MsgFrameType</a> *<em>frameType</em>, uint32_t *<em>msgID</em>, uint16_t *<em>msgData</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421CAN_readMessageWithID8uint32_t8uint32_tP16CAN_MsgFrameTypeP8uint32_tP8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reads the data and Message ID in a Message Object</p>
+<p><p>This function is used to read the data contents and the Message ID of the specified message object in the CAN controller.The Message ID returned is stored in the </p>
+<em>msgID</em> parameter and its type in <em>frameType</em> parameter. The data returned is stored in the <em>msgData</em> parameter.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">objID</span></code>: is the object number to read (1-32). </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">frameType</span></code>: is a pointer to the CAN_MsgFrameType to store the message type that has been received in the mailbox The <em>frameType</em> parameter shall be filled as of the following values:<ul>
+<li><p><strong>CAN_MSG_FRAME_STD</strong> - Standard 11 bit identifier</p></li>
+<li><p><strong>CAN_MSG_FRAME_EXT</strong> - Extended 29 bit identifier This parameter is filled when return value is true for this function. </p></li>
+</ul>
+</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">msgID</span></code>: is a pointer to storage for the received Message ID Filled when the return value is true for this function. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">msgData</span></code>: is a pointer to the array to store the message data Filled with read Data when the return value is true for this function.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p><ol class="loweralpha simple">
+<li><p>The message object requested by the <em>objID</em> must first be setup using the <a class="reference internal" href="#group__can__api_1gae5dafa527b0271d8c01ed5a5bf4ad768"><span class="std std-ref">CAN_setupMessageObject()</span></a> function.</p></li>
+</ol>
+</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if new data was retrieved, else returns <strong>false</strong> to indicate no new data was retrieved. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419CAN_transferMessage8uint32_t8uint16_t8uint32_tb">
+<span id="_CPPv319CAN_transferMessage8uint32_t8uint16_t8uint32_tb"></span><span id="_CPPv219CAN_transferMessage8uint32_t8uint16_t8uint32_tb"></span><span id="CAN_transferMessage__uint32_t.uint16_t.uint32_t.b"></span><span class="target" id="group__can__api_1gac281f5e0724b76e828879c53d84ac47e"></span>void <code class="sig-name descname">CAN_transferMessage</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>interface</em>, uint32_t <em>objID</em>, bool <em>direction</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419CAN_transferMessage8uint32_t8uint16_t8uint32_tb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transfers a CAN message between the IF registers and Message RAM.</p>
+<p><p>This function transfers the contents of the interface registers to message RAM or vice versa depending on the value passed to direction.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">interface</span></code>: is the interface to use for the transfer. Valid value are 1 or 2. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">objID</span></code>: is the object number to transfer (1-32). </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">direction</span></code>: is the direction of data transfer. False is Message RAM to IF, True is IF to Message RAM.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416CAN_clearMessage8uint32_t8uint32_t">
+<span id="_CPPv316CAN_clearMessage8uint32_t8uint32_t"></span><span id="_CPPv216CAN_clearMessage8uint32_t8uint32_t"></span><span id="CAN_clearMessage__uint32_t.uint32_t"></span><span class="target" id="group__can__api_1ga305fd784a9520c3585b7b04b7bbd9ff6"></span>void <code class="sig-name descname">CAN_clearMessage</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>objID</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416CAN_clearMessage8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears a message object so that it is no longer used.</p>
+<p><p>This function frees(disables) the specified message object from use. Once a message object has been cleared, it will no longer automatically send or receive messages, or generate interrupts.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">objID</span></code>: is the message object number to disable (1-32).</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424CAN_disableMessageObject8uint32_t8uint32_t">
+<span id="_CPPv324CAN_disableMessageObject8uint32_t8uint32_t"></span><span id="_CPPv224CAN_disableMessageObject8uint32_t8uint32_t"></span><span id="CAN_disableMessageObject__uint32_t.uint32_t"></span><span class="target" id="group__can__api_1gaa104fd8ce51d3473440ef52c97c511ed"></span>void <code class="sig-name descname">CAN_disableMessageObject</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>objID</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424CAN_disableMessageObject8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables specific message object</p>
+<p><p>This function disables the specific message object. Once the message object has been disabled it will be ignored by the message handler until it is configured again.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">objID</span></code>: is the message object number to disable (1-32).</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428CAN_disableAllMessageObjects8uint32_t">
+<span id="_CPPv328CAN_disableAllMessageObjects8uint32_t"></span><span id="_CPPv228CAN_disableAllMessageObjects8uint32_t"></span><span id="CAN_disableAllMessageObjects__uint32_t"></span><span class="target" id="group__can__api_1ga7519dbf5ecf1bf3a57564590fc17bda9"></span>void <code class="sig-name descname">CAN_disableAllMessageObjects</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428CAN_disableAllMessageObjects8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables all message objects</p>
+<p><p>This function disables all message objects. Once a message object has been disabled it will be ignored by the message handler until it is configured again. All message objects are disabled automatically on reset, however this function can be used to restart CAN operations without an external reset.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>The following describes important details and recommendations when using the CAN API.</p>
+<p>Once system control enables the CAN module, CAN_initModule() needs to be called
+with the desired CAN module base to put the controller in the init state, initialize
+the message RAM, and enable access to the configuration registers. Next, use CAN_setBitRate()
+to set the CAN bit timing values for the bit rate and timing parameters. For tighter
+timing requirements, use CAN_setBitTiming() instead.</p>
+<p>To setup any of the types of message objects, use CAN_setupMessageObject().</p>
+<p>Once all of the module configurations are setup, CAN_startModule() starts the
+CAN module’s operations and disables access to the configuration registers.</p>
+<p>If the application needs to disable message processing on the CAN controller, use
+CAN_disableController() to disable the message processing. Message processing
+can be re-enabled using CAN_enableController().</p>
+<p>The code for this module is contained in driverlib/can.c, with driverlib/can.h containing the API declarations for use by applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="asysctl.html" class="btn btn-neutral float-left" title="ASysCtl Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cla.html" class="btn btn-neutral float-right" title="CLA Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

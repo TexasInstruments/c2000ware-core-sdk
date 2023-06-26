@@ -1,0 +1,30 @@
+<projectSpec>
+  <project
+        name="timer_ex1_cputimers"
+        device="TMS320F280049C"
+        cgtVersion="22.6.0.LTS"
+        products="c2000ware_software_package"
+        launchWizard="False"
+        linkerCommandFile=""
+        >
+    <configuration name="CPU1_RAM" compilerBuildOptions="--opt_level=off -I${C2000WARE_COMMON_INCLUDE} -I${C2000WARE_HEADERS_INCLUDE} -v28 -ml -mt --cla_support=cla2 --cla_background_task=on --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu0  --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--stack_size=0x3F8 --entry_point code_start" />
+    <configuration name="CPU1_FLASH" compilerBuildOptions="--opt_level=off -I${C2000WARE_COMMON_INCLUDE} -I${C2000WARE_HEADERS_INCLUDE} -v28 -ml -mt --cla_support=cla2 --cla_background_task=on --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu0  --define=_FLASH --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--stack_size=0x3F8 --entry_point code_start" />
+    <pathVariable name="C2000WARE_COMMON_INCLUDE" path="../../../common/include/" scope="project" />
+    <pathVariable name="C2000WARE_HEADERS_INCLUDE" path="../../../headers/include/" scope="project" />
+    <file action="copy" path="../../../common/source/f28004x_codestartbranch.asm" targetDirectory="" />
+    <file action="copy" path="../../../common/source/f28004x_defaultisr.c" targetDirectory="" />
+    <file action="copy" path="../../../common/source/f28004x_cputimers.c" targetDirectory="" />
+    <file action="copy" path="../../../common/source/f28004x_dma.c" targetDirectory="" />
+    <file action="copy" path="../../../common/source/f28004x_gpio.c" targetDirectory="" />
+    <file action="copy" path="../../../common/source/f28004x_piectrl.c" targetDirectory="" />
+    <file action="copy" path="../../../common/source/f28004x_pievect.c" targetDirectory="" />
+    <file action="copy" path="../../../common/source/f28004x_sysctrl.c" targetDirectory="" />
+    <file action="copy" path="../../../common/source/f28004x_usdelay.asm" targetDirectory="" />
+    <file action="copy" path="../../../headers/cmd/f28004x_headers_nonbios.cmd" targetDirectory="" />
+    <file action="copy" path="../../../headers/source/f28004x_globalvariabledefs.c" targetDirectory="" />
+    <file action="copy" path="../../../common/targetConfigs/TMS320F280049C.ccxml" targetDirectory="targetConfigs" />
+    <file action="copy" path="../../../common/cmd/28004x_generic_ram_lnk.cmd" targetDirectory="" applicableConfigurations="CPU1_RAM" />
+    <file action="copy" path="../../../common/cmd/28004x_generic_flash_lnk.cmd" targetDirectory="" applicableConfigurations="CPU1_FLASH" />
+    <file action="copy" path="../timer_ex1_cputimers.c" targetDirectory="" />
+  </project>
+</projectSpec>

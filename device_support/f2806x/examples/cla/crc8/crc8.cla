@@ -1,0 +1,223 @@
+//###########################################################################
+//
+// FILE:  crc8.cla
+//
+// Description: 8-bit CRC using table lookup algorithm
+//
+//###########################################################################
+// $TI Release:  $
+// $Release Date:  $
+// $Copyright:
+// Copyright (C) 2009-2023 Texas Instruments Incorporated - http://www.ti.com/
+//
+// Redistribution and use in source and binary forms, with or without 
+// modification, are permitted provided that the following conditions 
+// are met:
+// 
+//   Redistributions of source code must retain the above copyright 
+//   notice, this list of conditions and the following disclaimer.
+// 
+//   Redistributions in binary form must reproduce the above copyright
+//   notice, this list of conditions and the following disclaimer in the 
+//   documentation and/or other materials provided with the   
+//   distribution.
+// 
+//   Neither the name of Texas Instruments Incorporated nor the names of
+//   its contributors may be used to endorse or promote products derived
+//   from this software without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+// $
+//###########################################################################
+
+//
+// Included Files
+//
+#include "DSP28x_Project.h"
+
+//
+// Include the test header file whose name is based on the test name
+// which is defined by the macro TEST on the command line
+//
+#include XSTRINGIZE(XCONCAT(TEST_NAME,_shared.h))
+
+//
+// Defines
+//
+#define POLYNOMIAL8  0x07
+
+//
+// Function Prototypes
+//
+void gentable(void);
+Uint16 byte1(Uint16 data, Uint16 select); 
+Uint16 byte2(Uint16 data, Uint16 select); 
+Uint16 byte3(Uint16 data, Uint16 select); 
+
+//
+// Cla1Task1 - Calculate 8-bit CRC
+//
+__interrupt void
+Cla1Task1(void)
+{
+    Uint16 i, j, temp1, temp2;   
+    crc8_msg1 = 0;
+    crc8_msg2 = 0;
+    crc8_msg3 = 0;
+    crc8_msg4 = 0;   
+    
+    //
+    // Each for loop performs a CRC
+    // They are just written differently
+    //
+    for (j=0; j < 12; j++) 
+    {
+        i = crc8_msg2 ^ (byte1(msg2[j], 0));
+        crc8_msg2 = table[i];         
+
+        i = crc8_msg2 ^ (byte2(msg2[j], 1));
+        crc8_msg2 = table[i];             
+    } 
+
+    for (j=0; j < 5; j++) 
+    {
+        temp1 = byte1(msg1[j], 0);
+        i = crc8_msg1 ^ temp1;
+        crc8_msg1 = table[i];
+
+        temp1 = byte1(msg1[j], 1);
+        i = crc8_msg1 ^ temp1;
+        crc8_msg1 = table[i];    
+    }
+
+    for (j=0; j < 5; j++) 
+    {
+        temp1 = 0;
+        temp1 = crc8_msg3 ^ (byte2(msg3[j], temp1));
+        temp2 = 1;
+        crc8_msg3 = table[temp1];          
+        temp2 = crc8_msg3 ^ (byte2(msg3[j], temp2));        
+        crc8_msg3 = table[temp2];    
+    } 
+
+    for (j=0; j < 12; j++) 
+    {
+        temp1 = 0;
+        i = crc8_msg4 ^ (byte3(msg4[j], temp1));
+        crc8_msg4 = table[i];  
+
+        temp2 = 1;
+        i = crc8_msg4 ^ (byte3(msg4[j], temp2));
+        crc8_msg4 = table[i];    
+    }        
+}
+
+//
+// byte1 - 
+//
+Uint16
+byte1(Uint16 data, Uint16 select) 
+{
+    Uint16 res;
+    if(select == 0)
+    {
+        res = (data & 0xff);
+    }
+    else
+    {
+        res = ((data & 0xff<<8) >> 8);
+    }     
+    return res;
+}
+
+//
+// byte2 - 
+//
+Uint16 byte2(Uint16 data, Uint16 select) 
+{
+    if(select == 0)
+    {
+        return (data & 0xff);
+    }
+    else
+    {
+        return ((data & 0xff<<8) >> 8);
+    }     
+}
+
+//
+// byte3 - 
+//
+Uint16
+byte3(Uint16 data, Uint16 select) 
+{
+    Uint16 res;
+    switch(select)
+    {
+        case 0 : res =  (data & 0xff);
+                 break;
+        case 1 : res =  ((data & 0xff<<8) >> 8);
+                 break;
+    }
+    return res;        
+}
+
+//
+// CLA ISRs
+//
+__interrupt void
+Cla1Task2 (void)
+{
+
+}
+
+__interrupt void
+Cla1Task3 (void)
+{
+   
+}
+
+__interrupt void
+Cla1Task4 (void)
+{
+   
+}
+
+__interrupt void
+Cla1Task5 (void)
+{
+   
+}
+
+__interrupt void
+Cla1Task6 (void)
+{
+   
+}
+
+__interrupt void
+Cla1Task7 (void)
+{
+   
+}
+
+__interrupt void
+Cla1Task8 (void)
+{
+   
+}
+
+//
+// End of File
+//
+

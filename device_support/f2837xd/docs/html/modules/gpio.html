@@ -1,0 +1,1281 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>GPIO Module &mdash; F2837xd API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F2837xd API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="I2C Module" href="i2c.html"/>
+        <link rel="prev" title="FLASH Module" href="flash.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F2837xd API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="adc.html">ADC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asysctl.html">ASysCtl Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla.html">CLA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clb.html">CLB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmpss.html">CMPSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dac.html">DAC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dma.html">DMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ecap.html">ECAP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emif.html">EMIF Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="epwm.html">EPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hrpwm.html">HRPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqep.html">EQEP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcbsp.html">MCBSP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci.html">SCI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdfm.html">SDFM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">SPI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upp.html">UPP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version.html">Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xbar.html">XBAR Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F2837xd API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>GPIO Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="gpio-module">
+<span id="gpio"></span><h1>GPIO Module<a class="headerlink" href="#gpio-module" title="Permalink to this headline">¶</a></h1>
+<p>The GPIO module provides an API to configure, read from, and write to the GPIO
+pins. Functions fall into the two categories, control and data. Control
+functions configure properties like direction, pin muxing, and qualification.
+Data functions allow you to read the value on a pin or write a value to it.</p>
+<p>Most functions will configure a single pin at a time. The pin to be configured
+will be specified using its GPIO number. Refer to the device’s datasheet to
+learn what numbers are valid for that part number. Also note that even if a
+GPIO number is valid for a part number, it may not be valid for all possible
+features. For instance, GPIO_setAnalogMode() is only usable for a fraction of
+the GPIO numbers.</p>
+<p>For information and functions to configure a pin for low-power mode wake-up,
+see the SysCtl module.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__gpio__api"></span><em>group</em> <code class="sig-name descname">gpio_api</code></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.GPIO_CTRL_REGS_STEP">
+<span class="target" id="group__gpio__api_1ga554fffee9cfc1e0f88037897a34a06e0"></span><code class="sig-name descname">GPIO_CTRL_REGS_STEP</code> ((GPIO_O_GPBCTRL - GPIO_O_GPACTRL) / 2U)<a class="headerlink" href="#c.GPIO_CTRL_REGS_STEP" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GPIO_DATA_REGS_STEP">
+<span class="target" id="group__gpio__api_1gae902efec17fb8858cbcd574ca2992ad1"></span><code class="sig-name descname">GPIO_DATA_REGS_STEP</code> ((GPIO_O_GPBDAT - GPIO_O_GPADAT) / 2U)<a class="headerlink" href="#c.GPIO_DATA_REGS_STEP" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GPIO_GPxCTRL_INDEX">
+<span class="target" id="group__gpio__api_1gabe3a9469628e8b747b4bf39468646ba3"></span><code class="sig-name descname">GPIO_GPxCTRL_INDEX</code> (GPIO_O_GPACTRL / 2U)<a class="headerlink" href="#c.GPIO_GPxCTRL_INDEX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GPIO_GPxQSEL_INDEX">
+<span class="target" id="group__gpio__api_1ga35cb5ea30528967b469f120422d8cc4f"></span><code class="sig-name descname">GPIO_GPxQSEL_INDEX</code> (GPIO_O_GPAQSEL1 / 2U)<a class="headerlink" href="#c.GPIO_GPxQSEL_INDEX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GPIO_GPxMUX_INDEX">
+<span class="target" id="group__gpio__api_1ga222a5f21b25a6665055c5389dff12e9e"></span><code class="sig-name descname">GPIO_GPxMUX_INDEX</code> (GPIO_O_GPAMUX1 / 2U)<a class="headerlink" href="#c.GPIO_GPxMUX_INDEX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GPIO_GPxDIR_INDEX">
+<span class="target" id="group__gpio__api_1ga9cd85854664d951727121f943b606310"></span><code class="sig-name descname">GPIO_GPxDIR_INDEX</code> (GPIO_O_GPADIR / 2U)<a class="headerlink" href="#c.GPIO_GPxDIR_INDEX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GPIO_GPxAMSEL_INDEX">
+<span class="target" id="group__gpio__api_1ga39a2d8a8f4303ff86eeb9ffe1a98d719"></span><code class="sig-name descname">GPIO_GPxAMSEL_INDEX</code> (0x00000014U / 2U)<a class="headerlink" href="#c.GPIO_GPxAMSEL_INDEX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GPIO_GPxPUD_INDEX">
+<span class="target" id="group__gpio__api_1gaebd15a9f9d746eb7df981daef6a1d36f"></span><code class="sig-name descname">GPIO_GPxPUD_INDEX</code> (GPIO_O_GPAPUD / 2U)<a class="headerlink" href="#c.GPIO_GPxPUD_INDEX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GPIO_GPxINV_INDEX">
+<span class="target" id="group__gpio__api_1gaf627cdc23da0c9b3f478d2214ec0dde5"></span><code class="sig-name descname">GPIO_GPxINV_INDEX</code> (GPIO_O_GPAINV / 2U)<a class="headerlink" href="#c.GPIO_GPxINV_INDEX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GPIO_GPxODR_INDEX">
+<span class="target" id="group__gpio__api_1ga965408a3c4f5172e0faa67b9453848f8"></span><code class="sig-name descname">GPIO_GPxODR_INDEX</code> (GPIO_O_GPAODR / 2U)<a class="headerlink" href="#c.GPIO_GPxODR_INDEX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GPIO_GPxGMUX_INDEX">
+<span class="target" id="group__gpio__api_1ga38b3d1779067ec955fc0182571a5d867"></span><code class="sig-name descname">GPIO_GPxGMUX_INDEX</code> (GPIO_O_GPAGMUX1 / 2U)<a class="headerlink" href="#c.GPIO_GPxGMUX_INDEX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GPIO_GPxCSEL_INDEX">
+<span class="target" id="group__gpio__api_1ga04ab6e6b8a503adcf626ef7578d960e6"></span><code class="sig-name descname">GPIO_GPxCSEL_INDEX</code> (GPIO_O_GPACSEL1 / 2U)<a class="headerlink" href="#c.GPIO_GPxCSEL_INDEX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GPIO_GPxLOCK_INDEX">
+<span class="target" id="group__gpio__api_1ga65bb48b0336f4f8982e0d30e1278c016"></span><code class="sig-name descname">GPIO_GPxLOCK_INDEX</code> (GPIO_O_GPALOCK / 2U)<a class="headerlink" href="#c.GPIO_GPxLOCK_INDEX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GPIO_GPxCR_INDEX">
+<span class="target" id="group__gpio__api_1ga2afc3226395bd4e92195edc43a1c8c98"></span><code class="sig-name descname">GPIO_GPxCR_INDEX</code> (GPIO_O_GPACR / 2U)<a class="headerlink" href="#c.GPIO_GPxCR_INDEX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GPIO_GPxDAT_INDEX">
+<span class="target" id="group__gpio__api_1gad5ad64e243ae4833ad830efad4022181"></span><code class="sig-name descname">GPIO_GPxDAT_INDEX</code> (GPIO_O_GPADAT / 2U)<a class="headerlink" href="#c.GPIO_GPxDAT_INDEX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GPIO_GPxSET_INDEX">
+<span class="target" id="group__gpio__api_1gad82d17aebb8d5a9ede5552605b61094f"></span><code class="sig-name descname">GPIO_GPxSET_INDEX</code> (GPIO_O_GPASET / 2U)<a class="headerlink" href="#c.GPIO_GPxSET_INDEX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GPIO_GPxCLEAR_INDEX">
+<span class="target" id="group__gpio__api_1ga6c300ad8c789c81a018d415a8b386877"></span><code class="sig-name descname">GPIO_GPxCLEAR_INDEX</code> (GPIO_O_GPACLEAR / 2U)<a class="headerlink" href="#c.GPIO_GPxCLEAR_INDEX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GPIO_GPxTOGGLE_INDEX">
+<span class="target" id="group__gpio__api_1ga90935cc23e2e0707c46d04cc6867733a"></span><code class="sig-name descname">GPIO_GPxTOGGLE_INDEX</code> (GPIO_O_GPATOGGLE / 2U)<a class="headerlink" href="#c.GPIO_GPxTOGGLE_INDEX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GPIO_MUX_TO_GMUX">
+<span class="target" id="group__gpio__api_1ga20da6278f667cd2d6737c17f49cad908"></span><code class="sig-name descname">GPIO_MUX_TO_GMUX</code> (GPIO_O_GPAGMUX1 - GPIO_O_GPAMUX1)<a class="headerlink" href="#c.GPIO_MUX_TO_GMUX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GPIO_PIN_TYPE_STD">
+<span class="target" id="group__gpio__api_1gafa6d2e3683888ad9a64a8a6ce8e2ccf6"></span><code class="sig-name descname">GPIO_PIN_TYPE_STD</code> 0x0000U<a class="headerlink" href="#c.GPIO_PIN_TYPE_STD" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Push-pull output or floating input. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GPIO_PIN_TYPE_PULLUP">
+<span class="target" id="group__gpio__api_1ga38350dd6366b1642062208bcaf8e133a"></span><code class="sig-name descname">GPIO_PIN_TYPE_PULLUP</code> 0x0001U<a class="headerlink" href="#c.GPIO_PIN_TYPE_PULLUP" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Pull-up enable for input. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GPIO_PIN_TYPE_INVERT">
+<span class="target" id="group__gpio__api_1ga19e485baf2db852c7bbf06054fb9975d"></span><code class="sig-name descname">GPIO_PIN_TYPE_INVERT</code> 0x0002U<a class="headerlink" href="#c.GPIO_PIN_TYPE_INVERT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Invert polarity on input. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.GPIO_PIN_TYPE_OD">
+<span class="target" id="group__gpio__api_1ga0aa97c9b013cfc6b5fb3f81cf0dedd7f"></span><code class="sig-name descname">GPIO_PIN_TYPE_OD</code> 0x0004U<a class="headerlink" href="#c.GPIO_PIN_TYPE_OD" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Open-drain on output. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="cpp enum">
+<dt id="_CPPv414GPIO_Direction">
+<span id="_CPPv314GPIO_Direction"></span><span id="_CPPv214GPIO_Direction"></span><span class="target" id="group__gpio__api_1ga0c1bff6c02d7155b78f07abd8c31722f"></span><em class="property">enum </em><code class="sig-name descname">GPIO_Direction</code><a class="headerlink" href="#_CPPv414GPIO_Direction" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__gpio__api_1gab50248ff19d73a592046deac995d88fb"><span class="std std-ref">GPIO_setDirectionMode()</span></a> as the <em>pinIO</em> parameter and returned from <a class="reference internal" href="#group__gpio__api_1ga4bb8da3c129d7df873d871b1b0e6512d"><span class="std std-ref">GPIO_getDirectionMode()</span></a>. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14GPIO_Direction16GPIO_DIR_MODE_INE">
+<span id="_CPPv3N14GPIO_Direction16GPIO_DIR_MODE_INE"></span><span id="_CPPv2N14GPIO_Direction16GPIO_DIR_MODE_INE"></span><span class="target" id="group__gpio__api_1gga0c1bff6c02d7155b78f07abd8c31722fa93737545fe00b579eba10ba1b839663e"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_DIR_MODE_IN</code><a class="headerlink" href="#_CPPv4N14GPIO_Direction16GPIO_DIR_MODE_INE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Pin is a GPIO input. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14GPIO_Direction17GPIO_DIR_MODE_OUTE">
+<span id="_CPPv3N14GPIO_Direction17GPIO_DIR_MODE_OUTE"></span><span id="_CPPv2N14GPIO_Direction17GPIO_DIR_MODE_OUTE"></span><span class="target" id="group__gpio__api_1gga0c1bff6c02d7155b78f07abd8c31722fa16caaeef81e7e217565060c7afd56637"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_DIR_MODE_OUT</code><a class="headerlink" href="#_CPPv4N14GPIO_Direction17GPIO_DIR_MODE_OUTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Pin is a GPIO output. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv412GPIO_IntType">
+<span id="_CPPv312GPIO_IntType"></span><span id="_CPPv212GPIO_IntType"></span><span class="target" id="group__gpio__api_1gabf424f4c82447febc105783bb24d66b0"></span><em class="property">enum </em><code class="sig-name descname">GPIO_IntType</code><a class="headerlink" href="#_CPPv412GPIO_IntType" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__gpio__api_1ga5964d467bf85d71bfd833205e492a4ad"><span class="std std-ref">GPIO_setInterruptType()</span></a> as the <em>intType</em> parameter and returned from <a class="reference internal" href="#group__gpio__api_1ga73e5e0d4323656fb058141f14c43dae4"><span class="std std-ref">GPIO_getInterruptType()</span></a>. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12GPIO_IntType26GPIO_INT_TYPE_FALLING_EDGEE">
+<span id="_CPPv3N12GPIO_IntType26GPIO_INT_TYPE_FALLING_EDGEE"></span><span id="_CPPv2N12GPIO_IntType26GPIO_INT_TYPE_FALLING_EDGEE"></span><span class="target" id="group__gpio__api_1ggabf424f4c82447febc105783bb24d66b0a48c1a6e890564f67616f67617a9ad03d"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_INT_TYPE_FALLING_EDGE</code> = 0x00<a class="headerlink" href="#_CPPv4N12GPIO_IntType26GPIO_INT_TYPE_FALLING_EDGEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Interrupt on falling edge. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12GPIO_IntType25GPIO_INT_TYPE_RISING_EDGEE">
+<span id="_CPPv3N12GPIO_IntType25GPIO_INT_TYPE_RISING_EDGEE"></span><span id="_CPPv2N12GPIO_IntType25GPIO_INT_TYPE_RISING_EDGEE"></span><span class="target" id="group__gpio__api_1ggabf424f4c82447febc105783bb24d66b0a31cf1779b81a7f736adee3daaa94c7dd"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_INT_TYPE_RISING_EDGE</code> = 0x04<a class="headerlink" href="#_CPPv4N12GPIO_IntType25GPIO_INT_TYPE_RISING_EDGEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Interrupt on rising edge. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12GPIO_IntType24GPIO_INT_TYPE_BOTH_EDGESE">
+<span id="_CPPv3N12GPIO_IntType24GPIO_INT_TYPE_BOTH_EDGESE"></span><span id="_CPPv2N12GPIO_IntType24GPIO_INT_TYPE_BOTH_EDGESE"></span><span class="target" id="group__gpio__api_1ggabf424f4c82447febc105783bb24d66b0a4eea0c8e3fcb89bc9ad6bafd5bf3c392"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_INT_TYPE_BOTH_EDGES</code> = 0x0C<a class="headerlink" href="#_CPPv4N12GPIO_IntType24GPIO_INT_TYPE_BOTH_EDGESE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Interrupt on both edges. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv422GPIO_QualificationMode">
+<span id="_CPPv322GPIO_QualificationMode"></span><span id="_CPPv222GPIO_QualificationMode"></span><span class="target" id="group__gpio__api_1gac70c13a371270f023e57973be7cbd526"></span><em class="property">enum </em><code class="sig-name descname">GPIO_QualificationMode</code><a class="headerlink" href="#_CPPv422GPIO_QualificationMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__gpio__api_1ga1e9b26b531df3ab6a0bc874318b98a98"><span class="std std-ref">GPIO_setQualificationMode()</span></a> as the <em>qualification</em> parameter and returned by <a class="reference internal" href="#group__gpio__api_1ga70b8cdc542a84a7ebb68e3ebf7a9304a"><span class="std std-ref">GPIO_getQualificationMode()</span></a>. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22GPIO_QualificationMode14GPIO_QUAL_SYNCE">
+<span id="_CPPv3N22GPIO_QualificationMode14GPIO_QUAL_SYNCE"></span><span id="_CPPv2N22GPIO_QualificationMode14GPIO_QUAL_SYNCE"></span><span class="target" id="group__gpio__api_1ggac70c13a371270f023e57973be7cbd526af31e732bc72c41d31506490cee606cd4"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_QUAL_SYNC</code><a class="headerlink" href="#_CPPv4N22GPIO_QualificationMode14GPIO_QUAL_SYNCE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Synchronization to SYSCLK. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22GPIO_QualificationMode17GPIO_QUAL_3SAMPLEE">
+<span id="_CPPv3N22GPIO_QualificationMode17GPIO_QUAL_3SAMPLEE"></span><span id="_CPPv2N22GPIO_QualificationMode17GPIO_QUAL_3SAMPLEE"></span><span class="target" id="group__gpio__api_1ggac70c13a371270f023e57973be7cbd526a0e5c4a16f7e501a2b60f72dbe04d02dc"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_QUAL_3SAMPLE</code><a class="headerlink" href="#_CPPv4N22GPIO_QualificationMode17GPIO_QUAL_3SAMPLEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Qualified with 3 samples. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22GPIO_QualificationMode17GPIO_QUAL_6SAMPLEE">
+<span id="_CPPv3N22GPIO_QualificationMode17GPIO_QUAL_6SAMPLEE"></span><span id="_CPPv2N22GPIO_QualificationMode17GPIO_QUAL_6SAMPLEE"></span><span class="target" id="group__gpio__api_1ggac70c13a371270f023e57973be7cbd526a6a3d48683038db1040312ae96f2e5753"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_QUAL_6SAMPLE</code><a class="headerlink" href="#_CPPv4N22GPIO_QualificationMode17GPIO_QUAL_6SAMPLEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Qualified with 6 samples. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22GPIO_QualificationMode15GPIO_QUAL_ASYNCE">
+<span id="_CPPv3N22GPIO_QualificationMode15GPIO_QUAL_ASYNCE"></span><span id="_CPPv2N22GPIO_QualificationMode15GPIO_QUAL_ASYNCE"></span><span class="target" id="group__gpio__api_1ggac70c13a371270f023e57973be7cbd526afa8031d15a5c29eb4a76004acb7acc1c"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_QUAL_ASYNC</code><a class="headerlink" href="#_CPPv4N22GPIO_QualificationMode15GPIO_QUAL_ASYNCE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>No synchronization. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv415GPIO_AnalogMode">
+<span id="_CPPv315GPIO_AnalogMode"></span><span id="_CPPv215GPIO_AnalogMode"></span><span class="target" id="group__gpio__api_1ga5b59951f90496177d794c53ac93d26cb"></span><em class="property">enum </em><code class="sig-name descname">GPIO_AnalogMode</code><a class="headerlink" href="#_CPPv415GPIO_AnalogMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__gpio__api_1ga36ff18f0a994cee136c665f72c324b5c"><span class="std std-ref">GPIO_setAnalogMode()</span></a> as the <em>mode</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15GPIO_AnalogMode20GPIO_ANALOG_DISABLEDE">
+<span id="_CPPv3N15GPIO_AnalogMode20GPIO_ANALOG_DISABLEDE"></span><span id="_CPPv2N15GPIO_AnalogMode20GPIO_ANALOG_DISABLEDE"></span><span class="target" id="group__gpio__api_1gga5b59951f90496177d794c53ac93d26cba8d75f5dc91feb501f6089eff628d0f3d"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_ANALOG_DISABLED</code><a class="headerlink" href="#_CPPv4N15GPIO_AnalogMode20GPIO_ANALOG_DISABLEDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Pin is in digital mode. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15GPIO_AnalogMode19GPIO_ANALOG_ENABLEDE">
+<span id="_CPPv3N15GPIO_AnalogMode19GPIO_ANALOG_ENABLEDE"></span><span id="_CPPv2N15GPIO_AnalogMode19GPIO_ANALOG_ENABLEDE"></span><span class="target" id="group__gpio__api_1gga5b59951f90496177d794c53ac93d26cba1610da71c29b40e337abdba8cbbf00fd"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_ANALOG_ENABLED</code><a class="headerlink" href="#_CPPv4N15GPIO_AnalogMode19GPIO_ANALOG_ENABLEDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Pin is in analog mode. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv415GPIO_CoreSelect">
+<span id="_CPPv315GPIO_CoreSelect"></span><span id="_CPPv215GPIO_CoreSelect"></span><span class="target" id="group__gpio__api_1ga60e229ee74f20839ffdd50fc31878c8f"></span><em class="property">enum </em><code class="sig-name descname">GPIO_CoreSelect</code><a class="headerlink" href="#_CPPv415GPIO_CoreSelect" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__gpio__api_1gaed835c34d453f9b7b353e8e82ba89b56"><span class="std std-ref">GPIO_setMasterCore()</span></a> as the <em>core</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15GPIO_CoreSelect14GPIO_CORE_CPU1E">
+<span id="_CPPv3N15GPIO_CoreSelect14GPIO_CORE_CPU1E"></span><span id="_CPPv2N15GPIO_CoreSelect14GPIO_CORE_CPU1E"></span><span class="target" id="group__gpio__api_1gga60e229ee74f20839ffdd50fc31878c8fac8485f808edcb5a224fe67316ca1f6b4"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_CORE_CPU1</code><a class="headerlink" href="#_CPPv4N15GPIO_CoreSelect14GPIO_CORE_CPU1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPU1 selected as master core. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15GPIO_CoreSelect19GPIO_CORE_CPU1_CLA1E">
+<span id="_CPPv3N15GPIO_CoreSelect19GPIO_CORE_CPU1_CLA1E"></span><span id="_CPPv2N15GPIO_CoreSelect19GPIO_CORE_CPU1_CLA1E"></span><span class="target" id="group__gpio__api_1gga60e229ee74f20839ffdd50fc31878c8fa850bdf3e9f8d0bf85c75cde0003e6885"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_CORE_CPU1_CLA1</code><a class="headerlink" href="#_CPPv4N15GPIO_CoreSelect19GPIO_CORE_CPU1_CLA1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPU1’s CLA1 selected as master core. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15GPIO_CoreSelect14GPIO_CORE_CPU2E">
+<span id="_CPPv3N15GPIO_CoreSelect14GPIO_CORE_CPU2E"></span><span id="_CPPv2N15GPIO_CoreSelect14GPIO_CORE_CPU2E"></span><span class="target" id="group__gpio__api_1gga60e229ee74f20839ffdd50fc31878c8fa1647cbaad4a09ac86707c12737e52053"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_CORE_CPU2</code><a class="headerlink" href="#_CPPv4N15GPIO_CoreSelect14GPIO_CORE_CPU2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPU2 selected as master core. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15GPIO_CoreSelect19GPIO_CORE_CPU2_CLA1E">
+<span id="_CPPv3N15GPIO_CoreSelect19GPIO_CORE_CPU2_CLA1E"></span><span id="_CPPv2N15GPIO_CoreSelect19GPIO_CORE_CPU2_CLA1E"></span><span class="target" id="group__gpio__api_1gga60e229ee74f20839ffdd50fc31878c8fa325d6460e2e74494eed3676808bc30b8"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_CORE_CPU2_CLA1</code><a class="headerlink" href="#_CPPv4N15GPIO_CoreSelect19GPIO_CORE_CPU2_CLA1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPU2’s CLA1 selected as master core. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv49GPIO_Port">
+<span id="_CPPv39GPIO_Port"></span><span id="_CPPv29GPIO_Port"></span><span class="target" id="group__gpio__api_1gaf164c756418dde00ac07fd47d0962150"></span><em class="property">enum </em><code class="sig-name descname">GPIO_Port</code><a class="headerlink" href="#_CPPv49GPIO_Port" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__gpio__api_1ga248b8f6bbaabb86f8626817bb8d892e7"><span class="std std-ref">GPIO_readPortData()</span></a>, <a class="reference internal" href="#group__gpio__api_1ga9cb784265bd06b7cf62d3847e39b3eee"><span class="std std-ref">GPIO_setPortPins()</span></a>, <a class="reference internal" href="#group__gpio__api_1gafa45dea38012153b735c99bce4f8c53d"><span class="std std-ref">GPIO_clearPortPins()</span></a>, and <a class="reference internal" href="#group__gpio__api_1ga7d1b922486278b297bc6041b6fadf628"><span class="std std-ref">GPIO_togglePortPins()</span></a> as the <em>port</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N9GPIO_Port11GPIO_PORT_AE">
+<span id="_CPPv3N9GPIO_Port11GPIO_PORT_AE"></span><span id="_CPPv2N9GPIO_Port11GPIO_PORT_AE"></span><span class="target" id="group__gpio__api_1ggaf164c756418dde00ac07fd47d0962150a8b07bc36836f09ea3bf685aa40bb2a1c"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_PORT_A</code> = 0<a class="headerlink" href="#_CPPv4N9GPIO_Port11GPIO_PORT_AE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GPIO port A. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N9GPIO_Port11GPIO_PORT_BE">
+<span id="_CPPv3N9GPIO_Port11GPIO_PORT_BE"></span><span id="_CPPv2N9GPIO_Port11GPIO_PORT_BE"></span><span class="target" id="group__gpio__api_1ggaf164c756418dde00ac07fd47d0962150af5a83964a6998f346c504ea8a14aa420"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_PORT_B</code> = 1<a class="headerlink" href="#_CPPv4N9GPIO_Port11GPIO_PORT_BE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GPIO port B. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N9GPIO_Port11GPIO_PORT_CE">
+<span id="_CPPv3N9GPIO_Port11GPIO_PORT_CE"></span><span id="_CPPv2N9GPIO_Port11GPIO_PORT_CE"></span><span class="target" id="group__gpio__api_1ggaf164c756418dde00ac07fd47d0962150aa6d64325a6ea4d520a8f7c2f8d9b82ba"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_PORT_C</code> = 2<a class="headerlink" href="#_CPPv4N9GPIO_Port11GPIO_PORT_CE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GPIO port C. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N9GPIO_Port11GPIO_PORT_DE">
+<span id="_CPPv3N9GPIO_Port11GPIO_PORT_DE"></span><span id="_CPPv2N9GPIO_Port11GPIO_PORT_DE"></span><span class="target" id="group__gpio__api_1ggaf164c756418dde00ac07fd47d0962150a28839778b06b58a1b3ece28f39dade8f"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_PORT_D</code> = 3<a class="headerlink" href="#_CPPv4N9GPIO_Port11GPIO_PORT_DE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GPIO port D. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N9GPIO_Port11GPIO_PORT_EE">
+<span id="_CPPv3N9GPIO_Port11GPIO_PORT_EE"></span><span id="_CPPv2N9GPIO_Port11GPIO_PORT_EE"></span><span class="target" id="group__gpio__api_1ggaf164c756418dde00ac07fd47d0962150a9cdccb3f86f1326ee286709c135995c8"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_PORT_E</code> = 4<a class="headerlink" href="#_CPPv4N9GPIO_Port11GPIO_PORT_EE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GPIO port E. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N9GPIO_Port11GPIO_PORT_FE">
+<span id="_CPPv3N9GPIO_Port11GPIO_PORT_FE"></span><span id="_CPPv2N9GPIO_Port11GPIO_PORT_FE"></span><span class="target" id="group__gpio__api_1ggaf164c756418dde00ac07fd47d0962150a2e0f525fddb580bff30dc9dd84f3fa5b"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_PORT_F</code> = 5<a class="headerlink" href="#_CPPv4N9GPIO_Port11GPIO_PORT_FE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>GPIO port F. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv419GPIO_ExternalIntNum">
+<span id="_CPPv319GPIO_ExternalIntNum"></span><span id="_CPPv219GPIO_ExternalIntNum"></span><span class="target" id="group__gpio__api_1gae7173ddc75484cf212af78426e76882a"></span><em class="property">enum </em><code class="sig-name descname">GPIO_ExternalIntNum</code><a class="headerlink" href="#_CPPv419GPIO_ExternalIntNum" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__gpio__api_1ga6af2e62018ca55a51bbd2d652f117c11"><span class="std std-ref">GPIO_setInterruptPin()</span></a>, <a class="reference internal" href="#group__gpio__api_1ga5964d467bf85d71bfd833205e492a4ad"><span class="std std-ref">GPIO_setInterruptType()</span></a>, <a class="reference internal" href="#group__gpio__api_1ga73e5e0d4323656fb058141f14c43dae4"><span class="std std-ref">GPIO_getInterruptType()</span></a>, <a class="reference internal" href="#group__gpio__api_1gaffcc404a7f92a27af55d98b7b618c0c8"><span class="std std-ref">GPIO_enableInterrupt()</span></a>, <a class="reference internal" href="#group__gpio__api_1ga1f0b54ca259de950f23a795bb15e8794"><span class="std std-ref">GPIO_disableInterrupt()</span></a>, as the <em>extIntNum</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19GPIO_ExternalIntNum14GPIO_INT_XINT1E">
+<span id="_CPPv3N19GPIO_ExternalIntNum14GPIO_INT_XINT1E"></span><span id="_CPPv2N19GPIO_ExternalIntNum14GPIO_INT_XINT1E"></span><span class="target" id="group__gpio__api_1ggae7173ddc75484cf212af78426e76882aa6b4f42314076872fcbf20082d0ca3c32"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_INT_XINT1</code><a class="headerlink" href="#_CPPv4N19GPIO_ExternalIntNum14GPIO_INT_XINT1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>External Interrupt 1. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19GPIO_ExternalIntNum14GPIO_INT_XINT2E">
+<span id="_CPPv3N19GPIO_ExternalIntNum14GPIO_INT_XINT2E"></span><span id="_CPPv2N19GPIO_ExternalIntNum14GPIO_INT_XINT2E"></span><span class="target" id="group__gpio__api_1ggae7173ddc75484cf212af78426e76882aa8b8f2e00108d603156582ce899906169"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_INT_XINT2</code><a class="headerlink" href="#_CPPv4N19GPIO_ExternalIntNum14GPIO_INT_XINT2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>External Interrupt 2. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19GPIO_ExternalIntNum14GPIO_INT_XINT3E">
+<span id="_CPPv3N19GPIO_ExternalIntNum14GPIO_INT_XINT3E"></span><span id="_CPPv2N19GPIO_ExternalIntNum14GPIO_INT_XINT3E"></span><span class="target" id="group__gpio__api_1ggae7173ddc75484cf212af78426e76882aad93fa0871f3a5649485496e1497a469b"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_INT_XINT3</code><a class="headerlink" href="#_CPPv4N19GPIO_ExternalIntNum14GPIO_INT_XINT3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>External Interrupt 3. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19GPIO_ExternalIntNum14GPIO_INT_XINT4E">
+<span id="_CPPv3N19GPIO_ExternalIntNum14GPIO_INT_XINT4E"></span><span id="_CPPv2N19GPIO_ExternalIntNum14GPIO_INT_XINT4E"></span><span class="target" id="group__gpio__api_1ggae7173ddc75484cf212af78426e76882aa7fc96912b8fd7fb56b015f7ad6f4544f"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_INT_XINT4</code><a class="headerlink" href="#_CPPv4N19GPIO_ExternalIntNum14GPIO_INT_XINT4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>External Interrupt 4. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19GPIO_ExternalIntNum14GPIO_INT_XINT5E">
+<span id="_CPPv3N19GPIO_ExternalIntNum14GPIO_INT_XINT5E"></span><span id="_CPPv2N19GPIO_ExternalIntNum14GPIO_INT_XINT5E"></span><span class="target" id="group__gpio__api_1ggae7173ddc75484cf212af78426e76882aaad558745f66c7d1fd24bb27670f2f807"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_INT_XINT5</code><a class="headerlink" href="#_CPPv4N19GPIO_ExternalIntNum14GPIO_INT_XINT5E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>External Interrupt 5. </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv421GPIO_setInterruptType19GPIO_ExternalIntNum12GPIO_IntType">
+<span id="_CPPv321GPIO_setInterruptType19GPIO_ExternalIntNum12GPIO_IntType"></span><span id="_CPPv221GPIO_setInterruptType19GPIO_ExternalIntNum12GPIO_IntType"></span><span id="GPIO_setInterruptType__GPIO_ExternalIntNum.GPIO_IntType"></span><span class="target" id="group__gpio__api_1ga5964d467bf85d71bfd833205e492a4ad"></span>void <code class="sig-name descname">GPIO_setInterruptType</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv419GPIO_ExternalIntNum" title="GPIO_ExternalIntNum">GPIO_ExternalIntNum</a> <em>extIntNum</em>, <a class="reference internal" href="#_CPPv412GPIO_IntType" title="GPIO_IntType">GPIO_IntType</a> <em>intType</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421GPIO_setInterruptType19GPIO_ExternalIntNum12GPIO_IntType" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the interrupt type for the specified pin.</p>
+<p><p>This function sets up the various interrupt trigger mechanisms for the specified pin on the selected GPIO port.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">extIntNum</span></code>: specifies the external interrupt. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intType</span></code>: specifies the type of interrupt trigger mechanism.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The following defines can be used to specify the external interrupt for the <em>extIntNum</em> parameter:</p>
+<p><ul class="simple">
+<li><p><strong>GPIO_INT_XINT1</strong> </p></li>
+<li><p><strong>GPIO_INT_XINT2</strong> </p></li>
+<li><p><strong>GPIO_INT_XINT3</strong> </p></li>
+<li><p><strong>GPIO_INT_XINT4</strong> </p></li>
+<li><p><strong>GPIO_INT_XINT5</strong> </p></li>
+</ul>
+</p>
+<p>One of the following flags can be used to define the <em>intType</em> parameter:</p>
+<p><ul class="simple">
+<li><p><strong>GPIO_INT_TYPE_FALLING_EDGE</strong> sets detection to edge and trigger to falling</p></li>
+<li><p><strong>GPIO_INT_TYPE_RISING_EDGE</strong> sets detection to edge and trigger to rising</p></li>
+<li><p><strong>GPIO_INT_TYPE_BOTH_EDGES</strong> sets detection to both edges</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421GPIO_getInterruptType19GPIO_ExternalIntNum">
+<span id="_CPPv321GPIO_getInterruptType19GPIO_ExternalIntNum"></span><span id="_CPPv221GPIO_getInterruptType19GPIO_ExternalIntNum"></span><span id="GPIO_getInterruptType__GPIO_ExternalIntNum"></span><span class="target" id="group__gpio__api_1ga73e5e0d4323656fb058141f14c43dae4"></span><a class="reference internal" href="#_CPPv412GPIO_IntType" title="GPIO_IntType">GPIO_IntType</a> <code class="sig-name descname">GPIO_getInterruptType</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv419GPIO_ExternalIntNum" title="GPIO_ExternalIntNum">GPIO_ExternalIntNum</a> <em>extIntNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421GPIO_getInterruptType19GPIO_ExternalIntNum" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the interrupt type for a pin.</p>
+<p><p>This function gets the interrupt type for a interrupt. The interrupt can be configured as a falling-edge, rising-edge, or both-edges detected interrupt.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">extIntNum</span></code>: specifies the external interrupt.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The following defines can be used to specify the external interrupt for the <em>extIntNum</em> parameter:</p>
+<p><ul class="simple">
+<li><p><strong>GPIO_INT_XINT1</strong> </p></li>
+<li><p><strong>GPIO_INT_XINT2</strong> </p></li>
+<li><p><strong>GPIO_INT_XINT3</strong> </p></li>
+<li><p><strong>GPIO_INT_XINT4</strong> </p></li>
+<li><p><strong>GPIO_INT_XINT5</strong> </p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns one of the flags described for <a class="reference internal" href="#group__gpio__api_1ga5964d467bf85d71bfd833205e492a4ad"><span class="std std-ref">GPIO_setInterruptType()</span></a>. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420GPIO_enableInterrupt19GPIO_ExternalIntNum">
+<span id="_CPPv320GPIO_enableInterrupt19GPIO_ExternalIntNum"></span><span id="_CPPv220GPIO_enableInterrupt19GPIO_ExternalIntNum"></span><span id="GPIO_enableInterrupt__GPIO_ExternalIntNum"></span><span class="target" id="group__gpio__api_1gaffcc404a7f92a27af55d98b7b618c0c8"></span>void <code class="sig-name descname">GPIO_enableInterrupt</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv419GPIO_ExternalIntNum" title="GPIO_ExternalIntNum">GPIO_ExternalIntNum</a> <em>extIntNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420GPIO_enableInterrupt19GPIO_ExternalIntNum" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the specified external interrupt.</p>
+<p><p>This function enables the indicated external interrupt sources. Only the sources that are enabled can be reflected to the processor interrupt. Disabled sources have no effect on the processor.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">extIntNum</span></code>: specifies the external interrupt.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The following defines can be used to specify the external interrupt for the <em>extIntNum</em> parameter:</p>
+<p><ul class="simple">
+<li><p><strong>GPIO_INT_XINT1</strong> </p></li>
+<li><p><strong>GPIO_INT_XINT2</strong> </p></li>
+<li><p><strong>GPIO_INT_XINT3</strong> </p></li>
+<li><p><strong>GPIO_INT_XINT4</strong> </p></li>
+<li><p><strong>GPIO_INT_XINT5</strong> </p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421GPIO_disableInterrupt19GPIO_ExternalIntNum">
+<span id="_CPPv321GPIO_disableInterrupt19GPIO_ExternalIntNum"></span><span id="_CPPv221GPIO_disableInterrupt19GPIO_ExternalIntNum"></span><span id="GPIO_disableInterrupt__GPIO_ExternalIntNum"></span><span class="target" id="group__gpio__api_1ga1f0b54ca259de950f23a795bb15e8794"></span>void <code class="sig-name descname">GPIO_disableInterrupt</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv419GPIO_ExternalIntNum" title="GPIO_ExternalIntNum">GPIO_ExternalIntNum</a> <em>extIntNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421GPIO_disableInterrupt19GPIO_ExternalIntNum" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the specified external interrupt.</p>
+<p><p>This function disables the indicated external interrupt sources. Only the sources that are enabled can be reflected to the processor interrupt. Disabled sources have no effect on the processor.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">extIntNum</span></code>: specifies the external interrupt.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The following defines can be used to specify the external interrupt for the <em>extIntNum</em> parameter:</p>
+<p><ul class="simple">
+<li><p><strong>GPIO_INT_XINT1</strong> </p></li>
+<li><p><strong>GPIO_INT_XINT2</strong> </p></li>
+<li><p><strong>GPIO_INT_XINT3</strong> </p></li>
+<li><p><strong>GPIO_INT_XINT4</strong> </p></li>
+<li><p><strong>GPIO_INT_XINT5</strong> </p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424GPIO_getInterruptCounter19GPIO_ExternalIntNum">
+<span id="_CPPv324GPIO_getInterruptCounter19GPIO_ExternalIntNum"></span><span id="_CPPv224GPIO_getInterruptCounter19GPIO_ExternalIntNum"></span><span id="GPIO_getInterruptCounter__GPIO_ExternalIntNum"></span><span class="target" id="group__gpio__api_1gaef27047e923d4a3c1df1a2b50fad8383"></span>uint16_t <code class="sig-name descname">GPIO_getInterruptCounter</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv419GPIO_ExternalIntNum" title="GPIO_ExternalIntNum">GPIO_ExternalIntNum</a> <em>extIntNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424GPIO_getInterruptCounter19GPIO_ExternalIntNum" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the value of the external interrupt counter.</p>
+<p><p>The following defines can be used to specify the external interrupt for the </p>
+<em>extIntNum</em> parameter:<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">extIntNum</span></code>: specifies the external interrupt.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p><strong>GPIO_INT_XINT1</strong> </p></li>
+<li><p><strong>GPIO_INT_XINT2</strong> </p></li>
+<li><p><strong>GPIO_INT_XINT3</strong> </p></li>
+</ul>
+</p>
+<p><strong>Note:</strong> The counter is clocked at the SYSCLKOUT rate.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns external interrupt counter value. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv412GPIO_readPin8uint32_t">
+<span id="_CPPv312GPIO_readPin8uint32_t"></span><span id="_CPPv212GPIO_readPin8uint32_t"></span><span id="GPIO_readPin__uint32_t"></span><span class="target" id="group__gpio__api_1ga34589426d39e585686fcb1b793b4fb18"></span>uint32_t <code class="sig-name descname">GPIO_readPin</code><span class="sig-paren">(</span>uint32_t <em>pin</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412GPIO_readPin8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reads the value present on the specified pin.</p>
+<p><p>The value at the specified pin are read, as specified by </p>
+<em>pin</em>. The value is returned for both input and output pins.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pin</span></code>: is the identifying GPIO number of the pin.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The pin is specified by its numerical value. For example, GPIO34 is specified by passing 34 as <em>pin</em>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the value in the data register for the specified pin. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv413GPIO_writePin8uint32_t8uint32_t">
+<span id="_CPPv313GPIO_writePin8uint32_t8uint32_t"></span><span id="_CPPv213GPIO_writePin8uint32_t8uint32_t"></span><span id="GPIO_writePin__uint32_t.uint32_t"></span><span class="target" id="group__gpio__api_1gab10f7a152de476c22496e94b6f80c6c3"></span>void <code class="sig-name descname">GPIO_writePin</code><span class="sig-paren">(</span>uint32_t <em>pin</em>, uint32_t <em>outVal</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413GPIO_writePin8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Writes a value to the specified pin.</p>
+<p><p>Writes the corresponding bit values to the output pin specified by </p>
+<em>pin</em>. Writing to a pin configured as an input pin has no effect.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pin</span></code>: is the identifying GPIO number of the pin. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">outVal</span></code>: is the value to write to the pin.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The pin is specified by its numerical value. For example, GPIO34 is specified by passing 34 as <em>pin</em>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414GPIO_togglePin8uint32_t">
+<span id="_CPPv314GPIO_togglePin8uint32_t"></span><span id="_CPPv214GPIO_togglePin8uint32_t"></span><span id="GPIO_togglePin__uint32_t"></span><span class="target" id="group__gpio__api_1gae9a250b29dd561eb14c8448b446572a0"></span>void <code class="sig-name descname">GPIO_togglePin</code><span class="sig-paren">(</span>uint32_t <em>pin</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414GPIO_togglePin8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Toggles the specified pin.</p>
+<p><p>Writes the corresponding bit values to the output pin specified by </p>
+<em>pin</em>. Writing to a pin configured as an input pin has no effect.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pin</span></code>: is the identifying GPIO number of the pin.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The pin is specified by its numerical value. For example, GPIO34 is specified by passing 34 as <em>pin</em>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417GPIO_readPortData9GPIO_Port">
+<span id="_CPPv317GPIO_readPortData9GPIO_Port"></span><span id="_CPPv217GPIO_readPortData9GPIO_Port"></span><span id="GPIO_readPortData__GPIO_Port"></span><span class="target" id="group__gpio__api_1ga248b8f6bbaabb86f8626817bb8d892e7"></span>uint32_t <code class="sig-name descname">GPIO_readPortData</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv49GPIO_Port" title="GPIO_Port">GPIO_Port</a> <em>port</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417GPIO_readPortData9GPIO_Port" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reads the data on the specified port.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the value available on pin for the specified port. Each bit of the the return value represents a pin on the port, where bit 0 represents GPIO port pin 0, bit 1 represents GPIO port pin 1, and so on. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">port</span></code>: is the GPIO port being accessed in the form of <strong>GPIO_PORT_X</strong> where X is the port letter.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418GPIO_writePortData9GPIO_Port8uint32_t">
+<span id="_CPPv318GPIO_writePortData9GPIO_Port8uint32_t"></span><span id="_CPPv218GPIO_writePortData9GPIO_Port8uint32_t"></span><span id="GPIO_writePortData__GPIO_Port.uint32_t"></span><span class="target" id="group__gpio__api_1ga9ad3626ced10620acc6663792c1317be"></span>void <code class="sig-name descname">GPIO_writePortData</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv49GPIO_Port" title="GPIO_Port">GPIO_Port</a> <em>port</em>, uint32_t <em>outVal</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418GPIO_writePortData9GPIO_Port8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Writes a value to the specified port.</p>
+<p><p>This function writes the value </p>
+<em>outVal</em> to the port specified by the <em>port</em> parameter which takes a value in the form of <strong>GPIO_PORT_X</strong> where X is the port letter. For example, use <strong>GPIO_PORT_A</strong> to affect port A (GPIOs 0-31).<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">port</span></code>: is the GPIO port being accessed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">outVal</span></code>: is the value to write to the port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>outVal</em> is a bit-packed value, where each bit represents a bit on a GPIO port. Bit 0 represents GPIO port pin 0, bit 1 represents GPIO port pin 1, and so on.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416GPIO_setPortPins9GPIO_Port8uint32_t">
+<span id="_CPPv316GPIO_setPortPins9GPIO_Port8uint32_t"></span><span id="_CPPv216GPIO_setPortPins9GPIO_Port8uint32_t"></span><span id="GPIO_setPortPins__GPIO_Port.uint32_t"></span><span class="target" id="group__gpio__api_1ga9cb784265bd06b7cf62d3847e39b3eee"></span>void <code class="sig-name descname">GPIO_setPortPins</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv49GPIO_Port" title="GPIO_Port">GPIO_Port</a> <em>port</em>, uint32_t <em>pinMask</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416GPIO_setPortPins9GPIO_Port8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets all of the specified pins on the specified port.</p>
+<p><p>This function sets all of the pins specified by the </p>
+<em>pinMask</em> parameter on the port specified by the <em>port</em> parameter which takes a value in the form of <strong>GPIO_PORT_X</strong> where X is the port letter. For example, use <strong>GPIO_PORT_A</strong> to affect port A (GPIOs 0-31).<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">port</span></code>: is the GPIO port being accessed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pinMask</span></code>: is a mask of which of the 32 pins on the port are affected.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>pinMask</em> is a bit-packed value, where each bit that is set identifies the pin to be set. Bit 0 represents GPIO port pin 0, bit 1 represents GPIO port pin 1, and so on.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418GPIO_clearPortPins9GPIO_Port8uint32_t">
+<span id="_CPPv318GPIO_clearPortPins9GPIO_Port8uint32_t"></span><span id="_CPPv218GPIO_clearPortPins9GPIO_Port8uint32_t"></span><span id="GPIO_clearPortPins__GPIO_Port.uint32_t"></span><span class="target" id="group__gpio__api_1gafa45dea38012153b735c99bce4f8c53d"></span>void <code class="sig-name descname">GPIO_clearPortPins</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv49GPIO_Port" title="GPIO_Port">GPIO_Port</a> <em>port</em>, uint32_t <em>pinMask</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418GPIO_clearPortPins9GPIO_Port8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears all of the specified pins on the specified port.</p>
+<p><p>This function clears all of the pins specified by the </p>
+<em>pinMask</em> parameter on the port specified by the <em>port</em> parameter which takes a value in the form of <strong>GPIO_PORT_X</strong> where X is the port letter. For example, use <strong>GPIO_PORT_A</strong> to affect port A (GPIOs 0-31).<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">port</span></code>: is the GPIO port being accessed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pinMask</span></code>: is a mask of which of the 32 pins on the port are affected.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>pinMask</em> is a bit-packed value, where each bit that is <strong>set</strong> identifies the pin to be cleared. Bit 0 represents GPIO port pin 0, bit 1 represents GPIO port pin 1, and so on.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419GPIO_togglePortPins9GPIO_Port8uint32_t">
+<span id="_CPPv319GPIO_togglePortPins9GPIO_Port8uint32_t"></span><span id="_CPPv219GPIO_togglePortPins9GPIO_Port8uint32_t"></span><span id="GPIO_togglePortPins__GPIO_Port.uint32_t"></span><span class="target" id="group__gpio__api_1ga7d1b922486278b297bc6041b6fadf628"></span>void <code class="sig-name descname">GPIO_togglePortPins</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv49GPIO_Port" title="GPIO_Port">GPIO_Port</a> <em>port</em>, uint32_t <em>pinMask</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419GPIO_togglePortPins9GPIO_Port8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Toggles all of the specified pins on the specified port.</p>
+<p><p>This function toggles all of the pins specified by the </p>
+<em>pinMask</em> parameter on the port specified by the <em>port</em> parameter which takes a value in the form of <strong>GPIO_PORT_X</strong> where X is the port letter. For example, use <strong>GPIO_PORT_A</strong> to affect port A (GPIOs 0-31).<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">port</span></code>: is the GPIO port being accessed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pinMask</span></code>: is a mask of which of the 32 pins on the port are affected.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>pinMask</em> is a bit-packed value, where each bit that is set identifies the pin to be toggled. Bit 0 represents GPIO port pin 0, bit 1 represents GPIO port pin 1, and so on.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419GPIO_lockPortConfig9GPIO_Port8uint32_t">
+<span id="_CPPv319GPIO_lockPortConfig9GPIO_Port8uint32_t"></span><span id="_CPPv219GPIO_lockPortConfig9GPIO_Port8uint32_t"></span><span id="GPIO_lockPortConfig__GPIO_Port.uint32_t"></span><span class="target" id="group__gpio__api_1gaef620fad94e137d0306b29e3dac98c6b"></span>void <code class="sig-name descname">GPIO_lockPortConfig</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv49GPIO_Port" title="GPIO_Port">GPIO_Port</a> <em>port</em>, uint32_t <em>pinMask</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419GPIO_lockPortConfig9GPIO_Port8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Locks the configuration of the specified pins on the specified port.</p>
+<p><p>This function locks the configuration registers of the pins specified by the </p>
+<em>pinMask</em> parameter on the port specified by the <em>port</em> parameter which takes a value in the form of <strong>GPIO_PORT_X</strong> where X is the port letter. For example, use <strong>GPIO_PORT_A</strong> to affect port A (GPIOs 0-31).<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">port</span></code>: is the GPIO port being accessed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pinMask</span></code>: is a mask of which of the 32 pins on the port are affected.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>pinMask</em> is a bit-packed value, where each bit that is set identifies the pin to be locked. Bit 0 represents GPIO port pin 0, bit 1 represents GPIO port pin 1, 0xFFFFFFFF represents all pins on that port, and so on.</p>
+<p>Note that this function is for locking the configuration of a pin such as the pin muxing, direction, open drain mode, and other settings. It does not affect the ability to change the value of the pin.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421GPIO_unlockPortConfig9GPIO_Port8uint32_t">
+<span id="_CPPv321GPIO_unlockPortConfig9GPIO_Port8uint32_t"></span><span id="_CPPv221GPIO_unlockPortConfig9GPIO_Port8uint32_t"></span><span id="GPIO_unlockPortConfig__GPIO_Port.uint32_t"></span><span class="target" id="group__gpio__api_1gaee90c22498ce3399f5d53105748fd387"></span>void <code class="sig-name descname">GPIO_unlockPortConfig</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv49GPIO_Port" title="GPIO_Port">GPIO_Port</a> <em>port</em>, uint32_t <em>pinMask</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421GPIO_unlockPortConfig9GPIO_Port8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Unlocks the configuration of the specified pins on the specified port.</p>
+<p><p>This function unlocks the configuration registers of the pins specified by the </p>
+<em>pinMask</em> parameter on the port specified by the <em>port</em> parameter which takes a value in the form of <strong>GPIO_PORT_X</strong> where X is the port letter. For example, use <strong>GPIO_PORT_A</strong> to affect port A (GPIOs 0-31).<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">port</span></code>: is the GPIO port being accessed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pinMask</span></code>: is a mask of which of the 32 pins on the port are affected.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>pinMask</em> is a bit-packed value, where each bit that is set identifies the pin to be unlocked. Bit 0 represents GPIO port pin 0, bit 1 represents GPIO port pin 1, 0xFFFFFFFF represents all pins on that port, and so on.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421GPIO_commitPortConfig9GPIO_Port8uint32_t">
+<span id="_CPPv321GPIO_commitPortConfig9GPIO_Port8uint32_t"></span><span id="_CPPv221GPIO_commitPortConfig9GPIO_Port8uint32_t"></span><span id="GPIO_commitPortConfig__GPIO_Port.uint32_t"></span><span class="target" id="group__gpio__api_1ga0a7b820d93275fd2d2059dd08c9f6688"></span>void <code class="sig-name descname">GPIO_commitPortConfig</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv49GPIO_Port" title="GPIO_Port">GPIO_Port</a> <em>port</em>, uint32_t <em>pinMask</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421GPIO_commitPortConfig9GPIO_Port8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Commits the lock configuration of the specified pins on the specified port.</p>
+<p><p>This function commits the lock configuration registers of the pins specified by the </p>
+<em>pinMask</em> parameter on the port specified by the <em>port</em> parameter which takes a value in the form of <strong>GPIO_PORT_X</strong> where X is the port letter. For example, use <strong>GPIO_PORT_A</strong> to affect port A (GPIOs 0-31).<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">port</span></code>: is the GPIO port being accessed. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pinMask</span></code>: is a mask of which of the 32 pins on the port are affected.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>pinMask</em> is a bit-packed value, where each bit that is set identifies the pin to be locked. Bit 0 represents GPIO port pin 0, bit 1 represents GPIO port pin 1, 0xFFFFFFFF represents all pins on that port, and so on.</p>
+<p>Note that once this function is called, <a class="reference internal" href="#group__gpio__api_1gaef620fad94e137d0306b29e3dac98c6b"><span class="std std-ref">GPIO_lockPortConfig()</span></a> and <a class="reference internal" href="#group__gpio__api_1gaee90c22498ce3399f5d53105748fd387"><span class="std std-ref">GPIO_unlockPortConfig()</span></a> will no longer have any effect on the specified pins.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421GPIO_setDirectionMode8uint32_t14GPIO_Direction">
+<span id="_CPPv321GPIO_setDirectionMode8uint32_t14GPIO_Direction"></span><span id="_CPPv221GPIO_setDirectionMode8uint32_t14GPIO_Direction"></span><span id="GPIO_setDirectionMode__uint32_t.GPIO_Direction"></span><span class="target" id="group__gpio__api_1gab50248ff19d73a592046deac995d88fb"></span>void <code class="sig-name descname">GPIO_setDirectionMode</code><span class="sig-paren">(</span>uint32_t <em>pin</em>, <a class="reference internal" href="#_CPPv414GPIO_Direction" title="GPIO_Direction">GPIO_Direction</a> <em>pinIO</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421GPIO_setDirectionMode8uint32_t14GPIO_Direction" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the direction and mode of the specified pin.</p>
+<p><p>This function configures the specified pin on the selected GPIO port as either input or output.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pin</span></code>: is the identifying GPIO number of the pin. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pinIO</span></code>: is the pin direction mode.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The parameter <em>pinIO</em> is an enumerated data type that can be one of the following values:</p>
+<p><ul class="simple">
+<li><p><strong>GPIO_DIR_MODE_IN</strong> </p></li>
+<li><p><strong>GPIO_DIR_MODE_OUT</strong> </p></li>
+</ul>
+</p>
+<p>where <strong>GPIO_DIR_MODE_IN</strong> specifies that the pin is programmed as an input and <strong>GPIO_DIR_MODE_OUT</strong> specifies that the pin is programmed as an output.</p>
+<p>The pin is specified by its numerical value. For example, GPIO34 is specified by passing 34 as <em>pin</em>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421GPIO_getDirectionMode8uint32_t">
+<span id="_CPPv321GPIO_getDirectionMode8uint32_t"></span><span id="_CPPv221GPIO_getDirectionMode8uint32_t"></span><span id="GPIO_getDirectionMode__uint32_t"></span><span class="target" id="group__gpio__api_1ga4bb8da3c129d7df873d871b1b0e6512d"></span><a class="reference internal" href="#_CPPv414GPIO_Direction" title="GPIO_Direction">GPIO_Direction</a> <code class="sig-name descname">GPIO_getDirectionMode</code><span class="sig-paren">(</span>uint32_t <em>pin</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421GPIO_getDirectionMode8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the direction mode of a pin.</p>
+<p><p>This function gets the direction mode for a specified pin. The pin can be configured as either an input or output The type of direction is returned as an enumerated data type.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pin</span></code>: is the identifying GPIO number of the pin.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns one of the enumerated data types described for <a class="reference internal" href="#group__gpio__api_1gab50248ff19d73a592046deac995d88fb"><span class="std std-ref">GPIO_setDirectionMode()</span></a>. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420GPIO_setInterruptPin8uint32_t19GPIO_ExternalIntNum">
+<span id="_CPPv320GPIO_setInterruptPin8uint32_t19GPIO_ExternalIntNum"></span><span id="_CPPv220GPIO_setInterruptPin8uint32_t19GPIO_ExternalIntNum"></span><span id="GPIO_setInterruptPin__uint32_t.GPIO_ExternalIntNum"></span><span class="target" id="group__gpio__api_1ga6af2e62018ca55a51bbd2d652f117c11"></span>void <code class="sig-name descname">GPIO_setInterruptPin</code><span class="sig-paren">(</span>uint32_t <em>pin</em>, <a class="reference internal" href="#_CPPv419GPIO_ExternalIntNum" title="GPIO_ExternalIntNum">GPIO_ExternalIntNum</a> <em>extIntNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420GPIO_setInterruptPin8uint32_t19GPIO_ExternalIntNum" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the pin for the specified external interrupt.</p>
+<p><p>This function sets which pin triggers the selected external interrupt.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pin</span></code>: is the identifying GPIO number of the pin. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">extIntNum</span></code>: specifies the external interrupt.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The following defines can be used to specify the external interrupt for the <em>extIntNum</em> parameter:</p>
+<p><ul class="simple">
+<li><p><strong>GPIO_INT_XINT1</strong> </p></li>
+<li><p><strong>GPIO_INT_XINT2</strong> </p></li>
+<li><p><strong>GPIO_INT_XINT3</strong> </p></li>
+<li><p><strong>GPIO_INT_XINT4</strong> </p></li>
+<li><p><strong>GPIO_INT_XINT5</strong> </p></li>
+</ul>
+</p>
+<p>The pin is specified by its numerical value. For example, GPIO34 is specified by passing 34 as <em>pin</em>.</p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="xbar.html#group__xbar__api_1ga04b9b7444a8b12c2f4af0b00290c03a2"><span class="std std-ref">XBAR_setInputPin()</span></a></p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417GPIO_setPadConfig8uint32_t8uint32_t">
+<span id="_CPPv317GPIO_setPadConfig8uint32_t8uint32_t"></span><span id="_CPPv217GPIO_setPadConfig8uint32_t8uint32_t"></span><span id="GPIO_setPadConfig__uint32_t.uint32_t"></span><span class="target" id="group__gpio__api_1gad853021cf15a9a1d644abf83a589117d"></span>void <code class="sig-name descname">GPIO_setPadConfig</code><span class="sig-paren">(</span>uint32_t <em>pin</em>, uint32_t <em>pinType</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417GPIO_setPadConfig8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the pad configuration for the specified pin.</p>
+<p><p>This function sets the pin type for the specified pin. The parameter </p>
+<em>pinType</em> can be the following values:<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pin</span></code>: is the identifying GPIO number of the pin. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pinType</span></code>: specifies the pin type.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p><strong>GPIO_PIN_TYPE_STD</strong> specifies a push-pull output or a floating input</p></li>
+<li><p><strong>GPIO_PIN_TYPE_PULLUP</strong> specifies the pull-up is enabled for an input</p></li>
+<li><p><strong>GPIO_PIN_TYPE_OD</strong> specifies an open-drain output pin</p></li>
+<li><p><strong>GPIO_PIN_TYPE_INVERT</strong> specifies inverted polarity on an input</p></li>
+</ul>
+</p>
+<p><strong>GPIO_PIN_TYPE_INVERT</strong> may be OR-ed with <strong>GPIO_PIN_TYPE_STD</strong> or <strong>GPIO_PIN_TYPE_PULLUP</strong>.</p>
+<p>The pin is specified by its numerical value. For example, GPIO34 is specified by passing 34 as <em>pin</em>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417GPIO_getPadConfig8uint32_t">
+<span id="_CPPv317GPIO_getPadConfig8uint32_t"></span><span id="_CPPv217GPIO_getPadConfig8uint32_t"></span><span id="GPIO_getPadConfig__uint32_t"></span><span class="target" id="group__gpio__api_1ga984c91d94a8eb638f14a9f7a33f40575"></span>uint32_t <code class="sig-name descname">GPIO_getPadConfig</code><span class="sig-paren">(</span>uint32_t <em>pin</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417GPIO_getPadConfig8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the pad configuration for a pin.</p>
+<p><p>This function returns the pin type for the specified pin. The value returned corresponds to the values used in </p>
+<a class="reference internal" href="#group__gpio__api_1gad853021cf15a9a1d644abf83a589117d"><span class="std std-ref">GPIO_setPadConfig()</span></a>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pin</span></code>: is the identifying GPIO number of the pin.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns a bit field of the values <strong>GPIO_PIN_TYPE_STD</strong>, <strong>GPIO_PIN_TYPE_PULLUP</strong>, <strong>GPIO_PIN_TYPE_OD</strong>, and <strong>GPIO_PIN_TYPE_INVERT</strong>. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425GPIO_setQualificationMode8uint32_t22GPIO_QualificationMode">
+<span id="_CPPv325GPIO_setQualificationMode8uint32_t22GPIO_QualificationMode"></span><span id="_CPPv225GPIO_setQualificationMode8uint32_t22GPIO_QualificationMode"></span><span id="GPIO_setQualificationMode__uint32_t.GPIO_QualificationMode"></span><span class="target" id="group__gpio__api_1ga1e9b26b531df3ab6a0bc874318b98a98"></span>void <code class="sig-name descname">GPIO_setQualificationMode</code><span class="sig-paren">(</span>uint32_t <em>pin</em>, <a class="reference internal" href="#_CPPv422GPIO_QualificationMode" title="GPIO_QualificationMode">GPIO_QualificationMode</a> <em>qualification</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425GPIO_setQualificationMode8uint32_t22GPIO_QualificationMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the qualification mode for the specified pin.</p>
+<p><p>This function sets the qualification mode for the specified pin. The parameter </p>
+<em>qualification</em> can be one of the following values:<ul class="simple">
+<li><p><strong>GPIO_QUAL_SYNC</strong> </p></li>
+<li><p><strong>GPIO_QUAL_3SAMPLE</strong> </p></li>
+<li><p><strong>GPIO_QUAL_6SAMPLE</strong> </p></li>
+<li><p><strong>GPIO_QUAL_ASYNC</strong> </p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pin</span></code>: is the identifying GPIO number of the pin. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qualification</span></code>: specifies the qualification mode of the pin.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>To set the qualification sampling period, use <a class="reference internal" href="#group__gpio__api_1ga10fb74569da5b5c14ed7b0e04af1514b"><span class="std std-ref">GPIO_setQualificationPeriod()</span></a>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425GPIO_getQualificationMode8uint32_t">
+<span id="_CPPv325GPIO_getQualificationMode8uint32_t"></span><span id="_CPPv225GPIO_getQualificationMode8uint32_t"></span><span id="GPIO_getQualificationMode__uint32_t"></span><span class="target" id="group__gpio__api_1ga70b8cdc542a84a7ebb68e3ebf7a9304a"></span><a class="reference internal" href="#_CPPv422GPIO_QualificationMode" title="GPIO_QualificationMode">GPIO_QualificationMode</a> <code class="sig-name descname">GPIO_getQualificationMode</code><span class="sig-paren">(</span>uint32_t <em>pin</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425GPIO_getQualificationMode8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the qualification type for the specified pin.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the qualification mode in the form of one of the values <strong>GPIO_QUAL_SYNC</strong>, <strong>GPIO_QUAL_3SAMPLE</strong>, <strong>GPIO_QUAL_6SAMPLE</strong>, or <strong>GPIO_QUAL_ASYNC</strong>. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pin</span></code>: is the identifying GPIO number of the pin.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427GPIO_setQualificationPeriod8uint32_t8uint32_t">
+<span id="_CPPv327GPIO_setQualificationPeriod8uint32_t8uint32_t"></span><span id="_CPPv227GPIO_setQualificationPeriod8uint32_t8uint32_t"></span><span id="GPIO_setQualificationPeriod__uint32_t.uint32_t"></span><span class="target" id="group__gpio__api_1ga10fb74569da5b5c14ed7b0e04af1514b"></span>void <code class="sig-name descname">GPIO_setQualificationPeriod</code><span class="sig-paren">(</span>uint32_t <em>pin</em>, uint32_t <em>divider</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427GPIO_setQualificationPeriod8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the qualification period for a set of pins</p>
+<p><p>This function sets the qualification period for a set of </p>
+<strong>8</strong> <strong>pins</strong>, specified by the <em>pin</em> parameter. For instance, passing in 3 as the value of <em>pin</em> will set the qualification period for GPIO0 through GPIO7, and a value of 98 will set the qualification period for GPIO96 through GPIO103. This is because the register field that configures the divider is shared.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pin</span></code>: is the identifying GPIO number of the pin. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">divider</span></code>: specifies the output drive strength.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>To think of this in terms of an equation, configuring <em>pin</em> as <strong>n</strong> will configure GPIO (n &amp; ~(7)) through GPIO ((n &amp; ~(7)) + 7).</p>
+<p><em>divider</em> is the value by which the frequency of SYSCLKOUT is divided. It can be 1 or an even value between 2 and 510 inclusive.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418GPIO_setMasterCore8uint32_t15GPIO_CoreSelect">
+<span id="_CPPv318GPIO_setMasterCore8uint32_t15GPIO_CoreSelect"></span><span id="_CPPv218GPIO_setMasterCore8uint32_t15GPIO_CoreSelect"></span><span id="GPIO_setMasterCore__uint32_t.GPIO_CoreSelect"></span><span class="target" id="group__gpio__api_1gaed835c34d453f9b7b353e8e82ba89b56"></span>void <code class="sig-name descname">GPIO_setMasterCore</code><span class="sig-paren">(</span>uint32_t <em>pin</em>, <a class="reference internal" href="#_CPPv415GPIO_CoreSelect" title="GPIO_CoreSelect">GPIO_CoreSelect</a> <em>core</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418GPIO_setMasterCore8uint32_t15GPIO_CoreSelect" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Selects the master core of a specified pin.</p>
+<p><p>This function configures which core owns the specified pin’s data registers (DATA, SET, CLEAR, and TOGGLE). The </p>
+<em>core</em> parameter is an enumerated data type that specifies the core, such as <strong>GPIO_CORE_CPU1_CLA1</strong> to make CPU1’s CLA1 master of the pin.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pin</span></code>: is the identifying GPIO number of the pin. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">core</span></code>: is the core that is master of the specified pin.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The pin is specified by its numerical value. For example, GPIO34 is specified by passing 34 as <em>pin</em>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418GPIO_setAnalogMode8uint32_t15GPIO_AnalogMode">
+<span id="_CPPv318GPIO_setAnalogMode8uint32_t15GPIO_AnalogMode"></span><span id="_CPPv218GPIO_setAnalogMode8uint32_t15GPIO_AnalogMode"></span><span id="GPIO_setAnalogMode__uint32_t.GPIO_AnalogMode"></span><span class="target" id="group__gpio__api_1ga36ff18f0a994cee136c665f72c324b5c"></span>void <code class="sig-name descname">GPIO_setAnalogMode</code><span class="sig-paren">(</span>uint32_t <em>pin</em>, <a class="reference internal" href="#_CPPv415GPIO_AnalogMode" title="GPIO_AnalogMode">GPIO_AnalogMode</a> <em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418GPIO_setAnalogMode8uint32_t15GPIO_AnalogMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the analog mode of the specified pin.</p>
+<p><p>This function configures the specified pin for either analog or digital mode. Not all GPIO pins have the ability to be switched to analog mode, so refer to the technical reference manual for details. This setting should be thought of as another level of muxing.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pin</span></code>: is the identifying GPIO number of the pin. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: is the selected analog mode.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The parameter <em>mode</em> is an enumerated data type that can be one of the following values:</p>
+<p><ul class="simple">
+<li><p><strong>GPIO_ANALOG_DISABLED</strong> - Pin is in digital mode</p></li>
+<li><p><strong>GPIO_ANALOG_ENABLED</strong> - Pin is in analog mode</p></li>
+</ul>
+</p>
+<p>The pin is specified by its numerical value. For example, GPIO34 is specified by passing 34 as <em>pin</em>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417GPIO_setPinConfig8uint32_t">
+<span id="_CPPv317GPIO_setPinConfig8uint32_t"></span><span id="_CPPv217GPIO_setPinConfig8uint32_t"></span><span id="GPIO_setPinConfig__uint32_t"></span><span class="target" id="group__gpio__api_1ga639af291a607ed7694228fe0c4f2760e"></span>void <code class="sig-name descname">GPIO_setPinConfig</code><span class="sig-paren">(</span>uint32_t <em>pinConfig</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417GPIO_setPinConfig8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the alternate function of a GPIO pin.</p>
+<p><p>This function configures the pin mux that selects the peripheral function associated with a particular GPIO pin. Only one peripheral function at a time can be associated with a GPIO pin, and each peripheral function should only be associated with a single GPIO pin at a time (despite the fact that many of them can be associated with more than one GPIO pin).</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pinConfig</span></code>: is the pin configuration value, specified as only one of the <strong>GPIO_::_</strong>???? values.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The available mappings are supplied in <code class="docutils literal notranslate"><span class="pre">pin_map.h</span></code>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>The first step to configuring GPIO is to figure out the peripheral muxing. The
+function to configure the mux registers is GPIO_setPinConfig(). The values to
+be passed to this function to specify the functionality the pin should have are
+found in pin_map.h.</p>
+<p>Next, use GPIO_setPadConfig() to configure any properties like internal
+pullups, open-drain, or an inverted input signal. GPIO_setQualificationMode()
+and GPIO_setQualificationPeriod() can be used to configure any needed input
+qualification.</p>
+<p>Then, for pins configured as GPIOs, use GPIO_setDirectionMode() to select a
+direction. Take care to write the desired initial value for that pin using
+GPIO_writePin() before configuring a pin as an output to avoid any glitches.</p>
+<p>Several functions are provided for the configuration of external interrupts.
+These functions use the device’s XINT module. The Input X-BAR is also leveraged
+to configure the pin on which an event will cause an interrupt. These functions
+are GPIO_setInterruptType(), GPIO_getInterruptType(),
+GPIO_enableInterrupt(), GPIO_disableInterrupt(), and GPIO_setInterruptPin().</p>
+<p>Most functions operate on one pin at a time. However, there are a few functions
+that can operate on an entire port at once for the sake of efficiency. These
+are the data functions GPIO_readPortData(), GPIO_writePortData(),
+GPIO_setPortPins(), GPIO_clearPortPins(), and GPIO_togglePortPins(). Other
+data functions that affect a single pin at a time are GPIO_readPin(),
+GPIO_writePin(), and GPIO_togglePin().</p>
+<p>The code for this module is contained in driverlib/gpio.c, with driverlib/gpio.h containing the API declarations for use by applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="flash.html" class="btn btn-neutral float-left" title="FLASH Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="i2c.html" class="btn btn-neutral float-right" title="I2C Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

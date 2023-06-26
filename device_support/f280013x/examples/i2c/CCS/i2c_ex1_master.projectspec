@@ -1,0 +1,34 @@
+<projectSpec>
+  <project
+        name="i2c_ex1_master"
+        device="TMS320F2800137"
+        cgtVersion="22.6.0.LTS"
+        products="c2000ware_software_package"
+        outputFormat="ELF"
+        launchWizard="False"
+        linkerCommandFile=""
+        >
+    <configuration name="CPU1_RAM" compilerBuildOptions="--opt_level=off -I${C2000WARE_COMMON_INCLUDE} -I${C2000WARE_HEADERS_INCLUDE} -v28 -ml -mt --float_support=fpu32 --gen_func_subsections=on --diag_warning=225 --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x200 --heap_size=0x100 --define=RAM "/>
+    <configuration name="CPU1_FLASH" compilerBuildOptions="--opt_level=off -I${C2000WARE_COMMON_INCLUDE} -I${C2000WARE_HEADERS_INCLUDE} -v28 -ml -mt --float_support=fpu32 --gen_func_subsections=on --define=_FLASH --diag_warning=225 --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x200 --heap_size=0x100 --define=_FLASH "/>
+
+    <pathVariable name="C2000WARE_COMMON_INCLUDE" path="../../../common/include/" scope="project" />
+    <pathVariable name="C2000WARE_HEADERS_INCLUDE" path="../../../headers/include/" scope="project" />
+    <file action="copy" path="../../../common/source/f280013x_codestartbranch.asm" targetDirectory="" />
+    <file action="copy" path="../../../common/source/f280013x_defaultisr.c" targetDirectory="" />
+    <file action="copy" path="../../../common/source/f280013x_adc.c" targetDirectory="" />
+    <file action="copy" path="../../../common/source/f280013x_epwm.c" targetDirectory="" />
+    <file action="copy" path="../../../common/source/f280013x_cputimers.c" targetDirectory="" />
+    <file action="copy" path="../../../common/source/f280013x_gpio.c" targetDirectory="" />
+    <file action="copy" path="../../../common/source/f280013x_piectrl.c" targetDirectory="" />
+    <file action="copy" path="../../../common/source/f280013x_pievect.c" targetDirectory="" />
+    <file action="copy" path="../../../common/source/f280013x_sysctrl.c" targetDirectory="" />
+    <file action="copy" path="../../../common/source/f280013x_usdelay.asm" targetDirectory="" />
+    <file action="copy" path="../../../common/source/f280013x_tempsensorconv.c" targetDirectory="" />
+    <file action="copy" path="../../../headers/cmd/f280013x_headers_nonBIOS.cmd" targetDirectory="" />
+    <file action="copy" path="../../../headers/source/f280013x_globalvariabledefs.c" targetDirectory="" />
+    <file action="copy" path="../../../common/targetConfigs/TMS320F2800137.ccxml" targetDirectory="targetConfigs" />
+    <file action="copy" path="../../../common/cmd/280013x_generic_ram_lnk.cmd" targetDirectory=""  applicableConfigurations="CPU1_RAM"/>
+    <file action="copy" path="../../../common/cmd/280013x_generic_flash_lnk.cmd" targetDirectory=""  applicableConfigurations="CPU1_FLASH"/>
+    <file action="copy" path="../i2c_ex1_master.c" targetDirectory="" />
+  </project>
+</projectSpec>

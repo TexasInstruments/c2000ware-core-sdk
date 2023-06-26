@@ -1,0 +1,1986 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>HRPWM Module &mdash; F2837xd API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F2837xd API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="EQEP Module" href="eqep.html"/>
+        <link rel="prev" title="EPWM Module" href="epwm.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F2837xd API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="adc.html">ADC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asysctl.html">ASysCtl Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla.html">CLA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clb.html">CLB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmpss.html">CMPSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dac.html">DAC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dma.html">DMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ecap.html">ECAP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emif.html">EMIF Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="epwm.html">EPWM Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">HRPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqep.html">EQEP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcbsp.html">MCBSP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci.html">SCI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdfm.html">SDFM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">SPI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upp.html">UPP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version.html">Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xbar.html">XBAR Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F2837xd API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>HRPWM Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="hrpwm-module">
+<span id="hrpwm"></span><h1>HRPWM Module<a class="headerlink" href="#hrpwm-module" title="Permalink to this headline">¶</a></h1>
+<p>The HRPWM (High Resolution Pulse width Modulator) API provides a set of
+functions for configuring and using the HRPWM module.
+The functions provided give access to the HRPWM module which extends the time
+resolution capability of the ePWM module thus achieving a finer resolution
+than would be attainable just using the main CPU clock.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__hrpwm__api"></span><em>group</em> <code class="sig-name descname">hrpwm_api</code></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.HRPWM_setTimeBaseCounter">
+<span class="target" id="group__hrpwm__api_1ga1896c1e75765898a1318bb73c1627917"></span><code class="sig-name descname">HRPWM_setTimeBaseCounter</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gae928d16dbee05cd49d736dcfe9b7cdd1"><span class="std std-ref">EPWM_setTimeBaseCounter</span></a><a class="headerlink" href="#c.HRPWM_setTimeBaseCounter" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setCountModeAfterSync">
+<span class="target" id="group__hrpwm__api_1ga08dde657c9ef50f5cd37fbcdae88d59f"></span><code class="sig-name descname">HRPWM_setCountModeAfterSync</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gaf2b005304574bfd54c9b7aae2f46e0ee"><span class="std std-ref">EPWM_setCountModeAfterSync</span></a><a class="headerlink" href="#c.HRPWM_setCountModeAfterSync" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setClockPrescaler">
+<span class="target" id="group__hrpwm__api_1ga98f258f233c6cf61b719e8cc8e3f6e46"></span><code class="sig-name descname">HRPWM_setClockPrescaler</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga9d5192e3bdacc0d54110497dbf9afe24"><span class="std std-ref">EPWM_setClockPrescaler</span></a><a class="headerlink" href="#c.HRPWM_setClockPrescaler" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_swForceSyncPulse">
+<span class="target" id="group__hrpwm__api_1ga237b74731ccab9416060e852ad7a4f3b"></span><code class="sig-name descname">HRPWM_swForceSyncPulse</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga65711f2f1bc2e91afeba3308f8d72f92"><span class="std std-ref">EPWM_forceSyncPulse</span></a><a class="headerlink" href="#c.HRPWM_swForceSyncPulse" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setSyncOutPulseMode">
+<span class="target" id="group__hrpwm__api_1gad0648ce2b5d65d80aea5f5819504c695"></span><code class="sig-name descname">HRPWM_setSyncOutPulseMode</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gae549efabbc8edd20d4eaf740779831cc"><span class="std std-ref">EPWM_setSyncOutPulseMode</span></a><a class="headerlink" href="#c.HRPWM_setSyncOutPulseMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setPeriodLoadMode">
+<span class="target" id="group__hrpwm__api_1ga3ec30bd39b5befd169b6838da592f755"></span><code class="sig-name descname">HRPWM_setPeriodLoadMode</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga6322b6e29d439ee3b33cd7f8a6d25bd2"><span class="std std-ref">EPWM_setPeriodLoadMode</span></a><a class="headerlink" href="#c.HRPWM_setPeriodLoadMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setTimeBaseCounterMode">
+<span class="target" id="group__hrpwm__api_1ga36183040f6ef0ab0b48a5c9e23dd809f"></span><code class="sig-name descname">HRPWM_setTimeBaseCounterMode</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga67e3ac879c115c2b49435b3464f0d48a"><span class="std std-ref">EPWM_setTimeBaseCounterMode</span></a><a class="headerlink" href="#c.HRPWM_setTimeBaseCounterMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_selectPeriodLoadEvent">
+<span class="target" id="group__hrpwm__api_1ga31febc2a404a3658153e9ba53c1bf17c"></span><code class="sig-name descname">HRPWM_selectPeriodLoadEvent</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga341f5ea7c14fff2fc121f1aa5bde16f6"><span class="std std-ref">EPWM_selectPeriodLoadEvent</span></a><a class="headerlink" href="#c.HRPWM_selectPeriodLoadEvent" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_enableOneShotSync">
+<span class="target" id="group__hrpwm__api_1ga71a717751813ae1dea2f9da617d95306"></span><code class="sig-name descname">HRPWM_enableOneShotSync</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gadd1aaf48dfc1b89ead61b6ec308261cf"><span class="std std-ref">EPWM_enableOneShotSync</span></a><a class="headerlink" href="#c.HRPWM_enableOneShotSync" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_disableOneShotSync">
+<span class="target" id="group__hrpwm__api_1ga2a852cfcda3e36a27bbb4e3eea265381"></span><code class="sig-name descname">HRPWM_disableOneShotSync</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga3f3ab32d4bc8e968976821521384f152"><span class="std std-ref">EPWM_disableOneShotSync</span></a><a class="headerlink" href="#c.HRPWM_disableOneShotSync" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_startOneShotSync">
+<span class="target" id="group__hrpwm__api_1ga39ffda41c9b3a224923fac4fd055e3dc"></span><code class="sig-name descname">HRPWM_startOneShotSync</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga76be29dee3cf076565300a69c808d855"><span class="std std-ref">EPWM_startOneShotSync</span></a><a class="headerlink" href="#c.HRPWM_startOneShotSync" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_getTimeBaseCounterOverflowStatus">
+<span class="target" id="group__hrpwm__api_1ga0fd11b19082a7d2a0f8f32065da847f9"></span><code class="sig-name descname">HRPWM_getTimeBaseCounterOverflowStatus</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gab866c6634e536f199ce387c4f2b35c6c"><span class="std std-ref">EPWM_getTimeBaseCounterOverflowStatus</span></a><a class="headerlink" href="#c.HRPWM_getTimeBaseCounterOverflowStatus" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_clearTimeBaseCounterOverflowEvent">
+<span class="target" id="group__hrpwm__api_1ga57fce42c8cf21c2885e195005c222971"></span><code class="sig-name descname">HRPWM_clearTimeBaseCounterOverflowEvent</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga404e0d4a20840b680c69230cd10de008"><span class="std std-ref">EPWM_clearTimeBaseCounterOverflowEvent</span></a><a class="headerlink" href="#c.HRPWM_clearTimeBaseCounterOverflowEvent" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_getSyncStatus">
+<span class="target" id="group__hrpwm__api_1ga87d7c02c5995688e9f08d72aff6b1942"></span><code class="sig-name descname">HRPWM_getSyncStatus</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga8b26990822e69d82e157143e1ef22b14"><span class="std std-ref">EPWM_getSyncStatus</span></a><a class="headerlink" href="#c.HRPWM_getSyncStatus" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_clearSyncEvent">
+<span class="target" id="group__hrpwm__api_1ga2861907268be2b18aff5f33f9c77466c"></span><code class="sig-name descname">HRPWM_clearSyncEvent</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga105326ef9ba5a65285ae2987f866bf75"><span class="std std-ref">EPWM_clearSyncEvent</span></a><a class="headerlink" href="#c.HRPWM_clearSyncEvent" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_getTimeBaseCounterDirection">
+<span class="target" id="group__hrpwm__api_1ga84397efe1df3c463b083275c0538e0c2"></span><code class="sig-name descname">HRPWM_getTimeBaseCounterDirection</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga069fd0fd74c19bb8216b030a60b4e0a5"><span class="std std-ref">EPWM_getTimeBaseCounterDirection</span></a><a class="headerlink" href="#c.HRPWM_getTimeBaseCounterDirection" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setupEPWMLinks">
+<span class="target" id="group__hrpwm__api_1gafb810d8359fe628f3aafedaefae8e05d"></span><code class="sig-name descname">HRPWM_setupEPWMLinks</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gac1124d66207d679f1ad81b13926ba936"><span class="std std-ref">EPWM_setupEPWMLinks</span></a><a class="headerlink" href="#c.HRPWM_setupEPWMLinks" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setCounterCompareShadowLoadMode">
+<span class="target" id="group__hrpwm__api_1ga7315eede29b7d80bb8ad7eaff4a8b2bd"></span><code class="sig-name descname">HRPWM_setCounterCompareShadowLoadMode</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gafba47aeea7f342007edeab2d24207d0f"><span class="std std-ref">EPWM_setCounterCompareShadowLoadMode</span></a><a class="headerlink" href="#c.HRPWM_setCounterCompareShadowLoadMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_disableCounterCompareShadowLoadMode">
+<span class="target" id="group__hrpwm__api_1ga0b9b56e1470971d79adf149fc659174a"></span><code class="sig-name descname">HRPWM_disableCounterCompareShadowLoadMode</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga09e48b36799c35324842d4153c788c63"><span class="std std-ref">EPWM_disableCounterCompareShadowLoadMode</span></a><a class="headerlink" href="#c.HRPWM_disableCounterCompareShadowLoadMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_getCounterCompareShadowStatus">
+<span class="target" id="group__hrpwm__api_1gae6f486a51e79d4283e8beb9e3cc3fb7b"></span><code class="sig-name descname">HRPWM_getCounterCompareShadowStatus</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga09843d30a76e2f35f7771267a5dc5868"><span class="std std-ref">EPWM_getCounterCompareShadowStatus</span></a><a class="headerlink" href="#c.HRPWM_getCounterCompareShadowStatus" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setActionQualifierShadowLoadMode">
+<span class="target" id="group__hrpwm__api_1ga657e8e7d2e2143ca55c587c6fc537cd8"></span><code class="sig-name descname">HRPWM_setActionQualifierShadowLoadMode</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga138e455f303b45ee36e04db611da9206"><span class="std std-ref">EPWM_setActionQualifierShadowLoadMode</span></a><a class="headerlink" href="#c.HRPWM_setActionQualifierShadowLoadMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_disableActionQualifierShadowLoadMode">
+<span class="target" id="group__hrpwm__api_1gad52dc892a2768355ce55a0ce2c8cf4a7"></span><code class="sig-name descname">HRPWM_disableActionQualifierShadowLoadMode</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga34adb27c2ddc0928f0a0a90152cf1eec"><span class="std std-ref">EPWM_disableActionQualifierShadowLoadMode</span></a><a class="headerlink" href="#c.HRPWM_disableActionQualifierShadowLoadMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setActionQualifierT1TriggerSource">
+<span class="target" id="group__hrpwm__api_1gadbd1bcd5eaa7cbf3cd43e9bd9dbdd85d"></span><code class="sig-name descname">HRPWM_setActionQualifierT1TriggerSource</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga0005a71c8eb56c99d6dbf8a081920de5"><span class="std std-ref">EPWM_setActionQualifierT1TriggerSource</span></a><a class="headerlink" href="#c.HRPWM_setActionQualifierT1TriggerSource" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setActionQualifierT2TriggerSource">
+<span class="target" id="group__hrpwm__api_1gabbcb78947c2717307006f178d3081b20"></span><code class="sig-name descname">HRPWM_setActionQualifierT2TriggerSource</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga4d5bd09d1804abde848da7d77b3bc453"><span class="std std-ref">EPWM_setActionQualifierT2TriggerSource</span></a><a class="headerlink" href="#c.HRPWM_setActionQualifierT2TriggerSource" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setActionQualifierAction">
+<span class="target" id="group__hrpwm__api_1ga43fd36be44fb71b2c220de1dbfbd0169"></span><code class="sig-name descname">HRPWM_setActionQualifierAction</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga234c943362f5f90b4727758e26c89767"><span class="std std-ref">EPWM_setActionQualifierAction</span></a><a class="headerlink" href="#c.HRPWM_setActionQualifierAction" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setActionQualifierContSWForceShadowMode">
+<span class="target" id="group__hrpwm__api_1ga19e46913bf1f66b01282aa3aef16a4e2"></span><code class="sig-name descname">HRPWM_setActionQualifierContSWForceShadowMode</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga7bf25dccb38a545a35994db097dbd5af"><span class="std std-ref">EPWM_setActionQualifierContSWForceShadowMode</span></a><a class="headerlink" href="#c.HRPWM_setActionQualifierContSWForceShadowMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setActionQualifierContSWForceAction">
+<span class="target" id="group__hrpwm__api_1gacd68be1ab3b65a888254118dc7aca6e4"></span><code class="sig-name descname">HRPWM_setActionQualifierContSWForceAction</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gaad754921d3eb1d62906da9fd39bb090e"><span class="std std-ref">EPWM_setActionQualifierContSWForceAction</span></a><a class="headerlink" href="#c.HRPWM_setActionQualifierContSWForceAction" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setActionQualifierSwAction">
+<span class="target" id="group__hrpwm__api_1gad39894c9cc2f472abbfa3f24ab20c8e9"></span><code class="sig-name descname">HRPWM_setActionQualifierSwAction</code> EPWM_setActionQualifierSwAction<a class="headerlink" href="#c.HRPWM_setActionQualifierSwAction" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setActionQualifierSWAction">
+<span class="target" id="group__hrpwm__api_1ga3ec2d5c59efdc6b0bf2af318e65d8f97"></span><code class="sig-name descname">HRPWM_setActionQualifierSWAction</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gab65e3faa0b3bf2dd023c55c8ed5c64db"><span class="std std-ref">EPWM_setActionQualifierSWAction</span></a><a class="headerlink" href="#c.HRPWM_setActionQualifierSWAction" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_forceActionQualifierSwAction">
+<span class="target" id="group__hrpwm__api_1ga85af2f1d5ef334d64241db0b2062da15"></span><code class="sig-name descname">HRPWM_forceActionQualifierSwAction</code> EPWM_forceActionQualifierSwAction<a class="headerlink" href="#c.HRPWM_forceActionQualifierSwAction" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_forceActionQualifierSWAction">
+<span class="target" id="group__hrpwm__api_1ga32f6d97287d32471092988cd2a5b5565"></span><code class="sig-name descname">HRPWM_forceActionQualifierSWAction</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gadb690d372bb90a47c44a89b35a9ce578"><span class="std std-ref">EPWM_forceActionQualifierSWAction</span></a><a class="headerlink" href="#c.HRPWM_forceActionQualifierSWAction" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setDeadBandOutputSwapMode">
+<span class="target" id="group__hrpwm__api_1ga55dc7427b7b6485e43f83d08c12a6854"></span><code class="sig-name descname">HRPWM_setDeadBandOutputSwapMode</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gacdeabba19b115b8a09e0505976448a60"><span class="std std-ref">EPWM_setDeadBandOutputSwapMode</span></a><a class="headerlink" href="#c.HRPWM_setDeadBandOutputSwapMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setDeadBandDelayMode">
+<span class="target" id="group__hrpwm__api_1ga6fe95c5566ff31d88f978dcb0b881a4c"></span><code class="sig-name descname">HRPWM_setDeadBandDelayMode</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga2f9e14e6f4316422714066ea546940c6"><span class="std std-ref">EPWM_setDeadBandDelayMode</span></a><a class="headerlink" href="#c.HRPWM_setDeadBandDelayMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setDeadBandDelayPolarity">
+<span class="target" id="group__hrpwm__api_1gabd9bb4f4620f845d1ac652df83278e2c"></span><code class="sig-name descname">HRPWM_setDeadBandDelayPolarity</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gaf40997f10d4e521a4f9eed9f011d09f8"><span class="std std-ref">EPWM_setDeadBandDelayPolarity</span></a><a class="headerlink" href="#c.HRPWM_setDeadBandDelayPolarity" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setRisingEdgeDeadBandDelayInput">
+<span class="target" id="group__hrpwm__api_1ga432f29563e828f292a9adcc4f9a84d1d"></span><code class="sig-name descname">HRPWM_setRisingEdgeDeadBandDelayInput</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gaad140e6ca449913bbb3fb903850c5193"><span class="std std-ref">EPWM_setRisingEdgeDeadBandDelayInput</span></a><a class="headerlink" href="#c.HRPWM_setRisingEdgeDeadBandDelayInput" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setFallingEdgeDeadBandDelayInput">
+<span class="target" id="group__hrpwm__api_1gaa3e606ce8e5c5e94bdf1479c07796b17"></span><code class="sig-name descname">HRPWM_setFallingEdgeDeadBandDelayInput</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga97a2d6a047671d2a8eec4f057a3bc509"><span class="std std-ref">EPWM_setFallingEdgeDeadBandDelayInput</span></a><a class="headerlink" href="#c.HRPWM_setFallingEdgeDeadBandDelayInput" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setDeadBandControlShadowLoadMode">
+<span class="target" id="group__hrpwm__api_1gaf7d2a5760fafc9c93f8d302a756d6135"></span><code class="sig-name descname">HRPWM_setDeadBandControlShadowLoadMode</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga96a08e7db31c960c25300823730a1e11"><span class="std std-ref">EPWM_setDeadBandControlShadowLoadMode</span></a><a class="headerlink" href="#c.HRPWM_setDeadBandControlShadowLoadMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_disableDeadBandControlShadowLoadMode">
+<span class="target" id="group__hrpwm__api_1gac4b6628f5041604f3940690d5eb138a7"></span><code class="sig-name descname">HRPWM_disableDeadBandControlShadowLoadMode</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gaacd8643d8316965d6af1d09c460be9f9"><span class="std std-ref">EPWM_disableDeadBandControlShadowLoadMode</span></a><a class="headerlink" href="#c.HRPWM_disableDeadBandControlShadowLoadMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setRisingEdgeDelayCountShadowLoadMode">
+<span class="target" id="group__hrpwm__api_1ga184e9e9c52ef1286c266f07359dc42cd"></span><code class="sig-name descname">HRPWM_setRisingEdgeDelayCountShadowLoadMode</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga9793a7c379dffd2839cf0aaad0194948"><span class="std std-ref">EPWM_setRisingEdgeDelayCountShadowLoadMode</span></a><a class="headerlink" href="#c.HRPWM_setRisingEdgeDelayCountShadowLoadMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_disableRisingEdgeDelayCountShadowLoadMode">
+<span class="target" id="group__hrpwm__api_1ga819c4830da228e3383db668afb4f51d5"></span><code class="sig-name descname">HRPWM_disableRisingEdgeDelayCountShadowLoadMode</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gaeec36f9af4e417c71c0783f7c4ac2c3a"><span class="std std-ref">EPWM_disableRisingEdgeDelayCountShadowLoadMode</span></a><a class="headerlink" href="#c.HRPWM_disableRisingEdgeDelayCountShadowLoadMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setFallingEdgeDelayCountShadowLoadMode">
+<span class="target" id="group__hrpwm__api_1gacd1b0a25be12def2313159f61287168a"></span><code class="sig-name descname">HRPWM_setFallingEdgeDelayCountShadowLoadMode</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga1152b24f8ab78dc7eb83278100f9e314"><span class="std std-ref">EPWM_setFallingEdgeDelayCountShadowLoadMode</span></a><a class="headerlink" href="#c.HRPWM_setFallingEdgeDelayCountShadowLoadMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_disableFallingEdgeDelayCountShadowLoadMode">
+<span class="target" id="group__hrpwm__api_1ga9a021a1d5163bf89a5765f3cd3e7b1d2"></span><code class="sig-name descname">HRPWM_disableFallingEdgeDelayCountShadowLoadMode</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga510211fe086bf4e71a573d3127f21fd3"><span class="std std-ref">EPWM_disableFallingEdgeDelayCountShadowLoadMode</span></a><a class="headerlink" href="#c.HRPWM_disableFallingEdgeDelayCountShadowLoadMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setDeadBandCounterClock">
+<span class="target" id="group__hrpwm__api_1ga300707edd3136edd90423aaae91f6a65"></span><code class="sig-name descname">HRPWM_setDeadBandCounterClock</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga09efd0d6fae4bd54c287ec4fd8badf16"><span class="std std-ref">EPWM_setDeadBandCounterClock</span></a><a class="headerlink" href="#c.HRPWM_setDeadBandCounterClock" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setRisingEdgeDelayCount">
+<span class="target" id="group__hrpwm__api_1gaaa2a8b93f8e4792a9fbb9f44f8d5e326"></span><code class="sig-name descname">HRPWM_setRisingEdgeDelayCount</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga57cd8f1814905ffbf2fc5587aa735da3"><span class="std std-ref">EPWM_setRisingEdgeDelayCount</span></a><a class="headerlink" href="#c.HRPWM_setRisingEdgeDelayCount" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setFallingEdgeDelayCount">
+<span class="target" id="group__hrpwm__api_1ga5261d33fdefea4575854619f9e4e29f5"></span><code class="sig-name descname">HRPWM_setFallingEdgeDelayCount</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga111656b51d96646ff15f2257deac8512"><span class="std std-ref">EPWM_setFallingEdgeDelayCount</span></a><a class="headerlink" href="#c.HRPWM_setFallingEdgeDelayCount" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_enableChopper">
+<span class="target" id="group__hrpwm__api_1ga96616d0d9dce90bfd675354a61e63e21"></span><code class="sig-name descname">HRPWM_enableChopper</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga88c8699f77043f3f20942d70756a0bd7"><span class="std std-ref">EPWM_enableChopper</span></a><a class="headerlink" href="#c.HRPWM_enableChopper" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_disableChopper">
+<span class="target" id="group__hrpwm__api_1ga1f48229c7c768afa87b55862d8b9296c"></span><code class="sig-name descname">HRPWM_disableChopper</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga0ecbe57e0e436fae29ba52f5a51d232b"><span class="std std-ref">EPWM_disableChopper</span></a><a class="headerlink" href="#c.HRPWM_disableChopper" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setChopperDutyCycle">
+<span class="target" id="group__hrpwm__api_1ga32f22b82eb374a1538106926d549fe2e"></span><code class="sig-name descname">HRPWM_setChopperDutyCycle</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga3b515cfd829fc815c9c302aa34c05457"><span class="std std-ref">EPWM_setChopperDutyCycle</span></a><a class="headerlink" href="#c.HRPWM_setChopperDutyCycle" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setChopperFreq">
+<span class="target" id="group__hrpwm__api_1ga911d1aeb58b6c80579ab49bccfb69b70"></span><code class="sig-name descname">HRPWM_setChopperFreq</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gaeed149ee44dbadcf18536c45c2f15e47"><span class="std std-ref">EPWM_setChopperFreq</span></a><a class="headerlink" href="#c.HRPWM_setChopperFreq" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setChopperFirstPulseWidt">
+<span class="target" id="group__hrpwm__api_1ga341d372ca33bab38c2b444e0cb97082a"></span><code class="sig-name descname">HRPWM_setChopperFirstPulseWidt</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gaa48018153e1f8c866d2035a4ab5134f1"><span class="std std-ref">EPWM_setChopperFirstPulseWidth</span></a><a class="headerlink" href="#c.HRPWM_setChopperFirstPulseWidt" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_enableTripZoneSignals">
+<span class="target" id="group__hrpwm__api_1gabb621fbdb88d0451982758cf773f38d6"></span><code class="sig-name descname">HRPWM_enableTripZoneSignals</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga83043b34e67aee7ae56065ffaed2a537"><span class="std std-ref">EPWM_enableTripZoneSignals</span></a><a class="headerlink" href="#c.HRPWM_enableTripZoneSignals" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_disableTripZoneSignals">
+<span class="target" id="group__hrpwm__api_1ga36d2074eb7eab1c52241df71db8c0c4f"></span><code class="sig-name descname">HRPWM_disableTripZoneSignals</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gaaa3b0a312ab0668aa5afc280b5f194d1"><span class="std std-ref">EPWM_disableTripZoneSignals</span></a><a class="headerlink" href="#c.HRPWM_disableTripZoneSignals" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setTripZoneDigitalCompareEventCondition">
+<span class="target" id="group__hrpwm__api_1gad8df686f877c8ecab0e70a2c42437305"></span><code class="sig-name descname">HRPWM_setTripZoneDigitalCompareEventCondition</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga0d02d5dc0f24c19b0d7031bb058f6380"><span class="std std-ref">EPWM_setTripZoneDigitalCompareEventCondition</span></a><a class="headerlink" href="#c.HRPWM_setTripZoneDigitalCompareEventCondition" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_enableTripZoneAdvAction">
+<span class="target" id="group__hrpwm__api_1ga84d3b36dbf2d5719a49eb12a1296b12c"></span><code class="sig-name descname">HRPWM_enableTripZoneAdvAction</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gaf60e8a9890f6030b0b06142902834d1f"><span class="std std-ref">EPWM_enableTripZoneAdvAction</span></a><a class="headerlink" href="#c.HRPWM_enableTripZoneAdvAction" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_disableTripZoneAdvAction">
+<span class="target" id="group__hrpwm__api_1gaf7db460dd67a18da43a2834cb0259676"></span><code class="sig-name descname">HRPWM_disableTripZoneAdvAction</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga08c9bcc5c7f64910fbfd59dc2bd003a1"><span class="std std-ref">EPWM_disableTripZoneAdvAction</span></a><a class="headerlink" href="#c.HRPWM_disableTripZoneAdvAction" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setTripZoneAction">
+<span class="target" id="group__hrpwm__api_1ga81a92957f3d3489eaa625b4e66d6cb80"></span><code class="sig-name descname">HRPWM_setTripZoneAction</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gafe25e0bb24f5f0e26c3c354a3e75a36a"><span class="std std-ref">EPWM_setTripZoneAction</span></a><a class="headerlink" href="#c.HRPWM_setTripZoneAction" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setTripZoneAdvAction">
+<span class="target" id="group__hrpwm__api_1gac0408eaf22b965866b9c79fc4121b568"></span><code class="sig-name descname">HRPWM_setTripZoneAdvAction</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga2130eef5ea79758caada43f235589d25"><span class="std std-ref">EPWM_setTripZoneAdvAction</span></a><a class="headerlink" href="#c.HRPWM_setTripZoneAdvAction" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setTripZoneAdvDigitalCompareActionA">
+<span class="target" id="group__hrpwm__api_1ga817fc021569a60291f952b9b397500ec"></span><code class="sig-name descname">HRPWM_setTripZoneAdvDigitalCompareActionA</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga19b80efc9a227a3154aa66f63f3e62eb"><span class="std std-ref">EPWM_setTripZoneAdvDigitalCompareActionA</span></a><a class="headerlink" href="#c.HRPWM_setTripZoneAdvDigitalCompareActionA" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setTripZoneAdvDigitalCompareActionB">
+<span class="target" id="group__hrpwm__api_1gad44280a09dc2a0a0b810334429001c1a"></span><code class="sig-name descname">HRPWM_setTripZoneAdvDigitalCompareActionB</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga8fe6e656446b9966b4e5814d79047b9b"><span class="std std-ref">EPWM_setTripZoneAdvDigitalCompareActionB</span></a><a class="headerlink" href="#c.HRPWM_setTripZoneAdvDigitalCompareActionB" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_enableTripZoneInterrupt">
+<span class="target" id="group__hrpwm__api_1ga2c3077084c9f25a61bfeeb9edd7a1580"></span><code class="sig-name descname">HRPWM_enableTripZoneInterrupt</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga0381032df1fdbb683aa7d20e8267d394"><span class="std std-ref">EPWM_enableTripZoneInterrupt</span></a><a class="headerlink" href="#c.HRPWM_enableTripZoneInterrupt" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_disableTripZoneInterrupt">
+<span class="target" id="group__hrpwm__api_1ga4a2662779d72cdb57fb2c2bf4b14d516"></span><code class="sig-name descname">HRPWM_disableTripZoneInterrupt</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gaef8b876db8e79eb96e3475b8ec70c60f"><span class="std std-ref">EPWM_disableTripZoneInterrupt</span></a><a class="headerlink" href="#c.HRPWM_disableTripZoneInterrupt" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_getTripZoneInterruptStatus">
+<span class="target" id="group__hrpwm__api_1ga442bc6066698dd29aec90c75d66d3cd8"></span><code class="sig-name descname">HRPWM_getTripZoneInterruptStatus</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga649857c9792737433d61d605d36d5494"><span class="std std-ref">EPWM_getTripZoneFlagStatus</span></a><a class="headerlink" href="#c.HRPWM_getTripZoneInterruptStatus" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_getTripZoneFlagStatus">
+<span class="target" id="group__hrpwm__api_1gaa8bae7539f25b8d9a0065c7a71e7e60e"></span><code class="sig-name descname">HRPWM_getTripZoneFlagStatus</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga649857c9792737433d61d605d36d5494"><span class="std std-ref">EPWM_getTripZoneFlagStatus</span></a><a class="headerlink" href="#c.HRPWM_getTripZoneFlagStatus" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_getCycleByCycleTripZoneInterruptStatus">
+<span class="target" id="group__hrpwm__api_1ga1dd936913b32f25781a89bff9d08bc1b"></span><code class="sig-name descname">HRPWM_getCycleByCycleTripZoneInterruptStatus</code> <a class="reference internal" href="#group__hrpwm__api_1gae968d54e11d9cf6ab66ac4e57545cb63"><span class="std std-ref">HRPWM_getCycleByCycleTripZoneFlagStatus</span></a><a class="headerlink" href="#c.HRPWM_getCycleByCycleTripZoneInterruptStatus" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_getCycleByCycleTripZoneFlagStatus">
+<span class="target" id="group__hrpwm__api_1gae968d54e11d9cf6ab66ac4e57545cb63"></span><code class="sig-name descname">HRPWM_getCycleByCycleTripZoneFlagStatus</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga30e19ead3de94141e50748fe5a584fab"><span class="std std-ref">EPWM_getCycleByCycleTripZoneFlagStatus</span></a><a class="headerlink" href="#c.HRPWM_getCycleByCycleTripZoneFlagStatus" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_getOneShotTripZoneInterruptStatus">
+<span class="target" id="group__hrpwm__api_1ga9e348e045fb22cf6ce9e57db3cc9288e"></span><code class="sig-name descname">HRPWM_getOneShotTripZoneInterruptStatus</code> <a class="reference internal" href="#group__hrpwm__api_1ga37d2b702961ca23f643153153fb21ff1"><span class="std std-ref">HRPWM_getOneShotTripZoneFlagStatus</span></a><a class="headerlink" href="#c.HRPWM_getOneShotTripZoneInterruptStatus" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_getOneShotTripZoneFlagStatus">
+<span class="target" id="group__hrpwm__api_1ga37d2b702961ca23f643153153fb21ff1"></span><code class="sig-name descname">HRPWM_getOneShotTripZoneFlagStatus</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga6eed22f22410ae14ac645ab04befb7e4"><span class="std std-ref">EPWM_getOneShotTripZoneFlagStatus</span></a><a class="headerlink" href="#c.HRPWM_getOneShotTripZoneFlagStatus" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_selectCycleByCycleTripZoneClearEvent">
+<span class="target" id="group__hrpwm__api_1ga397a12029439b397e635a4e8a6a1c0b1"></span><code class="sig-name descname">HRPWM_selectCycleByCycleTripZoneClearEvent</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga8e741b0333cd8693e1bf204ae5371660"><span class="std std-ref">EPWM_selectCycleByCycleTripZoneClearEvent</span></a><a class="headerlink" href="#c.HRPWM_selectCycleByCycleTripZoneClearEvent" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_clearTripZoneInterruptFlag">
+<span class="target" id="group__hrpwm__api_1ga8669536d9ee4bd435e8623a3a17a4472"></span><code class="sig-name descname">HRPWM_clearTripZoneInterruptFlag</code> <a class="reference internal" href="#group__hrpwm__api_1gacbfc44d72b928705020c1ed8c38541ba"><span class="std std-ref">HRPWM_clearTripZoneFlag</span></a><a class="headerlink" href="#c.HRPWM_clearTripZoneInterruptFlag" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_clearTripZoneFlag">
+<span class="target" id="group__hrpwm__api_1gacbfc44d72b928705020c1ed8c38541ba"></span><code class="sig-name descname">HRPWM_clearTripZoneFlag</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gaec4dc34f9ad6e922f4444b1ffdc44bcb"><span class="std std-ref">EPWM_clearTripZoneFlag</span></a><a class="headerlink" href="#c.HRPWM_clearTripZoneFlag" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_clearCycleByCycleTripZoneInterruptFlag">
+<span class="target" id="group__hrpwm__api_1gaa8f18317ac1bd8eeddb3ded31d2e3000"></span><code class="sig-name descname">HRPWM_clearCycleByCycleTripZoneInterruptFlag</code> <a class="reference internal" href="#group__hrpwm__api_1ga8d44583f2b1325aaef68fd8b4317f0a6"><span class="std std-ref">HRPWM_clearCycleByCycleTripZoneFlag</span></a><a class="headerlink" href="#c.HRPWM_clearCycleByCycleTripZoneInterruptFlag" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_clearCycleByCycleTripZoneFlag">
+<span class="target" id="group__hrpwm__api_1ga8d44583f2b1325aaef68fd8b4317f0a6"></span><code class="sig-name descname">HRPWM_clearCycleByCycleTripZoneFlag</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga42c0b2be899347689f122f887c45472c"><span class="std std-ref">EPWM_clearCycleByCycleTripZoneFlag</span></a><a class="headerlink" href="#c.HRPWM_clearCycleByCycleTripZoneFlag" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_clearOneShotTripZoneInterruptFlag">
+<span class="target" id="group__hrpwm__api_1gad8e5b935a30c1aac3e73eebfffb29ff0"></span><code class="sig-name descname">HRPWM_clearOneShotTripZoneInterruptFlag</code> <a class="reference internal" href="#group__hrpwm__api_1ga6ea7be1eeec992bde83c574d0efcbad9"><span class="std std-ref">HRPWM_clearOneShotTripZoneFlag</span></a><a class="headerlink" href="#c.HRPWM_clearOneShotTripZoneInterruptFlag" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_clearOneShotTripZoneFlag">
+<span class="target" id="group__hrpwm__api_1ga6ea7be1eeec992bde83c574d0efcbad9"></span><code class="sig-name descname">HRPWM_clearOneShotTripZoneFlag</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga6f7c3459ca28accc4e411c700ee06ca0"><span class="std std-ref">EPWM_clearOneShotTripZoneFlag</span></a><a class="headerlink" href="#c.HRPWM_clearOneShotTripZoneFlag" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_forceTripZoneEvent">
+<span class="target" id="group__hrpwm__api_1ga7b98c5fe132cc70fbbf9c30ba08ef860"></span><code class="sig-name descname">HRPWM_forceTripZoneEvent</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gaf612521ce675ab111146eb38a857b549"><span class="std std-ref">EPWM_forceTripZoneEvent</span></a><a class="headerlink" href="#c.HRPWM_forceTripZoneEvent" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_enableInterrupt">
+<span class="target" id="group__hrpwm__api_1ga305efabe95d8fb72d161d9cec6ad3a7a"></span><code class="sig-name descname">HRPWM_enableInterrupt</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga6a264b9e5bfed26e09730f63d75412cf"><span class="std std-ref">EPWM_enableInterrupt</span></a><a class="headerlink" href="#c.HRPWM_enableInterrupt" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_disableInterrupt">
+<span class="target" id="group__hrpwm__api_1ga7b498fafc2fbd81fa48ca5728e916de3"></span><code class="sig-name descname">HRPWM_disableInterrupt</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga3be695e8543878ac8f77f19b5e22ddd4"><span class="std std-ref">EPWM_disableInterrupt</span></a><a class="headerlink" href="#c.HRPWM_disableInterrupt" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setInterruptSource">
+<span class="target" id="group__hrpwm__api_1gaab71d9c2b79107b38c67fe11a496b819"></span><code class="sig-name descname">HRPWM_setInterruptSource</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga0e628c43104d10a5ae3099a9d8ff336b"><span class="std std-ref">EPWM_setInterruptSource</span></a><a class="headerlink" href="#c.HRPWM_setInterruptSource" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setInterruptEventCount">
+<span class="target" id="group__hrpwm__api_1gaf7048bfd89357522d50b6e57937225c7"></span><code class="sig-name descname">HRPWM_setInterruptEventCount</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga80b274e435634e9b6b1dcab8ba8fb024"><span class="std std-ref">EPWM_setInterruptEventCount</span></a><a class="headerlink" href="#c.HRPWM_setInterruptEventCount" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_getEventTriggerInterruptStatus">
+<span class="target" id="group__hrpwm__api_1ga54336fb0aff12f8a9bd5a69c577e694f"></span><code class="sig-name descname">HRPWM_getEventTriggerInterruptStatus</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga568008f78ffff32dadb6dbcdba15f4cd"><span class="std std-ref">EPWM_getEventTriggerInterruptStatus</span></a><a class="headerlink" href="#c.HRPWM_getEventTriggerInterruptStatus" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_clearEventTriggerInterruptFlag">
+<span class="target" id="group__hrpwm__api_1ga0315fa416bb2da4c23716ff82490eb73"></span><code class="sig-name descname">HRPWM_clearEventTriggerInterruptFlag</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga6ce774681651cca69be18d4b4fee5706"><span class="std std-ref">EPWM_clearEventTriggerInterruptFlag</span></a><a class="headerlink" href="#c.HRPWM_clearEventTriggerInterruptFlag" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_enableInterruptEventCountInit">
+<span class="target" id="group__hrpwm__api_1gac7bf7aaf590ad1bc357301356f388615"></span><code class="sig-name descname">HRPWM_enableInterruptEventCountInit</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gafdc2d9899207d2e672430a9217ecab06"><span class="std std-ref">EPWM_enableInterruptEventCountInit</span></a><a class="headerlink" href="#c.HRPWM_enableInterruptEventCountInit" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_disableInterruptEventCountInit">
+<span class="target" id="group__hrpwm__api_1ga8fe052a89228bf381159feabb16eca16"></span><code class="sig-name descname">HRPWM_disableInterruptEventCountInit</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gaad6187b74e0a61f2235aeec21b50329f"><span class="std std-ref">EPWM_disableInterruptEventCountInit</span></a><a class="headerlink" href="#c.HRPWM_disableInterruptEventCountInit" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_forceInterruptEventCountInit">
+<span class="target" id="group__hrpwm__api_1ga5a3955bd7f3604b58d2fef9f8368806a"></span><code class="sig-name descname">HRPWM_forceInterruptEventCountInit</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gaf3492ce7cd7a5030982a2065a37d73a3"><span class="std std-ref">EPWM_forceInterruptEventCountInit</span></a><a class="headerlink" href="#c.HRPWM_forceInterruptEventCountInit" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setInterruptEventCountInitValue">
+<span class="target" id="group__hrpwm__api_1ga2b55c452342e046ab529c2b423c9e80e"></span><code class="sig-name descname">HRPWM_setInterruptEventCountInitValue</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga8f786c263d67dc160ce1d4ff9e2abcf1"><span class="std std-ref">EPWM_setInterruptEventCountInitValue</span></a><a class="headerlink" href="#c.HRPWM_setInterruptEventCountInitValue" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_getInterruptEventCount">
+<span class="target" id="group__hrpwm__api_1ga385894415b34e1511ca085682ffc507a"></span><code class="sig-name descname">HRPWM_getInterruptEventCount</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga42e1206b503446188acc62fbfe22aa42"><span class="std std-ref">EPWM_getInterruptEventCount</span></a><a class="headerlink" href="#c.HRPWM_getInterruptEventCount" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_forceEventTriggerInterrupt">
+<span class="target" id="group__hrpwm__api_1gaf704d27c5e15e1f3aa9d9a266a663a73"></span><code class="sig-name descname">HRPWM_forceEventTriggerInterrupt</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga4361a90240b657dbfe0d1340743d640a"><span class="std std-ref">EPWM_forceEventTriggerInterrupt</span></a><a class="headerlink" href="#c.HRPWM_forceEventTriggerInterrupt" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_enableADCTrigger">
+<span class="target" id="group__hrpwm__api_1ga4f65b934f3437bc5b88965d33e9c07ad"></span><code class="sig-name descname">HRPWM_enableADCTrigger</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gab6f77f2c957e870232a00276b1b15927"><span class="std std-ref">EPWM_enableADCTrigger</span></a><a class="headerlink" href="#c.HRPWM_enableADCTrigger" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_disableADCTrigger">
+<span class="target" id="group__hrpwm__api_1ga8c4daa9cc4cf890599cbbbee75a2b33d"></span><code class="sig-name descname">HRPWM_disableADCTrigger</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga0fa3ae11386e1e63a88a0d33489927d9"><span class="std std-ref">EPWM_disableADCTrigger</span></a><a class="headerlink" href="#c.HRPWM_disableADCTrigger" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setADCTriggerSource">
+<span class="target" id="group__hrpwm__api_1ga1a19449940666ed1e6104f68f3ed306f"></span><code class="sig-name descname">HRPWM_setADCTriggerSource</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga89def07ba8576c913416b6c680bafca8"><span class="std std-ref">EPWM_setADCTriggerSource</span></a><a class="headerlink" href="#c.HRPWM_setADCTriggerSource" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setADCTriggerEventPrescale">
+<span class="target" id="group__hrpwm__api_1gada56461399bddf81290290f7b59b0862"></span><code class="sig-name descname">HRPWM_setADCTriggerEventPrescale</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga165cd94f0d08874936ae4186a30bdc71"><span class="std std-ref">EPWM_setADCTriggerEventPrescale</span></a><a class="headerlink" href="#c.HRPWM_setADCTriggerEventPrescale" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_getADCTriggerFlagStatus">
+<span class="target" id="group__hrpwm__api_1gae3e5e55ebbe5eb0e54496e559ecf706e"></span><code class="sig-name descname">HRPWM_getADCTriggerFlagStatus</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gacc3b471134631656234de8304dff4640"><span class="std std-ref">EPWM_getADCTriggerFlagStatus</span></a><a class="headerlink" href="#c.HRPWM_getADCTriggerFlagStatus" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_clearADCTriggerFlag">
+<span class="target" id="group__hrpwm__api_1ga0f3a6c9072cd545e5597703eec94c1d1"></span><code class="sig-name descname">HRPWM_clearADCTriggerFlag</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga4591b0396ec70acb3790bbd02383817c"><span class="std std-ref">EPWM_clearADCTriggerFlag</span></a><a class="headerlink" href="#c.HRPWM_clearADCTriggerFlag" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_enableADCTriggerEventCountInit">
+<span class="target" id="group__hrpwm__api_1gaa72e46d928475e9298dd031e2310cafa"></span><code class="sig-name descname">HRPWM_enableADCTriggerEventCountInit</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga573cb8dd27e2cf61ff70ad581aa50547"><span class="std std-ref">EPWM_enableADCTriggerEventCountInit</span></a><a class="headerlink" href="#c.HRPWM_enableADCTriggerEventCountInit" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_disableADCTriggerEventCountInit">
+<span class="target" id="group__hrpwm__api_1ga3d5ae8b1000c926ec5d20d3701fa78f8"></span><code class="sig-name descname">HRPWM_disableADCTriggerEventCountInit</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gafdc9cb76ce136c9d99b5a54bd3014a29"><span class="std std-ref">EPWM_disableADCTriggerEventCountInit</span></a><a class="headerlink" href="#c.HRPWM_disableADCTriggerEventCountInit" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_forceADCTriggerEventCountInit">
+<span class="target" id="group__hrpwm__api_1gab2245c470353284d6929dfac4f30df91"></span><code class="sig-name descname">HRPWM_forceADCTriggerEventCountInit</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gaf7ac27196c4031de15703b746aede3b2"><span class="std std-ref">EPWM_forceADCTriggerEventCountInit</span></a><a class="headerlink" href="#c.HRPWM_forceADCTriggerEventCountInit" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setADCTriggerEventCountInitValue">
+<span class="target" id="group__hrpwm__api_1ga056aeb1be51d0f326c163279c824f1ff"></span><code class="sig-name descname">HRPWM_setADCTriggerEventCountInitValue</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gaf13f5b02def4cbad2a72ee27be2d892d"><span class="std std-ref">EPWM_setADCTriggerEventCountInitValue</span></a><a class="headerlink" href="#c.HRPWM_setADCTriggerEventCountInitValue" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_getADCTriggerEventCount">
+<span class="target" id="group__hrpwm__api_1ga2d8ce6af07eb4ba7d6fb7dcfc5e6cfad"></span><code class="sig-name descname">HRPWM_getADCTriggerEventCount</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga1201e487789a631012ade1b21d6a66aa"><span class="std std-ref">EPWM_getADCTriggerEventCount</span></a><a class="headerlink" href="#c.HRPWM_getADCTriggerEventCount" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_forceADCTrigger">
+<span class="target" id="group__hrpwm__api_1ga3b0d770d5637117882d8f55c856840a9"></span><code class="sig-name descname">HRPWM_forceADCTrigger</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga88c56da72dd4b8a5facb5eee07f48aab"><span class="std std-ref">EPWM_forceADCTrigger</span></a><a class="headerlink" href="#c.HRPWM_forceADCTrigger" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_selectDigitalCompareTripInput">
+<span class="target" id="group__hrpwm__api_1ga6d779d343832ee08599752db697e86dc"></span><code class="sig-name descname">HRPWM_selectDigitalCompareTripInput</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga32d5fc4000b0eb1c3d4e01cb32d7ab86"><span class="std std-ref">EPWM_selectDigitalCompareTripInput</span></a><a class="headerlink" href="#c.HRPWM_selectDigitalCompareTripInput" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_enableDigitalCompareBlankingWindow">
+<span class="target" id="group__hrpwm__api_1gaf1732f382e6f5e842a4d4fc08a4fa5ea"></span><code class="sig-name descname">HRPWM_enableDigitalCompareBlankingWindow</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga1d548c30bda1aa8428e1f9aaa900c473"><span class="std std-ref">EPWM_enableDigitalCompareBlankingWindow</span></a><a class="headerlink" href="#c.HRPWM_enableDigitalCompareBlankingWindow" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_disableDigitalCompareBlankingWindow">
+<span class="target" id="group__hrpwm__api_1ga8e569974ef67b20e62628f8d240405fb"></span><code class="sig-name descname">HRPWM_disableDigitalCompareBlankingWindow</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gab294df66f36e5ab9ffe7ce3fc38d3f06"><span class="std std-ref">EPWM_disableDigitalCompareBlankingWindow</span></a><a class="headerlink" href="#c.HRPWM_disableDigitalCompareBlankingWindow" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_enableDigitalCompareWindowInverseMode">
+<span class="target" id="group__hrpwm__api_1gac1a6429158ee986530fb473820d143da"></span><code class="sig-name descname">HRPWM_enableDigitalCompareWindowInverseMode</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga3be9d8ece72e622393996204b85c970e"><span class="std std-ref">EPWM_enableDigitalCompareWindowInverseMode</span></a><a class="headerlink" href="#c.HRPWM_enableDigitalCompareWindowInverseMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_disableDigitalCompareWindowInverseMode">
+<span class="target" id="group__hrpwm__api_1gad60531ed94ecfcc7a1409333df3a460a"></span><code class="sig-name descname">HRPWM_disableDigitalCompareWindowInverseMode</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga0d71ab38ec6216355d445b6b5754d0bf"><span class="std std-ref">EPWM_disableDigitalCompareWindowInverseMode</span></a><a class="headerlink" href="#c.HRPWM_disableDigitalCompareWindowInverseMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setDigitalCompareBlankingEvent">
+<span class="target" id="group__hrpwm__api_1ga24b34c4c84b767cbebeee1e5098fc0c8"></span><code class="sig-name descname">HRPWM_setDigitalCompareBlankingEvent</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga97f27d4e90a23ef64f1fd591afd739e3"><span class="std std-ref">EPWM_setDigitalCompareBlankingEvent</span></a><a class="headerlink" href="#c.HRPWM_setDigitalCompareBlankingEvent" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setDigitalCompareFilterInput">
+<span class="target" id="group__hrpwm__api_1ga8e884644c19f2cbd936354b1f8870fb4"></span><code class="sig-name descname">HRPWM_setDigitalCompareFilterInput</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga96ea6dc6d7db59b9bc81b6e4b5995ae2"><span class="std std-ref">EPWM_setDigitalCompareFilterInput</span></a><a class="headerlink" href="#c.HRPWM_setDigitalCompareFilterInput" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setDigitalCompareWindowOffset">
+<span class="target" id="group__hrpwm__api_1gaf0a187e9edb3acc0e3d05b5d1acd2d13"></span><code class="sig-name descname">HRPWM_setDigitalCompareWindowOffset</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga2830491893e81c358c73f8a2c8174b59"><span class="std std-ref">EPWM_setDigitalCompareWindowOffset</span></a><a class="headerlink" href="#c.HRPWM_setDigitalCompareWindowOffset" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setDigitalCompareWindowLength">
+<span class="target" id="group__hrpwm__api_1gad0e8ebb3cd6a334215df065845fa9ac9"></span><code class="sig-name descname">HRPWM_setDigitalCompareWindowLength</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gac7413c60e2bf27025b8785f4f0631123"><span class="std std-ref">EPWM_setDigitalCompareWindowLength</span></a><a class="headerlink" href="#c.HRPWM_setDigitalCompareWindowLength" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_getDigitalCompareBlankingWindowOffsetCount">
+<span class="target" id="group__hrpwm__api_1ga4d0c822cf1b7567768df4f4045e33e48"></span><code class="sig-name descname">HRPWM_getDigitalCompareBlankingWindowOffsetCount</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gaca7ef119a01dece7f3e518122c5b57af"><span class="std std-ref">EPWM_getDigitalCompareBlankingWindowOffsetCount</span></a><a class="headerlink" href="#c.HRPWM_getDigitalCompareBlankingWindowOffsetCount" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_getDigitalCompareBlankingWindowLengthCount">
+<span class="target" id="group__hrpwm__api_1gae60487c6f93b8cdae2a2fe6017e505db"></span><code class="sig-name descname">HRPWM_getDigitalCompareBlankingWindowLengthCount</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga1ce2ab5cd5dd60a8a19682506f432579"><span class="std std-ref">EPWM_getDigitalCompareBlankingWindowLengthCount</span></a><a class="headerlink" href="#c.HRPWM_getDigitalCompareBlankingWindowLengthCount" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setDigitalCompareEventSource">
+<span class="target" id="group__hrpwm__api_1gacd48735d06dd685998b5c500b5315100"></span><code class="sig-name descname">HRPWM_setDigitalCompareEventSource</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga513865f596b25d3181ca550dc2595eb1"><span class="std std-ref">EPWM_setDigitalCompareEventSource</span></a><a class="headerlink" href="#c.HRPWM_setDigitalCompareEventSource" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setDigitalCompareEventSyncMode">
+<span class="target" id="group__hrpwm__api_1gaf2b9e0d84ed34df6e43f7e3328d46c10"></span><code class="sig-name descname">HRPWM_setDigitalCompareEventSyncMode</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga4a65b91856283e0e9e5c05af4e4ce218"><span class="std std-ref">EPWM_setDigitalCompareEventSyncMode</span></a><a class="headerlink" href="#c.HRPWM_setDigitalCompareEventSyncMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_enableDigitalCompareADCTrigger">
+<span class="target" id="group__hrpwm__api_1ga2ed6e5fdba6f1c21d61c1230b4df9b0b"></span><code class="sig-name descname">HRPWM_enableDigitalCompareADCTrigger</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga3a542c4aa0c72a5e8a4454fd4ab96b10"><span class="std std-ref">EPWM_enableDigitalCompareADCTrigger</span></a><a class="headerlink" href="#c.HRPWM_enableDigitalCompareADCTrigger" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_disableDigitalCompareADCTrigger">
+<span class="target" id="group__hrpwm__api_1ga6197e22013b041d15e38b082f0dff258"></span><code class="sig-name descname">HRPWM_disableDigitalCompareADCTrigger</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gaad7bfbe616f52d76c919c2c85ff15b03"><span class="std std-ref">EPWM_disableDigitalCompareADCTrigger</span></a><a class="headerlink" href="#c.HRPWM_disableDigitalCompareADCTrigger" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_enableDigitalCompareSyncEvent">
+<span class="target" id="group__hrpwm__api_1ga1b299d27b94491ea1375ce7e562fb75f"></span><code class="sig-name descname">HRPWM_enableDigitalCompareSyncEvent</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gafd6d3de8b3f1f9e4354c350d251f6da4"><span class="std std-ref">EPWM_enableDigitalCompareSyncEvent</span></a><a class="headerlink" href="#c.HRPWM_enableDigitalCompareSyncEvent" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_disableDigitalCompareSyncEvent">
+<span class="target" id="group__hrpwm__api_1ga67b6a12e33d717f0b651d63ba058b4dc"></span><code class="sig-name descname">HRPWM_disableDigitalCompareSyncEvent</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga70e3c37a3e1631a25be289e36d08b1cf"><span class="std std-ref">EPWM_disableDigitalCompareSyncEvent</span></a><a class="headerlink" href="#c.HRPWM_disableDigitalCompareSyncEvent" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_enableDigitalCompareCounterCapture">
+<span class="target" id="group__hrpwm__api_1ga824344deca0ccef432db3264ae6f4f20"></span><code class="sig-name descname">HRPWM_enableDigitalCompareCounterCapture</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga0862538a6a6c7ad7bf37e1ca28e6e021"><span class="std std-ref">EPWM_enableDigitalCompareCounterCapture</span></a><a class="headerlink" href="#c.HRPWM_enableDigitalCompareCounterCapture" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_disableDigitalCompareCounterCapture">
+<span class="target" id="group__hrpwm__api_1gaa53b5ebb22994492936ca7afc9254211"></span><code class="sig-name descname">HRPWM_disableDigitalCompareCounterCapture</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gafa38ea296ef84d2593305c6820e5ac78"><span class="std std-ref">EPWM_disableDigitalCompareCounterCapture</span></a><a class="headerlink" href="#c.HRPWM_disableDigitalCompareCounterCapture" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setDigitalCompareCounterShadowMode">
+<span class="target" id="group__hrpwm__api_1ga421a01821a9bd63de9f73c4bb1d3b05d"></span><code class="sig-name descname">HRPWM_setDigitalCompareCounterShadowMode</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga337b947c5c05a3e21f6ccc8c77087615"><span class="std std-ref">EPWM_setDigitalCompareCounterShadowMode</span></a><a class="headerlink" href="#c.HRPWM_setDigitalCompareCounterShadowMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_getDigitalCompareCaptureStatus">
+<span class="target" id="group__hrpwm__api_1gafe3a8499f4d7178d174c0f209b3e1cdb"></span><code class="sig-name descname">HRPWM_getDigitalCompareCaptureStatus</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga6449d2a6ecc8763f49982204276b56ca"><span class="std std-ref">EPWM_getDigitalCompareCaptureStatus</span></a><a class="headerlink" href="#c.HRPWM_getDigitalCompareCaptureStatus" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_getDigitalCompareCaptureCount">
+<span class="target" id="group__hrpwm__api_1gabe4e5ccb83945a803a3cc6afd2803011"></span><code class="sig-name descname">HRPWM_getDigitalCompareCaptureCount</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gaa15bdeca5d53a319646f3f4c12c2fcfb"><span class="std std-ref">EPWM_getDigitalCompareCaptureCount</span></a><a class="headerlink" href="#c.HRPWM_getDigitalCompareCaptureCount" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_enableDigitalCompareTripCombinationInput">
+<span class="target" id="group__hrpwm__api_1ga18cf355f1efbc557ea691248a91a3ec8"></span><code class="sig-name descname">HRPWM_enableDigitalCompareTripCombinationInput</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga90808025c166c3eb21ccce693ab0f7ea"><span class="std std-ref">EPWM_enableDigitalCompareTripCombinationInput</span></a><a class="headerlink" href="#c.HRPWM_enableDigitalCompareTripCombinationInput" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_disableDigitalCompareTripCombinationInput">
+<span class="target" id="group__hrpwm__api_1ga5fd6d009f4e63dea8bd5d5a2d3021ae8"></span><code class="sig-name descname">HRPWM_disableDigitalCompareTripCombinationInput</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gabfbcad09fca0029fbab906a796c276ad"><span class="std std-ref">EPWM_disableDigitalCompareTripCombinationInput</span></a><a class="headerlink" href="#c.HRPWM_disableDigitalCompareTripCombinationInput" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_enableValleyCapture">
+<span class="target" id="group__hrpwm__api_1gaefa6c450d59c558e5ff608a7fc93f060"></span><code class="sig-name descname">HRPWM_enableValleyCapture</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga60337e3befcf33d085686540abd8451c"><span class="std std-ref">EPWM_enableValleyCapture</span></a><a class="headerlink" href="#c.HRPWM_enableValleyCapture" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_disableValleyCapture">
+<span class="target" id="group__hrpwm__api_1ga6a6f0693c8f1bc48ae6aca9a2b442c89"></span><code class="sig-name descname">HRPWM_disableValleyCapture</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga9fab857c810419aebdbf4911c1da505c"><span class="std std-ref">EPWM_disableValleyCapture</span></a><a class="headerlink" href="#c.HRPWM_disableValleyCapture" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_startValleyCapture">
+<span class="target" id="group__hrpwm__api_1ga5edad9856b1d51099aa7abfa99e3d305"></span><code class="sig-name descname">HRPWM_startValleyCapture</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga067673321e0c553c2a59052059549502"><span class="std std-ref">EPWM_startValleyCapture</span></a><a class="headerlink" href="#c.HRPWM_startValleyCapture" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setValleyTriggerSource">
+<span class="target" id="group__hrpwm__api_1gad158ef55e6de078fed43c100cd5cc480"></span><code class="sig-name descname">HRPWM_setValleyTriggerSource</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga0d860a0537639ec61597ed84fbcf14da"><span class="std std-ref">EPWM_setValleyTriggerSource</span></a><a class="headerlink" href="#c.HRPWM_setValleyTriggerSource" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setValleyTriggerEdgeCounts">
+<span class="target" id="group__hrpwm__api_1ga2965ef7bfaaddf454126d826ec4b3717"></span><code class="sig-name descname">HRPWM_setValleyTriggerEdgeCounts</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga1f2fc5a60aeff54fe25e4e5cc459a19f"><span class="std std-ref">EPWM_setValleyTriggerEdgeCounts</span></a><a class="headerlink" href="#c.HRPWM_setValleyTriggerEdgeCounts" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_enableValleyHWDelay">
+<span class="target" id="group__hrpwm__api_1ga64c22d02a412bfaf8c22964b05b81411"></span><code class="sig-name descname">HRPWM_enableValleyHWDelay</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga775a34bd8bdc0d27af9bd731fb3cfea7"><span class="std std-ref">EPWM_enableValleyHWDelay</span></a><a class="headerlink" href="#c.HRPWM_enableValleyHWDelay" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_disableValleyHWDelay">
+<span class="target" id="group__hrpwm__api_1gaa290aae8b3d685a7e88bb2c079d34fdf"></span><code class="sig-name descname">HRPWM_disableValleyHWDelay</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga1f873e94147f4ffaa6e886354cc59631"><span class="std std-ref">EPWM_disableValleyHWDelay</span></a><a class="headerlink" href="#c.HRPWM_disableValleyHWDelay" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setValleySWDelayValue">
+<span class="target" id="group__hrpwm__api_1ga5e75b24283148b3b8f53f8c5b02ed118"></span><code class="sig-name descname">HRPWM_setValleySWDelayValue</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga7dfb7a77eeb1dcff4b46d0fcb5c27df9"><span class="std std-ref">EPWM_setValleySWDelayValue</span></a><a class="headerlink" href="#c.HRPWM_setValleySWDelayValue" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setValleyDelayDivider">
+<span class="target" id="group__hrpwm__api_1ga7c3188f61e44dc1bcbeef3db60c5a28f"></span><code class="sig-name descname">HRPWM_setValleyDelayDivider</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gae52bdf1644818375fbaaa3d867db44d6"><span class="std std-ref">EPWM_setValleyDelayDivider</span></a><a class="headerlink" href="#c.HRPWM_setValleyDelayDivider" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_getValleyEdgeStatus">
+<span class="target" id="group__hrpwm__api_1gafdb9adc5c12c9b91e32660f1a89a4730"></span><code class="sig-name descname">HRPWM_getValleyEdgeStatus</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga8d362d36d3981dcaec64dd878c90c6de"><span class="std std-ref">EPWM_getValleyEdgeStatus</span></a><a class="headerlink" href="#c.HRPWM_getValleyEdgeStatus" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_getValleyCount">
+<span class="target" id="group__hrpwm__api_1ga0a8d01695fc5e51187e6e35e25410d48"></span><code class="sig-name descname">HRPWM_getValleyCount</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gac89742189fbcd81f6ad9f3eb85a69686"><span class="std std-ref">EPWM_getValleyCount</span></a><a class="headerlink" href="#c.HRPWM_getValleyCount" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_getValleyHWDelay">
+<span class="target" id="group__hrpwm__api_1gaf854607a67d776286768d64c5c8bef74"></span><code class="sig-name descname">HRPWM_getValleyHWDelay</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga899fd555ab47e87253de27c8a3b7fc29"><span class="std std-ref">EPWM_getValleyHWDelay</span></a><a class="headerlink" href="#c.HRPWM_getValleyHWDelay" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_enableGlobalLoad">
+<span class="target" id="group__hrpwm__api_1gaa2a72c7eca989c4d4c2f703d8fb8cac3"></span><code class="sig-name descname">HRPWM_enableGlobalLoad</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga85c1b5bec04edd3b2716eaf4f039d37b"><span class="std std-ref">EPWM_enableGlobalLoad</span></a><a class="headerlink" href="#c.HRPWM_enableGlobalLoad" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_disableGlobalLoad">
+<span class="target" id="group__hrpwm__api_1ga28bf1f2ebe948ee2766c60f2caf0e717"></span><code class="sig-name descname">HRPWM_disableGlobalLoad</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga6872123055527e6e60a415c36cacaa56"><span class="std std-ref">EPWM_disableGlobalLoad</span></a><a class="headerlink" href="#c.HRPWM_disableGlobalLoad" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setGlobalLoadTrigger">
+<span class="target" id="group__hrpwm__api_1gac8e6fc0b6b93fd404d7b2e449282bea0"></span><code class="sig-name descname">HRPWM_setGlobalLoadTrigger</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga556dcb73f084920c71b72e067f7d95e7"><span class="std std-ref">EPWM_setGlobalLoadTrigger</span></a><a class="headerlink" href="#c.HRPWM_setGlobalLoadTrigger" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setGlobalLoadEventPrescale">
+<span class="target" id="group__hrpwm__api_1ga093167001cd939ec672bb77c1e4dc25a"></span><code class="sig-name descname">HRPWM_setGlobalLoadEventPrescale</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga22f0f55d7b7c9a6510e20727ee8594a9"><span class="std std-ref">EPWM_setGlobalLoadEventPrescale</span></a><a class="headerlink" href="#c.HRPWM_setGlobalLoadEventPrescale" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_getGlobalLoadEventCount">
+<span class="target" id="group__hrpwm__api_1gaed8c86fdc8fc966c33f40f03be9c819f"></span><code class="sig-name descname">HRPWM_getGlobalLoadEventCount</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gaba02fcd4e6996efe28c7b8516df9f1cc"><span class="std std-ref">EPWM_getGlobalLoadEventCount</span></a><a class="headerlink" href="#c.HRPWM_getGlobalLoadEventCount" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_disableGlobalLoadOneShotMode">
+<span class="target" id="group__hrpwm__api_1ga94ce4d6465821a19294187208279c0e7"></span><code class="sig-name descname">HRPWM_disableGlobalLoadOneShotMode</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga6ed18081d9c63bdf8dc0828cd622965c"><span class="std std-ref">EPWM_disableGlobalLoadOneShotMode</span></a><a class="headerlink" href="#c.HRPWM_disableGlobalLoadOneShotMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_enableGlobalLoadOneShotMode">
+<span class="target" id="group__hrpwm__api_1gaf2cff9df0bf8263ff81167af78512fbe"></span><code class="sig-name descname">HRPWM_enableGlobalLoadOneShotMode</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gaf1d44910112cf08090b7d46f22416783"><span class="std std-ref">EPWM_enableGlobalLoadOneShotMode</span></a><a class="headerlink" href="#c.HRPWM_enableGlobalLoadOneShotMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setGlobalLoadOneShotLatch">
+<span class="target" id="group__hrpwm__api_1gac833020d49136c688c66de430c57c348"></span><code class="sig-name descname">HRPWM_setGlobalLoadOneShotLatch</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga81fa71eb7178823fff6375be88c9ba34"><span class="std std-ref">EPWM_setGlobalLoadOneShotLatch</span></a><a class="headerlink" href="#c.HRPWM_setGlobalLoadOneShotLatch" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_forceGlobalLoadOneShotEvent">
+<span class="target" id="group__hrpwm__api_1ga9e3b12d09fa3aa2cab76b579cd1194e2"></span><code class="sig-name descname">HRPWM_forceGlobalLoadOneShotEvent</code> <a class="reference internal" href="epwm.html#group__epwm__api_1gabe1706b1e27af505f1f4ed347c6521c6"><span class="std std-ref">EPWM_forceGlobalLoadOneShotEvent</span></a><a class="headerlink" href="#c.HRPWM_forceGlobalLoadOneShotEvent" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_enableGlobalLoadRegisters">
+<span class="target" id="group__hrpwm__api_1ga63d70ff49e3e17a339abf8d643ae41df"></span><code class="sig-name descname">HRPWM_enableGlobalLoadRegisters</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga874c37e68f97e1d84dacd428ddc7d1cb"><span class="std std-ref">EPWM_enableGlobalLoadRegisters</span></a><a class="headerlink" href="#c.HRPWM_enableGlobalLoadRegisters" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_disableGlobalLoadRegisters">
+<span class="target" id="group__hrpwm__api_1ga152d23ec881d39a285922c7f02658f27"></span><code class="sig-name descname">HRPWM_disableGlobalLoadRegisters</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga3958ebe0bd6725acf707f6dadda973c7"><span class="std std-ref">EPWM_disableGlobalLoadRegisters</span></a><a class="headerlink" href="#c.HRPWM_disableGlobalLoadRegisters" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRPWM_setEmulationMode">
+<span class="target" id="group__hrpwm__api_1ga19a75151b8921c3857e606538f345464"></span><code class="sig-name descname">HRPWM_setEmulationMode</code> <a class="reference internal" href="epwm.html#group__epwm__api_1ga642e377f2330194a49d449f6885a37c1"><span class="std std-ref">EPWM_setEmulationMode</span></a><a class="headerlink" href="#c.HRPWM_setEmulationMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="cpp enum">
+<dt id="_CPPv413HRPWM_Channel">
+<span id="_CPPv313HRPWM_Channel"></span><span id="_CPPv213HRPWM_Channel"></span><span class="target" id="group__hrpwm__api_1ga2f9a25ca1fedb2e3569666abf05ccc01"></span><em class="property">enum </em><code class="sig-name descname">HRPWM_Channel</code><a class="headerlink" href="#_CPPv413HRPWM_Channel" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__hrpwm__api_1gace643b8795c9bede1e4b600691446638"><span class="std std-ref">HRPWM_setMEPEdgeSelect()</span></a>, <a class="reference internal" href="#group__hrpwm__api_1ga2a2f7e33bfaa8e8d8ab261a63771ff4c"><span class="std std-ref">HRPWM_setMEPControlMode()</span></a>, <a class="reference internal" href="#group__hrpwm__api_1ga006134d3a9329de4b942049308b91de4"><span class="std std-ref">HRPWM_setCounterCompareShadowLoadEvent()</span></a> as the <em>channel</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13HRPWM_Channel15HRPWM_CHANNEL_AE">
+<span id="_CPPv3N13HRPWM_Channel15HRPWM_CHANNEL_AE"></span><span id="_CPPv2N13HRPWM_Channel15HRPWM_CHANNEL_AE"></span><span class="target" id="group__hrpwm__api_1gga2f9a25ca1fedb2e3569666abf05ccc01ad97f27e7437e27cc3550e07deb083fa8"></span><em class="property">enumerator </em><code class="sig-name descname">HRPWM_CHANNEL_A</code> = 0<a class="headerlink" href="#_CPPv4N13HRPWM_Channel15HRPWM_CHANNEL_AE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>HRPWM A. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13HRPWM_Channel15HRPWM_CHANNEL_BE">
+<span id="_CPPv3N13HRPWM_Channel15HRPWM_CHANNEL_BE"></span><span id="_CPPv2N13HRPWM_Channel15HRPWM_CHANNEL_BE"></span><span class="target" id="group__hrpwm__api_1gga2f9a25ca1fedb2e3569666abf05ccc01ad6efe67ebbdcdc3b824532491c7002f1"></span><em class="property">enumerator </em><code class="sig-name descname">HRPWM_CHANNEL_B</code> = 8<a class="headerlink" href="#_CPPv4N13HRPWM_Channel15HRPWM_CHANNEL_BE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>HRPWM B. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv417HRPWM_MEPEdgeMode">
+<span id="_CPPv317HRPWM_MEPEdgeMode"></span><span id="_CPPv217HRPWM_MEPEdgeMode"></span><span class="target" id="group__hrpwm__api_1gad7f9df950084d4ac2c2376392232d6e9"></span><em class="property">enum </em><code class="sig-name descname">HRPWM_MEPEdgeMode</code><a class="headerlink" href="#_CPPv417HRPWM_MEPEdgeMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__hrpwm__api_1gace643b8795c9bede1e4b600691446638"><span class="std std-ref">HRPWM_setMEPEdgeSelect()</span></a> as the <em>mepEdgeMode</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17HRPWM_MEPEdgeMode22HRPWM_MEP_CTRL_DISABLEE">
+<span id="_CPPv3N17HRPWM_MEPEdgeMode22HRPWM_MEP_CTRL_DISABLEE"></span><span id="_CPPv2N17HRPWM_MEPEdgeMode22HRPWM_MEP_CTRL_DISABLEE"></span><span class="target" id="group__hrpwm__api_1ggad7f9df950084d4ac2c2376392232d6e9a008e1e4fc74b99a2bfef2f63042b15e6"></span><em class="property">enumerator </em><code class="sig-name descname">HRPWM_MEP_CTRL_DISABLE</code> = 0<a class="headerlink" href="#_CPPv4N17HRPWM_MEPEdgeMode22HRPWM_MEP_CTRL_DISABLEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>HRPWM is disabled. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17HRPWM_MEPEdgeMode26HRPWM_MEP_CTRL_RISING_EDGEE">
+<span id="_CPPv3N17HRPWM_MEPEdgeMode26HRPWM_MEP_CTRL_RISING_EDGEE"></span><span id="_CPPv2N17HRPWM_MEPEdgeMode26HRPWM_MEP_CTRL_RISING_EDGEE"></span><span class="target" id="group__hrpwm__api_1ggad7f9df950084d4ac2c2376392232d6e9a2d4749da7483caf5fbf6553cda528266"></span><em class="property">enumerator </em><code class="sig-name descname">HRPWM_MEP_CTRL_RISING_EDGE</code> = 1<a class="headerlink" href="#_CPPv4N17HRPWM_MEPEdgeMode26HRPWM_MEP_CTRL_RISING_EDGEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>MEP controls rising edge. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17HRPWM_MEPEdgeMode27HRPWM_MEP_CTRL_FALLING_EDGEE">
+<span id="_CPPv3N17HRPWM_MEPEdgeMode27HRPWM_MEP_CTRL_FALLING_EDGEE"></span><span id="_CPPv2N17HRPWM_MEPEdgeMode27HRPWM_MEP_CTRL_FALLING_EDGEE"></span><span class="target" id="group__hrpwm__api_1ggad7f9df950084d4ac2c2376392232d6e9a46dff3d558025fbaa8f2a8c00d3d4bd1"></span><em class="property">enumerator </em><code class="sig-name descname">HRPWM_MEP_CTRL_FALLING_EDGE</code> = 2<a class="headerlink" href="#_CPPv4N17HRPWM_MEPEdgeMode27HRPWM_MEP_CTRL_FALLING_EDGEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>MEP controls falling edge. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17HRPWM_MEPEdgeMode38HRPWM_MEP_CTRL_RISING_AND_FALLING_EDGEE">
+<span id="_CPPv3N17HRPWM_MEPEdgeMode38HRPWM_MEP_CTRL_RISING_AND_FALLING_EDGEE"></span><span id="_CPPv2N17HRPWM_MEPEdgeMode38HRPWM_MEP_CTRL_RISING_AND_FALLING_EDGEE"></span><span class="target" id="group__hrpwm__api_1ggad7f9df950084d4ac2c2376392232d6e9acd679ae1897844c2081207a7f049edf4"></span><em class="property">enumerator </em><code class="sig-name descname">HRPWM_MEP_CTRL_RISING_AND_FALLING_EDGE</code> = 3<a class="headerlink" href="#_CPPv4N17HRPWM_MEPEdgeMode38HRPWM_MEP_CTRL_RISING_AND_FALLING_EDGEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>MEP controls both rising and falling edge. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv417HRPWM_MEPCtrlMode">
+<span id="_CPPv317HRPWM_MEPCtrlMode"></span><span id="_CPPv217HRPWM_MEPCtrlMode"></span><span class="target" id="group__hrpwm__api_1ga4886fa04ac07b2b5c4b9225260d90066"></span><em class="property">enum </em><code class="sig-name descname">HRPWM_MEPCtrlMode</code><a class="headerlink" href="#_CPPv417HRPWM_MEPCtrlMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to HRPWM_setHRMEPCtrlMode() as the <em>parameter</em>. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17HRPWM_MEPCtrlMode26HRPWM_MEP_DUTY_PERIOD_CTRLE">
+<span id="_CPPv3N17HRPWM_MEPCtrlMode26HRPWM_MEP_DUTY_PERIOD_CTRLE"></span><span id="_CPPv2N17HRPWM_MEPCtrlMode26HRPWM_MEP_DUTY_PERIOD_CTRLE"></span><span class="target" id="group__hrpwm__api_1gga4886fa04ac07b2b5c4b9225260d90066a5cab283788011b7fb386e06bbe6d1a83"></span><em class="property">enumerator </em><code class="sig-name descname">HRPWM_MEP_DUTY_PERIOD_CTRL</code> = 0<a class="headerlink" href="#_CPPv4N17HRPWM_MEPCtrlMode26HRPWM_MEP_DUTY_PERIOD_CTRLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPAHR/CMPBHR or TBPRDHR controls MEP edge. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17HRPWM_MEPCtrlMode20HRPWM_MEP_PHASE_CTRLE">
+<span id="_CPPv3N17HRPWM_MEPCtrlMode20HRPWM_MEP_PHASE_CTRLE"></span><span id="_CPPv2N17HRPWM_MEPCtrlMode20HRPWM_MEP_PHASE_CTRLE"></span><span class="target" id="group__hrpwm__api_1gga4886fa04ac07b2b5c4b9225260d90066a79fc023820ed2204b5d811ac3ee7a342"></span><em class="property">enumerator </em><code class="sig-name descname">HRPWM_MEP_PHASE_CTRL</code> = 1<a class="headerlink" href="#_CPPv4N17HRPWM_MEPCtrlMode20HRPWM_MEP_PHASE_CTRLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>TBPHSHR controls MEP edge. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv414HRPWM_LoadMode">
+<span id="_CPPv314HRPWM_LoadMode"></span><span id="_CPPv214HRPWM_LoadMode"></span><span class="target" id="group__hrpwm__api_1gab792472752bf3c886be97e10707e19e2"></span><em class="property">enum </em><code class="sig-name descname">HRPWM_LoadMode</code><a class="headerlink" href="#_CPPv414HRPWM_LoadMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__hrpwm__api_1ga006134d3a9329de4b942049308b91de4"><span class="std std-ref">HRPWM_setCounterCompareShadowLoadEvent()</span></a>, <a class="reference internal" href="#group__hrpwm__api_1ga0218aec7a094c687bcfb85b45d1002ce"><span class="std std-ref">HRPWM_setRisingEdgeDelayLoadMode()</span></a> and HRPWM_setFallingEdgeDelayLoadMode as the <em>loadEvent</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14HRPWM_LoadMode23HRPWM_LOAD_ON_CNTR_ZEROE">
+<span id="_CPPv3N14HRPWM_LoadMode23HRPWM_LOAD_ON_CNTR_ZEROE"></span><span id="_CPPv2N14HRPWM_LoadMode23HRPWM_LOAD_ON_CNTR_ZEROE"></span><span class="target" id="group__hrpwm__api_1ggab792472752bf3c886be97e10707e19e2a768ac24a9ef21d325552fcde300904db"></span><em class="property">enumerator </em><code class="sig-name descname">HRPWM_LOAD_ON_CNTR_ZERO</code> = 0<a class="headerlink" href="#_CPPv4N14HRPWM_LoadMode23HRPWM_LOAD_ON_CNTR_ZEROE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>load when counter equals zero </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14HRPWM_LoadMode25HRPWM_LOAD_ON_CNTR_PERIODE">
+<span id="_CPPv3N14HRPWM_LoadMode25HRPWM_LOAD_ON_CNTR_PERIODE"></span><span id="_CPPv2N14HRPWM_LoadMode25HRPWM_LOAD_ON_CNTR_PERIODE"></span><span class="target" id="group__hrpwm__api_1ggab792472752bf3c886be97e10707e19e2af46b2224683f495bff0fe1fd5173f353"></span><em class="property">enumerator </em><code class="sig-name descname">HRPWM_LOAD_ON_CNTR_PERIOD</code> = 1<a class="headerlink" href="#_CPPv4N14HRPWM_LoadMode25HRPWM_LOAD_ON_CNTR_PERIODE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>load when counter equals period </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14HRPWM_LoadMode30HRPWM_LOAD_ON_CNTR_ZERO_PERIODE">
+<span id="_CPPv3N14HRPWM_LoadMode30HRPWM_LOAD_ON_CNTR_ZERO_PERIODE"></span><span id="_CPPv2N14HRPWM_LoadMode30HRPWM_LOAD_ON_CNTR_ZERO_PERIODE"></span><span class="target" id="group__hrpwm__api_1ggab792472752bf3c886be97e10707e19e2a9d1a89e77f3f02f7ec82c88998d720a4"></span><em class="property">enumerator </em><code class="sig-name descname">HRPWM_LOAD_ON_CNTR_ZERO_PERIOD</code> = 2<a class="headerlink" href="#_CPPv4N14HRPWM_LoadMode30HRPWM_LOAD_ON_CNTR_ZERO_PERIODE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>load when counter equals zero or period </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv420HRPWM_ChannelBOutput">
+<span id="_CPPv320HRPWM_ChannelBOutput"></span><span id="_CPPv220HRPWM_ChannelBOutput"></span><span class="target" id="group__hrpwm__api_1ga805890fde49b1789a62466c7efb872a7"></span><em class="property">enum </em><code class="sig-name descname">HRPWM_ChannelBOutput</code><a class="headerlink" href="#_CPPv420HRPWM_ChannelBOutput" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__hrpwm__api_1gafaf957c5d5b87212cc6ae876ccd75a89"><span class="std std-ref">HRPWM_setChannelBOutputPath()</span></a> as the <em>outputOnB</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20HRPWM_ChannelBOutput24HRPWM_OUTPUT_ON_B_NORMALE">
+<span id="_CPPv3N20HRPWM_ChannelBOutput24HRPWM_OUTPUT_ON_B_NORMALE"></span><span id="_CPPv2N20HRPWM_ChannelBOutput24HRPWM_OUTPUT_ON_B_NORMALE"></span><span class="target" id="group__hrpwm__api_1gga805890fde49b1789a62466c7efb872a7ae3135ba3b54cc3ecdcc713973a053659"></span><em class="property">enumerator </em><code class="sig-name descname">HRPWM_OUTPUT_ON_B_NORMAL</code> = 0<a class="headerlink" href="#_CPPv4N20HRPWM_ChannelBOutput24HRPWM_OUTPUT_ON_B_NORMALE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>ePWMxB output is normal. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20HRPWM_ChannelBOutput23HRPWM_OUTPUT_ON_B_INV_AE">
+<span id="_CPPv3N20HRPWM_ChannelBOutput23HRPWM_OUTPUT_ON_B_INV_AE"></span><span id="_CPPv2N20HRPWM_ChannelBOutput23HRPWM_OUTPUT_ON_B_INV_AE"></span><span class="target" id="group__hrpwm__api_1gga805890fde49b1789a62466c7efb872a7a62b84674d74d0b54d0849dfd47be0f03"></span><em class="property">enumerator </em><code class="sig-name descname">HRPWM_OUTPUT_ON_B_INV_A</code> = 1<a class="headerlink" href="#_CPPv4N20HRPWM_ChannelBOutput23HRPWM_OUTPUT_ON_B_INV_AE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>ePWMxB output is inverted version of ePWMxA signal </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv421HRPWM_SyncPulseSource">
+<span id="_CPPv321HRPWM_SyncPulseSource"></span><span id="_CPPv221HRPWM_SyncPulseSource"></span><span class="target" id="group__hrpwm__api_1ga3de5cdd2271c84f682454cd0554b5b63"></span><em class="property">enum </em><code class="sig-name descname">HRPWM_SyncPulseSource</code><a class="headerlink" href="#_CPPv421HRPWM_SyncPulseSource" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__hrpwm__api_1ga8b5b04fb405dcd57003b85d4f55fa4f4"><span class="std std-ref">HRPWM_setSyncPulseSource()</span></a> as the <em>syncPulseSource</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N21HRPWM_SyncPulseSource27HRPWM_PWMSYNC_SOURCE_PERIODE">
+<span id="_CPPv3N21HRPWM_SyncPulseSource27HRPWM_PWMSYNC_SOURCE_PERIODE"></span><span id="_CPPv2N21HRPWM_SyncPulseSource27HRPWM_PWMSYNC_SOURCE_PERIODE"></span><span class="target" id="group__hrpwm__api_1gga3de5cdd2271c84f682454cd0554b5b63a86dc9dc7e187a6ccbbc88ef5bed7379f"></span><em class="property">enumerator </em><code class="sig-name descname">HRPWM_PWMSYNC_SOURCE_PERIOD</code> = 0<a class="headerlink" href="#_CPPv4N21HRPWM_SyncPulseSource27HRPWM_PWMSYNC_SOURCE_PERIODE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Counter equals Period. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N21HRPWM_SyncPulseSource25HRPWM_PWMSYNC_SOURCE_ZEROE">
+<span id="_CPPv3N21HRPWM_SyncPulseSource25HRPWM_PWMSYNC_SOURCE_ZEROE"></span><span id="_CPPv2N21HRPWM_SyncPulseSource25HRPWM_PWMSYNC_SOURCE_ZEROE"></span><span class="target" id="group__hrpwm__api_1gga3de5cdd2271c84f682454cd0554b5b63ae400760b2c87a83cd5d63fa246621d3d"></span><em class="property">enumerator </em><code class="sig-name descname">HRPWM_PWMSYNC_SOURCE_ZERO</code> = 1<a class="headerlink" href="#_CPPv4N21HRPWM_SyncPulseSource25HRPWM_PWMSYNC_SOURCE_ZEROE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Counter equals zero. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N21HRPWM_SyncPulseSource29HRPWM_PWMSYNC_SOURCE_COMPC_UPE">
+<span id="_CPPv3N21HRPWM_SyncPulseSource29HRPWM_PWMSYNC_SOURCE_COMPC_UPE"></span><span id="_CPPv2N21HRPWM_SyncPulseSource29HRPWM_PWMSYNC_SOURCE_COMPC_UPE"></span><span class="target" id="group__hrpwm__api_1gga3de5cdd2271c84f682454cd0554b5b63a254fdd75379c509a1c9ae5cf1a76c6cf"></span><em class="property">enumerator </em><code class="sig-name descname">HRPWM_PWMSYNC_SOURCE_COMPC_UP</code> = 4<a class="headerlink" href="#_CPPv4N21HRPWM_SyncPulseSource29HRPWM_PWMSYNC_SOURCE_COMPC_UPE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Counter equals COMPC when counting up. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N21HRPWM_SyncPulseSource31HRPWM_PWMSYNC_SOURCE_COMPC_DOWNE">
+<span id="_CPPv3N21HRPWM_SyncPulseSource31HRPWM_PWMSYNC_SOURCE_COMPC_DOWNE"></span><span id="_CPPv2N21HRPWM_SyncPulseSource31HRPWM_PWMSYNC_SOURCE_COMPC_DOWNE"></span><span class="target" id="group__hrpwm__api_1gga3de5cdd2271c84f682454cd0554b5b63a313fccfe804250e62c98a99d6e6226d1"></span><em class="property">enumerator </em><code class="sig-name descname">HRPWM_PWMSYNC_SOURCE_COMPC_DOWN</code> = 5<a class="headerlink" href="#_CPPv4N21HRPWM_SyncPulseSource31HRPWM_PWMSYNC_SOURCE_COMPC_DOWNE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Counter equals COMPC when counting down. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N21HRPWM_SyncPulseSource29HRPWM_PWMSYNC_SOURCE_COMPD_UPE">
+<span id="_CPPv3N21HRPWM_SyncPulseSource29HRPWM_PWMSYNC_SOURCE_COMPD_UPE"></span><span id="_CPPv2N21HRPWM_SyncPulseSource29HRPWM_PWMSYNC_SOURCE_COMPD_UPE"></span><span class="target" id="group__hrpwm__api_1gga3de5cdd2271c84f682454cd0554b5b63a686e09daedd5994d1e61a4419c4f3b91"></span><em class="property">enumerator </em><code class="sig-name descname">HRPWM_PWMSYNC_SOURCE_COMPD_UP</code> = 6<a class="headerlink" href="#_CPPv4N21HRPWM_SyncPulseSource29HRPWM_PWMSYNC_SOURCE_COMPD_UPE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Counter equals COMPD when counting up. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N21HRPWM_SyncPulseSource31HRPWM_PWMSYNC_SOURCE_COMPD_DOWNE">
+<span id="_CPPv3N21HRPWM_SyncPulseSource31HRPWM_PWMSYNC_SOURCE_COMPD_DOWNE"></span><span id="_CPPv2N21HRPWM_SyncPulseSource31HRPWM_PWMSYNC_SOURCE_COMPD_DOWNE"></span><span class="target" id="group__hrpwm__api_1gga3de5cdd2271c84f682454cd0554b5b63a2983e70067f24dd90e95e935876f0656"></span><em class="property">enumerator </em><code class="sig-name descname">HRPWM_PWMSYNC_SOURCE_COMPD_DOWN</code> = 7<a class="headerlink" href="#_CPPv4N21HRPWM_SyncPulseSource31HRPWM_PWMSYNC_SOURCE_COMPD_DOWNE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Counter equals COMPD when counting down. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv426HRPWM_CounterCompareModule">
+<span id="_CPPv326HRPWM_CounterCompareModule"></span><span id="_CPPv226HRPWM_CounterCompareModule"></span><span class="target" id="group__hrpwm__api_1ga5e6ce969f9bc2c75cec462ed7521bf0f"></span><em class="property">enum </em><code class="sig-name descname">HRPWM_CounterCompareModule</code><a class="headerlink" href="#_CPPv426HRPWM_CounterCompareModule" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__hrpwm__api_1ga2f8999db312f7499d1a2fd8cb47eecc1"><span class="std std-ref">HRPWM_setCounterCompareValue()</span></a> as the <em>compModule</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N26HRPWM_CounterCompareModule23HRPWM_COUNTER_COMPARE_AE">
+<span id="_CPPv3N26HRPWM_CounterCompareModule23HRPWM_COUNTER_COMPARE_AE"></span><span id="_CPPv2N26HRPWM_CounterCompareModule23HRPWM_COUNTER_COMPARE_AE"></span><span class="target" id="group__hrpwm__api_1gga5e6ce969f9bc2c75cec462ed7521bf0fa1dd42daff2f6fcb74016af61eab36cd2"></span><em class="property">enumerator </em><code class="sig-name descname">HRPWM_COUNTER_COMPARE_A</code> = 0<a class="headerlink" href="#_CPPv4N26HRPWM_CounterCompareModule23HRPWM_COUNTER_COMPARE_AE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>counter compare A </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N26HRPWM_CounterCompareModule23HRPWM_COUNTER_COMPARE_BE">
+<span id="_CPPv3N26HRPWM_CounterCompareModule23HRPWM_COUNTER_COMPARE_BE"></span><span id="_CPPv2N26HRPWM_CounterCompareModule23HRPWM_COUNTER_COMPARE_BE"></span><span class="target" id="group__hrpwm__api_1gga5e6ce969f9bc2c75cec462ed7521bf0fac6bc0aa5065552a47fa1b97f29b8f268"></span><em class="property">enumerator </em><code class="sig-name descname">HRPWM_COUNTER_COMPARE_B</code> = 4<a class="headerlink" href="#_CPPv4N26HRPWM_CounterCompareModule23HRPWM_COUNTER_COMPARE_BE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>counter compare B </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv425HRPWM_MEPDeadBandEdgeMode">
+<span id="_CPPv325HRPWM_MEPDeadBandEdgeMode"></span><span id="_CPPv225HRPWM_MEPDeadBandEdgeMode"></span><span class="target" id="group__hrpwm__api_1ga531b4d10c595b198f7b8fce3f25d8336"></span><em class="property">enum </em><code class="sig-name descname">HRPWM_MEPDeadBandEdgeMode</code><a class="headerlink" href="#_CPPv425HRPWM_MEPDeadBandEdgeMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__hrpwm__api_1ga3d756c494e7efe94f339cee261e2b1bd"><span class="std std-ref">HRPWM_setDeadbandMEPEdgeSelect()</span></a> as the <em>mepDBEdge</em>. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N25HRPWM_MEPDeadBandEdgeMode25HRPWM_DB_MEP_CTRL_DISABLEE">
+<span id="_CPPv3N25HRPWM_MEPDeadBandEdgeMode25HRPWM_DB_MEP_CTRL_DISABLEE"></span><span id="_CPPv2N25HRPWM_MEPDeadBandEdgeMode25HRPWM_DB_MEP_CTRL_DISABLEE"></span><span class="target" id="group__hrpwm__api_1gga531b4d10c595b198f7b8fce3f25d8336aae17c71b487d877a47e24e3b5bb8d08d"></span><em class="property">enumerator </em><code class="sig-name descname">HRPWM_DB_MEP_CTRL_DISABLE</code> = 0<a class="headerlink" href="#_CPPv4N25HRPWM_MEPDeadBandEdgeMode25HRPWM_DB_MEP_CTRL_DISABLEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>HRPWM is disabled. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N25HRPWM_MEPDeadBandEdgeMode21HRPWM_DB_MEP_CTRL_REDE">
+<span id="_CPPv3N25HRPWM_MEPDeadBandEdgeMode21HRPWM_DB_MEP_CTRL_REDE"></span><span id="_CPPv2N25HRPWM_MEPDeadBandEdgeMode21HRPWM_DB_MEP_CTRL_REDE"></span><span class="target" id="group__hrpwm__api_1gga531b4d10c595b198f7b8fce3f25d8336a19ef1a28f093e624bd1e08fea6cbdd00"></span><em class="property">enumerator </em><code class="sig-name descname">HRPWM_DB_MEP_CTRL_RED</code> = 1<a class="headerlink" href="#_CPPv4N25HRPWM_MEPDeadBandEdgeMode21HRPWM_DB_MEP_CTRL_REDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>MEP controls Rising Edge Delay. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N25HRPWM_MEPDeadBandEdgeMode21HRPWM_DB_MEP_CTRL_FEDE">
+<span id="_CPPv3N25HRPWM_MEPDeadBandEdgeMode21HRPWM_DB_MEP_CTRL_FEDE"></span><span id="_CPPv2N25HRPWM_MEPDeadBandEdgeMode21HRPWM_DB_MEP_CTRL_FEDE"></span><span class="target" id="group__hrpwm__api_1gga531b4d10c595b198f7b8fce3f25d8336ab685c50152d02774e54ebdaeb0c38bc7"></span><em class="property">enumerator </em><code class="sig-name descname">HRPWM_DB_MEP_CTRL_FED</code> = 2<a class="headerlink" href="#_CPPv4N25HRPWM_MEPDeadBandEdgeMode21HRPWM_DB_MEP_CTRL_FEDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>MEP controls Falling Edge Delay. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N25HRPWM_MEPDeadBandEdgeMode25HRPWM_DB_MEP_CTRL_RED_FEDE">
+<span id="_CPPv3N25HRPWM_MEPDeadBandEdgeMode25HRPWM_DB_MEP_CTRL_RED_FEDE"></span><span id="_CPPv2N25HRPWM_MEPDeadBandEdgeMode25HRPWM_DB_MEP_CTRL_RED_FEDE"></span><span class="target" id="group__hrpwm__api_1gga531b4d10c595b198f7b8fce3f25d8336a2901a69af8b73b8bbe55fc06615a7cbc"></span><em class="property">enumerator </em><code class="sig-name descname">HRPWM_DB_MEP_CTRL_RED_FED</code> = 3<a class="headerlink" href="#_CPPv4N25HRPWM_MEPDeadBandEdgeMode25HRPWM_DB_MEP_CTRL_RED_FEDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>MEP controls both Falling and Rising edge delay. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv423HRPWM_LockRegisterGroup">
+<span id="_CPPv323HRPWM_LockRegisterGroup"></span><span id="_CPPv223HRPWM_LockRegisterGroup"></span><span class="target" id="group__hrpwm__api_1ga043d04c77a48d46ea42284460762abc8"></span><em class="property">enum </em><code class="sig-name descname">HRPWM_LockRegisterGroup</code><a class="headerlink" href="#_CPPv423HRPWM_LockRegisterGroup" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to HRPWM_lockRegisters() as the <em>registerGroup</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N23HRPWM_LockRegisterGroup26HRPWM_REGISTER_GROUP_HRPWME">
+<span id="_CPPv3N23HRPWM_LockRegisterGroup26HRPWM_REGISTER_GROUP_HRPWME"></span><span id="_CPPv2N23HRPWM_LockRegisterGroup26HRPWM_REGISTER_GROUP_HRPWME"></span><span class="target" id="group__hrpwm__api_1gga043d04c77a48d46ea42284460762abc8a49e1a7e933c1694dfcb03146c2e1a88c"></span><em class="property">enumerator </em><code class="sig-name descname">HRPWM_REGISTER_GROUP_HRPWM</code> = 0x1<a class="headerlink" href="#_CPPv4N23HRPWM_LockRegisterGroup26HRPWM_REGISTER_GROUP_HRPWME" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>HRPWM register group. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N23HRPWM_LockRegisterGroup32HRPWM_REGISTER_GROUP_GLOBAL_LOADE">
+<span id="_CPPv3N23HRPWM_LockRegisterGroup32HRPWM_REGISTER_GROUP_GLOBAL_LOADE"></span><span id="_CPPv2N23HRPWM_LockRegisterGroup32HRPWM_REGISTER_GROUP_GLOBAL_LOADE"></span><span class="target" id="group__hrpwm__api_1gga043d04c77a48d46ea42284460762abc8a7431ace91eb928bad47dd396ffc90cd0"></span><em class="property">enumerator </em><code class="sig-name descname">HRPWM_REGISTER_GROUP_GLOBAL_LOAD</code> = 0x2<a class="headerlink" href="#_CPPv4N23HRPWM_LockRegisterGroup32HRPWM_REGISTER_GROUP_GLOBAL_LOADE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Global load register group. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N23HRPWM_LockRegisterGroup30HRPWM_REGISTER_GROUP_TRIP_ZONEE">
+<span id="_CPPv3N23HRPWM_LockRegisterGroup30HRPWM_REGISTER_GROUP_TRIP_ZONEE"></span><span id="_CPPv2N23HRPWM_LockRegisterGroup30HRPWM_REGISTER_GROUP_TRIP_ZONEE"></span><span class="target" id="group__hrpwm__api_1gga043d04c77a48d46ea42284460762abc8a5dea04aa7b9ee7602857847cfae87f51"></span><em class="property">enumerator </em><code class="sig-name descname">HRPWM_REGISTER_GROUP_TRIP_ZONE</code> = 0x4<a class="headerlink" href="#_CPPv4N23HRPWM_LockRegisterGroup30HRPWM_REGISTER_GROUP_TRIP_ZONEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Trip zone register group. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N23HRPWM_LockRegisterGroup36HRPWM_REGISTER_GROUP_TRIP_ZONE_CLEARE">
+<span id="_CPPv3N23HRPWM_LockRegisterGroup36HRPWM_REGISTER_GROUP_TRIP_ZONE_CLEARE"></span><span id="_CPPv2N23HRPWM_LockRegisterGroup36HRPWM_REGISTER_GROUP_TRIP_ZONE_CLEARE"></span><span class="target" id="group__hrpwm__api_1gga043d04c77a48d46ea42284460762abc8a3caa49c783ba1f0a7fe6036fd1dedcc2"></span><em class="property">enumerator </em><code class="sig-name descname">HRPWM_REGISTER_GROUP_TRIP_ZONE_CLEAR</code> = 0x8<a class="headerlink" href="#_CPPv4N23HRPWM_LockRegisterGroup36HRPWM_REGISTER_GROUP_TRIP_ZONE_CLEARE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Trip zone clear group. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N23HRPWM_LockRegisterGroup36HRPWM_REGISTER_GROUP_DIGITAL_COMPAREE">
+<span id="_CPPv3N23HRPWM_LockRegisterGroup36HRPWM_REGISTER_GROUP_DIGITAL_COMPAREE"></span><span id="_CPPv2N23HRPWM_LockRegisterGroup36HRPWM_REGISTER_GROUP_DIGITAL_COMPAREE"></span><span class="target" id="group__hrpwm__api_1gga043d04c77a48d46ea42284460762abc8a96062452d5f8ba0cafcf725097024d54"></span><em class="property">enumerator </em><code class="sig-name descname">HRPWM_REGISTER_GROUP_DIGITAL_COMPARE</code> = 0x10<a class="headerlink" href="#_CPPv4N23HRPWM_LockRegisterGroup36HRPWM_REGISTER_GROUP_DIGITAL_COMPAREE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Digital compare group. </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv419HRPWM_setPhaseShift8uint32_t8uint32_t">
+<span id="_CPPv319HRPWM_setPhaseShift8uint32_t8uint32_t"></span><span id="_CPPv219HRPWM_setPhaseShift8uint32_t8uint32_t"></span><span id="HRPWM_setPhaseShift__uint32_t.uint32_t"></span><span class="target" id="group__hrpwm__api_1gab5ae9b42ae3e91483423894006887e3a"></span>void <code class="sig-name descname">HRPWM_setPhaseShift</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>phaseCount</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419HRPWM_setPhaseShift8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the consolidated phase shift value in high resolution mode.</p>
+<p><p>This function sets the consolidated phase shift value, that is, both TBPHS and TBPHSHR values are configured together.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EPWM module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">phaseCount</span></code>: is the consolidated phase shift count value.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>Call EPWM_enablePhaseShiftLoad &amp; HRPWM_enableHRPhaseShiftLoad() functions to enable loading of the phaseCount in high resolution mode.</p>
+<p><strong>Note:</strong> phaseCount is a 24-bit value. <strong>Note:</strong> For configuring TBPHS = 0x3C, TBPHSHR = 0x2; phaseCount = 0x3C02</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428HRPWM_setHiResPhaseShiftOnly8uint32_t8uint16_t">
+<span id="_CPPv328HRPWM_setHiResPhaseShiftOnly8uint32_t8uint16_t"></span><span id="_CPPv228HRPWM_setHiResPhaseShiftOnly8uint32_t8uint16_t"></span><span id="HRPWM_setHiResPhaseShiftOnly__uint32_t.uint16_t"></span><span class="target" id="group__hrpwm__api_1ga6555fa83629110dc9f4fd77182404292"></span>void <code class="sig-name descname">HRPWM_setHiResPhaseShiftOnly</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>hrPhaseCount</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428HRPWM_setHiResPhaseShiftOnly8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets only the high resolution phase shift value.</p>
+<p><p>This function sets only the high resolution phase shift(TBPHSHR) value. Call the HRPWM_enableHRPhaseShiftLoad() function to enable loading of the hrPhaseCount.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EPWM module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hrPhaseCount</span></code>: is the high resolution phase shift count value.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><strong>Note:</strong> hrPhaseCount is an 8-bit value.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423HRPWM_setTimeBasePeriod8uint32_t8uint32_t">
+<span id="_CPPv323HRPWM_setTimeBasePeriod8uint32_t8uint32_t"></span><span id="_CPPv223HRPWM_setTimeBasePeriod8uint32_t8uint32_t"></span><span id="HRPWM_setTimeBasePeriod__uint32_t.uint32_t"></span><span class="target" id="group__hrpwm__api_1gad9833a2fb0601c5e47a93f95b67ecd42"></span>void <code class="sig-name descname">HRPWM_setTimeBasePeriod</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>periodCount</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423HRPWM_setTimeBasePeriod8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the consolidated period of time base counter used in HR mode.</p>
+<p><p>This function sets the consolidated period of time base counter value (TBPRD:TBPRDHR) required in high resolution mode.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EPWM module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">periodCount</span></code>: is the consolidated period count value.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>User should map the desired period or frequency of the waveform into the correct periodCount.</p>
+<p><strong>Note:</strong> periodCount is a 24 bit value. <strong>Note:</strong> For configuring TBPRD = 0x3C, TBPRDHR = 0xA; periodCount = 0x3C0A</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv432HRPWM_setHiResTimeBasePeriodOnly8uint32_t8uint16_t">
+<span id="_CPPv332HRPWM_setHiResTimeBasePeriodOnly8uint32_t8uint16_t"></span><span id="_CPPv232HRPWM_setHiResTimeBasePeriodOnly8uint32_t8uint16_t"></span><span id="HRPWM_setHiResTimeBasePeriodOnly__uint32_t.uint16_t"></span><span class="target" id="group__hrpwm__api_1gac399ad64466862dd114420668aee0a7b"></span>void <code class="sig-name descname">HRPWM_setHiResTimeBasePeriodOnly</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>hrPeriodCount</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv432HRPWM_setHiResTimeBasePeriodOnly8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets only the high resolution time base counter.</p>
+<p><p>This function sets only the high resolution time base counter(TBPRDHR) value.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EPWM module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hrPeriodCount</span></code>: is the high resolution period count value.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>User should map the desired period or frequency of the waveform into the correct hrPeriodCount.</p>
+<p><strong>Note:</strong> hrPeriodCount is an 8-bit value.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423HRPWM_getTimeBasePeriod8uint32_t">
+<span id="_CPPv323HRPWM_getTimeBasePeriod8uint32_t"></span><span id="_CPPv223HRPWM_getTimeBasePeriod8uint32_t"></span><span id="HRPWM_getTimeBasePeriod__uint32_t"></span><span class="target" id="group__hrpwm__api_1gaf58c0fe465095487a705b8927d6b352d"></span>uint32_t <code class="sig-name descname">HRPWM_getTimeBasePeriod</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423HRPWM_getTimeBasePeriod8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the consolidated time base period count used in HR mode</p>
+<p><p>This function gets the consolidated time base period(TBPRD:TBPRDHR) value used in high resolution mode.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EPWM module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The consolidated time base period count value. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv432HRPWM_getHiResTimeBasePeriodOnly8uint32_t">
+<span id="_CPPv332HRPWM_getHiResTimeBasePeriodOnly8uint32_t"></span><span id="_CPPv232HRPWM_getHiResTimeBasePeriodOnly8uint32_t"></span><span id="HRPWM_getHiResTimeBasePeriodOnly__uint32_t"></span><span class="target" id="group__hrpwm__api_1gaa19e8cc84185b25a0721106416a155ea"></span>uint16_t <code class="sig-name descname">HRPWM_getHiResTimeBasePeriodOnly</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv432HRPWM_getHiResTimeBasePeriodOnly8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the only the high resolution time base period count.</p>
+<p><p>This function gets only the high resolution time base period(TBPRDHR) value.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EPWM module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The high resolution time base period count value. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422HRPWM_setMEPEdgeSelect8uint32_t13HRPWM_Channel17HRPWM_MEPEdgeMode">
+<span id="_CPPv322HRPWM_setMEPEdgeSelect8uint32_t13HRPWM_Channel17HRPWM_MEPEdgeMode"></span><span id="_CPPv222HRPWM_setMEPEdgeSelect8uint32_t13HRPWM_Channel17HRPWM_MEPEdgeMode"></span><span id="HRPWM_setMEPEdgeSelect__uint32_t.HRPWM_Channel.HRPWM_MEPEdgeMode"></span><span class="target" id="group__hrpwm__api_1gace643b8795c9bede1e4b600691446638"></span>void <code class="sig-name descname">HRPWM_setMEPEdgeSelect</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv413HRPWM_Channel" title="HRPWM_Channel">HRPWM_Channel</a> <em>channel</em>, <a class="reference internal" href="#_CPPv417HRPWM_MEPEdgeMode" title="HRPWM_MEPEdgeMode">HRPWM_MEPEdgeMode</a> <em>mepEdgeMode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422HRPWM_setMEPEdgeSelect8uint32_t13HRPWM_Channel17HRPWM_MEPEdgeMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the high resolution edge controlled by MEP (Micro Edge Positioner).</p>
+<p><p>This function sets the edge of the PWM that is controlled by MEP (Micro Edge Positioner). Valid values for the parameters are:</p>
+<ul class="simple">
+<li><p>channel<ul>
+<li><p>HRPWM_CHANNEL_A - HRPWM A</p></li>
+<li><p>HRPWM_CHANNEL_B - HRPWM B</p></li>
+</ul>
+</p></li>
+<li><p>mepEdgeMode<ul>
+<li><p>HRPWM_MEP_CTRL_DISABLE - HRPWM is disabled</p></li>
+<li><p>HRPWM_MEP_CTRL_RISING_EDGE - MEP (Micro Edge Positioner) controls rising edge.</p></li>
+<li><p>HRPWM_MEP_CTRL_FALLING_EDGE - MEP (Micro Edge Positioner) controls falling edge.</p></li>
+<li><p>HRPWM_MEP_CTRL_RISING_AND_FALLING_EDGE - MEP (Micro Edge Positioner) controls both edges.</p></li>
+</ul>
+</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EPWM module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">channel</span></code>: is high resolution period module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mepEdgeMode</span></code>: edge of the PWM that is controlled by MEP (Micro Edge Positioner).</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423HRPWM_setMEPControlMode8uint32_t13HRPWM_Channel17HRPWM_MEPCtrlMode">
+<span id="_CPPv323HRPWM_setMEPControlMode8uint32_t13HRPWM_Channel17HRPWM_MEPCtrlMode"></span><span id="_CPPv223HRPWM_setMEPControlMode8uint32_t13HRPWM_Channel17HRPWM_MEPCtrlMode"></span><span id="HRPWM_setMEPControlMode__uint32_t.HRPWM_Channel.HRPWM_MEPCtrlMode"></span><span class="target" id="group__hrpwm__api_1ga2a2f7e33bfaa8e8d8ab261a63771ff4c"></span>void <code class="sig-name descname">HRPWM_setMEPControlMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv413HRPWM_Channel" title="HRPWM_Channel">HRPWM_Channel</a> <em>channel</em>, <a class="reference internal" href="#_CPPv417HRPWM_MEPCtrlMode" title="HRPWM_MEPCtrlMode">HRPWM_MEPCtrlMode</a> <em>mepCtrlMode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423HRPWM_setMEPControlMode8uint32_t13HRPWM_Channel17HRPWM_MEPCtrlMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the MEP (Micro Edge Positioner) control mode.</p>
+<p><p>This function sets the mode (register type) the MEP (Micro Edge Positioner) will control. Valid values for the parameters are:</p>
+<ul class="simple">
+<li><p>channel<ul>
+<li><p>HRPWM_CHANNEL_A - HRPWM A</p></li>
+<li><p>HRPWM_CHANNEL_B - HRPWM B</p></li>
+</ul>
+</p></li>
+<li><p>mepCtrlMode<ul>
+<li><p>HRPWM_MEP_DUTY_PERIOD_CTRL - MEP (Micro Edge Positioner) is controlled by value of CMPAHR/ CMPBHR(depending on the value of channel) or TBPRDHR.</p></li>
+<li><p>HRPWM_MEP_PHASE_CTRL - MEP (Micro Edge Positioner) is controlled by TBPHSHR.</p></li>
+</ul>
+</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EPWM module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">channel</span></code>: is high resolution period module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mepCtrlMode</span></code>: is the MEP (Micro Edge Positioner) control mode.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv438HRPWM_setCounterCompareShadowLoadEvent8uint32_t13HRPWM_Channel14HRPWM_LoadMode">
+<span id="_CPPv338HRPWM_setCounterCompareShadowLoadEvent8uint32_t13HRPWM_Channel14HRPWM_LoadMode"></span><span id="_CPPv238HRPWM_setCounterCompareShadowLoadEvent8uint32_t13HRPWM_Channel14HRPWM_LoadMode"></span><span id="HRPWM_setCounterCompareShadowLoadEvent__uint32_t.HRPWM_Channel.HRPWM_LoadMode"></span><span class="target" id="group__hrpwm__api_1ga006134d3a9329de4b942049308b91de4"></span>void <code class="sig-name descname">HRPWM_setCounterCompareShadowLoadEvent</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv413HRPWM_Channel" title="HRPWM_Channel">HRPWM_Channel</a> <em>channel</em>, <a class="reference internal" href="#_CPPv414HRPWM_LoadMode" title="HRPWM_LoadMode">HRPWM_LoadMode</a> <em>loadEvent</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv438HRPWM_setCounterCompareShadowLoadEvent8uint32_t13HRPWM_Channel14HRPWM_LoadMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the high resolution comparator load mode.</p>
+<p><p>This function sets the shadow load mode of the high resolution comparator. The function sets the COMPA or COMPB register depending on the channel variable. Valid values for the parameters are:</p>
+<ul class="simple">
+<li><p>channel<ul>
+<li><p>HRPWM_CHANNEL_A - HRPWM A</p></li>
+<li><p>HRPWM_CHANNEL_B - HRPWM B</p></li>
+</ul>
+</p></li>
+<li><p>loadEvent<ul>
+<li><p>HRPWM_LOAD_ON_CNTR_ZERO - load when counter equals zero</p></li>
+<li><p>HRPWM_LOAD_ON_CNTR_PERIOD - load when counter equals period</p></li>
+<li><p>HRPWM_LOAD_ON_CNTR_ZERO_PERIOD - load when counter equals zero or period</p></li>
+</ul>
+</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EPWM module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">channel</span></code>: is high resolution period module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">loadEvent</span></code>: is the MEP (Micro Edge Positioner) control mode.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423HRPWM_setOutputSwapMode8uint32_tb">
+<span id="_CPPv323HRPWM_setOutputSwapMode8uint32_tb"></span><span id="_CPPv223HRPWM_setOutputSwapMode8uint32_tb"></span><span id="HRPWM_setOutputSwapMode__uint32_t.b"></span><span class="target" id="group__hrpwm__api_1ga917782a1f2e42c8eea2918a95b7282cd"></span>void <code class="sig-name descname">HRPWM_setOutputSwapMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, bool <em>enableOutputSwap</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423HRPWM_setOutputSwapMode8uint32_tb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the high resolution output swap mode.</p>
+<p><p>This function sets the HRPWM output swap mode. If enableOutputSwap is true, ePWMxA signal appears on ePWMxB output and ePWMxB signal appears on ePWMxA output. If it is false ePWMxA and ePWMxB outputs are unchanged.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EPWM module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enableOutputSwap</span></code>: is the output swap flag.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427HRPWM_setChannelBOutputPath8uint32_t20HRPWM_ChannelBOutput">
+<span id="_CPPv327HRPWM_setChannelBOutputPath8uint32_t20HRPWM_ChannelBOutput"></span><span id="_CPPv227HRPWM_setChannelBOutputPath8uint32_t20HRPWM_ChannelBOutput"></span><span id="HRPWM_setChannelBOutputPath__uint32_t.HRPWM_ChannelBOutput"></span><span class="target" id="group__hrpwm__api_1gafaf957c5d5b87212cc6ae876ccd75a89"></span>void <code class="sig-name descname">HRPWM_setChannelBOutputPath</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv420HRPWM_ChannelBOutput" title="HRPWM_ChannelBOutput">HRPWM_ChannelBOutput</a> <em>outputOnB</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427HRPWM_setChannelBOutputPath8uint32_t20HRPWM_ChannelBOutput" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the high resolution output on ePWMxB</p>
+<p><p>This function sets the HRPWM output signal on ePWMxB. If outputOnB is HRPWM_OUTPUT_ON_B_INV_A, ePWMxB output is an inverted version of ePWMxA. If outputOnB is HRPWM_OUTPUT_ON_B_NORMAL, ePWMxB output is ePWMxB.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EPWM module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">outputOnB</span></code>: is the output signal on ePWMxB.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426HRPWM_enableAutoConversion8uint32_t">
+<span id="_CPPv326HRPWM_enableAutoConversion8uint32_t"></span><span id="_CPPv226HRPWM_enableAutoConversion8uint32_t"></span><span id="HRPWM_enableAutoConversion__uint32_t"></span><span class="target" id="group__hrpwm__api_1ga6cc6c5808c5ac7eea9bd1c3b9b5e3e89"></span>void <code class="sig-name descname">HRPWM_enableAutoConversion</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426HRPWM_enableAutoConversion8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables MEP (Micro Edge Positioner) automatic scale mode.</p>
+<p><p>This function enables the MEP (Micro Edge Positioner) to automatically scale HRMSTEP.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EPWM module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The SFO library will calculate required MEP steps per coarse steps and feed it to HRMSTEP register. The MEP calibration module will use the value in HRMSTEP to determine appropriate number of MEP steps represented by fractional duty cycle.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427HRPWM_disableAutoConversion8uint32_t">
+<span id="_CPPv327HRPWM_disableAutoConversion8uint32_t"></span><span id="_CPPv227HRPWM_disableAutoConversion8uint32_t"></span><span id="HRPWM_disableAutoConversion__uint32_t"></span><span class="target" id="group__hrpwm__api_1ga01b24bda445d9fd57de53e272166acc9"></span>void <code class="sig-name descname">HRPWM_disableAutoConversion</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427HRPWM_disableAutoConversion8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables MEP automatic scale mode.</p>
+<p><p>This function disables the MEP (Micro Edge Positioner) from automatically scaling HRMSTEP.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EPWM module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425HRPWM_enablePeriodControl8uint32_t">
+<span id="_CPPv325HRPWM_enablePeriodControl8uint32_t"></span><span id="_CPPv225HRPWM_enablePeriodControl8uint32_t"></span><span id="HRPWM_enablePeriodControl__uint32_t"></span><span class="target" id="group__hrpwm__api_1gaf948206f55e2990add95e9330c339aed"></span>void <code class="sig-name descname">HRPWM_enablePeriodControl</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425HRPWM_enablePeriodControl8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable high resolution period feature.</p>
+<p><p>This function enables the high resolution period feature.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EPWM module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426HRPWM_disablePeriodControl8uint32_t">
+<span id="_CPPv326HRPWM_disablePeriodControl8uint32_t"></span><span id="_CPPv226HRPWM_disablePeriodControl8uint32_t"></span><span id="HRPWM_disablePeriodControl__uint32_t"></span><span class="target" id="group__hrpwm__api_1gac33276437100c2e08eec20c17efbeeb1"></span>void <code class="sig-name descname">HRPWM_disablePeriodControl</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426HRPWM_disablePeriodControl8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable high resolution period feature.</p>
+<p><p>This function disables the high resolution period feature.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EPWM module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426HRPWM_enablePhaseShiftLoad8uint32_t">
+<span id="_CPPv326HRPWM_enablePhaseShiftLoad8uint32_t"></span><span id="_CPPv226HRPWM_enablePhaseShiftLoad8uint32_t"></span><span id="HRPWM_enablePhaseShiftLoad__uint32_t"></span><span class="target" id="group__hrpwm__api_1gadbd3ea6ee0c86b83319fb7492d2bd68d"></span>void <code class="sig-name descname">HRPWM_enablePhaseShiftLoad</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426HRPWM_enablePhaseShiftLoad8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable high resolution phase load</p>
+<p><p>This function enables loading of high resolution phase shift value which is set by the function </p>
+<a class="reference internal" href="#group__hrpwm__api_1gab5ae9b42ae3e91483423894006887e3a"><span class="std std-ref">HRPWM_setPhaseShift()</span></a>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EPWM module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427HRPWM_disablePhaseShiftLoad8uint32_t">
+<span id="_CPPv327HRPWM_disablePhaseShiftLoad8uint32_t"></span><span id="_CPPv227HRPWM_disablePhaseShiftLoad8uint32_t"></span><span id="HRPWM_disablePhaseShiftLoad__uint32_t"></span><span class="target" id="group__hrpwm__api_1ga051e7328125d19be7cc4eedd6715f819"></span>void <code class="sig-name descname">HRPWM_disablePhaseShiftLoad</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427HRPWM_disablePhaseShiftLoad8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable high resolution phase load</p>
+<p><p>This function disables loading of high resolution phase shift value.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EPWM module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p></p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424HRPWM_setSyncPulseSource8uint32_t21HRPWM_SyncPulseSource">
+<span id="_CPPv324HRPWM_setSyncPulseSource8uint32_t21HRPWM_SyncPulseSource"></span><span id="_CPPv224HRPWM_setSyncPulseSource8uint32_t21HRPWM_SyncPulseSource"></span><span id="HRPWM_setSyncPulseSource__uint32_t.HRPWM_SyncPulseSource"></span><span class="target" id="group__hrpwm__api_1ga8b5b04fb405dcd57003b85d4f55fa4f4"></span>void <code class="sig-name descname">HRPWM_setSyncPulseSource</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv421HRPWM_SyncPulseSource" title="HRPWM_SyncPulseSource">HRPWM_SyncPulseSource</a> <em>syncPulseSource</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424HRPWM_setSyncPulseSource8uint32_t21HRPWM_SyncPulseSource" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set high resolution PWMSYNC source.</p>
+<p><p>This function sets the high resolution PWMSYNC pulse source. Valid values for syncPulseSource are:</p>
+<ul class="simple">
+<li><p>HRPWM_PWMSYNC_SOURCE_PERIOD - Counter equals Period.</p></li>
+<li><p>HRPWM_PWMSYNC_SOURCE_ZERO - Counter equals zero.</p></li>
+<li><p>HRPWM_PWMSYNC_SOURCE_COMPC_UP - Counter equals COMPC when counting up.</p></li>
+<li><p>HRPWM_PWMSYNC_SOURCE_COMPC_DOWN - Counter equals COMPC when counting down.</p></li>
+<li><p>HRPWM_PWMSYNC_SOURCE_COMPD_UP - Counter equals COMPD when counting up.</p></li>
+<li><p>HRPWM_PWMSYNC_SOURCE_COMPD_DOWN - Counter equals COMPD when counting down.</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EPWM module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">syncPulseSource</span></code>: is the PWMSYNC source.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428HRPWM_setTranslatorRemainder8uint32_t8uint16_t">
+<span id="_CPPv328HRPWM_setTranslatorRemainder8uint32_t8uint16_t"></span><span id="_CPPv228HRPWM_setTranslatorRemainder8uint32_t8uint16_t"></span><span id="HRPWM_setTranslatorRemainder__uint32_t.uint16_t"></span><span class="target" id="group__hrpwm__api_1gae71c3784664785a047ce842dfee0f4bd"></span>void <code class="sig-name descname">HRPWM_setTranslatorRemainder</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>trremVal</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428HRPWM_setTranslatorRemainder8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the Translator Remainder value.</p>
+<p><p>This function sets the Translator Remainder value.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EPWM module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">trremVal</span></code>: is the translator remainder value.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428HRPWM_setCounterCompareValue8uint32_t26HRPWM_CounterCompareModule8uint32_t">
+<span id="_CPPv328HRPWM_setCounterCompareValue8uint32_t26HRPWM_CounterCompareModule8uint32_t"></span><span id="_CPPv228HRPWM_setCounterCompareValue8uint32_t26HRPWM_CounterCompareModule8uint32_t"></span><span id="HRPWM_setCounterCompareValue__uint32_t.HRPWM_CounterCompareModule.uint32_t"></span><span class="target" id="group__hrpwm__api_1ga2f8999db312f7499d1a2fd8cb47eecc1"></span>void <code class="sig-name descname">HRPWM_setCounterCompareValue</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv426HRPWM_CounterCompareModule" title="HRPWM_CounterCompareModule">HRPWM_CounterCompareModule</a> <em>compModule</em>, uint32_t <em>compCount</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428HRPWM_setCounterCompareValue8uint32_t26HRPWM_CounterCompareModule8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the consolidated counter compare values in HR mode.</p>
+<p><p>This function sets the consolidated counter compare(CMPx:CMPxHR) value required in high resolution mode for counter compare registers. Valid values for compModule are:</p>
+<ul class="simple">
+<li><p>HRPWM_COUNTER_COMPARE_A - counter compare A.</p></li>
+<li><p>HRPWM_COUNTER_COMPARE_B - counter compare B.</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EPWM module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compModule</span></code>: is the Counter Compare module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compCount</span></code>: is the consolidated counter compare count value.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><strong>Note:</strong> compCount is a 24 bit value. <strong>Note:</strong> For configuring CMPA = 0xB4, CMPAHR = 0x64; value of compCount = 0xB464</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv437HRPWM_setHiResCounterCompareValueOnly8uint32_t26HRPWM_CounterCompareModule8uint16_t">
+<span id="_CPPv337HRPWM_setHiResCounterCompareValueOnly8uint32_t26HRPWM_CounterCompareModule8uint16_t"></span><span id="_CPPv237HRPWM_setHiResCounterCompareValueOnly8uint32_t26HRPWM_CounterCompareModule8uint16_t"></span><span id="HRPWM_setHiResCounterCompareValueOnly__uint32_t.HRPWM_CounterCompareModule.uint16_t"></span><span class="target" id="group__hrpwm__api_1ga67a07259086a4dac11c0f0255bfdf281"></span>void <code class="sig-name descname">HRPWM_setHiResCounterCompareValueOnly</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv426HRPWM_CounterCompareModule" title="HRPWM_CounterCompareModule">HRPWM_CounterCompareModule</a> <em>compModule</em>, uint16_t <em>hrCompCount</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv437HRPWM_setHiResCounterCompareValueOnly8uint32_t26HRPWM_CounterCompareModule8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets only the high resolution counter compare value.</p>
+<p><p>This function sets the high resolution counter compare value(CMPxHR) for counter compare registers. Valid values for compModule are:</p>
+<ul class="simple">
+<li><p>HRPWM_COUNTER_COMPARE_A - counter compare A.</p></li>
+<li><p>HRPWM_COUNTER_COMPARE_B - counter compare B.</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EPWM module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compModule</span></code>: is the Counter Compare module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hrCompCount</span></code>: is the high resolution counter compare count value.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><strong>Note:</strong> hrCompCount is an 8-bit value.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428HRPWM_getCounterCompareValue8uint32_t26HRPWM_CounterCompareModule">
+<span id="_CPPv328HRPWM_getCounterCompareValue8uint32_t26HRPWM_CounterCompareModule"></span><span id="_CPPv228HRPWM_getCounterCompareValue8uint32_t26HRPWM_CounterCompareModule"></span><span id="HRPWM_getCounterCompareValue__uint32_t.HRPWM_CounterCompareModule"></span><span class="target" id="group__hrpwm__api_1ga2334c8ec5fed561e3f77773868b0cbda"></span>uint32_t <code class="sig-name descname">HRPWM_getCounterCompareValue</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv426HRPWM_CounterCompareModule" title="HRPWM_CounterCompareModule">HRPWM_CounterCompareModule</a> <em>compModule</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428HRPWM_getCounterCompareValue8uint32_t26HRPWM_CounterCompareModule" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the consolidated counter compare values.</p>
+<p><p>This function gets the consolidated counter compare(CMPx:CMPxHR) value used in high resolution for the counter compare module specified. Valid values for compModule are:</p>
+<ul class="simple">
+<li><p>HRPWM_COUNTER_COMPARE_A - counter compare A.</p></li>
+<li><p>HRPWM_COUNTER_COMPARE_B - counter compare B.</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EPWM module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compModule</span></code>: is the Counter Compare module value.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv437HRPWM_getHiResCounterCompareValueOnly8uint32_t26HRPWM_CounterCompareModule">
+<span id="_CPPv337HRPWM_getHiResCounterCompareValueOnly8uint32_t26HRPWM_CounterCompareModule"></span><span id="_CPPv237HRPWM_getHiResCounterCompareValueOnly8uint32_t26HRPWM_CounterCompareModule"></span><span id="HRPWM_getHiResCounterCompareValueOnly__uint32_t.HRPWM_CounterCompareModule"></span><span class="target" id="group__hrpwm__api_1ga003cb6ffcf4ac68d0cd7ebb2465e2068"></span>uint16_t <code class="sig-name descname">HRPWM_getHiResCounterCompareValueOnly</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv426HRPWM_CounterCompareModule" title="HRPWM_CounterCompareModule">HRPWM_CounterCompareModule</a> <em>compModule</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv437HRPWM_getHiResCounterCompareValueOnly8uint32_t26HRPWM_CounterCompareModule" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets only the high resolution counter compare values.</p>
+<p><p>This function gets only the high resolution counter compare(CMPxHR) value for the counter compare module specified. Valid values for compModule are:</p>
+<ul class="simple">
+<li><p>HRPWM_COUNTER_COMPARE_A - counter compare A.</p></li>
+<li><p>HRPWM_COUNTER_COMPARE_B - counter compare B.</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EPWM module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compModule</span></code>: is the Counter Compare module value.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424HRPWM_setRisingEdgeDelay8uint32_t8uint32_t">
+<span id="_CPPv324HRPWM_setRisingEdgeDelay8uint32_t8uint32_t"></span><span id="_CPPv224HRPWM_setRisingEdgeDelay8uint32_t8uint32_t"></span><span id="HRPWM_setRisingEdgeDelay__uint32_t.uint32_t"></span><span class="target" id="group__hrpwm__api_1gaee7517daf4c22be73a7563743e5298cb"></span>void <code class="sig-name descname">HRPWM_setRisingEdgeDelay</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>redCount</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424HRPWM_setRisingEdgeDelay8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the consolidated RED count in high resolution mode.</p>
+<p><p>This function sets the consolidated RED (Rising Edge Delay) count (DBRED:DBREDHR) value used in high resolution mode. The value of redCount should be less than 0x200000.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EPWM module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">redCount</span></code>: is the high resolution RED count.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><strong>Note:</strong> redCount is a 21 bit value. <strong>Note:</strong> For configuring DBRED = 0x4, DBREDHR = 0x1; value of redCount = ((0x4 &lt;&lt; 7) | 0x1) = 0x201</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv433HRPWM_setHiResRisingEdgeDelayOnly8uint32_t8uint16_t">
+<span id="_CPPv333HRPWM_setHiResRisingEdgeDelayOnly8uint32_t8uint16_t"></span><span id="_CPPv233HRPWM_setHiResRisingEdgeDelayOnly8uint32_t8uint16_t"></span><span id="HRPWM_setHiResRisingEdgeDelayOnly__uint32_t.uint16_t"></span><span class="target" id="group__hrpwm__api_1gaaca241d407d9a82dd2bc3c9615d1517a"></span>void <code class="sig-name descname">HRPWM_setHiResRisingEdgeDelayOnly</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>hrRedCount</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433HRPWM_setHiResRisingEdgeDelayOnly8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the high resolution RED count only.</p>
+<p><p>This function sets only the high resolution RED (Rising Edge Delay) count(DBREDHR) value. The value of hrRedCount should be less than 128.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EPWM module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hrRedCount</span></code>: is the high resolution RED count.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><strong>Note:</strong> hrRedCount is a 7-bit value.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425HRPWM_setFallingEdgeDelay8uint32_t8uint32_t">
+<span id="_CPPv325HRPWM_setFallingEdgeDelay8uint32_t8uint32_t"></span><span id="_CPPv225HRPWM_setFallingEdgeDelay8uint32_t8uint32_t"></span><span id="HRPWM_setFallingEdgeDelay__uint32_t.uint32_t"></span><span class="target" id="group__hrpwm__api_1ga6e6bb539d290aedff7c700e86e4834f0"></span>void <code class="sig-name descname">HRPWM_setFallingEdgeDelay</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>fedCount</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425HRPWM_setFallingEdgeDelay8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the consolidated FED value in high resolution mode.</p>
+<p><p>This function sets the consolidated FED (Falling Edge Delay) count (DBFED: DBFEDHR) value used in high resolution mode. The value of fedCount should be less than 0x200000.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EPWM module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fedCount</span></code>: is the high resolution FED count.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><strong>Note:</strong> fedCount is a 21 bit value. <strong>Note:</strong> For configuring DBFED = 0x4, DBFEDHR = 0x1; value of fedCount = ((0x4 &lt;&lt; 7) | 0x1) = 0x201</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv434HRPWM_setHiResFallingEdgeDelayOnly8uint32_t8uint16_t">
+<span id="_CPPv334HRPWM_setHiResFallingEdgeDelayOnly8uint32_t8uint16_t"></span><span id="_CPPv234HRPWM_setHiResFallingEdgeDelayOnly8uint32_t8uint16_t"></span><span id="HRPWM_setHiResFallingEdgeDelayOnly__uint32_t.uint16_t"></span><span class="target" id="group__hrpwm__api_1ga97cce859f379bbd7cf7d7cc38e5496bd"></span>void <code class="sig-name descname">HRPWM_setHiResFallingEdgeDelayOnly</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>hrFedCount</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv434HRPWM_setHiResFallingEdgeDelayOnly8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets high resolution FED count only.</p>
+<p><p>This function sets only the high resolution FED (Falling Edge Delay) count (DBFEDHR)value. The value of hrFedCount should be less than 128.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EPWM module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hrFedCount</span></code>: is the high resolution FED count.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><strong>Note:</strong> hrFedCount is a 7-bit value.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416HRPWM_setMEPStep8uint32_t8uint16_t">
+<span id="_CPPv316HRPWM_setMEPStep8uint32_t8uint16_t"></span><span id="_CPPv216HRPWM_setMEPStep8uint32_t8uint16_t"></span><span id="HRPWM_setMEPStep__uint32_t.uint16_t"></span><span class="target" id="group__hrpwm__api_1ga5c671887ab9bf0e22818e00a21c49ca2"></span>void <code class="sig-name descname">HRPWM_setMEPStep</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>mepCount</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416HRPWM_setMEPStep8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set high resolution MEP (Micro Edge Positioner) step.</p>
+<p><p>This function sets the high resolution MEP (Micro Edge Positioner) step count. The maximum value for the MEP count step is 255.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EPWM module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mepCount</span></code>: is the high resolution MEP (Micro Edge Positioner) step count.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv430HRPWM_setDeadbandMEPEdgeSelect8uint32_t25HRPWM_MEPDeadBandEdgeMode">
+<span id="_CPPv330HRPWM_setDeadbandMEPEdgeSelect8uint32_t25HRPWM_MEPDeadBandEdgeMode"></span><span id="_CPPv230HRPWM_setDeadbandMEPEdgeSelect8uint32_t25HRPWM_MEPDeadBandEdgeMode"></span><span id="HRPWM_setDeadbandMEPEdgeSelect__uint32_t.HRPWM_MEPDeadBandEdgeMode"></span><span class="target" id="group__hrpwm__api_1ga3d756c494e7efe94f339cee261e2b1bd"></span>void <code class="sig-name descname">HRPWM_setDeadbandMEPEdgeSelect</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv425HRPWM_MEPDeadBandEdgeMode" title="HRPWM_MEPDeadBandEdgeMode">HRPWM_MEPDeadBandEdgeMode</a> <em>mepDBEdge</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430HRPWM_setDeadbandMEPEdgeSelect8uint32_t25HRPWM_MEPDeadBandEdgeMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set high resolution Dead Band MEP (Micro Edge Positioner) control.</p>
+<p><p>This function sets the high resolution Dead Band edge that the MEP (Micro Edge Positioner) controls Valid values for mepDBEdge are:</p>
+<ul class="simple">
+<li><p>HRPWM_DB_MEP_CTRL_DISABLE - HRPWM is disabled</p></li>
+<li><p>HRPWM_DB_MEP_CTRL_RED - MEP (Micro Edge Positioner) controls Rising Edge Delay</p></li>
+<li><p>HRPWM_DB_MEP_CTRL_FED - MEP (Micro Edge Positioner) controls Falling Edge Delay</p></li>
+<li><p>HRPWM_DB_MEP_CTRL_RED_FED - MEP (Micro Edge Positioner) controls both Falling and Rising edge delays</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EPWM module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mepDBEdge</span></code>: is the high resolution MEP (Micro Edge Positioner) control edge.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv432HRPWM_setRisingEdgeDelayLoadMode8uint32_t14HRPWM_LoadMode">
+<span id="_CPPv332HRPWM_setRisingEdgeDelayLoadMode8uint32_t14HRPWM_LoadMode"></span><span id="_CPPv232HRPWM_setRisingEdgeDelayLoadMode8uint32_t14HRPWM_LoadMode"></span><span id="HRPWM_setRisingEdgeDelayLoadMode__uint32_t.HRPWM_LoadMode"></span><span class="target" id="group__hrpwm__api_1ga0218aec7a094c687bcfb85b45d1002ce"></span>void <code class="sig-name descname">HRPWM_setRisingEdgeDelayLoadMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv414HRPWM_LoadMode" title="HRPWM_LoadMode">HRPWM_LoadMode</a> <em>loadEvent</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv432HRPWM_setRisingEdgeDelayLoadMode8uint32_t14HRPWM_LoadMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set the high resolution Dead Band RED load mode.</p>
+<p><p>This function sets the high resolution Rising Edge Delay(RED)Dead Band count load mode. Valid values for loadEvent are:</p>
+<ul class="simple">
+<li><p>HRPWM_LOAD_ON_CNTR_ZERO - load when counter equals zero.</p></li>
+<li><p>HRPWM_LOAD_ON_CNTR_PERIOD - load when counter equals period</p></li>
+<li><p>HRPWM_LOAD_ON_CNTR_ZERO_PERIOD - load when counter equals zero or period.</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EPWM module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">loadEvent</span></code>: is the shadow to active load event.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv433HRPWM_setFallingEdgeDelayLoadMode8uint32_t14HRPWM_LoadMode">
+<span id="_CPPv333HRPWM_setFallingEdgeDelayLoadMode8uint32_t14HRPWM_LoadMode"></span><span id="_CPPv233HRPWM_setFallingEdgeDelayLoadMode8uint32_t14HRPWM_LoadMode"></span><span id="HRPWM_setFallingEdgeDelayLoadMode__uint32_t.HRPWM_LoadMode"></span><span class="target" id="group__hrpwm__api_1ga84ce514ad6924651c72856266742c1bd"></span>void <code class="sig-name descname">HRPWM_setFallingEdgeDelayLoadMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv414HRPWM_LoadMode" title="HRPWM_LoadMode">HRPWM_LoadMode</a> <em>loadEvent</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433HRPWM_setFallingEdgeDelayLoadMode8uint32_t14HRPWM_LoadMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set the high resolution Dead Band FED load mode.</p>
+<p><p>This function sets the high resolution Falling Edge Delay(FED) Dead Band count load mode. Valid values for loadEvent are:</p>
+<ul class="simple">
+<li><p>HRPWM_LOAD_ON_CNTR_ZERO - load when counter equals zero.</p></li>
+<li><p>HRPWM_LOAD_ON_CNTR_PERIOD - load when counter equals period</p></li>
+<li><p>HRPWM_LOAD_ON_CNTR_ZERO_PERIOD - load when counter equals zero or period.</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EPWM module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">loadEvent</span></code>: is the shadow to active load event.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>The code for this module is contained in driverlib/hrpwm.c, with driverlib/hrpwm.h containing the API declarations for use by applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="epwm.html" class="btn btn-neutral float-left" title="EPWM Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="eqep.html" class="btn btn-neutral float-right" title="EQEP Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

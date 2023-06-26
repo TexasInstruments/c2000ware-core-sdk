@@ -1,0 +1,825 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>SSI Module &mdash; F2838x CM API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F2838x CM API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="SYSCTL Module" href="sysctl.html"/>
+        <link rel="prev" title="MPU Module" href="mpu.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F2838x CM API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="aes.html">AES Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmmpu.html">CM-MPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cpu.html">CPU Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="escss.html">ESCSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ethernet.html">Ethernet Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="udma.html">UDMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gcrc.html">GCRC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipc.html">IPC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcan.html">MCAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mpu.html">MPU Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">SSI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="systick.html">SysTick Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uart.html">UART Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F2838x CM API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>SSI Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ssi-module">
+<span id="ssi"></span><h1>SSI Module<a class="headerlink" href="#ssi-module" title="Permalink to this headline">¶</a></h1>
+<p>The Synchronous Serial Interface (SSI) API provides a set of functions for configuring
+and using the SSI module, a serial communications protocol. Functions are provided
+to setup and configure the module operating options, send and receive data, and for interrupt/error handling</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__ssi__api"></span><em>group</em> <code class="sig-name descname">ssi_api</code></dt>
+<dd><p>This module is used for SSI configurations. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.SSI_INT_TXEOT">
+<span class="target" id="group__ssi__api_1ga1fbf4f74bffae5882abf34e6a5de767e"></span><code class="sig-name descname">SSI_INT_TXEOT</code> 0x00000040U<a class="headerlink" href="#c.SSI_INT_TXEOT" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SSI_INT_DMATX">
+<span class="target" id="group__ssi__api_1gab10e881704c5be3f6dede2d2bae720b9"></span><code class="sig-name descname">SSI_INT_DMATX</code> 0x00000020U<a class="headerlink" href="#c.SSI_INT_DMATX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SSI_INT_DMARX">
+<span class="target" id="group__ssi__api_1ga2c1654701b511de18d3768e94e15e2e9"></span><code class="sig-name descname">SSI_INT_DMARX</code> 0x00000010U<a class="headerlink" href="#c.SSI_INT_DMARX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SSI_INT_TXFF">
+<span class="target" id="group__ssi__api_1gabf4ec2dc0fb9f68adce8d18bb9c5523f"></span><code class="sig-name descname">SSI_INT_TXFF</code> 0x00000008U<a class="headerlink" href="#c.SSI_INT_TXFF" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SSI_INT_RXFF">
+<span class="target" id="group__ssi__api_1gaed8a485ac6c12c45e29aa59331346b90"></span><code class="sig-name descname">SSI_INT_RXFF</code> 0x00000004U<a class="headerlink" href="#c.SSI_INT_RXFF" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SSI_INT_RXTO">
+<span class="target" id="group__ssi__api_1ga5fda1b7081d98d7b8ee0240993e5e538"></span><code class="sig-name descname">SSI_INT_RXTO</code> 0x00000002U<a class="headerlink" href="#c.SSI_INT_RXTO" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SSI_INT_RXOR">
+<span class="target" id="group__ssi__api_1gab7f21f4f4419404103cbcec2c991bc52"></span><code class="sig-name descname">SSI_INT_RXOR</code> 0x00000001U<a class="headerlink" href="#c.SSI_INT_RXOR" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SSI_FRF_MOTO_MODE_0">
+<span class="target" id="group__ssi__api_1ga510fb7c5fbaa13005b174e144eb29260"></span><code class="sig-name descname">SSI_FRF_MOTO_MODE_0</code> 0x00000000U<a class="headerlink" href="#c.SSI_FRF_MOTO_MODE_0" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SSI_FRF_MOTO_MODE_1">
+<span class="target" id="group__ssi__api_1ga0521eff7edc2fe3567ad199550e8172a"></span><code class="sig-name descname">SSI_FRF_MOTO_MODE_1</code> 0x00000002U<a class="headerlink" href="#c.SSI_FRF_MOTO_MODE_1" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SSI_FRF_MOTO_MODE_2">
+<span class="target" id="group__ssi__api_1gafc24f6d7d30c77a3ca204d66636b61c5"></span><code class="sig-name descname">SSI_FRF_MOTO_MODE_2</code> 0x00000001U<a class="headerlink" href="#c.SSI_FRF_MOTO_MODE_2" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SSI_FRF_MOTO_MODE_3">
+<span class="target" id="group__ssi__api_1gab65ff8bd097caff2aa9da9bb56d6f7b4"></span><code class="sig-name descname">SSI_FRF_MOTO_MODE_3</code> 0x00000003U<a class="headerlink" href="#c.SSI_FRF_MOTO_MODE_3" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SSI_FRF_TI">
+<span class="target" id="group__ssi__api_1ga3509b40c6ae1a96b1f202c48bb68bf4f"></span><code class="sig-name descname">SSI_FRF_TI</code> 0x00000010U<a class="headerlink" href="#c.SSI_FRF_TI" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SSI_MODE_MASTER">
+<span class="target" id="group__ssi__api_1ga56dae2de51b66a6533a27e858bc76fe9"></span><code class="sig-name descname">SSI_MODE_MASTER</code> 0x00000000U<a class="headerlink" href="#c.SSI_MODE_MASTER" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SSI_MODE_SLAVE">
+<span class="target" id="group__ssi__api_1gac3f7699c9d6908dcbda8d0b414fd1ac7"></span><code class="sig-name descname">SSI_MODE_SLAVE</code> 0x00000001U<a class="headerlink" href="#c.SSI_MODE_SLAVE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SSI_DMA_TX">
+<span class="target" id="group__ssi__api_1ga90f31eb354206da6173911200ba7d2cb"></span><code class="sig-name descname">SSI_DMA_TX</code> 0x00000002U<a class="headerlink" href="#c.SSI_DMA_TX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SSI_DMA_RX">
+<span class="target" id="group__ssi__api_1gacad5d21da630367195b15fe80be03a64"></span><code class="sig-name descname">SSI_DMA_RX</code> 0x00000001U<a class="headerlink" href="#c.SSI_DMA_RX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv416SSI_enableModule8uint32_t">
+<span id="_CPPv316SSI_enableModule8uint32_t"></span><span id="_CPPv216SSI_enableModule8uint32_t"></span><span id="SSI_enableModule__uint32_t"></span><span class="target" id="group__ssi__api_1ga793d1eff4053896a25bacd8242ca233c"></span>void <code class="sig-name descname">SSI_enableModule</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416SSI_enableModule8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the synchronous serial interface.</p>
+<p><p>This function enables operation of the synchronous serial interface. The synchronous serial interface must be configured before it is enabled.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SSI module base address.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>The function <a class="reference internal" href="#group__ssi__api_1ga5ff3d7af12064d3a1355911c12ec5406"><span class="std std-ref">SSI_setConfig()</span></a> must be called before calling <a class="reference internal" href="#group__ssi__api_1ga793d1eff4053896a25bacd8242ca233c"><span class="std std-ref">SSI_enableModule()</span></a> function</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417SSI_disableModule8uint32_t">
+<span id="_CPPv317SSI_disableModule8uint32_t"></span><span id="_CPPv217SSI_disableModule8uint32_t"></span><span id="SSI_disableModule__uint32_t"></span><span class="target" id="group__ssi__api_1gadf8bb1b9ec43943641ca8bdef18ce965"></span>void <code class="sig-name descname">SSI_disableModule</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417SSI_disableModule8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the synchronous serial interface.</p>
+<p><p>This function disables operation of the synchronous serial interface.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SSI module base address.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421SSI_registerInterrupt8uint32_tPFvvE">
+<span id="_CPPv321SSI_registerInterrupt8uint32_tPFvvE"></span><span id="_CPPv221SSI_registerInterrupt8uint32_tPFvvE"></span><span class="target" id="group__ssi__api_1ga1c77f1a53d9ec984f6d378371ec621ae"></span>void <code class="sig-name descname">SSI_registerInterrupt</code><span class="sig-paren">(</span>uint32_t <em>intNum</em>, void (*<em>pfnHandler</em>)<span class="sig-paren">(</span>void<span class="sig-paren">)</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421SSI_registerInterrupt8uint32_tPFvvE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Registers an interrupt handler for the synchronous serial interface.</p>
+<p><p>This function registers the handler to be called when an SSI interrupt occurs. This function enables the global interrupt in the interrupt controller; specific SSI interrupts must be enabled via </p>
+<a class="reference internal" href="#group__ssi__api_1ga17bb7d79704941e875776fe54e2825b6"><span class="std std-ref">SSI_enableInterrupt()</span></a>. If necessary, it is the interrupt handler’s responsibility to clear the interrupt source via <a class="reference internal" href="#group__ssi__api_1ga21c7e7c7abaac3e3ece9e9e5a56b0564"><span class="std std-ref">SSI_clearInterruptStatus()</span></a>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">intNum</span></code>: specifies the SSI interrupt number </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pfnHandler</span></code>: is a pointer to the function to be called when the SSI interrupt occurs.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="interrupt.html#group__interrupt__api_1ga97b4cb74e7e152d031bcdbc4e4428127"><span class="std std-ref">Interrupt_registerHandler()</span></a> for important information about registering interrupt handlers.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423SSI_unregisterInterrupt8uint32_t">
+<span id="_CPPv323SSI_unregisterInterrupt8uint32_t"></span><span id="_CPPv223SSI_unregisterInterrupt8uint32_t"></span><span id="SSI_unregisterInterrupt__uint32_t"></span><span class="target" id="group__ssi__api_1gacd281c71411f42fe404ffe0256fcb5ba"></span>void <code class="sig-name descname">SSI_unregisterInterrupt</code><span class="sig-paren">(</span>uint32_t <em>intNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423SSI_unregisterInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Unregisters an interrupt handler for the synchronous serial interface.</p>
+<p><p>This function clears the handler to be called when an SSI interrupt occurs. This function also masks off the interrupt in the interrupt controller so that the interrupt handler no longer is called.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">intNum</span></code>: specifies the SSI interrupt number</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="interrupt.html#group__interrupt__api_1ga97b4cb74e7e152d031bcdbc4e4428127"><span class="std std-ref">Interrupt_registerHandler()</span></a> for important information about registering interrupt handlers.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419SSI_enableInterrupt8uint32_t8uint32_t">
+<span id="_CPPv319SSI_enableInterrupt8uint32_t8uint32_t"></span><span id="_CPPv219SSI_enableInterrupt8uint32_t8uint32_t"></span><span id="SSI_enableInterrupt__uint32_t.uint32_t"></span><span class="target" id="group__ssi__api_1ga17bb7d79704941e875776fe54e2825b6"></span>void <code class="sig-name descname">SSI_enableInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>interrupts</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419SSI_enableInterrupt8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables individual SSI interrupt sources.</p>
+<p><p>This function enables the indicated SSI interrupt sources. Only the sources that are enabled can be reflected to the processor interrupt; disabled sources have no effect on the processor. The </p>
+<em>interrupts</em> parameter can be any of the \b SSI_INT_TXEOT, <strong>SSI_INT_DMATX</strong>, <strong>SSI_INT_DMARX</strong>, <strong>SSI_INT_TXFF</strong>, <strong>SSI_INT_RXFF</strong>, <strong>SSI_INT_RXTO</strong>, or <strong>SSI_INT_RXOR</strong> values.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SSI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">interrupts</span></code>: is a bit mask of the interrupt sources to be enabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420SSI_disableInterrupt8uint32_t8uint32_t">
+<span id="_CPPv320SSI_disableInterrupt8uint32_t8uint32_t"></span><span id="_CPPv220SSI_disableInterrupt8uint32_t8uint32_t"></span><span id="SSI_disableInterrupt__uint32_t.uint32_t"></span><span class="target" id="group__ssi__api_1ga4982fa4597eedc46a925c669c0560057"></span>void <code class="sig-name descname">SSI_disableInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>interrupts</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420SSI_disableInterrupt8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables individual SSI interrupt sources.</p>
+<p><p>This function disables the indicated SSI interrupt sources. The </p>
+<em>interrupts</em> parameter can be any of the <strong>SSI_INT_TXEOT</strong>, <strong>SSI_INT_DMATX</strong>, <strong>SSI_INT_DMARX</strong>, <strong>SSI_INT_TXFF</strong>, <strong>SSI_INT_RXFF</strong>, <strong>SSI_INT_RXTO</strong>, or <strong>SSI_INT_RXOR</strong> values.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SSI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">interrupts</span></code>: is a bit mask of the interrupt sources to be disabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422SSI_getInterruptStatus8uint32_tb">
+<span id="_CPPv322SSI_getInterruptStatus8uint32_tb"></span><span id="_CPPv222SSI_getInterruptStatus8uint32_tb"></span><span id="SSI_getInterruptStatus__uint32_t.b"></span><span class="target" id="group__ssi__api_1ga4ec1876b8a538115deaf6dc5dc30ffe8"></span>uint32_t <code class="sig-name descname">SSI_getInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em>, bool <em>masked</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422SSI_getInterruptStatus8uint32_tb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the current interrupt status.</p>
+<p><p>This function returns the interrupt status for the SSI module. Either the raw interrupt status or the status of interrupts that are allowed to reflect to the processor can be returned.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SSI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">masked</span></code>: is <strong>false</strong> if the raw interrupt status is required or <strong>true</strong> if the masked interrupt status is required.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The current interrupt status, enumerated as a bit field of <strong>SSI_INT_TXEOT</strong>, <strong>SSI_INT_DMATX</strong>, b SSI_INT_DMARX, <strong>SSI_INT_TXFF</strong>, <strong>SSI_INT_RXFF</strong>, <strong>SSI_RXTO</strong>, or <strong>SSI_RXOR</strong> </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424SSI_clearInterruptStatus8uint32_t8uint32_t">
+<span id="_CPPv324SSI_clearInterruptStatus8uint32_t8uint32_t"></span><span id="_CPPv224SSI_clearInterruptStatus8uint32_t8uint32_t"></span><span id="SSI_clearInterruptStatus__uint32_t.uint32_t"></span><span class="target" id="group__ssi__api_1ga21c7e7c7abaac3e3ece9e9e5a56b0564"></span>void <code class="sig-name descname">SSI_clearInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>interrupts</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424SSI_clearInterruptStatus8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears SSI interrupt sources.</p>
+<p><p>This function clears the specified SSI interrupt sources so that they no longer assert. This function must be called in the interrupt handler to keep the interrupts from being triggered again immediately upon exit. The </p>
+<em>interrupts</em> parameter can consist of either or both the <strong>SSI_RXTO</strong> and <strong>SSI_RXOR</strong> values.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SSI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">interrupts</span></code>: is a bit mask of the interrupt sources to be cleared.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Because there is a write buffer in the Cortex-M processor, it may take several clock cycles before the interrupt source is actually cleared. Therefore, it is recommended that the interrupt source be cleared early in the interrupt handler (as opposed to the very last action) to avoid returning from the interrupt handler before the interrupt source is actually cleared. Failure to do so may result in the interrupt handler being immediately reentered (because the interrupt controller still sees the interrupt source asserted).</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv413SSI_enableDMA8uint32_t8uint32_t">
+<span id="_CPPv313SSI_enableDMA8uint32_t8uint32_t"></span><span id="_CPPv213SSI_enableDMA8uint32_t8uint32_t"></span><span id="SSI_enableDMA__uint32_t.uint32_t"></span><span class="target" id="group__ssi__api_1ga9d351d62f6b1137f4193900a56dbae6a"></span>void <code class="sig-name descname">SSI_enableDMA</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>dmaFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413SSI_enableDMA8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables SSI DMA operation.</p>
+<p><p>This function enables the specified SSI DMA features. The SSI can be configured to use DMA for transmit and/or receive data transfers. The </p>
+<em>dmaFlags</em> parameter is the logical OR of any of the following values:<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SSI module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dmaFlags</span></code>: is a bit mask of the DMA features to enable.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p>SSI_DMA_RX - enable DMA for receive</p></li>
+<li><p>SSI_DMA_TX - enable DMA for transmit</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>The uDMA controller must also be set up before DMA can be used with the SSI.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414SSI_disableDMA8uint32_t8uint32_t">
+<span id="_CPPv314SSI_disableDMA8uint32_t8uint32_t"></span><span id="_CPPv214SSI_disableDMA8uint32_t8uint32_t"></span><span id="SSI_disableDMA__uint32_t.uint32_t"></span><span class="target" id="group__ssi__api_1gadc2e35e830e36a63fd28c0c10bfb6a5c"></span>void <code class="sig-name descname">SSI_disableDMA</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>dmaFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414SSI_disableDMA8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables SSI DMA operation.</p>
+<p><p>This function is used to disable SSI DMA features that were enabled by </p>
+<a class="reference internal" href="#group__ssi__api_1ga9d351d62f6b1137f4193900a56dbae6a"><span class="std std-ref">SSI_enableDMA()</span></a>. The specified SSI DMA features are disabled. The <em>dmaFlags</em> parameter is the logical OR of any of the following values:<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SSI module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dmaFlags</span></code>: is a bit mask of the DMA features to disable.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p>SSI_DMA_RX - disable DMA for receive</p></li>
+<li><p>SSI_DMA_TX - disable DMA for transmit</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv410SSI_isBusy8uint32_t">
+<span id="_CPPv310SSI_isBusy8uint32_t"></span><span id="_CPPv210SSI_isBusy8uint32_t"></span><span id="SSI_isBusy__uint32_t"></span><span class="target" id="group__ssi__api_1ga4603e8f36cf448a3af651141e7735ad8"></span>bool <code class="sig-name descname">SSI_isBusy</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410SSI_isBusy8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Determines whether the SSI transmitter is busy or not.</p>
+<p><p>This function allows the caller to determine whether all transmitted bytes have cleared the transmitter hardware. If </p>
+<strong>false</strong> is returned, then the transmit FIFO is empty and all bits of the last transmitted word have left the hardware shift register.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SSI module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if the SSI is transmitting or <strong>false</strong> if all transmissions are complete. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418SSI_enableLoopback8uint32_t">
+<span id="_CPPv318SSI_enableLoopback8uint32_t"></span><span id="_CPPv218SSI_enableLoopback8uint32_t"></span><span id="SSI_enableLoopback__uint32_t"></span><span class="target" id="group__ssi__api_1ga4d989bff4e9550f776fad0a67d1e625d"></span>void <code class="sig-name descname">SSI_enableLoopback</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418SSI_enableLoopback8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables internal loopback mode for SSI.</p>
+<p><p>This function configures SSI port in internal loopback mode to help with diagnostics and debug. In this mode, Output of the transmit serial shift register is connected internally to the input of the receive serial shift register.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SSI module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419SSI_disableLoopback8uint32_t">
+<span id="_CPPv319SSI_disableLoopback8uint32_t"></span><span id="_CPPv219SSI_disableLoopback8uint32_t"></span><span id="SSI_disableLoopback__uint32_t"></span><span class="target" id="group__ssi__api_1gaa472e66b4c3e10451e22610b1936ef32"></span>void <code class="sig-name descname">SSI_disableLoopback</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419SSI_disableLoopback8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables internal loopback mode for SSI.</p>
+<p><p>This function is used to disable SSI internal loopback that was enabled by </p>
+<a class="reference internal" href="#group__ssi__api_1ga4d989bff4e9550f776fad0a67d1e625d"><span class="std std-ref">SSI_enableLoopback()</span></a>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SSI module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417SSI_enableFssHold8uint32_t">
+<span id="_CPPv317SSI_enableFssHold8uint32_t"></span><span id="_CPPv217SSI_enableFssHold8uint32_t"></span><span id="SSI_enableFssHold__uint32_t"></span><span class="target" id="group__ssi__api_1gaaf8f79477727c3bc49e852bfe011755f"></span>void <code class="sig-name descname">SSI_enableFssHold</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417SSI_enableFssHold8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the Fss hold feature</p>
+<p><p>This function configures the SSI module to hold the FSS low when there is available data in the Tx FIFO. The Fss signal is de-asserted when the Tx FIFO is empty</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SSI module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>This feature is not available in TI frame format. It is only available in Freescale frame format.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418SSI_disableFssHold8uint32_t">
+<span id="_CPPv318SSI_disableFssHold8uint32_t"></span><span id="_CPPv218SSI_disableFssHold8uint32_t"></span><span id="SSI_disableFssHold__uint32_t"></span><span class="target" id="group__ssi__api_1ga47909d41226ba94de04c4e20e3b41df1"></span>void <code class="sig-name descname">SSI_disableFssHold</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418SSI_disableFssHold8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the Fss hold feature</p>
+<p><p>This function configures the SSI module to de-assert the SSIFss signal for one SSI clock cycle after every byte is transferred. This mode is the default operation.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SSI module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>This feature is not available in TI frame format. It is only available in Freescale frame format.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv413SSI_setConfig8uint32_t8uint32_t8uint32_t8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv313SSI_setConfig8uint32_t8uint32_t8uint32_t8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv213SSI_setConfig8uint32_t8uint32_t8uint32_t8uint32_t8uint32_t8uint32_t"></span><span id="SSI_setConfig__uint32_t.uint32_t.uint32_t.uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__ssi__api_1ga5ff3d7af12064d3a1355911c12ec5406"></span>void <code class="sig-name descname">SSI_setConfig</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>ssiClk</em>, uint32_t <em>protocol</em>, uint32_t <em>mode</em>, uint32_t <em>bitRate</em>, uint32_t <em>dataWidth</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413SSI_setConfig8uint32_t8uint32_t8uint32_t8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the synchronous serial interface.</p>
+<p><p>This function configures the synchronous serial interface. It sets the SSI protocol, mode of operation, bit rate, and data width.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SSI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ssiClk</span></code>: is the rate of the clock supplied to the SSI module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">protocol</span></code>: specifies the data transfer protocol. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: specifies the mode of operation. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bitRate</span></code>: specifies the clock rate. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataWidth</span></code>: specifies number of bits transferred per frame.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>protocol</em> parameter defines the data frame format. The <em>protocol</em> parameter can be one of the following values: <strong>SSI_FRF_MOTO_MODE_0</strong>, <strong>SSI_FRF_MOTO_MODE_1</strong>, <strong>SSI_FRF_MOTO_MODE_2</strong>, <strong>SSI_FRF_MOTO_MODE_3</strong> or <strong>SSI_FRF_TI</strong>. The Motorola/Freescale frame formats encode the following polarity and phase configurations:</p>
+<p></p>
+<p>The <em>mode</em> parameter defines the operating mode of the SSI module. The SSI module can operate as a master or slave. The <em>mode</em> parameter can be one of the following values: <strong>SSI_MODE_MASTER</strong> or <strong>SSI_MODE_SLAVE</strong>.</p>
+<p>The <em>bitRate</em> parameter defines the bit rate for the SSI. This bit rate must satisfy the following clock ratio criteria:</p>
+<p><ul class="simple">
+<li><p>ssiClk &gt;= 2 * bit rate (master mode)</p></li>
+<li><p>ssiClk &gt;= 12 * bit rate (slave modes)</p></li>
+</ul>
+</p>
+<p>where ssiClk is the frequency of the clock supplied to the SSI module. Note that there are frequency limits for FSSI that are described in the Bit Rate Generation section of the SSI chapter in the data sheet.</p>
+<p>The <em>dataWidth</em> parameter defines the width of the data transfers and can be a value between 4 and 16, inclusive.</p>
+<p>The peripheral clock is the same as the processor clock. The macro CM_CLK_FREQ from sysctl.h can be used as the parameter</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv413SSI_writeData8uint32_t8uint32_t">
+<span id="_CPPv313SSI_writeData8uint32_t8uint32_t"></span><span id="_CPPv213SSI_writeData8uint32_t8uint32_t"></span><span id="SSI_writeData__uint32_t.uint32_t"></span><span class="target" id="group__ssi__api_1ga050f346fc7f62081bba17d243b12fa84"></span>void <code class="sig-name descname">SSI_writeData</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413SSI_writeData8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Puts a data element into the SSI transmit FIFO.</p>
+<p><p>This function places the supplied data into the transmit FIFO of the specified SSI module. If there is no space available in the transmit FIFO, this function waits until there is space available before returning.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SSI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: is the data to be transmitted over the SSI interface.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>The upper 32 - N bits of <em>data</em> are discarded by the hardware, where N is the data width as configured by <a class="reference internal" href="#group__ssi__api_1ga5ff3d7af12064d3a1355911c12ec5406"><span class="std std-ref">SSI_setConfig()</span></a>. For example, if the interface is configured for 8-bit data width, the upper 24 bits of <em>data</em> are discarded.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424SSI_writeDataNonBlocking8uint32_t8uint32_t">
+<span id="_CPPv324SSI_writeDataNonBlocking8uint32_t8uint32_t"></span><span id="_CPPv224SSI_writeDataNonBlocking8uint32_t8uint32_t"></span><span id="SSI_writeDataNonBlocking__uint32_t.uint32_t"></span><span class="target" id="group__ssi__api_1ga6258794ed90f09ca9e7ef50afb6807ee"></span>int32_t <code class="sig-name descname">SSI_writeDataNonBlocking</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424SSI_writeDataNonBlocking8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Puts a data element into the SSI transmit FIFO.</p>
+<p><p>This function places the supplied data into the transmit FIFO of the specified SSI module. If there is no space in the FIFO, then this function returns a zero.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SSI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: is the data to be transmitted over the SSI interface.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>The upper 32 - N bits of <em>data</em> are discarded by the hardware, where N is the data width as configured by <a class="reference internal" href="#group__ssi__api_1ga5ff3d7af12064d3a1355911c12ec5406"><span class="std std-ref">SSI_setConfig()</span></a>. For example, if the interface is configured for 8-bit data width, the upper 24 bits of <em>data</em> are discarded.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>Returns the number of elements written to the SSI transmit FIFO. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv412SSI_readData8uint32_tP8uint32_t">
+<span id="_CPPv312SSI_readData8uint32_tP8uint32_t"></span><span id="_CPPv212SSI_readData8uint32_tP8uint32_t"></span><span id="SSI_readData__uint32_t.uint32_tP"></span><span class="target" id="group__ssi__api_1gaf38f42fa2e4e35ce887a4d8ec1ab9daf"></span>void <code class="sig-name descname">SSI_readData</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t *<em>dataPtr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412SSI_readData8uint32_tP8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets a data element from the SSI receive FIFO.</p>
+<p><p>This function gets received data from the receive FIFO of the specified SSI module and places that data into the location specified by the </p>
+<em>dataPtr</em> parameter. If there is no data available, this function waits until data is received before returning.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SSI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataPtr</span></code>: is a pointer to a storage location for data that was received over the SSI interface.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Only the lower N bits of the value written to <em>dataPtr</em> contain valid data, where N is the data width as configured by <a class="reference internal" href="#group__ssi__api_1ga5ff3d7af12064d3a1355911c12ec5406"><span class="std std-ref">SSI_setConfig()</span></a>. For example, if the interface is configured for 8-bit data width, only the lower 8 bits of the value written to <em>dataPtr</em> contain valid data.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423SSI_readDataNonBlocking8uint32_tP8uint32_t">
+<span id="_CPPv323SSI_readDataNonBlocking8uint32_tP8uint32_t"></span><span id="_CPPv223SSI_readDataNonBlocking8uint32_tP8uint32_t"></span><span id="SSI_readDataNonBlocking__uint32_t.uint32_tP"></span><span class="target" id="group__ssi__api_1ga49d182b401dd6dc2f7ac285d94bc5b88"></span>int32_t <code class="sig-name descname">SSI_readDataNonBlocking</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t *<em>dataPtr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423SSI_readDataNonBlocking8uint32_tP8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets a data element from the SSI receive FIFO.</p>
+<p><p>This function gets received data from the receive FIFO of the specified SSI module and places that data into the location specified by the </p>
+<em>data</em> parameter. If there is no data in the FIFO, then this function returns a zero.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SSI module base address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataPtr</span></code>: is a pointer to a storage location for data that was received over the SSI interface.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Only the lower N bits of the value written to <em>dataPtr</em> contain valid data, where N is the data width as configured by <a class="reference internal" href="#group__ssi__api_1ga5ff3d7af12064d3a1355911c12ec5406"><span class="std std-ref">SSI_setConfig()</span></a>. For example, if the interface is configured for 8-bit data width, only the lower 8 bits of the value written to <em>dataPtr</em> contain valid data.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>Returns the number of elements read from the SSI receive FIFO. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>The following describes important details and recommendations when using the SSI API.</p>
+<p>Once system control enables the SSI module,  SSI_setConfig() needs to be called
+to set properties like master or slave mode, baud rate, data format, data width. There are functions
+available to configure the interrupts and DMA support if required. Once the configuration is done  SSI_enableModule() should be called to enable
+the operation of the module.</p>
+<p>To transmit data, there are a two options. SSI_writeDataNonBlocking() will check if the trasnmit buffer is empty.
+If empty, it writes the specified data to the transmit buffer and return. If not empty, it returns a fail status.</p>
+<blockquote>
+<div><p>SSI_writeData() function waits for the trnamit buffer to be empty before writing the specified data.</p>
+</div></blockquote>
+<p>To receive data, there are a two options. SSI_readDataNonBlocking() will check if there is data availbale in the receive buffer.
+If available, it returns the buffer content. Else, it returns a fail status.</p>
+<blockquote>
+<div><p>SSI_readData() function waits for the recieve data and returns the same.</p>
+</div></blockquote>
+<p>The code for this module is contained in driverlib_cm/ssi.c, with
+driverlib_cm/ssi.h containing the API declarations for use by
+applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="mpu.html" class="btn btn-neutral float-left" title="MPU Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sysctl.html" class="btn btn-neutral float-right" title="SYSCTL Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

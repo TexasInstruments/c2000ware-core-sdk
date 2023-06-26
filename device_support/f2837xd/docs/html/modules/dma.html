@@ -1,0 +1,1348 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>DMA Module &mdash; F2837xd API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F2837xd API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="ECAP Module" href="ecap.html"/>
+        <link rel="prev" title="DCSM Module" href="dcsm.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F2837xd API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="adc.html">ADC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asysctl.html">ASysCtl Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla.html">CLA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clb.html">CLB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmpss.html">CMPSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dac.html">DAC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">DMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ecap.html">ECAP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emif.html">EMIF Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="epwm.html">EPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hrpwm.html">HRPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqep.html">EQEP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcbsp.html">MCBSP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci.html">SCI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdfm.html">SDFM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">SPI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upp.html">UPP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version.html">Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xbar.html">XBAR Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F2837xd API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>DMA Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="dma-module">
+<span id="dma"></span><h1>DMA Module<a class="headerlink" href="#dma-module" title="Permalink to this headline">¶</a></h1>
+<p>The direct memory access (DMA) API provides a set of functions to configure
+transfers of data between peripherals or memory using the device’s six-channel
+DMA module. Functions are provided to configure which event triggers a DMA
+transfer, to configure the locations, sizes, and behaviors of the transfers,
+and to set up and handle interrupts.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__dma__api"></span><em>group</em> <code class="sig-name descname">dma_api</code></dt>
+<dd><p>This module is used for DMA configurations. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.DMA_CFG_ONESHOT_DISABLE">
+<span class="target" id="group__dma__api_1gafb24dc3641edf6de2825263e011276ca"></span><code class="sig-name descname">DMA_CFG_ONESHOT_DISABLE</code> 0U<a class="headerlink" href="#c.DMA_CFG_ONESHOT_DISABLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Only one burst transfer performed per trigger. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DMA_CFG_ONESHOT_ENABLE">
+<span class="target" id="group__dma__api_1ga4d169efab7d753a99565375a5498b123"></span><code class="sig-name descname">DMA_CFG_ONESHOT_ENABLE</code> DMA_MODE_ONESHOT<a class="headerlink" href="#c.DMA_CFG_ONESHOT_ENABLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Burst transfers occur without additional event triggers after the first. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DMA_CFG_CONTINUOUS_DISABLE">
+<span class="target" id="group__dma__api_1gaa9b388933f94abc75c681a86663e7142"></span><code class="sig-name descname">DMA_CFG_CONTINUOUS_DISABLE</code> 0U<a class="headerlink" href="#c.DMA_CFG_CONTINUOUS_DISABLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>DMA channel will be disabled at the end of a transfer. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DMA_CFG_CONTINUOUS_ENABLE">
+<span class="target" id="group__dma__api_1gac9454e1d36871bcdcd3b49aa61f21cec"></span><code class="sig-name descname">DMA_CFG_CONTINUOUS_ENABLE</code> DMA_MODE_CONTINUOUS<a class="headerlink" href="#c.DMA_CFG_CONTINUOUS_ENABLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>DMA reinitializes when the transfer count is zero and waits for a trigger. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DMA_CFG_SIZE_16BIT">
+<span class="target" id="group__dma__api_1ga9518c4804b92cdd68c4456a91f6d82aa"></span><code class="sig-name descname">DMA_CFG_SIZE_16BIT</code> 0U<a class="headerlink" href="#c.DMA_CFG_SIZE_16BIT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>DMA transfers 16 bits at a time. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.DMA_CFG_SIZE_32BIT">
+<span class="target" id="group__dma__api_1ga58bf946ba53a61ce4d9565c23bf8a861"></span><code class="sig-name descname">DMA_CFG_SIZE_32BIT</code> DMA_MODE_DATASIZE<a class="headerlink" href="#c.DMA_CFG_SIZE_32BIT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>DMA transfers 32 bits at a time. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="cpp enum">
+<dt id="_CPPv411DMA_Trigger">
+<span id="_CPPv311DMA_Trigger"></span><span id="_CPPv211DMA_Trigger"></span><span class="target" id="group__dma__api_1ga754b55b8adb26102e0d825ad5ecf1973"></span><em class="property">enum </em><code class="sig-name descname">DMA_Trigger</code><a class="headerlink" href="#_CPPv411DMA_Trigger" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__dma__api_1ga60e33dcbda8ed7c6d603cab17bdb7f19"><span class="std std-ref">DMA_configMode()</span></a> as the <em>trigger</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger20DMA_TRIGGER_SOFTWAREE">
+<span id="_CPPv3N11DMA_Trigger20DMA_TRIGGER_SOFTWAREE"></span><span id="_CPPv2N11DMA_Trigger20DMA_TRIGGER_SOFTWAREE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a0a9a7347ed1c488a3592cee213cae79b"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_SOFTWARE</code> = 0<a class="headerlink" href="#_CPPv4N11DMA_Trigger20DMA_TRIGGER_SOFTWAREE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger17DMA_TRIGGER_ADCA1E">
+<span id="_CPPv3N11DMA_Trigger17DMA_TRIGGER_ADCA1E"></span><span id="_CPPv2N11DMA_Trigger17DMA_TRIGGER_ADCA1E"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a895b8583ad80c8e1ee5bcdb5933d9d43"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_ADCA1</code> = 1<a class="headerlink" href="#_CPPv4N11DMA_Trigger17DMA_TRIGGER_ADCA1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger17DMA_TRIGGER_ADCA2E">
+<span id="_CPPv3N11DMA_Trigger17DMA_TRIGGER_ADCA2E"></span><span id="_CPPv2N11DMA_Trigger17DMA_TRIGGER_ADCA2E"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973aca3d0d20a5dc46e124d4a4d25f3e0b88"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_ADCA2</code> = 2<a class="headerlink" href="#_CPPv4N11DMA_Trigger17DMA_TRIGGER_ADCA2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger17DMA_TRIGGER_ADCA3E">
+<span id="_CPPv3N11DMA_Trigger17DMA_TRIGGER_ADCA3E"></span><span id="_CPPv2N11DMA_Trigger17DMA_TRIGGER_ADCA3E"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973ada60a15551bd58351d0b993b9954f806"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_ADCA3</code> = 3<a class="headerlink" href="#_CPPv4N11DMA_Trigger17DMA_TRIGGER_ADCA3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger17DMA_TRIGGER_ADCA4E">
+<span id="_CPPv3N11DMA_Trigger17DMA_TRIGGER_ADCA4E"></span><span id="_CPPv2N11DMA_Trigger17DMA_TRIGGER_ADCA4E"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a6b66d7167548aa7a6c9c07ed12fa6a61"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_ADCA4</code> = 4<a class="headerlink" href="#_CPPv4N11DMA_Trigger17DMA_TRIGGER_ADCA4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger19DMA_TRIGGER_ADCAEVTE">
+<span id="_CPPv3N11DMA_Trigger19DMA_TRIGGER_ADCAEVTE"></span><span id="_CPPv2N11DMA_Trigger19DMA_TRIGGER_ADCAEVTE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a251cf7d67b30469f9b0729233fdd64dc"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_ADCAEVT</code> = 5<a class="headerlink" href="#_CPPv4N11DMA_Trigger19DMA_TRIGGER_ADCAEVTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger17DMA_TRIGGER_ADCB1E">
+<span id="_CPPv3N11DMA_Trigger17DMA_TRIGGER_ADCB1E"></span><span id="_CPPv2N11DMA_Trigger17DMA_TRIGGER_ADCB1E"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973aa272f3bd36729bf76e38a3e902852416"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_ADCB1</code> = 6<a class="headerlink" href="#_CPPv4N11DMA_Trigger17DMA_TRIGGER_ADCB1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger17DMA_TRIGGER_ADCB2E">
+<span id="_CPPv3N11DMA_Trigger17DMA_TRIGGER_ADCB2E"></span><span id="_CPPv2N11DMA_Trigger17DMA_TRIGGER_ADCB2E"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a6a386f71f6b6e69235ab480810f22afe"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_ADCB2</code> = 7<a class="headerlink" href="#_CPPv4N11DMA_Trigger17DMA_TRIGGER_ADCB2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger17DMA_TRIGGER_ADCB3E">
+<span id="_CPPv3N11DMA_Trigger17DMA_TRIGGER_ADCB3E"></span><span id="_CPPv2N11DMA_Trigger17DMA_TRIGGER_ADCB3E"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973aabb10054745a3c0195f197b1ee3ba0b8"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_ADCB3</code> = 8<a class="headerlink" href="#_CPPv4N11DMA_Trigger17DMA_TRIGGER_ADCB3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger17DMA_TRIGGER_ADCB4E">
+<span id="_CPPv3N11DMA_Trigger17DMA_TRIGGER_ADCB4E"></span><span id="_CPPv2N11DMA_Trigger17DMA_TRIGGER_ADCB4E"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973afb86285c57b9f2d9e0f59b10bec4c938"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_ADCB4</code> = 9<a class="headerlink" href="#_CPPv4N11DMA_Trigger17DMA_TRIGGER_ADCB4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger19DMA_TRIGGER_ADCBEVTE">
+<span id="_CPPv3N11DMA_Trigger19DMA_TRIGGER_ADCBEVTE"></span><span id="_CPPv2N11DMA_Trigger19DMA_TRIGGER_ADCBEVTE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a705bcdb2033dad1e3e864e606700d70f"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_ADCBEVT</code> = 10<a class="headerlink" href="#_CPPv4N11DMA_Trigger19DMA_TRIGGER_ADCBEVTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger17DMA_TRIGGER_ADCC1E">
+<span id="_CPPv3N11DMA_Trigger17DMA_TRIGGER_ADCC1E"></span><span id="_CPPv2N11DMA_Trigger17DMA_TRIGGER_ADCC1E"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973af96b7f95434275556a4e7bc99cf9b9c5"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_ADCC1</code> = 11<a class="headerlink" href="#_CPPv4N11DMA_Trigger17DMA_TRIGGER_ADCC1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger17DMA_TRIGGER_ADCC2E">
+<span id="_CPPv3N11DMA_Trigger17DMA_TRIGGER_ADCC2E"></span><span id="_CPPv2N11DMA_Trigger17DMA_TRIGGER_ADCC2E"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973ab5728e243163b0ec69f18b9e93ea1cda"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_ADCC2</code> = 12<a class="headerlink" href="#_CPPv4N11DMA_Trigger17DMA_TRIGGER_ADCC2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger17DMA_TRIGGER_ADCC3E">
+<span id="_CPPv3N11DMA_Trigger17DMA_TRIGGER_ADCC3E"></span><span id="_CPPv2N11DMA_Trigger17DMA_TRIGGER_ADCC3E"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973ac6987473f3e4327c0e4b6d10581579a3"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_ADCC3</code> = 13<a class="headerlink" href="#_CPPv4N11DMA_Trigger17DMA_TRIGGER_ADCC3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger17DMA_TRIGGER_ADCC4E">
+<span id="_CPPv3N11DMA_Trigger17DMA_TRIGGER_ADCC4E"></span><span id="_CPPv2N11DMA_Trigger17DMA_TRIGGER_ADCC4E"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973aeeb505f95e0a7dee281e11a07b0565b9"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_ADCC4</code> = 14<a class="headerlink" href="#_CPPv4N11DMA_Trigger17DMA_TRIGGER_ADCC4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger19DMA_TRIGGER_ADCCEVTE">
+<span id="_CPPv3N11DMA_Trigger19DMA_TRIGGER_ADCCEVTE"></span><span id="_CPPv2N11DMA_Trigger19DMA_TRIGGER_ADCCEVTE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a300fb7a1a87bae590b6a1c28d3f4b0c5"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_ADCCEVT</code> = 15<a class="headerlink" href="#_CPPv4N11DMA_Trigger19DMA_TRIGGER_ADCCEVTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger17DMA_TRIGGER_ADCD1E">
+<span id="_CPPv3N11DMA_Trigger17DMA_TRIGGER_ADCD1E"></span><span id="_CPPv2N11DMA_Trigger17DMA_TRIGGER_ADCD1E"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a9cf83f005b82f0a771051ee007eed6c0"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_ADCD1</code> = 16<a class="headerlink" href="#_CPPv4N11DMA_Trigger17DMA_TRIGGER_ADCD1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger17DMA_TRIGGER_ADCD2E">
+<span id="_CPPv3N11DMA_Trigger17DMA_TRIGGER_ADCD2E"></span><span id="_CPPv2N11DMA_Trigger17DMA_TRIGGER_ADCD2E"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a9cbafe0b31d1cab095b017dd425ba50d"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_ADCD2</code> = 17<a class="headerlink" href="#_CPPv4N11DMA_Trigger17DMA_TRIGGER_ADCD2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger17DMA_TRIGGER_ADCD3E">
+<span id="_CPPv3N11DMA_Trigger17DMA_TRIGGER_ADCD3E"></span><span id="_CPPv2N11DMA_Trigger17DMA_TRIGGER_ADCD3E"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a42fdc171414eadc72fc79db5064c1852"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_ADCD3</code> = 18<a class="headerlink" href="#_CPPv4N11DMA_Trigger17DMA_TRIGGER_ADCD3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger17DMA_TRIGGER_ADCD4E">
+<span id="_CPPv3N11DMA_Trigger17DMA_TRIGGER_ADCD4E"></span><span id="_CPPv2N11DMA_Trigger17DMA_TRIGGER_ADCD4E"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973aa08f0b92de40ccd5c786b5af7de357e3"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_ADCD4</code> = 19<a class="headerlink" href="#_CPPv4N11DMA_Trigger17DMA_TRIGGER_ADCD4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger19DMA_TRIGGER_ADCDEVTE">
+<span id="_CPPv3N11DMA_Trigger19DMA_TRIGGER_ADCDEVTE"></span><span id="_CPPv2N11DMA_Trigger19DMA_TRIGGER_ADCDEVTE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973ab1b7ab59b2ede06b09cceba17bd2ccd9"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_ADCDEVT</code> = 20<a class="headerlink" href="#_CPPv4N11DMA_Trigger19DMA_TRIGGER_ADCDEVTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger17DMA_TRIGGER_XINT1E">
+<span id="_CPPv3N11DMA_Trigger17DMA_TRIGGER_XINT1E"></span><span id="_CPPv2N11DMA_Trigger17DMA_TRIGGER_XINT1E"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a4e98385d3caeb0f8ee396ab37f58ba1a"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_XINT1</code> = 29<a class="headerlink" href="#_CPPv4N11DMA_Trigger17DMA_TRIGGER_XINT1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger17DMA_TRIGGER_XINT2E">
+<span id="_CPPv3N11DMA_Trigger17DMA_TRIGGER_XINT2E"></span><span id="_CPPv2N11DMA_Trigger17DMA_TRIGGER_XINT2E"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a2fc7c5cf5ea5c9dfd0341d0ae2d7033d"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_XINT2</code> = 30<a class="headerlink" href="#_CPPv4N11DMA_Trigger17DMA_TRIGGER_XINT2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger17DMA_TRIGGER_XINT3E">
+<span id="_CPPv3N11DMA_Trigger17DMA_TRIGGER_XINT3E"></span><span id="_CPPv2N11DMA_Trigger17DMA_TRIGGER_XINT3E"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a8fef9e5ecb6814795f7323b9f0f94767"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_XINT3</code> = 31<a class="headerlink" href="#_CPPv4N11DMA_Trigger17DMA_TRIGGER_XINT3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger17DMA_TRIGGER_XINT4E">
+<span id="_CPPv3N11DMA_Trigger17DMA_TRIGGER_XINT4E"></span><span id="_CPPv2N11DMA_Trigger17DMA_TRIGGER_XINT4E"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973af7af14e3100a04eed96cf79d2f1af593"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_XINT4</code> = 32<a class="headerlink" href="#_CPPv4N11DMA_Trigger17DMA_TRIGGER_XINT4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger17DMA_TRIGGER_XINT5E">
+<span id="_CPPv3N11DMA_Trigger17DMA_TRIGGER_XINT5E"></span><span id="_CPPv2N11DMA_Trigger17DMA_TRIGGER_XINT5E"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a02b42a5d33432bc88499ddfddd34db0c"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_XINT5</code> = 33<a class="headerlink" href="#_CPPv4N11DMA_Trigger17DMA_TRIGGER_XINT5E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM1SOCAE">
+<span id="_CPPv3N11DMA_Trigger21DMA_TRIGGER_EPWM1SOCAE"></span><span id="_CPPv2N11DMA_Trigger21DMA_TRIGGER_EPWM1SOCAE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973ae24692052e8abc4cb740fc1c600372ec"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_EPWM1SOCA</code> = 36<a class="headerlink" href="#_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM1SOCAE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM1SOCBE">
+<span id="_CPPv3N11DMA_Trigger21DMA_TRIGGER_EPWM1SOCBE"></span><span id="_CPPv2N11DMA_Trigger21DMA_TRIGGER_EPWM1SOCBE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a7d0b3d2e62475a36c168a10c4d69e91e"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_EPWM1SOCB</code> = 37<a class="headerlink" href="#_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM1SOCBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM2SOCAE">
+<span id="_CPPv3N11DMA_Trigger21DMA_TRIGGER_EPWM2SOCAE"></span><span id="_CPPv2N11DMA_Trigger21DMA_TRIGGER_EPWM2SOCAE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a0ffb8f8fed15dc0cb73eda87b881c7c5"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_EPWM2SOCA</code> = 38<a class="headerlink" href="#_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM2SOCAE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM2SOCBE">
+<span id="_CPPv3N11DMA_Trigger21DMA_TRIGGER_EPWM2SOCBE"></span><span id="_CPPv2N11DMA_Trigger21DMA_TRIGGER_EPWM2SOCBE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973add2e828881c3b39c5f79d221ea361efc"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_EPWM2SOCB</code> = 39<a class="headerlink" href="#_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM2SOCBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM3SOCAE">
+<span id="_CPPv3N11DMA_Trigger21DMA_TRIGGER_EPWM3SOCAE"></span><span id="_CPPv2N11DMA_Trigger21DMA_TRIGGER_EPWM3SOCAE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a96a98ea768d49e1b68d4044dc51c655d"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_EPWM3SOCA</code> = 40<a class="headerlink" href="#_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM3SOCAE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM3SOCBE">
+<span id="_CPPv3N11DMA_Trigger21DMA_TRIGGER_EPWM3SOCBE"></span><span id="_CPPv2N11DMA_Trigger21DMA_TRIGGER_EPWM3SOCBE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a730a6ec941a3a55154ebd4cf796c8a05"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_EPWM3SOCB</code> = 41<a class="headerlink" href="#_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM3SOCBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM4SOCAE">
+<span id="_CPPv3N11DMA_Trigger21DMA_TRIGGER_EPWM4SOCAE"></span><span id="_CPPv2N11DMA_Trigger21DMA_TRIGGER_EPWM4SOCAE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973ad0d7da9c56fe63524aec75a1182b4899"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_EPWM4SOCA</code> = 42<a class="headerlink" href="#_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM4SOCAE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM4SOCBE">
+<span id="_CPPv3N11DMA_Trigger21DMA_TRIGGER_EPWM4SOCBE"></span><span id="_CPPv2N11DMA_Trigger21DMA_TRIGGER_EPWM4SOCBE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a5413c2fd9a80468f1fc915cb2959cbf2"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_EPWM4SOCB</code> = 43<a class="headerlink" href="#_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM4SOCBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM5SOCAE">
+<span id="_CPPv3N11DMA_Trigger21DMA_TRIGGER_EPWM5SOCAE"></span><span id="_CPPv2N11DMA_Trigger21DMA_TRIGGER_EPWM5SOCAE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a6ee58e8faef58b30d49691a332ab3c91"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_EPWM5SOCA</code> = 44<a class="headerlink" href="#_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM5SOCAE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM5SOCBE">
+<span id="_CPPv3N11DMA_Trigger21DMA_TRIGGER_EPWM5SOCBE"></span><span id="_CPPv2N11DMA_Trigger21DMA_TRIGGER_EPWM5SOCBE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973ab25a77f17ea82aff58aa91e18e0032bf"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_EPWM5SOCB</code> = 45<a class="headerlink" href="#_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM5SOCBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM6SOCAE">
+<span id="_CPPv3N11DMA_Trigger21DMA_TRIGGER_EPWM6SOCAE"></span><span id="_CPPv2N11DMA_Trigger21DMA_TRIGGER_EPWM6SOCAE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973aea4e46d49803ab44b66476d5e3143d38"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_EPWM6SOCA</code> = 46<a class="headerlink" href="#_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM6SOCAE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM6SOCBE">
+<span id="_CPPv3N11DMA_Trigger21DMA_TRIGGER_EPWM6SOCBE"></span><span id="_CPPv2N11DMA_Trigger21DMA_TRIGGER_EPWM6SOCBE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a506d7e23a96a15fca0aed411cb41f4b3"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_EPWM6SOCB</code> = 47<a class="headerlink" href="#_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM6SOCBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM7SOCAE">
+<span id="_CPPv3N11DMA_Trigger21DMA_TRIGGER_EPWM7SOCAE"></span><span id="_CPPv2N11DMA_Trigger21DMA_TRIGGER_EPWM7SOCAE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973abc59627bd68f2569ba8386ba7e9e64ff"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_EPWM7SOCA</code> = 48<a class="headerlink" href="#_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM7SOCAE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM7SOCBE">
+<span id="_CPPv3N11DMA_Trigger21DMA_TRIGGER_EPWM7SOCBE"></span><span id="_CPPv2N11DMA_Trigger21DMA_TRIGGER_EPWM7SOCBE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a83d98fe1f50a0d96129403302e899e5a"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_EPWM7SOCB</code> = 49<a class="headerlink" href="#_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM7SOCBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM8SOCAE">
+<span id="_CPPv3N11DMA_Trigger21DMA_TRIGGER_EPWM8SOCAE"></span><span id="_CPPv2N11DMA_Trigger21DMA_TRIGGER_EPWM8SOCAE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973af74dc64f8e21477f12daa2f1aaddd193"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_EPWM8SOCA</code> = 50<a class="headerlink" href="#_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM8SOCAE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM8SOCBE">
+<span id="_CPPv3N11DMA_Trigger21DMA_TRIGGER_EPWM8SOCBE"></span><span id="_CPPv2N11DMA_Trigger21DMA_TRIGGER_EPWM8SOCBE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a0472ebdd52a541981542472dfa0a6190"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_EPWM8SOCB</code> = 51<a class="headerlink" href="#_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM8SOCBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM9SOCAE">
+<span id="_CPPv3N11DMA_Trigger21DMA_TRIGGER_EPWM9SOCAE"></span><span id="_CPPv2N11DMA_Trigger21DMA_TRIGGER_EPWM9SOCAE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a60adabe7fa531fff7ff3cd67f0a5eec9"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_EPWM9SOCA</code> = 52<a class="headerlink" href="#_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM9SOCAE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM9SOCBE">
+<span id="_CPPv3N11DMA_Trigger21DMA_TRIGGER_EPWM9SOCBE"></span><span id="_CPPv2N11DMA_Trigger21DMA_TRIGGER_EPWM9SOCBE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a3b7869663f83ddc5869d10192efdcf58"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_EPWM9SOCB</code> = 53<a class="headerlink" href="#_CPPv4N11DMA_Trigger21DMA_TRIGGER_EPWM9SOCBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger22DMA_TRIGGER_EPWM10SOCAE">
+<span id="_CPPv3N11DMA_Trigger22DMA_TRIGGER_EPWM10SOCAE"></span><span id="_CPPv2N11DMA_Trigger22DMA_TRIGGER_EPWM10SOCAE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a39e35a187b7c1f94c224495a22942e46"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_EPWM10SOCA</code> = 54<a class="headerlink" href="#_CPPv4N11DMA_Trigger22DMA_TRIGGER_EPWM10SOCAE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger22DMA_TRIGGER_EPWM10SOCBE">
+<span id="_CPPv3N11DMA_Trigger22DMA_TRIGGER_EPWM10SOCBE"></span><span id="_CPPv2N11DMA_Trigger22DMA_TRIGGER_EPWM10SOCBE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973aa2d39454cbf3fe8af0dde34cb8fde72b"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_EPWM10SOCB</code> = 55<a class="headerlink" href="#_CPPv4N11DMA_Trigger22DMA_TRIGGER_EPWM10SOCBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger22DMA_TRIGGER_EPWM11SOCAE">
+<span id="_CPPv3N11DMA_Trigger22DMA_TRIGGER_EPWM11SOCAE"></span><span id="_CPPv2N11DMA_Trigger22DMA_TRIGGER_EPWM11SOCAE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a7e1f3a4f8e1e54e229c60a0cbec5ce31"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_EPWM11SOCA</code> = 56<a class="headerlink" href="#_CPPv4N11DMA_Trigger22DMA_TRIGGER_EPWM11SOCAE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger22DMA_TRIGGER_EPWM11SOCBE">
+<span id="_CPPv3N11DMA_Trigger22DMA_TRIGGER_EPWM11SOCBE"></span><span id="_CPPv2N11DMA_Trigger22DMA_TRIGGER_EPWM11SOCBE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973aba29f2fb4eba3fd498a1776557ead5a1"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_EPWM11SOCB</code> = 57<a class="headerlink" href="#_CPPv4N11DMA_Trigger22DMA_TRIGGER_EPWM11SOCBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger22DMA_TRIGGER_EPWM12SOCAE">
+<span id="_CPPv3N11DMA_Trigger22DMA_TRIGGER_EPWM12SOCAE"></span><span id="_CPPv2N11DMA_Trigger22DMA_TRIGGER_EPWM12SOCAE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a757b16982a60de3d48a4fc59744b01ed"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_EPWM12SOCA</code> = 58<a class="headerlink" href="#_CPPv4N11DMA_Trigger22DMA_TRIGGER_EPWM12SOCAE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger22DMA_TRIGGER_EPWM12SOCBE">
+<span id="_CPPv3N11DMA_Trigger22DMA_TRIGGER_EPWM12SOCBE"></span><span id="_CPPv2N11DMA_Trigger22DMA_TRIGGER_EPWM12SOCBE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973ad88695deca4b5d3a81b295d5fbb2a930"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_EPWM12SOCB</code> = 59<a class="headerlink" href="#_CPPv4N11DMA_Trigger22DMA_TRIGGER_EPWM12SOCBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger17DMA_TRIGGER_TINT0E">
+<span id="_CPPv3N11DMA_Trigger17DMA_TRIGGER_TINT0E"></span><span id="_CPPv2N11DMA_Trigger17DMA_TRIGGER_TINT0E"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973afdc53959788c4b7484b68b0e182d75d6"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_TINT0</code> = 68<a class="headerlink" href="#_CPPv4N11DMA_Trigger17DMA_TRIGGER_TINT0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger17DMA_TRIGGER_TINT1E">
+<span id="_CPPv3N11DMA_Trigger17DMA_TRIGGER_TINT1E"></span><span id="_CPPv2N11DMA_Trigger17DMA_TRIGGER_TINT1E"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a30d298ff199db6d46ee33f5f36cda04f"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_TINT1</code> = 69<a class="headerlink" href="#_CPPv4N11DMA_Trigger17DMA_TRIGGER_TINT1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger17DMA_TRIGGER_TINT2E">
+<span id="_CPPv3N11DMA_Trigger17DMA_TRIGGER_TINT2E"></span><span id="_CPPv2N11DMA_Trigger17DMA_TRIGGER_TINT2E"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a34a63182646f2ff12b6adc90cd077b99"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_TINT2</code> = 70<a class="headerlink" href="#_CPPv4N11DMA_Trigger17DMA_TRIGGER_TINT2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger23DMA_TRIGGER_MCBSPAMXEVTE">
+<span id="_CPPv3N11DMA_Trigger23DMA_TRIGGER_MCBSPAMXEVTE"></span><span id="_CPPv2N11DMA_Trigger23DMA_TRIGGER_MCBSPAMXEVTE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973ab4326e484d6761875ca537872cf58045"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_MCBSPAMXEVT</code> = 71<a class="headerlink" href="#_CPPv4N11DMA_Trigger23DMA_TRIGGER_MCBSPAMXEVTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger23DMA_TRIGGER_MCBSPAMREVTE">
+<span id="_CPPv3N11DMA_Trigger23DMA_TRIGGER_MCBSPAMREVTE"></span><span id="_CPPv2N11DMA_Trigger23DMA_TRIGGER_MCBSPAMREVTE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a6c4802b5a194ea5372c3f4a08ac55f3e"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_MCBSPAMREVT</code> = 72<a class="headerlink" href="#_CPPv4N11DMA_Trigger23DMA_TRIGGER_MCBSPAMREVTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger23DMA_TRIGGER_MCBSPBMXEVTE">
+<span id="_CPPv3N11DMA_Trigger23DMA_TRIGGER_MCBSPBMXEVTE"></span><span id="_CPPv2N11DMA_Trigger23DMA_TRIGGER_MCBSPBMXEVTE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a2cda81cc8664faa2c6618a60d44753c2"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_MCBSPBMXEVT</code> = 73<a class="headerlink" href="#_CPPv4N11DMA_Trigger23DMA_TRIGGER_MCBSPBMXEVTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger23DMA_TRIGGER_MCBSPBMREVTE">
+<span id="_CPPv3N11DMA_Trigger23DMA_TRIGGER_MCBSPBMREVTE"></span><span id="_CPPv2N11DMA_Trigger23DMA_TRIGGER_MCBSPBMREVTE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a4bff384e9bca0aad7e868851f442b1a7"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_MCBSPBMREVT</code> = 74<a class="headerlink" href="#_CPPv4N11DMA_Trigger23DMA_TRIGGER_MCBSPBMREVTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger21DMA_TRIGGER_SDFM1FLT1E">
+<span id="_CPPv3N11DMA_Trigger21DMA_TRIGGER_SDFM1FLT1E"></span><span id="_CPPv2N11DMA_Trigger21DMA_TRIGGER_SDFM1FLT1E"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a7f1e60278126ccf94dc405bb51849a1f"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_SDFM1FLT1</code> = 95<a class="headerlink" href="#_CPPv4N11DMA_Trigger21DMA_TRIGGER_SDFM1FLT1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger21DMA_TRIGGER_SDFM1FLT2E">
+<span id="_CPPv3N11DMA_Trigger21DMA_TRIGGER_SDFM1FLT2E"></span><span id="_CPPv2N11DMA_Trigger21DMA_TRIGGER_SDFM1FLT2E"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973adc1cf80599eee1f8e4887c766b534214"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_SDFM1FLT2</code> = 96<a class="headerlink" href="#_CPPv4N11DMA_Trigger21DMA_TRIGGER_SDFM1FLT2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger21DMA_TRIGGER_SDFM1FLT3E">
+<span id="_CPPv3N11DMA_Trigger21DMA_TRIGGER_SDFM1FLT3E"></span><span id="_CPPv2N11DMA_Trigger21DMA_TRIGGER_SDFM1FLT3E"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973ac3e018c6b92d75f121cbdbbaa3ce7205"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_SDFM1FLT3</code> = 97<a class="headerlink" href="#_CPPv4N11DMA_Trigger21DMA_TRIGGER_SDFM1FLT3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger21DMA_TRIGGER_SDFM1FLT4E">
+<span id="_CPPv3N11DMA_Trigger21DMA_TRIGGER_SDFM1FLT4E"></span><span id="_CPPv2N11DMA_Trigger21DMA_TRIGGER_SDFM1FLT4E"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973aaa448bd065eae36ffae11b806ae4af1b"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_SDFM1FLT4</code> = 98<a class="headerlink" href="#_CPPv4N11DMA_Trigger21DMA_TRIGGER_SDFM1FLT4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger21DMA_TRIGGER_SDFM2FLT1E">
+<span id="_CPPv3N11DMA_Trigger21DMA_TRIGGER_SDFM2FLT1E"></span><span id="_CPPv2N11DMA_Trigger21DMA_TRIGGER_SDFM2FLT1E"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a1b0afedf03f66c7babfc0b879104b7d0"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_SDFM2FLT1</code> = 99<a class="headerlink" href="#_CPPv4N11DMA_Trigger21DMA_TRIGGER_SDFM2FLT1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger21DMA_TRIGGER_SDFM2FLT2E">
+<span id="_CPPv3N11DMA_Trigger21DMA_TRIGGER_SDFM2FLT2E"></span><span id="_CPPv2N11DMA_Trigger21DMA_TRIGGER_SDFM2FLT2E"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973ab4b5925c87e2056d7456f7d31c266dce"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_SDFM2FLT2</code> = 100<a class="headerlink" href="#_CPPv4N11DMA_Trigger21DMA_TRIGGER_SDFM2FLT2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger21DMA_TRIGGER_SDFM2FLT3E">
+<span id="_CPPv3N11DMA_Trigger21DMA_TRIGGER_SDFM2FLT3E"></span><span id="_CPPv2N11DMA_Trigger21DMA_TRIGGER_SDFM2FLT3E"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a810c19d7f2b426e9d29b8f1e1339a8d4"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_SDFM2FLT3</code> = 101<a class="headerlink" href="#_CPPv4N11DMA_Trigger21DMA_TRIGGER_SDFM2FLT3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger21DMA_TRIGGER_SDFM2FLT4E">
+<span id="_CPPv3N11DMA_Trigger21DMA_TRIGGER_SDFM2FLT4E"></span><span id="_CPPv2N11DMA_Trigger21DMA_TRIGGER_SDFM2FLT4E"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973af141014f37a0a8be3d0675b54bd09bac"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_SDFM2FLT4</code> = 102<a class="headerlink" href="#_CPPv4N11DMA_Trigger21DMA_TRIGGER_SDFM2FLT4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger18DMA_TRIGGER_SPIATXE">
+<span id="_CPPv3N11DMA_Trigger18DMA_TRIGGER_SPIATXE"></span><span id="_CPPv2N11DMA_Trigger18DMA_TRIGGER_SPIATXE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a45b2b59a43ab1ede2911621de60e8a54"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_SPIATX</code> = 109<a class="headerlink" href="#_CPPv4N11DMA_Trigger18DMA_TRIGGER_SPIATXE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger18DMA_TRIGGER_SPIARXE">
+<span id="_CPPv3N11DMA_Trigger18DMA_TRIGGER_SPIARXE"></span><span id="_CPPv2N11DMA_Trigger18DMA_TRIGGER_SPIARXE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a5051e85523782550936f592d76330e6f"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_SPIARX</code> = 110<a class="headerlink" href="#_CPPv4N11DMA_Trigger18DMA_TRIGGER_SPIARXE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger18DMA_TRIGGER_SPIBTXE">
+<span id="_CPPv3N11DMA_Trigger18DMA_TRIGGER_SPIBTXE"></span><span id="_CPPv2N11DMA_Trigger18DMA_TRIGGER_SPIBTXE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a8544217f62a9acb58b35cf63e213bf47"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_SPIBTX</code> = 111<a class="headerlink" href="#_CPPv4N11DMA_Trigger18DMA_TRIGGER_SPIBTXE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger18DMA_TRIGGER_SPIBRXE">
+<span id="_CPPv3N11DMA_Trigger18DMA_TRIGGER_SPIBRXE"></span><span id="_CPPv2N11DMA_Trigger18DMA_TRIGGER_SPIBRXE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a79b4b1e8c919f9ddb44ec247bf93a8e4"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_SPIBRX</code> = 112<a class="headerlink" href="#_CPPv4N11DMA_Trigger18DMA_TRIGGER_SPIBRXE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger18DMA_TRIGGER_SPICTXE">
+<span id="_CPPv3N11DMA_Trigger18DMA_TRIGGER_SPICTXE"></span><span id="_CPPv2N11DMA_Trigger18DMA_TRIGGER_SPICTXE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973ae142e019f0272770e87fdaec25d9b5ee"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_SPICTX</code> = 113<a class="headerlink" href="#_CPPv4N11DMA_Trigger18DMA_TRIGGER_SPICTXE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger18DMA_TRIGGER_SPICRXE">
+<span id="_CPPv3N11DMA_Trigger18DMA_TRIGGER_SPICRXE"></span><span id="_CPPv2N11DMA_Trigger18DMA_TRIGGER_SPICRXE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a87a7f129824edc2f2003972ec417d459"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_SPICRX</code> = 114<a class="headerlink" href="#_CPPv4N11DMA_Trigger18DMA_TRIGGER_SPICRXE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger19DMA_TRIGGER_CLB1INTE">
+<span id="_CPPv3N11DMA_Trigger19DMA_TRIGGER_CLB1INTE"></span><span id="_CPPv2N11DMA_Trigger19DMA_TRIGGER_CLB1INTE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a2ee7c283b892140e3bf27afa0f59b3e7"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_CLB1INT</code> = 127<a class="headerlink" href="#_CPPv4N11DMA_Trigger19DMA_TRIGGER_CLB1INTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger19DMA_TRIGGER_CLB2INTE">
+<span id="_CPPv3N11DMA_Trigger19DMA_TRIGGER_CLB2INTE"></span><span id="_CPPv2N11DMA_Trigger19DMA_TRIGGER_CLB2INTE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a02169e4d13e6d9232185342b6d0edd14"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_CLB2INT</code> = 128<a class="headerlink" href="#_CPPv4N11DMA_Trigger19DMA_TRIGGER_CLB2INTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger19DMA_TRIGGER_CLB3INTE">
+<span id="_CPPv3N11DMA_Trigger19DMA_TRIGGER_CLB3INTE"></span><span id="_CPPv2N11DMA_Trigger19DMA_TRIGGER_CLB3INTE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973a9130a2c8f63e364a78f3140ec262b74d"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_CLB3INT</code> = 129<a class="headerlink" href="#_CPPv4N11DMA_Trigger19DMA_TRIGGER_CLB3INTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11DMA_Trigger19DMA_TRIGGER_CLB4INTE">
+<span id="_CPPv3N11DMA_Trigger19DMA_TRIGGER_CLB4INTE"></span><span id="_CPPv2N11DMA_Trigger19DMA_TRIGGER_CLB4INTE"></span><span class="target" id="group__dma__api_1gga754b55b8adb26102e0d825ad5ecf1973abd01987ef784aba113178d4a340487b0"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_TRIGGER_CLB4INT</code> = 130<a class="headerlink" href="#_CPPv4N11DMA_Trigger19DMA_TRIGGER_CLB4INTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv417DMA_InterruptMode">
+<span id="_CPPv317DMA_InterruptMode"></span><span id="_CPPv217DMA_InterruptMode"></span><span class="target" id="group__dma__api_1ga97af429464af799862f05c17057a5274"></span><em class="property">enum </em><code class="sig-name descname">DMA_InterruptMode</code><a class="headerlink" href="#_CPPv417DMA_InterruptMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__dma__api_1ga596c5bb7d03fc2f4e2c404751a98da83"><span class="std std-ref">DMA_setInterruptMode()</span></a> as the <em>mode</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17DMA_InterruptMode20DMA_INT_AT_BEGINNINGE">
+<span id="_CPPv3N17DMA_InterruptMode20DMA_INT_AT_BEGINNINGE"></span><span id="_CPPv2N17DMA_InterruptMode20DMA_INT_AT_BEGINNINGE"></span><span class="target" id="group__dma__api_1gga97af429464af799862f05c17057a5274ab83f42cce7a0bb8f4dc2950f20b3b409"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_INT_AT_BEGINNING</code><a class="headerlink" href="#_CPPv4N17DMA_InterruptMode20DMA_INT_AT_BEGINNINGE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>DMA interrupt is generated at the beginning of a transfer. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17DMA_InterruptMode14DMA_INT_AT_ENDE">
+<span id="_CPPv3N17DMA_InterruptMode14DMA_INT_AT_ENDE"></span><span id="_CPPv2N17DMA_InterruptMode14DMA_INT_AT_ENDE"></span><span class="target" id="group__dma__api_1gga97af429464af799862f05c17057a5274ad62cd29e6a459fd9d45786032b860fba"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_INT_AT_END</code><a class="headerlink" href="#_CPPv4N17DMA_InterruptMode14DMA_INT_AT_ENDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>DMA interrupt is generated at the end of a transfer. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv417DMA_EmulationMode">
+<span id="_CPPv317DMA_EmulationMode"></span><span id="_CPPv217DMA_EmulationMode"></span><span class="target" id="group__dma__api_1ga1f299229c8568154779e9a37d8125596"></span><em class="property">enum </em><code class="sig-name descname">DMA_EmulationMode</code><a class="headerlink" href="#_CPPv417DMA_EmulationMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__dma__api_1ga8e0855abdfe02a0540d21bfd7fa058a3"><span class="std std-ref">DMA_setEmulationMode()</span></a> as the <em>mode</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17DMA_EmulationMode18DMA_EMULATION_STOPE">
+<span id="_CPPv3N17DMA_EmulationMode18DMA_EMULATION_STOPE"></span><span id="_CPPv2N17DMA_EmulationMode18DMA_EMULATION_STOPE"></span><span class="target" id="group__dma__api_1gga1f299229c8568154779e9a37d8125596ac63080115e0c9ec6e4dffc295e0c45e9"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_EMULATION_STOP</code><a class="headerlink" href="#_CPPv4N17DMA_EmulationMode18DMA_EMULATION_STOPE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmission stops after current read-write access is completed. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17DMA_EmulationMode22DMA_EMULATION_FREE_RUNE">
+<span id="_CPPv3N17DMA_EmulationMode22DMA_EMULATION_FREE_RUNE"></span><span id="_CPPv2N17DMA_EmulationMode22DMA_EMULATION_FREE_RUNE"></span><span class="target" id="group__dma__api_1gga1f299229c8568154779e9a37d8125596a6f4c60bc1b1e35112c38fb01802c0720"></span><em class="property">enumerator </em><code class="sig-name descname">DMA_EMULATION_FREE_RUN</code><a class="headerlink" href="#_CPPv4N17DMA_EmulationMode22DMA_EMULATION_FREE_RUNE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Continue DMA operation regardless of emulation suspend. </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv418DMA_initControllerv">
+<span id="_CPPv318DMA_initControllerv"></span><span id="_CPPv218DMA_initControllerv"></span><span id="DMA_initController__void"></span><span class="target" id="group__dma__api_1gaf24429e47b48eda3aef685d79053c083"></span>void <code class="sig-name descname">DMA_initController</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418DMA_initControllerv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Initializes the DMA controller to a known state.</p>
+<p>This function configures does a hard reset of the DMA controller in order to put it into a known state. The function also sets the DMA to run free during an emulation suspend (see the field DEBUGCTRL.FREE for more info).</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420DMA_triggerSoftReset8uint32_t">
+<span id="_CPPv320DMA_triggerSoftReset8uint32_t"></span><span id="_CPPv220DMA_triggerSoftReset8uint32_t"></span><span id="DMA_triggerSoftReset__uint32_t"></span><span class="target" id="group__dma__api_1gad547e4884e1dd591dbc7593ac0336d14"></span>void <code class="sig-name descname">DMA_triggerSoftReset</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420DMA_triggerSoftReset8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Channel Soft Reset</p>
+<p><p>This function does a soft reset to place the channel into its default state</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the DMA channel control registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420DMA_setEmulationMode17DMA_EmulationMode">
+<span id="_CPPv320DMA_setEmulationMode17DMA_EmulationMode"></span><span id="_CPPv220DMA_setEmulationMode17DMA_EmulationMode"></span><span id="DMA_setEmulationMode__DMA_EmulationMode"></span><span class="target" id="group__dma__api_1ga8e0855abdfe02a0540d21bfd7fa058a3"></span>void <code class="sig-name descname">DMA_setEmulationMode</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv417DMA_EmulationMode" title="DMA_EmulationMode">DMA_EmulationMode</a> <em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420DMA_setEmulationMode17DMA_EmulationMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets DMA emulation mode.</p>
+<p><p>This function sets the behavior of the DMA operation when an emulation suspend occurs. The </p>
+<em>mode</em> parameter can be one of the following:<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: is the emulation mode to be selected.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p><strong>DMA_EMULATION_STOP</strong> - DMA runs until the current read-write access is completed.</p></li>
+<li><p><strong>DMA_EMULATION_FREE_RUN</strong> - DMA operation continues regardless of a the suspend.</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417DMA_enableTrigger8uint32_t">
+<span id="_CPPv317DMA_enableTrigger8uint32_t"></span><span id="_CPPv217DMA_enableTrigger8uint32_t"></span><span id="DMA_enableTrigger__uint32_t"></span><span class="target" id="group__dma__api_1gae9fb39491d7b069639418c8070c5477d"></span>void <code class="sig-name descname">DMA_enableTrigger</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417DMA_enableTrigger8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables peripherals to trigger a DMA transfer.</p>
+<p><p>This function enables the selected peripheral trigger to start a DMA transfer on the specified channel.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the DMA channel control registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418DMA_disableTrigger8uint32_t">
+<span id="_CPPv318DMA_disableTrigger8uint32_t"></span><span id="_CPPv218DMA_disableTrigger8uint32_t"></span><span id="DMA_disableTrigger__uint32_t"></span><span class="target" id="group__dma__api_1gad05fcef34d43fc4b27e3b68eedef5ff3"></span>void <code class="sig-name descname">DMA_disableTrigger</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418DMA_disableTrigger8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables peripherals from triggering a DMA transfer.</p>
+<p><p>This function disables the selected peripheral trigger from starting a DMA transfer on the specified channel. This also disables the use of the software force using the </p>
+<a class="reference internal" href="#group__dma__api_1ga49257e24c76546865be3e2dbad79ede4"><span class="std std-ref">DMA_forceTrigger()</span></a> API.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the DMA channel control registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416DMA_forceTrigger8uint32_t">
+<span id="_CPPv316DMA_forceTrigger8uint32_t"></span><span id="_CPPv216DMA_forceTrigger8uint32_t"></span><span id="DMA_forceTrigger__uint32_t"></span><span class="target" id="group__dma__api_1ga49257e24c76546865be3e2dbad79ede4"></span>void <code class="sig-name descname">DMA_forceTrigger</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416DMA_forceTrigger8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Force a peripheral trigger to a DMA channel.</p>
+<p><p>This function sets the peripheral trigger flag and if triggering a DMA burst is enabled (see </p>
+<a class="reference internal" href="#group__dma__api_1gae9fb39491d7b069639418c8070c5477d"><span class="std std-ref">DMA_enableTrigger()</span></a>), a DMA burst transfer will be forced.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the DMA channel control registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420DMA_clearTriggerFlag8uint32_t">
+<span id="_CPPv320DMA_clearTriggerFlag8uint32_t"></span><span id="_CPPv220DMA_clearTriggerFlag8uint32_t"></span><span id="DMA_clearTriggerFlag__uint32_t"></span><span class="target" id="group__dma__api_1ga20440b78c16f2d22c2c3a7d6821b98e7"></span>void <code class="sig-name descname">DMA_clearTriggerFlag</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420DMA_clearTriggerFlag8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears a DMA channel’s peripheral trigger flag.</p>
+<p><p>This function clears the peripheral trigger flag. Normally, you would use this function when initializing the DMA for the first time. The flag is cleared automatically when the DMA starts the first burst of a transfer.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the DMA channel control registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425DMA_getTransferStatusFlag8uint32_t">
+<span id="_CPPv325DMA_getTransferStatusFlag8uint32_t"></span><span id="_CPPv225DMA_getTransferStatusFlag8uint32_t"></span><span id="DMA_getTransferStatusFlag__uint32_t"></span><span class="target" id="group__dma__api_1ga8c289bc2dcb49b73b29466f37b729383"></span>bool <code class="sig-name descname">DMA_getTransferStatusFlag</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425DMA_getTransferStatusFlag8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the status of a DMA channel’s Transfer Status Flag.</p>
+<p><p>This function returns </p>
+<strong>true</strong> if the Transfer Status Flag is set, which means a DMA transfer has begun. This flag is cleared when TRANSFER_COUNT reaches zero, or when the HARDRESET or SOFTRESET bit is set.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the DMA channel control registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if the Transfer Status Flag is set. Returns <strong>false</strong> otherwise. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422DMA_getBurstStatusFlag8uint32_t">
+<span id="_CPPv322DMA_getBurstStatusFlag8uint32_t"></span><span id="_CPPv222DMA_getBurstStatusFlag8uint32_t"></span><span id="DMA_getBurstStatusFlag__uint32_t"></span><span class="target" id="group__dma__api_1ga83612ace854ed924c299dde96d6cfa48"></span>bool <code class="sig-name descname">DMA_getBurstStatusFlag</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422DMA_getBurstStatusFlag8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the status of a DMA channel’s Burst Status Flag.</p>
+<p><p>This function returns </p>
+<strong>true</strong> if the Burst Status Flag is set, which means a DMA burst has begun. This flag is cleared when BURST_COUNT reaches zero, or when the HARDRESET or SOFTRESET bit is set.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the DMA channel control registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if the Burst Status Flag is set. Returns <strong>false</strong> otherwise. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420DMA_getRunStatusFlag8uint32_t">
+<span id="_CPPv320DMA_getRunStatusFlag8uint32_t"></span><span id="_CPPv220DMA_getRunStatusFlag8uint32_t"></span><span id="DMA_getRunStatusFlag__uint32_t"></span><span class="target" id="group__dma__api_1ga4857353007c6bfe465f3f0ea43a3d638"></span>bool <code class="sig-name descname">DMA_getRunStatusFlag</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420DMA_getRunStatusFlag8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the status of a DMA channel’s Run Status Flag.</p>
+<p><p>This function returns </p>
+<strong>true</strong> if the Run Status Flag is set, which means the DMA channel is enabled. This flag is cleared when a transfer completes (TRANSFER_COUNT = 0) and continuous mode is disabled, or when the HARDRESET, SOFTRESET, or HALT bit is set.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the DMA channel control registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if the channel is enabled. Returns <strong>false</strong> otherwise. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419DMA_getOverflowFlag8uint32_t">
+<span id="_CPPv319DMA_getOverflowFlag8uint32_t"></span><span id="_CPPv219DMA_getOverflowFlag8uint32_t"></span><span id="DMA_getOverflowFlag__uint32_t"></span><span class="target" id="group__dma__api_1gac2e3a33ed6408afed5c10e22347ebe49"></span>bool <code class="sig-name descname">DMA_getOverflowFlag</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419DMA_getOverflowFlag8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the status of a DMA channel’s Overflow Flag.</p>
+<p><p>This function returns </p>
+<strong>true</strong> if the Overflow Flag is set, which means peripheral event trigger was received while Peripheral Event Trigger Flag was already set. This flag can be cleared by writing to ERRCLR bit, using the function <a class="reference internal" href="#group__dma__api_1gaf9fec00e68d03c8c1fcc8741fd15d473"><span class="std std-ref">DMA_clearErrorFlag()</span></a>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the DMA channel control registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if the channel is enabled. Returns <strong>false</strong> otherwise. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424DMA_getTriggerFlagStatus8uint32_t">
+<span id="_CPPv324DMA_getTriggerFlagStatus8uint32_t"></span><span id="_CPPv224DMA_getTriggerFlagStatus8uint32_t"></span><span id="DMA_getTriggerFlagStatus__uint32_t"></span><span class="target" id="group__dma__api_1gac19fecbd3d7828bdcb724d2bc366e79d"></span>bool <code class="sig-name descname">DMA_getTriggerFlagStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424DMA_getTriggerFlagStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the status of a DMA channel’s peripheral trigger flag.</p>
+<p><p>This function returns </p>
+<strong>true</strong> if a peripheral trigger event has occurred The flag is automatically cleared when the first burst transfer begins, but if needed, it can be cleared using <a class="reference internal" href="#group__dma__api_1ga20440b78c16f2d22c2c3a7d6821b98e7"><span class="std std-ref">DMA_clearTriggerFlag()</span></a>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the DMA channel control registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if a peripheral trigger event has occurred and its flag is set. Returns <strong>false</strong> otherwise. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416DMA_startChannel8uint32_t">
+<span id="_CPPv316DMA_startChannel8uint32_t"></span><span id="_CPPv216DMA_startChannel8uint32_t"></span><span id="DMA_startChannel__uint32_t"></span><span class="target" id="group__dma__api_1ga307b1f39953f45040b0feb3d6b6c05db"></span>void <code class="sig-name descname">DMA_startChannel</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416DMA_startChannel8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Starts a DMA channel.</p>
+<p><p>This function starts the DMA running, typically after you have configured it. It will wait for the first trigger event to start operation. To halt the channel use </p>
+<a class="reference internal" href="#group__dma__api_1ga7eadb5b54eb1a3248b9fcb5148cd8570"><span class="std std-ref">DMA_stopChannel()</span></a>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the DMA channel control registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415DMA_stopChannel8uint32_t">
+<span id="_CPPv315DMA_stopChannel8uint32_t"></span><span id="_CPPv215DMA_stopChannel8uint32_t"></span><span id="DMA_stopChannel__uint32_t"></span><span class="target" id="group__dma__api_1ga7eadb5b54eb1a3248b9fcb5148cd8570"></span>void <code class="sig-name descname">DMA_stopChannel</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415DMA_stopChannel8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Halts a DMA channel.</p>
+<p><p>This function halts the DMA at its current state and any current read-write access is completed. To start the channel again use </p>
+<a class="reference internal" href="#group__dma__api_1ga307b1f39953f45040b0feb3d6b6c05db"><span class="std std-ref">DMA_startChannel()</span></a>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the DMA channel control registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419DMA_enableInterrupt8uint32_t">
+<span id="_CPPv319DMA_enableInterrupt8uint32_t"></span><span id="_CPPv219DMA_enableInterrupt8uint32_t"></span><span id="DMA_enableInterrupt__uint32_t"></span><span class="target" id="group__dma__api_1ga51c845f784ba6f47e493610ce6084b34"></span>void <code class="sig-name descname">DMA_enableInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419DMA_enableInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables a DMA channel interrupt source.</p>
+<p><p>This function enables the indicated DMA channel interrupt source.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the DMA channel control registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420DMA_disableInterrupt8uint32_t">
+<span id="_CPPv320DMA_disableInterrupt8uint32_t"></span><span id="_CPPv220DMA_disableInterrupt8uint32_t"></span><span id="DMA_disableInterrupt__uint32_t"></span><span class="target" id="group__dma__api_1ga6e1fe4e880dd93f80a26f96405b35fde"></span>void <code class="sig-name descname">DMA_disableInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420DMA_disableInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables a DMA channel interrupt source.</p>
+<p><p>This function disables the indicated DMA channel interrupt source.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the DMA channel control registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426DMA_enableOverrunInterrupt8uint32_t">
+<span id="_CPPv326DMA_enableOverrunInterrupt8uint32_t"></span><span id="_CPPv226DMA_enableOverrunInterrupt8uint32_t"></span><span id="DMA_enableOverrunInterrupt__uint32_t"></span><span class="target" id="group__dma__api_1ga44032aea9d6cf961b7b82b591b2475af"></span>void <code class="sig-name descname">DMA_enableOverrunInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426DMA_enableOverrunInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the DMA channel overrun interrupt.</p>
+<p><p>This function enables the indicated DMA channel’s ability to generate an interrupt upon the detection of an overrun. An overrun is when a peripheral event trigger is received by the DMA before a previous trigger on that channel had been serviced and its flag had been cleared.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the DMA channel control registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>Note that this is the same interrupt signal as the interrupt that gets generated at the beginning/end of a transfer. That interrupt must first be enabled using <a class="reference internal" href="#group__dma__api_1ga51c845f784ba6f47e493610ce6084b34"><span class="std std-ref">DMA_enableInterrupt()</span></a> in order for the overrun interrupt to be generated.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427DMA_disableOverrunInterrupt8uint32_t">
+<span id="_CPPv327DMA_disableOverrunInterrupt8uint32_t"></span><span id="_CPPv227DMA_disableOverrunInterrupt8uint32_t"></span><span id="DMA_disableOverrunInterrupt__uint32_t"></span><span class="target" id="group__dma__api_1ga4e2c2b6c11267d8b23b22720afa24fdb"></span>void <code class="sig-name descname">DMA_disableOverrunInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427DMA_disableOverrunInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the DMA channel overrun interrupt.</p>
+<p><p>This function disables the indicated DMA channel’s ability to generate an interrupt upon the detection of an overrun.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the DMA channel control registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418DMA_clearErrorFlag8uint32_t">
+<span id="_CPPv318DMA_clearErrorFlag8uint32_t"></span><span id="_CPPv218DMA_clearErrorFlag8uint32_t"></span><span id="DMA_clearErrorFlag__uint32_t"></span><span class="target" id="group__dma__api_1gaf9fec00e68d03c8c1fcc8741fd15d473"></span>void <code class="sig-name descname">DMA_clearErrorFlag</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418DMA_clearErrorFlag8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears the DMA channel error flags.</p>
+<p><p>This function clears both the DMA channel’s sync error flag and its overrun error flag.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the DMA channel control registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420DMA_setInterruptMode8uint32_t17DMA_InterruptMode">
+<span id="_CPPv320DMA_setInterruptMode8uint32_t17DMA_InterruptMode"></span><span id="_CPPv220DMA_setInterruptMode8uint32_t17DMA_InterruptMode"></span><span id="DMA_setInterruptMode__uint32_t.DMA_InterruptMode"></span><span class="target" id="group__dma__api_1ga596c5bb7d03fc2f4e2c404751a98da83"></span>void <code class="sig-name descname">DMA_setInterruptMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv417DMA_InterruptMode" title="DMA_InterruptMode">DMA_InterruptMode</a> <em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420DMA_setInterruptMode8uint32_t17DMA_InterruptMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the interrupt generation mode of a DMA channel interrupt.</p>
+<p><p>This function sets the channel interrupt mode. When the </p>
+<em>mode</em> parameter is <strong>DMA_INT_AT_END</strong>, the DMA channel interrupt will be generated at the end of the transfer. If <strong>DMA_INT_AT_BEGINNING</strong>, the interrupt will be generated at the beginning of a new transfer. Generating at the beginning of a new transfer is the default behavior.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the DMA channel control registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: is a flag to indicate the channel interrupt mode.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419DMA_setPriorityModeb">
+<span id="_CPPv319DMA_setPriorityModeb"></span><span id="_CPPv219DMA_setPriorityModeb"></span><span id="DMA_setPriorityMode__b"></span><span class="target" id="group__dma__api_1ga543dc469332c63aaa8a7408063297608"></span>void <code class="sig-name descname">DMA_setPriorityMode</code><span class="sig-paren">(</span>bool <em>ch1IsHighPri</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419DMA_setPriorityModeb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the DMA channel priority mode.</p>
+<p><p>This function sets the channel interrupt mode. When the </p>
+<em>ch1IsHighPri</em> parameter is <strong>false</strong>, the DMA channels are serviced in round-robin mode. This is the default behavior.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ch1IsHighPri</span></code>: is a flag to indicate the channel interrupt mode.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>If <strong>true</strong>, channel 1 will be given higher priority than the other channels. This means that if a channel 1 trigger occurs, the current word transfer on any other channel is completed and channel 1 is serviced for the complete burst count. The lower-priority channel’s interrupted transfer will then resume.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423DMA_configSourceAddress8uint32_tPKv">
+<span id="_CPPv323DMA_configSourceAddress8uint32_tPKv"></span><span id="_CPPv223DMA_configSourceAddress8uint32_tPKv"></span><span id="DMA_configSourceAddress__uint32_t.voidCP"></span><span class="target" id="group__dma__api_1ga98a2ece7483e546416054f2407ce1499"></span>void <code class="sig-name descname">DMA_configSourceAddress</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <em class="property">const</em> void *<em>srcAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423DMA_configSourceAddress8uint32_tPKv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the source address for the DMA channel</p>
+<p><p>This function configures the source address of a DMA channel.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the DMA channel control registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">*srcAddr</span></code>: is a source address.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421DMA_configDestAddress8uint32_tPKv">
+<span id="_CPPv321DMA_configDestAddress8uint32_tPKv"></span><span id="_CPPv221DMA_configDestAddress8uint32_tPKv"></span><span id="DMA_configDestAddress__uint32_t.voidCP"></span><span class="target" id="group__dma__api_1gac45d0425e3d1767d92de5e399b099a23"></span>void <code class="sig-name descname">DMA_configDestAddress</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <em class="property">const</em> void *<em>destAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421DMA_configDestAddress8uint32_tPKv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the destination address for the DMA channel</p>
+<p><p>This function configures the destinaton address of a DMA channel.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the DMA channel control registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">*destAddr</span></code>: is the destination address.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419DMA_configAddresses8uint32_tPKvPKv">
+<span id="_CPPv319DMA_configAddresses8uint32_tPKvPKv"></span><span id="_CPPv219DMA_configAddresses8uint32_tPKvPKv"></span><span id="DMA_configAddresses__uint32_t.voidCP.voidCP"></span><span class="target" id="group__dma__api_1ga6ce0b2e96a07ac5ece62f8dff7a61ad2"></span>void <code class="sig-name descname">DMA_configAddresses</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <em class="property">const</em> void *<em>destAddr</em>, <em class="property">const</em> void *<em>srcAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419DMA_configAddresses8uint32_tPKvPKv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the DMA channel</p>
+<p><p>This function configures the source and destination addresses of a DMA channel. The parameters are pointers to the data to be transferred.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the DMA channel control registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">*destAddr</span></code>: is the destination address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">*srcAddr</span></code>: is a source address.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415DMA_configBurst8uint32_t8uint16_t7int16_t7int16_t">
+<span id="_CPPv315DMA_configBurst8uint32_t8uint16_t7int16_t7int16_t"></span><span id="_CPPv215DMA_configBurst8uint32_t8uint16_t7int16_t7int16_t"></span><span id="DMA_configBurst__uint32_t.uint16_t.int16_t.int16_t"></span><span class="target" id="group__dma__api_1ga2439c8b8c65376c649965a180166e0d9"></span>void <code class="sig-name descname">DMA_configBurst</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>size</em>, int16_t <em>srcStep</em>, int16_t <em>destStep</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415DMA_configBurst8uint32_t8uint16_t7int16_t7int16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the DMA channel’s burst settings.</p>
+<p><p>This function configures the size of each burst and the address step size.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the DMA channel control registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">size</span></code>: is the number of words transferred per burst. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">srcStep</span></code>: is the amount to increment or decrement the source address after each word of a burst. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">destStep</span></code>: is the amount to increment or decrement the destination address after each word of a burst.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>size</em> parameter is the number of words that will be transferred during a single burst. Possible amounts range from 1 word to 32 words.</p>
+<p>The <em>srcStep</em> and <em>destStep</em> parameters specify the address step that should be added to the source and destination addresses after each transferred word of a burst. Only signed values from -4096 to 4095 are valid.</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Note that regardless of what data size (configured by <a class="reference internal" href="#group__dma__api_1ga60e33dcbda8ed7c6d603cab17bdb7f19"><span class="std std-ref">DMA_configMode()</span></a>) is used, parameters are in terms of 16-bits words.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418DMA_configTransfer8uint32_t8uint32_t7int16_t7int16_t">
+<span id="_CPPv318DMA_configTransfer8uint32_t8uint32_t7int16_t7int16_t"></span><span id="_CPPv218DMA_configTransfer8uint32_t8uint32_t7int16_t7int16_t"></span><span id="DMA_configTransfer__uint32_t.uint32_t.int16_t.int16_t"></span><span class="target" id="group__dma__api_1ga0aa51ed5155166eb9332bf6c2165ae92"></span>void <code class="sig-name descname">DMA_configTransfer</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>transferSize</em>, int16_t <em>srcStep</em>, int16_t <em>destStep</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418DMA_configTransfer8uint32_t8uint32_t7int16_t7int16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the DMA channel’s transfer settings.</p>
+<p><p>This function configures the transfer size and the address step that is made after each burst.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the DMA channel control registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">transferSize</span></code>: is the number of bursts per transfer. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">srcStep</span></code>: is the amount to increment or decrement the source address after each burst of a transfer unless a wrap occurs. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">destStep</span></code>: is the amount to increment or decrement the destination address after each burst of a transfer unless a wrap occurs.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>transferSize</em> parameter is the number of bursts per transfer. If DMA channel interrupts are enabled, they will occur after this number of bursts have completed. The maximum number of bursts is 65536.</p>
+<p>The <em>srcStep</em> and <em>destStep</em> parameters specify the address step that should be added to the source and destination addresses after each transferred burst of a transfer. Only signed values from -4096 to 4095 are valid. If a wrap occurs, these step values will be ignored. Wrapping is configured with <a class="reference internal" href="#group__dma__api_1ga3bf1e97d735ac34a5dc04645227ee31a"><span class="std std-ref">DMA_configWrap()</span></a>.</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Note that regardless of what data size (configured by <a class="reference internal" href="#group__dma__api_1ga60e33dcbda8ed7c6d603cab17bdb7f19"><span class="std std-ref">DMA_configMode()</span></a>) is used, parameters are in terms of 16-bits words.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414DMA_configWrap8uint32_t8uint32_t7int16_t8uint32_t7int16_t">
+<span id="_CPPv314DMA_configWrap8uint32_t8uint32_t7int16_t8uint32_t7int16_t"></span><span id="_CPPv214DMA_configWrap8uint32_t8uint32_t7int16_t8uint32_t7int16_t"></span><span id="DMA_configWrap__uint32_t.uint32_t.int16_t.uint32_t.int16_t"></span><span class="target" id="group__dma__api_1ga3bf1e97d735ac34a5dc04645227ee31a"></span>void <code class="sig-name descname">DMA_configWrap</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>srcWrapSize</em>, int16_t <em>srcStep</em>, uint32_t <em>destWrapSize</em>, int16_t <em>destStep</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414DMA_configWrap8uint32_t8uint32_t7int16_t8uint32_t7int16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the DMA channel’s wrap settings.</p>
+<p><p>This function configures the DMA channel’s wrap settings.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the DMA channel control registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">srcWrapSize</span></code>: is the number of bursts to be transferred before a wrap of the source address occurs. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">srcStep</span></code>: is the amount to increment or decrement the source address after each burst of a transfer unless a wrap occurs. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">destWrapSize</span></code>: is the number of bursts to be transferred before a wrap of the destination address occurs. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">destStep</span></code>: is the amount to increment or decrement the destination address after each burst of a transfer unless a wrap occurs.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>srcWrapSize</em> and <em>destWrapSize</em> parameters are the number of bursts that are to be transferred before their respective addresses are wrapped. The maximum wrap size is 65536 bursts.</p>
+<p>The <em>srcStep</em> and <em>destStep</em> parameters specify the address step that should be added to the source and destination addresses when the wrap occurs. Only signed values from -4096 to 4095 are valid.</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Note that regardless of what data size (configured by <a class="reference internal" href="#group__dma__api_1ga60e33dcbda8ed7c6d603cab17bdb7f19"><span class="std std-ref">DMA_configMode()</span></a>) is used, parameters are in terms of 16-bits words.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414DMA_configMode8uint32_t11DMA_Trigger8uint32_t">
+<span id="_CPPv314DMA_configMode8uint32_t11DMA_Trigger8uint32_t"></span><span id="_CPPv214DMA_configMode8uint32_t11DMA_Trigger8uint32_t"></span><span id="DMA_configMode__uint32_t.DMA_Trigger.uint32_t"></span><span class="target" id="group__dma__api_1ga60e33dcbda8ed7c6d603cab17bdb7f19"></span>void <code class="sig-name descname">DMA_configMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv411DMA_Trigger" title="DMA_Trigger">DMA_Trigger</a> <em>trigger</em>, uint32_t <em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414DMA_configMode8uint32_t11DMA_Trigger8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the DMA channel trigger and mode.</p>
+<p><p>This function configures the DMA channel’s trigger and mode.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the DMA channel control registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">trigger</span></code>: is the interrupt source that triggers a DMA transfer. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code>: is a bit field of several configuration selections.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>trigger</em> parameter is the interrupt source that will trigger the start of a DMA transfer.</p>
+<p>The <em>config</em> parameter is the logical OR of the following values:<ul class="simple">
+<li><p><strong>DMA_CFG_ONESHOT_DISABLE</strong> or <strong>DMA_CFG_ONESHOT_ENABLE</strong>. If enabled, the subsequent burst transfers occur without additional event triggers after the first event trigger. If disabled, only one burst transfer is performed per event trigger.</p></li>
+<li><p><strong>DMA_CFG_CONTINUOUS_DISABLE</strong> or <strong>DMA_CFG_CONTINUOUS_ENABLE</strong>. If enabled the DMA reinitializes when the transfer count is zero and waits for the next interrupt event trigger. If disabled, the DMA stops and clears the run status bit.</p></li>
+<li><p><strong>DMA_CFG_SIZE_16BIT</strong> or <strong>DMA_CFG_SIZE_32BIT</strong>. This setting selects whether the databus width is 16 or 32 bits.</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>The DMA API includes functions that configure the module as a whole and
+functions that configure the individual channels. Functions that fall into the
+former category are DMA_initController(), DMA_setEmulationMode(), and
+DMA_setPriorityMode(). The functions that can be configured by channel can
+easily be identified as they take a base address as their first parameter.</p>
+<p>The DMA_configMode() function is used to configure the event that triggers a
+DMA transfer as well as several other properties of a transfer for the
+specified channel. Other functions that can be used to control the trigger from
+within the DMA module are DMA_enableTrigger(), DMA_disableTrigger(),
+DMA_forceTrigger(), DMA_clearTriggerFlag(), and DMA_getTriggerFlagStatus().
+Note that DMA_forceTrigger() is used to trigger a transfer from software.</p>
+<p>DMA_configAddresses() is used to write to both the beginning and current
+address pointer registers. The manner in which these addresses are incremented
+and decremented as bursts and transfers complete is configured using
+DMA_configBurst(), DMA_configTransfer(), and DMA_configWrap(). All sizes are
+in terms of 16-bit words.</p>
+<p>DMA_enableInterrupt(), DMA_disableInterrupt(), and DMA_setInterruptMode()
+configure a channel interrupt that will be generated either at the beginning or
+the end of a transfer. An additional overrun error interrupt that is ORed into
+the channel interrupt signal can be configured using
+DMA_enableOverrunInterrupt(), and DMA_disableOverrunInterrupt(). This error
+can be cleared using DMA_clearErrorFlag().</p>
+<p>When configuration is complete, DMA_startChannel() can be called to start the
+DMA channel running and it will wait for the first trigger. To halt the
+operation of the channel DMA_stopChannel() may be used.</p>
+<p>The code for this module is contained in driverlib/dma.c, with driverlib/dma.h containing the API declarations for use by applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dcsm.html" class="btn btn-neutral float-left" title="DCSM Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ecap.html" class="btn btn-neutral float-right" title="ECAP Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,358 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Driver Library Usage &mdash; F2837xd API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="F2837xd API Guide" href="index.html"/>
+        <link rel="next" title="Modules" href="modules/index.html"/>
+        <link rel="prev" title="Programming Models" href="model.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> F2837xd API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="model.html">Programming Models</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Driver Library Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#code-composer-studio-tips">Code Composer Studio Tips</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ccs-outline-view">CCS Outline View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#assert-macro">ASSERT Macro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#driver-library-optimization">Driver Library Optimization</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules/index.html">Modules</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">F2837xd API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Driver Library Usage</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="driver-library-usage">
+<span id="usage"></span><h1>Driver Library Usage<a class="headerlink" href="#driver-library-usage" title="Permalink to this headline">¶</a></h1>
+<p>To develop with the peripheral driver library more efficiently, Code Composer
+Studio (CCS) offers several project and workspace features that can help maximize
+development time and device application execution. As previously discussed in the
+programming model chapter, there are advantages and disadvantages to each programming
+model. This chapter will explain optimization tips that should be used in conjuction
+with the APIs provided by the peripheral driver library to overcome and minimize
+those disadvantages.</p>
+<div class="section" id="code-composer-studio-tips">
+<h2>Code Composer Studio Tips<a class="headerlink" href="#code-composer-studio-tips" title="Permalink to this headline">¶</a></h2>
+<p>This section will detail some Code Composer Studio (CCS) tips that can be used
+to help effectively use the driver library during development.</p>
+<p>In CCS, the Content Assist feature can be used to offer suggestions for completing
+function and parameter names. This feature may be auto-activated while typing or
+it can be activated by hitting Ctrl+Space. To get the desired preferences, adjust
+the settings under C/C++ -&gt; Editor -&gt; Content Assist. The figure below shows
+the Content Assist in use.</p>
+<div class="figure align-center" id="content-assist">
+<a class="reference internal image-reference" href="_images/content_assist.jpg"><img alt="_images/content_assist.jpg" src="_images/content_assist.jpg" style="width: 410.5px; height: 261.5px;" /></a>
+</div>
+<p>If you can’t tell what an appropriate parameter is just from looking at the function
+prototype and the Content Assist list, hover over the function to view its description.</p>
+</div>
+<div class="section" id="ccs-outline-view">
+<h2>CCS Outline View<a class="headerlink" href="#ccs-outline-view" title="Permalink to this headline">¶</a></h2>
+<p>With a driver header file open, it is useful to take advantage of the CCS Outline
+view to get a complete list of functions, enumerations, and macros. The Outline
+view can be opened by selecting Window -&gt; Show view -&gt; Outline. The figure
+below shows the outline view in use.</p>
+<div class="figure align-center" id="id1">
+<a class="reference internal image-reference" href="_images/outline_view.jpg"><img alt="_images/outline_view.jpg" src="_images/outline_view.jpg" style="width: 410.5px; height: 261.5px;" /></a>
+</div>
+<p>Similarly, you can split screen between application code and the API Reference Guide
+in the Resource Explorer.</p>
+<p>Additionally, the function prototype in a driver header file can be viewed by
+holding Ctrl and clicking on the function name in the application code.</p>
+<p>For more information on any of the tips provided, refer to the CCS Online Help
+section for details (CCS menu Help -&gt; Help Contents and search for Content Assist).</p>
+</div>
+<div class="section" id="assert-macro">
+<h2>ASSERT Macro<a class="headerlink" href="#assert-macro" title="Permalink to this headline">¶</a></h2>
+<p>An ASSERT macro is defined in the &lt;tt&gt;driverlib/debug.h&lt;/tt&gt; file as a method of
+checking the validity of function arguments and other error conditions. When
+the symbol DEBUG is defined, ASSERT(&lt;i&gt;expr&lt;/i&gt;) will call a user-defined error
+function __error__() when Boolean expression &lt;i&gt;expr&lt;/i&gt; is evaluated to false.
+To use the macro, an application must provide an __error__() function with the
+following prototype:</p>
+<p>void __error__(char <a href="#id2"><span class="problematic" id="id3">*</span></a>filename, uint32_t line);</p>
+<p>The &lt;i&gt;filename&lt;/i&gt; and &lt;i&gt;line&lt;/i&gt; parameters indicate which ASSERT resulted in
+the error condition. It is up to the application to decide what action the
+__error__() function should take to report the error.</p>
+<p>The default Debug build configuration for the driverlib.lib project and the
+Driverlib example projects have turned on ASSERT by putting DEBUG in the projects’
+predefined symbols. Removing the DEBUG symbol from the projects will cause the
+ASSERT macro to compile to nothing, meaning it will add no code size or cycles
+to the application when it is turned off.</p>
+</div>
+<div class="section" id="driver-library-optimization">
+<h2>Driver Library Optimization<a class="headerlink" href="#driver-library-optimization" title="Permalink to this headline">¶</a></h2>
+<p>When using the software driver programming model it is important to note that there
+is a price to abstraction and making functions generic. Some of the drawbacks
+include the overhead time of the function call and the calculation time required
+to access a specific register offset or bit field within the register.</p>
+<p>To help overcome these shortcomings, it is important to consider the use of
+inline functions. Using inline functions eliminates the need for function calls
+since the function is essentially treated like a macro. If constants are being
+passed into the function’s parameters, much of its code may be evaluated at compile
+time. In order to utilize inline functions you must turn on optimization for it
+to take effect. If optimization is desired without the use of inline functions,
+use the –no_inling (-pi) option. This option can be set in the CCS project properties
+under Build -&gt; C2000 Compiler -&gt; Advanced Options -&gt; Language Options.</p>
+<p>There are two types of APIs available in a typical peripheral driver file namely static
+inline APIs (defined in <a href="#id4"><span class="problematic" id="id5">*</span></a>.h files) and non-static non-inline APIs (defined in <a href="#id6"><span class="problematic" id="id7">*</span></a>.c files).
+For best performance, static inline APIs available in driverlib are expected to be inlined
+in the application.</p>
+<p>Static inline APIs defined in the driverlib are compiled with the application code and
+would be part of application binary while non-static non-inline APIs would be part of
+driverlib.lib provided under C2000Ware. C2000Ware provides debug and release libraries
+for device specific peripheral drivers.</p>
+<p>The debug library is to be used while debugging the application code as it is compiled with
+DEBUG symbol to verify input parameters through ASSERT macro. The debug library is built
+with option opt = Ooff to enable efficient debugging while keeping the code size small. The
+release library is compiled with option opt = O2 and hence expand calls to APIs declared
+inline along with other optimizations resulting in improved code performance. The DEBUG
+symbol is not used while compiling the release library thereby removing ASSERT macro
+resulting in smaller code size.</p>
+<p>Most of the APIs are declared as static inline in the driverlib and therefore are compiled
+with application code in case the API is being used by the application. Hence the performance
+of static inline APIs would depend on the application project optimization level. With
+optimization level Ooff, the static inline driverlib APIs would be part of application
+code memory section and a function call would be made for each call. This option should only
+be used while debugging the project. Use optimization level equal to or above O0 in application
+project to expand the static inline driverlib APIs. Refer to respective compiler guide for more
+details on different optimization levels available to achieve required performance.</p>
+<p>In addition to inline functions, using the “generating function subsection” compiler
+option(–gen_func_subsections=on, -mo) is important. By default, the library project
+provided with the peripheral driver library project has this option turned on.
+When this option is selected, the compiler places each driver library function
+into its own subsection. This allows only the functions that are referenced in
+the application to be linked into the final executable. This can result in an
+overall code size reduction. This compiler option can be set by accessing the CCS
+project properties under Build -&gt; C2000 Compiler -&gt; Advanced Options -&gt;
+Runtime Model Options.</p>
+<p>The optimization options can be found in the CCS project properties which is
+accessed by right-clicking on the project in the project explorer and selecting
+properties. In the resulting window, the optimization settings are
+found in Build -&gt; C2000 Compiler -&gt; Optimization.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="model.html" class="btn btn-neutral float-left" title="Programming Models" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modules/index.html" class="btn btn-neutral float-right" title="Modules" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

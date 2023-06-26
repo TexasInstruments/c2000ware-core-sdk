@@ -1,0 +1,164 @@
+//#############################################################################
+// \file f2837x/F2837x_internal_testcases/CLA/exp2/exp2.cla
+//
+// \brief  Exponentiation Example
+// \author Vishal Coelho
+// \date   Apr 8, 2013
+//
+//
+//  Group:             C2000
+//  Target Family:    F2837xD
+//
+//#############################################################################
+//
+// $Release Date:  $
+// $Copyright:
+// Copyright (C) 2013-2023 Texas Instruments Incorporated - http://www.ti.com/
+//
+// Redistribution and use in source and binary forms, with or without 
+// modification, are permitted provided that the following conditions 
+// are met:
+// 
+//   Redistributions of source code must retain the above copyright 
+//   notice, this list of conditions and the following disclaimer.
+// 
+//   Redistributions in binary form must reproduce the above copyright
+//   notice, this list of conditions and the following disclaimer in the 
+//   documentation and/or other materials provided with the   
+//   distribution.
+// 
+//   Neither the name of Texas Instruments Incorporated nor the names of
+//   its contributors may be used to endorse or promote products derived
+//   from this software without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+// $
+//#############################################################################
+
+//
+// Included Files
+//
+#include "cla_exp2_shared.h"
+
+//
+// Defines
+//
+
+//
+// Globals
+//
+// Note that the globals defined in the .cla source are global to the cla source
+// file.  i.e. they may be shared across tasks. All of the data shared between
+// the CLA and the C28x CPU must be defined in the C (or C++) code, and not the
+// CLA code.  
+//
+
+//
+// Function Definitions
+//
+//Task 1 : e^(A/B)
+// Description:
+//  Step(1):   Calculate absolute of x=A/B
+//
+//  Step(2):   Identify the integer and mantissa of the input
+//
+//  Step(3):   Obtain the e^integer(x) from the table
+//
+//  Step(4):   Calculate the value of e^(mantissa)by using the
+//  polynomial approx = 1 + x*(1+x*0.5(1+(x/3)(1+x/4(1+X/5*(1+Xm/6*(1+Xm/7))))))
+//
+//  Step(5):   The value of e^x is the product of results from (3)&(4)
+interrupt void Cla1Task1 ( void )
+{
+    //
+    //Local Variables
+    //
+    float X;        //Exponent
+    float Y;
+    float Xm;       //Residue
+    int Idx;        //index into EXP table
+
+    float Ei,Em;    //Exponent(Integer), Exponent(Mantissa)
+    float result;
+    float temp;
+
+    __mdebugstop();
+
+    //
+    //Step(1):   Calculate absolute of x=A/B
+    //
+    Y = Num/Den;
+    X = fabs(Y);
+
+    //
+    //Step(2):   Identify the integer and mantissa of the input
+    //
+    Idx = (int)X;
+    Xm = __mfracf32(X);
+
+    //
+    //Step(3):   Obtain the e^integer(x) from the table
+    //
+    Ei = CLAexpTable[Idx];
+    Em = CLAINV1 + Xm*(CLAINV1+Xm*CLAINV2*(CLAINV1+(Xm*CLAINV3) \
+                 *(CLAINV1+(Xm*CLAINV4)*(CLAINV1+(Xm*CLAINV5) \
+                 *(CLAINV1+(Xm*CLAINV6)*(CLAINV1+Xm*CLAINV7))))));
+    result = Ei*Em;
+
+    temp = 1.0/result;
+    if(Y < 0.0)
+    {
+        result = temp;
+    }
+
+    ExpRes = result;
+}
+
+interrupt void Cla1Task2 ( void )
+{
+
+}
+
+interrupt void Cla1Task3 ( void )
+{
+
+}
+
+interrupt void Cla1Task4 ( void )
+{
+
+}
+
+interrupt void Cla1Task5 ( void )
+{
+
+}
+
+interrupt void Cla1Task6 ( void )
+{
+
+}
+
+interrupt void Cla1Task7 ( void )
+{
+
+}
+
+interrupt void Cla1Task8 ( void )
+{
+
+}
+
+//
+// End of file
+//

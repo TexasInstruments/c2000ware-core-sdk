@@ -1,0 +1,327 @@
+//###########################################################################
+//
+// FILE:   F2802x0_Device.h
+//
+// TITLE:  F2802x0 Device Definitions.
+//
+//###########################################################################
+// $TI Release:  $
+// $Release Date:  $
+// $Copyright:
+// Copyright (C) 2009-2023 Texas Instruments Incorporated - http://www.ti.com/
+//
+// Redistribution and use in source and binary forms, with or without 
+// modification, are permitted provided that the following conditions 
+// are met:
+// 
+//   Redistributions of source code must retain the above copyright 
+//   notice, this list of conditions and the following disclaimer.
+// 
+//   Redistributions in binary form must reproduce the above copyright
+//   notice, this list of conditions and the following disclaimer in the 
+//   documentation and/or other materials provided with the   
+//   distribution.
+// 
+//   Neither the name of Texas Instruments Incorporated nor the names of
+//   its contributors may be used to endorse or promote products derived
+//   from this software without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+// $
+//###########################################################################
+
+#ifndef F2802x0_DEVICE_H
+#define F2802x0_DEVICE_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+//
+// Defines
+//
+#define   TARGET   1
+
+//
+// Defines to Select Target Device
+//
+#define   DSP28_280200PT  0
+#define   DSP28_280200DA  0
+
+#define   DSP28_28020PT   0
+#define   DSP28_28020DA   0
+
+#define   DSP28_28021PT   0
+#define   DSP28_28021DA   0
+
+#define   DSP28_28022PT   0
+#define   DSP28_28022DA   0
+
+#define   DSP28_28023PT   0
+#define   DSP28_28023DA   0
+
+#define   DSP28_28026PT   0
+#define   DSP28_28026DA   0
+
+#define   DSP28_28027PT   TARGET
+#define   DSP28_28027DA   0
+
+#define   DSP28_28026FPT  0
+#define   DSP28_28027FPT  0
+
+//
+// Common CPU Definitions
+//
+extern cregister volatile unsigned int IFR;
+extern cregister volatile unsigned int IER;
+
+#define  EINT   asm(" clrc INTM")
+#define  DINT   asm(" setc INTM")
+#define  ERTM   asm(" clrc DBGM")
+#define  DRTM   asm(" setc DBGM")
+#define  EALLOW asm(" EALLOW")
+#define  EDIS   asm(" EDIS")
+#define  ESTOP0 asm(" ESTOP0")
+
+#define M_INT1  0x0001
+#define M_INT2  0x0002
+#define M_INT3  0x0004
+#define M_INT4  0x0008
+#define M_INT5  0x0010
+#define M_INT6  0x0020
+#define M_INT7  0x0040
+#define M_INT8  0x0080
+#define M_INT9  0x0100
+#define M_INT10 0x0200
+#define M_INT11 0x0400
+#define M_INT12 0x0800
+#define M_INT13 0x1000
+#define M_INT14 0x2000
+#define M_DLOG  0x4000
+#define M_RTOS  0x8000
+
+#define BIT0    0x0001
+#define BIT1    0x0002
+#define BIT2    0x0004
+#define BIT3    0x0008
+#define BIT4    0x0010
+#define BIT5    0x0020
+#define BIT6    0x0040
+#define BIT7    0x0080
+#define BIT8    0x0100
+#define BIT9    0x0200
+#define BIT10   0x0400
+#define BIT11   0x0800
+#define BIT12   0x1000
+#define BIT13   0x2000
+#define BIT14   0x4000
+#define BIT15   0x8000
+
+//
+// Included Files
+//
+
+//
+// For Portability, User Is Recommended To Use the C99 Standard integer types
+//
+#include <assert.h>
+#include <stdarg.h>
+#include <stdbool.h>
+#include <stddef.h>
+#include <stdint.h>
+
+//
+// Typedefs
+//
+
+//
+// C99 defines boolean type to be _Bool, but this doesn't match the format of
+// the other standard integer types.  bool_t has been defined to fill this gap.
+//
+typedef _Bool bool_t;
+
+//
+// Work around for code that might accidentally use uint8_t
+//
+typedef unsigned char uint8_t;
+
+//
+// The following data types are included for compatibility with legacy code,
+// they are not recommended for use in new software.  Please use the C99
+// types included above
+//
+#ifndef DSP28_DATA_TYPES
+#define DSP28_DATA_TYPES
+typedef int             int16;
+typedef long            int32;
+typedef unsigned int    Uint16;
+typedef unsigned long   Uint32;
+typedef float           float32;
+typedef long double     float64;
+#endif
+
+//
+// Include All Peripheral Header Files
+//
+#include "F2802x0_Adc.h"                // ADC Registers
+#include "F2802x0_BootVars.h"           // Boot ROM Variables
+#include "F2802x0_DevEmu.h"             // Device Emulation Registers
+#include "F2802x0_Comp.h"               // Comparator Registers
+#include "F2802x0_CpuTimers.h"          // 32-bit CPU Timers
+#include "F2802x0_ECap.h"               // Enhanced Capture
+#include "F2802x0_EPwm.h"               // Enhanced PWM
+#include "F2802x0_Gpio.h"               // General Purpose I/O Registers
+#include "F2802x0_I2c.h"                // I2C Registers
+#include "F2802x0_NmiIntrupt.h"         // NMI Interrupt Registers
+#include "F2802x0_PieCtrl.h"            // PIE Control Registers
+#include "F2802x0_PieVect.h"            // PIE Vector Table
+#include "F2802x0_Spi.h"                // SPI Registers
+#include "F2802x0_Sci.h"                // SCI Registers
+#include "F2802x0_SysCtrl.h"            // System Control/Power Modes
+#include "F2802x0_XIntrupt.h"           // External Interrupts
+
+#if (DSP28_28020PT||DSP28_28021PT||DSP28_28022PT||DSP28_28023PT||DSP28_28026PT\
+     ||DSP28_28027PT)
+#define DSP28_COMP1    1
+#define DSP28_COMP2    1
+#define DSP28_EPWM1    1
+#define DSP28_EPWM2    1
+#define DSP28_EPWM3    1
+#define DSP28_EPWM4    1
+#define DSP28_ECAP1    1
+#define DSP28_SPIA     1
+#define DSP28_SCIA     1
+#define DSP28_I2CA     1
+#endif  // end 2802x0 PT package
+
+#if (DSP28_28020DA||DSP28_28021DA||DSP28_28022DA||DSP28_28023DA||DSP28_28026DA\
+     ||DSP28_28027DA)
+#define DSP28_COMP1    1
+#define DSP28_COMP2    0
+#define DSP28_EPWM1    1
+#define DSP28_EPWM2    1
+#define DSP28_EPWM3    1
+#define DSP28_EPWM4    1
+#define DSP28_ECAP1    1
+#define DSP28_SPIA     1
+#define DSP28_SCIA     1
+#define DSP28_I2CA     1
+#endif  // end 2802x0 DA package
+
+#if (DSP28_280200PT)
+#define DSP28_COMP1    1
+#define DSP28_COMP2    1
+#define DSP28_EPWM1    1
+#define DSP28_EPWM2    1
+#define DSP28_EPWM3    1
+#define DSP28_EPWM4    1
+#define DSP28_ECAP1    0
+#define DSP28_SPIA     1
+#define DSP28_SCIA     1
+#define DSP28_I2CA     1
+#endif  // end 280200 PT package
+
+#if (DSP28_280200DA)
+#define DSP28_COMP1    1
+#define DSP28_COMP2    0
+#define DSP28_EPWM1    1
+#define DSP28_EPWM2    1
+#define DSP28_EPWM3    1
+#define DSP28_EPWM4    1
+#define DSP28_ECAP1    0
+#define DSP28_SPIA     1
+#define DSP28_SCIA     1
+#define DSP28_I2CA     1
+#endif  // end 280200 DA package
+
+//
+// Timer definitions based on System Clock
+// 60 MHz devices (28027/28026)
+//
+#if (DSP28_28026PT||DSP28_28026DA||DSP28_28027PT||DSP28_28027DA) 
+    #define      mSec0_5          30000           // 0.5 mS
+    #define      mSec0_75         45000           // 0.75 mS
+    #define      mSec1            60000           // 1.0 mS
+    #define      mSec2            120000          // 2.0 mS
+    #define      mSec5            300000          // 5.0 mS
+    #define      mSec7_5          450000          // 7.5 mS
+    #define      mSec10           600000          // 10 mS
+    #define      mSec20           1200000         // 20 mS
+    #define      mSec50           3000000         // 50 mS
+    #define      mSec75           4500000         // 75 mS
+    #define      mSec100          6000000         // 100 mS
+    #define      mSec200          12000000        // 200 mS
+    #define      mSec500          30000000        // 500 mS
+    #define      mSec750          45000000        // 750 mS
+    #define      mSec1000         60000000        // 1000 mS
+    #define      mSec2000         120000000       // 2000 mS
+    #define      mSec5000         300000000       // 5000 mS
+#endif
+
+//
+// 50 MHz devices (28023/28022)
+//
+#if (DSP28_28022PT||DSP28_28022DA||DSP28_28023PT||DSP28_28023DA)
+    #define      mSec0_5          25000           // 0.5 mS
+    #define      mSec0_75         37500           // 0.75 mS
+    #define      mSec1            50000           // 1.0 mS
+    #define      mSec2            100000          // 2.0 mS
+    #define      mSec5            250000          // 5.0 mS
+    #define      mSec7_5          375000          // 7.5 mS
+    #define      mSec10           500000          // 10 mS
+    #define      mSec20           1000000         // 20 mS
+    #define      mSec50           2500000         // 50 mS
+    #define      mSec75           3750000         // 75 mS
+    #define      mSec100          5000000         // 100 mS
+    #define      mSec200          10000000        // 200 mS
+    #define      mSec500          25000000        // 500 mS
+    #define      mSec750          37500000        // 750 mS
+    #define      mSec1000         50000000        // 1000 mS
+    #define      mSec2000         100000000       // 2000 mS
+    #define      mSec5000         250000000       // 5000 mS
+#endif
+
+//
+// 40 MHz devices (28021/28020/280200)
+//
+#if (DSP28_280200PT||DSP28_280200DA||DSP28_28020PT||DSP28_28020DA||\
+     DSP28_28021PT ||DSP28_28021DA)
+    #define      mSec0_5          20000           // 0.5 mS
+    #define      mSec0_75         30000           // 0.75 mS
+    #define      mSec1            40000           // 1.0 mS
+    #define      mSec2            80000           // 2.0 mS
+    #define      mSec5            200000          // 5.0 mS
+    #define      mSec7_5          300000          // 7.5 mS
+    #define      mSec10           400000          // 10 mS
+    #define      mSec20           800000          // 20 mS
+    #define      mSec50           2000000         // 50 mS
+    #define      mSec75           3000000         // 75 mS
+    #define      mSec100          4000000         // 100 mS
+    #define      mSec200          8000000         // 200 mS
+    #define      mSec500          20000000        // 500 mS
+    #define      mSec750          30000000        // 750 mS
+    #define      mSec1000         40000000        // 1000 mS
+    #define      mSec2000         80000000        // 2000 mS
+    #define      mSec5000         200000000       // 5000 mS
+#endif
+
+#ifdef __cplusplus
+}
+#endif /* extern "C" */
+
+#endif  // end of F2802x0_DEVICE_H definition
+
+//
+// End of file
+//
+

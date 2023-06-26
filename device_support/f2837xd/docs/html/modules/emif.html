@@ -1,0 +1,1210 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>EMIF Module &mdash; F2837xd API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F2837xd API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="EPWM Module" href="epwm.html"/>
+        <link rel="prev" title="ECAP Module" href="ecap.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F2837xd API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="adc.html">ADC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asysctl.html">ASysCtl Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla.html">CLA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clb.html">CLB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmpss.html">CMPSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dac.html">DAC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dma.html">DMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ecap.html">ECAP Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">EMIF Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="epwm.html">EPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hrpwm.html">HRPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqep.html">EQEP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcbsp.html">MCBSP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci.html">SCI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdfm.html">SDFM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">SPI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upp.html">UPP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version.html">Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xbar.html">XBAR Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F2837xd API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>EMIF Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="emif-module">
+<span id="emif"></span><h1>EMIF Module<a class="headerlink" href="#emif-module" title="Permalink to this headline">¶</a></h1>
+<p>The external memory interface (EMIF) API provides a set of functions to
+configure device’s EMIF module. The driver provides functions to initialize the
+module, configure external memory parameters, obtain status information and to
+manage interrupts. APIs for both asynchronous and synchronous modes are
+supported.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__emif__api"></span><em>group</em> <code class="sig-name descname">emif_api</code></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.EMIF_ACCPROT0_FETCHPROT">
+<span class="target" id="group__emif__api_1gae5b222ec64fae53c6839ed149330cee4"></span><code class="sig-name descname">EMIF_ACCPROT0_FETCHPROT</code> MEMCFG_EMIF1ACCPROT0_FETCHPROT_EMIF1<a class="headerlink" href="#c.EMIF_ACCPROT0_FETCHPROT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This flag is used to specify whether CPU fetches are allowed/blocked for EMIF. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EMIF_ACCPROT0_CPUWRPROT">
+<span class="target" id="group__emif__api_1ga5380186fee531329a9277daaa9b9bcdd"></span><code class="sig-name descname">EMIF_ACCPROT0_CPUWRPROT</code> MEMCFG_EMIF1ACCPROT0_CPUWRPROT_EMIF1<a class="headerlink" href="#c.EMIF_ACCPROT0_CPUWRPROT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This flag is used to specify whether CPU writes are allowed/blocked for EMIF. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EMIF_ACCPROT0_DMAWRPROT">
+<span class="target" id="group__emif__api_1ga1f8ce207cc4b489ba142e4cbe01fe13a"></span><code class="sig-name descname">EMIF_ACCPROT0_DMAWRPROT</code> MEMCFG_EMIF1ACCPROT0_DMAWRPROT_EMIF1<a class="headerlink" href="#c.EMIF_ACCPROT0_DMAWRPROT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This flag is used to specify whether DMA writes are allowed/blocked for EMIF. It is valid only for EMIF1 instance. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EMIF_ACCPROT0_MASK_EMIF1">
+<span class="target" id="group__emif__api_1gae077845c6d6b6343715c238d1a23f2aa"></span><code class="sig-name descname">EMIF_ACCPROT0_MASK_EMIF1</code> ((uint16_t)MEMCFG_EMIF1ACCPROT0_FETCHPROT_EMIF1<p> |\</p>
+<p>                              (uint16_t)</p>
+MEMCFG_EMIF1ACCPROT0_CPUWRPROT_EMIF1<p> |\</p>
+<p>                              (uint16_t)</p>
+MEMCFG_EMIF1ACCPROT0_DMAWRPROT_EMIF1)<a class="headerlink" href="#c.EMIF_ACCPROT0_MASK_EMIF1" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EMIF_ACCPROT0_MASK_EMIF2">
+<span class="target" id="group__emif__api_1ga9f637299037c9b11b641924de736d48e"></span><code class="sig-name descname">EMIF_ACCPROT0_MASK_EMIF2</code> ((uint16_t)MEMCFG_EMIF2ACCPROT0_FETCHPROT_EMIF2<p> |\</p>
+<p>                              (uint16_t)</p>
+MEMCFG_EMIF2ACCPROT0_CPUWRPROT_EMIF2)<a class="headerlink" href="#c.EMIF_ACCPROT0_MASK_EMIF2" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EMIF_ASYNC_CS_CR_MASK">
+<span class="target" id="group__emif__api_1ga31acaca7ba438c98fdcb9a6b448dd6d6"></span><code class="sig-name descname">EMIF_ASYNC_CS_CR_MASK</code> ((uint32_t)EMIF_ASYNC_CS2_CR_R_HOLD_M<p>    |   \</p>
+<p>                                  (uint32_t)</p>
+EMIF_ASYNC_CS2_CR_R_STROBE_M<p>  |   \</p>
+<p>                                  (uint32_t)</p>
+EMIF_ASYNC_CS2_CR_R_SETUP_M<p>   |   \</p>
+<p>                                  (uint32_t)</p>
+EMIF_ASYNC_CS2_CR_W_HOLD_M<p>    |   \</p>
+<p>                                  (uint32_t)</p>
+EMIF_ASYNC_CS2_CR_W_STROBE_M<p>  |   \</p>
+<p>                                  (uint32_t)</p>
+EMIF_ASYNC_CS2_CR_W_SETUP_M<p>   |   \</p>
+<p>                                  (uint32_t)</p>
+EMIF_ASYNC_CS2_CR_TA_M)<a class="headerlink" href="#c.EMIF_ASYNC_CS_CR_MASK" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EMIF_ASYNC_INT_MASK">
+<span class="target" id="group__emif__api_1ga25aab63ffc80b3d3dfef20c39a35d118"></span><code class="sig-name descname">EMIF_ASYNC_INT_MASK</code> ((uint16_t)EMIF_INT_MSK_SET_AT_MASK_SET<p>  |   \</p>
+<p>                                  (uint16_t)</p>
+EMIF_INT_MSK_SET_LT_MASK_SET<p>  |   \</p>
+<p>                                  (uint16_t)</p>
+EMIF_INT_MSK_SET_WR_MASK_SET_M)<a class="headerlink" href="#c.EMIF_ASYNC_INT_MASK" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EMIF_ASYNC_INT_AT">
+<span class="target" id="group__emif__api_1ga921e6c41eaa969d3d7900f315ca6088a"></span><code class="sig-name descname">EMIF_ASYNC_INT_AT</code> EMIF_INT_MSK_SET_AT_MASK_SET<a class="headerlink" href="#c.EMIF_ASYNC_INT_AT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This flag is used to allow/block EMIF to generate Masked Asynchronous Timeout interrupt. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EMIF_ASYNC_INT_LT">
+<span class="target" id="group__emif__api_1ga16e93a8791fe1e8f952bf96b5adc6279"></span><code class="sig-name descname">EMIF_ASYNC_INT_LT</code> EMIF_INT_MSK_SET_LT_MASK_SET<a class="headerlink" href="#c.EMIF_ASYNC_INT_LT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This flag is used to allow/block EMIF to generate Masked Line Trap interrupt. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EMIF_ASYNC_INT_WR">
+<span class="target" id="group__emif__api_1ga625ba52db96503ce842ac70104e66477"></span><code class="sig-name descname">EMIF_ASYNC_INT_WR</code> EMIF_INT_MSK_SET_WR_MASK_SET_M<a class="headerlink" href="#c.EMIF_ASYNC_INT_WR" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This flag is used to allow/block EMIF to generate Masked Wait Rise interrupt. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EMIF_MSEL_KEY">
+<span class="target" id="group__emif__api_1gaa6357a33125453590c75e6e08ac07f39"></span><code class="sig-name descname">EMIF_MSEL_KEY</code> 0x93A5CE70U<a class="headerlink" href="#c.EMIF_MSEL_KEY" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EMIF_SYNC_SDRAM_CR_MASK">
+<span class="target" id="group__emif__api_1gad28cb201523ac16851083014fc7c8939"></span><code class="sig-name descname">EMIF_SYNC_SDRAM_CR_MASK</code> ((uint32_t)EMIF_SDRAM_CR_PAGESIGE_M<p>    |    \</p>
+<p>                                   (uint32_t)</p>
+EMIF_SDRAM_CR_IBANK_M<p>       |    \</p>
+<p>                                   (uint32_t)</p>
+EMIF_SDRAM_CR_BIT_11_9_LOCK<p> |    \</p>
+<p>                                   (uint32_t)</p>
+EMIF_SDRAM_CR_CL_M<p>          |    \</p>
+<p>                                   (uint32_t)</p>
+EMIF_SDRAM_CR_NM<p>            |    \</p>
+<p>                                   (uint32_t)</p>
+EMIF_SDRAM_CR_SR)<a class="headerlink" href="#c.EMIF_SYNC_SDRAM_CR_MASK" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EMIF_SYNC_SDRAM_TR_MASK">
+<span class="target" id="group__emif__api_1ga04cd4a85ccc3c9b0bdc35a07566de7b2"></span><code class="sig-name descname">EMIF_SYNC_SDRAM_TR_MASK</code> ((uint32_t)EMIF_SDRAM_TR_T_RRD_M<p>  |          \</p>
+<p>                                  (uint32_t)</p>
+EMIF_SDRAM_TR_T_RC_M<p>   |          \</p>
+<p>                                  (uint32_t)</p>
+EMIF_SDRAM_TR_T_RAS_M<p>  |          \</p>
+<p>                                  (uint32_t)</p>
+EMIF_SDRAM_TR_T_WR_M<p>   |          \</p>
+<p>                                  (uint32_t)</p>
+EMIF_SDRAM_TR_T_RCD_M<p>  |          \</p>
+<p>                                  (uint32_t)</p>
+EMIF_SDRAM_TR_T_RP_M<p>   |          \</p>
+<p>                                  (uint32_t)</p>
+EMIF_SDRAM_TR_T_RFC_M)<a class="headerlink" href="#c.EMIF_SYNC_SDRAM_TR_MASK" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="cpp enum">
+<dt id="_CPPv418EMIF_AsyncCSOffset">
+<span id="_CPPv318EMIF_AsyncCSOffset"></span><span id="_CPPv218EMIF_AsyncCSOffset"></span><span class="target" id="group__emif__api_1gafb00746b18326a7755d4c2ee9fabe83e"></span><em class="property">enum </em><code class="sig-name descname">EMIF_AsyncCSOffset</code><a class="headerlink" href="#_CPPv418EMIF_AsyncCSOffset" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__emif__api_1gaa2be0c283e4dec372645d885759b460d"><span class="std std-ref">EMIF_setAsyncMode()</span></a>, <a class="reference internal" href="#group__emif__api_1ga4e140cfbdfc01c581ed6ad31d3a80af9"><span class="std std-ref">EMIF_setAsyncTimingParams()</span></a>, <a class="reference internal" href="#group__emif__api_1ga635673f91c658c672c5d998e9e82d56c"><span class="std std-ref">EMIF_setAsyncDataBusWidth()</span></a>, <a class="reference internal" href="#group__emif__api_1ga2c0b8be1afe52932105f78362b3b0012"><span class="std std-ref">EMIF_enableAsyncExtendedWait()</span></a> and <a class="reference internal" href="#group__emif__api_1ga9939cff1eb79fcc7cfc0211fdf56edca"><span class="std std-ref">EMIF_disableAsyncExtendedWait()</span></a> as the <em>offset</em> parameter. Three chip selects are available in asynchronous memory interface so there are three configuration registers available for each EMIF instance. All the three chip select offsets are valid for EMIF1 while only EMIF_ASYNC_CS2_OFFSET is valid for EMIF2. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18EMIF_AsyncCSOffset21EMIF_ASYNC_CS2_OFFSETE">
+<span id="_CPPv3N18EMIF_AsyncCSOffset21EMIF_ASYNC_CS2_OFFSETE"></span><span id="_CPPv2N18EMIF_AsyncCSOffset21EMIF_ASYNC_CS2_OFFSETE"></span><span class="target" id="group__emif__api_1ggafb00746b18326a7755d4c2ee9fabe83eafbc8a3cbf8ce7d4d7ad6870f6678ef9e"></span><em class="property">enumerator </em><code class="sig-name descname">EMIF_ASYNC_CS2_OFFSET</code> = 0x8U<a class="headerlink" href="#_CPPv4N18EMIF_AsyncCSOffset21EMIF_ASYNC_CS2_OFFSETE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Async chip select 2 offset. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18EMIF_AsyncCSOffset21EMIF_ASYNC_CS3_OFFSETE">
+<span id="_CPPv3N18EMIF_AsyncCSOffset21EMIF_ASYNC_CS3_OFFSETE"></span><span id="_CPPv2N18EMIF_AsyncCSOffset21EMIF_ASYNC_CS3_OFFSETE"></span><span class="target" id="group__emif__api_1ggafb00746b18326a7755d4c2ee9fabe83ea809a45795a04486175fd5d42c9690019"></span><em class="property">enumerator </em><code class="sig-name descname">EMIF_ASYNC_CS3_OFFSET</code> = 0xAU<a class="headerlink" href="#_CPPv4N18EMIF_AsyncCSOffset21EMIF_ASYNC_CS3_OFFSETE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Async chip select 3 offset. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18EMIF_AsyncCSOffset21EMIF_ASYNC_CS4_OFFSETE">
+<span id="_CPPv3N18EMIF_AsyncCSOffset21EMIF_ASYNC_CS4_OFFSETE"></span><span id="_CPPv2N18EMIF_AsyncCSOffset21EMIF_ASYNC_CS4_OFFSETE"></span><span class="target" id="group__emif__api_1ggafb00746b18326a7755d4c2ee9fabe83eaddcd8f4ab040e441c1b236940a1a1c85"></span><em class="property">enumerator </em><code class="sig-name descname">EMIF_ASYNC_CS4_OFFSET</code> = 0xCU<a class="headerlink" href="#_CPPv4N18EMIF_AsyncCSOffset21EMIF_ASYNC_CS4_OFFSETE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Async chip select 4 offset. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv419EMIF_AsyncDataWidth">
+<span id="_CPPv319EMIF_AsyncDataWidth"></span><span id="_CPPv219EMIF_AsyncDataWidth"></span><span class="target" id="group__emif__api_1gabfb3d8a618d103472fb6449db76023a3"></span><em class="property">enum </em><code class="sig-name descname">EMIF_AsyncDataWidth</code><a class="headerlink" href="#_CPPv419EMIF_AsyncDataWidth" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__emif__api_1ga635673f91c658c672c5d998e9e82d56c"><span class="std std-ref">EMIF_setAsyncDataBusWidth()</span></a> as the <em>width</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19EMIF_AsyncDataWidth23EMIF_ASYNC_DATA_WIDTH_8E">
+<span id="_CPPv3N19EMIF_AsyncDataWidth23EMIF_ASYNC_DATA_WIDTH_8E"></span><span id="_CPPv2N19EMIF_AsyncDataWidth23EMIF_ASYNC_DATA_WIDTH_8E"></span><span class="target" id="group__emif__api_1ggabfb3d8a618d103472fb6449db76023a3a3f5ae8254cdd4b98b93b0e8dafff7b42"></span><em class="property">enumerator </em><code class="sig-name descname">EMIF_ASYNC_DATA_WIDTH_8</code> = 0x0000U<a class="headerlink" href="#_CPPv4N19EMIF_AsyncDataWidth23EMIF_ASYNC_DATA_WIDTH_8E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>ASRAM/FLASH with 8 bit data bus. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19EMIF_AsyncDataWidth24EMIF_ASYNC_DATA_WIDTH_16E">
+<span id="_CPPv3N19EMIF_AsyncDataWidth24EMIF_ASYNC_DATA_WIDTH_16E"></span><span id="_CPPv2N19EMIF_AsyncDataWidth24EMIF_ASYNC_DATA_WIDTH_16E"></span><span class="target" id="group__emif__api_1ggabfb3d8a618d103472fb6449db76023a3a96e7784b21c2b3663e784a75498a0400"></span><em class="property">enumerator </em><code class="sig-name descname">EMIF_ASYNC_DATA_WIDTH_16</code> = 0x0001U<a class="headerlink" href="#_CPPv4N19EMIF_AsyncDataWidth24EMIF_ASYNC_DATA_WIDTH_16E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>ASRAM/FLASH with 16 bit data bus. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19EMIF_AsyncDataWidth24EMIF_ASYNC_DATA_WIDTH_32E">
+<span id="_CPPv3N19EMIF_AsyncDataWidth24EMIF_ASYNC_DATA_WIDTH_32E"></span><span id="_CPPv2N19EMIF_AsyncDataWidth24EMIF_ASYNC_DATA_WIDTH_32E"></span><span class="target" id="group__emif__api_1ggabfb3d8a618d103472fb6449db76023a3ab033c31d86a6d16f9b9e1fdcfd1efbce"></span><em class="property">enumerator </em><code class="sig-name descname">EMIF_ASYNC_DATA_WIDTH_32</code> = 0x0002U<a class="headerlink" href="#_CPPv4N19EMIF_AsyncDataWidth24EMIF_ASYNC_DATA_WIDTH_32E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>ASRAM/FLASH with 32 bit data bus. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv414EMIF_AsyncMode">
+<span id="_CPPv314EMIF_AsyncMode"></span><span id="_CPPv214EMIF_AsyncMode"></span><span class="target" id="group__emif__api_1ga546ace043545f4954270dd11280c0384"></span><em class="property">enum </em><code class="sig-name descname">EMIF_AsyncMode</code><a class="headerlink" href="#_CPPv414EMIF_AsyncMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__emif__api_1gaa2be0c283e4dec372645d885759b460d"><span class="std std-ref">EMIF_setAsyncMode()</span></a> as the <em>mode</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14EMIF_AsyncMode22EMIF_ASYNC_STROBE_MODEE">
+<span id="_CPPv3N14EMIF_AsyncMode22EMIF_ASYNC_STROBE_MODEE"></span><span id="_CPPv2N14EMIF_AsyncMode22EMIF_ASYNC_STROBE_MODEE"></span><span class="target" id="group__emif__api_1gga546ace043545f4954270dd11280c0384a7a134369434a0641cadb171df5ea6480"></span><em class="property">enumerator </em><code class="sig-name descname">EMIF_ASYNC_STROBE_MODE</code> = 0x80000000U<a class="headerlink" href="#_CPPv4N14EMIF_AsyncMode22EMIF_ASYNC_STROBE_MODEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables ASRAM/FLASH strobe mode. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14EMIF_AsyncMode22EMIF_ASYNC_NORMAL_MODEE">
+<span id="_CPPv3N14EMIF_AsyncMode22EMIF_ASYNC_NORMAL_MODEE"></span><span id="_CPPv2N14EMIF_AsyncMode22EMIF_ASYNC_NORMAL_MODEE"></span><span class="target" id="group__emif__api_1gga546ace043545f4954270dd11280c0384aeb0c7017eb1b07859e310a4f77f65959"></span><em class="property">enumerator </em><code class="sig-name descname">EMIF_ASYNC_NORMAL_MODE</code> = 0x00000000U<a class="headerlink" href="#_CPPv4N14EMIF_AsyncMode22EMIF_ASYNC_NORMAL_MODEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables ASRAM/FLASH strobe mode. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv422EMIF_AsyncWaitPolarity">
+<span id="_CPPv322EMIF_AsyncWaitPolarity"></span><span id="_CPPv222EMIF_AsyncWaitPolarity"></span><span class="target" id="group__emif__api_1gaea70703edb00d37e0b942f549fff63d7"></span><em class="property">enum </em><code class="sig-name descname">EMIF_AsyncWaitPolarity</code><a class="headerlink" href="#_CPPv422EMIF_AsyncWaitPolarity" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__emif__api_1gac01890394b7d440c8cfa947f1415e2cb"><span class="std std-ref">EMIF_setAsyncWaitPolarity()</span></a> as the <em>polarity</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22EMIF_AsyncWaitPolarity28EMIF_ASYNC_WAIT_POLARITY_LOWE">
+<span id="_CPPv3N22EMIF_AsyncWaitPolarity28EMIF_ASYNC_WAIT_POLARITY_LOWE"></span><span id="_CPPv2N22EMIF_AsyncWaitPolarity28EMIF_ASYNC_WAIT_POLARITY_LOWE"></span><span class="target" id="group__emif__api_1ggaea70703edb00d37e0b942f549fff63d7ac4bcf6fc1972c2b220d944afb28e2318"></span><em class="property">enumerator </em><code class="sig-name descname">EMIF_ASYNC_WAIT_POLARITY_LOW</code> = 0x00000000U<a class="headerlink" href="#_CPPv4N22EMIF_AsyncWaitPolarity28EMIF_ASYNC_WAIT_POLARITY_LOWE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EMxWAIT pin polarity is low. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22EMIF_AsyncWaitPolarity29EMIF_ASYNC_WAIT_POLARITY_HIGHE">
+<span id="_CPPv3N22EMIF_AsyncWaitPolarity29EMIF_ASYNC_WAIT_POLARITY_HIGHE"></span><span id="_CPPv2N22EMIF_AsyncWaitPolarity29EMIF_ASYNC_WAIT_POLARITY_HIGHE"></span><span class="target" id="group__emif__api_1ggaea70703edb00d37e0b942f549fff63d7a8972850ba57dcde99937b5143c5bdf20"></span><em class="property">enumerator </em><code class="sig-name descname">EMIF_ASYNC_WAIT_POLARITY_HIGH</code> = 0x10000000U<a class="headerlink" href="#_CPPv4N22EMIF_AsyncWaitPolarity29EMIF_ASYNC_WAIT_POLARITY_HIGHE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EMxWAIT pin polarity is high. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv417EMIF_MasterSelect">
+<span id="_CPPv317EMIF_MasterSelect"></span><span id="_CPPv217EMIF_MasterSelect"></span><span class="target" id="group__emif__api_1ga23fe79a585fa1f4cd20610174b0234ec"></span><em class="property">enum </em><code class="sig-name descname">EMIF_MasterSelect</code><a class="headerlink" href="#_CPPv417EMIF_MasterSelect" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__emif__api_1ga547f21c22a4a32f91c00a9ac6e6ba1e9"><span class="std std-ref">EMIF_selectMaster()</span></a> as the <em>select</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17EMIF_MasterSelect19EMIF_MASTER_CPU1_NGE">
+<span id="_CPPv3N17EMIF_MasterSelect19EMIF_MASTER_CPU1_NGE"></span><span id="_CPPv2N17EMIF_MasterSelect19EMIF_MASTER_CPU1_NGE"></span><span class="target" id="group__emif__api_1gga23fe79a585fa1f4cd20610174b0234ecaaaf55dff9791ceb61a09b54369103d2e"></span><em class="property">enumerator </em><code class="sig-name descname">EMIF_MASTER_CPU1_NG</code> = 0x00000000U<a class="headerlink" href="#_CPPv4N17EMIF_MasterSelect19EMIF_MASTER_CPU1_NGE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPU1 is master but not grabbed. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17EMIF_MasterSelect18EMIF_MASTER_CPU1_GE">
+<span id="_CPPv3N17EMIF_MasterSelect18EMIF_MASTER_CPU1_GE"></span><span id="_CPPv2N17EMIF_MasterSelect18EMIF_MASTER_CPU1_GE"></span><span class="target" id="group__emif__api_1gga23fe79a585fa1f4cd20610174b0234ecadad877a46a577fb50419a7e69df0eb65"></span><em class="property">enumerator </em><code class="sig-name descname">EMIF_MASTER_CPU1_G</code> = 0x00000001U<a class="headerlink" href="#_CPPv4N17EMIF_MasterSelect18EMIF_MASTER_CPU1_GE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPU1 is master &amp; grabbed. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17EMIF_MasterSelect18EMIF_MASTER_CPU2_GE">
+<span id="_CPPv3N17EMIF_MasterSelect18EMIF_MASTER_CPU2_GE"></span><span id="_CPPv2N17EMIF_MasterSelect18EMIF_MASTER_CPU2_GE"></span><span class="target" id="group__emif__api_1gga23fe79a585fa1f4cd20610174b0234eca5de0b803594a23839f6d4ee386c3b676"></span><em class="property">enumerator </em><code class="sig-name descname">EMIF_MASTER_CPU2_G</code> = 0x00000002U<a class="headerlink" href="#_CPPv4N17EMIF_MasterSelect18EMIF_MASTER_CPU2_GE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPU2 is master &amp; grabbed. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17EMIF_MasterSelect20EMIF_MASTER_CPU1_NG2E">
+<span id="_CPPv3N17EMIF_MasterSelect20EMIF_MASTER_CPU1_NG2E"></span><span id="_CPPv2N17EMIF_MasterSelect20EMIF_MASTER_CPU1_NG2E"></span><span class="target" id="group__emif__api_1gga23fe79a585fa1f4cd20610174b0234eca03888c82f8f4e0fd935d2d4c9769fa6b"></span><em class="property">enumerator </em><code class="sig-name descname">EMIF_MASTER_CPU1_NG2</code> = 0x00000003U<a class="headerlink" href="#_CPPv4N17EMIF_MasterSelect20EMIF_MASTER_CPU1_NG2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPU1 is master but not grabbed. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv419EMIF_SyncNarrowMode">
+<span id="_CPPv319EMIF_SyncNarrowMode"></span><span id="_CPPv219EMIF_SyncNarrowMode"></span><span class="target" id="group__emif__api_1gaa5f727b71e281f321a30b9468ad8ba98"></span><em class="property">enum </em><code class="sig-name descname">EMIF_SyncNarrowMode</code><a class="headerlink" href="#_CPPv419EMIF_SyncNarrowMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__emif__api_1ga7e6f27bbc56def93700b48004920b804"><span class="std std-ref">EMIF_setSyncMemoryConfig()</span></a> as the <em>config</em> parameter member. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19EMIF_SyncNarrowMode26EMIF_SYNC_NARROW_MODE_TRUEE">
+<span id="_CPPv3N19EMIF_SyncNarrowMode26EMIF_SYNC_NARROW_MODE_TRUEE"></span><span id="_CPPv2N19EMIF_SyncNarrowMode26EMIF_SYNC_NARROW_MODE_TRUEE"></span><span class="target" id="group__emif__api_1ggaa5f727b71e281f321a30b9468ad8ba98a168d8e04840c2f17176c387bb19d9ecb"></span><em class="property">enumerator </em><code class="sig-name descname">EMIF_SYNC_NARROW_MODE_TRUE</code> = 0x00004000U<a class="headerlink" href="#_CPPv4N19EMIF_SyncNarrowMode26EMIF_SYNC_NARROW_MODE_TRUEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>MemBusWidth=SystemBusWidth/2. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19EMIF_SyncNarrowMode27EMIF_SYNC_NARROW_MODE_FALSEE">
+<span id="_CPPv3N19EMIF_SyncNarrowMode27EMIF_SYNC_NARROW_MODE_FALSEE"></span><span id="_CPPv2N19EMIF_SyncNarrowMode27EMIF_SYNC_NARROW_MODE_FALSEE"></span><span class="target" id="group__emif__api_1ggaa5f727b71e281f321a30b9468ad8ba98aaa21075a19be9ac1efaa93c639ccc90b"></span><em class="property">enumerator </em><code class="sig-name descname">EMIF_SYNC_NARROW_MODE_FALSE</code> = 0x00000000U<a class="headerlink" href="#_CPPv4N19EMIF_SyncNarrowMode27EMIF_SYNC_NARROW_MODE_FALSEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>MemBusWidth=SystemBusWidth. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv413EMIF_SyncBank">
+<span id="_CPPv313EMIF_SyncBank"></span><span id="_CPPv213EMIF_SyncBank"></span><span class="target" id="group__emif__api_1ga626c2bb06e30d56919df337a57fd479e"></span><em class="property">enum </em><code class="sig-name descname">EMIF_SyncBank</code><a class="headerlink" href="#_CPPv413EMIF_SyncBank" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__emif__api_1ga7e6f27bbc56def93700b48004920b804"><span class="std std-ref">EMIF_setSyncMemoryConfig()</span></a> as the <em>config</em> parameter member. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13EMIF_SyncBank16EMIF_SYNC_BANK_1E">
+<span id="_CPPv3N13EMIF_SyncBank16EMIF_SYNC_BANK_1E"></span><span id="_CPPv2N13EMIF_SyncBank16EMIF_SYNC_BANK_1E"></span><span class="target" id="group__emif__api_1gga626c2bb06e30d56919df337a57fd479ea1053817758f8058a206cae9501d706ec"></span><em class="property">enumerator </em><code class="sig-name descname">EMIF_SYNC_BANK_1</code> = 0x00000000U<a class="headerlink" href="#_CPPv4N13EMIF_SyncBank16EMIF_SYNC_BANK_1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>1 Bank SDRAM device </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13EMIF_SyncBank16EMIF_SYNC_BANK_2E">
+<span id="_CPPv3N13EMIF_SyncBank16EMIF_SYNC_BANK_2E"></span><span id="_CPPv2N13EMIF_SyncBank16EMIF_SYNC_BANK_2E"></span><span class="target" id="group__emif__api_1gga626c2bb06e30d56919df337a57fd479ea896572a7d48bb76c5da518d4241351c2"></span><em class="property">enumerator </em><code class="sig-name descname">EMIF_SYNC_BANK_2</code> = 0x00000010U<a class="headerlink" href="#_CPPv4N13EMIF_SyncBank16EMIF_SYNC_BANK_2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>2 Bank SDRAM device </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13EMIF_SyncBank16EMIF_SYNC_BANK_4E">
+<span id="_CPPv3N13EMIF_SyncBank16EMIF_SYNC_BANK_4E"></span><span id="_CPPv2N13EMIF_SyncBank16EMIF_SYNC_BANK_4E"></span><span class="target" id="group__emif__api_1gga626c2bb06e30d56919df337a57fd479ea9f184f7fb48246b338fe8fa837613630"></span><em class="property">enumerator </em><code class="sig-name descname">EMIF_SYNC_BANK_4</code> = 0x00000020U<a class="headerlink" href="#_CPPv4N13EMIF_SyncBank16EMIF_SYNC_BANK_4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>4 Bank SDRAM device </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv419EMIF_SyncCASLatency">
+<span id="_CPPv319EMIF_SyncCASLatency"></span><span id="_CPPv219EMIF_SyncCASLatency"></span><span class="target" id="group__emif__api_1ga3000d82428c9cfa74ccdaa0ed34d3739"></span><em class="property">enum </em><code class="sig-name descname">EMIF_SyncCASLatency</code><a class="headerlink" href="#_CPPv419EMIF_SyncCASLatency" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__emif__api_1ga7e6f27bbc56def93700b48004920b804"><span class="std std-ref">EMIF_setSyncMemoryConfig()</span></a> as the <em>config</em> parameter member. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19EMIF_SyncCASLatency19EMIF_SYNC_CAS_LAT_2E">
+<span id="_CPPv3N19EMIF_SyncCASLatency19EMIF_SYNC_CAS_LAT_2E"></span><span id="_CPPv2N19EMIF_SyncCASLatency19EMIF_SYNC_CAS_LAT_2E"></span><span class="target" id="group__emif__api_1gga3000d82428c9cfa74ccdaa0ed34d3739ae7ffe259582a5ca88da53e9ea9b9a77d"></span><em class="property">enumerator </em><code class="sig-name descname">EMIF_SYNC_CAS_LAT_2</code> = 0x00000500U<a class="headerlink" href="#_CPPv4N19EMIF_SyncCASLatency19EMIF_SYNC_CAS_LAT_2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>SDRAM with CAS Latency 2. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19EMIF_SyncCASLatency19EMIF_SYNC_CAS_LAT_3E">
+<span id="_CPPv3N19EMIF_SyncCASLatency19EMIF_SYNC_CAS_LAT_3E"></span><span id="_CPPv2N19EMIF_SyncCASLatency19EMIF_SYNC_CAS_LAT_3E"></span><span class="target" id="group__emif__api_1gga3000d82428c9cfa74ccdaa0ed34d3739af987bd321a374f4b287bac9f5e877c9b"></span><em class="property">enumerator </em><code class="sig-name descname">EMIF_SYNC_CAS_LAT_3</code> = 0x00000700U<a class="headerlink" href="#_CPPv4N19EMIF_SyncCASLatency19EMIF_SYNC_CAS_LAT_3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>SDRAM with CAS Latency 3. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv417EMIF_SyncPageSize">
+<span id="_CPPv317EMIF_SyncPageSize"></span><span id="_CPPv217EMIF_SyncPageSize"></span><span class="target" id="group__emif__api_1gab224dd56431737729f79eda4c891d34a"></span><em class="property">enum </em><code class="sig-name descname">EMIF_SyncPageSize</code><a class="headerlink" href="#_CPPv417EMIF_SyncPageSize" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__emif__api_1ga7e6f27bbc56def93700b48004920b804"><span class="std std-ref">EMIF_setSyncMemoryConfig()</span></a> as the <em>config</em> parameter member. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17EMIF_SyncPageSize24EMIF_SYNC_COLUMN_WIDTH_8E">
+<span id="_CPPv3N17EMIF_SyncPageSize24EMIF_SYNC_COLUMN_WIDTH_8E"></span><span id="_CPPv2N17EMIF_SyncPageSize24EMIF_SYNC_COLUMN_WIDTH_8E"></span><span class="target" id="group__emif__api_1ggab224dd56431737729f79eda4c891d34aad9f7a3ea8ff27d2beb4d289febf3a480"></span><em class="property">enumerator </em><code class="sig-name descname">EMIF_SYNC_COLUMN_WIDTH_8</code> = 0x00000000U<a class="headerlink" href="#_CPPv4N17EMIF_SyncPageSize24EMIF_SYNC_COLUMN_WIDTH_8E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>256-word pages in SDRAM </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17EMIF_SyncPageSize24EMIF_SYNC_COLUMN_WIDTH_9E">
+<span id="_CPPv3N17EMIF_SyncPageSize24EMIF_SYNC_COLUMN_WIDTH_9E"></span><span id="_CPPv2N17EMIF_SyncPageSize24EMIF_SYNC_COLUMN_WIDTH_9E"></span><span class="target" id="group__emif__api_1ggab224dd56431737729f79eda4c891d34aa59053df6badf7034aea7a8fa8aff61d2"></span><em class="property">enumerator </em><code class="sig-name descname">EMIF_SYNC_COLUMN_WIDTH_9</code> = 0x00000001U<a class="headerlink" href="#_CPPv4N17EMIF_SyncPageSize24EMIF_SYNC_COLUMN_WIDTH_9E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>512-word pages in SDRAM </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17EMIF_SyncPageSize25EMIF_SYNC_COLUMN_WIDTH_10E">
+<span id="_CPPv3N17EMIF_SyncPageSize25EMIF_SYNC_COLUMN_WIDTH_10E"></span><span id="_CPPv2N17EMIF_SyncPageSize25EMIF_SYNC_COLUMN_WIDTH_10E"></span><span class="target" id="group__emif__api_1ggab224dd56431737729f79eda4c891d34aabbd875691d25de7ffd03d4b9bf4aa8f7"></span><em class="property">enumerator </em><code class="sig-name descname">EMIF_SYNC_COLUMN_WIDTH_10</code> = 0x00000002U<a class="headerlink" href="#_CPPv4N17EMIF_SyncPageSize25EMIF_SYNC_COLUMN_WIDTH_10E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>1024-word pages in SDRAM </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17EMIF_SyncPageSize25EMIF_SYNC_COLUMN_WIDTH_11E">
+<span id="_CPPv3N17EMIF_SyncPageSize25EMIF_SYNC_COLUMN_WIDTH_11E"></span><span id="_CPPv2N17EMIF_SyncPageSize25EMIF_SYNC_COLUMN_WIDTH_11E"></span><span class="target" id="group__emif__api_1ggab224dd56431737729f79eda4c891d34aa0846f825c1bc853df761b4c62eccd6bd"></span><em class="property">enumerator </em><code class="sig-name descname">EMIF_SYNC_COLUMN_WIDTH_11</code> = 0x00000003U<a class="headerlink" href="#_CPPv4N17EMIF_SyncPageSize25EMIF_SYNC_COLUMN_WIDTH_11E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>2048-word pages in SDRAM </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv417EMIF_selectMaster8uint32_t17EMIF_MasterSelect">
+<span id="_CPPv317EMIF_selectMaster8uint32_t17EMIF_MasterSelect"></span><span id="_CPPv217EMIF_selectMaster8uint32_t17EMIF_MasterSelect"></span><span id="EMIF_selectMaster__uint32_t.EMIF_MasterSelect"></span><span class="target" id="group__emif__api_1ga547f21c22a4a32f91c00a9ac6e6ba1e9"></span>void <code class="sig-name descname">EMIF_selectMaster</code><span class="sig-paren">(</span>uint32_t <em>configBase</em>, <a class="reference internal" href="#_CPPv417EMIF_MasterSelect" title="EMIF_MasterSelect">EMIF_MasterSelect</a> <em>select</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417EMIF_selectMaster8uint32_t17EMIF_MasterSelect" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Selects the EMIF Master.</p>
+<p><p>This function selects the master for an EMIF1 instance among CPU1 or CPU2. </p>
+<em> It is valid only for EMIF1 instance and not for EMIF2 instance. Valid value for configBase parameter is EMIF1CONFIG_BASE. </em> Valid values for select parameter can be <em>EMIF_MASTER_CPU1_NG</em>, <em>EMIF_MASTER_CPU1_G</em>, <em>EMIF_MASTER_CPU2_G</em> or <em>EMIF_MASTER_CPU1_NG2</em>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">configBase</span></code>: is the configuration address of the EMIF instance used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">select</span></code>: is the required master configuration for EMIF1.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424EMIF_setAccessProtection8uint32_t8uint16_t">
+<span id="_CPPv324EMIF_setAccessProtection8uint32_t8uint16_t"></span><span id="_CPPv224EMIF_setAccessProtection8uint32_t8uint16_t"></span><span id="EMIF_setAccessProtection__uint32_t.uint16_t"></span><span class="target" id="group__emif__api_1gaa8d18441f143f286ae5bb04838339dfc"></span>void <code class="sig-name descname">EMIF_setAccessProtection</code><span class="sig-paren">(</span>uint32_t <em>configBase</em>, uint16_t <em>access</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424EMIF_setAccessProtection8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the access protection.</p>
+<p><p>This function sets the access protection for an EMIF instance from CPU and DMA. The </p>
+<em>access</em> parameter can be any of <strong>EMIF_ACCPROT0_FETCHPROT</strong>, <strong>EMIF_ACCPROT0_CPUWRPROT</strong> <strong>EMIF_ACCPROT0_DMAWRPROT</strong> values or their combination. <em> EMIF_ACCPROT0_DMAWRPROT value is valid as access parameter for EMIF1 instance only </em>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">configBase</span></code>: is the configuration address of the EMIF instance used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">access</span></code>: is the required access protection configuration.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423EMIF_commitAccessConfig8uint32_t">
+<span id="_CPPv323EMIF_commitAccessConfig8uint32_t"></span><span id="_CPPv223EMIF_commitAccessConfig8uint32_t"></span><span id="EMIF_commitAccessConfig__uint32_t"></span><span class="target" id="group__emif__api_1ga63198ad4642893ccb22b3663fac86332"></span>void <code class="sig-name descname">EMIF_commitAccessConfig</code><span class="sig-paren">(</span>uint32_t <em>configBase</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423EMIF_commitAccessConfig8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Commits the lock configuration.</p>
+<p><p>This function commits the access protection for an EMIF instance from CPU &amp; DMA.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">configBase</span></code>: is the configuration address of the EMIF instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421EMIF_lockAccessConfig8uint32_t">
+<span id="_CPPv321EMIF_lockAccessConfig8uint32_t"></span><span id="_CPPv221EMIF_lockAccessConfig8uint32_t"></span><span id="EMIF_lockAccessConfig__uint32_t"></span><span class="target" id="group__emif__api_1ga4fdc54714b1c5e006d93b03d1b5a2559"></span>void <code class="sig-name descname">EMIF_lockAccessConfig</code><span class="sig-paren">(</span>uint32_t <em>configBase</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421EMIF_lockAccessConfig8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Locks the write to access configuration fields.</p>
+<p><p>This function locks the write to access configuration fields i.e ACCPROT0 &amp; Mselect fields, for an EMIF instance.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">configBase</span></code>: is the configuration address of the EMIF instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423EMIF_unlockAccessConfig8uint32_t">
+<span id="_CPPv323EMIF_unlockAccessConfig8uint32_t"></span><span id="_CPPv223EMIF_unlockAccessConfig8uint32_t"></span><span id="EMIF_unlockAccessConfig__uint32_t"></span><span class="target" id="group__emif__api_1gaf39252665e52004c4317e5277ce783e7"></span>void <code class="sig-name descname">EMIF_unlockAccessConfig</code><span class="sig-paren">(</span>uint32_t <em>configBase</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423EMIF_unlockAccessConfig8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Unlocks the write to access configuration fields.</p>
+<p><p>This function unlocks the write to access configuration fields such as ACCPROT0 &amp; Mselect fields, for an EMIF instance.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">configBase</span></code>: is the configuration address of the EMIF instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417EMIF_setAsyncMode8uint32_t18EMIF_AsyncCSOffset14EMIF_AsyncMode">
+<span id="_CPPv317EMIF_setAsyncMode8uint32_t18EMIF_AsyncCSOffset14EMIF_AsyncMode"></span><span id="_CPPv217EMIF_setAsyncMode8uint32_t18EMIF_AsyncCSOffset14EMIF_AsyncMode"></span><span id="EMIF_setAsyncMode__uint32_t.EMIF_AsyncCSOffset.EMIF_AsyncMode"></span><span class="target" id="group__emif__api_1gaa2be0c283e4dec372645d885759b460d"></span>void <code class="sig-name descname">EMIF_setAsyncMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv418EMIF_AsyncCSOffset" title="EMIF_AsyncCSOffset">EMIF_AsyncCSOffset</a> <em>offset</em>, <a class="reference internal" href="#_CPPv414EMIF_AsyncMode" title="EMIF_AsyncMode">EMIF_AsyncMode</a> <em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417EMIF_setAsyncMode8uint32_t18EMIF_AsyncCSOffset14EMIF_AsyncMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Selects the asynchronous mode of operation.</p>
+<p><p>This function sets the mode of operation for asynchronous memory between Normal or Strobe mode. Valid values for param </p>
+<em>offset</em> can be <em>EMIF_ASYNC_CS2_OFFSET</em>, <em>EMIF_ASYNC_CS3_OFFSET</em> &amp; <em>EMIF_ASYNC_C43_OFFSET</em> for EMIF1 and <em>EMIF_ASYNC_CS2_OFFSET</em> for EMIF2. Valid values for param <em>mode</em> can be <em>EMIF_ASYNC_STROBE_MODE</em> or <em>EMIF_ASYNC_NORMAL_MODE</em>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EMIF instance used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">offset</span></code>: is the offset of asynchronous chip select of EMIF instance.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: is the desired mode of operation for external memory.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428EMIF_enableAsyncExtendedWait8uint32_t18EMIF_AsyncCSOffset">
+<span id="_CPPv328EMIF_enableAsyncExtendedWait8uint32_t18EMIF_AsyncCSOffset"></span><span id="_CPPv228EMIF_enableAsyncExtendedWait8uint32_t18EMIF_AsyncCSOffset"></span><span id="EMIF_enableAsyncExtendedWait__uint32_t.EMIF_AsyncCSOffset"></span><span class="target" id="group__emif__api_1ga2c0b8be1afe52932105f78362b3b0012"></span>void <code class="sig-name descname">EMIF_enableAsyncExtendedWait</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv418EMIF_AsyncCSOffset" title="EMIF_AsyncCSOffset">EMIF_AsyncCSOffset</a> <em>offset</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428EMIF_enableAsyncExtendedWait8uint32_t18EMIF_AsyncCSOffset" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the Extended Wait Mode.</p>
+<p><p>This function enables the extended wait mode for an asynchronous external memory.Valid values for param </p>
+<em>offset</em> can be <em>EMIF_ASYNC_CS2_OFFSET</em>, <em>EMIF_ASYNC_CS3_OFFSET</em> &amp; <em>EMIF_ASYNC_C43_OFFSET</em> for EMIF1 and <em>EMIF_ASYNC_CS2_OFFSET</em> for EMIF2.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EMIF instance used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">offset</span></code>: is the offset of asynchronous chip select of the EMIF instance</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429EMIF_disableAsyncExtendedWait8uint32_t18EMIF_AsyncCSOffset">
+<span id="_CPPv329EMIF_disableAsyncExtendedWait8uint32_t18EMIF_AsyncCSOffset"></span><span id="_CPPv229EMIF_disableAsyncExtendedWait8uint32_t18EMIF_AsyncCSOffset"></span><span id="EMIF_disableAsyncExtendedWait__uint32_t.EMIF_AsyncCSOffset"></span><span class="target" id="group__emif__api_1ga9939cff1eb79fcc7cfc0211fdf56edca"></span>void <code class="sig-name descname">EMIF_disableAsyncExtendedWait</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv418EMIF_AsyncCSOffset" title="EMIF_AsyncCSOffset">EMIF_AsyncCSOffset</a> <em>offset</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429EMIF_disableAsyncExtendedWait8uint32_t18EMIF_AsyncCSOffset" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the Extended Wait Mode.</p>
+<p><p>This function disables the extended wait mode for an asynchronous external memory.Valid values for param </p>
+<em>offset</em> can be <em>EMIF_ASYNC_CS2_OFFSET</em>, <em>EMIF_ASYNC_CS3_OFFSET</em> &amp; <em>EMIF_ASYNC_C43_OFFSET</em> for EMIF1 and <em>EMIF_ASYNC_CS2_OFFSET</em> for EMIF2.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EMIF instance used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">offset</span></code>: is the offset of asynchronous chip select of EMIF instance.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425EMIF_setAsyncWaitPolarity8uint32_t22EMIF_AsyncWaitPolarity">
+<span id="_CPPv325EMIF_setAsyncWaitPolarity8uint32_t22EMIF_AsyncWaitPolarity"></span><span id="_CPPv225EMIF_setAsyncWaitPolarity8uint32_t22EMIF_AsyncWaitPolarity"></span><span id="EMIF_setAsyncWaitPolarity__uint32_t.EMIF_AsyncWaitPolarity"></span><span class="target" id="group__emif__api_1gac01890394b7d440c8cfa947f1415e2cb"></span>void <code class="sig-name descname">EMIF_setAsyncWaitPolarity</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv422EMIF_AsyncWaitPolarity" title="EMIF_AsyncWaitPolarity">EMIF_AsyncWaitPolarity</a> <em>polarity</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425EMIF_setAsyncWaitPolarity8uint32_t22EMIF_AsyncWaitPolarity" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the wait polarity.</p>
+<p><p>This function sets the wait polarity for an asynchronous external memory. Valid values for param </p>
+<em>polarity</em> can be <em>EMIF_ASYNC_WAIT_POLARITY_LOW</em> or <em>EMIF_ASYNC_WAIT_POLARITY_HIGH</em>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EMIF instance used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">polarity</span></code>: is desired wait polarity.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv430EMIF_setAsyncMaximumWaitCycles8uint32_t8uint16_t">
+<span id="_CPPv330EMIF_setAsyncMaximumWaitCycles8uint32_t8uint16_t"></span><span id="_CPPv230EMIF_setAsyncMaximumWaitCycles8uint32_t8uint16_t"></span><span id="EMIF_setAsyncMaximumWaitCycles__uint32_t.uint16_t"></span><span class="target" id="group__emif__api_1ga8ff456609afa4b0f794a73b2773adfad"></span>void <code class="sig-name descname">EMIF_setAsyncMaximumWaitCycles</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430EMIF_setAsyncMaximumWaitCycles8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the Maximum Wait Cycles.</p>
+<p><p>This function sets the maximum wait cycles for extended asynchronous cycle. Valid values for parameter </p>
+<em>value</em> lies b/w 0x0U-0xFFU or 0-255.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EMIF instance used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: is the desired maximum wait cycles.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425EMIF_setAsyncTimingParams8uint32_t18EMIF_AsyncCSOffsetPK22EMIF_AsyncTimingParams">
+<span id="_CPPv325EMIF_setAsyncTimingParams8uint32_t18EMIF_AsyncCSOffsetPK22EMIF_AsyncTimingParams"></span><span id="_CPPv225EMIF_setAsyncTimingParams8uint32_t18EMIF_AsyncCSOffsetPK22EMIF_AsyncTimingParams"></span><span id="EMIF_setAsyncTimingParams__uint32_t.EMIF_AsyncCSOffset.EMIF_AsyncTimingParamsCP"></span><span class="target" id="group__emif__api_1ga4e140cfbdfc01c581ed6ad31d3a80af9"></span>void <code class="sig-name descname">EMIF_setAsyncTimingParams</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv418EMIF_AsyncCSOffset" title="EMIF_AsyncCSOffset">EMIF_AsyncCSOffset</a> <em>offset</em>, <em class="property">const</em> <a class="reference internal" href="#_CPPv422EMIF_AsyncTimingParams" title="EMIF_AsyncTimingParams">EMIF_AsyncTimingParams</a> *<em>tParam</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425EMIF_setAsyncTimingParams8uint32_t18EMIF_AsyncCSOffsetPK22EMIF_AsyncTimingParams" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the Asynchronous Memory Timing Characteristics.</p>
+<p><p>This function sets timing characteristics for an external asynchronous memory to be interfaced. Valid values for param </p>
+<em>offset</em> can be <em>EMIF_ASYNC_CS2_OFFSET</em>, <em>EMIF_ASYNC_CS3_OFFSET</em> and <em>EMIF_ASYNC_C43_OFFSET</em> for EMIF1 &amp; EMIF_ASYNC_CS2_OFFSET for EMIF2.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EMIF instance used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">offset</span></code>: is the offset of asynchronous chip select of EMIF instance.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tParam</span></code>: is the desired timing parameters.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425EMIF_setAsyncDataBusWidth8uint32_t18EMIF_AsyncCSOffset19EMIF_AsyncDataWidth">
+<span id="_CPPv325EMIF_setAsyncDataBusWidth8uint32_t18EMIF_AsyncCSOffset19EMIF_AsyncDataWidth"></span><span id="_CPPv225EMIF_setAsyncDataBusWidth8uint32_t18EMIF_AsyncCSOffset19EMIF_AsyncDataWidth"></span><span id="EMIF_setAsyncDataBusWidth__uint32_t.EMIF_AsyncCSOffset.EMIF_AsyncDataWidth"></span><span class="target" id="group__emif__api_1ga635673f91c658c672c5d998e9e82d56c"></span>void <code class="sig-name descname">EMIF_setAsyncDataBusWidth</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv418EMIF_AsyncCSOffset" title="EMIF_AsyncCSOffset">EMIF_AsyncCSOffset</a> <em>offset</em>, <a class="reference internal" href="#_CPPv419EMIF_AsyncDataWidth" title="EMIF_AsyncDataWidth">EMIF_AsyncDataWidth</a> <em>width</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425EMIF_setAsyncDataBusWidth8uint32_t18EMIF_AsyncCSOffset19EMIF_AsyncDataWidth" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the Asynchronous Data Bus Width.</p>
+<p><p>This function sets the data bus size for an external asynchronous memory to be interfaced. Valid values for param </p>
+<em>offset</em> can be <em>EMIF_ASYNC_CS2_OFFSET</em>, <em>EMIF_ASYNC_CS3_OFFSET</em> &amp; <em>EMIF_ASYNC_C43_OFFSET</em> for EMIF1 and <em>EMIF_ASYNC_CS2_OFFSET</em> for EMIF2. Valid values of param <em>width</em> can be <em>EMIF_ASYNC_DATA_WIDTH_8</em>, <em>EMIF_ASYNC_DATA_WIDTH_16</em> or <em>EMIF_ASYNC_DATA_WIDTH_32</em>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EMIF instance used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">offset</span></code>: is the offset of asynchronous chip select of EMIF instance.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">width</span></code>: is the data bus width of the memory.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425EMIF_enableAsyncInterrupt8uint32_t8uint16_t">
+<span id="_CPPv325EMIF_enableAsyncInterrupt8uint32_t8uint16_t"></span><span id="_CPPv225EMIF_enableAsyncInterrupt8uint32_t8uint16_t"></span><span id="EMIF_enableAsyncInterrupt__uint32_t.uint16_t"></span><span class="target" id="group__emif__api_1gafd2a38d4657816337e624a6729cc83a3"></span>void <code class="sig-name descname">EMIF_enableAsyncInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425EMIF_enableAsyncInterrupt8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the Asynchronous Memory Interrupts.</p>
+<p><p>This function enables the desired interrupts for an external asynchronous memory interface. Valid values for param </p>
+<em>intFlags</em> can be <strong>EMIF_ASYNC_INT_AT</strong>, <strong>EMIF_ASYNC_INT_LT</strong>, <strong>EMIF_ASYNC_INT_WR</strong> or their combination.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EMIF instance used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is the mask for desired interrupts.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426EMIF_disableAsyncInterrupt8uint32_t8uint16_t">
+<span id="_CPPv326EMIF_disableAsyncInterrupt8uint32_t8uint16_t"></span><span id="_CPPv226EMIF_disableAsyncInterrupt8uint32_t8uint16_t"></span><span id="EMIF_disableAsyncInterrupt__uint32_t.uint16_t"></span><span class="target" id="group__emif__api_1gaa76f477f3b4a39f82357ba10356b7486"></span>void <code class="sig-name descname">EMIF_disableAsyncInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426EMIF_disableAsyncInterrupt8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the Asynchronous Memory Interrupts.</p>
+<p><p>This function disables the desired interrupts for an external asynchronous memory interface. Valid values for param </p>
+<em>intFlags</em> can be <strong>EMIF_ASYNC_INT_AT</strong>, <strong>EMIF_ASYNC_INT_LT</strong>, <strong>EMIF_ASYNC_INT_WR</strong> or their combination.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EMIF instance used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is the mask for interrupts to be disabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428EMIF_getAsyncInterruptStatus8uint32_t">
+<span id="_CPPv328EMIF_getAsyncInterruptStatus8uint32_t"></span><span id="_CPPv228EMIF_getAsyncInterruptStatus8uint32_t"></span><span id="EMIF_getAsyncInterruptStatus__uint32_t"></span><span class="target" id="group__emif__api_1gaf2886da183be07678fe17b90de82293f"></span>uint16_t <code class="sig-name descname">EMIF_getAsyncInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428EMIF_getAsyncInterruptStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the interrupt status.</p>
+<p><p>This function gets the interrupt status for an EMIF instance.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EMIF instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the current interrupt status. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv430EMIF_clearAsyncInterruptStatus8uint32_t8uint16_t">
+<span id="_CPPv330EMIF_clearAsyncInterruptStatus8uint32_t8uint16_t"></span><span id="_CPPv230EMIF_clearAsyncInterruptStatus8uint32_t8uint16_t"></span><span id="EMIF_clearAsyncInterruptStatus__uint32_t.uint16_t"></span><span class="target" id="group__emif__api_1gab9aaae14fd09b40fce1184ea41252585"></span>void <code class="sig-name descname">EMIF_clearAsyncInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430EMIF_clearAsyncInterruptStatus8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears the interrupt status for an EMIF instance.</p>
+<p><p>This function clears the interrupt status for an EMIF instance. The </p>
+<em>intFlags</em> parameter can be any of <strong>EMIF_INT_MSK_SET_AT_MASK_SET</strong>, <strong>EMIF_INT_MSK_SET_LT_MASK_SET</strong>, or <strong>EMIF_INT_MSK_SET_WR_MASK_SET_M</strong> values or their combination.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EMIF instance used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is the mask for the interrupt status to be cleared.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424EMIF_setSyncTimingParams8uint32_tPK21EMIF_SyncTimingParams">
+<span id="_CPPv324EMIF_setSyncTimingParams8uint32_tPK21EMIF_SyncTimingParams"></span><span id="_CPPv224EMIF_setSyncTimingParams8uint32_tPK21EMIF_SyncTimingParams"></span><span id="EMIF_setSyncTimingParams__uint32_t.EMIF_SyncTimingParamsCP"></span><span class="target" id="group__emif__api_1gab449d7094aec34f121926b2d95cffc73"></span>void <code class="sig-name descname">EMIF_setSyncTimingParams</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <em class="property">const</em> <a class="reference internal" href="#_CPPv421EMIF_SyncTimingParams" title="EMIF_SyncTimingParams">EMIF_SyncTimingParams</a> *<em>tParam</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424EMIF_setSyncTimingParams8uint32_tPK21EMIF_SyncTimingParams" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the Synchronous Memory Timing Parameters.</p>
+<p><p>This function sets the timing characteristics for an external synchronous memory to be interfaced.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of an EMIF instance.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tParam</span></code>: is parameters from memory datasheet in <em>ns</em>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv431EMIF_setSyncSelfRefreshExitTmng8uint32_t8uint16_t">
+<span id="_CPPv331EMIF_setSyncSelfRefreshExitTmng8uint32_t8uint16_t"></span><span id="_CPPv231EMIF_setSyncSelfRefreshExitTmng8uint32_t8uint16_t"></span><span id="EMIF_setSyncSelfRefreshExitTmng__uint32_t.uint16_t"></span><span class="target" id="group__emif__api_1ga7101a7ed55005dd84180fcb6284ccb3a"></span>void <code class="sig-name descname">EMIF_setSyncSelfRefreshExitTmng</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>tXs</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431EMIF_setSyncSelfRefreshExitTmng8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the SDRAM Self Refresh Exit Timing.</p>
+<p><p>This function sets the self refresh exit timing for an external synchronous memory to be interfaced. tXs values must lie between 0x0U-0x1FU or 0-31.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of an EMIF instance.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tXs</span></code>: is the desired timing value.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423EMIF_setSyncRefreshRate8uint32_t8uint16_t">
+<span id="_CPPv323EMIF_setSyncRefreshRate8uint32_t8uint16_t"></span><span id="_CPPv223EMIF_setSyncRefreshRate8uint32_t8uint16_t"></span><span id="EMIF_setSyncRefreshRate__uint32_t.uint16_t"></span><span class="target" id="group__emif__api_1ga793529ab875c531d5c74eed5b72201b6"></span>void <code class="sig-name descname">EMIF_setSyncRefreshRate</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>refRate</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423EMIF_setSyncRefreshRate8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the SDR Refresh Rate.</p>
+<p><p>This function sets the refresh rate for an external synchronous memory to be interfaced. Valid values for refRate lies b/w 0x0U-0x1FFFU or 0-8191.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of an EMIF instance.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">refRate</span></code>: is the refresh rate.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424EMIF_setSyncMemoryConfig8uint32_tPK15EMIF_SyncConfig">
+<span id="_CPPv324EMIF_setSyncMemoryConfig8uint32_tPK15EMIF_SyncConfig"></span><span id="_CPPv224EMIF_setSyncMemoryConfig8uint32_tPK15EMIF_SyncConfig"></span><span id="EMIF_setSyncMemoryConfig__uint32_t.EMIF_SyncConfigCP"></span><span class="target" id="group__emif__api_1ga7e6f27bbc56def93700b48004920b804"></span>void <code class="sig-name descname">EMIF_setSyncMemoryConfig</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <em class="property">const</em> <a class="reference internal" href="#_CPPv415EMIF_SyncConfig" title="EMIF_SyncConfig">EMIF_SyncConfig</a> *<em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424EMIF_setSyncMemoryConfig8uint32_tPK15EMIF_SyncConfig" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the Synchronous Memory configuration parameters.</p>
+<p><p>This function sets configuration parameters like CL, NM, IBANK and PAGESIZE for an external synchronous memory to be interfaced.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EMIF instance used.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code>: is the desired configuration parameters.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426EMIF_enableSyncSelfRefresh8uint32_t">
+<span id="_CPPv326EMIF_enableSyncSelfRefresh8uint32_t"></span><span id="_CPPv226EMIF_enableSyncSelfRefresh8uint32_t"></span><span id="EMIF_enableSyncSelfRefresh__uint32_t"></span><span class="target" id="group__emif__api_1gaecba9e6d22c8005e3afd58804010b7f4"></span>void <code class="sig-name descname">EMIF_enableSyncSelfRefresh</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426EMIF_enableSyncSelfRefresh8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables Self Refresh.</p>
+<p><p>This function enables Self Refresh Mode for EMIF.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EMIF instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427EMIF_disableSyncSelfRefresh8uint32_t">
+<span id="_CPPv327EMIF_disableSyncSelfRefresh8uint32_t"></span><span id="_CPPv227EMIF_disableSyncSelfRefresh8uint32_t"></span><span id="EMIF_disableSyncSelfRefresh__uint32_t"></span><span class="target" id="group__emif__api_1ga1db20179bdfc2d0eeef8d8ca629a42d6"></span>void <code class="sig-name descname">EMIF_disableSyncSelfRefresh</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427EMIF_disableSyncSelfRefresh8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables Self Refresh.</p>
+<p><p>This function disables Self Refresh Mode for EMIF.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EMIF instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424EMIF_enableSyncPowerDown8uint32_t">
+<span id="_CPPv324EMIF_enableSyncPowerDown8uint32_t"></span><span id="_CPPv224EMIF_enableSyncPowerDown8uint32_t"></span><span id="EMIF_enableSyncPowerDown__uint32_t"></span><span class="target" id="group__emif__api_1ga61dfa4a28872964da681ce43be70ae99"></span>void <code class="sig-name descname">EMIF_enableSyncPowerDown</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424EMIF_enableSyncPowerDown8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables Power Down.</p>
+<p><p>This function Enables Power Down Mode for synchronous memory to be interfaced.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EMIF instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425EMIF_disableSyncPowerDown8uint32_t">
+<span id="_CPPv325EMIF_disableSyncPowerDown8uint32_t"></span><span id="_CPPv225EMIF_disableSyncPowerDown8uint32_t"></span><span id="EMIF_disableSyncPowerDown__uint32_t"></span><span class="target" id="group__emif__api_1ga31358fd299439f9a42d8400f0b18fe77"></span>void <code class="sig-name descname">EMIF_disableSyncPowerDown</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425EMIF_disableSyncPowerDown8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables Power Down.</p>
+<p><p>This function disables Power Down Mode for synchronous memory to be interfaced.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EMIF instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv433EMIF_enableSyncRefreshInPowerDown8uint32_t">
+<span id="_CPPv333EMIF_enableSyncRefreshInPowerDown8uint32_t"></span><span id="_CPPv233EMIF_enableSyncRefreshInPowerDown8uint32_t"></span><span id="EMIF_enableSyncRefreshInPowerDown__uint32_t"></span><span class="target" id="group__emif__api_1gaf92b23f3aac4db49256ee0e9a4ada9ad"></span>void <code class="sig-name descname">EMIF_enableSyncRefreshInPowerDown</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433EMIF_enableSyncRefreshInPowerDown8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables Refresh in Power Down.</p>
+<p><p>This function enables Refresh in Power Down Mode for synchronous memory to be interfaced.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EMIF instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv434EMIF_disableSyncRefreshInPowerDown8uint32_t">
+<span id="_CPPv334EMIF_disableSyncRefreshInPowerDown8uint32_t"></span><span id="_CPPv234EMIF_disableSyncRefreshInPowerDown8uint32_t"></span><span id="EMIF_disableSyncRefreshInPowerDown__uint32_t"></span><span class="target" id="group__emif__api_1ga11b97ef92de2464bd9c559ccb70978ac"></span>void <code class="sig-name descname">EMIF_disableSyncRefreshInPowerDown</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv434EMIF_disableSyncRefreshInPowerDown8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables Refresh in Power Down.</p>
+<p><p>This function disables Refresh in Power Down Mode for synchronous memory to be interfaced.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EMIF instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425EMIF_getSyncTotalAccesses8uint32_t">
+<span id="_CPPv325EMIF_getSyncTotalAccesses8uint32_t"></span><span id="_CPPv225EMIF_getSyncTotalAccesses8uint32_t"></span><span id="EMIF_getSyncTotalAccesses__uint32_t"></span><span class="target" id="group__emif__api_1gad4c152f83b4e36cd14582a2d4a860426"></span>uint32_t <code class="sig-name descname">EMIF_getSyncTotalAccesses</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425EMIF_getSyncTotalAccesses8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets total number of SDRAM accesses.</p>
+<p><p>This function returns total number of SDRAM accesses from a master(CPUx/CPUx.DMA).</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EMIF instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p><em>Returns</em> total number of accesses to SDRAM. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv433EMIF_getSyncTotalActivateAccesses8uint32_t">
+<span id="_CPPv333EMIF_getSyncTotalActivateAccesses8uint32_t"></span><span id="_CPPv233EMIF_getSyncTotalActivateAccesses8uint32_t"></span><span id="EMIF_getSyncTotalActivateAccesses__uint32_t"></span><span class="target" id="group__emif__api_1ga5bd73b2d1f9b4b6efb0022df26640e5a"></span>uint32_t <code class="sig-name descname">EMIF_getSyncTotalActivateAccesses</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433EMIF_getSyncTotalActivateAccesses8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets total number of SDRAM accesses which require activate command.</p>
+<p><p>This function returns total number of accesses to SDRAM which require activate command.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EMIF instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p><em>Returns</em> total number of accesses to SDRAM which require activate. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt id="_CPPv422EMIF_AsyncTimingParams">
+<span id="_CPPv322EMIF_AsyncTimingParams"></span><span id="_CPPv222EMIF_AsyncTimingParams"></span><span id="EMIF_AsyncTimingParams"></span><span class="target" id="struct_e_m_i_f___async_timing_params"></span><em class="property">struct </em><code class="sig-name descname">EMIF_AsyncTimingParams</code><a class="headerlink" href="#_CPPv422EMIF_AsyncTimingParams" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;emif.h&gt;</em><p>Values that can be passed to <a class="reference internal" href="#group__emif__api_1ga4e140cfbdfc01c581ed6ad31d3a80af9"><span class="std std-ref">EMIF_setAsyncTimingParams()</span></a> as the <em>tParam</em> parameter. </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv415EMIF_SyncConfig">
+<span id="_CPPv315EMIF_SyncConfig"></span><span id="_CPPv215EMIF_SyncConfig"></span><span id="EMIF_SyncConfig"></span><span class="target" id="struct_e_m_i_f___sync_config"></span><em class="property">struct </em><code class="sig-name descname">EMIF_SyncConfig</code><a class="headerlink" href="#_CPPv415EMIF_SyncConfig" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;emif.h&gt;</em><p>Values that can be passed to <a class="reference internal" href="#group__emif__api_1ga7e6f27bbc56def93700b48004920b804"><span class="std std-ref">EMIF_setSyncMemoryConfig()</span></a> as the <em>config</em> parameter. </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv421EMIF_SyncTimingParams">
+<span id="_CPPv321EMIF_SyncTimingParams"></span><span id="_CPPv221EMIF_SyncTimingParams"></span><span id="EMIF_SyncTimingParams"></span><span class="target" id="struct_e_m_i_f___sync_timing_params"></span><em class="property">struct </em><code class="sig-name descname">EMIF_SyncTimingParams</code><a class="headerlink" href="#_CPPv421EMIF_SyncTimingParams" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;emif.h&gt;</em><p>Values that can be passed to EMIF_setSyncTimingParameters() as the <em>tParam</em> parameter. </p>
+</dd></dl>
+
+</dd></dl>
+
+<p>The EMIF API include functions to select master for EMIF module, set,
+lock/unlock, commit access configuration, set external asynchronous and
+synchronous memory configuration parameters and to manage asynchronous
+interrupts.</p>
+<p>For interfacing asynchronous memories, functions are provided to configure EMIF
+registers to set mode of operation to strobe or normal mode, set enable/disable
+extended wait mode, set wait polarity, set maximum wait cycles, set async memory
+timing parameters, set memory data bus width as per the external memory to be
+interfaced and enable/disable, clear and get status for interrupts.</p>
+<p>For interfacing synchronous memories, functions are provided to configure EMIF
+registers to set timing parameters, set self refresh exit timing, set refresh
+rate, set other memory specific parameters based on the external memory to be
+interfaced, enable/disable self refresh mode, enable/disable power down mode,
+enable/disable refresh in power down mode and to get total number of SDRAM
+accesses.</p>
+<p>The code for this module is contained in driverlib/emif.c, with driverlib/emif.h containing the API declarations for use by applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ecap.html" class="btn btn-neutral float-left" title="ECAP Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="epwm.html" class="btn btn-neutral float-right" title="EPWM Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

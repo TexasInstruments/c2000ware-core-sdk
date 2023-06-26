@@ -1,0 +1,2114 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>CLB Module &mdash; F2837xd API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F2837xd API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="CMPSS Module" href="cmpss.html"/>
+        <link rel="prev" title="CLA Module" href="cla.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F2837xd API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="adc.html">ADC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asysctl.html">ASysCtl Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla.html">CLA Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">CLB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmpss.html">CMPSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dac.html">DAC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dma.html">DMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ecap.html">ECAP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emif.html">EMIF Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="epwm.html">EPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hrpwm.html">HRPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqep.html">EQEP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcbsp.html">MCBSP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci.html">SCI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdfm.html">SDFM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">SPI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upp.html">UPP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version.html">Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xbar.html">XBAR Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F2837xd API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>CLB Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="clb-module">
+<span id="clb"></span><h1>CLB Module<a class="headerlink" href="#clb-module" title="Permalink to this headline">¶</a></h1>
+<p>The Configurable Logic Block (CLB) API provides a set of functions to configure
+the CLB. The CLB is a collection of configurable blocks that can be interconnected
+using software to implement custom digital logic functions.</p>
+<p>The CLB is able to enhance existing peripherals through a set of crossbar
+interconnections, which provides a high level of connectivity to existing control
+peripherals such as enhanced pulse width modulators (ePWM), enhanced capture
+modules (eCAP), and enhanced quadrature encoder pulse modules (eQEP). The crossbars
+also allow the CLB to be connected to external GPIO pins.</p>
+<p>In this way, the CLB can be configured to interact with device peripherals to
+perform small logical functions such as simple PWM generators, or to implement
+custom serial data exchange protocols.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__clb__api"></span><em>group</em> <code class="sig-name descname">clb_api</code></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.CLB_LOGICCTL">
+<span class="target" id="group__clb__api_1ga138ccfa623b2856c296a400677eb1c2b"></span><code class="sig-name descname">CLB_LOGICCTL</code> 0x0100U<a class="headerlink" href="#c.CLB_LOGICCTL" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_DATAEXCH">
+<span class="target" id="group__clb__api_1gace07a5782763812aa1f766649405e34d"></span><code class="sig-name descname">CLB_DATAEXCH</code> 0x0200U<a class="headerlink" href="#c.CLB_DATAEXCH" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_ADDR_COUNTER_0_LOAD">
+<span class="target" id="group__clb__api_1ga7cea559110716f9a6b03fcaa82ebb503"></span><code class="sig-name descname">CLB_ADDR_COUNTER_0_LOAD</code> 0x0U<a class="headerlink" href="#c.CLB_ADDR_COUNTER_0_LOAD" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_ADDR_COUNTER_1_LOAD">
+<span class="target" id="group__clb__api_1ga3cfb1720106f45f192abdcb43a3ade7c"></span><code class="sig-name descname">CLB_ADDR_COUNTER_1_LOAD</code> 0x1U<a class="headerlink" href="#c.CLB_ADDR_COUNTER_1_LOAD" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_ADDR_COUNTER_2_LOAD">
+<span class="target" id="group__clb__api_1ga2d52ecd84665af4bb180d47f5ad18bab"></span><code class="sig-name descname">CLB_ADDR_COUNTER_2_LOAD</code> 0x2U<a class="headerlink" href="#c.CLB_ADDR_COUNTER_2_LOAD" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_ADDR_COUNTER_0_MATCH1">
+<span class="target" id="group__clb__api_1gadb68953cbfbd9b86807c14c1104c4173"></span><code class="sig-name descname">CLB_ADDR_COUNTER_0_MATCH1</code> 0x4U<a class="headerlink" href="#c.CLB_ADDR_COUNTER_0_MATCH1" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_ADDR_COUNTER_1_MATCH1">
+<span class="target" id="group__clb__api_1ga3ec76c3919dcc4198e6224aa44a4dd59"></span><code class="sig-name descname">CLB_ADDR_COUNTER_1_MATCH1</code> 0x5U<a class="headerlink" href="#c.CLB_ADDR_COUNTER_1_MATCH1" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_ADDR_COUNTER_2_MATCH1">
+<span class="target" id="group__clb__api_1ga5a5d6318d632f00700229188c978c88a"></span><code class="sig-name descname">CLB_ADDR_COUNTER_2_MATCH1</code> 0x6U<a class="headerlink" href="#c.CLB_ADDR_COUNTER_2_MATCH1" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_ADDR_COUNTER_0_MATCH2">
+<span class="target" id="group__clb__api_1ga57616d1c4ff6dede1bcc8a8f049702de"></span><code class="sig-name descname">CLB_ADDR_COUNTER_0_MATCH2</code> 0x8U<a class="headerlink" href="#c.CLB_ADDR_COUNTER_0_MATCH2" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_ADDR_COUNTER_1_MATCH2">
+<span class="target" id="group__clb__api_1ga11ac1e90afc204e08991ec23838745a7"></span><code class="sig-name descname">CLB_ADDR_COUNTER_1_MATCH2</code> 0x9U<a class="headerlink" href="#c.CLB_ADDR_COUNTER_1_MATCH2" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_ADDR_COUNTER_2_MATCH2">
+<span class="target" id="group__clb__api_1ga46b29419afe8854645493dc0cfc4123a"></span><code class="sig-name descname">CLB_ADDR_COUNTER_2_MATCH2</code> 0xAU<a class="headerlink" href="#c.CLB_ADDR_COUNTER_2_MATCH2" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_ADDR_HLC_R0">
+<span class="target" id="group__clb__api_1ga35ae73f7ec60b9c261155183c6d72360"></span><code class="sig-name descname">CLB_ADDR_HLC_R0</code> 0xCU<a class="headerlink" href="#c.CLB_ADDR_HLC_R0" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_ADDR_HLC_R1">
+<span class="target" id="group__clb__api_1gac62d3382cbae21a484278eab22e3e327"></span><code class="sig-name descname">CLB_ADDR_HLC_R1</code> 0xDU<a class="headerlink" href="#c.CLB_ADDR_HLC_R1" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_ADDR_HLC_R2">
+<span class="target" id="group__clb__api_1ga34ca46a894c2e1b712217bfda3804faa"></span><code class="sig-name descname">CLB_ADDR_HLC_R2</code> 0xEU<a class="headerlink" href="#c.CLB_ADDR_HLC_R2" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_ADDR_HLC_R3">
+<span class="target" id="group__clb__api_1gaf32003578aee8da94b9ece67207b9eb7"></span><code class="sig-name descname">CLB_ADDR_HLC_R3</code> 0xFU<a class="headerlink" href="#c.CLB_ADDR_HLC_R3" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_ADDR_HLC_BASE">
+<span class="target" id="group__clb__api_1gaa11ad2232a04a2eac2047165524d13d7"></span><code class="sig-name descname">CLB_ADDR_HLC_BASE</code> 0x20U<a class="headerlink" href="#c.CLB_ADDR_HLC_BASE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_NUM_HLC_INSTR">
+<span class="target" id="group__clb__api_1ga2459d3930b7947b119c4fb374bd67c3f"></span><code class="sig-name descname">CLB_NUM_HLC_INSTR</code> 31U<a class="headerlink" href="#c.CLB_NUM_HLC_INSTR" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_FIFO_SIZE">
+<span class="target" id="group__clb__api_1ga84bdd69141c0cc856f2ec61203dab4aa"></span><code class="sig-name descname">CLB_FIFO_SIZE</code> 4U<a class="headerlink" href="#c.CLB_FIFO_SIZE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_LOCK_KEY">
+<span class="target" id="group__clb__api_1gae0080651fe23b77cb74ce870dd954fce"></span><code class="sig-name descname">CLB_LOCK_KEY</code> 0x5A5AU<a class="headerlink" href="#c.CLB_LOCK_KEY" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_LCL_MUX_SEL_MISC_INPUT_SEL_M">
+<span class="target" id="group__clb__api_1ga773ca4d416c73cfd6d28b8df0f2e328f"></span><code class="sig-name descname">CLB_LCL_MUX_SEL_MISC_INPUT_SEL_M</code> 0x20U<a class="headerlink" href="#c.CLB_LCL_MUX_SEL_MISC_INPUT_SEL_M" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_LCL_MUX_SEL_MISC_INPUT_SEL_S">
+<span class="target" id="group__clb__api_1ga6774b55e059f0a3c7eded63a3a7c1a03"></span><code class="sig-name descname">CLB_LCL_MUX_SEL_MISC_INPUT_SEL_S</code> 28U<a class="headerlink" href="#c.CLB_LCL_MUX_SEL_MISC_INPUT_SEL_S" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_LCL_MUX_SEL_MISC_INPUT_SEL_BITM">
+<span class="target" id="group__clb__api_1ga48a6c330ec890ef49bbc78960662fea2"></span><code class="sig-name descname">CLB_LCL_MUX_SEL_MISC_INPUT_SEL_BITM</code> (uint32_t)1U<a class="headerlink" href="#c.CLB_LCL_MUX_SEL_MISC_INPUT_SEL_BITM" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_OUTPUT_00">
+<span class="target" id="group__clb__api_1gab9673c0dea8d62d83e9de4ae4d770f01"></span><code class="sig-name descname">CLB_OUTPUT_00</code> 0x00000001U<a class="headerlink" href="#c.CLB_OUTPUT_00" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for CLB OUTPUT ENABLE/DISABLE 0. </p>
+<p>Values that can be passed to control the CLB output enable signal. It can be passed to <a class="reference internal" href="#group__clb__api_1gaeff2ee15e558f178be19cada967ddfe2"><span class="std std-ref">CLB_setOutputMask()</span></a> as the <em>outputMask</em> parameter. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_OUTPUT_01">
+<span class="target" id="group__clb__api_1ga9917683bca6b24083b5ead38bba6d471"></span><code class="sig-name descname">CLB_OUTPUT_01</code> 0x00000002U<a class="headerlink" href="#c.CLB_OUTPUT_01" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for CLB OUTPUT ENABLE/DISABLE 1. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_OUTPUT_02">
+<span class="target" id="group__clb__api_1ga593f7462192d741875e14f5c3c44e3f9"></span><code class="sig-name descname">CLB_OUTPUT_02</code> 0x00000004U<a class="headerlink" href="#c.CLB_OUTPUT_02" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for CLB OUTPUT ENABLE/DISABLE 2. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_OUTPUT_03">
+<span class="target" id="group__clb__api_1ga8f10d7691d6dd2f39c9164c283b753fd"></span><code class="sig-name descname">CLB_OUTPUT_03</code> 0x00000008U<a class="headerlink" href="#c.CLB_OUTPUT_03" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for CLB OUTPUT ENABLE/DISABLE 3. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_OUTPUT_04">
+<span class="target" id="group__clb__api_1ga0e759bf5046ddbe16809419fd57cf531"></span><code class="sig-name descname">CLB_OUTPUT_04</code> 0x00000010U<a class="headerlink" href="#c.CLB_OUTPUT_04" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for CLB OUTPUT ENABLE/DISABLE 4. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_OUTPUT_05">
+<span class="target" id="group__clb__api_1ga9e847c53e8539a7aa8ea3f8616dc0898"></span><code class="sig-name descname">CLB_OUTPUT_05</code> 0x00000020U<a class="headerlink" href="#c.CLB_OUTPUT_05" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for CLB OUTPUT ENABLE/DISABLE 5. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_OUTPUT_06">
+<span class="target" id="group__clb__api_1ga5866b13b6b78399a9dcfc6aa675aeb5a"></span><code class="sig-name descname">CLB_OUTPUT_06</code> 0x00000040U<a class="headerlink" href="#c.CLB_OUTPUT_06" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for CLB OUTPUT ENABLE/DISABLE 6. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_OUTPUT_07">
+<span class="target" id="group__clb__api_1ga1cabac4dc5fad41f05e08539cd329f3f"></span><code class="sig-name descname">CLB_OUTPUT_07</code> 0x00000080U<a class="headerlink" href="#c.CLB_OUTPUT_07" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for CLB OUTPUT ENABLE/DISABLE 7. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_OUTPUT_08">
+<span class="target" id="group__clb__api_1ga08f0be6e35ae4d830eae9515c581e824"></span><code class="sig-name descname">CLB_OUTPUT_08</code> 0x00000100U<a class="headerlink" href="#c.CLB_OUTPUT_08" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for CLB OUTPUT ENABLE/DISABLE 8. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_OUTPUT_09">
+<span class="target" id="group__clb__api_1gabaa640794cf80d462b4961cfc89399bb"></span><code class="sig-name descname">CLB_OUTPUT_09</code> 0x00000200U<a class="headerlink" href="#c.CLB_OUTPUT_09" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for CLB OUTPUT ENABLE/DISABLE 9. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_OUTPUT_10">
+<span class="target" id="group__clb__api_1ga2b2f54aa6cec47bd07a1e256e92d4bfa"></span><code class="sig-name descname">CLB_OUTPUT_10</code> 0x00000400U<a class="headerlink" href="#c.CLB_OUTPUT_10" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for CLB OUTPUT ENABLE/DISABLE 10. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_OUTPUT_11">
+<span class="target" id="group__clb__api_1gac3d3ad014495995850140b20f5993b22"></span><code class="sig-name descname">CLB_OUTPUT_11</code> 0x00000800U<a class="headerlink" href="#c.CLB_OUTPUT_11" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for CLB OUTPUT ENABLE/DISABLE 11. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_OUTPUT_12">
+<span class="target" id="group__clb__api_1gaf98b5402ce015e1d409c4187eadcf51d"></span><code class="sig-name descname">CLB_OUTPUT_12</code> 0x00001000U<a class="headerlink" href="#c.CLB_OUTPUT_12" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for CLB OUTPUT ENABLE/DISABLE 12. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_OUTPUT_13">
+<span class="target" id="group__clb__api_1ga674faefd4c0779efea45beb6602b26dd"></span><code class="sig-name descname">CLB_OUTPUT_13</code> 0x00002000U<a class="headerlink" href="#c.CLB_OUTPUT_13" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for CLB OUTPUT ENABLE/DISABLE 13. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_OUTPUT_14">
+<span class="target" id="group__clb__api_1ga607098a4778f67c7d2682dd686a9cadb"></span><code class="sig-name descname">CLB_OUTPUT_14</code> 0x00004000U<a class="headerlink" href="#c.CLB_OUTPUT_14" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for CLB OUTPUT ENABLE/DISABLE 14. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_OUTPUT_15">
+<span class="target" id="group__clb__api_1gab0cf5cad867adc3dc4daa356767a111e"></span><code class="sig-name descname">CLB_OUTPUT_15</code> 0x00008000U<a class="headerlink" href="#c.CLB_OUTPUT_15" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for CLB OUTPUT ENABLE/DISABLE 15. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_OUTPUT_16">
+<span class="target" id="group__clb__api_1gae9f0e2cb1c01767332126879812c93a5"></span><code class="sig-name descname">CLB_OUTPUT_16</code> 0x00010000U<a class="headerlink" href="#c.CLB_OUTPUT_16" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for CLB OUTPUT ENABLE/DISABLE 16. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_OUTPUT_17">
+<span class="target" id="group__clb__api_1ga0650490e36015e5ffa2755c3978e26ae"></span><code class="sig-name descname">CLB_OUTPUT_17</code> 0x00020000U<a class="headerlink" href="#c.CLB_OUTPUT_17" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for CLB OUTPUT ENABLE/DISABLE 17. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_OUTPUT_18">
+<span class="target" id="group__clb__api_1ga73301264edfef7187510a2ff919f7d51"></span><code class="sig-name descname">CLB_OUTPUT_18</code> 0x00040000U<a class="headerlink" href="#c.CLB_OUTPUT_18" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for CLB OUTPUT ENABLE/DISABLE 18. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_OUTPUT_19">
+<span class="target" id="group__clb__api_1gacf2353d3fe5f54abb4228afb6d4e138d"></span><code class="sig-name descname">CLB_OUTPUT_19</code> 0x00080000U<a class="headerlink" href="#c.CLB_OUTPUT_19" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for CLB OUTPUT ENABLE/DISABLE 19. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_OUTPUT_20">
+<span class="target" id="group__clb__api_1ga221e1684c0568c49bfe113d73eb97f49"></span><code class="sig-name descname">CLB_OUTPUT_20</code> 0x00100000U<a class="headerlink" href="#c.CLB_OUTPUT_20" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for CLB OUTPUT ENABLE/DISABLE 20. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_OUTPUT_21">
+<span class="target" id="group__clb__api_1ga6fc51ce30476f65f5022009194a96f65"></span><code class="sig-name descname">CLB_OUTPUT_21</code> 0x00200000U<a class="headerlink" href="#c.CLB_OUTPUT_21" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for CLB OUTPUT ENABLE/DISABLE 21. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_OUTPUT_22">
+<span class="target" id="group__clb__api_1ga4d86efe2a1d1d066c9bda58db39a4330"></span><code class="sig-name descname">CLB_OUTPUT_22</code> 0x00400000U<a class="headerlink" href="#c.CLB_OUTPUT_22" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for CLB OUTPUT ENABLE/DISABLE 22. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_OUTPUT_23">
+<span class="target" id="group__clb__api_1ga56148e281f766572c2e9c806adffd78c"></span><code class="sig-name descname">CLB_OUTPUT_23</code> 0x00800000U<a class="headerlink" href="#c.CLB_OUTPUT_23" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for CLB OUTPUT ENABLE/DISABLE 23. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_OUTPUT_24">
+<span class="target" id="group__clb__api_1ga35c5a99cfbc2e2d9d5d33bdb6614f4a1"></span><code class="sig-name descname">CLB_OUTPUT_24</code> 0x01000000U<a class="headerlink" href="#c.CLB_OUTPUT_24" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for CLB OUTPUT ENABLE/DISABLE 24. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_OUTPUT_25">
+<span class="target" id="group__clb__api_1ga93401cb3efebdcded7f36a5e4517eb55"></span><code class="sig-name descname">CLB_OUTPUT_25</code> 0x02000000U<a class="headerlink" href="#c.CLB_OUTPUT_25" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for CLB OUTPUT ENABLE/DISABLE 25. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_OUTPUT_26">
+<span class="target" id="group__clb__api_1gae2326d3b0dc0c2371972015356557a85"></span><code class="sig-name descname">CLB_OUTPUT_26</code> 0x04000000U<a class="headerlink" href="#c.CLB_OUTPUT_26" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for CLB OUTPUT ENABLE/DISABLE 26. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_OUTPUT_27">
+<span class="target" id="group__clb__api_1ga37c0731bb557d1786055e806689d7efb"></span><code class="sig-name descname">CLB_OUTPUT_27</code> 0x08000000U<a class="headerlink" href="#c.CLB_OUTPUT_27" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for CLB OUTPUT ENABLE/DISABLE 27. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_OUTPUT_28">
+<span class="target" id="group__clb__api_1ga9a66af6bee46a1cba79e93aa699a4306"></span><code class="sig-name descname">CLB_OUTPUT_28</code> 0x10000000U<a class="headerlink" href="#c.CLB_OUTPUT_28" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for CLB OUTPUT ENABLE/DISABLE 28. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_OUTPUT_29">
+<span class="target" id="group__clb__api_1gab93627c8598d69dfaee2f14fc2947e22"></span><code class="sig-name descname">CLB_OUTPUT_29</code> 0x20000000U<a class="headerlink" href="#c.CLB_OUTPUT_29" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for CLB OUTPUT ENABLE/DISABLE 29. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_OUTPUT_30">
+<span class="target" id="group__clb__api_1ga4b86809fd91a496edd1a3074bdd3b6b2"></span><code class="sig-name descname">CLB_OUTPUT_30</code> 0x40000000U<a class="headerlink" href="#c.CLB_OUTPUT_30" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for CLB OUTPUT ENABLE/DISABLE 30. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.CLB_OUTPUT_31">
+<span class="target" id="group__clb__api_1gaf854a7a1ca8ce11da9c77354108903fa"></span><code class="sig-name descname">CLB_OUTPUT_31</code> 0x80000000U<a class="headerlink" href="#c.CLB_OUTPUT_31" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for CLB OUTPUT ENABLE/DISABLE 31. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="cpp enum">
+<dt id="_CPPv410CLB_Inputs">
+<span id="_CPPv310CLB_Inputs"></span><span id="_CPPv210CLB_Inputs"></span><span class="target" id="group__clb__api_1gaa1056b99012fd412937cc38319b8d8ec"></span><em class="property">enum </em><code class="sig-name descname">CLB_Inputs</code><a class="headerlink" href="#_CPPv410CLB_Inputs" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to select CLB input signal. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N10CLB_Inputs7CLB_IN0E">
+<span id="_CPPv3N10CLB_Inputs7CLB_IN0E"></span><span id="_CPPv2N10CLB_Inputs7CLB_IN0E"></span><span class="target" id="group__clb__api_1ggaa1056b99012fd412937cc38319b8d8eca07627547328e65688e4795a31c2ba51e"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_IN0</code> = 0<a class="headerlink" href="#_CPPv4N10CLB_Inputs7CLB_IN0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Input 0. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N10CLB_Inputs7CLB_IN1E">
+<span id="_CPPv3N10CLB_Inputs7CLB_IN1E"></span><span id="_CPPv2N10CLB_Inputs7CLB_IN1E"></span><span class="target" id="group__clb__api_1ggaa1056b99012fd412937cc38319b8d8ecae3d9ea43ccfeb6516d12d9d7a120b5c9"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_IN1</code> = 1<a class="headerlink" href="#_CPPv4N10CLB_Inputs7CLB_IN1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Input 1. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N10CLB_Inputs7CLB_IN2E">
+<span id="_CPPv3N10CLB_Inputs7CLB_IN2E"></span><span id="_CPPv2N10CLB_Inputs7CLB_IN2E"></span><span class="target" id="group__clb__api_1ggaa1056b99012fd412937cc38319b8d8eca9f6c0e800810b739476ba46dd20a4602"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_IN2</code> = 2<a class="headerlink" href="#_CPPv4N10CLB_Inputs7CLB_IN2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Input 2. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N10CLB_Inputs7CLB_IN3E">
+<span id="_CPPv3N10CLB_Inputs7CLB_IN3E"></span><span id="_CPPv2N10CLB_Inputs7CLB_IN3E"></span><span class="target" id="group__clb__api_1ggaa1056b99012fd412937cc38319b8d8eca82f0c18c5d8354e06462dd2d03e93a68"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_IN3</code> = 3<a class="headerlink" href="#_CPPv4N10CLB_Inputs7CLB_IN3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Input 3. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N10CLB_Inputs7CLB_IN4E">
+<span id="_CPPv3N10CLB_Inputs7CLB_IN4E"></span><span id="_CPPv2N10CLB_Inputs7CLB_IN4E"></span><span class="target" id="group__clb__api_1ggaa1056b99012fd412937cc38319b8d8eca67a836834b924c3f913bce21b94432ca"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_IN4</code> = 4<a class="headerlink" href="#_CPPv4N10CLB_Inputs7CLB_IN4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Input 4. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N10CLB_Inputs7CLB_IN5E">
+<span id="_CPPv3N10CLB_Inputs7CLB_IN5E"></span><span id="_CPPv2N10CLB_Inputs7CLB_IN5E"></span><span class="target" id="group__clb__api_1ggaa1056b99012fd412937cc38319b8d8eca6fe709e53cccd9ce3824ba9369560734"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_IN5</code> = 5<a class="headerlink" href="#_CPPv4N10CLB_Inputs7CLB_IN5E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Input 5. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N10CLB_Inputs7CLB_IN6E">
+<span id="_CPPv3N10CLB_Inputs7CLB_IN6E"></span><span id="_CPPv2N10CLB_Inputs7CLB_IN6E"></span><span class="target" id="group__clb__api_1ggaa1056b99012fd412937cc38319b8d8eca256d3c7ea9fff55e96fe97faa6fd1cf2"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_IN6</code> = 6<a class="headerlink" href="#_CPPv4N10CLB_Inputs7CLB_IN6E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Input 6. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N10CLB_Inputs7CLB_IN7E">
+<span id="_CPPv3N10CLB_Inputs7CLB_IN7E"></span><span id="_CPPv2N10CLB_Inputs7CLB_IN7E"></span><span class="target" id="group__clb__api_1ggaa1056b99012fd412937cc38319b8d8eca462b5b2d65a3bf19ce2becba35e58ef7"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_IN7</code> = 7<a class="headerlink" href="#_CPPv4N10CLB_Inputs7CLB_IN7E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Input 7. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv411CLB_Outputs">
+<span id="_CPPv311CLB_Outputs"></span><span id="_CPPv211CLB_Outputs"></span><span class="target" id="group__clb__api_1gaf01db37d652a63e2508c82acb7c8d483"></span><em class="property">enum </em><code class="sig-name descname">CLB_Outputs</code><a class="headerlink" href="#_CPPv411CLB_Outputs" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to select CLB output signal. It can be passed to <a class="reference internal" href="#group__clb__api_1ga30b7a2b77c305b9bb978c024b10d0a3f"><span class="std std-ref">CLB_configOutputLUT()</span></a> as the <em>outID</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLB_Outputs8CLB_OUT0E">
+<span id="_CPPv3N11CLB_Outputs8CLB_OUT0E"></span><span id="_CPPv2N11CLB_Outputs8CLB_OUT0E"></span><span class="target" id="group__clb__api_1ggaf01db37d652a63e2508c82acb7c8d483a34b4cdfa34ee4e504b5440db3b8c54f7"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_OUT0</code> = 0<a class="headerlink" href="#_CPPv4N11CLB_Outputs8CLB_OUT0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Output 0. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLB_Outputs8CLB_OUT1E">
+<span id="_CPPv3N11CLB_Outputs8CLB_OUT1E"></span><span id="_CPPv2N11CLB_Outputs8CLB_OUT1E"></span><span class="target" id="group__clb__api_1ggaf01db37d652a63e2508c82acb7c8d483acaa06a87627d6f29675ee88f0e9936cf"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_OUT1</code> = 1<a class="headerlink" href="#_CPPv4N11CLB_Outputs8CLB_OUT1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Output 1. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLB_Outputs8CLB_OUT2E">
+<span id="_CPPv3N11CLB_Outputs8CLB_OUT2E"></span><span id="_CPPv2N11CLB_Outputs8CLB_OUT2E"></span><span class="target" id="group__clb__api_1ggaf01db37d652a63e2508c82acb7c8d483a1372e9d1b87b9973277db81e6d3fb71e"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_OUT2</code> = 2<a class="headerlink" href="#_CPPv4N11CLB_Outputs8CLB_OUT2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Output 2. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLB_Outputs8CLB_OUT3E">
+<span id="_CPPv3N11CLB_Outputs8CLB_OUT3E"></span><span id="_CPPv2N11CLB_Outputs8CLB_OUT3E"></span><span class="target" id="group__clb__api_1ggaf01db37d652a63e2508c82acb7c8d483adf0ab85cf6c028e7bc15a478fcce73ef"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_OUT3</code> = 3<a class="headerlink" href="#_CPPv4N11CLB_Outputs8CLB_OUT3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Output 3. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLB_Outputs8CLB_OUT4E">
+<span id="_CPPv3N11CLB_Outputs8CLB_OUT4E"></span><span id="_CPPv2N11CLB_Outputs8CLB_OUT4E"></span><span class="target" id="group__clb__api_1ggaf01db37d652a63e2508c82acb7c8d483afce57e2b1aae7410faf402db8b1322ba"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_OUT4</code> = 4<a class="headerlink" href="#_CPPv4N11CLB_Outputs8CLB_OUT4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Output 4. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLB_Outputs8CLB_OUT5E">
+<span id="_CPPv3N11CLB_Outputs8CLB_OUT5E"></span><span id="_CPPv2N11CLB_Outputs8CLB_OUT5E"></span><span class="target" id="group__clb__api_1ggaf01db37d652a63e2508c82acb7c8d483a3e5d985c4d0e8c3fe54f09512264cd08"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_OUT5</code> = 5<a class="headerlink" href="#_CPPv4N11CLB_Outputs8CLB_OUT5E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Output 5. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLB_Outputs8CLB_OUT6E">
+<span id="_CPPv3N11CLB_Outputs8CLB_OUT6E"></span><span id="_CPPv2N11CLB_Outputs8CLB_OUT6E"></span><span class="target" id="group__clb__api_1ggaf01db37d652a63e2508c82acb7c8d483a5e9773bee50ccac55ceee54a37bfe9b1"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_OUT6</code> = 6<a class="headerlink" href="#_CPPv4N11CLB_Outputs8CLB_OUT6E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Output 6. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11CLB_Outputs8CLB_OUT7E">
+<span id="_CPPv3N11CLB_Outputs8CLB_OUT7E"></span><span id="_CPPv2N11CLB_Outputs8CLB_OUT7E"></span><span class="target" id="group__clb__api_1ggaf01db37d652a63e2508c82acb7c8d483a07827c231ffb764ad9953e0c0b570a84"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_OUT7</code> = 7<a class="headerlink" href="#_CPPv4N11CLB_Outputs8CLB_OUT7E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Output 7. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv412CLB_Counters">
+<span id="_CPPv312CLB_Counters"></span><span id="_CPPv212CLB_Counters"></span><span class="target" id="group__clb__api_1gab4d86b7a86209258dabbfa1dc4c78d5e"></span><em class="property">enum </em><code class="sig-name descname">CLB_Counters</code><a class="headerlink" href="#_CPPv412CLB_Counters" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to select CLB counter. It can be passed to <a class="reference internal" href="#group__clb__api_1ga7fd72ef8d235d50ffcb0b6783df54ed7"><span class="std std-ref">CLB_configCounterLoadMatch()</span></a> as the <em>counterID</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12CLB_Counters8CLB_CTR0E">
+<span id="_CPPv3N12CLB_Counters8CLB_CTR0E"></span><span id="_CPPv2N12CLB_Counters8CLB_CTR0E"></span><span class="target" id="group__clb__api_1ggab4d86b7a86209258dabbfa1dc4c78d5ea51454e644abda1a8555879e3e6fa9844"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_CTR0</code> = 0<a class="headerlink" href="#_CPPv4N12CLB_Counters8CLB_CTR0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Counter 0. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12CLB_Counters8CLB_CTR1E">
+<span id="_CPPv3N12CLB_Counters8CLB_CTR1E"></span><span id="_CPPv2N12CLB_Counters8CLB_CTR1E"></span><span class="target" id="group__clb__api_1ggab4d86b7a86209258dabbfa1dc4c78d5ea28954c4f33300185c07cd9bcb6584edb"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_CTR1</code> = 1<a class="headerlink" href="#_CPPv4N12CLB_Counters8CLB_CTR1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Counter 1. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12CLB_Counters8CLB_CTR2E">
+<span id="_CPPv3N12CLB_Counters8CLB_CTR2E"></span><span id="_CPPv2N12CLB_Counters8CLB_CTR2E"></span><span class="target" id="group__clb__api_1ggab4d86b7a86209258dabbfa1dc4c78d5ea1ae0f17d572bdc3ba1e3c6f676e0d9d5"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_CTR2</code> = 2<a class="headerlink" href="#_CPPv4N12CLB_Counters8CLB_CTR2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Counter 2. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv412CLB_Register">
+<span id="_CPPv312CLB_Register"></span><span id="_CPPv212CLB_Register"></span><span class="target" id="group__clb__api_1gafc9cf58114a63c9f48ff4d3e51242c27"></span><em class="property">enum </em><code class="sig-name descname">CLB_Register</code><a class="headerlink" href="#_CPPv412CLB_Register" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__clb__api_1ga59f49922e1ba63a11fd1101679385fb9"><span class="std std-ref">CLB_getRegister()</span></a> as the <em>registerID</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12CLB_Register14CLB_REG_HLC_R0E">
+<span id="_CPPv3N12CLB_Register14CLB_REG_HLC_R0E"></span><span id="_CPPv2N12CLB_Register14CLB_REG_HLC_R0E"></span><span class="target" id="group__clb__api_1ggafc9cf58114a63c9f48ff4d3e51242c27a6a764113875a08a62b4ffb6a86eaf405"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_REG_HLC_R0</code> = 0x30U<a class="headerlink" href="#_CPPv4N12CLB_Register14CLB_REG_HLC_R0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>HLC R0 register. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12CLB_Register14CLB_REG_HLC_R1E">
+<span id="_CPPv3N12CLB_Register14CLB_REG_HLC_R1E"></span><span id="_CPPv2N12CLB_Register14CLB_REG_HLC_R1E"></span><span class="target" id="group__clb__api_1ggafc9cf58114a63c9f48ff4d3e51242c27ab2bd37d6cfcaf2b6e986acb8a971c943"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_REG_HLC_R1</code> = 0x32U<a class="headerlink" href="#_CPPv4N12CLB_Register14CLB_REG_HLC_R1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>HLC R1 register. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12CLB_Register14CLB_REG_HLC_R2E">
+<span id="_CPPv3N12CLB_Register14CLB_REG_HLC_R2E"></span><span id="_CPPv2N12CLB_Register14CLB_REG_HLC_R2E"></span><span class="target" id="group__clb__api_1ggafc9cf58114a63c9f48ff4d3e51242c27afcd36d271eb99db8c2f14f18ceea1ce8"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_REG_HLC_R2</code> = 0x34U<a class="headerlink" href="#_CPPv4N12CLB_Register14CLB_REG_HLC_R2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>HLC R2 register. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12CLB_Register14CLB_REG_HLC_R3E">
+<span id="_CPPv3N12CLB_Register14CLB_REG_HLC_R3E"></span><span id="_CPPv2N12CLB_Register14CLB_REG_HLC_R3E"></span><span class="target" id="group__clb__api_1ggafc9cf58114a63c9f48ff4d3e51242c27a3997b40a9640a0c0d2b3d5901ab23a8d"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_REG_HLC_R3</code> = 0x36U<a class="headerlink" href="#_CPPv4N12CLB_Register14CLB_REG_HLC_R3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>HLC R3 register. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12CLB_Register14CLB_REG_CTR_C0E">
+<span id="_CPPv3N12CLB_Register14CLB_REG_CTR_C0E"></span><span id="_CPPv2N12CLB_Register14CLB_REG_CTR_C0E"></span><span class="target" id="group__clb__api_1ggafc9cf58114a63c9f48ff4d3e51242c27a03d0865b93b46ca696c31ff86405f3f3"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_REG_CTR_C0</code> = 0x38U<a class="headerlink" href="#_CPPv4N12CLB_Register14CLB_REG_CTR_C0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Counter 0 register. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12CLB_Register14CLB_REG_CTR_C1E">
+<span id="_CPPv3N12CLB_Register14CLB_REG_CTR_C1E"></span><span id="_CPPv2N12CLB_Register14CLB_REG_CTR_C1E"></span><span class="target" id="group__clb__api_1ggafc9cf58114a63c9f48ff4d3e51242c27a6be70eaf6b0a22bfd90ff72aad346358"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_REG_CTR_C1</code> = 0x3AU<a class="headerlink" href="#_CPPv4N12CLB_Register14CLB_REG_CTR_C1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Counter 1 register. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N12CLB_Register14CLB_REG_CTR_C2E">
+<span id="_CPPv3N12CLB_Register14CLB_REG_CTR_C2E"></span><span id="_CPPv2N12CLB_Register14CLB_REG_CTR_C2E"></span><span class="target" id="group__clb__api_1ggafc9cf58114a63c9f48ff4d3e51242c27af5e59ff9699bab3b9000571477b76fe1"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_REG_CTR_C2</code> = 0x3CU<a class="headerlink" href="#_CPPv4N12CLB_Register14CLB_REG_CTR_C2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Counter 2 register. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv414CLB_FilterType">
+<span id="_CPPv314CLB_FilterType"></span><span id="_CPPv214CLB_FilterType"></span><span class="target" id="group__clb__api_1ga09a29326cec4eb2fdf9a76d14c68520d"></span><em class="property">enum </em><code class="sig-name descname">CLB_FilterType</code><a class="headerlink" href="#_CPPv414CLB_FilterType" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__clb__api_1ga11c89f01f35e9479c7b9210f789aad36"><span class="std std-ref">CLB_selectInputFilter()</span></a> as the <em>filterType</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14CLB_FilterType15CLB_FILTER_NONEE">
+<span id="_CPPv3N14CLB_FilterType15CLB_FILTER_NONEE"></span><span id="_CPPv2N14CLB_FilterType15CLB_FILTER_NONEE"></span><span class="target" id="group__clb__api_1gga09a29326cec4eb2fdf9a76d14c68520da3ac50e5bb3cdb304ca8021c6c95bb98e"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_FILTER_NONE</code> = 0<a class="headerlink" href="#_CPPv4N14CLB_FilterType15CLB_FILTER_NONEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>No filtering. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14CLB_FilterType22CLB_FILTER_RISING_EDGEE">
+<span id="_CPPv3N14CLB_FilterType22CLB_FILTER_RISING_EDGEE"></span><span id="_CPPv2N14CLB_FilterType22CLB_FILTER_RISING_EDGEE"></span><span class="target" id="group__clb__api_1gga09a29326cec4eb2fdf9a76d14c68520dae5667f6f0712ae5a8288f764be5a3d50"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_FILTER_RISING_EDGE</code> = 1<a class="headerlink" href="#_CPPv4N14CLB_FilterType22CLB_FILTER_RISING_EDGEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Rising edge detect. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14CLB_FilterType23CLB_FILTER_FALLING_EDGEE">
+<span id="_CPPv3N14CLB_FilterType23CLB_FILTER_FALLING_EDGEE"></span><span id="_CPPv2N14CLB_FilterType23CLB_FILTER_FALLING_EDGEE"></span><span class="target" id="group__clb__api_1gga09a29326cec4eb2fdf9a76d14c68520da08e49a7d7a378fd4a96263794fac6408"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_FILTER_FALLING_EDGE</code> = 2<a class="headerlink" href="#_CPPv4N14CLB_FilterType23CLB_FILTER_FALLING_EDGEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Falling edge detect. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14CLB_FilterType19CLB_FILTER_ANY_EDGEE">
+<span id="_CPPv3N14CLB_FilterType19CLB_FILTER_ANY_EDGEE"></span><span id="_CPPv2N14CLB_FilterType19CLB_FILTER_ANY_EDGEE"></span><span class="target" id="group__clb__api_1gga09a29326cec4eb2fdf9a76d14c68520da80f058eb18f39a26ae23353236116cd0"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_FILTER_ANY_EDGE</code> = 3<a class="headerlink" href="#_CPPv4N14CLB_FilterType19CLB_FILTER_ANY_EDGEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Any edge detect. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv414CLB_GPInputMux">
+<span id="_CPPv314CLB_GPInputMux"></span><span id="_CPPv214CLB_GPInputMux"></span><span class="target" id="group__clb__api_1ga8fc3efe9024d62bfdaf412028ee42454"></span><em class="property">enum </em><code class="sig-name descname">CLB_GPInputMux</code><a class="headerlink" href="#_CPPv414CLB_GPInputMux" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__clb__api_1gae0b1d29533ba2d87c0c2f32457c3ad87"><span class="std std-ref">CLB_configGPInputMux()</span></a> as the <em>gpMuxCfg</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14CLB_GPInputMux22CLB_GP_IN_MUX_EXTERNALE">
+<span id="_CPPv3N14CLB_GPInputMux22CLB_GP_IN_MUX_EXTERNALE"></span><span id="_CPPv2N14CLB_GPInputMux22CLB_GP_IN_MUX_EXTERNALE"></span><span class="target" id="group__clb__api_1gga8fc3efe9024d62bfdaf412028ee42454ae2f6a5d30ba3c84168a7d17ed82ff1df"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GP_IN_MUX_EXTERNAL</code> = 0<a class="headerlink" href="#_CPPv4N14CLB_GPInputMux22CLB_GP_IN_MUX_EXTERNALE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Use external input path. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14CLB_GPInputMux20CLB_GP_IN_MUX_GP_REGE">
+<span id="_CPPv3N14CLB_GPInputMux20CLB_GP_IN_MUX_GP_REGE"></span><span id="_CPPv2N14CLB_GPInputMux20CLB_GP_IN_MUX_GP_REGE"></span><span class="target" id="group__clb__api_1gga8fc3efe9024d62bfdaf412028ee42454ade998f86d599dcb1248b5c7167f43208"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GP_IN_MUX_GP_REG</code> = 1<a class="headerlink" href="#_CPPv4N14CLB_GPInputMux20CLB_GP_IN_MUX_GP_REGE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Use CLB_GP_REG bit value as input. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv417CLB_LocalInputMux">
+<span id="_CPPv317CLB_LocalInputMux"></span><span id="_CPPv217CLB_LocalInputMux"></span><span class="target" id="group__clb__api_1ga728365434f2f0029c56cf30e7a7276bf"></span><em class="property">enum </em><code class="sig-name descname">CLB_LocalInputMux</code><a class="headerlink" href="#_CPPv417CLB_LocalInputMux" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__clb__api_1gaab03ee9d211496d8520984dd13cba63b"><span class="std std-ref">CLB_configLocalInputMux()</span></a> as the <em>localMuxCfg</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17CLB_LocalInputMux26CLB_LOCAL_IN_MUX_GLOBAL_INE">
+<span id="_CPPv3N17CLB_LocalInputMux26CLB_LOCAL_IN_MUX_GLOBAL_INE"></span><span id="_CPPv2N17CLB_LocalInputMux26CLB_LOCAL_IN_MUX_GLOBAL_INE"></span><span class="target" id="group__clb__api_1gga728365434f2f0029c56cf30e7a7276bfa7ae4ab3267a83bc404fa249fabd677aa"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_LOCAL_IN_MUX_GLOBAL_IN</code> = 0<a class="headerlink" href="#_CPPv4N17CLB_LocalInputMux26CLB_LOCAL_IN_MUX_GLOBAL_INE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Global input mux selection. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17CLB_LocalInputMux29CLB_LOCAL_IN_MUX_EPWM_DCAEVT1E">
+<span id="_CPPv3N17CLB_LocalInputMux29CLB_LOCAL_IN_MUX_EPWM_DCAEVT1E"></span><span id="_CPPv2N17CLB_LocalInputMux29CLB_LOCAL_IN_MUX_EPWM_DCAEVT1E"></span><span class="target" id="group__clb__api_1gga728365434f2f0029c56cf30e7a7276bfa32cf19bb11dda4cb4be82331c8076e9a"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_LOCAL_IN_MUX_EPWM_DCAEVT1</code> = 1<a class="headerlink" href="#_CPPv4N17CLB_LocalInputMux29CLB_LOCAL_IN_MUX_EPWM_DCAEVT1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWMx DCAEVT1. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17CLB_LocalInputMux29CLB_LOCAL_IN_MUX_EPWM_DCAEVT2E">
+<span id="_CPPv3N17CLB_LocalInputMux29CLB_LOCAL_IN_MUX_EPWM_DCAEVT2E"></span><span id="_CPPv2N17CLB_LocalInputMux29CLB_LOCAL_IN_MUX_EPWM_DCAEVT2E"></span><span class="target" id="group__clb__api_1gga728365434f2f0029c56cf30e7a7276bfaffb265869b42562c1b44c81976dc9bb5"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_LOCAL_IN_MUX_EPWM_DCAEVT2</code> = 2<a class="headerlink" href="#_CPPv4N17CLB_LocalInputMux29CLB_LOCAL_IN_MUX_EPWM_DCAEVT2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWMx DCAEVT2. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17CLB_LocalInputMux29CLB_LOCAL_IN_MUX_EPWM_DCBEVT1E">
+<span id="_CPPv3N17CLB_LocalInputMux29CLB_LOCAL_IN_MUX_EPWM_DCBEVT1E"></span><span id="_CPPv2N17CLB_LocalInputMux29CLB_LOCAL_IN_MUX_EPWM_DCBEVT1E"></span><span class="target" id="group__clb__api_1gga728365434f2f0029c56cf30e7a7276bfad3b77b989a1954e91af93ddde50993a3"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_LOCAL_IN_MUX_EPWM_DCBEVT1</code> = 3<a class="headerlink" href="#_CPPv4N17CLB_LocalInputMux29CLB_LOCAL_IN_MUX_EPWM_DCBEVT1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWMx DCBEVT1. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17CLB_LocalInputMux29CLB_LOCAL_IN_MUX_EPWM_DCBEVT2E">
+<span id="_CPPv3N17CLB_LocalInputMux29CLB_LOCAL_IN_MUX_EPWM_DCBEVT2E"></span><span id="_CPPv2N17CLB_LocalInputMux29CLB_LOCAL_IN_MUX_EPWM_DCBEVT2E"></span><span class="target" id="group__clb__api_1gga728365434f2f0029c56cf30e7a7276bfa6fcc0f91d846bb3879489bb47e83bcbd"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_LOCAL_IN_MUX_EPWM_DCBEVT2</code> = 4<a class="headerlink" href="#_CPPv4N17CLB_LocalInputMux29CLB_LOCAL_IN_MUX_EPWM_DCBEVT2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWMx DCBEVT2. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17CLB_LocalInputMux26CLB_LOCAL_IN_MUX_EPWM_DCAHE">
+<span id="_CPPv3N17CLB_LocalInputMux26CLB_LOCAL_IN_MUX_EPWM_DCAHE"></span><span id="_CPPv2N17CLB_LocalInputMux26CLB_LOCAL_IN_MUX_EPWM_DCAHE"></span><span class="target" id="group__clb__api_1gga728365434f2f0029c56cf30e7a7276bfab39e03547aad0e750fe9092b116586f3"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_LOCAL_IN_MUX_EPWM_DCAH</code> = 5<a class="headerlink" href="#_CPPv4N17CLB_LocalInputMux26CLB_LOCAL_IN_MUX_EPWM_DCAHE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWMx DCAH. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17CLB_LocalInputMux26CLB_LOCAL_IN_MUX_EPWM_DCALE">
+<span id="_CPPv3N17CLB_LocalInputMux26CLB_LOCAL_IN_MUX_EPWM_DCALE"></span><span id="_CPPv2N17CLB_LocalInputMux26CLB_LOCAL_IN_MUX_EPWM_DCALE"></span><span class="target" id="group__clb__api_1gga728365434f2f0029c56cf30e7a7276bfa1141f470b0db82afe154abe3ef2e8258"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_LOCAL_IN_MUX_EPWM_DCAL</code> = 6<a class="headerlink" href="#_CPPv4N17CLB_LocalInputMux26CLB_LOCAL_IN_MUX_EPWM_DCALE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWMx DCAL. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17CLB_LocalInputMux26CLB_LOCAL_IN_MUX_EPWM_DCBHE">
+<span id="_CPPv3N17CLB_LocalInputMux26CLB_LOCAL_IN_MUX_EPWM_DCBHE"></span><span id="_CPPv2N17CLB_LocalInputMux26CLB_LOCAL_IN_MUX_EPWM_DCBHE"></span><span class="target" id="group__clb__api_1gga728365434f2f0029c56cf30e7a7276bfafff624a4565b6fa2af80254975cc68e5"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_LOCAL_IN_MUX_EPWM_DCBH</code> = 7<a class="headerlink" href="#_CPPv4N17CLB_LocalInputMux26CLB_LOCAL_IN_MUX_EPWM_DCBHE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWMx DCBH. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17CLB_LocalInputMux26CLB_LOCAL_IN_MUX_EPWM_DCBLE">
+<span id="_CPPv3N17CLB_LocalInputMux26CLB_LOCAL_IN_MUX_EPWM_DCBLE"></span><span id="_CPPv2N17CLB_LocalInputMux26CLB_LOCAL_IN_MUX_EPWM_DCBLE"></span><span class="target" id="group__clb__api_1gga728365434f2f0029c56cf30e7a7276bfa11615f68f95824c23b78a91cf2d01fcc"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_LOCAL_IN_MUX_EPWM_DCBL</code> = 8<a class="headerlink" href="#_CPPv4N17CLB_LocalInputMux26CLB_LOCAL_IN_MUX_EPWM_DCBLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWMx DCBL. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17CLB_LocalInputMux25CLB_LOCAL_IN_MUX_EPWM_OSTE">
+<span id="_CPPv3N17CLB_LocalInputMux25CLB_LOCAL_IN_MUX_EPWM_OSTE"></span><span id="_CPPv2N17CLB_LocalInputMux25CLB_LOCAL_IN_MUX_EPWM_OSTE"></span><span class="target" id="group__clb__api_1gga728365434f2f0029c56cf30e7a7276bfa8ea7b35cebd19f88002d43cb52dbb10c"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_LOCAL_IN_MUX_EPWM_OST</code> = 9<a class="headerlink" href="#_CPPv4N17CLB_LocalInputMux25CLB_LOCAL_IN_MUX_EPWM_OSTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWMx OST. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17CLB_LocalInputMux25CLB_LOCAL_IN_MUX_EPWM_CBCE">
+<span id="_CPPv3N17CLB_LocalInputMux25CLB_LOCAL_IN_MUX_EPWM_CBCE"></span><span id="_CPPv2N17CLB_LocalInputMux25CLB_LOCAL_IN_MUX_EPWM_CBCE"></span><span class="target" id="group__clb__api_1gga728365434f2f0029c56cf30e7a7276bfa93da5fe2a073ef44ab6fa146a797fda7"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_LOCAL_IN_MUX_EPWM_CBC</code> = 10<a class="headerlink" href="#_CPPv4N17CLB_LocalInputMux25CLB_LOCAL_IN_MUX_EPWM_CBCE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWMx CBC. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17CLB_LocalInputMux28CLB_LOCAL_IN_MUX_ECAP_ECAPINE">
+<span id="_CPPv3N17CLB_LocalInputMux28CLB_LOCAL_IN_MUX_ECAP_ECAPINE"></span><span id="_CPPv2N17CLB_LocalInputMux28CLB_LOCAL_IN_MUX_ECAP_ECAPINE"></span><span class="target" id="group__clb__api_1gga728365434f2f0029c56cf30e7a7276bfa4bc80a957351406ea2fa835ab4039d9b"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_LOCAL_IN_MUX_ECAP_ECAPIN</code> = 11<a class="headerlink" href="#_CPPv4N17CLB_LocalInputMux28CLB_LOCAL_IN_MUX_ECAP_ECAPINE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>ECAPx ECAPIN. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17CLB_LocalInputMux30CLB_LOCAL_IN_MUX_ECAP_ECAP_OUTE">
+<span id="_CPPv3N17CLB_LocalInputMux30CLB_LOCAL_IN_MUX_ECAP_ECAP_OUTE"></span><span id="_CPPv2N17CLB_LocalInputMux30CLB_LOCAL_IN_MUX_ECAP_ECAP_OUTE"></span><span class="target" id="group__clb__api_1gga728365434f2f0029c56cf30e7a7276bfa4aa80e8ed80a42f71b7f2b21257a0528"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_LOCAL_IN_MUX_ECAP_ECAP_OUT</code> = 12<a class="headerlink" href="#_CPPv4N17CLB_LocalInputMux30CLB_LOCAL_IN_MUX_ECAP_ECAP_OUTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>ECAPx ECAP_OUT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17CLB_LocalInputMux33CLB_LOCAL_IN_MUX_ECAP_ECAP_OUT_ENE">
+<span id="_CPPv3N17CLB_LocalInputMux33CLB_LOCAL_IN_MUX_ECAP_ECAP_OUT_ENE"></span><span id="_CPPv2N17CLB_LocalInputMux33CLB_LOCAL_IN_MUX_ECAP_ECAP_OUT_ENE"></span><span class="target" id="group__clb__api_1gga728365434f2f0029c56cf30e7a7276bfa329cae7800bdfc8e925215bef4142031"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_LOCAL_IN_MUX_ECAP_ECAP_OUT_EN</code> = 13<a class="headerlink" href="#_CPPv4N17CLB_LocalInputMux33CLB_LOCAL_IN_MUX_ECAP_ECAP_OUT_ENE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>ECAPx ECAP_OUT_EN. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17CLB_LocalInputMux27CLB_LOCAL_IN_MUX_ECAP_CEVT1E">
+<span id="_CPPv3N17CLB_LocalInputMux27CLB_LOCAL_IN_MUX_ECAP_CEVT1E"></span><span id="_CPPv2N17CLB_LocalInputMux27CLB_LOCAL_IN_MUX_ECAP_CEVT1E"></span><span class="target" id="group__clb__api_1gga728365434f2f0029c56cf30e7a7276bfa4df841331b33379e08779542025c0b4d"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_LOCAL_IN_MUX_ECAP_CEVT1</code> = 14<a class="headerlink" href="#_CPPv4N17CLB_LocalInputMux27CLB_LOCAL_IN_MUX_ECAP_CEVT1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>ECAPx CEVT1. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17CLB_LocalInputMux27CLB_LOCAL_IN_MUX_ECAP_CEVT2E">
+<span id="_CPPv3N17CLB_LocalInputMux27CLB_LOCAL_IN_MUX_ECAP_CEVT2E"></span><span id="_CPPv2N17CLB_LocalInputMux27CLB_LOCAL_IN_MUX_ECAP_CEVT2E"></span><span class="target" id="group__clb__api_1gga728365434f2f0029c56cf30e7a7276bfad66e667fb1960b909850c173b4877184"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_LOCAL_IN_MUX_ECAP_CEVT2</code> = 15<a class="headerlink" href="#_CPPv4N17CLB_LocalInputMux27CLB_LOCAL_IN_MUX_ECAP_CEVT2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>ECAPx CEVT2. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17CLB_LocalInputMux27CLB_LOCAL_IN_MUX_ECAP_CEVT3E">
+<span id="_CPPv3N17CLB_LocalInputMux27CLB_LOCAL_IN_MUX_ECAP_CEVT3E"></span><span id="_CPPv2N17CLB_LocalInputMux27CLB_LOCAL_IN_MUX_ECAP_CEVT3E"></span><span class="target" id="group__clb__api_1gga728365434f2f0029c56cf30e7a7276bfaa4b34078f3abb0f7724daaaa7c5cb65d"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_LOCAL_IN_MUX_ECAP_CEVT3</code> = 16<a class="headerlink" href="#_CPPv4N17CLB_LocalInputMux27CLB_LOCAL_IN_MUX_ECAP_CEVT3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>ECAPx CEVT3. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17CLB_LocalInputMux27CLB_LOCAL_IN_MUX_ECAP_CEVT4E">
+<span id="_CPPv3N17CLB_LocalInputMux27CLB_LOCAL_IN_MUX_ECAP_CEVT4E"></span><span id="_CPPv2N17CLB_LocalInputMux27CLB_LOCAL_IN_MUX_ECAP_CEVT4E"></span><span class="target" id="group__clb__api_1gga728365434f2f0029c56cf30e7a7276bfacfd45654b0996b2bc5935dc2c4d9735e"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_LOCAL_IN_MUX_ECAP_CEVT4</code> = 17<a class="headerlink" href="#_CPPv4N17CLB_LocalInputMux27CLB_LOCAL_IN_MUX_ECAP_CEVT4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>ECAPx CEVT4. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17CLB_LocalInputMux27CLB_LOCAL_IN_MUX_EQEP_EQEPAE">
+<span id="_CPPv3N17CLB_LocalInputMux27CLB_LOCAL_IN_MUX_EQEP_EQEPAE"></span><span id="_CPPv2N17CLB_LocalInputMux27CLB_LOCAL_IN_MUX_EQEP_EQEPAE"></span><span class="target" id="group__clb__api_1gga728365434f2f0029c56cf30e7a7276bfac0552b058ff99f8e4216c2e0472d279c"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_LOCAL_IN_MUX_EQEP_EQEPA</code> = 18<a class="headerlink" href="#_CPPv4N17CLB_LocalInputMux27CLB_LOCAL_IN_MUX_EQEP_EQEPAE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EQEPx EQEPA. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17CLB_LocalInputMux27CLB_LOCAL_IN_MUX_EQEP_EQEPBE">
+<span id="_CPPv3N17CLB_LocalInputMux27CLB_LOCAL_IN_MUX_EQEP_EQEPBE"></span><span id="_CPPv2N17CLB_LocalInputMux27CLB_LOCAL_IN_MUX_EQEP_EQEPBE"></span><span class="target" id="group__clb__api_1gga728365434f2f0029c56cf30e7a7276bfa790a0aeb5d5fe657ea16941b61b8e1c8"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_LOCAL_IN_MUX_EQEP_EQEPB</code> = 19<a class="headerlink" href="#_CPPv4N17CLB_LocalInputMux27CLB_LOCAL_IN_MUX_EQEP_EQEPBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EQEPx EQEPB. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17CLB_LocalInputMux27CLB_LOCAL_IN_MUX_EQEP_EQEPIE">
+<span id="_CPPv3N17CLB_LocalInputMux27CLB_LOCAL_IN_MUX_EQEP_EQEPIE"></span><span id="_CPPv2N17CLB_LocalInputMux27CLB_LOCAL_IN_MUX_EQEP_EQEPIE"></span><span class="target" id="group__clb__api_1gga728365434f2f0029c56cf30e7a7276bfac6a3b76e1739f82eb23a805fd8643b18"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_LOCAL_IN_MUX_EQEP_EQEPI</code> = 20<a class="headerlink" href="#_CPPv4N17CLB_LocalInputMux27CLB_LOCAL_IN_MUX_EQEP_EQEPIE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EQEPx EQEPI. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17CLB_LocalInputMux27CLB_LOCAL_IN_MUX_EQEP_EQEPSE">
+<span id="_CPPv3N17CLB_LocalInputMux27CLB_LOCAL_IN_MUX_EQEP_EQEPSE"></span><span id="_CPPv2N17CLB_LocalInputMux27CLB_LOCAL_IN_MUX_EQEP_EQEPSE"></span><span class="target" id="group__clb__api_1gga728365434f2f0029c56cf30e7a7276bfaab33937b60acdd728516a90bf6082d0a"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_LOCAL_IN_MUX_EQEP_EQEPS</code> = 21<a class="headerlink" href="#_CPPv4N17CLB_LocalInputMux27CLB_LOCAL_IN_MUX_EQEP_EQEPSE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EQEPx EQEPS. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17CLB_LocalInputMux31CLB_LOCAL_IN_MUX_CPU1_TBCLKSYNCE">
+<span id="_CPPv3N17CLB_LocalInputMux31CLB_LOCAL_IN_MUX_CPU1_TBCLKSYNCE"></span><span id="_CPPv2N17CLB_LocalInputMux31CLB_LOCAL_IN_MUX_CPU1_TBCLKSYNCE"></span><span class="target" id="group__clb__api_1gga728365434f2f0029c56cf30e7a7276bfae858e0d93c0300b5ac5cb7ee7ec88dfa"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_LOCAL_IN_MUX_CPU1_TBCLKSYNC</code> = 22<a class="headerlink" href="#_CPPv4N17CLB_LocalInputMux31CLB_LOCAL_IN_MUX_CPU1_TBCLKSYNCE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPU1.TBCLKSYNC. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17CLB_LocalInputMux31CLB_LOCAL_IN_MUX_CPU2_TBCLKSYNCE">
+<span id="_CPPv3N17CLB_LocalInputMux31CLB_LOCAL_IN_MUX_CPU2_TBCLKSYNCE"></span><span id="_CPPv2N17CLB_LocalInputMux31CLB_LOCAL_IN_MUX_CPU2_TBCLKSYNCE"></span><span class="target" id="group__clb__api_1gga728365434f2f0029c56cf30e7a7276bfa1a4933aba9b594e0c22fed93a414395f"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_LOCAL_IN_MUX_CPU2_TBCLKSYNC</code> = 23<a class="headerlink" href="#_CPPv4N17CLB_LocalInputMux31CLB_LOCAL_IN_MUX_CPU2_TBCLKSYNCE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPU2.TBCLKSYNC. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17CLB_LocalInputMux26CLB_LOCAL_IN_MUX_CPU1_HALTE">
+<span id="_CPPv3N17CLB_LocalInputMux26CLB_LOCAL_IN_MUX_CPU1_HALTE"></span><span id="_CPPv2N17CLB_LocalInputMux26CLB_LOCAL_IN_MUX_CPU1_HALTE"></span><span class="target" id="group__clb__api_1gga728365434f2f0029c56cf30e7a7276bfabde1081f70f16535a0cc4c61a5f2607c"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_LOCAL_IN_MUX_CPU1_HALT</code> = 24<a class="headerlink" href="#_CPPv4N17CLB_LocalInputMux26CLB_LOCAL_IN_MUX_CPU1_HALTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPU1.HALT. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17CLB_LocalInputMux26CLB_LOCAL_IN_MUX_CPU2_HALTE">
+<span id="_CPPv3N17CLB_LocalInputMux26CLB_LOCAL_IN_MUX_CPU2_HALTE"></span><span id="_CPPv2N17CLB_LocalInputMux26CLB_LOCAL_IN_MUX_CPU2_HALTE"></span><span class="target" id="group__clb__api_1gga728365434f2f0029c56cf30e7a7276bfae5974bea0f50ae098e0e86805a242ead"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_LOCAL_IN_MUX_CPU2_HALT</code> = 25<a class="headerlink" href="#_CPPv4N17CLB_LocalInputMux26CLB_LOCAL_IN_MUX_CPU2_HALTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPU2.HALT. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv418CLB_GlobalInputMux">
+<span id="_CPPv318CLB_GlobalInputMux"></span><span id="_CPPv218CLB_GlobalInputMux"></span><span class="target" id="group__clb__api_1gaeef0c08781c6876da071db2f01bcc8d1"></span><em class="property">enum </em><code class="sig-name descname">CLB_GlobalInputMux</code><a class="headerlink" href="#_CPPv418CLB_GlobalInputMux" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__clb__api_1ga41decb6284ceea831fe5b06f270a1615"><span class="std std-ref">CLB_configGlobalInputMux()</span></a> as the <em>globalMuxCfg</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux24CLB_GLOBAL_IN_MUX_EPWM1AE">
+<span id="_CPPv3N18CLB_GlobalInputMux24CLB_GLOBAL_IN_MUX_EPWM1AE"></span><span id="_CPPv2N18CLB_GlobalInputMux24CLB_GLOBAL_IN_MUX_EPWM1AE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1adf0e075fa10a7def7ac7db4782638bcc"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM1A</code> = 0<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux24CLB_GLOBAL_IN_MUX_EPWM1AE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM1A. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM1A_OEE">
+<span id="_CPPv3N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM1A_OEE"></span><span id="_CPPv2N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM1A_OEE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a0a76c572c852705961bde08ce24c731e"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM1A_OE</code> = 1<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM1A_OEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM1A trip output. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux24CLB_GLOBAL_IN_MUX_EPWM1BE">
+<span id="_CPPv3N18CLB_GlobalInputMux24CLB_GLOBAL_IN_MUX_EPWM1BE"></span><span id="_CPPv2N18CLB_GlobalInputMux24CLB_GLOBAL_IN_MUX_EPWM1BE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a2ebdd939bcf0475592ad35cfbf4151f0"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM1B</code> = 2<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux24CLB_GLOBAL_IN_MUX_EPWM1BE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM1B. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM1B_OEE">
+<span id="_CPPv3N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM1B_OEE"></span><span id="_CPPv2N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM1B_OEE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1af25924db2506ddda58172c62d5cf7e0a"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM1B_OE</code> = 3<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM1B_OEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM1B trip output. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM1_CTR_ZEROE">
+<span id="_CPPv3N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM1_CTR_ZEROE"></span><span id="_CPPv2N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM1_CTR_ZEROE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1ac1be07325766113e2830ad886543b79b"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM1_CTR_ZERO</code> = 4<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM1_CTR_ZEROE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM1 TBCTR = Zero. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux31CLB_GLOBAL_IN_MUX_EPWM1_CTR_PRDE">
+<span id="_CPPv3N18CLB_GlobalInputMux31CLB_GLOBAL_IN_MUX_EPWM1_CTR_PRDE"></span><span id="_CPPv2N18CLB_GlobalInputMux31CLB_GLOBAL_IN_MUX_EPWM1_CTR_PRDE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1ae8c088b330c112097594eb8edc9c875d"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM1_CTR_PRD</code> = 5<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux31CLB_GLOBAL_IN_MUX_EPWM1_CTR_PRDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM1 TBCTR = TBPRD. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux30CLB_GLOBAL_IN_MUX_EPWM1_CTRDIRE">
+<span id="_CPPv3N18CLB_GlobalInputMux30CLB_GLOBAL_IN_MUX_EPWM1_CTRDIRE"></span><span id="_CPPv2N18CLB_GlobalInputMux30CLB_GLOBAL_IN_MUX_EPWM1_CTRDIRE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a5cb8b527f2b3f17fc9872575e7902693"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM1_CTRDIR</code> = 6<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux30CLB_GLOBAL_IN_MUX_EPWM1_CTRDIRE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM1 CTRDIR. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_EPWM1_TBCLKE">
+<span id="_CPPv3N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_EPWM1_TBCLKE"></span><span id="_CPPv2N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_EPWM1_TBCLKE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a15aaa0ccce874a0ba6039298996516b7"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM1_TBCLK</code> = 7<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_EPWM1_TBCLKE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM1 TBCLK. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM1_CTR_CMPAE">
+<span id="_CPPv3N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM1_CTR_CMPAE"></span><span id="_CPPv2N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM1_CTR_CMPAE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a5e9b6ef2211c5527f4da02933be640d3"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM1_CTR_CMPA</code> = 8<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM1_CTR_CMPAE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM1 TBCTR = CMPA. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM1_CTR_CMPBE">
+<span id="_CPPv3N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM1_CTR_CMPBE"></span><span id="_CPPv2N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM1_CTR_CMPBE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a1bd9b41a31f930eda810dd5123826f48"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM1_CTR_CMPB</code> = 9<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM1_CTR_CMPBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM1 TBCTR = CMPB. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM1_CTR_CMPCE">
+<span id="_CPPv3N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM1_CTR_CMPCE"></span><span id="_CPPv2N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM1_CTR_CMPCE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a7be636dd4d6a0094cd2344f5926908ae"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM1_CTR_CMPC</code> = 10<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM1_CTR_CMPCE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM1 TBCTR = CMPC. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM1_CTR_CMPDE">
+<span id="_CPPv3N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM1_CTR_CMPDE"></span><span id="_CPPv2N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM1_CTR_CMPDE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a5ce73362a1c002cce71e06fe26ea249c"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM1_CTR_CMPD</code> = 11<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM1_CTR_CMPDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM1 TBCTR = CMPD. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM1A_AQE">
+<span id="_CPPv3N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM1A_AQE"></span><span id="_CPPv2N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM1A_AQE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a63065531826bd0d11175925c9751ec99"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM1A_AQ</code> = 12<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM1A_AQE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM1A AQ submodule output. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM1B_AQE">
+<span id="_CPPv3N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM1B_AQE"></span><span id="_CPPv2N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM1B_AQE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1abd5c34a9b5be1b0243bc82784fd0d414"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM1B_AQ</code> = 13<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM1B_AQE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM1B AQ submodule output. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM1A_DBE">
+<span id="_CPPv3N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM1A_DBE"></span><span id="_CPPv2N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM1A_DBE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1abd67994e3b585282cba2a8dee6cfaa47"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM1A_DB</code> = 14<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM1A_DBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM1A DB submodule output. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM1B_DBE">
+<span id="_CPPv3N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM1B_DBE"></span><span id="_CPPv2N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM1B_DBE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a51f86f26ba6afc4757771c02e553aac7"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM1B_DB</code> = 15<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM1B_DBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM1B DB submodule output. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux24CLB_GLOBAL_IN_MUX_EPWM2AE">
+<span id="_CPPv3N18CLB_GlobalInputMux24CLB_GLOBAL_IN_MUX_EPWM2AE"></span><span id="_CPPv2N18CLB_GlobalInputMux24CLB_GLOBAL_IN_MUX_EPWM2AE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a97a5b91f231026cc5bd5594cc4372839"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM2A</code> = 16<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux24CLB_GLOBAL_IN_MUX_EPWM2AE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM2A. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM2A_OEE">
+<span id="_CPPv3N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM2A_OEE"></span><span id="_CPPv2N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM2A_OEE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a542b6b294f5420d7de8b4c23e144bc1e"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM2A_OE</code> = 17<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM2A_OEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM2A trip output. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux24CLB_GLOBAL_IN_MUX_EPWM2BE">
+<span id="_CPPv3N18CLB_GlobalInputMux24CLB_GLOBAL_IN_MUX_EPWM2BE"></span><span id="_CPPv2N18CLB_GlobalInputMux24CLB_GLOBAL_IN_MUX_EPWM2BE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a57458f8904a49e2c5128fa5dbc0115ed"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM2B</code> = 18<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux24CLB_GLOBAL_IN_MUX_EPWM2BE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM2B. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM2B_OEE">
+<span id="_CPPv3N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM2B_OEE"></span><span id="_CPPv2N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM2B_OEE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a1fc36edacef070baa5a804e398a3cdd5"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM2B_OE</code> = 19<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM2B_OEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM2B trip output. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM2_CTR_ZEROE">
+<span id="_CPPv3N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM2_CTR_ZEROE"></span><span id="_CPPv2N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM2_CTR_ZEROE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a99b4bed1c18c4e21bb12db4c2a2ab4f2"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM2_CTR_ZERO</code> = 20<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM2_CTR_ZEROE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM2 TBCTR = Zero. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux31CLB_GLOBAL_IN_MUX_EPWM2_CTR_PRDE">
+<span id="_CPPv3N18CLB_GlobalInputMux31CLB_GLOBAL_IN_MUX_EPWM2_CTR_PRDE"></span><span id="_CPPv2N18CLB_GlobalInputMux31CLB_GLOBAL_IN_MUX_EPWM2_CTR_PRDE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a7d0ad1a6d326aaacc2775d5d08814ba7"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM2_CTR_PRD</code> = 21<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux31CLB_GLOBAL_IN_MUX_EPWM2_CTR_PRDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM2 TBCTR = TBPRD. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux30CLB_GLOBAL_IN_MUX_EPWM2_CTRDIRE">
+<span id="_CPPv3N18CLB_GlobalInputMux30CLB_GLOBAL_IN_MUX_EPWM2_CTRDIRE"></span><span id="_CPPv2N18CLB_GlobalInputMux30CLB_GLOBAL_IN_MUX_EPWM2_CTRDIRE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a31244bb9feb460956dbeb8a6cb264f25"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM2_CTRDIR</code> = 22<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux30CLB_GLOBAL_IN_MUX_EPWM2_CTRDIRE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM2 CTRDIR. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_EPWM2_TBCLKE">
+<span id="_CPPv3N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_EPWM2_TBCLKE"></span><span id="_CPPv2N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_EPWM2_TBCLKE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1afd40bc45322362a28c056d3e548e1650"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM2_TBCLK</code> = 23<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_EPWM2_TBCLKE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM2 TBCLK. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM2_CTR_CMPAE">
+<span id="_CPPv3N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM2_CTR_CMPAE"></span><span id="_CPPv2N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM2_CTR_CMPAE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1ac8e8ad5c416e3a1fdb784ac9066baf03"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM2_CTR_CMPA</code> = 24<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM2_CTR_CMPAE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM2 TBCTR = CMPA. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM2_CTR_CMPBE">
+<span id="_CPPv3N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM2_CTR_CMPBE"></span><span id="_CPPv2N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM2_CTR_CMPBE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a850e5e9471f06a047b7eba063908fef9"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM2_CTR_CMPB</code> = 25<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM2_CTR_CMPBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM2 TBCTR = CMPB. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM2_CTR_CMPCE">
+<span id="_CPPv3N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM2_CTR_CMPCE"></span><span id="_CPPv2N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM2_CTR_CMPCE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1aee84ba8354251be57188b00eeb4c4a83"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM2_CTR_CMPC</code> = 26<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM2_CTR_CMPCE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM2 TBCTR = CMPC. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM2_CTR_CMPDE">
+<span id="_CPPv3N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM2_CTR_CMPDE"></span><span id="_CPPv2N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM2_CTR_CMPDE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a40e685987ea09d3826cc7f9767646039"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM2_CTR_CMPD</code> = 27<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM2_CTR_CMPDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM2 TBCTR = CMPD. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM2A_AQE">
+<span id="_CPPv3N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM2A_AQE"></span><span id="_CPPv2N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM2A_AQE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1aec27726b6753968123a0cdb6d1b07590"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM2A_AQ</code> = 28<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM2A_AQE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM2A AQ submodule output. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM2B_AQE">
+<span id="_CPPv3N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM2B_AQE"></span><span id="_CPPv2N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM2B_AQE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1aa6b0ca3fbf2b8b293494bce05b26fc87"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM2B_AQ</code> = 29<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM2B_AQE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM2B AQ submodule output. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM2A_DBE">
+<span id="_CPPv3N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM2A_DBE"></span><span id="_CPPv2N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM2A_DBE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1ad8ab78d771d8b570d611ab29e4016f05"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM2A_DB</code> = 30<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM2A_DBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM2A DB submodule output. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM2B_DBE">
+<span id="_CPPv3N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM2B_DBE"></span><span id="_CPPv2N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM2B_DBE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1aea01b7b3a7d0340c28f3a0bd01ba16bb"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM2B_DB</code> = 31<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM2B_DBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM2B DB submodule output. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux24CLB_GLOBAL_IN_MUX_EPWM3AE">
+<span id="_CPPv3N18CLB_GlobalInputMux24CLB_GLOBAL_IN_MUX_EPWM3AE"></span><span id="_CPPv2N18CLB_GlobalInputMux24CLB_GLOBAL_IN_MUX_EPWM3AE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a6e09538346a7b01e2c8f6bae80be92cf"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM3A</code> = 32<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux24CLB_GLOBAL_IN_MUX_EPWM3AE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM3A. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM3A_OEE">
+<span id="_CPPv3N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM3A_OEE"></span><span id="_CPPv2N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM3A_OEE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a3164be2311a86c9e66ad58b9fc291a19"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM3A_OE</code> = 33<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM3A_OEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM3A trip output. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux24CLB_GLOBAL_IN_MUX_EPWM3BE">
+<span id="_CPPv3N18CLB_GlobalInputMux24CLB_GLOBAL_IN_MUX_EPWM3BE"></span><span id="_CPPv2N18CLB_GlobalInputMux24CLB_GLOBAL_IN_MUX_EPWM3BE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a18782369a456d279222d58e36bd972dd"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM3B</code> = 34<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux24CLB_GLOBAL_IN_MUX_EPWM3BE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM3B. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM3B_OEE">
+<span id="_CPPv3N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM3B_OEE"></span><span id="_CPPv2N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM3B_OEE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1af696bdc779531a2ff2cb0d94202be622"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM3B_OE</code> = 35<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM3B_OEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM3B trip output. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM3_CTR_ZEROE">
+<span id="_CPPv3N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM3_CTR_ZEROE"></span><span id="_CPPv2N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM3_CTR_ZEROE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1afac449aca0ea55fa918b81ec12aea6ac"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM3_CTR_ZERO</code> = 36<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM3_CTR_ZEROE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM3 TBCTR = Zero. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux31CLB_GLOBAL_IN_MUX_EPWM3_CTR_PRDE">
+<span id="_CPPv3N18CLB_GlobalInputMux31CLB_GLOBAL_IN_MUX_EPWM3_CTR_PRDE"></span><span id="_CPPv2N18CLB_GlobalInputMux31CLB_GLOBAL_IN_MUX_EPWM3_CTR_PRDE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a7ae549d100980228f790a6ad6f9fb1f0"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM3_CTR_PRD</code> = 37<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux31CLB_GLOBAL_IN_MUX_EPWM3_CTR_PRDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM3 TBCTR = TBPRD. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux30CLB_GLOBAL_IN_MUX_EPWM3_CTRDIRE">
+<span id="_CPPv3N18CLB_GlobalInputMux30CLB_GLOBAL_IN_MUX_EPWM3_CTRDIRE"></span><span id="_CPPv2N18CLB_GlobalInputMux30CLB_GLOBAL_IN_MUX_EPWM3_CTRDIRE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a8f5ea8b9d5d2a83e37ce4b51e6d505b6"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM3_CTRDIR</code> = 38<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux30CLB_GLOBAL_IN_MUX_EPWM3_CTRDIRE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM3 CTRDIR. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_EPWM3_TBCLKE">
+<span id="_CPPv3N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_EPWM3_TBCLKE"></span><span id="_CPPv2N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_EPWM3_TBCLKE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a2d6dac629d60c23ea2a4b18eee65201a"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM3_TBCLK</code> = 39<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_EPWM3_TBCLKE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM3 TBCLK. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM3_CTR_CMPAE">
+<span id="_CPPv3N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM3_CTR_CMPAE"></span><span id="_CPPv2N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM3_CTR_CMPAE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a67f6c1e8161bfeea3a6265101b6c0fe7"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM3_CTR_CMPA</code> = 40<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM3_CTR_CMPAE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM3 TBCTR = CMPA. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM3_CTR_CMPBE">
+<span id="_CPPv3N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM3_CTR_CMPBE"></span><span id="_CPPv2N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM3_CTR_CMPBE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1ae97c21392998dc6271fca14844a918ef"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM3_CTR_CMPB</code> = 41<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM3_CTR_CMPBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM3 TBCTR = CMPB. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM3_CTR_CMPCE">
+<span id="_CPPv3N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM3_CTR_CMPCE"></span><span id="_CPPv2N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM3_CTR_CMPCE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a6432d11fca30aaff8acc78f884756558"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM3_CTR_CMPC</code> = 42<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM3_CTR_CMPCE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM3 TBCTR = CMPC. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM3_CTR_CMPDE">
+<span id="_CPPv3N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM3_CTR_CMPDE"></span><span id="_CPPv2N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM3_CTR_CMPDE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a14fd49adb796224069fd8f6d821dc55c"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM3_CTR_CMPD</code> = 43<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM3_CTR_CMPDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM3 TBCTR = CMPD. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM3A_AQE">
+<span id="_CPPv3N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM3A_AQE"></span><span id="_CPPv2N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM3A_AQE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1af4cc81ddea0635fc9a37e7e897f56d48"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM3A_AQ</code> = 44<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM3A_AQE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM3A AQ submodule output. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM3B_AQE">
+<span id="_CPPv3N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM3B_AQE"></span><span id="_CPPv2N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM3B_AQE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a0a2e1e32e5e950570646ff354e2aff6f"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM3B_AQ</code> = 45<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM3B_AQE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM3B AQ submodule output. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM3A_DBE">
+<span id="_CPPv3N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM3A_DBE"></span><span id="_CPPv2N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM3A_DBE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1adadff59ed12ed48b1f568b566adf05f4"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM3A_DB</code> = 46<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM3A_DBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM3A DB submodule output. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM3B_DBE">
+<span id="_CPPv3N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM3B_DBE"></span><span id="_CPPv2N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM3B_DBE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a56f4bc09cc1bc9b76d84582fdbe2424a"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM3B_DB</code> = 47<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM3B_DBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM3B DB submodule output. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux24CLB_GLOBAL_IN_MUX_EPWM4AE">
+<span id="_CPPv3N18CLB_GlobalInputMux24CLB_GLOBAL_IN_MUX_EPWM4AE"></span><span id="_CPPv2N18CLB_GlobalInputMux24CLB_GLOBAL_IN_MUX_EPWM4AE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a1cfaf12b07f8d718d20847f42eddffb6"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM4A</code> = 48<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux24CLB_GLOBAL_IN_MUX_EPWM4AE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM4A. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM4A_OEE">
+<span id="_CPPv3N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM4A_OEE"></span><span id="_CPPv2N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM4A_OEE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a5805dd2d349109baa38488b3b6a93559"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM4A_OE</code> = 49<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM4A_OEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM4A trip output. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux24CLB_GLOBAL_IN_MUX_EPWM4BE">
+<span id="_CPPv3N18CLB_GlobalInputMux24CLB_GLOBAL_IN_MUX_EPWM4BE"></span><span id="_CPPv2N18CLB_GlobalInputMux24CLB_GLOBAL_IN_MUX_EPWM4BE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a974aa1322dd7b40bfa5333953022f8f8"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM4B</code> = 50<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux24CLB_GLOBAL_IN_MUX_EPWM4BE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM4B. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM4B_OEE">
+<span id="_CPPv3N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM4B_OEE"></span><span id="_CPPv2N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM4B_OEE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1aea9f850bdc2f51334245fd8303b33a68"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM4B_OE</code> = 51<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM4B_OEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM4B trip output. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM4_CTR_ZEROE">
+<span id="_CPPv3N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM4_CTR_ZEROE"></span><span id="_CPPv2N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM4_CTR_ZEROE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a2a0f1f5b91c4efe16149e37fb69ee96e"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM4_CTR_ZERO</code> = 52<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM4_CTR_ZEROE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM4 TBCTR = Zero. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux31CLB_GLOBAL_IN_MUX_EPWM4_CTR_PRDE">
+<span id="_CPPv3N18CLB_GlobalInputMux31CLB_GLOBAL_IN_MUX_EPWM4_CTR_PRDE"></span><span id="_CPPv2N18CLB_GlobalInputMux31CLB_GLOBAL_IN_MUX_EPWM4_CTR_PRDE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a0261f85c2439320d6a09063cec17be0f"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM4_CTR_PRD</code> = 53<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux31CLB_GLOBAL_IN_MUX_EPWM4_CTR_PRDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM4 TBCTR = TBPRD. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux30CLB_GLOBAL_IN_MUX_EPWM4_CTRDIRE">
+<span id="_CPPv3N18CLB_GlobalInputMux30CLB_GLOBAL_IN_MUX_EPWM4_CTRDIRE"></span><span id="_CPPv2N18CLB_GlobalInputMux30CLB_GLOBAL_IN_MUX_EPWM4_CTRDIRE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a0cf12b12996054979cb29bc0533ffc5e"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM4_CTRDIR</code> = 54<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux30CLB_GLOBAL_IN_MUX_EPWM4_CTRDIRE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM4 CTRDIR. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_EPWM4_TBCLKE">
+<span id="_CPPv3N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_EPWM4_TBCLKE"></span><span id="_CPPv2N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_EPWM4_TBCLKE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a3a4c0573b67b2a7d3582ffeb07452c98"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM4_TBCLK</code> = 55<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_EPWM4_TBCLKE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM4 TBCLK. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM4_CTR_CMPAE">
+<span id="_CPPv3N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM4_CTR_CMPAE"></span><span id="_CPPv2N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM4_CTR_CMPAE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1aa7267166278d5a089201faf8a3a3566d"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM4_CTR_CMPA</code> = 56<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM4_CTR_CMPAE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM4 TBCTR = CMPA. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM4_CTR_CMPBE">
+<span id="_CPPv3N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM4_CTR_CMPBE"></span><span id="_CPPv2N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM4_CTR_CMPBE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a3dbe808ca00a62d2bf127545be640baa"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM4_CTR_CMPB</code> = 57<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM4_CTR_CMPBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM4 TBCTR = CMPB. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM4_CTR_CMPCE">
+<span id="_CPPv3N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM4_CTR_CMPCE"></span><span id="_CPPv2N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM4_CTR_CMPCE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a0e9eaa6026fbf11122b5276125179084"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM4_CTR_CMPC</code> = 58<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM4_CTR_CMPCE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM4 TBCTR = CMPC. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM4_CTR_CMPDE">
+<span id="_CPPv3N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM4_CTR_CMPDE"></span><span id="_CPPv2N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM4_CTR_CMPDE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1afccca8f4caf25593158cd4ea20b2dd98"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM4_CTR_CMPD</code> = 59<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux32CLB_GLOBAL_IN_MUX_EPWM4_CTR_CMPDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM4 TBCTR = CMPD. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM4A_AQE">
+<span id="_CPPv3N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM4A_AQE"></span><span id="_CPPv2N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM4A_AQE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a67576b2d3f6c027326d7afd849d02825"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM4A_AQ</code> = 60<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM4A_AQE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM4A AQ submodule output. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM4B_AQE">
+<span id="_CPPv3N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM4B_AQE"></span><span id="_CPPv2N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM4B_AQE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a379723b7152ed8c2c379f9f82e6b0eb5"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM4B_AQ</code> = 61<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM4B_AQE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM4B AQ submodule output. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM4A_DBE">
+<span id="_CPPv3N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM4A_DBE"></span><span id="_CPPv2N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM4A_DBE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a54fc4c79d7a78edc73a85d164bc81417"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM4A_DB</code> = 62<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM4A_DBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM4A DB submodule output. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM4B_DBE">
+<span id="_CPPv3N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM4B_DBE"></span><span id="_CPPv2N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM4B_DBE"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a1ae6460cba3cf3daeb61981ea0599ded"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_EPWM4B_DB</code> = 63<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux27CLB_GLOBAL_IN_MUX_EPWM4B_DBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPWM4B DB submodule output. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_CLB_AUXSIG0E">
+<span id="_CPPv3N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_CLB_AUXSIG0E"></span><span id="_CPPv2N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_CLB_AUXSIG0E"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a765558b41e7b0c2dbef8734aa2b2a96a"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_CLB_AUXSIG0</code> = 64<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_CLB_AUXSIG0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLB X-BAR AUXSIG0. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_CLB_AUXSIG1E">
+<span id="_CPPv3N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_CLB_AUXSIG1E"></span><span id="_CPPv2N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_CLB_AUXSIG1E"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a68a3e91bcf2a47e4f69ae7613852a3f7"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_CLB_AUXSIG1</code> = 65<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_CLB_AUXSIG1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLB X-BAR AUXSIG1. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_CLB_AUXSIG2E">
+<span id="_CPPv3N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_CLB_AUXSIG2E"></span><span id="_CPPv2N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_CLB_AUXSIG2E"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1adae0e8eb8ded4b7355d6b74c787cc5f2"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_CLB_AUXSIG2</code> = 66<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_CLB_AUXSIG2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLB X-BAR AUXSIG2. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_CLB_AUXSIG3E">
+<span id="_CPPv3N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_CLB_AUXSIG3E"></span><span id="_CPPv2N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_CLB_AUXSIG3E"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a6846177b1822b9312de0e68d54926d57"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_CLB_AUXSIG3</code> = 67<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_CLB_AUXSIG3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLB X-BAR AUXSIG3. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_CLB_AUXSIG4E">
+<span id="_CPPv3N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_CLB_AUXSIG4E"></span><span id="_CPPv2N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_CLB_AUXSIG4E"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1aea85502661775956b51fca39169b78c0"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_CLB_AUXSIG4</code> = 68<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_CLB_AUXSIG4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLB X-BAR AUXSIG4. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_CLB_AUXSIG5E">
+<span id="_CPPv3N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_CLB_AUXSIG5E"></span><span id="_CPPv2N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_CLB_AUXSIG5E"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1ac48d61bf4c0bbd927f362609b72db91f"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_CLB_AUXSIG5</code> = 69<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_CLB_AUXSIG5E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLB X-BAR AUXSIG5. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_CLB_AUXSIG6E">
+<span id="_CPPv3N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_CLB_AUXSIG6E"></span><span id="_CPPv2N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_CLB_AUXSIG6E"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a2a5604d1c8ba2aa196213fbc53aa29c5"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_CLB_AUXSIG6</code> = 70<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_CLB_AUXSIG6E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLB X-BAR AUXSIG6. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_CLB_AUXSIG7E">
+<span id="_CPPv3N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_CLB_AUXSIG7E"></span><span id="_CPPv2N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_CLB_AUXSIG7E"></span><span class="target" id="group__clb__api_1ggaeef0c08781c6876da071db2f01bcc8d1a2560d71dfbee752d9782ff340b24745f"></span><em class="property">enumerator </em><code class="sig-name descname">CLB_GLOBAL_IN_MUX_CLB_AUXSIG7</code> = 71<a class="headerlink" href="#_CPPv4N18CLB_GlobalInputMux29CLB_GLOBAL_IN_MUX_CLB_AUXSIG7E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLB X-BAR AUXSIG7. </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv413CLB_enableCLB8uint32_t">
+<span id="_CPPv313CLB_enableCLB8uint32_t"></span><span id="_CPPv213CLB_enableCLB8uint32_t"></span><span id="CLB_enableCLB__uint32_t"></span><span class="target" id="group__clb__api_1ga4ac1bfe12a204b4a68da17dbd2776097"></span>void <code class="sig-name descname">CLB_enableCLB</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413CLB_enableCLB8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Checks the CLB base address.</p>
+<p><p>This function determines if a CLB base address is valid.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><p>This function enables the CLB via global enable register.</p>
+<dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if the base address is valid and <strong>false</strong> otherwise. Set global enable.</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414CLB_disableCLB8uint32_t">
+<span id="_CPPv314CLB_disableCLB8uint32_t"></span><span id="_CPPv214CLB_disableCLB8uint32_t"></span><span id="CLB_disableCLB__uint32_t"></span><span class="target" id="group__clb__api_1ga42c8855e91ad83f861ade6ab9146ccb6"></span>void <code class="sig-name descname">CLB_disableCLB</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414CLB_disableCLB8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clear global enable.</p>
+<p><p>This function disables the CLB via global enable register.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414CLB_enableLock8uint32_t">
+<span id="_CPPv314CLB_enableLock8uint32_t"></span><span id="_CPPv214CLB_enableLock8uint32_t"></span><span id="CLB_enableLock__uint32_t"></span><span class="target" id="group__clb__api_1gaabc3249210fbf5eeb05cafaf2b7930e3"></span>void <code class="sig-name descname">CLB_enableLock</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414CLB_enableLock8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable CLB lock.</p>
+<p><p>This function enables the lock bit of the lock register. The lock can only be set once and can only be cleared by a device reset.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418CLB_writeInterface8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv318CLB_writeInterface8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv218CLB_writeInterface8uint32_t8uint32_t8uint32_t"></span><span id="CLB_writeInterface__uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__clb__api_1gac5921ae443ecef38b0ee8ba472a7bacd"></span>void <code class="sig-name descname">CLB_writeInterface</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>address</em>, uint32_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418CLB_writeInterface8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Write value to address.</p>
+<p><p>This function writes the specified value to CLB internal memory.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">address</span></code>: is the address of CLB internal memory. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: is the value to write to specified address.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421CLB_selectInputFilter8uint32_t10CLB_Inputs14CLB_FilterType">
+<span id="_CPPv321CLB_selectInputFilter8uint32_t10CLB_Inputs14CLB_FilterType"></span><span id="_CPPv221CLB_selectInputFilter8uint32_t10CLB_Inputs14CLB_FilterType"></span><span id="CLB_selectInputFilter__uint32_t.CLB_Inputs.CLB_FilterType"></span><span class="target" id="group__clb__api_1ga11c89f01f35e9479c7b9210f789aad36"></span>void <code class="sig-name descname">CLB_selectInputFilter</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv410CLB_Inputs" title="CLB_Inputs">CLB_Inputs</a> <em>inID</em>, <a class="reference internal" href="#_CPPv414CLB_FilterType" title="CLB_FilterType">CLB_FilterType</a> <em>filterType</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421CLB_selectInputFilter8uint32_t10CLB_Inputs14CLB_FilterType" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select input filter type.</p>
+<p><p>This function configures the filter selection for the specified input. The </p>
+<em>inID</em> parameter can have one enumeration value from CLB_Inputs. The <em>filterType</em> parameter can have one enumeration value from CLB_FilterType.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">inID</span></code>: is the specified CLB tile input signal. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">filterType</span></code>: is the selected type of filter applied to the input.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425CLB_enableSynchronization8uint32_t10CLB_Inputs">
+<span id="_CPPv325CLB_enableSynchronization8uint32_t10CLB_Inputs"></span><span id="_CPPv225CLB_enableSynchronization8uint32_t10CLB_Inputs"></span><span id="CLB_enableSynchronization__uint32_t.CLB_Inputs"></span><span class="target" id="group__clb__api_1gad54c114e297bca9954961db7b3f6d206"></span>void <code class="sig-name descname">CLB_enableSynchronization</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv410CLB_Inputs" title="CLB_Inputs">CLB_Inputs</a> <em>inID</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425CLB_enableSynchronization8uint32_t10CLB_Inputs" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables synchronization of an input signal.</p>
+<p><p>This function enables synchronization on the specified input signal. The </p>
+<em>inID</em> parameter can have one enumeration value from CLB_Inputs.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">inID</span></code>: is the specified CLB tile input signal.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426CLB_disableSynchronization8uint32_t10CLB_Inputs">
+<span id="_CPPv326CLB_disableSynchronization8uint32_t10CLB_Inputs"></span><span id="_CPPv226CLB_disableSynchronization8uint32_t10CLB_Inputs"></span><span id="CLB_disableSynchronization__uint32_t.CLB_Inputs"></span><span class="target" id="group__clb__api_1ga298a0531b54fcc6abb23a64e12b200ca"></span>void <code class="sig-name descname">CLB_disableSynchronization</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv410CLB_Inputs" title="CLB_Inputs">CLB_Inputs</a> <em>inID</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426CLB_disableSynchronization8uint32_t10CLB_Inputs" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables synchronization of an input signal.</p>
+<p><p>This function disables synchronization on the specified input signal. The </p>
+<em>inID</em> parameter can have one enumeration value from CLB_Inputs.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">inID</span></code>: is the specified CLB tile input signal.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420CLB_configGPInputMux8uint32_t10CLB_Inputs14CLB_GPInputMux">
+<span id="_CPPv320CLB_configGPInputMux8uint32_t10CLB_Inputs14CLB_GPInputMux"></span><span id="_CPPv220CLB_configGPInputMux8uint32_t10CLB_Inputs14CLB_GPInputMux"></span><span id="CLB_configGPInputMux__uint32_t.CLB_Inputs.CLB_GPInputMux"></span><span class="target" id="group__clb__api_1gae0b1d29533ba2d87c0c2f32457c3ad87"></span>void <code class="sig-name descname">CLB_configGPInputMux</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv410CLB_Inputs" title="CLB_Inputs">CLB_Inputs</a> <em>inID</em>, <a class="reference internal" href="#_CPPv414CLB_GPInputMux" title="CLB_GPInputMux">CLB_GPInputMux</a> <em>gpMuxCfg</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420CLB_configGPInputMux8uint32_t10CLB_Inputs14CLB_GPInputMux" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the general purpose input mux.</p>
+<p><p>This function configures the general purpose input mux. The </p>
+<em>gpMuxCfg</em> parameter can select either the use of an external input signal (<strong>CLB_GP_IN_MUX_EXTERNAL</strong>) or the use of the corresponding CLB_GP_REG bit as an input (<strong>CLB_GP_IN_MUX_GP_REG</strong>). The <em>inID</em> parameter can have one enumeration value from CLB_Inputs.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">inID</span></code>: is the specified CLB tile input signal. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gpMuxCfg</span></code>: is the mux selection for the general purpose input mux.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#group__clb__api_1ga18e4d155cbf64210596cca924687babb"><span class="std std-ref">CLB_setGPREG()</span></a> to write to the CLB_GP_REG.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv412CLB_setGPREG8uint32_t8uint32_t">
+<span id="_CPPv312CLB_setGPREG8uint32_t8uint32_t"></span><span id="_CPPv212CLB_setGPREG8uint32_t8uint32_t"></span><span id="CLB_setGPREG__uint32_t.uint32_t"></span><span class="target" id="group__clb__api_1ga18e4d155cbf64210596cca924687babb"></span>void <code class="sig-name descname">CLB_setGPREG</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>gpRegVal</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412CLB_setGPREG8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the CLB_GP_REG register value.</p>
+<p><p>This function writes to the CLB_GP_REG register. When the general purpose input mux is configured to use CLB_GP_REG, each bit in </p>
+<em>gpRegVal</em> corresponds to an input signal (bit 0 to Input 0, bit 1 to Input 1, and so on).<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gpRegVal</span></code>: is the value to be written to CLB_GP_REG.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#group__clb__api_1gae0b1d29533ba2d87c0c2f32457c3ad87"><span class="std std-ref">CLB_configGPInputMux()</span></a> to select the CLB_GP_REG as the source for an input signal.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv412CLB_getGPREG8uint32_t">
+<span id="_CPPv312CLB_getGPREG8uint32_t"></span><span id="_CPPv212CLB_getGPREG8uint32_t"></span><span id="CLB_getGPREG__uint32_t"></span><span class="target" id="group__clb__api_1ga79f4fe092a33a470f50138975a482dfe"></span>uint32_t <code class="sig-name descname">CLB_getGPREG</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412CLB_getGPREG8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the CLB_GP_REG register value.</p>
+<p><p>This function writes to the CLB_GP_REG register. When the general purpose input mux is configured to use CLB_GP_REG, each bit in </p>
+<em>gpRegVal</em> corresponds to an input signal (bit 0 to Input 0, bit 1 to Input 1, and so on).<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#group__clb__api_1gae0b1d29533ba2d87c0c2f32457c3ad87"><span class="std std-ref">CLB_configGPInputMux()</span></a> to select the CLB_GP_REG as the source for an input signal.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>CLB_GP_REG value. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423CLB_configLocalInputMux8uint32_t10CLB_Inputs17CLB_LocalInputMux">
+<span id="_CPPv323CLB_configLocalInputMux8uint32_t10CLB_Inputs17CLB_LocalInputMux"></span><span id="_CPPv223CLB_configLocalInputMux8uint32_t10CLB_Inputs17CLB_LocalInputMux"></span><span id="CLB_configLocalInputMux__uint32_t.CLB_Inputs.CLB_LocalInputMux"></span><span class="target" id="group__clb__api_1gaab03ee9d211496d8520984dd13cba63b"></span>void <code class="sig-name descname">CLB_configLocalInputMux</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv410CLB_Inputs" title="CLB_Inputs">CLB_Inputs</a> <em>inID</em>, <a class="reference internal" href="#_CPPv417CLB_LocalInputMux" title="CLB_LocalInputMux">CLB_LocalInputMux</a> <em>localMuxCfg</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423CLB_configLocalInputMux8uint32_t10CLB_Inputs17CLB_LocalInputMux" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the local input mux.</p>
+<p><p>This function configures the local input mux for the specified input signal.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">inID</span></code>: is the specified CLB tile input signal. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">localMuxCfg</span></code>: is the mux selection for the local input mux.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>inID</em> parameter can have one enumeration value from CLB_Inputs. The <em>localMuxCfg</em> parameter can have one enumeration value from CLB_LocalInputMux.</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>The local input mux options’ peripheral sources depend on which instance of the CLB (<em>base</em>) you are using. For example, for CLB1 the EPWM signal selections come from EPWM1 but for CLB2 they come from EPWM2. See your technical reference manual for details.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424CLB_configGlobalInputMux8uint32_t10CLB_Inputs18CLB_GlobalInputMux">
+<span id="_CPPv324CLB_configGlobalInputMux8uint32_t10CLB_Inputs18CLB_GlobalInputMux"></span><span id="_CPPv224CLB_configGlobalInputMux8uint32_t10CLB_Inputs18CLB_GlobalInputMux"></span><span id="CLB_configGlobalInputMux__uint32_t.CLB_Inputs.CLB_GlobalInputMux"></span><span class="target" id="group__clb__api_1ga41decb6284ceea831fe5b06f270a1615"></span>void <code class="sig-name descname">CLB_configGlobalInputMux</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv410CLB_Inputs" title="CLB_Inputs">CLB_Inputs</a> <em>inID</em>, <a class="reference internal" href="#_CPPv418CLB_GlobalInputMux" title="CLB_GlobalInputMux">CLB_GlobalInputMux</a> <em>globalMuxCfg</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424CLB_configGlobalInputMux8uint32_t10CLB_Inputs18CLB_GlobalInputMux" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the global input mux.</p>
+<p><p>This function configures the global input mux for the specified input signal. The </p>
+<em>inID</em> parameter can have one enumeration value from CLB_Inputs. The <em>globalMuxCfg</em> parameter can have one enumeration value from CLB_GlobalInputMux.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">inID</span></code>: is the specified CLB tile input signal. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">globalMuxCfg</span></code>: is the mux selection for the global input mux.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>The global input mux options’ peripheral sources depend on which instance of the CLB (<em>base</em>) you are using. For example, for CLB1 the EPWM signal selections come from EPWM1 but for CLB2 they come from EPWM2. See your technical reference manual for details.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417CLB_setOutputMask8uint32_t8uint32_tb">
+<span id="_CPPv317CLB_setOutputMask8uint32_t8uint32_tb"></span><span id="_CPPv217CLB_setOutputMask8uint32_t8uint32_tb"></span><span id="CLB_setOutputMask__uint32_t.uint32_t.b"></span><span class="target" id="group__clb__api_1gaeff2ee15e558f178be19cada967ddfe2"></span>void <code class="sig-name descname">CLB_setOutputMask</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>outputMask</em>, bool <em>enable</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417CLB_setOutputMask8uint32_t8uint32_tb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Controls the output enable.</p>
+<p><p>This function is used to enable and disable CLB outputs by writing a mask to CLB_OUT_EN. Each bit corresponds to a CLB output. When a bit is 1, the corresponding output is enabled; when a bit is 0, the output is disabled.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">outputMask</span></code>: is a mask of the outputs to be enabled. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">enable</span></code>: is a switch to decide if the CLB outputs need to be enabled or not.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>outputMask</em> parameter takes a logical OR of any of the CLB_OUTPUT_0x values that correspond to the CLB OUTPUT ENABLE for the respective outputs. The <em>enable</em> parameter can have one of the values from: false: Disable the respective CLB outputs true: Enable the respective CLB outputs</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Note that the 8 CLB outputs are replicated to create more output paths. See your technical reference manual for more details. If no further modifications are expected, then it is advised to set the block writes bit of the MISC_ACCESS_CTRL Register. This will prevent accidental writes.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419CLB_getInterruptTag8uint32_t">
+<span id="_CPPv319CLB_getInterruptTag8uint32_t"></span><span id="_CPPv219CLB_getInterruptTag8uint32_t"></span><span id="CLB_getInterruptTag__uint32_t"></span><span class="target" id="group__clb__api_1ga02c94b48dc6b88e720fe6a4abedc9081"></span>uint16_t <code class="sig-name descname">CLB_getInterruptTag</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419CLB_getInterruptTag8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reads the interrupt tag register.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the value in the interrupt tag register which is a 6-bit constant set by the HLC. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421CLB_clearInterruptTag8uint32_t">
+<span id="_CPPv321CLB_clearInterruptTag8uint32_t"></span><span id="_CPPv221CLB_clearInterruptTag8uint32_t"></span><span id="CLB_clearInterruptTag__uint32_t"></span><span class="target" id="group__clb__api_1ga1524f49300fc5177ae13a8243a41c286"></span>void <code class="sig-name descname">CLB_clearInterruptTag</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421CLB_clearInterruptTag8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears the interrupt tag register.</p>
+<p><p>This function clears the interrupt tag register, setting it to 0.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420CLB_selectLUT4Inputs8uint32_t8uint32_t8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv320CLB_selectLUT4Inputs8uint32_t8uint32_t8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv220CLB_selectLUT4Inputs8uint32_t8uint32_t8uint32_t8uint32_t8uint32_t"></span><span id="CLB_selectLUT4Inputs__uint32_t.uint32_t.uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__clb__api_1ga2faa2a554fa63790e667c722612492aa"></span>void <code class="sig-name descname">CLB_selectLUT4Inputs</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>lut4In0</em>, uint32_t <em>lut4In1</em>, uint32_t <em>lut4In2</em>, uint32_t <em>lut4In3</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420CLB_selectLUT4Inputs8uint32_t8uint32_t8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Selects LUT4 inputs.</p>
+<p><p>This function configures the LUT4 block’s input signals.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lut4In0</span></code>: is the value for LUT4 input signal 0. Generated by tool as <strong>TILEx_CFG_LUT4_IN0</strong>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lut4In1</span></code>: is the value for LUT4 input signal 1. Generated by tool as <strong>TILEx_CFG_LUT4_IN1</strong>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lut4In2</span></code>: is the value for LUT4 input signal 2. Generated by tool as <strong>TILEx_CFG_LUT4_IN2</strong>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lut4In3</span></code>: is the value for LUT4 input signal 3. Generated by tool as <strong>TILEx_CFG_LUT4_IN3</strong>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422CLB_configLUT4Function8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv322CLB_configLUT4Function8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv222CLB_configLUT4Function8uint32_t8uint32_t8uint32_t"></span><span id="CLB_configLUT4Function__uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__clb__api_1gaccc104c3baf68fd9bf7791fd33aeb93b"></span>void <code class="sig-name descname">CLB_configLUT4Function</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>lut4Fn10</em>, uint32_t <em>lut4Fn2</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422CLB_configLUT4Function8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures LUT4 functions.</p>
+<p><p>This function configures the LUT4 block’s equations.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lut4Fn10</span></code>: is the equation value for LUT4 blocks 0 and 1. Generated by tool as <strong>TILEx_CFG_LUT4_FN10</strong>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lut4Fn2</span></code>: is the equation value for LUT4 block2. Generated by tool as <strong>TILEx_CFG_LUT4_FN2</strong>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419CLB_selectFSMInputs8uint32_t8uint32_t8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv319CLB_selectFSMInputs8uint32_t8uint32_t8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv219CLB_selectFSMInputs8uint32_t8uint32_t8uint32_t8uint32_t8uint32_t"></span><span id="CLB_selectFSMInputs__uint32_t.uint32_t.uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__clb__api_1ga81fa5e010ec710bf92080c77d2cd4c86"></span>void <code class="sig-name descname">CLB_selectFSMInputs</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>external0</em>, uint32_t <em>external1</em>, uint32_t <em>extra0</em>, uint32_t <em>extra1</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419CLB_selectFSMInputs8uint32_t8uint32_t8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Selects FSM inputs.</p>
+<p><p>This function configures the FSM block’s external inputs and extra external inputs.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">external0</span></code>: is the value for FSM external 0 input. Generated by tool as <strong>TILEx_CFG_FSM_EXT_IN0</strong>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">external1</span></code>: is the value for FSM external 1 input. Generated by tool as <strong>TILEx_CFG_FSM_EXT_IN1</strong>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">extra0</span></code>: is the value for FSM extra 0 input. Generated by tool as <strong>TILEx_CFG_FSM_EXTRA_IN0</strong>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">extra1</span></code>: is the value for FSM extra 1 input. Generated by tool as <strong>TILEx_CFG_FSM_EXTRA_IN1</strong>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424CLB_configFSMLUTFunction8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv324CLB_configFSMLUTFunction8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv224CLB_configFSMLUTFunction8uint32_t8uint32_t8uint32_t"></span><span id="CLB_configFSMLUTFunction__uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__clb__api_1gae03b579a153c734bae058f62de17c19b"></span>void <code class="sig-name descname">CLB_configFSMLUTFunction</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>fsmLutFn10</em>, uint32_t <em>fsmLutFn2</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424CLB_configFSMLUTFunction8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures FSM LUT function.</p>
+<p><p>This function configures the FSM block’s LUT equations.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fsmLutFn10</span></code>: is the value for FSM 0 &amp; FSM 1 LUT function. Generated by tool as <strong>TILEx_CFG_FSM_LUT_FN10</strong>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fsmLutFn2</span></code>: is the value for FSM 2 LUT function. Generated by tool as <strong>TILEx_CFG_FSM_LUT_FN2</strong>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422CLB_configFSMNextState8uint32_t8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv322CLB_configFSMNextState8uint32_t8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv222CLB_configFSMNextState8uint32_t8uint32_t8uint32_t8uint32_t"></span><span id="CLB_configFSMNextState__uint32_t.uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__clb__api_1gab89b38901248b8bbfc41dcb8ca270aa6"></span>void <code class="sig-name descname">CLB_configFSMNextState</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>nextState0</em>, uint32_t <em>nextState1</em>, uint32_t <em>nextState2</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422CLB_configFSMNextState8uint32_t8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures FSM next state.</p>
+<p><p>This function configures the FSM’s next state equation.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nextState0</span></code>: is the value for FSM 0’s next state. Generated by tool as <strong>TILEx_CFG_FSM_NEXT_STATE_0</strong>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nextState1</span></code>: is the value for FSM 1’s next state. Generated by tool as <strong>TILEx_CFG_FSM_NEXT_STATE_1</strong>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nextState2</span></code>: is the value for FSM 2’s next state. Generated by tool as <strong>TILEx_CFG_FSM_NEXT_STATE_2</strong>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423CLB_selectCounterInputs8uint32_t8uint32_t8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv323CLB_selectCounterInputs8uint32_t8uint32_t8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv223CLB_selectCounterInputs8uint32_t8uint32_t8uint32_t8uint32_t8uint32_t"></span><span id="CLB_selectCounterInputs__uint32_t.uint32_t.uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__clb__api_1ga1a6ab1b43fc0e6fb95321572685bdfcf"></span>void <code class="sig-name descname">CLB_selectCounterInputs</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>reset</em>, uint32_t <em>event</em>, uint32_t <em>mode0</em>, uint32_t <em>mode1</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423CLB_selectCounterInputs8uint32_t8uint32_t8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Selects Counter inputs.</p>
+<p><p>This function selects the input signals to the counter block.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reset</span></code>: is the value for counter’s reset inputs. Generated by tool as <strong>TILEx_CFG_COUNTER_RESET</strong>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">event</span></code>: is the value for counter’s event inputs. Generated by tool as <strong>TILEx_CFG_COUNTER_EVENT</strong>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode0</span></code>: is the value for counter’s mode 0 inputs. Generated by tool as <strong>TILEx_CFG_COUNTER_MODE_0</strong>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode1</span></code>: is the value for counter’s mode 1 inputs. Generated by tool as <strong>TILEx_CFG_COUNTER_MODE_1</strong>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423CLB_configMiscCtrlModes8uint32_t8uint32_t">
+<span id="_CPPv323CLB_configMiscCtrlModes8uint32_t8uint32_t"></span><span id="_CPPv223CLB_configMiscCtrlModes8uint32_t8uint32_t"></span><span id="CLB_configMiscCtrlModes__uint32_t.uint32_t"></span><span class="target" id="group__clb__api_1ga24f2d0fe7b0cd14ce5494bee115561fe"></span>void <code class="sig-name descname">CLB_configMiscCtrlModes</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>miscCtrl</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423CLB_configMiscCtrlModes8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures Counter and FSM modes.</p>
+<p><p>This function configures the counter mode, particularly add/shift, load modes. The function also configures whether the FSM should use state inputs or an extra external input.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">miscCtrl</span></code>: is the value to represent counter and FSM modes. Generated by tool as <strong>TILEx_CFG_MISC_CONTROL</strong>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419CLB_configOutputLUT8uint32_t11CLB_Outputs8uint32_t">
+<span id="_CPPv319CLB_configOutputLUT8uint32_t11CLB_Outputs8uint32_t"></span><span id="_CPPv219CLB_configOutputLUT8uint32_t11CLB_Outputs8uint32_t"></span><span id="CLB_configOutputLUT__uint32_t.CLB_Outputs.uint32_t"></span><span class="target" id="group__clb__api_1ga30b7a2b77c305b9bb978c024b10d0a3f"></span>void <code class="sig-name descname">CLB_configOutputLUT</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv411CLB_Outputs" title="CLB_Outputs">CLB_Outputs</a> <em>outID</em>, uint32_t <em>outputCfg</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419CLB_configOutputLUT8uint32_t11CLB_Outputs8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures Output LUT functions.</p>
+<p><p>This function configures the input signals and equations of the output LUT corresponding to the /e outID parameter.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">outID</span></code>: is the specified CLB tile output signal. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">outputCfg</span></code>: is the value for the output LUT signal function and input signal selections. Generated by tool as <strong>TILEx_CFG_OUTLUT_n</strong> where n is the output number.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424CLB_configHLCEventSelect8uint32_t8uint32_t">
+<span id="_CPPv324CLB_configHLCEventSelect8uint32_t8uint32_t"></span><span id="_CPPv224CLB_configHLCEventSelect8uint32_t8uint32_t"></span><span id="CLB_configHLCEventSelect__uint32_t.uint32_t"></span><span class="target" id="group__clb__api_1gaca8e24ec781645b14eeb949abca047e5"></span>void <code class="sig-name descname">CLB_configHLCEventSelect</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>eventSel</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424CLB_configHLCEventSelect8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures HLC event selection.</p>
+<p><p>This function configures the event selection for the High Level Controller.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">eventSel</span></code>: is the value for HLC event selection. Generated by tool as <strong>TILEx_HLC_EVENT_SEL</strong>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425CLB_programHLCInstruction8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv325CLB_programHLCInstruction8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv225CLB_programHLCInstruction8uint32_t8uint32_t8uint32_t"></span><span id="CLB_programHLCInstruction__uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__clb__api_1ga4391bcca7bcf867bd1114dc232f65a10"></span>void <code class="sig-name descname">CLB_programHLCInstruction</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>instructionNum</em>, uint32_t <em>instruction</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425CLB_programHLCInstruction8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Program HLC instruction.</p>
+<p><p>This function configures the CLB internal memory corresponding to the specified HLC instruction number with the given instruction.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">instructionNum</span></code>: is the index into the HLC instruction memory. For example, a value of 0 corresponds to instruction 0 of event 0, a value of 1 corresponds to instruction 1 of event 0, and so on up to a value of 31 which corresponds to instruction 7 of event 3. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">instruction</span></code>: is the instruction to be programmed. Generated by tool as <strong>TILEx_HLCINSTR_n</strong> where n is the instruction number.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419CLB_setHLCRegisters8uint32_t8uint32_t8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv319CLB_setHLCRegisters8uint32_t8uint32_t8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv219CLB_setHLCRegisters8uint32_t8uint32_t8uint32_t8uint32_t8uint32_t"></span><span id="CLB_setHLCRegisters__uint32_t.uint32_t.uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__clb__api_1ga85a09d8fefd3502f710b7f9fbedbb91b"></span>void <code class="sig-name descname">CLB_setHLCRegisters</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>r0Init</em>, uint32_t <em>r1Init</em>, uint32_t <em>r2Init</em>, uint32_t <em>r3Init</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419CLB_setHLCRegisters8uint32_t8uint32_t8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set HLC registers.</p>
+<p><p>This function configures the CLB internal memory corresponding to the HLC registers R0-R3 with the specified values.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">r0Init</span></code>: is the value to write to HLC register R0. Generated by tool as <strong>TILEx_HLC_R0_INIT</strong>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">r1Init</span></code>: is the value to write to HLC register R1. Generated by tool as <strong>TILEx_HLC_R1_INIT</strong>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">r2Init</span></code>: is the value to write to HLC register R2. Generated by tool as <strong>TILEx_HLC_R2_INIT</strong>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">r3Init</span></code>: is the value to write to HLC register R3. Generated by tool as <strong>TILEx_HLC_R3_INIT</strong>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415CLB_getRegister8uint32_t12CLB_Register">
+<span id="_CPPv315CLB_getRegister8uint32_t12CLB_Register"></span><span id="_CPPv215CLB_getRegister8uint32_t12CLB_Register"></span><span id="CLB_getRegister__uint32_t.CLB_Register"></span><span class="target" id="group__clb__api_1ga59f49922e1ba63a11fd1101679385fb9"></span>uint32_t <code class="sig-name descname">CLB_getRegister</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv412CLB_Register" title="CLB_Register">CLB_Register</a> <em>registerID</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415CLB_getRegister8uint32_t12CLB_Register" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get HLC or counter register values.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the value in the specified HLC register or counter. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">registerID</span></code>: is the internal register from which to read. Can be either an HLC register (<strong>CLB_REG_HLC_Rn</strong>) or a counter value (<strong>CLB_REG_CTR_Cn</strong>).</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419CLB_getOutputStatus8uint32_t">
+<span id="_CPPv319CLB_getOutputStatus8uint32_t"></span><span id="_CPPv219CLB_getOutputStatus8uint32_t"></span><span id="CLB_getOutputStatus__uint32_t"></span><span class="target" id="group__clb__api_1ga58ab2fa86ac33f746ceb6f434913c4f7"></span>uint32_t <code class="sig-name descname">CLB_getOutputStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419CLB_getOutputStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get output status.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the output status of various components within the CLB tile such as a counter match or LUT output. Use the <strong>CLB_DBG_OUT_*</strong> masks from <code class="docutils literal notranslate"><span class="pre">hw_clb.h</span></code> to decode the bits. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426CLB_configCounterLoadMatch8uint32_t12CLB_Counters8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv326CLB_configCounterLoadMatch8uint32_t12CLB_Counters8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv226CLB_configCounterLoadMatch8uint32_t12CLB_Counters8uint32_t8uint32_t8uint32_t"></span><span id="CLB_configCounterLoadMatch__uint32_t.CLB_Counters.uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__clb__api_1ga7fd72ef8d235d50ffcb0b6783df54ed7"></span>void <code class="sig-name descname">CLB_configCounterLoadMatch</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv412CLB_Counters" title="CLB_Counters">CLB_Counters</a> <em>counterID</em>, uint32_t <em>load</em>, uint32_t <em>match1</em>, uint32_t <em>match2</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426CLB_configCounterLoadMatch8uint32_t12CLB_Counters8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures Counter load and match.</p>
+<p><p>This function configures the CLB internal memory corresponding to the counter block’s load and match values.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">counterID</span></code>: is the specified counter unit. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">load</span></code>: is the value for counter’s load mode. Generated by tool as <strong>TILEx_COUNTER_n_LOAD_VAL</strong> where n is the counter number. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">match1</span></code>: is the value for counter’s match 1. Generated by tool as <strong>TILEx_COUNTER_n_MATCH1_VAL</strong> where n is the counter number. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">match2</span></code>: is the value for counter’s match 2. Generated by tool as <strong>TILEx_COUNTER_n_MATCH2_VAL</strong> where n is the counter number.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414CLB_clearFIFOs8uint32_t">
+<span id="_CPPv314CLB_clearFIFOs8uint32_t"></span><span id="_CPPv214CLB_clearFIFOs8uint32_t"></span><span id="CLB_clearFIFOs__uint32_t"></span><span class="target" id="group__clb__api_1gacf4cc1d21fb0ef6293d1f95a611f1b54"></span>void <code class="sig-name descname">CLB_clearFIFOs</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414CLB_clearFIFOs8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clear FIFO registers.</p>
+<p><p>This function clears the PUSH/PULL FIFOs as well as its pointers.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414CLB_writeFIFOs8uint32_tA_K8uint32_t">
+<span id="_CPPv314CLB_writeFIFOs8uint32_tA_K8uint32_t"></span><span id="_CPPv214CLB_writeFIFOs8uint32_tA_K8uint32_t"></span><span id="CLB_writeFIFOs__uint32_t.uint32_tCA"></span><span class="target" id="group__clb__api_1ga8b069ce92af7256c45e9d613a7ffaf98"></span>void <code class="sig-name descname">CLB_writeFIFOs</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <em class="property">const</em> uint32_t <em>pullData</em>[]<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414CLB_writeFIFOs8uint32_tA_K8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configure the FIFO registers.</p>
+<p><p>This function writes to the PULL FIFO. This also clears the FIFOs and its pointer using the </p>
+<a class="reference internal" href="#group__clb__api_1gacf4cc1d21fb0ef6293d1f95a611f1b54"><span class="std std-ref">CLB_clearFIFOs()</span></a> API prior to writing to the FIFO.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pullData[]</span></code>: is a pointer to an array of bytes which needs to be written into the FIFO. The 0th FIFO data is in the 0th index.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv413CLB_readFIFOs8uint32_tA_8uint32_t">
+<span id="_CPPv313CLB_readFIFOs8uint32_tA_8uint32_t"></span><span id="_CPPv213CLB_readFIFOs8uint32_tA_8uint32_t"></span><span id="CLB_readFIFOs__uint32_t.uint32_tA"></span><span class="target" id="group__clb__api_1gaae759797302f169029f6432eecb96d2d"></span>void <code class="sig-name descname">CLB_readFIFOs</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>pushData</em>[]<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413CLB_readFIFOs8uint32_tA_8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Read FIFO registers.</p>
+<p><p>This function reads from the PUSH FIFO. The 0th FIFO data would be in the 0th index.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of a CLB tile’s logic config register. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pushData[]</span></code>: is a pointer to an array of bytes which needs to be read from the FIFO.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>The code for this module is contained in driverlib/clb.c, with driverlib/clb.h containing the API declarations for use by applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cla.html" class="btn btn-neutral float-left" title="CLA Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="cmpss.html" class="btn btn-neutral float-right" title="CMPSS Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

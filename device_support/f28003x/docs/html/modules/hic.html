@@ -1,0 +1,1279 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>HIC Module &mdash; F28003x API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F28003x API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="HRCAP Module" href="hrcap.html"/>
+        <link rel="prev" title="GPIO Module" href="gpio.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F28003x API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.00.00.00_EA1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="adc.html">ADC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aes.html">AES Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asysctl.html">ASysCtl Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bgcrc.html">BGCRC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla.html">CLA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clb.html">CLB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmpss.html">CMPSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dac.html">DAC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcc.html">DCC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dma.html">DMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ecap.html">ECAP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="epwm.html">EPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqep.html">EQEP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="erad.html">ERAD Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fsi.html">FSI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">HIC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hrcap.html">HRCAP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hrpwm.html">HRPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lin.html">LIN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcan.html">MCAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pmbus.html">PMBUS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci.html">SCI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdfm.html">SDFM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">SPI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version.html">Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xbar.html">XBAR Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F28003x API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>HIC Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="hic-module">
+<span id="hic"></span><h1>HIC Module<a class="headerlink" href="#hic-module" title="Permalink to this headline">¶</a></h1>
+<p>The Host Interface Controller (HIC) API provides a set of functions
+for configuring and using the Host Interface Controller module.
+The functions provided helps in the setup and configuration of the
+Host Interface Controller.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__hic__api"></span><em>group</em> <code class="sig-name descname">hic_api</code></dt>
+<dd><p>This module is used for Host Interface Controller(HIC) configuration. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.HIC_NUM_BASE_ADDRESS">
+<span class="target" id="group__hic__api_1ga193c086f60614ea33148eed520e7a7c8"></span><code class="sig-name descname">HIC_NUM_BASE_ADDRESS</code> 8U<a class="headerlink" href="#c.HIC_NUM_BASE_ADDRESS" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Number of Base Regions. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_NUM_BUFFER_REGS">
+<span class="target" id="group__hic__api_1gad32866630e3e53b54c3beb76b59a8180"></span><code class="sig-name descname">HIC_NUM_BUFFER_REGS</code> 16U<a class="headerlink" href="#c.HIC_NUM_BUFFER_REGS" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Number of D2H,H2D Buffers. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_HOST_INTERFACE_ENABLE">
+<span class="target" id="group__hic__api_1gad3d29b2262739ec829c9215ee058dffa"></span><code class="sig-name descname">HIC_HOST_INTERFACE_ENABLE</code> 0x0AU<a class="headerlink" href="#c.HIC_HOST_INTERFACE_ENABLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Host Interface Enable. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_LOCK_WRITE_ENABLE_KEY">
+<span class="target" id="group__hic__api_1ga5ecd6a3ff0846de67212e657f930f5fd"></span><code class="sig-name descname">HIC_LOCK_WRITE_ENABLE_KEY</code> 0x5A5AU<a class="headerlink" href="#c.HIC_LOCK_WRITE_ENABLE_KEY" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Write Enable Key. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_HOSTCR_WRITE_ENABLE_KEY">
+<span class="target" id="group__hic__api_1ga4b91945eb662d9ab99de7813aaa1fe3a"></span><code class="sig-name descname">HIC_HOSTCR_WRITE_ENABLE_KEY</code> 0xA5U<a class="headerlink" href="#c.HIC_HOSTCR_WRITE_ENABLE_KEY" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Host CR Reg Write Enable Key. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_LOCK_UNLOCK">
+<span class="target" id="group__hic__api_1ga4519f80f09b752bd259c3b0152f749fb"></span><code class="sig-name descname">HIC_LOCK_UNLOCK</code> 0x0U<a class="headerlink" href="#c.HIC_LOCK_UNLOCK" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Lock is Unlocked. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_MODE_DW_8BIT">
+<span class="target" id="group__hic__api_1ga83b19de867d66306b85fdf5633e06317"></span><code class="sig-name descname">HIC_MODE_DW_8BIT</code> 0U<a class="headerlink" href="#c.HIC_MODE_DW_8BIT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>8 Bit Mode </p>
+<p>Values that can be passed to <a class="reference internal" href="#group__hic__api_1ga33f9dd65a0ac843cb2a0e51163b5d558"><span class="std std-ref">HIC_setConfig()</span></a> as <em>flags</em> or used with <a class="reference internal" href="#group__hic__api_1ga53c710ea41290fe15942c38f1b174ab8"><span class="std std-ref">HIC_getConfig()</span></a> API return value parsing </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_MODE_DW_16BIT">
+<span class="target" id="group__hic__api_1ga1dcb7634d3022fb4cda7d418cc6789a1"></span><code class="sig-name descname">HIC_MODE_DW_16BIT</code> 1U<a class="headerlink" href="#c.HIC_MODE_DW_16BIT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>16 Bit Mode </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_MODE_DW_32BIT">
+<span class="target" id="group__hic__api_1ga33c984dda5fa12952a4556c216f6fded"></span><code class="sig-name descname">HIC_MODE_DW_32BIT</code> 2U<a class="headerlink" href="#c.HIC_MODE_DW_32BIT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>32 Bit Mode </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_MODE_RW_PIN_SEPARATE">
+<span class="target" id="group__hic__api_1gad933640b47bfce0b1a628cc4925e2973"></span><code class="sig-name descname">HIC_MODE_RW_PIN_SEPARATE</code> 0U<a class="headerlink" href="#c.HIC_MODE_RW_PIN_SEPARATE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>RW Control Pins are separate. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_MODE_RW_PIN_SINGLE">
+<span class="target" id="group__hic__api_1gabade81b923665d20212f4858749a16b9"></span><code class="sig-name descname">HIC_MODE_RW_PIN_SINGLE</code> 0x10U<a class="headerlink" href="#c.HIC_MODE_RW_PIN_SINGLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Single RnW Control Pin. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_MODE_BEN_PRESENT">
+<span class="target" id="group__hic__api_1ga70ba5c5429ab178f41e5bcced8d65515"></span><code class="sig-name descname">HIC_MODE_BEN_PRESENT</code> 0x20U<a class="headerlink" href="#c.HIC_MODE_BEN_PRESENT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Byte Enable Present. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_MODE_BEN_ABSENT">
+<span class="target" id="group__hic__api_1gacac864defca0d58d9c391584c6cbed49"></span><code class="sig-name descname">HIC_MODE_BEN_ABSENT</code> 0U<a class="headerlink" href="#c.HIC_MODE_BEN_ABSENT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Byte Enable not Present. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_MODE_RDY_PRESENT">
+<span class="target" id="group__hic__api_1gaf3ee580e62242d3a82128d95eee76f37"></span><code class="sig-name descname">HIC_MODE_RDY_PRESENT</code> 0x40U<a class="headerlink" href="#c.HIC_MODE_RDY_PRESENT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>nRDY Pin Present </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_MODE_RDY_ABSENT">
+<span class="target" id="group__hic__api_1gaabdaf2840d2efdd2d0a721009d472572"></span><code class="sig-name descname">HIC_MODE_RDY_ABSENT</code> 0U<a class="headerlink" href="#c.HIC_MODE_RDY_ABSENT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>nRDY Pin not Present </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_MODE_H2DBUF_DEVWREN">
+<span class="target" id="group__hic__api_1gae6bb1fe6f43033f92e3910f8c0e3a9c6"></span><code class="sig-name descname">HIC_MODE_H2DBUF_DEVWREN</code> 0x100U<a class="headerlink" href="#c.HIC_MODE_H2DBUF_DEVWREN" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>H2D Buf Device Write Enable. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_MODE_D2HBUF_HOST_WR_ENABLE">
+<span class="target" id="group__hic__api_1gaf4b9b6f19220fdd9dfc709a2256ee343"></span><code class="sig-name descname">HIC_MODE_D2HBUF_HOST_WR_ENABLE</code> 0x200U<a class="headerlink" href="#c.HIC_MODE_D2HBUF_HOST_WR_ENABLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>D2H Buf Host Write Enable. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_MODE_DEVICE_HOST_ACCESS_ENABLE">
+<span class="target" id="group__hic__api_1gae666b3d1050214a39de1d2cbcd2f2ea2"></span><code class="sig-name descname">HIC_MODE_DEVICE_HOST_ACCESS_ENABLE</code> 0x400U<a class="headerlink" href="#c.HIC_MODE_DEVICE_HOST_ACCESS_ENABLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Host Access Enable. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_MODE_HOST_WREALLOW_ENABLE">
+<span class="target" id="group__hic__api_1ga70a4d5eefbf0cb017285529c1ed9455c"></span><code class="sig-name descname">HIC_MODE_HOST_WREALLOW_ENABLE</code> 0x800U<a class="headerlink" href="#c.HIC_MODE_HOST_WREALLOW_ENABLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Host EALLOW Write Enable. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_PIN_POLARITY_CS_HIGH">
+<span class="target" id="group__hic__api_1ga3c746a52bafc199aae8595597d360546"></span><code class="sig-name descname">HIC_PIN_POLARITY_CS_HIGH</code> 0x1U<a class="headerlink" href="#c.HIC_PIN_POLARITY_CS_HIGH" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Active High Chip Select. </p>
+<p>Values that can be passed to <a class="reference internal" href="#group__hic__api_1ga8281bd950c5d3ebf4a6dc14830cdaddf"><span class="std std-ref">HIC_setPinPolarity()</span></a> API as <em>flags</em> or used with <a class="reference internal" href="#group__hic__api_1ga0006b4702b4dc30e52d8823c49dad375"><span class="std std-ref">HIC_getPinPolarity()</span></a> API return value parsing </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_PIN_POLARITY_CS_LOW">
+<span class="target" id="group__hic__api_1gae0417b9939bff08a9253129984507edf"></span><code class="sig-name descname">HIC_PIN_POLARITY_CS_LOW</code> 0x0U<a class="headerlink" href="#c.HIC_PIN_POLARITY_CS_LOW" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Active Low Chip Select. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_PIN_POLARITY_BEN_HIGH">
+<span class="target" id="group__hic__api_1ga790be0a1fb8733f3ae24352352497e84"></span><code class="sig-name descname">HIC_PIN_POLARITY_BEN_HIGH</code> 0x2U<a class="headerlink" href="#c.HIC_PIN_POLARITY_BEN_HIGH" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Active High Byte Enable. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_PIN_POLARITY_BEN_LOW">
+<span class="target" id="group__hic__api_1gafa4b707c6b91b441a0520916613292ca"></span><code class="sig-name descname">HIC_PIN_POLARITY_BEN_LOW</code> 0x0U<a class="headerlink" href="#c.HIC_PIN_POLARITY_BEN_LOW" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Active Low Byte Enable. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_PIN_POLARITY_OE_HIGH">
+<span class="target" id="group__hic__api_1ga650af492b02f1ba634ccc09ad43a4291"></span><code class="sig-name descname">HIC_PIN_POLARITY_OE_HIGH</code> 0x4U<a class="headerlink" href="#c.HIC_PIN_POLARITY_OE_HIGH" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Active High Output Enable. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_PIN_POLARITY_OE_LOW">
+<span class="target" id="group__hic__api_1gacaf40274a2ecdf0e553976239ee76282"></span><code class="sig-name descname">HIC_PIN_POLARITY_OE_LOW</code> 0x0U<a class="headerlink" href="#c.HIC_PIN_POLARITY_OE_LOW" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Active Low Output Enable. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_PIN_POLARITY_WE_HIGH">
+<span class="target" id="group__hic__api_1ga8697df5a4efd621cbcc1f5793e8fa3c1"></span><code class="sig-name descname">HIC_PIN_POLARITY_WE_HIGH</code> 0x8U<a class="headerlink" href="#c.HIC_PIN_POLARITY_WE_HIGH" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Active High Write Enable. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_PIN_POLARITY_WE_LOW">
+<span class="target" id="group__hic__api_1ga28a98a88c705ec3b5c4da78c581d90b6"></span><code class="sig-name descname">HIC_PIN_POLARITY_WE_LOW</code> 0x0U<a class="headerlink" href="#c.HIC_PIN_POLARITY_WE_LOW" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Active Low Write Enable. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_PIN_POLARITY_RDY_HIGH">
+<span class="target" id="group__hic__api_1ga59352f4ae18804468c7ef97dbfef81d2"></span><code class="sig-name descname">HIC_PIN_POLARITY_RDY_HIGH</code> 0x10U<a class="headerlink" href="#c.HIC_PIN_POLARITY_RDY_HIGH" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Active High Ready Pin. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_PIN_POLARITY_RDY_LOW">
+<span class="target" id="group__hic__api_1ga365ea84dacfad6a5c331ab8e3bd168d8"></span><code class="sig-name descname">HIC_PIN_POLARITY_RDY_LOW</code> 0x0U<a class="headerlink" href="#c.HIC_PIN_POLARITY_RDY_LOW" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Active Low Ready Pin. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_HOST_CONTROL_EALLOW_EN">
+<span class="target" id="group__hic__api_1gac676259aa2ae5d1d0a3b267756ab994e"></span><code class="sig-name descname">HIC_HOST_CONTROL_EALLOW_EN</code> 1U<a class="headerlink" href="#c.HIC_HOST_CONTROL_EALLOW_EN" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Host EALLOW Enable. </p>
+<p>Values that can be passed to <a class="reference internal" href="#group__hic__api_1gab4cbd1acc748982a48b7e172a8fa22ee"><span class="std std-ref">HIC_configureHostAccessMode()</span></a> API as <em>config</em> or used with <a class="reference internal" href="#group__hic__api_1ga9772152422466a794024e2aff5d04398"><span class="std std-ref">HIC_getHostAccessMode()</span></a> API return value parsing </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_HOST_CONTROL_EALLOW_DIS">
+<span class="target" id="group__hic__api_1ga36e3e4857837cf894fcc22518867c979"></span><code class="sig-name descname">HIC_HOST_CONTROL_EALLOW_DIS</code> 0U<a class="headerlink" href="#c.HIC_HOST_CONTROL_EALLOW_DIS" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Host EALLOW Disable. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_HOST_CONTROL_ACCSIZE_16BIT">
+<span class="target" id="group__hic__api_1gaf20149efdec1d118e0c2d36aab407693"></span><code class="sig-name descname">HIC_HOST_CONTROL_ACCSIZE_16BIT</code> 0U<a class="headerlink" href="#c.HIC_HOST_CONTROL_ACCSIZE_16BIT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Device MMR Access size 16 bit. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_HOST_CONTROL_ACCSIZE_32BIT">
+<span class="target" id="group__hic__api_1gadf936ca51a48671610766ee32bef4cfc"></span><code class="sig-name descname">HIC_HOST_CONTROL_ACCSIZE_32BIT</code> 2U<a class="headerlink" href="#c.HIC_HOST_CONTROL_ACCSIZE_32BIT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Device MMR Access size 32 bit. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_HOST_CONTROL_PAGESEL_REG">
+<span class="target" id="group__hic__api_1ga6f2437f80eacd37b94903dca32639d9d"></span><code class="sig-name descname">HIC_HOST_CONTROL_PAGESEL_REG</code> 0U<a class="headerlink" href="#c.HIC_HOST_CONTROL_PAGESEL_REG" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Page selected via Register. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_HOST_CONTROL_PAGESEL_PIN">
+<span class="target" id="group__hic__api_1ga46ec612cb98b0bdc8e11033b55e65fd6"></span><code class="sig-name descname">HIC_HOST_CONTROL_PAGESEL_PIN</code> 4U<a class="headerlink" href="#c.HIC_HOST_CONTROL_PAGESEL_PIN" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Page selected via Pin. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_EVTTRIG_EVENT_0">
+<span class="target" id="group__hic__api_1ga57c08d7b69e26ad09521e36b9837c6a0"></span><code class="sig-name descname">HIC_EVTTRIG_EVENT_0</code> 0x010000U<a class="headerlink" href="#c.HIC_EVTTRIG_EVENT_0" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EVTTRIG0. </p>
+<p>Values that can be passed to <a class="reference internal" href="#group__hic__api_1ga4a7d09578306cfe0641b1bb4266649a8"><span class="std std-ref">HIC_enableD2HInterrupt()</span></a> API or or used with <a class="reference internal" href="#group__hic__api_1gaa226442aa59b7b525ddf58dd5b1862d1"><span class="std std-ref">HIC_disableD2HInterrupt()</span></a> API to enable/disable interrupt or with <a class="reference internal" href="#group__hic__api_1ga577d86fac4f1b3c9355a2711646d19bf"><span class="std std-ref">HIC_clearD2HInterrupt()</span></a> API to clear interrupt </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_EVTTRIG_EVENT_1">
+<span class="target" id="group__hic__api_1ga2fc701478df904f94b7831589f1871e8"></span><code class="sig-name descname">HIC_EVTTRIG_EVENT_1</code> 0x020000U<a class="headerlink" href="#c.HIC_EVTTRIG_EVENT_1" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EVTTRIG1. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_EVTTRIG_EVENT_2">
+<span class="target" id="group__hic__api_1ga64fb7d8969bfc32d4fa45bd516a02ce6"></span><code class="sig-name descname">HIC_EVTTRIG_EVENT_2</code> 0x040000U<a class="headerlink" href="#c.HIC_EVTTRIG_EVENT_2" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EVTTRIG2. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_EVTTRIG_EVENT_3">
+<span class="target" id="group__hic__api_1ga0157e2fd7e1092182558f58619a29296"></span><code class="sig-name descname">HIC_EVTTRIG_EVENT_3</code> 0x080000U<a class="headerlink" href="#c.HIC_EVTTRIG_EVENT_3" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EVTTRIG3. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_EVTTRIG_EVENT_4">
+<span class="target" id="group__hic__api_1gaa348f7a5d58adb130e9264a8c36f0d3d"></span><code class="sig-name descname">HIC_EVTTRIG_EVENT_4</code> 0x100000U<a class="headerlink" href="#c.HIC_EVTTRIG_EVENT_4" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EVTTRIG4. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_EVTTRIG_EVENT_5">
+<span class="target" id="group__hic__api_1ga328d65efca9a9947085eaab4d98dea2f"></span><code class="sig-name descname">HIC_EVTTRIG_EVENT_5</code> 0x200000U<a class="headerlink" href="#c.HIC_EVTTRIG_EVENT_5" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EVTTRIG5. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_EVTTRIG_EVENT_6">
+<span class="target" id="group__hic__api_1ga42b5d1dddb28c257dfb24f80f7189344"></span><code class="sig-name descname">HIC_EVTTRIG_EVENT_6</code> 0x400000U<a class="headerlink" href="#c.HIC_EVTTRIG_EVENT_6" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EVTTRIG6. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HIC_EVTTRIG_EVENT_7">
+<span class="target" id="group__hic__api_1gab0fb49baa63bcc9f5cb0f9a21a936dcb"></span><code class="sig-name descname">HIC_EVTTRIG_EVENT_7</code> 0x800000U<a class="headerlink" href="#c.HIC_EVTTRIG_EVENT_7" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EVTTRIG7. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv415HIC_getRevisionv">
+<span id="_CPPv315HIC_getRevisionv"></span><span id="_CPPv215HIC_getRevisionv"></span><span id="HIC_getRevision__void"></span><span class="target" id="group__hic__api_1ga9694619555753fd565773add7bf196ef"></span>uint32_t <code class="sig-name descname">HIC_getRevision</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415HIC_getRevisionv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the Revision of HIC Controller interface.</p>
+<p>This function returns the hardware revision of the Host Interface controller module</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>The Hardware Version number returns the content of HICREV register. Please refer to device TRM for field wise details. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423HIC_enableHostInterfacev">
+<span id="_CPPv323HIC_enableHostInterfacev"></span><span id="_CPPv223HIC_enableHostInterfacev"></span><span id="HIC_enableHostInterface__void"></span><span class="target" id="group__hic__api_1ga84753a02b66f65b3f5725d16957ddb65"></span>void <code class="sig-name descname">HIC_enableHostInterface</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423HIC_enableHostInterfacev" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the Host Access to the Device region and to the Mailbox</p>
+<p><p> The Host interface Controller module provides two mechanisms of access</p>
+<ol class="loweralpha simple">
+<li><p>Using Device Memory access, the host can access the memory directly read/write/poll for registers</p></li>
+<li><p>Using the Mailbox mechanism which can be used when the Host can write the parameters to the mailbox Host-to-Device buffer region and then trigger an interrupt to the Device. The HIC module with the other application running on device side can then be used to signal to the host, using the Device-to-Host buffer region in response. This API enables the access to the Device region and Mailbox. This should be used as the first API in sequence of configuring the HIC module. </p></li>
+</ol>
+<dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414HIC_enableLockv">
+<span id="_CPPv314HIC_enableLockv"></span><span id="_CPPv214HIC_enableLockv"></span><span id="HIC_enableLock__void"></span><span class="target" id="group__hic__api_1ga079e56bb031ea93dda235475620ebe39"></span>void <code class="sig-name descname">HIC_enableLock</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414HIC_enableLockv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the Lock for the HIC module registers protected by Writes</p>
+<p><p> This API enables the lock, which protects the writes to registers protected by Lock. Calling this API prevents writes to the write protected registers.</p>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415HIC_disableLockv">
+<span id="_CPPv315HIC_disableLockv"></span><span id="_CPPv215HIC_disableLockv"></span><span id="HIC_disableLock__void"></span><span class="target" id="group__hic__api_1ga14939b5c04a8981d5579cf1984c706c5"></span>void <code class="sig-name descname">HIC_disableLock</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415HIC_disableLockv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the Lock for the HIC module registers protected by Writes</p>
+<p><p> This API disables the lock(unlocks), which enables the writes to registers protected by Lock. Calling this API enables writes to the write protected registers. This API must be called one time before calling any of these APIs</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#group__hic__api_1ga33f9dd65a0ac843cb2a0e51163b5d558"><span class="std std-ref">HIC_setConfig()</span></a></p></li>
+<li><p><a class="reference internal" href="#group__hic__api_1ga8281bd950c5d3ebf4a6dc14830cdaddf"><span class="std std-ref">HIC_setPinPolarity()</span></a></p></li>
+<li><p><a class="reference internal" href="#group__hic__api_1gace3ba4992eb517a2be109caa5316191b"><span class="std std-ref">HIC_selectBaseAddress()</span></a></p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv413HIC_setConfig8uint32_t">
+<span id="_CPPv313HIC_setConfig8uint32_t"></span><span id="_CPPv213HIC_setConfig8uint32_t"></span><span id="HIC_setConfig__uint32_t"></span><span class="target" id="group__hic__api_1ga33f9dd65a0ac843cb2a0e51163b5d558"></span>void <code class="sig-name descname">HIC_setConfig</code><span class="sig-paren">(</span>uint32_t <em>flags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413HIC_setConfig8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the Host Interface Controller Configurations <p> This API configures the HICMODECR register for the selected configuration </p>
+<a class="reference internal" href="#group__hic__api_1ga14939b5c04a8981d5579cf1984c706c5"><span class="std std-ref">HIC_disableLock()</span></a> API should have been called prior to this API.</p>
+<p><p>Any one of following values for Data Width</p>
+<ul class="simple">
+<li><p><strong>HIC_MODE_DW_8BIT</strong> -for 8bit Data</p></li>
+<li><p><strong>HIC_MODE_DW_16BIT</strong> -for 16bit Data</p></li>
+<li><p><strong>HIC_MODE_DW_32BIT</strong> -for 32bit Data</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">flags</span></code>: specifies the ORed values of any of following flags.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>Any one of following values for Read Write Pin<ul class="simple">
+<li><p><strong>HIC_MODE_RW_PIN_SEPARATE</strong> - for Separate Read and Write Pin</p></li>
+<li><p><strong>HIC_MODE_RW_PIN_SINGLE</strong> - for Same Read and Write Pin</p></li>
+</ul>
+</p>
+<p>Any one of following values for Byte Enable Pin configuration<ul class="simple">
+<li><p><strong>HIC_MODE_BEN_PRESENT</strong> - for using Byte Enable Pin</p></li>
+<li><p><strong>HIC_MODE_BEN_ABSENT</strong> - for not using Byte Enable Pin</p></li>
+</ul>
+</p>
+<p>Any one of following values for Ready Pin<ul class="simple">
+<li><p><strong>HIC_MODE_RDY_PRESENT</strong> - for using Ready Pin for extended wait</p></li>
+<li><p><strong>HIC_MODE_RDY_ABSENT</strong> - for not using Extended Wait pin</p></li>
+</ul>
+</p>
+<p>Other configurations:<ul class="simple">
+<li><p><strong>HIC_MODE_H2DBUF_DEVWREN</strong> - for enabling Device access to host to Device Buffers. If this is not enabled the device cannot write to Host to Device buffers</p></li>
+<li><p><strong>HIC_MODE_D2HBUF_HOST_WR_ENABLE</strong> - for enabling host access to device to host buffers. If this is not enabled the host cannot write to device to host buffers.</p></li>
+<li><p><strong>HIC_MODE_DEVICE_HOST_ACCESS_ENABLE</strong> - for enabling access to the device region. Only if this is enabled the regions selected by Base select registers using the <a class="reference internal" href="#group__hic__api_1gace3ba4992eb517a2be109caa5316191b"><span class="std std-ref">HIC_selectBaseAddress()</span></a> API shall be accessible. Without this only the HIC registers and Mailbox registers will be accessible for the host.</p></li>
+<li><p><strong>HIC_MODE_HOST_WREALLOW_ENABLE</strong> - for enabling host access to write to EALLOW bitfield using <a class="reference internal" href="#group__hic__api_1gab4cbd1acc748982a48b7e172a8fa22ee"><span class="std std-ref">HIC_configureHostAccessMode()</span></a> API. Without enabling this HIC_configureHostAccessMode(HIC_HOSTCR_EALLOW_EN) will not work.<dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p></li>
+</ul>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv413HIC_getConfigv">
+<span id="_CPPv313HIC_getConfigv"></span><span id="_CPPv213HIC_getConfigv"></span><span id="HIC_getConfig__void"></span><span class="target" id="group__hic__api_1ga53c710ea41290fe15942c38f1b174ab8"></span>uint32_t <code class="sig-name descname">HIC_getConfig</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413HIC_getConfigv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the Host Interface Controller Configurations</p>
+<p><p>Following values for Other Configurations</p>
+<ul class="simple">
+<li><p><strong>HIC_MODE_RW_PIN_SEPARATE/</strong> HIC_MODE_RW_PIN_SINGLE - for Read/Write Pin</p></li>
+<li><p><strong>HIC_MODE_BEN_PRESENT/HIC_MODE_BEN_ABSENT</strong> - for Byte Enable Pin Usage</p></li>
+<li><p><strong>HIC_MODE_RDY_PRESENT/HIC_MODE_RDY_ABSENT</strong> - for using Ready Pin for extended wait</p></li>
+<li><p><strong>HIC_MODE_H2DBUF_DEVWREN-</strong> Device access to Host to Device Buffer Enabled</p></li>
+<li><p><strong>HIC_MODE_D2HBUF_HOST_WR_ENABLE</strong> - Host access to Device to Host Buffer enabled</p></li>
+<li><p><strong>HIC_MODE_DEVICE_HOST_ACCESS_ENABLE</strong> - for enabling access to the device</p></li>
+<li><p><strong>HIC_MODE_HOST_WREALLOW_ENABLE</strong> - for host access to write to EALLOW</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>32-bit integer specifies the ORed values of following flags Any one of following values for Data Width<ul class="simple">
+<li><p><strong>HIC_MODE_DW_8BIT</strong> -for 8bit Data</p></li>
+<li><p><strong>HIC_MODE_DW_16BIT</strong> -for 16bit Data</p></li>
+<li><p><strong>HIC_MODE_DW_32BIT</strong> -for 32bit Data</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+<p>This API returns the current configuration of HIC module. It can be used along with macros defined in hw_hic.h as below. For querying the Data width use like in below examples <a class="reference internal" href="#group__hic__api_1ga53c710ea41290fe15942c38f1b174ab8"><span class="std std-ref">HIC_getConfig()</span></a> &amp; HIC_MODECR_DW_MODE_M == HIC_MODE_DW_8BIT for Data width <a class="reference internal" href="#group__hic__api_1ga53c710ea41290fe15942c38f1b174ab8"><span class="std std-ref">HIC_getConfig()</span></a> &amp; HIC_MODECR_RW_MODE == HIC_MODE_RW_PIN_SINGLE for RW Pin <a class="reference internal" href="#group__hic__api_1ga53c710ea41290fe15942c38f1b174ab8"><span class="std std-ref">HIC_getConfig()</span></a> &amp; HIC_MODECR_BEN_PRESENT == HIC_MODE_BEN_PRESENT for BE Pin </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418HIC_setPinPolarity8uint16_t">
+<span id="_CPPv318HIC_setPinPolarity8uint16_t"></span><span id="_CPPv218HIC_setPinPolarity8uint16_t"></span><span id="HIC_setPinPolarity__uint16_t"></span><span class="target" id="group__hic__api_1ga8281bd950c5d3ebf4a6dc14830cdaddf"></span>void <code class="sig-name descname">HIC_setPinPolarity</code><span class="sig-paren">(</span>uint16_t <em>flags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418HIC_setPinPolarity8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the Host Interface Controller Pin Polarity. This API configures the HICPINPOLCR register for the selected configuration. <a class="reference internal" href="#group__hic__api_1ga14939b5c04a8981d5579cf1984c706c5"><span class="std std-ref">HIC_disableLock()</span></a> API should have been called prior to this API.</p>
+<p><p>Any one of following values for Chip Select Pin</p>
+<ul class="simple">
+<li><p><strong>HIC_PIN_POLARITY_CS_HIGH</strong> - for Active High Chip Select Pin</p></li>
+<li><p><strong>HIC_PIN_POLARITY_CS_LOW</strong> - for Active Low Chip Select Pin</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">flags</span></code>: specifies the ORed values of any of following flags</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>Any one of following values for Byte Enable Pin configuration<ul class="simple">
+<li><p><strong>HIC_PIN_POLARITY_BEN_HIGH</strong> - for Active High Byte Enable</p></li>
+<li><p><strong>HIC_PIN_POLARITY_BEN_LOW</strong> - for Active Low Byte Enable</p></li>
+</ul>
+</p>
+<p>Any one of following values for Output Enable Pin<ul class="simple">
+<li><p><strong>HIC_PIN_POLARITY_OE_HIGH</strong> - for Active High Output Enable</p></li>
+<li><p><strong>HIC_PIN_POLARITY_OE_LOW</strong> - for Active Low Output Enable</p></li>
+</ul>
+</p>
+<p>Any one of following values for Write Enable Pin<ul class="simple">
+<li><p><strong>HIC_PIN_POLARITY_WE_HIGH</strong> - for Active High Write Enable</p></li>
+<li><p><strong>HIC_PIN_POLARITY_WE_LOW</strong> - for Active Low Write Enable</p></li>
+</ul>
+</p>
+<p>Any one of following values for Ready Pin<ul class="simple">
+<li><p><strong>HIC_PIN_POLARITY_RDY_HIGH</strong> - for Active High Write Enable</p></li>
+<li><p><strong>HIC_PIN_POLARITY_RDY_LOW</strong> - for Active Low Write Enable</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418HIC_getPinPolarityv">
+<span id="_CPPv318HIC_getPinPolarityv"></span><span id="_CPPv218HIC_getPinPolarityv"></span><span id="HIC_getPinPolarity__void"></span><span class="target" id="group__hic__api_1ga0006b4702b4dc30e52d8823c49dad375"></span>uint32_t <code class="sig-name descname">HIC_getPinPolarity</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418HIC_getPinPolarityv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the Host Interface Controller Pin Polarity Configurations</p>
+<p>This API returns the HICPINPOLCR register for the selected configuration</p>
+<p><p>This API returns the Pin Polarity.This can be used with the macros defined in </p>
+hw_hic.h as shown below HIC_getPinPolarity &amp; HIC_PINPOLCR_BEN_POL == HIC_PIN_POLARITY_BEN_HIGH for checking the status of Byte Enable Pin Polarity <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>32-bit integer specifies the ORed values of any of following flags Following values for corresponding Pin Configuration<ul class="simple">
+<li><p><strong>HIC_PIN_POLARITY_CS_HIGH/</strong> HIC_PIN_POLARITY_CS_HIGH - for CS Pin</p></li>
+<li><p><strong>HIC_PIN_POLARITY_BEN_HIGH/HIC_PIN_POLARITY_BEN_HIGH-</strong> for Byte Enable pin</p></li>
+<li><p><strong>HIC_PIN_POLARITY_OE_HIGH/HIC_PIN_POLARITY_OE_LOW</strong> - for OE Pin</p></li>
+<li><p><strong>HIC_PIN_POLARITY_WE_HIGH/HIC_PIN_POLARITY_WE_LOW-</strong> for WE Pin</p></li>
+<li><p><strong>HIC_PIN_POLARITY_RDY_HIGH/HIC_PIN_POLARITY_RDY_LOW</strong> - for RDY Pin</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421HIC_selectBaseAddress8uint16_t">
+<span id="_CPPv321HIC_selectBaseAddress8uint16_t"></span><span id="_CPPv221HIC_selectBaseAddress8uint16_t"></span><span id="HIC_selectBaseAddress__uint16_t"></span><span class="target" id="group__hic__api_1gace3ba4992eb517a2be109caa5316191b"></span>void <code class="sig-name descname">HIC_selectBaseAddress</code><span class="sig-paren">(</span>uint16_t <em>selectIndex</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421HIC_selectBaseAddress8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Selects the Base Address for the device memory access</p>
+<p><p>The Device memory region will be accessible by the region selected in this API. Also look at HIC_configureHostAccessMode(HIC_HOSTCR_PAGESEL)</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">selectIndex</span></code>: specifies the index of Base address in the Base Address regions can vary from 0 to HIC_NUM_BASE_ADDRESS-1</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv431HIC_getSelectedBaseAddressIndexv">
+<span id="_CPPv331HIC_getSelectedBaseAddressIndexv"></span><span id="_CPPv231HIC_getSelectedBaseAddressIndexv"></span><span id="HIC_getSelectedBaseAddressIndex__void"></span><span class="target" id="group__hic__api_1ga97b7d95c234d45b0ce84f1786a521f8f"></span>uint16_t <code class="sig-name descname">HIC_getSelectedBaseAddressIndex</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431HIC_getSelectedBaseAddressIndexv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the Selected Base address index for the device memory access</p>
+<p>The Device memory region will be accessible by the region selected in this API. Also look at HIC_configureHostAccessMode(HIC_HOSTCR_PAGESEL)</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>selected index of Base address in the Base Address regions. can vary from 0 to HIC_NUM_BASE_ADDRESS-1 </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427HIC_configureHostAccessMode8uint16_t">
+<span id="_CPPv327HIC_configureHostAccessMode8uint16_t"></span><span id="_CPPv227HIC_configureHostAccessMode8uint16_t"></span><span id="HIC_configureHostAccessMode__uint16_t"></span><span class="target" id="group__hic__api_1gab4cbd1acc748982a48b7e172a8fa22ee"></span>void <code class="sig-name descname">HIC_configureHostAccessMode</code><span class="sig-paren">(</span>uint16_t <em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427HIC_configureHostAccessMode8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the Host Access modes to the device region</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code>: logical OR of the following values<ul>
+<li><p><strong>HIC_HOSTCR_EALLOW_EN</strong> for enabling module writes to EALLOW Protected registers</p></li>
+<li><p>either of <strong>HIC_HOST_CONTROL_ACCSIZE_16BIT/HIC_HOST_CONTROL_ACCSIZE_32BIT </strong> to select 16 bit or 32 bit device side master port accesses</p></li>
+<li><p>either of <strong> HIC_HOST_CONTROL_PAGESEL_REG/HIC_HOST_CONTROL_PAGESEL_PIN </strong> to select Page/Region selection based on PAGESEL register programmed using <a class="reference internal" href="#group__hic__api_1gace3ba4992eb517a2be109caa5316191b"><span class="std std-ref">HIC_selectBaseAddress()</span></a>API or the PAGESEL Pin</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421HIC_getHostAccessModev">
+<span id="_CPPv321HIC_getHostAccessModev"></span><span id="_CPPv221HIC_getHostAccessModev"></span><span id="HIC_getHostAccessMode__void"></span><span class="target" id="group__hic__api_1ga9772152422466a794024e2aff5d04398"></span>uint32_t <code class="sig-name descname">HIC_getHostAccessMode</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421HIC_getHostAccessModev" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Provides the Host Access modes configured currently</p>
+<p><p>This API can be used with few Macros defined in </p>
+hw_hic.h as below (HIC_getAccessMode() &amp; HIC_HOSTCR_ACCSIZE) == HIC_HOST_CONTROL_ACCSIZE_32BIT for Access size checking. Similarly it can be used for other bit fields. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Host Access mode value as configured <a class="reference internal" href="#group__hic__api_1gab4cbd1acc748982a48b7e172a8fa22ee"><span class="std std-ref">HIC_configureHostAccessMode()</span></a> API which is a logical OR of<ul class="simple">
+<li><p><strong>HIC_HOSTCR_EALLOW_EN</strong> for enabling module writes to EALLOW Protected registers</p></li>
+<li><p>either of <strong> HIC_HOST_CONTROL_ACCSIZE_16BIT/HIC_HOST_CONTROL_ACCSIZE_32BIT </strong> for selected 16 bit or 32 bit device side master port accesses</p></li>
+<li><p>either of <strong> HIC_HOST_CONTROL_PAGESEL_REG/HIC_HOST_CONTROL_PAGESEL_PIN </strong> for selected Page/Region selection based on PAGESEL register programmed using <a class="reference internal" href="#group__hic__api_1gace3ba4992eb517a2be109caa5316191b"><span class="std std-ref">HIC_selectBaseAddress()</span></a>API or the PAGESEL Pin</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419HIC_getErrorAddressv">
+<span id="_CPPv319HIC_getErrorAddressv"></span><span id="_CPPv219HIC_getErrorAddressv"></span><span id="HIC_getErrorAddress__void"></span><span class="target" id="group__hic__api_1ga918d1ee8182fc19ec38010cfeb7c87e1"></span>uint32_t <code class="sig-name descname">HIC_getErrorAddress</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419HIC_getErrorAddressv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the Host and Device side Status when an Error happened on interface</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>returns the logical OR of the following<ul class="simple">
+<li><p>8 bit Host to Device Error Address when Host to Device Error happens</p></li>
+<li><p>3 bit Base select value when Host to Device Error happens</p></li>
+<li><p>8 bit Device to Host Error Address when Device to Host Error happens</p></li>
+<li><p>3 bit Base select value when Device to Host Error Happens. <p> Please refer to TRM HICERRADDR register for more details on this. </p>
+</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415HIC_getH2DTokenv">
+<span id="_CPPv315HIC_getH2DTokenv"></span><span id="_CPPv215HIC_getH2DTokenv"></span><span id="HIC_getH2DToken__void"></span><span class="target" id="group__hic__api_1ga7dbf6196a9e920e36c63cb7c4d592fbc"></span>uint32_t <code class="sig-name descname">HIC_getH2DToken</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415HIC_getH2DTokenv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the token written by the token written onto the Host to Device Token</p>
+<p><p>This API can be used while using the Mailbox mechanism. </p>
+<dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>the 32 bit Token value written into the register</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415HIC_setD2HToken8uint32_t">
+<span id="_CPPv315HIC_setD2HToken8uint32_t"></span><span id="_CPPv215HIC_setD2HToken8uint32_t"></span><span id="HIC_setD2HToken__uint32_t"></span><span class="target" id="group__hic__api_1gac226320faaf039ddc358cf1704bd1153"></span>void <code class="sig-name descname">HIC_setD2HToken</code><span class="sig-paren">(</span>uint32_t <em>token</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415HIC_setD2HToken8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Writes the Token to the Host from Device</p>
+<p><p>This API can be used while using the Mailbox mechanism. Writing to this register could be used to trigger an interrupt to the Host using the Device to Host interrupt line(D2HINT) of the module. It can be used to interrupt the external host. </p>
+<dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">token</span></code>: is the 32 bit token value to be written. It could be used to denote the number of bytes written on to the Device-to-Host buffer</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415HIC_getD2HTokenv">
+<span id="_CPPv315HIC_getD2HTokenv"></span><span id="_CPPv215HIC_getD2HTokenv"></span><span id="HIC_getD2HToken__void"></span><span class="target" id="group__hic__api_1ga7ea6b31c6dc04f5a207b0ee88cdc16aa"></span>uint32_t <code class="sig-name descname">HIC_getD2HToken</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415HIC_getD2HTokenv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the token written by the token written onto the Device to Host Token</p>
+<p><p>This API can be used while using the Mailbox mechanism. </p>
+<dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>the 32 bit Token value written into the register</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418HIC_setBaseAddress8uint16_t8uint32_t">
+<span id="_CPPv318HIC_setBaseAddress8uint16_t8uint32_t"></span><span id="_CPPv218HIC_setBaseAddress8uint16_t8uint32_t"></span><span id="HIC_setBaseAddress__uint16_t.uint32_t"></span><span class="target" id="group__hic__api_1ga888d30a1f0cb60396eb846bbcab17468"></span>void <code class="sig-name descname">HIC_setBaseAddress</code><span class="sig-paren">(</span>uint16_t <em>index</em>, uint32_t <em>baseAddress</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418HIC_setBaseAddress8uint16_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the Base Address of the region</p>
+<p><p>The device memory which HIC module can access can be divided into multiple 256 byte regions. For Example: GSRAM in Region 0, ADC registers in Region 1 FSI registers in Region 2,etc This API helps to configure the base address for each region The HIC address Pin can then be used to offset into the specific region by the host</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">index</span></code>: specifies the index of the Device Region to be configured can be from 0 to HIC_NUM_BASE_ADDRESS-1</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddress</span></code>: the 32 bit base address of the device region being configured</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418HIC_getBaseAddress8uint16_t">
+<span id="_CPPv318HIC_getBaseAddress8uint16_t"></span><span id="_CPPv218HIC_getBaseAddress8uint16_t"></span><span id="HIC_getBaseAddress__uint16_t"></span><span class="target" id="group__hic__api_1ga2ad0bec1259ed1770bd6a8093f8da3ef"></span>uint32_t <code class="sig-name descname">HIC_getBaseAddress</code><span class="sig-paren">(</span>uint16_t <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418HIC_getBaseAddress8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the Base Address configured for the region</p>
+<p><p>Returns the configured base address for the Region index provided</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">index</span></code>: specifies the index of the Device Region to be configured can be from 0 to HIC_NUM_BASE_ADDRESS-1</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>32 bit base address configured for the region </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422HIC_enableH2DInterrupt8uint32_t">
+<span id="_CPPv322HIC_enableH2DInterrupt8uint32_t"></span><span id="_CPPv222HIC_enableH2DInterrupt8uint32_t"></span><span id="HIC_enableH2DInterrupt__uint32_t"></span><span class="target" id="group__hic__api_1ga8adf92fa050d748e6074cd7fb11940de"></span>void <code class="sig-name descname">HIC_enableH2DInterrupt</code><span class="sig-paren">(</span>uint32_t <em>flags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422HIC_enableH2DInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the Interrupts from Host to Device</p>
+<p><p>Enables the specified interrupts. This will result in a HIC interrupt generated to the C28x core.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">flags</span></code>: specifies the logical ORed values below<ul>
+<li><p><strong>HIC_H2DINTEN_H2D_INTEN</strong> - Data Ready interrupt Enable</p></li>
+<li><p><strong>HIC_H2DINTEN_BUSERR_INTEN</strong> - Bus error Interrupt Enable</p></li>
+<li><p><strong>HIC_H2DINTEN_ILLWR_INTEN</strong> - Illegal Write Interrupt Enable</p></li>
+<li><p><strong>HIC_H2DINTEN_ILLRD_INTEN</strong> - Illegal Read Interrupt Enable</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423HIC_disableH2DInterrupt8uint32_t">
+<span id="_CPPv323HIC_disableH2DInterrupt8uint32_t"></span><span id="_CPPv223HIC_disableH2DInterrupt8uint32_t"></span><span id="HIC_disableH2DInterrupt__uint32_t"></span><span class="target" id="group__hic__api_1ga29a10497e340142168089a850cb23b76"></span>void <code class="sig-name descname">HIC_disableH2DInterrupt</code><span class="sig-paren">(</span>uint32_t <em>flags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423HIC_disableH2DInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the Interrupts from Host to Device</p>
+<p><p>Disables the interrupt flags specified</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">flags</span></code>: specifies the logical ORed values below<ul>
+<li><p><strong>HIC_H2DINTEN_H2D_INTEN</strong> - Data Ready interrupt Enable</p></li>
+<li><p><strong>HIC_H2DINTEN_BUSERR_INTEN</strong> - Bus error Interrupt Enable</p></li>
+<li><p><strong>HIC_H2DINTEN_ILLWR_INTEN</strong> - Illegal Write Interrupt Enable</p></li>
+<li><p><strong>HIC_H2DINTEN_ILLRD_INTEN</strong> - Illegal Read Interrupt Enable</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425HIC_getH2DInterruptStatusv">
+<span id="_CPPv325HIC_getH2DInterruptStatusv"></span><span id="_CPPv225HIC_getH2DInterruptStatusv"></span><span id="HIC_getH2DInterruptStatus__void"></span><span class="target" id="group__hic__api_1ga6b04e17c335d619319c00e41711147b3"></span>uint32_t <code class="sig-name descname">HIC_getH2DInterruptStatus</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425HIC_getH2DInterruptStatusv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gives the status of Host to Device interrupts</p>
+<p><p> The Flag if Set indicates that the corresponding Interrupt is active (has occured) </p>
+<dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>32bit flag with the logical ORed values below<ul class="simple">
+<li><p><strong>HIC_H2DINTFLG_H2D_FLG</strong> - Data Ready interrupt Status</p></li>
+<li><p><strong>HIC_H2DINTFLG_BUSERR_FLG</strong> - Bus error Interrupt Status</p></li>
+<li><p><strong>HIC_H2DINTFLG_ILLWR_FLG</strong> - Illegal Write Interrupt Status</p></li>
+<li><p><strong>HIC_H2DINTFLG_ILLRD_FLG</strong> - Illegal Read Interrupt Status.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421HIC_clearH2DInterrupt8uint32_t">
+<span id="_CPPv321HIC_clearH2DInterrupt8uint32_t"></span><span id="_CPPv221HIC_clearH2DInterrupt8uint32_t"></span><span id="HIC_clearH2DInterrupt__uint32_t"></span><span class="target" id="group__hic__api_1gaf7b897e325ee2ae2ada2eb7877527103"></span>void <code class="sig-name descname">HIC_clearH2DInterrupt</code><span class="sig-paren">(</span>uint32_t <em>flags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421HIC_clearH2DInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears the Interrupts from Host to Device</p>
+<p><p>Clears the interrupt flags specified</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">flags</span></code>: specifies the logical ORed values below to be cleared<ul>
+<li><p><strong>HIC_H2DINTCLR_H2D_CLR</strong> - Data Ready interrupt Clear</p></li>
+<li><p><strong>HIC_H2DINTCLR_BUSERR_CLR</strong> - Bus error Interrupt Clear</p></li>
+<li><p><strong>HIC_H2DINTCLR_ILLWR_CLR</strong> - Illegal Write Interrupt Clear</p></li>
+<li><p><strong>HIC_H2DINTCLR_ILLRD_CLR</strong> - Illegal Read Interrupt Clear</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421HIC_forceH2DInterrupt8uint32_t">
+<span id="_CPPv321HIC_forceH2DInterrupt8uint32_t"></span><span id="_CPPv221HIC_forceH2DInterrupt8uint32_t"></span><span id="HIC_forceH2DInterrupt__uint32_t"></span><span class="target" id="group__hic__api_1ga7d411736963fb251b7741896707f03a5"></span>void <code class="sig-name descname">HIC_forceH2DInterrupt</code><span class="sig-paren">(</span>uint32_t <em>flags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421HIC_forceH2DInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Forces the Interrupts from Host to Device</p>
+<p><p>Forces the interrupt flags specified. Can be used for Debug purpose.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">flags</span></code>: specifies the logical ORed values below to be Forced<ul>
+<li><p><strong>HIC_H2DINTFRC_H2D_INTFRC</strong> - Data Ready interrupt Force</p></li>
+<li><p><strong>HIC_H2DINTFRC_BUSERR_INTFRC</strong> - Bus error Interrupt Force</p></li>
+<li><p><strong>HIC_H2DINTFRC_ILLWR_INTFRC</strong> - Illegal Write Interrupt Force</p></li>
+<li><p><strong>HIC_H2DINTFRC_ILLRD_INTFRC</strong> - Illegal Read Interrupt Force</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422HIC_enableD2HInterrupt8uint32_t">
+<span id="_CPPv322HIC_enableD2HInterrupt8uint32_t"></span><span id="_CPPv222HIC_enableD2HInterrupt8uint32_t"></span><span id="HIC_enableD2HInterrupt__uint32_t"></span><span class="target" id="group__hic__api_1ga4a7d09578306cfe0641b1bb4266649a8"></span>void <code class="sig-name descname">HIC_enableD2HInterrupt</code><span class="sig-paren">(</span>uint32_t <em>flags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422HIC_enableD2HInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the Interrupts from Device to Host</p>
+<p><p>Enables the specified interrupts. This will result in a HIC interrupt generated to the Host(D2HINT).</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">flags</span></code>: specifies the logical ORed values below<ul>
+<li><p><strong>HIC_D2HINTEN_D2H_INTEN</strong> - Data Ready interrupt Enable</p></li>
+<li><p><strong>HIC_D2HINTEN_BUSERR_INTEN</strong> - Bus error Interrupt Enable</p></li>
+<li><p><strong>HIC_D2HINTEN_ILLWR_INTEN</strong> - Illegal Write Interrupt Enable</p></li>
+<li><p><strong>HIC_D2HINTEN_ILLRD_INTEN</strong> - Illegal Read Interrupt Enable</p></li>
+<li><p><strong>HIC_D2HINTEN_ACCVIO_INTEN</strong> - Access Violation Interrupt Enable</p></li>
+<li><p><strong>Event</strong> Trigger interrupt flags - The higher 16 bits when Set will enable corresponding D2H interrupts. Refer TRM for details.</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423HIC_disableD2HInterrupt8uint32_t">
+<span id="_CPPv323HIC_disableD2HInterrupt8uint32_t"></span><span id="_CPPv223HIC_disableD2HInterrupt8uint32_t"></span><span id="HIC_disableD2HInterrupt__uint32_t"></span><span class="target" id="group__hic__api_1gaa226442aa59b7b525ddf58dd5b1862d1"></span>void <code class="sig-name descname">HIC_disableD2HInterrupt</code><span class="sig-paren">(</span>uint32_t <em>flags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423HIC_disableD2HInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the Interrupts from Device to Host</p>
+<p><p>Disables the interrupt flags specified</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">flags</span></code>: specifies the logical ORed values below<ul>
+<li><p><strong>HIC_D2HINTEN_D2H_INTEN</strong> - Data Ready interrupt Enable</p></li>
+<li><p><strong>HIC_D2HINTEN_BUSERR_INTEN</strong> - Bus error Interrupt Enable</p></li>
+<li><p><strong>HIC_D2HINTEN_ILLWR_INTEN</strong> - Illegal Write Interrupt Enable</p></li>
+<li><p><strong>HIC_D2HINTEN_ILLRD_INTEN</strong> - Illegal Read Interrupt Enable</p></li>
+<li><p><strong>HIC_D2HINTEN_ACCVIO_INTEN</strong> - Access Violation Interrupt Enable</p></li>
+<li><p><strong> Event Trigger interrupt flags </strong> - The higher 16 bits when set will disable corresponding D2H interrupts. Refer TRM for details.</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425HIC_getD2HInterruptStatusv">
+<span id="_CPPv325HIC_getD2HInterruptStatusv"></span><span id="_CPPv225HIC_getD2HInterruptStatusv"></span><span id="HIC_getD2HInterruptStatus__void"></span><span class="target" id="group__hic__api_1ga12ff61b0ccc1fcbaa5dbe4210745d0e7"></span>uint32_t <code class="sig-name descname">HIC_getD2HInterruptStatus</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425HIC_getD2HInterruptStatusv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gives the status of Device to Host interrupts</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>32bit flag with the logical ORed values below<ul>
+<li><p><strong>HIC_D2HINTFLG_D2H_FLG</strong> - Data Ready interrupt Status</p></li>
+<li><p><strong>HIC_D2HINTFLG_BUSERR_FLG</strong> - Bus error Interrupt Status</p></li>
+<li><p><strong>HIC_D2HINTFLG_ILLWR_FLG</strong> - Illegal Write Interrupt Status</p></li>
+<li><p><strong>HIC_D2HINTFLG_ILLRD_FLG</strong> - Illegal Read Interrupt Status</p></li>
+<li><p><strong>HIC_D2HINTFLG_ACCVIO_FLG</strong> - Access Violation Interrupt Status</p></li>
+<li><p><strong> Event Trigger Interrupt Flags </strong>- The higher 16 bits give the status of event Trigger Interrupt flags. Refer TRM for the sources of these interrupts.</p>
+<p>The Flag if Set indicates that the corresponding Interrupt is active (has occurred) </p>
+</li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421HIC_clearD2HInterrupt8uint32_t">
+<span id="_CPPv321HIC_clearD2HInterrupt8uint32_t"></span><span id="_CPPv221HIC_clearD2HInterrupt8uint32_t"></span><span id="HIC_clearD2HInterrupt__uint32_t"></span><span class="target" id="group__hic__api_1ga577d86fac4f1b3c9355a2711646d19bf"></span>void <code class="sig-name descname">HIC_clearD2HInterrupt</code><span class="sig-paren">(</span>uint32_t <em>flags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421HIC_clearD2HInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears the Interrupts from Host to Device</p>
+<p><p>Clears the interrupt flags specified</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">flags</span></code>: specifies the logical ORed values below to be cleared<ul>
+<li><p><strong>HIC_D2HINTCLR_D2H_CLR</strong> - Data Ready interrupt Clear</p></li>
+<li><p><strong>HIC_D2HINTCLR_BUSERR_CLR</strong> - Bus error Interrupt Clear</p></li>
+<li><p><strong>HIC_D2HINTCLR_ILLWR_CLR</strong> - Illegal Write Interrupt Clear</p></li>
+<li><p><strong>HIC_D2HINTCLR_ILLRD_CLR</strong> - Illegal Read Interrupt Clear</p></li>
+<li><p><strong>HIC_D2HINTCLR_ACCVIO_CLR</strong> - Access Violation Interrupt Clear</p></li>
+<li><p><strong> Event Trigger Interrupt Clear Flags </strong> - The higher 16 bits indicates event trigger flags to be cleared. Refer TRM for the sources of these interrupts.</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421HIC_forceD2HInterrupt8uint32_t">
+<span id="_CPPv321HIC_forceD2HInterrupt8uint32_t"></span><span id="_CPPv221HIC_forceD2HInterrupt8uint32_t"></span><span id="HIC_forceD2HInterrupt__uint32_t"></span><span class="target" id="group__hic__api_1ga9c943ea885dce4a085f93d1fd618e3db"></span>void <code class="sig-name descname">HIC_forceD2HInterrupt</code><span class="sig-paren">(</span>uint32_t <em>flags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421HIC_forceD2HInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Forces the Interrupts from Host to Device</p>
+<p><p>Forces the interrupt flags specified. Can be used for Debug purposes.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">flags</span></code>: specifies the logical ORed values below to be Forced<ul>
+<li><p><strong>HIC_D2HINTFRC_D2H_INTFRC</strong> - Data Ready interrupt Force</p></li>
+<li><p><strong>HIC_D2HINTFRC_BUSERR_INTFRC</strong> - Bus error Interrupt Force</p></li>
+<li><p><strong>HIC_D2HINTFRC_ILLWR_INTFRC</strong> - Illegal Write Interrupt Force</p></li>
+<li><p><strong>HIC_D2HINTFRC_ILLRD_INTFRC</strong> - Illegal Read Interrupt Force</p></li>
+<li><p><strong>HIC_D2HINTFRC_ACCVIO_INTFRC</strong> - Access violation Interrupt Force</p></li>
+<li><p><strong> Event Trigger Interrupt Force Flags </strong> - The higher 16 bits indicates event trigger flags to be cleared. Refer TRM for the sources of these interrupts.</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429HIC_getAccessViolationAddressv">
+<span id="_CPPv329HIC_getAccessViolationAddressv"></span><span id="_CPPv229HIC_getAccessViolationAddressv"></span><span id="HIC_getAccessViolationAddress__void"></span><span class="target" id="group__hic__api_1ga85809f5a2e4801ccffd90c3604ba8956"></span>uint32_t <code class="sig-name descname">HIC_getAccessViolationAddress</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429HIC_getAccessViolationAddressv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the Address when Access violation happened</p>
+<p><p>While the HIC module internal access port accesses a memory, if there is an access violation, the module updates the address in this register. </p>
+<dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>returns the 32 bit address when the Access violation happened</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417HIC_readH2DBuffer8uint16_t">
+<span id="_CPPv317HIC_readH2DBuffer8uint16_t"></span><span id="_CPPv217HIC_readH2DBuffer8uint16_t"></span><span id="HIC_readH2DBuffer__uint16_t"></span><span class="target" id="group__hic__api_1ga62d28f9d16804d014243d3ea15a4a58b"></span>uint32_t <code class="sig-name descname">HIC_readH2DBuffer</code><span class="sig-paren">(</span>uint16_t <em>offset</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417HIC_readH2DBuffer8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the Host to Device Buffer for the offset specified</p>
+<p><p>The Host to Device buffer can be used to implement a communication scheme on which the Host writes the data to sent to the Control peripherals. The MCU can pick it up and stream it over control peripherals. The Device to Host Buffer can be used to write the response back. The External host need not continuously wait for the data/response. </p>
+<dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>returns the 32 bit content of the Host to Device buffer.</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">offset</span></code>: specifies the offset of the H2D buffer can vary from 0 to HIC_NUM_BUFFER_REGS-1</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418HIC_writeH2DBuffer8uint16_t8uint32_t">
+<span id="_CPPv318HIC_writeH2DBuffer8uint16_t8uint32_t"></span><span id="_CPPv218HIC_writeH2DBuffer8uint16_t8uint32_t"></span><span id="HIC_writeH2DBuffer__uint16_t.uint32_t"></span><span class="target" id="group__hic__api_1ga2fcbd60910b419b1e7ec20251d2042cd"></span>void <code class="sig-name descname">HIC_writeH2DBuffer</code><span class="sig-paren">(</span>uint16_t <em>offset</em>, uint32_t <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418HIC_writeH2DBuffer8uint16_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Writes to the Host to Device buffer</p>
+<p><p>This API should be used only when the Device write to Host buffer is enabled, using HIC_setConfig(HIC_MODECR_H2DBUF_DEVWREN) API. </p>
+<dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">offset</span></code>: specifies the offset of the H2D buffer can vary from 0 to HIC_NUM_BUFFER_REGS-1 </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: the 32bit data to be written onto the buffer</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418HIC_clearH2DBuffer8uint16_t">
+<span id="_CPPv318HIC_clearH2DBuffer8uint16_t"></span><span id="_CPPv218HIC_clearH2DBuffer8uint16_t"></span><span id="HIC_clearH2DBuffer__uint16_t"></span><span class="target" id="group__hic__api_1ga623df2bd61f1ac1b9f9e35848a43fda0"></span>void <code class="sig-name descname">HIC_clearH2DBuffer</code><span class="sig-paren">(</span>uint16_t <em>offset</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418HIC_clearH2DBuffer8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears the Host to Device buffer (by making it Zero)</p>
+<p><p>This API should be used only when the Device write to Host buffer is enabled, using HIC_setConfig(HIC_MODECR_H2DBUF_DEVWREN) API. This API can be used to clear the content of H2D Buffer </p>
+<dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">offset</span></code>: specifies the offset of the H2D buffer can vary from 0 to HIC_NUM_BUFFER_REGS-1</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417HIC_readD2HBuffer8uint16_t">
+<span id="_CPPv317HIC_readD2HBuffer8uint16_t"></span><span id="_CPPv217HIC_readD2HBuffer8uint16_t"></span><span id="HIC_readD2HBuffer__uint16_t"></span><span class="target" id="group__hic__api_1ga082c1b821abefa08d6ebe1060d3c8d96"></span>uint32_t <code class="sig-name descname">HIC_readD2HBuffer</code><span class="sig-paren">(</span>uint16_t <em>offset</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417HIC_readD2HBuffer8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the Device to Host Buffer for the offset specified</p>
+<p><p>The Device to Host Buffer can be used to write the response back to host The External host need not continuously wait for the data/response. </p>
+<dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>returns the 32 bit content of the Device to Host buffer</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">offset</span></code>: specifies the offset of the D2H buffer can vary from 0 to HIC_NUM_BUFFER_REGS-1</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418HIC_writeD2HBuffer8uint16_t8uint32_t">
+<span id="_CPPv318HIC_writeD2HBuffer8uint16_t8uint32_t"></span><span id="_CPPv218HIC_writeD2HBuffer8uint16_t8uint32_t"></span><span id="HIC_writeD2HBuffer__uint16_t.uint32_t"></span><span class="target" id="group__hic__api_1ga2a5bcbc9884285c49243405c81f26efc"></span>void <code class="sig-name descname">HIC_writeD2HBuffer</code><span class="sig-paren">(</span>uint16_t <em>offset</em>, uint32_t <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418HIC_writeD2HBuffer8uint16_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Writes to the Device to Host buffer</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">offset</span></code>: specifies the offset of the D2H buffer can vary from 0 to HIC_NUM_BUFFER_REGS-1 </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: the 32bit data to be written onto the buffer</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418HIC_clearD2HBuffer8uint16_t">
+<span id="_CPPv318HIC_clearD2HBuffer8uint16_t"></span><span id="_CPPv218HIC_clearD2HBuffer8uint16_t"></span><span id="HIC_clearD2HBuffer__uint16_t"></span><span class="target" id="group__hic__api_1ga462aaf1af5ee50fc79aa1922b22abcbd"></span>void <code class="sig-name descname">HIC_clearD2HBuffer</code><span class="sig-paren">(</span>uint16_t <em>offset</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418HIC_clearD2HBuffer8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears the Device to Host buffer (by making it Zero)</p>
+<p><p>This API can be used to clear the content of D2H Buffer </p>
+<dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>none</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">offset</span></code>: specifies the offset of the D2H buffer can vary from 0 to HIC_NUM_BUFFER_REGS-1</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>The code for this module is contained in driverlib/hic.h
+containing the API declarations for use by applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="gpio.html" class="btn btn-neutral float-left" title="GPIO Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hrcap.html" class="btn btn-neutral float-right" title="HRCAP Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v4.00.00.00_EA1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

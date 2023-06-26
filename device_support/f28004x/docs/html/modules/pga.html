@@ -1,0 +1,549 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>PGA Module &mdash; F28004x API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F28004x API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="PMBUS Module" href="pmbus.html"/>
+        <link rel="prev" title="MEMCFG Module" href="memcfg.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F28004x API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v4.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="adc.html">ADC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asysctl.html">ASysCtl Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clapromcrc.html">CLAPROMCRC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla.html">CLA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clb.html">CLB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmpss.html">CMPSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dac.html">DAC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcc.html">DCC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dma.html">DMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ecap.html">ECAP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hrcap.html">HRCAP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="epwm.html">EPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hrpwm.html">HRPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqep.html">EQEP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fsi.html">FSI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lin.html">LIN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">PGA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pmbus.html">PMBUS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci.html">SCI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdfm.html">SDFM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">SPI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version.html">Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xbar.html">XBAR Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F28004x API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>PGA Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pga-module">
+<span id="pga"></span><h1>PGA Module<a class="headerlink" href="#pga-module" title="Permalink to this headline">¶</a></h1>
+<p>The Programmable Gain Amplifier (PGA) API provides a set of functions
+for configuring and using the PGA module.
+The functions provided allow the user to setup and configure the PGA by
+providing access to the PGA wrapper registers.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__pga__api"></span><em>group</em> <code class="sig-name descname">pga_api</code></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.PGA_REGISTER_PGACTL">
+<span class="target" id="group__pga__api_1ga8ff63cae0277ff75de1053991bbad225"></span><code class="sig-name descname">PGA_REGISTER_PGACTL</code> PGA_LOCK_PGACTL<a class="headerlink" href="#c.PGA_REGISTER_PGACTL" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PGA Register PGACTL </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.PGA_REGISTER_GAIN3TRIM">
+<span class="target" id="group__pga__api_1ga3c09245685fabf1f47bb1f8348f57cba"></span><code class="sig-name descname">PGA_REGISTER_GAIN3TRIM</code> PGA_LOCK_PGAGAIN3TRIM<a class="headerlink" href="#c.PGA_REGISTER_GAIN3TRIM" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PGA Register GAIN3TRIM </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.PGA_REGISTER_GAIN6TRIM">
+<span class="target" id="group__pga__api_1gadd86d80b77ae30344926c6e03e196d98"></span><code class="sig-name descname">PGA_REGISTER_GAIN6TRIM</code> PGA_LOCK_PGAGAIN6TRIM<a class="headerlink" href="#c.PGA_REGISTER_GAIN6TRIM" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PGA Register GAIN6TRIM </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.PGA_REGISTER_GAIN12TRIM">
+<span class="target" id="group__pga__api_1gab53c91d62d13d8cd5fe85c1d356d3c1b"></span><code class="sig-name descname">PGA_REGISTER_GAIN12TRIM</code> PGA_LOCK_PGAGAIN12TRIM<a class="headerlink" href="#c.PGA_REGISTER_GAIN12TRIM" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PGA Register GAIN12TRIM </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.PGA_REGISTER_GAIN24TRIM">
+<span class="target" id="group__pga__api_1gaa7a207389243d1675079dc161d1c1ff0"></span><code class="sig-name descname">PGA_REGISTER_GAIN24TRIM</code> PGA_LOCK_PGAGAIN24TRIM<a class="headerlink" href="#c.PGA_REGISTER_GAIN24TRIM" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PGA Register GAIN24TRIM </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="cpp enum">
+<dt id="_CPPv413PGA_GainValue">
+<span id="_CPPv313PGA_GainValue"></span><span id="_CPPv213PGA_GainValue"></span><span class="target" id="group__pga__api_1gaee02ca5cbf724e634d3dcd61a92694d7"></span><em class="property">enum </em><code class="sig-name descname">PGA_GainValue</code><a class="headerlink" href="#_CPPv413PGA_GainValue" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__pga__api_1gaea45311ae41f305407968abf2cb4b031"><span class="std std-ref">PGA_setGain()</span></a> as the <em>gainValue</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13PGA_GainValue10PGA_GAIN_3E">
+<span id="_CPPv3N13PGA_GainValue10PGA_GAIN_3E"></span><span id="_CPPv2N13PGA_GainValue10PGA_GAIN_3E"></span><span class="target" id="group__pga__api_1ggaee02ca5cbf724e634d3dcd61a92694d7a3601d0f68d9544d32bc4891e601bbed5"></span><em class="property">enumerator </em><code class="sig-name descname">PGA_GAIN_3</code> = 0x0<a class="headerlink" href="#_CPPv4N13PGA_GainValue10PGA_GAIN_3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PGA gain value of 3. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13PGA_GainValue10PGA_GAIN_6E">
+<span id="_CPPv3N13PGA_GainValue10PGA_GAIN_6E"></span><span id="_CPPv2N13PGA_GainValue10PGA_GAIN_6E"></span><span class="target" id="group__pga__api_1ggaee02ca5cbf724e634d3dcd61a92694d7a5b425e3726a00eb95c473e2dbf153dc6"></span><em class="property">enumerator </em><code class="sig-name descname">PGA_GAIN_6</code> = 0x20<a class="headerlink" href="#_CPPv4N13PGA_GainValue10PGA_GAIN_6E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PGA gain value of 6. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13PGA_GainValue11PGA_GAIN_12E">
+<span id="_CPPv3N13PGA_GainValue11PGA_GAIN_12E"></span><span id="_CPPv2N13PGA_GainValue11PGA_GAIN_12E"></span><span class="target" id="group__pga__api_1ggaee02ca5cbf724e634d3dcd61a92694d7adf4524c4a06dbbdef8a86465266e3ad3"></span><em class="property">enumerator </em><code class="sig-name descname">PGA_GAIN_12</code> = 0x40<a class="headerlink" href="#_CPPv4N13PGA_GainValue11PGA_GAIN_12E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PGA gain value of 12. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13PGA_GainValue11PGA_GAIN_24E">
+<span id="_CPPv3N13PGA_GainValue11PGA_GAIN_24E"></span><span id="_CPPv2N13PGA_GainValue11PGA_GAIN_24E"></span><span class="target" id="group__pga__api_1ggaee02ca5cbf724e634d3dcd61a92694d7a2a035f451aadd4be988cbae27f549b1f"></span><em class="property">enumerator </em><code class="sig-name descname">PGA_GAIN_24</code> = 0x60<a class="headerlink" href="#_CPPv4N13PGA_GainValue11PGA_GAIN_24E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PGA gain value of 24. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv424PGA_LowPassResistorValue">
+<span id="_CPPv324PGA_LowPassResistorValue"></span><span id="_CPPv224PGA_LowPassResistorValue"></span><span class="target" id="group__pga__api_1ga64e01690db09e9f1581993f67e470ae8"></span><em class="property">enum </em><code class="sig-name descname">PGA_LowPassResistorValue</code><a class="headerlink" href="#_CPPv424PGA_LowPassResistorValue" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__pga__api_1ga38cd47e4b61250ace48cec41bf0b9415"><span class="std std-ref">PGA_setFilterResistor()</span></a> as the <em>resistorValue</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N24PGA_LowPassResistorValue28PGA_LOW_PASS_FILTER_DISABLEDE">
+<span id="_CPPv3N24PGA_LowPassResistorValue28PGA_LOW_PASS_FILTER_DISABLEDE"></span><span id="_CPPv2N24PGA_LowPassResistorValue28PGA_LOW_PASS_FILTER_DISABLEDE"></span><span class="target" id="group__pga__api_1gga64e01690db09e9f1581993f67e470ae8a7feecd0c5fabb05bdb8a9d3fce5cf8b2"></span><em class="property">enumerator </em><code class="sig-name descname">PGA_LOW_PASS_FILTER_DISABLED</code> = 0<a class="headerlink" href="#_CPPv4N24PGA_LowPassResistorValue28PGA_LOW_PASS_FILTER_DISABLEDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Low pass filter disabled (open circuit) </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N24PGA_LowPassResistorValue36PGA_LOW_PASS_FILTER_RESISTOR_200_OHME">
+<span id="_CPPv3N24PGA_LowPassResistorValue36PGA_LOW_PASS_FILTER_RESISTOR_200_OHME"></span><span id="_CPPv2N24PGA_LowPassResistorValue36PGA_LOW_PASS_FILTER_RESISTOR_200_OHME"></span><span class="target" id="group__pga__api_1gga64e01690db09e9f1581993f67e470ae8aae5f16c8f70a885cc84cac3eecfe6de0"></span><em class="property">enumerator </em><code class="sig-name descname">PGA_LOW_PASS_FILTER_RESISTOR_200_OHM</code> = 2<a class="headerlink" href="#_CPPv4N24PGA_LowPassResistorValue36PGA_LOW_PASS_FILTER_RESISTOR_200_OHME" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Resistor value of 200 Ohm. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N24PGA_LowPassResistorValue36PGA_LOW_PASS_FILTER_RESISTOR_160_OHME">
+<span id="_CPPv3N24PGA_LowPassResistorValue36PGA_LOW_PASS_FILTER_RESISTOR_160_OHME"></span><span id="_CPPv2N24PGA_LowPassResistorValue36PGA_LOW_PASS_FILTER_RESISTOR_160_OHME"></span><span class="target" id="group__pga__api_1gga64e01690db09e9f1581993f67e470ae8a25cce66c193aecdc61cdda29a7b68423"></span><em class="property">enumerator </em><code class="sig-name descname">PGA_LOW_PASS_FILTER_RESISTOR_160_OHM</code> = 4<a class="headerlink" href="#_CPPv4N24PGA_LowPassResistorValue36PGA_LOW_PASS_FILTER_RESISTOR_160_OHME" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Resistor value of 160 Ohm. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N24PGA_LowPassResistorValue36PGA_LOW_PASS_FILTER_RESISTOR_130_OHME">
+<span id="_CPPv3N24PGA_LowPassResistorValue36PGA_LOW_PASS_FILTER_RESISTOR_130_OHME"></span><span id="_CPPv2N24PGA_LowPassResistorValue36PGA_LOW_PASS_FILTER_RESISTOR_130_OHME"></span><span class="target" id="group__pga__api_1gga64e01690db09e9f1581993f67e470ae8a65ce798b6f9027f03cb2ac8df9c39fc1"></span><em class="property">enumerator </em><code class="sig-name descname">PGA_LOW_PASS_FILTER_RESISTOR_130_OHM</code> = 6<a class="headerlink" href="#_CPPv4N24PGA_LowPassResistorValue36PGA_LOW_PASS_FILTER_RESISTOR_130_OHME" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Resistor value of 130 Ohm. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N24PGA_LowPassResistorValue36PGA_LOW_PASS_FILTER_RESISTOR_100_OHME">
+<span id="_CPPv3N24PGA_LowPassResistorValue36PGA_LOW_PASS_FILTER_RESISTOR_100_OHME"></span><span id="_CPPv2N24PGA_LowPassResistorValue36PGA_LOW_PASS_FILTER_RESISTOR_100_OHME"></span><span class="target" id="group__pga__api_1gga64e01690db09e9f1581993f67e470ae8ad009cc85d3f17ba134c8749d7ceffb90"></span><em class="property">enumerator </em><code class="sig-name descname">PGA_LOW_PASS_FILTER_RESISTOR_100_OHM</code> = 8<a class="headerlink" href="#_CPPv4N24PGA_LowPassResistorValue36PGA_LOW_PASS_FILTER_RESISTOR_100_OHME" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Resistor value of 100 Ohm. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N24PGA_LowPassResistorValue35PGA_LOW_PASS_FILTER_RESISTOR_80_OHME">
+<span id="_CPPv3N24PGA_LowPassResistorValue35PGA_LOW_PASS_FILTER_RESISTOR_80_OHME"></span><span id="_CPPv2N24PGA_LowPassResistorValue35PGA_LOW_PASS_FILTER_RESISTOR_80_OHME"></span><span class="target" id="group__pga__api_1gga64e01690db09e9f1581993f67e470ae8ab6b476bba5737cc354b6403f02a75b00"></span><em class="property">enumerator </em><code class="sig-name descname">PGA_LOW_PASS_FILTER_RESISTOR_80_OHM</code> = 10<a class="headerlink" href="#_CPPv4N24PGA_LowPassResistorValue35PGA_LOW_PASS_FILTER_RESISTOR_80_OHME" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Resistor value of 80 Ohm. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N24PGA_LowPassResistorValue35PGA_LOW_PASS_FILTER_RESISTOR_50_OHME">
+<span id="_CPPv3N24PGA_LowPassResistorValue35PGA_LOW_PASS_FILTER_RESISTOR_50_OHME"></span><span id="_CPPv2N24PGA_LowPassResistorValue35PGA_LOW_PASS_FILTER_RESISTOR_50_OHME"></span><span class="target" id="group__pga__api_1gga64e01690db09e9f1581993f67e470ae8a2358741ba4bcd188be4ac31c56c8b19b"></span><em class="property">enumerator </em><code class="sig-name descname">PGA_LOW_PASS_FILTER_RESISTOR_50_OHM</code> = 12<a class="headerlink" href="#_CPPv4N24PGA_LowPassResistorValue35PGA_LOW_PASS_FILTER_RESISTOR_50_OHME" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Resistor value of 50 Ohm. </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv410PGA_enable8uint32_t">
+<span id="_CPPv310PGA_enable8uint32_t"></span><span id="_CPPv210PGA_enable8uint32_t"></span><span id="PGA_enable__uint32_t"></span><span class="target" id="group__pga__api_1gaf9d4238d864c93525ae9bf33f9b33112"></span>void <code class="sig-name descname">PGA_enable</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410PGA_enable8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables PGA.</p>
+<p><p>This function enables the PGA module.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the PGA module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv411PGA_disable8uint32_t">
+<span id="_CPPv311PGA_disable8uint32_t"></span><span id="_CPPv211PGA_disable8uint32_t"></span><span id="PGA_disable__uint32_t"></span><span class="target" id="group__pga__api_1ga378c56dc2f3ae636dbb925f905e9bd0e"></span>void <code class="sig-name descname">PGA_disable</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411PGA_disable8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables PGA.</p>
+<p><p>This function disables the PGA module.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the PGA module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv411PGA_setGain8uint32_t13PGA_GainValue">
+<span id="_CPPv311PGA_setGain8uint32_t13PGA_GainValue"></span><span id="_CPPv211PGA_setGain8uint32_t13PGA_GainValue"></span><span id="PGA_setGain__uint32_t.PGA_GainValue"></span><span class="target" id="group__pga__api_1gaea45311ae41f305407968abf2cb4b031"></span>void <code class="sig-name descname">PGA_setGain</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv413PGA_GainValue" title="PGA_GainValue">PGA_GainValue</a> <em>gainValue</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411PGA_setGain8uint32_t13PGA_GainValue" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets PGA gain value</p>
+<p><p>This function sets the PGA gain value.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the PGA module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gainValue</span></code>: is the PGA gain value.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421PGA_setFilterResistor8uint32_t24PGA_LowPassResistorValue">
+<span id="_CPPv321PGA_setFilterResistor8uint32_t24PGA_LowPassResistorValue"></span><span id="_CPPv221PGA_setFilterResistor8uint32_t24PGA_LowPassResistorValue"></span><span id="PGA_setFilterResistor__uint32_t.PGA_LowPassResistorValue"></span><span class="target" id="group__pga__api_1ga38cd47e4b61250ace48cec41bf0b9415"></span>void <code class="sig-name descname">PGA_setFilterResistor</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv424PGA_LowPassResistorValue" title="PGA_LowPassResistorValue">PGA_LowPassResistorValue</a> <em>resistorValue</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421PGA_setFilterResistor8uint32_t24PGA_LowPassResistorValue" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets PGA output filter resistor value</p>
+<p><p>This function sets the resistor value for the PGA output low pass RC filter. The resistance for the RC low pass filter is provided within the microprocessor and is determined by the value of resistorValue. The capacitor, however, has to be connected outside the microprocessor.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the PGA module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">resistorValue</span></code>: is the PGA output resistor value.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><strong>Note:</strong> Setting a value of PGA_LOW_PASS_FILTER_RESISTOR_0_OHM will disable the internal resistance value.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418PGA_getPGARevision8uint32_t">
+<span id="_CPPv318PGA_getPGARevision8uint32_t"></span><span id="_CPPv218PGA_getPGARevision8uint32_t"></span><span id="PGA_getPGARevision__uint32_t"></span><span class="target" id="group__pga__api_1ga771069dcfdf9c38f170f22d65badee31"></span>uint16_t <code class="sig-name descname">PGA_getPGARevision</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418PGA_getPGARevision8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the PGA revision number.</p>
+<p><p>This function returns the PGA revision number.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the PGA module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns PGA revision. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414PGA_getPGAType8uint32_t">
+<span id="_CPPv314PGA_getPGAType8uint32_t"></span><span id="_CPPv214PGA_getPGAType8uint32_t"></span><span id="PGA_getPGAType__uint32_t"></span><span class="target" id="group__pga__api_1ga380b2004773df3d72b35c728dcb411cd"></span>uint16_t <code class="sig-name descname">PGA_getPGAType</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414PGA_getPGAType8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the PGA Type.</p>
+<p><p>This function returns the PGA Type number.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the PGA module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns PGA type. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417PGA_lockRegisters8uint32_t8uint16_t">
+<span id="_CPPv317PGA_lockRegisters8uint32_t8uint16_t"></span><span id="_CPPv217PGA_lockRegisters8uint32_t8uint16_t"></span><span id="PGA_lockRegisters__uint32_t.uint16_t"></span><span class="target" id="group__pga__api_1ga551ea1cea4dd63958068a7d88dce9985"></span>void <code class="sig-name descname">PGA_lockRegisters</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>registerType</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417PGA_lockRegisters8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Locks PGA registers.</p>
+<p><p>This function locks the PGA registers specified by registerType. Valid values for registerType are: PGA_REGISTER_PGACTL, PGA_REGISTER_GAINxTRIM, where x is 3,6,12 or 24.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the PGA module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">registerType</span></code>: is the PGA register to be locked.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>The code for this module is contained in driverlib/pga.c, with
+driverlib/pga.h containing the API declarations for use by
+applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="memcfg.html" class="btn btn-neutral float-left" title="MEMCFG Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pmbus.html" class="btn btn-neutral float-right" title="PMBUS Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
+      <span class="lastupdated">Last updated on Oct 11, 2022.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v4.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

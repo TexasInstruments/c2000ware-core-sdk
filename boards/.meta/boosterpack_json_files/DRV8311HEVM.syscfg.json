@@ -1,0 +1,166 @@
+/*
+* Copyright (c) 2018-2022 Texas Instruments Incorporated - http://www.ti.com
+* All rights reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted provided that the following conditions
+* are met:
+*
+* *  Redistributions of source code must retain the above copyright
+*    notice, this list of conditions and the following disclaimer.
+*
+* *  Redistributions in binary form must reproduce the above copyright
+*    notice, this list of conditions and the following disclaimer in the
+*    documentation and/or other materials provided with the distribution.
+*
+* *  Neither the name of Texas Instruments Incorporated nor the names of
+*    its contributors may be used to endorse or promote products derived
+*    from this software without specific prior written permission.
+*
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+* AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+* THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+* PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+* CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+* EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+* PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+* OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+* WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+* OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+* EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*
+*/
+
+/*
+*  ======== DRV8311HEVM.syscfg.json ========
+*/
+
+{
+    "name": "DRV8311HEVM",
+    "displayName": "DRV8311HEVM",
+    "description": "DRV8311HEVM BoosterPack",
+    "longDescription": "DRV8311HEVM BoosterPack",
+    "headerType": "BoosterPack 40 pin",
+    "components": {
+
+        "BOOSTXL_VSENSE": {
+            "displayName": "DRV8311HEVM VSENSE",
+            "description": "DRV8311HEVM VSENSE Pins",
+            "longDescription": "Pins used by DRV8311HEVM for voltage sensing",
+            "definition": "/boards/components/boostxl_vsense.json",
+            "connections": {
+                "VSENSE_A": 23,
+                "VSENSE_B": 24,
+                "VSENSE_C": 25,
+                "VSENSE_VDD": 26
+            }
+        },
+
+        "BOOSTXL_ISENSE": {
+            "displayName": "DRV8311HEVM ISENSE",
+            "description": "DRV8311HEVM ISENSE Pins",
+            "longDescription": "Pins used by DRV8311HEVM for current sensing",
+            "definition": "/boards/components/boostxl_isense.json",
+            "connections": {
+                "ISENSE_A": 27,
+                "ISENSE_B": 28,
+                "ISENSE_C": 29
+            }
+        },
+
+        "BOOSTXL_SPI": {
+            "displayName": "DRV8311HEVM SPI Bus",
+            "description": "DRV8311HEVM SPI Bus Pins",
+            "longDescription": "Pins used by DRV8311HEVM for SPI bus communication",
+            "definition": "/boards/components/boostxl_spi_bus.json",
+            "connections": {
+                "SPI_CLK": 7,
+                "SPI_STE": 19,
+                "SPI_SIMO": 15,
+                "SPI_SOMI": 14
+            }
+        },
+
+        "BOOSTXL_PWMC": {
+            "displayName": "DRV8311HEVM PWMC Pair",
+            "description": "DRV8311HEVM PWMC Pair Pins",
+            "longDescription": "Pins used by DRV8311HEVM for PWMHC/PWMLC",
+            "definition": "/boards/components/boostxl_pwm_pair.json",
+            "connections": {
+                "EPWM_A": 36,
+                "EPWM_B": 35
+            }
+        },
+
+        "HALLC": {
+            "displayName": "HALLC GPIO Signal",
+            "description": "HALLC GPIO Signal",
+            "longDescription": "HALLC GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 4
+            }
+        },
+
+        "nSLEEP": {
+            "displayName": "nSLEEP GPIO Signal",
+            "description": "nSLEEP GPIO Signal",
+            "longDescription": "nSLEEP GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 9
+            }
+        },
+
+        "nFAULT": {
+            "displayName": "nFAULT GPIO Signal",
+            "description": "nFAULT GPIO Signal",
+            "longDescription": "nFAULT GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 10
+            }
+        },
+
+        "C_TAP": {
+            "displayName": "C_TAP ADC Signal",
+            "description": "C_TAP ADC Signal",
+            "longDescription": "C_TAP ADC Signal",
+            "definition": "/boards/components/boostxl_adc.json",
+            "connections": {
+                "ADC": 30
+            }
+        },
+
+        "HALLA": {
+            "displayName": "HALLA GPIO Signal",
+            "description": "HALLA GPIO Signal",
+            "longDescription": "HALLA GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 34
+            }
+        },
+
+        "HALLB": {
+            "displayName": "HALLB GPIO Signal",
+            "description": "HALLB GPIO Signal",
+            "longDescription": "HALLB GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 33
+            }
+        },
+
+        "MCU_LED": {
+            "displayName": "MCU_LED GPIO Signal",
+            "description": "MCU_LED GPIO Signal",
+            "longDescription": "MCU_LED GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 11
+            }
+        },
+
+    }
+}

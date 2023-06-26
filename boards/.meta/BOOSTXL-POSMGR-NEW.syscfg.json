@@ -1,0 +1,180 @@
+/*
+* Copyright (c) 2018-2022 Texas Instruments Incorporated - http://www.ti.com
+* All rights reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted provided that the following conditions
+* are met:
+*
+* *  Redistributions of source code must retain the above copyright
+*    notice, this list of conditions and the following disclaimer.
+*
+* *  Redistributions in binary form must reproduce the above copyright
+*    notice, this list of conditions and the following disclaimer in the
+*    documentation and/or other materials provided with the distribution.
+*
+* *  Neither the name of Texas Instruments Incorporated nor the names of
+*    its contributors may be used to endorse or promote products derived
+*    from this software without specific prior written permission.
+*
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+* AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+* THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+* PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+* CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+* EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+* PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+* OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+* WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+* OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+* EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*
+*/
+
+/*
+*  ======== BOOSTXL-POSMGR-NEW.syscfg.json ========
+*/
+
+{
+    "name": "BOOSTXL-POSMGR-NEW",
+    "displayName": "BOOSTXL-POSMGR-NEW",
+    "description": "BOOSTXL-POSMGR-NEW BoosterPack",
+    "longDescription": "BOOSTXL-POSMGR-NEW BoosterPack",
+    "headerType": "BoosterPack 40 pin",
+    "components": {
+
+        "BOOSTXL_SPI": {
+            "displayName": "BOOSTXL-POSMGR-NEW SPI Bus",
+            "description": "BOOSTXL-POSMGR-NEW SPI Bus Pins",
+            "longDescription": "Pins used by BOOSTXL-POSMGR-NEW for SPI bus communication",
+            "definition": "/boards/components/boostxl_spi_bus.json",
+            "connections": {
+                "SPI_CLK": 7,
+                "SPI_STE": 19,
+                "SPI_SIMO": 15,
+                "SPI_SOMI": 14
+            }
+        },
+
+        "PWR_EN_C": {
+            "displayName": "PWR_EN_C GPIO Signal",
+            "description": "PWR_EN_C GPIO Signal",
+            "longDescription": "PWR_EN_C GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 3
+            }
+        },
+
+        "PTI3": {
+            "displayName": "PTI3 GPIO Signal",
+            "description": "PTI3 GPIO Signal",
+            "longDescription": "PTI3 GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 8
+            }
+        },
+
+        "PTI2": {
+            "displayName": "PTI2 GPIO Signal",
+            "description": "PTI2 GPIO Signal",
+            "longDescription": "PTI2 GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 9
+            }
+        },
+
+        "PTI1": {
+            "displayName": "PTI1 GPIO Signal",
+            "description": "PTI1 GPIO Signal",
+            "longDescription": "PTI1 GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 10
+            }
+        },
+
+        "ExcFbk": {
+            "displayName": "ExcFbk ADC Signal",
+            "description": "ExcFbk ADC Signal",
+            "longDescription": "ExcFbk ADC Signal",
+            "definition": "/boards/components/boostxl_adc.json",
+            "connections": {
+                "ADC": 23
+            }
+        },
+
+        "SINE": {
+            "displayName": "SINE ADC Signal",
+            "description": "SINE ADC Signal",
+            "longDescription": "SINE ADC Signal",
+            "definition": "/boards/components/boostxl_adc.json",
+            "connections": {
+                "ADC": 27
+            }
+        },
+
+        "COS": {
+            "displayName": "COS ADC Signal",
+            "description": "COS ADC Signal",
+            "longDescription": "COS ADC Signal",
+            "definition": "/boards/components/boostxl_adc.json",
+            "connections": {
+                "ADC": 29
+            }
+        },
+
+        "QEPI/SC-I": {
+            "displayName": "QEPI/SC-I GPIO Signal",
+            "description": "QEPI/SC-I GPIO Signal",
+            "longDescription": "QEPI/SC-I GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 37
+            }
+        },
+
+        "HDSL_SEL_C": {
+            "displayName": "HDSL_SEL_C GPIO Signal",
+            "description": "HDSL_SEL_C GPIO Signal",
+            "longDescription": "HDSL_SEL_C GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 36
+            }
+        },
+
+        "SCI-I": {
+            "displayName": "SCI-I GPIO Signal",
+            "description": "SCI-I GPIO Signal",
+            "longDescription": "SCI-I GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 18
+            }
+        },
+
+        "SD": {
+            "displayName": "SD GPIO Signal",
+            "description": "SD GPIO Signal",
+            "longDescription": "SD GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 17
+            }
+        },
+
+        "TxEN": {
+            "displayName": "TxEN GPIO Signal",
+            "description": "TxEN GPIO Signal",
+            "longDescription": "TxEN GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 11
+            }
+        },
+
+    }
+}

@@ -1,0 +1,165 @@
+/*
+* Copyright (c) 2018-2022 Texas Instruments Incorporated - http://www.ti.com
+* All rights reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted provided that the following conditions
+* are met:
+*
+* *  Redistributions of source code must retain the above copyright
+*    notice, this list of conditions and the following disclaimer.
+*
+* *  Redistributions in binary form must reproduce the above copyright
+*    notice, this list of conditions and the following disclaimer in the
+*    documentation and/or other materials provided with the distribution.
+*
+* *  Neither the name of Texas Instruments Incorporated nor the names of
+*    its contributors may be used to endorse or promote products derived
+*    from this software without specific prior written permission.
+*
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+* AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+* THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+* PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+* CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+* EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+* PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+* OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+* WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+* OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+* EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*
+*/
+
+/*
+*  ======== DRV8300RDGE-EVM.syscfg.json ========
+*/
+
+{
+    "name": "DRV8300RDGE-EVM",
+    "displayName": "DRV8300RDGE-EVM",
+    "description": "DRV8300RDGE-EVM BoosterPack",
+    "longDescription": "DRV8300RDGE-EVM BoosterPack",
+    "headerType": "BoosterPack 40 pin",
+    "components": {
+
+        "BOOSTXL_VSENSE": {
+            "displayName": "DRV8300RDGE-EVM VSENSE",
+            "description": "DRV8300RDGE-EVM VSENSE Pins",
+            "longDescription": "Pins used by DRV8300RDGE-EVM for voltage sensing",
+            "definition": "/boards/components/boostxl_vsense.json",
+            "connections": {
+                "VSENSE_A": 23,
+                "VSENSE_B": 24,
+                "VSENSE_C": 25,
+                "VSENSE_VDD": 26
+            }
+        },
+
+        "BOOSTXL_ISENSE": {
+            "displayName": "DRV8300RDGE-EVM ISENSE",
+            "description": "DRV8300RDGE-EVM ISENSE Pins",
+            "longDescription": "Pins used by DRV8300RDGE-EVM for current sensing",
+            "definition": "/boards/components/boostxl_isense.json",
+            "connections": {
+                "ISENSE_A": 29,
+                "ISENSE_B": 28,
+                "ISENSE_C": 27
+            }
+        },
+
+        "BOOSTXL_PWMA": {
+            "displayName": "DRV8300RDGE-EVM PWMA Pair",
+            "description": "DRV8300RDGE-EVM PWMA Pair Pins",
+            "longDescription": "Pins used by DRV8300RDGE-EVM for PWMHA/PWMLA",
+            "definition": "/boards/components/boostxl_pwm_pair.json",
+            "connections": {
+                "EPWM_A": 40,
+                "EPWM_B": 39
+            }
+        },
+
+        "BOOSTXL_PWMB": {
+            "displayName": "DRV8300RDGE-EVM PWMB Pair",
+            "description": "DRV8300RDGE-EVM PWMB Pair Pins",
+            "longDescription": "Pins used by DRV8300RDGE-EVM for PWMHB/PWMLB",
+            "definition": "/boards/components/boostxl_pwm_pair.json",
+            "connections": {
+                "EPWM_A": 38,
+                "EPWM_B": 37
+            }
+        },
+
+        "BOOSTXL_PWMC": {
+            "displayName": "DRV8300RDGE-EVM PWMC Pair",
+            "description": "DRV8300RDGE-EVM PWMC Pair Pins",
+            "longDescription": "Pins used by DRV8300RDGE-EVM for PWMHC/PWMLC",
+            "definition": "/boards/components/boostxl_pwm_pair.json",
+            "connections": {
+                "EPWM_A": 36,
+                "EPWM_B": 35
+            }
+        },
+
+        "TEMP": {
+            "displayName": "TEMP GPIO Signal",
+            "description": "TEMP GPIO Signal",
+            "longDescription": "TEMP GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 5
+            }
+        },
+
+        "SEN_GVDD": {
+            "displayName": "SEN_GVDD ADC Signal",
+            "description": "SEN_GVDD ADC Signal",
+            "longDescription": "SEN_GVDD ADC Signal",
+            "definition": "/boards/components/boostxl_adc.json",
+            "connections": {
+                "ADC": 30
+            }
+        },
+
+        "HALL_A": {
+            "displayName": "HALL_A GPIO Signal",
+            "description": "HALL_A GPIO Signal",
+            "longDescription": "HALL_A GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 34
+            }
+        },
+
+        "HALL_B": {
+            "displayName": "HALL_B GPIO Signal",
+            "description": "HALL_B GPIO Signal",
+            "longDescription": "HALL_B GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 33
+            }
+        },
+
+        "HALL_C": {
+            "displayName": "HALL_C GPIO Signal",
+            "description": "HALL_C GPIO Signal",
+            "longDescription": "HALL_C GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 32
+            }
+        },
+
+        "FAULT": {
+            "displayName": "FAULT GPIO Signal",
+            "description": "FAULT GPIO Signal",
+            "longDescription": "FAULT GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 14
+            }
+        },
+
+    }
+}

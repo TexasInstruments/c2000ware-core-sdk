@@ -1,0 +1,158 @@
+/*
+* Copyright (c) 2018-2022 Texas Instruments Incorporated - http://www.ti.com
+* All rights reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted provided that the following conditions
+* are met:
+*
+* *  Redistributions of source code must retain the above copyright
+*    notice, this list of conditions and the following disclaimer.
+*
+* *  Redistributions in binary form must reproduce the above copyright
+*    notice, this list of conditions and the following disclaimer in the
+*    documentation and/or other materials provided with the distribution.
+*
+* *  Neither the name of Texas Instruments Incorporated nor the names of
+*    its contributors may be used to endorse or promote products derived
+*    from this software without specific prior written permission.
+*
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+* AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+* THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+* PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+* CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+* EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+* PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+* OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+* WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+* OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+* EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*
+*/
+
+/*
+*  ======== BOOSTXL-DRV8301.syscfg.json ========
+*/
+
+{
+    "name": "BOOSTXL-DRV8301",
+    "displayName": "BOOSTXL-DRV8301",
+    "description": "BOOSTXL-DRV8301 BoosterPack",
+    "longDescription": "BOOSTXL-DRV8301 BoosterPack",
+    "headerType": "BoosterPack 40 pin",
+    "components": {
+
+        "BOOSTXL_VSENSE": {
+            "displayName": "BOOSTXL-DRV8301 VSENSE",
+            "description": "BOOSTXL-DRV8301 VSENSE Pins",
+            "longDescription": "Pins used by BOOSTXL-DRV8301 for voltage sensing",
+            "definition": "/boards/components/boostxl_vsense.json",
+            "connections": {
+                "VSENSE_A": 24,
+                "VSENSE_B": 25,
+                "VSENSE_C": 26,
+                "VSENSE_VDD": 23
+            }
+        },
+
+        "BOOSTXL_ISENSE": {
+            "displayName": "BOOSTXL-DRV8301 ISENSE",
+            "description": "BOOSTXL-DRV8301 ISENSE Pins",
+            "longDescription": "Pins used by BOOSTXL-DRV8301 for current sensing",
+            "definition": "/boards/components/boostxl_isense.json",
+            "connections": {
+                "ISENSE_A": 27,
+                "ISENSE_B": 28,
+                "ISENSE_C": 29
+            }
+        },
+
+        "BOOSTXL_SPI": {
+            "displayName": "BOOSTXL-DRV8301 SPI Bus",
+            "description": "BOOSTXL-DRV8301 SPI Bus Pins",
+            "longDescription": "Pins used by BOOSTXL-DRV8301 for SPI bus communication",
+            "definition": "/boards/components/boostxl_spi_bus.json",
+            "connections": {
+                "SPI_CLK": 7,
+                "SPI_STE": 19,
+                "SPI_SIMO": 15,
+                "SPI_SOMI": 14
+            }
+        },
+
+        "BOOSTXL_PWMA": {
+            "displayName": "BOOSTXL-DRV8301 PWMA Pair",
+            "description": "BOOSTXL-DRV8301 PWMA Pair Pins",
+            "longDescription": "Pins used by BOOSTXL-DRV8301 for PWMHA/PWMLA",
+            "definition": "/boards/components/boostxl_pwm_pair.json",
+            "connections": {
+                "EPWM_A": 40,
+                "EPWM_B": 39
+            }
+        },
+
+        "BOOSTXL_PWMB": {
+            "displayName": "BOOSTXL-DRV8301 PWMB Pair",
+            "description": "BOOSTXL-DRV8301 PWMB Pair Pins",
+            "longDescription": "Pins used by BOOSTXL-DRV8301 for PWMHB/PWMLB",
+            "definition": "/boards/components/boostxl_pwm_pair.json",
+            "connections": {
+                "EPWM_A": 38,
+                "EPWM_B": 37
+            }
+        },
+
+        "BOOSTXL_PWMC": {
+            "displayName": "BOOSTXL-DRV8301 PWMC Pair",
+            "description": "BOOSTXL-DRV8301 PWMC Pair Pins",
+            "longDescription": "Pins used by BOOSTXL-DRV8301 for PWMHC/PWMLC",
+            "definition": "/boards/components/boostxl_pwm_pair.json",
+            "connections": {
+                "EPWM_A": 36,
+                "EPWM_B": 35
+            }
+        },
+
+        "FAULT": {
+            "displayName": "FAULT GPIO Signal",
+            "description": "FAULT GPIO Signal",
+            "longDescription": "FAULT GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 3
+            }
+        },
+
+        "OCTW": {
+            "displayName": "OCTW GPIO Signal",
+            "description": "OCTW GPIO Signal",
+            "longDescription": "OCTW GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 4
+            }
+        },
+
+        "EN-GATE": {
+            "displayName": "EN-GATE GPIO Signal",
+            "description": "EN-GATE GPIO Signal",
+            "longDescription": "EN-GATE GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 13
+            }
+        },
+
+        "DC-CAL": {
+            "displayName": "DC-CAL GPIO Signal",
+            "description": "DC-CAL GPIO Signal",
+            "longDescription": "DC-CAL GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 12
+            }
+        },
+
+    }
+}

@@ -1,0 +1,215 @@
+/*
+* Copyright (c) 2018-2022 Texas Instruments Incorporated - http://www.ti.com
+* All rights reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted provided that the following conditions
+* are met:
+*
+* *  Redistributions of source code must retain the above copyright
+*    notice, this list of conditions and the following disclaimer.
+*
+* *  Redistributions in binary form must reproduce the above copyright
+*    notice, this list of conditions and the following disclaimer in the
+*    documentation and/or other materials provided with the distribution.
+*
+* *  Neither the name of Texas Instruments Incorporated nor the names of
+*    its contributors may be used to endorse or promote products derived
+*    from this software without specific prior written permission.
+*
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+* AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+* THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+* PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+* CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+* EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+* PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+* OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+* WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+* OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+* EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*
+*/
+
+/*
+*  ======== BOOSTXL-DRV3245AQ1.syscfg.json ========
+*/
+
+{
+    "name": "BOOSTXL-DRV3245AQ1",
+    "displayName": "BOOSTXL-DRV3245AQ1",
+    "description": "BOOSTXL-DRV3245AQ1 BoosterPack",
+    "longDescription": "BOOSTXL-DRV3245AQ1 BoosterPack",
+    "headerType": "BoosterPack 40 pin",
+    "components": {
+
+        "BOOSTXL_VSENSE": {
+            "displayName": "BOOSTXL-DRV3245AQ1 VSENSE",
+            "description": "BOOSTXL-DRV3245AQ1 VSENSE Pins",
+            "longDescription": "Pins used by BOOSTXL-DRV3245AQ1 for voltage sensing",
+            "definition": "/boards/components/boostxl_vsense_novdd.json",
+            "connections": {
+                "VSENSE_A": 23,
+                "VSENSE_B": 24,
+                "VSENSE_C": 25
+            }
+        },
+
+        "BOOSTXL_SPI": {
+            "displayName": "BOOSTXL-DRV3245AQ1 SPI Bus",
+            "description": "BOOSTXL-DRV3245AQ1 SPI Bus Pins",
+            "longDescription": "Pins used by BOOSTXL-DRV3245AQ1 for SPI bus communication",
+            "definition": "/boards/components/boostxl_spi_bus.json",
+            "connections": {
+                "SPI_CLK": 7,
+                "SPI_STE": 19,
+                "SPI_SIMO": 15,
+                "SPI_SOMI": 14
+            }
+        },
+
+        "BOOSTXL_PWMA": {
+            "displayName": "BOOSTXL-DRV3245AQ1 PWMA Pair",
+            "description": "BOOSTXL-DRV3245AQ1 PWMA Pair Pins",
+            "longDescription": "Pins used by BOOSTXL-DRV3245AQ1 for PWMHA/PWMLA",
+            "definition": "/boards/components/boostxl_pwm_pair.json",
+            "connections": {
+                "EPWM_A": 40,
+                "EPWM_B": 39
+            }
+        },
+
+        "BOOSTXL_PWMB": {
+            "displayName": "BOOSTXL-DRV3245AQ1 PWMB Pair",
+            "description": "BOOSTXL-DRV3245AQ1 PWMB Pair Pins",
+            "longDescription": "Pins used by BOOSTXL-DRV3245AQ1 for PWMHB/PWMLB",
+            "definition": "/boards/components/boostxl_pwm_pair.json",
+            "connections": {
+                "EPWM_A": 38,
+                "EPWM_B": 37
+            }
+        },
+
+        "BOOSTXL_PWMC": {
+            "displayName": "BOOSTXL-DRV3245AQ1 PWMC Pair",
+            "description": "BOOSTXL-DRV3245AQ1 PWMC Pair Pins",
+            "longDescription": "Pins used by BOOSTXL-DRV3245AQ1 for PWMHC/PWMLC",
+            "definition": "/boards/components/boostxl_pwm_pair.json",
+            "connections": {
+                "EPWM_A": 36,
+                "EPWM_B": 35
+            }
+        },
+
+        "nFAULT": {
+            "displayName": "nFAULT GPIO Signal",
+            "description": "nFAULT GPIO Signal",
+            "longDescription": "nFAULT GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 3
+            }
+        },
+
+        "nFAULT": {
+            "displayName": "nFAULT GPIO Signal",
+            "description": "nFAULT GPIO Signal",
+            "longDescription": "nFAULT GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 5
+            }
+        },
+
+        "VDCBUS": {
+            "displayName": "VDCBUS ADC Signal",
+            "description": "VDCBUS ADC Signal",
+            "longDescription": "VDCBUS ADC Signal",
+            "definition": "/boards/components/boostxl_adc.json",
+            "connections": {
+                "ADC": 6
+            }
+        },
+
+        "DRVOFF": {
+            "displayName": "DRVOFF GPIO Signal",
+            "description": "DRVOFF GPIO Signal",
+            "longDescription": "DRVOFF GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 9
+            }
+        },
+
+        "SO1": {
+            "displayName": "SO1 ADC Signal",
+            "description": "SO1 ADC Signal",
+            "longDescription": "SO1 ADC Signal",
+            "definition": "/boards/components/boostxl_adc.json",
+            "connections": {
+                "ADC": 26
+            }
+        },
+
+        "SO2": {
+            "displayName": "SO2 ADC Signal",
+            "description": "SO2 ADC Signal",
+            "longDescription": "SO2 ADC Signal",
+            "definition": "/boards/components/boostxl_adc.json",
+            "connections": {
+                "ADC": 27
+            }
+        },
+
+        "SO3": {
+            "displayName": "SO3 ADC Signal",
+            "description": "SO3 ADC Signal",
+            "longDescription": "SO3 ADC Signal",
+            "definition": "/boards/components/boostxl_adc.json",
+            "connections": {
+                "ADC": 28
+            }
+        },
+
+        "HALL_A": {
+            "displayName": "HALL_A GPIO Signal",
+            "description": "HALL_A GPIO Signal",
+            "longDescription": "HALL_A GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 34
+            }
+        },
+
+        "HALL_C": {
+            "displayName": "HALL_C GPIO Signal",
+            "description": "HALL_C GPIO Signal",
+            "longDescription": "HALL_C GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 33
+            }
+        },
+
+        "HALL_B": {
+            "displayName": "HALL_B GPIO Signal",
+            "description": "HALL_B GPIO Signal",
+            "longDescription": "HALL_B GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 32
+            }
+        },
+
+        "EN": {
+            "displayName": "EN GPIO Signal",
+            "description": "EN GPIO Signal",
+            "longDescription": "EN GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 13
+            }
+        },
+
+    }
+}

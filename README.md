@@ -28,7 +28,10 @@ The SDK includes peripheral usage examples to help users to get started quickly.
 ## Repository Layout
 
 - .metadata folder
-  - This folder contains the C2000Ware resource explorer standalone GUI files. Do not modify.
+   - This folder contains the metadata files for SysConfig. Do not modify.
+ 
+- boards/.meta
+  - This folder contains the metadata files for C2000 boards. Do not modify.
   
 - device_support
   - This folder contains all device-specific support files, bit field headers and device development user’s guides.

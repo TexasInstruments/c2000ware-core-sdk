@@ -1,0 +1,158 @@
+/*
+* Copyright (c) 2018-2022 Texas Instruments Incorporated - http://www.ti.com
+* All rights reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted provided that the following conditions
+* are met:
+*
+* *  Redistributions of source code must retain the above copyright
+*    notice, this list of conditions and the following disclaimer.
+*
+* *  Redistributions in binary form must reproduce the above copyright
+*    notice, this list of conditions and the following disclaimer in the
+*    documentation and/or other materials provided with the distribution.
+*
+* *  Neither the name of Texas Instruments Incorporated nor the names of
+*    its contributors may be used to endorse or promote products derived
+*    from this software without specific prior written permission.
+*
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+* AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+* THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+* PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+* CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+* EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+* PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+* OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+* WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+* OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+* EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*
+*/
+
+/*
+*  ======== BOOSTXL-DRV8305EVM.syscfg.json ========
+*/
+
+{
+    "name": "BOOSTXL-DRV8305EVM",
+    "displayName": "BOOSTXL-DRV8305EVM",
+    "description": "BOOSTXL-DRV8305EVM BoosterPack",
+    "longDescription": "BOOSTXL-DRV8305EVM BoosterPack",
+    "headerType": "BoosterPack 40 pin",
+    "components": {
+
+        "BOOSTXL_VSENSE": {
+            "displayName": "BOOSTXL-DRV8305EVM VSENSE",
+            "description": "BOOSTXL-DRV8305EVM VSENSE Pins",
+            "longDescription": "Pins used by BOOSTXL-DRV8305EVM for voltage sensing",
+            "definition": "/boards/components/boostxl_vsense.json",
+            "connections": {
+                "VSENSE_A": 23,
+                "VSENSE_B": 24,
+                "VSENSE_C": 25,
+                "VSENSE_VDD": 26
+            }
+        },
+
+        "BOOSTXL_ISENSE": {
+            "displayName": "BOOSTXL-DRV8305EVM ISENSE",
+            "description": "BOOSTXL-DRV8305EVM ISENSE Pins",
+            "longDescription": "Pins used by BOOSTXL-DRV8305EVM for current sensing",
+            "definition": "/boards/components/boostxl_isense.json",
+            "connections": {
+                "ISENSE_A": 27,
+                "ISENSE_B": 28,
+                "ISENSE_C": 29
+            }
+        },
+
+        "BOOSTXL_SPI": {
+            "displayName": "BOOSTXL-DRV8305EVM SPI Bus",
+            "description": "BOOSTXL-DRV8305EVM SPI Bus Pins",
+            "longDescription": "Pins used by BOOSTXL-DRV8305EVM for SPI bus communication",
+            "definition": "/boards/components/boostxl_spi_bus.json",
+            "connections": {
+                "SPI_CLK": 7,
+                "SPI_STE": 19,
+                "SPI_SIMO": 15,
+                "SPI_SOMI": 14
+            }
+        },
+
+        "BOOSTXL_PWMA": {
+            "displayName": "BOOSTXL-DRV8305EVM PWMA Pair",
+            "description": "BOOSTXL-DRV8305EVM PWMA Pair Pins",
+            "longDescription": "Pins used by BOOSTXL-DRV8305EVM for PWMHA/PWMLA",
+            "definition": "/boards/components/boostxl_pwm_pair.json",
+            "connections": {
+                "EPWM_A": 40,
+                "EPWM_B": 39
+            }
+        },
+
+        "BOOSTXL_PWMB": {
+            "displayName": "BOOSTXL-DRV8305EVM PWMB Pair",
+            "description": "BOOSTXL-DRV8305EVM PWMB Pair Pins",
+            "longDescription": "Pins used by BOOSTXL-DRV8305EVM for PWMHB/PWMLB",
+            "definition": "/boards/components/boostxl_pwm_pair.json",
+            "connections": {
+                "EPWM_A": 38,
+                "EPWM_B": 37
+            }
+        },
+
+        "BOOSTXL_PWMC": {
+            "displayName": "BOOSTXL-DRV8305EVM PWMC Pair",
+            "description": "BOOSTXL-DRV8305EVM PWMC Pair Pins",
+            "longDescription": "Pins used by BOOSTXL-DRV8305EVM for PWMHC/PWMLC",
+            "definition": "/boards/components/boostxl_pwm_pair.json",
+            "connections": {
+                "EPWM_A": 36,
+                "EPWM_B": 35
+            }
+        },
+
+        "FAULT": {
+            "displayName": "FAULT GPIO Signal",
+            "description": "FAULT GPIO Signal",
+            "longDescription": "FAULT GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 3
+            }
+        },
+
+        "PWRGD": {
+            "displayName": "PWRGD GPIO Signal",
+            "description": "PWRGD GPIO Signal",
+            "longDescription": "PWRGD GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 16
+            }
+        },
+
+        "ENGATE": {
+            "displayName": "ENGATE GPIO Signal",
+            "description": "ENGATE GPIO Signal",
+            "longDescription": "ENGATE GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 13
+            }
+        },
+
+        "WAKE": {
+            "displayName": "WAKE GPIO Signal",
+            "description": "WAKE GPIO Signal",
+            "longDescription": "WAKE GPIO Signal",
+            "definition": "/boards/components/boostxl_gpio.json",
+            "connections": {
+                "GPIO": 12
+            }
+        },
+
+    }
+}

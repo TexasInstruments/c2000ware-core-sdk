@@ -53,8 +53,8 @@ The SDK includes peripheral usage examples to help users to get started quickly.
 C2000Ware SDK comprises of multiple repositories with the current repository at it's core. 
 There are other repositories that need to be cloned and are listed below:
 
-- [c2000ware-c2000-academy]
-- [c2000ware-rtosl]
+- [c2000ware-c2000-academy] (https://github.com/TexasInstruments/c2000ware-c2000-academy/tree/main/training)
+- [c2000ware-FreeRTOSl] (https://github.com/TexasInstruments/c2000ware-FreeRTOS/tree/main/kernel)
 
 
 C2000Ware installers is available for download 

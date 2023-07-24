@@ -105,8 +105,8 @@ extern "C"
 //
 // Values that can be passed to MemCfg_lockConfig(), MemCfg_unlockConfig(),
 // MemCfg_commitConfig(), MemCfg_setProtection(), MemCfg_initSections(),
-// MemCfg_setCLAMemType(), MemCfg_setLSRAMControllerSel(), MemCfg_getInitStatus()
-// as the memSection(s) or ramSection(s) parameter.
+// MemCfg_setCLAMemType(), MemCfg_setLSRAMControllerSel(),
+// MemCfg_getInitStatus() as the memSection(s) or ramSection(s) parameter.
 //
 //*****************************************************************************
 //
@@ -811,8 +811,8 @@ MemCfg_unlockConfig(uint32_t memSections);
 //!
 //! \param memSections is the logical OR of the sections to be configured.
 //!
-//! This function permanently locks writes to the access protection and controller
-//! select configuration of a memory section. That means calling
+//! This function permanently locks writes to the access protection and
+//! controller select configuration of a memory section. That means calling
 //! MemCfg_setProtection() or MemCfg_setLSRAMControllerSel() for a locked memory
 //! section will have no effect. To lock the configuration in a nonpermanent
 //! way, use MemCfg_lockConfig().

@@ -35,7 +35,7 @@ void `nameOfPeripheral`_init(){
     var NMIIntLine = ""
     usedCtms = instance.ctmsUsed;
     usedHwbps = instance.hwbpsUsed;
-    if(["F2838x", "F28002x", "F28003x"].includes(system.deviceData.deviceId))
+    if(["F2838x", "F28002x", "F28003x", "F28P65x"].includes(system.deviceData.deviceId))
     {
         usedANDMasks = instance.ANDmasksUsed;
         usedORMasks = instance.ORmasksUsed;
@@ -65,7 +65,7 @@ void `nameOfPeripheral`_init(){
 
         var rtosIntLine = "counter_params.enable_int = " + ctm.rtosInterrupt.toString() + ";"
 
-        if(["F2838x", "F28002x", "F28003x"].includes(system.deviceData.deviceId))
+        if(["F2838x", "F28002x", "F28003x", "F28P65x"].includes(system.deviceData.deviceId))
         {
             if(ctm.NMIInterrupt == true)
             {
@@ -141,7 +141,7 @@ void `nameOfPeripheral`_init(){
         var haltCPULine = "buscomp_params.enable_stop = " + hwbp.haltCPU.toString() + ";"
 
         var rtosIntLine = "buscomp_params.enable_int = " + hwbp.rtosInterrupt.toString() + ";"
-        if(["F2838x", "F28002x", "F28003x"].includes(system.deviceData.deviceId))
+        if(["F2838x", "F28002x", "F28003x", "F28P65x"].includes(system.deviceData.deviceId))
         {
             if(hwbp.NMIInterrupt == true)
             {

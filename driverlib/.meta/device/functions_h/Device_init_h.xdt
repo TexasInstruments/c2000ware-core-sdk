@@ -86,6 +86,48 @@
 
 //*****************************************************************************
 %}
+%else if (["F28P65x"].includes(Common.getDeviceName())){
+//
+// Macros related to booting CPU2. These can be used while invoking the
+// function Device_bootCPU2()
+//
+//*****************************************************************************
+#ifdef CPU1
+#define BOOT_KEY                                0x5A000000UL
+
+#define BOOTMODE_BOOT_TO_FLASH_BANK0_SECTOR0         0x03U
+#define BOOTMODE_BOOT_TO_FLASH_BANK0_SECTOR127_END   0x23U
+#define BOOTMODE_BOOT_TO_FLASH_BANK1_SECTOR0         0x43U
+#define BOOTMODE_BOOT_TO_FLASH_BANK2_SECTOR0         0x63U
+#define BOOTMODE_BOOT_TO_FLASH_BANK3_SECTOR0         0x83U
+#define BOOTMODE_BOOT_TO_FLASH_BANK4_SECTOR0         0xA3U
+#define BOOTMODE_BOOT_TO_FLASH_BANK4_SECTOR127_END   0xC3U
+#define BOOTMODE_BOOT_TO_SECURE_FLASH_BANK0_SECTOR0  0x0AU
+#define BOOTMODE_BOOT_TO_SECURE_FLASH_BANK1_SECTOR0  0x4AU
+#define BOOTMODE_BOOT_TO_SECURE_FLASH_BANK2_SECTOR0  0x6AU
+#define BOOTMODE_BOOT_TO_SECURE_FLASH_BANK3_SECTOR0  0x8AU
+#define BOOTMODE_BOOT_TO_SECURE_FLASH_BANK4_SECTOR0  0xAAU
+#define BOOTMODE_IPC_MSGRAM_COPY_BOOT_TO_M1RAM       0x01U
+#define BOOTMODE_BOOT_TO_M0RAM                       0x05U
+#define BOOTMODE_BOOT_TO_FWU_FLASH                   0x0BU
+#define BOOTMODE_BOOT_TO_FWU_FLASH_ALT1              0x2BU
+#define BOOTMODE_BOOT_TO_FWU_FLASH_ALT2              0x4BU
+#define BOOTMODE_BOOT_TO_FWU_FLASH_ALT3              0x6BU
+
+#define BOOTMODE_IPC_MSGRAM_COPY_LENGTH_100W    0x10000U
+#define BOOTMODE_IPC_MSGRAM_COPY_LENGTH_200W    0x20000U
+#define BOOTMODE_IPC_MSGRAM_COPY_LENGTH_300W    0x30000U
+#define BOOTMODE_IPC_MSGRAM_COPY_LENGTH_400W    0x40000U
+#define BOOTMODE_IPC_MSGRAM_COPY_LENGTH_500W    0x50000U
+#define BOOTMODE_IPC_MSGRAM_COPY_LENGTH_600W    0x60000U
+#define BOOTMODE_IPC_MSGRAM_COPY_LENGTH_700W    0x70000U
+#define BOOTMODE_IPC_MSGRAM_COPY_LENGTH_800W    0x80000U
+#define BOOTMODE_IPC_MSGRAM_COPY_LENGTH_900W    0x90000U
+#define BOOTMODE_IPC_MSGRAM_COPY_LENGTH_1000W   0xA0000U
+#endif
+
+//*****************************************************************************
+%}
 %if (["F2807x"].includes(Common.getDeviceName())){
 //
 // Defines, Globals, and Header Includes related to Flash Support
@@ -143,6 +185,27 @@ extern uint16_t RamfuncsRunSize;
 #endif
 
 #define DEVICE_FLASH_WAITSTATES 3
+
+#endif
+%}
+%else if (["F28P65x"].includes(Common.getDeviceName())){
+//
+// Defines, Globals, and Header Includes related to Flash Support
+//
+//*****************************************************************************
+#ifdef _FLASH
+#include <stddef.h>
+
+#ifndef CMDTOOL
+extern uint16_t RamfuncsLoadStart;
+extern uint16_t RamfuncsLoadEnd;
+extern uint16_t RamfuncsLoadSize;
+extern uint16_t RamfuncsRunStart;
+extern uint16_t RamfuncsRunEnd;
+extern uint16_t RamfuncsRunSize;
+#endif
+
+#define DEVICE_FLASH_WAITSTATES 5
 
 #endif
 %}
@@ -217,7 +280,7 @@ extern uint16_t RamfuncsRunSize;
 //*****************************************************************************
 extern void Device_init(void);
 %}
-%else if(["F28002x", "F28003x", "F280013x","F280015x","F28004x","F2838x","F2837xD"].includes(Common.getDeviceName())){
+%else if(["F28002x", "F28003x", "F280013x","F280015x","F28004x","F2838x","F28P65x","F2837xD"].includes(Common.getDeviceName())){
 
 //*****************************************************************************
 //

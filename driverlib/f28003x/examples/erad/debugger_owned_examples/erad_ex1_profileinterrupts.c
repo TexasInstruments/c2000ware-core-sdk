@@ -152,7 +152,7 @@ void main(void)
     //
     Device_initGPIO();
     GPIO_setPinConfig(DEVICE_GPIO_PIN_LED1);
-    GPIO_setMasterCore(DEVICE_GPIO_PIN_LED1, GPIO_CORE_CPU1);
+    GPIO_setControllerCore(DEVICE_GPIO_PIN_LED1, GPIO_CORE_CPU1);
     GPIO_setPadConfig(DEVICE_GPIO_PIN_LED1, GPIO_PIN_TYPE_STD);
     GPIO_setDirectionMode(DEVICE_GPIO_PIN_LED1, GPIO_DIR_MODE_OUT);
 

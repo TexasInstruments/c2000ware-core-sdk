@@ -86,20 +86,20 @@ var static_peripheralName_moduleFile = [
 ]
 
 var device_specific_modules = [
-    { moduleCategory: CATEGORY_ANALOG , devices : ["F28004x", "F2838x", "F2837xS", "F2837xD", "F2807x", "F28003x", "F280013x", "F280015x", "F28002x", "F28P65x"], peripheralName : "CMPSS", moduleFile : "/driverlib/cmpss.js"},
+    { moduleCategory: CATEGORY_ANALOG , devices : ["F28004x", "F2838x", "F2837xS", "F2837xD", "F2807x", "F28003x","F28P55x", "F280013x", "F280015x", "F28002x", "F28P65x"], peripheralName : "CMPSS", moduleFile : "/driverlib/cmpss.js"},
     { moduleCategory: CATEGORY_ANALOG , devices : ["F280013x", "F280015x"], peripheralName : "CMPSSLITE", moduleFile : "/driverlib/cmpss_lite.js"},
-    { moduleCategory: CATEGORY_ANALOG , devices : ["F28004x", "F2838x", "F2837xS", "F2837xD", "F2807x", "F28003x", "F28P65x"], peripheralName : "DAC", moduleFile : "/driverlib/dac.js"},
-    { moduleCategory: CATEGORY_SYSTEM , devices : ["F28004x", "F2838x", "F28002x", "F28003x"], peripheralName : "ERAD", moduleFile : "/driverlib/erad.js"},
-    { moduleCategory: CATEGORY_CONTROL, devices : ["F28004x", "F2838x", "F2837xS", "F2837xD", "F2807x", "F28003x", "F28002x", "F28P65x"], peripheralName : "CLB", moduleFile : "/driverlib/clb.js"},
-    { moduleCategory: CATEGORY_SYSTEM , devices : ["F28004x", "F2838x", "F2837xS", "F2837xD", "F2807x", "F28003x", "F28002x"], peripheralName : "CLBXBAR", moduleFile : "/driverlib/clbxbar.js"},
-    { moduleCategory: CATEGORY_SYSTEM , devices : ["F28002x", "F2838x", "F28003x", "F28P65x"], peripheralName : "CLB_INPUTXBAR", moduleFile : "/driverlib/clb_inputxbar_input.js"},
+    { moduleCategory: CATEGORY_ANALOG , devices : ["F28004x", "F2838x", "F2837xS", "F2837xD", "F2807x", "F28003x","F28P55x", "F28P65x"], peripheralName : "DAC", moduleFile : "/driverlib/dac.js"},
+    { moduleCategory: CATEGORY_SYSTEM , devices : ["F28004x", "F2838x", "F28002x", "F28003x","F28P55x", "F28P65x"], peripheralName : "ERAD", moduleFile : "/driverlib/erad.js"},
+    { moduleCategory: CATEGORY_CONTROL, devices : ["F28004x", "F2838x", "F2837xS", "F2837xD", "F2807x", "F28003x","F28P55x", "F28002x", "F28P65x"], peripheralName : "CLB", moduleFile : "/driverlib/clb.js"},
+    { moduleCategory: CATEGORY_SYSTEM , devices : ["F28004x", "F2838x", "F2837xS", "F2837xD", "F2807x", "F28003x","F28P55x", "F28002x", "F28P65x"], peripheralName : "CLBXBAR", moduleFile : "/driverlib/clbxbar.js"},
+    { moduleCategory: CATEGORY_SYSTEM , devices : ["F28002x", "F2838x", "F28003x","F28P55x", "F28P65x"], peripheralName : "CLB_INPUTXBAR", moduleFile : "/driverlib/clb_inputxbar_input.js"},
     { moduleCategory: CATEGORY_ANALOG , devices : ["F28004x"], peripheralName : "PGA", moduleFile : "/driverlib/pga.js"},
-    { moduleCategory: CATEGORY_SYSTEM , devices : ["F28004x", "F28002x", "F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"], peripheralName : "DCC", moduleFile : "/driverlib/dcc.js"},
-    { moduleCategory: CATEGORY_SYSTEM , devices : ["F2837xD", "F2837xS", "F28004x", "F2838x", "F28003x", "F28P65x"], peripheralName : "CLA", moduleFile : "/driverlib/cla.js"},
-    { moduleCategory: CATEGORY_COMS   , devices : ["F28002x", "F28003x", "F28004x","F2807x", "F2837xS", "F2837xD", "F2838x"], peripheralName : "DMA", moduleFile : "/driverlib/dma.js"},
-    { moduleCategory: CATEGORY_SYSTEM , devices : ["F28002x", "F2838x", "F28003x", "F28P65x"], peripheralName : "BGCRC", moduleFile : "/driverlib/bgcrc.js"},
-    { moduleCategory: CATEGORY_SYSTEM , devices : ["F28003x", "F2838x", "F28002x", "F28004x", "F2837xD", "F2837xS","F280013x","F280015x","F2807x"], peripheralName : "FLASH", moduleFile : "/driverlib/flash.js"},
-    { moduleCategory: CATEGORY_SYSTEM , devices : ["F2838x", "F2837xD"], peripheralName : "IPC", moduleFile : "/driverlib/ipc.js"},
+    { moduleCategory: CATEGORY_SYSTEM , devices : ["F28004x", "F28002x", "F2838x", "F28003x","F28P55x", "F280013x", "F280015x", "F28P65x"], peripheralName : "DCC", moduleFile : "/driverlib/dcc.js"},
+    { moduleCategory: CATEGORY_SYSTEM , devices : ["F2837xD", "F2837xS", "F28004x", "F2838x", "F28003x","F28P55x", "F28P65x"], peripheralName : "CLA", moduleFile : "/driverlib/cla.js"},
+    { moduleCategory: CATEGORY_COMS   , devices : ["F28002x", "F28003x","F28P55x", "F28004x","F2807x", "F2837xS", "F2837xD", "F2838x", "F28P65x"], peripheralName : "DMA", moduleFile : "/driverlib/dma.js"},
+    { moduleCategory: CATEGORY_SYSTEM , devices : ["F28002x", "F2838x", "F28003x","F28P55x", "F28P65x"], peripheralName : "BGCRC", moduleFile : "/driverlib/bgcrc.js"},
+    { moduleCategory: CATEGORY_SYSTEM , devices : ["F28003x","F28P65x","F28P55x", "F2838x", "F28002x", "F28004x", "F2837xD", "F2837xS","F280013x","F280015x","F2807x"], peripheralName : "FLASH", moduleFile : "/driverlib/flash.js"},
+    { moduleCategory: CATEGORY_SYSTEM , devices : ["F2838x", "F2837xD", "F28P65x"], peripheralName : "IPC", moduleFile : "/driverlib/ipc.js"},
     { moduleCategory: CATEGORY_SYSTEM , devices : ["F28P65x"], peripheralName : "MINDB_XBAR", moduleFile : "/driverlib/mindbxbar.js"},
     { moduleCategory: CATEGORY_SYSTEM , devices : ["F28P65x"], peripheralName : "ICL_XBAR", moduleFile : "/driverlib/iclxbar.js"},
     { moduleCategory: CATEGORY_ANALOG , devices : ["F28P65x"], peripheralName : "ADCSafetyChecker", moduleFile : "/driverlib/adcsafetychecker.js"},
@@ -114,6 +114,8 @@ if (Common.onlyPinmux())
 var cpu2_unavailable_peripherals = {
     "F2837xD" : [
         { peripheralName: "GPIO", moduleFile : "/driverlib/gpio.js"},
+        { peripheralName: "AIO", moduleFile : "/driverlib/aio.js"},
+        { peripheralName: "ANALOG", moduleFile : "/driverlib/analog.js"},
         { peripheralName: "INPUTXBAR", moduleFile : "/driverlib/inputxbar.js"},
         { peripheralName: "INPUTXBAR", moduleFile : "/driverlib/inputxbar_input.js"},
         { peripheralName: "OUTPUTXBAR", moduleFile : "/driverlib/outputxbar.js" },
@@ -128,6 +130,8 @@ var cpu2_unavailable_peripherals = {
     ],
     "F2838x" : [
         { peripheralName: "GPIO", moduleFile : "/driverlib/gpio.js"},
+        { peripheralName: "AIO", moduleFile : "/driverlib/aio.js"},
+        { peripheralName: "ANALOG", moduleFile : "/driverlib/analog.js"},
         { peripheralName: "INPUTXBAR", moduleFile : "/driverlib/inputxbar.js"},
         { peripheralName: "OUTPUTXBAR", moduleFile : "/driverlib/outputxbar.js" },
         { peripheralName: "EPWMXBAR", moduleFile : "/driverlib/epwmxbar.js"},
@@ -145,6 +149,22 @@ var cpu2_unavailable_peripherals = {
         { peripheralName: "UART", moduleFile : "/driverlib/uart.js" },
         { peripheralName: "CM-I2C", moduleFile : "/driverlib/cmi2c.js" },
         { peripheralName: "OTHER", moduleFile : "/driverlib/other.js"},
+    ],
+    "F28P65x" : [
+        { peripheralName: "GPIO", moduleFile : "/driverlib/gpio.js"},
+        { peripheralName: "AIO", moduleFile : "/driverlib/aio.js"},
+        { peripheralName: "ANALOG", moduleFile : "/driverlib/analog.js"},
+        { peripheralName: "INPUTXBAR", moduleFile : "/driverlib/inputxbar.js"},
+        { peripheralName: "OUTPUTXBAR", moduleFile : "/driverlib/outputxbar.js" },
+        { peripheralName: "EPWMXBAR", moduleFile : "/driverlib/epwmxbar.js"},
+        { peripheralName: "CLBXBAR", moduleFile : "/driverlib/clbxbar.js"},
+        { peripheralName: "ICLXBAR", moduleFile : "/driverlib/iclxbar.js"},
+        { peripheralName: "MINDBXBAR", moduleFile : "/driverlib/mindbxbar.js"},
+        { peripheralName: "CLB_INPUTXBAR", moduleFile : "/driverlib/clb_inputxbar.js"},
+        { peripheralName: "CLB_INPUTXBAR", moduleFile : "/driverlib/clb_inputxbar_input.js"},
+        { peripheralName: "CLB_OUTPUTXBAR", moduleFile : "/driverlib/clb_outputxbar.js"},
+        { peripheralName: "SYNC", moduleFile : "/driverlib/sync.js" },
+        { peripheralName: "ASYSCTL", moduleFile : "/driverlib/asysctl.js" },
     ]
 }
 
@@ -190,7 +210,7 @@ if(Common.getBoard())
 }
 
 
-if (["F2837xD", "F2838x"].includes(Common.getDeviceName()))
+if (["F2837xD", "F2838x", "F28P65x"].includes(Common.getDeviceName()))
 {
     // Multi-core Check
     var device_cpu2_unavailable_peripherals = cpu2_unavailable_peripherals[Common.getDeviceName()];

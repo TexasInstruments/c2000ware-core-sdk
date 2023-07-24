@@ -2,17 +2,11 @@ let FLASHRegisters = [
 	{ name: "FRDCNTL", description: "Flash Read Control Register", offset: "0x0",
 		bits: [
 			{ name: "RWAIT", description: "Random Read Waitstate", size: "4", shift: "8", mask: "0xF00" },
-			{ name: "TRIMENGRRWAIT", description: "Random Read Waitstate of Trim and ENGR", size: "4", shift: "24", mask: "0xF000000" },
 		]
 	},
 	{ name: "FLPROT", description: "Flash program/erase protect register", offset: "0x4",
 		bits: [
 			{ name: "FLWEPROT", description: "Flash write/erase protect bit.", size: "1", shift: "0", mask: "0x1" },
-		]
-	},
-	{ name: "FLCLKCTL", description: "Flash NW clock control register.", offset: "0x40",
-		bits: [
-			{ name: "KDIV", description: "KDIV value of MCLK divider.", size: "4", shift: "0", mask: "0xF" },
 		]
 	},
 	{ name: "FRD_INTF_CTRL", description: "Flash Read Interface Control Register", offset: "0x180",

@@ -196,8 +196,6 @@ typedef enum
     DCSM_RAMLS5, //!< RAMLS5
     DCSM_RAMLS6, //!< RAMLS6
     DCSM_RAMLS7, //!< RAMLS7
-    DCSM_RAMD0,  //!< RAMD0
-    DCSM_RAMD1,  //!< RAMD1
     DCSM_CLA    = 14U //!<Offset of CLA field in in RAMSTAT divided by two
 } DCSM_RAMModule;
 
@@ -521,13 +519,13 @@ static inline DCSM_MemoryStatus
 DCSM_getRAMZone(DCSM_RAMModule module)
 {
     uint16_t shift = (uint16_t)module * 2U;
-    uint32_t RAMStatus;
+    uint32_t ramStatus;
     //
     //Read the RAMSTAT register for the specific RAM Module.
     //
-    RAMStatus = ((HWREG(DCSMCOMMON_BASE + DCSM_O_RAMSTAT1) >>
+    ramStatus = ((HWREG(DCSMCOMMON_BASE + DCSM_O_RAMSTAT1) >>
                                 shift) & 0x03U);
-    return((DCSM_MemoryStatus)RAMStatus);
+    return((DCSM_MemoryStatus)ramStatus);
 }
 
 //*****************************************************************************

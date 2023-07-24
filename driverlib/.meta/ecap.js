@@ -46,7 +46,7 @@ function onChangeECAPMode(inst, ui)
         ui.eventStop.hidden = false
         ui.counterResetOnEvent.hidden = false
         ui.reArm.hidden = false
-        if (["F28004x","F28002x","F28003x","F280013x","F280015x","F2838x"].includes(Common.getDeviceName())){
+        if (["F28004x","F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x"].includes(Common.getDeviceName())){
             ui.ecapInput.hidden = false
             ui.resetCounters.hidden = false
 			if (!["F280013x","F280015x"].includes(Common.getDeviceName()))
@@ -75,7 +75,7 @@ function onChangeECAPMode(inst, ui)
         ui.eventStop.hidden = true
         ui.counterResetOnEvent.hidden = true
         ui.reArm.hidden = true
-        if (["F28004x","F28002x","F28003x","F280013x","F280015x","F2838x"].includes(Common.getDeviceName())){
+        if (["F28004x","F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x"].includes(Common.getDeviceName())){
             ui.ecapInput.hidden = true
             ui.resetCounters.hidden = true
 			if (!["F280013x","F280015x"].includes(Common.getDeviceName()))
@@ -128,7 +128,7 @@ var numberOfECAPs = 6;
 var ECAP_INSTANCES_WITH_HRCAP = [];
 
 /* determine number of instances */
-if (["F28004x","F2838x"].includes(Common.getDeviceName()))
+if (["F28004x","F2838x", "F28P65x"].includes(Common.getDeviceName()))
 {
     ECAP_INSTANCE = [
         { name: "ECAP1_BASE", displayName: "ECAP1"},
@@ -183,7 +183,7 @@ var globalConfig = [
 var ecapStatic = undefined;
 
 /* determine static module dependency */
-if (["F2838x","F28002x","F28003x","F280013x","F280015x"].includes(Common.getDeviceName()))
+if (["F2838x","F28002x","F28003x","F280013x","F280015x", "F28P65x"].includes(Common.getDeviceName()))
 {
     if (ECAP_INSTANCES_WITH_HRCAP.length > 0){
         ecapStatic = {
@@ -313,7 +313,7 @@ var hrcap_configs = [
     }
 ]
 
-/* Array of CAN configurables that are common across device families */
+/* Array of ECAP configurables that are common across device families */
 let config = [
     {
         name        : "ecapBase",
@@ -427,15 +427,7 @@ let config = [
         hidden      : false,
         default     : [],
         minSelections: 0,
-        options     : [
-            {name: "ECAP_ISR_SOURCE_CAPTURE_EVENT_1", displayName: "Event 1 ISR source"},
-            {name: "ECAP_ISR_SOURCE_CAPTURE_EVENT_2", displayName: "Event 2 ISR source"},
-            {name: "ECAP_ISR_SOURCE_CAPTURE_EVENT_3", displayName: "Event 3 ISR source"},
-            {name: "ECAP_ISR_SOURCE_CAPTURE_EVENT_4", displayName: "Event 4 ISR source"},
-            {name: "ECAP_ISR_SOURCE_COUNTER_OVERFLOW", displayName: "Counter overflow ISR source"},
-            {name: "ECAP_ISR_SOURCE_COUNTER_PERIOD", displayName: "Counter equals period ISR source"},
-            {name: "ECAP_ISR_SOURCE_COUNTER_COMPARE", displayName: "Counter equals compare ISR source"},
-        ],
+        options     : device_driverlib_peripheral.ECAP_ISR_SOURCE
     },
     {
         name        : "interruptSourceAPWM",
@@ -539,13 +531,13 @@ if (["F28004x"].includes(Common.getDeviceName())){
     )
 }
 var defaultInput = ""
-if (["F28002x","F28003x","F280013x","F280015x","F2838x"].includes(Common.getDeviceName())){
+if (["F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x"].includes(Common.getDeviceName())){
     defaultInput = "ECAP_INPUT_ECAP1_GPTRIP7"
 }
 else if (["F28004x"].includes(Common.getDeviceName())){
     defaultInput = "127"
 }
-if (["F28004x","F28002x","F28003x","F280013x","F280015x","F2838x"].includes(Common.getDeviceName())){
+if (["F28004x","F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x"].includes(Common.getDeviceName())){
     config.push(
         {
             name        : "ecapInput",
@@ -564,7 +556,7 @@ if (["F28004x","F28002x","F28003x","F280013x","F280015x","F2838x"].includes(Comm
         },
     )
 }
-if (["F28004x","F28002x","F28003x","F2838x"].includes(Common.getDeviceName())){
+if (["F28004x","F28002x","F28003x","F2838x","F28P65x"].includes(Common.getDeviceName())){
     config.push(
         {
             name        : "useDMA",
@@ -583,7 +575,7 @@ if (["F28004x","F28002x","F28003x","F2838x"].includes(Common.getDeviceName())){
         },
     )
 }
-if (["F28002x","F28003x","F280013x","F280015x","F2838x"].includes(Common.getDeviceName())){
+if (["F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x"].includes(Common.getDeviceName())){
     config.push(
         {
             name        : "syncInPulseSource",

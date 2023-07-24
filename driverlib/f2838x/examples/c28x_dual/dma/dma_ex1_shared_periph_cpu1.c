@@ -210,8 +210,8 @@ void Example_deviceInit(void)
     //
     // Give control of SPIA and GS1 to CPU2
     //
-    SysCtl_selectCPUForPeripheral(SYSCTL_CPUSEL6_SPI, 1, SYSCTL_CPUSEL_CPU2);
-    MemCfg_setGSRAMMasterSel(MEMCFG_SECT_GS1, MEMCFG_GSRAMMASTER_CPU2);
+    SysCtl_selectCPUForPeripheralInstance(SYSCTL_CPUSEL6_SPI, SYSCTL_CPUSEL_CPU2);
+    MemCfg_setGSRAMControllerSel(MEMCFG_SECT_GS1, MEMCFG_GSRAMCONTROLLER_CPU2);
 
     //
     // Send IPC flag to CPU2 signaling the completion of system initialization

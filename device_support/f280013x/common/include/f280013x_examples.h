@@ -370,12 +370,13 @@ extern "C" {
              In step 1 the user specified the PLL multiplier = 0x20 for a
              100 MHz CPU clock (SYSCLKOUT = 100 MHz).
 
-             In this case, the CPU_RATE will be 10.000L
-             Uncomment the line: #define CPU_RATE 10.000L
+             In this case, the CPU_RATE will be 10.00L
+             Uncomment the line: #define CPU_RATE 10.00L
 
 -----------------------------------------------------------------------------*/
 
-#define CPU_RATE   10.00L    // for a 100MHz CPU clock speed (SYSCLKOUT)
+#define CPU_RATE   8.33L     // for a 120MHz CPU clock speed (SYSCLKOUT)
+//#define CPU_RATE   10.00L    // for a 100MHz CPU clock speed (SYSCLKOUT)
 //#define CPU_RATE   11.111L   // for a 90MHz CPU clock speed  (SYSCLKOUT)
 //#define CPU_RATE   12.500L   // for a 80MHz CPU clock speed  (SYSCLKOUT)
 //#define CPU_RATE   16.667L   // for a 60MHz CPU clock speed  (SYSCLKOUT)

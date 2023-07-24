@@ -1,0 +1,15 @@
+/**
+ * Import the modules used in this configuration.
+ */
+const lin  = scripting.addModule("/driverlib/lin.js", {}, false);
+const lin1 = lin.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+lin1.$name                  = "myLIN0";
+lin1.enableLoopback         = true;
+lin1.enableInterrupt        = true;
+lin1.interruptFlags         = [" LIN_INT_ID"];
+lin1.interruptLine          = ["LIN_INTERRUPT_LINE0"];
+lin1.interruptPriorityLine0 = [" LIN_INT_ALL"];

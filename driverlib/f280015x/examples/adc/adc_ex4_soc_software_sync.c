@@ -7,6 +7,7 @@
 //! \addtogroup driver_example_list
 //! <h1> ADC Synchronous SOC Software Force (adc_soc_software_sync)</h1>
 //!
+//! This example converts some voltages on ADCA and ADCC using input 5 of the
 //! input X-BAR as a software force. Input 5 is triggered by toggling GPIO0,
 //! but any spare GPIO could be used. This method will ensure that both ADCs
 //! start converting at exactly the same time.

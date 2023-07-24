@@ -181,7 +181,7 @@ CMPSS_configRamp(uint32_t base, uint16_t maxRampVal, uint16_t decrementVal,
     ASSERT(CMPSS_isBaseValid(base));
     ASSERT(!CMPSS_isLiteBaseValid(base));
     ASSERT(delayVal <= CMPSS_RAMPHDLYS_DELAY_M);
-    ASSERT((pwmSyncSrc >= 1U) && (pwmSyncSrc <= 16U));
+    ASSERT((pwmSyncSrc >= 1U) && (pwmSyncSrc <= 7U));
 
     EALLOW;
 

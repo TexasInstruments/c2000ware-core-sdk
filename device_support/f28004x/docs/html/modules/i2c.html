@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v4.02.00.00
+                v5.00.00.00
               </div>
             
           
@@ -184,33 +184,33 @@ to obtain status information, and to manage interrupts.</p>
 <dd><div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Defines</p>
 <dl class="cpp macro">
-<dt id="c.I2C_MASTER_SEND_MODE">
-<span class="target" id="group__i2c__api_1ga09f6bba7e6afec9345ebe2a1a517f3df"></span><code class="sig-name descname">I2C_MASTER_SEND_MODE</code> 0x0600U<a class="headerlink" href="#c.I2C_MASTER_SEND_MODE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Master-transmitter mode. </p>
+<dt id="c.I2C_CONTROLLER_SEND_MODE">
+<span class="target" id="group__i2c__api_1gad5730e33dbfb817bbb3032027cb70ef9"></span><code class="sig-name descname">I2C_CONTROLLER_SEND_MODE</code> 0x0600U<a class="headerlink" href="#c.I2C_CONTROLLER_SEND_MODE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Controller-transmitter mode. </p>
 </dd></dl>
 
 <dl class="cpp macro">
-<dt id="c.I2C_MASTER_RECEIVE_MODE">
-<span class="target" id="group__i2c__api_1ga111c9d1685036a4f538839a729a29840"></span><code class="sig-name descname">I2C_MASTER_RECEIVE_MODE</code> 0x0400U<a class="headerlink" href="#c.I2C_MASTER_RECEIVE_MODE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Master-receiver mode. </p>
+<dt id="c.I2C_CONTROLLER_RECEIVE_MODE">
+<span class="target" id="group__i2c__api_1ga79bf7fe1f915689010d678b9d7e3bdbc"></span><code class="sig-name descname">I2C_CONTROLLER_RECEIVE_MODE</code> 0x0400U<a class="headerlink" href="#c.I2C_CONTROLLER_RECEIVE_MODE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Controller-receiver mode. </p>
 </dd></dl>
 
 <dl class="cpp macro">
-<dt id="c.I2C_SLAVE_SEND_MODE">
-<span class="target" id="group__i2c__api_1gaba96d333243783d8025a4e56f4efff6e"></span><code class="sig-name descname">I2C_SLAVE_SEND_MODE</code> 0x0200U<a class="headerlink" href="#c.I2C_SLAVE_SEND_MODE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Slave-transmitter mode. </p>
+<dt id="c.I2C_TARGET_SEND_MODE">
+<span class="target" id="group__i2c__api_1gad8a4853d0ec1ebc51335d68dd8256c1c"></span><code class="sig-name descname">I2C_TARGET_SEND_MODE</code> 0x0200U<a class="headerlink" href="#c.I2C_TARGET_SEND_MODE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Target-transmitter mode. </p>
 </dd></dl>
 
 <dl class="cpp macro">
-<dt id="c.I2C_SLAVE_RECEIVE_MODE">
-<span class="target" id="group__i2c__api_1ga93f3942f9a1a4355f871455856db2cdc"></span><code class="sig-name descname">I2C_SLAVE_RECEIVE_MODE</code> 0x0000U<a class="headerlink" href="#c.I2C_SLAVE_RECEIVE_MODE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Slave-receiver mode. </p>
+<dt id="c.I2C_TARGET_RECEIVE_MODE">
+<span class="target" id="group__i2c__api_1gacfd923a0b2a61f80702f43b8765841d4"></span><code class="sig-name descname">I2C_TARGET_RECEIVE_MODE</code> 0x0000U<a class="headerlink" href="#c.I2C_TARGET_RECEIVE_MODE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Target-receiver mode. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt id="c.I2C_REPEAT_MODE">
 <span class="target" id="group__i2c__api_1ga7cab1f030b534fc5e02fc1f99ea93ec7"></span><code class="sig-name descname">I2C_REPEAT_MODE</code> 0x0080U<a class="headerlink" href="#c.I2C_REPEAT_MODE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Only applies to master mode. </p>
+<dd><p>Only applies to Controller mode. </p>
 </dd></dl>
 
 <dl class="cpp macro">
@@ -262,9 +262,9 @@ to obtain status information, and to manage interrupts.</p>
 </dd></dl>
 
 <dl class="cpp macro">
-<dt id="c.I2C_INT_ADDR_SLAVE">
-<span class="target" id="group__i2c__api_1ga46092ec332e875d9ea10eab7f8dc21fe"></span><code class="sig-name descname">I2C_INT_ADDR_SLAVE</code> 0x00200U<a class="headerlink" href="#c.I2C_INT_ADDR_SLAVE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Addressed as slave interrupt. </p>
+<dt id="c.I2C_INT_ADDR_TARGET">
+<span class="target" id="group__i2c__api_1gafa8e3883a44c19c24eb5e5901d1f6e06"></span><code class="sig-name descname">I2C_INT_ADDR_TARGET</code> 0x00200U<a class="headerlink" href="#c.I2C_INT_ADDR_TARGET" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Addressed as target interrupt. </p>
 </dd></dl>
 
 <dl class="cpp macro">
@@ -293,7 +293,7 @@ to obtain status information, and to manage interrupts.</p>
 <p>                             (uint16_t)</p>
 <a class="reference internal" href="#group__i2c__api_1ga72c1d12497392f4dd5ec4ce6400c5200"><span class="std std-ref">I2C_INT_STOP_CONDITION</span></a><p> |                \</p>
 <p>                             (uint16_t)</p>
-<a class="reference internal" href="#group__i2c__api_1ga46092ec332e875d9ea10eab7f8dc21fe"><span class="std std-ref">I2C_INT_ADDR_SLAVE</span></a>)<a class="headerlink" href="#c.I2C_STR_INTMASK" title="Permalink to this definition">¶</a><br /></dt>
+<a class="reference internal" href="#group__i2c__api_1gafa8e3883a44c19c24eb5e5901d1f6e06"><span class="std std-ref">I2C_INT_ADDR_TARGET</span></a>)<a class="headerlink" href="#c.I2C_STR_INTMASK" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
@@ -345,9 +345,9 @@ to obtain status information, and to manage interrupts.</p>
 </dd></dl>
 
 <dl class="cpp macro">
-<dt id="c.I2C_STS_ADDR_SLAVE">
-<span class="target" id="group__i2c__api_1ga617e4819715909d49218d0c07662949a"></span><code class="sig-name descname">I2C_STS_ADDR_SLAVE</code> 0x0200U<a class="headerlink" href="#c.I2C_STS_ADDR_SLAVE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Addressed as slave. </p>
+<dt id="c.I2C_STS_ADDR_TARGET">
+<span class="target" id="group__i2c__api_1ga6b1ce046a2d181cf85fbaf2b9019a427"></span><code class="sig-name descname">I2C_STS_ADDR_TARGET</code> 0x0200U<a class="headerlink" href="#c.I2C_STS_ADDR_TARGET" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Addressed as target. </p>
 </dd></dl>
 
 <dl class="cpp macro">
@@ -375,9 +375,9 @@ to obtain status information, and to manage interrupts.</p>
 </dd></dl>
 
 <dl class="cpp macro">
-<dt id="c.I2C_STS_SLAVE_DIR">
-<span class="target" id="group__i2c__api_1ga14c0c00ad5be95aab191fe3173df7abb"></span><code class="sig-name descname">I2C_STS_SLAVE_DIR</code> 0x4000U<a class="headerlink" href="#c.I2C_STS_SLAVE_DIR" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Addressed as slave transmitter. </p>
+<dt id="c.I2C_STS_TARGET_DIR">
+<span class="target" id="group__i2c__api_1gaddd0ff4e70f3a5fa83aa5e5e4bb1abe6"></span><code class="sig-name descname">I2C_STS_TARGET_DIR</code> 0x4000U<a class="headerlink" href="#c.I2C_STS_TARGET_DIR" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Addressed as target transmitter. </p>
 </dd></dl>
 
 </div>
@@ -431,9 +431,9 @@ to obtain status information, and to manage interrupts.</p>
 </dd></dl>
 
 <dl class="cpp enumerator">
-<dt id="_CPPv4N19I2C_InterruptSource21I2C_INTSRC_ADDR_SLAVEE">
-<span id="_CPPv3N19I2C_InterruptSource21I2C_INTSRC_ADDR_SLAVEE"></span><span id="_CPPv2N19I2C_InterruptSource21I2C_INTSRC_ADDR_SLAVEE"></span><span class="target" id="group__i2c__api_1gga65d4d1522b504625b64522aecc7efc23af3e64ae88137153829d4b87433d14a9a"></span><em class="property">enumerator </em><code class="sig-name descname">I2C_INTSRC_ADDR_SLAVE</code><a class="headerlink" href="#_CPPv4N19I2C_InterruptSource21I2C_INTSRC_ADDR_SLAVEE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Addressed as slave interrupt. </p>
+<dt id="_CPPv4N19I2C_InterruptSource22I2C_INTSRC_ADDR_TARGETE">
+<span id="_CPPv3N19I2C_InterruptSource22I2C_INTSRC_ADDR_TARGETE"></span><span id="_CPPv2N19I2C_InterruptSource22I2C_INTSRC_ADDR_TARGETE"></span><span class="target" id="group__i2c__api_1gga65d4d1522b504625b64522aecc7efc23a7deec3e2b484ef1e6ba6cdc350ddcc6a"></span><em class="property">enumerator </em><code class="sig-name descname">I2C_INTSRC_ADDR_TARGET</code><a class="headerlink" href="#_CPPv4N19I2C_InterruptSource22I2C_INTSRC_ADDR_TARGETE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Addressed as target interrupt. </p>
 </dd></dl>
 
 </dd></dl>
@@ -795,7 +795,7 @@ to obtain status information, and to manage interrupts.</p>
 <dl class="cpp enum">
 <dt id="_CPPv413I2C_DutyCycle">
 <span id="_CPPv313I2C_DutyCycle"></span><span id="_CPPv213I2C_DutyCycle"></span><span class="target" id="group__i2c__api_1ga93eefc059d0a3c81e61d4c3c4816d4e0"></span><em class="property">enum </em><code class="sig-name descname">I2C_DutyCycle</code><a class="headerlink" href="#_CPPv413I2C_DutyCycle" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Values that can be passed to <a class="reference internal" href="#group__i2c__api_1gae85b9c5d5ae3e2590b97fc2b2dfca421"><span class="std std-ref">I2C_initMaster()</span></a> as the <em>dutyCycle</em> parameter. </p>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__i2c__api_1gacb9dc5a590289a658a707ae1df19f2f1"><span class="std std-ref">I2C_initController()</span></a> as the <em>dutyCycle</em> parameter. </p>
 <p><em>Values:</em></p>
 <dl class="cpp enumerator">
 <dt id="_CPPv4N13I2C_DutyCycle16I2C_DUTYCYCLE_33E">
@@ -990,14 +990,14 @@ to obtain status information, and to manage interrupts.</p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv419I2C_setSlaveAddress8uint32_t8uint16_t">
-<span id="_CPPv319I2C_setSlaveAddress8uint32_t8uint16_t"></span><span id="_CPPv219I2C_setSlaveAddress8uint32_t8uint16_t"></span><span id="I2C_setSlaveAddress__uint32_t.uint16_t"></span><span class="target" id="group__i2c__api_1gaf4484270340946516b266dee854603b3"></span>void <code class="sig-name descname">I2C_setSlaveAddress</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>slaveAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419I2C_setSlaveAddress8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Sets the address that the I2C Master places on the bus.</p>
-<p><p>This function configures the address that the I2C Master places on the bus when initiating a transaction.</p>
+<dt id="_CPPv420I2C_setTargetAddress8uint32_t8uint16_t">
+<span id="_CPPv320I2C_setTargetAddress8uint32_t8uint16_t"></span><span id="_CPPv220I2C_setTargetAddress8uint32_t8uint16_t"></span><span id="I2C_setTargetAddress__uint32_t.uint16_t"></span><span class="target" id="group__i2c__api_1ga6a547f7c1f57f0174ba34692e2f7910f"></span>void <code class="sig-name descname">I2C_setTargetAddress</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>targetAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420I2C_setTargetAddress8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the address that the I2C Controller places on the bus.</p>
+<p><p>This function configures the address that the I2C Controller places on the bus when initiating a transaction.</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the I2C instance used. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">slaveAddr</span></code>: 7-bit or 10-bit slave address</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">targetAddr</span></code>: 7-bit or 10-bit target address</p></li>
 </ul>
 </dd>
 </dl>
@@ -1010,19 +1010,19 @@ to obtain status information, and to manage interrupts.</p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv422I2C_setOwnSlaveAddress8uint32_t8uint16_t">
-<span id="_CPPv322I2C_setOwnSlaveAddress8uint32_t8uint16_t"></span><span id="_CPPv222I2C_setOwnSlaveAddress8uint32_t8uint16_t"></span><span id="I2C_setOwnSlaveAddress__uint32_t.uint16_t"></span><span class="target" id="group__i2c__api_1ga9195249397648ec5ae54a81d56fbc1a9"></span>void <code class="sig-name descname">I2C_setOwnSlaveAddress</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>slaveAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422I2C_setOwnSlaveAddress8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Sets the slave address for this I2C module.</p>
-<p><p>This function writes the specified slave address.</p>
+<dt id="_CPPv417I2C_setOwnAddress8uint32_t8uint16_t">
+<span id="_CPPv317I2C_setOwnAddress8uint32_t8uint16_t"></span><span id="_CPPv217I2C_setOwnAddress8uint32_t8uint16_t"></span><span id="I2C_setOwnAddress__uint32_t.uint16_t"></span><span class="target" id="group__i2c__api_1gaa72d9ecaaf726cbdb07973ce4bf0dcfd"></span>void <code class="sig-name descname">I2C_setOwnAddress</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>Addr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417I2C_setOwnAddress8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the own address for this I2C module.</p>
+<p><p>This function writes the specified address.</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the I2C Slave module. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">slaveAddr</span></code>: is the 7-bit or 10-bit slave address</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the I2C Target module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Addr</span></code>: is the 7-bit or 10-bit address</p></li>
 </ul>
 </dd>
 </dl>
 </p>
-<p>The parameter <em>slaveAddr</em> is the value that is compared against the slave address sent by an I2C master.</p>
+<p>The parameter <em>Addr</em> is the value that is compared against the target address sent by an I2C controller.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -1034,7 +1034,7 @@ to obtain status information, and to manage interrupts.</p>
 <dt id="_CPPv413I2C_isBusBusy8uint32_t">
 <span id="_CPPv313I2C_isBusBusy8uint32_t"></span><span id="_CPPv213I2C_isBusBusy8uint32_t"></span><span id="I2C_isBusBusy__uint32_t"></span><span class="target" id="group__i2c__api_1ga4876ef53e8db70bff18317df267b15de"></span>bool <code class="sig-name descname">I2C_isBusBusy</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413I2C_isBusBusy8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Indicates whether or not the I2C bus is busy.</p>
-<p><p>This function returns an indication of whether or not the I2C bus is busy. This function can be used in a multi-master environment to determine if the bus is free for another data transfer.</p>
+<p><p>This function returns an indication of whether or not the I2C bus is busy. This function can be used in a multi-controller environment to determine if the bus is free for another data transfer.</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the I2C instance used.</p></li>
@@ -1071,12 +1071,12 @@ to obtain status information, and to manage interrupts.</p>
 <li><p><strong>I2C_STS_STOP_CONDITION</strong> - Stop condition detected</p></li>
 <li><p><strong>I2C_STS_BYTE_SENT</strong> - Byte transmit complete</p></li>
 <li><p><strong>I2C_STS_ADDR_ZERO</strong> - Address of all zeros detected</p></li>
-<li><p><strong>I2C_STS_ADDR_SLAVE</strong> - Addressed as slave</p></li>
+<li><p><strong>I2C_STS_ADDR_TARGET</strong> - Addressed as Target</p></li>
 <li><p><strong>I2C_STS_TX_EMPTY</strong> - Transmit shift register empty</p></li>
 <li><p><strong>I2C_STS_RX_FULL</strong> - Receive shift register full</p></li>
 <li><p><strong>I2C_STS_BUS_BUSY</strong> - Bus busy, wait for STOP or reset</p></li>
 <li><p><strong>I2C_STS_NACK_SENT</strong> - NACK was sent</p></li>
-<li><p><strong>I2C_STS_SLAVE_DIR-</strong> Addressed as slave transmitter </p></li>
+<li><p><strong>I2C_STS_TARGET_DIR-</strong> Addressed as Target transmitter </p></li>
 </ul>
 </p>
 </dd>
@@ -1097,7 +1097,7 @@ to obtain status information, and to manage interrupts.</p>
 <li><p><strong>I2C_STS_STOP_CONDITION</strong> </p></li>
 <li><p><strong>I2C_STS_BYTE_SENT</strong> </p></li>
 <li><p><strong>I2C_STS_NACK_SENT</strong> </p></li>
-<li><p><strong>I2C_STS_SLAVE_DIR</strong> </p></li>
+<li><p><strong>I2C_STS_TARGET_DIR</strong> </p></li>
 </ul>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
@@ -1120,7 +1120,7 @@ to obtain status information, and to manage interrupts.</p>
 <dt id="_CPPv413I2C_setConfig8uint32_t8uint16_t">
 <span id="_CPPv313I2C_setConfig8uint32_t8uint16_t"></span><span id="_CPPv213I2C_setConfig8uint32_t8uint16_t"></span><span id="I2C_setConfig__uint32_t.uint16_t"></span><span class="target" id="group__i2c__api_1gacba4b03079f610c7142b1ff6d7d00ce3"></span>void <code class="sig-name descname">I2C_setConfig</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413I2C_setConfig8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Controls the state of the I2C module.</p>
-<p><p>This function is used to control the state of the master and slave send and receive operations. The </p>
+<p><p>This function is used to control the state of the controller and target send and receive operations. The </p>
 <em>config</em> is a logical OR of the following options.<dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the I2C instance used. </p></li>
@@ -1130,10 +1130,10 @@ to obtain status information, and to manage interrupts.</p>
 </dl>
 </p>
 <p>One of the following four options:<ul class="simple">
-<li><p><strong>I2C_MASTER_SEND_MODE</strong> - Master-transmitter mode</p></li>
-<li><p><strong>I2C_MASTER_RECEIVE_MODE</strong> - Master-receiver mode</p></li>
-<li><p><strong>I2C_SLAVE_SEND_MODE</strong> - Slave-transmitter mode</p></li>
-<li><p><strong>I2C_SLAVE_RECEIVE_MODE</strong> - Slave-receiver mode</p></li>
+<li><p><strong>I2C_CONTROLLER_SEND_MODE</strong> - Controller-transmitter mode</p></li>
+<li><p><strong>I2C_CONTROLLER_RECEIVE_MODE</strong> - Controller-receiver mode</p></li>
+<li><p><strong>I2C_TARGET_SEND_MODE</strong> - Target-transmitter mode</p></li>
+<li><p><strong>I2C_TARGET_RECEIVE_MODE</strong> - Target-receiver mode</p></li>
 </ul>
 </p>
 <p>Any of the following:<ul class="simple">
@@ -1174,7 +1174,7 @@ to obtain status information, and to manage interrupts.</p>
 <span id="_CPPv322I2C_sendStartCondition8uint32_t"></span><span id="_CPPv222I2C_sendStartCondition8uint32_t"></span><span id="I2C_sendStartCondition__uint32_t"></span><span class="target" id="group__i2c__api_1gaa7e1e5f0ed8de7d718ba3d03a2845d4e"></span>void <code class="sig-name descname">I2C_sendStartCondition</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422I2C_sendStartCondition8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Issues an I2C START condition.</p>
 <p><p>This function causes the I2C module to generate a start condition. This function is only valid when the I2C module specified by the </p>
-<strong>base</strong> parameter is a master.<dl class="simple">
+<strong>base</strong> parameter is a controller.<dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the I2C instance used.</p></li>
 </ul>
@@ -1193,7 +1193,7 @@ to obtain status information, and to manage interrupts.</p>
 <span id="_CPPv321I2C_sendStopCondition8uint32_t"></span><span id="_CPPv221I2C_sendStopCondition8uint32_t"></span><span id="I2C_sendStopCondition__uint32_t"></span><span class="target" id="group__i2c__api_1ga818e3e39311a901da8c5b3d4f7317c7a"></span>void <code class="sig-name descname">I2C_sendStopCondition</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421I2C_sendStopCondition8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Issues an I2C STOP condition.</p>
 <p><p>This function causes the I2C module to generate a stop condition. This function is only valid when the I2C module specified by the </p>
-<strong>base</strong> parameter is a master.<dl class="simple">
+<strong>base</strong> parameter is a controller.<dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the I2C instance used.</p></li>
 </ul>
@@ -1254,7 +1254,7 @@ to obtain status information, and to manage interrupts.</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the I2C instance used. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: is the data to be transmitted from the I2C Master.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: is the data to be transmitted from the I2C Controller.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1354,7 +1354,7 @@ to obtain status information, and to manage interrupts.</p>
 <dt id="_CPPv418I2C_enableLoopback8uint32_t">
 <span id="_CPPv318I2C_enableLoopback8uint32_t"></span><span id="_CPPv218I2C_enableLoopback8uint32_t"></span><span id="I2C_enableLoopback__uint32_t"></span><span class="target" id="group__i2c__api_1ga1bde75fdc6b2fbf9d3b8dbcca1a02263"></span>void <code class="sig-name descname">I2C_enableLoopback</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418I2C_enableLoopback8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Enables I2C loopback mode.</p>
-<p><p>This function enables loopback mode. This mode is only valid during master mode and is helpful during device testing as it causes data transmitted out of the data transmit register to be received in data receive register.</p>
+<p><p>This function enables loopback mode. This mode is only valid during controller mode and is helpful during device testing as it causes data transmitted out of the data transmit register to be received in data receive register.</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the I2C instance used.</p></li>
@@ -1401,7 +1401,7 @@ to obtain status information, and to manage interrupts.</p>
 <li><p><strong>I2C_INTSRC_RX_DATA_RDY</strong> </p></li>
 <li><p><strong>I2C_INTSRC_TX_DATA_RDY</strong> </p></li>
 <li><p><strong>I2C_INTSRC_STOP_CONDITION</strong> </p></li>
-<li><p><strong>I2C_INTSRC_ADDR_SLAVE</strong> </p></li>
+<li><p><strong>I2C_INTSRC_ADDR_TARGET</strong> </p></li>
 </ul>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
@@ -1441,15 +1441,15 @@ to obtain status information, and to manage interrupts.</p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv414I2C_initMaster8uint32_t8uint32_t8uint32_t13I2C_DutyCycle">
-<span id="_CPPv314I2C_initMaster8uint32_t8uint32_t8uint32_t13I2C_DutyCycle"></span><span id="_CPPv214I2C_initMaster8uint32_t8uint32_t8uint32_t13I2C_DutyCycle"></span><span id="I2C_initMaster__uint32_t.uint32_t.uint32_t.I2C_DutyCycle"></span><span class="target" id="group__i2c__api_1gae85b9c5d5ae3e2590b97fc2b2dfca421"></span>void <code class="sig-name descname">I2C_initMaster</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>sysclkHz</em>, uint32_t <em>bitRate</em>, <a class="reference internal" href="#_CPPv413I2C_DutyCycle" title="I2C_DutyCycle">I2C_DutyCycle</a> <em>dutyCycle</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414I2C_initMaster8uint32_t8uint32_t8uint32_t13I2C_DutyCycle" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Initializes the I2C Master.</p>
-<p><p>This function initializes operation of the I2C Master by configuring the bus speed for the master. Note that the I2C module </p>
+<dt id="_CPPv418I2C_initController8uint32_t8uint32_t8uint32_t13I2C_DutyCycle">
+<span id="_CPPv318I2C_initController8uint32_t8uint32_t8uint32_t13I2C_DutyCycle"></span><span id="_CPPv218I2C_initController8uint32_t8uint32_t8uint32_t13I2C_DutyCycle"></span><span id="I2C_initController__uint32_t.uint32_t.uint32_t.I2C_DutyCycle"></span><span class="target" id="group__i2c__api_1gacb9dc5a590289a658a707ae1df19f2f1"></span>void <code class="sig-name descname">I2C_initController</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>sysclkHz</em>, uint32_t <em>bitRate</em>, <a class="reference internal" href="#_CPPv413I2C_DutyCycle" title="I2C_DutyCycle">I2C_DutyCycle</a> <em>dutyCycle</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418I2C_initController8uint32_t8uint32_t8uint32_t13I2C_DutyCycle" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Initializes the I2C Controller.</p>
+<p><p>This function initializes operation of the I2C Controller by configuring the bus speed for the controller. Note that the I2C module </p>
 <strong>must</strong> be put into reset before calling this function. You can do this with the function <a class="reference internal" href="#group__i2c__api_1ga63c72dcf216280a84725a8c2d538a20a"><span class="std std-ref">I2C_disableModule()</span></a>.<dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the I2C instance used. </p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">sysclkHz</span></code>: is the rate of the clock supplied to the I2C module (SYSCLK) in Hz. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">bitRate</span></code>: is the rate of the master clock signal, SCL. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bitRate</span></code>: is the rate of the controller clock signal, SCL. </p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dutyCycle</span></code>: is duty cycle of the SCL signal.</p></li>
 </ul>
 </dd>
@@ -1468,7 +1468,7 @@ to obtain status information, and to manage interrupts.</p>
 <dt id="_CPPv419I2C_enableInterrupt8uint32_t8uint32_t">
 <span id="_CPPv319I2C_enableInterrupt8uint32_t8uint32_t"></span><span id="_CPPv219I2C_enableInterrupt8uint32_t8uint32_t"></span><span id="I2C_enableInterrupt__uint32_t.uint32_t"></span><span class="target" id="group__i2c__api_1gac67a172bbf516ee43eaf963c42bcbebf"></span>void <code class="sig-name descname">I2C_enableInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419I2C_enableInterrupt8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Enables I2C interrupt sources.</p>
-<p><p>This function enables the indicated I2C Master interrupt sources. Only the sources that are enabled can be reflected to the processor interrupt. Disabled sources have no effect on the processor.</p>
+<p><p>This function enables the indicated I2C Controller interrupt sources. Only the sources that are enabled can be reflected to the processor interrupt. Disabled sources have no effect on the processor.</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the I2C instance used. </p></li>
@@ -1485,7 +1485,7 @@ to obtain status information, and to manage interrupts.</p>
 <li><p><strong>I2C_INT_RX_DATA_RDY</strong> - Receive-data-ready interrupt</p></li>
 <li><p><strong>I2C_INT_TX_DATA_RDY</strong> - Transmit-data-ready interrupt</p></li>
 <li><p><strong>I2C_INT_STOP_CONDITION</strong> - Stop condition detected</p></li>
-<li><p><strong>I2C_INT_ADDR_SLAVE</strong> - Addressed as slave interrupt</p></li>
+<li><p><strong>I2C_INT_ADDR_TARGET</strong> - Addressed as target interrupt</p></li>
 <li><p><strong>I2C_INT_RXFF</strong> - RX FIFO level interrupt</p></li>
 <li><p><strong>I2C_INT_TXFF</strong> - TX FIFO level interrupt</p></li>
 </ul>
@@ -1503,7 +1503,7 @@ to obtain status information, and to manage interrupts.</p>
 <dt id="_CPPv420I2C_disableInterrupt8uint32_t8uint32_t">
 <span id="_CPPv320I2C_disableInterrupt8uint32_t8uint32_t"></span><span id="_CPPv220I2C_disableInterrupt8uint32_t8uint32_t"></span><span id="I2C_disableInterrupt__uint32_t.uint32_t"></span><span class="target" id="group__i2c__api_1gacfcd1315b13f4119593859ac74eee756"></span>void <code class="sig-name descname">I2C_disableInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420I2C_disableInterrupt8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Disables I2C interrupt sources.</p>
-<p><p>This function disables the indicated I2C Slave interrupt sources. Only the sources that are enabled can be reflected to the processor interrupt. Disabled sources have no effect on the processor.</p>
+<p><p>This function disables the indicated I2C Target interrupt sources. Only the sources that are enabled can be reflected to the processor interrupt. Disabled sources have no effect on the processor.</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the I2C instance used. </p></li>
@@ -1540,7 +1540,7 @@ to obtain status information, and to manage interrupts.</p>
 <li><p><strong>I2C_INT_RX_DATA_RDY</strong> </p></li>
 <li><p><strong>I2C_INT_TX_DATA_RDY</strong> </p></li>
 <li><p><strong>I2C_INT_STOP_CONDITION</strong> </p></li>
-<li><p><strong>I2C_INT_ADDR_SLAVE</strong> </p></li>
+<li><p><strong>I2C_INT_ADDR_TARGET</strong> </p></li>
 <li><p><strong>I2C_INT_RXFF</strong> </p></li>
 <li><p><strong>I2C_INT_TXFF</strong> </p></li>
 </ul>
@@ -1637,8 +1637,10 @@ will read the data from the receive buffer and return it.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
-      <span class="lastupdated">Last updated on Oct 11, 2022.
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+      <span class="lastupdated">Last updated on Jul 01, 2023.
       </span></p>
   </div>
 
@@ -1658,7 +1660,7 @@ will read the data from the receive buffer and return it.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v4.02.00.00',
+            VERSION:'v5.00.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

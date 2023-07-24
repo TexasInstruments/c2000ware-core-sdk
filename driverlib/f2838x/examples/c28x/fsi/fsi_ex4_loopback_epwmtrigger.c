@@ -112,13 +112,13 @@
 //
 
 // User can choose any of 16 ePWM SOC event triggers
-FSI_ExtFrameTriggerSrc ePWMTrigSel = FSI_EXT_TRIGSRC_EPWM7_SOCB;
+FSI_ExtFrameTriggerSrc ePWMTrigSel = FSI_EXT_TRIGSRC_EPWM1_SOCB;
 
 // ePWM base addresses to operate on selected module and also Sysctl Clock to
 // enable/disable them.
 // Need to change base address as per EPWM trigger selection in  \b ePWMTrigSel
-uint32_t ePWMBaseAddr = EPWM7_BASE;
-SysCtl_PeripheralPCLOCKCR epwmSysCtlClock = SYSCTL_PERIPH_CLK_EPWM7;
+uint32_t ePWMBaseAddr = EPWM1_BASE;
+SysCtl_PeripheralPCLOCKCR epwmSysCtlClock = SYSCTL_PERIPH_CLK_EPWM1;
 
 // Number of words per transfer may be from 1 -16
 uint16_t nWords = 9;
@@ -330,7 +330,7 @@ void main(void)
         //
         // Setup a GPIO pin, not for operation but for debug/probe purpose
         //
-        GPIO_setPinConfig(GPIO_13_EPWM7B);
+        GPIO_setPinConfig(GPIO_1_EPWM1B);
 
         //
         // Write data into Tx buffer and set other Frame specific fields

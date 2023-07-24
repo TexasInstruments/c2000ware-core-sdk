@@ -50,12 +50,12 @@ let PMBUS_TARGET = [
 	{ name: "PMBUS_TARGET_ENABLE_MANUAL_ACK", displayName: "Enable manual target ack modes", legacyNames: ["PMBUS_SLAVE_ENABLE_MANUAL_ACK"]},
 	{ name: "PMBUS_TARGET_ENABLE_PEC_PROCESSING", displayName: "Enable PEC byte processing", legacyNames: ["PMBUS_SLAVE_ENABLE_PEC_PROCESSING"]},
 	{ name: "PMBUS_TARGET_TRANSMIT_PEC", displayName: "Transmit PEC at end of transaction", legacyNames: ["PMBUS_SLAVE_TRANSMIT_PEC"]},
-	{ name: "PMBUS_TARGET_ENABLE_MANUAL_CMD_ACK", displayName: "Data Request flag generated after   receipt of command code, firmware  required to issue ACK to continue message", legacyNames: ["PMBUS_SLAVE_ENABLE_MANUAL_CMD_ACK"]},
+	{ name: "PMBUS_TARGET_ENABLE_MANUAL_CMD_ACK", displayName: "Data Request flag generated after  receipt of command code, firmware  required to issue ACK to continue message", legacyNames: ["PMBUS_SLAVE_ENABLE_MANUAL_CMD_ACK"]},
 	{ name: "PMBUS_TARGET_DISABLE_ADDRESS_MASK", displayName: "any bits cleared in target address mask  make that bit a don't care", legacyNames: ["PMBUS_SLAVE_DISABLE_ADDRESS_MASK"]},
-	{ name: "PMBUS_TARGET_AUTO_ACK_1_BYTES", displayName: "Target will auto acknowledge every   received byte", legacyNames: ["PMBUS_SLAVE_AUTO_ACK_1_BYTES"]},
-	{ name: "PMBUS_TARGET_AUTO_ACK_2_BYTES", displayName: "Target will auto acknowledge every   2 received bytes", legacyNames: ["PMBUS_SLAVE_AUTO_ACK_2_BYTES"]},
+	{ name: "PMBUS_TARGET_AUTO_ACK_1_BYTES", displayName: "Target will auto acknowledge every  received byte", legacyNames: ["PMBUS_SLAVE_AUTO_ACK_1_BYTES"]},
+	{ name: "PMBUS_TARGET_AUTO_ACK_2_BYTES", displayName: "Target will auto acknowledge every  2 received bytes", legacyNames: ["PMBUS_SLAVE_AUTO_ACK_2_BYTES"]},
 	{ name: "PMBUS_TARGET_AUTO_ACK_3_BYTES", displayName: "Target will auto acknowledge every  3 received bytes", legacyNames: ["PMBUS_SLAVE_AUTO_ACK_3_BYTES"]},
-	{ name: "PMBUS_TARGET_AUTO_ACK_4_BYTES", displayName: "Target will auto acknowledge every   4 received bytes", legacyNames: ["PMBUS_SLAVE_AUTO_ACK_4_BYTES"]},
+	{ name: "PMBUS_TARGET_AUTO_ACK_4_BYTES", displayName: "Target will auto acknowledge every  4 received bytes", legacyNames: ["PMBUS_SLAVE_AUTO_ACK_4_BYTES"]},
 ]
 module.exports = {
 	PMBus_ClockMode: PMBus_ClockMode,

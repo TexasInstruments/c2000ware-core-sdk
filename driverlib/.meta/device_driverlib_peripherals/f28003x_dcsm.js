@@ -28,8 +28,6 @@ let DCSM_RAMModule = [
 	{ name: "DCSM_RAMLS5", displayName: "RAMLS5" },
 	{ name: "DCSM_RAMLS6", displayName: "RAMLS6" },
 	{ name: "DCSM_RAMLS7", displayName: "RAMLS7" },
-	{ name: "DCSM_RAMD0", displayName: "RAMD0" },
-	{ name: "DCSM_RAMD1", displayName: "RAMD1" },
 	{ name: "DCSM_CLA", displayName: "Offset of CLA field in in RAMSTAT divided by two" },
 ]
 let DCSM_Sector = [

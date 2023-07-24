@@ -1,0 +1,24 @@
+/**
+ * Import the modules used in this configuration.
+ */
+const dcc  = scripting.addModule("/driverlib/dcc.js", {}, false);
+const dcc1 = dcc.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+dcc1.$name                      = "myDCC0";
+dcc1.freqerrtol                 = 3;
+dcc1.dccerrtol                  = 1;
+dcc1.setCounter0ClkSource       = "DCC_COUNT0SRC_INTOSC2";
+dcc1.enableInterrupts           = true;
+dcc1.enableErrorSignalInterrupt = true;
+dcc1.registerInterrupts         = true;
+
+const interrupt_sys_err                            = scripting.addModule("/driverlib/interrupt/interrupt_sys_err.js", {}, false);
+const interrupt_sys_err1                           = interrupt_sys_err.addInstance({}, false);
+interrupt_sys_err1.$name                           = "myInterruptSysErr0";
+dcc1.sysErrInt                                     = interrupt_sys_err1;
+interrupt_sys_err1.enableInterrupt                 = true;
+interrupt_sys_err1.sysErrSource_SYSCTL_STATUS_DCC1 = true;
+interrupt_sys_err1.interruptHandler                = "INT_myDCC0_ISR";

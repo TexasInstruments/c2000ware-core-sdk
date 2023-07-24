@@ -2486,6 +2486,26 @@ SysCtl_enableWatchdog(void)
 
 //*****************************************************************************
 //
+//! Checks if the watchdog is enabled or not
+//!
+//! This function returns the watchdog status whether it is enabled or disabled
+//!
+//! \return \b true if the watchdog is enabled & \b false if the watchdog is 
+//! disabled
+//
+//*****************************************************************************
+static inline bool
+SysCtl_isWatchdogEnabled(void)
+{
+
+    //
+    // Get the watchdog enable status
+    //
+    return ((HWREGH(WD_BASE + SYSCTL_O_WDCR) & SYSCTL_WDCR_WDDIS) == 0U);
+}
+
+//*****************************************************************************
+//
 //! Services the watchdog.
 //!
 //! This function resets the watchdog.
@@ -5361,6 +5381,7 @@ SysCtl_lockClkConfig(SysCtl_ClkRegSel registerName);
 
 extern void
 SysCtl_lockSysConfig (SysCtl_CpuRegSel registerName);
+
 
 //*****************************************************************************
 //

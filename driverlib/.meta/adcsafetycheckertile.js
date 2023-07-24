@@ -2,23 +2,25 @@ let Common   = system.getScript("/driverlib/Common.js");
 let device_driverlib_peripheral =
     system.getScript("/driverlib/device_driverlib_peripherals/" +
         Common.getDeviceName().toLowerCase() + "_adc.js");
+let device_driverlib_memmap =
+system.getScript("/driverlib/device_driverlib_peripherals/" +
+    Common.getDeviceName().toLowerCase() + "_memmap.js");
 
 
+var ADCSC_INSTANCE =[];
 
-var DEVICES_ADCSC_INSTANCES = {
-        F28P65x : [
-        { name: "ADCSAFETYCHK1_BASE", displayName: "ADCSAFETYCHK1"},
-        { name: "ADCSAFETYCHK2_BASE", displayName: "ADCSAFETYCHK2"},
-        { name: "ADCSAFETYCHK3_BASE", displayName: "ADCSAFETYCHK3"},
-        { name: "ADCSAFETYCHK4_BASE", displayName: "ADCSAFETYCHK4"},
-        { name: "ADCSAFETYCHK5_BASE", displayName: "ADCSAFETYCHK5"},
-        { name: "ADCSAFETYCHK6_BASE", displayName: "ADCSAFETYCHK6"},
-        { name: "ADCSAFETYCHK7_BASE", displayName: "ADCSAFETYCHK7"},
-        { name: "ADCSAFETYCHK8_BASE", displayName: "ADCSAFETYCHK8"},
-    ],
+if (["F28P65x"].includes(Common.getDeviceName()))
+{
+    for (var sftychkr in device_driverlib_memmap.ADCSAFETYCHKMemoryMap)
+    {
+        ADCSC_INSTANCE.push(
+            { name: device_driverlib_memmap.ADCSAFETYCHKMemoryMap[sftychkr].name, 
+            displayName: device_driverlib_memmap.ADCSAFETYCHKMemoryMap[sftychkr].name.replace("_BASE","")
+            }, 
+        )     
+    }
 }
 
-var ADCSC_INSTANCE = DEVICES_ADCSC_INSTANCES[Common.getDeviceName()]
 var maxInstances = ADCSC_INSTANCE.length
 
 
@@ -66,54 +68,34 @@ let config = [
 
 
 	
-function largest(arr) {
-		let i;
-		
-		// Initialize maximum element
-		let max = arr[0];
-	
-		// Traverse array elements
-		// from second and compare
-		// every element with current max
-		for (i = 1; i < arr.length; i++) {
-			if (arr[i] > max)
-				max = arr[i];
-		}
-		
-	return max;
-}
-	
 
 function onChangesafetychecker(inst, ui)
 {
-        for(var rptrIndex in device_driverlib_peripheral.ADC_SafetyCheckInst)
-        { 
-            var currentRPTR = device_driverlib_peripheral.ADC_SafetyCheckInst[rptrIndex].name
-            var rptri = (currentRPTR).replace(/[^0-9]/g,'')            
-            var selectedsources= 
-            [
-                "safetycheck"+ rptri.toString()+"usedSOC",
-                // "safetycheck"+ rptri.toString()+"usedPPB",
-                // "safetycheck"+ rptri.toString()+"usedPPBSUM",
-            ];
-            if (ui)
+    for(var rptrIndex in device_driverlib_peripheral.ADC_SafetyCheckInst)
+    { 
+        var currentRPTR = device_driverlib_peripheral.ADC_SafetyCheckInst[rptrIndex].name
+        var rptri = (currentRPTR).replace(/[^0-9]/g,'')            
+        var selectedsources= 
+        [
+            "safetycheck"+ rptri.toString()+"usedSOC",
+            // "safetycheck"+ rptri.toString()+"usedPPB",
+            // "safetycheck"+ rptri.toString()+"usedPPBSUM",
+        ];
+        if (ui)
+        {
+            for (var selectedsource of selectedsources)
             {
-                for (var selectedsource of selectedsources)
+                if ((inst["safetycheck"+ rptri.toString()+"inputSource"] != "ADC_SAFETY_CHECKER_INPUT_DISABLE"))
                 {
-                    {
-                        if ((inst["safetycheck"+ rptri.toString()+"inputSource"]!="ADC_SAFETY_CHECKER_INPUT_DISABLE"))
-                        {
-                            ui["safetycheck"+ rptri.toString()+"usedSOC"].hidden = false;
-                        }
-                        else
-                        {
-                            ui["safetycheck"+ rptri.toString()+"usedSOC"].hidden = true;  
-                        } 
-                    }   
+                    ui["safetycheck"+ rptri.toString()+"usedSOC"].hidden = false;
                 }
+                else
+                {
+                    ui["safetycheck"+ rptri.toString()+"usedSOC"].hidden = true;  
+                }    
             }
-
         }
+    }
 }
 
 if (["F28P65x"].includes(Common.getDeviceName())) {
@@ -173,7 +155,7 @@ if (["F28P65x"].includes(Common.getDeviceName())) {
                                                 var resi= inst["safetycheck"+ rptri.toString()+"ResultSelect"].replace(/[^0-9]/g,'')
                                                 //return adc_inst.enabledSOCs.toString().replace("ADC_","").replace("_NUMBER"," number ").replace("SOC","SOC/EOC")
                                                 // if((adc_inst.enabledPPBs).includes(currentPPB)){
-                                                if((adc_inst.enabledSOCs).includes(currentSOC) &&(inst["safetycheck"+ rptri.toString()+"inputSource"]=="ADC_SAFETY_CHECKER_INPUT_SOCx"))
+                                                if((adc_inst.enabledSOCs).includes(currentSOC) && (inst["safetycheck"+ rptri.toString()+"inputSource"]=="ADC_SAFETY_CHECKER_INPUT_SOCx"))
                                                 {
                                                     if (resi==soci)
                                                     {
@@ -187,14 +169,14 @@ if (["F28P65x"].includes(Common.getDeviceName())) {
                                                 var currentPPB = device_driverlib_peripheral.ADC_PPBNumber[ppbIndex].name
                                                 var ppbi = (currentPPB).replace(/[^0-9]/g,'')
                                                 var resi= inst["safetycheck"+ rptri.toString()+"ResultSelect"].replace(/[^0-9]/g,'')
-                                                var highPPB="";
+                                                var highPPB = "";
                                                 if((adc_inst.enabledPPBs).includes(currentPPB) && ((inst["safetycheck"+ rptri.toString()+"inputSource"]=="ADC_SAFETY_CHECKER_INPUT_PPBx")||(inst["safetycheck"+ rptri.toString()+"inputSource"]=="ADC_SAFETY_CHECKER_INPUT_PPBSUMx")))
                                                 {
-                                                    if (resi==adc_inst["ppb" + ppbi.toString() + "SOCNumber"].replace(/[^0-9]/g,''))
+                                                    if (resi == adc_inst["ppb" + ppbi.toString() + "SOCNumber"].replace(/[^0-9]/g,''))
                                                     {
                                                     // highPPB+=adc_inst["ppb" + ppbi.toString() + "Name"];
                                                         highPPB+=adc_inst["ppb" + ppbi.toString() + "SOCNumber"]
-                                                        selectedsource=adc_inst["ppb" + ppbi.toString() + "SOCNumber"].replace("ADC_","").replace("_NUMBER","")
+                                                        selectedsource = adc_inst["ppb" + ppbi.toString() + "SOCNumber"].replace("ADC_","").replace("_NUMBER","")
                                                     }
                                                 }   
                                             }     
@@ -246,11 +228,67 @@ function modules(inst)
 
 
 
-function onValidate(inst, validation) {    
-let adc = system.modules["/driverlib/adc.js"];
+function onValidate(inst, validation) { 
+    
+    //
+    // Check copy safety Checker Instances
+    // 
+    var usedADCSCInsts = [];
+    for (var instance_index in inst.$module.$instances)
+    {
+        var instance_obj = inst.$module.$instances[instance_index];
+        usedADCSCInsts.push(instance_obj.adcscBase);
+    }
+
+    var otherContexts = Common.getOtherContextNames()
+    for (var cntx of otherContexts)
+    {
+        var onOtherCntx = Common.getModuleForCore(inst.$module.$name, cntx);
+        if (onOtherCntx)
+        {
+            for (var instance_index in onOtherCntx.$instances)
+            {
+                var instance_obj = onOtherCntx.$instances[instance_index];
+                usedADCSCInsts.push(instance_obj.adcscBase);
+            }
+        }
+    }
+    var duplicatesResult = Common.findDuplicates(usedADCSCInsts)
+
+    if (duplicatesResult.duplicates.length != 0)
+    {
+        var allDuplicates = "";
+        for (var duplicateNamesIndex in duplicatesResult.duplicates)
+        {
+            allDuplicates = allDuplicates + Common.stringOrEmpty(allDuplicates, ", ")
+                            + duplicatesResult.duplicates[duplicateNamesIndex];
+        }
+        validation.logError(
+            "The ADC Safety Checker Instance used. Duplicates: " + allDuplicates,
+            inst, "adcscBase");
+    }
+    //
+    // Check duplicate ADC sources  
+    //
+    let adc = system.modules["/driverlib/adc.js"];
                        
     if (adc!=null)
     {
+        var usedADCInsts = [];
+        for (var instance_index in adc.$instances)
+        {
+            var instance_obj = adc.$instances[instance_index];
+            usedADCInsts.push(instance_obj.adcBase);
+        }
+        for(var rptrIndex in device_driverlib_peripheral.ADC_SafetyCheckInst) { 
+            var currentRPTR = device_driverlib_peripheral.ADC_SafetyCheckInst[rptrIndex].name
+            let rptri = (currentRPTR).replace(/[^0-9]/g,'')
+            if(!(usedADCInsts.includes(inst["safetycheck"+ rptri.toString()+"ADC"].replace("ADC_","ADC")+"_BASE"))){
+            validation.logError(
+                "This ADC Instance has not been configured. If you want to use this ADC, you can set it up via ADC module.",
+                inst, "safetycheck"+ rptri.toString()+"ADC");
+            }   
+        }
         for ( var adc_inst of adc.$instances)
         {
             if ((inst["safetycheck1usedSOC"]!=null)&&(inst["safetycheck2usedSOC"]!=null)) {
@@ -261,7 +299,8 @@ let adc = system.modules["/driverlib/adc.js"];
                 //
                 // Check the source for SOC 
                 //
-                if ((adc_inst.enabledSOCs).includes(selectedSOC1)&&(adc_inst.enabledSOCs).includes(selectedSOC2)&&(inst["safetycheck1inputSource"]=="ADC_SAFETY_CHECKER_INPUT_SOCx")&&(inst["safetycheck2inputSource"]=="ADC_SAFETY_CHECKER_INPUT_SOCx")) {
+                if ((adc_inst.enabledSOCs).includes(selectedSOC1)&&(adc_inst.enabledSOCs).includes(selectedSOC2)&&(inst["safetycheck1inputSource"]=="ADC_SAFETY_CHECKER_INPUT_SOCx")&&
+                (inst["safetycheck2inputSource"]=="ADC_SAFETY_CHECKER_INPUT_SOCx")) {
                     //channel
                     if (adc_inst["soc"+ usedSOC1.toString()+"Channel"]==adc_inst["soc"+ usedSOC2.toString()+"Channel"])
                     {
@@ -280,14 +319,15 @@ let adc = system.modules["/driverlib/adc.js"];
                                     inst, "safetycheck1usedSOC");
                             }
                         }
-                        if (((adc_inst["soc"+ usedSOC1.toString()+"Triggermode"]=="singlemode")&&(adc_inst["soc"+ usedSOC2.toString()+"Triggermode"]=="repeatermode")) || ((adc_inst["soc"+ usedSOC2.toString()+"Triggermode"]=="singlemode")&&(adc_inst["soc"+ usedSOC1.toString()+"Triggermode"]=="repeatermode")))
+                        if (!((adc_inst["soc"+ usedSOC1.toString()+"Triggermode"]=="singlemode")^(adc_inst["soc"+ usedSOC2.toString()+"Triggermode"]=="repeatermode")) )
                         {
                             validation.logWarning(
                                 "To get the accurate performance of Safety Checker, same Trigger Mode should be selected for SOC of Selector 1 and Selector 2.",
                                 inst, "safetycheck1usedSOC");
                         }
                         if ((adc_inst["soc"+ usedSOC1.toString()+"Triggermode"]=="repeatermode")&&(adc_inst["soc"+ usedSOC2.toString()+"Triggermode"]=="repeatermode")) {
-                            if (((adc_inst["soc"+ usedSOC1.toString()+"Trigger"]=="ADC_TRIGGER_REPEATER1" )&&(adc_inst["soc"+ usedSOC2.toString()+"Trigger"]=="ADC_TRIGGER_REPEATER2"))||((adc_inst["soc"+ usedSOC1.toString()+"Trigger"]=="ADC_TRIGGER_REPEATER2" )&&(adc_inst["soc"+ usedSOC2.toString()+"Trigger"]=="ADC_TRIGGER_REPEATER1"))) {
+                            if (((adc_inst["soc"+ usedSOC1.toString()+"Trigger"]=="ADC_TRIGGER_REPEATER1" )&&(adc_inst["soc"+ usedSOC2.toString()+"Trigger"]=="ADC_TRIGGER_REPEATER2"))||
+                            ((adc_inst["soc"+ usedSOC1.toString()+"Trigger"]=="ADC_TRIGGER_REPEATER2" )&&(adc_inst["soc"+ usedSOC2.toString()+"Trigger"]=="ADC_TRIGGER_REPEATER1"))) {
                                 if (adc_inst["repeater1 Trigger"]!=adc_inst["repeater2 Trigger"])
                                 {
                                     validation.logWarning(
@@ -325,6 +365,13 @@ let adc = system.modules["/driverlib/adc.js"];
                 var ppbsoc1= adc_inst["ppb1SOCNumber"].replace(/[^0-9]/g,'')
                 if ((inst.safetycheck1usedSOC)&&(inst.safetycheck2usedSOC)) {
                     if (res1!=res2) { 
+                        //
+                        // To do: make a function to handle this section 
+                        //
+                        // for (let xbari=1; xbari< 5; xbari++){
+                        //     if ((adc_inst.enabledPPBs).includes("ADC_PPB_NUMBER"+xbari)){
+
+                        // }
                         if (((adc_inst.enabledPPBs).includes("ADC_PPB_NUMBER1")&&(adc_inst.enabledPPBs).includes("ADC_PPB_NUMBER2"))&&(((res1==ppbsoc1)&&(res2==ppbsoc2))||(res1==ppbsoc2)&&(res2==ppbsoc1))) {
                             if (adc_inst["ppb1ReferenceOffset"]!=adc_inst["ppb2ReferenceOffset"])
                             {
@@ -382,7 +429,8 @@ let adc = system.modules["/driverlib/adc.js"];
                             }  
                         }
                         
-                        if (((adc_inst.enabledPPBs).includes("ADC_PPB_NUMBER2")&&(adc_inst.enabledPPBs).includes("ADC_PPB_NUMBER4"))&&(res1!=ppbsoc1)&&(res2!=ppbsoc1)&&(res1!=ppbsoc3)&&(res2!=ppbsoc3)&&(((res1==ppbsoc4)&&(res2==ppbsoc2))||(res1==ppbsoc2)&&(res2==ppbsoc4))) {
+                        if (((adc_inst.enabledPPBs).includes("ADC_PPB_NUMBER2")&&(adc_inst.enabledPPBs).includes("ADC_PPB_NUMBER4"))&&(res1!=ppbsoc1)&&(res2!=ppbsoc1)&&(res1!=ppbsoc3)
+                        &&(res2!=ppbsoc3)&&(((res1==ppbsoc4)&&(res2==ppbsoc2))||(res1==ppbsoc2)&&(res2==ppbsoc4))) {
                             if (adc_inst["ppb2ReferenceOffset"]!=adc_inst["ppb4ReferenceOffset"])
                             {
                                 validation.logWarning(
@@ -396,7 +444,8 @@ let adc = system.modules["/driverlib/adc.js"];
                                     inst, "safetycheck1usedSOC");
                             }    
                         }
-                        if (((adc_inst.enabledPPBs).includes("ADC_PPB_NUMBER3")&&(adc_inst.enabledPPBs).includes("ADC_PPB_NUMBER4"))&&(res1!=ppbsoc1)&&(res2!=ppbsoc1)&&(res1!=ppbsoc2)&&(res2!=ppbsoc2)&&(((res1==ppbsoc4)&&(res2==ppbsoc3))||(res1==ppbsoc3)&&(res2==ppbsoc4)))
+                        if (((adc_inst.enabledPPBs).includes("ADC_PPB_NUMBER3")&&(adc_inst.enabledPPBs).includes("ADC_PPB_NUMBER4"))&&(res1!=ppbsoc1)&&(res2!=ppbsoc1)&&(res1!=ppbsoc2)&&
+                        (res2!=ppbsoc2)&&(((res1==ppbsoc4)&&(res2==ppbsoc3))||(res1==ppbsoc3)&&(res2==ppbsoc4)))
                         {
                             if (adc_inst["ppb3ReferenceOffset"]!=adc_inst["ppb4ReferenceOffset"])
                             {
@@ -555,14 +604,8 @@ let adc = system.modules["/driverlib/adc.js"];
             
             for(var rptrIndex in device_driverlib_peripheral.ADC_SafetyCheckInst) { 
                 var currentRPTR = device_driverlib_peripheral.ADC_SafetyCheckInst[rptrIndex].name
-                let rptri = (currentRPTR).replace(/[^0-9]/g,'')
-                if (adc_inst.adcBase.replace("_BASE","").replace("ADC","") != 
-                    inst["safetycheck"+ rptri.toString()+"ADC"].replace("ADC_","")) {
-                    validation.logError(
-                        "This ADC Instance has not been configured. If you want to check this ADC, you can set it up via ADC module.",
-                        inst, "safetycheck"+ rptri.toString()+"ADC");
-                }
-                if (inst["safetycheck"+ rptri.toString()+"usedSOC"]!="") {
+                let rptri = (currentRPTR).replace(/[^0-9]/g,'') 
+                if ((inst["safetycheck"+ rptri.toString()+"usedSOC"]!="")&&(adc_inst.adcBase.replace("_BASE", "")==inst["safetycheck"+ rptri.toString()+"ADC"].replace("ADC_","ADC"))) {
                     if (inst["safetycheck"+ rptri.toString()+"inputSource"]=="ADC_SAFETY_CHECKER_INPUT_SOCx")
                     {
                         var selectedSOC = inst ["safetycheck"+rptri.toString()+"usedSOC"].replace(/[^0-9]/g,'')
@@ -646,32 +689,31 @@ let adc = system.modules["/driverlib/adc.js"];
                         }  
                     }
                 }    
-                if ((inst["safetycheck"+ rptri.toString()+"usedSOC"]=="") && (inst["safetycheck"+ rptri.toString()+"inputSource"] != "ADC_SAFETY_CHECKER_INPUT_DISABLE")) {
-                    validation.logWarning(
-                        "There is no Input Source configured for this Result",
-                        inst, "safetycheck"+ rptri.toString()+"usedSOC");
-                }
+            }
+        }
+        for(var rptrIndex in device_driverlib_peripheral.ADC_SafetyCheckInst) { 
+            var currentRPTR = device_driverlib_peripheral.ADC_SafetyCheckInst[rptrIndex].name
+            let rptri = (currentRPTR).replace(/[^0-9]/g,'')
+            if ((inst["safetycheck"+ rptri.toString()+"usedSOC"]=="") && (inst["safetycheck"+ rptri.toString()+"inputSource"] != "ADC_SAFETY_CHECKER_INPUT_DISABLE")) {
+                validation.logWarning(
+                    "There is no Input Source configured for this Result",
+                    inst, "safetycheck"+ rptri.toString()+"usedSOC");
             }
         }
         
     }
     if ((inst["safetycheck1inputSource"] != "ADC_SAFETY_CHECKER_INPUT_DISABLE")||(inst["safetycheck2inputSource"] != "ADC_SAFETY_CHECKER_INPUT_DISABLE")){
-        if (inst["safetycheck1ADC"] != inst["safetycheck2ADC"]) 
-        {
-            validation.logWarning(
-                "Same ADC instance should be selected for Selector 1 and Selector 2",
-                inst, "safetycheck1ADC");
-        }
         if (inst["safetycheck1inputSource"] != inst["safetycheck2inputSource"]) 
         {
             validation.logWarning(
                 "Same Input Source should be selected for Selector 1 and Selector 2",
                 inst, "safetycheck2inputSource");
         }
-        if (inst["safetycheck1ResultSelect"] == inst["safetycheck2ResultSelect"]) 
+        if ((inst["safetycheck1ResultSelect"] == inst["safetycheck2ResultSelect"]) &&
+            (inst["safetycheck1ADC"] == inst["safetycheck2ADC"]))
         {
             validation.logWarning(
-                "Different Result should be selected for Selector 1 and Selector 2",
+                "Different Result should be selected for Selector 1 and Selector 2 when the same ADC instance is used for both",
                 inst, "safetycheck1ResultSelect");
         }
         if (inst["safetyCheckTolerance"] < 0) 

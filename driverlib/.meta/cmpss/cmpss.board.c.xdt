@@ -113,6 +113,9 @@ void `instance.$name`_init(){
         % else{
     CMPSS_configDAC(`baseName`,(`instance.dacValLoad` | `instance.dacRefVoltage` | `instance.dacValSource`));
         % }
+        % if(["F280015x", "F28P65x"].includes(system.deviceData.deviceId)){
+    CMPSS_configDACLow(`baseName`,`instance.lowDacValSource`);
+        % }
     //
     // Sets the value of the internal DAC of the high comparator.
     //
@@ -131,11 +134,11 @@ void `instance.$name`_init(){
     //
     // Sets the value of the internal DAC of the high comparator for Diode Emulation Support.
     //
-    CMPSS_configHighDACShadowValue2(`baseName`,`instance.deDACValHigh`U);
+    CMPSS_configHighDACShadowValueDE(`baseName`, `instance.deDACValHigh`U);
     //
     // Sets the value of the internal DAC of the low comparator for Diode Emulation Support.
     //
-    CMPSS_configLowDACShadowValue2(`baseName`,`instance.deDACValLow`U);
+    CMPSS_configLowDACShadowValueDE(`baseName`, `instance.deDACValLow`U);
     //
     // Set the DEACTIVE signal source for CMPSS
     //
@@ -194,11 +197,11 @@ void `instance.$name`_init(){
     //
     // Configures the high comparator's ramp generator clock divider
     //
-    CMPSS_setRampClockDividerHigh(`baseName`, `instance.rampClkDiv`)
+    CMPSS_setRampClockDividerHigh(`baseName`, `instance.rampClkDiv`);
     //
     // Configures the low comparator's ramp generator clock divider
     //
-    CMPSS_setRampClockDividerLow(`baseName`, `instance.rampClkDivLow`)
+    CMPSS_setRampClockDividerLow(`baseName`, `instance.rampClkDivLow`);
     %}
         % if(instance.latchResetHigh){
     //

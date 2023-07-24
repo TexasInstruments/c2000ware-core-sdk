@@ -1,13 +1,14 @@
 %%{
+let clocktree_common   = system.getScript("/driverlib/.meta/clocktree/clocktree_common.js");
 
-var DualCore 	= system.getTemplate('./dualCore/dualCore.xdt');
-var SingleCore  = system.getTemplate('./singleCore/singleCore.xdt');
+var DualCore 	= clocktree_common.DualCore;
+var SingleCore  = clocktree_common.SingleCore;
 
-const multi_core = ["F2837xD", "F2838x"]
-const PLL_type1  = ["F2837xS", "F2807x", "F28004x"]					//FMULT available 	| REFDIV unavailable
-const PLL_type2  = ["F28002x", "F28003x", "F280013x", "F280015x"]	//FMULT unavailable	| REFDIV available
+const multi_core = clocktree_common.multi_core;
+const PLL_type1  = clocktree_common.PLL_type1;
+const PLL_type2  = clocktree_common.PLL_type2;
 
-const device  = system.deviceData.device
+const device  = clocktree_common.device;
 
 %%}
 //#############################################################################
@@ -59,7 +60,7 @@ const device  = system.deviceData.device
 %}
 %
 %
-% if(PLL_type1.includes(device) || PLL_type2.includes(device))
+% if(!multi_core.includes(device) && (PLL_type1.includes(device) || PLL_type2.includes(device)))
 %{
 `SingleCore()`
 %}

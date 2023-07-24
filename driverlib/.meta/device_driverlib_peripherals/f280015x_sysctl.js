@@ -239,6 +239,16 @@ let SysCtl_IntOSC2_Mode = [
 	{ name: "SYSCTL_INTOSC2_MODE_INTR", displayName: "Intrenal Resistor mode" },
 	{ name: "SYSCTL_INTOSC2_MODE_EXTR", displayName: "External Resistor mode" },
 ]
+let SysCtl_CMPSSLPMSel = [
+	{ name: "SYSCTL_CMPSSLPMSEL_CMPSS_1H", displayName: "CMPSSLPMSEL CMPSS 1H" },
+	{ name: "SYSCTL_CMPSSLPMSEL_CMPSS_1L", displayName: "CMPSSLPMSEL CMPSS 1L" },
+	{ name: "SYSCTL_CMPSSLPMSEL_CMPSS_2H", displayName: "CMPSSLPMSEL CMPSS 2H" },
+	{ name: "SYSCTL_CMPSSLPMSEL_CMPSS_2L", displayName: "CMPSSLPMSEL CMPSS 2L" },
+	{ name: "SYSCTL_CMPSSLPMSEL_CMPSS_3H", displayName: "CMPSSLPMSEL CMPSS 3H" },
+	{ name: "SYSCTL_CMPSSLPMSEL_CMPSS_3L", displayName: "CMPSSLPMSEL CMPSS 3L" },
+	{ name: "SYSCTL_CMPSSLPMSEL_CMPSS_4H", displayName: "CMPSSLPMSEL CMPSS 4H" },
+	{ name: "SYSCTL_CMPSSLPMSEL_CMPSS_4L", displayName: "CMPSSLPMSEL CMPSS 4L" },
+]
 let SYSCTL_NMI = [
 	{ name: "SYSCTL_NMI_NMIINT", displayName: "NMI Interrupt Flag" },
 	{ name: "SYSCTL_NMI_CLOCKFAIL", displayName: "Clock Fail Interrupt Flag" },
@@ -300,6 +310,7 @@ module.exports = {
 	SysCtl_CpuRegSel: SysCtl_CpuRegSel,
 	SysCtl_UserRegister: SysCtl_UserRegister,
 	SysCtl_IntOSC2_Mode: SysCtl_IntOSC2_Mode,
+	SysCtl_CMPSSLPMSel: SysCtl_CMPSSLPMSel,
 	SYSCTL_NMI: SYSCTL_NMI,
 	SYSCTL_STATUS_SYS_ERR: SYSCTL_STATUS_SYS_ERR,
 	SYSCTL_CAUSE: SYSCTL_CAUSE,

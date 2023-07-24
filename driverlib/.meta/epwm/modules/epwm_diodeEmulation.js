@@ -52,8 +52,8 @@ function onChangeEnableDisable(inst, ui)
         ui.epwmDiodeEmulation_enablePWMTrip.hidden = true;
 
         inst.epwmDiodeEmulation_selExitMode = "EPWM_DIODE_EMULATION_CBC";
-        inst.epwmDiodeEmulation_TripLSelect = "EPWM_DE_TRIP_SRC_INPUTXBAR_OUT1";
-        inst.epwmDiodeEmulation_TripHSelect = "EPWM_DE_TRIP_SRC_INPUTXBAR_OUT1";
+        inst.epwmDiodeEmulation_TripLSelect = "EPWM_DE_TRIPL_SRC_INPUTXBAR_OUT1";
+        inst.epwmDiodeEmulation_TripHSelect = "EPWM_DE_TRIPH_SRC_INPUTXBAR_OUT1";
         inst.epwmDiodeEmulation_enableDiodeEmulationModeCounter = false;
         inst.epwmDiodeEmulation_stepIncr = 0;
         inst.epwmDiodeEmulation_stepDecr = 0;
@@ -110,16 +110,16 @@ var config = [
         displayName : "Input TripL Select",
         description : 'Input trip low select from Xbar or CMPSS',
         hidden      : true,
-        default     : device_driverlib_peripheral.EPWM_DiodeEmulationTripSource[0].name,
-        options     : device_driverlib_peripheral.EPWM_DiodeEmulationTripSource
+        default     : device_driverlib_peripheral.EPWM_DiodeEmulationTripLSource[0].name,
+        options     : device_driverlib_peripheral.EPWM_DiodeEmulationTripLSource
     },
     {
         name: "epwmDiodeEmulation_TripHSelect",
         displayName : "Input TripH Select",
         description : 'Input trip high select from Xbar or CMPSS',
         hidden      : true,
-        default     : device_driverlib_peripheral.EPWM_DiodeEmulationTripSource[0].name,
-        options     : device_driverlib_peripheral.EPWM_DiodeEmulationTripSource
+        default     : device_driverlib_peripheral.EPWM_DiodeEmulationTripHSource[0].name,
+        options     : device_driverlib_peripheral.EPWM_DiodeEmulationTripHSource
     },
     {
         name:  "GROUP_DEMON",

@@ -1,7 +1,7 @@
 let FSIRegisters = [
 	{ name: "TX_MASTER_CTRL", description: "Transmit master control register", offset: "0x0",
 		bits: [
-			{ name: "CORE_RST", description: "Transmitter Master Core Reset", size: "1", shift: "0", mask: "0x1" },
+			{ name: "CORE_RST", description: "Transmitter Main Core Reset", size: "1", shift: "0", mask: "0x1" },
 			{ name: "FLUSH", description: "Flush Operation Start", size: "1", shift: "1", mask: "0x2" },
 			{ name: "KEY", description: "Write Key", size: "8", shift: "8", mask: "0xFF00" },
 		]
@@ -144,7 +144,7 @@ let FSIRegisters = [
 	},
 	{ name: "RX_MASTER_CTRL", description: "Receive master control register", offset: "0x0",
 		bits: [
-			{ name: "CORE_RST", description: "Receiver Master Core Reset", size: "1", shift: "0", mask: "0x1" },
+			{ name: "CORE_RST", description: "Receiver Main Core Reset", size: "1", shift: "0", mask: "0x1" },
 			{ name: "INT_LOOPBACK", description: "Internal Loopback Enable", size: "1", shift: "1", mask: "0x2" },
 			{ name: "SPI_PAIRING", description: "Clock Pairing for SPI-like Behaviour", size: "1", shift: "2", mask: "0x4" },
 			{ name: "KEY", description: "Write Key", size: "8", shift: "8", mask: "0xFF00" },

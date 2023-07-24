@@ -45,19 +45,8 @@
 //
 #include "driverlib.h"
 #include "clocktree.h"
-%if (["F2838x"].includes(Common.getDeviceName())){
+%if (["F2837xD", "F2838x", "F28P65x"].includes(Common.getDeviceName())){
 
-#if (!defined(CPU1) && !defined(CPU2))
-#error "You must define CPU1 or CPU2 in your project properties.  Otherwise, \
-the offsets in your header files will be inaccurate."
-#endif
-
-#if (defined(CPU1) && defined(CPU2))
-#error "You have defined both CPU1 and CPU2 in your project properties.  Only \
-a single CPU should be defined."
-#endif
-%}
-%else if (["F2837xD"].includes(Common.getDeviceName())){
 #if (!defined(CPU1) && !defined(CPU2))
 #error "You must define CPU1 or CPU2 in your project properties.  Otherwise, \
 the offsets in your header files will be inaccurate."

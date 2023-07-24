@@ -411,13 +411,13 @@ static inline DCSM_MemoryStatus
 DCSM_getRAMZone(DCSM_RAMModule module)
 {
     uint16_t shift = (uint16_t)module * 2U;
-    uint32_t RAMStatus;
+    uint32_t ramStatus;
     //
     //Read the RAMSTAT register for the specific RAM Module.
     //
-    RAMStatus = ((HWREG(DCSMCOMMON_BASE + DCSM_O_RAMSTAT) >>
+    ramStatus = ((HWREG(DCSMCOMMON_BASE + DCSM_O_RAMSTAT) >>
                                 shift) & 0x03U);
-    return((DCSM_MemoryStatus)RAMStatus);
+    return((DCSM_MemoryStatus)ramStatus);
 }
 
 //*****************************************************************************

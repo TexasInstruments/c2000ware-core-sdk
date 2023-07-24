@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v4.02.00.00
+                v5.00.00.00
               </div>
             
           
@@ -361,22 +361,29 @@ wherever a function has an e interruptNumber parameter.</p>
 <p class="breathe-sectiondef-title rubric">Functions</p>
 <dl class="cpp function">
 <dt id="_CPPv424Interrupt_defaultHandlerv">
-<span id="_CPPv324Interrupt_defaultHandlerv"></span><span id="_CPPv224Interrupt_defaultHandlerv"></span><span id="Interrupt_defaultHandler__void"></span><span class="target" id="group__interrupt__api_1gab242b5e261f22d2009692da94a330ec2"></span>void <code class="sig-name descname">Interrupt_defaultHandler</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424Interrupt_defaultHandlerv" title="Permalink to this definition">¶</a><br /></dt>
-<dd></dd></dl>
+<span id="_CPPv324Interrupt_defaultHandlerv"></span><span id="_CPPv224Interrupt_defaultHandlerv"></span><span id="Interrupt_defaultHandler__void"></span><span class="target" id="group__interrupt__api_1gadf3aff8684ae85c08be45499c9414dc5"></span>void <code class="sig-name descname">Interrupt_defaultHandler</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424Interrupt_defaultHandlerv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The default interrupt handler.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
 
 <dl class="cpp function">
 <dt id="_CPPv433Interrupt_illegalOperationHandlerv">
-<span id="_CPPv333Interrupt_illegalOperationHandlerv"></span><span id="_CPPv233Interrupt_illegalOperationHandlerv"></span><span id="Interrupt_illegalOperationHandler__void"></span><span class="target" id="group__interrupt__api_1gaee249c28259b622bc4c04056034c5d50"></span>void <code class="sig-name descname">Interrupt_illegalOperationHandler</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433Interrupt_illegalOperationHandlerv" title="Permalink to this definition">¶</a><br /></dt>
-<dd></dd></dl>
+<span id="_CPPv333Interrupt_illegalOperationHandlerv"></span><span id="_CPPv233Interrupt_illegalOperationHandlerv"></span><span id="Interrupt_illegalOperationHandler__void"></span><span class="target" id="group__interrupt__api_1ga48c5ed9e350b06e16c3186df4b0de83d"></span>void <code class="sig-name descname">Interrupt_illegalOperationHandler</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433Interrupt_illegalOperationHandlerv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The default illegal instruction trap interrupt handler.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv420Interrupt_nmiHandlerv">
-<span id="_CPPv320Interrupt_nmiHandlerv"></span><span id="_CPPv220Interrupt_nmiHandlerv"></span><span id="Interrupt_nmiHandler__void"></span><span class="target" id="group__interrupt__api_1gab061211e312daa85c579e8caab0bf716"></span>void <code class="sig-name descname">Interrupt_nmiHandler</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420Interrupt_nmiHandlerv" title="Permalink to this definition">¶</a><br /></dt>
-<dd></dd></dl>
-
-<dl class="cpp function">
-<dt id="_CPPv422Interrupt_enableMasterv">
-<span id="_CPPv322Interrupt_enableMasterv"></span><span id="_CPPv222Interrupt_enableMasterv"></span><span id="Interrupt_enableMaster__void"></span><span class="target" id="group__interrupt__api_1ga8f25fdcb664944f93ffd81c04a499cc3"></span>bool <code class="sig-name descname">Interrupt_enableMaster</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422Interrupt_enableMasterv" title="Permalink to this definition">¶</a><br /></dt>
+<dt id="_CPPv422Interrupt_enableGlobalv">
+<span id="_CPPv322Interrupt_enableGlobalv"></span><span id="_CPPv222Interrupt_enableGlobalv"></span><span id="Interrupt_enableGlobal__void"></span><span class="target" id="group__interrupt__api_1ga4f67f455d71a7e2adfdbc2efe1dc044e"></span>bool <code class="sig-name descname">Interrupt_enableGlobal</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422Interrupt_enableGlobalv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Allows the CPU to process interrupts.</p>
 <p>This function clears the global interrupt mask bit (INTM) in the CPU, allowing the processor to respond to interrupts.</p>
 <p><dl class="simple">
@@ -387,8 +394,8 @@ wherever a function has an e interruptNumber parameter.</p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv423Interrupt_disableMasterv">
-<span id="_CPPv323Interrupt_disableMasterv"></span><span id="_CPPv223Interrupt_disableMasterv"></span><span id="Interrupt_disableMaster__void"></span><span class="target" id="group__interrupt__api_1ga48fc3e43c6aa6cc92234284fef160baa"></span>bool <code class="sig-name descname">Interrupt_disableMaster</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423Interrupt_disableMasterv" title="Permalink to this definition">¶</a><br /></dt>
+<dt id="_CPPv423Interrupt_disableGlobalv">
+<span id="_CPPv323Interrupt_disableGlobalv"></span><span id="_CPPv223Interrupt_disableGlobalv"></span><span id="Interrupt_disableGlobal__void"></span><span class="target" id="group__interrupt__api_1ga92072c2302cf6440e6e24b2188ddaf4c"></span>bool <code class="sig-name descname">Interrupt_disableGlobal</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423Interrupt_disableGlobalv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Stops the CPU from processing interrupts.</p>
 <p>This function sets the global interrupt mask bit (INTM) in the CPU, preventing the processor from receiving maskable interrupts.</p>
 <p><dl class="simple">
@@ -426,7 +433,7 @@ wherever a function has an e interruptNumber parameter.</p>
 <span id="_CPPv320Interrupt_unregister8uint32_t"></span><span id="_CPPv220Interrupt_unregister8uint32_t"></span><span id="Interrupt_unregister__uint32_t"></span><span class="target" id="group__interrupt__api_1gac5472e8d75b447a2ceda1c560bd3cbc0"></span>void <code class="sig-name descname">Interrupt_unregister</code><span class="sig-paren">(</span>uint32_t <em>interruptNumber</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420Interrupt_unregister8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Unregisters the function to be called when an interrupt occurs.</p>
 <p><p>This function is used to indicate that a default handler </p>
-<a class="reference internal" href="#group__interrupt__api_1gab242b5e261f22d2009692da94a330ec2"><span class="std std-ref">Interrupt_defaultHandler()</span></a> should be called when the given interrupt is asserted to the processor. Call <a class="reference internal" href="#group__interrupt__api_1ga9a3a8f11adc85d5e3669f9332c7fd3f9"><span class="std std-ref">Interrupt_disable()</span></a> to disable the interrupt before calling this function.<dl class="simple">
+<a class="reference internal" href="#group__interrupt__api_1gadf3aff8684ae85c08be45499c9414dc5"><span class="std std-ref">Interrupt_defaultHandler()</span></a> should be called when the given interrupt is asserted to the processor. Call <a class="reference internal" href="#group__interrupt__api_1ga9a3a8f11adc85d5e3669f9332c7fd3f9"><span class="std std-ref">Interrupt_disable()</span></a> to disable the interrupt before calling this function.<dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">interruptNumber</span></code>: specifies the interrupt in question.</p></li>
 </ul>
@@ -641,8 +648,10 @@ at the end of the ISR.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
-      <span class="lastupdated">Last updated on Oct 11, 2022.
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+      <span class="lastupdated">Last updated on Jul 01, 2023.
       </span></p>
   </div>
 
@@ -662,7 +671,7 @@ at the end of the ISR.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v4.02.00.00',
+            VERSION:'v5.00.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

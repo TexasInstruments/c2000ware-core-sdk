@@ -1634,6 +1634,7 @@ HRPWM_setFallingEdgeDelayLoadMode(uint32_t base, HRPWM_LoadMode loadEvent)
     EDIS;
 }
 
+
 //*****************************************************************************
 //
 // Close the Doxygen group.

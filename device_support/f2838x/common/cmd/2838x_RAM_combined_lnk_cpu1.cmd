@@ -65,7 +65,7 @@ SECTIONS
 
    .stack           : > RAMM1
 #if defined(__TI_EABI__)
-   .bss             : >> RAMLS56 | RAMGS101112
+   .bss             : >> RAMLS56 | RAMLS7 | RAMGS101112
    .bss:output      : > RAMLS3
    .init_array	    : > RAMM0
    .const           : > RAMLS56

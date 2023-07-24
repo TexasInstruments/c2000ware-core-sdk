@@ -251,6 +251,7 @@ void initEPWM(void)
     XBAR_setEPWMMuxConfig(XBAR_TRIP4, XBAR_EPWM_MUX00_CMPSS1_CTRIPH);
     XBAR_enableEPWMMux(XBAR_TRIP4, XBAR_MUX00);
 
+
     //
     // Clear trip flags
     //

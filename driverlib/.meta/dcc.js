@@ -94,7 +94,7 @@ function AutoCalculate(localDCCerrtol, localFclk1, localFclk0, localFsysclk, loc
     {
         localcounter1seed = 1048575;
     }
-
+    //console.log(localcounter0seed)
     return {
         counter0seed: localcounter0seed,
         validcounter0seed : localvalidcounter0seed,
@@ -419,7 +419,7 @@ function onValidate(inst, validation)
     }
 
     /* This is warning for NMI, can add some NMI integration if needed */
-    if(Common.getDeviceName() == 'F28002x' || Common.getDeviceName() == 'F28003x')
+    if(Common.getDeviceName() == 'F28002x' || Common.getDeviceName() == 'F28003x' || Common.getDeviceName() == 'F28P55x')
     {
         if (inst.enableErrorSignalInterrupt && inst.registerInterrupts)
         {
@@ -498,7 +498,7 @@ var dccModule = {
                     }
                 }]
             }
-            else if (['f28002x', 'f28003x', 'f280013x', 'f280015x'].includes(Common.getDeviceName().toLowerCase()))
+            else if (['f28002x', 'f28003x', 'f28p55x', 'f280013x', 'f280015x'].includes(Common.getDeviceName().toLowerCase()))
             {
                 var interruptName = inst.dccBase.replace("_BASE", "");
                 return [{

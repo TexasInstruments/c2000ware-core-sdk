@@ -1,0 +1,28 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --board "/boards/TMDSCNCD28388D" --product "C2000WARE@4.02.00.00"
+ * @versions {"tool":"1.11.0+2225"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Filter  = scripting.addModule("/libraries/dsp/FPU/Filter/Filter.js", {}, false);
+const Filter1 = Filter.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+Filter1.$name              = "myFILTER0";
+Filter1.fpuType            = "FPU64";
+Filter1.FIR.create(1);
+Filter1.FIR[0].$name       = "myFIR0";
+Filter1.FIR[0].dBuffPtr    = "delayBuff";
+Filter1.FIR[0].coeffPtr    = "coeffBuff";
+Filter1.FIR[0].inPtr       = "inPtr";
+Filter1.FIR[0].outPtr      = "outPtr";
+Filter1.FIR[0].filterOrder = 58;
+
+const FPU   = scripting.addModule("/libraries/math/FPU/FPU.js", {}, false);
+FPU.fpuType = "FPU64";

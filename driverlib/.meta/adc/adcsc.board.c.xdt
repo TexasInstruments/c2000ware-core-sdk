@@ -1,17 +1,11 @@
 % var nameOfModule = "adcsafetycheckertile";
 % var module = system.modules['/driverlib/' + nameOfModule + '.js'];
+% var staticModule = system.modules['/driverlib/adcsafetychecker.js'];
+% var stat = staticModule.$static ;
 % let Common   = system.getScript("/driverlib/Common.js");
 % var nameOfPeripheral = module.peripheralName;
-% var device_driverlib_peripheral = system.getScript("/driverlib/device_driverlib_peripherals/" + Common.getDeviceName().toLowerCase() + "_adc.js");
-%%{
-if(["F28P65x"].includes(Common.getDeviceName())){
-	var staticModule = system.modules['/driverlib/adcsafetychecker.js']
-	var stat = staticModule.$static
-}
-var varDelay = 500
-var refMode = ""
-var refVoltage = ""
-%%}
+% let device_driverlib_peripheral = system.getScript("/driverlib/device_driverlib_peripherals/" + Common.getDeviceName().toLowerCase() + "_adc.js");
+% let device_driverlib_memmap =system.getScript("/driverlib/device_driverlib_peripherals/" + Common.getDeviceName().toLowerCase() + "_memmap.js");
 //*****************************************************************************
 //
 // ADC Safety Checker Configurations
@@ -27,12 +21,33 @@ void `nameOfPeripheral`_init(){
 	% }
 }
 
-%   for(var i = 0; i < module.$instances.length; i++) 
-%	{
-%     var instance = module.$instances[i];
-%     var baseName = instance.$name + "_BASE";
+%	for(var i = 0; i < module.$instances.length; i++) {
+%		var instance = module.$instances[i];
+%     	var baseName = instance.$name + "_BASE";
 void `instance.$name`_init(){
+		% for(var rptrIndex in device_driverlib_peripheral.ADC_SafetyCheckInst){ 
+        	% var currentRPTR = device_driverlib_peripheral.ADC_SafetyCheckInst[rptrIndex].name
+        	% var rptrNumber = (currentRPTR).replace(/[^0-9]/g,'');
+			% var socName = "ADC_SOC_NUMBER"+(instance["safetycheck"+rptrNumber+"usedSOC"]).replace(/[^0-9]/g,'') ;		
 	//
+	// Configures the safety checker result for a selected SOC.
+	// 	  	scBase 							: `baseName`
+	//	  	socNumber						: `instance["safetycheck"+rptrNumber+"usedSOC"]`
+	//	  	scInput							: `instance["safetycheck"+rptrNumber+"inputSource"]`
+	ADC_configSOCSafetyCheckerInput(`baseName`,`socName`,`instance["safetycheck"+rptrNumber+"inputSource"]`);
+	//
+	// Configures the safety checker module.
+	// 	  	scBase 							: `baseName`
+	//	  	SafetyCheckerInstant			: `rptrNumber`
+	//	  	ADCInstant						: `instance["safetycheck"+rptrNumber+"ADC"]`
+	//      adcResultInst       			: `instance["safetycheck"+rptrNumber+"ResultSelect"]`
+	ADC_configureSafetyChecker(`baseName`, ADC_SAFETY_CHECK`rptrNumber`,`instance["safetycheck"+rptrNumber+"ADC"]`,`instance["safetycheck"+rptrNumber+"ResultSelect"]`);
+		% }
+	//
+	// Configures the tolerance allowed between safety check results.
+	// 		scBase 							: `baseName`
+	// 		tolerance   					: `instance["safetyCheckTolerance"]`
+	ADC_setSafetyCheckerTolerance(`baseName`,`instance["safetyCheckTolerance"]`);
 		% if(instance.enableSafetychecker){
 	//
 	// Enables the ADC result safety checker module.
@@ -45,27 +60,41 @@ void `instance.$name`_init(){
 	//
 	ADC_disableSafetyChecker(`baseName`);
 		% }
-		% for(var rptrIndex in device_driverlib_peripheral.ADC_SafetyCheckInst){ 
-        	% var currentRPTR = device_driverlib_peripheral.ADC_SafetyCheckInst[rptrIndex].name
-        	% var rptrNumber = (currentRPTR).replace(/[^0-9]/g,'')
-			% var socName = "ADC_SOC_NUMBER"+(instance["safetycheck"+rptrNumber+"usedSOC"]).replace(/[^0-9]/g,'') ;
-			//
-			//! Configures the safety checker result for a selected SOC.
-			// 	  	scBase 							: `baseName`
-			//	  	socNumber						: `instance["safetycheck"+rptrNumber+"usedSOC"]`
-			//	  	scInput							: `instance["safetycheck"+rptrNumber+"inputSource"]`
-ADC_configSOCSafetyCheckerInput(`baseName`,`socName`,`instance["safetycheck"+rptrNumber+"inputSource"]`);
-			//
-			// Configures the safety checker module.
-			// 	  	scBase 							: `baseName`
-			//	  	SafetyCheckerInstant			: `rptrNumber`
-			//	  	ADCInstant						: `instance["safetycheck"+rptrNumber+"ADC"]`
-			//      adcResultInst       			: `instance["safetycheck"+rptrNumber+"ResultSelect"]`
-ADC_configureSafetyChecker(`baseName`, ADC_SAFETY_CHECK`rptrNumber`,`instance["safetycheck"+rptrNumber+"ADC"]`,`instance["safetycheck"+rptrNumber+"ResultSelect"]`);
-			//! Configures the tolerance allowed between safety check results.
-			// 		scBase 							: `baseName`
-			// 		tolerance   					: `instance["safetyCheckTolerance"]`
-ADC_setSafetyCheckerTolerance(`baseName`,`instance["safetyCheckTolerance"]`);	
+		% for (var sftychkr in device_driverlib_memmap.ADCSAFETYCHK) {
+			% for (var chkrslt in device_driverlib_peripheral.ADC_SafetyCheckResult){
+				% var currentchkrslt= device_driverlib_memmap.ADCSAFETYCHK[sftychkr].name.replace("_BASE","").replace("ADC","");
+				% var currentsftychkr = device_driverlib_peripheral.ADC_SafetyCheckResult[chkrslt].name.replace("ADC_SAFETY_CHECK_","");
+				% var chkrNumber = currentchkrslt.replace(/[^0-9]/g,'');
+				% var chkrResult = device_driverlib_peripheral.ADC_SafetyCheckResult[chkrslt].name;
+				% if (stat.enableInterrupt) {
+					% if((stat.eventInterruptSource).includes(currentchkrslt + currentsftychkr)){ 
+	//
+	// Enable Safety Checker `chkrNumber` `currentsftychkr` interrupt
+	//
+	ADC_enableSafetyCheckInt(`baseName`, ADC_SAFETY_CHECKER`chkrNumber`, `chkrResult`);
+					% }
+				% }
+			% }
+		% }
+		% for(var evntIndex in device_driverlib_peripheral.ADC_SafetyCheckEvent){ 
+			% var currentEvnt = device_driverlib_peripheral.ADC_SafetyCheckEvent[evntIndex].name
+			% var evntNumber  = (currentEvnt).replace(/[^0-9]/g,'')
+			% if((stat.enableEvent).includes(currentEvnt)){
+				% for (var sftychkr in device_driverlib_memmap.ADCSAFETYCHK) {
+					% for (var chkrslt in device_driverlib_peripheral.ADC_SafetyCheckResult){
+					% var currentchkrslt= device_driverlib_memmap.ADCSAFETYCHK[sftychkr].name.replace("_BASE","").replace("ADC","");
+					% var currentsftychkr = device_driverlib_peripheral.ADC_SafetyCheckResult[chkrslt].name.replace("ADC_SAFETY_CHECK_","");
+					% var chkrNumber = currentchkrslt.replace(/[^0-9]/g,'');
+					% var chkrResult = device_driverlib_peripheral.ADC_SafetyCheckResult[chkrslt].name;
+						% if((stat["chkEvent" + evntNumber + "Source"]).includes(currentchkrslt + currentsftychkr)){ 
+	//
+	// Enable Safety Checker `chkrNumber` `currentsftychkr` event `evntNumber`
+	//
+	ADC_enableSafetyCheckEvt(`baseName`, ADC_SAFETY_CHECKER`chkrNumber`, ADC_SAFETY_CHECK_EVENT`evntNumber`, `chkrResult`);
+						% }
+					% }
+				% }
+			% }
 		% }
 }
 %	}

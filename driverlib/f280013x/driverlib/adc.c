@@ -72,6 +72,7 @@
 //
 #define TI_OTP_DEV_PRG_KEY                      (HWREG(0x71040UL))
 
+
 //*****************************************************************************
 //
 // ADC_setVREF
@@ -95,6 +96,8 @@ ADC_setVREF(uint32_t base, ADC_ReferenceMode refMode,
         HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_ANAREFCTL) &=
             ~(ASYSCTL_ANAREFCTL_ANAREFSEL);
     }
+
+
     else
     {
         HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_ANAREFCTL) |=
@@ -113,6 +116,7 @@ ADC_setVREF(uint32_t base, ADC_ReferenceMode refMode,
     {
         HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_ANAREFCTL) |=
             ASYSCTL_ANAREFCTL_ANAREF2P5SEL;
+
     }
     EDIS;
 
@@ -244,16 +248,17 @@ ADC_setOffsetTrim(uint32_t base)
 
     offsetKey = (uint32_t *)ADC_OFFSET_TRIM_KEY_OTP_MP3;
 
-    if (*offsetKey == TI_OTP_DEV_KEY)
+    if(*offsetKey == TI_OTP_DEV_KEY)
     {
         offset = (uint16_t *)(ADC_OFFSET_TRIM_OTP_ADCA_MP3 + moduleShiftVal);
     }
     else
     {
         offsetKey = (uint32_t *)ADC_OFFSET_TRIM_KEY_OTP_MP1;
-        if (*offsetKey == TI_OTP_DEV_KEY)
+        if(*offsetKey == TI_OTP_DEV_KEY)
         {
-            offset = (uint16_t *)(ADC_OFFSET_TRIM_OTP_ADCA_MP1 + moduleShiftVal);
+            offset = (uint16_t *)(ADC_OFFSET_TRIM_OTP_ADCA_MP1 +
+                                    moduleShiftVal);
         }
         else
         {
@@ -298,14 +303,14 @@ ADC_setOffsetTrimAll(ADC_ReferenceMode refMode, ADC_ReferenceVoltage refVoltage)
     //
     uint32_t *offsetKey;
     offsetKey = (uint32_t *)ADC_OFFSET_TRIM_KEY_OTP_MP3;
-    if (*offsetKey == TI_OTP_DEV_KEY)
+    if(*offsetKey == TI_OTP_DEV_KEY)
     {
     offset = (uint16_t *)ADC_OFFSET_TRIM_OTP_ADCA_MP3;
     }
     else
     {
         offsetKey = (uint32_t *)ADC_OFFSET_TRIM_KEY_OTP_MP1;
-        if (*offsetKey == TI_OTP_DEV_KEY)
+        if(*offsetKey == TI_OTP_DEV_KEY)
         {
             offset = (uint16_t *)ADC_OFFSET_TRIM_OTP_ADCA_MP1;
         }
@@ -325,14 +330,14 @@ ADC_setOffsetTrimAll(ADC_ReferenceMode refMode, ADC_ReferenceVoltage refVoltage)
     // Set up pointer to offset trim in OTP for ADCC.
     //
     offsetKey = (uint32_t *)ADC_OFFSET_TRIM_KEY_OTP_MP3;
-    if (*offsetKey == TI_OTP_DEV_KEY)
+    if(*offsetKey == TI_OTP_DEV_KEY)
     {
         offset = (uint16_t *)ADC_OFFSET_TRIM_OTP_ADCC_MP3;
     }
     else
     {
         offsetKey = (uint32_t *)ADC_OFFSET_TRIM_KEY_OTP_MP1;
-        if (*offsetKey == TI_OTP_DEV_KEY)
+        if(*offsetKey == TI_OTP_DEV_KEY)
         {
             offset = (uint16_t *)ADC_OFFSET_TRIM_OTP_ADCC_MP1;
         }

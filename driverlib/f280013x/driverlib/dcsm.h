@@ -188,16 +188,14 @@ typedef enum
     //
     //C28x RAMs
     //
-    DCSM_RAMLS0, //!< RAMLS0
-    DCSM_RAMLS1, //!< RAMLS1
-    DCSM_RAMLS2, //!< RAMLS2
-    DCSM_RAMLS3, //!< RAMLS3
-    DCSM_RAMLS4, //!< RAMLS4
-    DCSM_RAMLS5, //!< RAMLS5
-    DCSM_RAMLS6, //!< RAMLS6
-    DCSM_RAMLS7, //!< RAMLS7
-    DCSM_RAMD0,  //!< RAMD0
-    DCSM_RAMD1,  //!< RAMD1
+    DCSM_RAMLS0_SECA, //!< RAMLS0 Section A
+    DCSM_RAMLS0_SECB, //!< RAMLS0 Section B
+    DCSM_RAMLS0_SECC, //!< RAMLS0 Section C
+    DCSM_RAMLS0_SECD, //!< RAMLS0 Section D
+    DCSM_RAMLS1_SECA, //!< RAMLS1 Section A
+    DCSM_RAMLS1_SECB, //!< RAMLS1 Section B
+    DCSM_RAMLS1_SECC, //!< RAMLS1 Section C
+    DCSM_RAMLS1_SECD, //!< RAMLS1 Section D
     DCSM_CLA    = 14U //!<Offset of CLA field in in RAMSTAT divided by two
 } DCSM_RAMModule;
 
@@ -225,7 +223,7 @@ typedef enum
     DCSM_SECTOR_10,       //!< Sector 10
     DCSM_SECTOR_11,       //!< Sector 11
     DCSM_SECTOR_12,       //!< Sector 12
-    DCSM_SECTOR_13,       //!< Sector 13  
+    DCSM_SECTOR_13,       //!< Sector 13
     DCSM_SECTOR_14,       //!< Sector 14
     DCSM_SECTOR_15,       //!< Sector 15
     DCSM_SECTOR_16,       //!< Sector 16
@@ -493,14 +491,14 @@ DCSM_getZone2ControlStatus(void)
 //!
 //! \param module is the RAM module value. Valid values are type DCSM_RAMModule
 //! C28x RAMs :
-//! - \b DCSM_RAMLS0
-//! - \b DCSM_RAMLS1
-//! - \b DCSM_RAMLS2
-//! - \b DCSM_RAMLS3
-//! - \b DCSM_RAMLS4
-//! - \b DCSM_RAMLS5
-//! - \b DCSM_RAMLS6
-//! - \b DCSM_RAMLS7
+//! - \b DCSM_RAMLS0_SECA
+//! - \b DCSM_RAMLS0_SECB
+//! - \b DCSM_RAMLS0_SECC
+//! - \b DCSM_RAMLS0_SECD
+//! - \b DCSM_RAMLS1_SECA
+//! - \b DCSM_RAMLS1_SECB
+//! - \b DCSM_RAMLS1_SECC
+//! - \b DCSM_RAMLS1_SECD
 //!
 //! This function returns the security zone a RAM section belongs to.
 //!
@@ -514,13 +512,13 @@ static inline DCSM_MemoryStatus
 DCSM_getRAMZone(DCSM_RAMModule module)
 {
     uint16_t shift = (uint16_t)module * 2U;
-    uint32_t RAMStatus;
+    uint32_t ramStatus;
     //
     //Read the RAMSTAT register for the specific RAM Module.
     //
-    RAMStatus = ((HWREG(DCSMCOMMON_BASE + DCSM_O_RAMSTAT1) >>
+    ramStatus = ((HWREG(DCSMCOMMON_BASE + DCSM_O_RAMSTAT1) >>
                                 shift) & 0x03U);
-    return((DCSM_MemoryStatus)RAMStatus);
+    return((DCSM_MemoryStatus)ramStatus);
 }
 
 //*****************************************************************************
@@ -778,7 +776,7 @@ DCSM_getFlashDenyCodeStatus(void)
 //
 //! Get the status of the RAM Security after device initialization phase
 //!
-//! \return Returns 0 if Normal RAM security rule applies, 1 if all 
+//! \return Returns 0 if Normal RAM security rule applies, 1 if all
 //!  secured RAMs have become unsecured.
 //
 //*****************************************************************************
@@ -787,7 +785,7 @@ DCSM_getRAMOpenStatus(void)
 {
     return((bool)(HWREG(DCSMCOMMON_BASE + DCSM_O_RAMOPENSTAT) &
                   DCSM_RAMOPENSTAT_RAMOPEN));
-    
+
 }
 
 //*****************************************************************************
@@ -802,7 +800,7 @@ DCSM_getRAMOpenStatus(void)
 static inline void
 DCSM_forceRAMOpenStatus(void)
 {
-    HWREG(DCSMCOMMON_BASE + 
+    HWREG(DCSMCOMMON_BASE +
          DCSM_O_RAMOPENFRC) = (uint32_t)DCSM_RAMOPENFRC_SET |
                               ((uint32_t)DCSM_FORCE_SECERR_KEY <<
                               DCSM_RAMOPENFRC_KEY_S);
@@ -820,7 +818,7 @@ DCSM_forceRAMOpenStatus(void)
 static inline void
 DCSM_clearRAMOpenStatus(void)
 {
-    HWREG(DCSMCOMMON_BASE + 
+    HWREG(DCSMCOMMON_BASE +
          DCSM_O_RAMOPENCLR) = (uint32_t)DCSM_RAMOPENCLR_CLEAR |
                               ((uint32_t)DCSM_FORCE_SECERR_KEY <<
                               DCSM_RAMOPENCLR_KEY_S);
@@ -832,7 +830,7 @@ DCSM_clearRAMOpenStatus(void)
 //!
 //! If this bit is set, writes to RAMOPENFRC register is not allowed.
 //!
-//! \return None 
+//! \return None
 //
 //*****************************************************************************
 static inline void
@@ -944,14 +942,14 @@ DCSM_getZone1FlashEXEStatus(DCSM_Sector sector);
 //!
 //! \param module is the RAM module value. Valid values are type DCSM_RAMModule
 //! C28x RAMs :
-//! - \b DCSM_RAMLS0
-//! - \b DCSM_RAMLS1
-//! - \b DCSM_RAMLS2
-//! - \b DCSM_RAMLS3
-//! - \b DCSM_RAMLS4
-//! - \b DCSM_RAMLS5
-//! - \b DCSM_RAMLS6
-//! - \b DCSM_RAMLS7
+//! - \b DCSM_RAMLS0_SECA
+//! - \b DCSM_RAMLS0_SECB
+//! - \b DCSM_RAMLS0_SECC
+//! - \b DCSM_RAMLS0_SECD
+//! - \b DCSM_RAMLS1_SECA
+//! - \b DCSM_RAMLS1_SECB
+//! - \b DCSM_RAMLS1_SECC
+//! - \b DCSM_RAMLS1_SECD
 //!
 //! This function takes in a valid module value and returns the status of EXE
 //! ONLY security protection for that module.  DCSM_CLA is an invalid module
@@ -988,14 +986,14 @@ DCSM_getZone2FlashEXEStatus(DCSM_Sector sector);
 //!
 //! \param module is the RAM module value. Valid values are type DCSM_RAMModule
 //! C28x RAMs :
-//! - \b DCSM_RAMLS0
-//! - \b DCSM_RAMLS1
-//! - \b DCSM_RAMLS2
-//! - \b DCSM_RAMLS3
-//! - \b DCSM_RAMLS4
-//! - \b DCSM_RAMLS5
-//! - \b DCSM_RAMLS6
-//! - \b DCSM_RAMLS7
+//! - \b DCSM_RAMLS0_SECA
+//! - \b DCSM_RAMLS0_SECB
+//! - \b DCSM_RAMLS0_SECC
+//! - \b DCSM_RAMLS0_SECD
+//! - \b DCSM_RAMLS1_SECA
+//! - \b DCSM_RAMLS1_SECB
+//! - \b DCSM_RAMLS1_SECC
+//! - \b DCSM_RAMLS1_SECD
 //!
 //! This function takes in a valid module value and returns the status of EXE
 //! ONLY security protection for that module.  DCSM_CLA is an invalid module

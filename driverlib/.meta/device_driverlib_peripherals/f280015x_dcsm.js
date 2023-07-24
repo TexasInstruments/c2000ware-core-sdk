@@ -20,16 +20,14 @@ let DCSM_EXEOnlyStatus = [
 	{ name: "DCSM_INCORRECT_ZONE", displayName: "Incorrect Zone" },
 ]
 let DCSM_RAMModule = [
-	{ name: "DCSM_RAMLS0", displayName: "RAMLS0" },
-	{ name: "DCSM_RAMLS1", displayName: "RAMLS1" },
-	{ name: "DCSM_RAMLS2", displayName: "RAMLS2" },
-	{ name: "DCSM_RAMLS3", displayName: "RAMLS3" },
-	{ name: "DCSM_RAMLS4", displayName: "RAMLS4" },
-	{ name: "DCSM_RAMLS5", displayName: "RAMLS5" },
-	{ name: "DCSM_RAMLS6", displayName: "RAMLS6" },
-	{ name: "DCSM_RAMLS7", displayName: "RAMLS7" },
-	{ name: "DCSM_RAMD0", displayName: "RAMD0" },
-	{ name: "DCSM_RAMD1", displayName: "RAMD1" },
+	{ name: "DCSM_RAMLS0_SECA", displayName: "RAMLS0 Section A" },
+	{ name: "DCSM_RAMLS0_SECB", displayName: "RAMLS0 Section B" },
+	{ name: "DCSM_RAMLS0_SECC", displayName: "RAMLS0 Section C" },
+	{ name: "DCSM_RAMLS0_SECD", displayName: "RAMLS0 Section D" },
+	{ name: "DCSM_RAMLS1_SECA", displayName: "RAMLS1 Section A" },
+	{ name: "DCSM_RAMLS1_SECB", displayName: "RAMLS1 Section B" },
+	{ name: "DCSM_RAMLS1_SECC", displayName: "RAMLS1 Section C" },
+	{ name: "DCSM_RAMLS1_SECD", displayName: "RAMLS1 Section D" },
 	{ name: "DCSM_CLA", displayName: "Offset of CLA field in in RAMSTAT divided by two" },
 ]
 let DCSM_Sector = [

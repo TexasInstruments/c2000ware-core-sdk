@@ -7,8 +7,11 @@
 %
 % 	var ownedBy2 = [];  // fill this array with the GSRAMs owned By CPU2 
 % 	var doOn2 = [];    // array of Initialized GSRAMs owned by CPU2
+%	var dRAMby2 = []; // DRAM owned by CPU2 
 %	var accessValues2 = []; // Access Configuration of GSRAMs owned by CPU2
+%	var accessValues2D = []; // Access Configuration of DRAMs owned by CPU2
 %	var lockValues2 = [];   // Lock Configurations of GSRAMs owned by CPU2
+%	var lockValues2D = [];   // Lock Configurations of DRAMs owned by CPU2
 %
 % if (Common.isMultiCoreSysConfig())   // only look for things owned by CPU2 if multicore sysconfig
 % {
@@ -39,7 +42,6 @@
 %			{
 %				var ram = element.name.replace("config_", "");
 %				var value = stat_1[element.name];
-%				console.log(value);
 %				if (value.slice(-1) == "2")                     // Which CPU GSRAMS ownership to remember
 %				{
 %					var sliced = ram.slice(14);         // Slice GSRAM names, only keep numbers 
@@ -64,6 +66,18 @@
 %			}
 %		});
 %
+%	if (configs_1["DRAM_Config"]){
+%		configs_1["DRAM_Config"].forEach((element, index) =>  // Finding Initialized GSRAMs owned by CPU2
+%		{										
+%				var Dram = element.name.replace("config_", "");
+%				var value = stat_1[element.name];
+%				if (value.slice(-1) == "2")                     // Which CPU GSRAMS ownership to remember
+%				{
+%					var sliced = (Dram).replace(/[^0-9]/g,'');         // Slice GSRAM names, only keep numbers 
+%					dRAMby2.push(sliced);            // Store numbers of GSRAM owned by CPU2 in an array
+%				}	
+%		});
+%	}
 %		configs_1["Access_Config"].forEach((element, index) =>    // Finding Access Configurations for GSRAM owned by CPU2
 %		{
 %			var ram = element.name.replace("access_", "")
@@ -85,6 +99,14 @@
 %					accessValues2.push(value);
 %				}
 %			}
+%			if (ram[12] == "D")  // only want to check global RAM
+%			{
+%				var Dnum = ram.slice(13);       // take numbers from global RAM 
+%				if (dRAMby2.includes(Dnum))   // Collect numbers for GSRAM owned by CPU2
+%				{
+%					accessValues2D.push(value);
+%				}
+%			}
 %		});
 %
 %
@@ -98,6 +120,14 @@
 %				if (ownedBy2.includes(GSnum))   // only put the C code for GSRAM owned by CPU1
 %				{
 %					lockValues2.push(value);
+%				}	
+%			}
+%			if (ram[12] == "D")                  // only check GSRAM
+%			{
+%				var GSnum = ram.slice(13);       // take numbers from global RAM 
+%				if (dRAMby2.includes(GSnum))   // only put the C code for GSRAM owned by CPU1
+%				{
+%					lockValues2D.push(value);
 %				}	
 %			}
 %		});
@@ -189,8 +219,40 @@ void `nameOfPeripheral`_init(){
 %		});
 %	}
 %  
+%   // DS RAM Configuration
 %
-%	if(["F2838x"].includes(Common.getDeviceName()) || ["F2837xS"].includes(Common.getDeviceName()) || ["F2837xD"].includes(Common.getDeviceName()) || ["F2807x"].includes(Common.getDeviceName()))
+%	if(configs["DRAM_Config"])
+%	{
+	//
+	// Configure DRAMs
+	//
+%		configs["DRAM_Config"].forEach((element, index) =>  // all GSRAM configuration code goes to CPU1
+%		{
+%			var ram_start = element.name.replace("config_", "")
+%	  		var ram = ram_start + "RAM"
+%			var value = stat[element.name]   // print all GSRAM config stuff for CPU1
+%			var value_edit = value.replace("MEMCFG_GSRAMCONTROLLER_", "SYSCTL_CPUSEL_")
+	SysCtl_allocateDxRAM(`ram_start`, `value`);
+%		});
+%	}
+%
+%
+%
+%	if(configs["FLASH_Config"])
+%	{
+	//
+	// Configure GS FLASH
+	//
+%		configs["FLASH_Config"].forEach((element, index) =>  // all GSRAM configuration code goes to CPU1
+%		{
+%			var flash = element.name.replace("config_", "")
+%			var value = stat[element.name]   // print all GSRAM config stuff for CPU1
+%			var value_edit = value.replace("MEMCFG_GSRAMCONTROLLER_", "SYSCTL_CPUSEL_")
+	SysCtl_allocateFlashBank(`flash`, `value`);
+%		});
+%	}
+%
+%	if(["F2838x", "F2837xD", "F2837xS", "F2807x","F28P65x"].includes(system.deviceData.deviceId))
 %	{
 %		if(configs["ROM_Config"])
 %		{
@@ -209,8 +271,7 @@ void `nameOfPeripheral`_init(){
 %			{
 	MemCfg_enableROMPrefetch();
 %			}
-%			else
-%			{
+%			else if(!["F28P65x"].includes(system.deviceData.deviceId)){
 	MemCfg_disableROMPrefetch();
 %			}
 %		}
@@ -238,6 +299,14 @@ void `nameOfPeripheral`_init(){
 %			{
 	MemCfg_setProtection(`ram`, `value`);
 %			}
+%		}
+%		else if (ram[12] == "D")   
+%		{
+%			var GSnum = ram.slice(13);       // take numbers from global RAM 
+%			if (!(dRAMby2.includes(GSnum)))   // only put the C code for GSRAM owned by CPU1
+%			{
+	MemCfg_setProtection(`ram`, `value`);
+%			}
 %		} else {        // Put access protection for RAM other than GSRAM 
 	MemCfg_setProtection(`ram`, `value`);
 %		}
@@ -252,6 +321,12 @@ void `nameOfPeripheral`_init(){
 %		var gsramName = "MEMCFG_SECT_GS" + ownedBy2[in2];
 %		var value2 = accessValues2[in2];            // generate access protection code for CPU2 for GSRAM owned by CPU2
 	MemCfg_setProtection(`gsramName`, `value2`);
+%		}
+%		for(var in2 in dRAMby2)
+%		{
+%		var dRamName = "MEMCFG_SECT_D" + dRAMby2[in2];
+%		var value2 = accessValues2D[in2];            // generate access protection code for CPU2 for GSRAM owned by CPU2
+	MemCfg_setProtection(`dRamName`, `value2`);
 %		}
 %	}
 %
@@ -269,6 +344,23 @@ void `nameOfPeripheral`_init(){
 %			{
 %				var GSnum = ram.slice(14);       // take numbers from global RAM 
 %				if (!(ownedBy2.includes(GSnum)))   // only put the C code for GSRAM owned by CPU1
+%				{
+%			
+%					if(value == "Lock")
+%					{
+	MemCfg_lockConfig(`ram`);
+%					}
+%					if(value == "LockCommit")
+%					{
+	MemCfg_lockConfig(`ram`);
+	MemCfg_commitConfig(`ram`);
+%					}
+%				}
+%			}
+%			else if (ram[12] == "D")
+%			{
+%				var GSnum = ram.slice(13);       // take numbers from global RAM 
+%				if (!(dRAMby2.includes(GSnum)))   // only put the C code for GSRAM owned by CPU1
 %				{
 %			
 %					if(value == "Lock")
@@ -300,6 +392,20 @@ void `nameOfPeripheral`_init(){
 %			{
 %				var gsramName = "MEMCFG_SECT_GS" + ownedBy2[in2];
 %				var value2 = lockValues2[in2];
+%				if(value2 == "Lock")
+%				{
+	MemCfg_lockConfig(`gsramName`);
+%				}
+%				if(value2 == "LockCommit")
+%				{
+	MemCfg_lockConfig(`gsramName`);
+	MemCfg_commitConfig(`gsramName`);
+%				}
+%			}
+%			for(var in2 in dRAMby2)      // check to see which GSRAM is owned by CPU 2
+%			{
+%				var gsramName = "MEMCFG_SECT_D" + dRAMby2[in2];
+%				var value2 = lockValues2D[in2];
 %				if(value2 == "Lock")
 %				{
 	MemCfg_lockConfig(`gsramName`);

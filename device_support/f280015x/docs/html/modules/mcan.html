@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v4.03.00.00_EA1
+                v5.00.00.00
               </div>
             
           
@@ -257,7 +257,79 @@ MCAN_IR_ARA_MASK)<a class="headerlink" href="#c.MCAN_INTR_MASK_ALL" title="Perma
 <dl class="cpp macro">
 <dt id="c.MCAN_MAX_PAYLOAD_BYTES">
 <span class="target" id="group__mcan__api_1gaae9ff297ab474d1d5bb2901e53415cbf"></span><code class="sig-name descname">MCAN_MAX_PAYLOAD_BYTES</code> (64U)<a class="headerlink" href="#c.MCAN_MAX_PAYLOAD_BYTES" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Maximum payload supported by CAn-FD protocol in bytes. </p>
+<dd><p>Maximum payload supported by CAN-FD protocol in bytes. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MCAN_STDFILT_RANGE">
+<span class="target" id="group__mcan__api_1ga7bbb22247a80b1802171885076d1a4e4"></span><code class="sig-name descname">MCAN_STDFILT_RANGE</code> (0U)<a class="headerlink" href="#c.MCAN_STDFILT_RANGE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Range Filter from SFID1 to SFID2 </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MCAN_STDFILT_DUAL">
+<span class="target" id="group__mcan__api_1ga1915e128758940cc0c78a61171f14396"></span><code class="sig-name descname">MCAN_STDFILT_DUAL</code> (1U)<a class="headerlink" href="#c.MCAN_STDFILT_DUAL" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Dual ID Filter for SFID1 or SFID2 </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MCAN_STDFILT_CLASSIC">
+<span class="target" id="group__mcan__api_1ga5b5d45eb5eaa46dd06a897b4a05d0499"></span><code class="sig-name descname">MCAN_STDFILT_CLASSIC</code> (2U)<a class="headerlink" href="#c.MCAN_STDFILT_CLASSIC" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Classic Filter: SFID1 = filter, SFID2 = mask </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MCAN_STDFILT_DISABLED">
+<span class="target" id="group__mcan__api_1gaa79a27d661f29ef17b92c24a17c78441"></span><code class="sig-name descname">MCAN_STDFILT_DISABLED</code> (3U)<a class="headerlink" href="#c.MCAN_STDFILT_DISABLED" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Filter Element Disabled </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MCAN_STDFILTEC_DISABLE">
+<span class="target" id="group__mcan__api_1gacba76c00edbcc07987e085764f35c319"></span><code class="sig-name descname">MCAN_STDFILTEC_DISABLE</code> (0U)<a class="headerlink" href="#c.MCAN_STDFILTEC_DISABLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Filter Element Disabled </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MCAN_STDFILTEC_FIFO0">
+<span class="target" id="group__mcan__api_1ga0ee5176b01f47c948ebfac7bde4ae2a9"></span><code class="sig-name descname">MCAN_STDFILTEC_FIFO0</code> (1U)<a class="headerlink" href="#c.MCAN_STDFILTEC_FIFO0" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Store in RX FIFO 0 if filter matches </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MCAN_STDFILTEC_FIFO1">
+<span class="target" id="group__mcan__api_1ga216e1ba4e4b576b48f13e79471090193"></span><code class="sig-name descname">MCAN_STDFILTEC_FIFO1</code> (2U)<a class="headerlink" href="#c.MCAN_STDFILTEC_FIFO1" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Store in RX FIFO 1 if filter matches </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MCAN_STDFILTEC_REJECT">
+<span class="target" id="group__mcan__api_1gae4ed5aa298cd4e4a601fea47cf6c6a67"></span><code class="sig-name descname">MCAN_STDFILTEC_REJECT</code> (3U)<a class="headerlink" href="#c.MCAN_STDFILTEC_REJECT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reject ID if filter matches </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MCAN_STDFILTEC_PRI">
+<span class="target" id="group__mcan__api_1ga9759f6a0cdc680411a408a7d5aba5b2b"></span><code class="sig-name descname">MCAN_STDFILTEC_PRI</code> (4U)<a class="headerlink" href="#c.MCAN_STDFILTEC_PRI" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set priority if filter matches </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MCAN_STDFILTEC_PRI_FIFO0">
+<span class="target" id="group__mcan__api_1ga1cbe27ded6ef4d5c1112fc1feee37dc0"></span><code class="sig-name descname">MCAN_STDFILTEC_PRI_FIFO0</code> (5U)<a class="headerlink" href="#c.MCAN_STDFILTEC_PRI_FIFO0" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set priority and store in RX FIFO 0 if filter matches </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MCAN_STDFILTEC_PRI_FIFO1">
+<span class="target" id="group__mcan__api_1ga8038ec1eeabf133b5171c48fc23f8f64"></span><code class="sig-name descname">MCAN_STDFILTEC_PRI_FIFO1</code> (6U)<a class="headerlink" href="#c.MCAN_STDFILTEC_PRI_FIFO1" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set priority and store in RX FIFO 1 if filter matches </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.MCAN_STDFILTEC_RXBUFF">
+<span class="target" id="group__mcan__api_1ga364191aded7a9a78a58d7bcad890e60d"></span><code class="sig-name descname">MCAN_STDFILTEC_RXBUFF</code> (7U)<a class="headerlink" href="#c.MCAN_STDFILTEC_RXBUFF" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Store in RX Buffer </p>
 </dd></dl>
 
 </div>
@@ -774,9 +846,61 @@ MCAN_IR_ARA_MASK)<a class="headerlink" href="#c.MCAN_INTR_MASK_ALL" title="Perma
 
 </dd></dl>
 
+<dl class="cpp enum">
+<dt id="_CPPv416MCAN_ClockSource">
+<span id="_CPPv316MCAN_ClockSource"></span><span id="_CPPv216MCAN_ClockSource"></span><span class="target" id="group__mcan__api_1gaa42862750e6f0d356a261f5393facc84"></span><em class="property">enum </em><code class="sig-name descname">MCAN_ClockSource</code><a class="headerlink" href="#_CPPv416MCAN_ClockSource" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enum to determine the clock source that will be set up via a call to the <a class="reference internal" href="#group__mcan__api_1ga632069e3892a934f5983c029a8dada9c"><span class="std std-ref">MCAN_selectClockSource()</span></a> API. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N16MCAN_ClockSource21MCAN_CLOCK_SOURCE_SYSE">
+<span id="_CPPv3N16MCAN_ClockSource21MCAN_CLOCK_SOURCE_SYSE"></span><span id="_CPPv2N16MCAN_ClockSource21MCAN_CLOCK_SOURCE_SYSE"></span><span class="target" id="group__mcan__api_1ggaa42862750e6f0d356a261f5393facc84a9c652cc619e2ccc15bb0469ae2b3d990"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_CLOCK_SOURCE_SYS</code> = 0x0<a class="headerlink" href="#_CPPv4N16MCAN_ClockSource21MCAN_CLOCK_SOURCE_SYSE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Peripheral System Clock Source. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N16MCAN_ClockSource23MCAN_CLOCK_SOURCE_AUXINE">
+<span id="_CPPv3N16MCAN_ClockSource23MCAN_CLOCK_SOURCE_AUXINE"></span><span id="_CPPv2N16MCAN_ClockSource23MCAN_CLOCK_SOURCE_AUXINE"></span><span class="target" id="group__mcan__api_1ggaa42862750e6f0d356a261f5393facc84aa8a823198bd1913912780b7608004582"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_CLOCK_SOURCE_AUXIN</code> = 0x2<a class="headerlink" href="#_CPPv4N16MCAN_ClockSource23MCAN_CLOCK_SOURCE_AUXINE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Auxiliary Clock Input Source. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N16MCAN_ClockSource24MCAN_CLOCK_SOURCE_PLLRAWE">
+<span id="_CPPv3N16MCAN_ClockSource24MCAN_CLOCK_SOURCE_PLLRAWE"></span><span id="_CPPv2N16MCAN_ClockSource24MCAN_CLOCK_SOURCE_PLLRAWE"></span><span class="target" id="group__mcan__api_1ggaa42862750e6f0d356a261f5393facc84a951b8a27ac23586ddd7fb6797524f37b"></span><em class="property">enumerator </em><code class="sig-name descname">MCAN_CLOCK_SOURCE_PLLRAW</code> = 0x3<a class="headerlink" href="#_CPPv4N16MCAN_ClockSource24MCAN_CLOCK_SOURCE_PLLRAWE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PLL Raw Clock Source. </p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv422MCAN_selectClockSource8uint32_t16MCAN_ClockSource">
+<span id="_CPPv322MCAN_selectClockSource8uint32_t16MCAN_ClockSource"></span><span id="_CPPv222MCAN_selectClockSource8uint32_t16MCAN_ClockSource"></span><span id="MCAN_selectClockSource__uint32_t.MCAN_ClockSource"></span><span class="target" id="group__mcan__api_1ga632069e3892a934f5983c029a8dada9c"></span>void <code class="sig-name descname">MCAN_selectClockSource</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, <a class="reference internal" href="#_CPPv416MCAN_ClockSource" title="MCAN_ClockSource">MCAN_ClockSource</a> <em>source</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422MCAN_selectClockSource8uint32_t16MCAN_ClockSource" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This function selects the specified clock source for the MCAN controller. </p>
+<p><p>The </p>
+<em>source</em> parameter can be any one of the following:<ul class="simple">
+<li><p><strong>MCAN_CLOCK_SOURCE_SYS</strong> - Peripheral System Clock</p></li>
+<li><p><strong>MCAN_CLOCK_SOURCE_AUXIN</strong> - Auxiliary Clock Input</p></li>
+<li><p><strong>MCAN_CLOCK_SOURCE_PLLRAW</strong> - PLL Raw Clock</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">source</span></code>: Clock source to use for the MCAN controller.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return Value</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">None</span></code>: </p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
 <dl class="cpp function">
 <dt id="_CPPv414MCAN_isInReset8uint32_t">
 <span id="_CPPv314MCAN_isInReset8uint32_t"></span><span id="_CPPv214MCAN_isInReset8uint32_t"></span><span id="MCAN_isInReset__uint32_t"></span><span class="target" id="group__mcan__api_1ga08ee0dc199511d5d177b3b90b0d3f03f"></span>uint32_t <code class="sig-name descname">MCAN_isInReset</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414MCAN_isInReset8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
@@ -1656,7 +1780,17 @@ MCAN_IR_ARA_MASK)<a class="headerlink" href="#c.MCAN_INTR_MASK_ALL" title="Perma
 <dl class="cpp function">
 <dt id="_CPPv418MCAN_getRevisionId8uint32_tP15MCAN_RevisionId">
 <span id="_CPPv318MCAN_getRevisionId8uint32_tP15MCAN_RevisionId"></span><span id="_CPPv218MCAN_getRevisionId8uint32_tP15MCAN_RevisionId"></span><span id="MCAN_getRevisionId__uint32_t.MCAN_RevisionIdP"></span><span class="target" id="group__mcan__api_1ga7d673735e4cec0d500cdd72a37fc6b71"></span>void <code class="sig-name descname">MCAN_getRevisionId</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, <a class="reference internal" href="#_CPPv415MCAN_RevisionId" title="MCAN_RevisionId">MCAN_RevisionId</a> *<em>revId</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418MCAN_getRevisionId8uint32_tP15MCAN_RevisionId" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>This API is used get the MCAN revision ID. </p>
+<dd><p>This API is check the MCAN base address. </p>
+<p><p>This API is used get the MCAN revision ID.</p>
+<dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if base address is valid, otherwise <strong>false</strong> </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -2101,8 +2235,10 @@ applications.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Texas Instruments Incorporated.
-      <span class="lastupdated">Last updated on Oct 11, 2022.
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2021, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+      <span class="lastupdated">Last updated on Jul 01, 2023.
       </span></p>
   </div>
 
@@ -2122,7 +2258,7 @@ applications.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v4.03.00.00_EA1',
+            VERSION:'v5.00.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

@@ -4801,7 +4801,7 @@ void Ethernet_configureMDIO(uint32_t base,
 void Ethernet_configurePHYAddress(uint32_t base,
                                   uint8_t phyAddr)
 {
-    HWREG(base + ETHERNET_O_MAC_MDIO_ADDRESS) |=
+    HWREG(base + ETHERNET_O_MAC_MDIO_ADDRESS) =
                         ((uint32_t)phyAddr <<
                          (uint32_t) ETHERNET_MAC_MDIO_ADDRESS_PA_S);
 }

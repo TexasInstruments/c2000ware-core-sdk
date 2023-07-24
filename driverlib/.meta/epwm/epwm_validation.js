@@ -6,7 +6,72 @@ let device_driverlib_peripheral =
 var validation_warning = "warning"
 var validation_error = "error"
 var validation_info = "info"
-
+var mindb_icl_xbar_map = {
+ "XBAR_INPUT1": "EPWM_MINDB_SEL_OUTXBAR_OUT1" ,
+ "XBAR_INPUT2": "EPWM_MINDB_SEL_OUTXBAR_OUT2" ,
+ "XBAR_INPUT3": "EPWM_MINDB_SEL_OUTXBAR_OUT3" ,
+ "XBAR_INPUT4": "EPWM_MINDB_SEL_OUTXBAR_OUT4" ,
+ "XBAR_INPUT5": "EPWM_MINDB_SEL_OUTXBAR_OUT5" ,
+ "XBAR_INPUT6": "EPWM_MINDB_SEL_OUTXBAR_OUT6" ,
+ "XBAR_INPUT7": "EPWM_MINDB_SEL_OUTXBAR_OUT7" ,
+ "XBAR_INPUT8": "EPWM_MINDB_SEL_OUTXBAR_OUT8" ,
+ "XBAR_INPUT9": "EPWM_MINDB_SEL_OUTXBAR_OUT9" ,
+ "XBAR_INPUT10" : "EPWM_MINDB_SEL_OUTXBAR_OUT10" ,
+ "XBAR_INPUT11" : "EPWM_MINDB_SEL_OUTXBAR_OUT11" ,
+ "XBAR_INPUT12" : "EPWM_MINDB_SEL_OUTXBAR_OUT12" ,
+ "XBAR_INPUT13" : "EPWM_MINDB_SEL_OUTXBAR_OUT13" ,
+ "XBAR_INPUT14" : "EPWM_MINDB_SEL_OUTXBAR_OUT14" ,
+ "XBAR_INPUT15" : "EPWM_MINDB_SEL_OUTXBAR_OUT15" ,
+ "EPWM_MINDB_SEL_OUTXBAR_OUT1" : "XBAR_INPUT1",
+ "EPWM_MINDB_SEL_OUTXBAR_OUT2" : "XBAR_INPUT2",
+ "EPWM_MINDB_SEL_OUTXBAR_OUT3" : "XBAR_INPUT3",
+ "EPWM_MINDB_SEL_OUTXBAR_OUT4" : "XBAR_INPUT4",
+ "EPWM_MINDB_SEL_OUTXBAR_OUT5" : "XBAR_INPUT5",
+ "EPWM_MINDB_SEL_OUTXBAR_OUT6" : "XBAR_INPUT6",
+ "EPWM_MINDB_SEL_OUTXBAR_OUT7" : "XBAR_INPUT7",
+ "EPWM_MINDB_SEL_OUTXBAR_OUT8" : "XBAR_INPUT8",
+ "EPWM_MINDB_SEL_OUTXBAR_OUT9" : "XBAR_INPUT9",
+ "EPWM_MINDB_SEL_OUTXBAR_OUT10" : "XBAR_INPUT10",
+ "EPWM_MINDB_SEL_OUTXBAR_OUT11" : "XBAR_INPUT11",
+ "EPWM_MINDB_SEL_OUTXBAR_OUT12" : "XBAR_INPUT12",
+ "EPWM_MINDB_SEL_OUTXBAR_OUT13" : "XBAR_INPUT13",
+ "EPWM_MINDB_SEL_OUTXBAR_OUT14" : "XBAR_INPUT14",
+ "EPWM_MINDB_SEL_OUTXBAR_OUT15" : "XBAR_INPUT15"
+};
+var icl_mindb_xbar_map = {
+ "XBAR_INPUT1" : "EPWM_MINDB_ICL_XBAR_OUT1",
+ "XBAR_INPUT2" : "EPWM_MINDB_ICL_XBAR_OUT2",
+ "XBAR_INPUT3" : "EPWM_MINDB_ICL_XBAR_OUT3",
+ "XBAR_INPUT4" : "EPWM_MINDB_ICL_XBAR_OUT4",
+ "XBAR_INPUT5" : "EPWM_MINDB_ICL_XBAR_OUT5",
+ "XBAR_INPUT6" : "EPWM_MINDB_ICL_XBAR_OUT6",
+ "XBAR_INPUT7" : "EPWM_MINDB_ICL_XBAR_OUT7",
+ "XBAR_INPUT8" : "EPWM_MINDB_ICL_XBAR_OUT8",
+ "XBAR_INPUT9" : "EPWM_MINDB_ICL_XBAR_OUT9",
+ "XBAR_INPUT10" : "EPWM_MINDB_ICL_XBAR_OUT10",
+ "XBAR_INPUT11" : "EPWM_MINDB_ICL_XBAR_OUT11",
+ "XBAR_INPUT12" : "EPWM_MINDB_ICL_XBAR_OUT12",
+ "XBAR_INPUT13" : "EPWM_MINDB_ICL_XBAR_OUT13",
+ "XBAR_INPUT14" : "EPWM_MINDB_ICL_XBAR_OUT14",
+ "XBAR_INPUT15" : "EPWM_MINDB_ICL_XBAR_OUT15",
+ "XBAR_INPUT16" : "EPWM_MINDB_ICL_XBAR_OUT16",
+ "EPWM_MINDB_ICL_XBAR_OUT1" : "XBAR_INPUT1", 
+ "EPWM_MINDB_ICL_XBAR_OUT2" : "XBAR_INPUT2", 
+ "EPWM_MINDB_ICL_XBAR_OUT3" : "XBAR_INPUT3", 
+ "EPWM_MINDB_ICL_XBAR_OUT4" : "XBAR_INPUT4", 
+ "EPWM_MINDB_ICL_XBAR_OUT5" : "XBAR_INPUT5", 
+ "EPWM_MINDB_ICL_XBAR_OUT6" : "XBAR_INPUT6", 
+ "EPWM_MINDB_ICL_XBAR_OUT7" : "XBAR_INPUT7", 
+ "EPWM_MINDB_ICL_XBAR_OUT8" : "XBAR_INPUT8", 
+ "EPWM_MINDB_ICL_XBAR_OUT9" : "XBAR_INPUT9", 
+ "EPWM_MINDB_ICL_XBAR_OUT10" : "XBAR_INPUT10",
+ "EPWM_MINDB_ICL_XBAR_OUT11" : "XBAR_INPUT11", 
+ "EPWM_MINDB_ICL_XBAR_OUT12" : "XBAR_INPUT12", 
+ "EPWM_MINDB_ICL_XBAR_OUT13" : "XBAR_INPUT13", 
+ "EPWM_MINDB_ICL_XBAR_OUT14" : "XBAR_INPUT14", 
+ "EPWM_MINDB_ICL_XBAR_OUT15" : "XBAR_INPUT15", 
+ "EPWM_MINDB_ICL_XBAR_OUT16" : "XBAR_INPUT16" 
+};
 var epwm_validation = [
 	// Validation #1
 	{
@@ -2171,167 +2236,116 @@ var epwm_validation = [
 		// Validation #85
 		{
 			type : validation_error,
-			name : "Input value is out of range (16-bit value)",
+			name : "Minimum of 4 cycles difference (including the HR component) between adjacent XCMP values must be maintained to guarantee minimum pulse width",
 			func : (inst, validation, name) => {
-				let xcmp_RegArr = device_driverlib_peripheral.EPWM_XCMPReg.slice(0, 8);
+				var xcmp_RegArr = device_driverlib_peripheral.EPWM_XCMPReg.slice(0, 8);
 				let reg_names = ["XCMPA", "XCMPB"];
+				let xcmp_regs = []
 				// Different checks for xcmpa / xcmpb since they have 8 shadow registers
 				for(var reg_name_index in reg_names){
 					let reg_name = reg_names[reg_name_index];
-					for(var xcmp_Reg_Index in xcmp_RegArr)
+					for(var xcmp_reg_index = 0; xcmp_reg_index < xcmp_RegArr.length; xcmp_reg_index++)
 					{
-						if (inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_Reg_Index].name.replace("EPWM_", "")] < 0 ||
-						inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_Reg_Index].name.replace("EPWM_", "")] > 65535) 
+						var next_xcmp_index = xcmp_reg_index + 1;
+						while(next_xcmp_index < xcmp_RegArr.length)
 						{
-							validation.logError(name, inst, "epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_Reg_Index].name.replace("EPWM_", ""));
+							//console.log(next_xcmp_index)
+							if(next_xcmp_index + 1 >= xcmp_RegArr.length)
+							{
+								break;
+							}
+							if((Math.abs(inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_reg_index].name.replace("EPWM_", "")] - 
+							  	inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[next_xcmp_index].name.replace("EPWM_", "")]) < 4) &&
+								(Math.abs(inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_reg_index].name.replace("EPWM_", "")] - 
+							  	inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[next_xcmp_index].name.replace("EPWM_", "")]) > 0) &&
+								(inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_reg_index].name.replace("EPWM_", "")] != 0) &&
+								(inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[next_xcmp_index].name.replace("EPWM_", "")] != 0)) 
+							{
+								validation.logError(name, inst, "epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_reg_index].name.replace("EPWM_", ""));
+							}
+							next_xcmp_index++;
 						}
 					}
 				}
 				xcmp_RegArr = device_driverlib_peripheral.EPWM_XCMPReg.slice(9, 17);
 				for(var reg_name_index in reg_names){
 					let reg_name = reg_names[reg_name_index];
-					for(var xcmp_Reg_Index in xcmp_RegArr)
+					for(var xcmp_reg_index = 0; xcmp_reg_index < xcmp_RegArr.length; xcmp_reg_index++)
 					{
-						if (inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_Reg_Index].name.replace("EPWM_", "")] < 0 ||
-							inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_Reg_Index].name.replace("EPWM_", "")] > 65535) 
+						var next_xcmp_index = xcmp_reg_index + 1;
+						while(next_xcmp_index < xcmp_RegArr.length)
+						{
+							//console.log(next_xcmp_index)
+							if(next_xcmp_index + 1 >= xcmp_RegArr.length)
 							{
-								validation.logError(name, inst, "epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_Reg_Index].name.replace("EPWM_", ""));
-							}	
+								break;
+							}
+							if((Math.abs(inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_reg_index].name.replace("EPWM_", "")] - 
+							  	inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[next_xcmp_index].name.replace("EPWM_", "")]) < 4) &&
+								(Math.abs(inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_reg_index].name.replace("EPWM_", "")] - 
+							  	inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[next_xcmp_index].name.replace("EPWM_", "")]) > 0) &&
+								(inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_reg_index].name.replace("EPWM_", "")] != 0) &&
+								(inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[next_xcmp_index].name.replace("EPWM_", "")] != 0)) 
+							{
+								validation.logError(name, inst, "epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_reg_index].name.replace("EPWM_", ""));
+							}
+							next_xcmp_index++;
+						}
 					}
 				}
 				xcmp_RegArr = device_driverlib_peripheral.EPWM_XCMPReg.slice(18, 26);
 				for(var reg_name_index in reg_names){
 					let reg_name = reg_names[reg_name_index];
-					for(var xcmp_Reg_Index in xcmp_RegArr)
+					for(var xcmp_reg_index = 0; xcmp_reg_index < xcmp_RegArr.length; xcmp_reg_index++)
 					{
-						if (inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_Reg_Index].name.replace("EPWM_", "")] < 0 ||
-						inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_Reg_Index].name.replace("EPWM_", "")] > 65535) 
+						var next_xcmp_index = xcmp_reg_index + 1;
+						while(next_xcmp_index < xcmp_RegArr.length)
 						{
-							validation.logError(name, inst, "epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_Reg_Index].name.replace("EPWM_", ""));
+							//console.log(next_xcmp_index)
+							if(next_xcmp_index + 1 >= xcmp_RegArr.length)
+							{
+								break;
+							}
+							if((Math.abs(inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_reg_index].name.replace("EPWM_", "")] - 
+							  	inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[next_xcmp_index].name.replace("EPWM_", "")]) < 4) &&
+								(Math.abs(inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_reg_index].name.replace("EPWM_", "")] - 
+							  	inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[next_xcmp_index].name.replace("EPWM_", "")]) > 0) &&
+								(inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_reg_index].name.replace("EPWM_", "")] != 0) &&
+								(inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[next_xcmp_index].name.replace("EPWM_", "")] != 0)) 
+							{
+								validation.logError(name, inst, "epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_reg_index].name.replace("EPWM_", ""));
+							}
+							next_xcmp_index++;
 						}
 					}
 				}
 				xcmp_RegArr = device_driverlib_peripheral.EPWM_XCMPReg.slice(27, 35);
 				for(var reg_name_index in reg_names){
 					let reg_name = reg_names[reg_name_index];
-					for(var xcmp_Reg_Index in xcmp_RegArr)
+					for(var xcmp_reg_index = 0; xcmp_reg_index < xcmp_RegArr.length; xcmp_reg_index++)
 					{
-						if (inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_Reg_Index].name.replace("EPWM_", "")] < 0 ||
-						inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_Reg_Index].name.replace("EPWM_", "")] > 65535) 
+						var next_xcmp_index = xcmp_reg_index + 1;
+						while(next_xcmp_index < xcmp_RegArr.length)
 						{
-							validation.logError(name, inst, "epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_Reg_Index].name.replace("EPWM_", ""));
+							//console.log(next_xcmp_index)
+							if(next_xcmp_index + 1 >= xcmp_RegArr.length)
+							{
+								break;
+							}
+							if((Math.abs(inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_reg_index].name.replace("EPWM_", "")] - 
+							  	inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[next_xcmp_index].name.replace("EPWM_", "")]) < 4) &&
+								(Math.abs(inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_reg_index].name.replace("EPWM_", "")] - 
+							  	inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[next_xcmp_index].name.replace("EPWM_", "")]) > 0) &&
+								(inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_reg_index].name.replace("EPWM_", "")] != 0) &&
+								(inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[next_xcmp_index].name.replace("EPWM_", "")] != 0)) 
+							{
+								validation.logError(name, inst, "epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_reg_index].name.replace("EPWM_", ""));
+							}
+							next_xcmp_index++;
 						}
 					}
 				}
 
-				// XCMPC / XCMPD checks
-				reg_names = ["XCMPC", "XCMPD"];		
-				for(var reg_name_index in reg_names){						
-					let reg_name = reg_names[reg_name_index];
-					if (inst["epwmXCMP_set" + reg_name ] < 0 ||
-					inst["epwmXCMP_set" + reg_name ] > 65535) 
-					{
-						validation.logError(name, inst, "epwmXCMP_set" + reg_name);
-					}
-					if (inst["epwmXCMP_setShadowRegisters1" + reg_name ] < 0 ||
-					inst["epwmXCMP_setShadowRegisters1" + reg_name ] > 65535) 
-					{
-						validation.logError(name, inst, "epwmXCMP_setShadowRegisters1" + reg_name);
-					}
-					if (inst["epwmXCMP_setShadowRegisters2" + reg_name ] < 0 ||
-					inst["epwmXCMP_setShadowRegisters2" + reg_name ] > 65535) 
-					{
-						validation.logError(name, inst, "epwmXCMP_setShadowRegisters2" + reg_name);
-					}
-					if (inst["epwmXCMP_setShadowRegisters3" + reg_name ] < 0 ||
-					inst["epwmXCMP_setShadowRegisters3" + reg_name ] > 65535) 
-					{
-						validation.logError(name, inst, "epwmXCMP_setShadowRegisters3" + reg_name);
-					}
-				}
-				
-				// XCMP Time Base
-				if (inst["epwmXCMP_setRegisters_XTBPRD"] < 0 ||
-				inst["epwmXCMP_setRegisters_XTBPRD"] > 65535) 
-				{
-					validation.logError(name, inst, "epwmXCMP_setRegisters_XTBPRD");
-				}
-				if (inst["epwmXCMP_setRegisters_XTBPRD"] < 0 ||
-					inst["epwmXCMP_setRegisters_XTBPRD"] > 65535) 
-				{
-					validation.logError(name, inst, "epwmXCMP_setRegisters_XTBPRD");
-				}
-				if (inst["epwmXCMP_setShadowRegisters1_XTBPRD"] < 0 ||
-					inst["epwmXCMP_setShadowRegisters1_XTBPRD"] > 65535)  
-				{
-					validation.logError(name, inst, "epwmXCMP_setShadowRegisters2_XTBPRD");
-				}
-				if (inst["epwmXCMP_setShadowRegisters2_XTBPRD"] < 0 ||
-					inst["epwmXCMP_setShadowRegisters2_XTBPRD"] > 65535)  
-				{
-					validation.logError(name, inst, "epwmXCMP_setShadowRegisters2_XTBPRD");
-				}
-				if (inst["epwmXCMP_setShadowRegisters3_XTBPRD"] < 0 ||
-					inst["epwmXCMP_setShadowRegisters3_XTBPRD"] > 65535)  
-				{
-					validation.logError(name, inst, "epwmXCMP_setShadowRegisters3_XTBPRD");
-				}
-				//XCMP MinMAx
-				if (inst["epwmXCMP_setRegisters_XMIN"] < 0 ||
-				inst["epwmXCMP_setRegisters_XMIN"] > 65535) 
-				{
-					validation.logError(name, inst, "epwmXCMP_setRegisters_XMIN");
-				}
-				if (inst["epwmXCMP_setShadowRegisters1_XMIN"] < 0 ||
-					inst["epwmXCMP_setShadowRegisters1_XMIN"] > 65535) 
-				{
-					validation.logError(name, inst, "epwmXCMP_setShadowRegisters1_XMIN");
-				}
-				if (inst["epwmXCMP_setShadowRegisters2_XMIN"] < 0 ||
-					inst["epwmXCMP_setShadowRegisters2_XMIN"] > 65535)  
-				{
-					validation.logError(name, inst, "epwmXCMP_setShadowRegisters2_XMIN");
-				}
-				if (inst["epwmXCMP_setShadowRegisters3_XMIN"] < 0 ||
-					inst["epwmXCMP_setShadowRegisters3_XMIN"] > 65535)  
-				{
-					validation.logError(name, inst, "epwmXCMP_setShadowRegisters3_XMIN");
-				}
-				if (inst["epwmXCMP_setRegisters_XMAX"] < 0 ||
-				inst["epwmXCMP_setRegisters_XMAX"] > 65535) 
-				{
-					validation.logError(name, inst, "epwmXCMP_setRegisters_XMAX");
-				}
-				if (inst["epwmXCMP_setShadowRegisters1_XMAX"] < 0 ||
-					inst["epwmXCMP_setShadowRegisters1_XMAX"] > 65535) 
-				{
-					validation.logError(name, inst, "epwmXCMP_setShadowRegisters1_XMAX");
-				}
-				if (inst["epwmXCMP_setShadowRegisters2_XMAX"] < 0 ||
-					inst["epwmXCMP_setShadowRegisters2_XMAX"] > 65535)  
-				{
-					validation.logError(name, inst, "epwmXCMP_setShadowRegisters2_XMAX");
-				}
-				if (inst["epwmXCMP_setShadowRegisters3_XMAX"] < 0 ||
-					inst["epwmXCMP_setShadowRegisters3_XMAX"] > 65535)  
-				{
-					validation.logError(name, inst, "epwmXCMP_setShadowRegisters3_XMAX");
-				}
-				// Minimum Dead Band delay on outputs
-				for (var dbOutputIndex in device_driverlib_peripheral.EPWM_DeadBandOutput)
-				{
-					var dbOutput = device_driverlib_peripheral.EPWM_DeadBandOutput[dbOutputIndex];
-					if (inst["epwmMinDeadBand_" + dbOutput.name.replace("EPWM_DB_OUTPUT_", "") + "_setDelay"] < 0 ||
-					inst["epwmMinDeadBand_" + dbOutput.name.replace("EPWM_DB_OUTPUT_", "") + "_setDelay"] > 65535) 
-					{
-						validation.logError(name, inst, "epwmMinDeadBand_" + dbOutput.name.replace("EPWM_DB_OUTPUT_", "") + "_setDelay");
-					}
-				}
-				if (inst["epwmDiodeEmulation_stepThreshold"] < 0 ||
-					inst["epwmDiodeEmulation_stepThreshold"] > 65535) 
-				{
-					validation.logError(name, inst, "epwmDiodeEmulation_stepThreshold");
-				}
 			},
 			devices : [
 				"F28P65x"
@@ -3031,22 +3045,61 @@ var epwm_validation = [
 		},
 		{
 			type : validation_error,
-			name :  'Go to CPU1 context make sure to enable EPWM Minimum Deadband and Illegal Combo Logic on CPU1 and select the same reference signal selected here but for CPU1',
+			name :  'Go to CPU1 context and add a MINDB XBAR Instance',
 			func : (inst, validation, name) => {
 				const outputs = ["A", "B"];
-				// need to do still		
-			},
-			devices : [
-				"F28P65x"
-				]
-		},
-		{
-			type : validation_warning,
-			name :  'CPU1 can only configure ICL XBAR',
-			func : (inst, validation, name) => {
-				if (Common.isContextCPU2() && inst["epwmICL_EnableA"])
+				
+				if(Common.isModuleOnOtherContext("/driverlib/mindbxbar.js"))
 				{
-					validation.logWarning(name, inst, "epwmICL_A_selXBAR");
+					// check if in multi core view
+					
+					var module = system.modules['/driverlib/epwm.js'];
+					// Stil need to do
+					var mindbxbar_instances = system.contexts.CPU1.system.modules["/driverlib/mindbxbar.js"].$instances;
+					
+					let cpu1_mindbxbar_list = [];
+					if(Common.isContextCPU2())
+					{
+
+						if(Common.isMultiCoreSysConfig())
+						{
+							if(mindbxbar_instances)
+							{
+								// create array of mindxbar instances configured on CPU1
+								for(var mindbxbar_instance in mindbxbar_instances)
+								{
+									var mindbxbar = mindbxbar_instances[mindbxbar_instance].mindbxbarInstance;
+									cpu1_mindbxbar_list.push(mindb_icl_xbar_map[mindbxbar]);
+								}
+							}					
+							for(var output in outputs)
+							{
+								var cpu2_mindxbar_selection = inst["epwmMinDeadBand_" + outputs[output] + "_inputRefSignal"];
+								if(cpu2_mindxbar_selection != "EPWM_MINDB_SEL_DEPWM" &&
+									!cpu1_mindbxbar_list.includes(cpu2_mindxbar_selection))
+								{
+									validation.logError(name + ": " + mindb_icl_xbar_map[inst["epwmMinDeadBand_" + outputs[output] + "_inputRefSignal"]], inst, "epwmMinDeadBand_" + outputs[output] + "_inputRefSignal");
+								}
+							}
+						}
+					}
+				}else
+				{
+					for(var output in outputs)
+					{
+						var cpu2_mindxbar_selection = inst["epwmMinDeadBand_" + outputs[output] + "_inputRefSignal"];
+						if(Common.isContextCPU2() && cpu2_mindxbar_selection != "EPWM_MINDB_SEL_DEPWM")
+						{
+							if(Common.isMultiCoreSysConfig())
+							{
+								validation.logError(name + ": " + mindb_icl_xbar_map[inst["epwmMinDeadBand_" + outputs[output] + "_inputRefSignal"]], inst, "epwmMinDeadBand_" + outputs[output] + "_inputRefSignal");
+							}else
+							{
+								validation.logWarning(name + ": " + mindb_icl_xbar_map[inst["epwmMinDeadBand_" + outputs[output] + "_inputRefSignal"]], inst, "epwmMinDeadBand_" + outputs[output] + "_inputRefSignal");
+							}
+						}
+
+					}
 				}
 			},
 			devices : [
@@ -3054,18 +3107,253 @@ var epwm_validation = [
 				]
 		},
 		{
-			type : validation_warning,
-			name :  'CPU1 can only configure ICL XBAR',
+			type : validation_error,
+			name :  'Go to CPU1 context and add an ICL XBAR Instance',
 			func : (inst, validation, name) => {
-				if (Common.isContextCPU2() && inst["epwmICL_EnableB"])
+				const outputs = ["A", "B"];
+				// check if in multi core view
+				if(Common.isModuleOnOtherContext("/driverlib/iclxbar.js"))
 				{
-					validation.logWarning(name, inst, "epwmICL_B_selXBAR");
+					var module = system.modules['/driverlib/epwm.js'];
+					var iclxbar_instances = system.contexts.CPU1.system.modules["/driverlib/iclxbar.js"].$instances;
+					let cpu1_iclxbar_list = [];
+					if(Common.isContextCPU2())
+					{
+
+						if(Common.isMultiCoreSysConfig())
+						{
+							if(iclxbar_instances)
+							{
+								// create array of mindxbar instances configured on CPU1
+								for(var iclxbar_instance in iclxbar_instances)
+								{
+									var iclxbar = iclxbar_instances[iclxbar_instance].iclxbarInstance;
+									cpu1_iclxbar_list.push(icl_mindb_xbar_map[iclxbar]);
+								}
+							}					
+							for(var output in outputs)
+							{
+								var cpu2_iclxbar_selection = inst["epwmICL_" + outputs[output] + "_selXBAR"];
+								if(!cpu1_iclxbar_list.includes(cpu2_iclxbar_selection) && inst["epwmICL_Enable" + outputs[output]])
+								{
+									validation.logError(name + ": " + icl_mindb_xbar_map[inst["epwmICL_" + outputs[output] + "_selXBAR"]], inst, "epwmICL_" + outputs[output] + "_selXBAR");
+								}
+							}
+						}
+					}	
+				}else
+				{
+					for(var output in outputs)
+					{
+						if(Common.isContextCPU2() && inst["epwmICL_Enable" + outputs[output]])
+						{
+							if(Common.isMultiCoreSysConfig())
+							{
+								validation.logError(name + ": "+ icl_mindb_xbar_map[inst["epwmICL_" + outputs[output] + "_selXBAR"]], inst, "epwmICL_" + outputs[output] + "_selXBAR");
+							}else
+							{
+								validation.logWarning(name + ": ", inst, "epwmICL_" + outputs[output] + "_selXBAR");
+							}
+						}
+
+					}
 				}
 			},
 			devices : [
 				"F28P65x"
 				]
-		}
+		},
+		{
+			type : validation_error,
+			name :   "Input value is out of range (16-bit value)",
+			func : (inst, validation, name) => {
+				// check if in multi core view
+				var xcmp_RegArr = device_driverlib_peripheral.EPWM_XCMPReg.slice(0, 8);
+				let reg_names = ["XCMPA", "XCMPB"];
+				// Different checks for xcmpa / xcmpb since they have 8 shadow registers
+				for(var reg_name_index in reg_names){
+					let reg_name = reg_names[reg_name_index];
+					for(var xcmp_Reg_Index in xcmp_RegArr)
+					{
+						if (inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_Reg_Index].name.replace("EPWM_", "")] < 0 ||
+							inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_Reg_Index].name.replace("EPWM_", "")] > 65535) 
+							{
+								validation.logError(name, inst, "epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_Reg_Index].name.replace("EPWM_", ""));
+							}
+						}
+					}
+				xcmp_RegArr = device_driverlib_peripheral.EPWM_XCMPReg.slice(9, 17);
+				for(var reg_name_index in reg_names){
+					let reg_name = reg_names[reg_name_index];
+					for(var xcmp_Reg_Index in xcmp_RegArr)
+					{
+						if (inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_Reg_Index].name.replace("EPWM_", "")] < 0 ||
+						inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_Reg_Index].name.replace("EPWM_", "")] > 65535)
+						{
+							validation.logError(name, inst, "epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_Reg_Index].name.replace("EPWM_", ""));
+						}
+					}
+				}
+				xcmp_RegArr = device_driverlib_peripheral.EPWM_XCMPReg.slice(18, 26);
+				for(var reg_name_index in reg_names){
+					let reg_name = reg_names[reg_name_index];
+					for(var xcmp_Reg_Index in xcmp_RegArr)
+					{
+						if (inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_Reg_Index].name.replace("EPWM_", "")] < 0 ||
+						inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_Reg_Index].name.replace("EPWM_", "")] > 65535) 
+						{
+							validation.logError(name, inst, "epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_Reg_Index].name.replace("EPWM_", ""));
+						}
+					}
+				}
+				xcmp_RegArr = device_driverlib_peripheral.EPWM_XCMPReg.slice(27, 35);
+				for(var reg_name_index in reg_names){
+					let reg_name = reg_names[reg_name_index];
+					{
+						if (inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_Reg_Index].name.replace("EPWM_", "")] < 0 ||
+						inst["epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_Reg_Index].name.replace("EPWM_", "")] > 65535) 
+						{
+							validation.logError(name, inst, "epwmXCMP_set" + reg_name + "_" + xcmp_RegArr[xcmp_Reg_Index].name.replace("EPWM_", ""));
+
+						}
+					}
+				}
+				// XCMPC / XCMPD checks
+				reg_names = ["XCMPC", "XCMPD"];		
+				for(var reg_name_index in reg_names){						
+					let reg_name = reg_names[reg_name_index];
+					if (inst["epwmXCMP_set" + reg_name ] < 0 ||
+					inst["epwmXCMP_set" + reg_name ] > 65535) 
+					{
+						validation.logError(name, inst, "epwmXCMP_set" + reg_name);
+					}
+					if (inst["epwmXCMP_setShadowRegisters1" + reg_name ] < 0 ||
+					inst["epwmXCMP_setShadowRegisters1" + reg_name ] > 65535) 
+					{
+						validation.logError(name, inst, "epwmXCMP_setShadowRegisters1" + reg_name);
+					}
+					if (inst["epwmXCMP_setShadowRegisters2" + reg_name ] < 0 ||
+					inst["epwmXCMP_setShadowRegisters2" + reg_name ] > 65535) 
+					{
+						validation.logError(name, inst, "epwmXCMP_setShadowRegisters2" + reg_name);
+					}
+					if (inst["epwmXCMP_setShadowRegisters3" + reg_name ] < 0 ||
+					inst["epwmXCMP_setShadowRegisters3" + reg_name ] > 65535) 
+					{
+						validation.logError(name, inst, "epwmXCMP_setShadowRegisters3" + reg_name);
+					}
+				}
+				
+				// XCMP Time Base
+				if (inst["epwmXCMP_setRegisters_XTBPRD"] < 0 ||
+				inst["epwmXCMP_setRegisters_XTBPRD"] > 65535) 
+				{
+					validation.logError(name, inst, "epwmXCMP_setRegisters_XTBPRD");
+				}
+				if (inst["epwmXCMP_setRegisters_XTBPRD"] < 0 ||
+					inst["epwmXCMP_setRegisters_XTBPRD"] > 65535) 
+				{
+					validation.logError(name, inst, "epwmXCMP_setRegisters_XTBPRD");
+				}
+				if (inst["epwmXCMP_setShadowRegisters1_XTBPRD"] < 0 ||
+					inst["epwmXCMP_setShadowRegisters1_XTBPRD"] > 65535)  
+				{
+					validation.logError(name, inst, "epwmXCMP_setShadowRegisters2_XTBPRD");
+				}
+				if (inst["epwmXCMP_setShadowRegisters2_XTBPRD"] < 0 ||
+					inst["epwmXCMP_setShadowRegisters2_XTBPRD"] > 65535)  
+				{
+					validation.logError(name, inst, "epwmXCMP_setShadowRegisters2_XTBPRD");
+				}
+				if (inst["epwmXCMP_setShadowRegisters3_XTBPRD"] < 0 ||
+					inst["epwmXCMP_setShadowRegisters3_XTBPRD"] > 65535)  
+				{
+					validation.logError(name, inst, "epwmXCMP_setShadowRegisters3_XTBPRD");
+				}
+				//XCMP MinMAx
+				if (inst["epwmXCMP_setRegisters_XMIN"] < 0 ||
+				inst["epwmXCMP_setRegisters_XMIN"] > 65535) 
+				{
+					validation.logError(name, inst, "epwmXCMP_setRegisters_XMIN");
+				}
+				if (inst["epwmXCMP_setShadowRegisters1_XMIN"] < 0 ||
+					inst["epwmXCMP_setShadowRegisters1_XMIN"] > 65535) 
+				{
+					validation.logError(name, inst, "epwmXCMP_setShadowRegisters1_XMIN");
+				}
+				if (inst["epwmXCMP_setShadowRegisters2_XMIN"] < 0 ||
+					inst["epwmXCMP_setShadowRegisters2_XMIN"] > 65535)  
+				{
+					validation.logError(name, inst, "epwmXCMP_setShadowRegisters2_XMIN");
+				}
+				if (inst["epwmXCMP_setShadowRegisters3_XMIN"] < 0 ||
+					inst["epwmXCMP_setShadowRegisters3_XMIN"] > 65535)  
+				{
+					validation.logError(name, inst, "epwmXCMP_setShadowRegisters3_XMIN");
+				}
+				if (inst["epwmXCMP_setRegisters_XMAX"] < 0 ||
+				inst["epwmXCMP_setRegisters_XMAX"] > 65535) 
+				{
+					validation.logError(name, inst, "epwmXCMP_setRegisters_XMAX");
+				}
+				if (inst["epwmXCMP_setShadowRegisters1_XMAX"] < 0 ||
+					inst["epwmXCMP_setShadowRegisters1_XMAX"] > 65535) 
+				{
+					validation.logError(name, inst, "epwmXCMP_setShadowRegisters1_XMAX");
+				}
+				if (inst["epwmXCMP_setShadowRegisters2_XMAX"] < 0 ||
+					inst["epwmXCMP_setShadowRegisters2_XMAX"] > 65535)  
+				{
+					validation.logError(name, inst, "epwmXCMP_setShadowRegisters2_XMAX");
+				}
+				if (inst["epwmXCMP_setShadowRegisters3_XMAX"] < 0 ||
+					inst["epwmXCMP_setShadowRegisters3_XMAX"] > 65535)  
+				{
+					validation.logError(name, inst, "epwmXCMP_setShadowRegisters3_XMAX");
+				}
+				// Minimum Dead Band delay on outputs
+				for (var dbOutputIndex in device_driverlib_peripheral.EPWM_DeadBandOutput)
+				{
+					var dbOutput = device_driverlib_peripheral.EPWM_DeadBandOutput[dbOutputIndex];
+					if (inst["epwmMinDeadBand_" + dbOutput.name.replace("EPWM_DB_OUTPUT_", "") + "_setDelay"] < 0 ||
+					inst["epwmMinDeadBand_" + dbOutput.name.replace("EPWM_DB_OUTPUT_", "") + "_setDelay"] > 65535) 
+					{
+						validation.logError(name, inst, "epwmMinDeadBand_" + dbOutput.name.replace("EPWM_DB_OUTPUT_", "") + "_setDelay");
+					}
+				}
+				if (inst["epwmDiodeEmulation_stepThreshold"] < 0 ||
+					inst["epwmDiodeEmulation_stepThreshold"] > 65535) 
+				{
+					validation.logError(name, inst, "epwmDiodeEmulation_stepThreshold");
+				}
+			},
+			devices : [
+				"F28P65x"
+				]
+		},
+		{
+			type : validation_error,
+			name :  'MEP Scale Factor should not be greater than 310ps',
+			func : (inst, validation, name) => {
+				if (inst["hrpwm_scaleFactor"] < 0 || inst["hrpwm_scaleFactor"] > 310 && inst["hrpwm_enableCalculator"])
+				{
+					validation.logError(name, inst, "hrpwm_scaleFactor");
+				}
+			},
+			devices : [
+				"F2807x",
+				"F2837xS",
+				"F2837xD",
+				"F28004x",
+				"F28002x",
+				"F28003x",
+				"F280013x",
+				"F280015x",
+				"F2838x",
+				"F28P65x"
+				]
+		}	
+		
 ]
 
 exports = {

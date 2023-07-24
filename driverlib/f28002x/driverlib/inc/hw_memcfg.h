@@ -48,6 +48,7 @@
 //*************************************************************************************************
 #define MEMCFG_O_DXLOCK            0x0U    // Dedicated RAM Config Lock Register
 #define MEMCFG_O_DXCOMMIT          0x2U    // Dedicated RAM Config Lock Commit Register
+#define MEMCFG_O_DXACCPROT0        0x8U    // Dedicated RAM Config Register
 #define MEMCFG_O_DXTEST            0x10U   // Dedicated RAM TEST Register
 #define MEMCFG_O_DXINIT            0x12U   // Dedicated RAM Init Register
 #define MEMCFG_O_DXINITDONE        0x14U   // Dedicated RAM InitDone Status Register
@@ -126,6 +127,16 @@
 //*************************************************************************************************
 #define MEMCFG_DXCOMMIT_COMMIT_M0   0x1U   // M0 RAM Permanent Lock bits
 #define MEMCFG_DXCOMMIT_COMMIT_M1   0x2U   // M1 RAM Permanent Lock bits
+
+//*************************************************************************************************
+//
+// The following are defines for the bit fields in the DxACCPROT0 register
+//
+//*************************************************************************************************
+#define MEMCFG_DXACCPROT0_FETCHPROT_M0   0x1U     // Fetch Protection For M0 RAM
+#define MEMCFG_DXACCPROT0_CPUWRPROT_M0   0x2U     // CPU WR Protection For M0 RAM
+#define MEMCFG_DXACCPROT0_FETCHPROT_M1   0x100U   // Fetch Protection For M1 RAM
+#define MEMCFG_DXACCPROT0_CPUWRPROT_M1   0x200U   // CPU WR Protection For M1 RAM
 
 //*************************************************************************************************
 //

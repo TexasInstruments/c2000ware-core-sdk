@@ -60,6 +60,8 @@
 #define XBAR_O_INPUT12SELECT     0xBU    // INPUT12 Input Select Register (GPIO0 to x)
 #define XBAR_O_INPUT13SELECT     0xCU    // INPUT13 Input Select Register (GPIO0 to x)
 #define XBAR_O_INPUT14SELECT     0xDU    // INPUT14 Input Select Register (GPIO0 to x)
+#define XBAR_O_INPUT15SELECT     0xEU    // INPUT15 Input Select Register (GPIO0 to x)
+#define XBAR_O_INPUT16SELECT     0xFU    // INPUT16 Input Select Register (GPIO0 to x)
 #define XBAR_O_INPUTSELECTLOCK   0x1EU   // Input Select Lock Register
 
 

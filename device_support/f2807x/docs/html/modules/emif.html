@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v4.02.00.00
+                v5.00.00.00
               </div>
             
           
@@ -205,13 +205,6 @@ supported.</p>
 MEMCFG_EMIF1ACCPROT0_CPUWRPROT_EMIF1<p> |\</p>
 <p>                              (uint16_t)</p>
 MEMCFG_EMIF1ACCPROT0_DMAWRPROT_EMIF1)<a class="headerlink" href="#c.EMIF_ACCPROT0_MASK_EMIF1" title="Permalink to this definition">¶</a><br /></dt>
-<dd></dd></dl>
-
-<dl class="cpp macro">
-<dt id="c.EMIF_ACCPROT0_MASK_EMIF2">
-<span class="target" id="group__emif__api_1ga9f637299037c9b11b641924de736d48e"></span><code class="sig-name descname">EMIF_ACCPROT0_MASK_EMIF2</code> ((uint16_t)MEMCFG_EMIF2ACCPROT0_FETCHPROT_EMIF2<p> |\</p>
-<p>                              (uint16_t)</p>
-MEMCFG_EMIF2ACCPROT0_CPUWRPROT_EMIF2)<a class="headerlink" href="#c.EMIF_ACCPROT0_MASK_EMIF2" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
@@ -980,7 +973,7 @@ EMIF_SDRAM_TR_T_RFC_M)<a class="headerlink" href="#c.EMIF_SYNC_SDRAM_TR_MASK" ti
 <dt id="_CPPv425EMIF_getSyncTotalAccesses8uint32_t">
 <span id="_CPPv325EMIF_getSyncTotalAccesses8uint32_t"></span><span id="_CPPv225EMIF_getSyncTotalAccesses8uint32_t"></span><span id="EMIF_getSyncTotalAccesses__uint32_t"></span><span class="target" id="group__emif__api_1gad4c152f83b4e36cd14582a2d4a860426"></span>uint32_t <code class="sig-name descname">EMIF_getSyncTotalAccesses</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425EMIF_getSyncTotalAccesses8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Gets total number of SDRAM accesses.</p>
-<p><p>This function returns total number of SDRAM accesses from a master(CPUx/CPUx.DMA).</p>
+<p><p>This function returns total number of SDRAM accesses from a controller(CPUx/CPUx.DMA).</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the EMIF instance used.</p></li>
@@ -1063,8 +1056,10 @@ accesses.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
-      <span class="lastupdated">Last updated on Oct 11, 2022.
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+      <span class="lastupdated">Last updated on Jul 01, 2023.
       </span></p>
   </div>
 
@@ -1084,7 +1079,7 @@ accesses.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v4.02.00.00',
+            VERSION:'v5.00.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

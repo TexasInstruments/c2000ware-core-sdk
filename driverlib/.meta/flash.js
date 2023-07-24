@@ -43,7 +43,7 @@ var Flash_FClk_MHz = 50;
 if (["F28004x"].includes(Common.getDeviceName()) || ["F28002x"].includes(Common.getDeviceName()) || ["F28003x"].includes(Common.getDeviceName())){
     Flash_FClk_MHz = 20;
 } 
-if (["F280013x"].includes(Common.getDeviceName()) || ["F280015x"].includes(Common.getDeviceName())){
+if (["F280013x"].includes(Common.getDeviceName()) || ["F280015x"].includes(Common.getDeviceName()) || ["F28P65x"].includes(Common.getDeviceName())){
     Flash_FClk_MHz = 40;
 } 
 
@@ -59,6 +59,7 @@ var numberOfInstance = {
     "F2837xD"   : 1,
     "F280013x"  : 1,
     "F280015x"  : 1,
+    "F28P65x"   : 1,
 }
 
 var deviceNumberOfInstances = numberOfInstance[Common.getDeviceName()];
@@ -93,7 +94,7 @@ let config = [
     {
         name        : "calculatedWaitStates",
         displayName : "Wait State [RWAIT]",
-        description : 'Sets the number of wait states for a flash read access. The waitstates parameter is a number between 0x0 and 0xF',
+        description : 'Sets the number of wait states for a flash read access. The waitstates parameter is a number between 0x0 and 0xF.',
         hidden      : true,
         default     : 0xF, 
         displayFormat: {
@@ -108,7 +109,7 @@ let config = [
     {
         name        : "waitStates",
         displayName : "Wait State [RWAIT]",
-        description : 'Sets the number of wait states for a flash read access. The waitstates parameter is a number between 0x0 and 0xF',
+        description : 'Sets the number of wait states for a flash read access. The waitstates parameter is a number between 0x0 and 0xF.',
         hidden      : true,
         default     : 0xF, 
         displayFormat: {
@@ -165,7 +166,7 @@ let config = [
         default     : false
     }
 ];
-if(!["F280015x", "F280013x"].includes(Common.getDeviceName())){
+if(!["F280015x", "F280013x", "F28P65x"].includes(Common.getDeviceName())){
     config.push(
         //ECC Error Threshold
         {
@@ -207,7 +208,7 @@ var globalConfig = [
 
 var sharedModuleInstances = undefined;
 
-if(["F2838x", "F280013x", "F280015x"].includes(Common.getDeviceName()))
+if(["F2838x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName()))
 {   
     sharedModuleInstances = function (inst) {
         if (inst.registerInterrupts)
@@ -278,7 +279,7 @@ function onValidate(inst, validation) {
             inst, waitstateConfigName);
     }
 
-    if(!["F280015x", "F280013x"].includes(Common.getDeviceName())){
+    if(!["F280015x", "F280013x", "F28P65x"].includes(Common.getDeviceName())){
         if (inst.errorThreshold < 0x0 || inst.errorThreshold > 0xFFFF ){
             validation.logError(
                 "Enter a value from 0x0 to 0xFFFF", 

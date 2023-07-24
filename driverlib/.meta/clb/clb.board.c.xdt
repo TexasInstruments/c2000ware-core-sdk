@@ -101,6 +101,9 @@ void `instance.$name`_init(){
 	`lockOutputLine`
 % 		}
 %		if (Common.CLB_isType2() && ["CLB1_BASE", "CLB2_BASE", "CLB3_BASE", "CLB4_BASE"].includes(instance.clbBase)) {
+	//
+	// `instance.$name` SPI Buffer Configuration
+	//
 	`spiBufferEnable`
 	`spiBufferTrigger`
 	`spiBufferShift`
@@ -163,10 +166,18 @@ void `instance.$name`_init(){
 	//
 	// `instance.$name` `clbInputName` initialization
 	//
+	// The following functions configure the CLB input mux and whether the inputs
+	// have synchronization or pipeline enabled; check the device manual for more
+	// information on when a signal needs to be synchronized or go through a
+	// pipeline filter
+	//
 	`localInput`
 	`globalInput`
 	`gpInput`
+%if (instance["synchronize" + clbInputName])
+%{
 	`syncInput`
+%}
 	`inputFilterLine`
 %	if (Common.CLB_isType2()) {
 	`inputPipeline`
@@ -176,6 +187,7 @@ void `instance.$name`_init(){
 		var gpRegLine = "CLB_setGPREG(" + baseName + "," + gpRegValue.toString() + ");"
 %%}
 	`gpRegLine`
+
 % if (tileInitLine) {
 	`tileInitLine`
 % }

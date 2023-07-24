@@ -28,7 +28,19 @@
                                       SYSCTL_AUXPLL_DIV_2                 |   \
                                       SYSCTL_AUXPLL_ENABLE                |   \
                                       SYSCTL_DCC_BASE_0)
-        % } else {
+        % } else if (["F28P65x"].includes(Common.getDeviceName())) {
+//
+// Define to pass to SysCtl_setAuxClock(). Will configure the clock as follows:
+// AUXPLLCLK =
+//       25MHz (XTAL_SE) * 12 (IMULT) / (5 (SYSDIV) )
+//
+		
+#define DEVICE_AUXSETCLOCK_CFG_USB   (SYSCTL_OSCSRC_XTAL_SE | SYSCTL_PLL_ENABLE |\
+                                      SYSCTL_IMULT(12) | SYSCTL_SYSDIV(5))
+		
+		
+		
+		% } else {
 //
 // Define to pass to SysCtl_setAuxClock(). Will configure the clock as follows:
 // AUXPLLCLK =

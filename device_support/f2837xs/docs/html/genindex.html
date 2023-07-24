@@ -77,7 +77,7 @@
             
             
               <div class="version">
-                v4.02.00.00
+                v5.00.00.00
               </div>
             
           
@@ -479,7 +479,7 @@
 </li>
       <li><a href="modules/adc.html#_CPPv426ADC_setInterruptSOCTrigger8uint32_t13ADC_SOCNumber17ADC_IntSOCTrigger">ADC_setInterruptSOCTrigger (C++ function)</a>
 </li>
-      <li><a href="modules/adc.html#_CPPv422ADC_setInterruptSource8uint32_t13ADC_IntNumber13ADC_SOCNumber">ADC_setInterruptSource (C++ function)</a>
+      <li><a href="modules/adc.html#_CPPv422ADC_setInterruptSource8uint32_t13ADC_IntNumber8uint16_t">ADC_setInterruptSource (C++ function)</a>
 </li>
       <li><a href="modules/adc.html#_CPPv411ADC_setMode8uint32_t14ADC_Resolution14ADC_SignalMode">ADC_setMode (C++ function)</a>
 </li>
@@ -1875,15 +1875,19 @@
 </li>
       <li><a href="modules/dma.html#_CPPv420DMA_clearTriggerFlag8uint32_t">DMA_clearTriggerFlag (C++ function)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/dma.html#_CPPv419DMA_configAddresses8uint32_tPKvPKv">DMA_configAddresses (C++ function)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/dma.html#_CPPv415DMA_configBurst8uint32_t8uint16_t7int16_t7int16_t">DMA_configBurst (C++ function)</a>
+</li>
+      <li><a href="modules/dma.html#_CPPv417DMA_configChannel8uint32_tPK16DMA_ConfigParams">DMA_configChannel (C++ function)</a>
 </li>
       <li><a href="modules/dma.html#_CPPv421DMA_configDestAddress8uint32_tPKv">DMA_configDestAddress (C++ function)</a>
 </li>
       <li><a href="modules/dma.html#_CPPv414DMA_configMode8uint32_t11DMA_Trigger8uint32_t">DMA_configMode (C++ function)</a>
+</li>
+      <li><a href="modules/dma.html#_CPPv416DMA_ConfigParams">DMA_ConfigParams (C++ struct)</a>
 </li>
       <li><a href="modules/dma.html#_CPPv423DMA_configSourceAddress8uint32_tPKv">DMA_configSourceAddress (C++ function)</a>
 </li>
@@ -4103,13 +4107,13 @@
 </li>
       <li><a href="modules/gpio.html#_CPPv418GPIO_setAnalogMode8uint32_t15GPIO_AnalogMode">GPIO_setAnalogMode (C++ function)</a>
 </li>
+      <li><a href="modules/gpio.html#_CPPv422GPIO_setControllerCore8uint32_t15GPIO_CoreSelect">GPIO_setControllerCore (C++ function)</a>
+</li>
       <li><a href="modules/gpio.html#_CPPv421GPIO_setDirectionMode8uint32_t14GPIO_Direction">GPIO_setDirectionMode (C++ function)</a>
 </li>
       <li><a href="modules/gpio.html#_CPPv420GPIO_setInterruptPin8uint32_t19GPIO_ExternalIntNum">GPIO_setInterruptPin (C++ function)</a>
 </li>
       <li><a href="modules/gpio.html#_CPPv421GPIO_setInterruptType19GPIO_ExternalIntNum12GPIO_IntType">GPIO_setInterruptType (C++ function)</a>
-</li>
-      <li><a href="modules/gpio.html#_CPPv418GPIO_setMasterCore8uint32_t15GPIO_CoreSelect">GPIO_setMasterCore (C++ function)</a>
 </li>
       <li><a href="modules/gpio.html#_CPPv417GPIO_setPadConfig8uint32_t8uint32_t">GPIO_setPadConfig (C++ function)</a>
 </li>
@@ -4609,6 +4613,10 @@
 </li>
       <li><a href="modules/i2c.html#_CPPv428I2C_configureModuleFrequency8uint32_t8uint32_t">I2C_configureModuleFrequency (C++ function)</a>
 </li>
+      <li><a href="modules/i2c.html#c.I2C_CONTROLLER_RECEIVE_MODE">I2C_CONTROLLER_RECEIVE_MODE (C macro)</a>
+</li>
+      <li><a href="modules/i2c.html#c.I2C_CONTROLLER_SEND_MODE">I2C_CONTROLLER_SEND_MODE (C macro)</a>
+</li>
       <li><a href="modules/i2c.html#_CPPv415I2C_disableFIFO8uint32_t">I2C_disableFIFO (C++ function)</a>
 </li>
       <li><a href="modules/i2c.html#_CPPv420I2C_disableInterrupt8uint32_t8uint32_t">I2C_disableInterrupt (C++ function)</a>
@@ -4657,9 +4665,9 @@
 </li>
       <li><a href="modules/i2c.html#_CPPv419I2C_getTxFIFOStatus8uint32_t">I2C_getTxFIFOStatus (C++ function)</a>
 </li>
-      <li><a href="modules/i2c.html#_CPPv414I2C_initMaster8uint32_t8uint32_t8uint32_t13I2C_DutyCycle">I2C_initMaster (C++ function)</a>
+      <li><a href="modules/i2c.html#_CPPv418I2C_initController8uint32_t8uint32_t8uint32_t13I2C_DutyCycle">I2C_initController (C++ function)</a>
 </li>
-      <li><a href="modules/i2c.html#c.I2C_INT_ADDR_SLAVE">I2C_INT_ADDR_SLAVE (C macro)</a>
+      <li><a href="modules/i2c.html#c.I2C_INT_ADDR_TARGET">I2C_INT_ADDR_TARGET (C macro)</a>
 </li>
       <li><a href="modules/i2c.html#c.I2C_INT_ARB_LOST">I2C_INT_ARB_LOST (C macro)</a>
 </li>
@@ -4679,7 +4687,7 @@
 </li>
       <li><a href="modules/i2c.html#_CPPv419I2C_InterruptSource">I2C_InterruptSource (C++ enum)</a>
 </li>
-      <li><a href="modules/i2c.html#_CPPv4N19I2C_InterruptSource21I2C_INTSRC_ADDR_SLAVEE">I2C_InterruptSource::I2C_INTSRC_ADDR_SLAVE (C++ enumerator)</a>
+      <li><a href="modules/i2c.html#_CPPv4N19I2C_InterruptSource22I2C_INTSRC_ADDR_TARGETE">I2C_InterruptSource::I2C_INTSRC_ADDR_TARGET (C++ enumerator)</a>
 </li>
       <li><a href="modules/i2c.html#_CPPv4N19I2C_InterruptSource19I2C_INTSRC_ARB_LOSTE">I2C_InterruptSource::I2C_INTSRC_ARB_LOST (C++ enumerator)</a>
 </li>
@@ -4696,10 +4704,6 @@
       <li><a href="modules/i2c.html#_CPPv4N19I2C_InterruptSource22I2C_INTSRC_TX_DATA_RDYE">I2C_InterruptSource::I2C_INTSRC_TX_DATA_RDY (C++ enumerator)</a>
 </li>
       <li><a href="modules/i2c.html#_CPPv413I2C_isBusBusy8uint32_t">I2C_isBusBusy (C++ function)</a>
-</li>
-      <li><a href="modules/i2c.html#c.I2C_MASTER_RECEIVE_MODE">I2C_MASTER_RECEIVE_MODE (C macro)</a>
-</li>
-      <li><a href="modules/i2c.html#c.I2C_MASTER_SEND_MODE">I2C_MASTER_SEND_MODE (C macro)</a>
 </li>
       <li><a href="modules/i2c.html#_CPPv411I2C_putData8uint32_t8uint16_t">I2C_putData (C++ function)</a>
 </li>
@@ -4753,10 +4757,10 @@
 </li>
       <li><a href="modules/i2c.html#_CPPv418I2C_setAddressMode8uint32_t15I2C_AddressMode">I2C_setAddressMode (C++ function)</a>
 </li>
-      <li><a href="modules/i2c.html#_CPPv415I2C_setBitCount8uint32_t12I2C_BitCount">I2C_setBitCount (C++ function)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/i2c.html#_CPPv415I2C_setBitCount8uint32_t12I2C_BitCount">I2C_setBitCount (C++ function)</a>
+</li>
       <li><a href="modules/i2c.html#_CPPv413I2C_setConfig8uint32_t8uint16_t">I2C_setConfig (C++ function)</a>
 </li>
       <li><a href="modules/i2c.html#_CPPv416I2C_setDataCount8uint32_t8uint16_t">I2C_setDataCount (C++ function)</a>
@@ -4765,19 +4769,15 @@
 </li>
       <li><a href="modules/i2c.html#_CPPv425I2C_setFIFOInterruptLevel8uint32_t15I2C_TxFIFOLevel15I2C_RxFIFOLevel">I2C_setFIFOInterruptLevel (C++ function)</a>
 </li>
-      <li><a href="modules/i2c.html#_CPPv422I2C_setOwnSlaveAddress8uint32_t8uint16_t">I2C_setOwnSlaveAddress (C++ function)</a>
+      <li><a href="modules/i2c.html#_CPPv417I2C_setOwnAddress8uint32_t8uint16_t">I2C_setOwnAddress (C++ function)</a>
 </li>
-      <li><a href="modules/i2c.html#_CPPv419I2C_setSlaveAddress8uint32_t8uint16_t">I2C_setSlaveAddress (C++ function)</a>
-</li>
-      <li><a href="modules/i2c.html#c.I2C_SLAVE_RECEIVE_MODE">I2C_SLAVE_RECEIVE_MODE (C macro)</a>
-</li>
-      <li><a href="modules/i2c.html#c.I2C_SLAVE_SEND_MODE">I2C_SLAVE_SEND_MODE (C macro)</a>
+      <li><a href="modules/i2c.html#_CPPv420I2C_setTargetAddress8uint32_t8uint16_t">I2C_setTargetAddress (C++ function)</a>
 </li>
       <li><a href="modules/i2c.html#c.I2C_START_BYTE_MODE">I2C_START_BYTE_MODE (C macro)</a>
 </li>
       <li><a href="modules/i2c.html#c.I2C_STR_INTMASK">I2C_STR_INTMASK (C macro)</a>
 </li>
-      <li><a href="modules/i2c.html#c.I2C_STS_ADDR_SLAVE">I2C_STS_ADDR_SLAVE (C macro)</a>
+      <li><a href="modules/i2c.html#c.I2C_STS_ADDR_TARGET">I2C_STS_ADDR_TARGET (C macro)</a>
 </li>
       <li><a href="modules/i2c.html#c.I2C_STS_ADDR_ZERO">I2C_STS_ADDR_ZERO (C macro)</a>
 </li>
@@ -4795,13 +4795,17 @@
 </li>
       <li><a href="modules/i2c.html#c.I2C_STS_RX_FULL">I2C_STS_RX_FULL (C macro)</a>
 </li>
-      <li><a href="modules/i2c.html#c.I2C_STS_SLAVE_DIR">I2C_STS_SLAVE_DIR (C macro)</a>
-</li>
       <li><a href="modules/i2c.html#c.I2C_STS_STOP_CONDITION">I2C_STS_STOP_CONDITION (C macro)</a>
+</li>
+      <li><a href="modules/i2c.html#c.I2C_STS_TARGET_DIR">I2C_STS_TARGET_DIR (C macro)</a>
 </li>
       <li><a href="modules/i2c.html#c.I2C_STS_TX_DATA_RDY">I2C_STS_TX_DATA_RDY (C macro)</a>
 </li>
       <li><a href="modules/i2c.html#c.I2C_STS_TX_EMPTY">I2C_STS_TX_EMPTY (C macro)</a>
+</li>
+      <li><a href="modules/i2c.html#c.I2C_TARGET_RECEIVE_MODE">I2C_TARGET_RECEIVE_MODE (C macro)</a>
+</li>
+      <li><a href="modules/i2c.html#c.I2C_TARGET_SEND_MODE">I2C_TARGET_SEND_MODE (C macro)</a>
 </li>
       <li><a href="modules/i2c.html#_CPPv415I2C_TxFIFOLevel">I2C_TxFIFOLevel (C++ enum)</a>
 </li>
@@ -4907,17 +4911,17 @@
 </li>
       <li><a href="modules/interrupt.html#_CPPv417Interrupt_disable8uint32_t">Interrupt_disable (C++ function)</a>
 </li>
-      <li><a href="modules/interrupt.html#_CPPv422Interrupt_disableInCPU8uint16_t">Interrupt_disableInCPU (C++ function)</a>
+      <li><a href="modules/interrupt.html#_CPPv423Interrupt_disableGlobalv">Interrupt_disableGlobal (C++ function)</a>
 </li>
-      <li><a href="modules/interrupt.html#_CPPv423Interrupt_disableMasterv">Interrupt_disableMaster (C++ function)</a>
+      <li><a href="modules/interrupt.html#_CPPv422Interrupt_disableInCPU8uint16_t">Interrupt_disableInCPU (C++ function)</a>
 </li>
       <li><a href="modules/interrupt.html#_CPPv420Interrupt_disablePIEv">Interrupt_disablePIE (C++ function)</a>
 </li>
       <li><a href="modules/interrupt.html#_CPPv416Interrupt_enable8uint32_t">Interrupt_enable (C++ function)</a>
 </li>
-      <li><a href="modules/interrupt.html#_CPPv421Interrupt_enableInCPU8uint16_t">Interrupt_enableInCPU (C++ function)</a>
+      <li><a href="modules/interrupt.html#_CPPv422Interrupt_enableGlobalv">Interrupt_enableGlobal (C++ function)</a>
 </li>
-      <li><a href="modules/interrupt.html#_CPPv422Interrupt_enableMasterv">Interrupt_enableMaster (C++ function)</a>
+      <li><a href="modules/interrupt.html#_CPPv421Interrupt_enableInCPU8uint16_t">Interrupt_enableInCPU (C++ function)</a>
 </li>
       <li><a href="modules/interrupt.html#_CPPv419Interrupt_enablePIEv">Interrupt_enablePIE (C++ function)</a>
 </li>
@@ -4926,8 +4930,6 @@
       <li><a href="modules/interrupt.html#_CPPv420Interrupt_initModulev">Interrupt_initModule (C++ function)</a>
 </li>
       <li><a href="modules/interrupt.html#_CPPv425Interrupt_initVectorTablev">Interrupt_initVectorTable (C++ function)</a>
-</li>
-      <li><a href="modules/interrupt.html#_CPPv420Interrupt_nmiHandlerv">Interrupt_nmiHandler (C++ function)</a>
 </li>
       <li><a href="modules/interrupt.html#_CPPv418Interrupt_register8uint32_tPFvvE">Interrupt_register (C++ function)</a>
 </li>
@@ -5439,11 +5441,11 @@
 </li>
       <li><a href="modules/memcfg.html#_CPPv417MemCfg_lockConfig8uint32_t">MemCfg_lockConfig (C++ function)</a>
 </li>
-      <li><a href="modules/memcfg.html#_CPPv421MemCfg_LSRAMMasterSel">MemCfg_LSRAMMasterSel (C++ enum)</a>
+      <li><a href="modules/memcfg.html#_CPPv425MemCfg_LSRAMControllerSel">MemCfg_LSRAMControllerSel (C++ enum)</a>
 </li>
-      <li><a href="modules/memcfg.html#_CPPv4N21MemCfg_LSRAMMasterSel27MEMCFG_LSRAMMASTER_CPU_CLA1E">MemCfg_LSRAMMasterSel::MEMCFG_LSRAMMASTER_CPU_CLA1 (C++ enumerator)</a>
+      <li><a href="modules/memcfg.html#_CPPv4N25MemCfg_LSRAMControllerSel31MEMCFG_LSRAMCONTROLLER_CPU_CLA1E">MemCfg_LSRAMControllerSel::MEMCFG_LSRAMCONTROLLER_CPU_CLA1 (C++ enumerator)</a>
 </li>
-      <li><a href="modules/memcfg.html#_CPPv4N21MemCfg_LSRAMMasterSel27MEMCFG_LSRAMMASTER_CPU_ONLYE">MemCfg_LSRAMMasterSel::MEMCFG_LSRAMMASTER_CPU_ONLY (C++ enumerator)</a>
+      <li><a href="modules/memcfg.html#_CPPv4N25MemCfg_LSRAMControllerSel31MEMCFG_LSRAMCONTROLLER_CPU_ONLYE">MemCfg_LSRAMControllerSel::MEMCFG_LSRAMCONTROLLER_CPU_ONLY (C++ enumerator)</a>
 </li>
       <li><a href="modules/memcfg.html#c.MEMCFG_MVIOL_CPUFETCH">MEMCFG_MVIOL_CPUFETCH (C macro)</a>
 </li>
@@ -5565,7 +5567,7 @@
 </li>
       <li><a href="modules/memcfg.html#_CPPv428MemCfg_setCorrErrorThreshold8uint32_t">MemCfg_setCorrErrorThreshold (C++ function)</a>
 </li>
-      <li><a href="modules/memcfg.html#_CPPv424MemCfg_setLSRAMMasterSel8uint32_t21MemCfg_LSRAMMasterSel">MemCfg_setLSRAMMasterSel (C++ function)</a>
+      <li><a href="modules/memcfg.html#_CPPv428MemCfg_setLSRAMControllerSel8uint32_t25MemCfg_LSRAMControllerSel">MemCfg_setLSRAMControllerSel (C++ function)</a>
 </li>
       <li><a href="modules/memcfg.html#_CPPv420MemCfg_setProtection8uint32_t8uint32_t">MemCfg_setProtection (C++ function)</a>
 </li>
@@ -5621,9 +5623,9 @@
 </li>
       <li><a href="modules/sdfm.html#_CPPv421SDFM_disableInterrupt8uint32_t17SDFM_FilterNumber8uint16_t">SDFM_disableInterrupt (C++ function)</a>
 </li>
-      <li><a href="modules/sdfm.html#_CPPv424SDFM_disableMasterFilter8uint32_t">SDFM_disableMasterFilter (C++ function)</a>
+      <li><a href="modules/sdfm.html#_CPPv422SDFM_disableMainFilter8uint32_t">SDFM_disableMainFilter (C++ function)</a>
 </li>
-      <li><a href="modules/sdfm.html#_CPPv427SDFM_disableMasterInterrupt8uint32_t">SDFM_disableMasterInterrupt (C++ function)</a>
+      <li><a href="modules/sdfm.html#_CPPv425SDFM_disableMainInterrupt8uint32_t">SDFM_disableMainInterrupt (C++ function)</a>
 </li>
       <li><a href="modules/sdfm.html#_CPPv424SDFM_enableExternalReset8uint32_t17SDFM_FilterNumber">SDFM_enableExternalReset (C++ function)</a>
 </li>
@@ -5631,9 +5633,9 @@
 </li>
       <li><a href="modules/sdfm.html#_CPPv420SDFM_enableInterrupt8uint32_t17SDFM_FilterNumber8uint16_t">SDFM_enableInterrupt (C++ function)</a>
 </li>
-      <li><a href="modules/sdfm.html#_CPPv423SDFM_enableMasterFilter8uint32_t">SDFM_enableMasterFilter (C++ function)</a>
+      <li><a href="modules/sdfm.html#_CPPv421SDFM_enableMainFilter8uint32_t">SDFM_enableMainFilter (C++ function)</a>
 </li>
-      <li><a href="modules/sdfm.html#_CPPv426SDFM_enableMasterInterrupt8uint32_t">SDFM_enableMasterInterrupt (C++ function)</a>
+      <li><a href="modules/sdfm.html#_CPPv424SDFM_enableMainInterrupt8uint32_t">SDFM_enableMainInterrupt (C++ function)</a>
 </li>
       <li><a href="modules/sdfm.html#c.SDFM_FILTER_1_HIGH_THRESHOLD_FLAG">SDFM_FILTER_1_HIGH_THRESHOLD_FLAG (C macro)</a>
 </li>
@@ -5709,7 +5711,7 @@
 </li>
       <li><a href="modules/sdfm.html#c.SDFM_LOW_LEVEL_THRESHOLD_INTERRUPT">SDFM_LOW_LEVEL_THRESHOLD_INTERRUPT (C macro)</a>
 </li>
-      <li><a href="modules/sdfm.html#c.SDFM_MASTER_INTERRUPT_FLAG">SDFM_MASTER_INTERRUPT_FLAG (C macro)</a>
+      <li><a href="modules/sdfm.html#c.SDFM_MAIN_INTERRUPT_FLAG">SDFM_MAIN_INTERRUPT_FLAG (C macro)</a>
 </li>
       <li><a href="modules/sdfm.html#c.SDFM_MODULATOR_FAILURE_INTERRUPT">SDFM_MODULATOR_FAILURE_INTERRUPT (C macro)</a>
 </li>
@@ -5831,17 +5833,23 @@
 </li>
       <li><a href="modules/spi.html#_CPPv48SPI_Mode">SPI_Mode (C++ enum)</a>
 </li>
-      <li><a href="modules/spi.html#_CPPv4N8SPI_Mode15SPI_MODE_MASTERE">SPI_Mode::SPI_MODE_MASTER (C++ enumerator)</a>
+      <li><a href="modules/spi.html#_CPPv4N8SPI_Mode19SPI_MODE_CONTROLLERE">SPI_Mode::SPI_MODE_CONTROLLER (C++ enumerator)</a>
 </li>
-      <li><a href="modules/spi.html#_CPPv4N8SPI_Mode18SPI_MODE_MASTER_ODE">SPI_Mode::SPI_MODE_MASTER_OD (C++ enumerator)</a>
+      <li><a href="modules/spi.html#_CPPv4N8SPI_Mode22SPI_MODE_CONTROLLER_ODE">SPI_Mode::SPI_MODE_CONTROLLER_OD (C++ enumerator)</a>
 </li>
-      <li><a href="modules/spi.html#_CPPv4N8SPI_Mode14SPI_MODE_SLAVEE">SPI_Mode::SPI_MODE_SLAVE (C++ enumerator)</a>
+      <li><a href="modules/spi.html#_CPPv4N8SPI_Mode19SPI_MODE_PERIPHERALE">SPI_Mode::SPI_MODE_PERIPHERAL (C++ enumerator)</a>
 </li>
-      <li><a href="modules/spi.html#_CPPv4N8SPI_Mode17SPI_MODE_SLAVE_ODE">SPI_Mode::SPI_MODE_SLAVE_OD (C++ enumerator)</a>
+      <li><a href="modules/spi.html#_CPPv4N8SPI_Mode22SPI_MODE_PERIPHERAL_ODE">SPI_Mode::SPI_MODE_PERIPHERAL_OD (C++ enumerator)</a>
 </li>
       <li><a href="modules/spi.html#_CPPv426SPI_pollingFIFOTransaction8uint32_t8uint16_tP8uint16_tP8uint16_t8uint16_t8uint16_t">SPI_pollingFIFOTransaction (C++ function)</a>
 </li>
       <li><a href="modules/spi.html#_CPPv429SPI_pollingNonFIFOTransaction8uint32_t8uint16_t8uint16_t">SPI_pollingNonFIFOTransaction (C++ function)</a>
+</li>
+      <li><a href="modules/spi.html#_CPPv415SPI_PTEPolarity">SPI_PTEPolarity (C++ enum)</a>
+</li>
+      <li><a href="modules/spi.html#_CPPv4N15SPI_PTEPolarity19SPI_PTE_ACTIVE_HIGHE">SPI_PTEPolarity::SPI_PTE_ACTIVE_HIGH (C++ enumerator)</a>
+</li>
+      <li><a href="modules/spi.html#_CPPv4N15SPI_PTEPolarity18SPI_PTE_ACTIVE_LOWE">SPI_PTEPolarity::SPI_PTE_ACTIVE_LOW (C++ enumerator)</a>
 </li>
       <li><a href="modules/spi.html#_CPPv424SPI_readDataBlockingFIFO8uint32_t">SPI_readDataBlockingFIFO (C++ function)</a>
 </li>
@@ -5923,15 +5931,9 @@
 </li>
       <li><a href="modules/spi.html#_CPPv425SPI_setFIFOInterruptLevel8uint32_t15SPI_TxFIFOLevel15SPI_RxFIFOLevel">SPI_setFIFOInterruptLevel (C++ function)</a>
 </li>
-      <li><a href="modules/spi.html#_CPPv424SPI_setSTESignalPolarity8uint32_t15SPI_STEPolarity">SPI_setSTESignalPolarity (C++ function)</a>
+      <li><a href="modules/spi.html#_CPPv424SPI_setPTESignalPolarity8uint32_t15SPI_PTEPolarity">SPI_setPTESignalPolarity (C++ function)</a>
 </li>
       <li><a href="modules/spi.html#_CPPv426SPI_setTxFifoTransmitDelay8uint32_t8uint16_t">SPI_setTxFifoTransmitDelay (C++ function)</a>
-</li>
-      <li><a href="modules/spi.html#_CPPv415SPI_STEPolarity">SPI_STEPolarity (C++ enum)</a>
-</li>
-      <li><a href="modules/spi.html#_CPPv4N15SPI_STEPolarity19SPI_STE_ACTIVE_HIGHE">SPI_STEPolarity::SPI_STE_ACTIVE_HIGH (C++ enumerator)</a>
-</li>
-      <li><a href="modules/spi.html#_CPPv4N15SPI_STEPolarity18SPI_STE_ACTIVE_LOWE">SPI_STEPolarity::SPI_STE_ACTIVE_LOW (C++ enumerator)</a>
 </li>
       <li><a href="modules/spi.html#_CPPv420SPI_TransferProtocol">SPI_TransferProtocol (C++ enum)</a>
 </li>
@@ -6317,6 +6319,8 @@
 </li>
       <li><a href="modules/sysctl.html#_CPPv422SysCtl_isPresentUSBPHYv">SysCtl_isPresentUSBPHY (C++ function)</a>
 </li>
+      <li><a href="modules/sysctl.html#_CPPv424SysCtl_isWatchdogEnabledv">SysCtl_isWatchdogEnabled (C++ function)</a>
+</li>
       <li><a href="modules/sysctl.html#_CPPv432SysCtl_isWatchdogInterruptActivev">SysCtl_isWatchdogInterruptActive (C++ function)</a>
 </li>
       <li><a href="modules/sysctl.html#_CPPv426SysCtl_lockExtADCSOCSelectv">SysCtl_lockExtADCSOCSelect (C++ function)</a>
@@ -6629,9 +6633,9 @@
 </li>
       <li><a href="modules/sysctl.html#_CPPv420SysCtl_resetWatchdogv">SysCtl_resetWatchdog (C++ function)</a>
 </li>
-      <li><a href="modules/sysctl.html#c.SYSCTL_SEC_MASTER_CLA">SYSCTL_SEC_MASTER_CLA (C macro)</a>
+      <li><a href="modules/sysctl.html#c.SYSCTL_SEC_CONTROLLER_CLA">SYSCTL_SEC_CONTROLLER_CLA (C macro)</a>
 </li>
-      <li><a href="modules/sysctl.html#c.SYSCTL_SEC_MASTER_DMA">SYSCTL_SEC_MASTER_DMA (C macro)</a>
+      <li><a href="modules/sysctl.html#c.SYSCTL_SEC_CONTROLLER_DMA">SYSCTL_SEC_CONTROLLER_DMA (C macro)</a>
 </li>
       <li><a href="modules/sysctl.html#_CPPv427SysCtl_selectClockOutSource15SysCtl_ClockOut">SysCtl_selectClockOutSource (C++ function)</a>
 </li>
@@ -6639,7 +6643,7 @@
 </li>
       <li><a href="modules/sysctl.html#_CPPv428SysCtl_selectOscSourceAuxPLL8uint32_t">SysCtl_selectOscSourceAuxPLL (C++ function)</a>
 </li>
-      <li><a href="modules/sysctl.html#_CPPv422SysCtl_selectSecMaster8uint16_t8uint16_t">SysCtl_selectSecMaster (C++ function)</a>
+      <li><a href="modules/sysctl.html#_CPPv426SysCtl_selectSecController8uint16_t8uint16_t">SysCtl_selectSecController (C++ function)</a>
 </li>
       <li><a href="modules/sysctl.html#_CPPv417SysCtl_selectXTALv">SysCtl_selectXTAL (C++ function)</a>
 </li>
@@ -8527,8 +8531,10 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
-      <span class="lastupdated">Last updated on Oct 11, 2022.
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+      <span class="lastupdated">Last updated on Jul 01, 2023.
       </span></p>
   </div>
 
@@ -8548,7 +8554,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v4.02.00.00',
+            VERSION:'v5.00.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

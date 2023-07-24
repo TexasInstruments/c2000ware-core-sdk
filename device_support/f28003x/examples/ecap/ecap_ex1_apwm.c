@@ -107,7 +107,6 @@ void main(void)
     // Service Routines (ISR).
     // This will populate the entire table, even if the __interrupt
     // is not used in this example.  This is useful for debug purposes.
-    // The shell ISR routines are found in f28004x_DefaultIsr.c.
     //
     InitPieVectTable();
 

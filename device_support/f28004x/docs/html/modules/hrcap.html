@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v4.02.00.00
+                v5.00.00.00
               </div>
             
           
@@ -524,6 +524,27 @@ hardware are also provided.</p>
 </dd></dl>
 
 <dl class="cpp function">
+<dt id="_CPPv429HRCAP_configCalibrationPeriod8uint32_t8uint32_tf">
+<span id="_CPPv329HRCAP_configCalibrationPeriod8uint32_t8uint32_tf"></span><span id="_CPPv229HRCAP_configCalibrationPeriod8uint32_t8uint32_tf"></span><span id="HRCAP_configCalibrationPeriod__uint32_t.uint32_t.float"></span><span class="target" id="group__hrcap__api_1ga22909e365c764b6aa01cdd0facda58ad"></span>void <code class="sig-name descname">HRCAP_configCalibrationPeriod</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>sysclkHz</em>, float <em>periodInMs</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429HRCAP_configCalibrationPeriod8uint32_t8uint32_tf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the calibration period count at a user configurable value.</p>
+<p><p>This function sets the calibration period count value to the provided period in milliseconds given the SYSCLK frequency in Hz (the </p>
+<em>sysclkHz</em> parameter).<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the HRCAP instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sysclkHz</span></code>: is the rate of the SYSCLK in Hz. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">periodInMs</span></code>: is the calibration period to be configured.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt id="_CPPv431HRCAP_getCalibrationClockPeriod8uint32_t28HRCAP_CalibrationClockSource">
 <span id="_CPPv331HRCAP_getCalibrationClockPeriod8uint32_t28HRCAP_CalibrationClockSource"></span><span id="_CPPv231HRCAP_getCalibrationClockPeriod8uint32_t28HRCAP_CalibrationClockSource"></span><span id="HRCAP_getCalibrationClockPeriod__uint32_t.HRCAP_CalibrationClockSource"></span><span class="target" id="group__hrcap__api_1gae17cbb57754497fcd35ec25fce3361e8"></span>uint32_t <code class="sig-name descname">HRCAP_getCalibrationClockPeriod</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv428HRCAP_CalibrationClockSource" title="HRCAP_CalibrationClockSource">HRCAP_CalibrationClockSource</a> <em>clockSource</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431HRCAP_getCalibrationClockPeriod8uint32_t28HRCAP_CalibrationClockSource" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns the calibration clock period</p>
@@ -601,8 +622,10 @@ applications.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
-      <span class="lastupdated">Last updated on Oct 11, 2022.
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+      <span class="lastupdated">Last updated on Jul 01, 2023.
       </span></p>
   </div>
 
@@ -622,7 +645,7 @@ applications.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v4.02.00.00',
+            VERSION:'v5.00.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

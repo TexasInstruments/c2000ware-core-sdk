@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v4.02.00.00
+                v5.00.00.00
               </div>
             
           
@@ -407,18 +407,18 @@ see the SysCtl module.</p>
 <dl class="cpp enum">
 <dt id="_CPPv415GPIO_CoreSelect">
 <span id="_CPPv315GPIO_CoreSelect"></span><span id="_CPPv215GPIO_CoreSelect"></span><span class="target" id="group__gpio__api_1ga60e229ee74f20839ffdd50fc31878c8f"></span><em class="property">enum </em><code class="sig-name descname">GPIO_CoreSelect</code><a class="headerlink" href="#_CPPv415GPIO_CoreSelect" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Values that can be passed to <a class="reference internal" href="#group__gpio__api_1gaed835c34d453f9b7b353e8e82ba89b56"><span class="std std-ref">GPIO_setMasterCore()</span></a> as the <em>core</em> parameter. </p>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__gpio__api_1gada48b14a22ee388a37f273236449a920"><span class="std std-ref">GPIO_setControllerCore()</span></a> as the <em>core</em> parameter. </p>
 <p><em>Values:</em></p>
 <dl class="cpp enumerator">
 <dt id="_CPPv4N15GPIO_CoreSelect14GPIO_CORE_CPU1E">
 <span id="_CPPv3N15GPIO_CoreSelect14GPIO_CORE_CPU1E"></span><span id="_CPPv2N15GPIO_CoreSelect14GPIO_CORE_CPU1E"></span><span class="target" id="group__gpio__api_1gga60e229ee74f20839ffdd50fc31878c8fac8485f808edcb5a224fe67316ca1f6b4"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_CORE_CPU1</code><a class="headerlink" href="#_CPPv4N15GPIO_CoreSelect14GPIO_CORE_CPU1E" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>CPU1 selected as master core. </p>
+<dd><p>CPU1 selected as controller core. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt id="_CPPv4N15GPIO_CoreSelect19GPIO_CORE_CPU1_CLA1E">
 <span id="_CPPv3N15GPIO_CoreSelect19GPIO_CORE_CPU1_CLA1E"></span><span id="_CPPv2N15GPIO_CoreSelect19GPIO_CORE_CPU1_CLA1E"></span><span class="target" id="group__gpio__api_1gga60e229ee74f20839ffdd50fc31878c8fa850bdf3e9f8d0bf85c75cde0003e6885"></span><em class="property">enumerator </em><code class="sig-name descname">GPIO_CORE_CPU1_CLA1</code><a class="headerlink" href="#_CPPv4N15GPIO_CoreSelect19GPIO_CORE_CPU1_CLA1E" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>CPU1’s CLA1 selected as master core. </p>
+<dd><p>CPU1’s CLA1 selected as controller core. </p>
 </dd></dl>
 
 </dd></dl>
@@ -1069,14 +1069,14 @@ see the SysCtl module.</p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv418GPIO_setMasterCore8uint32_t15GPIO_CoreSelect">
-<span id="_CPPv318GPIO_setMasterCore8uint32_t15GPIO_CoreSelect"></span><span id="_CPPv218GPIO_setMasterCore8uint32_t15GPIO_CoreSelect"></span><span id="GPIO_setMasterCore__uint32_t.GPIO_CoreSelect"></span><span class="target" id="group__gpio__api_1gaed835c34d453f9b7b353e8e82ba89b56"></span>void <code class="sig-name descname">GPIO_setMasterCore</code><span class="sig-paren">(</span>uint32_t <em>pin</em>, <a class="reference internal" href="#_CPPv415GPIO_CoreSelect" title="GPIO_CoreSelect">GPIO_CoreSelect</a> <em>core</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418GPIO_setMasterCore8uint32_t15GPIO_CoreSelect" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Selects the master core of a specified pin.</p>
+<dt id="_CPPv422GPIO_setControllerCore8uint32_t15GPIO_CoreSelect">
+<span id="_CPPv322GPIO_setControllerCore8uint32_t15GPIO_CoreSelect"></span><span id="_CPPv222GPIO_setControllerCore8uint32_t15GPIO_CoreSelect"></span><span id="GPIO_setControllerCore__uint32_t.GPIO_CoreSelect"></span><span class="target" id="group__gpio__api_1gada48b14a22ee388a37f273236449a920"></span>void <code class="sig-name descname">GPIO_setControllerCore</code><span class="sig-paren">(</span>uint32_t <em>pin</em>, <a class="reference internal" href="#_CPPv415GPIO_CoreSelect" title="GPIO_CoreSelect">GPIO_CoreSelect</a> <em>core</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422GPIO_setControllerCore8uint32_t15GPIO_CoreSelect" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Selects the controller core of a specified pin.</p>
 <p><p>This function configures which core owns the specified pin’s data registers (DATA, SET, CLEAR, and TOGGLE). The </p>
-<em>core</em> parameter is an enumerated data type that specifies the core, such as <strong>GPIO_CORE_CPU1_CLA1</strong> to make CPU1’s CLA1 master of the pin.<dl class="simple">
+<em>core</em> parameter is an enumerated data type that specifies the core, such as <strong>GPIO_CORE_CPU1_CLA1</strong> to make CPU1’s CLA1 controller of the pin.<dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">pin</span></code>: is the identifying GPIO number of the pin. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">core</span></code>: is the core that is master of the specified pin.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">core</span></code>: is the core that is controller of the specified pin.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1109,6 +1109,7 @@ see the SysCtl module.</p>
 </ul>
 </p>
 <p>The pin is specified by its numerical value. For example, GPIO34 is specified by passing 34 as <em>pin</em>.</p>
+<p><strong>Note:</strong> The pin parameter is applicable for both AIO and GPIO because the GPAxMSEL.GPIOy register configures for both</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -1175,8 +1176,10 @@ GPIO_writePin(), and GPIO_togglePin().</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
-      <span class="lastupdated">Last updated on Oct 11, 2022.
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+      <span class="lastupdated">Last updated on Jul 01, 2023.
       </span></p>
   </div>
 
@@ -1196,7 +1199,7 @@ GPIO_writePin(), and GPIO_togglePin().</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v4.02.00.00',
+            VERSION:'v5.00.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

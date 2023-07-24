@@ -35,6 +35,7 @@ void `instance.$name`_init(){
 	SysCtl_enableWatchdogInHalt();
 	% }	
 	% if (instance.enableModule) {
+	SysCtl_delay(6);
 	SysCtl_enableWatchdog();
 		% } else{
 	//

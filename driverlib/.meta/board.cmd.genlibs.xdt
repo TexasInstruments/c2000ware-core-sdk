@@ -22,5 +22,5 @@
 % let device_support = system.modules["/driverlib/device_support.js"]
 % if (device_support) {
 /* libraries required for driverlib */
--l"/driverlib/`Common.getDeviceName().toLowerCase()`/driverlib/ccs/`device_support.$static.build`/driverlib.lib"  
+-l"driverlib/`Common.getDeviceName().toLowerCase()`/driverlib/ccs/`device_support.$static.build`/driverlib.lib"  
 % }

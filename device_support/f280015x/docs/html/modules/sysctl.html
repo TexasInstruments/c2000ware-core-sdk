@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v4.03.00.00_EA1
+                v5.00.00.00
               </div>
             
           
@@ -274,7 +274,7 @@ about resets and missing clock detection failures.</p>
 
 <dl class="cpp macro">
 <dt id="c.SYSCTL_SYSDIV_M">
-<span class="target" id="group__sysctl__api_1ga58ce0d5df2bbc4245317db6b5c81ea77"></span><code class="sig-name descname">SYSCTL_SYSDIV_M</code> 0x00003F00UL<a class="headerlink" href="#c.SYSCTL_SYSDIV_M" title="Permalink to this definition">¶</a><br /></dt>
+<span class="target" id="group__sysctl__api_1ga58ce0d5df2bbc4245317db6b5c81ea77"></span><code class="sig-name descname">SYSCTL_SYSDIV_M</code> 0x00007F00UL<a class="headerlink" href="#c.SYSCTL_SYSDIV_M" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
@@ -318,8 +318,8 @@ about resets and missing clock detection failures.</p>
 
 <dl class="cpp macro">
 <dt id="c.SYSCTL_SYSDIV">
-<span class="target" id="group__sysctl__api_1ga5f1c089571cdcf6ccb6a1eac067f64be"></span><code class="sig-name descname">SYSCTL_SYSDIV</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span> ((((x) / 2U) &lt;&lt; <a class="reference internal" href="#group__sysctl__api_1gafe963e1c8adc06170d5cba59390ae9f3"><span class="std std-ref">SYSCTL_SYSDIV_S</span></a>) &amp; <a class="reference internal" href="#group__sysctl__api_1ga58ce0d5df2bbc4245317db6b5c81ea77"><span class="std std-ref">SYSCTL_SYSDIV_M</span></a>)<a class="headerlink" href="#c.SYSCTL_SYSDIV" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Macro to format system clock divider value. x must be 1 or even values up to 126. </p>
+<span class="target" id="group__sysctl__api_1ga5f1c089571cdcf6ccb6a1eac067f64be"></span><code class="sig-name descname">SYSCTL_SYSDIV</code><span class="sig-paren">(</span><em>x</em><span class="sig-paren">)</span> ((x &lt;&lt; <a class="reference internal" href="#group__sysctl__api_1gafe963e1c8adc06170d5cba59390ae9f3"><span class="std std-ref">SYSCTL_SYSDIV_S</span></a>) &amp; <a class="reference internal" href="#group__sysctl__api_1ga58ce0d5df2bbc4245317db6b5c81ea77"><span class="std std-ref">SYSCTL_SYSDIV_M</span></a>)<a class="headerlink" href="#c.SYSCTL_SYSDIV" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Macro to format system clock divider value. x must be values from 1 to 126. </p>
 </dd></dl>
 
 <dl class="cpp macro">
@@ -384,13 +384,13 @@ about resets and missing clock detection failures.</p>
 
 <dl class="cpp macro">
 <dt id="c.SYSCTL_OSCSRC_XTAL">
-<span class="target" id="group__sysctl__api_1ga5ea5c1655f2f13340b93b13c0aeb608e"></span><code class="sig-name descname">SYSCTL_OSCSRC_XTAL</code> 0x00010000UL<a class="headerlink" href="#c.SYSCTL_OSCSRC_XTAL" title="Permalink to this definition">¶</a><br /></dt>
+<span class="target" id="group__sysctl__api_1ga5ea5c1655f2f13340b93b13c0aeb608e"></span><code class="sig-name descname">SYSCTL_OSCSRC_XTAL</code> 0x00010000U<a class="headerlink" href="#c.SYSCTL_OSCSRC_XTAL" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>External oscillator (XTAL) in crystal mode. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt id="c.SYSCTL_OSCSRC_XTAL_SE">
-<span class="target" id="group__sysctl__api_1ga9a25e9bf1d2657193fb45494757ca6ca"></span><code class="sig-name descname">SYSCTL_OSCSRC_XTAL_SE</code> 0x00030000UL<a class="headerlink" href="#c.SYSCTL_OSCSRC_XTAL_SE" title="Permalink to this definition">¶</a><br /></dt>
+<span class="target" id="group__sysctl__api_1ga9a25e9bf1d2657193fb45494757ca6ca"></span><code class="sig-name descname">SYSCTL_OSCSRC_XTAL_SE</code> 0x00030000U<a class="headerlink" href="#c.SYSCTL_OSCSRC_XTAL_SE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>External oscillator (XTAL) in single-ended mode. </p>
 </dd></dl>
 
@@ -401,26 +401,32 @@ about resets and missing clock detection failures.</p>
 </dd></dl>
 
 <dl class="cpp macro">
+<dt id="c.SYSCTL_OSCSRC_EXTROSC2">
+<span class="target" id="group__sysctl__api_1ga0309c1fd61d781ef1f8e98a0d4fe7a68"></span><code class="sig-name descname">SYSCTL_OSCSRC_EXTROSC2</code> 0x00008000UL<a class="headerlink" href="#c.SYSCTL_OSCSRC_EXTROSC2" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>External R precision Internal oscillator INTOSC2. </p>
+</dd></dl>
+
+<dl class="cpp macro">
 <dt id="c.SYSCTL_PLL_ENABLE">
-<span class="target" id="group__sysctl__api_1ga78f6b62e70d59854ada7a72d6a01893d"></span><code class="sig-name descname">SYSCTL_PLL_ENABLE</code> 0x80000000UL<a class="headerlink" href="#c.SYSCTL_PLL_ENABLE" title="Permalink to this definition">¶</a><br /></dt>
+<span class="target" id="group__sysctl__api_1ga78f6b62e70d59854ada7a72d6a01893d"></span><code class="sig-name descname">SYSCTL_PLL_ENABLE</code> 0x80000000U<a class="headerlink" href="#c.SYSCTL_PLL_ENABLE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Enable PLL. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt id="c.SYSCTL_PLL_DISABLE">
-<span class="target" id="group__sysctl__api_1gabfbfd27cc147bb5db9f968c20b921a0f"></span><code class="sig-name descname">SYSCTL_PLL_DISABLE</code> 0x00000000UL<a class="headerlink" href="#c.SYSCTL_PLL_DISABLE" title="Permalink to this definition">¶</a><br /></dt>
+<span class="target" id="group__sysctl__api_1gabfbfd27cc147bb5db9f968c20b921a0f"></span><code class="sig-name descname">SYSCTL_PLL_DISABLE</code> 0x00000000U<a class="headerlink" href="#c.SYSCTL_PLL_DISABLE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Disable PLL. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt id="c.SYSCTL_PLL_BYPASS">
-<span class="target" id="group__sysctl__api_1gab41790def1fe2c8273daa7a9d648f69b"></span><code class="sig-name descname">SYSCTL_PLL_BYPASS</code> 0x40000000UL<a class="headerlink" href="#c.SYSCTL_PLL_BYPASS" title="Permalink to this definition">¶</a><br /></dt>
+<span class="target" id="group__sysctl__api_1gab41790def1fe2c8273daa7a9d648f69b"></span><code class="sig-name descname">SYSCTL_PLL_BYPASS</code> 0x40000000U<a class="headerlink" href="#c.SYSCTL_PLL_BYPASS" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Bypass PLL. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt id="c.SYSCTL_PLL_CONFIG_M">
-<span class="target" id="group__sysctl__api_1gaa4ed39992fa0fc379eb7bb7d2551901d"></span><code class="sig-name descname">SYSCTL_PLL_CONFIG_M</code> 0xC0000000UL<a class="headerlink" href="#c.SYSCTL_PLL_CONFIG_M" title="Permalink to this definition">¶</a><br /></dt>
+<span class="target" id="group__sysctl__api_1gaa4ed39992fa0fc379eb7bb7d2551901d"></span><code class="sig-name descname">SYSCTL_PLL_CONFIG_M</code> 0xC0000000U<a class="headerlink" href="#c.SYSCTL_PLL_CONFIG_M" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
@@ -1996,6 +2002,53 @@ about resets and missing clock detection failures.</p>
 
 </dd></dl>
 
+<dl class="cpp enum">
+<dt id="_CPPv418SysCtl_CMPSSLPMSel">
+<span id="_CPPv318SysCtl_CMPSSLPMSel"></span><span id="_CPPv218SysCtl_CMPSSLPMSel"></span><span class="target" id="group__sysctl__api_1gafda30b4db4ddffa31068967dc4d8d0e1"></span><em class="property">enum </em><code class="sig-name descname">SysCtl_CMPSSLPMSel</code><a class="headerlink" href="#_CPPv418SysCtl_CMPSSLPMSel" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__sysctl__api_1ga5be74b1f8027aba01bd381ff50096bde"><span class="std std-ref">SysCtl_disableCMPSSLPMWakeupPin()</span></a> and <a class="reference internal" href="#group__sysctl__api_1ga72f8af4deb94743b1471c6211fee8ef9"><span class="std std-ref">SysCtl_enableCMPSSLPMWakeupPin()</span></a> as the <em>pin</em> input parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18SysCtl_CMPSSLPMSel27SYSCTL_CMPSSLPMSEL_CMPSS_1HE">
+<span id="_CPPv3N18SysCtl_CMPSSLPMSel27SYSCTL_CMPSSLPMSEL_CMPSS_1HE"></span><span id="_CPPv2N18SysCtl_CMPSSLPMSel27SYSCTL_CMPSSLPMSEL_CMPSS_1HE"></span><span class="target" id="group__sysctl__api_1ggafda30b4db4ddffa31068967dc4d8d0e1ac48ddf673680234a759ddd4842ff547c"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_CMPSSLPMSEL_CMPSS_1H</code> = 0x00<a class="headerlink" href="#_CPPv4N18SysCtl_CMPSSLPMSel27SYSCTL_CMPSSLPMSEL_CMPSS_1HE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18SysCtl_CMPSSLPMSel27SYSCTL_CMPSSLPMSEL_CMPSS_1LE">
+<span id="_CPPv3N18SysCtl_CMPSSLPMSel27SYSCTL_CMPSSLPMSEL_CMPSS_1LE"></span><span id="_CPPv2N18SysCtl_CMPSSLPMSel27SYSCTL_CMPSSLPMSEL_CMPSS_1LE"></span><span class="target" id="group__sysctl__api_1ggafda30b4db4ddffa31068967dc4d8d0e1afa44dfb5e9274eb89fbec70b16cc9db5"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_CMPSSLPMSEL_CMPSS_1L</code> = 0x01<a class="headerlink" href="#_CPPv4N18SysCtl_CMPSSLPMSel27SYSCTL_CMPSSLPMSEL_CMPSS_1LE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18SysCtl_CMPSSLPMSel27SYSCTL_CMPSSLPMSEL_CMPSS_2HE">
+<span id="_CPPv3N18SysCtl_CMPSSLPMSel27SYSCTL_CMPSSLPMSEL_CMPSS_2HE"></span><span id="_CPPv2N18SysCtl_CMPSSLPMSel27SYSCTL_CMPSSLPMSEL_CMPSS_2HE"></span><span class="target" id="group__sysctl__api_1ggafda30b4db4ddffa31068967dc4d8d0e1ab413eeddf46a3fff2a0bd697c6961c8a"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_CMPSSLPMSEL_CMPSS_2H</code> = 0x02<a class="headerlink" href="#_CPPv4N18SysCtl_CMPSSLPMSel27SYSCTL_CMPSSLPMSEL_CMPSS_2HE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18SysCtl_CMPSSLPMSel27SYSCTL_CMPSSLPMSEL_CMPSS_2LE">
+<span id="_CPPv3N18SysCtl_CMPSSLPMSel27SYSCTL_CMPSSLPMSEL_CMPSS_2LE"></span><span id="_CPPv2N18SysCtl_CMPSSLPMSel27SYSCTL_CMPSSLPMSEL_CMPSS_2LE"></span><span class="target" id="group__sysctl__api_1ggafda30b4db4ddffa31068967dc4d8d0e1a2766bc91581559853938ca95882859af"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_CMPSSLPMSEL_CMPSS_2L</code> = 0x03<a class="headerlink" href="#_CPPv4N18SysCtl_CMPSSLPMSel27SYSCTL_CMPSSLPMSEL_CMPSS_2LE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18SysCtl_CMPSSLPMSel27SYSCTL_CMPSSLPMSEL_CMPSS_3HE">
+<span id="_CPPv3N18SysCtl_CMPSSLPMSel27SYSCTL_CMPSSLPMSEL_CMPSS_3HE"></span><span id="_CPPv2N18SysCtl_CMPSSLPMSel27SYSCTL_CMPSSLPMSEL_CMPSS_3HE"></span><span class="target" id="group__sysctl__api_1ggafda30b4db4ddffa31068967dc4d8d0e1aa987869fee427dfe25351469f1209897"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_CMPSSLPMSEL_CMPSS_3H</code> = 0x04<a class="headerlink" href="#_CPPv4N18SysCtl_CMPSSLPMSel27SYSCTL_CMPSSLPMSEL_CMPSS_3HE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18SysCtl_CMPSSLPMSel27SYSCTL_CMPSSLPMSEL_CMPSS_3LE">
+<span id="_CPPv3N18SysCtl_CMPSSLPMSel27SYSCTL_CMPSSLPMSEL_CMPSS_3LE"></span><span id="_CPPv2N18SysCtl_CMPSSLPMSel27SYSCTL_CMPSSLPMSEL_CMPSS_3LE"></span><span class="target" id="group__sysctl__api_1ggafda30b4db4ddffa31068967dc4d8d0e1af05dfb4d29e74b7e69fc686363018110"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_CMPSSLPMSEL_CMPSS_3L</code> = 0x05<a class="headerlink" href="#_CPPv4N18SysCtl_CMPSSLPMSel27SYSCTL_CMPSSLPMSEL_CMPSS_3LE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18SysCtl_CMPSSLPMSel27SYSCTL_CMPSSLPMSEL_CMPSS_4HE">
+<span id="_CPPv3N18SysCtl_CMPSSLPMSel27SYSCTL_CMPSSLPMSEL_CMPSS_4HE"></span><span id="_CPPv2N18SysCtl_CMPSSLPMSel27SYSCTL_CMPSSLPMSEL_CMPSS_4HE"></span><span class="target" id="group__sysctl__api_1ggafda30b4db4ddffa31068967dc4d8d0e1ad899c21117f35307665bf45b1780b506"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_CMPSSLPMSEL_CMPSS_4H</code> = 0x06<a class="headerlink" href="#_CPPv4N18SysCtl_CMPSSLPMSel27SYSCTL_CMPSSLPMSEL_CMPSS_4HE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N18SysCtl_CMPSSLPMSel27SYSCTL_CMPSSLPMSEL_CMPSS_4LE">
+<span id="_CPPv3N18SysCtl_CMPSSLPMSel27SYSCTL_CMPSSLPMSEL_CMPSS_4LE"></span><span id="_CPPv2N18SysCtl_CMPSSLPMSel27SYSCTL_CMPSSLPMSEL_CMPSS_4LE"></span><span class="target" id="group__sysctl__api_1ggafda30b4db4ddffa31068967dc4d8d0e1a0180e97bc2be1049a6123ef1b351431d"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_CMPSSLPMSEL_CMPSS_4L</code> = 0x07<a class="headerlink" href="#_CPPv4N18SysCtl_CMPSSLPMSel27SYSCTL_CMPSSLPMSEL_CMPSS_4LE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Functions</p>
@@ -2391,6 +2444,44 @@ about resets and missing clock detection failures.</p>
 </dd></dl>
 
 <dl class="cpp function">
+<dt id="_CPPv430SysCtl_enableCMPSSLPMWakeupPin18SysCtl_CMPSSLPMSel">
+<span id="_CPPv330SysCtl_enableCMPSSLPMWakeupPin18SysCtl_CMPSSLPMSel"></span><span id="_CPPv230SysCtl_enableCMPSSLPMWakeupPin18SysCtl_CMPSSLPMSel"></span><span id="SysCtl_enableCMPSSLPMWakeupPin__SysCtl_CMPSSLPMSel"></span><span class="target" id="group__sysctl__api_1ga72f8af4deb94743b1471c6211fee8ef9"></span>void <code class="sig-name descname">SysCtl_enableCMPSSLPMWakeupPin</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv418SysCtl_CMPSSLPMSel" title="SysCtl_CMPSSLPMSel">SysCtl_CMPSSLPMSel</a> <em>pin</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430SysCtl_enableCMPSSLPMWakeupPin18SysCtl_CMPSSLPMSel" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Connects the selected pin to LPM circuit</p>
+<p>The<p>This function connects a pin to the LPM circuit</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pin</span></code>: parameter can be a value from the enumeration SysCtl_CMPSSLPMSel</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv431SysCtl_disableCMPSSLPMWakeupPin18SysCtl_CMPSSLPMSel">
+<span id="_CPPv331SysCtl_disableCMPSSLPMWakeupPin18SysCtl_CMPSSLPMSel"></span><span id="_CPPv231SysCtl_disableCMPSSLPMWakeupPin18SysCtl_CMPSSLPMSel"></span><span id="SysCtl_disableCMPSSLPMWakeupPin__SysCtl_CMPSSLPMSel"></span><span class="target" id="group__sysctl__api_1ga5be74b1f8027aba01bd381ff50096bde"></span>void <code class="sig-name descname">SysCtl_disableCMPSSLPMWakeupPin</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv418SysCtl_CMPSSLPMSel" title="SysCtl_CMPSSLPMSel">SysCtl_CMPSSLPMSel</a> <em>pin</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431SysCtl_disableCMPSSLPMWakeupPin18SysCtl_CMPSSLPMSel" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disonnects the selected pin from LPM circuit</p>
+<p>The<p>This function disconnects a pin from the LPM circuit</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pin</span></code>: parameter can be a value from the enumeration SysCtl_CMPSSLPMSel</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt id="_CPPv436SysCtl_setStandbyQualificationPeriod8uint16_t">
 <span id="_CPPv336SysCtl_setStandbyQualificationPeriod8uint16_t"></span><span id="_CPPv236SysCtl_setStandbyQualificationPeriod8uint16_t"></span><span id="SysCtl_setStandbyQualificationPeriod__uint16_t"></span><span class="target" id="group__sysctl__api_1ga9f555a5c7119d4639a5f082a4b218f01"></span>void <code class="sig-name descname">SysCtl_setStandbyQualificationPeriod</code><span class="sig-paren">(</span>uint16_t <em>cycles</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv436SysCtl_setStandbyQualificationPeriod8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Sets the number of cycles to qualify an input on waking from STANDBY mode.</p>
@@ -2512,6 +2603,18 @@ about resets and missing clock detection failures.</p>
 <p>This function enables the watchdog timer. Note that the watchdog timer is enabled on reset.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424SysCtl_isWatchdogEnabledv">
+<span id="_CPPv324SysCtl_isWatchdogEnabledv"></span><span id="_CPPv224SysCtl_isWatchdogEnabledv"></span><span id="SysCtl_isWatchdogEnabled__void"></span><span class="target" id="group__sysctl__api_1ga6ef98c24d03f8d744ba29dfee4f298ad"></span>bool <code class="sig-name descname">SysCtl_isWatchdogEnabled</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424SysCtl_isWatchdogEnabledv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Checks if the watchdog is enabled or not</p>
+<p>This function returns the watchdog status whether it is enabled or disabled</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p><strong>true</strong> if the watchdog is enabled &amp; <strong>false</strong> if the watchdog is disabled </p>
 </dd>
 </dl>
 </p>
@@ -3076,7 +3179,7 @@ about resets and missing clock detection failures.</p>
 </dd>
 </dl>
 </p>
-<p>The <em>divider</em> parameter can have one value from the set below: 0x0 = /1 0x1 = /2 0x2 = /4 (default on reset) 0x3 = /6 0x4 = /8 …… 0x3F =/126</p>
+<p>The <em>divider</em> parameter can have any value (even/odd) from 1-126</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None.</p>
 </dd>
@@ -3890,8 +3993,10 @@ others used for the configuration of SysCtl.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Texas Instruments Incorporated.
-      <span class="lastupdated">Last updated on Oct 11, 2022.
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2021, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+      <span class="lastupdated">Last updated on Jul 01, 2023.
       </span></p>
   </div>
 
@@ -3911,7 +4016,7 @@ others used for the configuration of SysCtl.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v4.03.00.00_EA1',
+            VERSION:'v5.00.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

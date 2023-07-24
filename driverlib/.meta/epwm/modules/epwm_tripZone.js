@@ -161,9 +161,29 @@ var interruptConfig = [
 
 ]
 
+if(["F28P65x"].includes(Common.getDeviceName()))
+{
+    var tripOutConfig = [
+        {
+            name: "epwmTripZone_tripOut",
+            displayName : "TRIPOUT Source",
+            description : 'Check to enable the source to the TRIPOUT Mux',
+            hidden      : false,
+            minSelections : 0,
+            default     : [],
+            options     : device_driverlib_peripheral.EPWM_selectTripOutSource
+        },
+
+    ];
+}
+
 config = config.concat(oneShotConfig);
 config = config.concat(cbcConfig);
 config = config.concat(interruptConfig);
+if(["F28P65x"].includes(Common.getDeviceName()))
+{
+    config = config.concat(tripOutConfig);
+}
 
 
 var epwmTripZoneSubmodule = {

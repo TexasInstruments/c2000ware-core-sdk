@@ -153,7 +153,7 @@
 /*                         Structures and Enums                               */
 /* ========================================================================== */
 
-/* None */
+/* None */                               
 
 /* ========================================================================== */
 /*                 Internal Function Declarations                             */
@@ -228,17 +228,41 @@ static uint32_t MCAN_getDataSize(uint32_t dlc);
 /*                            Global Variables                                */
 /* ========================================================================== */
 
-/* None */
+/**
+ * \brief  Array that stores Data Size in bytes 
+ */
+static uint32_t dataSize[16] = {0,  1,  2,  3,  4,  5,  6,  7,
+                                8, 12, 16, 20, 24, 32, 48, 64};
+
+/**
+ * \brief  Array that stores Element Size in words
+ */
+static uint32_t objSize[8] = {4, 5, 6, 7, 8, 10, 14, 18}; 
 
 /* ========================================================================== */
 /*                          Function Definitions                              */
 /* ========================================================================== */
+
+#ifdef DEBUG 
+static inline bool 
+MCAN_isBaseValid(uint32_t baseAddr)
+{
+return(
+           (baseAddr == MCAN0_BASE)
+          );  
+}
+#endif
 
 
 uint32_t MCAN_isInReset(uint32_t baseAddr)
 {
     uint32_t reset;
     uint32_t state;
+
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
 
     reset = HW_RD_FIELD32(baseAddr + MCAN_MCANSS_STAT,
                           MCAN_MCANSS_STAT_RESET);
@@ -258,6 +282,11 @@ uint32_t MCAN_isFDOpEnable(uint32_t baseAddr)
     uint32_t fdoe;
     uint32_t state;
 
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     fdoe = HW_RD_FIELD32(baseAddr + MCAN_MCANSS_STAT,
                          MCAN_MCANSS_STAT_ENABLE_FDOE);
     if(1U == fdoe)
@@ -276,6 +305,11 @@ uint32_t MCAN_isMemInitDone(uint32_t baseAddr)
     uint32_t memInit;
     uint32_t state;
 
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     memInit = HW_RD_FIELD32(baseAddr + MCAN_MCANSS_STAT,
                             MCAN_MCANSS_STAT_MEM_INIT_DONE);
     if(1U == memInit)
@@ -291,11 +325,21 @@ uint32_t MCAN_isMemInitDone(uint32_t baseAddr)
 
 void MCAN_setOpMode(uint32_t baseAddr, uint32_t mode)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     HW_WR_FIELD32(baseAddr + MCAN_CCCR, MCAN_CCCR_INIT, mode);
 }
 
 uint32_t MCAN_getOpMode(uint32_t baseAddr)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     return(HW_RD_FIELD32(baseAddr + MCAN_CCCR, MCAN_CCCR_INIT));
 }
 
@@ -303,6 +347,11 @@ int32_t MCAN_init(uint32_t baseAddr, const MCAN_InitParams *initParams)
 {
     int32_t  status;
     uint32_t regVal;
+
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
 
     /* Configure MCAN wakeup and clock stop controls */
     regVal = HW_RD_REG32(baseAddr + MCAN_MCANSS_CTRL);
@@ -377,6 +426,11 @@ int32_t MCAN_config(uint32_t baseAddr, const MCAN_ConfigParams *configParams)
 {
     int32_t status;
 
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     MCAN_writeProtectedRegAccessUnlock(baseAddr);
 
     /* Configure MCAN control registers */
@@ -436,6 +490,11 @@ int32_t MCAN_config(uint32_t baseAddr, const MCAN_ConfigParams *configParams)
 void MCAN_eccConfig(uint32_t                    baseAddr,
                     const MCAN_ECCConfigParams *configParams)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     MCAN_eccLoadRegister(baseAddr, MCAN_ECC_AGGR_CONTROL);
     HW_WR_FIELD32(baseAddr + MCAN_ECC_AGGR_CONTROL,
                   MCAN_ECC_AGGR_CONTROL_ECC_CHECK,
@@ -456,6 +515,11 @@ int32_t MCAN_setBitTime(uint32_t                    baseAddr,
                         const MCAN_BitTimingParams *configParams)
 {
     int32_t status;
+
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
 
     MCAN_writeProtectedRegAccessUnlock(baseAddr);
 
@@ -518,6 +582,11 @@ int32_t MCAN_msgRAMConfig(uint32_t                       baseAddr,
 {
     int32_t  status;
     uint32_t elemNum = 0U;
+
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
 
     MCAN_writeProtectedRegAccessUnlock(baseAddr);
 
@@ -639,6 +708,11 @@ int32_t MCAN_setExtIDAndMask(uint32_t baseAddr, uint32_t idMask)
 {
     int32_t status;
 
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     if(MCAN_XIDAM_EIDM_MAX >= idMask)
     {
         MCAN_writeProtectedRegAccessUnlock(baseAddr);
@@ -664,6 +738,11 @@ void MCAN_writeMsgRam(uint32_t                 baseAddr,
 {
     uint32_t startAddr = 0U, elemSize = 0U, elemAddr = 0U;
     uint32_t idx       = 0U, enableMod = 0U;
+
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
 
     if((uint32_t)MCAN_MEM_TYPE_BUF == memType)
     {
@@ -695,6 +774,11 @@ int32_t MCAN_txBufAddReq(uint32_t baseAddr, uint32_t bufNum)
     int32_t  status;
     uint32_t regVal;
 
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     if(MCANSS_TX_BUFFER_MAX > bufNum)
     {
         regVal  = HW_RD_REG32(baseAddr + MCAN_TXBAR);
@@ -718,6 +802,11 @@ int32_t MCAN_txBufAddReq(uint32_t baseAddr, uint32_t bufNum)
 void  MCAN_getNewDataStatus(uint32_t              baseAddr,
                             MCAN_RxNewDataStatus *newDataStatus)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     newDataStatus->statusLow  = HW_RD_REG32(baseAddr + MCAN_NDAT1);
     newDataStatus->statusHigh = HW_RD_REG32(baseAddr + MCAN_NDAT2);
 }
@@ -725,6 +814,11 @@ void  MCAN_getNewDataStatus(uint32_t              baseAddr,
 void  MCAN_clearNewDataStatus(uint32_t                    baseAddr,
                               const MCAN_RxNewDataStatus *newDataStatus)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+     
     HW_WR_REG32(baseAddr + MCAN_NDAT1, newDataStatus->statusLow);
     HW_WR_REG32(baseAddr + MCAN_NDAT2, newDataStatus->statusHigh);
 }
@@ -737,6 +831,11 @@ void MCAN_readMsgRam(uint32_t           baseAddr,
 {
     uint32_t startAddr = 0U, elemSize = 0U, elemAddr = 0U;
     uint32_t enableMod = 0U, idx = 0U;
+
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
 
     if((uint32_t)MCAN_MEM_TYPE_BUF == memType)
     {
@@ -791,6 +890,10 @@ void MCAN_readTxEventFIFO(uint32_t           baseAddr,
     uint32_t startAddr = 0U, elemSize = 0U, elemAddr = 0U;
     uint32_t idx = 0U, regVal;
 
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
 
     startAddr = HW_RD_FIELD32(baseAddr + MCAN_TXEFC,
                               MCAN_TXEFC_EFSA);
@@ -834,6 +937,11 @@ void MCAN_addStdMsgIDFilter(uint32_t                          baseAddr,
 {
     uint32_t startAddr, elemAddr, regVal;
 
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     startAddr = HW_RD_FIELD32(baseAddr + MCAN_SIDFC,
                               MCAN_SIDFC_FLSSA);
     startAddr = (uint32_t) (startAddr << 2U);
@@ -853,6 +961,11 @@ void MCAN_addExtMsgIDFilter(uint32_t                          baseAddr,
                             const MCAN_ExtMsgIDFilterElement *elem)
 {
     uint32_t startAddr, elemAddr, regVal;
+
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
 
     startAddr = HW_RD_FIELD32(baseAddr + MCAN_XIDFC,
                               MCAN_XIDFC_FLESA);
@@ -877,6 +990,11 @@ void MCAN_lpbkModeEnable(uint32_t baseAddr,
                          uint32_t enable)
 {
     MCAN_writeProtectedRegAccessUnlock(baseAddr);
+
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
 
     if(TRUE == enable)
     {
@@ -910,6 +1028,11 @@ void MCAN_lpbkModeEnable(uint32_t baseAddr,
 void  MCAN_getErrCounters(uint32_t           baseAddr,
                           MCAN_ErrCntStatus *errCounter)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     errCounter->transErrLogCnt = HW_RD_FIELD32(baseAddr + MCAN_ECR,
                                                MCAN_ECR_TEC);
     errCounter->recErrCnt = HW_RD_FIELD32(baseAddr + MCAN_ECR,
@@ -924,6 +1047,11 @@ void  MCAN_getProtocolStatus(uint32_t             baseAddr,
                              MCAN_ProtocolStatus *protStatus)
 {
     uint32_t regVal;
+
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
 
     regVal = HW_RD_REG32(baseAddr + MCAN_PSR);
     protStatus->lastErrCode   = HW_GET_FIELD(regVal, MCAN_PSR_LEC);
@@ -942,6 +1070,11 @@ void  MCAN_getProtocolStatus(uint32_t             baseAddr,
 void MCAN_enableIntr(uint32_t baseAddr, uint32_t intrMask, uint32_t enable)
 {
     uint32_t regVal;
+
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
 
     if(TRUE == enable)
     {
@@ -963,6 +1096,11 @@ void MCAN_selectIntrLine(uint32_t baseAddr,
 {
     uint32_t regVal;
 
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     if((uint32_t)MCAN_INTR_LINE_NUM_0 == lineNum)
     {
         regVal  = HW_RD_REG32(baseAddr + MCAN_ILS);
@@ -979,6 +1117,11 @@ void MCAN_selectIntrLine(uint32_t baseAddr,
 
 uint32_t MCAN_getIntrLineSelectStatus(uint32_t baseAddr)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     return(HW_RD_REG32(baseAddr + MCAN_ILS));
 }
 
@@ -987,6 +1130,11 @@ void MCAN_enableIntrLine(uint32_t baseAddr,
                          uint32_t enable)
 {
     uint32_t regVal;
+
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
 
     lineNum &= MCANSS_INTR_LINE_EN_MASK;
     regVal   = HW_RD_REG32(baseAddr + MCAN_ILE);
@@ -997,22 +1145,42 @@ void MCAN_enableIntrLine(uint32_t baseAddr,
 
 uint32_t MCAN_getIntrStatus(uint32_t baseAddr)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     return(HW_RD_REG32(baseAddr + MCAN_IR));
 }
 
 void MCAN_clearIntrStatus(uint32_t baseAddr, uint32_t intrMask)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     HW_WR_REG32(baseAddr + MCAN_IR, intrMask);
 }
 
 void MCAN_clearInterrupt(uint32_t baseAddr, uint16_t intrNum)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     HW_WR_FIELD32(baseAddr + MCAN_MCANSS_EOI, MCAN_MCANSS_EOI, intrNum);
 }
 
 void  MCAN_getHighPriorityMsgStatus(uint32_t                  baseAddr,
                                     MCAN_HighPriorityMsgInfo *hpm)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     hpm->bufIdx = HW_RD_FIELD32(baseAddr + MCAN_HPMS,
                                 MCAN_HPMS_BIDX);
     hpm->msi = HW_RD_FIELD32(baseAddr + MCAN_HPMS,
@@ -1027,6 +1195,11 @@ void MCAN_getRxFIFOStatus(uint32_t           baseAddr,
                           MCAN_RxFIFOStatus *fifoStatus)
 {
     uint32_t regVal;
+
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
 
     switch (fifoStatus->num)
     {
@@ -1058,6 +1231,11 @@ int32_t MCAN_writeRxFIFOAck(uint32_t baseAddr,
 {
     int32_t  status;
     uint32_t size;
+
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
 
     switch (fifoNum)
     {
@@ -1104,6 +1282,11 @@ void MCAN_getTxFIFOQueStatus(uint32_t           baseAddr,
 {
     uint32_t regVal;
 
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     regVal = HW_RD_REG32(baseAddr + MCAN_TXFQS);
     fifoStatus->freeLvl  = HW_GET_FIELD(regVal, MCAN_TXFQS_TFFL);
     fifoStatus->getIdx   = HW_GET_FIELD(regVal, MCAN_TXFQS_TFGI);
@@ -1113,6 +1296,11 @@ void MCAN_getTxFIFOQueStatus(uint32_t           baseAddr,
 
 uint32_t MCAN_getTxBufReqPend(uint32_t baseAddr)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     return(HW_RD_REG32(baseAddr + MCAN_TXBRP));
 }
 
@@ -1120,6 +1308,11 @@ int32_t MCAN_txBufCancellationReq(uint32_t baseAddr, uint32_t buffNum)
 {
     int32_t  status;
     uint32_t regVal;
+
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
 
     if(MCANSS_TX_BUFFER_MAX > buffNum)
     {
@@ -1143,11 +1336,21 @@ int32_t MCAN_txBufCancellationReq(uint32_t baseAddr, uint32_t buffNum)
 
 uint32_t MCAN_getTxBufTransmissionStatus(uint32_t baseAddr)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     return(HW_RD_REG32(baseAddr + MCAN_TXBTO));
 }
 
 uint32_t MCAN_txBufCancellationStatus(uint32_t baseAddr)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     return(HW_RD_REG32(baseAddr + MCAN_TXBCF));
 }
 
@@ -1157,6 +1360,11 @@ int32_t MCAN_txBufTransIntrEnable(uint32_t baseAddr,
 {
     int32_t  status;
     uint32_t regVal;
+
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
 
     if(MCANSS_TX_BUFFER_MAX > bufNum)
     {
@@ -1188,6 +1396,11 @@ int32_t MCAN_getTxBufCancellationIntrEnable(uint32_t baseAddr,
     int32_t  status;
     uint32_t regVal;
 
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     if(MCANSS_TX_BUFFER_MAX > bufNum)
     {
         if(TRUE == enable)
@@ -1216,6 +1429,11 @@ void MCAN_getTxEventFIFOStatus(uint32_t                baseAddr,
 {
     uint32_t regVal;
 
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     regVal = HW_RD_REG32(baseAddr + MCAN_TXEFS);
     fifoStatus->fillLvl  = HW_GET_FIELD(regVal, MCAN_TXEFS_EFFL);
     fifoStatus->getIdx   = HW_GET_FIELD(regVal, MCAN_TXEFS_EFGI);
@@ -1226,6 +1444,11 @@ void MCAN_getTxEventFIFOStatus(uint32_t                baseAddr,
 
 void MCAN_addClockStopRequest(uint32_t baseAddr, uint32_t enable)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     if(TRUE == enable)
     {
         HW_WR_FIELD32(baseAddr + MCAN_CCCR, MCAN_CCCR_CSR, 0x1U);
@@ -1240,6 +1463,11 @@ int32_t MCAN_writeTxEventFIFOAck(uint32_t baseAddr, uint32_t idx)
 {
     int32_t  status;
     uint32_t size;
+
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
 
     size = HW_RD_FIELD32(baseAddr + MCAN_TXEFC,
                          MCAN_TXEFC_EFS);
@@ -1262,6 +1490,11 @@ void MCAN_eccForceError(uint32_t                      baseAddr,
                         const MCAN_ECCErrForceParams *eccErr)
 {
     uint32_t regVal;
+
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
 
     if((eccErr->errType == (uint32_t)MCAN_ECC_ERR_TYPE_SEC) ||
        (eccErr->errType == (uint32_t)MCAN_ECC_ERR_TYPE_DED))
@@ -1316,6 +1549,11 @@ void MCAN_eccGetErrorStatus(uint32_t           baseAddr,
 {
     uint32_t regVal;
 
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     MCAN_eccLoadRegister(baseAddr, MCAN_ECC_AGGR_ERROR_STATUS1);
     regVal = HW_RD_REG32(baseAddr + MCAN_ECC_AGGR_ERROR_STATUS1);
     eccErr->secErr = HW_GET_FIELD(regVal,
@@ -1332,6 +1570,11 @@ void MCAN_eccGetErrorStatus(uint32_t           baseAddr,
 
 void MCAN_eccClearErrorStatus(uint32_t baseAddr, uint32_t errType)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     MCAN_eccLoadRegister(baseAddr, MCAN_ECC_AGGR_ERROR_STATUS1);
     switch (errType)
     {
@@ -1354,6 +1597,11 @@ void MCAN_eccClearErrorStatus(uint32_t baseAddr, uint32_t errType)
 
 void MCAN_eccWriteEOI(uint32_t baseAddr, uint32_t errType)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     switch (errType)
     {
         case MCAN_ECC_ERR_TYPE_SEC:
@@ -1374,6 +1622,11 @@ void MCAN_eccWriteEOI(uint32_t baseAddr, uint32_t errType)
 
 void MCAN_eccEnableIntr(uint32_t baseAddr, uint32_t errType, uint32_t enable)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     if(TRUE == enable)
     {
         switch (errType)
@@ -1418,6 +1671,11 @@ uint32_t MCAN_eccGetIntrStatus(uint32_t baseAddr, uint32_t errType)
 {
     uint32_t retVal = 0U;
 
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     switch (errType)
     {
         case MCAN_ECC_ERR_TYPE_SEC:
@@ -1437,6 +1695,11 @@ uint32_t MCAN_eccGetIntrStatus(uint32_t baseAddr, uint32_t errType)
 
 void MCAN_eccClearIntrStatus(uint32_t baseAddr, uint32_t errType)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     switch (errType)
     {
         case MCAN_ECC_ERR_TYPE_SEC:
@@ -1457,12 +1720,22 @@ void MCAN_eccClearIntrStatus(uint32_t baseAddr, uint32_t errType)
 void MCAN_extTSCounterConfig(uint32_t baseAddr,
                              uint32_t prescalar)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     HW_WR_FIELD32(baseAddr + MCAN_MCANSS_EXT_TS_PRESCALER,
                   MCAN_MCANSS_EXT_TS_PRESCALER, prescalar);
 }
 
 void MCAN_extTSCounterEnable(uint32_t baseAddr, uint32_t enable)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     HW_WR_FIELD32(baseAddr + MCAN_MCANSS_CTRL,
                   MCAN_MCANSS_CTRL_EXT_TS_CNTR_EN,
                   enable);
@@ -1470,6 +1743,11 @@ void MCAN_extTSCounterEnable(uint32_t baseAddr, uint32_t enable)
 
 void MCAN_extTSEnableIntr(uint32_t baseAddr, uint32_t enable)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     if(TRUE == enable)
     {
         HW_WR_FIELD32(baseAddr + MCAN_MCANSS_IE,
@@ -1486,6 +1764,11 @@ void MCAN_extTSEnableIntr(uint32_t baseAddr, uint32_t enable)
 
 void MCAN_extTSWriteEOI(uint32_t baseAddr)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     HW_WR_FIELD32(baseAddr + MCAN_MCANSS_EOI,
                   MCAN_MCANSS_EOI,
                   0x1U);
@@ -1493,6 +1776,11 @@ void MCAN_extTSWriteEOI(uint32_t baseAddr)
 
 uint32_t MCAN_extTSGetUnservicedIntrCount(uint32_t baseAddr)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     return(HW_RD_FIELD32(baseAddr +
                           MCAN_MCANSS_EXT_TS_UNSERVICED_INTR_CNTR,
                           MCAN_MCANSS_EXT_TS_UNSERVICED_INTR_CNTR));
@@ -1505,6 +1793,11 @@ uint32_t MCAN_extTSGetUnservicedIntrCount(uint32_t baseAddr)
 void MCAN_getRevisionId(uint32_t baseAddr, MCAN_RevisionId *revId)
 {
     uint32_t regVal;
+
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
 
     regVal        = HW_RD_REG32(baseAddr + MCAN_MCANSS_PID);
     revId->minor  = HW_GET_FIELD(regVal, MCAN_MCANSS_PID_MINOR);
@@ -1526,11 +1819,21 @@ void MCAN_getRevisionId(uint32_t baseAddr, MCAN_RevisionId *revId)
 
 uint32_t MCAN_getClockStopAck(uint32_t baseAddr)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     return(HW_RD_FIELD32(baseAddr + MCAN_CCCR, MCAN_CCCR_CSR));
 }
 
 void MCAN_extTSSetRawStatus(uint32_t baseAddr)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     HW_WR_FIELD32(baseAddr + MCAN_MCANSS_IRS,
                   MCAN_MCANSS_IRS_EXT_TS_CNTR_OVFL,
                   1U);
@@ -1538,6 +1841,11 @@ void MCAN_extTSSetRawStatus(uint32_t baseAddr)
 
 void MCAN_extTSClearRawStatus(uint32_t baseAddr)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     HW_WR_FIELD32(baseAddr + MCAN_MCANSS_ICS,
                   MCAN_MCANSS_ICS_EXT_TS_CNTR_OVFL,
                   1U);
@@ -1545,11 +1853,21 @@ void MCAN_extTSClearRawStatus(uint32_t baseAddr)
 
 uint32_t MCAN_getRxPinState(uint32_t baseAddr)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     return(HW_RD_FIELD32(baseAddr + MCAN_TEST, MCAN_TEST_RX));
 }
 
 void MCAN_setTxPinState(uint32_t baseAddr, uint32_t state)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     MCAN_writeProtectedRegAccessUnlock(baseAddr);
 
     HW_WR_FIELD32(baseAddr + MCAN_CCCR, MCAN_CCCR_TEST, 0x1U);
@@ -1562,22 +1880,42 @@ void MCAN_setTxPinState(uint32_t baseAddr, uint32_t state)
 
 uint32_t MCAN_getTxPinState(uint32_t baseAddr)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     return(HW_RD_FIELD32(baseAddr + MCAN_TEST, MCAN_TEST_TX));
 }
 
 uint32_t MCAN_getTSCounterVal(uint32_t baseAddr)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     return(HW_RD_FIELD32(baseAddr + MCAN_TSCV, MCAN_TSCV_TSC));
 }
 
 uint32_t MCAN_getClkStopAck(uint32_t baseAddr)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     return(HW_RD_FIELD32(baseAddr + MCAN_CCCR, MCAN_CCCR_CSA));
 }
 
 void MCAN_getBitTime(uint32_t              baseAddr,
                      MCAN_BitTimingParams *configParams)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     configParams->nomSynchJumpWidth = HW_RD_FIELD32(baseAddr + MCAN_NBTP,
                                                     MCAN_NBTP_NSJW);
     configParams->nomTimeSeg2 = HW_RD_FIELD32(baseAddr + MCAN_NBTP,
@@ -1599,17 +1937,32 @@ void MCAN_getBitTime(uint32_t              baseAddr,
 
 void MCAN_resetTSCounter(uint32_t baseAddr)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     HW_WR_FIELD32(baseAddr + MCAN_TSCV, MCAN_TSCV_TSC, 0x0U);
 }
 
 uint32_t MCAN_getTOCounterVal(uint32_t baseAddr)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+    
     return(HW_RD_FIELD32(baseAddr + MCAN_TOCV, MCAN_TOCV_TOC));
 }
 
 void MCAN_eccAggrGetRevisionId(uint32_t baseAddr, MCAN_ECCAggrRevisionId *revId)
 {
     uint32_t regVal;
+
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
 
     regVal        = HW_RD_REG32(baseAddr + MCAN_ECC_AGGR_REVISION);
     revId->minor  = HW_GET_FIELD(regVal, MCAN_ECC_AGGR_REVISION_REVMIN);
@@ -1624,6 +1977,11 @@ void MCAN_eccAggrGetRevisionId(uint32_t baseAddr, MCAN_ECCAggrRevisionId *revId)
 void MCAN_eccWrapGetRevisionId(uint32_t baseAddr, MCAN_ECCWrapRevisionId *revId)
 {
     uint32_t regVal;
+
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
 
     MCAN_eccLoadRegister(baseAddr, MCAN_ECC_AGGR_WRAP_REVISION);
     regVal        = HW_RD_REG32(baseAddr + MCAN_ECC_AGGR_WRAP_REVISION);
@@ -1640,6 +1998,11 @@ uint32_t MCAN_extTSIsIntrEnable(uint32_t baseAddr)
 {
     uint32_t status;
 
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     if(1U == HW_RD_FIELD32(baseAddr + MCAN_MCANSS_IES,
                             MCAN_MCANSS_IES_EXT_TS_CNTR_OVFL))
     {
@@ -1655,11 +2018,21 @@ uint32_t MCAN_extTSIsIntrEnable(uint32_t baseAddr)
 
 uint32_t MCAN_getEndianVal(uint32_t baseAddr)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     return(HW_RD_FIELD32(baseAddr + MCAN_ENDN, MCAN_ENDN_ETV));
 }
 
 uint32_t MCAN_getExtIDANDMask(uint32_t baseAddr)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     return(HW_RD_FIELD32(baseAddr + MCAN_XIDAM, MCAN_XIDAM_EIDM));
 }
 
@@ -1669,17 +2042,32 @@ uint32_t MCAN_getExtIDANDMask(uint32_t baseAddr)
 
 static void MCAN_writeProtectedRegAccessUnlock(uint32_t baseAddr)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     HW_WR_FIELD32(baseAddr + MCAN_CCCR, MCAN_CCCR_CCE, 0x1U);
 }
 
 static void MCAN_writeProtectedRegAccessLock(uint32_t baseAddr)
 {
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     HW_WR_FIELD32(baseAddr + MCAN_CCCR, MCAN_CCCR_CCE, 0x0U);
 }
 
 static void MCAN_eccLoadRegister(uint32_t baseAddr, uint32_t regOffset)
 {
     uint32_t regVal = 0U, offset;
+
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
 
     offset  = regOffset & 0xFFU;
     regVal |= ((uint32_t)MCANSS_MSG_RAM_NUM << MCAN_ECC_AGGR_VECTOR_SHIFT);
@@ -1697,6 +2085,11 @@ static void MCAN_readMsg(uint32_t           baseAddr,
                          MCAN_RxBufElement *elem)
 {
     uint32_t regVal = 0U, loopCnt = 0U;
+
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
 
     regVal   = HW_RD_REG32(baseAddr + elemAddr);
     elem->id = (uint32_t) ((regVal & MCANSS_RX_BUFFER_ELEM_ID_MASK)
@@ -1755,6 +2148,11 @@ static void MCAN_writeMsg(uint32_t                 baseAddr,
 {
     uint32_t regVal = 0, loopCnt = 0U;
 
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
     regVal  = 0U;
     regVal |= (((uint32_t) (elem->id << MCANSS_TX_BUFFER_ELEM_ID_SHIFT)) |
                ((uint32_t) (elem->rtr << MCANSS_TX_BUFFER_ELEM_RTR_SHIFT)) |
@@ -1803,15 +2201,12 @@ static void MCAN_writeMsg(uint32_t                 baseAddr,
 
 static uint32_t MCAN_getDataSize(uint32_t dlc)
 {
-    uint32_t dataSize[16] = {0,  1,  2,  3,  4,  5,  6, 7, 8,
-                             12, 16, 20, 24, 32, 48, 64};
     ASSERT(dlc < 16U);
     return(dataSize[dlc]);
 }
 
 uint32_t MCAN_getMsgObjSize(uint32_t elemSize)
 {
-    uint32_t objSize[8] = {4, 5, 6, 7, 8, 10, 14, 18};
     ASSERT(elemSize < 8U);
     return(objSize[elemSize]);
 }

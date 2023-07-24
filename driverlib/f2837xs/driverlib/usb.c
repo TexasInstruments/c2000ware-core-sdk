@@ -4014,4 +4014,3 @@ USBNumEndpointsGet(uint32_t ui32Base)
     return(15U);
 }
 
-

@@ -47,8 +47,9 @@ function modules(inst)
 
 function onValidate(inst, validation) 
 {    
-    
-
+    if ((!Common.isMultiCoreSysConfig()) && (Common.isContextCPU2())){
+        validation.logWarning("You will not be able to use clocking functions, unless both CPU1 and CPU2 are open in SysConfig", inst, "useStandardCodeStartBranch");
+    }
 }
 
 var mod = {
@@ -60,7 +61,7 @@ var mod = {
     moduleStatic : {
         config          : staticConfig,
         modules         : modules,
-        onValidate      : onValidate,
+        validate      : onValidate,
     },
     references : [
         //references.getReferencePath("driverlib_h"),

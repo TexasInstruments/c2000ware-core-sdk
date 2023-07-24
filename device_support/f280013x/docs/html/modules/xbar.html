@@ -78,7 +78,7 @@
             
             
               <div class="version">
-                v4.02.00.00
+                v5.00.00.00
               </div>
             
           
@@ -491,7 +491,7 @@ in the configurations selected.</p>
 <dl class="cpp enum">
 <dt id="_CPPv412XBAR_TripNum">
 <span id="_CPPv312XBAR_TripNum"></span><span id="_CPPv212XBAR_TripNum"></span><span class="target" id="group__xbar__api_1gafbc2ac86889dd94795835aeef4d928ab"></span><em class="property">enum </em><code class="sig-name descname">XBAR_TripNum</code><a class="headerlink" href="#_CPPv412XBAR_TripNum" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>The following values define the <em>trip</em> parameter for <a class="reference internal" href="#group__xbar__api_1ga5f6bcfcd44109dd6b153da49b2defb67"><span class="std std-ref">XBAR_setEPWMMuxConfig()</span></a>, <a class="reference internal" href="#group__xbar__api_1gae3754474c71dfbcd03c07c96b0021863"><span class="std std-ref">XBAR_enableEPWMMux()</span></a>, and <a class="reference internal" href="#group__xbar__api_1ga61cfc702b7f44e689c7a2be858866f90"><span class="std std-ref">XBAR_disableEPWMMux()</span></a>. </p>
+<dd><p>The following values define the <em>trip</em> parameter for <a class="reference internal" href="#group__xbar__api_1ga5f6bcfcd44109dd6b153da49b2defb67"><span class="std std-ref">XBAR_setEPWMMuxConfig()</span></a>, <a class="reference internal" href="#group__xbar__api_1gafe6d9775a068a8c4783897c4465bf6a1"><span class="std std-ref">XBAR_invertEPWMSignal()</span></a>, <a class="reference internal" href="#group__xbar__api_1gae3754474c71dfbcd03c07c96b0021863"><span class="std std-ref">XBAR_enableEPWMMux()</span></a>, and <a class="reference internal" href="#group__xbar__api_1ga61cfc702b7f44e689c7a2be858866f90"><span class="std std-ref">XBAR_disableEPWMMux()</span></a>. </p>
 <p><em>Values:</em></p>
 <dl class="cpp enumerator">
 <dt id="_CPPv4N12XBAR_TripNum10XBAR_TRIP4E">
@@ -1330,7 +1330,7 @@ in the configurations selected.</p>
 </dd>
 </dl>
 </p>
-<p>The <em>base</em> parameter can take base addresses OUTPUTXBAR_BASE or CLBOUTPUTXBAR_BASE.</p>
+<p>The <em>base</em> parameter can take base addresses OUTPUTXBAR_BASE</p>
 <p>The <em>muxes</em> parameter is a bit field of the muxes being enabled where bit 0 represents mux 0, bit 1 represents mux 1 and so on. Defines are provided in the form of <strong>XBAR_MUXnn</strong> that can be OR’d together to enable several muxes on an output at the same time. For example, passing this function ( <strong>XBAR_MUX04</strong> | <strong>XBAR_MUX10</strong> ) would enable muxes 4 and 10.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
@@ -1370,7 +1370,7 @@ in the configurations selected.</p>
 <em>base</em> parameter can take base addresses OUTPUTXBAR_BASE or CLBOUTPUTXBAR_BASE.<dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the X-BAR base address. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">output</span></code>: is the X-BAR output being configured. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">output</span></code>: is the X-BAR output being configured. The valid inputs are XBAR_OUTPUTy where y is from 1 to 8. </p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">enable</span></code>: is a flag that determines whether or not the latch is selected to drive the X-BAR output.</p></li>
 </ul>
 </dd>
@@ -1392,7 +1392,7 @@ in the configurations selected.</p>
 <em>base</em> parameter can take base addresses OUTPUTXBAR_BASE or CLBOUTPUTXBAR_BASE.<dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the X-BAR base address. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">output</span></code>: is the X-BAR output being checked.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">output</span></code>: is the X-BAR output being checked. The valid inputs are XBAR_OUTPUTy where y is from 1 to 8.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1412,7 +1412,7 @@ in the configurations selected.</p>
 <em>base</em> parameter can take base addresses OUTPUTXBAR_BASE or CLBOUTPUTXBAR_BASE.<dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the X-BAR base address. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">output</span></code>: is the X-BAR output being configured.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">output</span></code>: is the X-BAR output being configured. The valid inputs are XBAR_OUTPUTy where y is from 1 to 8.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1433,7 +1433,7 @@ in the configurations selected.</p>
 <em>base</em> parameter can take base addresses OUTPUTXBAR_BASE or CLBOUTPUTXBAR_BASE.<dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the X-BAR base address. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">output</span></code>: is the X-BAR output being configured.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">output</span></code>: is the X-BAR output being configured. The valid inputs are XBAR_OUTPUTy where y is from 1 to 8.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1454,7 +1454,7 @@ in the configurations selected.</p>
 <em>base</em> parameter can take base addresses OUTPUTXBAR_BASE or CLBOUTPUTXBAR_BASE.<dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the X-BAR base address. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">output</span></code>: is the X-BAR output being configured. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">output</span></code>: is the X-BAR output being configured. The valid inputs are XBAR_OUTPUTy where y is from 1 to 8. </p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">invert</span></code>: is a flag that determines whether the output is active-high or active-low.</p></li>
 </ul>
 </dd>
@@ -1645,7 +1645,7 @@ in the configurations selected.</p>
 </dl>
 </p>
 <p>The <em>muxConfig</em> parameter is the mux configuration value that specifies which signal will be passed from the mux. The values have the format of <strong>XBAR_EPWM_MUXnn_xx</strong> where the ‘xx’ is the signal and nn is the mux number (0 through 31). The possible values are found in <code class="docutils literal notranslate"><span class="pre">xbar.h</span></code></p>
-<p>This function may be called for each mux of an output and their values will be logically OR’d before being passed to the trip signal. This means that this function may be called, for example, with the argument <strong>XBAR_EPWM_MUX00_ECAP1_OUT</strong> and then with the argument <strong>XBAR_EPWM_MUX01_INPUTXBAR1</strong>, resulting in the values of MUX00 and MUX03 being logically OR’d if both are enabled. Calling the function twice for the same mux on the output will result in the configuration in the second call overwriting the first.</p>
+<p>This function may be called for each mux of an output and their values will be logically OR’d before being passed to the trip signal. This means that this function may be called, for example, with the argument <strong>XBAR_EPWM_MUX00_ECAP1_OUT</strong> and then with the argument <strong>XBAR_EPWM_MUX01_INPUTXBAR1</strong>, resulting in the values of MUX00 and MUX01 being logically OR’d if both are enabled. Calling the function twice for the same mux on the output will result in the configuration in the second call overwriting the first.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -1721,8 +1721,10 @@ each input.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Texas Instruments Incorporated.
-      <span class="lastupdated">Last updated on Oct 11, 2022.
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2021, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+      <span class="lastupdated">Last updated on Jul 01, 2023.
       </span></p>
   </div>
 
@@ -1742,7 +1744,7 @@ each input.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v4.02.00.00',
+            VERSION:'v5.00.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

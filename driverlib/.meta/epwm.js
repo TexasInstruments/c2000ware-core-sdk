@@ -70,22 +70,22 @@ var mindb_icl_xbar_map = {
  "EPWM_MINDB_SEL_OUTXBAR_OUT13" : "XBAR_INPUT13",
  "EPWM_MINDB_SEL_OUTXBAR_OUT14" : "XBAR_INPUT14",
  "EPWM_MINDB_SEL_OUTXBAR_OUT15" : "XBAR_INPUT15",
- "EPWM_MINDB_ICL_XBAR_OUT0" : "XBAR_INPUT1",
- "EPWM_MINDB_ICL_XBAR_OUT1" : "XBAR_INPUT2",
- "EPWM_MINDB_ICL_XBAR_OUT2" : "XBAR_INPUT3",
- "EPWM_MINDB_ICL_XBAR_OUT3" : "XBAR_INPUT4",
- "EPWM_MINDB_ICL_XBAR_OUT4" : "XBAR_INPUT5",
- "EPWM_MINDB_ICL_XBAR_OUT5" : "XBAR_INPUT6",
- "EPWM_MINDB_ICL_XBAR_OUT6" : "XBAR_INPUT7",
- "EPWM_MINDB_ICL_XBAR_OUT7" : "XBAR_INPUT8",
- "EPWM_MINDB_ICL_XBAR_OUT8" : "XBAR_INPUT9",
- "EPWM_MINDB_ICL_XBAR_OUT9" : "XBAR_INPUT10",
- "EPWM_MINDB_ICL_XBAR_OUT10" : "XBAR_INPUT11",
- "EPWM_MINDB_ICL_XBAR_OUT11" : "XBAR_INPUT12",
- "EPWM_MINDB_ICL_XBAR_OUT12" : "XBAR_INPUT13",
- "EPWM_MINDB_ICL_XBAR_OUT13" : "XBAR_INPUT14",
- "EPWM_MINDB_ICL_XBAR_OUT14" : "XBAR_INPUT15",
- "EPWM_MINDB_ICL_XBAR_OUT15" : "XBAR_INPUT16"
+ "EPWM_MINDB_ICL_XBAR_OUT1" : "XBAR_INPUT1",
+ "EPWM_MINDB_ICL_XBAR_OUT2" : "XBAR_INPUT2",
+ "EPWM_MINDB_ICL_XBAR_OUT3" : "XBAR_INPUT3",
+ "EPWM_MINDB_ICL_XBAR_OUT4" : "XBAR_INPUT4",
+ "EPWM_MINDB_ICL_XBAR_OUT5" : "XBAR_INPUT5",
+ "EPWM_MINDB_ICL_XBAR_OUT6" : "XBAR_INPUT6",
+ "EPWM_MINDB_ICL_XBAR_OUT7" : "XBAR_INPUT7",
+ "EPWM_MINDB_ICL_XBAR_OUT8" : "XBAR_INPUT8",
+ "EPWM_MINDB_ICL_XBAR_OUT9" : "XBAR_INPUT9",
+ "EPWM_MINDB_ICL_XBAR_OUT10" : "XBAR_INPUT10",
+ "EPWM_MINDB_ICL_XBAR_OUT11" : "XBAR_INPUT11",
+ "EPWM_MINDB_ICL_XBAR_OUT12" : "XBAR_INPUT12",
+ "EPWM_MINDB_ICL_XBAR_OUT13" : "XBAR_INPUT13",
+ "EPWM_MINDB_ICL_XBAR_OUT14" : "XBAR_INPUT14",
+ "EPWM_MINDB_ICL_XBAR_OUT15" : "XBAR_INPUT15",
+ "EPWM_MINDB_ICL_XBAR_OUT16" : "XBAR_INPUT16"
 };
 
 device_driverlib_peripheral.EPWM_CurrentLink.unshift(
@@ -530,12 +530,12 @@ var moduleStatic = {
         {
             name:"enableInfo",
             displayName: "Enable Info Mode",
-            default : false
+            default : true
         },
         {
             name:"enableWarning",
             displayName: "Enable Warnings",
-            default : false
+            default : true
         },
         {
             name:"enableAllCode",
@@ -563,7 +563,7 @@ var moduleStatic = {
 function onValidate(inst, validation)
 {
     // Check if the sync module is added on CPU1 if the current context is CPU2
-    if (Common.isMultiCoreDevice())
+    if (Common.isMultiCoreDevice() && Common.isMultiCoreSysConfig())
     {
         if (Common.isContextCPU2())
         {
@@ -573,7 +573,14 @@ function onValidate(inst, validation)
                 inst, "epwmTimebase_forceSyncPulse");
             }
         } 
-    }
+    }else
+	{
+		if (Common.isContextCPU2())
+        {
+				validation.logWarning("The SYNC module needs to be added on CPU1 when an EPWM instance is added on CPU2", 
+                inst, "epwmTimebase_forceSyncPulse");
+		}
+	}
 
     //
     // Static Variables

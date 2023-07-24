@@ -1,14 +1,21 @@
 %let Common = system.getScript("/driverlib/Common.js");
+%let clocktree_common   = system.getScript("../../clocktree/clocktree_common.js");
 % var nameOfEcatModule = "ecat";
 % var nameOfCANModule = "can";
 % var ecatModule = system.modules['/driverlib/' + nameOfEcatModule + '.js'];
 % var canModule = system.modules['/driverlib/' + nameOfCANModule + '.js']
 %const OSCCLK_d 		 = system.clockTree.OSCCLK.in;
 %var XTAL_OR_X1 		= system.clockTree.XTAL_OR_X1;
+%
+%const xtal_x1_macro 		= clocktree_common.xtal_x1_macro;
+%const device  = system.deviceData.device
+%
 %var OSCCLKSRCSEL	= system.clockTree.OSCCLKSRCSEL;
 %var DIVSRCSEL	= system.clockTree.DIVSRCSEL;
 %var CANASRCSEL	= system.clockTree.CANABCLKSEL;
 %var CANBSRCSEL	= system.clockTree.CANBBCLKSEL;
+%//var MCANADIV = system.clockTree.;
+%//var MCANADIV = system.clockTree.;
 %var oscclkSrc = "SYSCTL_OSCSRC_OSC2";
 %var ecatclkSrc = "SYSCTL_SOURCE_AUXPLL";
 %var enetclkSrc = "SYSCTL_SOURCE_AUXPLL";
@@ -16,11 +23,42 @@
 %var canBclkSrc
 %var oscclksource
 %var oscclk = 10
+%if (["F2838x", "F2837xD", "F2807x", "F2837xS", "F28P65x"].includes(Common.getDeviceName())){
+%if(!system.clockTree.EMIF1CLKDIV){
+%//console.log("In here")
+%var DEVICE_CLK_EMIF_DIV = "SYSCTL_EMIF1CLK_DIV_1";
+%}
+%else{
+%//console.log("should not be In here")
+%var DEVICE_CLK_EMIF_DIV = system.clockTree.EMIF1CLKDIV.divideValue;
+%}
+%}
+%if (["F2838x", "F28P65x"].includes(Common.getDeviceName())){
+%if(!system.clockTree.ECATDIV){
+%var DEVICE_CLK_ECAT_DIV = 4;
+%}
+%else{
+%var DEVICE_CLK_ECAT_DIV = system.clockTree.ECATDIV.divideValue;
+%}
+%}
+%if (["F2838x"].includes(Common.getDeviceName())){
+%var DEVICE_CLK_ENET_DIV = 4;//system.clockTree.ENETDIV.divideValue;                             //FIXME: Needs to be added into ClockTreeResourceFile.xlsx
+%}
+%if (["F28P65x"].includes(Common.getDeviceName())){
+%var DEVICE_CLK_MCANA_DIV = system.clockTree.MCANACLKDIV.divideValue;
+%var DEVICE_CLK_MCANB_DIV = system.clockTree.MCANBCLKDIV.divideValue;
+%}
+%//if (["F2838x", "F28003x", "F280015x"].includes(Common.getDeviceName())){                     //FIXME: Uncomment when implemented
+%//var DEVICE_CLK_MCAN_DIV = system.clockTree.MCANACLKDIV.divideValue;
+%//}
+%if (["F2838x","F2807x","F2837xD","F2837xS","F28P65x"].includes(Common.getDeviceName())){
+%var DEVICE_CLK_EPWM_DIV = system.clockTree.EPWMCLKDIV.divideValue;
+%}
 %switch(OSCCLKSRCSEL.inputSelect){
 %	case "INTOSC1":
-%		oscclkSrc 		= "SYSCTL_OSCSRC_OSC1";
-%		oscclksource 	= OSCCLKSRCSEL.inputSelect;
-%		oscclk = 10;
+%		oscclkSrc 		= "SYSCTL_OSCSRC_OSC1"
+%		oscclksource 	= OSCCLKSRCSEL.inputSelect
+%		oscclk = 10
 %		break
 %	case "INTOSC2":
 %		oscclkSrc 	 	= "SYSCTL_OSCSRC_OSC2"
@@ -28,10 +66,17 @@
 %		oscclk = 10
 %		break
 %	case "X1_XTAL":
-%		oscclkSrc 	 	= "SYSCTL_OSCSRC_XTAL"
-%		oscclksource 	= XTAL_OR_X1.inputSelect
-%		oscclk 			= XTAL_OR_X1.External_Clock
-%		break
+%		if((XTAL_OR_X1.inputSelect == "XTAL") || xtal_x1_macro.includes(device))
+%		{
+%			oscclkSrc 	 	= "SYSCTL_OSCSRC_XTAL"
+%		}
+%		else
+%		{
+%			oscclkSrc 	 	= "SYSCTL_OSCSRC_XTAL_SE"
+%		}
+%			oscclksource 	= XTAL_OR_X1.inputSelect
+%			oscclk 			= XTAL_OR_X1.External_Clock
+%			break
 %}
 %if (["F2838x"].includes(Common.getDeviceName())){
 %switch(DIVSRCSEL.inputSelect){
@@ -45,9 +90,42 @@
 %		break
 %}
 %}
+%if (["F28P65x"].includes(Common.getDeviceName())){
+%switch(DIVSRCSEL.inputSelect){
+%	case "AUXPLLRAWCLK":
+%		ecatclkSrc 		= "SYSCTL_SOURCE_AUXPLL"
+%		break
+%	case "PLLSYSCLK":
+%		ecatclkSrc 	 	= "SYSCTL_SOURCE_SYSPLL"
+%		break
+%}
+%}
+%if (["F28P65x"].includes(Common.getDeviceName())){
+%switch(DIVSRCSEL.inputSelect){
+%	case "AUXPLLRAWCLK":
+%		ecatclkSrc 		= "SYSCTL_SOURCE_AUXPLL"
+%		break
+%	case "PLLSYSCLK":
+%		ecatclkSrc 	 	= "SYSCTL_SOURCE_SYSPLL"
+%		break
+%}
+%}
 %if (["F280013x", "F280015x", "F28002x", "F28003x", "F28004x", "F2838x", "F2837xD", "F2807x", "F2837xS"].includes(Common.getDeviceName())){
 %switch(CANASRCSEL.inputSelect){
 %	case "SYSCLK":
+%		canAclkSrc 		= "CAN_CLOCK_SOURCE_SYS"
+%		break
+%	case "XTAL":
+%		canAclkSrc 	 	= "CAN_CLOCK_SOURCE_XTAL"
+%		break
+%   case "AUXCLKIN":
+%		canAclkSrc 	 	= "CAN_CLOCK_SOURCE_AUX"
+%		break
+%}
+%}
+%if (["F28P65x"].includes(Common.getDeviceName())){
+%switch(CANASRCSEL.inputSelect){
+%	case "PERx.SYSCLK":
 %		canAclkSrc 		= "CAN_CLOCK_SOURCE_SYS"
 %		break
 %	case "XTAL":
@@ -105,6 +183,14 @@
     SysCtl_setCMClk(SYSCTL_CMCLKOUT_DIV_1,SYSCTL_SOURCE_AUXPLL);
 
 %}
+
+%if(["F28P65x"].includes(Common.getDeviceName())){
+    //
+    // Set up AUXPLL control and clock dividers needed for CMCLK
+    //
+    SysCtl_setAuxClock(DEVICE_AUXSETCLOCK_CFG);
+
+%}
 %if(["F2838x"].includes(Common.getDeviceName())){
     // These asserts will check that the #defines for the clock rates in
     // device.h match the actual rates that have been configured. If they do
@@ -121,28 +207,40 @@
     // expected if these are not correct.
     //
 %}
-%if(["F2838x", "F2837xD", "F2807x", "F2837xS"].includes(Common.getDeviceName())){
+%if(["F2838x", "F2837xD", "F2807x", "F2837xS", "F28P65x"].includes(Common.getDeviceName())){
     //
     // From ClockTree Configurations
     //
     SysCtl_selectOscSourceAuxPLL(`oscclkSrc`);
 %}
-%if(["F280013x", "F280015x", "F28002x", "F28003x", "F28004x", "F2838x", "F2837xD", "F2807x", "F2837xS"].includes(Common.getDeviceName())){
+%if(["F280013x", "F280015x", "F28002x", "F28003x", "F28004x", "F2838x", "F2837xD", "F2807x", "F2837xS", "F28P65x"].includes(Common.getDeviceName())){
     CAN_selectClockSource(CANA_BASE, `canAclkSrc`);
 %}
+%//if(["F2838x", "F28003x", "F280015x"].includes(Common.getDeviceName())){                          //FIXME: Uncomment when implemented
+%//    SysCtl_setMCANClk(DEVICE_CLK_MCAN_DIV);
+%//}
+%if(["F28P65x"].includes(Common.getDeviceName())){                                                //https://jira.itg.ti.com/browse/C2000DRIVERS-2792
+    SysCtl_setMCANClk(SYSCTL_MCANA, `DEVICE_CLK_MCANA_DIV`);
+    SysCtl_setMCANClk(SYSCTL_MCANB, `DEVICE_CLK_MCANB_DIV`);
+%}
 %if(["F2838x", "F2837xD", "F2807x", "F2837xS"].includes(Common.getDeviceName())){
-    CAN_selectClockSource(CANB_BASE, `canBclkSrc`); 
-    SysCtl_setEPWMClockDivider(DEVICE_CLK_EPWM_DIV);
+    CAN_selectClockSource(CANB_BASE, `canBclkSrc`);
+%}
+%if(["F2838x", "F2837xD", "F2807x", "F2837xS", "F28P65x"].includes(Common.getDeviceName())){
+    SysCtl_setEPWMClockDivider(`DEVICE_CLK_EPWM_DIV`);
+%}
+%if(["F2838x", "F2837xD", "F2807x", "F2837xS", "F28P65x"].includes(Common.getDeviceName())){
+    SysCtl_setEMIF1ClockDivider(`DEVICE_CLK_EMIF_DIV`);
+%}
+%if(["F2838x", "F28P65x"].includes(Common.getDeviceName())){
+    SysCtl_setECatClk(`DEVICE_CLK_ECAT_DIV`, `ecatclkSrc`, 0x1U);
 %}
 %if(["F2838x"].includes(Common.getDeviceName())){
-    SysCtl_setECatClk(DEVICE_CLK_ECAT_DIV, `ecatclkSrc`, 0x1U);
-%}
-%if(["F2838x"].includes(Common.getDeviceName())){
-    SysCtl_setEnetClk(DEVICE_CLK_ENET_DIV, `enetclkSrc`);
+    SysCtl_setEnetClk(`DEVICE_CLK_ENET_DIV`, `enetclkSrc`);
 %}
     ASSERT(SysCtl_getClock(DEVICE_OSCSRC_FREQ) == DEVICE_SYSCLK_FREQ);
     ASSERT(SysCtl_getLowSpeedClock(DEVICE_OSCSRC_FREQ) == DEVICE_LSPCLK_FREQ);
-%if(["F2838x"].includes(Common.getDeviceName())){
+%if(["F2838x", "F28P65x"].includes(Common.getDeviceName())){
     ASSERT(SysCtl_getAuxClock(DEVICE_OSCSRC_FREQ) == DEVICE_AUXCLK_FREQ);
 %}
 #ifndef _FLASH

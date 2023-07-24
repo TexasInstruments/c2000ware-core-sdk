@@ -40,7 +40,7 @@ if (["F28002x"].includes(Common.getDeviceName()))
     )
 
 }
-else if (["F2838x", "F28003x", "F28P65x"].includes(Common.getDeviceName()))
+else if (["F2838x", "F28003x", "F28P65x", "F28P55x"].includes(Common.getDeviceName()))
 {
     BGCRC_INSTANCE.push(
         { name: "BGCRC_CPU_BASE", displayName: "BGCRC CPU"}, 

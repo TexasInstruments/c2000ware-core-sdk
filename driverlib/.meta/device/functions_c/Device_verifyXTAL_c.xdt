@@ -1,5 +1,5 @@
 %let Common   = system.getScript("/driverlib/Common.js");
-%if(["F2838x", "F28002x", "F28003x", "F28004x"].includes(Common.getDeviceName()) && Common.isContextCPU1()){
+%if(["F2838x", "F28002x", "F28003x", "F28004x", "F28P65x"].includes(Common.getDeviceName()) && Common.isContextCPU1()){
 //*****************************************************************************
 //
 // Function to verify the XTAL frequency
@@ -50,7 +50,7 @@ bool Device_verifyXTAL(float freq)
 }
 #endif
 %}
-%if(["F28002x", "F28003x", "F28004x"].includes(Common.getDeviceName())){
+%if(["F28002x", "F28003x", "F28004x", "F28P65x"].includes(Common.getDeviceName())){
 bool Device_verifyXTAL(float freq)
 {
     //

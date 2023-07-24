@@ -79,6 +79,7 @@ extern "C"
 #pragma CODE_SECTION(Flash_enableECC, ".TI.ramfunc");
 #endif
 
+
 //*****************************************************************************
 //
 //! Values that can be passed to Flash_setBankPowerMode() as the bank parameter

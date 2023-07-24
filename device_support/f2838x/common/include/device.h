@@ -233,7 +233,7 @@ a single CPU should be defined."
 // Define to pass to SysCtl_setClock(). Will configure the clock as follows:
 // PLLSYSCLK = 25MHz (XTAL_OSC) * 32 (IMULT) / (2 (REFDIV) * 2 (ODIV) * 1(SYSDIV))
 //
-#define DEVICE_SETCLOCK_CFG          (SYSCTL_OSCSRC_XTAL | SYSCTL_IMULT(32) | \
+#define DEVICE_SETCLOCK_CFG          (SYSCTL_OSCSRC_XTAL_SE | SYSCTL_IMULT(32) | \
                                       SYSCTL_REFDIV(2) | SYSCTL_ODIV(2) | \
                                       SYSCTL_SYSDIV(1) | SYSCTL_PLL_ENABLE | \
                                       SYSCTL_DCC_BASE_1)

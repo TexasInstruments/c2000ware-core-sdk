@@ -21,7 +21,6 @@ var longDescriptionSocTriggers = `
 ![an offline image](../../driverlib/.meta/adc/docs/adcSocTrigger.png "SOC Triggers")
 `
 
-
 var longDescriptionSocSamplingTimeCalculator = `
 An approximation of the required settling time can be determined using an RC settling model. The time constant
 for the model is given by the equation:
@@ -72,7 +71,7 @@ function extChanOnChange (inst, ui){
             }
         for (var xbari=0; xbari< 4; xbari++)
         {
-            ui["extchannel"+ xbari+" pin"].hidden=true;
+            // ui["extchannel"+ xbari+" pin"].hidden=true;
             if (inst.enableEXTMUX && xbari<inst["adcNumExtPins"]){
                 ui["extchannel"+ xbari+" pin"].hidden=false;
             }
@@ -306,7 +305,6 @@ function onChangeEnabledInts(inst, ui){
     }
 }
 
-
 function onChangeEnabledPPBs(inst, ui){
     for(var ppbIndex in device_driverlib_peripheral.ADC_PPBNumber)
     {
@@ -330,7 +328,9 @@ function onChangeEnabledPPBs(inst, ui){
             "ppb" + ppbi.toString() + "CompSource", 
             "ppb" + ppbi.toString() + "SyncInput", 
             "ppb" + ppbi.toString() + "Rightshift", 
-            "ppb" + ppbi.toString() + "AccumulationLimit",        
+            "ppb" + ppbi.toString() + "AccumulationLimit",
+            "ppb" + ppbi.toString() + "SelectOSINTSource",
+            "ppb" + ppbi.toString() + "AbsValue",        
             )
         }
         if (!["F2807x", "F2837xS", "F2837xD"].includes(Common.getDeviceName())){
@@ -492,6 +492,11 @@ var DEVICES_ADC_INSTANCES = {
     ],
     F280015x : [
         { name: "ADCA_BASE", displayName: "ADCA"},
+        { name: "ADCC_BASE", displayName: "ADCC"},
+    ],
+    F28P55x : [
+        { name: "ADCA_BASE", displayName: "ADCA"},
+        { name: "ADCB_BASE", displayName: "ADCB"},
         { name: "ADCC_BASE", displayName: "ADCC"},
     ],
     F28P65x : [
@@ -716,6 +721,7 @@ function addSOCGroup(soci){
                             }
                             return channel;
                         }
+                        return channel;
                     },
                
             },
@@ -876,25 +882,9 @@ for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){
             options     : device_driverlib_peripheral.ADC_IntSOCTrigger,
         },
     ])
-    // if (["F28P65x"].includes(Common.getDeviceName())){
-    //     SOCTrigger_configs = SOCTrigger_configs.unshift([
-    //         {
-    //             name: "soc" + soci.toString() + "Triggermode",
-    //             displayName: "Trigger Mode",
-    //             description : 'Single trigger or repeater mode can be selected as trigger source for this SOC',
-    //             hidden: true,
-    //             default: "singlemode",
-    //            options: [
-    //                 {name:"singlemode", displayName:"Single Trigger"},
-    //                 {name:"repeatermode", displayName:"Use Repeater Trigger"},
-    //             ],
-                
-    //         },
-    //     ]);
-    // }
+
 addSOCGroup(soci);
 }
-
 
 if (["F28P65x"].includes(Common.getDeviceName()))
 {
@@ -932,9 +922,6 @@ if (["F28P65x"].includes(Common.getDeviceName()))
     ]);
 }
 
-
-
-
 config = config.concat([
         // ADC_setSOCPriority, priMode
     {
@@ -947,9 +934,10 @@ config = config.concat([
         onChange    : onChangeHighPriorityMode
     },
 ])
+
 if (["F28P65x"].includes(Common.getDeviceName()))
 {
-    var adcextmuxdescription = `
+var adcextmuxdescription = `
 The External MUX Selected Channel field in each SOC can be used to automatically control an external mux via digital output pins indicated by OUTPUTXBAR. 
 
 This allows the user the flexibility to increase the ADC channel count via an external mux with minimal SW overhead. The External Channel pins are made available by mapping them to GPIO mux positions just like any other peripheral.  This could include AIO pins if the device allows peripherals to be muxed onto these pins and the AIOs support output mode.  The user also does not need to mux out all 4 pins if they have a small mux. To select a specific muxed channel, the user sets an SOC to use the SOC Channel that the mux output is connected to along with the SOC External MUX Selected Channel value that will select the desired channel. 
@@ -1013,35 +1001,72 @@ var adcextchConfigs =
             //     }
             // },
             
-            for (let xbari=0; xbari< 4; xbari++){
-                adcextchConfigs= adcextchConfigs.concat([
+        for (let xbari=0; xbari< 4; xbari++){
+            adcextchConfigs= adcextchConfigs.concat([
+                {
+                    name        : "extchannel"+ xbari+" pin",
+                    displayName : "External Channel " + xbari+ " Pin",
+                    default     : "",
+                    hidden      : true,
+                    getValue    : (inst)=>
+                    
                     {
-                        name        : "extchannel"+ xbari+" pin",
-                        displayName : "External Channel " + xbari+ " Pin",
-                        default     : "",
-                        hidden      : true,
-                        getValue    : (inst)=>
-                        
-                        {
+                        if (Common.isContextCPU1()) {
                             if (inst["adcextchan"+xbari]) 
-                            {
-                                //console.log(inst["adcextchan"+xbari].outputxbar.outputxbarPin.$solution)
-                                //Common.printDebugObject(inst["adcextchan"+xbari].outputxbar.outputxbarPin.$solution.devicePinName)  
+                            { 
                                 if (inst["adcextchan"+xbari].outputxbar.outputxbarPin.$solution.devicePinName){
                                     return inst["adcextchan"+xbari].outputxbar.outputxbarPin.$solution.devicePinName.toString()
                                 }
                                 else {
                                     return ""
-                                }
+                                }   
                             }
                             return ""
-                            
-                            
                         }
+                        if (Common.isContextCPU2()) {
+                            if (Common.isMultiCoreSysConfig())
+                            {
+                                let outputxbar = system.contexts.CPU1.system.modules["/driverlib/outputxbar.js"];
+                                if (outputxbar!=null) {
+                                        
+                                    var selectedoutputxbarinstance = null
+                                    for ( var outputxbar_inst of outputxbar.$instances) {
+                                        if ((outputxbar_inst.sourceSignals).includes(inst.adcBase.replace("_BASE", "_EXTMUXSEL") + xbari)) 
+                                        {
+                                            selectedoutputxbarinstance = outputxbar_inst
+                                            break    
+                                        }
+                                        if (selectedoutputxbarinstance != null) {
+                                            
+                                            return selectedoutputxbarinstance.outputxbar.outputxbarPin.$solution.devicePinName.toString() 
+                                        }          
+                                    }
+    
+                                    if (selectedoutputxbarinstance != null) 
+                                    {
+                                        return selectedoutputxbarinstance.outputxbar.outputxbarPin.$solution.devicePinName.toString()
+                                        
+                                    }
+                                    if (selectedoutputxbarinstance == null) 
+                                    {
+                                        return""
+                                    }
+                                                
+                                }
+                                else {
+                                    return ""
+                                }
+                            }
+                            else{
+                                return ""
+                            }
+                        }
+                                        
                     }
-                ])
-                
-            }
+                }
+            ])  
+        }
+
 
     config = config.concat([
         {
@@ -1133,7 +1158,7 @@ if (["F28P65x"].includes(Common.getDeviceName()))
                         name: "repeater" + rptri.toString()+ " Count",
                         displayName : "Trigger Count",
                         description : 'Select the count for this Repeater',
-                        default     : 0,
+                        default     : 1,
                         
         
                     },
@@ -1186,7 +1211,7 @@ if (["F28P65x"].includes(Common.getDeviceName()))
          },
     ])  
 }
-          
+
 var ppb_configs = []
 
 ppb_configs = ppb_configs.concat([
@@ -1301,49 +1326,67 @@ for(var ppbIndex in device_driverlib_peripheral.ADC_PPBNumber)
             hidden      : true,
             default     : 0
         },   
-    ] 
-    if (["F28P65x"].includes(Common.getDeviceName())){
+    ]
+    if (["F28P65x"].includes(Common.getDeviceName())) {
         ppbx_configs = ppbx_configs.concat([
+            //ADC_PPBIntSrcSelect(), osIntSrc
+            {
+                name: "ppb" + ppbi.toString() + "SelectOSINTSource",
+                displayName: "OSINT Source",
+                description: "Select source to generate over-sampling interrupt (OSINT)",
+                longDescription: "The oversampling interrupt can be generated if either the sample count limit defined in Accumulation Limit is reached, an external hardware sync event occurs, or the software forces a sync event.",
+                hidden: true,
+                default: device_driverlib_peripheral.ADC_PPBIntSrcSelect[0].name,
+                options: device_driverlib_peripheral.ADC_PPBIntSrcSelect,
+            },
+            //ADC_setPPBCountLimit(), limit
+            {
+                name: "ppb" + ppbi.toString() + "AccumulationLimit",
+                displayName: "Accumulation Limit",
+                description:
+                "Select target sample counts to generate over-sampling interrupt",
+                longDescription: "Accumulation Limit defines the number of ADC conversions to accumulate before partial sum is automatically loaded to the sum registers. When the partial conversion count equals the Accumulation Limit, the PPB loads the values of the respective partial result registers into the final result registers and generates an oversampling event interrupt",
+                hidden: true,
+                default: 0,
+            },
             //ADC_selectPPBSyncInput(), SyncInput
             {
-                name            : "ppb" + ppbi.toString() + "SyncInput",
-                displayName     : "Sync Source",
-                description     : 'Select the Sync source  for this PPB',
-                longDescription : 'This option configures desired sync event to transfer partial registers to final registers and reset the partial registers.',
-                hidden          : true,
-                default         : device_driverlib_peripheral.ADC_SyncInput[0].name,
-                options         : device_driverlib_peripheral.ADC_SyncInput,
+                name: "ppb" + ppbi.toString() + "SyncInput",
+                displayName: "Sync Source",
+                description: "Select the Sync source  for this PPB",
+                longDescription: "This option configures desired sync event to transfer partial registers to final registers and reset the partial registers.",
+                hidden: true,
+                default: device_driverlib_peripheral.ADC_SyncInput[0].name,
+                options: device_driverlib_peripheral.ADC_SyncInput,
             },
             //ADC_selectPPBCompareSource(), compSrc
             {
                 name: "ppb" + ppbi.toString() + "CompSource",
-                displayName : "Compare Source",
-                description : 'Select the compare source for this PPB',
-                hidden      : true,
-                default     : device_driverlib_peripheral.ADC_PPBCompSource[0].name,
-                options     : device_driverlib_peripheral.ADC_PPBCompSource,
+                displayName: "Compare Source",
+                description: "Select the compare source for this PPB",
+                hidden: true,
+                default: device_driverlib_peripheral.ADC_PPBCompSource[0].name,
+                options: device_driverlib_peripheral.ADC_PPBCompSource,
             },
             // ADC_setPPBShiftValue, shiftVal
             {
                 name: "ppb" + ppbi.toString() + "Rightshift",
-                displayName : "Number of Bits to Right Shift PSUM",
-                description : 'Select number of bits to right shift PSUM before loading to final PPB SUM',
-                hidden      : true,
-                default     : 0
-            },    
-            //ADC_setPPBCountLimit(), limit
+                displayName: "Number of Bits to Right Shift PSUM",
+                description: "Select number of bits to right shift PSUM before loading to final PPB SUM",
+                hidden: true,
+                default: 0,
+            },
+            // ADC_enablePPBAbsoluteValue, AbsVal
             {
-                name: "ppb" + ppbi.toString() + "AccumulationLimit",
-                displayName : "Accumulation Limit",
-                description : 'Select target sample counts to generate over-sampling interrupt',
-                longDescription:'Accumulation Limit defines the number of ADC conversions to accumulate before partial sum is automatically loaded to the sum registers. When the partial conversion count equals the Accumulation Limit, the PPB loads the values of the respective partial result registers into the final result registers and generates an oversampling event interrupt',
-                hidden      : true,
-                default     : 0
-            }, 
+                name: "ppb" + ppbi.toString() + "AbsValue",
+                displayName: "Calculate absolute value",
+                description: "This function enables absolute value capability in the PPB",
+                hidden: true,
+                default: false,
+            },
         ]);
     }
-        
-    
+
     if (!["F2807x", "F2837xS", "F2837xD"].includes(Common.getDeviceName()))
     // ADC_enablePPBEventCBCClear() / ADC_disablePPBEventCBCClear(), ppbNumber
     {
@@ -1395,8 +1438,6 @@ var int_configs = [
         }
     }
 ]
-
-
 
 if (!["F2807x", "F2837xS", "F2837xD"].includes(Common.getDeviceName()))
 {
@@ -1479,7 +1520,6 @@ config = config.concat([
     }
 ])
 
-
 var registerIntLongDesc = `
 Each ADC module has 4 configurable ADC interrupts. These interrupts can be triggered by any of the 16 EOC
 signals. The flag bit for each ADCINT can be read directly to determine if the associated SOC is complete or the
@@ -1491,7 +1531,7 @@ One PIE interrupt is shared between all the PPBs for a given ADC module.
 
 ![an offline image](../../driverlib/.meta/adc/docs/adcPPBInt.png "ADC PPB Interrupt Event")
 
-`
+`;
 
 config = config.concat([
     
@@ -1680,7 +1720,71 @@ function onValidateStatic(mod, stat){
     // Common.printDebugObject(mod);
 }
 
-function onValidate(inst, validation){
+function onValidate(inst, validation) {
+  
+    if (Common.isContextCPU2()) {
+        if (Common.isMultiCoreSysConfig()) {
+            //
+            // Check if the asysctl module is added on CPU1 if the current context is CPU2
+            //
+            if (Common.isModuleOnOtherContext("/driverlib/asysctl.js") == false) {
+                validation.logError(
+                    "The ASYSCTL module needs to be added on CPU1 when an ADC instance is added on CPU2",inst,"adcBase");
+            }
+            //
+            // Check if the analog module is added on CPU1 if the current context is CPU2
+            //
+            if (Common.isModuleOnOtherContext("/driverlib/analog.js") == false) {
+                validation.logError(
+                    "The ANALOG PinMux module needs to be added on CPU1 when an ADC instance is added on CPU2",inst,"adcBase");
+            }
+            //
+            // Check if the OUTPUTXBAR module is added on CPU1 if the current context is CPU2
+            //
+            if (inst.enableEXTMUX) {
+                if (Common.isModuleOnOtherContext("/driverlib/outputxbar.js") == false)
+                {
+                    for (let xbari=0; xbari< inst["adcNumExtPins"]; xbari++){ 
+                        validation.logError(
+                            "The OUTPUTXBAR module needs to be added on CPU1 when an external MUX is added on CPU2",inst,"enableEXTMUX");
+                    }
+                }
+                else{
+                    let outputxbar = system.contexts.CPU1.system.modules["/driverlib/outputxbar.js"];
+                    if (outputxbar!=null)
+                    {
+                        
+                        for (let xbari=0; xbari< inst["adcNumExtPins"]; xbari++) { 
+                            var selectedoutputxbarinstance = null
+                            for ( var outputxbar_inst of outputxbar.$instances) {
+
+                                if ((outputxbar_inst.sourceSignals).includes(inst.adcBase.replace("_BASE", "_EXTMUXSEL") + xbari)) 
+                                {
+                                    selectedoutputxbarinstance = outputxbar_inst
+                                    break
+                                } 
+                            }
+                            if (selectedoutputxbarinstance == null) {
+                                validation.logError(
+                                    "OUTPUTXBAR module needs to be added on CPU1 when an external MUX is added on CPU2", inst, "extchannel"+ xbari+" pin");
+                            }  
+                        } 
+                    } 
+                }
+            }
+        } 
+        else {
+            if (inst.enableEXTMUX)
+            {
+                validation.logWarning(
+                    "The OUTPUTXBAR module needs to be added on CPU1 when an external MUX is added on CPU2",inst,"enableEXTMUX");
+            }
+            validation.logWarning(
+                "The ASYSCTL module needs to be added on CPU1 when an ADC instance is added on CPU2",inst,"adcBase");
+            validation.logWarning(
+                "The ANALOG PinMux module needs to be added on CPU1 when an ADC instance is added on CPU2",inst,"adcBase");
+        } 
+    }
 
     //
     // Synchronous Mode
@@ -1864,6 +1968,7 @@ function onValidate(inst, validation){
         }
     }
 
+
     //
     // End Synchronous Mode
     //
@@ -1933,9 +2038,59 @@ function onValidate(inst, validation){
     }
 
     //
+    //Check Clock Prescaler
+    //
+    var prescalefactor = inst["adcClockPrescaler"].replace("ADC_CLK_DIV_","").split("_")[0]
+    if (["F2837xD", "F2837xS", "F2838x"].includes(Common.getDeviceName()))
+    {
+        if ( prescalefactor < 4)
+        {
+            validation.logWarning(
+                "The maximum frequency of ADC for this device is 50MHz. ADC Clock Prescaler should be selected accordingly.",
+                inst, "adcClockPrescaler");
+        }
+    }
+    if (["F28P65x"].includes(Common.getDeviceName()))
+    {
+        if (( prescalefactor < 4) & (inst["adcClockPrescaler"]!="ADC_CLK_DIV_3_5"))
+        {
+            validation.logWarning(
+                "The maximum frequency of ADC for this device is 60MHz. ADC Clock Prescaler should be selected accordingly.",
+                inst, "adcClockPrescaler");
+        }
+    }
+    if (["F28002x", "F28004x"].includes(Common.getDeviceName()))
+    {
+        if ( prescalefactor < 2)
+        {
+            validation.logWarning(
+                "The maximum frequency of ADC for this device is 50MHz. ADC Clock Prescaler should be selected accordingly.",
+                inst, "adcClockPrescaler");
+        }
+    }
+    if (["F2807x", "F280013x","F280015x"].includes(Common.getDeviceName()))
+    {
+        if ( prescalefactor <= 2)
+        {
+            validation.logWarning(
+                "The maximum frequency of ADC for this device is 50MHz. ADC Clock Prescaler should be selected accordingly.",
+                inst, "adcClockPrescaler");
+        }
+    }
+    if (["F28003x"].includes(Common.getDeviceName()))
+    {
+        if ( prescalefactor < 2)
+        {
+            validation.logWarning(
+                "The maximum frequency of ADC for this device is 60MHz. ADC Clock Prescaler should be selected accordingly.",
+                inst, "adcClockPrescaler");
+        }
+    }
+
+    //
     // Differential Mode/Resolution
     //
-    if (["F2837xD", "F2837xS", "F2838x","F28P65x"].includes(Common.getDeviceName()))
+    if (["F2837xD", "F2837xS", "F2838x"].includes(Common.getDeviceName()))
     {
         if (inst["adcResolutionMode"] == "ADC_RESOLUTION_12BIT")
         {
@@ -2075,16 +2230,16 @@ function onValidate(inst, validation){
         }
     }
 
+  //
+  // repeater module
+  //
 
-    //
-    // repeater module
-    
-    if (["F28P65x"].includes(Common.getDeviceName()))
+  if (["F28P65x"].includes(Common.getDeviceName()))
         {
             for(var rptrIndex in device_driverlib_peripheral.ADC_RepInstance){ 
                 var currentRPTR = device_driverlib_peripheral.ADC_RepInstance[rptrIndex].name
                 let rptri = (currentRPTR).replace(/[^0-9]/g,'')
-                if (inst["repeater" + rptri.toString()+ " Count"] < 0)
+                if (inst["repeater" + rptri.toString()+ " Count"] <= 0)
                 {
                     validation.logError(
                         "Number of repeater trigger counts must be larger than 0",
@@ -2118,15 +2273,17 @@ function onValidate(inst, validation){
                 for(var ppbIndex in device_driverlib_peripheral.ADC_PPBNumber){
                     var currentPPB = device_driverlib_peripheral.ADC_PPBNumber[ppbIndex].name
                     var ppbi = (currentPPB).replace(/[^0-9]/g,'')
-                    if((inst.enabledPPBs).includes(currentPPB) && (inst.enabledInts).includes(currentINT)&&((inst["interrupt" + inti.toString() + "SOCSource"]) == "ADC_INT_TRIGGER_OSINT"+ppbi.toString()))
-                    {
+                    if (inst.enabledPPBs.includes(currentPPB) &&
+                        inst.enabledInts.includes(currentINT) &&
+                        inst["interrupt" + inti.toString() + "SOCSource"] =="ADC_INT_TRIGGER_OSINT" + ppbi.toString()) {
                         {
                             validation.logInfo(
-                            "To generate an Oversampling interrupt, you need to set the target sample counts via" +  ": " + system.getReference(inst,"ppb"+ppbi.toString()+"AccumulationLimit"),
-                            inst, "interrupt" + inti.toString() + "SOCSource");
+                            "To generate an oversampling interrupt (OSINT), you need to configure OSINT source via" +
+                            ": " + system.getReference(inst,"ppb" + ppbi.toString() + "SelectOSINTSource"),
+                            inst,"interrupt" + inti.toString() + "SOCSource");
                         }
                     }
-                }    
+                }
             }
             if(inst.enableEXTMUX)
             {
@@ -2140,8 +2297,7 @@ function onValidate(inst, validation){
                 }
             }  
         } 
-        
-        
+
     for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){ 
         var currentSOC = device_driverlib_peripheral.ADC_SOCNumber[socIndex].name
         var soci = (currentSOC).replace(/[^0-9]/g,'')
@@ -2173,6 +2329,49 @@ function onValidate(inst, validation){
             if (inst["soc" + soci.toString() + "UseCalculatedSampleTime"] &&
             inst["soc" + soci.toString() + "UseSampleTimeCalculator"])
             {
+                if (["F2837xD", "F2837xS" ,"F2838x","F28P65x"].includes(Common.getDeviceName()))
+                {
+                    if (inst["adcResolutionMode"] == "ADC_RESOLUTION_16BIT")
+                    {
+                        if (inst["soc" + soci.toString() + "SampleWindowCalculated"] <= 63 && 
+                        inst["soc" + soci.toString() + "SampleWindowCalculated"] > 0)
+                        {
+                            validation.logWarning(
+                                "SOC" + soci.toString() + " sample window must be at least 64",
+                                inst, "soc" + soci.toString() + "SampleWindowCalculated");
+                        }
+                    }
+                    else
+                    {
+                        if (inst["soc" + soci.toString() + "SampleWindowCalculated"] <= 14 && 
+                        inst["soc" + soci.toString() + "SampleWindowCalculated"] > 0)
+                        {
+                            validation.logWarning(
+                                "SOC" + soci.toString() + " sample window must be at least 15",
+                                inst, "soc" + soci.toString() + "SampleWindowCalculated");
+                        }
+                    }
+                }
+                else if (["F28003x", "F280013x" ,"F280015x","F2807x"].includes(Common.getDeviceName()))
+                {
+                    if (inst["soc" + soci.toString() + "SampleWindowCalculated"] <= 8 && 
+                    inst["soc" + soci.toString() + "SampleWindowCalculated"] > 0)
+                    {
+                        validation.logWarning(
+                            "SOC" + soci.toString() + " sample window must be at least 9",
+                            inst, "soc" + soci.toString() + "SampleWindowCalculated");
+                    }
+                }
+                else
+                {
+                    if (inst["soc" + soci.toString() + "SampleWindowCalculated"] <= 7 && 
+                    inst["soc" + soci.toString() + "SampleWindowCalculated"] > 0)
+                    {
+                        validation.logWarning(
+                            "SOC" + soci.toString() + " sample window must be at least 8",
+                            inst, "soc" + soci.toString() + "SampleWindowCalculated");
+                    }
+                }
                 if (inst["soc" + soci.toString() + "SampleWindowCalculated"] <= 0 ||
                     inst["soc" + soci.toString() + "SampleWindowCalculated"] > 512)
                 {
@@ -2188,6 +2387,49 @@ function onValidate(inst, validation){
                 }
             }
             else{
+                if (["F2837xD", "F2837xS" ,"F2838x","F28P65x"].includes(Common.getDeviceName()))
+                {
+                    if (inst["adcResolutionMode"] == "ADC_RESOLUTION_16BIT")
+                    {
+                        if (inst["soc" + soci.toString() + "SampleWindow"] <= 63 && 
+                        inst["soc" + soci.toString() + "SampleWindow"] > 0)
+                        {
+                            validation.logWarning(
+                                "SOC" + soci.toString() + " sample window must be at least 64",
+                                inst, "soc" + soci.toString() + "SampleWindow");
+                        }
+                    }
+                    else
+                    {
+                        if (inst["soc" + soci.toString() + "SampleWindow"] <= 14 && 
+                        inst["soc" + soci.toString() + "SampleWindow"] > 0)
+                        {
+                            validation.logWarning(
+                                "SOC" + soci.toString() + " sample window must be at least 15",
+                                inst, "soc" + soci.toString() + "SampleWindow");
+                        }
+                    }
+                }
+                else if (["F28003x", "F280013x" ,"F280015x","F2807x"].includes(Common.getDeviceName()))
+                {
+                    if (inst["soc" + soci.toString() + "SampleWindow"] <= 8 && 
+                    inst["soc" + soci.toString() + "SampleWindow"] > 0)
+                    {
+                        validation.logWarning(
+                            "SOC" + soci.toString() + " sample window must be at least 9",
+                            inst, "soc" + soci.toString() + "SampleWindow");
+                    }
+                }
+                else
+                {
+                    if (inst["soc" + soci.toString() + "SampleWindow"] <= 7 && 
+                    inst["soc" + soci.toString() + "SampleWindow"] > 0)
+                    {
+                        validation.logWarning(
+                            "SOC" + soci.toString() + " sample window must be at least 8",
+                            inst, "soc" + soci.toString() + "SampleWindow");
+                    }
+                }
                 if (inst["soc" + soci.toString() + "SampleWindow"] <= 0 ||
                     inst["soc" + soci.toString() + "SampleWindow"] > 512)
                 {
@@ -2253,16 +2495,14 @@ function onValidate(inst, validation){
                         "Repeater Module 1 or Repeater Module 2 should be selected as Tigger source for SOC"+ soci.toString(),
                         inst, "soc" + soci.toString() + "Trigger");
                 } 
-            }     
-        }
+            }    
+        }     
     }
 
-       
     //
     // Cycle Offset
     //
 
-    
     if (!["F2807x", "F2837xS", "F2837xD"].includes(Common.getDeviceName()))
     {
         if (inst["interruptPulseMode"] == "ADC_PULSE_END_OF_ACQ_WIN")
@@ -2354,69 +2594,54 @@ function onValidate(inst, validation){
     //
     // Check for Pin Usage in analog
     //
-    if (Common.peripheralCount("ANALOG") > 0)
-    {
-        for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){ 
-            var currentSOC = device_driverlib_peripheral.ADC_SOCNumber[socIndex].name
-            var soci = (currentSOC).replace(/[^0-9]/g,'')
-            if((inst.enabledSOCs).includes(currentSOC)){
-                var pinInfo = Pinmux.calculateADCPinInfo(inst,soci);
-                var pinSelectedArray = pinInfo.adcPinInfosArray;
-                var channelArray = pinInfo.adcChannelArray;
-                var devicePinNameInfo = inst["soc" + soci.toString() + "DevicePinName"]
-                //console.log(pinSelectedArray)
-                //console.log(inst.analog.useCase)
-                //Common.printDebugObject(inst.analog)
-                //console.log(Pinmux.getPeripheralUseCaseInterfaces(inst.analog, "ANALOG", inst.analog.useCase))
-                var selectedInterfaces = Pinmux.getPeripheralUseCaseInterfaces(inst.analog, "ANALOG", inst.analog.useCase);
-                var allInterfaces = Pinmux.getPeripheralUseCaseInterfaces(inst.analog, "ANALOG", "ALL");
-
-                var allPinsMustBeConfigured = true;
-
-                if ((channelArray.includes("B5") || channelArray.includes("B11")) && Common.getDevicePart() == "F28003x_100PZ")
-                {
-                    validation.logInfo(
-                        "For 100PZ package on F28003x, only one of the pins can be used and setup for this channel. For example if both 'Bx' and " +
-                        " 'Bx, GPIOy' are selected in the ANALOG PinMux, only the 'Bx, GPIOy' pin will be connected to the ADC module.",
-                        inst,"soc" + soci.toString() + "DevicePinName");
-                    allPinsMustBeConfigured = false;
-                }
-
-                var configurationStatus = [];
-                var finalFail = true;
-                
-                for (var pinSelected of pinSelectedArray)
-                {
-                    configurationStatus.push(
-                        {
-                            fail: (!selectedInterfaces.includes(pinSelected) && allInterfaces.includes(pinSelected)), 
-                            pinSelected: pinSelected
-                        }
-                    )
-                }
-                for (var cstat of configurationStatus){finalFail &= cstat.fail}
-
-                if (allPinsMustBeConfigured)
-                {
-                    for (var cstat of configurationStatus)
-                    {
-                        if (cstat.fail)
-                        {
-                            validation.logError(
-                                "The pin " + cstat.pinSelected + " is not selected in the ANALOG PinMux module." +
-                                " Add this pin to the 'Pins Used' or change the 'Use Case'",
-                                inst,"soc" + soci.toString() + "DevicePinName");
-                        }
+    if (Common.isContextCPU1()) {
+        if (Common.peripheralCount("ANALOG") > 0)
+        {
+            for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){ 
+                var currentSOC = device_driverlib_peripheral.ADC_SOCNumber[socIndex].name
+                var soci = (currentSOC).replace(/[^0-9]/g,'')
+                if((inst.enabledSOCs).includes(currentSOC)){
+                    var pinInfo = Pinmux.calculateADCPinInfo(inst,soci);
+                    var pinSelectedArray = pinInfo.adcPinInfosArray;
+                    var channelArray = pinInfo.adcChannelArray;
+                    var devicePinNameInfo = inst["soc" + soci.toString() + "DevicePinName"]
+                    if (Common.isMultiCoreSysConfig()){
+                        let analog_inst = system.contexts.CPU1.system.modules["/driverlib/analog.js"];
+                        var selectedInterfaces = Pinmux.getPeripheralUseCaseInterfaces(analog_inst,"ANALOG",analog_inst.useCase);
+                        var allInterfaces = Pinmux.getPeripheralUseCaseInterfaces(analog_inst, "ANALOG", "ALL");
                     }
-                }
-                else
-                {
-                    if (finalFail)
-                    {
-                        validation.logError(
-                            "At least one of the following ANALOG PinMux pins must be selected.",
-                            inst,"soc" + soci.toString() + "DevicePinName");
+                    else{
+                        var selectedInterfaces = Pinmux.getPeripheralUseCaseInterfaces(inst.analog,"ANALOG",inst.analog.useCase);
+                        var allInterfaces = Pinmux.getPeripheralUseCaseInterfaces(inst.analog, "ANALOG", "ALL");
+                    }   
 
+                    var allPinsMustBeConfigured = true;
+    
+                    if ((channelArray.includes("B5") || channelArray.includes("B11")) && Common.getDevicePart() == "F28003x_100PZ")
+                    {
+                        validation.logInfo(
+                            "For 100PZ package on F28003x, only one of the pins can be used and setup for this channel. For example if both 'Bx' and " +
+                            " 'Bx, GPIOy' are selected in the ANALOG PinMux, only the 'Bx, GPIOy' pin will be connected to the ADC module.",
+                            inst,"soc" + soci.toString() + "DevicePinName");
+                        allPinsMustBeConfigured = false;
+                    }
+    
+                    var configurationStatus = [];
+                    var finalFail = true;
+                    
+                    for (var pinSelected of pinSelectedArray)
+                    {
+                        configurationStatus.push(
+                            {
+                                fail: (!selectedInterfaces.includes(pinSelected) && allInterfaces.includes(pinSelected)), 
+                                pinSelected: pinSelected
+                            }
+                        )
+                    }
+                    for (var cstat of configurationStatus){finalFail &= cstat.fail}
+    
+                    if (allPinsMustBeConfigured)
+                    {
                         for (var cstat of configurationStatus)
                         {
                             if (cstat.fail)
@@ -2428,10 +2653,31 @@ function onValidate(inst, validation){
                             }
                         }
                     }
+                    else
+                    {
+                        if (finalFail)
+                        {
+                            validation.logError(
+                                "At least one of the following ANALOG PinMux pins must be selected.",
+                                inst,"soc" + soci.toString() + "DevicePinName");
+    
+                            for (var cstat of configurationStatus)
+                            {
+                                if (cstat.fail)
+                                {
+                                    validation.logError(
+                                        "The pin " + cstat.pinSelected + " is not selected in the ANALOG PinMux module." +
+                                        " Add this pin to the 'Pins Used' or change the 'Use Case'",
+                                        inst,"soc" + soci.toString() + "DevicePinName");
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
     }
+    
 }
 
 /*
@@ -2444,8 +2690,8 @@ function onValidate(inst, validation){
  *  returns Boolean indicating whether or not to allow the component to
  *           be assigned to an instance's $hardware config
  */
-function filterHardware(component){
-    return (Common.typeMatches(component.type, ["ADC"]));
+function filterHardware(component) {
+  return Common.typeMatches(component.type, ["ADC"]);
 }
 
 function modules(inst){
@@ -2462,42 +2708,38 @@ function modules(inst){
 
 var moduleStaticModules = undefined;
 var sharedModuleInstances = undefined;
-if (!["F2807x", "F2837xD", "F2837xS", "F2838x"].includes(Common.getDeviceName()))
-{
-    if (Common.peripheralCount("ANALOG") > 0) {
-        moduleStaticModules = Common.autoForceMultiple(
-                [
-                    {
-                        name      : "asysctl",
-                        moduleName: "/driverlib/asysctl.js",
-                        hidden    : false
-                    }
-                ]
+if (!["F2807x", "F2837xD", "F2837xS", "F2838x"].includes(Common.getDeviceName())) {
+    if (Common.isContextCPU1()) {
+        if (Common.peripheralCount("ANALOG") > 0) {
+            moduleStaticModules = Common.autoForceMultiple([
+                {
+                    name: "asysctl",
+                    moduleName: "/driverlib/asysctl.js",
+                    hidden: false,
+                },
+            ]
             );
-        sharedModuleInstances = function () {
-            return (
-                [
+            sharedModuleInstances = function () {
+                return [
                     {
                         name: "analog",
                         displayName: "Analog PinMux",
-                        moduleName: "/driverlib/analog.js"
+                        moduleName: "/driverlib/analog.js",
                     },
-                ]
+                ];
+            };
+        } 
+        else {
+            moduleStaticModules = Common.autoForceMultiple([
+                {
+                    name: "asysctl",
+                    moduleName: "/driverlib/asysctl.js",
+                    hidden: false,
+                },
+            ]
             );
-        }
+        }  
     }
-    else
-    {
-        moduleStaticModules = Common.autoForceMultiple(
-                [
-                    {
-                        name      : "asysctl",
-                        moduleName: "/driverlib/asysctl.js",
-                        hidden    : false
-                    },
-                ]
-        );
-    }   
 }
 
 var adcModule = {
@@ -2512,35 +2754,31 @@ var adcModule = {
     moduleInstances: (inst) => {
         
         var intReturn =  []
-        
-        if (["F28P65x"].includes(Common.getDeviceName()))
-        {
-            if (inst.enableEXTMUX)
-            {
-                for (var xbari=0; xbari< inst["adcNumExtPins"]; xbari++)
-                {
-                intReturn.push(
-                    {
-                    name: "adcextchan"+xbari,
-                    displayName: "External Channel "+xbari + " (OUTPUTXBAR)",
-                    moduleName: "/driverlib/outputxbar.js",
-                    collapsed: true,
-                    group: "GROUP_ADC_EXT_CHAN",
-                    args: 
-                    {
-                        $name : inst.$name + "_ADCEXT"+xbari,
+
+        if (Common.isContextCPU1() &&
+        ["F28P65x"].includes(Common.getDeviceName())) {
+            if (inst.enableEXTMUX) {
+                for (var xbari = 0; xbari < inst["adcNumExtPins"]; xbari++) {
+                    intReturn.push({
+                        name: "adcextchan" + xbari,
+                        displayName: "External Channel " + xbari + " (OUTPUTXBAR)",
+                        moduleName: "/driverlib/outputxbar.js",
+                        collapsed: true,
+                        group: "GROUP_ADC_EXT_CHAN",
+                        args: {
+                        $name: inst.$name + "_ADCEXT" + xbari,
                         useSourceSelect: true,
-                    },
-                    requiredArgs: 
-                    {
-                        useSourceSelect: true,
-                        sourceSignals: [inst.adcBase.replace("_BASE", "_EXTMUXSEL") + xbari],
+                        },
+                        requiredArgs: {
+                            useSourceSelect: true,
+                            sourceSignals: [inst.adcBase.replace("_BASE", "_EXTMUXSEL") + xbari,],
+                        },
                     }
-                    }   
-                )
+                    );
                 }
-            }   
+            }
         }
+
         if (inst.useInterrupts && ((inst.registerInterrupts).includes("1")))
         {
             intReturn.push ({
@@ -2643,8 +2881,6 @@ var adcModule = {
     sharedModuleInstances: sharedModuleInstances,
     validate    : onValidate,
 };
-
-
 
 
 exports = adcModule;

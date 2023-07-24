@@ -2,7 +2,7 @@
 % let Pinmux   = system.getScript("/driverlib/pinmux.js");
 % let PinmuxMigrations   = system.getScript("/driverlib/pinmux/pinmux_migration.js");
 % let DriverlibPinmap   = system.getScript("/driverlib/pinmux/driverlib_pinmap.js");
-% let skipPinMuxPeripheral = ["inputxbar", "inputxbar_input", "clb_inputxbar", "clb_inputxbar_input", "iclxbar", "mindbxbar", "usb", "dcdc", "cputimer", "interrupt", "asysctl", "sysctl", "sync", "adc", "cmpss", "cmpss_lite", "dcc", "watchdog", "cla", "memcfg", "dma", "bgcrc", "flash", "xint"];
+% let skipPinMuxPeripheral = ["inputxbar", "inputxbar_input", "clb_inputxbar", "clb_inputxbar_input", "iclxbar", "mindbxbar", "usb", "dcdc", "cputimer", "interrupt", "asysctl", "sysctl", "sync", "adc", "cmpss", "cmpss_lite", "dcc", "watchdog", "cla", "memcfg", "dma", "bgcrc", "flash", "xint","adcsafetycheckertile"];
 % var gpioQualTemplateC = system.getTemplate("/driverlib/gpio/gpioQual.board.c.xdt");
 % let skipPinMuxPeripheralIfIncludes = ["interrupt"];
 % let pinmux_h_source_mode = 3

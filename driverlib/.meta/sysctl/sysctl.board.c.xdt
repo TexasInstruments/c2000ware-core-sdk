@@ -93,7 +93,7 @@ void `nameOfPeripheral`_init(){
 %               Common.isContextCPU2()){
 %               enableCpuSel = false;
 %           }
-%       if (enableCpuSel == true){
+%       if (enableCpuSel == true && (!["F28P65x"].includes(Common.getDeviceName()))){
 %           device_driverlib_peripheral.SysCtl_CPUSelPeripheral.
 %           forEach((element, index) => 
 %           {
@@ -105,6 +105,37 @@ void `nameOfPeripheral`_init(){
 %           );
 %       }
 %   }
+%   if (device_driverlib_peripheral.SysCtl_CPUSelPeriphInstance && ["F28P65x"].includes(Common.getDeviceName()))
+%   {
+%       var inInstanceEnumsEnd = [];
+%       var inInstanceEnumsFull = {};
+%           device_driverlib_peripheral.SysCtl_CPUSelPeriphInstance.
+%           forEach((element, index) => 
+%           {
+%               inInstanceEnumsFull[element.name.split("_").slice(-1)[0]] = element.name;
+%               inInstanceEnumsEnd.push(element.name.split("_").slice(-1)[0]);
+%               }
+%           );
+%       var enableCpuSel = true;
+%       if(["F2837xD", "F2838x", "F28P65x"].includes(Common.getDeviceName()) &&
+%               Common.isContextCPU2()){
+%               enableCpuSel = false;
+%           }
+%       if (enableCpuSel == true){
+%           device_driverlib_peripheral.SysCtl_CPUSelPeripheral.
+%           forEach((element, index) => 
+%           {
+%               var peripheralInsts = Common.peripheralListFromSysCtl(element.name.split("_").slice(-1)[0], device_driverlib_peripheral)
+%               peripheralInsts.forEach((element_periphInst, index) => {
+%                   if(inInstanceEnumsEnd.includes(element_periphInst)){
+    SysCtl_selectCPUForPeripheralInstance(`inInstanceEnumsFull[element_periphInst]`, `stat["cpuSel_" + element_periphInst]`);
+%                       }
+%                   });
+%               }
+%           );
+%       }
+%
+%   }    
 %   if (device_driverlib_peripheral.SysCtl_AccessPeripheral)
 %   {
 

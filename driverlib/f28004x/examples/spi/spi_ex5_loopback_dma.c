@@ -167,9 +167,9 @@ void main(void)
 //
 // DMA Channel 5 ISR
 //
-__interrupt void INT_mySPI0_RX_DMA_ISR(void)
+__interrupt void INT_mySPI0_TX_DMA_ISR(void)
 {
-    DMA_stopChannel(mySPI0_RX_DMA_BASE);
+    DMA_stopChannel(mySPI0_TX_DMA_BASE);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
     return;
 }
@@ -177,11 +177,11 @@ __interrupt void INT_mySPI0_RX_DMA_ISR(void)
 //
 // DMA Channel 6 ISR
 //
- __interrupt void INT_mySPI0_TX_DMA_ISR(void)
+ __interrupt void INT_mySPI0_RX_DMA_ISR(void)
 {
     uint16_t i;
 
-    DMA_stopChannel(mySPI0_TX_DMA_BASE);
+    DMA_stopChannel(mySPI0_RX_DMA_BASE);
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
 
     //

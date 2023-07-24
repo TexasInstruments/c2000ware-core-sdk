@@ -12,7 +12,7 @@
 //! periodic data. Generated Clock has period EPG CLOCK/6.
 //!
 //! \b External \b Connections \n
-//!  - None. Clock output is generated on GPIO 58, 54. Can be visualized
+//!  - None. Signal is generated on GPIO 24, 3. Can be visualized
 //!    through oscilloscope.
 //!
 //! \b Watch \b Variables \n
@@ -89,7 +89,7 @@ void main(void)
     Device_init();
 
     //
-    // Initialize GPIO and configure GPIO pins 58, 54 for EPG OUT
+    // Initialize GPIO and configure GPIO pins 24, 3 for EPG OUT
     //
     Device_initGPIO();
     

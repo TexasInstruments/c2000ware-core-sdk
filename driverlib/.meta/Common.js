@@ -92,6 +92,7 @@ exports = {
     removeArrayFromArray : removeArrayFromArray,
     getSYSCLK: getSYSCLK,
     getClockTree : getClockTree,
+    getC2000WarePath: getC2000WarePath
 };
 
 function getSYSCLK(cpu)
@@ -125,6 +126,19 @@ function getSYSCLK(cpu)
     {
         return SYSCLK_getMaxMHz()
     }
+}
+
+function getC2000WarePath()
+{
+    var currnetSDKProductPath = system.getProducts()[0].path
+    var sdkPath = system.utils.path.join(currnetSDKProductPath + "../../../")
+    sdkPath = sdkPath.replace(new RegExp('\\' + system.utils.path.sep, 'g'), '/')
+    if (system.getProducts()[0].name != "C2000WARE")
+    {
+        sdkPath = sdkPath + "c2000ware/"
+    }
+
+    return sdkPath
 }
 
 function removeArrayFromArray(arrSource, arrRem)
@@ -600,7 +614,7 @@ function CLB_isType1() {
 }
 
 function CLB_isType2() {
-    return ["F28002x", "F2838x", "F28003x"].includes(getDeviceName());
+    return ["F28002x", "F2838x", "F28003x", "F28P55x", "F28P65x"].includes(getDeviceName());
 }
 
 function CLB_isType1_Type2(){
@@ -619,7 +633,8 @@ function SYSCLK_getMaxMHz()
         F28003x     : 120,
         F280013x    : 120,
         F280015x    : 120,
-        F28P65x     : 200
+        F28P65x     : 200,
+        F28P55x     : 200
     }
     return sysclk_max[getDeviceName()];
 }
@@ -679,7 +694,8 @@ function getDeviceTRM()
         "F28002x":  "https://www.ti.com/lit/spruin7",
         "F28003x":  "https://www.ti.com/lit/spruiw9",
         "F280013x": "https://www.ti.com/lit/spruix1",
-        "F280015x": "https://www.ti.com/lit/spruiy4"
+        "F280015x": "https://www.ti.com/lit/spruiy4",
+		"F28P65x":  "https://www.ti.com/lit/spruiz1"
     }
 
     var deviceTRMLink = deviceTRMLinks[getDeviceName()];
@@ -704,7 +720,8 @@ function getDeviceDatasheet()
         "F28002x":  "https://www.ti.com/lit/gpn/tms320f280025c",
         "F28003x":  "https://www.ti.com/lit/gpn/tms320f280039c",
         "F280013x": "https://www.ti.com/lit/gpn/tms320f2800137",
-        "F280015x": "https://www.ti.com/lit/gpn/tms320f2800157"
+        "F280015x": "https://www.ti.com/lit/gpn/tms320f2800157",
+		"F28P65x":  "https://www.ti.com/lit/gpn/tms320f28p650dk"
     }
 
     var deviceDSLink = deviceDSLinks[getDeviceName()];

@@ -375,7 +375,7 @@ function getMCANDriverlibName(interfaceName, peripheralInstanceName)
 {
 	var driverlibName = "";
 	
-	driverlibName = interfaceName
+	driverlibName = interfaceName.replace("@" , peripheralInstanceName[4]);
 
 	return driverlibName;
 }

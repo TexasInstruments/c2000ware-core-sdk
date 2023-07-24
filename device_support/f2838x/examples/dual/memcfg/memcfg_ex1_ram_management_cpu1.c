@@ -116,6 +116,7 @@ void main(void)
     //
     InitSysCtrl();
 
+
 #ifdef _STANDALONE
 #ifdef _FLASH
     //

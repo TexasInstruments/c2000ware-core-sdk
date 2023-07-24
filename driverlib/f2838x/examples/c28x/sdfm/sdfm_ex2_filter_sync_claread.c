@@ -257,7 +257,7 @@ int main(void)
     // modules can be enabled. All the filter modules are synchronized when
     // master filter bit is enabled after individual filter modules are enabled.
     //
-    SDFM_enableMasterFilter(sdfmInstance);
+    SDFM_enableMainFilter(sdfmInstance);
 
     //
     // PWM11.CMPC, PWM11.CMPD, PWM12.CMPC and PWM12.CMPD signals can synchronize
@@ -313,7 +313,7 @@ int main(void)
     // Enable master interrupt so that any of the filter interrupts can
     // trigger by SDFM interrupt to CPU
     //
-    SDFM_enableMasterInterrupt(sdfmInstance);
+    SDFM_enableMainInterrupt(sdfmInstance);
 
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
@@ -337,7 +337,7 @@ void configureSDFMPins(uint16_t sdfmPinOption)
             for(pin = 16; pin <= 31; pin++)
             {
                 GPIO_setDirectionMode(pin, GPIO_DIR_MODE_IN);
-                GPIO_setMasterCore(pin, GPIO_CORE_CPU1);
+                GPIO_setControllerCore(pin, GPIO_CORE_CPU1);
                 GPIO_setPadConfig(pin, GPIO_PIN_TYPE_STD);
                 GPIO_setQualificationMode(pin, GPIO_QUAL_ASYNC);
             }
@@ -348,7 +348,7 @@ void configureSDFMPins(uint16_t sdfmPinOption)
             for(pin = 48; pin <= 63; pin++)
             {
                 GPIO_setDirectionMode(pin, GPIO_DIR_MODE_IN);
-                GPIO_setMasterCore(pin, GPIO_CORE_CPU1);
+                GPIO_setControllerCore(pin, GPIO_CORE_CPU1);
                 GPIO_setPadConfig(pin, GPIO_PIN_TYPE_STD);
                 GPIO_setQualificationMode(pin, GPIO_QUAL_ASYNC);
             }
@@ -358,7 +358,7 @@ void configureSDFMPins(uint16_t sdfmPinOption)
         case SDFM_PIN_MUX_OPTION3:
             for(pin = 122; pin <= 137; pin++)
             {
-                GPIO_setMasterCore(pin, GPIO_CORE_CPU1);
+                GPIO_setControllerCore(pin, GPIO_CORE_CPU1);
                 GPIO_setDirectionMode(pin, GPIO_DIR_MODE_IN);
                 GPIO_setPadConfig(pin, GPIO_PIN_TYPE_STD);
                 GPIO_setQualificationMode(pin, GPIO_QUAL_ASYNC);
@@ -469,9 +469,9 @@ void initCLAMemoryMap(void)
     MemCfg_setCLAMemType(MEMCFG_SECT_LS5, MEMCFG_CLA_MEM_PROGRAM);
     MemCfg_setCLAMemType(MEMCFG_SECT_LS0, MEMCFG_CLA_MEM_DATA);
     MemCfg_setCLAMemType(MEMCFG_SECT_LS1, MEMCFG_CLA_MEM_DATA);
-    MemCfg_setLSRAMMasterSel(MEMCFG_SECT_LS5, MEMCFG_LSRAMMASTER_CPU_CLA1);
-    MemCfg_setLSRAMMasterSel(MEMCFG_SECT_LS0, MEMCFG_LSRAMMASTER_CPU_CLA1);
-    MemCfg_setLSRAMMasterSel(MEMCFG_SECT_LS1, MEMCFG_LSRAMMASTER_CPU_CLA1);
+    MemCfg_setLSRAMControllerSel(MEMCFG_SECT_LS5, MEMCFG_LSRAMCONTROLLER_CPU_CLA1);
+    MemCfg_setLSRAMControllerSel(MEMCFG_SECT_LS0, MEMCFG_LSRAMCONTROLLER_CPU_CLA1);
+    MemCfg_setLSRAMControllerSel(MEMCFG_SECT_LS1, MEMCFG_LSRAMCONTROLLER_CPU_CLA1);
 
 
     //
@@ -486,7 +486,7 @@ void initCLAMemoryMap(void)
     // linker cmd file used in the application.
     //
     MemCfg_setCLAMemType(MEMCFG_SECT_LS6, MEMCFG_CLA_MEM_DATA);
-    MemCfg_setLSRAMMasterSel(MEMCFG_SECT_LS6, MEMCFG_LSRAMMASTER_CPU_CLA1);
+    MemCfg_setLSRAMControllerSel(MEMCFG_SECT_LS6, MEMCFG_LSRAMCONTROLLER_CPU_CLA1);
 
     //
     // Filter3 and Filter4 data memory is mapped to LS7 RAM in linker cmd file
@@ -494,7 +494,7 @@ void initCLAMemoryMap(void)
     // linker cmd file used in the application.
     //
     MemCfg_setCLAMemType(MEMCFG_SECT_LS7, MEMCFG_CLA_MEM_DATA);
-    MemCfg_setLSRAMMasterSel(MEMCFG_SECT_LS7, MEMCFG_LSRAMMASTER_CPU_CLA1);
+    MemCfg_setLSRAMControllerSel(MEMCFG_SECT_LS7, MEMCFG_LSRAMCONTROLLER_CPU_CLA1);
 }
 
 //

@@ -129,21 +129,20 @@ void main(void)
     Device_initGPIO();
 
     //
-       // Configuring the GPIOs for MCAN.
-       //
-       GPIO_setPinConfig(DEVICE_GPIO_CFG_MCANRXA);
-       GPIO_setPinConfig(DEVICE_GPIO_CFG_MCANTXA);
+    // Configuring the GPIOs for MCAN.
+    //
+    GPIO_setPinConfig(DEVICE_GPIO_CFG_MCANRXA);
+    GPIO_setPinConfig(DEVICE_GPIO_CFG_MCANTXA);
 
+    //
+    // Allocate MCAN (a shared peripheral) to CPU1 (C28x)
+    //
+    SysCtl_allocateSharedPeripheral(SYSCTL_PALLOCATE_MCAN_A,0x0U);
 
-       //
-       // Allocate MCAN (a shared peripheral) to CPU1 (C28x)
-       //
-       SysCtl_allocateSharedPeripheral(SYSCTL_PALLOCATE_MCAN_A,0x0U);
-
-       //
-       // Configure the divisor for the MCAN bit-clock
-       //
-       SysCtl_setMCANClk(SYSCTL_MCANCLK_DIV_5);
+    //
+    // Configure the divisor for the MCAN bit-clock
+    //
+    SysCtl_setMCANClk(SYSCTL_MCANCLK_DIV_5);
 
     //
     // CrossBar and ISR Configuration.

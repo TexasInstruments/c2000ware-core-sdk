@@ -12,7 +12,7 @@ void Device_enableAllPeripherals(void)
 %if(["F2838x", "F28003x", "F28004x", "F2807X", "F2837xD", "F2837xS", "F2807x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CLA1);
 %}
-%if(["F2838x", "F28002x", "F28003x", "F28004x", "F2807x", "F2837xD", "F2837xS" ].includes(Common.getDeviceName())){
+%if(["F2838x", "F28002x", "F28003x", "F28004x", "F2807x", "F2837xD", "F2837xS", "F28P65x" ].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_DMA);
 %}
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TIMER0);
@@ -30,7 +30,7 @@ void Device_enableAllPeripherals(void)
 %if(["F28002x", "F28003x", "F280013x", "F280015x" ].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_HRCAL);
 %}
-%if(["F2838x", "F28002x", "F28003x"].includes(Common.getDeviceName())){
+%if(["F2838x", "F28002x", "F28003x", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CPUBGCRC);
 %}
 %if(["F2838x", "F28003x"].includes(Common.getDeviceName())){
@@ -42,20 +42,20 @@ void Device_enableAllPeripherals(void)
 #endif
 %}
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-%if(["F2838x", "F28002x", "F28003x"].includes(Common.getDeviceName())){
+%if(["F2838x", "F28002x", "F28003x", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_ERAD);
 %}
 
-%if(["F2837xD", "F2838x"].includes(Common.getDeviceName()) && Common.isContextCPU1()){
+%if(["F2837xD", "F2838x", "F28P65x"].includes(Common.getDeviceName()) && Common.isContextCPU1()){
 #ifdef CPU1
 %}
-%if(["F2838x", "F2837xD", "F2837xS", "F2807x"].includes(Common.getDeviceName()) && Common.isContextCPU1()){
+%if(["F2838x", "F2837xD", "F2837xS", "F2807x", "F28P65x"].includes(Common.getDeviceName()) && Common.isContextCPU1()){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EMIF1);
 %}
 %if(["F2838x", "F2837xD", "F2837xS"].includes(Common.getDeviceName()) && Common.isContextCPU1()){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EMIF2);
 %}
-%if(["F2838x", "F2837xD"].includes(Common.getDeviceName()) && Common.isContextCPU1()){
+%if(["F2838x", "F2837xD", "F28P65x"].includes(Common.getDeviceName()) && Common.isContextCPU1()){
 #endif
 %}
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EPWM1);
@@ -65,51 +65,65 @@ void Device_enableAllPeripherals(void)
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EPWM5);
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EPWM6);
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EPWM7);
-%if(["F2838x", "F28004x", "F28003x", "F2837xD", "F2837xS", "F2807x"].includes(Common.getDeviceName())){
+%if(["F2838x", "F28004x", "F28003x", "F2837xD", "F2837xS", "F2807x", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EPWM8);
 %}
-%if(["F2838x", "F2837xD", "F2837xS", "F2807x"].includes(Common.getDeviceName())){
+%if(["F2838x", "F2837xD", "F2837xS", "F2807x", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EPWM9);
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EPWM10);
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EPWM11);
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EPWM12);
 %}
-%if(["F2838x"].includes(Common.getDeviceName())){
+%if(["F2838x", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EPWM13);
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EPWM14);
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EPWM15);
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EPWM16);
 %}
+%if(["F28P65x"].includes(Common.getDeviceName())){
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EPWM17);
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EPWM18);
+%}
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_ECAP1);
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_ECAP2);
-%if(["F280015x", "F28002x", "F28003x", "F28004x", "F2838x", "F2837xD", "F2837xS", "F2807x"].includes(Common.getDeviceName())){
+%if(["F280015x", "F28002x", "F28003x", "F28004x", "F2838x", "F2837xD", "F2837xS", "F2807x", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_ECAP3);
 %}
-%if(["F28004x", "F2838x", "F2837xD", "F2837xS", "F2807x"].includes(Common.getDeviceName())){
+%if(["F28004x", "F2838x", "F2837xD", "F2837xS", "F2807x", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_ECAP4);
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_ECAP5);
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_ECAP6);
 %}
-%if(["F28004x", "F2838x"].includes(Common.getDeviceName())){
+%if(["F28004x", "F2838x", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_ECAP7);
 %}
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EQEP1);
-%if(["F280015x", "F28002x", "F28003x", "F28004x", "F2838x", "F2837xD", "F2837xS", "F2807x"].includes(Common.getDeviceName())){
+%if(["F280015x", "F28002x", "F28003x", "F28004x", "F2838x", "F2837xD", "F2837xS", "F2807x", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EQEP2);
 %}
-%if(["F2838x", "F2837xD", "F2837xS", "F2807x"].includes(Common.getDeviceName())){
+%if(["F2838x", "F2837xD", "F2837xS", "F2807x", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EQEP3);
 %}
 
-%if(["F28004x", "F2838x", "F28003x", "F2837xD", "F2837xS", "F2807x"].includes(Common.getDeviceName())){
+%if(["F28P65x"].includes(Common.getDeviceName())){
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EQEP4);
+	SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EQEP5);
+	SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EQEP6);
+
+%}
+%if(["F28004x", "F2838x", "F28003x", "F2837xD", "F2837xS", "F2807x", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_SD1);
 %}
-%if(["F2838x", "F28003x", "F2837xD", "F2837xS", "F2807x"].includes(Common.getDeviceName())){
+%if(["F2838x", "F28003x", "F2837xD", "F2837xS", "F2807x", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_SD2);
+%}
+%if(["F28P65x"].includes(Common.getDeviceName())){
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_SD3);
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_SD4);
 %}
 
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_SCIA);
-%if(["F280013x", "F280015x", "F28003x", "F28004x", "F2838x", "F2837xD", "F2837xS", "F2807x"].includes(Common.getDeviceName())){
+%if(["F280013x", "F280015x", "F28003x", "F28004x", "F2838x", "F2837xD", "F2837xS", "F2807x", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_SCIB);
 %}
 %if(["F280013x", "F280015x", "F2838x", "F2837xD", "F2837xS", "F2807x"].includes(Common.getDeviceName())){
@@ -119,19 +133,23 @@ void Device_enableAllPeripherals(void)
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_SCID);
 %}
 
+%if(["F28P65x"].includes(Common.getDeviceName())){
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_UARTA);
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_UARTB);
+%}
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_SPIA);
-%if(["F28002x", "F28003x", "F28004x", "F2838x", "F2837xD", "F2837xS", "F2807x"].includes(Common.getDeviceName())){
+%if(["F28002x", "F28003x", "F28004x", "F2838x", "F2837xD", "F2837xS", "F2807x", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_SPIB);
 %}
-%if(["F2838x", "F2837xD", "F2837xS", "F2807x"].includes(Common.getDeviceName())){
+%if(["F2838x", "F2837xD", "F2837xS", "F2807x", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_SPIC);
 %}
-%if(["F2838x"].includes(Common.getDeviceName())){
+%if(["F2838x", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_SPID);
 %}
 
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_I2CA);
-%if(["F28002x", "F28003x", "F280013x", "F280015x", "F2838x", "F2837xD", "F2837xS", "F2807x"].includes(Common.getDeviceName())){
+%if(["F28002x", "F28003x", "F280013x", "F280015x", "F2838x", "F2837xD", "F2837xS", "F2807x", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_I2CB);
 %}
 
@@ -140,9 +158,12 @@ void Device_enableAllPeripherals(void)
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CANB);
 %}
 
-%if(["F280015x", "F28003x"].includes(Common.getDeviceName())){
+%if(["F280015x", "F28003x", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_MCANA);
 
+%}
+%if(["F28P65x"].includes(Common.getDeviceName())){
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_MCANB);
 %}
 %if(["F2838x", "F2837xD", "F2837xS", "F2807x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_MCBSPA);
@@ -152,7 +173,7 @@ void Device_enableAllPeripherals(void)
 %if(["F2838x", "F2837xD"].includes(Common.getDeviceName()) && Common.isContextCPU1()){
 #ifdef CPU1
 %}
-%if(["F2838x", "F2837xD", "F2837xS", "F2807x"].includes(Common.getDeviceName()) && Common.isContextCPU1()){
+%if(["F2838x", "F2837xD", "F2837xS", "F2807x", "F28P65x"].includes(Common.getDeviceName()) && Common.isContextCPU1()){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_USBA);
 %}
 %if(["F2837xS", "F2837xD"].includes(Common.getDeviceName())){
@@ -163,10 +184,10 @@ void Device_enableAllPeripherals(void)
 %}
 
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_ADCA);
-%if(["F28003x", "F28004x", "F2838x", "F2837xD", "F2837xS", "F2807x"].includes(Common.getDeviceName())){
+%if(["F28003x", "F28004x", "F2838x", "F2837xD", "F2837xS", "F2807x", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_ADCB);
 %}
-%if(["F28002x", "F28003x", "F28004x", "F280013x", "F280015x", "F2838x", "F2837xD", "F2837xS"].includes(Common.getDeviceName())){
+%if(["F28002x", "F28003x", "F28004x", "F280013x", "F280015x", "F2838x", "F2837xD", "F2837xS", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_ADCC);
 %}
 %if(["F2838x", "F2837xD", "F2837xS", "F2807x"].includes(Common.getDeviceName())){
@@ -177,15 +198,19 @@ void Device_enableAllPeripherals(void)
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CMPSS2);
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CMPSS3);
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CMPSS4);
-%if(["F28004x", "F2838x", "F2837xD", "F2837xS", "F2807x"].includes(Common.getDeviceName())){
+%if(["F28004x", "F2838x", "F2837xD", "F2837xS", "F2807x", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CMPSS5);
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CMPSS6);
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CMPSS7);
 %}
-%if(["F2838x", "F2837xD", "F2837xS", "F2807x"].includes(Common.getDeviceName())){
+%if(["F2838x", "F2837xD", "F2837xS", "F2807x", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CMPSS8);
 %}
-
+%if(["F28P65x"].includes(Common.getDeviceName())){
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CMPSS9);
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CMPSS10);
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CMPSS11);
+%}
 %if(["F28004x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_PGA1);
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_PGA2);
@@ -200,34 +225,45 @@ void Device_enableAllPeripherals(void)
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_DACA);
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_DACB);
 %}
-%if(["F2838x", "F2837xD", "F2837xS", "F2807x"].includes(Common.getDeviceName())){
+%if(["F28P65x"].includes(Common.getDeviceName())){
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_DACA);
+%}
+%if(["F2838x", "F2837xD", "F2837xS", "F2807x", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_DACC);
 %}
-%if(["F2838x", "F28002x", "F28003x", "F28004x"].includes(Common.getDeviceName())){
+%if(["F2838x", "F28002x", "F28003x", "F28004x", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CLB1);
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CLB2);
 
 %}
-%if(["F2838x", "F28003x", "F28004x"].includes(Common.getDeviceName())){
+%if(["F2838x", "F28003x", "F28004x", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CLB3);
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CLB4);
 
 %}
-%if(["F2838x"].includes(Common.getDeviceName())){
+%if(["F2838x", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CLB5);
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CLB6);
+%}
+%if(["F2838x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CLB7);
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CLB8);
-
 %}
+
 %if(["F280015x", "F28002x", "F28003x", "F28004x", "F2838x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_PMBUSA);
 
 %}
-%if(["F28002x", "F28003x", "F28004x", ].includes(Common.getDeviceName())){
+%if(["F28002x", "F28003x", "F28004x", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_FSITXA);
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_FSIRXA);
 
+%}
+%if(["F28P65x"].includes(Common.getDeviceName())){
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_FSITXB);
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_FSIRXB);
+	SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_FSIRXC);
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_FSIRXD);
 %}
 %if(["F2838x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_FSITXA);
@@ -242,10 +278,10 @@ void Device_enableAllPeripherals(void)
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_FSIRXH);
 
 %}
-%if(["F280015x", "F28002x", "F28003x", "F28004x"].includes(Common.getDeviceName())){
+%if(["F280015x", "F28002x", "F28003x", "F28004x", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_LINA);
 %}
-%if(["F28002x", "F28003x"].includes(Common.getDeviceName())){
+%if(["F28002x", "F28003x", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_LINB);
 
 %}
@@ -262,20 +298,42 @@ void Device_enableAllPeripherals(void)
 #endif
 
 %}
-%if(["F280013x", "F280015x", "F28002x", "F28003x", "F28004x"].includes(Common.getDeviceName())){
+%if(["F280013x", "F280015x", "F28002x", "F28003x", "F28004x", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_DCC0);
 %}
-%if(["F28002x", "F28003x"].includes(Common.getDeviceName())){
+%if(["F28002x", "F28003x", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_DCC1);
 %}
+%if(["F28P65x"].includes(Common.getDeviceName())){
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_DCC2);
+%}
+%if(["F28P65x"].includes(Common.getDeviceName())){
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_ECAT);
+
+	SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_HRCAL0);
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_HRCAL1);
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_HRCAL2);
+%}
+
 %if(["F280013x", "F280015x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EPG1);
 %}
 %if(["F28002x", "F28003x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_HICA);
 %}
-%if(["F28003x"].includes(Common.getDeviceName())){
+%if(["F28003x", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_AESA);
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EPG1);
+%}
+%if(["F28P65x"].includes(Common.getDeviceName())){
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_ADCCHECKER1);
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_ADCCHECKER2);
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_ADCCHECKER3);
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_ADCCHECKER4);
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_ADCCHECKER5);
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_ADCCHECKER6);
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_ADCCHECKER7);
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_ADCCHECKER8);
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_ADCSEAGGRCPU1);
 %}
 }

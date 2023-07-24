@@ -1,0 +1,1177 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ASysCtl Module &mdash; F28P65x API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F28P65x API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="BGCRC Module" href="bgcrc.html"/>
+        <link rel="prev" title="ADC Module" href="adc.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F28P65x API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v5.00.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="adc.html">ADC Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ASysCtl Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bgcrc.html">BGCRC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla.html">CLA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clb.html">CLB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmpss.html">CMPSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dac.html">DAC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcc.html">DCC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dma.html">DMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ecap.html">ECAP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emif.html">EMIF Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="epwm.html">EPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqep.html">EQEP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="escss.html">ESCSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fsi.html">FSI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hrcap.html">HRCAP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hrpwm.html">HRPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipc.html">IPC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcan.html">MCAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pmbus.html">PMBUS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci.html">SCI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdfm.html">SDFM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">SPI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version.html">Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xbar.html">XBAR Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F28P65x API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>ASysCtl Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="asysctl-module">
+<span id="asysctl"></span><h1>ASysCtl Module<a class="headerlink" href="#asysctl-module" title="Permalink to this headline">¶</a></h1>
+<p>The ASysCtl or Analog System Control driver provides functions to enable,
+disable and lock the temperature sensor on the device. It will also provide
+additional functionality if available for that device.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__asysctl__api"></span><em>group</em> <code class="sig-name descname">asysctl_api</code></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.ASYSCTL_AGPIOFILTER_BYPASS">
+<span class="target" id="group__asysctl__api_1ga976e5d43c74f8654276078327b5929af"></span><code class="sig-name descname">ASYSCTL_AGPIOFILTER_BYPASS</code> 0U<a class="headerlink" href="#c.ASYSCTL_AGPIOFILTER_BYPASS" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ASYSCTL_AGPIOFILTER_333OHM">
+<span class="target" id="group__asysctl__api_1ga963956adb71d9dcd3adfbf98ddf9eb96"></span><code class="sig-name descname">ASYSCTL_AGPIOFILTER_333OHM</code> 1U<a class="headerlink" href="#c.ASYSCTL_AGPIOFILTER_333OHM" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ASYSCTL_AGPIOFILTER_500OHM">
+<span class="target" id="group__asysctl__api_1ga9fcaca4a2fd4cf87c1974e4f3995815e"></span><code class="sig-name descname">ASYSCTL_AGPIOFILTER_500OHM</code> 2U<a class="headerlink" href="#c.ASYSCTL_AGPIOFILTER_500OHM" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ASYSCTL_AGPIOFILTER_1000OHM">
+<span class="target" id="group__asysctl__api_1ga8687a2b5db15969f28c992defdc1e646"></span><code class="sig-name descname">ASYSCTL_AGPIOFILTER_1000OHM</code> 3U<a class="headerlink" href="#c.ASYSCTL_AGPIOFILTER_1000OHM" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ASYSCTL_VREFHIA">
+<span class="target" id="group__asysctl__api_1ga6ce5f7cd49209cc9bde56ef191e27fd7"></span><code class="sig-name descname">ASYSCTL_VREFHIA</code> 0x1U<a class="headerlink" href="#c.ASYSCTL_VREFHIA" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>VREFHIA. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ASYSCTL_VREFHIB">
+<span class="target" id="group__asysctl__api_1ga66a0e7597903432115a574324e3356b0"></span><code class="sig-name descname">ASYSCTL_VREFHIB</code> 0x2U<a class="headerlink" href="#c.ASYSCTL_VREFHIB" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>VREFHIB. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ASYSCTL_VREFHIC">
+<span class="target" id="group__asysctl__api_1ga647d6e88719d0ef88596fd03b139a6ae"></span><code class="sig-name descname">ASYSCTL_VREFHIC</code> 0x4U<a class="headerlink" href="#c.ASYSCTL_VREFHIC" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>VREFHIC. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ASYSCTL_CMPHNMUX_SELECT_1">
+<span class="target" id="group__asysctl__api_1gabe866a55244f154e26c117b0c2d703fc"></span><code class="sig-name descname">ASYSCTL_CMPHNMUX_SELECT_1</code> 0x1U<a class="headerlink" href="#c.ASYSCTL_CMPHNMUX_SELECT_1" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPHNMUX select 1. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ASYSCTL_CMPHNMUX_SELECT_2">
+<span class="target" id="group__asysctl__api_1gaaffdc6b3cf735776931c757801eea53a"></span><code class="sig-name descname">ASYSCTL_CMPHNMUX_SELECT_2</code> 0x2U<a class="headerlink" href="#c.ASYSCTL_CMPHNMUX_SELECT_2" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPHNMUX select 2. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ASYSCTL_CMPHNMUX_SELECT_3">
+<span class="target" id="group__asysctl__api_1ga68ecccb7c85bd0452fb1eed0ffbc5992"></span><code class="sig-name descname">ASYSCTL_CMPHNMUX_SELECT_3</code> 0x4U<a class="headerlink" href="#c.ASYSCTL_CMPHNMUX_SELECT_3" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPHNMUX select 3. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ASYSCTL_CMPHNMUX_SELECT_4">
+<span class="target" id="group__asysctl__api_1ga3c200c717c50f46113588c9279ab6c2b"></span><code class="sig-name descname">ASYSCTL_CMPHNMUX_SELECT_4</code> 0x8U<a class="headerlink" href="#c.ASYSCTL_CMPHNMUX_SELECT_4" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPHNMUX select 4. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ASYSCTL_CMPHNMUX_SELECT_5">
+<span class="target" id="group__asysctl__api_1ga2afcb8f221cbb3ce86f8da8bc9426b49"></span><code class="sig-name descname">ASYSCTL_CMPHNMUX_SELECT_5</code> 0x10U<a class="headerlink" href="#c.ASYSCTL_CMPHNMUX_SELECT_5" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPHNMUX select 5. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ASYSCTL_CMPHNMUX_SELECT_6">
+<span class="target" id="group__asysctl__api_1gacf5cd1297a7daefb91117f81b4c9bf80"></span><code class="sig-name descname">ASYSCTL_CMPHNMUX_SELECT_6</code> 0x20U<a class="headerlink" href="#c.ASYSCTL_CMPHNMUX_SELECT_6" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPHNMUX select 6. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ASYSCTL_CMPHNMUX_SELECT_7">
+<span class="target" id="group__asysctl__api_1gabe96af5eaa2f60c008acae6b105ade04"></span><code class="sig-name descname">ASYSCTL_CMPHNMUX_SELECT_7</code> 0x40U<a class="headerlink" href="#c.ASYSCTL_CMPHNMUX_SELECT_7" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPHNMUX select 7. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ASYSCTL_CMPHNMUX_SELECT_8">
+<span class="target" id="group__asysctl__api_1ga242e5bf9e2f0d64f58ef3eeb9717b8d6"></span><code class="sig-name descname">ASYSCTL_CMPHNMUX_SELECT_8</code> 0x80U<a class="headerlink" href="#c.ASYSCTL_CMPHNMUX_SELECT_8" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPHNMUX select 8. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ASYSCTL_CMPHNMUX_SELECT_9">
+<span class="target" id="group__asysctl__api_1ga8ca45a86d118e718e23cde4f56e1c0d2"></span><code class="sig-name descname">ASYSCTL_CMPHNMUX_SELECT_9</code> 0x100U<a class="headerlink" href="#c.ASYSCTL_CMPHNMUX_SELECT_9" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPHNMUX select 9. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ASYSCTL_CMPHNMUX_SELECT_10">
+<span class="target" id="group__asysctl__api_1ga8911b07c86801f17b872abb18cd249ed"></span><code class="sig-name descname">ASYSCTL_CMPHNMUX_SELECT_10</code> 0x200U<a class="headerlink" href="#c.ASYSCTL_CMPHNMUX_SELECT_10" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPHNMUX select 10. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ASYSCTL_CMPHNMUX_SELECT_11">
+<span class="target" id="group__asysctl__api_1gaf48052fe9f7cab8449ed691c03f0e4d0"></span><code class="sig-name descname">ASYSCTL_CMPHNMUX_SELECT_11</code> 0x400U<a class="headerlink" href="#c.ASYSCTL_CMPHNMUX_SELECT_11" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPHNMUX select 11. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ASYSCTL_CMPLNMUX_SELECT_1">
+<span class="target" id="group__asysctl__api_1ga2869b3e6e1529e012288f1a535bd8886"></span><code class="sig-name descname">ASYSCTL_CMPLNMUX_SELECT_1</code> 0x1U<a class="headerlink" href="#c.ASYSCTL_CMPLNMUX_SELECT_1" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPLNMUX select 1. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ASYSCTL_CMPLNMUX_SELECT_2">
+<span class="target" id="group__asysctl__api_1gad99bfa7f9929aa68a53ecd2526df9b6f"></span><code class="sig-name descname">ASYSCTL_CMPLNMUX_SELECT_2</code> 0x2U<a class="headerlink" href="#c.ASYSCTL_CMPLNMUX_SELECT_2" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPLNMUX select 2. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ASYSCTL_CMPLNMUX_SELECT_3">
+<span class="target" id="group__asysctl__api_1gac73d6fbe07a844c813b725ad984b293a"></span><code class="sig-name descname">ASYSCTL_CMPLNMUX_SELECT_3</code> 0x4U<a class="headerlink" href="#c.ASYSCTL_CMPLNMUX_SELECT_3" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPLNMUX select 3. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ASYSCTL_CMPLNMUX_SELECT_4">
+<span class="target" id="group__asysctl__api_1gaa1f87e3cdfde1c59355c94bdc53fc152"></span><code class="sig-name descname">ASYSCTL_CMPLNMUX_SELECT_4</code> 0x8U<a class="headerlink" href="#c.ASYSCTL_CMPLNMUX_SELECT_4" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPLNMUX select 4. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ASYSCTL_CMPLNMUX_SELECT_5">
+<span class="target" id="group__asysctl__api_1ga3eba0c1e3b070caa2e39c6c06f3ff0b6"></span><code class="sig-name descname">ASYSCTL_CMPLNMUX_SELECT_5</code> 0x10U<a class="headerlink" href="#c.ASYSCTL_CMPLNMUX_SELECT_5" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPLNMUX select 5. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ASYSCTL_CMPLNMUX_SELECT_6">
+<span class="target" id="group__asysctl__api_1ga720925ff8230d1d40c223166f16c338f"></span><code class="sig-name descname">ASYSCTL_CMPLNMUX_SELECT_6</code> 0x20U<a class="headerlink" href="#c.ASYSCTL_CMPLNMUX_SELECT_6" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPLNMUX select 6. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ASYSCTL_CMPLNMUX_SELECT_7">
+<span class="target" id="group__asysctl__api_1gac98209a4b4aade3e5745e14f812c0098"></span><code class="sig-name descname">ASYSCTL_CMPLNMUX_SELECT_7</code> 0x40U<a class="headerlink" href="#c.ASYSCTL_CMPLNMUX_SELECT_7" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPLNMUX select 7. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ASYSCTL_CMPLNMUX_SELECT_8">
+<span class="target" id="group__asysctl__api_1gaa14aa581aa3276a5e07468685604ad10"></span><code class="sig-name descname">ASYSCTL_CMPLNMUX_SELECT_8</code> 0x80U<a class="headerlink" href="#c.ASYSCTL_CMPLNMUX_SELECT_8" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPLNMUX select 8. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ASYSCTL_CMPLNMUX_SELECT_9">
+<span class="target" id="group__asysctl__api_1ga98b9eb90901228e320d1fbad37785916"></span><code class="sig-name descname">ASYSCTL_CMPLNMUX_SELECT_9</code> 0x100U<a class="headerlink" href="#c.ASYSCTL_CMPLNMUX_SELECT_9" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPLNMUX select 9. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ASYSCTL_CMPLNMUX_SELECT_10">
+<span class="target" id="group__asysctl__api_1ga647df6c599081d467bb18c689fd7b045"></span><code class="sig-name descname">ASYSCTL_CMPLNMUX_SELECT_10</code> 0x200U<a class="headerlink" href="#c.ASYSCTL_CMPLNMUX_SELECT_10" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPLNMUX select 10. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ASYSCTL_CMPLNMUX_SELECT_11">
+<span class="target" id="group__asysctl__api_1ga09e12e59f8fad3d56ff9766f504b4f7b"></span><code class="sig-name descname">ASYSCTL_CMPLNMUX_SELECT_11</code> 0x400U<a class="headerlink" href="#c.ASYSCTL_CMPLNMUX_SELECT_11" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPLNMUX select 11. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="cpp enum">
+<dt id="_CPPv422ASysCtl_CMPHPMuxSelect">
+<span id="_CPPv322ASysCtl_CMPHPMuxSelect"></span><span id="_CPPv222ASysCtl_CMPHPMuxSelect"></span><span class="target" id="group__asysctl__api_1ga7c8245cb4286a7cd88c0ed7df63dc257"></span><em class="property">enum </em><code class="sig-name descname">ASysCtl_CMPHPMuxSelect</code><a class="headerlink" href="#_CPPv422ASysCtl_CMPHPMuxSelect" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>ASysCtl_CMPHPMuxSelect used for function <a class="reference internal" href="#group__asysctl__api_1ga00f788ee7ed3aacd9bd9e9ed44a1cb5a"><span class="std std-ref">ASysCtl_selectCMPHPMux()</span></a>. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_1E">
+<span id="_CPPv3N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_1E"></span><span id="_CPPv2N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_1E"></span><span class="target" id="group__asysctl__api_1gga7c8245cb4286a7cd88c0ed7df63dc257af5d5c16cb14fc70843711c196a31afab"></span><em class="property">enumerator </em><code class="sig-name descname">ASYSCTL_CMPHPMUX_SELECT_1</code> = 0U<a class="headerlink" href="#_CPPv4N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPHPMUX select 1. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_2E">
+<span id="_CPPv3N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_2E"></span><span id="_CPPv2N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_2E"></span><span class="target" id="group__asysctl__api_1gga7c8245cb4286a7cd88c0ed7df63dc257ad34a4cb4f864fec5693b943d0fc25c29"></span><em class="property">enumerator </em><code class="sig-name descname">ASYSCTL_CMPHPMUX_SELECT_2</code> = 3U<a class="headerlink" href="#_CPPv4N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPHPMUX select 2. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_3E">
+<span id="_CPPv3N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_3E"></span><span id="_CPPv2N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_3E"></span><span class="target" id="group__asysctl__api_1gga7c8245cb4286a7cd88c0ed7df63dc257a6700dc420a584a0ca92d7f34f6616cc6"></span><em class="property">enumerator </em><code class="sig-name descname">ASYSCTL_CMPHPMUX_SELECT_3</code> = 6U<a class="headerlink" href="#_CPPv4N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPHPMUX select 3. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_4E">
+<span id="_CPPv3N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_4E"></span><span id="_CPPv2N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_4E"></span><span class="target" id="group__asysctl__api_1gga7c8245cb4286a7cd88c0ed7df63dc257a208d63321a90635feb372c94f83f71e8"></span><em class="property">enumerator </em><code class="sig-name descname">ASYSCTL_CMPHPMUX_SELECT_4</code> = 9U<a class="headerlink" href="#_CPPv4N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPHPMUX select 4. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_5E">
+<span id="_CPPv3N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_5E"></span><span id="_CPPv2N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_5E"></span><span class="target" id="group__asysctl__api_1gga7c8245cb4286a7cd88c0ed7df63dc257ab2ff8ad7bc5aa08cf81b7efcfe187d78"></span><em class="property">enumerator </em><code class="sig-name descname">ASYSCTL_CMPHPMUX_SELECT_5</code> = 12U<a class="headerlink" href="#_CPPv4N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_5E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPHPMUX select 5. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_6E">
+<span id="_CPPv3N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_6E"></span><span id="_CPPv2N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_6E"></span><span class="target" id="group__asysctl__api_1gga7c8245cb4286a7cd88c0ed7df63dc257a9da48829c05fb2ceefa5c6d912d6f195"></span><em class="property">enumerator </em><code class="sig-name descname">ASYSCTL_CMPHPMUX_SELECT_6</code> = 15U<a class="headerlink" href="#_CPPv4N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_6E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPHPMUX select 6. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_7E">
+<span id="_CPPv3N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_7E"></span><span id="_CPPv2N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_7E"></span><span class="target" id="group__asysctl__api_1gga7c8245cb4286a7cd88c0ed7df63dc257a590d2210605228e4b9bd35b432787847"></span><em class="property">enumerator </em><code class="sig-name descname">ASYSCTL_CMPHPMUX_SELECT_7</code> = 18U<a class="headerlink" href="#_CPPv4N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_7E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPHPMUX select 7. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_8E">
+<span id="_CPPv3N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_8E"></span><span id="_CPPv2N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_8E"></span><span class="target" id="group__asysctl__api_1gga7c8245cb4286a7cd88c0ed7df63dc257a2beed0a0b8f2e7e280afa9646cf14688"></span><em class="property">enumerator </em><code class="sig-name descname">ASYSCTL_CMPHPMUX_SELECT_8</code> = 21U<a class="headerlink" href="#_CPPv4N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_8E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPHPMUX select 8. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_9E">
+<span id="_CPPv3N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_9E"></span><span id="_CPPv2N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_9E"></span><span class="target" id="group__asysctl__api_1gga7c8245cb4286a7cd88c0ed7df63dc257a5eb8854006702714b6fb6b152b8bc8d1"></span><em class="property">enumerator </em><code class="sig-name descname">ASYSCTL_CMPHPMUX_SELECT_9</code> = 24U<a class="headerlink" href="#_CPPv4N22ASysCtl_CMPHPMuxSelect25ASYSCTL_CMPHPMUX_SELECT_9E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPHPMUX select 9. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22ASysCtl_CMPHPMuxSelect26ASYSCTL_CMPHPMUX_SELECT_10E">
+<span id="_CPPv3N22ASysCtl_CMPHPMuxSelect26ASYSCTL_CMPHPMUX_SELECT_10E"></span><span id="_CPPv2N22ASysCtl_CMPHPMuxSelect26ASYSCTL_CMPHPMUX_SELECT_10E"></span><span class="target" id="group__asysctl__api_1gga7c8245cb4286a7cd88c0ed7df63dc257a334fbe3525f33c33b963f337b026b78c"></span><em class="property">enumerator </em><code class="sig-name descname">ASYSCTL_CMPHPMUX_SELECT_10</code> = 27U<a class="headerlink" href="#_CPPv4N22ASysCtl_CMPHPMuxSelect26ASYSCTL_CMPHPMUX_SELECT_10E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPHPMUX select 10. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22ASysCtl_CMPHPMuxSelect26ASYSCTL_CMPHPMUX_SELECT_11E">
+<span id="_CPPv3N22ASysCtl_CMPHPMuxSelect26ASYSCTL_CMPHPMUX_SELECT_11E"></span><span id="_CPPv2N22ASysCtl_CMPHPMuxSelect26ASYSCTL_CMPHPMUX_SELECT_11E"></span><span class="target" id="group__asysctl__api_1gga7c8245cb4286a7cd88c0ed7df63dc257a1c2ab9b9dbb664a6a8b7fdd2089ddb9a"></span><em class="property">enumerator </em><code class="sig-name descname">ASYSCTL_CMPHPMUX_SELECT_11</code> = 0U + 32U<a class="headerlink" href="#_CPPv4N22ASysCtl_CMPHPMuxSelect26ASYSCTL_CMPHPMUX_SELECT_11E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPHPMUX select 11. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv422ASysCtl_CMPLPMuxSelect">
+<span id="_CPPv322ASysCtl_CMPLPMuxSelect"></span><span id="_CPPv222ASysCtl_CMPLPMuxSelect"></span><span class="target" id="group__asysctl__api_1ga16525824b37b4bd85ea3eadef0cb365f"></span><em class="property">enum </em><code class="sig-name descname">ASysCtl_CMPLPMuxSelect</code><a class="headerlink" href="#_CPPv422ASysCtl_CMPLPMuxSelect" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>ASysCtl_CMPLPMuxSelect used for function <a class="reference internal" href="#group__asysctl__api_1ga203e690fc3f07ce2ea737ae3ce4eacb8"><span class="std std-ref">ASysCtl_selectCMPLPMux()</span></a>. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_1E">
+<span id="_CPPv3N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_1E"></span><span id="_CPPv2N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_1E"></span><span class="target" id="group__asysctl__api_1gga16525824b37b4bd85ea3eadef0cb365fa29de04b3dd5296ab3a45bc7c0dbb7a12"></span><em class="property">enumerator </em><code class="sig-name descname">ASYSCTL_CMPLPMUX_SELECT_1</code> = 0U<a class="headerlink" href="#_CPPv4N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPLPMUX select 1. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_2E">
+<span id="_CPPv3N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_2E"></span><span id="_CPPv2N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_2E"></span><span class="target" id="group__asysctl__api_1gga16525824b37b4bd85ea3eadef0cb365fa812d75dc36b9a25e75935b31d1685dd6"></span><em class="property">enumerator </em><code class="sig-name descname">ASYSCTL_CMPLPMUX_SELECT_2</code> = 3U<a class="headerlink" href="#_CPPv4N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPLPMUX select 2. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_3E">
+<span id="_CPPv3N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_3E"></span><span id="_CPPv2N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_3E"></span><span class="target" id="group__asysctl__api_1gga16525824b37b4bd85ea3eadef0cb365fabf53ba8d38d4fd83ddf314eac230f538"></span><em class="property">enumerator </em><code class="sig-name descname">ASYSCTL_CMPLPMUX_SELECT_3</code> = 6U<a class="headerlink" href="#_CPPv4N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPLPMUX select 3. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_4E">
+<span id="_CPPv3N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_4E"></span><span id="_CPPv2N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_4E"></span><span class="target" id="group__asysctl__api_1gga16525824b37b4bd85ea3eadef0cb365fad65f3b04ceceef85332696ea9e97c8e7"></span><em class="property">enumerator </em><code class="sig-name descname">ASYSCTL_CMPLPMUX_SELECT_4</code> = 9U<a class="headerlink" href="#_CPPv4N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPLPMUX select 4. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_5E">
+<span id="_CPPv3N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_5E"></span><span id="_CPPv2N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_5E"></span><span class="target" id="group__asysctl__api_1gga16525824b37b4bd85ea3eadef0cb365fa41887b65c83b8cc075aea6a5f244876c"></span><em class="property">enumerator </em><code class="sig-name descname">ASYSCTL_CMPLPMUX_SELECT_5</code> = 12U<a class="headerlink" href="#_CPPv4N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_5E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPLPMUX select 5. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_6E">
+<span id="_CPPv3N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_6E"></span><span id="_CPPv2N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_6E"></span><span class="target" id="group__asysctl__api_1gga16525824b37b4bd85ea3eadef0cb365faf46b0b789698f486cdecfd2eeabef3b6"></span><em class="property">enumerator </em><code class="sig-name descname">ASYSCTL_CMPLPMUX_SELECT_6</code> = 15U<a class="headerlink" href="#_CPPv4N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_6E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPLPMUX select 6. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_7E">
+<span id="_CPPv3N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_7E"></span><span id="_CPPv2N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_7E"></span><span class="target" id="group__asysctl__api_1gga16525824b37b4bd85ea3eadef0cb365faae3b68035dc9267788e1d291c96029f0"></span><em class="property">enumerator </em><code class="sig-name descname">ASYSCTL_CMPLPMUX_SELECT_7</code> = 18U<a class="headerlink" href="#_CPPv4N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_7E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPLPMUX select 7. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_8E">
+<span id="_CPPv3N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_8E"></span><span id="_CPPv2N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_8E"></span><span class="target" id="group__asysctl__api_1gga16525824b37b4bd85ea3eadef0cb365fa1a555e7f029474c3adc0bc2e23ac851f"></span><em class="property">enumerator </em><code class="sig-name descname">ASYSCTL_CMPLPMUX_SELECT_8</code> = 21U<a class="headerlink" href="#_CPPv4N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_8E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPLPMUX select 8. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_9E">
+<span id="_CPPv3N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_9E"></span><span id="_CPPv2N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_9E"></span><span class="target" id="group__asysctl__api_1gga16525824b37b4bd85ea3eadef0cb365fa49ffb030ccfd5328318b7065020ec749"></span><em class="property">enumerator </em><code class="sig-name descname">ASYSCTL_CMPLPMUX_SELECT_9</code> = 24U<a class="headerlink" href="#_CPPv4N22ASysCtl_CMPLPMuxSelect25ASYSCTL_CMPLPMUX_SELECT_9E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPLPMUX select 9. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22ASysCtl_CMPLPMuxSelect26ASYSCTL_CMPLPMUX_SELECT_10E">
+<span id="_CPPv3N22ASysCtl_CMPLPMuxSelect26ASYSCTL_CMPLPMUX_SELECT_10E"></span><span id="_CPPv2N22ASysCtl_CMPLPMuxSelect26ASYSCTL_CMPLPMUX_SELECT_10E"></span><span class="target" id="group__asysctl__api_1gga16525824b37b4bd85ea3eadef0cb365fac737db86587cdc58b7b3015a0a283991"></span><em class="property">enumerator </em><code class="sig-name descname">ASYSCTL_CMPLPMUX_SELECT_10</code> = 27U<a class="headerlink" href="#_CPPv4N22ASysCtl_CMPLPMuxSelect26ASYSCTL_CMPLPMUX_SELECT_10E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPLPMUX select 10. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N22ASysCtl_CMPLPMuxSelect26ASYSCTL_CMPLPMUX_SELECT_11E">
+<span id="_CPPv3N22ASysCtl_CMPLPMuxSelect26ASYSCTL_CMPLPMUX_SELECT_11E"></span><span id="_CPPv2N22ASysCtl_CMPLPMuxSelect26ASYSCTL_CMPLPMUX_SELECT_11E"></span><span class="target" id="group__asysctl__api_1gga16525824b37b4bd85ea3eadef0cb365fa932057491d56ef28f1b59cd147f22a6b"></span><em class="property">enumerator </em><code class="sig-name descname">ASYSCTL_CMPLPMUX_SELECT_11</code> = 0U + 32U<a class="headerlink" href="#_CPPv4N22ASysCtl_CMPLPMuxSelect26ASYSCTL_CMPLPMUX_SELECT_11E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CMPLPMUX select 11. </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv431ASysCtl_enableTemperatureSensorv">
+<span id="_CPPv331ASysCtl_enableTemperatureSensorv"></span><span id="_CPPv231ASysCtl_enableTemperatureSensorv"></span><span id="ASysCtl_enableTemperatureSensor__void"></span><span class="target" id="group__asysctl__api_1ga92f70bd2b29e31f324d24e2b53a22924"></span>void <code class="sig-name descname">ASysCtl_enableTemperatureSensor</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431ASysCtl_enableTemperatureSensorv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable temperature sensor.</p>
+<p>This function enables the temperature sensor output to the ADC.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv432ASysCtl_disableTemperatureSensorv">
+<span id="_CPPv332ASysCtl_disableTemperatureSensorv"></span><span id="_CPPv232ASysCtl_disableTemperatureSensorv"></span><span id="ASysCtl_disableTemperatureSensor__void"></span><span class="target" id="group__asysctl__api_1gaf050ff326dc1c7de57ec07b6262fa9c0"></span>void <code class="sig-name descname">ASysCtl_disableTemperatureSensor</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv432ASysCtl_disableTemperatureSensorv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable temperature sensor.</p>
+<p>This function disables the temperature sensor output to the ADC.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv434ASysCtl_setAnalogReferenceInternal8uint16_t">
+<span id="_CPPv334ASysCtl_setAnalogReferenceInternal8uint16_t"></span><span id="_CPPv234ASysCtl_setAnalogReferenceInternal8uint16_t"></span><span id="ASysCtl_setAnalogReferenceInternal__uint16_t"></span><span class="target" id="group__asysctl__api_1gae2b2325e2c0d5886a6bf0fab1d261f5f"></span>void <code class="sig-name descname">ASysCtl_setAnalogReferenceInternal</code><span class="sig-paren">(</span>uint16_t <em>reference</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv434ASysCtl_setAnalogReferenceInternal8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set the analog voltage reference selection to internal.</p>
+<p><p>The parameter </p>
+<em>reference</em> can be a combination of the following values:<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">reference</span></code>: is the analog reference.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p><strong>ASYSCTL_VREFHIA</strong> </p></li>
+<li><p><strong>ASYSCTL_VREFHIB</strong> </p></li>
+<li><p><strong>ASYSCTL_VREFHIC</strong> </p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv434ASysCtl_setAnalogReferenceExternal8uint16_t">
+<span id="_CPPv334ASysCtl_setAnalogReferenceExternal8uint16_t"></span><span id="_CPPv234ASysCtl_setAnalogReferenceExternal8uint16_t"></span><span id="ASysCtl_setAnalogReferenceExternal__uint16_t"></span><span class="target" id="group__asysctl__api_1gaa1652c7ff1b004fff777ef83ded96b57"></span>void <code class="sig-name descname">ASysCtl_setAnalogReferenceExternal</code><span class="sig-paren">(</span>uint16_t <em>reference</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv434ASysCtl_setAnalogReferenceExternal8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set the analog voltage reference selection to external.</p>
+<p><p>The parameter </p>
+<em>reference</em> can be a combination of the following values:<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">reference</span></code>: is the analog reference.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p><strong>ASYSCTL_VREFHIA</strong> </p></li>
+<li><p><strong>ASYSCTL_VREFHIB</strong> </p></li>
+<li><p><strong>ASYSCTL_VREFHIC</strong> </p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429ASysCtl_setAnalogReference2P58uint16_t">
+<span id="_CPPv329ASysCtl_setAnalogReference2P58uint16_t"></span><span id="_CPPv229ASysCtl_setAnalogReference2P58uint16_t"></span><span id="ASysCtl_setAnalogReference2P5__uint16_t"></span><span class="target" id="group__asysctl__api_1ga79bf46ed47ada6accdc48bb6888fbc32"></span>void <code class="sig-name descname">ASysCtl_setAnalogReference2P5</code><span class="sig-paren">(</span>uint16_t <em>reference</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429ASysCtl_setAnalogReference2P58uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set the internal analog voltage reference selection to 2.5V.</p>
+<p><p>The parameter </p>
+<em>reference</em> can be a combination of the following values:<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">reference</span></code>: is the analog reference.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p><strong>ASYSCTL_VREFHIA</strong> </p></li>
+<li><p><strong>ASYSCTL_VREFHIB</strong> </p></li>
+<li><p><strong>ASYSCTL_VREFHIC</strong> </p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv430ASysCtl_setAnalogReference1P658uint16_t">
+<span id="_CPPv330ASysCtl_setAnalogReference1P658uint16_t"></span><span id="_CPPv230ASysCtl_setAnalogReference1P658uint16_t"></span><span id="ASysCtl_setAnalogReference1P65__uint16_t"></span><span class="target" id="group__asysctl__api_1gaefab98468690a4e6af84ca05b350ad5a"></span>void <code class="sig-name descname">ASysCtl_setAnalogReference1P65</code><span class="sig-paren">(</span>uint16_t <em>reference</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430ASysCtl_setAnalogReference1P658uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set the internal analog voltage reference selection to 1.65V.</p>
+<p><p>The parameter </p>
+<em>reference</em> can be a combination of the following values:<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">reference</span></code>: is the analog reference.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p><strong>ASYSCTL_VREFHIA</strong> </p></li>
+<li><p><strong>ASYSCTL_VREFHIB</strong> </p></li>
+<li><p><strong>ASYSCTL_VREFHIC</strong> </p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422ASysCtl_selectCMPHNMux8uint16_t">
+<span id="_CPPv322ASysCtl_selectCMPHNMux8uint16_t"></span><span id="_CPPv222ASysCtl_selectCMPHNMux8uint16_t"></span><span id="ASysCtl_selectCMPHNMux__uint16_t"></span><span class="target" id="group__asysctl__api_1ga77d8f427f280db5c300664d859d73356"></span>void <code class="sig-name descname">ASysCtl_selectCMPHNMux</code><span class="sig-paren">(</span>uint16_t <em>select</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422ASysCtl_selectCMPHNMux8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select the value for CMPHNMXSEL.</p>
+<p><p>The parameter </p>
+<em>select</em> can be a bitwise OR of the below values:<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">select</span></code>: is a combination of CMPHNMXSEL values.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p><strong>ASYSCTL_CMPHNMUX_SELECT_1</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPHNMUX_SELECT_2</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPHNMUX_SELECT_3</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPHNMUX_SELECT_4</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPHNMUX_SELECT_5</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPHNMUX_SELECT_6</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPHNMUX_SELECT_7</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPHNMUX_SELECT_8</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPHNMUX_SELECT_9</strong> </p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427ASysCtl_selectCMPHNMuxValue8uint16_t8uint16_t">
+<span id="_CPPv327ASysCtl_selectCMPHNMuxValue8uint16_t8uint16_t"></span><span id="_CPPv227ASysCtl_selectCMPHNMuxValue8uint16_t8uint16_t"></span><span id="ASysCtl_selectCMPHNMuxValue__uint16_t.uint16_t"></span><span class="target" id="group__asysctl__api_1ga944f02a6cff3fff1653a0ff65c6b7b36"></span>void <code class="sig-name descname">ASysCtl_selectCMPHNMuxValue</code><span class="sig-paren">(</span>uint16_t <em>select</em>, uint16_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427ASysCtl_selectCMPHNMuxValue8uint16_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select the value for individual CMPxHNMXSEL.</p>
+<p><p>The parameter </p>
+<em>select</em> can be one of the below values:<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">select</span></code>: is the CMPxHNMXSEL to be set. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: is 0 or 1.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p><strong>ASYSCTL_CMPHNMUX_SELECT_1</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPHNMUX_SELECT_2</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPHNMUX_SELECT_3</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPHNMUX_SELECT_4</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPHNMUX_SELECT_5</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPHNMUX_SELECT_6</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPHNMUX_SELECT_7</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPHNMUX_SELECT_8</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPHNMUX_SELECT_9</strong> </p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422ASysCtl_selectCMPLNMux8uint16_t">
+<span id="_CPPv322ASysCtl_selectCMPLNMux8uint16_t"></span><span id="_CPPv222ASysCtl_selectCMPLNMux8uint16_t"></span><span id="ASysCtl_selectCMPLNMux__uint16_t"></span><span class="target" id="group__asysctl__api_1ga0026b17f22cabb6bb70f4b6764171496"></span>void <code class="sig-name descname">ASysCtl_selectCMPLNMux</code><span class="sig-paren">(</span>uint16_t <em>select</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422ASysCtl_selectCMPLNMux8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select the value for individual CMPxLNMXSEL.</p>
+<p><p>The parameter </p>
+<em>select</em> can be the bitwise OR of the below values:<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">select</span></code>: is a combination of CMPLNMXSEL values.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p><strong>ASYSCTL_CMPLNMUX_SELECT_1</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPLNMUX_SELECT_2</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPLNMUX_SELECT_3</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPLNMUX_SELECT_4</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPLNMUX_SELECT_5</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPLNMUX_SELECT_6</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPLNMUX_SELECT_7</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPLNMUX_SELECT_8</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPLNMUX_SELECT_9</strong> </p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427ASysCtl_selectCMPLNMuxValue8uint16_t8uint16_t">
+<span id="_CPPv327ASysCtl_selectCMPLNMuxValue8uint16_t8uint16_t"></span><span id="_CPPv227ASysCtl_selectCMPLNMuxValue8uint16_t8uint16_t"></span><span id="ASysCtl_selectCMPLNMuxValue__uint16_t.uint16_t"></span><span class="target" id="group__asysctl__api_1gaa3ec63c895b201006ce8b943c40dec53"></span>void <code class="sig-name descname">ASysCtl_selectCMPLNMuxValue</code><span class="sig-paren">(</span>uint16_t <em>select</em>, uint16_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427ASysCtl_selectCMPLNMuxValue8uint16_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select the value for CMPLNMXSEL.</p>
+<p><p>The parameter </p>
+<em>select</em> can be one of the below values:<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">select</span></code>: is the CMPxHNMXSEL to be set. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: is 0 or 1.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p><strong>ASYSCTL_CMPLNMUX_SELECT_1</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPLNMUX_SELECT_2</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPLNMUX_SELECT_3</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPLNMUX_SELECT_4</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPLNMUX_SELECT_5</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPLNMUX_SELECT_6</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPLNMUX_SELECT_7</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPLNMUX_SELECT_8</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPLNMUX_SELECT_9</strong> </p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422ASysCtl_selectCMPHPMux22ASysCtl_CMPHPMuxSelect8uint32_t">
+<span id="_CPPv322ASysCtl_selectCMPHPMux22ASysCtl_CMPHPMuxSelect8uint32_t"></span><span id="_CPPv222ASysCtl_selectCMPHPMux22ASysCtl_CMPHPMuxSelect8uint32_t"></span><span id="ASysCtl_selectCMPHPMux__ASysCtl_CMPHPMuxSelect.uint32_t"></span><span class="target" id="group__asysctl__api_1ga00f788ee7ed3aacd9bd9e9ed44a1cb5a"></span>void <code class="sig-name descname">ASysCtl_selectCMPHPMux</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv422ASysCtl_CMPHPMuxSelect" title="ASysCtl_CMPHPMuxSelect">ASysCtl_CMPHPMuxSelect</a> <em>select</em>, uint32_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422ASysCtl_selectCMPHPMux22ASysCtl_CMPHPMuxSelect8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select the value for CMPHPMXSEL.</p>
+<p><p>This function is used to write a value to one mux select at a time. The parameter </p>
+<em>select</em> can be one of the following values:<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">select</span></code>: is of type ASysCtl_CMPHPMuxSelect. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: is 0, 1, 2, 3, or 4.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p><strong>ASYSCTL_CMPHPMUX_SELECT_1</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPHPMUX_SELECT_2</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPHPMUX_SELECT_3</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPHPMUX_SELECT_4</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPHPMUX_SELECT_5</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPHPMUX_SELECT_6</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPHPMUX_SELECT_7</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPHPMUX_SELECT_8</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPHPMUX_SELECT_9</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPHPMUX_SELECT_10</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPHPMUX_SELECT_11</strong> </p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422ASysCtl_selectCMPLPMux22ASysCtl_CMPLPMuxSelect8uint32_t">
+<span id="_CPPv322ASysCtl_selectCMPLPMux22ASysCtl_CMPLPMuxSelect8uint32_t"></span><span id="_CPPv222ASysCtl_selectCMPLPMux22ASysCtl_CMPLPMuxSelect8uint32_t"></span><span id="ASysCtl_selectCMPLPMux__ASysCtl_CMPLPMuxSelect.uint32_t"></span><span class="target" id="group__asysctl__api_1ga203e690fc3f07ce2ea737ae3ce4eacb8"></span>void <code class="sig-name descname">ASysCtl_selectCMPLPMux</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv422ASysCtl_CMPLPMuxSelect" title="ASysCtl_CMPLPMuxSelect">ASysCtl_CMPLPMuxSelect</a> <em>select</em>, uint32_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422ASysCtl_selectCMPLPMux22ASysCtl_CMPLPMuxSelect8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select the value for CMPLPMXSEL.</p>
+<p><p>This function is used to write a value to one mux select at a time. The parameter </p>
+<em>select</em> can be one of the following values:<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">select</span></code>: is of type ASysCtl_CMPLPMuxSelect. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">value</span></code>: is 0, 1, 2, 3, or 4.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p><strong>ASYSCTL_CMPLPMUX_SELECT_1</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPLPMUX_SELECT_2</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPLPMUX_SELECT_3</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPLPMUX_SELECT_4</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPLPMUX_SELECT_5</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPLPMUX_SELECT_6</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPLPMUX_SELECT_7</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPLPMUX_SELECT_8</strong> </p></li>
+<li><p><strong>ASYSCTL_CMPLPMUX_SELECT_9</strong> </p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429ASysCtl_lockTemperatureSensorv">
+<span id="_CPPv329ASysCtl_lockTemperatureSensorv"></span><span id="_CPPv229ASysCtl_lockTemperatureSensorv"></span><span id="ASysCtl_lockTemperatureSensor__void"></span><span class="target" id="group__asysctl__api_1ga8dbb23abf5123ba2a0e9bfea18c4d20c"></span>void <code class="sig-name descname">ASysCtl_lockTemperatureSensor</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429ASysCtl_lockTemperatureSensorv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Locks the temperature sensor control register.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418ASysCtl_lockANAREFv">
+<span id="_CPPv318ASysCtl_lockANAREFv"></span><span id="_CPPv218ASysCtl_lockANAREFv"></span><span id="ASysCtl_lockANAREF__void"></span><span class="target" id="group__asysctl__api_1gac32a8fdd7cd96ca8922ff015dd8d2aee"></span>void <code class="sig-name descname">ASysCtl_lockANAREF</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418ASysCtl_lockANAREFv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Locks the analog reference control register.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416ASysCtl_lockVMONv">
+<span id="_CPPv316ASysCtl_lockVMONv"></span><span id="_CPPv216ASysCtl_lockVMONv"></span><span id="ASysCtl_lockVMON__void"></span><span class="target" id="group__asysctl__api_1ga2352fb42ecc446474ca33ec0e5fdf7d7"></span>void <code class="sig-name descname">ASysCtl_lockVMON</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416ASysCtl_lockVMONv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Locks the voltage monitor control register.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420ASysCtl_lockCMPHPMuxv">
+<span id="_CPPv320ASysCtl_lockCMPHPMuxv"></span><span id="_CPPv220ASysCtl_lockCMPHPMuxv"></span><span id="ASysCtl_lockCMPHPMux__void"></span><span class="target" id="group__asysctl__api_1gac730e4944f45c6865e33977830b457d7"></span>void <code class="sig-name descname">ASysCtl_lockCMPHPMux</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420ASysCtl_lockCMPHPMuxv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Locks the CMPHPMXSEL control register.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420ASysCtl_lockCMPLPMuxv">
+<span id="_CPPv320ASysCtl_lockCMPLPMuxv"></span><span id="_CPPv220ASysCtl_lockCMPLPMuxv"></span><span id="ASysCtl_lockCMPLPMux__void"></span><span class="target" id="group__asysctl__api_1ga05adef817a1bd0c6dde99e3c85cec279"></span>void <code class="sig-name descname">ASysCtl_lockCMPLPMux</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420ASysCtl_lockCMPLPMuxv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Locks the CMPLPMXSEL control register.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420ASysCtl_lockCMPHNMuxv">
+<span id="_CPPv320ASysCtl_lockCMPHNMuxv"></span><span id="_CPPv220ASysCtl_lockCMPHNMuxv"></span><span id="ASysCtl_lockCMPHNMux__void"></span><span class="target" id="group__asysctl__api_1gad95ddae2b2afd6792e675538e5c4d39a"></span>void <code class="sig-name descname">ASysCtl_lockCMPHNMux</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420ASysCtl_lockCMPHNMuxv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Locks the CMPHNMXSEL control register.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420ASysCtl_lockCMPLNMuxv">
+<span id="_CPPv320ASysCtl_lockCMPLNMuxv"></span><span id="_CPPv220ASysCtl_lockCMPLNMuxv"></span><span id="ASysCtl_lockCMPLNMux__void"></span><span class="target" id="group__asysctl__api_1gaee4dd5dcb08401f50683296a6f00d2f4"></span>void <code class="sig-name descname">ASysCtl_lockCMPLNMux</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420ASysCtl_lockCMPLNMuxv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Locks the CMPLNMXSEL control register.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416ASysCtl_lockVREGv">
+<span id="_CPPv316ASysCtl_lockVREGv"></span><span id="_CPPv216ASysCtl_lockVREGv"></span><span id="ASysCtl_lockVREG__void"></span><span class="target" id="group__asysctl__api_1ga3c525d5f7619b736ebf31ad126648dc4"></span>void <code class="sig-name descname">ASysCtl_lockVREG</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416ASysCtl_lockVREGv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Locks the VREG control register.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420ASysCtl_lockCMPSSCTLv">
+<span id="_CPPv320ASysCtl_lockCMPSSCTLv"></span><span id="_CPPv220ASysCtl_lockCMPSSCTLv"></span><span id="ASysCtl_lockCMPSSCTL__void"></span><span class="target" id="group__asysctl__api_1ga54c2f6cd978a3179f3d89b1a70071eca"></span>void <code class="sig-name descname">ASysCtl_lockCMPSSCTL</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420ASysCtl_lockCMPSSCTLv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Locks the CMPSSCTL register.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428ASysCtl_enableADCDACLoopback8uint32_t">
+<span id="_CPPv328ASysCtl_enableADCDACLoopback8uint32_t"></span><span id="_CPPv228ASysCtl_enableADCDACLoopback8uint32_t"></span><span id="ASysCtl_enableADCDACLoopback__uint32_t"></span><span class="target" id="group__asysctl__api_1ga2ecd0767c338c6177cce4fc6c6727392"></span>void <code class="sig-name descname">ASysCtl_enableADCDACLoopback</code><span class="sig-paren">(</span>uint32_t <em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428ASysCtl_enableADCDACLoopback8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable loopback from DAC to ADCs.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code>: can be bitwise OR of the following values:<ul>
+<li><p>ASYSCTL_ADCDACLOOPBACK_ENLB2ADCA</p></li>
+<li><p>ASYSCTL_ADCDACLOOPBACK_ENLB2ADCB</p></li>
+<li><p>ASYSCTL_ADCDACLOOPBACK_ENLB2ADCC</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429ASysCtl_disableADCDACLoopback8uint32_t">
+<span id="_CPPv329ASysCtl_disableADCDACLoopback8uint32_t"></span><span id="_CPPv229ASysCtl_disableADCDACLoopback8uint32_t"></span><span id="ASysCtl_disableADCDACLoopback__uint32_t"></span><span class="target" id="group__asysctl__api_1gab850f059b68b7b347cefab0f7ab07121"></span>void <code class="sig-name descname">ASysCtl_disableADCDACLoopback</code><span class="sig-paren">(</span>uint32_t <em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429ASysCtl_disableADCDACLoopback8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable loopback from DAC to ADCs.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code>: can be bitwise OR of the following values:<ul>
+<li><p>ASYSCTL_ADCDACLOOPBACK_ENLB2ADCA</p></li>
+<li><p>ASYSCTL_ADCDACLOOPBACK_ENLB2ADCB</p></li>
+<li><p>ASYSCTL_ADCDACLOOPBACK_ENLB2ADCC</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427ASysCtl_setAGPIOFilterRight8uint32_t">
+<span id="_CPPv327ASysCtl_setAGPIOFilterRight8uint32_t"></span><span id="_CPPv227ASysCtl_setAGPIOFilterRight8uint32_t"></span><span id="ASysCtl_setAGPIOFilterRight__uint32_t"></span><span class="target" id="group__asysctl__api_1ga95b2998df70ae55d43d19d574984682f"></span>void <code class="sig-name descname">ASysCtl_setAGPIOFilterRight</code><span class="sig-paren">(</span>uint32_t <em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427ASysCtl_setAGPIOFilterRight8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configure AGPIO Filter control for right side pins.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code>: can be bitwise OR of the following values:<ul>
+<li><p>ASYSCTL_AGPIOFILTER_BYPASS - Filter bypass configuration(min ACQPS = 90ns)</p></li>
+<li><p>ASYSCTL_AGPIOFILTER_333OHM - 333Ohm filter setting (min ACQPS = 125ns)</p></li>
+<li><p>ASYSCTL_AGPIOFILTER_500OHM - 500 Ohm filter setting (min ACQPS = 160ns)</p></li>
+<li><p>ASYSCTL_AGPIOFILTER_1000OHM - 1KOhm filter setting (min ACQPS = 230ns)</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428ASysCtl_setAGPIOFilterBottom8uint32_t">
+<span id="_CPPv328ASysCtl_setAGPIOFilterBottom8uint32_t"></span><span id="_CPPv228ASysCtl_setAGPIOFilterBottom8uint32_t"></span><span id="ASysCtl_setAGPIOFilterBottom__uint32_t"></span><span class="target" id="group__asysctl__api_1ga4a59f814cd495162a4a4cd199a88c9c0"></span>void <code class="sig-name descname">ASysCtl_setAGPIOFilterBottom</code><span class="sig-paren">(</span>uint32_t <em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428ASysCtl_setAGPIOFilterBottom8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configure AGPIO Filter control for bottom side pins.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code>: can be bitwise OR of the following values:<ul>
+<li><p>ASYSCTL_AGPIOFILTER_BYPASS - Filter bypass configuration(min ACQPS = 90ns)</p></li>
+<li><p>ASYSCTL_AGPIOFILTER_333OHM - 333Ohm filter setting (min ACQPS = 125ns)</p></li>
+<li><p>ASYSCTL_AGPIOFILTER_500OHM - 500 Ohm filter setting (min ACQPS = 160ns)</p></li>
+<li><p>ASYSCTL_AGPIOFILTER_1000OHM - 1KOhm filter setting (min ACQPS = 230ns)</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429ASysCtl_enableGPIOInputBuffer8uint32_t">
+<span id="_CPPv329ASysCtl_enableGPIOInputBuffer8uint32_t"></span><span id="_CPPv229ASysCtl_enableGPIOInputBuffer8uint32_t"></span><span id="ASysCtl_enableGPIOInputBuffer__uint32_t"></span><span class="target" id="group__asysctl__api_1ga5a0e882cddbe0f8ee036535fface0f70"></span>void <code class="sig-name descname">ASysCtl_enableGPIOInputBuffer</code><span class="sig-paren">(</span>uint32_t <em>pin</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429ASysCtl_enableGPIOInputBuffer8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable GPIO Input buffer (INENA control).</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pin</span></code>: can be 0, 23, 25, 31, 46 or 103</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv430ASysCtl_disableGPIOInputBuffer8uint32_t">
+<span id="_CPPv330ASysCtl_disableGPIOInputBuffer8uint32_t"></span><span id="_CPPv230ASysCtl_disableGPIOInputBuffer8uint32_t"></span><span id="ASysCtl_disableGPIOInputBuffer__uint32_t"></span><span class="target" id="group__asysctl__api_1ga355f03bd62f56ec5eae40e8f6cbfd92e"></span>void <code class="sig-name descname">ASysCtl_disableGPIOInputBuffer</code><span class="sig-paren">(</span>uint32_t <em>pin</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430ASysCtl_disableGPIOInputBuffer8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable GPIO Input buffer (INENA control).</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pin</span></code>: can be 0, 23, 25, 31, 46 or 103</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426AsysCtl_configADCGlobalSOC8uint32_t">
+<span id="_CPPv326AsysCtl_configADCGlobalSOC8uint32_t"></span><span id="_CPPv226AsysCtl_configADCGlobalSOC8uint32_t"></span><span id="AsysCtl_configADCGlobalSOC__uint32_t"></span><span class="target" id="group__asysctl__api_1gaa48ce8c467cdbf7194737a469fa3b9ea"></span>void <code class="sig-name descname">AsysCtl_configADCGlobalSOC</code><span class="sig-paren">(</span>uint32_t <em>adcSelect</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426AsysCtl_configADCGlobalSOC8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configure the ADCs for Global SW Trigger</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">adcSelect</span></code>: can be bitwsie OR of the following :</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425AsysCtl_forceADCGlobalSOC8uint32_t">
+<span id="_CPPv325AsysCtl_forceADCGlobalSOC8uint32_t"></span><span id="_CPPv225AsysCtl_forceADCGlobalSOC8uint32_t"></span><span id="AsysCtl_forceADCGlobalSOC__uint32_t"></span><span class="target" id="group__asysctl__api_1gabaf7b111028617d4a04daa29a6ae2017"></span>void <code class="sig-name descname">AsysCtl_forceADCGlobalSOC</code><span class="sig-paren">(</span>uint32_t <em>socSelect</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425AsysCtl_forceADCGlobalSOC8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Generate Global SOC force for specified SOCs</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">socSelect</span></code>: can be bitwsie OR of the following :</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>The code for this module is contained in driverlib/asysctl.c, with driverlib/asysctl.h containing the API declarations for use by applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="adc.html" class="btn btn-neutral float-left" title="ADC Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="bgcrc.html" class="btn btn-neutral float-right" title="BGCRC Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+      <span class="lastupdated">Last updated on Jul 01, 2023.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v5.00.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

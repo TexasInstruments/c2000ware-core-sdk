@@ -1,5 +1,6 @@
 let Common   = system.getScript("/driverlib/Common.js");
 let Pinmux   = system.getScript("/driverlib/pinmux.js");
+let CLBSignals   = system.getScript("/driverlib/clb/clbSignals.js");
 
 let device_driverlib_peripheral = 
     system.getScript("/driverlib/device_driverlib_peripherals/" + 
@@ -8,53 +9,72 @@ let device_driverlib_peripheral =
 /* Intro splash on GUI */
 let longDescription = `The Configurable Logic Block (CLB) is a collection of configurable blocks that may be inter-connected using software to implement custom digital logic functions.`
 
+let longDescriptionCLBInput = `
+The input type for the CLB can be from the local mux, the global mux, or the GPREG. For CLB type 1 and
+type 2 (on devices F2807x, F2837xS, F2837xD, and F28004x), the pipelining option which adds an additional 
+flop for synchronized inputs is not included.
 
+Note: The synchronizer will add a delay of 2-3 cycles to the input path (the exact value of the 
+delay is 2 to 3 cycles, it is not predictable which delay value it will be).
+
+![Image Missing](../../driverlib/.meta/clb/references/CLB_Input.png)
+`
+
+let longDescriptionSPI = `
+Export CLB data through SPI buffer. Data is HLC R0 regiter
+
+![Image Missing](../../driverlib/.meta/clb/references/SPI_Buffer.png)
+`
 
 var MAX_OUTPUTS = 16;
-if (Common.CLB_isType1_Type2())
+if (Common.CLB_isType1())
+{
+    MAX_OUTPUTS = 24;
+}
+else if (Common.CLB_isType2())
 {
     MAX_OUTPUTS = 32;
 }
 
 var staticSwitchOptions = [
-    { name: 0	, displayName: '0'                      },
-    { name: 8	, displayName: '1'                      },
-    { name: 24	, displayName: 'BOUNDARY.in0'           },
-    { name: 25	, displayName: 'BOUNDARY.in1'           },
-    { name: 26	, displayName: 'BOUNDARY.in2'           },
-    { name: 27	, displayName: 'BOUNDARY.in3'           },
-    { name: 28	, displayName: 'BOUNDARY.in4'           },
-    { name: 29	, displayName: 'BOUNDARY.in5'           },
-    { name: 30	, displayName: 'BOUNDARY.in6'           },
-    { name: 31	, displayName: 'BOUNDARY.in7'           },
-    { name: 7	, displayName: 'LUT_0.OUT'              },
-    { name: 15	, displayName: 'LUT_1.OUT'              },
-    { name: 23	, displayName: 'LUT_2.OUT'              },
-    { name: 6	, displayName: 'FSM_0.OUT'              },
-    { name: 4	, displayName: 'FSM_0.S0'               },
-    { name: 5	, displayName: 'FSM_0.S1'               },
-    { name: 14	, displayName: 'FSM_1.OUT'              },
-    { name: 12	, displayName: 'FSM_1.S0'               },
-    { name: 13	, displayName: 'FSM_1.S1'               },
-    { name: 22	, displayName: 'FSM_2.OUT'              },
-    { name: 20	, displayName: 'FSM_2.S0'               },
-    { name: 21	, displayName: 'FSM_2.S1'               },
-    { name: 2	, displayName: 'COUNTER_0.count_zero'   },
-    { name: 3	, displayName: 'COUNTER_0.count_match1' },
-    { name: 1	, displayName: 'COUNTER_0.count_match2' },
-    { name: 10	, displayName: 'COUNTER_1.count_zero'   },
-    { name: 11	, displayName: 'COUNTER_1.count_match1' },
-    { name: 9	, displayName: 'COUNTER_1.count_match2' },
-    { name: 18	, displayName: 'COUNTER_2.count_zero'   },
-    { name: 19	, displayName: 'COUNTER_2.count_match1' },
-    { name: 1	, displayName: 'COUNTER_2.count_match2' },
+    { name: 0	, displayName: 'Zero'                   },
+    { name: 8	, displayName: 'One'                    },
+    { name: 24	, displayName: 'Boundary input 0'       },
+    { name: 25	, displayName: 'Boundary input 1'       },
+    { name: 26	, displayName: 'Boundary input 2'       },
+    { name: 27	, displayName: 'Boundary input 3'       },
+    { name: 28	, displayName: 'Boundary input 4'       },
+    { name: 29	, displayName: 'Boundary input 5'       },
+    { name: 30	, displayName: 'Boundary input 6'       },
+    { name: 31	, displayName: 'Boundary input 7'       },
+    { name: 7	, displayName: 'LUT 0 Output'           },
+    { name: 15	, displayName: 'LUT 1 Output'           },
+    { name: 23	, displayName: 'LUT 2 Output'           },
+    { name: 6	, displayName: 'FSM 0 Output'           },
+    { name: 4	, displayName: 'FSM 0 State 0 Value'    },
+    { name: 5	, displayName: 'FSM 0 State 1 Value'    },
+    { name: 14	, displayName: 'FSM 1 Output'           },
+    { name: 12	, displayName: 'FSM 1 State 0 Value'    },
+    { name: 13	, displayName: 'FSM 1 State 1 Value'    },
+    { name: 22	, displayName: 'FSM 2 Output'           },
+    { name: 20	, displayName: 'FSM 2 State 0 Value'    },
+    { name: 21	, displayName: 'FSM 2 State 1 Value'    },
+    { name: 2	, displayName: 'Counter 0 Equals Zero'   },
+    { name: 3	, displayName: 'Counter 0 Equals Match 1' },
+    { name: 1	, displayName: 'Counter 0 Equals Match 2' },
+    { name: 10	, displayName: 'Counter 1 Equals Zero'   },
+    { name: 11	, displayName: 'Counter 1 Equals Match 1' },
+    { name: 9	, displayName: 'Counter 1 Equals Match 2' },
+    { name: 18	, displayName: 'COUNTER 2 Equals Zero'   },
+    { name: 19	, displayName: 'Counter 2 Equals Match 1' },
+    { name: 1	, displayName: 'Counter 2 Equals Match 2' },
 ];
 
 var totatCLBOutputs = [];
 for (var i = 0; i < MAX_OUTPUTS; i++)
 {
     totatCLBOutputs.push({
-        name: "CLB_OUT" + i.toString(), displayName: "Output " + i.toString()
+        name: "CLB_OUT" + i.toString(), displayName: "Output " + i.toString(),
     })
 }
 
@@ -88,6 +108,18 @@ else if (Common.getDeviceName().includes("F2838x"))
         { name: "CLB8_BASE", displayName: "CLB8"}
     ]
     numberOfCLBs = 8;
+}
+else if (Common.getDeviceName().includes("F28P65x"))
+{
+    CLB_INSTANCE = [
+        { name: "CLB1_BASE", displayName: "CLB1"},
+        { name: "CLB2_BASE", displayName: "CLB2"},
+        { name: "CLB3_BASE", displayName: "CLB3"},
+        { name: "CLB4_BASE", displayName: "CLB4"},
+        { name: "CLB5_BASE", displayName: "CLB5"},
+        { name: "CLB6_BASE", displayName: "CLB6"}
+    ]
+    numberOfCLBs = 6;
 }
 
 let INPUT_TYPES = [
@@ -131,18 +163,21 @@ function onChangeInputType(inst, ui)
                 ui["synchronize" + clbInputName].hidden = true;
                 ui["localConfig" + clbInputName].hidden = true;
                 ui["globalConfig" + clbInputName].hidden = true;
+                ui["gpStartValueConfig" + clbInputName].hidden = false;
             }
             else if (inst["inputType" + clbInputName] == "GLOBAL")
             {
                 ui["synchronize" + clbInputName].hidden = false;
                 ui["localConfig" + clbInputName].hidden = true;
                 ui["globalConfig" + clbInputName].hidden = false;
+                ui["gpStartValueConfig" + clbInputName].hidden = true;
             }
             else if (inst["inputType" + clbInputName] == "LOCAL")
             {
                 ui["synchronize" + clbInputName].hidden = false;
                 ui["localConfig" + clbInputName].hidden = false;
                 ui["globalConfig" + clbInputName].hidden = true;
+                ui["gpStartValueConfig" + clbInputName].hidden = true;
             }
         }
         else
@@ -150,11 +185,11 @@ function onChangeInputType(inst, ui)
             ui["synchronize" + clbInputName].hidden = true;
             ui["localConfig" + clbInputName].hidden = true;
             ui["globalConfig" + clbInputName].hidden = true;
+            ui["gpStartValueConfig" + clbInputName].hidden = true;
         }
 
         ui["inputType" + clbInputName].hidden = !inst.inputsUsed.includes(clbInputName);
         ui["filterConfig" + clbInputName].hidden = !inst.inputsUsed.includes(clbInputName);
-        ui["gpStartValueConfig" + clbInputName].hidden = !inst.inputsUsed.includes(clbInputName);
         if (Common.CLB_isType2()){
             ui["inputPipelineConfig" + clbInputName].hidden = !inst.inputsUsed.includes(clbInputName);
         }
@@ -264,7 +299,7 @@ if (Common.CLB_isType2())
         name: "GROUP_SPIDATAEXPORT",
         displayName: "Data Exporting Through SPI Buffer",
         description: "",
-        longDescription: "Export CLB data through SPI buffer. Data is HLC R0 regiter",
+        longDescription: longDescriptionSPI,
         config: [
             {
                 name: "spiBufferAccess",
@@ -298,6 +333,7 @@ config = config.concat([
         name: "inputsUsed",
         displayName : "Inputs Used",
         description : 'Used inputs for the CLB',
+        longDescription : longDescriptionCLBInput,
         hidden      : false,
         default     : [],
         minSelections : 0,
@@ -331,7 +367,7 @@ for (var clb_input_i in device_driverlib_peripheral.CLB_Inputs)
 
     var localConfig = {
         name: "localConfig" + clbInputName,
-        displayName : "Local Mux Input " + clbInputDisplayName,
+        displayName : "Local Mux " + clbInputDisplayName,
         description : 'Local Mux input for CLB',
         hidden      : true,
         default     : device_driverlib_peripheral.CLB_LocalInputMux[0].name,
@@ -340,7 +376,7 @@ for (var clb_input_i in device_driverlib_peripheral.CLB_Inputs)
     
     var globalConfig = {
         name: "globalConfig" + clbInputName,
-        displayName : "Global Mux Input " + clbInputDisplayName,
+        displayName : "Global Mux " + clbInputDisplayName,
         description : 'Global Mux input for CLB',
         hidden      : true,
         default     : device_driverlib_peripheral.CLB_GlobalInputMux[0].name,
@@ -445,7 +481,6 @@ function findDuplicates(arrayToCheck)
 }
 
 function onValidate(inst, validation) {
-
     var usedCLBInsts = [];
     for (var instance_index in inst.$module.$instances)
     {
@@ -507,9 +542,11 @@ function onValidate(inst, validation) {
     var F28002x = Common.getDeviceName().includes("F28002x");
 
     // Check global and local sources
+    var i = 0;
     for (var clb_input_i in device_driverlib_peripheral.CLB_Inputs)
     {
         var clbInputName = device_driverlib_peripheral.CLB_Inputs[clb_input_i].name
+        var clbSyncCheck = CLBSignals.CLBInputSignals[Common.getDeviceName()]
 
         if (inst.inputsUsed.includes(clbInputName))
         {
@@ -521,12 +558,40 @@ function onValidate(inst, validation) {
                 global_or_local = true;
                 config_pre = "globalConfig";
                 enum_name = "CLB_GlobalInputMux"
+                clbSyncCheck = clbSyncCheck["GLOBAL_MUX"][inst["globalConfigCLB_IN" + i]];
             }
             else if (inst["inputType" + clbInputName] == "LOCAL")
             {
                 global_or_local = true; 
                 config_pre = "localConfig";
                 enum_name = "CLB_LocalInputMux"
+                clbSyncCheck = clbSyncCheck["LOCAL_MUX"][inst["localConfigCLB_IN" + i]];
+            }
+
+            //clbSyncCheck (from clbSignals.js) states whether synchronization is required
+            if((clbSyncCheck == true) && (inst["synchronizeCLB_IN" + i] == false))  //When synchronization is required but not enabled, throw a warning
+            {
+                validation.logWarning(
+                    "Synchronization is required for this signal to prevent metastability; this metastability can cause errors dependent on voltage, temperature, and wafer fab process (adds 2-3 cycle delay to input)", 
+                    inst, "synchronize" + clbInputName);
+            }
+            else if((clbSyncCheck == false) && (inst["inputPipelineConfigCLB_IN" + i] == false))  //When input pipeline is required but not enabled, throw a warning
+            {
+                validation.logWarning(
+                    "Pipelining is required for synchronous signals (adds 1 cycle delay to input)", 
+                    inst, "inputPipelineConfig" + clbInputName);
+            }
+            else if((config_pre != "") && (inst["synchronizeCLB_IN" + i] == false) && (inst["inputPipelineConfigCLB_IN" + i] == false))
+            {
+                validation.logWarning(
+                    "Having both synchronization and pipeline disabled results in a purely asynchronous signal", 
+                    inst, config_pre + clbInputName);
+            }
+            else if((config_pre != "") && (inst["synchronizeCLB_IN" + i] == true) && (inst["inputPipelineConfigCLB_IN" + i] == true))
+            {
+                validation.logWarning(
+                    "Having both synchronization and pipeline enabled results in a 3-4 cycle delay on the input", 
+                    inst, config_pre + clbInputName);
             }
 
             if (global_or_local)
@@ -570,6 +635,40 @@ function onValidate(inst, validation) {
                         inst, config_pre + clbInputName);
                 }
             }
+        }
+        i++;
+    }
+
+    var temp_arr = [];
+
+    for(var n = 0; n < MAX_OUTPUTS; n++)
+    {
+        if(inst.outputsToOverridePeripheral[n])
+        {
+            if(CLBSignals.CLBInputSignals[Common.getDeviceName()]["OUT_OVERRIDE"][inst.clbBase.replace("_BASE", "")][inst.outputsToOverridePeripheral[n]])
+            {
+                var clbOutputNum = parseInt(inst.outputsToOverridePeripheral[n].replace("CLB_OUT", ""), 10);
+                var textOutput = "CLB Output " + clbOutputNum + " is overriding the " + CLBSignals.CLBInputSignals[Common.getDeviceName()]["OUT_OVERRIDE"][inst.clbBase.replace("_BASE", "")][inst.outputsToOverridePeripheral[n]] + " signal.";
+                temp_arr.push(
+                    {clbOutputNum, textOutput}
+                );
+            }
+        }
+    }
+    
+    temp_arr.sort((s1, s2) => {
+        return s1.clbOutputNum - s2.clbOutputNum;
+    });
+
+    for(var n = 0; n < temp_arr.length; n++)
+    {
+        if(temp_arr[n].textOutput.includes("does not override"))
+        {
+            validation.logInfo("CLB output does not override a signal", inst, "outputsToOverridePeripheral");
+        }
+        else
+        {
+            validation.logInfo(temp_arr[n].textOutput, inst, "outputsToOverridePeripheral");
         }
     }
 }

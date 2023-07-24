@@ -170,7 +170,7 @@ let SYSCTLRegisters = [
 		bits: [
 			{ name: "LOCKS", description: "SYSPLL Lock Status Bit", size: "1", shift: "0", mask: "0x1" },
 			{ name: "SLIPS_NOTSUPPORTED", description: "SYSPLL Slip Status Bit", size: "1", shift: "1", mask: "0x2" },
-			{ name: "REF_LOSTS", description: "SYSPLL "Reference  Lost" Status Bit", size: "1", shift: "3", mask: "0x8" },
+			{ name: "REF_LOSTS", description: "SYSPLL Reference  Lost Status Bit", size: "1", shift: "3", mask: "0x8" },
 		]
 	},
 	{ name: "SYSCLKDIVSEL", description: "System Clock Divider Select register", offset: "0x22",
@@ -200,7 +200,7 @@ let SYSCTLRegisters = [
 			{ name: "MCLKCLR", description: "Missing Clock Clear Bit", size: "1", shift: "1", mask: "0x2" },
 			{ name: "MCLKOFF", description: "Missing Clock Detect Off Bit", size: "1", shift: "2", mask: "0x4" },
 			{ name: "OSCOFF", description: "Oscillator Clock Off Bit", size: "1", shift: "3", mask: "0x8" },
-			{ name: "SYSREF_LOSTS", description: "SYSPLL "Reference  Lost" Status Bit", size: "1", shift: "4", mask: "0x10" },
+			{ name: "SYSREF_LOSTS", description: "SYSPLL Reference  Lost Status Bit", size: "1", shift: "4", mask: "0x10" },
 			{ name: "SYSREF_LOSTSCLR", description: "Clear for Ref clock lost status", size: "1", shift: "5", mask: "0x20" },
 			{ name: "SYSREF_LOST_MCD_EN", description: "Enable for PLL REF_CLK_LOST as MCD cause", size: "1", shift: "6", mask: "0x40" },
 		]

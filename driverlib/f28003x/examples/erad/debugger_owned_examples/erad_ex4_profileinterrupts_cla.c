@@ -178,14 +178,14 @@ void main(void)
     //
     // GPIO0 is set to EPWM1A
     //
-    GPIO_setMasterCore(0, GPIO_CORE_CPU1);
+    GPIO_setControllerCore(0, GPIO_CORE_CPU1);
     GPIO_setPadConfig(0,GPIO_PIN_TYPE_STD);
     GPIO_setPinConfig(GPIO_0_EPWM1_A);
 
     //
     // GPIO6 is set to EPWM4A
     //
-    GPIO_setMasterCore(6, GPIO_CORE_CPU1);
+    GPIO_setControllerCore(6, GPIO_CORE_CPU1);
     GPIO_setPadConfig(6,GPIO_PIN_TYPE_STD);
     GPIO_setPinConfig(GPIO_6_EPWM4_A);
 
@@ -432,9 +432,9 @@ void initCLA(void)
     //
     // CLA Program will reside in RAMLS0 and data in RAMLS1, RAMLS2
     //
-    MemCfg_setLSRAMMasterSel(MEMCFG_SECT_LS0, MEMCFG_LSRAMMASTER_CPU_CLA1);
-    MemCfg_setLSRAMMasterSel(MEMCFG_SECT_LS1, MEMCFG_LSRAMMASTER_CPU_CLA1);
-    MemCfg_setLSRAMMasterSel(MEMCFG_SECT_LS2, MEMCFG_LSRAMMASTER_CPU_CLA1);
+    MemCfg_setLSRAMControllerSel(MEMCFG_SECT_LS0, MEMCFG_LSRAMCONTROLLER_CPU_CLA1);
+    MemCfg_setLSRAMControllerSel(MEMCFG_SECT_LS1, MEMCFG_LSRAMCONTROLLER_CPU_CLA1);
+    MemCfg_setLSRAMControllerSel(MEMCFG_SECT_LS2, MEMCFG_LSRAMCONTROLLER_CPU_CLA1);
     MemCfg_setCLAMemType(MEMCFG_SECT_LS0, MEMCFG_CLA_MEM_PROGRAM);
     MemCfg_setCLAMemType(MEMCFG_SECT_LS1, MEMCFG_CLA_MEM_DATA);
     MemCfg_setCLAMemType(MEMCFG_SECT_LS2, MEMCFG_CLA_MEM_DATA);

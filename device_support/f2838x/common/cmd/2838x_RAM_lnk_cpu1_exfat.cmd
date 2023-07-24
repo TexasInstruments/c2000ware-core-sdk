@@ -54,7 +54,7 @@ MEMORY
 SECTIONS
 {
    codestart        : > BEGIN
-   .text            : >> RAMD0 | RAMD1 | RAMLS0 | RAMLS7 | RAMGS6 | RAMGS15
+   .text            : >> RAMD0 | RAMD1 | RAMLS0 | RAMLS6 | RAMLS7 | RAMGS6 | RAMGS15
    .cinit           : > RAMM0
    .switch          : > RAMM0
    .reset           : > RESET, TYPE = DSECT /* not used, */

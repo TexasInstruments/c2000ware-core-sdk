@@ -5,7 +5,7 @@
 // TITLE:  Background CRC computation with interrupt.
 //
 //! \addtogroup driver_example_list
-//! <h1> CLA-BGCRC Example in Scrub mode mode </h1>
+//! <h1> CLA-BGCRC Example in Scrub Mode </h1>
 //!
 //! This example demonstrates how to configure and trigger CLA-BGCRC in Scrub
 //! mode. In Scrub mode, CRC of data is not compared with the golden CRC. Error

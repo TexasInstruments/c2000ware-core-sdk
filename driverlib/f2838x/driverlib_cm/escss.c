@@ -54,12 +54,7 @@ ESCSS_setRawInterruptStatus(uint32_t base, uint16_t interruptMask,
     // Check if the passed parameter base is valid.
     //
     ASSERT(ESCSS_isBaseValid(base));
-    ASSERT((interruptMask & ~(ESCSS_INTR_SET_SYNC0_SET |
-                              ESCSS_INTR_SET_SYNC1_SET |
-                              ESCSS_INTR_SET_IRQ_SET |
-                              ESCSS_INTR_SET_DMA_DONE_SET |
-                              ESCSS_INTR_SET_TIMEOUT_ERR_SET |
-                              ESCSS_INTR_SET_MASTER_RESET_SET)) == 0U);
+    ASSERT((interruptMask & ~(ESCSS_SET_INTERRUPT_MASK)) == 0U);
 
     if(ESCSS_VALID_KEY_VALUE == writeKey)
     {
@@ -423,7 +418,7 @@ ESCSS_enableResetToInterrupt(uint32_t base, uint16_t writeKey)
         if(ESCSS_VALID_KEY_VALUE == writeKey)
         {
             //
-            // Reset out drives interrupt to the CPU master to the respective
+            // Reset out drives interrupt to the main CPU to the respective
             // EtherCATSS.
             //
             HWREGH(base + ESCSS_O_RESET_DEST_CONFIG) |=

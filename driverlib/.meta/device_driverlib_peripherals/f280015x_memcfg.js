@@ -14,6 +14,7 @@ let MEMCFG_SECT = [
 	{ name: "MEMCFG_SECT_LS1", displayName: "LS1 RAM" },
 	{ name: "MEMCFG_SECT_LSX_ALL", displayName: "All LS RAM" },
 	{ name: "MEMCFG_SECT_ROMBOOT", displayName: "BOOT ROM" },
+	{ name: "MEMCFG_SECT_ROMSECURE", displayName: "Secure ROM" },
 	{ name: "MEMCFG_SECT_ROM_ALL", displayName: "All ROMs" },
 	{ name: "MEMCFG_SECT_ALL", displayName: "All configurable RAM" },
 ]

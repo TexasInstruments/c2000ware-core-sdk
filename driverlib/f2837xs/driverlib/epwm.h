@@ -4306,7 +4306,7 @@ EPWM_enableTripZoneInterrupt(uint32_t base, uint16_t tzInterrupt)
     // Check the arguments
     //
     ASSERT(EPWM_isBaseValid(base));
-    ASSERT((tzInterrupt > 0U) && (tzInterrupt < 0x80U));
+    ASSERT((tzInterrupt > 0U) && (tzInterrupt <= 0x80U));
 
     //
     // Enable Trip zone interrupts
@@ -4345,7 +4345,7 @@ EPWM_disableTripZoneInterrupt(uint32_t base, uint16_t tzInterrupt)
     // Check the arguments
     //
     ASSERT(EPWM_isBaseValid(base));
-    ASSERT((tzInterrupt > 0U) && (tzInterrupt < 0x80U));
+    ASSERT((tzInterrupt > 0U) && (tzInterrupt <= 0x80U));
 
     //
     // Disable Trip zone interrupts
@@ -4529,7 +4529,7 @@ EPWM_clearTripZoneFlag(uint32_t base, uint16_t tzFlags)
     // Check the arguments
     //
     ASSERT(EPWM_isBaseValid(base));
-    ASSERT(tzFlags < 0x80U);
+    ASSERT(tzFlags <= 0x80U);
 
     //
     // Clear Trip zone event flag

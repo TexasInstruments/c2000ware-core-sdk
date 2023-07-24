@@ -57,10 +57,13 @@ AES_configureModule(uint32_t base, const AES_ConfigParams *config)
     // Write the ctrl register with new value and backup the save context field
     //
     HWREG_BP(base + AES_O_CTRL) = ((HWREG_BP(base + AES_O_CTRL) &
-                                       ~AES_CONFIG_M)  | (config->direction  |
-                                      config->keySize  | config-> opMode     |
-                                      config->ctrWidth | config->ccmLenWidth |
-                                      config->ccmAuthLenWidth));
+                                    ~AES_CONFIG_M)  |
+                                   ((uint32_t)config->direction  |
+                                    (uint32_t)config->keySize  |
+                                    (uint32_t)config-> opMode     |
+                                    (uint32_t)config->ctrWidth |
+                                    (uint32_t)config->ccmLenWidth |
+                                    (uint32_t)config->ccmAuthLenWidth));
 }
 
 //*****************************************************************************

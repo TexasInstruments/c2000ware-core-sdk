@@ -7,7 +7,7 @@ let device_driverlib_peripheral =
 
 function onChangeAnalogRef(inst, ui)
 {
-    if (["F28004x","F28002x", "F28003x","F280013x", "F280015x"].includes(Common.getDeviceName())){
+    if (["F28004x","F28002x", "F28003x","F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName())){
         if (inst.analogReference == "INTERNAL"){
             ui.analogReferenceVoltage.hidden = false
         }
@@ -72,7 +72,7 @@ else
     ];
 }
 
-if (["F28004x","F28002x", "F28003x","F280013x","F280015x"].includes(Common.getDeviceName()))
+if (["F28004x","F28002x", "F28003x","F280013x","F280015x", "F28P65x"].includes(Common.getDeviceName()))
 {
     staticConfig.push(
         {
@@ -101,6 +101,25 @@ if (["F28004x","F28002x", "F28003x","F280013x","F280015x"].includes(Common.getDe
                         {name: "2P5", displayName: "2.5V"},
                         {name: "1P65", displayName: "1.65V"},
                     ]
+                },
+            ]
+        }, 
+    );
+}
+if (["F280013x","F280015x"].includes(Common.getDeviceName()))
+{
+    staticConfig.push(
+        {
+            name: "GROUP_COMPLDAC",
+            displayName: "External DACL Enable",
+            description: "",
+            longDescription: "This function disables CMPSSx.COMPL and the associated DAC will act as a general purpose DAC with 11 bit resolution; enables CMPSS external DAC",
+            collapsed: false,
+            config: [
+                {
+                    name        : "externalDACLEnable",
+                    displayName : "CMPSS DACL Output Enable",
+                    default     : false,
                 },
             ]
         }, 
@@ -141,8 +160,4 @@ var asysctlModule = {
         boardh : "/driverlib/asysctl/asysctl.board.h.xdt"
     },
 };
-
-
-
-
 exports = asysctlModule;

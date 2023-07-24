@@ -1,14 +1,13 @@
 %%{
 /////////////////////////////////////////////////////////////////////////////////////////
+let clocktree_common   = system.getScript("../clocktree_common.js");
 
+const PLL_type1 			= clocktree_common.PLL_type1;
+const PLL_type2 			= clocktree_common.PLL_type2;
 
-// Device Supported : F2837xS, F2807x, F28004x, F28002x, F28003x, F280013x, F280015x
-
-const PLL_type1 			= ["F2837xS", "F2807x", "F28004x"]					//FMULT available 	| REFDIV unavailable
-const PLL_type2 			= ["F28002x", "F28003x", "F280013x", "F280015x"]	//FMULT unavailable	| REFDIV available
-
-const AUXPLL_Support 		= ["F2837xS", "F2807x"]
-const EPWM_div_support 		= ["F2837xS", "F2807x"]
+const AUXPLL_Support 		= clocktree_common.AUXPLL_Support;
+const EPWM_div_support 		= clocktree_common.EPWM_div_support;
+const xtal_x1_macro 		= clocktree_common.xtal_x1_macro;
 
 const device  = system.deviceData.device
 
@@ -27,13 +26,16 @@ const LSPCLK_d 		 = system.clockTree.LSPCLK.in
 // OSCCLK source
 //////////////////////////////////////////////////
 
-var XTAL_OR_X1 		= system.clockTree.XTAL_OR_X1
+var XTAL_OR_X1 				= clocktree_common.XTAL_OR_X1;
 var OSCCLKSRCSEL	= system.clockTree.OSCCLKSRCSEL
 
 var oscclkSrc = "SYSCTL_OSCSRC_OSC2"
 var oscclksource
 var oscclk = 10
 
+//
+// XTAL Single-Ended replaces X1 for F2838x, F28002x, F28003x, F28004x, F280013x, F280015x, F28P65x
+//
 switch(OSCCLKSRCSEL.inputSelect){
 	case "INTOSC1":
 		oscclkSrc 		= "SYSCTL_OSCSRC_OSC1"
@@ -46,10 +48,17 @@ switch(OSCCLKSRCSEL.inputSelect){
 		oscclk = 10
 		break
 	case "X1_XTAL":
-		oscclkSrc 	 	= "SYSCTL_OSCSRC_XTAL"
-		oscclksource 	= XTAL_OR_X1.inputSelect
-		oscclk 			= XTAL_OR_X1.External_Clock
-		break
+		if((XTAL_OR_X1.inputSelect == "XTAL") || xtal_x1_macro.includes(device))
+		{
+			oscclkSrc 	 	= "SYSCTL_OSCSRC_XTAL"
+		}
+		else
+		{
+			oscclkSrc 	 	= "SYSCTL_OSCSRC_XTAL_SE"
+		}
+			oscclksource 	= XTAL_OR_X1.inputSelect
+			oscclk 			= XTAL_OR_X1.External_Clock
+			break
 }
 
 //////////////////////////////////////////////////

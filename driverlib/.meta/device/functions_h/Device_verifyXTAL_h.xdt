@@ -58,5 +58,34 @@ extern void __error__(const char *filename, uint32_t line);
 //*****************************************************************************
 #endif // __DEVICE_H__
 %}
+%else if (["F28P65x"].includes(Common.getDeviceName())){
+//*****************************************************************************
+//
+//!
+//! @brief Function to verify the XTAL frequency
+//! \param freq is the XTAL frequency in MHz
+//! \return The function return true if the the actual XTAL frequency matches with the
+//! input value
+//
+//*****************************************************************************
+extern bool Device_verifyXTAL(float freq);
+//*****************************************************************************
+//!
+//! @brief Error handling function to be called when an ASSERT is violated
+//!
+//! @param *filename File name in which the error has occurred
+//! @param line Line number within the file
+//! @return None
+//
+//*****************************************************************************
+extern void __error__(const char *filename, uint32_t line);
+//*****************************************************************************
+//
+// Close the Doxygen group.
+//! @}
+//
+//*****************************************************************************
+#endif // __DEVICE_H__
+%}
 %else{
 %}

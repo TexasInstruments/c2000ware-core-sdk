@@ -13,7 +13,7 @@
 //! (EPG)](https://www.ti.com/lit/spracy7)
 //!
 //! \b External \b Connections \n
-//!  - None. Signal is generated on GPIO 58, 54. Can be visualized
+//!  - None. Signal is generated on GPIO 24, 3. Can be visualized
 //!    through oscilloscope.
 //!
 //
@@ -75,7 +75,7 @@ void main(void)
     Device_init();
 
     //
-    // Initialize GPIO and configure GPIO pins 58, 54 for EPG OUT
+    // Initialize GPIO and configure GPIO pins 24, 3 for EPG OUT
     //
     Device_initGPIO();
     
@@ -100,13 +100,13 @@ void main(void)
     XBAR_enableOutputMux(OUTPUTXBAR_BASE, XBAR_OUTPUT2, XBAR_MUX31);
 
     //
-    // Select Signal Generator output for EPG output of 0,1
+    // Select Clock Generator output for EPG output of 0,1
     //
     EPG_selectEPGOutput(EPG1_BASE, EPG_OUT0, EPG_OUT_SEL_CLK);
     EPG_selectEPGOutput(EPG1_BASE, EPG_OUT1, EPG_OUT_SEL_CLK);
 
     //
-    //
+    // Select Clock Generator Data output for EPG output of 0,1
     //
     EPG_selectClkOutput(EPG1_BASE, EPG_OUT0, EPG_CLKGEN0_CLKOUT0_DCLK);
     EPG_selectClkOutput(EPG1_BASE, EPG_OUT1, EPG_CLKGEN0_CLKOUT1_DCLK);

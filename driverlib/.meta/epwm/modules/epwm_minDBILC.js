@@ -142,7 +142,7 @@ function onChangeEnableDisable(inst, ui)
             ui["epwmICL_" + dbOutput.name.replace("EPWM_DB_OUTPUT_", "") + "_selXBAR"].hidden = true;
             ui["epwmICL_" + dbOutput.name.replace("EPWM_DB_OUTPUT_", "") + "_OUTHIGH"].hidden = true;
             ui["epwmICL_" + dbOutput.name.replace("EPWM_DB_OUTPUT_", "") + "_OUTLOW"].hidden = true;
-            inst["epwmICL_" + dbOutput.name.replace("EPWM_DB_OUTPUT_", "") + "_selXBAR"] = "EPWM_MINDB_ICL_XBAR_OUT0";
+            inst["epwmICL_" + dbOutput.name.replace("EPWM_DB_OUTPUT_", "") + "_selXBAR"] = "EPWM_MINDB_ICL_XBAR_OUT1";
             inst["epwmICL_LUT0" + dbOutput.name.replace("EPWM_DB_OUTPUT_", "")] = "0";
             inst["epwmICL_LUT1" + dbOutput.name.replace("EPWM_DB_OUTPUT_", "")] = "0";
             inst["epwmICL_LUT2" + dbOutput.name.replace("EPWM_DB_OUTPUT_", "")] = "0";

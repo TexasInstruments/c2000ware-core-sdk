@@ -1,0 +1,140 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28P65x" --package "256ZEJ" --part "F28P65x_256ZEJ" --context "CPU1" --product "C2000WARE@5.00.00.00"
+ * @versions {"tool":"1.17.0+3047"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const epwm             = scripting.addModule("/driverlib/epwm.js", {}, false);
+const epwm1            = epwm.addInstance();
+const epwm2            = epwm.addInstance();
+const epwmxbar         = scripting.addModule("/driverlib/epwmxbar.js", {}, false);
+const epwmxbar1        = epwmxbar.addInstance();
+const epwmxbar2        = epwmxbar.addInstance();
+const inputxbar_input  = scripting.addModule("/driverlib/inputxbar_input.js", {}, false);
+const inputxbar_input1 = inputxbar_input.addInstance();
+const inputxbar_input2 = inputxbar_input.addInstance();
+const outputxbar       = scripting.addModule("/driverlib/outputxbar.js", {}, false);
+const outputxbar1      = outputxbar.addInstance();
+const outputxbar2      = outputxbar.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+epwm1.epwmTimebase_counterMode                          = "EPWM_COUNTER_MODE_UP";
+epwm1.epwmTimebase_syncInPulseSource                    = "EPWM_SYNC_IN_PULSE_SRC_DISABLE";
+epwm1.epwmCounterCompare_shadowLoadModeCMPC             = "EPWM_COMP_LOAD_ON_CNTR_PERIOD";
+epwm1.epwmCounterCompare_shadowLoadModeCMPD             = "EPWM_COMP_LOAD_ON_CNTR_PERIOD";
+epwm1.epwmXCMP_enable                                   = true;
+epwm1.epwmXCMP_selectAllocationXCMPA_NoSplitorSplit     = "EPWM_XCMP_8_CMPA";
+epwm1.epwmXCMP_setXCMPA_XCMP2_ACTIVE                    = 250;
+epwm1.epwmXCMP_setXCMPA_XCMP4_ACTIVE                    = 750;
+epwm1.epwmXCMP_setXCMPA_XCMP5_ACTIVE                    = 1000;
+epwm1.epwmXCMP_setXCMPA_XCMP6_ACTIVE                    = 1250;
+epwm1.epwmXCMP_setXCMPA_XCMP7_ACTIVE                    = 1500;
+epwm1.epwmXCMP_setXCMPA_XCMP8_ACTIVE                    = 1750;
+epwm1.epwmXCMP_setRegisters_XTBPRD                      = 1999;
+epwm1.XCMPA_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP1             = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.XCMPA_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP2             = "EPWM_AQ_OUTPUT_LOW";
+epwm1.XCMPA_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP3             = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.XCMPA_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP4             = "EPWM_AQ_OUTPUT_LOW";
+epwm1.XCMPA_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP5             = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.XCMPA_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP6             = "EPWM_AQ_OUTPUT_LOW";
+epwm1.XCMPA_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP7             = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.XCMPA_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP8             = "EPWM_AQ_OUTPUT_LOW";
+epwm1.epwmDigitalCompare_enableEventDetection           = true;
+epwm1.epwmTripZone_registerInterrupts                   = true;
+epwm1.epwmTimebase_period                               = 1999;
+epwm1.epwmDigitalCompare_useDCCounterCapture            = true;
+epwm1.epwmDigitalCompare_CAPGATETripInput               = "EPWM_DC_TRIP_TRIPIN4";
+epwm1.epwmDigitalCompare_CAPINTripInput                 = "EPWM_DC_TRIP_TRIPIN4";
+epwm1.epwmDigitalCompare_CAPIN_combinationInputConfig   = ["EPWM_DC_COMBINATIONAL_TRIPIN4"];
+epwm1.epwmDigitalCompare_CAPGATE_combinationInputConfig = ["EPWM_DC_COMBINATIONAL_TRIPIN4"];
+epwm1.epwmTripZone_tripOut                              = ["EPWM_TZ_TRIPOUT_CAPEVT"];
+epwm1.epwmTripZone_tzInterruptSource                    = ["EPWM_TZ_INTERRUPT_CAPEVT"];
+epwm1.epwmTimebase_syncOutPulseMode                     = ["EPWM_SYNC_OUT_PULSE_ON_CNTR_ZERO"];
+epwm1.epwmXCMP_setXCMPA_XCMP3_ACTIVE                    = 500;
+epwm1.epwmTimebase_periodLoadMode                       = "EPWM_PERIOD_DIRECT_LOAD";
+epwm1.epwmXCMP_setRegisters_XMIN                        = 300;
+epwm1.epwmXCMP_setRegisters_XMAX                        = 400;
+epwm1.$name                                             = "myEPWM1";
+epwm1.epwm.$assign                                      = "EPWM1";
+epwm1.epwm.epwm_aPin.$assign                            = "GPIO0";
+epwm1.epwm.epwm_bPin.$assign                            = "GPIO1";
+epwm1.epwmTZInt.enableInterrupt                         = true;
+epwm1.epwmTZInt.interruptHandler                        = "epwm1_TZ_ISR";
+scripting.suppress("When XCMP mode is enabled, EPWM Time Base Period will be set within XCMP Mode", epwm1, "epwmTimebase_period");
+
+epwm2.epwmTimebase_counterMode                          = "EPWM_COUNTER_MODE_UP";
+epwm2.epwmCounterCompare_shadowLoadModeCMPC             = "EPWM_COMP_LOAD_ON_CNTR_PERIOD";
+epwm2.epwmCounterCompare_shadowLoadModeCMPD             = "EPWM_COMP_LOAD_ON_CNTR_PERIOD";
+epwm2.epwmXCMP_enable                                   = true;
+epwm2.epwmXCMP_selectAllocationXCMPA_NoSplitorSplit     = "EPWM_XCMP_8_CMPA";
+epwm2.epwmXCMP_setXCMPA_XCMP2_ACTIVE                    = 250;
+epwm2.epwmXCMP_setXCMPA_XCMP4_ACTIVE                    = 750;
+epwm2.epwmXCMP_setXCMPA_XCMP5_ACTIVE                    = 1000;
+epwm2.epwmXCMP_setXCMPA_XCMP6_ACTIVE                    = 1250;
+epwm2.epwmXCMP_setXCMPA_XCMP7_ACTIVE                    = 1500;
+epwm2.epwmXCMP_setXCMPA_XCMP8_ACTIVE                    = 1750;
+epwm2.epwmXCMP_setRegisters_XTBPRD                      = 1999;
+epwm2.XCMPA_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP1             = "EPWM_AQ_OUTPUT_HIGH";
+epwm2.XCMPA_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP2             = "EPWM_AQ_OUTPUT_LOW";
+epwm2.XCMPA_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP3             = "EPWM_AQ_OUTPUT_HIGH";
+epwm2.XCMPA_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP4             = "EPWM_AQ_OUTPUT_LOW";
+epwm2.XCMPA_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP5             = "EPWM_AQ_OUTPUT_HIGH";
+epwm2.XCMPA_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP6             = "EPWM_AQ_OUTPUT_LOW";
+epwm2.XCMPA_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP7             = "EPWM_AQ_OUTPUT_HIGH";
+epwm2.XCMPA_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP8             = "EPWM_AQ_OUTPUT_LOW";
+epwm2.epwmDigitalCompare_enableEventDetection           = true;
+epwm2.epwmTripZone_registerInterrupts                   = true;
+epwm2.epwmTimebase_period                               = 1999;
+epwm2.epwmDigitalCompare_useDCCounterCapture            = true;
+epwm2.epwmTripZone_tripOut                              = ["EPWM_TZ_TRIPOUT_CAPEVT"];
+epwm2.epwmTripZone_tzInterruptSource                    = ["EPWM_TZ_INTERRUPT_CAPEVT"];
+epwm2.epwmDigitalCompare_CAPINTripInput                 = "EPWM_DC_TRIP_TRIPIN5";
+epwm2.epwmDigitalCompare_CAPIN_combinationInputConfig   = ["EPWM_DC_COMBINATIONAL_TRIPIN5"];
+epwm2.epwmDigitalCompare_CAPGATETripInput               = "EPWM_DC_TRIP_TRIPIN5";
+epwm2.epwmDigitalCompare_CAPGATE_combinationInputConfig = ["EPWM_DC_COMBINATIONAL_TRIPIN5"];
+epwm2.epwmTimebase_syncInPulseSource                    = "EPWM_SYNC_IN_PULSE_SRC_DISABLE";
+epwm2.epwmXCMP_setXCMPA_XCMP3_ACTIVE                    = 500;
+epwm2.epwmTimebase_periodLoadMode                       = "EPWM_PERIOD_DIRECT_LOAD";
+epwm2.epwmXCMP_setRegisters_XMIN                        = 300;
+epwm2.epwmXCMP_setRegisters_XMAX                        = 600;
+epwm2.$name                                             = "myEPWM2";
+epwm2.epwm.$assign                                      = "EPWM2";
+epwm2.epwm.epwm_aPin.$assign                            = "GPIO2";
+epwm2.epwm.epwm_bPin.$assign                            = "GPIO3";
+epwm2.epwmTZInt.enableInterrupt                         = true;
+epwm2.epwmTZInt.interruptHandler                        = "epwm2_TZ_ISR";
+scripting.suppress("When XCMP mode is enabled, EPWM Time Base Period will be set within XCMP Mode", epwm2, "epwmTimebase_period");
+
+epwmxbar1.$name      = "myEPWMXBAR0";
+epwmxbar1.muxesUsed  = ["XBAR_MUX01"];
+epwmxbar1.mux1Config = "XBAR_EPWM_MUX01_INPUTXBAR1_INPUT1";
+epwmxbar1.tripInput  = "XBAR_TRIP4";
+
+epwmxbar2.$name      = "myEPWMXBAR1";
+epwmxbar2.tripInput  = "XBAR_TRIP5";
+epwmxbar2.mux3Config = "XBAR_EPWM_MUX03_INPUTXBAR1_INPUT2";
+epwmxbar2.muxesUsed  = ["XBAR_MUX03"];
+
+inputxbar_input1.$name         = "myINPUTXBARINPUT0";
+inputxbar_input1.inputxbarLock = true;
+
+inputxbar_input2.$name          = "myINPUTXBARINPUT1";
+inputxbar_input2.inputxbarInput = "XBAR_INPUT2";
+inputxbar_input2.inputxbarGpio  = "GPIO2";
+inputxbar_input2.inputxbarLock  = true;
+
+outputxbar1.$name                            = "myOUTPUTXBAR0";
+outputxbar1.muxesUsed                        = ["XBAR_MUX32"];
+outputxbar1.outputxbar.$assign               = "OUTPUTXBAR1";
+outputxbar1.outputxbar.outputxbarPin.$assign = "GPIO24";
+
+outputxbar2.$name                            = "myOUTPUTXBAR1";
+outputxbar2.muxesUsed                        = ["XBAR_MUX33"];
+outputxbar2.outputxbar.$assign               = "OUTPUTXBAR2";
+outputxbar2.outputxbar.outputxbarPin.$assign = "GPIO25";

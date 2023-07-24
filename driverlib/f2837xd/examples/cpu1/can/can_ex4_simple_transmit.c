@@ -23,7 +23,7 @@
 //!
 //
 //#############################################################################
-//
+// $TI Release:  $
 // $Release Date:  $
 // $Copyright:
 // Copyright (C) 2013-2023 Texas Instruments Incorporated - http://www.ti.com/
@@ -114,15 +114,15 @@ void main(void)
     // Message Object Parameters:
     //      CAN Module: A
     //      Message Object ID Number: 1
-    //      Message Identifier: 0x95555555
-    //      Message Frame: Extended
+    //      Message Identifier: 0x01
+    //      Message Frame: Standard
     //      Message Type: Transmit
     //      Message ID Mask: 0x0
     //      Message Object Flags: None
     //      Message Data Length: 4 Bytes
     //
-    CAN_setupMessageObject(CANA_BASE, TX_MSG_OBJ_ID, 0x95555555,
-                           CAN_MSG_FRAME_EXT, CAN_MSG_OBJ_TYPE_TX, 0,
+    CAN_setupMessageObject(CANA_BASE, TX_MSG_OBJ_ID, 0x1,
+                           CAN_MSG_FRAME_STD, CAN_MSG_OBJ_TYPE_TX, 0,
                            CAN_MSG_OBJ_NO_FLAGS, MSG_DATA_LENGTH);
 
     //

@@ -360,7 +360,11 @@ static inline void ASysCtl_selectCMPHNMuxValue(uint16_t select, uint16_t value)
     {
         HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPHNMXSEL) |= select;
     }
-
+    else
+    {
+        //Do nothing. Not a valid value
+    }
+    
     EDIS;
 }
 
@@ -428,6 +432,10 @@ static inline void ASysCtl_selectCMPLNMuxValue(uint16_t select, uint16_t value)
     else if(value == 1U)
     {
         HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPLNMXSEL) |= select;
+    }
+    else
+    {
+        //Do nothing. Not a valid value
     }
 
     EDIS;

@@ -172,6 +172,21 @@ extern "C"
 
 //*****************************************************************************
 //
+// Values that can be passed to CMPSS_configRamp()
+// CMPSS_configRampHigh() and CMPSS_configRampLow()
+// as the pwmSyncSrc parameter.
+//
+//*****************************************************************************
+#define CMPSS_PWMSYNC1  1U //!< PWMSYNC1
+#define CMPSS_PWMSYNC2  2U //!< PWMSYNC2
+#define CMPSS_PWMSYNC3  3U //!< PWMSYNC3
+#define CMPSS_PWMSYNC4  4U //!< PWMSYNC4
+#define CMPSS_PWMSYNC5  5U //!< PWMSYNC5
+#define CMPSS_PWMSYNC6  6U //!< PWMSYNC6
+#define CMPSS_PWMSYNC7  7U //!< PWMSYNC7
+
+//*****************************************************************************
+//
 // Values that can be passed to CMPSS_configureFilterInputHigh() and
 // CMPSS_configureFilterInputLow() as the filtInput parameter.
 //
@@ -2330,7 +2345,7 @@ CMPSS_configLatchOnPWMSYNC(uint32_t base, bool highEnable, bool lowEnable);
 //!
 //! The number of the PWMSYNC signal to be used to reset the ramp generator
 //! should be specified by passing it into the \e pwmSyncSrc parameter. For
-//! instance, passing a 2 into \e pwmSyncSrc will select PWMSYNC2.
+//! instance, passing a CMPSS_PWMSYNCx into \e pwmSyncSrc will select PWMSYNCx.
 //!
 //! To indicate whether the ramp generator should reset with the value from the
 //! ramp max reference value shadow register or with the latched ramp max
@@ -2384,7 +2399,7 @@ CMPSS_configRamp(uint32_t base, uint16_t maxRampVal, uint16_t decrementVal,
 //!
 //! The number of the PWMSYNC signal to be used to reset the ramp generator
 //! should be specified by passing it into the \e pwmSyncSrc parameter. For
-//! instance, passing a 2 into \e pwmSyncSrc will select PWMSYNC2.
+//! instance, passing a CMPSS_PWMSYNCx into \e pwmSyncSrc will select PWMSYNCx.
 //!
 //! To indicate whether the ramp generator should reset with the value from the
 //! ramp reference value shadow register or with the latched ramp reference
@@ -2434,7 +2449,7 @@ CMPSS_configRampHigh(uint32_t base, CMPSS_RampDirection rampDir,
 //!
 //! The number of the PWMSYNC signal to be used to reset the ramp generator
 //! should be specified by passing it into the \e pwmSyncSrc parameter. For
-//! instance, passing a 2 into \e pwmSyncSrc will select PWMSYNC2.
+//! instance, passing a CMPSS_PWMSYNCx into \e pwmSyncSrc will select PWMSYNCx.
 //!
 //! To indicate whether the ramp generator should reset with the value from the
 //! ramp reference value shadow register or with the latched ramp reference

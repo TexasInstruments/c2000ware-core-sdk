@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v4.02.00.00
+                v5.00.00.00
               </div>
             
           
@@ -235,8 +235,8 @@ set up and handle interrupts and events.</p>
 
 <dl class="cpp macro">
 <dt id="c.ADC_PPBTRIP_MASK">
-<span class="target" id="group__adc__api_1ga5bafdd4dbb1a1d7b88cd2894021d35b6"></span><code class="sig-name descname">ADC_PPBTRIP_MASK</code> ((uint32_t)ADC_PPB1TRIPHI_LIMITHI_M<p> |            \</p>
-<p>                              (uint32_t)</p>
+<span class="target" id="group__adc__api_1ga5bafdd4dbb1a1d7b88cd2894021d35b6"></span><code class="sig-name descname">ADC_PPBTRIP_MASK</code> ((uint32_t)ADC_PPB1TRIPHI_LIMITHI_M<p>      |\</p>
+<p>                                     (uint32_t)</p>
 ADC_PPB1TRIPHI_HSIGN)<a class="headerlink" href="#c.ADC_PPBTRIP_MASK" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
@@ -467,7 +467,7 @@ ADC_PPB1TRIPHI_HSIGN)<a class="headerlink" href="#c.ADC_PPBTRIP_MASK" title="Per
 <dl class="cpp enum">
 <dt id="_CPPv411ADC_Trigger">
 <span id="_CPPv311ADC_Trigger"></span><span id="_CPPv211ADC_Trigger"></span><span class="target" id="group__adc__api_1ga7973b7d12fc7bfb96bd276b0a5926834"></span><em class="property">enum </em><code class="sig-name descname">ADC_Trigger</code><a class="headerlink" href="#_CPPv411ADC_Trigger" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Values that can be passed to <a class="reference internal" href="#group__adc__api_1ga476ce05331b08ff2fec27cbf5bca73fd"><span class="std std-ref">ADC_setupSOC()</span></a> as the <em>trigger</em> parameter to specify the event that will trigger a conversion to start. It is also used with <a class="reference internal" href="#group__adc__api_1gaab4451c601edf5d42426961ea850147f"><span class="std std-ref">ADC_setBurstModeConfig()</span></a>. </p>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__adc__api_1ga476ce05331b08ff2fec27cbf5bca73fd"><span class="std std-ref">ADC_setupSOC()</span></a> as the <em>trigger</em> parameter to specify the event that will trigger a conversion to start. It is also used with <a class="reference internal" href="#group__adc__api_1gaab4451c601edf5d42426961ea850147f"><span class="std std-ref">ADC_setBurstModeConfig()</span></a> and ADC_triggerRepeaterSelect(). </p>
 <p><em>Values:</em></p>
 <dl class="cpp enumerator">
 <dt id="_CPPv4N11ADC_Trigger19ADC_TRIGGER_SW_ONLYE">
@@ -832,7 +832,7 @@ ADC_PPB1TRIPHI_HSIGN)<a class="headerlink" href="#c.ADC_PPBTRIP_MASK" title="Per
 <dl class="cpp enum">
 <dt id="_CPPv413ADC_SOCNumber">
 <span id="_CPPv313ADC_SOCNumber"></span><span id="_CPPv213ADC_SOCNumber"></span><span class="target" id="group__adc__api_1ga254fedc72090784dcfcdcebebdf3ea39"></span><em class="property">enum </em><code class="sig-name descname">ADC_SOCNumber</code><a class="headerlink" href="#_CPPv413ADC_SOCNumber" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Values that can be passed in as the <em>socNumber</em> parameter for several functions. This value identifies the start-of-conversion (SOC) that a function is configuring or accessing. Note that in some cases (for example, <a class="reference internal" href="#group__adc__api_1gae43da3dfefdebb52ec1b5b2f165a1f07"><span class="std std-ref">ADC_setInterruptSource()</span></a>) <em>socNumber</em> is used to refer to the corresponding end-of-conversion (EOC). </p>
+<dd><p>Values that can be passed in as the <em>socNumber</em> parameter for several functions. This value identifies the start-of-conversion (SOC) that a function is configuring or accessing. Note that in some cases (for example, <a class="reference internal" href="#group__adc__api_1ga0ad2864322a112a5c735f45785dc841d"><span class="std std-ref">ADC_setInterruptSource()</span></a>) <em>socNumber</em> is used to refer to the corresponding end-of-conversion (EOC). </p>
 <p><em>Values:</em></p>
 <dl class="cpp enumerator">
 <dt id="_CPPv4N13ADC_SOCNumber15ADC_SOC_NUMBER0E">
@@ -1317,7 +1317,7 @@ ADC_PPB1TRIPHI_HSIGN)<a class="headerlink" href="#c.ADC_PPBTRIP_MASK" title="Per
 </dd>
 </dl>
 </p>
-<p><em>adcIntNum</em> takes a one of the values <strong>ADC_INT_NUMBER1</strong>, <strong>ADC_INT_NUMBER2</strong>, <strong>ADC_INT_NUMBER3</strong>, or <strong>ADC_INT_NUMBER4</strong> to express which of the four interrupts of the ADC module should be cleared.</p>
+<p><em>adcIntNum</em> takes a one of the values <strong>ADC_INT_NUMBER1</strong>, <strong>ADC_INT_NUMBER2</strong>, <strong>ADC_INT_NUMBER3</strong> or <strong>ADC_INT_NUMBER4</strong> to get the interrupt status for the given interrupt number of the ADC module.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p><strong>true</strong> if the interrupt flag for the specified interrupt number is set and <strong>false</strong> if it is not. </p>
 </dd>
@@ -1338,7 +1338,7 @@ ADC_PPB1TRIPHI_HSIGN)<a class="headerlink" href="#c.ADC_PPBTRIP_MASK" title="Per
 </dd>
 </dl>
 </p>
-<p><em>adcIntNum</em> takes a one of the values <strong>ADC_INT_NUMBER1</strong>, <strong>ADC_INT_NUMBER2</strong>, <strong>ADC_INT_NUMBER3</strong>, or <strong>ADC_INT_NUMBER4</strong> to express which of the four interrupts of the ADC module should be cleared.</p>
+<p><em>adcIntNum</em> takes a one of the values <strong>ADC_INT_NUMBER1</strong>, <strong>ADC_INT_NUMBER2</strong>, <strong>ADC_INT_NUMBER3</strong> or <strong>ADC_INT_NUMBER4</strong> to express which of the four interrupts of the ADC module should be cleared.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -1359,7 +1359,7 @@ ADC_PPB1TRIPHI_HSIGN)<a class="headerlink" href="#c.ADC_PPBTRIP_MASK" title="Per
 </dd>
 </dl>
 </p>
-<p><em>adcIntNum</em> takes a one of the values <strong>ADC_INT_NUMBER1</strong>, <strong>ADC_INT_NUMBER2</strong>, <strong>ADC_INT_NUMBER3</strong>, or <strong>ADC_INT_NUMBER4</strong> to express which of the four interrupts of the ADC module should be cleared.</p>
+<p><em>adcIntNum</em> takes a one of the values <strong>ADC_INT_NUMBER1</strong>, <strong>ADC_INT_NUMBER2</strong>, <strong>ADC_INT_NUMBER3</strong> or <strong>ADC_INT_NUMBER4</strong> to get the interrupt overflow status for the given interrupt number.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p><strong>true</strong> if the interrupt overflow flag for the specified interrupt number is set and <strong>false</strong> if it is not. </p>
 </dd>
@@ -1380,7 +1380,7 @@ ADC_PPB1TRIPHI_HSIGN)<a class="headerlink" href="#c.ADC_PPBTRIP_MASK" title="Per
 </dd>
 </dl>
 </p>
-<p><em>adcIntNum</em> takes a one of the values <strong>ADC_INT_NUMBER1</strong>, <strong>ADC_INT_NUMBER2</strong>, <strong>ADC_INT_NUMBER3</strong>, or <strong>ADC_INT_NUMBER4</strong> to express which of the four interrupts of the ADC module should be cleared.</p>
+<p><em>adcIntNum</em> takes a one of the values <strong>ADC_INT_NUMBER1</strong>, <strong>ADC_INT_NUMBER2</strong>, <strong>ADC_INT_NUMBER3</strong> or <strong>ADC_INT_NUMBER4</strong> to express which of the four interrupt overflow status of the ADC module should be cleared.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -1828,7 +1828,7 @@ ADC_PPB1TRIPHI_HSIGN)<a class="headerlink" href="#c.ADC_PPBTRIP_MASK" title="Per
 </dd>
 </dl>
 </p>
-<p><em>adcIntNum</em> can take the value <strong>ADC_INT_NUMBER1</strong>, <strong>ADC_INT_NUMBER2</strong>, <strong>ADC_INT_NUMBER3</strong>, or <strong>ADC_INT_NUMBER4</strong> to express which of the four interrupts of the ADC module should be enabled.</p>
+<p><em>adcIntNum</em> can take the value <strong>ADC_INT_NUMBER1</strong>, <strong>ADC_INT_NUMBER2</strong>, <strong>ADC_INT_NUMBER3</strong> or <strong>ADC_INT_NUMBER4</strong> to express which of the four interrupts of the ADC module should be enabled.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -1849,7 +1849,7 @@ ADC_PPB1TRIPHI_HSIGN)<a class="headerlink" href="#c.ADC_PPBTRIP_MASK" title="Per
 </dd>
 </dl>
 </p>
-<p><em>adcIntNum</em> can take the value <strong>ADC_INT_NUMBER1</strong>, <strong>ADC_INT_NUMBER2</strong>, <strong>ADC_INT_NUMBER3</strong>, or <strong>ADC_INT_NUMBER4</strong> to express which of the four interrupts of the ADC module should be disabled.</p>
+<p><em>adcIntNum</em> can take the value <strong>ADC_INT_NUMBER1</strong>, <strong>ADC_INT_NUMBER2</strong>, <strong>ADC_INT_NUMBER3</strong> or <strong>ADC_INT_NUMBER4</strong> to express which of the four interrupts of the ADC module should be disabled.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -1858,8 +1858,8 @@ ADC_PPB1TRIPHI_HSIGN)<a class="headerlink" href="#c.ADC_PPBTRIP_MASK" title="Per
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv422ADC_setInterruptSource8uint32_t13ADC_IntNumber13ADC_SOCNumber">
-<span id="_CPPv322ADC_setInterruptSource8uint32_t13ADC_IntNumber13ADC_SOCNumber"></span><span id="_CPPv222ADC_setInterruptSource8uint32_t13ADC_IntNumber13ADC_SOCNumber"></span><span id="ADC_setInterruptSource__uint32_t.ADC_IntNumber.ADC_SOCNumber"></span><span class="target" id="group__adc__api_1gae43da3dfefdebb52ec1b5b2f165a1f07"></span>void <code class="sig-name descname">ADC_setInterruptSource</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv413ADC_IntNumber" title="ADC_IntNumber">ADC_IntNumber</a> <em>adcIntNum</em>, <a class="reference internal" href="#_CPPv413ADC_SOCNumber" title="ADC_SOCNumber">ADC_SOCNumber</a> <em>socNumber</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422ADC_setInterruptSource8uint32_t13ADC_IntNumber13ADC_SOCNumber" title="Permalink to this definition">¶</a><br /></dt>
+<dt id="_CPPv422ADC_setInterruptSource8uint32_t13ADC_IntNumber8uint16_t">
+<span id="_CPPv322ADC_setInterruptSource8uint32_t13ADC_IntNumber8uint16_t"></span><span id="_CPPv222ADC_setInterruptSource8uint32_t13ADC_IntNumber8uint16_t"></span><span id="ADC_setInterruptSource__uint32_t.ADC_IntNumber.uint16_t"></span><span class="target" id="group__adc__api_1ga0ad2864322a112a5c735f45785dc841d"></span>void <code class="sig-name descname">ADC_setInterruptSource</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv413ADC_IntNumber" title="ADC_IntNumber">ADC_IntNumber</a> <em>adcIntNum</em>, uint16_t <em>intTrigger</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422ADC_setInterruptSource8uint32_t13ADC_IntNumber8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Sets the source EOC for an analog-to-digital converter interrupt.</p>
 <p><p>This function sets which conversion is the source of an ADC interrupt.</p>
 <dl class="simple">
@@ -1871,8 +1871,8 @@ ADC_PPB1TRIPHI_HSIGN)<a class="headerlink" href="#c.ADC_PPBTRIP_MASK" title="Per
 </dd>
 </dl>
 </p>
-<p>The <em>socNumber</em> number is a value <strong>ADC_SOC_NUMBERX</strong> where X is a number from 0 to 15 specifying which EOC is to be configured on the ADC module specified by <em>base</em>.</p>
-<p><em>adcIntNum</em> can take the value <strong>ADC_INT_NUMBER1</strong>, <strong>ADC_INT_NUMBER2</strong>, <strong>ADC_INT_NUMBER3</strong>, or <strong>ADC_INT_NUMBER4</strong> to express which of the four interrupts of the ADC module is being configured.</p>
+<p>The <em>intTrigger</em> number is a value <strong>ADC_SOC_NUMBERX</strong> where X is a number from 0 to 15 specifying which EOC is to be configured on the ADC module specified by <em>base</em>. Refer <strong>ADC_SOCNumber</strong> enum for valid values for this input.</p>
+<p><em>adcIntNum</em> can take the value <strong>ADC_INT_NUMBER1</strong>, <strong>ADC_INT_NUMBER2</strong>, <strong>ADC_INT_NUMBER3</strong> or <strong>ADC_INT_NUMBER4</strong> to express which of the four interrupts of the ADC module is being configured.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -1893,7 +1893,7 @@ ADC_PPB1TRIPHI_HSIGN)<a class="headerlink" href="#c.ADC_PPBTRIP_MASK" title="Per
 </dd>
 </dl>
 </p>
-<p><em>adcIntNum</em> can take the value <strong>ADC_INT_NUMBER1</strong>, <strong>ADC_INT_NUMBER2</strong>, <strong>ADC_INT_NUMBER3</strong>, or <strong>ADC_INT_NUMBER4</strong> to express which of the four interrupts of the ADC module is being configured.</p>
+<p><em>adcIntNum</em> can take the value <strong>ADC_INT_NUMBER1</strong>, <strong>ADC_INT_NUMBER2</strong>, <strong>ADC_INT_NUMBER3</strong> or <strong>ADC_INT_NUMBER4</strong> to express which of the four interrupts of the ADC module is being configured.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -1914,7 +1914,7 @@ ADC_PPB1TRIPHI_HSIGN)<a class="headerlink" href="#c.ADC_PPBTRIP_MASK" title="Per
 </dd>
 </dl>
 </p>
-<p><em>adcIntNum</em> can take the value <strong>ADC_INT_NUMBER1</strong>, <strong>ADC_INT_NUMBER2</strong>, <strong>ADC_INT_NUMBER3</strong>, or <strong>ADC_INT_NUMBER4</strong> to express which of the four interrupts of the ADC module is being configured.</p>
+<p><em>adcIntNum</em> can take the value <strong>ADC_INT_NUMBER1</strong>, <strong>ADC_INT_NUMBER2</strong>, <strong>ADC_INT_NUMBER3</strong> or <strong>ADC_INT_NUMBER4</strong> to express which of the four interrupts of the ADC module is being configured.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -2043,8 +2043,10 @@ ADC_PPB1TRIPHI_HSIGN)<a class="headerlink" href="#c.ADC_PPBTRIP_MASK" title="Per
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
-      <span class="lastupdated">Last updated on Oct 11, 2022.
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+      <span class="lastupdated">Last updated on Jul 01, 2023.
       </span></p>
   </div>
 
@@ -2064,7 +2066,7 @@ ADC_PPB1TRIPHI_HSIGN)<a class="headerlink" href="#c.ADC_PPBTRIP_MASK" title="Per
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v4.02.00.00',
+            VERSION:'v5.00.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

@@ -1,0 +1,180 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28P65x" --package "256ZEJ" --part "F28P65x_256ZEJ" --context "CPU1" --product "C2000WARE@5.00.00.00"
+ * @versions {"tool":"1.17.0+3047"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const asysctl     = scripting.addModule("/driverlib/asysctl.js");
+const cmpss       = scripting.addModule("/driverlib/cmpss.js", {}, false);
+const cmpss1      = cmpss.addInstance();
+const dac         = scripting.addModule("/driverlib/dac.js", {}, false);
+const dac1        = dac.addInstance();
+const epwm        = scripting.addModule("/driverlib/epwm.js", {}, false);
+const epwm1       = epwm.addInstance();
+const epwm2       = epwm.addInstance();
+const epwm3       = epwm.addInstance();
+const outputxbar  = scripting.addModule("/driverlib/outputxbar.js", {}, false);
+const outputxbar1 = outputxbar.addInstance();
+const outputxbar2 = outputxbar.addInstance();
+const outputxbar3 = outputxbar.addInstance();
+const outputxbar4 = outputxbar.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+asysctl.analogReference = "INTERNAL";
+
+cmpss1.enableModule        = true;
+cmpss1.$name               = "myCMPSS1";
+cmpss1.cmpssHighName       = "myCMPSS1High";
+cmpss1.asysCMPLPMXSELValue = "1";
+cmpss1.cmpssLowName        = "myCMPSS1Low";
+cmpss1.asysCMPHPMXSELValue = "1";
+cmpss1.dacValLow           = 4095;
+cmpss1.dacValHigh          = 1024;
+
+dac1.$name            = "myDAC1";
+dac1.enableOutput     = true;
+dac1.referenceVoltage = "DAC_REF_ADC_VREFHI";
+scripting.suppress("The pin A0/DACA_OUT is also selected by the CMPSS module\\. The DAC output will be driving the CMPSS pin input\\. This is an acceptable use-case\\.", dac1, "dacDevicePinName");
+
+const analog  = scripting.addModule("/driverlib/analog.js", {}, false);
+const analog1 = analog.addInstance({}, false);
+analog1.$name = "myANALOGPinMux0";
+cmpss1.analog = analog1;
+dac1.analog   = analog1;
+
+epwm1.epwmTimebase_period                                      = 1999;
+epwm1.epwmTimebase_counterMode                                 = "EPWM_COUNTER_MODE_UP";
+epwm1.epwmTimebase_syncOutPulseMode                            = ["EPWM_SYNC_OUT_PULSE_ON_ALL"];
+epwm1.epwmCounterCompare_cmpA                                  = 1000;
+epwm1.epwmCounterCompare_cmpB                                  = 1000;
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_ZERO    = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_UP_CMPA = "EPWM_AQ_OUTPUT_LOW";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_ZERO    = "EPWM_AQ_OUTPUT_LOW";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_UP_CMPB = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.$name                                                    = "myEPWM1";
+epwm1.epwmDiodeEmulation_enableDE                              = true;
+epwm1.epwmDiodeEmulation_EPWM_DE_CHANNEL_A_selTrip             = "EPWM_DE_SRC_TRIPH";
+epwm1.epwmDiodeEmulation_EPWM_DE_CHANNEL_A_configOutput        = "EPWM_DE_HIGH";
+epwm1.epwmDiodeEmulation_EPWM_DE_CHANNEL_B_configOutput        = "EPWM_DE_LOW";
+epwm1.epwm.$assign                                             = "EPWM1";
+epwm1.epwm.epwm_aPin.$assign                                   = "GPIO0";
+epwm1.epwm.epwm_bPin.$assign                                   = "GPIO1";
+
+epwm2.epwmTimebase_period                                      = 1999;
+epwm2.epwmTimebase_counterMode                                 = "EPWM_COUNTER_MODE_UP";
+epwm2.epwmTimebase_syncOutPulseMode                            = ["EPWM_SYNC_OUT_PULSE_ON_ALL"];
+epwm2.epwmCounterCompare_cmpA                                  = 1000;
+epwm2.epwmCounterCompare_cmpB                                  = 1000;
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_ZERO    = "EPWM_AQ_OUTPUT_HIGH";
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_UP_CMPA = "EPWM_AQ_OUTPUT_LOW";
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_ZERO    = "EPWM_AQ_OUTPUT_LOW";
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_UP_CMPB = "EPWM_AQ_OUTPUT_HIGH";
+epwm2.epwmDiodeEmulation_enableDE                              = true;
+epwm2.epwmDiodeEmulation_EPWM_DE_CHANNEL_A_selTrip             = "EPWM_DE_SRC_TRIPH";
+epwm2.epwmDiodeEmulation_EPWM_DE_CHANNEL_A_configOutput        = "EPWM_DE_HIGH";
+epwm2.epwmDiodeEmulation_EPWM_DE_CHANNEL_B_configOutput        = "EPWM_DE_LOW";
+epwm2.$name                                                    = "myEPWM2";
+epwm2.epwmDiodeEmulation_Reentrycnt                            = 250;
+epwm2.epwm.$assign                                             = "EPWM2";
+epwm2.epwm.epwm_aPin.$assign                                   = "GPIO2";
+epwm2.epwm.epwm_bPin.$assign                                   = "GPIO3";
+
+epwm3.epwmTimebase_period                                      = 1999;
+epwm3.epwmTimebase_counterMode                                 = "EPWM_COUNTER_MODE_UP";
+epwm3.epwmTimebase_syncOutPulseMode                            = ["EPWM_SYNC_OUT_PULSE_ON_ALL"];
+epwm3.epwmCounterCompare_cmpA                                  = 1000;
+epwm3.epwmCounterCompare_cmpB                                  = 1000;
+epwm3.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_ZERO    = "EPWM_AQ_OUTPUT_HIGH";
+epwm3.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_UP_CMPA = "EPWM_AQ_OUTPUT_LOW";
+epwm3.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_ZERO    = "EPWM_AQ_OUTPUT_LOW";
+epwm3.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_UP_CMPB = "EPWM_AQ_OUTPUT_HIGH";
+epwm3.epwmDiodeEmulation_enableDE                              = true;
+epwm3.epwmDiodeEmulation_EPWM_DE_CHANNEL_A_selTrip             = "EPWM_DE_SRC_TRIPH";
+epwm3.epwmDiodeEmulation_EPWM_DE_CHANNEL_A_configOutput        = "EPWM_DE_HIGH";
+epwm3.epwmDiodeEmulation_EPWM_DE_CHANNEL_B_configOutput        = "EPWM_DE_LOW";
+epwm3.epwmDiodeEmulation_enableDiodeEmulationModeCounter       = true;
+epwm3.epwmDiodeEmulation_stepIncr                              = 1;
+epwm3.epwmDiodeEmulation_stepThreshold                         = 250;
+epwm3.epwmDigitalCompare_EPWM_TZ_DC_OUTPUT_A1                  = "EPWM_TZ_EVENT_DCXH_HIGH";
+epwm3.epwmTripZone_EPWM_TZ_ACTION_EVENT_DCAEVT1                = "EPWM_TZ_ACTION_DISABLE";
+epwm3.epwmTripZone_tripOut                                     = ["EPWM_TZ_TRIPOUT_DCAEVT1"];
+epwm3.epwmDiodeEmulation_stepDecr                              = 1;
+epwm3.$name                                                    = "myEPWM4";
+epwm3.epwm.$assign                                             = "EPWM4";
+epwm3.epwm.epwm_aPin.$assign                                   = "GPIO6";
+epwm3.epwm.epwm_bPin.$assign                                   = "GPIO7";
+
+outputxbar1.mux32Config                      = "XBAR_OUT_MUX32_EPWM1_DE_ACTIVE";
+outputxbar1.$name                            = "EPWM1_DEACTIVE";
+outputxbar1.muxesUsed                        = ["XBAR_MUX32"];
+outputxbar1.outputxbar.$assign               = "OUTPUTXBAR1";
+outputxbar1.outputxbar.outputxbarPin.$assign = "GPIO24";
+
+outputxbar2.muxesUsed                        = ["XBAR_MUX00"];
+outputxbar2.$name                            = "CMPSS_TRIPH";
+outputxbar2.outputxbar.$assign               = "OUTPUTXBAR2";
+outputxbar2.outputxbar.outputxbarPin.$assign = "GPIO25";
+
+outputxbar3.muxesUsed                        = ["XBAR_MUX01"];
+outputxbar3.$name                            = "CMPSS_TRIPL";
+outputxbar3.outputxbar.$assign               = "OUTPUTXBAR3";
+outputxbar3.outputxbar.outputxbarPin.$assign = "GPIO26";
+
+outputxbar4.$name                            = "EPWM4_DEMONTRIP";
+outputxbar4.mux35Config                      = "XBAR_OUT_MUX35_EPWM4_DE_DEMONTRIP";
+outputxbar4.muxesUsed                        = ["XBAR_MUX35"];
+outputxbar4.outputxbar.$assign               = "OUTPUTXBAR4";
+outputxbar4.outputxbar.outputxbarPin.$assign = "GPIO15";
+
+/**
+ * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
+ * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
+ * re-solve from scratch.
+ */
+analog1.analog.$suggestSolution                    = "ANALOG";
+analog1.analog["a0/daca_outPin"].$suggestSolution  = "A0/DACA_OUT";
+analog1.analog.a1Pin.$suggestSolution              = "A1";
+analog1.analog["a10, gpio213Pin"].$suggestSolution = "A10, GPIO213";
+analog1.analog["a11, gpio214Pin"].$suggestSolution = "A11, GPIO214";
+analog1.analog["a14/b14/c14Pin"].$suggestSolution  = "A14/B14/C14";
+analog1.analog["a15/b15/c15Pin"].$suggestSolution  = "A15/B15/C15";
+analog1.analog.a2Pin.$suggestSolution              = "A2";
+analog1.analog.a3Pin.$suggestSolution              = "A3";
+analog1.analog.a4Pin.$suggestSolution              = "A4";
+analog1.analog.a5Pin.$suggestSolution              = "A5";
+analog1.analog["a6, gpio209Pin"].$suggestSolution  = "A6, GPIO209";
+analog1.analog["a7, gpio210Pin"].$suggestSolution  = "A7, GPIO210";
+analog1.analog["a8, gpio211Pin"].$suggestSolution  = "A8, GPIO211";
+analog1.analog["a9, gpio212Pin"].$suggestSolution  = "A9, GPIO212";
+analog1.analog["b0/vdacPin"].$suggestSolution      = "B0/VDAC";
+analog1.analog["b1/dacc_outPin"].$suggestSolution  = "B1/DACC_OUT";
+analog1.analog["b10, gpio219Pin"].$suggestSolution = "B10, GPIO219";
+analog1.analog.b11Pin.$suggestSolution             = "B11";
+analog1.analog.b13Pin.$suggestSolution             = "B13";
+analog1.analog.b2Pin.$suggestSolution              = "B2";
+analog1.analog.b3Pin.$suggestSolution              = "B3";
+analog1.analog["b4, gpio215Pin"].$suggestSolution  = "B4, GPIO215";
+analog1.analog["b5, gpio216Pin"].$suggestSolution  = "B5, GPIO216";
+analog1.analog["b6, gpio207Pin"].$suggestSolution  = "B6, GPIO207";
+analog1.analog["b7, gpio208Pin"].$suggestSolution  = "B7, GPIO208";
+analog1.analog["b8, gpio217Pin"].$suggestSolution  = "B8, GPIO217";
+analog1.analog["b9, gpio218Pin"].$suggestSolution  = "B9, GPIO218";
+analog1.analog["c0, gpio199Pin"].$suggestSolution  = "C0, GPIO199";
+analog1.analog.c10Pin.$suggestSolution             = "C10";
+analog1.analog.c11Pin.$suggestSolution             = "C11";
+analog1.analog.c13Pin.$suggestSolution             = "C13";
+analog1.analog.c2Pin.$suggestSolution              = "C2";
+analog1.analog["c3, gpio206Pin"].$suggestSolution  = "C3, GPIO206";
+analog1.analog["c4, gpio205Pin"].$suggestSolution  = "C4, GPIO205";
+analog1.analog["c5, gpio204Pin"].$suggestSolution  = "C5, GPIO204";
+analog1.analog["c6, gpio203Pin"].$suggestSolution  = "C6, GPIO203";
+analog1.analog["c1, gpio200Pin"].$suggestSolution  = "C1, GPIO200";
+analog1.analog["c7, gpio198Pin"].$suggestSolution  = "C7, GPIO198";
+analog1.analog["c8, gpio202Pin"].$suggestSolution  = "C8, GPIO202";
+analog1.analog["c9, gpio201Pin"].$suggestSolution  = "C9, GPIO201";

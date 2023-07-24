@@ -149,7 +149,6 @@ void main()
     //
     SysCtl_setMCANClk(SYSCTL_MCANCLK_DIV_3);
 
-
     //
     // ISR Configuration.
     //

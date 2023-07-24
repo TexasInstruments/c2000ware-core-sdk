@@ -2,7 +2,7 @@
 //
 // FILE:   dma_ex1_shared_peripheral_cpu2.c
 //
-// TITLE:  DMA Transfer for Shared Peripheral Example for F2838x.
+// TITLE:  DMA Transfer for Shared Peripheral Example
 //
 // This example shows how to initiate a DMA transfer on CPU1 from a shared
 // peripheral which is owned by CPU2.  In this specific example, a timer ISR

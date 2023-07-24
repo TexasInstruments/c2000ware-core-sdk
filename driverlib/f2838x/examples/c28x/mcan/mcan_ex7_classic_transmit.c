@@ -127,7 +127,6 @@ void main()
     //
     Device_initGPIO();
 
-
     //
     // Allocate MCAN (a shared peripheral) to CPU1 (C28x)
     //

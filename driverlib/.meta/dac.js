@@ -12,7 +12,7 @@ var DAC_INSTANCE = [
     { name: "DACA_BASE", displayName: "DACA"},
     { name: "DACB_BASE", displayName: "DACB"},
     { name: "DACC_BASE", displayName: "DACC"},
-]
+];
 
 function onChangeDACVref(inst, ui)
 {
@@ -52,11 +52,19 @@ if (["F28004x","F28003x", "F28P65x"].includes(Common.getDeviceName()))
 
 var numberOfDACs = 3;
 
-if (["F28004x", "F28003x", "F28P65x"].includes(Common.getDeviceName()))
+if (["F28004x", "F28003x"].includes(Common.getDeviceName()))
 {
     DAC_INSTANCE = [
 	    { name: "DACA_BASE", displayName: "DACA"},
 	    { name: "DACB_BASE", displayName: "DACB"},
+    ];
+    numberOfDACs = 2;
+}
+else if (["F28P65x"].includes(Common.getDeviceName()))
+{
+    DAC_INSTANCE = [
+        { name: "DACA_BASE", displayName: "DACA"},
+        { name: "DACC_BASE", displayName: "DACC"},
     ];
     numberOfDACs = 2;
 }
@@ -172,6 +180,25 @@ if (["F28004x", "F28003x", "F28P65x"].includes(Common.getDeviceName()))
 
 function onValidate(inst, validation) {
 
+    //
+    // Check Multicontext
+    //
+    if (Common.isContextCPU2()) {
+        if (Common.isMultiCoreSysConfig()) {
+            //
+            // Check if the analog module is added on CPU1 if the current context is CPU2
+            //
+            if (Common.isModuleOnOtherContext("/driverlib/analog.js") == false) {
+                validation.logError(
+                    "The ANALOG PinMux module needs to be added on CPU1 when a DAC instance is added on CPU2",inst,"dacBase");
+            }
+        } 
+        else {
+            validation.logWarning(
+                "The ANALOG PinMux module needs to be added on CPU1 when a DAC instance is added on CPU2",inst,"dacBase");
+        } 
+    }
+
     var usedDACInsts = [];
     for (var instance_index in inst.$module.$instances)
     {
@@ -264,37 +291,39 @@ function onValidate(inst, validation) {
     //
     // Check for Pin Usage in analog
     //
-    if (Common.peripheralCount("ANALOG") > 0)
-    {
-        if(inst.enableOutput){
-            var devicePinNameInfo = inst["dacDevicePinName"]
-            if (devicePinNameInfo == Pinmux.NO_DEVICE_PIN_FOUND)
-            {
-                validation.logWarning(
-                    "DAC output selected has no device pin found.",
-                    inst, "dacDevicePinName");
-            }
-            else
-            {
-                var dacOutName = Pinmux.getDeviceDACName(inst.dacBase.replace("_BASE", ""))
-                var dacAnalogPins = Pinmux.findAllAnalogPin(dacOutName);
-                var selectedInterfaces = Pinmux.getPeripheralUseCaseInterfaces(inst.analog, "ANALOG", inst.analog.useCase);
-                var allInterfaces = Pinmux.getPeripheralUseCaseInterfaces(inst.analog, "ANALOG", "ALL");
-
-
-                for (var dacPin of dacAnalogPins)
+    if (Common.isContextCPU1()) {
+        if (Common.peripheralCount("ANALOG") > 0)
+        {
+            if(inst.enableOutput){
+                var devicePinNameInfo = inst["dacDevicePinName"]
+                if (devicePinNameInfo == Pinmux.NO_DEVICE_PIN_FOUND)
                 {
-                    var pinSelected = dacPin.PinDesignSignalName;
-                    if (!selectedInterfaces.includes(pinSelected) && allInterfaces.includes(pinSelected))
+                    validation.logWarning(
+                        "DAC output selected has no device pin found.",
+                        inst, "dacDevicePinName");
+                }
+                else
+                {
+                    var dacOutName = Pinmux.getDeviceDACName(inst.dacBase.replace("_BASE", ""))
+                    var dacAnalogPins = Pinmux.findAllAnalogPin(dacOutName);
+                    var selectedInterfaces = Pinmux.getPeripheralUseCaseInterfaces(inst.analog, "ANALOG", inst.analog.useCase);
+                    var allInterfaces = Pinmux.getPeripheralUseCaseInterfaces(inst.analog, "ANALOG", "ALL");
+
+
+                    for (var dacPin of dacAnalogPins)
                     {
-                        validation.logError(
-                            "The pin " + pinSelected + " is not selected in the ANALOG PinMux module." +
-                            " Add this pin to the 'Pins Used' or change the 'Use Case'",
-                            inst,"dacDevicePinName");
+                        var pinSelected = dacPin.PinDesignSignalName;
+                        if (!selectedInterfaces.includes(pinSelected) && allInterfaces.includes(pinSelected))
+                        {
+                            validation.logError(
+                                "The pin " + pinSelected + " is not selected in the ANALOG PinMux module." +
+                                " Add this pin to the 'Pins Used' or change the 'Use Case'",
+                                inst,"dacDevicePinName");
+                        }
+
                     }
 
                 }
-
             }
         }
     }
@@ -351,18 +380,20 @@ function onValidate(inst, validation) {
 
 
 var sharedModuleInstances = undefined;
-if (Common.peripheralCount("ANALOG") > 0) {
-    sharedModuleInstances = function () {
-            return (
-                [
-                    {
-                        name: "analog",
-                        displayName: "Analog PinMux",
-                        moduleName: "/driverlib/analog.js"
-                    },
-                ]
-            );
-        }
+if (Common.isContextCPU1()) {
+    if (Common.peripheralCount("ANALOG") > 0) {
+        sharedModuleInstances = function () {
+                return (
+                    [
+                        {
+                            name: "analog",
+                            displayName: "Analog PinMux",
+                            moduleName: "/driverlib/analog.js"
+                        },
+                    ]
+                );
+            }
+    }
 }
 
 var dacModule = {

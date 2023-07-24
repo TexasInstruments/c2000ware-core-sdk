@@ -249,11 +249,16 @@ config.push(
 )
 muxSelectConfig.unshift(muxesUsed);
 
+var maxInstances = 8
+
+if (Common.getDeviceName().includes("F28P65x")) {
+	maxInstances = 14
+}
 
 var epwmxbarModule = {
     peripheralName: "EPWMXBAR",
     displayName: "EPWMXBAR",
-    maxInstances: 8,
+    maxInstances: maxInstances,
     defaultInstanceName: "myEPWMXBAR",
     description: "EPWM X-bar",
     config: config,

@@ -1286,6 +1286,8 @@ SysCtl_selectOscSource(uint32_t oscSource)
 void
 SysCtl_selectOscSourceAuxPLL(uint32_t oscSource)
 {
+    bool status = false;
+
     EALLOW;
 
     switch(oscSource)

@@ -368,6 +368,54 @@ var Cp_F280015x = {
     AGPIO_B11   : { CMP_DIS: 1   , CMP_EN: 3.5  },
 }
 
+var Cp_F28P55x = {
+    ADCINA0     : { CMP_DIS: 9.1 , CMP_EN:  11.6  },
+    ADCINA1     : { CMP_DIS: 7.4 , CMP_EN:  9.9  },
+    ADCINA2     : { CMP_DIS: 4.1 , CMP_EN:  6.6  },
+    ADCINA3     : { CMP_DIS: 3.3 , CMP_EN:  5.8  },
+    ADCINA4     : { CMP_DIS: 3.8 , CMP_EN:  6.3  },
+    ADCINA5     : { CMP_DIS: 3.5 , CMP_EN:  6  },
+    ADCINA6     : { CMP_DIS: 3.2 , CMP_EN:  5.7  },
+    ADCINA7     : { CMP_DIS: 3.8 , CMP_EN:  6.3 },
+    ADCINA8     : { CMP_DIS: 4.1 , CMP_EN:  6.6  },
+    ADCINA9     : { CMP_DIS: 3.1 , CMP_EN:  5.6  },
+    ADCINA10    : { CMP_DIS: 4.7 , CMP_EN: 7.2  },
+    ADCINA11    : { CMP_DIS: 4 , CMP_EN: 6.5  },
+    ADCINA12    : { CMP_DIS: 3.4 , CMP_EN: 5.9  },
+    ADCINA14    : { CMP_DIS: 3.8 , CMP_EN: 6.3  },
+    ADCINA15    : { CMP_DIS: 3.8 , CMP_EN: 6.3  },
+    ADCINC0     : { CMP_DIS: 4 , CMP_EN: 6.5  },
+    ADCINC1     : { CMP_DIS: 3 , CMP_EN: 5.5  },
+    ADCINC2     : { CMP_DIS: 3.6 , CMP_EN: 6.1  },
+    ADCINC3     : { CMP_DIS: 3.8 , CMP_EN:  6.3 },
+    ADCINC4     : { CMP_DIS: 3.8 , CMP_EN: 6.3  },
+    ADCINC5     : { CMP_DIS: 3.6 , CMP_EN: 6.1  },
+    ADCINC6     : { CMP_DIS: 3.9 , CMP_EN: 6.4  },
+    ADCINC7     : { CMP_DIS: 3.3 , CMP_EN: 5.8  },
+    ADCINC8     : { CMP_DIS: 3.8 , CMP_EN: 6.3  },
+    ADCINC9     : { CMP_DIS: 4.1 , CMP_EN:  6.6  },
+    ADCINC10    : { CMP_DIS: 4.7 , CMP_EN: 7.2  },
+    ADCINC11    : { CMP_DIS: 4.1 , CMP_EN: 6.6  },
+    ADCINC14    : { CMP_DIS: 4.2 , CMP_EN: 6.7  },
+    ADCINC15    : { CMP_DIS: 9.1 , CMP_EN: 11.6  },
+    ADCINB0     : { CMP_DIS: 4.1 , CMP_EN: 6.6  },
+    ADCINB1     : { CMP_DIS: 4.7 , CMP_EN: 7.2  },
+    ADCINB2     : { CMP_DIS: 3.9 , CMP_EN: 6.4  },
+    ADCINB3     : { CMP_DIS: 75  , CMP_EN: 77.5 },
+    ADCINB4     : { CMP_DIS: 3.8 , CMP_EN: 6.3  },
+    ADCINB5     : { CMP_DIS: 3.5 , CMP_EN: 6  },
+    ADCINB6     : { CMP_DIS: 4.1 , CMP_EN:  6.6  },
+    ADCINB7     : { CMP_DIS: 7.4 , CMP_EN:  9.9  },
+    ADCINB8     : { CMP_DIS: 3.8 , CMP_EN:  6.3  },
+    ADCINB9     : { CMP_DIS: 3.3 , CMP_EN: 5.8  },
+    ADCINB11    : { CMP_DIS: 4 , CMP_EN: 6.5  },
+    ADCINB12    : { CMP_DIS: 3.6 , CMP_EN: 6.1  },
+    ADCINB14    : { CMP_DIS: 3.8 , CMP_EN: 6.3  },
+    ADCINB15    : { CMP_DIS: 9.1 , CMP_EN: 11.6  },
+    AGPIO_B5    : { CMP_DIS: 3.2   , CMP_EN: 5.7  },
+    AGPIO_B11   : { CMP_DIS: 3.1   , CMP_EN: 5.6  },
+}
+
 var Cp_F28P65x = {
     ADCINA0     : { CMP_DIS: 9.3, CMP_EN:  14.3  },
     ADCINA1     : { CMP_DIS: 9.3, CMP_EN:  14.3  },
@@ -417,6 +465,7 @@ var Cp_F28P65x = {
 
 var Cp = {
 	F28P65x: Cp_F28P65x,
+    F28P55x: Cp_F28P55x,
 	F280015x: Cp_F280015x,
     F280013x: Cp_F280013x,
     F28003x: Cp_F28003x,
@@ -430,6 +479,7 @@ var Cp = {
 
 var Ron = {
 	F28P65x:{ REF_3V3: 860, REF: 500}, 
+    F28P55x:{ REF_3V3: 860, REF: 500}, 
 	F280015x:{ REF_3V3: 860, REF: 500}, 
     F280013x:{ REF_3V3: 860, REF: 500}, 
     F28003x: { REF_3V3: 860, REF: 500}, 
@@ -443,6 +493,7 @@ var Ron = {
 
 var Ch = {
 	F28P65x:{ REF_3V3: 7.5,  REF: 12.5},
+    F28P55x:{ REF_3V3: 7.5,  REF: 12.5},
 	F280015x:{ REF_3V3: 7.5,  REF: 12.5},
     F280013x:{ REF_3V3: 7.5,  REF: 12.5}, 
     F28003x: { REF_3V3: 7.5,  REF: 12.5}, 

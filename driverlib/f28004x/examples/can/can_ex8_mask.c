@@ -146,11 +146,13 @@ void main(void)
     //      Message Object Flags: UMask, MXtd, MDir
     //      Message Object flag CAN_MSG_OBJ_USE_ID_FILTER enables usage 
     //       of msgIDMask parameter for Message Identifier based filtering
+    //      Message Object flag CAN_MSG_OBJ_USE_EXT_FILTER enables usage 
+    //       of frameType parameter for Message Frame based filtering
     //      Message Data Length: "Don't care" for a Receive mailbox
     CAN_setupMessageObject(CANA_BASE, RX_MSG_OBJ_ID, 0x1F9FFFFA,
                            CAN_MSG_FRAME_EXT, CAN_MSG_OBJ_TYPE_RX, 0x1F000000,
-                           (CAN_MSG_OBJ_USE_ID_FILTER | CAN_MSG_OBJ_NO_FLAGS),
-   						   MSG_DATA_LENGTH);
+                           (CAN_MSG_OBJ_USE_ID_FILTER | CAN_MSG_OBJ_NO_FLAGS |
+                           CAN_MSG_OBJ_USE_EXT_FILTER), MSG_DATA_LENGTH);
 
     //
     // Start CAN module A operations

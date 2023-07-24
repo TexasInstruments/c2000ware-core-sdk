@@ -84,6 +84,56 @@ extern "C"
                                   ESCSS_INTR_RIS_MASTER_RESET_RIS)
 
 //
+// Define for Mask Value to get the Masked Interrupt Status.
+//
+#define ESCSS_INTERRUPT_MASK (ESCSS_INTR_MASK_SYNC0_MASK |\
+                              ESCSS_INTR_MASK_SYNC1_MASK |\
+                              ESCSS_INTR_MASK_IRQ_MASK |\
+                              ESCSS_INTR_MASK_DMA_DONE_MASK |\
+                              ESCSS_INTR_MASK_TIMEOUT_ERR_MASK |\
+                              ESCSS_INTR_MASK_MASTER_RESET_MASK)
+
+//
+// Define for Mask Value to Reset the Masked Interrupt Status.
+//
+#define ESCSS_RESET_INTERRUPT_MASK (ESCSS_INTR_MASK_SYNC0_MASK |\
+                                    ESCSS_INTR_MASK_SYNC1_MASK |\
+                                    ESCSS_INTR_MASK_IRQ_MASK |\
+                                    ESCSS_INTR_MASK_DMA_DONE_MASK |\
+                                    ESCSS_INTR_MASK_TIMEOUT_ERR_MASK |\
+                                    ESCSS_INTR_MASK_MASTER_RESET_MASK)
+
+//
+// Define for Mask Value to Get the Masked Interrupt Status.
+//
+#define ESCSS_GET_INTERRUPT_MASK (ESCSS_INTR_MIS_SYNC0_MIS |\
+                                  ESCSS_INTR_MIS_SYNC1_MIS |\
+                                  ESCSS_INTR_MIS_IRQ_MIS |\
+                                  ESCSS_INTR_MIS_DMA_DONE_MIS |\
+                                  ESCSS_INTR_MIS_TIMEOUT_ERR_MIS |\
+                                  ESCSS_INTR_MIS_MASTER_RESET_MIS)
+
+//
+// Define for Mask Value to Clear the Masked Interrupt Status.
+//
+#define ESCSS_CLEAR_INTERRUPT_MASK (ESCSS_INTR_CLR_SYNC0_CLR |\
+                                    ESCSS_INTR_CLR_SYNC1_CLR |\
+                                    ESCSS_INTR_CLR_IRQ_CLR |\
+                                    ESCSS_INTR_CLR_DMA_DONE_CLR |\
+                                    ESCSS_INTR_CLR_TIMEOUT_ERR_CLR |\
+                                    ESCSS_INTR_CLR_MASTER_RESET_CLR)
+
+//
+// Define for Mask Value to Set the Masked Interrupt Status.
+//
+#define ESCSS_SET_INTERRUPT_MASK (ESCSS_INTR_SET_SYNC0_SET |\
+                                  ESCSS_INTR_SET_SYNC1_SET |\
+                                  ESCSS_INTR_SET_IRQ_SET |\
+                                  ESCSS_INTR_SET_DMA_DONE_SET |\
+                                  ESCSS_INTR_SET_TIMEOUT_ERR_SET |\
+                                  ESCSS_INTR_SET_MASTER_RESET_SET)
+
+//
 // Defines for the Group Capture Select Mask.
 //
 #define ESCSS_GRP_CAP_SELECT0_MASK ESCSS_GPIN_GRP_CAP_SEL_GPI_GRP_CAP_SEL0_M
@@ -421,12 +471,7 @@ ESCSS_getRawInterruptStatus(uint32_t base, uint16_t interruptMask)
     // Check if the passed parameter base is valid.
     //
     ASSERT(ESCSS_isBaseValid(base));
-    ASSERT((interruptMask & ~(ESCSS_INTR_RIS_SYNC0_RIS |
-                              ESCSS_INTR_RIS_SYNC1_RIS |
-                              ESCSS_INTR_RIS_IRQ_RIS |
-                              ESCSS_INTR_RIS_DMA_DONE_RIS |
-                              ESCSS_INTR_RIS_TIMEOUT_ERR_RIS |
-                              ESCSS_INTR_RIS_MASTER_RESET_RIS)) == 0U);
+    ASSERT((interruptMask & ~(ESCSS_RAW_INTERRUPT_MASK)) == 0U);
 
     //
     // Return the specific Raw Interrupt Status Value.
@@ -502,12 +547,7 @@ ESCSS_setMaskedInterruptStatus(uint32_t base, uint16_t interruptMask)
     // Check if the passed parameter base is valid.
     //
     ASSERT(ESCSS_isBaseValid(base));
-    ASSERT((interruptMask & ~(ESCSS_INTR_MASK_SYNC0_MASK |
-                              ESCSS_INTR_MASK_SYNC1_MASK |
-                              ESCSS_INTR_MASK_IRQ_MASK |
-                              ESCSS_INTR_MASK_DMA_DONE_MASK |
-                              ESCSS_INTR_MASK_TIMEOUT_ERR_MASK |
-                              ESCSS_INTR_MASK_MASTER_RESET_MASK)) == 0U);
+    ASSERT((interruptMask & ~(ESCSS_INTERRUPT_MASK)) == 0U);
     //
     // Set the Masked Interrupt Status Value.
     //
@@ -551,12 +591,7 @@ ESCSS_resetMaskedInterruptStatus(uint32_t base, uint16_t interruptMask)
     // Check if the passed parameter base is valid.
     //
     ASSERT(ESCSS_isBaseValid(base));
-    ASSERT((interruptMask & ~(ESCSS_INTR_MASK_SYNC0_MASK |
-                              ESCSS_INTR_MASK_SYNC1_MASK |
-                              ESCSS_INTR_MASK_IRQ_MASK |
-                              ESCSS_INTR_MASK_DMA_DONE_MASK |
-                              ESCSS_INTR_MASK_TIMEOUT_ERR_MASK |
-                              ESCSS_INTR_MASK_MASTER_RESET_MASK)) == 0U);
+    ASSERT((interruptMask & ~(ESCSS_RESET_INTERRUPT_MASK)) == 0U);
     //
     // Reset the Masked Interrupt Status Value.
     //
@@ -590,12 +625,7 @@ ESCSS_getMaskedInterruptStatus(uint32_t base, uint16_t interruptMask)
     // Check if the passed parameter base is valid.
     //
     ASSERT(ESCSS_isBaseValid(base));
-    ASSERT((interruptMask & ~(ESCSS_INTR_MIS_SYNC0_MIS |
-                              ESCSS_INTR_MIS_SYNC1_MIS |
-                              ESCSS_INTR_MIS_IRQ_MIS |
-                              ESCSS_INTR_MIS_DMA_DONE_MIS |
-                              ESCSS_INTR_MIS_TIMEOUT_ERR_MIS |
-                              ESCSS_INTR_MIS_MASTER_RESET_MIS)) == 0U);
+    ASSERT((interruptMask & ~(ESCSS_GET_INTERRUPT_MASK)) == 0U);
 
     //
     // Return the Masked Interrupt Status Value.
@@ -630,12 +660,7 @@ ESCSS_clearRawInterruptStatus(uint32_t base, uint16_t interruptMask)
     // Check if the passed parameter base is valid.
     //
     ASSERT(ESCSS_isBaseValid(base));
-    ASSERT((interruptMask & ~(ESCSS_INTR_CLR_SYNC0_CLR |
-                              ESCSS_INTR_CLR_SYNC1_CLR |
-                              ESCSS_INTR_CLR_IRQ_CLR |
-                              ESCSS_INTR_CLR_DMA_DONE_CLR |
-                              ESCSS_INTR_CLR_TIMEOUT_ERR_CLR |
-                              ESCSS_INTR_CLR_MASTER_RESET_CLR)) == 0U);
+    ASSERT((interruptMask & ~(ESCSS_CLEAR_INTERRUPT_MASK)) == 0U);
     //
     // Clear the Interrupt Status using the Mask Value passed.
     //

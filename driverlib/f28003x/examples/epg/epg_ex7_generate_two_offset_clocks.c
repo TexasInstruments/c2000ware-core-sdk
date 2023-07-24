@@ -100,13 +100,13 @@ void main(void)
     XBAR_enableOutputMux(OUTPUTXBAR_BASE, XBAR_OUTPUT2, XBAR_MUX31);
 
     //
-    // Select Signal Generator output for EPG output of 0,1
+    // Select Clock Generator output for EPG output of 0,1
     //
     EPG_selectEPGOutput(EPG1_BASE, EPG_OUT0, EPG_OUT_SEL_CLK);
     EPG_selectEPGOutput(EPG1_BASE, EPG_OUT1, EPG_OUT_SEL_CLK);
 
     //
-    //
+    // Select Clock Generator Data output for EPG output of 0,1
     //
     EPG_selectClkOutput(EPG1_BASE, EPG_OUT0, EPG_CLKGEN0_CLKOUT0_DCLK);
     EPG_selectClkOutput(EPG1_BASE, EPG_OUT1, EPG_CLKGEN0_CLKOUT1_DCLK);

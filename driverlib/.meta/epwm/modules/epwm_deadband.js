@@ -229,6 +229,14 @@ var config = [
         default     : false,
         onChange    : onChangeEnableDelays
     },
+    {
+        name: "epwmDeadband_redShadowLoadEvent",
+        displayName : "RED Shadow Load Event",
+        description : 'Shadow to active load event for the RED (Rising Edge Delay) register.',
+        hidden      : false,
+        default     : device_driverlib_peripheral.EPWM_RisingEdgeDelayLoadMode[0].name,
+        options     : device_driverlib_peripheral.EPWM_RisingEdgeDelayLoadMode
+    },
 
     {
         name: "epwmDeadband_delayRED",
@@ -245,6 +253,14 @@ var config = [
         hidden      : false,
         default     : false,
         onChange    : onChangeEnableDelays
+    },    
+    {
+        name: "epwmDeadband_fedShadowLoadEvent",
+        displayName : "FED Shadow Load Event",
+        description : 'Shadow to active load event for the FED (Falling Edge Delay) register.',
+        hidden      : false,
+        default     : device_driverlib_peripheral.EPWM_FallingEdgeDelayLoadMode[0].name,
+        options     : device_driverlib_peripheral.EPWM_FallingEdgeDelayLoadMode
     },
 
     {
@@ -277,20 +293,20 @@ var config = [
         default     : false,
     },
     {
+        name: "epwmDeadband_controlShadowLoadEvent",
+        displayName : "Deadband Control Shadow Load Event",
+        description : 'Shadow to active load event for the DBCTL (Deadband Control) register.',
+        hidden      : false,
+        default     : device_driverlib_peripheral.EPWM_DeadBandControlLoadMode[0].name,
+        options     : device_driverlib_peripheral.EPWM_DeadBandControlLoadMode
+    },
+    {
         name: "epwmDeadband_controlShadowMode",
         displayName : "Enable Deadband Control Shadow Mode",
         description : 'Enable shadowing of the DBCTL (Deadband Control) register.',
         hidden      : false,
         default     : false,
-        onChange    : onChangeShadowModes,
-    },
-    {
-        name: "epwmDeadband_controlShadowLoadEvent",
-        displayName : "Deadband Control Shadow Load Event",
-        description : 'Shadow to active load event for the DBCTL (Deadband Control) register.',
-        hidden      : true,
-        default     : device_driverlib_peripheral.EPWM_DeadBandControlLoadMode[0].name,
-        options     : device_driverlib_peripheral.EPWM_DeadBandControlLoadMode
+        //onChange    : onChangeShadowModes,
     },
     {
         name: "epwmDeadband_redGld",
@@ -305,15 +321,7 @@ var config = [
         description : 'Enable shadowing of the RED (Rising Edge Delay) register.',
         hidden      : false,
         default     : false,
-        onChange    : onChangeShadowModes,
-    },
-    {
-        name: "epwmDeadband_redShadowLoadEvent",
-        displayName : "RED Shadow Load Event",
-        description : 'Shadow to active load event for the RED (Rising Edge Delay) register.',
-        hidden      : true,
-        default     : device_driverlib_peripheral.EPWM_RisingEdgeDelayLoadMode[0].name,
-        options     : device_driverlib_peripheral.EPWM_RisingEdgeDelayLoadMode
+        //onChange    : onChangeShadowModes,
     },
     {
         name: "epwmDeadband_fedGld",
@@ -321,22 +329,14 @@ var config = [
         description : 'Use global load configuration for FED',
         hidden      : false,
         default     : false,
-    },    
+    },
     {
         name: "epwmDeadband_fedShadowMode",
         displayName : "Enable FED Shadow Mode",
         description : 'Enable shadowing of the FED (Falling Edge Delay) register.',
         hidden      : false,
         default     : false,
-        onChange    : onChangeShadowModes,
-    },
-    {
-        name: "epwmDeadband_fedShadowLoadEvent",
-        displayName : "FED Shadow Load Event",
-        description : 'Shadow to active load event for the FED (Falling Edge Delay) register.',
-        hidden      : true,
-        default     : device_driverlib_peripheral.EPWM_FallingEdgeDelayLoadMode[0].name,
-        options     : device_driverlib_peripheral.EPWM_FallingEdgeDelayLoadMode
+        //onChange    : onChangeShadowModes,
     },
     {
         name: "epwmDeadband_deadbandCounterClockRate",

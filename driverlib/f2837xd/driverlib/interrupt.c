@@ -168,6 +168,87 @@ Interrupt_initModule(void)
 
 //*****************************************************************************
 //
+//! The default interrupt handler.
+//!
+//! \return None.
+//
+//*****************************************************************************
+__interrupt void Interrupt_defaultHandler(void)
+{
+    uint16_t pieVect;
+    uint16_t vectID;
+
+    //
+    // Calculate the vector ID. If the vector is in the lower PIE, it's the
+    // offset of the vector that was fetched (bits 7:1 of PIECTRL.PIEVECT)
+    // divided by two.
+    //
+    pieVect = HWREGH(PIECTRL_BASE + PIE_O_CTRL);
+    vectID = (pieVect & 0xFEU) >> 1U;
+
+    //
+    // If the vector is in the upper PIE, the vector ID is 128 or higher.
+    //
+    if(pieVect >= 0x0E00U)
+    {
+        vectID += 128U;
+    }
+
+    //
+    // Something has gone wrong. An interrupt without a proper registered
+    // handler function has occurred. To help you debug the issue, local
+    // variable vectID contains the vector ID of the interrupt that occurred.
+    //
+    ESTOP0;
+    for(;;)
+    {
+        ;
+    }
+}
+
+//*****************************************************************************
+//
+//! The default illegal instruction trap interrupt handler.
+//!
+//! \return None.
+//
+//*****************************************************************************
+__interrupt void Interrupt_illegalOperationHandler(void)
+{
+    //
+    // Something has gone wrong.  The CPU has tried to execute an illegal
+    // instruction, generating an illegal instruction trap (ITRAP).
+    //
+    ESTOP0;
+    for(;;)
+    {
+        ;
+    }
+}
+
+//*****************************************************************************
+//
+//! The default non-maskable interrupt handler.
+//!
+//! \return None.
+//
+//*****************************************************************************
+__interrupt void Interrupt_nmiHandler(void)
+{
+    //
+    // A non-maskable interrupt has occurred, indicating that a hardware error
+    // has occurred in the system.  You can use SysCtl_getNMIFlagStatus() to
+    // to read the NMIFLG register and determine what caused the NMI.
+    //
+    ESTOP0;
+    for(;;)
+    {
+        ;
+    }
+}
+
+//*****************************************************************************
+//
 // Interrupt_initVectorTable
 //
 //*****************************************************************************

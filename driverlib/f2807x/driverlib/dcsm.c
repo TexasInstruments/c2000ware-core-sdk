@@ -215,7 +215,7 @@ DCSM_getZone1FlashEXEStatus(DCSM_Sector sector)
         // Get the EXE status of the Flash Sector
         //
         status = (DCSM_EXEOnlyStatus)((uint16_t)
-                                      ((regValue >> (uint16_t)sector) & 
+                                      ((regValue >> (uint16_t)sector) &
                                        0x01U));
     }
     return(status);
@@ -277,7 +277,7 @@ DCSM_getZone2FlashEXEStatus(DCSM_Sector sector)
         //
         // Get the EXE status of the Flash Sector
         //
-        status = (DCSM_EXEOnlyStatus)((uint16_t)((regValue >> 
+        status = (DCSM_EXEOnlyStatus)((uint16_t)((regValue >>
                                                   (uint16_t)sector) & 0x01U));
     }
 

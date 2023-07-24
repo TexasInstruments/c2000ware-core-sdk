@@ -717,6 +717,24 @@ typedef enum
 
 //*****************************************************************************
 //
+//! Values that can be passed to SysCtl_disableCMPSSLPMWakeupPin() and 
+//! SysCtl_enableCMPSSLPMWakeupPin() as the \e pin input parameter.
+//
+//*****************************************************************************
+typedef enum
+{
+    SYSCTL_CMPSSLPMSEL_CMPSS_1H = 0x00,   
+    SYSCTL_CMPSSLPMSEL_CMPSS_1L = 0x01,   
+    SYSCTL_CMPSSLPMSEL_CMPSS_2H = 0x02,   
+    SYSCTL_CMPSSLPMSEL_CMPSS_2L = 0x03,   
+    SYSCTL_CMPSSLPMSEL_CMPSS_3H = 0x04,   
+    SYSCTL_CMPSSLPMSEL_CMPSS_3L = 0x05,   
+    SYSCTL_CMPSSLPMSEL_CMPSS_4H = 0x06,   
+    SYSCTL_CMPSSLPMSEL_CMPSS_4L = 0x07
+} SysCtl_CMPSSLPMSel;
+
+//*****************************************************************************
+//
 // Prototypes for the APIs.
 //
 //*****************************************************************************
@@ -1461,6 +1479,52 @@ SysCtl_disableLPMWakeupPin(uint32_t pin)
 }
 
 //*****************************************************************************
+//! Connects the selected pin to LPM circuit
+//!
+//! The \param pin parameter can be a value from the enumeration
+//! SysCtl_CMPSSLPMSel
+//!
+//! This function connects a pin to the LPM circuit
+//!
+//! \return None.
+//
+//*****************************************************************************
+static inline void
+SysCtl_enableCMPSSLPMWakeupPin(SysCtl_CMPSSLPMSel pin)
+{
+    uint32_t pinMask;
+
+    pinMask = 1UL << (pin);
+
+    EALLOW;
+        HWREG(CPUSYS_BASE + SYSCTL_O_CMPSSLPMSEL) |= pinMask;
+    EDIS;
+}
+
+//*****************************************************************************
+//! Disonnects the selected pin from LPM circuit
+//!
+//! The \param pin parameter can be a value from the enumeration
+//! SysCtl_CMPSSLPMSel
+//!
+//! This function disconnects a pin from the LPM circuit
+//!
+//! \return None.
+//
+//*****************************************************************************
+static inline void
+SysCtl_disableCMPSSLPMWakeupPin(SysCtl_CMPSSLPMSel pin)
+{
+    uint32_t pinMask;
+
+    pinMask = 1UL << (pin);
+
+    EALLOW;
+        HWREG(CPUSYS_BASE + SYSCTL_O_CMPSSLPMSEL) &= ~pinMask;
+    EDIS;
+}
+
+//*****************************************************************************
 //
 //! Sets the number of cycles to qualify an input on waking from STANDBY mode.
 //!
@@ -1704,6 +1768,26 @@ SysCtl_enableWatchdog(void)
                                        ~SYSCTL_WDCR_WDDIS) | SYSCTL_WD_CHKBITS;
 
     EDIS;
+}
+
+//*****************************************************************************
+//
+//! Checks if the watchdog is enabled or not
+//!
+//! This function returns the watchdog status whether it is enabled or disabled
+//!
+//! \return \b true if the watchdog is enabled & \b false if the watchdog is 
+//! disabled
+//
+//*****************************************************************************
+static inline bool
+SysCtl_isWatchdogEnabled(void)
+{
+
+    //
+    // Get the watchdog enable status
+    //
+    return ((HWREGH(WD_BASE + SYSCTL_O_WDCR) & SYSCTL_WDCR_WDDIS) == 0U);
 }
 
 //*****************************************************************************
@@ -3528,6 +3612,7 @@ SysCtl_lockClkConfig(SysCtl_ClkRegSel registerName);
 
 extern void
 SysCtl_lockSysConfig (SysCtl_CpuRegSel registerName);
+
 
 //*****************************************************************************
 //

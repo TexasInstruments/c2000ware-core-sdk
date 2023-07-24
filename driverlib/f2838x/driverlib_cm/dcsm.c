@@ -132,7 +132,7 @@ DCSM_getZone1FlashEXEStatus(DCSM_Sector sector, DCSM_CPUSel cpuInst)
         // Get the EXE status of the Flash Sector
         //
         status = (DCSM_EXEOnlyStatus)((uint16_t)
-                                      ((regValue >> (uint16_t)sector) & 
+                                      ((regValue >> (uint16_t)sector) &
                                        0x01U));
     }
     return(status);
@@ -178,8 +178,8 @@ DCSM_getZone1RAMEXEStatus(DCSM_RAMModule module, DCSM_CPUSel cpuInst)
         //
         if(cpuInst == DCSM_CPUSEL_CPU1)
         {
-            status = (uint16_t)((HWREGH(DCSM_Z1_BASE + 
-                                        DCSM_O_Z1_EXEONLYRAM1R) >> 
+            status = (uint16_t)((HWREGH(DCSM_Z1_BASE +
+                                        DCSM_O_Z1_EXEONLYRAM1R) >>
                                  (uint16_t)module) & 0x01U);
         }
         else if(cpuInst == DCSM_CPUSEL_CM)
@@ -244,7 +244,7 @@ DCSM_getZone2FlashEXEStatus(DCSM_Sector sector, DCSM_CPUSel cpuInst)
         //
         // Get the EXE status of the Flash Sector
         //
-        status = (DCSM_EXEOnlyStatus)((uint16_t)((regValue >> 
+        status = (DCSM_EXEOnlyStatus)((uint16_t)((regValue >>
                                                   (uint16_t)sector) & 0x01U));
     }
 
@@ -303,7 +303,7 @@ DCSM_getZone2RAMEXEStatus(DCSM_RAMModule module, DCSM_CPUSel cpuInst)
         else
         {
             status = ((HWREG(DCSM_Z2_BASE + DCSM_O_Z2_EXEONLYRAM1R) >>
-                       (DCSM_Z2_EXEONLYRAM1R_CPU2 - (uint16_t)module)) & 
+                       (DCSM_Z2_EXEONLYRAM1R_CPU2 - (uint16_t)module)) &
                       0x01U);
         }
     }

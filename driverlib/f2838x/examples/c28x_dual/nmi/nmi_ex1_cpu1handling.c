@@ -82,7 +82,6 @@ void main(void)
     // Initialize device clock and peripherals
     //
     Device_init();
-
     //
     // Boot CPU2 core
     //
@@ -91,6 +90,7 @@ void main(void)
 #else
     Device_bootCPU2(BOOTMODE_BOOT_TO_M0RAM);
 #endif
+
 
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts
@@ -110,7 +110,7 @@ void main(void)
     //
     GPIO_setPadConfig(DEVICE_GPIO_PIN_LED1, GPIO_PIN_TYPE_STD);
     GPIO_setDirectionMode(DEVICE_GPIO_PIN_LED1, GPIO_DIR_MODE_OUT);
-    GPIO_setMasterCore(DEVICE_GPIO_PIN_LED1, GPIO_CORE_CPU2);
+    GPIO_setControllerCore(DEVICE_GPIO_PIN_LED1, GPIO_CORE_CPU2);
 
     //
     // Enabling the NMI global interrupt

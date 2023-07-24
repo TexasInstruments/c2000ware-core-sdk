@@ -1,0 +1,374 @@
+%let clocktree_common   = system.getScript("/driverlib/.meta/clocktree/clocktree_common.js");
+%let Common   = system.getScript("/driverlib/Common.js");
+%
+%var DualCore 	= clocktree_common.DualCore;
+%var SingleCore  = clocktree_common.SingleCore;
+%
+%const multi_core = clocktree_common.multi_core;
+%const PLL_type1  = clocktree_common.PLL_type1;
+%const PLL_type2  = clocktree_common.PLL_type2;
+%
+%const device  = clocktree_common.device;
+%
+%var otherTree = Common.getClockTree();
+% if (otherTree!=null){            // If we can't get clock tree, CPU1 context is probably not open
+%const AUXPLL_Support 		= clocktree_common.AUXPLL_Support;
+%const EPWM_div_support 		= clocktree_common.EPWM_div_support;
+%const xtal_x1_macro 		= clocktree_common.xtal_x1_macro;
+%var XTAL_OR_X1 				= clocktree_common.XTAL_OR_X1;
+%
+%//////////////////////////////////////////////////
+%// Frequency lables
+%//////////////////////////////////////////////////
+%const OSCCLK_d 		 = otherTree.OSCCLK.in
+%const PLLRAWCLK_d	 = otherTree.PLLRAWCLK.in
+%const PLLSYSCLK_d	 = otherTree.PLLSYSCLK.in
+%const CPU1_CPUCLK_d	 = otherTree.CPU1_CPUCLK.in
+%const CPU2_CPUCLK_d	 = otherTree.CPU2_CPUCLK.in
+%const CPU1_SYSCLK_d	 = otherTree.CPU1_SYSCLK.in
+%const CPU2_SYSCLK_d	 = otherTree.CPU2_SYSCLK.in
+%const LSPCLK_d 		 = otherTree.LSPCLK.in
+%
+%//////////////////////////////////////////////////
+%// OSCCLK source
+%//////////////////////////////////////////////////
+%
+%var OSCCLKSRCSEL	= otherTree.OSCCLKSRCSEL
+%
+%var oscclkSrc = "SYSCTL_OSCSRC_OSC2"
+%var oscclksource
+%var oscclk = 10
+%
+%//////////////////////////////////////////////////
+%// IMULT, FMULT (PLLRAWCLK) source
+%//////////////////////////////////////////////////
+%
+%var SYSPLLCTL1		= otherTree.SYSPLLCTL1
+%
+%var PLL_IMULT_mv  	= otherTree.PLL_IMULT.multiplyValue
+%var PLL_IMULT 		= "SYSCTL_IMULT(" + PLL_IMULT_mv + ")"
+%
+%var SYSCLKDIVSEL_dv = otherTree.SYSCLKDIVSEL.divideValue
+%
+%var PLL_DIVSEL		= "SYSCTL_SYSDIV(" + SYSCLKDIVSEL_dv + ")"
+%
+%var PLL_FMULT
+%if(PLL_type1.includes(device))
+%{
+%var PLL_FMULT_mv    = otherTree.PLL_FMULT.multiplyValue
+%	switch(PLL_FMULT_mv){
+%		case 0:
+%			PLL_FMULT = "SYSCTL_FMULT_NONE"
+%			break
+%		case 0.25:
+%			PLL_FMULT = "SYSCTL_FMULT_1_4"
+%			break
+%		case 0.5:
+%			PLL_FMULT = "SYSCTL_FMULT_1_2"
+%			break
+%		case 0.75:
+%			PLL_FMULT = "SYSCTL_FMULT_3_4"
+%			break
+%	}
+%}
+%
+%var PLL_STS 	= 'SYSCTL_PLL_ENABLE'
+%var SYSPLL_STS 	= 'DISABLED'
+%
+%if(SYSPLLCTL1.inputSelect == 'OSCCLK')
+%{
+%	PLL_STS 	= 'SYSCTL_PLL_DISABLE'
+%	SYSPLL_STS	= 'DISABLED'
+%}
+%else
+%{
+%	PLL_STS = 'SYSCTL_PLL_ENABLE'
+%	SYSPLL_STS	= 'ENABLED'
+%}
+%
+%
+%if(PLL_type2.includes(device))
+%{
+%	var PLL_REFDIV_dv = otherTree.PLL_REFDIV.divideValue
+%	var PLL_REFDIV    = "SYSCTL_REFDIV(" + PLL_REFDIV_dv + ")"
+%	
+%	var PLL_ODIV_dv = otherTree.PLL_ODIV.divideValue
+%	var PLL_ODIV    = "SYSCTL_ODIV(" + PLL_ODIV_dv + ")"
+%}
+%
+%//////////////////////////////////////////////////
+%// Frequency lables
+%//////////////////////////////////////////////////
+%const AUXOSCCLK_d	 = otherTree.AUXOSCCLK.in
+%const AUXPLLRAWCLK_d = otherTree.AUXPLLRAWCLK.in
+%const AUXPLLCLK_d    = otherTree.AUXPLLCLK.in
+%
+%//////////////////////////////////////////////////
+%// AUXOSCCLK source
+%//////////////////////////////////////////////////
+%
+%var AUXOSCCLKSRCSEL	= otherTree.AUXOSCCLKSRCSEL
+%
+%var auxoscclkSrc = "SYSCTL_OSCSRC_OSC2"
+%var auxoscclksource
+%var auxoscclk = 10
+%
+%
+%//////////////////////////////////////////////////
+%// IMULT, FMULT (AUXRAWCLK) source
+%//////////////////////////////////////////////////
+%
+%
+%var AUX_PLLEN  		= otherTree.AUX_PLLEN 
+%var AUX_IMULT_mv  	= otherTree.AUX_IMULT.multiplyValue
+%var AUX_IMULT 		= "SYSCTL_AUXPLL_IMULT(" + AUX_IMULT_mv + ")"
+%
+%var AUXCLKDIVSEL_dv = otherTree.AUXCLKDIVSEL.divideValue
+%
+%var AUX_DIVSEL		= "SYSCTL_AUXPLL_DIV_" + AUXCLKDIVSEL_dv
+%
+%
+%var AUX_FMULT
+%if(PLL_type1.includes(device))
+%{
+%	var AUX_FMULT_mv    = otherTree.AUX_FMULT.multiplyValue
+%	switch(otherTree.AUX_FMULT.multiplyValue){
+%		case 0:
+%			AUX_FMULT = "SYSCTL_AUXPLL_FMULT_NONE"
+%			break
+%		case 0.25:
+%			AUX_FMULT = "SYSCTL_AUXPLL_FMULT_1_4"
+%			break
+%		case 0.5:
+%			AUX_FMULT = "SYSCTL_AUXPLL_FMULT_1_2"
+%			break
+%		case 0.75:
+%			AUX_FMULT = "SYSCTL_AUXPLL_FMULT_3_4"
+%	}
+%}
+%
+%if(PLL_type2.includes(device))
+%{
+%	var AUX_REFDIV_dv = otherTree.AUX_REFDIV.divideValue
+%	var AUX_REFDIV    = "SYSCTL_REFDIV(" + AUX_REFDIV_dv + ")"
+%	
+%	var AUX_ODIV_dv = otherTree.AUX_ODIV.divideValue
+%	var AUX_ODIV    = "SYSCTL_ODIV(" + AUX_ODIV_dv + ")"
+%	
+%	var AUXCLKDIVSEL_dv = otherTree.AUXCLKDIVSEL.divideValue	
+%}
+%
+%var AUXPLL_STS = 'SYSCTL_AUXPLL_ENABLE'
+%var AUXPLL_Status = 'DISABLED'
+%
+%if(AUX_PLLEN.inputSelect == 'AUXOSCCLK')
+%{
+%	AUXPLL_STS = 'SYSCTL_AUXPLL_DISABLE'
+%	AUXPLL_Status = 'DISABLED'
+%}
+%else
+%{
+%	AUXPLL_STS = 'SYSCTL_AUXPLL_ENABLE'
+%	AUXPLL_Status = 'ENABLED'
+%}
+%
+%
+%/////////////////////////////////////////////////////////////////////////////////////////
+%
+%
+//#############################################################################
+//
+// FILE:   clockTree.h
+//
+// TITLE:  Setups device clocking for CPU2 for examples.
+//
+//#############################################################################
+// $Copyright:
+// Copyright (C) `new Date().getFullYear()` Texas Instruments Incorporated - http://www.ti.com
+//
+// Redistribution and use in source and binary forms, with or without 
+// modification, are permitted provided that the following conditions 
+// are met:
+// 
+//   Redistributions of source code must retain the above copyright 
+//   notice, this list of conditions and the following disclaimer.
+// 
+//   Redistributions in binary form must reproduce the above copyright
+//   notice, this list of conditions and the following disclaimer in the 
+//   documentation and/or other materials provided with the   
+//   distribution.
+// 
+//   Neither the name of Texas Instruments Incorporated nor the names of
+//   its contributors may be used to endorse or promote products derived
+//   from this software without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+// $
+//###########################################################################
+
+#ifndef CLOCKTREE_H
+#define CLOCKTREE_H
+
+//*****************************************************************************
+//
+// Summary of SYSPLL related clock configuration
+//
+//*****************************************************************************
+//
+// Input Clock to SYSPLL (OSCCLK)	= `OSCCLK_d` MHz    (`oscclksource` provides OSCCLK)
+//
+//##### SYSPLL `SYSPLL_STS` #####
+//
+// PLLRAWCLK				= `PLLRAWCLK_d` MHz   (Output of SYSPLL if enabled) 
+// PLLSYSCLK				= `PLLSYSCLK_d` MHz
+// CPU1CLK					= `CPU1_CPUCLK_d` MHz
+// CPU2CLK					= `CPU2_CPUCLK_d` MHz 
+// CPU1_SYSCLK				= `CPU1_SYSCLK_d` MHz
+// CPU2_SYSCLK 				= `CPU2_SYSCLK_d` MHz
+// LSPCLK					= `LSPCLK_d` MHz 
+	%
+	%if(EPWM_div_support.includes(device))
+	%{
+	% var   EPWMCLK_d       = otherTree.PLLSYSCLK.in / otherTree.EPWMCLKDIV.divideValue
+// EPWMCLK 					= `EPWMCLK_d` MHz	
+	%}
+	
+//*****************************************************************************
+//
+// Macro definitions used in device.c (SYSPLL / LSPCLK)
+//
+//*****************************************************************************
+//
+//	Input Clock to SYSPLL (OSCCLK) = `oscclksource` = `OSCCLK_d` MHz
+//
+#define DEVICE_OSCSRC_FREQ          `OSCCLK_d`000000U
+%
+% /////////////////////////////////////////////////////////////////////////////////////////
+%
+% if(PLL_type1.includes(device))
+% {
+//
+// Define to pass to SysCtl_setClock(). Will configure the clock as follows:
+		%if(PLL_STS == 'SYSCTL_PLL_ENABLE')
+		%	{
+// SYSPLL ENABLED
+// SYSCLK = `PLLSYSCLK_d` MHz = `OSCCLK_d` MHz (OSCCLK) * (`PLL_IMULT_mv` (IMULT) + `PLL_FMULT_mv` (FMULT)) / `SYSCLKDIVSEL_dv` (SYSCLKDIVSEL)	
+#define DEVICE_SYSCLK_FREQ          ((DEVICE_OSCSRC_FREQ * (`PLL_IMULT_mv` + `PLL_FMULT_mv`)) / `SYSCLKDIVSEL_dv`)
+		%   }
+		%else
+		%	{
+// SYSPLL DISABLED
+// SYSCLK = `OSCCLK_d` MHz(`oscclksource`) / `SYSCLKDIVSEL_dv` (SYSCLKDIVSEL) = `PLLSYSCLK_d` MHz
+#define DEVICE_SYSCLK_FREQ          (DEVICE_OSCSRC_FREQ / `SYSCLKDIVSEL_dv`)
+		%   }
+%}						
+% /////////////////////////////////////////////////////////////////////////////////////////
+%
+% if(PLL_type2.includes(device))
+% {
+//
+// Define to pass to SysCtl_setClock(). Will configure the clock as follows:
+		%if(PLL_STS == 'SYSCTL_PLL_ENABLE')
+		%	{
+// SYSPLL ENABLED
+// SYSCLK = `PLLSYSCLK_d` MHz = `OSCCLK_d` MHz (OSCCLK) * `PLL_IMULT_mv` (IMULT) / (`PLL_REFDIV_dv` (REFDIV) * `PLL_ODIV_dv` (ODIV) * `SYSCLKDIVSEL_dv` (SYSCLKDIVSEL))
+		%   }
+		%else
+		%	{
+// SYSPLL DISABLED
+// SYSCLK = `OSCCLK_d` MHz(`oscclksource`) / `SYSCLKDIVSEL_dv` (SYSCLKDIVSEL) = `PLLSYSCLK_d` MHz
+		%   }					 
+									 
+#define DEVICE_SYSCLK_FREQ          (DEVICE_OSCSRC_FREQ * `PLL_IMULT_mv`) / (`PLL_REFDIV_dv` * `PLL_ODIV_dv` * `SYSCLKDIVSEL_dv`)
+% }
+% /////////////////////////////////////////////////////////////////////////////////////////
+
+//
+// Define to pass to SysCtl_setLowSpeedClock().
+// Low Speed Clock (LSPCLK) = `PLLSYSCLK_d` MHz / `otherTree.LOSPCP.divideValue` = `LSPCLK_d` MHz
+//
+#define DEVICE_LSPCLK_CFG  			SYSCTL_LSPCLK_PRESCALE_`otherTree.LOSPCP.divideValue`
+
+#define DEVICE_LSPCLK_FREQ          (DEVICE_SYSCLK_FREQ / `otherTree.LOSPCP.divideValue`)
+
+//*****************************************************************************
+//
+// Summary of AUXPLL related clock configuration
+//
+//*****************************************************************************
+//
+// Input Clock to AUXOSCCLK	= `AUXOSCCLK_d` MHz (`auxoscclksource` provides AUXOSCCLK)  
+//
+//##### AUXPLL `AUXPLL_Status` #####
+//
+// AUXPLLRAWCLK				= `AUXPLLRAWCLK_d` MHz (Output of AUXPLL if enabled)
+// AUXPLLCLK				= `AUXPLLCLK_d` MHz 
+//
+//*****************************************************************************
+//
+// Macro definitions used in device.c (AUXPLL)
+//
+//*****************************************************************************
+//
+//	Input Clock to AUXPLL (AUXOSCCLK) = `auxoscclksource` = `AUXOSCCLK_d` MHz
+//
+#define DEVICE_AUXOSCSRC_FREQ 		`AUXOSCCLK_d`000000U
+%
+% if(PLL_type1.includes(device))
+% {
+//
+// Define to pass to SysCtl_setAuxClock(). Will configure the clock as follows:
+	%if(AUXPLL_STS == 'SYSCTL_AUXPLL_ENABLE')
+	%	{
+// AUXPLL ENABLED
+// AUXPLLCLK = `AUXPLLCLK_d` MHz = `AUXOSCCLK_d` MHz (AUXOSCCLK) * (`AUX_IMULT_mv` (AUX_IMULT) + `AUX_FMULT_mv` (AUX_FMULT)) / `AUXCLKDIVSEL_dv` (AUXCLKDIVSEL)
+#define DEVICE_AUXCLK_FREQ			((DEVICE_AUXOSCSRC_FREQ * (`AUX_IMULT_mv` + `AUX_FMULT_mv`)) / `AUXCLKDIVSEL_dv`)
+	%	}
+	%else
+	% 	{
+// AUXPLL DISABLED
+// AUXPLLCLK = `AUXPLLCLK_d` MHz = `AUXOSCCLK_d` MHz (`auxoscclksource`) / `AUXCLKDIVSEL_dv` (AUXCLKDIVSEL)
+#define DEVICE_AUXCLK_FREQ			(DEVICE_AUXOSCSRC_FREQ  / `AUXCLKDIVSEL_dv`) 
+	%   }
+//
+% }
+%
+% if(PLL_type2.includes(device))
+% {
+//
+// Define to pass to SysCtl_setAuxClock(). Will configure the clock as follows:
+		%if(AUXPLL_STS == 'SYSCTL_AUXPLL_ENABLE')
+	%	{
+// AUXPLL ENABLED
+// AUXPLLCLK = `AUXPLLCLK_d` MHz = `AUXOSCCLK_d` MHz (AUXOSCCLK) * `AUX_IMULT_mv` (IMULT) / (`AUX_REFDIV_dv` (REFDIV) * `AUX_ODIV_dv` (ODIV) * `AUXCLKDIVSEL_dv` (AUXCLKDIVSEL))
+#define DEVICE_AUXCLK_FREQ          (DEVICE_OSCSRC_FREQ * `AUX_IMULT_mv`) / (`AUX_REFDIV_dv` * `AUX_ODIV_dv` * `AUXCLKDIVSEL_dv`)
+	%   }
+		%else
+	%	{
+// AUXPLL DISABLED
+// AUXPLLCLK = `AUXPLLCLK_d` MHz = (`AUXOSCCLK_d`) / `AUXCLKDIVSEL_dv` (AUXCLKDIVSEL)
+#define DEVICE_AUXCLK_FREQ			(DEVICE_AUXOSCSRC_FREQ  / `AUXCLKDIVSEL_dv`)
+	%   }	
+
+% }
+#endif // CLOCKTREE_H
+%} else {
+#ifndef CLOCKTREE_H
+#define CLOCKTREE_H
+
+//
+// CANNOT ACCESS CLOCKTREE. PLEASE MAKE SURE TO OPEN BOTH CPU1 AND CPU2 in SYSCONFIG.
+//
+
+#endif // CLOCKTREE_H
+%}

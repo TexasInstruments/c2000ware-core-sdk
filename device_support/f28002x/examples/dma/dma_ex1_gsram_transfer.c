@@ -97,13 +97,11 @@ void main(void)
 //
 // Step 1. Initialize System Control:
 // PLL, WatchDog, enable Peripheral Clocks
-// This example function is found in the f2838x_sysctrl.c file.
 //
    InitSysCtrl();
 
 //
 // Step 2. Initialize GPIO:
-// This example function is found in the f2838x_Gpio.c file and
 // illustrates how to set the GPIO to it's default state.
 //
 // InitGpio();  // Skipped for this example
@@ -118,15 +116,12 @@ void main(void)
 
 //
 // Initialize PIE control registers to their default state:
-// This function is found in the f2838x_piectrl.c file.
 //
    InitPieCtrl();
 
 //
 // Initialize the PIE vector table with pointers to the default Interrupt
 // Service Routines (ISR).
-// The default ISR routines are found in f2838x_defaultisr.c.
-// This function is found in f2838x_pievect.c.
 //
    InitPieVectTable();
 

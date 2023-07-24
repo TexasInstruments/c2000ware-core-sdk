@@ -1,4 +1,56 @@
 %let Common   = system.getScript("/driverlib/Common.js");
+%if (["F28P65x"].includes(Common.getDeviceName()) && Common.isContextCPU1()){
+#ifdef CPU1
+//*****************************************************************************
+//
+// Function to boot CPU2
+// Available bootmodes :
+//      - BOOTMODE_BOOT_TO_FLASH_BANK0_SECTOR0
+//      - BOOTMODE_BOOT_TO_FLASH_BANK0_SECTOR127_END
+//      - BOOTMODE_BOOT_TO_FLASH_BANK1_SECTOR0
+//      - BOOTMODE_BOOT_TO_FLASH_BANK2_SECTOR0
+//      - BOOTMODE_BOOT_TO_FLASH_BANK3_SECTOR0
+//      - BOOTMODE_BOOT_TO_FLASH_BANK4_SECTOR0
+//      - BOOTMODE_BOOT_TO_FLASH_BANK4_SECTOR127_END
+//      - BOOTMODE_BOOT_TO_SECURE_FLASH_BANK0_SECTOR0
+//      - BOOTMODE_BOOT_TO_SECURE_FLASH_BANK1_SECTOR0
+//      - BOOTMODE_BOOT_TO_SECURE_FLASH_BANK2_SECTOR0
+//      - BOOTMODE_BOOT_TO_SECURE_FLASH_BANK3_SECTOR0
+//      - BOOTMODE_BOOT_TO_SECURE_FLASH_BANK4_SECTOR0
+//      - BOOTMODE_IPC_MSGRAM_COPY_BOOT_TO_M1RAM
+//      - BOOTMODE_BOOT_TO_M0RAM
+//      - BOOTMODE_BOOT_TO_FWU_FLASH
+//      - BOOTMODE_BOOT_TO_FWU_FLASH_ALT1
+//      - BOOTMODE_BOOT_TO_FWU_FLASH_ALT2
+//      - BOOTMODE_BOOT_TO_FWU_FLASH_ALT3
+//
+// Note that while using BOOTMODE_IPC_MSGRAM_COPY_BOOT_TO_M1RAM,
+// BOOTMODE_IPC_MSGRAM_COPY_LENGTH_xxxW must be ORed with the bootmode parameter
+//
+// This function must be called after Device_init function
+//
+//*****************************************************************************
+void Device_bootCPU2(uint32_t bootmode)
+{
+    //
+    // Configure the CPU1TOCPU2IPCBOOTMODE register
+    //
+    IPC_setBootMode(IPC_CPU1_L_CPU2_R,
+                    (BOOT_KEY | bootmode));
+
+    //
+    // Set IPC Flag 0
+    //
+    IPC_setFlagLtoR(IPC_CPU1_L_CPU2_R, IPC_FLAG0);
+
+    //
+    // Bring CPU2 out of reset. Wait for CPU2 to go out of reset.
+    //
+    SysCtl_controlCPU2Reset(SYSCTL_CORE_DEACTIVE);
+    while(SysCtl_isCPU2Reset() == 0x1U);
+}
+#endif
+%}
 %if (["F2838x"].includes(Common.getDeviceName()) && Common.isContextCPU1()){
 //*****************************************************************************
 //

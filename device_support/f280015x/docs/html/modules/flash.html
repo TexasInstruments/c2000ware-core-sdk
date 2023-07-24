@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v4.03.00.00_EA1
+                v5.00.00.00
               </div>
             
           
@@ -178,6 +178,52 @@ Flash ECC test mode registers and the Flash ECC error status registers.</p>
 <dd><div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Defines</p>
 <dl class="cpp macro">
+<dt id="c.FLASH_O_TRIMCTL">
+<span class="target" id="group__flash__api_1ga669ee40363b47a7aaaf886ca0bda7ff9"></span><code class="sig-name descname">FLASH_O_TRIMCTL</code> 0x1600U<a class="headerlink" href="#c.FLASH_O_TRIMCTL" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Flash Trim Defines. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.FLASH_O_TRIMLOCK">
+<span class="target" id="group__flash__api_1gad0f5c305e1406602eefa53fa29d91597"></span><code class="sig-name descname">FLASH_O_TRIMLOCK</code> 0x1604U<a class="headerlink" href="#c.FLASH_O_TRIMLOCK" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.FLASH_O_TRIMCOMMIT">
+<span class="target" id="group__flash__api_1ga194650ba7770e3c0d1398a4b075a2ffc"></span><code class="sig-name descname">FLASH_O_TRIMCOMMIT</code> 0x1608U<a class="headerlink" href="#c.FLASH_O_TRIMCOMMIT" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.FLASH_TRIMCTL_ENABLE_M">
+<span class="target" id="group__flash__api_1gad48aed0ad6848704480a5fcf1b3996b6"></span><code class="sig-name descname">FLASH_TRIMCTL_ENABLE_M</code> 0x1U<a class="headerlink" href="#c.FLASH_TRIMCTL_ENABLE_M" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.FLASH_TRIMCTL_ENABLE_S">
+<span class="target" id="group__flash__api_1ga13d9afa2e6b6c36b08784c15948aef1e"></span><code class="sig-name descname">FLASH_TRIMCTL_ENABLE_S</code> 0x0U<a class="headerlink" href="#c.FLASH_TRIMCTL_ENABLE_S" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.FLASH_TRIMLOCK_TRIMLOCKREAD_TRIMLOCKOTHER_M">
+<span class="target" id="group__flash__api_1ga47bdf104f035ec41bbc908261e4dcfd8"></span><code class="sig-name descname">FLASH_TRIMLOCK_TRIMLOCKREAD_TRIMLOCKOTHER_M</code> 0x3U<a class="headerlink" href="#c.FLASH_TRIMLOCK_TRIMLOCKREAD_TRIMLOCKOTHER_M" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.FLASH_TRIMLOCK_TRIMLOCKREAD_TRIMLOCKOTHER_S">
+<span class="target" id="group__flash__api_1gacdc4966dbc393a2d7f20ac560131dd64"></span><code class="sig-name descname">FLASH_TRIMLOCK_TRIMLOCKREAD_TRIMLOCKOTHER_S</code> 0x0U<a class="headerlink" href="#c.FLASH_TRIMLOCK_TRIMLOCKREAD_TRIMLOCKOTHER_S" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.FLASH_TRIMCOMMIT_TRIMCOMMITREAD_TRIMCOMMITOTHER_M">
+<span class="target" id="group__flash__api_1gacf5c6ef278c6661a24a891eaab991694"></span><code class="sig-name descname">FLASH_TRIMCOMMIT_TRIMCOMMITREAD_TRIMCOMMITOTHER_M</code> 0x3U<a class="headerlink" href="#c.FLASH_TRIMCOMMIT_TRIMCOMMITREAD_TRIMCOMMITOTHER_M" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.FLASH_TRIMCOMMIT_TRIMCOMMITREAD_TRIMCOMMITOTHER_S">
+<span class="target" id="group__flash__api_1gad1302024ee3b8947b92b36cf3aa0e266"></span><code class="sig-name descname">FLASH_TRIMCOMMIT_TRIMCOMMITREAD_TRIMCOMMITOTHER_S</code> 0x0U<a class="headerlink" href="#c.FLASH_TRIMCOMMIT_TRIMCOMMITREAD_TRIMCOMMITOTHER_S" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
 <dt id="c.FLASH_DELAY_CONFIG">
 <span class="target" id="group__flash__api_1ga1b984f8cbcb88236e6f28911516dca7c"></span><code class="sig-name descname">FLASH_DELAY_CONFIG</code> __asm(&quot; RPT #7 || NOP&quot;)<a class="headerlink" href="#c.FLASH_DELAY_CONFIG" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
@@ -199,27 +245,6 @@ Flash ECC test mode registers and the Flash ECC error status registers.</p>
 <dt id="_CPPv419Flash_setWaitstates8uint32_t8uint16_t">
 <span id="_CPPv319Flash_setWaitstates8uint32_t8uint16_t"></span><span id="_CPPv219Flash_setWaitstates8uint32_t8uint16_t"></span><span id="Flash_setWaitstates__uint32_t.uint16_t"></span><span class="target" id="group__flash__api_1gaeaf8c1707632e8d3e3c51e2b6f72ee05"></span>void <code class="sig-name descname">Flash_setWaitstates</code><span class="sig-paren">(</span>uint32_t <em>ctrlBase</em>, uint16_t <em>waitstates</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419Flash_setWaitstates8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Sets the random read wait state amount.</p>
-<p><p>This function sets the number of wait states for a flash read access. The </p>
-<em>waitstates</em> parameter is a number between 0 and 15. It is <strong>important</strong> to look at your device’s datasheet for information about what the required minimum flash wait-state is for your selected SYSCLK frequency.<dl class="simple">
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">ctrlBase</span></code>: is the base address of the flash wrapper control registers. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">waitstates</span></code>: is the wait-state value.</p></li>
-</ul>
-</dd>
-</dl>
-</p>
-<p>By default the wait state amount is configured to the maximum 15.</p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>None. </p>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-<dl class="cpp function">
-<dt id="_CPPv423Flash_setEngrWaitstates8uint32_t8uint16_t">
-<span id="_CPPv323Flash_setEngrWaitstates8uint32_t8uint16_t"></span><span id="_CPPv223Flash_setEngrWaitstates8uint32_t8uint16_t"></span><span id="Flash_setEngrWaitstates__uint32_t.uint16_t"></span><span class="target" id="group__flash__api_1gaf66fb6190c8d2572355508570118325b"></span>void <code class="sig-name descname">Flash_setEngrWaitstates</code><span class="sig-paren">(</span>uint32_t <em>ctrlBase</em>, uint16_t <em>waitstates</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423Flash_setEngrWaitstates8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Sets the random read wait state amount for Trim and ENGR sectors.</p>
 <p><p>This function sets the number of wait states for a flash read access. The </p>
 <em>waitstates</em> parameter is a number between 0 and 15. It is <strong>important</strong> to look at your device’s datasheet for information about what the required minimum flash wait-state is for your selected SYSCLK frequency.<dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
@@ -298,24 +323,9 @@ Flash ECC test mode registers and the Flash ECC error status registers.</p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv413Flash_setKDIV8uint32_t8uint32_t">
-<span id="_CPPv313Flash_setKDIV8uint32_t8uint32_t"></span><span id="_CPPv213Flash_setKDIV8uint32_t8uint32_t"></span><span id="Flash_setKDIV__uint32_t.uint32_t"></span><span class="target" id="group__flash__api_1ga8056a0d49e07f92f35fb0a9dd60faef3"></span>void <code class="sig-name descname">Flash_setKDIV</code><span class="sig-paren">(</span>uint32_t <em>ctrlBase</em>, uint32_t <em>value</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413Flash_setKDIV8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Sets the KDIV value of the MCLK divider.</p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>None. </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">ctrlBase</span></code>: is the base address of the flash wrapper control registers.</p></li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-<dl class="cpp function">
-<dt id="_CPPv413Flash_getKDIV8uint32_t">
-<span id="_CPPv313Flash_getKDIV8uint32_t"></span><span id="_CPPv213Flash_getKDIV8uint32_t"></span><span id="Flash_getKDIV__uint32_t"></span><span class="target" id="group__flash__api_1ga51e563e4f13643f3a70b1e637749eab0"></span>uint32_t <code class="sig-name descname">Flash_getKDIV</code><span class="sig-paren">(</span>uint32_t <em>ctrlBase</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413Flash_getKDIV8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Gets the KDIV value of the MCLK divider.</p>
+<dt id="_CPPv417Flash_setFLWEPROT8uint32_t">
+<span id="_CPPv317Flash_setFLWEPROT8uint32_t"></span><span id="_CPPv217Flash_setFLWEPROT8uint32_t"></span><span id="Flash_setFLWEPROT__uint32_t"></span><span class="target" id="group__flash__api_1gab26b064b16eacd0e6dc6c52610c6002c"></span>void <code class="sig-name descname">Flash_setFLWEPROT</code><span class="sig-paren">(</span>uint32_t <em>ctrlBase</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417Flash_setFLWEPROT8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the FLWEPROT value of the FLPROT register.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -456,8 +466,10 @@ Flash ECC test mode registers and the Flash ECC error status registers.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Texas Instruments Incorporated.
-      <span class="lastupdated">Last updated on Oct 11, 2022.
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2021, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+      <span class="lastupdated">Last updated on Jul 01, 2023.
       </span></p>
   </div>
 
@@ -477,7 +489,7 @@ Flash ECC test mode registers and the Flash ECC error status registers.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v4.03.00.00_EA1',
+            VERSION:'v5.00.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

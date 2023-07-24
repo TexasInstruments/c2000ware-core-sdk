@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v4.02.00.00
+                v5.00.00.00
               </div>
             
           
@@ -340,7 +340,7 @@ providing access to the PGA wrapper registers.</p>
 <dl class="cpp function">
 <dt id="_CPPv411PGA_setGain8uint32_t13PGA_GainValue">
 <span id="_CPPv311PGA_setGain8uint32_t13PGA_GainValue"></span><span id="_CPPv211PGA_setGain8uint32_t13PGA_GainValue"></span><span id="PGA_setGain__uint32_t.PGA_GainValue"></span><span class="target" id="group__pga__api_1gaea45311ae41f305407968abf2cb4b031"></span>void <code class="sig-name descname">PGA_setGain</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv413PGA_GainValue" title="PGA_GainValue">PGA_GainValue</a> <em>gainValue</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411PGA_setGain8uint32_t13PGA_GainValue" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Sets PGA gain value</p>
+<dd><p>Sets PGA gain value.</p>
 <p><p>This function sets the PGA gain value.</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
@@ -360,7 +360,7 @@ providing access to the PGA wrapper registers.</p>
 <dl class="cpp function">
 <dt id="_CPPv421PGA_setFilterResistor8uint32_t24PGA_LowPassResistorValue">
 <span id="_CPPv321PGA_setFilterResistor8uint32_t24PGA_LowPassResistorValue"></span><span id="_CPPv221PGA_setFilterResistor8uint32_t24PGA_LowPassResistorValue"></span><span id="PGA_setFilterResistor__uint32_t.PGA_LowPassResistorValue"></span><span class="target" id="group__pga__api_1ga38cd47e4b61250ace48cec41bf0b9415"></span>void <code class="sig-name descname">PGA_setFilterResistor</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv424PGA_LowPassResistorValue" title="PGA_LowPassResistorValue">PGA_LowPassResistorValue</a> <em>resistorValue</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421PGA_setFilterResistor8uint32_t24PGA_LowPassResistorValue" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Sets PGA output filter resistor value</p>
+<dd><p>Sets PGA output filter resistor value.</p>
 <p><p>This function sets the resistor value for the PGA output low pass RC filter. The resistance for the RC low pass filter is provided within the microprocessor and is determined by the value of resistorValue. The capacitor, however, has to be connected outside the microprocessor.</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
@@ -436,6 +436,44 @@ providing access to the PGA wrapper registers.</p>
 </p>
 </dd></dl>
 
+<dl class="cpp function">
+<dt id="_CPPv421PGA_setOffsetTrimNMOS8uint32_t">
+<span id="_CPPv321PGA_setOffsetTrimNMOS8uint32_t"></span><span id="_CPPv221PGA_setOffsetTrimNMOS8uint32_t"></span><span id="PGA_setOffsetTrimNMOS__uint32_t"></span><span class="target" id="group__pga__api_1ga7628602e396f6f4e3e49fc4ce2a921e5"></span>void <code class="sig-name descname">PGA_setOffsetTrimNMOS</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421PGA_setOffsetTrimNMOS8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the offset trim for NMOS pair of the desired PGA instance</p>
+<p><p>This function loads the offset trims for NMOS pair of the desired PGA instance.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the PGA module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421PGA_setOffsetTrimPMOS8uint32_t">
+<span id="_CPPv321PGA_setOffsetTrimPMOS8uint32_t"></span><span id="_CPPv221PGA_setOffsetTrimPMOS8uint32_t"></span><span id="PGA_setOffsetTrimPMOS__uint32_t"></span><span class="target" id="group__pga__api_1gaca874192d986e8fd00e32da874bbc73d"></span>void <code class="sig-name descname">PGA_setOffsetTrimPMOS</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421PGA_setOffsetTrimPMOS8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the offset trim for PMOS pair of the desired PGA instance</p>
+<p><p>This function loads the offset trims for PMOS pair of the desired PGA instance.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the PGA module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
 </div>
 </dd></dl>
 
@@ -455,8 +493,10 @@ applications.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
-      <span class="lastupdated">Last updated on Oct 11, 2022.
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+      <span class="lastupdated">Last updated on Jul 01, 2023.
       </span></p>
   </div>
 
@@ -476,7 +516,7 @@ applications.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v4.02.00.00',
+            VERSION:'v5.00.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

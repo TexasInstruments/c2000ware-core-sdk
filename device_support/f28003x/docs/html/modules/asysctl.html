@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v4.00.00.00_EA1
+                v4.03.00.00
               </div>
             
           
@@ -670,6 +670,46 @@ additional functionality if available for that device.</p>
 </p>
 </dd></dl>
 
+<dl class="cpp function">
+<dt id="_CPPv428ASysCtl_enableADCDACLoopback8uint32_t">
+<span id="_CPPv328ASysCtl_enableADCDACLoopback8uint32_t"></span><span id="_CPPv228ASysCtl_enableADCDACLoopback8uint32_t"></span><span id="ASysCtl_enableADCDACLoopback__uint32_t"></span><span class="target" id="group__asysctl__api_1ga2ecd0767c338c6177cce4fc6c6727392"></span>void <code class="sig-name descname">ASysCtl_enableADCDACLoopback</code><span class="sig-paren">(</span>uint32_t <em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428ASysCtl_enableADCDACLoopback8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable loopback from DAC to ADCs.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code>: can be bitwise OR of the following values:<ul>
+<li><p>ASYSCTL_ADCDACLOOPBACK_ENLB2ADCA</p></li>
+<li><p>ASYSCTL_ADCDACLOOPBACK_ENLB2ADCB</p></li>
+<li><p>ASYSCTL_ADCDACLOOPBACK_ENLB2ADCC</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429ASysCtl_disableADCDACLoopback8uint32_t">
+<span id="_CPPv329ASysCtl_disableADCDACLoopback8uint32_t"></span><span id="_CPPv229ASysCtl_disableADCDACLoopback8uint32_t"></span><span id="ASysCtl_disableADCDACLoopback__uint32_t"></span><span class="target" id="group__asysctl__api_1gab850f059b68b7b347cefab0f7ab07121"></span>void <code class="sig-name descname">ASysCtl_disableADCDACLoopback</code><span class="sig-paren">(</span>uint32_t <em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429ASysCtl_disableADCDACLoopback8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable loopback from DAC to ADCs.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code>: can be bitwise OR of the following values:<ul>
+<li><p>ASYSCTL_ADCDACLOOPBACK_ENLB2ADCA</p></li>
+<li><p>ASYSCTL_ADCDACLOOPBACK_ENLB2ADCB</p></li>
+<li><p>ASYSCTL_ADCDACLOOPBACK_ENLB2ADCC</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
 </div>
 </dd></dl>
 
@@ -687,8 +727,10 @@ additional functionality if available for that device.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Texas Instruments Incorporated.
-      <span class="lastupdated">Last updated on Oct 11, 2022.
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2021, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+      <span class="lastupdated">Last updated on Jul 01, 2023.
       </span></p>
   </div>
 
@@ -708,7 +750,7 @@ additional functionality if available for that device.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v4.00.00.00_EA1',
+            VERSION:'v4.03.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

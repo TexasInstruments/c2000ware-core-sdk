@@ -252,9 +252,9 @@ typedef enum{
     EPG_DATAIN_CANARX = 0,    //!< CANA Receive input (RX)
     EPG_DATAIN_MCANARX = 1,   //!< MCANA Receive input (RX)
     EPG_DATAIN_LINARX = 2,    //!< LINA Receive input (RX)
-    EPG_DATAIN_SCIARX = 35,  //!< SCIA Receive input (RX)
-    EPG_DATAIN_SCIBRX = 36,  //!< SCIB Receive input (RX)
-    EPG_DATAIN_SCICRX = 37,  //!< SCIC Receive input (RX)
+    EPG_DATAIN_SCIARX = 35,   //!< SCIA Receive input (RX)
+    EPG_DATAIN_SCIBRX = 36,   //!< SCIB Receive input (RX)
+    EPG_DATAIN_SCICRX = 37,   //!< SCIC Receive input (RX)
     EPG_DATAIN_EQEP1A = 39,   //!< EQEP1 Signal A
     EPG_DATAIN_EQEP1B = 40,   //!< EQEP1 Signal B
     EPG_DATAIN_EQEP1I = 41,   //!< EQEP1 Index signal

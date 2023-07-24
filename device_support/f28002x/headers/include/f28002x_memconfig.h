@@ -77,6 +77,26 @@ union DxCOMMIT_REG {
     struct  DxCOMMIT_BITS  bit;
 };
 
+struct DxACCPROT0_BITS {                // bits description
+    Uint16 FETCHPROT_M0:1;              // 0 Fetch Protection For M0 RAM
+    Uint16 CPUWRPROT_M0:1;              // 1 CPU WR Protection For M0 RAM
+    Uint16 rsvd1:6;                     // 7:2 Reserved
+    Uint16 FETCHPROT_M1:1;              // 8 Fetch Protection For M1 RAM
+    Uint16 CPUWRPROT_M1:1;              // 9 CPU WR Protection For M1 RAM
+    Uint16 rsvd2:6;                     // 15:10 Reserved
+    Uint16 rsvd3:1;                     // 16 Reserved
+    Uint16 rsvd4:1;                     // 17 Reserved
+    Uint16 rsvd5:6;                     // 23:18 Reserved
+    Uint16 rsvd6:1;                     // 24 Reserved
+    Uint16 rsvd7:1;                     // 25 Reserved
+    Uint16 rsvd8:6;                     // 31:26 Reserved
+};
+
+union DxACCPROT0_REG {
+    Uint32  all;
+    struct  DxACCPROT0_BITS  bit;
+};
+
 struct DxTEST_BITS {                    // bits description
     Uint16 TEST_M0:2;                   // 1:0 Selects the different modes for M0 RAM
     Uint16 TEST_M1:2;                   // 3:2 Selects the different modes for M1 RAM
@@ -476,32 +496,34 @@ union ROM_FORCE_ERROR_REG {
 struct MEM_CFG_REGS {
     union   DxLOCK_REG                       DxLOCK;                       // Dedicated RAM Config Lock Register
     union   DxCOMMIT_REG                     DxCOMMIT;                     // Dedicated RAM Config Lock Commit Register
-    Uint16                                   rsvd1[12];                    // Reserved
+    Uint16                                   rsvd1[4];                     // Reserved
+    union   DxACCPROT0_REG                   DxACCPROT0;                   // Dedicated RAM Config Register
+    Uint16                                   rsvd2[6];                     // Reserved
     union   DxTEST_REG                       DxTEST;                       // Dedicated RAM TEST Register
     union   DxINIT_REG                       DxINIT;                       // Dedicated RAM Init Register
     union   DxINITDONE_REG                   DxINITDONE;                   // Dedicated RAM InitDone Status Register
     union   DxRAMTEST_LOCK_REG               DxRAMTEST_LOCK;               // Lock register to Dx RAM TEST registers
-    Uint16                                   rsvd2[8];                     // Reserved
+    Uint16                                   rsvd3[8];                     // Reserved
     union   LSxLOCK_REG                      LSxLOCK;                      // Local Shared RAM Config Lock Register
     union   LSxCOMMIT_REG                    LSxCOMMIT;                    // Local Shared RAM Config Lock Commit Register
-    Uint16                                   rsvd3[6];                     // Reserved
+    Uint16                                   rsvd4[6];                     // Reserved
     union   LSxACCPROT1_REG                  LSxACCPROT1;                  // Local Shared RAM Config Register 1
-    Uint16                                   rsvd4[4];                     // Reserved
+    Uint16                                   rsvd5[4];                     // Reserved
     union   LSxTEST_REG                      LSxTEST;                      // Local Shared RAM TEST Register
     union   LSxINIT_REG                      LSxINIT;                      // Local Shared RAM Init Register
     union   LSxINITDONE_REG                  LSxINITDONE;                  // Local Shared RAM InitDone Status Register
     union   LSxRAMTEST_LOCK_REG              LSxRAMTEST_LOCK;              // Lock register to LSx RAM TEST registers
-    Uint16                                   rsvd5[8];                     // Reserved
+    Uint16                                   rsvd6[8];                     // Reserved
     union   GSxLOCK_REG                      GSxLOCK;                      // Global Shared RAM Config Lock Register
     union   GSxCOMMIT_REG                    GSxCOMMIT;                    // Global Shared RAM Config Lock Commit Register
-    Uint16                                   rsvd6[4];                     // Reserved
+    Uint16                                   rsvd7[4];                     // Reserved
     union   GSxACCPROT0_REG                  GSxACCPROT0;                  // Global Shared RAM Config Register 0
-    Uint16                                   rsvd7[6];                     // Reserved
+    Uint16                                   rsvd8[6];                     // Reserved
     union   GSxTEST_REG                      GSxTEST;                      // Global Shared RAM TEST Register
     union   GSxINIT_REG                      GSxINIT;                      // Global Shared RAM Init Register
     union   GSxINITDONE_REG                  GSxINITDONE;                  // Global Shared RAM InitDone Status Register
     union   GSxRAMTEST_LOCK_REG              GSxRAMTEST_LOCK;              // Lock register to GSx RAM TEST registers
-    Uint16                                   rsvd8[72];                    // Reserved
+    Uint16                                   rsvd9[72];                    // Reserved
     union   ROM_LOCK_REG                     ROM_LOCK;                     // ROM Config Lock Register
     union   ROM_TEST_REG                     ROM_TEST;                     // ROM  TEST Register
     union   ROM_FORCE_ERROR_REG              ROM_FORCE_ERROR;              // ROM Force Error register

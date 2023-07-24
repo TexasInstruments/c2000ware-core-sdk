@@ -42,6 +42,17 @@ let bootModes = [
 {name: "RAM", displayName: "Boot from RAM"},
 ]
 
+if (["f28p65x"].includes(Common.getDeviceName().toLowerCase())){
+    bootModes = [                                  
+        {name: "FLASH0", displayName: "Boot from Flash Bank 0"},
+        {name: "FLASH1", displayName: "Boot from Flash Bank 1"},
+        {name: "FLASH2", displayName: "Boot from Flash Bank 2"},
+        {name: "FLASH3", displayName: "Boot from Flash Bank 3"},
+        {name: "FLASH4", displayName: "Boot from Flash Bank 4"},
+        {name: "RAM", displayName: "Boot from RAM"},
+        ]
+}
+
 
 let IPC_FLAGS = [                   
     {name: "IPC_NO_FLAG",     displayName: "IPC_NO_FLAG"},

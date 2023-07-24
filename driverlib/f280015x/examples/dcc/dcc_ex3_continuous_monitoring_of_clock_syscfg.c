@@ -33,8 +33,8 @@
 //!
 //
 //#############################################################################
-// $TI Release: F280015x Support Library v4.03.00.00 $
-// $Release Date: 02-02-2023 $
+// $TI Release: F280015x Support Library v5.00.00.00 $
+// $Release Date: 07-12-2023 $
 // $Copyright:
 // Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
 //

@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v4.02.00.00
+                v5.00.00.00
               </div>
             
           
@@ -269,9 +269,9 @@ Data filter FIFO.</p>
 </dd></dl>
 
 <dl class="cpp macro">
-<dt id="c.SDFM_MASTER_INTERRUPT_FLAG">
-<span class="target" id="group__sdfm__api_1ga2a262e1c039fe8290b3ff8eac731b066"></span><code class="sig-name descname">SDFM_MASTER_INTERRUPT_FLAG</code> 0x80000000U<a class="headerlink" href="#c.SDFM_MASTER_INTERRUPT_FLAG" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Master interrupt flag </p>
+<dt id="c.SDFM_MAIN_INTERRUPT_FLAG">
+<span class="target" id="group__sdfm__api_1gafdf6134c518f0dea8511fc4e6d552230"></span><code class="sig-name descname">SDFM_MAIN_INTERRUPT_FLAG</code> 0x80000000U<a class="headerlink" href="#c.SDFM_MAIN_INTERRUPT_FLAG" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Main interrupt flag </p>
 </dd></dl>
 
 <dl class="cpp macro">
@@ -933,7 +933,7 @@ Data filter FIFO.</p>
 <dt id="_CPPv423SDFM_clearInterruptFlag8uint32_t8uint32_t">
 <span id="_CPPv323SDFM_clearInterruptFlag8uint32_t8uint32_t"></span><span id="_CPPv223SDFM_clearInterruptFlag8uint32_t8uint32_t"></span><span id="SDFM_clearInterruptFlag__uint32_t.uint32_t"></span><span class="target" id="group__sdfm__api_1ga68977c9a16116202408b2b0a5613b5eb"></span>void <code class="sig-name descname">SDFM_clearInterruptFlag</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>flag</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423SDFM_clearInterruptFlag8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Clear pending flags.</p>
-<p><p>This function clears the specified pending interrupt flag. Valid values are SDFM_MASTER_INTERRUPT_FLAG,SDFM_FILTER_1_NEW_DATA_FLAG, SDFM_FILTER_2_NEW_DATA_FLAG,SDFM_FILTER_3_NEW_DATA_FLAG, SDFM_FILTER_4_NEW_DATA_FLAG,SDFM_FILTER_1_MOD_FAILED_FLAG, SDFM_FILTER_2_MOD_FAILED_FLAG,SDFM_FILTER_3_MOD_FAILED_FLAG, SDFM_FILTER_4_MOD_FAILED_FLAG,SDFM_FILTER_1_HIGH_THRESHOLD_FLAG, SDFM_FILTER_1_LOW_THRESHOLD_FLAG,SDFM_FILTER_2_HIGH_THRESHOLD_FLAG, SDFM_FILTER_2_LOW_THRESHOLD_FLAG,SDFM_FILTER_3_HIGH_THRESHOLD_FLAG, SDFM_FILTER_3_LOW_THRESHOLD_FLAG,SDFM_FILTER_4_HIGH_THRESHOLD_FLAG, SDFM_FILTER_4_LOW_THRESHOLD_FLAG or any combination of the above flags.</p>
+<p><p>This function clears the specified pending interrupt flag. Valid values are SDFM_MAIN_INTERRUPT_FLAG,SDFM_FILTER_1_NEW_DATA_FLAG, SDFM_FILTER_2_NEW_DATA_FLAG,SDFM_FILTER_3_NEW_DATA_FLAG, SDFM_FILTER_4_NEW_DATA_FLAG,SDFM_FILTER_1_MOD_FAILED_FLAG, SDFM_FILTER_2_MOD_FAILED_FLAG,SDFM_FILTER_3_MOD_FAILED_FLAG, SDFM_FILTER_4_MOD_FAILED_FLAG,SDFM_FILTER_1_HIGH_THRESHOLD_FLAG, SDFM_FILTER_1_LOW_THRESHOLD_FLAG,SDFM_FILTER_2_HIGH_THRESHOLD_FLAG, SDFM_FILTER_2_LOW_THRESHOLD_FLAG,SDFM_FILTER_3_HIGH_THRESHOLD_FLAG, SDFM_FILTER_3_LOW_THRESHOLD_FLAG,SDFM_FILTER_4_HIGH_THRESHOLD_FLAG, SDFM_FILTER_4_LOW_THRESHOLD_FLAG or any combination of the above flags.</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SDFM module </p></li>
@@ -950,10 +950,10 @@ Data filter FIFO.</p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv426SDFM_enableMasterInterrupt8uint32_t">
-<span id="_CPPv326SDFM_enableMasterInterrupt8uint32_t"></span><span id="_CPPv226SDFM_enableMasterInterrupt8uint32_t"></span><span id="SDFM_enableMasterInterrupt__uint32_t"></span><span class="target" id="group__sdfm__api_1ga1a638e745cb468b1747c195410c99198"></span>void <code class="sig-name descname">SDFM_enableMasterInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426SDFM_enableMasterInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Enable master interrupt.</p>
-<p><p>This function enables the master SDFM interrupt.</p>
+<dt id="_CPPv424SDFM_enableMainInterrupt8uint32_t">
+<span id="_CPPv324SDFM_enableMainInterrupt8uint32_t"></span><span id="_CPPv224SDFM_enableMainInterrupt8uint32_t"></span><span id="SDFM_enableMainInterrupt__uint32_t"></span><span class="target" id="group__sdfm__api_1gad685bd9064dd778e9732c869a697939c"></span>void <code class="sig-name descname">SDFM_enableMainInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424SDFM_enableMainInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable main interrupt.</p>
+<p><p>This function enables the main SDFM interrupt.</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SDFM module</p></li>
@@ -969,10 +969,10 @@ Data filter FIFO.</p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv427SDFM_disableMasterInterrupt8uint32_t">
-<span id="_CPPv327SDFM_disableMasterInterrupt8uint32_t"></span><span id="_CPPv227SDFM_disableMasterInterrupt8uint32_t"></span><span id="SDFM_disableMasterInterrupt__uint32_t"></span><span class="target" id="group__sdfm__api_1gac817ee5a4991e7eafd1f54f3a54231ba"></span>void <code class="sig-name descname">SDFM_disableMasterInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427SDFM_disableMasterInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Disable master interrupt.</p>
-<p><p>This function disables the master SDFM interrupt.</p>
+<dt id="_CPPv425SDFM_disableMainInterrupt8uint32_t">
+<span id="_CPPv325SDFM_disableMainInterrupt8uint32_t"></span><span id="_CPPv225SDFM_disableMainInterrupt8uint32_t"></span><span id="SDFM_disableMainInterrupt__uint32_t"></span><span class="target" id="group__sdfm__api_1gaacdd694b6e85baf1d99fcb17fe3efa6d"></span>void <code class="sig-name descname">SDFM_disableMainInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425SDFM_disableMainInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable main interrupt.</p>
+<p><p>This function disables the main SDFM interrupt.</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SDFM module</p></li>
@@ -988,10 +988,10 @@ Data filter FIFO.</p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv423SDFM_enableMasterFilter8uint32_t">
-<span id="_CPPv323SDFM_enableMasterFilter8uint32_t"></span><span id="_CPPv223SDFM_enableMasterFilter8uint32_t"></span><span id="SDFM_enableMasterFilter__uint32_t"></span><span class="target" id="group__sdfm__api_1ga748587a31e3c775bc3464cf8a9b7ef66"></span>void <code class="sig-name descname">SDFM_enableMasterFilter</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423SDFM_enableMasterFilter8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Enable master filter.</p>
-<p><p>This function enables master filter.</p>
+<dt id="_CPPv421SDFM_enableMainFilter8uint32_t">
+<span id="_CPPv321SDFM_enableMainFilter8uint32_t"></span><span id="_CPPv221SDFM_enableMainFilter8uint32_t"></span><span id="SDFM_enableMainFilter__uint32_t"></span><span class="target" id="group__sdfm__api_1ga787b6cf227e5d2d0d8548be940ba4491"></span>void <code class="sig-name descname">SDFM_enableMainFilter</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421SDFM_enableMainFilter8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable main filter.</p>
+<p><p>This function enables main filter.</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SDFM module</p></li>
@@ -1007,10 +1007,10 @@ Data filter FIFO.</p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv424SDFM_disableMasterFilter8uint32_t">
-<span id="_CPPv324SDFM_disableMasterFilter8uint32_t"></span><span id="_CPPv224SDFM_disableMasterFilter8uint32_t"></span><span id="SDFM_disableMasterFilter__uint32_t"></span><span class="target" id="group__sdfm__api_1ga3791a5e0f2b68ceef4f5c887b5751b22"></span>void <code class="sig-name descname">SDFM_disableMasterFilter</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424SDFM_disableMasterFilter8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Disable master filter.</p>
-<p><p>This function disables master filter.</p>
+<dt id="_CPPv422SDFM_disableMainFilter8uint32_t">
+<span id="_CPPv322SDFM_disableMainFilter8uint32_t"></span><span id="_CPPv222SDFM_disableMainFilter8uint32_t"></span><span id="SDFM_disableMainFilter__uint32_t"></span><span class="target" id="group__sdfm__api_1ga7708556689f3d9f4edd38d90b3d49ec5"></span>void <code class="sig-name descname">SDFM_disableMainFilter</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422SDFM_disableMainFilter8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable main filter.</p>
+<p><p>This function disables main filter.</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SDFM module</p></li>
@@ -1107,8 +1107,10 @@ Data filter FIFO.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
-      <span class="lastupdated">Last updated on Oct 11, 2022.
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+      <span class="lastupdated">Last updated on Jul 01, 2023.
       </span></p>
   </div>
 
@@ -1128,7 +1130,7 @@ Data filter FIFO.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v4.02.00.00',
+            VERSION:'v5.00.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

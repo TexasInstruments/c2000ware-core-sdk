@@ -135,7 +135,10 @@ void main()
     //
     Device_initGPIO();
 
-
+    //
+    // Configure the divisor for the MCAN bit-clock
+    //
+    SysCtl_setMCANClk(SYSCTL_MCANCLK_DIV_3);
 
     //
     // Configure GPIO pins for MCANTX/MCANRX operation

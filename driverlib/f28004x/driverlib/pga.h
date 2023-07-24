@@ -74,7 +74,7 @@ extern "C"
 //*****************************************************************************
 typedef enum
 {
-    PGA_GAIN_3 = 0x0,  //!< PGA gain value of 3
+    PGA_GAIN_3 = 0x0,   //!< PGA gain value of 3
     PGA_GAIN_6 = 0x20,  //!< PGA gain value of 6
     PGA_GAIN_12 = 0x40, //!< PGA gain value of 12
     PGA_GAIN_24 = 0x60  //!< PGA gain value of 24
@@ -103,6 +103,8 @@ typedef enum
     //! Resistor value of 50 Ohm
     PGA_LOW_PASS_FILTER_RESISTOR_50_OHM = 12
 }PGA_LowPassResistorValue;
+
+
 
 //*****************************************************************************
 //
@@ -202,7 +204,7 @@ static inline void PGA_disable(uint32_t base)
 
 //*****************************************************************************
 //
-//! Sets PGA gain value
+//! Sets PGA gain value.
 //!
 //! \param base is the base address of the PGA module.
 //! \param gainValue is the PGA gain value.
@@ -228,7 +230,7 @@ static inline void PGA_setGain(uint32_t base, PGA_GainValue gainValue)
 
 //*****************************************************************************
 //
-//! Sets PGA output filter resistor value
+//! Sets PGA output filter resistor value.
 //!
 //! \param base is the base address of the PGA module.
 //! \param resistorValue is the PGA output resistor value.
@@ -259,6 +261,7 @@ static inline void PGA_setFilterResistor(uint32_t base,
                            (uint16_t)resistorValue);
     EDIS;
 }
+
 
 //*****************************************************************************
 //
@@ -333,6 +336,36 @@ static inline void PGA_lockRegisters(uint32_t base, uint16_t registerType)
     HWREGH(base + PGA_O_LOCK) |= registerType;
     EDIS;
 }
+
+//*****************************************************************************
+//
+//! Configures the offset trim for NMOS pair of the desired PGA instance
+//!
+//! \param base is the base address of the PGA module.
+//!
+//! This function loads the offset trims for NMOS pair of the desired 
+//! PGA instance.
+//!
+//! \return None.
+//
+//*****************************************************************************
+extern void
+PGA_setOffsetTrimNMOS(uint32_t base);
+
+//*****************************************************************************
+//
+//! Configures the offset trim for PMOS pair of the desired PGA instance
+//!
+//! \param base is the base address of the PGA module.
+//!
+//! This function loads the offset trims for PMOS pair of the desired 
+//! PGA instance.
+//!
+//! \return None.
+//
+//*****************************************************************************
+extern void
+PGA_setOffsetTrimPMOS(uint32_t base);
 
 //*****************************************************************************
 //

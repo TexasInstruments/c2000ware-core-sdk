@@ -12,7 +12,7 @@
 	% let mcan        	= instance.mcan;
 	% let solution    		= mcan.$solution;
 	% let peripheral 	 	= system.deviceData.peripherals[solution.peripheralName];
-    % if(["F28006x"].includes(Common.getDeviceName())){
+    % if(["F28P65x"].includes(Common.getDeviceName())){
 #define `instance.$name`_BASE `peripheral.name`_DRIVER_BASE
     % } else {
 #define `instance.$name`_BASE `peripheral.name`A_DRIVER_BASE

@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v4.00.00.00_EA1
+                v4.03.00.00
               </div>
             
           
@@ -798,13 +798,13 @@ objects, send and read messages, and setup and handle interrupts and events.</p>
 
 <dl class="cpp function">
 <dt id="_CPPv420CAN_setAutoBusOnTime8uint32_t8uint32_t">
-<span id="_CPPv320CAN_setAutoBusOnTime8uint32_t8uint32_t"></span><span id="_CPPv220CAN_setAutoBusOnTime8uint32_t8uint32_t"></span><span id="CAN_setAutoBusOnTime__uint32_t.uint32_t"></span><span class="target" id="group__can__api_1gae8cc46ea93fdc943f06a874a3f857011"></span>void <code class="sig-name descname">CAN_setAutoBusOnTime</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>time</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420CAN_setAutoBusOnTime8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv320CAN_setAutoBusOnTime8uint32_t8uint32_t"></span><span id="_CPPv220CAN_setAutoBusOnTime8uint32_t8uint32_t"></span><span id="CAN_setAutoBusOnTime__uint32_t.uint32_t"></span><span class="target" id="group__can__api_1ga3737706eb1681d65ab8bbebd2203f179"></span>void <code class="sig-name descname">CAN_setAutoBusOnTime</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>onTime</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420CAN_setAutoBusOnTime8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Sets the time before a Bus-Off recovery sequence is started.</p>
 <p><p>This function sets the number of clock cycles before a Bus-Off recovery sequence is started by clearing the Init bit.</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">time</span></code>: is number of clock cycles before a Bus-Off recovery sequence is started.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">onTime</span></code>: is number of clock cycles before a Bus-Off recovery sequence is started.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1221,13 +1221,13 @@ objects, send and read messages, and setup and handle interrupts and events.</p>
 
 <dl class="cpp function">
 <dt id="_CPPv414CAN_setBitRate8uint32_t8uint32_t8uint32_t8uint16_t">
-<span id="_CPPv314CAN_setBitRate8uint32_t8uint32_t8uint32_t8uint16_t"></span><span id="_CPPv214CAN_setBitRate8uint32_t8uint32_t8uint32_t8uint16_t"></span><span id="CAN_setBitRate__uint32_t.uint32_t.uint32_t.uint16_t"></span><span class="target" id="group__can__api_1ga7c24ef95e3c9c661977dee0038f40d9c"></span>void <code class="sig-name descname">CAN_setBitRate</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>clock</em>, uint32_t <em>bitRate</em>, uint16_t <em>bitTime</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414CAN_setBitRate8uint32_t8uint32_t8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv314CAN_setBitRate8uint32_t8uint32_t8uint32_t8uint16_t"></span><span id="_CPPv214CAN_setBitRate8uint32_t8uint32_t8uint32_t8uint16_t"></span><span id="CAN_setBitRate__uint32_t.uint32_t.uint32_t.uint16_t"></span><span class="target" id="group__can__api_1ga6eab846356cbd8f7489bb918e7150c05"></span>void <code class="sig-name descname">CAN_setBitRate</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>clockFreq</em>, uint32_t <em>bitRate</em>, uint16_t <em>bitTime</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414CAN_setBitRate8uint32_t8uint32_t8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Sets the CAN Bit Timing based on requested Bit Rate.</p>
 <p><p>This function sets the CAN bit timing values for the bit rate passed in the </p>
-<em>bitRate</em> and <em>bitTime</em> parameters based on the <em>clock</em> parameter. The CAN bit clock is calculated to be an average timing value that should work for most systems. If tighter timing requirements are needed, then the <a class="reference internal" href="#group__can__api_1gac2da3e3b3c5a04c73b33c1f11d7a57ae"><span class="std std-ref">CAN_setBitTiming()</span></a> function is available for full customization of all of the CAN bit timing values.<dl class="simple">
+<em>bitRate</em> and <em>bitTime</em> parameters based on the <em>clockFreq</em> parameter. The CAN bit clock is calculated to be an average timing value that should work for most systems. If tighter timing requirements are needed, then the <a class="reference internal" href="#group__can__api_1gac2da3e3b3c5a04c73b33c1f11d7a57ae"><span class="std std-ref">CAN_setBitTiming()</span></a> function is available for full customization of all of the CAN bit timing values.<dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the CAN controller. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">clock</span></code>: is the CAN module clock frequency before the bit rate prescaler (Hertz) </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">clockFreq</span></code>: is the CAN module clock frequency before the bit rate prescaler (Hertz) </p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">bitRate</span></code>: is the desired bit rate (bits/sec) </p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">bitTime</span></code>: is the number of time quanta per bit required for desired bit time (Tq) and must be in the range from 8 to 25</p></li>
 </ul>
@@ -1631,8 +1631,10 @@ can be re-enabled using CAN_enableController().</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Texas Instruments Incorporated.
-      <span class="lastupdated">Last updated on Oct 11, 2022.
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2021, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+      <span class="lastupdated">Last updated on Jul 01, 2023.
       </span></p>
   </div>
 
@@ -1652,7 +1654,7 @@ can be re-enabled using CAN_enableController().</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v4.00.00.00_EA1',
+            VERSION:'v4.03.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

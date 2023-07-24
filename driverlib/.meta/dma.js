@@ -170,10 +170,10 @@ function calculateWordsToTransfer(inst, ui)
 {
     var tempWords = 0
     if (inst.databusWidthConfig == "DMA_CFG_SIZE_16BIT") {
-        tempWords = (inst.transferSize - 1) * (inst.burstSize - 1)
+        tempWords = (inst.transferSize) * (inst.burstSize)
     }
     if (inst.databusWidthConfig == "DMA_CFG_SIZE_32BIT") {
-        tempWords = ((inst.transferSize - 1) * (inst.burstSize - 1)) / 2
+        tempWords = ((inst.transferSize) * (inst.burstSize)) / 2
     }
     return tempWords
 }

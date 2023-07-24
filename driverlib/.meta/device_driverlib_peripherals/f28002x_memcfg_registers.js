@@ -11,6 +11,14 @@ let MEMCFGRegisters = [
 			{ name: "COMMIT_M1", description: "M1 RAM Permanent Lock bits", size: "1", shift: "1", mask: "0x2" },
 		]
 	},
+	{ name: "DXACCPROT0", description: "Dedicated RAM Config Register", offset: "0x8",
+		bits: [
+			{ name: "FETCHPROT_M0", description: "Fetch Protection For M0 RAM", size: "1", shift: "0", mask: "0x1" },
+			{ name: "CPUWRPROT_M0", description: "CPU WR Protection For M0 RAM", size: "1", shift: "1", mask: "0x2" },
+			{ name: "FETCHPROT_M1", description: "Fetch Protection For M1 RAM", size: "1", shift: "8", mask: "0x100" },
+			{ name: "CPUWRPROT_M1", description: "CPU WR Protection For M1 RAM", size: "1", shift: "9", mask: "0x200" },
+		]
+	},
 	{ name: "DXTEST", description: "Dedicated RAM TEST Register", offset: "0x10",
 		bits: [
 			{ name: "TEST_M0", description: "Selects the different modes for M0 RAM", size: "2", shift: "0", mask: "0x3" },

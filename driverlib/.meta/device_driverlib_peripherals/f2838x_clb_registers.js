@@ -353,7 +353,6 @@ let CLBRegisters = [
 	{ name: "SPI_DATA_CTRL_HI", description: "CLB to SPI buffer control High", offset: "0x51",
 		bits: [
 			{ name: "STRB", description: "Select value for strobe", size: "5", shift: "0", mask: "0x1F" },
-			{ name: "STRB_DEL", description: "Strobe delay enable", size: "1", shift: "7", mask: "0x80" },
 			{ name: "SHIFT", description: "Shift value select", size: "5", shift: "8", mask: "0x1F00" },
 		]
 	},

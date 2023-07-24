@@ -51,7 +51,7 @@
 #include "device_cmd.h"
 #endif
 %}
-%else if(["F28002x", "F28003x", "F280013x"].includes(Common.getDeviceName())){
+%else if(["F28002x", "F28003x", "F280013x", "F28P65x"].includes(Common.getDeviceName())){
 #include "driverlib.h"
 #ifdef __cplusplus
 using std::memcpy;

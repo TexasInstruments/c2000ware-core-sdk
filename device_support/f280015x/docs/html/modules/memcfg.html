@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v4.03.00.00_EA1
+                v5.00.00.00
               </div>
             
           
@@ -286,8 +286,14 @@ MEMCFG_DXACCPROT0_CPUWRPROT_M0)<a class="headerlink" href="#c.MEMCFG_XACCPROTX_M
 </dd></dl>
 
 <dl class="cpp macro">
+<dt id="c.MEMCFG_SECT_ROMSECURE">
+<span class="target" id="group__memcfg__api_1ga1daeda1f25818d0960011b64eb687d5a"></span><code class="sig-name descname">MEMCFG_SECT_ROMSECURE</code> 0x04000002U<a class="headerlink" href="#c.MEMCFG_SECT_ROMSECURE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Secure ROM. </p>
+</dd></dl>
+
+<dl class="cpp macro">
 <dt id="c.MEMCFG_SECT_ROM_ALL">
-<span class="target" id="group__memcfg__api_1gae4687fce8a251054bbdd59347f59a2f9"></span><code class="sig-name descname">MEMCFG_SECT_ROM_ALL</code> 0x04000001U<a class="headerlink" href="#c.MEMCFG_SECT_ROM_ALL" title="Permalink to this definition">¶</a><br /></dt>
+<span class="target" id="group__memcfg__api_1gae4687fce8a251054bbdd59347f59a2f9"></span><code class="sig-name descname">MEMCFG_SECT_ROM_ALL</code> 0x04000003U<a class="headerlink" href="#c.MEMCFG_SECT_ROM_ALL" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>All ROMs. </p>
 </dd></dl>
 
@@ -324,13 +330,13 @@ MEMCFG_DXACCPROT0_CPUWRPROT_M0)<a class="headerlink" href="#c.MEMCFG_XACCPROTX_M
 <dl class="cpp macro">
 <dt id="c.MEMCFG_MVIOL_CPUFETCH">
 <span class="target" id="group__memcfg__api_1ga22d218b1f86826f14d78677a55ac5bbf"></span><code class="sig-name descname">MEMCFG_MVIOL_CPUFETCH</code> 0x00010000U<a class="headerlink" href="#c.MEMCFG_MVIOL_CPUFETCH" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Master CPU fetch access. </p>
+<dd><p>Controller CPU fetch access. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt id="c.MEMCFG_MVIOL_CPUWRITE">
 <span class="target" id="group__memcfg__api_1gadddb35f541cdedccdd7ab595d0635ee7"></span><code class="sig-name descname">MEMCFG_MVIOL_CPUWRITE</code> 0x00020000U<a class="headerlink" href="#c.MEMCFG_MVIOL_CPUWRITE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Master CPU write access. </p>
+<dd><p>Controller CPU write access. </p>
 </dd></dl>
 
 <dl class="cpp macro">
@@ -409,8 +415,8 @@ MEMCFG_DXACCPROT0_CPUWRPROT_M0)<a class="headerlink" href="#c.MEMCFG_XACCPROTX_M
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is a bit mask of the interrupt sources to be enabled. Can be a logical OR any of the following values:<ul>
-<li><p><strong>MEMCFG_MVIOL_CPUFETCH</strong> - Master CPU fetch access</p></li>
-<li><p><strong>MEMCFG_MVIOL_CPUWRITE</strong> - Master CPU write access This function enables the indicated RAM access violation interrupt sources. Only the sources that are enabled can be reflected to the processor interrupt; disabled sources have no effect on the processor.</p></li>
+<li><p><strong>MEMCFG_MVIOL_CPUFETCH</strong> - Controller CPU fetch access</p></li>
+<li><p><strong>MEMCFG_MVIOL_CPUWRITE</strong> - Controller CPU write access This function enables the indicated RAM access violation interrupt sources. Only the sources that are enabled can be reflected to the processor interrupt; disabled sources have no effect on the processor.</p></li>
 </ul>
 </p></li>
 </ul>
@@ -427,8 +433,8 @@ MEMCFG_DXACCPROT0_CPUWRPROT_M0)<a class="headerlink" href="#c.MEMCFG_XACCPROTX_M
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is a bit mask of the interrupt sources to be disabled. Can be a logical OR any of the following values:<ul>
-<li><p><strong>MEMCFG_MVIOL_CPUFETCH</strong> - Master CPU fetch access</p></li>
-<li><p><strong>MEMCFG_MVIOL_CPUWRITE</strong> - Master CPU write access</p></li>
+<li><p><strong>MEMCFG_MVIOL_CPUFETCH</strong> - Controller CPU fetch access</p></li>
+<li><p><strong>MEMCFG_MVIOL_CPUWRITE</strong> - Controller CPU write access</p></li>
 </ul>
 </p></li>
 </ul>
@@ -436,7 +442,7 @@ MEMCFG_DXACCPROT0_CPUWRPROT_M0)<a class="headerlink" href="#c.MEMCFG_XACCPROTX_M
 </dl>
 </p>
 <p><dl class="simple">
-<dt><strong>Note</strong></dt><dd><p>Note that only non-master violations may generate interrupts.</p>
+<dt><strong>Note</strong></dt><dd><p>Note that only non-controller violations may generate interrupts.</p>
 </dd>
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -448,11 +454,11 @@ MEMCFG_DXACCPROT0_CPUWRPROT_M0)<a class="headerlink" href="#c.MEMCFG_XACCPROTX_M
 <dt id="_CPPv434MemCfg_getViolationInterruptStatusv">
 <span id="_CPPv334MemCfg_getViolationInterruptStatusv"></span><span id="_CPPv234MemCfg_getViolationInterruptStatusv"></span><span id="MemCfg_getViolationInterruptStatus__void"></span><span class="target" id="group__memcfg__api_1ga44249a1c6c6602a308530ffdf5832284"></span>uint32_t <code class="sig-name descname">MemCfg_getViolationInterruptStatus</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv434MemCfg_getViolationInterruptStatusv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Gets the current RAM access violation status.</p>
-<p>This function returns the RAM access violation status. This function will return flags for both master and non-master access violations although only the non-master flags have the ability to cause the generation of an interrupt.</p>
+<p>This function returns the RAM access violation status. This function will return flags for both controller and non-controller access violations although only the non-controller flags have the ability to cause the generation of an interrupt.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>Returns the current violation status, enumerated as a bit field of the values:<ul class="simple">
-<li><p><strong>MEMCFG_MVIOL_CPUFETCH</strong> - Master CPU fetch access</p></li>
-<li><p><strong>MEMCFG_MVIOL_CPUWRITE</strong> - Master CPU write access </p></li>
+<li><p><strong>MEMCFG_MVIOL_CPUFETCH</strong> - Controller CPU fetch access</p></li>
+<li><p><strong>MEMCFG_MVIOL_CPUWRITE</strong> - Controller CPU write access </p></li>
 </ul>
 </p>
 </dd>
@@ -464,12 +470,12 @@ MEMCFG_DXACCPROT0_CPUWRPROT_M0)<a class="headerlink" href="#c.MEMCFG_XACCPROTX_M
 <dt id="_CPPv430MemCfg_forceViolationInterrupt8uint32_t">
 <span id="_CPPv330MemCfg_forceViolationInterrupt8uint32_t"></span><span id="_CPPv230MemCfg_forceViolationInterrupt8uint32_t"></span><span id="MemCfg_forceViolationInterrupt__uint32_t"></span><span class="target" id="group__memcfg__api_1gaa0abb7f6bce7b04eef47cdd853bccb81"></span>void <code class="sig-name descname">MemCfg_forceViolationInterrupt</code><span class="sig-paren">(</span>uint32_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430MemCfg_forceViolationInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Sets the RAM access violation status.</p>
-<p><p>This function sets the RAM access violation status. This function will set flags for both master and non-master access violations, and an interrupt will be generated if it is enabled.</p>
+<p><p>This function sets the RAM access violation status. This function will set flags for both controller and non-controller access violations, and an interrupt will be generated if it is enabled.</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is a bit mask of the access violation flags to be set. Can be a logical OR any of the following values:<ul>
-<li><p><strong>MEMCFG_MVIOL_CPUFETCH</strong> - Master CPU fetch access</p></li>
-<li><p><strong>MEMCFG_MVIOL_CPUWRITE</strong> - Master CPU write access</p></li>
+<li><p><strong>MEMCFG_MVIOL_CPUFETCH</strong> - Controller CPU fetch access</p></li>
+<li><p><strong>MEMCFG_MVIOL_CPUWRITE</strong> - Controller CPU write access</p></li>
 </ul>
 </p></li>
 </ul>
@@ -492,8 +498,8 @@ MEMCFG_DXACCPROT0_CPUWRPROT_M0)<a class="headerlink" href="#c.MEMCFG_XACCPROTX_M
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is a bit mask of the access violation flags to be cleared. Can be a logical OR any of the following values:<ul>
-<li><p><strong>MEMCFG_MVIOL_CPUFETCH</strong> - Master CPU fetch access</p></li>
-<li><p><strong>MEMCFG_MVIOL_CPUWRITE</strong> - Master CPU write access</p></li>
+<li><p><strong>MEMCFG_MVIOL_CPUFETCH</strong> - Controller CPU fetch access</p></li>
+<li><p><strong>MEMCFG_MVIOL_CPUWRITE</strong> - Controller CPU write access</p></li>
 </ul>
 </p></li>
 </ul>
@@ -795,7 +801,7 @@ MEMCFG_DXACCPROT0_CPUWRPROT_M0)<a class="headerlink" href="#c.MEMCFG_XACCPROTX_M
 <dt id="_CPPv419MemCfg_unlockConfig8uint32_t">
 <span id="_CPPv319MemCfg_unlockConfig8uint32_t"></span><span id="_CPPv219MemCfg_unlockConfig8uint32_t"></span><span id="MemCfg_unlockConfig__uint32_t"></span><span class="target" id="group__memcfg__api_1gae00348f30b6d43dc012624eaef77e866"></span>void <code class="sig-name descname">MemCfg_unlockConfig</code><span class="sig-paren">(</span>uint32_t <em>memSections</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419MemCfg_unlockConfig8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Unlocks the writes to the configuration of a memory section.</p>
-<p><p>This function unlocks writes to the access protection and master select configuration of a memory section that has been locked using </p>
+<p><p>This function unlocks writes to the access protection and controller select configuration of a memory section that has been locked using </p>
 <a class="reference internal" href="#group__memcfg__api_1ga9814daed4697abe866776e4cabb20dfc"><span class="std std-ref">MemCfg_lockConfig()</span></a>.<dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">memSections</span></code>: is the logical OR of the sections to be configured.</p></li>
@@ -820,8 +826,8 @@ MEMCFG_DXACCPROT0_CPUWRPROT_M0)<a class="headerlink" href="#c.MEMCFG_XACCPROTX_M
 <dt id="_CPPv419MemCfg_commitConfig8uint32_t">
 <span id="_CPPv319MemCfg_commitConfig8uint32_t"></span><span id="_CPPv219MemCfg_commitConfig8uint32_t"></span><span id="MemCfg_commitConfig__uint32_t"></span><span class="target" id="group__memcfg__api_1ga8ce8c0219db8129547acfdc304bac7eb"></span>void <code class="sig-name descname">MemCfg_commitConfig</code><span class="sig-paren">(</span>uint32_t <em>memSections</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419MemCfg_commitConfig8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Permanently locks writes to the configuration of a memory section.</p>
-<p><p>This function permanently locks writes to the access protection and master select configuration of a memory section. That means calling </p>
-<a class="reference internal" href="#group__memcfg__api_1ga99d704ec8ab016365ccb868f9f163a59"><span class="std std-ref">MemCfg_setProtection()</span></a> or MemCfg_setLSRAMMasterSel() for a locked memory section will have no effect. To lock the configuration in a nonpermanent way, use <a class="reference internal" href="#group__memcfg__api_1ga9814daed4697abe866776e4cabb20dfc"><span class="std std-ref">MemCfg_lockConfig()</span></a>.<dl class="simple">
+<p><p>This function permanently locks writes to the access protection and controller select configuration of a memory section. That means calling </p>
+<a class="reference internal" href="#group__memcfg__api_1ga99d704ec8ab016365ccb868f9f163a59"><span class="std std-ref">MemCfg_setProtection()</span></a> or MemCfg_setLSRAMControllerSel() for a locked memory section will have no effect. To lock the configuration in a nonpermanent way, use <a class="reference internal" href="#group__memcfg__api_1ga9814daed4697abe866776e4cabb20dfc"><span class="std std-ref">MemCfg_lockConfig()</span></a>.<dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">memSections</span></code>: is the logical OR of the sections to be configured.</p></li>
 </ul>
@@ -1013,8 +1019,8 @@ MEMCFG_DXACCPROT0_CPUWRPROT_M0)<a class="headerlink" href="#c.MEMCFG_XACCPROTX_M
 </dd>
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">intFlag</span></code>: is the type of access violation as indicated by ONE of these values:<ul>
-<li><p><strong>MEMCFG_MVIOL_CPUFETCH</strong> - Master CPU fetch access</p></li>
-<li><p><strong>MEMCFG_MVIOL_CPUWRITE</strong> - Master CPU write access</p></li>
+<li><p><strong>MEMCFG_MVIOL_CPUFETCH</strong> - Controller CPU fetch access</p></li>
+<li><p><strong>MEMCFG_MVIOL_CPUWRITE</strong> - Controller CPU write access</p></li>
 </ul>
 </p></li>
 </ul>
@@ -1104,8 +1110,10 @@ detailed description to be sure.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Texas Instruments Incorporated.
-      <span class="lastupdated">Last updated on Oct 11, 2022.
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2021, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+      <span class="lastupdated">Last updated on Jul 01, 2023.
       </span></p>
   </div>
 
@@ -1125,7 +1133,7 @@ detailed description to be sure.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v4.03.00.00_EA1',
+            VERSION:'v5.00.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

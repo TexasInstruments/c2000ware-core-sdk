@@ -273,7 +273,10 @@ void initADCSOC(void)
                  ADC_CH_ADCIN0, 15);
     ADC_setupSOC(ADCA_BASE, ADC_SOC_NUMBER1, ADC_TRIGGER_EPWM2_SOCA,
                  ADC_CH_ADCIN0, 15);
-
+    ADC_setupSOC(ADCA_BASE, ADC_SOC_NUMBER0, ADC_TRIGGER_EPWM1_SOCA,
+                 
+    ADC_setupSOC(ADCA_BASE, ADC_SOC_NUMBER1, ADC_TRIGGER_EPWM2_SOCA,
+                 ADC_CH_ADCIN0, 64);
 
 
     //

@@ -106,8 +106,8 @@ extern "C"
 //
 // Values that can be passed to MemCfg_lockConfig(), MemCfg_unlockConfig(),
 // MemCfg_commitConfig(), MemCfg_setProtection(), MemCfg_initSections(),
-// MemCfg_setCLAMemType(), MemCfg_setLSRAMControllerSel(), MemCfg_getInitStatus()
-// as the memSection(s) or ramSection(s) parameter.
+// MemCfg_setCLAMemType(), MemCfg_setLSRAMControllerSel(),
+// MemCfg_getInitStatus() as the memSection(s) or ramSection(s) parameter.
 //
 //*****************************************************************************
 //
@@ -295,8 +295,8 @@ typedef enum
 //*****************************************************************************
 typedef enum
 {
-    MEMCFG_GSRAMCONTROLLER_CPU1,            //!< CPU1 is controller of the section
-    MEMCFG_GSRAMCONTROLLER_CPU2             //!< CPU2 is controller of the section
+    MEMCFG_GSRAMCONTROLLER_CPU1,         //!< CPU1 is controller of the section
+    MEMCFG_GSRAMCONTROLLER_CPU2          //!< CPU2 is controller of the section
 } MemCfg_GSRAMControllerSel;
 
 //*****************************************************************************
@@ -1113,8 +1113,8 @@ MemCfg_unlockConfig(uint32_t memSections);
 //!
 //! \param memSections is the logical OR of the sections to be configured.
 //!
-//! This function permanently locks writes to the access protection and controller
-//! select configuration of a memory section. That means calling
+//! This function permanently locks writes to the access protection and
+//! controller select configuration of a memory section. That means calling
 //! MemCfg_setProtection() or MemCfg_setLSRAMControllerSel() for a locked memory
 //! section will have no effect. To lock the configuration in a nonpermanent
 //! way, use MemCfg_lockConfig().
@@ -1205,11 +1205,11 @@ MemCfg_setLSRAMControllerSel(uint32_t ramSection,
 //! \param ramSections is the logical OR of the sections to be configured.
 //! \param controllerSel is the sharing selection.
 //!
-//! This function sets the controller select configuration of the GSxRAM section.If
-//! the \e controllerSel parameter is \b MEMCFG_GSRAMCONTROLLER_CPU1, the GSRAM
-//! sections passed into the \e ramSections parameter will be dedicated to
-//! CPU1. If \b MEMCFG_GSRAMCONTROLLER_CPU2, the memory section will be dedicated
-//! to CPU2.
+//! This function sets the controller select configuration of the GSxRAM
+//! section.If the \e controllerSel parameter is \b MEMCFG_GSRAMCONTROLLER_CPU1,
+//! the GSRAM sections passed into the \e ramSections parameter will be
+//! dedicated to CPU1. If \b MEMCFG_GSRAMCONTROLLER_CPU2, the memory section
+//! will be dedicated to CPU2.
 //!
 //! The \e ramSections parameter should be a logical OR of values from
 //! \b MEMCFG_SECT_GS0 through \b MEMCFG_SECT_GSx.

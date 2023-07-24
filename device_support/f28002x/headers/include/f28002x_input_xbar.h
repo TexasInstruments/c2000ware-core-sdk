@@ -89,7 +89,9 @@ struct INPUT_XBAR_REGS {
     Uint16                                   INPUT12SELECT;                // INPUT12 Input Select Register (GPIO0 to x)
     Uint16                                   INPUT13SELECT;                // INPUT13 Input Select Register (GPIO0 to x)
     Uint16                                   INPUT14SELECT;                // INPUT14 Input Select Register (GPIO0 to x)
-    Uint16                                   rsvd1[16];                    // Reserved
+    Uint16                                   INPUT15SELECT;                // INPUT15 Input Select Register (GPIO0 to x)
+    Uint16                                   INPUT16SELECT;                // INPUT16 Input Select Register (GPIO0 to x)
+    Uint16                                   rsvd1[14];                    // Reserved
     union   INPUTSELECTLOCK_REG              INPUTSELECTLOCK;              // Input Select Lock Register
 };
 

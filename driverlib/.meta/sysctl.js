@@ -5,6 +5,11 @@ let device_driverlib_peripheral =
     system.getScript("/driverlib/device_driverlib_peripherals/" + 
         Common.getDeviceName().toLowerCase() + "_sysctl.js");
 
+let device_driverlib_peripheral_registers = 
+    system.getScript("/driverlib/device_driverlib_peripherals/" + 
+        Common.getDeviceName().toLowerCase() + "_sysctl_registers.js");
+
+
 
 var selectAccessOption = device_driverlib_peripheral.SysCtl_AccessController
 if(!selectAccessOption)
@@ -18,6 +23,19 @@ if(!selectControllerOption)
     selectControllerOption = device_driverlib_peripheral.SYSCTL_SEC_MASTER;
 }
   
+var canSelectCPU = [];
+for (var prd = 0; prd <= 30; prd++){
+    var fullSelString = "CPUSEL" + prd.toString();
+    device_driverlib_peripheral_registers.SYSCTLRegisters.forEach((element, index) => 
+    {
+        if (element.name == fullSelString){
+            element.bits.forEach((bitElement, number) =>
+            {
+                canSelectCPU.push(bitElement.name)
+            });
+        }
+    });
+}
 
 var enablePeipheralConfigs = []
 device_driverlib_peripheral.SysCtl_PeripheralPCLOCKCR.
@@ -36,7 +54,8 @@ device_driverlib_peripheral.SysCtl_PeripheralPCLOCKCR.
                 if([
                     "SYSCTL_PERIPH_CLK_HRPWM",
                     "SYSCTL_PERIPH_CLK_EMIF1", "SYSCTL_PERIPH_CLK_EMIF2",
-                    "SYSCTL_PERIPH_CLK_USBA",  "SYSCTL_PERIPH_CLK_UPPA"
+                    "SYSCTL_PERIPH_CLK_USBA",  "SYSCTL_PERIPH_CLK_UPPA",
+                    "SYSCTL_PERIPH_CLK_GTBCLKSYNC"
                     ].includes(element.name)){
                         skipCpu2Enable = true;
                 }
@@ -47,7 +66,15 @@ device_driverlib_peripheral.SysCtl_PeripheralPCLOCKCR.
                     "SYSCTL_PERIPH_CLK_EMIF1", "SYSCTL_PERIPH_CLK_EMIF2",
                     "SYSCTL_PERIPH_CLK_USBA",
                     "SYSCTL_PERIPH_CLK_DCC0", "SYSCTL_PERIPH_CLK_DCC1", "SYSCTL_PERIPH_CLK_DCC2",
-                    "SYSCTL_PERIPH_CLK_ECAT", "SYSCTL_PERIPH_CLK_MCANA"
+                    "SYSCTL_PERIPH_CLK_ECAT", "SYSCTL_PERIPH_CLK_MCANA",
+                    "SYSCTL_PERIPH_CLK_GTBCLKSYNC"
+                    ].includes(element.name)){
+                        skipCpu2Enable = true;
+                }
+            }
+            if (["F28P65x"].includes(Common.getDeviceName()) && Common.isContextCPU2()){
+                if([
+                    "SYSCTL_PERIPH_CLK_CLA", "SYSCTL_PERIPH_CLK_GTBCLKSYNC"
                     ].includes(element.name)){
                         skipCpu2Enable = true;
                 }
@@ -127,12 +154,21 @@ let staticConfig = [
 ];
 
 var enableCpuSel = true;
-if (["F2837xD", "F2838x"].includes(Common.getDeviceName()) && Common.isContextCPU2()){
+if (["F2837xD", "F2838x", "F28P65x"].includes(Common.getDeviceName()) && Common.isContextCPU2()){
     enableCpuSel = false;
 }
 
 if (device_driverlib_peripheral.SysCtl_CPUSelPeripheral && enableCpuSel)
 {
+    var inInstanceEnumsEnd = []; 
+    if (device_driverlib_peripheral.SysCtl_CPUSelPeriphInstance && ["F28P65x"].includes(Common.getDeviceName())){       
+            device_driverlib_peripheral.SysCtl_CPUSelPeriphInstance.
+            forEach((element, index) => 
+            {
+               inInstanceEnumsEnd.push(element.name.split("_").slice(-1)[0]);
+               }
+            );
+        }
     var cpuSelPeipheralConfigs = []
     device_driverlib_peripheral.SysCtl_CPUSelPeripheral.
     forEach((element, index) => 
@@ -140,14 +176,23 @@ if (device_driverlib_peripheral.SysCtl_CPUSelPeripheral && enableCpuSel)
             var peripheralInsts = Common.peripheralListFromSysCtl(element.name.split("_").slice(-1)[0], device_driverlib_peripheral)
             var cpuSelPerupheralInstsConfigs = []
             peripheralInsts.forEach((element_periphInst, index) => {
-                cpuSelPerupheralInstsConfigs.push(
-                    {
-                        name: "cpuSel_" + element_periphInst,
-                        displayName : element_periphInst,
-                        default : device_driverlib_peripheral.SysCtl_CPUSel[0].name,
-                        options: device_driverlib_peripheral.SysCtl_CPUSel
+                var matchesInstances = 1;
+                if(device_driverlib_peripheral.SysCtl_CPUSelPeriphInstance && ["F28P65x"].includes(Common.getDeviceName())){
+                    matchesInstances = 0;
+                    if(inInstanceEnumsEnd.includes(element_periphInst)){
+                        matchesInstances = 1;
                     }
-                )
+                }
+                if (matchesInstances == 1){
+                    cpuSelPerupheralInstsConfigs.push(
+                        {
+                            name: "cpuSel_" + element_periphInst,
+                            displayName : element_periphInst,
+                            default : device_driverlib_peripheral.SysCtl_CPUSel[0].name,
+                            options: device_driverlib_peripheral.SysCtl_CPUSel
+                        }
+                    )
+                }
             });
             cpuSelPeipheralConfigs.push(
                 {
@@ -423,7 +468,7 @@ if (["F2838x"].includes(Common.getDeviceName()) && Common.isContextCPU1())
 if (!["F2837xS", "F2837xD", "F2807x", "F28004x"].includes(Common.getDeviceName()))
 {
     var enableErrorstatus = true;
-    if (["F2838x"].includes(Common.getDeviceName()) && Common.isContextCPU2()){
+    if (["F2838x","F28P65x"].includes(Common.getDeviceName()) && Common.isContextCPU2()){
         enableErrorstatus = false;
     }
     if(enableErrorstatus == true){

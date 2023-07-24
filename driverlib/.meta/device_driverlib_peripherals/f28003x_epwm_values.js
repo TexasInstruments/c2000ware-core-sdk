@@ -330,7 +330,6 @@ let EPWM_DigitalCompareBlankingPulse = [
 	{ name: "EPWM_DC_WINDOW_START_TBCTR_PERIOD", value: 0 },
 	{ name: "EPWM_DC_WINDOW_START_TBCTR_ZERO", value: 1 },
 	{ name: "EPWM_DC_WINDOW_START_TBCTR_ZERO_PERIOD", value: 2 },
-	{ name: "EPWM_DC_WINDOW_START_BLANK_PULSE_MIX", value: 3 },
 ]
 let EPWM_DigitalCompareFilterInput = [
 	{ name: "EPWM_DC_WINDOW_SOURCE_DCAEVT1", value: 0 },

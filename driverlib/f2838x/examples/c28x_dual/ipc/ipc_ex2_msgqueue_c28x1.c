@@ -96,6 +96,7 @@ void main(void)
     Device_bootCPU2(BOOTMODE_BOOT_TO_M0RAM);
 #endif
 
+
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //

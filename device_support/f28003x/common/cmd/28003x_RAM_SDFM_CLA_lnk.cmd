@@ -122,7 +122,7 @@ SECTIONS
    dclfuncs         : > RAMLS5
 
    /* The following section definition are for SDFM examples */
-   Filter1_RegsFile : > RAMLS6
+   Filter1_RegsFile : >> RAMLS3 | RAMLS6
    Filter2_RegsFile : > RAMLS6
    Filter3_RegsFile : > RAMLS7
    Filter4_RegsFile : > RAMLS7

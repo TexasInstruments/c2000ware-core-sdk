@@ -392,10 +392,9 @@ GPIO_setAnalogMode(uint32_t pin, GPIO_AnalogMode mode)
     //
     // Check the arguments.
     //
-    ASSERT(((pin >= 224U) && (pin <= 245U) && (pin != 229U) && (pin != 234U) &&
-           (pin != 235U) && (pin != 236U) && (pin != 240U) && (pin != 243U)) ||
-           (pin == 12U)   || (pin == 13U)  || (pin == 20U)  || (pin == 21U)  ||
-           (pin == 28U));
+    ASSERT(((pin >= 224U) && (pin <= 230U) && (pin != 229U) && (pin != 225U)) ||
+           (pin == 242U) || (pin == 12U) || (pin == 13U) || (pin == 20U) ||
+           (pin == 21U)  || (pin == 28U));
 
     pinMask = (uint32_t)1U << (pin % 32U);
     gpioBaseAddr = (uint32_t *)GPIOCTRL_BASE +

@@ -156,13 +156,14 @@ typedef enum
     XBAR_OUTPUT5 = 8,       //!< OUTPUT5 of the Output X-BAR
     XBAR_OUTPUT6 = 10,      //!< OUTPUT6 of the Output X-BAR
     XBAR_OUTPUT7 = 12,      //!< OUTPUT7 of the Output X-BAR
-    XBAR_OUTPUT8 = 14,       //!< OUTPUT8 of the Output X-BAR
+    XBAR_OUTPUT8 = 14,      //!< OUTPUT8 of the Output X-BAR
 } XBAR_OutputNum;
 
 //*****************************************************************************
 //
 //! The following values define the \e trip parameter for
-//! XBAR_setEPWMMuxConfig(), XBAR_enableEPWMMux(), and XBAR_disableEPWMMux().
+//! XBAR_setEPWMMuxConfig(), XBAR_invertEPWMSignal(), XBAR_enableEPWMMux(),
+//! and XBAR_disableEPWMMux().
 //
 //*****************************************************************************
 typedef enum
@@ -646,6 +647,8 @@ XBAR_enableOutputMux(XBAR_OutputNum output, uint32_t muxes)
     HWREG(XBAR_OUTPUT_EN_REG_BASE + (uint16_t)output) |= muxes;
 
     EDIS;
+
+
 }
 
 //*****************************************************************************
@@ -853,7 +856,6 @@ XBAR_enableEPWMMux(XBAR_TripNum trip, uint32_t muxes)
     EALLOW;
 
     HWREG(XBAR_EPWM_EN_REG_BASE + (uint32_t)trip) |= muxes;
-
     EDIS;
 }
 

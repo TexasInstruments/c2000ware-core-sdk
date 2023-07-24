@@ -129,16 +129,15 @@ void main(void)
     Device_initGPIO();
 
     //
-       // Configuring the GPIOs for MCAN.
-       //
-       GPIO_setPinConfig(DEVICE_GPIO_CFG_MCANRXA);
-       GPIO_setPinConfig(DEVICE_GPIO_CFG_MCANTXA);
+    // Configuring the GPIOs for MCAN.
+    //
+    GPIO_setPinConfig(DEVICE_GPIO_CFG_MCANRXA);
+    GPIO_setPinConfig(DEVICE_GPIO_CFG_MCANTXA);
 
-       //
-       // Configure the divisor for the MCAN bit-clock
-       //
-       SysCtl_setMCANClk(SYSCTL_MCANCLK_DIV_3);
-
+    //
+    // Configure the divisor for the MCAN bit-clock
+    //
+    SysCtl_setMCANClk(SYSCTL_MCANCLK_DIV_3);
 
     //
     // CrossBar and ISR Configuration.

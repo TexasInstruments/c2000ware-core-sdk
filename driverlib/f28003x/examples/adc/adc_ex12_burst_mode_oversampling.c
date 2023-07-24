@@ -7,18 +7,16 @@
 //! \addtogroup driver_example_list
 //! <h1>ADC Burst Mode Oversampling</h1>
 //!
-//! This example sets up ePWM1 to periodically trigger SOC0 and SOC1 on
-//! ADCA (to sample A0 and A1). Additionally, the ADC burst mode is also 
-//! triggered using ePWM1. The burst SOCs are used to accumulate multiple
-//! conversions to oversample A2 over multiple ePWM periods.  
+//! This example is an ADC oversampling example implemented with software. The
+//! ADC SOCs are configured in burst mode, triggered by the ePWM SOC A event
+//! trigger.
 //!
-//! \b External \b Connections \n
-//!  - A0, A1, A2
+//! \b External \b Connection \n
+//!  - A2
 //!
 //! \b Watch \b Variables \n
-//! - \b adcAResult0 - Digital representation of the voltage on pin A0
-//! - \b adcAResult1 - Digital representation of the voltage on pin A1
-//! - \b adcAResult2 - Digital representation of the voltage on pin A2
+//! - \b lv_results - Array of digital values measured on pin A2 (oversampling
+//!                 is configured by Oversampling_Amount)
 //!
 //
 //#############################################################################
@@ -56,7 +54,6 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //#############################################################################
-//
 
 //
 // Included Files
@@ -66,18 +63,31 @@
 #include "board.h"
 
 //
-// Globals
+// Macros and Enumerations
 //
-uint16_t adcAResult0; 
-uint16_t adcAResult1;
-uint16_t adcAResult2;
-volatile uint16_t isrCount;
+#define DO_TOGGLE 0
+typedef enum
+{
+    Baseline = 0,           //!< No oversampling
+    X2_Oversampling = 1,    //!< 2X oversampling
+    X4_Oversampling = 2,    //!< 4X oversampling
+    X8_Oversampling = 3,    //!< 8X oversampling
+    X16_Oversampling = 4,   //!< 16X oversampling
+} Oversampling_Amount;
 
 //
-// Function Prototypes
+// Global Variables
 //
-void initEPWM();
-__interrupt void adcA1ISR(void);
+uint16_t acc;
+uint16_t numBins = 8192;
+volatile uint16_t nloops = 0;
+volatile uint16_t *lv_results;
+Oversampling_Amount ovrsmplAmt = Baseline;
+
+//
+// Functions
+//
+__interrupt void INT_myADC0_1_ISR(void);
 
 //
 // Main
@@ -111,143 +121,136 @@ void main(void)
     // Conversion Resolution : 12-bit;
     //
     // Burst mode configuration:
-    // 4 bursts of 1 conversion each will need 4 SOCs, so SOC0 to SOC11
-    // are set to high priority, leaving 4 Round-Robin SOCs for the
-    // bursts (SOC12 through SOC15).
+    // 1 burst of 16 conversions (SOC0 - SOC15) with equal priority
     //
-    // Configure SOC0-12 in high priority mode with SOC0 and SOC1
-    // configured to sample A0 and A1 channel respectively on
-    // EPWM1SOCA trigger.
-    //
-    // Enable burst mode for SOC12-15 with burst size of 1 with
-    // burst mode trigger as EPWM1 SOCA. Select the channels to be
+    // Burst mode trigger is EPWM1 SOCA. Select the channels to be
     // converted and configure the S+H duration
-    // Burst1: SOC12  (A2), Burst2: SOC13  (A2),
-    // Burst3: SOC14  (A2), Burst4: SOC14 (A2)
-    //
-    // Register and enable the interrupts:
-    // High priority SOC0 and SOC1 results are read after each PWM trigger,
-    // while 4 burst results will be averaged together after 4 ePWM triggers
     //
     Board_init();
 
     //
-    // Initialize PWM
+    // Initialize memory address for results table
     //
-    initEPWM();
+    lv_results = (uint16_t*)0xC000;
 
     //
-    // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
+    // Debug Timing of ePWM and SOC conversions
+    //
+#if(DO_TOGGLE == 1)
+    SysCtl_enableExtADCSOCSource(SYSCTL_ADCSOC_SRC_PWM1SOCA);     			//Routes ePWM SOCA trigger to external pin
+    GPIO_setPinConfig(GPIO_8_ADCSOCAO);
+    GPIO_setPadConfig(7, GPIO_PIN_TYPE_STD/*GPIO_PIN_TYPE_PULLUP*/);
+    GPIO_setPinConfig(GPIO_7_GPIO7);
+    GPIO_setDirectionMode(7, GPIO_DIR_MODE_OUT);
+    GPIO_writePin(0,0);
+#endif
+
+    //
+    // Enable Global Interrupt (INTM) and real time interrupt (DBGM)
     //
     EINT;
     ERTM;
 
-    //
-    // Initialize ISR counter
-    //
-    isrCount = 0;
-
-    //
-    // Start ePWM1, enabling SOCA and putting the counter in up-count mode
-    //
-    EPWM_enableADCTrigger(EPWM1_BASE, EPWM_SOC_A);
-    EPWM_setTimeBaseCounterMode(EPWM1_BASE, EPWM_COUNTER_MODE_UP);
-
-    //
-    // Take conversions indefinitely in loop
-    //
-    do
-    {
-        //
-        // Wait while ePWM causes ADC conversions.
-        // ADCA1 ISR processes each new set of conversions. 
-        //
-    }
     while(1);
 }
 
 //
-// Function to configure ePWM1 to generate the SOC.
+// INT_myADC0_1_ISR - ADC A Interrupt Burst Mode ISR
+// Interrupt performs oversampling calculation based on oversampling factor
 //
-void initEPWM(void)
+__interrupt void INT_myADC0_1_ISR(void)
 {
-    //
-    // Disable SOCA
-    //
-    EPWM_disableADCTrigger(EPWM1_BASE, EPWM_SOC_A);
-
-    //
-    // Configure the SOC to occur on the first up-count event
-    //
-    EPWM_setADCTriggerSource(EPWM1_BASE, EPWM_SOC_A, EPWM_SOC_TBCTR_U_CMPA);
-    EPWM_setADCTriggerEventPrescale(EPWM1_BASE, EPWM_SOC_A, 1);
-
-    //
-    // Set the compare A value to 1000 and the period to 1999
-    // Assuming ePWM clock is 100MHz, this would give 50kHz sampling
-    // 50MHz ePWM clock would give 25kHz sampling, etc. 
-    // The sample rate can also be modulated by changing the ePWM period
-    // directly (ensure that the compare A value is less than the period). 
-    //
-    EPWM_setCounterCompareValue(EPWM1_BASE, EPWM_COUNTER_COMPARE_A, 1000);
-    EPWM_setTimeBasePeriod(EPWM1_BASE, 1999);
-
-    //
-    // Set the local ePWM module clock divider to /1
-    //
-    EPWM_setClockPrescaler(EPWM1_BASE,
-                           EPWM_CLOCK_DIVIDER_1,
-                           EPWM_HSCLOCK_DIVIDER_1);
-
-    //
-    // Freeze the counter
-    //
-    EPWM_setTimeBaseCounterMode(EPWM1_BASE, EPWM_COUNTER_MODE_STOP_FREEZE);
-}
-
-//
-// adcA1ISR - ADC A Interrupt Burst Mode ISR
-// Every ISR new results for A0 and A1 will be collected
-// A2 results are averaged over 4 ePWM triggers
-//
-__interrupt void adcA1ISR(void)
-{
-    //
-    // Record the results for A0 and A1
-    //
-    adcAResult0 = ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER0);
-    adcAResult1 = ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER1);
-
-    //
-    // Every 4th ISR, the burst mode buffer will be full of new results to
-    // be averaged
-    //
-    if(++isrCount == 4)
-    {
-        //
-        // Average the 4 results and reset the counter
-        //
-        adcAResult2 = 
-            (ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER12) +
-            ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER13) +
-            ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER14) +
-            ADC_readResult(ADCARESULT_BASE, ADC_SOC_NUMBER15)) >> 2;
-        isrCount = 0;
-    }
-
     //
     // Clear the interrupt flag
     //
-    ADC_clearInterruptStatus(ADCA_BASE, ADC_INT_NUMBER1);
+    ADC_clearInterruptStatus(myADC0_BASE, ADC_INT_NUMBER1);
+
+    //
+    // Debug Timing of ePWM and SOC conversions
+    //
+#if(DO_TOGGLE == 1)
+    GPIO_togglePin(myGPIO0);
+#endif
+
+    //
+    // Accumulate SOC results (store only 1 value per burst)
+    //
+    if(ovrsmplAmt == Baseline)
+    {
+        //
+        // 1X Oversampling
+        //
+        lv_results[nloops++] = ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER0);
+    }
+    else if(ovrsmplAmt == X2_Oversampling)
+    {
+        //
+        // 2X Oversampling
+        //
+        lv_results[nloops++] = (ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER0) + ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER1));
+    }
+    else if(ovrsmplAmt == X4_Oversampling)
+    {
+        //
+        // 4X Oversampling
+        //
+        lv_results[nloops++] = (ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER0) + ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER1) +
+                ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER2) + ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER3));
+    }
+    else if(ovrsmplAmt == X8_Oversampling)
+    {
+        //
+        // 8X Oversampling
+        //
+        lv_results[nloops++] = (ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER0) + ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER1) +
+                ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER2) + ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER3) +
+                ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER4) + ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER5) +
+                ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER6) + ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER7));
+    }
+    else if(ovrsmplAmt == X16_Oversampling)
+    {
+        //
+        // 16X Oversampling
+        //
+        acc = (ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER0) + ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER1) +
+                ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER2) + ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER3) +
+                ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER4) + ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER5) +
+                ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER6) + ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER7) +
+                ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER8) + ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER9) +
+                ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER10) + ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER11) +
+                ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER12) + ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER13) +
+                ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER14) + ADC_readResult(myADC0_RESULT_BASE, ADC_SOC_NUMBER15));
+        lv_results[nloops] = acc;
+        nloops++;
+    }
 
     //
     // Check if overflow has occurred
     //
-    if(true == ADC_getInterruptOverflowStatus(ADCA_BASE, ADC_INT_NUMBER1))
+    if(true == ADC_getInterruptOverflowStatus(myADC0_BASE, ADC_INT_NUMBER1))
     {
-        ADC_clearInterruptOverflowStatus(ADCA_BASE, ADC_INT_NUMBER1);
-        ADC_clearInterruptStatus(ADCA_BASE, ADC_INT_NUMBER1);
+        ADC_clearInterruptOverflowStatus(myADC0_BASE, ADC_INT_NUMBER1);
+        ADC_clearInterruptStatus(myADC0_BASE, ADC_INT_NUMBER1);
     }
+
+    //
+    // Check if all results are stored
+    //
+    if(nloops >= numBins)
+    {
+        //
+        // Disable ADC interrupt
+        //
+        ADC_disableInterrupt(myADC0_BASE, ADC_INT_NUMBER1);
+        ESTOP0;
+    }
+
+    //
+    // Debug Timing of ePWM and SOC conversions
+    //
+#if(DO_TOGGLE == 1)
+    GPIO_togglePin(myGPIO0);
+#endif
 
     //
     // Acknowledge the interrupt

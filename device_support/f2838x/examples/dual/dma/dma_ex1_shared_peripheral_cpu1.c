@@ -2,7 +2,7 @@
 //
 // FILE:   dma_ex1_shared_peripheral_cpu1.c
 //
-// TITLE:  DMA Transfer for Shared Peripheral Example for F2838x.
+// TITLE:  DMA Transfer for Shared Peripheral Example
 //
 //! \addtogroup dual_example_list
 //! <h1> DMA Transfer Shared Peripheral </h1>
@@ -80,6 +80,7 @@ void main(void)
 // This example function is found in the f2838x_sysctrl.c file.
 //
     ExampleInitSysCtrl();
+
 
 //
 // Initialize GPIO pins for EPWM-1
@@ -250,6 +251,7 @@ void ExampleInitSysCtrl(void)
     //
     // Defined options to be passed as arguments to this function are defined
     // in f2838x_Examples.h.
+
     //
     // Note: The internal oscillator CANNOT be used as the PLL source if the
     // AUXPLLCLK is configured to frequencies above 194 MHz.

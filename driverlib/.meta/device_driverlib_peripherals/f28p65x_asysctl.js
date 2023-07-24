@@ -1,0 +1,65 @@
+let ASysCtl_CMPHPMuxSelect = [
+	{ name: "ASYSCTL_CMPHPMUX_SELECT_1", displayName: "CMPHPMUX select 1" },
+	{ name: "ASYSCTL_CMPHPMUX_SELECT_2", displayName: "CMPHPMUX select 2" },
+	{ name: "ASYSCTL_CMPHPMUX_SELECT_3", displayName: "CMPHPMUX select 3" },
+	{ name: "ASYSCTL_CMPHPMUX_SELECT_4", displayName: "CMPHPMUX select 4" },
+	{ name: "ASYSCTL_CMPHPMUX_SELECT_5", displayName: "CMPHPMUX select 5" },
+	{ name: "ASYSCTL_CMPHPMUX_SELECT_6", displayName: "CMPHPMUX select 6" },
+	{ name: "ASYSCTL_CMPHPMUX_SELECT_7", displayName: "CMPHPMUX select 7" },
+	{ name: "ASYSCTL_CMPHPMUX_SELECT_8", displayName: "CMPHPMUX select 8" },
+	{ name: "ASYSCTL_CMPHPMUX_SELECT_9", displayName: "CMPHPMUX select 9" },
+	{ name: "ASYSCTL_CMPHPMUX_SELECT_10", displayName: "CMPHPMUX select 10" },
+	{ name: "ASYSCTL_CMPHPMUX_SELECT_11", displayName: "CMPHPMUX select 11" },
+]
+let ASysCtl_CMPLPMuxSelect = [
+	{ name: "ASYSCTL_CMPLPMUX_SELECT_1", displayName: "CMPLPMUX select 1" },
+	{ name: "ASYSCTL_CMPLPMUX_SELECT_2", displayName: "CMPLPMUX select 2" },
+	{ name: "ASYSCTL_CMPLPMUX_SELECT_3", displayName: "CMPLPMUX select 3" },
+	{ name: "ASYSCTL_CMPLPMUX_SELECT_4", displayName: "CMPLPMUX select 4" },
+	{ name: "ASYSCTL_CMPLPMUX_SELECT_5", displayName: "CMPLPMUX select 5" },
+	{ name: "ASYSCTL_CMPLPMUX_SELECT_6", displayName: "CMPLPMUX select 6" },
+	{ name: "ASYSCTL_CMPLPMUX_SELECT_7", displayName: "CMPLPMUX select 7" },
+	{ name: "ASYSCTL_CMPLPMUX_SELECT_8", displayName: "CMPLPMUX select 8" },
+	{ name: "ASYSCTL_CMPLPMUX_SELECT_9", displayName: "CMPLPMUX select 9" },
+	{ name: "ASYSCTL_CMPLPMUX_SELECT_10", displayName: "CMPLPMUX select 10" },
+	{ name: "ASYSCTL_CMPLPMUX_SELECT_11", displayName: "CMPLPMUX select 11" },
+]
+let ASYSCTL_AGPIOFILTER = [
+	{ name: "ASYSCTL_AGPIOFILTER_BYPASS", displayName: "Filter bypass (min ACQPS = 90ns)" },
+	{ name: "ASYSCTL_AGPIOFILTER_333OHM", displayName: "333Ohm filter (min ACQPS = 125ns)" },
+	{ name: "ASYSCTL_AGPIOFILTER_500OHM", displayName: "500 Ohm filter (min ACQPS = 160ns)" },
+	{ name: "ASYSCTL_AGPIOFILTER_1000OHM", displayName: "1KOhm filter  (min ACQPS = 230ns)" },
+]
+let ASYSCTL_CMPHNMUX_SELECT = [
+	{ name: "ASYSCTL_CMPHNMUX_SELECT_1", displayName: "CMPHNMUX select 1" },
+	{ name: "ASYSCTL_CMPHNMUX_SELECT_2", displayName: "CMPHNMUX select 2" },
+	{ name: "ASYSCTL_CMPHNMUX_SELECT_3", displayName: "CMPHNMUX select 3" },
+	{ name: "ASYSCTL_CMPHNMUX_SELECT_4", displayName: "CMPHNMUX select 4" },
+	{ name: "ASYSCTL_CMPHNMUX_SELECT_5", displayName: "CMPHNMUX select 5" },
+	{ name: "ASYSCTL_CMPHNMUX_SELECT_6", displayName: "CMPHNMUX select 6" },
+	{ name: "ASYSCTL_CMPHNMUX_SELECT_7", displayName: "CMPHNMUX select 7" },
+	{ name: "ASYSCTL_CMPHNMUX_SELECT_8", displayName: "CMPHNMUX select 8" },
+	{ name: "ASYSCTL_CMPHNMUX_SELECT_9", displayName: "CMPHNMUX select 9" },
+	{ name: "ASYSCTL_CMPHNMUX_SELECT_10", displayName: "CMPHNMUX select 10" },
+	{ name: "ASYSCTL_CMPHNMUX_SELECT_11", displayName: "CMPHNMUX select 11" },
+]
+let ASYSCTL_CMPLNMUX_SELECT = [
+	{ name: "ASYSCTL_CMPLNMUX_SELECT_1", displayName: "CMPLNMUX select 1" },
+	{ name: "ASYSCTL_CMPLNMUX_SELECT_2", displayName: "CMPLNMUX select 2" },
+	{ name: "ASYSCTL_CMPLNMUX_SELECT_3", displayName: "CMPLNMUX select 3" },
+	{ name: "ASYSCTL_CMPLNMUX_SELECT_4", displayName: "CMPLNMUX select 4" },
+	{ name: "ASYSCTL_CMPLNMUX_SELECT_5", displayName: "CMPLNMUX select 5" },
+	{ name: "ASYSCTL_CMPLNMUX_SELECT_6", displayName: "CMPLNMUX select 6" },
+	{ name: "ASYSCTL_CMPLNMUX_SELECT_7", displayName: "CMPLNMUX select 7" },
+	{ name: "ASYSCTL_CMPLNMUX_SELECT_8", displayName: "CMPLNMUX select 8" },
+	{ name: "ASYSCTL_CMPLNMUX_SELECT_9", displayName: "CMPLNMUX select 9" },
+	{ name: "ASYSCTL_CMPLNMUX_SELECT_10", displayName: "CMPLNMUX select 10" },
+	{ name: "ASYSCTL_CMPLNMUX_SELECT_11", displayName: "CMPLNMUX select 11" },
+]
+module.exports = {
+	ASysCtl_CMPHPMuxSelect: ASysCtl_CMPHPMuxSelect,
+	ASysCtl_CMPLPMuxSelect: ASysCtl_CMPLPMuxSelect,
+	ASYSCTL_AGPIOFILTER: ASYSCTL_AGPIOFILTER,
+	ASYSCTL_CMPHNMUX_SELECT: ASYSCTL_CMPHNMUX_SELECT,
+	ASYSCTL_CMPLNMUX_SELECT: ASYSCTL_CMPLNMUX_SELECT,
+}

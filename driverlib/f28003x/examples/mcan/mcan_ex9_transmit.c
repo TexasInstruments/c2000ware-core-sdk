@@ -140,7 +140,6 @@ void main()
     //
     SysCtl_setMCANClk(SYSCTL_MCANCLK_DIV_3);
 
-
     //
     // Configure GPIO pins for MCANTX/MCANRX operation
     //

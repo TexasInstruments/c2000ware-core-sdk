@@ -4,16 +4,15 @@ var SingleCore_SYSPLL 		= system.getTemplate('./singleCore_SYSPLL.xdt');
 var SingleCore_AUXPLL		= system.getTemplate('./singleCore_AUXPLL.xdt');
 var SingleCore_domain		= system.getTemplate('./singleCore_domain.xdt');
 
-// Device Supported : F2837xS, F2807x, F28004x, F28002x, F28003x, F280013x, F280015x
+let clocktree_common   = system.getScript("../clocktree_common.js");
 
-const PLL_type1 = ["F2837xS", "F2807x", "F28004x"]					//FMULT available 	| REFDIV unavailable
-const PLL_type2 = ["F28002x", "F28003x", "F280013x", "F280015x"]	//FMULT unavailable	| REFDIV available
+const PLL_type1 = clocktree_common.PLL_type1;
+const PLL_type2 = clocktree_common.PLL_type2;
 
-const AUXPLL_Support 		= ["F2837xS", "F2807x"]
-const EPWM_div_support 		= ["F2837xS", "F2807x"]
+const AUXPLL_Support = clocktree_common.AUXPLL_Support;
+const EPWM_div_support = clocktree_common.EPWM_div_support;
 
-const device  = system.deviceData.device
-
+const device  = clocktree_common.device;
 
 %%}
 %

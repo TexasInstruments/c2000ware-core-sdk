@@ -51,7 +51,7 @@ function onChangeCS (inst,ui) {
 
 var sharedModuleInstances = undefined;
 
-if(Common.getDeviceName().toLowerCase() == 'f2838x')
+if(Common.getDeviceName().toLowerCase() == 'f2838x' || Common.getDeviceName().toLowerCase() == 'f28p65x')
 {   
     sharedModuleInstances = function (inst) {
         if (inst.registerInterrupts)

@@ -150,13 +150,14 @@ typedef enum
     XBAR_OUTPUT5 = 8,       //!< OUTPUT5 of the Output X-BAR
     XBAR_OUTPUT6 = 10,      //!< OUTPUT6 of the Output X-BAR
     XBAR_OUTPUT7 = 12,      //!< OUTPUT7 of the Output X-BAR
-    XBAR_OUTPUT8 = 14,       //!< OUTPUT8 of the Output X-BAR
+    XBAR_OUTPUT8 = 14,      //!< OUTPUT8 of the Output X-BAR
 } XBAR_OutputNum;
 
 //*****************************************************************************
 //
 //! The following values define the \e trip parameter for
-//! XBAR_setEPWMMuxConfig(), XBAR_enableEPWMMux(), and XBAR_disableEPWMMux().
+//! XBAR_setEPWMMuxConfig(), XBAR_invertEPWMSignal(), XBAR_enableEPWMMux(),
+//! and XBAR_disableEPWMMux().
 //
 //*****************************************************************************
 typedef enum
@@ -425,7 +426,6 @@ XBAR_isBaseValid(uint32_t base)
 //!
 //! The \e base parameter can take base addresses
 //! OUTPUTXBAR_BASE
-//! or CLBOUTPUTXBAR_BASE.
 //!
 //! The \e muxes parameter is a bit field of the muxes being enabled where bit
 //! 0 represents mux 0, bit 1 represents mux 1 and so on. Defines are provided
@@ -450,10 +450,11 @@ XBAR_enableOutputMux(uint32_t base, XBAR_OutputNum output, uint32_t muxes)
     //
     EALLOW;
 
-    HWREG(OUTPUTXBAR_BASE + XBAR_O_OUTPUT1MUXENABLE + (uint16_t)output) |= muxes;
     HWREG(base + XBAR_O_OUTPUT1MUXENABLE + outputNum) |= muxes;
 
     EDIS;
+
+
 }
 
 //*****************************************************************************
@@ -496,7 +497,6 @@ XBAR_disableOutputMux(uint32_t base, XBAR_OutputNum output, uint32_t muxes)
     //
     EALLOW;
 
-    HWREG(OUTPUTXBAR_BASE + XBAR_O_OUTPUT1MUXENABLE + (uint16_t)output) &= ~(muxes);
     HWREG(base + XBAR_O_OUTPUT1MUXENABLE + outputNum) &= ~(muxes);
 
     EDIS;
@@ -724,7 +724,6 @@ XBAR_enableEPWMMux(XBAR_TripNum trip, uint32_t muxes)
     EALLOW;
 
     HWREG(XBAR_EPWM_EN_REG_BASE + (uint32_t)trip) |= muxes;
-
     EDIS;
 }
 

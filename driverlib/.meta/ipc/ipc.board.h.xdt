@@ -41,52 +41,69 @@
 %       {
 %           configs1[element.name] = element.config
 %       });
+%       var stat_1 = CPU1_mod.$static;
+%	    var i = 0;
+%       for (i = 0; i < 32; i++){
+%           var nameFlag = "flagHandler" + i.toString()
 %
-%       if (CPU2_mod != null)
-%       {
-%           var configs2=[]
-%           CPU2_mod.moduleStatic.config.forEach((element, index) =>
-%           {
-%               configs2[element.name] = element.config
-%           });
-%           var stat_1 = CPU1_mod.$static;
-%           var stat_2 = CPU2_mod.$static;
-%	        var i = 0;
-%           for (i = 0; i < 32; i++){
-%               var nameFlag = "flagHandler" + i.toString()
-%
-%               if(configs1["GROUP_INIT_FLAGS"]) {
-%                   var old_nameFlag1 = "IPC_FLAG" + i.toString()  
-%                   if(stat_1["ipcRegisterFlag"].includes(old_nameFlag1)){   
-%                       var flagHandle1 = stat_1[nameFlag]
-%                       if (old_nameFlag1 != flagHandle1)
-%                       {
+%           if(configs1["GROUP_INIT_FLAGS"]) {
+%              var old_nameFlag1 = "IPC_FLAG" + i.toString()  
+%              if(stat_1["ipcRegisterFlag"].includes(old_nameFlag1)){   
+%                  var flagHandle1 = stat_1[nameFlag]
+%                  if (old_nameFlag1 != flagHandle1)
+%                  {
 #define `flagHandle1` `old_nameFlag1`
-%                       }
-%                   }
-%               }
-%               if(configs2["GROUP_INIT_FLAGS"]) {
-%                   var old_nameFlag2 = "IPC_FLAG" + i.toString()   
-%                   if(stat_2["ipcRegisterFlag"].includes(old_nameFlag2)){  
-%                       var flagHandle2 = stat_2[nameFlag]
-%                       if (old_nameFlag2 != flagHandle2)
-%                       {
-#define `flagHandle2` `old_nameFlag2`
-%                       }
-%                   }
-%               }
-%           }  
+%                  }
+%              }
+%          }
 %       }
+%   }
+%   if (CPU2_mod != null)
+%   {
+%       var configs2=[]
+%       CPU2_mod.moduleStatic.config.forEach((element, index) =>
+%       {
+%           configs2[element.name] = element.config
+%       });
+%       var stat_2 = CPU2_mod.$static;
+%	    var i = 0;
+%       for (i = 0; i < 32; i++){
+%           if(configs2["GROUP_INIT_FLAGS"]) {
+%           var nameFlag = "flagHandler" + i.toString()
+%               var old_nameFlag2 = "IPC_FLAG" + i.toString()   
+%               if(stat_2["ipcRegisterFlag"].includes(old_nameFlag2)){  
+%                   var flagHandle2 = stat_2[nameFlag]
+%                   if (old_nameFlag2 != flagHandle2)
+%                   {
+#define `flagHandle2` `old_nameFlag2`
+%                   }
+%               }
+%           }
+%       }  
 %   }
 %   if(Common.isContextCPU1()) {
 %      var boot_mode = stat.bootModeSelect;
-%       if (Common.getDeviceName().toLowerCase() == "f2838x"){
+%       if (["f2838x"].includes(Common.getDeviceName().toLowerCase())){
 %           if (boot_mode == "FLASH"){
 #define BOOT_MODE_CPU2 BOOTMODE_BOOT_TO_FLASH_SECTOR0
 %           }  else {
 #define BOOT_MODE_CPU2 BOOTMODE_BOOT_TO_M0RAM
 %           }
-%       } else if (Common.getDeviceName().toLowerCase() == "f2837xd") {
+%      } else if (["f28p65x"].includes(Common.getDeviceName().toLowerCase())){
+%           if (boot_mode == "FLASH0"){
+#define BOOT_MODE_CPU2 BOOTMODE_BOOT_TO_FLASH_BANK0_SECTOR0
+%           } else if (boot_mode == "FLASH1"){
+#define BOOT_MODE_CPU2 BOOTMODE_BOOT_TO_FLASH_BANK1_SECTOR0
+%           } else if (boot_mode == "FLASH2"){
+#define BOOT_MODE_CPU2 BOOTMODE_BOOT_TO_FLASH_BANK2_SECTOR0
+%           } else if (boot_mode == "FLASH3"){
+#define BOOT_MODE_CPU2 BOOTMODE_BOOT_TO_FLASH_BANK3_SECTOR0
+%           } else if (boot_mode == "FLASH4"){
+#define BOOT_MODE_CPU2 BOOTMODE_BOOT_TO_FLASH_BANK4_SECTOR0
+%           }  else{
+#define BOOT_MODE_CPU2 BOOTMODE_BOOT_TO_M0RAM
+%           }
+%       } else if (["f2837xd"].includes(Common.getDeviceName().toLowerCase())){
 #define BOOT_MODE_CPU2 C1C2_BROM_BOOTMODE_BOOT_FROM_`boot_mode`
 %       }
 %       

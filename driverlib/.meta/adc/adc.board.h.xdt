@@ -27,6 +27,12 @@
 #define `instance.$name`_SAMPLE_WINDOW_`soc_name` `instance["soc" + socIndex.toString() + "SampleTime"]`
 #define `instance.$name`_TRIGGER_SOURCE_`soc_name` `instance["soc" + socIndex.toString() + "Trigger"]`
 #define `instance.$name`_CHANNEL_`soc_name` `instance["soc" + socIndex.toString() + "Channel"]`
+                        % if(instance["soc" + socNumber.toString() + "Triggermode"]=="repeatermode"){
+                        % for(var rptrIndex in device_driverlib_peripheral.ADC_RepInstance){ 
+			            % var currentRPTR = device_driverlib_peripheral.ADC_RepInstance[rptrIndex].name
+			            % var rptriNumber = (currentRPTR).replace(/[^0-9]/g,'')
+                        %}    
+                        %}
                     % } else {
 #define `soc_name` ADC_SOC_NUMBER`socNumber`
 #define `soc_name`_FORCE ADC_FORCE_SOC`socNumber`
@@ -35,6 +41,12 @@
 #define `soc_name`_SAMPLE_WINDOW `instance["soc" + socIndex.toString() + "SampleTime"]`
 #define `soc_name`_TRIGGER_SOURCE `instance["soc" + socIndex.toString() + "Trigger"]`
 #define `soc_name`_CHANNEL `instance["soc" + socIndex.toString() + "Channel"]`
+                        % if(instance["soc" + socNumber.toString() + "Triggermode"]=="repeatermode"){
+                        % for(var rptrIndex in device_driverlib_peripheral.ADC_RepInstance){ 
+			            % var currentRPTR = device_driverlib_peripheral.ADC_RepInstance[rptrIndex].name
+			            % var rptriNumber = (currentRPTR).replace(/[^0-9]/g,'')
+                        %}    
+                        %}
                     % }
                 % }
             % }

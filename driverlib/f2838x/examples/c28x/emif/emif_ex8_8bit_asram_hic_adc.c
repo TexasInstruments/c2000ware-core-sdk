@@ -214,7 +214,7 @@ void main(void)
     //
     // Grab EMIF1 For CPU1.
     //
-    EMIF_selectMaster(EMIF1CONFIG_BASE, EMIF_MASTER_CPU1_G);
+    EMIF_selectController(EMIF1CONFIG_BASE, EMIF_CONTROLLER_CPU1_G);
 
     //
     // Disable Access Protection. (CPU_FETCH/CPU_WR/DMA_WR)

@@ -48,7 +48,7 @@ let config = [
     },
 ];
 
-if(["F2838x", "F28002x", "F28003x"].includes(system.deviceData.deviceId))
+if(["F2838x", "F28002x", "F28003x", "F28P65x"].includes(system.deviceData.deviceId))
 {
     config.push(
         {

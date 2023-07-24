@@ -148,7 +148,7 @@ void main(void)
     //
     // Enable SDFM1 interrupts(Data Ready & Error interrupts)
     //
-    Interrupt_enableMaster();
+    Interrupt_enableGlobal();
     Interrupt_enable(INT_SDFM1DR1);
     Interrupt_enable(INT_SDFM1);
 
@@ -216,7 +216,7 @@ void main(void)
     // modules can be enabled. All the filter modules are synchronized when
     // master filter bit is enabled after individual filter modules are enabled.
     //
-    SDFM_enableMasterFilter(SDFM1_BASE);
+    SDFM_enableMainFilter(SDFM1_BASE);
 
     SDFM_disableExternalReset(SDFM1_BASE, SDFM_FILTER_1);
 
@@ -234,7 +234,7 @@ void main(void)
     // Enable master interrupt so that any of the filter interrupts can trigger
     // by SDFM interrupt to CPU
     //
-    SDFM_enableMasterInterrupt(SDFM1_BASE);
+    SDFM_enableMainInterrupt(SDFM1_BASE);
 
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
@@ -256,7 +256,7 @@ __interrupt void sdfm1ErrorISR(void)
     //
     // Clear SDFM flag register (SDIFLG)
     //
-    SDFM_clearInterruptFlag(SDFM1_BASE, SDFM_MASTER_INTERRUPT_FLAG |
+    SDFM_clearInterruptFlag(SDFM1_BASE, SDFM_MAIN_INTERRUPT_FLAG |
                             0xFFFF);
 
     //
@@ -303,7 +303,7 @@ __interrupt void sdfmFIFO1ISR(void)
     //
     // Clear SDFM flag register (SDIFLG)
     //
-    SDFM_clearInterruptFlag(SDFM1_BASE, SDFM_MASTER_INTERRUPT_FLAG |
+    SDFM_clearInterruptFlag(SDFM1_BASE, SDFM_MAIN_INTERRUPT_FLAG |
                             SDFM_FILTER_1_FIFO_INTERRUPT_FLAG      |
                             SDFM_FILTER_1_NEW_DATA_FLAG            |
                             SDFM_FILTER_1_FIFO_OVERFLOW_FLAG);
@@ -327,7 +327,7 @@ void configureSDFMPins(uint16_t sdfmPinOption)
             for(pin = 16; pin <= 31; pin++)
             {
                 GPIO_setDirectionMode(pin, GPIO_DIR_MODE_IN);
-                GPIO_setMasterCore(pin, GPIO_CORE_CPU1);
+                GPIO_setControllerCore(pin, GPIO_CORE_CPU1);
                 GPIO_setPadConfig(pin, GPIO_PIN_TYPE_STD);
                 GPIO_setQualificationMode(pin, GPIO_QUAL_ASYNC);
             }
@@ -338,7 +338,7 @@ void configureSDFMPins(uint16_t sdfmPinOption)
             for(pin = 46; pin <= 61; pin++)
             {
                 GPIO_setDirectionMode(pin, GPIO_DIR_MODE_IN);
-                GPIO_setMasterCore(pin, GPIO_CORE_CPU1);
+                GPIO_setControllerCore(pin, GPIO_CORE_CPU1);
                 GPIO_setPadConfig(pin, GPIO_PIN_TYPE_STD);
                 GPIO_setQualificationMode(pin, GPIO_QUAL_ASYNC);
             }

@@ -107,7 +107,10 @@ void main(void)
     //
     Device_initGPIO();
 
-
+    //
+    // Configure the divisor for the MCAN bit-clock
+    //
+    SysCtl_setMCANClk(SYSCTL_MCANCLK_DIV_3);
 
     //
     // CrossBar and ISR Configuration.

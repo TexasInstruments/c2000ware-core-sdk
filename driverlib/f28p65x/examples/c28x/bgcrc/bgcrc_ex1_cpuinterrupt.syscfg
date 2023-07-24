@@ -1,0 +1,29 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28002x" --package "80QFP" --part "F28002x_80QFP" --product "C2000WARE@4.00.00.00"
+ * @versions {"tool":"1.11.0+2225"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const bgcrc  = scripting.addModule("/driverlib/bgcrc.js", {}, false);
+const bgcrc1 = bgcrc.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+bgcrc1.$name                     = "myBGCRC0";
+bgcrc1.goldVal                   = "0x8474ca32";
+bgcrc1.seedVal                   = "0";
+bgcrc1.intFlags                  = ["BGCRC_TEST_DONE"];
+bgcrc1.emuCtl                    = "BGCRC_EMUCTRL_FREE";
+bgcrc1.nmiMode                   = "BGCRC_NMI_DISABLE";
+bgcrc1.blockSize                 = "1024";
+bgcrc1.registerInterrupts        = true;
+bgcrc1.startBGCRC                = true;
+bgcrc1.startAddrInputMode        = "VARIABLE";
+bgcrc1.startAddrVariable         = "td_gs0";
+bgcrc1.bgcrcInt.enableInterrupt  = true;
+bgcrc1.bgcrcInt.interruptHandler = "bgcrcISR";

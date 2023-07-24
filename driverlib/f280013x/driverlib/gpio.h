@@ -1025,6 +1025,9 @@ GPIO_setQualificationPeriod(uint32_t pin, uint32_t divider);
 //! The pin is specified by its numerical value. For example, GPIO34 is
 //! specified by passing 34 as \e pin.
 //!
+//! \b Note: The pin parameter is applicable for both AIO and GPIO because
+//! the GPAxMSEL.GPIOy register configures for both
+//!
 //! \return None.
 //
 //*****************************************************************************

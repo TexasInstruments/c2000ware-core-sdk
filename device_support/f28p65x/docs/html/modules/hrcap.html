@@ -1,0 +1,721 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>HRCAP Module &mdash; F28P65x API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F28P65x API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="HRPWM Module" href="hrpwm.html"/>
+        <link rel="prev" title="GPIO Module" href="gpio.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F28P65x API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v5.00.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="adc.html">ADC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asysctl.html">ASysCtl Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bgcrc.html">BGCRC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla.html">CLA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clb.html">CLB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmpss.html">CMPSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dac.html">DAC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcc.html">DCC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dma.html">DMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ecap.html">ECAP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emif.html">EMIF Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="epwm.html">EPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqep.html">EQEP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="escss.html">ESCSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fsi.html">FSI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">HRCAP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hrpwm.html">HRPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipc.html">IPC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcan.html">MCAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pmbus.html">PMBUS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci.html">SCI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdfm.html">SDFM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">SPI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version.html">Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xbar.html">XBAR Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F28P65x API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>HRCAP Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="hrcap-module">
+<span id="hrcap"></span><h1>HRCAP Module<a class="headerlink" href="#hrcap-module" title="Permalink to this headline">¶</a></h1>
+<p>The High Resolution Enhanced Capture (HRCAP) API provides a set of functions
+for configuring and using the high resolution capability of the HRCAP module.
+The functions provided allow for the setup and configuration of the high
+resolution capture capability.
+The necessary APIs to configure the high resolution capture calibration
+hardware are also provided.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__hrcap__api"></span><em>group</em> <code class="sig-name descname">hrcap_api</code></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.HRCAP_GLOBAL_CALIBRATION_INTERRUPT">
+<span class="target" id="group__hrcap__api_1ga9073ac5bbfbeafad95b5499ce5d51e36"></span><code class="sig-name descname">HRCAP_GLOBAL_CALIBRATION_INTERRUPT</code> 0x1U<a class="headerlink" href="#c.HRCAP_GLOBAL_CALIBRATION_INTERRUPT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Global calibration interrupt flag </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRCAP_CALIBRATION_DONE">
+<span class="target" id="group__hrcap__api_1ga280f7536ab1e707122d50cf85b91ff88"></span><code class="sig-name descname">HRCAP_CALIBRATION_DONE</code> 0x2U<a class="headerlink" href="#c.HRCAP_CALIBRATION_DONE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Calibration done flag </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.HRCAP_CALIBRATION_PERIOD_OVERFLOW">
+<span class="target" id="group__hrcap__api_1gab06fdb338ba60f66222d9b5833814ef9"></span><code class="sig-name descname">HRCAP_CALIBRATION_PERIOD_OVERFLOW</code> 0x4U<a class="headerlink" href="#c.HRCAP_CALIBRATION_PERIOD_OVERFLOW" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Calibration period overflow flag </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="cpp enum">
+<dt id="_CPPv428HRCAP_CalibrationClockSource">
+<span id="_CPPv328HRCAP_CalibrationClockSource"></span><span id="_CPPv228HRCAP_CalibrationClockSource"></span><span class="target" id="group__hrcap__api_1gadd3406238874ece99ea1a74e1911316d"></span><em class="property">enum </em><code class="sig-name descname">HRCAP_CalibrationClockSource</code><a class="headerlink" href="#_CPPv428HRCAP_CalibrationClockSource" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__hrcap__api_1gae17cbb57754497fcd35ec25fce3361e8"><span class="std std-ref">HRCAP_getCalibrationClockPeriod()</span></a> as the <em>clockSource</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N28HRCAP_CalibrationClockSource30HRCAP_CALIBRATION_CLOCK_SYSCLKE">
+<span id="_CPPv3N28HRCAP_CalibrationClockSource30HRCAP_CALIBRATION_CLOCK_SYSCLKE"></span><span id="_CPPv2N28HRCAP_CalibrationClockSource30HRCAP_CALIBRATION_CLOCK_SYSCLKE"></span><span class="target" id="group__hrcap__api_1ggadd3406238874ece99ea1a74e1911316daa5733ec84cb12f08a5d47b3da5f4ffff"></span><em class="property">enumerator </em><code class="sig-name descname">HRCAP_CALIBRATION_CLOCK_SYSCLK</code> = 0x0<a class="headerlink" href="#_CPPv4N28HRCAP_CalibrationClockSource30HRCAP_CALIBRATION_CLOCK_SYSCLKE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Use SYSCLK for period match. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N28HRCAP_CalibrationClockSource29HRCAP_CALIBRATION_CLOCK_HRCLKE">
+<span id="_CPPv3N28HRCAP_CalibrationClockSource29HRCAP_CALIBRATION_CLOCK_HRCLKE"></span><span id="_CPPv2N28HRCAP_CalibrationClockSource29HRCAP_CALIBRATION_CLOCK_HRCLKE"></span><span class="target" id="group__hrcap__api_1ggadd3406238874ece99ea1a74e1911316da271da6573576c688703816e7d647cc16"></span><em class="property">enumerator </em><code class="sig-name descname">HRCAP_CALIBRATION_CLOCK_HRCLK</code> = 0x4<a class="headerlink" href="#_CPPv4N28HRCAP_CalibrationClockSource29HRCAP_CALIBRATION_CLOCK_HRCLKE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Use HRCLK for period match. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv431HRCAP_ContinuousCalibrationMode">
+<span id="_CPPv331HRCAP_ContinuousCalibrationMode"></span><span id="_CPPv231HRCAP_ContinuousCalibrationMode"></span><span class="target" id="group__hrcap__api_1gafd2a7b8307dcc86238b3d07181ffe26e"></span><em class="property">enum </em><code class="sig-name descname">HRCAP_ContinuousCalibrationMode</code><a class="headerlink" href="#_CPPv431HRCAP_ContinuousCalibrationMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__hrcap__api_1gaf83f7381a27aed367b2ab0ac10754b78"><span class="std std-ref">HRCAP_setCalibrationMode()</span></a>, as the <em>continuousMode</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N31HRCAP_ContinuousCalibrationMode37HRCAP_CONTINUOUS_CALIBRATION_DISABLEDE">
+<span id="_CPPv3N31HRCAP_ContinuousCalibrationMode37HRCAP_CONTINUOUS_CALIBRATION_DISABLEDE"></span><span id="_CPPv2N31HRCAP_ContinuousCalibrationMode37HRCAP_CONTINUOUS_CALIBRATION_DISABLEDE"></span><span class="target" id="group__hrcap__api_1ggafd2a7b8307dcc86238b3d07181ffe26ea1780c55dbd6d30eeaa1e9f606ea2c659"></span><em class="property">enumerator </em><code class="sig-name descname">HRCAP_CONTINUOUS_CALIBRATION_DISABLED</code> = 0x00<a class="headerlink" href="#_CPPv4N31HRCAP_ContinuousCalibrationMode37HRCAP_CONTINUOUS_CALIBRATION_DISABLEDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Continuous calibration disabled. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N31HRCAP_ContinuousCalibrationMode36HRCAP_CONTINUOUS_CALIBRATION_ENABLEDE">
+<span id="_CPPv3N31HRCAP_ContinuousCalibrationMode36HRCAP_CONTINUOUS_CALIBRATION_ENABLEDE"></span><span id="_CPPv2N31HRCAP_ContinuousCalibrationMode36HRCAP_CONTINUOUS_CALIBRATION_ENABLEDE"></span><span class="target" id="group__hrcap__api_1ggafd2a7b8307dcc86238b3d07181ffe26ead52627bc77571e40750cdeb56b837e9c"></span><em class="property">enumerator </em><code class="sig-name descname">HRCAP_CONTINUOUS_CALIBRATION_ENABLED</code> = 0x20<a class="headerlink" href="#_CPPv4N31HRCAP_ContinuousCalibrationMode36HRCAP_CONTINUOUS_CALIBRATION_ENABLEDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Continuous calibration enabled. </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv426HRCAP_enableHighResolution8uint32_t">
+<span id="_CPPv326HRCAP_enableHighResolution8uint32_t"></span><span id="_CPPv226HRCAP_enableHighResolution8uint32_t"></span><span id="HRCAP_enableHighResolution__uint32_t"></span><span class="target" id="group__hrcap__api_1gaef0b64ad042c888ab78e4d0fcb8c43ab"></span>void <code class="sig-name descname">HRCAP_enableHighResolution</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426HRCAP_enableHighResolution8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>enables HRCAP.</p>
+<p><p>This function enables High Resolution Capture module.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the HRCAP instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>High resolution clock must be enabled before High Resolution Module is enabled.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427HRCAP_disableHighResolution8uint32_t">
+<span id="_CPPv327HRCAP_disableHighResolution8uint32_t"></span><span id="_CPPv227HRCAP_disableHighResolution8uint32_t"></span><span id="HRCAP_disableHighResolution__uint32_t"></span><span class="target" id="group__hrcap__api_1ga5328d88238e29367566e0c97ba9d152f"></span>void <code class="sig-name descname">HRCAP_disableHighResolution</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427HRCAP_disableHighResolution8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables HRCAP.</p>
+<p><p>This function disable High Resolution Capture module.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the HRCAP instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv431HRCAP_enableHighResolutionClock8uint32_t">
+<span id="_CPPv331HRCAP_enableHighResolutionClock8uint32_t"></span><span id="_CPPv231HRCAP_enableHighResolutionClock8uint32_t"></span><span id="HRCAP_enableHighResolutionClock__uint32_t"></span><span class="target" id="group__hrcap__api_1ga5e83279edbb090344007fe05d5d19aa3"></span>void <code class="sig-name descname">HRCAP_enableHighResolutionClock</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431HRCAP_enableHighResolutionClock8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables high resolution clock.</p>
+<p><p>This function enables High Resolution clock.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the HRCAP instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv431HRCAP_disbleHighResolutionClock8uint32_t">
+<span id="_CPPv331HRCAP_disbleHighResolutionClock8uint32_t"></span><span id="_CPPv231HRCAP_disbleHighResolutionClock8uint32_t"></span><span id="HRCAP_disbleHighResolutionClock__uint32_t"></span><span class="target" id="group__hrcap__api_1ga33ea3cad217ae873c8c367c67511096b"></span>void <code class="sig-name descname">HRCAP_disbleHighResolutionClock</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431HRCAP_disbleHighResolutionClock8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables High resolution clock.</p>
+<p><p>This function disables High Resolution clock.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the HRCAP instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422HRCAP_startCalibration8uint32_t">
+<span id="_CPPv322HRCAP_startCalibration8uint32_t"></span><span id="_CPPv222HRCAP_startCalibration8uint32_t"></span><span id="HRCAP_startCalibration__uint32_t"></span><span class="target" id="group__hrcap__api_1gae99d744c018ceed173feafd3297342c6"></span>void <code class="sig-name descname">HRCAP_startCalibration</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422HRCAP_startCalibration8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Starts calibration.</p>
+<p><p>This function starts calibration.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the HRCAP instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424HRCAP_setCalibrationMode8uint32_t">
+<span id="_CPPv324HRCAP_setCalibrationMode8uint32_t"></span><span id="_CPPv224HRCAP_setCalibrationMode8uint32_t"></span><span id="HRCAP_setCalibrationMode__uint32_t"></span><span class="target" id="group__hrcap__api_1gaf83f7381a27aed367b2ab0ac10754b78"></span>void <code class="sig-name descname">HRCAP_setCalibrationMode</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424HRCAP_setCalibrationMode8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the calibration mode.</p>
+<p><p>This function sets the the calibration mode by turning on continuous calibration.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the HRCAP instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv432HRCAP_enableCalibrationInterrupt8uint32_t8uint16_t">
+<span id="_CPPv332HRCAP_enableCalibrationInterrupt8uint32_t8uint16_t"></span><span id="_CPPv232HRCAP_enableCalibrationInterrupt8uint32_t8uint16_t"></span><span id="HRCAP_enableCalibrationInterrupt__uint32_t.uint16_t"></span><span class="target" id="group__hrcap__api_1gab9c792d0d535b1569e44444956532ac8"></span>void <code class="sig-name descname">HRCAP_enableCalibrationInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv432HRCAP_enableCalibrationInterrupt8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables calibration interrupt.</p>
+<p><p>This function enables HRCAP calibration interrupt flags. Valid values for intFlags are:</p>
+<ul class="simple">
+<li><p>HRCAP_CALIBRATION_DONE - Calibration done interrupt.</p></li>
+<li><p>HRCAP_CALIBRATION_PERIOD_OVERFLOW - Calibration period overflow check interrupt. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the HRCAP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is the calibration interrupt flags to be enabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv433HRCAP_disableCalibrationInterrupt8uint32_t8uint16_t">
+<span id="_CPPv333HRCAP_disableCalibrationInterrupt8uint32_t8uint16_t"></span><span id="_CPPv233HRCAP_disableCalibrationInterrupt8uint32_t8uint16_t"></span><span id="HRCAP_disableCalibrationInterrupt__uint32_t.uint16_t"></span><span class="target" id="group__hrcap__api_1gad82a8bc3ac6971f5248a58fca48c037f"></span>void <code class="sig-name descname">HRCAP_disableCalibrationInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433HRCAP_disableCalibrationInterrupt8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables calibration interrupt source.</p>
+<p><p>This function disables HRCAP calibration interrupt flags. Valid values for intFlags are:</p>
+<ul class="simple">
+<li><p>HRCAP_CALIBRATION_DONE - Calibration done interrupt.</p></li>
+<li><p>HRCAP_CALIBRATION_PERIOD_OVERFLOW - Calibration period check interrupt. <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the HRCAP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is the calibration interrupt flags to be disabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425HRCAP_getCalibrationFlags8uint32_t">
+<span id="_CPPv325HRCAP_getCalibrationFlags8uint32_t"></span><span id="_CPPv225HRCAP_getCalibrationFlags8uint32_t"></span><span id="HRCAP_getCalibrationFlags__uint32_t"></span><span class="target" id="group__hrcap__api_1ga4f4a0898fb1adacf983d90757162076a"></span>uint16_t <code class="sig-name descname">HRCAP_getCalibrationFlags</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425HRCAP_getCalibrationFlags8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the calibration interrupt source.</p>
+<p><p>This function returns the HRCAP calibration interrupt source.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the HRCAP module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the HRCAP interrupt that has occurred. The following are valid return values.<ul class="simple">
+<li><p>HRCAP_GLOBAL_CALIBRATION_INTERRUPT - Global calibration interrupt.</p></li>
+<li><p>HRCAP_CALIBRATION_DONE - Calibration done interrupt.</p></li>
+<li><p>HRCAP_CALIBRATION_PERIOD_OVERFLOW - Calibration period overflow interrupt.</p></li>
+</ul>
+</p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>- User can check if a combination of the interrupts have occurred by ORing the above return values. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427HRCAP_clearCalibrationFlags8uint32_t8uint16_t">
+<span id="_CPPv327HRCAP_clearCalibrationFlags8uint32_t8uint16_t"></span><span id="_CPPv227HRCAP_clearCalibrationFlags8uint32_t8uint16_t"></span><span id="HRCAP_clearCalibrationFlags__uint32_t.uint16_t"></span><span class="target" id="group__hrcap__api_1ga954ea77de19323a41d1695cd5b1a0297"></span>void <code class="sig-name descname">HRCAP_clearCalibrationFlags</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>flags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427HRCAP_clearCalibrationFlags8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears calibration flags.</p>
+<p><p>This function clears HRCAP calibration flags. The following are valid values for flags.</p>
+<ul class="simple">
+<li><p>HRCAP_GLOBAL_CALIBRATION_INTERRUPT - Global calibration interrupt.</p></li>
+<li><p>HRCAP_CALIBRATION_DONE - Calibration done flag.</p></li>
+<li><p>HRCAP_CALIBRATION_PERIOD_OVERFLOW - Calibration period overflow flag.</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the HRCAP module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flags</span></code>: is the calibration flags to be cleared.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423HRCAP_isCalibrationBusy8uint32_t">
+<span id="_CPPv323HRCAP_isCalibrationBusy8uint32_t"></span><span id="_CPPv223HRCAP_isCalibrationBusy8uint32_t"></span><span id="HRCAP_isCalibrationBusy__uint32_t"></span><span class="target" id="group__hrcap__api_1ga0cdd0563294d3d0d02185d4c5b5f2513"></span>bool <code class="sig-name descname">HRCAP_isCalibrationBusy</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423HRCAP_isCalibrationBusy8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Return the Calibration status</p>
+<p><p>This function returns the calibration status.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the HRCAP instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>This functions returns true if the calibration is in process,false if there is no active calibration. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427HRCAP_forceCalibrationFlags8uint32_t8uint16_t">
+<span id="_CPPv327HRCAP_forceCalibrationFlags8uint32_t8uint16_t"></span><span id="_CPPv227HRCAP_forceCalibrationFlags8uint32_t8uint16_t"></span><span id="HRCAP_forceCalibrationFlags__uint32_t.uint16_t"></span><span class="target" id="group__hrcap__api_1gaaa0e5d406c4be446567be6ec0ece0f39"></span>void <code class="sig-name descname">HRCAP_forceCalibrationFlags</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>flag</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427HRCAP_forceCalibrationFlags8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Force a software based calibration</p>
+<p><p>This function forces a software based calibration done flag. The following are valid values for flag.</p>
+<ul class="simple">
+<li><p>HRCAP_CALIBRATION_DONE - Calibration done flag.</p></li>
+<li><p>HRCAP_CALIBRATION_PERIOD_OVERFLOW - Calibration period overflow flag.</p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the HRCAP instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flag</span></code>: is the calibration flag source.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426HRCAP_setCalibrationPeriod8uint32_t8uint32_t">
+<span id="_CPPv326HRCAP_setCalibrationPeriod8uint32_t8uint32_t"></span><span id="_CPPv226HRCAP_setCalibrationPeriod8uint32_t8uint32_t"></span><span id="HRCAP_setCalibrationPeriod__uint32_t.uint32_t"></span><span class="target" id="group__hrcap__api_1ga25b8276d7035ee57eff5765c4b9bcbbd"></span>void <code class="sig-name descname">HRCAP_setCalibrationPeriod</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>sysclkHz</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426HRCAP_setCalibrationPeriod8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the calibration period count</p>
+<p><p>This function sets the calibration period count value to achieve a period of 1.6 milliseconds given the SYSCLK frequency in Hz (the </p>
+<em>sysclkHz</em> parameter).<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the HRCAP instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sysclkHz</span></code>: is the rate of the SYSCLK in Hz.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429HRCAP_configCalibrationPeriod8uint32_t8uint32_tf">
+<span id="_CPPv329HRCAP_configCalibrationPeriod8uint32_t8uint32_tf"></span><span id="_CPPv229HRCAP_configCalibrationPeriod8uint32_t8uint32_tf"></span><span id="HRCAP_configCalibrationPeriod__uint32_t.uint32_t.float"></span><span class="target" id="group__hrcap__api_1ga22909e365c764b6aa01cdd0facda58ad"></span>void <code class="sig-name descname">HRCAP_configCalibrationPeriod</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>sysclkHz</em>, float <em>periodInMs</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429HRCAP_configCalibrationPeriod8uint32_t8uint32_tf" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the calibration period count at a user configurable value.</p>
+<p><p>This function sets the calibration period count value to the provided period in milliseconds given the SYSCLK frequency in Hz (the </p>
+<em>sysclkHz</em> parameter).<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the HRCAP instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sysclkHz</span></code>: is the rate of the SYSCLK in Hz. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">periodInMs</span></code>: is the calibration period to be configured.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv431HRCAP_getCalibrationClockPeriod8uint32_t28HRCAP_CalibrationClockSource">
+<span id="_CPPv331HRCAP_getCalibrationClockPeriod8uint32_t28HRCAP_CalibrationClockSource"></span><span id="_CPPv231HRCAP_getCalibrationClockPeriod8uint32_t28HRCAP_CalibrationClockSource"></span><span id="HRCAP_getCalibrationClockPeriod__uint32_t.HRCAP_CalibrationClockSource"></span><span class="target" id="group__hrcap__api_1gae17cbb57754497fcd35ec25fce3361e8"></span>uint32_t <code class="sig-name descname">HRCAP_getCalibrationClockPeriod</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv428HRCAP_CalibrationClockSource" title="HRCAP_CalibrationClockSource">HRCAP_CalibrationClockSource</a> <em>clockSource</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431HRCAP_getCalibrationClockPeriod8uint32_t28HRCAP_CalibrationClockSource" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the calibration clock period</p>
+<p><p>This function returns the period match value of the calibration clock. The return value has a valid count when a period match occurs.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the HRCAP instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">clockSource</span></code>: is the calibration clock source (<strong>HRCAP_CALIBRATION_CLOCK_SYSCLK</strong> or <strong>HRCAP_CALIBRATION_CLOCK_HRCLK</strong>).</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>This function returns the captured value of the clock counter specified by clockSource. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420HRCAP_getScaleFactor8uint32_t">
+<span id="_CPPv320HRCAP_getScaleFactor8uint32_t"></span><span id="_CPPv220HRCAP_getScaleFactor8uint32_t"></span><span id="HRCAP_getScaleFactor__uint32_t"></span><span class="target" id="group__hrcap__api_1gab567f4ee3eace64e277f2ef7370b2340"></span>float32_t <code class="sig-name descname">HRCAP_getScaleFactor</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420HRCAP_getScaleFactor8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Calculates the scale factor</p>
+<p><p>This function reads the SYSCLK and HRCLK calibration periods and then uses them to calculate the scale factor.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the HRCAP instance used.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>This function returns the calculated scale factor. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv438HRCAP_convertEventTimeStampNanoseconds8uint32_t9float32_t">
+<span id="_CPPv338HRCAP_convertEventTimeStampNanoseconds8uint32_t9float32_t"></span><span id="_CPPv238HRCAP_convertEventTimeStampNanoseconds8uint32_t9float32_t"></span><span id="HRCAP_convertEventTimeStampNanoseconds__uint32_t.float32_t"></span><span class="target" id="group__hrcap__api_1gad1b81a11c2a950d565c984aea92e0670"></span>float32_t <code class="sig-name descname">HRCAP_convertEventTimeStampNanoseconds</code><span class="sig-paren">(</span>uint32_t <em>timeStamp</em>, float32_t <em>scaleFactor</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv438HRCAP_convertEventTimeStampNanoseconds8uint32_t9float32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns event time stamp in nanoseconds</p>
+<p><p>This function converts a raw CAP time stamp (the </p>
+<em>timeStamp</em> parameter) to nanoseconds using the provided scale factor (the <em>scaleFactor</em> parameter).<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">timeStamp</span></code>: is a raw time stamp count returned by <a class="reference internal" href="ecap.html#group__ecap__api_1gad97295535b95e152c80b4caec1e2a9c2"><span class="std std-ref">ECAP_getEventTimeStamp()</span></a>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scaleFactor</span></code>: is the calculated scale factor returned by <a class="reference internal" href="#group__hrcap__api_1gab567f4ee3eace64e277f2ef7370b2340"><span class="std std-ref">HRCAP_getScaleFactor()</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the converted time stamp in nanoseconds. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>The code for this module is contained in driverlib/hrcap.c, with
+driverlib/hrcap.h containing the API declarations for use by
+applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="gpio.html" class="btn btn-neutral float-left" title="GPIO Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hrpwm.html" class="btn btn-neutral float-right" title="HRPWM Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+      <span class="lastupdated">Last updated on Jul 01, 2023.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v5.00.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

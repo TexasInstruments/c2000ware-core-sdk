@@ -364,7 +364,7 @@ MemCfg_setLSRAMControllerSel(uint32_t ramSection,
 
     HWREG(MEMCFG_BASE + MEMCFG_O_LSXMSEL) =
         (HWREG(MEMCFG_BASE + MEMCFG_O_LSXMSEL) &
-         ~(MEMCFG_LSXMSEL_MSEL_LS0_M << shiftVal)) |
+         ~((uint32_t)MEMCFG_LSXMSEL_MSEL_LS0_M << shiftVal)) |
         ((uint32_t)controllerSel << shiftVal);
 
     EDIS;

@@ -48,6 +48,7 @@
 
 #include "inc/hw_mcanss.h"
 #include "inc/hw_memmap.h"
+#include <stdbool.h>
 #include "cpu.h"
 #include "sysctl.h"
 
@@ -2016,6 +2017,17 @@ uint32_t MCAN_extTSGetUnservicedIntrCount(uint32_t baseAddr);
 /* ========================================================================== */
 /*                          Advance Functions                                 */
 /* ========================================================================== */
+
+/**
+ * \brief   This API is check the MCAN base address.
+ *
+ * \param   baseAddr        Base Address of the MCAN Registers.
+ *
+ * \return  Returns \b true if base address is valid, otherwise \b false
+ */
+#ifdef DEBUG
+static inline bool MCAN_isBaseValid(uint32_t baseAddr);
+#endif
 
 /**
  * \brief   This API is used get the MCAN revision ID.

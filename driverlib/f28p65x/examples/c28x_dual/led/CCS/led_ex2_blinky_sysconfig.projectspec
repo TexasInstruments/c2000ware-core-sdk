@@ -1,0 +1,83 @@
+<projectSpec>
+  <project
+        name="led_ex2_blinky_sysconfig_multi"
+        configurations="
+            FLASH,
+            RAM,
+	    FLASH_LAUNCHXL,
+	    RAM_LAUNCHXL,
+        "
+        device="TMS320F28P650DK9"
+        outputType="system"
+        cgtVersion="20.2.1.LTS"
+        >
+        <pathVariable name="C2000WARE_ROOT" path="../../../../../../" scope="project" />
+        <file path="../system.xml" action="copy" openOnCreation="false"/>
+        <configuration name="FLASH"
+        ></configuration>
+        <configuration name="RAM"
+        ></configuration>
+        <configuration name="FLASH_LAUNCHXL"
+        ></configuration>
+        <configuration name="RAM_LAUNCHXL"
+        ></configuration>
+  </project>
+  <project
+        name="led_ex2_blinky_sysconfig_cpu1"
+        device="TMS320F28P650DK9"
+        cgtVersion="20.2.1.LTS"
+        outputFormat="ELF"
+        launchWizard="False"
+        linkerCommandFile=""
+	enableSysConfigTool="true"
+	sysConfigBuildOptions="--product ${C2000WARE_ROOT}/.metadata/sdk.json --device F28P65x --package 256ZEJ --part F28P65x_256ZEJ --context CPU1"
+        >
+    <configuration name="RAM" compilerBuildOptions=  "--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT}  -v28 -ml -mt --cla_support=cla2 --define=RAM --float_support=fpu64 --tmu_support=tmu1 --define=DEBUG --define=CPU1 --gen_func_subsections=on --diag_warning=225  --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 " />
+    <configuration name="FLASH" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=_FLASH -v28 -ml -mt --cla_support=cla2 --float_support=fpu64 --tmu_support=tmu1 --define=DEBUG --define=CPU1 --gen_func_subsections=on --diag_warning=225  --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 --define=_FLASH " />
+    <configuration name="RAM_LAUNCHXL" compilerBuildOptions=  "--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT}  -v28 -ml -mt --cla_support=cla2 --define=RAM --float_support=fpu64 --tmu_support=tmu1 --define=DEBUG --define=CPU1 --gen_func_subsections=on --diag_warning=225  --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 " />
+    <configuration name="FLASH_LAUNCHXL" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=_FLASH -v28 -ml -mt --cla_support=cla2 --float_support=fpu64 --tmu_support=tmu1 --define=DEBUG --define=CPU1 --gen_func_subsections=on --diag_warning=225  --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 --define=_FLASH " />
+    <pathVariable name="C2000WARE_ROOT" path="../../../../../../" scope="project" />
+    <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../../driverlib" scope="project" />        
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/include/driverlib.h" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/include/device.h" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/source/device.c" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/targetConfigs/TMS320F28P650DK9.ccxml" targetDirectory="targetConfigs" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/cmd/28p65x_generic_ram_lnk_cpu1.cmd" targetDirectory="" applicableConfigurations="RAM, RAM_LAUNCHXL" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/cmd/28p65x_generic_flash_lnk_cpu1.cmd" targetDirectory="" applicableConfigurations="FLASH, FLASH_LAUNCHXL" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/source/f28p65x_codestartbranch.asm" targetDirectory="device" />
+    <file action="link" path="../../../../driverlib/ccs/Debug/driverlib.lib" targetDirectory="" />
+    <file action="copy" path="../../../../driverlib/" targetDirectory="device" excludeFromBuild="True" />
+    <file action="copy" path="../led_ex2_blinky_sysconfig_cpu1.c" targetDirectory="" />
+    <file action="copy" path="../led_ex2_blinky_sysconfig_controlCARD_cpu1.syscfg" targetDirectory="" applicableConfigurations="FLASH, RAM" />
+    <file action="copy" path="../led_ex2_blinky_sysconfig_launchpad_cpu1.syscfg" targetDirectory="" applicableConfigurations="FLASH_LAUNCHXL, RAM_LAUNCHXL" />
+  </project>
+  <project
+        name="led_ex2_blinky_sysconfig_cpu2"
+        device="TMS320F28P650DK9"
+        cgtVersion="20.2.1.LTS"
+        outputFormat="ELF"
+        launchWizard="False"
+        linkerCommandFile=""
+	enableSysConfigTool="true"
+	sysConfigBuildOptions="--product ${C2000WARE_ROOT}/.metadata/sdk.json --device F28P65x --package 256ZEJ --part F28P65x_256ZEJ --context CPU2"
+        >
+    <configuration name="RAM" compilerBuildOptions=  "--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT}  -v28 -ml -mt --cla_support=cla2 --define=RAM --float_support=fpu64 --tmu_support=tmu1 --define=DEBUG --define=CPU2 --gen_func_subsections=on --diag_warning=225  --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 " />
+    <configuration name="FLASH" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=_FLASH -v28 -ml -mt --cla_support=cla2 --float_support=fpu64 --tmu_support=tmu1 --define=DEBUG --define=CPU2 --gen_func_subsections=on --diag_warning=225  --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 --define=_FLASH " />
+    <configuration name="RAM_LAUNCHXL" compilerBuildOptions=  "--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT}  -v28 -ml -mt --cla_support=cla2 --define=RAM --float_support=fpu64 --tmu_support=tmu1 --define=DEBUG --define=CPU2 --gen_func_subsections=on --diag_warning=225  --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 " />
+    <configuration name="FLASH_LAUNCHXL" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=_FLASH -v28 -ml -mt --cla_support=cla2 --float_support=fpu64 --tmu_support=tmu1 --define=DEBUG --define=CPU2 --gen_func_subsections=on --diag_warning=225  --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 --define=_FLASH " />
+    <pathVariable name="C2000WARE_ROOT" path="../../../../../../" scope="project" />
+    <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../../driverlib" scope="project" />        
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/include/driverlib.h" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/include/device.h" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/source/device.c" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/targetConfigs/TMS320F28P650DK9.ccxml" targetDirectory="targetConfigs" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/cmd/28p65x_generic_ram_lnk_cpu2.cmd" targetDirectory="" applicableConfigurations="RAM, RAM_LAUNCHXL" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/cmd/28p65x_generic_flash_lnk_cpu2.cmd" targetDirectory="" applicableConfigurations="FLASH, FLASH_LAUNCHXL" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/source/f28p65x_codestartbranch.asm" targetDirectory="device" />
+    <file action="link" path="../../../../driverlib/ccs/Debug/driverlib.lib" targetDirectory="" />
+    <file action="copy" path="../../../../driverlib/" targetDirectory="device" excludeFromBuild="True" />
+    <file action="copy" path="../led_ex2_blinky_sysconfig_cpu2.c" targetDirectory="" />
+    <file action="copy" path="../led_ex2_blinky_sysconfig_controlCARD_cpu2.syscfg" targetDirectory="" applicableConfigurations="FLASH, RAM" />
+    <file action="copy" path="../led_ex2_blinky_sysconfig_launchpad_cpu2.syscfg" targetDirectory="" applicableConfigurations="FLASH_LAUNCHXL, RAM_LAUNCHXL" />
+  </project>
+</projectSpec>

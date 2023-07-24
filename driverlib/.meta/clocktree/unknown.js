@@ -48,18 +48,30 @@ exports = {
 				getValue: (inst) => { return "Click the hyper link for SYSCLK GATES" },
 			})
 		}
+		if ($ipInstance.name == "PERx_CPU2_SYSCLK_GATE")
+		{
+				pinConfig.push({
+				name: "cpu2_sysclk_gate", 
+				displayName: "CPU2 SYSCLK GATE", 
+				default: "Click the hyper link for SYSCLK GATES", 
+				getValue: (inst) => { return "Click the hyper link for SYSCLK GATES" },
+			})
+		}
 		return pinConfig;
 	},
 
-	validate: (inst, { $ipInstance,logError, logWarning, logInfo }) => {
+	validate: (inst, { logInfo }) => {
 		var sysctl = system.modules['/driverlib/sysctl.js']
-		if (inst.cpu1_sysclk_gate)
+		if (sysctl)
 		{
-			if (sysctl)
+			if (inst.cpu1_sysclk_gate)
 			{
-				logInfo("For enabling peripherals, use the SYSCTL module" + system.getReference(sysctl.$static, "enable_SYSCTL_PERIPH_CLK_TIMER0"), inst, "cpu1_sysclk_gate")
+				logInfo("For enabling peripherals, use the " + system.getReference(sysctl.$static, "enable_SYSCTL_PERIPH_CLK_TIMER0"), inst, "cpu1_sysclk_gate")
+			}
+			if (inst.cpu2_sysclk_gate)
+			{
+				logInfo("For enabling peripherals, use the " + system.getReference(sysctl.$static, "enable_SYSCTL_PERIPH_CLK_TIMER0"), inst, "cpu2_sysclk_gate")
 			}
 		}
 	}
-
 };

@@ -77,8 +77,8 @@ let interrupts = [
 	{ int_define_name: "INT_XINT5", int_group_channel_number: "12.3", int_group_number: "12", int_channel_number: "3", int_description: "XINT5 Interrupt" },
 	{ int_define_name: "INT_FLSS", int_group_channel_number: "12.5", int_group_number: "12", int_channel_number: "5", int_description: "Interrupt from flash sub-system" },
 	{ int_define_name: "INT_VCU", int_group_channel_number: "12.6", int_group_number: "12", int_channel_number: "6", int_description: "VCU Interrupt (VCRC)" },
-	{ int_define_name: "INT_MCANA_ECC", int_group_channel_number: "12.7", int_group_number: "12", int_channel_number: "7", int_description: "MCAN Sub-System ECC error Interrupt" },
-	{ int_define_name: "INT_MCANA_WAKE", int_group_channel_number: "12.8", int_group_number: "12", int_channel_number: "8", int_description: "MCAN Sub-System wakeup Interrupt" },
+	{ int_define_name: "INT_MCANA_WAKE", int_group_channel_number: "12.7", int_group_number: "12", int_channel_number: "7", int_description: "MCAN Sub-System wakeup Interrupt" },
+	{ int_define_name: "INT_MCANA_ECC", int_group_channel_number: "12.8", int_group_number: "12", int_channel_number: "8", int_description: "MCAN Sub-System ECC error Interrupt" },
 ];
 module.exports = {
 	interrupts: interrupts,

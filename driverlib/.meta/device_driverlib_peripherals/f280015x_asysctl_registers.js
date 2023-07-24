@@ -1,9 +1,7 @@
 let ASYSCTLRegisters = [
-	{ name: "EXTROSCCSR1", description: "External R based Oscillator Control and Status", offset: "0x24",
+	{ name: "EXTROSCCSR1", description: "ExtR Oscillator Status Register", offset: "0x24",
 		bits: [
-			{ name: "CFG_56_55_SWOVR_DIVPROG", description: "CFG_COUNTER_DIV", size: "2", shift: "7", mask: "0x180" },
-			{ name: "CFG_59_57_SWOVR_DELPROG", description: "COUNTER DELAY config", size: "3", shift: "9", mask: "0xE00" },
-			{ name: "OSCSTATUS", description: "Observing EXTR signals", size: "8", shift: "24", mask: "0xFF000000" },
+			{ name: "OSCSTATUS", description: "Running status of ExtR.", size: "8", shift: "24", mask: "0xFF000000" },
 		]
 	},
 	{ name: "CONFIGLOCK", description: "Lock Register for all the config registers.", offset: "0x5E",

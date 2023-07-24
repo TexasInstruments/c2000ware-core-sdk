@@ -8,12 +8,14 @@
         launchWizard="False"
         linkerCommandFile=""
         >
-    <configuration name="CPU1_RAM" compilerBuildOptions="--opt_level=off -I${C2000WARE_COMMON_INCLUDE} -I${C2000WARE_HEADERS_INCLUDE} -v28 -ml -mt --cla_support=cla2 --float_support=fpu64 --tmu_support=tmu0 --define=DEBUG  --define=CPU1  --diag_warning=225  --diag_suppress=10063" linkerBuildOptions="--stack_size=0x100 --entry_point code_start" />
-    <configuration name="CPU1_FLASH" compilerBuildOptions="--opt_level=off -I${C2000WARE_COMMON_INCLUDE} -I${C2000WARE_HEADERS_INCLUDE} -v28 -ml -mt --cla_support=cla2 --float_support=fpu64 --tmu_support=tmu0 --define=DEBUG  --define=CPU1 --define=_FLASH --diag_warning=225  --diag_suppress=10063" linkerBuildOptions="--stack_size=0x100 --entry_point code_start" />
+    <configuration name="CPU1_RAM" compilerBuildOptions="--opt_level=off -I${C2000WARE_COMMON_INCLUDE} -I${C2000WARE_HEADERS_INCLUDE} -v28 -ml -mt --cla_support=cla2 --cla_background_task=on --float_support=fpu64 --tmu_support=tmu0 --define=DEBUG  --define=CPU1 --gen_func_subsections=on --diag_warning=225  --diag_suppress=10063" linkerBuildOptions="--stack_size=0x100 --entry_point code_start" />
+    <configuration name="CPU1_FLASH" compilerBuildOptions="--opt_level=off -I${C2000WARE_COMMON_INCLUDE} -I${C2000WARE_HEADERS_INCLUDE} -v28 -ml -mt --cla_support=cla2 --cla_background_task=on --float_support=fpu64 --tmu_support=tmu0 --define=DEBUG  --define=CPU1 --gen_func_subsections=on --define=_FLASH --diag_warning=225  --diag_suppress=10063" linkerBuildOptions="--stack_size=0x100 --entry_point code_start" />
     <pathVariable name="C2000WARE_COMMON_INCLUDE" path="../../../../common/include/" scope="project" />
     <pathVariable name="C2000WARE_HEADERS_INCLUDE" path="../../../../headers/include/" scope="project" />
     <file action="copy" path="../../../../common/source/f2838x_codestartbranch.asm" targetDirectory="" />
     <file action="copy" path="../../../../common/source/f2838x_defaultisr.c" targetDirectory="" />
+    <file action="copy" path="../../../../common/source/f2838x_cputimers.c" targetDirectory="" />
+    <file action="copy" path="../../../../common/source/f2838x_dma.c" targetDirectory="" />
     <file action="copy" path="../../../../common/source/f2838x_epwm.c" targetDirectory="" />
     <file action="copy" path="../../../../common/source/f2838x_gpio.c" targetDirectory="" />
     <file action="copy" path="../../../../common/source/f2838x_piectrl.c" targetDirectory="" />
@@ -23,7 +25,7 @@
     <file action="copy" path="../../../../headers/cmd/f2838x_headers_nonBIOS_cpu1.cmd" targetDirectory="" />
     <file action="copy" path="../../../../headers/source/f2838x_globalvariabledefs.c" targetDirectory="" />
     <file action="copy" path="../../../../common/targetConfigs/TMS320F28388D.ccxml" targetDirectory="targetConfigs" />
-    <file action="copy" path="../../../../common/cmd/2838x_RAM_combined_lnk_cpu1.cmd" targetDirectory="" applicableConfigurations="CPU1_RAM" />
+    <file action="copy" path="../../../../common/cmd/2838x_RAM_lnk_cpu1.cmd" targetDirectory="" applicableConfigurations="CPU1_RAM" />
     <file action="copy" path="../../../../common/cmd/2838x_FLASH_lnk_cpu1.cmd" targetDirectory="" applicableConfigurations="CPU1_FLASH" />
     <file action="copy" path="../epwm_ex4_deadband.c" targetDirectory="" />
   </project>

@@ -367,7 +367,7 @@ let SYSCTLRegisters = [
 	},
 	{ name: "PCLKCR22", description: "Peripheral Clock Gating Registers", offset: "0x4E",
 		bits: [
-			{ name: "PBISTCLK", description: "PBISTCLK Clock Enable Bit", size: "1", shift: "0", mask: "0x1" },
+			{ name: "MPOSTCLK", description: "MPOSTCLK Clock Enable Bit", size: "1", shift: "0", mask: "0x1" },
 		]
 	},
 	{ name: "PCLKCR23", description: "Peripheral Clock Gating Registers", offset: "0x50",
@@ -1457,7 +1457,6 @@ let SYSCTLRegisters = [
 	{ name: "MCANA_AC", description: "MCANA Master Access Control Register", offset: "0x1D0",
 		bits: [
 			{ name: "CPUX_ACC", description: "CPUx Access conditions to peripheral", size: "2", shift: "0", mask: "0x3" },
-			{ name: "CLA1_ACC", description: "CLA1 Access Conditions to Peripheral", size: "2", shift: "2", mask: "0xC" },
 			{ name: "DMA1_ACC", description: "DMA1 Access Conditions to Peripheral", size: "2", shift: "4", mask: "0x30" },
 		]
 	},
@@ -1537,7 +1536,7 @@ let SYSCTLRegisters = [
 			{ name: "EMIF_ERR", description: "EMIF error event flag", size: "1", shift: "1", mask: "0x2" },
 			{ name: "RAM_CORRECTABLE_ERR", description: "RAM correctable error flag", size: "1", shift: "2", mask: "0x4" },
 			{ name: "FLASH_CORRECTABLE_ERR", description: "FLASH correctable error flag", size: "1", shift: "3", mask: "0x8" },
-			{ name: "RAM_ACC_VIOL", description: "A RAM access vioation flag.", size: "1", shift: "4", mask: "0x10" },
+			{ name: "RAM_ACC_VIOL", description: "RAM access vioation flag.", size: "1", shift: "4", mask: "0x10" },
 			{ name: "SYS_PLL_SLIP_NOTSUPPORTED", description: "System PLL Slip event flag.", size: "1", shift: "5", mask: "0x20" },
 			{ name: "AUX_PLL_SLIP_NOTSUPPORTED", description: "Auxillary PLL Slip event", size: "1", shift: "6", mask: "0x40" },
 			{ name: "DCC0", description: "DCC0 Interrupt flag.", size: "1", shift: "7", mask: "0x80" },

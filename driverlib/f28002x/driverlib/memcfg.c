@@ -280,6 +280,11 @@ MemCfg_setProtection(uint32_t memSection, uint32_t protectMode)
 
     switch(memSection & MEMCFG_SECT_TYPE_MASK)
     {
+        case MEMCFG_SECT_TYPE_D:
+            HWREG(MEMCFG_BASE + MEMCFG_O_DXACCPROT0 + regOffset) &= ~maskVal;
+            HWREG(MEMCFG_BASE + MEMCFG_O_DXACCPROT0 + regOffset) |= regVal;
+            break;
+
         case MEMCFG_SECT_TYPE_LS:
             HWREG(MEMCFG_BASE + MEMCFG_O_LSXACCPROT0 + regOffset) &= ~maskVal;
             HWREG(MEMCFG_BASE + MEMCFG_O_LSXACCPROT0 + regOffset) |= regVal;

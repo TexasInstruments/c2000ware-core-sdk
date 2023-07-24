@@ -78,6 +78,7 @@ void main(void)
     Device_bootCPU2(BOOTMODE_BOOT_TO_M0RAM);
 #endif
 
+
     //
     // Initialize GPIO and configure the GPIO pin as a push-pull output
     //
@@ -90,7 +91,7 @@ void main(void)
     //
     // Configure CPU2 to control the LED GPIO
     //
-    GPIO_setMasterCore(DEVICE_GPIO_PIN_LED2, GPIO_CORE_CPU2);
+    GPIO_setControllerCore(DEVICE_GPIO_PIN_LED2, GPIO_CORE_CPU2);
 
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.

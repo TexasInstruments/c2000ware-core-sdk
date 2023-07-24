@@ -292,7 +292,7 @@ function getEMIFConfig(emif_instance){
             }
         }
     ]);
-    if (["F2837xD", "F2838x"].includes(Common.getDeviceName()))
+    if (["F2837xD", "F2838x", "F28P65x"].includes(Common.getDeviceName()))
     {
         if(emif_instance == "EMIF1"){
             config.push({

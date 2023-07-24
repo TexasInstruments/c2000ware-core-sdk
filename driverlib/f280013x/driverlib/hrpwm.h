@@ -1658,6 +1658,7 @@ HRPWM_lockRegisters(uint32_t base, HRPWM_LockRegisterGroup registerGroup)
     HWREG(base + HRPWM_O_EPWMLOCK) =
                            (0xA5A50000UL | ((uint32_t)registerGroup));
 }
+
 //*****************************************************************************
 //
 // Close the Doxygen group.

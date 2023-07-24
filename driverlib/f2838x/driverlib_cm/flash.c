@@ -92,6 +92,8 @@ Flash_initModule(uint32_t ctrlBase, uint32_t eccBase, uint16_t waitstates)
     // Set waitstates according to frequency.
     //
     Flash_setWaitstates(ctrlBase, waitstates);
+
+
     //
     // Enable cache and prefetch mechanism to improve performance of code
     // executed from flash.
@@ -109,6 +111,7 @@ Flash_initModule(uint32_t ctrlBase, uint32_t eccBase, uint16_t waitstates)
     // Force a pipeline flush to ensure that the write to the last register
     // configured occurs before returning.
     //
+
     for(count = 0U; count < 8U; count++)
     {
         NOP;

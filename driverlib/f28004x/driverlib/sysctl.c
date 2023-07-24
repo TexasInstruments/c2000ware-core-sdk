@@ -76,10 +76,12 @@ SYSCTL_DELAY;
 // SysCtl_pollX1Counter()
 //
 //*****************************************************************************
-static void
+static bool
 SysCtl_pollX1Counter(void)
 {
     uint16_t loopCount = 0U;
+    uint32_t localCounter = 0U;
+    bool status = false;
 
     //
     // Delay for 1 ms while the XTAL powers up
@@ -110,13 +112,28 @@ SysCtl_pollX1Counter(void)
             // If your application is stuck in this loop, please check if the
             // input clock source is valid.
             //
+            localCounter++;
+            if(localCounter>2500000)
+            {
+                if(loopCount == 3U)
+                    status = false;
+                break;
+            }
         }
 
+        if(loopCount == 3U &&
+           (HWREGH(CLKCFG_BASE + SYSCTL_O_X1CNT) == SYSCTL_X1CNT_X1CNT_M))
+        {
+            status = true;
+        }
         //
         // Increment the counter
         //
         loopCount++;
+        localCounter = 0U;
     }while(loopCount < 4U);
+
+    return status;
 }
 
 //*****************************************************************************
@@ -318,7 +335,11 @@ SysCtl_setClock(uint32_t config)
                     HWREGH(CLKCFG_BASE + SYSCTL_O_SYSPLLCTL1) &=
                         ~SYSCTL_SYSPLLCTL1_PLLEN;
 
-                    SysCtl_delay(3U);
+                    //
+                    // Delay of at least 60 OSCCLK cycles required between
+                    // powerdown to powerup of PLL
+                    //
+                    SysCtl_delay(11U);
 
                     //
                     // Write multiplier, which automatically turns on the PLL
@@ -434,6 +455,9 @@ SysCtl_setClock(uint32_t config)
 void
 SysCtl_selectXTAL(void)
 {
+    bool status = false;
+    uint16_t loopCount = 0U;
+
     EALLOW;
 
     //
@@ -446,7 +470,7 @@ SysCtl_selectXTAL(void)
     //
     // Wait for the X1 clock to saturate
     //
-    SysCtl_pollX1Counter();
+    status = SysCtl_pollX1Counter();
 
     //
     // Select XTAL as the oscillator source
@@ -462,7 +486,8 @@ SysCtl_selectXTAL(void)
     // If a missing clock failure was detected, try waiting for the X1 counter
     // to saturate again. Consider modifying this code to add a 10ms timeout.
     //
-    while(SysCtl_isMCDClockFailureDetected())
+    while(SysCtl_isMCDClockFailureDetected() && (status == false) &&
+          (loopCount < 4U))
     {
         //
         // Clear the MCD failure
@@ -472,7 +497,7 @@ SysCtl_selectXTAL(void)
         //
         // Wait for the X1 clock to saturate
         //
-        SysCtl_pollX1Counter();
+        status = SysCtl_pollX1Counter();
 
         //
         // Select XTAL as the oscillator source
@@ -483,6 +508,14 @@ SysCtl_selectXTAL(void)
           (~SYSCTL_CLKSRCCTL1_OSCCLKSRCSEL_M)) |
          (SYSCTL_OSCSRC_XTAL >> SYSCTL_OSCSRC_S));
         EDIS;
+        loopCount ++;
+    }
+    while(status == false)
+    {         
+        // If code is stuck here, it means crystal has not started.  
+        //Replace crystal or update code below to take necessary actions if 
+        //crystal is bad         
+        ESTOP0;     
     }
 }
 
@@ -494,6 +527,8 @@ SysCtl_selectXTAL(void)
 void
 SysCtl_selectXTALSingleEnded(void)
 {
+    bool status = false;
+    
     //
     // Turn on XTAL and select single-ended mode.
     //
@@ -505,7 +540,7 @@ SysCtl_selectXTALSingleEnded(void)
     //
     // Wait for the X1 clock to saturate
     //
-    SysCtl_pollX1Counter();
+    status = SysCtl_pollX1Counter();
 
     //
     // Select XTAL as the oscillator source
@@ -521,8 +556,11 @@ SysCtl_selectXTALSingleEnded(void)
     // Something is wrong with the oscillator module. Replace the ESTOP0 with
     // an appropriate error-handling routine.
     //
-    while(SysCtl_isMCDClockFailureDetected())
+    while(SysCtl_isMCDClockFailureDetected() && (status == false))
     {
+        // If code is stuck here, it means crystal has not started.  
+        //Replace crystal or update code below to take necessary actions if 
+        //crystal is bad 
         ESTOP0;
     }
 }

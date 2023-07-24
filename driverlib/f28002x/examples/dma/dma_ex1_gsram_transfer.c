@@ -95,6 +95,17 @@ void main(void)
     //
     Device_init();
 
+    //
+    //Initialize PIE and clear PIE registers. Disables CPU interrupts
+    //
+    Interrupt_initModule();
+
+    //
+    //Initialize the PIE vector table with pointers to the shell Interrupt
+    //Service Routines (ISR)
+    //
+    Interrupt_initVectorTable();
+    
     Board_init();
 
 

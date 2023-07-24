@@ -80,6 +80,7 @@ extern "C"
 #define ADC_INTSELxNy_OFFSET_BASE   ADC_O_INTSEL1N2
 #define ADC_PPBxRESULT_OFFSET_BASE  ADC_O_PPB1RESULT
 
+
 #define ADC_PPBxCONFIG_STEP         (ADC_O_PPB2CONFIG - ADC_O_PPB1CONFIG)
 #define ADC_PPBxTRIPHI_STEP         (ADC_O_PPB2TRIPHI - ADC_O_PPB1TRIPHI)
 #define ADC_PPBxTRIPLO_STEP         (ADC_O_PPB2TRIPLO - ADC_O_PPB1TRIPLO)
@@ -410,6 +411,7 @@ typedef enum
                                                  //!< pulldown to VSSA
 } ADC_OSDetectMode;
 
+
 //*****************************************************************************
 //
 // Prototypes for the APIs.
@@ -666,6 +668,8 @@ ADC_setInterruptCycleOffset(uint32_t base, uint16_t cycleOffset)
 }
 
 
+
+
 //*****************************************************************************
 //
 //! Powers up the analog-to-digital converter core.
@@ -849,6 +853,7 @@ ADC_clearInterruptStatus(uint32_t base, ADC_IntNumber adcIntNum)
     // Clear the specified interrupt.
     //
     HWREGH(base + ADC_O_INTFLGCLR) = (uint16_t)1U << (uint16_t)adcIntNum;
+
 }
 
 //*****************************************************************************
@@ -1127,7 +1132,7 @@ ADC_setSOCPriority(uint32_t base, ADC_PriorityMode priMode)
 
     EALLOW;
 
-    HWREGH(base + ADC_O_SOCPRICTL) = (HWREGH(base + ADC_O_SOCPRICTL) &
+    HWREG(base + ADC_O_SOCPRICTL) = (HWREG(base + ADC_O_SOCPRICTL) &
                                       ~ADC_SOCPRICTL_SOCPRIORITY_M) |
                                      (uint16_t)priMode;
 
@@ -2024,6 +2029,7 @@ ADC_getTemperatureK(uint16_t tempResult, float32_t vref)
                        ADC_EXT_REF_TSOFFSET) / ADC_EXT_REF_TSSLOPE) + 273.0F));
 }
 
+
 //*****************************************************************************
 //
 //! Configures the analog-to-digital converter resolution and signal mode.
@@ -2055,6 +2061,7 @@ ADC_getTemperatureK(uint16_t tempResult, float32_t vref)
 extern void
 ADC_setMode(uint32_t base, ADC_Resolution resolution,
             ADC_SignalMode signalMode);
+
 
 //*****************************************************************************
 //
@@ -2112,6 +2119,7 @@ ADC_setINLTrim(uint32_t base);
 extern void
 ADC_setPPBTripLimits(uint32_t base, ADC_PPBNumber ppbNumber,
                      int32_t tripHiLimit, int32_t tripLoLimit);
+
 
 //*****************************************************************************
 //

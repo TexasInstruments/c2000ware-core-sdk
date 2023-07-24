@@ -198,6 +198,40 @@ let CMPSS_comparatorInputSignals = {
             {name: "2", displayName: "C9"},
         ],
     },
+    F28P55x: {
+        CMPSS1_BASE: [
+            {name: "0", displayName: "A2/B6/C9"},
+            {name: "1", displayName: "A11/B10/C0"},
+            {name: "2", displayName: "A6"},
+            {name: "3", displayName: "A15"},
+            {name: "4", displayName: "A1/B7/DACB_OUT"},
+            {name: "5", displayName: "B5"},
+        ],
+        CMPSS2_BASE: [
+            {name: "0", displayName: "A4/B8"},
+            {name: "1", displayName: "A12"},
+            {name: "2", displayName: "A9"},
+            {name: "3", displayName: "A10/B1/C10"},
+            {name: "4", displayName: "B0/C11"},
+            {name: "5", displayName: "A5"},
+        ],
+        CMPSS3_BASE: [
+            {name: "0", displayName: "B2/C6"},
+            {name: "1", displayName: "B12/C2"},
+            {name: "2", displayName: "A0/B15/C15/DACA_OUT"},
+            {name: "3", displayName: "B3/VDAC"},
+            {name: "4", displayName: "A14/B14/C4"},
+            {name: "5", displayName: "A3"},
+        ],
+        CMPSS4_BASE: [
+            {name: "0", displayName: "B4/C8"},
+            {name: "1", displayName: "A7/C3"},
+            {name: "2", displayName: "C1"},
+            {name: "3", displayName: "C14"},
+            {name: "4", displayName: "A8"},
+            {name: "5", displayName: "B11"},
+        ]
+    },
 }
 
 /* Stucture for comparator negative input signals per device & CMPSS Instance*/
@@ -270,8 +304,8 @@ let CMPSS_comparatorNegInputSignals = {
     },
     F280013x: {
         CMPSS1_BASE: [
-            {name: "0", displayName: "A10/C10"},
-            {name: "1", displayName: "A12/C1"},
+            {name: "0", displayName: "A15/C7"},
+            {name: "1", displayName: "A11/C0"},
         ],
     },
     F280015x: {
@@ -324,6 +358,24 @@ let CMPSS_comparatorNegInputSignals = {
         CMPSS11_BASE: [
             {name: "0", displayName: "B0/VDAC"},
             {name: "1", displayName: "C13"},
+        ],
+    },
+    F28P55x: {
+        CMPSS1_BASE: [
+            {name: "0", displayName: "A15/B9"}, /* not avl in 100PZ*/
+            {name: "1", displayName: "A11"},
+        ],
+        CMPSS2_BASE: [
+            {name: "0", displayName: "A10/B1"},
+            {name: "1", displayName: "A12/C5"},
+        ],
+        CMPSS3_BASE: [
+            {name: "0", displayName: "B3"},
+            {name: "1", displayName: "B12"},
+        ],
+        CMPSS4_BASE: [
+            {name: "0", displayName: "C14"},
+            {name: "1", displayName: "A7/C3"},
         ],
     },
 }

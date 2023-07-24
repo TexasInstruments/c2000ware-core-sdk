@@ -76,7 +76,7 @@ if (("system" === system.context || "CPU1" === system.context) && system.deviceD
 			break
 	}
 
-	if(device == "F2837xD" || device == "F2838x")
+	if(device == "F2837xD" || device == "F2838x" || device == "F28P65x")
 	{
 		var myipInstance1 = ["CPU1CLK_domain", "CPU2CLK_domain", "CPU1_SYSCLK_domain", "CPU2_SYSCLK_domain"]
 		var myipInstance2 = ["CPU1_SYSCLK", "CPU2_SYSCLK"]
@@ -126,6 +126,23 @@ if (("system" === system.context || "CPU1" === system.context) && system.deviceD
 			// },
 		],
 		}, 
+		{
+			displayName: "PLLs",
+			entries: [
+				{
+					displayName: "System PLL",
+					ipInstances: ["CPU1_SYSCLK", "CPU2_SYSCLK"],
+					frequencyLabels: FreqLabels,
+					algorithm: "fanIn"
+				},
+				{
+					displayName: "Auxillary PLL",
+					ipInstances: ["AUXPLLCLK"],
+					frequencyLabels: FreqLabels,
+					algorithm: "fanIn"
+				},
+			]
+		},
 		// {
 		// 	displayName: "Broken Connections",
 		// 	entries: [
@@ -182,7 +199,16 @@ if (("system" === system.context || "CPU1" === system.context) && system.deviceD
 			]
 	};
 }
-else
+else if ("CPU2" === system.context) //"CPU2" === system.context
 {
-
+	exports = {
+		templates: [
+			{
+				name: "/driverlib/clocktree/clocktree_cpu2.h.xdt",
+		     	outputPath: "clocktree.h",
+			 	alwaysRun: true,
+			 	ignoreErrors: false 
+			},
+		]
+	};
 }

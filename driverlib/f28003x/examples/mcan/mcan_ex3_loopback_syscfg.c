@@ -112,7 +112,6 @@ void main(void)
     //
     SysCtl_setMCANClk(SYSCTL_MCANCLK_DIV_3);
 
-
     //
     // CrossBar and ISR Configuration.
     //

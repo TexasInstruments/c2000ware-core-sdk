@@ -1,0 +1,35 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28P65x" --package "256ZEJ" --part "F28P65x_256ZEJ" --context "CPU1" --product "C2000WARE@5.00.00.00"
+ * @versions {"tool":"1.16.1+2960"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const gpio   = scripting.addModule("/driverlib/gpio.js", {}, false);
+const gpio1  = gpio.addInstance();
+const gpio2  = gpio.addInstance();
+const ipc    = scripting.addModule("/driverlib/ipc.js");
+const memcfg = scripting.addModule("/driverlib/memcfg.js");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+gpio1.direction       = "GPIO_DIR_MODE_OUT";
+gpio1.$name           = "CPU1_LED";
+gpio1.gpioPin.$assign = "GPIO12";
+
+gpio2.direction       = "GPIO_DIR_MODE_OUT";
+gpio2.controllerCore  = "GPIO_CORE_CPU2";
+gpio2.$name           = "CPU2_LED";
+gpio2.gpioPin.$assign = "GPIO13";
+
+ipc.ipcRegisterFlag = ["IPC_FLAG31"];
+ipc.flagHandler31   = "IPC_SYNC";
+
+memcfg.config_SYSCTL_FLASH_BANK3 = "SYSCTL_CPUSEL_CPU2";
+memcfg.config_SYSCTL_FLASH_BANK4 = "SYSCTL_CPUSEL_CPU2";
+memcfg.config_MEMCFG_SECT_GS4    = "MEMCFG_GSRAMCONTROLLER_CPU2";
+memcfg.config_MEMCFG_SECT_GS3    = "MEMCFG_GSRAMCONTROLLER_CPU2";

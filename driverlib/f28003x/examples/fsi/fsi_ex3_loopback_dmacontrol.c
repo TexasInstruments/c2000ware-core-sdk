@@ -474,7 +474,7 @@ void fsitx_dma_config()
     //
     DMA_configAddresses(DMA_CH2_BASE, (uint16_t *)FSI_TX_FRAME_TAG_UDATA_REGADDR,
                         (uint16_t *)GS1_START_ADDR);
-    DMA_configBurst(DMA_CH2_BASE, 0, 0, 0);
+    DMA_configBurst(DMA_CH2_BASE, 1, 0, 0);
     DMA_configTransfer(DMA_CH2_BASE, DMA_TRANSFER_SIZE_IN_BURSTS, 1, 0);
     DMA_configWrap(DMA_CH2_BASE, 16, 0, 16, 0);
     DMA_configMode(DMA_CH2_BASE, DMA_TRIGGER_FSITXA, DMA_CFG_ONESHOT_DISABLE|
@@ -505,7 +505,7 @@ void fsirx_dma_config()
     //
     DMA_configAddresses(DMA_CH4_BASE,(uint16_t *)GS3_START_ADDR,
                         (uint16_t *)FSI_RX_FRAME_TAG_UDATA_REGADDR);
-    DMA_configBurst(DMA_CH4_BASE, 0, 0, 0);
+    DMA_configBurst(DMA_CH4_BASE, 1, 0, 0);
     DMA_configTransfer(DMA_CH4_BASE, DMA_TRANSFER_SIZE_IN_BURSTS, 0, 1);
     DMA_configWrap(DMA_CH4_BASE, 16, 0, 16, 0);
     DMA_configMode(DMA_CH4_BASE, DMA_TRIGGER_FSIRXA, DMA_CFG_ONESHOT_DISABLE |

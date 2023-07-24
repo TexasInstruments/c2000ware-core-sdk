@@ -1,0 +1,678 @@
+/*
+ * Copyright (c) 2018-2020 Texas Instruments Incorporated - http://www.ti.com
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * *  Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ * *  Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * *  Neither the name of Texas Instruments Incorporated nor the names of
+ *    its contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ */
+
+/*
+ *  ======== LAUNCHXL_F28P65X.syscfg.json ========
+ *  Board schematic: 
+ */
+
+{
+    "name"        : "LAUNCHXL-F28P65X",
+    "displayName" : "LaunchPad F28P65X",
+    "device"      : "F28P65x",
+    "part"        : "F28P65x_169NMR",
+    "package"     : "169NMR",
+    "headers"     : [
+        {
+            "type": "BoosterPack 40 pin",
+            "default": true,
+            "name": "boosterpack1",
+            "displayName": "BoosterPack1 Standard Header (Top)",
+            "dimensions": {
+                "columns": [
+                    { "top":  1, "bottom": 10 },
+                    { "top": 21, "bottom": 30 },
+
+                    { "blank": true },
+
+                    { "top": 40, "bottom": 31 },
+                    { "top": 20, "bottom": 11 }
+                ]
+            },
+            "pins": [
+                    {        "number" : 1,                      "name"   : "3V3"                    },
+                    {        "number" : 2, "ball": "N2",        "name"   : "ADCINB0/VDAC"             },
+                    {        "number" : 3, "ball": "C11",         "name"   : "GPIO43_BP/SCI_RX"       },
+                    {        "number" : 4, "ball": "C12",       "name"   : "GPIO42_BP/SCI_TX"       },
+                    {        "number" : 5, "ball": "C12",       "name"   : "GPIO42_BP/SCI_TX"       },
+                    {        "number" : 6, "ball": "F1",        "name"   : "ADCINC0"                },
+                    {        "number" : 7, "ball": "D3",        "name"   : "GPIO18/SPI_CLK"          },
+                    {        "number" : 8, "ball": "A11",        "name"   : "GPIO72"                 },
+                    {        "number" : 9, "ball": "H12",        "name"   : "GPIO105/I2C_SCL"         },
+                    {        "number" : 10, "ball": "A9",       "name"   : "GPIO104/I2C_SDA"         },
+
+                    {        "number" : 11, "ball": "F13",       "name"   : "GPIO133"                 },
+                    {        "number" : 12, "ball": "F2",       "name"   : "GPIO23_BP"          },
+                    {        "number" : 13, "ball": "B1",       "name"   : "GPIO12/LED4"          },
+                    {        "number" : 14, "ball": "D4",       "name"   : "GPIO17/SPI_POCI"        },
+                    {        "number" : 15, "ball": "C4",       "name"   : "GPIO16/SPI_PICO"         },
+                    {        "number" : 16, "ball": "",         "name"   : "XRSn"                   },
+                    {        "number" : 17, "ball": "E2",       "name"   : "GPIO21_BP"              },
+                    {        "number" : 18, "ball": "A8",       "name"   : "GPIO84"                 },
+                    {        "number" : 19, "ball": "J11",       "name"   : "GPIO57/SPI_PTE"               },
+                    {        "number" : 20,                     "name"   : "GND"                    },
+
+                    {        "number" : 21,                     "name"   : "5V"                     },
+                    {        "number" : 22,                     "name"   : "GND"                    },
+                    {        "number" : 23, "ball": "M1",       "name"   : "ADCINA14/B14/C14"                },
+                    {        "number" : 24, "ball": "H2",       "name"   : "ADCINA4"          },
+                    {        "number" : 25, "ball": "M6",       "name"   : "ADCINB4"          },
+                    {        "number" : 26, "ball": "H6",       "name"   : "ADCINC4"        },
+                    {        "number" : 27, "ball": "K5",       "name"   : "ADCINA7"        },
+                    {        "number" : 28, "ball": "K4",       "name"   : "ADCINB7"            },
+                    {        "number" : 29, "ball": "G4",       "name"   : "ADCINC7"             },
+                    {        "number" : 30, "ball": "L3",       "name"   : "ADCINA0/DAC_OUT"             },
+
+                    {        "number" : 31, "ball": "E6",       "name"   : "GPIO5/CAN_RX"                 },
+                    {        "number" : 32, "ball": "D6",       "name"   : "GPIO4/CAN_TX"              },
+                    {        "number" : 33, "ball": "C3",        "name"   : "GPIO15/LIN_RX"                 },
+                    {        "number" : 34, "ball": "C2",       "name"   : "GPIO14/LIN_TX"                 },
+                    {        "number" : 35, "ball": "B2",       "name"   : "GPIO11"                 },
+                    {        "number" : 36, "ball": "B3",       "name"   : "GPIO10"                 },
+                    {        "number" : 37, "ball": "B5",       "name"   : "GPIO7"                  },
+                    {        "number" : 38, "ball": "A5",       "name"   : "GPIO6"                  },
+                    {        "number" : 39, "ball": "F3",       "name"   : "GPIO9"                  },
+                    {        "number" : 40, "ball": "E3",       "name"   : "GPIO8"                  }
+            ]
+        },
+        {
+            "type": "BoosterPack 40 pin",
+            "default": true,
+            "name": "boosterpack2",
+            "displayName": "BoosterPack2 Standard Header (Bottom)",
+            "dimensions": {
+                "columns": [
+                    { "top": 41, "bottom": 50 },
+                    { "top": 61, "bottom": 70 },
+
+                    { "blank": true },
+
+                    { "top": 80, "bottom": 71 },
+                    { "top": 60, "bottom": 51 }
+                ]
+            },
+            "pins": [
+                    {        "number" : 41,                     "name"   : "3V3"                    },
+                    {        "number" : 42, "ball": "H1",       "name"   : "ADCINA5"                },
+                    {        "number" : 43, "ball": "J13",       "name"   : "GPIO55_BP/SCI_RX"      },
+                    {        "number" : 44, "ball": "L11",       "name"   : "GPIO38_BP/SCI_TX"      },
+                    {        "number" : 45, "ball": "L11",         "name"   : "GPIO38_BP/SCI_TX"                       },
+                    {        "number" : 46, "ball": "G1",       "name"   : "ADCINC1"                },
+                    {        "number" : 47, "ball": "A3",       "name"   : "GPIO93/SPI_CLK"                 },
+                    {        "number" : 48, "ball": "D8",       "name"   : "GPIO82"               },
+                    {        "number" : 49, "ball": "N8",       "name"   : "GPIO35_BP/I2C_SCL"      },
+                    {        "number" : 50, "ball": "K7",       "name"   : "GPIO34_BP/I2C_SDA"      },
+
+                    {        "number" : 51, "ball": "B8",       "name"   : "GPIO25"                 },
+                    {        "number" : 52, "ball": "D10",       "name"   : "GPIO103_BP"          },
+                    {        "number" : 53, "ball": "C1",       "name"   : "GPIO13/LED5"          },
+                    {        "number" : 54, "ball": "A4",       "name"   : "GPIO92/SPI_POCI"        },
+                    {        "number" : 55, "ball": "B4",       "name"   : "GPIO91/SPI_PICO"        },
+                    {        "number" : 56, "ball": "",         "name"   : "XRSn"                   },
+                    {        "number" : 57, "ball": "B9",       "name"   : "GPIO79_BP"              },
+                    {        "number" : 58, "ball": "D7",        "name"   : "GPIO24_BP"                 },
+                    {        "number" : 59, "ball": "A2",       "name"   : "GPIO94/SPI_PTE"                 },
+                    {        "number" : 60,                     "name"   : "GND"                    },
+
+                    {        "number" : 61,                     "name"   : "5V"                     },
+                    {        "number" : 62,                     "name"   : "GND"                    },
+                    {        "number" : 63, "ball": "M2",       "name"   : "ADCINA15/B15/C15"               },
+                    {        "number" : 64, "ball": "J6",       "name"   : "ADCINA8"        },
+                    {        "number" : 65, "ball": "L4",       "name"   : "ADCINB3"                },
+                    {        "number" : 66, "ball": "G6",       "name"   : "ADCINC5"             },
+                    {        "number" : 67, "ball": "L5",       "name"   : "ADCINA10"             },
+                    {        "number" : 68, "ball": "J4",       "name"   : "ADCINB6"                },
+                    {        "number" : 69, "ball": "G5",       "name"   : "ADCINC6"            },
+                    {        "number" : 70, "ball": "N3",       "name"   : "ADCINB1/DAC_OUT"        },
+
+                    {        "number" : 71, "ball": "N11",       "name"   : "GPIO36/CAN_RX"              },
+                    {        "number" : 72, "ball": "M11",       "name"   : "GPIO37/CAN_TX"              },
+                    {        "number" : 73, "ball": "M12",       "name"   : "GPIO41"                 },
+                    {        "number" : 74, "ball": "F12",       "name"   : "GPIO32"                 },
+                    {        "number" : 75, "ball": "A10",       "name"   : "GPIO75"                 },
+                    {        "number" : 76, "ball": "E4",       "name"   : "GPIO99"                 },
+                    {        "number" : 77, "ball": "A6",       "name"   : "GPIO1"                  },
+                    {        "number" : 78, "ball": "E7",       "name"   : "GPIO0"                  },
+                    {        "number" : 79, "ball": "C6",       "name"   : "GPIO3"                 },
+                    {        "number" : 80, "ball": "B6",       "name"   : "GPIO2"                 }
+            ]
+        },
+        {
+            // "J12 - QEPA Header",
+            "type": "Header",
+            "default": true,
+            "name": "qepA",
+            "displayName": "Header - QEPA",
+            "dimensions": {
+                "columns": [
+                    { "top": 1, "bottom": 5 }
+                ]
+            },
+            "pins": [
+                {   "number": 1,    "ball": "E1",               "name": "EQEP1A"                    },
+                {   "number": 2,    "ball": "E2",               "name": "EQEP1B"                    },
+                {   "number": 3,    "ball": "F2",               "name": "EQEP1I"                    },
+                {   "number": 4,                                "name": "5V"                        },
+                {   "number": 5,                                "name": "GND"                       }
+            ]
+        }, 
+        {
+            // "J13 - QEPB Header",
+            "type": "Header",
+            "default": true,
+            "name": "qepB",
+            "displayName": "Header - QEPB",
+            "dimensions": {
+                "columns": [
+                    { "top": 1, "bottom": 5 }
+                ]
+            },
+            "pins": [
+                {   "number": 1,    "ball": "D7",               "name": "EQEP2A"                    },
+                {   "number": 2,    "ball": "B9",               "name": "EQEP2B"                    },
+                {   "number": 3,    "ball": "D10",               "name": "EQEP2I"                    },
+                {   "number": 4,                                "name": "5V"                        },
+                {   "number": 5,                                "name": "GND"                       }
+            ]
+        },
+        {
+            //J11 - FSI Connector
+            "type": "Header",
+            "default": true,
+            "name": "fsiConnector",
+            "displayName": "Connector for Fast Serial Interface",
+            "dimensions": {
+                "columns": [
+                    { "top": 1, "bottom":  9, "increment": 2 },
+                    { "top": 2, "bottom": 10, "increment": 2 }
+                ]
+            },
+            "pins": [
+                {   "number": 1,    "ball": "K13",       "name": "GPIO54_FSIRXCLK"                   },
+                {   "number": 2,    "ball": "K10",       "name": "GPIO51_FSITXCLK"                   },
+                {   "number": 3,    "name": "GND"                                                   },
+                {   "number": 4,    "name": "GND"                                                   },
+                {   "number": 5,    "ball": "K11",       "name": "GPIO52_FSIRXD0"                    },
+                {   "number": 6,    "ball": "L13",        "name": "GPIO49_FSITXD0"                    },
+                {   "number": 7,    "ball": "K12",       "name": "GPIO53_FSIRXD1"                    },
+                {   "number": 8,    "ball": "K9",        "name": "GPIO50_FSITXD1"                    },
+                {   "number": 9,    "name": ""                                                      },
+                {   "number": 10,   "name": "3V3"                                                   }
+            ]
+        }
+    ],
+
+    "components": {
+        "LED4": {
+            "displayName" : "LED4",
+            "definition"  : "/boards/components/led.json",
+            "connections" : {
+                "OUTPUT": "B1" /* GPIO12 */
+            }
+        },
+        "LED5": {
+            "displayName" : "LED5",
+            "definition"  : "/boards/components/led.json",
+            "connections" : {
+                "OUTPUT": "C1" /* GPIO13 */
+            }
+        },
+        "D1": {
+            "link": "LED4"
+        },
+        "D2": {
+            "link": "LED5"
+        },
+        "BP_SITE_1": {
+            "displayName": "Site 1 Standard BP",
+            "description": "Standard BoosterPack (BP) module locations on Site 1 of LaunchPad",
+            "longDescription": "All TI LaunchPads follow standard BoosterPack (BP) locations to ensure compatibility with BoosterPack peripherals. Site 1 on this LaunchPad features standard locations for three EPWM signals, I2C, SCI, and SPI.",
+            "subComponents": {
+                "SCI": {
+                    "displayName": "SCIA BP",
+                    "description": "SCIA BoosterPack (BP) location on Site 1",
+                    "longDescription": "Site 1 of this LaunchPad features standard locations for SCI_RX and SCI_TX. Add this component to make use of the standard SCI BoosterPack (BP) signal locations.\n\n Note: Ensure that the on-board SCI switch is in the correct configuration to route SCIA to the BoosterPack headers.",
+                    "definition"  : "/boards/components/standard_sci.json",
+                    "connections" : {
+                        "SCI_RX": "C11", /*GPIO43*/
+                        "SCI_TX": "C12"  /*GPIO42*/
+                    }
+                },
+                "UART": {
+                    "displayName": "UARTA BP",
+                    "description": "UARTA BoosterPack (BP) location on Site 1",
+                    "longDescription": "Site 1 of this LaunchPad features standard locations for UART_RX and UART_TX. Add this component to make use of the standard UART BoosterPack (BP) signal locations.\n\n Note: Ensure that the on-board SCI switch is in the correct configuration to route UARTA to the BoosterPack headers.",
+                    "definition"  : "/boards/components/uart.json",
+                    "connections" : {
+                        "UART_RX": "C11", /*GPIO43*/
+                        "UART_TX": "C12"  /*GPIO42*/
+                    }
+                },
+                "SPI": {
+                    "displayName": "SPIA BP",
+                    "description": "SPIA BoosterPack (BP) location on Site 1",
+                    "longDescription": "Site 1 of this LaunchPad features standard locations for SPI_CLK, SPI_PTE, SPI_PICO, and SPI_POCI. Add this component to make use of the standard SPI BoosterPack (BP) signal locations.",
+                    "definition"  : "/boards/components/standard_spi.json",
+                    "connections" : {
+                        "SPI_CLK": "D3", /*GPIO18*/
+                        "SPI_STE": "J11", /*GPIO57*/
+                        "SPI_SIMO": "C4", /*GPIO16*/
+                        "SPI_SOMI": "D4"  /*GPIO17*/
+                    }
+                },
+                "I2C": {
+                    "displayName": "I2CA BP",
+                    "description": "I2CA BoosterPack (BP) location on Site 1",
+                    "longDescription": "Site 1 of this LaunchPad features standard locations for I2C_SCL and I2C_SDA. Add this component to make use of the standard I2C BoosterPack (BP) signal locations.",
+                    "definition"  : "/boards/components/standard_i2c.json",
+                    "connections" : {
+                        "I2C_SCL": "H12", /*GPIO105*/
+                        "I2C_SDA": "A9"  /*GPIO104*/
+                    }
+                },
+                "PWM_LOC1": {
+                    "displayName": "EPWM5 BP",
+                    "description": "EPWM5 BoosterPack (BP) location on Site 1",
+                    "longDescription": "Site 1 of this LaunchPad features standard locations for EPWM_A and EPWM_B. Add this component to make use of the standard EPWM BoosterPack (BP) signal locations.",
+                    "definition"  : "/boards/components/standard_epwm.json",
+                    "connections" : {
+                        "EPWM_A": "E3", /*GPIO8*/
+                        "EPWM_B": "F3" /*GPIO9*/
+                    }
+                },
+                "PWM_LOC2": {
+                    "displayName": "EPWM4 BP",
+                    "description": "EPWM4 BoosterPack (BP) location on Site 1",
+                    "longDescription": "Site 1 of this LaunchPad features standard locations for EPWM_A and EPWM_B. Add this component to make use of the standard EPWM BoosterPack (BP) signal locations.",
+                    "definition"  : "/boards/components/standard_epwm.json",
+                    "connections" : {
+                        "EPWM_A": "A5", /*GPIO6*/
+                        "EPWM_B": "B5" /*GPIO7*/
+                    }
+                },
+                "PWM_LOC3": {
+                    "displayName": "EPWM6 BP",
+                    "description": "EPWM6 BoosterPack (BP) location on Site 1",
+                    "longDescription": "Site 1 of this LaunchPad features standard locations for EPWM_A and EPWM_B. Add this component to make use of the standard EPWM BoosterPack (BP) signal locations.",
+                    "definition"  : "/boards/components/standard_epwm.json",
+                    "connections" : {
+                        "EPWM_A": "B3", /*GPIO10*/
+                        "EPWM_B": "B2" /*GPIO11*/
+                    }
+                },
+                "LIN": {
+                    "displayName": "LINA BP",
+                    "description": "LINA BoosterPack (BP) location on Site 1",
+                    "longDescription": "Site 1 of this LaunchPad features standard locations for LIN_TX and LIN_RX. Add this component to make use of the standard LIN BoosterPack (BP) signal locations.",
+                    "definition"  : "/boards/components/standard_lin.json",
+                    "connections" : {
+                        "LIN_TX": "C2", /*GPIO14*/
+                        "LIN_RX": "C3" /*GPIO15*/
+                    }
+                },
+                "CAN": {
+                    "displayName": "CANA BP",
+                    "description": "CANA BoosterPack (BP) location on Site 1",
+                    "longDescription": "Site 1 of this LaunchPad features standard locations for CAN_TX and CAN_RX. Add this component to make use of the standard CAN BoosterPack (BP) signal locations.",
+                    "definition"  : "/boards/components/standard_can.json",
+                    "connections" : {
+                        "CAN_TX": "D6", /*GPIO4*/
+                        "CAN_RX": "E6" /*GPIO5*/
+                    }
+                },
+                "MCAN": {
+                    "displayName": "MCANA BP",
+                    "description": "MCANA BoosterPack (BP) location on Site 1",
+                    "longDescription": "Site 1 of this LaunchPad features standard locations for MCAN_TX and MCAN_RX. Add this component to make use of the standard MCAN BoosterPack (BP) signal locations.",
+                    "definition"  : "/boards/components/standard_mcan.json",
+                    "connections" : {
+                        "MCAN_TX": "D6", /*GPIO4*/
+                        "MCAN_RX": "E6" /*GPIO5*/
+                    }
+                },
+            }
+        },
+        "BP_SITE_2": {
+            "displayName": "Site 2 Standard BP",
+            "description": "Standard BoosterPack (BP) module locations on Site 2 of LaunchPad",
+            "longDescription": "All TI LaunchPads follow standard BoosterPack (BP) locations to ensure compatibility with BoosterPack peripherals. Site 2 on this LaunchPad features standard locations for three EPWM signals, I2C, SCI, and SPI.",
+            "subComponents": {
+                "SCI": {
+                    "displayName": "SCIB BP",
+                    "description": "SCIB BoosterPack (BP) location on Site 2",
+                    "longDescription": "Site 2 of this LaunchPad features standard locations for SCI_RX and SCI_TX. Add this component to make use of the standard SCI BoosterPack (BP) signal locations.\n\n Note: Ensure that the on-board SCI switch is in the correct configuration to route SCIB to the BoosterPack headers.",
+                    "definition"  : "/boards/components/standard_sci.json",
+                    "connections" : {
+                        "SCI_RX": "J13", /*GPIO55*/
+                        "SCI_TX": "L11"  /*GPIO38*/
+                    }
+                },
+                "SPI": {
+                    "displayName": "SPID BP",
+                    "description": "SPID BoosterPack (BP) location on Site 2",
+                    "longDescription": "Site 2 of this LaunchPad features standard locations for SPI_CLK, SPI_PTE, SPI_PICO, and SPI_POCI. Add this component to make use of the standard SPI BoosterPack (BP) signal locations.",
+                    "definition"  : "/boards/components/standard_spi.json",
+                    "connections" : {
+                        "SPI_CLK": "A3", /*GPIO93*/
+                        "SPI_STE": "A2", /*GPIO94*/
+                        "SPI_SIMO": "B4", /*GPIO91*/
+                        "SPI_SOMI": "A4"  /*GPIO92*/
+                    }
+                },
+                "I2C": {
+                    "displayName": "I2CB BP",
+                    "description": "I2CB BoosterPack (BP) location on Site 2",
+                    "longDescription": "Site 2 of this LaunchPad features standard locations for I2C_SCL and I2C_SDA. Add this component to make use of the standard I2C BoosterPack (BP) signal locations. \n\nNote: These signals are NOT connected to the LaunchPad connector by default. They require additional resistor soldering to complete the connection.",
+                    "definition"  : "/boards/components/standard_i2c.json",
+                    "connections" : {
+                        "I2C_SCL": "N8", /*GPIO35*/
+                        "I2C_SDA": "K7"  /*GPIO34*/
+                    }
+                },
+                "PWM_LOC1": {
+                    "displayName": "EPWM2 BP",
+                    "description": "EPWM2 BoosterPack (BP) location on Site 2",
+                    "longDescription": "Site 2 of this LaunchPad features standard locations for EPWM_A and EPWM_B. Add this component to make use of the standard EPWM BoosterPack (BP) signal locations.",
+                    "definition"  : "/boards/components/standard_epwm.json",
+                    "connections" : {
+                        "EPWM_A": "B6", /*GPIO2*/
+                        "EPWM_B": "C6" /*GPIO3*/
+                    }
+                },
+                "PWM_LOC2": {
+                    "displayName": "EPWM1 BP",
+                    "description": "EPWM1 BoosterPack (BP) location on Site 2",
+                    "longDescription": "Site 2 of this LaunchPad features standard locations for EPWM_A and EPWM_B. Add this component to make use of the standard EPWM BoosterPack (BP) signal locations.",
+                    "definition"  : "/boards/components/standard_epwm.json",
+                    "connections" : {
+                        "EPWM_A": "E7", /*GPIO0*/
+                        "EPWM_B": "A6" /*GPIO1*/
+                    }
+                },
+                "PWM_LOC3": {
+                    "displayName": "EPWM8 BP",
+                    "description": "EPWM8 BoosterPack (BP) location on Site 2",
+                    "longDescription": "Site 2 of this LaunchPad features standard locations for EPWM_A and EPWM_B. Add this component to make use of the standard EPWM BoosterPack (BP) signal locations.",
+                    "definition"  : "/boards/components/standard_epwm.json",
+                    "connections" : {
+                        "EPWM_A": "E4", /*GPIO99*/
+                        "EPWM_B": "A10" /*GPIO75*/
+                    }
+                },
+                "CAN": {
+                    "displayName": "CANA BP",
+                    "description": "CANA BoosterPack (BP) location on Site 2",
+                    "longDescription": "Site 2 of this LaunchPad features standard locations for CAN_TX and CAN_RX. Add this component to make use of the standard CAN BoosterPack (BP) signal locations.",
+                    "definition"  : "/boards/components/standard_can.json",
+                    "connections" : {
+                        "CAN_TX": "M11", /*GPIO37*/
+                        "CAN_RX": "N11" /*GPIO36*/
+                    }
+                },
+                "MCAN": {
+                    "displayName": "MCANA BP",
+                    "description": "MCANA BoosterPack (BP) location on Site 2",
+                    "longDescription": "Site 2 of this LaunchPad features standard locations for MCAN_TX and MCAN_RX. Add this component to make use of the standard MCAN BoosterPack (BP) signal locations.",
+                    "definition"  : "/boards/components/standard_mcan.json",
+                    "connections" : {
+                        "MCAN_TX": "M11", /*GPIO37*/
+                        "MCAN_RX": "N11" /*GPIO36*/
+                    }
+                },
+            }
+        },
+        "XDS_UART": {
+            "displayName": "XDS UART",
+            "description": "Route SCI UART connection to onboard XDS110 probe",
+            "longDescription": "On the LaunchPad, SCI signals can be routed from the TMS320F28P65X device to the debug module to allow for UART communication to and from the device. \n\nAdd this component to route SCI signals to the XDS110 debug probe. \n\n Note: Connection to the debug probe is dependent on the configuration of the on-board SCI Switch. Verify the switch placement to ensure the correct signals are routed to the XDS110 device.",
+            "subComponents": {
+                "XDS_SCI_INST1": {
+                    "displayName": "SCIA XDS",
+                    "description": "Route SCIA (GPIO42/43) signals",
+                    "definition"  : "/boards/components/sci_switch.json",
+                    "longDescription": "Route GPIO42/43 SCIA signals to the XDS110 debug probe. \n\n Note: Ensure that the on-board SCI switch is in the correct configuration to route SCIA to the XDS110 probe.",
+                    "connections" : {
+                        "SCIRX": "C11",  /* GPIO43 */
+                        "SCITX": "C12" /* GPIO42 */
+                    }
+
+                },
+                "XDS_SCI_INST2": {
+                    "displayName": "SCIB XDS",
+                    "description": "Route SCIB (GPIO38/55) signals",
+                    "definition"  : "boards/components/sci_switch.json",
+                    "longDescription": "Route GPIO38/55 SCIB signals to the XDS110 debug probe. \n\n Note: Ensure that the on-board SCI switch is in the correct configuration to route SCIB to the XDS110 probe.",
+                    "connections" : {
+                        "SCIRX": "J13", /* GPIO55 */
+                        "SCITX": "L11"  /* GPIO38 */
+                    }
+                }
+            }
+        },
+        "EQEP1_HEADER": {
+			"displayName": "EQEP1 Header",
+			"description": "Dedicated EQEP1 header on LaunchPad",
+			"longDescription": "This LaunchPad features a dedicated 5-pin EQEP1 connector for use with external BoosterPacks. Add this component to make use of the dedicated EQEP_A, EQEP_B, and EQEP_I signals. \n\nNote: Ensure the QEP Select Switch is configured to the proper position to make use of the EQEP1 header.",
+            "definition": "/boards/components/eqep.json",
+            "connections" : {
+                "EQEPA": "E1", /* GPIO20 */
+                "EQEPB": "E2", /* GPIO21 */
+                "EQEPI": "F2" /* GPIO23 */
+                }
+		},
+        "EQEP2_HEADER": {
+			"displayName": "EQEP2 Header",
+			"description": "Dedicated EQEP2 header on LaunchPad",
+			"longDescription": "This LaunchPad features a dedicated 5-pin EQEP2 connector for use with external BoosterPacks. Add this component to make use of the dedicated EQEP_A, EQEP_B, and EQEP_I signals. \n\nNote: Ensure the QEP Select Switch is configured to the proper position to make use of the EQEP2 header.",
+            "definition": "/boards/components/eqep.json",
+            "connections" : {
+                "EQEPA": "D7", /* GPIO24 */
+                "EQEPB": "B9", /* GPIO79 */
+                "EQEPI": "D10" /* GPIO103 */
+                }
+		},
+        "FSI_HEADER": {
+			"displayName": "FSI Header",
+			"description": "Dedicated FSI header on LaunchPad",
+			"longDescription": "This LaunchPad features a dedicated 10-pin FSI connector for use with external BoosterPacks. Add this component to make use of the dedicated FSI_RX and FSI_TX signals.",
+            "definition": "/boards/components/fsi.json",
+            "connections" : {
+                "FSIRX_D0": "K11", /* GPIO52 */
+                "FSIRX_D1": "K12", /* GPIO53 */
+                "FSIRX_CLK": "K13", /* GPIO54 */
+                "FSITX_D0": "L13", /* GPIO49 */
+                "FSITX_D1": "K9", /* GPIO50 */
+                "FSITX_CLK": "K10" /* GPIO51 */
+                }
+		},
+        // "BP_UART": {
+        //     "displayName": "BP UART",
+        //     "description": "Route UART connection to BoosterPack (BP) headers",
+        //     "longDescription": "Add this component to route SCI signals to the BoosterPack headers.",
+        //     "subComponents": {
+        //         "BP_SCIA": {
+        //             "displayName": "GPIO28/29",
+        //             "description": "Route SCIA (GPIO28/29) signals",
+        //             "definition"  : "/boards/components/sci_switch.json",
+        //             "longDescription": "Route GPIO28/29 SCIA signals to the BoosterPack headers.",
+        //             "connections" : {
+        //                 "SCIRX": "1",  /* GPIO28 */
+        //                 "SCITX": "100" /* GPIO29 */
+        //             }
+
+        //         },
+        //         "BP_SCIB": {
+        //             "displayName": "GPIO15/56",
+        //             "description": "Route SCIB (GPIO15/56) signals",
+        //             "definition"  : "boards/components/sci_switch.json",
+        //             "longDescription": "Route GPIO15/56 SCIB signals to the BoosterPack headers.",
+        //             "connections" : {
+        //                 "SCIRX": "95", /* GPIO15 */
+        //                 "SCITX": "65"  /* GPIO56 */
+        //             }
+        //         }
+        //     }
+        // },
+        "SCI_SWITCH": {
+            "displayName": "SCI Switches",
+            "description": "SCI Switches (S2)",
+            "longDescription": "This LaunchPad allows for one of two sets of pins to be used for the SCI UART routed to the virtual COM port of the XDS110. \n\nBy default, GPIO43 (SCIA_RX) and GPIO42 (SCIA_TX) are routed to the virtual COM port and not available on the BoosterPack connector. Alternately, GPIO55 (SCIB_RX) and GPIO38 (SCIB_TX) can be routed to the virtual COM port. \n\nWhen UART functionality is not needed at the virtual COM port, the GPIOs can be routed to the BoosterPack connectors for BoosterPack standard functions. \n\nThe routing destination of these signal pairs are selected using the on-board switch S2. \n\n![](../../boards/.meta/images/launchxl-f280039c_sci_switch.png) \n\n SEL1 (Left) | SEL2 (Right) | GPIO42/43 | GPIO38/55 \n -|-|-|- \n 0 (down) | 0 (down) | XDS110 COM Port | BP Headers \n 0 (down) | 1 (up) | XDS110 COM Port | No Connect \n 1 (up) | 0 (down) | BP Headers | BP Headers \n 1 (up) | 1 (up) | BP Headers | XDS110 COM Port",
+            // "subComponents": {
+            //     "GPIO28/29": {
+            //         "displayName": "GPIO28/29",
+            //         "description": "Route GPIO28/29 SCI signals",
+            //         "definition"  : "/boards/components/sci_switch.json",
+            //         "longDescription": "Route GPIO28/29 SCI signals",
+            //         "connections" : {
+            //             "SCIRX": "1",  /* GPIO28 */
+            //             "SCITX": "100" /* GPIO29 */
+            //         }
+
+            //     },
+            //     "GPIO15/56": {
+            //         "displayName": "GPIO15/56",
+            //         "description": "Route GPIO15/56 SCI signals",
+            //         "definition"  : "boards/components/sci_switch.json",
+            //         "longDescription": "Route GPIO15/56 SCI signals",
+            //         "connections" : {
+            //             "SCIRX": "95", /* GPIO15 */
+            //             "SCITX": "65"  /* GPIO56 */
+            //         }
+            //     }
+            // }
+        },
+        "BOOT_SWITCH": {
+            "displayName": "Boot Switches",
+            "description": "Boot Switches (S3)",
+            "longDescription": "The F28P65X boot ROM contains bootloading software that executes every time the device is powered on or reset. Two pins, GPIO72 and GPIO84, are wired to the Boot Select switch (S3). By default, both pins are set HIGH (1) so the device will boot from Flash. \n\n GPIO72 (Left) | GPIO84 (Right) | Boot Mode \n -|-|- \n 0 (down) | 0 (down) | Boot from Parallel GPIO \n 0 (down) | 1 (up) | Boot from SCI/Wait boot \n 1 (up) | 0 (down) | Boot from CAN \n 1 (up) | 1 (up) | Boot from Flash (default)",
+            "subComponents": {
+                "SWITCH1": {
+                    "displayName": "SW1",
+                    "description": "SW1",
+                    "definition"  : "/boards/components/switch.json",
+                    "longDescription": "Boot Switch",
+                    "connections" : {
+                        "INPUT": "A11" /* GPIO72 */
+                    }
+
+                },
+                "SWITCH2": {
+                    "displayName": "SW2",
+                    "description": "SW2",
+                    "definition"  : "/boards/components/switch.json",
+                    "longDescription": "Boot Switch",
+                    "connections" : {
+                        "INPUT": "A8" /* GPIO84 */
+                    }
+                }
+            }
+        },
+        "CAN_SWITCH": {
+            "displayName": "CAN Route Switch",
+            "description": "CAN Route Switch (S4)",
+            "longDescription": "The LaunchPad can be connected to a CAN bus through J14. GPIO4 and GPIO5 are routed to the on-board TI TCAN332DR 3.3V CAN Transceiver, U15. \n\nBy setting S4 to DOWN (on), GPIO4 and GPIO5 are routed to the transceiver. If S4 is set to UP (off), the GPIOs are routed to the BoosterPack connectors (default case). \n\n![](../../boards/.meta/images/launchxl-f280039C_can_switch.png) \n\n CAN ROUTE | GPIO4/5 \n -|- \n BP (up) | BP Headers \n XCVR (down) | Transciever",
+            // "subComponents": {
+            //     "SWITCH1": {
+            //         "displayName": "SW1",
+            //         "description": "SW1",
+            //         "definition"  : "/boards/components/switch.json",
+            //         "longDescription": "CAN Route Switch",
+            //         "connections" : {
+            //             "INPUT": "75", /* GPIO4 - CANA_TX */
+			// 			"INPUT": "89" /* GPIO5 - CANA_RX */
+            //         }
+
+            //     }
+            // }
+        },
+        "QEP_SWITCH": {
+            "displayName": "QEP Select Switches",
+            "description": "QEP Select Switches (S5)",
+            "longDescription": "The LaunchPad has the ability to connect to two independent linear or rotary encoders through the F28P65X on-chip eQEP interfaces: Header J12 is connected to eQEP1 and header J13 is connected to eQEP2. By default, this connection is not active and the GPIOs are routed to the BoosterPack connectors. \n\nThe 5 V eQEP input signals from the J12 and J13 connectors are stepped down through a TI SN74LVC8T245 Level Translator (U13) to 3.3 V. The signals are then routed through TI SN74LV4053A Triple 2-Channel Analog Multiplexer/ Demultiplexer ICs (U11/U14). \n\nSwitch S5 controls the select inputs of the ICs to configure the eQEP signal destinations to be either the J12/J13 connectors or BoosterPack headers. \n\n![](../../boards/.meta/images/launchxl-f280039C_qep_switch.png) \n\n QEP1 SEL (LEFT) | QEP2 SEL (RIGHT) | QEP1 Signals (GPIO20/21/23) | QEP2 Signals (GPIO24/79/103) \n -|-|-|- \n 0 (down) | 0 (down) | J12 | J13 \n 0 (down) | 1 (up) | J12 | BP Headers \n 1 (up) | 0 (down) | BP Headers | J13 \n 1 (up) | 1 (up) | BP Headers | BP Headers",
+        },
+        "S2": {
+            "link": "BOOT_SWITCH"
+        },
+        "ETHERCAT": {
+            "displayName": "ETHERCAT",
+            "description": "ETHERCAT",
+            "longDescription": "ETHERCAT",
+            "definition": "/boards/components/ethercat.json",
+            "connections": {
+                "ECAT_I2C_SDA": "N12", /*GPIO40*/
+                "ECAT_I2C_SCL": "L9", /*GPIO30*/
+                "ECAT_TX1_DATA0": "D2", /*GPIO22*/
+                "ECAT_TX1_DATA1": "B10", /*GPIO74*/
+                "ECAT_TX1_DATA2": "C10", /*GPIO73*/
+                "ECAT_TX1_DATA3": "D1", /*GPIO19*/
+                // "ECAT_SYNC0": "", /*GPIO*/
+                // "ECAT_SYNC1": "", /*GPIO*/
+                "ECAT_MDIO_CLK": "H10", /*GPIO62*/
+                "ECAT_MDIO_DATA": "D11", /*GPIO27*/
+                "ECAT_PHY_CLK": "M13", /*GPIO48*/
+                "ECAT_RX1_CLK": "B12", /*GPIO69*/
+                "ECAT_RX1_DV": "A12", /*GPIO70*/
+                "ECAT_RX1_ERR": "B11", /*GPIO71*/
+                "ECAT_RX1_DATA0": "G13", /*GPIO63*/
+                "ECAT_RX1_DATA1": "G12", /*GPIO64*/
+                "ECAT_RX1_DATA2": "G11", /*GPIO65*/
+                "ECAT_RX1_DATA3": "G10", /*GPIO66*/
+                "ECAT_PHY_RESETn": "E9", /*GPIO76*/
+                "ECAT_LED_RUN": "H11", /*GPIO61*/
+                "ECAT_LED_ERR": "L7", /*GPIO33*/
+                // "ECAT_LED_STATE_RUN": "", /*GPIO*/
+                "ECAT_LED_LINK0_ACTIVE": "J10", /*GPIO58*/
+                "ECAT_LED_LINK1_ACTIVE": "H13", /*GPIO59*/
+                "ECAT_RX0_CLK": "D9", /*GPIO77*/
+                "ECAT_RX0_DV": "C9", /*GPIO78*/
+                "ECAT_RX0_ERR": "L10", /*GPIO26*/
+                "ECAT_RX0_DATA0": "E8", /*GPIO80*/
+                "ECAT_RX0_DATA1": "K8", /*GPIO28*/
+                "ECAT_RX0_DATA2": "L8", /*GPIO29*/
+                "ECAT_RX0_DATA3": "C8", /*GPIO83*/
+                "ECAT_TX0_ENA": "J12", /*GPIO56*/
+                "ECAT_TX0_CLK": "A7", /*GPIO85*/
+                "ECAT_TX0_DATA0": "C7", /*GPIO87*/
+                "ECAT_TX0_DATA1": "C5", /*GPIO88*/
+                "ECAT_TX0_DATA2": "D5", /*GPIO89*/
+                "ECAT_TX0_DATA3": "E5", /*GPIO90*/
+                "ECAT_TX1_ENA": "F11", /*GPIO45*/
+                "ECAT_TX1_CLK": "F10", /*GPIO44*/
+                // "ECAT_LATCH0": "", /*GPIO*/
+                // "ECAT_LATCH1": "", /*GPIO*/
+                "ECAT_PHY0_LINKSTATUS": "B7", /*GPIO86*/
+                "ECAT_PHY1_LINKSTATUS": "B13", /*GPIO68*/
+            }
+        }
+    }
+}

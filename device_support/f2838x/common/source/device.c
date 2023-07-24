@@ -94,7 +94,7 @@ void Device_init(void)
     if( ((DEVICE_SETCLOCK_CFG & SYSCTL_OSCSRC_M) == SYSCTL_OSCSRC_XTAL) ||
         ((DEVICE_SETCLOCK_CFG & SYSCTL_OSCSRC_M) == SYSCTL_OSCSRC_XTAL_SE))
     {
-        if(!Device_verifyXTAL(DEVICE_OSCSRC_FREQ / 1000000))
+        while(!Device_verifyXTAL(DEVICE_OSCSRC_FREQ / 1000000))
         {
             //
             // The actual XTAL frequency does not match DEVICE_OSCSRC_FREQ!!
@@ -112,8 +112,8 @@ void Device_init(void)
             // documentation on steps to reconfigure the controlCARD from 20MHz to
             // 25MHz.
             //
-            ESTOP0;
-            while(1);
+            DEVICE_DELAY_US(1000);  // Note: oscillator can take up to
+                                    // 10ms to start up per data sheet 
         }
     }
 

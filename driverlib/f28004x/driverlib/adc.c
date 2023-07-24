@@ -66,6 +66,7 @@
 //
 #define TI_OTP_DEV_PRG_KEY                      (HWREGH(0x70280UL))
 
+
 //*****************************************************************************
 //
 // ADC_setVREF
@@ -115,6 +116,8 @@ ADC_setVREF(uint32_t base, ADC_ReferenceMode refMode,
         HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_ANAREFCTL) &=
             ~(ASYSCTL_ANAREFCTL_ANAREFASEL << moduleShiftVal);
     }
+
+
     else
     {
         HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_ANAREFCTL) |=
@@ -133,6 +136,7 @@ ADC_setVREF(uint32_t base, ADC_ReferenceMode refMode,
     {
         HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_ANAREFCTL) |=
             ASYSCTL_ANAREFCTL_ANAREFA2P5SEL << moduleShiftVal;
+
     }
     EDIS;
 

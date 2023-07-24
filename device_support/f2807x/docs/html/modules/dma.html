@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v4.02.00.00
+                v5.00.00.00
               </div>
             
           
@@ -1059,6 +1059,26 @@ and to set up and handle interrupts.</p>
 </dd></dl>
 
 <dl class="cpp function">
+<dt id="_CPPv417DMA_configChannel8uint32_tPK16DMA_ConfigParams">
+<span id="_CPPv317DMA_configChannel8uint32_tPK16DMA_ConfigParams"></span><span id="_CPPv217DMA_configChannel8uint32_tPK16DMA_ConfigParams"></span><span id="DMA_configChannel__uint32_t.DMA_ConfigParamsCP"></span><span class="target" id="group__dma__api_1gace97e0ecaa35c4ba7e8978f24b0b32a6"></span>void <code class="sig-name descname">DMA_configChannel</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <em class="property">const</em> <a class="reference internal" href="#_CPPv416DMA_ConfigParams" title="DMA_ConfigParams">DMA_ConfigParams</a> *<em>transfParams</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417DMA_configChannel8uint32_tPK16DMA_ConfigParams" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Setup DMA to transfer data on the specified channel.</p>
+<p><p>This function configures the DMA transfer on the specified channel.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is Base address of the DMA channel control register </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">*transfParams</span></code>: configuration parameter Refer struct <a class="reference internal" href="#struct_d_m_a___config_params"><span class="std std-ref">DMA_ConfigParams</span></a></p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt id="_CPPv419DMA_configAddresses8uint32_tPKvPKv">
 <span id="_CPPv319DMA_configAddresses8uint32_tPKvPKv"></span><span id="_CPPv219DMA_configAddresses8uint32_tPKvPKv"></span><span id="DMA_configAddresses__uint32_t.voidCP.voidCP"></span><span class="target" id="group__dma__api_1ga6ce0b2e96a07ac5ece62f8dff7a61ad2"></span>void <code class="sig-name descname">DMA_configAddresses</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <em class="property">const</em> void *<em>destAddr</em>, <em class="property">const</em> void *<em>srcAddr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419DMA_configAddresses8uint32_tPKvPKv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Configures the DMA channel</p>
@@ -1187,6 +1207,12 @@ and to set up and handle interrupts.</p>
 </dd></dl>
 
 </div>
+<dl class="cpp struct">
+<dt id="_CPPv416DMA_ConfigParams">
+<span id="_CPPv316DMA_ConfigParams"></span><span id="_CPPv216DMA_ConfigParams"></span><span id="DMA_ConfigParams"></span><span class="target" id="struct_d_m_a___config_params"></span><em class="property">struct </em><code class="sig-name descname">DMA_ConfigParams</code><a class="headerlink" href="#_CPPv416DMA_ConfigParams" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;dma.h&gt;</em><p>Values that can be passed to <a class="reference internal" href="#group__dma__api_1gace97e0ecaa35c4ba7e8978f24b0b32a6"><span class="std std-ref">DMA_configChannel()</span></a> as the configure parameter. </p>
+</dd></dl>
+
 </dd></dl>
 
 <p>The DMA API includes functions that configure the module as a whole and
@@ -1228,8 +1254,10 @@ operation of the channel DMA_stopChannel() may be used.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
-      <span class="lastupdated">Last updated on Oct 11, 2022.
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+      <span class="lastupdated">Last updated on Jul 01, 2023.
       </span></p>
   </div>
 
@@ -1249,7 +1277,7 @@ operation of the channel DMA_stopChannel() may be used.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v4.02.00.00',
+            VERSION:'v5.00.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

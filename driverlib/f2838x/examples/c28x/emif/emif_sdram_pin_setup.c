@@ -57,8 +57,8 @@
 // Function Prototypes
 //
 void setupEMIF1PinmuxSync16Bit(void);
-void setupEMIF2PinmuxSync16Bit(void);
 void setupEMIF1PinmuxSync32Bit(void);
+void setupEMIF2PinmuxSync16Bit(void);
 
 #endif
 

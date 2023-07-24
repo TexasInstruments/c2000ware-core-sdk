@@ -155,7 +155,7 @@ var config = [
     },
     {
         name: "hrpwm_syncSource",
-        displayName : "PWMSYNC Source Select",
+        displayName : "EPWMxSYNCPER Source Select",
         description : 'Selects the source of the EPWMSYNCPER signal that goes to the CMPSS and GPDAC',
         hidden      : false,
         default     : device_driverlib_hrpwm.HRPWM_SyncPulseSource[0].name,

@@ -8,6 +8,12 @@ let device_driverlib_peripheral =
 let device_driverlib_memmap =
     system.getScript("/driverlib/device_driverlib_peripherals/" +
         Common.getDeviceName().toLowerCase() + "_memmap.js");
+let device_driverlib_sysctl_registers =
+    system.getScript("/driverlib/device_driverlib_peripherals/" +
+        Common.getDeviceName().toLowerCase() + "_sysctl_registers.js");
+let device_driverlib_sysctl =
+    system.getScript("/driverlib/device_driverlib_peripherals/" +
+        Common.getDeviceName().toLowerCase() + "_sysctl.js");
 
 /* Intro splash on GUI */
 let longDescription = ``;
@@ -18,6 +24,8 @@ longDescription += "*   [Device TRM](" + Common.getDeviceTRM() + ") \n -  For GS
 let staticConfig = []
 let LSRAMOwnerConfig = []
 let GSRAMOwnerConfig = []
+let DRAMOwnerConfig = []
+let FLASHOwnerConfig = []
 let AccessConfig = []
 let InitRAM = []
 let LockConfig = []
@@ -33,18 +41,22 @@ if(device_driverlib_peripheral.MemCfg_LSRAMControllerSel)
             {
                 if ((element.name.includes("MEMCFG_SECT_LS")) && (element.name != "MEMCFG_SECT_LSX_ALL"))
                 {
-                    LSRAMOwnerConfig.push(
-                        {
-                            name: "config_" + element.name,
-                            displayName : element.displayName,
-                            options : [
-                                {name: "CPU_memory", displayName: "CPU dedicated memory"},
-                                {name: "CLA_data",   displayName: "CPU/CLA shared data memory"},
-                                {name: "CLA_prog",   displayName: "CLA program memory"},
-                            ],
-                            default : "CPU_memory"
+                    if (Common.isContextCPU1() || !["F28P65x"].includes(system.deviceData.deviceId)){
+                        var lsOptions = []
+                        lsOptions.push({name: "CPU_memory", displayName: "CPU dedicated memory"})
+                        if (!["F28P65x"].includes(system.deviceData.deviceId) || !(element.name.includes("LS8") || element.name.includes("LS9"))){
+                            lsOptions.push({name: "CLA_data",   displayName: "CPU/CLA shared data memory"})
                         }
-                    )
+                        lsOptions.push({name: "CLA_prog",   displayName: "CLA program memory"})
+                        LSRAMOwnerConfig.push(
+                            {
+                                name: "config_" + element.name,
+                                displayName : element.displayName,
+                                options : lsOptions,
+                                default : "CPU_memory"
+                            }
+                        )
+                    }
                 }
             }
         );
@@ -74,8 +86,55 @@ if (Common.isContextCPU1())
     }
 }
 
+if (device_driverlib_sysctl.SysCtl_CPUSel){
+var SysctlOptions =  [];
+device_driverlib_peripheral.MemCfg_GSRAMControllerSel.
+forEach((element, index) =>
+    {
+        let thisName = device_driverlib_sysctl.SysCtl_CPUSel[index].name;
+        let thisDisplayName = device_driverlib_peripheral.MemCfg_GSRAMControllerSel[index].displayName;
+        SysctlOptions.push({ name: thisName, displayName: thisDisplayName})
+    });
+}
+
+/* Section : DRAM Configuration */
+if (Common.isContextCPU1() && ["F28P65x"].includes(system.deviceData.deviceId))
+{
+    device_driverlib_sysctl.SysCtl_SharedDxRAM.
+        forEach((element, index) =>
+            {
+                    DRAMOwnerConfig.push(
+                        {
+                            name       : "config_" + element.name,
+                            displayName: element.displayName,
+                            options    : SysctlOptions,
+                            default    : SysctlOptions[0].name
+                        }
+                    )
+            }
+        );
+}
+
+/* Section : FLASH Configuration */
+if (Common.isContextCPU1() && ["F28P65x"].includes(system.deviceData.deviceId))
+{
+    device_driverlib_sysctl.SysCtl_FlashBank.
+        forEach((element, index) =>
+            {
+                FLASHOwnerConfig.push(
+                    {
+                        name       : "config_" + element.name,
+                        displayName: element.name,
+                        options    : SysctlOptions,
+                        default    : SysctlOptions[0].name
+                    }
+                )
+            }
+        );
+}
+
 /* Section : ROM config */
-if(["F2838x", "F2837xD", "F2837xS", "F2807x"].includes(system.deviceData.deviceId))
+if(["F2838x", "F2837xD", "F2837xS", "F2807x","F28P65x"].includes(system.deviceData.deviceId))
 {
     ROMConfig = [
         {
@@ -83,14 +142,17 @@ if(["F2838x", "F2837xD", "F2837xS", "F2807x"].includes(system.deviceData.deviceI
             displayName: "Enable ROM wait state",
             description: "If enabled, CPU accesses to ROM are 1-wait",
             default    : true
-        },
-        {
-            name       : "rom_prefetch",
-            displayName: "Enable ROM prefetch",
-            description: "Enable prefetch for secure ROM and boot ROM",
-            default    : false
-        },
-    ]
+        }]
+        if(!["F28P65x"].includes(system.deviceData.deviceId)){
+            ROMConfig.push(
+            {
+                name       : "rom_prefetch",
+                displayName: "Enable ROM prefetch",
+                description: "Enable prefetch for secure ROM and boot ROM",
+                default    : false
+            })
+        }
+    var yesROM = 1;
 }
 
 /* Section : Access Protection  */
@@ -98,7 +160,7 @@ AccProt.AcessProtectionRAMs[system.deviceData.deviceId.toLowerCase()].
     forEach((element, index) =>
         {
             var ramMacro = "MEMCFG_SECT_" + element.name
-            if (ramMacro[12]!="G")    // Global ram has own if statement so description is only on GSRAM
+            if (ramMacro[12]!="G" && ((Common.isContextCPU1() || (ramMacro[12]!="D" && ramMacro[12]!="L")) || !["F28P65x"].includes(system.deviceData.deviceId)))    // Global ram has own if statement so description is only on GSRAM
                {
                     if(device_driverlib_peripheral.MEMCFG_SECT.map(a=>a.name).includes(ramMacro) && (Common.isContextCPU1() || !ramMacro.includes("TOCM")))
                     {
@@ -192,7 +254,7 @@ device_driverlib_peripheral.MEMCFG_SECT.
                         )
                     }
                 // only GS/LS/D/M/MSG RAMs. check for MEMCFG_SECT_M covers MSGRAM as well
-                if ((element.name.includes("MEMCFG_SECT_LS") || element.name.includes("MEMCFG_SECT_D")||
+                if ((((element.name.includes("MEMCFG_SECT_D") || element.name.includes("MEMCFG_SECT_LS")) && (Common.isContextCPU1() || !["F28P65x"].includes(system.deviceData.deviceId))) ||
                     element.name.includes("MEMCFG_SECT_M")) && (Common.isContextCPU1() || !element.name.includes("CM"))) 
                     {
                         InitRAM.push(
@@ -214,8 +276,10 @@ forEach((element, index) =>
     {
         if (!element.name.includes("_ALL"))
         {
-            if((element.name.includes("MEMCFG_SECT_M")  || element.name.includes("MEMCFG_SECT_D") ||
-               element.name.includes("MEMCFG_SECT_LS")) && (Common.isContextCPU1() || !element.name.includes("CM")))
+            if((element.name.includes("MEMCFG_SECT_M") ||
+                ((element.name.includes("MEMCFG_SECT_LS") || element.name.includes("MEMCFG_SECT_D")) &&
+                (!["F28P65x"].includes(system.deviceData.deviceId) || Common.isContextCPU1()))) &&
+                (Common.isContextCPU1() || !element.name.includes("CM")))
             {
                 LockConfig.push(
                 {
@@ -324,8 +388,26 @@ if (Common.isContextCPU1())
     )
 }
 
+if (Common.isContextCPU1() && ["F28P65x"].includes(system.deviceData.deviceId))
+{
+    staticConfig.push(
+        {
+            name           : "DRAM_Config",
+            displayName    : "DRAM Configuration",
+            longDescription: "\n - For DRAM blocks owned by CPU2: the code for Access Protection and Lock Configs will be generated on CPU2??????",
+            config         : DRAMOwnerConfig
+        },
+        {
+            name           : "FLASH_Config",
+            displayName    : "FLASH Configuration",
+            longDescription: "\n - For FLASH banks owned by CPU2: the code for Access Protection and Lock Configs will be generated on CPU2??????",
+            config         : FLASHOwnerConfig
+        }
+    )
+}
 
-if(["F2838x", "F2837xD", "F2837xS", "F2807x"].includes(system.deviceData.deviceId))
+//["F2838x", "F2837xD", "F2837xS", "F2807x","F28P65x"].includes(system.deviceData.deviceId)
+if(yesROM)
 {
     staticConfig.push(
         {
@@ -373,7 +455,7 @@ staticConfig.push(
 /* For SYS_ERR interrupt shared across modules */
 var sharedModuleInstances = undefined
 
-if(["F2838x", "F280013x", "F280015x"].includes(system.deviceData.deviceId))
+if(["F2838x", "F280013x", "F280015x", "F28P65x"].includes(system.deviceData.deviceId))
 {
     sharedModuleInstances = function (inst) {
         if (inst.registerInterrupts)
@@ -412,6 +494,47 @@ function onValidate(inst, validation)
         }
     }
 
+    if (Common.isMultiCoreSysConfig() || (Common.isMultiCoreDevice() && Common.isContextCPU1()))
+    {
+        var contextNames = Common.getContextNames();
+        var context1 = null;
+        var context2 = null;
+        for (var cntx of contextNames) 
+        {
+            if (cntx.slice(-1) == "1")       // Look for CPU1 Context 
+            {
+            context1 = cntx;
+            }	
+
+            if (cntx.slice(-1) == "2")       // Look for CPU2 Context 
+            {
+            context2 = cntx;
+            }	
+        }
+        var CPU1_mod = Common.getModuleForCore("/driverlib/memcfg.js", context1);   // get module from core 1
+        var CPU2_mod = Common.getModuleForCore("/driverlib/memcfg.js", context2);   // get module from core 1
+        if (CPU1_mod != null)
+        {
+            var stat_1 = CPU1_mod.$static;
+        }
+
+        if (Common.isContextCPU1())
+        {
+            if (!CPU2_mod){
+                validation.logWarning("Error checking and code generation are limited for single core SysConfig on a multicore device. Add memcfg module on CPU2 for full functionality.", inst, "init_MEMCFG_SECT_M0");
+            }
+        }
+        if (Common.isContextCPU2())
+        {
+            if (!CPU1_mod){
+                validation.logWarning("Error checking and code generation are limited for single core SysConfig on a multicore device. Add memcfg module on CPU1 for full functionality.", inst, "init_MEMCFG_SECT_M0");
+            }
+        }
+    }
+    else if (Common.isContextCPU2()){
+
+        validation.logWarning("Error checking and code generation are limited for single core SysConfig on a multicore device.", inst, "init_MEMCFG_SECT_M0");
+    }
 
 }
 
@@ -427,7 +550,7 @@ var memcfgModule = {
         moduleInstances: (inst) => {
             if (inst.registerInterrupts)
             {
-                if(!["F2838x", "F280013x", "F280015x"].includes(system.deviceData.deviceId))
+                if(!["F2838x", "F280013x", "F280015x", "F28P65x"].includes(system.deviceData.deviceId))
                 {
                     return [
                         {

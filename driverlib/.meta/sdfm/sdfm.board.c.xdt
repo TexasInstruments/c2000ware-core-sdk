@@ -175,9 +175,9 @@ void `instance.$name`_init(void)
 		%   if(instance["Ch1_DataFilterEnable"] || instance["Ch2_DataFilterEnable"] || instance["Ch3_DataFilterEnable"] || instance["Ch4_DataFilterEnable"])
 		%   {
 	//
-	// Master Filter Enable
+	// Main Filter Enable
 	//
-    SDFM_enableMasterFilter(`base`);
+    SDFM_enableMainFilter(`base`);
 		%	}
 		%
 		%//////////////////
@@ -314,9 +314,9 @@ void `instance.$name`_init(void)
 		% 
 	DEVICE_DELAY_US(`delaytime`U);
 	//
-	// Master Interrupt Enable
+	// Main Interrupt Enable
 	//
-	SDFM_enableMasterInterrupt(`base`);
+	SDFM_enableMainInterrupt(`base`);
 	    % 
 		%} //if(instance["useInterrupts"])
 } 	

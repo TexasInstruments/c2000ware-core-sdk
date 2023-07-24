@@ -1,0 +1,71 @@
+<projectSpec>
+  <project
+        name="empty_c28x_dual_sysconfig_multi"
+        configurations="
+            FLASH,
+            RAM,
+        "
+        device="TMS320F28P650DK9"
+        outputType="system"
+        cgtVersion="22.6.0.LTS"
+        >
+        <pathVariable name="C2000WARE_ROOT" path="../../../../../../" scope="project" />
+        <file path="../system.xml" action="copy" openOnCreation="true"/>
+        <configuration name="FLASH"
+        ></configuration>
+        <configuration name="RAM"
+        ></configuration>
+  </project>
+  <project
+        name="empty_c28x_dual_sysconfig_cpu1"
+        device="TMS320F28P650DK9"
+        cgtVersion="22.6.0.LTS"
+        outputFormat="ELF"
+        launchWizard="False"
+        linkerCommandFile=""
+	enableSysConfigTool="true"
+	sysConfigBuildOptions="--product ${C2000WARE_ROOT}/.metadata/sdk.json --device F28P65x --context CPU1"
+        >
+    <configuration name="FLASH" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=_FLASH --define=CPU1 -v28 -ml -mt --cla_support=cla1 --float_support=fpu32 --tmu_support=tmu1 --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--entry_point code_start --stack_size=0x100" />
+    <configuration name="RAM" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=CPU1 -v28 -ml -mt --cla_support=cla1 --float_support=fpu32 --tmu_support=tmu1 --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--entry_point code_start --stack_size=0x100" />                
+    <pathVariable name="C2000WARE_ROOT" path="../../../../../../" scope="project" />
+    <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../../driverlib" scope="project" />        
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/include/driverlib.h" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/include/device.h" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/source/device.c" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/targetConfigs/TMS320F28P650DK9.ccxml" targetDirectory="targetConfigs" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/cmd/28p65x_generic_flash_lnk_cpu1.cmd" targetDirectory="" applicableConfigurations="FLASH" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/cmd/28p65x_generic_ram_lnk_cpu1.cmd" targetDirectory="" applicableConfigurations="RAM" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/source/F28P65x_CodeStartBranch.asm" targetDirectory="device" />
+    <file action="link" path="../../../../driverlib/ccs/Debug/driverlib.lib" targetDirectory="" />
+    <file action="copy" path="../../../../driverlib/" targetDirectory="device" excludeFromBuild="True" />
+    <file action="copy" path="../empty_c28x_dual_sysconfig_cpu1.c" targetDirectory="" />
+    <file action="copy" path="../empty_c28x_dual_sysconfig_cpu1.syscfg" targetDirectory="" />
+  </project>
+  <project
+        name="empty_c28x_dual_sysconfig_cpu2"
+        device="TMS320F28P650DK9"
+        cgtVersion="22.6.0.LTS"
+        outputFormat="ELF"
+        launchWizard="False"
+        linkerCommandFile=""
+	enableSysConfigTool="true"
+	sysConfigBuildOptions="--product ${C2000WARE_ROOT}/.metadata/sdk.json --device F2838x --context CPU2"
+        >
+    <configuration name="FLASH" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=_FLASH --define=CPU2 -v28 -ml -mt --cla_support=cla1 --float_support=fpu32 --tmu_support=tmu1  --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--entry_point code_start --stack_size=0x100" />
+    <configuration name="RAM" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=CPU2 -v28 -ml -mt --cla_support=cla1 --float_support=fpu32 --tmu_support=tmu1 --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--entry_point code_start --stack_size=0x100" />                  
+    <pathVariable name="C2000WARE_ROOT" path="../../../../../../" scope="project" />
+    <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../../driverlib" scope="project" />        
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/include/driverlib.h" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/include/device.h" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/source/device.c" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/targetConfigs/TMS320F28P650DK9.ccxml" targetDirectory="targetConfigs" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/cmd/28p65x_generic_flash_lnk_cpu2.cmd" targetDirectory="" applicableConfigurations="FLASH" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/cmd/28p65x_generic_ram_lnk_cpu2.cmd" targetDirectory="" applicableConfigurations="RAM" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/source/F28P65x_CodeStartBranch.asm" targetDirectory="device" />
+    <file action="link" path="../../../../driverlib/ccs/Debug/driverlib.lib" targetDirectory="" />
+    <file action="copy" path="../../../../driverlib/" targetDirectory="device" excludeFromBuild="True" />
+    <file action="copy" path="../empty_c28x_dual_sysconfig_cpu2.c" targetDirectory="" />
+    <file action="copy" path="../empty_c28x_dual_sysconfig_cpu2.syscfg" targetDirectory="" />
+  </project>
+</projectSpec>

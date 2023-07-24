@@ -18,6 +18,7 @@ var numberOfInstance = {
     "F2837xS"   : 8,
     "F2837xD"   : 8,
     "F28P65x"   : 11,
+    "F28P55x"   : 4
 }
 
 var clkDivs = [
@@ -57,7 +58,7 @@ for (var instanceIndex = 1; instanceIndex <= deviceNumberOfInstances; instanceIn
     );
 }
 
-if (["F28004x","F28002x","F28003x","F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName())){
+if (["F28004x","F28002x","F28003x","F28P55x","F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName())){
     var defaultCMPSSPinInfos = Pinmux.findAllAnalogPin(Pinmux.getDeviceADCName(ComparatorInputs.CMPSS_comparatorInputSignals[Common.getDeviceName()]["CMPSS1_BASE"][0].displayName.split("/")[0]));
 
     var defaultCMPSSNegPinInfos = Pinmux.findAllAnalogPin(Pinmux.getDeviceADCName(ComparatorInputs.CMPSS_comparatorNegInputSignals[Common.getDeviceName()]["CMPSS1_BASE"][1].displayName.split("/")[0]));
@@ -67,7 +68,6 @@ function calculateDevicePinNameHigh(inst,ui){
     if (["F28P65x"].includes(Common.getDeviceName())){
         if(((inst.cmpssBase == "CMPSS9_BASE") || (inst.cmpssBase == "CMPSS10_BASE") || (inst.cmpssBase == "CMPSS11_BASE")) && (inst.asysCMPHPMXSELValue == 3))
         {
-            console.log("Reached")
             var tempPinInfoDesc = "No Device Pin Found"
             return tempPinInfoDesc
         }
@@ -187,7 +187,7 @@ var asysNegSignalOptions = []
 if (["F28002x","F28004x", "F280013x", "F280015x"].includes(Common.getDeviceName())){
     numberOfPosInputSignals = 5
 }
-else if (["F28003x"].includes(Common.getDeviceName())){
+else if (["F28003x","F28P55x"].includes(Common.getDeviceName())){
     numberOfPosInputSignals = 6
 }
 else if (["F28P65x"].includes(Common.getDeviceName())){
@@ -628,7 +628,7 @@ else
     ])
 }
 
-if (["F28002x","F28003x","F280013x","F280015x","F28004x", "F28P65x"].includes(Common.getDeviceName())){
+if (["F28002x","F28003x","F28P55x","F280013x","F280015x","F28004x", "F28P65x"].includes(Common.getDeviceName())){
     highConfig = highConfig.concat([
         {
             name: "GROUP_CMPSS_MUX_HIGH",
@@ -957,7 +957,7 @@ if (["F280015x", "F28P65x"].includes(Common.getDeviceName())){
     ])
 }
 
-if (["F28002x","F28003x","F280013x","F280015x","F28004x", "F28P65x"].includes(Common.getDeviceName())){
+if (["F28002x","F28003x","F28P55x","F280013x","F280015x","F28004x", "F28P65x"].includes(Common.getDeviceName())){
     lowConfig = lowConfig.concat([
         {
             name: "GROUP_CMPSS_MUX_LOW",
@@ -1046,7 +1046,7 @@ let config = [
 var cmpss_dac_config = [
     {
         name        : "dacValLoad",
-        displayName : "DAC value load",
+        displayName : "High DAC value load",
         description : 'When is DAC value loaded from shadow register',
         hidden      : false,
         default     : "CMPSS_DACVAL_SYSCLK",
@@ -1060,7 +1060,7 @@ if (!["F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName())){
     cmpss_dac_config.push(
         {
             name        : "dacRefVoltage",
-            displayName : "DAC reference voltage",
+            displayName : "High DAC reference voltage",
             description : 'Specify DAC reference voltage',
             hidden      : false,
             default     : "CMPSS_DACREF_VDDA",
@@ -1074,7 +1074,7 @@ if (!["F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName())){
 cmpss_dac_config.push(
     {
         name        : "dacValSource",
-        displayName : "DAC value source",
+        displayName : "High DAC value source",
         description : 'Specify DAC value source',
         hidden      : false,
         default     : "CMPSS_DACSRC_SHDW",
@@ -1095,6 +1095,33 @@ config = config.concat([
         config: cmpss_dac_config
     },
 ]);
+if (["F280015x", "F28P65x"].includes(Common.getDeviceName())){
+    // configDACLow
+    var cmpss_dac_lowConfig = [
+        {
+            name        : "lowDacValSource",
+            displayName : "Low DAC value source",
+            description : 'Specify Low DAC value source',
+            hidden      : false,
+            default     : "CMPSS_DACSRC_SHDW",
+            options     : [
+                {name: "CMPSS_DACSRC_SHDW", displayName: "DAC value updated from shadow register"},
+                {name: "CMPSS_DACSRC_RAMP", displayName: "DAC value is updated from the ramp register"},
+            ],
+        },
+    ]
+    config = config.concat([
+        // DAC Group
+        {
+            name: "GROUP_CMP_DAC",
+            displayName: "Low DAC Configuration",
+            description: "",
+            longDescription: "",
+            collapsed: false,
+            config: cmpss_dac_lowConfig
+        },
+    ]);
+}
 if (["F28P65x"].includes(Common.getDeviceName())){
     // configDE
     var cmpss_de_config = [
@@ -1124,8 +1151,8 @@ if (["F28P65x"].includes(Common.getDeviceName())){
             displayName : "Select Input for Diode Emulation",
             description : 'Selects the Diode Emulation Active signal from the ePWM.',
             hidden      : false,
-            default     : device_driverlib_peripheral.CMPSS_DEACTIVESEL[0].name, //FIXME
-            options     : device_driverlib_peripheral.CMPSS_DEACTIVESEL
+            default     : device_driverlib_peripheral.CMPSS_DEActiveSelect[0].name,
+            options     : device_driverlib_peripheral.CMPSS_DEActiveSelect
         },
     ]
 
@@ -1159,7 +1186,7 @@ config = config.concat([
 ]);
 
 
-if (["F28002x","F28003x","F280013x","F280015x","F28004x","F2838x", "F28P65x"].includes(Common.getDeviceName())){
+if (["F28002x","F28003x","F28P55x","F280013x","F280015x","F28004x","F2838x", "F28P65x"].includes(Common.getDeviceName())){
     config = config.concat([
         // configBlanking
         {
@@ -1210,6 +1237,24 @@ function onChangeLowCompDAC(inst, ui)
 }
 
 function onValidate(inst, validation) {
+    //
+    // Check Multicontext
+    //
+    if (Common.isContextCPU2()) {
+        if (Common.isMultiCoreSysConfig()) {
+            //
+            // Check if the analog module is added on CPU1 if the current context is CPU2
+            //
+            if (Common.isModuleOnOtherContext("/driverlib/analog.js") == false) {
+                validation.logError(
+                    "The ANALOG PinMux module needs to be added on CPU1 when a CMPSS instance is added on CPU2",inst,"cmpssBase");
+            }
+        } 
+        else {
+            validation.logWarning(
+                "The ANALOG PinMux module needs to be added on CPU1 when a CMPSS instance is added on CPU2",inst,"cmpssBase");
+        } 
+    }
     var usedCMPSSInsts = [];
     for (var instance_index in inst.$module.$instances)
     {
@@ -1400,7 +1445,7 @@ function onValidate(inst, validation) {
         }
     }
 
-    if (["F28002x","F28003x","F280013x","F280015x","F28004x","F2838x", "F28P65x"].includes(Common.getDeviceName())){
+    if (["F28002x","F28003x","F28P55x","F280013x","F280015x","F28004x","F2838x", "F28P65x"].includes(Common.getDeviceName())){
         if (inst.configBlanking < 1 || inst.configBlanking > 16)
         {
             validation.logError(
@@ -1417,7 +1462,7 @@ function onValidate(inst, validation) {
                 inst, "samplePrescaleHigh");
         }
     }
-    else if (["F28003x","F280013x","F280015x"].includes(Common.getDeviceName()))
+    else if (["F28003x","F28P55x","F280013x","F280015x"].includes(Common.getDeviceName()))
     {
         if (inst.samplePrescaleHigh < 0 || inst.samplePrescaleHigh > 65535)
         {
@@ -1476,7 +1521,7 @@ function onValidate(inst, validation) {
                 inst, "samplePrescaleLow");
         }
     }
-    else if (["F28003x","F280013x","F280015x"].includes(Common.getDeviceName()))
+    else if (["F28003x","F28P55x","F280013x","F280015x"].includes(Common.getDeviceName()))
     {
         if (inst.samplePrescaleLow < 0 || inst.samplePrescaleLow > 65535)
         {
@@ -1534,13 +1579,14 @@ function onValidate(inst, validation) {
 
     var selectedInterfaces = null;
     var allInterfaces = null;
-    if (Common.peripheralCount("ANALOG") > 0)
-    {
-        selectedInterfaces = Pinmux.getPeripheralUseCaseInterfaces(inst.analog, "ANALOG", inst.analog.useCase);
-        allInterfaces = Pinmux.getPeripheralUseCaseInterfaces(inst.analog, "ANALOG", "ALL");
+    if (Common.isContextCPU1()) {
+        if (Common.peripheralCount("ANALOG") > 0)
+        {
+            selectedInterfaces = Pinmux.getPeripheralUseCaseInterfaces(inst.analog, "ANALOG", inst.analog.useCase);
+            allInterfaces = Pinmux.getPeripheralUseCaseInterfaces(inst.analog, "ANALOG", "ALL");
+        }
     }
-
-    if (["F28002x","F28003x","F280013x","F280015x","F28004x", "F28P65x"].includes(Common.getDeviceName())){
+    if (["F28002x","F28003x","F28P55x","F280013x","F280015x","F28004x", "F28P65x"].includes(Common.getDeviceName())){
         if (inst.asysCMPHPMXSELPinInfo == Pinmux.NO_DEVICE_PIN_FOUND)
         {
             validation.logError(
@@ -1566,46 +1612,28 @@ function onValidate(inst, validation) {
             //
             // Check for Pin Usage in analog
             //
-            if (Common.peripheralCount("ANALOG") > 0)
-            {
-
-                var configurationStatus = [];
-                var finalFail = true;
-
-                for (var apinfo of tempPinInfoH){
-                    var pinSelected = apinfo.PinDesignSignalName;
-
-                    configurationStatus.push(
-                        {
-                            fail: (!selectedInterfaces.includes(pinSelected) && allInterfaces.includes(pinSelected)),
-                            pinSelected: pinSelected
-                        }
-                    )
-                }
-                for (var cstat of configurationStatus){finalFail &= cstat.fail}
-
-
-                if (allPinsMustBeConfigured)
+            if (Common.isContextCPU1()) {
+                if (Common.peripheralCount("ANALOG") > 0)
                 {
-                    for (var cstat of configurationStatus)
-                    {
-                        if (cstat.fail)
-                        {
-                            validation.logError(
-                                "The pin " + cstat.pinSelected + " is not selected in the ANALOG PinMux module." +
-                                " Add this pin to the 'Pins Used' or change the 'Use Case'",
-                                inst, "asysCMPHPMXSELValue");
-                        }
+
+                    var configurationStatus = [];
+                    var finalFail = true;
+
+                    for (var apinfo of tempPinInfoH){
+                        var pinSelected = apinfo.PinDesignSignalName;
+
+                        configurationStatus.push(
+                            {
+                                fail: (!selectedInterfaces.includes(pinSelected) && allInterfaces.includes(pinSelected)),
+                                pinSelected: pinSelected
+                            }
+                        )
                     }
-                }
-                else
-                {
-                    if (finalFail)
-                    {
-                        validation.logError(
-                            "At least one of the following ANALOG PinMux pins must be selected.",
-                            inst,"asysCMPHPMXSELValue");
+                    for (var cstat of configurationStatus){finalFail &= cstat.fail}
 
+
+                    if (allPinsMustBeConfigured)
+                    {
                         for (var cstat of configurationStatus)
                         {
                             if (cstat.fail)
@@ -1614,6 +1642,26 @@ function onValidate(inst, validation) {
                                     "The pin " + cstat.pinSelected + " is not selected in the ANALOG PinMux module." +
                                     " Add this pin to the 'Pins Used' or change the 'Use Case'",
                                     inst, "asysCMPHPMXSELValue");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (finalFail)
+                        {
+                            validation.logError(
+                                "At least one of the following ANALOG PinMux pins must be selected.",
+                                inst,"asysCMPHPMXSELValue");
+
+                            for (var cstat of configurationStatus)
+                            {
+                                if (cstat.fail)
+                                {
+                                    validation.logError(
+                                        "The pin " + cstat.pinSelected + " is not selected in the ANALOG PinMux module." +
+                                        " Add this pin to the 'Pins Used' or change the 'Use Case'",
+                                        inst, "asysCMPHPMXSELValue");
+                                }
                             }
                         }
                     }
@@ -1648,45 +1696,27 @@ function onValidate(inst, validation) {
             //
             if(inst.highCompNegative != "CMPSS_INSRC_DAC")
             {
-                if (Common.peripheralCount("ANALOG") > 0)
-                {
-    
-                    var configurationStatus = [];
-                    var finalFail = true;
-    
-                    for (var apinfo of tempPinInfoNH){
-                        var pinSelected = apinfo.PinDesignSignalName;
-    
-                        configurationStatus.push(
-                            {
-                                fail: (!selectedInterfaces.includes(pinSelected) && allInterfaces.includes(pinSelected)),
-                                pinSelected: pinSelected
-                            }
-                        )
-                    }
-                    for (var cstat of configurationStatus){finalFail &= cstat.fail}
-    
-                    if (allPinsMustBeConfigured)
+                if (Common.isContextCPU1()) {
+                    if (Common.peripheralCount("ANALOG") > 0)
                     {
-                        for (var cstat of configurationStatus)
-                        {
-                            if (cstat.fail)
-                            {
-                                validation.logError(
-                                    "The pin " + cstat.pinSelected + " is not selected in the ANALOG PinMux module." +
-                                    " Add this pin to the 'Pins Used' or change the 'Use Case'",
-                                    inst, "asysCMPHNMXSELValue");
-                            }
+        
+                        var configurationStatus = [];
+                        var finalFail = true;
+        
+                        for (var apinfo of tempPinInfoNH){
+                            var pinSelected = apinfo.PinDesignSignalName;
+        
+                            configurationStatus.push(
+                                {
+                                    fail: (!selectedInterfaces.includes(pinSelected) && allInterfaces.includes(pinSelected)),
+                                    pinSelected: pinSelected
+                                }
+                            )
                         }
-                    }
-                    else
-                    {
-                        if (finalFail)
+                        for (var cstat of configurationStatus){finalFail &= cstat.fail}
+        
+                        if (allPinsMustBeConfigured)
                         {
-                            validation.logError(
-                                "At least one of the following ANALOG PinMux pins must be selected.",
-                                inst,"asysCMPHNMXSELValue");
-    
                             for (var cstat of configurationStatus)
                             {
                                 if (cstat.fail)
@@ -1695,6 +1725,26 @@ function onValidate(inst, validation) {
                                         "The pin " + cstat.pinSelected + " is not selected in the ANALOG PinMux module." +
                                         " Add this pin to the 'Pins Used' or change the 'Use Case'",
                                         inst, "asysCMPHNMXSELValue");
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (finalFail)
+                            {
+                                validation.logError(
+                                    "At least one of the following ANALOG PinMux pins must be selected.",
+                                    inst,"asysCMPHNMXSELValue");
+        
+                                for (var cstat of configurationStatus)
+                                {
+                                    if (cstat.fail)
+                                    {
+                                        validation.logError(
+                                            "The pin " + cstat.pinSelected + " is not selected in the ANALOG PinMux module." +
+                                            " Add this pin to the 'Pins Used' or change the 'Use Case'",
+                                            inst, "asysCMPHNMXSELValue");
+                                    }
                                 }
                             }
                         }
@@ -1748,46 +1798,28 @@ function onValidate(inst, validation) {
             //
             // Check for Pin Usage in analog
             //
-            if (Common.peripheralCount("ANALOG") > 0)
-            {
-
-                var configurationStatus = [];
-                var finalFail = true;
-
-                for (var apinfo of tempPinInfoL){
-                    var pinSelected = apinfo.PinDesignSignalName;
-
-                    configurationStatus.push(
-                        {
-                            fail: (!selectedInterfaces.includes(pinSelected) && allInterfaces.includes(pinSelected)),
-                            pinSelected: pinSelected
-                        }
-                    )
-                }
-                for (var cstat of configurationStatus){finalFail &= cstat.fail}
-
-
-                if (allPinsMustBeConfigured)
+            if (Common.isContextCPU1()) {
+                if (Common.peripheralCount("ANALOG") > 0)
                 {
-                    for (var cstat of configurationStatus)
-                    {
-                        if (cstat.fail)
-                        {
-                            validation.logError(
-                                "The pin " + cstat.pinSelected + " is not selected in the ANALOG PinMux module." +
-                                " Add this pin to the 'Pins Used' or change the 'Use Case'",
-                                inst, "asysCMPLPMXSELValue");
-                        }
+
+                    var configurationStatus = [];
+                    var finalFail = true;
+
+                    for (var apinfo of tempPinInfoL){
+                        var pinSelected = apinfo.PinDesignSignalName;
+
+                        configurationStatus.push(
+                            {
+                                fail: (!selectedInterfaces.includes(pinSelected) && allInterfaces.includes(pinSelected)),
+                                pinSelected: pinSelected
+                            }
+                        )
                     }
-                }
-                else
-                {
-                    if (finalFail)
-                    {
-                        validation.logError(
-                            "At least one of the following ANALOG PinMux pins must be selected.",
-                            inst,"asysCMPLPMXSELValue");
+                    for (var cstat of configurationStatus){finalFail &= cstat.fail}
 
+
+                    if (allPinsMustBeConfigured)
+                    {
                         for (var cstat of configurationStatus)
                         {
                             if (cstat.fail)
@@ -1796,6 +1828,26 @@ function onValidate(inst, validation) {
                                     "The pin " + cstat.pinSelected + " is not selected in the ANALOG PinMux module." +
                                     " Add this pin to the 'Pins Used' or change the 'Use Case'",
                                     inst, "asysCMPLPMXSELValue");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (finalFail)
+                        {
+                            validation.logError(
+                                "At least one of the following ANALOG PinMux pins must be selected.",
+                                inst,"asysCMPLPMXSELValue");
+
+                            for (var cstat of configurationStatus)
+                            {
+                                if (cstat.fail)
+                                {
+                                    validation.logError(
+                                        "The pin " + cstat.pinSelected + " is not selected in the ANALOG PinMux module." +
+                                        " Add this pin to the 'Pins Used' or change the 'Use Case'",
+                                        inst, "asysCMPLPMXSELValue");
+                                }
                             }
                         }
                     }
@@ -1830,46 +1882,28 @@ function onValidate(inst, validation) {
             //
             if(inst.lowCompNegative != "CMPSS_INSRC_DAC")
             {
-                if (Common.peripheralCount("ANALOG") > 0)
-                {
-    
-                    var configurationStatus = [];
-                    var finalFail = true;
-    
-                    for (var apinfo of tempPinInfoLN){
-                        var pinSelected = apinfo.PinDesignSignalName;
-    
-                        configurationStatus.push(
-                            {
-                                fail: (!selectedInterfaces.includes(pinSelected) && allInterfaces.includes(pinSelected)),
-                                pinSelected: pinSelected
-                            }
-                        )
-                    }
-                    for (var cstat of configurationStatus){finalFail &= cstat.fail}
-    
-    
-                    if (allPinsMustBeConfigured)
+                if (Common.isContextCPU1()) {
+                    if (Common.peripheralCount("ANALOG") > 0)
                     {
-                        for (var cstat of configurationStatus)
-                        {
-                            if (cstat.fail)
-                            {
-                                validation.logError(
-                                    "The pin " + cstat.pinSelected + " is not selected in the ANALOG PinMux module." +
-                                    " Add this pin to the 'Pins Used' or change the 'Use Case'",
-                                    inst, "asysCMPLNMXSELValue");
-                            }
+        
+                        var configurationStatus = [];
+                        var finalFail = true;
+        
+                        for (var apinfo of tempPinInfoLN){
+                            var pinSelected = apinfo.PinDesignSignalName;
+        
+                            configurationStatus.push(
+                                {
+                                    fail: (!selectedInterfaces.includes(pinSelected) && allInterfaces.includes(pinSelected)),
+                                    pinSelected: pinSelected
+                                }
+                            )
                         }
-                    }
-                    else
-                    {
-                        if (finalFail)
+                        for (var cstat of configurationStatus){finalFail &= cstat.fail}
+        
+        
+                        if (allPinsMustBeConfigured)
                         {
-                            validation.logError(
-                                "At least one of the following ANALOG PinMux pins must be selected.",
-                                inst,"asysCMPLNMXSELValue");
-    
                             for (var cstat of configurationStatus)
                             {
                                 if (cstat.fail)
@@ -1881,11 +1915,32 @@ function onValidate(inst, validation) {
                                 }
                             }
                         }
+                        else
+                        {
+                            if (finalFail)
+                            {
+                                validation.logError(
+                                    "At least one of the following ANALOG PinMux pins must be selected.",
+                                    inst,"asysCMPLNMXSELValue");
+        
+                                for (var cstat of configurationStatus)
+                                {
+                                    if (cstat.fail)
+                                    {
+                                        validation.logError(
+                                            "The pin " + cstat.pinSelected + " is not selected in the ANALOG PinMux module." +
+                                            " Add this pin to the 'Pins Used' or change the 'Use Case'",
+                                            inst, "asysCMPLNMXSELValue");
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
     }
+    //Add validation for DE support with ePWM
 }
 
 /*
@@ -1905,18 +1960,20 @@ function filterHardware(component)
 
 
 var sharedModuleInstances = undefined;
-if (Common.peripheralCount("ANALOG") > 0) {
-    sharedModuleInstances = function () {
-            return (
-                [
-                    {
-                        name: "analog",
-                        displayName: "Analog PinMux",
-                        moduleName: "/driverlib/analog.js"
-                    },
-                ]
-            );
-        }
+if (Common.isContextCPU1()) {
+    if (Common.peripheralCount("ANALOG") > 0) {
+        sharedModuleInstances = function () {
+                return (
+                    [
+                        {
+                            name: "analog",
+                            displayName: "Analog PinMux",
+                            moduleName: "/driverlib/analog.js"
+                        },
+                    ]
+                );
+            }
+    }
 }
 
 

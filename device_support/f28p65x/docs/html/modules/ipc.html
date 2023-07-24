@@ -1,0 +1,1219 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>IPC Module &mdash; F28P65x API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F28P65x API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="MCAN Module" href="mcan.html"/>
+        <link rel="prev" title="Interrupt Module" href="interrupt.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F28P65x API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v5.00.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="adc.html">ADC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asysctl.html">ASysCtl Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bgcrc.html">BGCRC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla.html">CLA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clb.html">CLB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmpss.html">CMPSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dac.html">DAC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcc.html">DCC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dma.html">DMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ecap.html">ECAP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emif.html">EMIF Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="epwm.html">EPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqep.html">EQEP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="escss.html">ESCSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fsi.html">FSI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hrcap.html">HRCAP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hrpwm.html">HRPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">IPC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcan.html">MCAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pmbus.html">PMBUS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci.html">SCI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdfm.html">SDFM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">SPI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version.html">Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xbar.html">XBAR Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F28P65x API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>IPC Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="ipc-module">
+<span id="ipc"></span><h1>IPC Module<a class="headerlink" href="#ipc-module" title="Permalink to this headline">¶</a></h1>
+<p>The IPC (Inter-Processor Communication) Driver for Texas Instruments&amp;reg;&amp;nbsp; F28P65x
+device provides a set of API functions for using the IPC module to communicate between
+the 3 cores (C28x1, C28x2 and CM)on the microcontroller. C28x1 and C28x2 are also referred to
+as CPU1 and CPU2 in this document and in the driver. Each core contains two different instances
+of IPC - one for each remote core.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__ipc__api"></span><em>group</em> <code class="sig-name descname">ipc_api</code></dt>
+<dd><p>This module is used for inter-processor communications. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.IPC_MSGQ_SUPPORT">
+<span class="target" id="group__ipc__api_1ga4ced216d79f8251f382055987b784163"></span><code class="sig-name descname">IPC_MSGQ_SUPPORT</code> 1U<a class="headerlink" href="#c.IPC_MSGQ_SUPPORT" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_BUFFER_SIZE">
+<span class="target" id="group__ipc__api_1ga5180558855daeadc16a3aa4fe20be8f0"></span><code class="sig-name descname">IPC_BUFFER_SIZE</code> 4U<a class="headerlink" href="#c.IPC_BUFFER_SIZE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_NUM_OF_INTERRUPTS">
+<span class="target" id="group__ipc__api_1ga043349cf27280d88402b043c0b905cdf"></span><code class="sig-name descname">IPC_NUM_OF_INTERRUPTS</code> 4U<a class="headerlink" href="#c.IPC_NUM_OF_INTERRUPTS" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAGS_DEFINED">
+<span class="target" id="group__ipc__api_1gacdbbecb5fb1d7fbd79dc8cf4cd8055cc"></span><code class="sig-name descname">IPC_FLAGS_DEFINED</code><a class="headerlink" href="#c.IPC_FLAGS_DEFINED" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_NO_FLAG">
+<span class="target" id="group__ipc__api_1gaf72e096d17477444d33857fa864f9358"></span><code class="sig-name descname">IPC_NO_FLAG</code> 0x00000000U<a class="headerlink" href="#c.IPC_NO_FLAG" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>NO FLAG. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG0">
+<span class="target" id="group__ipc__api_1gad8af7e324454cbc7c9a6ec69b7d11bb1"></span><code class="sig-name descname">IPC_FLAG0</code> 0x00000001U<a class="headerlink" href="#c.IPC_FLAG0" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC FLAG 0. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG1">
+<span class="target" id="group__ipc__api_1gac1471f8743aecba915caf839fc105812"></span><code class="sig-name descname">IPC_FLAG1</code> 0x00000002U<a class="headerlink" href="#c.IPC_FLAG1" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC FLAG 1. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG2">
+<span class="target" id="group__ipc__api_1gab490e1c04775561ff2b228be84929bb5"></span><code class="sig-name descname">IPC_FLAG2</code> 0x00000004U<a class="headerlink" href="#c.IPC_FLAG2" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC FLAG 2. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG3">
+<span class="target" id="group__ipc__api_1gaa89e01fcf31cdb2b5e1cb68c50506c6e"></span><code class="sig-name descname">IPC_FLAG3</code> 0x00000008U<a class="headerlink" href="#c.IPC_FLAG3" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC FLAG 3. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG4">
+<span class="target" id="group__ipc__api_1ga0573267271f0b69a4a762009ae40c27a"></span><code class="sig-name descname">IPC_FLAG4</code> 0x00000010U<a class="headerlink" href="#c.IPC_FLAG4" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC FLAG 4. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG5">
+<span class="target" id="group__ipc__api_1ga216d8d8da1262cfb69f5ca05774b91b9"></span><code class="sig-name descname">IPC_FLAG5</code> 0x00000020U<a class="headerlink" href="#c.IPC_FLAG5" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC FLAG 5. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG6">
+<span class="target" id="group__ipc__api_1gaf2e839526cb6260530dbd2727235342f"></span><code class="sig-name descname">IPC_FLAG6</code> 0x00000040U<a class="headerlink" href="#c.IPC_FLAG6" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC FLAG 6. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG7">
+<span class="target" id="group__ipc__api_1gaad759e6db1c029e4f805e130b87d739e"></span><code class="sig-name descname">IPC_FLAG7</code> 0x00000080U<a class="headerlink" href="#c.IPC_FLAG7" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC FLAG 7. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG8">
+<span class="target" id="group__ipc__api_1ga2c7114d4a5361309fec6d6df85ca8807"></span><code class="sig-name descname">IPC_FLAG8</code> 0x00000100U<a class="headerlink" href="#c.IPC_FLAG8" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC FLAG 8. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG9">
+<span class="target" id="group__ipc__api_1ga7322c1b143a48d464b852952e5e9d4b2"></span><code class="sig-name descname">IPC_FLAG9</code> 0x00000200U<a class="headerlink" href="#c.IPC_FLAG9" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC FLAG 9. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG10">
+<span class="target" id="group__ipc__api_1gae5340c8c73f964157aa1dca92db0a15b"></span><code class="sig-name descname">IPC_FLAG10</code> 0x00000400U<a class="headerlink" href="#c.IPC_FLAG10" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC FLAG 10. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG11">
+<span class="target" id="group__ipc__api_1gaaee29b04a9c9bb0f20b8de727ed93449"></span><code class="sig-name descname">IPC_FLAG11</code> 0x00000800U<a class="headerlink" href="#c.IPC_FLAG11" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC FLAG 11. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG12">
+<span class="target" id="group__ipc__api_1ga38a0560a30f28c22d9c3872d6df7cca7"></span><code class="sig-name descname">IPC_FLAG12</code> 0x00001000U<a class="headerlink" href="#c.IPC_FLAG12" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC FLAG 12. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG13">
+<span class="target" id="group__ipc__api_1gab97ce177e54042461109cfdefdf7f346"></span><code class="sig-name descname">IPC_FLAG13</code> 0x00002000U<a class="headerlink" href="#c.IPC_FLAG13" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC FLAG 13. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG14">
+<span class="target" id="group__ipc__api_1ga49f9788d7fcbdadadbfbde5c4a5fbbc3"></span><code class="sig-name descname">IPC_FLAG14</code> 0x00004000U<a class="headerlink" href="#c.IPC_FLAG14" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC FLAG 14. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG15">
+<span class="target" id="group__ipc__api_1ga2e7a58806f91865d9d260f3f0d281bfb"></span><code class="sig-name descname">IPC_FLAG15</code> 0x00008000U<a class="headerlink" href="#c.IPC_FLAG15" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC FLAG 15. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG16">
+<span class="target" id="group__ipc__api_1ga3f8727dd3c8e4b54550dc9155f4752d1"></span><code class="sig-name descname">IPC_FLAG16</code> 0x00010000U<a class="headerlink" href="#c.IPC_FLAG16" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC FLAG 16. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG17">
+<span class="target" id="group__ipc__api_1ga5bb1b26e44a3a37e75aa683ab521c906"></span><code class="sig-name descname">IPC_FLAG17</code> 0x00020000U<a class="headerlink" href="#c.IPC_FLAG17" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC FLAG 17. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG18">
+<span class="target" id="group__ipc__api_1gafc1117dd42c9c11db5e8907fb685781e"></span><code class="sig-name descname">IPC_FLAG18</code> 0x00040000U<a class="headerlink" href="#c.IPC_FLAG18" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC FLAG 18. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG19">
+<span class="target" id="group__ipc__api_1gaf71cac3863b6d2698ad65a7869db8191"></span><code class="sig-name descname">IPC_FLAG19</code> 0x00080000U<a class="headerlink" href="#c.IPC_FLAG19" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC FLAG 19. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG20">
+<span class="target" id="group__ipc__api_1gae936392afb4816b9db13efc23c5df8df"></span><code class="sig-name descname">IPC_FLAG20</code> 0x00100000U<a class="headerlink" href="#c.IPC_FLAG20" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC FLAG 20. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG21">
+<span class="target" id="group__ipc__api_1gacb95ff5d4d9b650472c608741798858f"></span><code class="sig-name descname">IPC_FLAG21</code> 0x00200000U<a class="headerlink" href="#c.IPC_FLAG21" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC FLAG 21. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG22">
+<span class="target" id="group__ipc__api_1ga3fa32069e689b6468333711a5a403402"></span><code class="sig-name descname">IPC_FLAG22</code> 0x00400000U<a class="headerlink" href="#c.IPC_FLAG22" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC FLAG 22. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG23">
+<span class="target" id="group__ipc__api_1gae78cfb6755f62366b01630ddda099f71"></span><code class="sig-name descname">IPC_FLAG23</code> 0x00800000U<a class="headerlink" href="#c.IPC_FLAG23" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC FLAG 23. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG24">
+<span class="target" id="group__ipc__api_1ga5299f83e3de6894a3187543326a171ca"></span><code class="sig-name descname">IPC_FLAG24</code> 0x01000000U<a class="headerlink" href="#c.IPC_FLAG24" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC FLAG 24. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG25">
+<span class="target" id="group__ipc__api_1ga60e284b97a265ee6641098ce351f680c"></span><code class="sig-name descname">IPC_FLAG25</code> 0x02000000U<a class="headerlink" href="#c.IPC_FLAG25" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC FLAG 25. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG26">
+<span class="target" id="group__ipc__api_1ga8de5c4c016307c5b73b555d3183c8fcb"></span><code class="sig-name descname">IPC_FLAG26</code> 0x04000000U<a class="headerlink" href="#c.IPC_FLAG26" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC FLAG 26. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG27">
+<span class="target" id="group__ipc__api_1gaf22fe4e63a8ae862022c49f30bc14d1c"></span><code class="sig-name descname">IPC_FLAG27</code> 0x08000000U<a class="headerlink" href="#c.IPC_FLAG27" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC FLAG 27. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG28">
+<span class="target" id="group__ipc__api_1ga65c7c4f6eb9212461ccaf6a34d1d5683"></span><code class="sig-name descname">IPC_FLAG28</code> 0x10000000U<a class="headerlink" href="#c.IPC_FLAG28" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC FLAG 28. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG29">
+<span class="target" id="group__ipc__api_1ga7260b9c596ada3a50bc8ea029bf2e3f1"></span><code class="sig-name descname">IPC_FLAG29</code> 0x20000000U<a class="headerlink" href="#c.IPC_FLAG29" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC FLAG 29. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG30">
+<span class="target" id="group__ipc__api_1ga837300ae37c46565c6b9172c9ada2475"></span><code class="sig-name descname">IPC_FLAG30</code> 0x40000000U<a class="headerlink" href="#c.IPC_FLAG30" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC FLAG 30. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG31">
+<span class="target" id="group__ipc__api_1ga1e7d0b975efb7264958d737e791ff01c"></span><code class="sig-name descname">IPC_FLAG31</code> 0x80000000U<a class="headerlink" href="#c.IPC_FLAG31" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC FLAG 31. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_FLAG_ALL">
+<span class="target" id="group__ipc__api_1ga0944984b9195e3ec80ea17c1dae27e0b"></span><code class="sig-name descname">IPC_FLAG_ALL</code> 0xFFFFFFFFU<a class="headerlink" href="#c.IPC_FLAG_ALL" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>All IPC flags. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_INT0">
+<span class="target" id="group__ipc__api_1gad72ee5b8189aed5ae8529715e82d16ff"></span><code class="sig-name descname">IPC_INT0</code> 0x0U<a class="headerlink" href="#c.IPC_INT0" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC Interrupt 0. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_INT1">
+<span class="target" id="group__ipc__api_1ga7ff58d3576dd4026cad851afe9a6c546"></span><code class="sig-name descname">IPC_INT1</code> 0x1U<a class="headerlink" href="#c.IPC_INT1" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC Interrupt 1. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_INT2">
+<span class="target" id="group__ipc__api_1ga085bcdf5ab6a946eeec85ef9b55d64e0"></span><code class="sig-name descname">IPC_INT2</code> 0x2U<a class="headerlink" href="#c.IPC_INT2" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC Interrupt 2. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_INT3">
+<span class="target" id="group__ipc__api_1ga0b355358afe30f4f80a4fabb68233a62"></span><code class="sig-name descname">IPC_INT3</code> 0x3U<a class="headerlink" href="#c.IPC_INT3" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC Interrupt 3. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_INT4">
+<span class="target" id="group__ipc__api_1gad2aa125c70479e615e894dee7450278c"></span><code class="sig-name descname">IPC_INT4</code> 0x4U<a class="headerlink" href="#c.IPC_INT4" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC Interrupt 4. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_INT5">
+<span class="target" id="group__ipc__api_1ga9e377d2d07a038ecca710f540379bf6e"></span><code class="sig-name descname">IPC_INT5</code> 0x5U<a class="headerlink" href="#c.IPC_INT5" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC Interrupt 5. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_INT6">
+<span class="target" id="group__ipc__api_1gafb24eff2389799e01bf8dfaf49c65a35"></span><code class="sig-name descname">IPC_INT6</code> 0x6U<a class="headerlink" href="#c.IPC_INT6" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC Interrupt 6. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_INT7">
+<span class="target" id="group__ipc__api_1ga34e55b8ca6a3d2af36f619860c79f702"></span><code class="sig-name descname">IPC_INT7</code> 0x7U<a class="headerlink" href="#c.IPC_INT7" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>IPC Interrupt 7. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_ADDR_CORRECTION_ENABLE">
+<span class="target" id="group__ipc__api_1ga4687b6dc7e33c40a721b5d4c3eabacc6"></span><code class="sig-name descname">IPC_ADDR_CORRECTION_ENABLE</code> true<a class="headerlink" href="#c.IPC_ADDR_CORRECTION_ENABLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_ADDR_CORRECTION_DISABLE">
+<span class="target" id="group__ipc__api_1ga18d6664e8b060d0702a8fb3ba4e990b5"></span><code class="sig-name descname">IPC_ADDR_CORRECTION_DISABLE</code> false<a class="headerlink" href="#c.IPC_ADDR_CORRECTION_DISABLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_BLOCKING_CALL">
+<span class="target" id="group__ipc__api_1ga4301f0a56880908a61787a43530a9cfd"></span><code class="sig-name descname">IPC_BLOCKING_CALL</code> true<a class="headerlink" href="#c.IPC_BLOCKING_CALL" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_NONBLOCKING_CALL">
+<span class="target" id="group__ipc__api_1gad3caa5e218c6e3eea5d837897167ec46"></span><code class="sig-name descname">IPC_NONBLOCKING_CALL</code> false<a class="headerlink" href="#c.IPC_NONBLOCKING_CALL" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.IPC_MAX_BUFFER_INDEX">
+<span class="target" id="group__ipc__api_1gaf9145baccfb96a2738b23e876a6a4ad4"></span><code class="sig-name descname">IPC_MAX_BUFFER_INDEX</code> (<a class="reference internal" href="#group__ipc__api_1ga5180558855daeadc16a3aa4fe20be8f0"><span class="std std-ref">IPC_BUFFER_SIZE</span></a> - 1U)<a class="headerlink" href="#c.IPC_MAX_BUFFER_INDEX" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="cpp enum">
+<dt id="_CPPv410IPC_Type_t">
+<span id="_CPPv310IPC_Type_t"></span><span id="_CPPv210IPC_Type_t"></span><span class="target" id="group__ipc__api_1ga7bc79f585fbdf1df409b578f03e8c612"></span><em class="property">enum </em><code class="sig-name descname">IPC_Type_t</code><a class="headerlink" href="#_CPPv410IPC_Type_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed as parameter <em>ipcType</em> in all the driver functions </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N10IPC_Type_t17IPC_CPU1_L_CPU2_RE">
+<span id="_CPPv3N10IPC_Type_t17IPC_CPU1_L_CPU2_RE"></span><span id="_CPPv2N10IPC_Type_t17IPC_CPU1_L_CPU2_RE"></span><span class="target" id="group__ipc__api_1gga7bc79f585fbdf1df409b578f03e8c612a6b08ac7ed4a33020be2c7eba99de1369"></span><em class="property">enumerator </em><code class="sig-name descname">IPC_CPU1_L_CPU2_R</code><a class="headerlink" href="#_CPPv4N10IPC_Type_t17IPC_CPU1_L_CPU2_RE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPU1 - Local core, CPU2 - Remote core. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N10IPC_Type_t17IPC_CPU2_L_CPU1_RE">
+<span id="_CPPv3N10IPC_Type_t17IPC_CPU2_L_CPU1_RE"></span><span id="_CPPv2N10IPC_Type_t17IPC_CPU2_L_CPU1_RE"></span><span class="target" id="group__ipc__api_1gga7bc79f585fbdf1df409b578f03e8c612a06041eb233115ed34f6df81a815f1158"></span><em class="property">enumerator </em><code class="sig-name descname">IPC_CPU2_L_CPU1_R</code><a class="headerlink" href="#_CPPv4N10IPC_Type_t17IPC_CPU2_L_CPU1_RE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPU2 - Local core, CPU1 - Remote core. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N10IPC_Type_t13IPC_TOTAL_NUME">
+<span id="_CPPv3N10IPC_Type_t13IPC_TOTAL_NUME"></span><span id="_CPPv2N10IPC_Type_t13IPC_TOTAL_NUME"></span><span class="target" id="group__ipc__api_1gga7bc79f585fbdf1df409b578f03e8c612a5f629815bfa8f1a03552f560f3b85c19"></span><em class="property">enumerator </em><code class="sig-name descname">IPC_TOTAL_NUM</code><a class="headerlink" href="#_CPPv4N10IPC_Type_t13IPC_TOTAL_NUME" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv417IPC_FlashSemOwner">
+<span id="_CPPv317IPC_FlashSemOwner"></span><span id="_CPPv217IPC_FlashSemOwner"></span><span class="target" id="group__ipc__api_1ga5e2181ce4d229a0c8a180e395c1770b4"></span><em class="property">enum </em><code class="sig-name descname">IPC_FlashSemOwner</code><a class="headerlink" href="#_CPPv417IPC_FlashSemOwner" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__ipc__api_1gae0fd8b1acaebb3b91ecadab0214ddc4b"><span class="std std-ref">IPC_claimFlashSemaphore()</span></a> in order to claim the flash semaphore. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17IPC_FlashSemOwner23IPC_FLASHSEM_OWNER_CPU1E">
+<span id="_CPPv3N17IPC_FlashSemOwner23IPC_FLASHSEM_OWNER_CPU1E"></span><span id="_CPPv2N17IPC_FlashSemOwner23IPC_FLASHSEM_OWNER_CPU1E"></span><span class="target" id="group__ipc__api_1gga5e2181ce4d229a0c8a180e395c1770b4a8f707d1af08035b976e1a09b4f7297db"></span><em class="property">enumerator </em><code class="sig-name descname">IPC_FLASHSEM_OWNER_CPU1</code> = 0x1<a class="headerlink" href="#_CPPv4N17IPC_FlashSemOwner23IPC_FLASHSEM_OWNER_CPU1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N17IPC_FlashSemOwner23IPC_FLASHSEM_OWNER_CPU2E">
+<span id="_CPPv3N17IPC_FlashSemOwner23IPC_FLASHSEM_OWNER_CPU2E"></span><span id="_CPPv2N17IPC_FlashSemOwner23IPC_FLASHSEM_OWNER_CPU2E"></span><span class="target" id="group__ipc__api_1gga5e2181ce4d229a0c8a180e395c1770b4a410a6a5d2866310726f9094551c60203"></span><em class="property">enumerator </em><code class="sig-name descname">IPC_FLASHSEM_OWNER_CPU2</code> = 0x2<a class="headerlink" href="#_CPPv4N17IPC_FlashSemOwner23IPC_FLASHSEM_OWNER_CPU2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv415IPC_setFlagLtoR10IPC_Type_t8uint32_t">
+<span id="_CPPv315IPC_setFlagLtoR10IPC_Type_t8uint32_t"></span><span id="_CPPv215IPC_setFlagLtoR10IPC_Type_t8uint32_t"></span><span id="IPC_setFlagLtoR__IPC_Type_t.uint32_t"></span><span class="target" id="group__ipc__api_1ga4d882f9bec3cdd9529c2119400a0c5d1"></span>void <code class="sig-name descname">IPC_setFlagLtoR</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv410IPC_Type_t" title="IPC_Type_t">IPC_Type_t</a> <em>ipcType</em>, uint32_t <em>flags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415IPC_setFlagLtoR10IPC_Type_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Local core sets Local to Remote IPC Flag</p>
+<p><p>This function will allow the Local core system to set the designated IPC flags to send to the Remote core system. The </p>
+<em>flags</em> parameter can be any of the IPC flag values: <strong>IPC_FLAG0</strong> - <strong>IPC_FLAG31</strong>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ipcType</span></code>: is the enum corresponding to the IPC instance used </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flags</span></code>: is the IPC flag mask for the flags being set</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417IPC_clearFlagLtoR10IPC_Type_t8uint32_t">
+<span id="_CPPv317IPC_clearFlagLtoR10IPC_Type_t8uint32_t"></span><span id="_CPPv217IPC_clearFlagLtoR10IPC_Type_t8uint32_t"></span><span id="IPC_clearFlagLtoR__IPC_Type_t.uint32_t"></span><span class="target" id="group__ipc__api_1gae48e893ff7d97e7f666815fda9087dac"></span>void <code class="sig-name descname">IPC_clearFlagLtoR</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv410IPC_Type_t" title="IPC_Type_t">IPC_Type_t</a> <em>ipcType</em>, uint32_t <em>flags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417IPC_clearFlagLtoR10IPC_Type_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Local core clears Local to Remote IPC Flag</p>
+<p><p>This function will allow the Local core system to clear the designated IPC flags sent to the Remote core system. The </p>
+<em>flags</em> parameter can be any of the IPC flag values: <strong>IPC_FLAG0</strong> - <strong>IPC_FLAG31</strong>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ipcType</span></code>: is the enum corresponding to the IPC instance used </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flags</span></code>: is the IPC flag mask for the flags being cleared</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415IPC_ackFlagRtoL10IPC_Type_t8uint32_t">
+<span id="_CPPv315IPC_ackFlagRtoL10IPC_Type_t8uint32_t"></span><span id="_CPPv215IPC_ackFlagRtoL10IPC_Type_t8uint32_t"></span><span id="IPC_ackFlagRtoL__IPC_Type_t.uint32_t"></span><span class="target" id="group__ipc__api_1gacc1136d2301edc1b7a4e4f4cb85cf8f6"></span>void <code class="sig-name descname">IPC_ackFlagRtoL</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv410IPC_Type_t" title="IPC_Type_t">IPC_Type_t</a> <em>ipcType</em>, uint32_t <em>flags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415IPC_ackFlagRtoL10IPC_Type_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Local core acknowledges Remote to Local IPC Flag.</p>
+<p><p>This function will allow the Local core system to acknowledge/clear the IPC flag set by the Remote core system. The </p>
+<em>flags</em> parameter can be any of the IPC flag values: <strong>IPC_FLAG0</strong> - <strong>IPC_FLAG31</strong>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ipcType</span></code>: is the enum corresponding to the IPC instance used </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flags</span></code>: is the IPC flag mask for the flags being acknowledged.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418IPC_isFlagBusyLtoR10IPC_Type_t8uint32_t">
+<span id="_CPPv318IPC_isFlagBusyLtoR10IPC_Type_t8uint32_t"></span><span id="_CPPv218IPC_isFlagBusyLtoR10IPC_Type_t8uint32_t"></span><span id="IPC_isFlagBusyLtoR__IPC_Type_t.uint32_t"></span><span class="target" id="group__ipc__api_1gaf8eefaf180817d982d2419ddf6e6746b"></span>bool <code class="sig-name descname">IPC_isFlagBusyLtoR</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv410IPC_Type_t" title="IPC_Type_t">IPC_Type_t</a> <em>ipcType</em>, uint32_t <em>flags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418IPC_isFlagBusyLtoR10IPC_Type_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Determines whether the given IPC flags are busy or not.</p>
+<p><p>Allows the caller to determine whether the designated Local to Remote IPC flags are pending. The </p>
+<em>flags</em> parameter can be any of the IPC flag values: <strong>IPC_FLAG0</strong> - <strong>IPC_FLAG31</strong>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ipcType</span></code>: is the enum corresponding to the IPC instance used </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flags</span></code>: is the Local to Remote IPC flag masks to check the status of</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if the any of the designated IPC flags are busy or <strong>false</strong> if all the designated IPC flags are free. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418IPC_isFlagBusyRtoL10IPC_Type_t8uint32_t">
+<span id="_CPPv318IPC_isFlagBusyRtoL10IPC_Type_t8uint32_t"></span><span id="_CPPv218IPC_isFlagBusyRtoL10IPC_Type_t8uint32_t"></span><span id="IPC_isFlagBusyRtoL__IPC_Type_t.uint32_t"></span><span class="target" id="group__ipc__api_1gaf1c01e3ecdf69dd0b827743630550c3b"></span>bool <code class="sig-name descname">IPC_isFlagBusyRtoL</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv410IPC_Type_t" title="IPC_Type_t">IPC_Type_t</a> <em>ipcType</em>, uint32_t <em>flags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418IPC_isFlagBusyRtoL10IPC_Type_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Determines whether the given Remote to Local IPC flags are busy or not.</p>
+<p><p>Allows the caller to determine whether the designated Remote to Local IPC flags are pending. The </p>
+<em>flags</em> parameter can be any of the IPC flag values: <strong>IPC_FLAG0</strong> - <strong>IPC_FLAG31</strong>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ipcType</span></code>: is the enum corresponding to the IPC instance used </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flags</span></code>: is the Remote to Local IPC Flag masks to check the status of</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if the any of the designated IPC flags are busy or <strong>false</strong> if all the designated IPC flags are free. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415IPC_waitForFlag10IPC_Type_t8uint32_t">
+<span id="_CPPv315IPC_waitForFlag10IPC_Type_t8uint32_t"></span><span id="_CPPv215IPC_waitForFlag10IPC_Type_t8uint32_t"></span><span id="IPC_waitForFlag__IPC_Type_t.uint32_t"></span><span class="target" id="group__ipc__api_1gab742b1781cc40036bfd0015306588934"></span>void <code class="sig-name descname">IPC_waitForFlag</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv410IPC_Type_t" title="IPC_Type_t">IPC_Type_t</a> <em>ipcType</em>, uint32_t <em>flag</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415IPC_waitForFlag10IPC_Type_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Wait for the remote core to send a flag</p>
+<p><p>Allows the caller to wait for the Remote to Local flag to be send by the remote core. The </p>
+<em>flags</em> parameter can be any of the IPC flag values: <strong>IPC_FLAG0</strong> - <strong>IPC_FLAG31</strong>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ipcType</span></code>: is the enum corresponding to the IPC instance used </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flag</span></code>: is the Remote to Local IPC flag mask to wait for</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414IPC_waitForAck10IPC_Type_t8uint32_t">
+<span id="_CPPv314IPC_waitForAck10IPC_Type_t8uint32_t"></span><span id="_CPPv214IPC_waitForAck10IPC_Type_t8uint32_t"></span><span id="IPC_waitForAck__IPC_Type_t.uint32_t"></span><span class="target" id="group__ipc__api_1ga5f3c01771dbb5ddfdf10b0c74fe97bdf"></span>void <code class="sig-name descname">IPC_waitForAck</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv410IPC_Type_t" title="IPC_Type_t">IPC_Type_t</a> <em>ipcType</em>, uint32_t <em>flag</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414IPC_waitForAck10IPC_Type_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Wait for the IPC flag to be acknowledged</p>
+<p><p>Allows the caller to wait for the IPC flag to be acknowledged by the remote core. The </p>
+<em>flagsparameter</em> can be any of the IPC flag values: <strong>IPC_FLAG0</strong> - <strong>IPC_FLAG31</strong>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ipcType</span></code>: is the enum corresponding to the IPC instance used </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flag</span></code>: is the IPC flag mask for which ack is pending</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv48IPC_sync10IPC_Type_t8uint32_t">
+<span id="_CPPv38IPC_sync10IPC_Type_t8uint32_t"></span><span id="_CPPv28IPC_sync10IPC_Type_t8uint32_t"></span><span id="IPC_sync__IPC_Type_t.uint32_t"></span><span class="target" id="group__ipc__api_1ga3cbd80420f8a916529272c5fae25ef1a"></span>void <code class="sig-name descname">IPC_sync</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv410IPC_Type_t" title="IPC_Type_t">IPC_Type_t</a> <em>ipcType</em>, uint32_t <em>flag</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv48IPC_sync10IPC_Type_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Synchronises the two cores</p>
+<p><p>Allows the local and remote cores to synchronise. Neither core will return from this function call before the other core enters it.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ipcType</span></code>: is the enum corresponding to the IPC instance used </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flag</span></code>: is the IPC flag mask with which synchronisation is done</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Must be called with same flag mask on both the cores</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv48IPC_init10IPC_Type_t">
+<span id="_CPPv38IPC_init10IPC_Type_t"></span><span id="_CPPv28IPC_init10IPC_Type_t"></span><span id="IPC_init__IPC_Type_t"></span><span class="target" id="group__ipc__api_1gaa9eefbe1cd53bd60ad0ba4fa879066f4"></span>void <code class="sig-name descname">IPC_init</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv410IPC_Type_t" title="IPC_Type_t">IPC_Type_t</a> <em>ipcType</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv48IPC_init10IPC_Type_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Initialize IPC</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ipcType</span></code>: is the enum corresponding to the IPC instance used This function initializes IPC by clearing all the flags</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415IPC_sendCommand10IPC_Type_t8uint32_tb8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv315IPC_sendCommand10IPC_Type_t8uint32_tb8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv215IPC_sendCommand10IPC_Type_t8uint32_tb8uint32_t8uint32_t8uint32_t"></span><span id="IPC_sendCommand__IPC_Type_t.uint32_t.b.uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__ipc__api_1ga3337c98aeff7cb44fafb7f75be209cb0"></span>bool <code class="sig-name descname">IPC_sendCommand</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv410IPC_Type_t" title="IPC_Type_t">IPC_Type_t</a> <em>ipcType</em>, uint32_t <em>flags</em>, bool <em>addrCorrEnable</em>, uint32_t <em>command</em>, uint32_t <em>addr</em>, uint32_t <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415IPC_sendCommand10IPC_Type_t8uint32_tb8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sends a command to the Remote core</p>
+<p><p>Allows the caller to send a command to the remote core. A command consists of a unique command value, a 32-bit address and a 32-bit data. The function also sends the designated flags to the remote core. There may be differences in the address spaces of Local and Remote core. For example in case of F2838X device, the address spaces of C28x core and CM core are different. In case the </p>
+<em>addr</em> refers to an address in the IPC MSG RAM, <em>addrCorrEnable</em> param may be used to correct the address mismatch<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ipcType</span></code>: is the enum corresponding to the IPC instance used </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flags</span></code>: is the IPC flag mask for the flags to be set </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">addrCorrEnable</span></code>: is the flag used to determine whether or not to convert the addr parameter to remote core’s address space </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">command</span></code>: is the 32-bit command value </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">addr</span></code>: is the 32-bit address to be sent as part of command </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: is the 32-bit data to be sent as part of command</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>flags</em> parameter can be any of the IPC flag values: <strong>IPC_FLAG0</strong> - <strong>IPC_FLAG31</strong>. The <em>addrCorrEnable</em> parameter can take values IPC_ADDR_CORRECTION_ENABLE (converts the address to remote core’s address space) or <a class="reference internal" href="#group__ipc__api_1ga18d6664e8b060d0702a8fb3ba4e990b5"><span class="std std-ref">IPC_ADDR_CORRECTION_DISABLE(does not modify the addr parmeter)</span></a></p>
+<p>The application shall use the function IPC_getResponse to read the response sent by the remote core.</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>The application is expected to wait until the the response is received before sending another command.</p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p><em>addrCorrEnable</em> parameter must be kept same on the sending and receiving cores</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if the command is sent properly and <strong>false</strong> if the designated flags were busy and hence command was not sent. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415IPC_readCommand10IPC_Type_t8uint32_tbP8uint32_tP8uint32_tP8uint32_t">
+<span id="_CPPv315IPC_readCommand10IPC_Type_t8uint32_tbP8uint32_tP8uint32_tP8uint32_t"></span><span id="_CPPv215IPC_readCommand10IPC_Type_t8uint32_tbP8uint32_tP8uint32_tP8uint32_t"></span><span id="IPC_readCommand__IPC_Type_t.uint32_t.b.uint32_tP.uint32_tP.uint32_tP"></span><span class="target" id="group__ipc__api_1gad8e7292e0cae80b38863d8fbfbe7014b"></span>bool <code class="sig-name descname">IPC_readCommand</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv410IPC_Type_t" title="IPC_Type_t">IPC_Type_t</a> <em>ipcType</em>, uint32_t <em>flags</em>, bool <em>addrCorrEnable</em>, uint32_t *<em>command</em>, uint32_t *<em>addr</em>, uint32_t *<em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415IPC_readCommand10IPC_Type_t8uint32_tbP8uint32_tP8uint32_tP8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reads a command sent by the Remote core</p>
+<p><p>Allows the caller to read a command sent by the remote core. A command consists of a unique command value, a 32-bit address and a 32-bit data. There may be differences in the address spaces of Local and Remote core. For example in case of F2838X device, the address spaces of C28x core and CM core are different. In case the </p>
+<em>addr</em> refers to an address in the IPC MSG RAM, <em>addrCorrEnable</em> param may be used to correct the address mismatch<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ipcType</span></code>: is the enum corresponding to the IPC instance used </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flags</span></code>: is the IPC flag mask for the flags sent by the remote core </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">addrCorrEnable</span></code>: is the flag used to determine whether or not to convert the addr parameter to remote core’s address space </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">command</span></code>: is the 32-bit pointer at which the command value is read to </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">addr</span></code>: is the 32-bit pointer at which address value is read to </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: is the 32-bit pointer at which the data is read to</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>flags</em> parameter can be any of the IPC flag values: <strong>IPC_FLAG0</strong> - <strong>IPC_FLAG31</strong>. The <em>addrCorrEnable</em> parameter can take values IPC_ADDR_CORRECTION_ENABLE (converts the address to remote core’s address space) or <a class="reference internal" href="#group__ipc__api_1ga18d6664e8b060d0702a8fb3ba4e990b5"><span class="std std-ref">IPC_ADDR_CORRECTION_DISABLE(does not modify the addr parmeter)</span></a></p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>The application is expected to acknowledge the flag and send a response (if needed) after reading the command</p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p><em>addrCorrEnable</em> parameter must be kept same on the sending and receiving cores</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if the command is read properly and <strong>false</strong> if the designated flags were empty and hence command was not read. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416IPC_sendResponse10IPC_Type_t8uint32_t">
+<span id="_CPPv316IPC_sendResponse10IPC_Type_t8uint32_t"></span><span id="_CPPv216IPC_sendResponse10IPC_Type_t8uint32_t"></span><span id="IPC_sendResponse__IPC_Type_t.uint32_t"></span><span class="target" id="group__ipc__api_1gada476bd064b77267e7f2c5f17088dc5f"></span>void <code class="sig-name descname">IPC_sendResponse</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv410IPC_Type_t" title="IPC_Type_t">IPC_Type_t</a> <em>ipcType</em>, uint32_t <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416IPC_sendResponse10IPC_Type_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sends the response to the command sent by remote core.</p>
+<p><p>Allows the caller to send a response to the command previously sent by the remote core</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ipcType</span></code>: is the enum corresponding to the IPC instance used </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: is the 32-bit value of the response to be sent</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415IPC_getResponse10IPC_Type_t">
+<span id="_CPPv315IPC_getResponse10IPC_Type_t"></span><span id="_CPPv215IPC_getResponse10IPC_Type_t"></span><span id="IPC_getResponse__IPC_Type_t"></span><span class="target" id="group__ipc__api_1ga940bee7ef940d6e200de96ed09d8c771"></span>uint32_t <code class="sig-name descname">IPC_getResponse</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv410IPC_Type_t" title="IPC_Type_t">IPC_Type_t</a> <em>ipcType</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415IPC_getResponse10IPC_Type_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reads the response from the remote core.</p>
+<p><p>Allows the caller to read the response sent by the remote core to the command previously sent by the local core</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ipcType</span></code>: is the enum corresponding to the IPC instance used</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>the 32-bit value of the response. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415IPC_setBootMode10IPC_Type_t8uint32_t">
+<span id="_CPPv315IPC_setBootMode10IPC_Type_t8uint32_t"></span><span id="_CPPv215IPC_setBootMode10IPC_Type_t8uint32_t"></span><span id="IPC_setBootMode__IPC_Type_t.uint32_t"></span><span class="target" id="group__ipc__api_1ga0748d3ab871fd6bf1e634425bc55e61f"></span>void <code class="sig-name descname">IPC_setBootMode</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv410IPC_Type_t" title="IPC_Type_t">IPC_Type_t</a> <em>ipcType</em>, uint32_t <em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415IPC_setBootMode10IPC_Type_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the BOOTMODE register.</p>
+<p><p>Allows the caller to set the BOOTMODE register.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ipcType</span></code>: is the enum corresponding to the IPC instance used </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: is the 32-bit value to be set</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>This function shall be called by CPU1 only.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415IPC_getBootMode10IPC_Type_t">
+<span id="_CPPv315IPC_getBootMode10IPC_Type_t"></span><span id="_CPPv215IPC_getBootMode10IPC_Type_t"></span><span id="IPC_getBootMode__IPC_Type_t"></span><span class="target" id="group__ipc__api_1gafbc7bcbceb1caf51922b436fe7aae104"></span>uint32_t <code class="sig-name descname">IPC_getBootMode</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv410IPC_Type_t" title="IPC_Type_t">IPC_Type_t</a> <em>ipcType</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415IPC_getBootMode10IPC_Type_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reads the BOOTMODE register.</p>
+<p><p>Allows the caller to read the BOOTMODE register.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ipcType</span></code>: is the enum corresponding to the IPC instance used</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>32-bit value of the BOOOTMODE register </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417IPC_setBootStatus10IPC_Type_t8uint32_t">
+<span id="_CPPv317IPC_setBootStatus10IPC_Type_t8uint32_t"></span><span id="_CPPv217IPC_setBootStatus10IPC_Type_t8uint32_t"></span><span id="IPC_setBootStatus__IPC_Type_t.uint32_t"></span><span class="target" id="group__ipc__api_1ga8fea2416da1fa7e801b817278e1111ef"></span>void <code class="sig-name descname">IPC_setBootStatus</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv410IPC_Type_t" title="IPC_Type_t">IPC_Type_t</a> <em>ipcType</em>, uint32_t <em>status</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417IPC_setBootStatus10IPC_Type_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the BOOTSTS register.</p>
+<p><p>Allows the caller to set the BOOTSTS register.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ipcType</span></code>: is the enum corresponding to the IPC instance used </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">status</span></code>: is the 32-bit value to be set</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>This function shall be called by CPU2 and CM only</p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>This function shall be called by CPU2 only.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417IPC_getBootStatus10IPC_Type_t">
+<span id="_CPPv317IPC_getBootStatus10IPC_Type_t"></span><span id="_CPPv217IPC_getBootStatus10IPC_Type_t"></span><span id="IPC_getBootStatus__IPC_Type_t"></span><span class="target" id="group__ipc__api_1gad367da5358468048cb74dd9631285d78"></span>uint32_t <code class="sig-name descname">IPC_getBootStatus</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv410IPC_Type_t" title="IPC_Type_t">IPC_Type_t</a> <em>ipcType</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417IPC_getBootStatus10IPC_Type_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reads the BOOTSTS register.</p>
+<p><p>Allows the caller to set the BOOTMODE register.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ipcType</span></code>: is the enum corresponding to the IPC instance used</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>32-bit value of the BOOOTSTS register </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414IPC_getCounter10IPC_Type_t">
+<span id="_CPPv314IPC_getCounter10IPC_Type_t"></span><span id="_CPPv214IPC_getCounter10IPC_Type_t"></span><span id="IPC_getCounter__IPC_Type_t"></span><span class="target" id="group__ipc__api_1ga169441d919d6ac5768c15bb83788e46b"></span>uint64_t <code class="sig-name descname">IPC_getCounter</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv410IPC_Type_t" title="IPC_Type_t">IPC_Type_t</a> <em>ipcType</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414IPC_getCounter10IPC_Type_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reads the timestamp counter value.</p>
+<p><p>Allows the caller to read the IPC timestamp counter value.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ipcType</span></code>: is the enum corresponding to the IPC instance used</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>64-bit counter value. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423IPC_claimFlashSemaphore17IPC_FlashSemOwner">
+<span id="_CPPv323IPC_claimFlashSemaphore17IPC_FlashSemOwner"></span><span id="_CPPv223IPC_claimFlashSemaphore17IPC_FlashSemOwner"></span><span id="IPC_claimFlashSemaphore__IPC_FlashSemOwner"></span><span class="target" id="group__ipc__api_1gae0fd8b1acaebb3b91ecadab0214ddc4b"></span>void <code class="sig-name descname">IPC_claimFlashSemaphore</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv417IPC_FlashSemOwner" title="IPC_FlashSemOwner">IPC_FlashSemOwner</a> <em>semOwner</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423IPC_claimFlashSemaphore17IPC_FlashSemOwner" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Claim the flash pump semaphore.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">semOwner</span></code>: is the cpu claiming the flash semaphore.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425IPC_releaseFlashSemaphorev">
+<span id="_CPPv325IPC_releaseFlashSemaphorev"></span><span id="_CPPv225IPC_releaseFlashSemaphorev"></span><span id="IPC_releaseFlashSemaphore"></span><span class="target" id="group__ipc__api_1ga9b63b4ae55c6159132716e50dde066ef"></span>void <code class="sig-name descname">IPC_releaseFlashSemaphore</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425IPC_releaseFlashSemaphorev" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Release the flash pump semaphore.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pumpSemBase</span></code>: is the base address of the flash pump semaphore.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421IPC_registerInterrupt10IPC_Type_t8uint32_tPFvvE">
+<span id="_CPPv321IPC_registerInterrupt10IPC_Type_t8uint32_tPFvvE"></span><span id="_CPPv221IPC_registerInterrupt10IPC_Type_t8uint32_tPFvvE"></span><span class="target" id="group__ipc__api_1ga81753218e94e0499d5629988a899c0ef"></span>void <code class="sig-name descname">IPC_registerInterrupt</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv410IPC_Type_t" title="IPC_Type_t">IPC_Type_t</a> <em>ipcType</em>, uint32_t <em>ipcInt</em>, void (*<em>pfnHandler</em>)<span class="sig-paren">(</span>void<span class="sig-paren">)</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421IPC_registerInterrupt10IPC_Type_t8uint32_tPFvvE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Registers an interrupt handler for IPC</p>
+<p><p>This function registers the handler to be called when an IPC interrupt occurs. This function enables the global interrupt in the interrupt controller. The </p>
+<em>ipcInt</em> parameter can be any of the IPC flag values:<strong>IPC_INT0</strong> - <strong>IPC_INT7</strong>. IPC_INT0 corresponds to IPC Flag 0 interrupt and so on. <dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ipcType</span></code>: is the enum corresponding to the IPC instance used </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ipcInt</span></code>: is the Flag number for which interrupt is being registered </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pfnHandler</span></code>: is the pointer to ISR function</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423IPC_unregisterInterrupt10IPC_Type_t8uint32_t">
+<span id="_CPPv323IPC_unregisterInterrupt10IPC_Type_t8uint32_t"></span><span id="_CPPv223IPC_unregisterInterrupt10IPC_Type_t8uint32_t"></span><span id="IPC_unregisterInterrupt__IPC_Type_t.uint32_t"></span><span class="target" id="group__ipc__api_1ga94537b97f64047e704f30179bf903757"></span>void <code class="sig-name descname">IPC_unregisterInterrupt</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv410IPC_Type_t" title="IPC_Type_t">IPC_Type_t</a> <em>ipcType</em>, uint32_t <em>ipcInt</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423IPC_unregisterInterrupt10IPC_Type_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Unregisters an interrupt handler for IPC</p>
+<p><p>This function clears the handler to be called when an IPC interrupt occurs. This function also masks off the interrupt in the interrupt controller so that the interrupt handler no longer is called. The </p>
+<em>ipcInt</em> parameter can be any of the IPC flag values:<strong>IPC_INT0</strong> - <strong>IPC_INT7</strong>. IPC_INT0 corresponds to IPC Flag 0 interrupt and so on. <dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ipcType</span></code>: is the enum corresponding to the IPC instance used </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ipcInt</span></code>: is the Flag number for which interrupt is being unregistered</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420IPC_initMessageQueue10IPC_Type_tPV18IPC_MessageQueue_t8uint32_t8uint32_t">
+<span id="_CPPv320IPC_initMessageQueue10IPC_Type_tPV18IPC_MessageQueue_t8uint32_t8uint32_t"></span><span id="_CPPv220IPC_initMessageQueue10IPC_Type_tPV18IPC_MessageQueue_t8uint32_t8uint32_t"></span><span id="IPC_initMessageQueue__IPC_Type_t.IPC_MessageQueue_tVP.uint32_t.uint32_t"></span><span class="target" id="group__ipc__api_1ga70beaa8958b15080a84bb5fb5bc0e68b"></span>void <code class="sig-name descname">IPC_initMessageQueue</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv410IPC_Type_t" title="IPC_Type_t">IPC_Type_t</a> <em>ipcType</em>, <em class="property">volatile</em> <a class="reference internal" href="#_CPPv418IPC_MessageQueue_t" title="IPC_MessageQueue_t">IPC_MessageQueue_t</a> *<em>msgQueue</em>, uint32_t <em>ipcInt_L</em>, uint32_t <em>ipcInt_R</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420IPC_initMessageQueue10IPC_Type_tPV18IPC_MessageQueue_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Initializes the IPC message queue</p>
+<p><p>This function initializes the IPC message queue with circular buffer and index addresses for an IPC interrupt pair. The </p>
+<em>ipcInt_L</em> and <em>ipcInt_R</em> parameters can be one of the following values: <strong>IPC_INT0</strong>, <strong>IPC_INT1</strong>, <strong>IPC_INT2</strong>, <strong>IPC_INT3</strong>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ipcType</span></code>: is the enum corresponding to the IPC instance used </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">msgQueue</span></code>: specifies the address of a <em><a class="reference internal" href="#struct_i_p_c___message_queue__t"><span class="std std-ref">IPC_MessageQueue_t</span></a></em> instance </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ipcInt_L</span></code>: specifies the interrupt number on the local core used by the message queue . </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ipcInt_R</span></code>: specifies the interrupt number on the remote core used by the message queue.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>If an interrupt is currently in use by an <em><a class="reference internal" href="#struct_i_p_c___message_queue__t"><span class="std std-ref">IPC_MessageQueue_t</span></a></em> instance, that particular interrupt should not be tied to a second <em><a class="reference internal" href="#struct_i_p_c___message_queue__t"><span class="std std-ref">IPC_MessageQueue_t</span></a></em> instance.</p>
+</dd>
+<dt><strong>Note</strong></dt><dd><p>For a particular ipcInt_L - ipcInt_R pair, there must be an instance of <a class="reference internal" href="#struct_i_p_c___message_queue__t"><span class="std std-ref">IPC_MessageQueue_t</span></a> defined and initialized on both the locakl and remote systems.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422IPC_sendMessageToQueue10IPC_Type_tPV18IPC_MessageQueue_tbP13IPC_Message_tb">
+<span id="_CPPv322IPC_sendMessageToQueue10IPC_Type_tPV18IPC_MessageQueue_tbP13IPC_Message_tb"></span><span id="_CPPv222IPC_sendMessageToQueue10IPC_Type_tPV18IPC_MessageQueue_tbP13IPC_Message_tb"></span><span id="IPC_sendMessageToQueue__IPC_Type_t.IPC_MessageQueue_tVP.b.IPC_Message_tP.b"></span><span class="target" id="group__ipc__api_1ga3535b3561a83630fd6f9d96c8b9864b5"></span>bool <code class="sig-name descname">IPC_sendMessageToQueue</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv410IPC_Type_t" title="IPC_Type_t">IPC_Type_t</a> <em>ipcType</em>, <em class="property">volatile</em> <a class="reference internal" href="#_CPPv418IPC_MessageQueue_t" title="IPC_MessageQueue_t">IPC_MessageQueue_t</a> *<em>msgQueue</em>, bool <em>addrCorrEnable</em>, <a class="reference internal" href="#_CPPv413IPC_Message_t" title="IPC_Message_t">IPC_Message_t</a> *<em>msg</em>, bool <em>block</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422IPC_sendMessageToQueue10IPC_Type_tPV18IPC_MessageQueue_tbP13IPC_Message_tb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sends a message into the messageQueue.</p>
+<p><p>This function checks if there is a free slot in the message queue. If so, it puts the message pointed to by </p>
+<em>msg</em> into the free and sets the appropriate IPC interrupt flag<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ipcType</span></code>: is the enum corresponding to the IPC instance used </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">msgQueue</span></code>: specifies the address of a <em><a class="reference internal" href="#struct_i_p_c___message_queue__t"><span class="std std-ref">IPC_MessageQueue_t</span></a></em> instance </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">addrCorrEnable</span></code>: is the flag used to determine whether or not to convert the addr parameter to remote core’s address space </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">msg</span></code>: specifies the address of the <em><a class="reference internal" href="#struct_i_p_c___message__t"><span class="std std-ref">IPC_Message_t</span></a></em> instance to be sent to message queue. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">block</span></code>: specifies whether to allow function to block until the buffer has a free slot</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>addrCorrEnable</em> parameter can take values IPC_ADDR_CORRECTION_ENABLE (converts the address to remote core’s address space) or <a class="reference internal" href="#group__ipc__api_1ga18d6664e8b060d0702a8fb3ba4e990b5"><span class="std std-ref">IPC_ADDR_CORRECTION_DISABLE(does not modify the addr parmeter)</span></a> The <em>block</em> parameter can be one of the following values: <strong>IPC_BLOCKING_CALL</strong> or <strong>IPC_NONBLOCKING_CALL</strong>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p><strong>false</strong> if the queue is full. <strong>true</strong> if the message is successfully sent. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424IPC_readMessageFromQueue10IPC_Type_tPV18IPC_MessageQueue_tbP13IPC_Message_tb">
+<span id="_CPPv324IPC_readMessageFromQueue10IPC_Type_tPV18IPC_MessageQueue_tbP13IPC_Message_tb"></span><span id="_CPPv224IPC_readMessageFromQueue10IPC_Type_tPV18IPC_MessageQueue_tbP13IPC_Message_tb"></span><span id="IPC_readMessageFromQueue__IPC_Type_t.IPC_MessageQueue_tVP.b.IPC_Message_tP.b"></span><span class="target" id="group__ipc__api_1ga8fccba3faad884d63dd54317586458a8"></span>bool <code class="sig-name descname">IPC_readMessageFromQueue</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv410IPC_Type_t" title="IPC_Type_t">IPC_Type_t</a> <em>ipcType</em>, <em class="property">volatile</em> <a class="reference internal" href="#_CPPv418IPC_MessageQueue_t" title="IPC_MessageQueue_t">IPC_MessageQueue_t</a> *<em>msgQueue</em>, bool <em>addrCorrEnable</em>, <a class="reference internal" href="#_CPPv413IPC_Message_t" title="IPC_Message_t">IPC_Message_t</a> *<em>msg</em>, bool <em>block</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424IPC_readMessageFromQueue10IPC_Type_tPV18IPC_MessageQueue_tbP13IPC_Message_tb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reads a message from the messageQueue.</p>
+<p><p>This function checks if there is a message in the message queue. If so, it reads the message and writes to the address pointed to by </p>
+<em>msg</em> into.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ipcType</span></code>: is the enum corresponding to the IPC instance used </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">msgQueue</span></code>: specifies the address of a <em><a class="reference internal" href="#struct_i_p_c___message_queue__t"><span class="std std-ref">IPC_MessageQueue_t</span></a></em> instance </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">addrCorrEnable</span></code>: is the flag used to determine whether or not to convert the addr parameter to remote core’s address space </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">msg</span></code>: specifies the address of the <em><a class="reference internal" href="#struct_i_p_c___message__t"><span class="std std-ref">IPC_Message_t</span></a></em> instance to which the message needs to be read </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">block</span></code>: specifies whether to allow function to block until a message is available in the message queue</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>addrCorrEnable</em> parameter can take values IPC_ADDR_CORRECTION_ENABLE (converts the address to remote core’s address space) or <a class="reference internal" href="#group__ipc__api_1ga18d6664e8b060d0702a8fb3ba4e990b5"><span class="std std-ref">IPC_ADDR_CORRECTION_DISABLE(does not modify the addr parmeter)</span></a> The <em>block</em> parameter can be one of the following values: <strong>IPC_BLOCKING_CALL</strong> or <strong>IPC_NONBLOCKING_CALL</strong>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p><strong>false</strong> if the queue is empty. <strong>true</strong> if the message successfully read. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Variables</p>
+<dl class="cpp var">
+<dt id="_CPPv412IPC_Instance">
+<span id="_CPPv312IPC_Instance"></span><span id="_CPPv212IPC_Instance"></span><span id="IPC_Instance__IPC_Instance_tCA"></span><span class="target" id="group__ipc__api_1ga1e8439fbd60b5b1661f1e0f52b58bfa3"></span><em class="property">const</em> <a class="reference internal" href="#_CPPv414IPC_Instance_t" title="IPC_Instance_t">IPC_Instance_t</a> <code class="sig-name descname">IPC_Instance</code>[<code class="sig-name descname">IPC_TOTAL_NUM</code>]<a class="headerlink" href="#_CPPv412IPC_Instance" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt id="_CPPv418IPC_Flag_Ctr_Reg_t">
+<span id="_CPPv318IPC_Flag_Ctr_Reg_t"></span><span id="_CPPv218IPC_Flag_Ctr_Reg_t"></span><span id="IPC_Flag_Ctr_Reg_t"></span><span class="target" id="struct_i_p_c___flag___ctr___reg__t"></span><em class="property">struct </em><code class="sig-name descname">IPC_Flag_Ctr_Reg_t</code><a class="headerlink" href="#_CPPv418IPC_Flag_Ctr_Reg_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;ipc.h&gt;</em></dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv417IPC_SendCmd_Reg_t">
+<span id="_CPPv317IPC_SendCmd_Reg_t"></span><span id="_CPPv217IPC_SendCmd_Reg_t"></span><span id="IPC_SendCmd_Reg_t"></span><span class="target" id="struct_i_p_c___send_cmd___reg__t"></span><em class="property">struct </em><code class="sig-name descname">IPC_SendCmd_Reg_t</code><a class="headerlink" href="#_CPPv417IPC_SendCmd_Reg_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;ipc.h&gt;</em></dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv417IPC_RecvCmd_Reg_t">
+<span id="_CPPv317IPC_RecvCmd_Reg_t"></span><span id="_CPPv217IPC_RecvCmd_Reg_t"></span><span id="IPC_RecvCmd_Reg_t"></span><span class="target" id="struct_i_p_c___recv_cmd___reg__t"></span><em class="property">struct </em><code class="sig-name descname">IPC_RecvCmd_Reg_t</code><a class="headerlink" href="#_CPPv417IPC_RecvCmd_Reg_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;ipc.h&gt;</em></dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv419IPC_Boot_Pump_Reg_t">
+<span id="_CPPv319IPC_Boot_Pump_Reg_t"></span><span id="_CPPv219IPC_Boot_Pump_Reg_t"></span><span id="IPC_Boot_Pump_Reg_t"></span><span class="target" id="struct_i_p_c___boot___pump___reg__t"></span><em class="property">struct </em><code class="sig-name descname">IPC_Boot_Pump_Reg_t</code><a class="headerlink" href="#_CPPv419IPC_Boot_Pump_Reg_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;ipc.h&gt;</em></dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv413IPC_Message_t">
+<span id="_CPPv313IPC_Message_t"></span><span id="_CPPv213IPC_Message_t"></span><span id="IPC_Message_t"></span><span class="target" id="struct_i_p_c___message__t"></span><em class="property">struct </em><code class="sig-name descname">IPC_Message_t</code><a class="headerlink" href="#_CPPv413IPC_Message_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;ipc.h&gt;</em></dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv415IPC_PutBuffer_t">
+<span id="_CPPv315IPC_PutBuffer_t"></span><span id="_CPPv215IPC_PutBuffer_t"></span><span id="IPC_PutBuffer_t"></span><span class="target" id="struct_i_p_c___put_buffer__t"></span><em class="property">struct </em><code class="sig-name descname">IPC_PutBuffer_t</code><a class="headerlink" href="#_CPPv415IPC_PutBuffer_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;ipc.h&gt;</em></dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv415IPC_GetBuffer_t">
+<span id="_CPPv315IPC_GetBuffer_t"></span><span id="_CPPv215IPC_GetBuffer_t"></span><span id="IPC_GetBuffer_t"></span><span class="target" id="struct_i_p_c___get_buffer__t"></span><em class="property">struct </em><code class="sig-name descname">IPC_GetBuffer_t</code><a class="headerlink" href="#_CPPv415IPC_GetBuffer_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;ipc.h&gt;</em></dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv414IPC_Instance_t">
+<span id="_CPPv314IPC_Instance_t"></span><span id="_CPPv214IPC_Instance_t"></span><span id="IPC_Instance_t"></span><span class="target" id="struct_i_p_c___instance__t"></span><em class="property">struct </em><code class="sig-name descname">IPC_Instance_t</code><a class="headerlink" href="#_CPPv414IPC_Instance_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;ipc.h&gt;</em></dd></dl>
+
+<dl class="cpp struct">
+<dt id="_CPPv418IPC_MessageQueue_t">
+<span id="_CPPv318IPC_MessageQueue_t"></span><span id="_CPPv218IPC_MessageQueue_t"></span><span id="IPC_MessageQueue_t"></span><span class="target" id="struct_i_p_c___message_queue__t"></span><em class="property">struct </em><code class="sig-name descname">IPC_MessageQueue_t</code><a class="headerlink" href="#_CPPv418IPC_MessageQueue_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;ipc.h&gt;</em></dd></dl>
+
+</dd></dl>
+
+<p>There are two versions of IPC drivers in this device - one used by the C28x cores (present in the driverlib folder),
+the other used by the CM core (present in the driverlib_cm folder).
+With very few exceptions, the same IPC APIs are used by all the 3 processors. As a result all the APIs require
+a parameter indicating the IPC type that defines the local and remote cores. For example, IPC_CPU1_L_CPU2_R enum defines CPU1
+as the local core and CPU2 as the remote core. This enum shall be used by the CPU1 core to communncate to CPU2 core.</p>
+<p>The IPC driver can be configured to include or exclude the message queue support using the macro IPC_MSGQ_SUPPORT.
+The macro is set to 1 by default and includes message queue support. This feature creates some data structures in the IPC MSG RAM.
+If the application do not want the IPC message RAM to used by the driver, this macro can be set to 0. Make sure the macro value is
+the same on C28x and CM side IPC drivers.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="interrupt.html" class="btn btn-neutral float-left" title="Interrupt Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="mcan.html" class="btn btn-neutral float-right" title="MCAN Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+      <span class="lastupdated">Last updated on Jul 01, 2023.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v5.00.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

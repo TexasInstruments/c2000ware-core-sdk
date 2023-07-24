@@ -76,6 +76,21 @@ extern "C"
 #pragma CODE_SECTION(Flash_enableECC, ".TI.ramfunc");
 #endif
 
+//*********************************
+//
+//! Flash Trim Defines
+//
+//**********************************
+#define FLASH_O_TRIMCTL                                     0x1600U   // Trim Control Register
+#define FLASH_O_TRIMLOCK                                    0x1604U   // Trim Lock Register
+#define FLASH_O_TRIMCOMMIT                                  0x1608U   // Trim Commit Register
+#define FLASH_TRIMCTL_ENABLE_M                              0x1U      
+#define FLASH_TRIMCTL_ENABLE_S                              0x0U      
+#define FLASH_TRIMLOCK_TRIMLOCKREAD_TRIMLOCKOTHER_M         0x3U      
+#define FLASH_TRIMLOCK_TRIMLOCKREAD_TRIMLOCKOTHER_S         0x0U      
+#define FLASH_TRIMCOMMIT_TRIMCOMMITREAD_TRIMCOMMITOTHER_M   0x3U      
+#define FLASH_TRIMCOMMIT_TRIMCOMMITREAD_TRIMCOMMITOTHER_S   0x0U      
+
 
 //*****************************************************************************
 //

@@ -1,12 +1,12 @@
 %%{
-// Device Supported : F2837xD, F2838x
+let clocktree_common   = system.getScript("../clocktree_common.js");
 
-const PLL_type1 = ["F2837xD"]	//FMULT available 	| REFDIV unavailable
-const PLL_type2 = ["F2838x"]	//FMULT unavailable	| REFDIV available
+const PLL_type1 = clocktree_common.PLL_type1;
+const PLL_type2 = clocktree_common.PLL_type2;
 
-const EPWM_div_support 		= ["F2837xD"]
+const EPWM_div_support = clocktree_common.EPWM_div_support;
 
-const device  = system.deviceData.device
+const device  = clocktree_common.device;
 
 const PLLSYSCLK_d	 = system.clockTree.PLLSYSCLK.in
 const LSPCLK_d 		 = system.clockTree.LSPCLK.in

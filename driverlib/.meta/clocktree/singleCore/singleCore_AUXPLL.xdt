@@ -1,11 +1,12 @@
 %%{
-// Device Supported : F2837xS, F2807x, F28004x, F28002x, F28003x, F280013x, F280015x
+let clocktree_common   = system.getScript("../clocktree_common.js");
 
+const PLL_type1 = clocktree_common.PLL_type1;
+const PLL_type2 = clocktree_common.PLL_type2;
+const xtal_x1_macro 		= clocktree_common.xtal_x1_macro;
 
-const PLL_type1 = ["F2837xS", "F2807x", "F28004x"]					//FMULT available 	| REFDIV unavailable		
-const PLL_type2 = ["F28002x", "F28003x", "F280013x", "F280015x"]	//FMULT unavailable	| REFDIV available
-
-const device  = system.deviceData.device
+const device  = clocktree_common.device;
+var XTAL_OR_X1 				= clocktree_common.XTAL_OR_X1;
 
 //////////////////////////////////////////////////
 // Frequency lables
@@ -24,6 +25,9 @@ var auxoscclkSrc = "SYSCTL_OSCSRC_OSC2"
 var auxoscclksource
 var auxoscclk = 10
 
+//
+// XTAL Single-Ended replaces X1 for F2838x, F28002x, F28003x, F28004x, F280013x, F280015x, F28P65x
+//
 switch(AUXOSCCLKSRCSEL.inputSelect){
 	case "AUXCLK":
 		auxoscclkSrc = "SYSCTL_AUXPLL_OSCSRC_AUXCLKIN"
@@ -36,7 +40,14 @@ switch(AUXOSCCLKSRCSEL.inputSelect){
 		auxoscclk = 10
 		break
 	case "X1_XTAL":
-		auxoscclkSrc = "SYSCTL_AUXPLL_OSCSRC_XTAL"
+		if((XTAL_OR_X1.inputSelect == "XTAL") || xtal_x1_macro.includes(device))
+		{
+			auxoscclkSrc = "SYSCTL_AUXPLL_OSCSRC_XTAL"
+		}
+		else
+		{
+			auxoscclkSrc = "SYSCTL_AUXPLL_OSCSRC_XTAL_SE"
+		}
 		auxoscclksource = system.clockTree.XTAL_OR_X1.inputSelect
 		auxoscclk = system.clockTree.XTAL_OR_X1.External_Clock
 		break

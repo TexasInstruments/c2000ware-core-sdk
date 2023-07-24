@@ -145,7 +145,7 @@ config = config.concat([
 
 var pinMuxReq = Pinmux.gpioPinmuxRequirements;
 if (["F280013x","F280015x"].includes(Common.getDeviceName())){
-    if (!["64PM","80PN"].includes(Common.getDevicePackage()))
+    if (!["64PM","64VPM","80PN"].includes(Common.getDevicePackage()))
     pinMuxReq = Pinmux.gpioWithPeripheralPinmuxRequirements;
 }
 

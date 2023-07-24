@@ -1,0 +1,48 @@
+<projectSpec>
+  <project
+        name="memcfg_ex1_ram_management_cpu1"
+        device="TMS320F28P650DK9"
+        cgtVersion="22.6.0.LTS"
+        products="c2000ware_software_package"
+        outputFormat="ELF"
+        launchWizard="False"
+        linkerCommandFile=""
+        >
+    <configuration name="CPU1_RAM" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=CPU1 --define RAM -v28 -ml -mt --cla_support=cla2 --float_support=fpu64 --tmu_support=tmu1 --fp_mode=relaxed --define=DEBUG --diag_warning=225 --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200" />
+    <configuration name="CPU1_FLASH" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=_FLASH -v28 -ml -mt --cla_support=cla2 --float_support=fpu64 --tmu_support=tmu1 --fp_mode=relaxed --define=DEBUG  --define=CPU1 --diag_warning=225 --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200" />
+    <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../../../../driverlib/f28p65x/driverlib/" scope="project" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/include/driverlib.h" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/include/device.h" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/source/device.c" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/targetConfigs/TMS320F28P650DK9.ccxml" targetDirectory="targetConfigs" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/cmd/28p65x_ram_lnk_shared_cpu1.cmd" targetDirectory="" applicableConfigurations="CPU1_RAM" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/cmd/28p65x_flash_lnk_shared_cpu1.cmd" targetDirectory="" applicableConfigurations="CPU1_FLASH" />
+    <file action="copy" path="../../../../../../driverlib/f28p65x/driverlib/" targetDirectory="device" excludeFromBuild="True" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/source/f28p65x_codestartbranch.asm" targetDirectory="device" />
+    <file action="link" path="../../../../../../driverlib/f28p65x/driverlib/ccs/Debug/driverlib.lib" targetDirectory="" />
+    <file action="copy" path="../memcfg_ex1_ram_management_cpu1.c" targetDirectory="" />
+  </project>
+  <project
+        name="memcfg_ex1_ram_management_cpu2"
+        device="TMS320F28P650DK9"
+        cgtVersion="22.6.0.LTS"
+        products="c2000ware_software_package"
+        outputFormat="ELF"
+        launchWizard="False"
+        linkerCommandFile=""
+        >
+    <configuration name="CPU2_RAM" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=CPU2 --define RAM -v28 -ml -mt --cla_support=cla2 --float_support=fpu64 --tmu_support=tmu1 --fp_mode=relaxed --define=DEBUG --diag_warning=225 --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200" />
+    <configuration name="CPU2_FLASH" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=_FLASH -v28 -ml -mt --cla_support=cla2 --float_support=fpu64 --tmu_support=tmu1 --fp_mode=relaxed --define=DEBUG  --define=CPU2 --diag_warning=225 --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200" />
+    <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../../../../driverlib/f28p65x/driverlib/" scope="project" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/include/driverlib.h" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/include/device.h" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/source/device.c" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/targetConfigs/TMS320F28P650DK9.ccxml" targetDirectory="targetConfigs" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/cmd/28p65x_ram_lnk_shared_cpu2.cmd" targetDirectory="" applicableConfigurations="CPU2_RAM" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/cmd/28p65x_flash_lnk_shared_cpu2.cmd" targetDirectory="" applicableConfigurations="CPU2_FLASH" />
+    <file action="copy" path="../../../../../../driverlib/f28p65x/driverlib/" targetDirectory="device" excludeFromBuild="True" />
+    <file action="copy" path="../../../../../../device_support/f28p65x/common/source/f28p65x_codestartbranch.asm" targetDirectory="device" />
+    <file action="link" path="../../../../../../driverlib/f28p65x/driverlib/ccs/Debug/driverlib.lib" targetDirectory="" />
+    <file action="copy" path="../memcfg_ex1_ram_management_cpu2.c" targetDirectory="" />
+  </project>
+</projectSpec>

@@ -32,7 +32,7 @@ void `nameOfPeripheral`_init(){
 	//
 	ASysCtl_lockTemperatureSensor();
 %		}
-%		if(system.deviceData.deviceId.includes("F28004x")){
+%		if(["F28004x", "F28P65x"].includes(system.deviceData.deviceId)){
 %			if(stat.analogReference == "INTERNAL"){
 	//
 	// Set the analog voltage reference selection to internal.
@@ -110,5 +110,13 @@ void `nameOfPeripheral`_init(){
 	ASysCtl_setAnalogReference1P65( ASYSCTL_VREFHI );
 %			}
 %		}
+%}
+%if((system.deviceData.deviceId.includes("F280013x") || system.deviceData.deviceId.includes("F280015x")) && (stat.externalDACLEnable == true))
+%{
+	//
+	// This function disables CMPSSx.COMPL and the associated DAC will act as a
+	// general purpose DAC with 11 bit resolution
+	//
+	ASysCtl_enableCMPSSExternalDAC(ASYSCTL_CMPSS1_DACL);
 %}
 }

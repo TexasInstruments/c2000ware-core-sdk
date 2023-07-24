@@ -71,12 +71,12 @@ let EPWM_CurrentLink = [
 	{ name: "EPWM_LINK_WITH_EPWM_7", displayName: "link current ePWM with ePWM7" },
 ]
 let EPWM_LinkComponent = [
-	{ name: "EPWM_LINK_TBPRD", displayName: "Link TBPRD:TBPRDHR registers" },
-	{ name: "EPWM_LINK_COMP_A", displayName: "Link COMPA registers" },
-	{ name: "EPWM_LINK_COMP_B", displayName: "Link COMPB registers" },
-	{ name: "EPWM_LINK_COMP_C", displayName: "Link COMPC registers" },
-	{ name: "EPWM_LINK_COMP_D", displayName: "Link COMPD registers" },
-	{ name: "EPWM_LINK_GLDCTL2", displayName: "Link GLDCTL2 registers" },
+	{ name: "EPWM_LINK_TBPRD", displayName: "link TBPRD registers" },
+	{ name: "EPWM_LINK_COMP_A", displayName: "link COMPA registers" },
+	{ name: "EPWM_LINK_COMP_B", displayName: "link COMPB registers" },
+	{ name: "EPWM_LINK_COMP_C", displayName: "link COMPC registers" },
+	{ name: "EPWM_LINK_COMP_D", displayName: "link COMPD registers" },
+	{ name: "EPWM_LINK_GLDCTL2", displayName: "link GLDCTL2 registers" },
 ]
 let EPWM_CounterCompareModule = [
 	{ name: "EPWM_COUNTER_COMPARE_A", displayName: "Counter compare A" },
@@ -327,7 +327,6 @@ let EPWM_DigitalCompareBlankingPulse = [
 	{ name: "EPWM_DC_WINDOW_START_TBCTR_PERIOD", displayName: "Time base counter equals period" },
 	{ name: "EPWM_DC_WINDOW_START_TBCTR_ZERO", displayName: "Time base counter equals zero" },
 	{ name: "EPWM_DC_WINDOW_START_TBCTR_ZERO_PERIOD", displayName: "Time base counter equals zero or period" },
-	{ name: "EPWM_DC_WINDOW_START_BLANK_PULSE_MIX", displayName: "Blank pulse mix" },
 ]
 let EPWM_DigitalCompareFilterInput = [
 	{ name: "EPWM_DC_WINDOW_SOURCE_DCAEVT1", displayName: "DC filter signal source is DCAEVT1" },
@@ -491,10 +490,10 @@ let EPWM_TZ_OST_FLAG = [
 let EPWM_TZ_FORCE_EVENT = [
 	{ name: "EPWM_TZ_FORCE_EVENT_CBC", displayName: "Force Cycle By Cycle trip event" },
 	{ name: "EPWM_TZ_FORCE_EVENT_OST", displayName: "Force a One-Shot Trip Event" },
-	{ name: "EPWM_TZ_FORCE_EVENT_DCAEVT1", displayName: "ForceDigital Compare Output A Event 1" },
-	{ name: "EPWM_TZ_FORCE_EVENT_DCAEVT2", displayName: "ForceDigital Compare Output A Event 2" },
-	{ name: "EPWM_TZ_FORCE_EVENT_DCBEVT1", displayName: "ForceDigital Compare Output B Event 1" },
-	{ name: "EPWM_TZ_FORCE_EVENT_DCBEVT2", displayName: "ForceDigital Compare Output B Event 2" },
+	{ name: "EPWM_TZ_FORCE_EVENT_DCAEVT1", displayName: "Force Digital Compare Output A Event 1" },
+	{ name: "EPWM_TZ_FORCE_EVENT_DCAEVT2", displayName: "Force Digital Compare Output A Event 2" },
+	{ name: "EPWM_TZ_FORCE_EVENT_DCBEVT1", displayName: "Force Digital Compare Output B Event 1" },
+	{ name: "EPWM_TZ_FORCE_EVENT_DCBEVT2", displayName: "Force Digital Compare Output B Event 2" },
 ]
 let EPWM_INT_TBCTR = [
 	{ name: "EPWM_INT_TBCTR_DISABLED", displayName: "Time-base counter is disabled" },

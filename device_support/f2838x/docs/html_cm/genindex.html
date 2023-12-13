@@ -77,7 +77,7 @@
             
             
               <div class="version">
-                v4.02.00.00
+                v5.01.00.00
               </div>
             
           
@@ -979,6 +979,8 @@
 </li>
       <li><a href="modules/escss.html#_CPPv4N20ESCSS_CaptureTrigger27ESCSS_SYNC1_CAPTURE_TRIGGERE">ESCSS_CaptureTrigger::ESCSS_SYNC1_CAPTURE_TRIGGER (C++ enumerator)</a>
 </li>
+      <li><a href="modules/escss.html#c.ESCSS_CLEAR_INTERRUPT_MASK">ESCSS_CLEAR_INTERRUPT_MASK (C macro)</a>
+</li>
       <li><a href="modules/escss.html#_CPPv429ESCSS_clearRawInterruptStatus8uint32_t8uint16_t">ESCSS_clearRawInterruptStatus (C++ function)</a>
 </li>
       <li><a href="modules/escss.html#_CPPv440ESCSS_configure16BitAsyncAccessWaitState8uint32_t8uint16_t">ESCSS_configure16BitAsyncAccessWaitState (C++ function)</a>
@@ -1074,6 +1076,8 @@
       <li><a href="modules/escss.html#_CPPv434ESCSS_enableSync0GpioMuxConnection8uint32_t8uint16_t">ESCSS_enableSync0GpioMuxConnection (C++ function)</a>
 </li>
       <li><a href="modules/escss.html#_CPPv434ESCSS_enableSync1GpioMuxConnection8uint32_t8uint16_t">ESCSS_enableSync1GpioMuxConnection (C++ function)</a>
+</li>
+      <li><a href="modules/escss.html#c.ESCSS_GET_INTERRUPT_MASK">ESCSS_GET_INTERRUPT_MASK (C macro)</a>
 </li>
       <li><a href="modules/escss.html#_CPPv430ESCSS_getMaskedInterruptStatus8uint32_t8uint16_t">ESCSS_getMaskedInterruptStatus (C++ function)</a>
 </li>
@@ -1231,6 +1235,8 @@
 </li>
       <li><a href="modules/escss.html#_CPPv416ESCSS_initMemory8uint32_t">ESCSS_initMemory (C++ function)</a>
 </li>
+      <li><a href="modules/escss.html#c.ESCSS_INTERRUPT_MASK">ESCSS_INTERRUPT_MASK (C macro)</a>
+</li>
       <li><a href="modules/escss.html#c.ESCSS_IPREV_MASK">ESCSS_IPREV_MASK (C macro)</a>
 </li>
       <li><a href="modules/escss.html#_CPPv432ESCSS_isConfigurationLockEnabled8uint32_t">ESCSS_isConfigurationLockEnabled (C++ function)</a>
@@ -1315,6 +1321,8 @@
 </li>
       <li><a href="modules/escss.html#_CPPv428ESCSS_readRawInterruptStatus8uint32_t">ESCSS_readRawInterruptStatus (C++ function)</a>
 </li>
+      <li><a href="modules/escss.html#c.ESCSS_RESET_INTERRUPT_MASK">ESCSS_RESET_INTERRUPT_MASK (C macro)</a>
+</li>
       <li><a href="modules/escss.html#_CPPv419ESCSS_resetGPINData8uint32_t8uint32_t">ESCSS_resetGPINData (C++ function)</a>
 </li>
       <li><a href="modules/escss.html#_CPPv432ESCSS_resetMaskedInterruptStatus8uint32_t8uint16_t">ESCSS_resetMaskedInterruptStatus (C++ function)</a>
@@ -1322,6 +1330,8 @@
       <li><a href="modules/escss.html#_CPPv421ESCSS_selectLatch0Mux8uint32_t18ESCSS_LatchTrigger">ESCSS_selectLatch0Mux (C++ function)</a>
 </li>
       <li><a href="modules/escss.html#_CPPv421ESCSS_selectLatch1Mux8uint32_t18ESCSS_LatchTrigger">ESCSS_selectLatch1Mux (C++ function)</a>
+</li>
+      <li><a href="modules/escss.html#c.ESCSS_SET_INTERRUPT_MASK">ESCSS_SET_INTERRUPT_MASK (C macro)</a>
 </li>
       <li><a href="modules/escss.html#_CPPv417ESCSS_setGPINData8uint32_t8uint32_t">ESCSS_setGPINData (C++ function)</a>
 </li>
@@ -1705,12 +1715,12 @@
 </li>
       <li><a href="modules/ethernet.html#c.ETHERNET_MAC_PPS_CONTROL_PPSCTRL_PPS_OUTPUT_8HZ">ETHERNET_MAC_PPS_CONTROL_PPSCTRL_PPS_OUTPUT_8HZ (C macro)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/ethernet.html#c.ETHERNET_MAC_PPS_CONTROL_PPSCTRL_PPS_OUTPUT_SINGLE_PULSE">ETHERNET_MAC_PPS_CONTROL_PPSCTRL_PPS_OUTPUT_SINGLE_PULSE (C macro)</a>
 </li>
       <li><a href="modules/ethernet.html#c.ETHERNET_MAC_PPS_CONTROL_PPSEN0">ETHERNET_MAC_PPS_CONTROL_PPSEN0 (C macro)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/ethernet.html#c.ETHERNET_MAC_PPS_CONTROL_PPSEN0_PPS_FIXED_MODE">ETHERNET_MAC_PPS_CONTROL_PPSEN0_PPS_FIXED_MODE (C macro)</a>
 </li>
       <li><a href="modules/ethernet.html#c.ETHERNET_MAC_PPS_CONTROL_PPSEN0_PPS_FLEXIBLE_MODE">ETHERNET_MAC_PPS_CONTROL_PPSEN0_PPS_FLEXIBLE_MODE (C macro)</a>
@@ -3385,6 +3395,12 @@
 </li>
       <li><a href="modules/mcan.html#_CPPv423MCAN_clearNewDataStatus8uint32_tPK20MCAN_RxNewDataStatus">MCAN_clearNewDataStatus (C++ function)</a>
 </li>
+      <li><a href="modules/mcan.html#_CPPv416MCAN_ClockSource">MCAN_ClockSource (C++ enum)</a>
+</li>
+      <li><a href="modules/mcan.html#_CPPv4N16MCAN_ClockSource23MCAN_CLOCK_SOURCE_AUXINE">MCAN_ClockSource::MCAN_CLOCK_SOURCE_AUXIN (C++ enumerator)</a>
+</li>
+      <li><a href="modules/mcan.html#_CPPv4N16MCAN_ClockSource21MCAN_CLOCK_SOURCE_SYSE">MCAN_ClockSource::MCAN_CLOCK_SOURCE_SYS (C++ enumerator)</a>
+</li>
       <li><a href="modules/mcan.html#_CPPv413MCAN_ComState">MCAN_ComState (C++ enum)</a>
 </li>
       <li><a href="modules/mcan.html#_CPPv4N13MCAN_ComState19MCAN_COM_STATE_IDLEE">MCAN_ComState::MCAN_COM_STATE_IDLE (C++ enumerator)</a>
@@ -3667,6 +3683,8 @@
 </li>
       <li><a href="modules/mcan.html#_CPPv419MCAN_ProtocolStatus">MCAN_ProtocolStatus (C++ struct)</a>
 </li>
+      <li><a href="modules/mcan.html#_CPPv427MCAN_readHighPriorityMsgRam8uint32_tP17MCAN_RxBufElement">MCAN_readHighPriorityMsgRam (C++ function)</a>
+</li>
       <li><a href="modules/mcan.html#_CPPv415MCAN_readMsgRam8uint32_t8uint32_t8uint32_t8uint32_tP17MCAN_RxBufElement">MCAN_readMsgRam (C++ function)</a>
 </li>
       <li><a href="modules/mcan.html#_CPPv420MCAN_readTxEventFIFO8uint32_tP23MCAN_TxEventFIFOElement">MCAN_readTxEventFIFO (C++ function)</a>
@@ -3687,6 +3705,8 @@
 </li>
       <li><a href="modules/mcan.html#_CPPv420MCAN_RxNewDataStatus">MCAN_RxNewDataStatus (C++ struct)</a>
 </li>
+      <li><a href="modules/mcan.html#_CPPv422MCAN_selectClockSource8uint32_t16MCAN_ClockSource">MCAN_selectClockSource (C++ function)</a>
+</li>
       <li><a href="modules/mcan.html#_CPPv419MCAN_selectIntrLine8uint32_t8uint32_t8uint32_t">MCAN_selectIntrLine (C++ function)</a>
 </li>
       <li><a href="modules/mcan.html#_CPPv415MCAN_setBitTime8uint32_tPK20MCAN_BitTimingParams">MCAN_setBitTime (C++ function)</a>
@@ -3696,6 +3716,32 @@
       <li><a href="modules/mcan.html#_CPPv414MCAN_setOpMode8uint32_t8uint32_t">MCAN_setOpMode (C++ function)</a>
 </li>
       <li><a href="modules/mcan.html#_CPPv418MCAN_setTxPinState8uint32_t8uint32_t">MCAN_setTxPinState (C++ function)</a>
+</li>
+      <li><a href="modules/mcan.html#c.MCAN_STDFILT_CLASSIC">MCAN_STDFILT_CLASSIC (C macro)</a>
+</li>
+      <li><a href="modules/mcan.html#c.MCAN_STDFILT_DISABLED">MCAN_STDFILT_DISABLED (C macro)</a>
+</li>
+      <li><a href="modules/mcan.html#c.MCAN_STDFILT_DUAL">MCAN_STDFILT_DUAL (C macro)</a>
+</li>
+      <li><a href="modules/mcan.html#c.MCAN_STDFILT_RANGE">MCAN_STDFILT_RANGE (C macro)</a>
+</li>
+      <li><a href="modules/mcan.html#c.MCAN_STDFILTEC_DISABLE">MCAN_STDFILTEC_DISABLE (C macro)</a>
+</li>
+      <li><a href="modules/mcan.html#c.MCAN_STDFILTEC_FIFO0">MCAN_STDFILTEC_FIFO0 (C macro)</a>
+</li>
+      <li><a href="modules/mcan.html#c.MCAN_STDFILTEC_FIFO1">MCAN_STDFILTEC_FIFO1 (C macro)</a>
+</li>
+      <li><a href="modules/mcan.html#c.MCAN_STDFILTEC_PRI">MCAN_STDFILTEC_PRI (C macro)</a>
+</li>
+      <li><a href="modules/mcan.html#c.MCAN_STDFILTEC_PRI_FIFO0">MCAN_STDFILTEC_PRI_FIFO0 (C macro)</a>
+</li>
+      <li><a href="modules/mcan.html#c.MCAN_STDFILTEC_PRI_FIFO1">MCAN_STDFILTEC_PRI_FIFO1 (C macro)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/mcan.html#c.MCAN_STDFILTEC_REJECT">MCAN_STDFILTEC_REJECT (C macro)</a>
+</li>
+      <li><a href="modules/mcan.html#c.MCAN_STDFILTEC_RXBUFF">MCAN_STDFILTEC_RXBUFF (C macro)</a>
 </li>
       <li><a href="modules/mcan.html#_CPPv426MCAN_StdMsgIDFilterElement">MCAN_StdMsgIDFilterElement (C++ struct)</a>
 </li>
@@ -3709,8 +3755,6 @@
 </li>
       <li><a href="modules/mcan.html#_CPPv4N18MCAN_TimeOutSelect28MCAN_TIMEOUT_SELECT_RX_FIFO1E">MCAN_TimeOutSelect::MCAN_TIMEOUT_SELECT_RX_FIFO1 (C++ enumerator)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="modules/mcan.html#_CPPv4N18MCAN_TimeOutSelect33MCAN_TIMEOUT_SELECT_TX_EVENT_FIFOE">MCAN_TimeOutSelect::MCAN_TIMEOUT_SELECT_TX_EVENT_FIFO (C++ enumerator)</a>
 </li>
       <li><a href="modules/mcan.html#_CPPv416MCAN_txBufAddReq8uint32_t8uint32_t">MCAN_txBufAddReq (C++ function)</a>
@@ -4483,6 +4527,8 @@
 </li>
       <li><a href="modules/uart.html#_CPPv418UART_disableModule8uint32_t">UART_disableModule (C++ function)</a>
 </li>
+      <li><a href="modules/uart.html#_CPPv425UART_disableModuleNonFIFO8uint32_t">UART_disableModuleNonFIFO (C++ function)</a>
+</li>
       <li><a href="modules/uart.html#_CPPv415UART_disableSIR8uint32_t">UART_disableSIR (C++ function)</a>
 </li>
       <li><a href="modules/uart.html#c.UART_DMA_ERR_RXSTOP">UART_DMA_ERR_RXSTOP (C macro)</a>
@@ -4502,6 +4548,8 @@
       <li><a href="modules/uart.html#_CPPv419UART_enableLoopback8uint32_t">UART_enableLoopback (C++ function)</a>
 </li>
       <li><a href="modules/uart.html#_CPPv417UART_enableModule8uint32_t">UART_enableModule (C++ function)</a>
+</li>
+      <li><a href="modules/uart.html#_CPPv424UART_enableModuleNonFIFO8uint32_t">UART_enableModuleNonFIFO (C++ function)</a>
 </li>
       <li><a href="modules/uart.html#_CPPv414UART_enableSIR8uint32_t14Uart_SirLPMode">UART_enableSIR (C++ function)</a>
 </li>
@@ -4953,10 +5001,10 @@
 </li>
       <li><a href="modules/usb.html#c.USB_EP_DEV_OUT">USB_EP_DEV_OUT (C macro)</a>
 </li>
-      <li><a href="modules/usb.html#c.USB_EP_DMA_MODE_0">USB_EP_DMA_MODE_0 (C macro)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="modules/usb.html#c.USB_EP_DMA_MODE_0">USB_EP_DMA_MODE_0 (C macro)</a>
+</li>
       <li><a href="modules/usb.html#c.USB_EP_DMA_MODE_1">USB_EP_DMA_MODE_1 (C macro)</a>
 </li>
       <li><a href="modules/usb.html#c.USB_EP_HOST_IN">USB_EP_HOST_IN (C macro)</a>
@@ -5505,8 +5553,10 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
-      <span class="lastupdated">Last updated on Oct 11, 2022.
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+      <span class="lastupdated">Last updated on Nov 09, 2023.
       </span></p>
   </div>
 
@@ -5526,7 +5576,7 @@
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'./',
-            VERSION:'v4.02.00.00',
+            VERSION:'v5.01.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

@@ -1494,7 +1494,7 @@ SysCtl_enableCMPSSLPMWakeupPin(SysCtl_CMPSSLPMSel pin)
 {
     uint32_t pinMask;
 
-    pinMask = 1UL << (pin);
+    pinMask = 1UL << (uint32_t)(pin);
 
     EALLOW;
         HWREG(CPUSYS_BASE + SYSCTL_O_CMPSSLPMSEL) |= pinMask;
@@ -1517,7 +1517,7 @@ SysCtl_disableCMPSSLPMWakeupPin(SysCtl_CMPSSLPMSel pin)
 {
     uint32_t pinMask;
 
-    pinMask = 1UL << (pin);
+    pinMask = 1UL << (uint32_t)(pin);
 
     EALLOW;
         HWREG(CPUSYS_BASE + SYSCTL_O_CMPSSLPMSEL) &= ~pinMask;
@@ -2795,7 +2795,7 @@ SysCtl_getPIEVErrAddr(void)
 //! \param rstCauses is the cause for the reset.
 //!
 //! The \e rstCauses parameter can be one/ more of these values:
-//! SYSCTL_CAUSE_CPU1RSN or SYSCTL_CAUSE_XRS
+//! SYSCTL_SIMRESET_CPU1RSN or SYSCTL_SIMRESET_XRSN
 //!
 //! \return None.
 //!
@@ -2805,12 +2805,14 @@ SysCtl_getPIEVErrAddr(void)
 static inline void
 SysCtl_simulateReset(uint32_t rstCauses)
 {
+    ASSERT((rstCauses == SYSCTL_SIMRESET_CPU1RSN) ||
+           (rstCauses == SYSCTL_SIMRESET_XRSN));
     //
     //Write will succeed only if a matching key value is written
     //to the KEY field
     //Sets the appropriate reset bit.
     //
-    HWREG(CPUSYS_BASE + SYSCTL_O_SIMRESET)  = (rstCauses |
+    HWREG(CPUSYS_BASE + SYSCTL_O_SIMRESET) = (rstCauses |
                                               (SYSCTL_REG_KEY &
                                                SYSCTL_SIMRESET_KEY_M));
 }

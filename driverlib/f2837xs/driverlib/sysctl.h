@@ -304,6 +304,18 @@ extern "C"
 #define SYSCTL_CAUSE_SCCRESET            0x00000100U //!< SCCRESETn by DCSM
 //*****************************************************************************
 //
+//! The following are values that can be passed to SysCtl_enablePeripheral()
+//! and SysCtl_disablePeripheral() as the \e peripheral parameter.
+//! The EPWM Clock enable bit is also used to enable clocking for CLB.
+//! The EPWM and CLB clock enable bits are mapped to same value,
+//
+//*****************************************************************************
+#define  SYSCTL_PERIPH_CLK_CLB1  SYSCTL_PERIPH_CLK_EPWM1 //!< CLB1 clock
+#define  SYSCTL_PERIPH_CLK_CLB2  SYSCTL_PERIPH_CLK_EPWM2 //!< CLB2 clock
+#define  SYSCTL_PERIPH_CLK_CLB3  SYSCTL_PERIPH_CLK_EPWM3 //!< CLB3 clock
+#define  SYSCTL_PERIPH_CLK_CLB4  SYSCTL_PERIPH_CLK_EPWM4 //!< CLB4 clock
+//*****************************************************************************
+//
 // The following values define the adcsocSrc parameter for
 // SysCtl_enableExtADCSOCSource() and SysCtl_disableExtADCSOCSource().
 //

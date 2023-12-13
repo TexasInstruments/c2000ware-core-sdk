@@ -557,13 +557,6 @@ let DCSMRegisters = [
 			{ name: "KEY", description: "Semaphore Key", size: "8", shift: "8", mask: "0xFF00" },
 		]
 	},
-	{ name: "BOOTERR", description: "Boot Error Register", offset: "0x6",
-		bits: [
-			{ name: "ILLTRIMPSWD", description: "Illegal Trim Password", size: "1", shift: "0", mask: "0x1" },
-			{ name: "TRIMPSWDERR", description: "Trim Password Error", size: "1", shift: "1", mask: "0x2" },
-			{ name: "SELOVRD", description: "Password Select Override", size: "1", shift: "2", mask: "0x4" },
-		]
-	},
 	{ name: "SECTSTAT1", description: "Flash Sectors Status Register 1", offset: "0x8",
 		bits: [
 			{ name: "STATUS_B0_SECT0", description: "Zone Status Flash Bank0 Sector 0", size: "2", shift: "0", mask: "0x3" },

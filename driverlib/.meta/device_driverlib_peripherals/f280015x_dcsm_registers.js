@@ -564,7 +564,7 @@ let DCSMRegisters = [
 	},
 	{ name: "SECTSTAT3", description: "Flash Sectors Status Register 3", offset: "0xC",
 		bits: [
-			{ name: "STATUS_SECT39_22", description: "Zone Status flash Bank 0 Sectors", size: "2", shift: "8", mask: "0x300" },
+			{ name: "STATUS_SECT39_32", description: "Zone Status flash Bank 0 Sectors", size: "2", shift: "8", mask: "0x300" },
 			{ name: "STATUS_SECT47_40", description: "Zone Status flash Bank 0 Sectors", size: "2", shift: "10", mask: "0xC00" },
 			{ name: "STATUS_SECT55_48", description: "Zone Status flash Bank 0 Sectors", size: "2", shift: "12", mask: "0x3000" },
 			{ name: "STATUS_SECT63_56", description: "Zone Status flash Bank 0 Sectors", size: "2", shift: "14", mask: "0xC000" },

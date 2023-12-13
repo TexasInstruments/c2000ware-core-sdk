@@ -1,0 +1,81 @@
+% let Common   = system.getScript("/driverlib/Common.js");
+% var currnetSDKProductPath = system.getProducts()[0].path
+% var sdkPath = system.utils.path.join(currnetSDKProductPath + "../../../")
+% sdkPath = sdkPath.replace(new RegExp('\\' + system.utils.path.sep, 'g'), '/')
+% 
+% var moduleName = "usb"
+% var module = system.modules['/libraries/communications/usb/' + moduleName + '.js'];
+%
+
+%if(module != null)
+%{
+% var instance = module.$instances[0];
+%
+% if ((instance.usb_mode == "Host") || (instance.usb_mode == "Dual"))
+%{
+uint8_t `instance.usb_host_hcdPool`[`instance.$name`_HCD_MEMORY_SIZE];
+%}
+void USBLib_init(){
+    % if (instance.usb_mode == "Device")
+    %{
+        %if (instance.deviceClasses == "Bulk")
+        %{
+    //
+    // Initialize the USB stack mode and pass in a mode callback.
+    //
+    USBStackModeSet(0, eUSBModeForceDevice, `instance.usb_mode_callback`);
+        %}
+        %if ((instance.deviceClasses == "CDC") || (instance.deviceClasses == "Mouse") || (instance.deviceClasses == "Keyboard") )
+        %{
+    //
+    // Set the USB stack mode to Device mode with VBUS monitoring.
+    //
+    USBStackModeSet(0, eUSBModeForceDevice, 0);
+        %}
+    %}
+    % else if (instance.usb_mode == "Host")
+    %{      
+    //
+    // Initialize the USB stack mode and pass in a mode callback.
+    //
+    USBStackModeSet(0, eUSBModeForceHost, `instance.usb_mode_callback`);
+    %}
+    % if (instance.usb_mode == "Device")
+    %{
+        % if (instance.deviceClasses == "Mouse")
+        %{
+    USBDHIDMouseInit(0, (tUSBDHIDMouseDevice *)&g_sMouseDevice);
+        %}
+        % else if (instance.deviceClasses == "CDC")
+        % {
+    USBDCDCInit(0, &g_sCDCDevice);
+        %}
+        % else if (instance.deviceClasses == "Keyboard")
+        % {
+    USBDHIDKeyboardInit(0, &g_sKeyboardDevice);
+        %}
+        % else if (instance.deviceClasses == "Bulk")
+        % {
+    USBDBulkInit(0, &g_sBulkDevice);
+        %}
+    %}
+    % if (instance.usb_mode == "Host")
+    %{
+        % var power_fault_options = "";
+        % for (var int_index in instance.usb_host_mode_power_config)
+        % {
+            %   power_fault_options += ((power_fault_options == "")?"":" | ") + instance.usb_host_mode_power_config[int_index];
+        % }
+    //
+    // Initialize the power configuration.
+    //
+    USBHCDPowerConfigInit(0,`power_fault_options`);
+    //
+    // Initialize the USB controller for OTG operation with a 2ms polling
+    // rate.
+    //
+    USBHCDInit(0,`instance.usb_host_hcdPool`, `instance.$name`_HCD_MEMORY_SIZE);
+    %}
+}
+%}
+%

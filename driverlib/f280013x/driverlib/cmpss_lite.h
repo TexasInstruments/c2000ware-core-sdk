@@ -104,6 +104,7 @@ extern "C"
 #define CMPSSLITE_getDACValueLow           CMPSS_getDACValueLow
 #define CMPSSLITE_clearFilterLatchHigh     CMPSS_clearFilterLatchHigh
 #define CMPSSLITE_clearFilterLatchLow      CMPSS_clearFilterLatchLow
+#define CMPSSLITE_configureSyncSourceHigh  CMPSS_configureSyncSourceHigh
 #define CMPSSLITE_setHysteresis            CMPSS_setHysteresis
 #define CMPSSLITE_enableLatchResetOnPWMSYNCHigh                               \
                                            CMPSS_enableLatchResetOnPWMSYNCHigh

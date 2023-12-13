@@ -1,0 +1,19 @@
+% var moduleName = "fatfs"
+% var libraryFolder = "fatfs"
+% var module = system.modules['/libraries/' + moduleName + '/' + moduleName + '.js'];
+%if (module != null)
+%{
+#include <sdspi/sdspi.h>
+#include <sdspi/SDFatFS.h>
+    % if (module.$instances) {
+#define SDFATFS_COUNT `module.$instances.length`
+    % }
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        % let modInst  = instance[moduleName];
+#define `instance.$name`_DRIVENUM `instance.driveNumber`
+extern  SDFatFS_Handle `instance.$name`_Handle;
+void    `instance.$name`_init();
+    % }
+%}
+%

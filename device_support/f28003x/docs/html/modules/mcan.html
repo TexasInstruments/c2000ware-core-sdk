@@ -1155,7 +1155,7 @@ MCAN_IR_ARA_MASK)<a class="headerlink" href="#c.MCAN_INTR_MASK_ALL" title="Perma
 <dl class="cpp function">
 <dt id="_CPPv415MCAN_readMsgRam8uint32_t8uint32_t8uint32_t8uint32_tP17MCAN_RxBufElement">
 <span id="_CPPv315MCAN_readMsgRam8uint32_t8uint32_t8uint32_t8uint32_tP17MCAN_RxBufElement"></span><span id="_CPPv215MCAN_readMsgRam8uint32_t8uint32_t8uint32_t8uint32_tP17MCAN_RxBufElement"></span><span id="MCAN_readMsgRam__uint32_t.uint32_t.uint32_t.uint32_t.MCAN_RxBufElementP"></span><span class="target" id="group__mcan__api_1gab7f5ca9e1bf82489a130afbb64a675cf"></span>void <code class="sig-name descname">MCAN_readMsgRam</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, uint32_t <em>memType</em>, uint32_t <em>bufNum</em>, uint32_t <em>fifoNum</em>, <a class="reference internal" href="#_CPPv417MCAN_RxBufElement" title="MCAN_RxBufElement">MCAN_RxBufElement</a> *<em>elem</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415MCAN_readMsgRam8uint32_t8uint32_t8uint32_t8uint32_tP17MCAN_RxBufElement" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>This API is used to read received message form message RAM. </p>
+<dd><p>This API is used to read received message from Message RAM. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -1174,7 +1174,7 @@ MCAN_IR_ARA_MASK)<a class="headerlink" href="#c.MCAN_INTR_MASK_ALL" title="Perma
 <dl class="cpp function">
 <dt id="_CPPv420MCAN_readTxEventFIFO8uint32_tP23MCAN_TxEventFIFOElement">
 <span id="_CPPv320MCAN_readTxEventFIFO8uint32_tP23MCAN_TxEventFIFOElement"></span><span id="_CPPv220MCAN_readTxEventFIFO8uint32_tP23MCAN_TxEventFIFOElement"></span><span id="MCAN_readTxEventFIFO__uint32_t.MCAN_TxEventFIFOElementP"></span><span class="target" id="group__mcan__api_1ga4a86d17e792e22905cdd13d826bc4302"></span>void <code class="sig-name descname">MCAN_readTxEventFIFO</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, <a class="reference internal" href="#_CPPv423MCAN_TxEventFIFOElement" title="MCAN_TxEventFIFOElement">MCAN_TxEventFIFOElement</a> *<em>txEventElem</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420MCAN_readTxEventFIFO8uint32_tP23MCAN_TxEventFIFOElement" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>This API is used to read message form Tx Event FIFO. </p>
+<dd><p>This API is used to read from Tx Event FIFO. </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -1395,6 +1395,22 @@ MCAN_IR_ARA_MASK)<a class="headerlink" href="#c.MCAN_INTR_MASK_ALL" title="Perma
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">hpm</span></code>: High Priority Message Status. Refer struct <a class="reference internal" href="#struct_m_c_a_n___high_priority_msg_info"><span class="std std-ref">MCAN_HighPriorityMsgInfo</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427MCAN_readHighPriorityMsgRam8uint32_tP17MCAN_RxBufElement">
+<span id="_CPPv327MCAN_readHighPriorityMsgRam8uint32_tP17MCAN_RxBufElement"></span><span id="_CPPv227MCAN_readHighPriorityMsgRam8uint32_tP17MCAN_RxBufElement"></span><span id="MCAN_readHighPriorityMsgRam__uint32_t.MCAN_RxBufElementP"></span><span class="target" id="group__mcan__api_1gaf866a1df174c6aa66b73db3c8ce91c63"></span>void <code class="sig-name descname">MCAN_readHighPriorityMsgRam</code><span class="sig-paren">(</span>uint32_t <em>baseAddr</em>, <a class="reference internal" href="#_CPPv417MCAN_RxBufElement" title="MCAN_RxBufElement">MCAN_RxBufElement</a> *<em>elem</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427MCAN_readHighPriorityMsgRam8uint32_tP17MCAN_RxBufElement" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This API will read the High Priority message object from Message RAM. </p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">baseAddr</span></code>: Base Address of the MCAN Registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">elem</span></code>: Message Object. Refer struct <a class="reference internal" href="#struct_m_c_a_n___rx_buf_element"><span class="std std-ref">MCAN_RxBufElement</span></a>.</p></li>
 </ul>
 </dd>
 </dl>
@@ -2247,7 +2263,7 @@ applications.</p>
     <p>
       <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2021, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
       <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
-      <span class="lastupdated">Last updated on Jul 01, 2023.
+      <span class="lastupdated">Last updated on Nov 09, 2023.
       </span></p>
   </div>
 

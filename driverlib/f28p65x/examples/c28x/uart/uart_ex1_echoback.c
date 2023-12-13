@@ -81,11 +81,7 @@
 
 #include "driverlib.h"
 #include "device.h"
-
-//
-// Defines
-//
-#define NUM_UART_DATA    4
+#include "board.h"
 
 //
 // Function Prototypes
@@ -99,31 +95,43 @@ void main(void)
 {
 
     //
-    // disable WD, enable peripheral clocks.
+    // Initialize device clock and peripherals
     //
     Device_init();
 
     //
-    // Configure UARTA for echoback.Set up to transfer data at 115200 baud.
-    //                                                        
-    UART_setConfig(UARTA_BASE,UART_CLK_FREQ , 115200,(UART_CONFIG_WLEN_8 | 
-                   UART_CONFIG_STOP_ONE | UART_CONFIG_PAR_NONE));
+    // Disable pin locks and enable internal pull-ups.
+    //
+    Device_initGPIO();
+
+    //
+    // Initialize PIE and clear PIE registers. Disables CPU interrupts.
+    //
+    Interrupt_initModule();
+
+    //
+    // Initialize the PIE vector table with pointers to the shell Interrupt
+    // Service Routines (ISR).
+    //
+    Interrupt_initVectorTable();
+
+    //
+    // PinMux and Peripheral Initialization
+    //
+    Board_init();
+
+    //
+    // Enable Global Interrupt (INTM) and real time interrupt (DBGM)
+    //
+    EINT;
+    ERTM;
 
     // 
     // Put a character to show start of example.  This will display on the
     // terminal.
     //
     UART_writeChar(UARTA_BASE, '!');
-
-    //
-    // Enable the UARTA interrupt on the processor (NVIC).
-    //
-    UART_registerInterrupt(INT_UARTA,UART_RX_IntHandler);
-
-    //
-    // FIFO enable
-    //
-    UART_enableFIFO(UARTA_BASE);
+    UART_writeChar(UARTA_BASE, '!');
 
     //
     // FIFO interrupt levels are set to generate an interrupt
@@ -172,9 +180,13 @@ __interrupt void UART_RX_IntHandler(void)
         UART_writeCharNonBlocking(UARTA_BASE,
                                   UART_readCharNonBlocking(UARTA_BASE));
     }
+
+    // TODO: Add a function to clear the global flag
+    HWREG(myUART0_BASE + 0x0044U) = 1;
+    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP8);
+
 }
 
 //
 // End of File
 //
-

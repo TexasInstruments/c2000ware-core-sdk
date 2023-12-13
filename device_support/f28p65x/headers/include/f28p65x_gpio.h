@@ -278,38 +278,38 @@ union GPAINV_REG {
 };
 
 struct GPAODR_BITS {                    // bits description
-    Uint16 GPIO0:1;                     // 0 Outpout Open-Drain control for this pin
-    Uint16 GPIO1:1;                     // 1 Outpout Open-Drain control for this pin
-    Uint16 GPIO2:1;                     // 2 Outpout Open-Drain control for this pin
-    Uint16 GPIO3:1;                     // 3 Outpout Open-Drain control for this pin
-    Uint16 GPIO4:1;                     // 4 Outpout Open-Drain control for this pin
-    Uint16 GPIO5:1;                     // 5 Outpout Open-Drain control for this pin
-    Uint16 GPIO6:1;                     // 6 Outpout Open-Drain control for this pin
-    Uint16 GPIO7:1;                     // 7 Outpout Open-Drain control for this pin
-    Uint16 GPIO8:1;                     // 8 Outpout Open-Drain control for this pin
-    Uint16 GPIO9:1;                     // 9 Outpout Open-Drain control for this pin
-    Uint16 GPIO10:1;                    // 10 Outpout Open-Drain control for this pin
-    Uint16 GPIO11:1;                    // 11 Outpout Open-Drain control for this pin
-    Uint16 GPIO12:1;                    // 12 Outpout Open-Drain control for this pin
-    Uint16 GPIO13:1;                    // 13 Outpout Open-Drain control for this pin
-    Uint16 GPIO14:1;                    // 14 Outpout Open-Drain control for this pin
-    Uint16 GPIO15:1;                    // 15 Outpout Open-Drain control for this pin
-    Uint16 GPIO16:1;                    // 16 Outpout Open-Drain control for this pin
-    Uint16 GPIO17:1;                    // 17 Outpout Open-Drain control for this pin
-    Uint16 GPIO18:1;                    // 18 Outpout Open-Drain control for this pin
-    Uint16 GPIO19:1;                    // 19 Outpout Open-Drain control for this pin
-    Uint16 GPIO20:1;                    // 20 Outpout Open-Drain control for this pin
-    Uint16 GPIO21:1;                    // 21 Outpout Open-Drain control for this pin
-    Uint16 GPIO22:1;                    // 22 Outpout Open-Drain control for this pin
-    Uint16 GPIO23:1;                    // 23 Outpout Open-Drain control for this pin
-    Uint16 GPIO24:1;                    // 24 Outpout Open-Drain control for this pin
-    Uint16 GPIO25:1;                    // 25 Outpout Open-Drain control for this pin
-    Uint16 GPIO26:1;                    // 26 Outpout Open-Drain control for this pin
-    Uint16 GPIO27:1;                    // 27 Outpout Open-Drain control for this pin
-    Uint16 GPIO28:1;                    // 28 Outpout Open-Drain control for this pin
-    Uint16 GPIO29:1;                    // 29 Outpout Open-Drain control for this pin
-    Uint16 GPIO30:1;                    // 30 Outpout Open-Drain control for this pin
-    Uint16 GPIO31:1;                    // 31 Outpout Open-Drain control for this pin
+    Uint16 GPIO0:1;                     // 0 Output Open-Drain control for this pin
+    Uint16 GPIO1:1;                     // 1 Output Open-Drain control for this pin
+    Uint16 GPIO2:1;                     // 2 Output Open-Drain control for this pin
+    Uint16 GPIO3:1;                     // 3 Output Open-Drain control for this pin
+    Uint16 GPIO4:1;                     // 4 Output Open-Drain control for this pin
+    Uint16 GPIO5:1;                     // 5 Output Open-Drain control for this pin
+    Uint16 GPIO6:1;                     // 6 Output Open-Drain control for this pin
+    Uint16 GPIO7:1;                     // 7 Output Open-Drain control for this pin
+    Uint16 GPIO8:1;                     // 8 Output Open-Drain control for this pin
+    Uint16 GPIO9:1;                     // 9 Output Open-Drain control for this pin
+    Uint16 GPIO10:1;                    // 10 Output Open-Drain control for this pin
+    Uint16 GPIO11:1;                    // 11 Output Open-Drain control for this pin
+    Uint16 GPIO12:1;                    // 12 Output Open-Drain control for this pin
+    Uint16 GPIO13:1;                    // 13 Output Open-Drain control for this pin
+    Uint16 GPIO14:1;                    // 14 Output Open-Drain control for this pin
+    Uint16 GPIO15:1;                    // 15 Output Open-Drain control for this pin
+    Uint16 GPIO16:1;                    // 16 Output Open-Drain control for this pin
+    Uint16 GPIO17:1;                    // 17 Output Open-Drain control for this pin
+    Uint16 GPIO18:1;                    // 18 Output Open-Drain control for this pin
+    Uint16 GPIO19:1;                    // 19 Output Open-Drain control for this pin
+    Uint16 GPIO20:1;                    // 20 Output Open-Drain control for this pin
+    Uint16 GPIO21:1;                    // 21 Output Open-Drain control for this pin
+    Uint16 GPIO22:1;                    // 22 Output Open-Drain control for this pin
+    Uint16 GPIO23:1;                    // 23 Output Open-Drain control for this pin
+    Uint16 GPIO24:1;                    // 24 Output Open-Drain control for this pin
+    Uint16 GPIO25:1;                    // 25 Output Open-Drain control for this pin
+    Uint16 GPIO26:1;                    // 26 Output Open-Drain control for this pin
+    Uint16 GPIO27:1;                    // 27 Output Open-Drain control for this pin
+    Uint16 GPIO28:1;                    // 28 Output Open-Drain control for this pin
+    Uint16 GPIO29:1;                    // 29 Output Open-Drain control for this pin
+    Uint16 GPIO30:1;                    // 30 Output Open-Drain control for this pin
+    Uint16 GPIO31:1;                    // 31 Output Open-Drain control for this pin
 };
 
 union GPAODR_REG {
@@ -738,38 +738,38 @@ union GPBINV_REG {
 };
 
 struct GPBODR_BITS {                    // bits description
-    Uint16 GPIO32:1;                    // 0 Outpout Open-Drain control for this pin
-    Uint16 GPIO33:1;                    // 1 Outpout Open-Drain control for this pin
-    Uint16 GPIO34:1;                    // 2 Outpout Open-Drain control for this pin
-    Uint16 GPIO35:1;                    // 3 Outpout Open-Drain control for this pin
-    Uint16 GPIO36:1;                    // 4 Outpout Open-Drain control for this pin
-    Uint16 GPIO37:1;                    // 5 Outpout Open-Drain control for this pin
-    Uint16 GPIO38:1;                    // 6 Outpout Open-Drain control for this pin
-    Uint16 GPIO39:1;                    // 7 Outpout Open-Drain control for this pin
-    Uint16 GPIO40:1;                    // 8 Outpout Open-Drain control for this pin
-    Uint16 GPIO41:1;                    // 9 Outpout Open-Drain control for this pin
-    Uint16 GPIO42:1;                    // 10 Outpout Open-Drain control for this pin
-    Uint16 GPIO43:1;                    // 11 Outpout Open-Drain control for this pin
-    Uint16 GPIO44:1;                    // 12 Outpout Open-Drain control for this pin
-    Uint16 GPIO45:1;                    // 13 Outpout Open-Drain control for this pin
-    Uint16 GPIO46:1;                    // 14 Outpout Open-Drain control for this pin
-    Uint16 GPIO47:1;                    // 15 Outpout Open-Drain control for this pin
-    Uint16 GPIO48:1;                    // 16 Outpout Open-Drain control for this pin
-    Uint16 GPIO49:1;                    // 17 Outpout Open-Drain control for this pin
-    Uint16 GPIO50:1;                    // 18 Outpout Open-Drain control for this pin
-    Uint16 GPIO51:1;                    // 19 Outpout Open-Drain control for this pin
-    Uint16 GPIO52:1;                    // 20 Outpout Open-Drain control for this pin
-    Uint16 GPIO53:1;                    // 21 Outpout Open-Drain control for this pin
-    Uint16 GPIO54:1;                    // 22 Outpout Open-Drain control for this pin
-    Uint16 GPIO55:1;                    // 23 Outpout Open-Drain control for this pin
-    Uint16 GPIO56:1;                    // 24 Outpout Open-Drain control for this pin
-    Uint16 GPIO57:1;                    // 25 Outpout Open-Drain control for this pin
-    Uint16 GPIO58:1;                    // 26 Outpout Open-Drain control for this pin
-    Uint16 GPIO59:1;                    // 27 Outpout Open-Drain control for this pin
-    Uint16 GPIO60:1;                    // 28 Outpout Open-Drain control for this pin
-    Uint16 GPIO61:1;                    // 29 Outpout Open-Drain control for this pin
-    Uint16 GPIO62:1;                    // 30 Outpout Open-Drain control for this pin
-    Uint16 GPIO63:1;                    // 31 Outpout Open-Drain control for this pin
+    Uint16 GPIO32:1;                    // 0 Output Open-Drain control for this pin
+    Uint16 GPIO33:1;                    // 1 Output Open-Drain control for this pin
+    Uint16 GPIO34:1;                    // 2 Output Open-Drain control for this pin
+    Uint16 GPIO35:1;                    // 3 Output Open-Drain control for this pin
+    Uint16 GPIO36:1;                    // 4 Output Open-Drain control for this pin
+    Uint16 GPIO37:1;                    // 5 Output Open-Drain control for this pin
+    Uint16 GPIO38:1;                    // 6 Output Open-Drain control for this pin
+    Uint16 GPIO39:1;                    // 7 Output Open-Drain control for this pin
+    Uint16 GPIO40:1;                    // 8 Output Open-Drain control for this pin
+    Uint16 GPIO41:1;                    // 9 Output Open-Drain control for this pin
+    Uint16 GPIO42:1;                    // 10 Output Open-Drain control for this pin
+    Uint16 GPIO43:1;                    // 11 Output Open-Drain control for this pin
+    Uint16 GPIO44:1;                    // 12 Output Open-Drain control for this pin
+    Uint16 GPIO45:1;                    // 13 Output Open-Drain control for this pin
+    Uint16 GPIO46:1;                    // 14 Output Open-Drain control for this pin
+    Uint16 GPIO47:1;                    // 15 Output Open-Drain control for this pin
+    Uint16 GPIO48:1;                    // 16 Output Open-Drain control for this pin
+    Uint16 GPIO49:1;                    // 17 Output Open-Drain control for this pin
+    Uint16 GPIO50:1;                    // 18 Output Open-Drain control for this pin
+    Uint16 GPIO51:1;                    // 19 Output Open-Drain control for this pin
+    Uint16 GPIO52:1;                    // 20 Output Open-Drain control for this pin
+    Uint16 GPIO53:1;                    // 21 Output Open-Drain control for this pin
+    Uint16 GPIO54:1;                    // 22 Output Open-Drain control for this pin
+    Uint16 GPIO55:1;                    // 23 Output Open-Drain control for this pin
+    Uint16 GPIO56:1;                    // 24 Output Open-Drain control for this pin
+    Uint16 GPIO57:1;                    // 25 Output Open-Drain control for this pin
+    Uint16 GPIO58:1;                    // 26 Output Open-Drain control for this pin
+    Uint16 GPIO59:1;                    // 27 Output Open-Drain control for this pin
+    Uint16 GPIO60:1;                    // 28 Output Open-Drain control for this pin
+    Uint16 GPIO61:1;                    // 29 Output Open-Drain control for this pin
+    Uint16 GPIO62:1;                    // 30 Output Open-Drain control for this pin
+    Uint16 GPIO63:1;                    // 31 Output Open-Drain control for this pin
 };
 
 union GPBODR_REG {
@@ -1238,38 +1238,38 @@ union GPCINV_REG {
 };
 
 struct GPCODR_BITS {                    // bits description
-    Uint16 GPIO64:1;                    // 0 Outpout Open-Drain control for this pin
-    Uint16 GPIO65:1;                    // 1 Outpout Open-Drain control for this pin
-    Uint16 GPIO66:1;                    // 2 Outpout Open-Drain control for this pin
-    Uint16 GPIO67:1;                    // 3 Outpout Open-Drain control for this pin
-    Uint16 GPIO68:1;                    // 4 Outpout Open-Drain control for this pin
-    Uint16 GPIO69:1;                    // 5 Outpout Open-Drain control for this pin
-    Uint16 GPIO70:1;                    // 6 Outpout Open-Drain control for this pin
-    Uint16 GPIO71:1;                    // 7 Outpout Open-Drain control for this pin
-    Uint16 GPIO72:1;                    // 8 Outpout Open-Drain control for this pin
-    Uint16 GPIO73:1;                    // 9 Outpout Open-Drain control for this pin
-    Uint16 GPIO74:1;                    // 10 Outpout Open-Drain control for this pin
-    Uint16 GPIO75:1;                    // 11 Outpout Open-Drain control for this pin
-    Uint16 GPIO76:1;                    // 12 Outpout Open-Drain control for this pin
-    Uint16 GPIO77:1;                    // 13 Outpout Open-Drain control for this pin
-    Uint16 GPIO78:1;                    // 14 Outpout Open-Drain control for this pin
-    Uint16 GPIO79:1;                    // 15 Outpout Open-Drain control for this pin
-    Uint16 GPIO80:1;                    // 16 Outpout Open-Drain control for this pin
-    Uint16 GPIO81:1;                    // 17 Outpout Open-Drain control for this pin
-    Uint16 GPIO82:1;                    // 18 Outpout Open-Drain control for this pin
-    Uint16 GPIO83:1;                    // 19 Outpout Open-Drain control for this pin
-    Uint16 GPIO84:1;                    // 20 Outpout Open-Drain control for this pin
-    Uint16 GPIO85:1;                    // 21 Outpout Open-Drain control for this pin
-    Uint16 GPIO86:1;                    // 22 Outpout Open-Drain control for this pin
-    Uint16 GPIO87:1;                    // 23 Outpout Open-Drain control for this pin
-    Uint16 GPIO88:1;                    // 24 Outpout Open-Drain control for this pin
-    Uint16 GPIO89:1;                    // 25 Outpout Open-Drain control for this pin
-    Uint16 GPIO90:1;                    // 26 Outpout Open-Drain control for this pin
-    Uint16 GPIO91:1;                    // 27 Outpout Open-Drain control for this pin
-    Uint16 GPIO92:1;                    // 28 Outpout Open-Drain control for this pin
-    Uint16 GPIO93:1;                    // 29 Outpout Open-Drain control for this pin
-    Uint16 GPIO94:1;                    // 30 Outpout Open-Drain control for this pin
-    Uint16 GPIO95:1;                    // 31 Outpout Open-Drain control for this pin
+    Uint16 GPIO64:1;                    // 0 Output Open-Drain control for this pin
+    Uint16 GPIO65:1;                    // 1 Output Open-Drain control for this pin
+    Uint16 GPIO66:1;                    // 2 Output Open-Drain control for this pin
+    Uint16 GPIO67:1;                    // 3 Output Open-Drain control for this pin
+    Uint16 GPIO68:1;                    // 4 Output Open-Drain control for this pin
+    Uint16 GPIO69:1;                    // 5 Output Open-Drain control for this pin
+    Uint16 GPIO70:1;                    // 6 Output Open-Drain control for this pin
+    Uint16 GPIO71:1;                    // 7 Output Open-Drain control for this pin
+    Uint16 GPIO72:1;                    // 8 Output Open-Drain control for this pin
+    Uint16 GPIO73:1;                    // 9 Output Open-Drain control for this pin
+    Uint16 GPIO74:1;                    // 10 Output Open-Drain control for this pin
+    Uint16 GPIO75:1;                    // 11 Output Open-Drain control for this pin
+    Uint16 GPIO76:1;                    // 12 Output Open-Drain control for this pin
+    Uint16 GPIO77:1;                    // 13 Output Open-Drain control for this pin
+    Uint16 GPIO78:1;                    // 14 Output Open-Drain control for this pin
+    Uint16 GPIO79:1;                    // 15 Output Open-Drain control for this pin
+    Uint16 GPIO80:1;                    // 16 Output Open-Drain control for this pin
+    Uint16 GPIO81:1;                    // 17 Output Open-Drain control for this pin
+    Uint16 GPIO82:1;                    // 18 Output Open-Drain control for this pin
+    Uint16 GPIO83:1;                    // 19 Output Open-Drain control for this pin
+    Uint16 GPIO84:1;                    // 20 Output Open-Drain control for this pin
+    Uint16 GPIO85:1;                    // 21 Output Open-Drain control for this pin
+    Uint16 GPIO86:1;                    // 22 Output Open-Drain control for this pin
+    Uint16 GPIO87:1;                    // 23 Output Open-Drain control for this pin
+    Uint16 GPIO88:1;                    // 24 Output Open-Drain control for this pin
+    Uint16 GPIO89:1;                    // 25 Output Open-Drain control for this pin
+    Uint16 GPIO90:1;                    // 26 Output Open-Drain control for this pin
+    Uint16 GPIO91:1;                    // 27 Output Open-Drain control for this pin
+    Uint16 GPIO92:1;                    // 28 Output Open-Drain control for this pin
+    Uint16 GPIO93:1;                    // 29 Output Open-Drain control for this pin
+    Uint16 GPIO94:1;                    // 30 Output Open-Drain control for this pin
+    Uint16 GPIO95:1;                    // 31 Output Open-Drain control for this pin
 };
 
 union GPCODR_REG {
@@ -1698,38 +1698,38 @@ union GPDINV_REG {
 };
 
 struct GPDODR_BITS {                    // bits description
-    Uint16 GPIO96:1;                    // 0 Outpout Open-Drain control for this pin
-    Uint16 GPIO97:1;                    // 1 Outpout Open-Drain control for this pin
-    Uint16 GPIO98:1;                    // 2 Outpout Open-Drain control for this pin
-    Uint16 GPIO99:1;                    // 3 Outpout Open-Drain control for this pin
-    Uint16 GPIO100:1;                   // 4 Outpout Open-Drain control for this pin
-    Uint16 GPIO101:1;                   // 5 Outpout Open-Drain control for this pin
-    Uint16 GPIO102:1;                   // 6 Outpout Open-Drain control for this pin
-    Uint16 GPIO103:1;                   // 7 Outpout Open-Drain control for this pin
-    Uint16 GPIO104:1;                   // 8 Outpout Open-Drain control for this pin
-    Uint16 GPIO105:1;                   // 9 Outpout Open-Drain control for this pin
-    Uint16 GPIO106:1;                   // 10 Outpout Open-Drain control for this pin
-    Uint16 GPIO107:1;                   // 11 Outpout Open-Drain control for this pin
-    Uint16 GPIO108:1;                   // 12 Outpout Open-Drain control for this pin
-    Uint16 GPIO109:1;                   // 13 Outpout Open-Drain control for this pin
-    Uint16 GPIO110:1;                   // 14 Outpout Open-Drain control for this pin
-    Uint16 GPIO111:1;                   // 15 Outpout Open-Drain control for this pin
-    Uint16 GPIO112:1;                   // 16 Outpout Open-Drain control for this pin
-    Uint16 GPIO113:1;                   // 17 Outpout Open-Drain control for this pin
-    Uint16 GPIO114:1;                   // 18 Outpout Open-Drain control for this pin
-    Uint16 GPIO115:1;                   // 19 Outpout Open-Drain control for this pin
-    Uint16 GPIO116:1;                   // 20 Outpout Open-Drain control for this pin
+    Uint16 GPIO96:1;                    // 0 Output Open-Drain control for this pin
+    Uint16 GPIO97:1;                    // 1 Output Open-Drain control for this pin
+    Uint16 GPIO98:1;                    // 2 Output Open-Drain control for this pin
+    Uint16 GPIO99:1;                    // 3 Output Open-Drain control for this pin
+    Uint16 GPIO100:1;                   // 4 Output Open-Drain control for this pin
+    Uint16 GPIO101:1;                   // 5 Output Open-Drain control for this pin
+    Uint16 GPIO102:1;                   // 6 Output Open-Drain control for this pin
+    Uint16 GPIO103:1;                   // 7 Output Open-Drain control for this pin
+    Uint16 GPIO104:1;                   // 8 Output Open-Drain control for this pin
+    Uint16 GPIO105:1;                   // 9 Output Open-Drain control for this pin
+    Uint16 GPIO106:1;                   // 10 Output Open-Drain control for this pin
+    Uint16 GPIO107:1;                   // 11 Output Open-Drain control for this pin
+    Uint16 GPIO108:1;                   // 12 Output Open-Drain control for this pin
+    Uint16 GPIO109:1;                   // 13 Output Open-Drain control for this pin
+    Uint16 GPIO110:1;                   // 14 Output Open-Drain control for this pin
+    Uint16 GPIO111:1;                   // 15 Output Open-Drain control for this pin
+    Uint16 GPIO112:1;                   // 16 Output Open-Drain control for this pin
+    Uint16 GPIO113:1;                   // 17 Output Open-Drain control for this pin
+    Uint16 GPIO114:1;                   // 18 Output Open-Drain control for this pin
+    Uint16 GPIO115:1;                   // 19 Output Open-Drain control for this pin
+    Uint16 GPIO116:1;                   // 20 Output Open-Drain control for this pin
     Uint16 rsvd1:1;                     // 21 Reserved
     Uint16 rsvd2:1;                     // 22 Reserved
-    Uint16 GPIO119:1;                   // 23 Outpout Open-Drain control for this pin
-    Uint16 GPIO120:1;                   // 24 Outpout Open-Drain control for this pin
+    Uint16 GPIO119:1;                   // 23 Output Open-Drain control for this pin
+    Uint16 GPIO120:1;                   // 24 Output Open-Drain control for this pin
     Uint16 rsvd3:1;                     // 25 Reserved
-    Uint16 GPIO122:1;                   // 26 Outpout Open-Drain control for this pin
-    Uint16 GPIO123:1;                   // 27 Outpout Open-Drain control for this pin
-    Uint16 GPIO124:1;                   // 28 Outpout Open-Drain control for this pin
-    Uint16 GPIO125:1;                   // 29 Outpout Open-Drain control for this pin
-    Uint16 GPIO126:1;                   // 30 Outpout Open-Drain control for this pin
-    Uint16 GPIO127:1;                   // 31 Outpout Open-Drain control for this pin
+    Uint16 GPIO122:1;                   // 26 Output Open-Drain control for this pin
+    Uint16 GPIO123:1;                   // 27 Output Open-Drain control for this pin
+    Uint16 GPIO124:1;                   // 28 Output Open-Drain control for this pin
+    Uint16 GPIO125:1;                   // 29 Output Open-Drain control for this pin
+    Uint16 GPIO126:1;                   // 30 Output Open-Drain control for this pin
+    Uint16 GPIO127:1;                   // 31 Output Open-Drain control for this pin
 };
 
 union GPDODR_REG {
@@ -2158,38 +2158,38 @@ union GPEINV_REG {
 };
 
 struct GPEODR_BITS {                    // bits description
-    Uint16 GPIO128:1;                   // 0 Outpout Open-Drain control for this pin
-    Uint16 GPIO129:1;                   // 1 Outpout Open-Drain control for this pin
-    Uint16 GPIO130:1;                   // 2 Outpout Open-Drain control for this pin
-    Uint16 GPIO131:1;                   // 3 Outpout Open-Drain control for this pin
-    Uint16 GPIO132:1;                   // 4 Outpout Open-Drain control for this pin
-    Uint16 GPIO133:1;                   // 5 Outpout Open-Drain control for this pin
-    Uint16 GPIO134:1;                   // 6 Outpout Open-Drain control for this pin
+    Uint16 GPIO128:1;                   // 0 Output Open-Drain control for this pin
+    Uint16 GPIO129:1;                   // 1 Output Open-Drain control for this pin
+    Uint16 GPIO130:1;                   // 2 Output Open-Drain control for this pin
+    Uint16 GPIO131:1;                   // 3 Output Open-Drain control for this pin
+    Uint16 GPIO132:1;                   // 4 Output Open-Drain control for this pin
+    Uint16 GPIO133:1;                   // 5 Output Open-Drain control for this pin
+    Uint16 GPIO134:1;                   // 6 Output Open-Drain control for this pin
     Uint16 rsvd1:1;                     // 7 Reserved
     Uint16 rsvd2:1;                     // 8 Reserved
     Uint16 rsvd3:1;                     // 9 Reserved
     Uint16 rsvd4:1;                     // 10 Reserved
     Uint16 rsvd5:1;                     // 11 Reserved
     Uint16 rsvd6:1;                     // 12 Reserved
-    Uint16 GPIO141:1;                   // 13 Outpout Open-Drain control for this pin
-    Uint16 GPIO142:1;                   // 14 Outpout Open-Drain control for this pin
+    Uint16 GPIO141:1;                   // 13 Output Open-Drain control for this pin
+    Uint16 GPIO142:1;                   // 14 Output Open-Drain control for this pin
     Uint16 rsvd7:1;                     // 15 Reserved
     Uint16 rsvd8:1;                     // 16 Reserved
-    Uint16 GPIO145:1;                   // 17 Outpout Open-Drain control for this pin
-    Uint16 GPIO146:1;                   // 18 Outpout Open-Drain control for this pin
-    Uint16 GPIO147:1;                   // 19 Outpout Open-Drain control for this pin
-    Uint16 GPIO148:1;                   // 20 Outpout Open-Drain control for this pin
-    Uint16 GPIO149:1;                   // 21 Outpout Open-Drain control for this pin
-    Uint16 GPIO150:1;                   // 22 Outpout Open-Drain control for this pin
-    Uint16 GPIO151:1;                   // 23 Outpout Open-Drain control for this pin
-    Uint16 GPIO152:1;                   // 24 Outpout Open-Drain control for this pin
-    Uint16 GPIO153:1;                   // 25 Outpout Open-Drain control for this pin
-    Uint16 GPIO154:1;                   // 26 Outpout Open-Drain control for this pin
-    Uint16 GPIO155:1;                   // 27 Outpout Open-Drain control for this pin
-    Uint16 GPIO156:1;                   // 28 Outpout Open-Drain control for this pin
-    Uint16 GPIO157:1;                   // 29 Outpout Open-Drain control for this pin
-    Uint16 GPIO158:1;                   // 30 Outpout Open-Drain control for this pin
-    Uint16 GPIO159:1;                   // 31 Outpout Open-Drain control for this pin
+    Uint16 GPIO145:1;                   // 17 Output Open-Drain control for this pin
+    Uint16 GPIO146:1;                   // 18 Output Open-Drain control for this pin
+    Uint16 GPIO147:1;                   // 19 Output Open-Drain control for this pin
+    Uint16 GPIO148:1;                   // 20 Output Open-Drain control for this pin
+    Uint16 GPIO149:1;                   // 21 Output Open-Drain control for this pin
+    Uint16 GPIO150:1;                   // 22 Output Open-Drain control for this pin
+    Uint16 GPIO151:1;                   // 23 Output Open-Drain control for this pin
+    Uint16 GPIO152:1;                   // 24 Output Open-Drain control for this pin
+    Uint16 GPIO153:1;                   // 25 Output Open-Drain control for this pin
+    Uint16 GPIO154:1;                   // 26 Output Open-Drain control for this pin
+    Uint16 GPIO155:1;                   // 27 Output Open-Drain control for this pin
+    Uint16 GPIO156:1;                   // 28 Output Open-Drain control for this pin
+    Uint16 GPIO157:1;                   // 29 Output Open-Drain control for this pin
+    Uint16 GPIO158:1;                   // 30 Output Open-Drain control for this pin
+    Uint16 GPIO159:1;                   // 31 Output Open-Drain control for this pin
 };
 
 union GPEODR_REG {
@@ -2570,15 +2570,15 @@ union GPFINV_REG {
 };
 
 struct GPFODR_BITS {                    // bits description
-    Uint16 GPIO160:1;                   // 0 Outpout Open-Drain control for this pin
-    Uint16 GPIO161:1;                   // 1 Outpout Open-Drain control for this pin
-    Uint16 GPIO162:1;                   // 2 Outpout Open-Drain control for this pin
-    Uint16 GPIO163:1;                   // 3 Outpout Open-Drain control for this pin
-    Uint16 GPIO164:1;                   // 4 Outpout Open-Drain control for this pin
-    Uint16 GPIO165:1;                   // 5 Outpout Open-Drain control for this pin
-    Uint16 GPIO166:1;                   // 6 Outpout Open-Drain control for this pin
-    Uint16 GPIO167:1;                   // 7 Outpout Open-Drain control for this pin
-    Uint16 GPIO168:1;                   // 8 Outpout Open-Drain control for this pin
+    Uint16 GPIO160:1;                   // 0 Output Open-Drain control for this pin
+    Uint16 GPIO161:1;                   // 1 Output Open-Drain control for this pin
+    Uint16 GPIO162:1;                   // 2 Output Open-Drain control for this pin
+    Uint16 GPIO163:1;                   // 3 Output Open-Drain control for this pin
+    Uint16 GPIO164:1;                   // 4 Output Open-Drain control for this pin
+    Uint16 GPIO165:1;                   // 5 Output Open-Drain control for this pin
+    Uint16 GPIO166:1;                   // 6 Output Open-Drain control for this pin
+    Uint16 GPIO167:1;                   // 7 Output Open-Drain control for this pin
+    Uint16 GPIO168:1;                   // 8 Output Open-Drain control for this pin
     Uint16 rsvd1:1;                     // 9 Reserved
     Uint16 rsvd2:1;                     // 10 Reserved
     Uint16 rsvd3:1;                     // 11 Reserved
@@ -2980,32 +2980,32 @@ struct GPGODR_BITS {                    // bits description
     Uint16 rsvd4:1;                     // 3 Reserved
     Uint16 rsvd5:1;                     // 4 Reserved
     Uint16 rsvd6:1;                     // 5 Reserved
-    Uint16 GPIO198:1;                   // 6 Outpout Open-Drain control for this pin
-    Uint16 GPIO199:1;                   // 7 Outpout Open-Drain control for this pin
-    Uint16 GPIO200:1;                   // 8 Outpout Open-Drain control for this pin
-    Uint16 GPIO201:1;                   // 9 Outpout Open-Drain control for this pin
-    Uint16 GPIO202:1;                   // 10 Outpout Open-Drain control for this pin
-    Uint16 GPIO203:1;                   // 11 Outpout Open-Drain control for this pin
-    Uint16 GPIO204:1;                   // 12 Outpout Open-Drain control for this pin
-    Uint16 GPIO205:1;                   // 13 Outpout Open-Drain control for this pin
-    Uint16 GPIO206:1;                   // 14 Outpout Open-Drain control for this pin
-    Uint16 GPIO207:1;                   // 15 Outpout Open-Drain control for this pin
-    Uint16 GPIO208:1;                   // 16 Outpout Open-Drain control for this pin
-    Uint16 GPIO209:1;                   // 17 Outpout Open-Drain control for this pin
-    Uint16 GPIO210:1;                   // 18 Outpout Open-Drain control for this pin
-    Uint16 GPIO211:1;                   // 19 Outpout Open-Drain control for this pin
-    Uint16 GPIO212:1;                   // 20 Outpout Open-Drain control for this pin
-    Uint16 GPIO213:1;                   // 21 Outpout Open-Drain control for this pin
-    Uint16 GPIO214:1;                   // 22 Outpout Open-Drain control for this pin
-    Uint16 GPIO215:1;                   // 23 Outpout Open-Drain control for this pin
-    Uint16 GPIO216:1;                   // 24 Outpout Open-Drain control for this pin
-    Uint16 GPIO217:1;                   // 25 Outpout Open-Drain control for this pin
-    Uint16 GPIO218:1;                   // 26 Outpout Open-Drain control for this pin
-    Uint16 GPIO219:1;                   // 27 Outpout Open-Drain control for this pin
-    Uint16 GPIO220:1;                   // 28 Outpout Open-Drain control for this pin
-    Uint16 GPIO221:1;                   // 29 Outpout Open-Drain control for this pin
-    Uint16 GPIO222:1;                   // 30 Outpout Open-Drain control for this pin
-    Uint16 GPIO223:1;                   // 31 Outpout Open-Drain control for this pin
+    Uint16 GPIO198:1;                   // 6 Output Open-Drain control for this pin
+    Uint16 GPIO199:1;                   // 7 Output Open-Drain control for this pin
+    Uint16 GPIO200:1;                   // 8 Output Open-Drain control for this pin
+    Uint16 GPIO201:1;                   // 9 Output Open-Drain control for this pin
+    Uint16 GPIO202:1;                   // 10 Output Open-Drain control for this pin
+    Uint16 GPIO203:1;                   // 11 Output Open-Drain control for this pin
+    Uint16 GPIO204:1;                   // 12 Output Open-Drain control for this pin
+    Uint16 GPIO205:1;                   // 13 Output Open-Drain control for this pin
+    Uint16 GPIO206:1;                   // 14 Output Open-Drain control for this pin
+    Uint16 GPIO207:1;                   // 15 Output Open-Drain control for this pin
+    Uint16 GPIO208:1;                   // 16 Output Open-Drain control for this pin
+    Uint16 GPIO209:1;                   // 17 Output Open-Drain control for this pin
+    Uint16 GPIO210:1;                   // 18 Output Open-Drain control for this pin
+    Uint16 GPIO211:1;                   // 19 Output Open-Drain control for this pin
+    Uint16 GPIO212:1;                   // 20 Output Open-Drain control for this pin
+    Uint16 GPIO213:1;                   // 21 Output Open-Drain control for this pin
+    Uint16 GPIO214:1;                   // 22 Output Open-Drain control for this pin
+    Uint16 GPIO215:1;                   // 23 Output Open-Drain control for this pin
+    Uint16 GPIO216:1;                   // 24 Output Open-Drain control for this pin
+    Uint16 GPIO217:1;                   // 25 Output Open-Drain control for this pin
+    Uint16 GPIO218:1;                   // 26 Output Open-Drain control for this pin
+    Uint16 GPIO219:1;                   // 27 Output Open-Drain control for this pin
+    Uint16 GPIO220:1;                   // 28 Output Open-Drain control for this pin
+    Uint16 GPIO221:1;                   // 29 Output Open-Drain control for this pin
+    Uint16 GPIO222:1;                   // 30 Output Open-Drain control for this pin
+    Uint16 GPIO223:1;                   // 31 Output Open-Drain control for this pin
 };
 
 union GPGODR_REG {
@@ -3474,25 +3474,25 @@ union GPHINV_REG {
 };
 
 struct GPHODR_BITS {                    // bits description
-    Uint16 GPIO224:1;                   // 0 Outpout Open-Drain control for this pin
-    Uint16 GPIO225:1;                   // 1 Outpout Open-Drain control for this pin
-    Uint16 GPIO226:1;                   // 2 Outpout Open-Drain control for this pin
-    Uint16 GPIO227:1;                   // 3 Outpout Open-Drain control for this pin
-    Uint16 GPIO228:1;                   // 4 Outpout Open-Drain control for this pin
-    Uint16 GPIO229:1;                   // 5 Outpout Open-Drain control for this pin
-    Uint16 GPIO230:1;                   // 6 Outpout Open-Drain control for this pin
-    Uint16 GPIO231:1;                   // 7 Outpout Open-Drain control for this pin
-    Uint16 GPIO232:1;                   // 8 Outpout Open-Drain control for this pin
-    Uint16 GPIO233:1;                   // 9 Outpout Open-Drain control for this pin
-    Uint16 GPIO234:1;                   // 10 Outpout Open-Drain control for this pin
-    Uint16 GPIO235:1;                   // 11 Outpout Open-Drain control for this pin
-    Uint16 GPIO236:1;                   // 12 Outpout Open-Drain control for this pin
-    Uint16 GPIO237:1;                   // 13 Outpout Open-Drain control for this pin
-    Uint16 GPIO238:1;                   // 14 Outpout Open-Drain control for this pin
-    Uint16 GPIO239:1;                   // 15 Outpout Open-Drain control for this pin
-    Uint16 GPIO240:1;                   // 16 Outpout Open-Drain control for this pin
-    Uint16 GPIO241:1;                   // 17 Outpout Open-Drain control for this pin
-    Uint16 GPIO242:1;                   // 18 Outpout Open-Drain control for this pin
+    Uint16 GPIO224:1;                   // 0 Output Open-Drain control for this pin
+    Uint16 GPIO225:1;                   // 1 Output Open-Drain control for this pin
+    Uint16 GPIO226:1;                   // 2 Output Open-Drain control for this pin
+    Uint16 GPIO227:1;                   // 3 Output Open-Drain control for this pin
+    Uint16 GPIO228:1;                   // 4 Output Open-Drain control for this pin
+    Uint16 GPIO229:1;                   // 5 Output Open-Drain control for this pin
+    Uint16 GPIO230:1;                   // 6 Output Open-Drain control for this pin
+    Uint16 GPIO231:1;                   // 7 Output Open-Drain control for this pin
+    Uint16 GPIO232:1;                   // 8 Output Open-Drain control for this pin
+    Uint16 GPIO233:1;                   // 9 Output Open-Drain control for this pin
+    Uint16 GPIO234:1;                   // 10 Output Open-Drain control for this pin
+    Uint16 GPIO235:1;                   // 11 Output Open-Drain control for this pin
+    Uint16 GPIO236:1;                   // 12 Output Open-Drain control for this pin
+    Uint16 GPIO237:1;                   // 13 Output Open-Drain control for this pin
+    Uint16 GPIO238:1;                   // 14 Output Open-Drain control for this pin
+    Uint16 GPIO239:1;                   // 15 Output Open-Drain control for this pin
+    Uint16 GPIO240:1;                   // 16 Output Open-Drain control for this pin
+    Uint16 GPIO241:1;                   // 17 Output Open-Drain control for this pin
+    Uint16 GPIO242:1;                   // 18 Output Open-Drain control for this pin
     Uint16 rsvd1:1;                     // 19 Reserved
     Uint16 rsvd2:1;                     // 20 Reserved
     Uint16 rsvd3:1;                     // 21 Reserved

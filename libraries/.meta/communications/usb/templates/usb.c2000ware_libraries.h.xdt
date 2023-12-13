@@ -1,0 +1,45 @@
+% var moduleName = "usb"
+% var module = system.modules['/libraries/communications/usb/' + moduleName + '.js'];
+%
+%if(module != null)
+%{
+% var instance = module.$instances[0];
+#include "usblib.h"
+#include "usbhid.h"
+% if (instance.usb_mode == "Device")
+%{
+#include "usb_structs.h"
+	% if (instance.deviceClasses == "Mouse")
+	%{
+#include "device/usbdhid.h"	
+#include "device/usbdhidmouse.h"
+	%}
+	% else if (instance.deviceClasses == "Keyboard")
+	%{
+#include "device/usbdhid.h"	
+#include "device/usbdhidkeyb.h"	
+	%}
+	% else if (instance.deviceClasses == "Bulk")
+	%{
+extern void `instance.usb_mode_callback`(uint32_t ui32Index, tUSBMode eMode);
+	%}
+%}
+% else if (instance.usb_mode == "Host")
+%{
+#include "usbmsc.h"
+#include "host/usbhost.h"
+#include "host/usbhmsc.h"
+extern void `instance.usb_mode_callback`(uint32_t ui32Index, tUSBMode eMode);
+#define `instance.$name`_HCD_MEMORY_SIZE `instance.hcdMemorySize`
+%}
+%
+% else if (instance.usb_mode == "Dual")
+%{
+extern void `instance.usb_mode_callback`(uint32_t ui32Index, tUSBMode eMode);
+#define `instance.$name`_HCD_MEMORY_SIZE `instance.hcdMemorySize`
+%}
+
+#define USB_MODE `instance.usb_mode`
+void USBLib_init();
+%}
+%

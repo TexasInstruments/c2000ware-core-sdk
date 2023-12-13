@@ -432,7 +432,7 @@ ERAD_profile(ERAD_Profile_Params config_params)
     ERAD_Counter_Input_Event stop = (ERAD_Counter_Input_Event)
                     (ERAD_BUSCOMP_BASE_TO_EVENT(config_params.busComp_base2));
     ERAD_configCounterInStartStopMode(config_params.counter_base,
-                                        counter_params, start, stop);
+                                      counter_params, start, stop);
 
     //
     // Enable the modules

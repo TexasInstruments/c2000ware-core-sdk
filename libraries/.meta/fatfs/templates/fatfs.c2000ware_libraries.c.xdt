@@ -1,0 +1,63 @@
+% var moduleName = "fatfs"
+% var libraryFolder = "fatfs"
+% var module = system.modules['/libraries/' + moduleName + '/' + moduleName + '.js'];
+%if (module != null)
+%{
+uint16_t SDFatFS_config_count = SDFATFS_COUNT;
+    % var allSdFatFsObjects = ""
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        % let modInst  = instance[moduleName];
+
+//
+// SD FATFS Global Variables - `instance.$name`
+//
+SDFatFS_Object `instance.$name`_SDFatFS_Object;
+SDSPI_Object `instance.$name`_SDSPI_Object = {
+        .spiHandle = `instance.spi.$name`_BASE,
+        .spiCsGpioIndex = `instance.csgpio.$name`
+};
+SDSPI_Handle `instance.$name`_SDSPI_Handle = &`instance.$name`_SDSPI_Object;
+        % allSdFatFsObjects += "    &" + instance.$name + "_SDFatFS_Object" + ",\n"
+SDFatFS_Handle `instance.$name`_Handle;
+    % }
+
+//
+// All SDFatFS Objects Array
+//
+SDFatFS_Object* SDFatFS_config [] = {
+`allSdFatFsObjects`
+};
+    % var initFunctions = [];
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        % let modInst  = instance[moduleName];
+
+void `instance.$name`_init(){
+    `instance.$name`_Handle = SDFatFS_open(`instance.$name`_SDSPI_Handle, `instance.$name`_DRIVENUM);
+    if (`instance.$name`_Handle  == NULL)
+    {
+        //
+        // An error occured during initialization
+        //
+        ESTOP0;
+    }
+}       
+        % initFunctions.push(instance.$name+ "_init");
+    % }
+
+void `module.c2000wareLibraryName`_init() {
+    //
+    // Initialize the library itself
+    //
+    SDFatFS_init();
+    
+    //
+    // Initialize the instances
+    //
+    % for (var initFunc of initFunctions) {
+    `initFunc`();
+    % }
+}
+%}
+%

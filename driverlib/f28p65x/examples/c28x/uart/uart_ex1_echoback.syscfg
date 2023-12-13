@@ -1,0 +1,20 @@
+/**
+ * Import the modules used in this configuration.
+ */
+const uart  = scripting.addModule("/driverlib/uart.js", {}, false);
+const uart1 = uart.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+uart1.$name                    = "myUART0";
+uart1.registerInterrupts       = true;
+uart1.enabledInterrupts        = ["UART_INT_RX"];
+uart1.fen                      = true;
+uart1.txiflsel                 = "UART_FIFO_TX1_8";
+uart1.rxiflsel                 = "UART_FIFO_RX1_8";
+uart1.uart.$assign             = "UARTA";
+uart1.uart.uart_txPin.$assign  = "GPIO84";
+uart1.uart.uart_rxPin.$assign  = "GPIO85";
+uart1.uartInt.enableInterrupt  = true;
+uart1.uartInt.interruptHandler = "UART_RX_IntHandler";

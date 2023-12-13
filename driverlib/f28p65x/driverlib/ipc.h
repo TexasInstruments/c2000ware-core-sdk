@@ -782,7 +782,7 @@ IPC_claimFlashSemaphore(IPC_FlashSemOwner semOwner)
 //
 //*****************************************************************************
 static inline void
-IPC_releaseFlashSemaphore()
+IPC_releaseFlashSemaphore(void)
 {
     EALLOW;
     HWREG(IPC_CPUXTOCPUX_BASE + IPC_O_FLASHCTLSEM) = 0x5A5A0000U;

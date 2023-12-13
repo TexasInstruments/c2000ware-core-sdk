@@ -1,0 +1,24 @@
+%%{
+let clocktree_common   = system.getScript("../clocktree_common.js");
+
+var DualCore_CPU2_SYSPLL 		= system.getTemplate('./dualCore_CPU2_SYSPLL.xdt');
+var DualCore_CPU2_AUXPLL		= system.getTemplate('./dualCore_CPU2_AUXPLL.xdt');
+var DualCore_CPU2_domain		= system.getTemplate('./dualCore_CPU2_domain.xdt');
+
+const PLL_type1 = clocktree_common.PLL_type1;
+const PLL_type2 = clocktree_common.PLL_type2;
+
+const AUXPLL_Support 		= clocktree_common.AUXPLL_Support;
+const EPWM_div_support 		= clocktree_common.EPWM_div_support;
+
+const device  = clocktree_common.device
+
+%%}
+`DualCore_CPU2_SYSPLL()`
+
+	% if(AUXPLL_Support.includes(device))
+	% {
+`DualCore_CPU2_AUXPLL()`
+	% }
+	
+`DualCore_CPU2_domain()`

@@ -1,0 +1,188 @@
+%%{
+let clocktree_common   	= system.getScript("../clocktree_common.js");
+let Common   		= system.getScript("/driverlib/Common.js");
+var clockTree_CPU2 	= Common.getClockTree();
+
+const PLL_type1 	= clocktree_common.PLL_type1;
+const PLL_type2 	= clocktree_common.PLL_type2;
+const xtal_x1_macro 	= clocktree_common.xtal_x1_macro;
+
+const device  		= clocktree_common.device
+var XTAL_OR_X1 		= clockTree_CPU2.XTAL_OR_X1;
+
+//////////////////////////////////////////////////
+// Frequency lables
+//////////////////////////////////////////////////
+const AUXOSCCLK_d	= clockTree_CPU2.AUXOSCCLK.in
+const AUXPLLRAWCLK_d 	= clockTree_CPU2.AUXPLLRAWCLK.in
+const AUXPLLCLK_d    	= clockTree_CPU2.AUXPLLCLK.in
+
+//////////////////////////////////////////////////
+// AUXOSCCLK source
+//////////////////////////////////////////////////
+
+var AUXOSCCLKSRCSEL	= clockTree_CPU2.AUXOSCCLKSRCSEL
+
+var auxoscclkSrc = "SYSCTL_OSCSRC_OSC2"
+var auxoscclksource
+var auxoscclk = 10
+
+//
+// XTAL Single-Ended replaces X1 for F2838x, F28002x, F28003x, F28004x, F280013x, F280015x, F28P65x
+//
+switch(AUXOSCCLKSRCSEL.inputSelect){
+	case "AUXCLK":
+		auxoscclkSrc = "SYSCTL_AUXPLL_OSCSRC_AUXCLKIN"
+		auxoscclksource = AUXOSCCLKSRCSEL.inputSelect
+		auxoscclk = 10
+		break
+	case "INTOSC2":
+		auxoscclkSrc = "SYSCTL_AUXPLL_OSCSRC_OSC2"
+		auxoscclksource = AUXOSCCLKSRCSEL.inputSelect
+		auxoscclk = 10
+		break
+	case "X1_XTAL":
+		if((XTAL_OR_X1.inputSelect == "XTAL") || xtal_x1_macro.includes(device))
+		{
+			auxoscclkSrc = "SYSCTL_AUXPLL_OSCSRC_XTAL"
+		}
+		else
+		{
+			auxoscclkSrc = "SYSCTL_AUXPLL_OSCSRC_XTAL_SE"
+		}
+		auxoscclksource = clockTree_CPU2.XTAL_OR_X1.inputSelect
+		auxoscclk = clockTree_CPU2.XTAL_OR_X1.External_Clock
+		break
+}
+
+//////////////////////////////////////////////////
+// IMULT, FMULT (AUXRAWCLK) source
+//////////////////////////////////////////////////
+
+
+var AUX_PLLEN  		= clockTree_CPU2.AUX_PLLEN 
+var AUX_IMULT_mv  	= clockTree_CPU2.AUX_IMULT.multiplyValue
+var AUX_IMULT 		= "SYSCTL_AUXPLL_IMULT(" + AUX_IMULT_mv + ")"
+
+var AUXCLKDIVSEL_dv = clockTree_CPU2.AUXCLKDIVSEL.divideValue
+
+var AUX_DIVSEL		= "SYSCTL_AUXPLL_DIV_" + AUXCLKDIVSEL_dv
+
+
+var AUX_FMULT
+if(PLL_type1.includes(device))
+{
+	var AUX_FMULT_mv    = clockTree_CPU2.AUX_FMULT.multiplyValue
+	switch(clockTree_CPU2.AUX_FMULT.multiplyValue){
+		case 0:
+			AUX_FMULT = "SYSCTL_AUXPLL_FMULT_NONE"
+			break
+		case 0.25:
+			AUX_FMULT = "SYSCTL_AUXPLL_FMULT_1_4"
+			break
+		case 0.5:
+			AUX_FMULT = "SYSCTL_AUXPLL_FMULT_1_2"
+			break
+		case 0.75:
+			AUX_FMULT = "SYSCTL_AUXPLL_FMULT_3_4"
+			break
+	}
+}
+
+if(PLL_type2.includes(device))
+{
+	var AUX_REFDIV_dv = clockTree_CPU2.AUX_REFDIV.divideValue
+	var AUX_REFDIV    = "SYSCTL_REFDIV(" + AUX_REFDIV_dv + ")"
+	
+	var AUX_ODIV_dv = clockTree_CPU2.AUX_ODIV.divideValue
+	var AUX_ODIV    = "SYSCTL_ODIV(" + AUX_ODIV_dv + ")"
+	
+	var AUXCLKDIVSEL_dv = clockTree_CPU2.AUXCLKDIVSEL.divideValue	
+}
+
+var AUXPLL_STS = 'SYSCTL_AUXPLL_ENABLE'
+var AUXPLL_Status = 'DISABLED'
+
+if(AUX_PLLEN.inputSelect == 'AUXOSCCLK')
+{
+	AUXPLL_STS = 'SYSCTL_AUXPLL_DISABLE'
+	AUXPLL_Status = 'DISABLED'
+}
+else
+{
+	AUXPLL_STS = 'SYSCTL_AUXPLL_ENABLE'
+	AUXPLL_Status = 'ENABLED'
+}
+
+%%}
+%
+//*****************************************************************************
+//
+// Summary of AUXPLL related clock configuration
+//
+//*****************************************************************************
+//
+// Input Clock to AUXOSCCLK	= `AUXOSCCLK_d` MHz (`auxoscclksource` provides AUXOSCCLK)  
+//
+//##### AUXPLL `AUXPLL_Status` #####
+//
+// AUXPLLRAWCLK				= `AUXPLLRAWCLK_d` MHz (Output of AUXPLL if enabled)
+// AUXPLLCLK				= `AUXPLLCLK_d` MHz 
+//
+//*****************************************************************************
+//
+// Macro definitions used in device.c (AUXPLL)
+//
+//*****************************************************************************
+//
+//	Input Clock to AUXPLL (AUXOSCCLK) = `auxoscclksource` = `AUXOSCCLK_d` MHz
+//
+#define DEVICE_AUXOSCSRC_FREQ 		`AUXOSCCLK_d`000000U
+%
+% if(PLL_type1.includes(device))
+% {
+//
+// Define to pass to SysCtl_setAuxClock(). Will configure the clock as follows:
+	%if(AUXPLL_STS == 'SYSCTL_AUXPLL_ENABLE')
+	%	{
+// AUXPLL ENABLED
+// AUXPLLCLK = `AUXPLLCLK_d` MHz = `AUXOSCCLK_d` MHz (AUXOSCCLK) * (`AUX_IMULT_mv` (AUX_IMULT) + `AUX_FMULT_mv` (AUX_FMULT)) / `AUXCLKDIVSEL_dv` (AUXCLKDIVSEL)
+#define DEVICE_AUXCLK_FREQ			((DEVICE_AUXOSCSRC_FREQ * (`AUX_IMULT_mv` + `AUX_FMULT_mv`)) / `AUXCLKDIVSEL_dv`)
+	%	}
+	%else
+	% 	{
+// AUXPLL DISABLED
+// AUXPLLCLK = `AUXPLLCLK_d` MHz = `AUXOSCCLK_d` MHz (`auxoscclksource`) / `AUXCLKDIVSEL_dv` (AUXCLKDIVSEL)
+#define DEVICE_AUXCLK_FREQ			(DEVICE_AUXOSCSRC_FREQ  / `AUXCLKDIVSEL_dv`) 
+	%   }
+//
+#define DEVICE_SETAUXCLOCK_CFG      (`auxoscclkSrc` | `AUX_IMULT` | \
+									 `AUX_FMULT` | SYSCTL_AUXPLL_DIV_`AUXCLKDIVSEL_dv` | \
+									 `AUXPLL_STS`)
+% }
+%
+% if(PLL_type2.includes(device))
+% {
+//
+// Define to pass to SysCtl_setAuxClock(). Will configure the clock as follows:
+		%if(AUXPLL_STS == 'SYSCTL_AUXPLL_ENABLE')
+	%	{
+// AUXPLL ENABLED
+// AUXPLLCLK = `AUXPLLCLK_d` MHz = `AUXOSCCLK_d` MHz (AUXOSCCLK) * `AUX_IMULT_mv` (IMULT) / (`AUX_REFDIV_dv` (REFDIV) * `AUX_ODIV_dv` (ODIV) * `AUXCLKDIVSEL_dv` (AUXCLKDIVSEL))
+#define DEVICE_AUXCLK_FREQ          (DEVICE_AUXOSCSRC_FREQ * `AUX_IMULT_mv`) / (`AUX_REFDIV_dv` * `AUX_ODIV_dv` * `AUXCLKDIVSEL_dv`)
+	%   }
+		%else
+	%	{
+// AUXPLL DISABLED
+// AUXPLLCLK = `AUXPLLCLK_d` MHz = (`AUXOSCCLK_d`) / `AUXCLKDIVSEL_dv` (AUXCLKDIVSEL)
+#define DEVICE_AUXCLK_FREQ			(DEVICE_AUXOSCSRC_FREQ  / `AUXCLKDIVSEL_dv`)
+	%   }
+//
+#define DEVICE_AUXSETCLOCK_CFG      (`auxoscclkSrc`  | `AUX_IMULT` | \
+									 `AUX_REFDIV` | `AUX_ODIV`| \
+									 `AUX_DIVSEL` | `AUXPLL_STS` | \
+									 SYSCTL_DCC_BASE_0)
+									 
+									 
+% }
+% /////////////////////////////////////////////////////////////////////////////////////////

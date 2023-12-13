@@ -1,0 +1,42 @@
+<projectSpec>
+  <project
+        name="eqep_ex1_freq_cal"
+        device="Generic C28xx Device"
+        cgtVersion="22.6.0.LTS"
+        products="sysconfig;c2000ware_software_package"
+        outputFormat="ELF"
+        launchWizard="False"
+        linkerCommandFile=""
+        enableSysConfigTool="true"
+        sysConfigBuildOptions="--product ${C2000WARE_ROOT}/.metadata/sdk.json --device F280015x --package 80PN --part F280015x_80PN"
+        postBuildStep="
+          ;if ${GENERATE_DIAGRAM} == 1  mkdir &quot;${BuildDirectory}/diagrams&quot;
+          ;if ${GENERATE_DIAGRAM} == 1  ${NODE_TOOL} &quot;${C2000WARE_ROOT}/driverlib/.meta/generate_diagrams.js&quot; &quot;${C2000WARE_ROOT}&quot; &quot;${BuildDirectory}/diagrams&quot; &quot;${BuildDirectory}/syscfg&quot;
+        "
+        >
+    <configuration name="CPU1_RAM" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} -I${C2000WARE_IQMATH_ROOT}/c28/include -v28 -ml -mt --float_support=fpu32 --gen_func_subsections=on --define=DEBUG --define=RAM --diag_warning=225 --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x200 --heap_size=0x100 --define=RAM -i${C2000WARE_ROOT} -i${PROJECT_BUILD_DIR}/syscfg -lc2000ware_libraries.cmd.genlibs "/>
+    <configuration name="CPU1_FLASH" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} -I${C2000WARE_IQMATH_ROOT}/c28/include -v28 -ml -mt --float_support=fpu32 --gen_func_subsections=on --define=DEBUG --define=_FLASH --diag_warning=225 --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x200 --heap_size=0x100 --define=_FLASH -i${C2000WARE_ROOT} -i${PROJECT_BUILD_DIR}/syscfg "/>
+    <configuration name="CPU1_LAUNCHXL_RAM" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} -I${C2000WARE_IQMATH_ROOT}/c28/include -v28 -ml -mt --float_support=fpu32 --gen_func_subsections=on --define=DEBUG --define=RAM --define=_LAUNCHXL_F2800157 --diag_warning=225 --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x200 --heap_size=0x100 --define=RAM  -i${C2000WARE_ROOT} -i${PROJECT_BUILD_DIR}/syscfg -lc2000ware_libraries.cmd.genlibs "/>
+    <configuration name="CPU1_LAUNCHXL_FLASH" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} -I${C2000WARE_IQMATH_ROOT}/c28/include -v28 -ml -mt --float_support=fpu32 --gen_func_subsections=on --define=DEBUG  --define=_FLASH --define=_LAUNCHXL_F2800157 --diag_warning=225 --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x200 --heap_size=0x100  --define=_FLASH  -i${C2000WARE_ROOT} -i${PROJECT_BUILD_DIR}/syscfg -lc2000ware_libraries.cmd.genlibs "/>
+
+    <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../../../driverlib/f280015x/driverlib/" scope="project"/>
+    <pathVariable name="C2000WARE_ROOT" path="../../../../../" scope="project" />
+    <buildVariable name="GENERATE_DIAGRAM" value="0" scope="project" />
+    
+    <pathVariable name="C2000WARE_IQMATH_ROOT" path="../../../../../libraries/math/IQmath/" scope="project"/>
+    <file action="link" path="../../../../../libraries/math/IQmath/c28/lib/IQmath_fpu32.lib" targetDirectory=""/>
+    <file action="copy" path="../../../../../device_support/f280015x/common/include/driverlib.h" targetDirectory="device"/>
+    <file action="copy" path="../../../../../device_support/f280015x/common/include/device.h" targetDirectory="device"/>
+    <file action="copy" path="../../../../../device_support/f280015x/common/source/device.c" targetDirectory="device"/>
+    <file action="copy" path="../../../../../device_support/f280015x/common/source/f280015x_codestartbranch.asm" targetDirectory="device"/>
+    <file action="copy" path="../../../../../device_support/f280015x/common/targetConfigs/TMS320F2800157.ccxml" targetDirectory="targetConfigs" />
+    <file action="copy" path="../../../../../device_support/f280015x/common/cmd/280015x_generic_ram_lnk.cmd" targetDirectory=""  applicableConfigurations="CPU1_RAM, CPU1_LAUNCHXL_RAM"/>
+    <file action="copy" path="../../../../../device_support/f280015x/common/cmd/280015x_generic_flash_lnk.cmd" targetDirectory=""  applicableConfigurations="CPU1_FLASH, CPU1_LAUNCHXL_FLASH"/>
+    <file action="link" path="../../../../../driverlib/f280015x/driverlib/ccs/Debug/driverlib.lib" targetDirectory=""/>
+    <file action="copy" path="../../../../../driverlib/f280015x/driverlib/" targetDirectory="device" excludeFromBuild="True"/>
+    <file action="copy" path="../eqep_ex1_freq_cal.c" targetDirectory=""/>
+    <file action="copy" path="../eqep_ex1_freq_cal.syscfg" targetDirectory=""/>
+    <file action="copy" path="../eqep_ex1_calculation.c" targetDirectory=""/>
+    <file action="copy" path="../eqep_ex1_calculation.h" targetDirectory=""/>
+  </project>
+</projectSpec>

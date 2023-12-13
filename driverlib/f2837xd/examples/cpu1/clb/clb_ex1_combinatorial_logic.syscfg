@@ -1,0 +1,82 @@
+
+var TILE = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/TILE");
+var TILE1 = TILE.addInstance();
+// Name
+TILE1.$name = "TILE1";
+// in_period0
+TILE1.BOUNDARY.in_period0 = 4;
+// in_duty0
+TILE1.BOUNDARY.in_duty0 = 1;
+// i1 - Input 1.
+TILE1.LUT_0.i1 = "BOUNDARY.in1";
+// i2 - Input 2.
+TILE1.LUT_0.i2 = "BOUNDARY.in2";
+// i3 - Input 3.
+TILE1.LUT_0.i3 = "BOUNDARY.in3";
+// i0 - Input 0.
+TILE1.LUT_0.i0 = "BOUNDARY.in0";
+// eqn - Boolean equation on the variables i3,i2,i1,i0 for the LUT output.
+TILE1.LUT_0.eqn = "(!i0 & !i1 & i2) | (i0 & !i1 & !(i3 & !(i2 & i3))) | (!i0 & i1 & i2 & !(i2 & i3))";
+// i0 - Input 0.
+TILE1.LUT_1.i0 = "BOUNDARY.in0";
+// i1 - Input 1.
+TILE1.LUT_1.i1 = "BOUNDARY.in1";
+// i2 - Input 2.
+TILE1.LUT_1.i2 = "BOUNDARY.in2";
+// i3 - Input 3.
+TILE1.LUT_1.i3 = "BOUNDARY.in3";
+// eqn - Boolean equation on the variables i3,i2,i1,i0 for the LUT output.
+TILE1.LUT_1.eqn = "(!i0 & !i1 & i3) | (i0 & !i1 & !(i2 & !(i2 & i3))) | (!i0 & i1 & i3 & !(i2 & i3))";
+// i0 - Input 0.
+TILE1.LUT_2.i0 = "BOUNDARY.in0";
+// i1 - Input 1.
+TILE1.LUT_2.i1 = "BOUNDARY.in1";
+// i2 - Input 2.
+TILE1.LUT_2.i2 = "BOUNDARY.in2";
+// i3 - Input 3.
+TILE1.LUT_2.i3 = "BOUNDARY.in3";
+// eqn - Boolean equation on the variables i3,i2,i1,i0 for the LUT output.
+TILE1.LUT_2.eqn = "i3";
+// e0 - External Input 0.
+TILE1.FSM_0.e0 = "BOUNDARY.in1";
+// e1 - External Input 1.
+TILE1.FSM_0.e1 = "COUNTER_0.count_match1";
+// e0 - External Input 0.
+TILE1.FSM_1.e0 = "BOUNDARY.in0";
+// e1 - External Input 1.
+TILE1.FSM_1.e1 = "COUNTER_1.count_match1";
+// e0 - External Input 0.
+TILE1.FSM_2.e0 = "LUT_2.OUT";
+// e1 - External Input 1.
+TILE1.FSM_2.e1 = "COUNTER_2.count_zero";
+// eqn_out - Boolean equation on the variables e1,e0,s1,s0 for the LUT output.
+TILE1.FSM_2.eqn_out = "e1 | e0";
+// eqn_s0 - Boolean equation on the variables e1,e0,s1,s0 for the S0 output.
+TILE1.FSM_2.eqn_s0 = "e0 & e1";
+// eqn_s1 - Boolean equation on the variables e1,e0,s1,s0 for the S1 output.
+TILE1.FSM_2.eqn_s1 = "s0 | s1";
+// reset - Reset the counter to 0 on next clock cycle (triggers low to high)
+TILE1.COUNTER_0.reset = "FSM_0.OUT";
+// reset - Reset the counter to 0 on next clock cycle (triggers low to high)
+TILE1.COUNTER_1.reset = "FSM_1.OUT";
+// reset - Reset the counter to 0 on next clock cycle (triggers low to high)
+TILE1.COUNTER_2.reset = "BOUNDARY.in3";
+// event - Trigger actions in the counter.
+TILE1.COUNTER_2.event = "LUT_2.OUT";
+// What action should be taken on an event trigger?
+TILE1.COUNTER_2.action = "Add";
+// eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
+TILE1.OUTLUT_0.eqn = "i0";
+// i0 - Input 0.
+TILE1.OUTLUT_0.i0 = "LUT_0.OUT";
+// eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
+TILE1.OUTLUT_1.eqn = "0";
+// eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
+TILE1.OUTLUT_2.eqn = "i0";
+// i0 - Input 0.
+TILE1.OUTLUT_2.i0 = "LUT_1.OUT";
+// eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
+TILE1.OUTLUT_3.eqn = "0";
+// instruct0
+TILE1.HLC.program2.instruct0 = "mov r0,c0";
+

@@ -357,7 +357,7 @@ let CLBRegisters = [
 			{ name: "SHIFT", description: "Shift value select", size: "5", shift: "8", mask: "0x1F00" },
 		]
 	},
-	{ name: "LOAD_EN", description: "Global enable & indirect load enable control", offset: "0x0",
+	{ name: "LOAD_EN", description: "Global enable & indirect load enable control, only", offset: "0x0",
 		bits: [
 			{ name: "LOAD_EN", description: "Load Enable", size: "1", shift: "0", mask: "0x1" },
 			{ name: "GLOBAL_EN", description: "Global Enable", size: "1", shift: "1", mask: "0x2" },

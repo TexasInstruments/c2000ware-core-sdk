@@ -110,8 +110,41 @@ void `nameOfPeripheral`_init(){
 	ASysCtl_setAnalogReference1P65( ASYSCTL_VREFHI );
 %			}
 %		}
+% 		else if( ["F28P55x"].includes(system.deviceData.deviceId)){
+%			if(stat.analogReference == "INTERNAL"){
+	//
+	// Set the analog voltage reference selection to internal.
+	//
+	ASysCtl_setAnalogReferenceInternal( ASYSCTL_ANAREF_INTREF_ADCA | ASYSCTL_ANAREF_INTREF_ADCB | ASYSCTL_ANAREF_INTREF_ADCC | ASYSCTL_ANAREF_INTREF_ADCD | ASYSCTL_ANAREF_INTREF_ADCE );
+%			}
+%			else if(stat.analogReference == "EXTERNAL"){
+	//
+	// Set the analog voltage reference selection to external.
+	//
+	ASysCtl_setAnalogReferenceExternal( ASYSCTL_ANAREF_VREFHI_ADCA | ASYSCTL_ANAREF_VREFHI_ADCB | ASYSCTL_ANAREF_VREFHI_ADCC | ASYSCTL_ANAREF_VREFHI_ADCD | ASYSCTL_ANAREF_VREFHI_ADCE );
+%			}
+%			else if(stat.analogReference == "VDDA"){
+	//
+	// Set the analog voltage reference selection to VDDA.
+	//
+	ASysCtl_setAnalogReferenceVDDA( ASYSCTL_ANAREF_VDDA_ADCA | ASYSCTL_ANAREF_VDDA_ADCB | ASYSCTL_ANAREF_VDDA_ADCC | ASYSCTL_ANAREF_VDDA_ADCD | ASYSCTL_ANAREF_VDDA_ADCE );
+%			}
+
+%			if((stat.analogReference == "INTERNAL") && (stat.analogReferenceVoltage == "2P5")){
+	//
+	// Set the internal analog voltage reference selection to 2.5V.
+	//
+	ASysCtl_setAnalogReference2P5( ASYSCTL_ANAREF_ADCA | ASYSCTL_ANAREF_ADCB | ASYSCTL_ANAREF_ADCC | ASYSCTL_ANAREF_ADCD | ASYSCTL_ANAREF_ADCE );
+%			}
+%			else if((stat.analogReference == "INTERNAL") && (stat.analogReferenceVoltage == "1P65")){
+	//
+	// Set the internal analog voltage reference selection to 1.65V.
+	//
+	ASysCtl_setAnalogReference1P65( ASYSCTL_ANAREF_ADCA | ASYSCTL_ANAREF_ADCB | ASYSCTL_ANAREF_ADCC | ASYSCTL_ANAREF_ADCD | ASYSCTL_ANAREF_ADCE );
+%			}
+%		}
 %}
-%if((system.deviceData.deviceId.includes("F280013x") || system.deviceData.deviceId.includes("F280015x")) && (stat.externalDACLEnable == true))
+%if((system.deviceData.deviceId.includes("F28P55x") || system.deviceData.deviceId.includes("F280013x") || system.deviceData.deviceId.includes("F280015x")) && (stat.externalDACLEnable == true))
 %{
 	//
 	// This function disables CMPSSx.COMPL and the associated DAC will act as a

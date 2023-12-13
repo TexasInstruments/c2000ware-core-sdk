@@ -118,7 +118,9 @@ Used GPIO,Selected Mode
 				%			if (system.deviceData.devicePins[pinNumber].designSignalName == selectedName)
 				%			{
 				%				selecteddevicePin = system.deviceData.devicePins[pinNumber];
-				%				break;
+				%				if (selecteddevicePin.mux != null){
+				%					break;
+				%				}
 				%			}
 				%		}
 				%		if (selecteddevicePin != null)

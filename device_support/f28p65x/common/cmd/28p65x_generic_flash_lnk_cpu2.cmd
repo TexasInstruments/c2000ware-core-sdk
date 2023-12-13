@@ -25,8 +25,8 @@ MEMORY
    FLASH_BANK4     : origin = 0x100000, length = 0x20000  // Can be mapped to either CPU1 or CPU2. User should comment/uncomment based on core selection
 
 
-   CPU1TOCPU2RAM    : origin = 0x03A000, length = 0x000800
-   CPU2TOCPU1RAM    : origin = 0x03B000, length = 0x000800
+   CPU1TOCPU2RAM    : origin = 0x03A000, length = 0x000400
+   CPU2TOCPU1RAM    : origin = 0x03B000, length = 0x000400
 
    CLATOCPURAM      : origin = 0x001480,   length = 0x000080
    CPUTOCLARAM      : origin = 0x001500,   length = 0x000080

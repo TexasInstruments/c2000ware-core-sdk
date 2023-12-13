@@ -1,0 +1,162 @@
+//#############################################################################
+// \file asin.cla
+//
+// \brief  Arc Sine Example
+//
+//#############################################################################
+// $Copyright:
+// Copyright (C) 2014-2023 Texas Instruments Incorporated - http://www.ti.com/
+//
+// Redistribution and use in source and binary forms, with or without 
+// modification, are permitted provided that the following conditions 
+// are met:
+// 
+//   Redistributions of source code must retain the above copyright 
+//   notice, this list of conditions and the following disclaimer.
+// 
+//   Redistributions in binary form must reproduce the above copyright
+//   notice, this list of conditions and the following disclaimer in the 
+//   documentation and/or other materials provided with the   
+//   distribution.
+// 
+//   Neither the name of Texas Instruments Incorporated nor the names of
+//   its contributors may be used to endorse or promote products derived
+//   from this software without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+// $
+//#############################################################################
+
+
+//
+// Included Files
+//
+#include "cla_ex1_asin_shared.h"
+
+//
+// Defines
+//
+
+//
+// Globals
+//
+// Note that the globals defined in the .cla source are global to the cla source
+// file.  i.e. they may be shared across tasks. All of the data shared between
+// the CLA and the C28x CPU must be defined in the C (or C++) code, and not the
+// CLA code.  
+//
+
+//
+// Function Definitions
+//
+//Task 1 : Calculate asin(X)
+// Description:
+//             Step(1): Calculate absolute of the input X
+//
+//             Step(2):   Use the upper 6-bits of input "X" value as an
+//                          index into the table to obtain the coefficients
+//                          for a second order equation:
+//
+//                        _FPUasinTable:
+//                             CoeffA0[0]
+//                             CoeffA1[0]
+//                             CoeffA2[0]
+//                                .
+//                                .
+//                             CoeffA0[63]
+//                             CoeffA1[63]
+//                             CoeffA2[63]
+//
+//             Step(3):   Calculate the angle using the following equation:
+//
+//                        arctan(Ratio) = A0 + A1*Ratio + A2*Ratio*Ratio
+//                        arctan(Ratio) = A0 + Ratio(A1 + A2*Ratio)
+//
+//             Step(4):   The final angle is determined as follows:
+//
+//                        if( X < 0 )
+//                            Angle = -Angle
+__interrupt void Cla1Task1 ( void )
+{
+    //
+    //Local Variables
+    //
+    int xTblIdx; //integer valued Table index
+    float A0,A1,A2; //Table coefficients
+    float *entry;
+    float result;
+
+    //
+    //Preprocessing
+    //
+    __mdebugstop();
+    xTblIdx = fVal * TABLE_SIZE_M_1; //convert table index to u16-bits
+    xTblIdx = xTblIdx * 3; //Table is ordered as 3 32-bit coefficients, the
+                           //index points to these triplets, hence the *3*sizeof(float)
+    entry = &CLAasinTable[xTblIdx];
+    A0 = *entry++;
+    A1 = *entry++;
+    A2 = *entry;
+
+
+    result = A0 + fVal*(A1 + A2*fVal);
+
+    //
+    //Post processing
+    //
+    if(fVal < 0)
+    {
+        result = - result;
+    }
+
+    fResult = result;
+}
+
+interrupt void Cla1Task2 ( void )
+{
+
+}
+
+interrupt void Cla1Task3 ( void )
+{
+
+}
+
+interrupt void Cla1Task4 ( void )
+{
+
+}
+
+interrupt void Cla1Task5 ( void )
+{
+
+}
+
+interrupt void Cla1Task6 ( void )
+{
+
+}
+
+interrupt void Cla1Task7 ( void )
+{
+
+}
+
+interrupt void Cla1Task8 ( void )
+{
+
+}
+
+//
+// End of file
+//

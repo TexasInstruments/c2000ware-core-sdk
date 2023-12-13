@@ -301,6 +301,7 @@ struct EQEP_REGS {
 // EQEP External References & Function Declarations:
 //
 extern volatile struct EQEP_REGS EQep1Regs;
+extern volatile struct EQEP_REGS EQep2Regs;
 #ifdef __cplusplus
 }
 #endif                                  /* extern "C" */

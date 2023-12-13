@@ -1,0 +1,38 @@
+%%{
+    let inst0    = args[0];
+    let inst1    = args[1];
+    let inst2    = args[2];
+    let tileName = args[3];
+    let Common   = system.getScript("/utilities/clb_tool/clb_syscfg/source/Common.js");
+    let prefix   = tileName + '_CFG_FSM';
+    let tt       = Common.FSM_truth_table;
+    let val      = Common.inputNameToValue;
+    let e0       = val[inst0.e0]  | (val[inst1.e0] <<5)  | (val[inst2.e0] <<10);
+    let e1       = val[inst0.e1]  | (val[inst1.e1] <<5)  | (val[inst2.e1] <<10);
+    let xe0      = val[inst0.xe0] | (val[inst1.xe0] <<5) | (val[inst2.xe0] <<10);
+    let xe1      = val[inst0.xe1] | (val[inst1.xe1] <<5) | (val[inst2.xe1] <<10);
+
+	let inst0_xe0_sel = inst0.eqn_out.includes("xe0")?1:0;
+	let inst0_xe1_sel = inst0.eqn_out.includes("xe1")?1:0;
+	let inst1_xe0_sel = inst1.eqn_out.includes("xe0")?1:0;
+	let inst1_xe1_sel = inst1.eqn_out.includes("xe1")?1:0;
+	let inst2_xe0_sel = inst2.eqn_out.includes("xe0")?1:0;
+	let inst2_xe1_sel = inst2.eqn_out.includes("xe1")?1:0;
+	
+    let fsm_misc_control =  inst0_xe0_sel << 12
+                         |  inst0_xe1_sel << 13
+                         |  inst1_xe0_sel << 14
+                         |  inst1_xe1_sel << 15
+                         |  inst2_xe0_sel << 16
+                         |  inst2_xe1_sel << 17;
+%%}
+#define `prefix`_EXT_IN0      0x`e0.toString(16)`
+#define `prefix`_EXT_IN1      0x`e1.toString(16)`
+#define `prefix`_EXTRA_IN0    0x`xe0.toString(16)`
+#define `prefix`_EXTRA_IN1    0x`xe1.toString(16)`
+#define `prefix`_NEXT_STATE_0 ((`tt(inst0.eqn_s1)`0000) | `tt(inst0.eqn_s0)`)
+#define `prefix`_NEXT_STATE_1 ((`tt(inst1.eqn_s1)`0000) | `tt(inst1.eqn_s0)`)
+#define `prefix`_NEXT_STATE_2 ((`tt(inst2.eqn_s1)`0000) | `tt(inst2.eqn_s0)`)
+#define `prefix`_LUT_FN10     ((`tt(inst1.eqn_out)`0000) | `tt(inst0.eqn_out)`)
+#define `prefix`_LUT_FN2      `tt(inst2.eqn_out)`
+#define `tileName`_FSM_MISC_CONTROL     0x`fsm_misc_control.toString(16)`

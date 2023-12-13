@@ -88,27 +88,23 @@ let EMIFRegisters = [
 		bits: [
 		]
 	},
-	{ name: "TOTAL_SDRAM_AR_INC_", description: "Total SDRAM Accesses Register", offset: "0x1A",
+	{ name: "TOTAL_SDRAM_ACTR", description: "Total SDRAM Activate Register", offset: "0x1A",
 		bits: [
 		]
 	},
-	{ name: "TOTAL_SDRAM_ACTR", description: "Total SDRAM Activate Register", offset: "0x1C",
-		bits: [
-		]
-	},
-	{ name: "SDR_EXT_TMNG", description: "SDRAM SR/PD Exit Timing Register", offset: "0x20",
+	{ name: "SDR_EXT_TMNG", description: "SDRAM SR/PD Exit Timing Register", offset: "0x1E",
 		bits: [
 			{ name: "T_XS", description: "Self Refresh exit to new command timing.", size: "5", shift: "0", mask: "0x1F" },
 		]
 	},
-	{ name: "INT_RAW", description: "Interrupt Raw Register", offset: "0x22",
+	{ name: "INT_RAW", description: "Interrupt Raw Register", offset: "0x20",
 		bits: [
 			{ name: "AT", description: "Asynchronous Timeout.", size: "1", shift: "0", mask: "0x1" },
 			{ name: "LT", description: "Line Trap.", size: "1", shift: "1", mask: "0x2" },
 			{ name: "WR", description: "Wait Rise.", size: "4", shift: "2", mask: "0x3C" },
 		]
 	},
-	{ name: "INT_MSK", description: "Interrupt Masked Register", offset: "0x24",
+	{ name: "INT_MSK", description: "Interrupt Masked Register", offset: "0x22",
 		bits: [
 			{ name: "AT_MASKED", description: "Asynchronous Timeout.", size: "1", shift: "0", mask: "0x1" },
 			{ name: "LT_MASKED", description: "Line Trap.", size: "1", shift: "1", mask: "0x2" },
@@ -121,14 +117,14 @@ let EMIFRegisters = [
 			{ name: "CLR_WR_MASK_CLR", description: "Wait Rise.", size: "4", shift: "2", mask: "0x3C" },
 		]
 	},
-	{ name: "INT_MSK_SET", description: "Interrupt Mask Set Register", offset: "0x26",
+	{ name: "INT_MSK_SET", description: "Interrupt Mask Set Register", offset: "0x24",
 		bits: [
 			{ name: "AT_MASK_SET", description: "Asynchronous Timeout.", size: "1", shift: "0", mask: "0x1" },
 			{ name: "LT_MASK_SET", description: "Line Trap.", size: "1", shift: "1", mask: "0x2" },
 			{ name: "WR_MASK_SET", description: "Wait Rise.", size: "4", shift: "2", mask: "0x3C" },
 		]
 	},
-	{ name: "INT_MSK_CLR", description: "Interrupt Mask Clear Register", offset: "0x28",
+	{ name: "INT_MSK_CLR", description: "Interrupt Mask Clear Register", offset: "0x26",
 		bits: [
 			{ name: "AT_MASK_CLR", description: "Asynchronous Timeout.", size: "1", shift: "0", mask: "0x1" },
 			{ name: "LT_MASK_CLR", description: "Line Trap.", size: "1", shift: "1", mask: "0x2" },

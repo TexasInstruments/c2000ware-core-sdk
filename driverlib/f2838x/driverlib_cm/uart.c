@@ -63,7 +63,7 @@ void
 UART_setConfig(uint32_t base, uint32_t uartClk,
                uint32_t baud, uint32_t config)
 {
-    uint32_t div, baudrt;
+    uint32_t divider, baudrt;
 
     baudrt = baud;
 
@@ -107,13 +107,13 @@ UART_setConfig(uint32_t base, uint32_t uartClk,
     //
     // Compute the fractional baud rate divider.
     //
-    div = (((uartClk * 8U) / baudrt) + 1U) / 2U;
+    divider = (((uartClk * 8U) / baudrt) + 1U) / 2U;
 
     //
     // Set the baud rate.
     //
-    HWREG(base + UART_O_IBRD) = div / 64U;
-    HWREG(base + UART_O_FBRD) = div % 64U;
+    HWREG(base + UART_O_IBRD) = divider / 64U;
+    HWREG(base + UART_O_FBRD) = divider % 64U;
 
     //
     // Set parity, data length, and number of stop bits.

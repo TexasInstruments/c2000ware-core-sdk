@@ -1,0 +1,26 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28003x" --package "100PZ" --part "F28003x_100PZ" --context "system" --product "C2000WARE@5.00.00.00"
+ * @versions {"tool":"1.16.0+2821"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const FFT  = scripting.addModule("/libraries/dsp/FPU/FFT/FFT.js", {}, false);
+const FFT1 = FFT.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+FFT1.$name             = "myFFT0";
+FFT1.RFFT.create(1);
+FFT1.RFFT[0].$name     = "myRFFT0";
+FFT1.RFFT[0].inPtr     = "inPtr";
+FFT1.RFFT[0].outPtr    = "outPtr";
+FFT1.RFFT[0].magPtr    = "magPtr";
+FFT1.RFFT[0].phasPtr   = "phasPtr";
+FFT1.RFFT[0].numStages = 8;
+FFT1.RFFT[0].inAdcPtr  = "inADC";
+FFT1.RFFT[0].adcEnable = true;

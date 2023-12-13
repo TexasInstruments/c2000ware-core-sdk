@@ -1,0 +1,13 @@
+%%{
+var Flash				= system.getTemplate('./Flash.xdt');
+var Asserts				= system.getTemplate('./Asserts.xdt');
+var Analog_Trim 			= system.getTemplate('./Analog_Trim.xdt');
+var PLL_Ctl_Dividers 			= system.getTemplate('./PLL_Ctl_Dividers.xdt');
+let device_common   			= system.getScript("/driverlib/.meta/device/functions_c/device_common.js");
+let Common   				= system.getScript("/driverlib/Common.js");
+const device  				= device_common.device;
+%%}
+`Analog_Trim()`
+`PLL_Ctl_Dividers()`
+`Asserts()`
+`Flash()`

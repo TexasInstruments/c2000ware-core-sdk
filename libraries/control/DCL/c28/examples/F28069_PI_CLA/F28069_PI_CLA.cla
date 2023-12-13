@@ -1,0 +1,62 @@
+/* control_F28069_CLA.cla
+ *
+ * Copyright (C) 2020 Texas Instruments Incorporated - http://www.ti.com/ 
+ * ALL RIGHTS RESERVED  
+ *
+*/
+
+#include "CLA_shared.h"
+#include "F2806x_Cla_typedefs.h"
+#include "F2806x_Device.h"
+
+
+__interrupt void Cla1Task1 ( void )
+{
+
+}
+
+__interrupt void Cla1Task2 ( void )
+{
+	
+}
+
+// task 3 contains the PI controller
+__interrupt void Cla1Task3 ( void )
+{
+//	__mdebugstop();
+
+	// run the PI controller
+	uk = DCL_runPI_L1(&pi1, rk, yk);
+
+	__mnop();
+	__mnop();
+	__mnop();
+}
+
+__interrupt void Cla1Task4 ( void )
+{
+	
+}
+
+__interrupt void Cla1Task5 ( void )
+{
+	
+}
+
+__interrupt void Cla1Task6 ( void )
+{
+	
+}
+
+__interrupt void Cla1Task7 ( void )
+{
+	
+}
+
+__interrupt void Cla1Task8 ( void )
+{
+
+}
+
+// end of file
+

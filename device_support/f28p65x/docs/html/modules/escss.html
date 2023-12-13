@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v5.00.00.00
+                v5.01.00.00
               </div>
             
           
@@ -199,7 +199,57 @@ ESCSS_INTR_RIS_SYNC1_RIS<p> |\</p>
 ESCSS_INTR_RIS_IRQ_RIS<p> |\</p>
 ESCSS_INTR_RIS_DMA_DONE_RIS<p> |\</p>
 ESCSS_INTR_RIS_TIMEOUT_ERR_RIS<p> |\</p>
-ESCSS_INTR_RIS_MASTER_RESET_RIS)<a class="headerlink" href="#c.ESCSS_RAW_INTERRUPT_MASK" title="Permalink to this definition">¶</a><br /></dt>
+ESCSS_INTR_RIS_MDEVICE_RESET_RIS)<a class="headerlink" href="#c.ESCSS_RAW_INTERRUPT_MASK" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_INTERRUPT_MASK">
+<span class="target" id="group__escss__api_1gafeedb1fbcc761285481ee1fbbd85aab6"></span><code class="sig-name descname">ESCSS_INTERRUPT_MASK</code> (ESCSS_INTR_MASK_SYNC0_MASK<p> |\</p>
+ESCSS_INTR_MASK_SYNC1_MASK<p> |\</p>
+ESCSS_INTR_MASK_IRQ_MASK<p> |\</p>
+ESCSS_INTR_MASK_DMA_DONE_MASK<p> |\</p>
+ESCSS_INTR_MASK_TIMEOUT_ERR_MASK<p> |\</p>
+ESCSS_INTR_MASK_MDEVICE_RESET_MASK)<a class="headerlink" href="#c.ESCSS_INTERRUPT_MASK" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_RESET_INTERRUPT_MASK">
+<span class="target" id="group__escss__api_1ga861bc5f99ec242923f09137fbab35448"></span><code class="sig-name descname">ESCSS_RESET_INTERRUPT_MASK</code> (ESCSS_INTR_MASK_SYNC0_MASK<p> |\</p>
+ESCSS_INTR_MASK_SYNC1_MASK<p> |\</p>
+ESCSS_INTR_MASK_IRQ_MASK<p> |\</p>
+ESCSS_INTR_MASK_DMA_DONE_MASK<p> |\</p>
+ESCSS_INTR_MASK_TIMEOUT_ERR_MASK<p> |\</p>
+ESCSS_INTR_MASK_MDEVICE_RESET_MASK)<a class="headerlink" href="#c.ESCSS_RESET_INTERRUPT_MASK" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_GET_INTERRUPT_MASK">
+<span class="target" id="group__escss__api_1gab4b69f9bcc063967c9759b1a60263409"></span><code class="sig-name descname">ESCSS_GET_INTERRUPT_MASK</code> (ESCSS_INTR_MIS_SYNC0_MIS<p> |\</p>
+ESCSS_INTR_MIS_SYNC1_MIS<p> |\</p>
+ESCSS_INTR_MIS_IRQ_MIS<p> |\</p>
+ESCSS_INTR_MIS_DMA_DONE_MIS<p> |\</p>
+ESCSS_INTR_MIS_TIMEOUT_ERR_MIS<p> |\</p>
+ESCSS_INTR_MIS_MDEVICE_RESET_MIS)<a class="headerlink" href="#c.ESCSS_GET_INTERRUPT_MASK" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_CLEAR_INTERRUPT_MASK">
+<span class="target" id="group__escss__api_1ga3dda194fd8dd13ca0c2a4f21632ee63f"></span><code class="sig-name descname">ESCSS_CLEAR_INTERRUPT_MASK</code> (ESCSS_INTR_CLR_SYNC0_CLR<p> |\</p>
+ESCSS_INTR_CLR_SYNC1_CLR<p> |\</p>
+ESCSS_INTR_CLR_IRQ_CLR<p> |\</p>
+ESCSS_INTR_CLR_DMA_DONE_CLR<p> |\</p>
+ESCSS_INTR_CLR_TIMEOUT_ERR_CLR<p> |\</p>
+ESCSS_INTR_CLR_MDEVICE_RESET_CLR)<a class="headerlink" href="#c.ESCSS_CLEAR_INTERRUPT_MASK" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.ESCSS_SET_INTERRUPT_MASK">
+<span class="target" id="group__escss__api_1gaabe3f90c26eb25d78c3b60e3eb0640f9"></span><code class="sig-name descname">ESCSS_SET_INTERRUPT_MASK</code> (ESCSS_INTR_SET_SYNC0_SET<p> |\</p>
+ESCSS_INTR_SET_SYNC1_SET<p> |\</p>
+ESCSS_INTR_SET_IRQ_SET<p> |\</p>
+ESCSS_INTR_SET_DMA_DONE_SET<p> |\</p>
+ESCSS_INTR_SET_TIMEOUT_ERR_SET<p> |\</p>
+ESCSS_INTR_SET_MDEVICE_RESET_SET)<a class="headerlink" href="#c.ESCSS_SET_INTERRUPT_MASK" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
@@ -935,7 +985,7 @@ ESCSS_INTR_RIS_MASTER_RESET_RIS)<a class="headerlink" href="#c.ESCSS_RAW_INTERRU
 </dd>
 </dl>
 </p>
-<p>The Raw interrupt Status can have the following valid options for <em>interruptMask</em> can be OR’ed together: <strong>ESCSS_INTR_RIS_SYNC0_RIS</strong>, <strong>ESCSS_INTR_RIS_SYNC1_RIS</strong>, <strong>ESCSS_INTR_RIS_IRQ_RIS</strong>, <strong>ESCSS_INTR_RIS_DMA_DONE_RIS</strong>, <strong>ESCSS_INTR_RIS_TIMEOUT_ERR_RIS</strong>, <strong>ESCSS_INTR_RIS_MASTER_RESET_RIS</strong>.</p>
+<p>The Raw interrupt Status can have the following valid options for <em>interruptMask</em> can be OR’ed together: <strong>ESCSS_INTR_RIS_SYNC0_RIS</strong>, <strong>ESCSS_INTR_RIS_SYNC1_RIS</strong>, <strong>ESCSS_INTR_RIS_IRQ_RIS</strong>, <strong>ESCSS_INTR_RIS_DMA_DONE_RIS</strong>, <strong>ESCSS_INTR_RIS_TIMEOUT_ERR_RIS</strong>, <strong>ESCSS_INTR_RIS_MDEVICE_RESET_RIS</strong>.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>Returns the Raw Interrupt Status Value. </p>
 </dd>
@@ -962,7 +1012,7 @@ ESCSS_INTR_RIS_MASTER_RESET_RIS)<a class="headerlink" href="#c.ESCSS_RAW_INTERRU
 <li><p><strong>ESCSS_INTR_MASK_IRQ_MASK</strong> - Masks EtherCATSS IRQ to have effect on interrupts or other CPU/DMA Trigger,</p></li>
 <li><p><strong>ESCSS_INTR_MASK_DMA_DONE_MASK</strong> - Masks DMA Done to have effect on interrupts or other CPU/DMA Trigger,</p></li>
 <li><p><strong>ESCSS_INTR_MASK_TIMEOUT_ERR_MASK</strong> - Masks PDI access timeout Error to have effect on interrupts or other CPU/DMA Trigger,</p></li>
-<li><p><strong>ESCSS_INTR_MASK_MASTER_RESET_MASK</strong> - Masks EtherCAT Master reset event against any effect on interrupts or other CPU Interrupts.</p></li>
+<li><p><strong>ESCSS_INTR_MASK_MDEVICE_RESET_MASK</strong> - Masks EtherCAT MainDevice reset event against any effect on interrupts or other CPU Interrupts.</p></li>
 </ul>
 </p>
 <p><dl class="simple">
@@ -991,7 +1041,7 @@ ESCSS_INTR_RIS_MASTER_RESET_RIS)<a class="headerlink" href="#c.ESCSS_RAW_INTERRU
 <li><p><strong>ESCSS_INTR_MASK_IRQ_MASK</strong> - Masks EtherCATSS IRQ to have effect on interrupts or other CPU/DMA Trigger,</p></li>
 <li><p><strong>ESCSS_INTR_MASK_DMA_DONE_MASK</strong> - Masks DMA Done to have effect on interrupts or other CPU/DMA Trigger,</p></li>
 <li><p><strong>ESCSS_INTR_MASK_TIMEOUT_ERR_MASK</strong> - Masks PDI access timeout Error to have effect on interrupts or other CPU/DMA Trigger,</p></li>
-<li><p><strong>ESCSS_INTR_MASK_MASTER_RESET_MASK</strong> - Masks EtherCAT Master reset event against any effect on interrupts or other CPU Interrupts.</p></li>
+<li><p><strong>ESCSS_INTR_MASK_MDEVICE_RESET_MASK</strong> - Masks EtherCAT MainDevice reset event against any effect on interrupts or other CPU Interrupts.</p></li>
 </ul>
 </p>
 <p><dl class="simple">
@@ -1014,7 +1064,7 @@ ESCSS_INTR_RIS_MASTER_RESET_RIS)<a class="headerlink" href="#c.ESCSS_RAW_INTERRU
 </dd>
 </dl>
 </p>
-<p>The Masked interrupt Status can have the following valid options for <em>interruptMask</em> can be OR’ed together: <strong>ESCSS_INTR_MIS_SYNC0_MIS</strong>, <strong>ESCSS_INTR_MIS_SYNC1_MIS</strong>, <strong>ESCSS_INTR_MIS_IRQ_MIS</strong>, <strong>ESCSS_INTR_MIS_DMA_DONE_MIS</strong>, <strong>ESCSS_INTR_MIS_TIMEOUT_ERR_MIS</strong>, <strong>ESCSS_INTR_MIS_MASTER_RESET_MIS</strong>.</p>
+<p>The Masked interrupt Status can have the following valid options for <em>interruptMask</em> can be OR’ed together: <strong>ESCSS_INTR_MIS_SYNC0_MIS</strong>, <strong>ESCSS_INTR_MIS_SYNC1_MIS</strong>, <strong>ESCSS_INTR_MIS_IRQ_MIS</strong>, <strong>ESCSS_INTR_MIS_DMA_DONE_MIS</strong>, <strong>ESCSS_INTR_MIS_TIMEOUT_ERR_MIS</strong>, <strong>ESCSS_INTR_MIS_MDEVICE_RESET_MIS</strong>.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>Returns the Masked Interrupt Status Value. </p>
 </dd>
@@ -1035,7 +1085,7 @@ ESCSS_INTR_RIS_MASTER_RESET_RIS)<a class="headerlink" href="#c.ESCSS_RAW_INTERRU
 </dd>
 </dl>
 </p>
-<p>The interrupt Status Mask parameter can have the following valid options for <em>interruptMask</em> can be OR’ed together: <strong>ESCSS_INTR_CLR_SYNC0_CLR</strong>, <strong>ESCSS_INTR_CLR_SYNC1_CLR</strong>, <strong>ESCSS_INTR_CLR_IRQ_CLR</strong>, <strong>ESCSS_INTR_CLR_DMA_DONE_CLR</strong>, <strong>ESCSS_INTR_CLR_TIMEOUT_ERR_CLR</strong>, <strong>ESCSS_INTR_CLR_MASTER_RESET_CLR</strong>.</p>
+<p>The interrupt Status Mask parameter can have the following valid options for <em>interruptMask</em> can be OR’ed together: <strong>ESCSS_INTR_CLR_SYNC0_CLR</strong>, <strong>ESCSS_INTR_CLR_SYNC1_CLR</strong>, <strong>ESCSS_INTR_CLR_IRQ_CLR</strong>, <strong>ESCSS_INTR_CLR_DMA_DONE_CLR</strong>, <strong>ESCSS_INTR_CLR_TIMEOUT_ERR_CLR</strong>, <strong>ESCSS_INTR_CLR_MDEVICE_RESET_CLR</strong>.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -1674,7 +1724,7 @@ ESCSS_INTR_RIS_MASTER_RESET_RIS)<a class="headerlink" href="#c.ESCSS_RAW_INTERRU
 </dd>
 </dl>
 </p>
-<p>The interrupt Status Mask parameter can have the following valid options for <em>interruptMask</em> can be OR’ed together: <strong>ESCSS_INTR_SET_SYNC0_SET</strong>, <strong>ESCSS_INTR_SET_SYNC1_SET</strong>, <strong>ESCSS_INTR_SET_IRQ_SET</strong>, <strong>ESCSS_INTR_SET_DMA_DONE_SET</strong>, <strong>ESCSS_INTR_SET_TIMEOUT_ERR_SET</strong>, <strong>ESCSS_INTR_SET_MASTER_RESET_SET</strong>.</p>
+<p>The interrupt Status Mask parameter can have the following valid options for <em>interruptMask</em> can be OR’ed together: <strong>ESCSS_INTR_SET_SYNC0_SET</strong>, <strong>ESCSS_INTR_SET_SYNC1_SET</strong>, <strong>ESCSS_INTR_SET_IRQ_SET</strong>, <strong>ESCSS_INTR_SET_DMA_DONE_SET</strong>, <strong>ESCSS_INTR_SET_TIMEOUT_ERR_SET</strong>, <strong>ESCSS_INTR_SET_MDEVICE_RESET_SET</strong>.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>Returns <strong>ESCSS_API_SUCCESS</strong> if the Register Access is successful, <strong>ESCSS_API_FAIL</strong> if access to the Register Fails. </p>
 </dd>
@@ -2307,7 +2357,7 @@ Data Register Value.</p>
     <p>
       <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
       <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
-      <span class="lastupdated">Last updated on Jul 01, 2023.
+      <span class="lastupdated">Last updated on Nov 09, 2023.
       </span></p>
   </div>
 
@@ -2327,7 +2377,7 @@ Data Register Value.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v5.00.00.00',
+            VERSION:'v5.01.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

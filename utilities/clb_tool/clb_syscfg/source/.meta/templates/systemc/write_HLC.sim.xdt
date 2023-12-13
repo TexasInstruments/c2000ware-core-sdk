@@ -1,0 +1,41 @@
+%%{
+    let inst      = args[0];
+    let tileName  = args[1];
+    let instNum   = args[2];
+    let inputs    = args[3];
+    let name      = tileName + "_HLC";
+    let Common    = system.getScript("/utilities/clb_tool/clb_syscfg/source/Common.js");
+
+    let alt_e0 = (Common.altInputNames.includes(inst.e0))?1:0;
+    let alt_e1 = (Common.altInputNames.includes(inst.e1))?1:0;
+    let alt_e2 = (Common.altInputNames.includes(inst.e2))?1:0;
+    let alt_e3 = (Common.altInputNames.includes(inst.e3))?1:0;
+    let fifo_refill_enable = (inst.FIFO_refill_enable)?1:0;
+%%}
+% for (let j = 0; j < inputs.length; ++j) {
+%    let inName = inputs[j];
+%    let inFrom = inst[inName];
+        sig_`name`_`inName`.write((sc_uint<32>) `Common.inputNameToValue[inFrom]`);
+% }
+        sig_`name`_P_intr_val.write((sc_uint<32>) 0xFFFF);
+        sig_`name`_P_fifo_read_ptr.write((sc_uint<2>) 0);
+        sig_`name`_P_fifo_write_ptr.write((sc_uint<2>) 0);
+        sig_`name`_P_fifo_underflow.write((bool) 0);
+        sig_`name`_P_fifo_overflow.write((bool) 0);
+        sig_`name`_P_fifo_refill_enable.write((bool) `fifo_refill_enable`);
+#if TYPE == 2 || TYPE == 3
+        sig_`name`_ae0.write          ((bool) `alt_e0`);
+        sig_`name`_ae1.write          ((bool) `alt_e1`);
+        sig_`name`_ae2.write          ((bool) `alt_e2`);
+        sig_`name`_ae3.write          ((bool) `alt_e3`);
+#endif
+#if TYPE == 3
+        sig_`name`_RECONFIG_PIPELINE_EN.write   ((bool) `tileName`_PIPELINE_MODE);
+        sig_`name`_SPI_EN.write                 ((bool) `tileName`_SPI_EN);
+        sig_`name`_SPI_EVENT_TRIGGER.write      ((sc_uint<5>) `inst.spiBufferLoadTriggerSignal`);
+        sig_`name`_SPI_SHIFT_VAL.write          ((sc_uint<5>) `inst.spiBufferR0Shift`);
+        sig_`name`_SPI_EXPORT_RXBUFF.write      ((sc_uint<16>) 0);
+#endif
+%       for (let idx = 0; idx < 32; idx++) {
+		sig_`name`_hlc_instr_`idx`.write((sc_uint<32>) `tileName`_HLCINSTR_`idx`);
+%	}

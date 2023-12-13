@@ -206,9 +206,21 @@
 //
 //*************************************************************************************************
 #define MEMCFG_DXTEST_TEST_M0_S   0U
-#define MEMCFG_DXTEST_TEST_M0_M   0x3U   // Selects the different modes for M0 RAM
+#define MEMCFG_DXTEST_TEST_M0_M   0x3U      // Selects the different modes for M0 RAM
 #define MEMCFG_DXTEST_TEST_M1_S   2U
-#define MEMCFG_DXTEST_TEST_M1_M   0xCU   // Selects the different modes for M1 RAM
+#define MEMCFG_DXTEST_TEST_M1_M   0xCU      // Selects the different modes for M1 RAM
+#define MEMCFG_DXTEST_TEST_D0_S   4U
+#define MEMCFG_DXTEST_TEST_D0_M   0x30U     // Selects the different modes for D0 RAM
+#define MEMCFG_DXTEST_TEST_D1_S   6U
+#define MEMCFG_DXTEST_TEST_D1_M   0xC0U     // Selects the different modes for D1 RAM
+#define MEMCFG_DXTEST_TEST_D2_S   8U
+#define MEMCFG_DXTEST_TEST_D2_M   0x300U    // Selects the different modes for D2 RAM
+#define MEMCFG_DXTEST_TEST_D3_S   10U
+#define MEMCFG_DXTEST_TEST_D3_M   0xC00U    // Selects the different modes for D3 RAM
+#define MEMCFG_DXTEST_TEST_D4_S   12U
+#define MEMCFG_DXTEST_TEST_D4_M   0x3000U   // Selects the different modes for D4 RAM
+#define MEMCFG_DXTEST_TEST_D5_S   14U
+#define MEMCFG_DXTEST_TEST_D5_M   0xC000U   // Selects the different modes for D5 RAM
 
 //*************************************************************************************************
 //

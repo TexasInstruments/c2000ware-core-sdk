@@ -256,6 +256,12 @@ let SYSCTL_CAUSE = [
 	{ name: "SYSCTL_CAUSE_NMIWDRS", displayName: "NMI watchdog reset" },
 	{ name: "SYSCTL_CAUSE_SCCRESET", displayName: "SCCRESETn by DCSM" },
 ]
+let SYSCTL_PERIPH_CLK = [
+	{ name: "SYSCTL_PERIPH_CLK_CLB1", displayName: "CLB1 clock" },
+	{ name: "SYSCTL_PERIPH_CLK_CLB2", displayName: "CLB2 clock" },
+	{ name: "SYSCTL_PERIPH_CLK_CLB3", displayName: "CLB3 clock" },
+	{ name: "SYSCTL_PERIPH_CLK_CLB4", displayName: "CLB4 clock" },
+]
 let SYSCTL_ADCSOC_SRC = [
 	{ name: "SYSCTL_ADCSOC_SRC_PWM1SOCA", displayName: "ePWM1 SOCA for ADCSOCAO" },
 	{ name: "SYSCTL_ADCSOC_SRC_PWM2SOCA", displayName: "ePWM2 SOCA for ADCSOCAO" },
@@ -304,5 +310,6 @@ module.exports = {
 	SYSCTL_SEC_CONTROLLER: SYSCTL_SEC_CONTROLLER,
 	SYSCTL_NMI: SYSCTL_NMI,
 	SYSCTL_CAUSE: SYSCTL_CAUSE,
+	SYSCTL_PERIPH_CLK: SYSCTL_PERIPH_CLK,
 	SYSCTL_ADCSOC_SRC: SYSCTL_ADCSOC_SRC,
 }

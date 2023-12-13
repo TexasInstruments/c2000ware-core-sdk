@@ -1,0 +1,50 @@
+%%{
+//
+// DCL:
+// For DCL, common header files means they should all be handled at once.
+// This way code doesn't generate #include "DCL.h" for every module. Import
+// all the modules here at the top level instead of within each module:
+//
+var dataList       = [];
+var moduleList     = [];
+dataList.push(system.getScript("/libraries/control/dcl/controller_data.js"));
+dataList.push(system.getScript("/libraries/control/dcl/logger_data.js"));
+dataList.push(system.getScript("/libraries/control/dcl/refgen_data.js"));
+dataList.push(system.getScript("/libraries/control/dcl/tcm_data.js"));
+
+moduleList.push(system.modules['/libraries/control/dcl/controller.js']);
+moduleList.push(system.modules['/libraries/control/dcl/logger.js']);
+moduleList.push(system.modules['/libraries/control/dcl/refgen.js']);
+moduleList.push(system.modules['/libraries/control/dcl/tcm.js']);
+let Common   = system.getScript("/driverlib/Common.js");
+var c2000warePath = Common.getC2000WarePath()
+var includePathList = [];
+var loopCount = 0;
+for (var mod of moduleList)
+{
+    if (mod != null)
+    {
+        // get all the includePaths of all modules
+        for(var inst of mod.$instances) 
+        {
+            var controllerChoice = inst.structDisplay;
+            var module_includePathList = dataList[loopCount].getOptIncludePaths(controllerChoice);
+            // add all the includePaths of this instance if they're not already in this list
+            for (var j in module_includePathList)
+            {
+                var includePath = module_includePathList[j].replace("../","");
+                if (!(includePathList.includes(includePath)))
+                {
+                    includePathList.push(includePath);
+                }
+            }
+        }
+    }
+    loopCount = loopCount + 1;
+}
+%%}
+% for (var i in includePathList)
+%{
+-I"`c2000warePath``includePathList[i]`"
+%}
+% // END DCL

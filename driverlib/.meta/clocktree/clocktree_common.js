@@ -1,4 +1,5 @@
 var DualCore 	= system.getTemplate('dualCore/dualCore.xdt');
+var DualCore_CPU2 	= system.getTemplate('dualCore/dualCore_CPU2.xdt');
 var SingleCore  = system.getTemplate('singleCore/singleCore.xdt');
 
 const multi_core = ["F2837xD", "F2838x", "F28P65x"]
@@ -15,6 +16,7 @@ var XTAL_OR_X1 		= system.clockTree.XTAL_OR_X1
 
 exports = {
     DualCore : DualCore,
+    DualCore_CPU2 : DualCore_CPU2,
     SingleCore : SingleCore,
     multi_core : multi_core,
     xtal_x1_macro : xtal_x1_macro,

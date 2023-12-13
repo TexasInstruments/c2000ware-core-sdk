@@ -1,0 +1,79 @@
+%%{
+    let inst     = args[0];
+    let tileName = args[1];
+    let Common = system.getScript("/utilities/clb_tool/clb_syscfg/source/Common.js");
+    let e0     = Common.inputNameToValue[inst.e0];
+    let e1     = Common.inputNameToValue[inst.e1];
+    let e2     = Common.inputNameToValue[inst.e2];
+    let e3     = Common.inputNameToValue[inst.e3];
+
+	let alt_e0 = (Common.altInputNames.includes(inst.e0))?1:0;
+	let alt_e1 = (Common.altInputNames.includes(inst.e1))?1:0;
+	let alt_e2 = (Common.altInputNames.includes(inst.e2))?1:0;
+	let alt_e3 = (Common.altInputNames.includes(inst.e3))?1:0;
+
+    let reg    = '0x' + (e0 | (e1 << 5) | (e2 << 10) | (e3 << 15) | 
+						(alt_e0 << 20)  | (alt_e1 << 21)  | (alt_e2 << 22)  | (alt_e3 << 23)).toString(16);
+	let opcode;
+	let operands;
+	let instruct_num = 0;
+	let exeflag = 0;
+	let imem = [];
+	let p0len = inst.program0.size;
+	for (let i=0; i<4; i++) {
+		for(let j=0; j<8; j++) {
+			let curr_inst = inst['program'+i]['instruct'+j];
+			if (curr_inst == '') { 	
+				if (instruct_num > 0) {imem[instruct_num-1][0] = 1; }
+				curr_inst= "MOV R0, R0"; 
+			}
+    		let re  = /\s*(\S+)\s*(.*)/i
+    		let found = curr_inst.match(re);
+    		opcode   = found[1].toUpperCase();
+    		operands = found[2].toUpperCase();
+
+    		operands = operands.split(',');
+    		for (let i = 0; i < operands.length; i++) {
+        		operands[i] = operands[i].trim();
+    		}
+			if ((instruct_num==7 )| (instruct_num==15 )|(instruct_num==23)|(instruct_num==31)) { exeflag = 1; }
+			imem[instruct_num] = [exeflag, opcode, operands[0], operands[1]];
+		instruct_num++;
+		exeflag = 0;
+		}
+	}	
+%%}
+
+%if (inst.spiBufferAccess) {
+#define `tileName`_SPI_EN 1
+%} else {
+#define `tileName`_SPI_EN 0
+%}
+
+#define `tileName`_HLC_EVENT_SEL `reg`
+#define `tileName`_HLC_R0_INIT `inst.R0_init`
+#define `tileName`_HLC_R1_INIT `inst.R1_init`
+#define `tileName`_HLC_R2_INIT `inst.R2_init`
+#define `tileName`_HLC_R3_INIT `inst.R3_init`
+
+#define `tileName`_HLC_FIFO0_INIT `inst.FIFO0_init`
+#define `tileName`_HLC_FIFO1_INIT `inst.FIFO1_init`
+#define `tileName`_HLC_FIFO2_INIT `inst.FIFO2_init`
+#define `tileName`_HLC_FIFO3_INIT `inst.FIFO3_init`
+
+%	for (let i=0; i<32; i++) {
+%		if(imem[i][1]=="INTR"){
+#define `tileName`_HLCINSTR_`i`	(`imem[i][0]` << 11 | HLC_OPCODE_`imem[i][1]` << 6 | `imem[i][2]`)
+%		}
+%		else if (imem[i][1]=="PUSH") {
+#define `tileName`_HLCINSTR_`i`	(`imem[i][0]` << 11 | HLC_OPCODE_`imem[i][1]` << 6 | HLC_OPCODE_`imem[i][2]`<<3)
+%		}
+%		else if (imem[i][1]=="PULL") {
+#define `tileName`_HLCINSTR_`i`	(`imem[i][0]` << 11 | HLC_OPCODE_`imem[i][1]` << 6 | HLC_OPCODE_`imem[i][2]`)
+%		}
+%		else {
+#define `tileName`_HLCINSTR_`i`	(`imem[i][0]` << 11 | HLC_OPCODE_`imem[i][1]` << 6 | HLC_OPCODE_`imem[i][2]`<<3 | HLC_OPCODE_`imem[i][3]`)
+%		}
+%	}	
+
+

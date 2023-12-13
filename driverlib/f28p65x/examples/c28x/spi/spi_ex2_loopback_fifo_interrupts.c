@@ -115,13 +115,6 @@ void main(void)
     Interrupt_initVectorTable();
 
     //
-    // Interrupts that are used in this example are re-mapped to ISR functions
-    // found within this file.
-    //
-    Interrupt_register(INT_SPIA_TX, &spiTxFIFOISR);
-    Interrupt_register(INT_SPIA_RX, &spiRxFIFOISR);
-
-    //
     // Board initialization
     //
     Board_init();
@@ -134,12 +127,6 @@ void main(void)
         sData[i] = i;
         rData[i]= 0;
     }
-
-    //
-    // Enable interrupts required for this example
-    //
-    Interrupt_enable(INT_SPIA_TX);
-    Interrupt_enable(INT_SPIA_RX);
 
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)

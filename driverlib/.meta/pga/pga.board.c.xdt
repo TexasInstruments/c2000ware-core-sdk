@@ -22,6 +22,7 @@ void `nameOfPeripheral`_init(){
 void `instance.$name`_init(){
         % let instancePinmux = instance[nameOfModule];
         %
+        %if (["F28004x"].includes(Common.getDeviceName())){
     PGA_setGain(`instance.$name`_BASE, `instance.gainMode`);
         %
         % if (instance.enableFilter) {
@@ -29,6 +30,59 @@ void `instance.$name`_init(){
         % } else {
     PGA_setFilterResistor(`instance.$name`_BASE, PGA_LOW_PASS_FILTER_DISABLED);
         % }
+        % }
+        %if (["F28P55x"].includes(Common.getDeviceName())){
+            % if (instance.enableFilterMode)
+            % {
+    PGA_selectPMUXInput(`instance.$name`_BASE, PGA_PMUX_VSSA);
+    PGA_selectNMUXInput(`instance.$name`_BASE, PGA_NMUX_RTAP);
+    PGA_selectMMUXInput(`instance.$name`_BASE, PGA_MMUX_NON_INVERTING_GAIN_VSSA);
+    PGA_setGain(`instance.$name`_BASE, `instance.gainMode`);
+    PGA_configurefeedbackOnPin(`instance.$name`_BASE);               
+            % }
+            % if (!instance.enableFilterMode) {
+            % if (instance.modeSelection == "BufferMode")
+            % {
+    PGA_selectPMUXInput(`instance.$name`_BASE, PGA_PMUX_POS);
+    PGA_selectNMUXInput(`instance.$name`_BASE, PGA_NMUX_RTOP);
+    PGA_selectMMUXInput(`instance.$name`_BASE, PGA_MMUX_NAKED_OPAMP);
+            % }
+            % else if (instance.modeSelection == "StandaloneMode")
+            % {
+    PGA_selectPMUXInput(`instance.$name`_BASE, PGA_PMUX_POS);
+    PGA_selectNMUXInput(`instance.$name`_BASE, PGA_NMUX_NEG);
+    PGA_selectMMUXInput(`instance.$name`_BASE, PGA_MMUX_NAKED_OPAMP);
+            % }
+            % else if (instance.modeSelection == "Non-invertingMode")
+            % {
+    PGA_selectPMUXInput(`instance.$name`_BASE, PGA_PMUX_POS);
+    PGA_selectNMUXInput(`instance.$name`_BASE, PGA_NMUX_RTAP);
+    PGA_selectMMUXInput(`instance.$name`_BASE, PGA_MMUX_NON_INVERTING_GAIN_VSSA);
+    PGA_setGain(`instance.$name`_BASE, `instance.gainMode`);
+            % }
+            % else if (instance.modeSelection == "SubtractorMode")
+            % {
+    PGA_selectPMUXInput(`instance.$name`_BASE, PGA_PMUX_POS);
+    PGA_selectNMUXInput(`instance.$name`_BASE, PGA_NMUX_RTAP);
+    PGA_selectMMUXInput(`instance.$name`_BASE, PGA_MMUX_INVERTING_GAIN_NEG);
+    PGA_setGain(`instance.$name`_BASE, `instance.gainMode`);
+            % }
+             % if (instance.enableNEGShared) {
+    PGA_selectMMUXInput(`instance.$name`_BASE, PGA_MMUX_INVERTING_GAIN_NEG_SHARED);
+            % }
+            % if (instance.enableFilter) {
+    PGA_setFilterResistor(`instance.$name`_BASE, `instance.filterMode`);
+            % } else {
+    PGA_setFilterResistor(`instance.$name`_BASE, PGA_LOW_PASS_FILTER_DISABLED);
+            % }
+            % if (instance.enableChopper) {
+    PGA_enableExternalChop(`instance.$name`_BASE);
+    PGA_chop(`instance.$name`_BASE, `instance.enableChopperMode`);
+            % } else {
+    PGA_disableExternalChop(`instance.$name`_BASE);
+            % }
+        %}
+        %}
         %
         % // preparing `registersToLockOR` for PGA_lockRegisters()
         % if (instance.lockedRegisters.length>0)

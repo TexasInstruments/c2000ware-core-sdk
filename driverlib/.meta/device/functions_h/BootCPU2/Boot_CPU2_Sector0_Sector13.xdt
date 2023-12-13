@@ -1,0 +1,27 @@
+//*****************************************************************************
+//
+//! @brief Function to boot CPU2.
+//!
+//! \param bootmode is the mode in which CPU2 should boot.
+//!
+//! Available bootmodes :
+//!      - BOOTMODE_BOOT_TO_FLASH_SECTOR0
+//!      - BOOTMODE_BOOT_TO_FLASH_SECTOR4
+//!      - BOOTMODE_BOOT_TO_FLASH_SECTOR8
+//!      - BOOTMODE_BOOT_TO_FLASH_SECTOR13
+//!      - BOOTMODE_BOOT_TO_SECURE_FLASH_SECTOR0
+//!      - BOOTMODE_BOOT_TO_SECURE_FLASH_SECTOR4
+//!      - BOOTMODE_BOOT_TO_SECURE_FLASH_SECTOR8
+//!      - BOOTMODE_BOOT_TO_SECURE_FLASH_SECTOR13
+//!      - BOOTMODE_IPC_MSGRAM_COPY_BOOT_TO_M1RAM
+//!      - BOOTMODE_BOOT_TO_M0RAM
+//!      - BOOTMODE_BOOT_TO_USEROTP
+//!
+//! Note that while using BOOTMODE_IPC_MSGRAM_COPY_BOOT_TO_M1RAM,
+//! BOOTMODE_IPC_MSGRAM_COPY_LENGTH_xxxW must be ORed with the bootmode parameter
+//!
+//! This function must be called after Device_init function
+//! \return None.
+//
+//*****************************************************************************
+extern void Device_bootCPU2(uint32_t bootmode);

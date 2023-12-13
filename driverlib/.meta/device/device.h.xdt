@@ -1,29 +1,31 @@
-% let Common   = system.getScript("/driverlib/Common.js");
-% var module = system.modules['/driverlib/device_support.js'];
-% var Device_include_h_template = system.getTemplate("/driverlib/device/functions_h/Device_include_h.xdt");
-% var Device_init_h_template = system.getTemplate("/driverlib/device/functions_h/Device_init_h.xdt");
-% var Device_bootCPU2_h_template = system.getTemplate("/driverlib/device/functions_h/Device_bootCPU2_h.xdt");
-% var Device_bootCM_h_template = system.getTemplate("/driverlib/device/functions_h/Device_bootCM_h.xdt");
-% var Device_enableAllPeripherals_h_template = system.getTemplate("/driverlib/device/functions_h/Device_enableAllPeripherals_h.xdt");
-% var Device_initGPIO_h_template = system.getTemplate("/driverlib/device/functions_h/Device_initGPIO_h.xdt");
-% var Device_enableUnbondedGPIOPullupsFor100Pin_h_template = system.getTemplate("/driverlib/device/functions_h/Device_enableUnbondedGPIOPullupsFor100Pin_h.xdt");
-% var Device_enableUnbondedGPIOPullupsFor176Pin_h_template = system.getTemplate("/driverlib/device/functions_h/Device_enableUnbondedGPIOPullupsFor176Pin_h.xdt");
-% var Device_enableUnbondedGPIOPullups_h_template = system.getTemplate("/driverlib/device/functions_h/Device_enableUnbondedGPIOPullups_h.xdt");
-% var Device_verifyXTAL_h_template = system.getTemplate("/driverlib/device/functions_h/Device_verifyXTAL_h.xdt");
-% var Device_configureTMXAnalogTrim_h_template = system.getTemplate("/driverlib/device/functions_h/Device_configureTMXAnalogTrim_h.xdt");
-%
-`Device_include_h_template()`
-`Device_init_h_template()`
-%
-`Device_enableAllPeripherals_h_template()`
-`Device_initGPIO_h_template()`
-%
-`Device_enableUnbondedGPIOPullupsFor176Pin_h_template()`
-`Device_enableUnbondedGPIOPullupsFor100Pin_h_template()`
-`Device_enableUnbondedGPIOPullups_h_template()`
-%
-`Device_configureTMXAnalogTrim_h_template()`
-%
-`Device_bootCPU2_h_template()`
-`Device_bootCM_h_template()`
-`Device_verifyXTAL_h_template()`
+%%{
+let 	device_common   					= system.getScript("/driverlib/.meta/device/functions_h/device_common.js");
+let 	Common   						= system.getScript("/driverlib/Common.js");
+var	Include							= device_common.Include;
+var	Boot_CM							= device_common.Boot_CM;
+var	Initilization						= device_common.Initilization;
+var	InitGPIO						= device_common.InitGPIO;
+var	VerifyXTAL						= device_common.VerifyXTAL;
+var	Error_Handling						= device_common.Error_Handling;
+var	Boot_CPU2						= device_common.Boot_CPU2;
+var	Enable_Unbounded_GPIO_Pullups				= device_common.Enable_Unbounded_GPIO_Pullups;
+var	Configure_TMX_Analog_Trim				= device_common.Configure_TMX_Analog_Trim;
+var	Enable_All_Peripherals					= device_common.Enable_All_Peripherals;
+
+const 	multi_core 						= device_common.multi_core;
+const 	device  						= device_common.device;
+const	Device_Boot_CM						= device_common.Device_Boot_CM;
+%%}
+`Include()`
+`Initilization()`
+`Enable_All_Peripherals()`
+`InitGPIO()`
+`Enable_Unbounded_GPIO_Pullups()`
+`Configure_TMX_Analog_Trim()`
+`Boot_CPU2()`
+% if(Device_Boot_CM.includes(device))
+%{
+`Boot_CM()`
+%}
+`VerifyXTAL()`
+`Error_Handling()`

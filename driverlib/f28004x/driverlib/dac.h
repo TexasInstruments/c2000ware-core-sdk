@@ -187,7 +187,7 @@ DAC_getRevision(uint32_t base)
 //!
 //! This function sets the DAC reference voltage.
 //!
-//! The \e source parameter can have one of two values:
+//! The \e source parameter can have the following value:
 //! - \b DAC_REF_VDAC       - The VDAC reference voltage
 //! - \b DAC_REF_ADC_VREFHI - The ADC VREFHI reference voltage
 //!
@@ -203,7 +203,7 @@ DAC_setReferenceVoltage(uint32_t base, DAC_ReferenceVoltage source)
     ASSERT(DAC_isBaseValid(base));
 
     //
-    // Set the reference  voltage
+    // Set the reference voltage
     //
     EALLOW;
 
@@ -303,13 +303,13 @@ DAC_setLoadMode(uint32_t base, DAC_LoadMode mode)
 //
 //*****************************************************************************
 static inline void
-DAC_setPWMSyncSignal(uint32_t base, uint16_t signal)
+DAC_setPWMSyncSignal(uint32_t base, uint16_t pwmSignal)
 {
     //
     // Check the arguments.
     //
     ASSERT(DAC_isBaseValid(base));
-    ASSERT((signal > 0U) && (signal < 17U));
+    ASSERT((pwmSignal > 0U) && (pwmSignal < 17U));
 
     //
     // Set the PWM sync signal
@@ -318,7 +318,8 @@ DAC_setPWMSyncSignal(uint32_t base, uint16_t signal)
 
     HWREGH(base + DAC_O_CTL) = (HWREGH(base + DAC_O_CTL) &
                                 ~DAC_CTL_SYNCSEL_M) |
-                               ((uint16_t)(signal - 1U) << DAC_CTL_SYNCSEL_S);
+                               ((uint16_t)(pwmSignal - 1U) <<
+                                DAC_CTL_SYNCSEL_S);
 
     EDIS;
 }

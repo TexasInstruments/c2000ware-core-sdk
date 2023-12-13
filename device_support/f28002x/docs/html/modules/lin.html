@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v4.02.00.00
+                v5.01.00.00
               </div>
             
           
@@ -773,15 +773,15 @@ send and receive data, and setup interrupt event handling.</p>
 <dd><p>The following are defines for the <em>mode</em> parameter of the <a class="reference internal" href="#group__lin__api_1ga787fbb0229a33a7c8e8b0ab28b4f883f"><span class="std std-ref">LIN_setLINMode()</span></a> function. </p>
 <p><em>Values:</em></p>
 <dl class="cpp enumerator">
-<dt id="_CPPv4N11LIN_LINMode18LIN_MODE_LIN_SLAVEE">
-<span id="_CPPv3N11LIN_LINMode18LIN_MODE_LIN_SLAVEE"></span><span id="_CPPv2N11LIN_LINMode18LIN_MODE_LIN_SLAVEE"></span><span class="target" id="group__lin__api_1ggac3008a3b3514608d8768652b3c3363adac63fa72e2df470c8914504c6b982f15e"></span><em class="property">enumerator </em><code class="sig-name descname">LIN_MODE_LIN_SLAVE</code> = 0x0000U<a class="headerlink" href="#_CPPv4N11LIN_LINMode18LIN_MODE_LIN_SLAVEE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>The node is in slave mode. </p>
+<dt id="_CPPv4N11LIN_LINMode22LIN_MODE_LIN_RESPONDERE">
+<span id="_CPPv3N11LIN_LINMode22LIN_MODE_LIN_RESPONDERE"></span><span id="_CPPv2N11LIN_LINMode22LIN_MODE_LIN_RESPONDERE"></span><span class="target" id="group__lin__api_1ggac3008a3b3514608d8768652b3c3363ada8f2cae35c6a8a73317e304169ff7b045"></span><em class="property">enumerator </em><code class="sig-name descname">LIN_MODE_LIN_RESPONDER</code> = 0x0000U<a class="headerlink" href="#_CPPv4N11LIN_LINMode22LIN_MODE_LIN_RESPONDERE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The node is in responder mode. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
-<dt id="_CPPv4N11LIN_LINMode19LIN_MODE_LIN_MASTERE">
-<span id="_CPPv3N11LIN_LINMode19LIN_MODE_LIN_MASTERE"></span><span id="_CPPv2N11LIN_LINMode19LIN_MODE_LIN_MASTERE"></span><span class="target" id="group__lin__api_1ggac3008a3b3514608d8768652b3c3363adacef060419ca668710fb270bb6ff4d269"></span><em class="property">enumerator </em><code class="sig-name descname">LIN_MODE_LIN_MASTER</code> = 0x0020U<a class="headerlink" href="#_CPPv4N11LIN_LINMode19LIN_MODE_LIN_MASTERE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>The node is in master mode. </p>
+<dt id="_CPPv4N11LIN_LINMode22LIN_MODE_LIN_COMMANDERE">
+<span id="_CPPv3N11LIN_LINMode22LIN_MODE_LIN_COMMANDERE"></span><span id="_CPPv2N11LIN_LINMode22LIN_MODE_LIN_COMMANDERE"></span><span class="target" id="group__lin__api_1ggac3008a3b3514608d8768652b3c3363ada89d55029d1183a76c7c2abf75dc49d86"></span><em class="property">enumerator </em><code class="sig-name descname">LIN_MODE_LIN_COMMANDER</code> = 0x0020U<a class="headerlink" href="#_CPPv4N11LIN_LINMode22LIN_MODE_LIN_COMMANDERE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The node is in commander mode. </p>
 </dd></dl>
 
 </dd></dl>
@@ -817,9 +817,9 @@ send and receive data, and setup interrupt event handling.</p>
 </dd></dl>
 
 <dl class="cpp enumerator">
-<dt id="_CPPv4N17LIN_MessageFilter22LIN_MSG_FILTER_IDSLAVEE">
-<span id="_CPPv3N17LIN_MessageFilter22LIN_MSG_FILTER_IDSLAVEE"></span><span id="_CPPv2N17LIN_MessageFilter22LIN_MSG_FILTER_IDSLAVEE"></span><span class="target" id="group__lin__api_1gga3c9e1c865b7ddde8a36a7ff4a2789addae86a0be983b97e6caa91043ae1f00f09"></span><em class="property">enumerator </em><code class="sig-name descname">LIN_MSG_FILTER_IDSLAVE</code> = 0x1U<a class="headerlink" href="#_CPPv4N17LIN_MessageFilter22LIN_MSG_FILTER_IDSLAVEE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Slave Task ID Byte Filtering. </p>
+<dt id="_CPPv4N17LIN_MessageFilter26LIN_MSG_FILTER_IDRESPONDERE">
+<span id="_CPPv3N17LIN_MessageFilter26LIN_MSG_FILTER_IDRESPONDERE"></span><span id="_CPPv2N17LIN_MessageFilter26LIN_MSG_FILTER_IDRESPONDERE"></span><span class="target" id="group__lin__api_1gga3c9e1c865b7ddde8a36a7ff4a2789addac95498ce741df6690b743a5940fe7a49"></span><em class="property">enumerator </em><code class="sig-name descname">LIN_MSG_FILTER_IDRESPONDER</code> = 0x1U<a class="headerlink" href="#_CPPv4N17LIN_MessageFilter26LIN_MSG_FILTER_IDRESPONDERE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Responder Task ID Byte Filtering. </p>
 </dd></dl>
 
 </dd></dl>
@@ -957,11 +957,11 @@ send and receive data, and setup interrupt event handling.</p>
 <dt id="_CPPv414LIN_setLINMode8uint32_t11LIN_LINMode">
 <span id="_CPPv314LIN_setLINMode8uint32_t11LIN_LINMode"></span><span id="_CPPv214LIN_setLINMode8uint32_t11LIN_LINMode"></span><span id="LIN_setLINMode__uint32_t.LIN_LINMode"></span><span class="target" id="group__lin__api_1ga787fbb0229a33a7c8e8b0ab28b4f883f"></span>void <code class="sig-name descname">LIN_setLINMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv411LIN_LINMode" title="LIN_LINMode">LIN_LINMode</a> <em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414LIN_setLINMode8uint32_t11LIN_LINMode" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Sets the LIN mode</p>
-<p><p>In LIN mode only, this function sets the mode of the LIN mode to either slave or master. The </p>
-<em>mode</em> parameter should be passed a value of <strong>LIN_MODE_LIN_SLAVE</strong> or <strong>LIN_MODE_LIN_MASTER</strong> to configure the mode of the LIN module specified by <em>base</em>.<dl class="simple">
+<p><p>In LIN mode only, this function sets the mode of the LIN mode to either responder or commander. The </p>
+<em>mode</em> parameter should be passed a value of <strong>LIN_MODE_LIN_RESPONDER</strong> or <strong>LIN_MODE_LIN_COMMANDER</strong> to configure the mode of the LIN module specified by <em>base</em>.<dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the LIN module base address </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: is the desired mode (slave or master)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: is the desired mode (responder or commander)</p></li>
 </ul>
 </dd>
 </dl>
@@ -975,9 +975,9 @@ send and receive data, and setup interrupt event handling.</p>
 
 <dl class="cpp function">
 <dt id="_CPPv422LIN_setMaximumBaudRate8uint32_t8uint32_t">
-<span id="_CPPv322LIN_setMaximumBaudRate8uint32_t8uint32_t"></span><span id="_CPPv222LIN_setMaximumBaudRate8uint32_t8uint32_t"></span><span id="LIN_setMaximumBaudRate__uint32_t.uint32_t"></span><span class="target" id="group__lin__api_1ga922c7794122ec0a1bad34b5777f8c73c"></span>void <code class="sig-name descname">LIN_setMaximumBaudRate</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>clock</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422LIN_setMaximumBaudRate8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<span id="_CPPv322LIN_setMaximumBaudRate8uint32_t8uint32_t"></span><span id="_CPPv222LIN_setMaximumBaudRate8uint32_t8uint32_t"></span><span id="LIN_setMaximumBaudRate__uint32_t.uint32_t"></span><span class="target" id="group__lin__api_1ga4d116db44b17983014b9d39df55ce9bf"></span>void <code class="sig-name descname">LIN_setMaximumBaudRate</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>systemClock</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422LIN_setMaximumBaudRate8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Set Maximum Baud Rate Prescaler</p>
-<p><p>In LIN mode only, this function is used to set the maximum baud rate prescaler used during synchronization phase of a slave module if the ADAPT bit is set. The maximum baud rate prescaler is used by the wakeup and idle timer counters for a constant 4 second expiration time relative to a 20kHz rate.</p>
+<p><p>In LIN mode only, this function is used to set the maximum baud rate prescaler used during synchronization phase of a responder module if the ADAPT bit is set. The maximum baud rate prescaler is used by the wakeup and idle timer counters for a constant 4 second expiration time relative to a 20kHz rate.</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the LIN module base address </p></li>
@@ -1002,7 +1002,7 @@ send and receive data, and setup interrupt event handling.</p>
 <p><p>In LIN mode only, this function sets the message filtering type. The </p>
 <em>type</em> parameter can be one of the following values:<ul class="simple">
 <li><p><strong>LIN_MSG_FILTER_IDBYTE</strong> - Filtering uses LIN message ID Byte</p></li>
-<li><p><strong>LIN_MSG_FILTER_IDSLAVE</strong> - Filtering uses the Slave Task ID Byte</p></li>
+<li><p><strong>LIN_MSG_FILTER_IDRESPONDER</strong> - Filtering uses the responder Task ID Byte</p></li>
 </ul>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
@@ -1069,7 +1069,7 @@ send and receive data, and setup interrupt event handling.</p>
 </dl>
 </p>
 <p><dl class="simple">
-<dt><strong>Note</strong></dt><dd><p>An ID must be generated with parity before header generation in LIN master mode when parity is enabled using the function <a class="reference internal" href="#group__lin__api_1gaf84b1f7a9e8e9fe3645b53ad3477c542"><span class="std std-ref">LIN_enableParity()</span></a>.</p>
+<dt><strong>Note</strong></dt><dd><p>An ID must be generated with parity before header generation in LIN commander mode when parity is enabled using the function <a class="reference internal" href="#group__lin__api_1gaf84b1f7a9e8e9fe3645b53ad3477c542"><span class="std std-ref">LIN_enableParity()</span></a>.</p>
 </dd>
 <dt><strong>Return</strong></dt><dd><p>Returns the identifier appended with parity bits. </p>
 </dd>
@@ -1081,7 +1081,7 @@ send and receive data, and setup interrupt event handling.</p>
 <dt id="_CPPv413LIN_setIDByte8uint32_t8uint16_t">
 <span id="_CPPv313LIN_setIDByte8uint32_t8uint16_t"></span><span id="_CPPv213LIN_setIDByte8uint32_t8uint16_t"></span><span id="LIN_setIDByte__uint32_t.uint16_t"></span><span class="target" id="group__lin__api_1ga6cb632f622f9694b297cb58eeec17335"></span>void <code class="sig-name descname">LIN_setIDByte</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>identifier</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413LIN_setIDByte8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Set ID Byte</p>
-<p><p>In LIN mode only, this function sets the message ID byte. In master mode, writing to this ID initiates a header transmission. In slave task, this ID is used for message filtering when HGENCTRL is 0.</p>
+<p><p>In LIN mode only, this function sets the message ID byte. In commander mode, writing to this ID initiates a header transmission. In responder task, this ID is used for message filtering when HGENCTRL is 0.</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the LIN module base address </p></li>
@@ -1098,9 +1098,9 @@ send and receive data, and setup interrupt event handling.</p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv418LIN_setIDSlaveTask8uint32_t8uint16_t">
-<span id="_CPPv318LIN_setIDSlaveTask8uint32_t8uint16_t"></span><span id="_CPPv218LIN_setIDSlaveTask8uint32_t8uint16_t"></span><span id="LIN_setIDSlaveTask__uint32_t.uint16_t"></span><span class="target" id="group__lin__api_1ga3ab8416cf873cd3be308246d75856f31"></span>void <code class="sig-name descname">LIN_setIDSlaveTask</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>identifier</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418LIN_setIDSlaveTask8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Set ID-SlaveTask</p>
+<dt id="_CPPv422LIN_setIDResponderTask8uint32_t8uint16_t">
+<span id="_CPPv322LIN_setIDResponderTask8uint32_t8uint16_t"></span><span id="_CPPv222LIN_setIDResponderTask8uint32_t8uint16_t"></span><span id="LIN_setIDResponderTask__uint32_t.uint16_t"></span><span class="target" id="group__lin__api_1gaae7dfd5c785785c90fe7b3f36a9a1685"></span>void <code class="sig-name descname">LIN_setIDResponderTask</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>identifier</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422LIN_setIDResponderTask8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Set ID-ResponderTask</p>
 <p><p>In LIN mode only, this function sets the identifier to which the received ID of an incoming Header will be compared in order to decide whether a RX response, a TX response, or no action is required.</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
@@ -1690,7 +1690,7 @@ send and receive data, and setup interrupt event handling.</p>
 </dl>
 </p>
 <p><dl class="simple">
-<dt><strong>Note</strong></dt><dd><p>The baudrate selection register will be updated automatically by a slave node if this mode is enabled.</p>
+<dt><strong>Note</strong></dt><dd><p>The baudrate selection register will be updated automatically by a responder node if this mode is enabled.</p>
 </dd>
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -3294,8 +3294,10 @@ applications.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
-      <span class="lastupdated">Last updated on Oct 11, 2022.
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+      <span class="lastupdated">Last updated on Nov 09, 2023.
       </span></p>
   </div>
 
@@ -3315,7 +3317,7 @@ applications.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v4.02.00.00',
+            VERSION:'v5.01.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

@@ -35,7 +35,7 @@
 //!
 //#############################################################################
 //
-// $Release Date: $
+// 
 // $Copyright:
 // Copyright (C) 2014-2023 Texas Instruments Incorporated - http://www.ti.com/
 //

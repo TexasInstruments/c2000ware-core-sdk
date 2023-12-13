@@ -2,7 +2,7 @@
 //
 // FILE:   adc_ex8_ppb_limits.c
 //
-// TITLE:  ADC limits check using post-processing block for f2838x.
+// TITLE:  ADC limits check using post-processing block.
 //
 //! \addtogroup driver_example_list
 //! <h1> ADC PPB Limits (adc_ppb_limits)</h1>

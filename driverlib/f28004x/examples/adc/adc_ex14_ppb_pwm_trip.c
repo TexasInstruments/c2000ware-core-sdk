@@ -224,7 +224,6 @@ void main(void)
     // Configure ADCEVTx as direct trip signal for ePWM3
     //
     configureDirectTripSignal(EPWM3_BASE);
-
     //
     // Setup the ADC for ADCAINT1 triggered conversions on channel 2
     //

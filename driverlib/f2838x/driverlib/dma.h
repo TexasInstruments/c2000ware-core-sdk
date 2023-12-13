@@ -273,32 +273,43 @@ typedef struct
 {
     DMA_Trigger          transferTrigger;  //DMA transfer triggers
     DMA_InterruptMode    interruptMode;    //Channel interrupt mode
+    //! enableInterrupt can have a value 1(Enable) or 0(Disable)
     bool                 enableInterrupt;  //Enable/Disable interrupt mode
+    //! configSize can have a value DMA_CFG_SIZE_16BIT/32BIT
     uint32_t             configSize;    //Data bus width (16 or 32 bits)
+    //! transferMode can have a value DMA_CFG_ONESHOT_DISABLE/ENABLE
     uint32_t             transferMode;  //Burst transfer mode
+    //! reinitMode can have a value DMA_CFG_CONTINUOUS_DISABLE/ENABLE
     uint32_t             reinitMode;    //DMA reinitialization mode
+    //! burstSize value range from 1 word to 32 sixteen-bit words.
     uint32_t             burstSize;     //Number of words transferred per burst
+    //! transferSize value range from 1 to 65536
     uint32_t             transferSize;  //Number of bursts per transfer
     //! Number of bursts to be transferred before a wrap of the source address
-    //! occurs.
+    //! occurs. srcWrapSize value range from 1 to 65536
     uint32_t             srcWrapSize;
     //! Number of bursts to be transferred before a wrap of the destination
-    //! address occurs.
+    //! address occurs. destWrapSize value range from 1 to 65536
     uint32_t             destWrapSize;
     uint32_t             destAddr;    //destination address
     uint32_t             srcAddr;     //source address
-    //! Amount to inc or dec the source address after each word of a burst
+    //! Amount to inc or dec the source address after each word of a burst.
+    //! srcBurstStep can have only signed values from -4096 to 4095
     int16_t              srcBurstStep;
-    //! Amount to inc or dec the destination address after each word of a burst
+    //! Amount to inc or dec the destination address after each word of a burst.
+    //! destBurstStep can have only signed values from -4096 to 4095
     int16_t              destBurstStep;
-    //! Amount to inc or dec the source address after each burst of a transfer
+    //! Amount to inc or dec the source address after each burst of a transfer.
+    //! srcTransferStep can have only signed values from -4096 to 4095
     int16_t              srcTransferStep;
     //! Amount to inc or dec the destination address after each burst of a
-    //! transfer
+    //! transfer. destTransferStep can have only signed values from -4096 to 4095
     int16_t              destTransferStep;
-    //! Amount to inc or dec the source address when the wrap occurs
+    //! Amount to inc or dec the source address when the wrap occurs.
+    //! srcWrapStep can have only signed values from -4096 to 4095
     int16_t              srcWrapStep;
-    //! Amount to inc or dec the destination address when the wrap occurs
+    //! Amount to inc or dec the destination address when the wrap occurs.
+    //! destWrapStep can have only signed values from -4096 to 4095
     int16_t              destWrapStep;
 
 } DMA_ConfigParams;

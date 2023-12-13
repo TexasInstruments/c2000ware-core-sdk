@@ -62,6 +62,7 @@
 #include "device.h"
 #include "inc/stw_dataTypes.h"
 #include "inc/stw_types.h"
+#include <string.h>
 
 //
 // Defines
@@ -75,6 +76,7 @@
 #define MCAN_RX_BUFF_NUM                (10U)
 #define MCAN_RX_BUFF_ELEM_SIZE          (MCAN_ELEM_SIZE_64BYTES)
 #define MCAN_TX_BUFF_SIZE               (10U)
+#define MCAN_TX_FQ_SIZE                 (0U)
 #define MCAN_TX_BUFF_ELEM_SIZE          (MCAN_ELEM_SIZE_64BYTES)
 #define MCAN_TX_EVENT_SIZE              (10U)
 #define MCAN_EXT_ID_AND_MASK            (0x1FFFFFFFU)
@@ -90,7 +92,7 @@
 #define MCAN_FIFO_1_START_ADDR          (MCAN_FIFO_0_START_ADDR + (MCAN_getMsgObjSize(MCAN_FIFO_0_ELEM_SIZE) * 4U * MCAN_FIFO_0_NUM))
 #define MCAN_RX_BUFF_START_ADDR         (MCAN_FIFO_1_START_ADDR + (MCAN_getMsgObjSize(MCAN_FIFO_1_ELEM_SIZE) * 4U * MCAN_FIFO_1_NUM))
 #define MCAN_TX_BUFF_START_ADDR         (MCAN_RX_BUFF_START_ADDR + (MCAN_getMsgObjSize(MCAN_RX_BUFF_ELEM_SIZE) * 4U * MCAN_RX_BUFF_NUM))
-#define MCAN_TX_EVENT_START_ADDR        (MCAN_TX_BUFF_START_ADDR + (MCAN_getMsgObjSize(MCAN_TX_BUFF_ELEM_SIZE) * 4U * MCAN_TX_BUFF_SIZE))
+#define MCAN_TX_EVENT_START_ADDR        (MCAN_TX_BUFF_START_ADDR + (MCAN_getMsgObjSize(MCAN_TX_BUFF_ELEM_SIZE) * 4U * (MCAN_TX_BUFF_SIZE + MCAN_TX_FQ_SIZE)))
 
 //
 // Global Variables.
@@ -329,7 +331,8 @@ static void MCANConfig(void)
     // Tx Buffers Start Address.
     msgRAMConfigParams.txBufNum             = MCAN_TX_BUFF_SIZE;
     // Number of Dedicated Transmit Buffers.
-    msgRAMConfigParams.txFIFOSize           = 0U; // No Tx FIFO/Queue.
+    msgRAMConfigParams.txFIFOSize           = MCAN_TX_FQ_SIZE; 
+    // Number of Tx FIFO or Tx Queue Elements
     msgRAMConfigParams.txBufMode            = 0U; //Tx FIFO operation
     msgRAMConfigParams.txBufElemSize        = MCAN_TX_BUFF_ELEM_SIZE;
     // Tx Buffer Element Size.
@@ -370,13 +373,13 @@ static void MCANConfig(void)
     stdFiltelem.sft                = 0x0U; // Range filter from SFID1 to SFID2
 
     //
-    // Initialize bit timings
+    // Initialize bit timings.
     //
-    bitTimes.nomRatePrescalar   = 0x3U; // Nominal Baud Rate Pre-scaler.
+    bitTimes.nomRatePrescalar   = 0x3U; // Nominal Baud Rate Pre-scaler
     bitTimes.nomTimeSeg1        = 0x9U; // Nominal Time segment before SP
     bitTimes.nomTimeSeg2        = 0x8U; // Nominal Time segment after SP
     bitTimes.nomSynchJumpWidth  = 0x8U; // Nominal SJW
-    bitTimes.dataRatePrescalar  = 0x1U; // Data Baud Rate Pre-scaler.
+    bitTimes.dataRatePrescalar  = 0x1U; // Data Baud Rate Pre-scaler
     bitTimes.dataTimeSeg1       = 0x9U; // Data Time segment before SP
     bitTimes.dataTimeSeg2       = 0x8U; // Data Time segment after SP
     bitTimes.dataSynchJumpWidth = 0x8U; // Data SJW
@@ -467,6 +470,11 @@ __interrupt void MCANIntr1ISR(void)
     {
         error++;
     }
+
+    //
+    //  Clearing the interrupt lineNum
+    //
+    HW_WR_FIELD32(MCANA_DRIVER_BASE + MCAN_MCANSS_EOI, MCAN_MCANSS_EOI, 0x2U);
 
     //
     // Clear the interrupt Status.

@@ -184,8 +184,8 @@
 //
 //*************************************************************************************************
 #define EPG_GINTSTS_INT            0x1U   // Global interrupt flag register
-#define EPG_GINTSTS_SIGGEN0_DONE   0x2U   // SIGGEN0 operation done interrupt enable
-#define EPG_GINTSTS_SIGGEN0_FILL   0x4U   // SIGGEN0 data fill interrupt enable
+#define EPG_GINTSTS_SIGGEN0_DONE   0x2U   // SIGGEN0 operation done status
+#define EPG_GINTSTS_SIGGEN0_FILL   0x4U   // SIGGEN0 data fill status
 
 //*************************************************************************************************
 //

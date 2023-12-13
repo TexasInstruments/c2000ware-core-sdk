@@ -1,0 +1,41 @@
+//*****************************************************************************
+//
+// Function to boot CPU2
+// Available bootmodes :
+//      - BOOTMODE_BOOT_TO_FLASH_SECTOR0
+//      - BOOTMODE_BOOT_TO_FLASH_SECTOR4
+//      - BOOTMODE_BOOT_TO_FLASH_SECTOR8
+//      - BOOTMODE_BOOT_TO_FLASH_SECTOR13
+//      - BOOTMODE_BOOT_TO_SECURE_FLASH_SECTOR0
+//      - BOOTMODE_BOOT_TO_SECURE_FLASH_SECTOR4
+//      - BOOTMODE_BOOT_TO_SECURE_FLASH_SECTOR8
+//      - BOOTMODE_BOOT_TO_SECURE_FLASH_SECTOR13
+//      - BOOTMODE_IPC_MSGRAM_COPY_BOOT_TO_M1RAM
+//      - BOOTMODE_BOOT_TO_M0RAM
+//      - BOOTMODE_BOOT_TO_USEROTP
+//
+// Note that while using BOOTMODE_IPC_MSGRAM_COPY_BOOT_TO_M1RAM,
+// BOOTMODE_IPC_MSGRAM_COPY_LENGTH_xxxW must be ORed with the bootmode parameter
+//
+// This function must be called after Device_init function
+//
+//*****************************************************************************
+void Device_bootCPU2(uint32_t bootmode)
+{
+    //
+    // Configure the CPU1TOCPU2IPCBOOTMODE register
+    //
+    IPC_setBootMode(IPC_CPU1_L_CPU2_R,
+                    (BOOT_KEY | CPU2_BOOT_FREQ_200MHZ | bootmode));
+
+    //
+    // Set IPC Flag 0
+    //
+    IPC_setFlagLtoR(IPC_CPU1_L_CPU2_R, IPC_FLAG0);
+
+    //
+    // Bring CPU2 out of reset. Wait for CPU2 to go out of reset.
+    //
+    SysCtl_controlCPU2Reset(SYSCTL_CORE_DEACTIVE);
+    while(SysCtl_isCPU2Reset() == 0x1U);
+}

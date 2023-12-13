@@ -308,7 +308,7 @@ HRCAP_enableCalibrationInterrupt(uint32_t base, uint16_t intFlags)
 {
     ASSERT(HRCAP_isBaseValid(base));
     ASSERT((intFlags & ~(HRCAP_CALIBRATION_DONE |
-                       HRCAP_CALIBRATION_PERIOD_OVERFLOW)) == 0);
+                       HRCAP_CALIBRATION_PERIOD_OVERFLOW)) == 0U);
 
     EALLOW;
 
@@ -339,7 +339,7 @@ HRCAP_disableCalibrationInterrupt(uint32_t base, uint16_t intFlags)
 {
     ASSERT(HRCAP_isBaseValid(base));
     ASSERT((intFlags & ~(HRCAP_CALIBRATION_DONE |
-                       HRCAP_CALIBRATION_PERIOD_OVERFLOW)) == 0);
+                       HRCAP_CALIBRATION_PERIOD_OVERFLOW)) == 0U);
 
     EALLOW;
 
@@ -459,7 +459,7 @@ HRCAP_forceCalibrationFlags(uint32_t base, uint16_t flag)
 {
     ASSERT(HRCAP_isBaseValid(base));
     ASSERT((flag & ~(HRCAP_CALIBRATION_DONE |
-                    HRCAP_CALIBRATION_PERIOD_OVERFLOW)) == 0);
+                    HRCAP_CALIBRATION_PERIOD_OVERFLOW)) == 0U);
 
     EALLOW;
 

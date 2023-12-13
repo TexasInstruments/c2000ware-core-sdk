@@ -1,0 +1,17 @@
+%%{
+    let inst      = args[0];
+    let tileName  = args[1];
+    let instNum   = args[2];
+    let inputs    = args[3];
+    let Common    = system.getScript("/utilities/clb_tool/clb_syscfg/source/Common.js");
+    let name      = tileName + "_FSM_" + instNum;
+%%}
+    DEVICE_CLB_FSM         `name`;
+    sc_signal<bool>         sig_`name`_xe0_sel;
+    sc_signal<bool>         sig_`name`_xe1_sel;
+    sc_signal<sc_uint<16> > sig_`name`_S0_fn;
+    sc_signal<sc_uint<16> > sig_`name`_S1_fn;
+    sc_signal<sc_uint<16> > sig_`name`_OUT_LUT_fn;
+    sc_signal<bool>         sig_`name`_S0;
+    sc_signal<bool>         sig_`name`_S1;
+    sc_signal<bool>         sig_`name`_OUT;

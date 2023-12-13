@@ -91,7 +91,6 @@
 #define DCSM_O_Z1_GRABSECT3R       0x1EU   // Zone 1 Grab Flash Status Register 3
 #define DCSM_O_Z1_GRABRAM1R        0x20U   // Zone 1 Grab RAM Status Register 1
 #define DCSM_O_Z1_GRABRAM2R        0x22U   // Zone 1 Grab RAM Status Register 2
-#define DCSM_O_Z1_GRABRAM3R        0x24U   // Zone 1 Grab RAM Status Register 3
 #define DCSM_O_Z1_EXEONLYSECT1R    0x26U   // Zone 1 Execute Only Flash Status Register 1
 #define DCSM_O_Z1_EXEONLYSECT2R    0x28U   // Zone 1 Execute Only Flash Status Register 2
 #define DCSM_O_Z1_EXEONLYRAM1R     0x2AU   // Zone 1 Execute Only RAM Status Register 1
@@ -122,19 +121,16 @@
 #define DCSM_O_Z2_GRABSECT3R       0x1EU   // Zone 2 Grab Flash Status Register 3
 #define DCSM_O_Z2_GRABRAM1R        0x20U   // Zone 2 Grab RAM Status Register 1
 #define DCSM_O_Z2_GRABRAM2R        0x22U   // Zone 2 Grab RAM Status Register 2
-#define DCSM_O_Z2_GRABRAM3R        0x24U   // Zone 2 Grab RAM Status Register 3
 #define DCSM_O_Z2_EXEONLYSECT1R    0x26U   // Zone 2 Execute Only Flash Status Register 1
 #define DCSM_O_Z2_EXEONLYSECT2R    0x28U   // Zone 2 Execute Only Flash Status Register 2
 #define DCSM_O_Z2_EXEONLYRAM1R     0x2AU   // Zone 2 Execute Only RAM Status Register 1
 
 #define DCSM_O_FLSEM              0x0U    // Flash Wrapper Semaphore Register
-#define DCSM_O_BOOTERR            0x6U    // Boot Error Register
 #define DCSM_O_SECTSTAT1          0x8U    // Flash Sectors Status Register 1
 #define DCSM_O_SECTSTAT2          0xAU    // Flash Sectors Status Register 2
 #define DCSM_O_SECTSTAT3          0xCU    // Flash Sectors Status Register 3
 #define DCSM_O_RAMSTAT1           0x10U   // RAM Status Register 1
 #define DCSM_O_RAMSTAT2           0x12U   // RAM Status Register 2
-#define DCSM_O_RAMSTAT3           0x14U   // RAM Status Register 3
 #define DCSM_O_SECERRSTAT         0x18U   // Security Error Status Register
 #define DCSM_O_SECERRCLR          0x1AU   // Security Error Clear Register
 #define DCSM_O_SECERRFRC          0x1CU   // Security Error Force Register
@@ -342,32 +338,6 @@
 #define DCSM_Z1_GRABRAM2R_GRAB_RAM14_M   0x30U   // Grab RAM CPU2TOCPU1 MSGRAM0_L
 #define DCSM_Z1_GRABRAM2R_GRAB_RAM15_S   6U
 #define DCSM_Z1_GRABRAM2R_GRAB_RAM15_M   0xC0U   // Grab RAM CPU2TOCPU1 MSGRAM0_H
-
-//*************************************************************************************************
-//
-// The following are defines for the bit fields in the Z1_GRABRAM3R register
-//
-//*************************************************************************************************
-#define DCSM_Z1_GRABRAM3R_GRAB_RAM0_S   0U
-#define DCSM_Z1_GRABRAM3R_GRAB_RAM0_M   0x3U       // Grab RAM CPU2.LS0
-#define DCSM_Z1_GRABRAM3R_GRAB_RAM1_S   2U
-#define DCSM_Z1_GRABRAM3R_GRAB_RAM1_M   0xCU       // Grab RAM CPU2.LS1
-#define DCSM_Z1_GRABRAM3R_GRAB_RAM2_S   4U
-#define DCSM_Z1_GRABRAM3R_GRAB_RAM2_M   0x30U      // Grab RAM CPU2.LS2
-#define DCSM_Z1_GRABRAM3R_GRAB_RAM3_S   6U
-#define DCSM_Z1_GRABRAM3R_GRAB_RAM3_M   0xC0U      // Grab RAM CPU2.LS3
-#define DCSM_Z1_GRABRAM3R_GRAB_RAM4_S   8U
-#define DCSM_Z1_GRABRAM3R_GRAB_RAM4_M   0x300U     // Grab RAM CPU2.LS4
-#define DCSM_Z1_GRABRAM3R_GRAB_RAM5_S   10U
-#define DCSM_Z1_GRABRAM3R_GRAB_RAM5_M   0xC00U     // Grab RAM CPU2.LS5
-#define DCSM_Z1_GRABRAM3R_GRAB_RAM6_S   12U
-#define DCSM_Z1_GRABRAM3R_GRAB_RAM6_M   0x3000U    // Grab RAM CPU2.LS6
-#define DCSM_Z1_GRABRAM3R_GRAB_RAM7_S   14U
-#define DCSM_Z1_GRABRAM3R_GRAB_RAM7_M   0xC000U    // Grab RAM CPU2.LS7
-#define DCSM_Z1_GRABRAM3R_GRAB_RAM8_S   16U
-#define DCSM_Z1_GRABRAM3R_GRAB_RAM8_M   0x30000U   // Grab RAM CPU2.D0
-#define DCSM_Z1_GRABRAM3R_GRAB_RAM9_S   18U
-#define DCSM_Z1_GRABRAM3R_GRAB_RAM9_M   0xC0000U   // Grab RAM CPU2.D1
 
 //*************************************************************************************************
 //
@@ -678,32 +648,6 @@
 
 //*************************************************************************************************
 //
-// The following are defines for the bit fields in the Z2_GRABRAM3R register
-//
-//*************************************************************************************************
-#define DCSM_Z2_GRABRAM3R_GRAB_RAM0_S   0U
-#define DCSM_Z2_GRABRAM3R_GRAB_RAM0_M   0x3U       // Grab RAM CPU2.LS0
-#define DCSM_Z2_GRABRAM3R_GRAB_RAM1_S   2U
-#define DCSM_Z2_GRABRAM3R_GRAB_RAM1_M   0xCU       // Grab RAM CPU2.LS1
-#define DCSM_Z2_GRABRAM3R_GRAB_RAM2_S   4U
-#define DCSM_Z2_GRABRAM3R_GRAB_RAM2_M   0x30U      // Grab RAM CPU2.LS2
-#define DCSM_Z2_GRABRAM3R_GRAB_RAM3_S   6U
-#define DCSM_Z2_GRABRAM3R_GRAB_RAM3_M   0xC0U      // Grab RAM CPU2.LS3
-#define DCSM_Z2_GRABRAM3R_GRAB_RAM4_S   8U
-#define DCSM_Z2_GRABRAM3R_GRAB_RAM4_M   0x300U     // Grab RAM CPU2.LS4
-#define DCSM_Z2_GRABRAM3R_GRAB_RAM5_S   10U
-#define DCSM_Z2_GRABRAM3R_GRAB_RAM5_M   0xC00U     // Grab RAM CPU2.LS5
-#define DCSM_Z2_GRABRAM3R_GRAB_RAM6_S   12U
-#define DCSM_Z2_GRABRAM3R_GRAB_RAM6_M   0x3000U    // Grab RAM CPU2.LS6
-#define DCSM_Z2_GRABRAM3R_GRAB_RAM7_S   14U
-#define DCSM_Z2_GRABRAM3R_GRAB_RAM7_M   0xC000U    // Grab RAM CPU2.LS7
-#define DCSM_Z2_GRABRAM3R_GRAB_RAM8_S   16U
-#define DCSM_Z2_GRABRAM3R_GRAB_RAM8_M   0x30000U   // Grab RAM CPU2.D0
-#define DCSM_Z2_GRABRAM3R_GRAB_RAM9_S   18U
-#define DCSM_Z2_GRABRAM3R_GRAB_RAM9_M   0xC0000U   // Grab RAM CPU2.D1
-
-//*************************************************************************************************
-//
 // The following are defines for the bit fields in the Z2_EXEONLYSECT1R register
 //
 //*************************************************************************************************
@@ -822,15 +766,6 @@
 #define DCSM_FLSEM_SEM_M   0x3U      // Flash Semaphore Bit
 #define DCSM_FLSEM_KEY_S   8U
 #define DCSM_FLSEM_KEY_M   0xFF00U   // Semaphore Key
-
-//*************************************************************************************************
-//
-// The following are defines for the bit fields in the BOOTERR register
-//
-//*************************************************************************************************
-#define DCSM_BOOTERR_ILLTRIMPSWD   0x1U   // Illegal Trim Password
-#define DCSM_BOOTERR_TRIMPSWDERR   0x2U   // Trim Password Error
-#define DCSM_BOOTERR_SELOVRD       0x4U   // Password Select Override
 
 //*************************************************************************************************
 //
@@ -997,32 +932,6 @@
 #define DCSM_RAMSTAT2_STATUS_RAM14_M   0x30U   // Zone Status RAM CPU2TOCPU1 MSGRAM0_L
 #define DCSM_RAMSTAT2_STATUS_RAM15_S   6U
 #define DCSM_RAMSTAT2_STATUS_RAM15_M   0xC0U   // Zone Status RAM CPU2TOCPU1 MSGRAM0_H
-
-//*************************************************************************************************
-//
-// The following are defines for the bit fields in the RAMSTAT3 register
-//
-//*************************************************************************************************
-#define DCSM_RAMSTAT3_STATUS_RAM0_S   0U
-#define DCSM_RAMSTAT3_STATUS_RAM0_M   0x3U       // Zone Status RAM CPU2.LS0
-#define DCSM_RAMSTAT3_STATUS_RAM1_S   2U
-#define DCSM_RAMSTAT3_STATUS_RAM1_M   0xCU       // Zone Status RAM CPU2.LS1
-#define DCSM_RAMSTAT3_STATUS_RAM2_S   4U
-#define DCSM_RAMSTAT3_STATUS_RAM2_M   0x30U      // Zone Status RAM CPU2.LS2
-#define DCSM_RAMSTAT3_STATUS_RAM3_S   6U
-#define DCSM_RAMSTAT3_STATUS_RAM3_M   0xC0U      // Zone Status RAM CPU2.LS3
-#define DCSM_RAMSTAT3_STATUS_RAM4_S   8U
-#define DCSM_RAMSTAT3_STATUS_RAM4_M   0x300U     // Zone Status RAM CPU2.LS4
-#define DCSM_RAMSTAT3_STATUS_RAM5_S   10U
-#define DCSM_RAMSTAT3_STATUS_RAM5_M   0xC00U     // Zone Status RAM CPU2.LS5
-#define DCSM_RAMSTAT3_STATUS_RAM6_S   12U
-#define DCSM_RAMSTAT3_STATUS_RAM6_M   0x3000U    // Zone Status RAM CPU2.LS6
-#define DCSM_RAMSTAT3_STATUS_RAM7_S   14U
-#define DCSM_RAMSTAT3_STATUS_RAM7_M   0xC000U    // Zone Status RAM CPU2.LS7
-#define DCSM_RAMSTAT3_STATUS_RAM8_S   16U
-#define DCSM_RAMSTAT3_STATUS_RAM8_M   0x30000U   // Zone Status RAM CPU2.D0
-#define DCSM_RAMSTAT3_STATUS_RAM9_S   18U
-#define DCSM_RAMSTAT3_STATUS_RAM9_M   0xC0000U   // Zone Status RAM CPU2.D1
 
 //*************************************************************************************************
 //

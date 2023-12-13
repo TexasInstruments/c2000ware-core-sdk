@@ -1,0 +1,102 @@
+% var moduleName = "FPUfastRTS"
+% let Common   = system.getScript("/driverlib/Common.js");
+% var module = system.modules['/libraries/math/FPUfastRTS' + '/' + moduleName + '.js'];
+% var instance = module.$instances[0];
+
+%if(module != null)
+%{
+#include <C28x_FPU_FastRTS.h>
+#include <fastrts.h>
+#include "math.h"
+%if(instance.fpuType == "FPU32")
+%{
+#include <fpu32/C28x_FPU_FastRTS.h>
+
+//
+//  Functions available for FPU32 configuration:
+//
+//  float32_t acosf(float32_t X)
+//  float32_t asinf(float32_t X)
+//  float32_t atanf(float32_t X)
+//  float32_t atan2f(float32_t Y, float32_t X)
+//  float32_t cosf(float32_t X)
+//  float32_t FS$$DIV(float32_t X, float32_t Y); call using '/' operator
+//  float32_t expf(float32_t X)
+//  float32_t isqrtf(float32_t X)
+//  float32_t logf(float32_t X)
+//  float32_t powf(float32_t X, float32_t Y)
+//  float32_t sinf(float32_t X)
+%//  void sincosf(float32_t radian, float32_t *PtrSin, float32_t *PtrCos)
+//  float32_t sqrtf(float32_t X)
+//
+%}
+%else if(instance.fpuType == "FPU64")
+%{
+#include <fpu64/cordic.h>
+#include <fpu64/fid.h>
+
+//
+//  Functions available for FPU64 configuration:
+//
+//  float64u_t atan(float64u_t X)
+//  float64u_t atan2(float64u_t Y, float64u_t X)
+//  float64u_t cos(float64u_t X)
+//  float64u_t CORDIC_F64_cos(CORDIC_F64_Handle hC, float64u_t theta)
+//  float64_t FD$$DIV(float64_t , float64_t) for COFF; can call using '/' operator
+//  float64u_t __c28xabi_div(float64u_t X, float64u_t Y) for EABI; can call using '/' operator
+//  float64u_t isqrt(float64u_t X)
+//  float64u_t sin(float64u_t X)
+//  float64u_t CORDIC_F64_sin(CORDIC_F64_Handle hC, float64u_t theta)
+%//  void sincos(float64u_t radian, float64u_t *PtrSin, float64u_t *PtrCos)
+//  float64u_t sqrt(float64u_t X)
+//
+
+//
+//  Functions available for FPUfastRTS Fast Integer Division (FID):
+//
+//  COFF: void FID_f64byf64(long double *p_num, long double *p_den, long double *p_quo)
+//  EABI: void FID_f64byf64(double *p_num, double *p_den, double *p_quo)
+//
+//  void FID_i16byi16_e(int16_t *p_num_rem, int16_t *p_den_quo)
+//  void FID_i16byi16_m(int16_t *p_num_rem, int16_t *p_den_quo)
+//  void FID_i16byi16_t(int16_t *p_num_rem, int16_t *p_den_quo)
+//  void FID_i32byi16_e(int32_t *p_num_rem, int32_t *p_den_quo)
+//  void FID_i32byi16_m(int32_t *p_num_rem, int32_t *p_den_quo)
+//  void FID_i32byi16_t(int32_t *p_num_rem, int32_t *p_den_quo)
+//  void FID_i32byi32_e(int32_t *p_num_rem, int32_t *p_den_quo)
+//  void FID_i32byi32_m(int32_t *p_num_rem, int32_t *p_den_quo)
+//  void FID_i32byi32_t(int32_t *p_num_rem, int32_t *p_den_quo)
+//  void FID_i32byui32(int32_t *p_num_rem, int32_t *p_den_quo)
+//  void FID_i64byi32_e(int64_t *p_num_rem, int64_t *p_den_quo)
+//  void FID_i64byi32_m(int64_t *p_num_rem, int64_t *p_den_quo)
+//  void FID_i64byi32_t(int64_t *p_num_rem, int64_t *p_den_quo)
+//  void FID_i64byi64_e(int64_t *p_num_rem, int64_t *p_den_quo)
+//  void FID_i64byi64_m(int64_t *p_num_rem, int64_t *p_den_quo)
+//  void FID_i64byi64_t(int64_t *p_num_rem, int64_t *p_den_quo)
+//  void FID_i64byui32(int64_t *p_num_rem, int64_t *p_den_quo)
+//  void FID_ui16byui16(uint16_t *p_num_rem, uint16_t *p_den_quo)
+//  void FID_ui32byui16(uint32_t *p_num_rem, uint32_t *p_den_quo)
+//  void FID_ui32byui32(uint32_t *p_num_rem, uint32_t *p_den_quo)
+//  void FID_ui64byui32(uint64_t *p_num_rem, uint64_t *p_den_quo)
+//  void FID_i64byui64(int64_t *p_num_rem, int64_t *p_den_quo)
+//  void FID_ui64byui64(uint64_t *p_num_rem, uint64_t *p_den_quo)
+//
+% var moduleNameCordic = "cordic"
+% var moduleCordic = system.modules['/libraries/math/FPUfastRTS' + '/' + moduleNameCordic + '.js'];
+%
+%if(moduleCordic != null)
+%{
+% var instances = moduleCordic.$instances;
+%
+%for(let i = 0; i < instances.length; i++)
+%{
+#define `instances[i].$name`_N_ITERATIONS `instances[i].numIter`
+extern CORDIC_F64_Handle `instances[i].$name`_handle;
+
+void `instances[i].$name`_init();
+
+%}
+%}
+%}
+%}
+void FFR_init();

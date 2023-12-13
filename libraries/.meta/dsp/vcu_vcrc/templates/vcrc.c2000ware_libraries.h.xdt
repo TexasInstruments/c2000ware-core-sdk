@@ -1,0 +1,68 @@
+% var moduleName = "vcrc"
+% var libraryFolder = "vcrc"
+% var module = system.modules['/libraries/dsp/vcu_vcrc/' + moduleName + '.js'];
+%if (module != null)
+%{
+#include "vcu2/vcu2_crc.h"
+#include "vcrc/vcrc_configpoly.h"
+#include "vcu2/vcu2_deinterleaver.h"
+#include "vcu2/vcu2_fft.h"
+#include "vcu2/vcu2_reedsolomon_decoder.h"
+#include "vcu2/vcu2_types.h"
+#include "vcu2/vcu2_viterbi_decoder.h"
+
+ % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        % let modInst  = instance[moduleName];
+%}
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        % let modInst  = instance[moduleName];
+//
+// `instance.$name` variables
+//
+extern uint32_t `instance.$name`_goldenValue;
+#define `instance.$name`_SEEDVAL `instance.seedVal`
+#define `instance.$name`_NUMMSGBYTES `instance.numMsgBytes`
+#define `instance.$name`_NUMMSGBITS `instance.numMsgBits`
+#define `instance.$name`_PARITY `instance.parity`
+#define `instance.$name`_RESULT `instance.result`
+extern void *`instance.msgBuffer`;
+        %if (instance.userPolyInputMode == "PREDEFINED"){
+#define `instance.$name`_POLY `instance.userPoly`
+        %}
+        %if (instance.userPolyInputMode == "MANUAL"){
+#define `instance.$name`_POLY `instance.userPolyManual`
+        %}
+#define `instance.$name`_POLYSIZE `instance.polySize`
+#define `instance.$name`_DATASIZE `instance.dataSize`
+        % if (instance.reflected){
+#define `instance.$name`_REFLECTED 1
+        % } else{
+#define `instance.$name`_REFLECTED 0
+        % }
+#define `instance.$name`_CRCINIT (void(*)(void*))`instance.crcInit`
+        %if (instance.cRoutineInputMode == "PREDEFINED"){
+#define `instance.$name`_CROUTINE (void(*)(void*))`instance.cRoutine`
+        %}
+        %if (instance.cRoutineInputMode == "MANUAL"){
+#define `instance.$name`_CROUTINE (void(*)(void*))`instance.cRoutineManual`
+        %}
+#define `instance.$name`_CRCRUN (void(*)(void*))`instance.crcRun`
+        % if (instance.runVerification && (instance.crcTableInputMode == "PREDEFINED")){
+        %
+        %  var crcTableType = "uint32_t"
+        %  if (instance.crcTable.includes("crc8")) { crcTableType = "uint16_t" }
+        %  else if (instance.crcTable.includes("crc16")) { crcTableType = "uint16_t" }
+        %  else if (instance.crcTable.includes("crc32")) { crcTableType = "uint32_t" }
+        %
+        % //extern const `crcTableType` `instance.crcTable`[];
+        % }
+        % if (instance.runVerification && (instance.crcTableInputMode == "MANUAL")){
+extern const void *`instance.crcTableManual`;
+        % }
+extern CRC_Handle `instance.$name`_Handle;
+
+void    `instance.$name`_init();
+    %}
+%}

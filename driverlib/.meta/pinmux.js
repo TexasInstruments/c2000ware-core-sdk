@@ -1218,7 +1218,7 @@ function epwm_pinmux(periph){
 }
 
 function hrpwm_pinmux(periph){
-    if (["F28002x", "F2838x", "F28003x"].includes(Common.getDeviceName()))
+    if (["F28002x", "F28003x"].includes(Common.getDeviceName()))
     {
         if (["EPWM1", "EPWM2", "EPWM3", "EPWM4"].includes(periph.name))
         {
@@ -1243,6 +1243,28 @@ function hrpwm_pinmux(periph){
     else if (["F280015x"].includes(Common.getDeviceName()))
     {
         if (["EPWM1", "EPWM2"].includes(periph.name))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    else if (["F28P65x"].includes(Common.getDeviceName()))
+    {
+        if (["EPWM1", "EPWM2","EPWM3","EPWM4","EPWM5","EPWM6","EPWM7","EPWM8","EPWM9","EPWM10","EPWM11","EPWM12","EPWM13","EPWM14","EPWM15","EPWM16","EPWM17","EPWM18"].includes(periph.name))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    else if (["F28P55x"].includes(Common.getDeviceName()))
+    {
+        if (["EPWM1", "EPWM2","EPWM3","EPWM4","EPWM5","EPWM6"].includes(periph.name))
         {
             return true;
         }

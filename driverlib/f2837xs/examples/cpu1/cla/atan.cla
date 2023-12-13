@@ -1,0 +1,187 @@
+//#############################################################################
+// \file atan.cla
+//
+// \brief  Arc Tangent Example
+//
+//#############################################################################
+// $Copyright:
+// Copyright (C) 2014-2023 Texas Instruments Incorporated - http://www.ti.com/
+//
+// Redistribution and use in source and binary forms, with or without 
+// modification, are permitted provided that the following conditions 
+// are met:
+// 
+//   Redistributions of source code must retain the above copyright 
+//   notice, this list of conditions and the following disclaimer.
+// 
+//   Redistributions in binary form must reproduce the above copyright
+//   notice, this list of conditions and the following disclaimer in the 
+//   documentation and/or other materials provided with the   
+//   distribution.
+// 
+//   Neither the name of Texas Instruments Incorporated nor the names of
+//   its contributors may be used to endorse or promote products derived
+//   from this software without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+// $
+//#############################################################################
+
+//
+// Included Files
+//
+#include "cla_ex2_atan_shared.h"
+
+//
+// Defines
+//
+
+//
+// Globals
+//
+// Note that the globals defined in the .cla source are global to the cla source
+// file.  i.e. they may be shared across tasks. All of the data shared between
+// the CLA and the C28x CPU must be defined in the C (or C++) code, and not the
+// CLA code.  
+//
+
+//
+// Function Definitions
+//
+//Task 1 : Calculate atan(Y)
+// Description:
+//             Step(1):   if( 1.0 >= abs(Y) )
+//                            Numerator   = abs(Y)
+//                            Denominator = 1.0
+//                        else
+//                            Numerator   = 1.0
+//                            Denominator = abs(Y)
+//
+//             Step(2):   Ratio = Numerator/Denominator
+//
+//                        Note: Ratio range = 0.0 to 1.0
+//
+//             Step(3):   Use the upper 6-bits of the "Ratio" value as an
+//                        index into the table to obtain the coefficients
+//                        for a second order equation:
+//
+//                        _FPUatan2Table:
+//                             CoeffA0[0]
+//                             CoeffA1[0]
+//                             CoeffA2[0]
+//                                .
+//                                .
+//                             CoeffA0[63]
+//                             CoeffA1[63]
+//                             CoeffA2[63]
+//
+//             Step(4):   Calculate the angle using the following equation:
+//
+//                        arctan(Ratio) = A0 + A1*Ratio + A2*Ratio*Ratio
+//                        arctan(Ratio) = A0 + Ratio(A1 + A2*Ratio)
+//
+//             Step(5):   The final angle is determined as follows:
+//
+//                        if( Y >= 0 and 1.0 >= abs(Y) )
+//                            Angle = arctan(abs(Y)/1.0)
+//                        if( Y >= 0 and 1.0 <  abs(Y) )
+//                            Angle = PI/2 - arctan(1.0/abs(Y))
+//                        if( Y < 0 )
+//                            Angle = -Angle
+__interrupt void Cla1Task1 ( void )
+{
+    //
+    //Local Variables
+    //
+    unsigned int uxTblIdx; //unsigned integer valued Table index
+    float ratio;
+    float num,den;
+    float A0,A1,A2; //Table coefficients
+    float *base;
+    float result;
+
+    //
+    //Preprocessing
+    //
+    __mdebugstop();
+    num = __mminf32(fabsf(fVal),1.0f);
+    den = __mmaxf32(fabsf(fVal),1.0f);
+
+    ratio = (num/den); //Expected the newton raphson algo for better
+                       //accuracy on the divide
+    uxTblIdx = ratio * TABLE_SIZE_M_1 * 3; //convert table index to u16-bits
+    uxTblIdx = uxTblIdx * 3; //Table is ordered as 3 32-bit coefficients, the
+                             //index points to these triplets, hence the *3*sizeof(float)
+
+   base = &CLAatan2Table[uxTblIdx];
+   A0 = *base++;
+   A1 = *base++;
+   A2 = *base;
+
+   result = A0 + ratio*(A1 + A2*ratio);
+
+   //
+   //Post processing
+   //
+   if(fabsf(fVal) > 1.0f)
+   {
+      result = PIBYTWO - result;
+   }
+
+   if(fVal < 0.0f)
+   {
+      result = -result;
+   }
+
+    fResult = result;
+}
+
+interrupt void Cla1Task2 ( void )
+{
+
+}
+
+interrupt void Cla1Task3 ( void )
+{
+
+}
+
+interrupt void Cla1Task4 ( void )
+{
+
+}
+
+interrupt void Cla1Task5 ( void )
+{
+
+}
+
+interrupt void Cla1Task6 ( void )
+{
+
+}
+
+interrupt void Cla1Task7 ( void )
+{
+
+}
+
+interrupt void Cla1Task8 ( void )
+{
+
+}
+
+//
+// End of file
+//
+

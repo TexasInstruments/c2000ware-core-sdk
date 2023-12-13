@@ -1,0 +1,70 @@
+%%{
+let logger_data          = system.getScript("/libraries/control/dcl/logger_data.js");
+var mod                  = system.modules['/libraries/control/dcl/logger.js'];
+var controllerChoiceList = [];
+
+if (mod != null)
+{
+    // get all the modules
+    for(var i = 0; i < mod.$instances.length; i++) 
+    {
+        var inst = mod.$instances[i];
+        var resData = logger_data.getModuleDataObj(inst);
+        controllerChoiceList.push(resData);
+    }
+}
+%%}
+% if (mod != null)
+%{
+//
+// DCL LOGGER
+//
+% for (var obj of controllerChoiceList)
+%{
+//
+// `obj["instName"]` variables
+//
+    % // if there's a linkerVal created, add PRAGMA command
+    % if (obj["linkerVal"])
+    % {
+#pragma DATA_SECTION(`obj['arrName']`, "`obj['linkerVal']`")
+    % }
+    % // only add the array creation if requested by user in arrEn
+    % if (obj["arrEn"]==true)
+    % {
+`obj["type"]` `obj["arrName"]`[`obj["logSize"]`];
+    % }
+`obj["loggerChoice"]` `obj["instName"]` = `obj["loggerChoice"]`_DEFAULTS;
+%}
+% // if there's a fillVal created, add the appropriate fill command
+% for (var obj of controllerChoiceList)
+%{
+void `obj["instName"]`_init(){
+    //
+    // `obj["instName"]` settings
+    //
+    //
+    // initialize `obj["instName"]`
+    //
+    `obj["initLogCmd"]`(
+        `("&"+String(obj["instName"])+",").padEnd(25)`// logger name
+        `(String(obj["arrName"])+",").padEnd(25)`// array name
+        `String(obj["logSize"]).padEnd(25)`// logger array size
+% // normal init functions only have the three variables so end here
+    );
+% if (obj["fillVal"] || obj["fillVal"]==0)
+% {
+    //
+    // fill `obj["instName"]` with the requested value
+    //
+    `obj["fillLogCmd"]`(&`obj["instName"]`, `obj["fillVal"]`);
+% }
+}
+%}
+void `mod.c2000wareLibraryName`_init(){
+    % for (var obj of controllerChoiceList)
+    %{
+    `obj["instName"]`_init();
+    %}
+}
+%}

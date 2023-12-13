@@ -68,8 +68,8 @@ let EPGRegisters = [
 	{ name: "GINTSTS", description: "EPG Global interrupt status register.", offset: "0xC",
 		bits: [
 			{ name: "INT", description: "Global interrupt flag register", size: "1", shift: "0", mask: "0x1" },
-			{ name: "SIGGEN0_DONE", description: "SIGGEN0 operation done interrupt enable", size: "1", shift: "1", mask: "0x2" },
-			{ name: "SIGGEN0_FILL", description: "SIGGEN0 data fill interrupt enable", size: "1", shift: "2", mask: "0x4" },
+			{ name: "SIGGEN0_DONE", description: "SIGGEN0 operation done status", size: "1", shift: "1", mask: "0x2" },
+			{ name: "SIGGEN0_FILL", description: "SIGGEN0 data fill status", size: "1", shift: "2", mask: "0x4" },
 		]
 	},
 	{ name: "GINTEN", description: "EPG Global interrupt enable register.", offset: "0xE",

@@ -1,0 +1,47 @@
+%let Common    = system.getScript("/utilities/clb_tool/clb_syscfg/source/Common.js");
+%let mod       = system.modules['/utilities/clb_tool/clb_syscfg/source/TILE'];
+%
+%if(mod) {
+%let instances = mod.$instances;
+%let templ     = system.getTemplate;
+
+digraph {
+    graph [fontname = "helvetica"];
+    node  [fontname = "helvetica"];
+    edge  [fontname = "helvetica"];
+    graph [mclimit=50 nodesep=0.5 rankdir=LR ranksep=1.25]
+
+    % for (let i = 0; i < instances.length; i++) { // for each TILE instance
+    %     let inst = instances[i];
+    %     let name = inst.$name;
+
+`templ('OUTLUT.dot.xdt')(inst.OUTLUT_0, name, 0, Common.inputs.OUTLUT, inst)`
+`templ('OUTLUT.dot.xdt')(inst.OUTLUT_1, name, 1, Common.inputs.OUTLUT, inst)`
+`templ('OUTLUT.dot.xdt')(inst.OUTLUT_2, name, 2, Common.inputs.OUTLUT, inst)`
+`templ('OUTLUT.dot.xdt')(inst.OUTLUT_3, name, 3, Common.inputs.OUTLUT, inst)`
+`templ('OUTLUT.dot.xdt')(inst.OUTLUT_4, name, 4, Common.inputs.OUTLUT, inst)`
+`templ('OUTLUT.dot.xdt')(inst.OUTLUT_5, name, 5, Common.inputs.OUTLUT, inst)`
+`templ('OUTLUT.dot.xdt')(inst.OUTLUT_6, name, 6, Common.inputs.OUTLUT, inst)`
+`templ('OUTLUT.dot.xdt')(inst.OUTLUT_7, name, 7, Common.inputs.OUTLUT, inst)`
+    % if (Common.isType1_Type2()) {
+`templ('AOC.dot.xdt')(inst, name, Common.inputs.AOC)`
+    % }
+
+`templ('LUT.dot.xdt')(inst.LUT_0, name, 0, Common.inputs.LUT)`
+`templ('LUT.dot.xdt')(inst.LUT_1, name, 1, Common.inputs.LUT)`
+`templ('LUT.dot.xdt')(inst.LUT_2, name, 2, Common.inputs.LUT)`
+
+`templ('FSM.dot.xdt')(inst.FSM_0, name, 0, Common.inputs.FSM)`
+`templ('FSM.dot.xdt')(inst.FSM_1, name, 1, Common.inputs.FSM)`
+`templ('FSM.dot.xdt')(inst.FSM_2, name, 2, Common.inputs.FSM)`
+
+`templ('COUNTER.dot.xdt')(inst.COUNTER_0, name, 0, Common.inputs.COUNTER)`
+`templ('COUNTER.dot.xdt')(inst.COUNTER_1, name, 1, Common.inputs.COUNTER)`
+`templ('COUNTER.dot.xdt')(inst.COUNTER_2, name, 2, Common.inputs.COUNTER)`
+
+`templ('HLC.dot.xdt')      (inst.HLC, name, Common.inputs.HLC)`
+
+`templ('BOUNDARY.dot.xdt') (inst.BOUNDARY, name, Common.inputs.BOUNDARY)`
+    % }
+}
+%}

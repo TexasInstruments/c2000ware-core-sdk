@@ -56,7 +56,7 @@ DAC_tuneOffsetTrim(uint32_t base, float32_t referenceVoltage)
     // Check the arguments.
     //
     ASSERT(DAC_isBaseValid(base));
-    ASSERT(referenceVoltage > 0U);
+    ASSERT(referenceVoltage > 0.0F);
 
     //
     // Get the sign-extended offset trim value

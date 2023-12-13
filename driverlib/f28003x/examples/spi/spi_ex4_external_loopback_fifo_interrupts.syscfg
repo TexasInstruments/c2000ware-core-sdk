@@ -1,6 +1,18 @@
 /**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28003x" --package "100PZ" --part "F28003x_100PZ" --context "system" --product "C2000WARE@5.00.00.00"
+ * @versions {"tool":"1.19.0+3288"}
+ */
+
+/**
  * Import the modules used in this configuration.
  */
+const device_support = scripting.addModule("/driverlib/device_support.js");
+const sysctl         = scripting.addModule("/driverlib/sysctl.js");
+const CMD            = scripting.addModule("/utilities/cmd_tool/cmd_syscfg/source/CMD");
+const CMD1           = CMD.addInstance();
+const CMD2           = CMD.addInstance();
 const spi  = scripting.addModule("/driverlib/spi.js", {}, false);
 const spi1 = spi.addInstance();
 const spi2 = spi.addInstance();
@@ -8,27 +20,72 @@ const spi2 = spi.addInstance();
 /**
  * Write custom configuration values to the imported modules.
  */
-spi1.bitRate                 = 500000;
-spi1.txFifo                  = "SPI_FIFO_TX2";
-spi1.rxFifo                  = "SPI_FIFO_RX2";
-spi1.emulationMode           = "SPI_EMULATION_FREE_RUN";
-spi1.$name                   = "SPIA_peripheral";
-spi1.enabledFIFOInterrupts   = ["SPI_INT_RXFF"];
-spi1.spi.$assign             = "SPIA";
+spi1.$name                     = "SPIA_peripheral";
+spi1.emulationMode             = "SPI_EMULATION_FREE_RUN";
+spi1.bitRate                   = 500000;
+spi1.txFifo                    = "SPI_FIFO_TX2";
+spi1.rxFifo                    = "SPI_FIFO_RX2";
+spi1.enabledFIFOInterrupts     = ["SPI_INT_RXFF"];
+spi1.registerInterrupts        = true;
+spi1.spi.$assign               = "SPIA";
+spi1.spiRXInt.enableInterrupt  = true;
+spi1.spiRXInt.interruptHandler = "spiaRxFIFOISR";
+spi1.spiRXInt.$name            = "INT_SPIA_RX";
 spi1.spi.spi_picoPin.$assign = "GPIO8";
 spi1.spi.spi_pociPin.$assign = "GPIO10";
 spi1.spi.spi_clkPin.$assign  = "GPIO9";
-spi1.spi.spi_stePin.$assign  = "GPIO11";
+spi1.spi.spi_ptePin.$assign  = "GPIO11";
 
-spi2.$name                   = "SPIB_controller";
-spi2.mode                    = "SPI_MODE_CONTROLLER";
-spi2.emulationMode           = "SPI_EMULATION_FREE_RUN";
-spi2.bitRate                 = 500000;
-spi2.enabledFIFOInterrupts   = ["SPI_INT_TXFF"];
-spi2.txFifo                  = "SPI_FIFO_TX2";
-spi2.rxFifo                  = "SPI_FIFO_RX2";
-spi2.spi.$assign             = "SPIB";
+spi2.$name                     = "SPIB_controller";
+spi2.mode                      = "SPI_MODE_CONTROLLER";
+spi2.emulationMode             = "SPI_EMULATION_FREE_RUN";
+spi2.bitRate                   = 500000;
+spi2.txFifo                    = "SPI_FIFO_TX2";
+spi2.rxFifo                    = "SPI_FIFO_RX2";
+spi2.enabledFIFOInterrupts     = ["SPI_INT_TXFF"];
+spi2.registerInterrupts        = true;
+spi2.spi.$assign               = "SPIB";
+spi2.spiTXInt.enableInterrupt  = true;
+spi2.spiTXInt.$name            = "INT_SPIB_TX";
+spi2.spiTXInt.interruptHandler = "spibTxFIFOISR";
+//#####END_F2837XD_F2837XS_F2807X_F28004X#####
 spi2.spi.spi_picoPin.$assign = "GPIO40";
 spi2.spi.spi_pociPin.$assign = "GPIO41";
 spi2.spi.spi_clkPin.$assign  = "GPIO22";
-spi2.spi.spi_stePin.$assign  = "GPIO23";
+spi2.spi.spi_ptePin.$assign  = "GPIO23";
+
+CMD1.$name                    = "generic_ram_lnk";
+CMD2.$name                    = "generic_flash_lnk";
+
+CMD1.sectionMemory_text       = ["RAMGS0","RAMLS4","RAMLS5","RAMLS6","RAMLS7"];
+CMD1.sectionMemory_bss        = ["RAMLS4"];
+CMD1.sectionMemory_const      = ["RAMLS4"];
+CMD1.sectionMemory_data       = ["RAMLS4"];
+CMD1.sectionMemory_sysmem     = ["RAMLS4"];
+CMD1.sectionMemory_ramfunc    = ["RAMM0"];
+CMD1.sectionMemory_cinit      = ["RAMM0"];
+CMD1.sectionMemory_stack      = ["RAMM1"];
+CMD1.sectionMemory_init_array = ["RAMM0"];
+CMD1.sectionMemory_switch     = ["RAMM0"];
+
+CMD2.sectionAlignEnable_ramfunc    = true;
+CMD2.sectionAlignEnable_text       = true;
+CMD2.sectionAlignEnable_binit      = true;
+CMD2.sectionAlignEnable_cinit      = true;
+CMD2.sectionAlignEnable_switch     = true;
+CMD2.sectionAlignEnable_init_array = true;
+CMD2.sectionAlignEnable_const      = true;
+CMD2.sectionAlignEnable_ovly       = true;
+CMD2.sectionMemory_codestart       = "0x080000";
+CMD2.sectionMemory_stack           = ["RAMM1"];
+CMD2.sectionMemory_bss             = ["RAMLS5"];
+CMD2.sectionMemory_data            = ["RAMLS5"];
+CMD2.sectionMemory_sysmem          = ["RAMLS5"];
+CMD2.sectionMemory_ramfunc         = ["FLASH_BANK0_SEC1"];
+CMD2.sectionMemory_text            = ["FLASH_BANK0_SEC2","FLASH_BANK0_SEC3","FLASH_BANK0_SEC4"];
+CMD2.sectionMemory_binit           = ["FLASH_BANK0_SEC1"];
+CMD2.sectionMemory_cinit           = ["FLASH_BANK0_SEC1"];
+CMD2.sectionMemory_switch          = ["FLASH_BANK0_SEC1"];
+CMD2.sectionMemory_init_array      = ["FLASH_BANK0_SEC1"];
+CMD2.sectionMemory_const           = ["FLASH_BANK0_SEC4"];
+CMD2.sectionMemory_ovly            = ["FLASH_BANK0_SEC1"];

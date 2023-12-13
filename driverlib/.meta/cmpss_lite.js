@@ -7,27 +7,35 @@ let device_driverlib_peripheral =
     system.getScript("/driverlib/cmpss_lite/" +
         Common.getDeviceName().toLowerCase() + "_cmpss_lite.js");
 
-var numberOfInstance = {
-    "F280013x"  : 3,
-    "F280015x"  : 3,
-}
+let device_driverlib_memmap =
+system.getScript("/driverlib/device_driverlib_peripherals/" +
+    Common.getDeviceName().toLowerCase() + "_memmap.js");
 
-var deviceNumberOfInstances = numberOfInstance[Common.getDeviceName()];
-var CMPSSLITE_INSTANCE = []
+var deviceNumberOfInstances = device_driverlib_memmap.CMPSSMemoryMap.length
 
-for (var instanceIndex = 1; instanceIndex <= deviceNumberOfInstances; instanceIndex++)
-{
-    CMPSSLITE_INSTANCE.push(
-        {
-            name: "CMPSSLITE" + (instanceIndex+1).toString() + "_BASE",
-            displayName: "CMPSSLITE" + (instanceIndex+1).toString()
-        }
-    );
-}
+let CMPSS_INSTANCE = device_driverlib_memmap.CMPSSMemoryMap;
+CMPSS_INSTANCE = CMPSS_INSTANCE.filter(module => module.name != "CMPSS1_BASE");
+let CMPSSLITE_INSTANCE = CMPSS_INSTANCE;
+CMPSSLITE_INSTANCE = CMPSSLITE_INSTANCE.map(({baseAddress, ...rest}) => {
+    return rest;
+});
+
+var CMPSS_TRIPOUT = [
+    {name: "CMPSS_TRIPOUT_ASYNC_COMP",  displayName: "Asynchronous comparator output drives CTRIPOUT"},
+    {name: "CMPSS_TRIPOUT_SYNC_COMP",   displayName: "Synchronous comparator output drives CTRIPOUT"},
+    {name: "CMPSS_TRIPOUT_FILTER",      displayName: "Filter output drives CTRIPOUT"},
+    {name: "CMPSS_TRIPOUT_LATCH",       displayName: "Latched filter output drives CTRIPOUT"},
+];
+
+var CMPSS_TRIP = [
+    {name: "CMPSS_TRIP_ASYNC_COMP",     displayName: "Asynchronous comparator output drives CTRIP"},
+    {name: "CMPSS_TRIP_SYNC_COMP",      displayName: "Synchronous comparator output drives CTRIP"},
+    {name: "CMPSS_TRIP_FILTER",         displayName: "Filter output drives CTRIP"},
+    {name: "CMPSS_TRIP_LATCH",          displayName: "Latched filter output drives CTRIP"},
+];
 
 if (["F280013x", "F280015x"].includes(Common.getDeviceName())){
     var defaultCMPSSLITEPinInfos = Pinmux.findAllAnalogPin(Pinmux.getDeviceADCName(ComparatorInputs.CMPSSLITE_comparatorInputSignals[Common.getDeviceName()]["CMPSSLITE2_BASE"][0].displayName.split("/")[0]));
-
     var defaultCMPSSLITENegPinInfos = Pinmux.findAllAnalogPin(Pinmux.getDeviceADCName(ComparatorInputs.CMPSSLITE_comparatorNegInputSignals[Common.getDeviceName()]["CMPSSLITE2_BASE"][1].displayName.split("/")[0]));
 }
 
@@ -35,48 +43,28 @@ function calculateDevicePinNameHigh(inst,ui){
     var tempPinName = ComparatorInputs.CMPSSLITE_comparatorInputSignals[Common.getDeviceName()][inst.cmpssLiteBase][inst.asysCMPHPMXSELValue].displayName
     var tempPinInfo = Pinmux.findAllAnalogPin(Pinmux.getDeviceADCName(tempPinName.split("/")[0]))
     var tempPinInfoDesc = Pinmux.getDevicePinInfoDescription(tempPinInfo)
-    if ((["F28004x"].includes(Common.getDeviceName())) && (tempPinInfoDesc == Pinmux.NO_DEVICE_PIN_FOUND) && (inst.asysCMPHPMXSELValue == 4)){
-        return "PGA"+(inst.cmpssLiteBase.match(/\d+/)[0])+"_OUT"
-    }
-    else{
-        return tempPinInfoDesc
-    }
+    return tempPinInfoDesc
 }
 
 function calculateDevicePinNameHighNeg(inst,ui){
     var tempPinName = ComparatorInputs.CMPSSLITE_comparatorNegInputSignals[Common.getDeviceName()][inst.cmpssLiteBase][inst.asysCMPHNMXSELValue].displayName
     var tempPinInfo = Pinmux.findAllAnalogPin(Pinmux.getDeviceADCName(tempPinName.split("/")[0]))
     var tempPinInfoDesc = Pinmux.getDevicePinInfoDescription(tempPinInfo)
-    if ((["F28004x"].includes(Common.getDeviceName())) && (tempPinInfoDesc == Pinmux.NO_DEVICE_PIN_FOUND) && (inst.asysCMPHNMXSELValue == 4)){
-        return "PGA"+(inst.cmpssLiteBase.match(/\d+/)[0])+"_OUT"
-    }
-    else{
-        return tempPinInfoDesc
-    }
+    return tempPinInfoDesc
 }
 
 function calculateDevicePinNameLow(inst,ui){
     var tempPinName = ComparatorInputs.CMPSSLITE_comparatorInputSignals[Common.getDeviceName()][inst.cmpssLiteBase][inst.asysCMPLPMXSELValue].displayName
     var tempPinInfo = Pinmux.findAllAnalogPin(Pinmux.getDeviceADCName(tempPinName.split("/")[0]))
     var tempPinInfoDesc = Pinmux.getDevicePinInfoDescription(tempPinInfo)
-    if ((["F28004x"].includes(Common.getDeviceName())) && (tempPinInfoDesc == Pinmux.NO_DEVICE_PIN_FOUND) && (inst.asysCMPLPMXSELValue == 4)){
-        return "PGA"+(inst.cmpssLiteBase.match(/\d+/)[0])+"_OUT"
-    }
-    else{
-        return tempPinInfoDesc
-    }
+    return tempPinInfoDesc
 }
 
 function calculateDevicePinNameLowNeg(inst,ui){
     var tempPinName = ComparatorInputs.CMPSSLITE_comparatorNegInputSignals[Common.getDeviceName()][inst.cmpssLiteBase][inst.asysCMPLNMXSELValue].displayName
     var tempPinInfo = Pinmux.findAllAnalogPin(Pinmux.getDeviceADCName(tempPinName.split("/")[0]))
     var tempPinInfoDesc = Pinmux.getDevicePinInfoDescription(tempPinInfo)
-    if ((["F28004x"].includes(Common.getDeviceName())) && (tempPinInfoDesc == Pinmux.NO_DEVICE_PIN_FOUND) && (inst.asysCMPLNMXSELValue == 4)){
-        return "PGA"+(inst.cmpssLiteBase.match(/\d+/)[0])+"_OUT"
-    }
-    else{
-        return tempPinInfoDesc
-    }
+    return tempPinInfoDesc
 }
 
 /* Array of possible ePWM sync signals */
@@ -124,6 +112,7 @@ var highConfig =[
             {name: "CMPSS_INSRC_DAC", displayName: "Input driven by internal DAC"},
             {name: "CMPSS_INSRC_PIN", displayName: "Input driven by external pin"},
         ],
+        onChange    : onChangeHighCompDAC
     },
     {
         name        : "highCompInvert",
@@ -145,26 +134,16 @@ var highConfig =[
         displayName : "Signal driving CTRIPOUTH",
         description : 'Specify which signal drives CTRIPOUTH',
         hidden      : false,
-        default     : "CMPSS_TRIPOUT_ASYNC_COMP",
-        options     : [
-            {name: "CMPSS_TRIPOUT_ASYNC_COMP",  displayName: "Asynchronous comparator output drives CTRIPOUT"},
-            {name: "CMPSS_TRIPOUT_SYNC_COMP",   displayName: "Synchronous comparator output drives CTRIPOUT"},
-            {name: "CMPSS_TRIPOUT_FILTER",      displayName: "Filter output drives CTRIPOUT"},
-            {name: "CMPSS_TRIPOUT_LATCH",       displayName: "Latched filter output drives CTRIPOUT"},
-        ],
+        default     : CMPSS_TRIPOUT[0].name,
+        options     : CMPSS_TRIPOUT,
     },
     {
         name        : "highCTRIP",
         displayName : "Signal driving CTRIPH",
         description : 'Specify which signal drives CTRIPH',
         hidden      : false,
-        default     : "CMPSS_TRIP_ASYNC_COMP",
-        options     : [
-            {name: "CMPSS_TRIP_ASYNC_COMP",     displayName: "Asynchronous comparator output drives CTRIP"},
-            {name: "CMPSS_TRIP_SYNC_COMP",      displayName: "Synchronous comparator output drives CTRIP"},
-            {name: "CMPSS_TRIP_FILTER",         displayName: "Filter output drives CTRIP"},
-            {name: "CMPSS_TRIP_LATCH",          displayName: "Latched filter output drives CTRIP"},
-        ],
+        default     : CMPSS_TRIP[0].name,
+        options     : CMPSS_TRIP,
     },
     // setDACValueHigh
     {
@@ -288,7 +267,7 @@ if (["F280013x","F280015x"].includes(Common.getDeviceName())){
                     name        : "asysCMPHNMXSELValue",
                     displayName : "CMPHNMXSEL",
                     description : 'Select the value for CMPHNMXSEL.',
-                    hidden      : false,
+                    hidden      : true,
                     default     : asysLiteNegSignalOptions[1].name,
                     options     : asysLiteNegSignalOptions
                 },
@@ -296,7 +275,7 @@ if (["F280013x","F280015x"].includes(Common.getDeviceName())){
                     name        : "asysCMPHNMXSELPinInfo",
                     displayName : "Selected MUX Signal for HN input",
                     description : 'Pin Number and Name for selected HN signal.',
-                    hidden      : false,
+                    hidden      : true,
                     default     : Pinmux.getDevicePinInfoDescription(defaultCMPSSLITENegPinInfos),
                     getValue    : calculateDevicePinNameHighNeg
                 },
@@ -316,6 +295,7 @@ var lowConfig =[
             {name: "CMPSS_INSRC_DAC", displayName: "Input driven by internal DAC"},
             {name: "CMPSS_INSRC_PIN", displayName: "Input driven by external pin"},
         ],
+        onChange    : onChangeLowCompDAC
     },
     {
         name        : "lowCompInvert",
@@ -337,26 +317,16 @@ var lowConfig =[
         displayName : "Signal driving CTRIPOUTL",
         description : 'Specify which signal drives CTRIPOUTL',
         hidden      : false,
-        default     : "CMPSS_TRIPOUT_ASYNC_COMP",
-        options     : [
-            {name: "CMPSS_TRIPOUT_ASYNC_COMP",  displayName: "Asynchronous comparator output drives CTRIPOUT"},
-            {name: "CMPSS_TRIPOUT_SYNC_COMP",   displayName: "Synchronous comparator output drives CTRIPOUT"},
-            {name: "CMPSS_TRIPOUT_FILTER",      displayName: "Filter output drives CTRIPOUT"},
-            {name: "CMPSS_TRIPOUT_LATCH",       displayName: "Latched filter output drives CTRIPOUT"},
-        ],
+        default     : CMPSS_TRIPOUT[0].name,
+        options     : CMPSS_TRIPOUT,
     },
     {
         name        : "lowCTRIP",
         displayName : "Signal driving CTRIPL",
         description : 'Specify which signal drives CTRIPL',
         hidden      : false,
-        default     : "CMPSS_TRIP_ASYNC_COMP",
-        options     : [
-            {name: "CMPSS_TRIP_ASYNC_COMP",     displayName: "Asynchronous comparator output drives CTRIP"},
-            {name: "CMPSS_TRIP_SYNC_COMP",      displayName: "Synchronous comparator output drives CTRIP"},
-            {name: "CMPSS_TRIP_FILTER",         displayName: "Filter output drives CTRIP"},
-            {name: "CMPSS_TRIP_LATCH",          displayName: "Latched filter output drives CTRIP"},
-        ],
+        default     : CMPSS_TRIP[0].name,
+        options     : CMPSS_TRIP,
     },
     // setDACValueLow
     {
@@ -462,7 +432,7 @@ if (["F280013x", "F280015x"].includes(Common.getDeviceName())){
                     name        : "asysCMPLNMXSELValue",
                     displayName : "CMPLNMXSEL",
                     description : 'Select the value for CMPLNMXSEL.',
-                    hidden      : false,
+                    hidden      : true,
                     default     : asysLiteNegSignalOptions[1].name,
                     options     : asysLiteNegSignalOptions
                 },
@@ -470,7 +440,7 @@ if (["F280013x", "F280015x"].includes(Common.getDeviceName())){
                     name        : "asysCMPLNMXSELPinInfo",
                     displayName : "Selected MUX Signal for LN input",
                     description : 'Pin Number and Name for selected LN signal.',
-                    hidden      : false,
+                    hidden      : true,
                     default     : Pinmux.getDevicePinInfoDescription(defaultCMPSSLITENegPinInfos),
                     getValue    : calculateDevicePinNameLowNeg
                 },
@@ -496,6 +466,47 @@ let config = [
         hidden      : false,
         default     : false
     },
+];
+config = config.concat([
+    // setHysteresis
+    {
+        name        : "hysteresisVal",
+        displayName : "Hysteresis",
+        description : 'Sets the the amount of hysteresis on the comparator inputs.',
+        hidden      : false,
+        default     : "0",
+        options: [
+            {name:"0",displayName:"None"},
+            {name:"1",displayName:"1x"},
+            {name:"2",displayName:"2x"},
+            {name:"3",displayName:"3x"},
+            {name:"4",displayName:"4x"},
+        ]
+    },
+]);
+if (["F280013x","F280015x"].includes(Common.getDeviceName())){
+    config = config.concat([
+        // configBlanking
+        {
+            name        : "configBlanking",
+            displayName : "Blanking Signal",
+            description : 'Sets the ePWM module blanking signal that holds trip in reset.',
+            hidden      : false,
+            default     : ePWMArrayBlank[0].name,
+            options     : ePWMArrayBlank
+        },
+        // enableBlanking / disableBlanking
+        {
+            name        : "enableBlanking",
+            displayName : "Enable Blanking Signal",
+            description : 'Enables an ePWM blanking signal to hold trip in reset.',
+            hidden      : false,
+            default     : false
+        },
+    ]);
+}
+
+config = config.concat([
     // Group for High Comparator Configuration Functions
     {
         name: "GROUP_HIGH_COMPARATOR",
@@ -512,7 +523,7 @@ let config = [
         longDescription: "",
         config: lowConfig
     },
-];
+]);
 
 // configDAC
 var cmpss_dac_config = [
@@ -570,45 +581,33 @@ config = config.concat([
     },
 ]);
 
-config = config.concat([
-    // setHysteresis
+
+function onChangeHighCompDAC(inst, ui)
+{
+    if((ui.asysCMPHNMXSELValue) && (ui.asysCMPHNMXSELPinInfo) && (inst.highCompNegative == "CMPSS_INSRC_DAC"))
     {
-        name        : "hysteresisVal",
-        displayName : "Hysteresis",
-        description : 'Sets the the amount of hysteresis on the comparator inputs.',
-        hidden      : false,
-        default     : "0",
-        options: [
-            {name:"0",displayName:"None"},
-            {name:"1",displayName:"1x"},
-            {name:"2",displayName:"2x"},
-            {name:"3",displayName:"3x"},
-            {name:"4",displayName:"4x"},
-        ]
-    },
-]);
+        ui.asysCMPHNMXSELValue.hidden = true;
+        ui.asysCMPHNMXSELPinInfo.hidden = true;
+    }
+    else if((ui.asysCMPHNMXSELValue) && (ui.asysCMPHNMXSELPinInfo))
+    {
+        ui.asysCMPHNMXSELValue.hidden = false;
+        ui.asysCMPHNMXSELPinInfo.hidden = false;
+    }
+}
 
-
-if (["F280013x", "F280015x"].includes(Common.getDeviceName())){
-    config = config.concat([
-        // configBlanking
-        {
-            name        : "configBlanking",
-            displayName : "Blanking Signal",
-            description : 'Sets the ePWM module blanking signal that holds trip in reset.',
-            hidden      : false,
-            default     : ePWMArrayBlank[0].name,
-            options     : ePWMArrayBlank
-        },
-        // enableBlanking / disableBlanking
-        {
-            name        : "enableBlanking",
-            displayName : "Enable Blanking Signal",
-            description : 'Enables an ePWM blanking signal to hold trip in reset.',
-            hidden      : false,
-            default     : false
-        },
-    ]);
+function onChangeLowCompDAC(inst, ui)
+{
+    if((ui.asysCMPLNMXSELValue) && (ui.asysCMPLNMXSELPinInfo) && (inst.lowCompNegative == "CMPSS_INSRC_DAC"))
+    {
+        ui.asysCMPLNMXSELValue.hidden = true;
+        ui.asysCMPLNMXSELPinInfo.hidden = true;
+    }
+    else if((ui.asysCMPLNMXSELValue) && (ui.asysCMPLNMXSELPinInfo))
+    {
+        ui.asysCMPLNMXSELValue.hidden = false;
+        ui.asysCMPLNMXSELPinInfo.hidden = false;
+    }
 }
 
 function onValidate(inst, validation) {

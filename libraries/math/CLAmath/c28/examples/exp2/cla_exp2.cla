@@ -1,0 +1,66 @@
+//#############################################################################
+//
+// FILE:   cla_exp2.cla
+//
+// TITLE:  This example calls the exponential of a ratio function (CLAexp2) of
+//         the CLA math library on a test vector and compares the result with
+//         the expected results "math.h" routine
+//
+//###########################################################################
+//
+//
+// $Copyright: Copyright (C) 2023 Texas Instruments Incorporated -
+//             http://www.ti.com/ ALL RIGHTS RESERVED $
+//###########################################################################
+
+//
+// Includes
+//
+#include "CLAmath.h"
+#include "cla_shared.h"
+
+//
+// Task 1 : Calculate exp2(X)
+//
+__attribute__((interrupt)) void Cla1Task1(void)
+{
+    __mdebugstop();
+    fResult1 = CLAexp2(fNum, fDen);
+}
+__attribute__((interrupt)) void Cla1Task2(void)
+{
+    //
+    // Test inline function
+    // Project must use --opt_level= 0 or higher for inline to occur
+    //
+    __mdebugstop();
+    fResult2 = CLAexp2_inline(fNum, fDen);
+}
+__attribute__((interrupt)) void Cla1Task3(void)
+{
+
+}
+__attribute__((interrupt)) void Cla1Task4(void)
+{
+
+}
+__attribute__((interrupt)) void Cla1Task5(void)
+{
+
+}
+__attribute__((interrupt)) void Cla1Task6(void)
+{
+
+}
+__attribute__((interrupt)) void Cla1Task7(void)
+{
+
+}
+__attribute__((interrupt)) void Cla1Task8(void)
+{
+
+}
+
+//
+// End of file
+//

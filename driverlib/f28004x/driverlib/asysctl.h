@@ -531,7 +531,7 @@ static inline void ASysCtl_selectCMPHNMuxValue(uint16_t select, uint16_t value)
     {
         //Do nothing. Not a valid value
     }
-    
+
     EDIS;
 }
 
@@ -638,7 +638,7 @@ static inline void ASysCtl_selectCMPLNMuxValue(uint16_t select, uint16_t value)
 static inline void
 ASysCtl_selectCMPHPMux(ASysCtl_CMPHPMuxSelect select, uint32_t value)
 {
-    ASSERT(value <= 4);
+    ASSERT(value <= 4U);
 
     EALLOW;
 
@@ -677,7 +677,7 @@ ASysCtl_selectCMPHPMux(ASysCtl_CMPHPMuxSelect select, uint32_t value)
 static inline void
 ASysCtl_selectCMPLPMux(ASysCtl_CMPLPMuxSelect select, uint32_t value)
 {
-    ASSERT(value <= 4);
+    ASSERT(value <= 4U);
 
     EALLOW;
 
@@ -881,6 +881,7 @@ static inline void ASysCtl_lockVREG(void)
 
     EDIS;
 }
+
 
 
 //*****************************************************************************

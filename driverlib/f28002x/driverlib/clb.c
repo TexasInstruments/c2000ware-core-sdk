@@ -116,10 +116,10 @@ void CLB_writeFIFOs(uint32_t base , const uint32_t pullData[])
     //
     // Write data into the FIFO.
     //
-    HWREG(base + CLB_DATAEXCH + CLB_O_PULL(0)) = pullData[0U];
-    HWREG(base + CLB_DATAEXCH + CLB_O_PULL(1)) = pullData[1U];
-    HWREG(base + CLB_DATAEXCH + CLB_O_PULL(2)) = pullData[2U];
-    HWREG(base + CLB_DATAEXCH + CLB_O_PULL(3)) = pullData[3U];
+    HWREG(base + CLB_DATAEXCH + CLB_O_PULL(0U)) = pullData[0U];
+    HWREG(base + CLB_DATAEXCH + CLB_O_PULL(1U)) = pullData[1U];
+    HWREG(base + CLB_DATAEXCH + CLB_O_PULL(2U)) = pullData[2U];
+    HWREG(base + CLB_DATAEXCH + CLB_O_PULL(3U)) = pullData[3U];
 }
 
 //*****************************************************************************
@@ -134,10 +134,10 @@ void CLB_readFIFOs(uint32_t base , uint32_t pushData[])
     //
     // Read data from the FIFO.
     //
-    pushData[0U] = HWREG(base + CLB_DATAEXCH + CLB_O_PUSH(0)) ;
-    pushData[1U] = HWREG(base + CLB_DATAEXCH + CLB_O_PUSH(1)) ;
-    pushData[2U] = HWREG(base + CLB_DATAEXCH + CLB_O_PUSH(2)) ;
-    pushData[3U] = HWREG(base + CLB_DATAEXCH + CLB_O_PUSH(3)) ;
+    pushData[0U] = HWREG(base + CLB_DATAEXCH + CLB_O_PUSH(0U)) ;
+    pushData[1U] = HWREG(base + CLB_DATAEXCH + CLB_O_PUSH(1U)) ;
+    pushData[2U] = HWREG(base + CLB_DATAEXCH + CLB_O_PUSH(2U)) ;
+    pushData[3U] = HWREG(base + CLB_DATAEXCH + CLB_O_PUSH(3U)) ;
 }
 
 

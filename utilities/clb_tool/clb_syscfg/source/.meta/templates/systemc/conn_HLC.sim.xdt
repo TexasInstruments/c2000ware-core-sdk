@@ -1,0 +1,213 @@
+%%{
+    let inst      = args[0];
+    let tileName  = args[1];
+    let instNum   = args[2];
+    let inputs    = args[3];
+    let name      = tileName + "_HLC";
+    let Common    = system.getScript("/utilities/clb_tool/clb_syscfg/source/Common.js");
+    let nameT2_T3_OUTLUT      = tileName + "_OUTLUT_";
+%%}
+% for (let j = 0; j < inputs.length; ++j) {
+%    let inName = inputs[j];
+%    let inFrom = inst[inName].replace("BOUNDARY.in","BOUNDARY_IN.out");
+%    let sigName = 'sig_' + name + '_' + inName;
+        `name`.`inName`        (`sigName`);
+        sc_trace(tf, `name`.`inName`, "`name`.`name`_program`j`_event_source");
+% }
+#if TYPE == 2 || TYPE == 3
+        `name`.ae0       (sig_`name`_ae0);
+        `name`.ae1       (sig_`name`_ae1);
+        `name`.ae2       (sig_`name`_ae2);
+        `name`.ae3       (sig_`name`_ae3);
+        sc_trace(tf, `name`.ae0,            "`name`.`name`_alternate_event_input_select0");
+        sc_trace(tf, `name`.ae1,            "`name`.`name`_alternate_event_input_select1");
+        sc_trace(tf, `name`.ae2,            "`name`.`name`_alternate_event_input_select2");
+        sc_trace(tf, `name`.ae3,            "`name`.`name`_alternate_event_input_select3");
+
+        `name`.clb_result_in[0] (sig_`nameT2_T3_OUTLUT`0_OUT);
+        `name`.clb_result_in[1] (sig_`nameT2_T3_OUTLUT`1_OUT);
+        `name`.clb_result_in[2] (sig_`nameT2_T3_OUTLUT`2_OUT);
+        `name`.clb_result_in[3] (sig_`nameT2_T3_OUTLUT`3_OUT);
+        `name`.clb_result_in[4] (sig_`nameT2_T3_OUTLUT`4_OUT);
+        `name`.clb_result_in[5] (sig_`nameT2_T3_OUTLUT`5_OUT);
+        `name`.clb_result_in[6] (sig_`nameT2_T3_OUTLUT`6_OUT);
+        `name`.clb_result_in[7] (sig_`nameT2_T3_OUTLUT`7_OUT);
+        sc_trace(tf, `name`.clb_result_in[0],           "`name`.`name`_alternate_event_clb_output(0)");
+        sc_trace(tf, `name`.clb_result_in[1],           "`name`.`name`_alternate_event_clb_output(1)");
+        sc_trace(tf, `name`.clb_result_in[2],           "`name`.`name`_alternate_event_clb_output(2)");
+        sc_trace(tf, `name`.clb_result_in[3],           "`name`.`name`_alternate_event_clb_output(3)");
+        sc_trace(tf, `name`.clb_result_in[4],           "`name`.`name`_alternate_event_clb_output(4)");
+        sc_trace(tf, `name`.clb_result_in[5],           "`name`.`name`_alternate_event_clb_output(5)");
+        sc_trace(tf, `name`.clb_result_in[6],           "`name`.`name`_alternate_event_clb_output(6)");
+        sc_trace(tf, `name`.clb_result_in[7],           "`name`.`name`_alternate_event_clb_output(7)");
+
+        `name`.clb_async_result_in[0] (sig_`tileName`_BOUNDARY_OUT_out0);
+        `name`.clb_async_result_in[1] (sig_`tileName`_BOUNDARY_OUT_out1);
+        `name`.clb_async_result_in[2] (sig_`tileName`_BOUNDARY_OUT_out2);
+        `name`.clb_async_result_in[3] (sig_`tileName`_BOUNDARY_OUT_out3);
+        `name`.clb_async_result_in[4] (sig_`tileName`_BOUNDARY_OUT_out4);
+        `name`.clb_async_result_in[5] (sig_`tileName`_BOUNDARY_OUT_out5);
+        `name`.clb_async_result_in[6] (sig_`tileName`_BOUNDARY_OUT_out6);
+        `name`.clb_async_result_in[7] (sig_`tileName`_BOUNDARY_OUT_out7);
+        sc_trace(tf, `name`.clb_async_result_in[0],     "`name`.`name`_alternate_event_clb_async_output(0)");
+        sc_trace(tf, `name`.clb_async_result_in[1],     "`name`.`name`_alternate_event_clb_async_output(1)");
+        sc_trace(tf, `name`.clb_async_result_in[2],     "`name`.`name`_alternate_event_clb_async_output(2)");
+        sc_trace(tf, `name`.clb_async_result_in[3],     "`name`.`name`_alternate_event_clb_async_output(3)");
+        sc_trace(tf, `name`.clb_async_result_in[4],     "`name`.`name`_alternate_event_clb_async_output(4)");
+        sc_trace(tf, `name`.clb_async_result_in[5],     "`name`.`name`_alternate_event_clb_async_output(5)");
+        sc_trace(tf, `name`.clb_async_result_in[6],     "`name`.`name`_alternate_event_clb_async_output(6)");
+        sc_trace(tf, `name`.clb_async_result_in[7],     "`name`.`name`_alternate_event_clb_async_output(7)");
+#endif
+#if TYPE == 3
+        `name`.RECONFIG_PIPELINE_EN       (sig_`name`_RECONFIG_PIPELINE_EN);
+        sc_trace(tf, `name`.RECONFIG_PIPELINE_EN,            "`name`.`name`_reconfig_pipeline_enable");
+
+        `name`.SPI_RXBUFF_EN                    (sig_`name`_SPI_EN);
+        `name`.P_spi_event_trig                 (sig_`name`_SPI_EVENT_TRIGGER);
+        `name`.P_spi_shift_val                  (sig_`name`_SPI_SHIFT_VAL);
+        `name`.P_spi_export                     (sig_`name`_SPI_EXPORT_RXBUFF);
+
+        sc_trace(tf, `name`.SPI_RXBUFF_EN,      "`name`.`name`_spi_export_enable");
+        sc_trace(tf, `name`.P_spi_event_trig,   "`name`.`name`_spi_event_trigger");
+        sc_trace(tf, `name`.P_spi_shift_val,    "`name`.`name`_spi_shift_value");
+        sc_trace(tf, `name`.P_spi_export,       "`name`.`name`_spi_export_receive_buffer");
+#endif
+        `name`.P_clk(sc_top_clock);
+        `name`.P_glbl_load_en(sc_top_enable);
+        `name`.P_rst_n(sc_top_reset);
+        `name`.P_curr_instr(sig_`name`_P_curr_instr);
+        `name`.P_counter_in_0(sig_`tileName`_COUNTER_0_count_out);
+        `name`.P_counter_in_1(sig_`tileName`_COUNTER_1_count_out);
+        `name`.P_counter_in_2(sig_`tileName`_COUNTER_2_count_out);
+        `name`.P_local_count_load_enable_0(sig_`tileName`_COUNTER_0_hlc_count_load_en);
+        `name`.P_local_count_load_enable_1(sig_`tileName`_COUNTER_1_hlc_count_load_en);
+        `name`.P_local_count_load_enable_2(sig_`tileName`_COUNTER_2_hlc_count_load_en);
+        `name`.P_local_count_match1_enable_0(sig_`tileName`_COUNTER_0_hlc_match1_load_en);
+        `name`.P_local_count_match1_enable_1(sig_`tileName`_COUNTER_1_hlc_match1_load_en);
+        `name`.P_local_count_match1_enable_2(sig_`tileName`_COUNTER_2_hlc_match1_load_en);
+        `name`.P_local_count_match2_enable_0(sig_`tileName`_COUNTER_0_hlc_match2_load_en);
+        `name`.P_local_count_match2_enable_1(sig_`tileName`_COUNTER_1_hlc_match2_load_en);
+        `name`.P_local_count_match2_enable_2(sig_`tileName`_COUNTER_2_hlc_match2_load_en);
+
+        sc_trace(tf, `name`.P_clk,                              "`name`.`name`_program_clock");
+        sc_trace(tf, `name`.P_glbl_load_en,                     "`name`.`name`_program_global_load_en");
+        sc_trace(tf, `name`.P_rst_n,                            "`name`.`name`_program_reset");
+        sc_trace(tf, `name`.P_curr_instr,                       "`name`.`name`_program_current_instruction");
+        sc_trace(tf, `name`.P_counter_in_0,                     "`name`.`name`_counter0_value");
+        sc_trace(tf, `name`.P_counter_in_1,                     "`name`.`name`_counter1_value");
+        sc_trace(tf, `name`.P_counter_in_2,                     "`name`.`name`_counter2_value");
+
+        sc_trace(tf, `name`.P_local_count_load_enable_0,        "`name`.`name`_hlc_counter0_load_en");
+        sc_trace(tf, `name`.P_local_count_load_enable_1,        "`name`.`name`_hlc_counter1_load_en");
+        sc_trace(tf, `name`.P_local_count_load_enable_2,        "`name`.`name`_hlc_counter2_load_en");
+
+        sc_trace(tf, `name`.P_local_count_match1_enable_0,      "`name`.`name`_hlc_counter0_match1_load_en");
+        sc_trace(tf, `name`.P_local_count_match1_enable_1,      "`name`.`name`_hlc_counter1_match1_load_en");
+        sc_trace(tf, `name`.P_local_count_match1_enable_2,      "`name`.`name`_hlc_counter2_match1_load_en");
+
+        sc_trace(tf, `name`.P_local_count_match2_enable_0,      "`name`.`name`_hlc_counter0_match2_load_en");
+        sc_trace(tf, `name`.P_local_count_match2_enable_1,      "`name`.`name`_hlc_counter1_match2_load_en");
+        sc_trace(tf, `name`.P_local_count_match2_enable_2,      "`name`.`name`_hlc_counter2_match2_load_en");
+
+        `name`.P_EVENT_BUS_IN[0](sc_zero);
+        `name`.P_EVENT_BUS_IN[1](sig_`tileName`_COUNTER_0_count_match2);
+        `name`.P_EVENT_BUS_IN[2](sig_`tileName`_COUNTER_0_count_zero);
+        `name`.P_EVENT_BUS_IN[3](sig_`tileName`_COUNTER_0_count_match1);
+        `name`.P_EVENT_BUS_IN[4](sig_`tileName`_FSM_0_S0);
+        `name`.P_EVENT_BUS_IN[5](sig_`tileName`_FSM_0_S1);
+        `name`.P_EVENT_BUS_IN[6](sig_`tileName`_FSM_0_OUT);
+        `name`.P_EVENT_BUS_IN[7](sig_`tileName`_LUT_0_OUT);
+        `name`.P_EVENT_BUS_IN[8](sc_one);
+        `name`.P_EVENT_BUS_IN[9](sig_`tileName`_COUNTER_1_count_match2);
+        `name`.P_EVENT_BUS_IN[10](sig_`tileName`_COUNTER_1_count_zero);
+        `name`.P_EVENT_BUS_IN[11](sig_`tileName`_COUNTER_1_count_match1);
+        `name`.P_EVENT_BUS_IN[12](sig_`tileName`_FSM_1_S0);
+        `name`.P_EVENT_BUS_IN[13](sig_`tileName`_FSM_1_S1);
+        `name`.P_EVENT_BUS_IN[14](sig_`tileName`_FSM_1_OUT);
+        `name`.P_EVENT_BUS_IN[15](sig_`tileName`_LUT_1_OUT);
+        `name`.P_EVENT_BUS_IN[16](sc_zero);
+        `name`.P_EVENT_BUS_IN[17](sig_`tileName`_COUNTER_2_count_match2);
+        `name`.P_EVENT_BUS_IN[18](sig_`tileName`_COUNTER_2_count_zero);
+        `name`.P_EVENT_BUS_IN[19](sig_`tileName`_COUNTER_2_count_match1);
+        `name`.P_EVENT_BUS_IN[20](sig_`tileName`_FSM_2_S0);
+        `name`.P_EVENT_BUS_IN[21](sig_`tileName`_FSM_2_S1);
+        `name`.P_EVENT_BUS_IN[22](sig_`tileName`_FSM_2_OUT);
+        `name`.P_EVENT_BUS_IN[23](sig_`tileName`_LUT_2_OUT);
+        `name`.P_EVENT_BUS_IN[24](sig_`tileName`_BOUNDARY_IN_out0);
+        `name`.P_EVENT_BUS_IN[25](sig_`tileName`_BOUNDARY_IN_out1);
+        `name`.P_EVENT_BUS_IN[26](sig_`tileName`_BOUNDARY_IN_out2);
+        `name`.P_EVENT_BUS_IN[27](sig_`tileName`_BOUNDARY_IN_out3);
+        `name`.P_EVENT_BUS_IN[28](sig_`tileName`_BOUNDARY_IN_out4);
+        `name`.P_EVENT_BUS_IN[29](sig_`tileName`_BOUNDARY_IN_out5);
+        `name`.P_EVENT_BUS_IN[30](sig_`tileName`_BOUNDARY_IN_out6);
+        `name`.P_EVENT_BUS_IN[31](sig_`tileName`_BOUNDARY_IN_out7);
+
+%       for (let idx = 0; idx < 32; idx++) {
+        sc_trace(tf, `name`.P_EVENT_BUS_IN[`idx`], "`name`.`name`_hlc_event_trigger(`idx`)");
+%       }
+
+
+%       for (let idx = 0; idx < 32; idx++) {
+		`name`.hlc_instructions[`idx`](sig_`name`_hlc_instr_`idx`);
+%		}
+
+%       for (let idx = 0; idx < 32; idx++) {
+        //sc_trace(tf, `name`.hlc_instructions[`idx`], "`name`.`name`_hlc_instruction(`idx`)");
+%		}
+		
+		
+        `name`.P_counter_load_bus(sig_`tileName`_COUNTER_hlc_count_load_val);
+        sc_trace(tf, `name`.P_counter_load_bus, "`name`.`name`_counter_hlc_load_value");
+
+        `name`.P_comm_R0_out(sig_`name`_P_comm_R0_out);
+        `name`.P_comm_R1_out(sig_`name`_P_comm_R1_out);
+        `name`.P_comm_R2_out(sig_`name`_P_comm_R2_out);
+        `name`.P_comm_R3_out(sig_`name`_P_comm_R3_out);
+
+        sc_trace(tf, `name`.P_comm_R0_out, "`name`.`name`_register(0)");
+        sc_trace(tf, `name`.P_comm_R1_out, "`name`.`name`_register(1)");
+        sc_trace(tf, `name`.P_comm_R2_out, "`name`.`name`_register(2)");
+        sc_trace(tf, `name`.P_comm_R3_out, "`name`.`name`_register(3)");
+
+        `name`.P_pull_fifo[0](sig_`name`_P_pull_fifo0_out);
+        `name`.P_pull_fifo[1](sig_`name`_P_pull_fifo1_out);
+        `name`.P_pull_fifo[2](sig_`name`_P_pull_fifo2_out);
+        `name`.P_pull_fifo[3](sig_`name`_P_pull_fifo3_out);
+        
+        `name`.P_push_fifo[0](sig_`name`_P_push_fifo0_out);
+        `name`.P_push_fifo[1](sig_`name`_P_push_fifo1_out);
+        `name`.P_push_fifo[2](sig_`name`_P_push_fifo2_out);
+        `name`.P_push_fifo[3](sig_`name`_P_push_fifo3_out);
+
+        `name`.P_fifo_read_ptr(sig_`name`_P_fifo_read_ptr);
+        `name`.P_fifo_write_ptr(sig_`name`_P_fifo_write_ptr);
+        `name`.P_fifo_underflow(sig_`name`_P_fifo_underflow);
+        `name`.P_fifo_overflow(sig_`name`_P_fifo_overflow);
+        `name`.fifo_refill_enable(sig_`name`_P_fifo_refill_enable);
+
+        sc_trace(tf, `name`.P_pull_fifo[0], "`name`.`name`_pull_fifo(0)");
+        sc_trace(tf, `name`.P_pull_fifo[1], "`name`.`name`_pull_fifo(1)");
+        sc_trace(tf, `name`.P_pull_fifo[2], "`name`.`name`_pull_fifo(2)");
+        sc_trace(tf, `name`.P_pull_fifo[3], "`name`.`name`_pull_fifo(3)");
+        
+        sc_trace(tf, `name`.P_push_fifo[0], "`name`.`name`_push_fifo(0)");
+        sc_trace(tf, `name`.P_push_fifo[1], "`name`.`name`_push_fifo(1)");
+        sc_trace(tf, `name`.P_push_fifo[2], "`name`.`name`_push_fifo(2)");
+        sc_trace(tf, `name`.P_push_fifo[3], "`name`.`name`_push_fifo(3)");
+
+        sc_trace(tf, `name`.P_fifo_read_ptr,    "`name`.`name`_fifo_read_pointer");
+        sc_trace(tf, `name`.P_fifo_write_ptr,   "`name`.`name`_fifo_write_pointer");
+        sc_trace(tf, `name`.P_fifo_underflow,   "`name`.`name`_fifo_underflow_signal");
+        sc_trace(tf, `name`.P_fifo_overflow,    "`name`.`name`_fifo_overflow_signal");
+
+        `name`.P_push_data_en  (sig_`name`_P_push_data_en);
+        `name`.P_push_data_out (sig_`name`_P_push_data_out);
+        `name`.P_pull_data_en  (sig_`name`_P_pull_data_en);
+        `name`.P_set_intr_flag (sig_`name`_P_set_intr_flag);
+        `name`.P_intr_val      (sig_`name`_P_intr_val);
+
+        //sc_trace(tf, `name`.P_push_data_en,  "`name`.`name`_program_push_data_en");
+        //sc_trace(tf, `name`.P_push_data_out, "`name`.`name`_program_push_data_out");
+        //sc_trace(tf, `name`.P_pull_data_en,  "`name`.`name`_program_pull_data_en");
+        sc_trace(tf, `name`.P_set_intr_flag, "`name`.`name`_program_interrupt_flag");
+        sc_trace(tf, `name`.P_intr_val,      "`name`.`name`_program_interrupt_number");

@@ -364,7 +364,7 @@ static inline void ASysCtl_selectCMPHNMuxValue(uint16_t select, uint16_t value)
     {
         //Do nothing. Not a valid value
     }
-    
+
     EDIS;
 }
 
@@ -462,7 +462,7 @@ static inline void ASysCtl_selectCMPLNMuxValue(uint16_t select, uint16_t value)
 static inline void
 ASysCtl_selectCMPHPMux(ASysCtl_CMPHPMuxSelect select, uint32_t value)
 {
-    ASSERT(value <= 5);
+    ASSERT(value <= 5U);
 
     EALLOW;
 
@@ -498,7 +498,7 @@ ASysCtl_selectCMPHPMux(ASysCtl_CMPHPMuxSelect select, uint32_t value)
 static inline void
 ASysCtl_selectCMPLPMux(ASysCtl_CMPLPMuxSelect select, uint32_t value)
 {
-    ASSERT(value <= 5);
+    ASSERT(value <= 5U);
 
     EALLOW;
 
@@ -702,6 +702,7 @@ static inline void ASysCtl_disableADCDACLoopback(uint32_t config)
             (HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_ADCDACLOOPBACK) & ~config) |
             (0xA5A5UL << ASYSCTL_ADCDACLOOPBACK_KEY_S);
 }
+
 
 
 //*****************************************************************************

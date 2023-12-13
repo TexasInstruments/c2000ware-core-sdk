@@ -303,8 +303,8 @@ GPIO_getInterruptType(GPIO_ExternalIntNum extIntNum)
     //
     // Read the selected polarity from the appropriate register.
     //
-    return((GPIO_IntType)(HWREGH(XINT_BASE + (uint16_t)extIntNum) &
-                          XINT_1CR_POLARITY_M));
+    return((GPIO_IntType)((uint16_t)(HWREGH(XINT_BASE + (uint16_t)extIntNum) &
+                                     XINT_1CR_POLARITY_M)));
 }
 
 //*****************************************************************************

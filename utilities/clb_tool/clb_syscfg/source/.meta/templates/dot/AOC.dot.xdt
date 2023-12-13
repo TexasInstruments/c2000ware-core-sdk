@@ -1,0 +1,129 @@
+%%{
+    let tile_insts     = args[0];
+    let tileName  = args[1];
+    let inputs    = args[2];
+    let outlutName = tileName + "_OUTLUT_" + "0";
+    let name      = tileName + "_AOC";
+    let Common    = system.getScript("/utilities/clb_tool/clb_syscfg/source/Common.js");
+    var eqns = ['out = bypass', 'out = bypass', 'out = bypass', 'out = bypass', 
+                'out = bypass', 'out = bypass', 'out = bypass', 'out = bypass'];
+    var color     = 'black';
+%%}
+%
+%    for (var i = 0 ; i < 8; i++) {
+%     let inst = tile_insts["AOC_" + i.toString()];
+%     if (!inst.bypass_mux) {
+    `name`:out`i`:e -> `tileName`_BOUNDARY_OUT:out`i`:w [color=black]
+%     if (inst.bypass_mux){
+%         let inst_outlut = tile_insts["OUTLUT_" + i.toString()];
+%         if (Common.used(inst_outlut, Common.inputs.OUTLUT)) {
+    `tileName + "_OUTLUT_" + i`:out:e -> `name`:in`i`:w [color=black]
+%         }
+%     }
+%     else {
+%         eqns[i] = "";
+%         if (inst.stage1_mux){ eqns[i] = "Invert "};
+%         if (inst.stage2_mux != "BYPASS") { eqns[i] = eqns[i] + inst.stage2_mux + " "};
+%         if (inst.stage3_mux != "BYPASS") { eqns[i] = eqns[i] + inst.stage3_mux};
+%         if (eqns[i] == "") { eqns[i] = 'out = bypass'} else { eqns[i] = "out = " + eqns[i] };
+%         if (inst.input_mode == "OUTPUT"){
+    `tileName + "_OUTLUT_" + i`:out:e -> `name`:in`i`:w [color=black]
+%         }
+%         else{
+    `tileName + "_BOUNDARY"`:in`i`:e -> `name`:in`i`:w [color=black]
+%         }
+%         var gate = "SW_GATING_CTRL_" + i.toString();
+%         if (inst.stage2_gate_mux.includes("OUTPUT")){
+%             gate = tileName + "_OUTLUT_" + inst.stage2_gate_mux.replace("OUTPUT", "") + ":out:e";
+%         }
+%         var release = "SW_RLS_CTRL_" + i.toString();
+%         if (inst.stage3_release_mux.includes("OUTPUT")){
+%             release = tileName + "_OUTLUT_" + inst.stage3_release_mux.replace("OUTPUT", "") + ":out:e";
+%         }
+    `gate` -> `name`:gate`i`:w [color=black]
+    `release` -> `name`:release`i`:w [color=black]
+%       }
+%     }
+% }
+
+%   if ((!tile_insts.AOC_0.bypass_mux) || (!tile_insts.AOC_1.bypass_mux) || (!tile_insts.AOC_2.bypass_mux) || (!tile_insts.AOC_3.bypass_mux) || 
+%        (!tile_insts.AOC_4.bypass_mux) || (!tile_insts.AOC_5.bypass_mux) || (!tile_insts.AOC_6.bypass_mux) || (!tile_insts.AOC_7.bypass_mux)) {
+    `name` [label= <<TABLE BORDER='0' CELLBORDER='1' CELLSPACING='0'>
+    	  <TR>
+    	  	  <TD COLSPAN="3">`tileName` AOC</TD>
+    	  </TR>
+          %if (!tile_insts.AOC_0.bypass_mux) {
+          <TR>
+              <TD PORT='in0'>in0</TD>
+              <TD ROWSPAN="3"><b>AOC_0</b><br/><br/>`eqns[0]`</TD>
+              <TD PORT='out0' ROWSPAN='3'>out0</TD></TR>
+          <TR><TD PORT='gate0'>gate0</TD></TR>
+          <TR><TD PORT='release0'>release0</TD></TR>
+          %}
+         
+          %if (!tile_insts.AOC_1.bypass_mux) {
+         <TR>
+              <TD PORT='in1'>in1</TD>
+              <TD ROWSPAN="3"><b>AOC_1</b><br/><br/>`eqns[1]`</TD>
+              <TD PORT='out1' ROWSPAN='3'>out1</TD></TR>
+          <TR><TD PORT='gate1'>gate1</TD></TR>
+          <TR><TD PORT='release1'>release1</TD></TR>
+          %}
+          
+          %if (!tile_insts.AOC_2.bypass_mux) {
+          <TR>
+              <TD PORT='in2'>in2</TD>
+              <TD ROWSPAN="3"><b>AOC_2</b><br/><br/>`eqns[2]`</TD>
+              <TD PORT='out2' ROWSPAN='3'>out2</TD></TR>
+          <TR><TD PORT='gate2'>gate2</TD></TR>
+          <TR><TD PORT='release2'>release2</TD></TR>
+          %}
+          
+          %if (!tile_insts.AOC_3.bypass_mux) {
+          <TR>
+              <TD PORT='in3'>in3</TD>
+              <TD ROWSPAN="3"><b>AOC_3</b><br/><br/>`eqns[3]`</TD>
+              <TD PORT='out3' ROWSPAN='3'>out3</TD></TR>
+          <TR><TD PORT='gate3'>gate3</TD></TR>
+          <TR><TD PORT='release3'>release3</TD></TR>
+          %}
+          
+          %if (!tile_insts.AOC_4.bypass_mux) {
+          <TR>
+              <TD PORT='in4'>in4</TD>
+              <TD ROWSPAN="3"><b>AOC_4</b><br/><br/>`eqns[4]`</TD>
+              <TD PORT='out4' ROWSPAN='3'>out4</TD></TR>
+          <TR><TD PORT='gate4'>gate4</TD></TR>
+          <TR><TD PORT='release4'>release4</TD></TR>
+          %}
+          
+          %if (!tile_insts.AOC_5.bypass_mux) {
+          <TR>
+              <TD PORT='in5'>in5</TD>
+              <TD ROWSPAN="3"><b>AOC_5</b><br/><br/>`eqns[5]`</TD>
+              <TD PORT='out5' ROWSPAN='3'>out5</TD></TR>
+          <TR><TD PORT='gate5'>gate5</TD></TR>
+          <TR><TD PORT='release5'>release5</TD></TR>
+          %}
+          
+          %if (!tile_insts.AOC_6.bypass_mux) {
+          <TR>
+              <TD PORT='in6'>in6</TD>
+              <TD ROWSPAN="3"><b>AOC_6</b><br/><br/>`eqns[6]`</TD>
+              <TD PORT='out6' ROWSPAN='3'>out6</TD></TR>
+          <TR><TD PORT='gate6'>gate6</TD></TR>
+          <TR><TD PORT='release6'>release6</TD></TR>
+          %}
+          
+          %if (!tile_insts.AOC_7.bypass_mux) {
+          <TR>
+              <TD PORT='in7'>in7</TD>
+              <TD ROWSPAN="3"><b>AOC_7</b><br/><br/>`eqns[7]`</TD>
+              <TD PORT='out7' ROWSPAN='3'>out7</TD></TR>
+          <TR><TD PORT='gate7'>gate7</TD></TR>
+          <TR><TD PORT='release7'>release7</TD></TR>
+          %}
+          
+         
+     </TABLE>> color=`color` shape=plaintext]
+%   }

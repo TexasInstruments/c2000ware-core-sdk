@@ -15,10 +15,7 @@
 //!
 //!
 //! \b External \b Connections \n
-//! -GPIO40 and GPIO8  - SPIPICO
-//! -GPIO41 and GPIO10 - SPIPOCI
-//! -GPIO22 and GPIO9  - SPICLK
-//! -GPIO23 and GPIO11 - SPISTE
+//! Refer to SysConfig for external connections (GPIO pin numbers) specific to each device
 //!
 //! \b Watch \b Variables \n
 //!  - \b TxData_SPIA - Data send from SPIA (peripheral)

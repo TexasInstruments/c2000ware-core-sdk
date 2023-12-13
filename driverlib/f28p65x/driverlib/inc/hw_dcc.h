@@ -135,7 +135,7 @@
 //
 //*************************************************************************************************
 #define DCC_CLKSRC1_CLKSRC1_S   0U
-#define DCC_CLKSRC1_CLKSRC1_M   0x1FU     // Clock Source Select for Counter 1
+#define DCC_CLKSRC1_CLKSRC1_M   0x3FU     // Clock Source Select for Counter 1
 #define DCC_CLKSRC1_KEY_S       12U
 #define DCC_CLKSRC1_KEY_M       0xF000U   // Enables or Disables Clock Source Selection for COUNT1
 
@@ -145,7 +145,7 @@
 //
 //*************************************************************************************************
 #define DCC_CLKSRC0_CLKSRC0_S   0U
-#define DCC_CLKSRC0_CLKSRC0_M   0xFU      // Clock Source Select for Counter 0
+#define DCC_CLKSRC0_CLKSRC0_M   0x1FU     // Clock Source Select for Counter 0
 #define DCC_CLKSRC0_KEY_S       12U
 #define DCC_CLKSRC0_KEY_M       0xF000U   // Enables or Disables Clock Source Selection for COUNT0
 

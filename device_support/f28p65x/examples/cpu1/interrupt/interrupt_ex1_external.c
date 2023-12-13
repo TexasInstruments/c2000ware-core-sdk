@@ -105,13 +105,13 @@ void main(void)
 //
 // Step 1. Initialize System Control:
 // PLL, WatchDog, enable Peripheral Clocks
-// This example function is found in the f2838x_sysctrl.c file.
+// This example function is found in the f28p65x_sysctrl.c file.
 //
    InitSysCtrl();
 
 //
 // Step 2. Initialize GPIO:
-// This example function is found in the f2838x_gpio.c file and
+// This example function is found in the f28p65x_gpio.c file and
 // illustrates how to set the GPIO to its default state.
 //
 // InitGpio();  // Skipped for this example
@@ -126,7 +126,7 @@ void main(void)
 // Initialize PIE control registers to their default state.
 // The default state is all PIE interrupts disabled and flags
 // are cleared.
-// This function is found in the f2838x_piectrl.c file.
+// This function is found in the f28p65x_piectrl.c file.
 //
    InitPieCtrl();
 
@@ -141,8 +141,8 @@ void main(void)
 // Service Routines (ISR).
 // This will populate the entire table, even if the interrupt
 // is not used in this example.  This is useful for debug purposes.
-// The shell ISR routines are found in f2838x_defaultisr.c.
-// This function is found in f2838x_pievect.c.
+// The shell ISR routines are found in f28p65x_defaultisr.c.
+// This function is found in f28p65x_pievect.c.
 //
    InitPieVectTable();
 

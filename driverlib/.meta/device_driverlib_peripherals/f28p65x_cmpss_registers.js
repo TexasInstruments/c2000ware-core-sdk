@@ -39,6 +39,7 @@ let CMPSSRegisters = [
 		bits: [
 			{ name: "DACSOURCE", description: "DAC Source Control", size: "1", shift: "0", mask: "0x1" },
 			{ name: "RAMPSOURCE", description: "Ramp Generator Source Control", size: "4", shift: "1", mask: "0x1E" },
+			{ name: "SELREF", description: "DAC Reference Select", size: "1", shift: "5", mask: "0x20" },
 			{ name: "RAMPLOADSEL", description: "Ramp Load Select", size: "1", shift: "6", mask: "0x40" },
 			{ name: "SWLOADSEL", description: "Software Load Select", size: "1", shift: "7", mask: "0x80" },
 			{ name: "BLANKSOURCE", description: "EPWMBLANK Source Select", size: "4", shift: "8", mask: "0xF00" },

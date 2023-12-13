@@ -404,7 +404,7 @@ CAN_writeDataReg_16bit(const uint16_t *const data, uint32_t address,
         //
         // Write out the data 8 bits at a time.
         //
-        HWREGB(dataReg) = (uint32_t)((data[idx / 2]) >> ((idx % 2UL) * 8UL));
+        HWREGB(dataReg) = (uint32_t)((data[idx / 2UL]) >> ((idx % 2UL) * 8UL));
 
         dataReg++;
     }
@@ -453,7 +453,7 @@ CAN_writeDataReg_32bit(const uint32_t *const data, uint32_t address,
         //
         // Write out the data 8 bits at a time.
         //
-        HWREGB(dataReg) = ((data[idx / 4]) >> ((idx % 4UL) * 8UL));
+        HWREGB(dataReg) = ((data[idx / 4UL]) >> ((idx % 4UL) * 8UL));
 
         dataReg++;
     }
@@ -1618,18 +1618,21 @@ CAN_clearInterruptStatus(uint32_t base, uint32_t intClr);
 //! - \b CAN_MSG_OBJ_TX_INT_ENABLE    - Enable Transmit Interrupts
 //! - \b CAN_MSG_OBJ_RX_INT_ENABLE    - Enable Receive Interrupts
 //! - \b CAN_MSG_OBJ_USE_ID_FILTER    - Use filtering based on the Message ID
-//! - \b CAN_MSG_OBJ_USE_EXT_FILTER   - Use filtering based on the Extended
-//!                                     Message ID
+//!                                     (Standard or Extended)
+//! - \b CAN_MSG_OBJ_USE_EXT_FILTER   - Use Extended Identifier Bit for filtering
+//!                                     (Only among Extended IDs will be accepted)
 //! - \b CAN_MSG_OBJ_USE_DIR_FILTER   - Use filtering based on the direction of
 //!                                     the transfer
 //! - \b CAN_MSG_OBJ_FIFO             - Message object is part of a FIFO
 //!                                     structure and isn't the final message
 //!                                     object in FIFO
 //!
-//! If filtering is based on message identifier, the value
-//! \b CAN_MSG_OBJ_USE_ID_FILTER has to be logically ORed with the \e flag
-//! parameter and \b CAN_MSG_OBJ_USE_EXT_FILTER also has to be ORed for
-//! message identifier filtering to be based on the extended identifier.
+//! If filtering is based on message identifier (for Standard or Extended IDs) 
+//! specified by the \e msgIDMask parameter, the value \b CAN_MSG_OBJ_USE_ID_FILTER 
+//! has to be logically ORed with the \e flag parameter.
+//! If \b CAN_MSG_OBJ_USE_EXT_FILTER is ORed with the \e flag parameter,
+//! only extended identifier frames are accepted which can further be masked
+//! by using the flag above. 
 //!
 //! \note The \b msgLen Parameter for the Receive Message Object is a "don't
 //!       care" but its value should be between 0-8 due to the assert.

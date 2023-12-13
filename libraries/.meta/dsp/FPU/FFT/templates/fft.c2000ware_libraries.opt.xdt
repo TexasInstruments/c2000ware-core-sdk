@@ -1,0 +1,53 @@
+% let Common   = system.getScript("/driverlib/Common.js");
+% var c2000warePath = Common.getC2000WarePath()
+% 
+% var moduleNameFFT = "FFT"
+% var moduleFFT = system.modules['/libraries/dsp/FPU/FFT' + '/' + moduleNameFFT + '.js'];
+% var moduleNameCFFT = "CFFT"
+% var moduleCFFT = system.modules['/libraries/dsp/FPU/FFT' + '/' + moduleNameCFFT + '.js'];
+% var moduleNameRFFT = "RFFT"
+% var moduleRFFT = system.modules['/libraries/dsp/FPU/FFT' + '/' + moduleNameRFFT + '.js'];
+%
+%if(moduleFFT != null)
+%{
+-I"`c2000warePath`libraries/dsp/FPU/c28/include"
+%
+%var instance = moduleFFT.$instances[0];
+%var max = -1;
+%
+%if(moduleCFFT != null)
+%{
+% var instancesCFFT = moduleCFFT.$instances;
+%for(let i = 0; i < instancesCFFT.length; i++)
+%{
+%if(instancesCFFT[i].fftSize > max)
+%{
+%max = instancesCFFT[i].fftSize;
+%}
+%}
+%}
+%
+%if(moduleRFFT != null)
+%{
+% var instancesRFFT = moduleRFFT.$instances;
+%for(let i = 0; i < instancesRFFT.length; i++)
+%{
+%if(instancesRFFT[i].fftSize > max)
+%{
+%max = instancesRFFT[i].fftSize;
+%}
+%}
+%}
+%if(max != -1)
+%{
+%if(instance.fpuType == "FPU32")
+%{
+%max = max*4;
+%}
+%else if(instance.fpuType == "FPU64")
+%{
+%max = max*8;
+%}
+--define=FFT_ALIGN=`max`
+%}
+%}

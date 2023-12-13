@@ -1,0 +1,11 @@
+% let Common   = system.getScript("/driverlib/Common.js");
+% var moduleNameUSB = "usb"
+% var moduleUSB = system.modules['/libraries/communications/usb' + '/' + moduleNameUSB + '.js'];
+%
+%if(moduleUSB != null)
+%{
+% var instance = moduleUSB.$instances[0];
+%{
+-l"libraries/communications/usb/`Common.getDeviceName().toLowerCase()`/lib/usblib.lib"
+%}
+%}

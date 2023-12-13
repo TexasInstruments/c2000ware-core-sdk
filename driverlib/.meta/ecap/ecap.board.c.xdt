@@ -2,6 +2,7 @@
 % let Common   = system.getScript("/driverlib/Common.js");
 % var nameOfModule = "ecap";
 % var nameOfPeripheral = module.peripheralName;
+% var device_driverlib_peripheral = system.getScript("/driverlib/device_driverlib_peripherals/" + Common.getDeviceName().toLowerCase() + "_ecap.js");
 %%{
 function orArrayValues(arr)
 {
@@ -158,7 +159,7 @@ void `instance.$name`_init(){
 	%				}
 	%				eventCount++
 	%			}
-				% if( ["F28002x", "F28003x", "F280013x", "F280015x", "F28004x","F2838x","F28P65x"].includes(system.deviceData.deviceId)){
+				% if( ["F28002x", "F28003x", "F280013x", "F280015x", "F28004x","F2838x","F28P65x", "F28P55x"].includes(system.deviceData.deviceId)){
 	//
 	// Select eCAP input.
 	//
@@ -206,7 +207,7 @@ void `instance.$name`_init(){
 	//
 	ECAP_setSyncOutMode(`baseName`,`instance.syncOutMode`);
 			% if( (instance.ecapMode == "CAPTURE") && 
-			% ( ["F28002x", "F28003x", "F280013x", "F280015x", "F28004x","F2838x","F28P65x"].includes(system.deviceData.deviceId))){
+			% ( ["F28002x", "F28003x", "F280013x", "F280015x", "F28004x","F2838x","F28P65x", "F28P55x"].includes(system.deviceData.deviceId))){
 				% if(instance.resetCounters){
 	//
 	// Resets eCAP counters and flags.
@@ -215,7 +216,7 @@ void `instance.$name`_init(){
 				% }
 			% }
 			% if( (instance.ecapMode == "CAPTURE") && 
-			% ( ["F28002x", "F28003x", "F28004x","F2838x","F28P65x"].includes(system.deviceData.deviceId))){
+			% ( ["F28002x", "F28003x", "F28004x","F2838x","F28P65x", "F28P55x"].includes(system.deviceData.deviceId))){
 				% if (instance.useDMA){
 	//
 	// Sets the eCAP DMA source.
@@ -227,7 +228,7 @@ void `instance.$name`_init(){
 	// Configures emulation mode.
 	//
 	ECAP_setEmulationMode(`baseName`,`instance.emulationMode`);
-			% if( ["F28002x", "F28003x", "F280013x", "F280015x", "F2838x","F28P65x"].includes(system.deviceData.deviceId)){
+			% if( ["F28002x", "F28003x", "F280013x", "F280015x", "F2838x","F28P65x", "F28P55x"].includes(system.deviceData.deviceId)){
 	//
 	// Set up the source for sync-in pulse..
 	//
@@ -305,6 +306,50 @@ void `instance.$name`_init(){
 			% }
 		% // END HRCAP SECTION 2
 		% /////////////////////////////////////////////////////////////////////////
+
+    //-----------------Signal Monitoring--------------------//
+	% if( ["F28P65x"].includes(system.deviceData.deviceId)){
+        	% if(instance.ecapMode == "CAPTURE") {
+				% var munitBaseName =  instance.$name + "_SIGNAL_MUNIT_BASE";
+    			% if(instance.trip_selection_signalMunit != device_driverlib_peripheral.ECAP_MunitTripInputSelect[0].name) {
+    ECAP_selectTripSignal(`munitBaseName`, `instance.trip_selection_signalMunit`);
+            	%}
+    			%if(instance.global_strobe_selection_signalMunit!=device_driverlib_peripheral.ECAP_MunitTripInputSelect[0].name) {
+    ECAP_selectGlobalLoadStrobe(`munitBaseName`, `instance.global_strobe_selection_signalMunit`);
+            	%}
+
+    %for(var munitIndex in device_driverlib_peripheral.ECAP_MONITORING_UNIT) {
+        % var currentMUNIT = device_driverlib_peripheral.ECAP_MONITORING_UNIT[munitIndex].name
+        % var unit = (currentMUNIT).replace(/[^0-9]/g,'')
+		%if(instance["enable_monitorunit"+unit]) {
+    ECAP_enableSignalMonitoringUnit(`munitBaseName`, `currentMUNIT`);
+    ECAP_selectMonitoringType(`munitBaseName`, `currentMUNIT`, `instance["monitorSelect_"+unit]`);
+            %if(instance["minValue_"+unit] != 0){
+    ECAP_configureMinValue(`munitBaseName`, `currentMUNIT`, `instance["minValue_"+unit]`);
+          %}
+            %if(instance["maxValue_"+unit] != 0){
+    ECAP_configureMaxValue(`munitBaseName`, `currentMUNIT`, `instance["maxValue_"+unit]`);
+          %}
+            %if(instance["enableSyncIn_"+unit]){
+    ECAP_enableShadowMinMaxRegisters(`munitBaseName`, `currentMUNIT`);
+                %if(instance["forceload_"+unit]){
+    ECAP_enableSoftwareSync(`munitBaseName`, `currentMUNIT`);
+          %}
+    ECAP_selectShadowLoadMode(`munitBaseName`, `currentMUNIT`, `instance["loadmode_"+unit]`);
+                %if(instance["shadowMinValue_"+unit] != 0){
+    ECAP_configureShadowMinValue(`munitBaseName`, `currentMUNIT`, `instance["shadowMinValue_"+unit]`);
+          %}
+                %if(instance["shadowMaxValue_"+unit] != 0){
+    ECAP_configureShadowMaxValue(`munitBaseName`, `currentMUNIT`, `instance["shadowMaxValue_"+unit]`);
+          %}
+          %}
+             %if(instance["enableDebug_"+unit]){
+    ECAP_enableDebugRange(`munitBaseName`, `currentMUNIT`);
+            %}
+                %}
+            %}
+        %}
+	%}
 }
 	%}
 %}

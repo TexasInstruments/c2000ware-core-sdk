@@ -217,7 +217,7 @@ extern "C"
 //! Max module frequency of 20 MHz
 #define PMBUS_MODULE_FREQ_MAX   20000000UL
 //! Min module frequency = min_sys_freq / 32
-#define PMBUS_MODULE_FREQ_MIN   (PMBUS_SYS_FREQ_MIN / 32)
+#define PMBUS_MODULE_FREQ_MIN   (PMBUS_SYS_FREQ_MIN / 32U)
 
 //*****************************************************************************
 //
@@ -231,7 +231,7 @@ extern "C"
 //*****************************************************************************
 typedef enum{
   PMBUS_CLOCKMODE_STANDARD  = 0U,   //!< Standard mode 100 kHz
-  PMBUS_CLOCKMODE_FAST      = 1U    //!< Fast Mode 400 kHz
+  PMBUS_CLOCKMODE_FAST      = 1U,    //!< Fast Mode 400 kHz
 }PMBus_ClockMode;
 
 

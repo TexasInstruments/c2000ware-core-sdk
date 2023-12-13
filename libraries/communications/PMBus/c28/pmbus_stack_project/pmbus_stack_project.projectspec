@@ -1,0 +1,43 @@
+<projectSpec>
+  <project
+        name="PMBus_Communications_Stack"
+        device="Generic C28xx Device"
+        cgtVersion="22.6.0.LTS"
+        products="c2000ware_software_package"		
+        launchWizard="False"
+        outputType="staticLibrary"
+        outputFormat="ELF"
+        >
+    <configuration name="F28004x_Debug" compilerBuildOptions="-v28 -ml -mt --float_support=fpu32 --define=_DEBUG --define=__PMBUS_SW_VERSION__=0x01020000U -g --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -k --asm_listing --c_src_interlist -I${PMBUS_ROOT}/include -I${F28004x_DLIB_ROOT} -I${F28004x_DEVICE_SUPPORT_ROOT}/common/include" archiverBuildOptions="${PMBUS_ROOT}/lib/F28004x_PMBus_Communications_Stack.lib" />
+    <configuration name="F28004x_Release" compilerBuildOptions="-v28 -ml -mt --float_support=fpu32 -O2 --define=__PMBUS_SW_VERSION__=0x01020000U -g --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -k --asm_listing --c_src_interlist -I${PMBUS_ROOT}/include -I${F28004x_DLIB_ROOT} -I${F28004x_DEVICE_SUPPORT_ROOT}/common/include" archiverBuildOptions="${PMBUS_ROOT}/lib/F28004x_PMBus_Communications_Stack.lib" />
+    <configuration name="F28002x_Debug" compilerBuildOptions="-v28 -ml -mt --float_support=fpu32 --define=_DEBUG --define=__PMBUS_SW_VERSION__=0x01020000U -g --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -k --asm_listing --c_src_interlist -I${PMBUS_ROOT}/include -I${F28002x_DLIB_ROOT} -I${F28002x_DEVICE_SUPPORT_ROOT}/common/include" archiverBuildOptions="${PMBUS_ROOT}/lib/F28002x_PMBus_Communications_Stack.lib" />
+    <configuration name="F28002x_Release" compilerBuildOptions="-v28 -ml -mt --float_support=fpu32 -O2 --define=__PMBUS_SW_VERSION__=0x01020000U -g --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -k --asm_listing --c_src_interlist -I${PMBUS_ROOT}/include -I${F28002x_DLIB_ROOT} -I${F28002x_DEVICE_SUPPORT_ROOT}/common/include" archiverBuildOptions="${PMBUS_ROOT}/lib/F28002x_PMBus_Communications_Stack.lib" />
+    <configuration name="F28003x_Debug" compilerBuildOptions="-v28 -ml -mt --float_support=fpu32 --define=_DEBUG --define=__PMBUS_SW_VERSION__=0x01020000U -g --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -k --asm_listing --c_src_interlist -I${PMBUS_ROOT}/include -I${F28003x_DLIB_ROOT} -I${F28003x_DEVICE_SUPPORT_ROOT}/common/include" archiverBuildOptions="${PMBUS_ROOT}/lib/F28003x_PMBus_Communications_Stack.lib" />
+    <configuration name="F28003x_Release" compilerBuildOptions="-v28 -ml -mt --float_support=fpu32 -O2 --define=__PMBUS_SW_VERSION__=0x01020000U -g --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -k --asm_listing --c_src_interlist -I${PMBUS_ROOT}/include -I${F28003x_DLIB_ROOT} -I${F28003x_DEVICE_SUPPORT_ROOT}/common/include" archiverBuildOptions="${PMBUS_ROOT}/lib/F28003x_PMBus_Communications_Stack.lib" />
+    <configuration name="F280015x_Debug" compilerBuildOptions="-v28 -ml -mt --float_support=fpu32 --define=_DEBUG --define=__PMBUS_SW_VERSION__=0x01020000U -g --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -k --asm_listing --c_src_interlist -I${PMBUS_ROOT}/include -I${F280015x_DLIB_ROOT} -I${F280015x_DEVICE_SUPPORT_ROOT}/common/include" archiverBuildOptions="${PMBUS_ROOT}/lib/F280015x_PMBus_Communications_Stack.lib" />
+    <configuration name="F280015x_Release" compilerBuildOptions="-v28 -ml -mt --float_support=fpu32 -O2 --define=__PMBUS_SW_VERSION__=0x01020000U -g --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -k --asm_listing --c_src_interlist -I${PMBUS_ROOT}/include -I${F280015x_DLIB_ROOT} -I${F280015x_DEVICE_SUPPORT_ROOT}/common/include" archiverBuildOptions="${PMBUS_ROOT}/lib/F280015x_PMBus_Communications_Stack.lib" />
+    <configuration name="F28P65x_Debug" compilerBuildOptions="-v28 -ml -mt --float_support=fpu32 --define=_DEBUG --define=__PMBUS_SW_VERSION__=0x01020000U -g --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -k --asm_listing --c_src_interlist -I${PMBUS_ROOT}/include -I${F28P65x_DLIB_ROOT} -I${F28P65x_DEVICE_SUPPORT_ROOT}/common/include" archiverBuildOptions="${PMBUS_ROOT}/lib/F28P65x_PMBus_Communications_Stack.lib" />
+    <configuration name="F28P65x_Release" compilerBuildOptions="-v28 -ml -mt --float_support=fpu32 -O2 --define=__PMBUS_SW_VERSION__=0x01020000U -g --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -k --asm_listing --c_src_interlist -I${PMBUS_ROOT}/include -I${F28P65x_DLIB_ROOT} -I${F28P65x_DEVICE_SUPPORT_ROOT}/common/include" archiverBuildOptions="${PMBUS_ROOT}/lib/F28P65x_PMBus_Communications_Stack.lib" />
+    <configuration name="F2838x_Debug" compilerBuildOptions="-v28 -ml -mt --float_support=fpu32 --define=_DEBUG --define=__PMBUS_SW_VERSION__=0x01020000U -g --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -k --asm_listing --c_src_interlist -I${PMBUS_ROOT}/include -I${F2838x_DLIB_ROOT} -I${F2838x_DEVICE_SUPPORT_ROOT}/common/include" archiverBuildOptions="${PMBUS_ROOT}/lib/F2838x_PMBus_Communications_Stack.lib" />
+    <configuration name="F2838x_Release" compilerBuildOptions="-v28 -ml -mt --float_support=fpu32 -O2 --define=__PMBUS_SW_VERSION__=0x01020000U -g --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -k --asm_listing --c_src_interlist -I${PMBUS_ROOT}/include -I${F2838x_DLIB_ROOT} -I${F2838x_DEVICE_SUPPORT_ROOT}/common/include" archiverBuildOptions="${PMBUS_ROOT}/lib/F2838x_PMBus_Communications_Stack.lib" />
+	<configuration name="F28P55x_Debug" compilerBuildOptions="-v28 -ml -mt --float_support=fpu32 --define=_DEBUG --define=__PMBUS_SW_VERSION__=0x01020000U -g --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -k --asm_listing --c_src_interlist -I${PMBUS_ROOT}/include -I${F28P55x_DLIB_ROOT} -I${F28P55x_DEVICE_SUPPORT_ROOT}/common/include" archiverBuildOptions="${PMBUS_ROOT}/lib/F28P55x_PMBus_Communications_Stack.lib" />
+    <configuration name="F28P55x_Release" compilerBuildOptions="-v28 -ml -mt --float_support=fpu32 -O2 --define=__PMBUS_SW_VERSION__=0x01020000U -g --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -k --asm_listing --c_src_interlist -I${PMBUS_ROOT}/include -I${F28P55x_DLIB_ROOT} -I${F28P55x_DEVICE_SUPPORT_ROOT}/common/include" archiverBuildOptions="${PMBUS_ROOT}/lib/F28P55x_PMBus_Communications_Stack.lib" />
+    <pathVariable name="F28004x_DEVICE_SUPPORT_ROOT" path="../../../../../device_support/f28004x/" scope="project" />
+    <pathVariable name="F28004x_DLIB_ROOT" path="../../../../../driverlib/f28004x/driverlib/" scope="project" />
+	<pathVariable name="F28002x_DEVICE_SUPPORT_ROOT" path="../../../../../device_support/f28002x/" scope="project" />
+    <pathVariable name="F28002x_DLIB_ROOT" path="../../../../../driverlib/f28002x/driverlib/" scope="project" />
+	<pathVariable name="F28003x_DEVICE_SUPPORT_ROOT" path="../../../../../device_support/f28003x/" scope="project" />
+    <pathVariable name="F280015x_DLIB_ROOT" path="../../../../../driverlib/f280015x/driverlib/" scope="project" />
+	<pathVariable name="F280015x_DEVICE_SUPPORT_ROOT" path="../../../../../device_support/f280015x/" scope="project" />
+    <pathVariable name="F28P65x_DLIB_ROOT" path="../../../../../driverlib/f28p65x/driverlib/" scope="project" />
+	<pathVariable name="F28P65x_DEVICE_SUPPORT_ROOT" path="../../../../../device_support/f28p65x/" scope="project" />
+    <pathVariable name="F28003x_DLIB_ROOT" path="../../../../../driverlib/f28003x/driverlib/" scope="project" />
+	<pathVariable name="F2838x_DEVICE_SUPPORT_ROOT" path="../../../../../device_support/f2838x/" scope="project" />
+    <pathVariable name="F2838x_DLIB_ROOT" path="../../../../../driverlib/f2838x/driverlib/" scope="project" />
+    <pathVariable name="F28P55x_DLIB_ROOT" path="../../../../../driverlib/f28p55x/driverlib/" scope="project" />
+	<pathVariable name="F28P55x_DEVICE_SUPPORT_ROOT" path="../../../../../device_support/f28p55x/" scope="project" />
+    <pathVariable name="PMBUS_ROOT" path="../" scope="project" />
+    <pathVariable name="C2000WARE_ROOT" path="../../../../../../" scope="project" />
+	<file action="link" path="PMBUS_ROOT/source" targetDirectory="" />
+  </project>
+</projectSpec>

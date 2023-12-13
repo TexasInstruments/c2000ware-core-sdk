@@ -4,6 +4,7 @@
  */
 const adc     = scripting.addModule("/driverlib/adc.js", {}, false);
 const adc1    = adc.addInstance();
+const asysctl = scripting.addModule("/driverlib/asysctl.js");
 
 /**
  * Write custom configuration values to the imported modules.
@@ -63,6 +64,8 @@ adc1.adcInt2.interruptHandler = "adcABurstISR";
 adc1.adcInt3.enableInterrupt  = true;
 adc1.adcInt3.interruptHandler = "adcABurstISR";
 
+asysctl.analogReference        = "INTERNAL";
+asysctl.analogReferenceVoltage = "1P65";
 
 scripting.suppress("SOC7 is configured for Round Robin\. With burst mode enabled, the  burst mode trigger will override the selected trigger for this SOC",adc1,"soc7Trigger");
 scripting.suppress("SOC8 is configured for Round Robin\. With burst mode enabled, the  burst mode trigger will override the selected trigger for this SOC",adc1,"soc8Trigger");

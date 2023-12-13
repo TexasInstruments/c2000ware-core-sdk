@@ -1652,3 +1652,4 @@ HRPWM_setFallingEdgeDelayLoadMode(uint32_t base, HRPWM_LoadMode loadEvent)
 #endif
 
 #endif // HRPWM_H
+

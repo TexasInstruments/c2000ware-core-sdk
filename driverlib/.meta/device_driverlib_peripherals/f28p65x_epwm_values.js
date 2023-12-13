@@ -801,14 +801,14 @@ let EPWM_MINDB_ICL_XBAR = [
 	{ name: "EPWM_MINDB_ICL_XBAR_OUT16", value: 0xf },
 ]
 let EPWM_MINDB_ICL_LUT = [
-	{ name: "EPWM_MINDB_ICL_LUT_DEC0", value: 16 },
-	{ name: "EPWM_MINDB_ICL_LUT_DEC1", value: 17 },
-	{ name: "EPWM_MINDB_ICL_LUT_DEC2", value: 18 },
-	{ name: "EPWM_MINDB_ICL_LUT_DEC3", value: 19 },
-	{ name: "EPWM_MINDB_ICL_LUT_DEC4", value: 20 },
-	{ name: "EPWM_MINDB_ICL_LUT_DEC5", value: 21 },
-	{ name: "EPWM_MINDB_ICL_LUT_DEC6", value: 22 },
-	{ name: "EPWM_MINDB_ICL_LUT_DEC7", value: 23 },
+	{ name: "EPWM_MINDB_ICL_LUT_DEC0", value: 0 },
+	{ name: "EPWM_MINDB_ICL_LUT_DEC1", value: 1 },
+	{ name: "EPWM_MINDB_ICL_LUT_DEC2", value: 2 },
+	{ name: "EPWM_MINDB_ICL_LUT_DEC3", value: 3 },
+	{ name: "EPWM_MINDB_ICL_LUT_DEC4", value: 4 },
+	{ name: "EPWM_MINDB_ICL_LUT_DEC5", value: 5 },
+	{ name: "EPWM_MINDB_ICL_LUT_DEC6", value: 6 },
+	{ name: "EPWM_MINDB_ICL_LUT_DEC7", value: 7 },
 ]
 let EPWM_DE_SRC = [
 	{ name: "EPWM_DE_SRC_TRIPL", value: 0x1 },

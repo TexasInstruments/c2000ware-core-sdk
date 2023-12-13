@@ -42,8 +42,8 @@ MEMORY
 
 
 
-   CPU1TOCPU2RAM    : origin = 0x03A000, length = 0x000800
-   CPU2TOCPU1RAM    : origin = 0x03B000, length = 0x000800
+   CPU1TOCPU2RAM    : origin = 0x03A000, length = 0x000400
+   CPU2TOCPU1RAM    : origin = 0x03B000, length = 0x000400
 
    CLATOCPURAM      : origin = 0x001480,   length = 0x000080
    CPUTOCLARAM      : origin = 0x001500,   length = 0x000080
@@ -92,7 +92,7 @@ SECTIONS
    GROUP
      {
        .TI.ramfunc : 
-	  { -l FAPI_F28P65x_EABI_v3.00.00.lib}
+	  { -l FAPI_F28P65x_EABI_v3.00.01.lib}
 		      } LOAD = FLASH_BANK4,
                         RUN = RAMGS1,
                         LOAD_START(RamfuncsLoadStart),
@@ -106,7 +106,7 @@ SECTIONS
    GROUP
      {
        .TI.ramfunc : 
-	  { -l FAPI_F28P65x_EABI_v3.00.00.lib}
+	  { -l FAPI_F28P65x_EABI_v3.00.01.lib}
 		      } LOAD = FLASH_BANK4,
                         RUN = RAMGS1,
                         LOAD_START(_RamfuncsLoadStart),

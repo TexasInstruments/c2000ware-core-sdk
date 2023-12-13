@@ -1,6 +1,6 @@
 ;//###########################################################################
 ;//
-;// FILE: f2838x_usdelay.asm
+;// FILE: f28p65x_usdelay.asm
 ;//
 ;// TITLE: Simple delay function
 ;//
@@ -11,11 +11,11 @@
 ;// SARAM. If it is executed from waitstate memory then the delay will be
 ;// longer then specified.
 ;// To use this function:
-;//  1 - update the CPU clock speed in the f2838x_examples.h
+;//  1 - update the CPU clock speed in the f28p65x_examples.h
 ;//    file. For example:
 ;//    #define CPU_RATE 6.667L // for a 150MHz CPU clock speed
 ;//  2 - Call this function by using the DELAY_US(A) macro
-;//    that is defined in the f2838x_device.h file.  This macro
+;//    that is defined in the f28p65x_device.h file.  This macro
 ;//    will convert the number of microseconds specified
 ;//    into a loop count for use with this function.
 ;//    This count will be based on the CPU frequency you specify.

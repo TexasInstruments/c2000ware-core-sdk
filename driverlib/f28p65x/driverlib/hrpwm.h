@@ -1789,3 +1789,4 @@ HRPWM_setHiResXCMPRegValueOnly(uint32_t base, EPWM_XCMPReg xcmpReg,
 #endif
 
 #endif // HRPWM_H
+

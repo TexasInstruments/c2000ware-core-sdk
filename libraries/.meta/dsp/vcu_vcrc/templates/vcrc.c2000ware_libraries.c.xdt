@@ -1,0 +1,139 @@
+%let Common   = system.getScript("/driverlib/Common.js");
+% var moduleName = "vcrc"
+% var libraryFolder = "vcrc"
+% var module = system.modules['/libraries/dsp/vcu_vcrc/' + moduleName + '.js'];
+% var initFunctions = [];
+% if (module!=null){
+    % var crc8TableIncludes = false;
+    % var crc8TableReflectedIncludes = false;
+    % var crc16P1TableIncludes = false;
+    % var crc16P1TableReflectedIncludes = false;
+    % var crc16P2TableIncludes = false;
+    % var crc16P2TableReflectedIncludes = false;
+    % var crc24TableIncludes = false;
+    % var crc24TableReflectedIncludes = false;
+    % var crc32P1TableIncludes = false;
+    % var crc32P1TableReflectedIncludes = false;
+    % var crc32P2TableIncludes = false;
+    % var crc32P2TableReflectedIncludes = false;
+    % for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        %if ((instance.crcTable == "crc8Table")&&(crc8TableIncludes == false)){
+        %   crc8TableIncludes = true;
+#include "common/crctable0x7.h"
+        %}
+        %if ((instance.crcTable == "crc8TableReflected")&&(crc8TableReflectedIncludes == false)){
+        %   crc8TableReflectedIncludes = true;
+#include "common/crctable0x7reflected.h"
+        %}
+        %if ((instance.crcTable == "crc16P1Table")&&(crc16P1TableIncludes == false)){
+        %   crc16P1TableIncludes = true;
+#include "common/crctable0x8005.h"
+        %}
+        %if ((instance.crcTable == "crc16P1TableReflected")&&(crc16P1TableReflectedIncludes == false)){
+        %   crc16P1TableReflectedIncludes = true;
+#include "common/crctable0x8005reflected.h"
+        %}
+        %if ((instance.crcTable == "crc16P2Table")&&(crc16P2TableIncludes == false)){
+        %   crc16P2TableIncludes = true;
+#include "common/crctable0x1021.h"
+        %}
+        %if ((instance.crcTable == "crc16P2TableReflected")&&(crc16P2TableReflectedIncludes == false)){
+        %   crc16P2TableReflectedIncludes = true;
+#include "common/crctable0x1021reflected.h"
+        %}
+        %if ((instance.crcTable == "crc24Table")&&(crc24TableIncludes == false)){
+        %   crc24TableIncludes = true;
+#include "common/crctable0x5d6dcb.h"
+        %}
+        %if ((instance.crcTable == "crc24TableReflected")&&(crc24TableReflectedIncludes == false)){
+        %   crc24TableReflectedIncludes = true;
+#include "common/crctable0x5d6dcbreflected.h"
+        %}
+        %if ((instance.crcTable == "crc32P1Table")&&(crc32P1TableIncludes == false)){
+        %   crc32P1TableIncludes = true;
+#include "common/crctable0x04c11db7.h"
+        %}
+        %if ((instance.crcTable == "crc32P1TableReflected")&&(crc32P1TableReflectedIncludes == false)){
+        %   crc32P1TableReflectedIncludes = true;
+#include "common/crctable0x04c11db7reflected.h"
+        %}
+        %if ((instance.crcTable == "crc32P2Table")&&(crc32P2TableIncludes == false)){
+        %   crc32P2TableIncludes = true;
+#include "common/crctable0x1edc6f41.h"
+        %}
+        %if ((instance.crcTable == "crc32P2TableReflected")&&(crc32P2TableReflectedIncludes == false)){
+        %   crc32P2TableReflectedIncludes = true;
+#include "common/crctable0x1edc6f41reflected.h"
+        %}   
+    %}
+%}
+
+% for(var i = 0; i < module.$instances.length; i++) {
+        % var instance = module.$instances[i];
+        %if (module != null){
+        %
+        % initFunctions.push(instance.$name+ "_init");
+//
+// VCRC Global Variables - `instance.$name`
+//
+CRC_Obj `instance.$name`_CRC;
+CRC_Handle `instance.$name`_Handle;
+uint32_t `instance.$name`_goldenValue = 0;
+%
+//
+// `instance.$name` init
+//
+void `instance.$name`_init(){
+    // Populate CRC object with sysconfig options
+    `instance.$name`_CRC.seedValue	   = `instance.$name`_SEEDVAL;                       //enter the seed value for CRC computation
+    `instance.$name`_CRC.nMsgBytes      = `instance.$name`_NUMMSGBYTES;                   //enter the number of bytes on which the CRC is to be computated
+    `instance.$name`_CRC.nMsgBits       = `instance.$name`_NUMMSGBITS;                    //enter the number of bits for CRC computation
+    `instance.$name`_CRC.parity         = `instance.$name`_PARITY;                        //choose to compute CRC for lower byte(8 bits) first or upper byte first based on the parity value
+    % if (instance.runVerification && (instance.crcTableInputMode == "PREDEFINED")){
+    `instance.$name`_CRC.pCrcTable      = (uint32_t *)`instance.crcTable`;
+    % }
+    % if (instance.runVerification && (instance.crcTableInputMode == "MANUAL")){
+    `instance.$name`_CRC.pCrcTable      = (uint32_t *)`instance.crcTableManual`;
+    %}
+    `instance.$name`_CRC.crcResult	   = `instance.$name`_RESULT;                        //CRC result would be stored in the location
+    `instance.$name`_CRC.pMsgBuffer     = (uint16_t *)`instance.msgBuffer`;                           //pointer to the message buffer
+    `instance.$name`_CRC.polynomial     = `instance.$name`_POLY;                          //user polynomial
+    `instance.$name`_CRC.polySize       = `instance.$name`_POLYSIZE;                      //polynomial size
+    `instance.$name`_CRC.dataSize       = `instance.$name`_DATASIZE;                      //data size
+    `instance.$name`_CRC.reflected      = `instance.$name`_REFLECTED;                     //Whether the computation is to be done from LSB or MSB, if CRC.reflected = 1 then the data bytes would be flipped before CRC computation
+    `instance.$name`_CRC.init           = `instance.$name`_CRCINIT;     //initialize the CRC routine by context save and context restore calls
+    `instance.$name`_CRC.run            = `instance.$name`_CRCRUN;    //point to HW function for CRC computation
+
+    // Initialize the handle
+    `instance.$name`_Handle = &`instance.$name`_CRC;
+    `instance.$name`_Handle->init(`instance.$name`_Handle);
+
+    if (`instance.$name`_Handle  == NULL)
+    {
+        //
+        // An error occured during initialization
+        //
+        ESTOP0;
+    }
+    % if (instance.runCRC){
+        % if (instance.runVerification){
+    `instance.$name`_CRC.run = `instance.$name`_CROUTINE;
+        %}
+    //Calculate golden value using the C Routine
+    `instance.$name`_CRC.run(`instance.$name`_Handle);
+    //result stored in global var
+    `instance.$name`_goldenValue = `instance.$name`_CRC.crcResult;
+    `instance.$name`_CRC.run = `instance.$name`_CRCRUN;
+    %}
+} 
+    %}
+%}
+void `module.c2000wareLibraryName`_init(){
+    //
+    // Initialize the instances
+    //
+    % for (var initFunc of initFunctions) {
+    `initFunc`();
+    % }      
+}

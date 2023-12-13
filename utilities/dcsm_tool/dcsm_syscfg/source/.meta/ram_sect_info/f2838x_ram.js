@@ -1,0 +1,41 @@
+let f2838x_ram = [
+	{ name: 'RAMLS0', displayName: 'CPU1 RAM LS0',  description : 'CPU1 RAM LS0 Zone Selections.',  default: 'UNSECURE' },
+	{ name: 'RAMLS1', displayName: 'CPU1 RAM LS1',  description : 'CPU1 RAM LS1 Zone Selections.',  default: 'UNSECURE' },
+	{ name: 'RAMLS2', displayName: 'CPU1 RAM LS2',  description : 'CPU1 RAM LS2 Zone Selections.',  default: 'UNSECURE' },
+	{ name: 'RAMLS3', displayName: 'CPU1 RAM LS3',  description : 'CPU1 RAM LS3 Zone Selections.',  default: 'UNSECURE' },
+	{ name: 'RAMLS4', displayName: 'CPU1 RAM LS4',  description : 'CPU1 RAM LS4 Zone Selections.',  default: 'UNSECURE' },
+	{ name: 'RAMLS5', displayName: 'CPU1 RAM LS5',  description : 'CPU1 RAM LS5 Zone Selections.',  default: 'UNSECURE' },
+	{ name: 'RAMLS6', displayName: 'CPU1 RAM LS6',  description : 'CPU1 RAM LS6 Zone Selections.',  default: 'UNSECURE' },
+	{ name: 'RAMLS7', displayName: 'CPU1 RAM LS7',  description : 'CPU1 RAM LS7 Zone Selections.',  default: 'UNSECURE' },
+	{ name: 'RAMD0', displayName: 'CPU1 RAM D0',  description : 'CPU1 RAM D0 Zone Selections.',  default: 'UNSECURE' },
+	{ name: 'RAMD1', displayName: 'CPU1 RAM D1',  description : 'CPU1 RAM D1 Zone Selections.',  default: 'UNSECURE' },
+
+	{ name: 'CM_RAMC0', displayName: 'CM RAM C0',  description : 'CM RAM C0 Zone Selections.',  default: 'UNSECURE' },
+	{ name: 'CM_RAMC1', displayName: 'CM RAM C1',  description : 'CM RAM C1 Zone Selections.',  default: 'UNSECURE' },
+	{ name: 'CPU1_CM_MSGRAM0', displayName: 'CPU1 to CM MSG RAM0',  description : 'CPU1 to CM MSG RAM0 Zone Selections.',  default: 'UNSECURE' },
+	{ name: 'CPU1_CM_MSGRAM1', displayName: 'CPU1 to CM MSG RAM1',  description : 'CPU1 to CM MSG RAM1 Zone Selections.',  default: 'UNSECURE' },
+	{ name: 'CM_CPU1_MSGRAM0', displayName: 'CM to CPU1 MSG RAM0',  description : 'CM to CPU1 MSG RAM0 Zone Selections.',  default: 'UNSECURE' },
+	{ name: 'CM_CPU1_MSGRAM1', displayName: 'CM to CPU1 MSG RAM1',  description : 'CM to CPU1 MSG RAM1 Zone Selections.',  default: 'UNSECURE' },
+	{ name: 'CPU2_CM_MSGRAM0', displayName: 'CPU2 to CM MSG RAM0',  description : 'CPU2 to CM MSG RAM0 Zone Selections.',  default: 'UNSECURE' },
+	{ name: 'CPU2_CM_MSGRAM1', displayName: 'CPU2 to CM MSG RAM1',  description : 'CPU2 to CM MSG RAM1 Zone Selections.',  default: 'UNSECURE' },
+	{ name: 'CM_CPU2_MSGRAM0', displayName: 'CM to CPU2 MSG RAM0',  description : 'CM to CPU2 MSG RAM0 Zone Selections.',  default: 'UNSECURE' },
+	{ name: 'CM_CPU2_MSGRAM1', displayName: 'CM to CPU2 MSG RAM1',  description : 'CM to CPU2 MSG RAM1 Zone Selections.',  default: 'UNSECURE' },
+	{ name: 'CPU1_CPU2_MSGRAM0', displayName: 'CPU1 to CPU2 MSG RAM0',  description : 'CPU1 to CPU2 MSG RAM0 Zone Selections.',  default: 'UNSECURE' },
+	{ name: 'CPU1_CPU2_MSGRAM1', displayName: 'CPU1 to CPU2 MSG RAM1',  description : 'CPU1 to CPU2 MSG RAM1 Zone Selections.',  default: 'UNSECURE' },
+	{ name: 'CPU2_CPU1_MSGRAM0', displayName: 'CPU2 to CPU1 MSG RAM0',  description : 'CPU2 to CPU1 MSG RAM0 Zone Selections.',  default: 'UNSECURE' },
+	{ name: 'CPU2_CPU1_MSGRAM1', displayName: 'CPU2 to CPU1 MSG RAM1',  description : 'CPU2 to CPU1 MSG RAM1 Zone Selections.',  default: 'UNSECURE' },
+	
+	{ name: 'CPU2_RAMLS0', displayName: 'CPU2 RAM LS0',  description : 'CPU2 RAM LS0 Zone Selections.',  default: 'UNSECURE' },
+	{ name: 'CPU2_RAMLS1', displayName: 'CPU2 RAM LS1',  description : 'CPU2 RAM LS1 Zone Selections.',  default: 'UNSECURE' },
+	{ name: 'CPU2_RAMLS2', displayName: 'CPU2 RAM LS2',  description : 'CPU2 RAM LS2 Zone Selections.',  default: 'UNSECURE' },
+	{ name: 'CPU2_RAMLS3', displayName: 'CPU2 RAM LS3',  description : 'CPU2 RAM LS3 Zone Selections.',  default: 'UNSECURE' },
+	{ name: 'CPU2_RAMLS4', displayName: 'CPU2 RAM LS4',  description : 'CPU2 RAM LS4 Zone Selections.',  default: 'UNSECURE' },
+	{ name: 'CPU2_RAMLS5', displayName: 'CPU2 RAM LS5',  description : 'CPU2 RAM LS5 Zone Selections.',  default: 'UNSECURE' },
+	{ name: 'CPU2_RAMLS6', displayName: 'CPU2 RAM LS6',  description : 'CPU2 RAM LS6 Zone Selections.',  default: 'UNSECURE' },
+	{ name: 'CPU2_RAMLS7', displayName: 'CPU2 RAM LS7',  description : 'CPU2 RAM LS7 Zone Selections.',  default: 'UNSECURE' },
+	{ name: 'CPU2_RAMD0', displayName: 'CPU2 RAM D0',  description : 'CPU2 RAM D0 Zone Selections.',  default: 'UNSECURE' },
+	{ name: 'CPU2_RAMD1', displayName: 'CPU2 RAM D1',  description : 'CPU2 RAM D1 Zone Selections.',  default: 'UNSECURE' },
+]
+exports={
+	f2838x_ram : f2838x_ram
+};

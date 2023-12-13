@@ -198,11 +198,11 @@ if(PLL_type2.includes(device))
 //
 #define DEVICE_SETCLOCK_CFG         (`oscclkSrc`  | `PLL_IMULT` | \
 									 `PLL_REFDIV` | `PLL_ODIV` | \
-									 `PLL_DIVSEL` | `PLL_STS` | \ 
+									 `PLL_DIVSEL` | `PLL_STS` | \
 									 SYSCTL_DCC_BASE_0)
 									 
 									 
-#define DEVICE_SYSCLK_FREQ          (DEVICE_OSCSRC_FREQ * `PLL_IMULT_mv`) / (`PLL_REFDIV_dv` * `PLL_ODIV_dv` * `SYSCLKDIVSEL_dv`)
+#define DEVICE_SYSCLK_FREQ          ((DEVICE_OSCSRC_FREQ * `PLL_IMULT_mv`) / (`PLL_REFDIV_dv` * `PLL_ODIV_dv` * `SYSCLKDIVSEL_dv`))
 % }
 % /////////////////////////////////////////////////////////////////////////////////////////
 

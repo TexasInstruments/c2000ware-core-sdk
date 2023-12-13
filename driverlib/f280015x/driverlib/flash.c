@@ -74,6 +74,29 @@ Flash_initModule(uint32_t ctrlBase, uint32_t eccBase, uint16_t waitstates)
     //
     Flash_setWaitstates(ctrlBase, waitstates);
 
+    //
+    // Commit Flash Trims
+    //
+
+    //
+    // Configure TRIMCTL.ENABLE to be valid
+    //
+    Flash_writeTrims(FLASH_O_TRIMCTL, FLASH_TRIMCTL_ENABLE_M, 
+               FLASH_TRIMCTL_ENABLE_S, 1);
+
+    //
+    // Configure TRIMLOCKOTHER and TRIMLOCKREAD in TRIMLOCK register
+    //
+    Flash_writeTrims(FLASH_O_TRIMLOCK, FLASH_TRIMLOCK_TRIMLOCKREAD_TRIMLOCKOTHER_M, 
+               FLASH_TRIMLOCK_TRIMLOCKREAD_TRIMLOCKOTHER_S, 3);
+
+    //
+    // Configure TRIMCOMMITREAD and TRIMCOMMITOTHER in TRIMCOMMIT register
+    //
+    Flash_writeTrims(FLASH_O_TRIMCOMMIT, 
+               FLASH_TRIMCOMMIT_TRIMCOMMITREAD_TRIMCOMMITOTHER_M, 
+               FLASH_TRIMCOMMIT_TRIMCOMMITREAD_TRIMCOMMITOTHER_S, 3);
+
 
     //
     // Enable cache and prefetch mechanism to improve performance of code

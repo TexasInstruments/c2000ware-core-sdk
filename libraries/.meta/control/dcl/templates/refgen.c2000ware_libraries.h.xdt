@@ -1,0 +1,34 @@
+% var mod                  = system.modules['/libraries/control/dcl/refgen.js'];
+% if (mod != null)
+%{
+//
+// REFGEN
+//
+% for (var inst of mod.$instances)
+%{
+//
+// `inst.$name` macros
+//
+#define `inst.$name`_FREQ `inst.freq`
+#define `inst.$name`_AMPL `inst.ampl`
+#define `inst.$name`_OFFS `inst.offs`
+#define `inst.$name`_MAX `inst.umax`
+#define `inst.$name`_MIN `inst.umin`
+% if(inst.mode == "PULSE")
+% {
+#define `inst.$name`_DUTY `inst.duty`
+% }
+//
+// `inst.$name` variables
+//
+% // always add the actual refgen object and css object
+extern DCL_`inst.structDisplay` `inst.$name`;
+%}
+//
+// REFGEN functions
+//
+% for (var inst of mod.$instances)
+%{
+void `inst.$name`_init();
+%}
+%}

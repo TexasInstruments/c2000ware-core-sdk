@@ -1,0 +1,18 @@
+%%{
+let 	device_common   					= system.getScript("/driverlib/.meta/device/functions_h/device_common.js");
+let 	Common   						= system.getScript("/driverlib/Common.js");
+var	VerifyXTAL_General					= system.getTemplate('./VerifyXTAL_General.xdt');
+var	VerifyXTAL_With_If					= system.getTemplate('./VerifyXTAL_With_If.xdt');
+
+const 	device  						= device_common.device;
+const	VerifyXTAL_Type0					= device_common.VerifyXTAL_Type0;
+const	VerifyXTAL_Type1					= device_common.VerifyXTAL_Type1;
+%%}
+% if(VerifyXTAL_Type0.includes(device))
+%{
+`VerifyXTAL_General()`
+%}
+% if(VerifyXTAL_Type1.includes(device))
+%{
+`VerifyXTAL_With_If()`
+%}

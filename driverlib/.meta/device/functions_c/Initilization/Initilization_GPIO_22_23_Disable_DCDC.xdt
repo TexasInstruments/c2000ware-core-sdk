@@ -1,0 +1,76 @@
+%let Common = system.getScript("/driverlib/Common.js");
+% var Clock_tree_template = system.getTemplate("/driverlib/device/functions_c/Clocktree/Device_clocktree_c.xdt");
+% var nameOfFlashModule = "flash";
+% var flashModule = system.modules['/driverlib/' + nameOfFlashModule + '.js'];
+//*****************************************************************************
+//
+// Function to initialize the device. Primarily initializes system control to a
+// known state by disabling the watchdog, setting up the SYSCLKOUT frequency,
+// and enabling the clocks to the peripherals.
+// The function also configures the GPIO pins 22 and 23 in digital mode.
+// To configure these pins as analog pins, use the function GPIO_setAnalogMode
+//
+// Note : In case XTAL is used as the PLL source, it is recommended to invoke
+// the Device_verifyXTAL() before configuring PLL
+//
+//
+//*****************************************************************************
+void Device_init(void)
+{
+    //
+    // Disable the watchdog
+    //
+    SysCtl_disableWatchdog();
+#ifdef CMDTOOL
+    CMD_init();
+#endif
+
+#ifdef _FLASH
+#ifndef CMDTOOL
+    //
+    // Copy time critical code and flash setup code to RAM. This includes the
+    // following functions: InitFlash();
+    //
+    // The RamfuncsLoadStart, RamfuncsLoadSize, and RamfuncsRunStart symbols
+    // are created by the linker. Refer to the device .cmd file.
+    //
+    memcpy(&RamfuncsRunStart, &RamfuncsLoadStart, (size_t)&RamfuncsLoadSize);
+#endif
+%if(!flashModule){
+    //
+    // Call Flash Initialization to setup flash waitstates. This function must
+    // reside in RAM.
+    //
+    Flash_initModule(FLASH0CTRL_BASE, FLASH0ECC_BASE, DEVICE_FLASH_WAITSTATES);
+%}
+#endif
+%if(flashModule){
+    //
+    // Call Flash Initialization to setup flash waitstates. This function must
+    // reside in RAM.
+    //
+    FLASH_init();
+%}
+%if (!Common.isContextCPU2()){
+`Clock_tree_template()`
+%}
+
+    //
+    //Disable DC DC in Analog block
+    //
+    ASysCtl_disableDCDC();
+
+    //
+    //Configure GPIO in Push Pull,Output Mode
+    //
+    GPIO_setPadConfig(22U, GPIO_PIN_TYPE_STD);
+    GPIO_setPadConfig(23U, GPIO_PIN_TYPE_STD);
+    GPIO_setDirectionMode(22U, GPIO_DIR_MODE_OUT);
+    GPIO_setDirectionMode(23U, GPIO_DIR_MODE_OUT);
+
+    //
+    // Configure GPIO22 and GPIO23 as digital pins
+    //
+    GPIO_setAnalogMode(22U, GPIO_ANALOG_DISABLED);
+    GPIO_setAnalogMode(23U, GPIO_ANALOG_DISABLED);
+}

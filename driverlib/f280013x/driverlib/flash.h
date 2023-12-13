@@ -51,6 +51,7 @@
 extern "C"
 {
 #endif
+#ifndef __TMS320C28XX_CLA__
 
 //*****************************************************************************
 //
@@ -81,9 +82,14 @@ extern "C"
 //! Flash Trim Defines
 //
 //**********************************
-#define FLASH_O_TRIMCTL                                     0x1600U   // Trim Control Register
-#define FLASH_O_TRIMLOCK                                    0x1604U   // Trim Lock Register
-#define FLASH_O_TRIMCOMMIT                                  0x1608U   // Trim Commit Register
+// Flash Configuration Base
+#define FLASHCONFIG_BASE                                    0x00051000U
+// Trim Control Register  
+#define FLASH_O_TRIMCTL                                     0x1600U
+// Trim Lock Register      
+#define FLASH_O_TRIMLOCK                                    0x1604U
+// Trim Commit Register      
+#define FLASH_O_TRIMCOMMIT                                  0x1608U      
 #define FLASH_TRIMCTL_ENABLE_M                              0x1U      
 #define FLASH_TRIMCTL_ENABLE_S                              0x0U      
 #define FLASH_TRIMLOCK_TRIMLOCKREAD_TRIMLOCKOTHER_M         0x3U      
@@ -535,10 +541,36 @@ Flash_initModule(uint32_t ctrlBase, uint32_t eccBase, uint16_t waitstates);
 
 //*****************************************************************************
 //
+//! Initializes the flash trim registers.
+//!
+//! \return None.
+//!
+//!
+//*****************************************************************************
+static inline void 
+Flash_writeTrims(uint32_t reg_offset, uint32_t mask, 
+                 uint32_t shift, uint32_t value)
+{
+
+    EALLOW;
+    //
+    // Set the requested bits to the value.
+    //
+    HWREG_BP(FLASHCONFIG_BASE + reg_offset) &= ~(uint32_t)mask;
+
+	HWREG_BP(FLASHCONFIG_BASE + reg_offset) |= ((uint32_t)value << shift);
+
+    EDIS;
+} 
+
+
+//*****************************************************************************
+//
 // Close the Doxygen group.
 //! @}
 //
 //*****************************************************************************
+#endif  // #ifdef __TMS320C28XX_CLA__
 
 //*****************************************************************************
 //

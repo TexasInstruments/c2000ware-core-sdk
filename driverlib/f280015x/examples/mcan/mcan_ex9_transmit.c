@@ -77,6 +77,7 @@
 #include "device.h"
 #include "inc/stw_types.h"
 #include "inc/stw_dataTypes.h"
+#include <string.h>
 
 //
 // Defines.
@@ -91,6 +92,7 @@
 #define MCAN_RX_BUFF_NUM                (0U)
 #define MCAN_RX_BUFF_ELEM_SIZE          (MCAN_ELEM_SIZE_64BYTES)
 #define MCAN_TX_BUFF_SIZE               (NUM_OF_MSG)
+#define MCAN_TX_FQ_SIZE                 (0U)
 #define MCAN_TX_BUFF_ELEM_SIZE          (MCAN_ELEM_SIZE_64BYTES)
 #define MCAN_TX_EVENT_SIZE              (0U)
 
@@ -104,7 +106,7 @@
 #define MCAN_FIFO_1_START_ADDR          (MCAN_FIFO_0_START_ADDR + (MCAN_getMsgObjSize(MCAN_FIFO_0_ELEM_SIZE) * 4U * MCAN_FIFO_0_NUM))
 #define MCAN_RX_BUFF_START_ADDR         (MCAN_FIFO_1_START_ADDR + (MCAN_getMsgObjSize(MCAN_FIFO_1_ELEM_SIZE) * 4U * MCAN_FIFO_1_NUM))
 #define MCAN_TX_BUFF_START_ADDR         (MCAN_RX_BUFF_START_ADDR + (MCAN_getMsgObjSize(MCAN_RX_BUFF_ELEM_SIZE) * 4U * MCAN_RX_BUFF_NUM))
-#define MCAN_TX_EVENT_START_ADDR        (MCAN_TX_BUFF_START_ADDR + (MCAN_getMsgObjSize(MCAN_TX_BUFF_ELEM_SIZE) * 4U * MCAN_TX_BUFF_SIZE))
+#define MCAN_TX_EVENT_START_ADDR        (MCAN_TX_BUFF_START_ADDR + (MCAN_getMsgObjSize(MCAN_TX_BUFF_ELEM_SIZE) * 4U * (MCAN_TX_BUFF_SIZE + MCAN_TX_FQ_SIZE)))
 
 
 //
@@ -179,13 +181,13 @@ void main()
     //
     // Add transmission request for Tx buffer 0
     //
-    HWREG(MCANA_DRIVER_BASE + MCAN_TXBAR) = 0x00000001;
+    MCAN_txBufAddReq(MCANA_DRIVER_BASE, 0U);
 
     //
     // Wait till the frame is successfully transmitted (and ACKnowledged)
     // "Tx Buffer Transmission Occurred" register is polled.
-
-    while(HWREG(MCANA_DRIVER_BASE + MCAN_TXBTO) == 0x00000000)
+    //
+    while(MCAN_getTxBufReqPend(MCANA_DRIVER_BASE))
     {
     }
 
@@ -232,17 +234,20 @@ static void MCANConfig(void)
 
     msgRAMConfigParams.txBufMode            = 0U;
 
+    msgRAMConfigParams.txFIFOSize           = MCAN_TX_FQ_SIZE; 
+    // Number of Tx FIFO or Tx Queue Elements
+
     msgRAMConfigParams.txBufElemSize        = MCAN_TX_BUFF_ELEM_SIZE;
     // Tx Buffer Element Size.
 
     //
     // Initialize bit timings.
     //
-    bitTimes.nomRatePrescalar   = 0x3U; // Nominal Baud Rate Pre-scaler.
+    bitTimes.nomRatePrescalar   = 0x3U; // Nominal Baud Rate Pre-scaler
     bitTimes.nomTimeSeg1        = 0x9U; // Nominal Time segment before SP
     bitTimes.nomTimeSeg2        = 0x8U; // Nominal Time segment after SP
     bitTimes.nomSynchJumpWidth  = 0x8U; // Nominal SJW
-    bitTimes.dataRatePrescalar  = 0x1U; // Data Baud Rate Pre-scaler.
+    bitTimes.dataRatePrescalar  = 0x1U; // Data Baud Rate Pre-scaler
     bitTimes.dataTimeSeg1       = 0x9U; // Data Time segment before SP
     bitTimes.dataTimeSeg2       = 0x8U; // Data Time segment after SP
     bitTimes.dataSynchJumpWidth = 0x8U; // Data SJW

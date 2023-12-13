@@ -61,15 +61,15 @@ XBAR_setOutputMuxConfig(uint32_t base, XBAR_OutputNum output,
     // Depending on the configuration of MUX selected, we'll need different
     // values to index into the config registers.
     //
-    if(((uint32_t)muxConfig & 0x6000) == 0x6000U)
+    if(((uint32_t)muxConfig & 0x6000U) == 0x6000U)
     {
         offset = ((uint16_t)output << 1U) + 6U;
     }
-    else if (((uint32_t)muxConfig & 0x4000) != 0U)
+    else if (((uint32_t)muxConfig & 0x4000U) != 0U)
     {
         offset = ((uint16_t)output << 1U) + 4U;
     }
-    else if (((uint32_t)muxConfig & 0x2000) != 0U)
+    else if (((uint32_t)muxConfig & 0x2000U) != 0U)
     {
         offset = ((uint16_t)output << 1U) + 2U;
     }
@@ -120,7 +120,7 @@ XBAR_setEPWMMuxConfig(XBAR_TripNum trip, XBAR_EPWMMuxConfig muxConfig)
 
     uint32_t base;
     uint16_t tripSel = (uint16_t)trip;
-    if (tripSel <= XBAR_TRIP8)
+    if (tripSel <= (uint16_t)XBAR_TRIP8)
     {
         base = XBARA_EPWM_CFG_REG_BASE;
     }
@@ -134,15 +134,15 @@ XBAR_setEPWMMuxConfig(XBAR_TripNum trip, XBAR_EPWMMuxConfig muxConfig)
     // Depending on the configuration of MUX selected, we'll need different
     // values to index into the config registers.
     //
-    if(((uint32_t)muxConfig & 0x6000) == 0x6000U)
+    if(((uint32_t)muxConfig & 0x6000U) == 0x6000U)
     {
         offset = (tripSel << 1U) + 6U;
     }
-    else if (((uint32_t)muxConfig & 0x4000) != 0U)
+    else if (((uint32_t)muxConfig & 0x4000U) != 0U)
     {
         offset = (tripSel << 1U) + 4U;
     }
-    else if (((uint32_t)muxConfig & 0x2000) != 0U)
+    else if (((uint32_t)muxConfig & 0x2000U) != 0U)
     {
         offset = (tripSel << 1U) + 2U;
     }

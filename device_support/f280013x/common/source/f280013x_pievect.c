@@ -106,14 +106,14 @@ const struct PIE_VECT_TABLE PieVectTableInit = {
     PIE_RESERVED_ISR,               // 3.8 - Reserved
     ECAP1_ISR,                      // 4.1 - eCAP1 Interrupt
     ECAP2_ISR,                      // 4.2 - eCAP2 Interrupt
-    PIE_RESERVED_ISR,               // 4.3 - Reserved
+    ECAP3_ISR,                      // 4.3 - eCAP3 Interrupt
     PIE_RESERVED_ISR,               // 4.4 - Reserved
     PIE_RESERVED_ISR,               // 3.5 - Reserved
     PIE_RESERVED_ISR,               // 3.6 - Reserved
     PIE_RESERVED_ISR,               // 3.7 - Reserved
     PIE_RESERVED_ISR,               // 3.8 - Reserved
     EQEP1_ISR,                      // 5.1 - eQEP1 Interrupt
-    PIE_RESERVED_ISR,               // 5.2 - Reserved
+    EQEP2_ISR,                      // 5.2 - eQEP2 Interrupt
     PIE_RESERVED_ISR,               // 5.3 - Reserved
     PIE_RESERVED_ISR,               // 5.4 - Reserved
     PIE_RESERVED_ISR,               // 5.5 - Reserved

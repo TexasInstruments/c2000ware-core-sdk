@@ -1,0 +1,14 @@
+% var moduleName = "vcrc"
+% let Common   = system.getScript("/driverlib/Common.js");
+% var module = system.modules['/libraries/dsp/vcu_vcrc' + '/' + moduleName + '.js'];
+/* libraries required for /libraries/dsp/VCU/c28/lib/c28x_vcrc */
+% var instance = module.$instances[0];
+%
+%if(instance.fpuType == "FPU32")
+%{
+-l"/libraries/dsp/VCU/c28/lib/c28x_vcrc_library_fpu32.lib"
+%}
+%else if(instance.fpuType == "FPU64")
+%{
+-l"/libraries/dsp/VCU/c28/lib/c28x_vcrc_library_fpu64.lib"
+%}

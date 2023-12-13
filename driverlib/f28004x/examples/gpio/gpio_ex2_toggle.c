@@ -8,7 +8,11 @@
 //! <h1> Device GPIO Toggle </h1>
 //!
 //! Configures the device GPIO through the sysconfig file. The GPIO pin is 
-//! toggled in the infinit loop.
+//! toggled in the infinite loop.
+//! In order to migrate the project within syscfg to any device, 
+//! click the swtich button under the device view and select your   
+//! corresponding device to migrate, saving the project will 
+//! auto-migrate your project settings.
 //
 //#############################################################################
 //

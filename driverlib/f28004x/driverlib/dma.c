@@ -83,6 +83,8 @@ void DMA_configBurst(uint32_t base, uint16_t size, int16_t srcStep,
     //
     ASSERT(DMA_isBaseValid(base));
     ASSERT((size >= 1U) && (size <= 32U));
+    ASSERT(((srcStep >= -4096) && (srcStep <= 4095)) &&
+           ((destStep >= -4096) && (destStep <= 4095)));
 
     EALLOW;
 
@@ -109,6 +111,8 @@ void DMA_configTransfer(uint32_t base, uint32_t transferSize, int16_t srcStep,
     //
     ASSERT(DMA_isBaseValid(base));
     ASSERT(transferSize <= 0x10000U);
+    ASSERT(((srcStep >= -4096) && (srcStep <= 4095)) &&
+           ((destStep >= -4096) && (destStep <= 4095)));
 
     EALLOW;
 
@@ -135,6 +139,8 @@ void DMA_configWrap(uint32_t base, uint32_t srcWrapSize, int16_t srcStep,
     //
     ASSERT(DMA_isBaseValid(base));
     ASSERT((srcWrapSize <= 0x10000U) || (destWrapSize <= 0x10000U));
+    ASSERT(((srcStep >= -4096) && (srcStep <= 4095)) &&
+           ((destStep >= -4096) && (destStep <= 4095)));
 
     EALLOW;
 
@@ -294,6 +300,12 @@ void DMA_configChannel(uint32_t base, const DMA_ConfigParams *transfParams)
     // Check the arguments.
     //
     ASSERT(DMA_isBaseValid(base));
+    ASSERT(((transfParams->configSize == DMA_CFG_SIZE_16BIT) ||
+            (transfParams->configSize == DMA_CFG_SIZE_32BIT)) &&
+           ((transfParams->transferMode == DMA_CFG_ONESHOT_DISABLE) ||
+            (transfParams->transferMode == DMA_CFG_ONESHOT_ENABLE)) &&
+           ((transfParams->reinitMode == DMA_CFG_CONTINUOUS_DISABLE) ||
+            (transfParams->reinitMode == DMA_CFG_CONTINUOUS_ENABLE)));
 
     //
     // Configure DMA Channel

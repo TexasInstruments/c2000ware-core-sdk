@@ -672,7 +672,7 @@ struct SECTSTAT3_BITS {                 // bits description
     Uint16 rsvd2:2;                     // 3:2 Reserved
     Uint16 rsvd3:2;                     // 5:4 Reserved
     Uint16 rsvd4:2;                     // 7:6 Reserved
-    Uint16 STATUS_SECT39_22:2;          // 9:8 Zone Status flash Bank 0 Sectors 39-22
+    Uint16 STATUS_SECT39_32:2;          // 9:8 Zone Status flash Bank 0 Sectors 39-32
     Uint16 STATUS_SECT47_40:2;          // 11:10 Zone Status flash Bank 0 Sectors 47-40
     Uint16 STATUS_SECT55_48:2;          // 13:12 Zone Status flash Bank 0 Sectors 55-48
     Uint16 STATUS_SECT63_56:2;          // 15:14 Zone Status flash Bank 0 Sectors 63-56

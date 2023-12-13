@@ -149,6 +149,11 @@ if (["F280013x","F280015x"].includes(Common.getDeviceName())){
     pinMuxReq = Pinmux.gpioWithPeripheralPinmuxRequirements;
 }
 
+if (["F28P55x"].includes(Common.getDeviceName())){
+    if (!["100PZ","128PDT"].includes(Common.getDevicePackage()))
+    pinMuxReq = Pinmux.gpioWithPeripheralPinmuxRequirements;
+}
+
 /*
  *  ======== filterHardware ========
  *  Control RX, TX Pin usage by the user specified dataDirection.

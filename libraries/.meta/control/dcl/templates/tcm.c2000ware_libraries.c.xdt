@@ -1,0 +1,64 @@
+%%{
+var mod                  = system.modules['/libraries/control/dcl/tcm.js'];
+%%}
+% if (mod != null)
+%{
+//
+// DCL TCM
+//
+% for (var inst of mod.$instances)
+%{
+    % var fdlogName = inst["fdlogName"]; // create the FDLOG object
+    % var arrName = inst["arrName"]; // create the array object
+    % var linkerVal = inst["linkerVal"]; // create the linkerVal
+    % if(arrName==""){arrName=(inst.$name+"_arr");}
+    % if(fdlogName==""){fdlogName=(inst.$name+"_fdlog");}
+    % if(linkerVal==""){linkerVal=(inst.$name+"_DataLogSection");}
+//
+// `inst.$name` variables
+//
+% if (inst["linkerEn"]==true)
+% {
+#pragma DATA_SECTION(`arrName`, "`linkerVal`")
+% }
+TCM `inst.$name` = TCM_DEFAULTS;
+FDLOG `fdlogName` = FDLOG_DEFAULTS;
+% // only create the array if the user requests it
+% if (inst.arrEn==true)
+% {
+float32_t `arrName`[`inst["totSize"]`];
+% }
+%}
+% for (var inst of mod.$instances)
+%{
+    % // create the FDLOG object
+    % var fdlogName = inst["fdlogName"];
+    % // create the array object
+    % var arrName = inst["arrName"];
+    % if(arrName==""){arrName=(inst.$name+"_arr");}
+    % if(fdlogName==""){fdlogName=(inst.$name+"_fdlog");}
+void `inst.$name`_init(){
+    //
+    // `inst.$name` settings
+    //
+    DCL_initTCM(
+        &`inst.$name`,
+        `fdlogName`.fptr,
+        `inst["totSize"]`,
+        `inst["lead"]`,
+        `inst["trigMin"]`,
+        `inst["trigMax"]`
+    );
+    % if (inst["armTCM"]==true)
+    % {
+    DCL_armTCM(&`inst.$name`);
+    % }
+}
+%}
+void `mod.c2000wareLibraryName`_init(){
+    % for (var inst of mod.$instances)
+    %{
+    `inst.$name`_init();
+    %}
+}
+%}

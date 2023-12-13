@@ -196,6 +196,10 @@ void main(void)
     //
     initEPWMGPIO();
 
+    //
+    // Enable internal reference on ADCs
+    //
+    ADC_setVREF(ADCA_BASE, ADC_REFERENCE_INTERNAL, ADC_REFERENCE_3_3V);
 
     //
     // Configure the ADC and power it up
@@ -228,7 +232,6 @@ void main(void)
     // Configure ADCEVTx as direct trip signal for ePWM3
     //
     configureDirectTripSignal(EPWM3_BASE);
-
     //
     // Setup the ADC for ADCAINT1 triggered conversions on channel 2
     //
@@ -606,7 +609,7 @@ void configureADCSOC(uint32_t adcBase, uint16_t channel)
     //
     // Configure source as EOC1, clear & enable the interrupt
     //
-    ADC_setInterruptSource(adcBase, ADC_INT_NUMBER1, ADC_SOC_NUMBER0);
+    ADC_setInterruptSource(adcBase, ADC_INT_NUMBER1, ADC_INT_TRIGGER_EOC0);
     ADC_clearInterruptStatus(adcBase, ADC_INT_NUMBER1);
     ADC_enableInterrupt(adcBase, ADC_INT_NUMBER1);
 }

@@ -33,6 +33,16 @@ void `instance.$name`_init(){
 	//
 	CAN_enableTestMode(`instance.$name`_BASE, `instance.loopbackMode`);
 		%}
+		% if (instance.enableAutoBusOn){
+	//
+	// Enable CAN Auto-Bus-On
+	//
+	CAN_enableAutoBusOn(`instance.$name`_BASE);
+	//
+	// Set Auto-Bus-On Timer
+	//
+	CAN_setAutoBusOnTime(`instance.$name`_BASE, `instance.AutoBusOnTimer`);
+		%}
 		% if (instance.enableInterrupt){
 	//
 	// Enable CAN Interrupts

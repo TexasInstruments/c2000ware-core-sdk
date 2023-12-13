@@ -204,10 +204,10 @@ setup1GPIO(void)
     //
     // Enable SPI-A on GPIO16 - GPIO19
     //
-    GPIO_setPadConfig(16, GPIO_PIN_TYPE_PULLUP);    // Pullup GPIO16 (SPISIMOA)
-    GPIO_setPadConfig(17, GPIO_PIN_TYPE_PULLUP);    // Pullup GPIO17 (SPIS0MIA)
+    GPIO_setPadConfig(16, GPIO_PIN_TYPE_PULLUP);    // Pullup GPIO16 (SPIPICOA)
+    GPIO_setPadConfig(17, GPIO_PIN_TYPE_PULLUP);    // Pullup GPIO17 (SPIPOCIA)
     GPIO_setPadConfig(18, GPIO_PIN_TYPE_PULLUP);    // Pullup GPIO18 (SPICLKA)
-    GPIO_setPadConfig(19, GPIO_PIN_TYPE_PULLUP);    // Pullup GPIO19 (SPISTEA)
+    GPIO_setPadConfig(19, GPIO_PIN_TYPE_PULLUP);    // Pullup GPIO19 (SPIPTEA)
     GPIO_setQualificationMode(16, GPIO_QUAL_ASYNC); // asynch input
     GPIO_setQualificationMode(17, GPIO_QUAL_ASYNC); // asynch input
     GPIO_setQualificationMode(18, GPIO_QUAL_ASYNC); // asynch input
@@ -398,10 +398,10 @@ setup2GPIO(void)
     //
     // Enable SPI-A on GPIO16 - GPIO19
     //
-    GPIO_setPadConfig(16, GPIO_PIN_TYPE_PULLUP);    // Pullup on GPIO16 (SPISIMOA)
-    GPIO_setPadConfig(17, GPIO_PIN_TYPE_PULLUP);    // Pullup on GPIO17 (SPIS0MIA)
+    GPIO_setPadConfig(16, GPIO_PIN_TYPE_PULLUP);    // Pullup on GPIO16 (SPIPICOA)
+    GPIO_setPadConfig(17, GPIO_PIN_TYPE_PULLUP);    // Pullup on GPIO17 (SPIPOCIA)
     GPIO_setPadConfig(18, GPIO_PIN_TYPE_PULLUP);    // Pullup on GPIO18 (SPICLKA)
-    GPIO_setPadConfig(19, GPIO_PIN_TYPE_PULLUP);    // Pullup on GPIO19 (SPISTEA)
+    GPIO_setPadConfig(19, GPIO_PIN_TYPE_PULLUP);    // Pullup on GPIO19 (SPIPTEA)
     GPIO_setQualificationMode(16, GPIO_QUAL_ASYNC); // asynch input
     GPIO_setQualificationMode(17, GPIO_QUAL_ASYNC); // asynch input
     GPIO_setQualificationMode(18, GPIO_QUAL_ASYNC); // asynch input

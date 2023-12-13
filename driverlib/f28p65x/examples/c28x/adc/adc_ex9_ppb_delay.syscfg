@@ -4,6 +4,7 @@
  */
 const adc     = scripting.addModule("/driverlib/adc.js", {}, false);
 const adc1    = adc.addInstance();
+const asysctl = scripting.addModule("/driverlib/asysctl.js");
 
 /**
  * Write custom configuration values to the imported modules.
@@ -40,3 +41,5 @@ adc1.adcInt1.interruptHandler = "adcA1ISR";
 adc1.adcInt2.interruptHandler = "adcA2ISR";
 adc1.adcInt2.enableInterrupt  = true;
 
+asysctl.analogReference        = "INTERNAL";
+asysctl.analogReferenceVoltage = "1P65";

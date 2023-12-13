@@ -455,7 +455,7 @@ staticConfig.push(
 /* For SYS_ERR interrupt shared across modules */
 var sharedModuleInstances = undefined
 
-if(["F2838x", "F280013x", "F280015x", "F28P65x"].includes(system.deviceData.deviceId))
+if(["F2838x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(system.deviceData.deviceId))
 {
     sharedModuleInstances = function (inst) {
         if (inst.registerInterrupts)
@@ -550,7 +550,7 @@ var memcfgModule = {
         moduleInstances: (inst) => {
             if (inst.registerInterrupts)
             {
-                if(!["F2838x", "F280013x", "F280015x", "F28P65x"].includes(system.deviceData.deviceId))
+                if(!["F2838x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(system.deviceData.deviceId))
                 {
                     return [
                         {

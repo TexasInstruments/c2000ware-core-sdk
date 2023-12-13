@@ -4,7 +4,7 @@
 % var nameOfPeripheral = module.peripheralName;
 % var device_driverlib_peripheral = system.getScript("/driverlib/device_driverlib_peripherals/" + Common.getDeviceName().toLowerCase() + "_adc.js");
 %%{
-if((["F28002x", "F28003x", "F280013x", "F280015x", "F28004x", "F28P65x"].includes(Common.getDeviceName()))&&(Common.isContextCPU1())){
+if((["F28002x", "F28003x", "F280013x", "F280015x", "F28004x", "F28P65x", "F28P55x"].includes(Common.getDeviceName()))&&(Common.isContextCPU1())){
 	var staticModule = system.modules['/driverlib/asysctl.js']
 	var stat = staticModule.$static
 }
@@ -34,7 +34,7 @@ void `nameOfPeripheral`_init(){
 %     let instancePinmux = instance[nameOfModule];
 void `instance.$name`_init(){
 % 	// delay depends on analog reference
-% 		if((["F28002x", "F28003x", "F280013x", "F280015x", "F28004x", "F28P65x"].includes(Common.getDeviceName()))&&(Common.isContextCPU1())){
+% 		if((["F28002x", "F28003x", "F280013x", "F280015x", "F28004x", "F28P65x", "F28P55x"].includes(Common.getDeviceName()))&&(Common.isContextCPU1())){
 % 			if(stat.analogReference == "EXTERNAL"){
 % 				refMode = "ADC_REFERENCE_EXTERNAL"
 % 			}
@@ -94,7 +94,7 @@ void `instance.$name`_init(){
 	//
 	// delay depends on analog reference
 	//
-		if((["F28002x", "F28003x", "F280013x", "F280015x", "F28004x", "F28P65x"].includes(Common.getDeviceName()))&&(Common.isContextCPU1())){
+		if((["F28002x", "F28003x", "F280013x", "F280015x", "F28004x", "F28P65x", "F28P55x"].includes(Common.getDeviceName()))&&(Common.isContextCPU1())){
 			if(stat.analogReference == "EXTERNAL"){
 			varDelay = 500
 			}
@@ -107,7 +107,7 @@ void `instance.$name`_init(){
 	// Delay for 1ms to allow ADC time to power up
 	//
 	DEVICE_DELAY_US(`varDelay`);
-	%if(["F28P65x"].includes(Common.getDeviceName())){
+	%if(["F28P65x", "F28P55x"].includes(Common.getDeviceName())){
 		% if(instance.enableTDMA){
 	//
 	// Enable alternate timings for DMA trigger
@@ -164,7 +164,7 @@ void `instance.$name`_init(){
 	//
 	// Start of Conversion `socNumber` Configuration
 	//
-				% if(["F28P65x"].includes(Common.getDeviceName())){
+				% if(["F28P65x", "F28P55x"].includes(Common.getDeviceName())){
 					% if((instance.enableEXTMUX) && ((instance.adcNumExtPins)!="0")){
 	//
 	// Configures the external channel mux for an ADC SOC.
@@ -321,7 +321,7 @@ void `instance.$name`_init(){
 	// 		Clear PPB Event Flags	: Disabled
 					% }
 				% }
-				% if(["F28P65x"].includes(system.deviceData.deviceId)){
+				% if(["F28P65x", "F28P55x"].includes(system.deviceData.deviceId)){
 	// 		Accumulation Limit		: `instance["ppb"+ppbNumber+"AccumulationLimit"]`
 	// 		SyncInput Source		: `instance["ppb"+ppbNumber+"SyncInput"]`
 	// 		Comparator Source		: `instance["ppb"+ppbNumber+"CompSource"]`
@@ -437,7 +437,7 @@ void `instance.$name`_init(){
 	ADC_disablePPBEventCBCClear(`baseName`, ADC_PPB_NUMBER`ppbNumber`);
 					% }
 				% }
-				% if(["F28P65x"].includes(Common.getDeviceName())){
+				% if(["F28P65x", "F28P55x"].includes(Common.getDeviceName())){
 	ADC_setPPBCountLimit(`baseName`, ADC_PPB_NUMBER`ppbNumber`,`instance["ppb"+ppbNumber+"AccumulationLimit"]`);
 	ADC_selectPPBSyncInput(`baseName`, ADC_PPB_NUMBER`ppbNumber`,`instance["ppb"+ppbNumber+"SyncInput"]`);
 	ADC_selectPPBCompareSource(`baseName`, ADC_PPB_NUMBER`ppbNumber`,`instance["ppb"+ppbNumber+"CompSource"]`);

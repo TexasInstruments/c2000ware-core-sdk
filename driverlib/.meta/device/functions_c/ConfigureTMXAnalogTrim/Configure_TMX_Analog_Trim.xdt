@@ -1,0 +1,25 @@
+%%{
+let 	device_common   					= system.getScript("/driverlib/.meta/device/functions_c/device_common.js");
+let 	Common   						= system.getScript("/driverlib/Common.js");
+var	Configure_TMX_Analog_Trim_ADCA_to_ADCD			= system.getTemplate('./Configure_TMX_Analog_Trim_ADCA_to_ADCD.xdt');
+var	Configure_TMX_Analog_Trim_ADCA_to_ADCD_Type2		= system.getTemplate('./Configure_TMX_Analog_Trim_ADCA_to_ADCD_Type2.xdt');
+var	Configure_TMX_Analog_Trim_ADCA_ADCB_ADCD		= system.getTemplate('./Configure_TMX_Analog_Trim_ADCA_ADCB_ADCD.xdt');
+
+const 	device  						= device_common.device;
+const	Configure_TMX_Analog_Trim_Type0				= device_common.Configure_TMX_Analog_Trim_Type0;
+const	Configure_TMX_Analog_Trim_Type1				= device_common.Configure_TMX_Analog_Trim_Type1;
+const	Configure_TMX_Analog_Trim_Type2				= device_common.Configure_TMX_Analog_Trim_Type2;
+%%}
+% if(Configure_TMX_Analog_Trim_Type0.includes(device) && Common.isContextCPU1())
+%{
+`Configure_TMX_Analog_Trim_ADCA_ADCB_ADCD()`
+%}
+% if(Configure_TMX_Analog_Trim_Type1.includes(device))
+%{
+`Configure_TMX_Analog_Trim_ADCA_to_ADCD()`
+%}
+% if(Configure_TMX_Analog_Trim_Type2.includes(device) && Common.isContextCPU1())
+%{
+`Configure_TMX_Analog_Trim_ADCA_to_ADCD_Type2()`
+%}
+%else{}

@@ -1,0 +1,16 @@
+% var moduleName = "sfo"
+% var libraryFolder = "sfo"
+% var module = system.modules['/libraries/calibration/hrpwm' + '/' + moduleName + '.js'];
+%if (module != null)
+%{
+#include <SFO_V8.h>
+
+extern int MEP_ScaleFactor;
+extern volatile uint32_t ePWM[];
+
+% for(var i = 0; i < module.$instances.length; i++) {
+    % var instance = module.$instances[i];      
+% }
+void `instance.$name`_runtime();
+void `instance.$name`_init();
+%}

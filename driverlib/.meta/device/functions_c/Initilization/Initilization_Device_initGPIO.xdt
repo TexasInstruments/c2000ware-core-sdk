@@ -1,0 +1,86 @@
+% let Common = system.getScript("/driverlib/Common.js");
+% var Clock_tree_template = system.getTemplate("/driverlib/device/functions_c/Clocktree/Device_clocktree_c.xdt");
+% var nameOfFlashModule = "flash";
+% var flashModule = system.modules['/driverlib/' + nameOfFlashModule + '.js'];
+//*****************************************************************************
+//
+// Function to initialize the device. Primarily initializes system control to a
+// known state by disabling the watchdog, setting up the SYSCLKOUT frequency,
+// and enabling the clocks to the peripherals.
+//
+//*****************************************************************************
+void Device_init(void)
+{
+    //
+    // Disable the watchdog
+    //
+    SysCtl_disableWatchdog();
+#ifdef CMDTOOL
+    CMD_init();
+#endif
+
+#ifdef _FLASH
+#ifndef CMDTOOL
+    //
+    // Copy time critical code and flash setup code to RAM. This includes the
+    // following functions: InitFlash();
+    //
+    // The RamfuncsLoadStart, RamfuncsLoadSize, and RamfuncsRunStart symbols
+    // are created by the linker. Refer to the device .cmd file.
+    //
+    memcpy(&RamfuncsRunStart, &RamfuncsLoadStart, (size_t)&RamfuncsLoadSize);
+#endif
+%if(!flashModule){
+    //
+    // Call Flash Initialization to setup flash waitstates. This function must
+    // reside in RAM.
+    //
+    Flash_initModule(FLASH0CTRL_BASE, FLASH0ECC_BASE, DEVICE_FLASH_WAITSTATES);
+%}
+#endif
+%if(flashModule){
+    //
+    // Call Flash Initialization to setup flash waitstates. This function must
+    // reside in RAM.
+    //
+    FLASH_init();
+%}
+#ifdef CPU1
+    //
+    // Verify the crystal frequency.
+    // Note: This check can be removed if you are not using XTAL as the PLL
+    // source
+    //
+    if( ((DEVICE_SETCLOCK_CFG & SYSCTL_OSCSRC_M) == SYSCTL_OSCSRC_XTAL) ||
+        ((DEVICE_SETCLOCK_CFG & SYSCTL_OSCSRC_M) == SYSCTL_OSCSRC_XTAL_SE))
+    {
+        if(!Device_verifyXTAL(DEVICE_OSCSRC_FREQ / 1000000))
+        {
+            //
+            // The actual XTAL frequency does not match DEVICE_OSCSRC_FREQ!!
+            // Please check the XTAL frequency used.
+            //
+            // By default, the Device_init function assumes 25MHz XTAL.
+            // If a 20MHz crystal is used, please add a predefined symbol
+            // "USE_20MHZ_XTAL" in your CCS project.
+            // If a different XTAL is used, please update the DEVICE_SETCLOCK_CFG
+            // macro accordingly.
+            //
+            // Note that the latest F2838x controlCARDs (Rev.B and later) have been
+            // updated to use 25MHz XTAL by default. If you have an older 20MHz XTAL
+            // controlCARD (E1, E2, or Rev.A), refer to the controlCARD
+            // documentation on steps to reconfigure the controlCARD from 20MHz to
+            // 25MHz.
+            //
+            ESTOP0;
+            while(1);
+        }
+    }
+    
+%if (!Common.isContextCPU2()){
+`Clock_tree_template()`
+%}
+#endif
+
+    Device_initGPIO();  
+}

@@ -86,6 +86,7 @@
 #include "spi.h"
 #include "sysctl.h"
 #include "uart.h"
+#include "usb.h"
 #include "version.h"
 #include "xbar.h"
 

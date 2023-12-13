@@ -1,0 +1,15 @@
+%%{
+    let inst      = args[0];
+    let tileName  = args[1];
+    let inputs    = args[2];
+    let Common    = system.getScript("/utilities/clb_tool/clb_syscfg/source/Common.js");
+%%}
+
+        `tileName`("`tileName`"),
+
+%    if (inst.stage2_gate_mux.includes("SW")) {
+        `tileName`_gate_customWave("`tileName`_gate_customWave", "`inst.custom_sw_gate_source_output`"),
+%    }
+%    if (inst.stage3_release_mux.includes("SW")) {
+        `tileName`_release_customWave("`tileName`_release_customWave", "`inst.custom_sw_release_source_output`"),
+%    }

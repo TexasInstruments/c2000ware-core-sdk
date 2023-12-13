@@ -169,17 +169,17 @@ This tool functions by taking the register memory you're inputting (.dat) and se
 To ensure that your .dat file is correctly exported, please follow these steps (information shown is for EPWM1 but works for all EPWMs):
 *   1) Load your codebase onto your MCU in debug mode
 
-![an offline image](../../driverlib/.meta/memory_mapping/docs/stage_1_mm_debug_view.png "Memory File Export")
+![an offline image](${Common.getC2000WareRelativePath()}/driverlib/.meta/memory_mapping/docs/stage_1_mm_debug_view.png "Memory File Export")
 
 *   2) Run until your peripheral setup is complete and the sync clock is enabled
 
-![an offline image](../../driverlib/.meta/memory_mapping/docs/stage_2_mm_debug_view.png "Memory File Export")
+![an offline image](${Common.getC2000WareRelativePath()}/driverlib/.meta/memory_mapping/docs/stage_2_mm_debug_view.png "Memory File Export")
 
 *   3) Save the register memory (using 'Memory Browser' or via 'Tools') for your peripheral in 16-bit TI Style format.
 
-![an offline image](../../driverlib/.meta/memory_mapping/docs/stage_4_mm_debug_view.png "Save Memory View")
+![an offline image](${Common.getC2000WareRelativePath()}/driverlib/.meta/memory_mapping/docs/stage_4_mm_debug_view.png "Save Memory View")
 
-![an offline image](../../driverlib/.meta/memory_mapping/docs/stage_3_mm_debug_view.png "Memory File Export")
+![an offline image](${Common.getC2000WareRelativePath()}/driverlib/.meta/memory_mapping/docs/stage_3_mm_debug_view.png "Memory File Export")
 
 *   4) Once these steps have been completed and your .dat file has been generated, load your .dat via 'EPWM Memory File'
 
@@ -228,7 +228,7 @@ let config = [
                 onLaunch: (inst) => {
                     //console.log(inst.epwmMemoryFileBrowse)
                     return ({
-                        command: "../driverlib/.meta/epwm/epwmMemory.bat",
+                        command: Common.getC2000WareRelativePath() + "/driverlib/.meta/epwm/epwmMemory.bat",
                         args: [inst.epwmMemoryFileBrowse, "$comFile"],
                         initialData: ""
                     });

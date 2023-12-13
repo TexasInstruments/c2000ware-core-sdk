@@ -671,10 +671,10 @@ SPI_getFIFOInterruptLevel(uint32_t base, SPI_TxFIFOLevel *txLevel,
     //
     // Extract the transmit and receive FIFO levels.
     //
-    *txLevel = (SPI_TxFIFOLevel)(HWREGH(base + SPI_O_FFTX) &
-                                 SPI_FFTX_TXFFIL_M);
-    *rxLevel = (SPI_RxFIFOLevel)(HWREGH(base + SPI_O_FFRX) &
-                                 SPI_FFRX_RXFFIL_M);
+    *txLevel = (SPI_TxFIFOLevel)((uint16_t)(HWREGH(base + SPI_O_FFTX) &
+                                            SPI_FFTX_TXFFIL_M));
+    *rxLevel = (SPI_RxFIFOLevel)((uint16_t)(HWREGH(base + SPI_O_FFRX) &
+                                            SPI_FFRX_RXFFIL_M));
 }
 
 //*****************************************************************************
@@ -702,8 +702,8 @@ SPI_getTxFIFOStatus(uint32_t base)
     //
     // Get the current FIFO status
     //
-    return((SPI_TxFIFOLevel)((HWREGH(base + SPI_O_FFTX) & SPI_FFTX_TXFFST_M) >>
-                             SPI_FFTX_TXFFST_S));
+    return((SPI_TxFIFOLevel)((uint16_t)((HWREGH(base + SPI_O_FFTX) & SPI_FFTX_TXFFST_M) >>
+                                        SPI_FFTX_TXFFST_S)));
 }
 
 //*****************************************************************************
@@ -731,8 +731,8 @@ SPI_getRxFIFOStatus(uint32_t base)
     //
     // Get the current FIFO status
     //
-    return((SPI_RxFIFOLevel)((HWREGH(base + SPI_O_FFRX) & SPI_FFRX_RXFFST_M) >>
-                             SPI_FFRX_RXFFST_S));
+    return((SPI_RxFIFOLevel)((uint16_t)((HWREGH(base + SPI_O_FFRX) & SPI_FFRX_RXFFST_M) >>
+                                        SPI_FFRX_RXFFST_S)));
 }
 
 //*****************************************************************************

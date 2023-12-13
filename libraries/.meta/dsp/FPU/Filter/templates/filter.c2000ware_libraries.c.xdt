@@ -1,0 +1,131 @@
+%//Auto set phase function for CFFT64/RFFT64
+% let Common   = system.getScript("/driverlib/Common.js");
+% var currnetSDKProductPath = system.getProducts()[0].path
+% var sdkPath = system.utils.path.join(currnetSDKProductPath + "../../../")
+% sdkPath = sdkPath.replace(new RegExp('\\' + system.utils.path.sep, 'g'), '/')
+% 
+% var moduleName = "Filter"
+% var module = system.modules['/libraries/dsp/FPU/Filter' + '/' + moduleName + '.js'];
+%
+% var moduleNameFIR = "FIR"
+% var moduleFIR = system.modules['/libraries/dsp/FPU/Filter' + '/' + moduleNameFIR + '.js'];
+% var moduleNameIIR = "IIR"
+% var moduleIIR = system.modules['/libraries/dsp/FPU/Filter' + '/' + moduleNameIIR + '.js'];
+%
+void FILTER_init()
+{
+%if(moduleFIR != null)
+%{
+% var instancesFIR = moduleFIR.$instances;
+%for(let i = 0; i < instancesFIR.length; i++)
+%{
+    `instancesFIR[i].$name`_init();
+%}
+%}
+%if(moduleIIR != null)
+%{
+% var instancesIIR = moduleIIR.$instances;
+%for(let i = 0; i < instancesIIR.length; i++)
+%{
+    `instancesIIR[i].$name`_init();
+%}
+%}
+}
+
+%if(module != null)
+%{
+% var instance = module.$instances[0];
+%
+%if(moduleFIR != null)
+%{
+% var instancesFIR = moduleFIR.$instances;
+%
+%for(let i = 0; i < instancesFIR.length; i++)
+%{
+%if(instance.fpuType == "FPU32")
+%{
+FIR_f32 `instancesFIR[i].$name`_obj;
+FIR_f32_Handle `instancesFIR[i].$name`_handle = &`instancesFIR[i].$name`_obj;
+
+void `instancesFIR[i].$name`_init()
+{
+    FIR_f32_setCoefficientsPtr(`instancesFIR[i].$name`_handle, `instancesFIR[i].coeffPtr`);
+    FIR_f32_setDelayLinePtr(`instancesFIR[i].$name`_handle, `instancesFIR[i].dBuffPtr`);
+	FIR_f32_setOrder(`instancesFIR[i].$name`_handle, `instancesFIR[i].$name`_FIR_ORDER);
+	FIR_f32_setInitFunction(`instancesFIR[i].$name`_handle, (v_pfn_v)FIR_f32_init);
+	FIR_f32_setCalcFunction(`instancesFIR[i].$name`_handle, (v_pfn_v)FIR_f32_calc);
+
+    `instancesFIR[i].$name`_handle->init(`instancesFIR[i].$name`_handle);
+}
+%}
+%else if(instance.fpuType == "FPU64")
+%{
+FIR_f64 `instancesFIR[i].$name`_obj;
+FIR_f64_Handle `instancesFIR[i].$name`_handle = &`instancesFIR[i].$name`_obj;
+
+void `instancesFIR[i].$name`_init()
+{
+    FIR_f64_setCoefficientsPtr(`instancesFIR[i].$name`_handle, `instancesFIR[i].coeffPtr`);
+    FIR_f64_setDelayLinePtr(`instancesFIR[i].$name`_handle, `instancesFIR[i].dBuffPtr`);
+    FIR_f64_setInputPtr(`instancesFIR[i].$name`_handle, `instancesFIR[i].inPtr`);
+    FIR_f64_setOutputPtr(`instancesFIR[i].$name`_handle, `instancesFIR[i].outPtr`);
+    FIR_f64_setOrder(`instancesFIR[i].$name`_handle, `instancesFIR[i].$name`_FIR_ORDER);
+    FIR_f64_setInitFunction(`instancesFIR[i].$name`_handle, (v_pfn_v)FIR_f64_init);
+    FIR_f64_setCalcFunction(`instancesFIR[i].$name`_handle, (v_pfn_v)FIR_f64_calc);
+
+    `instancesFIR[i].$name`_handle->init(`instancesFIR[i].$name`_handle);
+}
+
+%}
+%}
+%}
+%if(moduleIIR != null)
+%{
+% var instancesIIR = moduleIIR.$instances;
+%
+%for(let i = 0; i < instancesIIR.length; i++)
+%{
+%if(instance.fpuType == "FPU32")
+%{
+IIR_f32  `instancesIIR[i].$name`_obj;
+IIR_f32_Handle `instancesIIR[i].$name`_handle = &`instancesIIR[i].$name`_obj;
+
+void `instancesIIR[i].$name`_init()
+{
+    IIR_f32_setCoefficientsAPtr(`instancesIIR[i].$name`_handle, `instancesIIR[i].coeffPtrA`);
+    IIR_f32_setCoefficientsBPtr(`instancesIIR[i].$name`_handle, `instancesIIR[i].coeffPtrB`);
+	IIR_f32_setDelayLinePtr(`instancesIIR[i].$name`_handle, `instancesIIR[i].dBuffPtr`);
+	IIR_f32_setInputPtr(`instancesIIR[i].$name`_handle, `instancesIIR[i].inPtr`);
+    IIR_f32_setOutputPtr(`instancesIIR[i].$name`_handle, `instancesIIR[i].outPtr`);
+    IIR_f32_setScalePtr(`instancesIIR[i].$name`_handle, `instancesIIR[i].scalePtr`);
+	IIR_f32_setOrder(`instancesIIR[i].$name`_handle, `instancesIIR[i].$name`_IIR_ORDER);
+	IIR_f32_setInitFunction(`instancesIIR[i].$name`_handle, (v_pfn_v)IIR_f32_init);
+	IIR_f32_setCalcFunction(`instancesIIR[i].$name`_handle, (v_pfn_v)IIR_f32_calc);
+
+    `instancesIIR[i].$name`_handle->init(`instancesIIR[i].$name`_handle);
+}
+
+%}
+%else if(instance.fpuType == "FPU64")
+%{
+IIR_f64  `instancesIIR[i].$name`_obj;
+IIR_f64_Handle `instancesIIR[i].$name`_handle = &`instancesIIR[i].$name`_obj;
+
+void `instancesIIR[i].$name`_init()
+{
+    IIR_f64_setCoefficientsAPtr(`instancesIIR[i].$name`_handle, `instancesIIR[i].coeffPtrA`);
+    IIR_f64_setCoefficientsBPtr(`instancesIIR[i].$name`_handle, `instancesIIR[i].coeffPtrB`);
+	IIR_f64_setDelayLinePtr(`instancesIIR[i].$name`_handle, `instancesIIR[i].dBuffPtr`);
+	IIR_f64_setInputPtr(`instancesIIR[i].$name`_handle, `instancesIIR[i].inPtr`);
+    IIR_f64_setOutputPtr(`instancesIIR[i].$name`_handle, `instancesIIR[i].outPtr`);
+    IIR_f64_setScalePtr(`instancesIIR[i].$name`_handle, `instancesIIR[i].scalePtr`);
+	IIR_f64_setOrder(`instancesIIR[i].$name`_handle, `instancesIIR[i].$name`_IIR_ORDER);
+	IIR_f64_setInitFunction(`instancesIIR[i].$name`_handle, (v_pfn_v)IIR_f64_init);
+	IIR_f64_setCalcFunction(`instancesIIR[i].$name`_handle, (v_pfn_v)IIR_f64_calc);
+
+    `instancesIIR[i].$name`_handle->init(`instancesIIR[i].$name`_handle);
+}
+%}
+%}
+%}
+%}

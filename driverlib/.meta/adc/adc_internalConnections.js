@@ -71,13 +71,21 @@ let ADC_internalSignals = {
         D9: "VREFLOD",
     },
     F28P65x: {
-        A8: "VREFLOA",
-        A9: "VREFLOA",
+        A18: "VREFLOA",
+        C18: "VREFLOA",
         A13: "TempSensor",
-        B8: "VREFLOB",
-        B9: "VREFLOB",
-        C8: "VREFLOC",
-        C9: "VREFLOC",
+        A19: "VREFLOB",
+        C19: "VREFLOB",
+        A20: "VREFLOC",
+        C20: "VREFLOC",
+    },
+    F28P55x: {
+        A13: "VREFLO",
+        B13: "VREFLO",
+        C12: "TempSensor",
+        C13: "VREFLO",
+        D13: "VREFLO",
+        E13: "VREFLO",
     }
 }
 

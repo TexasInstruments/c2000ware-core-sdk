@@ -1,0 +1,30 @@
+<projectSpec>
+  <project
+        name="2838x_pmbus_i2c_eeprom"
+        device="TMS320F28388D"
+        cgtVersion="22.6.0.LTS"
+        products="c2000ware_software_package"
+        outputFormat="ELF"
+        launchWizard="False"
+        linkerCommandFile=""
+        >
+    <configuration name="CPU1_RAM" compilerBuildOptions="--opt_level=2 -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT}  -ml -mt --define=DEBUG --define=PMBUS_F2838x --define=CPU1 -v28 --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu0 --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 --define RAM" />
+    <configuration name="CPU1_FLASH" compilerBuildOptions="--opt_level=2 -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT}  -ml -mt --define=DEBUG --define=PMBUS_F2838x --define=CPU1 --define=_FLASH -v28 --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu0 --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 " />
+   
+    <pathVariable name="C2000WARE_DEVICE_SUPPORT_ROOT" path="../../../../../../device_support/f2838x/" scope="project" />
+    <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../../../../driverlib/f2838x/driverlib/" scope="project" />
+    
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/include/driverlib.h" targetDirectory="device" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/include/device.h" targetDirectory="device" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/source/device.c" targetDirectory="device" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/source/f2838x_codestartbranch.asm" targetDirectory="device" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/targetConfigs/TMS320F28388D.ccxml" targetDirectory="targetConfigs" applicableConfigurations="CPU1_RAM,CPU1_FLASH" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/cmd/2838x_RAM_lnk_cpu1.cmd" targetDirectory="" applicableConfigurations="CPU1_RAM" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/cmd/2838x_FLASH_lnk_cpu1.cmd" targetDirectory="" applicableConfigurations="CPU1_FLASH" />
+    <file action="link" path="C2000WARE_DLIB_ROOT/ccs/Debug/driverlib.lib" targetDirectory="" />
+    <file action="copy" path="C2000WARE_DLIB_ROOT" targetDirectory="device" excludeFromBuild="True"/>
+    <file action="copy" path="../common/source/pmbus_i2c_eeprom_example_main.c" targetDirectory="" />
+	<file action="copy" path="../common/source/pmbus_eeprom.c" targetDirectory="" />
+	<file action="copy" path="../common/include/pmbus_eeprom.h" targetDirectory="" />
+  </project>
+</projectSpec>

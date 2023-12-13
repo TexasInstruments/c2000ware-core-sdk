@@ -394,7 +394,7 @@ void FSI_performTxInitialization(uint32_t base, uint16_t prescalar)
     FSI_delayWait(prescalar);
     FSI_clearTxEvents(base, FSI_TX_EVTMASK);
     FSI_clearTxModuleReset(base, FSI_TX_MAIN_CORE_RESET);
-    FSI_delayWait(2U * prescalar);
+    FSI_delayWait(2UL * prescalar);
 }
 
 //*****************************************************************************
@@ -444,7 +444,7 @@ void FSI_executeTxFlushSequence(uint32_t base, uint16_t prescalar)
     // Inserting delay as recommended in TRM, It ensures that the transmit
     // module core sees sufficient TXCLK cycles before stopping FLUSH pattern.
     //
-    FSI_delayWait(2U * prescalar);
+    FSI_delayWait(2UL * prescalar);
 
     FSI_stopTxFlush(base);
 }

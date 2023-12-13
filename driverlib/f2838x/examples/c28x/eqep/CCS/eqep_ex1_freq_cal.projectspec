@@ -1,0 +1,45 @@
+<projectSpec>
+  <project
+        name="eqep_ex1_freq_cal"
+        device="TMS320F28388D"
+        cgtVersion="22.6.0.LTS"
+        products="sysconfig;c2000ware_software_package"
+        outputFormat="ELF"
+        launchWizard="False"
+        linkerCommandFile=""
+        enableSysConfigTool="true"
+        sysConfigBuildOptions="--product ${C2000WARE_ROOT}/.metadata/sdk.json --device F2838x --package 337bga --part F2838x_337bga"
+        postBuildStep="
+           echo &quot;========= Build of the CLB simulation has moved to the CLB Tool. Click the '?' icon by the _Generate CLB Simulation File_ enable for more details (located in the Global Parameters of the Tile Design SysConfig module) =============&quot;
+          ;if ${GENERATE_DIAGRAM} == 1  ${NODE_TOOL} &quot;${C2000WARE_ROOT}/utilities/clb_tool/clb_syscfg/dot_file_libraries/clbDotUtility.js&quot;  &quot;${C2000WARE_ROOT}/utilities/clb_tool/clb_syscfg/&quot; &quot;${BuildDirectory}/syscfg&quot; &quot;${BuildDirectory}/syscfg/clb.dot&quot;
+          ;if ${GENERATE_DIAGRAM} == 1  mkdir &quot;${BuildDirectory}/diagrams&quot;
+          ;if ${GENERATE_DIAGRAM} == 1  ${NODE_TOOL} &quot;${C2000WARE_ROOT}/driverlib/.meta/generate_diagrams.js&quot; &quot;${C2000WARE_ROOT}&quot; &quot;${BuildDirectory}/diagrams&quot; &quot;${BuildDirectory}/syscfg&quot;
+        "
+        >
+    <configuration name="CPU1_RAM" compilerBuildOptions=  "--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT}  -I${C2000WARE_IQMATH_ROOT}/c28/include -v28 -ml -mt --cla_support=cla2 --define=RAM --float_support=fpu64 --tmu_support=tmu0 --define=DEBUG --define=CPU1 --gen_func_subsections=on --diag_warning=225  --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 --define=RAM -i${C2000WARE_ROOT} -i${PROJECT_BUILD_DIR}/syscfg -lc2000ware_libraries.cmd.genlibs " />
+    <configuration name="CPU1_FLASH" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=_FLASH -I${C2000WARE_IQMATH_ROOT}/c28/include -v28 -ml -mt --cla_support=cla2 --float_support=fpu64 --tmu_support=tmu0 --define=DEBUG --define=CPU1 --gen_func_subsections=on --diag_warning=225  --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 --define=_FLASH -i${C2000WARE_ROOT} -i${PROJECT_BUILD_DIR}/syscfg -lc2000ware_libraries.cmd.genlibs " />
+
+    <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../../../../driverlib/f2838x/driverlib/" scope="project" />
+    <pathVariable name="C2000WARE_ROOT" path="../../../../../../" scope="project" />
+    <pathVariable name="CLB_SYSCFG_ROOT" path="../../../../../../utilities/clb_tool/clb_syscfg/" scope="project" />
+    <pathVariable name="SYSTEMC_INSTALL" path="../../../../../../utilities/clb_tool/clb_syscfg/systemc-2.3.3" scope="project" />
+    <pathVariable name="CLB_SIM_COMPILER" path="C:/TDM-GCC-64/bin" scope="project" />
+    <buildVariable name="GENERATE_DIAGRAM" value="0" scope="project" />
+    
+    <pathVariable name="C2000WARE_IQMATH_ROOT" path="../../../../../../libraries/math/IQmath/" scope="project" />
+    <file action="link" path="../../../../../../libraries/math/IQmath/c28/lib/IQmath_fpu32.lib" targetDirectory="" />
+    <file action="copy" path="../../../../../../device_support/f2838x/common/include/driverlib.h" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/f2838x/common/include/device.h" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/f2838x/common/source/device.c" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/f2838x/common/targetConfigs/TMS320F28388D.ccxml" targetDirectory="targetConfigs" />
+    <file action="copy" path="../../../../../../device_support/f2838x/common/cmd/2838x_RAM_IQMATH_lnk_cpu1.cmd" targetDirectory="" applicableConfigurations="CPU1_RAM" />
+    <file action="copy" path="../../../../../../device_support/f2838x/common/cmd/2838x_FLASH_IQMATH_lnk_cpu1.cmd" targetDirectory="" applicableConfigurations="CPU1_FLASH" />
+    <file action="copy" path="../../../../../../device_support/f2838x/common/source/f2838x_codestartbranch.asm" targetDirectory="device" />
+    <file action="link" path="../../../../../../driverlib/f2838x/driverlib/ccs/Debug/driverlib.lib" targetDirectory="" />
+    <file action="copy" path="../../../../../../driverlib/f2838x/driverlib/" targetDirectory="device" excludeFromBuild="True" />
+    <file action="copy" path="../eqep_ex1_freq_cal.c" targetDirectory=""/>
+    <file action="copy" path="../eqep_ex1_freq_cal.syscfg" targetDirectory=""/>
+    <file action="copy" path="../eqep_ex1_calculation.c" targetDirectory=""/>
+    <file action="copy" path="../eqep_ex1_calculation.h" targetDirectory=""/>
+  </project>
+</projectSpec>

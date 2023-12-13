@@ -1,0 +1,21 @@
+%%{
+let 	device_common   					= system.getScript("/driverlib/.meta/device/functions_h/device_common.js");
+let 	Common   						= system.getScript("/driverlib/Common.js");
+var	Error_Handling_Func_Type0				= system.getTemplate('./Error_Handling_Func_Type0.xdt');
+var	Error_Handling_Func_Type1				= system.getTemplate('./Error_Handling_Func_Type1.xdt');
+
+
+const 	multi_core 						= device_common.multi_core;
+const 	device  						= device_common.device;
+const	Error_Handling_Type0					= device_common.Error_Handling_Type0;
+const	Error_Handling_Type1					= device_common.Error_Handling_Type1;
+
+%%}
+% if(Error_Handling_Type0.includes(device))
+%{
+`Error_Handling_Func_Type0()`
+%}
+% if(Error_Handling_Type1.includes(device))
+%{
+`Error_Handling_Func_Type1()`
+%}

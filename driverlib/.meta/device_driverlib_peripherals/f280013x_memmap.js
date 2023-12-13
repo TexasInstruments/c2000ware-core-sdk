@@ -16,13 +16,17 @@ let DeviceMemoryMap = [
 	{ name: "EPWM6_BASE", displayName: "EPWM6", baseAddress: "0x00004500U" },
 	{ name: "EPWM7_BASE", displayName: "EPWM7", baseAddress: "0x00004600U" },
 	{ name: "EQEP1_BASE", displayName: "EQEP1", baseAddress: "0x00005100U" },
+	{ name: "EQEP2_BASE", displayName: "EQEP2", baseAddress: "0x00005140U" },
 	{ name: "ECAP1_BASE", displayName: "ECAP1", baseAddress: "0x00005200U" },
 	{ name: "ECAP2_BASE", displayName: "ECAP2", baseAddress: "0x00005240U" },
+	{ name: "ECAP3_BASE", displayName: "ECAP3", baseAddress: "0x00005280U" },
 	{ name: "CMPSS1_BASE", displayName: "CMPSS1", baseAddress: "0x00005500U" },
 	{ name: "CMPSSLITE2_BASE", displayName: "CMPSSLITE2", baseAddress: "0x00005540U" },
 	{ name: "CMPSSLITE3_BASE", displayName: "CMPSSLITE3", baseAddress: "0x00005580U" },
 	{ name: "CMPSSLITE4_BASE", displayName: "CMPSSLITE4", baseAddress: "0x000055C0U" },
 	{ name: "SPIA_BASE", displayName: "SPIA", baseAddress: "0x00006100U" },
+	{ name: "PMBUSA_BASE", displayName: "PMBUSA", baseAddress: "0x00006400U" },
+	{ name: "LINA_BASE", displayName: "LINA", baseAddress: "0x00006A00U" },
 	{ name: "WD_BASE", displayName: "WD", baseAddress: "0x00007000U" },
 	{ name: "NMI_BASE", displayName: "NMI", baseAddress: "0x00007060U" },
 	{ name: "XINT_BASE", displayName: "XINT", baseAddress: "0x00007070U" },
@@ -45,6 +49,12 @@ let DeviceMemoryMap = [
 	{ name: "LS1_RAM_BASE", displayName: "LS1 RAM", baseAddress: "0x0000A000U" },
 	{ name: "CANA_BASE", displayName: "CANA", baseAddress: "0x00048000U" },
 	{ name: "CANA_MSG_RAM_BASE", displayName: "CANA MSG RAM", baseAddress: "0x00049000U" },
+	{ name: "LCM_CPU1_BASE", displayName: "LCM CPU1", baseAddress: "0x0004C000U" },
+	{ name: "MCANA_DRIVER_BASE", displayName: "MCANA DRIVER", baseAddress: "0x00058000U" },
+	{ name: "MCANA_MSG_RAM_BASE", displayName: "MCANA MSG RAM", baseAddress: "0x00058000U" },
+	{ name: "MCANASS_BASE", displayName: "MCANASS", baseAddress: "0x0005C400U" },
+	{ name: "MCANA_BASE", displayName: "MCANA", baseAddress: "0x0005C600U" },
+	{ name: "MCANA_ERROR_BASE", displayName: "MCANA ERROR", baseAddress: "0x0005C800U" },
 	{ name: "DEVCFG_BASE", displayName: "DEVCFG", baseAddress: "0x0005D000U" },
 	{ name: "CLKCFG_BASE", displayName: "CLKCFG", baseAddress: "0x0005D200U" },
 	{ name: "CPUSYS_BASE", displayName: "CPUSYS", baseAddress: "0x0005D300U" },
@@ -93,10 +103,14 @@ let EPWMMemoryMap = [
 	{ name: "EPWM6_BASE", displayName: "EPWM6", baseAddress: "0x00004500U" },
 	{ name: "EPWM7_BASE", displayName: "EPWM7", baseAddress: "0x00004600U" },
 ];
-let EMemoryMap = [
+let EQEPMemoryMap = [
 	{ name: "EQEP1_BASE", displayName: "EQEP1", baseAddress: "0x00005100U" },
+	{ name: "EQEP2_BASE", displayName: "EQEP2", baseAddress: "0x00005140U" },
+];
+let ECAPMemoryMap = [
 	{ name: "ECAP1_BASE", displayName: "ECAP1", baseAddress: "0x00005200U" },
 	{ name: "ECAP2_BASE", displayName: "ECAP2", baseAddress: "0x00005240U" },
+	{ name: "ECAP3_BASE", displayName: "ECAP3", baseAddress: "0x00005280U" },
 ];
 let CMPSSMemoryMap = [
 	{ name: "CMPSS1_BASE", displayName: "CMPSS1", baseAddress: "0x00005500U" },
@@ -106,6 +120,12 @@ let CMPSSMemoryMap = [
 ];
 let SPIAMemoryMap = [
 	{ name: "SPIA_BASE", displayName: "SPIA", baseAddress: "0x00006100U" },
+];
+let PMBUSAMemoryMap = [
+	{ name: "PMBUSA_BASE", displayName: "PMBUSA", baseAddress: "0x00006400U" },
+];
+let LINAMemoryMap = [
+	{ name: "LINA_BASE", displayName: "LINA", baseAddress: "0x00006A00U" },
 ];
 let WDMemoryMap = [
 	{ name: "WD_BASE", displayName: "WD", baseAddress: "0x00007000U" },
@@ -156,6 +176,16 @@ let LSxMemoryMap = [
 let CANAMemoryMap = [
 	{ name: "CANA_BASE", displayName: "CANA", baseAddress: "0x00048000U" },
 	{ name: "CANA_MSG_RAM_BASE", displayName: "CANA MSG RAM", baseAddress: "0x00049000U" },
+];
+let LCMCPUMemoryMap = [
+	{ name: "LCM_CPU1_BASE", displayName: "LCM CPU1", baseAddress: "0x0004C000U" },
+];
+let MCANAMemoryMap = [
+	{ name: "MCANA_DRIVER_BASE", displayName: "MCANA DRIVER", baseAddress: "0x00058000U" },
+	{ name: "MCANA_MSG_RAM_BASE", displayName: "MCANA MSG RAM", baseAddress: "0x00058000U" },
+	{ name: "MCANASS_BASE", displayName: "MCANASS", baseAddress: "0x0005C400U" },
+	{ name: "MCANA_BASE", displayName: "MCANA", baseAddress: "0x0005C600U" },
+	{ name: "MCANA_ERROR_BASE", displayName: "MCANA ERROR", baseAddress: "0x0005C800U" },
 ];
 let DEVCFGMemoryMap = [
 	{ name: "DEVCFG_BASE", displayName: "DEVCFG", baseAddress: "0x0005D000U" },
@@ -216,9 +246,12 @@ module.exports = {
 	CPUTIMERMemoryMap: CPUTIMERMemoryMap,
 	PIEMemoryMap: PIEMemoryMap,
 	EPWMMemoryMap: EPWMMemoryMap,
-	EMemoryMap: EMemoryMap,
+	EQEPMemoryMap: EQEPMemoryMap,
+	ECAPMemoryMap: ECAPMemoryMap,
 	CMPSSMemoryMap: CMPSSMemoryMap,
 	SPIAMemoryMap: SPIAMemoryMap,
+	PMBUSAMemoryMap: PMBUSAMemoryMap,
+	LINAMemoryMap: LINAMemoryMap,
 	WDMemoryMap: WDMemoryMap,
 	NMIMemoryMap: NMIMemoryMap,
 	XINTMemoryMap: XINTMemoryMap,
@@ -233,6 +266,8 @@ module.exports = {
 	GPIOMemoryMap: GPIOMemoryMap,
 	LSxMemoryMap: LSxMemoryMap,
 	CANAMemoryMap: CANAMemoryMap,
+	LCMCPUMemoryMap: LCMCPUMemoryMap,
+	MCANAMemoryMap: MCANAMemoryMap,
 	DEVCFGMemoryMap: DEVCFGMemoryMap,
 	CLKCFGMemoryMap: CLKCFGMemoryMap,
 	CPUSYSMemoryMap: CPUSYSMemoryMap,

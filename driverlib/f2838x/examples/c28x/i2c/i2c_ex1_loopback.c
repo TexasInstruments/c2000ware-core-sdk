@@ -127,17 +127,6 @@ void main(void)
     Board_init();
 
     //
-    // For loopback mode only
-    //
-    I2C_setOwnAddress(myI2C0_BASE, TARGET_ADDRESS);
-
-    //
-    // Interrupts that are used in this example are re-mapped to ISR functions
-    // found within this file.
-    //
-    Interrupt_register(INT_I2CA_FIFO, &i2cFIFOISR);
-
-    //
     // Initialize the data buffers
     //
     for(i = 0; i < 2; i++)
@@ -145,11 +134,6 @@ void main(void)
         sData[i] = i;
         rData[i]= 0;
     }
-
-    //
-    // Enable interrupts required for this example
-    //
-    Interrupt_enable(INT_I2CA_FIFO);
 
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
@@ -241,7 +225,18 @@ void main(void)
     //
     // Issue ACK
     //
-    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP8);
+    Interrupt_clearACKGroup(INT_myI2C0_FIFO_INTERRUPT_ACK_GROUP);
+}
+
+ //
+ // Enabled only for SysConfig functionality
+ //
+__interrupt void INT_myI2C0_ISR(void)
+{
+    //
+    // Issue ACK
+    //
+    Interrupt_clearACKGroup(INT_myI2C0_INTERRUPT_ACK_GROUP);
 }
 
 //

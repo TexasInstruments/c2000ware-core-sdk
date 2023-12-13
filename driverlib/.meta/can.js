@@ -17,6 +17,15 @@ function onChangeUseLoopback(inst, ui)
         ui.loopbackMode.hidden = true;
     }
 }
+function onChangeUseAutoBusOn(inst, ui)
+{
+    if (inst.enableAutoBusOn) {
+        ui.AutoBusOnTimer.hidden = false;
+    }
+    else {
+        ui.AutoBusOnTimer.hidden = true;
+    }
+}
 function onChangeEnableInterrupt(inst, ui)
 {
     if (inst.enableInterrupt) {
@@ -245,6 +254,22 @@ let config = [
             {name: "CAN_TEST_LBACK", displayName : "Internal Loopback Mode"},
             {name: "CAN_TEST_EXL", displayName : "External Loopback Mode"},
         ],
+
+    },
+    {
+        name        : "enableAutoBusOn",
+        displayName : "Enable Auto-Bus-On",
+        description : 'Whether auto bus on feature is to be enabled.',
+        hidden      : false,
+        onChange    : onChangeUseAutoBusOn,
+        default     : false,
+    },
+    {
+        name        : "AutoBusOnTimer",
+        displayName : "Auto-Bus-On Timer",
+        description : 'Auto-Bus-On Timer value if enabled.',
+        hidden      : true,
+        default     : 0,
 
     },
     {

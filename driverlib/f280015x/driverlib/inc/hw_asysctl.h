@@ -46,25 +46,26 @@
 // The following are defines for the ASYSCTL register offsets
 //
 //*************************************************************************************************
-#define ASYSCTL_O_EXTROSCCSR1      0x24U    // ExtR Oscillator Status Register
-#define ASYSCTL_O_CONFIGLOCK       0x5EU    // Lock Register for all the config registers.
-#define ASYSCTL_O_TSNSCTL          0x60U    // Temperature Sensor Control Register
-#define ASYSCTL_O_ANAREFCTL        0x68U    // Analog Reference Control Register. This register is
-                                            // not configurable for 32QFN package
-#define ASYSCTL_O_VMONCTL          0x70U    // Voltage Monitor Control Register
-#define ASYSCTL_O_CMPHPMXSEL       0x82U    // Bits to select one of the many sources on CompHP
-                                            // inputs. Refer to Pimux diagram for details.
-#define ASYSCTL_O_CMPLPMXSEL       0x84U    // Bits to select one of the many sources on CompLP
-                                            // inputs. Refer to Pimux diagram for details.
-#define ASYSCTL_O_CMPHNMXSEL       0x86U    // Bits to select one of the many sources on CompHN
-                                            // inputs. Refer to Pimux diagram for details.
-#define ASYSCTL_O_CMPLNMXSEL       0x87U    // Bits to select one of the many sources on CompLN
-                                            // inputs. Refer to Pimux diagram for details.
-#define ASYSCTL_O_ADCDACLOOPBACK   0x88U    // Enabble loopback from DAC to ADCs
-#define ASYSCTL_O_CMPSSCTL         0x8BU    // CMPSS Control Register
-#define ASYSCTL_O_LOCK             0x8EU    // Lock Register
-#define ASYSCTL_O_AGPIOCTRLA       0x10AU   // AGPIO Control Register
-#define ASYSCTL_O_AGPIOCTRLH       0x118U   // AGPIO Control Register
+#define ASYSCTL_O_EXTROSCCSR1       0x24U    // ExtR Oscillator Status Register
+#define ASYSCTL_O_INTERNALTESTCTL   0x4AU    // INTERNALTEST Node Control Register
+#define ASYSCTL_O_CONFIGLOCK        0x5EU    // Lock Register for all the config registers.
+#define ASYSCTL_O_TSNSCTL           0x60U    // Temperature Sensor Control Register
+#define ASYSCTL_O_ANAREFCTL         0x68U    // Analog Reference Control Register. This register is
+                                             // not configurable for 32QFN package
+#define ASYSCTL_O_VMONCTL           0x70U    // Voltage Monitor Control Register
+#define ASYSCTL_O_CMPHPMXSEL        0x82U    // Bits to select one of the many sources on CompHP
+                                             // inputs. Refer to Pimux diagram for details.
+#define ASYSCTL_O_CMPLPMXSEL        0x84U    // Bits to select one of the many sources on CompLP
+                                             // inputs. Refer to Pimux diagram for details.
+#define ASYSCTL_O_CMPHNMXSEL        0x86U    // Bits to select one of the many sources on CompHN
+                                             // inputs. Refer to Pimux diagram for details.
+#define ASYSCTL_O_CMPLNMXSEL        0x87U    // Bits to select one of the many sources on CompLN
+                                             // inputs. Refer to Pimux diagram for details.
+#define ASYSCTL_O_ADCDACLOOPBACK    0x88U    // Enabble loopback from DAC to ADCs
+#define ASYSCTL_O_CMPSSCTL          0x8BU    // CMPSS Control Register
+#define ASYSCTL_O_LOCK              0x8EU    // Lock Register
+#define ASYSCTL_O_AGPIOCTRLA        0x10AU   // AGPIO Control Register
+#define ASYSCTL_O_AGPIOCTRLH        0x118U   // AGPIO Control Register
 
 
 //*************************************************************************************************
@@ -74,6 +75,16 @@
 //*************************************************************************************************
 #define ASYSCTL_EXTROSCCSR1_OSCSTATUS_S   24U
 #define ASYSCTL_EXTROSCCSR1_OSCSTATUS_M   0xFF000000U   // Running status of ExtR.
+
+//*************************************************************************************************
+//
+// The following are defines for the bit fields in the INTERNALTESTCTL register
+//
+//*************************************************************************************************
+#define ASYSCTL_INTERNALTESTCTL_TESTSEL_S   0U
+#define ASYSCTL_INTERNALTESTCTL_TESTSEL_M   0x1FU         // Test Select
+#define ASYSCTL_INTERNALTESTCTL_KEY_S       16U
+#define ASYSCTL_INTERNALTESTCTL_KEY_M       0xFFFF0000U   // Key to Enable writes
 
 //*************************************************************************************************
 //

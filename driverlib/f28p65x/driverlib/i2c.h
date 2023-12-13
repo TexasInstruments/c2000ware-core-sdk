@@ -103,10 +103,12 @@ extern "C"
 #define I2C_INT_RXFF            0x10000U //!< RX FIFO level interrupt
 #define I2C_INT_TXFF            0x20000U //!< TX FIFO level interrupt
 
+
 //
 // Helpful define to mask out the bits in the I2CSTR register that aren't
 // associated with interrupts.
 //
+
 #define I2C_STR_INTMASK     ((uint16_t)I2C_INT_ARB_LOST |                      \
                              (uint16_t)I2C_INT_NO_ACK |                        \
                              (uint16_t)I2C_INT_REG_ACCESS_RDY |                \
@@ -114,6 +116,8 @@ extern "C"
                              (uint16_t)I2C_INT_TX_DATA_RDY |                   \
                              (uint16_t)I2C_INT_STOP_CONDITION |                \
                              (uint16_t)I2C_INT_ADDR_TARGET)
+
+
 
 //*****************************************************************************
 //
@@ -134,8 +138,10 @@ extern "C"
 #define I2C_STS_RX_FULL         0x0800U //!< Receive shift register full
 #define I2C_STS_BUS_BUSY        0x1000U //!< Bus busy, wait for STOP or reset
 #define I2C_STS_NACK_SENT       0x2000U //!< NACK was sent
-#define I2C_STS_TARGET_DIR       0x4000U //!< Addressed as target transmitter
+#define I2C_STS_TARGET_DIR      0x4000U //!< Addressed as target transmitter
+
 #endif
+
 
 //*****************************************************************************
 //
@@ -1179,6 +1185,12 @@ I2C_setExtendedMode(uint32_t base, I2C_ExtendedMode mode)
    (HWREGH(base + I2C_O_EMDR) & ~(I2C_EMDR_BC | I2C_EMDR_FCM)) |
    (uint16_t)mode;
 }
+
+
+
+
+
+
 
 //*****************************************************************************
 //

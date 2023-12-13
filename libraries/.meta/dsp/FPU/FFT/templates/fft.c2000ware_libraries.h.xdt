@@ -1,0 +1,182 @@
+% let Common   = system.getScript("/driverlib/Common.js");
+% var currnetSDKProductPath = system.getProducts()[0].path
+% var sdkPath = system.utils.path.join(currnetSDKProductPath + "../../../")
+% sdkPath = sdkPath.replace(new RegExp('\\' + system.utils.path.sep, 'g'), '/')
+% 
+% var moduleName = "FFT"
+% var module = system.modules['/libraries/dsp/FPU/FFT/' + moduleName + '.js'];
+%
+#include <dsp.h>
+%if(module != null)
+%{
+% var instance = module.$instances[0];
+%if(instance.windEnable == true)
+%{
+%if(instance.WIN_0 == true)
+%{
+#include <fpu32/fpu_fft_barthann.h>
+%}
+%if(instance.WIN_1 == true)
+%{
+#include <fpu32/fpu_fft_bartlett.h>
+%}
+%if(instance.WIN_2 == true)
+%{
+#include <fpu32/fpu_fft_blackman.h>
+%}
+%if(instance.WIN_3 == true)
+%{
+#include <fpu32/fpu_fft_blackmanharris.h>
+%}
+%if(instance.WIN_4 == true)
+%{
+#include <fpu32/fpu_fft_bohman.h>
+%}
+%if(instance.WIN_5 == true)
+%{
+#include <fpu32/fpu_fft_cheb.h>
+%}
+%if(instance.WIN_6 == true)
+%{
+#include <fpu32/fpu_fft_flattop.h>
+%}
+%if(instance.WIN_7 == true)
+%{
+#include <fpu32/fpu_fft_gauss.h>
+%}
+%if(instance.WIN_8 == true)
+%{
+#include <fpu32/fpu_fft_hamming.h>
+%}
+%if(instance.WIN_9 == true)
+%{
+#include <fpu32/fpu_fft_hann.h>
+%}
+%if(instance.WIN_10 == true)
+%{
+#include <fpu32/fpu_fft_kaiser.h>
+%}
+%if(instance.WIN_11 == true)
+%{
+#include <fpu32/fpu_fft_nuttall.h>
+%}
+%if(instance.WIN_12 == true)
+%{
+#include <fpu32/fpu_fft_parzen.h>
+%}
+%if(instance.WIN_13 == true)
+%{
+#include <fpu32/fpu_fft_rect.h>
+%}
+%if(instance.WIN_14 == true)
+%{
+#include <fpu32/fpu_fft_taylor.h>
+%}
+%if(instance.WIN_15 == true)
+%{
+#include <fpu32/fpu_fft_triang.h>
+%}
+%if(instance.WIN_16 == true)
+%{
+#include <fpu32/fpu_fft_tukey.h>
+%}
+%}
+
+% if(instance.fpuType == "FPU32")
+%{
+#include <fpu32/fpu_cfft.h>
+#include <fpu32/fpu_rfft.h>
+
+%}
+% else if(instance.fpuType == "FPU64")
+%{
+#include <fpu64/fpu64_fft.h>
+
+%}
+%}
+%
+% var moduleNameCFFT = "CFFT"
+% var moduleCFFT = system.modules['/libraries/dsp/FPU/FFT/' + moduleNameCFFT + '.js'];
+% var moduleNameRFFT = "RFFT"
+% var moduleRFFT = system.modules['/libraries/dsp/FPU/FFT/' + moduleNameRFFT + '.js'];
+%
+%if(moduleCFFT != null)
+%{
+% var instancesCFFT = moduleCFFT.$instances;
+%for(let i = 0; i < instancesCFFT.length; i++)
+%{
+#define `instancesCFFT[i].$name`_CFFT_NUM_STAGES `instancesCFFT[i].numStages`
+#define `instancesCFFT[i].$name`_CFFT_SIZE `instancesCFFT[i].fftSize`
+
+%if(instancesCFFT[i].fpuType == "FPU32")
+%{
+extern CFFT_F32_STRUCT_Handle `instancesCFFT[i].$name`_handle;
+extern float32_t *`instancesCFFT[i].inPtr`;
+extern float32_t *`instancesCFFT[i].outPtr`;
+%
+%if(instancesCFFT[i].sincosFunction == false)
+%{
+extern float32_t *`instancesCFFT[i].coeffPtr`;
+%}
+%}
+%else if(instancesCFFT[i].fpuType == "FPU64")
+%{
+extern CFFT_f64_Handle `instancesCFFT[i].$name`_handle;
+extern float64_t *`instancesCFFT[i].inPtr`;
+extern float64_t *`instancesCFFT[i].outPtr`;
+%}
+
+void `instancesCFFT[i].$name`_init();
+%}
+%}
+
+%if(moduleRFFT != null)
+%{
+% var instancesRFFT = moduleRFFT.$instances;
+%for(let i = 0; i < instancesRFFT.length; i++)
+%{
+#define `instancesRFFT[i].$name`_RFFT_NUM_STAGES `instancesRFFT[i].numStages`
+#define `instancesRFFT[i].$name`_RFFT_SIZE `instancesRFFT[i].fftSize`
+
+%if(instancesRFFT[i].fpuType == "FPU32")
+%{
+extern RFFT_F32_STRUCT_Handle `instancesRFFT[i].$name`_handle;
+extern float32_t *`instancesRFFT[i].inPtr`;
+extern float32_t *`instancesRFFT[i].outPtr`;
+%
+%if(instancesRFFT[i].magPtr != "")
+%{
+extern float32_t *`instancesRFFT[i].magPtr`;
+%}
+%if(instancesRFFT[i].phasPtr != "")
+%{
+extern float32_t *`instancesRFFT[i].phasPtr`;
+%}
+%
+%if(instancesRFFT[i].sincosFunction == false)
+%{
+extern float32_t *`instancesRFFT[i].coeffPtr`;
+%}
+%if(instancesRFFT[i].adcEnable == true)
+%{
+
+extern RFFT_ADC_F32_STRUCT_Handle `instancesRFFT[i].$name`_adc_handle;
+extern uint16_t *`instancesRFFT[i].inAdcPtr`;
+%}
+%}
+%else if(instancesRFFT[i].fpuType == "FPU64")
+%{
+extern CFFT_f64_Handle `instancesRFFT[i].$name`_handle;
+extern float64_t *`instancesRFFT[i].inPtr`;
+extern float64_t *`instancesRFFT[i].outPtr`;
+%if(instancesRFFT[i].adcEnable == true)
+%{
+
+extern CFFT_ADC_f64_Handle `instancesRFFT[i].$name`_adc_handle;
+extern uint16_t *`instancesRFFT[i].inAdcPtr`;
+%}
+%}
+
+void `instancesRFFT[i].$name`_init();
+%}
+%}

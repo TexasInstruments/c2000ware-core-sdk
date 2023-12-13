@@ -70,7 +70,7 @@ SECTIONS
    GROUP
     {
        .TI.ramfunc
-       { -l FAPI_F280015x_EABI_v2.00.01.lib}
+       { -l FAPI_F280015x_EABI_v2.00.10.lib}
 
     } LOAD = FLASH_BANK0_SEC_40_47,
                       RUN = RAMLS0,
@@ -85,7 +85,7 @@ SECTIONS
    GROUP
     {
        .TI.ramfunc
-       { -l FAPI_F280015x_EABI_v2.00.01.lib}
+       { -l FAPI_F280015x_EABI_v2.00.10.lib}
 
     } LOAD = FLASH_BANK0_SEC_40_47,
                       RUN = RAMLS0,

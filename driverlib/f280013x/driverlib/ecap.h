@@ -358,7 +358,8 @@ static inline bool ECAP_isBaseValid(uint32_t base)
 {
     return(
            (base == ECAP1_BASE) ||
-           (base == ECAP2_BASE)
+           (base == ECAP2_BASE) ||
+           (base == ECAP3_BASE)
           );
 }
 #endif

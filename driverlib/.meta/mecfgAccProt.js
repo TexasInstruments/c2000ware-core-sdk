@@ -39,10 +39,12 @@ let AcessProtectionRAMs = {
         {name : "LS5", access : ['FETCHPROT', 'CPUWRPROT']},
         {name : "LS6", access : ['FETCHPROT', 'CPUWRPROT']},
         {name : "LS7", access : ['FETCHPROT', 'CPUWRPROT']},
-        {name : "GS0", access : ['FETCHPROT', 'CPUWRPROT', 'DMAWRPROT', 'HICWRPROT']},
-        {name : "GS1", access : ['FETCHPROT', 'CPUWRPROT', 'DMAWRPROT', 'HICWRPROT']},
-        {name : "GS2", access : ['FETCHPROT', 'CPUWRPROT', 'DMAWRPROT', 'HICWRPROT']},
-        {name : "GS3", access : ['FETCHPROT', 'CPUWRPROT', 'DMAWRPROT', 'HICWRPROT']},
+        {name : "LS8", access : ['FETCHPROT', 'CPUWRPROT']},
+        {name : "LS9", access : ['FETCHPROT', 'CPUWRPROT']},
+        {name : "GS0", access : ['FETCHPROT', 'CPUWRPROT', 'DMAWRPROT']},
+        {name : "GS1", access : ['FETCHPROT', 'CPUWRPROT', 'DMAWRPROT']},
+        {name : "GS2", access : ['FETCHPROT', 'CPUWRPROT', 'DMAWRPROT']},
+        {name : "GS3", access : ['FETCHPROT', 'CPUWRPROT', 'DMAWRPROT']},
         ],
 
     "f280013x" : [

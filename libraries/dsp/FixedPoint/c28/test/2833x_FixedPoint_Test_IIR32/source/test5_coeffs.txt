@@ -1,0 +1,39 @@
+// eziir32
+// ezIIR FILTER DESIGN SCRIPT
+// Butterworth       : 1
+// Chebyshev(Type 1) : 2
+// Chebyshev(Type 2) : 3
+// Elliptic          : 4
+// Select Any one of the above IIR Filter Type     : 3
+// Low pass          : 1
+// High Pass         : 2
+// Band Pass         : 3
+// Band Stop         : 4
+// Select Any one of the above Response            : 2
+// Enter the Sampling frequency                    : 250e3
+// Enter the Pass band Ripples in dB(RP)           : 0.1
+// Enter the stop band Rippled in dB(RS)           : 60
+// Enter the pass band corner frequency(FP)        : 41e3
+// Enter the stop band corner frequency(FS)        : 30e3
+// Enter the name of the file for coeff storage    : test5_coeffs.txt
+//  
+// Q format of the IIR filter coefficients:
+//     28
+// 
+// Input Scaling value:
+//     0.4566
+// 
+// Number of Biquads:
+//      6
+     
+#define IIR32_COEFF {\
+			0,145855268,0,-170123075,170123075,\
+			-85659527,289721553,179195600,-349582263,179195600,\
+			-104588287,285235503,168502403,-307475077,168502403,\
+			-135463235,282374284,180953649,-302426772,180953649,\
+			-178230630,287226519,92981282,-143260039,92981282,\
+			-234321177,307403638,1332532390,-1955430342,1332532390}
+
+#define IIR32_ISF	122580188
+#define IIR32_NBIQ	6
+#define IIR32_QFMAT	28

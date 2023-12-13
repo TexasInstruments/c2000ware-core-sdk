@@ -2,7 +2,7 @@
 //
 // FILE:   buffdac_ex1_enable.c
 //
-// TITLE:  Buffered DAC Enable Output Example for F28P65x.
+// TITLE:  Buffered DAC Enable Output Example.
 //
 //! \addtogroup cpu01_example_list
 //! <h1> Buffered DAC Enable (buffdac_enable) </h1>
@@ -10,6 +10,7 @@
 //! This example generates a voltage on the buffered DAC output,
 //! DACOUTA/ADCINA0 (HSEC Pin 9) and uses the default DAC reference setting
 //! of VDAC.
+
 //!
 //! When the DAC reference is set to VDAC, an external reference voltage
 //! must be applied to the VDAC pin. This can accomplished by connecting a
@@ -61,12 +62,15 @@
 // Globals
 //
 volatile struct DAC_REGS* DAC_PTR[4] = {0x0,&DacaRegs,&DaccRegs};
+
 Uint16 dacval = 2048;
 
 //
 // Defines
 //
 #define REFERENCE            REFERENCE_VDAC
+
+
 #define DAC_NUM                DACA
 
 //

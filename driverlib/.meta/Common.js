@@ -24,6 +24,7 @@ exports = {
     getDevicePart: getDevicePart,
     getDevicePackage: getDevicePackage,
 	getSDK: getSDK,
+    getC2000WareRelativePath : getC2000WareRelativePath,
 	onlyPinmux: onlyPinmux,
 	CLB_isType1 : CLB_isType1,
 	CLB_isType1_Type2 : CLB_isType1_Type2,
@@ -139,6 +140,16 @@ function getC2000WarePath()
     }
 
     return sdkPath
+}
+
+function getC2000WareRelativePath()
+{
+    if (system.getProducts()[0].name != "C2000WARE")
+    {
+        return "../../c2000ware"
+    }
+
+    return ".."
 }
 
 function removeArrayFromArray(arrSource, arrRem)
@@ -634,7 +645,7 @@ function SYSCLK_getMaxMHz()
         F280013x    : 120,
         F280015x    : 120,
         F28P65x     : 200,
-        F28P55x     : 200
+        F28P55x     : 150
     }
     return sysclk_max[getDeviceName()];
 }

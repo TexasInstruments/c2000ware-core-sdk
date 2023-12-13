@@ -39,6 +39,7 @@
 //#############################################################################
 
 #include "pmbus.h"
+#include <stdint.h>
 
 //*****************************************************************************
 //
@@ -260,7 +261,7 @@ PMBus_putTargetData(uint32_t base, uint16_t *buffer, uint16_t nBytes,
     //
     ASSERT(PMBus_isBaseValid(base));
     ASSERT((nBytes > 0U) && (nBytes <= 4U));
-    ASSERT((txPEC == true) || (txPEC == false));
+    ASSERT((txPEC == (bool)true) || (txPEC == (bool)false));
     EALLOW;
 
     //
@@ -274,7 +275,7 @@ PMBus_putTargetData(uint32_t base, uint16_t *buffer, uint16_t nBytes,
     //
     command |= (((uint32_t)nBytes << PMBUS_PMBTCR_TX_COUNT_S) &
                                      PMBUS_PMBTCR_TX_COUNT_M);
-    if(txPEC == 1U)
+    if(txPEC == (bool)true)
     {
         command |= PMBUS_PMBTCR_TX_PEC;
     }
@@ -754,7 +755,6 @@ bool PMBus_configBusClock(uint32_t base, PMBus_ClockMode mode,
             setupTime         = (600U / timePeriod);
             HWREG(base + PMBUS_O_PMBCTRL) |= PMBUS_PMBCTRL_FAST_MODE;
         break;
-
         default:
             clockHighLimit = 0U;
             clockFreq = 0U;

@@ -1,0 +1,13 @@
+%%{
+    let port      = args[0];
+    let period    = args[1];
+    let duty      = args[2];
+    let color     = 'magenta';
+    let Common    = system.getScript("/utilities/clb_tool/clb_syscfg/source/Common.js");
+%%}
+    `port.replace('.','_')`_squareWave [label= <<TABLE BORDER='0' CELLBORDER='1' CELLSPACING='0'>
+                                <TR><TD ROWSPAN='4'><b>squareWave</b><br/><br/>Period = `period`, Duty = `duty`</TD></TR>
+                                <TR><TD PORT='out'>out</TD></TR>
+                              </TABLE>> color=`color` shape=plaintext]
+
+    `port.replace('.','_')`_squareWave:out:e -> `Common.colonName(port)`:w [color=`color`]

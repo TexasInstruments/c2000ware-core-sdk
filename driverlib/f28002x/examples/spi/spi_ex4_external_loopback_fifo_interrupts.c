@@ -23,10 +23,7 @@
 //! This pattern is repeated forever.
 //!
 //! \b External \b Connections \n
-//! -GPIO40 and GPIO8  - SPIPICO
-//! -GPIO41 and GPIO10 - SPIPOCI
-//! -GPIO22 and GPIO9  - SPICLK
-//! -GPIO23 and GPIO11 - SPISTE
+//! Refer to SysConfig for external connections (GPIO pin numbers) specific to each device
 //!
 //! \b Watch \b Variables \n
 //!  - \b sData - Data to send
@@ -119,13 +116,6 @@ void main(void)
     Interrupt_initVectorTable();
 
     //
-    // Interrupts that are used in this example are re-mapped to ISR functions
-    // found within this file.
-    //
-    Interrupt_register(INT_SPIB_TX, &spibTxFIFOISR);
-    Interrupt_register(INT_SPIA_RX, &spiaRxFIFOISR);
-
-    //
     // Board initialization
     //
     Board_init();
@@ -138,12 +128,6 @@ void main(void)
         sData[i] = i;
         rData[i]= 0;
     }
-
-    //
-    // Enable interrupts required for this example
-    //
-    Interrupt_enable(INT_SPIA_RX);
-    Interrupt_enable(INT_SPIB_TX);
 
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
@@ -161,7 +145,7 @@ void main(void)
 }
 
 //
-// SPI A Transmit FIFO ISR
+// SPI B Transmit FIFO ISR
 //
 __interrupt void spibTxFIFOISR(void)
 {
@@ -187,11 +171,11 @@ __interrupt void spibTxFIFOISR(void)
     // Clear interrupt flag and issue ACK
     //
     SPI_clearInterruptStatus(SPIB_BASE, SPI_INT_TXFF);
-    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP6);
+    Interrupt_clearACKGroup(INT_SPIB_controller_TX_INTERRUPT_ACK_GROUP);
 }
 
 //
-// SPI B Receive FIFO ISR
+// SPI A Receive FIFO ISR
 //
  __interrupt void spiaRxFIFOISR(void)
 {
@@ -223,5 +207,30 @@ __interrupt void spibTxFIFOISR(void)
     // Clear interrupt flag and issue ACK
     //
     SPI_clearInterruptStatus(SPIA_BASE, SPI_INT_RXFF);
-    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP6);
+    Interrupt_clearACKGroup(INT_SPIA_peripheral_RX_INTERRUPT_ACK_GROUP);
 }
+
+ //
+ // Enabled only for SysConfig functionality
+ //
+__interrupt void INT_SPIA_peripheral_TX_ISR(void) {
+    //
+    // Issue ACK
+    //
+    Interrupt_clearACKGroup(INT_SPIA_peripheral_TX_INTERRUPT_ACK_GROUP);
+}
+
+//
+// Enabled only for SysConfig functionality
+//
+__interrupt void INT_SPIB_controller_RX_ISR(void) {
+    //
+    // Issue ACK
+    //
+    Interrupt_clearACKGroup(INT_SPIB_controller_RX_INTERRUPT_ACK_GROUP);
+
+}
+
+//
+// End of file
+//

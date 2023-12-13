@@ -45,13 +45,13 @@ let DCCRegisters = [
 	},
 	{ name: "CLKSRC1", description: "Selects the clock source for Counter 1.", offset: "0x24",
 		bits: [
-			{ name: "CLKSRC1", description: "Clock Source Select for Counter 1", size: "5", shift: "0", mask: "0x1F" },
+			{ name: "CLKSRC1", description: "Clock Source Select for Counter 1", size: "6", shift: "0", mask: "0x3F" },
 			{ name: "KEY", description: "Enables or Disables Clock Source Selection for COUNT1", size: "4", shift: "12", mask: "0xF000" },
 		]
 	},
 	{ name: "CLKSRC0", description: "Selects the clock source for Counter 0.", offset: "0x28",
 		bits: [
-			{ name: "CLKSRC0", description: "Clock Source Select for Counter 0", size: "4", shift: "0", mask: "0xF" },
+			{ name: "CLKSRC0", description: "Clock Source Select for Counter 0", size: "5", shift: "0", mask: "0x1F" },
 			{ name: "KEY", description: "Enables or Disables Clock Source Selection for COUNT0", size: "4", shift: "12", mask: "0xF000" },
 		]
 	},

@@ -1,0 +1,27 @@
+<projectSpec>
+  <project
+        name="F28388D_PIDF64"
+        device="TMS320F28388D"
+        configurations="DEBUG"
+		cgtVersion="22.6.0.LTS"
+		outputFormat="ELF"
+        launchWizard="False"
+        linkerCommandFile=""
+        compilerBuildOptions="--opt_level=off -I${C2000WARE_DLIB_ROOT} -I${C2000WARE_F2838X_ROOT1} -I${C2000WARE_F2838X_ROOT2} -I${C2000WARE_DCL_INCLUDE_ROOT} -v28 -ml -mt  --float_support=fpu64  --define=DEBUG   --diag_warning=225  --diag_suppress=10063 --display_error_number --abi=eabi --define=CPU1"
+        linkerBuildOptions="--stack_size=0x400 --heap_size=0x200 --define RAM"
+        >
+    <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../../../../../driverlib/f2838x/driverlib" scope="project" />
+	<pathVariable name="C2000WARE_F2838X_ROOT1" path="../../../../../../../device_support/f2838x/headers/include" scope="project" />
+	<pathVariable name="C2000WARE_F2838X_ROOT2" path="../../../../../../../device_support/f2838x/common/include" scope="project" />
+	<pathVariable name="C2000WARE_DCL_INCLUDE_ROOT" path="../../../include" scope="project" />
+    <file action="copy" path="../../../../../../../device_support/f2838x/common/include/driverlib.h" targetDirectory="" />
+    <file action="copy" path="../../../../../../../device_support/f2838x/common/include/device.h" targetDirectory="" />
+    <file action="copy" path="../../../../../../../device_support/f2838x/common/source/device.c" targetDirectory="" />
+    <file action="copy" path="../../../../../../../device_support/f2838x/common/source/f2838x_codestartbranch.asm" targetDirectory="" />
+    <file action="copy" path="../../../../../../../driverlib/f2838x/driverlib/ccs/Debug/driverlib.lib" targetDirectory="" />
+    <file action="copy" path="../Example_F28388D_PIDF64.c" targetDirectory="" />
+	<file action="copy" path="../../../cmd/F28388D_stdmem_cpu1.cmd" targetDirectory="" />
+	<file action="copy" path="../../../cmd/F28388D_DCL.cmd" targetDirectory="" />
+	<file action="copy" path="../../../source/DCL_error.c" targetDirectory="" />
+  </project>
+</projectSpec>

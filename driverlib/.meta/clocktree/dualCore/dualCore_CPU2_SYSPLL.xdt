@@ -1,0 +1,217 @@
+%%{
+/////////////////////////////////////////////////////////////////////////////////////////
+let clocktree_common   		= system.getScript("../clocktree_common.js");
+let Common   			= system.getScript("/driverlib/Common.js");
+
+const PLL_type1 		= clocktree_common.PLL_type1;
+const PLL_type2 		= clocktree_common.PLL_type2;
+
+const device  			= clocktree_common.device
+var clockTree_CPU2 		= Common.getClockTree();
+
+const AUXPLL_Support 		= clocktree_common.AUXPLL_Support;
+const EPWM_div_support 		= clocktree_common.EPWM_div_support;
+const xtal_x1_macro 		= clocktree_common.xtal_x1_macro;
+var XTAL_OR_X1 			= clockTree_CPU2.XTAL_OR_X1;
+
+//////////////////////////////////////////////////
+// Frequency lables
+//////////////////////////////////////////////////
+const OSCCLK_d 		 = clockTree_CPU2.OSCCLK.in
+const PLLRAWCLK_d	 = clockTree_CPU2.PLLRAWCLK.in
+const PLLSYSCLK_d	 = clockTree_CPU2.PLLSYSCLK.in
+const CPU1_CPUCLK_d	 = clockTree_CPU2.CPU1_CPUCLK.in
+const CPU2_CPUCLK_d	 = clockTree_CPU2.CPU2_CPUCLK.in
+const CPU1_SYSCLK_d	 = clockTree_CPU2.CPU1_SYSCLK.in
+const CPU2_SYSCLK_d	 = clockTree_CPU2.CPU2_SYSCLK.in
+const LSPCLK_d 		 = clockTree_CPU2.LSPCLK.in
+
+//////////////////////////////////////////////////
+// OSCCLK source
+//////////////////////////////////////////////////
+
+var OSCCLKSRCSEL	= clockTree_CPU2.OSCCLKSRCSEL
+
+var oscclkSrc = "SYSCTL_OSCSRC_OSC2"
+var oscclksource
+var oscclk = 10
+
+//
+// XTAL Single-Ended replaces X1 for F2838x, F28002x, F28003x, F28004x, F280013x, F280015x, F28P65x
+//
+switch(OSCCLKSRCSEL.inputSelect){
+	case "INTOSC1":
+		oscclkSrc 		= "SYSCTL_OSCSRC_OSC1"
+		oscclksource 		= OSCCLKSRCSEL.inputSelect
+		oscclk = 10
+		break
+	case "INTOSC2":
+		oscclkSrc 	 	= "SYSCTL_OSCSRC_OSC2"
+		oscclksource 		= OSCCLKSRCSEL.inputSelect
+		oscclk = 10
+		break
+	case "X1_XTAL":
+		if((XTAL_OR_X1.inputSelect == "XTAL") || xtal_x1_macro.includes(device))
+		{
+			oscclkSrc 	 	= "SYSCTL_OSCSRC_XTAL"
+		}
+		else
+		{
+			oscclkSrc 	 	= "SYSCTL_OSCSRC_XTAL_SE"
+		}
+			oscclksource 		= XTAL_OR_X1.inputSelect
+			oscclk 			= XTAL_OR_X1.External_Clock
+			break
+}
+
+//////////////////////////////////////////////////
+// IMULT, FMULT (PLLRAWCLK) source
+//////////////////////////////////////////////////
+
+var SYSPLLCTL1		= clockTree_CPU2.SYSPLLCTL1
+
+var PLL_IMULT_mv  	= clockTree_CPU2.PLL_IMULT.multiplyValue
+var PLL_IMULT 		= "SYSCTL_IMULT(" + PLL_IMULT_mv + ")"
+
+var SYSCLKDIVSEL_dv = clockTree_CPU2.SYSCLKDIVSEL.divideValue
+
+var PLL_DIVSEL		= "SYSCTL_SYSDIV(" + SYSCLKDIVSEL_dv + ")"
+
+var PLL_FMULT
+if(PLL_type1.includes(device))
+{
+var PLL_FMULT_mv    = clockTree_CPU2.PLL_FMULT.multiplyValue
+	switch(PLL_FMULT_mv){
+		case 0:
+			PLL_FMULT = "SYSCTL_FMULT_NONE"
+			break
+		case 0.25:
+			PLL_FMULT = "SYSCTL_FMULT_1_4"
+			break
+		case 0.5:
+			PLL_FMULT = "SYSCTL_FMULT_1_2"
+			break
+		case 0.75:
+			PLL_FMULT = "SYSCTL_FMULT_3_4"
+			break
+	}
+}
+
+var PLL_STS 	= 'SYSCTL_PLL_ENABLE'
+var SYSPLL_STS 	= 'DISABLED'
+
+if(SYSPLLCTL1.inputSelect == 'OSCCLK')
+{
+	PLL_STS 	= 'SYSCTL_PLL_DISABLE'
+	SYSPLL_STS	= 'DISABLED'
+}
+else
+{
+	PLL_STS = 'SYSCTL_PLL_ENABLE'
+	SYSPLL_STS	= 'ENABLED'
+}
+
+
+if(PLL_type2.includes(device))
+{
+	var PLL_REFDIV_dv = clockTree_CPU2.PLL_REFDIV.divideValue
+	var PLL_REFDIV    = "SYSCTL_REFDIV(" + PLL_REFDIV_dv + ")"
+	
+	var PLL_ODIV_dv = clockTree_CPU2.PLL_ODIV.divideValue
+	var PLL_ODIV    = "SYSCTL_ODIV(" + PLL_ODIV_dv + ")"
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////
+%%}
+
+//*****************************************************************************
+//
+// Summary of SYSPLL related clock configuration
+//
+//*****************************************************************************
+//
+// Input Clock to SYSPLL (OSCCLK)	= `OSCCLK_d` MHz    (`oscclksource` provides OSCCLK)
+//
+//##### SYSPLL `SYSPLL_STS` #####
+//
+// PLLRAWCLK				= `PLLRAWCLK_d` MHz   (Output of SYSPLL if enabled) 
+// PLLSYSCLK				= `PLLSYSCLK_d` MHz
+// CPU1CLK				= `CPU1_CPUCLK_d` MHz
+// CPU2CLK				= `CPU2_CPUCLK_d` MHz
+// CPU1_SYSCLK				= `CPU1_SYSCLK_d` MHz
+// CPU2_SYSCLK 				= `CPU2_SYSCLK_d` MHz
+// LSPCLK				= `LSPCLK_d` MHz 
+	%
+	%if(EPWM_div_support.includes(device))
+	%{
+	% var   EPWMCLK_d       	= clockTree_CPU2.PLLSYSCLK.in / clockTree_CPU2.EPWMCLKDIV.divideValue
+// EPWMCLK 				= `EPWMCLK_d` MHz
+	%}
+	
+//*****************************************************************************
+//
+// Macro definitions used in device.c (SYSPLL / LSPCLK)
+//
+//*****************************************************************************
+//
+//	Input Clock to SYSPLL (OSCCLK) = `oscclksource` = `OSCCLK_d` MHz
+//
+#define DEVICE_OSCSRC_FREQ          `OSCCLK_d`000000U
+%
+% /////////////////////////////////////////////////////////////////////////////////////////
+%
+% if(PLL_type1.includes(device))
+% {
+//
+// Define to pass to SysCtl_setClock(). Will configure the clock as follows:
+		%if(PLL_STS == 'SYSCTL_PLL_ENABLE')
+		%	{
+// SYSPLL ENABLED
+// SYSCLK = `PLLSYSCLK_d` MHz = `OSCCLK_d` MHz (OSCCLK) * (`PLL_IMULT_mv` (IMULT) + `PLL_FMULT_mv` (FMULT)) / `SYSCLKDIVSEL_dv` (SYSCLKDIVSEL)	
+#define DEVICE_SYSCLK_FREQ          ((DEVICE_OSCSRC_FREQ * (`PLL_IMULT_mv` + `PLL_FMULT_mv`)) / `SYSCLKDIVSEL_dv`)
+		%   }
+		%else
+		%	{
+// SYSPLL DISABLED
+// SYSCLK = `OSCCLK_d` MHz(`oscclksource`) / `SYSCLKDIVSEL_dv` (SYSCLKDIVSEL) = `PLLSYSCLK_d` MHz
+#define DEVICE_SYSCLK_FREQ          (DEVICE_OSCSRC_FREQ / `SYSCLKDIVSEL_dv`)
+		%   }
+//
+#define DEVICE_SETCLOCK_CFG         (`oscclkSrc` | `PLL_IMULT` | \
+									 `PLL_FMULT` | `PLL_DIVSEL`| \
+									 `PLL_STS`)
+%}						
+% /////////////////////////////////////////////////////////////////////////////////////////
+%
+% if(PLL_type2.includes(device))
+% {
+//
+// Define to pass to SysCtl_setClock(). Will configure the clock as follows:
+		%if(PLL_STS == 'SYSCTL_PLL_ENABLE')
+		%	{
+// SYSPLL ENABLED
+// SYSCLK = `PLLSYSCLK_d` MHz = `OSCCLK_d` MHz (OSCCLK) * `PLL_IMULT_mv` (IMULT) / (`PLL_REFDIV_dv` (REFDIV) * `PLL_ODIV_dv` (ODIV) * `SYSCLKDIVSEL_dv` (SYSCLKDIVSEL))
+		%   }
+		%else
+		%	{
+// SYSPLL DISABLED
+// SYSCLK = `OSCCLK_d` MHz(`oscclksource`) / `SYSCLKDIVSEL_dv` (SYSCLKDIVSEL) = `PLLSYSCLK_d` MHz
+		%   }	
+//
+#define DEVICE_SETCLOCK_CFG         (`oscclkSrc`  | `PLL_IMULT` | \
+									 `PLL_REFDIV` | `PLL_ODIV` | \
+									 `PLL_DIVSEL` | `PLL_STS` | \
+									 SYSCTL_DCC_BASE_0)
+									 
+									 
+#define DEVICE_SYSCLK_FREQ          ((DEVICE_OSCSRC_FREQ * `PLL_IMULT_mv`) / (`PLL_REFDIV_dv` * `PLL_ODIV_dv` * `SYSCLKDIVSEL_dv`))
+% }
+% /////////////////////////////////////////////////////////////////////////////////////////
+
+//
+// Define to pass to SysCtl_setLowSpeedClock().
+// Low Speed Clock (LSPCLK) = `PLLSYSCLK_d` MHz / `clockTree_CPU2.LOSPCP.divideValue` = `LSPCLK_d` MHz
+//
+#define DEVICE_LSPCLK_CFG  			SYSCTL_LSPCLK_PRESCALE_`clockTree_CPU2.LOSPCP.divideValue`
+
+#define DEVICE_LSPCLK_FREQ          (DEVICE_SYSCLK_FREQ / `clockTree_CPU2.LOSPCP.divideValue`)

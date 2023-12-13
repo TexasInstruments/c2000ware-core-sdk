@@ -93,6 +93,13 @@ let DCSM_OTPLock = [
 	{ name: "DCSM_OTPSECLOCK_PSWDLOCK", displayName: "Zone Password Lock" },
 	{ name: "DCSM_OTPSECLOCK_CRCLOCK", displayName: "Zone CRC Lock" },
 ]
+let DCSM_PERSem = [
+	{ name: "DCSM_GRABWD", displayName: "Grab Watchdog configuration" },
+	{ name: "DCSM_GRABNMIWD", displayName: "Grab NMIWD configuration" },
+	{ name: "DCSM_GRABTIMER1", displayName: "Grab TIMER1 configuration" },
+	{ name: "DCSM_GRABCLKCTL", displayName: "Grab Clock configuration" },
+	{ name: "DCSM_GRABRSTCTL", displayName: "Grab Reset configuration" },
+]
 module.exports = {
 	DCSM_MemoryStatus: DCSM_MemoryStatus,
 	DCSM_SemaphoreZone: DCSM_SemaphoreZone,
@@ -102,4 +109,5 @@ module.exports = {
 	DCSM_Sector: DCSM_Sector,
 	DCSM_CPUSel: DCSM_CPUSel,
 	DCSM_OTPLock: DCSM_OTPLock,
+	DCSM_PERSem: DCSM_PERSem,
 }

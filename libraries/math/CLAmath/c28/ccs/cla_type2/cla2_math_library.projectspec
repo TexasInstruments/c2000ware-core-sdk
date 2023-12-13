@@ -1,0 +1,55 @@
+<projectSpec>
+  <project
+        name="cla2_math_library"
+        device="Generic C28xx Device"
+        cgtVersion="22.6.0.LTS"
+        products="c2000ware_software_package"
+        launchWizard="False"
+        outputType="staticLibrary"
+        >
+    <configuration name="CLAMATHLIB_STD" compilerBuildOptions="-I${CLAMATH_ROOT}/include --opt_level=off -v28 -ml -mt --float_support=softlib --cla_support=cla2 -g --diag_warning=225" archiverBuildOptions="${CLAMATH_ROOT}/lib/cla2_math_library.lib" />
+    <configuration name="CLAMATHLIB_FPU32_SUPPORT" compilerBuildOptions="-I${CLAMATH_ROOT}/include --opt_level=off -v28 -ml -mt --float_support=fpu32 --cla_support=cla2 -g --diag_warning=225" archiverBuildOptions="${CLAMATH_ROOT}/lib/cla2_math_library_fpu32.lib" />
+    <configuration name="CLAMATHLIB_DATAROM_STD" compilerBuildOptions="-I${CLAMATH_ROOT}/include --opt_level=off -v28 -ml -mt --float_support=softlib --cla_support=cla2 -g --diag_warning=225" archiverBuildOptions="${CLAMATH_ROOT}/lib/cla2_math_library_datarom.lib" />
+    <configuration name="CLAMATHLIB_DATAROM_FPU32_SUPPORT" compilerBuildOptions="-I${CLAMATH_ROOT}/include --opt_level=off -v28 -ml -mt --float_support=fpu32 --cla_support=cla2 -g --diag_warning=225" archiverBuildOptions="${CLAMATH_ROOT}/lib/cla2_math_library_datarom_fpu32.lib" />
+	
+    <configuration name="CLAMATHLIB_STD_EABI" compilerBuildOptions="-I${CLAMATH_ROOT}/include --opt_level=off -v28 -ml -mt --float_support=softlib --cla_support=cla2 -g --diag_warning=225 --abi=eabi" archiverBuildOptions="${CLAMATH_ROOT}/lib/cla2_math_library_eabi.lib" />
+    <configuration name="CLAMATHLIB_FPU32_SUPPORT_EABI" compilerBuildOptions="-I${CLAMATH_ROOT}/include --opt_level=off -v28 -ml -mt --float_support=fpu32 --cla_support=cla2 -g --diag_warning=225 --abi=eabi" archiverBuildOptions="${CLAMATH_ROOT}/lib/cla2_math_library_fpu32_eabi.lib" />
+    <configuration name="CLAMATHLIB_DATAROM_STD_EABI" compilerBuildOptions="-I${CLAMATH_ROOT}/include --opt_level=off -v28 -ml -mt --float_support=softlib --cla_support=cla2 -g --diag_warning=225 --abi=eabi" archiverBuildOptions="${CLAMATH_ROOT}/lib/cla2_math_library_datarom_eabi.lib" />
+    <configuration name="CLAMATHLIB_DATAROM_FPU32_SUPPORT_EABI" compilerBuildOptions="-I${CLAMATH_ROOT}/include --opt_level=off -v28 -ml -mt --float_support=fpu32 --cla_support=cla2 -g --diag_warning=225 --abi=eabi" archiverBuildOptions="${CLAMATH_ROOT}/lib/cla2_math_library_datarom_fpu32_eabi.lib" />
+
+    <pathVariable name="CLAMATH_ROOT" path="../../" scope="project" />
+
+    <file action="link" path="CLAMATH_ROOT/source/CLAacos.asm" targetDirectory="" />
+	<file action="link" path="CLAMATH_ROOT/source/CLAacosineTable.asm" targetDirectory="" applicableConfigurations="CLAMATHLIB_STD,CLAMATHLIB_FPU32_SUPPORT,CLAMATHLIB_STD_EABI,CLAMATHLIB_FPU32_SUPPORT_EABI" />
+	<file action="link" path="CLAMATH_ROOT/source/CLAasin.asm" targetDirectory="" />
+	<file action="link" path="CLAMATH_ROOT/source/CLAasineTable.asm" targetDirectory="" applicableConfigurations="CLAMATHLIB_STD,CLAMATHLIB_FPU32_SUPPORT,CLAMATHLIB_STD_EABI,CLAMATHLIB_FPU32_SUPPORT_EABI" />
+	<file action="link" path="CLAMATH_ROOT/source/CLAatan.asm" targetDirectory="" />
+	<file action="link" path="CLAMATH_ROOT/source/CLAatan2.asm" targetDirectory="" />
+	<file action="link" path="CLAMATH_ROOT/source/CLAatan2PU.asm" targetDirectory="" />
+	<file action="link" path="CLAMATH_ROOT/source/CLAatanTable.asm" targetDirectory="" applicableConfigurations="CLAMATHLIB_STD,CLAMATHLIB_FPU32_SUPPORT,CLAMATHLIB_STD_EABI,CLAMATHLIB_FPU32_SUPPORT_EABI" />
+	<file action="link" path="CLAMATH_ROOT/source/CLAcos.asm" targetDirectory="" />
+	<file action="link" path="CLAMATH_ROOT/source/CLAcosPU.asm" targetDirectory="" />
+	<file action="link" path="CLAMATH_ROOT/source/CLAdiv.asm" targetDirectory="" />
+	<file action="link" path="CLAMATH_ROOT/source/CLAexp.asm" targetDirectory="" />
+	<file action="link" path="CLAMATH_ROOT/source/CLAexp2.asm" targetDirectory="" />
+	<file action="link" path="CLAMATH_ROOT/source/CLAexp10.asm" targetDirectory="" />
+	<file action="link" path="CLAMATH_ROOT/source/CLAexpN.asm" targetDirectory="" />
+	<file action="link" path="CLAMATH_ROOT/source/CLAexpTable.asm" targetDirectory="" applicableConfigurations="CLAMATHLIB_STD,CLAMATHLIB_FPU32_SUPPORT,CLAMATHLIB_STD_EABI,CLAMATHLIB_FPU32_SUPPORT_EABI" />
+	<file action="link" path="CLAMATH_ROOT/source/CLAisqrt.asm" targetDirectory="" />
+	<file action="link" path="CLAMATH_ROOT/source/CLAln.asm" targetDirectory="" />
+	<file action="link" path="CLAMATH_ROOT/source/CLAlnTable.asm" targetDirectory="" applicableConfigurations="CLAMATHLIB_STD,CLAMATHLIB_FPU32_SUPPORT,CLAMATHLIB_STD_EABI,CLAMATHLIB_FPU32_SUPPORT_EABI" />
+	<file action="link" path="CLAMATH_ROOT/source/CLAlog10.asm" targetDirectory="" />
+	<file action="link" path="CLAMATH_ROOT/source/CLAlogN.asm" targetDirectory="" />
+	<file action="link" path="CLAMATH_ROOT/source/CLAsin.asm" targetDirectory="" />
+	<file action="link" path="CLAMATH_ROOT/source/CLAsincos.asm" targetDirectory="" />
+	<file action="link" path="CLAMATH_ROOT/source/CLAsincosTable.asm" targetDirectory="" applicableConfigurations="CLAMATHLIB_STD,CLAMATHLIB_FPU32_SUPPORT,CLAMATHLIB_STD_EABI,CLAMATHLIB_FPU32_SUPPORT_EABI" />
+	<file action="link" path="CLAMATH_ROOT/source/CLAsinPU.asm" targetDirectory="" />
+	<file action="link" path="CLAMATH_ROOT/source/CLAsqrt.asm" targetDirectory="" />
+    <file action="link" path="CLAMATH_ROOT/source/cla_cfft_256.asm" targetDirectory="" />
+    <file action="link" path="CLAMATH_ROOT/source/cla_cfft_512.asm" targetDirectory="" />
+    <file action="link" path="CLAMATH_ROOT/source/cla_cfft_1024.asm" targetDirectory="" />
+    <file action="link" path="CLAMATH_ROOT/source/cla_cfft_unpack_512.asm" targetDirectory="" />
+    <file action="link" path="CLAMATH_ROOT/source/cla_cfft_unpack_256.asm" targetDirectory="" />
+    <file action="link" path="CLAMATH_ROOT/source/cla_fft_tables.asm" targetDirectory="" applicableConfigurations="CLAMATHLIB_STD,CLAMATHLIB_FPU32_SUPPORT,CLAMATHLIB_STD_EABI,CLAMATHLIB_FPU32_SUPPORT_EABI" />
+  </project>
+</projectSpec>

@@ -1,0 +1,74 @@
+//#############################################################################
+//
+// FILE:           cfft_1024.cla
+//
+// Description:    Example usage of the CFFT algorithm for the CLA
+//
+//#############################################################################
+// 
+// 
+// $Copyright: Copyright (C) 2023 Texas Instruments Incorporated -
+//             http://www.ti.com/ ALL RIGHTS RESERVED $
+//#############################################################################
+
+//*****************************************************************************
+// includes
+//*****************************************************************************
+#include "cfft_1024_shared.h"
+#include "f2837x_fft_examples_setup.h"
+//*****************************************************************************
+// defines
+//*****************************************************************************
+
+//*****************************************************************************
+// globals
+//*****************************************************************************
+//Variables global to all CLA tasks only
+
+//*****************************************************************************
+// function definitions
+//*****************************************************************************
+
+//Task 1 : 1024 point Complex FFT
+interrupt void Cla1Task1 ( void )
+{
+	//Local Variables
+
+	//Code
+	__mdebugstop();
+	CLA_CFFT_run1024Pt();
+//	__mnop();
+//	__mnop();
+//	__mnop();
+}
+
+interrupt void Cla1Task2 ( void )
+{
+
+}
+interrupt void Cla1Task3 ( void )
+{
+
+}
+interrupt void Cla1Task4 ( void )
+{
+
+}
+interrupt void Cla1Task5 ( void )
+{
+
+}
+interrupt void Cla1Task6 ( void )
+{
+
+}
+interrupt void Cla1Task7 ( void )
+{
+
+}
+interrupt void Cla1Task8 ( void )
+{
+
+}
+
+// End of file

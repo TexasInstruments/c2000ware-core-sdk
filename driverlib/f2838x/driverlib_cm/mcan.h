@@ -46,13 +46,15 @@
 /*                             Include Files                                  */
 /* ========================================================================== */
 
-#include "inc/hw_mcanss.h"
-#include "inc/hw_memmap.h"
-#include <stdbool.h>
-
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+#include "inc/hw_mcanss.h"
+#include "inc/hw_memmap.h"
+#include <stdbool.h>
+#include "inc/hw_types_mcan.h"
+
 
 //! \addtogroup mcan_api MCAN
 //! @{
@@ -1529,7 +1531,7 @@ void  MCAN_clearNewDataStatus(uint32_t                    baseAddr,
                               const MCAN_RxNewDataStatus *newDataStatus);
 
 /**
- * \brief   This API is used to read received message form message RAM.
+ * \brief   This API is used to read received message from Message RAM.
  *
  * \param   baseAddr        Base Address of the MCAN Registers.
  * \param   memType         Part of message ram to which given message to write.
@@ -1548,10 +1550,10 @@ void MCAN_readMsgRam(uint32_t           baseAddr,
                      uint32_t           memType,
                      uint32_t           bufNum,
                      uint32_t           fifoNum,
-                     MCAN_RxBufElement *elem);
+                     MCAN_RxBufElement *elem);                    
 
 /**
- * \brief   This API is used to read message form Tx Event FIFO.
+ * \brief   This API is used to read from Tx Event FIFO.
  *
  * \param   baseAddr        Base Address of the MCAN Registers.
  * \param   txEventElem     Tx Event FIFO Message Object.
@@ -1727,6 +1729,18 @@ void MCAN_clearInterrupt(uint32_t baseAddr, uint16_t intrNum);
  */
 void  MCAN_getHighPriorityMsgStatus(uint32_t                  baseAddr,
                                     MCAN_HighPriorityMsgInfo *hpm);
+
+/**
+ * \brief   This API will read the High Priority message object from Message RAM.
+ *
+ * \param   baseAddr        Base Address of the MCAN Registers.
+ * \param   elem            Message Object.
+ *                          Refer struct #MCAN_RxBufElement.
+ *
+ * \return  None.
+ */
+void MCAN_readHighPriorityMsgRam(uint32_t           baseAddr,
+                                        MCAN_RxBufElement *elem);                                      
 
 /**
  * \brief   This API will Rx FIFO status.
@@ -2223,6 +2237,7 @@ uint32_t MCAN_getMsgObjSize(uint32_t elemSize);
 
 // Close the Doxygen group.
 //! @}
+
 
 #ifdef __cplusplus
 }

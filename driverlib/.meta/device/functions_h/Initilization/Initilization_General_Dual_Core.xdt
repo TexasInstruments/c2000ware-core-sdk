@@ -1,0 +1,83 @@
+//*****************************************************************************
+//
+// Macro to call SysCtl_delay() to achieve a delay in microseconds. The macro
+// will convert the desired delay in microseconds to the count value expected
+// by the function. \b x is the number of microseconds to delay.
+//
+//*****************************************************************************
+#define DEVICE_DELAY_US(x) SysCtl_delay(((((long double)(x)) / (1000000.0L /  \
+                                (long double)DEVICE_SYSCLK_FREQ)) - 9.0L) / 5.0L)
+
+//*****************************************************************************
+//
+// The macros that can be used as parameter to the function Device_bootCPU2
+//
+#define C1C2_BROM_BOOTMODE_BOOT_FROM_PARALLEL                        0x00000000U
+#define C1C2_BROM_BOOTMODE_BOOT_FROM_SCI                             0x00000001U
+#define C1C2_BROM_BOOTMODE_BOOT_FROM_SPI                             0x00000004U
+#define C1C2_BROM_BOOTMODE_BOOT_FROM_I2C                             0x00000005U
+#define C1C2_BROM_BOOTMODE_BOOT_FROM_CAN                             0x00000007U
+#define C1C2_BROM_BOOTMODE_BOOT_FROM_RAM                             0x0000000AU
+#define C1C2_BROM_BOOTMODE_BOOT_FROM_FLASH                           0x0000000BU
+
+//
+// Other macros that are needed for the Device_bootCPU2 function
+//
+#define BROM_IPC_EXECUTE_BOOTMODE_CMD                                0x00000013U
+#define C1C2_BROM_BOOTMODE_BOOT_COMMAND_MAX_SUPPORT_VALUE            0x0000000CU
+#define C2_BOOTROM_BOOTSTS_C2TOC1_IGNORE                             0x00000000U
+#define C2_BOOTROM_BOOTSTS_SYSTEM_START_BOOT                         0x00000001U
+#define C2_BOOTROM_BOOTSTS_SYSTEM_READY                              0x00000002U
+#define C2_BOOTROM_BOOTSTS_C2TOC1_BOOT_CMD_ACK                       0x00000003U
+#define C2_BOOTROM_BOOTSTS_C2TOC1_BOOT_CMD_NAK_STATUS_NOT_SUPPORTED  0x00000004U
+#define C2_BOOTROM_BOOTSTS_C2TOC1_BOOT_CMD_NAK_STATUS_BUSY_WITH_BOOT 0x00000005U
+
+//
+// Macros used as return value by the Device_bootCPU2 Function
+//
+#define STATUS_FAIL                 0x0001
+#define STATUS_PASS                 0x0000
+
+//*****************************************************************************
+//
+// Defines, Globals, and Header Includes related to Flash Support
+//
+//*****************************************************************************
+#ifdef _FLASH
+#include <stddef.h>
+
+#ifndef CMDTOOL
+extern uint16_t RamfuncsLoadStart;
+extern uint16_t RamfuncsLoadEnd;
+extern uint16_t RamfuncsLoadSize;
+extern uint16_t RamfuncsRunStart;
+extern uint16_t RamfuncsRunEnd;
+extern uint16_t RamfuncsRunSize;
+#endif
+#define DEVICE_FLASH_WAITSTATES 3
+
+#endif
+
+//*****************************************************************************
+//
+// Function Prototypes
+//
+//*****************************************************************************
+//*****************************************************************************
+//
+//! \addtogroup device_api
+//! @{
+//
+//*****************************************************************************
+//*****************************************************************************
+//
+//! Function to initialize the device. Primarily initializes system 
+//! control to a known state by disabling the watchdog, setting up the
+//! SYSCLKOUT frequency, and enabling the clocks to the peripherals.
+//!
+//! \param None.
+//! \return None.
+//
+//*****************************************************************************
+extern void Device_init(void);
+

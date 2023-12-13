@@ -34,7 +34,7 @@ var oscclksource
 var oscclk = 10
 
 //
-// XTAL Single-Ended replaces X1 for F2838x, F28002x, F28003x, F28004x, F280013x, F280015x, F28P65x
+// XTAL Single-Ended replaces X1 for F2838x, F28002x, F28003x, F28004x, F280013x, F280015x, F28P65x, F28P55x
 //
 switch(OSCCLKSRCSEL.inputSelect){
 	case "INTOSC1":
@@ -186,7 +186,7 @@ if(PLL_type2.includes(device))
 		%	{
 // SYSPLL ENABLED
 // SYSCLK = `PLLSYSCLK_d` MHz = `OSCCLK_d` MHz (OSCCLK) * `PLL_IMULT_mv` (IMULT) / (`PLL_REFDIV_dv` (REFDIV) * `PLL_ODIV_dv` (ODIV) * `SYSCLKDIVSEL_dv` (SYSCLKDIVSEL))
-#define DEVICE_SYSCLK_FREQ          (DEVICE_OSCSRC_FREQ * `PLL_IMULT_mv`) / (`PLL_REFDIV_dv` * `PLL_ODIV_dv` * `SYSCLKDIVSEL_dv`)
+#define DEVICE_SYSCLK_FREQ          ((DEVICE_OSCSRC_FREQ * `PLL_IMULT_mv`) / (`PLL_REFDIV_dv` * `PLL_ODIV_dv` * `SYSCLKDIVSEL_dv`))
 		%   }
 		%else
 		%	{

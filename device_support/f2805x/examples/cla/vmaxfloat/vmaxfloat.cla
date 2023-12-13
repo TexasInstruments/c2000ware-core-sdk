@@ -1,0 +1,144 @@
+//###########################################################################
+// Description:
+//
+// Task 1: calculates the vector max moving backward through the array
+// Task 2: calculates the vector max moving forward through the array
+// Task 3: calculates the vector max using the ternary operator
+// Task 2: calculates the vector max using min/max intrinsics
+//
+//###########################################################################
+// $TI Release:  $
+// $Release Date:  $
+// $Copyright:
+// Copyright (C) 2012-2023 Texas Instruments Incorporated - http://www.ti.com/
+//
+// Redistribution and use in source and binary forms, with or without 
+// modification, are permitted provided that the following conditions 
+// are met:
+// 
+//   Redistributions of source code must retain the above copyright 
+//   notice, this list of conditions and the following disclaimer.
+// 
+//   Redistributions in binary form must reproduce the above copyright
+//   notice, this list of conditions and the following disclaimer in the 
+//   documentation and/or other materials provided with the   
+//   distribution.
+// 
+//   Neither the name of Texas Instruments Incorporated nor the names of
+//   its contributors may be used to endorse or promote products derived
+//   from this software without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+// $
+//###########################################################################
+
+//
+// Included Files
+//
+#include "DSP28x_Project.h"
+
+//
+// Include the test header file whose name is based on the test name
+// which is defined by the macro TEST on the command line
+//
+#include XSTRINGIZE(XCONCAT(TEST_NAME, _shared.h))
+//
+// Task 1 : Vector max - brute force
+// backward through the array
+//
+__interrupt void Cla1Task1 (void)
+{
+    max1 = vector1[length1-1];
+    index1 = length1-1;
+
+    for(i = length1-1; i >= 0; i--)
+    {
+        if(vector1[i] > max1)
+        {
+           max1 = vector1[i];
+           index1 = i;
+        }
+    }
+}
+//
+// Task 2 : Vector max - brute force
+// forward through the array
+//
+__interrupt void Cla1Task2 (void)
+{
+    max2 = vector2[0];
+    index2 = 0;
+
+    for(i = 1; i < length2; i++)
+    {
+        if(vector2[i] > max2)
+        {
+           max2 = vector2[i];
+           index2 = i;
+
+        }
+    }
+}
+//
+// Task 3 : Vector max - brute force
+// use conditional expressions
+// local index variable
+//
+__interrupt void Cla1Task3 (void)
+{
+
+    int32 local_index;
+    max3 = vector3[0];
+    index3 = 0;
+
+    for(local_index = 1; local_index < LENGTH3; local_index++)
+    {
+        max3   = (vector3[i] > max3) ? vector3[i] : max3;
+        index3 = (vector3[i] > max3) ? local_index : index3 ;
+
+    }
+}
+//
+// Task 4 : Vector min and max
+// use intrinsics
+// local index variable
+//
+__interrupt void Cla1Task4 (void)
+{
+    int32 local_index;
+    max4 = vector4[0];
+    min4 = vector4[0];
+    __mdebugstop();
+    for(local_index = 1; local_index < LENGTH4; local_index++)
+    {
+       min4 = __mminf32(min4, vector4[local_index]);
+       max4 = __mmaxf32(max4, vector4[local_index]);
+    }
+}
+__interrupt void Cla1Task5 (void)
+{
+
+}
+__interrupt void Cla1Task6 (void)
+{
+
+}
+__interrupt void Cla1Task7 (void)
+{
+
+}
+__interrupt void Cla1Task8 (void)
+{
+
+}
+

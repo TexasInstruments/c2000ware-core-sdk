@@ -77,7 +77,7 @@ if (sysErrSources)
     {
         sysErrSourcesConfig.push({
             name: "sysErrSource_" + sysErrSources[sysErrSourceIndex].name,
-            displayName: "Enable " + sysErrSources[sysErrSourceIndex].displayName,
+            displayName: "Mask " + sysErrSources[sysErrSourceIndex].displayName,
             default: false
         })
     }

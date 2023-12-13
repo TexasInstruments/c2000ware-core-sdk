@@ -321,6 +321,7 @@ typedef enum
     XBAR_EPWM_MUX31_INPUTXBAR14            = 0x3E01
 } XBAR_EPWMMuxConfig;
 
+//#####END_F28004X_F2837XD_F2837XS_F2807X_F2838X_F28002X_F28003X_F28P65X#####
 
 
 //*****************************************************************************
@@ -851,7 +852,6 @@ XBAR_setInputPin(uint32_t base, XBAR_InputNum input, uint16_t pin)
     //
     EALLOW;
 
-    HWREGH(INPUTXBAR_BASE + XBAR_O_INPUT1SELECT + (uint16_t)input) = pin;
     HWREGH(base + XBAR_O_INPUT1SELECT + (uint16_t)input) = pin;
 
     EDIS;

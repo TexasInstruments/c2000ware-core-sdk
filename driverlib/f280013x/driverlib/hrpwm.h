@@ -1676,3 +1676,4 @@ HRPWM_lockRegisters(uint32_t base, HRPWM_LockRegisterGroup registerGroup)
 #endif
 
 #endif // HRPWM_H
+

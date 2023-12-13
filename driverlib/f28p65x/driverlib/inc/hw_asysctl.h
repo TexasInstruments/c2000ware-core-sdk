@@ -46,30 +46,42 @@
 // The following are defines for the ASYSCTL register offsets
 //
 //*************************************************************************************************
-#define ASYSCTL_O_CONFIGLOCK       0x5EU    // Lock Register for all the config registers.
-#define ASYSCTL_O_TSNSCTL          0x60U    // Temperature Sensor Control Register
-#define ASYSCTL_O_ANAREFCTL        0x68U    // Analog Reference Control Register.
-#define ASYSCTL_O_VMONCTL          0x70U    // Voltage Monitor Control Register
-#define ASYSCTL_O_CMPHPMXSEL       0x82U    // Bits to select one of the many sources on CopmHP
-                                            // inputs. Refer to Pimux diagram for details.
-#define ASYSCTL_O_CMPLPMXSEL       0x84U    // Bits to select one of the many sources on CopmLP
-                                            // inputs. Refer to Pimux diagram for details.
-#define ASYSCTL_O_CMPHNMXSEL       0x86U    // Bits to select one of the many sources on CopmHN
-                                            // inputs. Refer to Pimux diagram for details.
-#define ASYSCTL_O_CMPLNMXSEL       0x87U    // Bits to select one of the many sources on CopmLN
-                                            // inputs. Refer to Pimux diagram for details.
-#define ASYSCTL_O_ADCDACLOOPBACK   0x88U    // Enabble loopback from DAC to ADCs
-#define ASYSCTL_O_LOCK             0x8EU    // Lock Register
-#define ASYSCTL_O_CMPHPMXSEL1      0x90U    // Bits to select one of the many sources on CopmHP
-                                            // inputs. Refer to Pimux diagram for details.
-#define ASYSCTL_O_CMPLPMXSEL1      0x92U    // Bits to select one of the many sources on CopmLP
-                                            // inputs. Refer to Pimux diagram for details.
-#define ASYSCTL_O_ADCSOCFRCGB      0x10EU   // ADC Global SOC Force
-#define ASYSCTL_O_ADCSOCFRCGBSEL   0x110U   // ADC Global SOC Force Select
-#define ASYSCTL_O_AGPIOFILTER      0x111U   // AGPIO Filter Control Register
-#define ASYSCTL_O_AGPIOCTRLG       0x120U   // AGPIO Control Register
-#define ASYSCTL_O_GPIOINENACTRL    0x134U   // GPIOINENACTRL Control Register
+#define ASYSCTL_O_INTERNALTESTCTL   0x4AU    // INTERNALTEST Node Control Register
+#define ASYSCTL_O_CONFIGLOCK        0x5EU    // Lock Register for all the config registers.
+#define ASYSCTL_O_TSNSCTL           0x60U    // Temperature Sensor Control Register
+#define ASYSCTL_O_ANAREFCTL         0x68U    // Analog Reference Control Register.
+#define ASYSCTL_O_VMONCTL           0x70U    // Voltage Monitor Control Register
+#define ASYSCTL_O_CMPHPMXSEL        0x82U    // Bits to select one of the many sources on CopmHP
+                                             // inputs. Refer to Pimux diagram for details.
+#define ASYSCTL_O_CMPLPMXSEL        0x84U    // Bits to select one of the many sources on CopmLP
+                                             // inputs. Refer to Pimux diagram for details.
+#define ASYSCTL_O_CMPHNMXSEL        0x86U    // Bits to select one of the many sources on CopmHN
+                                             // inputs. Refer to Pimux diagram for details.
+#define ASYSCTL_O_CMPLNMXSEL        0x87U    // Bits to select one of the many sources on CopmLN
+                                             // inputs. Refer to Pimux diagram for details.
+#define ASYSCTL_O_ADCDACLOOPBACK    0x88U    // Enabble loopback from DAC to ADCs
+#define ASYSCTL_O_LOCK              0x8EU    // Lock Register
+#define ASYSCTL_O_CMPHPMXSEL1       0x90U    // Bits to select one of the many sources on CopmHP
+                                             // inputs. Refer to Pimux diagram for details.
+#define ASYSCTL_O_CMPLPMXSEL1       0x92U    // Bits to select one of the many sources on CopmLP
+                                             // inputs. Refer to Pimux diagram for details.
+#define ASYSCTL_O_ADCSOCFRCGB       0x10EU   // ADC Global SOC Force
+#define ASYSCTL_O_ADCSOCFRCGBSEL    0x110U   // ADC Global SOC Force Select
+#define ASYSCTL_O_AGPIOFILTER       0x111U   // AGPIO Filter Control Register
+#define ASYSCTL_O_AGPIOCTRLG        0x120U   // AGPIO Control Register
+#define ASYSCTL_O_AGPIOCTRLH        0x122U   // AGPIO Control Register
+#define ASYSCTL_O_GPIOINENACTRL     0x134U   // GPIOINENACTRL Control Register
 
+
+//*************************************************************************************************
+//
+// The following are defines for the bit fields in the INTERNALTESTCTL register
+//
+//*************************************************************************************************
+#define ASYSCTL_INTERNALTESTCTL_TESTSEL_S   0U
+#define ASYSCTL_INTERNALTESTCTL_TESTSEL_M   0x3FU         // Test Select
+#define ASYSCTL_INTERNALTESTCTL_KEY_S       16U
+#define ASYSCTL_INTERNALTESTCTL_KEY_M       0xFFFF0000U   // Key to Enable writes
 
 //*************************************************************************************************
 //
@@ -304,6 +316,31 @@
 #define ASYSCTL_AGPIOCTRLG_GPIO217   0x2000000U   // AGPIOCTRL for GPIO217
 #define ASYSCTL_AGPIOCTRLG_GPIO218   0x4000000U   // AGPIOCTRL for GPIO218
 #define ASYSCTL_AGPIOCTRLG_GPIO219   0x8000000U   // AGPIOCTRL for GPIO219
+
+//*************************************************************************************************
+//
+// The following are defines for the bit fields in the AGPIOCTRLH register
+//
+//*************************************************************************************************
+#define ASYSCTL_AGPIOCTRLH_GPIO224   0x1U       // AGPIOCTRL for GPIO224
+#define ASYSCTL_AGPIOCTRLH_GPIO225   0x2U       // AGPIOCTRL for GPIO225
+#define ASYSCTL_AGPIOCTRLH_GPIO226   0x4U       // AGPIOCTRL for GPIO226
+#define ASYSCTL_AGPIOCTRLH_GPIO227   0x8U       // AGPIOCTRL for GPIO227
+#define ASYSCTL_AGPIOCTRLH_GPIO228   0x10U      // AGPIOCTRL for GPIO228
+#define ASYSCTL_AGPIOCTRLH_GPIO229   0x20U      // AGPIOCTRL for GPIO229
+#define ASYSCTL_AGPIOCTRLH_GPIO230   0x40U      // AGPIOCTRL for GPIO230
+#define ASYSCTL_AGPIOCTRLH_GPIO231   0x80U      // AGPIOCTRL for GPIO231
+#define ASYSCTL_AGPIOCTRLH_GPIO232   0x100U     // AGPIOCTRL for GPIO232
+#define ASYSCTL_AGPIOCTRLH_GPIO233   0x200U     // AGPIOCTRL for GPIO233
+#define ASYSCTL_AGPIOCTRLH_GPIO234   0x400U     // AGPIOCTRL for GPIO234
+#define ASYSCTL_AGPIOCTRLH_GPIO235   0x800U     // AGPIOCTRL for GPIO235
+#define ASYSCTL_AGPIOCTRLH_GPIO236   0x1000U    // AGPIOCTRL for GPIO236
+#define ASYSCTL_AGPIOCTRLH_GPIO237   0x2000U    // AGPIOCTRL for GPIO237
+#define ASYSCTL_AGPIOCTRLH_GPIO238   0x4000U    // AGPIOCTRL for GPIO238
+#define ASYSCTL_AGPIOCTRLH_GPIO239   0x8000U    // AGPIOCTRL for GPIO239
+#define ASYSCTL_AGPIOCTRLH_GPIO240   0x10000U   // AGPIOCTRL for GPIO240
+#define ASYSCTL_AGPIOCTRLH_GPIO241   0x20000U   // AGPIOCTRL for GPIO241
+#define ASYSCTL_AGPIOCTRLH_GPIO242   0x40000U   // AGPIOCTRL for GPIO242
 
 //*************************************************************************************************
 //

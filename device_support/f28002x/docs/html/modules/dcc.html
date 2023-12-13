@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v4.02.00.00
+                v5.01.00.00
               </div>
             
           
@@ -669,19 +669,6 @@ enabling interrupt signals, and reading the various clock counters.</p>
 </dd>
 </dl>
 </p>
-<p>The <em>source</em> parameter can have one of following values:<ul class="simple">
-<li><p><strong>DCC_COUNT1SRC_PLL</strong> - PLL021SSP Clock Out Source</p></li>
-<li><p><strong>DCC_COUNT1SRC_INTOSC1</strong> - Internal Oscillator1 Clock Source</p></li>
-<li><p><strong>DCC_COUNT1SRC_INTOSC2</strong> - Internal Oscillator2 Clock Source</p></li>
-<li><p><strong>DCC_COUNT1SRC_SYSCLK</strong> - System Clock Source</p></li>
-<li><p><strong>DCC_COUNT1SRC_AUXCLKIN</strong> - AUX Clock input Source</p></li>
-<li><p><strong>DCC_COUNT1SRC_EPWM</strong> - EPWM Clock Source</p></li>
-<li><p><strong>DCC_COUNT1SRC_ADCCLK</strong> - ADC Clock Source</p></li>
-<li><p><strong>DCC_COUNT1SRC_WDCLK</strong> - Watch Dog Clock Source</p></li>
-<li><p><strong>DCC_COUNT1SRC_CANX</strong> - CANxBIT Clock Source</p></li>
-<li><p><strong>DCC_COUNT1SRC_SYSAPLL_CLK_AUX</strong> - System APLL Aux Clk</p></li>
-</ul>
-</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -701,15 +688,6 @@ enabling interrupt signals, and reading the various clock counters.</p>
 </ul>
 </dd>
 </dl>
-</p>
-<p>The <em>source</em> parameter can have one of following values:<ul class="simple">
-<li><p><strong>DCC_COUNT0SRC_XTAL</strong> - Accurate Clock Source</p></li>
-<li><p><strong>DCC_COUNT0SRC_INTOSC1</strong> - Internal Oscillator1 Clock Source</p></li>
-<li><p><strong>DCC_COUNT0SRC_INTOSC2</strong> - Internal Oscillator2 Clock Source</p></li>
-<li><p><strong>DCC_COUNT0SRC_TCK</strong> - Preliminary Clock Source</p></li>
-<li><p><strong>DCC_COUNT0SRC_SYSCLK</strong> - System Clock Source</p></li>
-<li><p><strong>DCC_COUNT0SRC_AUXCLK</strong> - AUX Clock Source</p></li>
-</ul>
 </p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
@@ -731,19 +709,7 @@ enabling interrupt signals, and reading the various clock counters.</p>
 </dl>
 </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>Returns one of the following enumerated source values:<ul class="simple">
-<li><p><strong>DCC_COUNT1SRC_PLL</strong> - PLL021SSP Clock Out Source</p></li>
-<li><p><strong>DCC_COUNT1SRC_INTOSC1</strong> - Internal Oscillator1 Clock Source</p></li>
-<li><p><strong>DCC_COUNT1SRC_INTOSC2</strong> - Internal Oscillator2 Clock Source</p></li>
-<li><p><strong>DCC_COUNT1SRC_SYSCLK</strong> - System Clock Source</p></li>
-<li><p><strong>DCC_COUNT1SRC_AUXCLKIN</strong> - AUX Clock input Source</p></li>
-<li><p><strong>DCC_COUNT1SRC_EPWM</strong> - EPWM Clock Source</p></li>
-<li><p><strong>DCC_COUNT1SRC_ADCCLK</strong> - ADC Clock Source</p></li>
-<li><p><strong>DCC_COUNT1SRC_WDCLK</strong> - Watch Dog Clock Source</p></li>
-<li><p><strong>DCC_COUNT1SRC_CANX</strong> - CANxBIT Clock Source</p></li>
-<li><p><strong>DCC_COUNT1SRC_SYSAPLL_CLK_AUX</strong> - System APLL Aux Clk </p></li>
-</ul>
-</p>
+<dt><strong>Return</strong></dt><dd><p>Returns Counter 1 clock source from the enum DCC_Count1ClockSource </p>
 </dd>
 </dl>
 </p>
@@ -762,15 +728,7 @@ enabling interrupt signals, and reading the various clock counters.</p>
 </dl>
 </p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>Returns one of the following enumerated source values:<ul class="simple">
-<li><p><strong>DCC_COUNT0SRC_XTAL</strong> - Accurate Clock Source</p></li>
-<li><p><strong>DCC_COUNT0SRC_INTOSC1</strong> - Internal Oscillator1 Clock Source</p></li>
-<li><p><strong>DCC_COUNT0SRC_INTOSC2</strong> - Internal Oscillator2 Clock Source</p></li>
-<li><p><strong>DCC_COUNT0SRC_TCK</strong> - Preliminary Clock Source</p></li>
-<li><p><strong>DCC_COUNT0SRC_SYSCLK</strong> - System Clock Source</p></li>
-<li><p><strong>DCC_COUNT0SRC_AUXCLK</strong> - AUX Clock Source </p></li>
-</ul>
-</p>
+<dt><strong>Return</strong></dt><dd><p>Returns Counter 0 clock source from the enum DCC_Count0ClockSource </p>
 </dd>
 </dl>
 </p>
@@ -906,8 +864,10 @@ enabling interrupt signals, and reading the various clock counters.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
-      <span class="lastupdated">Last updated on Oct 11, 2022.
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+      <span class="lastupdated">Last updated on Nov 09, 2023.
       </span></p>
   </div>
 
@@ -927,7 +887,7 @@ enabling interrupt signals, and reading the various clock counters.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v4.02.00.00',
+            VERSION:'v5.01.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

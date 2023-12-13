@@ -126,5 +126,12 @@ extern uint32_t &__byte_peripheral_32(uint32_t *x);
 typedef bool _Bool;
 #endif
 
+/* To fix Misra-C errors */
+#ifndef TRUE
+#define TRUE  ((bool) 1)
+#endif
+#ifndef FALSE
+#define FALSE ((bool) 0)
+#endif
 
 #endif // HW_TYPES_H

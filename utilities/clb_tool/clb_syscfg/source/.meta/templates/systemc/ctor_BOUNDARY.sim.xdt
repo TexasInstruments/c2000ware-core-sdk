@@ -1,0 +1,38 @@
+%%{
+    let inst      = args[0];
+    let tileName  = args[1];
+    let inputs    = args[2];
+    let Common    = system.getScript("/utilities/clb_tool/clb_syscfg/source/Common.js");
+    let name      = tileName + "_BOUNDARY_IN";
+%%}
+
+        `name`("`name`"),
+
+% for (let j = 0; j < inputs.length; ++j) {
+%   let inName = inputs[j];
+%   let inFrom  = inst[inName];
+%   let customGenerator = (inFrom == 'customWave');
+%   let set_zero = (inFrom == '0');
+%   let set_one = (inFrom == '1');
+%
+%   let generatorObjectName = tileName + '_' + inName + '_' + inFrom;
+%   if (customGenerator || Common.isSimulatedInput(inFrom) || set_zero || set_one) {
+%       if (inFrom == 'squareWave') {
+        `generatorObjectName`("`generatorObjectName`", `inst['in_period'+j]`, `inst['in_duty'+j]`, `inst['in_repeat_count'+j]`, `inst['in_initial_value'+j]`, `inst['in_delay'+j]`),
+%       }
+%       else if (set_zero) {
+%		generatorObjectName = tileName + '_' + inName + '_' + 'squareWave';
+        `generatorObjectName`("`generatorObjectName`", 0, 0, 0, 0, 0),
+%       }
+%       else if (set_one) {
+%		generatorObjectName = tileName + '_' + inName + '_' + 'squareWave';
+        `generatorObjectName`("`generatorObjectName`", 0, 0, 0, 1, 0),
+%       }
+%       else if (customGenerator) {
+        `generatorObjectName`("`generatorObjectName`", "`inst['in_custom_source_output'+j]`"),
+%}
+%       else {
+        `generatorObjectName`("`generatorObjectName`"),
+%       }
+%   }
+% }

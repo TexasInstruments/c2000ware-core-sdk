@@ -249,7 +249,7 @@ struct PIE_VECT_TABLE {
     PINT MCANA_ECC_INT;             // 9.11 - MCANSSA_ECC_CORR_PLS
     PINT MCANA_WAKE_INT;            // 9.12 - MCANSSA_WAKE_AND_TS_PLS
     PINT PMBUSA_INT;                // 9.13 - PMBUSA  Interrupt
-    PINT AES_INT;                   // 9.14 - AES Interrupt
+    PINT AES_SINTREQUEST_INT;       // 9.14 - AES Interrupt
     PINT USBA_INT;                  // 9.15 - USBA Interrupt
     PINT PIE21_RESERVED_INT;        // 9.16 - Reserved
     PINT ADCC_EVT_INT;              // 10.9 - ADCC Event Interrupt

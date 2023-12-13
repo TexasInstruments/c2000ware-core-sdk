@@ -1,0 +1,36 @@
+<projectSpec>
+  <project
+        name="f28004x_pmbus_target_example"
+        device="TMS320F280049C"
+        cgtVersion="22.6.0.LTS"
+        products="c2000ware_software_package"
+        outputFormat="ELF"
+        launchWizard="False"
+        linkerCommandFile=""
+		enableSysConfigTool="true"
+        sysConfigBuildOptions="--product ${C2000WARE_ROOT}/.metadata/sdk.json --device F28004x --package F28004x_100PZ --part F28004x_100PZ"
+    >
+
+    <configuration name="RAM" compilerBuildOptions="-O2 -I${PMBUS_ROOT}/include -I${C2000WARE_DLIB_ROOT} -I${C2000WARE_DEVICE_SUPPORT_ROOT}/common/include -I${PMBUS_EXAMPLE_COMMON_ROOT}/f28004x -I${PMBUS_EXAMPLE_COMMON_ROOT}/target -I${PMBUS_EXAMPLE_COMMON_ROOT}/include -v28 -ml -mt --float_support=fpu32 --define=_DEBUG --define=_PMBUS_TARGET --define=_RAM --diag_warning=225 --display_error_number --diag_suppress=10063" linkerBuildOptions="--stack_size=0x300 --heap_size=0x200 --rom_model --entry_point=code_start" />
+    <configuration name="FLASH" compilerBuildOptions="-O2 -I${PMBUS_ROOT}/include -I${C2000WARE_DLIB_ROOT} -I${C2000WARE_DEVICE_SUPPORT_ROOT}/common/include -I${PMBUS_EXAMPLE_COMMON_ROOT}/f28004x -I${PMBUS_EXAMPLE_COMMON_ROOT}/target -I${PMBUS_EXAMPLE_COMMON_ROOT}/include -v28 -ml -mt --float_support=fpu32 --define=_DEBUG --define=_PMBUS_TARGET --define=_FLASH --diag_warning=225 --display_error_number --diag_suppress=10063" linkerBuildOptions="--stack_size=0x300 --heap_size=0x200 --rom_model --entry_point=code_start" />
+
+    <pathVariable name="C2000WARE_DEVICE_SUPPORT_ROOT" path="../../../../../../device_support/f28004x/" scope="project" />
+    <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../../../../driverlib/f28004x/driverlib/" scope="project" />
+    <pathVariable name="PMBUS_ROOT" path="../../" scope="project" />
+    <pathVariable name="PMBUS_EXAMPLE_COMMON_ROOT" path="../common" scope="project" />
+    <pathVariable name="C2000WARE_ROOT" path="../../../../../../" scope="project" />
+
+    <file action="copy" path="PMBUS_EXAMPLE_COMMON_ROOT/target" targetDirectory="" />
+    <file action="copy" path="PMBUS_EXAMPLE_COMMON_ROOT/f28004x/pmbus_examples_setup.c" targetDirectory="" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/cmd/28004x_generic_ram_lnk.cmd" targetDirectory="" applicableConfigurations="RAM" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/cmd/28004x_generic_flash_lnk.cmd" targetDirectory="" applicableConfigurations="FLASH" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/targetConfigs/TMS320F280049C.ccxml" targetDirectory="" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/include/driverlib.h" targetDirectory="device"  />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/include/device.h" targetDirectory="device" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/source/f28004x_codestartbranch.asm" targetDirectory="" />
+    <file action="link" path="PMBUS_ROOT/lib/F28004x_PMBus_Communications_Stack.lib" targetDirectory="" />
+    <file action="link" path="C2000WARE_DLIB_ROOT/ccs/Debug/driverlib.lib" targetDirectory="" />
+    <file action="copy" path="C2000WARE_DLIB_ROOT" targetDirectory="device" excludeFromBuild="True" />
+   <file action="copy" path="../common/f28004x/pmbus_target.syscfg" targetDirectory="" />
+  </project>
+</projectSpec>

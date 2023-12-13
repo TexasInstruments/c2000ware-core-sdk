@@ -8,6 +8,7 @@
 //! <h1>DMA GSRAM Transfer (dma_ex2_gsram_transfer)</h1>
 //!
 //!  This example uses one DMA channel to transfer data from a buffer in
+//!  RAMGS0 to a buffer in RAMGS1. The example sets the DMA channel
 //!  PERINTFRC bit repeatedly until the transfer of 16 bursts (where each
 //!  burst is 8 16-bit words) has been completed. When the whole transfer is
 //!  complete, it will trigger the DMA interrupt.

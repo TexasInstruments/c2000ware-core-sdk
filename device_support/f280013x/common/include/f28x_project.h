@@ -47,4 +47,3 @@
 #include "f280013x_examples.h"       // f280013x Examples Include File
 
 #endif  // end of F28X_PROJECT_H definition
-

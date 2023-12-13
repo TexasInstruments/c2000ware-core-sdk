@@ -122,6 +122,15 @@ else if (Common.getDeviceName().includes("F28P65x"))
     numberOfCLBs = 6;
 }
 
+else if (Common.getDeviceName().includes("F28P55x"))
+{
+    CLB_INSTANCE = [
+        { name: "CLB1_BASE", displayName: "CLB1"},
+        { name: "CLB2_BASE", displayName: "CLB2"}
+    ];
+    numberOfCLBs = 2;
+}
+
 let INPUT_TYPES = [
     {name: "GP", displayName: "Use Memory Mapped GPREG BIT"},
     {name: "GLOBAL", displayName: "Use Global Mux"},
@@ -132,7 +141,7 @@ function onChangeCLBBase(inst, ui){
     if (Common.CLB_isType2())
     {
     	var clb_with_spi_supprt = ["CLB1_BASE", "CLB2_BASE", "CLB3_BASE", "CLB4_BASE"];
-    	if ("F28003x".includes(Common.getDeviceName()))
+    	if (["F28003x", "F28P55x"].includes(Common.getDeviceName()))
     	{
 			clb_with_spi_supprt = ["CLB1_BASE", "CLB2_BASE"];
     	}

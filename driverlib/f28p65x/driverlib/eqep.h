@@ -642,6 +642,7 @@ EQEP_getDirection(uint32_t base)
 //! - \b EQEP_INT_STROBE_EVNT_LATCH - Strobe event latch
 //! - \b EQEP_INT_INDEX_EVNT_LATCH - Index event latch
 //! - \b EQEP_INT_UNIT_TIME_OUT - Unit time-out
+//! - \b EQEP_INT_QMA_ERROR - QMA error
 //!
 //! \return None.
 //
@@ -680,6 +681,7 @@ EQEP_enableInterrupt(uint32_t base, uint16_t intFlags)
 //! - \b EQEP_INT_STROBE_EVNT_LATCH - Strobe event latch
 //! - \b EQEP_INT_INDEX_EVNT_LATCH - Index event latch
 //! - \b EQEP_INT_UNIT_TIME_OUT - Unit time-out
+//! - \b EQEP_INT_QMA_ERROR - QMA error
 //!
 //! \return None.
 //
@@ -721,6 +723,7 @@ EQEP_disableInterrupt(uint32_t base, uint16_t intFlags)
 //! - \b EQEP_INT_STROBE_EVNT_LATCH - Strobe event latch
 //! - \b EQEP_INT_INDEX_EVNT_LATCH - Index event latch
 //! - \b EQEP_INT_UNIT_TIME_OUT - Unit time-out
+//! - \b EQEP_INT_QMA_ERROR - QMA error
 //
 //*****************************************************************************
 static inline uint16_t
@@ -755,6 +758,7 @@ EQEP_getInterruptStatus(uint32_t base)
 //! - \b EQEP_INT_STROBE_EVNT_LATCH - Strobe event latch
 //! - \b EQEP_INT_INDEX_EVNT_LATCH - Index event latch
 //! - \b EQEP_INT_UNIT_TIME_OUT - Unit time-out
+//! - \b EQEP_INT_QMA_ERROR - QMA error
 //!
 //! Note that the \b EQEP_INT_GLOBAL value is the global interrupt flag. In
 //! order to get any further eQEP interrupts, this flag must be cleared.
@@ -796,6 +800,7 @@ EQEP_clearInterruptStatus(uint32_t base, uint16_t intFlags)
 //! - \b EQEP_INT_STROBE_EVNT_LATCH
 //! - \b EQEP_INT_INDEX_EVNT_LATCH
 //! - \b EQEP_INT_UNIT_TIME_OUT
+//! - \b EQEP_INT_QMA_ERROR
 //!
 //! \return None.
 //

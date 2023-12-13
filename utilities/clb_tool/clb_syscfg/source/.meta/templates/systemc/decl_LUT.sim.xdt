@@ -1,0 +1,11 @@
+%%{
+    let inst      = args[0];
+    let tileName  = args[1];
+    let instNum   = args[2];
+    let inputs    = args[3];
+    let Common    = system.getScript("/utilities/clb_tool/clb_syscfg/source/Common.js");
+    let name      = tileName + "_LUT_" + instNum;
+%%}
+    DEVICE_CLB_LUT4        `name`;
+    sc_signal<sc_uint<16> > sig_`name`_fn;
+    sc_signal<bool>         sig_`name`_OUT;

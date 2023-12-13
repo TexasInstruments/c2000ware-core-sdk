@@ -82,6 +82,8 @@ extern "C"
                              CMPSS_COMPCTL_ASYNCLEN)
 
 #ifndef DOXYGEN_PDF_IGNORE
+
+
 //*****************************************************************************
 //
 // Values that can be passed to CMPSS_configLowComparator() and
@@ -237,6 +239,7 @@ typedef enum
                                            //!< configured PWMSYNCx signal and
                                            //!< RAMPH SOR trigger is RAMPL EOR
 } CMPSS_RampXTrigger;
+
 
 
 //*****************************************************************************
@@ -620,7 +623,6 @@ CMPSS_configDAC(uint32_t base, uint16_t config)
     HWREGH(base + CMPSS_O_COMPDACHCTL) = (HWREGH(base + CMPSS_O_COMPDACHCTL) &
                                           ~(CMPSS_COMPDACHCTL_SWLOADSEL      |
                                         CMPSS_COMPDACHCTL_DACSOURCE)) | config;
-
     EDIS;
 }
 
@@ -639,6 +641,7 @@ CMPSS_configDAC(uint32_t base, uint16_t config)
 //! when the DAC value is loaded from its shadow register:
 //! - \b CMPSS_DACVAL_SYSCLK - Value register updated on system clock.
 //! - \b CMPSS_DACVAL_PWMSYNC - Value register updated on PWM sync.
+//!
 //!
 //! The \b CMPSS_DACSRC_xxx term can take on the following values to specify
 //! the DAC value source for the high comparator's internal DAC:
@@ -665,7 +668,6 @@ CMPSS_configDACHigh(uint32_t base, uint16_t config)
                                           ~(CMPSS_COMPDACHCTL_SWLOADSEL      |
                                           CMPSS_COMPDACHCTL_DACSOURCE))      |
                                          config;
-
     EDIS;
 }
 
@@ -855,7 +857,7 @@ CMPSS_configureFilterInputHigh(uint32_t base, CMPSS_FilterInput filtInput)
     // Check the arguments.
     //
     ASSERT(CMPSS_isBaseValid(base));
-    ASSERT(filtInput <= 7U);
+    ASSERT((uint16_t)filtInput <= 7U);
 
     //
     // Set the high comparator filter initialization bit.
@@ -864,7 +866,7 @@ CMPSS_configureFilterInputHigh(uint32_t base, CMPSS_FilterInput filtInput)
 
     HWREGH(base + CMPSS_O_CTRIPHFILCTL) = (HWREGH(base + CMPSS_O_CTRIPHFILCTL) &
                                            ~CMPSS_CTRIPHFILCTL_FILTINSEL_M)    |
-                                          filtInput ;
+                                          (uint16_t)filtInput ;
 
     EDIS;
 }
@@ -890,7 +892,7 @@ CMPSS_configureFilterInputLow(uint32_t base, CMPSS_FilterInput filtInput)
     // Check the arguments.
     //
     ASSERT(CMPSS_isBaseValid(base));
-    ASSERT(filtInput <= 7U);
+    ASSERT((uint16_t)filtInput <= 7U);
 
     //
     // Set the low comparator filter initialization bit.
@@ -899,7 +901,7 @@ CMPSS_configureFilterInputLow(uint32_t base, CMPSS_FilterInput filtInput)
 
     HWREGH(base + CMPSS_O_CTRIPLFILCTL) = (HWREGH(base + CMPSS_O_CTRIPLFILCTL) &
                                            ~CMPSS_CTRIPLFILCTL_FILTINSEL_M)    |
-                                   (filtInput & CMPSS_CTRIPLFILCTL_FILTINSEL_M);
+                                          (uint16_t)filtInput;
 
     EDIS;
 }
@@ -1251,7 +1253,8 @@ CMPSS_setRampDirectionHigh(uint32_t base, CMPSS_RampDirection dir)
     //
     EALLOW;
     HWREGH(base + CMPSS_O_COMPDACHCTL) = (HWREGH(base + CMPSS_O_COMPDACHCTL) &
-                                          ~(CMPSS_COMPDACHCTL_RAMPDIR)) | dir;
+                                          ~(CMPSS_COMPDACHCTL_RAMPDIR)) |
+                                          (uint16_t)dir;
     EDIS;
 }
 
@@ -1457,7 +1460,8 @@ CMPSS_setRampDirectionLow(uint32_t base, CMPSS_RampDirection dir)
     //
     EALLOW;
     HWREGH(base + CMPSS_O_COMPDACLCTL) = (HWREGH(base + CMPSS_O_COMPDACLCTL) &
-                                          ~(CMPSS_COMPDACLCTL_RAMPDIR)) | dir;
+                                          ~(CMPSS_COMPDACLCTL_RAMPDIR)) |
+                                          (uint16_t)dir;
     EDIS;
 }
 
@@ -1673,7 +1677,8 @@ CMPSS_configureRampXTriggerHigh(uint32_t base, CMPSS_RampXTrigger trigger)
     HWREGH(base + CMPSS_O_COMPDACHCTL2) =
                                      (HWREGH(base + CMPSS_O_COMPDACHCTL2) &
                                       ~CMPSS_COMPDACHCTL2_XTRIGCFG_M)     |
-                                     (trigger << CMPSS_COMPDACHCTL2_XTRIGCFG_S);
+                                     ((uint16_t)trigger <<
+                                      CMPSS_COMPDACHCTL2_XTRIGCFG_S);
     EDIS;
 }
 

@@ -203,6 +203,10 @@ function getOTHERDriverlibName(interfaceName, peripheralInstanceName)
 		{
 			driverlibName = "GPIO18_X2"
 		}
+		else if (["F28P65x"].includes(system.deviceData.deviceId))
+		{
+			driverlibName = "GPIO221"
+		}
 		else
 		{
 			driverlibName = "GPIO18"
@@ -210,10 +214,17 @@ function getOTHERDriverlibName(interfaceName, peripheralInstanceName)
 	}
 	else if (interfaceName == "X1")
 	{
-		driverlibName = "GPIO19"
-		if (["F28002x"].includes(system.deviceData.deviceId))
+		if (["F28P65x"].includes(system.deviceData.deviceId))
+		{
+    		driverlibName = "GPIO220"
+		}
+		else if (["F28002x"].includes(system.deviceData.deviceId))
 		{
 			driverlibName = "GPIO19_X1"
+		}
+		else
+		{
+            driverlibName = "GPIO19"
 		}
 	}
 	return driverlibName;

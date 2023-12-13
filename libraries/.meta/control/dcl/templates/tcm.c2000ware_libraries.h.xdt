@@ -1,0 +1,39 @@
+%%{
+var mod                  = system.modules['/libraries/control/dcl/tcm.js'];
+%%}
+% if (mod != null)
+%{
+//
+// TCM
+//
+% for (var inst of mod.$instances)
+%{
+//
+// `inst.$name` macros
+//
+% // provide macro for sizes
+#define `inst.$name`_TOTALSIZE `inst.totSize`
+#define `inst.$name`_LEADSIZE  `inst.lead`
+#define `inst.$name`_CAPTSIZE  `inst.captSize`
+    % // create the FDLOG object
+    % var fdlogName = inst["fdlogName"];
+    % // create the array object
+    % var arrName = inst["arrName"];
+    % if(arrName==""){arrName=(inst.$name+"_arr");}
+    % if(fdlogName==""){fdlogName=(inst.$name+"_fdlog");}
+//
+// `inst.$name` variables
+//
+extern TCM `inst.$name`;
+extern FDLOG `fdlogName`;
+% // always add the array to .h since it will have to be created somewhere no matter what
+extern float32_t `arrName`[`inst["totSize"]`];
+%}
+//
+// TCM functions
+//
+% for (var inst of mod.$instances)
+%{
+void `inst.$name`_init();
+%}
+%}

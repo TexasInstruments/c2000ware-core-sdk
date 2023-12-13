@@ -53,6 +53,12 @@ let MEMCFGRegisters = [
 		bits: [
 			{ name: "TEST_M0", description: "Selects the different modes for M0 RAM", size: "2", shift: "0", mask: "0x3" },
 			{ name: "TEST_M1", description: "Selects the different modes for M1 RAM", size: "2", shift: "2", mask: "0xC" },
+			{ name: "TEST_D0", description: "Selects the different modes for D0 RAM", size: "2", shift: "4", mask: "0x30" },
+			{ name: "TEST_D1", description: "Selects the different modes for D1 RAM", size: "2", shift: "6", mask: "0xC0" },
+			{ name: "TEST_D2", description: "Selects the different modes for D2 RAM", size: "2", shift: "8", mask: "0x300" },
+			{ name: "TEST_D3", description: "Selects the different modes for D3 RAM", size: "2", shift: "10", mask: "0xC00" },
+			{ name: "TEST_D4", description: "Selects the different modes for D4 RAM", size: "2", shift: "12", mask: "0x3000" },
+			{ name: "TEST_D5", description: "Selects the different modes for D5 RAM", size: "2", shift: "14", mask: "0xC000" },
 		]
 	},
 	{ name: "DXINIT", description: "Dedicated RAM Init Register", offset: "0x12",

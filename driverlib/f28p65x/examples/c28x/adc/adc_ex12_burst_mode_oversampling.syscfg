@@ -9,6 +9,7 @@ const epwm1   = epwm.addInstance();
 const gpio    = scripting.addModule("/driverlib/gpio.js", {}, false);
 const gpio1   = gpio.addInstance();
 const sync    = scripting.addModule("/driverlib/sync.js");
+const asysctl = scripting.addModule("/driverlib/asysctl.js");
 
 /**
  * Write custom configuration values to the imported modules.
@@ -41,6 +42,22 @@ adc1.soc13Channel             = "ADC_CH_ADCIN2";
 adc1.soc14Channel             = "ADC_CH_ADCIN2";
 adc1.soc15Channel             = "ADC_CH_ADCIN2";
 
+adc1.soc0SampleWindow        = 15;
+adc1.soc1SampleWindow        = 15;
+adc1.soc2SampleWindow        = 15;
+adc1.soc3SampleWindow        = 15;
+adc1.soc4SampleWindow        = 15;
+adc1.soc5SampleWindow        = 15;
+adc1.soc6SampleWindow        = 15;
+adc1.soc7SampleWindow        = 15;
+adc1.soc8SampleWindow        = 15;
+adc1.soc9SampleWindow        = 15;
+adc1.soc10SampleWindow       = 15;
+adc1.soc11SampleWindow       = 15;
+adc1.soc12SampleWindow       = 15;
+adc1.soc13SampleWindow       = 15;
+adc1.soc14SampleWindow       = 15;
+adc1.soc15SampleWindow       = 15;
 
 adc1.enabledInts             = ["ADC_INT_NUMBER1"];
 adc1.enableInterrupt1        = true;
@@ -50,6 +67,8 @@ adc1.enableBurstMode          = true;
 adc1.burstTrigger             = "ADC_TRIGGER_EPWM1_SOCA";
 adc1.adcInt1.enableInterrupt = true;
 
+asysctl.analogReference        = "INTERNAL";
+asysctl.analogReferenceVoltage = "2P5";
 
 scripting.suppress("SOC0 is configured for Round Robin\\. With burst mode enabled, the  burst mode trigger will override the selected trigger for this SOC", adc1, "soc0Trigger");
 scripting.suppress("SOC1 is configured for Round Robin\\. With burst mode enabled, the  burst mode trigger will override the selected trigger for this SOC", adc1, "soc1Trigger");

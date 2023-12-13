@@ -136,12 +136,6 @@ void main(void)
     }
 
     //
-    // Enable interrupts required for this example
-    //
-    Interrupt_enable(INT_mySPI0_RX_DMA);
-    Interrupt_enable(INT_mySPI0_TX_DMA);
-
-    //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
     //
     EINT;
@@ -170,7 +164,7 @@ void main(void)
 __interrupt void INT_mySPI0_TX_DMA_ISR(void)
 {
     DMA_stopChannel(mySPI0_TX_DMA_BASE);
-    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
+    Interrupt_clearACKGroup(INT_mySPI0_TX_DMA_INTERRUPT_ACK_GROUP);
     return;
 }
 
@@ -182,7 +176,7 @@ __interrupt void INT_mySPI0_TX_DMA_ISR(void)
     uint16_t i;
 
     DMA_stopChannel(mySPI0_RX_DMA_BASE);
-    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
+    Interrupt_clearACKGroup(INT_mySPI0_RX_DMA_INTERRUPT_ACK_GROUP);
 
     //
     // Check for data integrity

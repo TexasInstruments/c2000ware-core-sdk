@@ -1,0 +1,106 @@
+/* control_F28069_DF23_CLA.cla
+ *
+ * Copyright (C) 2020 Texas Instruments Incorporated - http://www.ti.com/ 
+ * ALL RIGHTS RESERVED  
+ *
+*/
+
+#include "CLA_shared.h"
+#include "F2806x_Cla_typedefs.h"
+#include "F2806x_Device.h"
+
+// CLA variables
+DCL_DF23_CLA ctrl1;
+DCL_DF23_CLA ctrl2;
+float vk;
+float upperLim;
+float lowerLim;
+
+
+__interrupt void Cla1Task1 ( void )
+{
+
+}
+
+__interrupt void Cla1Task2 ( void )
+{
+	
+}
+
+// task 3 contains the DF23 controller
+__interrupt void Cla1Task3 ( void )
+{
+//	__mdebugstop();
+
+	// run the full DF23 controller
+	u1k = DCL_runDF23_L1(&ctrl1, ek);
+
+	// run the pre-computed DF23 controller with clamp
+	u2k = DCL_runDF23_L2(&ctrl2, ek);
+	vk = DCL_runClamp_L1(&u2k, upperLim, lowerLim);
+	if (0.5f > vk)
+	{
+		DCL_runDF23_L3(&ctrl2, ek, u2k);
+	}
+	
+	__mnop();
+	__mnop();
+	__mnop();
+}
+
+__interrupt void Cla1Task4 ( void )
+{
+	
+}
+
+__interrupt void Cla1Task5 ( void )
+{
+	
+}
+
+__interrupt void Cla1Task6 ( void )
+{
+	
+}
+
+__interrupt void Cla1Task7 ( void )
+{
+	
+}
+
+//Task 8 will initialize the variables used in Task 3
+__interrupt void Cla1Task8 ( void )
+{
+//	__mdebugstop();
+
+	// initialise DF23 controller coefficients
+	ctrl1.a1 = -2.1280f;
+	ctrl1.a2 = 1.3968f;
+	ctrl1.a3 = -0.2689f;
+	ctrl1.b0 = 9.6580f;
+	ctrl1.b1 = -9.1580f;
+	ctrl1.b2 = -9.6521f;
+	ctrl1.b3 = 9.1639f;
+	ctrl1.x1 = 0.0f;
+	ctrl1.x2 = 0.0f;
+	ctrl1.x3 = 0.0f;
+
+	ctrl2.a1 = ctrl1.a1;
+	ctrl2.a2 = ctrl1.a2;
+	ctrl2.a3 = ctrl1.a3;
+	ctrl2.b0 = ctrl1.b0;
+	ctrl2.b1 = ctrl1.b1;
+	ctrl2.b2 = ctrl1.b2;
+	ctrl2.b3 = ctrl1.b3;
+	ctrl2.x1 = ctrl1.x1;
+	ctrl2.x2 = ctrl1.x2;
+	ctrl2.x3 = ctrl1.x3;
+
+	// clamp limits
+	upperLim = 1001.0f;
+	lowerLim = -1001.0f;
+
+}
+
+// end of file
+

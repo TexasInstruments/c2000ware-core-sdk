@@ -1,0 +1,60 @@
+
+var TILE = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/TILE");
+var TILE1 = TILE.addInstance();
+// clock_period - Period of the clock (in Nano Seconds) used for simulation in System C
+TILE.clock_period = 10;
+// sim_duration - Duration of the simulation (in Nano Seconds)
+TILE.sim_duration = 100000;
+// Name
+TILE1.$name = "TILE1";
+// in0
+TILE1.BOUNDARY.in0 = "squareWave";
+// in_duty1 - Duty or ON time of the square wave
+TILE1.BOUNDARY.in_duty1 = 50;
+// in_period1 - Period of the square wave
+TILE1.BOUNDARY.in_period1 = 100;
+// in_repeat_count0 - Number of periods the waveform is repeated
+TILE1.BOUNDARY.in_repeat_count0 = 50;
+// in_repeat_count3 - Number of periods the waveform is repeated
+TILE1.BOUNDARY.in_repeat_count3 = 1;
+// in_repeat_count1 - Number of periods the waveform is repeated
+TILE1.BOUNDARY.in_repeat_count1 = 1000;
+// in_period0 - Period of the square wave
+TILE1.BOUNDARY.in_period0 = 50000;
+// in_duty0 - Duty or ON time of the square wave
+TILE1.BOUNDARY.in_duty0 = 49000;
+// i0 - Input 0.
+TILE1.LUT_0.i0 = "BOUNDARY.in0";
+// i1 - Input 1.
+TILE1.LUT_0.i1 = "COUNTER_0.count_match1";
+// eqn - Boolean equation on the variables i3,i2,i1,i0 for the LUT output.
+TILE1.LUT_0.eqn = "~i0 | i1";
+// eqn_s0 - Boolean equation on the variables e1,e0,s1,s0 for the S0 output.
+TILE1.FSM_0.eqn_s0 = "(~s0 & e0) | (s0 & (~e1))";
+// e0 - External Input 0.
+TILE1.FSM_0.e0 = "COUNTER_0.count_match2";
+// e1 - External Input 1.
+TILE1.FSM_0.e1 = "COUNTER_0.count_match1";
+// mode1 - Controls counting direction. High enables count up. Low enables count down.
+TILE1.COUNTER_0.mode1 = "1";
+// reset - Reset the counter to 0 on next clock cycle (triggers low to high)
+TILE1.COUNTER_0.reset = "LUT_0.OUT";
+// mode0 - Enables Counting when high
+TILE1.COUNTER_0.mode0 = "1";
+// match1_val - Sets the value of the Match reference 1 register.
+TILE1.COUNTER_0.match1_val = "300";
+// match2_val - Sets the value of the Match reference 2 register.
+TILE1.COUNTER_0.match2_val = "100";
+// eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
+TILE1.OUTLUT_4.eqn = "i0";
+// i0 - Input 0.
+TILE1.OUTLUT_4.i0 = "FSM_0.S0";
+// R0_init - Initial value for register R0
+TILE1.HLC.R0_init = "200";
+// Event 0 (e0) - Event 0
+TILE1.HLC.e0 = "COUNTER_0.count_match1";
+// instruct0
+TILE1.HLC.program0.instruct0 = "MOV_T2 R0, C0";
+// instruct1
+TILE1.HLC.program0.instruct1 = "INTR 1";
+

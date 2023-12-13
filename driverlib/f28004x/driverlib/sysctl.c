@@ -113,10 +113,12 @@ SysCtl_pollX1Counter(void)
             // input clock source is valid.
             //
             localCounter++;
-            if(localCounter>2500000)
+            if(localCounter>2500000U)
             {
                 if(loopCount == 3U)
+                {
                     status = false;
+                }
                 break;
             }
         }
@@ -240,7 +242,7 @@ SysCtl_setClock(uint32_t config)
 {
     uint16_t divSel, pllLockStatus;
     uint32_t pllMult;
-    uint32_t retries, oscSource;
+    uint32_t retries = 0U, oscSource;
     uint32_t timeout;
     bool status = false;
     uint32_t mult;
@@ -326,7 +328,15 @@ SysCtl_setClock(uint32_t config)
                 // Loop to retry locking the PLL should the DCC module
                 // indicate that it was not successful.
                 //
-                for(retries = 0U; (retries < SYSCTL_PLL_RETRIES); retries++)
+                // If a maximum retry count is required at the system level 
+                // it can be added here according to the maximum system allowed 
+                // time for PLL locking.  In this case there should be an error 
+                // handler at the system level for PLL lock failure. The largest 
+                // possible timeout should be used.
+                // Uncomment the while loop to have a limit for retry count and
+                // comment the for loop.
+                //while(retries < SYSCTL_PLL_RETRIES)
+                for(;;)
                 {
                     //
                     // Turn off PLL
@@ -378,6 +388,7 @@ SysCtl_setClock(uint32_t config)
                     {
                         break;
                     }
+                    retries++;
                 }
             }
             else
@@ -486,7 +497,7 @@ SysCtl_selectXTAL(void)
     // If a missing clock failure was detected, try waiting for the X1 counter
     // to saturate again. Consider modifying this code to add a 10ms timeout.
     //
-    while(SysCtl_isMCDClockFailureDetected() && (status == false) &&
+    while(SysCtl_isMCDClockFailureDetected() && (status == FALSE) &&
           (loopCount < 4U))
     {
         //
@@ -510,7 +521,7 @@ SysCtl_selectXTAL(void)
         EDIS;
         loopCount ++;
     }
-    while(status == false)
+    while(status == FALSE)
     {         
         // If code is stuck here, it means crystal has not started.  
         //Replace crystal or update code below to take necessary actions if 
@@ -556,7 +567,7 @@ SysCtl_selectXTALSingleEnded(void)
     // Something is wrong with the oscillator module. Replace the ESTOP0 with
     // an appropriate error-handling routine.
     //
-    while(SysCtl_isMCDClockFailureDetected() && (status == false))
+    while(SysCtl_isMCDClockFailureDetected() && (status == FALSE))
     {
         // If code is stuck here, it means crystal has not started.  
         //Replace crystal or update code below to take necessary actions if 

@@ -1,0 +1,62 @@
+%%{
+let controller_data      = system.getScript("/libraries/control/dcl/controller_data.js");
+var mod                  = system.modules['/libraries/control/dcl/controller.js'];
+var controllerChoiceList = [];
+if (mod != null)
+{
+    // get all the modules
+    for(var i = 0; i < mod.$instances.length; i++) 
+    {
+        var inst = mod.$instances[i];
+        var resData = controller_data.getModuleDataObj(inst);
+        controllerChoiceList.push(resData);
+    }
+}
+%%}
+
+%if (mod != null)
+%{
+//
+// DCL CONTROLLER
+//
+% for (var obj of controllerChoiceList)
+%{
+//
+// `obj["instName"]` variables
+//
+DCL_`obj["type"]` `obj["instName"]` = `obj["defaultsListName"]`;
+DCL_`obj["type"]`_SPS `obj["instName"]`_sps = `obj["type"]`_SPS_DEFAULTS;
+DCL_CSS `obj["instName"]`_css = DCL_CSS_DEFAULTS;
+%}
+% for (var obj of controllerChoiceList)
+% {
+void `obj["instName"]`_init(){
+    //
+    // `obj["instName"]` settings
+    //
+    `obj["instName"]`.sps = &`obj["instName"]`_sps;
+    `obj["instName"]`.css = &`obj["instName"]`_css;
+    % for (var j in obj["configEntriesVals"])
+    %{
+        % var configEntry   = obj["configEntriesVals"][j][0];
+        % var configVal     = obj["configEntriesVals"][j][1];
+        % // remove any text between curly brackets in the config Entry name, Example:
+        % // d2{DF11}
+        % // becomes
+        % // d2
+        % // This is because the actual variable name in DCL for .c file output is without the curly braces.
+        % if (configEntry.includes("{"))
+        % {
+        %     configEntry = configEntry.replace(/{.*?}/g,"");
+        % }
+    `obj["instName"]`.`configEntry` = `configVal`;
+    %}
+}
+% }
+void `mod.c2000wareLibraryName`_init(){
+    % for (var obj of controllerChoiceList)
+    % {
+    `obj["instName"]`_init();
+    % }
+}
+%}

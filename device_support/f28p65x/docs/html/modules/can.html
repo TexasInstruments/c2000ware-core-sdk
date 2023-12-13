@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v5.00.00.00
+                v5.01.00.00
               </div>
             
           
@@ -1326,13 +1326,13 @@ objects, send and read messages, and setup and handle interrupts and events.</p>
 <p>The <em>flags</em> parameter can be set as <strong>CAN_MSG_OBJ_NO_FLAGS</strong> if no flags are required or the parameter can be a logical OR of any of the following values:<ul class="simple">
 <li><p><strong>CAN_MSG_OBJ_TX_INT_ENABLE</strong> - Enable Transmit Interrupts</p></li>
 <li><p><strong>CAN_MSG_OBJ_RX_INT_ENABLE</strong> - Enable Receive Interrupts</p></li>
-<li><p><strong>CAN_MSG_OBJ_USE_ID_FILTER</strong> - Use filtering based on the Message ID</p></li>
-<li><p><strong>CAN_MSG_OBJ_USE_EXT_FILTER</strong> - Use filtering based on the Extended Message ID</p></li>
+<li><p><strong>CAN_MSG_OBJ_USE_ID_FILTER</strong> - Use filtering based on the Message ID (Standard or Extended)</p></li>
+<li><p><strong>CAN_MSG_OBJ_USE_EXT_FILTER</strong> - Use Extended Identifier Bit for filtering (Only among Extended IDs will be accepted)</p></li>
 <li><p><strong>CAN_MSG_OBJ_USE_DIR_FILTER</strong> - Use filtering based on the direction of the transfer</p></li>
 <li><p><strong>CAN_MSG_OBJ_FIFO</strong> - Message object is part of a FIFO structure and isn’t the final message object in FIFO</p></li>
 </ul>
 </p>
-<p>If filtering is based on message identifier, the value <strong>CAN_MSG_OBJ_USE_ID_FILTER</strong> has to be logically ORed with the <em>flag</em> parameter and <strong>CAN_MSG_OBJ_USE_EXT_FILTER</strong> also has to be ORed for message identifier filtering to be based on the extended identifier.</p>
+<p>If filtering is based on message identifier (for Standard or Extended IDs) specified by the <em>msgIDMask</em> parameter, the value <strong>CAN_MSG_OBJ_USE_ID_FILTER</strong> has to be logically ORed with the <em>flag</em> parameter. If <strong>CAN_MSG_OBJ_USE_EXT_FILTER</strong> is ORed with the <em>flag</em> parameter, only extended identifier frames are accepted which can further be masked by using the flag above.</p>
 <p><dl class="simple">
 <dt><strong>Note</strong></dt><dd><p>The <strong>msgLen</strong><p> Parameter for the Receive Message Object is a “don’t</p>
 <p>      care” but its value should be between 0-8 due to the assert.</p>
@@ -1635,7 +1635,7 @@ can be re-enabled using CAN_enableController().</p>
     <p>
       <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
       <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
-      <span class="lastupdated">Last updated on Jul 01, 2023.
+      <span class="lastupdated">Last updated on Nov 09, 2023.
       </span></p>
   </div>
 
@@ -1655,7 +1655,7 @@ can be re-enabled using CAN_enableController().</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v5.00.00.00',
+            VERSION:'v5.01.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

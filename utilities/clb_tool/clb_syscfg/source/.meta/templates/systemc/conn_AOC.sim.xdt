@@ -1,0 +1,52 @@
+%%{
+    let inst        = args[0];
+    let tileName    = args[1];
+    let instNum     = args[2];
+    let inputs      = args[3];
+    let name        = tileName + "_AOC_" + instNum;
+    let boundName   = tileName + "_BOUNDARY_IN_out" + instNum;
+    let CLBoutput   = tileName + inst.stage2_gate_mux.replace("OUTPUT", "OUTLUT_");
+    let gateName    = tileName + inst.stage2_gate_mux.replace("OUTPUT", "OUTLUT_");
+    let releaseName = tileName + inst.stage2_gate_mux.replace("OUTPUT", "OUTLUT_");
+
+    if(inst.stage2_gate_mux.includes("OUTPUT"))
+    {
+        gateName    = tileName + "_" + inst.stage2_gate_mux.replace("OUTPUT", "OUTLUT_") + "_OUT";
+    }
+    else
+    {
+        gateName    = name + "_GATE";
+    }
+    if(inst.stage3_release_mux.includes("OUTPUT"))
+    {
+        releaseName    = tileName + "_" + inst.stage3_release_mux.replace("OUTPUT", "OUTLUT_") + "_OUT";
+    }
+    else
+    {
+        releaseName    = name + "_RELEASE";
+    }
+    let Common      = system.getScript("/utilities/clb_tool/clb_syscfg/source/Common.js");
+%%}
+        `name`.clk                  (sc_top_clock);
+        `name`.aoc_mux_ctrl         (sig_`name`_MUX_CTRL);
+        `name`.boundary_in          (sig_`boundName`);
+        `name`.clb_tile_output      (sig_`tileName`_OUTLUT_`instNum`_OUT);
+        `name`.aoc_gate_signal      (sig_`gateName`);
+        `name`.aoc_release_signal   (sig_`releaseName`);
+        `name`.aoc_out              (sig_`tileName`_BOUNDARY_OUT_out`instNum`);
+
+        sc_trace(tf, `name`.aoc_mux_ctrl,       "`name`.`name`_mux_ctrl");
+        sc_trace(tf, `name`.boundary_in,        "`name`.`name`_mux_input_boundary_input");
+        sc_trace(tf, `name`.clb_tile_output,    "`name`.`name`_mux_input_clb_tile_output");
+        sc_trace(tf, `name`.aoc_gate_signal,    "`name`.`name`_gate_signal");
+        sc_trace(tf, `name`.aoc_release_signal, "`name`.`name`_release_signal");
+        sc_trace(tf, `name`.aoc_out,            "`name`.`name`_clb_output");
+
+%    if (inst.stage2_gate_mux.includes("SW")) {
+        `name`_gate_customWave.out   (sig_`name`_GATE);
+        `name`_gate_customWave.clk   (sc_top_clock);
+%    }
+%    if (inst.stage3_release_mux.includes("SW")) {
+        `name`_release_customWave.out   (sig_`name`_RELEASE);
+        `name`_release_customWave.clk   (sc_top_clock);
+%    }

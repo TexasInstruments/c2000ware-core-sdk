@@ -23,7 +23,8 @@ var globalConfig = [
         default     : SysClk_MHz,
     },
 ]
-
+var pmbus_fast_plus_supported_devices = ['f28p55x']
+var pmbus_fast_supported_devices = ['f28p55x', 'f28p65x', 'f2838x', 'f28002x', 'f28003x', 'f28004x', 'f280015x']
 function onChangeUseInterrupts(inst, ui)
 {
     if (inst.useInterrupts)
@@ -140,7 +141,18 @@ function onValidate(inst, validation)
             "The address specified is a reserved address", 
             inst, "OwnAddress");
 	}
-
+    if(inst.busClock == "PMBUS_CLOCKMODE_FAST_PLUS" && pmbus_fast_plus_supported_devices.indexOf(Common.getDeviceName().toLowerCase()) === -1)
+    {
+        validation.logError(
+            `1 MHz Fast Mode Plus is only supported by following devices: ${pmbus_fast_plus_supported_devices}`,
+            inst, "busClock");
+    }
+    if(inst.busClock == "PMBUS_CLOCKMODE_FAST" && pmbus_fast_supported_devices.indexOf(Common.getDeviceName().toLowerCase()) === -1)
+    {
+        validation.logError(
+            `400 kHz Fast Mode is only supported by following devices: ${pmbus_fast_supported_devices} `,
+            inst, "busClock");
+    }
     var pinmuxQualMods = Pinmux.getGpioQualificationModInstDefinitions("PMBUS", inst)
     for (var pinmuxQualMod of pinmuxQualMods)
     {
@@ -321,9 +333,19 @@ let config = [
         onChange    : Pinmux.useCaseChanged,
         
     },
-
-	
-	
+    {
+        name: "busClock",
+        displayName : "PMBus Bus Clock Frequency",
+        description : 'Bus Clock Frequency',
+        hidden      : false,
+        default     : "PMBUS_CLOCKMODE_STANDARD",
+        options     : [
+            { name: "PMBUS_CLOCKMODE_STANDARD", displayName : "100 KHz Clock" },
+            { name: "PMBUS_CLOCKMODE_FAST", displayName : "400 KHz Clock"  },
+            { name: "PMBUS_CLOCKMODE_FAST_PLUS", displayName : "1 MHz Clock"  },
+        ]
+        
+    },
  
 ];
 

@@ -246,6 +246,14 @@ volatile struct ECAP_REGS ECap2Regs;
 
 //----------------------------------------
 #ifdef __cplusplus
+#pragma DATA_SECTION("ECap3RegsFile")
+#else
+#pragma DATA_SECTION(ECap3Regs,"ECap3RegsFile");
+#endif
+volatile struct ECAP_REGS ECap3Regs;
+
+//----------------------------------------
+#ifdef __cplusplus
 #pragma DATA_SECTION("Epg1MuxRegsFile")
 #else
 #pragma DATA_SECTION(Epg1MuxRegs,"Epg1MuxRegsFile");
@@ -331,6 +339,14 @@ volatile struct EPWM_XBAR_REGS EPwmXbarRegs;
 #pragma DATA_SECTION(EQep1Regs,"EQep1RegsFile");
 #endif
 volatile struct EQEP_REGS EQep1Regs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EQep2RegsFile")
+#else
+#pragma DATA_SECTION(EQep2Regs,"EQep2RegsFile");
+#endif
+volatile struct EQEP_REGS EQep2Regs;
 
 //----------------------------------------
 #ifdef __cplusplus

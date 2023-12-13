@@ -1,0 +1,28 @@
+%%{
+    let inst      = args[0];
+    let tileName  = args[1];
+    let instNum   = args[2];
+    let inputs    = args[3];
+    let name      = tileName + "_COUNTER_" + instNum;
+    let Common    = system.getScript("/utilities/clb_tool/clb_syscfg/source/Common.js");
+    let colonName = Common.colonName;
+    let color     = 'blue';
+    if (!Common.used(inst, inputs)) return;
+%%}
+    `name` [label=<<TABLE BORDER='0' CELLBORDER='1' CELLSPACING='0'>
+                    <TR><TD PORT='reset'>reset</TD><TD ROWSPAN='4'><b>`name`</b><br/><br/>evAction = `inst.action`</TD><TD PORT='count_zero'>zero</TD></TR>
+                    <TR><TD PORT='event'>event</TD><TD PORT='count_match1'>match1</TD></TR>
+                    <TR><TD PORT='mode0'>mode0</TD><TD PORT='count_match2'>match2</TD></TR>
+                    <TR><TD PORT='mode1'>mode1</TD></TR>
+               </TABLE>> color=`color` shape=plaintext]
+
+    % for (let j = 0; j < inputs.length; ++j) {
+    %     let inName = inputs[j];
+    %     let inFrom = inst[inName];
+    %     if (inFrom == '1') {
+    1 -> `name`:`inName`:w [color=`color`]
+    %     }
+    %     else if (inFrom != '0') {
+    `tileName`_`colonName(inFrom)`:e -> `name`:`inName`:w [color=`color`]
+    %     }
+    % }

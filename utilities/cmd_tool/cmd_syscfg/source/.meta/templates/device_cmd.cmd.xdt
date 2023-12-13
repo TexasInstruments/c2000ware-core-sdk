@@ -1,0 +1,117 @@
+%%{
+
+let meminfo   = system.getScript("/utilities/cmd_tool/cmd_syscfg/source/" + system.deviceData.device.toLowerCase() + "_memoryInfo.js");
+let CMDCommon = system.getScript("/utilities/cmd_tool/cmd_syscfg/source/CMDCommon.js");
+var memoryInfo = meminfo.memoryInfo;
+var module = system.modules["/utilities/cmd_tool/cmd_syscfg/source/CMD"];
+
+%%}
+% if (module != null)
+% {
+    % var modStatic = module.$static
+    % if (modStatic)
+    % {
+        % if (modStatic.activateCMD)
+        % {
+            % if (modStatic.activeCMD)
+            % {
+
+//
+// Active linker CMD configuration selected by 
+// the CMD Tool global settings
+//
+#define `modStatic.activeCMD`
+            % }
+        % }
+    % }
+%       for(var i = 0; i < module.$instances.length; i++)
+%       {
+%           var inst = module.$instances[i]
+#ifdef `inst.$name`
+
+MEMORY
+{
+
+%           if(inst["sectionMemory_codestart"] == "0x000000")
+%           {
+    RAMM0_BEGIN               : origin = 0x000000, length = 0x000002
+%           }
+%           var InsideFlash = 0
+%           for (var memRange of CMDCommon.getMemoryRangesInDetail(inst))
+%           {
+%               var spaces = " ".repeat(Math.max(25 - memRange.name.length, 1))
+%               if(memRange.group == "FLASH" && !InsideFlash && inst["crcEnable"])
+%               {
+%                   InsideFlash = 1
+
+  GROUP {      /* GROUP memory ranges for crc/checksum of entire flash */
+%               }
+%               if(InsideFlash &&  memRange.group != "FLASH" && inst["crcEnable"])
+%               {
+%                   InsideFlash = 0
+        }  crc(_ccs_flash_checksum, algorithm=`inst["crcType"]`)
+
+%               }
+    `memRange.name` `spaces`: origin = `memRange.origin`, length = `memRange.length`
+%           }
+}
+
+
+SECTIONS
+{
+    //
+    // C28x Sections
+    //
+    .reset               : >  RESET, TYPE = DSECT /* not used, */
+%           var CLAFlag, UserFlag =0
+%           for (var section of CMDCommon.getSectionsInDetail(inst))
+%           {
+%               var text = CMDCommon.getSectionFormat(section)
+%               if(text != "")
+%               {
+%                   if(!CLAFlag && ["Cla1Prog", ".const_cla", ".scratchpad", ".bss_cla"].includes(section.sectionName))
+%                   {
+%                       CLAFlag = 1
+
+    //
+    // CLA Sections
+    //
+%                   }
+%                   if(!UserFlag && section.type == "user")
+%                   {
+%                    UserFlag = 1
+
+    //
+    // User Sections
+    //
+%                   }
+`text`
+%               }
+%           }
+%           if (inst["crcEnable"])
+%           {
+
+    /* crc/checksum section configured as COPY section to avoid including in executable */
+    .TI.memcrc          : type = COPY
+%           }
+%
+% if(["F2837xD", "F2838x", "F28P65x"].includes(system.deviceData.deviceId)){
+    MSGRAM_CPU1_TO_CPU2 : > CPU1TOCPU2RAM, type=NOINIT
+    MSGRAM_CPU2_TO_CPU1 : > CPU2TOCPU1RAM, type=NOINIT
+%   }
+%   if (["F2838x"].includes(system.deviceData.deviceId)){
+    MSGRAM_CPU_TO_CM    : > CPUTOCMRAM, type=NOINIT
+    MSGRAM_CM_TO_CPU    : > CMTOCPURAM, type=NOINIT
+%   }
+
+}
+
+#endif
+%       }
+% }
+
+/*
+//===========================================================================
+// End of file.
+//===========================================================================
+*/

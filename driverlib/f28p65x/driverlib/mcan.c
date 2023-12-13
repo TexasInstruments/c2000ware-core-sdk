@@ -46,7 +46,6 @@
 #include <stdint.h>
 #include "inc/stw_types.h"
 #include "inc/stw_dataTypes.h"
-#include "inc/hw_types_mcan.h"
 #include "mcan.h"
 #include "debug.h"
 
@@ -199,7 +198,7 @@ static void MCAN_eccLoadRegister(uint32_t baseAddr, uint32_t regOffset);
  */
 static void MCAN_readMsg(uint32_t           baseAddr,
                          uint32_t           elemAddr,
-                         MCAN_RxBufElement *elem);
+                         MCAN_RxBufElement *elem);                        
 
 /**
  * \brief   This API will write the message object to Message RAM.
@@ -924,6 +923,51 @@ void MCAN_readMsgRam(uint32_t           baseAddr,
     }
 }
 
+void MCAN_readHighPriorityMsgRam(uint32_t           baseAddr,
+                                        MCAN_RxBufElement *elem)
+{
+    MCAN_HighPriorityMsgInfo hpm;
+    uint32_t startAddr = 0U, elemSize = 0U, elemAddr = 0U;
+    uint32_t enableMod = 0U, idx = 0U;
+    //
+    // Check the arguments.
+    //
+    ASSERT(MCAN_isBaseValid(baseAddr));
+
+    MCAN_getHighPriorityMsgStatus(baseAddr, &hpm);
+
+    switch((hpm.msi)%2U)
+    {
+        case MCAN_RX_FIFO_NUM_0:
+                startAddr = HW_RD_FIELD32(baseAddr + MCAN_RXF0C,
+                                          MCAN_RXF0C_F0SA);
+                elemSize = HW_RD_FIELD32(baseAddr + MCAN_RXESC,
+                                         MCAN_RXESC_F0DS);
+                enableMod = 1U;
+                break;
+            case MCAN_RX_FIFO_NUM_1:
+                startAddr = HW_RD_FIELD32(baseAddr + MCAN_RXF1C,
+                                          MCAN_RXF1C_F1SA);
+                elemSize = HW_RD_FIELD32(baseAddr + MCAN_RXESC,
+                                         MCAN_RXESC_F1DS);
+                enableMod = 1U;
+                break;
+            default:
+                /* Invalid option */
+                break; 
+    }
+    if(1U == enableMod)
+    {
+        idx = hpm.bufIdx;
+        startAddr = (uint32_t) (startAddr << 2U);
+        elemSize  = MCAN_getMsgObjSize(elemSize);
+        elemSize *= 4U;
+        elemAddr  = startAddr + (elemSize * idx);
+        elemAddr += MCAN_MCAN_MSG_MEM;
+        MCAN_readMsg(baseAddr, elemAddr, elem);
+    }
+}                                        
+
 void MCAN_readTxEventFIFO(uint32_t           baseAddr,
                           MCAN_TxEventFIFOElement *txEventElem)
 {
@@ -975,12 +1019,20 @@ void MCAN_addStdMsgIDFilter(uint32_t                          baseAddr,
                             uint32_t                          filtNum,
                             const MCAN_StdMsgIDFilterElement *elem)
 {
-    uint32_t startAddr, elemAddr, regVal;
+    uint32_t startAddr, elemAddr, regVal, totalFilt;
 
     //
     // Check the arguments.
     //
     ASSERT(MCAN_isBaseValid(baseAddr));
+
+    //
+    // Check that the filter number does not exceed the number 
+    // of standard filters set during initialization
+    //
+    totalFilt = HW_RD_FIELD32(baseAddr + MCAN_SIDFC,
+                              MCAN_SIDFC_LSS);
+    ASSERT(filtNum <= totalFilt); 
 
     startAddr = HW_RD_FIELD32(baseAddr + MCAN_SIDFC,
                               MCAN_SIDFC_FLSSA);
@@ -1000,12 +1052,20 @@ void MCAN_addExtMsgIDFilter(uint32_t                          baseAddr,
                             uint32_t                          filtNum,
                             const MCAN_ExtMsgIDFilterElement *elem)
 {
-    uint32_t startAddr, elemAddr, regVal;
+    uint32_t startAddr, elemAddr, regVal, totalFilt;
 
     //
     // Check the arguments.
     //
     ASSERT(MCAN_isBaseValid(baseAddr));
+
+    //
+    // Check that the filter number does not exceed the number 
+    // of extended filters set during initialization
+    //
+    totalFilt = HW_RD_FIELD32(baseAddr + MCAN_XIDFC,
+                              MCAN_XIDFC_LSE);
+    ASSERT(filtNum <= totalFilt); 
 
     startAddr = HW_RD_FIELD32(baseAddr + MCAN_XIDFC,
                               MCAN_XIDFC_FLESA);

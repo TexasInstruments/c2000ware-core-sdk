@@ -563,6 +563,18 @@ typedef enum
 
 //*****************************************************************************
 //
+//! Values that can be passed to ADC_setupSOCRefloChannel() as the
+//! \e channelType parameter.
+//
+//*****************************************************************************
+typedef enum
+{
+    ADC_CHANNEL_ODD     = 0U, //!< ADC Odd Channel
+    ADC_CHANNEL_EVEN    = 1U  //!< ADC Even Channel
+} ADC_ChannelType;
+
+//*****************************************************************************
+//
 //! Values that can be passed to ADC_selectPPBSyncInput() and
 //! ADC_triggerRepeaterSyncIn() as the \e syncInput parameter.
 //
@@ -609,8 +621,8 @@ typedef enum
 //*****************************************************************************
 typedef enum
 {
-    ADC_PPB_OS_INT_1 = 0x0U,          //!< PCount generates PPB intterupt
-    ADC_PPB_OS_INT_2 = 0x1U,          //!< PCount/Sync generates PPB intterupt
+    ADC_PPB_OS_INT_1 = 0x0U,          //!< PCount generates PPB interrupt
+    ADC_PPB_OS_INT_2 = 0x1U,          //!< PCount/Sync generates PPB interrupt
 } ADC_PPBIntSrcSelect;
 
 //*****************************************************************************
@@ -939,7 +951,7 @@ ADC_setPrescaler(uint32_t base, ADC_ClkPrescale clkPrescale)
 //!
 //! The \e channel parameter specifies the channel to be converted. In
 //! single-ended mode this is a single pin given by \b ADC_CH_ADCINx where x is
-//! the number identifying the pin between 0 and 15 inclusive. In differential
+//! the number identifying the pin between 0 and 31 inclusive. In differential
 //! mode, two pins are used as inputs and are passed in the \e channel
 //! parameter as \b ADC_CH_ADCIN0_ADCIN1, \b ADC_CH_ADCIN2_ADCIN3, ..., or
 //! \b ADC_CH_ADCIN14_ADCIN15.
@@ -977,6 +989,27 @@ ADC_setupSOC(uint32_t base, ADC_SOCNumber socNumber, ADC_Trigger trigger,
     HWREG(ctlRegAddr) = ((uint32_t)channel << ADC_SOC0CTL_CHSEL_S) |
                         ((uint32_t)trigger << ADC_SOC0CTL_TRIGSEL_S) |
                         (sampleWindow - 1U);
+    EDIS;
+}
+//*****************************************************************************
+//
+//! Disable internal VREFLO connection.
+//!
+//! This function disables the internal connection of VREFLO for the ADC.
+//!
+//! \note This function disables the internal connections for VREFLO which is
+//! available through CMPSS module. To confiugre the internal connection for
+//! VREFLO, please refer ADC_setupSOCRefloChannel().
+//!
+//! \return None.
+//
+//*****************************************************************************
+static inline void
+ADC_disableIntRefloConnection(void)
+{
+    EALLOW;
+    HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_INTERNALTESTCTL) = (0xA5A50000UL);
+    HWREGH(CMPSS1_BASE + 0x1FU) = 0U;
     EDIS;
 }
 
@@ -1028,6 +1061,7 @@ ADC_selectSOCExtChannel(uint32_t base, ADC_SOCNumber socNumber,
                    (uint32_t)extChannel;
     EDIS;
 }
+
 
 //*****************************************************************************
 //
@@ -1405,8 +1439,8 @@ ADC_getIntResultStatus(uint32_t base, ADC_IntNumber adcIntNum)
     //
     // Get the specified ADC interrupt result ready status.
     //
-    return(HWREGH(base + ADC_O_INTFLG) &
-                 (1U << (uint16_t)(adcIntNum + 4U)) != 0U);
+    return((HWREGH(base + ADC_O_INTFLG) &
+                 (1U << ((uint16_t)adcIntNum + 4U))) != 0U);
 }
 
 //*****************************************************************************
@@ -1870,7 +1904,7 @@ ADC_setSOCPriority(uint32_t base, ADC_PriorityMode priMode)
 
     EALLOW;
 
-    HWREG(base + ADC_O_SOCPRICTL) = (HWREG(base + ADC_O_SOCPRICTL) &
+    HWREGH(base + ADC_O_SOCPRICTL) = (HWREGH(base + ADC_O_SOCPRICTL) &
                                       ~ADC_SOCPRICTL_SOCPRIORITY_M) |
                                      (uint16_t)priMode;
 
@@ -2560,7 +2594,7 @@ ADC_disablePPBAbsoluteValue(uint32_t base, ADC_PPBNumber ppbNumber)
 //! \param shiftVal is the number of bits to right shift PSUM before loading
 //! to final PPB SUM.
 //!
-//! This function configured the shift value reuired to right shift the PPB
+//! This function configured the shift value required to right shift the PPB
 //! PSUM before loading into the final PPB SUM.
 //!
 //! \return None
@@ -3243,7 +3277,7 @@ ADC_enablePPBExtendedLowLimit(uint32_t base, ADC_PPBNumber ppbNumber)
     // Enable PPB extended low limit.
     //
     EALLOW;
-    HWREGH(base + ppbLoOffset) |= ADC_PPB1TRIPLO_LIMITLO2EN;
+    HWREG(base + ppbLoOffset) |= ADC_PPB1TRIPLO_LIMITLO2EN;
     EDIS;
 }
 
@@ -3279,7 +3313,7 @@ ADC_disablePPBExtendedLowLimit(uint32_t base, ADC_PPBNumber ppbNumber)
     // Disable PPB extended low limit.
     //
     EALLOW;
-    HWREGH(base + ppbOffset) &= ~ADC_PPB1TRIPLO_LIMITLO2EN;
+    HWREG(base + ppbOffset) &= ~ADC_PPB1TRIPLO_LIMITLO2EN;
     EDIS;
 }
 
@@ -3644,7 +3678,7 @@ ADC_configSOCSafetyCheckerInput(uint32_t base, ADC_SOCNumber socNumber,
     HWREG(base + ADC_O_SAFECHECKRESEN) =
                           (HWREG(base + ADC_O_SAFECHECKRESEN)             &
                            ~(ADC_SAFECHECKRESEN_SOC0CHKEN_M << socShift)) |
-                          (scInput << socShift);
+                          ((uint32_t)scInput << socShift);
 }
 
 //
@@ -3817,11 +3851,11 @@ ADC_configureSafetyChecker(uint32_t scBase, ADC_SafetyCheckInst checkInst,
     //
     // Configure safety checker instance
     //
-    HWREGH(scBase + ADC_O_RESSEL1 + checkInst) =
-                        (HWREGH(scBase + ADC_O_RESSEL1 + checkInst) &
+    HWREGH(scBase + ADC_O_RESSEL1 + (uint16_t)checkInst) =
+                        (HWREGH(scBase + ADC_O_RESSEL1 + (uint16_t)checkInst) &
                         (ADC_RESSEL1_ADCSEL_M | ADC_RESSEL1_ADCRESULTSEL_M)) |
-                        ((adcInst << ADC_RESSEL1_ADCSEL_S) |
-                         (adcResultInst << ADC_RESSEL1_ADCRESULTSEL_S));
+                        (((uint16_t)adcInst << ADC_RESSEL1_ADCSEL_S) |
+                         ((uint16_t)adcResultInst << ADC_RESSEL1_ADCRESULTSEL_S));
 }
 
 //*****************************************************************************
@@ -3861,8 +3895,8 @@ ADC_setSafetyCheckerTolerance(uint32_t scBase, uint32_t tolerance)
 //!
 //! This function returns the safety check result for the selected instance.
 //!
-//! The \e checkInst number is a value \b ADC_SAFETY_CHECKX where X is a number
-//! from 1 to 2 specifying the safety result chekc instances available in the
+//! The \e checkInst number is a value \b ADC_SAFETY_CHECKx where x is a number
+//! from 1 to 2 specifying the safety result check instances available in the
 //! safety checker instance specified by \e scBase.
 //!
 //!
@@ -3880,7 +3914,7 @@ ADC_getSafetyCheckerResult(uint32_t scBase, ADC_SafetyCheckInst checkInst)
     //
     // Returns the safety check result for the selected instance
     //
-    return(HWREG(scBase + ADC_O_CHECKRESULT1 + checkInst) &
+    return(HWREG(scBase + ADC_O_CHECKRESULT1 + (uint16_t)checkInst) &
            ADC_CHECKRESULT1_RESULT_M);
 }
 
@@ -3933,7 +3967,7 @@ ADC_isSafeCheckINTEVTBaseValid(uint32_t base)
 //! a number from 1 to 4 specifying the safety check events available in
 //! the safety checker specified by \e scIntEvtBase.
 //!
-//! The \e checkerNumber number is a value \b ADC_CHECKER_NUMBERx where x is
+//! The \e checkerNumber number is a value \b ADC_SAFETY_CHECKERx where x is
 //! a number from 1 to 8 specifying which Checker Tile is to be selected in
 //! the ADC module.
 //!
@@ -3952,8 +3986,8 @@ ADC_enableSafetyCheckEvt(uint32_t scIntEvtBase, ADC_Checker checkerNumber,
     //
     // Enables the safety checker event source.
     //
-    HWREG(scIntEvtBase + ADC_O_CHECKEVT1SEL1 + checkEvent + checkResult)
-                                                    |= (1UL << checkerNumber);
+    HWREG(scIntEvtBase + ADC_O_CHECKEVT1SEL1 + (uint32_t)checkEvent +
+                    (uint32_t)checkResult) |= (1UL << (uint32_t)checkerNumber);
 }
 
 //*****************************************************************************
@@ -3997,8 +4031,8 @@ ADC_disableSafetyCheckEvt(uint32_t scIntEvtBase, ADC_Checker checkerNumber,
     //
     // Disables the safety checker event source.
     //
-    HWREG(scIntEvtBase + ADC_O_CHECKEVT1SEL1 + checkEvent + checkResult)
-                                                    &= ~(1UL << checkerNumber);
+    HWREG(scIntEvtBase + ADC_O_CHECKEVT1SEL1 + (uint32_t)checkEvent +
+                   (uint32_t)checkResult) &= ~(1UL << (uint32_t)checkerNumber);
 }
 
 //*****************************************************************************
@@ -4037,8 +4071,8 @@ ADC_enableSafetyCheckInt(uint32_t scIntEvtBase, ADC_Checker checkerNumber,
     //
     // Enables the safety checker interrupt source.
     //
-    HWREG(scIntEvtBase + ADC_O_CHECKINTSEL1 + checkResult)
-                                                    |= (1UL << checkerNumber);
+    HWREG(scIntEvtBase + ADC_O_CHECKINTSEL1 + (uint32_t)checkResult) |=
+                                              (1UL << (uint32_t)checkerNumber);
 }
 
 //*****************************************************************************
@@ -4077,8 +4111,8 @@ ADC_disableSafetyCheckInt(uint32_t scIntEvtBase, ADC_Checker checkerNumber,
     //
     // Enables the safety checker interrupt source.
     //
-    HWREG(scIntEvtBase + ADC_O_CHECKINTSEL1 + checkResult)
-                                                    &= ~(1UL << checkerNumber);
+    HWREG(scIntEvtBase + ADC_O_CHECKINTSEL1 + (uint32_t)checkResult) &=
+                                             ~(1UL << (uint32_t)checkerNumber);
 }
 
 //*****************************************************************************
@@ -4094,11 +4128,11 @@ ADC_disableSafetyCheckInt(uint32_t scIntEvtBase, ADC_Checker checkerNumber,
 //! The \e checkerFlag specifies the ADC safety checker event status of
 //! OOT or OVF events. It should be one of the following values.
 //!
-//! - \b ADC_SAFETY_CHECK_OOT
-//! - \b ADC_SAFETY_CHECK_RESULT1_OVF
-//! - \b ADC_SAFETY_CHECK_RESULT2_OVF
+//! - \b ADC_SAFETY_CHECK_OOT_FLG
+//! - \b ADC_SAFETY_CHECK_RES1OVF_FLG
+//! - \b ADC_SAFETY_CHECK_RES2OVF_FLG
 //!
-//! The \e checkerNumber number is a value \b ADC_CHECKER_NUMBERx where x is
+//! The \e checkerNumber number is a value \b ADC_SAFETY_CHECKERx where x is
 //! a number from 1 to 8 specifying which Checker Tile is to be selected in
 //! the ADC module specified by \e scIntEvtBase.
 //!
@@ -4118,8 +4152,8 @@ ADC_getSafetyCheckStatus(uint32_t scIntEvtBase, ADC_Checker checkerNumber,
     //
     // Get the specified safety checker event status.
     //
-    return(HWREG(scIntEvtBase + ADC_O_OOTFLG + checkerFlag)
-            & (1U << checkerNumber));
+    return(HWREG(scIntEvtBase + ADC_O_OOTFLG + (uint32_t)checkerFlag) &
+                                              (1U << (uint32_t)checkerNumber));
 }
 
 //*****************************************************************************
@@ -4133,12 +4167,12 @@ ADC_getSafetyCheckStatus(uint32_t scIntEvtBase, ADC_Checker checkerNumber,
 //! This funtion clears the specified ADC Safety Checker event status so that
 //! they no longer assert.
 //!
-//! \e checkerFlag takes one of the values \b ADC_SAFETY_CHECK_OOT,
-//! \b ADC_SAFETY_CHECK_RESULT1_OVF or \b ADC_SAFETY_CHECK_RESULT2_OVF
+//! \e checkerFlag takes one of the values \b ADC_SAFETY_CHECK_OOT_FLG,
+//! \b ADC_SAFETY_CHECK_RES1OVF_FLG or \b ADC_SAFETY_CHECK_RES2OVF_FLG
 //! to express which of the three event status of the ADC Safety Checker should
 //! be cleared.
 //!
-//! The \e checkerNumber number is a value \b ADC_CHECKER_NUMBERx where x is
+//! The \e checkerNumber number is a value \b ADC_SAFETY_CHECKERx where x is
 //! a number from 1 to 8 specifying which Checker Tile is to be selected in
 //! the ADC module specified by \e scIntEvtBase.
 //!
@@ -4157,7 +4191,8 @@ ADC_clearSafetyCheckStatus(uint32_t scIntEvtBase, ADC_Checker checkerNumber,
     //
     // Clear the specified safety checker event status.
     //
-    HWREG(scIntEvtBase + ADC_O_OOTFLGCLR + checkerFlag) = 1U << checkerNumber;
+    HWREG(scIntEvtBase + ADC_O_OOTFLGCLR + (uint32_t)checkerFlag) =
+                                                1UL << (uint32_t)checkerNumber;
 }
 
 //*****************************************************************************
@@ -4245,7 +4280,7 @@ ADC_triggerRepeaterMode(uint32_t base, uint32_t repInstance, ADC_RepMode mode)
     //
     EALLOW;
     HWREG(regOffset + ADC_O_REP1CTL) = (HWREG(regOffset + ADC_O_REP1CTL) &
-                                        ~(ADC_REP1CTL_MODE)) | mode;
+                                        ~(ADC_REP1CTL_MODE)) | (uint32_t)mode;
     EDIS;
 }
 
@@ -4441,6 +4476,15 @@ ADC_forceRepeaterTriggerSync(uint32_t base, uint16_t repInstance)
 //!
 //! This function indicates the number of repeated triggers passed into
 //! \e repCount and remaining triggers to be generated/supressed.
+//! In oversampling mode, the \e repCount parameter is the number of desired
+//! repeated triggers to be generated. It should be a value between 0 to 127
+//! where (repCount + 1) triggers will be generated. For example, when
+//! \e repCount = 2, 3 triggers will be generated on receiving corresponding
+//! REPxCTL.TRIGSEL. In unversampling mode, the \e repCount parameter is
+//! the number of desired triggers to be supressed. It should be a value between
+//! 0 to 127 where 1 out of (repCount + 1) triggers received will be passed
+//! through. For Example, when \e repCount = 2, 1 out of 3 triggers will be
+//! generated.
 //!
 //! The \e repInstance is the repeater instance to be configured. Valid values
 //! for this parameter can be referred from the enum \e ADC_RepInstance.
@@ -4481,6 +4525,9 @@ ADC_triggerRepeaterCount(uint32_t base, uint16_t repInstance,
 //!
 //! This function configures the phase delay that corresponds to \e repPhase
 //! by defining the number of sysclk to delay the selected trigger.
+//! The \e repPhase parameter should be a value between 0 and 65535 inclusive.
+//! For example, passing a 2 to the \e offset parameter will delay the trigger
+//! by 2 sysclks and passing 0 will pass through the trigger without delay.
 //!
 //! The \e repInstance is the repeater instance to be configured. Valid values
 //! for this parameter can be referred from the enum \e ADC_RepInstance.
@@ -4518,7 +4565,11 @@ ADC_triggerRepeaterPhase(uint32_t base, uint16_t repInstance,
 //! \param repSpread is the desired trigger spread in sysclk cycle.
 //!
 //! This function configures the spread time by setting \e repSpread
-//! to number of sysclk desired between triggers.
+//! to number of sysclk desired between triggers. In oversampling mode,
+//! the \e repSpread parameter is the minimum number of sysclks to wait before
+//! creating the next repeated trigger to the ADC. It should be a value between
+//! 0 and 65535 inclusive. For example, passing a 2 to the \e offset parameter
+//! will create at least 2 sysclk time between repeated triggers.
 //!
 //! The \e repInstance is the repeater instance to be configured. Valid values
 //! for this parameter can be referred from the enum \e ADC_RepInstance.
@@ -4570,6 +4621,37 @@ ADC_triggerRepeaterSpread(uint32_t base, uint16_t repInstance,
 extern void
 ADC_configureRepeater(uint32_t base, uint16_t repInstance,
                       ADC_RepeaterConfig *config);
+
+//*****************************************************************************
+//
+//! Cofigure the internal connection to route VREFLO to ADC module.
+//!
+//! \param base is the base address of the ADC module.
+//! \param socNumber is the number of the start-of-conversion.
+//! \param trigger the source that will cause the SOC.
+//! \param sampleWindow is the acquisition window duration.
+//! \param channelType specifies the type of the ADC channel.
+//!
+//! This function configures the internal connection to route VREFLO to the ADC
+//! module as all the modules do not have direct connection to internal VREFLO.
+//!
+//! The \e socNumber number is a value \b ADC_SOC_NUMBERX where X is a number
+//! from 0 to 15 specifying which SOC is to be configured on the ADC module
+//! specified by \e base.
+//!
+//! The \e trigger parameter takes the same values as the ADC_setupSOC() API and
+//! the \e sampleWindow parameter is the acquisition window duration in SYSCLK
+//! cycles. It should be a value between 1 and 512 cycles inclusive.
+//!
+//! The \e channelType parameter must be one of the following:
+//! \b ADC_CHANNEL_ODD or \b ADC_CHANNEL_EVEN based on the channel selection.
+//!
+//! \return None.
+//!
+//*****************************************************************************
+extern void
+ADC_setupSOCRefloChannel(uint32_t base, ADC_SOCNumber socNumber,
+       ADC_Trigger trigger, uint32_t sampleWindow, ADC_ChannelType channelType);
 
 //*****************************************************************************
 //

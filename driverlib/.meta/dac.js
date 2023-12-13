@@ -41,7 +41,7 @@ function onChangeLoadMode(inst, ui)
 var dacStatic = undefined;
 
 /* determine ASYSCTL static module dependency */
-if (["F28004x","F28003x", "F28P65x"].includes(Common.getDeviceName()))
+if (["F28004x","F28003x", "F28P65x", "F28P55x"].includes(Common.getDeviceName()))
 {
     dacStatic = {
         name: "dacGlobal",
@@ -67,6 +67,13 @@ else if (["F28P65x"].includes(Common.getDeviceName()))
         { name: "DACC_BASE", displayName: "DACC"},
     ];
     numberOfDACs = 2;
+}
+else if (["F28P55x"].includes(Common.getDeviceName()))
+{
+    DAC_INSTANCE = [
+        { name: "DACA_BASE", displayName: "DACA"},
+    ];
+    numberOfDACs = 1;
 }
 
 /* Array of possible ePWM sync signals */
@@ -177,6 +184,19 @@ if (["F28004x", "F28003x", "F28P65x"].includes(Common.getDeviceName()))
         }
     );
 }
+if (["F28P55x"].includes(Common.getDeviceName()))
+{
+    config.splice(2, 0, 
+        {
+            name        : "gainMode",
+            displayName : "Gain Mode",
+            description : 'Sets the DAC Gain Mode',
+            hidden      : false,
+            default     : device_driverlib_peripheral.DAC_GainMode[0].name,
+            options     : device_driverlib_peripheral.DAC_GainMode
+        }
+    );
+}
 
 function onValidate(inst, validation) {
 
@@ -251,14 +271,16 @@ function onValidate(inst, validation) {
     if (asysctlMod){
         var stat = asysctlMod.$static
         //validation.logError("An example error in gainMode", inst, "gainMode");
-        if(inst.referenceVoltage == "DAC_REF_VDAC" && inst.gainMode == "DAC_GAIN_TWO"){
-            validation.logError(
-                "Selected gain mode not supported for configured reference voltage.", 
-                inst, "gainMode");
-            validation.logError(
-                "Selected reference voltage not supported for configured gain mode.", 
-                inst, "referenceVoltage");
-        } // the case of VDAC, no gain mode select! the case of [vdac,   x,        x,    gain 2x]
+        if(["F2838x","F28003x","F28004x","F2807x","F2837xS", "F2837xD","F28P65x"].includes(Common.getDeviceName())){
+            if(inst.referenceVoltage == "DAC_REF_VDAC" && inst.gainMode == "DAC_GAIN_TWO"){
+                validation.logError(
+                    "Selected gain mode not supported for configured reference voltage.",
+                    inst, "gainMode");
+                validation.logError(
+                    "Selected reference voltage not supported for configured gain mode.",
+                    inst, "referenceVoltage");
+            } // the case of VDAC, no gain mode select! the case of [vdac,   x,        x,    gain 2x]
+        }
         if(inst.referenceVoltage == "DAC_REF_ADC_VREFHI" && stat.analogReference == "INTERNAL" 
                 && stat.analogReferenceVoltage == "1P65" && inst.gainMode == "DAC_GAIN_ONE"){
             validation.logError(

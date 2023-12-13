@@ -1,0 +1,19 @@
+%%{
+let 	device_common   					= system.getScript("/driverlib/.meta/device/functions_h/device_common.js");
+let 	Common   						= system.getScript("/driverlib/Common.js");
+var	Configure_TMX_Analog_Trim_ADCA_to_ADCD_Type1			= system.getTemplate('./Configure_TMX_Analog_Trim_ADCA_to_ADCD_Type1.xdt');
+var	Configure_TMX_Analog_Trim_ADCA_to_ADCD_Type2		= system.getTemplate('./Configure_TMX_Analog_Trim_ADCA_to_ADCD_Type2.xdt');
+
+
+const 	device  						= device_common.device;
+const	Configure_TMX_Analog_Trim_Type1				= device_common.Configure_TMX_Analog_Trim_Type1;
+const	Configure_TMX_Analog_Trim_Type2				= device_common.Configure_TMX_Analog_Trim_Type2;
+%%}
+% if(Configure_TMX_Analog_Trim_Type1.includes(device))
+%{
+`Configure_TMX_Analog_Trim_ADCA_to_ADCD_Type1()`
+%}
+% if(Configure_TMX_Analog_Trim_Type2.includes(device) && Common.isContextCPU1())
+%{
+`Configure_TMX_Analog_Trim_ADCA_to_ADCD_Type2()`
+%}

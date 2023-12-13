@@ -2,7 +2,7 @@
 //
 // FILE:   cla_ex1_asin.c
 //
-// TITLE:  CLA Arcsine Example for F2838x.
+// TITLE:  CLA Arcsine Example
 //
 //! \addtogroup cpu01_example_list
 //! <h1>CLA \f$arcsine(x)\f$ using a lookup table (cla_asin_cpu01)</h1>

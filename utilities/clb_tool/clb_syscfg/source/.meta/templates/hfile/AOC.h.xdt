@@ -1,0 +1,53 @@
+%%{
+    let inst     = args[0];
+    let tileName = args[1];
+    let instNum  = args[2];
+    let name     = tileName + "_OUTPUT_COND_CTR_" + instNum;
+    let Common   = system.getScript("/utilities/clb_tool/clb_syscfg/source/Common.js");
+    let bypass_mux   = inst.bypass_mux?0:1;
+    let input_mode = (inst.input_mode == "OUTPUT")?0:1;
+    
+    // Stage 1
+    let stage1_mux = (inst.stage1_mux)?1:0;
+    // Stage 2
+    let stage2_mux = (inst.stage2_mux == "BYPASS")?0:
+                     (inst.stage2_mux == "AND")?1:
+                     (inst.stage2_mux == "OR")?2:3;
+
+    let stage2_gate_hw = (inst.stage2_gate_mux == "SW")?0:1;
+    let stage2_gate_mux = (inst.stage2_gate_mux == "SW")?0:
+                     (inst.stage2_gate_mux == "OUTPUT0")?0:
+                     (inst.stage2_gate_mux == "OUTPUT1")?1:
+                     (inst.stage2_gate_mux == "OUTPUT2")?2:
+                     (inst.stage2_gate_mux == "OUTPUT3")?3:
+                     (inst.stage2_gate_mux == "OUTPUT4")?4:
+                     (inst.stage2_gate_mux == "OUTPUT5")?5:
+                     (inst.stage2_gate_mux == "OUTPUT6")?6:7;
+    
+    // Stage 3
+    let stage3_mux = (inst.stage3_mux == "BYPASS")?0:
+                     (inst.stage3_mux == "CLEAR")?1:
+                     (inst.stage3_mux == "SET")?2:3;
+
+    let stage3_release_hw = (inst.stage3_release_mux == "SW")?0:1;
+    let stage3_release_mux = (inst.stage3_release_mux == "SW")?0:
+                     (inst.stage3_release_mux == "OUTPUT0")?0:
+                     (inst.stage3_release_mux == "OUTPUT1")?1:
+                     (inst.stage3_release_mux == "OUTPUT2")?2:
+                     (inst.stage3_release_mux == "OUTPUT3")?3:
+                     (inst.stage3_release_mux == "OUTPUT4")?4:
+                     (inst.stage3_release_mux == "OUTPUT5")?5:
+                     (inst.stage3_release_mux == "OUTPUT6")?6:7;
+
+
+    let reg      = '0x' + (stage1_mux                   + 
+                           (stage2_mux           << 1    )+
+                           (stage3_mux           << 3    )+
+                           (stage2_gate_mux      << 5    )+
+                           (stage3_release_mux   << 8    )+
+                           (stage2_gate_hw       << 11   )+ 
+                           (stage3_release_hw    << 12   )+
+                           (input_mode           << 13   )+ 
+                           (bypass_mux           << 14   )).toString(16);
+%%}
+#define `name` `reg`

@@ -1,0 +1,331 @@
+
+var TILE = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/TILE");
+var TILE1 = TILE.addInstance();
+var TILE2 = TILE.addInstance();
+var TILE3 = TILE.addInstance();
+var TILE4 = TILE.addInstance();
+// Name
+TILE1.$name = "TILE1";
+// Name
+TILE1.BOUNDARY.$name = "BOUNDARY0";
+// in1
+TILE1.BOUNDARY.in1 = "TILE2_BOUNDARY.out4";
+// in0
+TILE1.BOUNDARY.in0 = "squareWave";
+// in_edge0 - Edge detection on the inputs, generates 1 cycle pulse on chosen edges - for simulation purposes only
+TILE1.BOUNDARY.in_edge0 = "rising edge";
+// in_period0 - Period of the square wave
+TILE1.BOUNDARY.in_period0 = 1000;
+// in_duty0 - Duty or ON time of the square wave
+TILE1.BOUNDARY.in_duty0 = 500;
+// in_repeat_count0 - Number of periods the waveform is repeated
+TILE1.BOUNDARY.in_repeat_count0 = 1;
+// Name
+TILE1.LUT_0.$name = "LUT_0";
+// Name
+TILE1.LUT_1.$name = "LUT_1";
+// Name
+TILE1.LUT_2.$name = "LUT_2";
+// Name
+TILE1.FSM_0.$name = "FSM_0";
+// e0 - External Input 0.
+TILE1.FSM_0.e0 = "BOUNDARY.in0";
+// e1 - External Input 1.
+TILE1.FSM_0.e1 = "BOUNDARY.in1";
+// eqn_s0 - Boolean equation on the variables e1,e0,s1,s0 for the S0 output.
+TILE1.FSM_0.eqn_s0 = "e0&!e1";
+// Name
+TILE1.FSM_1.$name = "FSM_1";
+// Name
+TILE1.FSM_2.$name = "FSM_2";
+// Name
+TILE1.COUNTER_0.$name = "COUNTER_0";
+// mode0 - Enables Counting when high
+TILE1.COUNTER_0.mode0 = "FSM_0.S0";
+// mode1 - Controls counting direction. High enables count up. Low enables count down.
+TILE1.COUNTER_0.mode1 = "1";
+// Name
+TILE1.COUNTER_1.$name = "COUNTER_1";
+// Name
+TILE1.COUNTER_2.$name = "COUNTER_2";
+// Name
+TILE1.OUTLUT_0.$name = "OUTLUT_0";
+// Name
+TILE1.OUTLUT_1.$name = "OUTLUT_1";
+// Name
+TILE1.OUTLUT_2.$name = "OUTLUT_2";
+// i0 - Input 0.
+TILE1.OUTLUT_2.i0 = "BOUNDARY.in1";
+// eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
+TILE1.OUTLUT_2.eqn = "i0";
+// Name
+TILE1.OUTLUT_3.$name = "OUTLUT_3";
+// Name
+TILE1.OUTLUT_4.$name = "OUTLUT_4";
+// i0 - Input 0.
+TILE1.OUTLUT_4.i0 = "BOUNDARY.in0";
+// eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
+TILE1.OUTLUT_4.eqn = "i0";
+// Name
+TILE1.OUTLUT_5.$name = "OUTLUT_5";
+// Name
+TILE1.OUTLUT_6.$name = "OUTLUT_6";
+// Name
+TILE1.OUTLUT_7.$name = "OUTLUT_7";
+// Name
+TILE1.HLC.$name = "HLC_0";
+// Event 0 (e0) - Event 0
+TILE1.HLC.e0 = "BOUNDARY.in1";
+// Name
+TILE1.HLC.program0.$name = "HLCP_0";
+// instruct0
+TILE1.HLC.program0.instruct0 = "INTR 1";
+// Name
+TILE1.HLC.program1.$name = "HLCP_1";
+// Name
+TILE1.HLC.program2.$name = "HLCP_2";
+// Name
+TILE1.HLC.program3.$name = "HLCP_3";
+var clb_run_dynamic_template_clb_h = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/clb_run_dynamic_template_clb_h.js");
+var clb_run_dynamic_template_clb_c = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/clb_run_dynamic_template_clb_c.js");
+var clb_run_dynamic_template_clb_sim = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/clb_run_dynamic_template_clb_sim.js");
+var clb_run_dynamic_template_clb_dot = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/clb_run_dynamic_template_clb_dot.js");
+// Name
+TILE2.$name = "TILE2";
+// Name
+TILE2.BOUNDARY.$name = "BOUNDARY1";
+// in1
+TILE2.BOUNDARY.in1 = "TILE1_BOUNDARY.out4";
+// in0
+TILE2.BOUNDARY.in0 = "squareWave";
+// in_edge0 - Edge detection on the inputs, generates 1 cycle pulse on chosen edges - for simulation purposes only
+TILE2.BOUNDARY.in_edge0 = "rising edge";
+// in_period0 - Period of the square wave
+TILE2.BOUNDARY.in_period0 = 1000;
+// in_duty0 - Duty or ON time of the square wave
+TILE2.BOUNDARY.in_duty0 = 500;
+// in_repeat_count0 - Number of periods the waveform is repeated
+TILE2.BOUNDARY.in_repeat_count0 = 1;
+// Name
+TILE2.LUT_0.$name = "LUT_3";
+// Name
+TILE2.LUT_1.$name = "LUT_4";
+// Name
+TILE2.LUT_2.$name = "LUT_5";
+// Name
+TILE2.FSM_0.$name = "FSM_3";
+// e0 - External Input 0.
+TILE2.FSM_0.e0 = "BOUNDARY.in0";
+// e1 - External Input 1.
+TILE2.FSM_0.e1 = "BOUNDARY.in1";
+// eqn_s0 - Boolean equation on the variables e1,e0,s1,s0 for the S0 output.
+TILE2.FSM_0.eqn_s0 = "e0&!e1";
+// Name
+TILE2.FSM_1.$name = "FSM_4";
+// Name
+TILE2.FSM_2.$name = "FSM_5";
+// Name
+TILE2.COUNTER_0.$name = "COUNTER_3";
+// mode0 - Enables Counting when high
+TILE2.COUNTER_0.mode0 = "FSM_0.S0";
+// mode1 - Controls counting direction. High enables count up. Low enables count down.
+TILE2.COUNTER_0.mode1 = "1";
+// Name
+TILE2.COUNTER_1.$name = "COUNTER_4";
+// Name
+TILE2.COUNTER_2.$name = "COUNTER_5";
+// Name
+TILE2.OUTLUT_0.$name = "OUTLUT_8";
+// Name
+TILE2.OUTLUT_1.$name = "OUTLUT_9";
+// Name
+TILE2.OUTLUT_2.$name = "OUTLUT_10";
+// Name
+TILE2.OUTLUT_3.$name = "OUTLUT_11";
+// Name
+TILE2.OUTLUT_4.$name = "OUTLUT_12";
+// i0 - Input 0.
+TILE2.OUTLUT_4.i0 = "BOUNDARY.in0";
+// eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
+TILE2.OUTLUT_4.eqn = "i0";
+// Name
+TILE2.OUTLUT_5.$name = "OUTLUT_13";
+// Name
+TILE2.OUTLUT_6.$name = "OUTLUT_14";
+// Name
+TILE2.OUTLUT_7.$name = "OUTLUT_15";
+// Name
+TILE2.HLC.$name = "HLC_1";
+// Event 0 (e0) - Event 0
+TILE2.HLC.e0 = "BOUNDARY.in1";
+// Name
+TILE2.HLC.program0.$name = "HLCP_4";
+// instruct0
+TILE2.HLC.program0.instruct0 = "INTR 1";
+// Name
+TILE2.HLC.program1.$name = "HLCP_5";
+// Name
+TILE2.HLC.program2.$name = "HLCP_6";
+// Name
+TILE2.HLC.program3.$name = "HLCP_7";
+// Name
+TILE3.$name = "TILE3";
+// Name
+TILE3.BOUNDARY.$name = "BOUNDARY2";
+// in1
+TILE3.BOUNDARY.in1 = "TILE4_BOUNDARY.out4";
+// in0
+TILE3.BOUNDARY.in0 = "squareWave";
+// in_edge0 - Edge detection on the inputs, generates 1 cycle pulse on chosen edges - for simulation purposes only
+TILE3.BOUNDARY.in_edge0 = "rising edge";
+// in_period0 - Period of the square wave
+TILE3.BOUNDARY.in_period0 = 1000;
+// in_duty0 - Duty or ON time of the square wave
+TILE3.BOUNDARY.in_duty0 = 500;
+// in_repeat_count0 - Number of periods the waveform is repeated
+TILE3.BOUNDARY.in_repeat_count0 = 1;
+// Name
+TILE3.LUT_0.$name = "LUT_6";
+// Name
+TILE3.LUT_1.$name = "LUT_7";
+// Name
+TILE3.LUT_2.$name = "LUT_8";
+// Name
+TILE3.FSM_0.$name = "FSM_6";
+// e0 - External Input 0.
+TILE3.FSM_0.e0 = "BOUNDARY.in0";
+// e1 - External Input 1.
+TILE3.FSM_0.e1 = "BOUNDARY.in1";
+// eqn_s0 - Boolean equation on the variables e1,e0,s1,s0 for the S0 output.
+TILE3.FSM_0.eqn_s0 = "e0&!e1";
+// Name
+TILE3.FSM_1.$name = "FSM_7";
+// Name
+TILE3.FSM_2.$name = "FSM_8";
+// Name
+TILE3.COUNTER_0.$name = "COUNTER_6";
+// mode0 - Enables Counting when high
+TILE3.COUNTER_0.mode0 = "FSM_0.S0";
+// mode1 - Controls counting direction. High enables count up. Low enables count down.
+TILE3.COUNTER_0.mode1 = "1";
+// Name
+TILE3.COUNTER_1.$name = "COUNTER_7";
+// Name
+TILE3.COUNTER_2.$name = "COUNTER_8";
+// Name
+TILE3.OUTLUT_0.$name = "OUTLUT_16";
+// Name
+TILE3.OUTLUT_1.$name = "OUTLUT_17";
+// Name
+TILE3.OUTLUT_2.$name = "OUTLUT_18";
+// i0 - Input 0.
+TILE3.OUTLUT_2.i0 = "BOUNDARY.in1";
+// eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
+TILE3.OUTLUT_2.eqn = "i0";
+// Name
+TILE3.OUTLUT_3.$name = "OUTLUT_19";
+// Name
+TILE3.OUTLUT_4.$name = "OUTLUT_20";
+// i0 - Input 0.
+TILE3.OUTLUT_4.i0 = "BOUNDARY.in0";
+// eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
+TILE3.OUTLUT_4.eqn = "i0";
+// Name
+TILE3.OUTLUT_5.$name = "OUTLUT_21";
+// Name
+TILE3.OUTLUT_6.$name = "OUTLUT_22";
+// Name
+TILE3.OUTLUT_7.$name = "OUTLUT_23";
+// Name
+TILE3.HLC.$name = "HLC_2";
+// Event 0 (e0) - Event 0
+TILE3.HLC.e0 = "BOUNDARY.in1";
+// Name
+TILE3.HLC.program0.$name = "HLCP_8";
+// instruct0
+TILE3.HLC.program0.instruct0 = "INTR 1";
+// Name
+TILE3.HLC.program1.$name = "HLCP_9";
+// Name
+TILE3.HLC.program2.$name = "HLCP_10";
+// Name
+TILE3.HLC.program3.$name = "HLCP_11";
+// Name
+TILE4.$name = "TILE4";
+// Name
+TILE4.BOUNDARY.$name = "BOUNDARY3";
+// in1
+TILE4.BOUNDARY.in1 = "TILE3_BOUNDARY.out4";
+// in0
+TILE4.BOUNDARY.in0 = "squareWave";
+// in_edge0 - Edge detection on the inputs, generates 1 cycle pulse on chosen edges - for simulation purposes only
+TILE4.BOUNDARY.in_edge0 = "rising edge";
+// in_period0 - Period of the square wave
+TILE4.BOUNDARY.in_period0 = 1000;
+// in_duty0 - Duty or ON time of the square wave
+TILE4.BOUNDARY.in_duty0 = 500;
+// in_repeat_count0 - Number of periods the waveform is repeated
+TILE4.BOUNDARY.in_repeat_count0 = 1;
+// Name
+TILE4.LUT_0.$name = "LUT_9";
+// Name
+TILE4.LUT_1.$name = "LUT_10";
+// Name
+TILE4.LUT_2.$name = "LUT_11";
+// Name
+TILE4.FSM_0.$name = "FSM_9";
+// e0 - External Input 0.
+TILE4.FSM_0.e0 = "BOUNDARY.in0";
+// e1 - External Input 1.
+TILE4.FSM_0.e1 = "BOUNDARY.in1";
+// eqn_s0 - Boolean equation on the variables e1,e0,s1,s0 for the S0 output.
+TILE4.FSM_0.eqn_s0 = "e0&!e1";
+// Name
+TILE4.FSM_1.$name = "FSM_10";
+// Name
+TILE4.FSM_2.$name = "FSM_11";
+// Name
+TILE4.COUNTER_0.$name = "COUNTER_9";
+// mode0 - Enables Counting when high
+TILE4.COUNTER_0.mode0 = "FSM_0.S0";
+// mode1 - Controls counting direction. High enables count up. Low enables count down.
+TILE4.COUNTER_0.mode1 = "1";
+// Name
+TILE4.COUNTER_1.$name = "COUNTER_10";
+// Name
+TILE4.COUNTER_2.$name = "COUNTER_11";
+// Name
+TILE4.OUTLUT_0.$name = "OUTLUT_24";
+// Name
+TILE4.OUTLUT_1.$name = "OUTLUT_25";
+// Name
+TILE4.OUTLUT_2.$name = "OUTLUT_26";
+// Name
+TILE4.OUTLUT_3.$name = "OUTLUT_27";
+// Name
+TILE4.OUTLUT_4.$name = "OUTLUT_28";
+// i0 - Input 0.
+TILE4.OUTLUT_4.i0 = "BOUNDARY.in0";
+// eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
+TILE4.OUTLUT_4.eqn = "i0";
+// Name
+TILE4.OUTLUT_5.$name = "OUTLUT_29";
+// Name
+TILE4.OUTLUT_6.$name = "OUTLUT_30";
+// Name
+TILE4.OUTLUT_7.$name = "OUTLUT_31";
+// Name
+TILE4.HLC.$name = "HLC_3";
+// Event 0 (e0) - Event 0
+TILE4.HLC.e0 = "BOUNDARY.in1";
+// Name
+TILE4.HLC.program0.$name = "HLCP_12";
+// instruct0
+TILE4.HLC.program0.instruct0 = "INTR 1";
+// Name
+TILE4.HLC.program1.$name = "HLCP_13";
+// Name
+TILE4.HLC.program2.$name = "HLCP_14";
+// Name
+TILE4.HLC.program3.$name = "HLCP_15";
+

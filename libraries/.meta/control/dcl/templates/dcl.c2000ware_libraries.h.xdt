@@ -1,0 +1,49 @@
+%%{
+//
+// DCL:
+// For DCL, common header files means they should all be handled at once.
+// This way code doesn't generate #include "DCL.h" for every module. Import
+// all the modules here at the top level instead of within each module:
+//
+var dataList       = [];
+var moduleList     = [];
+dataList.push(system.getScript("/libraries/control/dcl/controller_data.js"));
+dataList.push(system.getScript("/libraries/control/dcl/logger_data.js"));
+dataList.push(system.getScript("/libraries/control/dcl/refgen_data.js"));
+dataList.push(system.getScript("/libraries/control/dcl/tcm_data.js"));
+
+moduleList.push(system.modules['/libraries/control/dcl/controller.js']);
+moduleList.push(system.modules['/libraries/control/dcl/logger.js']);
+moduleList.push(system.modules['/libraries/control/dcl/refgen.js']);
+moduleList.push(system.modules['/libraries/control/dcl/tcm.js']);
+
+var headerFileList  = [];
+var loopCount = 0;
+for (var mod of moduleList)
+{
+    if (mod != null)
+    {
+        // get all the headerFiles of all modules
+        for(var inst of mod.$instances)
+        {
+            var controllerChoice = inst.structDisplay;
+            var module_headerFileList = dataList[loopCount].getHeaderFilesList(controllerChoice);
+            // add all the headerFiles of this instance if they're not already in this list
+            for (var j in module_headerFileList)
+            {
+                var headerFile = module_headerFileList[j] + ".h";
+                if (!(headerFileList.includes(headerFile)))
+                {
+                    headerFileList.push(headerFile);
+                }
+            }
+        }
+    }
+    loopCount = loopCount + 1;
+}
+%%}
+% for (var i in headerFileList)
+%{
+#include "`headerFileList[i]`"
+%}
+% // END DCL

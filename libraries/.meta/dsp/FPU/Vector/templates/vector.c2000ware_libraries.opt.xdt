@@ -1,0 +1,17 @@
+% let Common   = system.getScript("/driverlib/Common.js");
+% var c2000warePath = Common.getC2000WarePath()
+% 
+% var moduleNameFFT = "FFT"
+% var moduleFFT = system.modules['/libraries/dsp/FPU/FFT' + '/' + moduleNameFFT + '.js'];
+% var moduleNameFILTER = "Filter"
+% var moduleFILTER = system.modules['/libraries/dsp/FPU/Filter' + '/' + moduleNameFILTER + '.js'];
+% var moduleNameVec = "Vector"
+% var moduleVec = system.modules['/libraries/dsp/FPU/Vector' + '/' + moduleNameVec + '.js'];
+%
+%if(moduleFFT == null)
+%{
+%if(moduleVec != null)
+%{
+-I"`c2000warePath`libraries/dsp/FPU/c28/include"
+%}
+%}

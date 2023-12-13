@@ -1,0 +1,50 @@
+//*****************************************************************************
+//
+// Macro to call SysCtl_delay() to achieve a delay in microseconds. The macro
+// will convert the desired delay in microseconds to the count value expected
+// by the function. \b x is the number of microseconds to delay.
+//
+//*****************************************************************************
+#define DEVICE_DELAY_US(x) SysCtl_delay(((((long double)(x)) / (1000000.0L /  \
+                                (long double)DEVICE_SYSCLK_FREQ)) - 9.0L) / 5.0L)
+
+//*****************************************************************************
+//
+// Defines, Globals, and Header Includes related to Flash Support
+//
+//*****************************************************************************
+#ifdef _FLASH
+#include <stddef.h>
+#ifndef CMDTOOL
+extern uint16_t RamfuncsLoadStart;
+extern uint16_t RamfuncsLoadEnd;
+extern uint16_t RamfuncsLoadSize;
+extern uint16_t RamfuncsRunStart;
+extern uint16_t RamfuncsRunEnd;
+extern uint16_t RamfuncsRunSize;
+#endif
+
+#endif
+#define DEVICE_FLASH_WAITSTATES 4
+//*****************************************************************************
+//
+// Function Prototypes
+//
+//*****************************************************************************
+//*****************************************************************************
+//
+//! \addtogroup device_api
+//! @{
+//
+//*****************************************************************************
+//*****************************************************************************
+//
+//! Function to initialize the device. Primarily initializes system 
+//! control to a known state by disabling the watchdog, setting up the
+//! SYSCLKOUT frequency, and enabling the clocks to the peripherals.
+//!
+//! \param None.
+//! \return None.
+//
+//*****************************************************************************
+extern void Device_init(void);

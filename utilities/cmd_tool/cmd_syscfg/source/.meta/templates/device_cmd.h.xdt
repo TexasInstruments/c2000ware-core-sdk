@@ -1,0 +1,62 @@
+%%{
+
+let meminfo   = system.getScript("/utilities/cmd_tool/cmd_syscfg/source/" + system.deviceData.device.toLowerCase() + "_memoryInfo.js");
+let CMDCommon = system.getScript("/utilities/cmd_tool/cmd_syscfg/source/CMDCommon.js");
+var memoryInfo = meminfo.memoryInfo;
+var module = system.modules["/utilities/cmd_tool/cmd_syscfg/source/CMD"];
+
+%%}
+#ifndef DEVICE_CMD_H
+#define DEVICE_CMD_H
+
+#include <cpy_tbl.h>
+
+
+% if (module != null)
+% {
+%       for(var i = 0; i < module.$instances.length; i++)
+%       {
+%           var inst = module.$instances[i]
+#ifdef `inst.$name`
+%           for (var section of CMDCommon.getDeviceMemorySections())
+%           {
+%               if(inst["sectionMemory_" + section.name].length == 0)
+%                   continue
+%
+%               if ((inst["sectionRunFromDifferentAddr_" + section.name]) && (inst["sectionRun_" + section.name].length != 0) && !inst["sectionBinit_" + section.name])
+%               {
+extern COPY_TABLE copyTable_`section.name`;
+%               }
+%               for (var sym of CMDCommon.LinkerSymbols)
+%               {
+%                   if (inst["sectionSymbols_" + section.name] && inst["sectionSymbols_" + section.name].includes(sym.name))
+%                   {
+extern uint32_t `sym.name`_`section.name`;
+%                   }
+%               }
+%           }
+%           for (var userSection of inst["userSection"])
+%           {
+%               if(userSection["sectionMemory"].length == 0)
+%                   continue
+%
+%               if ((userSection["sectionRunFromDifferentAddr"]) && (userSection["sectionRun"].length != 0) && !userSection["sectionBinit"])
+%               {
+extern COPY_TABLE copyTable_`userSection.$name`;
+%               }
+%               for (var sym of CMDCommon.LinkerSymbols)
+%               {
+%                   if (userSection["sectionSymbols"] && userSection["sectionSymbols"].includes(sym.name))
+%                   {
+extern uint32_t `sym.name`_`userSection.$name`;
+%                   }
+%               }
+%           }
+void `inst.$name`_init();
+#endif
+%       }
+% }
+
+void CMD_init();
+
+#endif

@@ -7,62 +7,42 @@ let device_driverlib_peripheral =
     system.getScript("/driverlib/device_driverlib_peripherals/" +
         Common.getDeviceName().toLowerCase() + "_cmpss.js");
 
-var numberOfInstance = {
-    "F28004x"   : 7,
-    "F28003x"   : 4,
-    "F280013x"  : 1,
-	"F280015x"  : 1,
-    "F28002x"   : 4,
-    "F2838x"    : 8,
-    "F2807x"    : 8,
-    "F2837xS"   : 8,
-    "F2837xD"   : 8,
-    "F28P65x"   : 11,
-    "F28P55x"   : 4
-}
+let device_driverlib_memmap =
+system.getScript("/driverlib/device_driverlib_peripherals/" +
+    Common.getDeviceName().toLowerCase() + "_memmap.js");
 
-var clkDivs = [
-    {name: "CMPSS_RAMP_CLOCK_DIV1", displayName: "Divide SYSCLK by 1"},
-    {name: "CMPSS_RAMP_CLOCK_DIV2", displayName: "Divide SYSCLK by 2"},
-    {name: "CMPSS_RAMP_CLOCK_DIV3", displayName: "Divide SYSCLK by 3"},
-    {name: "CMPSS_RAMP_CLOCK_DIV4", displayName: "Divide SYSCLK by 4"},
-    {name: "CMPSS_RAMP_CLOCK_DIV5", displayName: "Divide SYSCLK by 5"},
-    {name: "CMPSS_RAMP_CLOCK_DIV6", displayName: "Divide SYSCLK by 6"},
-    {name: "CMPSS_RAMP_CLOCK_DIV7", displayName: "Divide SYSCLK by 7"},
-    {name: "CMPSS_RAMP_CLOCK_DIV8", displayName: "Divide SYSCLK by 8"},
-    {name: "CMPSS_RAMP_CLOCK_DIV9", displayName: "Divide SYSCLK by 9"},
-    {name: "CMPSS_RAMP_CLOCK_DIV10", displayName: "Divide SYSCLK by 10"},
-    {name: "CMPSS_RAMP_CLOCK_DIV11", displayName: "Divide SYSCLK by 11"},
-    {name: "CMPSS_RAMP_CLOCK_DIV12", displayName: "Divide SYSCLK by 12"},
-    {name: "CMPSS_RAMP_CLOCK_DIV13", displayName: "Divide SYSCLK by 13"},
-    {name: "CMPSS_RAMP_CLOCK_DIV14", displayName: "Divide SYSCLK by 14"},
-    {name: "CMPSS_RAMP_CLOCK_DIV15", displayName: "Divide SYSCLK by 15"},
-    {name: "CMPSS_RAMP_CLOCK_DIV16", displayName: "Divide SYSCLK by 16"}
-]
+var deviceNumberOfInstances = device_driverlib_memmap.CMPSSMemoryMap.length
 
-var rampDirections = [
-    {name: "CMPSS_RAMP_DIR_DOWN", displayName: "Count Down"},
-    {name: "CMPSS_RAMP_DIR_UP", displayName: "Count Up"}
-]
+let CMPSS_INSTANCE = device_driverlib_memmap.CMPSSMemoryMap;
+CMPSS_INSTANCE = CMPSS_INSTANCE.map(({baseAddress, ...rest}) => {
+    return rest;
+});
 
-var deviceNumberOfInstances = numberOfInstance[Common.getDeviceName()];
-var CMPSS_INSTANCE = []
-
-for (var instanceIndex = 1; instanceIndex <= deviceNumberOfInstances; instanceIndex++)
-{
-    CMPSS_INSTANCE.push(
-        {
-            name: "CMPSS" + instanceIndex.toString() + "_BASE",
-            displayName: "CMPSS" + instanceIndex.toString()
-        }
-    );
-}
 
 if (["F28004x","F28002x","F28003x","F28P55x","F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName())){
     var defaultCMPSSPinInfos = Pinmux.findAllAnalogPin(Pinmux.getDeviceADCName(ComparatorInputs.CMPSS_comparatorInputSignals[Common.getDeviceName()]["CMPSS1_BASE"][0].displayName.split("/")[0]));
 
     var defaultCMPSSNegPinInfos = Pinmux.findAllAnalogPin(Pinmux.getDeviceADCName(ComparatorInputs.CMPSS_comparatorNegInputSignals[Common.getDeviceName()]["CMPSS1_BASE"][1].displayName.split("/")[0]));
 }
+
+var rampDirections = [
+    {name: "CMPSS_RAMP_DIR_DOWN", displayName: "Count Down"},
+    {name: "CMPSS_RAMP_DIR_UP", displayName: "Count Up"}
+]
+
+var CMPSS_TRIPOUT = [
+    {name: "CMPSS_TRIPOUT_ASYNC_COMP",  displayName: "Asynchronous comparator output drives CTRIPOUT"},
+    {name: "CMPSS_TRIPOUT_SYNC_COMP",   displayName: "Synchronous comparator output drives CTRIPOUT"},
+    {name: "CMPSS_TRIPOUT_FILTER",      displayName: "Filter output drives CTRIPOUT"},
+    {name: "CMPSS_TRIPOUT_LATCH",       displayName: "Latched filter output drives CTRIPOUT"},
+];
+
+var CMPSS_TRIP = [
+    {name: "CMPSS_TRIP_ASYNC_COMP",     displayName: "Asynchronous comparator output drives CTRIP"},
+    {name: "CMPSS_TRIP_SYNC_COMP",      displayName: "Synchronous comparator output drives CTRIP"},
+    {name: "CMPSS_TRIP_FILTER",         displayName: "Filter output drives CTRIP"},
+    {name: "CMPSS_TRIP_LATCH",          displayName: "Latched filter output drives CTRIP"},
+];
 
 function calculateDevicePinNameHigh(inst,ui){
     if (["F28P65x"].includes(Common.getDeviceName())){
@@ -87,10 +67,32 @@ function calculateDevicePinNameHigh(inst,ui){
                     return tempPinName
                 }
             }
-            else
-            {
                 return tempPinInfoDesc
+        }
+    }
+    else if (["F28P55x"].includes(Common.getDeviceName())){
+        if((inst.cmpssBase == "CMPSS4_BASE") && (inst.asysCMPHPMXSELValue == 6))
+        {
+            var tempPinInfoDesc = "No Device Pin Found"
+            return tempPinInfoDesc
+        }
+        else
+        {
+            var tempPinName = ComparatorInputs.CMPSS_comparatorInputSignals[Common.getDeviceName()][inst.cmpssBase][inst.asysCMPHPMXSELValue].displayName
+            var tempPinInfo = Pinmux.findAllAnalogPin(Pinmux.getDeviceADCName(tempPinName.split("/")[0]))
+            var tempPinInfoDesc = Pinmux.getDevicePinInfoDescription(tempPinInfo)
+            if(tempPinInfo.length == 0)     //SysConfig was unable to find any pins with this name, even though it exists as an input; remove error detection
+            {
+                if(tempPinName.includes("TempSensor"))
+                {
+                    return "Temperature Sensor";
+                }
+                else if(tempPinName.includes("VREF"))
+                {
+                    return tempPinName
+                }
             }
+                return tempPinInfoDesc
         }
     }
     else
@@ -112,6 +114,9 @@ function calculateDevicePinNameHighNeg(inst,ui){
     var tempPinInfo = Pinmux.findAllAnalogPin(Pinmux.getDeviceADCName(tempPinName.split("/")[0]))
     var tempPinInfoDesc = Pinmux.getDevicePinInfoDescription(tempPinInfo)
     if ((["F28004x"].includes(Common.getDeviceName())) && (tempPinInfoDesc == Pinmux.NO_DEVICE_PIN_FOUND) && (inst.asysCMPHNMXSELValue == 4)){
+        return "PGA"+(inst.cmpssBase.match(/\d+/)[0])+"_OUT"
+    }
+    else if ((["F28P55x"].includes(Common.getDeviceName())) && (tempPinInfoDesc == Pinmux.NO_DEVICE_PIN_FOUND) && (inst.asysCMPHNMXSELValue == 6) && (inst.cmpssBase!= "CMPSS4_BASE")){
         return "PGA"+(inst.cmpssBase.match(/\d+/)[0])+"_OUT"
     }
     else{
@@ -136,10 +141,26 @@ function calculateDevicePinNameLow(inst,ui){
             {
                 return tempPinName
             }
-            else
-            {
                 return tempPinInfoDesc
+        }
+    }
+    else if(["F28P55x"].includes(Common.getDeviceName()))
+    {
+        if((inst.cmpssBase == "CMPSS4_BASE") && (inst.asysCMPLPMXSELValue == 6))
+        {
+            var tempPinInfoDesc = "No Device Pin Found"
+            return tempPinInfoDesc
+        }
+        else
+        {
+            var tempPinName = ComparatorInputs.CMPSS_comparatorLowPositiveInputSignals[Common.getDeviceName()][inst.cmpssBase][inst.asysCMPLPMXSELValue].displayName
+            var tempPinInfo = Pinmux.findAllAnalogPin(Pinmux.getDeviceADCName(tempPinName.split("/")[0]))
+            var tempPinInfoDesc = Pinmux.getDevicePinInfoDescription(tempPinInfo)
+            if((tempPinInfo.length == 0) && tempPinName.includes("VREF"))     //SysConfig was unable to find any pins with this name, even though it exists as an input; remove error detection
+            {
+                return tempPinName
             }
+                return tempPinInfoDesc
         }
     }
     else
@@ -162,6 +183,9 @@ function calculateDevicePinNameLowNeg(inst,ui){
     var tempPinInfoDesc = Pinmux.getDevicePinInfoDescription(tempPinInfo)
     if ((["F28004x"].includes(Common.getDeviceName())) && (tempPinInfoDesc == Pinmux.NO_DEVICE_PIN_FOUND) && (inst.asysCMPLNMXSELValue == 4)){
         return "PGA"+(inst.cmpssBase.match(/\d+/)[0])+"_OUT"
+    }
+    else if ((["F28P55x"].includes(Common.getDeviceName())) && (tempPinInfoDesc == Pinmux.NO_DEVICE_PIN_FOUND) && (inst.asysCMPLNMXSELValue == 6) && (inst.cmpssBase!= "CMPSS4_BASE") ){
+        return "PGA"+(inst.cmpssBase.match(/\d+/)[0])+"_OUT_INT"
     }
     else{
         return tempPinInfoDesc
@@ -187,11 +211,14 @@ var asysNegSignalOptions = []
 if (["F28002x","F28004x", "F280013x", "F280015x"].includes(Common.getDeviceName())){
     numberOfPosInputSignals = 5
 }
-else if (["F28003x","F28P55x"].includes(Common.getDeviceName())){
+else if (["F28003x"].includes(Common.getDeviceName())){
     numberOfPosInputSignals = 6
 }
 else if (["F28P65x"].includes(Common.getDeviceName())){
     numberOfPosInputSignals = 4
+}
+else if (["F28P55x"].includes(Common.getDeviceName())){
+    numberOfPosInputSignals = 8
 }
 
 numberOfNegInputSignals = 2
@@ -250,26 +277,16 @@ var highConfig =[
         displayName : "Signal driving CTRIPOUTH",
         description : 'Specify which signal drives CTRIPOUTH',
         hidden      : false,
-        default     : "CMPSS_TRIPOUT_ASYNC_COMP",
-        options     : [
-            {name: "CMPSS_TRIPOUT_ASYNC_COMP",  displayName: "Asynchronous comparator output drives CTRIPOUT"},
-            {name: "CMPSS_TRIPOUT_SYNC_COMP",   displayName: "Synchronous comparator output drives CTRIPOUT"},
-            {name: "CMPSS_TRIPOUT_FILTER",      displayName: "Filter output drives CTRIPOUT"},
-            {name: "CMPSS_TRIPOUT_LATCH",       displayName: "Latched filter output drives CTRIPOUT"},
-        ],
+        default     : CMPSS_TRIPOUT[0].name,
+        options     : CMPSS_TRIPOUT
     },
     {
         name        : "highCTRIP",
         displayName : "Signal driving CTRIPH",
         description : 'Specify which signal drives CTRIPH',
         hidden      : false,
-        default     : "CMPSS_TRIP_ASYNC_COMP",
-        options     : [
-            {name: "CMPSS_TRIP_ASYNC_COMP",     displayName: "Asynchronous comparator output drives CTRIP"},
-            {name: "CMPSS_TRIP_SYNC_COMP",      displayName: "Synchronous comparator output drives CTRIP"},
-            {name: "CMPSS_TRIP_FILTER",         displayName: "Filter output drives CTRIP"},
-            {name: "CMPSS_TRIP_LATCH",          displayName: "Latched filter output drives CTRIP"},
-        ],
+        default     : CMPSS_TRIP[0].name,
+        options     : CMPSS_TRIP
     },
     // setDACValueHigh
     {
@@ -343,290 +360,132 @@ var highConfig =[
         ]
     },
 ]
+var highConfigDevice = []
+if (["F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName()))
+{
+    highConfigDevice = highConfigDevice.concat([
+        {
+            name        : "rampHighDir",
+            displayName : "Ramp Direction",
+            description : "Sets the ramp direction for the high comparator",
+            hidden      : false,
+            default     : rampDirections[0].name,
+            options     : rampDirections
+        },
+    ])
+}
+highConfigDevice = highConfigDevice.concat([
+        // -setMaxRampValue
+        {
+            name        : "maxRampVal",
+            displayName : "Max Ramp Generator Reference Value",
+            description : 'Sets the ramp generator maximum reference value.',
+            hidden      : false,
+            default     : 0
+        },
+])
+if (["F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName()))
+{
+    highConfigDevice = highConfigDevice.concat([
+        // -setRampDecValue
+        {
+            name        : "ramDecVal",
+            displayName : "Ramp Generator Step Value",
+            description : 'Sets the ramp generator decrement or increment value.',
+            hidden      : false,
+            default     : 0
+        },
+    ])
+}
+if (["F2807x", "F2837xS", "F2837xD", "F2838x", "F280013x", "F28002x", "F28003x","F28004x"].includes(Common.getDeviceName())){
+    highConfigDevice = highConfigDevice.concat([
+        // -setRampDecValue
+        {
+            name        : "ramDecVal",
+            displayName : "Ramp Generator Decrement Value",
+            description : 'Sets the ramp generator decrement value.',
+            hidden      : false,
+            default     : 0
+        },
+    ])
+}
+highConfigDevice = highConfigDevice.concat([
+        // -setRampDelayValue
+        {
+            name        : "rampDelayVal",
+            displayName : "Ramp Generator Delay Value",
+            description : 'Sets the ramp generator delay value.',
+            hidden      : false,
+            default     : 0
+        },
+])
 
-if (["F280015x", "F28P65x"].includes(Common.getDeviceName()))
+if (["F28P65x","F28P55x"].includes(Common.getDeviceName()))
 {
-    highConfig = highConfig.concat([
+    highConfigDevice = highConfigDevice.concat([
+        // -CMPSS_setRampClockDividerHigh/CMPSS_setRampClockDividerLow
         {
-            name: "GROUP_RAMP_GENERATOR",
-            displayName: "Ramp Generator Configuration",
-            description: "",
-            longDescription: "",
-            collapsed: false,
-            config: [
-                // -rampHighDir
+            name        : "rampClkDiv",
+            displayName : "Ramp Generator Clock Divider Value",
+            description : 'Sets the divider value to slow down the ramp clock; this increases the periods between steps. RAMPCLK = SYSCLK/(RAMPCLKDIV+1), where RAMPCLKDIV = {0...15}.',
+            hidden      : false,
+            default     : device_driverlib_peripheral.CMPSS_RampClockDiv[0].name,
+            options     : device_driverlib_peripheral.CMPSS_RampClockDiv
+        },
+        {
+            name: "rampClkFreq",
+            displayName : "Ramp Clock Frequency [MHz]",
+            getValue    : (inst) => {
+                var dividerVal =1
+                for(var divIndex in device_driverlib_peripheral.CMPSS_RampClockDiv)
                 {
-                    name        : "rampHighDir",
-                    displayName : "Ramp Direction",
-                    description : "Sets the ramp direction for the high comparator",
-                    hidden      : false,
-                    default     : rampDirections[0].name,
-                    options     : rampDirections
-                },
-                // -setMaxRampValue
-                {
-                    name        : "maxRampVal",
-                    displayName : "Max Ramp Generator Reference Value",
-                    description : 'Sets the ramp generator maximum reference value.',
-                    hidden      : false,
-                    default     : 0
-                },
-                // -setRampDecValue
-                {
-                    name        : "ramDecVal",
-                    displayName : "Ramp Generator Decrement Value",
-                    description : 'Sets the ramp generator decrement value.',
-                    hidden      : false,
-                    default     : 0
-                },
-                // -setRampDelayValue
-                {
-                    name        : "rampDelayVal",
-                    displayName : "Ramp Generator Delay Value",
-                    description : 'Sets the ramp generator delay value.',
-                    hidden      : false,
-                    default     : 0
-                },
-                // -CMPSS_setRampClockDividerHigh/CMPSS_setRampClockDividerLow
-                {
-                    name        : "rampClkDiv",
-                    displayName : "Ramp Generator Clock Divider Value",
-                    description : 'Sets the divider value to slow down the ramp clock; this increases the periods between steps. RAMPCLK = SYSCLK/(RAMPCLKDIV+1), where RAMPCLKDIV = {0...15}.',
-                    hidden      : false,
-                    default     : clkDivs[0].name,
-                    options     : clkDivs
-                },
-                {
-                    name: "rampClkFreq",
-                    displayName : "Ramp Clock Frequency [MHz]",
-                    getValue    : (inst) => {
-                        if(inst.rampClkDiv == "CMPSS_RAMP_CLOCK_DIV1")
-                        {
-                            return (Common.getSYSCLK() / 1);
-                        }
-                        else if(inst.rampClkDiv == "CMPSS_RAMP_CLOCK_DIV2")
-                        {
-                            return (Common.getSYSCLK() / 2);
-                        }
-                        else if(inst.rampClkDiv == "CMPSS_RAMP_CLOCK_DIV3")
-                        {
-                            return (Common.getSYSCLK() / 3);
-                        }
-                        else if(inst.rampClkDiv == "CMPSS_RAMP_CLOCK_DIV4")
-                        {
-                            return (Common.getSYSCLK() / 4);
-                        }
-                        else if(inst.rampClkDiv == "CMPSS_RAMP_CLOCK_DIV5")
-                        {
-                            return (Common.getSYSCLK() / 5);
-                        }
-                        else if(inst.rampClkDiv == "CMPSS_RAMP_CLOCK_DIV6")
-                        {
-                            return (Common.getSYSCLK() / 6);
-                        }
-                        else if(inst.rampClkDiv == "CMPSS_RAMP_CLOCK_DIV7")
-                        {
-                            return (Common.getSYSCLK() / 7);
-                        }
-                        else if(inst.rampClkDiv == "CMPSS_RAMP_CLOCK_DIV8")
-                        {
-                            return (Common.getSYSCLK() / 8);
-                        }
-                        else if(inst.rampClkDiv == "CMPSS_RAMP_CLOCK_DIV9")
-                        {
-                            return (Common.getSYSCLK() / 9);
-                        }
-                        else if(inst.rampClkDiv == "CMPSS_RAMP_CLOCK_DIV10")
-                        {
-                            return (Common.getSYSCLK() / 10);
-                        }
-                        else if(inst.rampClkDiv == "CMPSS_RAMP_CLOCK_DIV11")
-                        {
-                            return (Common.getSYSCLK() / 11);
-                        }
-                        else if(inst.rampClkDiv == "CMPSS_RAMP_CLOCK_DIV12")
-                        {
-                            return (Common.getSYSCLK() / 12);
-                        }
-                        else if(inst.rampClkDiv == "CMPSS_RAMP_CLOCK_DIV13")
-                        {
-                            return (Common.getSYSCLK() / 13);
-                        }
-                        else if(inst.rampClkDiv == "CMPSS_RAMP_CLOCK_DIV14")
-                        {
-                            return (Common.getSYSCLK() / 14);
-                        }
-                        else if(inst.rampClkDiv == "CMPSS_RAMP_CLOCK_DIV15")
-                        {
-                            return (Common.getSYSCLK() / 15);
-                        }
-                        else if(inst.rampClkDiv == "CMPSS_RAMP_CLOCK_DIV16")
-                        {
-                            return (Common.getSYSCLK() / 16);
-                        }
-                    },
-                    default : Common.SYSCLK_getMaxMHz(),
-                },
-                {
-                    name        : "pwmSyncSrc",
-                    displayName : "EPWMSYNCPER source number",
-                    description : 'Specify the number of the EPWMSYNCPER source',
-                    hidden      : false,
-                    default     : ePWMArraySync[0].name,
-                    options     : ePWMArraySync
-                },
-                {
-                    name        : "useRampValShdw",
-                    displayName : "Ramp Generator Reset",
-                    description : 'Indicate whether the ramp generator should reset with the value from the ramp max reference value shadow register or with the latched ramp max reference value',
-                    hidden      : false,
-                    default     : "true",
-                    options     : [
-                        {name: "true",  displayName: "load the ramp generator from the shadow register"},
-                        {name: "false", displayName: "load the ramp generator from the latched value."},
-                    ],
-                },
-            ]
+                    var currentDIV = device_driverlib_peripheral.CMPSS_RampClockDiv[divIndex].name
+                    let divi = (currentDIV).replace(/[^0-9]/g,'')
+                    if (inst.rampClkDiv == ("CMPSS_RAMP_CLOCK_DIV"+divi.toString()))
+                    {
+                        dividerVal = divi
+                    }
+                }
+                return (Common.getSYSCLK() / dividerVal);
+            },
+            default : Common.SYSCLK_getMaxMHz(),
         },
     ])
 }
-else
-{
-    highConfig = highConfig.concat([
-        {
-            name: "GROUP_RAMP_GENERATOR",
-            displayName: "Ramp Generator Configuration",
-            description: "",
-            longDescription: "",
-            collapsed: false,
-            config: [
-                // -setMaxRampValue
-                {
-                    name        : "maxRampVal",
-                    displayName : "Max Ramp Generator Reference Value",
-                    description : 'Sets the ramp generator maximum reference value.',
-                    hidden      : false,
-                    default     : 0
-                },
-                // -setRampDecValue
-                {
-                    name        : "ramDecVal",
-                    displayName : "Ramp Generator Decrement Value",
-                    description : 'Sets the ramp generator decrement value.',
-                    hidden      : false,
-                    default     : 0
-                },
-                // -setRampDelayValue
-                {
-                    name        : "rampDelayVal",
-                    displayName : "Ramp Generator Delay Value",
-                    description : 'Sets the ramp generator delay value.',
-                    hidden      : false,
-                    default     : 0
-                },
-                // -CMPSS_setRampClockDividerHigh/CMPSS_setRampClockDividerLow
-                {
-                    name        : "rampClkDiv",
-                    displayName : "Ramp Generator Clock Divider Value",
-                    description : 'Sets the divider value to slow down the ramp clock; this increases the periods between steps. RAMPCLK = SYSCLK/(RAMPCLKDIV+1), where RAMPCLKDIV = {0...15}.',
-                    hidden      : false,
-                    default     : clkDivs[0].name,
-                    options     : clkDivs
-                },
-                {
-                    name: "rampClkFreq",
-                    displayName : "Ramp Clock Frequency [MHz]",
-                    getValue    : (inst) => {
-                        if(inst.rampClkDiv == "CMPSS_RAMP_CLOCK_DIV1")
-                        {
-                            return (Common.getSYSCLK() / 1);
-                        }
-                        else if(inst.rampClkDiv == "CMPSS_RAMP_CLOCK_DIV2")
-                        {
-                            return (Common.getSYSCLK() / 2);
-                        }
-                        else if(inst.rampClkDiv == "CMPSS_RAMP_CLOCK_DIV3")
-                        {
-                            return (Common.getSYSCLK() / 3);
-                        }
-                        else if(inst.rampClkDiv == "CMPSS_RAMP_CLOCK_DIV4")
-                        {
-                            return (Common.getSYSCLK() / 4);
-                        }
-                        else if(inst.rampClkDiv == "CMPSS_RAMP_CLOCK_DIV5")
-                        {
-                            return (Common.getSYSCLK() / 5);
-                        }
-                        else if(inst.rampClkDiv == "CMPSS_RAMP_CLOCK_DIV6")
-                        {
-                            return (Common.getSYSCLK() / 6);
-                        }
-                        else if(inst.rampClkDiv == "CMPSS_RAMP_CLOCK_DIV7")
-                        {
-                            return (Common.getSYSCLK() / 7);
-                        }
-                        else if(inst.rampClkDiv == "CMPSS_RAMP_CLOCK_DIV8")
-                        {
-                            return (Common.getSYSCLK() / 8);
-                        }
-                        else if(inst.rampClkDiv == "CMPSS_RAMP_CLOCK_DIV9")
-                        {
-                            return (Common.getSYSCLK() / 9);
-                        }
-                        else if(inst.rampClkDiv == "CMPSS_RAMP_CLOCK_DIV10")
-                        {
-                            return (Common.getSYSCLK() / 10);
-                        }
-                        else if(inst.rampClkDiv == "CMPSS_RAMP_CLOCK_DIV11")
-                        {
-                            return (Common.getSYSCLK() / 11);
-                        }
-                        else if(inst.rampClkDiv == "CMPSS_RAMP_CLOCK_DIV12")
-                        {
-                            return (Common.getSYSCLK() / 12);
-                        }
-                        else if(inst.rampClkDiv == "CMPSS_RAMP_CLOCK_DIV13")
-                        {
-                            return (Common.getSYSCLK() / 13);
-                        }
-                        else if(inst.rampClkDiv == "CMPSS_RAMP_CLOCK_DIV14")
-                        {
-                            return (Common.getSYSCLK() / 14);
-                        }
-                        else if(inst.rampClkDiv == "CMPSS_RAMP_CLOCK_DIV15")
-                        {
-                            return (Common.getSYSCLK() / 15);
-                        }
-                        else if(inst.rampClkDiv == "CMPSS_RAMP_CLOCK_DIV16")
-                        {
-                            return (Common.getSYSCLK() / 16);
-                        }
-                    },
-                    default : Common.SYSCLK_getMaxMHz(),
-                },
-                {
-                    name        : "pwmSyncSrc",
-                    displayName : "EPWMSYNCPER source number",
-                    description : 'Specify the number of the EPWMSYNCPER source',
-                    hidden      : false,
-                    default     : ePWMArraySync[0].name,
-                    options     : ePWMArraySync
-                },
-                {
-                    name        : "useRampValShdw",
-                    displayName : "Ramp Generator Reset",
-                    description : 'Indicate whether the ramp generator should reset with the value from the ramp max reference value shadow register or with the latched ramp max reference value',
-                    hidden      : false,
-                    default     : "true",
-                    options     : [
-                        {name: "true",  displayName: "load the ramp generator from the shadow register"},
-                        {name: "false", displayName: "load the ramp generator from the latched value."},
-                    ],
-                },
-            ]
-        },
-    ])
-}
+highConfigDevice = highConfigDevice.concat([
+
+    {
+        name        : "pwmSyncSrc",
+        displayName : "EPWMSYNCPER source number",
+        description : 'Specify the number of the EPWMSYNCPER source',
+        hidden      : false,
+        default     : ePWMArraySync[0].name,
+        options     : ePWMArraySync
+    },
+    {
+        name        : "useRampValShdw",
+        displayName : "Ramp Generator Reset",
+        description : 'Indicate whether the ramp generator should reset with the value from the ramp max reference value shadow register or with the latched ramp max reference value',
+        hidden      : false,
+        default     : "true",
+        options     : [
+            {name: "true",  displayName: "load the ramp generator from the shadow register"},
+            {name: "false", displayName: "load the ramp generator from the latched value."},
+        ],
+    },
+])
+
+
+highConfig = highConfig.concat([
+    {
+        name: "GROUP_RAMP_GENERATOR",
+        displayName: "Ramp Generator Configuration",
+        description: "",
+        longDescription: "",
+        collapsed: false,
+        config: highConfigDevice
+    },
+])
 
 if (["F28002x","F28003x","F28P55x","F280013x","F280015x","F28004x", "F28P65x"].includes(Common.getDeviceName())){
     highConfig = highConfig.concat([
@@ -717,26 +576,16 @@ var lowConfig =[
         displayName : "Signal driving CTRIPOUTL",
         description : 'Specify which signal drives CTRIPOUTL',
         hidden      : false,
-        default     : "CMPSS_TRIPOUT_ASYNC_COMP",
-        options     : [
-            {name: "CMPSS_TRIPOUT_ASYNC_COMP",  displayName: "Asynchronous comparator output drives CTRIPOUT"},
-            {name: "CMPSS_TRIPOUT_SYNC_COMP",   displayName: "Synchronous comparator output drives CTRIPOUT"},
-            {name: "CMPSS_TRIPOUT_FILTER",      displayName: "Filter output drives CTRIPOUT"},
-            {name: "CMPSS_TRIPOUT_LATCH",       displayName: "Latched filter output drives CTRIPOUT"},
-        ],
+        default     : CMPSS_TRIPOUT[0].name,
+        options     : CMPSS_TRIPOUT,
     },
     {
         name        : "lowCTRIP",
         displayName : "Signal driving CTRIPL",
         description : 'Specify which signal drives CTRIPL',
         hidden      : false,
-        default     : "CMPSS_TRIP_ASYNC_COMP",
-        options     : [
-            {name: "CMPSS_TRIP_ASYNC_COMP",     displayName: "Asynchronous comparator output drives CTRIP"},
-            {name: "CMPSS_TRIP_SYNC_COMP",      displayName: "Synchronous comparator output drives CTRIP"},
-            {name: "CMPSS_TRIP_FILTER",         displayName: "Filter output drives CTRIP"},
-            {name: "CMPSS_TRIP_LATCH",          displayName: "Latched filter output drives CTRIP"},
-        ],
+        default     : CMPSS_TRIP[0].name,
+        options     : CMPSS_TRIP,
     },
     // setDACValueLow
     {
@@ -811,153 +660,115 @@ var lowConfig =[
     },
 ]
 
-if (["F280015x", "F28P65x"].includes(Common.getDeviceName())){
-    lowConfig = lowConfig.concat([
+var lowConfigDevice = []
+if (["F280015x", "F28P65x" , "F28P55x"].includes(Common.getDeviceName())){
+    lowConfigDevice = lowConfigDevice.concat([
         {
-            name: "GROUP_RAMP_GENERATOR_LOW",
-            displayName: "Ramp Generator Configuration",
-            description: "",
-            longDescription: "",
-            collapsed: false,
-            config: [
-                // -rampLowDir
-                {
-                    name        : "rampLowDir",
-                    displayName : "Ramp Direction",
-                    description : "Sets the ramp direction for the low comparator",
-                    hidden      : false,
-                    default     : rampDirections[0].name,
-                    options     : rampDirections
-                },
-                // -setMaxRampValue
-                {
-                    name        : "maxRampValLow",
-                    displayName : "Max Ramp Generator Reference Value",
-                    description : 'Sets the ramp generator maximum reference value.',
-                    hidden      : false,
-                    default     : 0
-                },
-                // -setRampDecValue
-                {
-                    name        : "ramDecValLow",
-                    displayName : "Ramp Generator Decrement Value",
-                    description : 'Sets the ramp generator decrement value.',
-                    hidden      : false,
-                    default     : 0
-                },
-                // -setRampDelayValue
-                {
-                    name        : "rampDelayValLow",
-                    displayName : "Ramp Generator Delay Value",
-                    description : 'Sets the ramp generator delay value.',
-                    hidden      : false,
-                    default     : 0
-                },
-                // -CMPSS_setRampClockDividerHigh/CMPSS_setRampClockDividerLow
-                {
-                    name        : "rampClkDivLow",
-                    displayName : "Ramp Generator Clock Divider Value",
-                    description : 'Sets the divider value to slow down the ramp clock; this increases the periods between steps. RAMPCLK = SYSCLK/(RAMPCLKDIV+1), where RAMPCLKDIV = {0...15}.',
-                    hidden      : false,
-                    default     : clkDivs[0].name,
-                    options     : clkDivs
-                },
-                {
-                    name: "rampClkFreqLow",
-                    displayName : "Ramp Clock Frequency [MHz]",
-                    getValue    : (inst) => {
-                        if(inst.rampClkDivLow == "CMPSS_RAMP_CLOCK_DIV1")
-                        {
-                            return (Common.getSYSCLK() / 1);
-                        }
-                        else if(inst.rampClkDivLow == "CMPSS_RAMP_CLOCK_DIV2")
-                        {
-                            return (Common.getSYSCLK() / 2);
-                        }
-                        else if(inst.rampClkDivLow == "CMPSS_RAMP_CLOCK_DIV3")
-                        {
-                            return (Common.getSYSCLK() / 3);
-                        }
-                        else if(inst.rampClkDivLow == "CMPSS_RAMP_CLOCK_DIV4")
-                        {
-                            return (Common.getSYSCLK() / 4);
-                        }
-                        else if(inst.rampClkDivLow == "CMPSS_RAMP_CLOCK_DIV5")
-                        {
-                            return (Common.getSYSCLK() / 5);
-                        }
-                        else if(inst.rampClkDivLow == "CMPSS_RAMP_CLOCK_DIV6")
-                        {
-                            return (Common.getSYSCLK() / 6);
-                        }
-                        else if(inst.rampClkDivLow == "CMPSS_RAMP_CLOCK_DIV7")
-                        {
-                            return (Common.getSYSCLK() / 7);
-                        }
-                        else if(inst.rampClkDivLow == "CMPSS_RAMP_CLOCK_DIV8")
-                        {
-                            return (Common.getSYSCLK() / 8);
-                        }
-                        else if(inst.rampClkDivLow == "CMPSS_RAMP_CLOCK_DIV9")
-                        {
-                            return (Common.getSYSCLK() / 9);
-                        }
-                        else if(inst.rampClkDivLow == "CMPSS_RAMP_CLOCK_DIV10")
-                        {
-                            return (Common.getSYSCLK() / 10);
-                        }
-                        else if(inst.rampClkDivLow == "CMPSS_RAMP_CLOCK_DIV11")
-                        {
-                            return (Common.getSYSCLK() / 11);
-                        }
-                        else if(inst.rampClkDivLow == "CMPSS_RAMP_CLOCK_DIV12")
-                        {
-                            return (Common.getSYSCLK() / 12);
-                        }
-                        else if(inst.rampClkDivLow == "CMPSS_RAMP_CLOCK_DIV13")
-                        {
-                            return (Common.getSYSCLK() / 13);
-                        }
-                        else if(inst.rampClkDivLow == "CMPSS_RAMP_CLOCK_DIV14")
-                        {
-                            return (Common.getSYSCLK() / 14);
-                        }
-                        else if(inst.rampClkDivLow == "CMPSS_RAMP_CLOCK_DIV15")
-                        {
-                            return (Common.getSYSCLK() / 15);
-                        }
-                        else if(inst.rampClkDivLow == "CMPSS_RAMP_CLOCK_DIV16")
-                        {
-                            return (Common.getSYSCLK() / 16);
-                        }
-                    },
-                    default : Common.SYSCLK_getMaxMHz(),
-                },
-                {
-                    name        : "pwmSyncSrcLow",
-                    displayName : "EPWMSYNCPER source number",
-                    description : 'Specify the number of the EPWMSYNCPER source',
-                    hidden      : false,
-                    default     : ePWMArraySync[0].name,
-                    options     : ePWMArraySync
-                },
-                {
-                    name        : "useRampValShdwLow",
-                    displayName : "Ramp Generator Reset",
-                    description : 'Indicate whether the ramp generator should reset with the value from the ramp max reference value shadow register or with the latched ramp max reference value',
-                    hidden      : false,
-                    default     : "true",
-                    options     : [
-                        {name: "true",  displayName: "load the ramp generator from the shadow register"},
-                        {name: "false", displayName: "load the ramp generator from the latched value."},
-                    ],
-                },
-            ]
+            name        : "rampLowDir",
+            displayName : "Ramp Direction",
+            description : "Sets the ramp direction for the low comparator",
+            hidden      : false,
+            default     : rampDirections[0].name,
+            options     : rampDirections
+        },
+        // -setMaxRampValue
+        {
+            name        : "maxRampValLow",
+            displayName : "Max Ramp Generator Reference Value",
+            description : 'Sets the ramp generator maximum reference value.',
+            hidden      : false,
+            default     : 0
+        },
+        // -setRampDecValue
+        {
+            name        : "ramDecValLow",
+            displayName : "Ramp Generator Decrement Value",
+            description : 'Sets the ramp generator decrement value.',
+            hidden      : false,
+            default     : 0
+        },
+        // -setRampDelayValue
+        {
+            name        : "rampDelayValLow",
+            displayName : "Ramp Generator Delay Value",
+            description : 'Sets the ramp generator delay value.',
+            hidden      : false,
+            default     : 0
         },
     ])
 }
 
-if (["F28002x","F28003x","F28P55x","F280013x","F280015x","F28004x", "F28P65x"].includes(Common.getDeviceName())){
+if (["F28P65x","F28P55x"].includes(Common.getDeviceName())){
+    lowConfigDevice = lowConfigDevice.concat([
+         // -CMPSS_setRampClockDividerHigh/CMPSS_setRampClockDividerLow
+         {
+            name        : "rampClkDivLow",
+            displayName : "Ramp Generator Clock Divider Value",
+            description : 'Sets the divider value to slow down the ramp clock; this increases the periods between steps. RAMPCLK = SYSCLK/(RAMPCLKDIV+1), where RAMPCLKDIV = {0...15}.',
+            hidden      : false,
+            default     : device_driverlib_peripheral.CMPSS_RampClockDiv[0].name,
+            options     : device_driverlib_peripheral.CMPSS_RampClockDiv
+        },
+        {
+            name: "rampClkFreqLow",
+            displayName : "Ramp Clock Frequency [MHz]",
+            getValue    : (inst) => {
+                var dividerVal =1
+                for(var divIndex in device_driverlib_peripheral.CMPSS_RampClockDiv)
+                {
+                    var currentDIV = device_driverlib_peripheral.CMPSS_RampClockDiv[divIndex].name
+                    let divi = (currentDIV).replace(/[^0-9]/g,'')
+                    if (inst.rampClkDiv == ("CMPSS_RAMP_CLOCK_DIV"+divi.toString()))
+                    {
+                        dividerVal = divi
+                    }
+                }
+                return (Common.getSYSCLK() / dividerVal);
+            },
+            default : Common.SYSCLK_getMaxMHz(),
+        },
+    ])
+}
+
+if (["F280015x", "F28P65x" , "F28P55x"].includes(Common.getDeviceName())){
+    lowConfigDevice = lowConfigDevice.concat([
+        {
+            name        : "pwmSyncSrcLow",
+            displayName : "EPWMSYNCPER source number",
+            description : 'Specify the number of the EPWMSYNCPER source',
+            hidden      : false,
+            default     : ePWMArraySync[0].name,
+            options     : ePWMArraySync
+        },
+        {
+            name        : "useRampValShdwLow",
+            displayName : "Ramp Generator Reset",
+            description : 'Indicate whether the ramp generator should reset with the value from the ramp max reference value shadow register or with the latched ramp max reference value',
+            hidden      : false,
+            default     : "true",
+            options     : [
+                {name: "true",  displayName: "load the ramp generator from the shadow register"},
+                {name: "false", displayName: "load the ramp generator from the latched value."},
+            ],
+        },
+    ])
+}
+lowConfig = lowConfig.concat([
+    {
+        name: "GROUP_RAMP_GENERATOR",
+        displayName: "Ramp Generator Configuration",
+        description: "",
+        longDescription: "",
+        collapsed: false,
+        config: lowConfigDevice
+    },
+])
+
+
+
+
+
+if (["F28002x","F28003x","F280013x","F280015x","F28004x", "F28P65x","F28P55x"].includes(Common.getDeviceName())){
     lowConfig = lowConfig.concat([
         {
             name: "GROUP_CMPSS_MUX_LOW",
@@ -1024,6 +835,48 @@ let config = [
         hidden      : false,
         default     : false
     },
+];
+config = config.concat([
+    // setHysteresis
+    {
+        name        : "hysteresisVal",
+        displayName : "Hysteresis",
+        description : 'Sets the the amount of hysteresis on the comparator inputs.',
+        hidden      : false,
+        default     : "0",
+        options: [
+            {name:"0",displayName:"None"},
+            {name:"1",displayName:"1x"},
+            {name:"2",displayName:"2x"},
+            {name:"3",displayName:"3x"},
+            {name:"4",displayName:"4x"},
+        ]
+    },
+]);
+
+if (["F28002x","F28003x","F280013x","F280015x","F28004x","F2838x","F28P55x","F28P65x"].includes(Common.getDeviceName())){
+    config = config.concat([
+        // configBlanking
+        {
+            name        : "configBlanking",
+            displayName : "Blanking Signal",
+            description : 'Sets the ePWM module blanking signal that holds trip in reset.',
+            hidden      : false,
+            default     : ePWMArrayBlank[0].name,
+            options     : ePWMArrayBlank
+        },
+        // enableBlanking / disableBlanking
+        {
+            name        : "enableBlanking",
+            displayName : "Enable Blanking Signal",
+            description : 'Enables an ePWM blanking signal to hold trip in reset.',
+            hidden      : false,
+            default     : false
+        },
+    ]);
+}
+
+config = config.concat([
     // Group for High Comparator Configuration Functions
     {
         name: "GROUP_HIGH_COMPARATOR",
@@ -1040,13 +893,13 @@ let config = [
         longDescription: "",
         config: lowConfig
     },
-];
+]);
 
 // configDAC
 var cmpss_dac_config = [
     {
         name        : "dacValLoad",
-        displayName : "High DAC value load",
+        displayName : "DAC value load",
         description : 'When is DAC value loaded from shadow register',
         hidden      : false,
         default     : "CMPSS_DACVAL_SYSCLK",
@@ -1056,11 +909,12 @@ var cmpss_dac_config = [
         ],
     },
 ]
-if (!["F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName())){
+
+if (!["F280013x", "F280015x", "F28P55x"].includes(Common.getDeviceName())){
     cmpss_dac_config.push(
         {
             name        : "dacRefVoltage",
-            displayName : "High DAC reference voltage",
+            displayName : "DAC reference voltage",
             description : 'Specify DAC reference voltage',
             hidden      : false,
             default     : "CMPSS_DACREF_VDDA",
@@ -1074,7 +928,7 @@ if (!["F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName())){
 cmpss_dac_config.push(
     {
         name        : "dacValSource",
-        displayName : "High DAC value source",
+        displayName : "DAC value source",
         description : 'Specify DAC value source',
         hidden      : false,
         default     : "CMPSS_DACSRC_SHDW",
@@ -1084,23 +938,39 @@ cmpss_dac_config.push(
         ],
     },
 )
-config = config.concat([
-    // DAC Group
-    {
-        name: "GROUP_CMP_DAC",
-        displayName: "DAC Configuration",
-        description: "",
-        longDescription: "",
-        collapsed: false,
-        config: cmpss_dac_config
-    },
-]);
-if (["F280015x", "F28P65x"].includes(Common.getDeviceName())){
+if (["F2807x", "F2837xS", "F2837xD", "F2838x", "F280013x", "F28002x", "F28003x","F28004x"].includes(Common.getDeviceName())){
+    config = config.concat([
+        // DAC Group
+        {
+            name: "GROUP_CMP_DAC",
+            displayName: "DAC Configuration",
+            description: "",
+            longDescription: "",
+            collapsed: true,
+            config: cmpss_dac_config
+        },
+    ]);
+}
+if (["F280015x", "F28P55x", "F28P65x"].includes(Common.getDeviceName())){
+    config = config.concat([
+        // DAC Group
+        {
+            name: "GROUP_CMP_DAC",
+            displayName: "High DAC Configuration",
+            description: "",
+            longDescription: "",
+            collapsed: true,
+            config: cmpss_dac_config
+        },
+    ]);
+}
+
+if (["F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName())){
     // configDACLow
     var cmpss_dac_lowConfig = [
         {
             name        : "lowDacValSource",
-            displayName : "Low DAC value source",
+            displayName : "DAC value source",
             description : 'Specify Low DAC value source',
             hidden      : false,
             default     : "CMPSS_DACSRC_SHDW",
@@ -1117,7 +987,7 @@ if (["F280015x", "F28P65x"].includes(Common.getDeviceName())){
             displayName: "Low DAC Configuration",
             description: "",
             longDescription: "",
-            collapsed: false,
+            collapsed: true,
             config: cmpss_dac_lowConfig
         },
     ]);
@@ -1161,49 +1031,8 @@ if (["F28P65x"].includes(Common.getDeviceName())){
         {
             name: "GROUP_CMP_DE",
             displayName: "Diode Emulation Support Configuration",
-            collapsed: false,
+            collapsed: true,
             config: cmpss_de_config
-        },
-    ]);
-}
-
-config = config.concat([
-    // setHysteresis
-    {
-        name        : "hysteresisVal",
-        displayName : "Hysteresis",
-        description : 'Sets the the amount of hysteresis on the comparator inputs.',
-        hidden      : false,
-        default     : "0",
-        options: [
-            {name:"0",displayName:"None"},
-            {name:"1",displayName:"1x"},
-            {name:"2",displayName:"2x"},
-            {name:"3",displayName:"3x"},
-            {name:"4",displayName:"4x"},
-        ]
-    },
-]);
-
-
-if (["F28002x","F28003x","F28P55x","F280013x","F280015x","F28004x","F2838x", "F28P65x"].includes(Common.getDeviceName())){
-    config = config.concat([
-        // configBlanking
-        {
-            name        : "configBlanking",
-            displayName : "Blanking Signal",
-            description : 'Sets the ePWM module blanking signal that holds trip in reset.',
-            hidden      : false,
-            default     : ePWMArrayBlank[0].name,
-            options     : ePWMArrayBlank
-        },
-        // enableBlanking / disableBlanking
-        {
-            name        : "enableBlanking",
-            displayName : "Enable Blanking Signal",
-            description : 'Enables an ePWM blanking signal to hold trip in reset.',
-            hidden      : false,
-            default     : false
         },
     ]);
 }
@@ -1396,7 +1225,7 @@ function onValidate(inst, validation) {
         validation.logInfo("Diode Emulation support is not enabled; the settings can be configured and then Diode Emulation can be enabled at any point", inst, "deEnable");
     }
 
-    if(["F280015x", "F28P65x"].includes(Common.getDeviceName()))
+    if(["F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName()))
     {
         if (inst.maxRampValLow < 0 || inst.maxRampValLow > 65535)
         {
@@ -1436,16 +1265,9 @@ function onValidate(inst, validation) {
                 "Ramp Generator Delay Value must be an integer",
                 inst, "rampDelayValLow");
         }
-    
-        if ((inst.pwmSyncSrcLow < 0 || inst.pwmSyncSrcLow > 16) && !(["F28P65x"].includes(Common.getDeviceName())))
-        {
-            validation.logError(
-                "Enter an integer for Ramp EPWMSYNCPER source number between 1 and 16!",
-                inst, "pwmSyncSrcLow");
-        }
     }
 
-    if (["F28002x","F28003x","F28P55x","F280013x","F280015x","F28004x","F2838x", "F28P65x"].includes(Common.getDeviceName())){
+    if (["F28002x","F28003x","F280013x","F280015x","F28004x","F2838x", "F28P65x","F28P55x"].includes(Common.getDeviceName())){
         if (inst.configBlanking < 1 || inst.configBlanking > 16)
         {
             validation.logError(
@@ -1453,7 +1275,7 @@ function onValidate(inst, validation) {
                 inst, "configBlanking");
         }
     }
-    if (["F28P65x"].includes(Common.getDeviceName()))
+    if (["F28P65x","F28P55x"].includes(Common.getDeviceName()))
     {
         if (inst.samplePrescaleHigh < 0 || inst.samplePrescaleHigh > 16777215)
         {
@@ -1462,7 +1284,7 @@ function onValidate(inst, validation) {
                 inst, "samplePrescaleHigh");
         }
     }
-    else if (["F28003x","F28P55x","F280013x","F280015x"].includes(Common.getDeviceName()))
+    else if (["F28003x","F280013x","F280015x"].includes(Common.getDeviceName()))
     {
         if (inst.samplePrescaleHigh < 0 || inst.samplePrescaleHigh > 65535)
         {
@@ -1485,13 +1307,24 @@ function onValidate(inst, validation) {
             "Digital Filter Sample Prescale must be an integer",
             inst, "samplePrescaleHigh");
     }
-
-    if (inst.sampleWindowHigh < 1 || inst.sampleWindowHigh > 32)
+    if (["F28P65x","F28P55x"].includes(Common.getDeviceName()))
     {
-        validation.logError(
-            "Enter an integer for Digital Filter Sample Window between 1 and 32!",
-            inst, "sampleWindowHigh");
+        if (inst.sampleWindowHigh < 1 || inst.sampleWindowHigh > 64)
+        {
+            validation.logError(
+                "Enter an integer for Digital Filter Sample Window between 1 and 64!",
+                inst, "sampleWindowHigh");
+        }
     }
+    else{
+        if (inst.sampleWindowHigh < 1 || inst.sampleWindowHigh > 32)
+        {
+            validation.logError(
+                "Enter an integer for Digital Filter Sample Window between 1 and 32!",
+                inst, "sampleWindowHigh");
+        }
+    }
+        
     if (!Number.isInteger(inst.sampleWindowHigh))
     {
         validation.logError(
@@ -1512,7 +1345,7 @@ function onValidate(inst, validation) {
             inst, "thresholdHigh");
     }
 
-    if (["F28P65x"].includes(Common.getDeviceName()))
+    if (["F28P65x","F28P55x"].includes(Common.getDeviceName()))
     {
         if(inst.samplePrescaleLow < 0 || inst.samplePrescaleLow > 16777215)
         {
@@ -1521,7 +1354,7 @@ function onValidate(inst, validation) {
                 inst, "samplePrescaleLow");
         }
     }
-    else if (["F28003x","F28P55x","F280013x","F280015x"].includes(Common.getDeviceName()))
+    else if (["F28003x","F280013x","F280015x"].includes(Common.getDeviceName()))
     {
         if (inst.samplePrescaleLow < 0 || inst.samplePrescaleLow > 65535)
         {
@@ -1542,12 +1375,22 @@ function onValidate(inst, validation) {
             "Digital Filter Sample Prescale must be an integer",
             inst, "samplePrescaleLow");
     }
-
-    if (inst.sampleWindowLow < 1 || inst.sampleWindowLow > 32)
+    if (["F28P65x","F28P55x"].includes(Common.getDeviceName()))
     {
-        validation.logError(
-            "Enter an integer for Digital Filter Sample Window between 1 and 32!",
-            inst, "sampleWindowLow");
+        if (inst.sampleWindowLow < 1 || inst.sampleWindowLow > 64)
+        {
+            validation.logError(
+                "Enter an integer for Digital Filter Sample Window between 1 and 64!",
+                inst, "sampleWindowLow");
+        }
+    }
+    else{
+        if (inst.sampleWindowLow < 1 || inst.sampleWindowLow > 32)
+        {
+            validation.logError(
+                "Enter an integer for Digital Filter Sample Window between 1 and 32!",
+                inst, "sampleWindowLow");
+        }
     }
     if (!Number.isInteger(inst.sampleWindowLow))
     {
@@ -1569,14 +1412,6 @@ function onValidate(inst, validation) {
             inst, "thresholdLow");
     }
 
-    if ((inst.pwmSyncSrc < 0 || inst.pwmSyncSrc > 16) && !(["F28P65x"].includes(Common.getDeviceName())))
-    {
-        validation.logError(
-            "Enter an integer for Ramp EPWMSYNCPER source number between 1 and 16!",
-            inst, "pwmSyncSrc");
-    }
-
-
     var selectedInterfaces = null;
     var allInterfaces = null;
     if (Common.isContextCPU1()) {
@@ -1587,7 +1422,7 @@ function onValidate(inst, validation) {
         }
     }
     if (["F28002x","F28003x","F28P55x","F280013x","F280015x","F28004x", "F28P65x"].includes(Common.getDeviceName())){
-        if (inst.asysCMPHPMXSELPinInfo == Pinmux.NO_DEVICE_PIN_FOUND)
+        if ((inst.asysCMPHPMXSELPinInfo == Pinmux.NO_DEVICE_PIN_FOUND) && (inst.asysCMPLPMXSELPinInfo == Pinmux.NO_DEVICE_PIN_FOUND))
         {
             validation.logError(
                 "Signal not available for this device, select a valid signal!",

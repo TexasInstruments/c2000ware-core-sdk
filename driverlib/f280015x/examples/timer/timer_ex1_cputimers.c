@@ -2,13 +2,17 @@
 //
 // FILE:   timer_ex1_cputimers.c
 //
-// TITLE:  CPU Timers Example
+// TITLE:  Universal CPU Timers Example
 //
 //! \addtogroup driver_example_list
 //! <h1> CPU Timers </h1>
 //!
 //! This example configures CPU Timer0, 1, and 2 and increments
-//! a counter each time the timer asserts an interrupt.
+//! a counter each time the timer asserts an interrupt. 
+//! In order to migrate the project within syscfg to any device, 
+//! click the swtich button under the device view and select your   
+//! corresponding device to migrate, saving the project will 
+//! auto-migrate your project settings.
 //!
 //! \b External \b Connections \n
 //!  - None

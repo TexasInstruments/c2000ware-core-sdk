@@ -51,6 +51,7 @@ extern "C" {
 #include "inc/hw_types.h"
 #include "inc/hw_epg.h"
 #include "debug.h"
+#include "cpu.h"
 
 //*****************************************************************************
 //
@@ -267,10 +268,10 @@ typedef enum{
     EPG_DATAIN_SPIB_PICO = 14,//!< SPIB Peripheral in COntroller out Signal
     EPG_DATAIN_SPIB_POCI = 15,//!< SPIB Peripheral out Controller in Signal
     EPG_DATAIN_SPIB_PTE = 16, //!< SPIB Peripheral Transmit Enable Signal
-    EPG_DATATIN_I2CA_SDA = 17,//!< I2CA Serial Data Line
-    EPG_DATATIN_I2CA_SCL = 18,//!< I2CA Serial Clock Line
-    EPG_DATATIN_I2CB_SDA = 19,//!< I2CB Serial Data Line
-    EPG_DATATIN_I2CB_SCL = 20,//!< I2CB Serial Clock Line
+    EPG_DATAIN_I2CA_SDA = 17,//!< I2CA Serial Data Line
+    EPG_DATAIN_I2CA_SCL = 18,//!< I2CA Serial Clock Line
+    EPG_DATAIN_I2CB_SDA = 19,//!< I2CB Serial Data Line
+    EPG_DATAIN_I2CB_SCL = 20,//!< I2CB Serial Clock Line
     EPG_DATAIN_SDC1 = 21,     //!< SDFM C1 Input
     EPG_DATAIN_SDC2 = 22,     //!< SDFM C2 Input
     EPG_DATAIN_SDC3 = 23,     //!< SDFM C3 Input
@@ -467,10 +468,11 @@ EPG_selectEPGOutput(uint32_t base, EPG_OUT gPinNum,
     uint32_t regValue, bitFieldLoc, bitFieldVal;
 
     ASSERT(EPG_isBaseValid(base));
-    ASSERT(gPinNum <= 7U);
+    ASSERT((uint16_t)gPinNum <= 7U);
 
-    bitFieldLoc = 1U << (gPinNum + EPG_GCTL0_EPGOUTSEL_S);
-    bitFieldVal = (uint32_t)gPinOutSel << (gPinNum + EPG_GCTL0_EPGOUTSEL_S);
+    bitFieldLoc = 1UL << ((uint16_t)gPinNum + EPG_GCTL0_EPGOUTSEL_S);
+    bitFieldVal = (uint32_t)gPinOutSel << ((uint16_t)gPinNum +
+                                           EPG_GCTL0_EPGOUTSEL_S);
 
     regValue = (HWREG(base + EPG_O_GCTL0) & (~bitFieldLoc));
     regValue |= bitFieldVal;
@@ -505,13 +507,13 @@ EPG_selectSignalOutput(uint32_t base, EPG_OUT gPinNum,
     uint32_t regValue, bitFieldLoc, bitFieldVal;
 
     ASSERT(EPG_isBaseValid(base));
-    ASSERT(gPinNum <= 7U);
+    ASSERT((uint16_t)gPinNum <= 7U);
 
-    bitFieldLoc = EPG_GCTL3_EPGOUT0_SIGOUTSEL_M <<
-                  (gPinNum * EPG_GCTL3_EPGOUT_SIGOUTSEL_BIT_L);
+    bitFieldLoc = (uint32_t)EPG_GCTL3_EPGOUT0_SIGOUTSEL_M <<
+                  ((uint32_t)gPinNum * EPG_GCTL3_EPGOUT_SIGOUTSEL_BIT_L);
 
     bitFieldVal = (uint32_t)sigGenOutput <<
-                  (gPinNum * EPG_GCTL3_EPGOUT_SIGOUTSEL_BIT_L);
+                  ((uint32_t)gPinNum * EPG_GCTL3_EPGOUT_SIGOUTSEL_BIT_L);
 
     regValue = HWREG(base + EPG_O_GCTL3) & ~bitFieldLoc;
     regValue |= bitFieldVal;
@@ -547,13 +549,13 @@ EPG_selectClkOutput(uint32_t base, EPG_OUT gPinNum,
     uint32_t regValue, bitFieldLoc, bitFieldVal;
 
     ASSERT(EPG_isBaseValid(base));
-    ASSERT(gPinNum <= 7U);
+    ASSERT((uint16_t)gPinNum <= 7U);
 
-    bitFieldLoc = EPG_GCTL2_EPGOUT0_CLKOUTSEL_M <<
-                  (gPinNum * EPG_GCTL2_EPGOUT_CLKOUTSEL_BIT_L);
+    bitFieldLoc = (uint32_t)EPG_GCTL2_EPGOUT0_CLKOUTSEL_M <<
+                  ((uint32_t)gPinNum * EPG_GCTL2_EPGOUT_CLKOUTSEL_BIT_L);
 
     bitFieldVal = (uint32_t)clkGenOutput <<
-                  (gPinNum * EPG_GCTL2_EPGOUT_CLKOUTSEL_BIT_L);
+                  ((uint32_t)gPinNum * EPG_GCTL2_EPGOUT_CLKOUTSEL_BIT_L);
 
     regValue = HWREG(base + EPG_O_GCTL2) & ~bitFieldLoc;
     regValue |= bitFieldVal;
@@ -590,13 +592,13 @@ EPG_selectSigGenClkSource(uint32_t base, EPG_SIGGEN sigGenNum,
     uint32_t regValue, bitFieldLoc, bitFieldVal;
 
     ASSERT(EPG_isBaseValid(base));
-    ASSERT(sigGenNum <= 0U);
+    ASSERT((uint16_t)sigGenNum <= 0U);
 
-    bitFieldLoc = EPG_GCTL1_SIGGEN0_CLKSEL_M <<
-                  (sigGenNum * EPG_GCTL1_SIGGEN_CLKSEL_BIT_L);
+    bitFieldLoc = (uint32_t)EPG_GCTL1_SIGGEN0_CLKSEL_M <<
+                  ((uint32_t)sigGenNum * EPG_GCTL1_SIGGEN_CLKSEL_BIT_L);
 
     bitFieldVal = (uint32_t)clkGenOutput <<
-                  (sigGenNum * EPG_GCTL1_SIGGEN_CLKSEL_BIT_L);
+                  ((uint32_t)sigGenNum * EPG_GCTL1_SIGGEN_CLKSEL_BIT_L);
 
     regValue = HWREG(base + EPG_O_GCTL1) & ~bitFieldLoc;
     regValue |= bitFieldVal;
@@ -628,10 +630,11 @@ EPG_setClkGenPeriod(uint32_t base, EPG_CLKGEN clkGenNum,
     uint32_t regValue, regLoc;
 
     ASSERT(EPG_isBaseValid(base));
-    ASSERT(clkGenNum <= 1U);
+    ASSERT((uint16_t)clkGenNum <= 1U);
     ASSERT(periodValue <= EPG_CLKDIV0_CTL0_PRD_M);
 
-    regLoc = EPG_O_CLKDIV0_CTL0 + (clkGenNum * EPG_CLKDIV_REG_OFF);
+    regLoc = (uint32_t)EPG_O_CLKDIV0_CTL0 + ((uint32_t)clkGenNum *
+                                             EPG_CLKDIV_REG_OFF);
 
     regValue = HWREG(base + regLoc) & ~(uint32_t)EPG_CLKDIV0_CTL0_PRD_M;
     regValue |= periodValue;
@@ -665,9 +668,10 @@ EPG_setClkGenStopEdge(uint32_t base, EPG_CLKGEN clkGenNum,
     uint32_t regValue, regLoc;
 
     ASSERT(EPG_isBaseValid(base));
-    ASSERT(clkGenNum <= 1U);
+    ASSERT((uint16_t)clkGenNum <= 1U);
 
-    regLoc = EPG_O_CLKDIV0_CTL0 + (clkGenNum * EPG_CLKDIV_REG_OFF);
+    regLoc = (uint32_t)EPG_O_CLKDIV0_CTL0 + ((uint32_t)clkGenNum *
+                                             EPG_CLKDIV_REG_OFF);
 
     regValue = HWREG(base + regLoc) & ~(uint32_t)EPG_CLKDIV0_CTL0_CLKSTOP_M;
     regValue |= ((uint32_t)stopEdge << EPG_CLKDIV0_CTL0_CLKSTOP_S);
@@ -704,16 +708,17 @@ EPG_setClkGenOffset(uint32_t base, EPG_CLKGEN clkGenNum,
     uint32_t regValue, regLoc, bitFieldLoc, bitFieldVal;
 
     ASSERT(EPG_isBaseValid(base));
-    ASSERT(clkGenNum <= 1U);
+    ASSERT((uint16_t)clkGenNum <= 1U);
     ASSERT(clkGenOutputNum <= 3U);
     ASSERT(offsetValue <= EPG_CLKDIV0_CLKOFFSET_CLK0OFFSET_M);
 
-    bitFieldLoc = EPG_CLKDIV0_CLKOFFSET_CLK0OFFSET_M <<
+    bitFieldLoc = (uint32_t)EPG_CLKDIV0_CLKOFFSET_CLK0OFFSET_M <<
                   (clkGenOutputNum * EPG_CLKDIV_CLKOFFSET_BIT_L);
 
     bitFieldVal = offsetValue << (clkGenOutputNum * EPG_CLKDIV_CLKOFFSET_BIT_L);
 
-    regLoc = EPG_O_CLKDIV0_CLKOFFSET + (clkGenNum  * EPG_CLKDIV_REG_OFF);
+    regLoc = (uint32_t)EPG_O_CLKDIV0_CLKOFFSET + ((uint32_t)clkGenNum  *
+                                                  EPG_CLKDIV_REG_OFF);
 
     regValue = HWREG(base + regLoc) & ~bitFieldLoc;
     regValue |= bitFieldVal;
@@ -739,7 +744,7 @@ static inline void
 EPG_enableSignalGen(uint32_t base, EPG_SIGGEN sigGenNum)
 {
     ASSERT(EPG_isBaseValid(base));
-    ASSERT(sigGenNum <= 0U);
+    ASSERT((uint16_t)sigGenNum <= 0U);
 
     if(sigGenNum == EPG_SIGGEN0)
     {
@@ -748,6 +753,14 @@ EPG_enableSignalGen(uint32_t base, EPG_SIGGEN sigGenNum)
     else if(sigGenNum == EPG_SIGGEN1)
     {
         HWREG(base + EPG_O_GCTL0) |= EPG_GCTL0_SIGGEN1_EN;
+    }
+    else
+    {
+        //
+        // For correct inputs, this function is not expected to
+        // execute.
+        //
+        ESTOP0;
     }
 }
 
@@ -768,7 +781,7 @@ static inline void
 EPG_disableSignalGen(uint32_t base, EPG_SIGGEN sigGenNum)
 {
     ASSERT(EPG_isBaseValid(base));
-    ASSERT(sigGenNum <= 0U);
+    ASSERT((uint16_t)sigGenNum <= 0U);
 
     if(sigGenNum == EPG_SIGGEN0)
     {
@@ -777,6 +790,14 @@ EPG_disableSignalGen(uint32_t base, EPG_SIGGEN sigGenNum)
     else if(sigGenNum == EPG_SIGGEN1)
     {
         HWREG(base + EPG_O_GCTL0) &= ~(uint32_t)EPG_GCTL0_SIGGEN1_EN;
+    }
+    else
+    {
+        //
+        // For correct inputs, this function is not expected to
+        // execute.
+        //
+        ESTOP0;
     }
     
 }
@@ -810,9 +831,10 @@ EPG_setSignalGenMode(uint32_t base, EPG_SIGGEN sigGenNum,
     uint32_t regValue, regLoc;
 
     ASSERT(EPG_isBaseValid(base));
-    ASSERT(sigGenNum <= 0U);
+    ASSERT((uint16_t)sigGenNum <= 0U);
 
-    regLoc = EPG_O_SIGGEN0_CTL0 + (sigGenNum * EPG_SIGGEN_REG_OFF);
+    regLoc = (uint32_t)EPG_O_SIGGEN0_CTL0 + ((uint32_t)sigGenNum *
+                                             EPG_SIGGEN_REG_OFF);
 
     regValue = HWREG(base + regLoc) & ~(uint32_t)EPG_SIGGEN0_CTL0_MODE_M;
     regValue |= (uint32_t)sigGenMode << EPG_SIGGEN0_CTL0_MODE_S;
@@ -841,9 +863,10 @@ EPG_enableBitRevOnDataIn(uint32_t base, EPG_SIGGEN sigGenNum)
     uint32_t regLoc;
 
     ASSERT(EPG_isBaseValid(base));
-    ASSERT(sigGenNum <= 0U);
+    ASSERT((uint16_t)sigGenNum <= 0U);
 
-    regLoc = EPG_O_SIGGEN0_CTL0 + (sigGenNum * EPG_SIGGEN_REG_OFF);
+    regLoc = (uint32_t)EPG_O_SIGGEN0_CTL0 + ((uint32_t)sigGenNum *
+                                             EPG_SIGGEN_REG_OFF);
 
     HWREG(base + regLoc) |= EPG_SIGGEN0_CTL0_BRIN;
 }
@@ -869,9 +892,10 @@ EPG_disableBitRevOnDataIn(uint32_t base, EPG_SIGGEN sigGenNum)
     uint32_t regLoc;
 
     ASSERT(EPG_isBaseValid(base));
-    ASSERT(sigGenNum <= 0U);
+    ASSERT((uint16_t)sigGenNum <= 0U);
 
-    regLoc = EPG_O_SIGGEN0_CTL0 + (sigGenNum * EPG_SIGGEN_REG_OFF);
+    regLoc = (uint32_t)EPG_O_SIGGEN0_CTL0 + ((uint32_t)sigGenNum *
+                                             EPG_SIGGEN_REG_OFF);
 
     HWREG(base + regLoc) &= ~(uint32_t)EPG_SIGGEN0_CTL0_BRIN;
 }
@@ -896,9 +920,10 @@ EPG_enableBitRevOnDataOut(uint32_t base, EPG_SIGGEN sigGenNum)
 {
     uint32_t regLoc;
 
-    ASSERT(sigGenNum <= 0U);
+    ASSERT((uint16_t)sigGenNum <= 0U);
 
-    regLoc = EPG_O_SIGGEN0_CTL0 + (sigGenNum * EPG_SIGGEN_REG_OFF);
+    regLoc = (uint32_t)EPG_O_SIGGEN0_CTL0 + ((uint32_t)sigGenNum *
+                                             EPG_SIGGEN_REG_OFF);
 
     HWREG(base + regLoc) |= EPG_SIGGEN0_CTL0_BROUT;
 }
@@ -924,9 +949,10 @@ EPG_disableBitRevOnDataOut(uint32_t base, EPG_SIGGEN sigGenNum)
     uint32_t regLoc;
 
     ASSERT(EPG_isBaseValid(base));
-    ASSERT(sigGenNum <= 0U);
+    ASSERT((uint16_t)sigGenNum <= 0U);
 
-    regLoc = EPG_O_SIGGEN0_CTL0 + (sigGenNum * EPG_SIGGEN_REG_OFF);
+    regLoc = (uint32_t)EPG_O_SIGGEN0_CTL0 + ((uint32_t)sigGenNum *
+                                             EPG_SIGGEN_REG_OFF);
 
     HWREG(base + regLoc) &= ~(uint32_t)EPG_SIGGEN0_CTL0_BROUT;
 }
@@ -955,10 +981,11 @@ EPG_setDataBitLen(uint32_t base, EPG_SIGGEN sigGenNum, uint32_t bitLength)
     uint32_t regValue, regLoc;
 
     ASSERT(EPG_isBaseValid(base));
-    ASSERT(sigGenNum <= 0U);
+    ASSERT((uint32_t)sigGenNum <= 0U);
     ASSERT(bitLength <= 0xFFU);
 
-    regLoc = EPG_O_SIGGEN0_CTL0 + (sigGenNum * EPG_SIGGEN_REG_OFF);
+    regLoc = (uint32_t)EPG_O_SIGGEN0_CTL0 + ((uint32_t)sigGenNum *
+                                             EPG_SIGGEN_REG_OFF);
 
     regValue = HWREG(base + regLoc) & ~(uint32_t)EPG_SIGGEN0_CTL0_BITLENGTH_M;
     regValue |= (bitLength << EPG_SIGGEN0_CTL0_BITLENGTH_S);
@@ -992,9 +1019,10 @@ EPG_setData0In(uint32_t base, EPG_SIGGEN sigGenNum,
     uint32_t regValue, regLoc;
 
     ASSERT(EPG_isBaseValid(base));
-    ASSERT(sigGenNum <= 0U);
+    ASSERT((uint32_t)sigGenNum <= 0U);
 
-    regLoc = EPG_O_SIGGEN0_CTL1 + (sigGenNum * EPG_SIGGEN_REG_OFF);
+    regLoc = (uint32_t)EPG_O_SIGGEN0_CTL1 + ((uint32_t)sigGenNum *
+                                             EPG_SIGGEN_REG_OFF);
 
     regValue = HWREG(base + regLoc) & ~(uint32_t)EPG_SIGGEN0_CTL1_DATA0_INSEL_M;
     regValue |= (uint32_t)data0Input;
@@ -1028,9 +1056,10 @@ EPG_setData63In(uint32_t base, EPG_SIGGEN sigGenNum,
     uint32_t regValue, regLoc;
 
     ASSERT(EPG_isBaseValid(base));
-    ASSERT(sigGenNum <= 0U);
+    ASSERT((uint32_t)sigGenNum <= 0U);
 
-    regLoc = EPG_O_SIGGEN0_CTL1 + (sigGenNum * EPG_SIGGEN_REG_OFF);
+    regLoc = (uint32_t)EPG_O_SIGGEN0_CTL1 + ((uint32_t)sigGenNum *
+                                             EPG_SIGGEN_REG_OFF);
 
     regValue = HWREG(base + regLoc) & ~(uint32_t)EPG_SIGGEN0_CTL1_DATA63_INSEL_M;
     regValue |= (uint32_t)data63Input << EPG_SIGGEN0_CTL1_DATA63_INSEL_S;
@@ -1060,7 +1089,8 @@ EPG_setData0Word(uint32_t base, EPG_SIGGEN sigGenNum, uint32_t data0)
 {
     ASSERT(EPG_isBaseValid(base));
 
-    HWREG(base + EPG_O_SIGGEN0_DATA0 + (sigGenNum * EPG_SIGGEN_REG_OFF)) = data0;
+    HWREG(base + EPG_O_SIGGEN0_DATA0 + ((uint32_t)sigGenNum *
+                                        EPG_SIGGEN_REG_OFF)) = data0;
 }
 
 //*****************************************************************************
@@ -1085,7 +1115,8 @@ EPG_setData1Word(uint32_t base, EPG_SIGGEN sigGenNum, uint32_t data1)
 {
     ASSERT(EPG_isBaseValid(base));
 
-    HWREG(base + EPG_O_SIGGEN0_DATA1 + (sigGenNum * EPG_SIGGEN_REG_OFF)) = data1;
+    HWREG(base + EPG_O_SIGGEN0_DATA1 + ((uint32_t)sigGenNum *
+                                        EPG_SIGGEN_REG_OFF)) = data1;
 }
 
 //*****************************************************************************
@@ -1109,7 +1140,7 @@ EPG_getData0ActiveReg(uint32_t base, EPG_SIGGEN sigGenNum)
     ASSERT(EPG_isBaseValid(base));
 
     return(HWREG(base + EPG_O_SIGGEN0_DATA0_ACTIVE +
-                 (sigGenNum * EPG_SIGGEN_REG_OFF)));
+                 ((uint32_t)sigGenNum * EPG_SIGGEN_REG_OFF)));
 }
 
 //*****************************************************************************
@@ -1133,7 +1164,7 @@ EPG_getData1ActiveReg(uint32_t base, EPG_SIGGEN sigGenNum)
     ASSERT(EPG_isBaseValid(base));
 
     return(HWREG(base + EPG_O_SIGGEN0_DATA1_ACTIVE +
-                 (sigGenNum * EPG_SIGGEN_REG_OFF)));
+                 ((uint32_t)sigGenNum * EPG_SIGGEN_REG_OFF)));
 }
 
 //*****************************************************************************

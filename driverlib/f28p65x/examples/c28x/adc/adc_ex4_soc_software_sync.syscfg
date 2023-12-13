@@ -5,6 +5,7 @@
 const adc        = scripting.addModule("/driverlib/adc.js", {}, false);
 const adc1       = adc.addInstance();
 const adc2       = adc.addInstance();
+const asysctl = scripting.addModule("/driverlib/asysctl.js");
 const gpio       = scripting.addModule("/driverlib/gpio.js", {}, false);
 const gpio1      = gpio.addInstance();
 const inputxbar  = scripting.addModule("/driverlib/inputxbar.js", {}, false);
@@ -43,6 +44,8 @@ adc2.soc1SampleWindow   = 15;
 adc2.adcSignalMode     = "ADC_MODE_SINGLE_ENDED";
 adc2.adcResolutionMode = "ADC_RESOLUTION_12BIT";
 
+asysctl.analogReference         = "INTERNAL";
+asysctl.analogReferenceVoltage  = "1P65";
 
 gpio1.$name             = "myGPIO0";
 gpio1.direction         = "GPIO_DIR_MODE_OUT";

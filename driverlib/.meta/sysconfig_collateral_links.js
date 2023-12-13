@@ -18,9 +18,11 @@ var collateral = {
                     appNote:true,
                 },
                 {
-                    name:"C2000 Academy - Analog Subsystem",
-                    url:"https://dev.ti.com/tirex/explore/node?node=ASvrBwmTNNyt2x970HWDDg__jEBbtmC__LATEST&amp;chapter=analog-to-digital-converter-adc-",
+                    name:"C2000 Academy - ADC",
+                    url:"https://dev.ti.com/tirex/explore/node?node=A__AV1jxDLXhC2RSKVQ66OxTA__c2000Academy__jEBbtmC__LATEST",
                     devices:[
+                        "F280013x",
+                        "F280015x",
                         "F28002x",
                         "F28003x",
                         "F28004x",
@@ -28,6 +30,7 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
                         "LEGACY",
                     ],
                 },
@@ -42,27 +45,21 @@ var collateral = {
                 },
                 {
                     name:"TI Precision Labs - ADCs",
-                    url:"https://training.ti.com/ti-precision-labs-adcs",
-                    description:"Start with the \"Introduction to analog-to-digital converters (ADCs)\" section.",
-                    video:true,
-                },
-                {
-                    name:"TI Precision Labs - ADCs",
                     url:"https://www.ti.com/tool/TINA-TI",
                 },
                 {
                     name:"TI Precision Labs: Driving the reference input on a SAR ADC",
-                    url:"https://training.ti.com/node/1139107",
+                    url:"https://www.ti.com/video/5783793652001",
                     video:true,
                 },
                 {
                     name:"TI Precision Labs: Introduction to analog-to-digital converters (ADCs)",
-                    url:"https://training.ti.com/introduction-analog-digital-converters-adcs",
+                    url:"https://www.ti.com/video/6163538486001",
                     video:true,
                 },
                 {
                     name:"TI Precision Labs: SAR ADC input driver design",
-                    url:"https://training.ti.com/node/1139106",
+                    url:"https://www.ti.com/video/5476574757001",
                     video:true,
                 },
                 {
@@ -95,13 +92,17 @@ var collateral = {
                 },
                 {
                     name:"Analog-to-Digital Converter (ADC) Training for C2000 MCUs",
-                    url:"https://training.ti.com/analog-digital-converter-adc-training-c2000-mcus",
+                    url:"https://www.ti.com/video/series/C2000-analog-to-digital-converter.html",
                     devices:[
+                        "F280013x",
+                        "F280015x",
                         "F28002x",
                         "F28003x",
                         "F28004x",
                         "F2837x",
                         "F2838x",
+                        "F28P65x",
+                        "LEGACY",
                     ],
                     video:true,
                 },
@@ -114,7 +115,7 @@ var collateral = {
                     appNote:true,
                 },
                 {
-                    name:"Hardware Design Guide for F2800x C2000 Real-Time \nMCU Series",
+                    name:"Hardware Design Guide for F2800x C2000 Real-Time MCU Series",
                     url:"https://www.ti.com/lit/spracz9",
                 },
                 {
@@ -150,6 +151,8 @@ var collateral = {
                     name:"Charge-Sharing Driving Circuits for C2000 ADCs (using PSPICE-FOR-TI) Application Report",
                     url:"https://ti.com/lit/SPRACZ0",
                     devices:[
+                        "F280013x",
+                        "F280015x",
                         "F28002x",
                         "F28003x",
                         "F28004x",
@@ -157,6 +160,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
+                        "LEGACY",
                     ],
                     appNote:true,
                 },
@@ -164,6 +169,8 @@ var collateral = {
                     name:"Charge-Sharing Driving Circuits for C2000 ADCs (using TINA-TI) Application Report",
                     url:"https://ti.com/lit/SPRACV0",
                     devices:[
+                        "F280013x",
+                        "F280015x",
                         "F28002x",
                         "F28003x",
                         "F28004x",
@@ -171,6 +178,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
+                        "LEGACY",
                     ],
                     appNote:true,
                 },
@@ -182,6 +191,8 @@ var collateral = {
                     name:"Methods for Mitigating ADC Memory Cross-Talk Application Report",
                     url:"https://ti.com/lit/SPRACW9",
                     devices:[
+                        "F280013x",
+                        "F280015x",
                         "F28002x",
                         "F28003x",
                         "F28004x",
@@ -189,42 +200,44 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
+                        "LEGACY",
                     ],
                     appNote:true,
                 },
                 {
                     name:"TI Precision Labs: ADC AC specifications",
-                    url:"https://training.ti.com/node/1139105",
+                    url:"https://www.ti.com/video/5466126729001",
                     video:true,
                 },
                 {
                     name:"TI Precision Labs: ADC Error sources",
-                    url:"https://training.ti.com/node/1139104",
+                    url:"https://www.ti.com/video/5438477774001",
                     video:true,
                 },
                 {
                     name:"TI Precision Labs: ADC Noise",
-                    url:"https://training.ti.com/adc-noise",
+                    url:"https://www.ti.com/video/6114701198001",
                     video:true,
                 },
                 {
                     name:"TI Precision Labs: Analog-to-digital converter (ADC) drive topologies",
-                    url:"https://training.ti.com/node/1139103",
+                    url:"https://www.ti.com/video/6279972316001",
                     video:true,
                 },
                 {
                     name:"TI Precision Labs: Electrical overstress on data converters",
-                    url:"https://training.ti.com/node/1139109",
+                    url:"https://www.ti.com/video/6025680789001",
                     video:true,
                 },
                 {
                     name:"TI Precision Labs: High-speed ADC fundamentals",
-                    url:"https://training.ti.com/node/1139110",
+                    url:"https://www.ti.com/video/5527915856001",
                     video:true,
                 },
                 {
                     name:"TI Precision Labs: SAR \u0026 Delta-Sigma: Understanding the Difference",
-                    url:"https://training.ti.com/sar-delta-sigma-understanding-difference",
+                    url:"https://www.ti.com/video/6228191712001",
                     video:true,
                 },
                 {
@@ -287,9 +300,11 @@ var collateral = {
             category_displayName: "Foundational Materials",
             content:[
                 {
-                    name:"C2000 Academy - Introduction",
-                    url:"https://dev.ti.com/tirex/explore/node?node=ARj4YUAY2VA6aM1ZFMKbxg__jEBbtmC__LATEST&amp;chapter=c28x-cpu",
+                    name:"C2000 Academy - C28x",
+                    url:"https://dev.ti.com/tirex/explore/node?node=A__AXquDxv5DJedfaJRiU5oFA__c2000Academy__jEBbtmC__LATEST&amp;chapter=c28x-cpu",
                     devices:[
+                        "F280013x",
+                        "F280015x",
                         "F28002x",
                         "F28003x",
                         "F28004x",
@@ -297,7 +312,7 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
-                        "LEGACY",
+                        "F28P65x",
                     ],
                 },
                 {
@@ -309,7 +324,7 @@ var collateral = {
                     url:"https://software-dl.ti.com/C2000/docs/software_guide/index.html",
                 },
                 {
-                    name:"Enhancing the Computational Performance of the C2000 Microcontroller Family Application Report",
+                    name:"Enhancing the Computational Performance of the C2000\u2122 Microcontroller Family Application Report",
                     url:"https://ti.com/lit/SPRY288",
                     appNote:true,
                 },
@@ -333,10 +348,13 @@ var collateral = {
                 },
                 {
                     name:"C2000 VCU, Viterbi, Complex Math, and CRC",
-                    url:"https://training.ti.com/c2000-vcu-viterbi-complex-math-and-crc",
+                    url:"https://www.ti.com/video/3869897798001",
                     devices:[
                         "F28004x",
-                        "F2837x",
+                        "F2807x",
+                        "F2837xD",
+                        "F2837xS",
+                        "F28P65x",
                         "LEGACY",
                     ],
                     video:true,
@@ -379,6 +397,21 @@ var collateral = {
                     appNote:true,
                 },
                 {
+                    name:"Migrating Software From 8-Bit (Byte) Addressable CPU\u0027s to C28x CPU Application Report",
+                    url:"https://www.ti.com/lit/sprad88",
+                    devices:[
+                        "F280015x",
+                        "F28002x",
+                        "F28003x",
+                        "F28004x",
+                        "F2807x",
+                        "F2837xD",
+                        "F2837xS",
+                        "F28P65x",
+                    ],
+                    appNote:true,
+                },
+                {
                     name:"TMS320C28x Extended Instruction Sets Application Report",
                     url:"https://ti.com/lit/SPRUHS1C",
                     appNote:true,
@@ -400,6 +433,8 @@ var collateral = {
                         "F28002x",
                         "F28003x",
                         "F2838x",
+                        "F28P65x",
+                        "LEGACY",
                     ],
                     appNote:true,
                 },
@@ -412,8 +447,10 @@ var collateral = {
             content:[
                 {
                     name:"C2000 Academy - CLA",
-                    url:"https://dev.ti.com/tirex/explore/node?node=Ab4Eh.nz7ug0Djy-huDX7g__jEBbtmC__LATEST",
+                    url:"https://dev.ti.com/tirex/explore/node?node=A__AfelkqrMmb9oII8vUTEapg__c2000Academy__jEBbtmC__LATEST",
                     devices:[
+                        "F280013x",
+                        "F280015x",
                         "F28002x",
                         "F28003x",
                         "F28004x",
@@ -421,27 +458,28 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
                         "LEGACY",
                     ],
                 },
                 {
                     name:"C2000 CLA C Compiler Series",
-                    url:"https://training.ti.com/c2000-cla-c-compiler-part-1-technical-overview",
+                    url:"https://www.ti.com/video/3871287205001",
                     video:true,
                 },
                 {
                     name:"CLA Hands On Workshop",
-                    url:"https://training.ti.com/node/1139642",
+                    url:"https://www.ti.com/video/5432122168001",
                     video:true,
                 },
                 {
                     name:"CLA usage in Valley Switching Boost Power Factor Correction (PFC) Reference Design",
-                    url:"https://training.ti.com/cla-usage-valley-switching-boost-power-factor-correction-pfc-reference-design",
+                    url:"https://www.ti.com/video/6050578280001",
                     video:true,
                 },
                 {
                     name:"Control Law Accelerator Debug in CCS 4",
-                    url:"https://training.ti.com/piccolo-control-law-accelerator-debug-ccs-4",
+                    url:"https://www.ti.com/video/4878221673001",
                     devices:[
                         "LEGACY",
                     ],
@@ -449,14 +487,14 @@ var collateral = {
                 },
                 {
                     name:"Control Law Accelerator Example Framework",
-                    url:"https://training.ti.com/piccolo-control-law-accelerator-example-framework",
+                    url:"https://www.ti.com/video/3869582778001",
                     devices:[
                         "LEGACY",
                     ],
                     video:true,
                 },
                 {
-                    name:"Enhancing the Computational Performance of the C2000 Microcontroller Family Application Report",
+                    name:"Enhancing the Computational Performance of the C2000\u2122 Microcontroller Family Application Report",
                     url:"https://ti.com/lit/SPRY288",
                     appNote:true,
                 },
@@ -470,7 +508,7 @@ var collateral = {
                     url:"https://software-dl.ti.com/C2000/docs/cla_software_dev_guide/index.html",
                 },
                 {
-                    name:"Software Examples to Showcase Unique Capabilities of TI\u0027s C2000 CLA Application Report",
+                    name:"Software Examples to Showcase Unique Capabilities of TI\u0027s C2000\u2122 CLA Application Report",
                     url:"https://ti.com/lit/SPRACS0",
                     appNote:true,
                 },
@@ -497,9 +535,11 @@ var collateral = {
             category_displayName: "Foundational Materials",
             content:[
                 {
-                    name:"C2000 Academy - CLB",
-                    url:"https://dev.ti.com/tirex/explore/node?node=AeNzbryncOsHdu6ZVQrWdA__jEBbtmC__LATEST",
+                    name:"C2000 Academy - CLB ",
+                    url:"https://dev.ti.com/tirex/explore/node?node=A__ATVtOTSDyRg83yV8AKJQhQ__c2000Academy__jEBbtmC__LATEST",
                     devices:[
+                        "F280013x",
+                        "F280015x",
                         "F28002x",
                         "F28003x",
                         "F28004x",
@@ -507,12 +547,13 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
                         "LEGACY",
                     ],
                 },
                 {
-                    name:"C2000 Configurable Logic Block (CLB) Series",
-                    url:"https://training.ti.com/clb-training-c2000-mcus?context=1137766-1138740",
+                    name:"C2000\u2122 Configurable Logic Block (CLB) Series",
+                    url:"https://www.ti.com/video/series/C2000-configurable-logic-block.html",
                     video:true,
                 },
                 {
@@ -526,7 +567,7 @@ var collateral = {
                 },
                 {
                     name:"Enable Differentiation with Configurable Logic in Various Automotive Applications",
-                    url:"https://training.ti.com/enable-differentiation-configurable-logic-various-automotive-applications",
+                    url:"https://www.ti.com/video/6195168576001",
                     video:true,
                 },
             ]
@@ -535,7 +576,7 @@ var collateral = {
             category_displayName: "Getting Started Materials",
             content:[
                 {
-                    name:"C2000 Position Manager PTO API Reference Guide Application Report",
+                    name:"C2000\u2122 Position Manager PTO API Reference Guide Application Report",
                     url:"www.ti.com/lit/SPRAC77",
                     appNote:true,
                 },
@@ -570,7 +611,17 @@ var collateral = {
                     appNote:true,
                 },
                 {
-                    name:"Tamagawa T-Format Absolute-Encoder Master Interface Reference Design for C2000 MCUs",
+                    name:"Diagnosing Delta-Sigma Modulator Bitstream Using C2000\u2122 Configurable Logic Block Application Report",
+                    url:"https://www.ti.com/lit/SPRAD53",
+                    appNote:true,
+                },
+                {
+                    name:"How to Implement Custom Serial Interfaces Using Configurable Logic Block (CLB) Application Report",
+                    url:"https://www.ti.com/lit/SPRAD62",
+                    appNote:true,
+                },
+                {
+                    name:"Tamagawa T-Format Absolute-Encoder Master Interface Reference Design for C2000\u2122 MCUs",
                     url:"www.ti.com/lit/TIDUE74",
                 },
             ]
@@ -581,9 +632,11 @@ var collateral = {
             category_displayName: "Foundational Materials",
             content:[
                 {
-                    name:"C2000 Academy - Analog Subsystem",
-                    url:"https://dev.ti.com/tirex/explore/node?node=ASvrBwmTNNyt2x970HWDDg__jEBbtmC__LATEST&amp;chapter=comparator-subsystem-cmpss-",
+                    name:"C2000 Academy - CMPSS",
+                    url:"https://dev.ti.com/tirex/explore/node?node=A__ARObnwhEmPuoVc2EPF24VQ__c2000Academy__jEBbtmC__LATEST",
                     devices:[
+                        "F280013x",
+                        "F280015x",
                         "F28002x",
                         "F28003x",
                         "F28004x",
@@ -591,6 +644,7 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
                         "LEGACY",
                     ],
                 },
@@ -605,10 +659,6 @@ var collateral = {
             category_displayName: "Getting Started Materials",
             content:[
                 {
-                    name:"Comparator with Hysteresis Reference Design",
-                    url:"https://www.ti.com/lit/tidu020a",
-                },
-                {
                     name:"Utilizing MCU integrated analog comparators to provide power protection",
                     url:"https://ti.com/lit/SPRY206",
                     devices:[
@@ -621,12 +671,12 @@ var collateral = {
             category_displayName: "Expert Materials",
             content:[
                 {
-                    name:"Peak Current Control Realization for Boost Circuit Based On C2000 MCU Application Report",
+                    name:"Peak Current Control Realization for Boost Circuit Based On C2000\u2122 MCU Application Report",
                     url:"https://ti.com/lit/SPRABU2",
                     appNote:true,
                 },
                 {
-                    name:"Peak Current Mode Controlled PSFB Converter Reference Design Using C2000 Real-time MCU",
+                    name:"Peak Current Mode Controlled PSFB Converter Reference Design Using C2000\u2122 Real-time MCU",
                     url:"https://ti.com/lit/TIDUEO1",
                 },
                 {
@@ -642,9 +692,11 @@ var collateral = {
             category_displayName: "Foundational Materials",
             content:[
                 {
-                    name:"C2000 Academy - Analog Subsystem",
-                    url:"https://dev.ti.com/tirex/explore/node?node=ASvrBwmTNNyt2x970HWDDg__jEBbtmC__LATEST&amp;chapter=digital-to-analog-converter-dac-",
+                    name:"C2000 Academy - DAC",
+                    url:"https://dev.ti.com/tirex/explore/node?node=A__AVuxkzTD0dOyMwiSbYl70w__c2000Academy__jEBbtmC__LATEST",
                     devices:[
+                        "F280013x",
+                        "F280015x",
                         "F28002x",
                         "F28003x",
                         "F28004x",
@@ -652,6 +704,7 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
                         "LEGACY",
                     ],
                 },
@@ -677,7 +730,7 @@ var collateral = {
             content:[
                 {
                     name:"MathWorks F2807x/F2837xD/F2837xS/F28004x/F2838x DAC",
-                    url:"https://www.mathworks.com/help/supportpkg/texasinstrumentsc2000/ref/f2807xf2837xdf2837xsf28004xf2838xdac.html",
+                    url:"https://www.mathworks.com/help/supportpkg/texasinstrumentsc2000/ref/f2807xf2837xdf2837xsf28004xf28003xf2838xdac.html",
                     description:"NOTE: This is a non-TI (third party) site.",
                     devices:[
                         "F28004x",
@@ -685,6 +738,7 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
                     ],
                 },
             ]
@@ -696,14 +750,15 @@ var collateral = {
             content:[
                 {
                     name:"Automotive CAN Overview and Training",
-                    url:"https://training.ti.com/automotive-can-overview",
+                    url:"https://www.ti.com/video/5236633580001",
                     video:true,
                 },
                 {
-                    name:"C2000 Academy - Communications",
-                    url:"https://dev.ti.com/tirex/explore/node?node=AQPfNJiGb-AoD0m8d4Ysrw__jEBbtmC__LATEST&amp;chapter=control-area-network-can-",
+                    name:"C2000 Academy - CAN",
+                    url:"https://dev.ti.com/tirex/explore/node?node=A__AScVBEPv4AeDgX5amhJymg__c2000Academy__jEBbtmC__LATEST&amp;chapter=control-area-network-can-",
                     description:"Refer to the DCAN section",
                     devices:[
+                        "F280015x",
                         "F28002x",
                         "F28003x",
                         "F28004x",
@@ -711,23 +766,26 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
                         "LEGACY",
                     ],
                 },
                 {
                     name:"CAN Physical layer",
-                    url:"https://training.ti.com/ti-precision-labs-canlinsbc-can-physical-layer?context=1139747-1138099-1139707-1138110",
+                    url:"https://www.ti.com/video/6078637405001",
                     video:true,
                 },
                 {
                     name:"CAN and CAN FD Overview",
-                    url:"https://training.ti.com/ti-precision-labs-canlinsbc-can-and-can-fd-overview?context=1139747-1138099-1139707-1138109",
+                    url:"https://www.ti.com/video/6078637459001",
                     video:true,
                 },
                 {
                     name:"CAN and CAN FD Protocol",
-                    url:"https://training.ti.com/ti-precision-labs-canlinsbc-can-and-can-fd-protocol?context=1139747-1138099-1139707-1138111",
+                    url:"https://www.ti.com/video/6078640832001",
                     devices:[
+                        "F280013x",
+                        "F280015x",
                         "F28002x",
                         "F28003x",
                         "F28004x",
@@ -735,6 +793,7 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
                         "LEGACY",
                     ],
                     video:true,
@@ -745,7 +804,7 @@ var collateral = {
             category_displayName: "Getting Started Materials",
             content:[
                 {
-                    name:"Programming Examples for the DCAN Module Application Report",
+                    name:"Programming Examples and Debug Strategies for the DCAN Module Application Report",
                     url:"https://ti.com/lit/SPRACE5",
                     devices:[
                         "F28002x",
@@ -754,6 +813,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
+                        "LEGACY",
                     ],
                     appNote:true,
                 },
@@ -762,11 +823,6 @@ var collateral = {
         {
             category_displayName: "Expert Materials",
             content:[
-                {
-                    name:"Calculator for CAN Bit Timing Parameters Application Report",
-                    url:"https://ti.com/lit/SPRAC35",
-                    appNote:true,
-                },
                 {
                     name:"Configurable Error Generator for Controller Area Network Application Report",
                     url:"https://ti.com/lit/SPRACQ3",
@@ -777,6 +833,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
+                        "LEGACY",
                     ],
                     appNote:true,
                 },
@@ -806,7 +864,11 @@ var collateral = {
                     name:"Secure BOOT On C2000 Device Application Report",
                     url:"https://ti.com/lit/SPRACT3",
                     devices:[
+                        "F280013x",
+                        "F280015x",
                         "F2838x",
+                        "F28P65x",
+                        "LEGACY",
                     ],
                     appNote:true,
                 },
@@ -834,23 +896,25 @@ var collateral = {
             content:[
                 {
                     name:"Automotive CAN Overview and Training",
-                    url:"https://training.ti.com/automotive-can-overview",
+                    url:"https://www.ti.com/video/5236633580001",
                     video:true,
                 },
                 {
                     name:"CAN Physical layer",
-                    url:"https://training.ti.com/ti-precision-labs-canlinsbc-can-physical-layer?context=1139747-1138099-1139707-1138110",
+                    url:"https://www.ti.com/video/6078637405001",
                     video:true,
                 },
                 {
                     name:"CAN and CAN FD Overview",
-                    url:"https://training.ti.com/ti-precision-labs-canlinsbc-can-and-can-fd-overview?context=1139747-1138099-1139707-1138109",
+                    url:"https://www.ti.com/video/6078637459001",
                     video:true,
                 },
                 {
                     name:"CAN and CAN FD Protocol",
-                    url:"https://training.ti.com/ti-precision-labs-canlinsbc-can-and-can-fd-protocol?context=1139747-1138099-1139707-1138111",
+                    url:"https://www.ti.com/video/6078640832001",
                     devices:[
+                        "F280013x",
+                        "F280015x",
                         "F28002x",
                         "F28003x",
                         "F28004x",
@@ -858,6 +922,7 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
                         "LEGACY",
                     ],
                     video:true,
@@ -893,25 +958,17 @@ var collateral = {
                 },
             ]
         },
-        {
-            category_displayName: "Expert Materials",
-            content:[
-                {
-                    name:"Calculator for CAN Bit Timing Parameters Application Report",
-                    url:"https://ti.com/lit/SPRAC35",
-                    appNote:true,
-                },
-            ]
-        },
     ],
     "ECAP":[
         {
             category_displayName: "Foundational Materials",
             content:[
                 {
-                    name:"C2000 Academy - Control Peripherals",
-                    url:"https://dev.ti.com/tirex/explore/node?node=AaDxKBG1xaa4TTiAWSE3PQ__jEBbtmC__LATEST&amp;chapter=capture-module-ecap-",
+                    name:"C2000 Academy - ECAP",
+                    url:"https://dev.ti.com/tirex/explore/node?node=A__AQ4L80G6PD7Ahhrz0HhBRg__c2000Academy__jEBbtmC__LATEST",
                     devices:[
+                        "F280013x",
+                        "F280015x",
                         "F28002x",
                         "F28003x",
                         "F28004x",
@@ -919,6 +976,7 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
                         "LEGACY",
                     ],
                 },
@@ -940,8 +998,8 @@ var collateral = {
             category_displayName: "Foundational Materials",
             content:[
                 {
-                    name:"C2000 Academy - Communications",
-                    url:"https://dev.ti.com/tirex/explore/node?node=AQPfNJiGb-AoD0m8d4Ysrw__jEBbtmC__LATEST&amp;chapter=ethernet-for-control-automation-technology-ethercat-",
+                    name:"C2000 Academy - EtherCAT",
+                    url:"https://dev.ti.com/tirex/explore/node?node=A__AdndLb4DtsRbXEhFBcmy8g__c2000Academy__jEBbtmC__LATEST&amp;chapter=ethernet-for-control-automation-technology-ethercat-",
                     devices:[
                         "F28002x",
                         "F28003x",
@@ -950,6 +1008,7 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
                         "LEGACY",
                     ],
                 },
@@ -958,6 +1017,8 @@ var collateral = {
                     url:"https://www.ethercat.org/download/documents/EtherCAT_Device_Protocol_Poster.pdf",
                     devices:[
                         "F2838x",
+                        "F28P65x",
+                        "LEGACY",
                     ],
                 },
                 {
@@ -965,6 +1026,8 @@ var collateral = {
                     url:"https://training.ti.com/ethercat-protocol-c2000-real-time-controller?context=1137766-1147233",
                     devices:[
                         "F2838x",
+                        "F28P65x",
+                        "LEGACY",
                     ],
                     video:true,
                 },
@@ -978,6 +1041,8 @@ var collateral = {
                     url:"https://dev.ti.com/tirex/explore/node?node=AJlv0LZ8NvH0gPlyyf27-Q__gYkahfz__LATEST",
                     devices:[
                         "F2838x",
+                        "F28P65x",
+                        "LEGACY",
                     ],
                 },
                 {
@@ -985,6 +1050,8 @@ var collateral = {
                     url:"https://e2e.ti.com/blogs_/b/industrial_strength/archive/2019/07/15/real-time-control-meets-real-time-industrial-communications-development-part-4",
                     devices:[
                         "F2838x",
+                        "F28P65x",
+                        "LEGACY",
                     ],
                 },
             ]
@@ -1001,6 +1068,8 @@ var collateral = {
                     url:"https://ti.com/lit/SPRACM9",
                     devices:[
                         "F2838x",
+                        "F28P65x",
+                        "LEGACY",
                     ],
                     appNote:true,
                 },
@@ -1009,6 +1078,8 @@ var collateral = {
                     url:"https://www.ethercat.org/en/downloads.html",
                     devices:[
                         "F2838x",
+                        "F28P65x",
+                        "LEGACY",
                     ],
                 },
                 {
@@ -1016,6 +1087,8 @@ var collateral = {
                     url:"https://download.beckhoff.com/download/Document/io/ethercat-development-products/ethercat_esc_datasheet_sec1_technology_2i3.pdf",
                     devices:[
                         "F2838x",
+                        "F28P65x",
+                        "LEGACY",
                     ],
                 },
                 {
@@ -1023,6 +1096,8 @@ var collateral = {
                     url:"https://download.beckhoff.com/download/Document/io/ethercat-development-products/ethercat_esc_datasheet_sec2_registers_2i9.pdf",
                     devices:[
                         "F2838x",
+                        "F28P65x",
+                        "LEGACY",
                     ],
                 },
                 {
@@ -1030,6 +1105,8 @@ var collateral = {
                     url:"https://download.beckhoff.com/download/Document/io/ethercat-development-products/an_phy_selection_guidev2.7.pdf",
                     devices:[
                         "F2838x",
+                        "F28P65x",
+                        "LEGACY",
                     ],
                 },
             ]
@@ -1040,8 +1117,8 @@ var collateral = {
             category_displayName: "Foundational Materials",
             content:[
                 {
-                    name:"C2000 Academy - System Design",
-                    url:"https://dev.ti.com/tirex/explore/node?node=AaSryqNMOiRthjeN0Ir.8A__jEBbtmC__LATEST&amp;chapter=external-memory-interface-emif-",
+                    name:"C2000 Academy - EMIF",
+                    url:"https://dev.ti.com/tirex/explore/node?node=A__AcII1nKlVjsJYgnhjir6GQ__c2000Academy__jEBbtmC__LATEST&amp;chapter=external-memory-interface-emif-",
                     devices:[
                         "F28002x",
                         "F28003x",
@@ -1050,6 +1127,7 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
                         "LEGACY",
                     ],
                 },
@@ -1066,6 +1144,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
+                        "LEGACY",
                     ],
                     appNote:true,
                 },
@@ -1094,8 +1174,18 @@ var collateral = {
             category_displayName: "Foundational Materials",
             content:[
                 {
+                    name:"C2000 Academy - EPG",
+                    url:"https://dev.ti.com/tirex/explore/node?node=A__AerqwgDEtMa0zXNa8YZfgg__c2000Academy__jEBbtmC__LATEST",
+                    devices:[
+                        "F280013x",
+                        "F280015x",
+                        "F28003x",
+                        "F28P65x",
+                    ],
+                },
+                {
                     name:"C2000 Embedded Pattern Generator",
-                    url:"https://training.ti.com/c2000-embedded-pattern-generator",
+                    url:"https://www.ti.com/video/6280114167001",
                     video:true,
                 },
             ]
@@ -1104,7 +1194,7 @@ var collateral = {
             category_displayName: "Getting Started Materials",
             content:[
                 {
-                    name:"Designing With the C2000 Embedded Pattern Generator (EPG) Application Report",
+                    name:"Designing With the C2000\u2122 Embedded Pattern Generator (EPG) Application Report",
                     url:"https://www.ti.com/lit/spracy7",
                     appNote:true,
                 },
@@ -1116,9 +1206,11 @@ var collateral = {
             category_displayName: "Foundational Materials",
             content:[
                 {
-                    name:"C2000 Academy - Control Peripherals",
-                    url:"https://dev.ti.com/tirex/explore/node?node=AaDxKBG1xaa4TTiAWSE3PQ__jEBbtmC__LATEST&amp;chapter=enhanced-pulse-width-modulation-epwm-",
+                    name:"C2000 Academy - EPWM",
+                    url:"https://dev.ti.com/tirex/explore/node?node=A__AUB.pbp.dvJfqKupH1pSCw__c2000Academy__jEBbtmC__LATEST",
                     devices:[
+                        "F280013x",
+                        "F280015x",
                         "F28002x",
                         "F28003x",
                         "F28004x",
@@ -1126,6 +1218,7 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
                         "LEGACY",
                     ],
                 },
@@ -1140,14 +1233,35 @@ var collateral = {
             category_displayName: "Getting Started Materials",
             content:[
                 {
-                    name:"Enhanced Pulse Width Modulator (ePWM) Training for C2000 MCUs",
-                    url:"https://training.ti.com/enhanced-pulse-width-modulator-epwm-training-c2000-mcus",
+                    name:"C2000 ePWM Developer\u0027s Guide Application Report",
+                    url:"https://www.ti.com/lit/sprad12",
                     devices:[
+                        "F280013x",
+                        "F280015x",
+                        "F28002x",
+                        "F28003x",
+                        "F28004x",
+                        "F2807x",
+                        "F2837x",
+                        "F2838x",
+                        "F28P65x",
+                        "LEGACY",
+                    ],
+                    appNote:true,
+                },
+                {
+                    name:"Enhanced Pulse Width Modulator (ePWM) Training for C2000 MCUs",
+                    url:"https://www.ti.com/video/series/C2000-enhanced-pulse-width-modulator.html",
+                    devices:[
+                        "F280013x",
+                        "F280015x",
                         "F28002x",
                         "F28003x",
                         "F28004x",
                         "F2837x",
                         "F2838x",
+                        "F28P65x",
+                        "LEGACY",
                     ],
                     video:true,
                 },
@@ -1158,7 +1272,7 @@ var collateral = {
                 },
                 {
                     name:"Getting Started with the C2000 ePWM Module",
-                    url:"https://training.ti.com/getting-started-c2000-epwm-module",
+                    url:"https://www.ti.com/video/5775904537001",
                     video:true,
                 },
                 {
@@ -1179,13 +1293,15 @@ var collateral = {
             content:[
                 {
                     name:"C2000 real-time microcontrollers - Reference designs",
-                    url:"https://www.ti.com/microcontrollers-mcus-processors/microcontrollers/c2000-real-time-control-mcus/reference-designs.html#search?famid=5014",
+                    url:"https://www.ti.com/reference-designs/index.html#search?famid=4,5014",
                     description:"See TI designs related to specific end applications used.",
                 },
                 {
                     name:"CRM/ZVS PFC Implementation Based on C2000 Type-4 PWM Module Application Report",
                     url:"https://ti.com/lit/SPRACX0",
                     devices:[
+                        "F280013x",
+                        "F280015x",
                         "F28002x",
                         "F28003x",
                         "F28004x",
@@ -1198,11 +1314,14 @@ var collateral = {
                     name:"Leverage New Type ePWM Features for Multiple Phase Control Application Report",
                     url:"https://ti.com/lit/SPRACY1",
                     devices:[
+                        "F280013x",
+                        "F280015x",
                         "F28002x",
                         "F28003x",
                         "F28004x",
                         "F2837x",
                         "F2838x",
+                        "F28P65x",
                         "LEGACY",
                     ],
                     appNote:true,
@@ -1215,9 +1334,11 @@ var collateral = {
             category_displayName: "Foundational Materials",
             content:[
                 {
-                    name:"C2000 Academy - Control Peripherals",
-                    url:"https://dev.ti.com/tirex/explore/node?node=AaDxKBG1xaa4TTiAWSE3PQ__jEBbtmC__LATEST&amp;chapter=enhanced-quadrature-encoder-position-eqep-",
+                    name:"C2000 Academy - EQEP",
+                    url:"https://dev.ti.com/tirex/explore/node?node=A__ASmANHx6kMLvLoEkP5GDSg__c2000Academy__jEBbtmC__LATEST",
                     devices:[
+                        "F280013x",
+                        "F280015x",
                         "F28002x",
                         "F28003x",
                         "F28004x",
@@ -1225,12 +1346,13 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
                         "LEGACY",
                     ],
                 },
                 {
                     name:"Interfacing with Quadrature Encoders",
-                    url:"https://training.ti.com/interfacing-quadrature-encoders",
+                    url:"https://www.ti.com/video/6308652805112",
                     video:true,
                 },
                 {
@@ -1244,7 +1366,7 @@ var collateral = {
             category_displayName: "Getting Started Materials",
             content:[
                 {
-                    name:"C2000 Position Manager PTO API Reference Guide Application Report",
+                    name:"C2000\u2122 Position Manager PTO API Reference Guide Application Report",
                     url:"www.ti.com/lit/SPRAC77",
                     appNote:true,
                 },
@@ -1266,8 +1388,8 @@ var collateral = {
             category_displayName: "Foundational Materials",
             content:[
                 {
-                    name:"C2000 Academy - System Design",
-                    url:"https://dev.ti.com/tirex/explore/node?node=AaSryqNMOiRthjeN0Ir.8A__jEBbtmC__LATEST&amp;chapter=embedded-real-time-analysis-and-diagnostic-erad-",
+                    name:"C2000 Academy - ERAD",
+                    url:"https://dev.ti.com/tirex/explore/node?node=A__AfQVvZMwtDbhh6F3jtalXw__c2000Academy__jEBbtmC__LATEST",
                     devices:[
                         "F28002x",
                         "F28003x",
@@ -1276,17 +1398,20 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
                         "LEGACY",
                     ],
                 },
                 {
-                    name:"Embedded Real-Time Analysis \u0026 Diagnostics (ERAD) on C2000 Devices",
-                    url:"https://training.ti.com/embedded-real-time-analysis-diagnostics-erad-c2000-devices",
+                    name:"Embedded Real-Time Analysis \u0026 Diagnostics (ERAD) on C2000\u2122 Devices",
+                    url:"https://www.ti.com/video/5745571666001",
                     devices:[
                         "F28002x",
                         "F28003x",
                         "F28004x",
                         "F2838x",
+                        "F28P65x",
+                        "LEGACY",
                     ],
                     video:true,
                 },
@@ -1297,7 +1422,7 @@ var collateral = {
             content:[
                 {
                     name:"Embedded Real-Time Analysis \u0026 Diagnostics (ERAD) on C2000 MCUs",
-                    url:"https://training.ti.com/embedded-real-time-analysis-diagnostics-erad-c2000-mcus",
+                    url:"https://www.ti.com/video/6292444674001",
                     video:true,
                 },
                 {
@@ -1308,6 +1433,8 @@ var collateral = {
                         "F28003x",
                         "F28004x",
                         "F2838x",
+                        "F28P65x",
+                        "LEGACY",
                     ],
                     appNote:true,
                 },
@@ -1319,9 +1446,11 @@ var collateral = {
             category_displayName: "Foundational Materials",
             content:[
                 {
-                    name:"C2000 Academy - System Design",
-                    url:"https://dev.ti.com/tirex/explore/node?node=AaSryqNMOiRthjeN0Ir.8A__jEBbtmC__LATEST&amp;chapter=flash-configuration-and-memory-performance",
+                    name:"C2000 Academy - FLASH",
+                    url:"https://dev.ti.com/tirex/explore/node?node=A__AcII1nKlVjsJYgnhjir6GQ__c2000Academy__jEBbtmC__LATEST&amp;chapter=flash-configuration-and-memory-performance",
                     devices:[
+                        "F280013x",
+                        "F280015x",
                         "F28002x",
                         "F28003x",
                         "F28004x",
@@ -1329,12 +1458,13 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
                         "LEGACY",
                     ],
                 },
                 {
                     name:"Embedded Flash Memory",
-                    url:"https://training.ti.com/embedded-flash-memory",
+                    url:"https://www.ti.com/video/6308729698112",
                     video:true,
                 },
             ]
@@ -1362,12 +1492,16 @@ var collateral = {
                     name:"Serial Flash Programming of C2000 Microcontrollers Application Report",
                     url:"https://ti.com/lit/SPRABV4",
                     devices:[
+                        "F280013x",
+                        "F280015x",
                         "F28002x",
                         "F28004x",
                         "F2807x",
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
+                        "LEGACY",
                     ],
                     appNote:true,
                 },
@@ -1386,6 +1520,8 @@ var collateral = {
                     name:"[FAQ] FAQ on Flash API usage for C2000 devices",
                     url:"https://e2e.ti.com/support/microcontrollers/c2000-microcontrollers-group/c2000/f/c2000-microcontrollers-forum/951668/faq-faq-on-flash-api-usage-for-c2000-devices",
                     devices:[
+                        "F280013x",
+                        "F280015x",
                         "F28002x",
                         "F28003x",
                         "F28004x",
@@ -1393,6 +1529,7 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
                         "LEGACY",
                     ],
                 },
@@ -1447,8 +1584,8 @@ var collateral = {
             category_displayName: "Foundational Materials",
             content:[
                 {
-                    name:"C2000 Academy - Communications",
-                    url:"https://dev.ti.com/tirex/explore/node?node=AQPfNJiGb-AoD0m8d4Ysrw__jEBbtmC__LATEST&amp;chapter=fast-serial-interface-fsi-",
+                    name:"C2000 Academy - FSI",
+                    url:"https://dev.ti.com/tirex/explore/node?node=A__AYD4c9a0jJVWHgSP9toCLA__c2000Academy__jEBbtmC__LATEST&amp;chapter=fast-serial-interface-fsi-",
                     devices:[
                         "F28002x",
                         "F28003x",
@@ -1457,6 +1594,7 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
                         "LEGACY",
                     ],
                 },
@@ -1502,9 +1640,11 @@ var collateral = {
             category_displayName: "Foundational Materials",
             content:[
                 {
-                    name:"C2000 Academy - System Initialization",
-                    url:"https://dev.ti.com/tirex/explore/node?node=ASYnY0SDpLPftmMS07lvqA__jEBbtmC__LATEST&amp;chapter=general-purpose-digital-i-o-",
+                    name:"C2000 Academy - GPIO",
+                    url:"https://dev.ti.com/tirex/explore/node?node=A__AZUMo8wkJHiBmvGm9cQBew__c2000Academy__jEBbtmC__LATEST&amp;chapter=general-purpose-digital-i-o-",
                     devices:[
+                        "F280013x",
+                        "F280015x",
                         "F28002x",
                         "F28003x",
                         "F28004x",
@@ -1512,6 +1652,7 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
                         "LEGACY",
                     ],
                 },
@@ -1563,6 +1704,7 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
                         "LEGACY",
                     ],
                 },
@@ -1584,9 +1726,11 @@ var collateral = {
             category_displayName: "Foundational Materials",
             content:[
                 {
-                    name:"C2000 Academy - Communications",
-                    url:"https://dev.ti.com/tirex/explore/node?node=AQPfNJiGb-AoD0m8d4Ysrw__jEBbtmC__LATEST&amp;chapter=inter-integrated-circuit-i2c-",
+                    name:"C2000 Academy - I2C",
+                    url:"https://dev.ti.com/tirex/explore/node?node=A__AZkmKuievlbn0y8mLujhKg__c2000Academy__jEBbtmC__LATEST&amp;chapter=inter-integrated-circuit-i2c-",
                     devices:[
+                        "F280013x",
+                        "F280015x",
                         "F28002x",
                         "F28003x",
                         "F28004x",
@@ -1594,17 +1738,18 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
                         "LEGACY",
                     ],
                 },
                 {
                     name:"I2C Hardware Overview",
-                    url:"https://training.ti.com/ti-precision-labs-i2c-hardware-overview",
+                    url:"https://www.ti.com/video/6048454601001",
                     video:true,
                 },
                 {
                     name:"I2C Protocol Overview",
-                    url:"https://training.ti.com/ti-precision-labs-i2c-protocol-overview",
+                    url:"https://www.ti.com/video/6047548123001",
                     video:true,
                 },
                 {
@@ -1624,7 +1769,7 @@ var collateral = {
                 },
                 {
                     name:"I2C Buffers Overview",
-                    url:"https://training.ti.com/ti-precision-labs-i2c-buffers-overview",
+                    url:"https://www.ti.com/video/6049695096001",
                     video:true,
                 },
                 {
@@ -1634,7 +1779,7 @@ var collateral = {
                 },
                 {
                     name:"I2C translators overview",
-                    url:"https://training.ti.com/ti-precision-labs-i2c-translators-overview",
+                    url:"https://www.ti.com/video/6048453246001",
                     video:true,
                 },
                 {
@@ -1665,14 +1810,60 @@ var collateral = {
             ]
         },
     ],
+    "LIN":[
+        {
+            category_displayName: "Foundational Materials",
+            content:[
+                {
+                    name:"C2000 Academy - LIN",
+                    url:"https://dev.ti.com/tirex/explore/node?node=A__AScVBEPv4AeDgX5amhJymg__c2000Academy__jEBbtmC__LATEST&amp;chapter=local-interconnect-network-lin-",
+                    devices:[
+                        "F280015x",
+                        "F28002x",
+                        "F28003x",
+                        "F28004x",
+                        "F28P65x",
+                        "LEGACY",
+                    ],
+                },
+                {
+                    name:"LIN Protocol and Physical Layer Requirements Application Report",
+                    url:"https://www.ti.com/lit/an/slla383a/slla383a.pdf",
+                    devices:[
+                        "F280015x",
+                        "F28002x",
+                        "F28003x",
+                        "F28004x",
+                        "F28P65x",
+                        "LEGACY",
+                    ],
+                    appNote:true,
+                },
+                {
+                    name:"Local Interconnect Network (LIN) Overview and Training",
+                    url:"https://www.ti.com/video/5741358648001",
+                    devices:[
+                        "F280015x",
+                        "F28002x",
+                        "F28003x",
+                        "F28004x",
+                        "F28P65x",
+                        "LEGACY",
+                    ],
+                    video:true,
+                },
+            ]
+        },
+    ],
     "MCAN":[
         {
             category_displayName: "Foundational Materials",
             content:[
                 {
-                    name:"C2000 Academy - Communications",
-                    url:"https://dev.ti.com/tirex/explore/node?node=AQPfNJiGb-AoD0m8d4Ysrw__jEBbtmC__LATEST&amp;chapter=can-fd-mcan",
+                    name:"C2000 Academy - MCAN",
+                    url:"https://dev.ti.com/tirex/explore/node?node=A__AScVBEPv4AeDgX5amhJymg__c2000Academy__jEBbtmC__LATEST&amp;chapter=can-flexible-data-rate-can-fd-mcan",
                     devices:[
+                        "F280015x",
                         "F28002x",
                         "F28003x",
                         "F28004x",
@@ -1680,18 +1871,21 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
                         "LEGACY",
                     ],
                 },
                 {
                     name:"CAN and CAN FD Overview",
-                    url:"https://training.ti.com/ti-precision-labs-canlinsbc-can-and-can-fd-overview?context=1139747-1138099-1139707-1138109",
+                    url:"https://www.ti.com/video/6078637459001",
                     video:true,
                 },
                 {
                     name:"CAN and CAN FD Protocol",
-                    url:"https://training.ti.com/ti-precision-labs-canlinsbc-can-and-can-fd-protocol?context=1139747-1138099-1139707-1138111",
+                    url:"https://www.ti.com/video/6078640832001",
                     devices:[
+                        "F280013x",
+                        "F280015x",
                         "F28002x",
                         "F28003x",
                         "F28004x",
@@ -1699,9 +1893,27 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
                         "LEGACY",
                     ],
                     video:true,
+                },
+            ]
+        },
+        {
+            category_displayName: "Getting Started Materials",
+            content:[
+                {
+                    name:"Getting Started with the MCAN (CAN FD) Module Application Report",
+                    url:"https://www.ti.com/lit/spracu9",
+                    devices:[
+                        "F280015x",
+                        "F28003x",
+                        "F2838x",
+                        "F28P65x",
+                        "LEGACY",
+                    ],
+                    appNote:true,
                 },
             ]
         },
@@ -1711,8 +1923,8 @@ var collateral = {
             category_displayName: "Foundational Materials",
             content:[
                 {
-                    name:"C2000 Academy - Communications",
-                    url:"https://dev.ti.com/tirex/explore/node?node=AQPfNJiGb-AoD0m8d4Ysrw__jEBbtmC__LATEST&amp;chapter=multichannel-buffered-serial-port-mcbsp-",
+                    name:"C2000 Academy - McBSP",
+                    url:"https://dev.ti.com/tirex/explore/node?node=A__AZkmKuievlbn0y8mLujhKg__c2000Academy__jEBbtmC__LATEST&amp;chapter=multichannel-buffered-serial-port-mcbsp-",
                     devices:[
                         "F28002x",
                         "F28003x",
@@ -1721,7 +1933,19 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
                         "LEGACY",
+                    ],
+                },
+                {
+                    name:"KeyStone Architecture Multichannel Buffered Serial Port (McBSP)",
+                    url:"https://www.ti.com/lit/ug/spruhh0/spruhh0.pdf",
+                    devices:[
+                        "F2807x",
+                        "F2837xD",
+                        "F2837xS",
+                        "F2838x",
+                        "F28P65x",
                     ],
                 },
             ]
@@ -1740,14 +1964,84 @@ var collateral = {
             ]
         },
     ],
+    "PGA":[
+        {
+            category_displayName: "Foundational Materials",
+            content:[
+                {
+                    name:"An Engineer\u0027s Guide to Designing with Precision Amplifiers",
+                    url:"https://www.ti.com/lit/eb/slyy209/slyy209.pdf",
+                    devices:[
+                        "F28004x",
+                        "LEGACY",
+                    ],
+                },
+                {
+                    name:"C2000 Academy - PGA",
+                    url:"https://dev.ti.com/tirex/explore/node?node=A__AVcsh9uaFICrQ4xo-42fKw__c2000Academy__jEBbtmC__LATEST",
+                    devices:[
+                        "F28004x",
+                        "LEGACY",
+                    ],
+                },
+            ]
+        },
+        {
+            category_displayName: "Getting Started Materials",
+            content:[
+                {
+                    name:"Inverting op amp with non-inverting positive reference voltage circuit Application Report",
+                    url:"https://www.ti.com/lit/an/sboa264a/sboa264a.pdf",
+                    devices:[
+                        "F28004x",
+                        "LEGACY",
+                    ],
+                    appNote:true,
+                },
+                {
+                    name:"Non-inverting op amp with inverting positive reference voltage circuit Application Report",
+                    url:"https://www.ti.com/lit/an/sboa262a/sboa262a.pdf",
+                    devices:[
+                        "F28004x",
+                        "LEGACY",
+                    ],
+                    appNote:true,
+                },
+            ]
+        },
+        {
+            category_displayName: "Expert Materials",
+            content:[
+                {
+                    name:"AN-20 An Applications Guide for Op Amps Application Report",
+                    url:"https://www.ti.com/lit/an/snoa621c/snoa621c.pdf",
+                    devices:[
+                        "F28004x",
+                        "LEGACY",
+                    ],
+                    appNote:true,
+                },
+                {
+                    name:"Using An Op Amp for High-Side Current Sensing Application Report",
+                    url:"https://www.ti.com/lit/an/sboa347a/sboa347a.pdf",
+                    devices:[
+                        "F28004x",
+                        "LEGACY",
+                    ],
+                    appNote:true,
+                },
+            ]
+        },
+    ],
     "PMBUS":[
         {
             category_displayName: "Foundational Materials",
             content:[
                 {
-                    name:"C2000 Academy - Communications",
-                    url:"https://dev.ti.com/tirex/explore/node?node=AQPfNJiGb-AoD0m8d4Ysrw__jEBbtmC__LATEST&amp;chapter=power-management-bus-pmbus-",
+                    name:"C2000 Academy - PMBUS",
+                    url:"https://dev.ti.com/tirex/explore/node?node=A__AdndLb4DtsRbXEhFBcmy8g__c2000Academy__jEBbtmC__LATEST&amp;chapter=power-management-bus-pmbus-",
                     devices:[
+                        "F280015x",
                         "F28002x",
                         "F28003x",
                         "F28004x",
@@ -1755,12 +2049,13 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
                         "LEGACY",
                     ],
                 },
                 {
                     name:"Seven things to know about PMBus",
-                    url:"https://training.ti.com/seven-things-know-about-pmbus",
+                    url:"https://www.ti.com/video/5097829453001",
                     video:true,
                 },
             ]
@@ -1785,7 +2080,7 @@ var collateral = {
             content:[
                 {
                     name:"9 things you need to know about PMBus Point-of-Load Power",
-                    url:"https://training.ti.com/9-things-you-need-know-about-pmbus-point-load-power",
+                    url:"https://www.ti.com/video/4649804908001",
                     video:true,
                 },
             ]
@@ -1797,7 +2092,7 @@ var collateral = {
             content:[
                 {
                     name:"Bootloading 101",
-                    url:"https://training.ti.com/bootloading-101",
+                    url:"https://www.ti.com/video/3871889296001",
                     video:true,
                 },
             ]
@@ -1809,7 +2104,11 @@ var collateral = {
                     name:"Secure BOOT On C2000 Device Application Report",
                     url:"https://ti.com/lit/SPRACT3",
                     devices:[
+                        "F280013x",
+                        "F280015x",
                         "F2838x",
+                        "F28P65x",
+                        "LEGACY",
                     ],
                     appNote:true,
                 },
@@ -1849,9 +2148,11 @@ var collateral = {
             category_displayName: "Foundational Materials",
             content:[
                 {
-                    name:"C2000 Academy - Communications",
-                    url:"https://dev.ti.com/tirex/explore/node?node=AQPfNJiGb-AoD0m8d4Ysrw__jEBbtmC__LATEST&amp;chapter=serial-communications-interface-sci-",
+                    name:"C2000 Academy - SCI",
+                    url:"https://dev.ti.com/tirex/explore/node?node=A__AYD4c9a0jJVWHgSP9toCLA__c2000Academy__jEBbtmC__LATEST&amp;chapter=serial-communications-interface-sci-",
                     devices:[
+                        "F280013x",
+                        "F280015x",
                         "F28002x",
                         "F28003x",
                         "F28004x",
@@ -1859,17 +2160,18 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
                         "LEGACY",
                     ],
                 },
                 {
                     name:"One Minute RS-485 Introduction",
-                    url:"https://training.ti.com/one-minute-rs-485-introduction",
+                    url:"https://www.ti.com/video/3870842977001",
                     video:true,
                 },
                 {
                     name:"RS-232, RS-422, RS-485: What Are the Differences?",
-                    url:"https://training.ti.com/rs-232-rs-422-rs-485-what-are-differences",
+                    url:"https://www.ti.com/video/3869819873001",
                     video:true,
                 },
             ]
@@ -1889,6 +2191,19 @@ var collateral = {
             category_displayName: "Foundational Materials",
             content:[
                 {
+                    name:"C2000 Academy - SDFM",
+                    url:"https://dev.ti.com/tirex/explore/node?node=A__AQOmPYBCa9Xxg1wGkp-1jQ__c2000Academy__jEBbtmC__LATEST",
+                    devices:[
+                        "F28003x",
+                        "F28004x",
+                        "F2807x",
+                        "F2837xD",
+                        "F2837xS",
+                        "F2838x",
+                        "F28P65x",
+                    ],
+                },
+                {
                     name:"How delta-sigma ADCs work, Part 1 Application Report",
                     url:"https://www.ti.com/lit/slyt423",
                     appNote:true,
@@ -1900,7 +2215,12 @@ var collateral = {
                 },
                 {
                     name:"Nuts and Bolts of the Delta-Sigma Converter",
-                    url:"https://training.ti.com/nuts-and-bolts-delta-sigma-converter",
+                    url:"https://www.ti.com/video/3888145066001",
+                    video:true,
+                },
+                {
+                    name:"Sigma Delta Filter Module (SDFM) Training for C2000\u2122 MCUs",
+                    url:"https://www.ti.com/video/series/C2000-sigma-delta-filter-modulator.html",
                     video:true,
                 },
             ]
@@ -1916,7 +2236,7 @@ var collateral = {
                 },
                 {
                     name:"Using Sigma Delta Filter Module (SDFM) to Measure the Analog Input Signal",
-                    url:"https://www.mathworks.com/help/supportpkg/texasinstrumentsc2000/ug/sdfmexample.html",
+                    url:"https://www.mathworks.com/help/ti-c2000/ug/sdfm-example.html",
                     description:"NOTE: This is a non-TI (third party) site.",
                 },
             ]
@@ -1927,6 +2247,18 @@ var collateral = {
                 {
                     name:"C2000 DesignDRIVE Development Kit for Industrial Motor Control",
                     url:"https://www.ti.com/tool/TMDXIDDK379D",
+                    devices:[
+                        "F28002x",
+                        "F28003x",
+                        "F28004x",
+                        "F2838x",
+                        "F28P65x",
+                    ],
+                },
+                {
+                    name:"Diagnosing Delta-Sigma Modulator Bitstream Using C2000\u2122 Configurable Logic Block Application Report",
+                    url:"https://www.ti.com/lit/SPRAD53",
+                    appNote:true,
                 },
                 {
                     name:"Isolated Current Shunt and Voltage Measurement Kit Application Report",
@@ -1938,7 +2270,7 @@ var collateral = {
                     url:"https://www.ti.com/tool/TIPD165",
                 },
                 {
-                    name:"Quick Response Control of PMSM Using Fast\nCurrent Loop Application Report",
+                    name:"Quick Response Control of PMSM Using Fast Current Loop Application Report",
                     url:"https://www.ti.com/lit/spracl1",
                     appNote:true,
                 },
@@ -1947,6 +2279,8 @@ var collateral = {
                     url:"https://www.ti.com/tool/TIDM-HV-1PH-DCAC",
                     devices:[
                         "F28004x",
+                        "F2807x",
+                        "F2837xS",
                     ],
                 },
                 {
@@ -1956,6 +2290,79 @@ var collateral = {
                 {
                     name:"Vienna Rectifier-Based Three Phase Power Factor Correction Reference Design Using C2000 MCU",
                     url:"https://www.ti.com/tool/TIDM-1000",
+                    devices:[
+                        "F280015x",
+                        "F28004x",
+                        "F2807x",
+                        "F2837xD",
+                        "F2837xS",
+                        "F2838x",
+                        "F28P65x",
+                    ],
+                },
+            ]
+        },
+    ],
+    "SPI":[
+        {
+            category_displayName: "Foundational Materials",
+            content:[
+                {
+                    name:"C2000 Academy - SPI",
+                    url:"https://dev.ti.com/tirex/explore/node?node=A__AZkmKuievlbn0y8mLujhKg__c2000Academy__jEBbtmC__LATEST&amp;chapter=serial-peripheral-interface-spi-",
+                    devices:[
+                        "F280013x",
+                        "F280015x",
+                        "F28002x",
+                        "F28003x",
+                        "F28004x",
+                        "F2807x",
+                        "F2837xD",
+                        "F2837xS",
+                        "F2838x",
+                        "F28P65x",
+                        "LEGACY",
+                    ],
+                },
+                {
+                    name:"KeyStone Architecture Serial Peripheral Interface (SPI)",
+                    url:"https://www.ti.com/lit/ug/sprugp2a/sprugp2a.pdf",
+                    devices:[
+                        "F280013x",
+                        "F280015x",
+                        "F28002x",
+                        "F28003x",
+                        "F28004x",
+                        "F2807x",
+                        "F2837xD",
+                        "F2837xS",
+                        "F2838x",
+                        "F28P65x",
+                        "LEGACY",
+                    ],
+                },
+            ]
+        },
+        {
+            category_displayName: "Getting Started Materials",
+            content:[
+                {
+                    name:"SPI: Microcontroller overview",
+                    url:"https://www.ti.com/video/6288330712001",
+                    devices:[
+                        "F280013x",
+                        "F280015x",
+                        "F28002x",
+                        "F28003x",
+                        "F28004x",
+                        "F2807x",
+                        "F2837xD",
+                        "F2837xS",
+                        "F2838x",
+                        "F28P65x",
+                        "LEGACY",
+                    ],
+                    video:true,
                 },
             ]
         },
@@ -2008,7 +2415,7 @@ var collateral = {
                 },
                 {
                     name:"Live Firmware Update With Device Reset on C2000 MCUs Application Report",
-                    url:"https://ti.com/lit/SPRUIU8A",
+                    url:"https://ti.com/lit/SPRUIU8",
                     devices:[
                         "F28003x",
                         "F28004x",
@@ -2017,9 +2424,11 @@ var collateral = {
                 },
                 {
                     name:"Live Firmware Update Without Device Reset on C2000 MCUs Application Report",
-                    url:"https://ti.com/lit/SPRUIU9A",
+                    url:"https://ti.com/lit/SPRUIU9",
                     devices:[
                         "F28003x",
+                        "F28P65x",
+                        "LEGACY",
                     ],
                     appNote:true,
                 },
@@ -2041,9 +2450,11 @@ var collateral = {
             category_displayName: "Foundational Materials",
             content:[
                 {
-                    name:"C2000 Academy - Communications",
-                    url:"https://dev.ti.com/tirex/explore/node?node=AQPfNJiGb-AoD0m8d4Ysrw__jEBbtmC__LATEST&amp;chapter=universal-serial-bus-usb-",
+                    name:"C2000 Academy - USB",
+                    url:"https://dev.ti.com/tirex/explore/node?node=A__AdndLb4DtsRbXEhFBcmy8g__c2000Academy__jEBbtmC__LATEST&amp;chapter=universal-serial-bus-usb-",
                     devices:[
+                        "F280013x",
+                        "F280015x",
                         "F28002x",
                         "F28003x",
                         "F28004x",
@@ -2051,23 +2462,13 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P65x",
                         "LEGACY",
                     ],
                 },
                 {
                     name:"USB Precision Labs",
-                    url:"https://training.ti.com/usb?context=1139747-1138099-1139813",
-                    video:true,
-                },
-            ]
-        },
-        {
-            category_displayName: "Getting Started Materials",
-            content:[
-                {
-                    name:"USB system design in Sitara devices using Linux",
-                    url:"https://training.ti.com/usb-system-design-sitara-devices-using-linux?context=1135801",
-                    description:"Concepts of modes and technology applicable to C2000",
+                    url:"https://www.ti.com/video/series/ti-precision-labs-usb.html",
                     video:true,
                 },
             ]

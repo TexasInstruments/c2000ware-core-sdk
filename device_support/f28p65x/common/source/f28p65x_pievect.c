@@ -245,7 +245,7 @@ const struct PIE_VECT_TABLE PieVectTableInit = {
     MCANA_ECC_ISR,                  // 9.11 - MCANSSA_ECC_CORR_PLS
     MCANA_WAKE_ISR,                 // 9.12 - MCANSSA_WAKE_AND_TS_PLS
     PMBUSA_ISR,                     // 9.13 - PMBUSA  Interrupt
-    AES_ISR,                        // 9.14 - AES Interrupt
+    AES_SINTREQUEST_ISR,            // 9.14 - AES Interrupt
     USBA_ISR,                       // 9.15 - USBA Interrupt
     PIE_RESERVED_ISR,               // 9.16 - Reserved
     ADCC_EVT_ISR,                   // 10.9 - ADCC Event Interrupt

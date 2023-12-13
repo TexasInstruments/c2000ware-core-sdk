@@ -187,6 +187,11 @@ ADC_setOffsetTrim(uint32_t base)
     ADC_SignalMode signalMode;
 
     //
+    // Check the arguments.
+    //
+    ASSERT(ADC_isBaseValid(base));
+
+    //
     // Check the configured resoultion and signal mode for the ADC base.
     //
     resolution = (ADC_Resolution)

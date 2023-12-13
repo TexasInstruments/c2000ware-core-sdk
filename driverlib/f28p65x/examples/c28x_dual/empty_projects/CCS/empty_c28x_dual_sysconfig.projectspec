@@ -24,10 +24,10 @@
         launchWizard="False"
         linkerCommandFile=""
 	enableSysConfigTool="true"
-	sysConfigBuildOptions="--product ${C2000WARE_ROOT}/.metadata/sdk.json --device F28P65x --context CPU1"
+	sysConfigBuildOptions="--product ${C2000WARE_ROOT}/.metadata/sdk.json --device F28P65x --package 256ZEJ --part F28P65x_256ZEJ --context CPU1"
         >
-    <configuration name="FLASH" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=_FLASH --define=CPU1 -v28 -ml -mt --cla_support=cla1 --float_support=fpu32 --tmu_support=tmu1 --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--entry_point code_start --stack_size=0x100" />
-    <configuration name="RAM" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=CPU1 -v28 -ml -mt --cla_support=cla1 --float_support=fpu32 --tmu_support=tmu1 --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--entry_point code_start --stack_size=0x100" />                
+    <configuration name="FLASH" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=_FLASH --define=CPU1 -v28 -ml -mt --cla_support=cla1 --float_support=fpu32 --tmu_support=tmu1 --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--entry_point code_start --stack_size=0x100" />
+    <configuration name="RAM" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=CPU1 -v28 -ml -mt --cla_support=cla1 --float_support=fpu32 --tmu_support=tmu1 --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--entry_point code_start --stack_size=0x100" />                
     <pathVariable name="C2000WARE_ROOT" path="../../../../../../" scope="project" />
     <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../../driverlib" scope="project" />        
     <file action="copy" path="../../../../../../device_support/f28p65x/common/include/driverlib.h" targetDirectory="device" />
@@ -50,10 +50,10 @@
         launchWizard="False"
         linkerCommandFile=""
 	enableSysConfigTool="true"
-	sysConfigBuildOptions="--product ${C2000WARE_ROOT}/.metadata/sdk.json --device F2838x --context CPU2"
+	sysConfigBuildOptions="--product ${C2000WARE_ROOT}/.metadata/sdk.json --device F28P65x --package 256ZEJ --part F28P65x_256ZEJ --context CPU2"
         >
-    <configuration name="FLASH" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=_FLASH --define=CPU2 -v28 -ml -mt --cla_support=cla1 --float_support=fpu32 --tmu_support=tmu1  --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--entry_point code_start --stack_size=0x100" />
-    <configuration name="RAM" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=CPU2 -v28 -ml -mt --cla_support=cla1 --float_support=fpu32 --tmu_support=tmu1 --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--entry_point code_start --stack_size=0x100" />                  
+    <configuration name="FLASH" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=_FLASH --define=CPU2 -v28 -ml -mt --cla_support=cla1 --float_support=fpu32 --tmu_support=tmu1  --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--entry_point code_start --stack_size=0x100" />
+    <configuration name="RAM" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=CPU2 -v28 -ml -mt --cla_support=cla1 --float_support=fpu32 --tmu_support=tmu1 --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--entry_point code_start --stack_size=0x100" />                  
     <pathVariable name="C2000WARE_ROOT" path="../../../../../../" scope="project" />
     <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../../driverlib" scope="project" />        
     <file action="copy" path="../../../../../../device_support/f28p65x/common/include/driverlib.h" targetDirectory="device" />

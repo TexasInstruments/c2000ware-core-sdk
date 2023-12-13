@@ -1,0 +1,34 @@
+<projectSpec>
+  <project
+        name="f28p65x_pmbus_over_i2c_controller_example"
+        device="Generic C28xx Device"
+        cgtVersion="22.6.0.LTS"
+        products="c2000ware_software_package"
+        outputFormat="ELF"
+        launchWizard="False"
+        linkerCommandFile=""
+        >
+
+    <configuration name="RAM" compilerBuildOptions="-I${PMBUS_ROOT}/include -I${C2000WARE_DLIB_ROOT} -I${C2000WARE_DEVICE_SUPPORT_ROOT}/common/include -I${PMBUS_EXAMPLE_COMMON_ROOT}/f28p65x -I${PMBUS_EXAMPLE_COMMON_ROOT}/pmbus_over_i2c_controller -I${PMBUS_EXAMPLE_COMMON_ROOT}/include -v28 -ml -mt --float_support=fpu32 --define=CPU1 --define=_DEBUG --define=_PMBUS_CONTROLLER --define=PMBUS_OVER_I2C --define=_RAM --diag_warning=225 --display_error_number --diag_suppress=10063" linkerBuildOptions="--stack_size=0x300 --heap_size=0x200 --rom_model --entry_point=code_start" />
+    <configuration name="FLASH" compilerBuildOptions="-I${PMBUS_ROOT}/include -I${C2000WARE_DLIB_ROOT} -I${C2000WARE_DEVICE_SUPPORT_ROOT}/common/include -I${PMBUS_EXAMPLE_COMMON_ROOT}/f28p65x -I${PMBUS_EXAMPLE_COMMON_ROOT}/pmbus_over_i2c_controller -I${PMBUS_EXAMPLE_COMMON_ROOT}/include -v28 -ml -mt --float_support=fpu32 --define=CPU1 --define=_DEBUG --define=_PMBUS_CONTROLLER --define=PMBUS_OVER_I2C --define=_FLASH --diag_warning=225 --display_error_number --diag_suppress=10063" linkerBuildOptions="--stack_size=0x300 --heap_size=0x200 --rom_model --entry_point=code_start" />
+
+    <pathVariable name="C2000WARE_DEVICE_SUPPORT_ROOT" path="../../../../../../device_support/f28p65x/" scope="project" />
+    <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../../../../driverlib/f28p65x/driverlib/" scope="project" />
+    <pathVariable name="PMBUS_ROOT" path="../../" scope="project" />
+    <pathVariable name="PMBUS_EXAMPLE_COMMON_ROOT" path="../common" scope="project" />
+
+    <file action="copy" path="PMBUS_EXAMPLE_COMMON_ROOT/pmbus_over_i2c_controller" targetDirectory="" />
+    <file action="copy" path="PMBUS_EXAMPLE_COMMON_ROOT/f28p65x/pmbus_over_i2c_examples_setup.c" targetDirectory="" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/cmd/28p65x_generic_ram_lnk_cpu1.cmd" targetDirectory="" applicableConfigurations="RAM" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/cmd/28p65x_generic_flash_lnk_cpu1.cmd" targetDirectory="" applicableConfigurations="FLASH" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/targetConfigs/TMS320F28P650DK9.ccxml" targetDirectory="" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/include/driverlib.h" targetDirectory="device"  />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/include/device.h" targetDirectory="device" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/source/f28p65x_codestartbranch.asm" targetDirectory="" />
+    <file action="link" path="PMBUS_ROOT/lib/F28P65x_PMBus_Communications_Stack_Over_I2C.lib" targetDirectory="" />
+    <file action="link" path="C2000WARE_DLIB_ROOT/ccs/Debug/driverlib.lib" targetDirectory="" />
+    <file action="link" path="PMBUS_ROOT/../../../dsp/VCU/c28/lib/c28x_vcrc_library_fpu32.lib" targetDirectory="" excludeFromBuild="True"/>
+    <file action="copy" path="C2000WARE_DLIB_ROOT" targetDirectory="device" excludeFromBuild="True" />
+
+  </project>
+</projectSpec>

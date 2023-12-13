@@ -17,6 +17,39 @@
             % } else {
 #define `instance.$name`_FILTER PGA_LOW_PASS_FILTER_DISABLED
             % }
+            % if (instance.enableFilterMode)
+            % {
+#define `instance.$name`_PMUXInput PGA_PMUX_VSSA
+#define `instance.$name`_NMUXInput PGA_NMUX_RTAP
+#define `instance.$name`_MMUXInput PGA_MMUX_NON_INVERTING_GAIN_VSSA               
+            % }
+            % if (instance.modeSelection == "BufferMode")
+            % {
+#define `instance.$name`_PMUXInput PGA_PMUX_POS
+#define `instance.$name`_NMUXInput PGA_NMUX_RTOP
+#define `instance.$name`_MMUXInput PGA_MMUX_NAKED_OPAMP
+            % }
+            % else if (instance.modeSelection == "StandaloneMode")
+            % {
+#define `instance.$name`_PMUXInput PGA_PMUX_POS
+#define `instance.$name`_NMUXInput PGA_NMUX_NEG
+#define `instance.$name`_MMUXInput PGA_MMUX_NAKED_OPAMP
+            % }
+            % else if (instance.modeSelection == "Non-invertingMode")
+            % {
+#define `instance.$name`_PMUXInput PGA_PMUX_POS
+#define `instance.$name`_NMUXInput PGA_NMUX_RTAP
+#define `instance.$name`_MMUXInput PGA_MMUX_NON_INVERTING_GAIN_VSSA
+            % }
+            % else if (instance.modeSelection == "SubtractorMode")
+            % {
+#define `instance.$name`_PMUXInput PGA_PMUX_POS
+#define `instance.$name`_NMUXInput PGA_NMUX_RTAP
+#define `instance.$name`_MMUXInput PGA_MMUX_INVERTING_GAIN_NEG
+            % }
+            % if (instance.enableNEGShared) {
+#define `instance.$name`_MMUXInput PGA_MMUX_INVERTING_GAIN_NEG_SHARED
+            % }
             % if (instance.useSignalConditionCalculator) {
 #define `instance.$name`_CONDITIONEDPGAINMIN `instance.calculatedInputSignalConditionMin`f //Conditioned PGA_IN signal minimum
 #define `instance.$name`_CONDITIONEDPGAINMAX `instance.calculatedInputSignalConditionMax`f //Conditioned PGA_IN signal maximum              
@@ -25,6 +58,9 @@
             % }
             % if (instance.useCutoffFreqCalculator) {
 #define `instance.$name`_CUTOFFFREQ `instance.calculatedCutoffFreq`f //Calculated cutoff frequency of low-pass filter
+            % }
+            % if (instance.cutoffFreqCalculator) {
+#define `instance.$name`_CUTOFFFREQ `instance.calculatedFreq`f //Calculated cutoff frequency of low-pass filter using internal gain resistor
             % }
 void `instance.$name`_init();
     % }

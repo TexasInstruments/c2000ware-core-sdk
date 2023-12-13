@@ -717,9 +717,9 @@
 // The following are defines for the bit fields in the SECTSTAT3 register
 //
 //*************************************************************************************************
-#define DCSM_SECTSTAT3_STATUS_SECT39_22_S     8U
-#define DCSM_SECTSTAT3_STATUS_SECT39_22_M     0x300U        // Zone Status flash Bank 0 Sectors
-                                                            // 39-22
+#define DCSM_SECTSTAT3_STATUS_SECT39_32_S     8U
+#define DCSM_SECTSTAT3_STATUS_SECT39_32_M     0x300U        // Zone Status flash Bank 0 Sectors
+                                                            // 39-32
 #define DCSM_SECTSTAT3_STATUS_SECT47_40_S     10U
 #define DCSM_SECTSTAT3_STATUS_SECT47_40_M     0xC00U        // Zone Status flash Bank 0 Sectors
                                                             // 47-40

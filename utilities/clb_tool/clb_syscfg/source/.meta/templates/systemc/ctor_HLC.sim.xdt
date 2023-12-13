@@ -1,0 +1,21 @@
+%%{
+    let inst      = args[0];
+    let name      = args[1];
+    let inputs    = args[2];
+    let Common    = system.getScript("/utilities/clb_tool/clb_syscfg/source/Common.js");
+    // Macros are not used for the FIFO refill values since the user does not need
+    // them in their program code; this is just for simulation
+%%}
+        `name`("`name`",
+            (unsigned long) `name`_R0_INIT,
+            (unsigned long) `name`_R1_INIT,
+            (unsigned long) `name`_R2_INIT,
+            (unsigned long) `name`_R3_INIT,
+            (unsigned long) `name`_FIFO0_INIT,
+            (unsigned long) `name`_FIFO1_INIT,
+            (unsigned long) `name`_FIFO2_INIT,
+            (unsigned long) `name`_FIFO3_INIT,
+            (unsigned long) `inst.FIFO0_refill`,
+            (unsigned long) `inst.FIFO1_refill`,
+            (unsigned long) `inst.FIFO2_refill`,
+            (unsigned long) `inst.FIFO3_refill`),

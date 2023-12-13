@@ -237,6 +237,14 @@ var config = [
         default     : device_driverlib_peripheral.EPWM_RisingEdgeDelayLoadMode[0].name,
         options     : device_driverlib_peripheral.EPWM_RisingEdgeDelayLoadMode
     },
+    {
+        name: "epwmDeadband_redShadowMode",
+        displayName : "Enable RED Shadow Mode",
+        description : 'Enable shadowing of the RED (Rising Edge Delay) register.',
+        hidden      : false,
+        default     : false,
+        //onChange    : onChangeShadowModes,
+    },
 
     {
         name: "epwmDeadband_delayRED",
@@ -245,7 +253,6 @@ var config = [
         hidden      : false,
         default     : 0,
     },
-
     {
         name: "epwmDeadband_enableFED",
         displayName : "Enable Falling Edge Delay",
@@ -261,6 +268,14 @@ var config = [
         hidden      : false,
         default     : device_driverlib_peripheral.EPWM_FallingEdgeDelayLoadMode[0].name,
         options     : device_driverlib_peripheral.EPWM_FallingEdgeDelayLoadMode
+    },
+    {
+        name: "epwmDeadband_fedShadowMode",
+        displayName : "Enable FED Shadow Mode",
+        description : 'Enable shadowing of the FED (Falling Edge Delay) register.',
+        hidden      : false,
+        default     : false,
+        //onChange    : onChangeShadowModes,
     },
 
     {
@@ -304,7 +319,7 @@ var config = [
         name: "epwmDeadband_controlShadowMode",
         displayName : "Enable Deadband Control Shadow Mode",
         description : 'Enable shadowing of the DBCTL (Deadband Control) register.',
-        hidden      : false,
+        hidden      : true,
         default     : false,
         //onChange    : onChangeShadowModes,
     },
@@ -316,27 +331,11 @@ var config = [
         default     : false,
     },
     {
-        name: "epwmDeadband_redShadowMode",
-        displayName : "Enable RED Shadow Mode",
-        description : 'Enable shadowing of the RED (Rising Edge Delay) register.',
-        hidden      : false,
-        default     : false,
-        //onChange    : onChangeShadowModes,
-    },
-    {
         name: "epwmDeadband_fedGld",
         displayName : "Enable FED Global Load",
         description : 'Use global load configuration for FED',
         hidden      : false,
         default     : false,
-    },
-    {
-        name: "epwmDeadband_fedShadowMode",
-        displayName : "Enable FED Shadow Mode",
-        description : 'Enable shadowing of the FED (Falling Edge Delay) register.',
-        hidden      : false,
-        default     : false,
-        //onChange    : onChangeShadowModes,
     },
     {
         name: "epwmDeadband_deadbandCounterClockRate",

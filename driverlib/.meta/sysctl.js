@@ -480,8 +480,8 @@ if (!["F2837xS", "F2837xD", "F2807x", "F28004x"].includes(Common.getDeviceName()
                     name: "errorPinPolarity",
                     displayName: "Error Pin Polarity",
                     options: [
-                        { name: 0, displayName: "Error when pin transitions from 0 to 1"},
-                        { name: 1, displayName: "Error when pin transitions from 1 to 0"},
+                        { name: 1, displayName: "Error when pin transitions from 0 to 1"},
+                        { name: 0, displayName: "Error when pin transitions from 1 to 0"},
                     ],
                     default: 0,
                 },

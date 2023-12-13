@@ -1,0 +1,63 @@
+%let Common = system.getScript("/driverlib/Common.js");
+% var Clock_tree_template = system.getTemplate("/driverlib/device/functions_c/Clocktree/Device_clocktree_c.xdt");
+% var nameOfFlashModule = "flash";
+% var flashModule = system.modules['/driverlib/' + nameOfFlashModule + '.js'];
+//*****************************************************************************
+//
+// Function to initialize the device. Primarily initializes system control to a
+// known state by disabling the watchdog, setting up the SYSCLKOUT frequency,
+// and enabling the clocks to the peripherals.
+// To configure these pins as analog pins, use the function GPIO_setAnalogMode
+//
+// Note : In case XTAL is used as the PLL source, it is recommended to invoke
+// the Device_verifyXTAL() before configuring PLL
+//
+//
+//*****************************************************************************
+void Device_init(void)
+{
+    //
+    // Disable the watchdog
+    //
+    SysCtl_disableWatchdog();
+#ifdef CMDTOOL
+    CMD_init();
+#endif
+
+#ifdef _FLASH
+#ifndef CMDTOOL
+    //
+    // Copy time critical code and flash setup code to RAM. This includes the
+    // following functions: InitFlash();
+    //
+    // The RamfuncsLoadStart, RamfuncsLoadSize, and RamfuncsRunStart symbols
+    // are created by the linker. Refer to the device .cmd file.
+    //
+    memcpy(&RamfuncsRunStart, &RamfuncsLoadStart, (size_t)&RamfuncsLoadSize);
+#endif
+%if(!flashModule){
+    //
+    // Call Flash Initialization to setup flash waitstates. This function must
+    // reside in RAM.
+    //
+    Flash_initModule(FLASH0CTRL_BASE, FLASH0ECC_BASE, DEVICE_FLASH_WAITSTATES);
+%}
+#endif
+%if(flashModule){
+    //
+    // Call Flash Initialization to setup flash waitstates. This function must
+    // reside in RAM.
+    //
+    FLASH_init();
+%}
+%if (!Common.isContextCPU2()){
+`Clock_tree_template()`
+%}
+
+    //
+    // Lock VREGCTL Register
+    // The register VREGCTL is not supported in this device. It is locked to
+    // prevent any writes to this register
+    //
+    ASysCtl_lockVREG();
+}

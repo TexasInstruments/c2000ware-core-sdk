@@ -1,0 +1,17 @@
+% let Common   = system.getScript("/driverlib/Common.js");
+% var c2000warePath = Common.getC2000WarePath()
+%
+% var moduleName = "FPUfastRTS"
+% var module = system.modules['/libraries/math/FPUfastRTS' + '/' + moduleName + '.js'];
+% var moduleNameFID = "fastintdiv"
+% var moduleFID = system.modules['/libraries/math/FASTINTDIV' + '/' + moduleNameFID + '.js'];
+%
+%if((moduleFID == null) && (module != null))
+%{
+% var instance = module.$instances[0];
+%if(instance.fpuType == "FPU64")
+%{
+--idiv_support=idiv0
+%}
+%}
+-I"`c2000warePath`libraries/math/FPUfastRTS/c28/include"

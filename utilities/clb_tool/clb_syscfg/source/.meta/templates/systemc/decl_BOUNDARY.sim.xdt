@@ -1,0 +1,73 @@
+%%{
+    let inst      = args[0];
+    let tileName  = args[1];
+    let instNum   = args[2];
+    let inputs    = args[3];
+    let Common    = system.getScript("/utilities/clb_tool/clb_syscfg/source/Common.js");
+%%}
+
+    //
+    // Raw inputs
+    //
+    sc_signal<bool>         sig_`tileName`_BOUNDARY_IN_in0;
+    sc_signal<bool>         sig_`tileName`_BOUNDARY_IN_in1;
+    sc_signal<bool>         sig_`tileName`_BOUNDARY_IN_in2;
+    sc_signal<bool>         sig_`tileName`_BOUNDARY_IN_in3;
+    sc_signal<bool>         sig_`tileName`_BOUNDARY_IN_in4;
+    sc_signal<bool>         sig_`tileName`_BOUNDARY_IN_in5;
+    sc_signal<bool>         sig_`tileName`_BOUNDARY_IN_in6;
+    sc_signal<bool>         sig_`tileName`_BOUNDARY_IN_in7;
+
+    //
+    // Input configuration
+    //
+    sc_signal<sc_uint<32> > sig_`tileName`_BOUNDARY_IN_ctrl0;
+    sc_signal<sc_uint<32> > sig_`tileName`_BOUNDARY_IN_ctrl1;
+    sc_signal<sc_uint<32> > sig_`tileName`_BOUNDARY_IN_ctrl2;
+    sc_signal<sc_uint<32> > sig_`tileName`_BOUNDARY_IN_ctrl3;
+    sc_signal<sc_uint<32> > sig_`tileName`_BOUNDARY_IN_ctrl4;
+    sc_signal<sc_uint<32> > sig_`tileName`_BOUNDARY_IN_ctrl5;
+    sc_signal<sc_uint<32> > sig_`tileName`_BOUNDARY_IN_ctrl6;
+    sc_signal<sc_uint<32> > sig_`tileName`_BOUNDARY_IN_ctrl7;
+
+    //
+    // Inputs after delays from synchronization, pipelining, etc.
+    //
+    sc_signal<bool>         sig_`tileName`_BOUNDARY_IN_out0;
+    sc_signal<bool>         sig_`tileName`_BOUNDARY_IN_out1;
+    sc_signal<bool>         sig_`tileName`_BOUNDARY_IN_out2;
+    sc_signal<bool>         sig_`tileName`_BOUNDARY_IN_out3;
+    sc_signal<bool>         sig_`tileName`_BOUNDARY_IN_out4;
+    sc_signal<bool>         sig_`tileName`_BOUNDARY_IN_out5;
+    sc_signal<bool>         sig_`tileName`_BOUNDARY_IN_out6;
+    sc_signal<bool>         sig_`tileName`_BOUNDARY_IN_out7;
+
+    //
+    // Outputs from CLB
+    //
+    sc_signal<bool>         sig_`tileName`_BOUNDARY_OUT_out0;
+    sc_signal<bool>         sig_`tileName`_BOUNDARY_OUT_out1;
+    sc_signal<bool>         sig_`tileName`_BOUNDARY_OUT_out2;
+    sc_signal<bool>         sig_`tileName`_BOUNDARY_OUT_out3;
+    sc_signal<bool>         sig_`tileName`_BOUNDARY_OUT_out4;
+    sc_signal<bool>         sig_`tileName`_BOUNDARY_OUT_out5;
+    sc_signal<bool>         sig_`tileName`_BOUNDARY_OUT_out6;
+    sc_signal<bool>         sig_`tileName`_BOUNDARY_OUT_out7;
+
+    CLB_INPUT_CONDITIONER   `tileName`_BOUNDARY_IN;
+
+% // if a TILE input is a generator, then declare it
+% for (let j = 0; j < inputs.length; ++j) {
+%   let inName        = inputs[j];
+%   let generatorName = inst[inName];
+%   let customGenerator = (generatorName == 'customWave');
+%
+%   if ((inst[inName] == '0') || (inst[inName] == '1'))
+%   {
+%       generatorName = 'squareWave';
+%   }
+%   let generatorObjectName = tileName + '_' + inName + '_' + generatorName;
+%   if (customGenerator || Common.isSimulatedInput(generatorName) || (inst[inName] == '0') || (inst[inName] == '1') ) {
+    `generatorName`          `generatorObjectName`;
+%   }
+% }

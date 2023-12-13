@@ -172,6 +172,7 @@ MEMORY
    HRPWMCAL2                   : origin = 0x00005CC0, length = 0x00000040
    HRPWMCAL3                   : origin = 0x00005D00, length = 0x00000040
    OUTPUTXBAR                 : origin = 0x00007B00, length = 0x00000070
+   CLBOUTPUTXBAR              : origin = 0x00007B80, length = 0x00000070
    ERADPCTRACE                : origin = 0x0005EAD0, length = 0x0000000A
    PIECTRL                    : origin = 0x00000CE0, length = 0x0000001A
    PIEVECTTABLE               : origin = 0x00000D00, length = 0x00000200
@@ -384,6 +385,7 @@ UNION run = PIEVECTTABLE
    HRPWMCAL2RegsFile           : > HRPWMCAL2, type=NOINIT
    HRPWMCAL3RegsFile           : > HRPWMCAL3, type=NOINIT
    OutputXbarRegsFile         : > OUTPUTXBAR, type=NOINIT
+   ClbOutputXbarRegsFile      : > CLBOUTPUTXBAR, type=NOINIT
    EradPCTraceRegsFile        : > ERADPCTRACE, type=NOINIT
    PieCtrlRegsFile            : > PIECTRL, type=NOINIT
    PieVectTableMainFile       : > PIEVECTTABLE type=NOINIT

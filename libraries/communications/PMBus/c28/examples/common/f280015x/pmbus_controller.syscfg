@@ -1,0 +1,35 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F280015x" --package "100PZ" --part "F280015x_100PZ" --product "C2000WARE@3.01.00.00"
+ * @versions {"tool":"1.10.0+2163"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const pmbus  = scripting.addModule("/driverlib/pmbus.js", {}, false);
+const pmbus1 = pmbus.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+pmbus1.$name                     = "myPMBUS0";
+pmbus1.BaudRate                  = 20000000;
+pmbus1.enablePMBus               = true;
+pmbus1.useInterrupts             = true;
+pmbus1.registerInterrupts        = true;
+pmbus1.enabledInterrupts         = ["PMBUS_INT_ALERT","PMBUS_INT_DATA_READY","PMBUS_INT_DATA_REQUEST","PMBUS_INT_EOM"];
+pmbus1.pmbus.$assign             = "PMBUSA";
+pmbus1.PMBusInt.interruptHandler = "pmbusIntHandler";
+pmbus1.PMBusInt.enableInterrupt  = true;
+
+/**
+ * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
+ * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
+ * re-solve from scratch.
+ */
+pmbus1.pmbus.pmbus_alertPin.$assign = "ball.35";
+pmbus1.pmbus.pmbus_ctlPin.$assign   = "ball.36";
+pmbus1.pmbus.pmbus_sclPin.$assign   = "ball.78";
+pmbus1.pmbus.pmbus_sdaPin.$assign   = "ball.79";

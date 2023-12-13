@@ -1,0 +1,83 @@
+%%{
+     let inst      = args[0];
+     let tileName  = args[1];
+     let instNum   = args[2];
+     let inputs    = args[3];
+     let Common    = system.getScript("/utilities/clb_tool/clb_syscfg/source/Common.js");
+     let name      = tileName + "_COUNTER_" + instNum;
+
+     let add_shift_dir    = 0;
+     let add_shift_mode   = 0;
+     let add_shift_enable = 0;
+     let serializer_en = 0;
+     let lsfr_mode = 0;
+     let match1_tap_en = 0;
+     let match2_tap_en = 0;
+     let match1_tap_sel = 0;
+     let match2_tap_sel = 0;
+
+     if (Common.isType1_Type2())
+     {
+          if (inst.lfsr_en){
+               lsfr_mode = 1;
+          }
+          if (inst.match1_tap_en){
+               match1_tap_en = 1;
+          }
+          if (inst.match2_tap_en){
+               match2_tap_en = 1;
+          }
+          if (inst.serializer_en){
+               serializer_en = 1;
+          }
+          match1_tap_sel = inst.match1_tap_sel;
+          match2_tap_sel = inst.match2_tap_sel;
+     }
+
+     switch (inst.action) {
+          case 'Add':
+               add_shift_enable = 1;
+               add_shift_mode   = 1;
+               add_shift_dir    = 1;
+               break;
+          case 'Subtract':
+               add_shift_enable = 1;
+               add_shift_mode   = 1;
+               break;
+          case 'Shift Left':
+               add_shift_enable = 1;
+               add_shift_dir    = 1;
+               break;
+          case 'Shift Right':
+               add_shift_enable = 1;
+               break;
+     }
+	
+	let inst_match1_value = (inst.match1_val==="")?0:inst.match1_val;
+	let inst_match2_value = (inst.match2_val==="")?0:inst.match2_val;
+	let inst_event_load_val = (inst.event_load_val==="")?0:inst.event_load_val;
+%%}
+
+        sig_`name`_add_shift_dir.write          ((bool) `add_shift_dir`);
+        sig_`name`_add_shift_mode.write         ((bool) `add_shift_mode`);
+        sig_`name`_add_shift_on_event_en.write  ((bool) `add_shift_enable`);
+        sig_`name`_global_clk_en.write          ((bool) 1);
+        sig_`name`_glbl_load_en.write           ((bool) 0);
+        sig_`name`_event_load_val.write         ((sc_uint<32>) `inst_event_load_val`);
+        sig_`name`_glbl_en.write                ((bool) 1);
+        sig_`name`_match1_val.write             ((sc_uint<32>) `inst_match1_value`);
+        sig_`name`_match2_val.write             ((sc_uint<32>) `inst_match2_value`);
+        sig_`name`_match1_out.write             ((sc_uint<32>) `inst_match1_value`);
+        sig_`name`_match2_out.write             ((sc_uint<32>) `inst_match2_value`);
+        sig_`name`_match_en.write               ((bool) 1);
+        sig_`name`_glbl_serializer_mode.write   ((bool) `serializer_en`);
+#if TYPE == 2 || TYPE == 3
+        sig_`name`_lfsr_mode.write                 ((bool) `lsfr_mode`);
+        sig_`name`_match1_tap_en.write             ((bool) `match1_tap_en`);
+        sig_`name`_match1_tap.write                ((sc_uint<5>) `match1_tap_sel`);
+        sig_`name`_match2_tap_en.write             ((bool) `match2_tap_en`);
+        sig_`name`_match2_tap.write                ((sc_uint<5>) `match2_tap_sel`);
+#endif
+#if TYPE == 3
+        sig_`name`_RECONFIG_PIPELINE_EN.write      ((bool) `tileName`_PIPELINE_MODE);
+#endif

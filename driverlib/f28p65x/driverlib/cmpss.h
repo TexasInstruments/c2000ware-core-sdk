@@ -82,6 +82,15 @@ extern "C"
                              CMPSS_COMPCTL_ASYNCLEN)
 
 #ifndef DOXYGEN_PDF_IGNORE
+
+//*****************************************************************************
+//
+// Defines for the bit fields in the COMPDACHCTL2 and COMPDACLCTL2 register
+//
+//*****************************************************************************
+#define CMPSS_BLANKSOURCEUSEL_S    8U
+#define CMPSS_RAMPSOURCEUSEL_S     10U
+
 //*****************************************************************************
 //
 // Values that can be passed to CMPSS_configLowComparator() and
@@ -160,6 +169,14 @@ extern "C"
 #define CMPSS_DACVAL_SYSCLK             0x0000U
 //! DAC value updated from PWMSYNC
 #define CMPSS_DACVAL_PWMSYNC            0x0080U
+
+//
+// DAC reference voltage
+//
+//! VDDA is the voltage reference
+#define CMPSS_DACREF_VDDA               0x0000U
+//! VDAC is the voltage reference
+#define CMPSS_DACREF_VDAC               0x0020U
 
 //
 // DAC value source
@@ -248,6 +265,7 @@ typedef enum
                                            //!< configured PWMSYNCx signal and
                                            //!< RAMPH SOR trigger is RAMPL EOR
 } CMPSS_RampXTrigger;
+
 
 //*****************************************************************************
 //
@@ -644,12 +662,17 @@ CMPSS_getStatus(uint32_t base)
 //!
 //! This function configures the comparator's internal DAC.  The \e config
 //! parameter is the result of a logical OR operation between the
-//! \b CMPSS_DACVAL_xxx and \b CMPSS_DACSRC_xxx.
+//! \b CMPSS_DACVAL_xxx, \b CMPSS_DACREF_xxx, and \b CMPSS_DACSRC_xxx.
 //!
 //! The \b CMPSS_DACVAL_xxx term can take on the following values to specify
 //! when the DAC value is loaded from its shadow register:
 //! - \b CMPSS_DACVAL_SYSCLK - Value register updated on system clock.
 //! - \b CMPSS_DACVAL_PWMSYNC - Value register updated on PWM sync.
+//!
+//! The \b CMPSS_DACREF_xxx term can take on the following values to specify
+//! which voltage supply is used as reference for the DACs:
+//! - \b CMPSS_DACREF_VDDA - VDDA is the voltage reference for the DAC.
+//! - \b CMPSS_DACREF_VDAC - VDAC is the voltage reference for the DAC.
 //!
 //! The \b CMPSS_DACSRC_xxx term can take on the following values to specify
 //! the DAC value source for the high comparator's internal DAC:
@@ -679,8 +702,8 @@ CMPSS_configDAC(uint32_t base, uint16_t config)
 
     HWREGH(base + CMPSS_O_COMPDACHCTL) = (HWREGH(base + CMPSS_O_COMPDACHCTL) &
                                           ~(CMPSS_COMPDACHCTL_SWLOADSEL      |
+                                            CMPSS_COMPDACHCTL_SELREF         |
                                         CMPSS_COMPDACHCTL_DACSOURCE)) | config;
-
     EDIS;
 }
 
@@ -693,12 +716,18 @@ CMPSS_configDAC(uint32_t base, uint16_t config)
 //!
 //! This function configures the high comparator's internal DAC.  The \e config
 //! parameter is the result of a logical OR operation between the
-//! \b CMPSS_DACVAL_xxx and \b CMPSS_DACSRC_xxx.
+//! \b CMPSS_DACVAL_xxx, \b CMPSS_DACREF_xxx, and \b CMPSS_DACSRC_xxx.
 //!
 //! The \b CMPSS_DACVAL_xxx term can take on the following values to specify
 //! when the DAC value is loaded from its shadow register:
 //! - \b CMPSS_DACVAL_SYSCLK - Value register updated on system clock.
 //! - \b CMPSS_DACVAL_PWMSYNC - Value register updated on PWM sync.
+//!
+//! The \b CMPSS_DACREF_xxx term can take on the following values to specify
+//! which voltage supply is used as reference for the DACs:
+//! - \b CMPSS_DACREF_VDDA - VDDA is the voltage reference for the DAC.
+//! - \b CMPSS_DACREF_VDAC - VDAC is the voltage reference for the DAC.
+//!
 //!
 //! The \b CMPSS_DACSRC_xxx term can take on the following values to specify
 //! the DAC value source for the high comparator's internal DAC:
@@ -723,9 +752,8 @@ CMPSS_configDACHigh(uint32_t base, uint16_t config)
 
     HWREGH(base + CMPSS_O_COMPDACHCTL) = (HWREGH(base + CMPSS_O_COMPDACHCTL) &
                                           ~(CMPSS_COMPDACHCTL_SWLOADSEL      |
-                                          CMPSS_COMPDACHCTL_DACSOURCE))      |
-                                         config;
-
+                                            CMPSS_COMPDACHCTL_SELREF         |
+                                        CMPSS_COMPDACHCTL_DACSOURCE)) | config;
     EDIS;
 }
 
@@ -914,7 +942,7 @@ CMPSS_configureFilterInputHigh(uint32_t base, CMPSS_FilterInput filtInput)
     // Check the arguments.
     //
     ASSERT(CMPSS_isBaseValid(base));
-    ASSERT(filtInput <= 7U);
+    ASSERT((uint16_t)filtInput <= 7U);
 
     //
     // Set the high comparator filter initialization bit.
@@ -923,7 +951,7 @@ CMPSS_configureFilterInputHigh(uint32_t base, CMPSS_FilterInput filtInput)
 
     HWREGH(base + CMPSS_O_CTRIPHFILCTL) = (HWREGH(base + CMPSS_O_CTRIPHFILCTL) &
                                            ~CMPSS_CTRIPHFILCTL_FILTINSEL_M)    |
-                                          filtInput ;
+                                          (uint16_t)filtInput ;
 
     EDIS;
 }
@@ -949,7 +977,7 @@ CMPSS_configureFilterInputLow(uint32_t base, CMPSS_FilterInput filtInput)
     // Check the arguments.
     //
     ASSERT(CMPSS_isBaseValid(base));
-    ASSERT(filtInput <= 7U);
+    ASSERT((uint16_t)filtInput <= 7U);
 
     //
     // Set the low comparator filter initialization bit.
@@ -958,7 +986,7 @@ CMPSS_configureFilterInputLow(uint32_t base, CMPSS_FilterInput filtInput)
 
     HWREGH(base + CMPSS_O_CTRIPLFILCTL) = (HWREGH(base + CMPSS_O_CTRIPLFILCTL) &
                                            ~CMPSS_CTRIPLFILCTL_FILTINSEL_M)    |
-                                   (filtInput & CMPSS_CTRIPLFILCTL_FILTINSEL_M);
+                                          (uint16_t)filtInput;
 
     EDIS;
 }
@@ -1291,7 +1319,8 @@ CMPSS_setRampDirectionHigh(uint32_t base, CMPSS_RampDirection dir)
     //
     EALLOW;
     HWREGH(base + CMPSS_O_COMPDACHCTL) = (HWREGH(base + CMPSS_O_COMPDACHCTL) &
-                                          ~(CMPSS_COMPDACHCTL_RAMPDIR)) | dir;
+                                          ~(CMPSS_COMPDACHCTL_RAMPDIR)) |
+                                          (uint16_t)dir;
     EDIS;
 }
 
@@ -1490,7 +1519,8 @@ CMPSS_setRampDirectionLow(uint32_t base, CMPSS_RampDirection dir)
     //
     EALLOW;
     HWREGH(base + CMPSS_O_COMPDACLCTL) = (HWREGH(base + CMPSS_O_COMPDACLCTL) &
-                                          ~(CMPSS_COMPDACLCTL_RAMPDIR)) | dir;
+                                          ~(CMPSS_COMPDACLCTL_RAMPDIR)) |
+                                          (uint16_t)dir;
     EDIS;
 }
 
@@ -1699,7 +1729,8 @@ CMPSS_configureRampXTriggerHigh(uint32_t base, CMPSS_RampXTrigger trigger)
     HWREGH(base + CMPSS_O_COMPDACHCTL2) =
                                      (HWREGH(base + CMPSS_O_COMPDACHCTL2) &
                                       ~CMPSS_COMPDACHCTL2_XTRIGCFG_M)     |
-                                     (trigger << CMPSS_COMPDACHCTL2_XTRIGCFG_S);
+                                     ((uint16_t)trigger <<
+                                      CMPSS_COMPDACHCTL2_XTRIGCFG_S);
     EDIS;
 }
 
@@ -1789,24 +1820,25 @@ CMPSS_configureSyncSourceLow(uint32_t base, uint16_t syncSource)
 //! \param value is the ramp clock divider value.
 //!
 //! This function sets the ramp clock divider value for high comparator(COMPH)
-//! to be divided from SYSCLK to configure the ramp generator clock.
+//! to be divided from SYSCLK to configure the ramp generator clock. Valid
+//! values for param \e divider can be refered from enum \e CMPSS_RampClockDiv.
 //!
 //! \return None.
 //
 //*****************************************************************************
 static inline void
-CMPSS_setRampClockDividerHigh(uint32_t base, uint16_t value)
+CMPSS_setRampClockDividerHigh(uint32_t base, CMPSS_RampClockDiv divider)
 {
     //
     // Check the arguments.
     //
     ASSERT(CMPSS_isBaseValid(base));
-    ASSERT(value <= CMPSS_RAMPHCTLS_RAMPCLKDIV_M);
+    ASSERT((uint16_t)divider <= CMPSS_RAMPHCTLS_RAMPCLKDIV_M);
 
     //
     // Write the high ramp generator clock divider to the shadow register.
     //
-    HWREGH(base + CMPSS_O_RAMPHCTLS) = value;
+    HWREGH(base + CMPSS_O_RAMPHCTLS) = (uint16_t)divider;
 }
 
 //*****************************************************************************
@@ -1854,7 +1886,7 @@ CMPSS_setRampClockDividerLow(uint32_t base, CMPSS_RampClockDiv divider)
     // Check the arguments.
     //
     ASSERT(CMPSS_isBaseValid(base));
-    ASSERT(divider <= CMPSS_RAMPLCTLS_RAMPCLKDIV_M);
+    ASSERT((uint16_t)divider <= CMPSS_RAMPLCTLS_RAMPCLKDIV_M);
 
     //
     // Write the low ramp generator clock divider to the shadow register.
@@ -2418,142 +2450,6 @@ CMPSS_selectDEACTIVESource(uint32_t base, uint16_t deactivesel)
 
 //*****************************************************************************
 //
-//! Select the Blank source group for high comparator.
-//!
-//! \param base is the base address of the comparator module.
-//! \param group is the blank source group
-//!
-//! This function selects the Blank source group for high comparator(COMPH).
-//! Valid values for param \e group can be: CMPSS_EPWM_GROUP_0TO15 or
-//! CMPSS_EPWM_GROUP_16TO31.
-//!
-//! \return None.
-//
-//*****************************************************************************
-static inline void
-CMPSS_selectBlankSourceGroupHigh(uint32_t base, CMPSS_EPWMGroup group)
-{
-    //
-    // Check the arguments.
-    //
-    ASSERT(CMPSS_isBaseValid(base));
-    ASSERT(group <= 1U);
-
-    //
-    // Configure the Blanking source group.
-    //
-    EALLOW;
-    HWREGH(base + CMPSS_O_COMPDACHCTL2) =
-                                     (HWREGH(base + CMPSS_O_COMPDACHCTL2)   &
-                                      ~CMPSS_COMPDACHCTL2_BLANKSOURCEUSEL)  |
-                                     ((uint16_t)group << 8U);
-    EDIS;
-}
-
-//*****************************************************************************
-//
-//! Select the Blank source group for low comparator.
-//!
-//! \param base is the base address of the comparator module.
-//! \param group is the blank source group.
-//!
-//! This function selects the Blank source group for low comparator(COMPL).
-//! Valid values for param \e group can be: CMPSS_EPWM_GROUP_0TO15 or
-//! CMPSS_EPWM_GROUP_16TO31.
-//!
-//! \return None.
-//
-//*****************************************************************************
-static inline void
-CMPSS_selectBlankSourceGroupLow(uint32_t base, CMPSS_EPWMGroup group)
-{
-    //
-    // Check the arguments.
-    //
-    ASSERT(CMPSS_isBaseValid(base));
-    ASSERT(group <= 1U);
-
-    //
-    // Configure the Blanking source group.
-    //
-    EALLOW;
-    HWREGH(base + CMPSS_O_COMPDACLCTL2) =
-                                     (HWREGH(base + CMPSS_O_COMPDACLCTL2)   &
-                                      ~CMPSS_COMPDACLCTL2_BLANKSOURCEUSEL)  |
-                                     ((uint16_t)group << 8U);
-    EDIS;
-}
-
-//*****************************************************************************
-//
-//! Select the Ramp source group for high comparator.
-//!
-//! \param base is the base address of the comparator module.
-//! \param group is the ramp source group.
-//!
-//! This function selects the Ramp source group for high comparator(COMPH).
-//! Valid values for param \e group can be: CMPSS_EPWM_GROUP_0TO15 or
-//! CMPSS_EPWM_GROUP_16TO31.
-//!
-//! \return None.
-//
-//*****************************************************************************
-static inline void
-CMPSS_selectRampSourceGroupHigh(uint32_t base, CMPSS_EPWMGroup group)
-{
-    //
-    // Check the arguments.
-    //
-    ASSERT(CMPSS_isBaseValid(base));
-    ASSERT(group <= 1U);
-
-    //
-    // Configure the Blanking source group.
-    //
-    EALLOW;
-    HWREGH(base + CMPSS_O_COMPDACHCTL2) =
-                                     (HWREGH(base + CMPSS_O_COMPDACHCTL2)   &
-                                      ~CMPSS_COMPDACHCTL2_RAMPSOURCEUSEL)  |
-                                     ((uint16_t)group << 10U);
-    EDIS;
-}
-
-//*****************************************************************************
-//
-//! Select the Ramp source group for low comparator.
-//!
-//! \param base is the base address of the comparator module.
-//! \param group is the ramp source group.
-//!
-//! This function selects the Ramp source group for low comparator(COMPL).
-//! Valid values for param \e group can be: CMPSS_EPWM_GROUP_0TO15 or
-//! CMPSS_EPWM_GROUP_16TO31.
-//!
-//! \return None.
-//
-//*****************************************************************************
-static inline void
-CMPSS_selectRampSourceGroupLow(uint32_t base, CMPSS_EPWMGroup group)
-{
-    //
-    // Check the arguments.
-    //
-    ASSERT(CMPSS_isBaseValid(base));
-    ASSERT(group <= 1U);
-
-    //
-    // Configure the Blanking source group.
-    //
-    EALLOW;
-    HWREGH(base + CMPSS_O_COMPDACLCTL2) =
-                                     (HWREGH(base + CMPSS_O_COMPDACLCTL2)   &
-                                      ~CMPSS_COMPDACLCTL2_RAMPSOURCEUSEL)  |
-                                     ((uint16_t)group << 10U);
-    EDIS;
-}
-
-//*****************************************************************************
-//
 //! Sets the shadow value 2 (used in DE mode) of the internal DAC of the high
 //! comparator.
 //!
@@ -2610,6 +2506,142 @@ CMPSS_configLowDACShadowValueDE(uint32_t base, uint16_t dacval)
     // Configure low comp DAC shadow value 2.
     //
     HWREGH(base + CMPSS_O_DACLVALS2) = (dacval & CMPSS_DACLVALS2_DACVAL_M);
+}
+
+//*****************************************************************************
+//
+//! Select the Blank source group for high comparator.
+//!
+//! \param base is the base address of the comparator module.
+//! \param group is the blank source group
+//!
+//! This function selects the Blank source group for high comparator(COMPH).
+//! Valid values for param \e group can be: CMPSS_EPWM_GROUP_0TO15 or
+//! CMPSS_EPWM_GROUP_16TO31.
+//!
+//! \return None.
+//
+//*****************************************************************************
+static inline void
+CMPSS_selectBlankSourceGroupHigh(uint32_t base, CMPSS_EPWMGroup group)
+{
+    //
+    // Check the arguments.
+    //
+    ASSERT(CMPSS_isBaseValid(base));
+    ASSERT((uint16_t)group <= 1U);
+
+    //
+    // Configure the Blanking source group.
+    //
+    EALLOW;
+    HWREGH(base + CMPSS_O_COMPDACHCTL2) =
+                                (HWREGH(base + CMPSS_O_COMPDACHCTL2) &
+                                 ~CMPSS_COMPDACHCTL2_BLANKSOURCEUSEL) |
+                                ((uint16_t)group << CMPSS_BLANKSOURCEUSEL_S);
+    EDIS;
+}
+
+//*****************************************************************************
+//
+//! Select the Blank source group for low comparator.
+//!
+//! \param base is the base address of the comparator module.
+//! \param group is the blank source group.
+//!
+//! This function selects the Blank source group for low comparator(COMPL).
+//! Valid values for param \e group can be: CMPSS_EPWM_GROUP_0TO15 or
+//! CMPSS_EPWM_GROUP_16TO31.
+//!
+//! \return None.
+//
+//*****************************************************************************
+static inline void
+CMPSS_selectBlankSourceGroupLow(uint32_t base, CMPSS_EPWMGroup group)
+{
+    //
+    // Check the arguments.
+    //
+    ASSERT(CMPSS_isBaseValid(base));
+    ASSERT((uint16_t)group <= 1U);
+
+    //
+    // Configure the Blanking source group.
+    //
+    EALLOW;
+    HWREGH(base + CMPSS_O_COMPDACLCTL2) =
+                                (HWREGH(base + CMPSS_O_COMPDACLCTL2) &
+                                 ~CMPSS_COMPDACLCTL2_BLANKSOURCEUSEL) |
+                                ((uint16_t)group << CMPSS_BLANKSOURCEUSEL_S);
+    EDIS;
+}
+
+//*****************************************************************************
+//
+//! Select the Ramp source group for high comparator.
+//!
+//! \param base is the base address of the comparator module.
+//! \param group is the ramp source group.
+//!
+//! This function selects the Ramp source group for high comparator(COMPH).
+//! Valid values for param \e group can be: CMPSS_EPWM_GROUP_0TO15 or
+//! CMPSS_EPWM_GROUP_16TO31.
+//!
+//! \return None.
+//
+//*****************************************************************************
+static inline void
+CMPSS_selectRampSourceGroupHigh(uint32_t base, CMPSS_EPWMGroup group)
+{
+    //
+    // Check the arguments.
+    //
+    ASSERT(CMPSS_isBaseValid(base));
+    ASSERT((uint16_t)group <= 1U);
+
+    //
+    // Configure the Blanking source group.
+    //
+    EALLOW;
+    HWREGH(base + CMPSS_O_COMPDACHCTL2) =
+                                    (HWREGH(base + CMPSS_O_COMPDACHCTL2) &
+                                     ~CMPSS_COMPDACHCTL2_RAMPSOURCEUSEL) |
+                                    ((uint16_t)group << CMPSS_RAMPSOURCEUSEL_S);
+    EDIS;
+}
+
+//*****************************************************************************
+//
+//! Select the Ramp source group for low comparator.
+//!
+//! \param base is the base address of the comparator module.
+//! \param group is the ramp source group.
+//!
+//! This function selects the Ramp source group for low comparator(COMPL).
+//! Valid values for param \e group can be: CMPSS_EPWM_GROUP_0TO15 or
+//! CMPSS_EPWM_GROUP_16TO31.
+//!
+//! \return None.
+//
+//*****************************************************************************
+static inline void
+CMPSS_selectRampSourceGroupLow(uint32_t base, CMPSS_EPWMGroup group)
+{
+    //
+    // Check the arguments.
+    //
+    ASSERT(CMPSS_isBaseValid(base));
+    ASSERT((uint16_t)group <= 1U);
+
+    //
+    // Configure the Blanking source group.
+    //
+    EALLOW;
+    HWREGH(base + CMPSS_O_COMPDACLCTL2) =
+                                    (HWREGH(base + CMPSS_O_COMPDACLCTL2) &
+                                     ~CMPSS_COMPDACLCTL2_RAMPSOURCEUSEL) |
+                                    ((uint16_t)group << CMPSS_RAMPSOURCEUSEL_S);
+    EDIS;
 }
 
 //*****************************************************************************

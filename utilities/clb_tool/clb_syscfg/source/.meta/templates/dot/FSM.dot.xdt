@@ -1,0 +1,29 @@
+%%{
+    let inst      = args[0];
+    let tileName  = args[1];
+    let instNum   = args[2];
+    let inputs    = args[3];
+    let name      = tileName + "_FSM_" + instNum;
+    let Common    = system.getScript("/utilities/clb_tool/clb_syscfg/source/Common.js");
+    let colonName = Common.colonName;
+    let color     = 'red';
+    if (!Common.used(inst, inputs)) return;
+
+    let eq0 = inst.eqn_s0  == '' ? '' : 's0 = ' + inst.eqn_s0.replace(/&/g,'&amp;');
+    let eq1 = inst.eqn_s1  == '' ? '' : 's1 = ' + inst.eqn_s1.replace(/&/g,'&amp;');
+    let eq2 = inst.eqn_out == '' ? '' : 'out = ' + inst.eqn_out.replace(/&/g,'&amp;');
+%%}
+    `name` [label=<<TABLE BORDER='0' CELLBORDER='1' CELLSPACING='0'>
+                      <TR><TD PORT='e0'>e0</TD><TD ROWSPAN='4'><b>`name`</b><br/><br/>`eq0`<br/>`eq1`<br/>`eq2`</TD></TR>
+                      <TR><TD PORT='e1'>e1</TD><TD PORT='s0'>s0</TD></TR>
+                      <TR><TD PORT='xe0'>xe0</TD><TD PORT='s1'>s1</TD></TR>
+                      <TR><TD PORT='xe1'>xe1</TD><TD PORT='out'>out</TD></TR>
+                   </TABLE>> color=`color` shape=plaintext]
+
+    % for (let j = 0; j < inputs.length; ++j) {
+    %     let inName = inputs[j];
+    %     let inFrom = inst[inName];
+    %     if (inFrom != '0') {
+    `tileName`_`colonName(inFrom)`:e -> `name`:`inName`:w [color=`color`]
+    %     }
+    % }

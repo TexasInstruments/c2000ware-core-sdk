@@ -109,10 +109,10 @@ void main(void)
 
 //
 // Step 2. Initialize GPIO:
-// This example function is found in the f2838x_gpio.c file and
+// This example function is found in the <device>_gpio.c file and
 // illustrates how to set the GPIO to it's default state.
 //
-//    InitGpio();
+    InitGpio();
 
 //
 // enable PWM1, and PWM2
@@ -362,9 +362,11 @@ void InitTzGpio(void)
     //
     // For External Trigger, GPIO12 as the trigger for TripZone
     //
+    EALLOW;
     GpioCtrlRegs.GPAPUD.bit.GPIO12 = 0;    // Enable pull-up on GPIO12 (TZ1)
 
     GpioCtrlRegs.GPAQSEL1.bit.GPIO12 = 3;  // Asynch input GPIO12 (TZ1)
+    EDIS;
 
     EALLOW;
     InputXbarRegs.INPUT1SELECT = 12;

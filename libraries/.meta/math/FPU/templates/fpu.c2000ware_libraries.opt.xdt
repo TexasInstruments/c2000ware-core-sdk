@@ -1,0 +1,29 @@
+% let Common   = system.getScript("/driverlib/Common.js");
+%
+% var moduleName = "FPU"
+% var module = system.modules['/libraries/math/FPU' + '/' + moduleName + '.js'];
+%
+--abi=eabi
+%
+%if(module != null)
+%{
+% var instance = module.$static;
+%
+%if(instance.fpuType == "FPU32")
+%{
+--float_support=fpu32
+%}
+%else if(instance.fpuType == "FPU64")
+%{
+--float_support=fpu64
+%}
+%
+%if(instance.tmuType == "TMU0")
+%{
+--tmu_support=tmu0
+%}
+%else if(instance.tmuType == "TMU1")
+%{
+--tmu_support=tmu1
+%}
+%}

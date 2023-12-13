@@ -1,0 +1,26 @@
+<projectSpec>
+  <project
+        name="F280039_NLPID"
+        device="TMS320F280039C"
+        cgtVersion="22.6.0.LTS"
+        outputFormat="ELF"
+        launchWizard="False"
+        linkerCommandFile=""
+        >
+    <configuration name="CPU1_RAM" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} -I${DCL_INCLUDE} -v28 -ml -mt --float_support=fpu32 --tmu_support=tmu1 --define=DEBUG --define RAM --diag_warning=225 --diag_suppress=10063"  linkerBuildOptions="--entry_point code_start --stack_size=0x200 --heap_size=0x100 "/>
+    <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../../../../../driverlib/f28003x/driverlib/" scope="project"/>
+    <pathVariable name="DCL_INCLUDE" path="../../../include" scope="project"/>
+    <file action="copy" path="../../../../../../../device_support/f28003x/common/include/driverlib.h" targetDirectory="device"/>
+    <file action="copy" path="../../../../../../../device_support/f28003x/common/include/device.h" targetDirectory="device"/>
+    <file action="copy" path="../../../../../../../device_support/f28003x/common/source/device.c" targetDirectory="device"/>
+    <file action="copy" path="../../../../../../../device_support/f28003x/common/source/f28003x_codestartbranch.asm" targetDirectory="device"/>
+    <file action="copy" path="../../../../../../../device_support/f28003x/common/targetConfigs/TMS320F280039C.ccxml" targetDirectory="targetConfigs"/>
+    <file action="link" path="../../../../../../../driverlib/f28003x/driverlib/ccs/Debug/driverlib.lib" targetDirectory=""/>
+    <file action="copy" path="../../../../../../../driverlib/f28003x/driverlib/" targetDirectory="device" excludeFromBuild="True"/>
+    <file action="copy" path="../Example_NLPID.c" targetDirectory=""/>
+    <file action="copy" path="../../../source/DCL_NLPID_C3.asm" targetDirectory=""/>
+    <file action="copy" path="../../../source/DCL_error.c" targetDirectory=""/>
+    <file action="copy" path="../../../../../../../device_support/f28003x/common/cmd/28003x_generic_ram_lnk.cmd" targetDirectory=""/>
+    <file action="copy" path="../../../cmd/F280039_DCL.cmd" targetDirectory=""/>
+	</project>
+</projectSpec>

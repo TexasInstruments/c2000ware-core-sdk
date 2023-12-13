@@ -1,20 +1,15 @@
 //#############################################################################
 //
-// FILE:   led_ex1_blinky.c
+// FILE:   main.c
 //
-// TITLE:  LED Blinky Example
+// TITLE:  Universal LED Project
 //
-//! \addtogroup driver_example_list
-//! <h1> LED Blinky Example </h1>
-//!
-//! This example demonstrates how to blink a LED.
-//!
-//! \b External \b Connections \n
-//!  - None.
-//!
-//! \b Watch \b Variables \n
-//!  - None.
-//!
+// Universal LED Project Example
+//
+// This example demonstrates how to blink an LED using the **Universal Project**.
+// In order to migrate the project within syscfg, click the swtich button under 
+// the device view and select your corresponding device to migrate, saving the
+// project will auto-migrate your project settings.
 //
 //#############################################################################
 //
@@ -57,23 +52,23 @@
 //
 #include "driverlib.h"
 #include "device.h"
+#include "board.h"
+#include "c2000ware_libraries.h"
 
-//
 // Main
 //
 void main(void)
 {
+
     //
     // Initialize device clock and peripherals
     //
     Device_init();
 
     //
-    // Initialize GPIO and configure the GPIO pin as a push-pull output
+    // Disable pin locks and enable internal pull-ups.
     //
     Device_initGPIO();
-    GPIO_setPadConfig(DEVICE_GPIO_PIN_LED1, GPIO_PIN_TYPE_STD);
-    GPIO_setDirectionMode(DEVICE_GPIO_PIN_LED1, GPIO_DIR_MODE_OUT);
 
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
@@ -87,7 +82,17 @@ void main(void)
     Interrupt_initVectorTable();
 
     //
-    // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
+    // PinMux and Peripheral Initialization
+    //
+    Board_init();
+
+    //
+    // C2000Ware Library initialization
+    //
+    C2000Ware_libraries_init();
+
+    //
+    // Enable Global Interrupt (INTM) and real time interrupt (DBGM)
     //
     EINT;
     ERTM;
@@ -100,7 +105,7 @@ void main(void)
         //
         // Turn on LED
         //
-        GPIO_writePin(DEVICE_GPIO_PIN_LED1, 0);
+        GPIO_writePin(myBoardLED0_GPIO, 0);
 
         //
         // Delay for a bit.
@@ -110,7 +115,7 @@ void main(void)
         //
         // Turn off LED
         //
-        GPIO_writePin(DEVICE_GPIO_PIN_LED1, 1);
+        GPIO_writePin(myBoardLED0_GPIO, 1);
 
         //
         // Delay for a bit.
@@ -122,3 +127,4 @@ void main(void)
 //
 // End of File
 //
+

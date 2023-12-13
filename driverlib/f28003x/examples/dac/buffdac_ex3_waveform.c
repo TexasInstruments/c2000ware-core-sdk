@@ -2,7 +2,7 @@
 //
 // FILE:   buffdac_ex3_sine.c
 //
-// TITLE:  Buffered DAC Sine Wave Output Example for F2838x.
+// TITLE:  Buffered DAC Sine Wave Output Example.
 //
 //! \addtogroup driver_example_list
 //! <h1> Buffered DAC Sine (buffdac_sine) </h1>

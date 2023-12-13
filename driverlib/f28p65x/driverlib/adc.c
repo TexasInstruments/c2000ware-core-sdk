@@ -65,6 +65,104 @@
 
 //*****************************************************************************
 //
+// ADC_setupSOCRefloChannel
+//
+//*****************************************************************************
+void
+ADC_setupSOCRefloChannel(uint32_t base, ADC_SOCNumber socNumber,
+        ADC_Trigger trigger, uint32_t sampleWindow, ADC_ChannelType channelType)
+{
+    switch(base)
+    {
+        case ADCA_BASE:
+
+            //
+            // Configure internal connection for VREFLOB which is available
+            // on channel 19
+            //
+            if(channelType == ADC_CHANNEL_ODD)
+            {
+                ADC_setupSOC(ADCA_BASE, socNumber, trigger,
+                                ADC_CH_ADCIN19, sampleWindow);
+            }
+
+            //
+            // Configure internal connection for VREFLOC which is available
+            // on channel 20
+            //
+            if(channelType == ADC_CHANNEL_EVEN)
+            {
+                ADC_setupSOC(ADCA_BASE, socNumber, trigger,
+                                ADC_CH_ADCIN20, sampleWindow);
+            }
+
+            break;
+
+        case ADCB_BASE:
+
+            //
+            // Configure internal connection for VREFLOC which will be available
+            // on channel 17
+            //
+            if(channelType == ADC_CHANNEL_ODD)
+            {
+                EALLOW;
+                HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_INTERNALTESTCTL) =
+                                                                (0xA5A50006UL);
+                EDIS;
+                ADC_setupSOC(ADCB_BASE, socNumber, trigger,
+                                ADC_CH_ADCIN17, sampleWindow);
+            }
+
+            //
+            // Configure internal connection for VREFLOC which will be available
+            // on channel 14 through CMPSS module
+            //
+            if(channelType == ADC_CHANNEL_EVEN)
+            {
+                EALLOW;
+                HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_INTERNALTESTCTL) =
+                                                                (0xA5A50206UL);
+                HWREGH(CMPSS1_BASE + 0x1FU) = 0x8000U;
+                EDIS;
+                ADC_setupSOC(ADCB_BASE, socNumber, trigger,
+                                ADC_CH_ADCIN14, sampleWindow);
+            }
+            break;
+
+        case ADCC_BASE:
+
+            //
+            // Configure internal connection for VREFLOB which is available
+            // on channel 19
+            //
+            if(channelType == ADC_CHANNEL_ODD)
+            {
+                ADC_setupSOC(ADCC_BASE, socNumber, trigger,
+                                ADC_CH_ADCIN19, sampleWindow);
+            }
+
+            //
+            // Configure internal connection for VREFLOA which is available
+            // on channel 18
+            //
+            if(channelType == ADC_CHANNEL_EVEN)
+            {
+                ADC_setupSOC(ADCA_BASE, socNumber, trigger,
+                                ADC_CH_ADCIN18, sampleWindow);
+            }
+
+            break;
+
+        default:
+            //
+            // Invalid base address! Do nothing!
+            //
+            break;
+    }
+}
+//*****************************************************************************
+//
 // ADC_setMode
 //
 //*****************************************************************************

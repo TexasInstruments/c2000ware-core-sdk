@@ -1,0 +1,12 @@
+expRemoveAll
+expAdd("Dlog.Xwaveform", getQValue(24))
+expAdd("Dlog.Ywaveform", getQValue(24))
+expAdd("Dlog.Mag", getQValue(24))
+expAdd("Dlog.Phase", getQValue(24))
+expAdd("Dlog.Exp", getQValue(24))
+expAdd("Dlog.Log", getQValue(24))
+openAnalysisView('Single Time', 'C:\\ti\\c2000\\C2000Ware_2_00_00_02\\libraries\\math\\IQmath\\c28\\examples\\graph_properties\\x_waveform.graphProp')
+openAnalysisView('Single Time', 'C:\\ti\\c2000\\C2000Ware_2_00_00_02\\libraries\\math\\IQmath\\c28\\examples\\graph_properties\\y_waveform.graphProp')
+openAnalysisView('Single Time', 'C:\\ti\\c2000\\C2000Ware_2_00_00_02\\libraries\\math\\IQmath\\c28\\examples\\graph_properties\\mag_waveform.graphProp')
+openAnalysisView('Single Time', 'C:\\ti\\c2000\\C2000Ware_2_00_00_02\\libraries\\math\\IQmath\\c28\\examples\\graph_properties\\phase_waveform.graphProp')
+openAnalysisView('Single Time', 'C:\\ti\\c2000\\C2000Ware_2_00_00_02\\libraries\\math\\IQmath\\c28\\examples\\graph_properties\\exp_waveform.graphProp')

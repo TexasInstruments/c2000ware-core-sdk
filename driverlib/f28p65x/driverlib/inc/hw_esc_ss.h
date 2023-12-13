@@ -93,62 +93,62 @@
 // The following are defines for the bit fields in the ESCSS_INTR_RIS register
 //
 //*************************************************************************************************
-#define ESCSS_INTR_RIS_SYNC0_RIS          0x1U    // SYNC0 feature RIS
-#define ESCSS_INTR_RIS_SYNC1_RIS          0x2U    // SYNC1 feature RIS
-#define ESCSS_INTR_RIS_IRQ_RIS            0x4U    // EtherCATSS IRQ RIS
-#define ESCSS_INTR_RIS_DMA_DONE_RIS       0x8U    // DMA Done RIS
-#define ESCSS_INTR_RIS_TIMEOUT_ERR_RIS    0x10U   // PDI bus Timeout Error RIS
-#define ESCSS_INTR_RIS_MDEVICE_RESET_RIS  0x20U   // ECAT RESET RIS
+#define ESCSS_INTR_RIS_SYNC0_RIS           0x1U    // SYNC0 feature RIS
+#define ESCSS_INTR_RIS_SYNC1_RIS           0x2U    // SYNC1 feature RIS
+#define ESCSS_INTR_RIS_IRQ_RIS             0x4U    // EtherCATSS IRQ RIS
+#define ESCSS_INTR_RIS_DMA_DONE_RIS        0x8U    // DMA Done RIS
+#define ESCSS_INTR_RIS_TIMEOUT_ERR_RIS     0x10U   // PDI bus Timeout Error RIS
+#define ESCSS_INTR_RIS_MDEVICE_RESET_RIS   0x20U   // ECAT RESET RIS
 
 //*************************************************************************************************
 //
 // The following are defines for the bit fields in the ESCSS_INTR_MASK register
 //
 //*************************************************************************************************
-#define ESCSS_INTR_MASK_SYNC0_MASK          0x1U    // SYNC0 feature Mask
-#define ESCSS_INTR_MASK_SYNC1_MASK          0x2U    // SYNC1 feature Mask
-#define ESCSS_INTR_MASK_IRQ_MASK            0x4U    // EtherCATSS IRQ Mask
-#define ESCSS_INTR_MASK_DMA_DONE_MASK       0x8U    // DMA Done Mask
-#define ESCSS_INTR_MASK_TIMEOUT_ERR_MASK    0x10U   // PDI Access Timeout Error Mask
-#define ESCSS_INTR_MASK_MDEVICE_RESET_MASK  0x20U   // EtherCAT MDEVICE Reset Mask
+#define ESCSS_INTR_MASK_SYNC0_MASK           0x1U    // SYNC0 feature Mask
+#define ESCSS_INTR_MASK_SYNC1_MASK           0x2U    // SYNC1 feature Mask
+#define ESCSS_INTR_MASK_IRQ_MASK             0x4U    // EtherCATSS IRQ Mask
+#define ESCSS_INTR_MASK_DMA_DONE_MASK        0x8U    // DMA Done Mask
+#define ESCSS_INTR_MASK_TIMEOUT_ERR_MASK     0x10U   // PDI Access Timeout Error Mask
+#define ESCSS_INTR_MASK_MDEVICE_RESET_MASK   0x20U   // EtherCAT MainDevice Reset Mask
 
 //*************************************************************************************************
 //
 // The following are defines for the bit fields in the ESCSS_INTR_MIS register
 //
 //*************************************************************************************************
-#define ESCSS_INTR_MIS_SYNC0_MIS          0x1U    // SYNC0 feature MIS
-#define ESCSS_INTR_MIS_SYNC1_MIS          0x2U    // SYNC1 feature MIS
-#define ESCSS_INTR_MIS_IRQ_MIS            0x4U    // EtherCATSS IRQ MIS
-#define ESCSS_INTR_MIS_DMA_DONE_MIS       0x8U    // DMA Done MIS
-#define ESCSS_INTR_MIS_TIMEOUT_ERR_MIS    0x10U   // PDI bus Timeout Error MIS
-#define ESCSS_INTR_MIS_MDEVICE_RESET_MIS  0x20U   // EtherCAT MDEVICE Reset MIS
+#define ESCSS_INTR_MIS_SYNC0_MIS           0x1U    // SYNC0 feature MIS
+#define ESCSS_INTR_MIS_SYNC1_MIS           0x2U    // SYNC1 feature MIS
+#define ESCSS_INTR_MIS_IRQ_MIS             0x4U    // EtherCATSS IRQ MIS
+#define ESCSS_INTR_MIS_DMA_DONE_MIS        0x8U    // DMA Done MIS
+#define ESCSS_INTR_MIS_TIMEOUT_ERR_MIS     0x10U   // PDI bus Timeout Error MIS
+#define ESCSS_INTR_MIS_MDEVICE_RESET_MIS   0x20U   // EtherCAT MainDevice Reset MIS
 
 //*************************************************************************************************
 //
 // The following are defines for the bit fields in the ESCSS_INTR_CLR register
 //
 //*************************************************************************************************
-#define ESCSS_INTR_CLR_SYNC0_CLR          0x1U    // SYNC0 feature Clear
-#define ESCSS_INTR_CLR_SYNC1_CLR          0x2U    // SYNC1 feature Clear
-#define ESCSS_INTR_CLR_IRQ_CLR            0x4U    // EtherCATSS IRQ Clear
-#define ESCSS_INTR_CLR_DMA_DONE_CLR       0x8U    // DMA Done Clear
-#define ESCSS_INTR_CLR_TIMEOUT_ERR_CLR    0x10U   // PDI Access Timeout Error Clear
-#define ESCSS_INTR_CLR_MDEVICE_RESET_CLR  0x20U   // EtherCAT MDEVICE Reset Clear
+#define ESCSS_INTR_CLR_SYNC0_CLR           0x1U    // SYNC0 feature Clear
+#define ESCSS_INTR_CLR_SYNC1_CLR           0x2U    // SYNC1 feature Clear
+#define ESCSS_INTR_CLR_IRQ_CLR             0x4U    // EtherCATSS IRQ Clear
+#define ESCSS_INTR_CLR_DMA_DONE_CLR        0x8U    // DMA Done Clear
+#define ESCSS_INTR_CLR_TIMEOUT_ERR_CLR     0x10U   // PDI Access Timeout Error Clear
+#define ESCSS_INTR_CLR_MDEVICE_RESET_CLR   0x20U   // EtherCAT MainDevice Reset Clear
 
 //*************************************************************************************************
 //
 // The following are defines for the bit fields in the ESCSS_INTR_SET register
 //
 //*************************************************************************************************
-#define ESCSS_INTR_SET_SYNC0_SET          0x1U      // SYNC0 Set Emulate
-#define ESCSS_INTR_SET_SYNC1_SET          0x2U      // SYNC1 Set Emulate
-#define ESCSS_INTR_SET_IRQ_SET            0x4U      // EtherCATSS IRQ Set Emulate
-#define ESCSS_INTR_SET_DMA_DONE_SET       0x8U      // DMA Done Set Emulate
-#define ESCSS_INTR_SET_TIMEOUT_ERR_SET    0x10U     // PDI Access Timeout Error Set Emulate
-#define ESCSS_INTR_SET_MDEVICE_RESET_SET  0x20U     // EtherCAT MDEVICE Reset Emulate
-#define ESCSS_INTR_SET_WRITE_KEY_S        8U
-#define ESCSS_INTR_SET_WRITE_KEY_M        0xFF00U   // Key to enable writing lock
+#define ESCSS_INTR_SET_SYNC0_SET           0x1U      // SYNC0 Set Emulate
+#define ESCSS_INTR_SET_SYNC1_SET           0x2U      // SYNC1 Set Emulate
+#define ESCSS_INTR_SET_IRQ_SET             0x4U      // EtherCATSS IRQ Set Emulate
+#define ESCSS_INTR_SET_DMA_DONE_SET        0x8U      // DMA Done Set Emulate
+#define ESCSS_INTR_SET_TIMEOUT_ERR_SET     0x10U     // PDI Access Timeout Error Set Emulate
+#define ESCSS_INTR_SET_MDEVICE_RESET_SET   0x20U     // EtherCAT MainDevice Reset Emulate
+#define ESCSS_INTR_SET_WRITE_KEY_S         8U
+#define ESCSS_INTR_SET_WRITE_KEY_M         0xFF00U   // Key to enable writing lock
 
 //*************************************************************************************************
 //

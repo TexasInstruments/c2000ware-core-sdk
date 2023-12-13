@@ -1,0 +1,33 @@
+<projectSpec>
+  <project
+        name="28004x_pmbus_i2c_eeprom"
+        device="TMS320F280049C"
+        cgtVersion="22.6.0.LTS"
+        products="c2000ware_software_package"
+        outputFormat="ELF"
+        launchWizard="False"
+        linkerCommandFile=""
+        >
+    <configuration name="CPU1_RAM" compilerBuildOptions="--opt_level=2 -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT}  -ml -mt --define=DEBUG --define=PMBUS_F28004x -v28 --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu0 --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 --define RAM" />
+    <configuration name="CPU1_FLASH" compilerBuildOptions="--opt_level=2 -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT}  -ml -mt --define=DEBUG --define=PMBUS_F28004x --define=_FLASH -v28 --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu0 --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 " />
+    <configuration name="CPU1_LAUNCHXL_RAM" compilerBuildOptions="--opt_level=2 -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT}  -ml -mt --define=DEBUG --define=PMBUS_F28004x --define=_LAUNCHXL_F280049C -v28 --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu0 --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 --define RAM" />
+    <configuration name="CPU1_LAUNCHXL_FLASH" compilerBuildOptions="--opt_level=2 -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT}  -ml -mt --define=DEBUG --define=PMBUS_F28004x --define=_LAUNCHXL_F280049C --define=_FLASH -v28 --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu0 --diag_warning=225  --diag_suppress=10063 --display_error_number" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 " />
+    
+    <pathVariable name="C2000WARE_DEVICE_SUPPORT_ROOT" path="../../../../../../device_support/f28004x/" scope="project" />
+    <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../../../../driverlib/f28004x/driverlib/" scope="project" />
+    
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/include/driverlib.h" targetDirectory="device" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/include/device.h" targetDirectory="device" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/source/device.c" targetDirectory="device" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/source/f28004x_codestartbranch.asm" targetDirectory="device" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/targetConfigs/TMS320F280049C.ccxml" targetDirectory="targetConfigs" applicableConfigurations="CPU1_RAM,CPU1_FLASH" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/targetConfigs/TMS320F280049C_LaunchPad.ccxml" targetDirectory="targetConfigs" applicableConfigurations="CPU1_LAUNCHXL_RAM,CPU1_LAUNCHXL_FLASH" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/cmd/28004x_generic_ram_lnk.cmd" targetDirectory="" applicableConfigurations="CPU1_RAM,CPU1_LAUNCHXL_RAM" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/cmd/28004x_generic_flash_lnk.cmd" targetDirectory="" applicableConfigurations="CPU1_FLASH,CPU1_LAUNCHXL_FLASH" />
+    <file action="link" path="C2000WARE_DLIB_ROOT/ccs/Debug/driverlib.lib" targetDirectory="" />
+    <file action="copy" path="C2000WARE_DLIB_ROOT" targetDirectory="device" excludeFromBuild="True"/>
+    <file action="copy" path="../common/source/pmbus_i2c_eeprom_example_main.c" targetDirectory="" />
+	<file action="copy" path="../common/source/pmbus_eeprom.c" targetDirectory="" />
+	<file action="copy" path="../common/include/pmbus_eeprom.h" targetDirectory="" />
+  </project>
+</projectSpec>

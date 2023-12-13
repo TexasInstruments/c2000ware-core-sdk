@@ -1,0 +1,74 @@
+%%{
+    let inst      = args[0];
+    let tileName  = args[1];
+    let inputs    = args[2];
+    let name      = tileName + "_BOUNDARY";
+    let color     = 'black';
+    let templ     = system.getTemplate;
+    let Common    = system.getScript("/utilities/clb_tool/clb_syscfg/source/Common.js");
+    let colonName = Common.colonName;
+
+    function arrow(cfg) {
+        switch (cfg) {
+            case 'none':         return '&#x2192;';
+            case 'rising edge' : return '&#x2191;';
+            case 'falling edge': return '&#x2193;';
+            case 'both edges'  : return '&#x2195;';
+        }
+    }
+%%}
+    `name` [label= <<TABLE BORDER='0' CELLBORDER='1' CELLSPACING='0'>
+                       <TR><TD><b>`name`</b></TD></TR>
+                       <TR><TD PORT='in0'>boundaryInput0  `arrow(inst.in_edge0)`</TD></TR>
+                       <TR><TD PORT='in1'>boundaryInput1  `arrow(inst.in_edge1)`</TD></TR>
+                       <TR><TD PORT='in2'>boundaryInput2  `arrow(inst.in_edge2)`</TD></TR>
+                       <TR><TD PORT='in3'>boundaryInput3  `arrow(inst.in_edge3)`</TD></TR>
+                       <TR><TD PORT='in4'>boundaryInput4  `arrow(inst.in_edge4)`</TD></TR>
+                       <TR><TD PORT='in5'>boundaryInput5  `arrow(inst.in_edge5)`</TD></TR>
+                       <TR><TD PORT='in6'>boundaryInput6  `arrow(inst.in_edge6)`</TD></TR>
+                       <TR><TD PORT='in7'>boundaryInput7  `arrow(inst.in_edge7)`</TD></TR>
+                   </TABLE>> color=`color` shape=plaintext]
+
+    `name`_OUT [label= <<TABLE BORDER='0' CELLBORDER='1' CELLSPACING='0'>
+                       <TR><TD><b>`name`</b></TD></TR>
+                       <TR><TD PORT='out0'>out0</TD></TR>
+                       <TR><TD PORT='out1'>out1</TD></TR>
+                       <TR><TD PORT='out2'>out2</TD></TR>
+                       <TR><TD PORT='out3'>out3</TD></TR>
+                       <TR><TD PORT='out4'>out4</TD></TR>
+                       <TR><TD PORT='out5'>out5</TD></TR>
+                       <TR><TD PORT='out6'>out6</TD></TR>
+                       <TR><TD PORT='out7'>out7</TD></TR>
+                   </TABLE>> color=`color` shape=plaintext]
+
+% for (let idx = 0; idx < 8; idx++) {
+%    if (inst['boundaryInput'+idx] == 'squareWave') {
+`templ('squareWave.dot.xdt')(name+'.in'+idx, inst['in_period'+idx], inst['in_duty'+idx])`
+%    }
+%    if (inst['boundaryInput'+idx] == 'customWave') {
+`templ('customWave.dot.xdt')(name+'.in'+idx)`
+%    }
+% }
+
+% for (let j = 0; j < inputs.length; ++j) {
+%     let inName = inputs[j].replace("in", "boundaryInput");
+%     let inFrom = inst[inputs[j]];
+%     if (inFrom == 'squareWave') continue;
+%     if (inFrom == 'customWave') continue;
+%     if (inFrom == 'None')       continue;
+%     if (inFrom == '0')
+%     {
+    `colonName(inFrom)`:e -> `name`:`inName`:w [color=`color`]
+%     }
+%     if (inFrom == '1')
+%     {
+    `colonName(inFrom)`:e -> `name`:`inName`:w [color=`color`]
+%     }
+%     if (inFrom.includes('tileOutput'))
+%     {
+%          let tileOutputVal = inst["tileSelect"+j] + "_" + inst["tileOutputSelect"+j];
+%          inFrom = inFrom + "_" + tileOutputVal;
+%          inFrom = inFrom.replace('BOUNDARY','BOUNDARY_OUT');
+    `colonName(inFrom)`:e -> `name`:`inName`:w [color=`color`]
+%     }
+% }

@@ -1,0 +1,13 @@
+% var moduleName = "FPUfastRTS"
+% let Common   = system.getScript("/driverlib/Common.js");
+% var module = system.modules['/libraries/math/FPUfastRTS' + '/' + moduleName + '.js'];
+% var instance = module.$instances[0];
+%
+%if(instance.fpuType == "FPU32")
+%{
+-l"libraries/math/FPUfastRTS/c28/lib/rts2800_fpu32_fast_supplement.lib"
+%}
+%else if(instance.fpuType == "FPU64")
+%{
+-l"libraries/math/FPUfastRTS/c28/lib/rts2800_fpu64_fast_supplement.lib"
+%}

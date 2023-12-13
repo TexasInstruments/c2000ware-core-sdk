@@ -988,11 +988,11 @@ FSI_setTxSoftwareFrameSize(uint32_t base, uint16_t nWords)
     // Check the arguments.
     //
     ASSERT(FSI_isTxBaseValid(base));
-    ASSERT((nWords != 0) && ((nWords - 1) <= FSI_MAX_LEN_NWORDS_DATA));
+    ASSERT((nWords != 0U) && ((nWords - 1U) <= FSI_MAX_LEN_NWORDS_DATA));
 
     HWREGH(base + FSI_O_TX_FRAME_CTRL) = (HWREGH(base + FSI_O_TX_FRAME_CTRL) &
                                          (~FSI_TX_FRAME_CTRL_N_WORDS_M)) |
-                                         ((nWords - 1) <<
+                                         ((nWords - 1U) <<
                                           FSI_TX_FRAME_CTRL_N_WORDS_S);
 }
 
@@ -1643,7 +1643,7 @@ FSI_getTxBufferAddress(uint32_t base)
     //
     ASSERT(FSI_isTxBaseValid(base));
 
-    return(base + FSI_O_TX_BUF_BASE(0));
+    return(base + FSI_O_TX_BUF_BASE(0U));
 }
 
 //*****************************************************************************
@@ -1914,12 +1914,12 @@ FSI_setRxSoftwareFrameSize(uint32_t base, uint16_t nWords)
     // Check the arguments.
     //
     ASSERT(FSI_isRxBaseValid(base));
-    ASSERT((nWords != 0) && ((nWords - 1) <= FSI_MAX_LEN_NWORDS_DATA));
+    ASSERT((nWords != 0U) && ((nWords - 1U) <= FSI_MAX_LEN_NWORDS_DATA));
 
     EALLOW;
     HWREGH(base + FSI_O_RX_OPER_CTRL) = (HWREGH(base + FSI_O_RX_OPER_CTRL) &
                                          (~FSI_RX_OPER_CTRL_N_WORDS_M)) |
-                                        ((nWords - 1) <<
+                                        ((nWords - 1U) <<
                                          FSI_RX_OPER_CTRL_N_WORDS_S);
     EDIS;
 }
@@ -2669,7 +2669,7 @@ FSI_getRxBufferAddress(uint32_t base)
     //
     ASSERT(FSI_isRxBaseValid(base));
 
-    return(base + FSI_O_RX_BUF_BASE(0));
+    return(base + FSI_O_RX_BUF_BASE(0U));
 }
 
 //*****************************************************************************

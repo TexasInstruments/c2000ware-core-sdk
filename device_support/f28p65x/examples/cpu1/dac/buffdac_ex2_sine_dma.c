@@ -86,6 +86,7 @@
 // Defines
 //
 #define REFERENCE             REFERENCE_VDAC
+
 #define CPUFREQ_MHZ           200
 #define DAC_NUM               DACA
 #define PI                    3.14159265

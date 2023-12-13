@@ -1,0 +1,63 @@
+%%{
+    let inst      = args[0];
+    let tileName  = args[1];
+    let instNum   = args[2];
+    let inputs    = args[3];
+    let name      = tileName + "_HLC";
+    let Common    = system.getScript("/utilities/clb_tool/clb_syscfg/source/Common.js");
+%%}
+    DEVICE_CLB_HLC         `name`;
+% for (let j = 0; j < inputs.length; ++j) {
+%    let inName = inputs[j];
+    sc_signal<sc_uint<32> >     sig_`name`_`inName`;
+% }
+	sc_signal<sc_uint<12> >     sig_`name`_P_curr_instr;
+
+    sc_signal<sc_uint<32> >     sig_`name`_P_comm_R0_out;
+    sc_signal<sc_uint<32> >     sig_`name`_P_comm_R1_out;
+    sc_signal<sc_uint<32> >     sig_`name`_P_comm_R2_out;
+    sc_signal<sc_uint<32> >     sig_`name`_P_comm_R3_out;
+
+    sc_signal<sc_uint<2> >      sig_`name`_P_fifo_read_ptr;
+    sc_signal<sc_uint<2> >      sig_`name`_P_fifo_write_ptr;
+
+    sc_signal<sc_uint<32> >     sig_`name`_P_pull_fifo0_out;//There are 2 FIFOs in CLB, push and pull
+    sc_signal<sc_uint<32> >     sig_`name`_P_pull_fifo1_out;
+    sc_signal<sc_uint<32> >     sig_`name`_P_pull_fifo2_out;
+    sc_signal<sc_uint<32> >     sig_`name`_P_pull_fifo3_out;
+
+    sc_signal<sc_uint<32> >     sig_`name`_P_push_fifo0_out;
+    sc_signal<sc_uint<32> >     sig_`name`_P_push_fifo1_out;
+    sc_signal<sc_uint<32> >     sig_`name`_P_push_fifo2_out;
+    sc_signal<sc_uint<32> >     sig_`name`_P_push_fifo3_out;
+
+    sc_signal<bool>             sig_`name`_P_fifo_underflow;
+    sc_signal<bool>             sig_`name`_P_fifo_overflow;
+
+    sc_signal<bool>             sig_`name`_P_fifo_refill_enable;
+
+    sc_signal<bool>             sig_`name`_P_push_data_en;
+    sc_signal<sc_uint<32> >     sig_`name`_P_push_data_out;
+    sc_signal<bool>             sig_`name`_P_pull_data_en;
+    sc_signal<bool>             sig_`name`_P_set_intr_flag;
+    sc_signal<sc_uint<32> >     sig_`name`_P_intr_val;
+
+%   for (let idx = 0; idx < 32; idx++) {
+	sc_signal<sc_uint<32> >     sig_`name`_hlc_instr_`idx`;
+%	}
+	
+    sc_signal<sc_uint<32> >     sig_`tileName`_COUNTER_hlc_count_load_val;
+#if TYPE == 2 || TYPE == 3
+    sc_signal<bool>             sig_`name`_ae0;
+    sc_signal<bool>             sig_`name`_ae1;
+    sc_signal<bool>             sig_`name`_ae2;
+    sc_signal<bool>             sig_`name`_ae3;
+#endif
+
+#if TYPE == 3
+    sc_signal<bool>             sig_`name`_RECONFIG_PIPELINE_EN;
+    sc_signal<bool>             sig_`name`_SPI_EN;
+    sc_signal<sc_uint<5> >      sig_`name`_SPI_EVENT_TRIGGER;
+    sc_signal<sc_uint<5> >      sig_`name`_SPI_SHIFT_VAL;
+    sc_signal<sc_uint<16> >     sig_`name`_SPI_EXPORT_RXBUFF;
+#endif

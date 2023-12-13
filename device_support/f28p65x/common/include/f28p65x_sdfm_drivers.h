@@ -1,6 +1,6 @@
 //###########################################################################
 //
-// FILE:   f2838x_sdfm_drivers.h
+// FILE:   f28p65x_sdfm_drivers.h
 //
 // TITLE:  Defines and Macros for the SDFM driver Controller
 //
@@ -40,8 +40,8 @@
 // $
 //###########################################################################
 
-#ifndef F2838x_SDFM_DRIVERS_H
-#define F2838x_SDFM_DRIVERS_H
+#ifndef F28P65x_SDFM_DRIVERS_H
+#define F28P65x_SDFM_DRIVERS_H
 
 
 #ifdef __cplusplus
@@ -523,7 +523,7 @@ extern void Sdfm_clearFlagRegister(Uint16 sdfmNumber,
 }
 #endif /* extern "C" */
 
-#endif   // - end of F2838x_SDFM_DRIVERS_H
+#endif   // - end of F28P65x_SDFM_DRIVERS_H
 
 //
 // End of file

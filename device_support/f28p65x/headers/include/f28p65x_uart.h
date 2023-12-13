@@ -295,6 +295,28 @@ union UARTDMACTL_REG {
     struct  UARTDMACTL_BITS  bit;
 };
 
+struct UART_GLB_INT_FLG_BITS {          // bits description
+    Uint16 INT_FLG:1;                   // 0 Global Interrupt Flag for UART Interrupt
+    Uint16 rsvd1:15;                    // 15:1 Reserved
+    Uint16 rsvd2:16;                    // 31:16 Reserved
+};
+
+union UART_GLB_INT_FLG_REG {
+    Uint32  all;
+    struct  UART_GLB_INT_FLG_BITS  bit;
+};
+
+struct UART_GLB_INT_CLR_BITS {          // bits description
+    Uint16 INT_FLG_CLR:1;               // 0 Global Interrupt flag clear for UART Interrupt
+    Uint16 rsvd1:15;                    // 15:1 Reserved
+    Uint16 rsvd2:16;                    // 31:16 Reserved
+};
+
+union UART_GLB_INT_CLR_REG {
+    Uint32  all;
+    struct  UART_GLB_INT_CLR_BITS  bit;
+};
+
 struct UART9BITADDR_BITS {              // bits description
     Uint16 ADDR:8;                      // 7:0 Self Address for 9-Bit Mode
     Uint16 rsvd1:7;                     // 14:8 Reserved
@@ -481,12 +503,15 @@ struct UART_REGS {
     union   UARTMIS_REG                      UARTMIS;                      // UART Masked Interrupt Status
     union   UARTICR_REG                      UARTICR;                      // UART Interrupt Clear
     union   UARTDMACTL_REG                   UARTDMACTL;                   // UART DMA Control
-    Uint16                                   rsvd3[44];                    // Reserved
+    Uint16                                   rsvd3[28];                    // Reserved
+    union   UART_GLB_INT_FLG_REG             UART_GLB_INT_FLG;             // UART Global Interrupt Flag Register
+    union   UART_GLB_INT_CLR_REG             UART_GLB_INT_CLR;             // UART Global Interrupt Clear Register
+    Uint16                                   rsvd4[12];                    // Reserved
     union   UART9BITADDR_REG                 UART9BITADDR;                 // UART 9-Bit Self Address
     union   UART9BITAMASK_REG                UART9BITAMASK;                // UART 9-Bit Self Address Mask
-    Uint16                                   rsvd4[1930];                  // Reserved
+    Uint16                                   rsvd5[1930];                  // Reserved
     union   UARTPP_REG                       UARTPP;                       // UART Peripheral Properties
-    Uint16                                   rsvd5[6];                     // Reserved
+    Uint16                                   rsvd6[6];                     // Reserved
     union   UARTPeriphID4_REG                UARTPeriphID4;                // UART Peripheral Identification 4
     union   UARTPeriphID5_REG                UARTPeriphID5;                // UART Peripheral Identification 5
     union   UARTPeriphID6_REG                UARTPeriphID6;                // UART Peripheral Identification 6

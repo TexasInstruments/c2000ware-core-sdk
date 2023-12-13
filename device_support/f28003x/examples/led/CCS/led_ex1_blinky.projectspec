@@ -9,7 +9,7 @@
         linkerCommandFile=""
         >
     <configuration name="CPU1_RAM" compilerBuildOptions="--opt_level=off -I${C2000WARE_COMMON_INCLUDE} -I${C2000WARE_HEADERS_INCLUDE} -v28 -ml -mt --cla_support=cla2 --cla_background_task=on --float_support=fpu32 --gen_func_subsections=on --diag_warning=225 --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x200 --heap_size=0x100 --define=RAM "/>
-    <configuration name="CPU1_FLASH" compilerBuildOptions="--opt_level=off -I${C2000WARE_COMMON_INCLUDE} -I${C2000WARE_HEADERS_INCLUDE} -v28 -ml -mt --cla_support=cla2 --cla_background_task=on --float_support=fpu32 --gen_func_subsections=on  --define=_FLASH --diag_warning=225 --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x200 --heap_size=0x100 --define=RAM "/>
+    <configuration name="CPU1_FLASH" compilerBuildOptions="--opt_level=off -I${C2000WARE_COMMON_INCLUDE} -I${C2000WARE_HEADERS_INCLUDE} -v28 -ml -mt --cla_support=cla2 --cla_background_task=on --float_support=fpu32 --gen_func_subsections=on  --define=_FLASH --diag_warning=225 --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x200 --heap_size=0x100 --define=_FLASH "/>
     <pathVariable name="C2000WARE_COMMON_INCLUDE" path="../../../common/include/" scope="project" />
     <pathVariable name="C2000WARE_HEADERS_INCLUDE" path="../../../headers/include/" scope="project" />
     <file action="copy" path="../../../common/source/f28003x_codestartbranch.asm" targetDirectory="" />

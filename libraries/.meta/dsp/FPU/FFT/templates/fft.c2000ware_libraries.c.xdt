@@ -1,0 +1,168 @@
+%//Auto set phase function for CFFT64/RFFT64
+% let Common   = system.getScript("/driverlib/Common.js");
+% var currnetSDKProductPath = system.getProducts()[0].path
+% var sdkPath = system.utils.path.join(currnetSDKProductPath + "../../../")
+% sdkPath = sdkPath.replace(new RegExp('\\' + system.utils.path.sep, 'g'), '/')
+% 
+% var moduleName = "FFT"
+% var module = system.modules['/libraries/dsp/FPU/FFT' + '/' + moduleName + '.js'];
+%
+% var moduleNameCFFT = "CFFT"
+% var moduleCFFT = system.modules['/libraries/dsp/FPU/FFT' + '/' + moduleNameCFFT + '.js'];
+% var moduleNameRFFT = "RFFT"
+% var moduleRFFT = system.modules['/libraries/dsp/FPU/FFT' + '/' + moduleNameRFFT + '.js'];
+%
+void FFT_init()
+{
+%if(moduleCFFT != null)
+%{
+% var instancesCFFT = moduleCFFT.$instances;
+%for(let i = 0; i < instancesCFFT.length; i++)
+%{
+    `instancesCFFT[i].$name`_init();
+%}
+%}
+%if(moduleRFFT != null)
+%{
+% var instancesRFFT = moduleRFFT.$instances;
+%for(let i = 0; i < instancesRFFT.length; i++)
+%{
+    `instancesRFFT[i].$name`_init();
+%}
+%}
+}
+
+%if(module != null)
+%{
+% var instance = module.$instances[0];
+%
+%if(moduleCFFT != null)
+%{
+% var instancesCFFT = moduleCFFT.$instances;
+%
+%for(let i = 0; i < instancesCFFT.length; i++)
+%{
+%if(instance.fpuType == "FPU32")
+%{
+CFFT_F32_STRUCT `instancesCFFT[i].$name`_obj;
+CFFT_F32_STRUCT_Handle `instancesCFFT[i].$name`_handle = &`instancesCFFT[i].$name`_obj;
+
+void `instancesCFFT[i].$name`_init()
+{
+    CFFT_f32_setInputPtr(`instancesCFFT[i].$name`_handle, `instancesCFFT[i].inPtr`);
+    CFFT_f32_setOutputPtr(`instancesCFFT[i].$name`_handle, `instancesCFFT[i].outPtr`);
+	CFFT_f32_setStages(`instancesCFFT[i].$name`_handle, `instancesCFFT[i].$name`_CFFT_NUM_STAGES);
+	CFFT_f32_setFFTSize(`instancesCFFT[i].$name`_handle, `instancesCFFT[i].$name`_CFFT_SIZE);
+%if(instancesCFFT[i].sincosFunction == true)
+%{
+	CFFT_f32_setTwiddlesPtr(`instancesCFFT[i].$name`_handle, CFFT_f32_twiddleFactors);
+%}
+%else
+%{
+	CFFT_f32_setTwiddlesPtr(`instancesCFFT[i].$name`_handle, `instancesCFFT[i].coeffPtr`);
+	CFFT_f32_sincostable(`instancesCFFT[i].$name`_handle);
+%}
+}
+%}
+%else if(instance.fpuType == "FPU64")
+%{
+CFFT_f64_Struct `instancesCFFT[i].$name`_obj;
+CFFT_f64_Handle `instancesCFFT[i].$name`_handle = &`instancesCFFT[i].$name`_obj;
+
+void `instancesCFFT[i].$name`_init()
+{
+    CFFT_f64_setInputPtr(`instancesCFFT[i].$name`_handle, `instancesCFFT[i].inPtr`);
+    CFFT_f64_setOutputPtr(`instancesCFFT[i].$name`_handle, `instancesCFFT[i].outPtr`);
+    CFFT_f64_setTwiddlesPtr(`instancesCFFT[i].$name`_handle, FPU64CFFTtwiddleFactors);
+	CFFT_f64_setStages(`instancesCFFT[i].$name`_handle, `instancesCFFT[i].$name`_CFFT_NUM_STAGES);
+	CFFT_f64_setFFTSize(`instancesCFFT[i].$name`_handle, `instancesCFFT[i].$name`_CFFT_SIZE);
+    CFFT_f64_setInitFunction(`instancesCFFT[i].$name`_handle, NULL);
+    CFFT_f64_setCalcFunction(`instancesCFFT[i].$name`_handle, (v_pfn_v)`instancesCFFT[i].calcFunction`);
+    CFFT_f64_setMagFunction(`instancesCFFT[i].$name`_handle, (v_pfn_v)`instancesCFFT[i].magFunction`);
+    CFFT_f64_setPhaseFunction(`instancesCFFT[i].$name`_handle, (v_pfn_v)CFFT_f64_phase);
+}
+
+%}
+%}
+%}
+%if(moduleRFFT != null)
+%{
+% var instancesRFFT = moduleRFFT.$instances;
+%
+%for(let i = 0; i < instancesRFFT.length; i++)
+%{
+%if(instance.fpuType == "FPU32")
+%{
+RFFT_F32_STRUCT  `instancesRFFT[i].$name`_obj;
+RFFT_F32_STRUCT_Handle `instancesRFFT[i].$name`_handle = &`instancesRFFT[i].$name`_obj;
+%if(instancesRFFT[i].adcEnable == true)
+%{
+RFFT_ADC_F32_STRUCT `instancesRFFT[i].$name`_adc_obj;
+RFFT_ADC_F32_STRUCT_Handle `instancesRFFT[i].$name`_adc_handle = &`instancesRFFT[i].$name`_adc_obj;
+%}
+
+void `instancesRFFT[i].$name`_init()
+{
+    RFFT_f32_setInputPtr(`instancesRFFT[i].$name`_handle, `instancesRFFT[i].inPtr`);
+    RFFT_f32_setOutputPtr(`instancesRFFT[i].$name`_handle, `instancesRFFT[i].outPtr`);
+	RFFT_f32_setStages(`instancesRFFT[i].$name`_handle, `instancesRFFT[i].$name`_RFFT_NUM_STAGES);
+	RFFT_f32_setFFTSize(`instancesRFFT[i].$name`_handle, `instancesRFFT[i].$name`_RFFT_SIZE);
+%if(instancesRFFT[i].magPtr != "")
+%{
+    RFFT_f32_setMagnitudePtr(`instancesRFFT[i].$name`_handle, `instancesRFFT[i].magPtr`);
+%}
+%if(instancesRFFT[i].phasPtr != "")
+%{
+    RFFT_f32_setPhasePtr(`instancesRFFT[i].$name`_handle, `instancesRFFT[i].phasPtr`);
+%}
+%if(instancesRFFT[i].sincosFunction == true)
+%{
+	RFFT_f32_setTwiddlesPtr(`instancesRFFT[i].$name`_handle, RFFT_f32_twiddleFactors);
+%}
+%else
+%{
+	RFFT_f32_setTwiddlesPtr(`instancesRFFT[i].$name`_handle, `instancesRFFT[i].coeffPtr`);
+	RFFT_f32_sincostable(`instancesRFFT[i].$name`_handle);
+%}
+%if(instancesRFFT[i].adcEnable == true)
+%{
+    RFFT_ADC_f32_setInBufPtr(`instancesRFFT[i].$name`_adc_handle, `instancesRFFT[i].inAdcPtr`);
+    RFFT_ADC_f32_setTailPtr(`instancesRFFT[i].$name`_adc_handle, `instancesRFFT[i].outPtr`);
+%}
+}
+
+%}
+%else if(instance.fpuType == "FPU64")
+%{
+CFFT_f64_Struct `instancesRFFT[i].$name`_obj;
+CFFT_f64_Handle `instancesRFFT[i].$name`_handle = &`instancesRFFT[i].$name`_obj;
+%if(instancesRFFT[i].adcEnable == true)
+%{
+CFFT_ADC_f64_Struct `instancesRFFT[i].$name`_adc_obj;
+CFFT_ADC_f64_Handle `instancesRFFT[i].$name`_adc_handle = &`instancesRFFT[i].$name`_adc_obj;
+%}
+
+void `instancesRFFT[i].$name`_init()
+{
+    CFFT_f64_setInputPtr(`instancesRFFT[i].$name`_handle, `instancesRFFT[i].inPtr`);
+    CFFT_f64_setCurrInputPtr(`instancesRFFT[i].$name`_handle, `instancesRFFT[i].inPtr`);
+    CFFT_f64_setOutputPtr(`instancesRFFT[i].$name`_handle, `instancesRFFT[i].outPtr`);
+    CFFT_f64_setCurrOutputPtr(`instancesRFFT[i].$name`_handle, `instancesRFFT[i].outPtr`);
+	CFFT_f64_setStages(`instancesRFFT[i].$name`_handle, `instancesRFFT[i].$name`_RFFT_NUM_STAGES);
+	CFFT_f64_setFFTSize(`instancesRFFT[i].$name`_handle, `instancesRFFT[i].$name`_RFFT_SIZE);
+    CFFT_f64_setTwiddlesPtr(`instancesRFFT[i].$name`_handle, FPU64RFFTtwiddleFactors);
+    CFFT_f64_setInitFunction(`instancesRFFT[i].$name`_handle, NULL);
+    CFFT_f64_setCalcFunction(`instancesRFFT[i].$name`_handle, (v_pfn_v)`instancesRFFT[i].calcFunction`);
+    CFFT_f64_setMagFunction(`instancesRFFT[i].$name`_handle, (v_pfn_v)`instancesRFFT[i].magFunction`);
+    CFFT_f64_setPhaseFunction(`instancesRFFT[i].$name`_handle, (v_pfn_v)RFFT_f64_phase);
+%if(instancesRFFT[i].adcEnable == true)
+%{
+    CFFT_ADC_f64_setInBufPtr(`instancesRFFT[i].$name`_adc_handle, `instancesRFFT[i].inAdcPtr`);
+    CFFT_ADC_f64_setTailPtr(`instancesRFFT[i].$name`_adc_handle, `instancesRFFT[i].outPtr`);
+%}
+}
+%}
+%}
+%}
+%}
+%

@@ -118,10 +118,12 @@ SysCtl_pollX1Counter(void)
             // input clock source is valid.
             //
             localCounter++;
-            if(localCounter>2500000)
+            if(localCounter>2500000U)
             {
                 if(loopCount == 3U)
+                {
                     status = false;
+                }
                 break;
             }
         }
@@ -896,7 +898,7 @@ SysCtl_selectXTAL(void)
     // If a missing clock failure was detected, try waiting for the X1 counter
     // to saturate again. Consider modifying this code to add a 10ms timeout.
     //
-    while(SysCtl_isMCDClockFailureDetected() && (status == false) &&
+    while(SysCtl_isMCDClockFailureDetected() && (status == FALSE) &&
           (loopCount < 4U))
     {
         //
@@ -920,7 +922,7 @@ SysCtl_selectXTAL(void)
         EDIS;
         loopCount ++;
     }
-    while(status == false)
+    while(status == FALSE)
     {         
         // If code is stuck here, it means crystal has not started.  
         //Replace crystal or update code below to take necessary actions if 
@@ -966,7 +968,7 @@ SysCtl_selectXTALSingleEnded(void)
     // Something is wrong with the oscillator module. Replace the ESTOP0 with
     // an appropriate error-handling routine.
     //
-    while(SysCtl_isMCDClockFailureDetected() && (status == false))
+    while(SysCtl_isMCDClockFailureDetected() && (status == FALSE))
     {
         // If code is stuck here, it means crystal has not started.  
         //Replace crystal or update code below to take necessary actions if 
@@ -1074,7 +1076,7 @@ SysCtl_selectOscSourceAuxPLL(uint32_t oscSource)
             // Wait for the X1 clock to saturate
             //
             status = SysCtl_pollX1Counter();
-            while(status == false)
+            while(status == FALSE)
             {
                 // If code is stuck here, it means crystal has not started.
                 //Replace crystal or update code below to take necessary actions if
@@ -1102,7 +1104,7 @@ SysCtl_selectOscSourceAuxPLL(uint32_t oscSource)
             // Wait for the X1 clock to saturate
             //
             status = SysCtl_pollX1Counter();
-            while(status == false)
+            while(status == FALSE)
             {
                 // If code is stuck here, it means crystal has not started.
                 //Replace crystal or update code below to take necessary actions if

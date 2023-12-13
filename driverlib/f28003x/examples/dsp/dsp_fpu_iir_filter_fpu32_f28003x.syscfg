@@ -1,0 +1,26 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28003x" --package "100PZ" --part "F28003x_100PZ" --context "system" --product "C2000WARE@4.02.00.00"
+ * @versions {"tool":"1.12.0+2406"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const Filter  = scripting.addModule("/libraries/dsp/FPU/Filter/Filter.js", {}, false);
+const Filter1 = Filter.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+Filter1.$name              = "myFILTER0";
+Filter1.IIR.create(1);
+Filter1.IIR[0].$name       = "myIIR0";
+Filter1.IIR[0].coeffPtrA   = "denCoeffs";
+Filter1.IIR[0].coeffPtrB   = "numCoeffs";
+Filter1.IIR[0].dBuffPtr    = "delayBuff";
+Filter1.IIR[0].inPtr       = "inBuff";
+Filter1.IIR[0].outPtr      = "outBuff";
+Filter1.IIR[0].scalePtr    = "biquadPtr";
+Filter1.IIR[0].filterOrder = 6;

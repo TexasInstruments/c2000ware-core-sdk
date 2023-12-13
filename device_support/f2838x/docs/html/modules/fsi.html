@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v4.02.00.00
+                v5.01.00.00
               </div>
             
           
@@ -388,8 +388,8 @@ configuring and using the FSI module.</p>
 <p>Three kind of resets can be made- 1) reset entire Tx Module 2) reset only TX clock 3) reset ping timeout counter </p>
 <p><em>Values:</em></p>
 <dl class="cpp enumerator">
-<dt id="_CPPv4N22FSI_TxSubmoduleInReset24FSI_TX_MASTER_CORE_RESETE">
-<span id="_CPPv3N22FSI_TxSubmoduleInReset24FSI_TX_MASTER_CORE_RESETE"></span><span id="_CPPv2N22FSI_TxSubmoduleInReset24FSI_TX_MASTER_CORE_RESETE"></span><span class="target" id="group__fsi__api_1gga26cbb2f6bf635add87f9ec5a1f26dd7da79c3b4b11d014bcc375be589bf152738"></span><em class="property">enumerator </em><code class="sig-name descname">FSI_TX_MASTER_CORE_RESET</code> = 0x0000U<a class="headerlink" href="#_CPPv4N22FSI_TxSubmoduleInReset24FSI_TX_MASTER_CORE_RESETE" title="Permalink to this definition">¶</a><br /></dt>
+<dt id="_CPPv4N22FSI_TxSubmoduleInReset22FSI_TX_MAIN_CORE_RESETE">
+<span id="_CPPv3N22FSI_TxSubmoduleInReset22FSI_TX_MAIN_CORE_RESETE"></span><span id="_CPPv2N22FSI_TxSubmoduleInReset22FSI_TX_MAIN_CORE_RESETE"></span><span class="target" id="group__fsi__api_1gga26cbb2f6bf635add87f9ec5a1f26dd7daf1f0e46f61f2a254cb2f9e3b67d21fe3"></span><em class="property">enumerator </em><code class="sig-name descname">FSI_TX_MAIN_CORE_RESET</code> = 0x0000U<a class="headerlink" href="#_CPPv4N22FSI_TxSubmoduleInReset22FSI_TX_MAIN_CORE_RESETE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
@@ -630,11 +630,11 @@ configuring and using the FSI module.</p>
 <dt id="_CPPv422FSI_RxSubmoduleInReset">
 <span id="_CPPv322FSI_RxSubmoduleInReset"></span><span id="_CPPv222FSI_RxSubmoduleInReset"></span><span class="target" id="group__fsi__api_1ga62ae7d53e26af13e7d02213a1089fdbc"></span><em class="property">enum </em><code class="sig-name descname">FSI_RxSubmoduleInReset</code><a class="headerlink" href="#_CPPv422FSI_RxSubmoduleInReset" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>List of RX modules that can be reset, can be used with reset APIs. </p>
-<p>Three submodules can be reset- 1) RX master core 2) frame watchdog counter 3) ping watchdog counter </p>
+<p>Three submodules can be reset- 1) RX main core 2) frame watchdog counter 3) ping watchdog counter </p>
 <p><em>Values:</em></p>
 <dl class="cpp enumerator">
-<dt id="_CPPv4N22FSI_RxSubmoduleInReset24FSI_RX_MASTER_CORE_RESETE">
-<span id="_CPPv3N22FSI_RxSubmoduleInReset24FSI_RX_MASTER_CORE_RESETE"></span><span id="_CPPv2N22FSI_RxSubmoduleInReset24FSI_RX_MASTER_CORE_RESETE"></span><span class="target" id="group__fsi__api_1gga62ae7d53e26af13e7d02213a1089fdbcaa7685e80d22fba2a755472418f97bcfa"></span><em class="property">enumerator </em><code class="sig-name descname">FSI_RX_MASTER_CORE_RESET</code> = 0x0000U<a class="headerlink" href="#_CPPv4N22FSI_RxSubmoduleInReset24FSI_RX_MASTER_CORE_RESETE" title="Permalink to this definition">¶</a><br /></dt>
+<dt id="_CPPv4N22FSI_RxSubmoduleInReset22FSI_RX_MAIN_CORE_RESETE">
+<span id="_CPPv3N22FSI_RxSubmoduleInReset22FSI_RX_MAIN_CORE_RESETE"></span><span id="_CPPv2N22FSI_RxSubmoduleInReset22FSI_RX_MAIN_CORE_RESETE"></span><span class="target" id="group__fsi__api_1gga62ae7d53e26af13e7d02213a1089fdbcadaf13b245a07c4b1186c541cab8216fa"></span><em class="property">enumerator </em><code class="sig-name descname">FSI_RX_MAIN_CORE_RESET</code> = 0x0000U<a class="headerlink" href="#_CPPv4N22FSI_RxSubmoduleInReset22FSI_RX_MAIN_CORE_RESETE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
@@ -2763,8 +2763,10 @@ configuring and using the FSI module.</p>
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020, Texas Instruments Incorporated.
-      <span class="lastupdated">Last updated on Oct 11, 2022.
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+      <span class="lastupdated">Last updated on Nov 09, 2023.
       </span></p>
   </div>
 
@@ -2784,7 +2786,7 @@ configuring and using the FSI module.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v4.02.00.00',
+            VERSION:'v5.01.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

@@ -1,0 +1,18 @@
+%%{
+let 	device_common   					= system.getScript("/driverlib/.meta/device/functions_h/device_common.js");
+let 	Common   						= system.getScript("/driverlib/Common.js");
+var	Enable_Unbounded_GPIO_Pullups_176PTP			= system.getTemplate('./Enable_Unbounded_GPIO_Pullups_176PTP.xdt');
+var	Enable_Unbounded_GPIO_Pullups_100PZ_176PTP		= system.getTemplate('./Enable_Unbounded_GPIO_Pullups_100PZ_176PTP.xdt');
+
+const 	device  						= device_common.device;
+const	Enable_Unbounded_GPIO_Pullups_100PZ_176PTP_Type0	= device_common.Enable_Unbounded_GPIO_Pullups_100PZ_176PTP_Type0;
+const	Enable_Unbounded_GPIO_Pullups_176PTP_Type0		= device_common.Enable_Unbounded_GPIO_Pullups_176PTP_Type0;
+%%}
+% if(Enable_Unbounded_GPIO_Pullups_100PZ_176PTP_Type0.includes(device))
+%{
+`Enable_Unbounded_GPIO_Pullups_100PZ_176PTP()`
+%}
+% if(Enable_Unbounded_GPIO_Pullups_176PTP_Type0.includes(device))
+%{
+`Enable_Unbounded_GPIO_Pullups_176PTP()`
+%}

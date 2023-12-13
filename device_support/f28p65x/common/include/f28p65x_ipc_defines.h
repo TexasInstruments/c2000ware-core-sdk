@@ -91,7 +91,7 @@
 //
 //Key value used for write access to the flash pump semaphore register
 //
-#define IPC_PUMP_KEY                0x5a5a0000
+#define IPC_FLASHCTLSEM_KEY                0x5a5a0000
 
 //
 // The following defines are added for legacy reasons.
@@ -122,9 +122,9 @@
 #define IPCLtoRFlagClear(f) \
         Cpu1toCpu2IpcRegs.CPU1TOCPU2IPCCLR.all |= (f)
 #define SeizeFlashPump() \
-        Cpu1toCpu2IpcRegs.PUMPREQUEST.all = IPC_PUMP_KEY | 0x2
+        Cpu1toCpu2IpcRegs.FLASHCTLSEM.all = IPC_FLASHCTLSEM_KEY | 0x2
 #define ReleaseFlashPump() \
-        Cpu1toCpu2IpcRegs.PUMPREQUEST.all = IPC_PUMP_KEY | 0x0
+        Cpu1toCpu2IpcRegs.FLASHCTLSEM.all = IPC_FLASHCTLSEM_KEY | 0x0
 
 
 #elif defined(CPU2)
@@ -139,9 +139,9 @@
 #define IPCLtoRFlagClear(f) \
         Cpu2toCpu1IpcRegs.CPU2TOCPU1IPCCLR.all |= (f)
 #define SeizeFlashPump() \
-        Cpu2toCpu1IpcRegs.PUMPREQUEST.all = IPC_PUMP_KEY | 0x1
+        Cpu2toCpu1IpcRegs.FLASHCTLSEM.all = IPC_FLASHCTLSEM_KEY | 0x1
 #define ReleaseFlashPump() \
-        Cpu2toCpu1IpcRegs.PUMPREQUEST.all = IPC_PUMP_KEY | 0x0
+        Cpu2toCpu1IpcRegs.FLASHCTLSEM.all = IPC_FLASHCTLSEM_KEY | 0x0
 #endif
 
 

@@ -42,8 +42,8 @@ MEMORY
 
 
 
-   CPU1TOCPU2RAM    : origin = 0x03A000, length = 0x000800
-   CPU2TOCPU1RAM    : origin = 0x03B000, length = 0x000800
+   CPU1TOCPU2RAM    : origin = 0x03A000, length = 0x000400
+   CPU2TOCPU1RAM    : origin = 0x03B000, length = 0x000400
 
    CLATOCPURAM      : origin = 0x001480,   length = 0x000080
    CPUTOCLARAM      : origin = 0x001500,   length = 0x000080
@@ -59,7 +59,7 @@ MEMORY
 SECTIONS
 {
    codestart        : > BEGIN
-   .text            : >> RAMD0 | RAMD1 | RAMLS0 | RAMLS1 | RAMLS2 | RAMLS3
+   .text            : >> RAMD0 | RAMD1 | RAMLS3 | RAMLS4 | RAMLS5
    .cinit           : > RAMM0
    .switch          : > RAMM0
    .reset           : > RESET, TYPE = DSECT /* not used, */

@@ -218,7 +218,8 @@ let ERAD_Counter_Input_Event = [
 	{ name: "ERAD_EVENT_CMPSS10_CTRIPH_OR_CTRIPL", displayName: "EVENT CMPSS10 CTRIPH OR CTRIPL" },
 	{ name: "ERAD_EVENT_CMPSS11_CTRIPH_OR_CTRIPL", displayName: "EVENT CMPSS11 CTRIPH OR CTRIPL" },
 	{ name: "ERAD_EVENT_TRACE_HIT_EVENT", displayName: "EVENT TRACE HIT EVENT" },
-	{ name: "ERAD_EVENT_LCMCM_ERR", displayName: "EVENT LCMCM ERR" },
+	{ name: "ERAD_EVENT_CPU2_LCMCMP_ERR", displayName: "EVENT CPU2 LCMCMP ERR" },
+	{ name: "ERAD_EVENT_DMA_LCMCMP_ERR", displayName: "EVENT DMA LCMCMP ERR" },
 	{ name: "ERAD_EVENT_NO_EVENT", displayName: "EVENT NO EVENT" },
 ]
 let ERAD_Mask = [

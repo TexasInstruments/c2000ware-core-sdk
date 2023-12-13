@@ -119,9 +119,9 @@ function onValidate(inst, validation)
     var pinmuxQualMods = Pinmux.getGpioQualificationModInstDefinitions("I2C", inst)
     for (var pinmuxQualMod of pinmuxQualMods)
     {
-        if ((inst[pinmuxQualMod.name].padConfig.includes("OD")) || (inst[pinmuxQualMod.name].padConfig.includes("INVERT")))
+        if (((inst[pinmuxQualMod.name].padConfig.includes("PULLUP")) && !(inst[pinmuxQualMod.name].padConfig.includes("OD"))) || (inst[pinmuxQualMod.name].padConfig.includes("INVERT")))
         {
-            validation.logError("The open-drain and inverted pad configurations should not be used for the I2C module.", inst);
+            validation.logError("The push-pull and inverted pad configurations should not be used for the I2C module.", inst);
         }
     }
 }
@@ -347,7 +347,7 @@ var i2cModule = {
         var pinmuxQualMods = Pinmux.getGpioQualificationModInstDefinitions("I2C", inst)
         for (var pinmuxQualMod of pinmuxQualMods)
         {
-            pinmuxQualMod.args.padConfig = "PULLUP";
+            pinmuxQualMod.args.padConfig = "OD_PULLUP";
             pinmuxQualMod.args.qualMode = "GPIO_QUAL_ASYNC";
         }
         ownedInstances = ownedInstances.concat(pinmuxQualMods)

@@ -1,0 +1,11 @@
+#ifndef _FLASH
+    //
+    // Call Device_cal function when run using debugger
+    // This function is called as part of the Boot code. The function is called
+    // in the Device_init function since during debug time resets, the boot code
+    // will not be executed and the gel script will reinitialize all the
+    // registers and the calibrated values will be lost.
+    // Sysctl_deviceCal is a wrapper function for Device_Cal
+    //
+    SysCtl_deviceCal();
+#endif

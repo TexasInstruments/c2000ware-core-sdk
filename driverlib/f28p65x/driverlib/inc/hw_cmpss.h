@@ -144,6 +144,7 @@
 #define CMPSS_COMPDACHCTL_DACSOURCE       0x1U      // DAC Source Control
 #define CMPSS_COMPDACHCTL_RAMPSOURCE_S    1U
 #define CMPSS_COMPDACHCTL_RAMPSOURCE_M    0x1EU     // Ramp Generator Source Control
+#define CMPSS_COMPDACHCTL_SELREF          0x20U     // DAC Reference Select
 #define CMPSS_COMPDACHCTL_RAMPLOADSEL     0x40U     // Ramp Load Select
 #define CMPSS_COMPDACHCTL_SWLOADSEL       0x80U     // Software Load Select
 #define CMPSS_COMPDACHCTL_BLANKSOURCE_S   8U

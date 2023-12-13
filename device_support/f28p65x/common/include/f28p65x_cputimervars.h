@@ -1,8 +1,8 @@
 //###########################################################################
 //
-// FILE:   f2838x_cputimers.h
+// FILE:   f28p65x_cputimers.h
 //
-// TITLE:  F2838x Device CPUTIMERS Register Definitions.
+// TITLE:  F28P65x Device CPUTIMERS Register Definitions.
 //
 //###########################################################################
 //
@@ -40,8 +40,8 @@
 // $
 //###########################################################################
 
-#ifndef F2838x_CPUTIMERVARS_H
-#define F2838x_CPUTIMERVARS_H
+#ifndef F28P65x_CPUTIMERVARS_H
+#define F28P65x_CPUTIMERVARS_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -131,7 +131,7 @@ void ConfigCpuTimer(struct CPUTIMER_VARS *Timer, float Freq, float Period);
 #endif /* extern "C" */
 
 
-#endif  // end of F2838x_CPUTIMERVARS_H definition
+#endif  // end of F28P65x_CPUTIMERVARS_H definition
 
 //
 // End of file

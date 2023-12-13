@@ -1,0 +1,185 @@
+<projectSpec>
+  <project
+        name="cla_atan"
+        device="Generic C28xx Device"
+        cgtVersion="22.6.0.LTS"
+        products="c2000ware_software_package"
+        launchWizard="False"
+        linkerCommandFile=""
+        >
+
+    <configuration name="f2805x_RAM" compilerBuildOptions="--opt_level=0 -I${EXAMPLE_ROOT} -I${C2000WARE_DEVICE_SUPPORT_ROOT}/f2805x/headers/include -I${C2000WARE_DEVICE_SUPPORT_ROOT}/f2805x/common/include -I${CLAMATH_ROOT}/include -v28 -ml -mt --cla_support=cla0 --define=DEBUG --define=F2805x --define=RAM --define=CLA_MATH_TABLES_IN_ROM=1 --diag_warning=225 --diag_suppress=10063 --display_error_number" linkerBuildOptions="-I${CLAMATH_ROOT}/lib --define=RAM --define=CLA_C=1 --define=CLA_MATH_TABLES_IN_ROM=1 --entry_point code_start --stack_size=0x200 --heap_size=0x200 " />
+    <configuration name="f2805x_FLASH" compilerBuildOptions="--opt_level=0 -I${EXAMPLE_ROOT} -I${C2000WARE_DEVICE_SUPPORT_ROOT}/f2805x/headers/include -I${C2000WARE_DEVICE_SUPPORT_ROOT}/f2805x/common/include -I${CLAMATH_ROOT}/include -v28 -ml -mt --cla_support=cla0 --define=DEBUG --define=F2805x --define=_FLASH --define=CLA_MATH_TABLES_IN_ROM=1 --diag_warning=225 --diag_suppress=10063 --display_error_number" linkerBuildOptions="-I${CLAMATH_ROOT}/lib --define=_FLASH --define=CLA_C=1 --define=CLA_MATH_TABLES_IN_ROM=1 --entry_point code_start --stack_size=0x200 --heap_size=0x200 " />
+    <configuration name="f2805x_FLASH_NOROM" compilerBuildOptions="--opt_level=0 -I${EXAMPLE_ROOT} -I${C2000WARE_DEVICE_SUPPORT_ROOT}/f2805x/headers/include -I${C2000WARE_DEVICE_SUPPORT_ROOT}/f2805x/common/include -I${CLAMATH_ROOT}/include -v28 -ml -mt --cla_support=cla0 --define=DEBUG --define=F2805x --define=_FLASH --define=CLA_MATH_TABLES_IN_ROM=0 --diag_warning=225 --diag_suppress=10063 --display_error_number" linkerBuildOptions="-I${CLAMATH_ROOT}/lib --define=_FLASH  --define=CLA_C=1 --define=CLA_MATH_TABLES_IN_ROM=0 --entry_point code_start --stack_size=0x200 --heap_size=0x200 " />
+
+    <configuration name="f2806x_RAM" compilerBuildOptions="--opt_level=0 -I${EXAMPLE_ROOT} -I${C2000WARE_DEVICE_SUPPORT_ROOT}/f2806x/headers/include -I${C2000WARE_DEVICE_SUPPORT_ROOT}/f2806x/common/include -I${CLAMATH_ROOT}/include -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --define=DEBUG --define=F2806x --define=RAM --diag_warning=225 --diag_suppress=10063 --display_error_number" linkerBuildOptions="-I${CLAMATH_ROOT}/lib --define=RAM --define=CLA_C=1 --entry_point code_start --stack_size=0x200 --heap_size=0x200 " />
+    <configuration name="f2806x_FLASH" compilerBuildOptions="--opt_level=0 -I${EXAMPLE_ROOT} -I${C2000WARE_DEVICE_SUPPORT_ROOT}/f2806x/headers/include -I${C2000WARE_DEVICE_SUPPORT_ROOT}/f2806x/common/include -I${CLAMATH_ROOT}/include -v28 -ml -mt --cla_support=cla0 --float_support=fpu32 --define=DEBUG --define=F2806x --define=_FLASH --diag_warning=225 --diag_suppress=10063 --display_error_number" linkerBuildOptions="-I${CLAMATH_ROOT}/lib --define=_FLASH --define=CLA_C=1 --entry_point code_start --stack_size=0x200 --heap_size=0x200 " />
+
+    <configuration name="f2837x_RAM" compilerBuildOptions="--opt_level=0 -I${EXAMPLE_ROOT} -I${C2000WARE_DEVICE_SUPPORT_ROOT}/f2837xd/headers/include -I${C2000WARE_DEVICE_SUPPORT_ROOT}/f2837xd/common/include -I${CLAMATH_ROOT}/include -v28 -ml -mt --cla_support=cla1 --float_support=fpu32 --define=DEBUG --define=F2837x --define=RAM --define=CPU1 --define=CLA_MATH_TABLES_IN_ROM=1 --diag_warning=225 --diag_suppress=10063 --display_error_number" linkerBuildOptions="-I${CLAMATH_ROOT}/lib --define=RAM --define=CLA_C=1 --define=CLA_MATH_TABLES_IN_ROM=1 --entry_point code_start --stack_size=0x200 --heap_size=0x200 " />
+    <configuration name="f2837x_FLASH" compilerBuildOptions="--opt_level=0 -I${EXAMPLE_ROOT} -I${C2000WARE_DEVICE_SUPPORT_ROOT}/f2837xd/headers/include -I${C2000WARE_DEVICE_SUPPORT_ROOT}/f2837xd/common/include -I${CLAMATH_ROOT}/include -v28 -ml -mt --cla_support=cla1 --float_support=fpu32 --define=DEBUG --define=F2837x --define=_FLASH --define=CPU1 --define=CLA_MATH_TABLES_IN_ROM=1 --diag_warning=225 --diag_suppress=10063 --display_error_number" linkerBuildOptions="-I${CLAMATH_ROOT}/lib --define=_FLASH --define=CLA_C=1 --define=CLA_MATH_TABLES_IN_ROM=1 --entry_point code_start --stack_size=0x200 --heap_size=0x200 " />
+    <configuration name="f2837x_FLASH_NOROM" compilerBuildOptions="--opt_level=0 -I${EXAMPLE_ROOT} -I${C2000WARE_DEVICE_SUPPORT_ROOT}/f2837xd/headers/include -I${C2000WARE_DEVICE_SUPPORT_ROOT}/f2837xd/common/include -I${CLAMATH_ROOT}/include -v28 -ml -mt --cla_support=cla1 --float_support=fpu32 --define=DEBUG --define=F2837x --define=_FLASH --define=CPU1 --define=CLA_MATH_TABLES_IN_ROM=0 --diag_warning=225 --diag_suppress=10063 --display_error_number" linkerBuildOptions="-I${CLAMATH_ROOT}/lib --define=_FLASH  --define=CLA_C=1 --define=CLA_MATH_TABLES_IN_ROM=0 --entry_point code_start --stack_size=0x200 --heap_size=0x200 " />
+
+    <configuration name="f2807x_RAM" compilerBuildOptions="--opt_level=0 -I${EXAMPLE_ROOT} -I${C2000WARE_DEVICE_SUPPORT_ROOT}/f2807x/headers/include -I${C2000WARE_DEVICE_SUPPORT_ROOT}/f2807x/common/include -I${CLAMATH_ROOT}/include -v28 -ml -mt --cla_support=cla1 --float_support=fpu32 --define=DEBUG --define=F2807x --define=RAM --define=CPU1 --define=CLA_MATH_TABLES_IN_ROM=1 --diag_warning=225 --diag_suppress=10063 --display_error_number" linkerBuildOptions="-I${CLAMATH_ROOT}/lib --define=RAM --define=CLA_C=1 --define=CLA_MATH_TABLES_IN_ROM=1 --entry_point code_start --stack_size=0x200 --heap_size=0x200 " />
+    <configuration name="f2807x_FLASH" compilerBuildOptions="--opt_level=0 -I${EXAMPLE_ROOT} -I${C2000WARE_DEVICE_SUPPORT_ROOT}/f2807x/headers/include -I${C2000WARE_DEVICE_SUPPORT_ROOT}/f2807x/common/include -I${CLAMATH_ROOT}/include -v28 -ml -mt --cla_support=cla1 --float_support=fpu32 --define=DEBUG --define=F2807x --define=_FLASH --define=CPU1 --define=CLA_MATH_TABLES_IN_ROM=1 --diag_warning=225 --diag_suppress=10063 --display_error_number" linkerBuildOptions="-I${CLAMATH_ROOT}/lib --define=_FLASH --define=CLA_C=1 --define=CLA_MATH_TABLES_IN_ROM=1 --entry_point code_start --stack_size=0x200 --heap_size=0x200 " />
+    <configuration name="f2807x_FLASH_NOROM" compilerBuildOptions="--opt_level=0 -I${EXAMPLE_ROOT} -I${C2000WARE_DEVICE_SUPPORT_ROOT}/f2807x/headers/include -I${C2000WARE_DEVICE_SUPPORT_ROOT}/f2807x/common/include -I${CLAMATH_ROOT}/include -v28 -ml -mt --cla_support=cla1 --float_support=fpu32 --define=DEBUG --define=F2807x --define=_FLASH --define=CPU1 --define=CLA_MATH_TABLES_IN_ROM=0 --diag_warning=225 --diag_suppress=10063 --display_error_number" linkerBuildOptions="-I${CLAMATH_ROOT}/lib --define=_FLASH  --define=CLA_C=1 --define=CLA_MATH_TABLES_IN_ROM=0 --entry_point code_start --stack_size=0x200 --heap_size=0x200 " />
+
+    <configuration name="f28004x_RAM" compilerBuildOptions="--opt_level=0 -I${EXAMPLE_ROOT} -I${C2000WARE_DLIB_ROOT}/f28004x/driverlib -I${C2000WARE_DEVICE_SUPPORT_ROOT}/f28004x/common/include -I${CLAMATH_ROOT}/include -v28 -ml -mt --cla_support=cla2 --cla_background_task=on --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu0 --define=DEBUG --define=F28004x --define=RAM --define=CLA_MATH_TABLES_IN_ROM=1 --diag_warning=225 --diag_suppress=10063 --display_error_number" linkerBuildOptions="-I${CLAMATH_ROOT}/lib --define=RAM --define=CLA_C=1 --define=CLA_MATH_TABLES_IN_ROM=1 --entry_point code_start --stack_size=0x200 --heap_size=0x200 " />
+    <configuration name="f28004x_FLASH" compilerBuildOptions="--opt_level=0 -I${EXAMPLE_ROOT} -I${C2000WARE_DLIB_ROOT}/f28004x/driverlib -I${C2000WARE_DEVICE_SUPPORT_ROOT}/f28004x/common/include -I${CLAMATH_ROOT}/include -v28 -ml -mt --cla_support=cla2 --cla_background_task=on --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu0 --define=DEBUG --define=F28004x --define=_FLASH --define=CLA_MATH_TABLES_IN_ROM=1 --diag_warning=225 --diag_suppress=10063 --display_error_number" linkerBuildOptions="-I${CLAMATH_ROOT}/lib --define=_FLASH --define=CLA_C=1 --define=CLA_MATH_TABLES_IN_ROM=1 --entry_point code_start --stack_size=0x200 --heap_size=0x200 " />
+    <configuration name="f28004x_FLASH_NOROM" compilerBuildOptions="--opt_level=0 -I${EXAMPLE_ROOT} -I${C2000WARE_DLIB_ROOT}/f28004x/driverlib -I${C2000WARE_DEVICE_SUPPORT_ROOT}/f28004x/common/include -I${CLAMATH_ROOT}/include -v28 -ml -mt --cla_support=cla2 --cla_background_task=on --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu0 --define=DEBUG --define=F28004x --define=_FLASH --define=CLA_MATH_TABLES_IN_ROM=0 --diag_warning=225 --diag_suppress=10063 --display_error_number" linkerBuildOptions="-I${CLAMATH_ROOT}/lib --define=_FLASH  --define=CLA_C=1 --define=CLA_MATH_TABLES_IN_ROM=0 --entry_point code_start --stack_size=0x200 --heap_size=0x200 " />
+
+    <configuration name="f2838x_RAM" compilerBuildOptions="--opt_level=0 -I${EXAMPLE_ROOT} -I${C2000WARE_DLIB_ROOT}/f2838x/driverlib -I${C2000WARE_DEVICE_SUPPORT_ROOT}/f2838x/common/include -I${CLAMATH_ROOT}/include -v28 -ml -mt --cla_support=cla2 --cla_background_task=on --float_support=fpu64 --tmu_support=tmu0 --vcu_support= --define=DEBUG --define=F2838x --define=CPU1 --define=RAM --define=CLA_MATH_TABLES_IN_ROM=1 --abi=eabi --diag_warning=225 --diag_suppress=10063 --display_error_number" linkerBuildOptions="-I${CLAMATH_ROOT}/lib --define=RAM --define=CLA_C=1 --define=CLA_MATH_TABLES_IN_ROM=1 --entry_point code_start --stack_size=0x200 --heap_size=0x200 " />
+    <configuration name="f2838x_FLASH" compilerBuildOptions="--opt_level=0 -I${EXAMPLE_ROOT} -I${C2000WARE_DLIB_ROOT}/f2838x/driverlib -I${C2000WARE_DEVICE_SUPPORT_ROOT}/f2838x/common/include -I${CLAMATH_ROOT}/include -v28 -ml -mt --cla_support=cla2 --cla_background_task=on --float_support=fpu64 --tmu_support=tmu0 --vcu_support= --define=DEBUG --define=F2838x --define=CPU1 --define=_FLASH --define=CLA_MATH_TABLES_IN_ROM=1 --abi=eabi --diag_warning=225 --diag_suppress=10063 --display_error_number" linkerBuildOptions="-I${CLAMATH_ROOT}/lib --define=_FLASH --define=CLA_C=1 --define=CLA_MATH_TABLES_IN_ROM=1 --entry_point code_start --stack_size=0x200 --heap_size=0x200 " />
+    <configuration name="f2838x_FLASH_NOROM" compilerBuildOptions="--opt_level=0 -I${EXAMPLE_ROOT} -I${C2000WARE_DLIB_ROOT}/f2838x/driverlib -I${C2000WARE_DEVICE_SUPPORT_ROOT}/f2838x/common/include -I${CLAMATH_ROOT}/include -v28 -ml -mt --cla_support=cla2 --cla_background_task=on --float_support=fpu64 --tmu_support=tmu0 --vcu_support= --define=DEBUG --define=F2838x --define=CPU1 --define=_FLASH --define=CLA_MATH_TABLES_IN_ROM=0 --abi=eabi --diag_warning=225 --diag_suppress=10063 --display_error_number" linkerBuildOptions="-I${CLAMATH_ROOT}/lib --define=_FLASH  --define=CLA_C=1 --define=CLA_MATH_TABLES_IN_ROM=0 --entry_point code_start --stack_size=0x200 --heap_size=0x200 " />
+
+    <configuration name="f28003x_RAM" compilerBuildOptions="--opt_level=0 -I${EXAMPLE_ROOT} -I${C2000WARE_DLIB_ROOT}/f28003x/driverlib -I${C2000WARE_DEVICE_SUPPORT_ROOT}/f28003x/common/include -I${CLAMATH_ROOT}/include -v28 -ml -mt --cla_support=cla2 --cla_background_task=on --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu0 --define=DEBUG --define=F28003x --define=RAM --define=CLA_MATH_TABLES_IN_ROM=1 --abi=eabi --diag_warning=225 --diag_suppress=10063 --display_error_number" linkerBuildOptions="-I${CLAMATH_ROOT}/lib --define=RAM --define=CLA_C=1 --define=CLA_MATH_TABLES_IN_ROM=1 --entry_point code_start --stack_size=0x200 --heap_size=0x200 " />
+    <configuration name="f28003x_FLASH" compilerBuildOptions="--opt_level=0 -I${EXAMPLE_ROOT} -I${C2000WARE_DLIB_ROOT}/f28003x/driverlib -I${C2000WARE_DEVICE_SUPPORT_ROOT}/f28003x/common/include -I${CLAMATH_ROOT}/include -v28 -ml -mt --cla_support=cla2 --cla_background_task=on --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu0 --define=DEBUG --define=F28003x --define=_FLASH --define=CLA_MATH_TABLES_IN_ROM=1 --abi=eabi --diag_warning=225 --diag_suppress=10063 --display_error_number" linkerBuildOptions="-I${CLAMATH_ROOT}/lib --define=_FLASH --define=CLA_C=1 --define=CLA_MATH_TABLES_IN_ROM=1 --entry_point code_start --stack_size=0x200 --heap_size=0x200 " />
+    <configuration name="f28003x_FLASH_NOROM" compilerBuildOptions="--opt_level=0 -I${EXAMPLE_ROOT} -I${C2000WARE_DLIB_ROOT}/f28003x/driverlib -I${C2000WARE_DEVICE_SUPPORT_ROOT}/f28003x/common/include -I${CLAMATH_ROOT}/include -v28 -ml -mt --cla_support=cla2 --cla_background_task=on --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu0 --define=DEBUG --define=F28003x --define=_FLASH --define=CLA_MATH_TABLES_IN_ROM=0 --abi=eabi --diag_warning=225 --diag_suppress=10063 --display_error_number" linkerBuildOptions="-I${CLAMATH_ROOT}/lib --define=_FLASH  --define=CLA_C=1 --define=CLA_MATH_TABLES_IN_ROM=0 --entry_point code_start --stack_size=0x200 --heap_size=0x200 " />
+    
+    <pathVariable name="C2000WARE_DEVICE_SUPPORT_ROOT" path="../../../../../../../device_support/" scope="project" />
+    <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../../../../../driverlib/" scope="project" />
+    <pathVariable name="CLAMATH_ROOT" path="../../../" scope="project" />
+	<pathVariable name="EXAMPLE_ROOT" path="../" scope="project" />
+
+    <file action="link" path="../c28x_atan.c" targetDirectory="" />
+    <file action="link" path="../cla_atan.cla" targetDirectory="" />
+    <file action="link" path="../cla_shared.h" targetDirectory="" />
+
+    <!--       DEVICE SUPPORT       -->
+    <!-- f2805x    f2805x    f2805x -->
+    <!--       DEVICE SUPPORT       -->
+    <file action="link" path="CLAMATH_ROOT/lib/cla0_math_library_datarom.lib" targetDirectory="f2805x" applicableConfigurations="f2805x_RAM,f2805x_FLASH" />
+    <file action="link" path="../../../../../../boot_rom/f2805x/revA/rom_symbol_libs/CLA_Data_ROM/2805x_CLA_DatatROMSymbols-REVA.lib" targetDirectory="f2805x" applicableConfigurations="f2805x_RAM,f2805x_FLASH" />
+    <file action="link" path="CLAMATH_ROOT/lib/cla0_math_library.lib" targetDirectory="f2805x" applicableConfigurations="f2805x_FLASH_NOROM" />
+
+    <file action="link" path="../../common/f2805x_examples_setup.c" targetDirectory="f2805x" applicableConfigurations="f2805x_RAM,f2805x_FLASH,f2805x_FLASH_NOROM" />
+    <file action="link" path="CLAMATH_ROOT/cmd/f2805x_cla_c_lnk.cmd" targetDirectory="f2805x" applicableConfigurations="f2805x_RAM,f2805x_FLASH,f2805x_FLASH_NOROM" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2805x/headers/cmd/F2805x_Headers_nonBIOS.cmd" targetDirectory="f2805x" applicableConfigurations="f2805x_RAM,f2805x_FLASH,f2805x_FLASH_NOROM" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2805x/headers/source/F2805x_GlobalVariableDefs.c" targetDirectory="f2805x" applicableConfigurations="f2805x_RAM,f2805x_FLASH,f2805x_FLASH_NOROM" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2805x/common/source/F2805x_PieCtrl.c" targetDirectory="f2805x" applicableConfigurations="f2805x_RAM,f2805x_FLASH,f2805x_FLASH_NOROM" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2805x/common/source/F2805x_PieVect.c" targetDirectory="f2805x" applicableConfigurations="f2805x_RAM,f2805x_FLASH,f2805x_FLASH_NOROM" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2805x/common/source/F2805x_SysCtrl.c" targetDirectory="f2805x" applicableConfigurations="f2805x_RAM,f2805x_FLASH,f2805x_FLASH_NOROM" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2805x/common/source/F2805x_Gpio.c" targetDirectory="f2805x" applicableConfigurations="f2805x_RAM,f2805x_FLASH,f2805x_FLASH_NOROM" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2805x/common/source/F2805x_DefaultIsr.c" targetDirectory="f2805x" applicableConfigurations="f2805x_RAM,f2805x_FLASH,f2805x_FLASH_NOROM" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2805x/common/source/F2805x_usDelay.asm" targetDirectory="f2805x" applicableConfigurations="f2805x_RAM,f2805x_FLASH,f2805x_FLASH_NOROM" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2805x/common/source/F2805x_CodeStartBranch.asm" targetDirectory="f2805x" applicableConfigurations="f2805x_RAM,f2805x_FLASH,f2805x_FLASH_NOROM" />
+
+    <!--       DEVICE SUPPORT       -->
+    <!-- f2806x    f2806x    f2806x -->
+    <!--       DEVICE SUPPORT       -->
+    <file action="link" path="CLAMATH_ROOT/lib/cla0_math_library_fpu32.lib" targetDirectory="f2806x" applicableConfigurations="f2806x_RAM,f2806x_FLASH" />
+
+    <file action="link" path="../../common/f2806x_examples_setup.c" targetDirectory="f2806x" applicableConfigurations="f2806x_RAM,f2806x_FLASH" />
+    <file action="link" path="CLAMATH_ROOT/cmd/f2806x_cla_c_lnk.cmd" targetDirectory="f2806x" applicableConfigurations="f2806x_RAM,f2806x_FLASH" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2806x/headers/cmd/F2806x_Headers_nonBIOS.cmd" targetDirectory="f2806x" applicableConfigurations="f2806x_RAM,f2806x_FLASH" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2806x/headers/source/F2806x_GlobalVariableDefs.c" targetDirectory="f2806x" applicableConfigurations="f2806x_RAM,f2806x_FLASH" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2806x/common/source/F2806x_PieCtrl.c" targetDirectory="f2806x" applicableConfigurations="f2806x_RAM,f2806x_FLASH" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2806x/common/source/F2806x_PieVect.c" targetDirectory="f2806x" applicableConfigurations="f2806x_RAM,f2806x_FLASH" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2806x/common/source/F2806x_SysCtrl.c" targetDirectory="f2806x" applicableConfigurations="f2806x_RAM,f2806x_FLASH" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2806x/common/source/F2806x_DefaultIsr.c" targetDirectory="f2806x" applicableConfigurations="f2806x_RAM,f2806x_FLASH" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2806x/common/source/F2806x_usDelay.asm" targetDirectory="f2806x" applicableConfigurations="f2806x_RAM,f2806x_FLASH" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2806x/common/source/F2806x_CodeStartBranch.asm" targetDirectory="f2806x" applicableConfigurations="f2806x_RAM,f2806x_FLASH" />
+
+    <!--       DEVICE SUPPORT       -->
+    <!-- f2837x    f2837x    f2837x -->
+    <!--       DEVICE SUPPORT       -->
+    <file action="link" path="CLAMATH_ROOT/lib/cla1_math_library_datarom_fpu32.lib" targetDirectory="f2837x" applicableConfigurations="f2837x_RAM,f2837x_FLASH" />
+    <file action="link" path="../../../../../../boot_rom/f2837xd/revB/rom_symbol_libs/c1_CLA_Data_ROM/F2837xRevB_c1bootROM_CLADataROMSymbols_fpu32.lib" targetDirectory="f2837x" applicableConfigurations="f2837x_RAM,f2837x_FLASH" />
+    <file action="link" path="CLAMATH_ROOT/lib/cla1_math_library_fpu32.lib" targetDirectory="f2837x" applicableConfigurations="f2837x_FLASH_NOROM" />
+
+    <file action="link" path="../../common/f2837x_examples_setup.c" targetDirectory="f2837x" applicableConfigurations="f2837x_RAM,f2837x_FLASH,f2837x_FLASH_NOROM" />
+    <file action="link" path="CLAMATH_ROOT/cmd/f2837x_cla_c_lnk.cmd" targetDirectory="f2837x" applicableConfigurations="f2837x_RAM,f2837x_FLASH,f2837x_FLASH_NOROM" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2837xd/headers/cmd/F2837xD_Headers_nonBIOS_cpu1.cmd" targetDirectory="f2837x" applicableConfigurations="f2837x_RAM,f2837x_FLASH,f2837x_FLASH_NOROM" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2837xd/headers/source/F2837xD_GlobalVariableDefs.c" targetDirectory="f2837x" applicableConfigurations="f2837x_RAM,f2837x_FLASH,f2837x_FLASH_NOROM" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2837xd/common/source/F2837xD_PieCtrl.c" targetDirectory="f2837x" applicableConfigurations="f2837x_RAM,f2837x_FLASH,f2837x_FLASH_NOROM" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2837xd/common/source/F2837xD_PieVect.c" targetDirectory="f2837x" applicableConfigurations="f2837x_RAM,f2837x_FLASH,f2837x_FLASH_NOROM" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2837xd/common/source/F2837xD_SysCtrl.c" targetDirectory="f2837x" applicableConfigurations="f2837x_RAM,f2837x_FLASH,f2837x_FLASH_NOROM" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2837xd/common/source/F2837xD_Gpio.c" targetDirectory="f2837x" applicableConfigurations="f2837x_RAM,f2837x_FLASH,f2837x_FLASH_NOROM" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2837xd/common/source/F2837xD_DefaultISR.c" targetDirectory="f2837x" applicableConfigurations="f2837x_RAM,f2837x_FLASH,f2837x_FLASH_NOROM" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2837xd/common/source/F2837xD_usDelay.asm" targetDirectory="f2837x" applicableConfigurations="f2837x_RAM,f2837x_FLASH,f2837x_FLASH_NOROM" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2837xd/common/source/F2837xD_CodeStartBranch.asm" targetDirectory="f2837x" applicableConfigurations="f2837x_RAM,f2837x_FLASH,f2837x_FLASH_NOROM" />
+
+    <!--       DEVICE SUPPORT       -->
+    <!-- f2807x    f2807x    f2807x -->
+    <!--       DEVICE SUPPORT       -->
+    <file action="link" path="CLAMATH_ROOT/lib/cla1_math_library_datarom_fpu32.lib" targetDirectory="f2807x" applicableConfigurations="f2807x_RAM,f2807x_FLASH" />
+    <file action="link" path="../../../../../../boot_rom/f2807x/revB/rom_symbol_libs/c1_CLA_Data_ROM/F2837xRevB_c1bootROM_CLADataROMSymbols_fpu32.lib" targetDirectory="f2807x" applicableConfigurations="f2807x_RAM,f2807x_FLASH" />
+    <file action="link" path="CLAMATH_ROOT/lib/cla1_math_library_fpu32.lib" targetDirectory="f2807x" applicableConfigurations="f2807x_FLASH_NOROM" />
+
+    <file action="link" path="../../common/f2807x_examples_setup.c" targetDirectory="f2807x" applicableConfigurations="f2807x_RAM,f2807x_FLASH,f2807x_FLASH_NOROM" />
+    <file action="link" path="CLAMATH_ROOT/cmd/f2807x_cla_c_lnk.cmd" targetDirectory="f2807x" applicableConfigurations="f2807x_RAM,f2807x_FLASH,f2807x_FLASH_NOROM" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2807x/headers/cmd/F2807x_Headers_nonBIOS.cmd" targetDirectory="f2807x" applicableConfigurations="f2807x_RAM,f2807x_FLASH,f2807x_FLASH_NOROM" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2807x/headers/source/F2807x_GlobalVariableDefs.c" targetDirectory="f2807x" applicableConfigurations="f2807x_RAM,f2807x_FLASH,f2807x_FLASH_NOROM" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2807x/common/source/F2807x_PieCtrl.c" targetDirectory="f2807x" applicableConfigurations="f2807x_RAM,f2807x_FLASH,f2807x_FLASH_NOROM" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2807x/common/source/F2807x_PieVect.c" targetDirectory="f2807x" applicableConfigurations="f2807x_RAM,f2807x_FLASH,f2807x_FLASH_NOROM" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2807x/common/source/F2807x_SysCtrl.c" targetDirectory="f2807x" applicableConfigurations="f2807x_RAM,f2807x_FLASH,f2807x_FLASH_NOROM" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2807x/common/source/F2807x_Gpio.c" targetDirectory="f2807x" applicableConfigurations="f2807x_RAM,f2807x_FLASH,f2807x_FLASH_NOROM" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2807x/common/source/F2807x_DefaultISR.c" targetDirectory="f2807x" applicableConfigurations="f2807x_RAM,f2807x_FLASH,f2807x_FLASH_NOROM" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2807x/common/source/F2807x_usDelay.asm" targetDirectory="f2807x" applicableConfigurations="f2807x_RAM,f2807x_FLASH,f2807x_FLASH_NOROM" />
+    <file action="link" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2807x/common/source/F2807x_CodeStartBranch.asm" targetDirectory="f2807x" applicableConfigurations="f2807x_RAM,f2807x_FLASH,f2807x_FLASH_NOROM" />
+
+    <!--          DRIVERLIB         -->
+    <!-- f28004x   f28004x  f28004x -->
+    <!--          DRIVERLIB         -->
+    <file action="link" path="CLAMATH_ROOT/lib/cla2_math_library_datarom_fpu32.lib" targetDirectory="f28004x" applicableConfigurations="f28004x_RAM,f28004x_FLASH" />
+    <file action="link" path="../../../../../../boot_rom/f28004x/revB/rom_symbol_libs/CLA_Data_ROM/F28004x_CLADATROM_Symbols_fpu32.lib" targetDirectory="f28004x" applicableConfigurations="f28004x_RAM,f28004x_FLASH" />
+    <file action="link" path="CLAMATH_ROOT/lib/cla2_math_library_fpu32.lib" targetDirectory="f28004x" applicableConfigurations="f28004x_FLASH_NOROM" />
+
+    <file action="link" path="../../common/f28004x_examples_setup.c" targetDirectory="f28004x" applicableConfigurations="f28004x_RAM,f28004x_FLASH,f28004x_FLASH_NOROM" />
+    <file action="link" path="CLAMATH_ROOT/cmd/f28004x_cla_c_lnk.cmd" targetDirectory="f28004x" applicableConfigurations="f28004x_RAM,f28004x_FLASH,f28004x_FLASH_NOROM" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/f28004x/common/include/driverlib.h" targetDirectory="f28004x" applicableConfigurations="f28004x_RAM,f28004x_FLASH,f28004x_FLASH_NOROM" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/f28004x/common/include/device.h" targetDirectory="f28004x" applicableConfigurations="f28004x_RAM,f28004x_FLASH,f28004x_FLASH_NOROM" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/f28004x/common/source/device.c" targetDirectory="f28004x" applicableConfigurations="f28004x_RAM,f28004x_FLASH,f28004x_FLASH_NOROM" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/f28004x/common/source/f28004x_codestartbranch.asm" targetDirectory="f28004x" applicableConfigurations="f28004x_RAM,f28004x_FLASH,f28004x_FLASH_NOROM" />
+    <file action="link" path="C2000WARE_DLIB_ROOT/f28004x/driverlib/ccs/Debug/driverlib.lib" targetDirectory="f28004x" applicableConfigurations="f28004x_RAM,f28004x_FLASH,f28004x_FLASH_NOROM" />
+    <file action="copy" path="C2000WARE_DLIB_ROOT/f28004x/driverlib/" targetDirectory="f28004x" excludeFromBuild="True" applicableConfigurations="f28004x_RAM,f28004x_FLASH,f28004x_FLASH_NOROM" />
+
+    <!--          DRIVERLIB         -->
+    <!-- f2838x    f2838x   f2838x  -->
+    <!--          DRIVERLIB         -->
+    <file action="link" path="CLAMATH_ROOT/lib/cla2_math_library_datarom_fpu32_eabi.lib" targetDirectory="f2838x" applicableConfigurations="f2838x_RAM,f2838x_FLASH" />
+    <file action="link" path="../../../../../../boot_rom/f2838x/rev0/rom_symbol_libs/cpu1/claDataROM/F2838xCPU1_CLADATAROM_Symbols_fpu32.lib" targetDirectory="f2838x" applicableConfigurations="f2838x_RAM,f2838x_FLASH" />
+    <file action="link" path="CLAMATH_ROOT/lib/cla2_math_library_fpu32_eabi.lib" targetDirectory="f2838x" applicableConfigurations="f2838x_FLASH_NOROM" />
+
+    <file action="link" path="../../common/f2838x_examples_setup.c" targetDirectory="f2838x" applicableConfigurations="f2838x_RAM,f2838x_FLASH,f2838x_FLASH_NOROM" />
+    <file action="link" path="CLAMATH_ROOT/cmd/f2838x_cla_c_lnk.cmd" targetDirectory="f2838x" applicableConfigurations="f2838x_RAM,f2838x_FLASH,f2838x_FLASH_NOROM" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2838x/common/include/driverlib.h" targetDirectory="f2838x" applicableConfigurations="f2838x_RAM,f2838x_FLASH,f2838x_FLASH_NOROM" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2838x/common/include/device.h" targetDirectory="f2838x" applicableConfigurations="f2838x_RAM,f2838x_FLASH,f2838x_FLASH_NOROM" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2838x/common/source/device.c" targetDirectory="f2838x" applicableConfigurations="f2838x_RAM,f2838x_FLASH,f2838x_FLASH_NOROM" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/f2838x/common/source/f2838x_codestartbranch.asm" targetDirectory="f2838x" applicableConfigurations="f2838x_RAM,f2838x_FLASH,f2838x_FLASH_NOROM" />
+    <file action="link" path="C2000WARE_DLIB_ROOT/f2838x/driverlib/ccs/Debug/driverlib.lib" targetDirectory="f2838x" applicableConfigurations="f2838x_RAM,f2838x_FLASH,f2838x_FLASH_NOROM" />
+    <file action="copy" path="C2000WARE_DLIB_ROOT/f2838x/driverlib/" targetDirectory="f2838x" excludeFromBuild="True" applicableConfigurations="f2838x_RAM,f2838x_FLASH,f2838x_FLASH_NOROM" />
+
+    <!--          DRIVERLIB         -->
+    <!-- f28003x   f28003x  f28003x -->
+    <!--          DRIVERLIB         -->
+    <file action="link" path="CLAMATH_ROOT/lib/cla2_math_library_datarom_fpu32_eabi.lib" targetDirectory="f28003x" applicableConfigurations="f28003x_RAM,f28003x_FLASH" />
+    <file action="link" path="../../../../../../boot_rom/f28003x/rev0/rom_symbol_libs/CLADATAROMSymbols/F28003x_CLADATROM_Symbols_fpu32.lib" targetDirectory="f28003x" applicableConfigurations="f28003x_RAM,f28003x_FLASH" />
+    <file action="link" path="CLAMATH_ROOT/lib/cla2_math_library_fpu32_eabi.lib" targetDirectory="f28003x" applicableConfigurations="f28003x_FLASH_NOROM" />
+
+    <file action="link" path="../../common/f28003x_examples_setup.c" targetDirectory="f28003x" applicableConfigurations="f28003x_RAM,f28003x_FLASH,f28003x_FLASH_NOROM" />
+    <file action="link" path="CLAMATH_ROOT/cmd/f28003x_cla_c_lnk.cmd" targetDirectory="f28003x" applicableConfigurations="f28003x_RAM,f28003x_FLASH,f28003x_FLASH_NOROM" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/f28003x/common/include/driverlib.h" targetDirectory="f28003x" applicableConfigurations="f28003x_RAM,f28003x_FLASH,f28003x_FLASH_NOROM" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/f28003x/common/include/device.h" targetDirectory="f28003x" applicableConfigurations="f28003x_RAM,f28003x_FLASH,f28003x_FLASH_NOROM" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/f28003x/common/source/device.c" targetDirectory="f28003x" applicableConfigurations="f28003x_RAM,f28003x_FLASH,f28003x_FLASH_NOROM" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/f28003x/common/source/f28003x_codestartbranch.asm" targetDirectory="f28003x" applicableConfigurations="f28003x_RAM,f28003x_FLASH,f28003x_FLASH_NOROM" />
+    <file action="link" path="C2000WARE_DLIB_ROOT/f28003x/driverlib/ccs/Debug/driverlib.lib" targetDirectory="f28003x" applicableConfigurations="f28003x_RAM,f28003x_FLASH,f28003x_FLASH_NOROM" />
+    <file action="copy" path="C2000WARE_DLIB_ROOT/f28003x/driverlib/" targetDirectory="f28003x" excludeFromBuild="True" applicableConfigurations="f28003x_RAM,f28003x_FLASH,f28003x_FLASH_NOROM" />
+
+  </project>
+
+
+</projectSpec>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

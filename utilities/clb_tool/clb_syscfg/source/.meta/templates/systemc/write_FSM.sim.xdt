@@ -1,0 +1,17 @@
+%%{
+    let inst      = args[0];
+    let tileName  = args[1];
+    let instNum   = args[2];
+    let inputs    = args[3];
+    let name      = tileName + "_FSM_" + instNum;
+    let Common    = system.getScript("/utilities/clb_tool/clb_syscfg/source/Common.js");
+    let tt        = Common.FSM_truth_table;
+%%}
+        sig_`name`_OUT_LUT_fn.write     ((sc_uint<16>) `tt(inst.eqn_out)`);
+        sig_`name`_S0_fn.write          ((sc_uint<16>) `tt(inst.eqn_s0)`);
+        sig_`name`_S1_fn.write          ((sc_uint<16>) `tt(inst.eqn_s1)`);
+        sig_`name`_xe0_sel.write        ((bool)        `inst.eqn_out.includes('xe0')`);
+        sig_`name`_xe1_sel.write        ((bool)        `inst.eqn_out.includes('xe1')`);
+        sig_`name`_S0.write             ((bool) 0);
+        sig_`name`_S1.write             ((bool) 0);
+        sig_`name`_OUT.write            ((bool) 0);

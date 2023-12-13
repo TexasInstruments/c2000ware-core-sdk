@@ -127,9 +127,18 @@ if (!pinmuxOnlyDevices.includes(Common.getDeviceName()))
         // INTERRUPT RELATED ITEMS
         var allInts = inst.enabledInterrupts;
         // add in the EOT interrupt flag if it was chosen in the tx fifo dropdown
-        if (inst.txiflsel=="EOT")
+        if (inst.txiflsel=="EOT" && inst.fen)
         {
             allInts = allInts.concat("UART_INT_EOT");
+        }
+        // else if EOT is supposed to be removed, remove it from the list
+        else
+        {
+            // only try to remove if EOT is in the array
+            if(allInts.includes("UART_INT_EOT"))
+            {
+                allInts.splice(allInts.indexOf("UART_INT_EOT"), 1);
+            }
         }
         idat.enabledInterruptsStr = orSeparatedVars(allInts);
 

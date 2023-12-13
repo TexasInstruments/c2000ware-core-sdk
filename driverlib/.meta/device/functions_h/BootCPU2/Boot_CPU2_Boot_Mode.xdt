@@ -1,0 +1,28 @@
+//*****************************************************************************
+//! @brief Executes a CPU02 control system bootloader.
+//!
+//! \param bootMode specifies which CPU02 control system boot mode to execute.
+//!
+//! This function will allow the CPU01 master system to boot the CPU02 control
+//! system via the following modes: Boot to RAM, Boot to Flash, Boot via SPI,
+//! SCI, I2C, or parallel I/O. This function blocks and waits until the
+//! control system boot ROM is configured and ready to receive CPU01 to CPU02
+//! IPC INT0 interrupts. It then blocks and waits until IPC INT0 and
+//! IPC FLAG31 are available in the CPU02 boot ROM prior to sending the
+//! command to execute the selected bootloader.
+//!
+//! The \e bootMode parameter accepts one of the following values:
+//!  - \b C1C2_BROM_BOOTMODE_BOOT_FROM_PARALLEL
+//!  - \b C1C2_BROM_BOOTMODE_BOOT_FROM_SCI
+//!  - \b C1C2_BROM_BOOTMODE_BOOT_FROM_SPI
+//!  - \b C1C2_BROM_BOOTMODE_BOOT_FROM_I2C
+//!  - \b C1C2_BROM_BOOTMODE_BOOT_FROM_CAN
+//!  - \b C1C2_BROM_BOOTMODE_BOOT_FROM_RAM
+//!  - \b C1C2_BROM_BOOTMODE_BOOT_FROM_FLASH
+//!
+//! \return 0 (success) if command is sent, or 1 (failure) if boot mode is
+//! invalid and command was not sent.
+//
+//*****************************************************************************
+extern uint16_t Device_bootCPU2(uint32_t ulBootMode);
+#endif

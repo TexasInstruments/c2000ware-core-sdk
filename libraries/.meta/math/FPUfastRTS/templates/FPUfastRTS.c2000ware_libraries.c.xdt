@@ -1,0 +1,45 @@
+% let Common   = system.getScript("/driverlib/Common.js");
+% var currnetSDKProductPath = system.getProducts()[0].path
+% var sdkPath = system.utils.path.join(currnetSDKProductPath + "../../../")
+% sdkPath = sdkPath.replace(new RegExp('\\' + system.utils.path.sep, 'g'), '/')
+% 
+% var moduleName = "cordic"
+% var module = system.modules['/libraries/math/FPUfastRTS' + '/' + moduleName + '.js'];
+%
+void FFR_init()
+{
+%if(module != null)
+%{
+% var instances = module.$instances;
+%for(let i = 0; i < instances.length; i++)
+%{
+    `instances[i].$name`_init();
+%}
+%}
+
+}
+%if(module != null)
+%{
+% var instances = module.$instances;
+%
+%for(let i = 0; i < instances.length; i++)
+%{
+CORDIC_F64 `instances[i].$name`_obj;
+CORDIC_F64_Handle `instances[i].$name`_handle = &`instances[i].$name`_obj;
+
+int64_t `instances[i].$name`_x_i = 0;
+int64_t `instances[i].$name`_y_i = 0;
+int64_t `instances[i].$name`_z_i = 0;
+
+void `instances[i].$name`_init()
+{
+    CORDIC_F64_setx_i(`instances[i].$name`_handle, &`instances[i].$name`_x_i);
+    CORDIC_F64_sety_i(`instances[i].$name`_handle, &`instances[i].$name`_y_i);
+	CORDIC_F64_setz_i(`instances[i].$name`_handle, &`instances[i].$name`_z_i);
+	CORDIC_F64_setN(`instances[i].$name`_handle, `instances[i].$name`_N_ITERATIONS);
+	CORDIC_F64_setAtanTblPtr(`instances[i].$name`_handle, CORDIC_F64_atanTable);
+	CORDIC_F64_setRunKernelPtr(`instances[i].$name`_handle, (v_pfn_v)CORDIC_F64_rotationKernel);
+}
+
+%}
+%}

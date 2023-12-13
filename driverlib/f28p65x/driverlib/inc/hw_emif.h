@@ -46,21 +46,21 @@
 // The following are defines for the EMIF register offsets
 //
 //*************************************************************************************************
-#define EMIF_O_RCSR                  0x0U    // Revision Code and Status Register
-#define EMIF_O_ASYNC_WCCR            0x2U    // Async Wait Cycle Config Register
-#define EMIF_O_SDRAM_CR              0x4U    // SDRAM (EMxCS0n) Config Register
-#define EMIF_O_SDRAM_RCR             0x6U    // SDRAM Refresh Control Register
-#define EMIF_O_ASYNC_CS2_CR          0x8U    // Async 1 (EMxCS2n) Config Register
-#define EMIF_O_ASYNC_CS3_CR          0xAU    // Async 2 (EMxCS3n) Config Register
-#define EMIF_O_ASYNC_CS4_CR          0xCU    // Async 3 (EMxCS4n) Config Register
-#define EMIF_O_SDRAM_TR              0x10U   // SDRAM Timing Register
-#define EMIF_O_TOTAL_SDRAM_AR_INC_   0x18U   // Total SDRAM Accesses Register
-#define EMIF_O_TOTAL_SDRAM_ACTR      0x1AU   // Total SDRAM Activate Register
-#define EMIF_O_SDR_EXT_TMNG          0x1EU   // SDRAM SR/PD Exit Timing Register
-#define EMIF_O_INT_RAW               0x20U   // Interrupt Raw Register
-#define EMIF_O_INT_MSK               0x22U   // Interrupt Masked Register
-#define EMIF_O_INT_MSK_SET           0x24U   // Interrupt Mask Set Register
-#define EMIF_O_INT_MSK_CLR           0x26U   // Interrupt Mask Clear Register
+#define EMIF_O_RCSR               0x0U    // Revision Code and Status Register
+#define EMIF_O_ASYNC_WCCR         0x2U    // Async Wait Cycle Config Register
+#define EMIF_O_SDRAM_CR           0x4U    // SDRAM (EMxCS0n) Config Register
+#define EMIF_O_SDRAM_RCR          0x6U    // SDRAM Refresh Control Register
+#define EMIF_O_ASYNC_CS2_CR       0x8U    // Async 1 (EMxCS2n) Config Register
+#define EMIF_O_ASYNC_CS3_CR       0xAU    // Async 2 (EMxCS3n) Config Register
+#define EMIF_O_ASYNC_CS4_CR       0xCU    // Async 3 (EMxCS4n) Config Register
+#define EMIF_O_SDRAM_TR           0x10U   // SDRAM Timing Register
+#define EMIF_O_TOTAL_SDRAM_AR     0x18U   // Total SDRAM Accesses Register
+#define EMIF_O_TOTAL_SDRAM_ACTR   0x1AU   // Total SDRAM Activate Register
+#define EMIF_O_SDR_EXT_TMNG       0x1EU   // SDRAM SR/PD Exit Timing Register
+#define EMIF_O_INT_RAW            0x20U   // Interrupt Raw Register
+#define EMIF_O_INT_MSK            0x22U   // Interrupt Masked Register
+#define EMIF_O_INT_MSK_SET        0x24U   // Interrupt Mask Set Register
+#define EMIF_O_INT_MSK_CLR        0x26U   // Interrupt Mask Clear Register
 
 
 //*************************************************************************************************

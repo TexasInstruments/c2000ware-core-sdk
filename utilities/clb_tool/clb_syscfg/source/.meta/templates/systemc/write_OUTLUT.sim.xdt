@@ -1,0 +1,10 @@
+%%{
+    let inst      = args[0];
+    let tileName  = args[1];
+    let instNum   = args[2];
+    let inputs    = args[3];
+    let name      = tileName + "_OUTLUT_" + instNum;
+    let Common    = system.getScript("/utilities/clb_tool/clb_syscfg/source/Common.js");
+    let tt        = Common.OUTLUT_truth_table;
+%%}
+        sig_`name`_fn.write     ((sc_uint<8>) `tt(inst.eqn)`);

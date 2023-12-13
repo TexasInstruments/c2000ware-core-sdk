@@ -1,0 +1,37 @@
+<projectSpec>
+  <project
+        name="empty_sysconfig_64qfp"
+        device="TMS320F280025C"
+        cgtVersion="22.6.0.LTS"
+        products="c2000ware_software_package"
+        outputFormat="ELF"
+        launchWizard="False"
+        enableSysConfigTool="true"
+        linkerCommandFile=""
+        sysConfigBuildOptions="--product ${C2000WARE_ROOT}/.metadata/sdk.json --device F28002x --package 64QFP --part F28002x_64QFP"
+        >
+
+    <configuration name="CPU1_RAM" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} -v28 -ml -mt --float_support=fpu32 --define=DEBUG --define RAM --diag_warning=225 --diag_suppress=10063"  linkerBuildOptions="--entry_point code_start --stack_size=0x200 --heap_size=0x100 "/>
+
+    <configuration name="CPU1_CLB" postBuildStep="${NODE_TOOL} &quot;${CLB_SYSCFG_ROOT}/dot_file_libraries/clbDotUtility.js&quot;  &quot;${CLB_SYSCFG_ROOT}&quot; &quot;${BuildDirectory}/syscfg&quot; &quot;${BuildDirectory}/syscfg/clb.dot&quot;"
+    compilerBuildOptions="--opt_level=off --opt_for_speed=2 --fp_mode=strict -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} -I${CLB_SYSCFG_ROOT}/systemc/include -v28 -ml -mt --float_support=fpu32 --define=RAM --define=DEBUG -g --diag_warning=225 --diag_suppress=10063 --diag_wrap=off --display_error_number " linkerBuildOptions="--entry_point code_start --stack_size=0x200 --heap_size=0x100 -l driverlib.lib -l libc.a -I${C2000WARE_DLIB_ROOT}/ccs/Debug" />
+
+    <pathVariable name="CLB_SYSCFG_ROOT" path="../../../../../utilities/clb_tool/clb_syscfg/" scope="project" />
+    <pathVariable name="SYSTEMC_INSTALL" path="../../../../../utilities/clb_tool/clb_syscfg/systemc-2.3.3" scope="project" />
+    <pathVariable name="CLB_SIM_COMPILER" path="C:/TDM-GCC-64/bin" scope="project" />
+
+    <pathVariable name="C2000WARE_ROOT" path="../../../../../" scope="project" />
+    <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../../../driverlib/f28002x/driverlib/" scope="project"/>     
+    
+	<file action="copy" path="../../../../../device_support/f28002x/common/include/driverlib.h" targetDirectory="device"/>
+    <file action="copy" path="../../../../../device_support/f28002x/common/include/device.h" targetDirectory="device"/>
+    <file action="copy" path="../../../../../device_support/f28002x/common/source/device.c" targetDirectory="device"/>
+    <file action="copy" path="../../../../../device_support/f28002x/common/source/f28002x_codestartbranch.asm" targetDirectory="device"/>
+    <file action="copy" path="../../../../../device_support/f28002x/common/cmd/28002x_generic_ram_lnk.cmd" targetDirectory=""/>
+    <file action="link" path="../../../../../driverlib/f28002x/driverlib/ccs/Debug/driverlib.lib" targetDirectory=""/>
+    <file action="copy" path="../../../../../driverlib/f28002x/driverlib/" targetDirectory="device" excludeFromBuild="True"/>
+
+    <file action="copy" path="../empty_sysconfig_main.c" targetDirectory="" />
+    <file action="copy" path="../c2000.syscfg" targetDirectory="" />
+  </project>
+</projectSpec>

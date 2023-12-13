@@ -51,6 +51,7 @@
 extern "C"
 {
 #endif
+#ifndef __TMS320C28XX_CLA__
 
 //*****************************************************************************
 //
@@ -1517,6 +1518,7 @@ Flash_getECCTestSingleBitErrorType(uint32_t eccBase)
 extern void
 Flash_initModule(uint32_t ctrlBase, uint32_t eccBase, uint16_t waitstates);
 
+
 //*****************************************************************************
 //
 //! Powers down the flash.
@@ -1552,6 +1554,7 @@ Flash_wakeFromLPM(uint32_t ctrlBase);
 //! @}
 //
 //*****************************************************************************
+#endif  // #ifdef __TMS320C28XX_CLA__
 
 //*****************************************************************************
 //

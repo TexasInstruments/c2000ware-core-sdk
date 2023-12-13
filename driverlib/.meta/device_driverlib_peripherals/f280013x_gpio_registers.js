@@ -1,213 +1,797 @@
 let GPIORegisters = [
-	{ name: "TRL", description: "GPIO A Qualification Sampling Period Control (GPIO0 to 31)", offset: "0x0",
+	{ name: "GPACTRL", description: "GPIO A Qualification Sampling Period Control (GPIO0 to 31)", offset: "0x0",
+		bits: [
+			{ name: "QUALPRD0", description: "Qualification sampling period for GPIO0 to GPIO7", size: "8", shift: "0", mask: "0xFF" },
+			{ name: "QUALPRD1", description: "Qualification sampling period for GPIO8 to", size: "8", shift: "8", mask: "0xFF00" },
+			{ name: "QUALPRD2", description: "Qualification sampling period for GPIO16 to", size: "8", shift: "16", mask: "0xFF0000" },
+			{ name: "QUALPRD3", description: "Qualification sampling period for GPIO24 to", size: "8", shift: "24", mask: "0xFF000000" },
+		]
+	},
+	{ name: "GPAQSEL1", description: "GPIO A Qualifier Select 1 Register (GPIO0 to 15)", offset: "0x2",
+		bits: [
+			{ name: "GPIO0", description: "Select input qualification type for GPIO0", size: "2", shift: "0", mask: "0x3" },
+			{ name: "GPIO1", description: "Select input qualification type for GPIO1", size: "2", shift: "2", mask: "0xC" },
+			{ name: "GPIO2", description: "Select input qualification type for GPIO2", size: "2", shift: "4", mask: "0x30" },
+			{ name: "GPIO3", description: "Select input qualification type for GPIO3", size: "2", shift: "6", mask: "0xC0" },
+			{ name: "GPIO4", description: "Select input qualification type for GPIO4", size: "2", shift: "8", mask: "0x300" },
+			{ name: "GPIO5", description: "Select input qualification type for GPIO5", size: "2", shift: "10", mask: "0xC00" },
+			{ name: "GPIO6", description: "Select input qualification type for GPIO6", size: "2", shift: "12", mask: "0x3000" },
+			{ name: "GPIO7", description: "Select input qualification type for GPIO7", size: "2", shift: "14", mask: "0xC000" },
+			{ name: "GPIO8", description: "Select input qualification type for GPIO8", size: "2", shift: "16", mask: "0x30000" },
+			{ name: "GPIO9", description: "Select input qualification type for GPIO9", size: "2", shift: "18", mask: "0xC0000" },
+			{ name: "GPIO10", description: "Select input qualification type for GPIO10", size: "2", shift: "20", mask: "0x300000" },
+			{ name: "GPIO11", description: "Select input qualification type for GPIO11", size: "2", shift: "22", mask: "0xC00000" },
+			{ name: "GPIO12", description: "Select input qualification type for GPIO12", size: "2", shift: "24", mask: "0x3000000" },
+			{ name: "GPIO13", description: "Select input qualification type for GPIO13", size: "2", shift: "26", mask: "0xC000000" },
+		]
+	},
+	{ name: "GPAQSEL2", description: "GPIO A Qualifier Select 2 Register (GPIO16 to 31)", offset: "0x4",
+		bits: [
+			{ name: "GPIO16", description: "Select input qualification type for GPIO16", size: "2", shift: "0", mask: "0x3" },
+			{ name: "GPIO17", description: "Select input qualification type for GPIO17", size: "2", shift: "2", mask: "0xC" },
+			{ name: "GPIO18", description: "Select input qualification type for GPIO18", size: "2", shift: "4", mask: "0x30" },
+			{ name: "GPIO19", description: "Select input qualification type for GPIO19", size: "2", shift: "6", mask: "0xC0" },
+			{ name: "GPIO20", description: "Select input qualification type for GPIO20", size: "2", shift: "8", mask: "0x300" },
+			{ name: "GPIO21", description: "Select input qualification type for GPIO21", size: "2", shift: "10", mask: "0xC00" },
+			{ name: "GPIO22", description: "Select input qualification type for GPIO22", size: "2", shift: "12", mask: "0x3000" },
+			{ name: "GPIO23", description: "Select input qualification type for GPIO23", size: "2", shift: "14", mask: "0xC000" },
+			{ name: "GPIO24", description: "Select input qualification type for GPIO24", size: "2", shift: "16", mask: "0x30000" },
+			{ name: "GPIO28", description: "Select input qualification type for GPIO28", size: "2", shift: "24", mask: "0x3000000" },
+			{ name: "GPIO29", description: "Select input qualification type for GPIO29", size: "2", shift: "26", mask: "0xC000000" },
+		]
+	},
+	{ name: "GPAMUX1", description: "GPIO A Mux 1 Register (GPIO0 to 15)", offset: "0x6",
+		bits: [
+			{ name: "GPIO0", description: "Defines pin-muxing selection for GPIO0", size: "2", shift: "0", mask: "0x3" },
+			{ name: "GPIO1", description: "Defines pin-muxing selection for GPIO1", size: "2", shift: "2", mask: "0xC" },
+			{ name: "GPIO2", description: "Defines pin-muxing selection for GPIO2", size: "2", shift: "4", mask: "0x30" },
+			{ name: "GPIO3", description: "Defines pin-muxing selection for GPIO3", size: "2", shift: "6", mask: "0xC0" },
+			{ name: "GPIO4", description: "Defines pin-muxing selection for GPIO4", size: "2", shift: "8", mask: "0x300" },
+			{ name: "GPIO5", description: "Defines pin-muxing selection for GPIO5", size: "2", shift: "10", mask: "0xC00" },
+			{ name: "GPIO6", description: "Defines pin-muxing selection for GPIO6", size: "2", shift: "12", mask: "0x3000" },
+			{ name: "GPIO7", description: "Defines pin-muxing selection for GPIO7", size: "2", shift: "14", mask: "0xC000" },
+			{ name: "GPIO8", description: "Defines pin-muxing selection for GPIO8", size: "2", shift: "16", mask: "0x30000" },
+			{ name: "GPIO9", description: "Defines pin-muxing selection for GPIO9", size: "2", shift: "18", mask: "0xC0000" },
+			{ name: "GPIO10", description: "Defines pin-muxing selection for GPIO10", size: "2", shift: "20", mask: "0x300000" },
+			{ name: "GPIO11", description: "Defines pin-muxing selection for GPIO11", size: "2", shift: "22", mask: "0xC00000" },
+			{ name: "GPIO12", description: "Defines pin-muxing selection for GPIO12", size: "2", shift: "24", mask: "0x3000000" },
+			{ name: "GPIO13", description: "Defines pin-muxing selection for GPIO13", size: "2", shift: "26", mask: "0xC000000" },
+		]
+	},
+	{ name: "GPAMUX2", description: "GPIO A Mux 2 Register (GPIO16 to 31)", offset: "0x8",
+		bits: [
+			{ name: "GPIO16", description: "Defines pin-muxing selection for GPIO16", size: "2", shift: "0", mask: "0x3" },
+			{ name: "GPIO17", description: "Defines pin-muxing selection for GPIO17", size: "2", shift: "2", mask: "0xC" },
+			{ name: "GPIO18", description: "Defines pin-muxing selection for GPIO18", size: "2", shift: "4", mask: "0x30" },
+			{ name: "GPIO19", description: "Defines pin-muxing selection for GPIO19", size: "2", shift: "6", mask: "0xC0" },
+			{ name: "GPIO20", description: "Defines pin-muxing selection for GPIO20", size: "2", shift: "8", mask: "0x300" },
+			{ name: "GPIO21", description: "Defines pin-muxing selection for GPIO21", size: "2", shift: "10", mask: "0xC00" },
+			{ name: "GPIO22", description: "Defines pin-muxing selection for GPIO22", size: "2", shift: "12", mask: "0x3000" },
+			{ name: "GPIO23", description: "Defines pin-muxing selection for GPIO23", size: "2", shift: "14", mask: "0xC000" },
+			{ name: "GPIO24", description: "Defines pin-muxing selection for GPIO24", size: "2", shift: "16", mask: "0x30000" },
+			{ name: "GPIO28", description: "Defines pin-muxing selection for GPIO28", size: "2", shift: "24", mask: "0x3000000" },
+			{ name: "GPIO29", description: "Defines pin-muxing selection for GPIO29", size: "2", shift: "26", mask: "0xC000000" },
+		]
+	},
+	{ name: "GPADIR", description: "GPIO A Direction Register (GPIO0 to 31)", offset: "0xA",
+		bits: [
+			{ name: "GPIO0", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "0", mask: "0x1" },
+			{ name: "GPIO1", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "1", mask: "0x2" },
+			{ name: "GPIO2", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "2", mask: "0x4" },
+			{ name: "GPIO3", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "3", mask: "0x8" },
+			{ name: "GPIO4", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "4", mask: "0x10" },
+			{ name: "GPIO5", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "5", mask: "0x20" },
+			{ name: "GPIO6", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "6", mask: "0x40" },
+			{ name: "GPIO7", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "7", mask: "0x80" },
+			{ name: "GPIO8", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "8", mask: "0x100" },
+			{ name: "GPIO9", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "9", mask: "0x200" },
+			{ name: "GPIO10", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "10", mask: "0x400" },
+			{ name: "GPIO11", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "11", mask: "0x800" },
+			{ name: "GPIO12", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "12", mask: "0x1000" },
+			{ name: "GPIO13", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "13", mask: "0x2000" },
+			{ name: "GPIO16", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "16", mask: "0x10000" },
+			{ name: "GPIO17", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "17", mask: "0x20000" },
+			{ name: "GPIO18", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "18", mask: "0x40000" },
+			{ name: "GPIO19", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "19", mask: "0x80000" },
+			{ name: "GPIO20", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "20", mask: "0x100000" },
+			{ name: "GPIO21", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "21", mask: "0x200000" },
+			{ name: "GPIO22", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "22", mask: "0x400000" },
+			{ name: "GPIO23", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "23", mask: "0x800000" },
+			{ name: "GPIO24", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "24", mask: "0x1000000" },
+			{ name: "GPIO28", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "28", mask: "0x10000000" },
+			{ name: "GPIO29", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "29", mask: "0x20000000" },
+		]
+	},
+	{ name: "GPAPUD", description: "GPIO A Pull Up Disable Register (GPIO0 to 31)", offset: "0xC",
+		bits: [
+			{ name: "GPIO0", description: "Pull-Up Disable control for this pin", size: "1", shift: "0", mask: "0x1" },
+			{ name: "GPIO1", description: "Pull-Up Disable control for this pin", size: "1", shift: "1", mask: "0x2" },
+			{ name: "GPIO2", description: "Pull-Up Disable control for this pin", size: "1", shift: "2", mask: "0x4" },
+			{ name: "GPIO3", description: "Pull-Up Disable control for this pin", size: "1", shift: "3", mask: "0x8" },
+			{ name: "GPIO4", description: "Pull-Up Disable control for this pin", size: "1", shift: "4", mask: "0x10" },
+			{ name: "GPIO5", description: "Pull-Up Disable control for this pin", size: "1", shift: "5", mask: "0x20" },
+			{ name: "GPIO6", description: "Pull-Up Disable control for this pin", size: "1", shift: "6", mask: "0x40" },
+			{ name: "GPIO7", description: "Pull-Up Disable control for this pin", size: "1", shift: "7", mask: "0x80" },
+			{ name: "GPIO8", description: "Pull-Up Disable control for this pin", size: "1", shift: "8", mask: "0x100" },
+			{ name: "GPIO9", description: "Pull-Up Disable control for this pin", size: "1", shift: "9", mask: "0x200" },
+			{ name: "GPIO10", description: "Pull-Up Disable control for this pin", size: "1", shift: "10", mask: "0x400" },
+			{ name: "GPIO11", description: "Pull-Up Disable control for this pin", size: "1", shift: "11", mask: "0x800" },
+			{ name: "GPIO12", description: "Pull-Up Disable control for this pin", size: "1", shift: "12", mask: "0x1000" },
+			{ name: "GPIO13", description: "Pull-Up Disable control for this pin", size: "1", shift: "13", mask: "0x2000" },
+			{ name: "GPIO16", description: "Pull-Up Disable control for this pin", size: "1", shift: "16", mask: "0x10000" },
+			{ name: "GPIO17", description: "Pull-Up Disable control for this pin", size: "1", shift: "17", mask: "0x20000" },
+			{ name: "GPIO18", description: "Pull-Up Disable control for this pin", size: "1", shift: "18", mask: "0x40000" },
+			{ name: "GPIO19", description: "Pull-Up Disable control for this pin", size: "1", shift: "19", mask: "0x80000" },
+			{ name: "GPIO20", description: "Pull-Up Disable control for this pin", size: "1", shift: "20", mask: "0x100000" },
+			{ name: "GPIO21", description: "Pull-Up Disable control for this pin", size: "1", shift: "21", mask: "0x200000" },
+			{ name: "GPIO22", description: "Pull-Up Disable control for this pin", size: "1", shift: "22", mask: "0x400000" },
+			{ name: "GPIO23", description: "Pull-Up Disable control for this pin", size: "1", shift: "23", mask: "0x800000" },
+			{ name: "GPIO24", description: "Pull-Up Disable control for this pin", size: "1", shift: "24", mask: "0x1000000" },
+			{ name: "GPIO28", description: "Pull-Up Disable control for this pin", size: "1", shift: "28", mask: "0x10000000" },
+			{ name: "GPIO29", description: "Pull-Up Disable control for this pin", size: "1", shift: "29", mask: "0x20000000" },
+		]
+	},
+	{ name: "GPAINV", description: "GPIO A Input Polarity Invert Registers (GPIO0 to 31)", offset: "0x10",
+		bits: [
+			{ name: "GPIO0", description: "Input inversion control for this pin", size: "1", shift: "0", mask: "0x1" },
+			{ name: "GPIO1", description: "Input inversion control for this pin", size: "1", shift: "1", mask: "0x2" },
+			{ name: "GPIO2", description: "Input inversion control for this pin", size: "1", shift: "2", mask: "0x4" },
+			{ name: "GPIO3", description: "Input inversion control for this pin", size: "1", shift: "3", mask: "0x8" },
+			{ name: "GPIO4", description: "Input inversion control for this pin", size: "1", shift: "4", mask: "0x10" },
+			{ name: "GPIO5", description: "Input inversion control for this pin", size: "1", shift: "5", mask: "0x20" },
+			{ name: "GPIO6", description: "Input inversion control for this pin", size: "1", shift: "6", mask: "0x40" },
+			{ name: "GPIO7", description: "Input inversion control for this pin", size: "1", shift: "7", mask: "0x80" },
+			{ name: "GPIO8", description: "Input inversion control for this pin", size: "1", shift: "8", mask: "0x100" },
+			{ name: "GPIO9", description: "Input inversion control for this pin", size: "1", shift: "9", mask: "0x200" },
+			{ name: "GPIO10", description: "Input inversion control for this pin", size: "1", shift: "10", mask: "0x400" },
+			{ name: "GPIO11", description: "Input inversion control for this pin", size: "1", shift: "11", mask: "0x800" },
+			{ name: "GPIO12", description: "Input inversion control for this pin", size: "1", shift: "12", mask: "0x1000" },
+			{ name: "GPIO13", description: "Input inversion control for this pin", size: "1", shift: "13", mask: "0x2000" },
+			{ name: "GPIO16", description: "Input inversion control for this pin", size: "1", shift: "16", mask: "0x10000" },
+			{ name: "GPIO17", description: "Input inversion control for this pin", size: "1", shift: "17", mask: "0x20000" },
+			{ name: "GPIO18", description: "Input inversion control for this pin", size: "1", shift: "18", mask: "0x40000" },
+			{ name: "GPIO19", description: "Input inversion control for this pin", size: "1", shift: "19", mask: "0x80000" },
+			{ name: "GPIO20", description: "Input inversion control for this pin", size: "1", shift: "20", mask: "0x100000" },
+			{ name: "GPIO21", description: "Input inversion control for this pin", size: "1", shift: "21", mask: "0x200000" },
+			{ name: "GPIO22", description: "Input inversion control for this pin", size: "1", shift: "22", mask: "0x400000" },
+			{ name: "GPIO23", description: "Input inversion control for this pin", size: "1", shift: "23", mask: "0x800000" },
+			{ name: "GPIO24", description: "Input inversion control for this pin", size: "1", shift: "24", mask: "0x1000000" },
+			{ name: "GPIO28", description: "Input inversion control for this pin", size: "1", shift: "28", mask: "0x10000000" },
+			{ name: "GPIO29", description: "Input inversion control for this pin", size: "1", shift: "29", mask: "0x20000000" },
+		]
+	},
+	{ name: "GPAODR", description: "GPIO A Open Drain Output Register (GPIO0 to GPIO31)", offset: "0x12",
+		bits: [
+			{ name: "GPIO0", description: "Outpout Open-Drain control for this pin", size: "1", shift: "0", mask: "0x1" },
+			{ name: "GPIO1", description: "Outpout Open-Drain control for this pin", size: "1", shift: "1", mask: "0x2" },
+			{ name: "GPIO2", description: "Outpout Open-Drain control for this pin", size: "1", shift: "2", mask: "0x4" },
+			{ name: "GPIO3", description: "Outpout Open-Drain control for this pin", size: "1", shift: "3", mask: "0x8" },
+			{ name: "GPIO4", description: "Outpout Open-Drain control for this pin", size: "1", shift: "4", mask: "0x10" },
+			{ name: "GPIO5", description: "Outpout Open-Drain control for this pin", size: "1", shift: "5", mask: "0x20" },
+			{ name: "GPIO6", description: "Outpout Open-Drain control for this pin", size: "1", shift: "6", mask: "0x40" },
+			{ name: "GPIO7", description: "Outpout Open-Drain control for this pin", size: "1", shift: "7", mask: "0x80" },
+			{ name: "GPIO8", description: "Outpout Open-Drain control for this pin", size: "1", shift: "8", mask: "0x100" },
+			{ name: "GPIO9", description: "Outpout Open-Drain control for this pin", size: "1", shift: "9", mask: "0x200" },
+			{ name: "GPIO10", description: "Outpout Open-Drain control for this pin", size: "1", shift: "10", mask: "0x400" },
+			{ name: "GPIO11", description: "Outpout Open-Drain control for this pin", size: "1", shift: "11", mask: "0x800" },
+			{ name: "GPIO12", description: "Outpout Open-Drain control for this pin", size: "1", shift: "12", mask: "0x1000" },
+			{ name: "GPIO13", description: "Outpout Open-Drain control for this pin", size: "1", shift: "13", mask: "0x2000" },
+			{ name: "GPIO16", description: "Outpout Open-Drain control for this pin", size: "1", shift: "16", mask: "0x10000" },
+			{ name: "GPIO17", description: "Outpout Open-Drain control for this pin", size: "1", shift: "17", mask: "0x20000" },
+			{ name: "GPIO18", description: "Outpout Open-Drain control for this pin", size: "1", shift: "18", mask: "0x40000" },
+			{ name: "GPIO19", description: "Outpout Open-Drain control for this pin", size: "1", shift: "19", mask: "0x80000" },
+			{ name: "GPIO20", description: "Outpout Open-Drain control for this pin", size: "1", shift: "20", mask: "0x100000" },
+			{ name: "GPIO21", description: "Outpout Open-Drain control for this pin", size: "1", shift: "21", mask: "0x200000" },
+			{ name: "GPIO22", description: "Outpout Open-Drain control for this pin", size: "1", shift: "22", mask: "0x400000" },
+			{ name: "GPIO23", description: "Outpout Open-Drain control for this pin", size: "1", shift: "23", mask: "0x800000" },
+			{ name: "GPIO24", description: "Outpout Open-Drain control for this pin", size: "1", shift: "24", mask: "0x1000000" },
+			{ name: "GPIO28", description: "Outpout Open-Drain control for this pin", size: "1", shift: "28", mask: "0x10000000" },
+			{ name: "GPIO29", description: "Outpout Open-Drain control for this pin", size: "1", shift: "29", mask: "0x20000000" },
+		]
+	},
+	{ name: "GPAAMSEL", description: "GPIO A Analog Mode Select register (GPIO0 to GPIO31)", offset: "0x14",
+		bits: [
+			{ name: "GPIO12", description: "Analog Mode select for this pin", size: "1", shift: "12", mask: "0x1000" },
+			{ name: "GPIO13", description: "Analog Mode select for this pin", size: "1", shift: "13", mask: "0x2000" },
+			{ name: "GPIO20", description: "Analog Mode select for this pin", size: "1", shift: "20", mask: "0x100000" },
+			{ name: "GPIO21", description: "Analog Mode select for this pin", size: "1", shift: "21", mask: "0x200000" },
+			{ name: "GPIO28", description: "Analog Mode select for this pin", size: "1", shift: "28", mask: "0x10000000" },
+		]
+	},
+	{ name: "GPAGMUX1", description: "GPIO A Peripheral Group Mux (GPIO0 to 15)", offset: "0x20",
+		bits: [
+			{ name: "GPIO0", description: "Defines pin-muxing selection for GPIO0", size: "2", shift: "0", mask: "0x3" },
+			{ name: "GPIO1", description: "Defines pin-muxing selection for GPIO1", size: "2", shift: "2", mask: "0xC" },
+			{ name: "GPIO2", description: "Defines pin-muxing selection for GPIO2", size: "2", shift: "4", mask: "0x30" },
+			{ name: "GPIO3", description: "Defines pin-muxing selection for GPIO3", size: "2", shift: "6", mask: "0xC0" },
+			{ name: "GPIO4", description: "Defines pin-muxing selection for GPIO4", size: "2", shift: "8", mask: "0x300" },
+			{ name: "GPIO5", description: "Defines pin-muxing selection for GPIO5", size: "2", shift: "10", mask: "0xC00" },
+			{ name: "GPIO6", description: "Defines pin-muxing selection for GPIO6", size: "2", shift: "12", mask: "0x3000" },
+			{ name: "GPIO7", description: "Defines pin-muxing selection for GPIO7", size: "2", shift: "14", mask: "0xC000" },
+			{ name: "GPIO8", description: "Defines pin-muxing selection for GPIO8", size: "2", shift: "16", mask: "0x30000" },
+			{ name: "GPIO9", description: "Defines pin-muxing selection for GPIO9", size: "2", shift: "18", mask: "0xC0000" },
+			{ name: "GPIO10", description: "Defines pin-muxing selection for GPIO10", size: "2", shift: "20", mask: "0x300000" },
+			{ name: "GPIO11", description: "Defines pin-muxing selection for GPIO11", size: "2", shift: "22", mask: "0xC00000" },
+			{ name: "GPIO12", description: "Defines pin-muxing selection for GPIO12", size: "2", shift: "24", mask: "0x3000000" },
+			{ name: "GPIO13", description: "Defines pin-muxing selection for GPIO13", size: "2", shift: "26", mask: "0xC000000" },
+		]
+	},
+	{ name: "GPAGMUX2", description: "GPIO A Peripheral Group Mux (GPIO16 to 31)", offset: "0x22",
+		bits: [
+			{ name: "GPIO16", description: "Defines pin-muxing selection for GPIO16", size: "2", shift: "0", mask: "0x3" },
+			{ name: "GPIO17", description: "Defines pin-muxing selection for GPIO17", size: "2", shift: "2", mask: "0xC" },
+			{ name: "GPIO18", description: "Defines pin-muxing selection for GPIO18", size: "2", shift: "4", mask: "0x30" },
+			{ name: "GPIO19", description: "Defines pin-muxing selection for GPIO19", size: "2", shift: "6", mask: "0xC0" },
+			{ name: "GPIO20", description: "Defines pin-muxing selection for GPIO20", size: "2", shift: "8", mask: "0x300" },
+			{ name: "GPIO21", description: "Defines pin-muxing selection for GPIO21", size: "2", shift: "10", mask: "0xC00" },
+			{ name: "GPIO22", description: "Defines pin-muxing selection for GPIO22", size: "2", shift: "12", mask: "0x3000" },
+			{ name: "GPIO23", description: "Defines pin-muxing selection for GPIO23", size: "2", shift: "14", mask: "0xC000" },
+			{ name: "GPIO24", description: "Defines pin-muxing selection for GPIO24", size: "2", shift: "16", mask: "0x30000" },
+			{ name: "GPIO28", description: "Defines pin-muxing selection for GPIO28", size: "2", shift: "24", mask: "0x3000000" },
+			{ name: "GPIO29", description: "Defines pin-muxing selection for GPIO29", size: "2", shift: "26", mask: "0xC000000" },
+		]
+	},
+	{ name: "GPALOCK", description: "GPIO A Lock Configuration Register (GPIO0 to 31)", offset: "0x3C",
+		bits: [
+			{ name: "GPIO0", description: "Configuration Lock bit for this pin", size: "1", shift: "0", mask: "0x1" },
+			{ name: "GPIO1", description: "Configuration Lock bit for this pin", size: "1", shift: "1", mask: "0x2" },
+			{ name: "GPIO2", description: "Configuration Lock bit for this pin", size: "1", shift: "2", mask: "0x4" },
+			{ name: "GPIO3", description: "Configuration Lock bit for this pin", size: "1", shift: "3", mask: "0x8" },
+			{ name: "GPIO4", description: "Configuration Lock bit for this pin", size: "1", shift: "4", mask: "0x10" },
+			{ name: "GPIO5", description: "Configuration Lock bit for this pin", size: "1", shift: "5", mask: "0x20" },
+			{ name: "GPIO6", description: "Configuration Lock bit for this pin", size: "1", shift: "6", mask: "0x40" },
+			{ name: "GPIO7", description: "Configuration Lock bit for this pin", size: "1", shift: "7", mask: "0x80" },
+			{ name: "GPIO8", description: "Configuration Lock bit for this pin", size: "1", shift: "8", mask: "0x100" },
+			{ name: "GPIO9", description: "Configuration Lock bit for this pin", size: "1", shift: "9", mask: "0x200" },
+			{ name: "GPIO10", description: "Configuration Lock bit for this pin", size: "1", shift: "10", mask: "0x400" },
+			{ name: "GPIO11", description: "Configuration Lock bit for this pin", size: "1", shift: "11", mask: "0x800" },
+			{ name: "GPIO12", description: "Configuration Lock bit for this pin", size: "1", shift: "12", mask: "0x1000" },
+			{ name: "GPIO13", description: "Configuration Lock bit for this pin", size: "1", shift: "13", mask: "0x2000" },
+			{ name: "GPIO16", description: "Configuration Lock bit for this pin", size: "1", shift: "16", mask: "0x10000" },
+			{ name: "GPIO17", description: "Configuration Lock bit for this pin", size: "1", shift: "17", mask: "0x20000" },
+			{ name: "GPIO18", description: "Configuration Lock bit for this pin", size: "1", shift: "18", mask: "0x40000" },
+			{ name: "GPIO19", description: "Configuration Lock bit for this pin", size: "1", shift: "19", mask: "0x80000" },
+			{ name: "GPIO20", description: "Configuration Lock bit for this pin", size: "1", shift: "20", mask: "0x100000" },
+			{ name: "GPIO21", description: "Configuration Lock bit for this pin", size: "1", shift: "21", mask: "0x200000" },
+			{ name: "GPIO22", description: "Configuration Lock bit for this pin", size: "1", shift: "22", mask: "0x400000" },
+			{ name: "GPIO23", description: "Configuration Lock bit for this pin", size: "1", shift: "23", mask: "0x800000" },
+			{ name: "GPIO24", description: "Configuration Lock bit for this pin", size: "1", shift: "24", mask: "0x1000000" },
+			{ name: "GPIO28", description: "Configuration Lock bit for this pin", size: "1", shift: "28", mask: "0x10000000" },
+			{ name: "GPIO29", description: "Configuration Lock bit for this pin", size: "1", shift: "29", mask: "0x20000000" },
+		]
+	},
+	{ name: "GPACR", description: "GPIO A Lock Commit Register (GPIO0 to 31)", offset: "0x3E",
+		bits: [
+			{ name: "GPIO0", description: "Configuration lock commit bit for this pin", size: "1", shift: "0", mask: "0x1" },
+			{ name: "GPIO1", description: "Configuration lock commit bit for this pin", size: "1", shift: "1", mask: "0x2" },
+			{ name: "GPIO2", description: "Configuration lock commit bit for this pin", size: "1", shift: "2", mask: "0x4" },
+			{ name: "GPIO3", description: "Configuration lock commit bit for this pin", size: "1", shift: "3", mask: "0x8" },
+			{ name: "GPIO4", description: "Configuration lock commit bit for this pin", size: "1", shift: "4", mask: "0x10" },
+			{ name: "GPIO5", description: "Configuration lock commit bit for this pin", size: "1", shift: "5", mask: "0x20" },
+			{ name: "GPIO6", description: "Configuration lock commit bit for this pin", size: "1", shift: "6", mask: "0x40" },
+			{ name: "GPIO7", description: "Configuration lock commit bit for this pin", size: "1", shift: "7", mask: "0x80" },
+			{ name: "GPIO8", description: "Configuration lock commit bit for this pin", size: "1", shift: "8", mask: "0x100" },
+			{ name: "GPIO9", description: "Configuration lock commit bit for this pin", size: "1", shift: "9", mask: "0x200" },
+			{ name: "GPIO10", description: "Configuration lock commit bit for this pin", size: "1", shift: "10", mask: "0x400" },
+			{ name: "GPIO11", description: "Configuration lock commit bit for this pin", size: "1", shift: "11", mask: "0x800" },
+			{ name: "GPIO12", description: "Configuration lock commit bit for this pin", size: "1", shift: "12", mask: "0x1000" },
+			{ name: "GPIO13", description: "Configuration lock commit bit for this pin", size: "1", shift: "13", mask: "0x2000" },
+			{ name: "GPIO16", description: "Configuration lock commit bit for this pin", size: "1", shift: "16", mask: "0x10000" },
+			{ name: "GPIO17", description: "Configuration lock commit bit for this pin", size: "1", shift: "17", mask: "0x20000" },
+			{ name: "GPIO18", description: "Configuration lock commit bit for this pin", size: "1", shift: "18", mask: "0x40000" },
+			{ name: "GPIO19", description: "Configuration lock commit bit for this pin", size: "1", shift: "19", mask: "0x80000" },
+			{ name: "GPIO20", description: "Configuration lock commit bit for this pin", size: "1", shift: "20", mask: "0x100000" },
+			{ name: "GPIO21", description: "Configuration lock commit bit for this pin", size: "1", shift: "21", mask: "0x200000" },
+			{ name: "GPIO22", description: "Configuration lock commit bit for this pin", size: "1", shift: "22", mask: "0x400000" },
+			{ name: "GPIO23", description: "Configuration lock commit bit for this pin", size: "1", shift: "23", mask: "0x800000" },
+			{ name: "GPIO24", description: "Configuration lock commit bit for this pin", size: "1", shift: "24", mask: "0x1000000" },
+			{ name: "GPIO28", description: "Configuration lock commit bit for this pin", size: "1", shift: "28", mask: "0x10000000" },
+			{ name: "GPIO29", description: "Configuration lock commit bit for this pin", size: "1", shift: "29", mask: "0x20000000" },
+		]
+	},
+	{ name: "GPBCTRL", description: "GPIO B Qualification Sampling Period Control (GPIO32 to 63)", offset: "0x40",
+		bits: [
+			{ name: "QUALPRD0", description: "Qualification sampling period for GPIO32 to GPIO39", size: "8", shift: "0", mask: "0xFF" },
+			{ name: "QUALPRD1", description: "Qualification sampling period for GPIO40 to GPIO47", size: "8", shift: "8", mask: "0xFF00" },
+		]
+	},
+	{ name: "GPBQSEL1", description: "GPIO B Qualifier Select 1 Register (GPIO32 to 47)", offset: "0x42",
+		bits: [
+			{ name: "GPIO32", description: "Select input qualification type for GPIO32", size: "2", shift: "0", mask: "0x3" },
+			{ name: "GPIO33", description: "Select input qualification type for GPIO33", size: "2", shift: "2", mask: "0xC" },
+			{ name: "GPIO35", description: "Select input qualification type for GPIO35", size: "2", shift: "6", mask: "0xC0" },
+			{ name: "GPIO37", description: "Select input qualification type for GPIO37", size: "2", shift: "10", mask: "0xC00" },
+			{ name: "GPIO39", description: "Select input qualification type for GPIO39", size: "2", shift: "14", mask: "0xC000" },
+			{ name: "GPIO40", description: "Select input qualification type for GPIO40", size: "2", shift: "16", mask: "0x30000" },
+			{ name: "GPIO41", description: "Select input qualification type for GPIO41", size: "2", shift: "18", mask: "0xC0000" },
+		]
+	},
+	{ name: "GPBMUX1", description: "GPIO B Mux 1 Register (GPIO32 to 47)", offset: "0x46",
+		bits: [
+			{ name: "GPIO32", description: "Defines pin-muxing selection for GPIO32", size: "2", shift: "0", mask: "0x3" },
+			{ name: "GPIO33", description: "Defines pin-muxing selection for GPIO33", size: "2", shift: "2", mask: "0xC" },
+			{ name: "GPIO35", description: "Defines pin-muxing selection for GPIO35", size: "2", shift: "6", mask: "0xC0" },
+			{ name: "GPIO37", description: "Defines pin-muxing selection for GPIO37", size: "2", shift: "10", mask: "0xC00" },
+			{ name: "GPIO39", description: "Defines pin-muxing selection for GPIO39", size: "2", shift: "14", mask: "0xC000" },
+			{ name: "GPIO40", description: "Defines pin-muxing selection for GPIO40", size: "2", shift: "16", mask: "0x30000" },
+			{ name: "GPIO41", description: "Defines pin-muxing selection for GPIO41", size: "2", shift: "18", mask: "0xC0000" },
+		]
+	},
+	{ name: "GPBDIR", description: "GPIO B Direction Register (GPIO32 to 63)", offset: "0x4A",
+		bits: [
+			{ name: "GPIO32", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "0", mask: "0x1" },
+			{ name: "GPIO33", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "1", mask: "0x2" },
+			{ name: "GPIO35", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "3", mask: "0x8" },
+			{ name: "GPIO37", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "5", mask: "0x20" },
+			{ name: "GPIO39", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "7", mask: "0x80" },
+			{ name: "GPIO40", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "8", mask: "0x100" },
+			{ name: "GPIO41", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "9", mask: "0x200" },
+		]
+	},
+	{ name: "GPBPUD", description: "GPIO B Pull Up Disable Register (GPIO32 to 63)", offset: "0x4C",
+		bits: [
+			{ name: "GPIO32", description: "Pull-Up Disable control for this pin", size: "1", shift: "0", mask: "0x1" },
+			{ name: "GPIO33", description: "Pull-Up Disable control for this pin", size: "1", shift: "1", mask: "0x2" },
+			{ name: "GPIO35", description: "Pull-Up Disable control for this pin", size: "1", shift: "3", mask: "0x8" },
+			{ name: "GPIO37", description: "Pull-Up Disable control for this pin", size: "1", shift: "5", mask: "0x20" },
+			{ name: "GPIO39", description: "Pull-Up Disable control for this pin", size: "1", shift: "7", mask: "0x80" },
+			{ name: "GPIO40", description: "Pull-Up Disable control for this pin", size: "1", shift: "8", mask: "0x100" },
+			{ name: "GPIO41", description: "Pull-Up Disable control for this pin", size: "1", shift: "9", mask: "0x200" },
+		]
+	},
+	{ name: "GPBINV", description: "GPIO B Input Polarity Invert Registers (GPIO32 to 63)", offset: "0x50",
+		bits: [
+			{ name: "GPIO32", description: "Input inversion control for this pin", size: "1", shift: "0", mask: "0x1" },
+			{ name: "GPIO33", description: "Input inversion control for this pin", size: "1", shift: "1", mask: "0x2" },
+			{ name: "GPIO35", description: "Input inversion control for this pin", size: "1", shift: "3", mask: "0x8" },
+			{ name: "GPIO37", description: "Input inversion control for this pin", size: "1", shift: "5", mask: "0x20" },
+			{ name: "GPIO39", description: "Input inversion control for this pin", size: "1", shift: "7", mask: "0x80" },
+			{ name: "GPIO40", description: "Input inversion control for this pin", size: "1", shift: "8", mask: "0x100" },
+			{ name: "GPIO41", description: "Input inversion control for this pin", size: "1", shift: "9", mask: "0x200" },
+		]
+	},
+	{ name: "GPBODR", description: "GPIO B Open Drain Output Register (GPIO32 to GPIO63)", offset: "0x52",
+		bits: [
+			{ name: "GPIO32", description: "Outpout Open-Drain control for this pin", size: "1", shift: "0", mask: "0x1" },
+			{ name: "GPIO33", description: "Outpout Open-Drain control for this pin", size: "1", shift: "1", mask: "0x2" },
+			{ name: "GPIO35", description: "Outpout Open-Drain control for this pin", size: "1", shift: "3", mask: "0x8" },
+			{ name: "GPIO37", description: "Outpout Open-Drain control for this pin", size: "1", shift: "5", mask: "0x20" },
+			{ name: "GPIO39", description: "Outpout Open-Drain control for this pin", size: "1", shift: "7", mask: "0x80" },
+			{ name: "GPIO40", description: "Outpout Open-Drain control for this pin", size: "1", shift: "8", mask: "0x100" },
+			{ name: "GPIO41", description: "Outpout Open-Drain control for this pin", size: "1", shift: "9", mask: "0x200" },
+		]
+	},
+	{ name: "GPBGMUX1", description: "GPIO B Peripheral Group Mux (GPIO32 to 47)", offset: "0x60",
+		bits: [
+			{ name: "GPIO32", description: "Defines pin-muxing selection for GPIO32", size: "2", shift: "0", mask: "0x3" },
+			{ name: "GPIO33", description: "Defines pin-muxing selection for GPIO33", size: "2", shift: "2", mask: "0xC" },
+			{ name: "GPIO35", description: "Defines pin-muxing selection for GPIO35", size: "2", shift: "6", mask: "0xC0" },
+			{ name: "GPIO37", description: "Defines pin-muxing selection for GPIO37", size: "2", shift: "10", mask: "0xC00" },
+			{ name: "GPIO39", description: "Defines pin-muxing selection for GPIO39", size: "2", shift: "14", mask: "0xC000" },
+			{ name: "GPIO40", description: "Defines pin-muxing selection for GPIO40", size: "2", shift: "16", mask: "0x30000" },
+			{ name: "GPIO41", description: "Defines pin-muxing selection for GPIO41", size: "2", shift: "18", mask: "0xC0000" },
+		]
+	},
+	{ name: "GPBLOCK", description: "GPIO B Lock Configuration Register (GPIO32 to 63)", offset: "0x7C",
+		bits: [
+			{ name: "GPIO32", description: "Configuration Lock bit for this pin", size: "1", shift: "0", mask: "0x1" },
+			{ name: "GPIO33", description: "Configuration Lock bit for this pin", size: "1", shift: "1", mask: "0x2" },
+			{ name: "GPIO35", description: "Configuration Lock bit for this pin", size: "1", shift: "3", mask: "0x8" },
+			{ name: "GPIO37", description: "Configuration Lock bit for this pin", size: "1", shift: "5", mask: "0x20" },
+			{ name: "GPIO39", description: "Configuration Lock bit for this pin", size: "1", shift: "7", mask: "0x80" },
+			{ name: "GPIO40", description: "Configuration Lock bit for this pin", size: "1", shift: "8", mask: "0x100" },
+			{ name: "GPIO41", description: "Configuration Lock bit for this pin", size: "1", shift: "9", mask: "0x200" },
+		]
+	},
+	{ name: "GPBCR", description: "GPIO B Lock Commit Register (GPIO32 to 63)", offset: "0x7E",
+		bits: [
+			{ name: "GPIO32", description: "Configuration lock commit bit for this pin", size: "1", shift: "0", mask: "0x1" },
+			{ name: "GPIO33", description: "Configuration lock commit bit for this pin", size: "1", shift: "1", mask: "0x2" },
+			{ name: "GPIO35", description: "Configuration lock commit bit for this pin", size: "1", shift: "3", mask: "0x8" },
+			{ name: "GPIO37", description: "Configuration lock commit bit for this pin", size: "1", shift: "5", mask: "0x20" },
+			{ name: "GPIO39", description: "Configuration lock commit bit for this pin", size: "1", shift: "7", mask: "0x80" },
+			{ name: "GPIO40", description: "Configuration lock commit bit for this pin", size: "1", shift: "8", mask: "0x100" },
+			{ name: "GPIO41", description: "Configuration lock commit bit for this pin", size: "1", shift: "9", mask: "0x200" },
+		]
+	},
+	{ name: "GPHCTRL", description: "GPIO H Qualification Sampling Period Control (GPIO224 to 255)", offset: "0x1C0",
+		bits: [
+			{ name: "QUALPRD0", description: "Qualification sampling period for GPIO224 to", size: "8", shift: "0", mask: "0xFF" },
+			{ name: "QUALPRD1", description: "Qualification sampling period for GPIO232 to", size: "8", shift: "8", mask: "0xFF00" },
+			{ name: "QUALPRD2", description: "Qualification sampling period for GPIO240 to", size: "8", shift: "16", mask: "0xFF0000" },
+		]
+	},
+	{ name: "GPHQSEL1", description: "GPIO H Qualifier Select 1 Register (GPIO224 to 239)", offset: "0x1C2",
+		bits: [
+			{ name: "GPIO224", description: "Select input qualification type for this GPIO", size: "2", shift: "0", mask: "0x3" },
+			{ name: "GPIO225", description: "Select input qualification type for this GPIO", size: "2", shift: "2", mask: "0xC" },
+			{ name: "GPIO226", description: "Select input qualification type for this GPIO", size: "2", shift: "4", mask: "0x30" },
+			{ name: "GPIO227", description: "Select input qualification type for this GPIO", size: "2", shift: "6", mask: "0xC0" },
+			{ name: "GPIO228", description: "Select input qualification type for this GPIO", size: "2", shift: "8", mask: "0x300" },
+			{ name: "GPIO230", description: "Select input qualification type for this GPIO", size: "2", shift: "12", mask: "0x3000" },
+			{ name: "GPIO231", description: "Select input qualification type for this GPIO", size: "2", shift: "14", mask: "0xC000" },
+			{ name: "GPIO232", description: "Select input qualification type for this GPIO", size: "2", shift: "16", mask: "0x30000" },
+			{ name: "GPIO233", description: "Select input qualification type for this GPIO", size: "2", shift: "18", mask: "0xC0000" },
+			{ name: "GPIO237", description: "Select input qualification type for this GPIO", size: "2", shift: "26", mask: "0xC000000" },
+			{ name: "GPIO238", description: "Select input qualification type for this GPIO", size: "2", shift: "28", mask: "0x30000000" },
+			{ name: "GPIO239", description: "Select input qualification type for this GPIO", size: "2", shift: "30", mask: "0xC0000000" },
+		]
+	},
+	{ name: "GPHQSEL2", description: "GPIO H Qualifier Select 2 Register (GPIO240 to 255)", offset: "0x1C4",
+		bits: [
+			{ name: "GPIO241", description: "Select input qualification type for this GPIO Pin", size: "2", shift: "2", mask: "0xC" },
+			{ name: "GPIO242", description: "Select input qualification type for this GPIO Pin", size: "2", shift: "4", mask: "0x30" },
+			{ name: "GPIO244", description: "Select input qualification type for this GPIO Pin", size: "2", shift: "8", mask: "0x300" },
+			{ name: "GPIO245", description: "Select input qualification type for this GPIO Pin", size: "2", shift: "10", mask: "0xC00" },
+		]
+	},
+	{ name: "GPHMUX1", description: "GPIO H Mux 1 Register (GPIO224 to 239)", offset: "0x1C6",
+		bits: [
+			{ name: "GPIO224", description: "Defines pin-muxing selection for GPIO224", size: "2", shift: "0", mask: "0x3" },
+			{ name: "GPIO226", description: "Defines pin-muxing selection for GPIO226", size: "2", shift: "4", mask: "0x30" },
+			{ name: "GPIO227", description: "Defines pin-muxing selection for GPIO227", size: "2", shift: "6", mask: "0xC0" },
+			{ name: "GPIO228", description: "Defines pin-muxing selection for GPIO228", size: "2", shift: "8", mask: "0x300" },
+			{ name: "GPIO230", description: "Defines pin-muxing selection for GPIO230", size: "2", shift: "12", mask: "0x3000" },
+		]
+	},
+	{ name: "GPHMUX2", description: "GPIO H Mux 2 Register (GPIO240 to 255)", offset: "0x1C8",
+		bits: [
+			{ name: "GPIO242", description: "Defines pin-muxing selection for GPIO242", size: "2", shift: "4", mask: "0x30" },
+		]
+	},
+	{ name: "GPHDIR", description: "GPIO H Direction Register (GPIO224 to 255)", offset: "0x1CA",
+		bits: [
+			{ name: "GPIO224", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "0", mask: "0x1" },
+			{ name: "GPIO226", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "2", mask: "0x4" },
+			{ name: "GPIO227", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "3", mask: "0x8" },
+			{ name: "GPIO228", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "4", mask: "0x10" },
+			{ name: "GPIO230", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "6", mask: "0x40" },
+			{ name: "GPIO242", description: "Defines direction for this pin in GPIO mode", size: "1", shift: "18", mask: "0x40000" },
+		]
+	},
+	{ name: "GPHPUD", description: "GPIO H Pull Up Disable Register (GPIO224 to 255)", offset: "0x1CC",
+		bits: [
+			{ name: "GPIO224", description: "Pull-Up Disable control for this pin", size: "1", shift: "0", mask: "0x1" },
+			{ name: "GPIO225", description: "Pull-Up Disable control for this pin", size: "1", shift: "1", mask: "0x2" },
+			{ name: "GPIO226", description: "Pull-Up Disable control for this pin", size: "1", shift: "2", mask: "0x4" },
+			{ name: "GPIO227", description: "Pull-Up Disable control for this pin", size: "1", shift: "3", mask: "0x8" },
+			{ name: "GPIO228", description: "Pull-Up Disable control for this pin", size: "1", shift: "4", mask: "0x10" },
+			{ name: "GPIO230", description: "Pull-Up Disable control for this pin", size: "1", shift: "6", mask: "0x40" },
+			{ name: "GPIO231", description: "Pull-Up Disable control for this pin", size: "1", shift: "7", mask: "0x80" },
+			{ name: "GPIO232", description: "Pull-Up Disable control for this pin", size: "1", shift: "8", mask: "0x100" },
+			{ name: "GPIO233", description: "Pull-Up Disable control for this pin", size: "1", shift: "9", mask: "0x200" },
+			{ name: "GPIO237", description: "Pull-Up Disable control for this pin", size: "1", shift: "13", mask: "0x2000" },
+			{ name: "GPIO238", description: "Pull-Up Disable control for this pin", size: "1", shift: "14", mask: "0x4000" },
+			{ name: "GPIO239", description: "Pull-Up Disable control for this pin", size: "1", shift: "15", mask: "0x8000" },
+			{ name: "GPIO241", description: "Pull-Up Disable control for this pin", size: "1", shift: "17", mask: "0x20000" },
+			{ name: "GPIO242", description: "Pull-Up Disable control for this pin", size: "1", shift: "18", mask: "0x40000" },
+			{ name: "GPIO244", description: "Pull-Up Disable control for this pin", size: "1", shift: "20", mask: "0x100000" },
+			{ name: "GPIO245", description: "Pull-Up Disable control for this pin", size: "1", shift: "21", mask: "0x200000" },
+		]
+	},
+	{ name: "GPHINV", description: "GPIO H Input Polarity Invert Registers (GPIO224 to 255)", offset: "0x1D0",
+		bits: [
+			{ name: "GPIO224", description: "Input inversion control for this pin", size: "1", shift: "0", mask: "0x1" },
+			{ name: "GPIO225", description: "Input inversion control for this pin", size: "1", shift: "1", mask: "0x2" },
+			{ name: "GPIO226", description: "Input inversion control for this pin", size: "1", shift: "2", mask: "0x4" },
+			{ name: "GPIO227", description: "Input inversion control for this pin", size: "1", shift: "3", mask: "0x8" },
+			{ name: "GPIO228", description: "Input inversion control for this pin", size: "1", shift: "4", mask: "0x10" },
+			{ name: "GPIO230", description: "Input inversion control for this pin", size: "1", shift: "6", mask: "0x40" },
+			{ name: "GPIO231", description: "Input inversion control for this pin", size: "1", shift: "7", mask: "0x80" },
+			{ name: "GPIO232", description: "Input inversion control for this pin", size: "1", shift: "8", mask: "0x100" },
+			{ name: "GPIO233", description: "Input inversion control for this pin", size: "1", shift: "9", mask: "0x200" },
+			{ name: "GPIO237", description: "Input inversion control for this pin", size: "1", shift: "13", mask: "0x2000" },
+			{ name: "GPIO238", description: "Input inversion control for this pin", size: "1", shift: "14", mask: "0x4000" },
+			{ name: "GPIO239", description: "Input inversion control for this pin", size: "1", shift: "15", mask: "0x8000" },
+			{ name: "GPIO241", description: "Input inversion control for this pin", size: "1", shift: "17", mask: "0x20000" },
+			{ name: "GPIO242", description: "Input inversion control for this pin", size: "1", shift: "18", mask: "0x40000" },
+			{ name: "GPIO244", description: "Input inversion control for this pin", size: "1", shift: "20", mask: "0x100000" },
+			{ name: "GPIO245", description: "Input inversion control for this pin", size: "1", shift: "21", mask: "0x200000" },
+		]
+	},
+	{ name: "GPHODR", description: "GPIO H Open Drain Output Register (GPIO224 to GPIO255)", offset: "0x1D2",
+		bits: [
+			{ name: "GPIO224", description: "Outpout Open-Drain control for this pin", size: "1", shift: "0", mask: "0x1" },
+			{ name: "GPIO226", description: "Outpout Open-Drain control for this pin", size: "1", shift: "2", mask: "0x4" },
+			{ name: "GPIO227", description: "Outpout Open-Drain control for this pin", size: "1", shift: "3", mask: "0x8" },
+			{ name: "GPIO228", description: "Outpout Open-Drain control for this pin", size: "1", shift: "4", mask: "0x10" },
+			{ name: "GPIO230", description: "Outpout Open-Drain control for this pin", size: "1", shift: "6", mask: "0x40" },
+			{ name: "GPIO242", description: "Outpout Open-Drain control for this pin", size: "1", shift: "18", mask: "0x40000" },
+		]
+	},
+	{ name: "GPHAMSEL", description: "GPIO H Analog Mode Select register (GPIO224 to GPIO255)", offset: "0x1D4",
+		bits: [
+			{ name: "GPIO224", description: "Analog Mode select for this pin", size: "1", shift: "0", mask: "0x1" },
+			{ name: "GPIO225", description: "Analog Mode select for this pin", size: "1", shift: "1", mask: "0x2" },
+			{ name: "GPIO226", description: "Analog Mode select for this pin", size: "1", shift: "2", mask: "0x4" },
+			{ name: "GPIO227", description: "Analog Mode select for this pin", size: "1", shift: "3", mask: "0x8" },
+			{ name: "GPIO228", description: "Analog Mode select for this pin", size: "1", shift: "4", mask: "0x10" },
+			{ name: "GPIO230", description: "Analog Mode select for this pin", size: "1", shift: "6", mask: "0x40" },
+			{ name: "GPIO231", description: "Analog Mode select for this pin", size: "1", shift: "7", mask: "0x80" },
+			{ name: "GPIO232", description: "Analog Mode select for this pin", size: "1", shift: "8", mask: "0x100" },
+			{ name: "GPIO233", description: "Analog Mode select for this pin", size: "1", shift: "9", mask: "0x200" },
+			{ name: "GPIO237", description: "Analog Mode select for this pin", size: "1", shift: "13", mask: "0x2000" },
+			{ name: "GPIO238", description: "Analog Mode select for this pin", size: "1", shift: "14", mask: "0x4000" },
+			{ name: "GPIO239", description: "Analog Mode select for this pin", size: "1", shift: "15", mask: "0x8000" },
+			{ name: "GPIO241", description: "Analog Mode select for this pin", size: "1", shift: "17", mask: "0x20000" },
+			{ name: "GPIO242", description: "Analog Mode select for this pin", size: "1", shift: "18", mask: "0x40000" },
+			{ name: "GPIO244", description: "Analog Mode select for this pin", size: "1", shift: "20", mask: "0x100000" },
+			{ name: "GPIO245", description: "Analog Mode select for this pin", size: "1", shift: "21", mask: "0x200000" },
+		]
+	},
+	{ name: "GPHGMUX1", description: "GPIO H Peripheral Group Mux (GPIO224 to 239)", offset: "0x1E0",
+		bits: [
+			{ name: "GPIO224", description: "Defines pin-muxing selection for GPIO224", size: "2", shift: "0", mask: "0x3" },
+			{ name: "GPIO226", description: "Defines pin-muxing selection for GPIO226", size: "2", shift: "4", mask: "0x30" },
+			{ name: "GPIO227", description: "Defines pin-muxing selection for GPIO227", size: "2", shift: "6", mask: "0xC0" },
+			{ name: "GPIO228", description: "Defines pin-muxing selection for GPIO228", size: "2", shift: "8", mask: "0x300" },
+			{ name: "GPIO230", description: "Defines pin-muxing selection for GPIO230", size: "2", shift: "12", mask: "0x3000" },
+		]
+	},
+	{ name: "GPHGMUX2", description: "GPIO H Peripheral Group Mux (GPIO240 to 255)", offset: "0x1E2",
+		bits: [
+			{ name: "GPIO242", description: "Defines pin-muxing selection for GPIO242", size: "2", shift: "4", mask: "0x30" },
+		]
+	},
+	{ name: "GPHLOCK", description: "GPIO H Lock Configuration Register (GPIO224 to 255)", offset: "0x1FC",
+		bits: [
+			{ name: "GPIO224", description: "Configuration Lock bit for this pin", size: "1", shift: "0", mask: "0x1" },
+			{ name: "GPIO225", description: "Configuration Lock bit for this pin", size: "1", shift: "1", mask: "0x2" },
+			{ name: "GPIO226", description: "Configuration Lock bit for this pin", size: "1", shift: "2", mask: "0x4" },
+			{ name: "GPIO227", description: "Configuration Lock bit for this pin", size: "1", shift: "3", mask: "0x8" },
+			{ name: "GPIO228", description: "Configuration Lock bit for this pin", size: "1", shift: "4", mask: "0x10" },
+			{ name: "GPIO230", description: "Configuration Lock bit for this pin", size: "1", shift: "6", mask: "0x40" },
+			{ name: "GPIO231", description: "Configuration Lock bit for this pin", size: "1", shift: "7", mask: "0x80" },
+			{ name: "GPIO232", description: "Configuration Lock bit for this pin", size: "1", shift: "8", mask: "0x100" },
+			{ name: "GPIO233", description: "Configuration Lock bit for this pin", size: "1", shift: "9", mask: "0x200" },
+			{ name: "GPIO237", description: "Configuration Lock bit for this pin", size: "1", shift: "13", mask: "0x2000" },
+			{ name: "GPIO238", description: "Configuration Lock bit for this pin", size: "1", shift: "14", mask: "0x4000" },
+			{ name: "GPIO239", description: "Configuration Lock bit for this pin", size: "1", shift: "15", mask: "0x8000" },
+			{ name: "GPIO241", description: "Configuration Lock bit for this pin", size: "1", shift: "17", mask: "0x20000" },
+			{ name: "GPIO242", description: "Configuration Lock bit for this pin", size: "1", shift: "18", mask: "0x40000" },
+			{ name: "GPIO244", description: "Configuration Lock bit for this pin", size: "1", shift: "20", mask: "0x100000" },
+			{ name: "GPIO245", description: "Configuration Lock bit for this pin", size: "1", shift: "21", mask: "0x200000" },
+		]
+	},
+	{ name: "GPHCR", description: "GPIO H Lock Commit Register (GPIO224 to 255)", offset: "0x1FE",
+		bits: [
+			{ name: "GPIO224", description: "Configuration lock commit bit for this pin", size: "1", shift: "0", mask: "0x1" },
+			{ name: "GPIO225", description: "Configuration lock commit bit for this pin", size: "1", shift: "1", mask: "0x2" },
+			{ name: "GPIO226", description: "Configuration lock commit bit for this pin", size: "1", shift: "2", mask: "0x4" },
+			{ name: "GPIO227", description: "Configuration lock commit bit for this pin", size: "1", shift: "3", mask: "0x8" },
+			{ name: "GPIO228", description: "Configuration lock commit bit for this pin", size: "1", shift: "4", mask: "0x10" },
+			{ name: "GPIO230", description: "Configuration lock commit bit for this pin", size: "1", shift: "6", mask: "0x40" },
+			{ name: "GPIO231", description: "Configuration lock commit bit for this pin", size: "1", shift: "7", mask: "0x80" },
+			{ name: "GPIO232", description: "Configuration lock commit bit for this pin", size: "1", shift: "8", mask: "0x100" },
+			{ name: "GPIO233", description: "Configuration lock commit bit for this pin", size: "1", shift: "9", mask: "0x200" },
+			{ name: "GPIO237", description: "Configuration lock commit bit for this pin", size: "1", shift: "13", mask: "0x2000" },
+			{ name: "GPIO238", description: "Configuration lock commit bit for this pin", size: "1", shift: "14", mask: "0x4000" },
+			{ name: "GPIO239", description: "Configuration lock commit bit for this pin", size: "1", shift: "15", mask: "0x8000" },
+			{ name: "GPIO241", description: "Configuration lock commit bit for this pin", size: "1", shift: "17", mask: "0x20000" },
+			{ name: "GPIO242", description: "Configuration lock commit bit for this pin", size: "1", shift: "18", mask: "0x40000" },
+			{ name: "GPIO244", description: "Configuration lock commit bit for this pin", size: "1", shift: "20", mask: "0x100000" },
+			{ name: "GPIO245", description: "Configuration lock commit bit for this pin", size: "1", shift: "21", mask: "0x200000" },
+		]
+	},
+	{ name: "GPADAT", description: "GPIO A Data Register (GPIO0 to 31)", offset: "0x0",
+		bits: [
+			{ name: "GPIO0", description: "Data Register for this pin", size: "1", shift: "0", mask: "0x1" },
+			{ name: "GPIO1", description: "Data Register for this pin", size: "1", shift: "1", mask: "0x2" },
+			{ name: "GPIO2", description: "Data Register for this pin", size: "1", shift: "2", mask: "0x4" },
+			{ name: "GPIO3", description: "Data Register for this pin", size: "1", shift: "3", mask: "0x8" },
+			{ name: "GPIO4", description: "Data Register for this pin", size: "1", shift: "4", mask: "0x10" },
+			{ name: "GPIO5", description: "Data Register for this pin", size: "1", shift: "5", mask: "0x20" },
+			{ name: "GPIO6", description: "Data Register for this pin", size: "1", shift: "6", mask: "0x40" },
+			{ name: "GPIO7", description: "Data Register for this pin", size: "1", shift: "7", mask: "0x80" },
+			{ name: "GPIO8", description: "Data Register for this pin", size: "1", shift: "8", mask: "0x100" },
+			{ name: "GPIO9", description: "Data Register for this pin", size: "1", shift: "9", mask: "0x200" },
+			{ name: "GPIO10", description: "Data Register for this pin", size: "1", shift: "10", mask: "0x400" },
+			{ name: "GPIO11", description: "Data Register for this pin", size: "1", shift: "11", mask: "0x800" },
+			{ name: "GPIO12", description: "Data Register for this pin", size: "1", shift: "12", mask: "0x1000" },
+			{ name: "GPIO13", description: "Data Register for this pin", size: "1", shift: "13", mask: "0x2000" },
+			{ name: "GPIO16", description: "Data Register for this pin", size: "1", shift: "16", mask: "0x10000" },
+			{ name: "GPIO17", description: "Data Register for this pin", size: "1", shift: "17", mask: "0x20000" },
+			{ name: "GPIO18", description: "Data Register for this pin", size: "1", shift: "18", mask: "0x40000" },
+			{ name: "GPIO19", description: "Data Register for this pin", size: "1", shift: "19", mask: "0x80000" },
+			{ name: "GPIO20", description: "Data Register for this pin", size: "1", shift: "20", mask: "0x100000" },
+			{ name: "GPIO21", description: "Data Register for this pin", size: "1", shift: "21", mask: "0x200000" },
+			{ name: "GPIO22", description: "Data Register for this pin", size: "1", shift: "22", mask: "0x400000" },
+			{ name: "GPIO23", description: "Data Register for this pin", size: "1", shift: "23", mask: "0x800000" },
+			{ name: "GPIO24", description: "Data Register for this pin", size: "1", shift: "24", mask: "0x1000000" },
+			{ name: "GPIO28", description: "Data Register for this pin", size: "1", shift: "28", mask: "0x10000000" },
+			{ name: "GPIO29", description: "Data Register for this pin", size: "1", shift: "29", mask: "0x20000000" },
+		]
+	},
+	{ name: "GPASET", description: "GPIO A Data Set Register (GPIO0 to 31)", offset: "0x2",
+		bits: [
+			{ name: "GPIO0", description: "Output Set bit for this pin", size: "1", shift: "0", mask: "0x1" },
+			{ name: "GPIO1", description: "Output Set bit for this pin", size: "1", shift: "1", mask: "0x2" },
+			{ name: "GPIO2", description: "Output Set bit for this pin", size: "1", shift: "2", mask: "0x4" },
+			{ name: "GPIO3", description: "Output Set bit for this pin", size: "1", shift: "3", mask: "0x8" },
+			{ name: "GPIO4", description: "Output Set bit for this pin", size: "1", shift: "4", mask: "0x10" },
+			{ name: "GPIO5", description: "Output Set bit for this pin", size: "1", shift: "5", mask: "0x20" },
+			{ name: "GPIO6", description: "Output Set bit for this pin", size: "1", shift: "6", mask: "0x40" },
+			{ name: "GPIO7", description: "Output Set bit for this pin", size: "1", shift: "7", mask: "0x80" },
+			{ name: "GPIO8", description: "Output Set bit for this pin", size: "1", shift: "8", mask: "0x100" },
+			{ name: "GPIO9", description: "Output Set bit for this pin", size: "1", shift: "9", mask: "0x200" },
+			{ name: "GPIO10", description: "Output Set bit for this pin", size: "1", shift: "10", mask: "0x400" },
+			{ name: "GPIO11", description: "Output Set bit for this pin", size: "1", shift: "11", mask: "0x800" },
+			{ name: "GPIO12", description: "Output Set bit for this pin", size: "1", shift: "12", mask: "0x1000" },
+			{ name: "GPIO13", description: "Output Set bit for this pin", size: "1", shift: "13", mask: "0x2000" },
+			{ name: "GPIO16", description: "Output Set bit for this pin", size: "1", shift: "16", mask: "0x10000" },
+			{ name: "GPIO17", description: "Output Set bit for this pin", size: "1", shift: "17", mask: "0x20000" },
+			{ name: "GPIO18", description: "Output Set bit for this pin", size: "1", shift: "18", mask: "0x40000" },
+			{ name: "GPIO19", description: "Output Set bit for this pin", size: "1", shift: "19", mask: "0x80000" },
+			{ name: "GPIO20", description: "Output Set bit for this pin", size: "1", shift: "20", mask: "0x100000" },
+			{ name: "GPIO21", description: "Output Set bit for this pin", size: "1", shift: "21", mask: "0x200000" },
+			{ name: "GPIO22", description: "Output Set bit for this pin", size: "1", shift: "22", mask: "0x400000" },
+			{ name: "GPIO23", description: "Output Set bit for this pin", size: "1", shift: "23", mask: "0x800000" },
+			{ name: "GPIO24", description: "Output Set bit for this pin", size: "1", shift: "24", mask: "0x1000000" },
+			{ name: "GPIO28", description: "Output Set bit for this pin", size: "1", shift: "28", mask: "0x10000000" },
+			{ name: "GPIO29", description: "Output Set bit for this pin", size: "1", shift: "29", mask: "0x20000000" },
+		]
+	},
+	{ name: "GPACLEAR", description: "GPIO A Data Clear Register (GPIO0 to 31)", offset: "0x4",
+		bits: [
+			{ name: "GPIO0", description: "Output Clear bit for this pin", size: "1", shift: "0", mask: "0x1" },
+			{ name: "GPIO1", description: "Output Clear bit for this pin", size: "1", shift: "1", mask: "0x2" },
+			{ name: "GPIO2", description: "Output Clear bit for this pin", size: "1", shift: "2", mask: "0x4" },
+			{ name: "GPIO3", description: "Output Clear bit for this pin", size: "1", shift: "3", mask: "0x8" },
+			{ name: "GPIO4", description: "Output Clear bit for this pin", size: "1", shift: "4", mask: "0x10" },
+			{ name: "GPIO5", description: "Output Clear bit for this pin", size: "1", shift: "5", mask: "0x20" },
+			{ name: "GPIO6", description: "Output Clear bit for this pin", size: "1", shift: "6", mask: "0x40" },
+			{ name: "GPIO7", description: "Output Clear bit for this pin", size: "1", shift: "7", mask: "0x80" },
+			{ name: "GPIO8", description: "Output Clear bit for this pin", size: "1", shift: "8", mask: "0x100" },
+			{ name: "GPIO9", description: "Output Clear bit for this pin", size: "1", shift: "9", mask: "0x200" },
+			{ name: "GPIO10", description: "Output Clear bit for this pin", size: "1", shift: "10", mask: "0x400" },
+			{ name: "GPIO11", description: "Output Clear bit for this pin", size: "1", shift: "11", mask: "0x800" },
+			{ name: "GPIO12", description: "Output Clear bit for this pin", size: "1", shift: "12", mask: "0x1000" },
+			{ name: "GPIO13", description: "Output Clear bit for this pin", size: "1", shift: "13", mask: "0x2000" },
+			{ name: "GPIO16", description: "Output Clear bit for this pin", size: "1", shift: "16", mask: "0x10000" },
+			{ name: "GPIO17", description: "Output Clear bit for this pin", size: "1", shift: "17", mask: "0x20000" },
+			{ name: "GPIO18", description: "Output Clear bit for this pin", size: "1", shift: "18", mask: "0x40000" },
+			{ name: "GPIO19", description: "Output Clear bit for this pin", size: "1", shift: "19", mask: "0x80000" },
+			{ name: "GPIO20", description: "Output Clear bit for this pin", size: "1", shift: "20", mask: "0x100000" },
+			{ name: "GPIO21", description: "Output Clear bit for this pin", size: "1", shift: "21", mask: "0x200000" },
+			{ name: "GPIO22", description: "Output Clear bit for this pin", size: "1", shift: "22", mask: "0x400000" },
+			{ name: "GPIO23", description: "Output Clear bit for this pin", size: "1", shift: "23", mask: "0x800000" },
+			{ name: "GPIO24", description: "Output Clear bit for this pin", size: "1", shift: "24", mask: "0x1000000" },
+			{ name: "GPIO28", description: "Output Clear bit for this pin", size: "1", shift: "28", mask: "0x10000000" },
+			{ name: "GPIO29", description: "Output Clear bit for this pin", size: "1", shift: "29", mask: "0x20000000" },
+		]
+	},
+	{ name: "GPATOGGLE", description: "GPIO A Data Toggle Register (GPIO0 to 31)", offset: "0x6",
+		bits: [
+			{ name: "GPIO0", description: "Output Toggle bit for this pin", size: "1", shift: "0", mask: "0x1" },
+			{ name: "GPIO1", description: "Output Toggle bit for this pin", size: "1", shift: "1", mask: "0x2" },
+			{ name: "GPIO2", description: "Output Toggle bit for this pin", size: "1", shift: "2", mask: "0x4" },
+			{ name: "GPIO3", description: "Output Toggle bit for this pin", size: "1", shift: "3", mask: "0x8" },
+			{ name: "GPIO4", description: "Output Toggle bit for this pin", size: "1", shift: "4", mask: "0x10" },
+			{ name: "GPIO5", description: "Output Toggle bit for this pin", size: "1", shift: "5", mask: "0x20" },
+			{ name: "GPIO6", description: "Output Toggle bit for this pin", size: "1", shift: "6", mask: "0x40" },
+			{ name: "GPIO7", description: "Output Toggle bit for this pin", size: "1", shift: "7", mask: "0x80" },
+			{ name: "GPIO8", description: "Output Toggle bit for this pin", size: "1", shift: "8", mask: "0x100" },
+			{ name: "GPIO9", description: "Output Toggle bit for this pin", size: "1", shift: "9", mask: "0x200" },
+			{ name: "GPIO10", description: "Output Toggle bit for this pin", size: "1", shift: "10", mask: "0x400" },
+			{ name: "GPIO11", description: "Output Toggle bit for this pin", size: "1", shift: "11", mask: "0x800" },
+			{ name: "GPIO12", description: "Output Toggle bit for this pin", size: "1", shift: "12", mask: "0x1000" },
+			{ name: "GPIO13", description: "Output Toggle bit for this pin", size: "1", shift: "13", mask: "0x2000" },
+			{ name: "GPIO16", description: "Output Toggle bit for this pin", size: "1", shift: "16", mask: "0x10000" },
+			{ name: "GPIO17", description: "Output Toggle bit for this pin", size: "1", shift: "17", mask: "0x20000" },
+			{ name: "GPIO18", description: "Output Toggle bit for this pin", size: "1", shift: "18", mask: "0x40000" },
+			{ name: "GPIO19", description: "Output Toggle bit for this pin", size: "1", shift: "19", mask: "0x80000" },
+			{ name: "GPIO20", description: "Output Toggle bit for this pin", size: "1", shift: "20", mask: "0x100000" },
+			{ name: "GPIO21", description: "Output Toggle bit for this pin", size: "1", shift: "21", mask: "0x200000" },
+			{ name: "GPIO22", description: "Output Toggle bit for this pin", size: "1", shift: "22", mask: "0x400000" },
+			{ name: "GPIO23", description: "Output Toggle bit for this pin", size: "1", shift: "23", mask: "0x800000" },
+			{ name: "GPIO24", description: "Output Toggle bit for this pin", size: "1", shift: "24", mask: "0x1000000" },
+			{ name: "GPIO28", description: "Output Toggle bit for this pin", size: "1", shift: "28", mask: "0x10000000" },
+			{ name: "GPIO29", description: "Output Toggle bit for this pin", size: "1", shift: "29", mask: "0x20000000" },
+		]
+	},
+	{ name: "GPBDAT", description: "GPIO B Data Register (GPIO32 to 63)", offset: "0x8",
+		bits: [
+			{ name: "GPIO32", description: "Data Register for this pin", size: "1", shift: "0", mask: "0x1" },
+			{ name: "GPIO33", description: "Data Register for this pin", size: "1", shift: "1", mask: "0x2" },
+			{ name: "GPIO35", description: "Data Register for this pin", size: "1", shift: "3", mask: "0x8" },
+			{ name: "GPIO37", description: "Data Register for this pin", size: "1", shift: "5", mask: "0x20" },
+			{ name: "GPIO39", description: "Data Register for this pin", size: "1", shift: "7", mask: "0x80" },
+			{ name: "GPIO40", description: "Data Register for this pin", size: "1", shift: "8", mask: "0x100" },
+			{ name: "GPIO41", description: "Data Register for this pin", size: "1", shift: "9", mask: "0x200" },
+		]
+	},
+	{ name: "GPBSET", description: "GPIO B Data Set Register (GPIO32 to 63)", offset: "0xA",
+		bits: [
+			{ name: "GPIO32", description: "Output Set bit for this pin", size: "1", shift: "0", mask: "0x1" },
+			{ name: "GPIO33", description: "Output Set bit for this pin", size: "1", shift: "1", mask: "0x2" },
+			{ name: "GPIO35", description: "Output Set bit for this pin", size: "1", shift: "3", mask: "0x8" },
+			{ name: "GPIO37", description: "Output Set bit for this pin", size: "1", shift: "5", mask: "0x20" },
+			{ name: "GPIO39", description: "Output Set bit for this pin", size: "1", shift: "7", mask: "0x80" },
+			{ name: "GPIO40", description: "Output Set bit for this pin", size: "1", shift: "8", mask: "0x100" },
+			{ name: "GPIO41", description: "Output Set bit for this pin", size: "1", shift: "9", mask: "0x200" },
+		]
+	},
+	{ name: "GPBCLEAR", description: "GPIO B Data Clear Register (GPIO32 to 63)", offset: "0xC",
+		bits: [
+			{ name: "GPIO32", description: "Output Clear bit for this pin", size: "1", shift: "0", mask: "0x1" },
+			{ name: "GPIO33", description: "Output Clear bit for this pin", size: "1", shift: "1", mask: "0x2" },
+			{ name: "GPIO35", description: "Output Clear bit for this pin", size: "1", shift: "3", mask: "0x8" },
+			{ name: "GPIO37", description: "Output Clear bit for this pin", size: "1", shift: "5", mask: "0x20" },
+			{ name: "GPIO39", description: "Output Clear bit for this pin", size: "1", shift: "7", mask: "0x80" },
+			{ name: "GPIO40", description: "Output Clear bit for this pin", size: "1", shift: "8", mask: "0x100" },
+			{ name: "GPIO41", description: "Output Clear bit for this pin", size: "1", shift: "9", mask: "0x200" },
+		]
+	},
+	{ name: "GPBTOGGLE", description: "GPIO B Data Toggle Register (GPIO32 to 63)", offset: "0xE",
+		bits: [
+			{ name: "GPIO32", description: "Output Toggle bit for this pin", size: "1", shift: "0", mask: "0x1" },
+			{ name: "GPIO33", description: "Output Toggle bit for this pin", size: "1", shift: "1", mask: "0x2" },
+			{ name: "GPIO35", description: "Output Toggle bit for this pin", size: "1", shift: "3", mask: "0x8" },
+			{ name: "GPIO37", description: "Output Toggle bit for this pin", size: "1", shift: "5", mask: "0x20" },
+			{ name: "GPIO39", description: "Output Toggle bit for this pin", size: "1", shift: "7", mask: "0x80" },
+			{ name: "GPIO40", description: "Output Toggle bit for this pin", size: "1", shift: "8", mask: "0x100" },
+			{ name: "GPIO41", description: "Output Toggle bit for this pin", size: "1", shift: "9", mask: "0x200" },
+		]
+	},
+	{ name: "GPHDAT", description: "GPIO H Data Register (GPIO224 to 255)", offset: "0x38",
+		bits: [
+			{ name: "GPIO224", description: "Data Register for this pin", size: "1", shift: "0", mask: "0x1" },
+			{ name: "GPIO225", description: "Data Register for this pin", size: "1", shift: "1", mask: "0x2" },
+			{ name: "GPIO226", description: "Data Register for this pin", size: "1", shift: "2", mask: "0x4" },
+			{ name: "GPIO227", description: "Data Register for this pin", size: "1", shift: "3", mask: "0x8" },
+			{ name: "GPIO228", description: "Data Register for this pin", size: "1", shift: "4", mask: "0x10" },
+			{ name: "GPIO230", description: "Data Register for this pin", size: "1", shift: "6", mask: "0x40" },
+			{ name: "GPIO231", description: "Data Register for this pin", size: "1", shift: "7", mask: "0x80" },
+			{ name: "GPIO232", description: "Data Register for this pin", size: "1", shift: "8", mask: "0x100" },
+			{ name: "GPIO233", description: "Data Register for this pin", size: "1", shift: "9", mask: "0x200" },
+			{ name: "GPIO237", description: "Data Register for this pin", size: "1", shift: "13", mask: "0x2000" },
+			{ name: "GPIO238", description: "Data Register for this pin", size: "1", shift: "14", mask: "0x4000" },
+			{ name: "GPIO239", description: "Data Register for this pin", size: "1", shift: "15", mask: "0x8000" },
+			{ name: "GPIO241", description: "Data Register for this pin", size: "1", shift: "17", mask: "0x20000" },
+			{ name: "GPIO242", description: "Data Register for this pin", size: "1", shift: "18", mask: "0x40000" },
+			{ name: "GPIO244", description: "Data Register for this pin", size: "1", shift: "20", mask: "0x100000" },
+			{ name: "GPIO245", description: "Data Register for this pin", size: "1", shift: "21", mask: "0x200000" },
+		]
+	},
+	{ name: "GPHSET", description: "GPIO H Data Set Register (GPIO224 to 255)", offset: "0x3A",
+		bits: [
+			{ name: "GPIO224", description: "Output Set bit for this pin", size: "1", shift: "0", mask: "0x1" },
+			{ name: "GPIO226", description: "Output Set bit for this pin", size: "1", shift: "2", mask: "0x4" },
+			{ name: "GPIO227", description: "Output Set bit for this pin", size: "1", shift: "3", mask: "0x8" },
+			{ name: "GPIO228", description: "Output Set bit for this pin", size: "1", shift: "4", mask: "0x10" },
+			{ name: "GPIO230", description: "Output Set bit for this pin", size: "1", shift: "6", mask: "0x40" },
+			{ name: "GPIO242", description: "Output Set bit for this pin", size: "1", shift: "18", mask: "0x40000" },
+		]
+	},
+	{ name: "GPHCLEAR", description: "GPIO H Data Clear Register (GPIO224 to 255)", offset: "0x3C",
+		bits: [
+			{ name: "GPIO224", description: "Output Clear bit for this pin", size: "1", shift: "0", mask: "0x1" },
+			{ name: "GPIO226", description: "Output Clear bit for this pin", size: "1", shift: "2", mask: "0x4" },
+			{ name: "GPIO227", description: "Output Clear bit for this pin", size: "1", shift: "3", mask: "0x8" },
+			{ name: "GPIO228", description: "Output Clear bit for this pin", size: "1", shift: "4", mask: "0x10" },
+			{ name: "GPIO230", description: "Output Clear bit for this pin", size: "1", shift: "6", mask: "0x40" },
+			{ name: "GPIO242", description: "Output Clear bit for this pin", size: "1", shift: "18", mask: "0x40000" },
+		]
+	},
+	{ name: "GPHTOGGLE", description: "GPIO H Data Toggle Register (GPIO224 to 255)", offset: "0x3E",
+		bits: [
+			{ name: "GPIO224", description: "Output Toggle bit for this pin", size: "1", shift: "0", mask: "0x1" },
+			{ name: "GPIO226", description: "Output Toggle bit for this pin", size: "1", shift: "2", mask: "0x4" },
+			{ name: "GPIO227", description: "Output Toggle bit for this pin", size: "1", shift: "3", mask: "0x8" },
+			{ name: "GPIO228", description: "Output Toggle bit for this pin", size: "1", shift: "4", mask: "0x10" },
+			{ name: "GPIO230", description: "Output Toggle bit for this pin", size: "1", shift: "6", mask: "0x40" },
+			{ name: "GPIO242", description: "Output Toggle bit for this pin", size: "1", shift: "18", mask: "0x40000" },
+		]
+	},
+	{ name: "GPADAT_R", description: "GPIO A Data Read Register", offset: "0x0",
 		bits: [
 		]
 	},
-	{ name: "SEL1", description: "GPIO A Qualifier Select 1 Register (GPIO0 to 15)", offset: "0x2",
+	{ name: "GPBDAT_R", description: "GPIO B Data Read Register", offset: "0x2",
 		bits: [
 		]
 	},
-	{ name: "SEL2", description: "GPIO A Qualifier Select 2 Register (GPIO16 to 31)", offset: "0x4",
-		bits: [
-		]
-	},
-	{ name: "UX1", description: "GPIO A Mux 1 Register (GPIO0 to 15)", offset: "0x6",
-		bits: [
-		]
-	},
-	{ name: "UX2", description: "GPIO A Mux 2 Register (GPIO16 to 31)", offset: "0x8",
-		bits: [
-		]
-	},
-	{ name: "IR", description: "GPIO A Direction Register (GPIO0 to 31)", offset: "0xA",
-		bits: [
-		]
-	},
-	{ name: "UD", description: "GPIO A Pull Up Disable Register (GPIO0 to 31)", offset: "0xC",
-		bits: [
-		]
-	},
-	{ name: "NV", description: "GPIO A Input Polarity Invert Registers (GPIO0 to 31)", offset: "0x10",
-		bits: [
-		]
-	},
-	{ name: "DR", description: "GPIO A Open Drain Output Register (GPIO0 to GPIO31)", offset: "0x12",
-		bits: [
-		]
-	},
-	{ name: "MSEL", description: "GPIO A Analog Mode Select register (GPIO0 to GPIO31)", offset: "0x14",
-		bits: [
-		]
-	},
-	{ name: "MUX1", description: "GPIO A Peripheral Group Mux (GPIO0 to 15)", offset: "0x20",
-		bits: [
-		]
-	},
-	{ name: "MUX2", description: "GPIO A Peripheral Group Mux (GPIO16 to 31)", offset: "0x22",
-		bits: [
-		]
-	},
-	{ name: "OCK", description: "GPIO A Lock Configuration Register (GPIO0 to 31)", offset: "0x3C",
-		bits: [
-		]
-	},
-	{ name: "R", description: "GPIO A Lock Commit Register (GPIO0 to 31)", offset: "0x3E",
-		bits: [
-		]
-	},
-	{ name: "TRL", description: "GPIO B Qualification Sampling Period Control (GPIO32 to 63)", offset: "0x40",
-		bits: [
-		]
-	},
-	{ name: "SEL1", description: "GPIO B Qualifier Select 1 Register (GPIO32 to 47)", offset: "0x42",
-		bits: [
-		]
-	},
-	{ name: "UX1", description: "GPIO B Mux 1 Register (GPIO32 to 47)", offset: "0x46",
-		bits: [
-		]
-	},
-	{ name: "IR", description: "GPIO B Direction Register (GPIO32 to 63)", offset: "0x4A",
-		bits: [
-		]
-	},
-	{ name: "UD", description: "GPIO B Pull Up Disable Register (GPIO32 to 63)", offset: "0x4C",
-		bits: [
-		]
-	},
-	{ name: "NV", description: "GPIO B Input Polarity Invert Registers (GPIO32 to 63)", offset: "0x50",
-		bits: [
-		]
-	},
-	{ name: "DR", description: "GPIO B Open Drain Output Register (GPIO32 to GPIO63)", offset: "0x52",
-		bits: [
-		]
-	},
-	{ name: "MUX1", description: "GPIO B Peripheral Group Mux (GPIO32 to 47)", offset: "0x60",
-		bits: [
-		]
-	},
-	{ name: "OCK", description: "GPIO B Lock Configuration Register (GPIO32 to 63)", offset: "0x7C",
-		bits: [
-		]
-	},
-	{ name: "R", description: "GPIO B Lock Commit Register (GPIO32 to 63)", offset: "0x7E",
-		bits: [
-		]
-	},
-	{ name: "TRL", description: "GPIO H Qualification Sampling Period Control (GPIO224 to 255)", offset: "0x1C0",
-		bits: [
-		]
-	},
-	{ name: "SEL1", description: "GPIO H Qualifier Select 1 Register (GPIO224 to 239)", offset: "0x1C2",
-		bits: [
-		]
-	},
-	{ name: "SEL2", description: "GPIO H Qualifier Select 2 Register (GPIO240 to 255)", offset: "0x1C4",
-		bits: [
-		]
-	},
-	{ name: "UX1", description: "GPIO H Mux 1 Register (GPIO224 to 239)", offset: "0x1C6",
-		bits: [
-		]
-	},
-	{ name: "UX2", description: "GPIO H Mux 2 Register (GPIO240 to 255)", offset: "0x1C8",
-		bits: [
-		]
-	},
-	{ name: "IR", description: "GPIO H Direction Register (GPIO224 to 255)", offset: "0x1CA",
-		bits: [
-		]
-	},
-	{ name: "UD", description: "GPIO H Pull Up Disable Register (GPIO224 to 255)", offset: "0x1CC",
-		bits: [
-		]
-	},
-	{ name: "NV", description: "GPIO H Input Polarity Invert Registers (GPIO224 to 255)", offset: "0x1D0",
-		bits: [
-		]
-	},
-	{ name: "DR", description: "GPIO H Open Drain Output Register (GPIO224 to GPIO255)", offset: "0x1D2",
-		bits: [
-		]
-	},
-	{ name: "MSEL", description: "GPIO H Analog Mode Select register (GPIO224 to GPIO255)", offset: "0x1D4",
-		bits: [
-		]
-	},
-	{ name: "MUX1", description: "GPIO H Peripheral Group Mux (GPIO224 to 239)", offset: "0x1E0",
-		bits: [
-		]
-	},
-	{ name: "MUX2", description: "GPIO H Peripheral Group Mux (GPIO240 to 255)", offset: "0x1E2",
-		bits: [
-		]
-	},
-	{ name: "OCK", description: "GPIO H Lock Configuration Register (GPIO224 to 255)", offset: "0x1FC",
-		bits: [
-		]
-	},
-	{ name: "R", description: "GPIO H Lock Commit Register (GPIO224 to 255)", offset: "0x1FE",
-		bits: [
-		]
-	},
-	{ name: "AT", description: "GPIO A Data Register (GPIO0 to 31)", offset: "0x0",
-		bits: [
-		]
-	},
-	{ name: "ET", description: "GPIO A Data Set Register (GPIO0 to 31)", offset: "0x2",
-		bits: [
-		]
-	},
-	{ name: "LEAR", description: "GPIO A Data Clear Register (GPIO0 to 31)", offset: "0x4",
-		bits: [
-		]
-	},
-	{ name: "OGGLE", description: "GPIO A Data Toggle Register (GPIO0 to 31)", offset: "0x6",
-		bits: [
-		]
-	},
-	{ name: "AT", description: "GPIO B Data Register (GPIO32 to 63)", offset: "0x8",
-		bits: [
-		]
-	},
-	{ name: "ET", description: "GPIO B Data Set Register (GPIO32 to 63)", offset: "0xA",
-		bits: [
-		]
-	},
-	{ name: "LEAR", description: "GPIO B Data Clear Register (GPIO32 to 63)", offset: "0xC",
-		bits: [
-		]
-	},
-	{ name: "OGGLE", description: "GPIO B Data Toggle Register (GPIO32 to 63)", offset: "0xE",
-		bits: [
-		]
-	},
-	{ name: "AT", description: "GPIO H Data Register (GPIO224 to 255)", offset: "0x38",
-		bits: [
-		]
-	},
-	{ name: "ET", description: "GPIO H Data Set Register (GPIO224 to 255)", offset: "0x3A",
-		bits: [
-		]
-	},
-	{ name: "LEAR", description: "GPIO H Data Clear Register (GPIO224 to 255)", offset: "0x3C",
-		bits: [
-		]
-	},
-	{ name: "OGGLE", description: "GPIO H Data Toggle Register (GPIO224 to 255)", offset: "0x3E",
-		bits: [
-		]
-	},
-	{ name: "AT_R", description: "GPIO A Data Read Register", offset: "0x0",
-		bits: [
-		]
-	},
-	{ name: "AT_R", description: "GPIO B Data Read Register", offset: "0x2",
-		bits: [
-		]
-	},
-	{ name: "AT_R", description: "GPIO H Data Read Register", offset: "0xE",
+	{ name: "GPHDAT_R", description: "GPIO H Data Read Register", offset: "0xE",
 		bits: [
 		]
 	},

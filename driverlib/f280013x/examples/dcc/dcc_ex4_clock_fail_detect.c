@@ -253,6 +253,6 @@ __interrupt void DCC_ISR()
         DCC_clearErrorFlag(DCC0_BASE);
     }
 
-    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
+    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP6);
 }
 

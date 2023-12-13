@@ -1,0 +1,33 @@
+<projectSpec>
+  <project
+        name="F28069_NLPID"
+        device="TMS320F28069"
+        configurations="DEBUG"
+        launchWizard="False"
+        linkerCommandFile=""
+        compilerBuildOptions="--opt_level=off -I${C2000WARE_F2806X_ROOT1} -I${C2000WARE_F2806X_ROOT2} -I${C2000WARE_DCL_INCLUDE_ROOT} -v28 -ml -mt  --float_support=fpu32  --define=DEBUG   --diag_warning=225  --diag_suppress=10063 --display_error_number"
+        linkerBuildOptions="--stack_size=0x400 --heap_size=0x200 --define RAM"
+        >
+    <pathVariable name="C2000WARE_F2806X_ROOT1" path="../../../../../../../device_support/f2806x/headers/include" scope="project" />
+	<pathVariable name="C2000WARE_F2806X_ROOT2" path="../../../../../../../device_support/f2806x/common/include" scope="project" />
+	<pathVariable name="C2000WARE_DCL_INCLUDE_ROOT" path="../../../include" scope="project" />
+	<file action="copy" path="../../../../../../../device_support/f2806x/common/source/F2806x_Adc.c" targetDirectory="" />
+	<file action="copy" path="../../../../../../../device_support/f2806x/common/source/F2806x_CpuTimers.c" targetDirectory="" />
+	<file action="copy" path="../../../../../../../device_support/f2806x/common/source/F2806x_DefaultIsr.c" targetDirectory="" />
+	<file action="copy" path="../../../../../../../device_support/f2806x/common/source/F2806x_EPwm.c" targetDirectory="" />
+	<file action="copy" path="../../../../../../../device_support/f2806x/headers/source/F2806x_GlobalVariableDefs.c" targetDirectory="" />
+	<file action="copy" path="../../../../../../../device_support/f2806x/common/source/F2806x_Gpio.c" targetDirectory="" />
+	<file action="copy" path="../../../../../../../device_support/f2806x/common/source/F2806x_PieCtrl.c" targetDirectory="" />
+	<file action="copy" path="../../../../../../../device_support/f2806x/common/source/F2806x_PieVect.c" targetDirectory="" />
+	<file action="copy" path="../../../../../../../device_support/f2806x/common/source/F2806x_SysCtrl.c" targetDirectory="" />
+	<file action="copy" path="../../../../../../../device_support/f2806x/common/source/F2806x_DBGIER.asm" targetDirectory="" />
+	<file action="copy" path="../../../../../../../device_support/f2806x/common/source/F2806x_DisInt.asm" targetDirectory="" />
+	<file action="copy" path="../../../../../../../device_support/f2806x/common/source/F2806x_usDelay.asm" targetDirectory="" />
+	<file action="copy" path="../../../../../../../device_support/f2806x/headers/cmd/F2806x_Headers_nonBIOS.cmd" targetDirectory="" />
+	<file action="copy" path="../../../cmd/F28069_stdmem.cmd" targetDirectory="" />
+	<file action="copy" path="../../../cmd/F28069_DCL.cmd" targetDirectory="" />
+	<file action="copy" path="../Example_F28069_NLPID.c" targetDirectory="" />
+	<file action="copy" path="../../../source/DCL_error.c" targetDirectory="" />
+  </project>
+</projectSpec>
+

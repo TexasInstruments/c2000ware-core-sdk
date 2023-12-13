@@ -63,6 +63,7 @@
 #include "device.h"
 #include "inc/stw_dataTypes.h"
 #include "inc/stw_types.h"
+#include <string.h>
 #include "board.h"
 
 //
@@ -266,6 +267,11 @@ __interrupt void MCANIntr1ISR(void)
     {
         error++;
     }
+
+    //
+    //  Clearing the interrupt lineNum
+    //
+    HW_WR_FIELD32(MCANA_DRIVER_BASE + MCAN_MCANSS_EOI, MCAN_MCANSS_EOI, 0x2U);
 
     //
     // Clear the interrupt Status.

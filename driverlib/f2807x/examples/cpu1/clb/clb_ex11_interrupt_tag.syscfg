@@ -1,0 +1,74 @@
+
+var TILE = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/TILE");
+var TILE1 = TILE.addInstance();
+// clock_period - Period of the clock (in Nano Seconds) used for simulation in System C
+TILE.clock_period = 10;
+// sim_duration - Duration of the simulation (in Nano Seconds)
+TILE.sim_duration = 100000;
+// Name
+TILE1.$name = "TILE1";
+// in_repeat_count0 - Number of periods the waveform is repeated
+TILE1.BOUNDARY.in_repeat_count0 = 50;
+// in0
+TILE1.BOUNDARY.in0 = "squareWave";
+// in_repeat_count1 - Number of periods the waveform is repeated
+TILE1.BOUNDARY.in_repeat_count1 = 50;
+// in_repeat_count2 - Number of periods the waveform is repeated
+TILE1.BOUNDARY.in_repeat_count2 = 50;
+// in_period0 - Period of the square wave
+TILE1.BOUNDARY.in_period0 = 10000;
+// in_duty0 - Duty or ON time of the square wave
+TILE1.BOUNDARY.in_duty0 = 5001;
+// in_period1 - Period of the square wave
+TILE1.BOUNDARY.in_period1 = 1000;
+// in_duty1 - Duty or ON time of the square wave
+TILE1.BOUNDARY.in_duty1 = 500;
+// in_period2 - Period of the square wave
+TILE1.BOUNDARY.in_period2 = 3000;
+// in_duty2 - Duty or ON time of the square wave
+TILE1.BOUNDARY.in_duty2 = 1500;
+// in1
+TILE1.BOUNDARY.in1 = "1";
+// in2
+TILE1.BOUNDARY.in2 = "1";
+// in_period3 - Period of the square wave
+TILE1.BOUNDARY.in_period3 = 10000;
+// in_duty3 - Duty or ON time of the square wave
+TILE1.BOUNDARY.in_duty3 = 5001;
+// in_repeat_count3 - Number of periods the waveform is repeated
+TILE1.BOUNDARY.in_repeat_count3 = 50;
+// in3
+TILE1.BOUNDARY.in3 = "0";
+// in4
+TILE1.BOUNDARY.in4 = "0";
+// in5
+TILE1.BOUNDARY.in5 = "0";
+// match1_val - Sets the value of the Match reference 1 register.
+TILE1.COUNTER_0.match1_val = "700";
+// event - Trigger actions in the counter.
+TILE1.COUNTER_0.event = "COUNTER_0.count_zero";
+// match2_val - Sets the value of the Match reference 2 register.
+TILE1.COUNTER_0.match2_val = "1600";
+// event_load_val - Sets the value of the event load value register.
+TILE1.COUNTER_0.event_load_val = "2000";
+// mode0 - Enables Counting when high
+TILE1.COUNTER_0.mode0 = "BOUNDARY.in0";
+// What action should be taken on an event trigger?
+TILE1.COUNTER_0.action = "Load";
+// eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
+TILE1.OUTLUT_4.eqn = "i0";
+// i0 - Input 0.
+TILE1.OUTLUT_4.i0 = "COUNTER_0.count_match1";
+// eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
+TILE1.OUTLUT_5.eqn = "i0";
+// i0 - Input 0.
+TILE1.OUTLUT_5.i0 = "COUNTER_0.count_match2";
+// Event 0 (e0) - Event 0
+TILE1.HLC.e0 = "COUNTER_0.count_match1";
+// Event 1 (e1) - Event 1
+TILE1.HLC.e1 = "COUNTER_0.count_match2";
+// instruct0
+TILE1.HLC.program0.instruct0 = "INTR 11";
+// instruct0
+TILE1.HLC.program1.instruct0 = "INTR 12";
+

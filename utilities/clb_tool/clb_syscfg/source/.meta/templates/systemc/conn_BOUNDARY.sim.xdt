@@ -1,0 +1,92 @@
+%%{
+    let inst      = args[0];
+    let tileName  = args[1];
+    let instNum   = args[2];
+    let inputs    = args[3];
+    let name      = tileName + "_BOUNDARY";
+    let Common    = system.getScript("/utilities/clb_tool/clb_syscfg/source/Common.js");
+%%}
+        `name`_IN.clk                  (sc_top_clock);
+        `name`_IN.in0_ctrl             (sig_`name`_IN_ctrl0);
+        `name`_IN.in1_ctrl             (sig_`name`_IN_ctrl1);
+        `name`_IN.in2_ctrl             (sig_`name`_IN_ctrl2);
+        `name`_IN.in3_ctrl             (sig_`name`_IN_ctrl3);
+        `name`_IN.in4_ctrl             (sig_`name`_IN_ctrl4);
+        `name`_IN.in5_ctrl             (sig_`name`_IN_ctrl5);
+        `name`_IN.in6_ctrl             (sig_`name`_IN_ctrl6);
+        `name`_IN.in7_ctrl             (sig_`name`_IN_ctrl7);
+        `name`_IN.out0                 (sig_`name`_IN_out0);
+        `name`_IN.out1                 (sig_`name`_IN_out1);
+        `name`_IN.out2                 (sig_`name`_IN_out2);
+        `name`_IN.out3                 (sig_`name`_IN_out3);
+        `name`_IN.out4                 (sig_`name`_IN_out4);
+        `name`_IN.out5                 (sig_`name`_IN_out5);
+        `name`_IN.out6                 (sig_`name`_IN_out6);
+        `name`_IN.out7                 (sig_`name`_IN_out7);
+
+% for (let j = 0; j < inputs.length; ++j) {
+%    let inName          = inputs[j];
+%    let inFrom          = inst[inName];
+%    let customGenerator = (inFrom == 'customWave');
+%
+%    if (customGenerator || Common.isSimulatedInput(inFrom) || (inFrom=='0') || (inFrom=='1')) {
+%       let generatorObjectName = tileName + '_' + inName + '_' + inFrom;
+%		if ((inFrom=='0') || (inFrom=='1'))
+%               {
+%                       generatorObjectName = tileName + '_' + inName + '_' + 'squareWave';
+%               }
+%       let signalName          = 'sig_' + tileName + '_BOUNDARY_IN_in' + j;
+        `generatorObjectName`.out   (`signalName`);
+        `generatorObjectName`.clk   (sc_top_clock);
+        `name`_IN.in`j`          (`signalName`);
+%    }
+%    else if (inFrom.includes('tileOutput')) {
+%       let signalName = "sig_" + inst["tileSelect" + j] + "_BOUNDARY_OUT_out" + inst["tileOutputSelect" + j];
+        `name`_IN.in`j`          (`signalName`);
+%    }
+% }
+%
+% for (let idx = 0; idx < 8; ++idx) {
+%     let portName = tileName + '_BOUNDARY_IN.in' + idx;
+%     let aocName = tileName + "_AOC_" + idx;
+        if (`portName`.size() == 0) `portName`(sc_zero);
+% }
+%
+        sc_trace(tf, `name`_IN.clk, "`name`.`name`_clock");
+        sc_trace(tf, `name`_IN.in0, "`name`.`name`_original_input0");
+        sc_trace(tf, `name`_IN.in1, "`name`.`name`_original_input1");
+        sc_trace(tf, `name`_IN.in2, "`name`.`name`_original_input2");
+        sc_trace(tf, `name`_IN.in3, "`name`.`name`_original_input3");
+        sc_trace(tf, `name`_IN.in4, "`name`.`name`_original_input4");
+        sc_trace(tf, `name`_IN.in5, "`name`.`name`_original_input5");
+        sc_trace(tf, `name`_IN.in6, "`name`.`name`_original_input6");
+        sc_trace(tf, `name`_IN.in7, "`name`.`name`_original_input7");
+        sc_trace(tf, `name`_IN.in0_ctrl, "`name`.`name`_input0_ctrl");
+        sc_trace(tf, `name`_IN.in1_ctrl, "`name`.`name`_input1_ctrl");
+        sc_trace(tf, `name`_IN.in2_ctrl, "`name`.`name`_input2_ctrl");
+        sc_trace(tf, `name`_IN.in3_ctrl, "`name`.`name`_input3_ctrl");
+        sc_trace(tf, `name`_IN.in4_ctrl, "`name`.`name`_input4_ctrl");
+        sc_trace(tf, `name`_IN.in5_ctrl, "`name`.`name`_input5_ctrl");
+        sc_trace(tf, `name`_IN.in6_ctrl, "`name`.`name`_input6_ctrl");
+        sc_trace(tf, `name`_IN.in7_ctrl, "`name`.`name`_input7_ctrl");
+#if TYPE == 2 || TYPE == 3
+% for (let idx = 0; idx < 8; ++idx) {
+%     let aocName = tileName + "_AOC_" + idx;
+%     let traceName = name + "." + name + "_CLB_output" + idx;
+        sc_trace(tf, `aocName`.aoc_out, "`traceName`");
+%}
+#elif TYPE == 1
+% for (let idx = 0; idx < 8; ++idx) {
+%     let outlutName = tileName + "_OUTLUT_" + instNum;
+%     let traceName = name + "." + name + "_CLB_output" + idx;
+        sc_trace(tf, `outlutName`.OUT, "`traceName`");
+%}
+#endif
+        sc_trace(tf, `name`_IN.out0, "`name`.`name`_muxed_and_filtered_input0");
+        sc_trace(tf, `name`_IN.out1, "`name`.`name`_muxed_and_filtered_input1");
+        sc_trace(tf, `name`_IN.out2, "`name`.`name`_muxed_and_filtered_input2");
+        sc_trace(tf, `name`_IN.out3, "`name`.`name`_muxed_and_filtered_input3");
+        sc_trace(tf, `name`_IN.out4, "`name`.`name`_muxed_and_filtered_input4");
+        sc_trace(tf, `name`_IN.out5, "`name`.`name`_muxed_and_filtered_input5");
+        sc_trace(tf, `name`_IN.out6, "`name`.`name`_muxed_and_filtered_input6");
+        sc_trace(tf, `name`_IN.out7, "`name`.`name`_muxed_and_filtered_input7");

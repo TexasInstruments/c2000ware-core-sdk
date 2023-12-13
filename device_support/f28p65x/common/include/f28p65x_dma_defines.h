@@ -1,6 +1,6 @@
 //###########################################################################
 //
-// FILE:   f2838x_dma_defines.h
+// FILE:   f28p65x_dma_defines.h
 //
 // TITLE:  #defines used in DMA examples
 //
@@ -40,8 +40,8 @@
 // $
 //###########################################################################
 
-#ifndef F2838x_DMA_DEFINES_H
-#define F2838x_DMA_DEFINES_H
+#ifndef F28P65x_DMA_DEFINES_H
+#define F28P65x_DMA_DEFINES_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -72,12 +72,12 @@ extern "C" {
 
 #define DMA_CLA1        21
 #define DMA_CLA2        22
-#define DMA_CLA3        22
-#define DMA_CLA4        23
-#define DMA_CLA5        24
-#define DMA_CLA6        25
-#define DMA_CLA7        26
-#define DMA_CLA8        27
+#define DMA_CLA3        23
+#define DMA_CLA4        24
+#define DMA_CLA5        25
+#define DMA_CLA6        26
+#define DMA_CLA7        27
+#define DMA_CLA8        28
 
 #define DMA_XINT1       29
 #define DMA_XINT2       30
@@ -278,7 +278,7 @@ extern "C" {
 }
 #endif
 
-#endif   // - end of F2838x_DMA_DEFINES_H
+#endif   // - end of F28P65x_DMA_DEFINES_H
 
 //
 // End of file

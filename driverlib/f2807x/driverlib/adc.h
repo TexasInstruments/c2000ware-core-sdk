@@ -137,6 +137,8 @@ extern "C"
 #define ADC_FORCE_SOC14             0x4000U //!< SW trigger ADC SOC 14
 #define ADC_FORCE_SOC15             0x8000U //!< SW trigger ADC SOC 15
 
+
+
 //*****************************************************************************
 //
 //! Values that can be passed to ADC_setPrescaler() as the \e clkPrescale
@@ -1047,7 +1049,7 @@ ADC_setSOCPriority(uint32_t base, ADC_PriorityMode priMode)
 
     EALLOW;
 
-    HWREG(base + ADC_O_SOCPRICTL) = (HWREG(base + ADC_O_SOCPRICTL) &
+    HWREGH(base + ADC_O_SOCPRICTL) = (HWREGH(base + ADC_O_SOCPRICTL) &
                                       ~ADC_SOCPRICTL_SOCPRIORITY_M) |
                                      (uint16_t)priMode;
 

@@ -478,7 +478,7 @@ LIN_setLINMode(uint32_t base, LIN_LINMode mode)
 //
 //*****************************************************************************
 static inline void
-LIN_setMaximumBaudRate(uint32_t base, uint32_t clock)
+LIN_setMaximumBaudRate(uint32_t base, uint32_t systemClock)
 {
     //
     // Check the arguments.
@@ -488,7 +488,7 @@ LIN_setMaximumBaudRate(uint32_t base, uint32_t clock)
     //
     // Calculate maximum baud rate prescaler
     //
-    HWREGH(base + LIN_O_MBRSR) = (uint16_t)(clock / 20000U);
+    HWREGH(base + LIN_O_MBRSR) = (uint16_t)(systemClock / 20000U);
 }
 
 //*****************************************************************************
@@ -3559,7 +3559,7 @@ LIN_clearGlobalInterruptStatus(uint32_t base, LIN_InterruptLine line)
     //
     ASSERT(LIN_isBaseValid(base));
 
-    HWREGH(base + LIN_O_GLB_INT_CLR) = LIN_GLB_INT_CLR_INT0_FLG_CLR <<
+    HWREGH(base + LIN_O_GLB_INT_CLR) = (uint16_t)LIN_GLB_INT_CLR_INT0_FLG_CLR <<
                                         (uint16_t)line;
 }
 
@@ -3622,7 +3622,7 @@ LIN_getPinStatus(uint32_t base, LIN_PinType pin)
     //
     // Read RX/Tx pin value and return status
     //
-    return((HWREGH(base + LIN_O_SCIPIO2) & pin) == pin);
+    return((HWREGH(base + LIN_O_SCIPIO2) & (uint16_t)pin) == (uint16_t)pin);
 }
 
 //*****************************************************************************

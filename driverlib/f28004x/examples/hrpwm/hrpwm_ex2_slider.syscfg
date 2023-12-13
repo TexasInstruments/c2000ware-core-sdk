@@ -1,0 +1,35 @@
+/**
+ * Import the modules used in this configuration.
+ */
+const epwm       = scripting.addModule("/driverlib/epwm.js", {}, false);
+const epwm1      = epwm.addInstance();
+const inputxbar  = scripting.addModule("/driverlib/inputxbar.js", {}, false);
+const inputxbar1 = inputxbar.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+epwm1.$name                                                    = "myEPWM1";
+epwm1.epwmTimebase_hsClockDiv                                  = "EPWM_HSCLOCK_DIVIDER_1";
+epwm1.hrpwm_enable                                             = true;
+epwm1.hrpwm_edgeModeA                                          = "HRPWM_MEP_CTRL_RISING_EDGE";
+epwm1.hrpwm_edgeModeB                                          = "HRPWM_MEP_CTRL_RISING_EDGE";
+epwm1.epwmTimebase_counterMode                                 = "EPWM_COUNTER_MODE_UP";
+epwm1.epwmTimebase_syncOutPulseMode                            = "EPWM_SYNC_OUT_PULSE_DISABLED";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_PERIOD  = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_UP_CMPA = "EPWM_AQ_OUTPUT_LOW";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_PERIOD  = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_UP_CMPA = "EPWM_AQ_OUTPUT_LOW";
+epwm1.epwmCounterCompare_cmpB                                  = 50;
+epwm1.epwmCounterCompare_cmpA                                  = 50;
+epwm1.epwmTimebase_period                                      = 100;
+epwm1.epwm.$assign                                             = "EPWM1";
+epwm1.epwm.epwm_aPin.$assign                                    = "GPIO0";
+epwm1.epwm.epwm_bPin.$assign                                    = "GPIO1";
+
+
+inputxbar1.$name          = "myINPUTXBAR5";
+inputxbar1.inputsUsed     = ["inputxbar5Gpio","inputxbar6Gpio"];
+inputxbar1.inputxbar5Gpio = "GPIO40";
+inputxbar1.inputxbar6Gpio = "GPIO40";
+

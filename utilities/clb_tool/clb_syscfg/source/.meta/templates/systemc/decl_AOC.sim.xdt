@@ -1,0 +1,21 @@
+%%{
+    let inst      = args[0];
+    let tileName  = args[1];
+    let instNum   = args[2];
+    let inputs    = args[3];
+    let Common    = system.getScript("/utilities/clb_tool/clb_syscfg/source/Common.js");
+    let name      = tileName + "_AOC_" + instNum;
+%%}
+    DEVICE_CLB_AOC          `name`;
+    sc_signal<sc_uint<16> > sig_`name`_MUX_CTRL;
+    sc_signal<bool>         sig_`name`_BOUNDARY_INPUT;
+    sc_signal<bool>         sig_`name`_GATE;
+    sc_signal<bool>         sig_`name`_RELEASE;
+    sc_signal<bool>         sig_`name`_OUTPUT;
+
+%if (inst.stage2_gate_mux.includes("SW")) {
+    customWave          `name`_gate_customWave;
+%}
+%if (inst.stage3_release_mux.includes("SW")) {
+    customWave          `name`_release_customWave;
+%}

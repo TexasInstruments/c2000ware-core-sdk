@@ -249,12 +249,12 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
 
     //
     // Configure CTM_2 to count number of times CLA_INTERRUPT1 occurs
-    // CTM_INP_SEL     = 35 ( Use CLA_INTERRUPT1 as count event )
-    // CTM_INPUT_SEL_2 = 0
-    //
+// CTM_INP_SEL     = 35 ( Use CLA_INTERRUPT1 as count event )
+// CTM_INPUT_SEL_2 = 0
+//
 
-    debugSession.memory.writeData(Memory.Page.DATA,
-                                  EradCounter2Regs + CTM_INPUT_SEL,
+debugSession.memory.writeData(Memory.Page.DATA,
+    EradCounter2Regs + CTM_INPUT_SEL,
                                   35,
                                   DATA_SIZE_16);
     debugSession.memory.writeData(Memory.Page.DATA,

@@ -4004,7 +4004,7 @@ interrupt void PMBUSA_ISR(void)
 //
 // 9.14 - AES Interrupt
 //
-interrupt void AES_ISR(void)
+interrupt void AES_SINTREQUEST_ISR(void)
 {
     //
     // Insert ISR Code here

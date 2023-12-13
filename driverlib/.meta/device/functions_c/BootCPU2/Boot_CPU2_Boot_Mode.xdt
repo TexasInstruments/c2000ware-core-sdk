@@ -1,0 +1,255 @@
+//*****************************************************************************
+//! Executes a CPU02 control system bootloader.
+//!
+//! \param bootMode specifies which CPU02 control system boot mode to execute.
+//!
+//! This function will allow the CPU01 controller system to boot the CPU02 control
+//! system via the following modes: Boot to RAM, Boot to Flash, Boot via SPI,
+//! SCI, I2C, or parallel I/O. This function blocks and waits until the
+//! control system boot ROM is configured and ready to receive CPU01 to CPU02
+//! IPC INT0 interrupts. It then blocks and waits until IPC INT0 and
+//! IPC FLAG31 are available in the CPU02 boot ROM prior to sending the
+//! command to execute the selected bootloader.
+//!
+//! The \e bootMode parameter accepts one of the following values:
+//!  - \b C1C2_BROM_BOOTMODE_BOOT_FROM_PARALLEL
+//!  - \b C1C2_BROM_BOOTMODE_BOOT_FROM_SCI
+//!  - \b C1C2_BROM_BOOTMODE_BOOT_FROM_SPI
+//!  - \b C1C2_BROM_BOOTMODE_BOOT_FROM_I2C
+//!  - \b C1C2_BROM_BOOTMODE_BOOT_FROM_CAN
+//!  - \b C1C2_BROM_BOOTMODE_BOOT_FROM_RAM
+//!  - \b C1C2_BROM_BOOTMODE_BOOT_FROM_FLASH
+//!
+//! \return 0 (success) if command is sent, or 1 (failure) if boot mode is
+//! invalid and command was not sent.
+//
+//*****************************************************************************
+uint16_t
+Device_bootCPU2(uint32_t bootMode)
+{
+    uint32_t bootStatus;
+    uint16_t pin;
+    uint16_t returnStatus = STATUS_PASS;
+
+    //
+    // If CPU2 has already booted, return a fail to let the application
+    // know that something is out of the ordinary.
+    //
+    bootStatus = HWREG(IPC_BASE + IPC_O_BOOTSTS) & 0x0000000FU;
+
+    if(bootStatus == C2_BOOTROM_BOOTSTS_C2TOC1_BOOT_CMD_ACK)
+    {
+        //
+        // Check if MSB is set as well
+        //
+        bootStatus = ((uint32_t)(HWREG(IPC_BASE + IPC_O_BOOTSTS) &
+                                 0x80000000U)) >> 31U;
+
+        if(bootStatus != 0)
+        {
+            returnStatus = STATUS_FAIL;
+
+            return returnStatus;
+        }
+    }
+
+    //
+    // Wait until CPU02 control system boot ROM is ready to receive
+    // CPU01 to CPU02 INT1 interrupts.
+    //
+    do
+    {
+        bootStatus = HWREG(IPC_BASE + IPC_O_BOOTSTS) &
+                     C2_BOOTROM_BOOTSTS_SYSTEM_READY;
+    } while ((bootStatus != C2_BOOTROM_BOOTSTS_SYSTEM_READY));
+
+    //
+    // Loop until CPU02 control system IPC flags 1 and 32 are available
+    //
+    while (((HWREG(IPC_BASE + IPC_O_FLG) & IPC_FLG_IPC0)  != 0U) ||
+           ((HWREG(IPC_BASE + IPC_O_FLG) & IPC_FLG_IPC31) != 0U))
+    {
+
+    }
+
+    if (bootMode >= C1C2_BROM_BOOTMODE_BOOT_COMMAND_MAX_SUPPORT_VALUE)
+    {
+        returnStatus = STATUS_FAIL;
+    }
+    else
+    {
+        //
+        // Based on boot mode, enable pull-ups on peripheral pins and
+        // give GPIO pin control to CPU02 control system.
+        //
+        switch (bootMode)
+        {
+            case C1C2_BROM_BOOTMODE_BOOT_FROM_SCI:
+
+                 //
+                 //SCIA connected to CPU02
+                 //
+                 SysCtl_selectCPUForPeripheral(SYSCTL_CPUSEL5_SCI, 1,
+                                               SYSCTL_CPUSEL_CPU2);
+
+                 //
+                 //Allows CPU02 bootrom to take control of clock
+                 //configuration registers
+                 //
+                 EALLOW;
+                 HWREG(CLKCFG_BASE + SYSCTL_O_CLKSEM) = 0xA5A50000U;
+                 HWREG(CLKCFG_BASE + SYSCTL_O_LOSPCP) = 0x0002U;
+                 EDIS;
+
+                 GPIO_setDirectionMode(29, GPIO_DIR_MODE_OUT);
+                 GPIO_setQualificationMode(29, GPIO_QUAL_ASYNC);
+                 GPIO_setPinConfig(GPIO_29_SCITXDA);
+                 GPIO_setControllerCore(29, GPIO_CORE_CPU2);
+
+                 GPIO_setDirectionMode(28, GPIO_DIR_MODE_IN);
+                 GPIO_setQualificationMode(28, GPIO_QUAL_ASYNC);
+                 GPIO_setPinConfig(GPIO_28_SCIRXDA);
+                 GPIO_setControllerCore(28, GPIO_CORE_CPU2);
+
+                break;
+
+            case C1C2_BROM_BOOTMODE_BOOT_FROM_SPI:
+
+                 //
+                 //SPI-A connected to CPU02
+                 //
+                 SysCtl_selectCPUForPeripheral(SYSCTL_CPUSEL6_SPI, 1,
+                                               SYSCTL_CPUSEL_CPU2);
+
+                 //
+                 //Allows CPU02 bootrom to take control of clock configuration
+                 // registers
+                 //
+                 EALLOW;
+                 HWREG(CLKCFG_BASE + SYSCTL_O_CLKSEM) = 0xA5A50000U;
+                 EDIS;
+
+                 GPIO_setDirectionMode(16, GPIO_DIR_MODE_IN);
+                 GPIO_setQualificationMode(16, GPIO_QUAL_ASYNC);
+                 GPIO_setPinConfig(GPIO_16_SPISIMOA);
+                 GPIO_setControllerCore(16, GPIO_CORE_CPU2);
+
+                 GPIO_setDirectionMode(17, GPIO_DIR_MODE_IN);
+                 GPIO_setQualificationMode(17, GPIO_QUAL_ASYNC);
+                 GPIO_setPinConfig(GPIO_17_SPISOMIA);
+                 GPIO_setControllerCore(17, GPIO_CORE_CPU2);
+
+                 GPIO_setDirectionMode(18, GPIO_DIR_MODE_IN);
+                 GPIO_setQualificationMode(18, GPIO_QUAL_ASYNC);
+                 GPIO_setPinConfig(GPIO_18_SPICLKA);
+                 GPIO_setControllerCore(18, GPIO_CORE_CPU2);
+
+                 GPIO_setDirectionMode(19, GPIO_DIR_MODE_OUT);
+                 GPIO_setQualificationMode(19, GPIO_QUAL_ASYNC);
+                 GPIO_setPinConfig(GPIO_19_GPIO19);
+                 GPIO_setControllerCore(19, GPIO_CORE_CPU2);
+
+                break;
+
+            case C1C2_BROM_BOOTMODE_BOOT_FROM_I2C:
+
+                 //
+                 //I2CA connected to CPU02
+                 //
+                 SysCtl_selectCPUForPeripheral(SYSCTL_CPUSEL7_I2C, 1,
+                                               SYSCTL_CPUSEL_CPU2);
+
+                 //
+                 //Allows CPU2 bootrom to take control of clock
+                 //configuration registers
+                 //
+                 EALLOW;
+                 HWREG(CLKCFG_BASE + SYSCTL_O_CLKSEM) = 0xA5A50000U;
+                 HWREG(CLKCFG_BASE + SYSCTL_O_LOSPCP) = 0x0002U;
+                 EDIS;
+
+                 GPIO_setDirectionMode(32, GPIO_DIR_MODE_IN);
+                 GPIO_setQualificationMode(32, GPIO_QUAL_ASYNC);
+                 GPIO_setPinConfig(GPIO_32_SDAA);
+                 GPIO_setControllerCore(32, GPIO_CORE_CPU2);
+
+                 GPIO_setDirectionMode(33, GPIO_DIR_MODE_IN);
+                 GPIO_setQualificationMode(33, GPIO_QUAL_ASYNC);
+                 GPIO_setPinConfig(GPIO_33_SCLA);
+                 GPIO_setControllerCore(33, GPIO_CORE_CPU2);
+
+                break;
+
+            case C1C2_BROM_BOOTMODE_BOOT_FROM_PARALLEL:
+
+                 for(pin=58;pin<=65;pin++)
+                 {
+                     GPIO_setDirectionMode(pin, GPIO_DIR_MODE_IN);
+                     GPIO_setQualificationMode(pin, GPIO_QUAL_ASYNC);
+                     GPIO_setControllerCore(pin, GPIO_CORE_CPU2);
+                 }
+
+                 GPIO_setDirectionMode(69, GPIO_DIR_MODE_IN);
+                 GPIO_setQualificationMode(69, GPIO_QUAL_ASYNC);
+                 GPIO_setPinConfig(GPIO_69_GPIO69);
+                 GPIO_setControllerCore(69, GPIO_CORE_CPU2);
+
+                 GPIO_setDirectionMode(70, GPIO_DIR_MODE_IN);
+                 GPIO_setQualificationMode(70, GPIO_QUAL_ASYNC);
+                 GPIO_setPinConfig(GPIO_70_GPIO70);
+                 GPIO_setControllerCore(70, GPIO_CORE_CPU2);
+
+                 break;
+
+
+            case C1C2_BROM_BOOTMODE_BOOT_FROM_CAN:
+                 //
+                 //Set up the GPIO mux to bring out CANATX on GPIO71
+                 //and CANARX on GPIO70
+                 //
+                 GPIO_unlockPortConfig(GPIO_PORT_C, 0xFFFFFFFFU);
+
+                 GPIO_setControllerCore(71, GPIO_CORE_CPU2);
+                 GPIO_setPinConfig(GPIO_71_CANTXA);
+                 GPIO_setQualificationMode(71, GPIO_QUAL_ASYNC);
+
+                 GPIO_setControllerCore(70, GPIO_CORE_CPU2);
+                 GPIO_setPinConfig(GPIO_70_CANRXA);
+                 GPIO_setQualificationMode(70, GPIO_QUAL_ASYNC);
+
+
+                 GPIO_lockPortConfig(GPIO_PORT_C, 0xFFFFFFFFU);
+
+                 //
+                 // Set CANA Bit-Clock Source Select = SYSCLK and enable CAN
+                 //
+                 EALLOW;
+                 HWREG(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL2) &=
+                                            SYSCTL_CLKSRCCTL2_CANABCLKSEL_M;
+                 EDIS;
+                 SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CANA);
+
+               break;
+
+         }
+
+        //
+        //CPU01 to CPU02 IPC Boot Mode Register
+        //
+        HWREG(IPC_BASE + IPC_O_BOOTMODE) = bootMode;
+
+        //
+        // CPU01 To CPU02 IPC Command Register
+        //
+        HWREG(IPC_BASE + IPC_O_SENDCOM) = BROM_IPC_EXECUTE_BOOTMODE_CMD;
+
+        //
+        // CPU01 to CPU02 IPC flag register
+        //
+        HWREG(IPC_BASE + IPC_O_SET) = 0x80000001U;
+
+    }
+    return returnStatus;
+}
+
+#endif

@@ -74,7 +74,7 @@
 #include "device.h"
 #include "inc/stw_types.h"
 #include "inc/stw_dataTypes.h"
-#include "inc/hw_types_mcan.h"
+#include <string.h>
 
 //
 // Defines.
@@ -89,6 +89,7 @@
 #define MCAN_RX_BUFF_NUM                (10U)
 #define MCAN_RX_BUFF_ELEM_SIZE          (MCAN_ELEM_SIZE_64BYTES)
 #define MCAN_TX_BUFF_SIZE               (0U)
+#define MCAN_TX_FQ_SIZE                 (0U)
 #define MCAN_TX_BUFF_ELEM_SIZE          (MCAN_ELEM_SIZE_64BYTES)
 #define MCAN_TX_EVENT_SIZE              (0U)
 
@@ -102,7 +103,7 @@
 #define MCAN_FIFO_1_START_ADDR          (MCAN_FIFO_0_START_ADDR + (MCAN_getMsgObjSize(MCAN_FIFO_0_ELEM_SIZE) * 4U * MCAN_FIFO_0_NUM))
 #define MCAN_RX_BUFF_START_ADDR         (MCAN_FIFO_1_START_ADDR + (MCAN_getMsgObjSize(MCAN_FIFO_1_ELEM_SIZE) * 4U * MCAN_FIFO_1_NUM))
 #define MCAN_TX_BUFF_START_ADDR         (MCAN_RX_BUFF_START_ADDR + (MCAN_getMsgObjSize(MCAN_RX_BUFF_ELEM_SIZE) * 4U * MCAN_RX_BUFF_NUM))
-#define MCAN_TX_EVENT_START_ADDR        (MCAN_TX_BUFF_START_ADDR + (MCAN_getMsgObjSize(MCAN_TX_BUFF_ELEM_SIZE) * 4U * MCAN_TX_BUFF_SIZE))
+#define MCAN_TX_EVENT_START_ADDR        (MCAN_TX_BUFF_START_ADDR + (MCAN_getMsgObjSize(MCAN_TX_BUFF_ELEM_SIZE) * 4U * (MCAN_TX_BUFF_SIZE + MCAN_TX_FQ_SIZE)))
 
 
 //
@@ -386,7 +387,7 @@ __interrupt void MCANIntr1ISR(void)
     //
     //  Clearing the interrupt lineNum
     //
-    HW_WR_FIELD32(MCANA_DRIVER_BASE + MCAN_MCANSS_EOI, MCAN_MCANSS_EOI, 0x2);
+    HW_WR_FIELD32(MCANA_DRIVER_BASE + MCAN_MCANSS_EOI, MCAN_MCANSS_EOI, 0x2U);
 
     //
     // Clear the interrupt Status.

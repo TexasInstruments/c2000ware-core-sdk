@@ -1,0 +1,62 @@
+#ifdef CPU1
+//*****************************************************************************
+//
+// Function to implement Analog trim of TMX devices
+//
+//*****************************************************************************
+void Device_configureTMXAnalogTrim(void)
+{
+    //
+    // Enable ADC clock
+    //
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_ADCA);
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_ADCB);
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_ADCC);
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_ADCD);
+
+    //
+    // Configure ADC reference trim for TMX devices
+    //
+    EALLOW;
+    HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_ANAREFTRIMA) = 0x7BDDU;
+    HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_ANAREFTRIMB) = 0x7BDDU;
+    HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_ANAREFTRIMC) = 0x7BDDU;
+    HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_ANAREFTRIMD) = 0x7BDDU;
+
+    //
+    // Configure ADC offset trim. The user should generate the trim values
+    // by following the instructions in the "ADC Zero Offset Calibration"
+    // section in device TRM. The below lines needs to be uncommented and
+    // updated with the correct trim values.
+    //
+//    HWREGH(ADCA_BASE + ADC_O_OFFTRIM) = 0x0U;
+//    HWREGH(ADCB_BASE + ADC_O_OFFTRIM) = 0x0U;
+//    HWREGH(ADCC_BASE + ADC_O_OFFTRIM) = 0x0U;
+//    HWREGH(ADCD_BASE + ADC_O_OFFTRIM) = 0x0U;
+
+    //
+    // Configure internal oscillator trim. If the internal oscillator trim
+    // contains all zeros, the user can adjust the lowest 10 bits of the
+    // oscillator trim register between 1 (minimum) and 1023 (maximum)
+    // while observing the system clock on the XCLOCKOUT pin. The below
+    // lines needs to be uncommented and updated with the correct trim values.
+    //
+//    if(HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_INTOSC1TRIM) == 0x0U)
+//    {
+//        HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_INTOSC1TRIM) = 0x0U;
+//    }
+//    if( HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_INTOSC2TRIM) = 0x0U)
+//    {
+//        HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_INTOSC2TRIM) = 0x0U;
+//    }
+
+    EDIS;
+
+    //
+    // Disable ADC clock
+    //
+    SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_ADCA);
+    SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_ADCB);
+    SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_ADCC);
+    SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_ADCD);
+}

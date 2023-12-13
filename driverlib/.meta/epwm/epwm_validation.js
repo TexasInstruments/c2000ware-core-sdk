@@ -110,6 +110,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 
 			]
@@ -152,6 +153,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -217,6 +219,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -289,6 +292,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -319,6 +323,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -348,6 +353,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -376,6 +382,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -408,6 +415,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -432,6 +440,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -456,6 +465,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -481,6 +491,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -503,6 +514,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -528,6 +540,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -555,6 +568,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -584,6 +598,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -608,6 +623,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -635,6 +651,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -662,6 +679,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -688,6 +706,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -716,6 +735,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -740,6 +760,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -768,6 +789,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -804,6 +826,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -840,6 +863,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -864,6 +888,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -888,6 +913,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -918,6 +944,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -963,6 +990,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -995,6 +1023,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1019,6 +1048,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1075,6 +1105,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1111,6 +1142,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1138,6 +1170,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1161,6 +1194,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1184,6 +1218,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1208,6 +1243,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1231,6 +1267,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1254,6 +1291,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1277,6 +1315,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1300,6 +1339,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1323,6 +1363,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1346,6 +1387,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1369,6 +1411,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1392,6 +1435,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1415,6 +1459,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1438,6 +1483,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1461,6 +1507,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1484,6 +1531,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1510,6 +1558,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1533,6 +1582,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1556,6 +1606,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1580,6 +1631,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1603,6 +1655,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1626,6 +1679,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1649,6 +1703,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1673,6 +1728,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1697,6 +1753,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1720,6 +1777,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1744,6 +1802,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1768,6 +1827,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1796,6 +1856,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1824,6 +1885,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1856,6 +1918,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1888,6 +1951,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1911,6 +1975,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1935,6 +2000,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1958,6 +2024,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -1981,6 +2048,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -2010,6 +2078,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 			]
 		},
@@ -3350,6 +3419,7 @@ var epwm_validation = [
 				"F280013x",
 				"F280015x",
 				"F2838x",
+				"F28P55x",
 				"F28P65x"
 				]
 		}	

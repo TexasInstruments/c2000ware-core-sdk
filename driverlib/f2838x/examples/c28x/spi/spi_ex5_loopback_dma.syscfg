@@ -1,45 +1,110 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F2838x" --package "337bga" --part "F2838x_337bga" --context "CPU1" --product "C2000WARE@5.00.00.00"
+ * @versions {"tool":"1.19.0+3288"}
+ */
 
 /**
  * Import the modules used in this configuration.
  */
+const device_support = scripting.addModule("/driverlib/device_support.js");
+const sysctl         = scripting.addModule("/driverlib/sysctl.js");
+const CMD            = scripting.addModule("/utilities/cmd_tool/cmd_syscfg/source/CMD");
+const CMD1           = CMD.addInstance();
+const CMD2           = CMD.addInstance();
+const memcfg         = scripting.addModule("/driverlib/memcfg.js");
 const spi  = scripting.addModule("/driverlib/spi.js", {}, false);
 const spi1 = spi.addInstance();
 
 /**
  * Write custom configuration values to the imported modules.
  */
-spi1.$name                         = "mySPI0";
-spi1.mode                          = "SPI_MODE_CONTROLLER";
-spi1.bitRate                       = 500000;
-spi1.loopback                      = true;
-spi1.useDMARX                      = true;
-spi1.useDMATX                      = true;
-spi1.txFifo                        = "SPI_FIFO_TX8";
-spi1.rxFifo                        = "SPI_FIFO_RX8";
-spi1.spi.$assign                   = "SPIA";
-spi1.spiRXDMA.databusWidthConfig   = scripting.forceWrite("DMA_CFG_SIZE_16BIT");
-spi1.spiRXDMA.dmaBase              = "DMA_CH6_BASE";
-spi1.spiRXDMA.burstSize            = 8;
-spi1.spiRXDMA.transferSize         = 16;
-spi1.spiRXDMA.destAddressInputMode = "VARIABLE";
-spi1.spiRXDMA.destBurstStep        = 1;
-spi1.spiRXDMA.destTransferStep     = 1;
-spi1.spiRXDMA.destAddressVariable  = "destAddr";
-spi1.spiRXDMA.useInterrupts        = true;
-spi1.spiRXDMA.interruptMode        = "DMA_INT_AT_END";
-spi1.spiRXDMA.enableTriggers       = true;
-spi1.spiRXDMA.enableInterrupts     = true;
-spi1.spiRXDMA.registerInterrupts   = true;
-spi1.spiTXDMA.databusWidthConfig   = scripting.forceWrite("DMA_CFG_SIZE_16BIT");
-spi1.spiTXDMA.srcAddressInputMode  = "VARIABLE";
-spi1.spiTXDMA.srcAddressVariable   = "srcAddr";
-spi1.spiTXDMA.burstSize            = 8;
-spi1.spiTXDMA.transferSize         = 16;
-spi1.spiTXDMA.srcBurstStep         = 1;
-spi1.spiTXDMA.srcTransferStep      = 1;
-spi1.spiTXDMA.dmaBase              = "DMA_CH5_BASE";
-spi1.spiTXDMA.useInterrupts        = true;
-spi1.spiTXDMA.interruptMode        = "DMA_INT_AT_END";
-spi1.spiTXDMA.enableTriggers       = true;
-spi1.spiTXDMA.registerInterrupts   = true;
-spi1.spiTXDMA.enableInterrupts     = true;
+spi1.$name                           = "mySPI0";
+spi1.mode                            = "SPI_MODE_CONTROLLER";
+spi1.bitRate                         = 500000;
+spi1.txFifo                          = "SPI_FIFO_TX8";
+spi1.rxFifo                          = "SPI_FIFO_RX8";
+spi1.useDMARX                        = true;
+spi1.loopback                        = true;
+spi1.useDMATX                        = true;
+spi1.spi.$assign                     = "SPIA";
+spi1.spiRXDMA.databusWidthConfig     = scripting.forceWrite("DMA_CFG_SIZE_16BIT");
+spi1.spiRXDMA.dmaBase                = "DMA_CH6_BASE";
+spi1.spiRXDMA.enableTriggers         = true;
+spi1.spiRXDMA.useInterrupts          = true;
+spi1.spiRXDMA.registerInterrupts     = true;
+spi1.spiRXDMA.enableInterrupts       = true;
+spi1.spiRXDMA.interruptMode          = "DMA_INT_AT_END";
+spi1.spiRXDMA.burstSize              = 8;
+spi1.spiRXDMA.transferSize           = 16;
+spi1.spiRXDMA.destAddressInputMode   = "VARIABLE";
+spi1.spiRXDMA.destAddressVariable    = "destAddr";
+spi1.spiRXDMA.destBurstStep          = 1;
+spi1.spiRXDMA.destTransferStep       = 1;
+spi1.spiRXDMA.dmaInt.enableInterrupt = true;
+spi1.spiTXDMA.databusWidthConfig     = scripting.forceWrite("DMA_CFG_SIZE_16BIT");
+spi1.spiTXDMA.dmaBase                = "DMA_CH5_BASE";
+spi1.spiTXDMA.enableTriggers         = true;
+spi1.spiTXDMA.useInterrupts          = true;
+spi1.spiTXDMA.registerInterrupts     = true;
+spi1.spiTXDMA.enableInterrupts       = true;
+spi1.spiTXDMA.interruptMode          = "DMA_INT_AT_END";
+spi1.spiTXDMA.burstSize              = 8;
+spi1.spiTXDMA.transferSize           = 16;
+spi1.spiTXDMA.srcAddressInputMode    = "VARIABLE";
+spi1.spiTXDMA.srcAddressVariable     = "srcAddr";
+spi1.spiTXDMA.srcBurstStep           = 1;
+spi1.spiTXDMA.srcTransferStep        = 1;
+spi1.spiTXDMA.dmaInt.enableInterrupt = true;
+
+CMD1.$name                    = "generic_ram_lnk";
+CMD2.$name                    = "generic_flash_lnk";
+
+CMD1.sectionMemory_text       = ["RAMLS0","RAMLS1","RAMLS2","RAMLS3","RAMLS4"];
+CMD1.sectionMemory_bss        = ["RAMLS5"];
+CMD1.sectionMemory_const      = ["RAMLS5"];
+CMD1.sectionMemory_data       = ["RAMLS5"];
+CMD1.sectionMemory_sysmem     = ["RAMLS5"];
+CMD1.sectionMemory_ramfunc    = ["RAMM0"];
+CMD1.sectionMemory_cinit      = ["RAMM0"];
+CMD1.sectionMemory_stack      = ["RAMM1"];
+CMD1.sectionMemory_init_array = ["RAMM0"];
+CMD1.sectionMemory_switch     = ["RAMM0"];
+CMD1.$name                        = "generic_ram_lnk";
+CMD1.userSection.create(2);
+CMD1.userSection[0].$name          = "userSection0";
+CMD1.userSection[0].sectionMemory  = ["RAMGS0"];
+CMD1.userSection[0].sectionName    = "ramgs0";
+CMD1.userSection[1].$name          = "userSection2";
+CMD1.userSection[1].sectionMemory  = ["RAMGS1"];
+CMD1.userSection[1].sectionName    = "ramgs1";
+
+CMD2.sectionAlignEnable_ramfunc    = true;
+CMD2.sectionAlignEnable_text       = true;
+CMD2.sectionAlignEnable_binit      = true;
+CMD2.sectionAlignEnable_cinit      = true;
+CMD2.sectionAlignEnable_switch     = true;
+CMD2.sectionAlignEnable_init_array = true;
+CMD2.sectionAlignEnable_const      = true;
+CMD2.sectionAlignEnable_ovly       = true;
+CMD2.sectionMemory_codestart       = "0x080000";
+CMD2.sectionMemory_stack           = ["RAMM1"];
+CMD2.sectionMemory_bss             = ["RAMLS5"];
+CMD2.sectionMemory_data            = ["RAMLS5"];
+CMD2.sectionMemory_sysmem          = ["RAMLS5"];
+CMD2.sectionMemory_ramfunc         = ["FLASH3"];
+CMD2.sectionMemory_text            = ["FLASH1","FLASH2","FLASH3","FLASH4"];
+CMD2.sectionMemory_binit           = ["FLASH4"];
+CMD2.sectionMemory_cinit           = ["FLASH4"];
+CMD2.sectionMemory_switch          = ["FLASH1"];
+CMD2.sectionMemory_init_array      = ["FLASH1"];
+CMD2.sectionMemory_const           = ["FLASH5"];
+CMD2.sectionMemory_ovly            = ["FLASH1"];
+CMD2.userSection.create(2);
+CMD2.userSection[0].$name          = "userSection1";
+CMD2.userSection[0].sectionMemory  = ["RAMGS0"];
+CMD2.userSection[0].sectionName    = "ramgs0";
+CMD2.userSection[1].$name          = "userSection3";
+CMD2.userSection[1].sectionMemory  = ["RAMGS1"];
+CMD2.userSection[1].sectionName    = "ramgs1";

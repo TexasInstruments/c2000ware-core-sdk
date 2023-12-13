@@ -1,0 +1,39 @@
+// eziir16
+// ezIIR FILTER DESIGN SCRIPT
+// Butterworth       : 1
+// Chebyshev(Type 1) : 2
+// Chebyshev(Type 2) : 3
+// Elliptic          : 4
+// Select Any one of the above IIR Filter Type     : 3
+// Low pass          : 1
+// High Pass         : 2
+// Band Pass         : 3
+// Band Stop         : 4
+// Select Any one of the above Response            : 2
+// Enter the Sampling frequency                    : 250e3
+// Enter the Pass band Ripples in dB(RP)           : 0.1
+// Enter the stop band Rippled in dB(RS)           : 60
+// Enter the pass band corner frequency(FP)        : 41e3
+// Enter the stop band corner frequency(FS)        : 30e3
+// Enter the name of the file for coeff storage    : tes5_coeffs.txt
+//  
+// Q format of the IIR filter coefficients:
+//     12
+// 
+// Input Scaling value:
+//     0.4566
+// 
+// Number of Biquads:
+//       6
+//      
+#define IIR16_COEFF {\
+			0,2226,0,-2596,2596,\
+			-1307,4421,2734,-5334,2734,\
+			-1596,4352,2571,-4692,2571,\
+			-2067,4309,2761,-4615,2761,\
+			-2720,4383,1419,-2186,1419,\
+			-3575,4691,20333,-29837,20333}
+
+#define IIR16_ISF	1870
+#define IIR16_NBIQ	6
+#define IIR16_QFMAT	12

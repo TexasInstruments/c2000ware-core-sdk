@@ -399,6 +399,16 @@ let SysCtl_EMIF1CLKDivider = [
 	{ name: "SYSCTL_EMIF1CLK_DIV_1", displayName: "EMIF1CLK = PLLSYSCLK / 1" },
 	{ name: "SYSCTL_EMIF1CLK_DIV_2", displayName: "EMIF1CLK = PLLSYSCLK / 2" },
 ]
+let SysCtl_LINACLKDivider = [
+	{ name: "SYSCTL_LINACLK_DIV_1", displayName: "LINACLK = PLLSYSCLK / 1" },
+	{ name: "SYSCTL_LINACLK_DIV_2", displayName: "LINACLK = PLLSYSCLK / 2" },
+	{ name: "SYSCTL_LINACLK_DIV_4", displayName: "LINACLK = PLLSYSCLK / 4" },
+]
+let SysCtl_LINBCLKDivider = [
+	{ name: "SYSCTL_LINBCLK_DIV_1", displayName: "LINBCLK = PLLSYSCLK / 1" },
+	{ name: "SYSCTL_LINBCLK_DIV_2", displayName: "LINBCLK = PLLSYSCLK / 2" },
+	{ name: "SYSCTL_LINBCLK_DIV_4", displayName: "LINBCLK = PLLSYSCLK / 4" },
+]
 let SysCtl_AccessPeripheral = [
 	{ name: "SYSCTL_ACCESS_ADCA", displayName: "ADCA access" },
 	{ name: "SYSCTL_ACCESS_ADCB", displayName: "ADCB access" },
@@ -744,6 +754,30 @@ let SysCtl_DevicePartNumber = [
 	{ name: "SYSCTL_EMULATE_F28P650DH6", displayName: "EMULATE F28P650DH6" },
 	{ name: "SYSCTL_EMULATE_F28P650SH6", displayName: "EMULATE F28P650SH6" },
 ]
+let SysCtl_CMPSSLPMSel = [
+	{ name: "SYSCTL_CMPSSLPMSEL_CMPSS_1H", displayName: "CMPSSLPMSEL CMPSS 1H" },
+	{ name: "SYSCTL_CMPSSLPMSEL_CMPSS_1L", displayName: "CMPSSLPMSEL CMPSS 1L" },
+	{ name: "SYSCTL_CMPSSLPMSEL_CMPSS_2H", displayName: "CMPSSLPMSEL CMPSS 2H" },
+	{ name: "SYSCTL_CMPSSLPMSEL_CMPSS_2L", displayName: "CMPSSLPMSEL CMPSS 2L" },
+	{ name: "SYSCTL_CMPSSLPMSEL_CMPSS_3H", displayName: "CMPSSLPMSEL CMPSS 3H" },
+	{ name: "SYSCTL_CMPSSLPMSEL_CMPSS_3L", displayName: "CMPSSLPMSEL CMPSS 3L" },
+	{ name: "SYSCTL_CMPSSLPMSEL_CMPSS_4H", displayName: "CMPSSLPMSEL CMPSS 4H" },
+	{ name: "SYSCTL_CMPSSLPMSEL_CMPSS_4L", displayName: "CMPSSLPMSEL CMPSS 4L" },
+	{ name: "SYSCTL_CMPSSLPMSEL_CMPSS_5H", displayName: "CMPSSLPMSEL CMPSS 5H" },
+	{ name: "SYSCTL_CMPSSLPMSEL_CMPSS_5L", displayName: "CMPSSLPMSEL CMPSS 5L" },
+	{ name: "SYSCTL_CMPSSLPMSEL_CMPSS_6H", displayName: "CMPSSLPMSEL CMPSS 6H" },
+	{ name: "SYSCTL_CMPSSLPMSEL_CMPSS_6L", displayName: "CMPSSLPMSEL CMPSS 6L" },
+	{ name: "SYSCTL_CMPSSLPMSEL_CMPSS_7H", displayName: "CMPSSLPMSEL CMPSS 7H" },
+	{ name: "SYSCTL_CMPSSLPMSEL_CMPSS_7L", displayName: "CMPSSLPMSEL CMPSS 7L" },
+	{ name: "SYSCTL_CMPSSLPMSEL_CMPSS_8H", displayName: "CMPSSLPMSEL CMPSS 8H" },
+	{ name: "SYSCTL_CMPSSLPMSEL_CMPSS_8L", displayName: "CMPSSLPMSEL CMPSS 8L" },
+	{ name: "SYSCTL_CMPSSLPMSEL_CMPSS_9H", displayName: "CMPSSLPMSEL CMPSS 9H" },
+	{ name: "SYSCTL_CMPSSLPMSEL_CMPSS_9L", displayName: "CMPSSLPMSEL CMPSS 9L" },
+	{ name: "SYSCTL_CMPSSLPMSEL_CMPSS_10H", displayName: "CMPSSLPMSEL CMPSS 10H" },
+	{ name: "SYSCTL_CMPSSLPMSEL_CMPSS_10L", displayName: "CMPSSLPMSEL CMPSS 10L" },
+	{ name: "SYSCTL_CMPSSLPMSEL_CMPSS_11H", displayName: "CMPSSLPMSEL CMPSS 11H" },
+	{ name: "SYSCTL_CMPSSLPMSEL_CMPSS_11L", displayName: "CMPSSLPMSEL CMPSS 11L" },
+]
 let SYSCTL_AUXPLL = [
 	{ name: "SYSCTL_AUXPLL_DIV_1", displayName: "Auxiliary PLL divide by 1" },
 	{ name: "SYSCTL_AUXPLL_DIV_2", displayName: "Auxiliary PLL divide by 2" },
@@ -851,6 +885,8 @@ module.exports = {
 	SysCtl_LSPCLKPrescaler: SysCtl_LSPCLKPrescaler,
 	SysCtl_EPWMCLKDivider: SysCtl_EPWMCLKDivider,
 	SysCtl_EMIF1CLKDivider: SysCtl_EMIF1CLKDivider,
+	SysCtl_LINACLKDivider: SysCtl_LINACLKDivider,
+	SysCtl_LINBCLKDivider: SysCtl_LINBCLKDivider,
 	SysCtl_AccessPeripheral: SysCtl_AccessPeripheral,
 	SysCtl_AccessController: SysCtl_AccessController,
 	SysCtl_AccessPermission: SysCtl_AccessPermission,
@@ -878,6 +914,7 @@ module.exports = {
 	SysCtl_UserRegister: SysCtl_UserRegister,
 	SysCtl_LFUUserRegister: SysCtl_LFUUserRegister,
 	SysCtl_DevicePartNumber: SysCtl_DevicePartNumber,
+	SysCtl_CMPSSLPMSel: SysCtl_CMPSSLPMSel,
 	SYSCTL_AUXPLL: SYSCTL_AUXPLL,
 	SYSCTL_NMI: SYSCTL_NMI,
 	SYSCTL_STATUS_SYS_ERR: SYSCTL_STATUS_SYS_ERR,

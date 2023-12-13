@@ -427,6 +427,16 @@
                 "SCI_TX": "P11"  /*GPIO29*/
             }
         },
+        "USB": {
+            "displayName": "USB0",
+            "description": "USB0",
+            "longDescription": "This controlCARD features standard locations for the USB communication peripheral.",
+            "definition"  : "/boards/components/standard_usb.json",
+            "connections" : {
+                "USBDM": "E16", /*GPIO42*/
+                "USBDP": "D16"  /*GPIO43*/
+            }
+        },
         "CAN_LOC1": {
             "displayName": "CANA",
             "description": "CANA",
@@ -473,5 +483,51 @@
                 "FSITX_CLK": "G13" /* GPIO27 */
                 }
 		},
+        "ETHERCAT": {
+            "displayName": "ETHERCAT",
+            "description": "ETHERCAT",
+            "longDescription": "ETHERCAT",
+            "definition": "/boards/components/ethercat.json",
+            "connections": {
+                "ECAT_I2C_SDA": "A12", /*GPIO150*/
+                "ECAT_I2C_SCL": "F11", /*GPIO151*/
+                "ECAT_TX1_DATA0": "N13", /*GPIO131*/
+                "ECAT_TX1_DATA1": "T14", /*GPIO132*/
+                "ECAT_TX1_DATA2": "R14", /*GPIO134*/
+                "ECAT_TX1_DATA3": "B2", /*GPIO19*/
+                "ECAT_MDIO_CLK": "E11", /*GPIO152*/
+                "ECAT_MDIO_DATA": "D11", /*GPIO153*/
+                "ECAT_PHY_CLK": "C11", /*GPIO154*/
+                "ECAT_RX1_CLK": "B16", /*GPIO69*/
+                "ECAT_RX1_DV": "C15", /*GPIO70*/
+                "ECAT_RX1_ERR": "B15", /*GPIO71*/
+                "ECAT_RX1_DATA0": "K14", /*GPIO63*/
+                "ECAT_RX1_DATA1": "K13", /*GPIO64*/
+                "ECAT_RX1_DATA2": "H13", /*GPIO141*/
+                "ECAT_RX1_DATA3": "H14", /*GPIO142*/
+                "ECAT_PHY_RESETn": "B11", /*GPIO155*/
+                "ECAT_LED_RUN": "H16", /*GPIO146*/
+                "ECAT_LED_ERR": "H15", /*GPIO145*/
+                "ECAT_LED_LINK0_ACTIVE": "L13", /*GPIO58*/
+                "ECAT_LED_LINK1_ACTIVE": "L14", /*GPIO59*/
+                "ECAT_RX0_CLK": "B8", /*GPIO163*/
+                "ECAT_RX0_DV": "A8", /*GPIO162*/
+                "ECAT_RX0_ERR": "C8", /*GPIO164*/
+                "ECAT_RX0_DATA0": "F6", /*GPIO165*/
+                "ECAT_RX0_DATA1": "B5", /*GPIO166*/
+                "ECAT_RX0_DATA2": "E5", /*GPIO167*/
+                "ECAT_RX0_DATA3": "F5", /*GPIO168*/
+                "ECAT_TX0_ENA": "A11", /*GPIO156*/
+                "ECAT_TX0_CLK": "E10", /*GPIO157*/
+                "ECAT_TX0_DATA0": "D10", /*GPIO158*/
+                "ECAT_TX0_DATA1": "C10", /*GPIO159*/
+                "ECAT_TX0_DATA2": "B10", /*GPIO160*/
+                "ECAT_TX0_DATA3": "E9", /*GPIO161*/
+                "ECAT_TX1_ENA": "L9", /*GPIO129*/
+                "ECAT_TX1_CLK": "T10", /*GPIO130*/
+                "ECAT_PHY0_LINKSTATUS": "C12", /*GPIO148*/
+                "ECAT_PHY1_LINKSTATUS": "B12", /*GPIO149*/
+            }
+        },
     }
 }

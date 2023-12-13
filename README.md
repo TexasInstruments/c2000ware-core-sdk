@@ -1,7 +1,7 @@
 <div align="center">
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/TexasInstruments-Logo.svg" width="150"><br/>
-# C2000Ware v4.03.00.00
+# C2000Ware v5.01.00.00
 
 [Introduction](#introduction) | [Layout](#repositorylayout) | [Overview](#overview) | [Contribute](#contributing-to-the-project)
 
@@ -12,6 +12,7 @@
 C2000Ware for C2000 microcontrollers is a cohesive set of development software and documentation designed to minimize software development time. 
 It includes device-specific drivers and device peripheral examples, C2000Ware provides a solid foundation to begin development and evaluation.
 List of devices supported
+- [F28P65x](https://www.ti.com/product/TMS320F28P650DK) 
 - [F280015x](https://www.ti.com/product/TMS320F2800157) 
 - [F280013x](https://www.ti.com/product/TMS320F2800137)
 - [F28004x](https://www.ti.com/product/TMS320F280049C)
@@ -42,8 +43,8 @@ The SDK includes peripheral usage examples to help users to get started quickly.
 - driverlib
   - This folder contains the device-specific driver library and driver-based peripheral examples.
 
-- examples
-  - This folder contains the examples involving multiple devices/peripherals to showcase different applications.
+- libraries
+  - This folder contains the device-specific and core libraries.
 
 - utilities
   - This folder contains development utility applications such as flash programmers, windows drivers.

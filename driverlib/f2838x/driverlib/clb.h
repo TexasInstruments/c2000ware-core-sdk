@@ -855,8 +855,8 @@ static inline void CLB_writeSWReleaseControl(uint32_t base,
 
     HWREG(base + CLB_LOGICCTL + CLB_O_GP_REG) =
             (HWREG(base + CLB_LOGICCTL + CLB_O_GP_REG) &
-                ~(0x1000000U << inID)) |
-                    (((uint32_t)val) << (24U + inID));
+                ~(0x1000000U << (uint32_t)inID)) |
+                    (((uint32_t)val) << (24U + (uint16_t)inID));
 }
 
 
@@ -881,8 +881,8 @@ static inline void CLB_writeSWGateControl(uint32_t base,
 
     HWREG(base + CLB_LOGICCTL + CLB_O_GP_REG) =
             (HWREG(base + CLB_LOGICCTL + CLB_O_GP_REG) &
-                ~(0x10000U << inID)) |
-                    (((uint32_t)val) << (16U + inID));
+                ~(0x10000U << (uint32_t)inID)) |
+                    (((uint32_t)val) << (16U + (uint16_t)inID));
 
 }
 
@@ -1089,7 +1089,8 @@ static inline void CLB_configGPInputMux(uint32_t base, CLB_Inputs inID,
 
     HWREGH(base + CLB_LOGICCTL + CLB_O_IN_MUX_SEL_0) =
         (HWREGH(base + CLB_LOGICCTL + CLB_O_IN_MUX_SEL_0) &
-         ~(CLB_IN_MUX_SEL_0_SEL_GP_IN_0 << inID)) | (gpMuxCfg << inID);
+         ~(CLB_IN_MUX_SEL_0_SEL_GP_IN_0 << (uint16_t)inID)) |
+        ((uint16_t)gpMuxCfg << (uint16_t)inID);
 }
 
 //*****************************************************************************
@@ -1227,7 +1228,7 @@ static inline void CLB_configLocalInputMux(uint32_t base, CLB_Inputs inID,
         // apart from the local input bits
         //
         inputMuxSel =
-        (((uint32_t)(localMuxCfg & CLB_LCL_MUX_SEL_2_LCL_MUX_SEL_IN_4_M) <<
+        ((((uint32_t)localMuxCfg & CLB_LCL_MUX_SEL_2_LCL_MUX_SEL_IN_4_M) <<
         shiftVal) |
         ((((uint32_t)localMuxCfg & CLB_LCL_MUX_SEL_MISC_INPUT_SEL_M) >>
         CLB_LCL_MUX_SEL_2_LCL_MUX_SEL_IN_5_S) << miscShiftVal));
@@ -1648,7 +1649,7 @@ static inline void CLB_programHLCInstruction(uint32_t base,
                                              uint32_t instruction)
 {
     ASSERT(CLB_isBaseValid(base));
-    ASSERT(instructionNum < 32);
+    ASSERT(instructionNum < 32U);
 
     CLB_writeInterface(base, CLB_ADDR_HLC_BASE + instructionNum, instruction);
 }

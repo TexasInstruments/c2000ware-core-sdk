@@ -71,9 +71,10 @@ union GCTL0_REG {
 struct GCTL1_BITS {                     // bits description
     Uint16 SIGGEN0_CLKSEL:3;            // 2:0 Clock source select of SIGGEN0
     Uint16 rsvd1:1;                     // 3 Reserved
-    Uint16 SIGGEN1_CLKSEL:3;            // 6:4 Clock source select of SIGGEN1
-    Uint16 rsvd2:9;                     // 15:7 Reserved
-    Uint16 rsvd3:16;                    // 31:16 Reserved
+    Uint16 rsvd2:3;                     // 6:4 Reserved
+    Uint16 rsvd3:1;                     // 7 Reserved
+    Uint16 rsvd4:8;                     // 15:8 Reserved
+    Uint16 rsvd5:16;                    // 31:16 Reserved
 };
 
 union GCTL1_REG {
@@ -130,10 +131,10 @@ struct EPGLOCK_BITS {                   // bits description
     Uint16 CLKDIV1_CTL0:1;              // 5 CLKDIV1_CTL0 Lock bit
     Uint16 SIGGEN0_CTL0:1;              // 6 SIGGEN0_CTL0 Lock bit
     Uint16 SIGGEN0_CTL1:1;              // 7 SIGGEN0_CTL1 Lock bit
-    Uint16 SIGGEN1_CTL0:1;              // 8 SIGGEN1_CTL0 Lock bit
-    Uint16 SIGGEN1_CTL1:1;              // 9 SIGGEN1_CTL1 Lock bit
-    Uint16 rsvd1:6;                     // 15:10 Reserved
-    Uint16 rsvd2:16;                    // 31:16 Reserved
+    Uint16 rsvd1:1;                     // 8 Reserved
+    Uint16 rsvd2:1;                     // 9 Reserved
+    Uint16 rsvd3:6;                     // 15:10 Reserved
+    Uint16 rsvd4:16;                    // 31:16 Reserved
 };
 
 union EPGLOCK_REG {
@@ -150,10 +151,10 @@ struct EPGCOMMIT_BITS {                 // bits description
     Uint16 CLKDIV1_CTL0:1;              // 5 CLKDIV1_CTL0 Commit bit
     Uint16 SIGGEN0_CTL0:1;              // 6 SIGGEN0_CTL0 Commit bit
     Uint16 SIGGEN0_CTL1:1;              // 7 SIGGEN0_CTL1 Commit bit
-    Uint16 SIGGEN1_CTL0:1;              // 8 SIGGEN1_CTL0 Commit bit
-    Uint16 SIGGEN1_CTL1:1;              // 9 SIGGEN1_CTL1 Commit bit
-    Uint16 rsvd1:6;                     // 15:10 Reserved
-    Uint16 rsvd2:16;                    // 31:16 Reserved
+    Uint16 rsvd1:1;                     // 8 Reserved
+    Uint16 rsvd2:1;                     // 9 Reserved
+    Uint16 rsvd3:6;                     // 15:10 Reserved
+    Uint16 rsvd4:16;                    // 31:16 Reserved
 };
 
 union EPGCOMMIT_REG {
@@ -165,10 +166,10 @@ struct GINTSTS_BITS {                   // bits description
     Uint16 INT:1;                       // 0 Global interrupt flag register
     Uint16 SIGGEN0_DONE:1;              // 1 SIGGEN0 operation done status
     Uint16 SIGGEN0_FILL:1;              // 2 SIGGEN0 data fill status
-    Uint16 SIGGEN1_DONE:1;              // 3 SIGGEN1 operation done status
-    Uint16 SIGGEN1_FILL:1;              // 4 SIGGEN1 data fill status
-    Uint16 rsvd1:11;                    // 15:5 Reserved
-    Uint16 rsvd2:16;                    // 31:16 Reserved
+    Uint16 rsvd1:1;                     // 3 Reserved
+    Uint16 rsvd2:1;                     // 4 Reserved
+    Uint16 rsvd3:11;                    // 15:5 Reserved
+    Uint16 rsvd4:16;                    // 31:16 Reserved
 };
 
 union GINTSTS_REG {
@@ -180,10 +181,10 @@ struct GINTEN_BITS {                    // bits description
     Uint16 rsvd1:1;                     // 0 Reserved
     Uint16 SIGGEN0_DONE:1;              // 1 SIGGEN0 operation done interrupt enable
     Uint16 SIGGEN0_FILL:1;              // 2 SIGGEN0 data fill interrupt enable
-    Uint16 SIGGEN1_DONE:1;              // 3 SIGGEN1 operation done interrupt enable
-    Uint16 SIGGEN1_FILL:1;              // 4 SIGGEN1 data fill interrupt enable
-    Uint16 rsvd2:11;                    // 15:5 Reserved
-    Uint16 rsvd3:16;                    // 31:16 Reserved
+    Uint16 rsvd2:1;                     // 3 Reserved
+    Uint16 rsvd3:1;                     // 4 Reserved
+    Uint16 rsvd4:11;                    // 15:5 Reserved
+    Uint16 rsvd5:16;                    // 31:16 Reserved
 };
 
 union GINTEN_REG {
@@ -195,10 +196,10 @@ struct GINTCLR_BITS {                   // bits description
     Uint16 INT:1;                       // 0 Global interrupt flag clear
     Uint16 SIGGEN0_DONE:1;              // 1 SIGGEN0 operation done interrupt flag clear
     Uint16 SIGGEN0_FILL:1;              // 2 SIGGEN0 data fill interrupt flag clear
-    Uint16 SIGGEN1_DONE:1;              // 3 SIGGEN0 data fill interrupt flag clear
-    Uint16 SIGGEN1_FILL:1;              // 4 SIGGEN1 data fill interrupt flag clear
-    Uint16 rsvd1:11;                    // 15:5 Reserved
-    Uint16 rsvd2:16;                    // 31:16 Reserved
+    Uint16 rsvd1:1;                     // 3 Reserved
+    Uint16 rsvd2:1;                     // 4 Reserved
+    Uint16 rsvd3:11;                    // 15:5 Reserved
+    Uint16 rsvd4:16;                    // 31:16 Reserved
 };
 
 union GINTCLR_REG {
@@ -210,10 +211,10 @@ struct GINTFRC_BITS {                   // bits description
     Uint16 rsvd1:1;                     // 0 Reserved
     Uint16 SIGGEN0_DONE:1;              // 1 SIGGEN0 operation done interrupt flag set
     Uint16 SIGGEN0_FILL:1;              // 2 SIGGEN0 data fill interrupt flag set
-    Uint16 SIGGEN1_DONE:1;              // 3 SIGGEN1 operation done interrupt flag set
-    Uint16 SIGGEN1_FILL:1;              // 4 SIGGEN1 data fill interrupt flag set
-    Uint16 rsvd2:11;                    // 15:5 Reserved
-    Uint16 rsvd3:16;                    // 31:16 Reserved
+    Uint16 rsvd2:1;                     // 3 Reserved
+    Uint16 rsvd3:1;                     // 4 Reserved
+    Uint16 rsvd4:11;                    // 15:5 Reserved
+    Uint16 rsvd5:16;                    // 31:16 Reserved
 };
 
 union GINTFRC_REG {
@@ -296,33 +297,6 @@ union SIGGEN0_CTL1_REG {
     struct  SIGGEN0_CTL1_BITS  bit;
 };
 
-struct SIGGEN1_CTL0_BITS {              // bits description
-    Uint16 MODE:4;                      // 3:0 Signal generator modes
-    Uint16 EN:1;                        // 4 Signal generator enable
-    Uint16 BRIN:1;                      // 5 Reverse bits before transform
-    Uint16 BROUT:1;                     // 6 Reverse bits after transform
-    Uint16 rsvd1:9;                     // 15:7 Reserved
-    Uint16 BITLENGTH:8;                 // 23:16 Length of bit stream
-    Uint16 rsvd2:8;                     // 31:24 Reserved
-};
-
-union SIGGEN1_CTL0_REG {
-    Uint32  all;
-    struct  SIGGEN1_CTL0_BITS  bit;
-};
-
-struct SIGGEN1_CTL1_BITS {              // bits description
-    Uint16 DATA0_INSEL:4;               // 3:0 Select the source of DATA[0] bit.
-    Uint16 rsvd1:12;                    // 15:4 Reserved
-    Uint16 rsvd2:12;                    // 27:16 Reserved
-    Uint16 DATA63_INSEL:4;              // 31:28 Select the source of DATA[63] bit.
-};
-
-union SIGGEN1_CTL1_REG {
-    Uint32  all;
-    struct  SIGGEN1_CTL1_BITS  bit;
-};
-
 struct EPG_REGS {
     union   GCTL0_REG                        GCTL0;                        // EPG Global control register 0
     union   GCTL1_REG                        GCTL1;                        // EPG Global control register 1
@@ -350,13 +324,6 @@ struct EPG_REGS {
     Uint32                                   SIGGEN0_DATA1;                // Signal generator 0's data register 1
     Uint32                                   SIGGEN0_DATA0_ACTIVE;         // Signal generator 0's data active register 0
     Uint32                                   SIGGEN0_DATA1_ACTIVE;         // Signal generator 0's data active register 1
-    union   SIGGEN1_CTL0_REG                 SIGGEN1_CTL0;                 // Signal generator 1's control register 0
-    union   SIGGEN1_CTL1_REG                 SIGGEN1_CTL1;                 // Signal generator 1's control register 1
-    Uint16                                   rsvd7[4];                     // Reserved
-    Uint32                                   SIGGEN1_DATA0;                // Signal generator 1's data register 0
-    Uint32                                   SIGGEN1_DATA1;                // Signal generator 1's data register 1
-    Uint32                                   SIGGEN1_DATA0_ACTIVE;         // Signal generator 1's data active register 0
-    Uint32                                   SIGGEN1_DATA1_ACTIVE;         // Signal generator 1's data active register 1
 };
 
 struct EPGMXSEL0_BITS {                 // bits description
@@ -399,51 +366,11 @@ union EPGMXSEL0_REG {
     struct  EPGMXSEL0_BITS  bit;
 };
 
-struct EPGMXSEL1_BITS {                 // bits description
-    Uint16 SEL32:1;                     // 0 DATAOUT[32] mux select.
-    Uint16 SEL33:1;                     // 1 DATAOUT[33] mux select.
-    Uint16 SEL34:1;                     // 2 DATAOUT[34] mux select.
-    Uint16 SEL35:1;                     // 3 DATAOUT[35] mux select.
-    Uint16 SEL36:1;                     // 4 DATAOUT[36] mux select.
-    Uint16 SEL37:1;                     // 5 DATAOUT[37] mux select.
-    Uint16 SEL38:1;                     // 6 DATAOUT[38] mux select.
-    Uint16 SEL39:1;                     // 7 DATAOUT[39] mux select.
-    Uint16 SEL40:1;                     // 8 DATAOUT[40] mux select.
-    Uint16 SEL41:1;                     // 9 DATAOUT[41] mux select.
-    Uint16 SEL42:1;                     // 10 DATAOUT[42] mux select.
-    Uint16 SEL43:1;                     // 11 DATAOUT[43] mux select.
-    Uint16 SEL44:1;                     // 12 DATAOUT[44] mux select.
-    Uint16 SEL45:1;                     // 13 DATAOUT[45] mux select.
-    Uint16 SEL46:1;                     // 14 DATAOUT[46] mux select.
-    Uint16 SEL47:1;                     // 15 DATAOUT[47] mux select.
-    Uint16 SEL48:1;                     // 16 DATAOUT[48] mux select.
-    Uint16 SEL49:1;                     // 17 DATAOUT[49] mux select.
-    Uint16 SEL50:1;                     // 18 DATAOUT[50] mux select.
-    Uint16 SEL51:1;                     // 19 DATAOUT[51] mux select.
-    Uint16 SEL52:1;                     // 20 DATAOUT[52] mux select.
-    Uint16 SEL53:1;                     // 21 DATAOUT[53] mux select.
-    Uint16 SEL54:1;                     // 22 DATAOUT[54] mux select.
-    Uint16 SEL55:1;                     // 23 DATAOUT[55] mux select.
-    Uint16 SEL56:1;                     // 24 DATAOUT[56] mux select.
-    Uint16 SEL57:1;                     // 25 DATAOUT[57] mux select.
-    Uint16 SEL58:1;                     // 26 DATAOUT[58] mux select.
-    Uint16 SEL59:1;                     // 27 DATAOUT[59] mux select.
-    Uint16 SEL60:1;                     // 28 DATAOUT[60] mux select.
-    Uint16 SEL61:1;                     // 29 DATAOUT[61] mux select.
-    Uint16 SEL62:1;                     // 30 DATAOUT[62] mux select.
-    Uint16 SEL63:1;                     // 31 DATAOUT[63] mux select.
-};
-
-union EPGMXSEL1_REG {
-    Uint32  all;
-    struct  EPGMXSEL1_BITS  bit;
-};
-
 struct EPGMXSELLOCK_BITS {              // bits description
     Uint16 EPGMXSEL0:1;                 // 0 EPGMXSEL0 lock bit
-    Uint16 EPGMXSEL1:1;                 // 1 EPGMXSEL1 lock bit
-    Uint16 rsvd1:14;                    // 15:2 Reserved
-    Uint16 rsvd2:16;                    // 31:16 Reserved
+    Uint16 rsvd1:1;                     // 1 Reserved
+    Uint16 rsvd2:14;                    // 15:2 Reserved
+    Uint16 rsvd3:16;                    // 31:16 Reserved
 };
 
 union EPGMXSELLOCK_REG {
@@ -453,9 +380,9 @@ union EPGMXSELLOCK_REG {
 
 struct EPGMXSELCOMMIT_BITS {            // bits description
     Uint16 EPGMXSEL0:1;                 // 0 EPGMXSEL0 commit bit
-    Uint16 EPGMXSEL1:1;                 // 1 EPGMXSEL1 commit bit
-    Uint16 rsvd1:14;                    // 15:2 Reserved
-    Uint16 rsvd2:16;                    // 31:16 Reserved
+    Uint16 rsvd1:1;                     // 1 Reserved
+    Uint16 rsvd2:14;                    // 15:2 Reserved
+    Uint16 rsvd3:16;                    // 31:16 Reserved
 };
 
 union EPGMXSELCOMMIT_REG {
@@ -465,8 +392,7 @@ union EPGMXSELCOMMIT_REG {
 
 struct EPG_MUX_REGS {
     union   EPGMXSEL0_REG                    EPGMXSEL0;                    // EPG Mux select register 0
-    union   EPGMXSEL1_REG                    EPGMXSEL1;                    // EPG Mux select register 1
-    Uint16                                   rsvd1[8];                     // Reserved
+    Uint16                                   rsvd1[10];                    // Reserved
     union   EPGMXSELLOCK_REG                 EPGMXSELLOCK;                 // EPG Mux select register lock
     union   EPGMXSELCOMMIT_REG               EPGMXSELCOMMIT;               // EPG Mux select register commit
 };

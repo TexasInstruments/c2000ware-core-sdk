@@ -88,7 +88,8 @@
 #define CLB_O_MISC_ACCESS_CTRL      0x50U   // Miscellaneous Access and enable control
 #define CLB_O_SPI_DATA_CTRL_HI      0x51U   // CLB to SPI buffer control High
 
-#define CLB_O_LOAD_EN              0x0U    // Global enable & indirect load enable control
+#define CLB_O_LOAD_EN              0x0U    // Global enable & indirect load enable control, only
+                                           // Global Enable Bit is LOCK protected
 #define CLB_O_LOAD_ADDR            0x2U    // Indirect address
 #define CLB_O_LOAD_DATA            0x4U    // Data for indirect loads
 #define CLB_O_INPUT_FILTER         0x6U    // Input filter selection for both edge detection and

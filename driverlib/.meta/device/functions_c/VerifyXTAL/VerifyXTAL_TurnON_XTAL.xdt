@@ -1,0 +1,52 @@
+//*****************************************************************************
+//
+// Function to verify the XTAL frequency
+// freq is the XTAL frequency in MHz
+// The function return true if the the actual XTAL frequency matches with the
+// input value
+//
+// Note that this function assumes that the PLL is not already configured and
+// hence uses SysClk freq = 10MHz for DCC calculation
+//
+//*****************************************************************************
+bool Device_verifyXTAL(float freq)
+{
+    //
+    // Use DCC to verify the XTAL frequency using INTOSC2 as reference clock
+    //
+
+    //
+    // Turn on XTAL and wait for it to power up using X1CNT
+    //
+    SysCtl_turnOnOsc(SYSCTL_OSCSRC_XTAL);
+    SysCtl_clearExternalOscCounterValue();
+    while(SysCtl_getExternalOscCounterValue() != SYSCTL_X1CNT_X1CNT_M);
+
+    //
+    // Enable DCC0 clock
+    //
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_DCC0);
+
+    //
+    // Insert atleast 5 cycles delay after enabling the peripheral clock
+    //
+    asm(" RPT #5 || NOP");
+
+    //
+    // Configures XTAL as CLKSRC0 and INTOSC2 as CLKSRC1
+    // Fclk0 = XTAL frequency (input parameter)
+    // Fclk1 = INTOSC2 frequency = 10MHz
+    //
+    // Configuring DCC error tolerance of +/-1%
+    // INTOSC2 can have a variance in frequency of +/-10%
+    //
+    // Assuming PLL is not already configured, SysClk freq = 10MHz
+    //
+    // Note : Update the tolerance and INTOSC2 frequency variance as necessary.
+    //
+    return (DCC_verifyClockFrequency(DCC0_BASE,
+                                     DCC_COUNT1SRC_INTOSC2, 10.0F,
+                                     DCC_COUNT0SRC_XTAL, freq,
+                                     1.0F, 10.0F, 10.0F));
+
+}

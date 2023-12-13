@@ -4,7 +4,7 @@
 % var nameOfPeripheral = module.peripheralName;
 %%{
 function addBaseAddress(){
-	if (["F280015x", "F280013x", "F28003x", "F28002x", "F2838x"].includes(Common.getDeviceName()))
+	if (["F280015x", "F280013x", "F28003x", "F28002x", "F2838x", "F28P65x", "F28P55x"].includes(Common.getDeviceName()))
 	{
 		return "INPUTXBAR_BASE, "
 	}

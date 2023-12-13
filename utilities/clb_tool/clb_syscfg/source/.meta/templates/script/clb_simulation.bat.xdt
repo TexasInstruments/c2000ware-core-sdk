@@ -1,0 +1,66 @@
+%%{
+    let Common    = system.getScript("/utilities/clb_tool/clb_syscfg/source/Common.js");
+    let mod       = system.modules['/utilities/clb_tool/clb_syscfg/source/TILE'];
+    var currnetSDKProductPath = system.getProducts()[0].path;
+    var sdkPath = system.utils.path.join(currnetSDKProductPath + "../../../");
+
+    function customReplace(str, start)
+    {
+        return str.substring(0, start);
+    }
+
+    let c2000wareRoot   = sdkPath;                                                          //${C2000WARE_ROOT}
+    let clbSimCompiler  = "C:/TDM-GCC-64";                                                  //${CLB_SIM_COMPILER}
+    let buildDirectory  = system.getCurrentScriptPath();                                    //${BuildDirectory}
+    buildDirectory      = customReplace(buildDirectory, buildDirectory.lastIndexOf("\\"));
+    let projectRoot     = buildDirectory;                                                   //${PROJECT_ROOT}
+    let simOutputDir    = "../simulation/"
+    
+    if(c2000wareRoot.substring(c2000wareRoot.lastIndexOf('\\', c2000wareRoot.lastIndexOf('\\')-1), c2000wareRoot.length-1).includes("clb_syscfg")) //Already has clb_syscfg as the last directory
+    {
+        c2000wareRoot  = c2000wareRoot;
+    }
+    else
+    {
+        c2000wareRoot  = c2000wareRoot + "utilities/clb_tool/clb_syscfg/";
+    }
+    let systemcInstall  = c2000wareRoot + "systemc-2.3.3";                                  //${SYSTEMC_INSTALL}
+
+    //For Windows only:
+    c2000wareRoot = c2000wareRoot.replace(new RegExp('\\' + system.utils.path.sep, 'g'), '/');
+    clbSimCompiler = clbSimCompiler.replace(new RegExp('\\' + system.utils.path.sep, 'g'), '/');
+    systemcInstall = systemcInstall.replace(new RegExp('\\' + system.utils.path.sep, 'g'), '/');
+    buildDirectory = buildDirectory.replace(new RegExp('\\' + system.utils.path.sep, 'g'), '/');
+    projectRoot = projectRoot.replace(new RegExp('\\' + system.utils.path.sep, 'g'), '/');
+
+%%}
+%if(mod)
+%{
+%if(mod.$static.generateSimulation)
+%{
+%if(Common.isType0())
+%{
+mkdir "`simOutputDir`"
+`clbSimCompiler`/bin/g++  -c -DCLB_SIM -I`systemcInstall`/src -I`c2000wareRoot`systemc/include -I`projectRoot` -I`clbSimCompiler`/include -Og -g -gdwarf-3 -gstrict-dwarf -Wall -MMD -MP -MF`simOutputDir`clb_sim.d -MT`simOutputDir`clb_sim.o -I`buildDirectory`/syscfg   -fno-threadsafe-statics  -o`simOutputDir`clb_sim.o ../syscfg/clb_sim.cpp
+`clbSimCompiler`/bin/g++ -DCLB_SIM -Og -g -gdwarf-3 -gstrict-dwarf -Wall -Wl,-Map,`simOutputDir`simulation_output.map -L`systemcInstall`/build/src -o`simOutputDir`simulation_output.exe `simOutputDir`clb_sim.o `c2000wareRoot`systemc/src/CLB_FSM_SC_model.o `c2000wareRoot`systemc/src/CLB_HLC_SC_model.o `c2000wareRoot`systemc/src/CLB_LUT4_SC_model.o `c2000wareRoot`systemc/src/CLB_OutputLUT_SC_model.o `c2000wareRoot`systemc/src/CLB_counter_SC_model.o -Wl,--start-group -lsystemc -Wl,--end-group
+cd "`simOutputDir`"
+simulation_output.exe
+%}
+%else if(Common.isType1())
+%{
+mkdir "`simOutputDir`"
+`clbSimCompiler`/bin/g++  -c -DCLB_SIM -I`systemcInstall`/src -I`c2000wareRoot`systemc/include/type2 -I`projectRoot` -I`clbSimCompiler`/include -Og -g -gdwarf-3 -gstrict-dwarf -Wall -MMD -MP -MF`simOutputDir`clb_sim.d -MT`simOutputDir`clb_sim.o -I`buildDirectory`/syscfg   -fno-threadsafe-statics  -o`simOutputDir`clb_sim.o ../syscfg/clb_sim.cpp
+`clbSimCompiler`/bin/g++ -DCLB_SIM -Og -g -gdwarf-3 -gstrict-dwarf -Wall -Wl,-Map,`simOutputDir`simulation_output.map -L`systemcInstall`/build/src -o`simOutputDir`simulation_output.exe `simOutputDir`clb_sim.o `c2000wareRoot`systemc/src/type2/CLB_FSM_SC_model.o `c2000wareRoot`systemc/src/type2/CLB_HLC_SC_model.o `c2000wareRoot`systemc/src/type2/CLB_AOC_SC_model.o `c2000wareRoot`systemc/src/type2/CLB_LUT4_SC_model.o `c2000wareRoot`systemc/src/type2/CLB_OutputLUT_SC_model.o `c2000wareRoot`systemc/src/type2/CLB_counter_SC_model.o `c2000wareRoot`systemc/src/type2/CLB_counter_top_SC_model.o `c2000wareRoot`systemc/src/type2/CLB_FSM_top_SC_model.o `c2000wareRoot`systemc/src/type2/CLB_LUT4_top_SC_model.o `c2000wareRoot`systemc/src/type2/CLB_OutputLUT_top_SC_model.o  -Wl,--start-group -lsystemc -Wl,--end-group
+cd "`simOutputDir`"
+simulation_output.exe
+%}
+%else if(Common.isType2())
+%{
+mkdir "`simOutputDir`"
+`clbSimCompiler`/bin/g++ -c -DCLB_SIM -I`systemcInstall`/src -I`c2000wareRoot`systemc/include/type3 -I`projectRoot` -I`clbSimCompiler`/include -Og -g -gdwarf-3 -gstrict-dwarf -Wall -MMD -MP -MF`simOutputDir`clb_sim.d -MT`simOutputDir`clb_sim.o -I`buildDirectory`/syscfg   -fno-threadsafe-statics  -o`simOutputDir`clb_sim.o ../syscfg/clb_sim.cpp
+`clbSimCompiler`/bin/g++ -DCLB_SIM -Og -g -gdwarf-3 -gstrict-dwarf -Wall -Wl,-Map,`simOutputDir`simulation_output.map -L`systemcInstall`/build/src -o`simOutputDir`simulation_output.exe `simOutputDir`clb_sim.o `c2000wareRoot`systemc/src/type3/CLB_FSM_SC_model.o `c2000wareRoot`systemc/src/type3/CLB_HLC_SC_model.o `c2000wareRoot`systemc/src/type3/CLB_AOC_SC_model.o `c2000wareRoot`systemc/src/type3/CLB_LUT4_SC_model.o `c2000wareRoot`systemc/src/type3/CLB_OutputLUT_SC_model.o `c2000wareRoot`systemc/src/type3/CLB_counter_SC_model.o `c2000wareRoot`systemc/src/type3/CLB_counter_top_SC_model.o `c2000wareRoot`systemc/src/type3/CLB_FSM_top_SC_model.o `c2000wareRoot`systemc/src/type3/CLB_LUT4_top_SC_model.o `c2000wareRoot`systemc/src/type3/CLB_OutputLUT_top_SC_model.o  -Wl,--start-group -lsystemc -Wl,--end-group
+cd "`simOutputDir`"
+simulation_output.exe
+%}
+%}
+%}

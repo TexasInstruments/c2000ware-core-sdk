@@ -1,0 +1,79 @@
+%let Common   = system.getScript("/driverlib/Common.js");
+%let device_memmap = system.getScript("/driverlib/device_driverlib_peripherals/" + Common.getDeviceName().toLowerCase() + "_memmap.js");
+
+% var moduleName = "sfo"
+% var libraryFolder = "sfo"
+% var module = system.modules['/libraries/calibration/hrpwm' + '/' + moduleName + '.js'];
+%if (module != null)
+%{
+//
+// HRWPM SFO Global Variables
+//
+int MEP_ScaleFactor; // Global variable used by the SFO library
+                     // Result can be used for all HRPWM channels
+                     // This variable is also copied to HRMSTEP
+                     // register by SFO() function.
+
+%var epwm_instances = [];
+% for(var i = 0; i < device_memmap.DeviceMemoryMap.length; i++) {
+    % if (device_memmap.DeviceMemoryMap[i].name.includes("EPWM") && 
+    %device_memmap.DeviceMemoryMap[i].name.indexOf("XBAR") === -1)
+    %{
+        %epwm_instances.push(device_memmap.DeviceMemoryMap[i].name)
+    %}
+%}
+
+volatile uint32_t ePWM[] = {`epwm_instances`};
+
+
+% for(var i = 0; i < module.$instances.length; i++) {
+    % var instance = module.$instances[i];
+    % let modInst  = instance[moduleName];
+
+// Initialization Function
+void `instance.$name`_init(){
+    //
+    // Calling SFO() updates the HRMSTEP register with calibrated MEP_ScaleFactor.
+    // HRMSTEP must be populated with a scale factor value prior to enabling
+    // high resolution period control.
+    //
+    uint16_t status;
+    status = SFO();
+    while(status == SFO_INCOMPLETE)
+    {
+        status = SFO();
+        if(status == SFO_ERROR)
+        {
+            ESTOP0;   // SFO function returns 2 if an error occurs & # of MEP
+        }              // steps/coarse step exceeds maximum of 255.
+    }
+} 
+
+// Run-Time Function Call
+void `instance.$name`_runtime(){
+     //
+     // Call the scale factor optimizer lib function SFO()
+     // periodically to track for any change due to temp/voltage.
+     // This function generates MEP_ScaleFactor by running the
+     // MEP calibration module in the HRPWM logic. This scale
+     // factor can be used for all HRPWM channels. The SFO()
+     // function also updates the HRMSTEP register with the
+     // scale factor value.
+     //
+     uint16_t status;
+     status = SFO(); // in background, MEP calibration module
+                     // continuously updates MEP_ScaleFactor
+
+     if (status == SFO_ERROR)
+     {
+         ESTOP0;   // SFO function returns 2 if an error occurs & #
+                    // of MEP steps/coarse step
+     }              // exceeds maximum of 255.
+} 
+
+void `module.c2000wareLibraryName`_init(){
+    `instance.$name`_init();       
+}
+% }
+%}
+%

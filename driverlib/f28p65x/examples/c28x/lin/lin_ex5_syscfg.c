@@ -256,9 +256,9 @@ level0ISR(void)
     LIN_clearGlobalInterruptStatus(myLIN0_BASE, LIN_INTERRUPT_LINE0);
 
     //
-    // Acknowledge this interrupt located in group 8
+    // Acknowledge this interrupt located in group 6
     //
-    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP8);
+    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP6);
 }
 
 //
@@ -282,9 +282,9 @@ level1ISR(void)
     LIN_clearGlobalInterruptStatus(myLIN0_BASE, LIN_INTERRUPT_LINE1);
 
     //
-    // Acknowledge this interrupt located in group 8
+    // Acknowledge this interrupt located in group 6
     //
-    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP8);
+    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP6);
 }
 
 //

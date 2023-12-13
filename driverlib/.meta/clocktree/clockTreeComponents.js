@@ -104,63 +104,48 @@ if (("system" === system.context || "CPU1" === system.context) && system.deviceD
 		"PLL_Group"			: { layer: 3, position: 3 },
 	};
 
-	const tree = [
+	
+		
+	var tree = [
 		{
-		displayName: "Complete ClockTree",
-		entries: [
-			{
-				displayName: "ClockTree",
-				ipInstances: All_Instances,
-				frequencyLabels: FreqLabels,
-				brokenConnections: brokenConnection1,
-			},
-			// {
-			// 	displayName: "ClockTree1",
-			// 	ipInstances: ["SYSCLK", "CANA_CLOCK_domain","External_Clock", "CANA_CLOCK_domain"],
-			// 	frequencyLabels: FreqLabels,
-			// 	algorithm: "everythingBetween",
-			// 	brokenConnections: 
-			// 	[
-			// 		{ instName: "CANABCLKSEL", pinName: "XTAL", name: "XTAL" },
-			// 	]
-			// },
-		],
-		}, 
-		{
-			displayName: "PLLs",
+			displayName: "Complete ClockTree",
 			entries: [
 				{
-					displayName: "System PLL",
-					ipInstances: ["CPU1_SYSCLK", "CPU2_SYSCLK"],
+					displayName: "ClockTree",
+					ipInstances: All_Instances,
 					frequencyLabels: FreqLabels,
-					algorithm: "fanIn"
+					brokenConnections: brokenConnection1,
 				},
+			],
+		}, 
+	]
+	// checking the deviceData to see if the device has AUXPLL 
+	var AUXPLLDevice = (system.deviceData.clockTree.ipInstances).filter(function(ipInst) {
+		return ipInst.name === "AUXCLKDIVSEL";
+	  });
+	if( AUXPLLDevice.length > 0){
+			tree = tree.concat ([
 				{
-					displayName: "Auxillary PLL",
-					ipInstances: ["AUXPLLCLK"],
-					frequencyLabels: FreqLabels,
-					algorithm: "fanIn"
-				},
-			]
-		},
-		// {
-		// 	displayName: "Broken Connections",
-		// 	entries: [
-		// 		{
-		// 			displayName: "1_InputClock, CPUCLK, SYSCLK",
-		// 			ipInstances: myipInstance1,
-		// 			frequencyLabels: FreqLabels,
-		// 			algorithm: "fanIn"
-		// 		},
-		// 		{
-		// 			displayName: "2_Other_PeripheralClocks",
-		// 			ipInstances: myipInstance2,
-		// 			frequencyLabels: FreqLabels,
-		// 			brokenConnections: brokenConnection2,
-		// 			algorithm: "fanOut"
-		// 		},
-		// 	]
-		// },
+					displayName: "PLLs",
+					entries: [
+						{
+							displayName: "System PLL",
+							ipInstances: ["CPU1_SYSCLK", "CPU2_SYSCLK"],
+							frequencyLabels: FreqLabels,
+							algorithm: "fanIn"
+						},
+						{
+							displayName: "Auxillary PLL",
+							ipInstances: ["AUXPLLCLK"],
+							frequencyLabels: FreqLabels,
+							algorithm: "fanIn"
+						},
+					],
+				}
+			])
+	}
+		
+	tree = tree.concat ([
 		{
 		displayName: "Clock domain view",
 		entries: _.chain(system.deviceData.clockTree.ipInstances)
@@ -168,7 +153,7 @@ if (("system" === system.context || "CPU1" === system.context) && system.deviceD
 			.map(defaultView)
 			.value(),
 		}
-	];
+	]);
 
 	const views = [
 		{
@@ -202,6 +187,7 @@ if (("system" === system.context || "CPU1" === system.context) && system.deviceD
 else if ("CPU2" === system.context) //"CPU2" === system.context
 {
 	exports = {
+		displayName: "ClockTree Tool",
 		templates: [
 			{
 				name: "/driverlib/clocktree/clocktree_cpu2.h.xdt",

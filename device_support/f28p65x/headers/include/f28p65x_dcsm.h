@@ -663,19 +663,6 @@ union FLSEM_REG {
     struct  FLSEM_BITS  bit;
 };
 
-struct BOOTERR_BITS {                   // bits description
-    Uint16 ILLTRIMPSWD:1;               // 0 Illegal Trim Password
-    Uint16 TRIMPSWDERR:1;               // 1 Trim Password Error
-    Uint16 SELOVRD:1;                   // 2 Password Select Override
-    Uint16 rsvd1:13;                    // 15:3 Reserved
-    Uint16 rsvd2:16;                    // 31:16 Reserved
-};
-
-union BOOTERR_REG {
-    Uint32  all;
-    struct  BOOTERR_BITS  bit;
-};
-
 struct SECTSTAT1_BITS {                 // bits description
     Uint16 STATUS_B0_SECT0:2;           // 1:0 Zone Status Flash Bank0 Sector 0
     Uint16 STATUS_B0_SECT1:2;           // 3:2 Zone Status Flash Bank0 Sector 1
@@ -848,8 +835,7 @@ union PERSEM1_REG {
 
 struct DCSM_COMMON_REGS {
     union   FLSEM_REG                        FLSEM;                        // Flash Wrapper Semaphore Register
-    Uint16                                   rsvd1[4];                     // Reserved
-    union   BOOTERR_REG                      BOOTERR;                      // Boot Error Register
+    Uint16                                   rsvd1[6];                     // Reserved
     union   SECTSTAT1_REG                    SECTSTAT1;                    // Flash Sectors Status Register 1
     union   SECTSTAT2_REG                    SECTSTAT2;                    // Flash Sectors Status Register 2
     union   SECTSTAT3_REG                    SECTSTAT3;                    // Flash Sectors Status Register 3

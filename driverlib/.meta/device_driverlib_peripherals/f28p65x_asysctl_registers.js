@@ -1,4 +1,10 @@
 let ASYSCTLRegisters = [
+	{ name: "INTERNALTESTCTL", description: "INTERNALTEST Node Control Register", offset: "0x4A",
+		bits: [
+			{ name: "TESTSEL", description: "Test Select", size: "6", shift: "0", mask: "0x3F" },
+			{ name: "KEY", description: "Key to Enable writes", size: "16", shift: "16", mask: "0xFFFF0000" },
+		]
+	},
 	{ name: "CONFIGLOCK", description: "Lock Register for all the config registers.", offset: "0x5E",
 		bits: [
 			{ name: "AGPIOFILTER", description: "Locks AGPIOFILTER Register", size: "1", shift: "1", mask: "0x2" },
@@ -174,6 +180,29 @@ let ASYSCTLRegisters = [
 			{ name: "GPIO217", description: "AGPIOCTRL for GPIO217", size: "1", shift: "25", mask: "0x2000000" },
 			{ name: "GPIO218", description: "AGPIOCTRL for GPIO218", size: "1", shift: "26", mask: "0x4000000" },
 			{ name: "GPIO219", description: "AGPIOCTRL for GPIO219", size: "1", shift: "27", mask: "0x8000000" },
+		]
+	},
+	{ name: "AGPIOCTRLH", description: "AGPIO Control Register", offset: "0x122",
+		bits: [
+			{ name: "GPIO224", description: "AGPIOCTRL for GPIO224", size: "1", shift: "0", mask: "0x1" },
+			{ name: "GPIO225", description: "AGPIOCTRL for GPIO225", size: "1", shift: "1", mask: "0x2" },
+			{ name: "GPIO226", description: "AGPIOCTRL for GPIO226", size: "1", shift: "2", mask: "0x4" },
+			{ name: "GPIO227", description: "AGPIOCTRL for GPIO227", size: "1", shift: "3", mask: "0x8" },
+			{ name: "GPIO228", description: "AGPIOCTRL for GPIO228", size: "1", shift: "4", mask: "0x10" },
+			{ name: "GPIO229", description: "AGPIOCTRL for GPIO229", size: "1", shift: "5", mask: "0x20" },
+			{ name: "GPIO230", description: "AGPIOCTRL for GPIO230", size: "1", shift: "6", mask: "0x40" },
+			{ name: "GPIO231", description: "AGPIOCTRL for GPIO231", size: "1", shift: "7", mask: "0x80" },
+			{ name: "GPIO232", description: "AGPIOCTRL for GPIO232", size: "1", shift: "8", mask: "0x100" },
+			{ name: "GPIO233", description: "AGPIOCTRL for GPIO233", size: "1", shift: "9", mask: "0x200" },
+			{ name: "GPIO234", description: "AGPIOCTRL for GPIO234", size: "1", shift: "10", mask: "0x400" },
+			{ name: "GPIO235", description: "AGPIOCTRL for GPIO235", size: "1", shift: "11", mask: "0x800" },
+			{ name: "GPIO236", description: "AGPIOCTRL for GPIO236", size: "1", shift: "12", mask: "0x1000" },
+			{ name: "GPIO237", description: "AGPIOCTRL for GPIO237", size: "1", shift: "13", mask: "0x2000" },
+			{ name: "GPIO238", description: "AGPIOCTRL for GPIO238", size: "1", shift: "14", mask: "0x4000" },
+			{ name: "GPIO239", description: "AGPIOCTRL for GPIO239", size: "1", shift: "15", mask: "0x8000" },
+			{ name: "GPIO240", description: "AGPIOCTRL for GPIO240", size: "1", shift: "16", mask: "0x10000" },
+			{ name: "GPIO241", description: "AGPIOCTRL for GPIO241", size: "1", shift: "17", mask: "0x20000" },
+			{ name: "GPIO242", description: "AGPIOCTRL for GPIO242", size: "1", shift: "18", mask: "0x40000" },
 		]
 	},
 	{ name: "GPIOINENACTRL", description: "GPIOINENACTRL Control Register", offset: "0x134",

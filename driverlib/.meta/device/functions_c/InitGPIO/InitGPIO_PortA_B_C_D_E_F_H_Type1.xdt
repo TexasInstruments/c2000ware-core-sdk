@@ -1,0 +1,18 @@
+//*****************************************************************************
+//
+// Function to disable pin locks and enable pullups on GPIOs.
+//
+//*****************************************************************************
+void Device_initGPIO(void)
+{
+    //
+    // Disable pin locks.
+    //
+    GPIO_unlockPortConfig(GPIO_PORT_A, 0xFFFFFFFF);
+    GPIO_unlockPortConfig(GPIO_PORT_B, 0xFFFFFFFF);
+    GPIO_unlockPortConfig(GPIO_PORT_C, 0xFFFFFFFF);
+    GPIO_unlockPortConfig(GPIO_PORT_D, 0xFFFFFFFF);
+    GPIO_unlockPortConfig(GPIO_PORT_E, 0xFFFFFFFF);
+    GPIO_unlockPortConfig(GPIO_PORT_F, 0xFFFFFFFF);
+    GPIO_unlockPortConfig(GPIO_PORT_H, 0xFFFFFFFF);
+}

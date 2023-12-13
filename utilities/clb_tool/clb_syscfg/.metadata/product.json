@@ -1,0 +1,70 @@
+{
+    "name"       : "CLB Configuration Tool",
+    "displayName": "CLB Configuration Tool",
+    "version"    : "4.1.1",
+    "documentationPath": "../doc",
+
+    "includePaths":
+    [
+        "../../../.."
+    ],
+
+    "templates":
+    [
+        {
+            "name"      : "/utilities/clb_tool/clb_syscfg/source/templates/hfile/clb.h.xdt",
+            "outputPath": "clb_config.h",
+            "alwaysRun" : true
+        },
+        {
+            "name"      : "/utilities/clb_tool/clb_syscfg/source/templates/cfile/clb.c.xdt",
+            "outputPath": "clb_config.c",
+            "alwaysRun" : true
+        },
+        {
+            "name"      : "/utilities/clb_tool/clb_syscfg/source/templates/dot/clb.dot.xdt",
+            "outputPath": "clb.dot",
+            "alwaysRun" : true
+        },
+        {
+            "name"      : "/utilities/clb_tool/clb_syscfg/source/templates/systemc/clb.sim.xdt",
+            "outputPath": "clb_sim.cpp",
+            "alwaysRun" : true
+        },
+        {
+            "name"      : "/utilities/clb_tool/clb_syscfg/source/templates/script/clb_simulation.bat.xdt",
+            "outputPath": "clb_simulation.bat",
+            "alwaysRun" : false
+        },
+        {
+            "name"      : "/utilities/clb_tool/clb_syscfg/source/templates/script/clb_simulation.sh.xdt",
+            "outputPath": "clb_simulation.sh",
+            "alwaysRun" : false
+        }
+    ],
+
+    "topModules":
+    [
+        {
+            "displayName": "Configurable Logic Block",
+            "description": "Configure instances of CLB tiles.",
+            "modules":
+            [
+                "/utilities/clb_tool/clb_syscfg/source/TILE"
+            ]
+        }
+    ],
+
+    "devices":
+    [
+        "F28004x",
+        "F2837xD",
+        "F2837xS",
+        "F2807x",
+        "F2838x",
+        "F28002x",
+        "F28003x",
+        "F28P65x",
+        "F28P55x"
+    ]
+}

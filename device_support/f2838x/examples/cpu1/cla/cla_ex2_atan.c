@@ -2,7 +2,7 @@
 //
 // FILE:   cla_ex2_atan.c
 //
-// TITLE:  CLA ArcTan Example for F2838x.
+// TITLE:  CLA ArcTan Example
 //
 //! \addtogroup cpu01_example_list
 //! <h1>CLA \f$arctangent(x)\f$ using a lookup table (cla_atan_cpu01)</h1>

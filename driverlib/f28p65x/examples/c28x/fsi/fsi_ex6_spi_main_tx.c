@@ -22,7 +22,7 @@
 //!
 //!  - GPIO_2 -> GPIO_18        :: To connect FSITX_CLK with SPICLKA
 //!  - GPIO_0 -> GPIO_16        :: To connect FSITX_TX0 with SPIPICOA
-//!  - GPIO_1 -> GPIO_19       :: To connect FSITX_TX1 with SPIPTEA
+//!  - GPIO_1 -> GPIO_19        :: To connect FSITX_TX1 with SPIPTEA
 //!
 //! \b Watch \b Variables \n
 //!  - \b dataFrameCntr  Number of Data frame transfered

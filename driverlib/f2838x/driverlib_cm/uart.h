@@ -52,6 +52,7 @@ extern "C"
 {
 #endif
 
+
 //*****************************************************************************
 //
 //! \addtogroup uart_api UART
@@ -523,6 +524,67 @@ UART_disableFIFO(uint32_t base)
     //
     HWREG(base + UART_O_LCRH) &= ~(UART_LCRH_FEN);
 }
+
+//*****************************************************************************
+//
+//! Enables transmitting and receiving without FIFO.
+//!
+//! \param base is the base address of the UART port.
+//!
+//! This function enables the UART.
+//!
+//! \return None.
+//
+//*****************************************************************************
+static inline void
+UART_enableModuleNonFIFO(uint32_t base)
+{
+    //
+    // Check the arguments.
+    //
+    ASSERT(UART_isBaseValid(base));
+
+    //
+    // Enable RX, TX, and the UART.
+    //
+    HWREG(base + UART_O_CTL) |= (UART_CTL_UARTEN | UART_CTL_TXE |
+                                 UART_CTL_RXE);
+}
+
+//*****************************************************************************
+//
+//! Disables transmitting and receiving without FIFO.
+//!
+//! \param base is the base address of the UART port.
+//!
+//! This function disables the UART, waits for the end of transmission of the
+//! current character.
+//!
+//! \return None.
+//
+//*****************************************************************************
+static inline void
+UART_disableModuleNonFIFO(uint32_t base)
+{
+    //
+    // Check the arguments.
+    //
+    ASSERT(UART_isBaseValid(base));
+
+    //
+    // Wait for end of TX.
+    //
+    while((HWREG(base + UART_O_FR) & UART_FR_BUSY) == UART_FR_BUSY)
+    {
+    }
+
+    //
+    // Disable the UART.
+    //
+    HWREG(base + UART_O_CTL) &= ~(UART_CTL_UARTEN | UART_CTL_TXE |
+                                  UART_CTL_RXE);
+}
+
 //*****************************************************************************
 //
 //! Determines if the transmit and receive FIFOs are enabled
@@ -1390,17 +1452,17 @@ UART_set9BitAddress(uint32_t base, uint8_t addr,
 static inline void
 UART_setIrDALPDivisor(uint32_t base, uint32_t uartClk)
 {
-    uint32_t div;
+    uint32_t divider;
 
     //
     // Compute the IrDA Low Power divisor.
     //
-    div = uartClk / UART_CLK_IRLPBAUD16;
+    divider = uartClk / UART_CLK_IRLPBAUD16;
 
     //
     // Set the IrDA Low Power divisor.
     //
-    HWREG(base + UART_O_ILPR) = div;
+    HWREG(base + UART_O_ILPR) = divider;
 
 }
 
@@ -1599,6 +1661,7 @@ extern bool UART_writeCharNonBlocking(uint32_t base, uint8_t data);
 //! @}
 //
 //*****************************************************************************
+
 
 //*****************************************************************************
 //

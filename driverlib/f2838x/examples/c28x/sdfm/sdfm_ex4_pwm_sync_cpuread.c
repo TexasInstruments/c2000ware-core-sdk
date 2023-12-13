@@ -420,7 +420,7 @@ __interrupt void sdfm2ISR(void)
     //
     // Clear SDFM flag register
     //
-    SDFM_clearInterruptFlag(SDFM1_BASE, SDFM_INT_MASK);
+    SDFM_clearInterruptFlag(SDFM2_BASE, SDFM_INT_MASK);
 
     //
     // Acknowledge this __interrupt to receive more __interrupts from group 5

@@ -1,0 +1,100 @@
+
+var TILE = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/TILE");
+var TILE1 = TILE.addInstance();
+// Name
+TILE1.$name = "TILE1";
+// i0 - Input 0.
+TILE1.LUT_0.i0 = "COUNTER_0.count_match1";
+// i1 - Input 1.
+TILE1.LUT_0.i1 = "BOUNDARY.in0";
+// eqn - Boolean equation on the variables i3,i2,i1,i0 for the LUT output.
+TILE1.LUT_0.eqn = "i0&i1";
+// i0 - Input 0.
+TILE1.LUT_1.i0 = "COUNTER_0.count_match1";
+// i1 - Input 1.
+TILE1.LUT_1.i1 = "BOUNDARY.in1";
+// eqn - Boolean equation on the variables i3,i2,i1,i0 for the LUT output.
+TILE1.LUT_1.eqn = "i0&i1";
+// i0 - Input 0.
+TILE1.LUT_2.i0 = "COUNTER_1.count_zero";
+// i1 - Input 1.
+TILE1.LUT_2.i1 = "BOUNDARY.in2";
+// eqn - Boolean equation on the variables i3,i2,i1,i0 for the LUT output.
+TILE1.LUT_2.eqn = "i0&i1";
+// e0 - External Input 0.
+TILE1.FSM_0.e0 = "COUNTER_1.count_zero";
+// e1 - External Input 1.
+TILE1.FSM_0.e1 = "COUNTER_1.count_match1";
+// eqn_s0 - Boolean equation on the variables e1,e0,s1,s0 for the S0 output.
+TILE1.FSM_0.eqn_s0 = "(s0 ^ e1)& (!e0)";
+// e0 - External Input 0.
+TILE1.FSM_1.e0 = "LUT_0.OUT";
+// e1 - External Input 1.
+TILE1.FSM_1.e1 = "LUT_1.OUT";
+// eqn_s0 - Boolean equation on the variables e1,e0,s1,s0 for the S0 output.
+TILE1.FSM_1.eqn_s0 = " (!e0&s0) | (e0&e1&!s0) | (!s0&!s1&e0) | (e0&!e1&!s1)";
+// eqn_s1 - Boolean equation on the variables e1,e0,s1,s0 for the S1 output.
+TILE1.FSM_1.eqn_s1 = "(s1&!e1) | (s0&s1) | (s0&e1)";
+// eqn_out - Boolean equation on the variables e1,e0,s1,s0 for the LUT output.
+TILE1.FSM_1.eqn_out = "(e0&e1) | (!s0&!s1&e0) | (s0&s1&e0)";
+// e0 - External Input 0.
+TILE1.FSM_2.e0 = "FSM_1.S0";
+// e1 - External Input 1.
+TILE1.FSM_2.e1 = "FSM_1.S1";
+// eqn_s1 - Boolean equation on the variables e1,e0,s1,s0 for the S1 output.
+TILE1.FSM_2.eqn_s1 = "(!e0)&e1";
+// eqn_s0 - Boolean equation on the variables e1,e0,s1,s0 for the S0 output.
+TILE1.FSM_2.eqn_s0 = "e0&(!e1)";
+// eqn_out - Boolean equation on the variables e1,e0,s1,s0 for the LUT output.
+TILE1.FSM_2.eqn_out = "s0 | s1";
+// mode0 - Enables Counting when high
+TILE1.COUNTER_0.mode0 = "1";
+// mode1 - Controls counting direction. High enables count up. Low enables count down.
+TILE1.COUNTER_0.mode1 = "1";
+// reset - Reset the counter to 0 on next clock cycle (triggers low to high)
+TILE1.COUNTER_0.reset = "COUNTER_0.count_match1";
+// match1_val - Sets the value of the Match reference 1 register.
+TILE1.COUNTER_0.match1_val = "50000";
+// event_load_val - Sets the value of the event load value register.
+TILE1.COUNTER_1.event_load_val = "4000";
+// What action should be taken on an event trigger?
+TILE1.COUNTER_1.action = "Load";
+// match1_val - Sets the value of the Match reference 1 register.
+TILE1.COUNTER_1.match1_val = "2000";
+// reset - Reset the counter to 0 on next clock cycle (triggers low to high)
+TILE1.COUNTER_1.reset = "FSM_1.OUT";
+// mode0 - Enables Counting when high
+TILE1.COUNTER_1.mode0 = "FSM_2.OUT";
+// event - Trigger actions in the counter.
+TILE1.COUNTER_1.event = "COUNTER_1.count_zero";
+// i0 - Input 0.
+TILE1.OUTLUT_0.i0 = "FSM_0.S0";
+// i1 - Input 1.
+TILE1.OUTLUT_0.i1 = "FSM_2.S0";
+// eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
+TILE1.OUTLUT_0.eqn = "i0&i1";
+// i0 - Input 0.
+TILE1.OUTLUT_2.i0 = "FSM_0.S0";
+// i1 - Input 1.
+TILE1.OUTLUT_2.i1 = "FSM_2.S1";
+// eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
+TILE1.OUTLUT_2.eqn = "i0&i1";
+// i0 - Input 0.
+TILE1.OUTLUT_4.i0 = "FSM_1.S0";
+// eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
+TILE1.OUTLUT_4.eqn = "!i0";
+// i0 - Input 0.
+TILE1.OUTLUT_5.i0 = "FSM_1.S1";
+// eqn - Boolean equation on the variables i2,i1,i0 for the OUTLUT output.
+TILE1.OUTLUT_5.eqn = "!i0";
+// Event 0 (e0) - Event 0
+TILE1.HLC.e0 = "LUT_2.OUT";
+// instruct0
+TILE1.HLC.program0.instruct0 = "PULL C1";
+// instruct1
+TILE1.HLC.program0.instruct1 = "PULL R1";
+// instruct2
+TILE1.HLC.program0.instruct2 = "MOV_T1 R1,C1";
+// instruct3
+TILE1.HLC.program0.instruct3 = "INTR 1";
+

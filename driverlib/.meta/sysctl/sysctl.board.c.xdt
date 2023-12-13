@@ -40,7 +40,7 @@ void `nameOfPeripheral`_init(){
 %   }
 %   if (device_driverlib_peripheral.SysCtl_SelType){
 %       var enaleSeltype = true;
-%       if (["F2837xD", "F2838x"].includes(Common.getDeviceName()) && Common.isContextCPU2()){
+%       if (["F2837xD", "F2838x", "F28P65x"].includes(Common.getDeviceName()) && Common.isContextCPU2()){
 %           enaleSeltype = false;
 %       }
 %       if(enaleSeltype == true){
@@ -67,7 +67,7 @@ void `nameOfPeripheral`_init(){
 %   }
 %   if (!["F2837xS", "F2837xD", "F2807x", "F28004x"].includes(Common.getDeviceName())) {
 %       var enableErrorSts = true;
-%       if (["F2837xD","F2838x"].includes(Common.getDeviceName()) && Common.isContextCPU2()){
+%       if (["F2837xD","F2838x","F28P65x"].includes(Common.getDeviceName()) && Common.isContextCPU2()){
 %           enableErrorSts = false;
 %       }
 %       if(enableErrorSts == true){
@@ -190,7 +190,7 @@ void `nameOfPeripheral`_init(){
 %   if (device_driverlib_peripheral.SysCtl_SharedPeripheral)
 %   {
 %       var enableSharedPeripheral = true;
-%       if(["F2837xD", "F2838x"].includes(Common.getDeviceName()) &&
+%       if(["F2837xD", "F2838x", "F28P65x"].includes(Common.getDeviceName()) &&
 %               Common.isContextCPU2()){
 %               enableSharedPeripheral = false;
 %       }
@@ -213,6 +213,22 @@ void `nameOfPeripheral`_init(){
 %                 element.name == "SYSCTL_PERIPH_CLK_EMIF2" ||
 %                 element.name == "SYSCTL_PERIPH_CLK_USBA"  ||
 %                 element.name == "SYSCTL_PERIPH_CLK_UPPA"
+%                 ))) {
+%                     skipCpu2Enable = true;
+%            }
+%            if(["F28P65x"].includes(Common.getDeviceName()) &&
+%               Common.isContextCPU2() &&
+%               ((element.name == "SYSCTL_PERIPH_CLK_HRCAL0" ||
+%                 element.name == "SYSCTL_PERIPH_CLK_HRCAL1" ||
+%                 element.name == "SYSCTL_PERIPH_CLK_HRCAL2" ||
+%                 element.name == "SYSCTL_PERIPH_CLK_EMIF1" ||
+%                 element.name == "SYSCTL_PERIPH_CLK_EMIF2" ||
+%                 element.name == "SYSCTL_PERIPH_CLK_USBA"  ||
+%                 element.name == "SYSCTL_PERIPH_CLK_DCC0"  ||
+%                 element.name == "SYSCTL_PERIPH_CLK_DCC1"  ||
+%                 element.name == "SYSCTL_PERIPH_CLK_DCC2"  ||
+%                 element.name == "SYSCTL_PERIPH_CLK_ECAT"  ||
+%                 element.name == "SYSCTL_PERIPH_CLK_MCANA"
 %                 ))) {
 %                     skipCpu2Enable = true;
 %            }

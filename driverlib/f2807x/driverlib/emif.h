@@ -1210,6 +1210,7 @@ EMIF_getSyncTotalAccesses(uint32_t base)
     // Gets total accesses to sync memory.
     //
     return(HWREG(base + EMIF_O_TOTAL_SDRAM_AR));
+
 }
 
 //*****************************************************************************

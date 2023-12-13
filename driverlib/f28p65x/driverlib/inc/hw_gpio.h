@@ -511,38 +511,38 @@
 // The following are defines for the bit fields in the GPAODR register
 //
 //*************************************************************************************************
-#define GPIO_GPAODR_GPIO0    0x1U          // Outpout Open-Drain control for this pin
-#define GPIO_GPAODR_GPIO1    0x2U          // Outpout Open-Drain control for this pin
-#define GPIO_GPAODR_GPIO2    0x4U          // Outpout Open-Drain control for this pin
-#define GPIO_GPAODR_GPIO3    0x8U          // Outpout Open-Drain control for this pin
-#define GPIO_GPAODR_GPIO4    0x10U         // Outpout Open-Drain control for this pin
-#define GPIO_GPAODR_GPIO5    0x20U         // Outpout Open-Drain control for this pin
-#define GPIO_GPAODR_GPIO6    0x40U         // Outpout Open-Drain control for this pin
-#define GPIO_GPAODR_GPIO7    0x80U         // Outpout Open-Drain control for this pin
-#define GPIO_GPAODR_GPIO8    0x100U        // Outpout Open-Drain control for this pin
-#define GPIO_GPAODR_GPIO9    0x200U        // Outpout Open-Drain control for this pin
-#define GPIO_GPAODR_GPIO10   0x400U        // Outpout Open-Drain control for this pin
-#define GPIO_GPAODR_GPIO11   0x800U        // Outpout Open-Drain control for this pin
-#define GPIO_GPAODR_GPIO12   0x1000U       // Outpout Open-Drain control for this pin
-#define GPIO_GPAODR_GPIO13   0x2000U       // Outpout Open-Drain control for this pin
-#define GPIO_GPAODR_GPIO14   0x4000U       // Outpout Open-Drain control for this pin
-#define GPIO_GPAODR_GPIO15   0x8000U       // Outpout Open-Drain control for this pin
-#define GPIO_GPAODR_GPIO16   0x10000U      // Outpout Open-Drain control for this pin
-#define GPIO_GPAODR_GPIO17   0x20000U      // Outpout Open-Drain control for this pin
-#define GPIO_GPAODR_GPIO18   0x40000U      // Outpout Open-Drain control for this pin
-#define GPIO_GPAODR_GPIO19   0x80000U      // Outpout Open-Drain control for this pin
-#define GPIO_GPAODR_GPIO20   0x100000U     // Outpout Open-Drain control for this pin
-#define GPIO_GPAODR_GPIO21   0x200000U     // Outpout Open-Drain control for this pin
-#define GPIO_GPAODR_GPIO22   0x400000U     // Outpout Open-Drain control for this pin
-#define GPIO_GPAODR_GPIO23   0x800000U     // Outpout Open-Drain control for this pin
-#define GPIO_GPAODR_GPIO24   0x1000000U    // Outpout Open-Drain control for this pin
-#define GPIO_GPAODR_GPIO25   0x2000000U    // Outpout Open-Drain control for this pin
-#define GPIO_GPAODR_GPIO26   0x4000000U    // Outpout Open-Drain control for this pin
-#define GPIO_GPAODR_GPIO27   0x8000000U    // Outpout Open-Drain control for this pin
-#define GPIO_GPAODR_GPIO28   0x10000000U   // Outpout Open-Drain control for this pin
-#define GPIO_GPAODR_GPIO29   0x20000000U   // Outpout Open-Drain control for this pin
-#define GPIO_GPAODR_GPIO30   0x40000000U   // Outpout Open-Drain control for this pin
-#define GPIO_GPAODR_GPIO31   0x80000000U   // Outpout Open-Drain control for this pin
+#define GPIO_GPAODR_GPIO0    0x1U          // Output Open-Drain control for this pin
+#define GPIO_GPAODR_GPIO1    0x2U          // Output Open-Drain control for this pin
+#define GPIO_GPAODR_GPIO2    0x4U          // Output Open-Drain control for this pin
+#define GPIO_GPAODR_GPIO3    0x8U          // Output Open-Drain control for this pin
+#define GPIO_GPAODR_GPIO4    0x10U         // Output Open-Drain control for this pin
+#define GPIO_GPAODR_GPIO5    0x20U         // Output Open-Drain control for this pin
+#define GPIO_GPAODR_GPIO6    0x40U         // Output Open-Drain control for this pin
+#define GPIO_GPAODR_GPIO7    0x80U         // Output Open-Drain control for this pin
+#define GPIO_GPAODR_GPIO8    0x100U        // Output Open-Drain control for this pin
+#define GPIO_GPAODR_GPIO9    0x200U        // Output Open-Drain control for this pin
+#define GPIO_GPAODR_GPIO10   0x400U        // Output Open-Drain control for this pin
+#define GPIO_GPAODR_GPIO11   0x800U        // Output Open-Drain control for this pin
+#define GPIO_GPAODR_GPIO12   0x1000U       // Output Open-Drain control for this pin
+#define GPIO_GPAODR_GPIO13   0x2000U       // Output Open-Drain control for this pin
+#define GPIO_GPAODR_GPIO14   0x4000U       // Output Open-Drain control for this pin
+#define GPIO_GPAODR_GPIO15   0x8000U       // Output Open-Drain control for this pin
+#define GPIO_GPAODR_GPIO16   0x10000U      // Output Open-Drain control for this pin
+#define GPIO_GPAODR_GPIO17   0x20000U      // Output Open-Drain control for this pin
+#define GPIO_GPAODR_GPIO18   0x40000U      // Output Open-Drain control for this pin
+#define GPIO_GPAODR_GPIO19   0x80000U      // Output Open-Drain control for this pin
+#define GPIO_GPAODR_GPIO20   0x100000U     // Output Open-Drain control for this pin
+#define GPIO_GPAODR_GPIO21   0x200000U     // Output Open-Drain control for this pin
+#define GPIO_GPAODR_GPIO22   0x400000U     // Output Open-Drain control for this pin
+#define GPIO_GPAODR_GPIO23   0x800000U     // Output Open-Drain control for this pin
+#define GPIO_GPAODR_GPIO24   0x1000000U    // Output Open-Drain control for this pin
+#define GPIO_GPAODR_GPIO25   0x2000000U    // Output Open-Drain control for this pin
+#define GPIO_GPAODR_GPIO26   0x4000000U    // Output Open-Drain control for this pin
+#define GPIO_GPAODR_GPIO27   0x8000000U    // Output Open-Drain control for this pin
+#define GPIO_GPAODR_GPIO28   0x10000000U   // Output Open-Drain control for this pin
+#define GPIO_GPAODR_GPIO29   0x20000000U   // Output Open-Drain control for this pin
+#define GPIO_GPAODR_GPIO30   0x40000000U   // Output Open-Drain control for this pin
+#define GPIO_GPAODR_GPIO31   0x80000000U   // Output Open-Drain control for this pin
 
 //*************************************************************************************************
 //
@@ -1073,38 +1073,38 @@
 // The following are defines for the bit fields in the GPBODR register
 //
 //*************************************************************************************************
-#define GPIO_GPBODR_GPIO32   0x1U          // Outpout Open-Drain control for this pin
-#define GPIO_GPBODR_GPIO33   0x2U          // Outpout Open-Drain control for this pin
-#define GPIO_GPBODR_GPIO34   0x4U          // Outpout Open-Drain control for this pin
-#define GPIO_GPBODR_GPIO35   0x8U          // Outpout Open-Drain control for this pin
-#define GPIO_GPBODR_GPIO36   0x10U         // Outpout Open-Drain control for this pin
-#define GPIO_GPBODR_GPIO37   0x20U         // Outpout Open-Drain control for this pin
-#define GPIO_GPBODR_GPIO38   0x40U         // Outpout Open-Drain control for this pin
-#define GPIO_GPBODR_GPIO39   0x80U         // Outpout Open-Drain control for this pin
-#define GPIO_GPBODR_GPIO40   0x100U        // Outpout Open-Drain control for this pin
-#define GPIO_GPBODR_GPIO41   0x200U        // Outpout Open-Drain control for this pin
-#define GPIO_GPBODR_GPIO42   0x400U        // Outpout Open-Drain control for this pin
-#define GPIO_GPBODR_GPIO43   0x800U        // Outpout Open-Drain control for this pin
-#define GPIO_GPBODR_GPIO44   0x1000U       // Outpout Open-Drain control for this pin
-#define GPIO_GPBODR_GPIO45   0x2000U       // Outpout Open-Drain control for this pin
-#define GPIO_GPBODR_GPIO46   0x4000U       // Outpout Open-Drain control for this pin
-#define GPIO_GPBODR_GPIO47   0x8000U       // Outpout Open-Drain control for this pin
-#define GPIO_GPBODR_GPIO48   0x10000U      // Outpout Open-Drain control for this pin
-#define GPIO_GPBODR_GPIO49   0x20000U      // Outpout Open-Drain control for this pin
-#define GPIO_GPBODR_GPIO50   0x40000U      // Outpout Open-Drain control for this pin
-#define GPIO_GPBODR_GPIO51   0x80000U      // Outpout Open-Drain control for this pin
-#define GPIO_GPBODR_GPIO52   0x100000U     // Outpout Open-Drain control for this pin
-#define GPIO_GPBODR_GPIO53   0x200000U     // Outpout Open-Drain control for this pin
-#define GPIO_GPBODR_GPIO54   0x400000U     // Outpout Open-Drain control for this pin
-#define GPIO_GPBODR_GPIO55   0x800000U     // Outpout Open-Drain control for this pin
-#define GPIO_GPBODR_GPIO56   0x1000000U    // Outpout Open-Drain control for this pin
-#define GPIO_GPBODR_GPIO57   0x2000000U    // Outpout Open-Drain control for this pin
-#define GPIO_GPBODR_GPIO58   0x4000000U    // Outpout Open-Drain control for this pin
-#define GPIO_GPBODR_GPIO59   0x8000000U    // Outpout Open-Drain control for this pin
-#define GPIO_GPBODR_GPIO60   0x10000000U   // Outpout Open-Drain control for this pin
-#define GPIO_GPBODR_GPIO61   0x20000000U   // Outpout Open-Drain control for this pin
-#define GPIO_GPBODR_GPIO62   0x40000000U   // Outpout Open-Drain control for this pin
-#define GPIO_GPBODR_GPIO63   0x80000000U   // Outpout Open-Drain control for this pin
+#define GPIO_GPBODR_GPIO32   0x1U          // Output Open-Drain control for this pin
+#define GPIO_GPBODR_GPIO33   0x2U          // Output Open-Drain control for this pin
+#define GPIO_GPBODR_GPIO34   0x4U          // Output Open-Drain control for this pin
+#define GPIO_GPBODR_GPIO35   0x8U          // Output Open-Drain control for this pin
+#define GPIO_GPBODR_GPIO36   0x10U         // Output Open-Drain control for this pin
+#define GPIO_GPBODR_GPIO37   0x20U         // Output Open-Drain control for this pin
+#define GPIO_GPBODR_GPIO38   0x40U         // Output Open-Drain control for this pin
+#define GPIO_GPBODR_GPIO39   0x80U         // Output Open-Drain control for this pin
+#define GPIO_GPBODR_GPIO40   0x100U        // Output Open-Drain control for this pin
+#define GPIO_GPBODR_GPIO41   0x200U        // Output Open-Drain control for this pin
+#define GPIO_GPBODR_GPIO42   0x400U        // Output Open-Drain control for this pin
+#define GPIO_GPBODR_GPIO43   0x800U        // Output Open-Drain control for this pin
+#define GPIO_GPBODR_GPIO44   0x1000U       // Output Open-Drain control for this pin
+#define GPIO_GPBODR_GPIO45   0x2000U       // Output Open-Drain control for this pin
+#define GPIO_GPBODR_GPIO46   0x4000U       // Output Open-Drain control for this pin
+#define GPIO_GPBODR_GPIO47   0x8000U       // Output Open-Drain control for this pin
+#define GPIO_GPBODR_GPIO48   0x10000U      // Output Open-Drain control for this pin
+#define GPIO_GPBODR_GPIO49   0x20000U      // Output Open-Drain control for this pin
+#define GPIO_GPBODR_GPIO50   0x40000U      // Output Open-Drain control for this pin
+#define GPIO_GPBODR_GPIO51   0x80000U      // Output Open-Drain control for this pin
+#define GPIO_GPBODR_GPIO52   0x100000U     // Output Open-Drain control for this pin
+#define GPIO_GPBODR_GPIO53   0x200000U     // Output Open-Drain control for this pin
+#define GPIO_GPBODR_GPIO54   0x400000U     // Output Open-Drain control for this pin
+#define GPIO_GPBODR_GPIO55   0x800000U     // Output Open-Drain control for this pin
+#define GPIO_GPBODR_GPIO56   0x1000000U    // Output Open-Drain control for this pin
+#define GPIO_GPBODR_GPIO57   0x2000000U    // Output Open-Drain control for this pin
+#define GPIO_GPBODR_GPIO58   0x4000000U    // Output Open-Drain control for this pin
+#define GPIO_GPBODR_GPIO59   0x8000000U    // Output Open-Drain control for this pin
+#define GPIO_GPBODR_GPIO60   0x10000000U   // Output Open-Drain control for this pin
+#define GPIO_GPBODR_GPIO61   0x20000000U   // Output Open-Drain control for this pin
+#define GPIO_GPBODR_GPIO62   0x40000000U   // Output Open-Drain control for this pin
+#define GPIO_GPBODR_GPIO63   0x80000000U   // Output Open-Drain control for this pin
 
 //*************************************************************************************************
 //
@@ -1643,38 +1643,38 @@
 // The following are defines for the bit fields in the GPCODR register
 //
 //*************************************************************************************************
-#define GPIO_GPCODR_GPIO64   0x1U          // Outpout Open-Drain control for this pin
-#define GPIO_GPCODR_GPIO65   0x2U          // Outpout Open-Drain control for this pin
-#define GPIO_GPCODR_GPIO66   0x4U          // Outpout Open-Drain control for this pin
-#define GPIO_GPCODR_GPIO67   0x8U          // Outpout Open-Drain control for this pin
-#define GPIO_GPCODR_GPIO68   0x10U         // Outpout Open-Drain control for this pin
-#define GPIO_GPCODR_GPIO69   0x20U         // Outpout Open-Drain control for this pin
-#define GPIO_GPCODR_GPIO70   0x40U         // Outpout Open-Drain control for this pin
-#define GPIO_GPCODR_GPIO71   0x80U         // Outpout Open-Drain control for this pin
-#define GPIO_GPCODR_GPIO72   0x100U        // Outpout Open-Drain control for this pin
-#define GPIO_GPCODR_GPIO73   0x200U        // Outpout Open-Drain control for this pin
-#define GPIO_GPCODR_GPIO74   0x400U        // Outpout Open-Drain control for this pin
-#define GPIO_GPCODR_GPIO75   0x800U        // Outpout Open-Drain control for this pin
-#define GPIO_GPCODR_GPIO76   0x1000U       // Outpout Open-Drain control for this pin
-#define GPIO_GPCODR_GPIO77   0x2000U       // Outpout Open-Drain control for this pin
-#define GPIO_GPCODR_GPIO78   0x4000U       // Outpout Open-Drain control for this pin
-#define GPIO_GPCODR_GPIO79   0x8000U       // Outpout Open-Drain control for this pin
-#define GPIO_GPCODR_GPIO80   0x10000U      // Outpout Open-Drain control for this pin
-#define GPIO_GPCODR_GPIO81   0x20000U      // Outpout Open-Drain control for this pin
-#define GPIO_GPCODR_GPIO82   0x40000U      // Outpout Open-Drain control for this pin
-#define GPIO_GPCODR_GPIO83   0x80000U      // Outpout Open-Drain control for this pin
-#define GPIO_GPCODR_GPIO84   0x100000U     // Outpout Open-Drain control for this pin
-#define GPIO_GPCODR_GPIO85   0x200000U     // Outpout Open-Drain control for this pin
-#define GPIO_GPCODR_GPIO86   0x400000U     // Outpout Open-Drain control for this pin
-#define GPIO_GPCODR_GPIO87   0x800000U     // Outpout Open-Drain control for this pin
-#define GPIO_GPCODR_GPIO88   0x1000000U    // Outpout Open-Drain control for this pin
-#define GPIO_GPCODR_GPIO89   0x2000000U    // Outpout Open-Drain control for this pin
-#define GPIO_GPCODR_GPIO90   0x4000000U    // Outpout Open-Drain control for this pin
-#define GPIO_GPCODR_GPIO91   0x8000000U    // Outpout Open-Drain control for this pin
-#define GPIO_GPCODR_GPIO92   0x10000000U   // Outpout Open-Drain control for this pin
-#define GPIO_GPCODR_GPIO93   0x20000000U   // Outpout Open-Drain control for this pin
-#define GPIO_GPCODR_GPIO94   0x40000000U   // Outpout Open-Drain control for this pin
-#define GPIO_GPCODR_GPIO95   0x80000000U   // Outpout Open-Drain control for this pin
+#define GPIO_GPCODR_GPIO64   0x1U          // Output Open-Drain control for this pin
+#define GPIO_GPCODR_GPIO65   0x2U          // Output Open-Drain control for this pin
+#define GPIO_GPCODR_GPIO66   0x4U          // Output Open-Drain control for this pin
+#define GPIO_GPCODR_GPIO67   0x8U          // Output Open-Drain control for this pin
+#define GPIO_GPCODR_GPIO68   0x10U         // Output Open-Drain control for this pin
+#define GPIO_GPCODR_GPIO69   0x20U         // Output Open-Drain control for this pin
+#define GPIO_GPCODR_GPIO70   0x40U         // Output Open-Drain control for this pin
+#define GPIO_GPCODR_GPIO71   0x80U         // Output Open-Drain control for this pin
+#define GPIO_GPCODR_GPIO72   0x100U        // Output Open-Drain control for this pin
+#define GPIO_GPCODR_GPIO73   0x200U        // Output Open-Drain control for this pin
+#define GPIO_GPCODR_GPIO74   0x400U        // Output Open-Drain control for this pin
+#define GPIO_GPCODR_GPIO75   0x800U        // Output Open-Drain control for this pin
+#define GPIO_GPCODR_GPIO76   0x1000U       // Output Open-Drain control for this pin
+#define GPIO_GPCODR_GPIO77   0x2000U       // Output Open-Drain control for this pin
+#define GPIO_GPCODR_GPIO78   0x4000U       // Output Open-Drain control for this pin
+#define GPIO_GPCODR_GPIO79   0x8000U       // Output Open-Drain control for this pin
+#define GPIO_GPCODR_GPIO80   0x10000U      // Output Open-Drain control for this pin
+#define GPIO_GPCODR_GPIO81   0x20000U      // Output Open-Drain control for this pin
+#define GPIO_GPCODR_GPIO82   0x40000U      // Output Open-Drain control for this pin
+#define GPIO_GPCODR_GPIO83   0x80000U      // Output Open-Drain control for this pin
+#define GPIO_GPCODR_GPIO84   0x100000U     // Output Open-Drain control for this pin
+#define GPIO_GPCODR_GPIO85   0x200000U     // Output Open-Drain control for this pin
+#define GPIO_GPCODR_GPIO86   0x400000U     // Output Open-Drain control for this pin
+#define GPIO_GPCODR_GPIO87   0x800000U     // Output Open-Drain control for this pin
+#define GPIO_GPCODR_GPIO88   0x1000000U    // Output Open-Drain control for this pin
+#define GPIO_GPCODR_GPIO89   0x2000000U    // Output Open-Drain control for this pin
+#define GPIO_GPCODR_GPIO90   0x4000000U    // Output Open-Drain control for this pin
+#define GPIO_GPCODR_GPIO91   0x8000000U    // Output Open-Drain control for this pin
+#define GPIO_GPCODR_GPIO92   0x10000000U   // Output Open-Drain control for this pin
+#define GPIO_GPCODR_GPIO93   0x20000000U   // Output Open-Drain control for this pin
+#define GPIO_GPCODR_GPIO94   0x40000000U   // Output Open-Drain control for this pin
+#define GPIO_GPCODR_GPIO95   0x80000000U   // Output Open-Drain control for this pin
 
 //*************************************************************************************************
 //
@@ -2184,35 +2184,35 @@
 // The following are defines for the bit fields in the GPDODR register
 //
 //*************************************************************************************************
-#define GPIO_GPDODR_GPIO96    0x1U          // Outpout Open-Drain control for this pin
-#define GPIO_GPDODR_GPIO97    0x2U          // Outpout Open-Drain control for this pin
-#define GPIO_GPDODR_GPIO98    0x4U          // Outpout Open-Drain control for this pin
-#define GPIO_GPDODR_GPIO99    0x8U          // Outpout Open-Drain control for this pin
-#define GPIO_GPDODR_GPIO100   0x10U         // Outpout Open-Drain control for this pin
-#define GPIO_GPDODR_GPIO101   0x20U         // Outpout Open-Drain control for this pin
-#define GPIO_GPDODR_GPIO102   0x40U         // Outpout Open-Drain control for this pin
-#define GPIO_GPDODR_GPIO103   0x80U         // Outpout Open-Drain control for this pin
-#define GPIO_GPDODR_GPIO104   0x100U        // Outpout Open-Drain control for this pin
-#define GPIO_GPDODR_GPIO105   0x200U        // Outpout Open-Drain control for this pin
-#define GPIO_GPDODR_GPIO106   0x400U        // Outpout Open-Drain control for this pin
-#define GPIO_GPDODR_GPIO107   0x800U        // Outpout Open-Drain control for this pin
-#define GPIO_GPDODR_GPIO108   0x1000U       // Outpout Open-Drain control for this pin
-#define GPIO_GPDODR_GPIO109   0x2000U       // Outpout Open-Drain control for this pin
-#define GPIO_GPDODR_GPIO110   0x4000U       // Outpout Open-Drain control for this pin
-#define GPIO_GPDODR_GPIO111   0x8000U       // Outpout Open-Drain control for this pin
-#define GPIO_GPDODR_GPIO112   0x10000U      // Outpout Open-Drain control for this pin
-#define GPIO_GPDODR_GPIO113   0x20000U      // Outpout Open-Drain control for this pin
-#define GPIO_GPDODR_GPIO114   0x40000U      // Outpout Open-Drain control for this pin
-#define GPIO_GPDODR_GPIO115   0x80000U      // Outpout Open-Drain control for this pin
-#define GPIO_GPDODR_GPIO116   0x100000U     // Outpout Open-Drain control for this pin
-#define GPIO_GPDODR_GPIO119   0x800000U     // Outpout Open-Drain control for this pin
-#define GPIO_GPDODR_GPIO120   0x1000000U    // Outpout Open-Drain control for this pin
-#define GPIO_GPDODR_GPIO122   0x4000000U    // Outpout Open-Drain control for this pin
-#define GPIO_GPDODR_GPIO123   0x8000000U    // Outpout Open-Drain control for this pin
-#define GPIO_GPDODR_GPIO124   0x10000000U   // Outpout Open-Drain control for this pin
-#define GPIO_GPDODR_GPIO125   0x20000000U   // Outpout Open-Drain control for this pin
-#define GPIO_GPDODR_GPIO126   0x40000000U   // Outpout Open-Drain control for this pin
-#define GPIO_GPDODR_GPIO127   0x80000000U   // Outpout Open-Drain control for this pin
+#define GPIO_GPDODR_GPIO96    0x1U          // Output Open-Drain control for this pin
+#define GPIO_GPDODR_GPIO97    0x2U          // Output Open-Drain control for this pin
+#define GPIO_GPDODR_GPIO98    0x4U          // Output Open-Drain control for this pin
+#define GPIO_GPDODR_GPIO99    0x8U          // Output Open-Drain control for this pin
+#define GPIO_GPDODR_GPIO100   0x10U         // Output Open-Drain control for this pin
+#define GPIO_GPDODR_GPIO101   0x20U         // Output Open-Drain control for this pin
+#define GPIO_GPDODR_GPIO102   0x40U         // Output Open-Drain control for this pin
+#define GPIO_GPDODR_GPIO103   0x80U         // Output Open-Drain control for this pin
+#define GPIO_GPDODR_GPIO104   0x100U        // Output Open-Drain control for this pin
+#define GPIO_GPDODR_GPIO105   0x200U        // Output Open-Drain control for this pin
+#define GPIO_GPDODR_GPIO106   0x400U        // Output Open-Drain control for this pin
+#define GPIO_GPDODR_GPIO107   0x800U        // Output Open-Drain control for this pin
+#define GPIO_GPDODR_GPIO108   0x1000U       // Output Open-Drain control for this pin
+#define GPIO_GPDODR_GPIO109   0x2000U       // Output Open-Drain control for this pin
+#define GPIO_GPDODR_GPIO110   0x4000U       // Output Open-Drain control for this pin
+#define GPIO_GPDODR_GPIO111   0x8000U       // Output Open-Drain control for this pin
+#define GPIO_GPDODR_GPIO112   0x10000U      // Output Open-Drain control for this pin
+#define GPIO_GPDODR_GPIO113   0x20000U      // Output Open-Drain control for this pin
+#define GPIO_GPDODR_GPIO114   0x40000U      // Output Open-Drain control for this pin
+#define GPIO_GPDODR_GPIO115   0x80000U      // Output Open-Drain control for this pin
+#define GPIO_GPDODR_GPIO116   0x100000U     // Output Open-Drain control for this pin
+#define GPIO_GPDODR_GPIO119   0x800000U     // Output Open-Drain control for this pin
+#define GPIO_GPDODR_GPIO120   0x1000000U    // Output Open-Drain control for this pin
+#define GPIO_GPDODR_GPIO122   0x4000000U    // Output Open-Drain control for this pin
+#define GPIO_GPDODR_GPIO123   0x8000000U    // Output Open-Drain control for this pin
+#define GPIO_GPDODR_GPIO124   0x10000000U   // Output Open-Drain control for this pin
+#define GPIO_GPDODR_GPIO125   0x20000000U   // Output Open-Drain control for this pin
+#define GPIO_GPDODR_GPIO126   0x40000000U   // Output Open-Drain control for this pin
+#define GPIO_GPDODR_GPIO127   0x80000000U   // Output Open-Drain control for this pin
 
 //*************************************************************************************************
 //
@@ -2669,30 +2669,30 @@
 // The following are defines for the bit fields in the GPEODR register
 //
 //*************************************************************************************************
-#define GPIO_GPEODR_GPIO128   0x1U          // Outpout Open-Drain control for this pin
-#define GPIO_GPEODR_GPIO129   0x2U          // Outpout Open-Drain control for this pin
-#define GPIO_GPEODR_GPIO130   0x4U          // Outpout Open-Drain control for this pin
-#define GPIO_GPEODR_GPIO131   0x8U          // Outpout Open-Drain control for this pin
-#define GPIO_GPEODR_GPIO132   0x10U         // Outpout Open-Drain control for this pin
-#define GPIO_GPEODR_GPIO133   0x20U         // Outpout Open-Drain control for this pin
-#define GPIO_GPEODR_GPIO134   0x40U         // Outpout Open-Drain control for this pin
-#define GPIO_GPEODR_GPIO141   0x2000U       // Outpout Open-Drain control for this pin
-#define GPIO_GPEODR_GPIO142   0x4000U       // Outpout Open-Drain control for this pin
-#define GPIO_GPEODR_GPIO145   0x20000U      // Outpout Open-Drain control for this pin
-#define GPIO_GPEODR_GPIO146   0x40000U      // Outpout Open-Drain control for this pin
-#define GPIO_GPEODR_GPIO147   0x80000U      // Outpout Open-Drain control for this pin
-#define GPIO_GPEODR_GPIO148   0x100000U     // Outpout Open-Drain control for this pin
-#define GPIO_GPEODR_GPIO149   0x200000U     // Outpout Open-Drain control for this pin
-#define GPIO_GPEODR_GPIO150   0x400000U     // Outpout Open-Drain control for this pin
-#define GPIO_GPEODR_GPIO151   0x800000U     // Outpout Open-Drain control for this pin
-#define GPIO_GPEODR_GPIO152   0x1000000U    // Outpout Open-Drain control for this pin
-#define GPIO_GPEODR_GPIO153   0x2000000U    // Outpout Open-Drain control for this pin
-#define GPIO_GPEODR_GPIO154   0x4000000U    // Outpout Open-Drain control for this pin
-#define GPIO_GPEODR_GPIO155   0x8000000U    // Outpout Open-Drain control for this pin
-#define GPIO_GPEODR_GPIO156   0x10000000U   // Outpout Open-Drain control for this pin
-#define GPIO_GPEODR_GPIO157   0x20000000U   // Outpout Open-Drain control for this pin
-#define GPIO_GPEODR_GPIO158   0x40000000U   // Outpout Open-Drain control for this pin
-#define GPIO_GPEODR_GPIO159   0x80000000U   // Outpout Open-Drain control for this pin
+#define GPIO_GPEODR_GPIO128   0x1U          // Output Open-Drain control for this pin
+#define GPIO_GPEODR_GPIO129   0x2U          // Output Open-Drain control for this pin
+#define GPIO_GPEODR_GPIO130   0x4U          // Output Open-Drain control for this pin
+#define GPIO_GPEODR_GPIO131   0x8U          // Output Open-Drain control for this pin
+#define GPIO_GPEODR_GPIO132   0x10U         // Output Open-Drain control for this pin
+#define GPIO_GPEODR_GPIO133   0x20U         // Output Open-Drain control for this pin
+#define GPIO_GPEODR_GPIO134   0x40U         // Output Open-Drain control for this pin
+#define GPIO_GPEODR_GPIO141   0x2000U       // Output Open-Drain control for this pin
+#define GPIO_GPEODR_GPIO142   0x4000U       // Output Open-Drain control for this pin
+#define GPIO_GPEODR_GPIO145   0x20000U      // Output Open-Drain control for this pin
+#define GPIO_GPEODR_GPIO146   0x40000U      // Output Open-Drain control for this pin
+#define GPIO_GPEODR_GPIO147   0x80000U      // Output Open-Drain control for this pin
+#define GPIO_GPEODR_GPIO148   0x100000U     // Output Open-Drain control for this pin
+#define GPIO_GPEODR_GPIO149   0x200000U     // Output Open-Drain control for this pin
+#define GPIO_GPEODR_GPIO150   0x400000U     // Output Open-Drain control for this pin
+#define GPIO_GPEODR_GPIO151   0x800000U     // Output Open-Drain control for this pin
+#define GPIO_GPEODR_GPIO152   0x1000000U    // Output Open-Drain control for this pin
+#define GPIO_GPEODR_GPIO153   0x2000000U    // Output Open-Drain control for this pin
+#define GPIO_GPEODR_GPIO154   0x4000000U    // Output Open-Drain control for this pin
+#define GPIO_GPEODR_GPIO155   0x8000000U    // Output Open-Drain control for this pin
+#define GPIO_GPEODR_GPIO156   0x10000000U   // Output Open-Drain control for this pin
+#define GPIO_GPEODR_GPIO157   0x20000000U   // Output Open-Drain control for this pin
+#define GPIO_GPEODR_GPIO158   0x40000000U   // Output Open-Drain control for this pin
+#define GPIO_GPEODR_GPIO159   0x80000000U   // Output Open-Drain control for this pin
 
 //*************************************************************************************************
 //
@@ -2994,15 +2994,15 @@
 // The following are defines for the bit fields in the GPFODR register
 //
 //*************************************************************************************************
-#define GPIO_GPFODR_GPIO160   0x1U     // Outpout Open-Drain control for this pin
-#define GPIO_GPFODR_GPIO161   0x2U     // Outpout Open-Drain control for this pin
-#define GPIO_GPFODR_GPIO162   0x4U     // Outpout Open-Drain control for this pin
-#define GPIO_GPFODR_GPIO163   0x8U     // Outpout Open-Drain control for this pin
-#define GPIO_GPFODR_GPIO164   0x10U    // Outpout Open-Drain control for this pin
-#define GPIO_GPFODR_GPIO165   0x20U    // Outpout Open-Drain control for this pin
-#define GPIO_GPFODR_GPIO166   0x40U    // Outpout Open-Drain control for this pin
-#define GPIO_GPFODR_GPIO167   0x80U    // Outpout Open-Drain control for this pin
-#define GPIO_GPFODR_GPIO168   0x100U   // Outpout Open-Drain control for this pin
+#define GPIO_GPFODR_GPIO160   0x1U     // Output Open-Drain control for this pin
+#define GPIO_GPFODR_GPIO161   0x2U     // Output Open-Drain control for this pin
+#define GPIO_GPFODR_GPIO162   0x4U     // Output Open-Drain control for this pin
+#define GPIO_GPFODR_GPIO163   0x8U     // Output Open-Drain control for this pin
+#define GPIO_GPFODR_GPIO164   0x10U    // Output Open-Drain control for this pin
+#define GPIO_GPFODR_GPIO165   0x20U    // Output Open-Drain control for this pin
+#define GPIO_GPFODR_GPIO166   0x40U    // Output Open-Drain control for this pin
+#define GPIO_GPFODR_GPIO167   0x80U    // Output Open-Drain control for this pin
+#define GPIO_GPFODR_GPIO168   0x100U   // Output Open-Drain control for this pin
 
 //*************************************************************************************************
 //
@@ -3327,32 +3327,32 @@
 // The following are defines for the bit fields in the GPGODR register
 //
 //*************************************************************************************************
-#define GPIO_GPGODR_GPIO198   0x40U         // Outpout Open-Drain control for this pin
-#define GPIO_GPGODR_GPIO199   0x80U         // Outpout Open-Drain control for this pin
-#define GPIO_GPGODR_GPIO200   0x100U        // Outpout Open-Drain control for this pin
-#define GPIO_GPGODR_GPIO201   0x200U        // Outpout Open-Drain control for this pin
-#define GPIO_GPGODR_GPIO202   0x400U        // Outpout Open-Drain control for this pin
-#define GPIO_GPGODR_GPIO203   0x800U        // Outpout Open-Drain control for this pin
-#define GPIO_GPGODR_GPIO204   0x1000U       // Outpout Open-Drain control for this pin
-#define GPIO_GPGODR_GPIO205   0x2000U       // Outpout Open-Drain control for this pin
-#define GPIO_GPGODR_GPIO206   0x4000U       // Outpout Open-Drain control for this pin
-#define GPIO_GPGODR_GPIO207   0x8000U       // Outpout Open-Drain control for this pin
-#define GPIO_GPGODR_GPIO208   0x10000U      // Outpout Open-Drain control for this pin
-#define GPIO_GPGODR_GPIO209   0x20000U      // Outpout Open-Drain control for this pin
-#define GPIO_GPGODR_GPIO210   0x40000U      // Outpout Open-Drain control for this pin
-#define GPIO_GPGODR_GPIO211   0x80000U      // Outpout Open-Drain control for this pin
-#define GPIO_GPGODR_GPIO212   0x100000U     // Outpout Open-Drain control for this pin
-#define GPIO_GPGODR_GPIO213   0x200000U     // Outpout Open-Drain control for this pin
-#define GPIO_GPGODR_GPIO214   0x400000U     // Outpout Open-Drain control for this pin
-#define GPIO_GPGODR_GPIO215   0x800000U     // Outpout Open-Drain control for this pin
-#define GPIO_GPGODR_GPIO216   0x1000000U    // Outpout Open-Drain control for this pin
-#define GPIO_GPGODR_GPIO217   0x2000000U    // Outpout Open-Drain control for this pin
-#define GPIO_GPGODR_GPIO218   0x4000000U    // Outpout Open-Drain control for this pin
-#define GPIO_GPGODR_GPIO219   0x8000000U    // Outpout Open-Drain control for this pin
-#define GPIO_GPGODR_GPIO220   0x10000000U   // Outpout Open-Drain control for this pin
-#define GPIO_GPGODR_GPIO221   0x20000000U   // Outpout Open-Drain control for this pin
-#define GPIO_GPGODR_GPIO222   0x40000000U   // Outpout Open-Drain control for this pin
-#define GPIO_GPGODR_GPIO223   0x80000000U   // Outpout Open-Drain control for this pin
+#define GPIO_GPGODR_GPIO198   0x40U         // Output Open-Drain control for this pin
+#define GPIO_GPGODR_GPIO199   0x80U         // Output Open-Drain control for this pin
+#define GPIO_GPGODR_GPIO200   0x100U        // Output Open-Drain control for this pin
+#define GPIO_GPGODR_GPIO201   0x200U        // Output Open-Drain control for this pin
+#define GPIO_GPGODR_GPIO202   0x400U        // Output Open-Drain control for this pin
+#define GPIO_GPGODR_GPIO203   0x800U        // Output Open-Drain control for this pin
+#define GPIO_GPGODR_GPIO204   0x1000U       // Output Open-Drain control for this pin
+#define GPIO_GPGODR_GPIO205   0x2000U       // Output Open-Drain control for this pin
+#define GPIO_GPGODR_GPIO206   0x4000U       // Output Open-Drain control for this pin
+#define GPIO_GPGODR_GPIO207   0x8000U       // Output Open-Drain control for this pin
+#define GPIO_GPGODR_GPIO208   0x10000U      // Output Open-Drain control for this pin
+#define GPIO_GPGODR_GPIO209   0x20000U      // Output Open-Drain control for this pin
+#define GPIO_GPGODR_GPIO210   0x40000U      // Output Open-Drain control for this pin
+#define GPIO_GPGODR_GPIO211   0x80000U      // Output Open-Drain control for this pin
+#define GPIO_GPGODR_GPIO212   0x100000U     // Output Open-Drain control for this pin
+#define GPIO_GPGODR_GPIO213   0x200000U     // Output Open-Drain control for this pin
+#define GPIO_GPGODR_GPIO214   0x400000U     // Output Open-Drain control for this pin
+#define GPIO_GPGODR_GPIO215   0x800000U     // Output Open-Drain control for this pin
+#define GPIO_GPGODR_GPIO216   0x1000000U    // Output Open-Drain control for this pin
+#define GPIO_GPGODR_GPIO217   0x2000000U    // Output Open-Drain control for this pin
+#define GPIO_GPGODR_GPIO218   0x4000000U    // Output Open-Drain control for this pin
+#define GPIO_GPGODR_GPIO219   0x8000000U    // Output Open-Drain control for this pin
+#define GPIO_GPGODR_GPIO220   0x10000000U   // Output Open-Drain control for this pin
+#define GPIO_GPGODR_GPIO221   0x20000000U   // Output Open-Drain control for this pin
+#define GPIO_GPGODR_GPIO222   0x40000000U   // Output Open-Drain control for this pin
+#define GPIO_GPGODR_GPIO223   0x80000000U   // Output Open-Drain control for this pin
 
 //*************************************************************************************************
 //
@@ -3801,25 +3801,25 @@
 // The following are defines for the bit fields in the GPHODR register
 //
 //*************************************************************************************************
-#define GPIO_GPHODR_GPIO224   0x1U       // Outpout Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO225   0x2U       // Outpout Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO226   0x4U       // Outpout Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO227   0x8U       // Outpout Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO228   0x10U      // Outpout Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO229   0x20U      // Outpout Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO230   0x40U      // Outpout Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO231   0x80U      // Outpout Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO232   0x100U     // Outpout Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO233   0x200U     // Outpout Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO234   0x400U     // Outpout Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO235   0x800U     // Outpout Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO236   0x1000U    // Outpout Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO237   0x2000U    // Outpout Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO238   0x4000U    // Outpout Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO239   0x8000U    // Outpout Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO240   0x10000U   // Outpout Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO241   0x20000U   // Outpout Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO242   0x40000U   // Outpout Open-Drain control for this pin
+#define GPIO_GPHODR_GPIO224   0x1U       // Output Open-Drain control for this pin
+#define GPIO_GPHODR_GPIO225   0x2U       // Output Open-Drain control for this pin
+#define GPIO_GPHODR_GPIO226   0x4U       // Output Open-Drain control for this pin
+#define GPIO_GPHODR_GPIO227   0x8U       // Output Open-Drain control for this pin
+#define GPIO_GPHODR_GPIO228   0x10U      // Output Open-Drain control for this pin
+#define GPIO_GPHODR_GPIO229   0x20U      // Output Open-Drain control for this pin
+#define GPIO_GPHODR_GPIO230   0x40U      // Output Open-Drain control for this pin
+#define GPIO_GPHODR_GPIO231   0x80U      // Output Open-Drain control for this pin
+#define GPIO_GPHODR_GPIO232   0x100U     // Output Open-Drain control for this pin
+#define GPIO_GPHODR_GPIO233   0x200U     // Output Open-Drain control for this pin
+#define GPIO_GPHODR_GPIO234   0x400U     // Output Open-Drain control for this pin
+#define GPIO_GPHODR_GPIO235   0x800U     // Output Open-Drain control for this pin
+#define GPIO_GPHODR_GPIO236   0x1000U    // Output Open-Drain control for this pin
+#define GPIO_GPHODR_GPIO237   0x2000U    // Output Open-Drain control for this pin
+#define GPIO_GPHODR_GPIO238   0x4000U    // Output Open-Drain control for this pin
+#define GPIO_GPHODR_GPIO239   0x8000U    // Output Open-Drain control for this pin
+#define GPIO_GPHODR_GPIO240   0x10000U   // Output Open-Drain control for this pin
+#define GPIO_GPHODR_GPIO241   0x20000U   // Output Open-Drain control for this pin
+#define GPIO_GPHODR_GPIO242   0x40000U   // Output Open-Drain control for this pin
 
 //*************************************************************************************************
 //

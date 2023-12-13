@@ -1,0 +1,91 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F280015x" --package "80PN" --part "F280015x_80PN" --context "system" --product "C2000WARE@4.03.00.00"
+ * @versions {"tool":"1.0.0+dev"}
+ */
+
+
+/**
+ * Import the modules used in this configuration.
+ */
+const device_support = scripting.addModule("/driverlib/device_support.js");
+const sysctl         = scripting.addModule("/driverlib/sysctl.js");
+const CMD            = scripting.addModule("/utilities/cmd_tool/cmd_syscfg/source/CMD");
+const CMD1           = CMD.addInstance();
+const CMD2           = CMD.addInstance();
+const cputimer       = scripting.addModule("/driverlib/cputimer.js", {}, false);
+const cputimer1      = cputimer.addInstance();
+const cputimer2      = cputimer.addInstance();
+const cputimer3      = cputimer.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+CMD1.$name                    = "generic_ram_lnk";
+CMD2.$name                    = "generic_flash_lnk";
+CMD1.sectionMemory_text       = ["RAMLS0","RAMLS1"];
+CMD1.sectionMemory_ramfunc    = ["RAMM0"];
+CMD1.sectionMemory_cinit      = ["RAMM0"];
+CMD1.sectionMemory_stack      = ["RAMM1"];
+CMD1.sectionMemory_init_array = ["RAMM0"];
+CMD1.sectionMemory_bss        = ["RAMLS0"];
+CMD1.sectionMemory_const      = ["RAMLS0"];
+CMD1.sectionMemory_data       = ["RAMLS0"];
+CMD1.sectionMemory_switch     = ["RAMM0"];
+CMD1.sectionMemory_sysmem     = ["RAMLS0"];
+
+CMD2.sectionAlignEnable_ramfunc    = true;
+CMD2.sectionAlignEnable_text       = true;
+CMD2.sectionAlignEnable_binit      = true;
+CMD2.sectionAlignEnable_cinit      = true;
+CMD2.sectionAlignEnable_switch     = true;
+CMD2.sectionAlignEnable_init_array = true;
+CMD2.sectionAlignEnable_const      = true;
+CMD2.sectionAlignEnable_ovly       = true;
+CMD2.sectionMemory_codestart       = "0x080000";
+CMD2.sectionMemory_stack           = ["RAMM1"];
+CMD2.sectionMemory_ramfunc         = ["FLASH_BANK0_SEC_0_7"];
+CMD2.sectionMemory_text            = ["FLASH_BANK0_SEC_16_23","FLASH_BANK0_SEC_24_31","FLASH_BANK0_SEC_8_15"];
+CMD2.sectionMemory_binit           = ["FLASH_BANK0_SEC_0_7"];
+CMD2.sectionMemory_cinit           = ["FLASH_BANK0_SEC_0_7"];
+CMD2.sectionMemory_switch          = ["FLASH_BANK0_SEC_0_7"];
+CMD2.sectionMemory_bss             = ["RAMLS0"];
+CMD2.sectionMemory_init_array      = ["FLASH_BANK0_SEC_0_7"];
+CMD2.sectionMemory_const           = ["FLASH_BANK0_SEC_32_29"];
+CMD2.sectionMemory_data            = ["RAMLS0"];
+CMD2.sectionMemory_sysmem          = ["RAMLS0"];
+CMD2.sectionMemory_ovly            = ["FLASH_BANK0_SEC_0_7"];
+CMD2.sectionRunFromDifferentAddr_ramfunc = true;
+CMD2.sectionRun_ramfunc                  = ["RAMLS0"];
+CMD2.sectionBinit_ramfunc                = false;
+
+cputimer1.registerInterrupts        = true;
+cputimer1.enableInterrupt           = true;
+cputimer1.$name                     = "CPUTIMER0_BASE";
+cputimer1.startTimer                = true;
+cputimer1.timerInt.$name            = "INT_TIMER0";
+cputimer1.timerInt.interruptHandler = "cpuTimer0ISR";
+cputimer1.timerInt.enableInterrupt  = true;
+
+cputimer2.registerInterrupts        = true;
+cputimer2.enableInterrupt           = true;
+cputimer2.$name                     = "CPUTIMER1_BASE";
+cputimer2.cputimerBase              = "CPUTIMER1_BASE";
+cputimer2.startTimer                = true;
+cputimer2.timerInt.$name            = "INT_TIMER1";
+cputimer2.timerInt.interruptHandler = "cpuTimer1ISR";
+cputimer2.timerInt.enableInterrupt  = true;
+
+cputimer3.cputimerBase              = "CPUTIMER2_BASE";
+cputimer3.registerInterrupts        = true;
+cputimer3.enableInterrupt           = true;
+cputimer3.$name                     = "CPUTIMER2_BASE";
+cputimer3.startTimer                = true;
+cputimer3.timerInt.$name            = "INT_TIMER2";
+cputimer3.timerInt.interruptHandler = "cpuTimer2ISR";
+cputimer3.timerInt.enableInterrupt  = true;
+
+cputimer1.timerPeriod               = 120000000;
+cputimer2.timerPeriod               = 240000000;
+cputimer3.timerPeriod               = 480000000;

@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v5.00.00.00
+                v5.01.00.00
               </div>
             
           
@@ -930,12 +930,6 @@ ADC_REP1CTL_TRIGGEROVF)<a class="headerlink" href="#c.ADC_REPSTATUS_MASK" title=
 </dd></dl>
 
 <dl class="cpp enumerator">
-<dt id="_CPPv4N11ADC_Trigger17ADC_TRIGGER_ECAP8E">
-<span id="_CPPv3N11ADC_Trigger17ADC_TRIGGER_ECAP8E"></span><span id="_CPPv2N11ADC_Trigger17ADC_TRIGGER_ECAP8E"></span><span class="target" id="group__adc__api_1gga7973b7d12fc7bfb96bd276b0a5926834a2b6f7fba1ff03ed661a20d4f84f883f4"></span><em class="property">enumerator </em><code class="sig-name descname">ADC_TRIGGER_ECAP8</code> = 87U<a class="headerlink" href="#_CPPv4N11ADC_Trigger17ADC_TRIGGER_ECAP8E" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>eCAP8 </p>
-</dd></dl>
-
-<dl class="cpp enumerator">
 <dt id="_CPPv4N11ADC_Trigger23ADC_TRIGGER_EPWM13_SOCAE">
 <span id="_CPPv3N11ADC_Trigger23ADC_TRIGGER_EPWM13_SOCAE"></span><span id="_CPPv2N11ADC_Trigger23ADC_TRIGGER_EPWM13_SOCAE"></span><span class="target" id="group__adc__api_1gga7973b7d12fc7bfb96bd276b0a5926834ae84037ce312680802ae23323c60aaa71"></span><em class="property">enumerator </em><code class="sig-name descname">ADC_TRIGGER_EPWM13_SOCA</code> = 88U<a class="headerlink" href="#_CPPv4N11ADC_Trigger23ADC_TRIGGER_EPWM13_SOCAE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>ePWM13, ADCSOCA </p>
@@ -1731,6 +1725,25 @@ ADC_REP1CTL_TRIGGEROVF)<a class="headerlink" href="#c.ADC_REPSTATUS_MASK" title=
 </dd></dl>
 
 <dl class="cpp enum">
+<dt id="_CPPv415ADC_ChannelType">
+<span id="_CPPv315ADC_ChannelType"></span><span id="_CPPv215ADC_ChannelType"></span><span class="target" id="group__adc__api_1ga429dd4804497c259c3e869cbca38106c"></span><em class="property">enum </em><code class="sig-name descname">ADC_ChannelType</code><a class="headerlink" href="#_CPPv415ADC_ChannelType" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__adc__api_1ga82811db076d3d59caa26e85fe3f9e4a9"><span class="std std-ref">ADC_setupSOCRefloChannel()</span></a> as the <em>channelType</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15ADC_ChannelType15ADC_CHANNEL_ODDE">
+<span id="_CPPv3N15ADC_ChannelType15ADC_CHANNEL_ODDE"></span><span id="_CPPv2N15ADC_ChannelType15ADC_CHANNEL_ODDE"></span><span class="target" id="group__adc__api_1gga429dd4804497c259c3e869cbca38106ca22d9da0985e7e2b4c2bedc2310e3a33e"></span><em class="property">enumerator </em><code class="sig-name descname">ADC_CHANNEL_ODD</code> = 0U<a class="headerlink" href="#_CPPv4N15ADC_ChannelType15ADC_CHANNEL_ODDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>ADC Odd Channel. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15ADC_ChannelType16ADC_CHANNEL_EVENE">
+<span id="_CPPv3N15ADC_ChannelType16ADC_CHANNEL_EVENE"></span><span id="_CPPv2N15ADC_ChannelType16ADC_CHANNEL_EVENE"></span><span class="target" id="group__adc__api_1gga429dd4804497c259c3e869cbca38106ca13d9fe16f605bd2ff88ad0d9a70cc045"></span><em class="property">enumerator </em><code class="sig-name descname">ADC_CHANNEL_EVEN</code> = 1U<a class="headerlink" href="#_CPPv4N15ADC_ChannelType16ADC_CHANNEL_EVENE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>ADC Even Channel. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
 <dt id="_CPPv413ADC_SyncInput">
 <span id="_CPPv313ADC_SyncInput"></span><span id="_CPPv213ADC_SyncInput"></span><span class="target" id="group__adc__api_1ga51ed1bc5073c7ef6394c3538b007e730"></span><em class="property">enum </em><code class="sig-name descname">ADC_SyncInput</code><a class="headerlink" href="#_CPPv413ADC_SyncInput" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Values that can be passed to <a class="reference internal" href="#group__adc__api_1gaa3c93f183885d08630e3ab81c564cada"><span class="std std-ref">ADC_selectPPBSyncInput()</span></a> and <a class="reference internal" href="#group__adc__api_1ga056c8a6e3fb375ec619caa88fb4be150"><span class="std std-ref">ADC_triggerRepeaterSyncIn()</span></a> as the <em>syncInput</em> parameter. </p>
@@ -1925,13 +1938,13 @@ ADC_REP1CTL_TRIGGEROVF)<a class="headerlink" href="#c.ADC_REPSTATUS_MASK" title=
 <dl class="cpp enumerator">
 <dt id="_CPPv4N19ADC_PPBIntSrcSelect16ADC_PPB_OS_INT_1E">
 <span id="_CPPv3N19ADC_PPBIntSrcSelect16ADC_PPB_OS_INT_1E"></span><span id="_CPPv2N19ADC_PPBIntSrcSelect16ADC_PPB_OS_INT_1E"></span><span class="target" id="group__adc__api_1ggadae07564f94d93024778cb2e621781aeae5cb2607a2c7d5dd5463e7dcf5cc51f3"></span><em class="property">enumerator </em><code class="sig-name descname">ADC_PPB_OS_INT_1</code> = 0x0U<a class="headerlink" href="#_CPPv4N19ADC_PPBIntSrcSelect16ADC_PPB_OS_INT_1E" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>PCount generates PPB intterupt. </p>
+<dd><p>PCount generates PPB interrupt. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt id="_CPPv4N19ADC_PPBIntSrcSelect16ADC_PPB_OS_INT_2E">
 <span id="_CPPv3N19ADC_PPBIntSrcSelect16ADC_PPB_OS_INT_2E"></span><span id="_CPPv2N19ADC_PPBIntSrcSelect16ADC_PPB_OS_INT_2E"></span><span class="target" id="group__adc__api_1ggadae07564f94d93024778cb2e621781aeaa11f3a1099ed33a69feff17f86bf5c49"></span><em class="property">enumerator </em><code class="sig-name descname">ADC_PPB_OS_INT_2</code> = 0x1U<a class="headerlink" href="#_CPPv4N19ADC_PPBIntSrcSelect16ADC_PPB_OS_INT_2E" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>PCount/Sync generates PPB intterupt. </p>
+<dd><p>PCount/Sync generates PPB interrupt. </p>
 </dd></dl>
 
 </dd></dl>
@@ -2585,9 +2598,23 @@ ADC_REP1CTL_TRIGGEROVF)<a class="headerlink" href="#c.ADC_REPSTATUS_MASK" title=
 </p>
 <p>The <em>socNumber</em> number is a value <strong>ADC_SOC_NUMBERX</strong> where X is a number from 0 to 15 specifying which SOC is to be configured on the ADC module specified by <em>base</em>.</p>
 <p>The <em>trigger</em> specifies the event that causes the SOC such as software, a timer interrupt, an ePWM event, or an ADC interrupt. It should be a value in the format of <strong>ADC_TRIGGER_XXXX</strong> where XXXX is the event such as <strong>ADC_TRIGGER_SW_ONLY</strong>, <strong>ADC_TRIGGER_CPU1_TINT0</strong>, <strong>ADC_TRIGGER_GPIO</strong>, <strong>ADC_TRIGGER_EPWM1_SOCA</strong>, and so on.</p>
-<p>The <em>channel</em> parameter specifies the channel to be converted. In single-ended mode this is a single pin given by <strong>ADC_CH_ADCINx</strong> where x is the number identifying the pin between 0 and 15 inclusive. In differential mode, two pins are used as inputs and are passed in the <em>channel</em> parameter as <strong>ADC_CH_ADCIN0_ADCIN1</strong>, <strong>ADC_CH_ADCIN2_ADCIN3</strong>, …, or <strong>ADC_CH_ADCIN14_ADCIN15</strong>.</p>
+<p>The <em>channel</em> parameter specifies the channel to be converted. In single-ended mode this is a single pin given by <strong>ADC_CH_ADCINx</strong> where x is the number identifying the pin between 0 and 31 inclusive. In differential mode, two pins are used as inputs and are passed in the <em>channel</em> parameter as <strong>ADC_CH_ADCIN0_ADCIN1</strong>, <strong>ADC_CH_ADCIN2_ADCIN3</strong>, …, or <strong>ADC_CH_ADCIN14_ADCIN15</strong>.</p>
 <p>The <em>sampleWindow</em> parameter is the acquisition window duration in SYSCLK cycles. It should be a value between 1 and 512 cycles inclusive. The selected duration must be at least as long as one ADCCLK cycle. Also, the datasheet will specify a minimum window duration requirement in nanoseconds.</p>
 <p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429ADC_disableIntRefloConnectionv">
+<span id="_CPPv329ADC_disableIntRefloConnectionv"></span><span id="_CPPv229ADC_disableIntRefloConnectionv"></span><span id="ADC_disableIntRefloConnection__void"></span><span class="target" id="group__adc__api_1ga16ec8a3815521ffc332bda6ba35795e5"></span>void <code class="sig-name descname">ADC_disableIntRefloConnection</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429ADC_disableIntRefloConnectionv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable internal VREFLO connection.</p>
+<p>This function disables the internal connection of VREFLO for the ADC.</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>This function disables the internal connections for VREFLO which is available through CMPSS module. To confiugre the internal connection for VREFLO, please refer <a class="reference internal" href="#group__adc__api_1ga82811db076d3d59caa26e85fe3f9e4a9"><span class="std std-ref">ADC_setupSOCRefloChannel()</span></a>.</p>
+</dd>
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
 </dl>
@@ -3558,7 +3585,7 @@ ADC_REP1CTL_TRIGGEROVF)<a class="headerlink" href="#c.ADC_REPSTATUS_MASK" title=
 <dt id="_CPPv420ADC_setPPBShiftValue8uint32_t13ADC_PPBNumber8uint16_t">
 <span id="_CPPv320ADC_setPPBShiftValue8uint32_t13ADC_PPBNumber8uint16_t"></span><span id="_CPPv220ADC_setPPBShiftValue8uint32_t13ADC_PPBNumber8uint16_t"></span><span id="ADC_setPPBShiftValue__uint32_t.ADC_PPBNumber.uint16_t"></span><span class="target" id="group__adc__api_1ga6a18954567891ba2eef2900b418d9902"></span>void <code class="sig-name descname">ADC_setPPBShiftValue</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv413ADC_PPBNumber" title="ADC_PPBNumber">ADC_PPBNumber</a> <em>ppbNumber</em>, uint16_t <em>shiftVal</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420ADC_setPPBShiftValue8uint32_t13ADC_PPBNumber8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Configures PPB shift value.</p>
-<p><p>This function configured the shift value reuired to right shift the PPB PSUM before loading into the final PPB SUM.</p>
+<p><p>This function configured the shift value required to right shift the PPB PSUM before loading into the final PPB SUM.</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ADC module. </p></li>
@@ -4270,7 +4297,7 @@ ADC_REP1CTL_TRIGGEROVF)<a class="headerlink" href="#c.ADC_REPSTATUS_MASK" title=
 </dd>
 </dl>
 </p>
-<p>The <em>checkInst</em> number is a value <strong>ADC_SAFETY_CHECKX</strong> where X is a number from 1 to 2 specifying the safety result chekc instances available in the safety checker instance specified by <em>scBase</em>.</p>
+<p>The <em>checkInst</em> number is a value <strong>ADC_SAFETY_CHECKx</strong> where x is a number from 1 to 2 specifying the safety result check instances available in the safety checker instance specified by <em>scBase</em>.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>Returns the safety checker result for the desired instance. </p>
 </dd>
@@ -4301,7 +4328,7 @@ ADC_REP1CTL_TRIGGEROVF)<a class="headerlink" href="#c.ADC_REPSTATUS_MASK" title=
 </ul>
 </p>
 <p>The <em>checkEvent</em> is a value <strong>ADC_SAFETY_CHECK_EVENTx</strong> where x is a number from 1 to 4 specifying the safety check events available in the safety checker specified by <em>scIntEvtBase</em>.</p>
-<p>The <em>checkerNumber</em> number is a value <strong>ADC_CHECKER_NUMBERx</strong> where x is a number from 1 to 8 specifying which Checker Tile is to be selected in the ADC module.</p>
+<p>The <em>checkerNumber</em> number is a value <strong>ADC_SAFETY_CHECKERx</strong> where x is a number from 1 to 8 specifying which Checker Tile is to be selected in the ADC module.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -4414,12 +4441,12 @@ ADC_REP1CTL_TRIGGEROVF)<a class="headerlink" href="#c.ADC_REPSTATUS_MASK" title=
 </p>
 <p>The <em>checkerFlag</em> specifies the ADC safety checker event status of OOT or OVF events. It should be one of the following values.</p>
 <p><ul class="simple">
-<li><p><strong>ADC_SAFETY_CHECK_OOT</strong> </p></li>
-<li><p><strong>ADC_SAFETY_CHECK_RESULT1_OVF</strong> </p></li>
-<li><p><strong>ADC_SAFETY_CHECK_RESULT2_OVF</strong> </p></li>
+<li><p><strong>ADC_SAFETY_CHECK_OOT_FLG</strong> </p></li>
+<li><p><strong>ADC_SAFETY_CHECK_RES1OVF_FLG</strong> </p></li>
+<li><p><strong>ADC_SAFETY_CHECK_RES2OVF_FLG</strong> </p></li>
 </ul>
 </p>
-<p>The <em>checkerNumber</em> number is a value <strong>ADC_CHECKER_NUMBERx</strong> where x is a number from 1 to 8 specifying which Checker Tile is to be selected in the ADC module specified by <em>scIntEvtBase</em>.</p>
+<p>The <em>checkerNumber</em> number is a value <strong>ADC_SAFETY_CHECKERx</strong> where x is a number from 1 to 8 specifying which Checker Tile is to be selected in the ADC module specified by <em>scIntEvtBase</em>.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>Returns the status of the safety checker event module for the selected instance. </p>
 </dd>
@@ -4441,8 +4468,8 @@ ADC_REP1CTL_TRIGGEROVF)<a class="headerlink" href="#c.ADC_REPSTATUS_MASK" title=
 </dd>
 </dl>
 </p>
-<p><em>checkerFlag</em> takes one of the values <strong>ADC_SAFETY_CHECK_OOT</strong>, <strong>ADC_SAFETY_CHECK_RESULT1_OVF</strong> or <strong>ADC_SAFETY_CHECK_RESULT2_OVF</strong> to express which of the three event status of the ADC Safety Checker should be cleared.</p>
-<p>The <em>checkerNumber</em> number is a value <strong>ADC_CHECKER_NUMBERx</strong> where x is a number from 1 to 8 specifying which Checker Tile is to be selected in the ADC module specified by <em>scIntEvtBase</em>.</p>
+<p><em>checkerFlag</em> takes one of the values <strong>ADC_SAFETY_CHECK_OOT_FLG</strong>, <strong>ADC_SAFETY_CHECK_RES1OVF_FLG</strong> or <strong>ADC_SAFETY_CHECK_RES2OVF_FLG</strong> to express which of the three event status of the ADC Safety Checker should be cleared.</p>
+<p>The <em>checkerNumber</em> number is a value <strong>ADC_SAFETY_CHECKERx</strong> where x is a number from 1 to 8 specifying which Checker Tile is to be selected in the ADC module specified by <em>scIntEvtBase</em>.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -4623,7 +4650,7 @@ ADC_REP1CTL_TRIGGEROVF)<a class="headerlink" href="#c.ADC_REPSTATUS_MASK" title=
 <span id="_CPPv324ADC_triggerRepeaterCount8uint32_t8uint16_t8uint16_t"></span><span id="_CPPv224ADC_triggerRepeaterCount8uint32_t8uint16_t8uint16_t"></span><span id="ADC_triggerRepeaterCount__uint32_t.uint16_t.uint16_t"></span><span class="target" id="group__adc__api_1ga1902ac05acbff8e3348be8f2a587be0f"></span>void <code class="sig-name descname">ADC_triggerRepeaterCount</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>repInstance</em>, uint16_t <em>repCount</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424ADC_triggerRepeaterCount8uint32_t8uint16_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Configures the trigger repeater count.</p>
 <p><p>This function indicates the number of repeated triggers passed into </p>
-<em>repCount</em> and remaining triggers to be generated/supressed.<dl class="simple">
+<em>repCount</em> and remaining triggers to be generated/supressed. In oversampling mode, the <em>repCount</em> parameter is the number of desired repeated triggers to be generated. It should be a value between 0 to 127 where (repCount + 1) triggers will be generated. For example, when <em>repCount</em> = 2, 3 triggers will be generated on receiving corresponding REPxCTL.TRIGSEL. In unversampling mode, the <em>repCount</em> parameter is the number of desired triggers to be supressed. It should be a value between 0 to 127 where 1 out of (repCount + 1) triggers received will be passed through. For Example, when <em>repCount</em> = 2, 1 out of 3 triggers will be generated.<dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ADC module. </p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">repInstance</span></code>: is the repeater instance. </p></li>
@@ -4645,7 +4672,7 @@ ADC_REP1CTL_TRIGGEROVF)<a class="headerlink" href="#c.ADC_REPSTATUS_MASK" title=
 <span id="_CPPv324ADC_triggerRepeaterPhase8uint32_t8uint16_t8uint16_t"></span><span id="_CPPv224ADC_triggerRepeaterPhase8uint32_t8uint16_t8uint16_t"></span><span id="ADC_triggerRepeaterPhase__uint32_t.uint16_t.uint16_t"></span><span class="target" id="group__adc__api_1ga993bc0304bee3563fe52678c278caf8e"></span>void <code class="sig-name descname">ADC_triggerRepeaterPhase</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>repInstance</em>, uint16_t <em>repPhase</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424ADC_triggerRepeaterPhase8uint32_t8uint16_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Configures the trigger repeater phase.</p>
 <p><p>This function configures the phase delay that corresponds to </p>
-<em>repPhase</em> by defining the number of sysclk to delay the selected trigger.<dl class="simple">
+<em>repPhase</em> by defining the number of sysclk to delay the selected trigger. The <em>repPhase</em> parameter should be a value between 0 and 65535 inclusive. For example, passing a 2 to the <em>offset</em> parameter will delay the trigger by 2 sysclks and passing 0 will pass through the trigger without delay.<dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ADC module. </p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">repInstance</span></code>: is the repeater instance. </p></li>
@@ -4667,7 +4694,7 @@ ADC_REP1CTL_TRIGGEROVF)<a class="headerlink" href="#c.ADC_REPSTATUS_MASK" title=
 <span id="_CPPv325ADC_triggerRepeaterSpread8uint32_t8uint16_t8uint16_t"></span><span id="_CPPv225ADC_triggerRepeaterSpread8uint32_t8uint16_t8uint16_t"></span><span id="ADC_triggerRepeaterSpread__uint32_t.uint16_t.uint16_t"></span><span class="target" id="group__adc__api_1ga5bf92097d3156aa96c009ce254371e8e"></span>void <code class="sig-name descname">ADC_triggerRepeaterSpread</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>repInstance</em>, uint16_t <em>repSpread</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425ADC_triggerRepeaterSpread8uint32_t8uint16_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Configures the trigger repeater spread.</p>
 <p><p>This function configures the spread time by setting </p>
-<em>repSpread</em> to number of sysclk desired between triggers.<dl class="simple">
+<em>repSpread</em> to number of sysclk desired between triggers. In oversampling mode, the <em>repSpread</em> parameter is the minimum number of sysclks to wait before creating the next repeated trigger to the ADC. It should be a value between 0 and 65535 inclusive. For example, passing a 2 to the <em>offset</em> parameter will create at least 2 sysclk time between repeated triggers.<dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ADC module. </p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">repInstance</span></code>: is the repeater instance. </p></li>
@@ -4700,6 +4727,32 @@ ADC_REP1CTL_TRIGGEROVF)<a class="headerlink" href="#c.ADC_REPSTATUS_MASK" title=
 </p>
 <p>The <em>repInstance</em> is the repeater instance to be configured. Valid values for this parameter can be referred from the enum <em>ADC_RepInstance</em>.</p>
 <p>The <em>config</em> is the desired trigger repeater configuration which is of type <em><a class="reference internal" href="#struct_a_d_c___repeater_config"><span class="std std-ref">ADC_RepeaterConfig</span></a></em>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424ADC_setupSOCRefloChannel8uint32_t13ADC_SOCNumber11ADC_Trigger8uint32_t15ADC_ChannelType">
+<span id="_CPPv324ADC_setupSOCRefloChannel8uint32_t13ADC_SOCNumber11ADC_Trigger8uint32_t15ADC_ChannelType"></span><span id="_CPPv224ADC_setupSOCRefloChannel8uint32_t13ADC_SOCNumber11ADC_Trigger8uint32_t15ADC_ChannelType"></span><span id="ADC_setupSOCRefloChannel__uint32_t.ADC_SOCNumber.ADC_Trigger.uint32_t.ADC_ChannelType"></span><span class="target" id="group__adc__api_1ga82811db076d3d59caa26e85fe3f9e4a9"></span>void <code class="sig-name descname">ADC_setupSOCRefloChannel</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv413ADC_SOCNumber" title="ADC_SOCNumber">ADC_SOCNumber</a> <em>socNumber</em>, <a class="reference internal" href="#_CPPv411ADC_Trigger" title="ADC_Trigger">ADC_Trigger</a> <em>trigger</em>, uint32_t <em>sampleWindow</em>, <a class="reference internal" href="#_CPPv415ADC_ChannelType" title="ADC_ChannelType">ADC_ChannelType</a> <em>channelType</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424ADC_setupSOCRefloChannel8uint32_t13ADC_SOCNumber11ADC_Trigger8uint32_t15ADC_ChannelType" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Cofigure the internal connection to route VREFLO to ADC module.</p>
+<p><p>This function configures the internal connection to route VREFLO to the ADC module as all the modules do not have direct connection to internal VREFLO.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the ADC module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">socNumber</span></code>: is the number of the start-of-conversion. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">trigger</span></code>: the source that will cause the SOC. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sampleWindow</span></code>: is the acquisition window duration. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">channelType</span></code>: specifies the type of the ADC channel.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>socNumber</em> number is a value <strong>ADC_SOC_NUMBERX</strong> where X is a number from 0 to 15 specifying which SOC is to be configured on the ADC module specified by <em>base</em>.</p>
+<p>The <em>trigger</em> parameter takes the same values as the <a class="reference internal" href="#group__adc__api_1ga476ce05331b08ff2fec27cbf5bca73fd"><span class="std std-ref">ADC_setupSOC()</span></a> API and the <em>sampleWindow</em> parameter is the acquisition window duration in SYSCLK cycles. It should be a value between 1 and 512 cycles inclusive.</p>
+<p>The <em>channelType</em> parameter must be one of the following: <strong>ADC_CHANNEL_ODD</strong> or <strong>ADC_CHANNEL_EVEN</strong> based on the channel selection.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -4842,7 +4895,7 @@ ADC_REP1CTL_TRIGGEROVF)<a class="headerlink" href="#c.ADC_REPSTATUS_MASK" title=
     <p>
       <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
       <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
-      <span class="lastupdated">Last updated on Jul 01, 2023.
+      <span class="lastupdated">Last updated on Nov 09, 2023.
       </span></p>
   </div>
 
@@ -4862,7 +4915,7 @@ ADC_REP1CTL_TRIGGEROVF)<a class="headerlink" href="#c.ADC_REPSTATUS_MASK" title=
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v5.00.00.00',
+            VERSION:'v5.01.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

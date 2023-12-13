@@ -164,8 +164,8 @@ union EPGCOMMIT_REG {
 
 struct GINTSTS_BITS {                   // bits description
     Uint16 INT:1;                       // 0 Global interrupt flag register
-    Uint16 SIGGEN0_DONE:1;              // 1 SIGGEN0 operation done interrupt enable
-    Uint16 SIGGEN0_FILL:1;              // 2 SIGGEN0 data fill interrupt enable
+    Uint16 SIGGEN0_DONE:1;              // 1 SIGGEN0 operation done status
+    Uint16 SIGGEN0_FILL:1;              // 2 SIGGEN0 data fill status
     Uint16 rsvd1:1;                     // 3 Reserved
     Uint16 rsvd2:1;                     // 4 Reserved
     Uint16 rsvd3:11;                    // 15:5 Reserved

@@ -1,0 +1,28 @@
+%%{
+let 	device_common   					= system.getScript("/driverlib/.meta/device/functions_h/device_common.js");
+let 	Common   						= system.getScript("/driverlib/Common.js");
+var	Boot_CPU2_Sector0_Sector13				= system.getTemplate('./Boot_CPU2_Sector0_Sector13.xdt');
+var	Boot_CPU2_Boot_Mode					= system.getTemplate('./Boot_CPU2_Boot_Mode.xdt');
+var	Boot_CPU2_Bank0_Bank4					= system.getTemplate('./Boot_CPU2_Bank0_Bank4.xdt');
+
+const 	multi_core 						= device_common.multi_core;
+const 	device  						= device_common.device;
+const	Boot_CPU2_Type0						= device_common.Boot_CPU2_Type0;
+const	Boot_CPU2_Type1						= device_common.Boot_CPU2_Type1;
+const	Boot_CPU2_Boot_Mode_Type0				= device_common.Boot_CPU2_Boot_Mode_Type0;
+
+%%}
+% if(Boot_CPU2_Type0.includes(device) && Common.isContextCPU1())
+%{
+#ifdef CPU1
+
+`Boot_CPU2_Sector0_Sector13()`
+%}
+% if(Boot_CPU2_Boot_Mode_Type0.includes(device) && Common.isContextCPU1())
+%{
+`Boot_CPU2_Boot_Mode()`
+%}
+% if(Boot_CPU2_Type1.includes(device) && Common.isContextCPU1())
+%{
+`Boot_CPU2_Bank0_Bank4()`
+%}

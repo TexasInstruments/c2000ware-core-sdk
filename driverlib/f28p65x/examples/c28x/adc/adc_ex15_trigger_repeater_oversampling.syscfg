@@ -1,0 +1,37 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28P65x" --package "256ZEJ" --part "F28P65x_256ZEJ" --context "CPU1" --product "C2000WARE@5.02.00.00"
+ * @versions {"tool":"1.16.1+2960"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const adc     = scripting.addModule("/driverlib/adc.js", {}, false);
+const adc1    = adc.addInstance();
+const asysctl = scripting.addModule("/driverlib/asysctl.js");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+adc1.$name                    = "myADC0";
+adc1.adcClockPrescaler        = "ADC_CLK_DIV_4_0";
+adc1.interruptPulseMode       = "ADC_PULSE_END_OF_CONV";
+adc1.enabledSOCs              = ["ADC_SOC_NUMBER0"];
+adc1.soc0SampleWindow         = 15;
+adc1.enabledInts              = ["ADC_INT_NUMBER1"];
+adc1.enableInterrupt1         = true;
+adc1.registerInterrupts       = ["1"];
+adc1["repeater1 Trigger"]     = "ADC_TRIGGER_EPWM1_SOCA";
+adc1.enabledPPBs              = ["ADC_PPB_NUMBER1"];
+adc1.ppb1SelectOSINTSource    = "ADC_PPB_OS_INT_2";
+adc1["repeater1 Count"]       = 3;
+adc1.soc0Triggermode          = "repeatermode";
+adc1.soc0Trigger              = "ADC_TRIGGER_REPEATER1";
+adc1.ppb1AccumulationLimit    = 4;
+adc1.adcInt1.enableInterrupt  = true;
+adc1.adcInt1.interruptHandler = "adcA1ISR";
+
+asysctl.analogReference        = "INTERNAL";
+asysctl.analogReferenceVoltage = "1P65";

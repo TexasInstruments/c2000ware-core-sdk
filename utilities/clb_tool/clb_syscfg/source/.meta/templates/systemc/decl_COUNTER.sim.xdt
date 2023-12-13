@@ -1,0 +1,40 @@
+%%{
+    let inst      = args[0];
+    let tileName  = args[1];
+    let instNum   = args[2];
+    let inputs    = args[3];
+    let Common    = system.getScript("/utilities/clb_tool/clb_syscfg/source/Common.js");
+    let name      = tileName + "_COUNTER_" + instNum;
+%%}
+    DEVICE_CLB_COUNTER     `name`;
+    sc_signal<bool>         sig_`name`_add_shift_dir;
+    sc_signal<bool>         sig_`name`_add_shift_mode;
+    sc_signal<bool>         sig_`name`_add_shift_on_event_en;
+    sc_signal<bool>         sig_`name`_global_clk_en;
+    sc_signal<bool>         sig_`name`_glbl_load_en;
+    sc_signal<sc_uint<32> > sig_`name`_event_load_val;
+    sc_signal<bool>         sig_`name`_glbl_en;
+    sc_signal<bool>         sig_`name`_glbl_rst_n;
+    sc_signal<bool>         sig_`name`_match_en;
+    sc_signal<sc_uint<32> > sig_`name`_match1_val;
+    sc_signal<sc_uint<32> > sig_`name`_match2_val;
+    sc_signal<sc_uint<32> > sig_`name`_match1_out;
+    sc_signal<sc_uint<32> > sig_`name`_match2_out;
+    sc_signal<bool>         sig_`name`_glbl_serializer_mode;
+    sc_signal<bool>         sig_`name`_hlc_count_load_en;
+    sc_signal<bool>         sig_`name`_hlc_match1_load_en;
+    sc_signal<bool>         sig_`name`_hlc_match2_load_en;
+    sc_signal<sc_uint<32> > sig_`name`_count_out;
+    sc_signal<bool>         sig_`name`_count_zero;
+    sc_signal<bool>         sig_`name`_count_match1;
+    sc_signal<bool>         sig_`name`_count_match2;
+#if TYPE == 2 || TYPE == 3
+    sc_signal<bool>         sig_`name`_lfsr_mode;
+    sc_signal<bool>         sig_`name`_match1_tap_en;
+    sc_signal<sc_uint<5> >  sig_`name`_match1_tap;
+    sc_signal<bool>         sig_`name`_match2_tap_en;
+    sc_signal<sc_uint<5> >  sig_`name`_match2_tap;
+#endif
+#if TYPE == 3
+    sc_signal<bool>         sig_`name`_RECONFIG_PIPELINE_EN;
+#endif

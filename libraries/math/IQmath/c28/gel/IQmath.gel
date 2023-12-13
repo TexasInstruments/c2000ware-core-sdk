@@ -1,0 +1,315 @@
+//###########################################################################
+//
+// FILE:   IQmath.gel
+//
+// TITLE:  IQ Math C and C++ Gel Support Functions
+//
+//###########################################################################
+//
+// Ver  | dd-mmm-yyyy |  Who  | Description of changes
+// =====|=============|=======|==============================================
+//  1.4 | 17 May 2002 | A. T. | Original release (borrowed from jes 11/29/01)
+// -----|-------------|-------|----------------------------------------------
+//  1.5 | 30 Jan 2008 | LH    | Fixed 2 instances of variableName2 that should
+//      |             |       | have been variableName1.
+//
+//###########################################################################
+//
+// This file contains GEL functions which enable the viewing of IQ variables
+// in watch windows and allows the setting of IQ variable values via
+// dialogue boxes.
+//
+// The procedure to enable this is as follows:
+//
+// 1. In one of the user source files, the following global variable must
+//    be included:
+//
+//    long  GlobalQ = GLOBAL_Q
+//
+//    This variable is used by the GEL functions to determine the current
+//    GLOBAL_Q setting.
+//
+// 2. Load the "IQmath.gel" file into the user project.
+//
+//    This will automatically load a set of GEL functions for displaying
+//    IQ variables in the watch window and create the following menus 
+//    under the GEL toolbar:
+//
+//          IQ C Support
+//          IQ C++ Support
+//
+// 3. To view a variable in the watch window, simply type the following
+//    commands in the watch window. They will convert the specified
+//    "VarName" in IQ format to the equivalent floating-point value:
+//
+//          For C variables:       _IQ(VarName)     ; GLOBAL_Q value
+//                                 _IQN(VarName)    ; N = 1 to 30
+//          For C++ variables:     IQ(VarName)      ; GLOBAL_Q value
+//                                 IQN(VarName)     ; N = 1 to 30
+//
+// 4. The watch window does not allow the modification of variables
+//    that are not of native type. To facilitate this, the following
+//    GEL operations can be found under the GEL toolbar:
+//
+//          IQ C Support   ---->  SetIQvalue        ; uses GLOBAL_Q
+//                                Set2IQvalues
+//                                Set3IQvalues
+//                                SetIQNvalue       ; user specifies N
+//                                Set2IQNvalues
+//                                Set3IQNvalues    
+//          IQ C++ Support ---->  SetIQvalue        ; uses GLOBAL_Q
+//                                Set2IQvalues
+//                                Set3IQvalues
+//                                SetIQNvalue       ; user specifies N
+//                                Set2IQNvalues
+//                                Set3IQNvalues    
+//
+//    Invoking one of the above GEL operations will bring up a dialogue
+//    box window which the user can enter the variable name and the
+//    floating point value to set. The function will convert the float
+//    value to the appropriate IQ value.
+//
+//===========================================================================
+// Function: _IQ(), _IQN()
+//===========================================================================
+// These functions convert a floating point value to the equivalent
+// IQ value for C variables:
+//
+_IQ(float f)
+{ return (float)(f/(pow(2,GlobalQ))); }
+_IQ1(float f)
+{ return (float)(f/(pow(2,1))); }
+_IQ2(float f)
+{ return (float)(f/(pow(2,2))); }
+_IQ3(float f)
+{ return (float)(f/(pow(2,3))); }
+_IQ4(float f)
+{ return (float)(f/(pow(2,4))); }
+_IQ5(float f)
+{ return (float)(f/(pow(2,5))); }
+_IQ6(float f)
+{ return (float)(f/(pow(2,6))); }
+_IQ7(float f)
+{ return (float)(f/(pow(2,7))); }
+_IQ8(float f)
+{ return (float)(f/(pow(2,8))); }
+_IQ9(float f)
+{ return (float)(f/(pow(2,9))); }
+_IQ10(float f)
+{ return (float)(f/(pow(2,10))); }
+_IQ11(float f)
+{ return (float)(f/(pow(2,11))); }
+_IQ12(float f)
+{ return (float)(f/(pow(2,12))); }
+_IQ13(float f)
+{ return (float)(f/(pow(2,13))); }
+_IQ14(float f)
+{ return (float)(f/(pow(2,14))); }
+_IQ15(float f)
+{ return (float)(f/(pow(2,15))); }
+_IQ16(float f)
+{ return (float)(f/(pow(2,16))); }
+_IQ17(float f)
+{ return (float)(f/(pow(2,17))); }
+_IQ18(float f)
+{ return (float)(f/(pow(2,18))); }
+_IQ19(float f)
+{ return (float)(f/(pow(2,19))); }
+_IQ20(float f)
+{ return (float)(f/(pow(2,20))); }
+_IQ21(float f)
+{ return (float)(f/(pow(2,21))); }
+_IQ22(float f)
+{ return (float)(f/(pow(2,22))); }
+_IQ23(float f)
+{ return (float)(f/(pow(2,23))); }
+_IQ24(float f)
+{ return (float)(f/(pow(2,24))); }
+_IQ25(float f)
+{ return (float)(f/(pow(2,25))); }
+_IQ26(float f)
+{ return (float)(f/(pow(2,26))); }
+_IQ27(float f)
+{ return (float)(f/(pow(2,27))); }
+_IQ28(float f)
+{ return (float)(f/(pow(2,28))); }
+_IQ29(float f)
+{ return (float)(f/(pow(2,29))); }
+_IQ30(float f)
+{ return (float)(f/(pow(2,30))); }
+
+//===========================================================================
+// Function: IQ(), IQN()
+//===========================================================================
+// These functions convert a floating point value to the equivalent
+// IQ value for C++ variables:
+//
+IQ(float f)
+{ return (float)(f.val/(pow(2,GlobalQ))); }
+IQ1(float f)
+{ return (float)(f.val/(pow(2,1))); }
+IQ2(float f)
+{ return (float)(f.val/(pow(2,2))); }
+IQ3(float f)
+{ return (float)(f.val/(pow(2,3))); }
+IQ4(float f)
+{ return (float)(f.val/(pow(2,4))); }
+IQ5(float f)
+{ return (float)(f.val/(pow(2,5))); }
+IQ6(float f)
+{ return (float)(f.val/(pow(2,6))); }
+IQ7(float f)
+{ return (float)(f.val/(pow(2,7))); }
+IQ8(float f)
+{ return (float)(f.val/(pow(2,8))); }
+IQ9(float f)
+{ return (float)(f.val/(pow(2,9))); }
+IQ10(float f)
+{ return (float)(f.val/(pow(2,10))); }
+IQ11(float f)
+{ return (float)(f.val/(pow(2,11))); }
+IQ12(float f)
+{ return (float)(f.val/(pow(2,12))); }
+IQ13(float f)
+{ return (float)(f.val/(pow(2,13))); }
+IQ14(float f)
+{ return (float)(f.val/(pow(2,14))); }
+IQ15(float f)
+{ return (float)(f.val/(pow(2,15))); }
+IQ16(float f)
+{ return (float)(f.val/(pow(2,16))); }
+IQ17(float f)
+{ return (float)(f.val/(pow(2,17))); }
+IQ18(float f)
+{ return (float)(f.val/(pow(2,18))); }
+IQ19(float f)
+{ return (float)(f.val/(pow(2,19))); }
+IQ20(float f)
+{ return (float)(f.val/(pow(2,20))); }
+IQ21(float f)
+{ return (float)(f.val/(pow(2,21))); }
+IQ22(float f)
+{ return (float)(f.val/(pow(2,22))); }
+IQ23(float f)
+{ return (float)(f.val/(pow(2,23))); }
+IQ24(float f)
+{ return (float)(f.val/(pow(2,24))); }
+IQ25(float f)
+{ return (float)(f.val/(pow(2,25))); }
+IQ26(float f)
+{ return (float)(f.val/(pow(2,26))); }
+IQ27(float f)
+{ return (float)(f.val/(pow(2,27))); }
+IQ28(float f)
+{ return (float)(f.val/(pow(2,28))); }
+IQ29(float f)
+{ return (float)(f.val/(pow(2,29))); }
+IQ30(float f)
+{ return (float)(f.val/(pow(2,30))); }
+
+//===========================================================================
+// Function: pow()
+//===========================================================================
+// This function is used to calculate exponents. It takes 2 parameters
+// base and exp, and returns base to the power of exp:
+//
+pow(double base, double exp) {      
+   double answer = 1;               // initialize
+   int i;                       // counter for loop
+   for (i = 1; i<=exp; i++)         // multiple answer by base exp times
+       answer = answer * base;
+   return answer;                   // return value stored in answer
+}
+
+//===========================================================================
+// Define Menus:
+//===========================================================================
+menuitem "IQ C Support"
+dialog Set_IQvalue(variableName "_iq C Variable Name", floatValue "Float Value")
+{
+   variableName = (long) ( ((double) floatValue) * (pow(2, GlobalQ)) );
+}
+
+dialog Set2_IQvalues(variableName1 "1. _iq C Variable Name", floatValue1 "1. Float Value",
+                    variableName2 "2. _iq C Variable Name", floatValue2 "2. Float Value")
+{
+   variableName1 = (long) ( ((double) floatValue1) * (pow(2, GlobalQ)) );
+   variableName2 = (long) ( ((double) floatValue2) * (pow(2, GlobalQ)) );
+}
+
+dialog Set3_IQvalues(variableName1 "1. _iq C Variable Name", floatValue1 "1. Float Value",
+                    variableName2 "2. _iq C Variable Name", floatValue2 "2. Float Value",
+                    variableName3 "3. _iq C Variable Name", floatValue3 "3. Float Value")
+{
+   variableName1 = (long) ( ((double) floatValue1) * (pow(2, GlobalQ)) );
+   variableName2 = (long) ( ((double) floatValue2) * (pow(2, GlobalQ)) );
+   variableName3 = (long) ( ((double) floatValue3) * (pow(2, GlobalQ)) );
+}
+
+dialog Set_IQNvalue(variableName "_iqN C Variable Name", Qvalue "N Value", floatValue "Float Value")
+{
+   variableName = (long) ( ((double) floatValue) * (pow(2, Qvalue)) );
+}
+
+dialog Set_2IQNvalues(variableName1 "1. _iqN C Variable Name", Qvalue1 "1. N Value", floatValue1 "1. Float Value",
+                     variableName2 "2. _iqN C Variable Name", Qvalue2 "2. N Value", floatValue2 "2. Float Value")
+{
+   variableName1 = (long) ( ((double) floatValue1) * (pow(2, Qvalue1)) );
+   variableName2 = (long) ( ((double) floatValue2) * (pow(2, Qvalue2)) );
+}
+
+dialog Set_3IQNvalues(variableName1 "1. _iqN C Variable Name", Qvalue1 "1. N Value", floatValue1 "1. Float Value",
+                     variableName2 "2. _iqN C Variable Name", Qvalue2 "2. N Value", floatValue2 "2. Float Value",
+                     variableName3 "3. _iqN C Variable Name", Qvalue3 "3. N Value", floatValue3 "3. Float Value")
+{
+   variableName1 = (long) ( ((double) floatValue1) * (pow(2, Qvalue1)) );
+   variableName2 = (long) ( ((double) floatValue2) * (pow(2, Qvalue2)) );
+   variableName3 = (long) ( ((double) floatValue3) * (pow(2, Qvalue3)) );
+}
+
+menuitem "IQ C++ Support"
+dialog SetIQvalue(variableName "iq C++ Variable Name", floatValue "Float Value")
+{
+   variableName.val = (long) ( ((double) floatValue) * (pow(2, GlobalQ)) );
+}
+
+dialog Set2IQvalues(variableName1 "1. iq C++ Variable Name", floatValue1 "1. Float Value", 
+                    variableName2 "2. iq C++ Variable Name", floatValue2 "2. Float Value")
+{
+   variableName1.val = (long) ( ((double) floatValue1) * (pow(2, GlobalQ)) );
+   variableName2.val = (long) ( ((double) floatValue2) * (pow(2, GlobalQ)) );
+}
+
+dialog Set3IQvalues(variableName1 "1. iq C++ Variable Name", floatValue1 "1. Float Value", 
+                    variableName2 "2. iq C++ Variable Name", floatValue2 "2. Float Value",
+                    variableName3 "3. iq C++ Variable Name", floatValue3 "3. Float Value")
+{
+   variableName1.val = (long) ( ((double) floatValue1) * (pow(2, GlobalQ)) );
+   variableName2.val = (long) ( ((double) floatValue2) * (pow(2, GlobalQ)) );
+   variableName3.val = (long) ( ((double) floatValue3) * (pow(2, GlobalQ)) );
+}
+
+dialog SetIQNvalue(variableName "iqN C++ Variable Name", Qvalue "N Value", floatValue "Float Value")
+{
+   variableName.val = (long) ( ((double) floatValue) * (pow(2, Qvalue)) );
+}
+
+dialog Set2IQNvalues(variableName1 "1. iqN C++ Variable Name", Qvalue1 "1. N Value", floatValue1 "1. Float Value", 
+                     variableName2 "2. iqN C++ Variable Name", Qvalue2 "2. N Value", floatValue2 "2. Float Value")
+{
+   variableName1.val = (long) ( ((double) floatValue1) * (pow(2, Qvalue1)) );
+   variableName2.val = (long) ( ((double) floatValue2) * (pow(2, Qvalue2)) );
+}
+
+dialog Set3IQNvalues(variableName1 "1. iqN C++ Variable Name", Qvalue1 "1. Q Value", floatValue1 "1. Float Value", 
+                     variableName2 "2. iqN C++ Variable Name", Qvalue2 "2. Q Value", floatValue2 "2. Float Value",
+                     variableName3 "3. iqN C++ Variable Name", Qvalue3 "3. Q Value", floatValue3 "3. Float Value")
+{
+   variableName1.val = (long) ( ((double) floatValue1) * (pow(2, Qvalue1)) );
+   variableName2.val = (long) ( ((double) floatValue2) * (pow(2, Qvalue2)) );
+   variableName3.val = (long) ( ((double) floatValue3) * (pow(2, Qvalue3)) );
+}
+
+//===========================================================================
+// No more.
+//===========================================================================

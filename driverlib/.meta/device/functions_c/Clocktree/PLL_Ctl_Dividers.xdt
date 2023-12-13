@@ -1,0 +1,50 @@
+%%{
+let device_common   				= system.getScript("/driverlib/.meta/device/functions_c/device_common.js");
+let Common   					= system.getScript("/driverlib/Common.js");
+
+const clocktree_PLL_Ctl_Dividers_Type0 		= device_common.clocktree_PLL_Ctl_Dividers_Type0;
+const clocktree_PLL_Ctl_Dividers_Type1 		= device_common.clocktree_PLL_Ctl_Dividers_Type1;
+const clocktree_PLL_Ctl_Dividers_Type2 		= device_common.clocktree_PLL_Ctl_Dividers_Type2;
+const device  					= device_common.device;
+%%}
+% if(clocktree_PLL_Ctl_Dividers_Type0.includes(device))
+	% {
+    //
+    // Set up PLL control and clock dividers
+    //
+    SysCtl_setClock(DEVICE_SETCLOCK_CFG);
+    SysCtl_setLowSpeedClock(DEVICE_LSPCLK_CFG);
+
+	% }
+% if(clocktree_PLL_Ctl_Dividers_Type1.includes(device))
+	% {
+    //
+    // Set up PLL control and clock dividers
+    //
+    SysCtl_setClock(DEVICE_SETCLOCK_CFG);
+    SysCtl_setLowSpeedClock(DEVICE_LSPCLK_CFG);
+
+    //
+    // Set up AUXPLL control and clock dividers needed for CMCLK
+    //
+    SysCtl_setAuxClock(DEVICE_AUXSETCLOCK_CFG);
+
+    //
+    // Set up CMCLK to use AUXPLL as the clock source and set the
+    // clock divider to 1.
+    //
+    SysCtl_setCMClk(SYSCTL_CMCLKOUT_DIV_1,SYSCTL_SOURCE_AUXPLL);
+	% }
+% if(clocktree_PLL_Ctl_Dividers_Type2.includes(device))
+	% {
+    //
+    // Set up PLL control and clock dividers
+    //
+    SysCtl_setClock(DEVICE_SETCLOCK_CFG);
+    SysCtl_setLowSpeedClock(DEVICE_LSPCLK_CFG);
+
+    //
+    // Set up AUXPLL control and clock dividers needed for CMCLK
+    //
+    SysCtl_setAuxClock(DEVICE_AUXSETCLOCK_CFG);
+	% }

@@ -1,0 +1,154 @@
+
+/**
+ * Import the modules used in this configuration.
+ */
+const clb         = scripting.addModule("/driverlib/clb.js", {}, false);
+const clb1        = clb.addInstance();
+const clbxbar     = scripting.addModule("/driverlib/clbxbar.js", {}, false);
+const clbxbar1    = clbxbar.addInstance();
+const clbxbar2    = clbxbar.addInstance();
+const epwm        = scripting.addModule("/driverlib/epwm.js", {}, false);
+const epwm1       = epwm.addInstance();
+const gpio        = scripting.addModule("/driverlib/gpio.js", {}, false);
+const gpio1       = gpio.addInstance();
+const gpio2       = gpio.addInstance();
+const inputxbar   = scripting.addModule("/driverlib/inputxbar.js", {}, false);
+const inputxbar1  = inputxbar.addInstance();
+const outputxbar  = scripting.addModule("/driverlib/outputxbar.js", {}, false);
+const outputxbar1 = outputxbar.addInstance();
+const outputxbar2 = outputxbar.addInstance();
+const TILE        = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/TILE");
+const TILE1       = TILE.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+clb1.$name                       = "myTILE1";
+clb1.enableCLB                   = true;
+clb1.inputsUsed                  = ["CLB_IN0","CLB_IN1","CLB_IN2"];
+clb1.inputTypeCLB_IN0            = "GLOBAL";
+clb1.inputTypeCLB_IN1            = "GLOBAL";
+clb1.globalConfigCLB_IN0         = "CLB_GLOBAL_IN_MUX_CLB_AUXSIG0";
+clb1.globalConfigCLB_IN1         = "CLB_GLOBAL_IN_MUX_CLB_AUXSIG1";
+clb1.synchronizeCLB_IN0          = true;
+clb1.synchronizeCLB_IN1          = true;
+clb1.outputsToOverridePeripheral = ["CLB_OUT0","CLB_OUT2"];
+
+clbxbar1.muxesUsed  = ["XBAR_MUX01"];
+clbxbar1.mux1Config = "XBAR_CLB_MUX01_INPUTXBAR1";
+clbxbar1.$name      = "myCLBXBAR1";
+
+clbxbar2.auxInput   = "XBAR_AUXSIG1";
+clbxbar2.muxesUsed  = ["XBAR_MUX03"];
+clbxbar2.mux3Config = "XBAR_CLB_MUX03_INPUTXBAR2";
+clbxbar2.$name      = "myCLBXBAR2";
+
+epwm1.$name                  = "myEPWM1";
+epwm1.epwm.$assign           = "EPWM1";
+epwm1.epwm.epwm_aPin.$assign = "GPIO0";
+epwm1.epwm.epwm_bPin.$assign = "GPIO1";
+
+gpio1.$name                         = "myGPIO4";
+gpio1.padConfig                     = "PULLUP";
+gpio1.gpioPin.$assignAllowConflicts = "GPIO4";
+
+gpio2.$name                         = "myGPIO5";
+gpio2.padConfig                     = "PULLUP";
+gpio2.gpioPin.$assignAllowConflicts = "GPIO5";
+
+inputxbar1.$name          = "myINPUTXBAR0";
+inputxbar1.inputsUsed     = ["inputxbar1Gpio","inputxbar2Gpio"];
+inputxbar1.inputxbar1Gpio = "GPIO4";
+inputxbar1.inputxbar2Gpio = "GPIO5";
+
+outputxbar1.$name                            = "myOUTPUTXBAR8";
+outputxbar1.muxesUsed                        = ["XBAR_MUX01"];
+outputxbar1.mux1Config                       = "XBAR_OUT_MUX01_CLB1_OUT4";
+outputxbar1.outputxbar.$assign               = "OUTPUTXBAR8";
+outputxbar1.outputxbar.outputxbarPin.$assign = "GPIO31";
+
+outputxbar2.$name                            = "myOUTPUTXBAR1";
+outputxbar2.muxesUsed                        = ["XBAR_MUX03"];
+outputxbar2.mux3Config                       = "XBAR_OUT_MUX03_CLB1_OUT5";
+outputxbar2.outputxbar.$assign               = "OUTPUTXBAR1";
+outputxbar2.outputxbar.outputxbarPin.$assign = "GPIO34";
+
+TILE1.$name                    = "TILE1";
+TILE1.BOUNDARY.$name           = "BOUNDARY0";
+TILE1.LUT_0.$name              = "LUT_0";
+TILE1.LUT_0.i0                 = "COUNTER_0.count_match1";
+TILE1.LUT_0.i1                 = "BOUNDARY.in0";
+TILE1.LUT_0.eqn                = "i0&i1";
+TILE1.LUT_1.$name              = "LUT_1";
+TILE1.LUT_1.i0                 = "COUNTER_0.count_match1";
+TILE1.LUT_1.i1                 = "BOUNDARY.in1";
+TILE1.LUT_1.eqn                = "i0&i1";
+TILE1.LUT_2.$name              = "LUT_2";
+TILE1.LUT_2.i0                 = "COUNTER_1.count_zero";
+TILE1.LUT_2.i1                 = "BOUNDARY.in2";
+TILE1.LUT_2.eqn                = "i0&i1";
+TILE1.FSM_0.$name              = "FSM_0";
+TILE1.FSM_0.e0                 = "COUNTER_1.count_zero";
+TILE1.FSM_0.e1                 = "COUNTER_1.count_match1";
+TILE1.FSM_0.eqn_s0             = "(s0 ^ e1)& (!e0)";
+TILE1.FSM_1.$name              = "FSM_1";
+TILE1.FSM_1.e0                 = "LUT_0.OUT";
+TILE1.FSM_1.e1                 = "LUT_1.OUT";
+TILE1.FSM_1.eqn_s0             = " (!e0&s0) | (e0&e1&!s0) | (!s0&!s1&e0) | (e0&!e1&!s1)";
+TILE1.FSM_1.eqn_s1             = "(s1&!e1) | (s0&s1) | (s0&e1)";
+TILE1.FSM_1.eqn_out            = "(e0&e1) | (!s0&!s1&e0) | (s0&s1&e0)";
+TILE1.FSM_2.$name              = "FSM_2";
+TILE1.FSM_2.e0                 = "FSM_1.S0";
+TILE1.FSM_2.e1                 = "FSM_1.S1";
+TILE1.FSM_2.eqn_s1             = "(!e0)&e1";
+TILE1.FSM_2.eqn_s0             = "e0&(!e1)";
+TILE1.FSM_2.eqn_out            = "s0 | s1";
+TILE1.COUNTER_0.$name          = "COUNTER_0";
+TILE1.COUNTER_0.mode0          = "1";
+TILE1.COUNTER_0.mode1          = "1";
+TILE1.COUNTER_0.reset          = "COUNTER_0.count_match1";
+TILE1.COUNTER_0.match1_val     = "50000";
+TILE1.COUNTER_1.$name          = "COUNTER_1";
+TILE1.COUNTER_1.event_load_val = "4000";
+TILE1.COUNTER_1.action         = "Load";
+TILE1.COUNTER_1.match1_val     = "2000";
+TILE1.COUNTER_1.reset          = "FSM_1.OUT";
+TILE1.COUNTER_1.mode0          = "FSM_2.OUT";
+TILE1.COUNTER_1.event          = "COUNTER_1.count_zero";
+TILE1.COUNTER_2.$name          = "COUNTER_2";
+TILE1.OUTLUT_0.$name           = "OUTLUT_0";
+TILE1.OUTLUT_0.i0              = "FSM_0.S0";
+TILE1.OUTLUT_0.i1              = "FSM_2.S0";
+TILE1.OUTLUT_0.eqn             = "i0&i1";
+TILE1.OUTLUT_1.$name           = "OUTLUT_1";
+TILE1.OUTLUT_2.$name           = "OUTLUT_2";
+TILE1.OUTLUT_2.i0              = "FSM_0.S0";
+TILE1.OUTLUT_2.i1              = "FSM_2.S1";
+TILE1.OUTLUT_2.eqn             = "i0&i1";
+TILE1.OUTLUT_3.$name           = "OUTLUT_3";
+TILE1.OUTLUT_4.$name           = "OUTLUT_4";
+TILE1.OUTLUT_4.i0              = "FSM_1.S0";
+TILE1.OUTLUT_4.eqn             = "!i0";
+TILE1.OUTLUT_5.$name           = "OUTLUT_5";
+TILE1.OUTLUT_5.i0              = "FSM_1.S1";
+TILE1.OUTLUT_5.eqn             = "!i0";
+TILE1.OUTLUT_6.$name           = "OUTLUT_6";
+TILE1.OUTLUT_7.$name           = "OUTLUT_7";
+TILE1.HLC.$name                = "HLC_0";
+TILE1.HLC.e0                   = "LUT_2.OUT";
+TILE1.HLC.program0.$name       = "HLCP_0";
+TILE1.HLC.program0.instruct0   = "PULL C1";
+TILE1.HLC.program0.instruct1   = "PULL R1";
+TILE1.HLC.program0.instruct2   = "MOV_T1 R1,C1";
+TILE1.HLC.program0.instruct3   = "INTR 1";
+TILE1.HLC.program1.$name       = "HLCP_1";
+TILE1.HLC.program2.$name       = "HLCP_2";
+TILE1.HLC.program3.$name       = "HLCP_3";
+TILE1.AOC_0.$name              = "AOC_0";
+TILE1.AOC_1.$name              = "AOC_1";
+TILE1.AOC_2.$name              = "AOC_2";
+TILE1.AOC_3.$name              = "AOC_3";
+TILE1.AOC_4.$name              = "AOC_4";
+TILE1.AOC_5.$name              = "AOC_5";
+TILE1.AOC_6.$name              = "AOC_6";
+TILE1.AOC_7.$name              = "AOC_7";

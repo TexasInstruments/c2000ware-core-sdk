@@ -1,0 +1,32 @@
+<projectSpec>
+  <project
+        name="F280049_ERAD"
+        device="TMS320F280049"
+        configurations="DEBUG"
+        launchWizard="False"
+        linkerCommandFile=""
+        compilerBuildOptions="--opt_level=off -I${C2000WARE_F28004X_ROOT1} -I${C2000WARE_F28004X_ROOT2} -I${C2000WARE_DCL_INCLUDE_ROOT} -I${C2000WARE_F28004X_ERAD_INCLUDE} -v28 -ml -mt  --float_support=fpu32  --define=DEBUG   --diag_warning=225  --diag_suppress=10063 --display_error_number"
+        linkerBuildOptions="--stack_size=0x400 --heap_size=0x200 --define RAM"
+        >
+    <pathVariable name="C2000WARE_F28004X_ROOT1" path="../../../../../../../device_support/f28004x/headers/include" scope="project" />
+	<pathVariable name="C2000WARE_F28004X_ROOT2" path="../../../../../../../device_support/f28004x/common/include" scope="project" />
+	<pathVariable name="C2000WARE_F28004X_ERAD_INCLUDE" path="../" scope="project" />
+	<pathVariable name="C2000WARE_DCL_INCLUDE_ROOT" path="../../../include" scope="project" />
+	<file action="copy" path="../../../../../../../device_support/f28004x/common/source/f28004x_codestartbranch.asm" targetDirectory="" />
+	<file action="copy" path="../../../../../../../device_support/f28004x/common/source/f28004x_cputimers.c" targetDirectory="" />
+	<file action="copy" path="../../../../../../../device_support/f28004x/common/source/f28004x_defaultisr.c" targetDirectory="" />
+	<file action="copy" path="../../../../../../../device_support/f28004x/headers/source/f28004x_globalvariabledefs.c" targetDirectory="" />
+	<file action="copy" path="../../../../../../../device_support/f28004x/common/source/f28004x_gpio.c" targetDirectory="" />
+	<file action="copy" path="../../../../../../../device_support/f28004x/common/source/f28004x_piectrl.c" targetDirectory="" />
+	<file action="copy" path="../../../../../../../device_support/f28004x/common/source/f28004x_pievect.c" targetDirectory="" />
+	<file action="copy" path="../../../../../../../device_support/f28004x/common/source/f28004x_sysctrl.c" targetDirectory="" />
+	<file action="copy" path="../../../../../../../device_support/f28004x/common/source/f28004x_usdelay.asm" targetDirectory="" />
+	<file action="copy" path="../../../../../../../device_support/f28004x/headers/cmd/f28004x_headers_nonbios.cmd" targetDirectory="" />
+	<file action="copy" path="../../../cmd/F280049_stdmem.cmd" targetDirectory="" />
+	<file action="copy" path="../../../cmd/F280049_ERAD.cmd" targetDirectory="" />	
+	<file action="copy" path="../f28004x_usdelay_erad.asm" targetDirectory="" />
+	<file action="copy" path="../Example_F280049_erad.c" targetDirectory="" />
+	<file action="copy" path="../f28004x_dcl_erad.c" targetDirectory="" />
+	<file action="copy" path="../../../source/DCL_error.c" targetDirectory="" />
+  </project>
+</projectSpec>

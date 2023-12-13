@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v5.00.00.00
+                v5.01.00.00
               </div>
             
           
@@ -173,7 +173,1384 @@ to perform an autobaud lock, enable or disable loopback mode, enable the FIFO
 enhancement, configure interrupts, and send and receive data. If FIFO
 enhancement is enabled, the application must use the provided FIFO read and
 write functions to guarantee proper execution.</p>
-<p>/.. doxygengroup:: sci_api</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__sci__api"></span><em>group</em> <code class="sig-name descname">sci_api</code></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.SCI_INT_RXERR">
+<span class="target" id="group__sci__api_1ga1345b5490e4e4047989eafddc952568b"></span><code class="sig-name descname">SCI_INT_RXERR</code> 0x01U<a class="headerlink" href="#c.SCI_INT_RXERR" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>RXERR interrupt. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SCI_INT_RXRDY_BRKDT">
+<span class="target" id="group__sci__api_1gae946bde032d17d6790c2f187f3f9c16b"></span><code class="sig-name descname">SCI_INT_RXRDY_BRKDT</code> 0x02U<a class="headerlink" href="#c.SCI_INT_RXRDY_BRKDT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>RXRDY interrupt. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SCI_INT_TXRDY">
+<span class="target" id="group__sci__api_1ga0f4d49ce0bec628e4c86083498193d1c"></span><code class="sig-name descname">SCI_INT_TXRDY</code> 0x04U<a class="headerlink" href="#c.SCI_INT_TXRDY" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>TXRDY interrupt. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SCI_INT_TXFF">
+<span class="target" id="group__sci__api_1ga1d2030b63fd355404bc2eba35ef6c9af"></span><code class="sig-name descname">SCI_INT_TXFF</code> 0x08U<a class="headerlink" href="#c.SCI_INT_TXFF" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>TX FIFO level interrupt. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SCI_INT_RXFF">
+<span class="target" id="group__sci__api_1ga2a12a68d8ca0d77826b44f75dbf7daa7"></span><code class="sig-name descname">SCI_INT_RXFF</code> 0x10U<a class="headerlink" href="#c.SCI_INT_RXFF" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>RX FIFO level interrupt. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SCI_INT_FE">
+<span class="target" id="group__sci__api_1ga6ec97594cfe13d807f0fc67b35154e77"></span><code class="sig-name descname">SCI_INT_FE</code> 0x20U<a class="headerlink" href="#c.SCI_INT_FE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Frame Error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SCI_INT_OE">
+<span class="target" id="group__sci__api_1ga177b491004b1692e618b512c3cab3f73"></span><code class="sig-name descname">SCI_INT_OE</code> 0x40U<a class="headerlink" href="#c.SCI_INT_OE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Overrun Error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SCI_INT_PE">
+<span class="target" id="group__sci__api_1ga524c9a45f1c6acbde5f6a2a54f1088af"></span><code class="sig-name descname">SCI_INT_PE</code> 0x80U<a class="headerlink" href="#c.SCI_INT_PE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Parity Error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SCI_CONFIG_WLEN_MASK">
+<span class="target" id="group__sci__api_1ga4855556cc261ac07ccabfe3a53bd290a"></span><code class="sig-name descname">SCI_CONFIG_WLEN_MASK</code> 0x0007U<a class="headerlink" href="#c.SCI_CONFIG_WLEN_MASK" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for extracting word length. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SCI_CONFIG_WLEN_8">
+<span class="target" id="group__sci__api_1ga11ed925d81d838218960da1cf3d1e9cd"></span><code class="sig-name descname">SCI_CONFIG_WLEN_8</code> 0x0007U<a class="headerlink" href="#c.SCI_CONFIG_WLEN_8" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>8 bit data </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SCI_CONFIG_WLEN_7">
+<span class="target" id="group__sci__api_1ga0598ca502672659bd74da8b54ea58390"></span><code class="sig-name descname">SCI_CONFIG_WLEN_7</code> 0x0006U<a class="headerlink" href="#c.SCI_CONFIG_WLEN_7" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>7 bit data </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SCI_CONFIG_WLEN_6">
+<span class="target" id="group__sci__api_1gaf9f1704b82abbb7c6facb6e541a825e1"></span><code class="sig-name descname">SCI_CONFIG_WLEN_6</code> 0x0005U<a class="headerlink" href="#c.SCI_CONFIG_WLEN_6" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>6 bit data </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SCI_CONFIG_WLEN_5">
+<span class="target" id="group__sci__api_1gae2e8bc8edc8b1ddc872022b542c60466"></span><code class="sig-name descname">SCI_CONFIG_WLEN_5</code> 0x0004U<a class="headerlink" href="#c.SCI_CONFIG_WLEN_5" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>5 bit data </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SCI_CONFIG_WLEN_4">
+<span class="target" id="group__sci__api_1gaeaf7c4dbbfef9bd81d119e24c9a0bc16"></span><code class="sig-name descname">SCI_CONFIG_WLEN_4</code> 0x0003U<a class="headerlink" href="#c.SCI_CONFIG_WLEN_4" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>4 bit data </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SCI_CONFIG_WLEN_3">
+<span class="target" id="group__sci__api_1gaf76a7eceaaec23b0c43ee48d77b25e38"></span><code class="sig-name descname">SCI_CONFIG_WLEN_3</code> 0x0002U<a class="headerlink" href="#c.SCI_CONFIG_WLEN_3" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>3 bit data </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SCI_CONFIG_WLEN_2">
+<span class="target" id="group__sci__api_1gabe8e4240709846d599247a36794ff75f"></span><code class="sig-name descname">SCI_CONFIG_WLEN_2</code> 0x0001U<a class="headerlink" href="#c.SCI_CONFIG_WLEN_2" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>2 bit data </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SCI_CONFIG_WLEN_1">
+<span class="target" id="group__sci__api_1ga34e403a2d1df6520406fd121d60501e9"></span><code class="sig-name descname">SCI_CONFIG_WLEN_1</code> 0x0000U<a class="headerlink" href="#c.SCI_CONFIG_WLEN_1" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>1 bit data </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SCI_CONFIG_STOP_MASK">
+<span class="target" id="group__sci__api_1ga43bbb169f8d7e1c48b58b54516c6eb3b"></span><code class="sig-name descname">SCI_CONFIG_STOP_MASK</code> 0x0080U<a class="headerlink" href="#c.SCI_CONFIG_STOP_MASK" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for extracting stop bits. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SCI_CONFIG_STOP_ONE">
+<span class="target" id="group__sci__api_1ga4a6032341796e3cffe28e1190e582c77"></span><code class="sig-name descname">SCI_CONFIG_STOP_ONE</code> 0x0000U<a class="headerlink" href="#c.SCI_CONFIG_STOP_ONE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>One stop bit. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SCI_CONFIG_STOP_TWO">
+<span class="target" id="group__sci__api_1ga747ddcee7a0baeee2984f52696a21af9"></span><code class="sig-name descname">SCI_CONFIG_STOP_TWO</code> 0x0080U<a class="headerlink" href="#c.SCI_CONFIG_STOP_TWO" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Two stop bits. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SCI_CONFIG_PAR_MASK">
+<span class="target" id="group__sci__api_1gaed297004266768363f1cc9302ec5954a"></span><code class="sig-name descname">SCI_CONFIG_PAR_MASK</code> 0x0060U<a class="headerlink" href="#c.SCI_CONFIG_PAR_MASK" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Parity Mask. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SCI_RXSTATUS_WAKE">
+<span class="target" id="group__sci__api_1gad32185ba65a4326c8b9a77a917c4d0d8"></span><code class="sig-name descname">SCI_RXSTATUS_WAKE</code> 0x0002U<a class="headerlink" href="#c.SCI_RXSTATUS_WAKE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receiver wake up detect. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SCI_RXSTATUS_PARITY">
+<span class="target" id="group__sci__api_1gad2fb4f025ee62c0f685c5d93e65e944c"></span><code class="sig-name descname">SCI_RXSTATUS_PARITY</code> 0x0004U<a class="headerlink" href="#c.SCI_RXSTATUS_PARITY" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Parity error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SCI_RXSTATUS_OVERRUN">
+<span class="target" id="group__sci__api_1gae7b02a6b5ec9d2be3342bbc0fa1192ab"></span><code class="sig-name descname">SCI_RXSTATUS_OVERRUN</code> 0x0008U<a class="headerlink" href="#c.SCI_RXSTATUS_OVERRUN" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Overrun error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SCI_RXSTATUS_FRAMING">
+<span class="target" id="group__sci__api_1gaa4edf471267d7ea36b804c02275afc1a"></span><code class="sig-name descname">SCI_RXSTATUS_FRAMING</code> 0x0010U<a class="headerlink" href="#c.SCI_RXSTATUS_FRAMING" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Framing error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SCI_RXSTATUS_BREAK">
+<span class="target" id="group__sci__api_1ga8c18d6bc6033a63028787faa2001035c"></span><code class="sig-name descname">SCI_RXSTATUS_BREAK</code> 0x0020U<a class="headerlink" href="#c.SCI_RXSTATUS_BREAK" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Break detect. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SCI_RXSTATUS_READY">
+<span class="target" id="group__sci__api_1ga6f30ec3629d3cbb94c439985632ea959"></span><code class="sig-name descname">SCI_RXSTATUS_READY</code> 0x0040U<a class="headerlink" href="#c.SCI_RXSTATUS_READY" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receiver ready. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SCI_RXSTATUS_ERROR">
+<span class="target" id="group__sci__api_1gaedd2ffc6a19dc28bdeb039e64042cc5b"></span><code class="sig-name descname">SCI_RXSTATUS_ERROR</code> 0x0080U<a class="headerlink" href="#c.SCI_RXSTATUS_ERROR" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receiver error. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="cpp enum">
+<dt id="_CPPv414SCI_ParityType">
+<span id="_CPPv314SCI_ParityType"></span><span id="_CPPv214SCI_ParityType"></span><span class="target" id="group__sci__api_1ga061845fa0af9c0b8b6072d973091b497"></span><em class="property">enum </em><code class="sig-name descname">SCI_ParityType</code><a class="headerlink" href="#_CPPv414SCI_ParityType" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be used with <a class="reference internal" href="#group__sci__api_1gac4ba73ec9b9f7ca901cc037c6c336d7b"><span class="std std-ref">SCI_setParityMode()</span></a> and <a class="reference internal" href="#group__sci__api_1gaed55fde63548d54b186a151f76a0ea5a"><span class="std std-ref">SCI_getParityMode()</span></a> to describe the parity of the SCI communication. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14SCI_ParityType19SCI_CONFIG_PAR_NONEE">
+<span id="_CPPv3N14SCI_ParityType19SCI_CONFIG_PAR_NONEE"></span><span id="_CPPv2N14SCI_ParityType19SCI_CONFIG_PAR_NONEE"></span><span class="target" id="group__sci__api_1gga061845fa0af9c0b8b6072d973091b497a3b63ffa711fe21b1e789bea06ab841f6"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_CONFIG_PAR_NONE</code> = 0x0000U<a class="headerlink" href="#_CPPv4N14SCI_ParityType19SCI_CONFIG_PAR_NONEE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>No parity. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14SCI_ParityType19SCI_CONFIG_PAR_EVENE">
+<span id="_CPPv3N14SCI_ParityType19SCI_CONFIG_PAR_EVENE"></span><span id="_CPPv2N14SCI_ParityType19SCI_CONFIG_PAR_EVENE"></span><span class="target" id="group__sci__api_1gga061845fa0af9c0b8b6072d973091b497a5898c0082fa887334fbec9df985215c5"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_CONFIG_PAR_EVEN</code> = 0x0060U<a class="headerlink" href="#_CPPv4N14SCI_ParityType19SCI_CONFIG_PAR_EVENE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Even parity. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14SCI_ParityType18SCI_CONFIG_PAR_ODDE">
+<span id="_CPPv3N14SCI_ParityType18SCI_CONFIG_PAR_ODDE"></span><span id="_CPPv2N14SCI_ParityType18SCI_CONFIG_PAR_ODDE"></span><span class="target" id="group__sci__api_1gga061845fa0af9c0b8b6072d973091b497aaa2a106064c58ffc63472445919399db"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_CONFIG_PAR_ODD</code> = 0x0020U<a class="headerlink" href="#_CPPv4N14SCI_ParityType18SCI_CONFIG_PAR_ODDE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Odd parity. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv415SCI_TxFIFOLevel">
+<span id="_CPPv315SCI_TxFIFOLevel"></span><span id="_CPPv215SCI_TxFIFOLevel"></span><span class="target" id="group__sci__api_1ga6fba1f1d41dff0562830f10f597b665f"></span><em class="property">enum </em><code class="sig-name descname">SCI_TxFIFOLevel</code><a class="headerlink" href="#_CPPv415SCI_TxFIFOLevel" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__sci__api_1ga85013f693224da42aec7fc76f7b16b2c"><span class="std std-ref">SCI_setFIFOInterruptLevel()</span></a> as the txLevel parameter and returned by SCI_getFIFOInteruptLevel() and <a class="reference internal" href="#group__sci__api_1ga4e6cc8b077c1d5bc1ef523c416c403f4"><span class="std std-ref">SCI_getTxFIFOStatus()</span></a>. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_TxFIFOLevel12SCI_FIFO_TX0E">
+<span id="_CPPv3N15SCI_TxFIFOLevel12SCI_FIFO_TX0E"></span><span id="_CPPv2N15SCI_TxFIFOLevel12SCI_FIFO_TX0E"></span><span class="target" id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665fad28054d31b4b804cb2f58f5e62f5a0aa"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_TX0</code> = 0x0000U<a class="headerlink" href="#_CPPv4N15SCI_TxFIFOLevel12SCI_FIFO_TX0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit interrupt empty. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_TxFIFOLevel12SCI_FIFO_TX1E">
+<span id="_CPPv3N15SCI_TxFIFOLevel12SCI_FIFO_TX1E"></span><span id="_CPPv2N15SCI_TxFIFOLevel12SCI_FIFO_TX1E"></span><span class="target" id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665fa979d82a81780204d6d3a8c1ee3898e1a"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_TX1</code> = 0x0001U<a class="headerlink" href="#_CPPv4N15SCI_TxFIFOLevel12SCI_FIFO_TX1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit interrupt 1/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_TxFIFOLevel12SCI_FIFO_TX2E">
+<span id="_CPPv3N15SCI_TxFIFOLevel12SCI_FIFO_TX2E"></span><span id="_CPPv2N15SCI_TxFIFOLevel12SCI_FIFO_TX2E"></span><span class="target" id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665fa644feb6574fe2479c7f516fd67a1ee55"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_TX2</code> = 0x0002U<a class="headerlink" href="#_CPPv4N15SCI_TxFIFOLevel12SCI_FIFO_TX2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit interrupt 2/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_TxFIFOLevel12SCI_FIFO_TX3E">
+<span id="_CPPv3N15SCI_TxFIFOLevel12SCI_FIFO_TX3E"></span><span id="_CPPv2N15SCI_TxFIFOLevel12SCI_FIFO_TX3E"></span><span class="target" id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665fab1c4df7f4095324fc0496f62c22588c5"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_TX3</code> = 0x0003U<a class="headerlink" href="#_CPPv4N15SCI_TxFIFOLevel12SCI_FIFO_TX3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit interrupt 3/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_TxFIFOLevel12SCI_FIFO_TX4E">
+<span id="_CPPv3N15SCI_TxFIFOLevel12SCI_FIFO_TX4E"></span><span id="_CPPv2N15SCI_TxFIFOLevel12SCI_FIFO_TX4E"></span><span class="target" id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665fa7a9c0f68f164a0971fb428bf74ce88b7"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_TX4</code> = 0x0004U<a class="headerlink" href="#_CPPv4N15SCI_TxFIFOLevel12SCI_FIFO_TX4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit interrupt 4/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_TxFIFOLevel12SCI_FIFO_TX5E">
+<span id="_CPPv3N15SCI_TxFIFOLevel12SCI_FIFO_TX5E"></span><span id="_CPPv2N15SCI_TxFIFOLevel12SCI_FIFO_TX5E"></span><span class="target" id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665fa526b5b3f34646a60397bca56a3a01bcb"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_TX5</code> = 0x0005U<a class="headerlink" href="#_CPPv4N15SCI_TxFIFOLevel12SCI_FIFO_TX5E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit interrupt 5/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_TxFIFOLevel12SCI_FIFO_TX6E">
+<span id="_CPPv3N15SCI_TxFIFOLevel12SCI_FIFO_TX6E"></span><span id="_CPPv2N15SCI_TxFIFOLevel12SCI_FIFO_TX6E"></span><span class="target" id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665fa06a33e4bf00089166614645ff547b806"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_TX6</code> = 0x0006U<a class="headerlink" href="#_CPPv4N15SCI_TxFIFOLevel12SCI_FIFO_TX6E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit interrupt 6/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_TxFIFOLevel12SCI_FIFO_TX7E">
+<span id="_CPPv3N15SCI_TxFIFOLevel12SCI_FIFO_TX7E"></span><span id="_CPPv2N15SCI_TxFIFOLevel12SCI_FIFO_TX7E"></span><span class="target" id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665fa71a259192c9457e0f7251a962253592e"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_TX7</code> = 0x0007U<a class="headerlink" href="#_CPPv4N15SCI_TxFIFOLevel12SCI_FIFO_TX7E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit interrupt 7/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_TxFIFOLevel12SCI_FIFO_TX8E">
+<span id="_CPPv3N15SCI_TxFIFOLevel12SCI_FIFO_TX8E"></span><span id="_CPPv2N15SCI_TxFIFOLevel12SCI_FIFO_TX8E"></span><span class="target" id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665fa3ca314bde9e4b18dca8fb695cd7ef0b4"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_TX8</code> = 0x0008U<a class="headerlink" href="#_CPPv4N15SCI_TxFIFOLevel12SCI_FIFO_TX8E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit interrupt 8/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_TxFIFOLevel12SCI_FIFO_TX9E">
+<span id="_CPPv3N15SCI_TxFIFOLevel12SCI_FIFO_TX9E"></span><span id="_CPPv2N15SCI_TxFIFOLevel12SCI_FIFO_TX9E"></span><span class="target" id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665fa779ffc123441fa04cbf2187ad2480549"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_TX9</code> = 0x0009U<a class="headerlink" href="#_CPPv4N15SCI_TxFIFOLevel12SCI_FIFO_TX9E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit interrupt 9/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_TxFIFOLevel13SCI_FIFO_TX10E">
+<span id="_CPPv3N15SCI_TxFIFOLevel13SCI_FIFO_TX10E"></span><span id="_CPPv2N15SCI_TxFIFOLevel13SCI_FIFO_TX10E"></span><span class="target" id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665fa6dc634d9bccd492088b82aa1b0b83057"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_TX10</code> = 0x000AU<a class="headerlink" href="#_CPPv4N15SCI_TxFIFOLevel13SCI_FIFO_TX10E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit interrupt 10/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_TxFIFOLevel13SCI_FIFO_TX11E">
+<span id="_CPPv3N15SCI_TxFIFOLevel13SCI_FIFO_TX11E"></span><span id="_CPPv2N15SCI_TxFIFOLevel13SCI_FIFO_TX11E"></span><span class="target" id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665fa6a5d6bc33004c3318d2dcd81651ed76f"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_TX11</code> = 0x000BU<a class="headerlink" href="#_CPPv4N15SCI_TxFIFOLevel13SCI_FIFO_TX11E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit interrupt 11/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_TxFIFOLevel13SCI_FIFO_TX12E">
+<span id="_CPPv3N15SCI_TxFIFOLevel13SCI_FIFO_TX12E"></span><span id="_CPPv2N15SCI_TxFIFOLevel13SCI_FIFO_TX12E"></span><span class="target" id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665fa1442b372de19b8e118d2661f2063daac"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_TX12</code> = 0x000CU<a class="headerlink" href="#_CPPv4N15SCI_TxFIFOLevel13SCI_FIFO_TX12E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit interrupt 12/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_TxFIFOLevel13SCI_FIFO_TX13E">
+<span id="_CPPv3N15SCI_TxFIFOLevel13SCI_FIFO_TX13E"></span><span id="_CPPv2N15SCI_TxFIFOLevel13SCI_FIFO_TX13E"></span><span class="target" id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665fa6dd64df775f3a88e5699e0a3802893cf"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_TX13</code> = 0x000DU<a class="headerlink" href="#_CPPv4N15SCI_TxFIFOLevel13SCI_FIFO_TX13E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit interrupt 13/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_TxFIFOLevel13SCI_FIFO_TX14E">
+<span id="_CPPv3N15SCI_TxFIFOLevel13SCI_FIFO_TX14E"></span><span id="_CPPv2N15SCI_TxFIFOLevel13SCI_FIFO_TX14E"></span><span class="target" id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665fa20701a33cdffd293872847e58f8d8d1b"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_TX14</code> = 0x000EU<a class="headerlink" href="#_CPPv4N15SCI_TxFIFOLevel13SCI_FIFO_TX14E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit interrupt 14/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_TxFIFOLevel13SCI_FIFO_TX15E">
+<span id="_CPPv3N15SCI_TxFIFOLevel13SCI_FIFO_TX15E"></span><span id="_CPPv2N15SCI_TxFIFOLevel13SCI_FIFO_TX15E"></span><span class="target" id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665fa57bfafbefbe1f916de168970923a71ce"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_TX15</code> = 0x000FU<a class="headerlink" href="#_CPPv4N15SCI_TxFIFOLevel13SCI_FIFO_TX15E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit interrupt 15/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_TxFIFOLevel13SCI_FIFO_TX16E">
+<span id="_CPPv3N15SCI_TxFIFOLevel13SCI_FIFO_TX16E"></span><span id="_CPPv2N15SCI_TxFIFOLevel13SCI_FIFO_TX16E"></span><span class="target" id="group__sci__api_1gga6fba1f1d41dff0562830f10f597b665faca14492b1643c751986e78b1b80d72ef"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_TX16</code> = 0x0010U<a class="headerlink" href="#_CPPv4N15SCI_TxFIFOLevel13SCI_FIFO_TX16E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit interrupt full. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv415SCI_RxFIFOLevel">
+<span id="_CPPv315SCI_RxFIFOLevel"></span><span id="_CPPv215SCI_RxFIFOLevel"></span><span class="target" id="group__sci__api_1ga4484ef93f7f2c5b3661390e9447f2617"></span><em class="property">enum </em><code class="sig-name descname">SCI_RxFIFOLevel</code><a class="headerlink" href="#_CPPv415SCI_RxFIFOLevel" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__sci__api_1ga85013f693224da42aec7fc76f7b16b2c"><span class="std std-ref">SCI_setFIFOInterruptLevel()</span></a> as the rxLevel parameter and returned by <a class="reference internal" href="#group__sci__api_1gab3f62d057b08525634b52de2ddeed38b"><span class="std std-ref">SCI_getFIFOInterruptLevel()</span></a> and <a class="reference internal" href="#group__sci__api_1ga508c75cffba2883fe6b925debfb952c3"><span class="std std-ref">SCI_getRxFIFOStatus()</span></a>. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_RxFIFOLevel12SCI_FIFO_RX0E">
+<span id="_CPPv3N15SCI_RxFIFOLevel12SCI_FIFO_RX0E"></span><span id="_CPPv2N15SCI_RxFIFOLevel12SCI_FIFO_RX0E"></span><span class="target" id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617adc5c97483710210e8a8b73747d01c4c7"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_RX0</code> = 0x0000U<a class="headerlink" href="#_CPPv4N15SCI_RxFIFOLevel12SCI_FIFO_RX0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive interrupt empty. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_RxFIFOLevel12SCI_FIFO_RX1E">
+<span id="_CPPv3N15SCI_RxFIFOLevel12SCI_FIFO_RX1E"></span><span id="_CPPv2N15SCI_RxFIFOLevel12SCI_FIFO_RX1E"></span><span class="target" id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617a954c2ed201f794a8f2675c33cdd5a045"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_RX1</code> = 0x0001U<a class="headerlink" href="#_CPPv4N15SCI_RxFIFOLevel12SCI_FIFO_RX1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive interrupt 1/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_RxFIFOLevel12SCI_FIFO_RX2E">
+<span id="_CPPv3N15SCI_RxFIFOLevel12SCI_FIFO_RX2E"></span><span id="_CPPv2N15SCI_RxFIFOLevel12SCI_FIFO_RX2E"></span><span class="target" id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617aee6ee16632db82e8cc96883b1da58604"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_RX2</code> = 0x0002U<a class="headerlink" href="#_CPPv4N15SCI_RxFIFOLevel12SCI_FIFO_RX2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive interrupt 2/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_RxFIFOLevel12SCI_FIFO_RX3E">
+<span id="_CPPv3N15SCI_RxFIFOLevel12SCI_FIFO_RX3E"></span><span id="_CPPv2N15SCI_RxFIFOLevel12SCI_FIFO_RX3E"></span><span class="target" id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617a0a5779a184a99f10ff056615a7d90956"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_RX3</code> = 0x0003U<a class="headerlink" href="#_CPPv4N15SCI_RxFIFOLevel12SCI_FIFO_RX3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive interrupt 3/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_RxFIFOLevel12SCI_FIFO_RX4E">
+<span id="_CPPv3N15SCI_RxFIFOLevel12SCI_FIFO_RX4E"></span><span id="_CPPv2N15SCI_RxFIFOLevel12SCI_FIFO_RX4E"></span><span class="target" id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617a689295885aa686ce1215abbc50cc456f"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_RX4</code> = 0x0004U<a class="headerlink" href="#_CPPv4N15SCI_RxFIFOLevel12SCI_FIFO_RX4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive interrupt 4/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_RxFIFOLevel12SCI_FIFO_RX5E">
+<span id="_CPPv3N15SCI_RxFIFOLevel12SCI_FIFO_RX5E"></span><span id="_CPPv2N15SCI_RxFIFOLevel12SCI_FIFO_RX5E"></span><span class="target" id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617a6e2746e20285ecf719491179f3ccf9fa"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_RX5</code> = 0x0005U<a class="headerlink" href="#_CPPv4N15SCI_RxFIFOLevel12SCI_FIFO_RX5E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive interrupt 5/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_RxFIFOLevel12SCI_FIFO_RX6E">
+<span id="_CPPv3N15SCI_RxFIFOLevel12SCI_FIFO_RX6E"></span><span id="_CPPv2N15SCI_RxFIFOLevel12SCI_FIFO_RX6E"></span><span class="target" id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617af90bb8d99ce3fc4489603039dffdc464"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_RX6</code> = 0x0006U<a class="headerlink" href="#_CPPv4N15SCI_RxFIFOLevel12SCI_FIFO_RX6E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive interrupt 6/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_RxFIFOLevel12SCI_FIFO_RX7E">
+<span id="_CPPv3N15SCI_RxFIFOLevel12SCI_FIFO_RX7E"></span><span id="_CPPv2N15SCI_RxFIFOLevel12SCI_FIFO_RX7E"></span><span class="target" id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617a277fed0b23063bff4876ea9e74cf302f"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_RX7</code> = 0x0007U<a class="headerlink" href="#_CPPv4N15SCI_RxFIFOLevel12SCI_FIFO_RX7E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive interrupt 7/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_RxFIFOLevel12SCI_FIFO_RX8E">
+<span id="_CPPv3N15SCI_RxFIFOLevel12SCI_FIFO_RX8E"></span><span id="_CPPv2N15SCI_RxFIFOLevel12SCI_FIFO_RX8E"></span><span class="target" id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617a5afb04202443817cf4ec5f604d5a8f3c"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_RX8</code> = 0x0008U<a class="headerlink" href="#_CPPv4N15SCI_RxFIFOLevel12SCI_FIFO_RX8E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive interrupt 8/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_RxFIFOLevel12SCI_FIFO_RX9E">
+<span id="_CPPv3N15SCI_RxFIFOLevel12SCI_FIFO_RX9E"></span><span id="_CPPv2N15SCI_RxFIFOLevel12SCI_FIFO_RX9E"></span><span class="target" id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617aa45e39964023f548dadb524f2aec95c4"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_RX9</code> = 0x0009U<a class="headerlink" href="#_CPPv4N15SCI_RxFIFOLevel12SCI_FIFO_RX9E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive interrupt 9/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_RxFIFOLevel13SCI_FIFO_RX10E">
+<span id="_CPPv3N15SCI_RxFIFOLevel13SCI_FIFO_RX10E"></span><span id="_CPPv2N15SCI_RxFIFOLevel13SCI_FIFO_RX10E"></span><span class="target" id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617abee18ff8402622167559d17cb390d41f"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_RX10</code> = 0x000AU<a class="headerlink" href="#_CPPv4N15SCI_RxFIFOLevel13SCI_FIFO_RX10E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive interrupt 10/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_RxFIFOLevel13SCI_FIFO_RX11E">
+<span id="_CPPv3N15SCI_RxFIFOLevel13SCI_FIFO_RX11E"></span><span id="_CPPv2N15SCI_RxFIFOLevel13SCI_FIFO_RX11E"></span><span class="target" id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617a8711a92f14527be4b8a6b89619e499e7"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_RX11</code> = 0x000BU<a class="headerlink" href="#_CPPv4N15SCI_RxFIFOLevel13SCI_FIFO_RX11E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive interrupt 11/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_RxFIFOLevel13SCI_FIFO_RX12E">
+<span id="_CPPv3N15SCI_RxFIFOLevel13SCI_FIFO_RX12E"></span><span id="_CPPv2N15SCI_RxFIFOLevel13SCI_FIFO_RX12E"></span><span class="target" id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617a3bd4632ab6c92afd3087b10f98d7f40a"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_RX12</code> = 0x000CU<a class="headerlink" href="#_CPPv4N15SCI_RxFIFOLevel13SCI_FIFO_RX12E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive interrupt 12/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_RxFIFOLevel13SCI_FIFO_RX13E">
+<span id="_CPPv3N15SCI_RxFIFOLevel13SCI_FIFO_RX13E"></span><span id="_CPPv2N15SCI_RxFIFOLevel13SCI_FIFO_RX13E"></span><span class="target" id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617aca8a8b68d08f7a8cea7de20866ceccd2"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_RX13</code> = 0x000DU<a class="headerlink" href="#_CPPv4N15SCI_RxFIFOLevel13SCI_FIFO_RX13E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive interrupt 13/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_RxFIFOLevel13SCI_FIFO_RX14E">
+<span id="_CPPv3N15SCI_RxFIFOLevel13SCI_FIFO_RX14E"></span><span id="_CPPv2N15SCI_RxFIFOLevel13SCI_FIFO_RX14E"></span><span class="target" id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617a5fe5e251a22e89fb8ebdb9b4fbbe481b"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_RX14</code> = 0x000EU<a class="headerlink" href="#_CPPv4N15SCI_RxFIFOLevel13SCI_FIFO_RX14E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive interrupt 14/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_RxFIFOLevel13SCI_FIFO_RX15E">
+<span id="_CPPv3N15SCI_RxFIFOLevel13SCI_FIFO_RX15E"></span><span id="_CPPv2N15SCI_RxFIFOLevel13SCI_FIFO_RX15E"></span><span class="target" id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617a849605d47c2f70c8b6196510ad48689f"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_RX15</code> = 0x000FU<a class="headerlink" href="#_CPPv4N15SCI_RxFIFOLevel13SCI_FIFO_RX15E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive interrupt 15/16 full. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SCI_RxFIFOLevel13SCI_FIFO_RX16E">
+<span id="_CPPv3N15SCI_RxFIFOLevel13SCI_FIFO_RX16E"></span><span id="_CPPv2N15SCI_RxFIFOLevel13SCI_FIFO_RX16E"></span><span class="target" id="group__sci__api_1gga4484ef93f7f2c5b3661390e9447f2617a3283d0484336c2d4d8c0482d6c0e034b"></span><em class="property">enumerator </em><code class="sig-name descname">SCI_FIFO_RX16</code> = 0x0010U<a class="headerlink" href="#_CPPv4N15SCI_RxFIFOLevel13SCI_FIFO_RX16E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive interrupt full. </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv417SCI_setParityMode8uint32_t14SCI_ParityType">
+<span id="_CPPv317SCI_setParityMode8uint32_t14SCI_ParityType"></span><span id="_CPPv217SCI_setParityMode8uint32_t14SCI_ParityType"></span><span id="SCI_setParityMode__uint32_t.SCI_ParityType"></span><span class="target" id="group__sci__api_1gac4ba73ec9b9f7ca901cc037c6c336d7b"></span>void <code class="sig-name descname">SCI_setParityMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv414SCI_ParityType" title="SCI_ParityType">SCI_ParityType</a> <em>parity</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417SCI_setParityMode8uint32_t14SCI_ParityType" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the type of parity.</p>
+<p><p>Sets the type of parity to use for transmitting and expect when receiving. The </p>
+<em>parity</em> parameter must be one of the following: <strong>SCI_CONFIG_PAR_NONE</strong>, <strong>SCI_CONFIG_PAR_EVEN</strong>, <strong>SCI_CONFIG_PAR_ODD</strong>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">parity</span></code>: specifies the type of parity to use.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417SCI_getParityMode8uint32_t">
+<span id="_CPPv317SCI_getParityMode8uint32_t"></span><span id="_CPPv217SCI_getParityMode8uint32_t"></span><span id="SCI_getParityMode__uint32_t"></span><span class="target" id="group__sci__api_1gaed55fde63548d54b186a151f76a0ea5a"></span><a class="reference internal" href="#_CPPv414SCI_ParityType" title="SCI_ParityType">SCI_ParityType</a> <code class="sig-name descname">SCI_getParityMode</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417SCI_getParityMode8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the type of parity currently being used.</p>
+<p><p>This function gets the type of parity used for transmitting data and expected when receiving data.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the current parity settings, specified as one of the following: <strong>SCI_CONFIG_PAR_NONE</strong>, <strong>SCI_CONFIG_PAR_EVEN</strong>, <strong>SCI_CONFIG_PAR_ODD</strong>. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429SCI_setAddrMultiProcessorMode8uint32_t">
+<span id="_CPPv329SCI_setAddrMultiProcessorMode8uint32_t"></span><span id="_CPPv229SCI_setAddrMultiProcessorMode8uint32_t"></span><span id="SCI_setAddrMultiProcessorMode__uint32_t"></span><span class="target" id="group__sci__api_1ga0c9144f86f6bc605cd23d9fdf0cecda4"></span>void <code class="sig-name descname">SCI_setAddrMultiProcessorMode</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429SCI_setAddrMultiProcessorMode8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the multiprocessor protocol to address-bit mode.</p>
+<p><p>This function sets the multi-processor protocol to address-bit mode.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429SCI_setIdleMultiProcessorMode8uint32_t">
+<span id="_CPPv329SCI_setIdleMultiProcessorMode8uint32_t"></span><span id="_CPPv229SCI_setIdleMultiProcessorMode8uint32_t"></span><span id="SCI_setIdleMultiProcessorMode__uint32_t"></span><span class="target" id="group__sci__api_1ga546268bb163766e345fdda2fe3046b76"></span>void <code class="sig-name descname">SCI_setIdleMultiProcessorMode</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429SCI_setIdleMultiProcessorMode8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the multiprocessor protocol to idle-line mode.</p>
+<p><p>This function sets the multi-processor protocol to idle-line protocol.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416SCI_lockAutobaud8uint32_t">
+<span id="_CPPv316SCI_lockAutobaud8uint32_t"></span><span id="_CPPv216SCI_lockAutobaud8uint32_t"></span><span id="SCI_lockAutobaud__uint32_t"></span><span class="target" id="group__sci__api_1ga0c3c8975d3dd838b3b65285cd819bfe9"></span>void <code class="sig-name descname">SCI_lockAutobaud</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416SCI_lockAutobaud8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Locks Autobaud.</p>
+<p><p>This function performs an autobaud lock for the SCI.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425SCI_setFIFOInterruptLevel8uint32_t15SCI_TxFIFOLevel15SCI_RxFIFOLevel">
+<span id="_CPPv325SCI_setFIFOInterruptLevel8uint32_t15SCI_TxFIFOLevel15SCI_RxFIFOLevel"></span><span id="_CPPv225SCI_setFIFOInterruptLevel8uint32_t15SCI_TxFIFOLevel15SCI_RxFIFOLevel"></span><span id="SCI_setFIFOInterruptLevel__uint32_t.SCI_TxFIFOLevel.SCI_RxFIFOLevel"></span><span class="target" id="group__sci__api_1ga85013f693224da42aec7fc76f7b16b2c"></span>void <code class="sig-name descname">SCI_setFIFOInterruptLevel</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv415SCI_TxFIFOLevel" title="SCI_TxFIFOLevel">SCI_TxFIFOLevel</a> <em>txLevel</em>, <a class="reference internal" href="#_CPPv415SCI_RxFIFOLevel" title="SCI_RxFIFOLevel">SCI_RxFIFOLevel</a> <em>rxLevel</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425SCI_setFIFOInterruptLevel8uint32_t15SCI_TxFIFOLevel15SCI_RxFIFOLevel" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the FIFO interrupt level at which interrupts are generated.</p>
+<p><p>This function sets the FIFO level at which transmit and receive interrupts are generated.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">txLevel</span></code>: is the transmit FIFO interrupt level, specified as one of the following: <strong>SCI_FIFO_TX0</strong>, <strong>SCI_FIFO_TX1</strong>, <strong>SCI_FIFO_TX2</strong>, … or <strong>SCI_FIFO_TX15</strong>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rxLevel</span></code>: is the receive FIFO interrupt level, specified as one of the following <strong>SCI_FIFO_RX0</strong>, <strong>SCI_FIFO_RX1</strong>, <strong>SCI_FIFO_RX2</strong>, … or <strong>SCI_FIFO_RX15</strong>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425SCI_getFIFOInterruptLevel8uint32_tP15SCI_TxFIFOLevelP15SCI_RxFIFOLevel">
+<span id="_CPPv325SCI_getFIFOInterruptLevel8uint32_tP15SCI_TxFIFOLevelP15SCI_RxFIFOLevel"></span><span id="_CPPv225SCI_getFIFOInterruptLevel8uint32_tP15SCI_TxFIFOLevelP15SCI_RxFIFOLevel"></span><span id="SCI_getFIFOInterruptLevel__uint32_t.SCI_TxFIFOLevelP.SCI_RxFIFOLevelP"></span><span class="target" id="group__sci__api_1gab3f62d057b08525634b52de2ddeed38b"></span>void <code class="sig-name descname">SCI_getFIFOInterruptLevel</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv415SCI_TxFIFOLevel" title="SCI_TxFIFOLevel">SCI_TxFIFOLevel</a> *<em>txLevel</em>, <a class="reference internal" href="#_CPPv415SCI_RxFIFOLevel" title="SCI_RxFIFOLevel">SCI_RxFIFOLevel</a> *<em>rxLevel</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425SCI_getFIFOInterruptLevel8uint32_tP15SCI_TxFIFOLevelP15SCI_RxFIFOLevel" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the FIFO interrupt level at which interrupts are generated.</p>
+<p><p>This function gets the FIFO level at which transmit and receive interrupts are generated.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">txLevel</span></code>: is a pointer to storage for the transmit FIFO interrupt level, returned as one of the following: <strong>SCI_FIFO_TX0</strong>, <strong>SCI_FIFO_TX1</strong>, <strong>SCI_FIFO_TX2</strong>, … or <strong>SCI_FIFO_TX15</strong>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rxLevel</span></code>: is a pointer to storage for the receive FIFO interrupt level, returned as one of the following: <strong>SCI_FIFO_RX0</strong>, <strong>SCI_FIFO_RX1</strong>, <strong>SCI_FIFO_RX2</strong>, … or <strong>SCI_FIFO_RX15</strong>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv413SCI_getConfig8uint32_t8uint32_tP8uint32_tP8uint32_t">
+<span id="_CPPv313SCI_getConfig8uint32_t8uint32_tP8uint32_tP8uint32_t"></span><span id="_CPPv213SCI_getConfig8uint32_t8uint32_tP8uint32_tP8uint32_t"></span><span id="SCI_getConfig__uint32_t.uint32_t.uint32_tP.uint32_tP"></span><span class="target" id="group__sci__api_1ga0bba17633f300f0db562531a2bb29a00"></span>void <code class="sig-name descname">SCI_getConfig</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>lspclkHz</em>, uint32_t *<em>baud</em>, uint32_t *<em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413SCI_getConfig8uint32_t8uint32_tP8uint32_tP8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the current configuration of a SCI.</p>
+<p><p>The baud rate and data format for the SCI is determined, given an explicitly provided peripheral clock (hence the ExpClk suffix). The returned baud rate is the actual baud rate; it may not be the exact baud rate requested or an `</p>
+official’ baud rate. The data format returned in <em>config</em> is enumerated the same as the <em>config</em> parameter of <a class="reference internal" href="#group__sci__api_1gaf90d3bd5f5234a9af9ce56914b954235"><span class="std std-ref">SCI_setConfig()</span></a>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lspclkHz</span></code>: is the rate of the clock supplied to the SCI module. This is the LSPCLK. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">baud</span></code>: is a pointer to storage for the baud rate. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code>: is a pointer to storage for the data format.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The peripheral clock is the low speed peripheral clock. This will be the value returned by SysCtl_getLowSeedClock(), or it can be explicitly hard coded if it is constant and known (to save the code/execution overhead of a call to <a class="reference internal" href="sysctl.html#group__sysctl__api_1ga70606ae075b1e015e3a63f8e83320321"><span class="std std-ref">SysCtl_getLowSpeedClock()</span></a>).</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416SCI_enableModule8uint32_t">
+<span id="_CPPv316SCI_enableModule8uint32_t"></span><span id="_CPPv216SCI_enableModule8uint32_t"></span><span id="SCI_enableModule__uint32_t"></span><span class="target" id="group__sci__api_1ga9be05e003f6cf09737349245e2f7ca90"></span>void <code class="sig-name descname">SCI_enableModule</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416SCI_enableModule8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables transmitting and receiving.</p>
+<p><p>Enables SCI by taking SCI out of the software reset. Sets the TXENA, and RXENA bits which enables transmit and receive.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417SCI_disableModule8uint32_t">
+<span id="_CPPv317SCI_disableModule8uint32_t"></span><span id="_CPPv217SCI_disableModule8uint32_t"></span><span id="SCI_disableModule__uint32_t"></span><span class="target" id="group__sci__api_1gac59d41324cbad25e42021e2046eadcd7"></span>void <code class="sig-name descname">SCI_disableModule</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417SCI_disableModule8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables transmitting and receiving.</p>
+<p><p>Clears the SCIEN, TXE, and RXE bits. The user should ensure that all the data has been sent before disable the module during transmission.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418SCI_enableTxModule8uint32_t">
+<span id="_CPPv318SCI_enableTxModule8uint32_t"></span><span id="_CPPv218SCI_enableTxModule8uint32_t"></span><span id="SCI_enableTxModule__uint32_t"></span><span class="target" id="group__sci__api_1ga1dd9bb1543f008ea8be6f79236c92dbb"></span>void <code class="sig-name descname">SCI_enableTxModule</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418SCI_enableTxModule8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables transmitting.</p>
+<p><p>Enables SCI by taking SCI out of the software reset. Sets the TXENA bit which enables transmit.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419SCI_disableTxModule8uint32_t">
+<span id="_CPPv319SCI_disableTxModule8uint32_t"></span><span id="_CPPv219SCI_disableTxModule8uint32_t"></span><span id="SCI_disableTxModule__uint32_t"></span><span class="target" id="group__sci__api_1gaae2fbd7254ab6b55fe2d0544394eafbd"></span>void <code class="sig-name descname">SCI_disableTxModule</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419SCI_disableTxModule8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables transmitting.</p>
+<p><p>Disables SCI by taking SCI out of the software reset. Clears the TXENA bit which disables transmit.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418SCI_enableRxModule8uint32_t">
+<span id="_CPPv318SCI_enableRxModule8uint32_t"></span><span id="_CPPv218SCI_enableRxModule8uint32_t"></span><span id="SCI_enableRxModule__uint32_t"></span><span class="target" id="group__sci__api_1gac5073444bcde67212d9749da81f219aa"></span>void <code class="sig-name descname">SCI_enableRxModule</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418SCI_enableRxModule8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables receiving.</p>
+<p><p>Enables SCI by taking SCI out of the software reset. Sets the RXENA bit which enables receive.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419SCI_disableRxModule8uint32_t">
+<span id="_CPPv319SCI_disableRxModule8uint32_t"></span><span id="_CPPv219SCI_disableRxModule8uint32_t"></span><span id="SCI_disableRxModule__uint32_t"></span><span class="target" id="group__sci__api_1ga3bd842e55a2d7a6d88f7ca2f467a8853"></span>void <code class="sig-name descname">SCI_disableRxModule</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419SCI_disableRxModule8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables receiving.</p>
+<p><p>Disables SCI by taking SCI out of the software reset. Clears the RXENA bit which disables receive.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419SCI_enableSleepMode8uint32_t">
+<span id="_CPPv319SCI_enableSleepMode8uint32_t"></span><span id="_CPPv219SCI_enableSleepMode8uint32_t"></span><span id="SCI_enableSleepMode__uint32_t"></span><span class="target" id="group__sci__api_1ga8bb07d0fd9bbbff44821f6da893bb6ca"></span>void <code class="sig-name descname">SCI_enableSleepMode</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419SCI_enableSleepMode8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables Sleep Mode</p>
+<p><p>Enables the sleep mode in SCI by setting the SLEEP bit in SCICTL1 register</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420SCI_disableSleepMode8uint32_t">
+<span id="_CPPv320SCI_disableSleepMode8uint32_t"></span><span id="_CPPv220SCI_disableSleepMode8uint32_t"></span><span id="SCI_disableSleepMode__uint32_t"></span><span class="target" id="group__sci__api_1gaddc41247edc8c6a298177ab0e70c04c1"></span>void <code class="sig-name descname">SCI_disableSleepMode</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420SCI_disableSleepMode8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables Sleep Mode</p>
+<p><p>Disables the sleep mode in SCI by clearing the SLEEP bit in SCICTL1 register</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414SCI_enableFIFO8uint32_t">
+<span id="_CPPv314SCI_enableFIFO8uint32_t"></span><span id="_CPPv214SCI_enableFIFO8uint32_t"></span><span id="SCI_enableFIFO__uint32_t"></span><span class="target" id="group__sci__api_1ga310280f30775b4666f0ff244fb1e4116"></span>void <code class="sig-name descname">SCI_enableFIFO</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414SCI_enableFIFO8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the transmit and receive FIFOs.</p>
+<p><p>This functions enables the transmit and receive FIFOs in the SCI.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415SCI_disableFIFO8uint32_t">
+<span id="_CPPv315SCI_disableFIFO8uint32_t"></span><span id="_CPPv215SCI_disableFIFO8uint32_t"></span><span id="SCI_disableFIFO__uint32_t"></span><span class="target" id="group__sci__api_1ga44c4983a36789febfd60f4f21ed0ef51"></span>void <code class="sig-name descname">SCI_disableFIFO</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415SCI_disableFIFO8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the transmit and receive FIFOs.</p>
+<p><p>This functions disables the transmit and receive FIFOs in the SCI.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417SCI_isFIFOEnabled8uint32_t">
+<span id="_CPPv317SCI_isFIFOEnabled8uint32_t"></span><span id="_CPPv217SCI_isFIFOEnabled8uint32_t"></span><span id="SCI_isFIFOEnabled__uint32_t"></span><span class="target" id="group__sci__api_1ga0e9a3714ed3064df9bcbe56121953dfc"></span>bool <code class="sig-name descname">SCI_isFIFOEnabled</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417SCI_isFIFOEnabled8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Determines if the FIFO enhancement is enabled.</p>
+<p><p>This function returns a flag indicating whether or not the FIFO enhancement is enabled.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if the FIFO enhancement is enabled or <strong>false</strong> if the FIFO enhancement is disabled. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415SCI_resetRxFIFO8uint32_t">
+<span id="_CPPv315SCI_resetRxFIFO8uint32_t"></span><span id="_CPPv215SCI_resetRxFIFO8uint32_t"></span><span id="SCI_resetRxFIFO__uint32_t"></span><span class="target" id="group__sci__api_1gad3d079fef552bbcbeb7e7d532b5cb64b"></span>void <code class="sig-name descname">SCI_resetRxFIFO</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415SCI_resetRxFIFO8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Resets the receive FIFO.</p>
+<p><p>This functions resets the receive FIFO of the SCI.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415SCI_resetTxFIFO8uint32_t">
+<span id="_CPPv315SCI_resetTxFIFO8uint32_t"></span><span id="_CPPv215SCI_resetTxFIFO8uint32_t"></span><span id="SCI_resetTxFIFO__uint32_t"></span><span class="target" id="group__sci__api_1gaff5c21ec6720284d88a15c511337c215"></span>void <code class="sig-name descname">SCI_resetTxFIFO</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415SCI_resetTxFIFO8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Resets the transmit FIFO.</p>
+<p><p>This functions resets the transmit FIFO of the SCI.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417SCI_resetChannels8uint32_t">
+<span id="_CPPv317SCI_resetChannels8uint32_t"></span><span id="_CPPv217SCI_resetChannels8uint32_t"></span><span id="SCI_resetChannels__uint32_t"></span><span class="target" id="group__sci__api_1ga1aa027d0a63848a281f84024f420a9a1"></span>void <code class="sig-name descname">SCI_resetChannels</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417SCI_resetChannels8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Resets the SCI Transmit and Receive Channels</p>
+<p><p>This functions resets transmit and receive channels in the SCI.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426SCI_isDataAvailableNonFIFO8uint32_t">
+<span id="_CPPv326SCI_isDataAvailableNonFIFO8uint32_t"></span><span id="_CPPv226SCI_isDataAvailableNonFIFO8uint32_t"></span><span id="SCI_isDataAvailableNonFIFO__uint32_t"></span><span class="target" id="group__sci__api_1gab65c8520f5244e1997b3ceaa5d0796b6"></span>bool <code class="sig-name descname">SCI_isDataAvailableNonFIFO</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426SCI_isDataAvailableNonFIFO8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Determines if there are any characters in the receive buffer when the FIFO enhancement is not enabled.</p>
+<p><p>This function returns a flag indicating whether or not there is data available in the receive buffer.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if there is data in the receive buffer or <strong>false</strong> if there is no data in the receive buffer. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427SCI_isSpaceAvailableNonFIFO8uint32_t">
+<span id="_CPPv327SCI_isSpaceAvailableNonFIFO8uint32_t"></span><span id="_CPPv227SCI_isSpaceAvailableNonFIFO8uint32_t"></span><span id="SCI_isSpaceAvailableNonFIFO__uint32_t"></span><span class="target" id="group__sci__api_1gad4d95de59d61c89f01bfade7b2a94f5f"></span>bool <code class="sig-name descname">SCI_isSpaceAvailableNonFIFO</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427SCI_isSpaceAvailableNonFIFO8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Determines if there is any space in the transmit buffer when the FIFO enhancement is not enabled.</p>
+<p><p>This function returns a flag indicating whether or not there is space available in the transmit buffer when not using the FIFO enhancement.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if there is space available in the transmit buffer or <strong>false</strong> if there is no space available in the transmit buffer. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419SCI_getTxFIFOStatus8uint32_t">
+<span id="_CPPv319SCI_getTxFIFOStatus8uint32_t"></span><span id="_CPPv219SCI_getTxFIFOStatus8uint32_t"></span><span id="SCI_getTxFIFOStatus__uint32_t"></span><span class="target" id="group__sci__api_1ga4e6cc8b077c1d5bc1ef523c416c403f4"></span><a class="reference internal" href="#_CPPv415SCI_TxFIFOLevel" title="SCI_TxFIFOLevel">SCI_TxFIFOLevel</a> <code class="sig-name descname">SCI_getTxFIFOStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419SCI_getTxFIFOStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the transmit FIFO status</p>
+<p><p>This functions gets the current number of words in the transmit FIFO.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the current number of words in the transmit FIFO specified as one of the following: <strong>SCI_FIFO_TX0</strong>, <strong>SCI_FIFO_TX1</strong>, <strong>SCI_FIFO_TX2</strong>, <strong>SCI_FIFO_TX3</strong> <strong>SCI_FIFO_TX4</strong>, …, or <strong>SCI_FIFO_TX16</strong> </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419SCI_getRxFIFOStatus8uint32_t">
+<span id="_CPPv319SCI_getRxFIFOStatus8uint32_t"></span><span id="_CPPv219SCI_getRxFIFOStatus8uint32_t"></span><span id="SCI_getRxFIFOStatus__uint32_t"></span><span class="target" id="group__sci__api_1ga508c75cffba2883fe6b925debfb952c3"></span><a class="reference internal" href="#_CPPv415SCI_RxFIFOLevel" title="SCI_RxFIFOLevel">SCI_RxFIFOLevel</a> <code class="sig-name descname">SCI_getRxFIFOStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419SCI_getRxFIFOStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the receive FIFO status</p>
+<p><p>This functions gets the current number of words in the receive FIFO.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the current number of words in the receive FIFO specified as one of the following: <strong>SCI_FIFO_RX0</strong>, <strong>SCI_FIFO_RX1</strong>, <strong>SCI_FIFO_RX2</strong>, <strong>SCI_FIFO_RX3</strong> <strong>SCI_FIFO_RX4</strong>, …, or <strong>SCI_FIFO_RX16</strong> </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421SCI_isTransmitterBusy8uint32_t">
+<span id="_CPPv321SCI_isTransmitterBusy8uint32_t"></span><span id="_CPPv221SCI_isTransmitterBusy8uint32_t"></span><span id="SCI_isTransmitterBusy__uint32_t"></span><span class="target" id="group__sci__api_1gaffd040a634046e966411b3706df59c59"></span>bool <code class="sig-name descname">SCI_isTransmitterBusy</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421SCI_isTransmitterBusy8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Determines whether the SCI transmitter is busy or not.</p>
+<p><p>Allows the caller to determine whether all transmitted bytes have cleared the transmitter hardware when the FIFO is not enabled. When the FIFO is enabled, this function allows the caller to determine whether there is any data in the FIFO.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>Without the FIFO enabled, if <strong>false</strong> is returned, the transmit buffer and shift registers are empty and the transmitter is not busy. With the FIFO enabled, if <strong>false</strong> is returned, the FIFO is empty. This does not necessarily mean that the transmitter is not busy. The empty FIFO does not reflect the status of the transmitter shift register. The FIFO may be empty while the transmitter is still transmitting data.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if the SCI is transmitting or <strong>false</strong> if transmissions are complete. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425SCI_writeCharBlockingFIFO8uint32_t8uint16_t">
+<span id="_CPPv325SCI_writeCharBlockingFIFO8uint32_t8uint16_t"></span><span id="_CPPv225SCI_writeCharBlockingFIFO8uint32_t8uint16_t"></span><span id="SCI_writeCharBlockingFIFO__uint32_t.uint16_t"></span><span class="target" id="group__sci__api_1gac345f0ffdcd6af84784f3899fc53eee2"></span>void <code class="sig-name descname">SCI_writeCharBlockingFIFO</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425SCI_writeCharBlockingFIFO8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Waits to send a character from the specified port when the FIFO enhancement is enabled.</p>
+<p><p>Sends the character </p>
+<em>data</em> to the transmit buffer for the specified port. If there is no space available in the transmit FIFO, this function waits until there is space available before returning. <em>data</em> is a uint16_t but only 8 bits are written to the SCI port. SCI only transmits 8 bit characters.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: is the character to be transmitted.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428SCI_writeCharBlockingNonFIFO8uint32_t8uint16_t">
+<span id="_CPPv328SCI_writeCharBlockingNonFIFO8uint32_t8uint16_t"></span><span id="_CPPv228SCI_writeCharBlockingNonFIFO8uint32_t8uint16_t"></span><span id="SCI_writeCharBlockingNonFIFO__uint32_t.uint16_t"></span><span class="target" id="group__sci__api_1ga108ee60c802a2479b38b26afba87e2de"></span>void <code class="sig-name descname">SCI_writeCharBlockingNonFIFO</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428SCI_writeCharBlockingNonFIFO8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Waits to send a character from the specified port.</p>
+<p><p>Sends the character </p>
+<em>data</em> to the transmit buffer for the specified port. If there is no space available in the transmit buffer, or the transmit FIFO if it is enabled, this function waits until there is space available before returning. <em>data</em> is a uint16_t but only 8 bits are written to the SCI port. SCI only transmits 8 bit characters.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: is the character to be transmitted.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424SCI_writeCharNonBlocking8uint32_t8uint16_t">
+<span id="_CPPv324SCI_writeCharNonBlocking8uint32_t8uint16_t"></span><span id="_CPPv224SCI_writeCharNonBlocking8uint32_t8uint16_t"></span><span id="SCI_writeCharNonBlocking__uint32_t.uint16_t"></span><span class="target" id="group__sci__api_1gaca2384b5e33beb850a34ca359442c4af"></span>void <code class="sig-name descname">SCI_writeCharNonBlocking</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424SCI_writeCharNonBlocking8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sends a character to the specified port.</p>
+<p><p>Writes the character </p>
+<em>data</em> to the transmit buffer for the specified port. This function does not block and only writes to the transmit buffer. The user should use <a class="reference internal" href="#group__sci__api_1gad4d95de59d61c89f01bfade7b2a94f5f"><span class="std std-ref">SCI_isSpaceAvailableNonFIFO()</span></a> or <a class="reference internal" href="#group__sci__api_1ga4e6cc8b077c1d5bc1ef523c416c403f4"><span class="std std-ref">SCI_getTxFIFOStatus()</span></a> to determine if the transmit buffer or FIFO have space available. <em>data</em> is a uint16_t but only 8 bits are written to the SCI port. SCI only transmits 8 bit characters.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: is the character to be transmitted.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>This function replaces the original SCICharNonBlockingPut() API and performs the same actions. A macro is provided in <code class="docutils literal notranslate"><span class="pre">sci.h</span></code> to map the original API to this API.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415SCI_getRxStatus8uint32_t">
+<span id="_CPPv315SCI_getRxStatus8uint32_t"></span><span id="_CPPv215SCI_getRxStatus8uint32_t"></span><span id="SCI_getRxStatus__uint32_t"></span><span class="target" id="group__sci__api_1gaaa0ea4bd7501eaaddf5a094495f74ffa"></span>uint16_t <code class="sig-name descname">SCI_getRxStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415SCI_getRxStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets current receiver status flags.</p>
+<p><p>This function returns the current receiver status flags. The returned error flags are equivalent to the error bits returned via the previous reading or receiving of a character with the exception that the overrun error is set immediately the overrun occurs rather than when a character is next read.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns a bitwise OR combination of the receiver status flags, <strong>SCI_RXSTATUS_WAKE</strong>, <strong>SCI_RXSTATUS_PARITY</strong>, <strong>SCI_RXSTATUS_OVERRUN</strong>, <strong>SCI_RXSTATUS_FRAMING</strong>, <strong>SCI_RXSTATUS_BREAK</strong>, <strong>SCI_RXSTATUS_READY</strong>, and <strong>SCI_RXSTATUS_ERROR</strong>. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424SCI_readCharBlockingFIFO8uint32_t">
+<span id="_CPPv324SCI_readCharBlockingFIFO8uint32_t"></span><span id="_CPPv224SCI_readCharBlockingFIFO8uint32_t"></span><span id="SCI_readCharBlockingFIFO__uint32_t"></span><span class="target" id="group__sci__api_1ga653cd2c0117234643127b1cd782e7986"></span>uint16_t <code class="sig-name descname">SCI_readCharBlockingFIFO</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424SCI_readCharBlockingFIFO8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Waits for a character from the specified port when the FIFO enhancement is enabled.</p>
+<p><p>Gets a character from the receive FIFO for the specified port. If there are no characters available, this function waits until a character is received before returning. Returns immediately in case of Error.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the character read from the specified port as <em>uint16_t</em> or 0x0 in case of Error. The application must use <a class="reference internal" href="#group__sci__api_1gaaa0ea4bd7501eaaddf5a094495f74ffa"><span class="std std-ref">SCI_getRxStatus()</span></a> API to check if some error occurred before consuming the data </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427SCI_readCharBlockingNonFIFO8uint32_t">
+<span id="_CPPv327SCI_readCharBlockingNonFIFO8uint32_t"></span><span id="_CPPv227SCI_readCharBlockingNonFIFO8uint32_t"></span><span id="SCI_readCharBlockingNonFIFO__uint32_t"></span><span class="target" id="group__sci__api_1ga8a1cb29f22a34246d30b43a62cae4bac"></span>uint16_t <code class="sig-name descname">SCI_readCharBlockingNonFIFO</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427SCI_readCharBlockingNonFIFO8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Waits for a character from the specified port when the FIFO enhancement is not enabled.</p>
+<p><p>Gets a character from the receive buffer for the specified port. If there is no characters available, this function waits until a character is received before returning.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the character read from the specified port as <em>uint16_t</em>. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423SCI_readCharNonBlocking8uint32_t">
+<span id="_CPPv323SCI_readCharNonBlocking8uint32_t"></span><span id="_CPPv223SCI_readCharNonBlocking8uint32_t"></span><span id="SCI_readCharNonBlocking__uint32_t"></span><span class="target" id="group__sci__api_1gac0597164632bc6745b30a60b8f65ef35"></span>uint16_t <code class="sig-name descname">SCI_readCharNonBlocking</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423SCI_readCharNonBlocking8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receives a character from the specified port.</p>
+<p><p>Gets a character from the receive buffer for the specified port. This function does not block and only reads the receive buffer. The user should use </p>
+<a class="reference internal" href="#group__sci__api_1gab65c8520f5244e1997b3ceaa5d0796b6"><span class="std std-ref">SCI_isDataAvailableNonFIFO()</span></a> or <a class="reference internal" href="#group__sci__api_1ga508c75cffba2883fe6b925debfb952c3"><span class="std std-ref">SCI_getRxFIFOStatus()</span></a> to determine if the receive buffer or FIFO have data available.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>This function replaces the original SCICharNonBlockingGet() API and performs the same actions. A macro is provided in <code class="docutils literal notranslate"><span class="pre">sci.h</span></code> to map the original API to this API.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <em>uin16_t</em> which is read from the receive buffer. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424SCI_performSoftwareReset8uint32_t">
+<span id="_CPPv324SCI_performSoftwareReset8uint32_t"></span><span id="_CPPv224SCI_performSoftwareReset8uint32_t"></span><span id="SCI_performSoftwareReset__uint32_t"></span><span class="target" id="group__sci__api_1gafc0fa4ea7eefa99dbd0f534e128ba98d"></span>void <code class="sig-name descname">SCI_performSoftwareReset</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424SCI_performSoftwareReset8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Performs a software reset of the SCI and Clears all reported receiver status flags.</p>
+<p><p>This function performs a software reset of the SCI port. It affects the operating flags of the SCI, but it neither affects the configuration bits nor restores the reset values.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418SCI_enableLoopback8uint32_t">
+<span id="_CPPv318SCI_enableLoopback8uint32_t"></span><span id="_CPPv218SCI_enableLoopback8uint32_t"></span><span id="SCI_enableLoopback__uint32_t"></span><span class="target" id="group__sci__api_1gad1bd0298389bf01486614d1d1f637cff"></span>void <code class="sig-name descname">SCI_enableLoopback</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418SCI_enableLoopback8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables Loop Back Test Mode</p>
+<p><p>Enables the loop back test mode where the Tx pin is internally connected to the Rx pin.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419SCI_disableLoopback8uint32_t">
+<span id="_CPPv319SCI_disableLoopback8uint32_t"></span><span id="_CPPv219SCI_disableLoopback8uint32_t"></span><span id="SCI_disableLoopback__uint32_t"></span><span class="target" id="group__sci__api_1ga6d5db9b4a29bf94df710fc63c2a78890"></span>void <code class="sig-name descname">SCI_disableLoopback</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419SCI_disableLoopback8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables Loop Back Test Mode</p>
+<p><p>Disables the loop back test mode where the Tx pin is no longer internally connected to the Rx pin.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421SCI_getOverflowStatus8uint32_t">
+<span id="_CPPv321SCI_getOverflowStatus8uint32_t"></span><span id="_CPPv221SCI_getOverflowStatus8uint32_t"></span><span id="SCI_getOverflowStatus__uint32_t"></span><span class="target" id="group__sci__api_1ga08fe17d985e7b64a1a15c0bdd5924176"></span>bool <code class="sig-name descname">SCI_getOverflowStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421SCI_getOverflowStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the receive FIFO Overflow flag status</p>
+<p><p>This functions gets the receive FIFO overflow flag status.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if overflow has occurred, else returned <strong>false</strong> if an overflow hasn’t occurred. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423SCI_clearOverflowStatus8uint32_t">
+<span id="_CPPv323SCI_clearOverflowStatus8uint32_t"></span><span id="_CPPv223SCI_clearOverflowStatus8uint32_t"></span><span id="SCI_clearOverflowStatus__uint32_t"></span><span class="target" id="group__sci__api_1gaa26cf4400102fb416b75aff5d95c1fdf"></span>void <code class="sig-name descname">SCI_clearOverflowStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423SCI_clearOverflowStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clear the receive FIFO Overflow flag status</p>
+<p><p>This functions clears the receive FIFO overflow flag status.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv413SCI_setConfig8uint32_t8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv313SCI_setConfig8uint32_t8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv213SCI_setConfig8uint32_t8uint32_t8uint32_t8uint32_t"></span><span id="SCI_setConfig__uint32_t.uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__sci__api_1gaf90d3bd5f5234a9af9ce56914b954235"></span>void <code class="sig-name descname">SCI_setConfig</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>lspclkHz</em>, uint32_t <em>baud</em>, uint32_t <em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413SCI_setConfig8uint32_t8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the configuration of a SCI.</p>
+<p><p>This function configures the SCI for operation in the specified data format. The baud rate is provided in the </p>
+<em>baud</em> parameter and the data format in the <em>config</em> parameter.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lspclkHz</span></code>: is the rate of the clock supplied to the SCI module. This is the LSPCLK. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">baud</span></code>: is the desired baud rate. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code>: is the data format for the port (number of data bits, number of stop bits, and parity).</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>config</em> parameter is the bitwise OR of three values: the number of data bits, the number of stop bits, and the parity. <strong>SCI_CONFIG_WLEN_8</strong>, <strong>SCI_CONFIG_WLEN_7</strong>, <strong>SCI_CONFIG_WLEN_6</strong>, <strong>SCI_CONFIG_WLEN_5</strong>, <strong>SCI_CONFIG_WLEN_4</strong>, <strong>SCI_CONFIG_WLEN_3</strong>, <strong>SCI_CONFIG_WLEN_2</strong>, and <strong>SCI_CONFIG_WLEN_1</strong>. Select from eight to one data bits per byte (respectively). <strong>SCI_CONFIG_STOP_ONE</strong> and <strong>SCI_CONFIG_STOP_TWO</strong> select one or two stop bits (respectively). <strong>SCI_CONFIG_PAR_NONE</strong>, <strong>SCI_CONFIG_PAR_EVEN</strong>, <strong>SCI_CONFIG_PAR_ODD</strong>, select the parity mode (no parity bit, even parity bit, odd parity bit respectively).</p>
+<p>The peripheral clock is the low speed peripheral clock. This will be the value returned by <a class="reference internal" href="sysctl.html#group__sysctl__api_1ga70606ae075b1e015e3a63f8e83320321"><span class="std std-ref">SysCtl_getLowSpeedClock()</span></a>, or it can be explicitly hard coded if it is constant and known (to save the code/execution overhead of a call to <a class="reference internal" href="sysctl.html#group__sysctl__api_1ga70606ae075b1e015e3a63f8e83320321"><span class="std std-ref">SysCtl_getLowSpeedClock()</span></a>).</p>
+<p>A baud rate divider (BRR) is used in this function to calculate the baud rate. The value of BRR is calculated in float and type casted as int to be fed in the <strong>SCIHBAUD</strong> and <strong>SCILBAUD</strong> registers. This conversion brings an error in the calculated baud rate and the requested. Error will be significant when operating at higher baud rates. The error is due to lower BRR integer value granularity at higher baud rates.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418SCI_writeCharArray8uint32_tPCK8uint16_t8uint16_t">
+<span id="_CPPv318SCI_writeCharArray8uint32_tPCK8uint16_t8uint16_t"></span><span id="_CPPv218SCI_writeCharArray8uint32_tPCK8uint16_t8uint16_t"></span><span id="SCI_writeCharArray__uint32_t.uint16_tCPC.uint16_t"></span><span class="target" id="group__sci__api_1ga9f13d61c0e51cacf1e760e52b50d1b2b"></span>void <code class="sig-name descname">SCI_writeCharArray</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <em class="property">const</em> uint16_t *<em class="property">const</em> <em>array</em>, uint16_t <em>length</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418SCI_writeCharArray8uint32_tPCK8uint16_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Waits to send an array of characters from the specified port.</p>
+<p><p>Sends the number of characters specified by </p>
+<em>length</em>, starting at the address <em>array</em>, out of the transmit buffer for the specified port. If there is no space available in the transmit buffer, or the transmit FIFO if it is enabled, this function waits until there is space available and <em>length</em> number of characters are transmitted before returning. <em>array</em> is a pointer to uint16_ts but only the least significant 8 bits are written to the SCI port. SCI only transmits 8 bit characters.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">array</span></code>: is the address of the array of characters to be transmitted. It is pointer to the array of characters to be transmitted. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">length</span></code>: is the length of the array, or number of characters in the array to be transmitted.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417SCI_readCharArray8uint32_tPC8uint16_t8uint16_t">
+<span id="_CPPv317SCI_readCharArray8uint32_tPC8uint16_t8uint16_t"></span><span id="_CPPv217SCI_readCharArray8uint32_tPC8uint16_t8uint16_t"></span><span id="SCI_readCharArray__uint32_t.uint16_tPC.uint16_t"></span><span class="target" id="group__sci__api_1ga779ef3fcf95ab9d4d8dafd572adbf3a9"></span>void <code class="sig-name descname">SCI_readCharArray</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t *<em class="property">const</em> <em>array</em>, uint16_t <em>length</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417SCI_readCharArray8uint32_tPC8uint16_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Waits to receive an array of characters from the specified port.</p>
+<p><p>Receives an array of characters from the receive buffer for the specified port, and stores them as an array of characters starting at address </p>
+<em>array</em>. This function waits until the <em>length</em> number of characters are received before returning.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">array</span></code>: is the address of the array of characters to be received. It is a pointer to the array of characters to be received. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">length</span></code>: is the length of the array, or number of characters in the array to be received.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419SCI_enableInterrupt8uint32_t8uint32_t">
+<span id="_CPPv319SCI_enableInterrupt8uint32_t8uint32_t"></span><span id="_CPPv219SCI_enableInterrupt8uint32_t8uint32_t"></span><span id="SCI_enableInterrupt__uint32_t.uint32_t"></span><span class="target" id="group__sci__api_1gacc2edba175e067861397accef2cd4010"></span>void <code class="sig-name descname">SCI_enableInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419SCI_enableInterrupt8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables individual SCI interrupt sources.</p>
+<p><p>Enables the indicated SCI interrupt sources. Only the sources that are enabled can be reflected to the processor interrupt; disabled sources have no effect on the processor.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is the bit mask of the interrupt sources to be enabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>intFlags</em> parameter is the bitwise OR of any of the following:</p>
+<p><ul class="simple">
+<li><p><strong>SCI_INT_RXERR</strong> - RXERR Interrupt</p></li>
+<li><p><strong>SCI_INT_RXRDY_BRKDT</strong> - RXRDY/BRKDT Interrupt</p></li>
+<li><p><strong>SCI_INT_TXRDY</strong> - TXRDY Interrupt</p></li>
+<li><p><strong>SCI_INT_TXFF</strong> - TX FIFO Level Interrupt</p></li>
+<li><p><strong>SCI_INT_RXFF</strong> - RX FIFO Level Interrupt</p></li>
+<li><p><strong>SCI_INT_FE</strong> - Frame Error</p></li>
+<li><p><strong>SCI_INT_OE</strong> - Overrun Error</p></li>
+<li><p><strong>SCI_INT_PE</strong> - Parity Error</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420SCI_disableInterrupt8uint32_t8uint32_t">
+<span id="_CPPv320SCI_disableInterrupt8uint32_t8uint32_t"></span><span id="_CPPv220SCI_disableInterrupt8uint32_t8uint32_t"></span><span id="SCI_disableInterrupt__uint32_t.uint32_t"></span><span class="target" id="group__sci__api_1gafe077d1f9438fad6700548afe02e8a25"></span>void <code class="sig-name descname">SCI_disableInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420SCI_disableInterrupt8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables individual SCI interrupt sources.</p>
+<p><p>Disables the indicated SCI interrupt sources. Only the sources that are enabled can be reflected to the processor interrupt; disabled sources have no effect on the processor.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is the bit mask of the interrupt sources to be disabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>intFlags</em> parameter has the same definition as the <em>intFlags</em> parameter to <a class="reference internal" href="#group__sci__api_1gacc2edba175e067861397accef2cd4010"><span class="std std-ref">SCI_enableInterrupt()</span></a>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422SCI_getInterruptStatus8uint32_t">
+<span id="_CPPv322SCI_getInterruptStatus8uint32_t"></span><span id="_CPPv222SCI_getInterruptStatus8uint32_t"></span><span id="SCI_getInterruptStatus__uint32_t"></span><span class="target" id="group__sci__api_1gad5ce839c53219d33b5777b045ae1888c"></span>uint32_t <code class="sig-name descname">SCI_getInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422SCI_getInterruptStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the current interrupt status.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the current interrupt status, enumerated as a bit field of values described in <a class="reference internal" href="#group__sci__api_1gacc2edba175e067861397accef2cd4010"><span class="std std-ref">SCI_enableInterrupt()</span></a>. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424SCI_clearInterruptStatus8uint32_t8uint32_t">
+<span id="_CPPv324SCI_clearInterruptStatus8uint32_t8uint32_t"></span><span id="_CPPv224SCI_clearInterruptStatus8uint32_t8uint32_t"></span><span id="SCI_clearInterruptStatus__uint32_t.uint32_t"></span><span class="target" id="group__sci__api_1gaeefbe3bdb0502a0c86923e8da13b74a8"></span>void <code class="sig-name descname">SCI_clearInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424SCI_clearInterruptStatus8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears SCI interrupt sources.</p>
+<p><p>The specified SCI interrupt sources are cleared, so that they no longer assert. This function must be called in the interrupt handler to keep the interrupt from being recognized again immediately upon exit.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is a bit mask of the interrupt sources to be cleared.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>intFlags</em> parameter has the same definition as the <em>intFlags</em> parameter to <a class="reference internal" href="#group__sci__api_1gacc2edba175e067861397accef2cd4010"><span class="std std-ref">SCI_enableInterrupt()</span></a>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv411SCI_setBaud8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv311SCI_setBaud8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv211SCI_setBaud8uint32_t8uint32_t8uint32_t"></span><span id="SCI_setBaud__uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__sci__api_1gafaf7c602b55b339735f3c0c06506d55d"></span>void <code class="sig-name descname">SCI_setBaud</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>lspclkHz</em>, uint32_t <em>baud</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411SCI_setBaud8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets SCI Baud rate.</p>
+<p><p>This function configures the SCI for operation in the specified baud rate The baud rate is provided in the </p>
+<em>baud</em> parameter.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lspclkHz</span></code>: is the rate of the clock supplied to the SCI module. This is the LSPCLK. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">baud</span></code>: is the desired baud rate.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The peripheral clock is the low speed peripheral clock. This will be the value returned by <a class="reference internal" href="sysctl.html#group__sysctl__api_1ga70606ae075b1e015e3a63f8e83320321"><span class="std std-ref">SysCtl_getLowSpeedClock()</span></a></p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415SCI_setWakeFlag8uint32_t">
+<span id="_CPPv315SCI_setWakeFlag8uint32_t"></span><span id="_CPPv215SCI_setWakeFlag8uint32_t"></span><span id="SCI_setWakeFlag__uint32_t"></span><span class="target" id="group__sci__api_1ga6d8885ca0a064e063367cf8aa3c9ac5a"></span>void <code class="sig-name descname">SCI_setWakeFlag</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415SCI_setWakeFlag8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the SCI TXWAKE flag</p>
+<p><p>This function sets the TXWAKE flag bit to indicate that the next frame is an address frame. TXWAKE bit controls selection of data-transmit feature based on which mode is selected from idle-line and address-bit.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
 <p>The code for this module is contained in driverlib/sci.c, with driverlib/sci.h containing the API declarations for use by applications.</p>
 </div>
 
@@ -191,7 +1568,7 @@ write functions to guarantee proper execution.</p>
     <p>
       <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2021, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
       <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
-      <span class="lastupdated">Last updated on Jul 01, 2023.
+      <span class="lastupdated">Last updated on Nov 09, 2023.
       </span></p>
   </div>
 
@@ -211,7 +1588,7 @@ write functions to guarantee proper execution.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v5.00.00.00',
+            VERSION:'v5.01.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

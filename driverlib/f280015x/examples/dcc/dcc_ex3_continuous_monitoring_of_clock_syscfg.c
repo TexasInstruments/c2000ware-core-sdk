@@ -34,7 +34,7 @@
 //
 //#############################################################################
 // $TI Release: F280015x Support Library v5.00.00.00 $
-// $Release Date: 07-12-2023 $
+// $Release Date: 11-17-2023 $
 // $Copyright:
 // Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
 //
@@ -191,6 +191,6 @@ __interrupt void INT_myDCC0_ISR()
     //
     // Clear the interrupt at PIE level
     //
-    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
+    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP6);
 }
 

@@ -1,0 +1,86 @@
+% let Common   = system.getScript("/driverlib/Common.js");
+% var currnetSDKProductPath = system.getProducts()[0].path
+% var sdkPath = system.utils.path.join(currnetSDKProductPath + "../../../")
+% sdkPath = sdkPath.replace(new RegExp('\\' + system.utils.path.sep, 'g'), '/')
+% 
+% var moduleName = "Filter"
+% var module = system.modules['/libraries/dsp/FPU/Filter/' + moduleName + '.js'];
+%
+#include <dsp.h>
+%if(module != null)
+%{
+% var moduleNameFIR = "FIR"
+% var moduleFIR = system.modules['/libraries/dsp/FPU/Filter/' + moduleNameFIR + '.js'];
+% var moduleNameIIR = "IIR"
+% var moduleIIR = system.modules['/libraries/dsp/FPU/Filter/' + moduleNameIIR + '.js'];
+%
+% var instance = module.$instances[0];
+% if(instance.fpuType == "FPU32")
+%{
+#include <fpu32/fpu_filter.h>
+#include <fpu32/fpu_rfft.h>
+
+%}
+% else if(instance.fpuType == "FPU64")
+%{
+#include <fpu64/filter.h>
+
+%}
+%
+%if(moduleFIR != null)
+%{
+% var instancesFIR = moduleFIR.$instances;
+%for(let i = 0; i < instancesFIR.length; i++)
+%{
+#define `instancesFIR[i].$name`_FIR_ORDER `instancesFIR[i].filterOrder`
+% if(instance.fpuType == "FPU32")
+%{
+extern FIR_f32_Handle `instancesFIR[i].$name`_handle;
+extern float32_t *`instancesFIR[i].coeffPtr`;
+extern float32_t *`instancesFIR[i].dBuffPtr`;
+%}
+% else if(instance.fpuType == "FPU64")
+%{
+extern FIR_f64_Handle `instancesFIR[i].$name`_handle;
+extern float64_t *`instancesFIR[i].coeffPtr`;
+extern float64_t *`instancesFIR[i].dBuffPtr`;
+extern float64_t *`instancesFIR[i].inPtr`;
+extern float64_t *`instancesFIR[i].outPtr`;
+%}
+
+void `instancesFIR[i].$name`_init();
+%}
+
+%}
+%
+%if(moduleIIR != null)
+%{
+% var instancesIIR = moduleIIR.$instances;
+%for(let i = 0; i < instancesIIR.length; i++)
+%{
+#define `instancesIIR[i].$name`_IIR_ORDER `instancesIIR[i].filterOrder`
+% if(instance.fpuType == "FPU32")
+%{
+extern IIR_f32_Handle `instancesIIR[i].$name`_handle;
+extern float32_t *`instancesIIR[i].coeffPtrA`;
+extern float32_t *`instancesIIR[i].coeffPtrB`;
+extern float32_t *`instancesIIR[i].dBuffPtr`;
+extern float32_t *`instancesIIR[i].inPtr`;
+extern float32_t *`instancesIIR[i].outPtr`;
+extern float32_t *`instancesIIR[i].scalePtr`;
+%}
+% else if(instance.fpuType == "FPU64")
+%{
+extern IIR_f64_Handle `instancesIIR[i].$name`_handle;
+extern float64_t *`instancesIIR[i].coeffPtrA`;
+extern float64_t *`instancesIIR[i].coeffPtrB`;
+extern float64_t *`instancesIIR[i].dBuffPtr`;
+extern float64_t *`instancesIIR[i].inPtr`;
+extern float64_t *`instancesIIR[i].outPtr`;
+extern float64_t *`instancesIIR[i].scalePtr`;
+%}
+
+void `instancesIIR[i].$name`_init();
+%}
+%}
+%}

@@ -135,8 +135,8 @@ union DCCCNT1_REG {
 };
 
 struct DCCCLKSRC1_BITS {                // bits description
-    bp_16 CLKSRC1:5;                    // 4:0 Clock Source Select for Counter 1
-    bp_16 rsvd1:7;                      // 11:5 Reserved
+    bp_16 CLKSRC1:6;                    // 5:0 Clock Source Select for Counter 1
+    bp_16 rsvd1:6;                      // 11:6 Reserved
     bp_16 KEY:4;                        // 15:12 Enables or Disables Clock Source Selection for COUNT1
     bp_32 rsvd2:16;                     // 31:16 Reserved
 };
@@ -147,8 +147,8 @@ union DCCCLKSRC1_REG {
 };
 
 struct DCCCLKSRC0_BITS {                // bits description
-    bp_16 CLKSRC0:4;                    // 3:0 Clock Source Select for Counter 0
-    bp_16 rsvd1:8;                      // 11:4 Reserved
+    bp_16 CLKSRC0:5;                    // 4:0 Clock Source Select for Counter 0
+    bp_16 rsvd1:7;                      // 11:5 Reserved
     bp_16 KEY:4;                        // 15:12 Enables or Disables Clock Source Selection for COUNT0
     bp_32 rsvd2:16;                     // 31:16 Reserved
 };

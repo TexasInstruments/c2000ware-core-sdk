@@ -16,6 +16,7 @@
             % var baseNumber = instance.ecapBase.match(/\d+/)[0]
 #define `instance.$name`_HR_BASE HRCAP`baseNumber`_BASE
         % }
+#define `instance.$name`_SIGNAL_MUNIT_BASE `instance.ecapBase.replace("_BASE", "SIGNALMONITORING_BASE")`
 void `instance.$name`_init();
     % }
 %}

@@ -1,0 +1,13 @@
+%%{
+    let inst     = args[0];
+    let tileName = args[1];
+    let instNum  = args[2];
+    let name     = tileName + "_CFG_OUTLUT_" + instNum;
+    let Common   = system.getScript("/utilities/clb_tool/clb_syscfg/source/Common.js");
+    let tt       = Common.OUTLUT_truth_table(inst.eqn);
+    let i0       = Common.inputNameToValue[inst.i0];
+    let i1       = Common.inputNameToValue[inst.i1];
+    let i2       = Common.inputNameToValue[inst.i2];
+    let reg      = '0x'+(i0 | (i1 << 5) | (i2 << 10) | (tt << 15)).toString(16);
+%%}
+#define `name` `reg`

@@ -1,0 +1,74 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28P65x" --package "256ZEJ" --part "F28P65x_256ZEJ" --context "CPU1" --product "C2000WARE@5.02.00.00"
+ * @versions {"tool":"1.19.0+3288"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const ecap             = scripting.addModule("/driverlib/ecap.js", {}, false);
+const ecap1            = ecap.addInstance();
+const epwm             = scripting.addModule("/driverlib/epwm.js", {}, false);
+const epwm1            = epwm.addInstance();
+const epwmxbar         = scripting.addModule("/driverlib/epwmxbar.js", {}, false);
+const epwmxbar1        = epwmxbar.addInstance();
+const gpio             = scripting.addModule("/driverlib/gpio.js", {}, false);
+const gpio1            = gpio.addInstance();
+const inputxbar        = scripting.addModule("/driverlib/inputxbar.js", {}, false);
+const inputxbar1       = inputxbar.addInstance();
+const inputxbar_input  = scripting.addModule("/driverlib/inputxbar_input.js");
+const inputxbar_input1 = inputxbar_input.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+ecap1.$name                   = "myECAP0";
+ecap1.enableInterrupt         = true;
+ecap1.enableLoadCounter       = true;
+ecap1.ecapInput               = "ECAP_INPUT_INPUTXBAR7";
+ecap1.registerInterrupts      = true;
+ecap1.eventTwoPolarity        = "ECAP_EVNT_FALLING_EDGE";
+ecap1.eventFourPolarity       = "ECAP_EVNT_FALLING_EDGE";
+ecap1.syncOutMode             = "ECAP_SYNC_OUT_DISABLED";
+ecap1.eventStop               = "ECAP_EVENT_4";
+ecap1.enable_monitorunit1     = true;
+ecap1.monitorSelect_1         = "ECAP_MUNIT_LOW_PULSE_WIDTH";
+ecap1.interruptSourceCapture  = ["ECAP_ISR_SOURCE_CAPTURE_EVENT_4","ECAP_ISR_SOURCE_MUNIT_1_ERROR_EVT1"];
+ecap1.ecapInt.enableInterrupt = true;
+
+epwm1.$name                                                         = "myEPWM0";
+epwm1.epwmTimebase_period                                           = 4000;
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_UP_CMPA      = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.epwmCounterCompare_cmpA                                       = 2000;
+epwm1.epwmTimebase_counterMode                                      = "EPWM_COUNTER_MODE_UP_DOWN";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_DOWN_CMPA    = "EPWM_AQ_OUTPUT_LOW";
+epwm1.epwmDigitalCompare_EPWM_TZ_DC_OUTPUT_A1                       = "EPWM_TZ_EVENT_DCXH_HIGH";
+epwm1.epwmDigitalCompare_EPWM_DC_MODULE_A_EPWM_DC_EVENT_1_eventSync = "EPWM_DC_EVENT_INPUT_NOT_SYNCED";
+epwm1.epwmTripZone_oneShotSource                                    = ["EPWM_TZ_SIGNAL_DCAEVT1"];
+epwm1.epwmTripZone_EPWM_TZ_ACTION_EVENT_DCAEVT1                     = "EPWM_TZ_ACTION_LOW";
+epwm1.epwm.$assign                                                  = "EPWM1";
+
+epwmxbar1.$name       = "myEPWMXBAR0";
+epwmxbar1.mux0Config  = "XBAR_EPWM_MUX00_ECAP1_OUT";
+epwmxbar1.muxesUsed   = ["XBAR_MUX32"];
+epwmxbar1.mux32Config = "XBAR_EPWM_MUX32_ECAP1_TRIPOUT";
+
+gpio1.$name           = "myGPIO0";
+gpio1.qualMode        = "GPIO_QUAL_ASYNC";
+gpio1.gpioPin.$assign = "GPIO16";
+
+inputxbar1.$name = "myINPUTXBAR0";
+
+inputxbar_input1.$name          = "myINPUTXBARINPUT0";
+inputxbar_input1.inputxbarInput = "XBAR_INPUT7";
+inputxbar_input1.inputxbarGpio  = "GPIO16";
+
+/**
+ * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
+ * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
+ * re-solve from scratch.
+ */
+epwm1.epwm.epwm_aPin.$suggestSolution = "GPIO0";
+epwm1.epwm.epwm_bPin.$suggestSolution = "GPIO1";

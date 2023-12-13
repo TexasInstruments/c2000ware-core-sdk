@@ -1,0 +1,15 @@
+#include <dsp.h>
+% let Common   = system.getScript("/driverlib/Common.js");
+% var moduleName = "Vector"
+% var module = system.modules['/libraries/dsp/FPU/Vector/' + moduleName + '.js'];
+% var instance = module.$instances[0];
+%
+% if(instance.fpuType == "FPU32")
+%{
+#include <fpu32/fpu_types.h>
+#include <fpu32/fpu_vector.h>
+%}
+% else if(instance.fpuType == "FPU64")
+%{
+#include <fpu64/vector.h>
+%}

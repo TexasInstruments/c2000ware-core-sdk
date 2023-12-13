@@ -1,0 +1,95 @@
+//*****************************************************************************
+//
+// Macro to call SysCtl_delay() to achieve a delay in microseconds. The macro
+// will convert the desired delay in microseconds to the count value expected
+// by the function. \b x is the number of microseconds to delay.
+//
+//*****************************************************************************
+#define DEVICE_DELAY_US(x) SysCtl_delay(((((long double)(x)) / (1000000.0L /  \
+                                (long double)DEVICE_SYSCLK_FREQ)) - 9.0L) / 5.0L)
+
+//*****************************************************************************
+//
+// Macros related to booting CPU2 and CM. These can be used while invoking the
+// functions Device_bootCPU2() and Device_bootCM(). 
+//
+// Note that the macros CM_BOOT_FREQ_125MHZ and CPU2_BOOT_FREQ_200MHZ are used
+// in the functions Device_bootCM() and Device_bootCPU2() respectively. Please
+// update the function and the macros if you are using a different clock
+// frequency.
+//
+//*****************************************************************************
+#ifdef CPU1
+#define BOOT_KEY                                0x5A000000UL
+#define CM_BOOT_FREQ_125MHZ                     0x7D00U
+#define CPU2_BOOT_FREQ_200MHZ                   0xC800U
+
+#define BOOTMODE_BOOT_TO_FLASH_SECTOR0          0x03U
+#define BOOTMODE_BOOT_TO_FLASH_SECTOR4          0x23U
+#define BOOTMODE_BOOT_TO_FLASH_SECTOR8          0x43U
+#define BOOTMODE_BOOT_TO_FLASH_SECTOR13         0x63U
+#define BOOTMODE_BOOT_TO_SECURE_FLASH_SECTOR0   0x0AU
+#define BOOTMODE_BOOT_TO_SECURE_FLASH_SECTOR4   0x2AU
+#define BOOTMODE_BOOT_TO_SECURE_FLASH_SECTOR8   0x4AU
+#define BOOTMODE_BOOT_TO_SECURE_FLASH_SECTOR13  0x6AU
+#define BOOTMODE_IPC_MSGRAM_COPY_BOOT_TO_M1RAM  0x0CU
+#define BOOTMODE_IPC_MSGRAM_COPY_BOOT_TO_S0RAM  0x0CU
+#define BOOTMODE_BOOT_TO_M0RAM                  0x05U
+#define BOOTMODE_BOOT_TO_S0RAM                  0x05U
+#define BOOTMODE_BOOT_TO_USEROTP                0x0BU
+
+#define BOOTMODE_IPC_MSGRAM_COPY_LENGTH_100W    0x10000U
+#define BOOTMODE_IPC_MSGRAM_COPY_LENGTH_200W    0x20000U
+#define BOOTMODE_IPC_MSGRAM_COPY_LENGTH_300W    0x30000U
+#define BOOTMODE_IPC_MSGRAM_COPY_LENGTH_400W    0x40000U
+#define BOOTMODE_IPC_MSGRAM_COPY_LENGTH_500W    0x50000U
+#define BOOTMODE_IPC_MSGRAM_COPY_LENGTH_600W    0x60000U
+#define BOOTMODE_IPC_MSGRAM_COPY_LENGTH_700W    0x70000U
+#define BOOTMODE_IPC_MSGRAM_COPY_LENGTH_800W    0x80000U
+#define BOOTMODE_IPC_MSGRAM_COPY_LENGTH_900W    0x90000U
+#define BOOTMODE_IPC_MSGRAM_COPY_LENGTH_1000W   0xA0000U
+#endif
+
+//*****************************************************************************
+//
+// Defines, Globals, and Header Includes related to Flash Support
+//
+//*****************************************************************************
+#ifdef _FLASH
+#include <stddef.h>
+
+#ifndef CMDTOOL
+extern uint16_t RamfuncsLoadStart;
+extern uint16_t RamfuncsLoadEnd;
+extern uint16_t RamfuncsLoadSize;
+extern uint16_t RamfuncsRunStart;
+extern uint16_t RamfuncsRunEnd;
+extern uint16_t RamfuncsRunSize;
+#endif
+
+#define DEVICE_FLASH_WAITSTATES 3
+
+#endif
+
+//*****************************************************************************
+//
+// Function Prototypes
+//
+//*****************************************************************************
+//*****************************************************************************
+//
+//! \addtogroup device_api
+//! @{
+//
+//*****************************************************************************
+//*****************************************************************************
+//
+//! Function to initialize the device. Primarily initializes system 
+//! control to a known state by disabling the watchdog, setting up the
+//! SYSCLKOUT frequency, and enabling the clocks to the peripherals.
+//!
+//! \param None.
+//! \return None.
+//
+//*****************************************************************************
+extern void Device_init(void);

@@ -1,0 +1,84 @@
+%%{
+    let inst0    = args[0];
+    let inst1    = args[1];
+    let inst2    = args[2];
+    let tileName = args[3];
+    let Common    = system.getScript("/utilities/clb_tool/clb_syscfg/source/Common.js");
+    let prefix   = tileName + '_CFG_COUNTER';
+    let val      = Common.inputNameToValue;
+
+    function code(action) {
+        let result = 0;
+        switch (action) {
+            case 'Add':         result = 0b111; break;
+            case 'Subtract':    result = 0b101; break;
+            case 'Shift Left':  result = 0b110; break;
+            case 'Shift Right': result = 0b100; break;
+        }
+        return result;
+    }
+
+    let reset = val[inst0.reset] | (val[inst1.reset]<<5) | (val[inst2.reset]<<10);
+    let event = val[inst0.event] | (val[inst1.event]<<5) | (val[inst2.event]<<10);
+    let mode0 = val[inst0.mode0] | (val[inst1.mode0]<<5) | (val[inst2.mode0]<<10);
+    let mode1 = val[inst0.mode1] | (val[inst1.mode1]<<5) | (val[inst2.mode1]<<10);
+    var action = code(inst0.action) | (code(inst1.action) << 3) |
+                                      (code(inst2.action) << 6);
+
+    if (Common.isType1_Type2())
+    {
+        action = action                       |
+            ((inst0.serializer_en?1:0) << 9)  |
+            ((inst1.serializer_en?1:0) << 10) |
+            ((inst2.serializer_en?1:0) << 11) |
+            ((inst0.match1_tap_en?1:0) << 18) |
+            ((inst1.match1_tap_en?1:0) << 19) |
+            ((inst2.match1_tap_en?1:0) << 20) |
+            ((inst0.match2_tap_en?1:0) << 21) |
+            ((inst1.match2_tap_en?1:0) << 22) |
+            ((inst2.match2_tap_en?1:0) << 23) |
+            ((inst0.lfsr_en?1:0) << 24) |
+            ((inst1.lfsr_en?1:0) << 25) |
+            ((inst2.lfsr_en?1:0) << 26);
+    }
+	
+    var tap_sel = 0;
+    if (Common.isType1_Type2())
+    {
+        tap_sel =   (inst0.match1_tap_sel << 0 ) |
+                    (inst1.match1_tap_sel << 5 ) |
+                    (inst2.match1_tap_sel << 10) |
+                    (inst0.match2_tap_sel << 16) |
+                    (inst1.match2_tap_sel << 21) |
+                    (inst2.match2_tap_sel << 26);
+    }
+
+	let inst0_match1_value = (inst0.match1_val==="")?0:inst0.match1_val;
+	let inst0_match2_value = (inst0.match2_val==="")?0:inst0.match2_val;
+	let inst0_event_load_value = (inst0.event_load_val==="")?0:inst0.event_load_val;
+	let inst1_match1_value = (inst1.match1_val==="")?0:inst1.match1_val;
+	let inst1_match2_value = (inst1.match2_val==="")?0:inst1.match2_val;
+	let inst1_event_load_value = (inst1.event_load_val==="")?0:inst1.event_load_val;
+	let inst2_match1_value = (inst2.match1_val==="")?0:inst2.match1_val;
+	let inst2_match2_value = (inst2.match2_val==="")?0:inst2.match2_val;
+	let inst2_event_load_value = (inst2.event_load_val==="")?0:inst2.event_load_val;
+	
+%%}
+#define `prefix`_RESET   0x`reset.toString(16)`
+#define `prefix`_EVENT   0x`event.toString(16)`
+#define `prefix`_MODE_0  0x`mode0.toString(16)`
+#define `prefix`_MODE_1  0x`mode1.toString(16)`
+% if (Common.isType1_Type2()) {
+#define `tileName`_CFG_TAP_SEL          0x`tap_sel.toString(16)`
+% }
+#define `tileName`_CFG_MISC_CONTROL    (0x`action.toString(16)` | `tileName`_FSM_MISC_CONTROL)
+
+#define `tileName`_COUNTER_0_MATCH1_VAL  `inst0_match1_value`
+#define `tileName`_COUNTER_0_MATCH2_VAL  `inst0_match2_value`
+#define `tileName`_COUNTER_0_LOAD_VAL    `inst0_event_load_value`
+#define `tileName`_COUNTER_1_MATCH1_VAL  `inst1_match1_value`
+#define `tileName`_COUNTER_1_MATCH2_VAL  `inst1_match2_value`
+#define `tileName`_COUNTER_1_LOAD_VAL    `inst1_event_load_value`
+#define `tileName`_COUNTER_2_MATCH1_VAL  `inst2_match1_value`
+#define `tileName`_COUNTER_2_MATCH2_VAL  `inst2_match2_value`
+#define `tileName`_COUNTER_2_LOAD_VAL    `inst2_event_load_value`

@@ -1,0 +1,17 @@
+%%{
+let 	device_common   					= system.getScript("/driverlib/.meta/device/functions_h/device_common.js");
+let 	Common   						= system.getScript("/driverlib/Common.js");
+var	Include_Headers_SingleCore				= system.getTemplate('./Include_Headers_SingleCore.xdt');
+var	Include_Headers_DualCore				= system.getTemplate('./Include_Headers_DualCore.xdt');
+
+const 	multi_core 						= device_common.multi_core;
+const 	device  						= device_common.device;
+%%}
+% if(multi_core.includes(device))
+%{
+`Include_Headers_DualCore()`
+%}
+% else
+%{
+`Include_Headers_SingleCore()`
+%}

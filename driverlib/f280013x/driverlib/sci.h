@@ -487,15 +487,15 @@ SCI_getConfig(uint32_t base, uint32_t lspclkHz, uint32_t *baud,
     // Compute the baud rate.
     //
     *baud = lspclkHz /
-            ((1U + (uint32_t)((uint32_t)(HWREGH(base + SCI_O_HBAUD) << 8U) |
+            ((1U + (((uint32_t)HWREGH(base + SCI_O_HBAUD) << 8U) |
                HWREGH(base + SCI_O_LBAUD))) * 8U);
 
     //
     // Get the parity, data length, and number of stop bits.
     //
-    *config = HWREGH(base + SCI_O_CCR) & (SCI_CONFIG_PAR_MASK |
-                                          SCI_CONFIG_STOP_MASK |
-                                          SCI_CONFIG_WLEN_MASK);
+    *config = (uint32_t)HWREGH(base + SCI_O_CCR) & (SCI_CONFIG_PAR_MASK |
+                                                    SCI_CONFIG_STOP_MASK |
+                                                    SCI_CONFIG_WLEN_MASK);
 }
 
 //*****************************************************************************
@@ -1023,7 +1023,7 @@ SCI_isTransmitterBusy(uint32_t base)
         // With FIFO enhancement, determine if the SCI is busy.
         //
         return(((HWREGH(base + SCI_O_FFTX) & SCI_FFTX_TXFFST_M) !=
-                 0) ? true : false);
+                 0U) ? true : false);
     }
     else
     {

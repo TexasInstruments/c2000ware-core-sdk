@@ -337,35 +337,6 @@ static inline void PGA_lockRegisters(uint32_t base, uint16_t registerType)
     EDIS;
 }
 
-//*****************************************************************************
-//
-//! Configures the offset trim for NMOS pair of the desired PGA instance
-//!
-//! \param base is the base address of the PGA module.
-//!
-//! This function loads the offset trims for NMOS pair of the desired 
-//! PGA instance.
-//!
-//! \return None.
-//
-//*****************************************************************************
-extern void
-PGA_setOffsetTrimNMOS(uint32_t base);
-
-//*****************************************************************************
-//
-//! Configures the offset trim for PMOS pair of the desired PGA instance
-//!
-//! \param base is the base address of the PGA module.
-//!
-//! This function loads the offset trims for PMOS pair of the desired 
-//! PGA instance.
-//!
-//! \return None.
-//
-//*****************************************************************************
-extern void
-PGA_setOffsetTrimPMOS(uint32_t base);
 
 //*****************************************************************************
 //

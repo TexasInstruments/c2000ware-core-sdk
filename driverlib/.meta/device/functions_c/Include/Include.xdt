@@ -1,0 +1,31 @@
+%%{
+let 	device_common   					= system.getScript("/driverlib/.meta/device/functions_c/device_common.js");
+let 	Common   						= system.getScript("/driverlib/Common.js");
+var	Include_Headers						= system.getTemplate('./Include_Headers.xdt');
+var	Include_Headers_driverlib				= system.getTemplate('./Include_Headers_driverlib.xdt');
+var	Include_Headers_hw_ipc					= system.getTemplate('./Include_Headers_hw_ipc.xdt');
+var	Include_Headers_hw_lcm					= system.getTemplate('./Include_Headers_hw_lcm.xdt');
+
+const 	multi_core 						= device_common.multi_core;
+const 	device  						= device_common.device;
+const	Include_Headers_Type0					= device_common.Include_Headers_Type0;
+const	Include_Headers_Type1					= device_common.Include_Headers_Type1;
+const	Include_Headers_Type2					= device_common.Include_Headers_Type2;
+const	Include_Headers_Type3					= device_common.Include_Headers_Type3;
+%%}
+% if(Include_Headers_Type0.includes(device))
+%{
+`Include_Headers()`
+%}
+% if(Include_Headers_Type1.includes(device))
+%{
+`Include_Headers_hw_ipc()`
+%}
+% if(Include_Headers_Type2.includes(device))
+%{
+`Include_Headers_hw_lcm()`
+%}
+% if(Include_Headers_Type3.includes(device))
+%{
+`Include_Headers_driverlib()`
+%}

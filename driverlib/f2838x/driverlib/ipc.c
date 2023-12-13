@@ -396,7 +396,7 @@ bool IPC_sendMessageToQueue(IPC_Type_t ipcType,
 
     uint16_t writeIndex;
     uint16_t readIndex;
-    uint16_t ret = true;
+    bool ret = true;
 
     writeIndex = *(msgQueue->PutWriteIndex);
     readIndex  = *(msgQueue->PutReadIndex);
@@ -459,7 +459,7 @@ bool IPC_readMessageFromQueue(IPC_Type_t ipcType,
 
     uint16_t writeIndex;
     uint16_t readIndex;
-    uint16_t ret = true;
+    bool ret = true;
 
     writeIndex = *(msgQueue->GetWriteIndex);
     readIndex  = *(msgQueue->GetReadIndex);

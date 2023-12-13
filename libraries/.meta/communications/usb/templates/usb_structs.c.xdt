@@ -1,0 +1,702 @@
+/*
+ * Copyright (c) 2021 Texas Instruments Incorporated - http://www.ti.com
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * *  Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ * *  Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * *  Neither the name of Texas Instruments Incorporated nor the names of
+ *    its contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ */
+
+% var moduleName = "usb"
+% var module = system.modules['/libraries/communications/usb/' + moduleName + '.js'];
+%
+% function getCharArray(string) 
+% {
+%	let text = [];
+%	let length = 0;
+%	let index = 0;
+%   for (var i = 0; i < string.length; i++) 
+%	{
+%		text[index] = "'" + (string.charAt(i)) + "'";
+%		index++;	
+% 		text[index] = "0"	;
+%		index++;
+%	}
+% 	length = string.length;
+%	return [text,length]
+% }
+
+%if(module != null)
+%{
+	% var instance = module.$instances[0];
+
+
+% if ((instance.usb_mode == "Device") || (instance.usb_mode == "Dual"))
+%{
+//
+// Included Files
+//
+#include "usb_structs.h"
+
+% if (instance.deviceClasses == "CDC")
+%{
+
+// Data structures defining this CDC USB device.
+
+//******************************************************************************
+//
+// The languages supported by this device.
+//
+//******************************************************************************
+const uint8_t g_pui8LangDescriptor[] =
+{
+    4,
+    USB_DTYPE_STRING,
+    USBShort(USB_LANG_EN_US)
+};
+
+//******************************************************************************
+//
+// The manufacturer string.
+//
+//******************************************************************************
+% var descriptor_str_length = 0;
+% var descriptor_str = getCharArray(instance.manufacturerString_cdc);
+% var descriptor_str_length = descriptor_str[1]
+% var descriptor_str_text = descriptor_str[0];
+const uint8_t g_pui8ManufacturerString[] =
+{
+    (`descriptor_str_length` + 1) * 2,
+    USB_DTYPE_STRING,
+    `descriptor_str_text`,
+};
+
+//******************************************************************************
+//
+// The product string.
+//
+//******************************************************************************
+% descriptor_str = getCharArray(instance.productString_cdc);
+% descriptor_str_length = descriptor_str[1]
+% descriptor_str_text = descriptor_str[0];
+const uint8_t g_pui8ProdectString[] =
+{
+    2 + (`descriptor_str_length` * 2),
+    USB_DTYPE_STRING,
+    `descriptor_str_text`,
+};
+
+//******************************************************************************
+//
+// The serial number string.
+//
+//******************************************************************************
+% descriptor_str = getCharArray(instance.serialNumberString_cdc);
+% descriptor_str_length = descriptor_str[1]
+% descriptor_str_text = descriptor_str[0];
+const uint8_t g_pui8SerialNumberString[] =
+{
+    2 + (`descriptor_str_length` * 2),
+    USB_DTYPE_STRING,
+    `descriptor_str_text`,
+};
+
+//******************************************************************************
+//
+// The control interface description string.
+//
+//******************************************************************************
+% descriptor_str = getCharArray(instance.controlInterfaceString_cdc);
+% descriptor_str_length = descriptor_str[1]
+% descriptor_str_text = descriptor_str[0];
+const uint8_t g_pui8ControlInterfaceString[] =
+{
+    2 + (`descriptor_str_length` * 2),
+    USB_DTYPE_STRING,
+	`descriptor_str_text`,
+};
+
+//******************************************************************************
+//
+// The configuration description string.
+//
+//******************************************************************************
+% descriptor_str = getCharArray(instance.configString_cdc);
+% descriptor_str_length = descriptor_str[1]
+% descriptor_str_text = descriptor_str[0];
+const uint8_t g_pui8ConfigString[] =
+{
+    2 + (`descriptor_str_length` * 2),
+    USB_DTYPE_STRING,
+	`descriptor_str_text`,
+};
+
+//******************************************************************************
+//
+// The descriptor string table.
+//
+//******************************************************************************
+const uint8_t * const g_pui8StringDescriptors[] =
+{
+    g_pui8LangDescriptor,
+    g_pui8ManufacturerString,
+    g_pui8ProdectString,
+    g_pui8SerialNumberString,
+    g_pui8ControlInterfaceString,
+    g_pui8ConfigString
+};
+
+#define NUM_STRING_DESCRIPTORS (sizeof(g_pui8StringDescriptors)              /\
+                                sizeof(uint8_t *))
+
+
+
+//******************************************************************************
+//
+// CDC device callback function prototypes.
+//
+//*****************************************************************************
+uint32_t `instance.usbCDCRxHandler`(void *pvCBData, uint32_t ui32Event,
+                   uint32_t ui32MsgValue, void *pvMsgData);
+uint32_t `instance.usbCDCTxHandler`(void *pvCBData, uint32_t ui32Event,
+                   uint32_t ui32MsgValue, void *pvMsgData);
+uint32_t `instance.usbCDCControlHandler`(void *pvCBData, uint32_t ui32Event,
+                        uint32_t ui32MsgValue, void *pvMsgData);
+
+	
+	
+extern tUSBBuffer `instance.usbCDCTxStruct`;
+extern tUSBBuffer `instance.usbCDCRxStruct`;	
+
+//*****************************************************************************
+//
+//! The structure used by the application to define operating parameters for
+//! the CDC device.
+//
+//*****************************************************************************
+tUSBDCDCDevice `instance.usbCDCDeviceStruct` =
+{
+    USB_VID_TI_1CBE,
+    USB_PID_SERIAL,
+    0,
+    USB_CONF_ATTR_SELF_PWR,
+    `instance.usbCDCControlHandler`,
+    (void *)&`instance.usbCDCDeviceStruct`,
+    USBBufferEventCallback,
+    (void *)&`instance.usbCDCRxStruct`,
+    USBBufferEventCallback,
+    (void *)&`instance.usbCDCTxStruct`,
+    g_pui8StringDescriptors,
+    NUM_STRING_DESCRIPTORS
+};
+
+//******************************************************************************
+//
+// Receive buffer (from the USB perspective).
+//
+//******************************************************************************
+uint8_t `instance.usbCDCRxBuffer`[`instance.usbBufferSize`];
+uint8_t g_pui8RxBufferWorkspace[USB_BUFFER_WORKSPACE_SIZE];
+tUSBBuffer `instance.usbCDCRxStruct` =
+{
+    false,                          		// This is a receive buffer.
+    `instance.usbCDCRxHandler`,     		// pfnCallback
+    (void *)&`instance.usbCDCDeviceStruct`, // Callback data is our device pointer.
+    USBDCDCPacketRead,              		// pfnTransfer
+    USBDCDCRxPacketAvailable,       		// pfnAvailable
+    (void *)&`instance.usbCDCDeviceStruct`,	// pvHandle
+    `instance.usbCDCRxBuffer`,         		// pi8Buffer
+    `instance.$name`_SCI_BUFFER_SIZE   		// ui32BufferSize
+};
+
+//******************************************************************************
+//
+// Transmit buffer (from the USB perspective).
+//
+//******************************************************************************
+uint8_t `instance.usbCDCTxBuffer`[`instance.usbBufferSize`];
+uint8_t g_pui8TxBufferWorkspace[USB_BUFFER_WORKSPACE_SIZE];
+tUSBBuffer `instance.usbCDCTxStruct` =
+{
+    true,									// This is a transmit buffer.
+    `instance.usbCDCTxHandler`,				// pfnCallback
+    (void *)&`instance.usbCDCDeviceStruct`,	// Callback data is our device pointer.
+    USBDCDCPacketWrite,						// pfnTransfer
+    USBDCDCTxPacketAvailable,				// pfnAvailable
+    (void *)&`instance.usbCDCDeviceStruct`,	// pvHandle
+    `instance.usbCDCTxBuffer`,				// pi8Buffer
+    `instance.$name`_SCI_BUFFER_SIZE    	// ui32BufferSize
+};
+
+%}
+% else if (instance.deviceClasses == "Mouse")
+%{
+#include <stdint.h>
+#include <stdbool.h>
+#include "inc/hw_types.h"
+#include "usblib.h"
+#include "usbhid.h"
+#include "usb_ids.h"
+#include "device/usbdevice.h"
+#include "device/usbdhid.h"
+#include "device/usbdhidmouse.h"
+
+
+//******************************************************************************
+//
+// The languages supported by this device.
+//
+//******************************************************************************
+const uint8_t g_pLangDescriptor[] =
+{
+    4,
+    USB_DTYPE_STRING,
+    USBShort(USB_LANG_EN_US)
+};
+
+//******************************************************************************
+//
+// The manufacturer string.
+//
+//******************************************************************************
+% var descriptor_str_length = 0;
+% var descriptor_str = getCharArray(instance.manufacturerString_mouse);
+% var descriptor_str_length = descriptor_str[1]
+% var descriptor_str_text = descriptor_str[0];
+const uint8_t g_pManufacturerString[] =
+{
+    (`descriptor_str_length` + 1) * 2,
+    USB_DTYPE_STRING,
+    `descriptor_str_text`
+};
+//******************************************************************************
+//
+// The product string.
+//
+//******************************************************************************
+% descriptor_str = getCharArray(instance.productString_mouse);
+% descriptor_str_length = descriptor_str[1]
+% descriptor_str_text = descriptor_str[0];
+const uint8_t g_pProductString[] =
+{
+    (`descriptor_str_length` + 1) * 2,
+    USB_DTYPE_STRING,
+	`descriptor_str_text`
+};
+
+//******************************************************************************
+//
+// The serial number string.
+//
+//******************************************************************************
+% descriptor_str = getCharArray(instance.serialNumberString_mouse);
+% descriptor_str_length = descriptor_str[1]
+% descriptor_str_text = descriptor_str[0];
+const uint8_t g_pSerialNumberString[] =
+{
+    (`descriptor_str_length` + 1) * 2,
+    USB_DTYPE_STRING,
+    `descriptor_str_text`
+};
+
+//******************************************************************************
+//
+// The interface description string.
+//
+//******************************************************************************
+% descriptor_str = getCharArray(instance.mouseHIDInterfaceString);
+% descriptor_str_length = descriptor_str[1]
+% descriptor_str_text = descriptor_str[0];
+const uint8_t g_pHIDInterfaceString[] =
+{
+    (`descriptor_str_length` + 1) * 2,
+    USB_DTYPE_STRING,
+	`descriptor_str_text`
+};
+
+//******************************************************************************
+//
+// The configuration description string.
+//
+//******************************************************************************
+% descriptor_str = getCharArray(instance.configString_mouse);
+% descriptor_str_length = descriptor_str[1]
+% descriptor_str_text = descriptor_str[0];
+const uint8_t g_pConfigString[] =
+{
+    (`descriptor_str_length` + 1) * 2,
+    USB_DTYPE_STRING,
+	`descriptor_str_text`
+};
+
+//******************************************************************************
+//
+// The descriptor string table.
+//
+//******************************************************************************
+const uint8_t * const g_pStringDescriptors[] =
+{
+    g_pLangDescriptor,
+    g_pManufacturerString,
+    g_pProductString,
+    g_pSerialNumberString,
+    g_pHIDInterfaceString,
+    g_pConfigString
+};
+
+#define NUM_STRING_DESCRIPTORS (sizeof(g_pStringDescriptors)                  /\
+                                sizeof(uint8_t *))
+
+//******************************************************************************
+//
+// The HID mouse device initialization and customization structures.
+//
+//******************************************************************************
+tHIDMouseInstance g_sMouseInstance;
+
+tUSBDHIDMouseDevice `instance.usbMouseDeviceStruct` =
+{
+    USB_VID_TI_1CBE,
+    USB_PID_MOUSE,
+    `instance.usbMouseMaxPowerConsumption`,
+    USB_CONF_ATTR_SELF_PWR,
+    `instance.usbMouseHandler`,
+    (void *)&`instance.usbMouseDeviceStruct`,
+    g_pStringDescriptors,
+    NUM_STRING_DESCRIPTORS,
+};
+
+%}
+% else if (instance.deviceClasses == "Keyboard")
+%{
+//******************************************************************************
+//
+// The languages supported by this device.
+//
+//******************************************************************************
+const uint8_t g_pui8LangDescriptor[] =
+{
+    4,
+    USB_DTYPE_STRING,
+    USBShort(USB_LANG_EN_US)
+};
+
+//******************************************************************************
+//
+// The manufacturer string.
+//
+//******************************************************************************
+% var descriptor_str_length = 0;
+% var descriptor_str = getCharArray(instance.manufacturerString_keyboard);
+% var descriptor_str_length = descriptor_str[1]
+% var descriptor_str_text = descriptor_str[0];
+const uint8_t g_pui8ManufacturerString[] =
+{
+    (`descriptor_str_length` + 1) * 2,
+    USB_DTYPE_STRING,
+	`descriptor_str_text`
+};
+
+//******************************************************************************
+//
+// The product string.
+//
+//******************************************************************************
+% descriptor_str = getCharArray(instance.productString_keyboard);
+% descriptor_str_length = descriptor_str[1]
+% descriptor_str_text = descriptor_str[0];
+const uint8_t g_pui8ProductString[] =
+{
+    (`descriptor_str_length` + 1) * 2,
+    USB_DTYPE_STRING,
+	`descriptor_str_text`
+	
+};
+
+//******************************************************************************
+//
+// The serial number string.
+//
+//******************************************************************************
+% descriptor_str = getCharArray(instance.serialNumberString_keyboard);
+% descriptor_str_length = descriptor_str[1]
+% descriptor_str_text = descriptor_str[0];
+const uint8_t g_pui8SerialNumberString[] =
+{
+    (`descriptor_str_length` + 1) * 2,
+    USB_DTYPE_STRING,
+	`descriptor_str_text`
+};
+
+//******************************************************************************
+//
+// The interface description string.
+//
+//******************************************************************************
+% descriptor_str = getCharArray(instance.keyboardHIDInterfaceString);
+% descriptor_str_length = descriptor_str[1]
+% descriptor_str_text = descriptor_str[0];
+const uint8_t g_pui8HIDInterfaceString[] =
+{
+    (`descriptor_str_length` + 1) * 2,
+    USB_DTYPE_STRING,
+	`descriptor_str_text`
+};
+
+//******************************************************************************
+//
+// The configuration description string.
+//
+//******************************************************************************
+% descriptor_str = getCharArray(instance.configString_keyboard);
+% descriptor_str_length = descriptor_str[1]
+% descriptor_str_text = descriptor_str[0];
+const uint8_t g_pui8ConfigString[] =
+{
+    (`descriptor_str_length` + 1) * 2,
+    USB_DTYPE_STRING,
+	`descriptor_str_text`
+};
+
+//******************************************************************************
+//
+// The descriptor string table.
+//
+//******************************************************************************
+const uint8_t * const g_pui8StringDescriptors[] =
+{
+    g_pui8LangDescriptor,
+    g_pui8ManufacturerString,
+    g_pui8ProductString,
+    g_pui8SerialNumberString,
+    g_pui8HIDInterfaceString,
+    g_pui8ConfigString
+};
+
+#define NUM_STRING_DESCRIPTORS (sizeof(g_pui8StringDescriptors)              /\
+                                sizeof(uint8_t *))
+
+//******************************************************************************
+//
+// The HID keyboard device initialization and customization structures.
+//
+//******************************************************************************
+tUSBDHIDKeyboardDevice `instance.usbKeyboardDeviceStruct` =
+{
+    USB_VID_TI_1CBE,
+    USB_PID_KEYBOARD,
+    500,
+    USB_CONF_ATTR_SELF_PWR | USB_CONF_ATTR_RWAKE,
+    `instance.usbKeyboardHandler`,
+    (void *)&`instance.usbKeyboardDeviceStruct`,
+    g_pui8StringDescriptors,
+    NUM_STRING_DESCRIPTORS,
+    0//&g_KeyboardInstance
+};	
+%}
+% else if (instance.deviceClasses == "Bulk")
+	%{
+//******************************************************************************
+//
+// The languages supported by this device.
+//
+//******************************************************************************
+const uint8_t g_pui8LangDescriptor[] =
+{
+    4,
+    USB_DTYPE_STRING,
+    USBShort(USB_LANG_EN_US)
+};
+
+//******************************************************************************
+//
+// The manufacturer string.
+//
+//******************************************************************************
+% var descriptor_str_length = 0;
+% var descriptor_str = getCharArray(instance.manufacturerString_bulk);
+% var descriptor_str_length = descriptor_str[1]
+% var descriptor_str_text = descriptor_str[0];
+const uint8_t g_pui8ManufacturerString[] =
+{
+    (`descriptor_str_length` + 1) * 2,
+    USB_DTYPE_STRING,
+	`descriptor_str_text`
+};
+
+//******************************************************************************
+//
+// The product string.
+//
+//******************************************************************************
+% descriptor_str = getCharArray(instance.productString_bulk);
+% descriptor_str_length = descriptor_str[1]
+% descriptor_str_text = descriptor_str[0];
+const uint8_t g_pui8ProductString[] =
+{
+    (`descriptor_str_length` + 1) * 2,
+    USB_DTYPE_STRING,
+	`descriptor_str_text`
+};
+
+//******************************************************************************
+//
+// The serial number string.
+//
+//******************************************************************************
+% descriptor_str = getCharArray(instance.serialNumberString_bulk);
+% descriptor_str_length = descriptor_str[1]
+% descriptor_str_text = descriptor_str[0];
+const uint8_t g_pui8SerialNumberString[] =
+{
+    (`descriptor_str_length` + 1) * 2,
+    USB_DTYPE_STRING,
+    `descriptor_str_text`
+};
+
+//******************************************************************************
+//
+// The data interface description string.
+//
+//******************************************************************************
+% descriptor_str = getCharArray(instance.dataInterfaceString);
+% descriptor_str_length = descriptor_str[1]
+% descriptor_str_text = descriptor_str[0];
+const uint8_t g_pui8DataInterfaceString[] =
+{
+    (`descriptor_str_length` + 1) * 2,
+    USB_DTYPE_STRING,
+	`descriptor_str_text`
+};
+
+//******************************************************************************
+//
+// The configuration description string.
+//
+//******************************************************************************
+% descriptor_str = getCharArray(instance.dataInterfaceString);
+% descriptor_str_length = descriptor_str[1]
+% descriptor_str_text = descriptor_str[0];
+const uint8_t g_pui8ConfigString[] =
+{
+    (`descriptor_str_length` + 1) * 2,
+    USB_DTYPE_STRING,
+	`descriptor_str_text`
+};
+
+//******************************************************************************
+//
+// The descriptor string table.
+//
+//******************************************************************************
+const uint8_t *const g_pui8StringDescriptors[] =
+{
+    g_pui8LangDescriptor,
+    g_pui8ManufacturerString,
+    g_pui8ProductString,
+    g_pui8SerialNumberString,
+    g_pui8DataInterfaceString,
+    g_pui8ConfigString
+};
+
+#define NUM_STRING_DESCRIPTORS (sizeof(g_pui8StringDescriptors) /            \
+                                sizeof(uint8_t *))
+
+//******************************************************************************
+//
+// The bulk device initialization and customization structures. In this case,
+// we are using USBBuffers between the bulk device class driver and the
+// application code. The function pointers and callback data values are set
+// to insert a buffer in each of the data channels, transmit and receive.
+//
+// With the buffer in place, the bulk channel callback is set to the relevant
+// channel function and the callback data is set to point to the channel
+// instance data. The buffer, in turn, has its callback set to the application
+// function and the callback data set to our bulk instance structure.
+//
+//******************************************************************************
+tUSBDBulkDevice `instance.usbBulkDeviceStruct` =
+{
+    USB_VID_TI_1CBE,
+    USB_PID_BULK,
+    500,
+    USB_CONF_ATTR_SELF_PWR,
+    USBBufferEventCallback,
+    (void *)&`instance.usbBulkRxStruct`,
+    USBBufferEventCallback,
+    (void *)&`instance.usbBulkTxStruct`,
+    g_pui8StringDescriptors,
+    NUM_STRING_DESCRIPTORS
+};
+
+//******************************************************************************
+//
+// Receive buffer (from the USB perspective).
+//
+//******************************************************************************
+uint8_t `instance.usbBulkRxBuffer`[`instance.usbBulkBufferSize`];
+uint8_t g_pui8RxBufferWorkspace[USB_BUFFER_WORKSPACE_SIZE];
+tUSBBuffer `instance.usbBulkRxStruct` =
+{
+    false,                           // This is a receive buffer.
+    `instance.usbBulkRxHandler`,     // pfnCallback
+    (void *)&`instance.usbBulkDeviceStruct`,          // Callback data is our device pointer.
+    USBDBulkPacketRead,              // pfnTransfer
+    USBDBulkRxPacketAvailable,       // pfnAvailable
+    (void *)&`instance.usbBulkDeviceStruct`,          // pvHandle
+    `instance.usbBulkRxBuffer`,               // pi8Buffer
+    `instance.usbBulkBufferSize`                 // ui32BufferSize
+};
+
+//******************************************************************************
+//
+// Transmit buffer (from the USB perspective).
+//
+//******************************************************************************
+
+uint8_t `instance.usbBulkTxBuffer`[`instance.usbBulkBufferSize`];
+uint8_t g_pui8TxBufferWorkspace[USB_BUFFER_WORKSPACE_SIZE];
+tUSBBuffer `instance.usbBulkTxStruct` =
+{
+    true,                            // This is a transmit buffer.
+    `instance.usbBulkTxHandler`,                       // pfnCallback
+    (void *)&`instance.usbBulkDeviceStruct`,          // Callback data is our device pointer.
+    USBDBulkPacketWrite,             // pfnTransfer
+    USBDBulkTxPacketAvailable,       // pfnAvailable
+    (void *)&`instance.usbBulkDeviceStruct`,          // pvHandle
+    `instance.usbBulkTxBuffer`,               // pi8Buffer
+    `instance.usbBulkBufferSize`                  // ui32BufferSize
+};
+	
+%}
+%}
+
+%}
+
+//
+// End of file 
+//

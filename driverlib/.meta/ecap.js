@@ -46,7 +46,7 @@ function onChangeECAPMode(inst, ui)
         ui.eventStop.hidden = false
         ui.counterResetOnEvent.hidden = false
         ui.reArm.hidden = false
-        if (["F28004x","F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x"].includes(Common.getDeviceName())){
+        if (["F28004x","F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x", "F28P55x"].includes(Common.getDeviceName())){
             ui.ecapInput.hidden = false
             ui.resetCounters.hidden = false
 			if (!["F280013x","F280015x"].includes(Common.getDeviceName()))
@@ -55,6 +55,18 @@ function onChangeECAPMode(inst, ui)
 				ui.dmaSource.hidden = false
 			}
         }
+        //Signal Monitoring Unit
+        if (["F28P65x"].includes(Common.getDeviceName())){
+            ui.trip_selection_signalMunit.hidden = false
+            ui.global_strobe_selection_signalMunit.hidden = false
+            for (var rptrIndex in device_driverlib_peripheral.ECAP_MONITORING_UNIT)
+            {
+                var currentRPTR = device_driverlib_peripheral.ECAP_MONITORING_UNIT[rptrIndex].name
+                let rptri = (currentRPTR).replace(/[^0-9]/g,'')
+                ui["enable_monitorunit"+ rptri.toString()].hidden = false;
+            }
+        }
+
         //APWM options
         ui.apwmPolarity.hidden = true
         ui.apwmPeriod.hidden = true
@@ -75,7 +87,7 @@ function onChangeECAPMode(inst, ui)
         ui.eventStop.hidden = true
         ui.counterResetOnEvent.hidden = true
         ui.reArm.hidden = true
-        if (["F28004x","F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x"].includes(Common.getDeviceName())){
+        if (["F28004x","F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x", "F28P55x"].includes(Common.getDeviceName())){
             ui.ecapInput.hidden = true
             ui.resetCounters.hidden = true
 			if (!["F280013x","F280015x"].includes(Common.getDeviceName()))
@@ -84,6 +96,29 @@ function onChangeECAPMode(inst, ui)
 				ui.dmaSource.hidden = true
 			}
         }
+
+        //Signal Monitoring Unit
+        if (["F28P65x"].includes(Common.getDeviceName())){
+            ui.trip_selection_signalMunit.hidden = false
+            ui.global_strobe_selection_signalMunit.hidden = false
+            for (var rptrIndex in device_driverlib_peripheral.ECAP_MONITORING_UNIT)
+            {
+                var currentRPTR = device_driverlib_peripheral.ECAP_MONITORING_UNIT[rptrIndex].name
+                let rptri = (currentRPTR).replace(/[^0-9]/g,'')
+
+                ui["enable_monitorunit"+ rptri.toString()].hidden = true;            
+                ui["monitorSelect_"+ rptri.toString()].hidden = true;
+                ui["minValue_"+ rptri.toString()].hidden = true;
+                ui["maxValue_"+ rptri.toString()].hidden = true;
+                ui["enableSyncIn_"+ rptri.toString()].hidden = true;
+                ui["forceload_"+ rptri.toString()].hidden = true;
+                ui["loadmode_"+ rptri.toString()].hidden = true;
+                ui["shadowMinValue_"+ rptri.toString()].hidden = true;
+                ui["shadowMaxValue_"+ rptri.toString()].hidden = true;
+                ui["enableDebug_"+ rptri.toString()].hidden = true;
+            }
+        }
+
         //APWM options
         ui.apwmPeriod.hidden = false
         ui.apwmPolarity.hidden = false
@@ -111,6 +146,77 @@ function onChangeUseInterrupts(inst, ui)
         ui.registerInterrupts.hidden = true
         ui.interruptSourceCapture.hidden = true
         ui.interruptSourceAPWM.hidden = true
+    }
+}
+
+function onChangeMonitorUnit(inst, ui)
+{
+    for (var rptrIndex in device_driverlib_peripheral.ECAP_MONITORING_UNIT)
+    {
+        var currentRPTR = device_driverlib_peripheral.ECAP_MONITORING_UNIT[rptrIndex].name
+        let rptri = (currentRPTR).replace(/[^0-9]/g,'')
+        if(inst["enable_monitorunit"+ rptri.toString()])
+        {
+            ui["monitorSelect_"+ rptri.toString()].hidden = false;
+            ui["minValue_"+ rptri.toString()].hidden = false;
+            ui["maxValue_"+ rptri.toString()].hidden = false;
+            ui["enableSyncIn_"+ rptri.toString()].hidden = false;
+            ui["enableDebug_"+ rptri.toString()].hidden = false;
+        }
+        else
+        {
+            ui["monitorSelect_"+ rptri.toString()].hidden = true;
+            ui["minValue_"+ rptri.toString()].hidden = true;
+            ui["maxValue_"+ rptri.toString()].hidden = true;
+            ui["enableSyncIn_"+ rptri.toString()].hidden = true;
+            ui["forceload_"+ rptri.toString()].hidden = true;
+            ui["loadmode_"+ rptri.toString()].hidden = true;
+            ui["shadowMinValue_"+ rptri.toString()].hidden = true;
+            ui["shadowMaxValue_"+ rptri.toString()].hidden = true;
+            ui["enableDebug_"+ rptri.toString()].hidden = true;
+
+            // Reset values to their defaults
+
+            inst["monitorSelect_"+ rptri.toString()] = device_driverlib_peripheral.ECAP_MonitoringTypeSelect[0].name;
+            inst["minValue_"+ rptri.toString()] = 0;
+            inst["maxValue_"+ rptri.toString()] = 0;
+            inst["enableSyncIn_"+ rptri.toString()] = false;
+            inst["forceload_"+ rptri.toString()] = false;
+            inst["loadmode_"+ rptri.toString()] = "ECAP_ACTIVE_LOAD_SYNC_EVT";
+            inst["shadowMinValue_"+ rptri.toString()] = 0;
+            inst["shadowMaxValue_"+ rptri.toString()] = 0;
+            inst["enableDebug_"+ rptri.toString()] = false;
+        }
+    }
+}
+
+function onChangeSyncIn(inst, ui)
+{
+    for (var rptrIndex in device_driverlib_peripheral.ECAP_MONITORING_UNIT)
+    {
+        var currentRPTR = device_driverlib_peripheral.ECAP_MONITORING_UNIT[rptrIndex].name
+        let rptri = (currentRPTR).replace(/[^0-9]/g,'')
+        if(inst["enableSyncIn_"+ rptri.toString()])
+        {
+            ui["forceload_"+ rptri.toString()].hidden = false;
+            ui["loadmode_"+ rptri.toString()].hidden = false;
+            ui["shadowMinValue_"+ rptri.toString()].hidden = false;
+            ui["shadowMaxValue_"+ rptri.toString()].hidden = false;
+        }
+        else
+        {
+            ui["forceload_"+ rptri.toString()].hidden = true;
+            ui["loadmode_"+ rptri.toString()].hidden = true;
+            ui["shadowMinValue_"+ rptri.toString()].hidden = true;
+            ui["shadowMaxValue_"+ rptri.toString()].hidden = true;
+
+            // Reset values to their defaults
+
+            inst["forceload_"+ rptri.toString()] = false;
+            inst["loadmode_"+ rptri.toString()] = "ECAP_ACTIVE_LOAD_SYNC_EVT";
+            inst["shadowMinValue_"+ rptri.toString()] = 0;
+            inst["shadowMaxValue_"+ rptri.toString()] = 0;
+        }
     }
 }
 
@@ -152,7 +258,7 @@ else if (["F28002x","F28003x"].includes(Common.getDeviceName()))
     numberOfECAPs = 3;
     ECAP_INSTANCES_WITH_HRCAP = ["ECAP3_BASE"];
 }
-else if (["F280013x"].includes(Common.getDeviceName()))
+else if (["F280013x", "F28P55x"].includes(Common.getDeviceName()))
 {
     ECAP_INSTANCE = [
         { name: "ECAP1_BASE", displayName: "ECAP1"},
@@ -183,7 +289,7 @@ var globalConfig = [
 var ecapStatic = undefined;
 
 /* determine static module dependency */
-if (["F2838x","F28002x","F28003x","F280013x","F280015x", "F28P65x"].includes(Common.getDeviceName()))
+if (["F2838x","F28002x","F28003x","F280013x","F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName()))
 {
     if (ECAP_INSTANCES_WITH_HRCAP.length > 0){
         ecapStatic = {
@@ -531,13 +637,13 @@ if (["F28004x"].includes(Common.getDeviceName())){
     )
 }
 var defaultInput = ""
-if (["F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x"].includes(Common.getDeviceName())){
+if (["F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x", "F28P55x"].includes(Common.getDeviceName())){
     defaultInput = "ECAP_INPUT_ECAP1_GPTRIP7"
 }
 else if (["F28004x"].includes(Common.getDeviceName())){
     defaultInput = "127"
 }
-if (["F28004x","F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x"].includes(Common.getDeviceName())){
+if (["F28004x","F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x", "F28P55x"].includes(Common.getDeviceName())){
     config.push(
         {
             name        : "ecapInput",
@@ -556,7 +662,7 @@ if (["F28004x","F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x"].inc
         },
     )
 }
-if (["F28004x","F28002x","F28003x","F2838x","F28P65x"].includes(Common.getDeviceName())){
+if (["F28004x","F28002x","F28003x","F2838x","F28P65x", "F28P55x"].includes(Common.getDeviceName())){
     config.push(
         {
             name        : "useDMA",
@@ -575,7 +681,7 @@ if (["F28004x","F28002x","F28003x","F2838x","F28P65x"].includes(Common.getDevice
         },
     )
 }
-if (["F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x"].includes(Common.getDeviceName())){
+if (["F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x", "F28P55x"].includes(Common.getDeviceName())){
     config.push(
         {
             name        : "syncInPulseSource",
@@ -597,6 +703,133 @@ config.push(
         default     : true
     },
 )
+
+let signal_monitoring_unit_config = [];
+
+if (["F28P65x"].includes(Common.getDeviceName()))
+{
+    let signal_monitoring_common_config =
+    [
+        {
+            name: "trip_selection_signalMunit",
+            displayName: "Trip Selection",
+            description : 'Select trip source signal to enable/ disable/ no effect signal monitoring unit',
+            default: 0,
+            default: device_driverlib_peripheral.ECAP_MunitTripInputSelect[0].name,
+            options: device_driverlib_peripheral.ECAP_MunitTripInputSelect
+        },
+        {
+            name: "global_strobe_selection_signalMunit",
+            displayName: "Global Load Strobe",
+            description : 'Select global load strobe to enable shadow to active loading',
+            default: device_driverlib_peripheral.ECAP_MunitTripInputSelect[0].name,
+            options: device_driverlib_peripheral.ECAP_MunitTripInputSelect
+        }
+    ]
+
+    for (var rptrIndex in device_driverlib_peripheral.ECAP_MONITORING_UNIT)
+    {
+        var currentRPTR = device_driverlib_peripheral.ECAP_MONITORING_UNIT[rptrIndex].name
+        let rptri = (currentRPTR).replace(/[^0-9]/g,'')
+        signal_monitoring_unit_config =  signal_monitoring_unit_config.concat ([
+            {
+                name:"signalMonitoringUnit"+ rptri.toString(), 
+                displayName: "Signal Monitoring Unit"+ rptri.toString(),
+                config:
+            [
+                {
+                    name: "enable_monitorunit"+ rptri.toString(),
+                    displayName: "Enable Monitor Unit",
+                    description : 'Enable signal monitoring unit ' + rptri.toString(),
+                    default: false,
+                    onChange: onChangeMonitorUnit
+                },
+                {
+                    name: "monitorSelect_"+ rptri.toString(),
+                    displayName: "Select Monitoring Type Of MUNIT",
+                    description : 'Select Monitoring Type of MUNIT ' + rptri.toString(),
+                    hidden:  true,
+                    default: device_driverlib_peripheral.ECAP_MonitoringTypeSelect[0].name,
+                    options: device_driverlib_peripheral.ECAP_MonitoringTypeSelect
+                },
+                {
+                    name: "minValue_"+ rptri.toString(),
+                    displayName: "Minimum Value For Monitoring",
+                    description : 'Minimum Value For Monitoring of ' + rptri.toString(),
+                    hidden:  true,
+                    default: 0,
+                },
+                {
+                    name: "maxValue_"+ rptri.toString(),
+                    displayName: "Maximum Value For Monitoring",
+                    description : 'Maximum Value For Monitoring of ' + rptri.toString(),
+                    hidden:  true,
+                    default: 0,
+                },
+                {
+                    name: "enableSyncIn_"+ rptri.toString(),
+                    displayName: "Enable SyncIn",
+                    description : 'Enable SyncIn for ' + rptri.toString(),
+                    hidden:  true,
+                    default: false,
+                    onChange: onChangeSyncIn
+                },
+                {
+                    name: "forceload_"+ rptri.toString(),
+                    displayName: "Force Copy From Shadow",
+                    description : 'Force Copy from Shadow ' + rptri.toString(),
+                    hidden:  true,
+                    default: false,
+                },
+                {
+                    name: "loadmode_"+ rptri.toString(),
+                    displayName: "Select Shadow Load Mode",
+                    description : 'Select Shadow Load Mode for ' + rptri.toString(),
+                    hidden:  true,
+                    default: "ECAP_ACTIVE_LOAD_SYNC_EVT",
+                    options     :
+                    [
+                        {name: "ECAP_ACTIVE_LOAD_SYNC_EVT",         displayName: "Load on next sync event"},
+                        {name: "ECAP_ACTIVE_LOAD_GLDLCSTRB_EVT",    displayName: "Load on EPWM GLDLCSTRB event"},
+                    ]
+                },
+                {
+                    name: "shadowMinValue_"+ rptri.toString(),
+                    displayName: "Shadow Minimum Value For Monitoring",
+                    description : 'Shadow Minimum Value For Monitoring of ' + rptri.toString(),
+                    hidden:  true,
+                    default: 0,
+                },
+                {
+                    name: "shadowMaxValue_"+ rptri.toString(),
+                    displayName: "Shadow Maximum Value For Monitoring",
+                    description : 'Shadow Maximum Value For Monitoring of ' + rptri.toString(),
+                    hidden:  true,
+                    default: 0,
+                },
+                {
+                    name: "enableDebug_"+ rptri.toString(),
+                    displayName: "Enable Debug Mode",
+                    description : 'Enable Debug Mode  for ' + rptri.toString(),
+                    hidden:  true,
+                    default: false,
+                },
+        ]}
+        ])
+    }
+
+    let signal_monitoring_total = signal_monitoring_common_config;
+    signal_monitoring_total = signal_monitoring_total.concat(signal_monitoring_unit_config);
+
+    config = config.concat([
+        {
+            name: "GROUP_SIGNAL_MONITORING_UNIT",
+            displayName: "Signal Monitoring Unit",
+            description: "",
+            config : signal_monitoring_total
+        }
+    ])
+}
 
 // only add HRCAP section for devices that have HRCAP available
 if (ECAP_INSTANCES_WITH_HRCAP.length > 0){
@@ -710,6 +943,38 @@ function onValidate(inst, validation) {
         validation.logWarning(
             "Enable Load Counter option is not set, code won't be generated for Load Counter.",
             inst, "loadCounter")
+    }
+
+    //Signal Monitoring Unit Validation
+    for (var rptrIndex in device_driverlib_peripheral.ECAP_MONITORING_UNIT)
+    {
+        var currentRPTR = device_driverlib_peripheral.ECAP_MONITORING_UNIT[rptrIndex].name
+        let rptri = (currentRPTR).replace(/[^0-9]/g,'')
+        /* Validate APWM Compare up to 32 bit unsigned int */
+        if (inst["minValue_"+rptri.toString()]< 0 || inst["minValue_"+rptri.toString()] > 4294967295)
+        {
+            validation.logError(
+                "Enter an integer for Minimum Value For Monitoring between 0 and 4,294,967,295!",
+                inst, "minValue_"+rptri.toString());
+        }
+        if (inst["maxValue_"+rptri.toString()]< 0 || inst["maxValue_"+rptri.toString()] > 4294967295)
+        {
+            validation.logError(
+                "Enter an integer for Maximum Value For Monitoring between 0 and 4,294,967,295!",
+                inst, "maxValue_"+rptri.toString());
+        }
+        if (inst["shadowMinValue_"+rptri.toString()]< 0 || inst["shadowMinValue_"+rptri.toString()] > 4294967295)
+        {
+            validation.logError(
+                "Enter an integer for Shadow Minimum Value For Monitoring between 0 and 4,294,967,295!",
+                inst, "shadowMinValue_"+rptri.toString());
+        }
+        if (inst["shadowMaxValue_"+rptri.toString()]< 0 || inst["shadowMaxValue_"+rptri.toString()] > 4294967295)
+        {
+            validation.logError(
+                "Enter an integer for Shadow Maximum Value For Monitoring between 0 and 4,294,967,295!",
+                inst, "shadowMaxValue_"+rptri.toString());
+        }
     }
 
     // HRCAP calibration validation

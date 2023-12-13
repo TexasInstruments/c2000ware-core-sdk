@@ -1,0 +1,5 @@
+% let Common   = system.getScript("/driverlib/Common.js");
+% var c2000warePath = Common.getC2000WarePath()
+% var device = Common.getDeviceName().toLowerCase()
+-Dccs_c2k
+-I"`c2000warePath`libraries/communications/usb/`device`/include"

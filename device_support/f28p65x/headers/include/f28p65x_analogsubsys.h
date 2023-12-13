@@ -363,6 +363,46 @@ union AGPIOCTRLG_REG {
     struct  AGPIOCTRLG_BITS  bit;
 };
 
+struct AGPIOCTRLH_BITS {                // bits description
+    Uint16 GPIO224:1;                   // 0 AGPIOCTRL for GPIO224
+    Uint16 GPIO225:1;                   // 1 AGPIOCTRL for GPIO225
+    Uint16 GPIO226:1;                   // 2 AGPIOCTRL for GPIO226
+    Uint16 GPIO227:1;                   // 3 AGPIOCTRL for GPIO227
+    Uint16 GPIO228:1;                   // 4 AGPIOCTRL for GPIO228
+    Uint16 GPIO229:1;                   // 5 AGPIOCTRL for GPIO229
+    Uint16 GPIO230:1;                   // 6 AGPIOCTRL for GPIO230
+    Uint16 GPIO231:1;                   // 7 AGPIOCTRL for GPIO231
+    Uint16 GPIO232:1;                   // 8 AGPIOCTRL for GPIO232
+    Uint16 GPIO233:1;                   // 9 AGPIOCTRL for GPIO233
+    Uint16 GPIO234:1;                   // 10 AGPIOCTRL for GPIO234
+    Uint16 GPIO235:1;                   // 11 AGPIOCTRL for GPIO235
+    Uint16 GPIO236:1;                   // 12 AGPIOCTRL for GPIO236
+    Uint16 GPIO237:1;                   // 13 AGPIOCTRL for GPIO237
+    Uint16 GPIO238:1;                   // 14 AGPIOCTRL for GPIO238
+    Uint16 GPIO239:1;                   // 15 AGPIOCTRL for GPIO239
+    Uint16 GPIO240:1;                   // 16 AGPIOCTRL for GPIO240
+    Uint16 GPIO241:1;                   // 17 AGPIOCTRL for GPIO241
+    Uint16 GPIO242:1;                   // 18 AGPIOCTRL for GPIO242
+    Uint16 rsvd1:1;                     // 19 Reserved
+    Uint16 rsvd2:1;                     // 20 Reserved
+    Uint16 rsvd3:1;                     // 21 Reserved
+    Uint16 rsvd4:1;                     // 22 Reserved
+    Uint16 rsvd5:1;                     // 23 Reserved
+    Uint16 rsvd6:1;                     // 24 Reserved
+    Uint16 rsvd7:1;                     // 25 Reserved
+    Uint16 rsvd8:1;                     // 26 Reserved
+    Uint16 rsvd9:1;                     // 27 Reserved
+    Uint16 rsvd10:1;                    // 28 Reserved
+    Uint16 rsvd11:1;                    // 29 Reserved
+    Uint16 rsvd12:1;                    // 30 Reserved
+    Uint16 rsvd13:1;                    // 31 Reserved
+};
+
+union AGPIOCTRLH_REG {
+    Uint32  all;
+    struct  AGPIOCTRLH_BITS  bit;
+};
+
 struct GPIOINENACTRL_BITS {             // bits description
     Uint16 GPIO0:1;                     // 0 Input Buffer Control for GPIO0
     Uint16 GPIO23:1;                    // 1 Input Buffer Control for GPIO23
@@ -405,7 +445,8 @@ struct ANALOG_SUBSYS_REGS {
     union   AGPIOFILTER_REG                  AGPIOFILTER;                  // AGPIO Filter Control Register
     Uint16                                   rsvd8[14];                    // Reserved
     union   AGPIOCTRLG_REG                   AGPIOCTRLG;                   // AGPIO Control Register
-    Uint16                                   rsvd9[18];                    // Reserved
+    union   AGPIOCTRLH_REG                   AGPIOCTRLH;                   // AGPIO Control Register
+    Uint16                                   rsvd9[16];                    // Reserved
     union   GPIOINENACTRL_REG                GPIOINENACTRL;                // GPIOINENACTRL Control Register
 };
 

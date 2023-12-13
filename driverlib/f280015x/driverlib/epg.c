@@ -48,16 +48,11 @@ void EPG_selectEPGDataOut(uint32_t muxbase, EPG_DataIn dataIn,
 {
     ASSERT(EPG_isMUXBaseValid(muxbase));
 
-    if(dataIn <= 31U)
+    if((uint16_t)dataIn <= 31U)
     {
         HWREG(muxbase + EPG_O_MXSEL0) = ((HWREG(muxbase + EPG_O_MXSEL0) &
-                                         ~(1U << dataIn)) |
-                                         (dataOutSel << dataIn));
-    }
-    else
-    {
-        HWREG(muxbase + EPG_O_MXSEL1) = ((HWREG(muxbase + EPG_O_MXSEL1) &
-                                         ~(1U << (dataIn - 32U))) |
-                                         (dataOutSel << (dataIn - 32U)));
+                                         ~(1U << (uint32_t)dataIn)) |
+                                         ((uint32_t)dataOutSel <<
+                                          (uint32_t)dataIn));
     }
 }

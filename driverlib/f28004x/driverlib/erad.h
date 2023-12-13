@@ -88,8 +88,8 @@ extern "C"
 //
 // Macro function for getting the instance number from the base address
 //
-#define ERAD_getBusCompInstance(base) (1U << ((base >> 3U) & 0x7U))
-#define ERAD_getCounterInstance(base) ((1U << ((base >> 4U) & 0x3U)) << 8U)
+#define ERAD_getBusCompInstance(base) (1UL << ((base >> 3U) & 0x7U))
+#define ERAD_getCounterInstance(base) ((1UL << ((base >> 4U) & 0x3U)) << 8U)
 
 //
 // Macro function to get the HWBP event number from the base address
@@ -377,8 +377,8 @@ ERAD_getOwnership(void)
     //
     // Read Global Owner register and return value
     //
-    return((ERAD_Owner)((HWREGH(ERAD_GLOBAL_BASE + ERAD_O_GLBL_OWNER) &
-                         ERAD_GLBL_OWNER_OWNER_M) >> ERAD_GLBL_OWNER_OWNER_S));
+    return((ERAD_Owner)((uint16_t)((HWREGH(ERAD_GLOBAL_BASE + ERAD_O_GLBL_OWNER) &
+                         ERAD_GLBL_OWNER_OWNER_M) >> ERAD_GLBL_OWNER_OWNER_S)));
 }
 
 //*****************************************************************************
@@ -611,8 +611,8 @@ ERAD_getBusCompStatus(uint32_t base)
     //
     // Read and return status of bus comparator
     //
-    return((ERAD_Status)((HWREGH(base + ERAD_O_HWBP_STATUS) &
-                    ERAD_HWBP_STATUS_STATUS_M) >> ERAD_HWBP_STATUS_STATUS_S));
+    return((ERAD_Status)((uint16_t)((HWREGH(base + ERAD_O_HWBP_STATUS) &
+                    ERAD_HWBP_STATUS_STATUS_M) >> ERAD_HWBP_STATUS_STATUS_S)));
 }
 
 //*****************************************************************************
@@ -667,8 +667,8 @@ ERAD_getCounterStatus(uint32_t base)
     //
     // Read and return status of the counter
     //
-    return((ERAD_Status)((HWREGH(base + ERAD_O_CTM_STATUS) &
-                      ERAD_CTM_STATUS_STATUS_M) >> ERAD_CTM_STATUS_STATUS_S));
+    return((ERAD_Status)((uint16_t)((HWREGH(base + ERAD_O_CTM_STATUS) &
+                      ERAD_CTM_STATUS_STATUS_M) >> ERAD_CTM_STATUS_STATUS_S)));
 }
 //*****************************************************************************
 //

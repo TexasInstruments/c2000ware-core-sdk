@@ -111,7 +111,7 @@ union COMPSTSCLR_REG {
 struct COMPDACHCTL_BITS {               // bits description
     Uint16 DACSOURCE:1;                 // 0 DAC Source Control
     Uint16 RAMPSOURCE:4;                // 4:1 Ramp Generator Source Control
-    Uint16 rsvd1:1;                     // 5 Reserved
+    Uint16 SELREF:1;                    // 5 DAC Reference Select
     Uint16 RAMPLOADSEL:1;               // 6 Ramp Load Select
     Uint16 SWLOADSEL:1;                 // 7 Software Load Select
     Uint16 BLANKSOURCE:4;               // 11:8 EPWMBLANK Source Select

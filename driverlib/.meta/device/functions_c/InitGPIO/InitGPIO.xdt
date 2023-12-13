@@ -1,0 +1,32 @@
+%%{
+let 	device_common   					= system.getScript("/driverlib/.meta/device/functions_c/device_common.js");
+let 	Common   						= system.getScript("/driverlib/Common.js");
+var	InitGPIO_PortA_B_C_D_E_F				= system.getTemplate('./InitGPIO_PortA_B_C_D_E_F.xdt');
+var	InitGPIO_PortA_B_H_Type0				= system.getTemplate('./InitGPIO_PortA_B_H_Type0.xdt');
+var	InitGPIO_PortA_B_C_D_E_F_H_Type1			= system.getTemplate('./InitGPIO_PortA_B_C_D_E_F_H_Type1.xdt');
+var	InitGPIO_PortA_B_C_G_H_Type2				= system.getTemplate('./InitGPIO_PortA_B_C_G_H_Type2.xdt');
+
+const 	multi_core 						= device_common.multi_core;
+const 	device  						= device_common.device;
+const	InitGPIO_PortA_PortF_Type0				= device_common.InitGPIO_PortA_PortF_Type0;
+const	InitGPIO_PortA_PortH_Type0				= device_common.InitGPIO_PortA_PortH_Type0;
+const	InitGPIO_PortA_PortH_Type1				= device_common.InitGPIO_PortA_PortH_Type1;
+const	InitGPIO_PortA_PortH_Type2				= device_common.InitGPIO_PortA_PortH_Type2;
+
+%%}
+% if(InitGPIO_PortA_PortF_Type0.includes(device))
+%{
+`InitGPIO_PortA_B_C_D_E_F()`
+%}
+% if(InitGPIO_PortA_PortH_Type0.includes(device))
+%{
+`InitGPIO_PortA_B_H_Type0()`
+%}
+% if(InitGPIO_PortA_PortH_Type1.includes(device))
+%{
+`InitGPIO_PortA_B_C_D_E_F_H_Type1()`
+%}
+% if(InitGPIO_PortA_PortH_Type2.includes(device))
+%{
+`InitGPIO_PortA_B_C_G_H_Type2()`
+%}

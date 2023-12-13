@@ -1,0 +1,79 @@
+%%{
+    let inst      = args[0];
+    let tileName  = args[1];
+    let instNum   = args[2];
+    let inputs    = args[3];
+    let name      = tileName + "_COUNTER_" + instNum;
+    let Common    = system.getScript("/utilities/clb_tool/clb_syscfg/source/Common.js");
+%%}
+% for (let j = 0; j < inputs.length; ++j) {
+%    let inName  = inputs[j];
+%    let inFrom = inst[inName].replace("BOUNDARY.in","BOUNDARY_IN.out");
+%    let inPort  = name + "." + inName;
+        `inPort`        (`Common.sigName(inFrom, tileName)`);
+% }
+        `name`.clk                  (sc_top_clock);
+        `name`.glbl_en              (sc_top_enable);
+        `name`.glbl_rst_n           (sc_top_reset);
+        `name`.add_shift_dir        (sig_`name`_add_shift_dir);
+        `name`.add_shift_mode       (sig_`name`_add_shift_mode);
+        `name`.add_shift_on_event_en(sig_`name`_add_shift_on_event_en);
+        `name`.global_clk_en        (sig_`name`_global_clk_en);//Unused
+        `name`.glbl_load_en         (sig_`name`_glbl_load_en);//Unused
+        `name`.event_load_val       (sig_`name`_event_load_val);
+        `name`.match_en             (sig_`name`_match_en);//Unused
+        `name`.match1_val           (sig_`name`_match1_val);
+        `name`.match2_val           (sig_`name`_match2_val);
+        `name`.match1_reg_out       (sig_`name`_match1_out);
+        `name`.match2_reg_out       (sig_`name`_match2_out);
+        `name`.glbl_serializer_mode (sig_`name`_glbl_serializer_mode);
+        `name`.hlc_count_load_val   (sig_`tileName`_COUNTER_hlc_count_load_val);
+        `name`.hlc_count_load_en    (sig_`name`_hlc_count_load_en);
+        `name`.hlc_match1_load_en   (sig_`name`_hlc_match1_load_en);
+        `name`.hlc_match2_load_en   (sig_`name`_hlc_match2_load_en);
+        `name`.count_out            (sig_`name`_count_out);
+        `name`.count_zero           (sig_`name`_count_zero);
+        `name`.count_match1         (sig_`name`_count_match1);
+        `name`.count_match2         (sig_`name`_count_match2);
+#if TYPE == 2 || TYPE == 3
+        `name`.lfsr_mode               (sig_`name`_lfsr_mode);
+        `name`.match1_tap_en           (sig_`name`_match1_tap_en);
+        `name`.match1_tap              (sig_`name`_match1_tap);
+        `name`.match2_tap_en           (sig_`name`_match2_tap_en);
+        `name`.match2_tap              (sig_`name`_match2_tap);
+#endif
+#if TYPE == 3
+        `name`.RECONFIG_PIPELINE_EN    (sig_`name`_RECONFIG_PIPELINE_EN);
+#endif
+        sc_trace(tf, `name`.clk,                 "`name`.`name`_clock");
+        sc_trace(tf, `name`.glbl_en,             "`name`.`name`_global_en");
+        sc_trace(tf, `name`.glbl_rst_n,          "`name`.`name`_global_reset");
+        sc_trace(tf, `name`.add_shift_dir,       "`name`.`name`_add_or_shift_dir");
+        sc_trace(tf, `name`.add_shift_mode,      "`name`.`name`_add_or_shift_mode");
+        sc_trace(tf, `name`.add_shift_on_event_en, "`name`.`name`_add_or_shift_on_event_en");
+        sc_trace(tf, `name`.event_load_val,      "`name`.`name`_event_load_val");
+        sc_trace(tf, `name`.match1_reg_out,      "`name`.`name`_match1_val");
+        sc_trace(tf, `name`.match2_reg_out,      "`name`.`name`_match2_val");
+        sc_trace(tf, `name`.glbl_serializer_mode,"`name`.`name`_global_serializer_en");
+        sc_trace(tf, `name`.hlc_count_load_val,  "`name`.`name`_hlc_counter_load_val");
+        sc_trace(tf, `name`.hlc_count_load_en,   "`name`.`name`_hlc_counter_load_en");
+        sc_trace(tf, `name`.hlc_match1_load_en,  "`name`.`name`_hlc_match1_load_en");
+        sc_trace(tf, `name`.hlc_match2_load_en,  "`name`.`name`_hlc_match2_load_en");
+        sc_trace(tf, `name`.count_out,           "`name`.`name`_counter_output");
+        sc_trace(tf, `name`.count_zero,          "`name`.`name`_counter_equals_zero");
+        sc_trace(tf, `name`.count_match1,        "`name`.`name`_counter_equals_match1");
+        sc_trace(tf, `name`.count_match2,        "`name`.`name`_counter_equals_match2");
+        sc_trace(tf, `name`.reset,               "`name`.`name`_counter_reset");
+        sc_trace(tf, `name`.event,               "`name`.`name`_event");
+        sc_trace(tf, `name`.mode0,        	 "`name`.`name`_mode0");
+        sc_trace(tf, `name`.mode1,        	 "`name`.`name`_mode1");
+#if TYPE == 2 || TYPE == 3
+        sc_trace(tf, `name`.lfsr_mode    ,     "`name`.`name`_lfsr_en");
+        sc_trace(tf, `name`.match1_tap_en,     "`name`.`name`_match1_tap_en");
+        sc_trace(tf, `name`.match1_tap   ,     "`name`.`name`_match1_tap");
+        sc_trace(tf, `name`.match2_tap_en,     "`name`.`name`_match2_tap_en");
+        sc_trace(tf, `name`.match2_tap   ,     "`name`.`name`_match2_tap");
+#endif
+#if TYPE == 3
+        sc_trace(tf, `name`.RECONFIG_PIPELINE_EN,     "`name`.`name`_reconfig_pipeline_en");
+#endif

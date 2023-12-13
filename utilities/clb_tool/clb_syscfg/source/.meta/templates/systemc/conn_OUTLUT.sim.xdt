@@ -1,0 +1,30 @@
+%%{
+    let inst      = args[0];
+    let tileName  = args[1];
+    let instNum   = args[2];
+    let inputs    = args[3];
+    let name      = tileName + "_OUTLUT_" + instNum;
+    let Common    = system.getScript("/utilities/clb_tool/clb_syscfg/source/Common.js");
+%%}
+% for (let j = 0; j < inputs.length; ++j) {
+%    let inName  = inputs[j];
+%    let inFrom = inst[inName].replace("BOUNDARY.in","BOUNDARY_IN.out");
+%    let inPort  = name + "." + inName;
+        `inPort`        (`Common.sigName(inFrom, tileName)`);
+% }
+
+%if(Common.isType1_Type2())
+%{
+        `name`.OUT      (sig_`name`_OUT);
+%}
+%else if (Common.isType0())
+%{
+        `name`.OUT      (sig_`tileName`_BOUNDARY_OUT_out`instNum`);
+%}
+        `name`.OUTPUT_LUT_fn (sig_`name`_fn);
+
+        sc_trace(tf, `name`.i0,  "`name`.`name`_input0");
+        sc_trace(tf, `name`.i1,  "`name`.`name`_input1");
+        sc_trace(tf, `name`.i2,  "`name`.`name`_input2");
+        sc_trace(tf, `name`.OUT, "`name`.`name`_output");
+        sc_trace(tf, `name`.OUTPUT_LUT_fn,  "`name`.`name`_output_equation");

@@ -439,12 +439,13 @@ GPIO_setAnalogMode(uint32_t pin, GPIO_AnalogMode mode)
         // Enable analog mode
         //
         gpioBaseAddr[GPIO_GPxAMSEL_INDEX] |= pinMask;
-        if((pin >= 198U) && (pin <= 219U))
+        if(((pin >= 198U) && (pin <= 219U)) || ((pin >= 224U) && (pin <= 242U)))
         {
             //
             // Set AGPIOCTL
             //
-            HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_AGPIOCTRLG) |= (pinMask);
+            HWREG((ANALOGSUBSYS_BASE + ASYSCTL_O_AGPIOCTRLG) +
+                   ((pin / 224U) * 2U)) |= (pinMask);
         }
     }
     else
@@ -453,12 +454,13 @@ GPIO_setAnalogMode(uint32_t pin, GPIO_AnalogMode mode)
         // Disable analog mode
         //
         gpioBaseAddr[GPIO_GPxAMSEL_INDEX] &= ~pinMask;
-        if((pin >= 198U) && (pin <= 219U))
+        if(((pin >= 198U) && (pin <= 219U)) || ((pin >= 224U) && (pin <= 242U)))
         {
             //
             // Clear AGPIOCTL
             //
-            HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_AGPIOCTRLG) &= ~(pinMask);
+            HWREG((ANALOGSUBSYS_BASE + ASYSCTL_O_AGPIOCTRLG) +
+                   ((pin / 224U) * 2U)) &= ~(pinMask);
         }
     }
 

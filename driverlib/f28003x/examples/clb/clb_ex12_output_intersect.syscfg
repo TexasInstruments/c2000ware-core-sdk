@@ -1,0 +1,105 @@
+
+/**
+ * Import the modules used in this configuration.
+ */
+const clb   = scripting.addModule("/driverlib/clb.js", {}, false);
+const clb1  = clb.addInstance();
+const epwm  = scripting.addModule("/driverlib/epwm.js", {}, false);
+const epwm1 = epwm.addInstance();
+const epwm2 = epwm.addInstance();
+const epwm3 = epwm.addInstance();
+const TILE  = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/TILE");
+const TILE1 = TILE.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+clb1.$name                       = "myTILE1";
+clb1.enableCLB                   = true;
+clb1.inputsUsed                  = ["CLB_IN0","CLB_IN1"];
+clb1.inputTypeCLB_IN0            = "GLOBAL";
+clb1.inputTypeCLB_IN1            = "GLOBAL";
+clb1.globalConfigCLB_IN0         = "CLB_GLOBAL_IN_MUX_EPWM2A";
+clb1.globalConfigCLB_IN1         = "CLB_GLOBAL_IN_MUX_EPWM3A";
+clb1.synchronizeCLB_IN0          = true;
+clb1.synchronizeCLB_IN1          = true;
+clb1.outputsToOverridePeripheral = ["CLB_OUT0"];
+
+epwm1.useCase                = "CUSTOM";
+epwm1.useInterfacePins       = ["EPWM#_A"];
+epwm1.$name                  = "myEPWM1";
+epwm1.epwm.$assign           = "EPWM1";
+epwm1.epwm.epwm_aPin.$assign = "GPIO0";
+
+epwm2.$name                  = "myEPWM2";
+epwm2.useCase                = "CUSTOM";
+epwm2.useInterfacePins       = ["EPWM#_A"];
+epwm2.epwm.$assign           = "EPWM2";
+epwm2.epwm.epwm_aPin.$assign = "GPIO2";
+
+epwm3.$name                  = "myEPWM3";
+epwm3.useCase                = "CUSTOM";
+epwm3.useInterfacePins       = ["EPWM#_A"];
+epwm3.epwm.$assign           = "EPWM3";
+epwm3.epwm.epwm_aPin.$assign = "GPIO4";
+
+TILE.clock_period = 10000;
+TILE.sim_duration = 100000000;
+
+TILE1.$name                     = "TILE1";
+TILE1.BOUNDARY.$name            = "BOUNDARY0";
+TILE1.BOUNDARY.in_repeat_count0 = 50;
+TILE1.BOUNDARY.boundaryInput0              = "squareWave";
+TILE1.BOUNDARY.in_repeat_count1 = 50;
+TILE1.BOUNDARY.in_repeat_count2 = 50;
+TILE1.BOUNDARY.in_period2       = 3000;
+TILE1.BOUNDARY.in_duty2         = 1500;
+TILE1.BOUNDARY.in_period3       = 10000;
+TILE1.BOUNDARY.in_duty3         = 5001;
+TILE1.BOUNDARY.in_repeat_count3 = 50;
+TILE1.BOUNDARY.boundaryInput3              = "0";
+TILE1.BOUNDARY.boundaryInput4              = "0";
+TILE1.BOUNDARY.boundaryInput5              = "0";
+TILE1.BOUNDARY.in_period0       = 500;
+TILE1.BOUNDARY.in_duty0         = 250;
+TILE1.BOUNDARY.boundaryInput1              = "squareWave";
+TILE1.BOUNDARY.in_period1       = 750;
+TILE1.BOUNDARY.in_duty1         = 250;
+TILE1.BOUNDARY.boundaryInput2              = "0";
+TILE1.LUT_0.$name               = "LUT_0";
+TILE1.LUT_0.i0                  = "BOUNDARY.in0";
+TILE1.LUT_0.i1                  = "BOUNDARY.in1";
+TILE1.LUT_0.eqn                 = "i0 & i1";
+TILE1.LUT_1.$name               = "LUT_1";
+TILE1.LUT_2.$name               = "LUT_2";
+TILE1.FSM_0.$name               = "FSM_0";
+TILE1.FSM_1.$name               = "FSM_1";
+TILE1.FSM_2.$name               = "FSM_2";
+TILE1.COUNTER_0.$name           = "COUNTER_0";
+TILE1.COUNTER_1.$name           = "COUNTER_1";
+TILE1.COUNTER_2.$name           = "COUNTER_2";
+TILE1.OUTLUT_0.$name            = "OUTLUT_0";
+TILE1.OUTLUT_0.eqn              = "i0";
+TILE1.OUTLUT_0.i0               = "LUT_0.OUT";
+TILE1.OUTLUT_1.$name            = "OUTLUT_1";
+TILE1.OUTLUT_2.$name            = "OUTLUT_2";
+TILE1.OUTLUT_3.$name            = "OUTLUT_3";
+TILE1.OUTLUT_4.$name            = "OUTLUT_4";
+TILE1.OUTLUT_5.$name            = "OUTLUT_5";
+TILE1.OUTLUT_6.$name            = "OUTLUT_6";
+TILE1.OUTLUT_7.$name            = "OUTLUT_7";
+TILE1.HLC.$name                 = "HLC_0";
+TILE1.HLC.program0.$name        = "HLCP_0";
+TILE1.HLC.program0.instruct0    = "INTR 11";
+TILE1.HLC.program1.$name        = "HLCP_1";
+TILE1.HLC.program1.instruct0    = "INTR 12";
+TILE1.HLC.program2.$name        = "HLCP_2";
+TILE1.HLC.program3.$name        = "HLCP_3";
+TILE1.AOC_0.$name               = "AOC_0";
+TILE1.AOC_1.$name               = "AOC_1";
+TILE1.AOC_2.$name               = "AOC_2";
+TILE1.AOC_3.$name               = "AOC_3";
+TILE1.AOC_4.$name               = "AOC_4";
+TILE1.AOC_5.$name               = "AOC_5";
+TILE1.AOC_6.$name               = "AOC_6";
+TILE1.AOC_7.$name               = "AOC_7";

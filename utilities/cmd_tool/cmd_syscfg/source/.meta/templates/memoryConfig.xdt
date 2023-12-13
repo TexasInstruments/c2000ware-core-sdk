@@ -1,0 +1,16 @@
+% let CMDCommon = system.getScript("/utilities/cmd_tool/cmd_syscfg/source/CMDCommon.js");
+% let memoryGroups = CMDCommon.getDeviceUniqueMemoryRangeGroups();
+Memory Configuration in the Linker CMD File
+=======
+
+% for (var memGroup of memoryGroups) {
+---
+`memGroup`
+
+Memory | Origin | Length | Description
+--- | ---| --- | ---
+% 	for (var memInfo of CMDCommon.getDeviceMemoryRangeInGroup(memGroup))
+% 	{
+`memInfo.name` | `CMDCommon.numberToHex32(memInfo.origin)` | `CMDCommon.numberToHex32(memInfo.length)` |   `CMDCommon.getMemoryDescription(memInfo.name)`
+% 	}
+% }

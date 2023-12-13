@@ -1,0 +1,19 @@
+%%{
+let device_common   				= system.getScript("/driverlib/.meta/device/functions_c/device_common.js");
+let Common   					= system.getScript("/driverlib/Common.js");
+
+const clocktree_Analog_Trim_Type0 		= device_common.clocktree_Analog_Trim_Type0;
+const device  					= device_common.device;
+%%}
+% if(clocktree_Analog_Trim_Type0.includes(device))
+	% {
+    //
+    // Configure Analog Trim in case of untrimmed or TMX sample
+    //
+    if((SysCtl_getDeviceParametric(SYSCTL_DEVICE_QUAL) == 0x0U)       &&
+       (HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_ANAREFTRIMA) == 0x0U))
+    {
+        Device_configureTMXAnalogTrim();
+    }
+	% }
+%else{}

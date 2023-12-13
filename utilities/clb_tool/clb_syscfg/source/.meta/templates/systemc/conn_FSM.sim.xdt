@@ -1,0 +1,41 @@
+%%{
+    let inst      = args[0];
+    let tileName  = args[1];
+    let instNum   = args[2];
+    let inputs    = args[3];
+    let name      = tileName + "_FSM_" + instNum;
+    let Common    = system.getScript("/utilities/clb_tool/clb_syscfg/source/Common.js");
+%%}
+% for (let j = 0; j < inputs.length; ++j) {
+%    let inName  = inputs[j];
+%    let inFrom = inst[inName].replace("BOUNDARY.in","BOUNDARY_IN.out");
+%    let inPort  = name + "." + inName;
+        `inPort`        (`Common.sigName(inFrom, tileName)`);
+% }
+        `name`.clk      (sc_top_clock);
+        `name`.glbl_en  (sc_top_enable);
+        `name`.glbl_rst_n(sc_top_reset);
+        `name`.EXT_SEL0 (sig_`name`_xe0_sel);
+        `name`.EXT_SEL1 (sig_`name`_xe1_sel);
+        `name`.S0_fn    (sig_`name`_S0_fn);
+        `name`.S1_fn    (sig_`name`_S1_fn);
+        `name`.OUT_LUT_fn(sig_`name`_OUT_LUT_fn);
+        `name`.S0       (sig_`name`_S0);
+        `name`.S1       (sig_`name`_S1);
+        `name`.OUT      (sig_`name`_OUT);
+
+        sc_trace(tf, `name`.clk,        "`name`.`name`_clock");
+        sc_trace(tf, `name`.glbl_en,    "`name`.`name`_global_en");
+        sc_trace(tf, `name`.glbl_rst_n, "`name`.`name`_global_reset");
+        sc_trace(tf, `name`.e0,         "`name`.`name`_external_input0");
+        sc_trace(tf, `name`.e1,         "`name`.`name`_external_input1");
+        sc_trace(tf, `name`.xe0,        "`name`.`name`_extra_external_input0");
+        sc_trace(tf, `name`.xe1,        "`name`.`name`_extra_external_input1");
+        sc_trace(tf, `name`.EXT_SEL0,   "`name`.`name`_extra_external_input_select0");
+        sc_trace(tf, `name`.EXT_SEL1,   "`name`.`name`_extra_external_input_select1");
+        sc_trace(tf, `name`.S0_fn,      "`name`.`name`_state0_equation_output");
+        sc_trace(tf, `name`.S1_fn,      "`name`.`name`_state1_equation_output");
+        sc_trace(tf, `name`.OUT_LUT_fn, "`name`.`name`_LUT_output_equation");
+        sc_trace(tf, `name`.S0,         "`name`.`name`_fsm_s0_output");
+        sc_trace(tf, `name`.S1,         "`name`.`name`_fsm_s1_output");
+        sc_trace(tf, `name`.OUT,        "`name`.`name`_fsm_lut_output");

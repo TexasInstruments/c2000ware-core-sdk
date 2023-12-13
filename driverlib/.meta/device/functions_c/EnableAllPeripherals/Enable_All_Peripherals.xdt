@@ -1,0 +1,144 @@
+%%{ 
+let 	Common   							= system.getScript("/driverlib/Common.js");
+let 	device_driverlib_peripheral 					= system.getScript("/driverlib/device_driverlib_peripherals/" +
+        								  Common.getDeviceName().toLowerCase() + "_sysctl.js");
+
+let 	device_common   						= system.getScript("/driverlib/.meta/device/functions_c/device_common.js");
+const 	device  							= device_common.device;
+const	EnableAllPeripherals_CLK_HRCAL					= device_common.EnableAllPeripherals_CLK_HRCAL;
+const	EnableAllPeripherals_CLK_HRPWM					= device_common.EnableAllPeripherals_CLK_HRPWM;
+const	EnableAllPeripherals_CLK_EMIF_With_If				= device_common.EnableAllPeripherals_CLK_EMIF_With_If;
+const	EnableAllPeripherals_CLK_EMIF1					= device_common.EnableAllPeripherals_CLK_EMIF1;
+const	EnableAllPeripherals_CLK_EMIF2					= device_common.EnableAllPeripherals_CLK_EMIF2;
+const	EnableAllPeripherals_CLK_USB_UPPA				= device_common.EnableAllPeripherals_CLK_USB_UPPA;
+const	EnableAllPeripherals_CLK_USBA					= device_common.EnableAllPeripherals_CLK_USBA;
+const	EnableAllPeripherals_CLK_UPPA					= device_common.EnableAllPeripherals_CLK_UPPA;
+const	EnableAllPeripherals_CLK_DCC_ECAT_MCAN				= device_common.EnableAllPeripherals_CLK_DCC_ECAT_MCAN;
+const	EnableAllPeripherals_CLK_CLA1BGCRC				= device_common.EnableAllPeripherals_CLK_CLA1BGCRC;
+const	EnableAllPeripherals_CLK_PMBUSA					= device_common.EnableAllPeripherals_CLK_PMBUSA;
+const	EnableAllPeripherals_CLK_CLA1					= device_common.EnableAllPeripherals_CLK_CLA1;
+%%}
+//*****************************************************************************
+//
+// Function to turn on all peripherals, enabling reads and writes to the
+// peripherals' registers.
+//
+// Note that to reduce power, unused peripherals should be disabled.
+//
+//*****************************************************************************
+void Device_enableAllPeripherals(void)
+{
+% for (let perphEnable of device_driverlib_peripheral.SysCtl_PeripheralPCLOCKCR)
+% {
+% if (!["SYSCTL_PERIPH_CLK_GTBCLKSYNC","SYSCTL_PERIPH_CLK_CLA1BGCRC","SYSCTL_PERIPH_CLK_MPOST0",
+%"SYSCTL_PERIPH_CLK_PMBUSA","SYSCTL_PERIPH_CLK_CLA1","SYSCTL_PERIPH_CLK_PBIST","SYSCTL_PERIPH_CLK_HRCAL","SYSCTL_PERIPH_CLK_HRPWM",
+%"SYSCTL_PERIPH_CLK_EMIF1","SYSCTL_PERIPH_CLK_EMIF2","SYSCTL_PERIPH_CLK_USBA","SYSCTL_PERIPH_CLK_UPPA",
+%"SYSCTL_PERIPH_CLK_DCC0","SYSCTL_PERIPH_CLK_DCC1","SYSCTL_PERIPH_CLK_DCC2","SYSCTL_PERIPH_CLK_ECAT",
+%"SYSCTL_PERIPH_CLK_MCANA"].includes(perphEnable.name)) {
+    SysCtl_enablePeripheral(`perphEnable.name`);
+% }
+% if(["SYSCTL_PERIPH_CLK_CLA1BGCRC"].includes(perphEnable.name) && EnableAllPeripherals_CLK_CLA1BGCRC.includes(device))
+%{
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CLA1BGCRC);
+%}
+% if(["SYSCTL_PERIPH_CLK_PMBUSA"].includes(perphEnable.name) && EnableAllPeripherals_CLK_PMBUSA.includes(device))
+%{
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_PMBUSA);
+%}
+% if(["SYSCTL_PERIPH_CLK_CLA1"].includes(perphEnable.name) && EnableAllPeripherals_CLK_CLA1.includes(device))
+%{
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CLA1);
+%}
+% if(["SYSCTL_PERIPH_CLK_HRCAL"].includes(perphEnable.name))
+%{
+% if (EnableAllPeripherals_CLK_HRCAL.includes(device)&& (Common.isContextCPU1()))
+%{
+#ifdef CPU1
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_HRCAL);
+#endif 
+%}
+% else 
+%{
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_HRCAL);
+%}
+%}
+% if(["SYSCTL_PERIPH_CLK_HRPWM"].includes(perphEnable.name))
+%{
+% if (EnableAllPeripherals_CLK_HRPWM.includes(device)&& (Common.isContextCPU1()))
+%{
+#ifdef CPU1
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_HRPWM);
+#endif 
+%}
+% else 
+%{
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_HRPWM);
+%}
+%}
+% if(["SYSCTL_PERIPH_CLK_EMIF1"].includes(perphEnable.name))
+%{
+% if (EnableAllPeripherals_CLK_EMIF_With_If.includes(device)&& (Common.isContextCPU1()))
+%{
+#ifdef CPU1
+    SysCtl_enablePeripheral(`perphEnable.name`);
+#endif 
+%}
+% if (EnableAllPeripherals_CLK_EMIF1.includes(device)&& (Common.isContextCPU1())) 
+%{
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EMIF1);
+%}
+%}
+% if(["SYSCTL_PERIPH_CLK_EMIF2"].includes(perphEnable.name))
+%{
+% if (EnableAllPeripherals_CLK_EMIF_With_If.includes(device)&& (Common.isContextCPU1()))
+%{
+#ifdef CPU1
+    SysCtl_enablePeripheral(`perphEnable.name`);
+#endif 
+%}
+% if (EnableAllPeripherals_CLK_EMIF2.includes(device)&& (Common.isContextCPU1())) 
+%{
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EMIF2);
+%}
+%}
+% if(["SYSCTL_PERIPH_CLK_USBA"].includes(perphEnable.name))
+%{
+% if (EnableAllPeripherals_CLK_USB_UPPA.includes(device)&& (Common.isContextCPU1()))
+%{
+#ifdef CPU1
+    SysCtl_enablePeripheral(`perphEnable.name`);
+#endif 
+%}
+% if (EnableAllPeripherals_CLK_USBA.includes(device)&& (Common.isContextCPU1()))
+%{
+    SysCtl_enablePeripheral(`perphEnable.name`);
+%}
+%}
+% if(["SYSCTL_PERIPH_CLK_UPPA"].includes(perphEnable.name))
+%{
+% if (EnableAllPeripherals_CLK_USB_UPPA.includes(device)&& (Common.isContextCPU1()))
+%{
+#ifdef CPU1
+    SysCtl_enablePeripheral(`perphEnable.name`);
+#endif 
+%}
+% if (EnableAllPeripherals_CLK_UPPA.includes(device)) 
+%{
+    SysCtl_enablePeripheral(`perphEnable.name`);
+%}
+%}
+% if(["SYSCTL_PERIPH_CLK_DCC0","SYSCTL_PERIPH_CLK_DCC1","SYSCTL_PERIPH_CLK_DCC2","SYSCTL_PERIPH_CLK_ECAT","SYSCTL_PERIPH_CLK_MCANA"].includes(perphEnable.name))
+%{
+% if (EnableAllPeripherals_CLK_DCC_ECAT_MCAN.includes(device)&& (Common.isContextCPU1()))
+%{
+#ifdef CPU1
+    SysCtl_enablePeripheral(`perphEnable.name`);
+#endif 
+%}
+% else 
+%{
+    SysCtl_enablePeripheral(`perphEnable.name`);
+%}
+%}
+% }
+}

@@ -46,35 +46,37 @@
 // The following are defines for the UART register offsets
 //
 //*************************************************************************************************
-#define UART_O_DR          0x0U     // UART Data
-#define UART_O_RSR         0x2U     // UART Receive Status/Error Clear
-#define UART_O_FR          0xCU     // UART Flag
-#define UART_O_ILPR        0x10U    // UART IrDA Low-Power Register
-#define UART_O_IBRD        0x12U    // UART Integer Baud-Rate Divisor
-#define UART_O_FBRD        0x14U    // UART Fractional Baud-Rate Divisor
-#define UART_O_LCRH        0x16U    // UART Line Control
-#define UART_O_CTL         0x18U    // UART Control
-#define UART_O_IFLS        0x1AU    // UART Interrupt FIFO Level Select
-#define UART_O_IM          0x1CU    // UART Interrupt Mask
-#define UART_O_RIS         0x1EU    // UART Raw Interrupt Status
-#define UART_O_MIS         0x20U    // UART Masked Interrupt Status
-#define UART_O_ICR         0x22U    // UART Interrupt Clear
-#define UART_O_DMACTL      0x24U    // UART DMA Control
-#define UART_O_9BITADDR    0x52U    // UART 9-Bit Self Address
-#define UART_O_9BITAMASK   0x54U    // UART 9-Bit Self Address Mask
-#define UART_O_PP          0x7E0U   // UART Peripheral Properties
-#define UART_O_PERIPHID4   0x7E8U   // UART Peripheral Identification 4
-#define UART_O_PERIPHID5   0x7EAU   // UART Peripheral Identification 5
-#define UART_O_PERIPHID6   0x7ECU   // UART Peripheral Identification 6
-#define UART_O_PERIPHID7   0x7EEU   // UART Peripheral Identification 7
-#define UART_O_PERIPHID0   0x7F0U   // UART Peripheral Identification 0
-#define UART_O_PERIPHID1   0x7F2U   // UART Peripheral Identification 1
-#define UART_O_PERIPHID2   0x7F4U   // UART Peripheral Identification 2
-#define UART_O_PERIPHID3   0x7F6U   // UART Peripheral Identification 3
-#define UART_O_PCELLID0    0x7F8U   // UART PrimeCell Identification 0
-#define UART_O_PCELLID1    0x7FAU   // UART PrimeCell Identification 1
-#define UART_O_PCELLID2    0x7FCU   // UART PrimeCell Identification 2
-#define UART_O_PCELLID3    0x7FEU   // UART PrimeCell Identification 3
+#define UART_O_DR            0x0U     // UART Data
+#define UART_O_RSR           0x2U     // UART Receive Status/Error Clear
+#define UART_O_FR            0xCU     // UART Flag
+#define UART_O_ILPR          0x10U    // UART IrDA Low-Power Register
+#define UART_O_IBRD          0x12U    // UART Integer Baud-Rate Divisor
+#define UART_O_FBRD          0x14U    // UART Fractional Baud-Rate Divisor
+#define UART_O_LCRH          0x16U    // UART Line Control
+#define UART_O_CTL           0x18U    // UART Control
+#define UART_O_IFLS          0x1AU    // UART Interrupt FIFO Level Select
+#define UART_O_IM            0x1CU    // UART Interrupt Mask
+#define UART_O_RIS           0x1EU    // UART Raw Interrupt Status
+#define UART_O_MIS           0x20U    // UART Masked Interrupt Status
+#define UART_O_ICR           0x22U    // UART Interrupt Clear
+#define UART_O_DMACTL        0x24U    // UART DMA Control
+#define UART_O_GLB_INT_FLG   0x42U    // UART Global Interrupt Flag Register
+#define UART_O_GLB_INT_CLR   0x44U    // UART Global Interrupt Clear Register
+#define UART_O_9BITADDR      0x52U    // UART 9-Bit Self Address
+#define UART_O_9BITAMASK     0x54U    // UART 9-Bit Self Address Mask
+#define UART_O_PP            0x7E0U   // UART Peripheral Properties
+#define UART_O_PERIPHID4     0x7E8U   // UART Peripheral Identification 4
+#define UART_O_PERIPHID5     0x7EAU   // UART Peripheral Identification 5
+#define UART_O_PERIPHID6     0x7ECU   // UART Peripheral Identification 6
+#define UART_O_PERIPHID7     0x7EEU   // UART Peripheral Identification 7
+#define UART_O_PERIPHID0     0x7F0U   // UART Peripheral Identification 0
+#define UART_O_PERIPHID1     0x7F2U   // UART Peripheral Identification 1
+#define UART_O_PERIPHID2     0x7F4U   // UART Peripheral Identification 2
+#define UART_O_PERIPHID3     0x7F6U   // UART Peripheral Identification 3
+#define UART_O_PCELLID0      0x7F8U   // UART PrimeCell Identification 0
+#define UART_O_PCELLID1      0x7FAU   // UART PrimeCell Identification 1
+#define UART_O_PCELLID2      0x7FCU   // UART PrimeCell Identification 2
+#define UART_O_PCELLID3      0x7FEU   // UART PrimeCell Identification 3
 
 #define UART_O_ECR   0x2U   // UART Error Clear
 
@@ -247,6 +249,20 @@
 #define UART_DMACTL_RXDMAE   0x1U   // Receive DMA Enable
 #define UART_DMACTL_TXDMAE   0x2U   // Transmit DMA Enable
 #define UART_DMACTL_DMAERR   0x4U   // DMA on Error
+
+//*************************************************************************************************
+//
+// The following are defines for the bit fields in the UART_GLB_INT_FLG register
+//
+//*************************************************************************************************
+#define UART_GLB_INT_FLG_INT_FLG   0x1U   // Global Interrupt Flag for UART Interrupt
+
+//*************************************************************************************************
+//
+// The following are defines for the bit fields in the UART_GLB_INT_CLR register
+//
+//*************************************************************************************************
+#define UART_GLB_INT_CLR_INT_FLG_CLR   0x1U   // Global Interrupt flag clear for UART Interrupt
 
 //*************************************************************************************************
 //

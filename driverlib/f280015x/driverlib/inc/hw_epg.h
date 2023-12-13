@@ -66,15 +66,8 @@
 #define EPG_O_SIGGEN0_DATA1          0x3AU   // Signal generator 0's data register 1
 #define EPG_O_SIGGEN0_DATA0_ACTIVE   0x3CU   // Signal generator 0's data active register 0
 #define EPG_O_SIGGEN0_DATA1_ACTIVE   0x3EU   // Signal generator 0's data active register 1
-#define EPG_O_SIGGEN1_CTL0           0x40U   // Signal generator 1's control register 0
-#define EPG_O_SIGGEN1_CTL1           0x42U   // Signal generator 1's control register 1
-#define EPG_O_SIGGEN1_DATA0          0x48U   // Signal generator 1's data register 0
-#define EPG_O_SIGGEN1_DATA1          0x4AU   // Signal generator 1's data register 1
-#define EPG_O_SIGGEN1_DATA0_ACTIVE   0x4CU   // Signal generator 1's data active register 0
-#define EPG_O_SIGGEN1_DATA1_ACTIVE   0x4EU   // Signal generator 1's data active register 1
 
 #define EPG_O_MXSEL0        0x0U   // EPG Mux select register 0
-#define EPG_O_MXSEL1        0x2U   // EPG Mux select register 1
 #define EPG_O_MXSELLOCK     0xCU   // EPG Mux select register lock
 #define EPG_O_MXSELCOMMIT   0xEU   // EPG Mux select register commit
 
@@ -100,9 +93,7 @@
 //
 //*************************************************************************************************
 #define EPG_GCTL1_SIGGEN0_CLKSEL_S   0U
-#define EPG_GCTL1_SIGGEN0_CLKSEL_M   0x7U    // Clock source select of SIGGEN0
-#define EPG_GCTL1_SIGGEN1_CLKSEL_S   4U
-#define EPG_GCTL1_SIGGEN1_CLKSEL_M   0x70U   // Clock source select of SIGGEN1
+#define EPG_GCTL1_SIGGEN0_CLKSEL_M   0x7U   // Clock source select of SIGGEN0
 
 //*************************************************************************************************
 //
@@ -161,74 +152,62 @@
 // The following are defines for the bit fields in the EPGLOCK register
 //
 //*************************************************************************************************
-#define EPG_LOCK_GCTL0          0x1U     // GCTL0 Lock bit
-#define EPG_LOCK_GCTL1          0x2U     // GCTL1 Lock bit
-#define EPG_LOCK_GCTL2          0x4U     // GCTL2 Lock bit
-#define EPG_LOCK_GCTL3          0x8U     // GCTL3 Lock bit
-#define EPG_LOCK_CLKDIV0_CTL0   0x10U    // CLKDIV0_CTL0 Lock bit
-#define EPG_LOCK_CLKDIV1_CTL0   0x20U    // CLKDIV1_CTL0 Lock bit
-#define EPG_LOCK_SIGGEN0_CTL0   0x40U    // SIGGEN0_CTL0 Lock bit
-#define EPG_LOCK_SIGGEN0_CTL1   0x80U    // SIGGEN0_CTL1 Lock bit
-#define EPG_LOCK_SIGGEN1_CTL0   0x100U   // SIGGEN1_CTL0 Lock bit
-#define EPG_LOCK_SIGGEN1_CTL1   0x200U   // SIGGEN1_CTL1 Lock bit
+#define EPG_LOCK_GCTL0          0x1U    // GCTL0 Lock bit
+#define EPG_LOCK_GCTL1          0x2U    // GCTL1 Lock bit
+#define EPG_LOCK_GCTL2          0x4U    // GCTL2 Lock bit
+#define EPG_LOCK_GCTL3          0x8U    // GCTL3 Lock bit
+#define EPG_LOCK_CLKDIV0_CTL0   0x10U   // CLKDIV0_CTL0 Lock bit
+#define EPG_LOCK_CLKDIV1_CTL0   0x20U   // CLKDIV1_CTL0 Lock bit
+#define EPG_LOCK_SIGGEN0_CTL0   0x40U   // SIGGEN0_CTL0 Lock bit
+#define EPG_LOCK_SIGGEN0_CTL1   0x80U   // SIGGEN0_CTL1 Lock bit
 
 //*************************************************************************************************
 //
 // The following are defines for the bit fields in the EPGCOMMIT register
 //
 //*************************************************************************************************
-#define EPG_COMMIT_GCTL0          0x1U     // GCTL0 Commit bit
-#define EPG_COMMIT_GCTL1          0x2U     // GCTL1 Commit bit
-#define EPG_COMMIT_GCTL2          0x4U     // GCTL2 Commit bit
-#define EPG_COMMIT_GCTL3          0x8U     // GCTL3 Commit bit
-#define EPG_COMMIT_CLKDIV0_CTL0   0x10U    // CLKDIV0_CTL0 Commit bit
-#define EPG_COMMIT_CLKDIV1_CTL0   0x20U    // CLKDIV1_CTL0 Commit bit
-#define EPG_COMMIT_SIGGEN0_CTL0   0x40U    // SIGGEN0_CTL0 Commit bit
-#define EPG_COMMIT_SIGGEN0_CTL1   0x80U    // SIGGEN0_CTL1 Commit bit
-#define EPG_COMMIT_SIGGEN1_CTL0   0x100U   // SIGGEN1_CTL0 Commit bit
-#define EPG_COMMIT_SIGGEN1_CTL1   0x200U   // SIGGEN1_CTL1 Commit bit
+#define EPG_COMMIT_GCTL0          0x1U    // GCTL0 Commit bit
+#define EPG_COMMIT_GCTL1          0x2U    // GCTL1 Commit bit
+#define EPG_COMMIT_GCTL2          0x4U    // GCTL2 Commit bit
+#define EPG_COMMIT_GCTL3          0x8U    // GCTL3 Commit bit
+#define EPG_COMMIT_CLKDIV0_CTL0   0x10U   // CLKDIV0_CTL0 Commit bit
+#define EPG_COMMIT_CLKDIV1_CTL0   0x20U   // CLKDIV1_CTL0 Commit bit
+#define EPG_COMMIT_SIGGEN0_CTL0   0x40U   // SIGGEN0_CTL0 Commit bit
+#define EPG_COMMIT_SIGGEN0_CTL1   0x80U   // SIGGEN0_CTL1 Commit bit
 
 //*************************************************************************************************
 //
 // The following are defines for the bit fields in the GINTSTS register
 //
 //*************************************************************************************************
-#define EPG_GINTSTS_INT            0x1U    // Global interrupt flag register
-#define EPG_GINTSTS_SIGGEN0_DONE   0x2U    // SIGGEN0 operation done status
-#define EPG_GINTSTS_SIGGEN0_FILL   0x4U    // SIGGEN0 data fill status
-#define EPG_GINTSTS_SIGGEN1_DONE   0x8U    // SIGGEN1 operation done status
-#define EPG_GINTSTS_SIGGEN1_FILL   0x10U   // SIGGEN1 data fill status
+#define EPG_GINTSTS_INT            0x1U   // Global interrupt flag register
+#define EPG_GINTSTS_SIGGEN0_DONE   0x2U   // SIGGEN0 operation done status
+#define EPG_GINTSTS_SIGGEN0_FILL   0x4U   // SIGGEN0 data fill status
 
 //*************************************************************************************************
 //
 // The following are defines for the bit fields in the GINTEN register
 //
 //*************************************************************************************************
-#define EPG_GINTEN_SIGGEN0_DONE   0x2U    // SIGGEN0 operation done interrupt enable
-#define EPG_GINTEN_SIGGEN0_FILL   0x4U    // SIGGEN0 data fill interrupt enable
-#define EPG_GINTEN_SIGGEN1_DONE   0x8U    // SIGGEN1 operation done interrupt enable
-#define EPG_GINTEN_SIGGEN1_FILL   0x10U   // SIGGEN1 data fill interrupt enable
+#define EPG_GINTEN_SIGGEN0_DONE   0x2U   // SIGGEN0 operation done interrupt enable
+#define EPG_GINTEN_SIGGEN0_FILL   0x4U   // SIGGEN0 data fill interrupt enable
 
 //*************************************************************************************************
 //
 // The following are defines for the bit fields in the GINTCLR register
 //
 //*************************************************************************************************
-#define EPG_GINTCLR_INT            0x1U    // Global interrupt flag clear
-#define EPG_GINTCLR_SIGGEN0_DONE   0x2U    // SIGGEN0 operation done interrupt flag clear
-#define EPG_GINTCLR_SIGGEN0_FILL   0x4U    // SIGGEN0 data fill interrupt flag clear
-#define EPG_GINTCLR_SIGGEN1_DONE   0x8U    // SIGGEN0 data fill interrupt flag clear
-#define EPG_GINTCLR_SIGGEN1_FILL   0x10U   // SIGGEN1 data fill interrupt flag clear
+#define EPG_GINTCLR_INT            0x1U   // Global interrupt flag clear
+#define EPG_GINTCLR_SIGGEN0_DONE   0x2U   // SIGGEN0 operation done interrupt flag clear
+#define EPG_GINTCLR_SIGGEN0_FILL   0x4U   // SIGGEN0 data fill interrupt flag clear
 
 //*************************************************************************************************
 //
 // The following are defines for the bit fields in the GINTFRC register
 //
 //*************************************************************************************************
-#define EPG_GINTFRC_SIGGEN0_DONE   0x2U    // SIGGEN0 operation done interrupt flag set
-#define EPG_GINTFRC_SIGGEN0_FILL   0x4U    // SIGGEN0 data fill interrupt flag set
-#define EPG_GINTFRC_SIGGEN1_DONE   0x8U    // SIGGEN1 operation done interrupt flag set
-#define EPG_GINTFRC_SIGGEN1_FILL   0x10U   // SIGGEN1 data fill interrupt flag set
+#define EPG_GINTFRC_SIGGEN0_DONE   0x2U   // SIGGEN0 operation done interrupt flag set
+#define EPG_GINTFRC_SIGGEN0_FILL   0x4U   // SIGGEN0 data fill interrupt flag set
 
 //*************************************************************************************************
 //
@@ -301,29 +280,6 @@
 #define EPG_SIGGEN0_CTL1_DATA63_INSEL_S   28U
 #define EPG_SIGGEN0_CTL1_DATA63_INSEL_M   0xF0000000U   // Select the source of DATA[63] bit.
 
-//*************************************************************************************************
-//
-// The following are defines for the bit fields in the SIGGEN1_CTL0 register
-//
-//*************************************************************************************************
-#define EPG_SIGGEN1_CTL0_MODE_S        0U
-#define EPG_SIGGEN1_CTL0_MODE_M        0xFU        // Signal generator modes
-#define EPG_SIGGEN1_CTL0_EN            0x10U       // Signal generator enable
-#define EPG_SIGGEN1_CTL0_BRIN          0x20U       // Reverse bits before transform
-#define EPG_SIGGEN1_CTL0_BROUT         0x40U       // Reverse bits after transform
-#define EPG_SIGGEN1_CTL0_BITLENGTH_S   16U
-#define EPG_SIGGEN1_CTL0_BITLENGTH_M   0xFF0000U   // Length of bit stream
-
-//*************************************************************************************************
-//
-// The following are defines for the bit fields in the SIGGEN1_CTL1 register
-//
-//*************************************************************************************************
-#define EPG_SIGGEN1_CTL1_DATA0_INSEL_S    0U
-#define EPG_SIGGEN1_CTL1_DATA0_INSEL_M    0xFU          // Select the source of DATA[0] bit.
-#define EPG_SIGGEN1_CTL1_DATA63_INSEL_S   28U
-#define EPG_SIGGEN1_CTL1_DATA63_INSEL_M   0xF0000000U   // Select the source of DATA[63] bit.
-
 
 //*************************************************************************************************
 //
@@ -365,49 +321,10 @@
 
 //*************************************************************************************************
 //
-// The following are defines for the bit fields in the EPGMXSEL1 register
-//
-//*************************************************************************************************
-#define EPG_MXSEL1_SEL32   0x1U          // DATAOUT[32] mux select.
-#define EPG_MXSEL1_SEL33   0x2U          // DATAOUT[33] mux select.
-#define EPG_MXSEL1_SEL34   0x4U          // DATAOUT[34] mux select.
-#define EPG_MXSEL1_SEL35   0x8U          // DATAOUT[35] mux select.
-#define EPG_MXSEL1_SEL36   0x10U         // DATAOUT[36] mux select.
-#define EPG_MXSEL1_SEL37   0x20U         // DATAOUT[37] mux select.
-#define EPG_MXSEL1_SEL38   0x40U         // DATAOUT[38] mux select.
-#define EPG_MXSEL1_SEL39   0x80U         // DATAOUT[39] mux select.
-#define EPG_MXSEL1_SEL40   0x100U        // DATAOUT[40] mux select.
-#define EPG_MXSEL1_SEL41   0x200U        // DATAOUT[41] mux select.
-#define EPG_MXSEL1_SEL42   0x400U        // DATAOUT[42] mux select.
-#define EPG_MXSEL1_SEL43   0x800U        // DATAOUT[43] mux select.
-#define EPG_MXSEL1_SEL44   0x1000U       // DATAOUT[44] mux select.
-#define EPG_MXSEL1_SEL45   0x2000U       // DATAOUT[45] mux select.
-#define EPG_MXSEL1_SEL46   0x4000U       // DATAOUT[46] mux select.
-#define EPG_MXSEL1_SEL47   0x8000U       // DATAOUT[47] mux select.
-#define EPG_MXSEL1_SEL48   0x10000U      // DATAOUT[48] mux select.
-#define EPG_MXSEL1_SEL49   0x20000U      // DATAOUT[49] mux select.
-#define EPG_MXSEL1_SEL50   0x40000U      // DATAOUT[50] mux select.
-#define EPG_MXSEL1_SEL51   0x80000U      // DATAOUT[51] mux select.
-#define EPG_MXSEL1_SEL52   0x100000U     // DATAOUT[52] mux select.
-#define EPG_MXSEL1_SEL53   0x200000U     // DATAOUT[53] mux select.
-#define EPG_MXSEL1_SEL54   0x400000U     // DATAOUT[54] mux select.
-#define EPG_MXSEL1_SEL55   0x800000U     // DATAOUT[55] mux select.
-#define EPG_MXSEL1_SEL56   0x1000000U    // DATAOUT[56] mux select.
-#define EPG_MXSEL1_SEL57   0x2000000U    // DATAOUT[57] mux select.
-#define EPG_MXSEL1_SEL58   0x4000000U    // DATAOUT[58] mux select.
-#define EPG_MXSEL1_SEL59   0x8000000U    // DATAOUT[59] mux select.
-#define EPG_MXSEL1_SEL60   0x10000000U   // DATAOUT[60] mux select.
-#define EPG_MXSEL1_SEL61   0x20000000U   // DATAOUT[61] mux select.
-#define EPG_MXSEL1_SEL62   0x40000000U   // DATAOUT[62] mux select.
-#define EPG_MXSEL1_SEL63   0x80000000U   // DATAOUT[63] mux select.
-
-//*************************************************************************************************
-//
 // The following are defines for the bit fields in the EPGMXSELLOCK register
 //
 //*************************************************************************************************
 #define EPG_MXSELLOCK_EPGMXSEL0   0x1U   // EPGMXSEL0 lock bit
-#define EPG_MXSELLOCK_EPGMXSEL1   0x2U   // EPGMXSEL1 lock bit
 
 //*************************************************************************************************
 //
@@ -415,7 +332,6 @@
 //
 //*************************************************************************************************
 #define EPG_MXSELCOMMIT_EPGMXSEL0   0x1U   // EPGMXSEL0 commit bit
-#define EPG_MXSELCOMMIT_EPGMXSEL1   0x2U   // EPGMXSEL1 commit bit
 
 
 

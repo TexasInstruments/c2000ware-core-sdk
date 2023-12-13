@@ -65,7 +65,6 @@ let ADC_Trigger = [
 	{ name: "ADC_TRIGGER_ECAP5", displayName: "eCAP5" },
 	{ name: "ADC_TRIGGER_ECAP6", displayName: "eCAP6" },
 	{ name: "ADC_TRIGGER_ECAP7", displayName: "eCAP7" },
-	{ name: "ADC_TRIGGER_ECAP8", displayName: "eCAP8" },
 	{ name: "ADC_TRIGGER_EPWM13_SOCA", displayName: "ePWM13, ADCSOCA" },
 	{ name: "ADC_TRIGGER_EPWM13_SOCB", displayName: "ePWM13, ADCSOCB" },
 	{ name: "ADC_TRIGGER_EPWM14_SOCA", displayName: "ePWM14, ADCSOCA" },
@@ -209,6 +208,10 @@ let ADC_OffsetTrim = [
 	{ name: "ADC_OFFSET_TRIM_COMMON", displayName: "Common Trim register for all" },
 	{ name: "ADC_OFFSET_TRIM_INDIVIDUAL", displayName: "Individual Trim registers for" },
 ]
+let ADC_ChannelType = [
+	{ name: "ADC_CHANNEL_ODD", displayName: "ADC Odd Channel" },
+	{ name: "ADC_CHANNEL_EVEN", displayName: "ADC Even Channel" },
+]
 let ADC_SyncInput = [
 	{ name: "ADC_SYNCIN_DISABLE", displayName: "ADC Syncin is disabled" },
 	{ name: "ADC_SYNCIN_EPWM1SYNCOUT", displayName: "ADC Syncin is EPWM1SYNCOUT" },
@@ -242,8 +245,8 @@ let ADC_SyncInput = [
 	{ name: "ADC_SYNCIN_EtherCATSYNC1", displayName: "ADC Syncin is EtherCATSYNC1" },
 ]
 let ADC_PPBIntSrcSelect = [
-	{ name: "ADC_PPB_OS_INT_1", displayName: "PCount generates PPB intterupt" },
-	{ name: "ADC_PPB_OS_INT_2", displayName: "PCount/Sync generates PPB intterupt" },
+	{ name: "ADC_PPB_OS_INT_1", displayName: "PCount generates PPB interrupt" },
+	{ name: "ADC_PPB_OS_INT_2", displayName: "PCount/Sync generates PPB interrupt" },
 ]
 let ADC_ExtChannel = [
 	{ name: "ADC_CH_ADCINX_0", displayName: "ADCINX.0 is converted" },
@@ -416,6 +419,7 @@ module.exports = {
 	ADC_ReferenceVoltage: ADC_ReferenceVoltage,
 	ADC_OSDetectMode: ADC_OSDetectMode,
 	ADC_OffsetTrim: ADC_OffsetTrim,
+	ADC_ChannelType: ADC_ChannelType,
 	ADC_SyncInput: ADC_SyncInput,
 	ADC_PPBIntSrcSelect: ADC_PPBIntSrcSelect,
 	ADC_ExtChannel: ADC_ExtChannel,

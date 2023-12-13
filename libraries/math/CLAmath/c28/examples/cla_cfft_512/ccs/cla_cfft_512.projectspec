@@ -1,0 +1,55 @@
+<projectSpec>
+  <project
+        name="cla_cfft_512"
+        device="Generic C28xx Device"
+        cgtVersion="22.6.0.LTS"
+        products="c2000ware_software_package"
+        launchWizard="False"
+        linkerCommandFile=""
+        >
+    <configuration name="F2837x_RAM" compilerBuildOptions="-I${EXAMPLE_FFT_ROOT} -I${CLA_DSP_ROOT}/include -I${EXAMPLE_COMMON_ROOT} -I${F2837x_DEVICE_ROOT}/common/include -I${F2837x_DEVICE_ROOT}/headers/include -I${F2837x_DRIVERLIB_ROOT} --opt_level=off -v28 -ml -mt --float_support=fpu32 --cla_support=cla1 -g --define=CPU1 --define=RAM --define=_DUAL_HEADERS --diag_warning=225" linkerBuildOptions="-I${CLAMATH_ROOT}/lib --define=RAM --define=CLA_C=1 --stack_size=0x200 --heap_size=0x200"/>
+    <configuration name="F2837x_FLASH" compilerBuildOptions="-I${EXAMPLE_FFT_ROOT} -I${CLA_DSP_ROOT}/include -I${EXAMPLE_COMMON_ROOT} -I${F2837x_DEVICE_ROOT}/common/include -I${F2837x_DEVICE_ROOT}/headers/include -I${F2837x_DRIVERLIB_ROOT} --opt_level=off -v28 -ml -mt --float_support=fpu32 --cla_support=cla1 -g --define=CPU1 --define=_FLASH --define=_DUAL_HEADERS --diag_warning=225" linkerBuildOptions="-I${CLAMATH_ROOT}/lib --define=_FLASH --define=CLA_C=1 --stack_size=0x200 --heap_size=0x200"/>
+    <configuration name="F2837x_RAM_DATAROM" compilerBuildOptions="-I${EXAMPLE_FFT_ROOT} -I${CLA_DSP_ROOT}/include -I${EXAMPLE_COMMON_ROOT} -I${F2837x_DEVICE_ROOT}/common/include -I${F2837x_DEVICE_ROOT}/headers/include -I${F2837x_DRIVERLIB_ROOT} --opt_level=off -v28 -ml -mt --float_support=fpu32 --cla_support=cla1 -g --define=CPU1 --define=RAM --define=_DUAL_HEADERS --define=DATAROM --diag_warning=225" linkerBuildOptions="-I${CLAMATH_ROOT}/lib --define=RAM  --define=DATAROM --define=CLA_C=1 --stack_size=0x200 --heap_size=0x200"/>
+    
+    <configuration name="F2837x_RAM_EABI" compilerBuildOptions="-I${EXAMPLE_FFT_ROOT} -I${CLA_DSP_ROOT}/include -I${EXAMPLE_COMMON_ROOT} -I${F2837x_DEVICE_ROOT}/common/include -I${F2837x_DEVICE_ROOT}/headers/include -I${F2837x_DRIVERLIB_ROOT} --opt_level=off -v28 -ml -mt --float_support=fpu32 --cla_support=cla1 -g --define=CPU1 --define=RAM --define=_DUAL_HEADERS --diag_warning=225 --abi=eabi" linkerBuildOptions="-I${CLAMATH_ROOT}/lib --define=RAM --define=CLA_C=1 --stack_size=0x200 --heap_size=0x200"/>
+    <configuration name="F2837x_FLASH_EABI" compilerBuildOptions="-I${EXAMPLE_FFT_ROOT} -I${CLA_DSP_ROOT}/include -I${EXAMPLE_COMMON_ROOT} -I${F2837x_DEVICE_ROOT}/common/include -I${F2837x_DEVICE_ROOT}/headers/include -I${F2837x_DRIVERLIB_ROOT} --opt_level=off -v28 -ml -mt --float_support=fpu32 --cla_support=cla1 -g --define=CPU1 --define=_FLASH --define=_DUAL_HEADERS --diag_warning=225 --abi=eabi" linkerBuildOptions="-I${CLAMATH_ROOT}/lib --define=_FLASH --define=CLA_C=1 --stack_size=0x200 --heap_size=0x200"/>
+    <configuration name="F2837x_RAM_DATAROM_EABI" compilerBuildOptions="-I${EXAMPLE_FFT_ROOT} -I${CLA_DSP_ROOT}/include -I${EXAMPLE_COMMON_ROOT} -I${F2837x_DEVICE_ROOT}/common/include -I${F2837x_DEVICE_ROOT}/headers/include -I${F2837x_DRIVERLIB_ROOT} --opt_level=off -v28 -ml -mt --float_support=fpu32 --cla_support=cla1 -g --define=CPU1 --define=RAM --define=_DUAL_HEADERS --define=DATAROM --diag_warning=225 --abi=eabi" linkerBuildOptions="-I${CLAMATH_ROOT}/lib --define=RAM  --define=DATAROM --define=CLA_C=1 --stack_size=0x200 --heap_size=0x200"/>
+    
+    <pathVariable name="C2000WARE_ROOT" path="../../../../../../../" scope="project" />
+    <pathVariable name="CLA_DSP_ROOT" path="../../../" scope="project" />
+    <pathVariable name="EXAMPLE_FFT_ROOT" path="../" scope="project" />
+    <pathVariable name="EXAMPLE_COMMON_ROOT" path="../../common" scope="project" />
+
+    <file action="link" path="EXAMPLE_FFT_ROOT/cfft_512_data_in1.h" targetDirectory="" />
+    <file action="link" path="EXAMPLE_FFT_ROOT/cfft_512_data_in2.h" targetDirectory="" />
+    <file action="link" path="EXAMPLE_FFT_ROOT/cfft_512_data_in3.h" targetDirectory="" />
+    <file action="link" path="EXAMPLE_FFT_ROOT/cfft_512_data_in4.h" targetDirectory="" />
+    <file action="link" path="EXAMPLE_FFT_ROOT/cfft_512_data_out1.h" targetDirectory="" />
+    <file action="link" path="EXAMPLE_FFT_ROOT/cfft_512_data_out2.h" targetDirectory="" />
+    <file action="link" path="EXAMPLE_FFT_ROOT/cfft_512_data_out3.h" targetDirectory="" />
+    <file action="link" path="EXAMPLE_FFT_ROOT/cfft_512_data_out4.h" targetDirectory="" />
+    <file action="link" path="EXAMPLE_FFT_ROOT/cfft_512_shared.h" targetDirectory="" />
+    <file action="link" path="EXAMPLE_FFT_ROOT/cfft_512.cla" targetDirectory="" />
+    <file action="link" path="EXAMPLE_FFT_ROOT/main.c" targetDirectory="" />
+    <file action="link" path="EXAMPLE_COMMON_ROOT/f2837x_fft_examples_setup.c" targetDirectory="" />
+    <file action="link" path="EXAMPLE_COMMON_ROOT/f2837x_fft_examples_setup.h" targetDirectory="" />
+    
+    <!-- F2837x Build specific files -->
+    <pathVariable name="F2837x_DEVICE_ROOT" path="${C2000WARE_ROOT}/device_support/f2837xd" scope="project" />
+    <pathVariable name="F2837x_DRIVERLIB_ROOT" path="${C2000WARE_ROOT}/driverlib/f2837xd/driverlib" scope="project" />
+    
+    <file action="link" path="CLA_DSP_ROOT/cmd/f2837x_cla_cfft_lnk.cmd" targetDirectory="" applicableConfigurations="F2837x_RAM,F2837x_FLASH,F2837x_RAM_DATAROM,F2837x_RAM_EABI,F2837x_FLASH_EABI,F2837x_RAM_DATAROM_EABI"/>
+    <file action="link" path="CLA_DSP_ROOT/lib/cla1_math_library.lib" targetDirectory="" applicableConfigurations="F2837x_RAM,F2837x_FLASH" />
+    <file action="link" path="CLA_DSP_ROOT/lib/cla1_math_library_eabi.lib" targetDirectory="" applicableConfigurations="F2837x_RAM,F2837x_FLASH,F2837x_RAM_EABI,F2837x_FLASH_EABI" />
+    <file action="link" path="CLA_DSP_ROOT/lib/cla1_math_library_datarom.lib" targetDirectory="" applicableConfigurations="F2837x_RAM_DATAROM" />
+    <file action="link" path="CLA_DSP_ROOT/lib/cla1_math_library_datarom_eabi.lib" targetDirectory="" applicableConfigurations="F2837x_RAM_DATAROM_EABI" />
+    <file action="link" path="C2000WARE_ROOT/libraries\boot_rom\f2837xd\revB\rom_symbol_libs\c2_CLA_Data_ROM\F2837xRevB_c2bootROM_CLADataROMSymbols_fpu32.lib" targetDirectory="" applicableConfigurations="F2837x_RAM_DATAROM" />
+    <file action="link" path="C2000WARE_ROOT/libraries\boot_rom\f2837xd\revB\rom_symbol_libs\c2_CLA_Data_ROM\F2837xRevB_c2bootROM_CLADataROMSymbols_eabi_fpu32.lib" targetDirectory="" applicableConfigurations="F2837x_RAM_DATAROM_EABI" />
+    <file action="link" path="F2837x_DRIVERLIB_ROOT/ccs/Debug/driverlib.lib" targetDirectory="" applicableConfigurations="F2837x_RAM,F2837x_FLASH,F2837x_RAM_DATAROM,F2837x_RAM_EABI,F2837x_FLASH_EABI,F2837x_RAM_DATAROM_EABI" />
+    <file action="copy" path="F2837x_DEVICE_ROOT/common/source/F2837xD_CodeStartBranch.asm" targetDirectory="" applicableConfigurations="F2837x_RAM,F2837x_FLASH,F2837x_RAM_DATAROM,F2837x_RAM_EABI,F2837x_FLASH_EABI,F2837x_RAM_DATAROM_EABI" />
+    <file action="copy" path="F2837x_DEVICE_ROOT/common/source/device.c" targetDirectory="" applicableConfigurations="F2837x_RAM,F2837x_FLASH,F2837x_RAM_DATAROM,F2837x_RAM_EABI,F2837x_FLASH_EABI,F2837x_RAM_DATAROM_EABI" />
+    <file action="copy" path="F2837x_DEVICE_ROOT/common/targetConfigs/TMS320F28379D.ccxml" targetDirectory="targetConfigs" applicableConfigurations="F2837x_RAM,F2837x_FLASH,F2837x_RAM_DATAROM,F2837x_RAM_EABI,F2837x_FLASH_EABI,F2837x_RAM_DATAROM_EABI" />
+	
+
+  </project>
+</projectSpec>

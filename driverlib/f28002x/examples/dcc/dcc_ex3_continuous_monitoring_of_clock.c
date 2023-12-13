@@ -87,6 +87,7 @@
 //
 
 
+
 // If Fclk1>Fclk0, Async. Error (In Clock0 cycles) = 2 + 2*(Fsysclk/Fclk0) = 22
 // Digitization error (In Clock0 cycles) = 8
 // DCC Error = Async. Error + Digitization error = 30

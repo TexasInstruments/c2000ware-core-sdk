@@ -43,7 +43,7 @@ void `instance.$name`_init(){
 		PMBus_setOwnAddress(`instance.$name`_BASE, `instance.$name`_OWN_ADDRESS);
 		% var moduleFreq = "";
 		moduleFreq = PMBus_configModuleClock(`instance.$name`_BASE, `instance.$name`_BAUDRATE, `sysclk_Hz`);
-		PMBus_configBusClock(`instance.$name`_BASE, PMBUS_CLOCKMODE_STANDARD, moduleFreq);
+		PMBus_configBusClock(`instance.$name`_BASE, `instance.$name`_CLOCKMODE, moduleFreq);
 		% if (instance.mode == "Controller")
 		%{
 		PMBus_initControllerMode(`instance.$name`_BASE);

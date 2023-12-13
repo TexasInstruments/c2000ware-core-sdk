@@ -13,7 +13,7 @@ let MemCfg_GSRAMControllerSel = [
 let MemCfg_TestMode = [
 	{ name: "MEMCFG_TEST_FUNCTIONAL", displayName: "Functional mode. Test mode is disabled." },
 	{ name: "MEMCFG_TEST_WRITE_DATA", displayName: "Writes allowed to data only" },
-	{ name: "MEMCFG_TEST_WRITE_ECC", displayName: "Writes allowed to ECC only (for DxRAM/MxRAM and PIEVECT RAM)" },
+	{ name: "MEMCFG_TEST_WRITE_ECC", displayName: "Writes allowed to ECC only (for DxRAM/MxRAM )" },
 	{ name: "MEMCFG_TEST_WRITE_PARITY", displayName: "Writes allowed to Parity only (for LSxRAM, GSxRAM, and MSGxRAM)" },
 	{ name: "MEMCFG_TEST_FUNC_DIAG", displayName: "Diagnostic mode, similar to functional mode but NMI is not generated." },
 ]

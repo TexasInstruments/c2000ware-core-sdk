@@ -1,0 +1,97 @@
+
+/**
+ * Import the modules used in this configuration.
+ */
+const clb         = scripting.addModule("/driverlib/clb.js", {}, false);
+const clb1        = clb.addInstance();
+const clbxbar     = scripting.addModule("/driverlib/clbxbar.js", {}, false);
+const clbxbar1    = clbxbar.addInstance();
+const clbxbar2    = clbxbar.addInstance();
+const gpio        = scripting.addModule("/driverlib/gpio.js", {}, false);
+const gpio1       = gpio.addInstance();
+const gpio2       = gpio.addInstance();
+const inputxbar   = scripting.addModule("/driverlib/inputxbar.js", {}, false);
+const inputxbar1  = inputxbar.addInstance();
+const outputxbar  = scripting.addModule("/driverlib/outputxbar.js", {}, false);
+const outputxbar1 = outputxbar.addInstance();
+const TILE        = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/TILE");
+const TILE1       = TILE.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+clb1.inputsUsed          = ["CLB_IN0","CLB_IN1"];
+clb1.inputTypeCLB_IN0    = "GLOBAL";
+clb1.globalConfigCLB_IN0 = "CLB_GLOBAL_IN_MUX_CLB_AUXSIG0";
+clb1.inputTypeCLB_IN1    = "GLOBAL";
+clb1.globalConfigCLB_IN1 = "CLB_GLOBAL_IN_MUX_CLB_AUXSIG1";
+clb1.$name               = "myCLBTILE1";
+
+clbxbar1.$name      = "myCLBXBAR0";
+clbxbar1.muxesUsed  = ["XBAR_MUX01"];
+clbxbar1.mux1Config = "XBAR_CLB_MUX01_INPUTXBAR1";
+
+clbxbar2.$name      = "myCLBXBAR1";
+clbxbar2.auxInput   = "XBAR_AUXSIG1";
+clbxbar2.muxesUsed  = ["XBAR_MUX03"];
+clbxbar2.mux3Config = "XBAR_CLB_MUX03_INPUTXBAR2";
+
+gpio1.$name           = "myGPIO0";
+gpio1.gpioPin.$assign = "GPIO0";
+
+gpio2.$name           = "myGPIO1";
+gpio2.gpioPin.$assign = "GPIO1";
+
+inputxbar1.inputsUsed     = ["inputxbar1Gpio","inputxbar2Gpio"];
+inputxbar1.inputxbar1Gpio = "GPIO0";
+inputxbar1.inputxbar2Gpio = "GPIO1";
+inputxbar1.$name          = "myINPUTXBAR";
+
+outputxbar1.$name                            = "myOUTPUTXBAR1";
+outputxbar1.muxesUsed                        = ["XBAR_MUX01"];
+outputxbar1.mux1Config                       = "XBAR_OUT_MUX01_CLB1_OUT4";
+outputxbar1.outputxbar.$name                 = "MyOUTPUTXBAR1";
+outputxbar1.outputxbar.$assign               = "OUTPUTXBAR1";
+outputxbar1.outputxbar.outputxbarPin.$assign = "GPIO24";
+
+TILE.clock_period = 10;
+TILE.sim_duration = 100000;
+
+TILE1.$name                     = "TILE1";
+TILE1.BOUNDARY.$name            = "BOUNDARY0";
+TILE1.BOUNDARY.in_duty1         = 50;
+TILE1.BOUNDARY.in_period1       = 100;
+TILE1.BOUNDARY.in_repeat_count0 = 50;
+TILE1.BOUNDARY.in_repeat_count3 = 1;
+TILE1.BOUNDARY.in_repeat_count1 = 1000;
+TILE1.BOUNDARY.in_duty0         = 20;
+TILE1.BOUNDARY.in_period0       = 40;
+TILE1.BOUNDARY.in0              = "squareWave";
+TILE1.BOUNDARY.in1              = "squareWave";
+TILE1.LUT_0.$name               = "LUT_0";
+TILE1.LUT_0.i0                  = "BOUNDARY.in0";
+TILE1.LUT_0.i1                  = "BOUNDARY.in1";
+TILE1.LUT_0.eqn                 = "i0 & i1";
+TILE1.LUT_1.$name               = "LUT_1";
+TILE1.LUT_2.$name               = "LUT_2";
+TILE1.FSM_0.$name               = "FSM_0";
+TILE1.FSM_1.$name               = "FSM_1";
+TILE1.FSM_2.$name               = "FSM_2";
+TILE1.COUNTER_0.$name           = "COUNTER_0";
+TILE1.COUNTER_1.$name           = "COUNTER_1";
+TILE1.COUNTER_2.$name           = "COUNTER_2";
+TILE1.OUTLUT_0.$name            = "OUTLUT_0";
+TILE1.OUTLUT_1.$name            = "OUTLUT_1";
+TILE1.OUTLUT_2.$name            = "OUTLUT_2";
+TILE1.OUTLUT_3.$name            = "OUTLUT_3";
+TILE1.OUTLUT_4.$name            = "OUTLUT_4";
+TILE1.OUTLUT_4.i0               = "LUT_0.OUT";
+TILE1.OUTLUT_4.eqn              = "i0";
+TILE1.OUTLUT_5.$name            = "OUTLUT_5";
+TILE1.OUTLUT_6.$name            = "OUTLUT_6";
+TILE1.OUTLUT_7.$name            = "OUTLUT_7";
+TILE1.HLC.$name                 = "HLC_0";
+TILE1.HLC.program0.$name        = "HLCP_0";
+TILE1.HLC.program1.$name        = "HLCP_1";
+TILE1.HLC.program2.$name        = "HLCP_2";
+TILE1.HLC.program3.$name        = "HLCP_3";

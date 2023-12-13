@@ -228,7 +228,7 @@ interrupt void MCANA_1_ISR(void);
 interrupt void MCANA_ECC_ISR(void);
 interrupt void MCANA_WAKE_ISR(void);
 interrupt void PMBUSA_ISR(void);
-interrupt void AES_ISR(void);
+interrupt void AES_SINTREQUEST_ISR(void);
 interrupt void USBA_ISR(void);
 interrupt void ADCC_EVT_ISR(void);
 interrupt void ADCC2_ISR(void);

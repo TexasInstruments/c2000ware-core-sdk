@@ -92,7 +92,9 @@
 #define INT_EPWM7                   0x00360307U // 3.7 - ePWM7 Interrupt
 #define INT_ECAP1                   0x00380401U // 4.1 - eCAP1 Interrupt
 #define INT_ECAP2                   0x00390402U // 4.2 - eCAP2 Interrupt
+#define INT_ECAP3                   0x003A0403U // 4.3 - eCAP3 Interrupt
 #define INT_EQEP1                   0x00400501U // 5.1 - eQEP1 Interrupt
+#define INT_EQEP2                   0x00410502U // 5.2 - eQEP2 Interrupt
 #define INT_SPIA_RX                 0x00480601U // 6.1 - SPIA Receive Interrupt
 #define INT_SPIA_TX                 0x00490602U // 6.2 - SPIA Transmit Interrupt
 #define INT_DCC0                    0x004E0607U // 6.7 - DCC0 Interrupt

@@ -1,0 +1,47 @@
+% var mod                  = system.modules['/libraries/control/dcl/refgen.js'];
+% if (mod != null)
+%{
+//
+// DCL REFGEN
+//
+% for (var inst of mod.$instances)
+%{
+//
+// `inst.$name` variables
+//
+% // always add the array instantiation and the actual refgen object
+DCL_`inst.structDisplay` `inst.$name` = DCL_`inst.structDisplay`_DEFAULTS;
+DCL_CSS `inst.$name`_css = DCL_CSS_DEFAULTS;
+%}
+% for (var inst of mod.$instances)
+%{
+void `inst.$name`_init(){
+    //
+    // `inst.$name` settings
+    //
+    `inst.$name`.css = &`inst.$name`_css;
+    DCL_SET_CONTROLLER_PERIOD(&`inst.$name`,`inst.sampPer`);
+    % // add "64" to the function names when using 64 bit mode
+    % var prec = ((inst.refgenPrecision == "F64") ? "64" : "" );
+    % var funcPrefix = "DCL_setRefgen"  + prec;
+    % // pre-pend "REFGEN_" or "REFGEN64_" to the mode value
+    DCL_resetRefgen`prec`(&`inst.$name`);
+    `inst.$name`.mode = `inst.structDisplay`_`inst.mode`;
+    % if (inst.mode == "PULSE")
+    % {
+    `inst.$name`.duty = `inst.duty`;
+    % }
+    `inst.$name`.umax = `inst.umax`;
+    `inst.$name`.umin = `inst.umin`;
+    `funcPrefix`Freq(&`inst.$name`, `inst.freq`, `inst.freqTr`);
+    `funcPrefix`Ampl(&`inst.$name`, `inst.ampl`, `inst.amplTr`);
+    `funcPrefix`Ramp(&`inst.$name`, `inst.offs`, `inst.offsTr`);
+}
+%}
+void `mod.c2000wareLibraryName`_init(){
+    % for (var inst of mod.$instances)
+    %{
+    `inst.$name`_init();
+    %}
+}
+%}

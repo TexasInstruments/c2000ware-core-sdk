@@ -1,0 +1,20 @@
+
+/**
+ * Import the modules used in this configuration.
+ */
+const cla    = scripting.addModule("/driverlib/cla.js", {}, false);
+const cla1   = cla.addInstance();
+const memcfg = scripting.addModule("/driverlib/memcfg.js");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+cla1.$name = "myCLA0";
+
+
+memcfg.config_MEMCFG_SECT_LS4        = "CLA_prog";
+memcfg.config_MEMCFG_SECT_LS5        = "CLA_prog";
+memcfg.config_MEMCFG_SECT_LS0        = "CLA_data";
+memcfg.config_MEMCFG_SECT_LS1        = "CLA_data";
+memcfg.init_MEMCFG_SECT_MSGCPUTOCLA1 = true;
+memcfg.init_MEMCFG_SECT_MSGCLA1TOCPU = true;

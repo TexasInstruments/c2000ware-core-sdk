@@ -1,0 +1,35 @@
+<projectSpec>
+  <project
+        name="f280015x_pmbus_controller_example"
+        device="TMS320F2800157"
+        cgtVersion="22.6.0.LTS"
+        products="c2000ware_software_package"
+        outputFormat="ELF"
+        launchWizard="False"
+        linkerCommandFile=""
+		enableSysConfigTool="true"
+		sysConfigBuildOptions="--product ${C2000WARE_ROOT}/.metadata/sdk.json --device F280015x --package 80PN --part F280015x_80PN"
+    >
+
+    <configuration name="RAM" compilerBuildOptions="-O2 -I${PMBUS_ROOT}/include -I${C2000WARE_DLIB_ROOT} -I${C2000WARE_DEVICE_SUPPORT_ROOT}/common/include -I${PMBUS_EXAMPLE_COMMON_ROOT}/f280015x -I${PMBUS_EXAMPLE_COMMON_ROOT}/controller -I${PMBUS_EXAMPLE_COMMON_ROOT}/include -v28 -ml -mt --float_support=fpu32 --define=_DEBUG --define=_PMBUS_CONTROLLER --define=_RAM --diag_warning=225 --display_error_number --diag_suppress=10063" linkerBuildOptions="--stack_size=0x300 --heap_size=0x200 --rom_model --entry_point=code_start" />
+    <configuration name="FLASH" compilerBuildOptions="-O2 -I${PMBUS_ROOT}/include -I${C2000WARE_DLIB_ROOT} -I${C2000WARE_DEVICE_SUPPORT_ROOT}/common/include -I${PMBUS_EXAMPLE_COMMON_ROOT}/f280015x -I${PMBUS_EXAMPLE_COMMON_ROOT}/controller -I${PMBUS_EXAMPLE_COMMON_ROOT}/include -v28 -ml -mt --float_support=fpu32 --define=_DEBUG --define=_PMBUS_CONTROLLER --define=_FLASH --diag_warning=225 --display_error_number --diag_suppress=10063" linkerBuildOptions="--stack_size=0x300 --heap_size=0x200 --rom_model --entry_point=code_start" />
+    <pathVariable name="C2000WARE_DEVICE_SUPPORT_ROOT" path="../../../../../../device_support/f280015x/" scope="project" />
+    <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../../../../driverlib/f280015x/driverlib/" scope="project" />
+    <pathVariable name="PMBUS_ROOT" path="../../" scope="project" />
+    <pathVariable name="PMBUS_EXAMPLE_COMMON_ROOT" path="../common" scope="project" />
+    <pathVariable name="C2000WARE_ROOT" path="../../../../../../" scope="project" />
+
+    <file action="copy" path="PMBUS_EXAMPLE_COMMON_ROOT/controller" targetDirectory="" />
+    <file action="copy" path="PMBUS_EXAMPLE_COMMON_ROOT/f280015x/pmbus_examples_setup.c" targetDirectory="" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/cmd/280015x_generic_ram_lnk.cmd" targetDirectory="" applicableConfigurations="RAM" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/cmd/280015x_generic_flash_lnk.cmd" targetDirectory="" applicableConfigurations="FLASH" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/targetConfigs/TMS320F2800157.ccxml" targetDirectory="" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/include/driverlib.h" targetDirectory="device"  />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/include/device.h" targetDirectory="device" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT_ROOT/common/source/f280015x_codestartbranch.asm" targetDirectory="" />
+    <file action="link" path="PMBUS_ROOT/lib/F280015x_PMBus_Communications_Stack.lib" targetDirectory="" />
+    <file action="link" path="C2000WARE_DLIB_ROOT/ccs/Debug/driverlib.lib" targetDirectory="" />
+    <file action="copy" path="C2000WARE_DLIB_ROOT" targetDirectory="device" excludeFromBuild="True" />
+    <file action="copy" path="../common/f280015x/pmbus_controller.syscfg" targetDirectory="" />
+  </project>
+</projectSpec>

@@ -14,11 +14,11 @@
 //!  The counter is configured in Start-Stop Mode to count the number of times
 //!  CPUTimer interrupt occurs between the CPUTimer1 interrupt and CPUTimer2
 //!  ISRs. Ideally, this count should be zero if the interrupts are occurring
-//!  in the expected order. we configure a threshold value of 1 to genarete an
+//!  in the expected order. we configure a threshold value of 1 to generate an
 //!  RTOS interrupt. This indicates that the CPUTimer2 interrupt has come out
 //!  of order.
 //!
-//!  For demonstaration puproses, this example disables CPUTimer1 to simulate
+//!  For demonstration purposes, this example disables CPUTimer1 to simulate
 //!  this error.
 //!
 //!  \b Watch \b Variables \n
@@ -271,7 +271,7 @@ configCPUTimer(uint32_t cpuTimer, float freq, float period)
     // Initialize timer period:
     //
     temp = (uint32_t) (freq / 1000000 * period);
-    CPUTimer_setPeriod(cpuTimer, temp);
+    CPUTimer_setPeriod(cpuTimer, temp - 1);
 
     //
     // Set pre-scale counter to divide by 1 (SYSCLKOUT):

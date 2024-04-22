@@ -30,9 +30,16 @@ function onChangeUseFIFO(inst, ui)
 function onValidate(inst, validation) 
 {   
     var bitRateError = false;
+    var bitRateInt;
+
     try{
-        var bitRateInt = parseInt(inst.bitRate);
-        if (bitRateInt < 1 || bitRateInt > 50000000)
+        bitRateInt = parseInt(inst.bitRate);
+        let clockTree = Common.getClockTree();
+        let lspClk = (Common.SYSCLK_getMaxMHz()*1000000)/4;
+        if(clockTree){
+            lspClk = parseInt(parseFloat(clockTree["LSPCLK"].in)*1000000);
+        }
+        if (bitRateInt < lspClk/128 || bitRateInt > lspClk/4)
         {
             bitRateError = true;
         }
@@ -43,8 +50,26 @@ function onValidate(inst, validation)
     if(bitRateError)
     {
         validation.logError(
-            "Enter an integer for bit rates between 1 and LSPCLK/4!", 
+            "Enter an integer for bit rates between LSPCLK/128 and LSPCLK/4!", 
             inst, "bitRate");
+    }
+
+    if(bitRateInt >= 12500000 && !inst.useHSMode && !bitRateError){
+        validation.logInfo(
+            "Use High Speed mode for maximum performance", 
+            inst, "bitRate");
+    }
+
+    if(bitRateInt < 12500000 && inst.useHSMode && !bitRateError){
+        validation.logInfo(
+            "Consider disabling High Speed mode", 
+            inst, "bitRate");
+    }
+
+    if(inst.useHSMode){
+        validation.logInfo(
+            "Pinmux options are limited to GPIO supporting high speed mode", 
+            inst, "useHSMode");
     }
 
     if (inst.useDMARX && inst.spiRXDMA.databusWidthConfig == "DMA_CFG_SIZE_32BIT") {
@@ -151,7 +176,16 @@ let config = [
         displayName : "Bit Rate (Hz)",
         description : 'Bit rate for device in (Hz). Cannot exceed LSPCLK/4',
         hidden      : false,
-        default     : 25000
+        default     : 1000000
+    },
+
+    {
+        name        : "useHSMode",
+        displayName : "Enable High Speed Mode",
+        description : 'Whether or not to use SPI in High Speed mode.',
+        hidden      : false,
+        default     : false
+        
     },
 
     {

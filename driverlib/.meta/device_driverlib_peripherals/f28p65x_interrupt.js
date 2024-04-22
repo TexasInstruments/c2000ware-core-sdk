@@ -176,7 +176,7 @@ let interrupts = [
 	{ int_define_name: "INT_MCANA_ECC", int_group_channel_number: "9.11", int_group_number: "9", int_channel_number: "11", int_description: "MCANSSA_ECC_CORR_PLS" },
 	{ int_define_name: "INT_MCANA_WAKE", int_group_channel_number: "9.12", int_group_number: "9", int_channel_number: "12", int_description: "MCANSSA_WAKE_AND_TS_PLS" },
 	{ int_define_name: "INT_PMBUSA", int_group_channel_number: "9.13", int_group_number: "9", int_channel_number: "13", int_description: "PMBUSA  Interrupt" },
-	{ int_define_name: "INT_AES_SINTREQUEST", int_group_channel_number: "9.14", int_group_number: "9", int_channel_number: "14", int_description: "AES Secure Interrupt request" },
+	{ int_define_name: "INT_AES_SINTREQUEST", int_group_channel_number: "9.14", int_group_number: "9", int_channel_number: "14", int_description: "AES Interrupt" },
 	{ int_define_name: "INT_USBA", int_group_channel_number: "9.15", int_group_number: "9", int_channel_number: "15", int_description: "USBA Interrupt" },
 	{ int_define_name: "INT_ADCC_EVT", int_group_channel_number: "10.9", int_group_number: "10", int_channel_number: "9", int_description: "ADCC Event Interrupt" },
 	{ int_define_name: "INT_ADCC2", int_group_channel_number: "10.10", int_group_number: "10", int_channel_number: "10", int_description: "ADCC Interrupt 2" },

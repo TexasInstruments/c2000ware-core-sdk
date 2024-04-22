@@ -597,7 +597,7 @@ configCPUTimer(uint32_t cpuTimer, float freq, float bitrate)
     // Initialize timer period:
     //
     temp = (uint32_t)(freq / bitrate);
-    CPUTimer_setPeriod(cpuTimer, temp);
+    CPUTimer_setPeriod(cpuTimer, temp - 1);
 
     //
     // Set pre-scale counter to divide by 1 (SYSCLKOUT):

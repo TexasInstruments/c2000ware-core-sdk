@@ -1,8 +1,8 @@
 /**
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
- * @cliArgs --device "F2838x" --package "337bga" --part "F2838x_337bga" --context "CPU1" --product "C2000WARE@5.00.00.00"
- * @versions {"tool":"1.19.0+3288"}
+ * @cliArgs --device "F2838x" --package "337bga" --part "F2838x_337bga" --context "CPU1" --product "C2000WARE@5.02.00.00"
+ * @versions {"tool":"1.0.0+dev"}
  */
 
 /**
@@ -42,15 +42,15 @@ CMD1.$name                    = "generic_ram_lnk";
 CMD2.$name                    = "generic_flash_lnk";
 
 CMD1.sectionMemory_text       = ["RAMLS0","RAMLS1","RAMLS2","RAMLS3","RAMLS4"];
-CMD1.sectionMemory_bss        = ["RAMLS5"];
-CMD1.sectionMemory_const      = ["RAMLS5"];
-CMD1.sectionMemory_data       = ["RAMLS5"];
-CMD1.sectionMemory_sysmem     = ["RAMLS5"];
 CMD1.sectionMemory_ramfunc    = ["RAMM0"];
 CMD1.sectionMemory_cinit      = ["RAMM0"];
 CMD1.sectionMemory_stack      = ["RAMM1"];
 CMD1.sectionMemory_init_array = ["RAMM0"];
+CMD1.sectionMemory_bss        = ["RAMLS5"];
+CMD1.sectionMemory_const      = ["RAMLS5"];
+CMD1.sectionMemory_data       = ["RAMLS5"];
 CMD1.sectionMemory_switch     = ["RAMM0"];
+CMD1.sectionMemory_sysmem     = ["RAMLS5"];
 
 
 CMD1.userSection.create(2);
@@ -85,7 +85,10 @@ CMD2.sectionMemory_cinit           = ["FLASH4"];
 CMD2.sectionMemory_switch          = ["FLASH1"];
 CMD2.sectionMemory_init_array      = ["FLASH1"];
 CMD2.sectionMemory_const           = ["FLASH5"];
-CMD2.sectionMemory_ovly            = ["FLASH1"];
+CMD2.sectionMemory_ovly            = ["FLASH6"];
+CMD2.sectionRunFromDifferentAddr_ramfunc = true;
+CMD2.sectionRun_ramfunc                  = ["RAMLS0"];
+CMD2.sectionBinit_ramfunc                = false;
 
 
 CMD2.userSection.create(2);

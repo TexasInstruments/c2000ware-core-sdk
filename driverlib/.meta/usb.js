@@ -23,6 +23,16 @@ let config = [
         onChange    : Pinmux.useCaseChanged,
     },
     {
+        name        : "initClk",
+        legacyNames : ["initAuxClk"],
+        displayName : "Initialize Clock",
+        description : 'Initialize the  clock of the device for USB. Disable this option if clock is setup correctly' + 
+                      ' in the ClockTree module',
+        hidden      : false,
+        default     : true
+        
+    },
+    {
         name        : "registerInterrupts",
         displayName : "Register Interrupt Handler",
         description : 'Whether or not to register interrupt handlers in the interrupt module.',

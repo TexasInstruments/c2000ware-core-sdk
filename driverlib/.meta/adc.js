@@ -1736,7 +1736,7 @@ function onValidate(inst, validation) {
             //
             // Check if the analog module is added on CPU1 if the current context is CPU2
             //
-            if (Common.isModuleOnOtherContext("/driverlib/analog.js") == false) {
+            if ((Common.isModuleOnOtherContext("/driverlib/analog.js") == false) && !["F2838x", "F2837xD"].includes(Common.getDeviceName())) {
                 validation.logError(
                     "The ANALOG PinMux module needs to be added on CPU1 when an ADC instance is added on CPU2",inst,"adcBase");
             }
@@ -2132,7 +2132,9 @@ function onValidate(inst, validation) {
                 }
             }
         }
-
+    }
+    if (["F2837xD", "F2837xS", "F2838x", "F28P65x"].includes(Common.getDeviceName()))
+    {
         for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){ 
             var currentSOC = device_driverlib_peripheral.ADC_SOCNumber[socIndex].name
             var soci = (currentSOC).replace(/[^0-9]/g,'')

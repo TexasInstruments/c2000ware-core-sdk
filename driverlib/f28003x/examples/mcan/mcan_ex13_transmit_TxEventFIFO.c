@@ -382,14 +382,14 @@ __interrupt void MCANIntr1ISR(void)
     intrStatus = MCAN_getIntrStatus(MCANA_DRIVER_BASE);
 
     //
-    //  Clearing the interrupt lineNum
-    //
-    HW_WR_FIELD32(MCANA_DRIVER_BASE + MCAN_MCANSS_EOI, MCAN_MCANSS_EOI, 0x2);
-
-    //
     // Clear the interrupt Status.
     //
     MCAN_clearIntrStatus(MCANA_DRIVER_BASE, intrStatus);
+
+    //
+    //  Clearing the interrupt lineNum
+    //
+    MCAN_clearInterrupt(MCANA_DRIVER_BASE, 0x2);
 
     //
     //  Check to see if the interrupt is caused by a message being

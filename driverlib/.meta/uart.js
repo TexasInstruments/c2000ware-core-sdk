@@ -5,6 +5,31 @@ let Pinmux   = system.getScript("/driverlib/pinmux.js");
 let longDescription = "UART";
 let pinmuxOnlyDevices = ["F2838x"];
 
+function burstSizeMapping(fifoLevel, inst){
+    if(inst.fen == false){
+        return 1;
+    }
+    switch(fifoLevel) {
+        case "UART_FIFO_TX7_8":
+        case "UART_FIFO_RX1_8":
+            return 2;
+        case "UART_FIFO_TX6_8":
+        case "UART_FIFO_RX2_8":
+            return 4;
+        case "UART_FIFO_TX4_8":
+        case "UART_FIFO_RX4_8":
+            return 8;
+        case "UART_FIFO_TX2_8":
+        case "UART_FIFO_RX6_8":
+            return 12;
+        case "UART_FIFO_TX1_8":
+        case "UART_FIFO_RX7_8":
+            return 14;
+        default:
+          return 1;
+    }
+}
+
 function onChangeFIFOInterrupts(inst, ui)
 {
     // if interrupt enabled, unhide everything, let later if-statements re-
@@ -69,6 +94,9 @@ function onValidate(inst, validation)
     // only do validation for devices that have more than pinmux
     if (pinmuxOnlyDevices.includes(Common.getDeviceName()))
     {
+        validation.logWarning(
+            "No Sysconfig support for CM core", 
+            inst, "useCase");
         return;
     }
 
@@ -97,6 +125,39 @@ function onValidate(inst, validation)
         validation.logError(
             "Baud rate out of range, min baud rate given current UART source clock is " + String(minBaud),
             inst, "baud");
+    }
+
+    //Validate UART+DMA settings
+    //Add filters for F2838x, F28P65x, and F29H65x in the future if IP is updated
+    if ((inst.dmarx || inst.dmatx) && !inst.fen) {
+        validation.logError("FIFO must be enabled for DMA linking!", inst, "fen");   
+    }
+    if(inst.dmarx && (inst.uartRXDMA.burstSize != burstSizeMapping(inst.rxiflsel, inst)))
+    {
+        validation.logWarning(
+            "Burst size is not equal to RX FIFO size", inst.uartRXDMA, "burstSize");
+    }
+    if(inst.dmatx && (inst.uartTXDMA.burstSize != burstSizeMapping(inst.txiflsel, inst)))
+    {
+        validation.logWarning(
+            "Burst size is not equal to TX FIFO size", inst.uartTXDMA, "burstSize");
+    }
+
+    if (inst.dmarx && (inst.uartRXDMA.numberWordsToTransfer)%2 !== 0){
+        validation.logWarning(
+            "Total number of bytes to receive must be even", inst.uartRXDMA, "numberWordsToTransfer");            
+    }
+    if (inst.dmatx && (inst.uartTXDMA.numberWordsToTransfer)%2 !== 0){
+        validation.logWarning(
+            "Total number of bytes to transmit must be even", inst.uartTXDMA, "numberWordsToTransfer");
+    }
+    if ((inst.dmatx && inst.uartTXDMA.oneShotConfig == "DMA_CFG_ONESHOT_ENABLE") && (inst.uartTXDMA.numberWordsToTransfer > 16)){
+        validation.logWarning(
+            "Enabling one-shot mode when transferring a total number of bytes greater than the TX FIFO depth (16) will cause data loss", inst.uartTXDMA, "oneShotConfig");
+    }
+    if ((inst.dmarx && inst.uartRXDMA.oneShotConfig == "DMA_CFG_ONESHOT_ENABLE") && (inst.uartRXDMA.numberWordsToTransfer > 16)){
+        validation.logWarning(
+            "Enabling one-shot mode when transferring a total number of bytes greater than the RX FIFO depth (16) will cause data loss", inst.uartRXDMA, "oneShotConfig");
     }
 }
 
@@ -173,7 +234,7 @@ let config = [
             // compute the resultant baud rate of the values that got put
             // into the registers
             var baudActual = (inst.$module.$static["baudSYSCLK"]/((integerBaudRateDivider + (fractionalBaudRateDivider/64))*ClkDiv));
-            return Math.abs((baudActual-baudrt)/baudrt)*100;
+            return +(Math.abs((baudActual-baudrt)/baudrt)*100).toFixed(3);
         },
         default     : 115200,
     },
@@ -384,6 +445,35 @@ let config = [
         onChange    : Pinmux.useCaseChanged,
         
     },
+
+    //**********************************************************************
+    // DMA settings
+    {
+        name        : "GROUP_DMA_SETTINGS",
+        displayName : "DMA Settings",
+        collapsed   : false,
+        config      : [
+                //**********************************************************************
+        // DMA RX
+        {
+            name: "dmarx",
+            displayName : "Use DMA for Receive",
+            description : 'Use a DMA channel to transfer data from the RX FIFO',
+            hidden      : false,
+            default     : false,
+        },
+        //**********************************************************************
+        // DMA TX
+        {
+            name: "dmatx",
+            displayName : "Use DMA for Transmit",
+            description : 'Use a DMA channel to transfer data to the TX FIFO',
+            hidden      : false,
+            default     : false,
+        },  
+        ]
+    },
+  
 ];
 
 // for F2838x, only include the Pinmux portion (no CM support)
@@ -473,6 +563,45 @@ var uartModule = {
 	        }])
     	}
 
+        if (inst.dmarx) {
+            ownedInstances = ownedInstances.concat([
+                {
+                    name: "uartRXDMA",
+                    displayName: "RX DMA",
+                    moduleName: "/driverlib/dma.js",
+                    group: "GROUP_DMA_SETTINGS",
+                    collapsed: true,
+                    args: {
+                        $name: inst.$name + "_RX_DMA",
+                    },
+                    requiredArgs: {
+                        srcAddressLinked: inst.$name + "_RX_DMA_ADDRESS",
+                        peripheralRXLinked: true,
+                        triggerSource: "DMA_TRIGGER_LINKED"
+                    }
+                },
+            ])
+        }
+        if (inst.dmatx) {
+            ownedInstances = ownedInstances.concat([
+                {
+                    name: "uartTXDMA",
+                    displayName: "TX DMA",
+                    moduleName: "/driverlib/dma.js",
+                    group: "GROUP_DMA_SETTINGS",
+                    collapsed: true,
+                    args: {
+                        $name: inst.$name + "_TX_DMA",
+                    },
+                    requiredArgs: {
+                        destAddressLinked: inst.$name + "_TX_DMA_ADDRESS",
+                        peripheralTXLinked: true,
+                        triggerSource: "DMA_TRIGGER_LINKED"
+                    }
+                },
+            ])
+        }
+
     	return ownedInstances;
     },
     config: config,
@@ -491,14 +620,10 @@ var uartModule = {
             {
                 name: "baudSYSCLK",
                 displayName: "SYSCLK [Hz] for Baud Rate",
-                description: "This is the SYSCLK value assumed for baud rate calculation",
-                default: parseInt(Common.SYSCLK_getMaxMHz()*1e6),
-                // eventually update this to use clocktree tool and be
-                // locked to that value as shown below:
-                // default: system.clockTree.PERx_SYSCLK_domain.in,
-                // getValue : (inst) => {
-                //     return parseInt(Common.SYSCLK_getMaxMHz());
-                // }
+                description: "This is the SYSCLK value used for baud rate calculation",
+                default: 100000000,
+                getValue: (inst) => {return Common.getSYSCLK()*(1e6);},
+                readOnly: true
             },
         ],
         modules: undefined,

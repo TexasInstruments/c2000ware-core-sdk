@@ -211,7 +211,7 @@ interrupts. Both master and slave modes are supported.</p>
 <dt id="c.SPI_transmitByte">
 <span class="target" id="group__spi__api_1gac2a607ec0caa4932aa104ba2d6d86ddd"></span><code class="sig-name descname">SPI_transmitByte</code><span class="sig-paren">(</span><em>base</em>, <em>txData</em><span class="sig-paren">)</span> <a class="reference internal" href="#group__spi__api_1ga4895a230620eee7ed4cd542adb75e40c"><span class="std std-ref">SPI_pollingNonFIFOTransaction</span></a>(base, 8U,  txData)<a class="headerlink" href="#c.SPI_transmitByte" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>This macro definition is used to transmit a byte of data</p>
-<p><p>This macro definition is to transmit a byte of data. This macro uses SPI_pollingNonFIFOTransaction function SPI character length is hardcoded to 8 (1 byte = 8 bits)of character length</p>
+<p><p>This macro definition is to transmit a byte of data. This macro uses SPI_pollingNonFIFOTransaction function SPI character length must be configured to 8 bits BEFORE calling the function</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
@@ -231,7 +231,7 @@ interrupts. Both master and slave modes are supported.</p>
 <dt id="c.SPI_transmit16Bits">
 <span class="target" id="group__spi__api_1ga3409d09dc697cddbcd367486512dc333"></span><code class="sig-name descname">SPI_transmit16Bits</code><span class="sig-paren">(</span><em>base</em>, <em>txData</em><span class="sig-paren">)</span> <a class="reference internal" href="#group__spi__api_1ga4895a230620eee7ed4cd542adb75e40c"><span class="std std-ref">SPI_pollingNonFIFOTransaction</span></a>(base, 16U, txData)<a class="headerlink" href="#c.SPI_transmit16Bits" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>This macro definition is used to transmit a 16-bit word of data</p>
-<p><p>This macro definition is to transmit a 16-bit word of data. This macro uses SPI_pollingNonFIFOTransaction function SPI character length is hardcoded to 16 (16bit word) of character length</p>
+<p><p>This macro definition is to transmit a 16-bit word of data. This macro uses SPI_pollingNonFIFOTransaction function SPI character length must be configured to 16 bits BEFORE calling the function</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
@@ -262,7 +262,7 @@ interrupts. Both master and slave modes are supported.</p>
 </dd>
 </dl>
 </p>
-<p>SPI character length is hardcoded to 8 (8bits) of character length</p>
+<p>SPI character length must be configured to 8 bits BEFORE calling the function</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -274,7 +274,7 @@ interrupts. Both master and slave modes are supported.</p>
 <dt id="c.SPI_transmitN16BitWord">
 <span class="target" id="group__spi__api_1ga4ec0b76f75154db24a1f9da6dad1104a"></span><code class="sig-name descname">SPI_transmitN16BitWord</code><span class="sig-paren">(</span><em>base</em>, <em>txBuffer</em>, <em>numOfWords</em>, <em>txDelay</em><span class="sig-paren">)</span> <a class="reference internal" href="#group__spi__api_1ga1b1aec6f36f2b7606cc71f0909fda5b7"><span class="std std-ref">SPI_pollingFIFOTransaction</span></a>(base, 16U, txBuffer, NULL, numOfWords, txDelay)<a class="headerlink" href="#c.SPI_transmitN16BitWord" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>This macro definition can be used to transmit ‘N’ 16-bit words of data</p>
-<p><p>This function can be used to transmit ‘N’ 16-bit words of data. This function uses SPI_pollingFIFOTransaction function. SPI character length is hardcoded to 16 (16-bit word)</p>
+<p><p>This function can be used to transmit ‘N’ 16-bit words of data. This function uses SPI_pollingFIFOTransaction function. SPI character length must be configured to 16 bits BEFORE calling the function</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
@@ -297,7 +297,7 @@ interrupts. Both master and slave modes are supported.</p>
 <span class="target" id="group__spi__api_1ga7c6f68b0edf68f8e3d2c8f5072368d43"></span><code class="sig-name descname">SPI_transmitNWordsWithCharLength</code><span class="sig-paren">(</span><em>base</em>, <em>charLength</em>, <em>txBuffer</em>, <em>numOfWords</em>, <em>txDelay</em><span class="sig-paren">)</span> <a class="reference internal" href="#group__spi__api_1ga1b1aec6f36f2b7606cc71f0909fda5b7"><span class="std std-ref">SPI_pollingFIFOTransaction</span></a>(base, charLength, txBuffer, NULL<p>,     \</p>
 <p>                                         numOfWords, txDelay)</p>
 <a class="headerlink" href="#c.SPI_transmitNWordsWithCharLength" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>This macro definition can be used to transmit ‘N’ with configurable SPI character length</p>
+<dd><p>This macro definition can be used to transmit ‘N’ with previously configured SPI character length</p>
 <p><p>This macro definition can be used to transmit ‘N’ with configurable SPI character length.</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
@@ -310,7 +310,7 @@ interrupts. Both master and slave modes are supported.</p>
 </dd>
 </dl>
 </p>
-<p>This macro uses SPIpolling_FIFO_Transaction function. SPI character length is configurable using charLength variable.</p>
+<p>This macro uses SPI_pollingFIFOTransaction function. SPI character length must be configured to required value BEFORE calling the function, and passed as the charLength parameter.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -322,7 +322,7 @@ interrupts. Both master and slave modes are supported.</p>
 <dt id="c.SPI_receiveByte">
 <span class="target" id="group__spi__api_1gae3bf1cc0af38af4e055d5e2d91f5e3c0"></span><code class="sig-name descname">SPI_receiveByte</code><span class="sig-paren">(</span><em>base</em>, <em>dummyData</em><span class="sig-paren">)</span> <a class="reference internal" href="#group__spi__api_1ga4895a230620eee7ed4cd542adb75e40c"><span class="std std-ref">SPI_pollingNonFIFOTransaction</span></a>(base, 8U, dummyData)<a class="headerlink" href="#c.SPI_receiveByte" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>This macro definition is used to receive a byte of data</p>
-<p><p>This macro definition is to receive a byte of data. This macro uses SPI_pollingNonFIFOTransaction function SPI character length is hardcoded to 8 (1byte = 8bits) of character length</p>
+<p><p>This macro definition is to receive a byte of data. This macro uses SPI_pollingNonFIFOTransaction function SPI character length must be configured to 8 bits BEFORE calling the function</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
@@ -342,7 +342,7 @@ interrupts. Both master and slave modes are supported.</p>
 <dt id="c.SPI_receiveNBytes">
 <span class="target" id="group__spi__api_1gad2234544c52a09fa686ff55fb7cc3a6e"></span><code class="sig-name descname">SPI_receiveNBytes</code><span class="sig-paren">(</span><em>base</em>, <em>rxBuffer</em>, <em>numOfWords</em>, <em>txDelay</em><span class="sig-paren">)</span> <a class="reference internal" href="#group__spi__api_1ga1b1aec6f36f2b7606cc71f0909fda5b7"><span class="std std-ref">SPI_pollingFIFOTransaction</span></a>(base, 8U,  NULL, rxBuffer, numOfWords, txDelay)<a class="headerlink" href="#c.SPI_receiveNBytes" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>This macro is used to receive ‘N’ bytes of data</p>
-<p><p>This function is used to receive ‘N’ bytes of data This function uses SPIpolling_FIFO_Transaction function. SPI character length is hardcoded to 8 (1 byte = 8 bits)</p>
+<p><p>This function is used to receive ‘N’ bytes of data This function uses SPI_pollingFIFOTransaction function. SPI character length must be configured to 8 bits BEFORE calling the function</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
@@ -364,7 +364,7 @@ interrupts. Both master and slave modes are supported.</p>
 <dt id="c.SPI_receiveN16BitWord">
 <span class="target" id="group__spi__api_1gab82f821e6416d2301199fab02562b0a5"></span><code class="sig-name descname">SPI_receiveN16BitWord</code><span class="sig-paren">(</span><em>base</em>, <em>rxBuffer</em>, <em>numOfWords</em>, <em>txDelay</em><span class="sig-paren">)</span> <a class="reference internal" href="#group__spi__api_1ga1b1aec6f36f2b7606cc71f0909fda5b7"><span class="std std-ref">SPI_pollingFIFOTransaction</span></a>(base, 16U, NULL, rxBuffer, numOfWords, txDelay)<a class="headerlink" href="#c.SPI_receiveN16BitWord" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>This macro is used to receive ‘N’ 16-bits words of data</p>
-<p><p>This function is used to receive ‘N’ 16-bit words of data This function uses SPIpolling_FIFO_Transaction function. SPI character length is hardcoded to 16bits</p>
+<p><p>This function is used to receive ‘N’ 16-bit words of data This function uses SPI_pollingFIFOTransaction function. SPI character length must be configured to 16 bits BEFORE calling the function</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
@@ -387,8 +387,8 @@ interrupts. Both master and slave modes are supported.</p>
 <span class="target" id="group__spi__api_1ga759d67c315bb1e4570ead8467871bf0b"></span><code class="sig-name descname">SPI_receiveNWordsWithcharLength</code><span class="sig-paren">(</span><em>base</em>, <em>charLength</em>, <em>rxBuffer</em>, <em>numOfWords</em>, <em>txDelay</em><span class="sig-paren">)</span> <a class="reference internal" href="#group__spi__api_1ga1b1aec6f36f2b7606cc71f0909fda5b7"><span class="std std-ref">SPI_pollingFIFOTransaction</span></a>(base, charLength, NULL<p>, rxBuffer,       \</p>
 <p>                                       numOfWords, txDelay)</p>
 <a class="headerlink" href="#c.SPI_receiveNWordsWithcharLength" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>This macro is used to receive ‘N’ words with specified character length</p>
-<p><p>This function is used to receive ‘N’ words with specified character length This function uses SPIpolling_FIFO_Transaction function. SPI character length is configurable using charLength variable</p>
+<dd><p>This macro is used to receive ‘N’ words with previously configured character length</p>
+<p><p>This function is used to receive ‘N’ words with specified character length This function uses SPI_pollingFIFOTransaction function. SPI character length must be configured to required value BEFORE calling the function, and passed as the charLength parameter.</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
@@ -1599,7 +1599,7 @@ interrupts. Both master and slave modes are supported.</p>
 </dd>
 </dl>
 </p>
-<p>This function uses SPI_pollingFIFOTransaction function. SPI character length is hardcoded to 8 (8bits) of character length</p>
+<p>This function uses SPI_pollingFIFOTransaction function. SPI character length must be configured to 8 bits BEFORE calling the function</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -1621,7 +1621,7 @@ interrupts. Both master and slave modes are supported.</p>
 </dd>
 </dl>
 </p>
-<p>This function uses SPI_pollingFIFOTransaction function. SPI character length is hardcoded to 8 (8bits) of character length</p>
+<p>This function uses SPI_pollingFIFOTransaction function. SPI character length must be configured to 16 bits BEFORE calling the function</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -1633,7 +1633,7 @@ interrupts. Both master and slave modes are supported.</p>
 <dt id="_CPPv417SPI_receive16Bits8uint32_t13SPI_endianess8uint16_t8uint16_t">
 <span id="_CPPv317SPI_receive16Bits8uint32_t13SPI_endianess8uint16_t8uint16_t"></span><span id="_CPPv217SPI_receive16Bits8uint32_t13SPI_endianess8uint16_t8uint16_t"></span><span id="SPI_receive16Bits__uint32_t.SPI_endianess.uint16_t.uint16_t"></span><span class="target" id="group__spi__api_1ga33536bd1a5789526594a99837703d5c0"></span>uint16_t <code class="sig-name descname">SPI_receive16Bits</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv413SPI_endianess" title="SPI_endianess">SPI_endianess</a> <em>endianness</em>, uint16_t <em>dummyData</em>, uint16_t <em>txDelay</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417SPI_receive16Bits8uint32_t13SPI_endianess8uint16_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>This function is used to receive a 16-bit word of data</p>
-<p><p>This function is used to receive a 16-bit word of data. This function uses SPIpolling_FIFO_Transaction function. SPI character length is hardcoded to 8 (1 byte = 8 bits)of character length</p>
+<p><p>This function is used to receive a 16-bit word of data. This function uses SPI_pollingFIFOTransaction function. SPI character length must be configured to 8 bits BEFORE calling the function</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
@@ -1655,7 +1655,7 @@ interrupts. Both master and slave modes are supported.</p>
 <dt id="_CPPv417SPI_receive24Bits8uint32_t13SPI_endianess8uint16_t8uint16_t">
 <span id="_CPPv317SPI_receive24Bits8uint32_t13SPI_endianess8uint16_t8uint16_t"></span><span id="_CPPv217SPI_receive24Bits8uint32_t13SPI_endianess8uint16_t8uint16_t"></span><span id="SPI_receive24Bits__uint32_t.SPI_endianess.uint16_t.uint16_t"></span><span class="target" id="group__spi__api_1gada6fa624c167254f8aa108d0da2974ad"></span>uint32_t <code class="sig-name descname">SPI_receive24Bits</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv413SPI_endianess" title="SPI_endianess">SPI_endianess</a> <em>endianness</em>, uint16_t <em>dummyData</em>, uint16_t <em>txDelay</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417SPI_receive24Bits8uint32_t13SPI_endianess8uint16_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>This function is used to receive a 24-bit word of data</p>
-<p><p>This function is used to receive a 24-bit word of data. This function uses SPIpolling_FIFO_Transaction function. SPI character length is hardcoded to 8 (1 byte = 8 bits)of character length</p>
+<p><p>This function is used to receive a 24-bit word of data. This function uses SPI_pollingFIFOTransaction function. SPI character length must be configured to 8 bits BEFORE calling the function</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
@@ -1677,7 +1677,7 @@ interrupts. Both master and slave modes are supported.</p>
 <dt id="_CPPv417SPI_receive32Bits8uint32_t13SPI_endianess8uint16_t8uint16_t">
 <span id="_CPPv317SPI_receive32Bits8uint32_t13SPI_endianess8uint16_t8uint16_t"></span><span id="_CPPv217SPI_receive32Bits8uint32_t13SPI_endianess8uint16_t8uint16_t"></span><span id="SPI_receive32Bits__uint32_t.SPI_endianess.uint16_t.uint16_t"></span><span class="target" id="group__spi__api_1ga3f59b257fbbe444f9c276ac08e88ea56"></span>uint32_t <code class="sig-name descname">SPI_receive32Bits</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv413SPI_endianess" title="SPI_endianess">SPI_endianess</a> <em>endianness</em>, uint16_t <em>dummyData</em>, uint16_t <em>txDelay</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417SPI_receive32Bits8uint32_t13SPI_endianess8uint16_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>This function is used to receive a 32-bit word of data</p>
-<p><p>This function is used to receive a 32-bit word of data. This function uses SPIpolling_FIFO_Transaction function. SPI character length is hardcoded to 8 (1 byte = 8 bits)of character length</p>
+<p><p>This function is used to receive a 32-bit word of data. This function uses SPI_pollingFIFOTransaction function. SPI character length must be configured to 8 bits BEFORE calling the function</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
@@ -1699,7 +1699,7 @@ interrupts. Both master and slave modes are supported.</p>
 <dt id="_CPPv429SPI_pollingNonFIFOTransaction8uint32_t8uint16_t8uint16_t">
 <span id="_CPPv329SPI_pollingNonFIFOTransaction8uint32_t8uint16_t8uint16_t"></span><span id="_CPPv229SPI_pollingNonFIFOTransaction8uint32_t8uint16_t8uint16_t"></span><span id="SPI_pollingNonFIFOTransaction__uint32_t.uint16_t.uint16_t"></span><span class="target" id="group__spi__api_1ga4895a230620eee7ed4cd542adb75e40c"></span>uint16_t <code class="sig-name descname">SPI_pollingNonFIFOTransaction</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>charLength</em>, uint16_t <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429SPI_pollingNonFIFOTransaction8uint32_t8uint16_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>This function is used to initiate SPI transaction of specified character length</p>
-<p><p>This function is used to initiate SPI transaction of specified character. SPI character length is configurable using charLength variable</p>
+<p><p>The SPI must be configured to the provided charLength BEFORE the function is called. This function does not set/change the SPI char length.</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
@@ -1720,7 +1720,7 @@ interrupts. Both master and slave modes are supported.</p>
 <dt id="_CPPv426SPI_pollingFIFOTransaction8uint32_t8uint16_tP8uint16_tP8uint16_t8uint16_t8uint16_t">
 <span id="_CPPv326SPI_pollingFIFOTransaction8uint32_t8uint16_tP8uint16_tP8uint16_t8uint16_t8uint16_t"></span><span id="_CPPv226SPI_pollingFIFOTransaction8uint32_t8uint16_tP8uint16_tP8uint16_t8uint16_t8uint16_t"></span><span id="SPI_pollingFIFOTransaction__uint32_t.uint16_t.uint16_tP.uint16_tP.uint16_t.uint16_t"></span><span class="target" id="group__spi__api_1ga1b1aec6f36f2b7606cc71f0909fda5b7"></span>void <code class="sig-name descname">SPI_pollingFIFOTransaction</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t <em>charLength</em>, uint16_t *<em>pTxBuffer</em>, uint16_t *<em>pRxBuffer</em>, uint16_t <em>numOfWords</em>, uint16_t <em>txDelay</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426SPI_pollingFIFOTransaction8uint32_t8uint16_tP8uint16_tP8uint16_t8uint16_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>This function is used to initiate SPI transaction of specified character length and ‘N’ words of transaction</p>
-<p><p>SPI character length is configurable using charLength variable</p>
+<p><p>The SPI must be configured to the provided charLength BEFORE the function is called. This function does not set/change the SPI char length.</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the SPI module base address. </p></li>
@@ -1787,7 +1787,7 @@ wait in a while-loop for data to become available.</p>
     <p>
       <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2021, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
       <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
-      <span class="lastupdated">Last updated on Nov 09, 2023.
+      <span class="lastupdated">Last updated on Mar 27, 2024.
       </span></p>
   </div>
 

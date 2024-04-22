@@ -160,6 +160,12 @@ void main(void)
     Interrupt_initVectorTable();
 
     //
+    // Initialize resources
+    //
+    Board_init();
+    initCLA();
+
+    //
     // Disable sync(Freeze clock to PWM as well)
     //
     SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
@@ -174,12 +180,6 @@ void main(void)
     //
     initADC();
     initADCSOC();
-
-    //
-    // Initialize resources
-    //
-    Board_init();
-    initCLA();
 
     //
     // Enable global interrupts.

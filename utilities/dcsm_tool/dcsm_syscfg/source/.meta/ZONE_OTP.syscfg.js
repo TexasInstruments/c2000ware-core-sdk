@@ -19,6 +19,19 @@ if ("F28P65x".includes(Common.getDeviceName()))
     ];
 }
 
+if ("F28P55x".includes(Common.getDeviceName()))
+{
+    ERRORSTS_options = [
+        {name:0, displayName: "GPIO24"},
+        {name:1, displayName: "GPIO28"},
+        {name:2, displayName: "GPIO29"},
+        {name:4, displayName: "GPIO55"},
+        {name:5, displayName: "GPIO64"},
+        {name:6, displayName: "GPIO73"},
+        {name:7, displayName: "ERRORSTS disabled (Default)"}
+    ];
+}
+
 var MPOST_options
 
 if ("F28002x".includes(Common.getDeviceName()))
@@ -76,6 +89,15 @@ else if ("F28P65x".includes(Common.getDeviceName()))
         {name:0x3 , displayName: "Do not run MPOST"}
     ];
 }
+else if ("F28P55x".includes(Common.getDeviceName()))
+{
+    MPOST_options = [
+        {name:0x0 , displayName: "MPOST will be run using INTOSC2 with PLL disabled (10MHz)"},
+        {name:0x1 , displayName: "MPOST will be run with PLL enabled for high speed (150MHz)"},
+        {name:0x2 , displayName: "MPOST will be run with PLL enabled for low speed (75MHz)"},
+        {name:0x3 , displayName: "Do not run MPOST"}
+    ];
+}
 
 
 
@@ -112,7 +134,7 @@ if ("F28004x".includes(Common.getDeviceName()))
     ]
     
     let WAIT_BOOT_OPTIONS =[
-        {name: "0x04", displayName:"(WAIT) Watchdog is enable"},
+        {name: "0x04", displayName:"(WAIT) watchdog is enabled"},
         {name: "0x24", displayName:"(WAIT) Watchdog is disabled"},
     ]
     
@@ -172,7 +194,7 @@ else if ("F28002x".includes(Common.getDeviceName()))
     ]
     
     let WAIT_BOOT_OPTIONS =[
-        {name: "0x04", displayName:"(WAIT) Watchdog is enable"},
+        {name: "0x04", displayName:"(WAIT) watchdog is enabled"},
         {name: "0x24", displayName:"(WAIT) Watchdog is disabled"},
     ]
     
@@ -238,7 +260,7 @@ else if ("F2838x".includes(Common.getDeviceName()))
     ]
     
     let WAIT_BOOT_OPTIONS =[
-        {name: "0x04", displayName:"(WAIT) Watchdog is enable"},
+        {name: "0x04", displayName:"(WAIT) watchdog is enabled"},
         {name: "0x24", displayName:"(WAIT) Watchdog is disabled"},
     ]
     
@@ -319,7 +341,7 @@ else if ("F28003x".includes(Common.getDeviceName()))
     ]
     
     let WAIT_BOOT_OPTIONS =[
-        {name: "0x04", displayName:"(WAIT) Watchdog is enable"},
+        {name: "0x04", displayName:"(WAIT) watchdog is enabled"},
         {name: "0x24", displayName:"(WAIT) Watchdog is disabled"},
     ]
     
@@ -404,7 +426,7 @@ else if ("F280013x".includes(Common.getDeviceName()))
     ]
 
     let WAIT_BOOT_OPTIONS =[
-        {name: "0x04", displayName:"(WAIT) Watchdog is enable"},
+        {name: "0x04", displayName:"(WAIT) watchdog is enabled"},
         {name: "0x24", displayName:"(WAIT) Watchdog is disabled"},
     ]
     
@@ -479,7 +501,7 @@ else if ("F280015x".includes(Common.getDeviceName()))
     ]
 
     let WAIT_BOOT_OPTIONS =[
-        {name: "0x04", displayName:"(WAIT) Watchdog is enable"},
+        {name: "0x04", displayName:"(WAIT) watchdog is enabled"},
         {name: "0x24", displayName:"(WAIT) Watchdog is disabled"},
     ]
     
@@ -565,7 +587,7 @@ else if ("F28P65x".includes(Common.getDeviceName()))
     ]
 
     let WAIT_BOOT_OPTIONS =[
-        {name: "0x04", displayName:"(WAIT) Watchdog is enable"},
+        {name: "0x04", displayName:"(WAIT) watchdog is enabled"},
         {name: "0x24", displayName:"(WAIT) Watchdog is disabled"},
     ]
     
@@ -627,6 +649,97 @@ else if ("F28P65x".includes(Common.getDeviceName()))
         {name: "0x2B", displayName:"(LFU FLASH) Flash-Entry-Address=0x0008FFF0 for CPU1 Bank 0,0x000AFFF0 for CPU1 Bank 1,0x000CFFF0 for CPU1 Bank 2,0x000EFFF0 for CPU1 Bank 3,0x0010FFF0 for CPU1 Bank 4"},
         {name: "0x4B", displayName:"(LFU FLASH) Flash-Entry-Address=0x00090000 for CPU1 Bank 0,0x000B0000 for CPU1 Bank 1,0x000D0000 for CPU1 Bank 2,0x000F0000 for CPU1 Bank 3,0x00110000 for CPU1 Bank 4"},
         {name: "0x6B", displayName:"(LFU FLASH) Flash-Entry-Address=0x0009FFF0 for CPU1 Bank 0,0x000BFFF0 for CPU1 Bank 1,0x000DFFF0 for CPU1 Bank 2,0x000FFFF0 for CPU1 Bank 3,0x0011FFF0 for CPU1 Bank 4"},
+    ]
+    
+    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(SCI_BOOT_OPTIONS)
+    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(CAN_BOOT_OPTIONS)
+    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(CAN_FD_BOOT_OPTIONS)
+    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(WAIT_BOOT_OPTIONS)
+    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(SPI_BOOT_OPTIONS)
+    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(I2C_BOOT_OPTIONS)
+    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(PARALLEL_BOOT_OPTIONS)
+    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(FLASH_BOOT_OPTIONS)
+    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(SECURE_FLASH_BOOT_OPTIONS)
+    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(RAM_BOOT_OPTIONS)
+    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(USB_BOOT_OPTIONS)
+    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(LFU_FLASH_BOOT_OPTIONS)
+
+    
+    //console.log(ALL_BOOT_OPTIONS);
+}
+
+else if ("F28P55x".includes(Common.getDeviceName()))
+{
+    let SCI_BOOT_OPTIONS =[
+        {name: "0x01", displayName:"(SCI) SCIATX=GPIO29 , SCIARX=GPIO28"},
+        {name: "0x21", displayName:"(SCI) SCIATX=GPIO1 , SCIARX=GPIO0"},
+        {name: "0x41", displayName:"(SCI) SCIATX=GPIO8 , SCIARX=GPIO9"},
+        {name: "0x61", displayName:"(SCI) SCIATX=GPIO7 , SCIARX=GPIO3"},
+        {name: "0x81", displayName:"(SCI) SCIATX=GPIO16 , SCIARX=GPIO3"},
+    ]
+    
+    let CAN_BOOT_OPTIONS =[
+        {name: "0x02", displayName:"(CAN) CANTXA=GPIO4 , CANRXA=GPIO5"},
+        {name: "0x22", displayName:"(CAN) CANTXA=GPIO1 , CANRXA=GPIO0"},
+        {name: "0x42", displayName:"(CAN) CANTXA=GPIO13 , CANRXA=GPIO12"},
+    ]
+
+    let WAIT_BOOT_OPTIONS =[
+        {name: "0x04", displayName:"(WAIT) watchdog is enabled"},
+        {name: "0x24", displayName:"(WAIT) Watchdog is disabled"},
+    ]
+    
+    let SPI_BOOT_OPTIONS =[
+        {name: "0x06", displayName:"(SPI) SPIA_PICO=GPIO2  , SPIA_POCI=GPIO1 , SPIA_CLK=GPIO3 , SPIA_PTE=GPIO5"},
+        {name: "0x26", displayName:"(SPI) SPIA_PICO=GPIO16 , SPIA_POCI=GPIO1 , SPIA_CLK=GPIO3 , SPIA_PTE=GPIO0"},
+        {name: "0x46", displayName:"(SPI) SPIA_PICO=GPIO8 , SPIA_POCI=GPIO10 , SPIA_CLK=GPIO9 , SPIA_PTE=GPIO11"},
+        {name: "0x66", displayName:"(SPI) SPIA_PICO=GPIO16 , SPIA_POCI=GPIO12 , SPIA_CLK=GPIO9 , SPIA_PTE=GPIO24"},
+    ]
+    
+    let I2C_BOOT_OPTIONS =[
+        {name: "0x07", displayName:"(I2C) SDAA=GPIO0  , SCLA=GPIO1"},
+        {name: "0x27", displayName:"(I2C) SDAA=GPIO32 , SCLA=GPIO33"},
+        {name: "0x47", displayName:"(I2C) SDAA=GPIO5 , SCLA=GPIO4"},
+    ]
+    
+    let PARALLEL_BOOT_OPTIONS =[
+        {name: "0x00", displayName:"(PARALLEL) D0-D7=GPIO0-7 , MCU-Control=GPIO16 , Host-Control=GPIO29"},
+        {name: "0x20", displayName:"(PARALLEL) D0-D7=GPIO(0-3,5-7,24) , MCU-Control=GPIO12 , Host-Control=GPIO13"},
+    ]
+    
+    let FLASH_BOOT_OPTIONS =[
+        {name: "0x03", displayName:"(FLASH) Flash-Entry-Address=0x00080000, CPU1 Bank 0 , Sector 0"},
+        {name: "0x23", displayName:"(FLASH) Flash-Entry-Address=0x00088000, CPU1 Bank 0 , Sector 32"},
+        {name: "0x43", displayName:"(FLASH) Flash-Entry-Address=0x000C0000, CPU1 Bank 2 , Sector 0"},
+        {name: "0x63", displayName:"(FLASH) Flash-Entry-Address=0x000C8000, CPU1 Bank 2 , Sector 32"},
+        {name: "0x83", displayName:"(FLASH) Flash-Entry-Address=0x00100000, CPU1 Bank 4 , Sector 0"},
+    ] 
+
+    let SECURE_FLASH_BOOT_OPTIONS =[
+        {name: "0x0A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x00080000, CPU1 Bank 0 , Sector 0"},
+        {name: "0x2A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x00088000, CPU1 Bank 0 , Sector 32"},
+        {name: "0x4A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x000C0000, CPU1 Bank 2 , Sector 0"},
+        {name: "0x6A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x000C8000, CPU1 Bank 2 , Sector 32"},
+        {name: "0x8A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x00100000, CPU1 Bank 4 , Sector 0"},
+    ] 
+    
+    let RAM_BOOT_OPTIONS =[
+        {name: "0x05", displayName:"(RAM) RAM Entry Point Address=0x00000000"},
+    ]
+
+    let CAN_FD_BOOT_OPTIONS = [
+        {name: "0x08", displayName:"(CAN-FD) CANTXA=GPIO4 , CANRXA=GPIO5"},
+        {name: "0x28", displayName:"(CAN-FD) CANTXA=GPIO1 , CANRXA=GPIO0"},
+        {name: "0x48", displayName:"(CAN-FD) CANTXA=GPIO13 , CANRXA=GPIO12"},
+    ]
+
+    let USB_BOOT_OPTIONS = [
+        {name: "0x09", displayName:"(USB) USBDM=GPIO23 , USBDP=GPIO41"},
+    ]
+
+    let LFU_FLASH_BOOT_OPTIONS = [
+        {name: "0x0B", displayName:"(LFU FLASH) Flash-Entry-Address=0x00080000 for CPU1 Bank 0,0x000C0000 for CPU1 Bank 2"},
+        {name: "0x2B", displayName:"(LFU FLASH) Flash-Entry-Address=0x00088000 for CPU1 Bank 0,0x000C8000 for CPU1 Bank 2"},
     ]
     
     ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(SCI_BOOT_OPTIONS)
@@ -758,6 +871,36 @@ if ("F28P65x".includes(Common.getDeviceName()))
         unacceptableGPIOs.push("GPIO" + i.toString());
     }
 }
+if ("F28P55x".includes(Common.getDeviceName()))
+{
+    unacceptableGPIOs = [
+        "GPIO36", "GPIO38", "GPIO39", ,"GPIO225", "GPIO229","GPIO254"
+    ]
+    for (var i = 82; i <= 210; i++)
+    {
+        unacceptableGPIOs.push("GPIO" + i.toString());
+    }
+    for (var i = 216; i <= 223; i++)
+    {
+        unacceptableGPIOs.push("GPIO" + i.toString());
+    }
+    for (var i = 231; i <= 235; i++)
+    {
+        unacceptableGPIOs.push("GPIO" + i.toString());
+    }
+    for (var i = 237; i <= 241; i++)
+    {
+        unacceptableGPIOs.push("GPIO" + i.toString());
+    }
+    for (var i = 243; i <= 246; i++)
+    {
+        unacceptableGPIOs.push("GPIO" + i.toString());
+    }
+    for (var i = 248; i <= 252; i++)
+    {
+        unacceptableGPIOs.push("GPIO" + i.toString());
+    }
+}
 
 for (var gpioIndex = 0; gpioIndex < gpios.length; gpioIndex++)
 {
@@ -774,7 +917,7 @@ function onChangeuseZone(inst, ui)
                         'BOOTDEF0','BOOTDEF1','BOOTDEF2',
                         'BOOTDEF3','BOOTDEF4','BOOTDEF5',
                         'BOOTDEF6','BOOTDEF7'];
-    if (["F28002x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName()))
+    if (["F28002x", "F28003x", "F280013x", "F280015x", "F28P65x","F28P55x"].includes(Common.getDeviceName()))
     {
         bootConfigs = bootConfigs.concat(['RUNMPOST', 'CJTAGNODEID']);
     }
@@ -782,12 +925,24 @@ function onChangeuseZone(inst, ui)
     {
         bootConfigs = bootConfigs.concat(['RUNMPOST']);
     }
-    if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName()))
+    if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x","F28P55x"].includes(Common.getDeviceName()))
     {
         bootConfigs = bootConfigs.concat([
         	'CMACKEY0', 'CMACKEY1', 'CMACKEY2', 'CMACKEY3']);
     }
-    
+    if (["F28P55x"].includes(Common.getDeviceName()))
+    {
+        for (var j = 1; j < 3; j++)
+        {
+            for (var i = 1; i < 8; i++)
+            {
+                var bitnum = j*8+i
+                var lock_sector_name = "write_protect_bit" + bitnum.toString()
+                bootConfigs = bootConfigs.concat(lock_sector_name)
+            }
+        }
+
+    }
     for(var uiConfigIndex = 3; uiConfigIndex < config.length; uiConfigIndex++)
     {
         var configName = config[uiConfigIndex].name;
@@ -798,6 +953,10 @@ function onChangeuseZone(inst, ui)
         else
         {
             ui[configName].hidden = !inst.useZone;
+        }
+        if (configName.includes("write_protect_bit"))
+        {
+            ui[configName].hidden = true
         }
     }
     
@@ -814,13 +973,14 @@ function onChangeuseZone(inst, ui)
         ui['BMSP0'].hidden = true;
     }
 
-    if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName()))
+    if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x","F28P55x"].includes(Common.getDeviceName()))
     {
         if (!inst['JTAGLOCK'])
         {
             ui['JTAGPSWDH0'].hidden = true;
             ui['JTAGPSWDH1'].hidden = true;
         }
+
     }
 
     for (var i=Math.pow(2, inst["bootPinCount"]); i < 8; i++)
@@ -840,7 +1000,7 @@ function onChangeuseZone(inst, ui)
             }
         }
     }
-    if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName()))
+    if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x","F28P55x"].includes(Common.getDeviceName()))
     {
         if (inst["zone"] == 2)
         {
@@ -853,7 +1013,7 @@ function onChangeuseZone(inst, ui)
             ui['CMACKEY3'].hidden = true;
         }
     }
-    if (["F28002x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName())){
+    if (["F28002x", "F28003x", "F280013x", "F280015x", "F28P65x","F28P55x"].includes(Common.getDeviceName())){
     	ui['CJTAGNODEID'].hidden = true;
     }
 }
@@ -869,7 +1029,7 @@ let config = [
     {
         name: "useZone",
         displayName : "Configure this Section",
-        description : 'Check to configure the header OTP values for this zone. Once you program these OTP values, you will not be able to change them.',
+        description : 'Check this box to configure the header OTP values for this zone. Once you program these OTP values, you will not be able to change them.',
         hidden      : false,
         default     : true,
         onChange    : onChangeuseZone
@@ -893,7 +1053,7 @@ let config = [
     {
         name        : 'PASWDLOCK',
         displayName : 'Password Lock (PSWDLOCK)',
-        description : 'Enabling this option will block access from reading the passwords',
+        description : 'When PSWDLOCK is enabled and the Zone is locked, the CSMPSWDs will be secure. When PSWDLOCK is disabled, the CSMPSWDs will always be unsecure.',
         hidden      : false,
         default     : "DISABLE",
         options     : [
@@ -909,7 +1069,7 @@ if (!["F280013x"].includes(Common.getDeviceName()))
         {
             name        : 'CRCLOCK',
             displayName : 'CRC Lock (CRCLOCK)',
-            description : "Enabling this will disable the VCU's ability to calculate a CRC value on secure memories",
+            description : "Enabling this will disable the VCU/VCRC's ability to calculate a CRC value on secure memories",
             hidden      : false,
             default     : "DISABLE",
             options     : [
@@ -920,13 +1080,13 @@ if (!["F280013x"].includes(Common.getDeviceName()))
     ])
 }
 
-if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName()))
+if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x","F28P55x"].includes(Common.getDeviceName()))
 {
     config = config.concat([
         {
             name        : 'JTAGLOCK',
             displayName : 'Enable JTAGLOCK',
-            description : "Enable the JTAGLOCK feature which disables the JTAG access on a device to avoid any debug access to it. This can only be configured once",
+            description : "This feature disables JTAG access to the device. Once enabled, this feature cannot be disabled.",
             readOnly    : false,
             hidden      : false,
             default     : false,
@@ -935,7 +1095,7 @@ if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.get
         {
             name        : 'JTAGPSWDH0',
             displayName : 'JTAGPSWDH0 (JTAG Password)',
-            description : "When the JTAGLOCK feature is enabled, the JTAGPSWDH0 represents the JTAG Lock permanent password 0. This can only be configured once",
+            description : "JTAG Password High 0 (bits 64-95)",
             readOnly    : false,
             hidden      : true,
             default     : "0x4BFFFFFF",
@@ -944,7 +1104,7 @@ if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.get
         {
             name        : 'JTAGPSWDH1',
             displayName : 'JTAGPSWDH1 (JTAG Password)',
-            description : "When the JTAGLOCK feature is enabled, the JTAGPSWDH1 represents the JTAG Lock permanent password 1. This can only be configured once",
+            description : "JTAG Password High 1 (bits 96-127)",
             readOnly    : false,
             hidden      : true,
             default     : "0x3FFFFFFF",
@@ -952,6 +1112,21 @@ if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.get
         },
     ]);
 }
+if (["F28002x", "F28004x"].includes(Common.getDeviceName()))
+{
+    config = config.concat([
+        {
+            name        : 'JTAGLOCK',
+            displayName : 'Enable JTAGLOCK',
+            description : "This feature disables JTAG access to the device. Once enabled, this feature cannot be disabled.",
+            readOnly    : false,
+            hidden      : false,
+            default     : false,
+            onChange    : onChangeuseZone
+        }
+    ]);
+}
+
 
 config = config.concat([
     {
@@ -1017,12 +1192,24 @@ if (["F28002x", "F28004x", "F28003x", "F280013x", "F280015x", "F28P65x"].include
         onChange    : onChangeuseZone
     }]);
 }
+if (["F28P55x"].includes(Common.getDeviceName()))
+{
+    config = config.concat([{
+        name        : 'ERRORSTSPIN',
+        displayName : 'ERRORSTS PIN',
+        readOnly    : false,
+        hidden      : true,
+        default     : 7,
+        options     : ERRORSTS_options,
+        onChange    : onChangeuseZone
+    }]);
+}
 
 config = config.concat([
     {
         name        : 'BOOTDEF0',
         displayName : 'BOOTDEF0',
-        description : "Boot mode when tha value of the GPIOs used for valid BSMP2-BSMP1-BSMP0 are 0b000",
+        description : "Boot mode when tha value of the GPIOs used for valid BMSP2-BMSP1-BMSP0 are 0b000",
         readOnly    : false,
         hidden      : true,
         default     : "0x00",
@@ -1032,7 +1219,7 @@ config = config.concat([
     {
         name        : 'BOOTDEF1',
         displayName : 'BOOTDEF1',
-        description : "Boot mode when tha value of the GPIOs used for valid BSMP2-BSMP1-BSMP0 are 0b001",
+        description : "Boot mode when tha value of the GPIOs used for valid BMSP2-BMSP1-BMSP0 are 0b001",
         readOnly    : false,
         hidden      : true,
         default     : "0x00",
@@ -1042,7 +1229,7 @@ config = config.concat([
     {
         name        : 'BOOTDEF2',
         displayName : 'BOOTDEF2',
-        description : "Boot mode when tha value of the GPIOs used for valid BSMP2-BSMP1-BSMP0 are 0b010",
+        description : "Boot mode when tha value of the GPIOs used for valid BMSP2-BMSP1-BMSP0 are 0b010",
         readOnly    : false,
         hidden      : true,
         default     : "0x00",
@@ -1052,7 +1239,7 @@ config = config.concat([
     {
         name        : 'BOOTDEF3',
         displayName : 'BOOTDEF3',
-        description : "Boot mode when tha value of the GPIOs used for valid BSMP2-BSMP1-BSMP0 are 0b011",
+        description : "Boot mode when tha value of the GPIOs used for valid BMSP2-BMSP1-BMSP0 are 0b011",
         readOnly    : false,
         hidden      : true,
         default     : "0x00",
@@ -1062,7 +1249,7 @@ config = config.concat([
     {
         name        : 'BOOTDEF4',
         displayName : 'BOOTDEF4',
-        description : "Boot mode when tha value of the GPIOs used for valid BSMP2-BSMP1-BSMP0 are 0b100",
+        description : "Boot mode when tha value of the GPIOs used for valid BMSP2-BMSP1-BMSP0 are 0b100",
         readOnly    : false,
         hidden      : true,
         default     : "0x00",
@@ -1072,7 +1259,7 @@ config = config.concat([
     {
         name        : 'BOOTDEF5',
         displayName : 'BOOTDEF5',
-        description : "Boot mode when tha value of the GPIOs used for valid BSMP2-BSMP1-BSMP0 are 0b101",
+        description : "Boot mode when tha value of the GPIOs used for valid BMSP2-BMSP1-BMSP0 are 0b101",
         readOnly    : false,
         hidden      : true,
         default     : "0x00",
@@ -1082,7 +1269,7 @@ config = config.concat([
     {
         name        : 'BOOTDEF6',
         displayName : 'BOOTDEF6',
-        description : "Boot mode when tha value of the GPIOs used for valid BSMP2-BSMP1-BSMP0 are 0b110",
+        description : "Boot mode when tha value of the GPIOs used for valid BMSP2-BMSP1-BMSP0 are 0b110",
         readOnly    : false,
         hidden      : true,
         default     : "0x00",
@@ -1092,7 +1279,7 @@ config = config.concat([
     {
         name        : 'BOOTDEF7',
         displayName : 'BOOTDEF7',
-        description : "Boot mode when tha value of the GPIOs used for valid BSMP2-BSMP1-BSMP0 are 0b111",
+        description : "Boot mode when tha value of the GPIOs used for valid BMSP2-BMSP1-BMSP0 are 0b111",
         readOnly    : false,
         hidden      : true,
         default     : "0x00",
@@ -1120,7 +1307,7 @@ if (["F2838x"].includes(Common.getDeviceName()))
     config = config.concat(mpost_config)
 }
 
-if (["F28002x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName()))
+if (["F28002x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName()))
 {
     var mpost_cjtagnode_config = [
         {
@@ -1146,12 +1333,13 @@ if (["F28002x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.ge
     config = config.concat(mpost_cjtagnode_config)
 }
 
-if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName()))
+if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName()))
 {
     var cmac_config = [
         {
             name        : 'CMACKEY0',
             displayName : 'CMAC Key0',
+            description : 'Only applicable for secure boot',
             readOnly    : false,
             hidden      : true,
             default     : "0x00000000",
@@ -1160,6 +1348,7 @@ if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.get
         {
             name        : 'CMACKEY1',
             displayName : 'CMAC Key1',
+            description : 'Only applicable for secure boot',
             readOnly    : false,
             hidden      : true,
             default     : "0x00000000",
@@ -1168,6 +1357,7 @@ if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.get
         {
             name        : 'CMACKEY2',
             displayName : 'CMAC Key2',
+            description : 'Only applicable for secure boot',
             readOnly    : false,
             hidden      : true,
             default     : "0x00000000",
@@ -1176,6 +1366,7 @@ if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.get
         {
             name        : 'CMACKEY3',
             displayName : 'CMAC Key3',
+            description : 'Only applicable for secure boot',
             readOnly    : false,
             hidden      : true,
             default     : "0x00000000",
@@ -1186,6 +1377,36 @@ if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.get
     config = config.concat(cmac_config)
 }
 
+if (["F28P55x"].includes(Common.getDeviceName()))
+{
+    for (var j = 1; j < 3; j++)
+    {
+        for (var i = 1; i < 8; i++)
+        {
+            var lock_sect_min = i*4
+            if (i == 1){
+                lock_sect_min = 0
+            }
+            var lock_sect_max = i*4 + 3
+            var lock_sector_display_name = "Write-Protect Flash Bank " + ((j-1)*2).toString() + " Sectors " + lock_sect_min.toString() + "-" + lock_sect_max.toString()
+            var bitnum = j*8+i
+            var lock_sector_name = "write_protect_bit" + bitnum.toString()
+            config = config.concat({
+                name        : lock_sector_name,
+                displayName : lock_sector_display_name,
+                description : "Enabling this feature will permanently block erase/program of these sectors.",
+                readOnly    : false,
+                hidden      : true,
+                default     : "1",
+                options     : [
+                    {name: "0", displayName: "Yes"},
+                    {name: "1", displayName: "No"}
+                ],
+                description : "Enabling this feature will permanently block any write or erase within the corresponding flash sector."
+            })
+        }
+    }
+}
 
 /**
  * Validate this module's configuration
@@ -1203,7 +1424,7 @@ function validate(inst, vo)
         inst["configureBoot"] == true)
     {
 
-        if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName()))
+        if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName()))
         {
             var cmackkeys = ["CMACKEY0", "CMACKEY1", "CMACKEY2", "CMACKEY3"]
             for (var cmackkeys_i in cmackkeys)
@@ -1217,7 +1438,7 @@ function validate(inst, vo)
         }
 
         var errGPIO = "";
-        if (["F28002x", "F28004x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName()))
+        if (["F28002x", "F28004x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName()))
         {
             errGPIO = ERRORSTS_options.find(input => {
                 return input.name === inst["ERRORSTSPIN"]
@@ -1226,7 +1447,7 @@ function validate(inst, vo)
         
         if (inst["bootPinCount"] > 0)
         {
-            if (["F28002x", "F28004x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName())){
+            if (["F28002x", "F28004x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName())){
                 if (inst["BMSP0"] == errGPIO)
                 {
                     Common.logError(vo, inst, "BMSP0", 
@@ -1236,7 +1457,7 @@ function validate(inst, vo)
         }
         if (inst["bootPinCount"] > 1)
         {
-            if (["F28002x", "F28004x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName())){
+            if (["F28002x", "F28004x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName())){
                 if (inst["BMSP1"] == errGPIO)
                 {
                     Common.logError(vo, inst, "BMSP1", 
@@ -1251,7 +1472,7 @@ function validate(inst, vo)
         }
         if (inst["bootPinCount"] > 2)
         {
-            if (["F28002x", "F28004x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName())){
+            if (["F28002x", "F28004x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName())){
                 if (inst["BMSP2"] == errGPIO)
                 {
                     Common.logError(vo, inst, "BMSP2", 
@@ -1269,7 +1490,7 @@ function validate(inst, vo)
                     'The BMSP2 pin is conflicting with BMSP1 pin.');
             }
         }
-        if (["F28002x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName()))
+        if (["F28002x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName()))
         {
             if (!(inst["CJTAGNODEID"] >= 0 && inst["CJTAGNODEID"] < 16))
             {
@@ -1278,7 +1499,7 @@ function validate(inst, vo)
             }
         }
     }
-    if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName()))
+    if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName()))
     {
         if (inst["zone"] == 1 &&
             inst["useZone"] == true &&
@@ -1300,8 +1521,8 @@ function validate(inst, vo)
                     ((parseInt(inst[jtagpassword[jtagpassword_i]]) & mask)>>> 0))
                     {
                         Common.logError(vo, inst, jtagpassword[jtagpassword_i], 
-                            'This password value has a mask of 0x' + mask.toString(16) + 
-                            ". Input a password that when the mask is applied, it does not change.");
+                            'This password value has a mask of ' + mask.toString(16).toUpperCase().replace("0X","0x") + 
+                            ". For each bit in the mask that is a 0, the corresponding bit in the password must also be a 0.");
                     }
                 }
             }

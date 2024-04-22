@@ -822,7 +822,7 @@ send and receive data, and setup interrupt event handling.</p>
 <dl class="cpp enumerator">
 <dt id="_CPPv4N17LIN_MessageFilter26LIN_MSG_FILTER_IDRESPONDERE">
 <span id="_CPPv3N17LIN_MessageFilter26LIN_MSG_FILTER_IDRESPONDERE"></span><span id="_CPPv2N17LIN_MessageFilter26LIN_MSG_FILTER_IDRESPONDERE"></span><span class="target" id="group__lin__api_1gga3c9e1c865b7ddde8a36a7ff4a2789addac95498ce741df6690b743a5940fe7a49"></span><em class="property">enumerator </em><code class="sig-name descname">LIN_MSG_FILTER_IDRESPONDER</code> = 0x1U<a class="headerlink" href="#_CPPv4N17LIN_MessageFilter26LIN_MSG_FILTER_IDRESPONDERE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Responder Task ID Byte Filtering. </p>
+<dd><p>ID Responder Task Byte Filtering. </p>
 </dd></dl>
 
 </dd></dl>
@@ -977,14 +977,15 @@ send and receive data, and setup interrupt event handling.</p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv422LIN_setMaximumBaudRate8uint32_t8uint32_t">
-<span id="_CPPv322LIN_setMaximumBaudRate8uint32_t8uint32_t"></span><span id="_CPPv222LIN_setMaximumBaudRate8uint32_t8uint32_t"></span><span id="LIN_setMaximumBaudRate__uint32_t.uint32_t"></span><span class="target" id="group__lin__api_1ga4d116db44b17983014b9d39df55ce9bf"></span>void <code class="sig-name descname">LIN_setMaximumBaudRate</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>systemClock</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422LIN_setMaximumBaudRate8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dt id="_CPPv422LIN_setMaximumBaudRate8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv322LIN_setMaximumBaudRate8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv222LIN_setMaximumBaudRate8uint32_t8uint32_t8uint32_t"></span><span id="LIN_setMaximumBaudRate__uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__lin__api_1gab242bbb90b8282005b0c0e8bf28bad75"></span>void <code class="sig-name descname">LIN_setMaximumBaudRate</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>vclk</em>, uint32_t <em>mbr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422LIN_setMaximumBaudRate8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Set Maximum Baud Rate Prescaler</p>
-<p><p>In LIN mode only, this function is used to set the maximum baud rate prescaler used during synchronization phase of a responder module if the ADAPT bit is set. The maximum baud rate prescaler is used by the wakeup and idle timer counters for a constant 4 second expiration time relative to a 20kHz rate.</p>
+<p><p>In LIN mode only, this function is used to set the maximum baud rate prescaler used during synchronization phase of a responder module if the ADAPT bit is set. The operating baud rate in the LIN network must be within 10% of the provided maximum baud rate.</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the LIN module base address </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">clock</span></code>: is the device system clock (Hz)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vclk</span></code>: is the LIN VCLK (Hz) </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mbr</span></code>: is the desired maximum baud rate (Hz)</p></li>
 </ul>
 </dd>
 </dl>
@@ -3226,6 +3227,25 @@ send and receive data, and setup interrupt event handling.</p>
 </dd></dl>
 
 <dl class="cpp function">
+<dt id="_CPPv417LIN_initSCIModule8uint32_t">
+<span id="_CPPv317LIN_initSCIModule8uint32_t"></span><span id="_CPPv217LIN_initSCIModule8uint32_t"></span><span id="LIN_initSCIModule__uint32_t"></span><span class="target" id="group__lin__api_1ga8bcc13950a4b210276609344e392b1ce"></span>void <code class="sig-name descname">LIN_initSCIModule</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417LIN_initSCIModule8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Initializes the SCI Driver</p>
+<p><p>This function initializes the LIN/SCI module in SCI mode.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the LIN module base address</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt id="_CPPv412LIN_sendData8uint32_tP8uint16_t">
 <span id="_CPPv312LIN_sendData8uint32_tP8uint16_t"></span><span id="_CPPv212LIN_sendData8uint32_tP8uint16_t"></span><span id="LIN_sendData__uint32_t.uint16_tP"></span><span class="target" id="group__lin__api_1gadbfa9c467cc392b8005ffafbcef7a61f"></span>void <code class="sig-name descname">LIN_sendData</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint16_t *<em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412LIN_sendData8uint32_tP8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Send Data</p>
@@ -3300,7 +3320,7 @@ applications.</p>
     <p>
       <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
       <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
-      <span class="lastupdated">Last updated on Nov 09, 2023.
+      <span class="lastupdated">Last updated on Mar 27, 2024.
       </span></p>
   </div>
 

@@ -20,7 +20,7 @@
 // $TI Release: 2806x C/C++ Header Files and Peripheral Examples V1.00 $ 
 // $Release Date: January 11, 2011 $ 
 // $Copyright:
-// Copyright (C) 2009-2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2009-2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 

@@ -71,8 +71,10 @@ extern uint16_t RamfuncsRunStart;
 //
 // Globals
 //
-bool pass = false;
-
+bool pass[97] = {false};
+int32_t Result[97] = {0x0000};
+volatile uint32_t i = 0;
+volatile uint32_t j = 0;
 //
 // Function Prototypes
 //
@@ -85,6 +87,7 @@ void main(void)
 {
 	volatile uint32_t currentAddress = 0x0000;
 	volatile bool runStatus = false;
+
 
     //
     // Initialize device clock and peripherals
@@ -136,14 +139,108 @@ void main(void)
     //
     CLAPROMCRC_setEmulationMode(CLA1PROMCRC_BASE, CLAPROMCRC_MODE_FREE);
 
-    //
+    for (i=0; i<64;i++)
+    {
+        //
+        // Set the block size to 96KB for the CRC.
+        //
+        CLAPROMCRC_setBlockSize(CLA1PROMCRC_BASE, 1);
+
+        //
+        // Set the start address for the 1KB block desired according of
+        // CLA program ROM
+        //
+        CLAPROMCRC_setStartAddress(CLA1PROMCRC_BASE, (0x0200)*i);
+
+        //
+        // Set the seed of the CRC to 0x00000000.
+        //
+        CLAPROMCRC_setSeed(CLA1PROMCRC_BASE, 0x00000000);
+
+        //
+        // Set the golden CRC value of the desired block in program ROM.
+        //
+        CLAPROMCRC_setGoldenCRC(CLA1PROMCRC_BASE, clapromcrcTable[i]);
+
+        //
+        // Enable the DONE interrupt of the CLAPROMCRC.
+        //
+        CLAPROMCRC_enableDoneInterrupt(CLA1PROMCRC_BASE);
+
+        //
+        // Start the CRC calculation.
+        //
+        CLAPROMCRC_start(CLA1PROMCRC_BASE);
+
+        //
+        // Set runStatus to true;
+        //
+        runStatus = true;
+
+        //
+        // Loop Forever
+        //
+        while (runStatus)
+        {
+            runStatus = CLAPROMCRC_getRunStatus(CLA1PROMCRC_BASE);
+        }
+    }
+
+    for (j=0; j<32; j++)
+        {
+            //
+            // Set the block size to 96KB for the CRC.
+            //
+            CLAPROMCRC_setBlockSize(CLA1PROMCRC_BASE, 1);
+
+            //
+            // Set the start address to 0xC000 according to the start address of
+            // program ROM of the CLA memory map ext.
+            //
+            CLAPROMCRC_setStartAddress(CLA1PROMCRC_BASE, (0x0C000 + (0x200*j)));
+
+            //
+            // Set the seed of the CRC to 0x00000000.
+            //
+            CLAPROMCRC_setSeed(CLA1PROMCRC_BASE, 0x00000000);
+
+            //
+            // Set the golden CRC value for the block of desired program ROM.
+            //
+            CLAPROMCRC_setGoldenCRC(CLA1PROMCRC_BASE, clapromcrcTable[i]);
+
+            //
+            // Enable the DONE interrupt of the CLAPROMCRC.
+            //
+            CLAPROMCRC_enableDoneInterrupt(CLA1PROMCRC_BASE);
+
+            //
+            // Start the CRC calculation.
+            //
+            CLAPROMCRC_start(CLA1PROMCRC_BASE);
+
+            //
+            // Set runStatus to true;
+            //
+            runStatus = true;
+
+            //
+            // Loop Forever
+            //
+            while (runStatus)
+            {
+                runStatus = CLAPROMCRC_getRunStatus(CLA1PROMCRC_BASE);
+            }
+        }
+
+
     // Set the block size to 96KB for the CRC.
     //
     CLAPROMCRC_setBlockSize(CLA1PROMCRC_BASE, 96);
 
     //
-    // Set the start adress to 0x0000 according to the start address of
-    // program ROM of the CLA memory map.
+    // Set the start address to 0x0000 according to the start address of
+    // program ROM of the CLA memory map for entire 96kB for CLAPROM
     //
     CLAPROMCRC_setStartAddress(CLA1PROMCRC_BASE, 0x0000);
 
@@ -153,9 +250,9 @@ void main(void)
     CLAPROMCRC_setSeed(CLA1PROMCRC_BASE, 0x00000000);
 
     //
-    // Set the golden CRC value of the entire 96KB program ROM.
+    // Set the golden CRC value for the block of desired program ROM.
     //
-    CLAPROMCRC_setGoldenCRC(CLA1PROMCRC_BASE, clapromcrcTable[96]);
+    CLAPROMCRC_setGoldenCRC(CLA1PROMCRC_BASE, clapromcrcTable[i]);
 
     //
     // Enable the DONE interrupt of the CLAPROMCRC.
@@ -168,14 +265,11 @@ void main(void)
     CLAPROMCRC_start(CLA1PROMCRC_BASE);
 
     //
-    // Set runStatus to true;
+    // Set runStatus to true to wait until calculation is complete in while loop;
     //
     runStatus = true;
 
-    //
-    // Loop Forever
-    //
-    while(1)
+    while(runStatus)
     {
     	//
     	// Check the run status and current address of the CRC calculation.
@@ -183,6 +277,8 @@ void main(void)
     	runStatus = CLAPROMCRC_getRunStatus(CLA1PROMCRC_BASE);
     	currentAddress = CLAPROMCRC_getCurrentAddress(CLA1PROMCRC_BASE);
     }
+
+
 }
 
 //
@@ -192,14 +288,20 @@ __interrupt void
 clapromcrcISR(void)
 {
     //
-    // Check the status of the CRC calculation and set the global pass
+    // Check the status of the CRC calculation and set the global pass array
     // variable.
     //
     if(CLAPROMCRC_checkStatus(CLA1PROMCRC_BASE))
     {
-    	pass = true;
+    	pass[i] = true;
     }
 
+    Result[i] = CLAPROMCRC_getResult(CLA1PROMCRC_BASE);
+
+    if (i > 63)
+    {
+        i++;
+    }
     //
     // Clear the CLAPROMCRC interrupt flags.
     //

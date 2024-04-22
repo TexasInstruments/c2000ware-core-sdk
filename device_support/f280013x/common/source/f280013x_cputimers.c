@@ -8,7 +8,7 @@
 //
 //
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -149,7 +149,11 @@ ConfigCpuTimer(struct CPUTIMER_VARS *Timer, float Freq, float Period)
     Timer->CPUFreqInMHz = Freq;
     Timer->PeriodInUSec = Period;
     temp = (long) (Freq * Period);
-    Timer->RegsAddr->PRD.all = temp;
+
+    //
+    // Counter decrements PRD+1 times each period
+    //
+    Timer->RegsAddr->PRD.all = temp - 1;
 
     //
     // Set pre-scale counter to divide by 1 (SYSCLKOUT)

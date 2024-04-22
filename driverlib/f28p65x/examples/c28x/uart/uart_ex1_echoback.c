@@ -134,13 +134,6 @@ void main(void)
     UART_writeChar(UARTA_BASE, '!');
 
     //
-    // FIFO interrupt levels are set to generate an interrupt
-    // when the TX FIFO is less than or equal to 7/8 empty and the
-    // RX FIFO is greater than or equal to 1/8 full.
-    //
-    UART_setFIFOLevel(UARTA_BASE, UART_FIFO_TX1_8, UART_FIFO_RX1_8);
-
-    //
     // FIFO receive interrupt configuration
     //
     UART_clearInterruptStatus(UARTA_BASE,UART_INT_RX | UART_INT_RT);   

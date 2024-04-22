@@ -22,10 +22,10 @@
 //
 //
 //#############################################################################
-// $TI Release: F28003x Support Library v5.00.00.00 $
-// $Release Date: 11-17-2023 $
+// $TI Release: F28003x Support Library v5.02.00.00 $
+// $Release Date: 04-07-2024 $
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -82,10 +82,10 @@
 #define EPWM4_CMPB          1933U
 
 // default interrupt payloads
-#define ISR1_PAYLOAD         45U
-#define ISR2_PAYLOAD         45U
-#define ISR3_PAYLOAD         45U
-#define ISR4_PAYLOAD         45U
+#define ISR1_PAYLOAD         60U
+#define ISR2_PAYLOAD         60U
+#define ISR3_PAYLOAD         60U
+#define ISR4_PAYLOAD         60U
 
 void initEPWM1(void);
 void initEPWM2(void);
@@ -139,20 +139,20 @@ void main(void)
     Interrupt_register(INT_CLB3, &clb3ISR);
     Interrupt_register(INT_CLB4, &clb4ISR);
 
+    Board_init();
     // initialize PWMs
-    SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
+    SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);   
     initEPWM1();
     initEPWM2();
     initEPWM3();
     initEPWM4();
 
     // initialize CLB tiles
+
 	SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CLB1);
 	SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CLB2);
 	SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CLB3);
 	SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CLB4);
-
-    Board_init();
 
     initTILE1(myTILE1_BASE);
     initTILE2(myTILE2_BASE);
@@ -164,10 +164,12 @@ void main(void)
     Interrupt_enable(INT_EPWM2);
     Interrupt_enable(INT_EPWM3);
     Interrupt_enable(INT_EPWM4);
+
     Interrupt_enable(INT_CLB1);
     Interrupt_enable(INT_CLB2);
     Interrupt_enable(INT_CLB3);
     Interrupt_enable(INT_CLB4);
+
     EINT;
 
     // enable CLB counters
@@ -175,6 +177,7 @@ void main(void)
     HWREG(0x3500) = 0x6;
     HWREG(0x3900) = 0x6;
     HWREG(0x3D00) = 0x6;
+    
     CLB_setGPREG(myTILE1_BASE, gpreg1);
     CLB_setGPREG(myTILE2_BASE, gpreg2);
     CLB_setGPREG(myTILE3_BASE, gpreg3);
@@ -253,7 +256,6 @@ void initEPWM2()
     EPWM_setInterruptEventCount(myEPWM2_BASE, 1U);
 }
 
-
 void initEPWM3()
 {
     EPWM_setTimeBasePeriod(myEPWM3_BASE, EPWM3_TIMER_TBPRD);
@@ -281,7 +283,6 @@ void initEPWM3()
     EPWM_enableInterrupt(myEPWM3_BASE);
     EPWM_setInterruptEventCount(myEPWM3_BASE, 1U);
 }
-
 
 void initEPWM4()
 {
@@ -311,7 +312,6 @@ void initEPWM4()
     EPWM_setInterruptEventCount(myEPWM4_BASE, 1U);
 }
 
-
 //--- interrupt service routines ---
 
 __interrupt void epwm1ISR(void)
@@ -331,7 +331,6 @@ __interrupt void epwm1ISR(void)
     CLB_setGPREG(myTILE1_BASE, gpreg1);
 }
 
-
 __interrupt void epwm2ISR(void)
 {
     EPWM_clearEventTriggerInterruptFlag(myEPWM2_BASE);
@@ -348,7 +347,6 @@ __interrupt void epwm2ISR(void)
     asm(" NOP");
     CLB_setGPREG(myTILE2_BASE, gpreg2);
 }
-
 
 __interrupt void epwm3ISR(void)
 {
@@ -367,7 +365,6 @@ __interrupt void epwm3ISR(void)
     CLB_setGPREG(myTILE3_BASE, gpreg3);
 }
 
-
 __interrupt void epwm4ISR(void)
 {
     EPWM_clearEventTriggerInterruptFlag(myEPWM4_BASE);
@@ -385,7 +382,6 @@ __interrupt void epwm4ISR(void)
     CLB_setGPREG(myTILE4_BASE, gpreg4);
 }
 
-
 __interrupt void clb1ISR(void)
 {
     if (!first_trip_1)
@@ -399,7 +395,6 @@ __interrupt void clb1ISR(void)
 
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP5);
 }
-
 
 __interrupt void clb2ISR(void)
 {
@@ -415,7 +410,6 @@ __interrupt void clb2ISR(void)
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP5);
 }
 
-
 __interrupt void clb3ISR(void)
 {
     if (!first_trip_3)
@@ -430,7 +424,6 @@ __interrupt void clb3ISR(void)
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP5);
 }
 
-
 __interrupt void clb4ISR(void)
 {
     if (!first_trip_4)
@@ -444,6 +437,5 @@ __interrupt void clb4ISR(void)
 
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP5);
 }
-
 
 /* end of file */

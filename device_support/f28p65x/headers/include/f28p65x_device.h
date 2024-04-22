@@ -76,11 +76,20 @@ extern __cregister volatile unsigned int IER;
 #define  ERTM   __asm(" clrc DBGM")
 #define  DRTM   __asm(" setc DBGM")
 #ifndef  EALLOW
-#define  EALLOW __asm(" EALLOW")
-#endif
+#ifndef _TMS320C28XX_CLA_
+#define  EALLOW __eallow()
+#else
+#define  EALLOW __meallow()
+#endif // _TMS320C28XX_CLA_
+#endif // EALLOW
+ 
 #ifndef  EDIS
-#define  EDIS   __asm(" EDIS")
-#endif
+#ifndef _TMS320C28XX_CLA_
+#define  EDIS   __edis()
+#else
+#define  EDIS   __medis()
+#endif // _TMS320C28XX_CLA_
+#endif // EDIS
 #define  ESTOP0 __asm(" ESTOP0")
 
 #define M_INT1  0x0001
@@ -351,6 +360,7 @@ typedef unsigned long bp_32 __attribute__((byte_peripheral));
 #include "f28p65x_memconfig.h"
 #include "f28p65x_nmiintrupt.h"          // NMI Interrupt Registers
 #include "f28p65x_hrpwmcal.h"
+#include "f28p65x_otp.h"
 #include "f28p65x_output_xbar.h"
 #include "f28p65x_piectrl.h"             // PIE Control Registers
 #include "f28p65x_pievect.h"

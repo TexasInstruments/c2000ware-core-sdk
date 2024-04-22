@@ -71,9 +71,7 @@
 #define ESCSS_O_SYNC_IO_CONFIG    0x6U    // SYNC Signals IO configurations
 #define ESCSS_O_LATCH_IO_CONFIG   0x8U    // LATCH inputs IO pad select
 #define ESCSS_O_GPIN_SEL          0xAU    // GPIN Select between IO PAD & tieoff
-#define ESCSS_O_GPIN_IOPAD_SEL    0xCU    // GPIN IO pad Select
 #define ESCSS_O_GPOUT_SEL         0xEU    // GPOUT IO pad connect select
-#define ESCSS_O_GPOUT_IOPAD_SEL   0x10U   // GPOUT IO pad select
 #define ESCSS_O_LED_CONFIG        0x12U   // Selection of LED o/p connect to IO pad
 #define ESCSS_O_MISC_CONFIG       0x14U   // Miscelleneous Configuration
 
@@ -229,26 +227,22 @@
 // The following are defines for the bit fields in the ESCSS_SYNC0_CONFIG register
 //
 //*************************************************************************************************
-#define ESCSS_SYNC0_CONFIG_C28X_PIE_EN    0x1U      // Connects the SYNC0 to C28x PIE Interrupt
-#define ESCSS_SYNC0_CONFIG_CLA_INT_EN     0x2U      // Connects the SYNC0 to CLA Interrupt
-#define ESCSS_SYNC0_CONFIG_C28X_DMA_EN    0x4U      // Connects the SYNC0 to C28x DMA Trigger
-#define ESCSS_SYNC0_CONFIG_CM4_NVIC_EN    0x8U      // Connects the SYNC0 to CM4 NVIC Interrupt
-#define ESCSS_SYNC0_CONFIG_UDMA_TRIG_EN   0x10U     // Connects the SYNC0 to uDMA Trigger
-#define ESCSS_SYNC0_CONFIG_WRITE_KEY_S    8U
-#define ESCSS_SYNC0_CONFIG_WRITE_KEY_M    0xFF00U   // Key to enable writing lock
+#define ESCSS_SYNC0_CONFIG_C28X_PIE_EN   0x1U      // Connects the SYNC0 to C28x PIE Interrupt
+#define ESCSS_SYNC0_CONFIG_CLA_INT_EN    0x2U      // Connects the SYNC0 to CLA Interrupt
+#define ESCSS_SYNC0_CONFIG_C28X_DMA_EN   0x4U      // Connects the SYNC0 to C28x DMA Trigger
+#define ESCSS_SYNC0_CONFIG_WRITE_KEY_S   8U
+#define ESCSS_SYNC0_CONFIG_WRITE_KEY_M   0xFF00U   // Key to enable writing lock
 
 //*************************************************************************************************
 //
 // The following are defines for the bit fields in the ESCSS_SYNC1_CONFIG register
 //
 //*************************************************************************************************
-#define ESCSS_SYNC1_CONFIG_C28X_PIE_EN    0x1U      // Connects the SYNC1 to C28x PIE Interrupt
-#define ESCSS_SYNC1_CONFIG_CLA_INT_EN     0x2U      // Connects the SYNC1 to CLA Interrupt
-#define ESCSS_SYNC1_CONFIG_C28X_DMA_EN    0x4U      // Connects the SYNC1 to C28x DMA Trigger
-#define ESCSS_SYNC1_CONFIG_CM4_NVIC_EN    0x8U      // Connects the SYNC1 to CM4 NVIC Interrupt
-#define ESCSS_SYNC1_CONFIG_UDMA_TRIG_EN   0x10U     // Connects the SYNC1 to uDMA Trigger
-#define ESCSS_SYNC1_CONFIG_WRITE_KEY_S    8U
-#define ESCSS_SYNC1_CONFIG_WRITE_KEY_M    0xFF00U   // Key to enable writing lock
+#define ESCSS_SYNC1_CONFIG_C28X_PIE_EN   0x1U      // Connects the SYNC1 to C28x PIE Interrupt
+#define ESCSS_SYNC1_CONFIG_CLA_INT_EN    0x2U      // Connects the SYNC1 to CLA Interrupt
+#define ESCSS_SYNC1_CONFIG_C28X_DMA_EN   0x4U      // Connects the SYNC1 to C28x DMA Trigger
+#define ESCSS_SYNC1_CONFIG_WRITE_KEY_S   8U
+#define ESCSS_SYNC1_CONFIG_WRITE_KEY_M   0xFF00U   // Key to enable writing lock
 
 
 //*************************************************************************************************
@@ -277,64 +271,41 @@
 // The following are defines for the bit fields in the ESCSS_PHY_IO_CONFIG register
 //
 //*************************************************************************************************
-#define ESCSS_PHY_IO_CONFIG_PHY_PORT_CNT_S         2U
-#define ESCSS_PHY_IO_CONFIG_PHY_PORT_CNT_M         0xCU      // Number of PHY port counts
-#define ESCSS_PHY_IO_CONFIG_PHY_INTF_IOPAD_SEL_S   4U
-#define ESCSS_PHY_IO_CONFIG_PHY_INTF_IOPAD_SEL_M   0x30U     // IO Combination select for PHY
-                                                             // Interface
-#define ESCSS_PHY_IO_CONFIG_TX_CLK_AUTO_COMP       0x40U     // Selects TX_CLK IO to do Auto
-                                                             // compensation
-#define ESCSS_PHY_IO_CONFIG_WRITE_KEY_S            8U
-#define ESCSS_PHY_IO_CONFIG_WRITE_KEY_M            0xFF00U   // Key to enable writing lock
+#define ESCSS_PHY_IO_CONFIG_PHY_PORT_CNT_S     2U
+#define ESCSS_PHY_IO_CONFIG_PHY_PORT_CNT_M     0xCU      // Number of PHY port counts
+#define ESCSS_PHY_IO_CONFIG_TX_CLK_AUTO_COMP   0x40U     // Selects TX_CLK IO to do Auto
+                                                         // compensation
+#define ESCSS_PHY_IO_CONFIG_WRITE_KEY_S        8U
+#define ESCSS_PHY_IO_CONFIG_WRITE_KEY_M        0xFF00U   // Key to enable writing lock
 
 //*************************************************************************************************
 //
 // The following are defines for the bit fields in the ESCSS_SYNC_IO_CONFIG register
 //
 //*************************************************************************************************
-#define ESCSS_SYNC_IO_CONFIG_SYNC0_IOPAD_SEL_S   0U
-#define ESCSS_SYNC_IO_CONFIG_SYNC0_IOPAD_SEL_M   0x3U      // SYNC0 IO PAD select option
-#define ESCSS_SYNC_IO_CONFIG_SYNC0_GPIO_EN       0x8U      // SYNC0 connection to OUT pad enabled
-#define ESCSS_SYNC_IO_CONFIG_SYNC1_IOPAD_SEL_S   4U
-#define ESCSS_SYNC_IO_CONFIG_SYNC1_IOPAD_SEL_M   0x30U     // SYNC1 IO PAD select option
-#define ESCSS_SYNC_IO_CONFIG_SYNC1_GPIO_EN       0x80U     // SYNC1 connection to OUT pad enabled
-#define ESCSS_SYNC_IO_CONFIG_WRITE_KEY_S         8U
-#define ESCSS_SYNC_IO_CONFIG_WRITE_KEY_M         0xFF00U   // Key to enable writing lock
+#define ESCSS_SYNC_IO_CONFIG_SYNC0_GPIO_EN   0x8U      // SYNC0 connection to OUT pad enabled
+#define ESCSS_SYNC_IO_CONFIG_SYNC1_GPIO_EN   0x80U     // SYNC1 connection to OUT pad enabled
+#define ESCSS_SYNC_IO_CONFIG_WRITE_KEY_S     8U
+#define ESCSS_SYNC_IO_CONFIG_WRITE_KEY_M     0xFF00U   // Key to enable writing lock
 
 //*************************************************************************************************
 //
 // The following are defines for the bit fields in the ESCSS_LATCH_IO_CONFIG register
 //
 //*************************************************************************************************
-#define ESCSS_LATCH_IO_CONFIG_LATCH0_IOPAD_SEL_S   0U
-#define ESCSS_LATCH_IO_CONFIG_LATCH0_IOPAD_SEL_M   0x3U      // LATCH0 IO PAD select option
-#define ESCSS_LATCH_IO_CONFIG_LATCH0_GPIO_EN       0x8U      // LATCH0 connection to IN pad enabled
-#define ESCSS_LATCH_IO_CONFIG_LATCH1_IOPAD_SEL_S   4U
-#define ESCSS_LATCH_IO_CONFIG_LATCH1_IOPAD_SEL_M   0x30U     // LATCH1 IO PAD select option
-#define ESCSS_LATCH_IO_CONFIG_LATCH1_GPIO_EN       0x80U     // LATCH1 connection to IN pad enabled
-#define ESCSS_LATCH_IO_CONFIG_WRITE_KEY_S          8U
-#define ESCSS_LATCH_IO_CONFIG_WRITE_KEY_M          0xFF00U   // Key to enable writing lock
+#define ESCSS_LATCH_IO_CONFIG_LATCH0_GPIO_EN   0x8U      // LATCH0 connection to IN pad enabled
+#define ESCSS_LATCH_IO_CONFIG_LATCH1_GPIO_EN   0x80U     // LATCH1 connection to IN pad enabled
+#define ESCSS_LATCH_IO_CONFIG_WRITE_KEY_S      8U
+#define ESCSS_LATCH_IO_CONFIG_WRITE_KEY_M      0xFF00U   // Key to enable writing lock
 
 //*************************************************************************************************
 //
 // The following are defines for the bit fields in the ESCSS_LED_CONFIG register
 //
 //*************************************************************************************************
-#define ESCSS_LED_CONFIG_LINKACT0               0x1U      // GPIO enable for LINKACT0 LED
-#define ESCSS_LED_CONFIG_LINKACT1               0x2U      // GPIO enable for LINKACT1 LED
-#define ESCSS_LED_CONFIG_STATE                  0x4U      // GPIO enable for STATE LED
-#define ESCSS_LED_CONFIG_ERR                    0x8U      // GPIO enable for ERR LED
-#define ESCSS_LED_CONFIG_RUN                    0x10U     // GPIO enable for RUN LED
-#define ESCSS_LED_CONFIG_LINKACT0_IOPAD_SEL_S   6U
-#define ESCSS_LED_CONFIG_LINKACT0_IOPAD_SEL_M   0xC0U     // LINKACT0 LED IO PAD select
-#define ESCSS_LED_CONFIG_LINKACT1_IOPAD_SEL_S   8U
-#define ESCSS_LED_CONFIG_LINKACT1_IOPAD_SEL_M   0x300U    // LINKACT1 LED IO PAD select
-#define ESCSS_LED_CONFIG_STATE_IOPAD_SEL_S      10U
-#define ESCSS_LED_CONFIG_STATE_IOPAD_SEL_M      0xC00U    // STATE LED IO PAD select
-#define ESCSS_LED_CONFIG_ERR_IOPAD_SEL_S        12U
-#define ESCSS_LED_CONFIG_ERR_IOPAD_SEL_M        0x3000U   // ERROR LED IO PAD select
-#define ESCSS_LED_CONFIG_RUN_IOPAD_SEL_S        14U
-#define ESCSS_LED_CONFIG_RUN_IOPAD_SEL_M        0xC000U   // RUN LED IO PAD select
+#define ESCSS_LED_CONFIG_STATE   0x4U    // GPIO enable for STATE LED
+#define ESCSS_LED_CONFIG_ERR     0x8U    // GPIO enable for ERR LED
+#define ESCSS_LED_CONFIG_RUN     0x10U   // GPIO enable for RUN LED
 
 //*************************************************************************************************
 //

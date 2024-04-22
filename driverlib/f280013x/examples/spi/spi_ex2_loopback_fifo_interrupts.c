@@ -21,6 +21,11 @@
 //!  etc.. \n
 //! This pattern is repeated forever.
 //!
+//!  \note This example project has support for migration across our C2000 
+//!  device families. If you are wanting to build this project from launchpad
+//!  or controlCARD, please specify in the .syscfg file the board you're using.
+//!  At any time you can select another device to migrate this example.
+//!
 //! \b External \b Connections \n
 //!  - None
 //!
@@ -33,7 +38,7 @@
 //
 //#############################################################################
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 

@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -282,9 +282,9 @@ typedef enum
 //*****************************************************************************
 typedef enum
 {
-    EQEP_STROBE_FROM_GPIO  = 0,         //!< Strobe signal comes from GPIO
-    EQEP_STROBE_OR_ADCSOCA = 2,         //!< Strobe signal is OR'd with ADCSOCA
-    EQEP_STROBE_OR_ADCSOCB = 3          //!< Strobe signal is OR'd with ADCSOCB
+    EQEP_STROBE_FROM_GPIO  = 0,         //!< GPIO
+    EQEP_STROBE_OR_ADCSOCA = 2,         //!< Strobe signal OR'd with ADCSOCA
+    EQEP_STROBE_OR_ADCSOCB = 3          //!< Strobe signal OR'd with ADCSOCB
 } EQEP_StrobeSource;
 
 //*****************************************************************************
@@ -296,8 +296,8 @@ typedef enum
 typedef enum
 {
     EQEP_QMA_MODE_BYPASS,               //!< QMA module is bypassed
-    EQEP_QMA_MODE_1,                    //!< QMA mode-1 operation is selected
-    EQEP_QMA_MODE_2                     //!< QMA mode-2 operation is selected
+    EQEP_QMA_MODE_1,                    //!< QMA mode-1 operation
+    EQEP_QMA_MODE_2                     //!< QMA mode-2 operation
 } EQEP_QMAMode;
 
 

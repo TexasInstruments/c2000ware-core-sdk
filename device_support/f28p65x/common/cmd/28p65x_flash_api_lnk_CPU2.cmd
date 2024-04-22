@@ -59,23 +59,23 @@ MEMORY
 SECTIONS
 {
    codestart        : > BEGIN
-   .text            : >> FLASH_BANK4, ALIGN(8)
-   .cinit           : > FLASH_BANK4, ALIGN(8)
-   .switch          : > FLASH_BANK4, ALIGN(8)
+   .text            : >> FLASH_BANK3, ALIGN(8)
+   .cinit           : > FLASH_BANK3, ALIGN(8)
+   .switch          : > FLASH_BANK3, ALIGN(8)
    .reset           : > RESET, TYPE = DSECT /* not used, */
 
    .stack           : > RAMM1
 #if defined(__TI_EABI__)
    .bss             : > RAMGS2
    .bss:output      : > RAMGS2
-   .init_array      : > FLASH_BANK4, ALIGN(8)
-   .const           : > FLASH_BANK4, ALIGN(8)
+   .init_array      : > FLASH_BANK3, ALIGN(8)
+   .const           : > FLASH_BANK3, ALIGN(8)
    .data            : > RAMGS2
    .sysmem          : > RAMGS2
 #else
-   .pinit           : > FLASH_BANK4, ALIGN(8)
+   .pinit           : > FLASH_BANK3, ALIGN(8)
    .ebss            : >> RAMGS2
-   .econst          : > FLASH_BANK4, ALIGN(8)
+   .econst          : > FLASH_BANK3, ALIGN(8)
    .esysmem         : > RAMGS2
 #endif
 
@@ -92,8 +92,8 @@ SECTIONS
    GROUP
      {
        .TI.ramfunc : 
-	  { -l FAPI_F28P65x_EABI_v3.00.01.lib}
-		      } LOAD = FLASH_BANK4,
+	  { -l FAPI_F28P65x_EABI_v3.00.02.lib}
+		      } LOAD = FLASH_BANK3,
                         RUN = RAMGS1,
                         LOAD_START(RamfuncsLoadStart),
                         LOAD_SIZE(RamfuncsLoadSize),
@@ -106,8 +106,8 @@ SECTIONS
    GROUP
      {
        .TI.ramfunc : 
-	  { -l FAPI_F28P65x_EABI_v3.00.01.lib}
-		      } LOAD = FLASH_BANK4,
+	  { -l FAPI_F28P65x_EABI_v3.00.02.lib}
+		      } LOAD = FLASH_BANK3,
                         RUN = RAMGS1,
                         LOAD_START(_RamfuncsLoadStart),
                         LOAD_SIZE(_RamfuncsLoadSize),

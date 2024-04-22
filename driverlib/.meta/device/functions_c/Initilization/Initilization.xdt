@@ -25,7 +25,7 @@ const	Initilization_AGPIO_Type1				= device_common.Initilization_AGPIO_Type1;
 const	Initilization_GPIO_22_23				= device_common.Initilization_GPIO_22_23;
 const	Initilization_GPIO_20_21_Type0				= device_common.Initilization_GPIO_20_21_Type0;
 const	Initilization_AGPIO_Dual_Core_Type0			= device_common.Initilization_AGPIO_Dual_Core_Type0;
-const	Initilization_GPIO_20_21_Type1				= device_common.Initilization_GPIO_20_21_Type1;
+const	Initilization_GPIO_11_28				= device_common.Initilization_GPIO_11_28;
 const	Initilization_XTAL_Type0				= device_common.Initilization_XTAL_Type0;
 const	Initilization_Device_initGPIO_Type0			= device_common.Initilization_Device_initGPIO_Type0;
 %%}
@@ -57,7 +57,7 @@ const	Initilization_Device_initGPIO_Type0			= device_common.Initilization_Device
 %{
 `Initilization_Lock_VREGCTL_Dual_Core_Type0()`
 %}
-% if(Initilization_GPIO_20_21_Type1.includes(device))
+% if(Initilization_GPIO_11_28.includes(device))
 %{
 `Initilization_Lock_VREGCTL_EnablePeripherals()`
 %}

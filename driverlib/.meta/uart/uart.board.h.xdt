@@ -31,7 +31,19 @@
 #define `inst.$name`_FIFO_TXIFLSEL `actual_txiflsel`
 #define `inst.$name`_FIFO_RXIFLSEL `inst.rxiflsel`
     % }
+    % if (inst.dmarx) 
+    % {
+#define `inst.uartRXDMA.$name`_TRIGGER DMA_TRIGGER_`peripheral.name`RX           
+#define `inst.uartRXDMA.$name`_ADDRESS ((uint16_t *)(`peripheral.name`_BASE + UART_O_DR))
+    % }
+    % if (inst.dmatx) 
+    % {
+#define `inst.uartTXDMA.$name`_TRIGGER DMA_TRIGGER_`peripheral.name`TX  
+#define `inst.uartTXDMA.$name`_ADDRESS ((uint16_t *)(`peripheral.name`_BASE + UART_O_DR))
+    % }
 % }
+
+
 void    `inst.$name`_init();
 % }
 % }

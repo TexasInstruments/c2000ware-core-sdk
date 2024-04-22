@@ -185,13 +185,6 @@
                                                       // in GPIO Mode
 #define PMBUS_PMBCTRL_SDA_DIR           0x4000U       // Configures direction of PMBus data pin in
                                                       // GPIO mode
-#define PMBUS_PMBCTRL_SCL_MODE          0x8000U       // Configures mode of PMBus Clock pin
-#define PMBUS_PMBCTRL_SCL_VALUE         0x10000U      // Configures output value of PMBus clock pin
-                                                      // in GPIO Mode
-#define PMBUS_PMBCTRL_SCL_DIR           0x20000U      // Configures direction of PMBus clock pin in
-                                                      // GPIO mode
-#define PMBUS_PMBCTRL_IBIAS_A_EN        0x40000U      // PMBus Current Source A Control
-#define PMBUS_PMBCTRL_IBIAS_B_EN        0x80000U      // PMBus Current Source B Control
 #define PMBUS_PMBCTRL_CLK_LO_DIS        0x100000U     // Clock Low Timeout Disable
 #define PMBUS_PMBCTRL_TARGET_EN         0x200000U     // PMBus TARGET Enable
 #define PMBUS_PMBCTRL_CONTROLLER_EN     0x400000U     // PMBus CONTROLLER Enable

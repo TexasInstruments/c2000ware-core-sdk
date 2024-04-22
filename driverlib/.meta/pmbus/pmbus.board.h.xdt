@@ -18,6 +18,15 @@
 #define `instance.$name`_OWN_ADDRESS `instance.OwnAddress`
 #define `instance.$name`_ENABLE_I2C_MODE `instance.enableI2CMode`
 #define `instance.$name`_CLOCKMODE `instance.busClock`
+#define `instance.$name`_GPIO_MAP(gpioNumber, enumValue) do { \
+	switch((gpioNumber)) { \
+		case 2: 	(enumValue) = 0; break; \
+		case 3: 	(enumValue) = 1; break; \
+		case 9: 	(enumValue) = 2; break; \
+		case 32: 	(enumValue) = 3; break; \
+	} \
+}while(0)
+
 void `instance.$name`_init();
 % }
 %}

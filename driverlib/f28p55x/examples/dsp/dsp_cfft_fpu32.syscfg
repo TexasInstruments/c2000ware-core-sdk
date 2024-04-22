@@ -1,0 +1,84 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28P55x" --package "100PZ" --part "F28P55x_100PZ" --context "system" --product "C2000WARE@5.02.00.00"
+ * @versions {"tool":"1.20.0+3514"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const device_support = scripting.addModule("/driverlib/device_support.js");
+const sysctl         = scripting.addModule("/driverlib/sysctl.js");
+const FFT            = scripting.addModule("/libraries/dsp/FPU/FFT/FFT.js", {}, false);
+const FFT1           = FFT.addInstance();
+const FPUfastRTS     = scripting.addModule("/libraries/math/FPUfastRTS/FPUfastRTS.js", {}, false);
+const FPUfastRTS1    = FPUfastRTS.addInstance();
+const CMD            = scripting.addModule("/utilities/cmd_tool/cmd_syscfg/source/CMD");
+const CMD1           = CMD.addInstance();
+const CMD2           = CMD.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+FFT1.$name                  = "myFFT0";
+FFT1.CFFT.create(1);
+FFT1.CFFT[0].$name          = "myCFFT0";
+FFT1.CFFT[0].numStages      = 7;
+FFT1.CFFT[0].outPtr         = "outPtr";
+FFT1.CFFT[0].inPtr          = "in1Ptr";
+FFT1.CFFT[0].sincosFunction = false;
+FFT1.CFFT[0].coeffPtr       = "twiddlePtr";
+
+FPUfastRTS1.$name = "myFFR0";
+
+CMD1.$name                             = "generic_ram_lnk";
+CMD1.sectionMemory_const               = ["RAMLS5","RAMLS6"];
+CMD1.sectionMemory_ramfunc             = ["RAMM0"];
+CMD1.sectionMemory_init_array          = ["RAMM0"];
+CMD1.sectionMemory_switch              = ["RAMM0"];
+CMD1.sectionMemory_sysmem              = ["RAMLS4"];
+CMD1.sectionMemory_stack               = ["RAMLS0"];
+CMD1.sectionMemory_bss                 = ["RAMLS4","RAMLS5"];
+CMD1.sectionMemory_text                = ["RAMGS0","RAMGS1","RAMLS0","RAMLS1","RAMLS2","RAMLS3"];
+CMD1.sectionMemory_data                = ["RAMLS5","RAMLS6","RAMLS7","RAMLS8","RAMLS9"];
+CMD1.sectionMemory_cinit               = ["RAMGS2"];
+CMD1.userSection.create(4);
+CMD1.userSection[0].$name              = "CFFTdata1";
+CMD1.userSection[0].sectionAlignEnable = true;
+CMD1.userSection[0].sectionMemory      = ["RAMGS3"];
+CMD1.userSection[0].sectionAlign       = 512;
+CMD1.userSection[1].$name              = "CFFTdata2";
+CMD1.userSection[1].sectionMemory      = ["RAMGS3"];
+CMD1.userSection[1].sectionAlignEnable = true;
+CMD1.userSection[1].sectionAlign       = 512;
+CMD1.userSection[2].$name              = "CFFTdata3";
+CMD1.userSection[2].sectionMemory      = ["RAMGS3"];
+CMD1.userSection[3].sectionMemory      = ["RAMGS3"];
+CMD1.userSection[3].$name              = "FPUfftTables";
+
+CMD2.$name                         = "generic_flash_lnk";
+CMD2.sectionAlignEnable_ramfunc          = true;
+CMD2.sectionAlignEnable_text             = true;
+CMD2.sectionAlignEnable_binit            = true;
+CMD2.sectionAlignEnable_cinit            = true;
+CMD2.sectionAlignEnable_switch           = true;
+CMD2.sectionAlignEnable_init_array       = true;
+CMD2.sectionAlignEnable_const            = true;
+CMD2.sectionAlignEnable_ovly             = true;
+CMD2.sectionMemory_codestart             = "0x080000";
+CMD2.sectionMemory_stack                 = ["RAMM1"];
+CMD2.sectionMemory_bss                   = ["RAMLS5"];
+CMD2.sectionMemory_data                  = ["RAMLS5"];
+CMD2.sectionMemory_sysmem                = ["RAMLS4"];
+CMD2.sectionMemory_ramfunc               = ["FLASH_BANK0"];
+CMD2.sectionMemory_text                  = ["FLASH_BANK0","FLASH_BANK1"];
+CMD2.sectionMemory_binit                 = ["FLASH_BANK0"];
+CMD2.sectionMemory_cinit                 = ["FLASH_BANK0"];
+CMD2.sectionMemory_switch                = ["FLASH_BANK0"];
+CMD2.sectionMemory_init_array            = ["FLASH_BANK0"];
+CMD2.sectionMemory_const                 = ["FLASH_BANK0"];
+CMD2.sectionMemory_ovly                  = ["FLASH_BANK0"];
+CMD2.sectionRunFromDifferentAddr_ramfunc = true;
+CMD2.sectionRun_ramfunc                  = ["RAMLS0"];
+CMD2.sectionBinit_ramfunc                = false;

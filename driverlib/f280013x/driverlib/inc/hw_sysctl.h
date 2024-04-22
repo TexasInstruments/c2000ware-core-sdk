@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -76,7 +76,7 @@
 #define SYSCTL_O_XCLKOUTDIVSEL   0x28U   // XCLKOUT Divider Select register
 #define SYSCTL_O_LOSPCP          0x2CU   // Low Speed Clock Source Prescalar
 #define SYSCTL_O_MCDCR           0x2EU   // Missing Clock Detect Control Register
-#define SYSCTL_O_X1CNT           0x30U   // 10-bit Counter on X1 Clock
+#define SYSCTL_O_X1CNT           0x30U   // 11-bit Counter on X1 Clock
 #define SYSCTL_O_XTALCR          0x32U   // XTAL Control Register
 #define SYSCTL_O_XTALCR2         0x3AU   // XTAL Control Register for pad init
 #define SYSCTL_O_CLKFAILCFG      0x3CU   // Clock Fail cause Configuration

@@ -208,7 +208,7 @@ function onValidate(inst, validation) {
             //
             // Check if the analog module is added on CPU1 if the current context is CPU2
             //
-            if (Common.isModuleOnOtherContext("/driverlib/analog.js") == false) {
+            if ((Common.isModuleOnOtherContext("/driverlib/analog.js") == false) && !["F2838x", "F2837xD"].includes(Common.getDeviceName())) {
                 validation.logError(
                     "The ANALOG PinMux module needs to be added on CPU1 when a DAC instance is added on CPU2",inst,"dacBase");
             }

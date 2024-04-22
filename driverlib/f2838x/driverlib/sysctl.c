@@ -56,14 +56,6 @@
                                   " BF     _SysCtl_delay, GEQ\n"               \
                                   " LRETR\n")
 
-
-//
-// Macro used for adding delay between 2 consecutive writes to CLKSRCCTL1
-// register.
-// Delay = 300 NOPs
-//
-#define SYSCTL_CLKSRCCTL1_DELAY  asm(" RPT #250 || NOP \n RPT #50 || NOP")
-
 //*****************************************************************************
 //
 // SysCtl_delay()
@@ -519,6 +511,7 @@ SysCtl_setClock(uint32_t config)
             EALLOW;
             HWREGH(CLKCFG_BASE + SYSCTL_O_SYSPLLCTL1) &=
                    ~SYSCTL_SYSPLLCTL1_PLLEN;
+            SYSCTL_REGWRITE_DELAY;
             EDIS;
 
             //
@@ -553,12 +546,14 @@ SysCtl_setClock(uint32_t config)
                     (HWREGH(CLKCFG_BASE + SYSCTL_O_SYSCLKDIVSEL) &
                      ~(uint16_t)SYSCTL_SYSCLKDIVSEL_PLLSYSCLKDIV_M) |
                     (divSel + 1U);
+                SYSCTL_REGWRITE_DELAY;
             }
             else
             {
                 HWREGH(CLKCFG_BASE + SYSCTL_O_SYSCLKDIVSEL) =
                     (HWREGH(CLKCFG_BASE + SYSCTL_O_SYSCLKDIVSEL) &
                      ~(uint16_t)SYSCTL_SYSCLKDIVSEL_PLLSYSCLKDIV_M) | divSel;
+                SYSCTL_REGWRITE_DELAY;
             }
 
             EDIS;
@@ -592,6 +587,7 @@ SysCtl_setClock(uint32_t config)
             HWREGH(CLKCFG_BASE + SYSCTL_O_SYSCLKDIVSEL) =
                 (HWREGH(CLKCFG_BASE + SYSCTL_O_SYSCLKDIVSEL) &
                  ~SYSCTL_SYSCLKDIVSEL_PLLSYSCLKDIV_M) | divSel;
+            SYSCTL_REGWRITE_DELAY;
             EDIS;
         }
         else
@@ -729,6 +725,7 @@ void SysCtl_setAuxClock(uint32_t config)
             // turns on the PLL
             //
             HWREG(CLKCFG_BASE + SYSCTL_O_AUXPLLMULT) = pllMult;
+            SYSCTL_REGWRITE_DELAY;
 
             //
             // Enable AUXPLL
@@ -844,6 +841,7 @@ void SysCtl_setAuxClock(uint32_t config)
     EALLOW;
     HWREGH(CLKCFG_BASE + SYSCTL_O_AUXCLKDIVSEL) =
         (uint16_t)(config & SYSCTL_SYSDIV_M) >> SYSCTL_SYSDIV_S;
+    SYSCTL_REGWRITE_DELAY;
     EDIS;
 
 }
@@ -866,7 +864,9 @@ SysCtl_selectXTAL(void)
     // Turn on XTAL and select crystal mode
     //
     HWREGH(CLKCFG_BASE + SYSCTL_O_XTALCR) &= ~SYSCTL_XTALCR_OSCOFF;
+    SYSCTL_REGWRITE_DELAY;
     HWREGH(CLKCFG_BASE + SYSCTL_O_XTALCR) &= ~SYSCTL_XTALCR_SE;
+    SYSCTL_REGWRITE_DELAY;
     EDIS;
 
     //
@@ -882,6 +882,7 @@ SysCtl_selectXTAL(void)
     ((HWREGH(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL1) &
       (~SYSCTL_CLKSRCCTL1_OSCCLKSRCSEL_M)) |
      (SYSCTL_OSCSRC_XTAL >> SYSCTL_OSCSRC_S));
+    SYSCTL_CLKSRCCTL_DELAY;
     EDIS;
 
     //
@@ -936,7 +937,9 @@ SysCtl_selectXTALSingleEnded(void)
     //
     EALLOW;
     HWREGH(CLKCFG_BASE + SYSCTL_O_XTALCR) &= ~SYSCTL_XTALCR_OSCOFF;
+    SYSCTL_REGWRITE_DELAY;
     HWREGH(CLKCFG_BASE + SYSCTL_O_XTALCR) |= SYSCTL_XTALCR_SE;
+    SYSCTL_REGWRITE_DELAY;
     EDIS;
 
     //
@@ -1057,6 +1060,7 @@ SysCtl_selectOscSourceAuxPLL(uint32_t oscSource)
             //
             HWREGH(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL1) &=
                    ~(SYSCTL_CLKSRCCTL1_XTALOFF);
+            SYSCTL_CLKSRCCTL_DELAY;
 
             //
             // Select crystal mode
@@ -1121,6 +1125,7 @@ SysCtl_selectOscSourceAuxPLL(uint32_t oscSource)
                     (HWREGH(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL2) &
                      ~(SYSCTL_CLKSRCCTL2_AUXOSCCLKSRCSEL_M)) |
                     (2U << SYSCTL_CLKSRCCTL2_AUXOSCCLKSRCSEL_S);
+            SYSCTL_CLKSRCCTL_DELAY;
             break;
 
         default:

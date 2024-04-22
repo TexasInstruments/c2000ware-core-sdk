@@ -10,6 +10,11 @@
 // FLASH Configurations
 //
 //*****************************************************************************
+#ifdef __cplusplus
+#pragma CODE_SECTION(".TI.ramfunc");
+#else
+#pragma CODE_SECTION(FLASH_init, ".TI.ramfunc");
+#endif
 void `nameOfPeripheral`_init(){
 %if (module != null)
 %{
@@ -26,7 +31,7 @@ void `nameOfPeripheral`_init(){
     //
     Flash_setBankPowerUpDelay(`instance.$name`_BASE, 0x14);
         %}
-        %if (!["F280015x", "F280013x", "F28P65x"].includes(Common.getDeviceName())){
+        %if (!["F280015x", "F280013x", "F28P65x", "F28P55x"].includes(Common.getDeviceName())){
     //
     // This function sets the fallback power mode of the flash bank specified by
     // the bank parameter. The power mode is specified by the powerMode
@@ -68,8 +73,8 @@ void `nameOfPeripheral`_init(){
     //
     // Set Engr waitstates according to frequency.
     //
-    Flash_setEngrWaitstates(`instance.$name`_BASE, 5);
-        %}
+    Flash_setEngrWaitstates(`instance.$name`_BASE, 4);
+       %}
             % if (instance.enablePrefetch){
     //
     // Enable prefetch

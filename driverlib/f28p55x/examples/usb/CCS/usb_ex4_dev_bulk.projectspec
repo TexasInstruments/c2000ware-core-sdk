@@ -1,0 +1,49 @@
+<projectSpec>
+  <project
+        name="usb_ex4_dev_bulk"
+        device="TMS320F28P550SJ9"
+        cgtVersion="22.6.1.LTS"
+        products="sysconfig;C2000WARE"
+        outputFormat="ELF"
+        launchWizard="False"
+        linkerCommandFile=""
+        enableSysConfigTool="true"
+        sysConfigBuildOptions="--product ${C2000WARE_ROOT}/.metadata/sdk.json --device F28P55x --package 128PDT --part F28P55x_128PDT"
+        postBuildStep="
+           echo &quot;========= Build of the CLB simulation has moved to the CLB Tool. Click the '?' icon by the _Generate CLB Simulation File_ enable for more details (located in the Global Parameters of the Tile Design SysConfig module) =============&quot;
+          ;if ${GENERATE_DIAGRAM} == 1  ${NODE_TOOL} &quot;${C2000WARE_ROOT}/utilities/clb_tool/clb_syscfg/dot_file_libraries/clbDotUtility.js&quot;  &quot;${C2000WARE_ROOT}/utilities/clb_tool/clb_syscfg/&quot; &quot;${BuildDirectory}/syscfg&quot; &quot;${BuildDirectory}/syscfg/clb.dot&quot;
+          ;if ${GENERATE_DIAGRAM} == 1  mkdir &quot;${BuildDirectory}/diagrams&quot;
+          ;if ${GENERATE_DIAGRAM} == 1  ${NODE_TOOL} &quot;${C2000WARE_ROOT}/driverlib/.meta/generate_diagrams.js&quot; &quot;${C2000WARE_ROOT}&quot; &quot;${BuildDirectory}/diagrams&quot; &quot;${BuildDirectory}/syscfg&quot;
+        "
+		>
+    <configuration name="CPU1_RAM" compilerBuildOptions=  "--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} -I${COMMON_ROOT} -I${THIRD_PARTY} -I${USB_LIB_ROOT} -v28 -ml -mt --cla_support=cla2 --define=RAM --define=ccs_c2k --float_support=fpu32 --tmu_support=tmu1 --define=DEBUG --gen_func_subsections=on --diag_warning=225  --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 -i${C2000WARE_ROOT} -i${PROJECT_BUILD_DIR}/syscfg -lc2000ware_libraries.cmd.genlibs " />
+    <configuration name="CPU1_FLASH" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} -I${COMMON_ROOT} -I${THIRD_PARTY} -I${USB_LIB_ROOT} --define=_FLASH --define=ccs_c2k -v28 -ml -mt --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu1 --define=DEBUG --gen_func_subsections=on --diag_warning=225  --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 --define=_FLASH -i${C2000WARE_ROOT} -i${PROJECT_BUILD_DIR}/syscfg -lc2000ware_libraries.cmd.genlibs " />
+    <configuration name="CPU1_LAUNCHXL_RAM" compilerBuildOptions=  "--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} -I${COMMON_ROOT} -I${THIRD_PARTY} -I${USB_LIB_ROOT} -v28 -ml -mt --cla_support=cla2 --define=RAM --define=ccs_c2k --float_support=fpu32 --tmu_support=tmu1 --define=DEBUG --gen_func_subsections=on --diag_warning=225  --diag_suppress=10063 --define=_LAUNCHXL_F28P55X" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 -i${C2000WARE_ROOT} -i${PROJECT_BUILD_DIR}/syscfg -lc2000ware_libraries.cmd.genlibs " />
+    <configuration name="CPU1_LAUNCHXL_FLASH" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} -I${COMMON_ROOT} -I${THIRD_PARTY} -I${USB_LIB_ROOT} --define=_FLASH --define=ccs_c2k -v28 -ml -mt --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu1 --define=DEBUG --gen_func_subsections=on --diag_warning=225  --diag_suppress=10063 --define=_LAUNCHXL_F28P55X" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 --define=_FLASH -i${C2000WARE_ROOT} -i${PROJECT_BUILD_DIR}/syscfg -lc2000ware_libraries.cmd.genlibs " />
+    <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../../../driverlib/f28p55x/driverlib/" scope="project" />
+    <pathVariable name="C2000WARE_ROOT" path="../../../../../" scope="project" />
+    <pathVariable name="USB_LIB_ROOT" path="../../../../../libraries/communications/usb/f28p55x/include/" scope="project" />
+    <pathVariable name="COMMON_ROOT" path="../../../../../device_support/f28p55x/common/" scope="project" />
+    <pathVariable name="THIRD_PARTY" path="../../../../../utilities/third_party/usb/" scope="project" />
+    <buildVariable name="GENERATE_DIAGRAM" value="0" scope="project" />
+    <file action="link" path="../../../../../libraries/communications/usb/f28p55x/lib/usblib.lib" targetDirectory="" />
+	<file action="copy" path="../../../../../device_support/f28p55x/common/include/driverlib.h" targetDirectory="device"/>
+    <file action="copy" path="../../../../../device_support/f28p55x/common/include/device.h" targetDirectory="device"/>
+    <file action="copy" path="../../../../../device_support/f28p55x/common/source/device.c" targetDirectory="device"/>
+    <file action="copy" path="../../../../../device_support/f28p55x/common/source/f28p55x_codestartbranch.asm" targetDirectory="device"/>
+    <file action="copy" path="../../../../../device_support/f28p55x/common/targetConfigs/TMS320F28P550SJ9.ccxml" targetDirectory="targetConfigs"  applicableConfigurations="CPU1_RAM,CPU1_FLASH" />
+    <file action="copy" path="../../../../../device_support/f28p55x/common/targetConfigs/TMS320F28P550SJ9_LaunchPad.ccxml" targetDirectory="targetConfigs"  applicableConfigurations="CPU1_LAUNCHXL_RAM,CPU1_LAUNCHXL_FLASH" />
+	<file action="copy" path="../../../../../device_support/f28p55x/common/cmd/28p55x_RAM_combined_lnk.cmd" targetDirectory="" applicableConfigurations="CPU1_RAM, CPU1_LAUNCHXL_RAM" />
+    <file action="copy" path="../../../../../device_support/f28p55x/common/cmd/28p55x_generic_flash_lnk.cmd" targetDirectory="" applicableConfigurations="CPU1_FLASH, CPU1_LAUNCHXL_FLASH" />
+	<file action="link" path="../../../../../driverlib/f28p55x/driverlib/ccs/Debug/driverlib.lib" targetDirectory=""/>
+    <file action="copy" path="../../../../../driverlib/f28p55x/driverlib/" targetDirectory="device" excludeFromBuild="True"/>
+    <file action="copy" path="../usb_ex4_dev_bulk.c" targetDirectory="" />
+	<file action="copy" path="../usb_hal.c" targetDirectory="" />
+	<file action="copy" path="../usb_hal.h" targetDirectory="" />
+    <file action="copy" path="../../../../../utilities/tools/usb/utils/ustdlib.c" targetDirectory="" />
+    <file action="copy" path="../../../../../utilities/tools/usb/utils/ustdlib.h" targetDirectory="" />
+	<file action="copy" path="../../../../../utilities/tools/usb/utils/scistdio.c" targetDirectory="" />
+	<file action="copy" path="../../../../../utilities/tools/usb/utils/scistdio.h" targetDirectory="" />
+    <file action="copy" path="../usb_ex4_dev_bulk.syscfg" targetDirectory="" /> 
+  </project>
+</projectSpec>

@@ -1,8 +1,8 @@
 /**
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
- * @cliArgs --device "F28002x" --package "80QFP" --part "F28002x_80QFP" --context "system" --product "C2000WARE@5.00.00.00"
- * @versions {"tool":"1.19.0+3288"}
+ * @cliArgs --device "F28002x" --package "80QFP" --part "F28002x_80QFP" --context "system" --product "C2000WARE@5.02.00.00"
+ * @versions {"tool":"1.0.0+dev"}
  */
 
 /**
@@ -28,15 +28,15 @@ CMD1.$name                    = "generic_ram_lnk";
 CMD2.$name                    = "generic_flash_lnk";
 
 CMD1.sectionMemory_text       = ["RAMGS0","RAMLS4","RAMLS5","RAMLS6","RAMLS7"];
-CMD1.sectionMemory_bss        = ["RAMLS4"];
-CMD1.sectionMemory_const      = ["RAMLS4"];
-CMD1.sectionMemory_data       = ["RAMLS4"];
-CMD1.sectionMemory_sysmem     = ["RAMLS4"];
 CMD1.sectionMemory_ramfunc    = ["RAMM0"];
 CMD1.sectionMemory_cinit      = ["RAMM0"];
 CMD1.sectionMemory_stack      = ["RAMM1"];
 CMD1.sectionMemory_init_array = ["RAMM0"];
+CMD1.sectionMemory_bss        = ["RAMLS4"];
+CMD1.sectionMemory_const      = ["RAMLS4"];
+CMD1.sectionMemory_data       = ["RAMLS4"];
 CMD1.sectionMemory_switch     = ["RAMM0"];
+CMD1.sectionMemory_sysmem     = ["RAMLS4"];
 
 CMD2.sectionAlignEnable_ramfunc    = true;
 CMD2.sectionAlignEnable_text       = true;
@@ -48,14 +48,17 @@ CMD2.sectionAlignEnable_const      = true;
 CMD2.sectionAlignEnable_ovly       = true;
 CMD2.sectionMemory_codestart       = "0x080000";
 CMD2.sectionMemory_stack           = ["RAMM1"];
-CMD2.sectionMemory_bss             = ["RAMLS5"];
-CMD2.sectionMemory_data            = ["RAMLS5"];
-CMD2.sectionMemory_sysmem          = ["RAMLS5"];
 CMD2.sectionMemory_ramfunc         = ["FLASH_BANK0_SEC1"];
 CMD2.sectionMemory_text            = ["FLASH_BANK0_SEC2","FLASH_BANK0_SEC3","FLASH_BANK0_SEC4"];
 CMD2.sectionMemory_binit           = ["FLASH_BANK0_SEC1"];
 CMD2.sectionMemory_cinit           = ["FLASH_BANK0_SEC1"];
 CMD2.sectionMemory_switch          = ["FLASH_BANK0_SEC1"];
+CMD2.sectionMemory_bss             = ["RAMLS5"];
+CMD2.sectionMemory_data            = ["RAMLS5"];
+CMD2.sectionMemory_sysmem          = ["RAMLS5"];
+CMD2.sectionRunFromDifferentAddr_ramfunc = true;
+CMD1.sectionRun_ramfunc                  = ["RAMLS4"];
+CMD2.sectionBinit_ramfunc                = false;
 CMD2.sectionMemory_init_array      = ["FLASH_BANK0_SEC1"];
 CMD2.sectionMemory_const           = ["FLASH_BANK0_SEC4"];
 CMD2.sectionMemory_ovly            = ["FLASH_BANK0_SEC1"];

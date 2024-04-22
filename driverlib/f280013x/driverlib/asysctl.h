@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -141,6 +141,30 @@ typedef enum
     ASYSCTL_CMPLPMUX_SELECT_3 = 6U, //!< CMPLPMUX select 3
     ASYSCTL_CMPLPMUX_SELECT_4 = 9U  //!< CMPLPMUX select 4
 } ASysCtl_CMPLPMuxSelect;
+
+//*****************************************************************************
+//
+//! ASysCtl_TestSelect used for function ASysCtl_selectInternalTestNode().
+//
+//*****************************************************************************
+typedef enum
+{
+    ASYSCTL_TEST_NODE_NO_CONN       = 0U,  //!< No Internal Connection
+    ASYSCTL_TEST_NODE_VDDCORE         = 1U,  //!< Core VDD (1.2V) voltage
+    ASYSCTL_TEST_NODE_VREFLO              = 2U,  //!< VREFLO pin voltage
+    ASYSCTL_TEST_NODE_CDAC1H              = 4U,  //!< CMPSS1 High DAC output
+    ASYSCTL_TEST_NODE_CDAC1L              = 5U,  //!< CMPSS1 Low DAC output
+    ASYSCTL_TEST_NODE_CDAC2H              = 6U,  //!< CMPSS2 High DAC output
+    ASYSCTL_TEST_NODE_CDAC2L              = 7U,  //!< CMPSS2 Low DAC output
+    ASYSCTL_TEST_NODE_CDAC3H              = 8U,  //!< CMPSS3 High DAC output
+    ASYSCTL_TEST_NODE_CDAC3L              = 9U,  //!< CMPSS3 Low DAC output
+    ASYSCTL_TEST_NODE_CDAC4H              = 10U, //!< CMPSS4 High DAC output
+    ASYSCTL_TEST_NODE_CDAC4L              = 11U, //!< CMPSS4 Low DAC output
+    ASYSCTL_TEST_NODE_VDDA                = 12U, //!< VDDA voltage
+    ASYSCTL_TEST_NODE_VSSA                = 13U, //!< VSSA - Analog ground pin
+    ASYSCTL_TEST_NODE_ENZ_CALIB_GAIN_3P3V = 19U //!< All ADCs are placed in gain
+                                                //!< calibration mode
+} ASysCtl_TestSelect;
 
 //*****************************************************************************
 //
@@ -309,6 +333,33 @@ static inline void ASysCtl_setAnalogReference1P65(uint16_t reference)
     // Write selection to the Analog Voltage Reference Select bit.
     //
     HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_ANAREFCTL) &= ~(reference << 8U);
+
+    EDIS;
+}
+
+//*****************************************************************************
+//
+//! Select internal test node for ADC.
+//!
+//! \param testSelect is internal node to come out on ADC.
+//!
+//! The \e testSelect is the desired internal test node. Valid values can be
+//! refered from the enum \e ASysCtl_TestSelect.
+//!
+//! \return None.
+//!
+//*****************************************************************************
+static inline void ASysCtl_selectInternalTestNode(ASysCtl_TestSelect testSelect)
+{
+    EALLOW;
+
+    //
+    // Select internal test node for ADC
+    //
+    HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_INTERNALTESTCTL) = 
+        (HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_INTERNALTESTCTL) &
+        ~(ASYSCTL_INTERNALTESTCTL_TESTSEL_M | ASYSCTL_INTERNALTESTCTL_KEY_M)) | 
+        (0xA5A50000UL | testSelect);
 
     EDIS;
 }
@@ -815,6 +866,7 @@ static inline void ASysCtl_disableADCDACLoopback(uint32_t config)
             (HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_ADCDACLOOPBACK) & ~config) |
             (0xA5A5UL << ASYSCTL_ADCDACLOOPBACK_KEY_S);
 }
+
 
 
 

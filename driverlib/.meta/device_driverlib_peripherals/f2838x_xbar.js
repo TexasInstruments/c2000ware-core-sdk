@@ -278,6 +278,7 @@ let XBAR_EPWMMuxConfig = [
 	{ name: "XBAR_EPWM_MUX09_CMPSS5_CTRIPL", displayName: "EPWM MUX09 CMPSS5 CTRIPL" },
 	{ name: "XBAR_EPWM_MUX09_INPUTXBAR5", displayName: "EPWM MUX09 INPUTXBAR5" },
 	{ name: "XBAR_EPWM_MUX09_CLB3_OUT4", displayName: "EPWM MUX09 CLB3 OUT4" },
+	{ name: "XBAR_EPWM_MUX09_ADCDEVT1", displayName: "EPWM MUX09 ADCDEVT1" },
 	{ name: "XBAR_EPWM_MUX10_CMPSS6_CTRIPH", displayName: "EPWM MUX10 CMPSS6 CTRIPH" },
 	{ name: "XBAR_EPWM_MUX10_CMPSS6_CTRIPH_OR_L", displayName: "EPWM MUX10 CMPSS6 CTRIPH OR L" },
 	{ name: "XBAR_EPWM_MUX10_ADCBEVT2", displayName: "EPWM MUX10 ADCBEVT2" },
@@ -404,10 +405,14 @@ let XBAR_CLBMuxConfig = [
 	{ name: "XBAR_CLB_MUX13_CMPSS7_CTRIPL", displayName: "CLB MUX13 CMPSS7 CTRIPL" },
 	{ name: "XBAR_CLB_MUX13_ADCSOCA", displayName: "CLB MUX13 ADCSOCA" },
 	{ name: "XBAR_CLB_MUX13_CLB4_OUT4", displayName: "CLB MUX13 CLB4 OUT4" },
+	{ name: "XBAR_CLB_MUX14_CMPSS8_CTRIPH", displayName: "CLB MUX14 CMPSS8 CTRIPH" },
+	{ name: "XBAR_CLB_MUX14_CMPSS8_CTRIPH_OR_L", displayName: "CLB MUX14 CMPSS8 CTRIPH OR L" },
 	{ name: "XBAR_CLB_MUX14_ADCBEVT4", displayName: "CLB MUX14 ADCBEVT4" },
 	{ name: "XBAR_CLB_MUX14_EXTSYNCOUT", displayName: "CLB MUX14 EXTSYNCOUT" },
+	{ name: "XBAR_CLB_MUX15_CMPSS8_CTRIPL", displayName: "CLB MUX15 CMPSS8 CTRIPL" },
 	{ name: "XBAR_CLB_MUX15_ADCSOCB", displayName: "CLB MUX15 ADCSOCB" },
 	{ name: "XBAR_CLB_MUX15_CLB4_OUT5", displayName: "CLB MUX15 CLB4 OUT5" },
+	{ name: "XBAR_CLB_MUX15_ADCDEVT4", displayName: "CLB MUX15 ADCDEVT4" },
 	{ name: "XBAR_CLB_MUX16_SD1FLT1_COMPH", displayName: "CLB MUX16 SD1FLT1 COMPH" },
 	{ name: "XBAR_CLB_MUX16_SD1FLT1_COMPH_OR_COMPL", displayName: "CLB MUX16 SD1FLT1 COMPH OR COMPL" },
 	{ name: "XBAR_CLB_MUX16_SD1FLT1_COMPZ", displayName: "CLB MUX16 SD1FLT1 COMPZ" },
@@ -915,6 +920,7 @@ let XBAR_EPWMMuxConfig_MUX09 = [
 	{ name: "XBAR_EPWM_MUX09_CMPSS5_CTRIPL", displayName: "CMPSS5 CTRIPL" },
 	{ name: "XBAR_EPWM_MUX09_INPUTXBAR5", displayName: "INPUTXBAR5" },
 	{ name: "XBAR_EPWM_MUX09_CLB3_OUT4", displayName: "CLB3 OUT4" },
+	{ name: "XBAR_EPWM_MUX09_ADCDEVT1", displayName: "ADCDEVT1" },
 ]
 let XBAR_EPWMMuxConfig_MUX10 = [
 	{ name: "XBAR_EPWM_MUX10_CMPSS6_CTRIPH", displayName: "CMPSS6 CTRIPH" },
@@ -1147,12 +1153,16 @@ let XBAR_CLBMuxConfig_MUX13 = [
 	{ name: "XBAR_CLB_MUX13_CLB4_OUT4", displayName: "CLB4 OUT4" },
 ]
 let XBAR_CLBMuxConfig_MUX14 = [
+	{ name: "XBAR_CLB_MUX14_CMPSS8_CTRIPH", displayName: "CMPSS8 CTRIPH" },
+	{ name: "XBAR_CLB_MUX14_CMPSS8_CTRIPH_OR_L", displayName: "CMPSS8 CTRIPH OR L" },
 	{ name: "XBAR_CLB_MUX14_ADCBEVT4", displayName: "ADCBEVT4" },
 	{ name: "XBAR_CLB_MUX14_EXTSYNCOUT", displayName: "EXTSYNCOUT" },
 ]
 let XBAR_CLBMuxConfig_MUX15 = [
+	{ name: "XBAR_CLB_MUX15_CMPSS8_CTRIPL", displayName: "CMPSS8 CTRIPL" },
 	{ name: "XBAR_CLB_MUX15_ADCSOCB", displayName: "ADCSOCB" },
 	{ name: "XBAR_CLB_MUX15_CLB4_OUT5", displayName: "CLB4 OUT5" },
+	{ name: "XBAR_CLB_MUX15_ADCDEVT4", displayName: "ADCDEVT4" },
 ]
 let XBAR_CLBMuxConfig_MUX16 = [
 	{ name: "XBAR_CLB_MUX16_SD1FLT1_COMPH", displayName: "SD1FLT1 COMPH" },

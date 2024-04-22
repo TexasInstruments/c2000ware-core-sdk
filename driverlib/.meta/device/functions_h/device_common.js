@@ -40,8 +40,8 @@ const Initilization_GPIO_20_21_Type0											= ["F28003x"]
 //configuring the GPIO pins 20, 21 in digital mode for device initilization
 const Initilization_GPIO_20_21_Type1											= ["F28P65x"]
 
-//configuring the GPIO pins 20, 21 in digital mode for device initilization
-const Initilization_GPIO_20_21_Type2											= ["F28P55x"]
+//configuring the GPIO pins 11, 12, 13, 16, 17, 20, 21, 24, 28 in digital mode for device initilization
+const Initilization_GPIO_11_28											= ["F28P55x"]
 
 //configuring device initilization with Device_initGPIO() call
 const Initilization_Device_initGPIO_Type0										= ["F2838x"]
@@ -50,10 +50,10 @@ const Initilization_Device_initGPIO_Type0										= ["F2838x"]
 // Available VerifyXTAL 
 //
 // verifying the XTAL frequency
-const VerifyXTAL_Type0 															= ["F28002x", "F28003x", "F28004x", "F28P65x", "F28P55x"]
+const VerifyXTAL_Type1 															= ["F28002x", "F28003x", "F28004x", "F28P65x", "F28P55x"]
 
 // verifying the XTAL frequency with endIf condition
-const VerifyXTAL_Type1															= ["F2838x"]
+const VerifyXTAL_Type0														= ["F2838x"]
 
 //
 // Available Error_Handling 
@@ -149,7 +149,7 @@ exports = {
 	Initilization_GPIO_22_23 : Initilization_GPIO_22_23,
 	Initilization_GPIO_20_21_Type0 : Initilization_GPIO_20_21_Type0,
 	Initilization_GPIO_20_21_Type1 : Initilization_GPIO_20_21_Type1,
-	Initilization_GPIO_20_21_Type2 : Initilization_GPIO_20_21_Type2,
+	Initilization_GPIO_11_28 : Initilization_GPIO_11_28,
 	Initilization_Device_initGPIO_Type0 : Initilization_Device_initGPIO_Type0,
 	VerifyXTAL_Type0 : VerifyXTAL_Type0,
 	VerifyXTAL_Type1 : VerifyXTAL_Type1,

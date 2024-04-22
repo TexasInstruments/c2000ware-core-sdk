@@ -1,6 +1,6 @@
 //#############################################################################
 //
-// stack_overflow.js
+// erad_ex3_stack_overflow.js
 //
 // This JavaScript file is used to configure ERAD registers for use with the CCS
 // example "erad_ex3_stackoverflow".
@@ -8,12 +8,12 @@
 // To properly use this script, the following variables must be set in the
 // scripting environment prior to launching the ERAD script:
 //
-// - var PROJ_NAME = "erad_ex3_stackoverflow"
+// - var PROJ_NAME = "erad_debugger_ex3_stackoverflow"
 // - var PROJ_WKSPC_LOC = <proj_workspace_path>
 //
 // To run this ERAD script, use the following command in the scripting console:
 //
-// - loadJSFile("<proj_workspace_path>\\erad_ex3_stackoverflow\\stack_overflow.js", 0);
+// - loadJSFile("<proj_workspace_path>\\erad_debugger_ex3_stackoverflow\\erad_ex3_stack_overflow.js", 0);
 //
 // This JavaScript file uses Debug Server Scripting (DSS) features. For
 // information on using the DSS, please visit:
@@ -216,6 +216,15 @@ if(0 == (hwbp1Status &  0xF000))
                                   EradGlobalRegs + GLBL_ENABLE,
                                   enableHWBP,
                                   DATA_SIZE_16);
+
+    //
+    // Reset HWBP_1
+    //
+    debugSession.memory.writeData(Memory.Page.DATA,
+                                  EradHWBP1Regs + HWBP_CLEAR,
+                                  0x1,
+                                  DATA_SIZE_16);
+
 
     print("\nProfile stopped\n");
 }

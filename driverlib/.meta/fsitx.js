@@ -108,7 +108,23 @@ let config = [
         hidden      : false,
         default     : 4
     },
-
+    {
+        name        : "txclk",
+        displayName : "FSI TXCLK [MHz]",
+        default     : Common.SYSCLK_getMaxMHz()/4/2,
+        getValue    : (inst) => {
+            var clockTree = Common.getClockTree();
+            if (clockTree)
+            {
+                // console.log(clockTree["PLLRAWCLK"])
+                return clockTree["PLLRAWCLK"].in/inst.clkPres/2
+            }
+            else
+            {
+                return 0
+            }
+        }
+    },
     {
         name: "GROUP_FRAMECFG",
         displayName: "Frame Configuration",

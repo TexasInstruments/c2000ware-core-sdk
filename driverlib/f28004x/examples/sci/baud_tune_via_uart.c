@@ -45,6 +45,11 @@
 //! NOTE: Lower baud rates have more granularity in register options,
 //! and therefore tuning is more affective at these speeds.
 //!
+//!  \note This example project has support for migration across our C2000 
+//!  device families. If you are wanting to build this project from launchpad
+//!  or controlCARD, please specify in the .syscfg file the board you're using.
+//!  At any time you can select another device to migrate this example.
+//!
 //! \b External \b Connections for Control Card \n
 //! - SCIA_RX/eCAP1 is on GPIO9, connect to incoming SCI communications
 //! - SCIA_TX is on GPIO8, for observation externally
@@ -56,7 +61,7 @@
 //
 //
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 

@@ -24,8 +24,8 @@
 ;
 ;======================================================================
 ; #############################################################################
-; $TI Release: F28004x Support Library v5.00.00.00 $
-; $Release Date: 11-17-2023 $
+; $TI Release: F28004x Support Library v5.02.00.00 $
+; $Release Date: 04-07-2024 $
 ; $Copyright:
 ;// Copyright (C) 2021 Texas Instruments Incorporated - http://www.ti.com/
 ;//

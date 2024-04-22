@@ -191,12 +191,23 @@ SECTIONS
 
    .scratchpad      : > RAMLS1,       PAGE = 0
    .bss_cla		    : > RAMLS1,       PAGE = 0
-   .const_cla	    :  LOAD = FLASHB,
-                       RUN = RAMLS1,
-                       RUN_START(_Cla1ConstRunStart),
-                       LOAD_START(_Cla1ConstLoadStart),
-                       LOAD_SIZE(_Cla1ConstLoadSize),
-                       PAGE = 0
+   #if defined(__TI_EABI__)
+   .const_cla      : LOAD = FLASHB,
+                      RUN = RAMLS1,
+                      RUN_START(Cla1ConstRunStart),
+                      LOAD_START(Cla1ConstLoadStart),
+                      LOAD_SIZE(Cla1ConstLoadSize),
+                      PAGE = 0,
+                      ALIGN(4)
+  #else
+   .const_cla      : LOAD = FLASHB,
+                      RUN = RAMLS1,
+                      RUN_START(_Cla1ConstRunStart),
+                      LOAD_START(_Cla1ConstLoadStart),
+                      LOAD_SIZE(_Cla1ConstLoadSize),
+                      PAGE = 0,
+                      ALIGN(4)
+  #endif
 #endif //CLA_C
 }
 

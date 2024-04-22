@@ -1,0 +1,1357 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>AES Module &mdash; F28P55x API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F28P55x API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="ASysCtl Module" href="asysctl.html"/>
+        <link rel="prev" title="ADC Module" href="adc.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F28P55x API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v5.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="adc.html">ADC Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">AES Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asysctl.html">ASysCtl Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla.html">CLA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clb.html">CLB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmpss.html">CMPSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dac.html">DAC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcc.html">DCC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dma.html">DMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ecap.html">ECAP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="epg.html">EPG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="epwm.html">EPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqep.html">EQEP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="erad.html">ERAD Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fsi.html">FSI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hrpwm.html">HRPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lin.html">LIN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcan.html">MCAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pga.html">PGA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pmbus.html">PMBUS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci.html">SCI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">SPI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version.html">Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xbar.html">XBAR Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F28P55x API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>AES Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="aes-module">
+<span id="aes"></span><h1>AES Module<a class="headerlink" href="#aes-module" title="Permalink to this headline">¶</a></h1>
+<p>The AES module driver provides a method for performing encryption and
+decryption operations on blocks of 128-bits of data. The configuration and
+feature highlights are:
+1. Supports ECB, CBC, CTR, ICM, CFB, CBC-MAC, GCM, CCM, XTS, F8, and F9 operating modes.
+2. The cipher block handles keys of 128-bits, 192-bits, and 256 bits.
+3. In modes that require authentication, a hash tag is generated.
+4. Controls uDMA triggers for context and data transfers.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__aes__api"></span><em>group</em> <code class="sig-name descname">aes_api</code></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.AES_INT_CONTEXT_IN">
+<span class="target" id="group__aes__api_1ga6a9485c56026d28ef0cee0fafc927d3c"></span><code class="sig-name descname">AES_INT_CONTEXT_IN</code> 0x00000001U<a class="headerlink" href="#c.AES_INT_CONTEXT_IN" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Context-In Interrupt. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.AES_INT_CONTEXT_OUT">
+<span class="target" id="group__aes__api_1ga6d9ce4fe929455385442af3abb77095f"></span><code class="sig-name descname">AES_INT_CONTEXT_OUT</code> 0x00000008U<a class="headerlink" href="#c.AES_INT_CONTEXT_OUT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Context-Out Interrupt. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.AES_INT_DATA_IN">
+<span class="target" id="group__aes__api_1gaac319c6717e02ad68242a709c49e993d"></span><code class="sig-name descname">AES_INT_DATA_IN</code> 0x00000002U<a class="headerlink" href="#c.AES_INT_DATA_IN" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Data-In Interrupt. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.AES_INT_DATA_OUT">
+<span class="target" id="group__aes__api_1ga4d0a07f758be95ca11ed6535d4c431eb"></span><code class="sig-name descname">AES_INT_DATA_OUT</code> 0x00000004U<a class="headerlink" href="#c.AES_INT_DATA_OUT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Data-Out Interrupt. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.AES_AESINT_M">
+<span class="target" id="group__aes__api_1ga8d9685e765258fa2b0200f0096cad365"></span><code class="sig-name descname">AES_AESINT_M</code> (<a class="reference internal" href="#group__aes__api_1ga6a9485c56026d28ef0cee0fafc927d3c"><span class="std std-ref">AES_INT_CONTEXT_IN</span></a><p>  |                        \</p>
+<a class="reference internal" href="#group__aes__api_1ga6d9ce4fe929455385442af3abb77095f"><span class="std std-ref">AES_INT_CONTEXT_OUT</span></a><p> |                        \</p>
+<a class="reference internal" href="#group__aes__api_1gaac319c6717e02ad68242a709c49e993d"><span class="std std-ref">AES_INT_DATA_IN</span></a><p>     |                        \</p>
+<a class="reference internal" href="#group__aes__api_1ga4d0a07f758be95ca11ed6535d4c431eb"><span class="std std-ref">AES_INT_DATA_OUT</span></a>)<a class="headerlink" href="#c.AES_AESINT_M" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.AES_DMA_EN_DATA_IN">
+<span class="target" id="group__aes__api_1gaa2cba35a8c21d70b4f41f5903a3336c5"></span><code class="sig-name descname">AES_DMA_EN_DATA_IN</code> 0x00000020U<a class="headerlink" href="#c.AES_DMA_EN_DATA_IN" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable DMA for data i/p request. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.AES_DMA_EN_DATA_OUT">
+<span class="target" id="group__aes__api_1gaa286557a22a868b2811b10f7d2c561ae"></span><code class="sig-name descname">AES_DMA_EN_DATA_OUT</code> 0x00000040U<a class="headerlink" href="#c.AES_DMA_EN_DATA_OUT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable DMA for data o/p request. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.AES_DMA_EN_CONTEXT_IN">
+<span class="target" id="group__aes__api_1ga8d64c57693af5c3e2eba750de257c141"></span><code class="sig-name descname">AES_DMA_EN_CONTEXT_IN</code> 0x00000080U<a class="headerlink" href="#c.AES_DMA_EN_CONTEXT_IN" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable DMA for ctx i/p request. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.AES_DMA_EN_CONTEXT_OUT">
+<span class="target" id="group__aes__api_1gaad03ee7ebb978e5823eda333d3c73ed4"></span><code class="sig-name descname">AES_DMA_EN_CONTEXT_OUT</code> 0x00000100U<a class="headerlink" href="#c.AES_DMA_EN_CONTEXT_OUT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable DMA for ctx o/p request. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.AES_DMA_EN_M">
+<span class="target" id="group__aes__api_1gad91936e5ae83ba404da7628a6c1e03d6"></span><code class="sig-name descname">AES_DMA_EN_M</code> (<a class="reference internal" href="#group__aes__api_1gaa2cba35a8c21d70b4f41f5903a3336c5"><span class="std std-ref">AES_DMA_EN_DATA_IN</span></a>    | <a class="reference internal" href="#group__aes__api_1gaa286557a22a868b2811b10f7d2c561ae"><span class="std std-ref">AES_DMA_EN_DATA_OUT</span></a><p> |       \</p>
+<a class="reference internal" href="#group__aes__api_1ga8d64c57693af5c3e2eba750de257c141"><span class="std std-ref">AES_DMA_EN_CONTEXT_IN</span></a> | <a class="reference internal" href="#group__aes__api_1gaad03ee7ebb978e5823eda333d3c73ed4"><span class="std std-ref">AES_DMA_EN_CONTEXT_OUT</span></a>)<a class="headerlink" href="#c.AES_DMA_EN_M" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.AES_CONFIG_M">
+<span class="target" id="group__aes__api_1ga51da454ceceadfcb43375ffe0960044c"></span><code class="sig-name descname">AES_CONFIG_M</code> ((uint32_t)AES_CTRL_DIRECTION<p>   |                        \</p>
+<p>                       (uint32_t)</p>
+AES_CTRL_MODE<p>        |                        \</p>
+<p>                       (uint32_t)</p>
+AES_CTRL_KEY_SIZE_M<p>  |                        \</p>
+<p>                       (uint32_t)</p>
+AES_CTRL_CTR<p>         |                        \</p>
+<p>                       (uint32_t)</p>
+AES_CTRL_CTR_WIDTH_M<p> |                        \</p>
+<p>                       (uint32_t)</p>
+AES_CTRL_ICM<p>         |                        \</p>
+<p>                       (uint32_t)</p>
+AES_CTRL_CFB<p>         |                        \</p>
+<p>                       (uint32_t)</p>
+AES_CTRL_XTS_M<p>       |                        \</p>
+<p>                       (uint32_t)</p>
+AES_CTRL_F8<p>          |                        \</p>
+<p>                       (uint32_t)</p>
+AES_CTRL_F9<p>          |                        \</p>
+<p>                       (uint32_t)</p>
+AES_CTRL_CBCMAC<p>      |                        \</p>
+<p>                       (uint32_t)</p>
+AES_CTRL_GCM_M<p>       |                        \</p>
+<p>                       (uint32_t)</p>
+AES_CTRL_CCM<p>         |                        \</p>
+<p>                       (uint32_t)</p>
+AES_CTRL_CCM_L_M<p>     |                        \</p>
+<p>                       (uint32_t)</p>
+AES_CTRL_CCM_M_M)<a class="headerlink" href="#c.AES_CONFIG_M" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Enums</p>
+<dl class="cpp enum">
+<dt id="_CPPv413AES_Direction">
+<span id="_CPPv313AES_Direction"></span><span id="_CPPv213AES_Direction"></span><span class="target" id="group__aes__api_1ga0d342ced0ff6e58f7576ce59111b83fc"></span><em class="property">enum </em><code class="sig-name descname">AES_Direction</code><a class="headerlink" href="#_CPPv413AES_Direction" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__aes__api_1ga3fbe6d00e84181bcda315dd87b8af1b5"><span class="std std-ref">AES_configureModule()</span></a> as the <em>config</em> parameter’s <em>direction</em> member. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13AES_Direction21AES_DIRECTION_DECRYPTE">
+<span id="_CPPv3N13AES_Direction21AES_DIRECTION_DECRYPTE"></span><span id="_CPPv2N13AES_Direction21AES_DIRECTION_DECRYPTE"></span><span class="target" id="group__aes__api_1gga0d342ced0ff6e58f7576ce59111b83fcab18ada6186a0367e9c42cece60884381"></span><em class="property">enumerator </em><code class="sig-name descname">AES_DIRECTION_DECRYPT</code> = 0x00000000U<a class="headerlink" href="#_CPPv4N13AES_Direction21AES_DIRECTION_DECRYPTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select Decryption Mode. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N13AES_Direction21AES_DIRECTION_ENCRYPTE">
+<span id="_CPPv3N13AES_Direction21AES_DIRECTION_ENCRYPTE"></span><span id="_CPPv2N13AES_Direction21AES_DIRECTION_ENCRYPTE"></span><span class="target" id="group__aes__api_1gga0d342ced0ff6e58f7576ce59111b83fca1784ac8e2bd853117317aa3b0c4eb043"></span><em class="property">enumerator </em><code class="sig-name descname">AES_DIRECTION_ENCRYPT</code> = 0x00000004U<a class="headerlink" href="#_CPPv4N13AES_Direction21AES_DIRECTION_ENCRYPTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select Encryption Mode. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv411AES_KeySize">
+<span id="_CPPv311AES_KeySize"></span><span id="_CPPv211AES_KeySize"></span><span class="target" id="group__aes__api_1gab0c56e675e44627414eda90364e5854e"></span><em class="property">enum </em><code class="sig-name descname">AES_KeySize</code><a class="headerlink" href="#_CPPv411AES_KeySize" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__aes__api_1ga3fbe6d00e84181bcda315dd87b8af1b5"><span class="std std-ref">AES_configureModule()</span></a> as the <em>config</em> parameter’s <em>keySize</em> member. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11AES_KeySize19AES_KEY_SIZE_128BITE">
+<span id="_CPPv3N11AES_KeySize19AES_KEY_SIZE_128BITE"></span><span id="_CPPv2N11AES_KeySize19AES_KEY_SIZE_128BITE"></span><span class="target" id="group__aes__api_1ggab0c56e675e44627414eda90364e5854ea4479cbc2b3a54a742eb05636e0b8edf4"></span><em class="property">enumerator </em><code class="sig-name descname">AES_KEY_SIZE_128BIT</code> = 0x00000008U<a class="headerlink" href="#_CPPv4N11AES_KeySize19AES_KEY_SIZE_128BITE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select 128-bit key. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11AES_KeySize19AES_KEY_SIZE_192BITE">
+<span id="_CPPv3N11AES_KeySize19AES_KEY_SIZE_192BITE"></span><span id="_CPPv2N11AES_KeySize19AES_KEY_SIZE_192BITE"></span><span class="target" id="group__aes__api_1ggab0c56e675e44627414eda90364e5854ea511304002cab67735282e58b79ac6734"></span><em class="property">enumerator </em><code class="sig-name descname">AES_KEY_SIZE_192BIT</code> = 0x00000010U<a class="headerlink" href="#_CPPv4N11AES_KeySize19AES_KEY_SIZE_192BITE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select 192-bit key. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N11AES_KeySize19AES_KEY_SIZE_256BITE">
+<span id="_CPPv3N11AES_KeySize19AES_KEY_SIZE_256BITE"></span><span id="_CPPv2N11AES_KeySize19AES_KEY_SIZE_256BITE"></span><span class="target" id="group__aes__api_1ggab0c56e675e44627414eda90364e5854ea63db0d55350094ac6ba9e4d2e7f75bbd"></span><em class="property">enumerator </em><code class="sig-name descname">AES_KEY_SIZE_256BIT</code> = 0x00000018U<a class="headerlink" href="#_CPPv4N11AES_KeySize19AES_KEY_SIZE_256BITE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select 256-bit key. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv410AES_OpMode">
+<span id="_CPPv310AES_OpMode"></span><span id="_CPPv210AES_OpMode"></span><span class="target" id="group__aes__api_1ga54c3bf70f89e8144b82ff89abd9f1eba"></span><em class="property">enum </em><code class="sig-name descname">AES_OpMode</code><a class="headerlink" href="#_CPPv410AES_OpMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__aes__api_1ga3fbe6d00e84181bcda315dd87b8af1b5"><span class="std std-ref">AES_configureModule()</span></a> as the <em>config</em> parameter’s <em>opMode</em> member. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N10AES_OpMode14AES_OPMODE_ECBE">
+<span id="_CPPv3N10AES_OpMode14AES_OPMODE_ECBE"></span><span id="_CPPv2N10AES_OpMode14AES_OPMODE_ECBE"></span><span class="target" id="group__aes__api_1gga54c3bf70f89e8144b82ff89abd9f1ebaadeec4d84a90771fc8244e00ab54d68f3"></span><em class="property">enumerator </em><code class="sig-name descname">AES_OPMODE_ECB</code> = 0x00000000U<a class="headerlink" href="#_CPPv4N10AES_OpMode14AES_OPMODE_ECBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select ECB mode. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N10AES_OpMode14AES_OPMODE_CBCE">
+<span id="_CPPv3N10AES_OpMode14AES_OPMODE_CBCE"></span><span id="_CPPv2N10AES_OpMode14AES_OPMODE_CBCE"></span><span class="target" id="group__aes__api_1gga54c3bf70f89e8144b82ff89abd9f1ebaadb8ffdafc4af0fa9e7813329ec46675d"></span><em class="property">enumerator </em><code class="sig-name descname">AES_OPMODE_CBC</code> = 0x00000020U<a class="headerlink" href="#_CPPv4N10AES_OpMode14AES_OPMODE_CBCE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select CBC mode. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N10AES_OpMode14AES_OPMODE_CTRE">
+<span id="_CPPv3N10AES_OpMode14AES_OPMODE_CTRE"></span><span id="_CPPv2N10AES_OpMode14AES_OPMODE_CTRE"></span><span class="target" id="group__aes__api_1gga54c3bf70f89e8144b82ff89abd9f1ebaace79cd4b3e230772afdbbb3324b6c62b"></span><em class="property">enumerator </em><code class="sig-name descname">AES_OPMODE_CTR</code> = 0x00000040U<a class="headerlink" href="#_CPPv4N10AES_OpMode14AES_OPMODE_CTRE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select CTR mode. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N10AES_OpMode14AES_OPMODE_ICME">
+<span id="_CPPv3N10AES_OpMode14AES_OPMODE_ICME"></span><span id="_CPPv2N10AES_OpMode14AES_OPMODE_ICME"></span><span class="target" id="group__aes__api_1gga54c3bf70f89e8144b82ff89abd9f1ebaa0407c22fc1de082a4b25be19cf9a39ea"></span><em class="property">enumerator </em><code class="sig-name descname">AES_OPMODE_ICM</code> = 0x00000200U<a class="headerlink" href="#_CPPv4N10AES_OpMode14AES_OPMODE_ICME" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select ICM mode. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N10AES_OpMode14AES_OPMODE_CFBE">
+<span id="_CPPv3N10AES_OpMode14AES_OPMODE_CFBE"></span><span id="_CPPv2N10AES_OpMode14AES_OPMODE_CFBE"></span><span class="target" id="group__aes__api_1gga54c3bf70f89e8144b82ff89abd9f1ebaa37ae90fe15e01b6f582110c77e1519db"></span><em class="property">enumerator </em><code class="sig-name descname">AES_OPMODE_CFB</code> = 0x00000400U<a class="headerlink" href="#_CPPv4N10AES_OpMode14AES_OPMODE_CFBE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select CFB mode. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N10AES_OpMode22AES_OPMODE_XTS_TWEAKJLE">
+<span id="_CPPv3N10AES_OpMode22AES_OPMODE_XTS_TWEAKJLE"></span><span id="_CPPv2N10AES_OpMode22AES_OPMODE_XTS_TWEAKJLE"></span><span class="target" id="group__aes__api_1gga54c3bf70f89e8144b82ff89abd9f1ebaaef7febc0523c4ef71c3e846b7dde559a"></span><em class="property">enumerator </em><code class="sig-name descname">AES_OPMODE_XTS_TWEAKJL</code> = 0x00000800U<a class="headerlink" href="#_CPPv4N10AES_OpMode22AES_OPMODE_XTS_TWEAKJLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select XTS TWEAKJL mode. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N10AES_OpMode20AES_OPMODE_XTS_K2NJLE">
+<span id="_CPPv3N10AES_OpMode20AES_OPMODE_XTS_K2NJLE"></span><span id="_CPPv2N10AES_OpMode20AES_OPMODE_XTS_K2NJLE"></span><span class="target" id="group__aes__api_1gga54c3bf70f89e8144b82ff89abd9f1ebaa03145ea796a1ee1a6364f39ccb6c5565"></span><em class="property">enumerator </em><code class="sig-name descname">AES_OPMODE_XTS_K2NJL</code> = 0x00001000U<a class="headerlink" href="#_CPPv4N10AES_OpMode20AES_OPMODE_XTS_K2NJLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select XTS K2IJL mode. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N10AES_OpMode21AES_OPMODE_XTS_K2NLJ0E">
+<span id="_CPPv3N10AES_OpMode21AES_OPMODE_XTS_K2NLJ0E"></span><span id="_CPPv2N10AES_OpMode21AES_OPMODE_XTS_K2NLJ0E"></span><span class="target" id="group__aes__api_1gga54c3bf70f89e8144b82ff89abd9f1ebaaee968f8c20f04ff585d9835cb543bf1e"></span><em class="property">enumerator </em><code class="sig-name descname">AES_OPMODE_XTS_K2NLJ0</code> = 0x00001800U<a class="headerlink" href="#_CPPv4N10AES_OpMode21AES_OPMODE_XTS_K2NLJ0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select XTS K2ILJ0 mode. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N10AES_OpMode13AES_OPMODE_F8E">
+<span id="_CPPv3N10AES_OpMode13AES_OPMODE_F8E"></span><span id="_CPPv2N10AES_OpMode13AES_OPMODE_F8E"></span><span class="target" id="group__aes__api_1gga54c3bf70f89e8144b82ff89abd9f1ebaa06bd02d804183e4987091c9a123d1706"></span><em class="property">enumerator </em><code class="sig-name descname">AES_OPMODE_F8</code> = 0x00002000U<a class="headerlink" href="#_CPPv4N10AES_OpMode13AES_OPMODE_F8E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select F8 mode. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N10AES_OpMode13AES_OPMODE_F9E">
+<span id="_CPPv3N10AES_OpMode13AES_OPMODE_F9E"></span><span id="_CPPv2N10AES_OpMode13AES_OPMODE_F9E"></span><span class="target" id="group__aes__api_1gga54c3bf70f89e8144b82ff89abd9f1ebaae0cbc9b7e2589798dfb015440c9508bb"></span><em class="property">enumerator </em><code class="sig-name descname">AES_OPMODE_F9</code> = 0x20004000U<a class="headerlink" href="#_CPPv4N10AES_OpMode13AES_OPMODE_F9E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select F9 mode. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N10AES_OpMode17AES_OPMODE_CBCMACE">
+<span id="_CPPv3N10AES_OpMode17AES_OPMODE_CBCMACE"></span><span id="_CPPv2N10AES_OpMode17AES_OPMODE_CBCMACE"></span><span class="target" id="group__aes__api_1gga54c3bf70f89e8144b82ff89abd9f1ebaa199334928fdc8fb4c9c1b6cce86f3445"></span><em class="property">enumerator </em><code class="sig-name descname">AES_OPMODE_CBCMAC</code> = 0x20008000U<a class="headerlink" href="#_CPPv4N10AES_OpMode17AES_OPMODE_CBCMACE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select CBC-MAC mode. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N10AES_OpMode23AES_OPMODE_GCM_HLY0ZEROE">
+<span id="_CPPv3N10AES_OpMode23AES_OPMODE_GCM_HLY0ZEROE"></span><span id="_CPPv2N10AES_OpMode23AES_OPMODE_GCM_HLY0ZEROE"></span><span class="target" id="group__aes__api_1gga54c3bf70f89e8144b82ff89abd9f1ebaa713e1b52a7a73f6538195bdb8d018e20"></span><em class="property">enumerator </em><code class="sig-name descname">AES_OPMODE_GCM_HLY0ZERO</code> = 0x20010000U<a class="headerlink" href="#_CPPv4N10AES_OpMode23AES_OPMODE_GCM_HLY0ZEROE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select GCM HLY0ZERO mode. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N10AES_OpMode23AES_OPMODE_GCM_HLY0CALCE">
+<span id="_CPPv3N10AES_OpMode23AES_OPMODE_GCM_HLY0CALCE"></span><span id="_CPPv2N10AES_OpMode23AES_OPMODE_GCM_HLY0CALCE"></span><span class="target" id="group__aes__api_1gga54c3bf70f89e8144b82ff89abd9f1ebaa8bc0f02ca2e7b7ba6e6e166be26dc074"></span><em class="property">enumerator </em><code class="sig-name descname">AES_OPMODE_GCM_HLY0CALC</code> = 0x20020040U<a class="headerlink" href="#_CPPv4N10AES_OpMode23AES_OPMODE_GCM_HLY0CALCE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select GCM HLY0CALC mode. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N10AES_OpMode22AES_OPMODE_GCM_HY0CALCE">
+<span id="_CPPv3N10AES_OpMode22AES_OPMODE_GCM_HY0CALCE"></span><span id="_CPPv2N10AES_OpMode22AES_OPMODE_GCM_HY0CALCE"></span><span class="target" id="group__aes__api_1gga54c3bf70f89e8144b82ff89abd9f1ebaa00167609ae45e7d782e3a7efeed73124"></span><em class="property">enumerator </em><code class="sig-name descname">AES_OPMODE_GCM_HY0CALC</code> = 0x20030040U<a class="headerlink" href="#_CPPv4N10AES_OpMode22AES_OPMODE_GCM_HY0CALCE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select GCM HY0CALC mode. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N10AES_OpMode14AES_OPMODE_CCME">
+<span id="_CPPv3N10AES_OpMode14AES_OPMODE_CCME"></span><span id="_CPPv2N10AES_OpMode14AES_OPMODE_CCME"></span><span class="target" id="group__aes__api_1gga54c3bf70f89e8144b82ff89abd9f1ebaae9f3768931e1ee2e520750d767046140"></span><em class="property">enumerator </em><code class="sig-name descname">AES_OPMODE_CCM</code> = 0x20040040U<a class="headerlink" href="#_CPPv4N10AES_OpMode14AES_OPMODE_CCME" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select CCM mode. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv416AES_CounterWidth">
+<span id="_CPPv316AES_CounterWidth"></span><span id="_CPPv216AES_CounterWidth"></span><span class="target" id="group__aes__api_1gabd7764dc2c6a2e7f21a3a43f0650d747"></span><em class="property">enum </em><code class="sig-name descname">AES_CounterWidth</code><a class="headerlink" href="#_CPPv416AES_CounterWidth" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__aes__api_1ga3fbe6d00e84181bcda315dd87b8af1b5"><span class="std std-ref">AES_configureModule()</span></a> as the <em>config</em> parameter’s <em>ctrWidth</em> member. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N16AES_CounterWidth19AES_CTR_WIDTH_32BITE">
+<span id="_CPPv3N16AES_CounterWidth19AES_CTR_WIDTH_32BITE"></span><span id="_CPPv2N16AES_CounterWidth19AES_CTR_WIDTH_32BITE"></span><span class="target" id="group__aes__api_1ggabd7764dc2c6a2e7f21a3a43f0650d747acc8fda9b6e5dc4e2c3f34743f272ab6d"></span><em class="property">enumerator </em><code class="sig-name descname">AES_CTR_WIDTH_32BIT</code> = 0x00000000U<a class="headerlink" href="#_CPPv4N16AES_CounterWidth19AES_CTR_WIDTH_32BITE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select 32-bit counter. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N16AES_CounterWidth19AES_CTR_WIDTH_64BITE">
+<span id="_CPPv3N16AES_CounterWidth19AES_CTR_WIDTH_64BITE"></span><span id="_CPPv2N16AES_CounterWidth19AES_CTR_WIDTH_64BITE"></span><span class="target" id="group__aes__api_1ggabd7764dc2c6a2e7f21a3a43f0650d747ae51f879d9e46555f694ccf8e90a69c7c"></span><em class="property">enumerator </em><code class="sig-name descname">AES_CTR_WIDTH_64BIT</code> = 0x00000080U<a class="headerlink" href="#_CPPv4N16AES_CounterWidth19AES_CTR_WIDTH_64BITE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select 64-bit counter. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N16AES_CounterWidth19AES_CTR_WIDTH_96BITE">
+<span id="_CPPv3N16AES_CounterWidth19AES_CTR_WIDTH_96BITE"></span><span id="_CPPv2N16AES_CounterWidth19AES_CTR_WIDTH_96BITE"></span><span class="target" id="group__aes__api_1ggabd7764dc2c6a2e7f21a3a43f0650d747aebdfaaac13c9fe71ca323b9a5021e2ae"></span><em class="property">enumerator </em><code class="sig-name descname">AES_CTR_WIDTH_96BIT</code> = 0x00000100U<a class="headerlink" href="#_CPPv4N16AES_CounterWidth19AES_CTR_WIDTH_96BITE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select 96-bit counter. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N16AES_CounterWidth20AES_CTR_WIDTH_128BITE">
+<span id="_CPPv3N16AES_CounterWidth20AES_CTR_WIDTH_128BITE"></span><span id="_CPPv2N16AES_CounterWidth20AES_CTR_WIDTH_128BITE"></span><span class="target" id="group__aes__api_1ggabd7764dc2c6a2e7f21a3a43f0650d747a1e7c89b98312b41439a83a45130681db"></span><em class="property">enumerator </em><code class="sig-name descname">AES_CTR_WIDTH_128BIT</code> = 0x00000180U<a class="headerlink" href="#_CPPv4N16AES_CounterWidth20AES_CTR_WIDTH_128BITE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Select 128-bit counter. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv415AES_CCMLenWidth">
+<span id="_CPPv315AES_CCMLenWidth"></span><span id="_CPPv215AES_CCMLenWidth"></span><span class="target" id="group__aes__api_1ga4367e390e30d8e4d9c7d784f249beb0b"></span><em class="property">enum </em><code class="sig-name descname">AES_CCMLenWidth</code><a class="headerlink" href="#_CPPv415AES_CCMLenWidth" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__aes__api_1ga3fbe6d00e84181bcda315dd87b8af1b5"><span class="std std-ref">AES_configureModule()</span></a> as the <em>config</em> parameter’s <em>ccmLenWidth</em> member. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15AES_CCMLenWidth11AES_CCM_L_1E">
+<span id="_CPPv3N15AES_CCMLenWidth11AES_CCM_L_1E"></span><span id="_CPPv2N15AES_CCMLenWidth11AES_CCM_L_1E"></span><span class="target" id="group__aes__api_1gga4367e390e30d8e4d9c7d784f249beb0ba901ff08ae7352322af3970bc096b23d6"></span><em class="property">enumerator </em><code class="sig-name descname">AES_CCM_L_1</code> = 0x00000000U<a class="headerlink" href="#_CPPv4N15AES_CCMLenWidth11AES_CCM_L_1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CCM Length width = 1 byte. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15AES_CCMLenWidth11AES_CCM_L_2E">
+<span id="_CPPv3N15AES_CCMLenWidth11AES_CCM_L_2E"></span><span id="_CPPv2N15AES_CCMLenWidth11AES_CCM_L_2E"></span><span class="target" id="group__aes__api_1gga4367e390e30d8e4d9c7d784f249beb0baa6e5ffe2b377744a1dfb5ef2e5e0bd21"></span><em class="property">enumerator </em><code class="sig-name descname">AES_CCM_L_2</code> = 0x00080000U<a class="headerlink" href="#_CPPv4N15AES_CCMLenWidth11AES_CCM_L_2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CCM Length width = 2 bytes. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15AES_CCMLenWidth11AES_CCM_L_4E">
+<span id="_CPPv3N15AES_CCMLenWidth11AES_CCM_L_4E"></span><span id="_CPPv2N15AES_CCMLenWidth11AES_CCM_L_4E"></span><span class="target" id="group__aes__api_1gga4367e390e30d8e4d9c7d784f249beb0ba3b337299c4e14e4ae4b7c3ab0a09f687"></span><em class="property">enumerator </em><code class="sig-name descname">AES_CCM_L_4</code> = 0x00180000U<a class="headerlink" href="#_CPPv4N15AES_CCMLenWidth11AES_CCM_L_4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CCM Length width = 4 bytes. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15AES_CCMLenWidth11AES_CCM_L_8E">
+<span id="_CPPv3N15AES_CCMLenWidth11AES_CCM_L_8E"></span><span id="_CPPv2N15AES_CCMLenWidth11AES_CCM_L_8E"></span><span class="target" id="group__aes__api_1gga4367e390e30d8e4d9c7d784f249beb0ba962c8b2d7a16647acc02c017d769e36b"></span><em class="property">enumerator </em><code class="sig-name descname">AES_CCM_L_8</code> = 0x00380000U<a class="headerlink" href="#_CPPv4N15AES_CCMLenWidth11AES_CCM_L_8E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CCM Length width = 8 bytes. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv419AES_CCMAuthLenWidth">
+<span id="_CPPv319AES_CCMAuthLenWidth"></span><span id="_CPPv219AES_CCMAuthLenWidth"></span><span class="target" id="group__aes__api_1ga4a08c774c27a04d63a23afe779800739"></span><em class="property">enum </em><code class="sig-name descname">AES_CCMAuthLenWidth</code><a class="headerlink" href="#_CPPv419AES_CCMAuthLenWidth" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Values that can be passed to <a class="reference internal" href="#group__aes__api_1ga3fbe6d00e84181bcda315dd87b8af1b5"><span class="std std-ref">AES_configureModule()</span></a> as the <em>config</em> parameter’s <em>ccmAuthLenWidth</em> member. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19AES_CCMAuthLenWidth11AES_CCM_M_0E">
+<span id="_CPPv3N19AES_CCMAuthLenWidth11AES_CCM_M_0E"></span><span id="_CPPv2N19AES_CCMAuthLenWidth11AES_CCM_M_0E"></span><span class="target" id="group__aes__api_1gga4a08c774c27a04d63a23afe779800739a0ca1776e4cac75eb23dabaebb12923f3"></span><em class="property">enumerator </em><code class="sig-name descname">AES_CCM_M_0</code> = 0x00000000U<a class="headerlink" href="#_CPPv4N19AES_CCMAuthLenWidth11AES_CCM_M_0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CCM Auth Length width at reset. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19AES_CCMAuthLenWidth11AES_CCM_M_4E">
+<span id="_CPPv3N19AES_CCMAuthLenWidth11AES_CCM_M_4E"></span><span id="_CPPv2N19AES_CCMAuthLenWidth11AES_CCM_M_4E"></span><span class="target" id="group__aes__api_1gga4a08c774c27a04d63a23afe779800739ab771427dbab3dbec2f2b4c60b2af3374"></span><em class="property">enumerator </em><code class="sig-name descname">AES_CCM_M_4</code> = 0x00400000U<a class="headerlink" href="#_CPPv4N19AES_CCMAuthLenWidth11AES_CCM_M_4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CCM Auth Length width = 4 bytes. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19AES_CCMAuthLenWidth11AES_CCM_M_6E">
+<span id="_CPPv3N19AES_CCMAuthLenWidth11AES_CCM_M_6E"></span><span id="_CPPv2N19AES_CCMAuthLenWidth11AES_CCM_M_6E"></span><span class="target" id="group__aes__api_1gga4a08c774c27a04d63a23afe779800739a00a9db68cd81832446019d8dfc2c54ac"></span><em class="property">enumerator </em><code class="sig-name descname">AES_CCM_M_6</code> = 0x00800000U<a class="headerlink" href="#_CPPv4N19AES_CCMAuthLenWidth11AES_CCM_M_6E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CCM Auth Length width = 6 bytes. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19AES_CCMAuthLenWidth11AES_CCM_M_8E">
+<span id="_CPPv3N19AES_CCMAuthLenWidth11AES_CCM_M_8E"></span><span id="_CPPv2N19AES_CCMAuthLenWidth11AES_CCM_M_8E"></span><span class="target" id="group__aes__api_1gga4a08c774c27a04d63a23afe779800739abee89dc44d6ef5d1b596de7e67728d7a"></span><em class="property">enumerator </em><code class="sig-name descname">AES_CCM_M_8</code> = 0x00C00000U<a class="headerlink" href="#_CPPv4N19AES_CCMAuthLenWidth11AES_CCM_M_8E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CCM Auth Length width = 8 bytes. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19AES_CCMAuthLenWidth12AES_CCM_M_10E">
+<span id="_CPPv3N19AES_CCMAuthLenWidth12AES_CCM_M_10E"></span><span id="_CPPv2N19AES_CCMAuthLenWidth12AES_CCM_M_10E"></span><span class="target" id="group__aes__api_1gga4a08c774c27a04d63a23afe779800739a3991b7cc8180e1729ee4bfd8f558de2f"></span><em class="property">enumerator </em><code class="sig-name descname">AES_CCM_M_10</code> = 0x01000000U<a class="headerlink" href="#_CPPv4N19AES_CCMAuthLenWidth12AES_CCM_M_10E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CCM Auth Length width = 10 bytes. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19AES_CCMAuthLenWidth12AES_CCM_M_12E">
+<span id="_CPPv3N19AES_CCMAuthLenWidth12AES_CCM_M_12E"></span><span id="_CPPv2N19AES_CCMAuthLenWidth12AES_CCM_M_12E"></span><span class="target" id="group__aes__api_1gga4a08c774c27a04d63a23afe779800739a5cecf9e522bfa3ae10a1266dcef19a73"></span><em class="property">enumerator </em><code class="sig-name descname">AES_CCM_M_12</code> = 0x01400000U<a class="headerlink" href="#_CPPv4N19AES_CCMAuthLenWidth12AES_CCM_M_12E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CCM Auth Length width = 12 bytes. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19AES_CCMAuthLenWidth12AES_CCM_M_14E">
+<span id="_CPPv3N19AES_CCMAuthLenWidth12AES_CCM_M_14E"></span><span id="_CPPv2N19AES_CCMAuthLenWidth12AES_CCM_M_14E"></span><span class="target" id="group__aes__api_1gga4a08c774c27a04d63a23afe779800739a083817abb9de3c24902d932de22a1618"></span><em class="property">enumerator </em><code class="sig-name descname">AES_CCM_M_14</code> = 0x01800000U<a class="headerlink" href="#_CPPv4N19AES_CCMAuthLenWidth12AES_CCM_M_14E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CCM Auth Length width = 14 bytes. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N19AES_CCMAuthLenWidth12AES_CCM_M_16E">
+<span id="_CPPv3N19AES_CCMAuthLenWidth12AES_CCM_M_16E"></span><span id="_CPPv2N19AES_CCMAuthLenWidth12AES_CCM_M_16E"></span><span class="target" id="group__aes__api_1gga4a08c774c27a04d63a23afe779800739aeae76972a491cf69194270fcdd5b8f46"></span><em class="property">enumerator </em><code class="sig-name descname">AES_CCM_M_16</code> = 0x01C00000U<a class="headerlink" href="#_CPPv4N19AES_CCMAuthLenWidth12AES_CCM_M_16E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CCM Auth Length width = 16 bytes. </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv420AES_performSoftReset8uint32_t">
+<span id="_CPPv320AES_performSoftReset8uint32_t"></span><span id="_CPPv220AES_performSoftReset8uint32_t"></span><span id="AES_performSoftReset__uint32_t"></span><span class="target" id="group__aes__api_1gab585da7f6315ef20db2d44930b997dee"></span>void <code class="sig-name descname">AES_performSoftReset</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420AES_performSoftReset8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Resets the AES module.</p>
+<p><p>This function performs a soft-reset of the AES module.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the AES module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417AES_setDataLength8uint32_t8uint64_t">
+<span id="_CPPv317AES_setDataLength8uint32_t8uint64_t"></span><span id="_CPPv217AES_setDataLength8uint32_t8uint64_t"></span><span id="AES_setDataLength__uint32_t.uint64_t"></span><span class="target" id="group__aes__api_1ga0738d695cab1df17c5343a988d28661c"></span>void <code class="sig-name descname">AES_setDataLength</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint64_t <em>length</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417AES_setDataLength8uint32_t8uint64_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Used to set the write crypto data length in the AES module.</p>
+<p><p>This function stores the cryptographic data length in blocks for all modes. Data lengths up to (2^61 - 1) bytes are allowed. For GCM, any value up to (2^36 - 32) bytes are allowed because a 32-bit block counter is used. For basic modes (ECB/CBC/CTR/ICM/CFB128), zero can be programmed into the length field, indicating that the length is infinite.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the AES module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">length</span></code>: is the crypto data length in bytes.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>When this function is called, the engine is triggered to start using this context.</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>This length does not include the authentication-only data used in some modes. Use the <a class="reference internal" href="#group__aes__api_1ga48f59713364d915df3b8bf22a14d6900"><span class="std std-ref">AES_setAuthDataLength()</span></a> function to specify the authentication data length.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421AES_setAuthDataLength8uint32_t8uint32_t">
+<span id="_CPPv321AES_setAuthDataLength8uint32_t8uint32_t"></span><span id="_CPPv221AES_setAuthDataLength8uint32_t8uint32_t"></span><span id="AES_setAuthDataLength__uint32_t.uint32_t"></span><span class="target" id="group__aes__api_1ga48f59713364d915df3b8bf22a14d6900"></span>void <code class="sig-name descname">AES_setAuthDataLength</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>authLength</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421AES_setAuthDataLength8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the authentication data length in the AES module.</p>
+<p><p>This function is only used to write the authentication data length in the combined modes (GCM or CCM) and XTS mode. Supported AAD lengths for CCM are from 0 to (2^16 - 2^8) bytes. For GCM, any value up to (2^32 - 1) can be used. For XTS mode, this register is used to load j. Loading of j is only required if j != 0. j represents the sequential number of the 128-bit blocks inside the data unit. Consequently, j must be multiplied by 16 before it is passed to this function, thereby placing the block number in bits [31:4] of the register.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the AES module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">authLength</span></code>: is the authentication data length in bytes.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>When this function is called, the engine is triggered to start using this context for GCM and CCM.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419AES_enableInterrupt8uint32_t8uint32_t">
+<span id="_CPPv319AES_enableInterrupt8uint32_t8uint32_t"></span><span id="_CPPv219AES_enableInterrupt8uint32_t8uint32_t"></span><span id="AES_enableInterrupt__uint32_t.uint32_t"></span><span class="target" id="group__aes__api_1gacdae84eda2a76948bef7c597e35441b7"></span>void <code class="sig-name descname">AES_enableInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419AES_enableInterrupt8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables AES core interrupts.</p>
+<p><p>This function enables the core interrupts in the AES module. The </p>
+<em>intFlags</em> parameter is the logical OR of any of the following:<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the AES module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is a bit mask of the interrupt sources to enable.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p><strong>AES_INT_CONTEXT_IN</strong> - Context interrupt</p></li>
+<li><p><strong>AES_INT_CONTEXT_OUT</strong> - Authentication tag (and IV) interrupt</p></li>
+<li><p><strong>AES_INT_DATA_IN</strong> - Data input interrupt</p></li>
+<li><p><strong>AES_INT_DATA_OUT</strong> - Data output interrupt</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Interrupts that have been previously been enabled are not disabled when this function is called.</p>
+</dd>
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#group__aes__api_1ga51e2cb0639c61b36137bfd82a07a8d10"><span class="std std-ref">AES_enableGlobalInterrupt()</span></a> to enable global interrupt at wrapper level. Global interrupt needs to be enabled along with core level interrupts to enable interrupts at module level.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420AES_disableInterrupt8uint32_t8uint32_t">
+<span id="_CPPv320AES_disableInterrupt8uint32_t8uint32_t"></span><span id="_CPPv220AES_disableInterrupt8uint32_t8uint32_t"></span><span id="AES_disableInterrupt__uint32_t.uint32_t"></span><span class="target" id="group__aes__api_1gab2588a67e4ad68832a2e1579e31be0d5"></span>void <code class="sig-name descname">AES_disableInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420AES_disableInterrupt8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables AES core interrupts.</p>
+<p><p>This function disables the core interrupt sources in the AES module. The </p>
+<em>intFlags</em> parameter is the logical OR of any of the following:<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the AES module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is a bit mask of the interrupt sources to disable.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p><strong>AES_INT_CONTEXT_IN</strong> - Context interrupt</p></li>
+<li><p><strong>AES_INT_CONTEXT_OUT</strong> - Authentication tag (and IV) interrupt</p></li>
+<li><p><strong>AES_INT_DATA_IN</strong> - Data input interrupt</p></li>
+<li><p><strong>AES_INT_DATA_OUT</strong> - Data output interrupt</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="#group__aes__api_1gabf4d7c2c36507fb5d34dfd90a4bf02cf"><span class="std std-ref">AES_disableGlobalInterrupt()</span></a> to disable global interrupt at wrapper level.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425AES_enableGlobalInterrupt8uint32_t">
+<span id="_CPPv325AES_enableGlobalInterrupt8uint32_t"></span><span id="_CPPv225AES_enableGlobalInterrupt8uint32_t"></span><span id="AES_enableGlobalInterrupt__uint32_t"></span><span class="target" id="group__aes__api_1ga51e2cb0639c61b36137bfd82a07a8d10"></span>void <code class="sig-name descname">AES_enableGlobalInterrupt</code><span class="sig-paren">(</span>uint32_t <em>wrapperBase</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425AES_enableGlobalInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables AES module global interrupt.</p>
+<p><p>This function enables the global interrupt in the AES module at wrappper level.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">wrapperBase</span></code>: is the base address of the AES module wrapper.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Global interrupts needs to be enabled along with individual AES core interrupts like AES_INT_CONTEXT_IN, AES_INT_CONTEXT_OUT, AES_INT_DATA_IN and AES_INT_DATA_OUT.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426AES_disableGlobalInterrupt8uint32_t">
+<span id="_CPPv326AES_disableGlobalInterrupt8uint32_t"></span><span id="_CPPv226AES_disableGlobalInterrupt8uint32_t"></span><span id="AES_disableGlobalInterrupt__uint32_t"></span><span class="target" id="group__aes__api_1gabf4d7c2c36507fb5d34dfd90a4bf02cf"></span>void <code class="sig-name descname">AES_disableGlobalInterrupt</code><span class="sig-paren">(</span>uint32_t <em>wrapperBase</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426AES_disableGlobalInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables AES module global interrupt.</p>
+<p><p>This function disables the global interrupt in the AES module at wrapper level.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">wrapperBase</span></code>: is the base address of the AES module wrapper.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>Global interrupts needs to be enabled along with individual AES interrupts like AES_INT_CONTEXT_IN, AES_INT_CONTEXT_OUT, AES_INT_DATA_IN, and AES_INT_DATA_OUT.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424AES_clearGlobalInterrupt8uint32_t">
+<span id="_CPPv324AES_clearGlobalInterrupt8uint32_t"></span><span id="_CPPv224AES_clearGlobalInterrupt8uint32_t"></span><span id="AES_clearGlobalInterrupt__uint32_t"></span><span class="target" id="group__aes__api_1ga893689bf1bf92bbb4b9a43d469e42233"></span>void <code class="sig-name descname">AES_clearGlobalInterrupt</code><span class="sig-paren">(</span>uint32_t <em>wrapperBase</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424AES_clearGlobalInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears AES module global interrupt flag.</p>
+<p><p>This function clears the global interrupt flag in the AES module at wrapper level.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">wrapperBase</span></code>: is the base address of the AES module wrapper.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428AES_getGlobalInterruptStatus8uint32_t">
+<span id="_CPPv328AES_getGlobalInterruptStatus8uint32_t"></span><span id="_CPPv228AES_getGlobalInterruptStatus8uint32_t"></span><span id="AES_getGlobalInterruptStatus__uint32_t"></span><span class="target" id="group__aes__api_1gadf66428704904d7a193db5d7124097c5"></span>bool <code class="sig-name descname">AES_getGlobalInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>wrapperBase</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428AES_getGlobalInterruptStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the AES module global interrupt status.</p>
+<p><p>This function returns the AES global interrupt status flag at wrapper level.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">wrapperBase</span></code>: is the base address of the AES module wrapper.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the global interrupt status.<ul class="simple">
+<li><p><strong>true</strong> - Global interrupt is flagged</p></li>
+<li><p><strong>false</strong> - Global interrupt is not flagged </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421AES_registerInterrupt8uint32_tPFvvE">
+<span id="_CPPv321AES_registerInterrupt8uint32_tPFvvE"></span><span id="_CPPv221AES_registerInterrupt8uint32_tPFvvE"></span><span class="target" id="group__aes__api_1gafced492e4a8f0f2d3da014eb4ed639a3"></span>void <code class="sig-name descname">AES_registerInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, void (*<em>fnHandler</em>)<span class="sig-paren">(</span>void<span class="sig-paren">)</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421AES_registerInterrupt8uint32_tPFvvE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Registers an interrupt handler for the AES module.</p>
+<p><p>This function registers the interrupt handler in the interrupt vector table, and enables AES interrupts on the interrupt controller; specific AES interrupt sources must be enabled using </p>
+<a class="reference internal" href="#group__aes__api_1gacdae84eda2a76948bef7c597e35441b7"><span class="std std-ref">AES_enableInterrupt()</span></a>. The interrupt handler being registered must clear the source of the interrupt using AES_clearInterruptStatus().<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of AES peripheral. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fnHandler</span></code>: is a pointer to the function to be called when the enabled AES interrupts occur.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>If the application is using a static interrupt vector table stored in flash, then it is not necessary to register the interrupt handler this way. Instead, <a class="reference internal" href="interrupt.html#group__interrupt__api_1ga9d2e78b67270f64253ed520cc74a9064"><span class="std std-ref">Interrupt_enable()</span></a> is used to enable AES interrupts on the interrupt controller.</p>
+<p>The <em>base</em> parameter can take following value: AESA_BASE</p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p>Interrupt_registerHandler() for important information about registering interrupt handlers.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423AES_unregisterInterrupt8uint32_t">
+<span id="_CPPv323AES_unregisterInterrupt8uint32_t"></span><span id="_CPPv223AES_unregisterInterrupt8uint32_t"></span><span id="AES_unregisterInterrupt__uint32_t"></span><span class="target" id="group__aes__api_1ga2829e3ed30b2b4faad389687d5b87b02"></span>void <code class="sig-name descname">AES_unregisterInterrupt</code><span class="sig-paren">(</span>uint32_t <em>intNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423AES_unregisterInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Unregisters an interrupt handler for the AES module.</p>
+<p><p>This function unregisters the previously registered interrupt handler and disables the interrupt in the interrupt controller.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">intNum</span></code>: is the interrupt number for AES interrupt.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>intNum</em> parameter can take following value: AES_INT</p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p>Interrupt_registerHandler() for important information about registering interrupt handlers.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420AES_enableDMARequest8uint32_t8uint32_t">
+<span id="_CPPv320AES_enableDMARequest8uint32_t8uint32_t"></span><span id="_CPPv220AES_enableDMARequest8uint32_t8uint32_t"></span><span id="AES_enableDMARequest__uint32_t.uint32_t"></span><span class="target" id="group__aes__api_1gae782c608260b9613cebd94d1c8a46098"></span>void <code class="sig-name descname">AES_enableDMARequest</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>reqFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420AES_enableDMARequest8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables uDMA requests for the AES module.</p>
+<p><p>This function enables the uDMA request sources in the AES module. The </p>
+<em>reqFlags</em> parameter is the logical OR of any of the following:<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the AES module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reqFlags</span></code>: is a bit mask of the uDMA requests to be enabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p><strong>AES_DMA_EN_DATA_IN</strong> </p></li>
+<li><p><strong>AES_DMA_EN_DATA_OUT</strong> </p></li>
+<li><p><strong>AES_DMA_EN_CONTEXT_IN</strong> </p></li>
+<li><p><strong>AES_DMA_EN_CONTEXT_OUT</strong> </p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421AES_disableDMARequest8uint32_t8uint32_t">
+<span id="_CPPv321AES_disableDMARequest8uint32_t8uint32_t"></span><span id="_CPPv221AES_disableDMARequest8uint32_t8uint32_t"></span><span id="AES_disableDMARequest__uint32_t.uint32_t"></span><span class="target" id="group__aes__api_1ga4ffaa8615076cfebac1c0d5359cba53f"></span>void <code class="sig-name descname">AES_disableDMARequest</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>reqFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421AES_disableDMARequest8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables uDMA requests for the AES module.</p>
+<p><p>This function disables the uDMA request sources in the AES module. The </p>
+<em>reqFlags</em> parameter is the logical OR of any of the following:<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the AES module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reqFlags</span></code>: is a bit mask of the uDMA requests to be disabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p><strong>AES_DMA_EN_DATA_IN</strong> </p></li>
+<li><p><strong>AES_DMA_EN_DATA_OUT</strong> </p></li>
+<li><p><strong>AES_DMA_EN_CONTEXT_IN</strong> </p></li>
+<li><p><strong>AES_DMA_EN_CONTEXT_OUT</strong> </p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419AES_configureModule8uint32_tPK16AES_ConfigParams">
+<span id="_CPPv319AES_configureModule8uint32_tPK16AES_ConfigParams"></span><span id="_CPPv219AES_configureModule8uint32_tPK16AES_ConfigParams"></span><span id="AES_configureModule__uint32_t.AES_ConfigParamsCP"></span><span class="target" id="group__aes__api_1ga3fbe6d00e84181bcda315dd87b8af1b5"></span>void <code class="sig-name descname">AES_configureModule</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <em class="property">const</em> <a class="reference internal" href="#_CPPv416AES_ConfigParams" title="AES_ConfigParams">AES_ConfigParams</a> *<em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419AES_configureModule8uint32_tPK16AES_ConfigParams" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the AES module.</p>
+<p><p>This function configures the AES module based on the specified parameters. It does not change any DMA- or interrupt-related parameters.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the AES module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code>: is the configuration of the AES module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The config parameter is a structure with members specifying valid AES mode configurations.</p>
+<p>The direction of the operation is specified with following enum members:</p>
+<p><ul class="simple">
+<li><p><strong>AES_DIRECTION_ENCRYPT</strong> - Encryption mode</p></li>
+<li><p><strong>AES_DIRECTION_DECRYPT</strong> - Decryption mode</p></li>
+</ul>
+</p>
+<p>The key size is specified with following enum members:</p>
+<p><ul class="simple">
+<li><p><strong>AES_KEY_SIZE_128BIT</strong> - Key size of 128 bits</p></li>
+<li><p><strong>AES_KEY_SIZE_192BIT</strong> - Key size of 192 bits</p></li>
+<li><p><strong>AES_KEY_SIZE_256BIT</strong> - Key size of 256 bits</p></li>
+</ul>
+</p>
+<p>The mode of operation is specified with following enum members:</p>
+<p><ul class="simple">
+<li><p><strong>AES_OPMODE_ECB</strong> - Electronic codebook mode</p></li>
+<li><p><strong>AES_OPMODE_CBC</strong> - Cipher-block chaining mode</p></li>
+<li><p><strong>AES_OPMODE_CFB</strong> - Cipher feedback mode</p></li>
+<li><p><strong>AES_OPMODE_CTR</strong> - Counter mode</p></li>
+<li><p><strong>AES_OPMODE_ICM</strong> - Integer counter mode</p></li>
+<li><p><strong>AES_OPMODE_XTS_TWEAKJL</strong> - XEX-based tweaked-codebook mode with ciphertext stealing with previous/intermediate tweak value and j loaded</p></li>
+<li><p><strong>AES_OPMODE_XTS_K2IJL</strong> - XEX-based tweaked-codebook mode with ciphertext stealing with key2, i and j loaded</p></li>
+<li><p><strong>AES_OPMODE_XTS_K2ILJ0</strong> - XEX-based tweaked-codebook mode with ciphertext stealing with key2 and i loaded, j = 0</p></li>
+<li><p><strong>AES_OPMODE_F8</strong> - F8 mode</p></li>
+<li><p><strong>AES_OPMODE_F9</strong> - F9 mode</p></li>
+<li><p><strong>AES_OPMODE_CBCMAC</strong> - Cipher block chaining message authentication code mode</p></li>
+<li><p><strong>AES_OPMODE_GCM_HLY0ZERO</strong> - Galois/counter mode with GHASH with H loaded, Y0-encrypted forced to zero and counter is not enabled.</p></li>
+<li><p><strong>AES_OPMODE_GCM_HLY0CALC</strong> - Galois/counter mode with GHASH with H loaded, Y0-encrypted calculated internally and counter is enabled.</p></li>
+<li><p><strong>AES_OPMODE_GCM_HY0CALC</strong> - Galois/Counter mode with autonomous GHASH (both H and Y0-encrypted calculated internally) and counter is enabled.</p></li>
+<li><p><strong>AES_OPMODE_CCM</strong> - Counter with CBC-MAC mode</p></li>
+</ul>
+</p>
+<p>The following enums are used to specify the counter width. It is only required to be defined when using CTR, CCM, or GCM modes, only one of the following defines must be used to specify the counter width length:</p>
+<p><ul class="simple">
+<li><p><strong>AES_CTR_WIDTH_32BIT</strong> - Counter is 32 bits</p></li>
+<li><p><strong>AES_CTR_WIDTH_64BIT</strong> - Counter is 64 bits</p></li>
+<li><p><strong>AES_CTR_WIDTH_96BIT</strong> - Counter is 96 bits</p></li>
+<li><p><strong>AES_CTR_WIDTH_128BIT</strong> - Counter is 128 bits</p></li>
+</ul>
+</p>
+<p>Only one of the following defines must be used to specify the length field for CCM operations (L):</p>
+<p><ul class="simple">
+<li><p><strong>AES_CCM_L_1</strong> - 1 byte</p></li>
+<li><p><strong>AES_CCM_L_2</strong> - 2 bytes</p></li>
+<li><p><strong>AES_CCM_L_4</strong> - 4 bytes</p></li>
+<li><p><strong>AES_CCM_L_8</strong> - 8 bytes</p></li>
+</ul>
+</p>
+<p>Only one of the following enum members must be used to specify the length of authentication field for CCM operations (M) through the <em>config</em> argument member in the <a class="reference internal" href="#group__aes__api_1ga3fbe6d00e84181bcda315dd87b8af1b5"><span class="std std-ref">AES_configureModule()</span></a> function:</p>
+<p><ul class="simple">
+<li><p><strong>AES_CCM_M_0</strong> - reset value</p></li>
+<li><p><strong>AES_CCM_M_4</strong> - 4 bytes</p></li>
+<li><p><strong>AES_CCM_M_6</strong> - 6 bytes</p></li>
+<li><p><strong>AES_CCM_M_8</strong> - 8 bytes</p></li>
+<li><p><strong>AES_CCM_M_10</strong> - 10 bytes</p></li>
+<li><p><strong>AES_CCM_M_12</strong> - 12 bytes</p></li>
+<li><p><strong>AES_CCM_M_14</strong> - 14 bytes</p></li>
+<li><p><strong>AES_CCM_M_16</strong> - 16 bytes</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>When performing a basic GHASH operation for used with GCM mode, use the <strong>AES_OPMODE_GCM_HLY0ZERO</strong> and do not specify a direction.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv411AES_setKey18uint32_tA_K8uint32_t11AES_KeySize">
+<span id="_CPPv311AES_setKey18uint32_tA_K8uint32_t11AES_KeySize"></span><span id="_CPPv211AES_setKey18uint32_tA_K8uint32_t11AES_KeySize"></span><span id="AES_setKey1__uint32_t.uint32_tCA.AES_KeySize"></span><span class="target" id="group__aes__api_1gaf164662f87c3129ee29fadca0a6a1819"></span>void <code class="sig-name descname">AES_setKey1</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <em class="property">const</em> uint32_t <em>key</em>[], <a class="reference internal" href="#_CPPv411AES_KeySize" title="AES_KeySize">AES_KeySize</a> <em>keySize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411AES_setKey18uint32_tA_K8uint32_t11AES_KeySize" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Writes the key 1 configuration registers, which are used for encryption or decryption.</p>
+<p><p>This function writes key 1 configuration registers based on the key size. This function is used in all modes.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address for the AES module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">key</span></code>: is an array of 32-bit words, containing the key to be configured. The least significant word is at the 0th index. The key array data values are expected to be in big-endian format. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">keySize</span></code>: is the size of the key, which must be one of the following enum values: <strong>AES_KEY_SIZE_128BIT</strong>, <strong>AES_KEY_SIZE_192BIT</strong>, or <strong>AES_KEY_SIZE_256BIT</strong>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv411AES_setKey28uint32_tA_K8uint32_t11AES_KeySize">
+<span id="_CPPv311AES_setKey28uint32_tA_K8uint32_t11AES_KeySize"></span><span id="_CPPv211AES_setKey28uint32_tA_K8uint32_t11AES_KeySize"></span><span id="AES_setKey2__uint32_t.uint32_tCA.AES_KeySize"></span><span class="target" id="group__aes__api_1ga6625eab0103645247a122b85728ce99d"></span>void <code class="sig-name descname">AES_setKey2</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <em class="property">const</em> uint32_t <em>key</em>[], <a class="reference internal" href="#_CPPv411AES_KeySize" title="AES_KeySize">AES_KeySize</a> <em>keySize</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411AES_setKey28uint32_tA_K8uint32_t11AES_KeySize" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Writes the key 2 configuration registers, which are used for encryption or decryption.</p>
+<p><p>This function writes the key 2 configuration registers based on the key size. This function is used in the F8, F9, XTS, CCM, and CBC-MAC modes.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address for the AES module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">key</span></code>: is an array of 32-bit words, containing the key to be configured. The least significant word in the 0th index. The key array data values are expected to be in big-endian format. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">keySize</span></code>: is the size of the key, which must be one of the following enum values: <strong>AES_KEY_SIZE_128BIT</strong>, <strong>AES_KEY_SIZE_192BIT</strong>, or <strong>AES_KEY_SIZE_256BIT</strong>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv411AES_setKey38uint32_tA_K8uint32_t">
+<span id="_CPPv311AES_setKey38uint32_tA_K8uint32_t"></span><span id="_CPPv211AES_setKey38uint32_tA_K8uint32_t"></span><span id="AES_setKey3__uint32_t.uint32_tCA"></span><span class="target" id="group__aes__api_1gac20382ba40f6059dbdaa6cbe791fce22"></span>void <code class="sig-name descname">AES_setKey3</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <em class="property">const</em> uint32_t <em>key</em>[]<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411AES_setKey38uint32_tA_K8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Writes key 3 configuration registers, which are used for encryption or decryption.</p>
+<p><p>This function writes the key 2 configuration registers with key 3 data used in CBC-MAC and F8 modes. This key is always 128 bits.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address for the AES module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">key</span></code>: is a pointer to an array of 4 words (128 bits), containing the key to be configured. The least significant word is in the 0th index. The key array data values are expected to be in big-endian format.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv427AES_setInitializationVector8uint32_tA_K8uint32_t">
+<span id="_CPPv327AES_setInitializationVector8uint32_tA_K8uint32_t"></span><span id="_CPPv227AES_setInitializationVector8uint32_tA_K8uint32_t"></span><span id="AES_setInitializationVector__uint32_t.uint32_tCA"></span><span class="target" id="group__aes__api_1gadf1872766e883577a086c5ceab5d2b4b"></span>void <code class="sig-name descname">AES_setInitializationVector</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <em class="property">const</em> uint32_t <em>iniVector</em>[]<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427AES_setInitializationVector8uint32_tA_K8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Writes the Initial Vector (IV) register, needed in some of the AES Modes.</p>
+<p><p>This function writes the initial vector registers in the AES module.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the AES module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iniVector</span></code>: is an array of 4 words (128 bits), containing the IV value to be configured. The least significant word is in the 0th index. The IV array data values are expected to be in big-endian format.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv428AES_readInitializationVector8uint32_tA_8uint32_t">
+<span id="_CPPv328AES_readInitializationVector8uint32_tA_8uint32_t"></span><span id="_CPPv228AES_readInitializationVector8uint32_tA_8uint32_t"></span><span id="AES_readInitializationVector__uint32_t.uint32_tA"></span><span class="target" id="group__aes__api_1gad62feafd29751e8a3a787d656c00e031"></span>void <code class="sig-name descname">AES_readInitializationVector</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>iniVector</em>[]<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428AES_readInitializationVector8uint32_tA_8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Saves the Initial Vector (IV) registers to a user-defined location.</p>
+<p><p>This function stores the IV for use in authenticated encryption and decryption operations. It is assumed that the AES_CTRL_SAVE_CONTEXT bit is set in the AES_CTRL register.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the AES module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iniVector</span></code>: is pointer to the location that stores the IV data. The least significant word is in the 0th index. The IV data values are expected to be in big-endian format.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv411AES_readTag8uint32_tA_8uint32_t">
+<span id="_CPPv311AES_readTag8uint32_tA_8uint32_t"></span><span id="_CPPv211AES_readTag8uint32_tA_8uint32_t"></span><span id="AES_readTag__uint32_t.uint32_tA"></span><span class="target" id="group__aes__api_1ga8e509bc5e6df490bec9ac33d2a8b6f05"></span>void <code class="sig-name descname">AES_readTag</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>tagData</em>[]<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411AES_readTag8uint32_tA_8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Saves the tag registers to a user-defined location.</p>
+<p><p>This function stores the tag data for use in authenticated encryption and decryption operations. It is assumed that the AES_CTRL_SAVE_CONTEXT bit is set in the AES_CTRL register.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the AES module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tagData</span></code>: is pointer to the location that stores the tag data. The least significant word is in the 0th index. The tag array data values are expected to be in big-endian format.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423AES_readDataNonBlocking8uint32_tA_8uint32_t">
+<span id="_CPPv323AES_readDataNonBlocking8uint32_tA_8uint32_t"></span><span id="_CPPv223AES_readDataNonBlocking8uint32_tA_8uint32_t"></span><span id="AES_readDataNonBlocking__uint32_t.uint32_tA"></span><span class="target" id="group__aes__api_1ga0a61fb6ac85589096499182914fcc4dd"></span>bool <code class="sig-name descname">AES_readDataNonBlocking</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>destArray</em>[]<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423AES_readDataNonBlocking8uint32_tA_8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reads plaintext/ciphertext from data registers without blocking.</p>
+<p><p>This function reads a block of either plaintext or ciphertext out of the AES module. If the output data is not ready, the function returns false. If the read completed successfully, the function returns true. A block is 16 bytes or 4 words.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the AES module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">destArray</span></code>: is a pointer to an array of words of data. The least significant word is in the 0th index. The read data values are expected to be in big-endian format.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns true or false. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420AES_readDataBlocking8uint32_tA_8uint32_t">
+<span id="_CPPv320AES_readDataBlocking8uint32_tA_8uint32_t"></span><span id="_CPPv220AES_readDataBlocking8uint32_tA_8uint32_t"></span><span id="AES_readDataBlocking__uint32_t.uint32_tA"></span><span class="target" id="group__aes__api_1ga526744fa8ac4b6ad06902fb5f1db7d11"></span>void <code class="sig-name descname">AES_readDataBlocking</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>destArray</em>[]<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420AES_readDataBlocking8uint32_tA_8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Reads plaintext/ciphertext from data registers with blocking.</p>
+<p><p>This function reads a block of either plaintext or ciphertext out of the AES module. If the output is not ready, the function waits until it is ready. A block is 16 bytes or 4 words.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the AES module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">destArray</span></code>: is a pointer to an array of words. The least significant word is in the 0th index. The read data values are expected to be in big-endian format.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424AES_writeDataNonBlocking8uint32_tA_K8uint32_t">
+<span id="_CPPv324AES_writeDataNonBlocking8uint32_tA_K8uint32_t"></span><span id="_CPPv224AES_writeDataNonBlocking8uint32_tA_K8uint32_t"></span><span id="AES_writeDataNonBlocking__uint32_t.uint32_tCA"></span><span class="target" id="group__aes__api_1gaa9f79466497851b2185e7b0d11bc677b"></span>bool <code class="sig-name descname">AES_writeDataNonBlocking</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <em class="property">const</em> uint32_t <em>srcArray</em>[]<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424AES_writeDataNonBlocking8uint32_tA_K8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Writes plaintext/ciphertext to data registers without blocking.</p>
+<p><p>This function writes a block of either plaintext or ciphertext into the AES module. If the input is not ready, the function returns false. If the write completed successfully, the function returns true. A block is 16 bytes or 4 words.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the AES module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">srcArray</span></code>: is a pointer to an array of words of data. The least significant word is in the 0th index. The input data values are expected to be in big-endian format.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>True or false. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421AES_writeDataBlocking8uint32_tA_K8uint32_t">
+<span id="_CPPv321AES_writeDataBlocking8uint32_tA_K8uint32_t"></span><span id="_CPPv221AES_writeDataBlocking8uint32_tA_K8uint32_t"></span><span id="AES_writeDataBlocking__uint32_t.uint32_tCA"></span><span class="target" id="group__aes__api_1ga2099241652cf01e885cd1714653b2c33"></span>void <code class="sig-name descname">AES_writeDataBlocking</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <em class="property">const</em> uint32_t <em>srcArray</em>[]<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421AES_writeDataBlocking8uint32_tA_K8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Writes plaintext/ciphertext to data registers with blocking.</p>
+<p><p>This function writes a block of either plaintext or ciphertext into the AES module. If the input is not ready, the function waits until it is ready before performing the write. A block is 16 bytes or 4 words.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the AES module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">srcArray</span></code>: is a pointer to an array of bytes. The least significant word is in the 0th index. The input data values are expected to be in big-endian format.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415AES_processData8uint32_tA_K8uint32_tA_8uint32_t8uint64_t">
+<span id="_CPPv315AES_processData8uint32_tA_K8uint32_tA_8uint32_t8uint64_t"></span><span id="_CPPv215AES_processData8uint32_tA_K8uint32_tA_8uint32_t8uint64_t"></span><span id="AES_processData__uint32_t.uint32_tCA.uint32_tA.uint64_t"></span><span class="target" id="group__aes__api_1gaf92e282544572dbc8888a72e412c9f1f"></span>bool <code class="sig-name descname">AES_processData</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <em class="property">const</em> uint32_t <em>srcArray</em>[], uint32_t <em>destArray</em>[], uint64_t <em>dataLength</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415AES_processData8uint32_tA_K8uint32_tA_8uint32_t8uint64_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Used to process(transform) blocks of data, either encrypt or decrypt it.</p>
+<p><p>This function iterates the encryption or decryption mechanism number over the data length. Before calling this function, ensure that the AES module is properly configured the key, data size, mode, and so on. Only ECB, CBC, CTR, ICM, CFB, XTS and F8 operating modes should be used. The data is processed in 4-word (16-byte) blocks.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the AES module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">srcArray</span></code>: is a pointer to the memory location where the input data is stored. The data must be padded to the 16-byte boundary. The input data values are expected to be in big-endian format. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">destArray</span></code>: is a pointer to the memory location output is written. The space for written data must be rounded up to the 16-byte boundary. The output data values are expected to be in big-endian format. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataLength</span></code>: is the length of the cryptographic data in bytes.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns true if data was processed successfully. Returns false if data processing failed. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420AES_authenticateData8uint32_tA_K8uint32_t8uint64_tA_8uint32_t">
+<span id="_CPPv320AES_authenticateData8uint32_tA_K8uint32_t8uint64_tA_8uint32_t"></span><span id="_CPPv220AES_authenticateData8uint32_tA_K8uint32_t8uint64_tA_8uint32_t"></span><span id="AES_authenticateData__uint32_t.uint32_tCA.uint64_t.uint32_tA"></span><span class="target" id="group__aes__api_1gac8015de56a5fa6bb9e8de6d310e75009"></span>bool <code class="sig-name descname">AES_authenticateData</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <em class="property">const</em> uint32_t <em>srcArray</em>[], uint64_t <em>dataLength</em>, uint32_t <em>tagArray</em>[]<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420AES_authenticateData8uint32_tA_K8uint32_t8uint64_tA_8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Used to authenticate blocks of data by generating a hash tag.</p>
+<p><p>This function processes data to produce a hash tag that can be used tor authentication. Before calling this function, ensure that the AES module is properly configured the key, data size, mode, and so on. Only CBC-MAC and F9 modes should be used.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the AES module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">srcArray</span></code>: is a pointer to the memory location where the input data is stored. The data must be padded to the 16-byte boundary. The input data values are expected to be in big-endian format. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataLength</span></code>: is the length of the cryptographic data in bytes. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tagArray</span></code>: is a pointer to a 4-word array where the hash tag is written. The output data values are to be expected in big-endian format.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns true if data was processed successfully. Returns false if data processing failed. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425AES_processDatainAuthMode8uint32_tA_K8uint32_tA_8uint32_t8uint64_tA_K8uint32_t8uint32_tA_8uint32_t">
+<span id="_CPPv325AES_processDatainAuthMode8uint32_tA_K8uint32_tA_8uint32_t8uint64_tA_K8uint32_t8uint32_tA_8uint32_t"></span><span id="_CPPv225AES_processDatainAuthMode8uint32_tA_K8uint32_tA_8uint32_t8uint64_tA_K8uint32_t8uint32_tA_8uint32_t"></span><span id="AES_processDatainAuthMode__uint32_t.uint32_tCA.uint32_tA.uint64_t.uint32_tCA.uint32_t.uint32_tA"></span><span class="target" id="group__aes__api_1gae0f6daec48e147ab287966aeb8ae1f55"></span>bool <code class="sig-name descname">AES_processDatainAuthMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <em class="property">const</em> uint32_t <em>srcArray</em>[], uint32_t <em>destArray</em>[], uint64_t <em>dataLength</em>, <em class="property">const</em> uint32_t <em>authDataArray</em>[], uint32_t <em>authDataLength</em>, uint32_t <em>tagArray</em>[]<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425AES_processDatainAuthMode8uint32_tA_K8uint32_tA_8uint32_t8uint64_tA_K8uint32_t8uint32_tA_8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Processes and authenticates blocks of data, either encrypts it or decrypts it.</p>
+<p><p>This function encrypts or decrypts blocks of data in addition to authentication data. A hash tag is also produced. Before calling this function, ensure that the AES module is properly configured the key, data size, mode, and so on. Only CCM and GCM modes should be used.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the AES module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">srcArray</span></code>: is a pointer to the memory location where the input data is stored. The data must be padded to the 16-byte boundary. The input data values are expected to be in big-endian format. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">destArray</span></code>: is a pointer to the memory location where the output is written. The space for written data must be rounded up to the 16-byte boundary. The output data values are to be expected in big-endian format. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataLength</span></code>: is the length of the cryptographic data in bytes. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">authDataArray</span></code>: is a pointer to the memory location where the additional authentication data is stored. The data must be padded to the 16-byte boundary. The output data values are to be expected in big-endian format. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">authDataLength</span></code>: is the length of the additional authentication data in bytes. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tagArray</span></code>: is a pointer to a 4-word array where the hash tag is written. The output data values are to be expected in big-endian format.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns true if data was processed successfully. Returns false if data processing failed. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422AES_getInterruptStatus8uint32_tb">
+<span id="_CPPv322AES_getInterruptStatus8uint32_tb"></span><span id="_CPPv222AES_getInterruptStatus8uint32_tb"></span><span id="AES_getInterruptStatus__uint32_t.b"></span><span class="target" id="group__aes__api_1ga3f93ace26df3a8ef49b8f07a3a9eca70"></span>uint32_t <code class="sig-name descname">AES_getInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em>, bool <em>intMask</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422AES_getInterruptStatus8uint32_tb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the current AES module core interrupt status.</p>
+<p><ul class="simple">
+<li><p><strong>AES_INT_CONTEXT_IN</strong> - Context interrupt</p></li>
+<li><p><strong>AES_INT_CONTEXT_OUT</strong> - Authentication tag (and IV) interrupt.</p></li>
+<li><p><strong>AES_INT_DATA_IN</strong> - Data input interrupt</p></li>
+<li><p><strong>AES_INT_DATA_OUT</strong> - Data output interrupt </p></li>
+</ul>
+<dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns a bit mask of the core interrupt sources, which is a logical OR of any of the following:</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the AES module. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intMask</span></code>: is <strong>false</strong> if the raw interrupt status is required and <strong>true</strong> if the masked interrupt status is required.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt id="_CPPv416AES_ConfigParams">
+<span id="_CPPv316AES_ConfigParams"></span><span id="_CPPv216AES_ConfigParams"></span><span id="AES_ConfigParams"></span><span class="target" id="struct_a_e_s___config_params"></span><em class="property">struct </em><code class="sig-name descname">AES_ConfigParams</code><a class="headerlink" href="#_CPPv416AES_ConfigParams" title="Permalink to this definition">¶</a><br /></dt>
+<dd><em>#include &lt;aes.h&gt;</em><p>Values that can be passed to <a class="reference internal" href="#group__aes__api_1ga3fbe6d00e84181bcda315dd87b8af1b5"><span class="std std-ref">AES_configureModule()</span></a> as the <em>config</em> parameter. </p>
+</dd></dl>
+
+</dd></dl>
+
+<p>APIs are available to configure AES module for any of the supported modes; set
+key and IV if supported by the configured mode; to perform blocking/non-blocking
+read/write of input/output plain-text/cipher-text and also for reading IV or tag
+if supported by the configured mode.</p>
+<p>APIs are also available to enable/disable/clear data/context related interrupts;
+get interrupt status &amp; to register/unregister interrupt handler.</p>
+<p>For uDMA transfers there are APIs to enable/disable DMA requests for
+input/output data/context transfers.</p>
+<p>The code for this module is contained in driverlib_cm/aes.c and
+driverlib_cm/aes.h.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="adc.html" class="btn btn-neutral float-left" title="ADC Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="asysctl.html" class="btn btn-neutral float-right" title="ASysCtl Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+      <span class="lastupdated">Last updated on Mar 27, 2024.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v5.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

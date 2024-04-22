@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -301,7 +301,6 @@ struct EQEP_REGS {
 // EQEP External References & Function Declarations:
 //
 extern volatile struct EQEP_REGS EQep1Regs;
-extern volatile struct EQEP_REGS EQep2Regs;
 #ifdef __cplusplus
 }
 #endif                                  /* extern "C" */

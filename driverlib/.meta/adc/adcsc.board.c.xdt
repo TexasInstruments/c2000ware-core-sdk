@@ -1,29 +1,39 @@
-% var nameOfModule = "adcsafetycheckertile";
+% var nameOfModule = "adcsafetychecker";
 % var module = system.modules['/driverlib/' + nameOfModule + '.js'];
-% var staticModule = system.modules['/driverlib/adcsafetychecker.js'];
-% var stat = staticModule.$static ;
 % let Common   = system.getScript("/driverlib/Common.js");
 % var nameOfPeripheral = module.peripheralName;
+%
+% let tileModule = system.modules['/driverlib/adc/modules/adcsafetycheckertile.js'];
+% let aggrModule = system.modules['/driverlib/adc/modules/adcsafetycheckeraggr.js'];
+%
 % let device_driverlib_peripheral = system.getScript("/driverlib/device_driverlib_peripherals/" + Common.getDeviceName().toLowerCase() + "_adc.js");
 % let device_driverlib_memmap =system.getScript("/driverlib/device_driverlib_peripherals/" + Common.getDeviceName().toLowerCase() + "_memmap.js");
-//*****************************************************************************
-//
-// ADC Safety Checker Configurations
-//
-//*****************************************************************************
 void `nameOfPeripheral`_init(){
-%if (module != null)
+%if (tileModule != null)
 %{
-	% for(var i = 0; i < module.$instances.length; i++) {
-	    % var instance = module.$instances[i];
+	% for(var i = 0; i < tileModule.$instances.length; i++) {
+	    % var instance = tileModule.$instances[i];
 		% var baseName = instance.$name + "_BASE";
 	`instance.$name`_init();
 	% }
+%}
+
+%if (aggrModule != null)
+%{
+	% for(var i = 0; i < aggrModule.$instances.length; i++) {
+	    % var instance = aggrModule.$instances[i];
+		% var baseName = instance.$name + "_BASE";
+	`instance.$name`_init();
+	% }
+% }
 }
 
-%	for(var i = 0; i < module.$instances.length; i++) {
-%		var instance = module.$instances[i];
+%if (tileModule != null)
+%{
+%	for(var i = 0; i < tileModule.$instances.length; i++) {
+%		var instance = tileModule.$instances[i];
 %     	var baseName = instance.$name + "_BASE";
+
 void `instance.$name`_init(){
 		% for(var rptrIndex in device_driverlib_peripheral.ADC_SafetyCheckInst){ 
         	% var currentRPTR = device_driverlib_peripheral.ADC_SafetyCheckInst[rptrIndex].name
@@ -31,10 +41,10 @@ void `instance.$name`_init(){
 			% var socName = "ADC_SOC_NUMBER"+(instance["safetycheck"+rptrNumber+"usedSOC"]).replace(/[^0-9]/g,'') ;		
 	//
 	// Configures the safety checker result for a selected SOC.
-	// 	  	scBase 							: `baseName`
+	// 	  	adcBase 						: `instance["safetycheck"+rptrNumber+"ADC"].replace("_","")`_BASE
 	//	  	socNumber						: `instance["safetycheck"+rptrNumber+"usedSOC"]`
 	//	  	scInput							: `instance["safetycheck"+rptrNumber+"inputSource"]`
-	ADC_configSOCSafetyCheckerInput(`baseName`,`socName`,`instance["safetycheck"+rptrNumber+"inputSource"]`);
+	ADC_configSOCSafetyCheckerInput(`instance["safetycheck"+rptrNumber+"ADC"].replace("_","")`_BASE,`instance["safetycheck"+rptrNumber+"ResultSelect"].replace("ADC_RESULT","ADC_SOC_NUMBER")`,`instance["safetycheck"+rptrNumber+"inputSource"]`);
 	//
 	// Configures the safety checker module.
 	// 	  	scBase 							: `baseName`
@@ -43,7 +53,7 @@ void `instance.$name`_init(){
 	//      adcResultInst       			: `instance["safetycheck"+rptrNumber+"ResultSelect"]`
 	ADC_configureSafetyChecker(`baseName`, ADC_SAFETY_CHECK`rptrNumber`,`instance["safetycheck"+rptrNumber+"ADC"]`,`instance["safetycheck"+rptrNumber+"ResultSelect"]`);
 		% }
-	//
+    //
 	// Configures the tolerance allowed between safety check results.
 	// 		scBase 							: `baseName`
 	// 		tolerance   					: `instance["safetyCheckTolerance"]`
@@ -60,14 +70,24 @@ void `instance.$name`_init(){
 	//
 	ADC_disableSafetyChecker(`baseName`);
 		% }
-		% for (var sftychkr in device_driverlib_memmap.ADCSAFETYCHK) {
+}
+%	}
+%	}
+
+%if (aggrModule != null)
+%{
+%	for(var i = 0; i < aggrModule.$instances.length; i++) {
+%		var instance = aggrModule.$instances[i];
+%     	var baseName = instance.$name + "_BASE";
+void `instance.$name`_init(){
+		% for (var sftychkr in device_driverlib_memmap.ADCSAFETYCHKMemoryMap) {
 			% for (var chkrslt in device_driverlib_peripheral.ADC_SafetyCheckResult){
-				% var currentchkrslt= device_driverlib_memmap.ADCSAFETYCHK[sftychkr].name.replace("_BASE","").replace("ADC","");
+				% var currentchkrslt= device_driverlib_memmap.ADCSAFETYCHKMemoryMap[sftychkr].name.replace("_BASE","").replace("ADC","");
 				% var currentsftychkr = device_driverlib_peripheral.ADC_SafetyCheckResult[chkrslt].name.replace("ADC_SAFETY_CHECK_","");
 				% var chkrNumber = currentchkrslt.replace(/[^0-9]/g,'');
 				% var chkrResult = device_driverlib_peripheral.ADC_SafetyCheckResult[chkrslt].name;
-				% if (stat.enableInterrupt) {
-					% if((stat.eventInterruptSource).includes(currentchkrslt + currentsftychkr)){ 
+				% if (instance.enableInterrupt) {
+					% if((instance.eventInterruptSource).includes(currentchkrslt + currentsftychkr)){ 
 	//
 	// Enable Safety Checker `chkrNumber` `currentsftychkr` interrupt
 	//
@@ -76,17 +96,19 @@ void `instance.$name`_init(){
 				% }
 			% }
 		% }
+
+
 		% for(var evntIndex in device_driverlib_peripheral.ADC_SafetyCheckEvent){ 
 			% var currentEvnt = device_driverlib_peripheral.ADC_SafetyCheckEvent[evntIndex].name
 			% var evntNumber  = (currentEvnt).replace(/[^0-9]/g,'')
-			% if((stat.enableEvent).includes(currentEvnt)){
-				% for (var sftychkr in device_driverlib_memmap.ADCSAFETYCHK) {
+			% if((instance.enableEvent).includes(currentEvnt)){
+				% for (var sftychkr in device_driverlib_memmap.ADCSAFETYCHKMemoryMap) {
 					% for (var chkrslt in device_driverlib_peripheral.ADC_SafetyCheckResult){
-					% var currentchkrslt= device_driverlib_memmap.ADCSAFETYCHK[sftychkr].name.replace("_BASE","").replace("ADC","");
+					% var currentchkrslt= device_driverlib_memmap.ADCSAFETYCHKMemoryMap[sftychkr].name.replace("_BASE","").replace("ADC","");
 					% var currentsftychkr = device_driverlib_peripheral.ADC_SafetyCheckResult[chkrslt].name.replace("ADC_SAFETY_CHECK_","");
 					% var chkrNumber = currentchkrslt.replace(/[^0-9]/g,'');
 					% var chkrResult = device_driverlib_peripheral.ADC_SafetyCheckResult[chkrslt].name;
-						% if((stat["chkEvent" + evntNumber + "Source"]).includes(currentchkrslt + currentsftychkr)){ 
+						% if((instance["chkEvent" + evntNumber + "Source"]).includes(currentchkrslt + currentsftychkr)){ 
 	//
 	// Enable Safety Checker `chkrNumber` `currentsftychkr` event `evntNumber`
 	//
@@ -96,6 +118,7 @@ void `instance.$name`_init(){
 				% }
 			% }
 		% }
+
 }
 %	}
 %	}

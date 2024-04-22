@@ -169,6 +169,46 @@ typedef enum
 
 //*****************************************************************************
 //
+//! ASysCtl_TestSelect used for function ASysCtl_selectInternalTestNode().
+//
+//*****************************************************************************
+typedef enum
+{
+    ASYSCTL_TEST_NODE_NO_CONN       = 0U,  //!< No Internal Connection
+    ASYSCTL_TEST_NODE_VDDCORE         = 1U,  //!< Core VDD (1.2V) voltage
+    ASYSCTL_TEST_NODE_VDDA                = 2U,  //!< VDDA voltage
+    ASYSCTL_TEST_NODE_VSSA                = 3U,  //!< VSSA - Analog ground pin
+    ASYSCTL_TEST_NODE_VREFLOA             = 4U,  //!< VREFLOA pin voltage
+    ASYSCTL_TEST_NODE_VREFLOB             = 5U,  //!< VREFLOB pin voltage
+    ASYSCTL_TEST_NODE_VREFLOC             = 6U,  //!< VREFLOC pin voltage
+    ASYSCTL_TEST_NODE_CDAC1H              = 7U,  //!< CMPSS1 High DAC output
+    ASYSCTL_TEST_NODE_CDAC1L              = 8U,  //!< CMPSS1 Low DAC output
+    ASYSCTL_TEST_NODE_CDAC2H              = 9U,  //!< CMPSS2 High DAC output
+    ASYSCTL_TEST_NODE_CDAC2L              = 10U, //!< CMPSS2 Low DAC output
+    ASYSCTL_TEST_NODE_CDAC3H              = 11U, //!< CMPSS3 High DAC output
+    ASYSCTL_TEST_NODE_CDAC3L              = 12U, //!< CMPSS3 Low DAC output
+    ASYSCTL_TEST_NODE_CDAC4H              = 13U, //!< CMPSS4 High DAC output
+    ASYSCTL_TEST_NODE_CDAC4L              = 14U, //!< CMPSS4 Low DAC output
+    ASYSCTL_TEST_NODE_CDAC5H              = 15U, //!< CMPSS5 High DAC output
+    ASYSCTL_TEST_NODE_CDAC5L              = 16U, //!< CMPSS5 Low DAC output
+    ASYSCTL_TEST_NODE_CDAC6H              = 17U, //!< CMPSS6 High DAC output
+    ASYSCTL_TEST_NODE_CDAC6L              = 18U, //!< CMPSS6 Low DAC output
+    ASYSCTL_TEST_NODE_CDAC7H              = 19U, //!< CMPSS7 High DAC output
+    ASYSCTL_TEST_NODE_CDAC7L              = 20U, //!< CMPSS7 Low DAC output
+    ASYSCTL_TEST_NODE_CDAC8H              = 21U, //!< CMPSS8 High DAC output
+    ASYSCTL_TEST_NODE_CDAC8L              = 22U, //!< CMPSS8 Low DAC output
+    ASYSCTL_TEST_NODE_CDAC9H              = 23U, //!< CMPSS9 High DAC output
+    ASYSCTL_TEST_NODE_CDAC9L              = 24U, //!< CMPSS9 Low DAC output
+    ASYSCTL_TEST_NODE_CDAC10H             = 25U, //!< CMPSS10 High DAC output
+    ASYSCTL_TEST_NODE_CDAC10L             = 26U, //!< CMPSS10 Low DAC output
+    ASYSCTL_TEST_NODE_CDAC11H             = 27U, //!< CMPSS11 High DAC output
+    ASYSCTL_TEST_NODE_CDAC11L             = 28U, //!< CMPSS11 Low DAC output
+    ASYSCTL_TEST_NODE_ENZ_CALIB_GAIN_3P3V = 29U //!< All ADCs are placed in gain
+                                                //!< calibration mode
+} ASysCtl_TestSelect;
+
+//*****************************************************************************
+//
 // Prototypes for the APIs.
 //
 //*****************************************************************************
@@ -346,6 +386,33 @@ static inline void ASysCtl_setAnalogReference1P65(uint16_t reference)
     // Write selection to the Analog Voltage Reference Select bit.
     //
     HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_ANAREFCTL) &= ~(reference << 8U);
+
+    EDIS;
+}
+
+//*****************************************************************************
+//
+//! Select internal test node for ADC.
+//!
+//! \param testSelect is internal node to come out on ADC.
+//!
+//! The \e testSelect is the desired internal test node. Valid values can be
+//! refered from the enum \e ASysCtl_TestSelect.
+//!
+//! \return None.
+//!
+//*****************************************************************************
+static inline void ASysCtl_selectInternalTestNode(ASysCtl_TestSelect testSelect)
+{
+    EALLOW;
+
+    //
+    // Select internal test node for ADC
+    //
+    HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_INTERNALTESTCTL) = 
+        (HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_INTERNALTESTCTL) &
+        ~(ASYSCTL_INTERNALTESTCTL_TESTSEL_M | ASYSCTL_INTERNALTESTCTL_KEY_M)) | 
+        (0xA5A50000UL | testSelect);
 
     EDIS;
 }
@@ -968,6 +1035,7 @@ static inline void AsysCtl_forceADCGlobalSOC(uint32_t socSelect)
     HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_ADCSOCFRCGB) = socSelect;
     EDIS;
 }
+
 
 
 

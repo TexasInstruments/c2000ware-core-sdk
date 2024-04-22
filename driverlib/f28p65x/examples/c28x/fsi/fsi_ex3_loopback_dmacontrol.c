@@ -7,10 +7,10 @@
 //! \addtogroup driver_example_list
 //! <h1>FSI DMA frame transfers:DMA Control</h1>
 //!
-//! Example sets up infinite data frame transfers where DMA trigger happens once
-//! through CPU and then DMA takes control to transfer data iteratively. This
-//! example demonstrates the FSI feature about triggering DMA events which in
-//! turn can copy data and trigger next transfer.
+//! Example sets up infinite data frame transfers where DMA trigger happens
+//! once through CPU and then DMA takes control to transfer data iteratively.
+//! This example demonstrates the FSI feature about triggering DMA events which
+//! in turn can copy data and trigger next transfer.
 //!
 //! Two DMA channels are setup for FSI Tx operation and two for Rx.
 //! Four areas in GSx memories are also setup as source and sink for data and
@@ -19,30 +19,29 @@
 //! Automatic(Hw triggered) Ping frame transmission is also setup along
 //! with data.
 //!
-//! If there are any comparison failures during transfers or any of error
+//! If there are any comparison failures during transfers or any error
 //! event occurs, execution will stop.
 //!
+//! User Configurations:
+//! If "Software Frame Size" is modified in FSI TX or FSI RX Sysconfig, change:
+//! DMA CH0 "Destination Wrap Size"
+//! DMA CH0 "Burst Size"
+//! DMA CH2 "Source Wrap Size"
+//! DMA CH2 "Burst Size"
+//! FSI TX/RX "Software Frame Size"
+//!
+//!  \note: This example project has support for migration across our C2000 
+//!  device families. If you are wanting to build this project from launchpad
+//!  or controlCARD, please specify in the .syscfg file the board you're using.
+//!  At any time you can select another device to migrate this example.
+//!
 //! \b External \b Connections \n
-//!   For FSI internal loopback (EXTERNAL_FSI_ENABLE == 0), no external
-//!     connections needed
+//!  For FSI internal loopback (default setting), no external
+//!  connections needed
 //!
-//!   For FSI external loopback (EXTERNAL_FSI_ENABLE == 1), external
-//!   connections are required. The FSI TX pins should be connected to the
-//!   respective FSI RX pins of the same device. See below for external
-//!   connections to include and GPIOs used:
-//!
-//!  External Connections Required between FSI TX and RX of the same device:
-//!  - FSIRX_CLK to FSITX_CLK
-//!  - FSIRX_RX0 to FSITX_TX0
-//!  - FSIRX_RX1 to FSITX_TX1
-//!
-//!  ControlCard FSI Header GPIOs:
-//!     - GPIO_27  ->    FSITX_CLK
-//!     - GPIO_26  ->    FSITX_TX0
-//!     - GPIO_25  ->    FSITX_TX1
-//!     - GPIO_13  ->    FSIRX_CLK
-//!     - GPIO_12  ->    FSIRX_RX0
-//!     - GPIO_11  ->    FSIRX_RX1
+//!  For FSI external loopback (disable "Loopback Mode" in FSI RX Sysconfig),
+//!  external connections are required. Refer to SysConfig for external
+//!  connections (GPIO pin numbers) specific to each device.
 //!
 //! \b Watch \b Variables \n
 //!  - \b countDMAtransfers  Number of Data frame transfered
@@ -51,7 +50,7 @@
 //
 //#############################################################################
 //
-//
+// $Release Date: $
 // $Copyright:
 // Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -90,59 +89,64 @@
 //
 #include "driverlib.h"
 #include "device.h"
+#include "board.h"
 
 //
-// Defines: User can modify these values as desired
+// Defines
 //
-#define PRESCALER_VAL    FSI_PRESCALE_50MHZ
-
-//
-// Define to enable external FSI configuration
-//
-// 0 = internal loopback enabled
-// 1 = internal loopback disabled, FSI GPIOs configured,
-//      external connections required
-//
-#define EXTERNAL_FSI_ENABLE     0
-
-#define DMA_TRANSFER_SIZE_IN_BURSTS 512U
-#define TOTAL_WORDS_IN_TRANSFER (DMA_TRANSFER_SIZE_IN_BURSTS * nWords)
-
-// GS0 RAM to store Tx frame data which DMA will read
-#define GS0_START_ADDR  0x10000
-// GS1 RAM to store Tx frame tag and Userdata
-#define GS1_START_ADDR  0x12000
-// GS2 RAM to save received Rx frame data
-#define GS2_START_ADDR  0x14000
-// GS3 RAM to save received Rx frame tag and Userdata
-#define GS3_START_ADDR  0x16000
+#define TOTAL_WORDS_IN_TRANSFER (myDMA0_TRANSFERSIZE * myFSIRX0_nWords)
 
 //
-// FSI Tx/Rx Frame tag User Data register address, used by DMA channel to
-// write(and trigger transfer) read userdata respectively
+// GSRAM data buffers
 //
-#define FSI_TX_FRAME_TAG_UDATA_REGADDR (FSITXA_BASE + FSI_O_TX_FRAME_TAG_UDATA)
-#define FSI_RX_FRAME_TAG_UDATA_REGADDR (FSIRXA_BASE + FSI_O_RX_FRAME_TAG_UDATA)
+uint16_t gs0Data[0x800];
+uint16_t gs1Data[0x800];
+uint16_t gs2Data[0x800];
+uint16_t gs3Data[0x800];
 
 //
-// Globals, User can modify these parameters as per usecase
+// FSI Tx/Rx Frame tag User Data register address, used by DMA channels to
+// write (and trigger transfer) and read User data respectively
 //
-// Number of words per transfer may be from 1 -16
-uint16_t nWords = 4;
+const void *txFrameTagAddr = (const void *)(myFSITX0_BASE +
+                                            FSI_O_TX_FRAME_TAG_UDATA);
+const void *rxFrameTagAddr = (const void *)(myFSIRX0_BASE +
+                                            FSI_O_RX_FRAME_TAG_UDATA);
 
-// Transfer can be happen over single or double lane
-FSI_DataWidth nLanes = FSI_DATA_WIDTH_1_LANE;
+//
+// Map the TX frame data buffer to DMA accessible global shared memory.
+//
+#pragma DATA_SECTION(gs0Data, "ramgs0");
 
-// FSI Clock used for transfer
-uint32_t fsiClock = 50000000;
+//
+// Map the TX data frame tag and User data buffer to DMA accessible global
+// shared memory.
+//
+#pragma DATA_SECTION(gs1Data, "ramgs1");
+//
+// Map the RX frame data buffer to DMA accessible global shared memory.
+//
+#pragma DATA_SECTION(gs2Data, "ramgs2");
+//
+// Map the RX frame tag and User data buffer to DMA accessible global
+// shared memory.
+//
+#pragma DATA_SECTION(gs3Data, "ramgs3");
+//
+// Set up pointers to GSRAM buffers
+//
+const void *gs0Addr = (const void *)gs0Data;
+const void *gs1Addr = (const void *)gs1Data;
+const void *gs2Addr = (const void *)gs2Data;
+const void *gs3Addr = (const void *)gs3Data;
 
-// Frame tag used with Data/Ping transfers
-FSI_FrameTag txPingFrameTag = FSI_FRAME_TAG15;
-
-// Tx Ping timer and Rx Watchdog reference counter values
-uint32_t txPingTimeRefCntr = 0x1000000, rxWdTimeoutRefCntr = 0x1400000;
+//
+// Globals, User can modify these parameters as per use case
+//
 
 // Boolean flag to enable/disable Rx Frame Watchdog
+// If changed to false: take out FSI_RX_EVT_FRAME_WD_TIMEOUT interrupt setting
+// in FSIRX Sysconfig
 bool isRxFrameWdEnable = true;
 
 //
@@ -156,7 +160,7 @@ uint32_t rxFrameWdRefCntr = 0x1000000;
 // Globals, these are not config parameters, user are not required to edit them
 //
 uint16_t txEventSts = 0, rxEventSts = 0;
-uint16_t *txBufAddr = 0, *rxBufAddr = 0;
+const void *txBufAddr = 0, *rxBufAddr = 0;
 uint16_t txBufData[16] = {0};
 uint32_t error = 0;
 uint32_t dmaIntr1 = 0, dmaIntr2 = 0;
@@ -168,11 +172,8 @@ uint32_t dmaTxIntCnt = 0, dmaRxIntCnt = 0; //TODO, may remove it, just for DEBUG
 // Function Prototypes
 //
 static inline void compare16(uint16_t val1, uint16_t val2);
-void initFSI(void);
 __interrupt void fsitxdma_isr(void);
 __interrupt void fsirxdma_isr(void);
-void fsitx_dma_config();
-void fsirx_dma_config();
 
 //
 // InitFrameTagAndData - Initializes GS0/GS1 memories to populate tag and data
@@ -183,14 +184,14 @@ void InitFrameTagAndData(void)
     unsigned int i;
     uint16_t *temp;
 
-    temp = (uint16_t *)GS0_START_ADDR;
+    temp = (uint16_t *)gs0Addr;
     for(i = 0; i < TOTAL_WORDS_IN_TRANSFER; i++)
     {
-        *temp = (GS0_START_ADDR + i);
+        *temp = i;
         temp++;
     }
 
-    temp = (uint16_t *)GS1_START_ADDR;
+    temp = (uint16_t *)gs1Addr;
     for(i = FSI_FRAME_TAG0; i < FSI_FRAME_TAG15; i++)
     {
         //
@@ -228,106 +229,45 @@ void main(void)
     Interrupt_initVectorTable();
 
     //
-    // Interrupts that are used in this example are re-mapped to ISR functions
-    // found within this file.
+    // Assigning base addresses of Tx/Rx data buffer to globals
     //
-    Interrupt_register(INT_DMA_CH2, &fsitxdma_isr);
-    Interrupt_register(INT_DMA_CH4, &fsirxdma_isr);
+    txBufAddr = (const void *)(myFSITX0_BASE + FSI_O_TX_BUF_BASE(0));
+    rxBufAddr = (const void *)(myFSIRX0_BASE + FSI_O_RX_BUF_BASE(0));
 
     //
-    // Enable FSI Tx/Rx interrupts
+    // Call Sysconfig configured code.
     //
-    Interrupt_enable(INT_DMA_CH2);
-    Interrupt_enable(INT_DMA_CH4);
+    Board_init();
 
     //
-    // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)
+    // Flush Sequence before and after releasing Rx core reset, ensures flushing
+    // of Rx data/clock lines and prepares it for reception.
+    //
+    FSI_resetRxModule(myFSIRX0_BASE, FSI_RX_MAIN_CORE_RESET);
+    FSI_executeTxFlushSequence(myFSITX0_BASE, myFSITX0_PRESCALER_VAL);
+    DEVICE_DELAY_US(1);
+    FSI_clearRxModuleReset(myFSIRX0_BASE, FSI_RX_MAIN_CORE_RESET);
+    FSI_executeTxFlushSequence(myFSITX0_BASE, myFSITX0_PRESCALER_VAL);
+
+    //
+    // Enable Global Interrupt (INTM) and realtime interrupt (DBGM).
     //
     EINT;
     ERTM;
 
-    //
-    // Initialize basic settings for FSI
-    //
-    initFSI();
-
-    //
-    // First setup Ping transfer and then Data
-    //
-
-    //
-    // Performing a reset on PING WD counter before its usage is recommended
-    // Done on both FSI Tx/Rx sides
-    //
-    FSI_resetTxModule(FSITXA_BASE, FSI_TX_PING_TIMEOUT_CNT_RESET);
-    DEVICE_DELAY_US(1);
-    FSI_clearTxModuleReset(FSITXA_BASE, FSI_TX_PING_TIMEOUT_CNT_RESET);
-
-    FSI_resetRxModule(FSIRXA_BASE, FSI_RX_PING_WD_CNT_RESET);
-    DEVICE_DELAY_US(1);
-    FSI_clearRxModuleReset(FSIRXA_BASE, FSI_RX_PING_WD_CNT_RESET);
-
-    //
-    // Enable Rx Ping Watchdog timeout event on INT2 line
-    //
-    FSI_enableRxInterrupt(FSIRXA_BASE, FSI_INT2, FSI_RX_EVT_PING_WD_TIMEOUT);
-    //
-    // Now enable PING WD timer in both FSI Tx/Rx sides
-    // Keeping reference counter for Rx little wide to ensure its not too sharp
-    // to generate a WD timeout
-    //
-    FSI_enableTxPingTimer(FSITXA_BASE, txPingTimeRefCntr, txPingFrameTag);
-    FSI_enableRxPingWatchdog(FSIRXA_BASE, rxWdTimeoutRefCntr);
-
     if(isRxFrameWdEnable)
     {
         //
-        // Performing a reset on frame WD before its usage is recommended
+        // Performing a reset on frame WD before its usage is recommended.
         //
-        FSI_resetRxModule(FSIRXA_BASE, FSI_RX_FRAME_WD_CNT_RESET);
+        FSI_resetRxModule(myFSIRX0_BASE, FSI_RX_FRAME_WD_CNT_RESET);
         DEVICE_DELAY_US(1);
-        FSI_clearRxModuleReset(FSIRXA_BASE, FSI_RX_FRAME_WD_CNT_RESET);
-
-        FSI_enableRxInterrupt(FSIRXA_BASE, FSI_INT2,
-                              FSI_RX_EVT_FRAME_WD_TIMEOUT);
-        FSI_enableRxFrameWatchdog(FSIRXA_BASE, rxFrameWdRefCntr);
+        FSI_clearRxModuleReset(myFSIRX0_BASE, FSI_RX_FRAME_WD_CNT_RESET);
+        FSI_enableRxFrameWatchdog(myFSIRX0_BASE, rxFrameWdRefCntr);
     }
 
-    //
-    // Enable transmit/receive error events to be sent over INT2 line
-    // Overrun and Underrun conditions in Rx are not enabled as buffer pointers
-    // are always overwritten to first location for sending data frames.
-    //
-    FSI_enableRxInterrupt(FSIRXA_BASE, FSI_INT2, FSI_RX_EVT_CRC_ERR  |
-                                                 FSI_RX_EVT_EOF_ERR  |
-                                                 FSI_RX_EVT_TYPE_ERR);
-
-    //
-    // Automatic Ping transmission is setup, now configure for data transfers
-    //
-
-    //
-    // Initialize the dma channels for both tx and rx buffers
-    //
-    DMA_initController();
-
-    fsirx_dma_config();
-    fsitx_dma_config();
-
-    FSI_setTxFrameType(FSITXA_BASE, FSI_FRAME_TYPE_NWORD_DATA);
-    //
-    // Setting for requested nWords and nLanes with transfers
-    //
-    FSI_setTxSoftwareFrameSize(FSITXA_BASE, nWords);
-    FSI_setRxSoftwareFrameSize(FSIRXA_BASE, nWords);
-    FSI_setTxDataWidth(FSITXA_BASE, nLanes);
-    FSI_setRxDataWidth(FSIRXA_BASE, nLanes);
-
-    //
-    // Enable DMA event on both FSI Tx/Rx and
-    FSI_setTxStartMode(FSITXA_BASE, FSI_TX_START_FRAME_CTRL_OR_UDATA_TAG);
-    FSI_enableTxDMAEvent(FSITXA_BASE);
-    FSI_enableRxDMAEvent(FSIRXA_BASE);
+    FSI_enableTxDMAEvent(myFSITX0_BASE);
+    FSI_enableRxDMAEvent(myFSIRX0_BASE);
 
     InitFrameTagAndData();
 
@@ -354,11 +294,11 @@ void main(void)
         dmaIntr2 = 0;
 
         //
-        // Starting location is after one word as extra write to marker location
-        // will lead to 1st comparison fail
+        // Starting location is after one word as extra write to marker
+        // location will lead to 1st comparison fail.
         //
-        txTempData16 = (uint16_t *)(GS0_START_ADDR + 1);
-        rxTempData16 = (uint16_t *)(GS2_START_ADDR + 1);
+        txTempData16 = ((uint16_t *)gs0Addr) + 1;
+        rxTempData16 = ((uint16_t *)gs2Addr) + 1;
 
         //
         // verify transfers
@@ -376,145 +316,10 @@ void main(void)
         // marker for observing change in received data in memory view of
         // debugger with each transfer
         //
-        *(uint16_t *)GS0_START_ADDR = (uint16_t )countDMAtransfers;
+        *((uint16_t *)gs0Addr) = (uint16_t )countDMAtransfers;
     }
 }
 
-//
-// initFSI - Initializes FSI Tx/Rx with internal loopback and also sends FLUSH
-//           sequence.
-//
-void initFSI(void)
-{
-#if EXTERNAL_FSI_ENABLE == 0
-
-    //
-    // Set internalLoopback mode
-    //
-    FSI_enableRxInternalLoopback(FSIRXA_BASE);
-
-#else
-
-    //
-    // Configure for External Loopback
-    //
-    FSI_disableRxInternalLoopback(FSIRXA_BASE);
-
-    GPIO_setPinConfig(DEVICE_GPIO_CFG_FSI_TXCLK);
-    GPIO_setPinConfig(DEVICE_GPIO_CFG_FSI_TX0);
-
-    GPIO_setPinConfig(DEVICE_GPIO_CFG_FSI_RXCLK);
-    GPIO_setPinConfig(DEVICE_GPIO_CFG_FSI_RX0);
-
-    if(nLanes == FSI_DATA_WIDTH_2_LANE)
-    {
-        GPIO_setPinConfig(DEVICE_GPIO_CFG_FSI_TX1);
-        GPIO_setPinConfig(DEVICE_GPIO_CFG_FSI_RX1);
-    }
-
-    //
-    // Set RX GPIO to be asynchronous
-    // (pass through without delay)
-    // Default setting is to have 2 SYS_CLK cycles delay
-    //
-    if(nLanes == FSI_DATA_WIDTH_2_LANE)
-    {
-        GPIO_setQualificationMode(DEVICE_GPIO_PIN_FSI_RX1, GPIO_QUAL_ASYNC);
-    }
-    GPIO_setQualificationMode(DEVICE_GPIO_PIN_FSI_RX0, GPIO_QUAL_ASYNC);
-    GPIO_setQualificationMode(DEVICE_GPIO_PIN_FSI_RXCLK, GPIO_QUAL_ASYNC);
-
-#endif
-
-    //
-    // Initialize Tx/Rx, reset sequence, clear events
-    //
-
-    // TODO- Add logic to calculate PRESCALER_VAL based on user input FSI CLK
-    FSI_performTxInitialization(FSITXA_BASE, PRESCALER_VAL);
-    FSI_performRxInitialization(FSIRXA_BASE);
-
-    //
-    // Flush Sequence before and after releasing Rx core reset, ensures flushing
-    // of Rx data/clock lines and prepares it for reception
-    //
-    FSI_resetRxModule(FSIRXA_BASE, FSI_RX_MAIN_CORE_RESET);
-    FSI_executeTxFlushSequence(FSITXA_BASE, PRESCALER_VAL);
-    DEVICE_DELAY_US(1);
-    FSI_clearRxModuleReset(FSIRXA_BASE, FSI_RX_MAIN_CORE_RESET);
-    FSI_executeTxFlushSequence(FSITXA_BASE, PRESCALER_VAL);
-
-    //
-    // Assigning base addresses of Tx/Rx data buffer to globals
-    //
-    txBufAddr = (uint16_t *)FSI_getTxBufferAddress(FSITXA_BASE);
-    rxBufAddr = (uint16_t *)FSI_getRxBufferAddress(FSIRXA_BASE);
-}
-
-//
-// fsitx_dma_config - Sets up DMA channels(Ch1 and Ch2) for FSI Tx operation
-//
-void fsitx_dma_config()
-{
-    //
-    // For the data buffers
-    //
-    DMA_configAddresses(DMA_CH1_BASE, txBufAddr, (uint16_t *)GS0_START_ADDR);
-    DMA_configBurst(DMA_CH1_BASE, nWords, 1, 1);
-    DMA_configTransfer(DMA_CH1_BASE, DMA_TRANSFER_SIZE_IN_BURSTS, 1, 1);
-    DMA_configWrap(DMA_CH1_BASE, DMA_TRANSFER_SIZE_IN_BURSTS, 0, nWords, 0);
-    DMA_configMode(DMA_CH1_BASE, DMA_TRIGGER_FSITXA, DMA_CFG_ONESHOT_DISABLE|
-                   DMA_CFG_CONTINUOUS_ENABLE | DMA_CFG_SIZE_16BIT);
-
-    DMA_disableInterrupt(DMA_CH1_BASE);
-    DMA_enableTrigger(DMA_CH1_BASE);
-
-    //
-    // For the tag and userdata fields
-    //
-    DMA_configAddresses(DMA_CH2_BASE, (uint16_t *)FSI_TX_FRAME_TAG_UDATA_REGADDR,
-                        (uint16_t *)GS1_START_ADDR);
-    DMA_configBurst(DMA_CH2_BASE, 1, 0, 0);
-    DMA_configTransfer(DMA_CH2_BASE, DMA_TRANSFER_SIZE_IN_BURSTS, 1, 0);
-    DMA_configWrap(DMA_CH2_BASE, 16, 0, 16, 0);
-    DMA_configMode(DMA_CH2_BASE, DMA_TRIGGER_FSITXA, DMA_CFG_ONESHOT_DISABLE|
-                   DMA_CFG_CONTINUOUS_ENABLE|DMA_CFG_SIZE_16BIT);
-
-    DMA_setInterruptMode(DMA_CH2_BASE, DMA_INT_AT_END);
-    DMA_enableInterrupt(DMA_CH2_BASE);
-    DMA_enableTrigger(DMA_CH2_BASE);
-}
-
-//
-// fsirx_dma_config - Sets up DMA channels(Ch3 and Ch4) for FSI Rx operation
-//
-void fsirx_dma_config()
-{
-    DMA_configAddresses(DMA_CH3_BASE, (uint16_t *)GS2_START_ADDR, rxBufAddr);
-    DMA_configBurst(DMA_CH3_BASE, nWords, 1, 1);
-    DMA_configTransfer(DMA_CH3_BASE, DMA_TRANSFER_SIZE_IN_BURSTS, 1, 1);
-    DMA_configWrap(DMA_CH3_BASE, nWords, 0, DMA_TRANSFER_SIZE_IN_BURSTS, 0);
-    DMA_configMode(DMA_CH3_BASE, DMA_TRIGGER_FSIRXA, DMA_CFG_ONESHOT_DISABLE|
-                   DMA_CFG_CONTINUOUS_ENABLE|DMA_CFG_SIZE_16BIT);
-
-    DMA_disableInterrupt(DMA_CH3_BASE);
-    DMA_enableTrigger(DMA_CH3_BASE);
-
-    //
-    // For the tag and userdata fields
-    //
-    DMA_configAddresses(DMA_CH4_BASE,(uint16_t *)GS3_START_ADDR,
-                        (uint16_t *)FSI_RX_FRAME_TAG_UDATA_REGADDR);
-    DMA_configBurst(DMA_CH4_BASE, 1, 0, 0);
-    DMA_configTransfer(DMA_CH4_BASE, DMA_TRANSFER_SIZE_IN_BURSTS, 0, 1);
-    DMA_configWrap(DMA_CH4_BASE, 16, 0, 16, 0);
-    DMA_configMode(DMA_CH4_BASE, DMA_TRIGGER_FSIRXA, DMA_CFG_ONESHOT_DISABLE |
-                   DMA_CFG_CONTINUOUS_ENABLE | DMA_CFG_SIZE_16BIT);
-
-    DMA_setInterruptMode(DMA_CH4_BASE, DMA_INT_AT_END);
-    DMA_enableInterrupt(DMA_CH4_BASE);
-    DMA_enableTrigger(DMA_CH4_BASE);
-}
 
 //
 // fsitxdma_isr - FSI Tx DMA ISR

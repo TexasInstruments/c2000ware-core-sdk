@@ -432,7 +432,7 @@ void configTimer0(void)
     // Initialize timer period:
     //
     temp = (long) (freq / 1000000 * TIMER_PERIOD_US);
-    CPUTimer_setPeriod(CPUTIMER0_BASE, temp);
+    CPUTimer_setPeriod(CPUTIMER0_BASE, temp - 1);
 
     //
     // Set pre-scale counter to divide by 1 (SYSCLKOUT):

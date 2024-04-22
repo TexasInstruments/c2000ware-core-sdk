@@ -9,6 +9,23 @@ let device_driverlib_peripheral =
 let longDescription = "The I2C driver provides a simplified application"
         + " interface to access peripherals on an I2C bus.";
 
+var extended_clock_supported_devices = ['f28p55x'];
+var hide_extended_clock_stretching_options = null; 
+var extended_clock_stretching_support_available = null; 
+function setupFlags()
+{
+    if (extended_clock_supported_devices.indexOf(Common.getDeviceName().toLowerCase()) === -1) 
+    {
+        hide_extended_clock_stretching_options = true;
+        extended_clock_stretching_support_available = false;
+    } 
+    else
+    {
+        hide_extended_clock_stretching_options = false;
+        extended_clock_stretching_support_available = true;
+    }
+}
+setupFlags();
 
 function onChangeMode(inst, ui)
 {
@@ -16,28 +33,14 @@ function onChangeMode(inst, ui)
         ui.loopback.hidden = false;
         ui.bitRate.hidden = false;
         ui.duty.hidden = false;
-        ui.targetAddress.hidden = false;
-        ui.ownTargetAddress.hidden = true;
     }
     else {
         ui.loopback.hidden = true;
         ui.bitRate.hidden = true;
         ui.duty.hidden = true;
-        ui.targetAddress.hidden = true;
-        ui.ownTargetAddress.hidden = false;
     }
 }
 
-function onChangeLoopback(inst, ui)
-{
-	if (inst.loopback) {
-        ui.ownTargetAddress.hidden = false;
-    }
-    else {
-        ui.ownTargetAddress.hidden = true;
-    }
-    onChangeMode(inst, ui);
-}
 
 function onChangeUseInterrupts(inst, ui)
 {
@@ -75,12 +78,18 @@ function onValidate(inst, validation)
     var ownAddrError = false;
     var maxAddress = (inst.addressMode.includes(10)? 0x3FF: 0x7F);
     var bitRateInt = parseInt(inst.bitRate);
-    if (bitRateInt < 1 || bitRateInt > 200000000)
+    var customModuleFrequencyInt = parseInt(inst.customModuleFrequency);
+    var customModuleFrequencyError = false;
+    if(customModuleFrequencyInt < 7000000 || customModuleFrequencyInt > 12000000)
+    {
+       customModuleFrequencyError = true; 
+    }
+    if (bitRateInt < 1 || bitRateInt > 400000)
     {
         bitRateError = true;
     }
     var targetAddressInt = parseInt(inst.targetAddress);
-    var ownAddressInt = parseInt(inst.ownTargetAddress);
+    var ownAddressInt = parseInt(inst.ownAddress);
 
     if (targetAddressInt < 0 || targetAddressInt > maxAddress)
     {
@@ -100,7 +109,7 @@ function onValidate(inst, validation)
     if(bitRateError)
     {
         validation.logError(
-            "Enter an integer for bit rates between 1 and SYSCLK!", 
+            "Enter an integer for bit rates between 1 and 400000!", 
             inst, "bitRate");
     }
     if(targetAddrError && inst.mode == "CONTROLLER")
@@ -113,7 +122,13 @@ function onValidate(inst, validation)
     {
         validation.logError(
             "Own Target address must be between 0 and " + maxAddress + "!", 
-            inst, "ownTargetAddress");
+            inst, "ownAddress");
+    }
+    if(customModuleFrequencyError)
+    {
+        validation.logError(
+            "Module Clock Frequency must be between 7 MHz and 12 MHz", 
+            inst, "customModuleFrequency");
     }
 
     var pinmuxQualMods = Pinmux.getGpioQualificationModInstDefinitions("I2C", inst)
@@ -126,10 +141,49 @@ function onValidate(inst, validation)
     }
 }
 
+function I2C_InterruptList(hide_clock_stretching_option_flag)
+{
+    let base_interrupt =  [
+        {name: "I2C_INT_ARB_LOST", displayName : "Arbitration-lost interrupt"},
+        {name: "I2C_INT_NO_ACK", displayName : "NACK interrupt"},
+        {name: "I2C_INT_REG_ACCESS_RDY", displayName : "Register-access-ready interrupt"},
+        {name: "I2C_INT_RX_DATA_RDY", displayName : "Receive-data-ready interrupt"},
+        {name: "I2C_INT_TX_DATA_RDY", displayName : "Transmit-data-ready interrupt"},
+        {name: "I2C_INT_STOP_CONDITION", displayName : "Stop condition detected"},
+        {name: "I2C_INT_ADDR_TARGET", legacyNames: ["I2C_INT_ADDR_SLAVE"], displayName : "Addressed as target interrupt"}
+    ];
+    if (hide_clock_stretching_option_flag == false) 
+    {
+        base_interrupt.push(
+	        {name: "I2C_INT_SCL_ECS", displayName: "Extended clock stretching interrupt"}
+        )
+    }
+    return base_interrupt;
+
+}
+
+function onModuleClockChange(inst, ui)
+{
+    if(inst.useDefaultModuleFrequency)
+    {
+        ui.customModuleFrequency.hidden = true;
+    }
+    else 
+    {
+        ui.customModuleFrequency.hidden = false;
+    }
+}
 
 /* Array of I2C configurables that are common across device families */
 let config = [
-
+    {
+        name        : "sysClk",
+        displayName : "Device System Clock",
+        description : "Device System clock in MHz",
+        hidden      : false,
+        default     : Common.SYSCLK_getMaxMHz(),
+        readOnly    : true,
+    },
     {
         name        : "mode",
         displayName : "I2C Device Mode",
@@ -156,6 +210,21 @@ let config = [
         description : 'Controller transmitter bitrate',
         hidden      : false,
         default     : 400000,
+    },
+    {
+        name        : "useDefaultModuleFrequency",
+        displayName : "Default I2C Module Clock Frequency",
+        description : 'Configure Module Clock Frequency',
+        hidden      : false,
+        default     : true,
+        onChange    : onModuleClockChange
+    },
+    {
+        name        : "customModuleFrequency",
+        displayName : "I2C Module Clock Frequency",
+        description : 'Configure Module Clock Frequency',
+        hidden      : true,
+        default     : 10000000,
     },
     {
         name        : "initialMode",
@@ -201,20 +270,19 @@ let config = [
         default     : 0x00
     },
     {
-        name        : "ownTargetAddress",
+        name        : "ownAddress",
         legacyNames : ["ownSlaveAddress"],
-        displayName : "Own Target Address",
+        displayName : "Own Address",
         description : 'The device\'s own target address, 7bit/10bit: 0x00 to 0x7F or 0x3FF',
-        hidden      : true,
+        hidden      : false,
         displayFormat: "hex",
         default     : 0x00
     },
     {
         name        : "loopback",
-        displayName : "loopback Mode",
+        displayName : "Loopback Mode",
         description : 'loopback mode',
         hidden      : false,
-        onChange    : onChangeLoopback,
         default     : false,
     },
 
@@ -242,15 +310,7 @@ let config = [
         hidden      : false,
         default     : [],
         minSelections: 0,
-        options     : [
-            {name: "I2C_INT_ARB_LOST", displayName : "Arbitration-lost interrupt"},
-            {name: "I2C_INT_NO_ACK", displayName : "NACK interrupt"},
-            {name: "I2C_INT_REG_ACCESS_RDY", displayName : "Register-access-ready interrupt"},
-            {name: "I2C_INT_RX_DATA_RDY", displayName : "Receive-data-ready interrupt"},
-            {name: "I2C_INT_TX_DATA_RDY", displayName : "Transmit-data-ready interrupt"},
-            {name: "I2C_INT_STOP_CONDITION", displayName : "Stop condition detected"},
-            {name: "I2C_INT_ADDR_TARGET", legacyNames: ["I2C_INT_ADDR_SLAVE"], displayName : "Addressed as target interrupt"},
-        ],
+        options     : I2C_InterruptList(hide_extended_clock_stretching_options), 
         
     },
     {
@@ -311,6 +371,20 @@ let config = [
         options     : Pinmux.getPeripheralUseCaseNames("I2C"),
         onChange    : Pinmux.useCaseChanged,
     },
+
+    {
+        name: "useExtendedClockStretching",
+        displayName: "Use Automatic Extended Clock Stretching",
+        description: "Enables Extended Clock Stretching",
+        hidden: hide_extended_clock_stretching_options,
+        default: false,
+    },
+
+    {
+        name: "extendedClockStretchingSupport",
+        default: extended_clock_stretching_support_available,
+        hidden: true
+    }
 ];
 
 
@@ -364,10 +438,13 @@ var i2cModule = {
             		$name : inst.$name + "_INT",
                     int : "INT_" + inst.$name,
                     pinmuxPeripheralModule : "i2c",
-                    driverlibInt: "INT_#"
+                    driverlibInt: "INT_#",
+                    enableInterrupt: true
                 }
-            },
+            }]);
+            if(inst.useFifo)
             {
+                ownedInstances = ownedInstances.concat([{
                 name: "i2cFIFOInt",      
                 displayName: "FIFO Interrupt",
                 moduleName: "/driverlib/interrupt.js",
@@ -376,9 +453,11 @@ var i2cModule = {
             		$name : inst.$name + "_FIFO_INT",
                     int : "INT_" + inst.$name + "_FIFO",
                     pinmuxPeripheralModule : "i2c",
-                    driverlibInt: "INT_#_FIFO"
+                    driverlibInt: "INT_#_FIFO",
+                    enableInterrupt: true
                 }
-            }])
+            }]);
+            }
         }
 
         return ownedInstances;

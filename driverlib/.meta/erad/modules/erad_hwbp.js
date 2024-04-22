@@ -93,7 +93,7 @@ var config = [
         default     : false
     }
 ];
-if(["F2838x", "F28002x", "F28003x", "F28P65x"].includes(system.deviceData.deviceId))
+if(["F2838x", "F28002x", "F28003x", "F28P65x", "F28P55x"].includes(system.deviceData.deviceId))
 {
     config.push({
         name        : "NMIInterrupt",

@@ -518,7 +518,7 @@ DAC_lockRegister(uint32_t base, uint16_t reg)
     //
     EALLOW;
 
-    HWREGH(base + DAC_O_LOCK) |= reg;
+    HWREGH(base + DAC_O_LOCK) |= (DAC_LOCK_KEY | reg);
 
     EDIS;
 }

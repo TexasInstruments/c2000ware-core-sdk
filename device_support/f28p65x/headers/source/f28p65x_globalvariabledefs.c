@@ -1682,6 +1682,14 @@ volatile struct TEST_ERROR_REGS TestErrorRegs;
 
 //----------------------------------------
 #ifdef __cplusplus
+#pragma DATA_SECTION("UidRegsFile")
+#else
+#pragma DATA_SECTION(UidRegs,"UidRegsFile");
+#endif
+volatile struct UID_REGS UidRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
 #pragma DATA_SECTION("UartARegsFile")
 #else
 #pragma DATA_SECTION(UartARegs,"UartARegsFile");

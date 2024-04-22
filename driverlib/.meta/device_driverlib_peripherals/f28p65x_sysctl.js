@@ -811,7 +811,7 @@ let SYSCTL_NMI = [
 	{ name: "SYSCTL_NMI_CPU1HWBISTERR", displayName: "HW BIST Error NMI Flag" },
 	{ name: "SYSCTL_NMI_PIEVECTERR", displayName: "PIE Vector Fetch Error Flag" },
 	{ name: "SYSCTL_NMI_SYSDBGNMI", displayName: "System Debug Module NMI Flag" },
-	{ name: "SYSCTL_NMI_RLNMI", displayName: "Reconfigurable Logic NMI Flag" },
+	{ name: "SYSCTL_NMI_CLBNMI", displayName: "Reconfigurable Logic NMI Flag" },
 	{ name: "SYSCTL_NMI_CPU2WDRSN", displayName: "CPU2 WDRSn Reset Indication Flag" },
 	{ name: "SYSCTL_NMI_CPU2NMIWDRSN", displayName: "CPU2 NMIWDRSn Reset Indication Flag" },
 	{ name: "SYSCTL_NMI_LSCMPERR", displayName: "Lockstep Compare Error" },

@@ -30,17 +30,17 @@ var supported_library_moduleFile = [
      { moduleCategory: CATEGORY_CONTROL ,  moduleName : "LOGGER", moduleFile : "/libraries/control/dcl/logger.js"},
      { moduleCategory: CATEGORY_CONTROL ,  moduleName : "CONTROLLER", moduleFile : "/libraries/control/dcl/controller.js"},
      { moduleCategory: CATEGORY_CONTROL ,  moduleName : "TCM", moduleFile : "/libraries/control/dcl/tcm.js"},
+     { moduleCategory: CATEGORY_DSP ,  moduleName : "FFT", moduleFile : "/libraries/dsp/FPU/FFT/FFT.js"},
+     { moduleCategory: CATEGORY_DSP ,  moduleName : "Filter", moduleFile : "/libraries/dsp/FPU/Filter/Filter.js"},
+     { moduleCategory: CATEGORY_DSP ,  moduleName : "Vector", moduleFile : "/libraries/dsp/FPU/Vector/Vector.js"},
+     { moduleCategory: CATEGORY_MATH ,  moduleName : "FPUfastRTS", moduleFile : "/libraries/math/FPUfastRTS/FPUfastRTS.js"},
+     { moduleCategory: CATEGORY_MATH ,  moduleName : "IQmath", moduleFile : "/libraries/math/IQmath/IQmath.js"},     
 ];
 
 var device_specific_modules = [
-    { moduleCategory: CATEGORY_DSP ,  moduleName : "FFT", moduleFile : "/libraries/dsp/FPU/FFT/FFT.js",                     devices: ["F28P65x", "F280013x", "F280015x", "F28002x", "F28003x", "F28004x", "F2807x", "F2837xD", "F2837xS", "F2838x"]},
-    { moduleCategory: CATEGORY_DSP ,  moduleName : "Filter", moduleFile : "/libraries/dsp/FPU/Filter/Filter.js",            devices: ["F28P65x", "F280013x", "F280015x", "F28002x", "F28003x", "F28004x", "F2807x", "F2837xD", "F2837xS", "F2838x"]},
-    { moduleCategory: CATEGORY_DSP ,  moduleName : "Vector", moduleFile : "/libraries/dsp/FPU/Vector/Vector.js",            devices: ["F28P65x", "F280013x", "F280015x", "F28002x", "F28003x", "F28004x", "F2807x", "F2837xD", "F2837xS", "F2838x"]},
-    { moduleCategory: CATEGORY_DSP ,  moduleName : "VCU VCRC", moduleFile : "/libraries/dsp/VCU/VCRC/vcrc.js",              devices: ["F28P65x", "F28002x", "F28003x", "F2838x"]},
-    { moduleCategory: CATEGORY_MATH ,  moduleName : "FASTINTDIV", moduleFile : "/libraries/math/FASTINTDIV/fastintdiv.js",  devices: ["F28P65x", "F28002x", "F28003x", "F28004x", "F2807x", "F2837xD", "F2837xS", "F2838x"]},
-    { moduleCategory: CATEGORY_MATH ,  moduleName : "FPUfastRTS", moduleFile : "/libraries/math/FPUfastRTS/FPUfastRTS.js",  devices: ["F28P65x", "F280013x", "F280015x", "F28002x", "F28003x", "F28004x", "F2807x", "F2837xD", "F2837xS", "F2838x"]},
-    { moduleCategory: CATEGORY_MATH ,  moduleName : "IQmath", moduleFile : "/libraries/math/IQmath/IQmath.js",              devices: ["F28P65x", "F280013x", "F280015x", "F28002x", "F28003x", "F28004x", "F2807x", "F2837xD", "F2837xS", "F2838x"]},
-    { moduleCategory: CATEGORY_COMMS ,  moduleName : "USB", moduleFile : "/libraries/communications/usb/usb.js",              devices: ["F2807x","F2837xD", "F2837xS", "F2838x"]},
+    { moduleCategory: CATEGORY_DSP ,  moduleName : "VCU VCRC", moduleFile : "/libraries/dsp/VCU/VCRC/vcrc.js",              devices: ["F28P65x", "F28P55x", "F28002x", "F28003x", "F2838x"]},
+    { moduleCategory: CATEGORY_MATH ,  moduleName : "FASTINTDIV", moduleFile : "/libraries/math/FASTINTDIV/fastintdiv.js",  devices: ["F28P65x", "F28002x", "F28003x", "F2838x"]},
+    { moduleCategory: CATEGORY_COMMS ,  moduleName : "USB", moduleFile : "/libraries/communications/usb/usb.js",              devices: ["F2807x","F2837xD", "F2837xS", "F2838x", "F28P65x", "F28P55x" ]},
 ]
 
 for (var library_moduleFile in supported_library_moduleFile)

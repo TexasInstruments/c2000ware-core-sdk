@@ -23,7 +23,7 @@
 //
 //
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -472,14 +472,14 @@ __interrupt void MCANIntr1ISR(void)
     }
 
     //
-    //  Clearing the interrupt lineNum
-    //
-    HW_WR_FIELD32(MCANA_DRIVER_BASE + MCAN_MCANSS_EOI, MCAN_MCANSS_EOI, 0x2U);
-
-    //
     // Clear the interrupt Status.
     //
     MCAN_clearIntrStatus(MCANA_DRIVER_BASE, intrStatus);
+
+    //
+    //  Clearing the interrupt lineNum
+    //
+    MCAN_clearInterrupt(MCANA_DRIVER_BASE, 0x2);
 
     //
     // Update the flag value.

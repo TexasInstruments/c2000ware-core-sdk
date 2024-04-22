@@ -54,7 +54,47 @@ void Device_init(void)
     // Turn on all peripherals
     //
     Device_enableAllPeripherals();
+    
+    //
+    // Update the offset trim for PGA2
+    //
+    if(HWREG(DEVCFG_BASE + SYSCTL_O_REVID) == 1U)
+    {
+        PGA_setOffsetTrimNMOS(PGA2_BASE);
+        PGA_setOffsetTrimPMOS(PGA2_BASE);
+        
+        //
+        //Set bits in ADCCONFIG2 and make ADC OFFTRIM even for all ADCs
+        //
+        EALLOW;
+        HWREG(ADCA_BASE + 0x66U)|=0x00000C00U;
+        HWREG(ADCB_BASE + 0x66U)|=0x00000C00U;
+        HWREG(ADCC_BASE + 0x66U)|=0x00000C00U;
+        HWREG(ADCD_BASE + 0x66U)|=0x00000C00U;
+        HWREG(ADCE_BASE + 0x66U)|=0x00000C00U;
 
+        if(HWREGH(ADCA_BASE + ADC_O_OFFTRIM) % 2U)
+        {
+            HWREGH(ADCA_BASE + ADC_O_OFFTRIM) += 1U;
+        }
+        if (HWREGH(ADCB_BASE + ADC_O_OFFTRIM) % 2U)
+        {
+            HWREGH(ADCB_BASE + ADC_O_OFFTRIM) += 1U;
+        }
+        if (HWREGH(ADCC_BASE + ADC_O_OFFTRIM) % 2U)
+        {
+            HWREGH(ADCC_BASE + ADC_O_OFFTRIM) += 1U;
+        }
+        if (HWREGH(ADCD_BASE + ADC_O_OFFTRIM) % 2U)
+        {
+            HWREGH(ADCD_BASE + ADC_O_OFFTRIM) += 1U;
+        }
+        if (HWREGH(ADCE_BASE + ADC_O_OFFTRIM) % 2U)
+        {
+            HWREGH(ADCE_BASE + ADC_O_OFFTRIM) += 1U;
+        }
+        EDIS;
+    }
     //
     // Lock VREGCTL Register
     // The register VREGCTL is not supported in this device. It is locked to

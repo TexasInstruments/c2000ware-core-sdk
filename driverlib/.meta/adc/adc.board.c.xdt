@@ -47,15 +47,15 @@ void `instance.$name`_init(){
 % 			else{
 % 				refVoltage = "ADC_REFERENCE_3_3V"
 % 			}
-% 		}
 	//
 	// ADC Initialization: Write ADC configurations and power up the ADC
-% 		if( ["F28002x", "F28003x", "F280013x", "F280015x", "F28004x"].includes(Common.getDeviceName())){
 	//
-	// Configures the ADC module's offset trim
+	// Set the analog voltage reference selection and ADC module's offset trims.
+	// This function sets the analog voltage reference to internal (with the reference voltage of 1.65V or 2.5V) or external for ADC
+	// which is same as ASysCtl APIs.
 	//
-	ADC_setOffsetTrimAll(`refMode`,`refVoltage`);
-%		}
+	ADC_setVREF(`baseName`, `refMode`, `refVoltage`);
+% 		}
 	//
 	// Configures the analog-to-digital converter module prescaler.
 	//

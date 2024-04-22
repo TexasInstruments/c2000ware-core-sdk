@@ -1,6 +1,6 @@
 //#############################################################################
 //
-// profile_interrupts.js
+// erad_ex1_profile_interrupts.js
 //
 // This JavaScript file is used to configure ERAD registers for use with the CCS
 // example "erad_ex1_profileinterrupts".
@@ -8,13 +8,13 @@
 // To properly use this script, the following variables must be set in the
 // scripting environment prior to launching the ERAD script:
 //
-// - var PROJ_NAME = "erad_ex1_profileinterrupts"
+// - var PROJ_NAME = "erad_debugger_ex1_profileinterrupts"
 // - var PROJ_WKSPC_LOC = "<proj_workspace_path>"
 // - var PROJ_CONFIG = "<name of active configuration [CPU1_FLASH|CPU1_RAM]>"
 //
 // To run this ERAD script, use the following command in the scripting console:
 //
-// - loadJSFile("<proj_workspace_path>\\erad_ex1_profileinterrupts\\profile_interrupts.js", 0);
+// - loadJSFile("<proj_workspace_path>\\erad_debugger_ex1_profileinterrupts\\erad_ex1_profile_interrupts.js", 0);
 //
 // This JavaScript file uses Debug Server Scripting (DSS) features. For
 // information on using the DSS, please visit:

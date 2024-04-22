@@ -473,9 +473,9 @@ var epwm_validation = [
     // Validation #11
 	{
 		type : validation_warning,
-		name :  "Clearing the phase shift value will cause the EPWM module to ignore the synchronization input pulse, if any.",
+		name :  "Clearing the phase shift enable will cause the EPWM module to ignore the synchronization input pulse, if any.",
 		func : (inst, validation, name) => {
-			if (inst["epwmTimebase_phaseEnable"] == 1 && inst["epwmTimebase_phaseShift"] == 0)
+			if (inst["epwmTimebase_phaseEnable"] == 0 && inst["epwmTimebase_phaseShift"] > 0)
 			{
 		         validation.logWarning(name, inst, "epwmTimebase_phaseShift");
 			}
@@ -3422,7 +3422,30 @@ var epwm_validation = [
 				"F28P55x",
 				"F28P65x"
 				]
-		}	
+		},
+		{
+			type : validation_warning,
+			name :  'DC Counter Capture Re-enable Event and Shadow Load Event and Blanking Window start event must be configured through blanking window settings please enable "Use Blanking Window" and configure the "Blanking Window Start Event" to update this setting',
+			func : (inst, validation, name) => {
+				if (inst["epwmDigitalCompare_useDCCounterCapture"] && inst["epwmDigitalCompare_dCCounterCaptureShadow"] && !inst["epwmDigitalCompare_useBlankingWindow"])
+				{
+					validation.logWarning(name, inst, "epwmDigitalCompare_dCCounterCapturePulse");
+				}
+			},
+			devices : [
+				"F2807x",
+				"F2837xS",
+				"F2837xD",
+				"F28004x",
+				"F28002x",
+				"F28003x",
+				"F280013x",
+				"F280015x",
+				"F2838x",
+				"F28P55x",
+				"F28P65x"
+				]
+		}
 		
 ]
 

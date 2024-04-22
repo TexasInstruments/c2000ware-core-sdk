@@ -24,7 +24,7 @@
 ;// to _c_init00 and thus there is no worry and this warning can be ignored. 
 ;// 
 ;//###########################################################################
-;// $Copyright: Copyright (C) 2014-2023 Texas Instruments Incorporated -
+;// $Copyright: Copyright (C) 2014-2024 Texas Instruments Incorporated -
 ;//             http://www.ti.com/ ALL RIGHTS RESERVED $
 ;//###########################################################################
 

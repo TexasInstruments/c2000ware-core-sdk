@@ -14,6 +14,7 @@
         %let peripheral  = system.deviceData.peripherals[solution.peripheralName];
 #define `instance.$name`_BASE `peripheral.name`_BASE
 #define `instance.$name`_BITRATE `parseInt(instance.bitRate)`
+#define `instance.$name`_DATAWIDTH `parseInt(instance.dataWidth)`
         % if (instance.useDMARX) {
 #define `instance.spiRXDMA.$name`_TRIGGER DMA_TRIGGER_`peripheral.name`RX           
 #define `instance.spiRXDMA.$name`_ADDRESS ((uint16_t *)(`peripheral.name`_BASE + SPI_O_RXBUF))

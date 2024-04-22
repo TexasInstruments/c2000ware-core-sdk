@@ -1,7 +1,7 @@
 <div align="center">
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/TexasInstruments-Logo.svg" width="150"><br/>
-# C2000Ware v5.01.00.00
+# C2000Ware v5.02.00.00
 
 [Introduction](#introduction) | [Layout](#repositorylayout) | [Overview](#overview) | [Contribute](#contributing-to-the-project)
 
@@ -12,12 +12,13 @@
 C2000Ware for C2000 microcontrollers is a cohesive set of development software and documentation designed to minimize software development time. 
 It includes device-specific drivers and device peripheral examples, C2000Ware provides a solid foundation to begin development and evaluation.
 List of devices supported
-- [F28P65x](https://www.ti.com/product/TMS320F28P650DK) 
-- [F280015x](https://www.ti.com/product/TMS320F2800157) 
-- [F280013x](https://www.ti.com/product/TMS320F2800137)
-- [F28004x](https://www.ti.com/product/TMS320F280049C)
-- [F28003x](https://www.ti.com/product/TMS320F280039C)
-- [F28002x](https://www.ti.com/product/TMS320F280025C)
+- [F28P55x](https://www.ti.com/product/TMS320F28P559SJ-Q1).
+- [F28P65x](https://www.ti.com/product/TMS320F28P650DK) . 
+- [F280015x](https://www.ti.com/product/TMS320F2800157). 
+- [F280013x](https://www.ti.com/product/TMS320F2800137).
+- [F28004x](https://www.ti.com/product/TMS320F280049C) .
+- [F28003x](https://www.ti.com/product/TMS320F280039C) .
+- [F28002x](https://www.ti.com/product/TMS320F280025C) .
 - [F2838x](https://www.ti.com/product/TMS320F28388D).
 - [F2837xs](https://www.ti.com/product/TMS320F28379S).
 - [F2837xD](https://www.ti.com/product/TMS320F28379D).

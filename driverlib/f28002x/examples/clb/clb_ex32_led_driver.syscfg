@@ -78,7 +78,6 @@ clb_inputxbar_input1.inputxbarGpio = "GPIO10";
 
 clb_inputxbar_input2.inputxbarInput = "XBAR_INPUT2";
 clb_inputxbar_input2.$name          = "CLBINPUTXBAR_CLB_SCLKX2";
-
 clb_outputxbar1.muxesUsed                                = ["XBAR_MUX09"];
 clb_outputxbar1.$name                                    = "CLB_SCLK_1";
 clb_outputxbar1.clb_outputxbar.$assign                   = "CLB_OUTPUTXBAR7";
@@ -89,15 +88,14 @@ clb_outputxbar2.$name                                    = "CLB_SCLKX2_1";
 clb_outputxbar2.clb_outputxbar.$assign                   = "CLB_OUTPUTXBAR8";
 clb_outputxbar2.clb_outputxbar.clb_outputxbarPin.$assign = "GPIO0";
 
-
 clbxbar1.muxesUsed  = ["XBAR_MUX07"];
 clbxbar1.mux7Config = "XBAR_CLB_MUX07_CLB2_OUT5";
 clbxbar1.$name      = "myCLBXBAR_TRANSFER_START_SYNC";
-
 epwm1.$name                  = "EPWM_CLK";
 epwm1.epwm.$assign           = "EPWM1";
 epwm1.epwm.epwm_aPin.$assign = "GPIO30";
 epwm1.epwm.epwm_bPin.$assign = "GPIO31";
+
 
 gpio1.qualMode        = "GPIO_QUAL_ASYNC";
 gpio1.$name           = "CLB_SIN_1";

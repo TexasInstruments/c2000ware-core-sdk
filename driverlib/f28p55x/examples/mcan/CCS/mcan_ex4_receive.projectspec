@@ -1,0 +1,45 @@
+<projectSpec>
+  <project
+        name="mcan_ex4_receive"
+        device="TMS320F28P550SJ9"
+        cgtVersion="22.6.1.LTS"
+        products="sysconfig;C2000WARE"
+        outputFormat="ELF"
+        launchWizard="False"
+        linkerCommandFile=""
+        enableSysConfigTool="true"
+        sysConfigBuildOptions="--product ${C2000WARE_ROOT}/.metadata/sdk.json --device F28P55x --package 128PDT --part F28P55x_128PDT"
+        postBuildStep="
+           echo &quot;========= Build of the CLB simulation has moved to the CLB Tool. Click the '?' icon by the _Generate CLB Simulation File_ enable for more details (located in the Global Parameters of the Tile Design SysConfig module) =============&quot;
+          ;if ${GENERATE_DIAGRAM} == 1  ${NODE_TOOL} &quot;${C2000WARE_ROOT}/utilities/clb_tool/clb_syscfg/dot_file_libraries/clbDotUtility.js&quot;  &quot;${C2000WARE_ROOT}/utilities/clb_tool/clb_syscfg/&quot; &quot;${BuildDirectory}/syscfg&quot; &quot;${BuildDirectory}/syscfg/clb.dot&quot;
+          ;if ${GENERATE_DIAGRAM} == 1  mkdir &quot;${BuildDirectory}/diagrams&quot;
+          ;if ${GENERATE_DIAGRAM} == 1  ${NODE_TOOL} &quot;${C2000WARE_ROOT}/driverlib/.meta/generate_diagrams.js&quot; &quot;${C2000WARE_ROOT}&quot; &quot;${BuildDirectory}/diagrams&quot; &quot;${BuildDirectory}/syscfg&quot;
+        "
+        >
+    <configuration name="CPU1_RAM" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} -v28 -ml -mt --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu1 --gen_func_subsections=on --define=DEBUG --define=RAM --diag_warning=225 --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x200 --heap_size=0x100 --define=RAM -i${C2000WARE_ROOT} -i${PROJECT_BUILD_DIR}/syscfg -lc2000ware_libraries.cmd.genlibs "/>
+    <configuration name="CPU1_FLASH" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} -v28 -ml -mt --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu1 --gen_func_subsections=on --define=DEBUG  --define=_FLASH --diag_warning=225 --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x200 --heap_size=0x100  --define=_FLASH -i${C2000WARE_ROOT} -i${PROJECT_BUILD_DIR}/syscfg -lc2000ware_libraries.cmd.genlibs "/>
+    
+    <configuration name="CPU1_LAUNCHXL_RAM" compilerBuildOptions=  "--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT}  -v28 -ml -mt --cla_support=cla2 --define=RAM --float_support=fpu32 --tmu_support=tmu1 --define=DEBUG  --gen_func_subsections=on --diag_warning=225  --diag_suppress=10063 --define=_LAUNCHXL_F28P55X" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 -i${C2000WARE_ROOT} -i${PROJECT_BUILD_DIR}/syscfg -lc2000ware_libraries.cmd.genlibs " />
+    <configuration name="CPU1_LAUNCHXL_FLASH" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} --define=_FLASH -v28 -ml -mt --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu1 --define=DEBUG --gen_func_subsections=on --diag_warning=225  --diag_suppress=10063 --define=_LAUNCHXL_F28P55X" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 --define=_FLASH -i${C2000WARE_ROOT} -i${PROJECT_BUILD_DIR}/syscfg -lc2000ware_libraries.cmd.genlibs " />
+    
+    
+    <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../../../driverlib/f28p55x/driverlib/" scope="project"/>
+    <pathVariable name="C2000WARE_ROOT" path="../../../../../" scope="project" />
+    <pathVariable name="CLB_SYSCFG_ROOT" path="../../../../../utilities/clb_tool/clb_syscfg/" scope="project" />
+    <pathVariable name="SYSTEMC_INSTALL" path="../../../../../utilities/clb_tool/clb_syscfg/systemc-2.3.3" scope="project" />
+    <pathVariable name="CLB_SIM_COMPILER" path="C:/TDM-GCC-64/bin" scope="project" />
+    <buildVariable name="GENERATE_DIAGRAM" value="0" scope="project" />
+    <file action="copy" path="../../../../../device_support/f28p55x/common/include/driverlib.h" targetDirectory="device"/>
+    <file action="copy" path="../../../../../device_support/f28p55x/common/include/device.h" targetDirectory="device"/>
+    <file action="copy" path="../../../../../device_support/f28p55x/common/source/device.c" targetDirectory="device"/>
+    <file action="copy" path="../../../../../device_support/f28p55x/common/source/f28p55x_codestartbranch.asm" targetDirectory="device"/>
+    <file action="copy" path="../../../../../device_support/f28p55x/common/targetConfigs/TMS320F28P550SJ9.ccxml" targetDirectory="targetConfigs"  applicableConfigurations="CPU1_RAM,CPU1_FLASH" />
+    <file action="copy" path="../../../../../device_support/f28p55x/common/targetConfigs/TMS320F28P550SJ9_LaunchPad.ccxml" targetDirectory="targetConfigs"  applicableConfigurations="CPU1_LAUNCHXL_RAM,CPU1_LAUNCHXL_FLASH" />
+    <file action="copy" path="../../../../../device_support/f28p55x/common/cmd/28p55x_generic_ram_lnk.cmd" targetDirectory=""  applicableConfigurations="CPU1_RAM, CPU1_LAUNCHXL_RAM"/>
+    <file action="copy" path="../../../../../device_support/f28p55x/common/cmd/28p55x_generic_flash_lnk.cmd" targetDirectory=""  applicableConfigurations="CPU1_FLASH, CPU1_LAUNCHXL_FLASH"/>
+    <file action="link" path="../../../../../driverlib/f28p55x/driverlib/ccs/Debug/driverlib.lib" targetDirectory=""/>
+    <file action="copy" path="../../../../../driverlib/f28p55x/driverlib/" targetDirectory="device" excludeFromBuild="True"/>
+    <file action="copy" path="../mcan_ex4_receive.c" targetDirectory="" />
+    <file action="copy" path="../../empty_projects/c2000.syscfg" targetDirectory="" />
+  </project>
+</projectSpec>

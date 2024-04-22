@@ -27,7 +27,7 @@
 //
 // $Release Date:  $
 // $Copyright:
-// Copyright (C) 2013-2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2013-2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -209,7 +209,7 @@ void main(void)
         // Initiate transmission of remote frame. "rxMsgData" is "dummy"
         // No data will go out on a Remote Frame
         //
-        CAN_sendMessage(CANA_BASE, TX_MSG_OBJ_ID, MSG_DATA_LENGTH, rxMsgData);
+        CAN_sendRemoteRequestMessage(CANA_BASE, TX_MSG_OBJ_ID);
 
         //
         // Poll TxOk bit in CAN_ES register to check completion of transmission

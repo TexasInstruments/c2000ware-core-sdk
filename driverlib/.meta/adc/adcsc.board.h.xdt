@@ -1,16 +1,26 @@
-% var nameOfModule = "adcsafetycheckertile";
+% var nameOfModule = "adcsafetychecker";
 % var module = system.modules['/driverlib/' + nameOfModule + '.js'];
 % let Common   = system.getScript("/driverlib/Common.js");
-%if (module != null)
+% let tileModule = system.modules['/driverlib/adc/modules/adcsafetycheckertile.js'];
+% let aggrModule = system.modules['/driverlib/adc/modules/adcsafetycheckeraggr.js'];
+%if (tileModule != null)
 %{
 //*****************************************************************************
 //
 // ADC Safety Checker Configurations
 //
 //*****************************************************************************
-    % for(var i = 0; i < module.$instances.length; i++) {
-        % var instance = module.$instances[i];
+    % for(var i = 0; i < tileModule.$instances.length; i++) {
+        % var instance = tileModule.$instances[i];
 #define `instance.$name`_BASE `instance.adcscBase`
+void `instance.$name`_init();
+    % }
+%}
+%if (aggrModule != null)
+%{
+    % for(var i = 0; i < aggrModule.$instances.length; i++) {
+        % var instance = aggrModule.$instances[i];
+#define `instance.$name`_BASE `instance.adcIntEvtBase`
 void `instance.$name`_init();
     % }
 %}

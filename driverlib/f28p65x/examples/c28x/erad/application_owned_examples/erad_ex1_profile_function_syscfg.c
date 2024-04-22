@@ -62,9 +62,7 @@ void *addr_endCount   = (void *)&endCount;
 // Watch variables with the number of CPU cycles elapsed.
 //
 volatile uint32_t cycles_Function = 0;
-volatile uint32_t cycles_Function_Max = 0;
 volatile uint32_t cycles_Data = 0;
-volatile uint32_t cycles_Data_Max = 0;
 
 //
 // Function Prototypes

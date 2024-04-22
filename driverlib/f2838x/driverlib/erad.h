@@ -257,7 +257,7 @@ typedef enum
     ERAD_EVENT_PIE_INT10               = 29,
     ERAD_EVENT_PIE_INT11               = 30,
     ERAD_EVENT_PIE_INT12               = 31,
-    ERAD_EVENT_TIMER1_TINT0            = 32,
+    ERAD_EVENT_TIMER0_TINT0            = 32,
     ERAD_EVENT_TIMER1_TINT1            = 33,
     ERAD_EVENT_TIMER2_TINT2            = 34,
     ERAD_EVENT_CLA_INTERRUPT1          = 35,

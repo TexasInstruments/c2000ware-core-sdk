@@ -28,16 +28,19 @@
     let DEFAULT_ZONE2_PASSWORDLOCK = Common.getDefaultPASSWORDLOCKValueMask(2)
     let DEFAULT_ZONE1_CRCLOCK = Common.getDefaultCRCLOCKValueMask(1)
     let DEFAULT_ZONE2_CRCLOCK = Common.getDefaultCRCLOCKValueMask(2)
+    let DEFAULT_ZONE1_JTAGLOCK = Common.getDefaultJTAGLOCKValueMask(1)
+    let DEFAULT_ZONE2_JTAGLOCK = Common.getDefaultJTAGLOCKValueMask(2)
     
     let zone1_LINKPOINTER = zone1['NEXT_LINKPOINTER']
     let zone1_PASWDLOCK = zone1_OTP['PASWDLOCK'] == "ENABLE"?DEFAULT_ZONE1_PASSWORDLOCK[0].substring(0,9) + "0":DEFAULT_ZONE1_PASSWORDLOCK[0];
     let zone1_CRCLOCK = zone1_OTP['CRCLOCK'] == "ENABLE"?DEFAULT_ZONE1_CRCLOCK[0].substring(0,9) + "0":DEFAULT_ZONE1_CRCLOCK[0];
+    let zone1_JTAGLOCK = zone1_OTP['JTAGLOCK'] == true?DEFAULT_ZONE1_JTAGLOCK[0].substring(0,9) + "0":DEFAULT_ZONE1_JTAGLOCK[0];
     var zone1_BOOTCTRL = "";
     var ZONE1_BOOTPIN_CONFIG = "";
     var ZONE1_GPREG2 = "";
     var ZONE1_BOOTDEF_LOW = "";
     var ZONE1_BOOTDEF_HIGH = "";
-    if (["F28004x", "F28002x", "F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName()))
+    if (["F28004x", "F28002x", "F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName()))
     {
         var BMSP0 = "FF";
         var BMSP1 = "FF";
@@ -49,12 +52,33 @@
         if (zone1_OTP['bootPinCount'] > 2) { BMSP2 = (parseInt(zone1_OTP["BMSP2"].substring(4)) + 0).toString(16).padStart(2, '0') }     
         ZONE1_BOOTPIN_CONFIG = "0x5A" + BMSP2 + BMSP1 + BMSP0;
 
-        if (["F28004x", "F28002x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName())){
-            ZONE1_GPREG2 = "0x5A" + "FFFF" + (parseInt(12 + parseInt(zone1_OTP["ERRORSTSPIN"])).toString(16)) + "F";
-            if (["F28002x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName()))
+        var write_protect_bits = parseInt("1111111111111111",2)
+        if (["F28P55x"].includes(Common.getDeviceName()))
+        {
+            var binary_write_protect_bits = ""
+            for (var i = 15; i >= 1; i--)
             {
-                var runmpost_errorsts = (parseInt(zone1_OTP["RUNMPOST"] << 2) + parseInt(zone1_OTP["ERRORSTSPIN"])).toString(16)
-                ZONE1_GPREG2 = "0x5A" + "FFFF" + runmpost_errorsts + parseInt(zone1_OTP["CJTAGNODEID"]).toString(16);
+                var param_name = "write_protect_bit" + (i+8).toString()
+                if (i%8 == 0)
+                {
+                    binary_write_protect_bits = binary_write_protect_bits + "1"
+                }
+                else{
+                    binary_write_protect_bits = binary_write_protect_bits + zone1_OTP[param_name]
+                }
+            }
+            write_protect_bits = parseInt(binary_write_protect_bits, 2)
+        }
+        var mpost_shift = 2
+        if (["F28P55x"].includes(Common.getDeviceName())){
+            mpost_shift = 3
+        }
+        if (["F28004x", "F28002x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName())){
+            ZONE1_GPREG2 = "0x5AFFFF" + (parseInt(12 + parseInt(zone1_OTP["ERRORSTSPIN"])).toString(16)) + "F";
+            if (["F28002x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName()))
+            {
+                var writeprotect_runmpost_errorsts = ((write_protect_bits << (mpost_shift + 2)) + (parseInt(zone1_OTP["RUNMPOST"]) << mpost_shift) + parseInt(zone1_OTP["ERRORSTSPIN"])).toString(16)
+                ZONE1_GPREG2 = "0x5A" + writeprotect_runmpost_errorsts + parseInt(zone1_OTP["CJTAGNODEID"]).toString(16);
             }
         }
         else if ("F2838x".includes(Common.getDeviceName()))
@@ -87,16 +111,15 @@
     
     var zone1_OTP_JLM_comment = ";;";
     var zone1_OTP_JLM_comment_workaround = "";
-    var zone1_JTAGLOCK = "";
     var zone1_JTAGPSWDH0 = "";
     var zone1_JTAGPSWDH1 = "";
     var zone1_CMACKEY0 = "";
     var zone1_CMACKEY1 = "";
     var zone1_CMACKEY2 = "";
     var zone1_CMACKEY3 = "";
-    if (["F2838x", "F28003x", "F280013x", "F280015x","F28P65x"].includes(Common.getDeviceName()))
+    if (["F2838x", "F28003x", "F280013x", "F280015x","F28P65x","F28P55x"].includes(Common.getDeviceName()))
     {
-        zone1_OTP_JLM_comment = (zone1_OTP['JTAGLOCK']?"":";;");
+        zone1_OTP_JLM_comment = ((zone1_OTP['JTAGLOCK'] && zone1_OTP["useZone"])?"":";;");
         zone1_JTAGLOCK = Common.getDefaultJTAGLOCKValueMask(1)[0];
         zone1_JTAGLOCK = zone1_OTP['JTAGLOCK']?zone1_JTAGLOCK.substring(0,9) + "0":zone1_JTAGLOCK;
         zone1_JTAGPSWDH0 = zone1_OTP['JTAGPSWDH0']
@@ -113,18 +136,20 @@
     let zone1_PASSWORD2 = zone1['PASSWORD2'];
     let zone1_PASSWORD3 = zone1['PASSWORD3'];
     let zone1_comment = (zone1['useZone']?"":";;")
+    let zone1_ZSB_comment = ((zone1['useZone'] && zone1['PROGRAM_ZSB'])?"":";;")
     let zone1_OTP_comment = (zone1_OTP['useZone']?"":";;")
     let zone1_OTP_BOOT_comment = (zone1_OTP['useZone'] && zone1_OTP['configureBoot'] ?"":";;")
 
     let zone2_LINKPOINTER = zone2['NEXT_LINKPOINTER']
     let zone2_PASWDLOCK = zone2_OTP['PASWDLOCK'] == "ENABLE"?DEFAULT_ZONE2_PASSWORDLOCK[0].substring(0,9) + "0":DEFAULT_ZONE2_PASSWORDLOCK[0];
     let zone2_CRCLOCK = zone2_OTP['CRCLOCK'] == "ENABLE"?DEFAULT_ZONE2_CRCLOCK[0].substring(0,9) + "0":DEFAULT_ZONE2_CRCLOCK[0];
+    let zone2_JTAGLOCK = zone2_OTP['JTAGLOCK'] == true?DEFAULT_ZONE2_JTAGLOCK[0].substring(0,9) + "0":DEFAULT_ZONE2_JTAGLOCK[0];
     var zone2_BOOTCTRL = "";
     var ZONE2_BOOTPIN_CONFIG = "";
     var ZONE2_GPREG2 = "";
     var ZONE2_BOOTDEF_LOW = "";
     var ZONE2_BOOTDEF_HIGH = "";
-    if (["F28004x", "F28002x", "F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName()))
+    if (["F28004x", "F28002x", "F2838x", "F28003x", "F280013x", "F280015x", "F28P65x","F28P55x"].includes(Common.getDeviceName()))
     {
         var BMSP0 = "FF";
         var BMSP1 = "FF";
@@ -136,9 +161,9 @@
         if (zone2_OTP['bootPinCount'] > 2) { BMSP2 = (parseInt(zone2_OTP["BMSP2"].substring(4)) + 0).toString(16).padStart(2, '0') }     
         ZONE2_BOOTPIN_CONFIG = "0x5A" + BMSP2 + BMSP1 + BMSP0;
 
-        if (["F28004x", "F28002x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName())){
-            ZONE2_GPREG2 = "0x5A" + "FFFF" + (parseInt(12 + parseInt(zone2_OTP["ERRORSTSPIN"])).toString(16)) + "F";
-            if (["F28002x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName()))
+        if (["F28004x", "F28002x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName())){
+            ZONE2_GPREG2 = "0x5A" +"FFFF" + (parseInt(12 + parseInt(zone2_OTP["ERRORSTSPIN"])).toString(16)) + "F";
+            if (["F28002x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName()))
             {
                 var runmpost_errorsts = (parseInt(zone2_OTP["RUNMPOST"] << 2) + parseInt(zone2_OTP["ERRORSTSPIN"])).toString(16)
                 ZONE2_GPREG2 = "0x5A" + "FFFF" + runmpost_errorsts + parseInt(zone2_OTP["CJTAGNODEID"]).toString(16);
@@ -176,6 +201,7 @@
     let zone2_PASSWORD2 = zone2['PASSWORD2'];
     let zone2_PASSWORD3 = zone2['PASSWORD3'];
     let zone2_comment = (zone2['useZone']?"":";;")
+    let zone2_ZSB_comment = ((zone2['useZone'] && zone2['PROGRAM_ZSB'])?"":";;")
     let zone2_OTP_comment = (zone2_OTP['useZone']?"":";;")
     let zone2_OTP_BOOT_comment = (zone2_OTP['useZone'] && zone2_OTP['configureBoot'] ?"":";;")
 
@@ -227,7 +253,7 @@
         var exeonly1 = ""
         var exeonly2 = ""
         var unsecure_value = "11"
-        if (["F28004x", "F28002x", "F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName()))
+        if (["F28004x", "F28002x", "F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName()))
         {
             unsecure_value = "10"
         }
@@ -294,7 +320,7 @@
         bank1_ds_selectedSetting = getGrabAndExeTranslation(flashBank1MemorySecs);
     }
 
-    if (!(["F28004x", "F28802x", "F28003x", "F2838x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName())))
+    if (!(["F28004x", "F28802x", "F28003x", "F2838x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName())))
     {
         cla_selectedSetting = getGrabAndExeTranslation([{"name" : "CLA"}]);
     }
@@ -769,6 +795,138 @@
         Z2_EXEONLYSECT1 = "0x" + parseInt(Z2_EXEONLYSECT1, 2).toString(16).padStart(8, "0").toUpperCase()
         Z2_EXEONLYSECT2 = "0x" + parseInt(Z2_EXEONLYSECT2, 2).toString(16).padStart(8, "0").toUpperCase()
     }
+    if (["F28P55x"].includes(Common.getDeviceName()))
+    {
+        var flashBank1MemorySecs = JSON.parse(JSON.stringify(ds));
+        var flashBank2MemorySecs = JSON.parse(JSON.stringify(ds));
+        var flashBank3MemorySecs = JSON.parse(JSON.stringify(ds));
+        var flashBank4MemorySecs = JSON.parse(JSON.stringify(ds));
+        flashBank1MemorySecs.forEach(element => {
+            element["name"] = element["name"] + Common.getBankNames(1);
+        })
+        flashBank2MemorySecs.forEach(element => {
+            element["name"] = element["name"] + Common.getBankNames(2);
+        })
+        flashBank3MemorySecs.forEach(element => {
+            element["name"] = element["name"] + Common.getBankNames(3);
+        })
+        flashBank4MemorySecs.forEach(element => {
+            element["name"] = element["name"] + Common.getBankNames(4);
+        })
+
+        if ("F28P55x".includes(Common.getDeviceName()))
+        {
+            var tempFlashBank4MemorySecs = []
+            for (var i = 0; i < 5; i++){
+                tempFlashBank4MemorySecs = tempFlashBank4MemorySecs.concat(flashBank4MemorySecs[i])
+            }
+            flashBank4MemorySecs = tempFlashBank4MemorySecs
+        }
+        
+        bank1_ds_selectedSetting = getGrabAndExeTranslation(flashBank1MemorySecs);
+        bank2_ds_selectedSetting = getGrabAndExeTranslation(flashBank2MemorySecs);
+        bank3_ds_selectedSetting = getGrabAndExeTranslation(flashBank3MemorySecs);
+        bank4_ds_selectedSetting = getGrabAndExeTranslation(flashBank4MemorySecs);
+
+        if(zone1["MPOSTENABLE"] == 0x0){
+            Z1_DIAG = "0xFFFFFFEF";
+        }
+        else Z1_DIAG = "0xFFFFFFDF";
+
+        zone1_JTAGPSWDL0 = zone1["JTAGPSWDL0"]
+        zone1_JTAGPSWDL1 = zone1["JTAGPSWDL1"]
+
+        var grabramX_range = 0;
+        var exeonlyValid = false;
+        var dr_index = 0;
+
+        dr.forEach(element => {
+            var dr_setting = dr_selectedSetting[dr_index];
+
+            if (element.name == "RAMLS0"){
+                grabramX_range = 1;
+                exeonlyValid = true;
+            }
+            
+            var gbexe = getGrabAndExeValues(dr_setting)
+            if (grabramX_range == 1){
+                Z1_GRABRAM1 = gbexe.grabZ1 + Z1_GRABRAM1;
+                Z2_GRABRAM1 = gbexe.grabZ2 + Z2_GRABRAM1;
+            }
+
+            if (grabramX_range == 1){   
+                Z1_EXEONLYRAM1 = gbexe.exeonly1 + Z1_EXEONLYRAM1;
+                Z2_EXEONLYRAM1 = gbexe.exeonly2 + Z2_EXEONLYRAM1;
+            }
+
+            dr_index++;
+        });
+
+        ds_selectedSetting.forEach(element => {
+            var gbexe = getGrabAndExeValues(element)
+            Z1_EXEONLYSECT1 = gbexe.exeonly1 + Z1_EXEONLYSECT1 
+            Z1_GRABSECT1 = gbexe.grabZ1 + Z1_GRABSECT1
+            Z2_EXEONLYSECT1 = gbexe.exeonly2 + Z2_EXEONLYSECT1 
+            Z2_GRABSECT1 = gbexe.grabZ2 + Z2_GRABSECT1
+        });
+
+        bank1_ds_selectedSetting.forEach(element => {
+            var gbexe = getGrabAndExeValues(element)
+            Z1_EXEONLYSECT1 = gbexe.exeonly1 + Z1_EXEONLYSECT1 
+            Z1_GRABSECT1 = gbexe.grabZ1 + Z1_GRABSECT1
+            Z2_EXEONLYSECT1 = gbexe.exeonly2 + Z2_EXEONLYSECT1
+            Z2_GRABSECT1 = gbexe.grabZ2 + Z2_GRABSECT1
+        });
+
+        bank2_ds_selectedSetting.forEach(element => {
+            var gbexe = getGrabAndExeValues(element)
+            Z1_EXEONLYSECT1 = gbexe.exeonly1 + Z1_EXEONLYSECT1 
+            Z1_GRABSECT2 = gbexe.grabZ1 + Z1_GRABSECT2
+            Z2_EXEONLYSECT1 = gbexe.exeonly2 + Z2_EXEONLYSECT1
+            Z2_GRABSECT2 = gbexe.grabZ2 + Z2_GRABSECT2
+        });
+        bank3_ds_selectedSetting.forEach(element => {
+            var gbexe = getGrabAndExeValues(element)
+            Z1_EXEONLYSECT1 = gbexe.exeonly1 + Z1_EXEONLYSECT1 
+            Z1_GRABSECT2 = gbexe.grabZ1 + Z1_GRABSECT2
+            Z2_EXEONLYSECT1 = gbexe.exeonly2 + Z2_EXEONLYSECT1
+            Z2_GRABSECT2 = gbexe.grabZ2 + Z2_GRABSECT2
+        });
+
+        bank4_ds_selectedSetting.forEach(element => {
+            var gbexe = getGrabAndExeValues(element)
+            Z1_EXEONLYSECT2 = gbexe.exeonly1 + Z1_EXEONLYSECT2 
+            Z1_GRABSECT3 = gbexe.grabZ1 + Z1_GRABSECT3
+            Z2_EXEONLYSECT2 = gbexe.exeonly2 + Z2_EXEONLYSECT2
+            Z2_GRABSECT3 = gbexe.grabZ2 + Z2_GRABSECT3
+        });
+
+        Z1_GRABSECT3 = "0000000000000000000000" + Z1_GRABSECT3
+        Z2_GRABSECT3 = "0000000000000000000000" + Z2_GRABSECT3
+        Z1_EXEONLYSECT2 = "000000000000000000000000000" + Z1_EXEONLYSECT2
+        Z2_EXEONLYSECT2 = "000000000000000000000000000" + Z2_EXEONLYSECT2
+
+        Z1_GRABRAM1 = "0x" + parseInt(Z1_GRABRAM1, 2).toString(16).padStart(8, "0").toUpperCase()
+
+        Z2_GRABRAM1 = "0x" + parseInt(Z2_GRABRAM1, 2).toString(16).padStart(8, "0").toUpperCase()
+
+        Z1_GRABSECT1 = "0x" + parseInt(Z1_GRABSECT1, 2).toString(16).padStart(8, "0").toUpperCase()
+        Z1_GRABSECT2 = "0x" + parseInt(Z1_GRABSECT2, 2).toString(16).padStart(8, "0").toUpperCase()
+        Z1_GRABSECT3 = "0x" + parseInt(Z1_GRABSECT3, 2).toString(16).padStart(8, "0").toUpperCase()
+
+        Z2_GRABSECT1 = "0x" + parseInt(Z2_GRABSECT1, 2).toString(16).padStart(8, "0").toUpperCase()
+        Z2_GRABSECT2 = "0x" + parseInt(Z2_GRABSECT2, 2).toString(16).padStart(8, "0").toUpperCase()
+        Z2_GRABSECT3 = "0x" + parseInt(Z2_GRABSECT3, 2).toString(16).padStart(8, "0").toUpperCase()
+        
+        Z1_EXEONLYRAM1 = "0x" + parseInt(Z1_EXEONLYRAM1, 2).toString(16).padStart(8, "0").toUpperCase()
+        Z2_EXEONLYRAM1 = "0x" + parseInt(Z2_EXEONLYRAM1, 2).toString(16).padStart(8, "0").toUpperCase()
+
+        Z1_EXEONLYSECT1 = "0x" + parseInt(Z1_EXEONLYSECT1, 2).toString(16).padStart(8, "0").toUpperCase()
+        Z1_EXEONLYSECT2 = "0x" + parseInt(Z1_EXEONLYSECT2, 2).toString(16).padStart(8, "0").toUpperCase()
+
+        Z2_EXEONLYSECT1 = "0x" + parseInt(Z2_EXEONLYSECT1, 2).toString(16).padStart(8, "0").toUpperCase()
+        Z2_EXEONLYSECT2 = "0x" + parseInt(Z2_EXEONLYSECT2, 2).toString(16).padStart(8, "0").toUpperCase()
+    }
     
     if ("F28002x".includes(Common.getDeviceName()))
     {
@@ -787,7 +945,7 @@
     });
 
 
-    if (!(["F28004x", "F28002x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName())))
+    if (!(["F28004x", "F28002x", "F28003x", "F280013x", "F280015x", "F28P65x","F28P55x"].includes(Common.getDeviceName())))
     {
         var gbexeCLA = getGrabAndExeValues(cla_selectedSetting[0])
         Z1_GRABRAM = gbexeCLA.grabZ1 + "0".repeat(12) + Z1_GRABRAM
@@ -841,19 +999,19 @@
 `zone1_comment`     .sect "dcsm_otp_z1_linkpointer"
 `zone1_comment`      .retain
 `zone1_comment`      .long `zone1_LINKPOINTER`
-% if (!["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName())){
+% if (!["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName())){
 `zone1_comment`      .long 0xFFFFFFFF     ;Reserved
 % }
 `zone1_comment`      .long `zone1_LINKPOINTER`
-% if (!["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName())){
+% if (!["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName())){
 `zone1_comment`      .long 0xFFFFFFFF     ;Reserved
 % }
 `zone1_comment`      .long `zone1_LINKPOINTER`
-% if (!["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName())){
+% if (!["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName())){
 `zone1_comment`      .long 0xFFFFFFFF     ;Reserved
 % }
 `zone1_comment`    
-% if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName())){
+% if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName())){
 `zone1_OTP_JLM_comment_workaround`     .sect "dcsm_otp_z1_jlm_enable"
 `zone1_OTP_JLM_comment_workaround`      .retain
 `zone1_OTP_JLM_comment_workaround`      .long `zone1_JTAGLOCK`     ;Z1OTP_JLM_ENABLE
@@ -895,6 +1053,10 @@
 `zone1_OTP_comment`      .long `zone1_CRCLOCK`
 `zone1_OTP_comment`      .long `DEFAULT_ZONE1_CRCLOCK[1]`     ;Reserved
 `zone1_OTP_comment`   
+`zone1_OTP_comment`     .sect "dcsm_otp_z1_jtaglock"
+`zone1_OTP_comment`      .retain
+`zone1_OTP_comment`      .long `zone1_JTAGLOCK`
+`zone1_OTP_comment`      .long `DEFAULT_ZONE1_JTAGLOCK[1]`     ;Reserved
 % }
 % if (["F28004x", "F28002x"].includes(Common.getDeviceName())) {
 `zone1_OTP_BOOT_comment`     .sect "dcsm_otp_z1_gpreg"
@@ -907,7 +1069,7 @@
 `zone1_OTP_BOOT_comment`      .retain
 `zone1_OTP_BOOT_comment`      .long `ZONE1_BOOTDEF_LOW`     ;Z1OTP_BOOTDEF_LOW
 `zone1_OTP_BOOT_comment`      .long `ZONE1_BOOTDEF_HIGH`     ;Z1OTP_BOOTDEF_HIGH
-% } else if (["F2838x", "F28003x", "F280013x", "F280015x","F28P65x"].includes(Common.getDeviceName())) {
+% } else if (["F2838x", "F28003x", "F280013x", "F280015x","F28P65x", "F28P55x"].includes(Common.getDeviceName())) {
 `zone1_OTP_BOOT_comment`     .sect "dcsm_otp_z1_gpreg"
 `zone1_OTP_BOOT_comment`      .retain
 `zone1_OTP_BOOT_comment`      .long `ZONE1_BOOTPIN_CONFIG`     ;Z1OTP_GPREG1 = Z1_BOOTPIN
@@ -921,81 +1083,102 @@
 `zone1_OTP_BOOT_comment`      .long `zone1_BOOTCTRL`
 %}
 % if ("F2838x".includes(Common.getDeviceName())){
-`zone1_comment`     .sect "dcsm_zsel_z1"
-`zone1_comment`      .retain
-`zone1_comment`      .long `zone1_PASSWORD0`     ;Z1OTP_CSMPSWD0 (LSW of 128-bit password)
-`zone1_comment`      .long `zone1_PASSWORD1`     ;Z1OTP_CSMPSWD1
-`zone1_comment`      .long `zone1_PASSWORD2`     ;Z1OTP_CSMPSWD2
-`zone1_comment`      .long `zone1_PASSWORD3`     ;Z1OTP_CSMPSWD3 (MSW of 128-bit password)
-`zone1_comment` 
-`zone1_comment`      .long `Z1_GRABSECT1`     ;Z1OTP_GRABSECT1
-`zone1_comment`      .long `Z1_GRABSECT2`     ;Z1OTP_GRABSECT2
-`zone1_comment`      .long `Z1_GRABSECT3`     ;Z1OTP_GRABSECT3
-`zone1_comment`      .long `Z1_GRABRAM1`     ;Z1OTP_GRABRAM1
-`zone1_comment`      .long `Z1_GRABRAM2`     ;Z1OTP_GRABRAM2
-`zone1_comment`      .long `Z1_GRABRAM3`     ;Z1OTP_GRABRAM3
-`zone1_comment`
-`zone1_comment`      .long `Z1_EXEONLYSECT1`     ;Z1OTP_EXEONLYSECT1
-`zone1_comment`      .long `Z1_EXEONLYSECT2`     ;Z1OTP_EXEONLYSECT2
-`zone1_comment`      .long `Z1_EXEONLYRAM1`     ;Z1OTP_EXEONLYRAM1
-`zone1_comment`      .long 0xFFFFFFFF     ;Reserved
-`zone1_comment`      .long `zone1_JTAGPSWDL0`     ;Z1OTP_JTAGPSWDL0
-`zone1_comment`      .long `zone1_JTAGPSWDL1`     ;Z1OTP_JTAGPSWDL1
+`zone1_ZSB_comment`     .sect "dcsm_zsel_z1"
+`zone1_ZSB_comment`      .retain
+`zone1_ZSB_comment`      .long `zone1_PASSWORD0`     ;Z1OTP_CSMPSWD0 (LSW of 128-bit password)
+`zone1_ZSB_comment`      .long `zone1_PASSWORD1`     ;Z1OTP_CSMPSWD1
+`zone1_ZSB_comment`      .long `zone1_PASSWORD2`     ;Z1OTP_CSMPSWD2
+`zone1_ZSB_comment`      .long `zone1_PASSWORD3`     ;Z1OTP_CSMPSWD3 (MSW of 128-bit password)
+`zone1_ZSB_comment` 
+`zone1_ZSB_comment`      .long `Z1_GRABSECT1`     ;Z1OTP_GRABSECT1
+`zone1_ZSB_comment`      .long `Z1_GRABSECT2`     ;Z1OTP_GRABSECT2
+`zone1_ZSB_comment`      .long `Z1_GRABSECT3`     ;Z1OTP_GRABSECT3
+`zone1_ZSB_comment`      .long `Z1_GRABRAM1`     ;Z1OTP_GRABRAM1
+`zone1_ZSB_comment`      .long `Z1_GRABRAM2`     ;Z1OTP_GRABRAM2
+`zone1_ZSB_comment`      .long `Z1_GRABRAM3`     ;Z1OTP_GRABRAM3
+`zone1_ZSB_comment`
+`zone1_ZSB_comment`      .long `Z1_EXEONLYSECT1`     ;Z1OTP_EXEONLYSECT1
+`zone1_ZSB_comment`      .long `Z1_EXEONLYSECT2`     ;Z1OTP_EXEONLYSECT2
+`zone1_ZSB_comment`      .long `Z1_EXEONLYRAM1`     ;Z1OTP_EXEONLYRAM1
+`zone1_ZSB_comment`      .long 0xFFFFFFFF     ;Reserved
+`zone1_ZSB_comment`      .long `zone1_JTAGPSWDL0`     ;Z1OTP_JTAGPSWDL0
+`zone1_ZSB_comment`      .long `zone1_JTAGPSWDL1`     ;Z1OTP_JTAGPSWDL1
 % } else if (["F28003x", "F280013x", "F280015x"].includes(Common.getDeviceName())) {
-`zone1_comment`     .sect "dcsm_zsel_z1"
-`zone1_comment`      .retain
-`zone1_comment`      .long `zone1_PASSWORD0`     ;Z1OTP_CSMPSWD0 (LSW of 128-bit password)
-`zone1_comment`      .long `zone1_PASSWORD1`     ;Z1OTP_CSMPSWD1
-`zone1_comment`      .long `zone1_PASSWORD2`     ;Z1OTP_CSMPSWD2
-`zone1_comment`      .long `zone1_PASSWORD3`     ;Z1OTP_CSMPSWD3 (MSW of 128-bit password)
-`zone1_comment` 
-`zone1_comment`      .long `Z1_GRABSECT1`     ;Z1OTP_GRABSECT1
-`zone1_comment`      .long `Z1_GRABSECT2`     ;Z1OTP_GRABSECT2
-`zone1_comment`      .long `Z1_GRABSECT3`     ;Z1OTP_GRABSECT3
-`zone1_comment`      .long `Z1_GRABRAM1`     ;Z1OTP_GRABRAM1
-`zone1_comment`      .long 0xFFFFFFFF     ;Reserved
-`zone1_comment`      .long 0xFFFFFFFF     ;Reserved
-`zone1_comment` 
-`zone1_comment`      .long `Z1_EXEONLYSECT1`     ;Z1OTP_EXEONLYSECT1
-`zone1_comment`      .long `Z1_EXEONLYSECT2`     ;Z1OTP_EXEONLYSECT2
-`zone1_comment`      .long `Z1_EXEONLYRAM1`     ;Z1OTP_EXEONLYRAM1
-`zone1_comment`      .long 0xFFFFFFFF     ;Reserved
-`zone1_comment`      .long `zone1_JTAGPSWDL0`     ;Z1OTP_JTAGPSWDL0
-`zone1_comment`      .long `zone1_JTAGPSWDL1`     ;Z1OTP_JTAGPSWDL1    
+`zone1_ZSB_comment`     .sect "dcsm_zsel_z1"
+`zone1_ZSB_comment`      .retain
+`zone1_ZSB_comment`      .long `zone1_PASSWORD0`     ;Z1OTP_CSMPSWD0 (LSW of 128-bit password)
+`zone1_ZSB_comment`      .long `zone1_PASSWORD1`     ;Z1OTP_CSMPSWD1
+`zone1_ZSB_comment`      .long `zone1_PASSWORD2`     ;Z1OTP_CSMPSWD2
+`zone1_ZSB_comment`      .long `zone1_PASSWORD3`     ;Z1OTP_CSMPSWD3 (MSW of 128-bit password)
+`zone1_ZSB_comment` 
+`zone1_ZSB_comment`      .long `Z1_GRABSECT1`     ;Z1OTP_GRABSECT1
+`zone1_ZSB_comment`      .long `Z1_GRABSECT2`     ;Z1OTP_GRABSECT2
+`zone1_ZSB_comment`      .long `Z1_GRABSECT3`     ;Z1OTP_GRABSECT3
+`zone1_ZSB_comment`      .long `Z1_GRABRAM1`     ;Z1OTP_GRABRAM1
+`zone1_ZSB_comment`      .long 0xFFFFFFFF     ;Reserved
+`zone1_ZSB_comment`      .long 0xFFFFFFFF     ;Reserved
+`zone1_ZSB_comment` 
+`zone1_ZSB_comment`      .long `Z1_EXEONLYSECT1`     ;Z1OTP_EXEONLYSECT1
+`zone1_ZSB_comment`      .long `Z1_EXEONLYSECT2`     ;Z1OTP_EXEONLYSECT2
+`zone1_ZSB_comment`      .long `Z1_EXEONLYRAM1`     ;Z1OTP_EXEONLYRAM1
+`zone1_ZSB_comment`      .long 0xFFFFFFFF     ;Reserved
+`zone1_ZSB_comment`      .long `zone1_JTAGPSWDL0`     ;Z1OTP_JTAGPSWDL0
+`zone1_ZSB_comment`      .long `zone1_JTAGPSWDL1`     ;Z1OTP_JTAGPSWDL1    
 % } else if (["F28P65x"].includes(Common.getDeviceName())){
-`zone1_comment`     .sect "dcsm_zsel_z1"
-`zone1_comment`      .retain
-`zone1_comment`      .long `zone1_PASSWORD0`     ;Z1OTP_CSMPSWD0 (LSW of 128-bit password)
-`zone1_comment`      .long `zone1_PASSWORD1`     ;Z1OTP_CSMPSWD1
-`zone1_comment`      .long `zone1_PASSWORD2`     ;Z1OTP_CSMPSWD2
-`zone1_comment`      .long `zone1_PASSWORD3`     ;Z1OTP_CSMPSWD3 (MSW of 128-bit password)
-`zone1_comment` 
-`zone1_comment`      .long `Z1_GRABSECT1`     ;Z1OTP_GRABSECT1
-`zone1_comment`      .long `Z1_GRABSECT2`     ;Z1OTP_GRABSECT2
-`zone1_comment`      .long `Z1_GRABSECT3`     ;Z1OTP_GRABSECT3
-`zone1_comment`      .long `Z1_GRABRAM1`     ;Z1OTP_GRABRAM1
-`zone1_comment`      .long `Z1_GRABRAM2`     ;Z1OTP_GRABRAM2
-`zone1_comment`      .long 0xFFFFFFFF     ;Reserved
-`zone1_comment` 
-`zone1_comment`      .long `Z1_EXEONLYSECT1`     ;Z1OTP_EXEONLYSECT1
-`zone1_comment`      .long `Z1_EXEONLYSECT2`     ;Z1OTP_EXEONLYSECT2
-`zone1_comment`      .long `Z1_EXEONLYRAM1`     ;Z1OTP_EXEONLYRAM1
-`zone1_comment`      .long `Z1_DIAG`     ;Z1_DIAG
-`zone1_comment`      .long `zone1_JTAGPSWDL0`     ;Z1OTP_JTAGPSWDL0
-`zone1_comment`      .long `zone1_JTAGPSWDL1`     ;Z1OTP_JTAGPSWDL1
+`zone1_ZSB_comment`     .sect "dcsm_zsel_z1"
+`zone1_ZSB_comment`      .retain
+`zone1_ZSB_comment`      .long `zone1_PASSWORD0`     ;Z1OTP_CSMPSWD0 (LSW of 128-bit password)
+`zone1_ZSB_comment`      .long `zone1_PASSWORD1`     ;Z1OTP_CSMPSWD1
+`zone1_ZSB_comment`      .long `zone1_PASSWORD2`     ;Z1OTP_CSMPSWD2
+`zone1_ZSB_comment`      .long `zone1_PASSWORD3`     ;Z1OTP_CSMPSWD3 (MSW of 128-bit password)
+`zone1_ZSB_comment` 
+`zone1_ZSB_comment`      .long `Z1_GRABSECT1`     ;Z1OTP_GRABSECT1
+`zone1_ZSB_comment`      .long `Z1_GRABSECT2`     ;Z1OTP_GRABSECT2
+`zone1_ZSB_comment`      .long `Z1_GRABSECT3`     ;Z1OTP_GRABSECT3
+`zone1_ZSB_comment`      .long `Z1_GRABRAM1`     ;Z1OTP_GRABRAM1
+`zone1_ZSB_comment`      .long `Z1_GRABRAM2`     ;Z1OTP_GRABRAM2
+`zone1_ZSB_comment`      .long 0xFFFFFFFF     ;Reserved
+`zone1_ZSB_comment` 
+`zone1_ZSB_comment`      .long `Z1_EXEONLYSECT1`     ;Z1OTP_EXEONLYSECT1
+`zone1_ZSB_comment`      .long `Z1_EXEONLYSECT2`     ;Z1OTP_EXEONLYSECT2
+`zone1_ZSB_comment`      .long `Z1_EXEONLYRAM1`     ;Z1OTP_EXEONLYRAM1
+`zone1_ZSB_comment`      .long `Z1_DIAG`     ;Z1_DIAG
+`zone1_ZSB_comment`      .long `zone1_JTAGPSWDL0`     ;Z1OTP_JTAGPSWDL0
+`zone1_ZSB_comment`      .long `zone1_JTAGPSWDL1`     ;Z1OTP_JTAGPSWDL1
+% } else if (["F28P55x"].includes(Common.getDeviceName())){
+`zone1_ZSB_comment`     .sect "dcsm_zsel_z1"
+`zone1_ZSB_comment`      .retain
+`zone1_ZSB_comment`      .long `zone1_PASSWORD0`     ;Z1OTP_CSMPSWD0 (LSW of 128-bit password)
+`zone1_ZSB_comment`      .long `zone1_PASSWORD1`     ;Z1OTP_CSMPSWD1
+`zone1_ZSB_comment`      .long `zone1_PASSWORD2`     ;Z1OTP_CSMPSWD2
+`zone1_ZSB_comment`      .long `zone1_PASSWORD3`     ;Z1OTP_CSMPSWD3 (MSW of 128-bit password)
+`zone1_ZSB_comment` 
+`zone1_ZSB_comment`      .long `Z1_GRABSECT1`     ;Z1OTP_GRABSECT1
+`zone1_ZSB_comment`      .long `Z1_GRABSECT2`     ;Z1OTP_GRABSECT2
+`zone1_ZSB_comment`      .long `Z1_GRABSECT3`     ;Z1OTP_GRABSECT3
+`zone1_ZSB_comment`      .long `Z1_GRABRAM1`     ;Z1OTP_GRABRAM1
+`zone1_ZSB_comment`      .long 0xFFFFFFFF     ;Reserved
+`zone1_ZSB_comment`      .long 0xFFFFFFFF     ;Reserved
+`zone1_ZSB_comment` 
+`zone1_ZSB_comment`      .long `Z1_EXEONLYSECT1`     ;Z1OTP_EXEONLYSECT1
+`zone1_ZSB_comment`      .long `Z1_EXEONLYSECT2`     ;Z1OTP_EXEONLYSECT2
+`zone1_ZSB_comment`      .long `Z1_EXEONLYRAM1`     ;Z1OTP_EXEONLYRAM1
+`zone1_ZSB_comment`      .long `Z1_DIAG`     ;Z1_DIAG
+`zone1_ZSB_comment`      .long `zone1_JTAGPSWDL0`     ;Z1OTP_JTAGPSWDL0
+`zone1_ZSB_comment`      .long `zone1_JTAGPSWDL1`     ;Z1OTP_JTAGPSWDL1
 % } else {
-`zone1_comment`      
-`zone1_comment`     .sect "dcsm_zsel_z1"
-`zone1_comment`      .retain
-`zone1_comment`      .long `Z1_EXEONLYRAM`       ;Z1-EXEONLYRAM
-`zone1_comment`      .long `Z1_EXEONLYSECT`      ;Z1-EXEONLYSECT
-`zone1_comment`      .long `Z1_GRABRAM`          ;Z1-GRABRAM
-`zone1_comment`      .long `Z1_GRABSECT`         ;Z1-GRABSECT
-`zone1_comment`      
-`zone1_comment`      .long `zone1_PASSWORD0`
-`zone1_comment`      .long `zone1_PASSWORD1`
-`zone1_comment`      .long `zone1_PASSWORD2`
-`zone1_comment`      .long `zone1_PASSWORD3`
+`zone1_ZSB_comment`      
+`zone1_ZSB_comment`     .sect "dcsm_zsel_z1"
+`zone1_ZSB_comment`      .retain
+`zone1_ZSB_comment`      .long `Z1_EXEONLYRAM`       ;Z1-EXEONLYRAM
+`zone1_ZSB_comment`      .long `Z1_EXEONLYSECT`      ;Z1-EXEONLYSECT
+`zone1_ZSB_comment`      .long `Z1_GRABRAM`          ;Z1-GRABRAM
+`zone1_ZSB_comment`      .long `Z1_GRABSECT`         ;Z1-GRABSECT
+`zone1_ZSB_comment`      
+`zone1_ZSB_comment`      .long `zone1_PASSWORD0`
+`zone1_ZSB_comment`      .long `zone1_PASSWORD1`
+`zone1_ZSB_comment`      .long `zone1_PASSWORD2`
+`zone1_ZSB_comment`      .long `zone1_PASSWORD3`
 % }
 
 % if (bank1_exists) {
@@ -1008,17 +1191,17 @@
 `zone1_comment`      .long `bank1_zone1_LINKPOINTER`
 `zone1_comment`      .long 0xFFFFFFFF     ;Reserved
 `zone1_comment` 
-`zone1_comment`     .sect "b1_dcsm_zsel_z1"
-`zone1_comment`      .retain
-`zone1_comment`      .long 0xFFFFFFFF               ;Reserved
-`zone1_comment`      .long `B1_Z1_EXEONLYSECT`      ;Bank 1 Z1-EXEONLYSECT
-`zone1_comment`      .long 0xFFFFFFFF               ;Reserved
-`zone1_comment`      .long `B1_Z1_GRABSECT`         ;Bank 1 Z1-GRABSECT
-`zone1_comment` 
-`zone1_comment`      .long 0xFFFFFFFF               ;Reserved
-`zone1_comment`      .long 0xFFFFFFFF               ;Reserved
-`zone1_comment`      .long 0xFFFFFFFF               ;Reserved
-`zone1_comment`      .long 0xFFFFFFFF               ;Reserved
+`zone1_ZSB_comment`     .sect "b1_dcsm_zsel_z1"
+`zone1_ZSB_comment`      .retain
+`zone1_ZSB_comment`      .long 0xFFFFFFFF               ;Reserved
+`zone1_ZSB_comment`      .long `B1_Z1_EXEONLYSECT`      ;Bank 1 Z1-EXEONLYSECT
+`zone1_ZSB_comment`      .long 0xFFFFFFFF               ;Reserved
+`zone1_ZSB_comment`      .long `B1_Z1_GRABSECT`         ;Bank 1 Z1-GRABSECT
+`zone1_ZSB_comment` 
+`zone1_ZSB_comment`      .long 0xFFFFFFFF               ;Reserved
+`zone1_ZSB_comment`      .long 0xFFFFFFFF               ;Reserved
+`zone1_ZSB_comment`      .long 0xFFFFFFFF               ;Reserved
+`zone1_ZSB_comment`      .long 0xFFFFFFFF               ;Reserved
 % }
 
 ;----------------------------------------------------------------------
@@ -1042,19 +1225,19 @@
 `zone2_comment`     .sect "dcsm_otp_z2_linkpointer"
 `zone2_comment`      .retain
 `zone2_comment`      .long `zone2_LINKPOINTER`
-% if (!["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName())){
+% if (!["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName())){
 `zone2_comment`      .long 0xFFFFFFFF     ;Reserved
 % }
 `zone2_comment`      .long `zone2_LINKPOINTER`
-% if (!["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName())){
+% if (!["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName())){
 `zone2_comment`      .long 0xFFFFFFFF     ;Reserved
 % }
 `zone2_comment`      .long `zone2_LINKPOINTER`
-% if (!["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName())){
+% if (!["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName())){
 `zone2_comment`      .long 0xFFFFFFFF     ;Reserved
 % }
 `zone2_comment`
-% if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName())){
+% if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName())){
 `zone2_OTP_comment`     .sect "dcsm_rsvd_z2"
 `zone2_OTP_comment`      .retain
 `zone2_OTP_comment`      .long 0xFFFFFFFF     ;Reserved
@@ -1081,6 +1264,10 @@
 `zone2_OTP_comment`      .retain
 `zone2_OTP_comment`      .long `zone2_CRCLOCK`
 `zone2_OTP_comment`      .long `DEFAULT_ZONE2_CRCLOCK[1]`     ;Reserved
+`zone2_OTP_comment`     .sect "dcsm_otp_z2_jtaglock"
+`zone2_OTP_comment`      .retain
+`zone2_OTP_comment`      .long `zone2_JTAGLOCK`
+`zone2_OTP_comment`      .long `DEFAULT_ZONE2_JTAGLOCK[1]`     ;Reserved
 % }
 `zone2_comment`            
 % if (["F28004x", "F28002x"].includes(Common.getDeviceName())) {
@@ -1094,7 +1281,7 @@
 `zone2_OTP_BOOT_comment`      .retain
 `zone2_OTP_BOOT_comment`      .long `ZONE2_BOOTDEF_LOW`     ;Z2OTP_BOOTDEF_LOW
 `zone2_OTP_BOOT_comment`      .long `ZONE2_BOOTDEF_HIGH`     ;Z2OTP_BOOTDEF_HIGH
-% } else if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName())) {
+% } else if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName())) {
 `zone2_OTP_BOOT_comment`     .sect "dcsm_otp_z2_gpreg"
 `zone2_OTP_BOOT_comment`      .retain
 `zone2_OTP_BOOT_comment`      .long `ZONE2_BOOTPIN_CONFIG`     ;Z2OTP_GPREG1 = Z2_BOOTPIN
@@ -1112,92 +1299,118 @@
 `zone2_OTP_comment`      .retain
 `zone2_OTP_comment`      .long 0xFFFFFFFF     ;Reserved
 `zone2_OTP_comment`      .long 0xFFFFFFFF     ;Reserved
-`zone2_comment`
-`zone2_comment`     .sect "dcsm_zsel_z2"
-`zone2_comment`      .retain
-`zone2_comment`      .long `zone2_PASSWORD0`     ;Z2OTP_CSMPSWD0 (LSW of 128-bit password)
-`zone2_comment`      .long `zone2_PASSWORD1`     ;Z2OTP_CSMPSWD1
-`zone2_comment`      .long `zone2_PASSWORD2`     ;Z2OTP_CSMPSWD2
-`zone2_comment`      .long `zone2_PASSWORD3`     ;Z2OTP_CSMPSWD3 (MSW of 128-bit password)
-`zone2_comment` 
-`zone2_comment`      .long `Z2_GRABSECT1`     ;Z2OTP_GRABSECT1
-`zone2_comment`      .long `Z2_GRABSECT2`     ;Z2OTP_GRABSECT2
-`zone2_comment`      .long `Z2_GRABSECT3`     ;Z2OTP_GRABSECT3
-`zone2_comment`      .long `Z2_GRABRAM1`     ;Z2OTP_GRABRAM1
-`zone2_comment`      .long `Z2_GRABRAM2`     ;Z2OTP_GRABRAM2
-`zone2_comment`      .long `Z2_GRABRAM3`     ;Z2OTP_GRABRAM3
-`zone2_comment` 
-`zone2_comment`      .long `Z2_EXEONLYSECT1`     ;Z2OTP_EXEONLYSECT1
-`zone2_comment`      .long `Z2_EXEONLYSECT2`     ;Z2OTP_EXEONLYSECT2
-`zone2_comment`      .long `Z2_EXEONLYRAM1`     ;Z2OTP_EXEONLYRAM1
-`zone2_comment`      .long 0xFFFFFFFF     ;Reserved
-`zone2_comment`      .long 0xFFFFFFFF     ;Reserved
-`zone2_comment`      .long 0xFFFFFFFF     ;Reserved
+`zone2_ZSB_comment`
+`zone2_ZSB_comment`     .sect "dcsm_zsel_z2"
+`zone2_ZSB_comment`      .retain
+`zone2_ZSB_comment`      .long `zone2_PASSWORD0`     ;Z2OTP_CSMPSWD0 (LSW of 128-bit password)
+`zone2_ZSB_comment`      .long `zone2_PASSWORD1`     ;Z2OTP_CSMPSWD1
+`zone2_ZSB_comment`      .long `zone2_PASSWORD2`     ;Z2OTP_CSMPSWD2
+`zone2_ZSB_comment`      .long `zone2_PASSWORD3`     ;Z2OTP_CSMPSWD3 (MSW of 128-bit password)
+`zone2_ZSB_comment` 
+`zone2_ZSB_comment`      .long `Z2_GRABSECT1`     ;Z2OTP_GRABSECT1
+`zone2_ZSB_comment`      .long `Z2_GRABSECT2`     ;Z2OTP_GRABSECT2
+`zone2_ZSB_comment`      .long `Z2_GRABSECT3`     ;Z2OTP_GRABSECT3
+`zone2_ZSB_comment`      .long `Z2_GRABRAM1`     ;Z2OTP_GRABRAM1
+`zone2_ZSB_comment`      .long `Z2_GRABRAM2`     ;Z2OTP_GRABRAM2
+`zone2_ZSB_comment`      .long `Z2_GRABRAM3`     ;Z2OTP_GRABRAM3
+`zone2_ZSB_comment` 
+`zone2_ZSB_comment`      .long `Z2_EXEONLYSECT1`     ;Z2OTP_EXEONLYSECT1
+`zone2_ZSB_comment`      .long `Z2_EXEONLYSECT2`     ;Z2OTP_EXEONLYSECT2
+`zone2_ZSB_comment`      .long `Z2_EXEONLYRAM1`     ;Z2OTP_EXEONLYRAM1
+`zone2_ZSB_comment`      .long 0xFFFFFFFF     ;Reserved
+`zone2_ZSB_comment`      .long 0xFFFFFFFF     ;Reserved
+`zone2_ZSB_comment`      .long 0xFFFFFFFF     ;Reserved
 % } else if (["F28003x", "F280013x", "F280015x"].includes(Common.getDeviceName())) {
 `zone2_OTP_comment`     .sect "dcsm_rsvd1_z2"
 `zone2_OTP_comment`      .retain
 `zone2_OTP_comment`      .long 0xFFFFFFFF     ;Reserved
 `zone2_OTP_comment`      .long 0xFFFFFFFF     ;Reserved
-`zone2_comment`
-`zone2_comment`     .sect "dcsm_zsel_z2"
-`zone2_comment`      .retain
-`zone2_comment`      .long `zone2_PASSWORD0`     ;Z2OTP_CSMPSWD0 (LSW of 128-bit password)
-`zone2_comment`      .long `zone2_PASSWORD1`     ;Z2OTP_CSMPSWD1
-`zone2_comment`      .long `zone2_PASSWORD2`     ;Z2OTP_CSMPSWD2
-`zone2_comment`      .long `zone2_PASSWORD3`     ;Z2OTP_CSMPSWD3 (MSW of 128-bit password)
-`zone2_comment` 
-`zone2_comment`      .long `Z2_GRABSECT1`     ;Z2OTP_GRABSECT1
-`zone2_comment`      .long `Z2_GRABSECT2`     ;Z2OTP_GRABSECT2
-`zone2_comment`      .long `Z2_GRABSECT3`     ;Z2OTP_GRABSECT3
-`zone2_comment`      .long `Z2_GRABRAM1`     ;Z2OTP_GRABRAM1
-`zone2_comment`      .long 0xFFFFFFFF     ;Reserved
-`zone2_comment`      .long 0xFFFFFFFF     ;Reserved
-`zone2_comment` 
-`zone2_comment`      .long `Z2_EXEONLYSECT1`     ;Z2OTP_EXEONLYSECT1
-`zone2_comment`      .long `Z2_EXEONLYSECT2`     ;Z2OTP_EXEONLYSECT2
-`zone2_comment`      .long `Z2_EXEONLYRAM1`     ;Z2OTP_EXEONLYRAM1
-`zone2_comment`      .long 0xFFFFFFFF     ;Reserved
-`zone2_comment`      .long 0xFFFFFFFF     ;Reserved
-`zone2_comment`      .long 0xFFFFFFFF     ;Reserved
+`zone2_ZSB_comment`
+`zone2_ZSB_comment`     .sect "dcsm_zsel_z2"
+`zone2_ZSB_comment`      .retain
+`zone2_ZSB_comment`      .long `zone2_PASSWORD0`     ;Z2OTP_CSMPSWD0 (LSW of 128-bit password)
+`zone2_ZSB_comment`      .long `zone2_PASSWORD1`     ;Z2OTP_CSMPSWD1
+`zone2_ZSB_comment`      .long `zone2_PASSWORD2`     ;Z2OTP_CSMPSWD2
+`zone2_ZSB_comment`      .long `zone2_PASSWORD3`     ;Z2OTP_CSMPSWD3 (MSW of 128-bit password)
+`zone2_ZSB_comment` 
+`zone2_ZSB_comment`      .long `Z2_GRABSECT1`     ;Z2OTP_GRABSECT1
+`zone2_ZSB_comment`      .long `Z2_GRABSECT2`     ;Z2OTP_GRABSECT2
+`zone2_ZSB_comment`      .long `Z2_GRABSECT3`     ;Z2OTP_GRABSECT3
+`zone2_ZSB_comment`      .long `Z2_GRABRAM1`     ;Z2OTP_GRABRAM1
+`zone2_ZSB_comment`      .long 0xFFFFFFFF     ;Reserved
+`zone2_ZSB_comment`      .long 0xFFFFFFFF     ;Reserved
+`zone2_ZSB_comment` 
+`zone2_ZSB_comment`      .long `Z2_EXEONLYSECT1`     ;Z2OTP_EXEONLYSECT1
+`zone2_ZSB_comment`      .long `Z2_EXEONLYSECT2`     ;Z2OTP_EXEONLYSECT2
+`zone2_ZSB_comment`      .long `Z2_EXEONLYRAM1`     ;Z2OTP_EXEONLYRAM1
+`zone2_ZSB_comment`      .long 0xFFFFFFFF     ;Reserved
+`zone2_ZSB_comment`      .long 0xFFFFFFFF     ;Reserved
+`zone2_ZSB_comment`      .long 0xFFFFFFFF     ;Reserved
 % } else if ("F28P65x".includes(Common.getDeviceName())){
 `zone2_OTP_comment`     .sect "dcsm_rsvd1_z2"
 `zone2_OTP_comment`      .retain
 `zone2_OTP_comment`      .long 0xFFFFFFFF     ;Reserved
 `zone2_OTP_comment`      .long 0xFFFFFFFF     ;Reserved
-`zone2_comment`
-`zone2_comment`     .sect "dcsm_zsel_z2"
-`zone2_comment`      .retain
-`zone2_comment`      .long `zone2_PASSWORD0`     ;Z2OTP_CSMPSWD0 (LSW of 128-bit password)
-`zone2_comment`      .long `zone2_PASSWORD1`     ;Z2OTP_CSMPSWD1
-`zone2_comment`      .long `zone2_PASSWORD2`     ;Z2OTP_CSMPSWD2
-`zone2_comment`      .long `zone2_PASSWORD3`     ;Z2OTP_CSMPSWD3 (MSW of 128-bit password)
-`zone2_comment` 
-`zone2_comment`      .long `Z2_GRABSECT1`     ;Z2OTP_GRABSECT1
-`zone2_comment`      .long `Z2_GRABSECT2`     ;Z2OTP_GRABSECT2
-`zone2_comment`      .long `Z2_GRABSECT3`     ;Z2OTP_GRABSECT3
-`zone2_comment`      .long `Z2_GRABRAM1`     ;Z2OTP_GRABRAM1
-`zone2_comment`      .long `Z2_GRABRAM2`     ;Z2OTP_GRABRAM2
-`zone2_comment`      .long 0xFFFFFFFF     ;Reserved
-`zone2_comment` 
-`zone2_comment`      .long `Z2_EXEONLYSECT1`     ;Z2OTP_EXEONLYSECT1
-`zone2_comment`      .long `Z2_EXEONLYSECT2`     ;Z2OTP_EXEONLYSECT2
-`zone2_comment`      .long `Z2_EXEONLYRAM1`     ;Z2OTP_EXEONLYRAM1
-`zone2_comment`      .long 0xFFFFFFFF     ;Reserved
-`zone2_comment`      .long 0xFFFFFFFF     ;Reserved
-`zone2_comment`      .long 0xFFFFFFFF     ;Reserved
+`zone2_ZSB_comment`
+`zone2_ZSB_comment`     .sect "dcsm_zsel_z2"
+`zone2_ZSB_comment`      .retain
+`zone2_ZSB_comment`      .long `zone2_PASSWORD0`     ;Z2OTP_CSMPSWD0 (LSW of 128-bit password)
+`zone2_ZSB_comment`      .long `zone2_PASSWORD1`     ;Z2OTP_CSMPSWD1
+`zone2_ZSB_comment`      .long `zone2_PASSWORD2`     ;Z2OTP_CSMPSWD2
+`zone2_ZSB_comment`      .long `zone2_PASSWORD3`     ;Z2OTP_CSMPSWD3 (MSW of 128-bit password)
+`zone2_ZSB_comment` 
+`zone2_ZSB_comment`      .long `Z2_GRABSECT1`     ;Z2OTP_GRABSECT1
+`zone2_ZSB_comment`      .long `Z2_GRABSECT2`     ;Z2OTP_GRABSECT2
+`zone2_ZSB_comment`      .long `Z2_GRABSECT3`     ;Z2OTP_GRABSECT3
+`zone2_ZSB_comment`      .long `Z2_GRABRAM1`     ;Z2OTP_GRABRAM1
+`zone2_ZSB_comment`      .long `Z2_GRABRAM2`     ;Z2OTP_GRABRAM2
+`zone2_ZSB_comment`      .long 0xFFFFFFFF     ;Reserved
+`zone2_ZSB_comment` 
+`zone2_ZSB_comment`      .long `Z2_EXEONLYSECT1`     ;Z2OTP_EXEONLYSECT1
+`zone2_ZSB_comment`      .long `Z2_EXEONLYSECT2`     ;Z2OTP_EXEONLYSECT2
+`zone2_ZSB_comment`      .long `Z2_EXEONLYRAM1`     ;Z2OTP_EXEONLYRAM1
+`zone2_ZSB_comment`      .long 0xFFFFFFFF     ;Reserved
+`zone2_ZSB_comment`      .long 0xFFFFFFFF     ;Reserved
+`zone2_ZSB_comment`      .long 0xFFFFFFFF     ;Reserved
+% } else if ("F28P55x".includes(Common.getDeviceName())){
+`zone2_OTP_comment`     .sect "dcsm_rsvd1_z2"
+`zone2_OTP_comment`      .retain
+`zone2_OTP_comment`      .long 0xFFFFFFFF     ;Reserved
+`zone2_OTP_comment`      .long 0xFFFFFFFF     ;Reserved
+`zone2_ZSB_comment`
+`zone2_ZSB_comment`     .sect "dcsm_zsel_z2"
+`zone2_ZSB_comment`      .retain
+`zone2_ZSB_comment`      .long `zone2_PASSWORD0`     ;Z2OTP_CSMPSWD0 (LSW of 128-bit password)
+`zone2_ZSB_comment`      .long `zone2_PASSWORD1`     ;Z2OTP_CSMPSWD1
+`zone2_ZSB_comment`      .long `zone2_PASSWORD2`     ;Z2OTP_CSMPSWD2
+`zone2_ZSB_comment`      .long `zone2_PASSWORD3`     ;Z2OTP_CSMPSWD3 (MSW of 128-bit password)
+`zone2_ZSB_comment` 
+`zone2_ZSB_comment`      .long `Z2_GRABSECT1`     ;Z2OTP_GRABSECT1
+`zone2_ZSB_comment`      .long `Z2_GRABSECT2`     ;Z2OTP_GRABSECT2
+`zone2_ZSB_comment`      .long `Z2_GRABSECT3`     ;Z2OTP_GRABSECT3
+`zone2_ZSB_comment`      .long `Z2_GRABRAM1`     ;Z2OTP_GRABRAM1
+`zone2_ZSB_comment`      .long 0xFFFFFFFF     ;Reserved
+`zone2_ZSB_comment`      .long 0xFFFFFFFF     ;Reserved
+`zone2_ZSB_comment` 
+`zone2_ZSB_comment`      .long `Z2_EXEONLYSECT1`     ;Z2OTP_EXEONLYSECT1
+`zone2_ZSB_comment`      .long `Z2_EXEONLYSECT2`     ;Z2OTP_EXEONLYSECT2
+`zone2_ZSB_comment`      .long `Z2_EXEONLYRAM1`     ;Z2OTP_EXEONLYRAM1
+`zone2_ZSB_comment`      .long 0xFFFFFFFF     ;Reserved
+`zone2_ZSB_comment`      .long 0xFFFFFFFF     ;Reserved
+`zone2_ZSB_comment`      .long 0xFFFFFFFF     ;Reserved
 % } else {
-`zone2_comment`      
-`zone2_comment`     .sect "dcsm_zsel_z2"
-`zone2_comment`      .retain
-`zone2_comment`      .long `Z2_EXEONLYRAM`       ;z2-EXEONLYRAM
-`zone2_comment`      .long `Z2_EXEONLYSECT`      ;z2-EXEONLYSECT
-`zone2_comment`      .long `Z2_GRABRAM`          ;z2-GRABRAM
-`zone2_comment`      .long `Z2_GRABSECT`         ;z2-GRABSECT
-`zone2_comment`      
-`zone2_comment`      .long `zone2_PASSWORD0`
-`zone2_comment`      .long `zone2_PASSWORD1`
-`zone2_comment`      .long `zone2_PASSWORD2`
-`zone2_comment`      .long `zone2_PASSWORD3`
+`zone2_ZSB_comment`      
+`zone2_ZSB_comment`     .sect "dcsm_zsel_z2"
+`zone2_ZSB_comment`      .retain
+`zone2_ZSB_comment`      .long `Z2_EXEONLYRAM`       ;z2-EXEONLYRAM
+`zone2_ZSB_comment`      .long `Z2_EXEONLYSECT`      ;z2-EXEONLYSECT
+`zone2_ZSB_comment`      .long `Z2_GRABRAM`          ;z2-GRABRAM
+`zone2_ZSB_comment`      .long `Z2_GRABSECT`         ;z2-GRABSECT
+`zone2_ZSB_comment`      
+`zone2_ZSB_comment`      .long `zone2_PASSWORD0`
+`zone2_ZSB_comment`      .long `zone2_PASSWORD1`
+`zone2_ZSB_comment`      .long `zone2_PASSWORD2`
+`zone2_ZSB_comment`      .long `zone2_PASSWORD3`
 % }
 
 % if (bank1_exists) {
@@ -1209,18 +1422,18 @@
 `zone2_comment`      .long 0xFFFFFFFF     ;Reserved
 `zone2_comment`      .long `bank1_zone2_LINKPOINTER`
 `zone2_comment`      .long 0xFFFFFFFF     ;Reserved
-`zone2_comment` 
-`zone2_comment`     .sect "b1_dcsm_zsel_z2"
-`zone2_comment`      .retain
-`zone2_comment`      .long 0xFFFFFFFF               ;Reserved
-`zone2_comment`      .long `B1_Z2_EXEONLYSECT`      ;Bank 1 Z2-EXEONLYSECT
-`zone2_comment`      .long 0xFFFFFFFF               ;Reserved
-`zone2_comment`      .long `B1_Z2_GRABSECT`         ;Bank 1 Z2-GRABSECT
-`zone2_comment` 
-`zone2_comment`      .long 0xFFFFFFFF               ;Reserved
-`zone2_comment`      .long 0xFFFFFFFF               ;Reserved
-`zone2_comment`      .long 0xFFFFFFFF               ;Reserved
-`zone2_comment`      .long 0xFFFFFFFF               ;Reserved
+`zone2_ZSB_comment` 
+`zone2_ZSB_comment`     .sect "b1_dcsm_zsel_z2"
+`zone2_ZSB_comment`      .retain
+`zone2_ZSB_comment`      .long 0xFFFFFFFF               ;Reserved
+`zone2_ZSB_comment`      .long `B1_Z2_EXEONLYSECT`      ;Bank 1 Z2-EXEONLYSECT
+`zone2_ZSB_comment`      .long 0xFFFFFFFF               ;Reserved
+`zone2_ZSB_comment`      .long `B1_Z2_GRABSECT`         ;Bank 1 Z2-GRABSECT
+`zone2_ZSB_comment` 
+`zone2_ZSB_comment`      .long 0xFFFFFFFF               ;Reserved
+`zone2_ZSB_comment`      .long 0xFFFFFFFF               ;Reserved
+`zone2_ZSB_comment`      .long 0xFFFFFFFF               ;Reserved
+`zone2_ZSB_comment`      .long 0xFFFFFFFF               ;Reserved
 % }
 
 ;----------------------------------------------------------------------

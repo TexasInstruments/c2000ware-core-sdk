@@ -172,6 +172,7 @@ void run_atan(float64u_t *pdest, float64u_t *psrc);
 void run_atan2(float64u_t *pdest, float64u_t *psrc1, float64u_t *psrc2);
 #endif //__TMS320C28XX_FPU64__
 
+#if defined(FOR_DOXYGEN_USE_ONLY)
 #if defined(__TMS320C28XX_FPU64__)
 //! \brief Double Precision Floating Point Sine and Cosine (radians)
 //! 
@@ -406,6 +407,7 @@ float64u_t sqrtl (float64u_t X);
 #endif
 
 #endif //__TMS320C28XX_FPU64__
+#endif //FOR_DOXYGEN_USE_ONLY
 
 #ifdef __cplusplus
 }

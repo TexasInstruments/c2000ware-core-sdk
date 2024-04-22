@@ -64,11 +64,26 @@ extern "C"
 #include "inc/hw_memmap.h"
 #include "inc/hw_nmi.h"
 #include "inc/hw_sysctl.h"
+#include "inc/hw_otp.h"
 #include "inc/hw_types.h"
 #include "cpu.h"
 #include "debug.h"
 #include "interrupt.h"
 
+
+//
+// Macro used for adding delay between 2 consecutive writes to CLKSRCCTL1
+// register.
+// Delay = 300 NOPs
+//
+#define SYSCTL_CLKSRCCTL_DELAY  asm(" RPT #250 || NOP \n RPT #50 || NOP")
+
+//
+// Macro used for adding delay between 2 consecutive writes to memory mapped 
+// register in System control
+// Total delay = 3 * (DEVICE_SYSCLK_FREQ / INTOSC1 Freq) + 9
+//
+#define SYSCTL_REGWRITE_DELAY  asm(" RPT #69 || NOP")
 
 //*****************************************************************************
 //
@@ -910,11 +925,13 @@ SysCtl_resetDevice(void)
     // Enable the watchdog
     //
     HWREGH(WD_BASE + SYSCTL_O_WDCR) = SYSCTL_WD_CHKBITS;
+    SYSCTL_REGWRITE_DELAY;
 
     //
     // Write a bad check value
     //
     HWREGH(WD_BASE + SYSCTL_O_WDCR) = 0U;
+    SYSCTL_REGWRITE_DELAY;
 
     EDIS;
 
@@ -1066,6 +1083,7 @@ SysCtl_setEPWMClockDivider(SysCtl_EPWMCLKDivider divider)
     HWREGH(CLKCFG_BASE + SYSCTL_O_PERCLKDIVSEL) =
         (HWREGH(CLKCFG_BASE + SYSCTL_O_PERCLKDIVSEL) &
          ~SYSCTL_PERCLKDIVSEL_EPWMCLKDIV_M) | (uint16_t)divider;
+    SYSCTL_REGWRITE_DELAY;
     EDIS;
 }
 
@@ -1096,11 +1114,13 @@ SysCtl_setEMIF1ClockDivider(SysCtl_EMIF1CLKDivider divider)
     {
         HWREGH(CLKCFG_BASE + SYSCTL_O_PERCLKDIVSEL) |=
             SYSCTL_PERCLKDIVSEL_EMIF1CLKDIV;
+        SYSCTL_REGWRITE_DELAY;
     }
     else
     {
         HWREGH(CLKCFG_BASE + SYSCTL_O_PERCLKDIVSEL) &=
             ~SYSCTL_PERCLKDIVSEL_EMIF1CLKDIV;
+        SYSCTL_REGWRITE_DELAY;
     }
     EDIS;
 }
@@ -1132,11 +1152,13 @@ SysCtl_setEMIF2ClockDivider(SysCtl_EMIF2CLKDivider divider)
     {
         HWREGH(CLKCFG_BASE + SYSCTL_O_PERCLKDIVSEL) |=
             SYSCTL_PERCLKDIVSEL_EMIF2CLKDIV;
+        SYSCTL_REGWRITE_DELAY;
     }
     else
     {
         HWREGH(CLKCFG_BASE + SYSCTL_O_PERCLKDIVSEL) &=
             ~SYSCTL_PERCLKDIVSEL_EMIF2CLKDIV;
+        SYSCTL_REGWRITE_DELAY;
     }
     EDIS;
 }
@@ -1170,6 +1192,7 @@ SysCtl_selectClockOutSource(SysCtl_ClockOut source)
     //
     HWREGH(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL3) &=
         ~SYSCTL_CLKSRCCTL3_XCLKOUTSEL_M;
+    SYSCTL_CLKSRCCTL_DELAY;
 
     //
     // Set clock out source
@@ -1230,6 +1253,7 @@ SysCtl_turnOnOsc(uint32_t oscSource)
             //
             HWREGH(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL1) &=
                 ~SYSCTL_CLKSRCCTL1_INTOSC2OFF;
+            SYSCTL_CLKSRCCTL_DELAY;
             break;
 
         case SYSCTL_OSCSRC_XTAL:
@@ -1284,6 +1308,7 @@ SysCtl_turnOffOsc(uint32_t oscSource)
             //
             HWREGH(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL1) |=
                 SYSCTL_CLKSRCCTL1_INTOSC2OFF;
+            SYSCTL_CLKSRCCTL_DELAY;
             break;
 
         case SYSCTL_OSCSRC_XTAL:
@@ -1404,6 +1429,7 @@ SysCtl_enterHaltMode(void)
 
     HWREGH(CLKCFG_BASE + SYSCTL_O_SYSPLLCTL1) &=
                 ~(SYSCTL_SYSPLLCTL1_PLLCLKEN | SYSCTL_SYSPLLCTL1_PLLEN);
+    SYSCTL_REGWRITE_DELAY;
 
     EDIS;
 
@@ -1448,6 +1474,7 @@ SysCtl_enterHibernateMode(void)
 
     HWREGH(CLKCFG_BASE + SYSCTL_O_SYSPLLCTL1) &=
             ~(SYSCTL_SYSPLLCTL1_PLLCLKEN | SYSCTL_SYSPLLCTL1_PLLEN);
+    SYSCTL_REGWRITE_DELAY;
 
     EDIS;
 
@@ -1642,6 +1669,7 @@ SysCtl_enableWatchdogInHalt(void)
     // Set the watchdog HALT mode ignore bit.
     //
     HWREGH(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL1) |= SYSCTL_CLKSRCCTL1_WDHALTI;
+    SYSCTL_CLKSRCCTL_DELAY;
 
     EDIS;
 }
@@ -1666,6 +1694,7 @@ SysCtl_disableWatchdogInHalt(void)
     // Clear the watchdog HALT mode ignore bit.
     //
     HWREGH(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL1) &= ~SYSCTL_CLKSRCCTL1_WDHALTI;
+    SYSCTL_CLKSRCCTL_DELAY;
 
     EDIS;
 }
@@ -1765,6 +1794,7 @@ SysCtl_disableWatchdog(void)
     // Set the disable bit.
     //
     HWREGH(WD_BASE + SYSCTL_O_WDCR) |= SYSCTL_WD_CHKBITS | SYSCTL_WDCR_WDDIS;
+    SYSCTL_REGWRITE_DELAY;
 
     EDIS;
 }
@@ -1789,6 +1819,7 @@ SysCtl_enableWatchdog(void)
     //
     HWREGH(WD_BASE + SYSCTL_O_WDCR) = (HWREGH(WD_BASE + SYSCTL_O_WDCR) &
                                        ~SYSCTL_WDCR_WDDIS) | SYSCTL_WD_CHKBITS;
+    SYSCTL_REGWRITE_DELAY;
 
     EDIS;
 }
@@ -1906,6 +1937,7 @@ SysCtl_setWatchdogPrescaler(SysCtl_WDPrescaler prescaler)
     //
     HWREGH(WD_BASE + SYSCTL_O_WDCR) = (HWREGH(WD_BASE + SYSCTL_O_WDCR) &
                                        ~(SYSCTL_WDCR_WDPS_M)) | regVal;
+    SYSCTL_REGWRITE_DELAY;
 
     EDIS;
 }
@@ -2743,6 +2775,7 @@ SysCtl_setXClk(SysCtl_XClkDivider divider)
                         (HWREGH(CLKCFG_BASE + SYSCTL_O_XCLKOUTDIVSEL) &
                          ~(SYSCTL_XCLKOUTDIVSEL_XCLKOUTDIV_M)) |
                         (uint16_t)divider;
+    SYSCTL_REGWRITE_DELAY;
     EDIS;
 }
 
@@ -2780,6 +2813,7 @@ SysCtl_setPLLSysClk(uint16_t divider)
     HWREGH(CLKCFG_BASE + SYSCTL_O_SYSCLKDIVSEL) =
                     (HWREGH(CLKCFG_BASE + SYSCTL_O_SYSCLKDIVSEL) &
                      ~(SYSCTL_SYSCLKDIVSEL_PLLSYSCLKDIV_M)) | divider;
+    SYSCTL_REGWRITE_DELAY;
     EDIS;
 }
 
@@ -2811,6 +2845,7 @@ SysCtl_setAuxPLLClk(SysCtl_AuxPLLClkDivider divider)
     HWREGH(CLKCFG_BASE + SYSCTL_O_AUXCLKDIVSEL) =
                     (HWREGH(CLKCFG_BASE + SYSCTL_O_AUXCLKDIVSEL) &
                      ~(SYSCTL_AUXCLKDIVSEL_AUXPLLDIV_M)) | (uint16_t)divider;
+    SYSCTL_REGWRITE_DELAY;
     EDIS;
 }
 
@@ -2845,10 +2880,12 @@ SysCtl_setCputimer2Clk(SysCtl_Cputimer2ClkDivider divider,
                     (HWREGH(CPUSYS_BASE + SYSCTL_O_TMR2CLKCTL) &
                      ~(SYSCTL_TMR2CLKCTL_TMR2CLKSRCSEL_M |
                        SYSCTL_TMR2CLKCTL_TMR2CLKPRESCALE_M));
+    SYSCTL_REGWRITE_DELAY;
 
     HWREGH(CPUSYS_BASE + SYSCTL_O_TMR2CLKCTL) |=
                     ((uint16_t)divider << SYSCTL_TMR2CLKCTL_TMR2CLKPRESCALE_S) |
                     ((uint16_t)source << SYSCTL_TMR2CLKCTL_TMR2CLKSRCSEL_S);
+    SYSCTL_REGWRITE_DELAY;
     EDIS;
 }
 
@@ -2889,6 +2926,24 @@ SysCtl_isPresentUSBPHY(void)
 {
     return((HWREG(DEVCFG_BASE + SYSCTL_O_PERCNF1) &
             SYSCTL_PERCNF1_USB_A_PHY) != 0U);
+}
+
+//*****************************************************************************
+//
+//! Get the device UID_UNIQUE value
+//!
+//! This function returns the device UID_UNIQUE value
+//!
+//! \return Returns the device UID_UNIQUE value
+//
+//*****************************************************************************
+static inline uint32_t
+SysCtl_getDeviceUID(void)
+{
+    //
+    // Returns the device UID_UNIQUE value
+    //
+    return(HWREG(UID_BASE + OTP_O_UID_UNIQUE));
 }
 
 //*****************************************************************************

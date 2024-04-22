@@ -25,7 +25,7 @@ const	Device_Boot_CM						= device_common.Device_Boot_CM;
 `VerifyXTAL()`
 `Configure_TMX_Analog_Trim()`
 `Boot_CPU2()`
-% if(Device_Boot_CM.includes(device))
+% if(Device_Boot_CM.includes(device)&& Common.isContextCPU1())
 %{
 `Boot_CM()`
 #endif

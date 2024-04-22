@@ -82,7 +82,7 @@
 #define NMI_FLG_CPU1HWBISTERR   0x10U     // HW BIST Error NMI Flag
 #define NMI_FLG_PIEVECTERR      0x40U     // PIE Vector Fetch Error Flag
 #define NMI_FLG_SYSDBGNMI       0x80U     // System Debug Module NMI Flag
-#define NMI_FLG_RLNMI           0x100U    // Reconfigurable Logic NMI Flag
+#define NMI_FLG_CLBNMI          0x100U    // Reconfigurable Logic NMI Flag
 #define NMI_FLG_CPU2WDRSN       0x200U    // CPU2 WDRSn Reset Indication Flag
 #define NMI_FLG_CPU2NMIWDRSN    0x400U    // CPU2 NMIWDRSn Reset Indication Flag
 #define NMI_FLG_LSCMPERR        0x1000U   // Lockstep Compare Error

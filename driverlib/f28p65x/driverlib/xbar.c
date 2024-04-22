@@ -53,6 +53,10 @@ XBAR_setOutputMuxConfig(uint32_t base, XBAR_OutputNum output,
     // Check the arguments.
     //
     ASSERT(XBAR_isBaseValid(base));
+    if(base == CLBOUTPUTXBAR_BASE)
+    {
+        ASSERT((uint32_t)muxConfig < 0x4000U);
+    }
 
     uint32_t shift;
     uint16_t offset;
@@ -61,21 +65,35 @@ XBAR_setOutputMuxConfig(uint32_t base, XBAR_OutputNum output,
     // Depending on the configuration of MUX selected, we'll need different
     // values to index into the config registers.
     //
-    if(((uint32_t)muxConfig & 0x6000U) == 0x6000U)
+    if(base == OUTPUTXBAR_BASE)
     {
-        offset = ((uint16_t)output << 1U) + 6U;
-    }
-    else if (((uint32_t)muxConfig & 0x4000U) != 0U)
-    {
-        offset = ((uint16_t)output << 1U) + 4U;
-    }
-    else if (((uint32_t)muxConfig & 0x2000U) != 0U)
-    {
-        offset = ((uint16_t)output << 1U) + 2U;
+        if(((uint32_t)muxConfig & 0x6000U) == 0x6000U)
+        {
+            offset = ((uint16_t)output << 1U) + 6U;
+        }
+        else if (((uint32_t)muxConfig & 0x4000U) != 0U)
+        {
+            offset = ((uint16_t)output << 1U) + 4U;
+        }
+        else if (((uint32_t)muxConfig & 0x2000U) != 0U)
+        {
+            offset = ((uint16_t)output << 1U) + 2U;
+        }
+        else
+        {
+            offset = (uint16_t)output << 1U;
+        }
     }
     else
     {
-        offset = (uint16_t)output << 1U;
+        if (((uint32_t)muxConfig & 0x2000U) != 0U)
+        {
+            offset = (uint16_t)output + 2U;
+        }
+        else
+        {
+            offset = (uint16_t)output;
+        }
     }
 
 

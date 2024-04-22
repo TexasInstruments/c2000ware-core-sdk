@@ -1,6 +1,6 @@
 //#############################################################################
 //
-// profile_function.js
+// erad_ex2_profile_function.js
 //
 // This JavaScript file is used to configure ERAD registers for use with the CCS
 // example "erad_ex2_profilefunction".
@@ -8,13 +8,13 @@
 // To properly use this script, the following variables must be set in the
 // scripting environment prior to launching the ERAD script:
 //
-// - var PROJ_NAME = "erad_ex2_profilefunction"
+// - var PROJ_NAME = "erad_debugger_ex2_profilefunction"
 // - var PROJ_WKSPC_LOC = "<proj_workspace_path>"
 // - var PROJ_CONFIG = "<name of active configuration [CPU1_FLASH|CPU1_RAM]>"
 //
 // To run this ERAD script, use the following command in the scripting console:
 //
-// - loadJSFile("<proj_workspace_path>\\erad_ex2_profilefunction\\profile_function.js", 0);
+// - loadJSFile("<proj_workspace_path>\\erad_debugger_ex2_profilefunction\\erad_ex2_profile_function.js", 0);
 //
 // This JavaScript file uses Debug Server Scripting (DSS) features. For
 // information on using the DSS, please visit:
@@ -124,7 +124,7 @@ if((0 == (counter1Status & CTM_STATUS_M)) &&
     //
     var addrFunc2 = getFuncAddressXML("sortMax");
     var startSortFunc = addrFunc2[0];
-    var endSortFunc = addrFunc2[0];
+    var endSortFunc = addrFunc2[1];
 
     //
     // Set two hardware breakpoints at the start and end of performFIR

@@ -1,0 +1,60 @@
+/**
+ * Import the modules used in this configuration.
+ */
+const clb   = scripting.addModule("/driverlib/clb.js", {}, false);
+const clb1  = clb.addInstance();
+const TILE  = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/TILE", {}, false);
+const TILE1 = TILE.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+clb1.globalConfigCLB_IN0 = "CLB_GLOBAL_IN_MUX_CLB_AUXSIG0";
+clb1.synchronizeCLB_IN0  = true;
+clb1.globalConfigCLB_IN1 = "CLB_GLOBAL_IN_MUX_CLB_AUXSIG1";
+clb1.synchronizeCLB_IN1  = true;
+clb1.$name               = "myCLBForTILE1";
+clb1.localConfigCLB_IN0  = "CLB_LOCAL_IN_MUX_CLB_PSCLK";
+clb1.prescale            = 10000;
+clb1.tap                 = 5;
+clb1.inputsUsed          = ["CLB_IN0","CLB_IN1"];
+clb1.filterConfigCLB_IN1 = "CLB_FILTER_RISING_EDGE";
+
+TILE1.$name                   = "TILE1";
+TILE1.BOUNDARY.$name          = "BOUNDARY0";
+TILE1.LUT_0.$name             = "LUT_0";
+TILE1.LUT_1.$name             = "LUT_1";
+TILE1.LUT_2.$name             = "LUT_2";
+TILE1.FSM_0.$name             = "FSM_0";
+TILE1.FSM_1.$name             = "FSM_1";
+TILE1.FSM_2.$name             = "FSM_2";
+TILE1.COUNTER_0.$name         = "COUNTER_0";
+TILE1.COUNTER_0.event         = "BOUNDARY.in0";
+TILE1.COUNTER_0.mode0         = "BOUNDARY.in1";
+TILE1.COUNTER_0.serializer_en = true;
+TILE1.COUNTER_0.action        = "Shift Right";
+TILE1.COUNTER_0.lfsr_en       = true;
+TILE1.COUNTER_0.match2_val    = "0x0000FFFF";
+TILE1.COUNTER_1.$name         = "COUNTER_1";
+TILE1.COUNTER_2.$name         = "COUNTER_2";
+TILE1.OUTLUT_0.$name          = "OUTLUT_0";
+TILE1.OUTLUT_1.$name          = "OUTLUT_1";
+TILE1.OUTLUT_2.$name          = "OUTLUT_2";
+TILE1.OUTLUT_3.$name          = "OUTLUT_3";
+TILE1.OUTLUT_4.$name          = "OUTLUT_4";
+TILE1.OUTLUT_5.$name          = "OUTLUT_5";
+TILE1.OUTLUT_6.$name          = "OUTLUT_6";
+TILE1.OUTLUT_7.$name          = "OUTLUT_7";
+TILE1.HLC.$name               = "HLC_0";
+TILE1.HLC.program0.$name      = "HLCP_0";
+TILE1.HLC.program1.$name      = "HLCP_1";
+TILE1.HLC.program2.$name      = "HLCP_2";
+TILE1.HLC.program3.$name      = "HLCP_3";
+TILE1.AOC_0.$name             = "AOC_0";
+TILE1.AOC_1.$name             = "AOC_1";
+TILE1.AOC_2.$name             = "AOC_2";
+TILE1.AOC_3.$name             = "AOC_3";
+TILE1.AOC_4.$name             = "AOC_4";
+TILE1.AOC_5.$name             = "AOC_5";
+TILE1.AOC_6.$name             = "AOC_6";
+TILE1.AOC_7.$name             = "AOC_7";

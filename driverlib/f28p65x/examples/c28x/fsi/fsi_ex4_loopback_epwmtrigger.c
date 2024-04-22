@@ -103,9 +103,9 @@
 //
 #define EXTERNAL_FSI_ENABLE     0
 
-#define EPWM_TIMER_TBPRD  1000U
-#define EPWM_CMPA_VALUE   500U
-#define EPWM_CMPB_VALUE   500U
+#define EPWM_TIMER_TBPRD  2000U
+#define EPWM_CMPA_VALUE   1950U
+#define EPWM_CMPB_VALUE   1950U
 
 //
 // Globals and Typedefs

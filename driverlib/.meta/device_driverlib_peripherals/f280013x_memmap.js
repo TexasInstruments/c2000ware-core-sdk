@@ -16,10 +16,8 @@ let DeviceMemoryMap = [
 	{ name: "EPWM6_BASE", displayName: "EPWM6", baseAddress: "0x00004500U" },
 	{ name: "EPWM7_BASE", displayName: "EPWM7", baseAddress: "0x00004600U" },
 	{ name: "EQEP1_BASE", displayName: "EQEP1", baseAddress: "0x00005100U" },
-	{ name: "EQEP2_BASE", displayName: "EQEP2", baseAddress: "0x00005140U" },
 	{ name: "ECAP1_BASE", displayName: "ECAP1", baseAddress: "0x00005200U" },
 	{ name: "ECAP2_BASE", displayName: "ECAP2", baseAddress: "0x00005240U" },
-	{ name: "ECAP3_BASE", displayName: "ECAP3", baseAddress: "0x00005280U" },
 	{ name: "CMPSS1_BASE", displayName: "CMPSS1", baseAddress: "0x00005500U" },
 	{ name: "CMPSSLITE2_BASE", displayName: "CMPSSLITE2", baseAddress: "0x00005540U" },
 	{ name: "CMPSSLITE3_BASE", displayName: "CMPSSLITE3", baseAddress: "0x00005580U" },
@@ -103,14 +101,10 @@ let EPWMMemoryMap = [
 	{ name: "EPWM6_BASE", displayName: "EPWM6", baseAddress: "0x00004500U" },
 	{ name: "EPWM7_BASE", displayName: "EPWM7", baseAddress: "0x00004600U" },
 ];
-let EQEPMemoryMap = [
+let EMemoryMap = [
 	{ name: "EQEP1_BASE", displayName: "EQEP1", baseAddress: "0x00005100U" },
-	{ name: "EQEP2_BASE", displayName: "EQEP2", baseAddress: "0x00005140U" },
-];
-let ECAPMemoryMap = [
 	{ name: "ECAP1_BASE", displayName: "ECAP1", baseAddress: "0x00005200U" },
 	{ name: "ECAP2_BASE", displayName: "ECAP2", baseAddress: "0x00005240U" },
-	{ name: "ECAP3_BASE", displayName: "ECAP3", baseAddress: "0x00005280U" },
 ];
 let CMPSSMemoryMap = [
 	{ name: "CMPSS1_BASE", displayName: "CMPSS1", baseAddress: "0x00005500U" },
@@ -246,8 +240,7 @@ module.exports = {
 	CPUTIMERMemoryMap: CPUTIMERMemoryMap,
 	PIEMemoryMap: PIEMemoryMap,
 	EPWMMemoryMap: EPWMMemoryMap,
-	EQEPMemoryMap: EQEPMemoryMap,
-	ECAPMemoryMap: ECAPMemoryMap,
+	EMemoryMap: EMemoryMap,
 	CMPSSMemoryMap: CMPSSMemoryMap,
 	SPIAMemoryMap: SPIAMemoryMap,
 	PMBUSAMemoryMap: PMBUSAMemoryMap,

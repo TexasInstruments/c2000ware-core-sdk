@@ -94,6 +94,7 @@ MEMORY
    SPIA                       : origin = 0x00006100, length = 0x00000010
    SPIB                       : origin = 0x00006110, length = 0x00000010
    SPIC                       : origin = 0x00006120, length = 0x00000010
+   UID                        : origin = 0x000703C0, length = 0x00000010
    WD                         : origin = 0x00007000, length = 0x0000002B
    XINT                       : origin = 0x00007070, length = 0x0000000B
 
@@ -208,6 +209,7 @@ UNION run = PIEVECTTABLE
    SpiaRegsFile               : > SPIA, type=NOINIT
    SpibRegsFile               : > SPIB, type=NOINIT
    SpicRegsFile               : > SPIC, type=NOINIT
+   UidRegsFile                : > UID, type=NOINIT
    WdRegsFile                 : > WD, type=NOINIT
    XintRegsFile               : > XINT, type=NOINIT
 }

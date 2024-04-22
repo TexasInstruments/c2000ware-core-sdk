@@ -64,14 +64,6 @@
 
 #define XTAL_CPUTIMER_PERIOD 1023U
 
-
-//
-// Macro used for adding delay between 2 consecutive writes to CLKSRCCTL1
-// register.
-// Delay = 300 NOPs
-//
-#define SYSCTL_CLKSRCCTL1_DELAY  asm(" RPT #250 || NOP \n RPT #50 || NOP")
-
 //*****************************************************************************
 //
 // SysCtl_delay()
@@ -481,7 +473,7 @@ SysCtl_setClock(uint32_t config)
                 HWREGH(CLKCFG_BASE + SYSCTL_O_SYSPLLCTL1) &=
                     ~SYSCTL_SYSPLLCTL1_PLLEN;
 
-                SysCtl_delay(3U);
+                SysCtl_delay(12U);
 
                 //
                 // Write multiplier, which automatically turns on the PLL
@@ -507,7 +499,7 @@ SysCtl_setClock(uint32_t config)
                 // Delay to ensure system is clocking from PLL prior to
                 // clearing status bit
                 //
-                SysCtl_delay(3U);
+                SysCtl_delay(12U);
             }
 
             //
@@ -552,27 +544,27 @@ SysCtl_setClock(uint32_t config)
                     //
                     // Clk Src = INT_OSC1
                     //
-                    HWREGH(CPUSYS_BASE + SYSCTL_O_TMR2CLKCTL) &=
-                        ~SYSCTL_TMR2CLKCTL_TMR2CLKSRCSEL_M;
-                    HWREGH(CPUSYS_BASE + SYSCTL_O_TMR2CLKCTL) |= 1U;
+                    HWREGH(CPUSYS_BASE + SYSCTL_O_TMR2CLKCTL) =
+                            (HWREGH(CPUSYS_BASE + SYSCTL_O_TMR2CLKCTL) &
+                             ~SYSCTL_TMR2CLKCTL_TMR2CLKSRCSEL_M) | 1U;
                     break;
 
                 case SYSCTL_OSCSRC_OSC2:
                     //
                     // Clk Src = INT_OSC2
                     //
-                    HWREGH(CPUSYS_BASE + SYSCTL_O_TMR2CLKCTL) &=
-                        ~SYSCTL_TMR2CLKCTL_TMR2CLKSRCSEL_M;
-                    HWREGH(CPUSYS_BASE + SYSCTL_O_TMR2CLKCTL) |= 2U;
+                    HWREGH(CPUSYS_BASE + SYSCTL_O_TMR2CLKCTL) =
+                            (HWREGH(CPUSYS_BASE + SYSCTL_O_TMR2CLKCTL) &
+                             ~SYSCTL_TMR2CLKCTL_TMR2CLKSRCSEL_M) | 2U;
                     break;
 
                 case SYSCTL_OSCSRC_XTAL:
                     //
                     // Clk Src = XTAL
                     //
-                    HWREGH(CPUSYS_BASE + SYSCTL_O_TMR2CLKCTL) &=
-                        ~SYSCTL_TMR2CLKCTL_TMR2CLKSRCSEL_M;
-                    HWREGH(CPUSYS_BASE + SYSCTL_O_TMR2CLKCTL) |= 3U;
+                    HWREGH(CPUSYS_BASE + SYSCTL_O_TMR2CLKCTL) =
+                            (HWREGH(CPUSYS_BASE + SYSCTL_O_TMR2CLKCTL) &
+                             ~SYSCTL_TMR2CLKCTL_TMR2CLKSRCSEL_M) | 3U;
                     break;
 
                 default:
@@ -735,6 +727,7 @@ SysCtl_setClock(uint32_t config)
         HWREGH(CLKCFG_BASE + SYSCTL_O_SYSCLKDIVSEL) =
             (HWREGH(CLKCFG_BASE + SYSCTL_O_SYSCLKDIVSEL) &
              ~SYSCTL_SYSCLKDIVSEL_PLLSYSCLKDIV_M) | divSel;
+        SYSCTL_REGWRITE_DELAY;
         EDIS;
 
         status = true;
@@ -836,6 +829,7 @@ void SysCtl_setAuxClock(uint32_t config)
             // while using Timer 2
             //
             HWREGH(CLKCFG_BASE + SYSCTL_O_AUXCLKDIVSEL) = 0x3U;
+            SYSCTL_REGWRITE_DELAY;
             EDIS;
 
             //
@@ -859,6 +853,7 @@ void SysCtl_setAuxClock(uint32_t config)
                 // turns on the PLL
                 //
                 HWREGH(CLKCFG_BASE + SYSCTL_O_AUXPLLMULT) |= pllMult;
+                SYSCTL_REGWRITE_DELAY;
 
                 //
                 // Enable AUXPLL
@@ -1045,6 +1040,7 @@ void SysCtl_setAuxClock(uint32_t config)
     EALLOW;
     HWREGH(CLKCFG_BASE + SYSCTL_O_AUXCLKDIVSEL) =
         (uint16_t)(config & SYSCTL_SYSDIV_M) >> SYSCTL_SYSDIV_S;
+    SYSCTL_REGWRITE_DELAY;
     EDIS;
 
 }
@@ -1091,6 +1087,7 @@ SysCtl_selectXTAL(void)
             (1U << SYSCTL_CLKSRCCTL2_AUXOSCCLKSRCSEL_S);
     HWREGH(CLKCFG_BASE + SYSCTL_O_AUXPLLCTL1) = 0x0U;
     HWREGH(CLKCFG_BASE + SYSCTL_O_AUXCLKDIVSEL) = SYSCTL_AUXPLLCLK_DIV_8;
+    SYSCTL_REGWRITE_DELAY;
 
 
     //
@@ -1195,6 +1192,7 @@ SysCtl_selectXTAL(void)
     HWREGH(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL2) = clksrcctl2;
     HWREGH(CLKCFG_BASE + SYSCTL_O_AUXPLLCTL1) = auxpllctl1;
     HWREGH(CLKCFG_BASE + SYSCTL_O_AUXCLKDIVSEL) = auxclkdivsel;
+    SYSCTL_REGWRITE_DELAY;
     EDIS;
 
     EDIS;
@@ -1225,7 +1223,7 @@ SysCtl_selectOscSource(uint32_t oscSource)
             HWREGH(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL1) &=
                 ~SYSCTL_CLKSRCCTL1_INTOSC2OFF;
 
-            SYSCTL_CLKSRCCTL1_DELAY;
+            SYSCTL_CLKSRCCTL_DELAY;
 
             //
             // Clk Src = INTOSC2
@@ -1233,7 +1231,7 @@ SysCtl_selectOscSource(uint32_t oscSource)
             HWREGH(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL1) &=
                 ~SYSCTL_CLKSRCCTL1_OSCCLKSRCSEL_M;
 
-            SYSCTL_CLKSRCCTL1_DELAY;
+            SYSCTL_CLKSRCCTL_DELAY;
 
             //
             // Turn off XTALOSC
@@ -1259,7 +1257,7 @@ SysCtl_selectOscSource(uint32_t oscSource)
                     ~SYSCTL_CLKSRCCTL1_OSCCLKSRCSEL_M) |
                    (SYSCTL_OSCSRC_OSC1 >> SYSCTL_OSCSRC_S);
 
-            SYSCTL_CLKSRCCTL1_DELAY;
+            SYSCTL_CLKSRCCTL_DELAY;
 
             //
             //Turn off XTALOSC
@@ -1298,6 +1296,7 @@ SysCtl_selectOscSourceAuxPLL(uint32_t oscSource)
             //
             HWREGH(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL1) &=
                     ~(SYSCTL_CLKSRCCTL1_INTOSC2OFF);
+            SYSCTL_CLKSRCCTL_DELAY;
 
             //
             // Clk Src = INTOSC2
@@ -1312,6 +1311,7 @@ SysCtl_selectOscSourceAuxPLL(uint32_t oscSource)
             //
             HWREGH(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL1) &=
                    ~(SYSCTL_CLKSRCCTL1_XTALOFF);
+            SYSCTL_CLKSRCCTL_DELAY;
 
             //
             // Clk Src = XTAL
@@ -1330,6 +1330,7 @@ SysCtl_selectOscSourceAuxPLL(uint32_t oscSource)
                     (HWREGH(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL2) &
                      ~(SYSCTL_CLKSRCCTL2_AUXOSCCLKSRCSEL_M)) |
                     (2U << SYSCTL_CLKSRCCTL2_AUXOSCCLKSRCSEL_S);
+            SYSCTL_CLKSRCCTL_DELAY;
             break;
 
         default:

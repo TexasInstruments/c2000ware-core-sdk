@@ -1,0 +1,104 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28P55x" --package "128PDT" --part "F28P55x_128PDT" --context "system" --product "C2000WARE@5.02.00.00"
+ * @versions {"tool":"1.18.0+dev"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const device_support = scripting.addModule("/driverlib/device_support.js");
+const sysctl         = scripting.addModule("/driverlib/sysctl.js");
+const CMD            = scripting.addModule("/utilities/cmd_tool/cmd_syscfg/source/CMD");
+const CMD1           = CMD.addInstance();
+const CMD2           = CMD.addInstance();
+const memcfg         = scripting.addModule("/driverlib/memcfg.js");
+const dma            = scripting.addModule("/driverlib/dma.js", {}, false);
+const dma1           = dma.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+dma1.$name                = "myDMA0";
+dma1.dmaBase              = "DMA_CH6_BASE";
+dma1.enableTriggers       = true;
+dma1.useInterrupts        = true;
+dma1.registerInterrupts   = true;
+dma1.enableInterrupts     = true;
+dma1.interruptMode        = "DMA_INT_AT_END";
+dma1.burstSize            = 8;
+dma1.transferSize         = 16;
+dma1.srcAddressInputMode  = "VARIABLE";
+dma1.srcAddressVariable   = "srcAddr";
+dma1.srcBurstStep         = 1;
+dma1.srcTransferStep      = 1;
+dma1.destAddressInputMode = "VARIABLE";
+dma1.destAddressVariable  = "destAddr";
+dma1.destBurstStep        = 1;
+dma1.destTransferStep     = 1;
+
+CMD1.$name                    = "generic_ram_lnk";
+CMD2.$name                    = "generic_flash_lnk";
+
+CMD1.sectionMemory_text       = ["RAMLS0","RAMLS1","RAMLS2","RAMLS3","RAMLS8"];
+CMD1.sectionMemory_bss        = ["RAMLS5"];
+CMD1.sectionMemory_const      = ["RAMLS5","RAMLS6"];
+CMD1.sectionMemory_data       = ["RAMLS5"];
+CMD1.sectionMemory_ramfunc    = ["RAMM0"];
+CMD1.sectionMemory_cinit      = ["RAMM0"];
+CMD1.sectionMemory_stack      = ["RAMM1"];
+CMD1.sectionMemory_init_array = ["RAMM0"];
+CMD1.sectionMemory_switch     = ["RAMM0"];
+CMD1.sectionMemory_sysmem     = ["RAMLS4"];
+
+
+CMD1.userSection.create(2);
+
+CMD1.userSection[0].$name         = "userSection0";
+CMD1.userSection[0].sectionName   = "ramgs0";
+CMD1.userSection[0].sectionMemory = ["RAMGS0"];
+CMD1.userSection[0].sectionType   = "NOINIT";
+
+CMD1.userSection[1].$name         = "userSection1";
+CMD1.userSection[1].sectionName   = "ramgs1";
+CMD1.userSection[1].sectionMemory = ["RAMGS1"];
+CMD1.userSection[1].sectionType   = "NOINIT";
+
+CMD2.sectionAlignEnable_ramfunc    = true;
+CMD2.sectionAlignEnable_text       = true;
+CMD2.sectionAlignEnable_binit      = true;
+CMD2.sectionAlignEnable_cinit      = true;
+CMD2.sectionAlignEnable_switch     = true;
+CMD2.sectionAlignEnable_init_array = true;
+CMD2.sectionAlignEnable_const      = true;
+CMD2.sectionAlignEnable_ovly       = true;
+CMD2.sectionMemory_codestart       = "0x080000";
+CMD2.sectionMemory_stack           = ["RAMM1"];
+CMD2.sectionMemory_bss             = ["RAMLS5"];
+CMD2.sectionMemory_data            = ["RAMLS5"];
+CMD2.sectionMemory_sysmem          = ["RAMLS5"];
+CMD2.sectionMemory_ramfunc         = ["FLASH_BANK0"];
+CMD2.sectionMemory_text            = ["FLASH_BANK0","FLASH_BANK1"];
+CMD2.sectionMemory_binit           = ["FLASH_BANK0"];
+CMD2.sectionMemory_cinit           = ["FLASH_BANK0"];
+CMD2.sectionMemory_switch          = ["FLASH_BANK0"];
+CMD2.sectionMemory_init_array      = ["FLASH_BANK0"];
+CMD2.sectionMemory_const           = ["FLASH_BANK0"];
+CMD2.sectionMemory_ovly            = ["FLASH_BANK0"];
+CMD2.sectionRunFromDifferentAddr_ramfunc = true;
+CMD2.sectionRun_ramfunc                  = ["RAMLS0"];
+CMD2.sectionBinit_ramfunc                = false;
+
+
+CMD2.userSection.create(2);
+CMD2.userSection[0].$name                = "userSection2";
+
+CMD2.userSection[0].sectionName    = "ramgs0";
+CMD2.userSection[0].sectionMemory  = ["RAMGS0"];
+CMD2.userSection[0].sectionType    = "NOINIT";
+
+CMD2.userSection[1].$name                = "userSection3";
+CMD2.userSection[1].sectionName          = "ramgs1";
+CMD2.userSection[1].sectionMemory        = ["RAMGS1"];
+CMD2.userSection[1].sectionType          = "NOINIT";

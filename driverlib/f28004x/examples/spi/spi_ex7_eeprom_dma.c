@@ -8,8 +8,10 @@
 //! <h1>SPI DMA EEPROM</h1>
 //!
 //! This program will write 8 bytes to EEPROM and read them back. The device
-//! communicates with the EEPROM via SPI using DMA and specific opcodes. This example is
-//! written to work with the SPI Serial EEPROM AT25128/256.
+//! communicates with the EEPROM via SPI using DMA and specific opcodes. This
+//! example is written to work with the SPI Serial EEPROM AT25128/256.
+//! Note: Runtime updation of character length when CS pin is not controlled
+//! by the SPI module can lead to unpredictable behaviour
 //!
 //! \b External \b Connections \n
 //!  - Connect external SPI EEPROM
@@ -34,7 +36,7 @@
 //
 //
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 

@@ -1,0 +1,392 @@
+/*
+ * Copyright (c) 2018-2020 Texas Instruments Incorporated - http://www.ti.com
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * *  Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ * *  Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * *  Neither the name of Texas Instruments Incorporated nor the names of
+ *    its contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ */
+
+/*
+ *  ======== TMDSCNCD28P55X.syscfg.json ========
+ *  Board schematic: Refer to C2000ware SDK documentation
+ */
+
+ {
+    "name"        : "TMDSCNCD28P55X",
+    "displayName" : "Control Card F28P55X",
+    "device"      : "F28P55x",
+    "part"        : "F28P55x_128PDT",
+    "package"     : "128PDT",
+    "headers"     : [
+        {
+            "type": "HSEC",
+            "default": true,
+            "name": "hsecAnalog",
+            "displayName": "HSEC Header",
+            "dimensions": {
+                "columns": [
+                    { "top":  9, "increment": 2, "bottom": 45 },
+                    { "top": 10, "increment": 2, "bottom": 46 }
+                ]
+            },
+            "pins": [
+                    {   "number" :   9,     "ball": "30",       "name"   : "A0, B15, C15, DACA_OUT"             },
+                    {   "number" :  10,     "ball": "",         "name"   : "VSS"                                },
+                    {   "number" :  11,     "ball": "29",       "name"   : "A1, B7, D11, DACB_OUT"              },
+                    {   "number" :  12,     "ball": "25",       "name"   : "B26, D7, E7"                        },
+                    {   "number" :  13,     "ball": "22",       "name"   : "A15, B9, C7, PGA1_INM"              },
+                    {   "number" :  14,     "ball": "45",       "name"   : "B27, D10, E10, GPIO213"             },
+                    {   "number" :  15,     "ball": "21",       "name"   : "A2, B6, C9, PGA1_INP, GPIO224"      },
+                    {   "number" :  16,     "ball": "36",       "name"   : "B11, D16, E16, PGA3_INM"            },
+                    {   "number" :  17,     "ball": "23",       "name"   : "C25, D5, E5"                        },
+                    {   "number" :  18,     "ball": "35",       "name"   : "A12, C1, E11, PGA3_INP"             },
+                    {   "number" :  19,     "ball": "28",       "name"   : "A5, B12, C2, PGA2_INM"              },
+                    {   "number" :  20,     "ball": "50",       "name"   : "A10, B1, C10, GPIO230"              },
+                    {   "number" :  21,     "ball": "20",       "name"   : "A3, B3, PGA2_INP, C5, GPIO242"      },
+                    {   "number" :  22,     "ball": "",         "name"   : "VSS"                                },
+                    {   "number" :  23,     "ball": "26",       "name"   : "A14, B14, C4, PGA1_OUT"             },
+                    {   "number" :  24,     "ball": "49",       "name"   : "B4, C8, GPIO236"                    },
+                    {   "number" :  25,     "ball": "18",       "name"   : "A6, D14, E14, GPIO228"              },
+                    {   "number" :  26,     "ball": "42",       "name"   : "A4, B8, C14"                        },
+                    {   "number" :  27,     "ball": "38",       "name"   : "B5, D15, E15, PGA3_OUT"             },
+                    {   "number" :  28,     "ball": "19",       "name"   : "B2, C6, E12, GPIO226"               },
+                    {   "number" :  29,     "ball": "",         "name"   : "VSS"                                },
+                    {   "number" :  30,     "ball": "37",       "name"   : "A7, B30, C3, D12, E30"              },
+                    {   "number" :  31,     "ball": "48",       "name"   : "A9, GPIO227"                        },
+                    {   "number" :  32,     "ball": "",         "name"   : "Rsv"                                },
+                    {   "number" :  33,     "ball": "27",       "name"   : "A11, B10, C0, PGA2_OUT"             },
+                    {   "number" :  34,     "ball": "39",       "name"   : "A8, B0, C11"                        },
+                    {   "number" :  35,     "ball": "",         "name"   : "VSS"                                },
+                    {   "number" :  36,     "ball": "43",       "name"   : "C26, D8, E8, GPIO211"               },
+                    {   "number" :  37,     "ball": "24",       "name"   : "A26, D6, E6"                        },
+                    {   "number" :  38,     "ball": "",         "name"   : "VSS"                                },
+                    {   "number" :  39,     "ball": "44",       "name"   : "A27, D9, E9, GPIO212"               },
+                    {   "number" :  40,     "ball": "47",       "name"   : "A28, D19, E19, GPIO215"             },
+                    {   "number" :  41,     "ball": "",         "name"   : "Rsv"                                },
+                    {   "number" :  42,     "ball": "46",       "name"   : "C27, D18, E18, GPIO214"             },
+                    {   "number" :  43,     "ball": "33",       "name"   : "A13, B13, C13, D13, E13, VREFLO"    },
+                    {   "number" :  44,     "ball": "",         "name"   : "Rsv"                                },
+                    {   "number" :  45,     "ball": "31",       "name"   : "D20, E20, VREFHI"                   },
+                    {   "number" :  46,     "ball": "",         "name"   : "VSS"                                }
+            ]
+        },
+        {
+            "type": "HSEC",
+            "default": true,
+            "name": "hsecDigital",
+            "displayName": "HSEC Header",
+            "dimensions": {
+                "columns": [
+                    { "top":  47, "increment": 2, "bottom": 119 },
+                    { "top": 48, "increment": 2, "bottom": 120 }
+                ]
+            },
+            "pins": [
+                    {   "number" :  47,     "ball": "",         "name"   : "VSS"                                },
+                    {   "number" :  48,     "ball": "",         "name"   : "5V0"                                },
+                    {   "number" :  49,     "ball": "100",      "name"   : "GPIO0"                              },
+                    {   "number" :  50,     "ball": "96",       "name"   : "GPIO4"                              },
+                    {   "number" :  51,     "ball": "99",       "name"   : "GPIO1"                              },
+                    {   "number" :  52,     "ball": "118",      "name"   : "GPIO5"                              },
+                    {   "number" :  53,     "ball": "98",       "name"   : "GPIO2"                              },
+                    {   "number" :  54,     "ball": "126",      "name"   : "GPIO6"                              },
+                    {   "number" :  55,     "ball": "97",       "name"   : "GPIO3"                              },
+                    {   "number" :  56,     "ball": "105",      "name"   : "GPIO7"                              },
+                    {   "number" :  57,     "ball": "95",       "name"   : "GPIO8"                              },
+                    {   "number" :  58,     "ball": "63",       "name"   : "A20, B20, C20, GPIO12"              },
+                    {   "number" :  59,     "ball": "119",      "name"   : "GPIO9"                              },
+                    {   "number" :  60,     "ball": "62",       "name"   : "A19, B19, C19, GPIO13"              },
+                    {   "number" :  61,     "ball": "122",      "name"   : "GPIO10"                             },
+                    {   "number" :  62,     "ball": "125",      "name"   : "GPIO14"                             },
+                    {   "number" :  63,     "ball": "64",       "name"   : "A24, D0, E0, GPIO11"                },
+                    {   "number" :  64,     "ball": "124",      "name"   : "GPIO15"                             },
+                    {   "number" :  65,     "ball": "",         "name"   : "GND"                                },
+                    {   "number" :  66,     "ball": "",         "name"   : "Rsv"                                },
+                    {   "number" :  67,     "ball": "66",       "name"   : "C24, D2, E2, GPIO16"                },
+                    {   "number" :  68,     "ball": "60",       "name"   : "A17, B17, C17, GPIO20"              },
+                    {   "number" :  69,     "ball": "67",       "name"   : "A25, D3, E3, GPIO17"                },
+                    {   "number" :  70,     "ball": "61",       "name"   : "A18, B18, C18, GPIO21"              },
+                    {   "number" :  71,     "ball": "72",       "name"   : "GPIO68"                             },
+                    {   "number" :  72,     "ball": "104",      "name"   : "GPIO22"                             },
+                    {   "number" :  73,     "ball": "73",       "name"   : "GPIO69"                             },
+                    {   "number" :  74,     "ball": "121",      "name"   : "GPIO59"                             },
+                    {   "number" :  75,     "ball": "52",       "name"   : "GPIO60"                             },
+                    {   "number" :  76,     "ball": "2",        "name"   : "A16, B16, C16, GPIO28"              },
+                    {   "number" :  77,     "ball": "69",       "name"   : "GPIO25"                             },
+                    {   "number" :  78,     "ball": "1",        "name"   : "GPIO29"                             },
+                    {   "number" :  79,     "ball": "70",       "name"   : "GPIO26"                             },
+                    {   "number" :  80,     "ball": "127",      "name"   : "GPIO30"                             },
+                    {   "number" :  81,     "ball": "71",       "name"   : "GPIO27"                             },
+                    {   "number" :  82,     "ball": "128",      "name"   : "GPIO31"                             },
+                    {   "number" :  83,     "ball": "",         "name"   : "VSS / GND"                          },
+                    {   "number" :  84,     "ball": "",         "name"   : "5V0"                                },
+                    {   "number" :  85,     "ball": "9",        "name"   : "GPIO66"                             },
+                    {   "number" :  86,     "ball": "123",      "name"   : "GPIO34"                             },
+                    {   "number" :  87,     "ball": "65",       "name"   : "B24, D1, E1, GPIO33"                },
+                    {   "number" :  88,     "ball": "101",      "name"   : "GPIO40"                             },
+                    {   "number" :  89,     "ball": "94",       "name"   : "GPIO42"                             },
+                    {   "number" :  90,     "ball": "106",      "name"   : "GPIO44"                             },
+                    {   "number" :  91,     "ball": "110",      "name"   : "GPIO45"                             },
+                    {   "number" :  92,     "ball": "4",        "name"   : "GPIO46"                             },
+                    {   "number" :  93,     "ball": "8",        "name"   : "GPIO47"                             },
+                    {   "number" :  94,     "ball": "82",       "name"   : "GPIO58"                             },
+                    {   "number" :  95,     "ball": "91",       "name"   : "GPIO43"                             },
+                    {   "number" :  96,     "ball": "120",      "name"   : "GPIO61"                             },
+                    {   "number" :  97,     "ball": "",         "name"   : "VSS / GND"                          },
+                    {   "number" :  98,     "ball": "",         "name"   : "5V0"                                },
+                    {   "number" :  99,     "ball": "11",       "name"   : "GPIO48"                             },
+                    {   "number" : 100,     "ball": "17",       "name"   : "GPIO54"                             },
+                    {   "number" : 101,     "ball": "12",       "name"   : "GPIO49"                             },
+                    {   "number" : 102,     "ball": "51",       "name"   : "GPIO55"                             },
+                    {   "number" : 103,     "ball": "13",       "name"   : "GPIO50"                             },
+                    {   "number" : 104,     "ball": "80",       "name"   : "GPIO56"                             },
+                    {   "number" : 105,     "ball": "14",       "name"   : "GPIO51"                             },
+                    {   "number" : 106,     "ball": "81",       "name"   : "GPIO57"                             },
+                    {   "number" : 107,     "ball": "15",       "name"   : "GPIO52"                             },
+                    {   "number" : 108,     "ball": "58",       "name"   : "GPIO62"                             },
+                    {   "number" : 109,     "ball": "16",       "name"   : "GPIO53"                             },
+                    {   "number" : 110,     "ball": "59",       "name"   : "GPIO63"                             },
+                    {   "number" : 111,     "ball": "",         "name"   : "VSS / GND"                          },
+                    {   "number" : 112,     "ball": "",         "name"   : "5V0"                                },
+                    {   "number" : 113,     "ball": "",         "name"   : "Rsv"                                },
+                    {   "number" : 114,     "ball": "",         "name"   : "Rsv"                                },
+                    {   "number" : 115,     "ball": "",         "name"   : "Rsv"                                },
+                    {   "number" : 116,     "ball": "",         "name"   : "Rsv"                                },
+                    {   "number" : 117,     "ball": "",         "name"   : "Rsv"                                },
+                    {   "number" : 118,     "ball": "",         "name"   : "VDD"                                },
+                    {   "number" : 119,     "ball": "",         "name"   : "VDDIO"                              },
+                    {   "number" : 120,     "ball": "2",        "name"   : "XRSn"                               }
+            ]
+        }
+    ],
+
+    "components": {
+        "D1": {
+            "displayName" : "D1 (User LEDs)",
+            "definition"  : "/boards/components/led.json",
+            "connections" : {
+                "OUTPUT": "128" /* GPIO31 */
+            }
+        },
+        "D2": {
+            "displayName" : "D2 (User LEDs)",
+            "definition"  : "/boards/components/led.json",
+            "connections" : {
+                "OUTPUT": "123" /* GPIO34 */
+            }
+        },
+        "LED4": {
+            "link": "D1"
+        },
+        "LED5": {
+            "link": "D2"
+        },
+        "PWM_LOC1": {
+            "displayName": "EPWM1",
+            "description": "EPWM1",
+            "longDescription": "This controlCARD features standard locations for the EPWM peripheral located on board pins 49 and 51.",
+            "definition"  : "/boards/components/standard_epwm.json",
+            "connections" : {
+                "EPWM_A": "100", /*GPIO0*/
+                "EPWM_B": "99" /*GPIO1*/
+            }
+        },
+        "PWM_LOC2": {
+            "displayName": "EPWM2",
+            "description": "EPWM2",
+            "longDescription": "This controlCARD features standard locations for the EPWM peripheral located on board pins 53 and 55.",
+            "definition"  : "/boards/components/standard_epwm.json",
+            "connections" : {
+                "EPWM_A": "98", /*GPIO2*/
+                "EPWM_B": "97" /*GPIO3*/
+            }
+        },
+        "PWM_LOC3": {
+            "displayName": "EPWM3",
+            "description": "EPWM3",
+            "longDescription": "This controlCARD features standard locations for the EPWM peripheral located on board pins 50 and 52.",
+            "definition"  : "/boards/components/standard_epwm.json",
+            "connections" : {
+                "EPWM_A": "96", /*GPIO4*/
+                "EPWM_B": "118" /*GPIO5*/
+            }
+        },
+        "PWM_LOC4": {
+            "displayName": "EPWM4",
+            "description": "EPWM4",
+            "longDescription": "This controlCARD features standard locations for the EPWM peripheral located on board pins 54 and 56.",
+            "definition"  : "/boards/components/standard_epwm.json",
+            "connections" : {
+                "EPWM_A": "126", /*GPIO6*/
+                "EPWM_B": "105" /*GPIO7*/
+            }
+        },
+        "PWM_LOC5": {
+            "displayName": "EPWM5",
+            "description": "EPWM5",
+            "longDescription": "This controlCARD features standard locations for the EPWM peripheral located on board pins 57 and 59.",
+            "definition"  : "/boards/components/standard_epwm.json",
+            "connections" : {
+                "EPWM_A": "95", /*GPIO8*/
+                "EPWM_B": "119" /*GPIO9*/
+            }
+        },
+        "PWM_LOC6": {
+            "displayName": "EPWM6",
+            "description": "EPWM6",
+            "longDescription": "This controlCARD features standard locations for the EPWM peripheral located on board pins 61 and 63.",
+            "definition"  : "/boards/components/standard_epwm.json",
+            "connections" : {
+                "EPWM_A": "122", /*GPIO10*/
+                "EPWM_B": "64" /*GPIO11*/
+            }
+        },
+        "PWM_LOC7": {
+            "displayName": "EPWM7",
+            "description": "EPWM7",
+            "longDescription": "This controlCARD features standard locations for the EPWM peripheral located on board pins 58 and 60.",
+            "definition"  : "/boards/components/standard_epwm.json",
+            "connections" : {
+                "EPWM_A": "63", /*GPIO12*/
+                "EPWM_B": "62" /*GPIO13*/
+            }
+        },
+        "PWM_LOC8": {
+            "displayName": "EPWM8",
+            "description": "EPWM8",
+            "longDescription": "This controlCARD features standard locations for the EPWM peripheral located on board pins 62 and 64.",
+            "definition"  : "/boards/components/standard_epwm.json",
+            "connections" : {
+                "EPWM_A": "125", /*GPIO14*/
+                "EPWM_B": "124" /*GPIO15*/
+            }
+        },
+        "SPI_LOC1": {
+            "displayName": "SPIA",
+            "description": "SPIA",
+            "longDescription": "This controlCARD features standard locations for the SPI peripheral located on board pins 67, 69, 71, and 73.",
+            "definition"  : "/boards/components/standard_spi.json",
+            "connections" : {
+                "SPI_SIMO": "66", /*GPIO16*/
+                "SPI_SOMI": "67", /*GPIO17*/
+                "SPI_CLK": "72", /*GPIO68*/
+                "SPI_STE": "73" /*GPIO69*/
+            }
+        },
+        "SPI_LOC2": {
+            "displayName": "SPIB",
+            "description": "SPIB",
+            "longDescription": "This controlCARD features standard locations for the SPI peripheral located on board pins 75, 77, 79, and 81.",
+            "definition"  : "/boards/components/standard_spi.json",
+            "connections" : {
+                "SPI_SIMO": "52", /*GPIO60*/
+                "SPI_SOMI": "69", /*GPIO25*/
+                "SPI_CLK": "70", /*GPIO26*/
+                "SPI_STE": "71" /*GPIO27*/
+            }
+        },
+        "EQEP_LOC1": {
+            "displayName": "EQEP1",
+            "description": "EQEP1",
+            "longDescription": "This controlCARD features standard locations for the EQEP peripheral located on board pins 68, 70, 72, and 74.",
+            "definition"  : "/boards/components/standard_eqep.json",
+            "connections" : {
+                "EQEPA": "60", /*GPIO20*/
+                "EQEPB": "61", /*GPIO21*/
+                "EQEPS": "104", /*GPIO22*/
+                "EQEPI": "121" /*GPIO59*/
+            }
+        },
+        "SCI_LOC1": {
+            "displayName": "SCIA",
+            "description": "SCIA",
+            "longDescription": "This controlCARD features standard locations for the SCI peripheral located on board pins 76 and 78.",
+            "definition"  : "/boards/components/standard_sci.json",
+            "connections" : {
+                "SCI_RX": "2", /*GPIO28*/
+                "SCI_TX": "1"  /*GPIO29*/
+            }
+        },
+        "USB": {
+            "displayName": "USB0",
+            "description": "USB0",
+            "longDescription": "This controlCARD features standard locations for the USB communication peripheral.",
+            "definition"  : "/boards/components/standard_usb.json",
+            "connections" : {
+                "USBDM": "102", /*GPIO23*/
+                "USBDP": "103"  /*GPIO41*/
+            }
+        },
+        "CAN_LOC1": {
+            "displayName": "MCANA",
+            "description": "MCANA",
+            "longDescription": "This controlCARD features standard locations for the CAN peripheral located on board pins 80 and 82.",
+            "definition"  : "/boards/components/standard_mcan.json",
+            "connections" : {
+                "MCAN_RX": "127", /*GPIO30*/
+                "MCAN_TX": "128" /*GPIO31*/
+            }
+        },
+        "I2C_LOC1": {
+            "displayName": "I2CA",
+            "description": "I2CA",
+            "longDescription": "This controlCARD features standard locations for the I2C peripheral located on board pins 85 and 87.",
+            "definition"  : "/boards/components/standard_i2c.json",
+            "connections" : {
+                "I2C_SDA": "9", /*GPIO66*/
+                "I2C_SCL": "65" /*GPIO33*/
+            }
+        },
+        "EQEP_LOC2": {
+            "displayName": "EQEP2",
+            "description": "EQEP2",
+            "longDescription": "This controlCARD features standard locations for the EQEP peripheral located on board pins 100, 102, 104, and 106.",
+            "definition"  : "/boards/components/standard_eqep.json",
+            "connections" : {
+                "EQEPA": "17", /*GPIO54*/
+                "EQEPB": "51", /*GPIO55*/
+                "EQEPS": "80", /*GPIO56*/
+                "EQEPI": "81" /*GPIO57*/
+            }
+        },
+        "FSI_HEADER": {
+			"displayName": "FSI Header",
+			"description": "FSI Header",
+			"longDescription": "This controlCARD features standard header for the FSI peripheral located on the controlCARD board.",
+            "definition": "/boards/components/fsi.json",
+            "connections" : {
+                "FSIRX_D0": "63", /* GPIO12 */
+                "FSIRX_D1": "64", /* GPIO11 */
+                "FSIRX_CLK": "62", /* GPIO13 */
+                "FSITX_D0": "70", /* GPIO26 */
+                "FSITX_D1": "69", /* GPIO25 */
+                "FSITX_CLK": "71" /* GPIO27 */
+                }
+		},
+    }
+}

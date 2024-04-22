@@ -12,6 +12,14 @@
 	% let solution    		= lin.$solution;
 	%let peripheral 	 	= system.deviceData.peripherals[solution.peripheralName];
 #define `instance.$name`_BASE `peripheral.name`_BASE
+        % if (instance.dmarx) {
+#define `instance.linRXDMA.$name`_TRIGGER DMA_TRIGGER_`peripheral.name`RX           
+extern const void *`instance.linRXDMA.$name`_ADDRESS;
+        % }
+        % if (instance.dmatx) {
+#define `instance.linTXDMA.$name`_TRIGGER DMA_TRIGGER_`peripheral.name`TX  
+extern const void *`instance.linTXDMA.$name`_ADDRESS;
+        % }
 void `instance.$name`_init();
 % }
 %}

@@ -1,0 +1,118 @@
+
+/**
+ * Import the modules used in this configuration.
+ */
+const clb             = scripting.addModule("/driverlib/clb.js", {}, false);
+const clb1            = clb.addInstance();
+const clb2            = clb.addInstance();
+const clb_outputxbar  = scripting.addModule("/driverlib/clb_outputxbar.js", {}, false);
+const clb_outputxbar1 = clb_outputxbar.addInstance();
+const TILE            = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/TILE", {}, false);
+const TILE1           = TILE.addInstance();
+const TILE2           = TILE.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+clb1.$name = "myCLBForTILE1";
+
+clb2.clbBase = "CLB2_BASE";
+clb2.$name   = "myCLBForTILE2";
+
+clb_outputxbar1.$name                                    = "myCLB_OUTPUTXBAR0";
+clb_outputxbar1.muxesUsed                                = ["XBAR_MUX04"];
+clb_outputxbar1.clb_outputxbar.$name                     = "MyCLB_OUTPUTXBAR1";
+
+TILE1.pipeline_mode            = true;
+TILE1.$name                    = "TILE1";
+TILE1.BOUNDARY.$name           = "BOUNDARY0";
+TILE1.LUT_0.$name              = "LUT_0";
+TILE1.LUT_1.$name              = "LUT_1";
+TILE1.LUT_2.$name              = "LUT_2";
+TILE1.FSM_0.$name              = "FSM_0";
+TILE1.FSM_0.e0                 = "COUNTER_0.count_match1";
+TILE1.FSM_0.eqn_s0             = "s0^e0";
+TILE1.FSM_1.$name              = "FSM_1";
+TILE1.FSM_1.eqn_out            = "!s0";
+TILE1.FSM_1.eqn_s0             = "s0^e0";
+TILE1.FSM_1.e0                 = "COUNTER_2.count_match1";
+TILE1.FSM_2.$name              = "FSM_2";
+TILE1.COUNTER_0.$name          = "COUNTER_0";
+TILE1.COUNTER_0.mode0          = "1";
+TILE1.COUNTER_0.mode1          = "1";
+TILE1.COUNTER_0.reset          = "COUNTER_0.count_match1";
+TILE1.COUNTER_0.match1_val     = "62500000 - 1";
+TILE1.COUNTER_1.$name          = "COUNTER_1";
+TILE1.COUNTER_2.$name          = "COUNTER_2";
+TILE1.COUNTER_2.event          = "COUNTER_2.count_match1";
+TILE1.COUNTER_2.match1_val     = "64";
+TILE1.COUNTER_2.action         = "Add";
+TILE1.COUNTER_2.event_load_val = "5";
+TILE1.COUNTER_2.mode0          = "FSM_1.OUT";
+TILE1.COUNTER_2.mode1          = "1";
+TILE1.OUTLUT_0.$name           = "OUTLUT_0";
+TILE1.OUTLUT_1.$name           = "OUTLUT_1";
+TILE1.OUTLUT_2.$name           = "OUTLUT_2";
+TILE1.OUTLUT_3.$name           = "OUTLUT_3";
+TILE1.OUTLUT_4.$name           = "OUTLUT_4";
+TILE1.OUTLUT_4.i0              = "FSM_0.S0";
+TILE1.OUTLUT_4.eqn             = "i0";
+TILE1.OUTLUT_5.$name           = "OUTLUT_5";
+TILE1.OUTLUT_6.$name           = "OUTLUT_6";
+TILE1.OUTLUT_7.$name           = "OUTLUT_7";
+TILE1.HLC.$name                = "HLC_0";
+TILE1.HLC.program0.$name       = "HLCP_0";
+TILE1.HLC.program1.$name       = "HLCP_1";
+TILE1.HLC.program2.$name       = "HLCP_2";
+TILE1.HLC.program3.$name       = "HLCP_3";
+TILE1.AOC_0.$name              = "AOC_0";
+TILE1.AOC_1.$name              = "AOC_1";
+TILE1.AOC_2.$name              = "AOC_2";
+TILE1.AOC_3.$name              = "AOC_3";
+TILE1.AOC_4.$name              = "AOC_4";
+TILE1.AOC_5.$name              = "AOC_5";
+TILE1.AOC_6.$name              = "AOC_6";
+TILE1.AOC_7.$name              = "AOC_7";
+
+TILE2.$name                    = "TILE2";
+TILE2.BOUNDARY.$name           = "BOUNDARY1";
+TILE2.LUT_0.$name              = "LUT_3";
+TILE2.LUT_1.$name              = "LUT_4";
+TILE2.LUT_2.$name              = "LUT_5";
+TILE2.FSM_0.$name              = "FSM_3";
+TILE2.FSM_1.$name              = "FSM_4";
+TILE2.FSM_1.e0                 = "COUNTER_2.count_match1";
+TILE2.FSM_1.eqn_s0             = "s0^e0";
+TILE2.FSM_1.eqn_out            = "!s0";
+TILE2.FSM_2.$name              = "FSM_5";
+TILE2.COUNTER_0.$name          = "COUNTER_3";
+TILE2.COUNTER_1.$name          = "COUNTER_4";
+TILE2.COUNTER_2.$name          = "COUNTER_5";
+TILE2.COUNTER_2.mode0          = "FSM_1.OUT";
+TILE2.COUNTER_2.mode1          = "1";
+TILE2.COUNTER_2.match1_val     = "64";
+TILE2.COUNTER_2.event          = "COUNTER_2.count_match1";
+TILE2.COUNTER_2.event_load_val = "5";
+TILE2.COUNTER_2.action         = "Add";
+TILE2.OUTLUT_0.$name           = "OUTLUT_8";
+TILE2.OUTLUT_1.$name           = "OUTLUT_9";
+TILE2.OUTLUT_2.$name           = "OUTLUT_10";
+TILE2.OUTLUT_3.$name           = "OUTLUT_11";
+TILE2.OUTLUT_4.$name           = "OUTLUT_12";
+TILE2.OUTLUT_5.$name           = "OUTLUT_13";
+TILE2.OUTLUT_6.$name           = "OUTLUT_14";
+TILE2.OUTLUT_7.$name           = "OUTLUT_15";
+TILE2.HLC.$name                = "HLC_1";
+TILE2.HLC.program0.$name       = "HLCP_4";
+TILE2.HLC.program1.$name       = "HLCP_5";
+TILE2.HLC.program2.$name       = "HLCP_6";
+TILE2.HLC.program3.$name       = "HLCP_7";
+TILE2.AOC_0.$name              = "AOC_8";
+TILE2.AOC_1.$name              = "AOC_9";
+TILE2.AOC_2.$name              = "AOC_10";
+TILE2.AOC_3.$name              = "AOC_11";
+TILE2.AOC_4.$name              = "AOC_12";
+TILE2.AOC_5.$name              = "AOC_13";
+TILE2.AOC_6.$name              = "AOC_14";
+TILE2.AOC_7.$name              = "AOC_15";
+

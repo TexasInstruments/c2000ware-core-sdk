@@ -25,7 +25,7 @@ let LIN_InterruptLine = [
 ]
 let LIN_MessageFilter = [
 	{ name: "LIN_MSG_FILTER_IDBYTE", displayName: "LIN Message ID Byte Filtering" },
-	{ name: "LIN_MSG_FILTER_IDRESPONDER", displayName: "Responder Task ID Byte Filtering", legacyNames: ["LIN_MSG_FILTER_IDSLAVE"]},
+	{ name: "LIN_MSG_FILTER_IDRESPONDER", displayName: "ID Responder Task Byte Filtering", legacyNames: ["LIN_MSG_FILTER_IDSLAVE"]},
 ]
 let LIN_ChecksumType = [
 	{ name: "LIN_CHECKSUM_CLASSIC", displayName: "Checksum Classic" },

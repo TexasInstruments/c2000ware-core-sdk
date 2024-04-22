@@ -1,8 +1,8 @@
 /**
  * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
  * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
- * @cliArgs --device "F28P65x" --package "256ZEJ" --part "F28P65x_256ZEJ" --context "CPU1" --product "C2000WARE@5.00.00.00"
- * @versions {"tool":"1.19.0+3288"}
+ * @cliArgs --device "F28P65x" --package "256ZEJ" --part "F28P65x_256ZEJ" --context "CPU1" --product "C2000WARE@5.02.00.00"
+ * @versions {"tool":"1.17.0+2988"}
  */
 
 /**
@@ -65,20 +65,12 @@ CMD1.sectionMemory_text       = ["RAMD0","RAMD1","RAMLS0","RAMLS1","RAMLS2","RAM
 CMD1.sectionMemory_bss        = ["RAMLS5"];
 CMD1.sectionMemory_const      = ["RAMLS5","RAMLS6"];
 CMD1.sectionMemory_data       = ["RAMLS5"];
-CMD1.sectionMemory_sysmem     = ["RAMLS4"];
 CMD1.sectionMemory_ramfunc    = ["RAMM0"];
 CMD1.sectionMemory_cinit      = ["RAMM0"];
 CMD1.sectionMemory_stack      = ["RAMM1"];
 CMD1.sectionMemory_init_array = ["RAMM0"];
 CMD1.sectionMemory_switch     = ["RAMM0"];
-CMD1.$name                        = "generic_ram_lnk";
-CMD1.userSection.create(2);
-CMD1.userSection[0].$name          = "userSection0";
-CMD1.userSection[0].sectionMemory  = ["RAMGS0"];
-CMD1.userSection[0].sectionName    = "ramgs0";
-CMD1.userSection[1].$name          = "userSection2";
-CMD1.userSection[1].sectionMemory  = ["RAMGS1"];
-CMD1.userSection[1].sectionName    = "ramgs1";
+CMD1.sectionMemory_sysmem     = ["RAMLS4"];
 
 CMD2.sectionAlignEnable_ramfunc    = true;
 CMD2.sectionAlignEnable_text       = true;
@@ -93,21 +85,14 @@ CMD2.sectionMemory_stack           = ["RAMM1"];
 CMD2.sectionMemory_bss             = ["RAMLS5"];
 CMD2.sectionMemory_data            = ["RAMLS5"];
 CMD2.sectionMemory_sysmem          = ["RAMLS5"];
-CMD2.sectionMemory_ramfunc               = ["FLASH_BANK0"];
-CMD2.sectionMemory_text                  = ["FLASH_BANK0","FLASH_BANK1"];
-CMD2.sectionMemory_binit                 = ["FLASH_BANK0"];
-CMD2.sectionMemory_cinit                 = ["FLASH_BANK0"];
-CMD2.sectionMemory_switch                = ["FLASH_BANK0"];
-CMD2.sectionMemory_init_array            = ["FLASH_BANK0"];
-CMD2.sectionMemory_const                 = ["FLASH_BANK0"];
-CMD2.sectionMemory_ovly                  = ["FLASH_BANK0"];
+CMD2.sectionMemory_ramfunc         = ["FLASH_BANK0"];
+CMD2.sectionMemory_text            = ["FLASH_BANK0","FLASH_BANK1"];
+CMD2.sectionMemory_binit           = ["FLASH_BANK0"];
+CMD2.sectionMemory_cinit           = ["FLASH_BANK0"];
+CMD2.sectionMemory_switch          = ["FLASH_BANK0"];
+CMD2.sectionMemory_init_array      = ["FLASH_BANK0"];
+CMD2.sectionMemory_const           = ["FLASH_BANK0"];
+CMD2.sectionMemory_ovly            = ["FLASH_BANK0"];
 CMD2.sectionRunFromDifferentAddr_ramfunc = true;
 CMD2.sectionRun_ramfunc                  = ["RAMLS0"];
 CMD2.sectionBinit_ramfunc                = false;
-CMD2.userSection.create(2);
-CMD2.userSection[0].$name          = "userSection1";
-CMD2.userSection[0].sectionMemory  = ["RAMGS0"];
-CMD2.userSection[0].sectionName    = "ramgs0";
-CMD2.userSection[1].$name          = "userSection3";
-CMD2.userSection[1].sectionMemory  = ["RAMGS1"];
-CMD2.userSection[1].sectionName    = "ramgs1";

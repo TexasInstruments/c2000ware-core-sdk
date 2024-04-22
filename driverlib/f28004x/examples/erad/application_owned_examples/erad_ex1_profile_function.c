@@ -21,7 +21,7 @@
 //!  number of CPU cycles spend between the respective bus comparator events.
 //!
 //!  \b Watch \b Variables \n
-//!   - cycles_Functio - the maximum number of cycles between the start of
+//!   - cycles_Function - the maximum number of cycles between the start of
 //!                      function to the end of function
 //!   - cycles_Data    - the maximum number of cycles taken between
 //!                      accessing startCount variable to endCount variable
@@ -58,9 +58,7 @@ volatile uint32_t endCount = 0;
 // Watch variables with the number of CPU cycles elapsed.
 //
 volatile uint32_t cycles_Function = 0;
-volatile uint32_t cycles_Function_Max = 0;
 volatile uint32_t cycles_Data = 0;
-volatile uint32_t cycles_Data_Max = 0;
 
 //
 // Function Prototypes

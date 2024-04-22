@@ -6,7 +6,7 @@
 //
 //#############################################################################
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -937,6 +937,7 @@ void PMBus_setClkLowTimeoutIntEdge(uint32_t base, PMBus_intEdge intEdge)
     EDIS;
 }
 
+
 //*****************************************************************************
 //
 //! Initializes the PMBus to Target Mode.
@@ -1235,6 +1236,32 @@ extern uint32_t
 PMBus_configModuleClock(uint32_t base, uint32_t moduleFrequency,
                         uint32_t sysFrequency);
 
+//*****************************************************************************
+//
+//! Configure the PMBus module clock
+//!
+//! \param base is the base address of the PMBus instance used.
+//! \param moduleFrequency desired module frequency; can range from
+//! PMBUS_MODULE_FREQ_MIN Hz to PMBUS_MODULE_FREQ_MAX Hz. Please input the
+//! frequency in Hz, for example, 312500 for 312.4 kHz
+//! \param sysFrequency Frequency of the system clock (input to PMBus). The
+//! values may range anywhere from PMBUS_SYS_FREQ_MIN Hz to PMBUS_SYS_FREQ_MAX
+//! Hz. Please input the frequency in Hz, for example, 100000000 for 100 MHz.
+//! \param mode The Clock speed mode for baud rate
+//!
+//! The frequency to the PMBus module may not exceed PMBUS_MODULE_FREQ_MAX Hz,
+//! the appropriate clock divider is chosen to bring the module clock to the
+//! desired frequency - this value is then returned by the function.
+//! In the event that the desired bus frequency is unattainable, the clock
+//! divider is set to the maximum possible value
+//!
+//! \return module frequency calculated from the system frequency and clock
+//! divider.
+//
+//*****************************************************************************
+extern uint32_t
+PMBus_configModuleClockMode(uint32_t base, uint32_t moduleFrequency,
+                        uint32_t sysFrequency, PMBus_ClockMode mode);
 //*****************************************************************************
 //
 //! Configure the bus clock by overriding the default settings

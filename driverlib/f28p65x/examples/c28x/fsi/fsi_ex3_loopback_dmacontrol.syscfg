@@ -1,0 +1,211 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28P65x" --package "256ZEJ" --part "F28P65x_256ZEJ" --context "CPU1" --product "C2000WARE@5.02.00.00"
+ * @versions {"tool":"1.17.0+2988"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const device_support = scripting.addModule("/driverlib/device_support.js");
+const dma            = scripting.addModule("/driverlib/dma.js", {}, false);
+const dma1           = dma.addInstance();
+const dma2           = dma.addInstance();
+const dma3           = dma.addInstance();
+const dma4           = dma.addInstance();
+const fsirx          = scripting.addModule("/driverlib/fsirx.js", {}, false);
+const fsirx1         = fsirx.addInstance();
+const fsitx          = scripting.addModule("/driverlib/fsitx.js", {}, false);
+const fsitx1         = fsitx.addInstance();
+const memcfg         = scripting.addModule("/driverlib/memcfg.js");
+const sysctl         = scripting.addModule("/driverlib/sysctl.js");
+const CMD            = scripting.addModule("/utilities/cmd_tool/cmd_syscfg/source/CMD");
+const CMD1           = CMD.addInstance();
+const CMD2           = CMD.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+dma1.$name                = "myDMA0";
+dma1.enableTriggers       = true;
+dma1.triggerSource        = "DMA_TRIGGER_FSITXA";
+dma1.continuousModeConfig = "DMA_CFG_CONTINUOUS_ENABLE";
+dma1.burstSize            = 4;
+dma1.transferSize         = 512;
+dma1.srcAddressInputMode  = "VARIABLE";
+dma1.srcBurstStep         = 1;
+dma1.srcTransferStep      = 1;
+dma1.srcAddressVariable   = "gs0Addr";
+dma1.srcWrapSize          = 512;
+dma1.destAddressInputMode = "VARIABLE";
+dma1.destBurstStep        = 1;
+dma1.destAddressVariable  = "txBufAddr";
+dma1.destTransferStep     = 1;
+dma1.destWrapSize         = 4;
+
+dma2.$name                   = "myDMA1";
+dma2.dmaBase                 = "DMA_CH2_BASE";
+dma2.enableTriggers          = true;
+dma2.triggerSource           = "DMA_TRIGGER_FSITXA";
+dma2.useInterrupts           = true;
+dma2.registerInterrupts      = true;
+dma2.enableInterrupts        = true;
+dma2.interruptMode           = "DMA_INT_AT_END";
+dma2.continuousModeConfig    = "DMA_CFG_CONTINUOUS_ENABLE";
+dma2.transferSize            = 512;
+dma2.srcAddressInputMode     = "VARIABLE";
+dma2.destAddressInputMode    = "VARIABLE";
+dma2.srcAddressVariable      = "gs1Addr";
+dma2.srcTransferStep         = 1;
+dma2.srcWrapSize             = 16;
+dma2.destAddressVariable     = "txFrameTagAddr";
+dma2.destWrapSize            = 16;
+dma2.dmaInt.interruptHandler = "fsitxdma_isr";
+dma2.dmaInt.enableInterrupt  = true;
+
+dma3.$name                = "myDMA2";
+dma3.dmaBase              = "DMA_CH3_BASE";
+dma3.enableTriggers       = true;
+dma3.triggerSource        = "DMA_TRIGGER_FSIRXA";
+dma3.continuousModeConfig = "DMA_CFG_CONTINUOUS_ENABLE";
+dma3.burstSize            = 4;
+dma3.transferSize         = 512;
+dma3.srcAddressInputMode  = "VARIABLE";
+dma3.destAddressInputMode = "VARIABLE";
+dma3.srcAddressVariable   = "rxBufAddr";
+dma3.srcBurstStep         = 1;
+dma3.srcTransferStep      = 1;
+dma3.srcWrapSize          = 4;
+dma3.destAddressVariable  = "gs2Addr";
+dma3.destBurstStep        = 1;
+dma3.destTransferStep     = 1;
+dma3.destWrapSize         = 512;
+
+dma4.$name                   = "myDMA3";
+dma4.dmaBase                 = "DMA_CH4_BASE";
+dma4.enableTriggers          = true;
+dma4.triggerSource           = "DMA_TRIGGER_FSIRXA";
+dma4.useInterrupts           = true;
+dma4.registerInterrupts      = true;
+dma4.enableInterrupts        = true;
+dma4.interruptMode           = "DMA_INT_AT_END";
+dma4.continuousModeConfig    = "DMA_CFG_CONTINUOUS_ENABLE";
+dma4.transferSize            = 512;
+dma4.srcAddressInputMode     = "VARIABLE";
+dma4.destAddressInputMode    = "VARIABLE";
+dma4.srcAddressVariable      = "rxFrameTagAddr";
+dma4.srcWrapSize             = 16;
+dma4.destAddressVariable     = "gs3Addr";
+dma4.destTransferStep        = 1;
+dma4.destWrapSize            = 16;
+dma4.dmaInt.interruptHandler = "fsirxdma_isr";
+dma4.dmaInt.enableInterrupt  = true;
+
+fsirx1.$name                      = "myFSIRX0";
+fsirx1.softwareFrameSize          = "4";
+fsirx1.enableLoopback             = true;
+fsirx1.enableInterrupt            = true;
+fsirx1.useInterrupts              = ["FSI_INT2"];
+fsirx1.enabledINT2Interrupts      = ["FSI_RX_EVT_CRC_ERR","FSI_RX_EVT_EOF_ERR","FSI_RX_EVT_FRAME_WD_TIMEOUT","FSI_RX_EVT_PING_WD_TIMEOUT","FSI_RX_EVT_TYPE_ERR"];
+fsirx1.pingTimeout                = true;
+fsirx1.timeoutDelay               = 20971520;
+fsirx1.fsirx.fsirx_d0Pin.$assign  = "GPIO12";
+fsirx1.fsirx.fsirx_d1Pin.$assign  = "GPIO11";
+fsirx1.fsirx.fsirx_clkPin.$assign = "GPIO13";
+
+
+fsitx1.$name                      = "myFSITX0";
+fsitx1.clkPres                    = 2;
+
+fsitx1.softwareFrameSize          = "4";
+fsitx1.startOfTransmissionMode    = "FSI_TX_START_FRAME_CTRL_OR_UDATA_TAG";
+fsitx1.frameType                  = "FSI_FRAME_TYPE_NWORD_DATA";
+fsitx1.frameTag                   = "FSI_FRAME_TAG15";
+fsitx1.pingTimeout                = true;
+fsitx1.timeoutDelay               = 16777216;
+fsitx1.fsitx.fsitx_d0Pin.$assign  = "GPIO26";
+fsitx1.fsitx.fsitx_d1Pin.$assign  = "GPIO25";
+fsitx1.fsitx.fsitx_clkPin.$assign = "GPIO27";
+
+
+CMD1.$name                    = "generic_ram_lnk";
+CMD2.$name                    = "generic_flash_lnk";
+
+CMD1.sectionMemory_text       = ["RAMD0","RAMD1","RAMLS0","RAMLS1","RAMLS2","RAMLS3"];
+CMD1.sectionMemory_bss        = ["RAMLS5"];
+CMD1.sectionMemory_const      = ["RAMLS5","RAMLS6"];
+CMD1.sectionMemory_data       = ["RAMLS5"];
+CMD1.sectionMemory_ramfunc    = ["RAMM0"];
+CMD1.sectionMemory_cinit      = ["RAMM0"];
+CMD1.sectionMemory_stack      = ["RAMM1"];
+CMD1.sectionMemory_init_array = ["RAMM0"];
+CMD1.sectionMemory_switch     = ["RAMM0"];
+CMD1.sectionMemory_sysmem     = ["RAMLS4"];
+
+
+CMD1.userSection.create(4);
+
+CMD1.userSection[0].$name         = "userSection0";
+CMD1.userSection[0].sectionName   = "ramgs0";
+CMD1.userSection[0].sectionMemory = ["RAMGS0"];
+CMD1.userSection[0].sectionType   = "NOINIT";
+
+CMD1.userSection[1].$name         = "userSection2";
+CMD1.userSection[1].sectionName   = "ramgs1";
+CMD1.userSection[1].sectionMemory = ["RAMGS1"];
+CMD1.userSection[1].sectionType   = "NOINIT";
+CMD1.userSection[2].$name         = "userSection3";
+CMD1.userSection[2].sectionName   = "ramgs2";
+CMD1.userSection[2].sectionMemory = ["RAMGS2"];
+CMD1.userSection[2].sectionType   = "NOINIT";
+CMD1.userSection[3].$name         = "userSection4";
+CMD1.userSection[3].sectionName   = "ramgs3";
+CMD1.userSection[3].sectionMemory = ["RAMGS3"];
+CMD1.userSection[3].sectionType   = "NOINIT";
+
+CMD2.sectionAlignEnable_ramfunc    = true;
+CMD2.sectionAlignEnable_text       = true;
+CMD2.sectionAlignEnable_binit      = true;
+CMD2.sectionAlignEnable_cinit      = true;
+CMD2.sectionAlignEnable_switch     = true;
+CMD2.sectionAlignEnable_init_array = true;
+CMD2.sectionAlignEnable_const      = true;
+CMD2.sectionAlignEnable_ovly       = true;
+CMD2.sectionMemory_codestart       = "0x080000";
+CMD2.sectionMemory_stack           = ["RAMM1"];
+CMD2.sectionMemory_bss             = ["RAMLS5"];
+CMD2.sectionMemory_data            = ["RAMLS5"];
+CMD2.sectionMemory_sysmem          = ["RAMLS5"];
+CMD2.sectionMemory_ramfunc         = ["FLASH_BANK0"];
+CMD2.sectionMemory_text            = ["FLASH_BANK0","FLASH_BANK1"];
+CMD2.sectionMemory_binit           = ["FLASH_BANK0"];
+CMD2.sectionMemory_cinit           = ["FLASH_BANK0"];
+CMD2.sectionMemory_switch          = ["FLASH_BANK0"];
+CMD2.sectionMemory_init_array      = ["FLASH_BANK0"];
+CMD2.sectionMemory_const           = ["FLASH_BANK0"];
+CMD2.sectionMemory_ovly            = ["FLASH_BANK0"];
+CMD2.sectionRunFromDifferentAddr_ramfunc = true;
+CMD2.sectionRun_ramfunc                  = ["RAMLS0"];
+CMD2.sectionBinit_ramfunc                = false;
+
+
+CMD2.userSection.create(4);
+
+CMD2.userSection[0].$name         = "userSection1";
+CMD2.userSection[0].sectionName    = "ramgs0";
+CMD2.userSection[0].sectionMemory  = ["RAMGS0"];
+CMD2.userSection[0].sectionType    = "NOINIT";
+
+CMD2.userSection[1].$name         = "userSection5";
+CMD2.userSection[1].sectionName   = "ramgs1";
+CMD2.userSection[1].sectionMemory = ["RAMGS1"];
+CMD2.userSection[1].sectionType   = "NOINIT";
+CMD2.userSection[2].$name         = "userSection6";
+CMD2.userSection[2].sectionName   = "ramgs2";
+CMD2.userSection[2].sectionMemory = ["RAMGS2"];
+CMD2.userSection[2].sectionType   = "NOINIT";
+CMD2.userSection[3].$name         = "userSection7";
+CMD2.userSection[3].sectionName   = "ramgs3";
+CMD2.userSection[3].sectionMemory = ["RAMGS3"];
+CMD2.userSection[3].sectionType   = "NOINIT";

@@ -213,13 +213,39 @@ void `inst.$name`_init(){
         //
         UART_enableLoopback(`idat['BASE']`);
         % }
+        % else
+        % {
+        UART_disableLoopback(`idat['BASE']`);
+        % }
         
         % // NOTE: replace this code with UART_enableModuleNonFIFO when this
         % // function is created
         //
-        // Enable RX, TX, and the UART.
+        // Enable RX, TX, and the UART
         //
-        HWREG(`idat['BASE']` + UART_O_CTL) |= (UART_CTL_UARTEN | UART_CTL_TXE | UART_CTL_RXE);
+        UART_enableModuleNonFIFO(`idat['BASE']`);
+
+        % if (inst.dmarx && inst.dmatx)
+        % {
+        //
+        // Enable DMA for TX and RX events
+        //
+        UART_enableDMA(`idat['BASE']`, UART_DMA_TX | UART_DMA_RX);
+        % }
+        % else if (inst.dmarx)
+        % {
+        //
+        // Enable DMA for RX events
+        //
+        UART_enableDMA(`idat['BASE']`, UART_DMA_RX);
+        % }
+        % else if (inst.dmatx)
+        % {
+        //
+        // Enable DMA for TX events
+        //
+        UART_enableDMA(`idat['BASE']`, UART_DMA_TX);
+        % }
     % }
 }
     % }

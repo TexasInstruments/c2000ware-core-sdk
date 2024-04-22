@@ -510,7 +510,7 @@ static inline void
 ADC_setupSOC(uint32_t base, ADC_SOCNumber socNumber, ADC_Trigger trigger,
              ADC_Channel channel, uint32_t sampleWindow)
 {
-    uint32_t ctlRegAddr;
+    uint32_t ctlRegAddr, mask;
 
     //
     // Check the arguments.
@@ -518,6 +518,8 @@ ADC_setupSOC(uint32_t base, ADC_SOCNumber socNumber, ADC_Trigger trigger,
     ASSERT(ADC_isBaseValid(base));
     ASSERT((sampleWindow >= 1U) && (sampleWindow <= 512U));
 
+    mask = (ADC_SOC0CTL_CHSEL_M | ADC_SOC0CTL_TRIGSEL_M | ADC_SOC0CTL_ACQPS_M);
+    
     //
     // Calculate address for the SOC control register.
     //
@@ -527,9 +529,12 @@ ADC_setupSOC(uint32_t base, ADC_SOCNumber socNumber, ADC_Trigger trigger,
     // Set the configuration of the specified SOC.
     //
     EALLOW;
-    HWREG(ctlRegAddr) = ((uint32_t)channel << ADC_SOC0CTL_CHSEL_S) |
+
+    HWREG(ctlRegAddr) = (HWREG(ctlRegAddr) & ~(mask)) |
+                        ((uint32_t)channel << ADC_SOC0CTL_CHSEL_S) |
                         ((uint32_t)trigger << ADC_SOC0CTL_TRIGSEL_S) |
                         (sampleWindow - 1U);
+
     EDIS;
 }
 
@@ -1886,8 +1891,14 @@ ADC_getTemperatureC(uint16_t tempResult, float32_t vref)
         //
         // For production devices (Rev. C), pull the slope and offset from OTP
         //
+#ifdef __TMS320C28XX__
+
+    //
+    // Only accessible from the CPU.
+    //
         tsSlope = (int16_t)ADC_getTempSlope();
         tsOffset = (int16_t)ADC_getTempOffset();
+#endif
     }
     else
     {
@@ -1940,8 +1951,14 @@ ADC_getTemperatureK(uint16_t tempResult, float32_t vref)
         //
         // For production devices (Rev. C), pull the slope and offset from OTP
         //
+#ifdef __TMS320C28XX__
+
+    //
+    // Only accessible from the CPU.
+    //
         tsSlope = (int16_t)ADC_getTempSlope();
         tsOffset = (int16_t)ADC_getTempOffset();
+#endif
     }
     else
     {

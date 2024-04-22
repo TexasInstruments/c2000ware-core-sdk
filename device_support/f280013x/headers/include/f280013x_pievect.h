@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -110,14 +110,12 @@ struct PIE_VECT_TABLE {
     PINT PIE16_RESERVED_INT;        // 3.8 - Reserved
     PINT ECAP1_INT;                 // 4.1 - eCAP1 Interrupt
     PINT ECAP2_INT;                 // 4.2 - eCAP2 Interrupt
-    PINT ECAP3_INT;                 // 4.3 - eCAP3 Interrupt
     PINT PIE17_RESERVED_INT;        // 4.4 - Reserved
     PINT PIE18_RESERVED_INT;        // 3.5 - Reserved
     PINT PIE19_RESERVED_INT;        // 3.6 - Reserved
     PINT PIE20_RESERVED_INT;        // 3.7 - Reserved
     PINT PIE21_RESERVED_INT;        // 3.8 - Reserved
     PINT EQEP1_INT;                 // 5.1 - eQEP1 Interrupt
-    PINT EQEP2_INT;                 // 5.2 - eQEP2 Interrupt
     PINT PIE22_RESERVED_INT;        // 5.3 - Reserved
     PINT PIE23_RESERVED_INT;        // 5.4 - Reserved
     PINT PIE24_RESERVED_INT;        // 5.5 - Reserved

@@ -161,7 +161,7 @@ __interrupt void IPC_ISR1()
         //
         for(i=0; i<RxMsg.dataw1; i++)
         {
-            if((*(uint32_t *)RxMsg.address + i) != i)
+            if(*((uint32_t *)RxMsg.address + i) != i)
                 status = false;
         }
     }

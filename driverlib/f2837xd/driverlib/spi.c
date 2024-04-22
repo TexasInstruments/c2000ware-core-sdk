@@ -290,13 +290,8 @@ SPI_pollingNonFIFOTransaction(uint32_t base, uint16_t charLength, uint16_t data)
 {
     uint16_t rxData;
 
-    ASSERT((charLength >= 1U) && (charLength <= 16U));
+    ASSERT(((HWREGH(base + SPI_O_CCR) & SPI_CCR_SPICHAR_M) + 1) == charLength);
     ASSERT(data < ((uint32_t)1U << charLength));
-
-    //
-    // Set the character length
-    //
-    SPI_setcharLength(base, charLength);
 
     //
     // Write to SPI Transmit buffer
@@ -321,8 +316,7 @@ SPI_pollingFIFOTransaction(uint32_t base, uint16_t charLength,
                            uint16_t *pTxBuffer, uint16_t *pRxBuffer,
                            uint16_t numOfWords, uint16_t txDelay)
 {
-    ASSERT((charLength >= 1U) && (charLength <= 16U));
-    SPI_setcharLength(base, charLength);
+    ASSERT(((HWREGH(base + SPI_O_CCR) & SPI_CCR_SPICHAR_M) + 1) == charLength);
 
     //
     // Reset the TX / RX FIFO buffers to default state

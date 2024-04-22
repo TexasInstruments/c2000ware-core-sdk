@@ -29,14 +29,14 @@ let EQEP_UPEVNTPrescale = [
 	{ name: "EQEP_UNIT_POS_EVNT_DIV_2048", displayName: "UPEVNT = QCLK/2048" },
 ]
 let EQEP_StrobeSource = [
-	{ name: "EQEP_STROBE_FROM_GPIO", displayName: "Strobe signal comes from GPIO" },
-	{ name: "EQEP_STROBE_OR_ADCSOCA", displayName: "Strobe signal is OR'd with ADCSOCA" },
-	{ name: "EQEP_STROBE_OR_ADCSOCB", displayName: "Strobe signal is OR'd with ADCSOCB" },
+	{ name: "EQEP_STROBE_FROM_GPIO", displayName: "GPIO" },
+	{ name: "EQEP_STROBE_OR_ADCSOCA", displayName: "Strobe signal OR'd with ADCSOCA" },
+	{ name: "EQEP_STROBE_OR_ADCSOCB", displayName: "Strobe signal OR'd with ADCSOCB" },
 ]
 let EQEP_QMAMode = [
 	{ name: "EQEP_QMA_MODE_BYPASS", displayName: "QMA module is bypassed" },
-	{ name: "EQEP_QMA_MODE_1", displayName: "QMA mode-1 operation is selected" },
-	{ name: "EQEP_QMA_MODE_2", displayName: "QMA mode-2 operation is selected" },
+	{ name: "EQEP_QMA_MODE_1", displayName: "QMA mode-1 operation" },
+	{ name: "EQEP_QMA_MODE_2", displayName: "QMA mode-2 operation" },
 ]
 let EQEP_EmulationMode = [
 	{ name: "EQEP_EMULATIONMODE_STOPIMMEDIATELY", displayName: "Counters stop immediately" },

@@ -794,12 +794,6 @@ static inline void CLB_configGlobalInputMux(uint32_t base, CLB_Inputs inID,
 //! false: Disable the respective CLB outputs
 //! true: Enable the respective CLB outputs
 //!
-//! \note Note that the 8 CLB outputs are replicated to create more output
-//!  paths. See your technical reference manual for more details.
-//!  If no further modifications are expected, then it is advised to set the
-//!  block writes bit of the MISC_ACCESS_CTRL Register. This will prevent
-//!  accidental writes.
-//!
 //! \return None.
 //
 //*****************************************************************************

@@ -2,8 +2,8 @@
   <project
         name="empty_driverlib_project"
         device="TMS320F28075"
-        cgtVersion="22.6.0.LTS"
-        products="c2000ware_software_package"
+        cgtVersion="22.6.1.LTS"
+        products="C2000WARE"
         outputFormat="ELF"
         launchWizard="False"
         linkerCommandFile=""
@@ -24,5 +24,6 @@
     <file action="link" path="../../../../driverlib/ccs/Debug/driverlib.lib" targetDirectory="" />
     <file action="copy" path="../../../../driverlib" targetDirectory="device" excludeFromBuild="True"/>
     <file action="copy" path="../empty_driverlib_main.c" targetDirectory="" />
+    <file action="copy" path="../c2000.syscfg" targetDirectory="" />
   </project>
 </projectSpec>

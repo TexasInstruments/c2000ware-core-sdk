@@ -2009,17 +2009,12 @@ let SYSCTLRegisters = [
 			{ name: "LFU_CLA1", description: "SW configuration to implement LFU", size: "1", shift: "4", mask: "0x10" },
 			{ name: "PIEVECTORSWAP", description: "Swap of pie vector table", size: "1", shift: "12", mask: "0x1000" },
 			{ name: "LS01SWAP", description: "Swap LS0 and LS1 memory", size: "1", shift: "20", mask: "0x100000" },
-			{ name: "ALT__LFU_CPU", description: "SW configuration to implement LFU", size: "1", shift: "0", mask: "0x1" },
-			{ name: "ALT__PIEVECTORSWAP", description: "Swap of pie vector table", size: "1", shift: "12", mask: "0x1000" },
-			{ name: "ALT__D23SWAP", description: "Swap D2 and D3 memory", size: "1", shift: "20", mask: "0x100000" },
 		]
 	},
 	{ name: "LFUSTATUS", description: "LFU Configuration Status Register", offset: "0x2",
 		bits: [
 			{ name: "PIEVECTORSWAP", description: "Indicate the status of PieVectorSwap", size: "1", shift: "12", mask: "0x1000" },
-			{ name: "LS01SWAP", description: "Indicate the status of LS0/LS1 memory swap", size: "1", shift: "20", mask: "0x100000" },
-			{ name: "ALT__PIEVECTORSWAP", description: "Indicate the status of PieVectorSwap", size: "1", shift: "12", mask: "0x1000" },
-			{ name: "ALT__D23SWAP", description: "Indicate the status of D2/3 memory", size: "1", shift: "20", mask: "0x100000" },
+			{ name: "LS01SWAP", description: "Indicate the status of LS0/LS1 memory", size: "1", shift: "20", mask: "0x100000" },
 		]
 	},
 	{ name: "SWCONFIG1_SYSRSN", description: "Spare registers reset by SYSRSn", offset: "0x10",
@@ -2055,97 +2050,10 @@ let SYSCTLRegisters = [
 			{ name: "SWCONFIG2_XRSN", description: "Register lock configuration", size: "1", shift: "11", mask: "0x800" },
 			{ name: "SWCONFIG1_PORESETN", description: "Register lock configuration", size: "1", shift: "12", mask: "0x1000" },
 			{ name: "SWCONFIG2_PORESETN", description: "Register lock configuration", size: "1", shift: "13", mask: "0x2000" },
-			{ name: "LFUCONFIG", description: "Register lock configuration", size: "1", shift: "0", mask: "0x1" },
-			{ name: "SWCONFIG1_SYSRSN", description: "Register lock configuration", size: "1", shift: "8", mask: "0x100" },
-			{ name: "SWCONFIG2_SYSRSN", description: "Register lock configuration", size: "1", shift: "9", mask: "0x200" },
-			{ name: "SWCONFIG1_XRSN", description: "Register lock configuration", size: "1", shift: "10", mask: "0x400" },
-			{ name: "SWCONFIG2_XRSN", description: "Register lock configuration", size: "1", shift: "11", mask: "0x800" },
-			{ name: "SWCONFIG1_PORESETN", description: "Register lock configuration", size: "1", shift: "12", mask: "0x1000" },
-			{ name: "SWCONFIG2_PORESETN", description: "Register lock configuration", size: "1", shift: "13", mask: "0x2000" },
 		]
 	},
 	{ name: "LFU_COMMIT", description: "LFU Commit Configuration", offset: "0x1E",
 		bits: [
-			{ name: "LFUCONFIG", description: "Register commit configuration", size: "1", shift: "0", mask: "0x1" },
-			{ name: "SWCONFIG1_SYSRSN", description: "Register commit configuration", size: "1", shift: "8", mask: "0x100" },
-			{ name: "SWCONFIG2_SYSRSN", description: "Register commit configuration", size: "1", shift: "9", mask: "0x200" },
-			{ name: "SWCONFIG1_XRSN", description: "Register commit configuration", size: "1", shift: "10", mask: "0x400" },
-			{ name: "SWCONFIG2_XRSN", description: "Register commit configuration", size: "1", shift: "11", mask: "0x800" },
-			{ name: "SWCONFIG1_PORESETN", description: "Register commit configuration", size: "1", shift: "12", mask: "0x1000" },
-			{ name: "SWCONFIG2_PORESETN", description: "Register commit configuration", size: "1", shift: "13", mask: "0x2000" },
-			{ name: "LFUCONFIG", description: "Register commit configuration", size: "1", shift: "0", mask: "0x1" },
-			{ name: "SWCONFIG1_SYSRSN", description: "Register commit configuration", size: "1", shift: "8", mask: "0x100" },
-			{ name: "SWCONFIG2_SYSRSN", description: "Register commit configuration", size: "1", shift: "9", mask: "0x200" },
-			{ name: "SWCONFIG1_XRSN", description: "Register commit configuration", size: "1", shift: "10", mask: "0x400" },
-			{ name: "SWCONFIG2_XRSN", description: "Register commit configuration", size: "1", shift: "11", mask: "0x800" },
-			{ name: "SWCONFIG1_PORESETN", description: "Register commit configuration", size: "1", shift: "12", mask: "0x1000" },
-			{ name: "SWCONFIG2_PORESETN", description: "Register commit configuration", size: "1", shift: "13", mask: "0x2000" },
-		]
-	},
-	{ name: "LFUCONFIG_ALT_", description: "LFU configuration Register", offset: "0x0",
-		bits: [
-			{ name: "LFU_CPU", description: "SW configuration to implement LFU", size: "1", shift: "0", mask: "0x1" },
-			{ name: "PIEVECTORSWAP", description: "Swap of pie vector table", size: "1", shift: "12", mask: "0x1000" },
-			{ name: "D23SWAP", description: "Swap D2 and D3 memory", size: "1", shift: "20", mask: "0x100000" },
-		]
-	},
-	{ name: "LFUSTATUS_ALT_", description: "LFU Configuration Status Register", offset: "0x2",
-		bits: [
-			{ name: "PIEVECTORSWAP", description: "Indicate the status of PieVectorSwap", size: "1", shift: "12", mask: "0x1000" },
-			{ name: "D23SWAP", description: "Indicate the status of D2/3 memory", size: "1", shift: "20", mask: "0x100000" },
-		]
-	},
-	{ name: "SWCONFIG1_SYSRSN", description: "Spare registers reset by SYSRSn", offset: "0x10",
-		bits: [
-		]
-	},
-	{ name: "SWCONFIG2_SYSRSN", description: "Spare registers reset by SYSRSn", offset: "0x12",
-		bits: [
-		]
-	},
-	{ name: "SWCONFIG1_XRSN", description: "Spare registers reset by XRSn", offset: "0x14",
-		bits: [
-		]
-	},
-	{ name: "SWCONFIG2_XRSN", description: "Spare registers reset by XRSn", offset: "0x16",
-		bits: [
-		]
-	},
-	{ name: "SWCONFIG1_PORESETN", description: "Spare registers reset by PORESETn", offset: "0x18",
-		bits: [
-		]
-	},
-	{ name: "SWCONFIG2_PORESETN", description: "Spare registers reset by PORESETn", offset: "0x1A",
-		bits: [
-		]
-	},
-	{ name: "LFU_LOCK", description: "LFU Lock Configuration", offset: "0x1C",
-		bits: [
-			{ name: "LFUCONFIG", description: "Register lock configuration", size: "1", shift: "0", mask: "0x1" },
-			{ name: "SWCONFIG1_SYSRSN", description: "Register lock configuration", size: "1", shift: "8", mask: "0x100" },
-			{ name: "SWCONFIG2_SYSRSN", description: "Register lock configuration", size: "1", shift: "9", mask: "0x200" },
-			{ name: "SWCONFIG1_XRSN", description: "Register lock configuration", size: "1", shift: "10", mask: "0x400" },
-			{ name: "SWCONFIG2_XRSN", description: "Register lock configuration", size: "1", shift: "11", mask: "0x800" },
-			{ name: "SWCONFIG1_PORESETN", description: "Register lock configuration", size: "1", shift: "12", mask: "0x1000" },
-			{ name: "SWCONFIG2_PORESETN", description: "Register lock configuration", size: "1", shift: "13", mask: "0x2000" },
-			{ name: "LFUCONFIG", description: "Register lock configuration", size: "1", shift: "0", mask: "0x1" },
-			{ name: "SWCONFIG1_SYSRSN", description: "Register lock configuration", size: "1", shift: "8", mask: "0x100" },
-			{ name: "SWCONFIG2_SYSRSN", description: "Register lock configuration", size: "1", shift: "9", mask: "0x200" },
-			{ name: "SWCONFIG1_XRSN", description: "Register lock configuration", size: "1", shift: "10", mask: "0x400" },
-			{ name: "SWCONFIG2_XRSN", description: "Register lock configuration", size: "1", shift: "11", mask: "0x800" },
-			{ name: "SWCONFIG1_PORESETN", description: "Register lock configuration", size: "1", shift: "12", mask: "0x1000" },
-			{ name: "SWCONFIG2_PORESETN", description: "Register lock configuration", size: "1", shift: "13", mask: "0x2000" },
-		]
-	},
-	{ name: "LFU_COMMIT", description: "LFU Commit Configuration", offset: "0x1E",
-		bits: [
-			{ name: "LFUCONFIG", description: "Register commit configuration", size: "1", shift: "0", mask: "0x1" },
-			{ name: "SWCONFIG1_SYSRSN", description: "Register commit configuration", size: "1", shift: "8", mask: "0x100" },
-			{ name: "SWCONFIG2_SYSRSN", description: "Register commit configuration", size: "1", shift: "9", mask: "0x200" },
-			{ name: "SWCONFIG1_XRSN", description: "Register commit configuration", size: "1", shift: "10", mask: "0x400" },
-			{ name: "SWCONFIG2_XRSN", description: "Register commit configuration", size: "1", shift: "11", mask: "0x800" },
-			{ name: "SWCONFIG1_PORESETN", description: "Register commit configuration", size: "1", shift: "12", mask: "0x1000" },
-			{ name: "SWCONFIG2_PORESETN", description: "Register commit configuration", size: "1", shift: "13", mask: "0x2000" },
 			{ name: "LFUCONFIG", description: "Register commit configuration", size: "1", shift: "0", mask: "0x1" },
 			{ name: "SWCONFIG1_SYSRSN", description: "Register commit configuration", size: "1", shift: "8", mask: "0x100" },
 			{ name: "SWCONFIG2_SYSRSN", description: "Register commit configuration", size: "1", shift: "9", mask: "0x200" },

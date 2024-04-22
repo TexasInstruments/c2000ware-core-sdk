@@ -1,0 +1,15 @@
+% let Common = system.getScript("/driverlib/Common.js");
+{
+    "interruptInfo" : [
+% let interruptMod = system.modules["/driverlib/interrupt.js"] 
+% if (interruptMod != null) {
+%   var interruptCount = interruptMod.$instances.length;
+%   for (var interruptInst of interruptMod.$instances){
+        {
+            "interruptName": "`interruptInst.interruptName`",
+            "interruptHandler": "`interruptInst.interruptHandler`"
+        }`(interruptCount-- > 1)?",":""`
+%   }
+% }
+    ]
+}

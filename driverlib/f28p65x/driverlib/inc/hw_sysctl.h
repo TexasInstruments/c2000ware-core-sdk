@@ -319,17 +319,6 @@
 #define SYSCTL_O_LFU_LOCK             0x1CU   // LFU Lock Configuration
 #define SYSCTL_O_LFU_COMMIT           0x1EU   // LFU Commit Configuration
 
-#define SYSCTL_O_LFUCONFIG_ALT_       0x0U    // LFU configuration Register
-#define SYSCTL_O_LFUSTATUS_ALT_       0x2U    // LFU Configuration Status Register
-#define SYSCTL_O_SWCONFIG1_SYSRSN     0x10U   // Spare registers reset by SYSRSn
-#define SYSCTL_O_SWCONFIG2_SYSRSN     0x12U   // Spare registers reset by SYSRSn
-#define SYSCTL_O_SWCONFIG1_XRSN       0x14U   // Spare registers reset by XRSn
-#define SYSCTL_O_SWCONFIG2_XRSN       0x16U   // Spare registers reset by XRSn
-#define SYSCTL_O_SWCONFIG1_PORESETN   0x18U   // Spare registers reset by PORESETn
-#define SYSCTL_O_SWCONFIG2_PORESETN   0x1AU   // Spare registers reset by PORESETn
-#define SYSCTL_O_LFU_LOCK             0x1CU   // LFU Lock Configuration
-#define SYSCTL_O_LFU_COMMIT           0x1EU   // LFU Commit Configuration
-
 #define SYSCTL_O_SYS_ERR_INT_FLG   0x10U   // Status of interrupts due to multiple different errors
                                            // in the system.
 #define SYSCTL_O_SYS_ERR_INT_CLR   0x12U   // SYS_ERR_INT_FLG clear register
@@ -3129,11 +3118,12 @@
 
 //*************************************************************************************************
 //
-// The following are defines for the bit fields in the LFUStatus register
+// The following are defines for the bit fields in the LFUStatus_CPU1 register
 //
 //*************************************************************************************************
 #define SYSCTL_LFUSTATUS_PIEVECTORSWAP   0x1000U     // Indicate the status of PieVectorSwap
-#define SYSCTL_LFUSTATUS_LS01SWAP        0x100000U   // Indicate the status of LS0/LS1 memory swap
+#define SYSCTL_LFUSTATUS_LS01SWAP        0x100000U   // Indicate the status of LS0/LS1 memory
+                                                     // swap
 
 //*************************************************************************************************
 //
@@ -3160,52 +3150,6 @@
 #define SYSCTL_LFU_COMMIT_SWCONFIG2_XRSN       0x800U    // Register commit configuration
 #define SYSCTL_LFU_COMMIT_SWCONFIG1_PORESETN   0x1000U   // Register commit configuration
 #define SYSCTL_LFU_COMMIT_SWCONFIG2_PORESETN   0x2000U   // Register commit configuration
-
-
-//*************************************************************************************************
-//
-// The following are defines for the bit fields in the LFUConfig_ALT_ register
-//
-//*************************************************************************************************
-#define SYSCTL_LFUCONFIG_ALT__LFU_CPU         0x1U        // SW configuration to implement LFU
-#define SYSCTL_LFUCONFIG_ALT__PIEVECTORSWAP   0x1000U     // Swap of pie vector table
-#define SYSCTL_LFUCONFIG_ALT__D23SWAP         0x100000U   // Swap D2 and D3 memory
-
-//*************************************************************************************************
-//
-// The following are defines for the bit fields in the LFUStatus_ALT_ register
-//
-//*************************************************************************************************
-#define SYSCTL_LFUSTATUS_ALT__PIEVECTORSWAP   0x1000U     // Indicate the status of PieVectorSwap
-#define SYSCTL_LFUSTATUS_ALT__D23SWAP         0x100000U   // Indicate the status of D2/3 memory
-                                                          // swap
-
-//*************************************************************************************************
-//
-// The following are defines for the bit fields in the LFU_LOCK register
-//
-//*************************************************************************************************
-#define SYSCTL_LFU_LOCK_LFUCONFIG            0x1U      // Register lock configuration
-#define SYSCTL_LFU_LOCK_SWCONFIG1_SYSRSN     0x100U    // Register lock configuration
-#define SYSCTL_LFU_LOCK_SWCONFIG2_SYSRSN     0x200U    // Register lock configuration
-#define SYSCTL_LFU_LOCK_SWCONFIG1_XRSN       0x400U    // Register lock configuration
-#define SYSCTL_LFU_LOCK_SWCONFIG2_XRSN       0x800U    // Register lock configuration
-#define SYSCTL_LFU_LOCK_SWCONFIG1_PORESETN   0x1000U   // Register lock configuration
-#define SYSCTL_LFU_LOCK_SWCONFIG2_PORESETN   0x2000U   // Register lock configuration
-
-//*************************************************************************************************
-//
-// The following are defines for the bit fields in the LFU_COMMIT register
-//
-//*************************************************************************************************
-#define SYSCTL_LFU_COMMIT_LFUCONFIG            0x1U      // Register commit configuration
-#define SYSCTL_LFU_COMMIT_SWCONFIG1_SYSRSN     0x100U    // Register commit configuration
-#define SYSCTL_LFU_COMMIT_SWCONFIG2_SYSRSN     0x200U    // Register commit configuration
-#define SYSCTL_LFU_COMMIT_SWCONFIG1_XRSN       0x400U    // Register commit configuration
-#define SYSCTL_LFU_COMMIT_SWCONFIG2_XRSN       0x800U    // Register commit configuration
-#define SYSCTL_LFU_COMMIT_SWCONFIG1_PORESETN   0x1000U   // Register commit configuration
-#define SYSCTL_LFU_COMMIT_SWCONFIG2_PORESETN   0x2000U   // Register commit configuration
-
 
 //*************************************************************************************************
 //

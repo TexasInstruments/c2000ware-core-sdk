@@ -187,6 +187,16 @@ about resets and missing clock detection failures.</p>
 <dd><div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Defines</p>
 <dl class="cpp macro">
+<dt id="c.SYSCTL_CLKSRCCTL_DELAY">
+<span class="target" id="group__sysctl__api_1gaca4b83c4a34d578cfee1dad6600a24c0"></span><code class="sig-name descname">SYSCTL_CLKSRCCTL_DELAY</code> asm(&quot; RPT #250 || NOP \n RPT #50 || NOP&quot;)<a class="headerlink" href="#c.SYSCTL_CLKSRCCTL_DELAY" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_REGWRITE_DELAY">
+<span class="target" id="group__sysctl__api_1ga4582b25de3a7c684448faa00da1bbf6c"></span><code class="sig-name descname">SYSCTL_REGWRITE_DELAY</code> asm(&quot; RPT #45 || NOP&quot;)<a class="headerlink" href="#c.SYSCTL_REGWRITE_DELAY" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
 <dt id="c.SYSCTL_WD_CHKBITS">
 <span class="target" id="group__sysctl__api_1ga4ff66bcd10dff57f6a8a882ac63d2961"></span><code class="sig-name descname">SYSCTL_WD_CHKBITS</code> 0x0028U<a class="headerlink" href="#c.SYSCTL_WD_CHKBITS" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
@@ -4300,6 +4310,18 @@ about resets and missing clock detection failures.</p>
 </dd></dl>
 
 <dl class="cpp function">
+<dt id="_CPPv419SysCtl_getDeviceUIDv">
+<span id="_CPPv319SysCtl_getDeviceUIDv"></span><span id="_CPPv219SysCtl_getDeviceUIDv"></span><span id="SysCtl_getDeviceUID__void"></span><span class="target" id="group__sysctl__api_1ga9d2491fa5a524b4c05a0e49ad4526598"></span>uint32_t <code class="sig-name descname">SysCtl_getDeviceUID</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419SysCtl_getDeviceUIDv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the device UID_UNIQUE value</p>
+<p>This function returns the device UID_UNIQUE value</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the device UID_UNIQUE value </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt id="_CPPv412SysCtl_delay8uint32_t">
 <span id="_CPPv312SysCtl_delay8uint32_t"></span><span id="_CPPv212SysCtl_delay8uint32_t"></span><span id="SysCtl_delay__uint32_t"></span><span class="target" id="group__sysctl__api_1gaba2186034e7c3b3b219d3b7a3f33aa1d"></span>void <code class="sig-name descname">SysCtl_delay</code><span class="sig-paren">(</span>uint32_t <em>count</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412SysCtl_delay8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Delays for a fixed number of cycles.</p>
@@ -4618,7 +4640,7 @@ others used for the configuration of SysCtl.</p>
     <p>
       <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2021, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
       <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
-      <span class="lastupdated">Last updated on Nov 09, 2023.
+      <span class="lastupdated">Last updated on Mar 27, 2024.
       </span></p>
   </div>
 

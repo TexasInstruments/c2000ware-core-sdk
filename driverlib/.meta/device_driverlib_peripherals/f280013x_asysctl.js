@@ -10,6 +10,22 @@ let ASysCtl_CMPLPMuxSelect = [
 	{ name: "ASYSCTL_CMPLPMUX_SELECT_3", displayName: "CMPLPMUX select 3" },
 	{ name: "ASYSCTL_CMPLPMUX_SELECT_4", displayName: "CMPLPMUX select 4" },
 ]
+let ASysCtl_TestSelect = [
+	{ name: "ASYSCTL_TEST_NODE_NO_CONN", displayName: "No Internal Connection" },
+	{ name: "ASYSCTL_TEST_NODE_VDDCORE", displayName: "Core VDD (1.2V) voltage" },
+	{ name: "ASYSCTL_TEST_NODE_VREFLO", displayName: "VREFLO pin voltage" },
+	{ name: "ASYSCTL_TEST_NODE_CDAC1H", displayName: "CMPSS1 High DAC output" },
+	{ name: "ASYSCTL_TEST_NODE_CDAC1L", displayName: "CMPSS1 Low DAC output" },
+	{ name: "ASYSCTL_TEST_NODE_CDAC2H", displayName: "CMPSS2 High DAC output" },
+	{ name: "ASYSCTL_TEST_NODE_CDAC2L", displayName: "CMPSS2 Low DAC output" },
+	{ name: "ASYSCTL_TEST_NODE_CDAC3H", displayName: "CMPSS3 High DAC output" },
+	{ name: "ASYSCTL_TEST_NODE_CDAC3L", displayName: "CMPSS3 Low DAC output" },
+	{ name: "ASYSCTL_TEST_NODE_CDAC4H", displayName: "CMPSS4 High DAC output" },
+	{ name: "ASYSCTL_TEST_NODE_CDAC4L", displayName: "CMPSS4 Low DAC output" },
+	{ name: "ASYSCTL_TEST_NODE_VDDA", displayName: "VDDA voltage" },
+	{ name: "ASYSCTL_TEST_NODE_VSSA", displayName: "VSSA - Analog ground pin" },
+	{ name: "ASYSCTL_TEST_NODE_ENZ_CALIB_GAIN_3P3V", displayName: "All ADCs are placed in gain" },
+]
 let ASYSCTL_EXTR_ENABLE_COMPLETE = [
 	{ name: "ASYSCTL_EXTR_ENABLE_COMPLETE", displayName: "EXTR ENABLE COMPLETE" },
 ]
@@ -34,6 +50,7 @@ let ASYSCTL_CMPLNMUX_SELECT = [
 module.exports = {
 	ASysCtl_CMPHPMuxSelect: ASysCtl_CMPHPMuxSelect,
 	ASysCtl_CMPLPMuxSelect: ASysCtl_CMPLPMuxSelect,
+	ASysCtl_TestSelect: ASysCtl_TestSelect,
 	ASYSCTL_EXTR_ENABLE_COMPLETE: ASYSCTL_EXTR_ENABLE_COMPLETE,
 	ASYSCTL_VREFHI: ASYSCTL_VREFHI,
 	ASYSCTL_CMPSS1_DACL: ASYSCTL_CMPSS1_DACL,

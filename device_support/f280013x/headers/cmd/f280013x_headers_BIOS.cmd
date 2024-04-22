@@ -27,7 +27,6 @@ MEMORY
    DEVCFG                     : origin = 0x0005D000, length = 0x000001AC
    ECAP1                      : origin = 0x00005200, length = 0x00000020
    ECAP2                      : origin = 0x00005240, length = 0x00000020
-   ECAP3                      : origin = 0x00005280, length = 0x00000020
    EPG1MUX                    : origin = 0x0005ECD0, length = 0x00000010
    EPG1                       : origin = 0x0005EC00, length = 0x00000050
    EPWM1                      : origin = 0x00004000, length = 0x00000100
@@ -39,7 +38,6 @@ MEMORY
    EPWM7                      : origin = 0x00004600, length = 0x00000100
    EPWMXBAR                   : origin = 0x00007A00, length = 0x00000040
    EQEP1                      : origin = 0x00005100, length = 0x00000040
-   EQEP2                      : origin = 0x00005140, length = 0x00000040
    FLASH0CTRL                 : origin = 0x0005F800, length = 0x00000182
    FLASH0ECC                  : origin = 0x0005FB00, length = 0x00000028
    GPIOCTRL                   : origin = 0x00007C00, length = 0x00000200
@@ -61,6 +59,7 @@ MEMORY
    SYNCSOC                    : origin = 0x00007940, length = 0x00000006
    SYSSTATUS                  : origin = 0x0005D400, length = 0x00000040
    TESTERROR                  : origin = 0x0005F590, length = 0x00000010
+   UID                        : origin = 0x00071140, length = 0x00000010
    WD                         : origin = 0x00007000, length = 0x0000002C
    XBAR                       : origin = 0x00007920, length = 0x00000020
    XINT                       : origin = 0x00007070, length = 0x0000000C
@@ -109,7 +108,6 @@ UNION run = PIEVECTTABLE
    DevCfgRegsFile             : > DEVCFG, type=NOINIT
    ECap1RegsFile              : > ECAP1, type=NOINIT
    ECap2RegsFile              : > ECAP2, type=NOINIT
-   ECap3RegsFile              : > ECAP3, type=NOINIT
    Epg1MuxRegsFile            : > EPG1MUX, type=NOINIT
    Epg1RegsFile               : > EPG1, type=NOINIT
    EPwm1RegsFile              : > EPWM1, type=NOINIT
@@ -121,7 +119,6 @@ UNION run = PIEVECTTABLE
    EPwm7RegsFile              : > EPWM7, type=NOINIT
    EPwmXbarRegsFile           : > EPWMXBAR, type=NOINIT
    EQep1RegsFile              : > EQEP1, type=NOINIT
-   EQep2RegsFile              : > EQEP2, type=NOINIT
    Flash0CtrlRegsFile         : > FLASH0CTRL, type=NOINIT
    Flash0EccRegsFile          : > FLASH0ECC, type=NOINIT
    GpioCtrlRegsFile           : > GPIOCTRL, type=NOINIT
@@ -143,6 +140,7 @@ UNION run = PIEVECTTABLE
    SyncSocRegsFile            : > SYNCSOC, type=NOINIT
    SysStatusRegsFile          : > SYSSTATUS, type=NOINIT
    TestErrorRegsFile          : > TESTERROR, type=NOINIT
+   UidRegsFile                : > UID, type=NOINIT
    WdRegsFile                 : > WD, type=NOINIT
    XbarRegsFile               : > XBAR, type=NOINIT
    XintRegsFile               : > XINT, type=NOINIT

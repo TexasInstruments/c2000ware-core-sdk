@@ -7,6 +7,11 @@
 // Universal Empty Project Example
 //
 // This example is an empty project setup for Driverlib development.
+//!
+//!  \note This example project has support for migration across our C2000 
+//!  device families. If you are wanting to build this project from launchpad
+//!  or controlCARD, please specify in the .syscfg file the board you're using.
+//!  At any time you can select another device to migrate this example.
 //
 //#############################################################################
 //

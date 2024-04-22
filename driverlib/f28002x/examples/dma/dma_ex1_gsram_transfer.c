@@ -13,6 +13,11 @@
 //!  burst is 8 16-bit words) has been completed. When the whole transfer is
 //!  complete, it will trigger the DMA interrupt.
 //!
+//!  \note: This example project has support for migration across our C2000 
+//!  device families. If you are wanting to build this project from launchpad
+//!  or controlCARD, please specify in the .syscfg file the board you're using.
+//!  At any time you can select another device to migrate this example.
+//!
 //!  \b Watch \b Variables \n
 //!  - \b sData - Data to send
 //!  - \b rData - Received data
@@ -22,7 +27,7 @@
 //
 //
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 

@@ -566,19 +566,17 @@ CAN_selectClockSource(uint32_t base, CAN_ClockSource source)
     switch(base)
     {
         case CANA_BASE:
-            HWREGH(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL2) &=
-                ~SYSCTL_CLKSRCCTL2_CANABCLKSEL_M;
-
-            HWREGH(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL2) |= ((uint16_t)source <<
-                SYSCTL_CLKSRCCTL2_CANABCLKSEL_S);
+            HWREGH(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL2) =
+                    (HWREGH(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL2) &
+                     ~SYSCTL_CLKSRCCTL2_CANABCLKSEL_M) |
+                    ((uint16_t)source << SYSCTL_CLKSRCCTL2_CANABCLKSEL_S);
             break;
 
         case CANB_BASE:
-            HWREGH(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL2) &=
-                ~SYSCTL_CLKSRCCTL2_CANBBCLKSEL_M;
-
-            HWREGH(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL2) |= ((uint16_t)source <<
-                SYSCTL_CLKSRCCTL2_CANBBCLKSEL_S);
+            HWREGH(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL2) =
+                    (HWREGH(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL2) &
+                     ~SYSCTL_CLKSRCCTL2_CANBBCLKSEL_M) |
+                    ((uint16_t)source << SYSCTL_CLKSRCCTL2_CANBBCLKSEL_S);
             break;
 
         default:
@@ -590,6 +588,7 @@ CAN_selectClockSource(uint32_t base, CAN_ClockSource source)
     }
 
     EDIS;
+    SYSCTL_CLKSRCCTL_DELAY;
 }
 
 //*****************************************************************************

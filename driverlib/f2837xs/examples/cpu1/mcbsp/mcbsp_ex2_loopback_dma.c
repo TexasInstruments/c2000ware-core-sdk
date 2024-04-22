@@ -38,7 +38,7 @@
 //
 // 
 // $Copyright:
-// Copyright (C) 2014-2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2014-2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -166,6 +166,11 @@ void main(void)
     //
     Interrupt_register(INT_DMA_CH1, localDMAINTCH1ISR);
     Interrupt_register(INT_DMA_CH2, localDMAINTCH2ISR);
+
+    //
+    // Configure DMA as secondary master for peripheral frame 2.
+    //
+    SysCtl_selectSecMaster(SYSCTL_SEC_MASTER_DMA, SYSCTL_SEC_MASTER_DMA);
 
     //
     // User defined code.

@@ -8,7 +8,7 @@
 //
 //
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -59,8 +59,22 @@ extern __cregister volatile unsigned int IER;
 #define  DINT   __asm(" setc INTM")
 #define  ERTM   __asm(" clrc DBGM")
 #define  DRTM   __asm(" setc DBGM")
+#ifndef  EALLOW
+#ifndef _TMS320C28XX_CLA_
 #define  EALLOW __eallow()
+#else
+#define  EALLOW __meallow()
+#endif // _TMS320C28XX_CLA_
+#endif // EALLOW
+ 
+#ifndef  EDIS
+#ifndef _TMS320C28XX_CLA_
 #define  EDIS   __edis()
+#else
+#define  EDIS   __medis()
+#endif // _TMS320C28XX_CLA_
+#endif // EDIS
+
 #define  ESTOP0 __asm(" ESTOP0")
 
 #define M_INT1  0x0001
@@ -219,6 +233,7 @@ typedef unsigned long bp_32 __attribute__((byte_peripheral));
 #include "f280013x_input_xbar.h"
 #include "f280013x_memconfig.h"
 #include "f280013x_nmiintrupt.h"
+#include "f280013x_otp.h"
 #include "f280013x_output_xbar.h"
 #include "f280013x_piectrl.h"
 #include "f280013x_pievect.h"

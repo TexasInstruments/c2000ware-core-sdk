@@ -138,6 +138,7 @@ static inline void ASysCtl_lockTemperatureSensor(void)
 
 
 
+
 //*****************************************************************************
 //
 // Close the Doxygen group.

@@ -56,6 +56,7 @@
 #define CPUTIMER0_BASE            0x00000C00U
 #define CPUTIMER1_BASE            0x00000C08U
 #define CPUTIMER2_BASE            0x00000C10U
+#define CLA1_SOFTINT_BASE         0x00000CE0U
 #define PIECTRL_BASE              0x00000CE0U
 #define PIEVECTTABLE_BASE         0x00000D00U
 #define DMA_BASE                  0x00001000U
@@ -201,4 +202,5 @@
 #define FLASH0ECC_BASE            0x0005FB00U
 #define DCSM_Z1OTP_BASE           0x00078000U
 #define DCSM_Z2OTP_BASE           0x00078200U
+#define UID_BASE                  0x000703C0U
 #endif

@@ -664,6 +664,68 @@ uint32_t PMBus_configModuleClock(uint32_t base, uint32_t moduleFrequency,
     return(calcModuleFreq);
 }
 
+uint32_t
+PMBus_configModuleClockMode(uint32_t base, uint32_t moduleFrequency, uint32_t sysFrequency, PMBus_ClockMode mode)
+{
+    //
+    // Locals
+    //
+    uint32_t interruptState, clockDivider, calcModuleFreq;
+    const uint32_t fastPlusLow = 20000000U, fastPlusHigh = 25000000U;
+    const uint32_t fsmClkLimit = 10000000U;
+
+    //
+    // Check the arguments.
+    //
+    ASSERT(PMBus_isBaseValid(base));
+    ASSERT((moduleFrequency >= PMBUS_MODULE_FREQ_MIN) &&
+           (moduleFrequency <= PMBUS_MODULE_FREQ_MAX));
+    ASSERT((sysFrequency >= PMBUS_SYS_FREQ_MIN) &&
+           (sysFrequency <= PMBUS_SYS_FREQ_MAX));
+    
+    if(mode == PMBUS_CLOCKMODE_STANDARD || mode == PMBUS_CLOCKMODE_FAST) 
+    {
+        ASSERT((moduleFrequency <= fsmClkLimit));
+    }
+    EALLOW;
+
+    //
+    // Save off the interrupt state and disable them
+    //
+    interruptState = HWREG(base + PMBUS_O_PMBINTM);
+    HWREG(base + PMBUS_O_PMBINTM) = PMBUS_INT_ALL;
+
+    //
+    // Calculate the clock divider. If the ratio of sysFrequency to
+    // moduleFrequency is larger than 32, the divider is set to its maximum
+    // possible value
+    //
+    clockDivider = (sysFrequency / moduleFrequency) - 1U;
+    if(clockDivider > 31UL)
+    {
+        clockDivider = 31UL;
+    }
+
+    //
+    // Write to the PMBCTRL register
+    //
+    HWREG(base + PMBUS_O_PMBCTRL) |=
+                                  ((clockDivider << PMBUS_PMBCTRL_CLKDIV_S)
+                                                   & PMBUS_PMBCTRL_CLKDIV_M);
+
+    //
+    // Calculate the actual bus frequency
+    //
+    calcModuleFreq = sysFrequency / (clockDivider + 1U);
+
+    //
+    // Restore the interrupt status
+    //
+    HWREG(base + PMBUS_O_PMBINTM) = interruptState;
+    EDIS;
+    return(calcModuleFreq);
+}
+            
 //*****************************************************************************
 //
 // PMBus_configBusClock

@@ -144,8 +144,8 @@ uint32_t clapromcrcTable[97] =
     0x5B0AF1EA,
     0x5B0AF1EA,
     0x5B0AF1EA,
-    0x5B0AF1EA,
-    0x5B0AF1EA,
+    0x00000000,
+    0x00000000,
     0xAA8FF25E,
     0xF2D08A15,
     0x1F10415D,
@@ -156,7 +156,7 @@ uint32_t clapromcrcTable[97] =
     0x06471E84,
     0x315EA800,
     0x5B0AF1EA,
-    0x84BFA10C
+    0x35C381E7
 };
 
 #endif //_CLAPROMCRC_EX1_CRCTABLE_H_

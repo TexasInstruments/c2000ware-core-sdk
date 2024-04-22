@@ -22,7 +22,7 @@
 //
 // 
 // $Copyright:
-// Copyright (C) 2013-2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2013-2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -152,7 +152,7 @@ __interrupt void IPC_ISR1()
         //
         for(i=0; i<RxMsg.dataw1; i++)
         {
-            if((*(uint32_t *)RxMsg.address + i) != i)
+            if(*((uint32_t *)RxMsg.address + i) != i)
                 status = false;
         }
     }

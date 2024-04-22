@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -93,9 +93,7 @@ interrupt void EPWM6_ISR(void);
 interrupt void EPWM7_ISR(void);
 interrupt void ECAP1_ISR(void);
 interrupt void ECAP2_ISR(void);
-interrupt void ECAP3_ISR(void);
 interrupt void EQEP1_ISR(void);
-interrupt void EQEP2_ISR(void);
 interrupt void SPIA_RX_ISR(void);
 interrupt void SPIA_TX_ISR(void);
 interrupt void DCC0_ISR(void);

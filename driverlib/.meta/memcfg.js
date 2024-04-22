@@ -518,7 +518,7 @@ function onValidate(inst, validation)
             var stat_1 = CPU1_mod.$static;
         }
 
-        if (Common.isContextCPU1())
+        if (Common.isMultiCoreSysConfig() && Common.isContextCPU1())
         {
             if (!CPU2_mod){
                 validation.logWarning("Error checking and code generation are limited for single core SysConfig on a multicore device. Add memcfg module on CPU2 for full functionality.", inst, "init_MEMCFG_SECT_M0");

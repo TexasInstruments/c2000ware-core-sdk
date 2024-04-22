@@ -11,7 +11,8 @@ if ([ "F2837xD",
       "F28002x",
       "F280013x",
       "F280015x",
-      "F28P65x",].includes(Common.getDeviceName()))
+      "F28P65x",
+      "F28P55x",].includes(Common.getDeviceName()))
 {
 
     dcsm_export = {

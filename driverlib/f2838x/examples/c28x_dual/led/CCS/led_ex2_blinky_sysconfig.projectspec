@@ -7,7 +7,7 @@
         "
         device="TMS320F28388D"
         outputType="system"
-        cgtVersion="20.2.1.LTS"
+        cgtVersion="22.6.1.LTS"
         >
         <pathVariable name="C2000WARE_ROOT" path="../../../../../../" scope="project" />
         <file path="../system.xml" action="copy" openOnCreation="true"/>
@@ -19,7 +19,7 @@
   <project
         name="led_ex2_blinky_sysconfig_cpu1"
         device="TMS320F28388D"
-        cgtVersion="20.2.1.LTS"
+        cgtVersion="22.6.1.LTS"
         outputFormat="ELF"
         launchWizard="False"
         linkerCommandFile=""
@@ -36,7 +36,7 @@
     <file action="copy" path="../../../../../../device_support/f2838x/common/targetConfigs/TMS320F28388D.ccxml" targetDirectory="targetConfigs" />
     <file action="copy" path="../../../../../../device_support/f2838x/common/cmd/2838x_FLASH_lnk_cpu1.cmd" targetDirectory="" applicableConfigurations="FLASH" />
     <file action="copy" path="../../../../../../device_support/f2838x/common/cmd/2838x_RAM_lnk_cpu1.cmd" targetDirectory="" applicableConfigurations="RAM" />
-    <file action="copy" path="../../../../../../device_support/f2838x/common/source/F2838x_CodeStartBranch.asm" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/f2838x/common/source/f2838x_codestartbranch.asm" targetDirectory="device" />
     <file action="link" path="../../../../driverlib/ccs/Debug/driverlib.lib" targetDirectory="" />
     <file action="copy" path="../../../../driverlib/" targetDirectory="device" excludeFromBuild="True" />
     <file action="copy" path="../led_ex2_blinky_sysconfig_cpu1.c" targetDirectory="" />
@@ -45,7 +45,7 @@
   <project
         name="led_ex2_blinky_sysconfig_cpu2"
         device="TMS320F28388D"
-        cgtVersion="20.2.1.LTS"
+        cgtVersion="22.6.1.LTS"
         outputFormat="ELF"
         launchWizard="False"
         linkerCommandFile=""
@@ -62,7 +62,7 @@
     <file action="copy" path="../../../../../../device_support/f2838x/common/targetConfigs/TMS320F28388D.ccxml" targetDirectory="targetConfigs" />
     <file action="copy" path="../../../../../../device_support/f2838x/common/cmd/2838x_FLASH_lnk_cpu2.cmd" targetDirectory="" applicableConfigurations="FLASH" />
     <file action="copy" path="../../../../../../device_support/f2838x/common/cmd/2838x_RAM_lnk_cpu2.cmd" targetDirectory="" applicableConfigurations="RAM" />
-    <file action="copy" path="../../../../../../device_support/f2838x/common/source/F2838x_CodeStartBranch.asm" targetDirectory="device" />
+    <file action="copy" path="../../../../../../device_support/f2838x/common/source/f2838x_codestartbranch.asm" targetDirectory="device" />
     <file action="link" path="../../../../driverlib/ccs/Debug/driverlib.lib" targetDirectory="" />
     <file action="copy" path="../../../../driverlib/" targetDirectory="device" excludeFromBuild="True" />
     <file action="copy" path="../led_ex2_blinky_sysconfig_cpu2.c" targetDirectory="" />

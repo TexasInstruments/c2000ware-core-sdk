@@ -92,7 +92,8 @@ extern "C"
 //!
 //! This macro definition is to transmit a byte of data.
 //! This macro uses SPI_pollingNonFIFOTransaction function
-//! SPI character length is hardcoded to 8 (1 byte = 8 bits)of character length
+//! SPI character length must be configured to 8 bits BEFORE calling the
+//! function
 //!
 //! \return None.
 //
@@ -109,7 +110,8 @@ extern "C"
 //!
 //! This macro definition is to transmit a 16-bit word of data.
 //! This macro uses SPI_pollingNonFIFOTransaction function
-//! SPI character length is hardcoded to 16 (16bit word) of character length
+//! SPI character length must be configured to 16 bits BEFORE calling the
+//! function
 //!
 //! \return None.
 //
@@ -130,7 +132,8 @@ extern "C"
 //! This macro definition can be used to transmit 'N' bytes of data.
 //! This macro definition uses SPI_pollingFIFOTransaction function.
 //!
-//! SPI character length is hardcoded to 8 (8bits) of character length
+//! SPI character length must be configured to 8 bits BEFORE calling the
+//! function
 //!
 //! \return None.
 //
@@ -150,7 +153,8 @@ extern "C"
 //!
 //! This function can be used to transmit 'N' 16-bit words of data.
 //! This function uses SPI_pollingFIFOTransaction function.
-//! SPI character length is hardcoded to 16 (16-bit word)
+//! SPI character length must be configured to 16 bits BEFORE calling the
+//! function
 //!
 //! \return None.
 //
@@ -160,8 +164,8 @@ extern "C"
 
 //*****************************************************************************
 //
-//! This macro definition can be used to transmit 'N' with configurable
-//! SPI character length
+//! This macro definition can be used to transmit 'N' with previously
+//! configured SPI character length
 //!
 //! \param base specifies the SPI module base address
 //! \param charLength specifies the SPI character length
@@ -173,8 +177,9 @@ extern "C"
 //! This macro definition can be used to transmit 'N' with configurable
 //! SPI character length.
 //!
-//! This macro uses SPIpolling_FIFO_Transaction function.
-//! SPI character length is configurable using charLength variable.
+//! This macro uses SPI_pollingFIFOTransaction function.
+//! SPI character length must be configured to required value BEFORE calling
+//! the function, and passed as the charLength parameter.
 //!
 //! \return None.
 //
@@ -194,7 +199,8 @@ extern "C"
 //!
 //! This macro definition is to receive a byte of data.
 //! This macro uses SPI_pollingNonFIFOTransaction function
-//! SPI character length is hardcoded to 8 (1byte = 8bits) of character length
+//! SPI character length must be configured to 8 bits BEFORE calling the
+//! function
 //!
 //! \return the received byte.
 //
@@ -213,8 +219,9 @@ extern "C"
 //!        completion of perious word
 //!
 //! This function is used to receive 'N' bytes of data
-//! This function uses SPIpolling_FIFO_Transaction function.
-//! SPI character length is hardcoded to 8 (1 byte = 8 bits)
+//! This function uses SPI_pollingFIFOTransaction function.
+//! SPI character length must be configured to 8 bits BEFORE calling the
+//! function
 //!
 //! \return None.
 //
@@ -233,8 +240,9 @@ extern "C"
 //!        completion of perious word
 //!
 //! This function is used to receive 'N' 16-bit words of data
-//! This function uses SPIpolling_FIFO_Transaction function.
-//! SPI character length is hardcoded to 16bits
+//! This function uses SPI_pollingFIFOTransaction function.
+//! SPI character length must be configured to 16 bits BEFORE calling the
+//! function
 //!
 //! \return None.
 //
@@ -244,7 +252,8 @@ extern "C"
 
 //*****************************************************************************
 //
-//! This macro is used to receive 'N' words with specified character length
+//! This macro is used to receive 'N' words with previously configured character
+//! length
 //!
 //! \param base specifies the SPI module base address.
 //! \param charLength specifies the SPI character length of SPI transaction
@@ -255,8 +264,9 @@ extern "C"
 //!        completion of perious word
 //!
 //! This function is used to receive 'N' words with specified character length
-//! This function uses SPIpolling_FIFO_Transaction function.
-//! SPI character length is configurable using charLength variable
+//! This function uses SPI_pollingFIFOTransaction function.
+//! SPI character length must be configured to required value BEFORE calling
+//! the function, and passed as the charLength parameter.
 //!
 //! \return None.
 //
@@ -1555,7 +1565,8 @@ SPI_clearInterruptStatus(uint32_t base, uint32_t intFlags);
 //! 24-bit word data is divided into three bytes of data.
 //!
 //! This function uses SPI_pollingFIFOTransaction function.
-//! SPI character length is hardcoded to 8 (8bits) of character length
+//! SPI character length must be configured to 8 bits BEFORE calling the
+//! function
 //!
 //! \return None.
 //
@@ -1576,7 +1587,8 @@ SPI_transmit24Bits(uint32_t base, uint32_t data, uint16_t txDelay);
 //! 32-bit word data is divided into four bytes of data.
 //!
 //! This function uses SPI_pollingFIFOTransaction function.
-//! SPI character length is hardcoded to 8 (8bits) of character length
+//! SPI character length must be configured to 16 bits BEFORE calling the
+//! function
 //!
 //! \return None.
 //
@@ -1598,8 +1610,9 @@ SPI_transmit32Bits(uint32_t base, uint32_t data, uint16_t txDelay);
 //!        completion of perious word
 //!
 //! This function is used to receive a 16-bit word of data.
-//! This function uses SPIpolling_FIFO_Transaction function.
-//! SPI character length is hardcoded to 8 (1 byte = 8 bits)of character length
+//! This function uses SPI_pollingFIFOTransaction function.
+//! SPI character length must be configured to 8 bits BEFORE calling the
+//! function
 //!
 //! \return the received 16-bit word.
 //
@@ -1620,8 +1633,9 @@ SPI_receive16Bits(uint32_t base, SPI_endianess endianness, uint16_t dummyData,
 //!        completion of perious word
 //!
 //! This function is used to receive a 24-bit word of data.
-//! This function uses SPIpolling_FIFO_Transaction function.
-//! SPI character length is hardcoded to 8 (1 byte = 8 bits)of character length
+//! This function uses SPI_pollingFIFOTransaction function.
+//! SPI character length must be configured to 8 bits BEFORE calling the
+//! function
 //!
 //! \return the received 24-bit word.
 //
@@ -1642,8 +1656,9 @@ SPI_receive24Bits(uint32_t base, SPI_endianess endianness, uint16_t dummyData,
 //!        completion of perious word
 //!
 //! This function is used to receive a 32-bit word of data.
-//! This function uses SPIpolling_FIFO_Transaction function.
-//! SPI character length is hardcoded to 8 (1 byte = 8 bits)of character length
+//! This function uses SPI_pollingFIFOTransaction function.
+//! SPI character length must be configured to 8 bits BEFORE calling the
+//! function
 //!
 //! \return the received 32-bit word.
 //
@@ -1663,8 +1678,8 @@ SPI_receive32Bits(uint32_t base, SPI_endianess endianness, uint16_t dummyData,
 //! \param charLength specifies the SPI character length of SPI transaction
 //! \param data specified the data to be transmitted
 //!
-//! This function is used to initiate SPI transaction of specified character.
-//! SPI character length is configurable using charLength variable
+//! The SPI must be configured to the provided charLength BEFORE the function
+//! is called. This function does not set/change the SPI char length.
 //!
 //! \return .
 //
@@ -1684,7 +1699,8 @@ SPI_pollingNonFIFOTransaction(uint32_t base, uint16_t charLength,
 //! \param pRxBuffer specifies the pointer to receive buffer
 //! \param numOfWords specified the number of data to be transmitted / received
 //!
-//! SPI character length is configurable using charLength variable
+//! The SPI must be configured to the provided charLength BEFORE the function
+//! is called. This function does not set/change the SPI char length.
 //!
 //! \return none
 //

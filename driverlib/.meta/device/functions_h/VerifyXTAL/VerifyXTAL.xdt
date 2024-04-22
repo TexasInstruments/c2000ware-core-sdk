@@ -8,11 +8,11 @@ const 	device  						= device_common.device;
 const	VerifyXTAL_Type0					= device_common.VerifyXTAL_Type0;
 const	VerifyXTAL_Type1					= device_common.VerifyXTAL_Type1;
 %%}
-% if(VerifyXTAL_Type0.includes(device))
+% if(VerifyXTAL_Type1.includes(device)&& Common.isContextCPU1())
 %{
 `VerifyXTAL_General()`
 %}
-% if(VerifyXTAL_Type1.includes(device))
+% if(VerifyXTAL_Type0.includes(device)&& Common.isContextCPU1())
 %{
 `VerifyXTAL_With_If()`
 %}

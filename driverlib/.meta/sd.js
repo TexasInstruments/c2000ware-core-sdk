@@ -206,24 +206,7 @@ var sdModule = {
         var pinmuxQualMods = Pinmux.getGpioQualificationModInstDefinitions("SD", inst)
         for (var pinmuxQualMod of pinmuxQualMods)
         {
-			if(Common.getDeviceName() == "F28004x")
-			{
-				pinmuxQualMod.requiredArgs = {
-				   qualMode : "GPIO_QUAL_SYNC",
-				}
-			}
-			else if((Common.getDeviceName() == "F2837xD") || (Common.getDeviceName() == "F2837xS") || (Common.getDeviceName() == "F2807x"))
-			{
-				pinmuxQualMod.requiredArgs = {
-				   qualMode : "GPIO_QUAL_3SAMPLE",
-				}
-			}
-			else
-			{
-				pinmuxQualMod.requiredArgs = {
-				   qualMode : "GPIO_QUAL_ASYNC",
-				}
-			}
+            pinmuxQualMod.args.qualMode = "GPIO_QUAL_SYNC";
         }
         regInterrupts = regInterrupts.concat(pinmuxQualMods)
 

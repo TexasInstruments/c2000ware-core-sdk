@@ -8,7 +8,7 @@
 //! <h1> LIN Internal Loopback with Interrupts using Sysconfig </h1>
 //!
 //!  This example is similar to ex1 but using syscfg tool to configure the
-//!  LIN Module paramters. The file lin_ex5_syscfg.syscfg can be updated 
+//!  LIN Module parameters. The file lin_ex5_syscfg.syscfg can be updated 
 //!  using the GUI tool to update the configuration parameters.  
 //!  This example configures the LIN module in commander mode for internal
 //!  loopback with interrupts. The module is setup to perform 8 data
@@ -16,6 +16,11 @@
 //!  Upon reception of an ID header, an interrupt is triggered on line 0
 //!  and an interrupt service routine (ISR) is called. The received data
 //!  is then checked for accuracy.
+//!
+//!  \note This example project has support for migration across our C2000 
+//!  device families. If you are wanting to build this project from launchpad
+//!  or controlCARD, please specify in the .syscfg file the board you're using.
+//!  At any time you can select another device to migrate this example.
 //!
 //! \b External \b Connections \n
 //!  - None.
@@ -25,14 +30,13 @@
 //!  - rxData - An array with the data that was received
 //!  - result - The example completion status (PASS = 0xABCD, FAIL = 0xFFFF)
 //!  - level0Count - The number of line 0 interrupts
-//!  - level1Count - The number of line 1 interrupts
 //!
 //
 //#############################################################################
 //
 //
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -82,7 +86,6 @@
 // Globals
 //
 volatile uint32_t level0Count = 0;
-volatile uint32_t level1Count = 0;
 volatile uint32_t vectorOffset = 0;
 uint16_t result;
 uint16_t txData[8] = {0x11, 0x34, 0x56, 0x78, 0x9A, 0xAB, 0xCD, 0xEF};
@@ -92,7 +95,6 @@ uint16_t rxData[8] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
 // Function Prototypes
 //
 __interrupt void level0ISR(void);
-__interrupt void level1ISR(void);
 
 //
 // Main
@@ -113,11 +115,6 @@ void main(void)
     Device_initGPIO();
 
     //
-    // Board initialization
-    //
-    Board_init();
-
-    //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //
     Interrupt_initModule();
@@ -127,22 +124,14 @@ void main(void)
     // Service Routines (ISR).
     //
     Interrupt_initVectorTable();
+
+    //
+    // Board initialization
+    //
+    Board_init();
+
     EINT;
     ERTM;
-
-    //
-    // Interrupts that are used in this example are re-mapped to
-    // ISR functions found within this file.
-    // This registers the interrupt handler in PIE vector table.
-    //
-    Interrupt_register(INT_LINB_0, &level0ISR);
-    Interrupt_register(INT_LINB_1, &level1ISR);
-
-    //
-    // Enable the LIN interrupt signals
-    //
-    Interrupt_enable(INT_LINB_0);
-    Interrupt_enable(INT_LINB_1);
 
     //
     // Perform 8 data transmissions with different transmit IDs and varying
@@ -256,36 +245,11 @@ level0ISR(void)
     LIN_clearGlobalInterruptStatus(myLIN0_BASE, LIN_INTERRUPT_LINE0);
 
     //
-    // Acknowledge this interrupt located in group 8
+    // Acknowledge this interrupt
     //
-    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP8);
+    Interrupt_clearACKGroup(INT_myLIN0_LINE0_INTERRUPT_ACK_GROUP);
 }
 
-//
-// LIN Low Priority (Level 1) ISR - Interrupt service routine for interrupt
-// line 1. This ISR saves the offset vector indicating the current highest
-// priority pending interrupt.
-//
-__interrupt void
-level1ISR(void)
-{
-    //
-    // Increment the interrupt count
-    //
-    level1Count++;
-
-    //
-    // Read the low priority interrupt vector
-    //
-    vectorOffset = LIN_getInterruptLine1Offset(myLIN0_BASE);
-    LIN_clearInterruptStatus(myLIN0_BASE, LIN_INT_ID);
-    LIN_clearGlobalInterruptStatus(myLIN0_BASE, LIN_INTERRUPT_LINE1);
-
-    //
-    // Acknowledge this interrupt located in group 8
-    //
-    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP8);
-}
 
 //
 // End of File

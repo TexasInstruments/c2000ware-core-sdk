@@ -445,22 +445,22 @@ static inline void CPUTimer_selectClockSource(uint32_t base,
         //
         // Set Clock Source
         //
-        HWREGH(CPUSYS_BASE + SYSCTL_O_TMR2CLKCTL) &=
-            ~SYSCTL_TMR2CLKCTL_TMR2CLKSRCSEL_M;
-
-        HWREGH(CPUSYS_BASE + SYSCTL_O_TMR2CLKCTL) |= (uint16_t)source;
+        HWREGH(CPUSYS_BASE + SYSCTL_O_TMR2CLKCTL) =
+                    (HWREGH(CPUSYS_BASE + SYSCTL_O_TMR2CLKCTL) &
+                     ~SYSCTL_TMR2CLKCTL_TMR2CLKSRCSEL_M) | (uint16_t)source;
+        SYSCTL_REGWRITE_DELAY;
 
         //
         // Set Clock Prescaler
         //
-        HWREGH(CPUSYS_BASE + SYSCTL_O_TMR2CLKCTL) &=
-            ~SYSCTL_TMR2CLKCTL_TMR2CLKPRESCALE_M;
-
-        HWREGH(CPUSYS_BASE + SYSCTL_O_TMR2CLKCTL) |= ((uint16_t)prescaler <<
-                SYSCTL_TMR2CLKCTL_TMR2CLKPRESCALE_S);
+        HWREGH(CPUSYS_BASE + SYSCTL_O_TMR2CLKCTL) =
+                    (HWREGH(CPUSYS_BASE + SYSCTL_O_TMR2CLKCTL) &
+                     ~SYSCTL_TMR2CLKCTL_TMR2CLKPRESCALE_M) |
+                    ((uint16_t)prescaler <<SYSCTL_TMR2CLKCTL_TMR2CLKPRESCALE_S);
 
         EDIS;
     }
+    SYSCTL_REGWRITE_DELAY;
 }
 
 //*****************************************************************************

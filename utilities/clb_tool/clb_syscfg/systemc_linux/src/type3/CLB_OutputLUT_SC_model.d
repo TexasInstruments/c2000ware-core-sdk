@@ -1,6 +1,6 @@
 src/type3/CLB_OutputLUT_SC_model.o: \
- /home/a0498187/ti/C2000Ware_5_00_00_00_Copy/utilities/clb_tool/clb_syscfg/systemc/src/type3/CLB_OutputLUT_SC_model.cpp \
- /home/a0498187/ti/C2000Ware_5_00_00_00_Copy/utilities/clb_tool/clb_syscfg/systemc/include/type3/../type3/CLB_OutputLUT_SC_model.h \
+ /home/a0498187/Downloads/clb_tool/clb_syscfg/systemc/src/type3/CLB_OutputLUT_SC_model.cpp \
+ /home/a0498187/Downloads/clb_tool/clb_syscfg/systemc/include/type3/../type3/CLB_OutputLUT_SC_model.h \
  /usr/bin/systemc-2.3.3/src/systemc.h /usr/bin/systemc-2.3.3/src/systemc \
  /usr/bin/systemc-2.3.3/src/sysc/kernel/sc_cmnhdr.h \
  /usr/bin/systemc-2.3.3/src/sysc/kernel/sc_externs.h \
@@ -104,7 +104,7 @@ src/type3/CLB_OutputLUT_SC_model.o: \
  /usr/bin/systemc-2.3.3/src/sysc/utils/sc_string_view.h \
  /usr/bin/systemc-2.3.3/src/sysc/utils/sc_vector.h
 
-/home/a0498187/ti/C2000Ware_5_00_00_00_Copy/utilities/clb_tool/clb_syscfg/systemc/include/type3/../type3/CLB_OutputLUT_SC_model.h:
+/home/a0498187/Downloads/clb_tool/clb_syscfg/systemc/include/type3/../type3/CLB_OutputLUT_SC_model.h:
 
 /usr/bin/systemc-2.3.3/src/systemc.h:
 

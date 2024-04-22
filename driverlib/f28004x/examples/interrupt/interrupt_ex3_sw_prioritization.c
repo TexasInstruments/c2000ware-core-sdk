@@ -55,7 +55,7 @@
 //
 //
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -281,7 +281,7 @@ configCPUTimer(uint32_t cpuTimer, float freq, float period)
     // Initialize timer period:
     //
     temp = (uint32_t)(freq / 1000000 * period);
-    CPUTimer_setPeriod(cpuTimer, temp);
+    CPUTimer_setPeriod(cpuTimer, temp - 1);
 
     //
     // Set pre-scale counter to divide by 1 (SYSCLKOUT):

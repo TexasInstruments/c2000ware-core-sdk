@@ -15,7 +15,8 @@
 #define `instance.$name`_BASE `peripheral.name`_BASE
 #define `instance.$name`_BITRATE `parseInt(instance.bitRate)`
 #define `instance.$name`_TARGET_ADDRESS `instance.targetAddress`
-#define `instance.$name`_OWN_TARGET_ADDRESS `instance.ownTargetAddress`
+#define `instance.$name`_OWN_ADDRESS `instance.ownAddress`
+#define `instance.$name`_MODULE_CLOCK_FREQUENCY `parseInt(instance.customModuleFrequency)`
 void `instance.$name`_init();
     % }
 %}

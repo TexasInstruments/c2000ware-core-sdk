@@ -23,6 +23,10 @@ void `nameOfPeripheral`_init(){
 		% var instance = module.$instances[i];
 void `instance.$name`_init(){
 		uint32_t moduleFreq = 0U;
+		% if (instance.busClock == "PMBUS_CLOCKMODE_FAST_PLUS")
+		% {
+		uint32_t sclGpioEnumValue = 0U, sdaGpioEnumValue = 0U;
+		% }
 		PMBus_disableModule(`instance.$name`_BASE);
 		% if (instance.enableI2CMode)
 		% {
@@ -31,6 +35,17 @@ void `instance.$name`_init(){
 		% else
 		% {
 		PMBus_disableI2CMode(`instance.$name`_BASE);	
+		% }
+		% if(instance.zeroHoldSupport)
+		% {
+			% if(instance.useZeroHoldSupport)
+			% {
+		PMBus_enableZeroHoldTime(`instance.$name`_BASE);
+			%}
+			% else
+			%{
+		PMBus_disableZeroHoldTime(`instance.$name`_BASE);	
+			%}
 		% }
 		% if(instance.ALERT_EN)
 		% {
@@ -42,8 +57,21 @@ void `instance.$name`_init(){
 		%}
 		PMBus_setOwnAddress(`instance.$name`_BASE, `instance.$name`_OWN_ADDRESS);
 		% var moduleFreq = "";
-		moduleFreq = PMBus_configModuleClock(`instance.$name`_BASE, `instance.$name`_BAUDRATE, `sysclk_Hz`);
+		moduleFreq = PMBus_configModuleClock(`instance.$name`_BASE, `instance.$name`_BAUDRATE, DEVICE_SYSCLK_FREQ);
 		PMBus_configBusClock(`instance.$name`_BASE, `instance.$name`_CLOCKMODE, moduleFreq);
+		% if (instance.busClock == "PMBUS_CLOCKMODE_FAST_PLUS")
+		% {
+		// configure the GPIO pins for SDA 
+		`instance.$name`_GPIO_MAP(`instance.$name`_PMBUSSDA_GPIO, sdaGpioEnumValue); 
+		AsysCtl_setDriveStrength((AsysCtl_IO_Drvsel_GPIO)sdaGpioEnumValue);
+		AsysCtl_setDriveMode((AsysCtl_IO_Modesel_GPIO)sdaGpioEnumValue);
+
+		// configure the GPIO pins for SCL
+		`instance.$name`_GPIO_MAP(`instance.$name`_PMBUSSCL_GPIO, sclGpioEnumValue); 
+		AsysCtl_setDriveStrength((AsysCtl_IO_Drvsel_GPIO)sclGpioEnumValue);
+		AsysCtl_setDriveMode((AsysCtl_IO_Modesel_GPIO)sclGpioEnumValue);
+		% }
+
 		% if (instance.mode == "Controller")
 		%{
 		PMBus_initControllerMode(`instance.$name`_BASE);

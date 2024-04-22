@@ -8,7 +8,7 @@
 //
 //
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -61,6 +61,9 @@ extern "C"
 #endif
 #if defined(__TMS320C28XX_TMU1__)
 #error "Invalid TMU Configuration"
+#endif
+#if defined(__TMS320C28XX_IDIV__)
+#error "Invalid IDIV Configuration"
 #endif
 
 //*****************************************************************************

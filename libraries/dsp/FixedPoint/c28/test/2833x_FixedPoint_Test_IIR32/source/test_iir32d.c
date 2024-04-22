@@ -51,7 +51,7 @@
 //#############################################################################
 //
 //
-//$Copyright: Copyright (C) 2014-2023 Texas Instruments Incorporated -
+//$Copyright: Copyright (C) 2014-2024 Texas Instruments Incorporated -
 //            http://www.ti.com/ ALL RIGHTS RESERVED $
 //#############################################################################
 #define XXSTRINGIZE(s)	XSTRINGIZE(s)  // calls xstringize(s), if s is a macro it

@@ -24,6 +24,7 @@
 % var sdkPath = system.utils.path.join(currnetSDKProductPath + "../../../")
 % sdkPath = sdkPath.replace(new RegExp('\\' + system.utils.path.sep, 'g'), '/')
 % 
+--define=`Common.getDeviceName()`=1
 % if (device_support) {
 -I"`sdkPath`device_support/`Common.getDeviceName().toLowerCase()`/common/include/"
 -I"`sdkPath`driverlib/`Common.getDeviceName().toLowerCase()`/driverlib/"

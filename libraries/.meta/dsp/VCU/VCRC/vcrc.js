@@ -144,8 +144,12 @@ let crc_init = [
 ]
 
 let crc_routines = [
+    {name: "CRC_run8BitTableLookupC", displayName: "CRC_run8BitTableLookupC"},
+    {name: "CRC_run8BitReflectedTableLookupC", displayName: "CRC_run8BitReflectedTableLookupC"},
     {name: "CRC_run16BitTableLookupC", displayName: "CRC_run16BitTableLookupC"},
     {name: "CRC_run16BitReflectedTableLookupC", displayName: "CRC_run16BitReflectedTableLookupC"},
+    {name: "CRC_run24BitTableLookupC", displayName: "CRC_run24BitTableLookupC"},
+    {name: "CRC_run24BitReflectedTableLookupC", displayName: "CRC_run24BitReflectedTableLookupC"},
     {name: "CRC_run32BitTableLookupC", displayName: "CRC_run32BitTableLookupC"},
     {name: "CRC_run32BitReflectedTableLookupC", displayName: "CRC_run32BitReflectedTableLookupC"},
 ]

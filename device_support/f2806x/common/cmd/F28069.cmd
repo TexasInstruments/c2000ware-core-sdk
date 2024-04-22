@@ -11,7 +11,7 @@
 // $TI Release: 2806x C/C++ Header Files V1.10 $ 
 // $Release Date: April 7, 2011 $ 
 // $Copyright:
-// Copyright (C) 2009-2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2009-2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -113,7 +113,7 @@ PAGE 0 :   /* Program Memory */
    BEGIN       : origin = 0x3F7FF6, length = 0x000002     /* Part of FLASHA.  Used for "boot to Flash" bootloader mode. */
    CSM_PWL_P0  : origin = 0x3F7FF8, length = 0x000008     /* Part of FLASHA.  CSM password locations in FLASHA */
 
-   FPUTABLES   : origin = 0x3FD590, length = 0x0006A0	  /* FPU Tables in Boot ROM */
+   FPUTABLES   : origin = 0x3FD860, length = 0x0006A0	  /* FPU Tables in Boot ROM */
    IQTABLES    : origin = 0x3FDF00, length = 0x000B50     /* IQ Math Tables in Boot ROM */
    IQTABLES2   : origin = 0x3FEA50, length = 0x00008C     /* IQ Math Tables in Boot ROM */
    IQTABLES3   : origin = 0x3FEADC, length = 0x0000AA	  /* IQ Math Tables in Boot ROM */

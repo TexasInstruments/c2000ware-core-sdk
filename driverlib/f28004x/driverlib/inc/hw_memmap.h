@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -195,4 +195,5 @@
 #define DCSMBANK0_Z2OTP_BASE      0x00078200U
 #define DCSMBANK1_Z1OTP_BASE      0x00078400U
 #define DCSMBANK1_Z2OTP_BASE      0x00078600U
+#define UID_BASE                  0x000703C0U
 #endif

@@ -349,19 +349,40 @@ GPIO`gpioNumber`,GPIO`gpioNumber`
 		% for(var i = 0; i < module.$instances.length; i++) {
 			% var instance = module.$instances[i];
 			% if (output_mode == pinmux_c_source_mode) {
+				% if (!["F28P55x"].includes(Common.getDeviceName())) {
 	// USB pinmux
 	GPIO_setAnalogMode(42, GPIO_ANALOG_ENABLED);
 	GPIO_setAnalogMode(43, GPIO_ANALOG_ENABLED);
+				% }
+				% else {
+	// USB pinmux
+	GPIO_setAnalogMode(23, GPIO_ANALOG_ENABLED);
+	GPIO_setAnalogMode(41, GPIO_ANALOG_ENABLED);
+				% }
 			% } else if (output_mode == function_mode) {
+				% if (!["F28P55x"].includes(Common.getDeviceName())) {
 			%		if (gpio_to_find == "GPIO42") {
 USB
 			%		}
 			%		else if (gpio_to_find == "GPIO43") {
 USB
-			%		}				
+			%		}
+				% } else {
+			%		if (gpio_to_find == "GPIO23") {
+USB
+			%		}
+			%		else if (gpio_to_find == "GPIO41") {
+USB
+			%		}
+				% }				
 			%} else if (output_mode == csv_mode){
+				% if (!["F28P55x"].includes(Common.getDeviceName())) {
 GPIO42,USB
 GPIO43,USB
+				% } else {
+GPIO23,USB
+GPIO41,USB
+				% }
 			% }
 		%}
 	%}

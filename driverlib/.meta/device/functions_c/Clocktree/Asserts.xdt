@@ -103,11 +103,19 @@ const device  					= device_common.device;
 % 	{
 %if(!system.clockTree.EMIF1CLKDIV){
 %console.log("In here")
-%var DEVICE_CLK_EMIF_DIV = "SYSCTL_EMIF1CLK_DIV_1";
+%var DEVICE_CLK_EMIF1_DIV = "SYSCTL_EMIF1CLK_DIV_1";
 %}
 %else{
 %console.log("should not be In here")
-%var DEVICE_CLK_EMIF_DIV =system.clockTree.EMIF1CLKDIV.divideValue;
+%var DEVICE_CLK_EMIF1_DIV =system.clockTree.EMIF1CLKDIV.divideValue;
+%}
+%if(!system.clockTree.EMIF2CLKDIV){
+%console.log("In here")
+%var DEVICE_CLK_EMIF2_DIV = "SYSCTL_EMIF2CLK_DIV_1";
+%}
+%else{
+%console.log("should not be In here")
+%var DEVICE_CLK_EMIF2_DIV =system.clockTree.EMIF2CLKDIV.divideValue;
 %}
 %if(!system.clockTree.ECATDIV){
 %var DEVICE_CLK_ECAT_DIV = 4;
@@ -189,7 +197,8 @@ const device  					= device_common.device;
     CAN_selectClockSource(CANB_BASE, `canBclkSrc`);
     SysCtl_setMCANClk(SYSCTL_MCANCLK_DIV_`DEVICE_CLK_MCAN_DIV`);
     SysCtl_setEPWMClockDivider(SYSCTL_EPWMCLK_DIV_`DEVICE_CLK_EPWM_DIV`);
-    SysCtl_setEMIF1ClockDivider(`DEVICE_CLK_EMIF_DIV`);
+    SysCtl_setEMIF1ClockDivider(`DEVICE_CLK_EMIF1_DIV`);
+    SysCtl_setEMIF2ClockDivider(`DEVICE_CLK_EMIF2_DIV`);
     SysCtl_setECatClk(SYSCTL_ECATCLKOUT_DIV_`DEVICE_CLK_ECAT_DIV`, `ecatclkSrc`, 0x1U);
     SysCtl_setEnetClk(SYSCTL_ENETCLKOUT_DIV_`DEVICE_CLK_ENET_DIV`, `enetclkSrc`);
     ASSERT(SysCtl_getClock(DEVICE_OSCSRC_FREQ) == DEVICE_SYSCLK_FREQ);
@@ -211,6 +220,18 @@ const device  					= device_common.device;
 %}
 %else{
 %var DEVICE_CLK_ECAT_DIV = system.clockTree.ECATDIV.divideValue;
+%}
+%if(!system.clockTree.LINACLKDIV){
+%var DEVICE_CLK_LINA_DIV = 2;
+%}
+%else{
+%var DEVICE_CLK_LINA_DIV = system.clockTree.LINACLKDIV.divideValue;
+%}
+%if(!system.clockTree.LINBCLKDIV){
+%var DEVICE_CLK_LINB_DIV = 2;
+%}
+%else{
+%var DEVICE_CLK_LINB_DIV = system.clockTree.LINBCLKDIV.divideValue;
 %}
 %var DEVICE_CLK_MCANA_DIV = system.clockTree.MCANACLKDIV.divideValue;
 %var DEVICE_CLK_MCANB_DIV = system.clockTree.MCANBCLKDIV.divideValue;
@@ -283,6 +304,8 @@ const device  					= device_common.device;
     SysCtl_setEPWMClockDivider(SYSCTL_EPWMCLK_DIV_`DEVICE_CLK_EPWM_DIV`);
     SysCtl_setEMIF1ClockDivider(SYSCTL_EMIF1CLK_DIV_`DEVICE_CLK_EMIF_DIV`);
     SysCtl_setECatClk(SYSCTL_ECATCLKOUT_DIV_`DEVICE_CLK_ECAT_DIV`, `ecatclkSrc`, 0x1U);
+    SysCtl_setLINAClockDivider(SYSCTL_LINACLK_DIV_`DEVICE_CLK_LINA_DIV`);
+    SysCtl_setLINBClockDivider(SYSCTL_LINBCLK_DIV_`DEVICE_CLK_LINB_DIV`);
     ASSERT(SysCtl_getClock(DEVICE_OSCSRC_FREQ) == DEVICE_SYSCLK_FREQ);
     ASSERT(SysCtl_getLowSpeedClock(DEVICE_OSCSRC_FREQ) == DEVICE_LSPCLK_FREQ);
     ASSERT(SysCtl_getAuxClock(DEVICE_OSCSRC_FREQ) == DEVICE_AUXCLK_FREQ);

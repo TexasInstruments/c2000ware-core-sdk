@@ -8,7 +8,7 @@
 //
 // $Release Date:  $
 // $Copyright:
-// Copyright (C) 2013-2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2013-2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -907,6 +907,14 @@ volatile struct SPI_REGS SpicRegs;
 #endif
 volatile struct SYNC_SOC_REGS SyncSocRegs;
 #endif // ifdef CPU1
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("UidRegsFile")
+#else
+#pragma DATA_SECTION(UidRegs,"UidRegsFile");
+#endif
+volatile struct UID_REGS UidRegs;
 
 #ifdef CPU1
 //----------------------------------------

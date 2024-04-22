@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -158,7 +158,7 @@ typedef enum
     I2C_INTSRC_RX_DATA_RDY,         //!< Receive-data-ready interrupt
     I2C_INTSRC_TX_DATA_RDY,         //!< Transmit-data-ready interrupt
     I2C_INTSRC_STOP_CONDITION,      //!< Stop condition detected
-    I2C_INTSRC_ADDR_TARGET           //!< Addressed as target interrupt
+    I2C_INTSRC_ADDR_TARGET,           //!< Addressed as target interrupt
 } I2C_InterruptSource;
 
 //*****************************************************************************
@@ -1229,6 +1229,42 @@ I2C_initController(uint32_t base, uint32_t sysclkHz, uint32_t bitRate,
 
 //*****************************************************************************
 //
+//! Initializes the I2C Controller.
+//!
+//! \param base is the base address of the I2C instance used.
+//! \param sysclkHz is the rate of the clock supplied to the I2C module
+//! (SYSCLK) in Hz.
+//! \param bitRate is the rate of the controller clock signal, SCL.
+//! \param dutyCycle is duty cycle of the SCL signal.
+//! \param moduleFrequency is the module clock used by I2C module 
+//!
+//! This function initializes operation of the I2C Controller by configuring the
+//! bus speed for the controller. Note that the I2C module \b must be put into
+//! reset before calling this function. You can do this with the function
+//! I2C_disableModule().
+//!
+//! A programmable prescaler in the I2C module divides down the input clock
+//! (rate specified by \e sysclkHz) to produce the module clock (calculated to
+//! be around 10 MHz in this function). That clock is then divided down further
+//! to configure the SCL signal to run at the rate specified by \e bitRate. The
+//! \e dutyCycle parameter determines the percentage of time high and time low
+//! on the clock signal. The valid values are \b I2C_DUTYCYCLE_33 for 33% and
+//! \b I2C_DUTYCYCLE_50 for 50%.
+//!
+//! The peripheral clock is the system clock.  This value is returned by
+//! SysCtl_getClock(), or it can be explicitly hard coded if it is
+//! constant and known (to save the code/execution overhead of a call to
+//! SysCtl_getClock()).
+//!
+//! \return None.
+//
+//*****************************************************************************
+extern void
+I2C_initControllerModuleFrequency(uint32_t base, uint32_t sysclkHz, uint32_t bitRate,
+                   I2C_DutyCycle dutyCycle, uint32_t moduleFrequency);
+
+//*****************************************************************************
+//
 //! Enables I2C interrupt sources.
 //!
 //! \param base is the base address of the I2C instance used.
@@ -1352,6 +1388,26 @@ I2C_clearInterruptStatus(uint32_t base, uint32_t intFlags);
 //*****************************************************************************
 extern void
 I2C_configureModuleFrequency(uint32_t base, uint32_t sysclkHz);
+
+//*****************************************************************************
+//
+//! Configures I2C Module Clock Frequency with a given module clock
+//!
+//! \param base is the base address of the I2C instance used.
+//! \param sysclkHz is the rate of the clock supplied to the I2C module
+//! (SYSCLK) in Hz.
+//! \param moduleFrequency is the rate of the module clock used by I2C module
+//! This function configures I2C module clock frequency by initializing
+//! prescale register based on SYSCLK frequency.
+//! Note that the I2C module \b must be put into
+//! reset before calling this function. You can do this with the function
+//! I2C_disableModule().
+//!
+//! \return None.
+//
+//*****************************************************************************
+extern void
+I2C_configureModuleClockFrequency(uint32_t base, uint32_t sysclkHz, uint32_t moduleFrequency);
 
 //*****************************************************************************
 //

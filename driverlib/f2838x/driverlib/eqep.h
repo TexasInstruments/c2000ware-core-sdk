@@ -282,9 +282,9 @@ typedef enum
 //*****************************************************************************
 typedef enum
 {
-    EQEP_STROBE_FROM_GPIO  = 0,         //!< Strobe signal comes from GPIO
-    EQEP_STROBE_OR_ADCSOCA = 2,         //!< Strobe signal is OR'd with ADCSOCA
-    EQEP_STROBE_OR_ADCSOCB = 3          //!< Strobe signal is OR'd with ADCSOCB
+    EQEP_STROBE_FROM_GPIO  = 0,         //!< GPIO
+    EQEP_STROBE_OR_ADCSOCA = 2,         //!< Strobe signal OR'd with ADCSOCA
+    EQEP_STROBE_OR_ADCSOCB = 3          //!< Strobe signal OR'd with ADCSOCB
 } EQEP_StrobeSource;
 
 //*****************************************************************************
@@ -296,8 +296,8 @@ typedef enum
 typedef enum
 {
     EQEP_QMA_MODE_BYPASS,               //!< QMA module is bypassed
-    EQEP_QMA_MODE_1,                    //!< QMA mode-1 operation is selected
-    EQEP_QMA_MODE_2                     //!< QMA mode-2 operation is selected
+    EQEP_QMA_MODE_1,                    //!< QMA mode-1 operation
+    EQEP_QMA_MODE_2                     //!< QMA mode-2 operation
 } EQEP_QMAMode;
 
 
@@ -310,22 +310,22 @@ typedef enum
 //*****************************************************************************
 typedef enum
 {
-    EQEP_SOURCE_DEVICE_PIN  = 0x0000U,   //!<  signal comes from Device Pin
-    EQEP_SOURCE_CMPSS1 = 0x0001U,        //!<  signal comes from CMPSS1
-    EQEP_SOURCE_CMPSS2 = 0x0002U,        //!<  signal comes from CMPSS2
-    EQEP_SOURCE_CMPSS3 = 0x0003U,        //!<  signal comes from CMPSS3
-    EQEP_SOURCE_CMPSS4 = 0x0004U,        //!<  signal comes from CMPSS4
-    EQEP_SOURCE_CMPSS5 = 0x0005U,        //!<  signal comes from CMPSS5
-    EQEP_SOURCE_CMPSS6 = 0x0006U,        //!<  signal comes from CMPSS6
-    EQEP_SOURCE_CMPSS7 = 0x0007U,        //!<  signal comes from CMPSS7
-    EQEP_SOURCE_CMPSS8 = 0x0008U,        //!<  signal comes from CMPSS8
-    EQEP_SOURCE_PWMXBAR1 = 0x0009U,      //!<  signal comes from PWMXBAR1
-    EQEP_SOURCE_PWMXBAR2 = 0x000AU,      //!<  signal comes from PWMXBAR2
-    EQEP_SOURCE_PWMXBAR3 = 0x000BU,      //!<  signal comes from PWMXBAR3
-    EQEP_SOURCE_PWMXBAR4 = 0x000CU,      //!<  signal comes from PWMXBAR4
-    EQEP_SOURCE_PWMXBAR5 = 0x000DU,      //!<  signal comes from PWMXBAR5
-    EQEP_SOURCE_PWMXBAR6 = 0x000EU,      //!<  signal comes from PWMXBAR6
-    EQEP_SOURCE_PWMXBAR7 = 0x000FU,      //!<  signal comes from PWMXBAR7
+    EQEP_SOURCE_DEVICE_PIN      = 0x0000U,  //!< Device Pin
+    EQEP_SOURCE_CMPSS1          = 0x0001U,  //!< CMPSS1
+    EQEP_SOURCE_CMPSS2          = 0x0002U,  //!< CMPSS2
+    EQEP_SOURCE_CMPSS3          = 0x0003U,  //!< CMPSS3
+    EQEP_SOURCE_CMPSS4          = 0x0004U,  //!< CMPSS4
+    EQEP_SOURCE_CMPSS5          = 0x0005U,  //!< CMPSS5
+    EQEP_SOURCE_CMPSS6          = 0x0006U,  //!< CMPSS6
+    EQEP_SOURCE_CMPSS7          = 0x0007U,  //!< CMPSS7
+    EQEP_SOURCE_CMPSS8          = 0x0008U,  //!< CMPSS8
+    EQEP_SOURCE_PWMXBAR1        = 0x0009U,  //!< PWMXBAR1
+    EQEP_SOURCE_PWMXBAR2        = 0x000AU,  //!< PWMXBAR2
+    EQEP_SOURCE_PWMXBAR3        = 0x000BU,  //!< PWMXBAR3
+    EQEP_SOURCE_PWMXBAR4        = 0x000CU,  //!< PWMXBAR4
+    EQEP_SOURCE_PWMXBAR5        = 0x000DU,  //!< PWMXBAR5
+    EQEP_SOURCE_PWMXBAR6        = 0x000EU,  //!< PWMXBAR6
+    EQEP_SOURCE_PWMXBAR7        = 0x000FU,  //!< PWMXBAR7
 } EQEP_Source;
 
 //*****************************************************************************

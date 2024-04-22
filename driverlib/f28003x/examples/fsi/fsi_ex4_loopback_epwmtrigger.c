@@ -51,7 +51,7 @@
 //
 //
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -103,9 +103,9 @@
 //
 #define EXTERNAL_FSI_ENABLE     0
 
-#define EPWM_TIMER_TBPRD  1000U
-#define EPWM_CMPA_VALUE   500U
-#define EPWM_CMPB_VALUE   500U
+#define EPWM_TIMER_TBPRD  2000U
+#define EPWM_CMPA_VALUE   1950U
+#define EPWM_CMPB_VALUE   1950U
 
 //
 // Globals and Typedefs

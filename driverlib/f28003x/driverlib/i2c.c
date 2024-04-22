@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -101,6 +101,63 @@ I2C_initController(uint32_t base, uint32_t sysclkHz, uint32_t bitRate,
 
 //*****************************************************************************
 //
+// I2C_initControllerModuleFrequency
+//
+//*****************************************************************************
+void
+I2C_initControllerModuleFrequency(uint32_t base, uint32_t sysclkHz, uint32_t bitRate,
+                   I2C_DutyCycle dutyCycle, uint32_t moduleFrequency)
+{
+    uint32_t modPrescale;
+    uint32_t divider;
+    uint32_t dValue;
+
+    //
+    // Check the arguments.
+    //
+    ASSERT(I2C_isBaseValid(base));
+    ASSERT((moduleFrequency / bitRate) >  10U);
+
+    //
+    // Set the prescaler for the module clock.
+    //
+    modPrescale = (sysclkHz / moduleFrequency) - 1U;
+    HWREGH(base + I2C_O_PSC) = I2C_PSC_IPSC_M & modPrescale;
+
+    switch(modPrescale)
+    {
+        case 0U:
+            dValue = 7U;
+            break;
+
+        case 1U:
+            dValue = 6U;
+            break;
+
+        default:
+            dValue = 5U;
+            break;
+    }
+
+    //
+    // Set the divider for the time low
+    //
+    divider = (moduleFrequency / bitRate) - (2U * dValue);
+
+    if(dutyCycle == I2C_DUTYCYCLE_50)
+    {
+        HWREGH(base + I2C_O_CLKH) = divider / 2U;
+    }
+    else
+    {
+        HWREGH(base + I2C_O_CLKH) = divider / 3U;
+    }
+
+    HWREGH(base + I2C_O_CLKL) = divider - HWREGH(base + I2C_O_CLKH);
+}
+
+//*****************************************************************************
+//
 // I2C_enableInterrupt
 //
 //*****************************************************************************
@@ -115,7 +172,7 @@ I2C_enableInterrupt(uint32_t base, uint32_t intFlags)
     //
     // Enable the desired basic interrupts
     //
-    HWREGH(base + I2C_O_IER) |= (intFlags & 0x00FFU);
+    HWREGH(base + I2C_O_IER) |= (intFlags & 0xFFFFU);
 
     //
     // Enabling addressed-as-target interrupt separately because its bit is
@@ -156,7 +213,7 @@ I2C_disableInterrupt(uint32_t base, uint32_t intFlags)
     //
     // Disable the desired basic interrupts.
     //
-    HWREGH(base + I2C_O_IER) &= ~(intFlags & 0x00FFU);
+    HWREGH(base + I2C_O_IER) &= ~(intFlags & 0xFFFFU);
 
     //
     // Disabling addressed-as-target interrupt separately because its bit is
@@ -267,5 +324,26 @@ I2C_configureModuleFrequency(uint32_t base, uint32_t sysclkHz)
     // Set the prescaler for the module clock.
     //
     modPrescale = (sysclkHz / 10000000U) - 1U;
+    HWREGH(base + I2C_O_PSC) = I2C_PSC_IPSC_M & modPrescale;
+}
+//*****************************************************************************
+//
+// I2C_configureModuleClockFrequency
+//
+//*****************************************************************************
+void
+I2C_configureModuleClockFrequency(uint32_t base, uint32_t sysclkHz, uint32_t moduleFrequency)
+{
+    uint32_t modPrescale;
+
+    //
+    // Check the arguments.
+    //
+    ASSERT(I2C_isBaseValid(base));
+
+    //
+    // Set the prescaler for the module clock.
+    //
+    modPrescale = (sysclkHz / moduleFrequency) - 1U;
     HWREGH(base + I2C_O_PSC) = I2C_PSC_IPSC_M & modPrescale;
 }

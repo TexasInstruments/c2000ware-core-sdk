@@ -40,7 +40,7 @@ SECTIONS
 {
    codestart        : > BEGIN
    .TI.ramfunc      : > RAMM0
-   .text            : >> RAMLS0 | RAMLS1 | RAMM0
+   .text            : >> RAMLS0 | RAMLS1
    .cinit           : > RAMM0
    .switch          : > RAMM0
    .reset           : > RESET,                  TYPE = DSECT /* not used, */

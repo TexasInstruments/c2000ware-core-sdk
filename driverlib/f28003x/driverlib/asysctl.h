@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -127,6 +127,7 @@ typedef enum
     ASYSCTL_CMPLPMUX_SELECT_3 = 6U, //!< CMPLPMUX select 3
     ASYSCTL_CMPLPMUX_SELECT_4 = 9U  //!< CMPLPMUX select 4
 } ASysCtl_CMPLPMuxSelect;
+
 
 //*****************************************************************************
 //
@@ -702,6 +703,7 @@ static inline void ASysCtl_disableADCDACLoopback(uint32_t config)
             (HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_ADCDACLOOPBACK) & ~config) |
             (0xA5A5UL << ASYSCTL_ADCDACLOOPBACK_KEY_S);
 }
+
 
 
 

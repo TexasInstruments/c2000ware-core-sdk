@@ -10,6 +10,10 @@
 //! This program will write 8 bytes to EEPROM and read them back. The device
 //! communicates with the EEPROM via SPI and specific opcodes. This example is
 //! written to work with the SPI Serial EEPROM AT25128/256.
+//! Note: SPI character length is configured to 8 bits in SysConfig, and not
+//! changed throughout the execution of the program. Runtime updation of
+//! character length when CS pin is not controlled by the SPI module can lead
+//! to unpredictable behaviour
 //!
 //! \b External \b Connections \n
 //!  - Connect external SPI EEPROM
@@ -29,7 +33,7 @@
 //
 //
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -303,7 +307,8 @@ uint16_t SPI_readByte_EEPROM(uint32_t base, uint16_t address)
     SPI_transmitByte(base, READ);
 
     // Send EEPROM address to write data
-    SPI_transmit16Bits(base, address);
+    SPI_transmitByte(base, address);
+    SPI_transmitByte(base, address>>8);
 
     // Receive data byte from EEPROM by sending dummy byte
     RXdata = SPI_receiveByte(base, DUMMY_DATA);
@@ -323,7 +328,8 @@ uint16_t SPI_read16bits_EEPROM(uint32_t base, SPI_endianess endianness, uint16_t
     SPI_transmitByte(base, READ);
 
     // Send EEPROM address to write data
-    SPI_transmit16Bits(base, address);
+    SPI_transmitByte(base, address);
+    SPI_transmitByte(base, address>>8);
 
     // Receive data 16-bit word from EEPROM by sending two dummy bytes
     RXdata = SPI_receive16Bits(base, endianness, DUMMY_DATA, NO_DELAY);
@@ -343,7 +349,8 @@ uint32_t SPI_read24bits_EEPROM(uint32_t base, SPI_endianess endianness, uint16_t
     SPI_transmitByte(base, READ);
 
     // Send EEPROM address to write data
-    SPI_transmit16Bits(base, address);
+    SPI_transmitByte(base, address);
+    SPI_transmitByte(base, address>>8);
 
     // Receive data 24-bit word from EEPROM by sending three dummy bytes
     RXdata = SPI_receive24Bits(base, endianness, DUMMY_DATA, NO_DELAY);
@@ -363,7 +370,8 @@ uint32_t SPI_read32bits_EEPROM(uint32_t base, SPI_endianess endianness, uint16_t
     SPI_transmitByte(base, READ);
 
     // Send EEPROM address to write data
-    SPI_transmit16Bits(base, address);
+    SPI_transmitByte(base, address);
+    SPI_transmitByte(base, address>>8);
 
     // Receive data 32-bit word from EEPROM by sending four dummy bytes
     RXdata = SPI_receive32Bits(base, endianness, DUMMY_DATA, NO_DELAY);
@@ -430,7 +438,8 @@ void writeData(uint16_t address, uint16_t *data, uint16_t length, uint16_t txdly
     SPI_transmitByte(base, WRITE);
 
     // Send EEPROM address to write data
-    SPI_transmit16Bits(base, address);
+    SPI_transmitByte(base, address);
+    SPI_transmitByte(base, address>>8);
 
     // Send data to be programmed
     SPI_transmitNBytes(base, data, length, txdly);
@@ -455,7 +464,8 @@ void readData(uint16_t address, uint16_t *data, uint16_t length, uint16_t txdly)
     SPI_transmitByte(base, READ);
 
     // Send EEPROM address to write data
-    SPI_transmit16Bits(base, address);
+    SPI_transmitByte(base, address);
+    SPI_transmitByte(base, address>>8);
 
     // Receive length number of bytes
     SPI_receiveNBytes(base, data, length, txdly);

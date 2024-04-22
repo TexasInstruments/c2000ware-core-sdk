@@ -103,7 +103,7 @@ SECTIONS
 {
    codestart        : > BEGIN, ALIGN(8)
    .text            : >> FLASH_BANK0_SEC2 | FLASH_BANK0_SEC3 | FLASH_BANK0_SEC4,   ALIGN(8)
-   .cinit           : > FLASH_BANK0_SEC1,  ALIGN(8)
+   .cinit           : > FLASH_BANK0_SEC4,  ALIGN(8)
    .switch          : > FLASH_BANK0_SEC1,  ALIGN(8)
    .reset           : > RESET,                  TYPE = DSECT /* not used, */
 

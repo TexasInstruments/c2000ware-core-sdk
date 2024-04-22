@@ -61,7 +61,7 @@ extern "C" {
 
 //! \brief          Library version number formatted for numerical comparison
 //!
-#define DCL_VERSION 3040000
+#define DCL_VERSION 3050000
 
 #ifndef C2000_IEEE754_TYPES
 #define C2000_IEEE754_TYPES

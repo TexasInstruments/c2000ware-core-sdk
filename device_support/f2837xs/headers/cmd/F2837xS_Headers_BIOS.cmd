@@ -106,6 +106,7 @@ MEMORY
    SPIB                       : origin = 0x00006110, length = 0x00000010
    SPIC                       : origin = 0x00006120, length = 0x00000010
    SYNCSOC                    : origin = 0x00007940, length = 0x00000006
+   UID                        : origin = 0x000703C0, length = 0x00000010
    UPP                        : origin = 0x00006200, length = 0x00000048
    WD                         : origin = 0x00007000, length = 0x0000002B
    XBAR                       : origin = 0x00007920, length = 0x00000020
@@ -234,6 +235,7 @@ UNION run = PIEVECTTABLE
    SpibRegsFile               : > SPIB, type=NOINIT
    SpicRegsFile               : > SPIC, type=NOINIT
    SyncSocRegsFile            : > SYNCSOC, type=NOINIT
+   UidRegsFile                : > UID, type=NOINIT
    UppRegsFile                : > UPP, type=NOINIT
    WdRegsFile                 : > WD, type=NOINIT
    XbarRegsFile               : > XBAR, type=NOINIT

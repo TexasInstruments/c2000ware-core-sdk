@@ -4,7 +4,7 @@
 let Common   = system.getScript('/utilities/dcsm_tool/dcsm_syscfg/source/Common.js');
 
 /* Intro splash on GUI */
-let longDescription = 'ZONE Per LINKPOINTER configurations can be updated when a new LINKPOINTER from the available LINKPOINTERs are used.';
+let longDescription = 'Zone-Select Block configurations can be updated when a new LINKPOINTER from the available LINKPOINTERs is chosen.';
 
 
 var zoneOptions = Common.getZoneOptions();
@@ -50,7 +50,7 @@ ds.forEach(element => {
 
 function onChangeZone(inst, ui)
 {
-    if (["F28002x", "F28004x", "F2838x", "F28003x", "F280013x", "F280015x","F28P65x"].includes(Common.getDeviceName()))
+    if (["F28002x", "F28004x", "F2838x", "F28003x", "F280013x", "F280015x","F28P65x", "F28P55x"].includes(Common.getDeviceName()))
     {
         var zone = inst["zone"]
         if (zone == 1)
@@ -63,12 +63,12 @@ function onChangeZone(inst, ui)
             inst["PASSWORD1"] = "0x" + Common.getZone2Password1Mask(
                                         Common.getNextLinkPointerIndex(inst)).mask.toString(16).padStart(8, '0').toUpperCase();
             
-            if (["F2838x", "F28003x", "F280013x", "F280015x","F28P65x"].includes(Common.getDeviceName()))
+            if (["F2838x", "F28003x", "F280013x", "F280015x","F28P65x", "F28P55x"].includes(Common.getDeviceName()))
             {
                 ui["JTAGPSWDL0"].hidden = true;
                 ui["JTAGPSWDL1"].hidden = true;
             }
-            if (["F28P65x"].includes(Common.getDeviceName()))
+            if (["F28P65x", "F28P55x"].includes(Common.getDeviceName()))
             {
                 ui["MPOSTENABLE"].hidden = true;
             }
@@ -87,11 +87,19 @@ function onChangeuseZone(inst, ui)
             {
                 var g_configName = config[uiConfigIndex]["config"][g_i].name;
                 ui[g_configName].hidden = !inst.useZone;
+                if (inst.PROGRAM_ZSB == false & !g_configName.includes("LINKPOINTER") & !g_configName.includes("PROGRAM_ZSB"))
+                {
+                    ui[g_configName].hidden = true
+                }
             }
         }
         else
         {
             ui[configName].hidden = !inst.useZone;
+            if (inst.PROGRAM_ZSB == false & !configName.includes("LINKPOINTER") & !configName.includes("PROGRAM_ZSB"))
+            {
+                ui[configName].hidden = true
+            }
         }
     }
 
@@ -106,7 +114,16 @@ let config = [
     {
         name: "useZone",
         displayName : "Configure this Section",
-        description : 'Check to configure this Zone (Per LINKPOINTER options)',
+        description : 'Check this box to configure the Zone Select Block',
+        hidden      : false,
+        default     : true,
+        onChange    : onChangeuseZone
+    },
+    {
+        name        : 'PROGRAM_ZSB',
+        displayName : 'Program Zone-Select Block',
+        description : 'When this box is checked, no settings in the zone-select block will be configured. ' +
+        'Only the value in the "Next LINKPOINTER" field will be programmed, in addition to the Zone Header if it is enabled.',
         hidden      : false,
         default     : true,
         onChange    : onChangeuseZone
@@ -114,28 +131,28 @@ let config = [
     {
         name        : 'PASSWORD0',
         displayName : 'Password 0',
-        description : 'Password 0 value',
+        description : 'CSM Password 0 value',
         hidden      : false,
         default     : '0xFFFFFFFF'
     },
     {
         name        : 'PASSWORD1',
         displayName : 'Password 1',
-        description : 'Password 1 value',
+        description : 'CSM Password 1 value',
         hidden      : false,
         default     : '0xFFFFFFFF'
     },
     {
         name        : 'PASSWORD2',
         displayName : 'Password 2',
-        description : 'Password 2 value',
+        description : 'CSM Password 2 value',
         hidden      : false,
         default     : '0xFFFFFFFF'
     },
     {
         name        : 'PASSWORD3',
         displayName : 'Password 3',
-        description : 'Password 3 value',
+        description : 'CSM Password 3 value',
         hidden      : false,
         default     : '0xFFFFFFFF'
     },
@@ -153,7 +170,7 @@ let config = [
 
 var MPOST_enable_options
 
-if (["F28P65x"].includes(Common.getDeviceName()))
+if (["F28P65x", "F28P55x"].includes(Common.getDeviceName()))
 {
     MPOST_enable_options = [
         {name:0x0 , displayName: "Disable MPOST"},
@@ -161,46 +178,79 @@ if (["F28P65x"].includes(Common.getDeviceName()))
     ]
 }
 
-if (["F28P65x"].includes(Common.getDeviceName()))
+if (["F28P65x", "F28P55x"].includes(Common.getDeviceName()))
 {
     config = config.concat([   
         {
             name        : 'MPOSTENABLE',
             displayName : 'Enable MPOST',
-            description : 'This configures the Z1_DIAG register and is used along with the Run MPOST feature in the Zone Header (OTP).' +
-                          ' Both Enable MPOST and Run MPOST must be configured to use MPOST.',
+            description : 'This configures the Z1_DIAG register and is used along with the "Run MPOST" feature in the Zone Header (OTP).' +
+                          ' Both "Enable MPOST" and "Run MPOST" must be configured to use MPOST.',
             hidden      : false,
             default     : 0,
             options     : MPOST_enable_options
         }
     ])
 }
-if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName()))
+if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName()))
 {
     config = config.concat([   
         {
             name        : 'JTAGPSWDL0',
             displayName : 'JTAGPSWDL0 (JTAG Password)',
-            description : 'JTAGPSWDL0: This is used along with the JTAGLOCK feature in the Zone Header (OTP).' +
-                          ' JTAGPSWDL0/JTAGPSWDL1 can be changed multiple times since it is a per LINKPOINTER configurable.',
+            description : 'JTAG Password Low 0 (bits 0-31). This value can be updated by updating the LINKPOINTER.',
             hidden      : false,
             default     : '0xFFFFFFFF'
         },
         {
             name        : 'JTAGPSWDL1',
             displayName : 'JTAGPSWDL1 (JTAG Password)',
-            description : 'JTAGPSWDL1: This is used along with the JTAGLOCK feature in the Zone Header (OTP).' +
-                          ' JTAGPSWDL0/JTAGPSWDL1 can be changed multiple times since it is a per LINKPOINTER configurable.',
+            description : 'JTAG Password Low 1 (bits 32-63). This value can be updated by updating the LINKPOINTER.',
             hidden      : false,
             default     : '0x2BFFFFFF'
         },
     ])
 }
 
-if (!(["F28004x", "F28002x", "F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName())))
+if (!(["F28004x", "F28002x", "F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName())))
 {
     config = config.concat(claconfig)
 }
+
+config = config.concat({
+    name        : 'SECURE_ALL',
+    displayName : 'Secure All Resources',
+    description : 'Pressing this button will designate all securable resources as "Secured by this zone".',
+    hidden : false,
+    buttonText: "SECURE ALL",
+    onComplete: (inst) => {
+        config.forEach(configName => {
+            for(var uiConfigIndex = 1; uiConfigIndex < config.length; uiConfigIndex++)
+            {
+                var configName = config[uiConfigIndex].name;
+                if (configName.includes("GROUP_"))
+                {
+                    for(var g_i = 0; g_i < config[uiConfigIndex]["config"].length; g_i++)
+                    {
+                        var g_configName = config[uiConfigIndex]["config"][g_i].name;
+                        if ((g_configName.includes("RAM") || g_configName.includes("SECT")) && !g_configName.includes("PROGRAM_ZSB"))
+                        {
+                            inst[g_configName] = "SECURE"
+                        }
+                    }
+                }
+                else
+                {
+                    if ((configName.includes("RAM") || configName.includes("SECT")) && !configName.includes("PROGRAM_ZSB"))
+                    {
+                        inst[configName] = "SECURE"
+                    }
+                }
+            }
+        })
+    }
+})
+
 config = config.concat(dr)
 
 var flashBank0MemorySecs = [].concat(ds)
@@ -228,6 +278,15 @@ flashBank4MemorySecs.forEach(element => {
     //element = Object.assign({}, element)
     element["name"] = element["name"] + Common.getBankNames(4);
 })
+
+if ("F28P55x".includes(Common.getDeviceName()))
+{
+    var tempFlashBank4MemorySecs = []
+    for (var i = 0; i < 5; i++){
+        tempFlashBank4MemorySecs = tempFlashBank4MemorySecs.concat(flashBank4MemorySecs[i])
+    }
+    flashBank4MemorySecs = tempFlashBank4MemorySecs
+}
 
 //console.log(flashBank0MemorySecs);
 //console.log(flashBank1MemorySecs);
@@ -302,12 +361,20 @@ if ("F28004x".includes(Common.getDeviceName()))
     config.splice.apply(config, [2, 0].concat(linkPointerBank1GroupConfig));
     config = config.concat(flashBank1GroupConfig)
 }
+
 if ("F28003x".includes(Common.getDeviceName()))
 {
     config = config.concat(flashBank1GroupConfig)
     config = config.concat(flashBank2GroupConfig)
 }
 if ("F28P65x".includes(Common.getDeviceName()))
+{
+    config = config.concat(flashBank1GroupConfig)
+    config = config.concat(flashBank2GroupConfig)
+    config = config.concat(flashBank3GroupConfig)
+    config = config.concat(flashBank4GroupConfig)
+}
+if ("F28P55x".includes(Common.getDeviceName()))
 {
     config = config.concat(flashBank1GroupConfig)
     config = config.concat(flashBank2GroupConfig)
@@ -325,7 +392,7 @@ function validate(inst, vo)
 {
     var format8Hex = new RegExp(/^0x[A-F0-9]{8}$/i);
     var sequenceOf1then0 = new RegExp(/^0x1F{0,7}[EC8]{0,1}0{0,7}$/i);
-    if (["F2838x", "F28003x", "F280013x", "F280015x","F28P65x"].includes(Common.getDeviceName()))
+    if (["F2838x", "F28003x", "F280013x", "F280015x","F28P65x","F28P55x"].includes(Common.getDeviceName()))
     {
         sequenceOf1then0 = new RegExp(/^((0x00003F{0,3}[EC8]{0,1}0{0,3})|(0x00002000))$/i);
     }
@@ -341,7 +408,7 @@ function validate(inst, vo)
             Common.logError(vo, inst, passwords[password_i], 'Invalid 8 digit hex value');
         }
 
-        if (["F28002x", "F28004x", "F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName()))
+        if (["F28002x", "F28004x", "F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName()))
         {
             if (passwords[password_i] == "PASSWORD1")
             {
@@ -365,13 +432,13 @@ function validate(inst, vo)
                     ((parseInt(inst[passwords[password_i]]) & linkpointerMask)>>> 0))
                 {
                     Common.logError(vo, inst, passwords[password_i], 
-                        'This password value has a mask of 0x' + linkpointerMask.toString(16) + 
-                        ". Input a password that when the mask is applied, it does not change.");
+                        'This password value has a mask of 0x' + linkpointerMask.toString(16).toUpperCase().replace("0X","0x") + 
+                        ". For each bit in the mask that is a 0, the corresponding bit in the password must also be a 0.");
                 }
             }
         }
     }
-    if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName()))
+    if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName()))
     {
         var jtagpassword = ["JTAGPSWDL0", "JTAGPSWDL1"]
         for (var jtagpassword_i in jtagpassword)
@@ -394,8 +461,8 @@ function validate(inst, vo)
                     ((parseInt(inst[jtagpassword[jtagpassword_i]]) & linkpointerMask)>>> 0))
                     {
                         Common.logError(vo, inst, jtagpassword[jtagpassword_i], 
-                            'This password value has a mask of 0x' + linkpointerMask.toString(16) + 
-                            ". Input a password that when the mask is applied, it does not change.");
+                            'This password value has a mask of ' + linkpointerMask.toString(16).toUpperCase().replace("0X","0x") + 
+                            ". For each bit in the mask that is a 0, the corresponding bit in the password must also be a 0.");
                     }
                 }
             }
@@ -417,7 +484,7 @@ function validate(inst, vo)
     }
 
     
-    if (!(["F28002x", "F28004x", "F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName())))
+    if (!(["F28002x", "F28004x", "F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName())))
     {
         var cla_index = 0;
         for (cla_index in claconfig)
@@ -514,7 +581,7 @@ function validate(inst, vo)
             }
         }
     }
-    else if(["F28P65x"].includes(Common.getDeviceName()))
+    else if(["F28P65x","F28P55x"].includes(Common.getDeviceName()))
     {
         for (var bank_i = 0; bank_i < 5; bank_i++)
         {
@@ -542,14 +609,17 @@ function validate(inst, vo)
             var ds_index = 0;
             for (ds_index in ds)
             {
-                var zoneX_instance_obj = inst.$module.$instances[0];
-                var zoneY_instance_obj = inst.$module.$instances[1];
-                var zoneX_value = zoneX_instance_obj[ds[ds_index].name + bankName];
-                var zoneY_value = zoneY_instance_obj[ds[ds_index].name + bankName];
-
-                if (zoneX_value != "UNSECURE" && zoneY_value != "UNSECURE")
+                if ("F28P65x".includes(Common.getDeviceName()) | ds_index < 5 | bank_i < 4)
                 {
-                    Common.logError(vo, zoneX_instance_obj, ds[ds_index].name + bankName, 'This memory section is assigned to both Zone1 and Zone2');
+                    var zoneX_instance_obj = inst.$module.$instances[0];
+                    var zoneY_instance_obj = inst.$module.$instances[1];
+                    var zoneX_value = zoneX_instance_obj[ds[ds_index].name + bankName];
+                    var zoneY_value = zoneY_instance_obj[ds[ds_index].name + bankName];
+
+                    if (zoneX_value != "UNSECURE" && zoneY_value != "UNSECURE")
+                    {
+                        Common.logError(vo, zoneX_instance_obj, ds[ds_index].name + bankName, 'This memory section is assigned to both Zone1 and Zone2');
+                    }
                 }
             }
         }

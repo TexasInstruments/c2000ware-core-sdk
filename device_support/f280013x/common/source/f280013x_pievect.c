@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -106,14 +106,12 @@ const struct PIE_VECT_TABLE PieVectTableInit = {
     PIE_RESERVED_ISR,               // 3.8 - Reserved
     ECAP1_ISR,                      // 4.1 - eCAP1 Interrupt
     ECAP2_ISR,                      // 4.2 - eCAP2 Interrupt
-    ECAP3_ISR,                      // 4.3 - eCAP3 Interrupt
     PIE_RESERVED_ISR,               // 4.4 - Reserved
     PIE_RESERVED_ISR,               // 3.5 - Reserved
     PIE_RESERVED_ISR,               // 3.6 - Reserved
     PIE_RESERVED_ISR,               // 3.7 - Reserved
     PIE_RESERVED_ISR,               // 3.8 - Reserved
     EQEP1_ISR,                      // 5.1 - eQEP1 Interrupt
-    EQEP2_ISR,                      // 5.2 - eQEP2 Interrupt
     PIE_RESERVED_ISR,               // 5.3 - Reserved
     PIE_RESERVED_ISR,               // 5.4 - Reserved
     PIE_RESERVED_ISR,               // 5.5 - Reserved

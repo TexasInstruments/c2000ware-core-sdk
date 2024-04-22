@@ -118,6 +118,7 @@ let DeviceMemoryMap = [
 	{ name: "FLASH0ECC_BASE", displayName: "FLASH0ECC", baseAddress: "0x0005FB00U" },
 	{ name: "DCSMBANK0_Z1OTP_BASE", displayName: "DCSMBANK0 Z1OTP", baseAddress: "0x00078000U" },
 	{ name: "DCSMBANK0_Z2OTP_BASE", displayName: "DCSMBANK0 Z2OTP", baseAddress: "0x00078200U" },
+	{ name: "UID_BASE", displayName: "UID", baseAddress: "0x000701E8U" },
 ];
 let MxMemoryMap = [
 	{ name: "M0_RAM_BASE", displayName: "M0 RAM", baseAddress: "0x00000000U" },
@@ -339,6 +340,9 @@ let FLASH0MemoryMap = [
 let DCSMBANK0_OTPMemoryMap = [
 	{ name: "DCSMBANK0_Z1OTP_BASE", displayName: "DCSMBANK0 Z1OTP", baseAddress: "0x00078000U" },
 	{ name: "DCSMBANK0_Z2OTP_BASE", displayName: "DCSMBANK0 Z2OTP", baseAddress: "0x00078200U" },
+];
+let UIDMemoryMap = [
+	{ name: "UID_BASE", displayName: "UID", baseAddress: "0x000701E8U" },
 ]
 module.exports = {
 	MxMemoryMap: MxMemoryMap,
@@ -392,5 +396,6 @@ module.exports = {
 	TESTERRORMemoryMap: TESTERRORMemoryMap,
 	FLASH0MemoryMap: FLASH0MemoryMap,
 	DCSMBANK0_OTPMemoryMap: DCSMBANK0_OTPMemoryMap,
+	UIDMemoryMap: UIDMemoryMap,
 	DeviceMemoryMap: DeviceMemoryMap,
 }

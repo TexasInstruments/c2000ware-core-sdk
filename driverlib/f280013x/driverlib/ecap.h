@@ -6,7 +6,7 @@
 //
 //#############################################################################
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -358,8 +358,7 @@ static inline bool ECAP_isBaseValid(uint32_t base)
 {
     return(
            (base == ECAP1_BASE) ||
-           (base == ECAP2_BASE) ||
-           (base == ECAP3_BASE)
+           (base == ECAP2_BASE)
           );
 }
 #endif

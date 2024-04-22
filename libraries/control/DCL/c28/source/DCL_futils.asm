@@ -137,7 +137,7 @@ _DCL_fupdatePI:
         PUSH        XAR7                ; save XAR7
         PUSH        ST1                 ; preserve INTM
         MOVL        XAR7, @XAR4         ; XAR7 = &p
-        ADDB        XAR7, #18           ; XAR7 = &CSS
+        ADDB        XAR7, #20           ; XAR7 = &CSS
         MOVL        XAR0, *XAR7         ; XAR0 = &tpt
         MOVL        ACC, *+XAR0[4]      ; ACC = CSS.sts
         AND         ACC, #1             ; mask bit 0

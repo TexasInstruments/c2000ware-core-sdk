@@ -10,7 +10,16 @@ let Common   = system.getScript("/driverlib/Common.js");
 /* Intro splash on GUI */
 let longDescription = `Linker CMD Tool Configuration
 
-For more information on the tool visit:
+For more information on the tool visit: https://www.ti.com/lit/an/sprad49/sprad49.pdf
+
+!!Note!!
+You may add multiple instances of linker cmd file configurations. To activate one, you should either :
+- Select the active configuration under Global parameters
+- Or add a pre-defined symbol with the same name as the instance name
+
+For example: You may have one instance for RAM config (named CMD_RAM) and another for Flash config (named CMD_FLASH).
+In the application project, you may have different build configurations 1 for RAM with a predefined symbol "CMD_RAM" and 1 for Flash with a predefined symbol "CMD_FLASH".
+If active configuration is selected under Global Parameters, that config remains active for all the project build configurations.
 `;
 
 var availableMemoryConfig = []
@@ -319,7 +328,7 @@ var config = [
                             if(i!="ramfuncRun" && i!="codestart"){
                                 inst["sectionMemory_"+i] = memoryInfo.flashDefault_cpu2[i]
                             }
-                            else if (i="codestart"){
+                            else if (i=="codestart"){
                                 inst["sectionMemory_"+i] = memoryInfo.flashDefault_cpu2[i]
                             }
                             else
@@ -344,7 +353,7 @@ var config = [
                             {
                                 inst["sectionMemory_"+i] = memoryInfo.flashDefault[i]
                             }
-                            else if (i="codestart"){
+                            else if (i=="codestart"){
                                 inst["sectionMemory_"+i] = memoryInfo.flashDefault[i]
                             } else{
                                 ui["sectionRun_ramfunc"].hidden = false

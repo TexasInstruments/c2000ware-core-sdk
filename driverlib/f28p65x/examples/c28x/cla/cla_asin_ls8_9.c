@@ -349,7 +349,7 @@ void CLA_configClaMemory(void)
     //
     // Copy over code from FLASH to RAM
     //
-    memcpy((uint32_t *)(&Cla1ProgRunStart + 0x1E000), (uint32_t *)&Cla1ProgLoadStart,
+    memcpy((uint32_t *)((uint32_t)&Cla1ProgRunStart + (0x1E000U)), (uint32_t *)&Cla1ProgLoadStart,
            (uint32_t)&Cla1ProgLoadSize);
 #endif //_FLASH
 

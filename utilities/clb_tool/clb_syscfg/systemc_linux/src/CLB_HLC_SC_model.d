@@ -1,5 +1,5 @@
 src/CLB_HLC_SC_model.o: \
- /home/a0498187/ti/C2000Ware_5_00_00_00_Copy/utilities/clb_tool/clb_syscfg/systemc/src/CLB_HLC_SC_model.cpp \
+ /home/a0498187/Downloads/clb_tool/clb_syscfg/systemc/src/CLB_HLC_SC_model.cpp \
  /usr/bin/systemc-2.3.3/src/systemc.h /usr/bin/systemc-2.3.3/src/systemc \
  /usr/bin/systemc-2.3.3/src/sysc/kernel/sc_cmnhdr.h \
  /usr/bin/systemc-2.3.3/src/sysc/kernel/sc_externs.h \
@@ -102,8 +102,8 @@ src/CLB_HLC_SC_model.o: \
  /usr/bin/systemc-2.3.3/src/sysc/utils/sc_pvector.h \
  /usr/bin/systemc-2.3.3/src/sysc/utils/sc_string_view.h \
  /usr/bin/systemc-2.3.3/src/sysc/utils/sc_vector.h \
- /home/a0498187/ti/C2000Ware_5_00_00_00_Copy/utilities/clb_tool/clb_syscfg/systemc/include/CLB_HLC_SC_model.h \
- /home/a0498187/ti/C2000Ware_5_00_00_00_Copy/utilities/clb_tool/clb_syscfg/systemc/include/hlc_c_model_oper.h
+ /home/a0498187/Downloads/clb_tool/clb_syscfg/systemc/include/CLB_HLC_SC_model.h \
+ /home/a0498187/Downloads/clb_tool/clb_syscfg/systemc/include/hlc_c_model_oper.h
 
 /usr/bin/systemc-2.3.3/src/systemc.h:
 
@@ -311,6 +311,6 @@ src/CLB_HLC_SC_model.o: \
 
 /usr/bin/systemc-2.3.3/src/sysc/utils/sc_vector.h:
 
-/home/a0498187/ti/C2000Ware_5_00_00_00_Copy/utilities/clb_tool/clb_syscfg/systemc/include/CLB_HLC_SC_model.h:
+/home/a0498187/Downloads/clb_tool/clb_syscfg/systemc/include/CLB_HLC_SC_model.h:
 
-/home/a0498187/ti/C2000Ware_5_00_00_00_Copy/utilities/clb_tool/clb_syscfg/systemc/include/hlc_c_model_oper.h:
+/home/a0498187/Downloads/clb_tool/clb_syscfg/systemc/include/hlc_c_model_oper.h:

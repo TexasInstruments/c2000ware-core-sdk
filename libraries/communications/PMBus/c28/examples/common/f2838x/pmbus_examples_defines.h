@@ -7,7 +7,7 @@
 //###########################################################################
 //
 //
-// $Copyright: Copyright (C) 2015-2023 Texas Instruments Incorporated -
+// $Copyright: Copyright (C) 2015-2024 Texas Instruments Incorporated -
 //             http://www.ti.com/ ALL RIGHTS RESERVED $
 //###########################################################################
 #ifndef F2838X_EXAMPLES_DEFINES_H

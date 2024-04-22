@@ -10,17 +10,19 @@
 void `nameOfPeripheral`_init(){
 %if (module != null)
 %{
-% 	if((["F28P65x", "F2838x"].includes(Common.getDeviceName()))){
+%   if (module.$instances[0].initClk) {
+% 	     if((["F28P65x", "F2838x"].includes(Common.getDeviceName()))){
     //
     // Set the clocking to run from the PLL at 60MHz
     //
     SysCtl_setAuxClock(DEVICE_AUXSETCLOCK_CFG_USB);
-%}
-% 	if((["F28P55x"].includes(Common.getDeviceName()))){
+%       }
+% 	    if((["F28P55x"].includes(Common.getDeviceName()))){
     //
-    // Set the clocking to run from the PLL at 50MHz
+    // Set the clocking to run from the PLL at 60MHz
     //
-    SysCtl_setUSBClockDivider(SYSCTL_USBCLK_DIV_6);
-%}
+    SysCtl_setUSBClockDivider(SYSCTL_USBCLK_DIV_5);
+%       }
+%   }
 %}
 }

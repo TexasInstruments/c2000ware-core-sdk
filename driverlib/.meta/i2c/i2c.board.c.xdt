@@ -20,24 +20,39 @@ void `instance.$name`_init(){
 	I2C_disableModule(`instance.$name`_BASE);
 		% if (instance.mode == "CONTROLLER")
 		%{
-	I2C_initController(`instance.$name`_BASE, DEVICE_SYSCLK_FREQ, `parseInt(instance.bitRate)`, `instance.duty`);
+			% if (instance.useDefaultModuleFrequency){
+	I2C_initController(`instance.$name`_BASE, DEVICE_SYSCLK_FREQ, `instance.$name`_BITRATE, `instance.duty`);
+			%} else {
+	I2C_initControllerModuleFrequency(`instance.$name`_BASE, DEVICE_SYSCLK_FREQ, `instance.$name`_BITRATE, `instance.duty`, `instance.$name`_MODULE_CLOCK_FREQUENCY)
+			%}
 	I2C_setConfig(`instance.$name`_BASE, I2C_CONTROLLER_`instance.initialMode`);
-	I2C_setTargetAddress(`instance.$name`_BASE, `instance.targetAddress`);
 			% if (instance.loopback){
 	I2C_enableLoopback(`instance.$name`_BASE);
-	I2C_setOwnAddress(`instance.$name`_BASE, `instance.ownTargetAddress`);
+	I2C_setOwnAddress(`instance.$name`_BASE, `instance.$name`_OWN_ADDRESS);
 			%} else {
 	I2C_disableLoopback(`instance.$name`_BASE);
 			%}
 		%}
 		% else{
+			% if (instance.useDefaultModuleFrequency){
 	I2C_configureModuleFrequency(`instance.$name`_BASE, DEVICE_SYSCLK_FREQ);
+			%} else {
+	I2C_configureModuleClockFrequency(`instance.$name`_BASE, DEVICE_SYSCLK_FREQ, `instance.$name`_MODULE_CLOCK_FREQUENCY);
+			%}
 	I2C_setConfig(`instance.$name`_BASE, I2C_TARGET_`instance.initialMode`);
-	I2C_setOwnAddress(`instance.$name`_BASE, `instance.ownTargetAddress`);
 		%}
+	I2C_setOwnAddress(`instance.$name`_BASE, `instance.$name`_OWN_ADDRESS);
+	I2C_setTargetAddress(`instance.$name`_BASE, `instance.$name`_TARGET_ADDRESS);
 	I2C_setBitCount(`instance.$name`_BASE, `instance.bitCount`);
 	I2C_setDataCount(`instance.$name`_BASE, `instance.dataCount`);
 	I2C_setAddressMode(`instance.$name`_BASE, `instance.addressMode`);
+		% if (instance.extendedClockStretchingSupport) {
+			% if (instance.useExtendedClockStretching) {
+	I2C_enableExtendedAutomaticClkStretchingMode(`instance.$name`_BASE);
+			% } else {
+	I2C_disableExtendedAutomaticClkStretchingMode(`instance.$name`_BASE);
+			%}
+		% }
 		% if (instance.useFifo){
 	I2C_enableFIFO(`instance.$name`_BASE);
 			% if (instance.useInterrupts){

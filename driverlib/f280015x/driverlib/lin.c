@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -136,7 +136,7 @@ LIN_initModule(uint32_t base)
     // Set Baud Rate Settings - 100MHz Device
     //
     LIN_setBaudRatePrescaler(base, 96U, 11U);
-    LIN_setMaximumBaudRate(base, 100000000U);
+    LIN_setMaximumBaudRate(base, 100000000U, 20000U);
 
     //
     // Set response field to 1 byte
@@ -163,6 +163,107 @@ LIN_initModule(uint32_t base)
 
     //
     // Finally exit SW reset and enter LIN ready state
+    //
+    LIN_exitSoftwareReset(base);
+
+    EDIS;
+}
+
+//*****************************************************************************
+//
+// LIN_initSCIModule
+//
+//*****************************************************************************
+void
+LIN_initSCIModule(uint32_t base)
+{
+    //
+    // Check the arguments.
+    //
+    ASSERT(LIN_isBaseValid(base));
+
+    EALLOW;
+
+    //
+    // Reset LIN module
+    // Release from hard reset
+    //
+    LIN_disableModule(base);
+    LIN_enableModule(base);
+
+    //
+    // Enter LIN reset state to perform configurations
+    //
+    LIN_enterSoftwareReset(base);
+
+    //
+    // Switch LIN into SCI mode
+    //
+    LIN_enableSCIMode(base);
+
+    //
+    // Set the SCI communication mode to idle line
+    //
+    LIN_setSCICommMode(base, LIN_COMM_SCI_IDLELINE);
+
+    //
+    // Module set to complete operations when halted by debugger
+    //
+    LIN_setDebugSuspendMode(base, LIN_DEBUG_COMPLETE);
+
+    //
+    // Disable Internal loopback for external communication
+    //
+    LIN_disableIntLoopback(base);
+
+    //
+    // Set SCI to transmit one stop bit
+    //
+    LIN_setSCIStopBits(base, LIN_SCI_STOP_ONE);
+
+    //
+    // Disable multi-buffer mode
+    //
+    LIN_disableMultibufferMode(base);
+
+    //
+    // Disable parity check
+    //
+    LIN_disableSCIParity(base);
+
+    //
+    // Enable transfer of data to and from the shift registers
+    //
+    LIN_enableDataTransmitter(base);
+    LIN_enableDataReceiver(base);
+
+    //
+    // Set SCI interrupts to disabled
+    //
+    LIN_disableSCIInterrupt(base, LIN_SCI_INT_ALL);
+
+    //
+    // Set Baud Rate Settings
+    //
+    LIN_setBaudRatePrescaler(base, 96U, 11U);
+
+    //
+    // Set character length as 8-bits
+    //
+    LIN_setSCICharLength(base, 8U);
+
+    //
+    // Set to 1 character in response field
+    //
+    LIN_setSCIFrameLength(base, 1U);
+
+    //
+    // Disable IODFT testing and external loopback mode
+    //
+    LIN_disableExtLoopback(base);
+
+    //
+    // Finally exit SW reset and enter ready state
     //
     LIN_exitSoftwareReset(base);
 

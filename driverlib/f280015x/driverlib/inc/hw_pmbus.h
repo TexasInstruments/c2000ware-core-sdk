@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -190,8 +190,6 @@
                                                       // in GPIO Mode
 #define PMBUS_PMBCTRL_SCL_DIR           0x20000U      // Configures direction of PMBus clock pin in
                                                       // GPIO mode
-#define PMBUS_PMBCTRL_IBIAS_A_EN        0x40000U      // PMBus Current Source A Control
-#define PMBUS_PMBCTRL_IBIAS_B_EN        0x80000U      // PMBus Current Source B Control
 #define PMBUS_PMBCTRL_CLK_LO_DIS        0x100000U     // Clock Low Timeout Disable
 #define PMBUS_PMBCTRL_SLAVE_EN          0x200000U     // PMBus Slave Enable
 #define PMBUS_PMBCTRL_MASTER_EN         0x400000U     // PMBus Master Enable

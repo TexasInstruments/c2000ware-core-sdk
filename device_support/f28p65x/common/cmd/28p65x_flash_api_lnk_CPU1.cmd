@@ -92,7 +92,7 @@ SECTIONS
    GROUP
      {
        .TI.ramfunc : 
-	  { -l FAPI_F28P65x_EABI_v3.00.01.lib}
+	  { -l FAPI_F28P65x_EABI_v3.00.02.lib}
 		      } LOAD = FLASH_BANK2,
                         RUN = RAMGS0,
                         LOAD_START(RamfuncsLoadStart),
@@ -106,7 +106,7 @@ SECTIONS
    GROUP
      {
        .TI.ramfunc : 
-	  { -l FAPI_F28P65x_EABI_v3.00.01.lib}
+	  { -l FAPI_F28P65x_EABI_v3.00.02.lib}
 		      } LOAD = FLASH_BANK2,
                         RUN = RAMGS0,
                         LOAD_START(_RamfuncsLoadStart),

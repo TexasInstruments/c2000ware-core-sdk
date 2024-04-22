@@ -48,7 +48,7 @@ if (module != null)
 		var interrupt_enable_disable = instance.enableInterrupt? "Interrupt_enable" : "Interrupt_disable";
 %%}
 	
-	// Interrupt Setings for `instance.interruptName`
+	// Interrupt Settings for `instance.interruptName`
 	Interrupt_register(`instance.interruptName`, &`interrupt_handler`);
 	`interrupt_enable_disable`(`instance.interruptName`);
 %%{
@@ -77,7 +77,7 @@ if (module_sys_err != null)
 		}
 %%}
 	
-	// Interrupt Setings for `instance.interruptName`
+	// Interrupt Settings for `instance.interruptName`
 	Interrupt_register(`instance.interruptName`, &`interrupt_handler`);
 	`interrupt_enable_disable`(`instance.interruptName`);
 % 	if (enableSysErrors.length > 0){
@@ -93,7 +93,7 @@ if (module_wake != null){
 		var interrupt_handler = instance.interruptHandler
 %%}
 	
-	// Interrupt Setings for `instance.interruptName`
+	// Interrupt Settings for `instance.interruptName`
 	Interrupt_register(`instance.interruptName`, &`interrupt_handler`);
 	`interrupt_enable_disable`(`instance.interruptName`);
 %%{

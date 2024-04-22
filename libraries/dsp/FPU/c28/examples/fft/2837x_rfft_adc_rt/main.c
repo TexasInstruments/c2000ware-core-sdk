@@ -82,7 +82,7 @@ float RFFTmagBuff[RFFT_SIZE/2+1];
 #ifdef __cplusplus
 #pragma DATA_SECTION("RFFTdata2")
 #else
-#pragma DATA_SECTION(RFFTmagBuff,"RFFTdata2")
+#pragma DATA_SECTION(RFFTphaseBuff,"RFFTdata2")
 #endif //__cplusplus
 //! \brief Phase Calculation Buffer
 //!

@@ -95,7 +95,7 @@ var device_specific_modules = [
     { moduleCategory: CATEGORY_SYSTEM , devices : ["F28002x", "F2838x", "F28003x","F28P55x", "F28P65x"], peripheralName : "CLB_INPUTXBAR", moduleFile : "/driverlib/clb_inputxbar_input.js"},
     { moduleCategory: CATEGORY_ANALOG , devices : ["F28004x", "F28P55x"], peripheralName : "PGA", moduleFile : "/driverlib/pga.js"},
     { moduleCategory: CATEGORY_SYSTEM , devices : ["F28004x", "F28002x", "F2838x", "F28003x","F28P55x", "F280013x", "F280015x", "F28P65x"], peripheralName : "DCC", moduleFile : "/driverlib/dcc.js"},
-    { moduleCategory: CATEGORY_SYSTEM , devices : ["F2837xD", "F2837xS", "F28004x", "F2838x", "F28003x","F28P55x", "F28P65x"], peripheralName : "CLA", moduleFile : "/driverlib/cla.js"},
+    { moduleCategory: CATEGORY_SYSTEM , devices : ["F2837xD", "F2837xS", "F2807x", "F28004x", "F2838x", "F28003x","F28P55x", "F28P65x"], peripheralName : "CLA", moduleFile : "/driverlib/cla.js"},
     { moduleCategory: CATEGORY_COMS   , devices : ["F28002x", "F28003x","F28P55x", "F28004x","F2807x", "F2837xS", "F2837xD", "F2838x", "F28P65x"], peripheralName : "DMA", moduleFile : "/driverlib/dma.js"},
     { moduleCategory: CATEGORY_SYSTEM , devices : ["F28002x", "F2838x", "F28003x", "F28P65x"], peripheralName : "BGCRC", moduleFile : "/driverlib/bgcrc.js"},
     { moduleCategory: CATEGORY_SYSTEM , devices : ["F28003x","F28P65x","F28P55x", "F2838x", "F28002x", "F28004x", "F2837xD", "F2837xS","F280013x","F280015x","F2807x"], peripheralName : "FLASH", moduleFile : "/driverlib/flash.js"},
@@ -303,6 +303,11 @@ exports = {
         {
             name: "/driverlib/board.opt.xdt",
             outputPath: "board.opt",
+            alwaysRun: true
+        },
+        {
+            name: "/driverlib/board.json.xdt",
+            outputPath: "board.json",
             alwaysRun: true
         },
         {

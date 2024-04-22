@@ -8,6 +8,7 @@ let DeviceMemoryMap = [
 	{ name: "CPUTIMER0_BASE", displayName: "CPUTIMER0", baseAddress: "0x00000C00U" },
 	{ name: "CPUTIMER1_BASE", displayName: "CPUTIMER1", baseAddress: "0x00000C08U" },
 	{ name: "CPUTIMER2_BASE", displayName: "CPUTIMER2", baseAddress: "0x00000C10U" },
+	{ name: "CLA1_SOFTINT_BASE", displayName: "CLA1 SOFTINT", baseAddress: "0x00000CE0U" },
 	{ name: "PIECTRL_BASE", displayName: "PIECTRL", baseAddress: "0x00000CE0U" },
 	{ name: "PIEVECTTABLE_BASE", displayName: "PIEVECTTABLE", baseAddress: "0x00000D00U" },
 	{ name: "DMA_BASE", displayName: "DMA", baseAddress: "0x00001000U" },
@@ -153,6 +154,7 @@ let DeviceMemoryMap = [
 	{ name: "FLASH0ECC_BASE", displayName: "FLASH0ECC", baseAddress: "0x0005FB00U" },
 	{ name: "DCSM_Z1OTP_BASE", displayName: "DCSM Z1OTP", baseAddress: "0x00078000U" },
 	{ name: "DCSM_Z2OTP_BASE", displayName: "DCSM Z2OTP", baseAddress: "0x00078200U" },
+	{ name: "UID_BASE", displayName: "UID", baseAddress: "0x000703C0U" },
 ];
 let MxMemoryMap = [
 	{ name: "M0_RAM_BASE", displayName: "M0 RAM", baseAddress: "0x00000000U" },
@@ -168,6 +170,9 @@ let CPUTIMERMemoryMap = [
 	{ name: "CPUTIMER0_BASE", displayName: "CPUTIMER0", baseAddress: "0x00000C00U" },
 	{ name: "CPUTIMER1_BASE", displayName: "CPUTIMER1", baseAddress: "0x00000C08U" },
 	{ name: "CPUTIMER2_BASE", displayName: "CPUTIMER2", baseAddress: "0x00000C10U" },
+];
+let CLA1SOFTINTMemoryMap = [
+	{ name: "CLA1_SOFTINT_BASE", displayName: "CLA1 SOFTINT", baseAddress: "0x00000CE0U" },
 ];
 let PIEMemoryMap = [
 	{ name: "PIECTRL_BASE", displayName: "PIECTRL", baseAddress: "0x00000CE0U" },
@@ -411,11 +416,15 @@ let FLASH0MemoryMap = [
 let DCSM_OTPMemoryMap = [
 	{ name: "DCSM_Z1OTP_BASE", displayName: "DCSM Z1OTP", baseAddress: "0x00078000U" },
 	{ name: "DCSM_Z2OTP_BASE", displayName: "DCSM Z2OTP", baseAddress: "0x00078200U" },
+];
+let UIDMemoryMap = [
+	{ name: "UID_BASE", displayName: "UID", baseAddress: "0x000703C0U" },
 ]
 module.exports = {
 	MxMemoryMap: MxMemoryMap,
 	ADCxRESULTMemoryMap: ADCxRESULTMemoryMap,
 	CPUTIMERMemoryMap: CPUTIMERMemoryMap,
+	CLA1SOFTINTMemoryMap: CLA1SOFTINTMemoryMap,
 	PIEMemoryMap: PIEMemoryMap,
 	DMAMemoryMap: DMAMemoryMap,
 	CLAMemoryMap: CLAMemoryMap,
@@ -465,5 +474,6 @@ module.exports = {
 	ROMWAITSTATEMemoryMap: ROMWAITSTATEMemoryMap,
 	FLASH0MemoryMap: FLASH0MemoryMap,
 	DCSM_OTPMemoryMap: DCSM_OTPMemoryMap,
+	UIDMemoryMap: UIDMemoryMap,
 	DeviceMemoryMap: DeviceMemoryMap,
 }

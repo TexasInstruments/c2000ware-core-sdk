@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -566,19 +566,17 @@ CAN_selectClockSource(uint32_t base, CAN_ClockSource source)
     switch(base)
     {
         case CANA_BASE:
-            HWREGH(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL2) &=
-                ~SYSCTL_CLKSRCCTL2_CANABCLKSEL_M;
-
-            HWREGH(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL2) |= ((uint16_t)source <<
-                SYSCTL_CLKSRCCTL2_CANABCLKSEL_S);
+            HWREGH(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL2) =
+                    (HWREGH(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL2) &
+                     ~SYSCTL_CLKSRCCTL2_CANABCLKSEL_M) |
+                    ((uint16_t)source << SYSCTL_CLKSRCCTL2_CANABCLKSEL_S);
             break;
 
         case CANB_BASE:
-            HWREGH(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL2) &=
-                ~SYSCTL_CLKSRCCTL2_CANBBCLKSEL_M;
-
-            HWREGH(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL2) |= ((uint16_t)source <<
-                SYSCTL_CLKSRCCTL2_CANBBCLKSEL_S);
+            HWREGH(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL2) =
+                    (HWREGH(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL2) &
+                     ~SYSCTL_CLKSRCCTL2_CANBBCLKSEL_M) |
+                    ((uint16_t)source << SYSCTL_CLKSRCCTL2_CANBBCLKSEL_S);
             break;
 
         default:
@@ -590,6 +588,7 @@ CAN_selectClockSource(uint32_t base, CAN_ClockSource source)
     }
 
     EDIS;
+    SYSCTL_CLKSRCCTL_DELAY;
 }
 
 //*****************************************************************************

@@ -37,10 +37,7 @@
         <link rel="index" title="Index"
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
-    <link rel="top" title="F28P65x API Guide" href="../index.html"/>
-        <link rel="up" title="Modules" href="index.html"/>
-        <link rel="next" title="FLASH Module" href="flash.html"/>
-        <link rel="prev" title="EQEP Module" href="eqep.html"/> 
+    <link rel="top" title="F28P65x API Guide" href="../index.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -100,48 +97,11 @@
           
             
             
-                <ul class="current">
+                <ul>
 <li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="adc.html">ADC Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="asysctl.html">ASysCtl Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bgcrc.html">BGCRC Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cla.html">CLA Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="clb.html">CLB Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cmpss.html">CMPSS Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dac.html">DAC Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dcc.html">DCC Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="dma.html">DMA Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ecap.html">ECAP Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="emif.html">EMIF Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="epwm.html">EPWM Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="eqep.html">EQEP Module</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">ESCSS Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fsi.html">FSI Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hrcap.html">HRCAP Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="hrpwm.html">HRPWM Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ipc.html">IPC Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mcan.html">MCAN Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pmbus.html">PMBUS Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sci.html">SCI Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sdfm.html">SDFM Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="spi.html">SPI Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="version.html">Version</a></li>
-<li class="toctree-l2"><a class="reference internal" href="xbar.html">XBAR Module</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Modules</a></li>
 </ul>
 
             
@@ -165,7 +125,6 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">Modules</a> &raquo;</li>
       <li>ESCSS Module</li>
       <li class="wy-breadcrumbs-aside">
       </li>
@@ -1486,8 +1445,6 @@ ESCSS_INTR_SET_MDEVICE_RESET_SET)<a class="headerlink" href="#c.ESCSS_SET_INTERR
 </dl>
 </p>
 <p>The LED Configuration Mask parameter can have the following valid options for <em>ledSelectConfig</em> can be OR’ed together:<ul class="simple">
-<li><p><strong>ESCSS_LED_CONFIG_LINKACT0</strong> - GPIO enable for LINKACT0 LED,</p></li>
-<li><p><strong>ESCSS_LED_CONFIG_LINKACT1</strong> - GPIO enable for LINKACT1 LED,</p></li>
 <li><p><strong>ESCSS_LED_CONFIG_STATE</strong> - GPIO enable for STATE LED,</p></li>
 <li><p><strong>ESCSS_LED_CONFIG_ERR</strong> - GPIO enable for ERR LED,</p></li>
 <li><p><strong>ESCSS_LED_CONFIG_RUN</strong> - GPIO enable for RUN LED.</p></li>
@@ -1514,8 +1471,6 @@ ESCSS_INTR_SET_MDEVICE_RESET_SET)<a class="headerlink" href="#c.ESCSS_SET_INTERR
 </dl>
 </p>
 <p>The LED Configuration Mask parameter can have the following valid options for <em>ledSelectConfig</em> can be OR’ed together:<ul class="simple">
-<li><p><strong>ESCSS_LED_CONFIG_LINKACT0</strong>,</p></li>
-<li><p><strong>ESCSS_LED_CONFIG_LINKACT1</strong>,</p></li>
 <li><p><strong>ESCSS_LED_CONFIG_STATE</strong>,</p></li>
 <li><p><strong>ESCSS_LED_CONFIG_ERR</strong>,</p></li>
 <li><p><strong>ESCSS_LED_CONFIG_RUN</strong>.</p></li>
@@ -1903,8 +1858,6 @@ ESCSS_INTR_SET_MDEVICE_RESET_SET)<a class="headerlink" href="#c.ESCSS_SET_INTERR
 <li><p><strong>ESCSS_SYNC0_CONFIG_C28X_PIE_EN</strong> - Connects the SYNC0 to C28x PIE Interrupt</p></li>
 <li><p><strong>ESCSS_SYNC0_CONFIG_CLA_INT_EN</strong> - Connects the SYNC0 to CLA Interrupt</p></li>
 <li><p><strong>ESCSS_SYNC0_CONFIG_C28X_DMA_EN</strong> - Connects the SYNC0 to C28x DMA Trigger</p></li>
-<li><p><strong>ESCSS_SYNC0_CONFIG_CM4_NVIC_EN</strong> - Connects the SYNC0 to CM4 NVIC Interrupt</p></li>
-<li><p><strong>ESCSS_SYNC0_CONFIG_UDMA_TRIG_EN</strong> - Connects the SYNC0 to uDMA Trigger</p></li>
 </ul>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
@@ -1931,8 +1884,6 @@ ESCSS_INTR_SET_MDEVICE_RESET_SET)<a class="headerlink" href="#c.ESCSS_SET_INTERR
 <li><p><strong>ESCSS_SYNC1_CONFIG_C28X_PIE_EN</strong> - Connects the SYNC1 to C28x PIE Interrupt</p></li>
 <li><p><strong>ESCSS_SYNC1_CONFIG_CLA_INT_EN</strong> - Connects the SYNC1 to CLA Interrupt</p></li>
 <li><p><strong>ESCSS_SYNC1_CONFIG_C28X_DMA_EN</strong> - Connects the SYNC1 to C28x DMA Trigger</p></li>
-<li><p><strong>ESCSS_SYNC1_CONFIG_CM4_NVIC_EN</strong> - Connects the SYNC1 to CM4 NVIC Interrupt</p></li>
-<li><p><strong>ESCSS_SYNC1_CONFIG_UDMA_TRIG_EN</strong> - Connects the SYNC1 to uDMA Trigger</p></li>
 </ul>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
@@ -2346,10 +2297,7 @@ Data Register Value.</p>
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="eqep.html" class="btn btn-neutral float-left" title="EQEP Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="flash.html" class="btn btn-neutral float-right" title="FLASH Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 
@@ -2357,7 +2305,7 @@ Data Register Value.</p>
     <p>
       <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
       <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
-      <span class="lastupdated">Last updated on Nov 09, 2023.
+      <span class="lastupdated">Last updated on Mar 27, 2024.
       </span></p>
   </div>
 

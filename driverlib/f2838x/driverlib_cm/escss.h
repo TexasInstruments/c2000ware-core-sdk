@@ -1303,11 +1303,18 @@ ESCSS_enableLEDOptions(uint32_t base, uint16_t ledSelectConfig)
     // Check the arguments.
     //
     ASSERT(ESCSS_isConfigBaseValid(base));
-    ASSERT((ledSelectConfig & ~(ESCSS_LED_CONFIG_LINKACT0 |
-                                ESCSS_LED_CONFIG_LINKACT1 |
-                                ESCSS_LED_CONFIG_STATE |
-                                ESCSS_LED_CONFIG_ERR |
-                                ESCSS_LED_CONFIG_RUN)) == 0U);
+    ASSERT((ledSelectConfig & ~(
+                         ESCSS_LED_CONFIG_LINKACT0                |
+                         ESCSS_LED_CONFIG_LINKACT1                |
+                         ESCSS_LED_CONFIG_STATE                   |
+                         ESCSS_LED_CONFIG_ERR                     |
+                         ESCSS_LED_CONFIG_RUN                     |
+                         ESCSS_LED_CONFIG_LINKACT0_IOPAD_SEL_M    |
+                         ESCSS_LED_CONFIG_LINKACT1_IOPAD_SEL_M    |
+                         ESCSS_LED_CONFIG_STATE_IOPAD_SEL_M       |
+                         ESCSS_LED_CONFIG_ERR_IOPAD_SEL_M         |
+                         ESCSS_LED_CONFIG_RUN_IOPAD_SEL_M
+                        )) == 0U);
 
     if((bool)true != ESCSS_isConfigurationLockEnabled(ESC_SS_CONFIG_BASE))
     {
@@ -1359,11 +1366,18 @@ ESCSS_disableLEDOptions(uint32_t base, uint16_t ledSelectConfig)
     // Check the arguments.
     //
     ASSERT(ESCSS_isConfigBaseValid(base));
-    ASSERT((ledSelectConfig & ~(ESCSS_LED_CONFIG_LINKACT0 |
-                                ESCSS_LED_CONFIG_LINKACT1 |
-                                ESCSS_LED_CONFIG_STATE |
-                                ESCSS_LED_CONFIG_ERR |
-                                ESCSS_LED_CONFIG_RUN)) == 0U);
+    ASSERT((ledSelectConfig & ~(
+                         ESCSS_LED_CONFIG_LINKACT0                |
+                         ESCSS_LED_CONFIG_LINKACT1                |
+                         ESCSS_LED_CONFIG_STATE                   |
+                         ESCSS_LED_CONFIG_ERR                     |
+                         ESCSS_LED_CONFIG_RUN                     |
+                         ESCSS_LED_CONFIG_LINKACT0_IOPAD_SEL_M    |
+                         ESCSS_LED_CONFIG_LINKACT1_IOPAD_SEL_M    |
+                         ESCSS_LED_CONFIG_STATE_IOPAD_SEL_M       |
+                         ESCSS_LED_CONFIG_ERR_IOPAD_SEL_M         |
+                         ESCSS_LED_CONFIG_RUN_IOPAD_SEL_M
+                        )) == 0U);
 
     if((bool)true != ESCSS_isConfigurationLockEnabled(ESC_SS_CONFIG_BASE))
     {

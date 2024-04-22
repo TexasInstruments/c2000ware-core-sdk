@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -563,6 +563,14 @@ volatile struct SYS_STATUS_REGS SysStatusRegs;
 #pragma DATA_SECTION(TestErrorRegs,"TestErrorRegsFile");
 #endif
 volatile struct TEST_ERROR_REGS TestErrorRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("UidRegsFile")
+#else
+#pragma DATA_SECTION(UidRegs,"UidRegsFile");
+#endif
+volatile struct UID_REGS UidRegs;
 
 //----------------------------------------
 #ifdef __cplusplus

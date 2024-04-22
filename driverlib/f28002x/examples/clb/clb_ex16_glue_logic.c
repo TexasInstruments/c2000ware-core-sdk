@@ -16,10 +16,10 @@
 //
 //
 //#############################################################################
-// $TI Release: F28004x Support Library v5.00.00.00 $
-// $Release Date: 11-17-2023 $
+// $TI Release: F28004x Support Library v5.02.00.00 $
+// $Release Date: 04-07-2024 $
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -81,13 +81,14 @@ void main(void)
 
     SysCtl_disablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
 
+    Board_init();
+
     initEPWM1();
     initEPWM2();
 
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-	SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CLB1);
 
-    Board_init();
+	SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_CLB1);
 
     initCLB1();
 
@@ -120,8 +121,8 @@ void initEPWM1()
 }
 
 
-    void initEPWM2()
-    {
+void initEPWM2()
+{
     EPWM_setTimeBasePeriod(myEPWM2_BASE, EPWM2_TIMER_TBPRD);
     EPWM_setPhaseShift(myEPWM2_BASE, 0U);
     EPWM_setTimeBaseCounter(myEPWM2_BASE, 0U);

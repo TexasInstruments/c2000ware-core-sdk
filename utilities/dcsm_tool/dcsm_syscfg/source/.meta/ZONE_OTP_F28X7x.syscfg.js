@@ -145,7 +145,7 @@ let config = [
     {
         name: "useZone",
         displayName : "Configure this Section",
-        description : 'Check to configure the header OTP values for this zone. Once you program these OTP values, you will not be able to change them.',
+        description : 'Check this box to configure the header OTP values for this zone. Once you program these OTP values, you will not be able to change them.',
         hidden      : false,
         default     : true,
         onChange    : onChangeuseZone
@@ -168,7 +168,7 @@ let config = [
     {
         name        : 'PASWDLOCK',
         displayName : 'Password Lock (PSWDLOCK)',
-        description : 'Enabling this option will block access from reading the passwords',
+        description : 'When PSWDLOCK is enabled and the Zone is locked, the CSMPSWDs will be secure. When PSWDLOCK is disabled, the CSMPSWDs will always be unsecure.',
         hidden      : false,
         default     : "DISABLE",
         options     : [
@@ -179,13 +179,22 @@ let config = [
     {
         name        : 'CRCLOCK',
         displayName : 'CRC Lock (CRCLOCK)',
-        description : "Enabling this will disable the VCU's ability to calculate a CRC value on secure memories",
+        description : "Enabling this will disable the VCU/VCRC's ability to calculate a CRC value on secure memories",
         hidden      : false,
         default     : "DISABLE",
         options     : [
             {name: "DISABLE", displayName: "Disable CRCLOCK permanently"},
             {name: "ENABLE", displayName: "Enable CRCLOCK permanently"},
         ]
+    },
+    {
+        name        : 'JTAGLOCK',
+        displayName : 'Enable JTAGLOCK',
+        description : "This feature disables JTAG access to the device. Once enabled, this feature cannot be disabled.",
+        readOnly    : false,
+        hidden      : false,
+        default     : false,
+        onChange    : onChangeuseZone
     },
     {
         name        : 'configureBoot',

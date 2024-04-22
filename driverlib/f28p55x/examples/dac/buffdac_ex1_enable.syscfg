@@ -1,0 +1,19 @@
+
+/**
+ * Import the modules used in this configuration.
+ */
+const dac  = scripting.addModule("/driverlib/dac.js", {}, false);
+const dac1 = dac.addInstance();
+const asysctl = scripting.addModule("/driverlib/asysctl.js");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+dac1.$name        = "myDAC0";
+dac1.enableOutput = true;
+dac1.referenceVoltage = "DAC_REF_ADC_VREFHI";
+dac1.gainMode         = "DAC_GAIN_TWO";
+
+asysctl.analogReference        = "INTERNAL";
+asysctl.analogReferenceVoltage = "1P65";
+

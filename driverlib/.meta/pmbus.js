@@ -25,6 +25,48 @@ var globalConfig = [
 ]
 var pmbus_fast_plus_supported_devices = ['f28p55x']
 var pmbus_fast_supported_devices = ['f28p55x', 'f28p65x', 'f2838x', 'f28002x', 'f28003x', 'f28004x', 'f280015x']
+var pmbus_zero_hold_supported_devices = ['f28p55x']
+
+var hide_pmbus_fast_plus_options = null;
+var hide_pmbus_fast_options = null;
+var hide_pmbus_zero_hold_options = null;
+var pmbus_zero_hold_support = null;
+
+function setupFlags()
+{
+    // FAST_MODE_PLUS option
+    if (pmbus_fast_plus_supported_devices.indexOf(Common.getDeviceName().toLowerCase()) === -1)
+    {
+        hide_pmbus_fast_plus_options = true;
+    }
+    else 
+    {
+        hide_pmbus_fast_plus_options = false;
+    }
+
+    // FAST_MODE option
+    if (pmbus_fast_supported_devices.indexOf(Common.getDeviceName().toLowerCase()) === -1)
+    {
+        hide_pmbus_fast_options = true;
+    }
+    else 
+    {
+        hide_pmbus_fast_options = false;
+    }
+
+    // ZERO_HOLD option
+    if (pmbus_zero_hold_supported_devices.indexOf(Common.getDeviceName().toLowerCase()) === -1)
+    {
+        hide_pmbus_zero_hold_options = true;
+        pmbus_zero_hold_support = false;
+    }
+    else 
+    {
+        hide_pmbus_zero_hold_options = false;
+        pmbus_zero_hold_support = true;
+    }
+}
+setupFlags();
 function onChangeUseInterrupts(inst, ui)
 {
     if (inst.useInterrupts)
@@ -95,12 +137,55 @@ function onChangeMode(inst, ui)
     }
 }
 
+function setupBusClock()
+{
+    let busClockOptions = [
+        { name: "PMBUS_CLOCKMODE_STANDARD", displayName : "100 KHz Clock" }
+    ];
+    if(hide_pmbus_fast_options == false)
+    {
+        busClockOptions.push(
+            { name: "PMBUS_CLOCKMODE_FAST", displayName : "400 KHz Clock"  }
+        );
+    }
+    if(hide_pmbus_fast_plus_options == false)
+    {
+        busClockOptions.push(
+            { name: "PMBUS_CLOCKMODE_FAST_PLUS", displayName : "1 MHz Clock"  },
+        );
+
+    }
+    return busClockOptions;
+}
+
 function onValidate(inst, validation) 
 { 
-	if (inst.BaudRate < 10000000 || inst.BaudRate > 20000000)
+    var baudRateLow, baudRateHigh, modeLabel;
+    if(inst.busClock != "PMBUS_CLOCKMODE_FAST_PLUS") 
+    {
+        baudRateLow = (Common.SYSCLK_getMaxMHz() * 1000000) / 32;
+        baudRateHigh = 10 * 1000000;
+
+        if(inst.busClock == "PMBUS_CLOCKMODE_STANDARD")
+        {
+            modeLabel = "Standard Mode";
+        }
+        else 
+        {
+            modeLabel = "Fast Mode";
+        }
+    }
+    else // inst.busClock == "PMBUS_CLOCKMODE_FAST_PLUS" 
+    {
+       baudRateLow = 20 * 1000000;
+       baudRateHigh = 25 * 1000000; 
+       modeLabel = "Fast Plus Mode";
+       validation.logInfo("Pinmux options are limited to GPIO supporting high speed mode", inst, "busClock");
+    }
+	if (inst.BaudRate < baudRateLow || inst.BaudRate > baudRateHigh)
     {
         validation.logError(
-            "Enter an integer for Baud Rate between 10000000(10MHz) and 20000000(20MHz)!", 
+            `Enter an integer for Baud Rate between ${baudRateLow} and ${baudRateHigh} for ${modeLabel}!`, 
             inst, "BaudRate");
     }
 	if (inst.OwnAddress < 0 || inst.OwnAddress > 0x7F)
@@ -141,18 +226,6 @@ function onValidate(inst, validation)
             "The address specified is a reserved address", 
             inst, "OwnAddress");
 	}
-    if(inst.busClock == "PMBUS_CLOCKMODE_FAST_PLUS" && pmbus_fast_plus_supported_devices.indexOf(Common.getDeviceName().toLowerCase()) === -1)
-    {
-        validation.logError(
-            `1 MHz Fast Mode Plus is only supported by following devices: ${pmbus_fast_plus_supported_devices}`,
-            inst, "busClock");
-    }
-    if(inst.busClock == "PMBUS_CLOCKMODE_FAST" && pmbus_fast_supported_devices.indexOf(Common.getDeviceName().toLowerCase()) === -1)
-    {
-        validation.logError(
-            `400 kHz Fast Mode is only supported by following devices: ${pmbus_fast_supported_devices} `,
-            inst, "busClock");
-    }
     var pinmuxQualMods = Pinmux.getGpioQualificationModInstDefinitions("PMBUS", inst)
     for (var pinmuxQualMod of pinmuxQualMods)
     {
@@ -167,7 +240,7 @@ function onValidate(inst, validation)
 let config = [
    	{
             name        : "BaudRate",
-            displayName : "Baud Rate in Hz",
+            displayName : "FSM Clock in Hz",
             description : 'desired baud rate' ,
             hidden      : false,
             default     : 10000000,
@@ -210,7 +283,7 @@ let config = [
     },
     {
         name        : "maskedAddress",
-        displayName : "Masked addresses displayed in binary, 'x' indicates don't care",
+        displayName : "Masked Address",
         description : 'Used in address detection, the mask enables acknowledgement of multiple device addresses',
         hidden      : false,
         getValue    : calcAddress,
@@ -266,7 +339,7 @@ let config = [
         name        : "ALERT_EN",
         displayName : "Alert the controller by asserting the ALERT line",
         description : 'A target PMBus can alert the controller by pulling the alert line low',
-        hidden      : true,
+        hidden      : false,
         default     : false
     },
 	{
@@ -281,8 +354,8 @@ let config = [
         name: "enablePMBus",
         displayName : "Enable PMBus",
         description : 'Enable the PMBus module',
-        hidden      : false,
-        default     : false
+        hidden      : true,
+        default     : true
     },
 	{
 	    name        : "useInterrupts",
@@ -335,18 +408,24 @@ let config = [
     },
     {
         name: "busClock",
-        displayName : "PMBus Bus Clock Frequency",
+        displayName : "PMBus Bus Clock (MHz)",
         description : 'Bus Clock Frequency',
         hidden      : false,
         default     : "PMBUS_CLOCKMODE_STANDARD",
-        options     : [
-            { name: "PMBUS_CLOCKMODE_STANDARD", displayName : "100 KHz Clock" },
-            { name: "PMBUS_CLOCKMODE_FAST", displayName : "400 KHz Clock"  },
-            { name: "PMBUS_CLOCKMODE_FAST_PLUS", displayName : "1 MHz Clock"  },
-        ]
-        
+        options     : setupBusClock() 
     },
- 
+	{
+	    name        : "useZeroHoldSupport",
+        displayName : "Use Zero Hold Time Support",
+        description : 'Enable Zero hold support instead of standard 300 ns hold',
+        hidden      : hide_pmbus_zero_hold_options,
+        default     : false
+    },
+    {
+        name        : "zeroHoldSupport",
+        default     : pmbus_zero_hold_support,
+        hidden      : true,
+    }
 ];
 
 

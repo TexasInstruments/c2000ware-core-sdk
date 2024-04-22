@@ -227,7 +227,7 @@
 #define INT_MCANA_ECC               0x00C2090BU // 9.11 - MCANSSA_ECC_CORR_PLS
 #define INT_MCANA_WAKE              0x00C3090CU // 9.12 - MCANSSA_WAKE_AND_TS_PLS
 #define INT_PMBUSA                  0x00C4090DU // 9.13 - PMBUSA  Interrupt
-#define INT_AES_SINTREQUEST         0x00C5090EU // 9.14 - AES Secure Interrupt request
+#define INT_AES_SINTREQUEST         0x00C5090EU // 9.14 - AES Interrupt
 #define INT_USBA                    0x00C6090FU // 9.15 - USBA Interrupt
 #define INT_ADCC_EVT                0x00C80A09U // 10.9 - ADCC Event Interrupt
 #define INT_ADCC2                   0x00C90A0AU // 10.10 - ADCC Interrupt 2

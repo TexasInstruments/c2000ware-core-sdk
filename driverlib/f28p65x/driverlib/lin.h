@@ -309,7 +309,7 @@ typedef enum
 typedef enum
 {
     LIN_MSG_FILTER_IDBYTE      = 0x0U,  //!< LIN Message ID Byte Filtering
-    LIN_MSG_FILTER_IDRESPONDER = 0x1U   //!< Responder Task ID Byte Filtering
+    LIN_MSG_FILTER_IDRESPONDER = 0x1U   //!< ID Responder Task Byte Filtering
 } LIN_MessageFilter;
 
 //*****************************************************************************
@@ -462,13 +462,13 @@ LIN_setLINMode(uint32_t base, LIN_LINMode mode)
 //! Set Maximum Baud Rate Prescaler
 //!
 //! \param base is the LIN module base address
-//! \param clock is the device system clock (Hz)
+//! \param vclk is the LIN VCLK (Hz)
+//! \param mbr is the desired maximum baud rate (Hz)
 //!
 //! In LIN mode only, this function is used to set the maximum baud rate
 //! prescaler used during synchronization phase of a responder module if the
-//! ADAPT bit is set. The maximum baud rate prescaler is used by the wakeup
-//! and idle timer counters for a constant 4 second expiration time relative
-//! to a 20kHz rate.
+//! ADAPT bit is set. The operating baud rate in the LIN network must be
+//! within 10% of the provided maximum baud rate.
 //!
 //! \note Use LIN_enableAutomaticBaudrate() to set the ADAPT bit and enable
 //! automatic bit rate mod detection.
@@ -477,7 +477,7 @@ LIN_setLINMode(uint32_t base, LIN_LINMode mode)
 //
 //*****************************************************************************
 static inline void
-LIN_setMaximumBaudRate(uint32_t base, uint32_t systemClock)
+LIN_setMaximumBaudRate(uint32_t base, uint32_t vclk, uint32_t mbr)
 {
     //
     // Check the arguments.
@@ -485,9 +485,15 @@ LIN_setMaximumBaudRate(uint32_t base, uint32_t systemClock)
     ASSERT(LIN_isBaseValid(base));
 
     //
+    // Calculate maximum permissible operating baud rate (within 10% of
+    // provided maximum baud rate)
+    //
+    float32_t mbrUpperLimit = (float32_t)mbr * 1.1F;
+
+    //
     // Calculate maximum baud rate prescaler
     //
-    HWREGH(base + LIN_O_MBRSR) = (uint16_t)(systemClock / 20000U);
+    HWREGH(base + LIN_O_MBRSR) = (uint16_t)(vclk / ((uint32_t)mbrUpperLimit));
 }
 
 //*****************************************************************************
@@ -3637,6 +3643,20 @@ LIN_getPinStatus(uint32_t base, LIN_PinType pin)
 //*****************************************************************************
 extern void
 LIN_initModule(uint32_t base);
+
+//*****************************************************************************
+//
+//! Initializes the SCI Driver
+//!
+//! \param base is the LIN module base address
+//!
+//! This function initializes the LIN/SCI module in SCI mode.
+//!
+//! \return None.
+//
+//*****************************************************************************
+extern void
+LIN_initSCIModule(uint32_t base);
 
 //*****************************************************************************
 //

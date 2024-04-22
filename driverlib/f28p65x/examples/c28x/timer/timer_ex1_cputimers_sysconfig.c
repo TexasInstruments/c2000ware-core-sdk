@@ -10,6 +10,11 @@
 //! This example configures CPU Timer0, 1, and 2 and increments
 //! a counter each time the timer asserts an interrupt.
 //!
+//!  \note This example project has support for migration across our C2000 
+//!  device families. If you are wanting to build this project from launchpad
+//!  or controlCARD, please specify in the .syscfg file the board you're using.
+//!  At any time you can select another device to migrate this example.
+//!
 //! \b External \b Connections \n
 //!  - None
 //!

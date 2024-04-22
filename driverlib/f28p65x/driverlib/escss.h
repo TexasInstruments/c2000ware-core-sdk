@@ -1284,8 +1284,6 @@ ESCSS_isConfigurationLockEnabled(uint32_t base)
 //!
 //! The LED Configuration Mask parameter can have the following valid options
 //! for \e ledSelectConfig can be OR'ed together:
-//! - \b ESCSS_LED_CONFIG_LINKACT0 - GPIO enable for LINKACT0 LED,
-//! - \b ESCSS_LED_CONFIG_LINKACT1 - GPIO enable for LINKACT1 LED,
 //! - \b ESCSS_LED_CONFIG_STATE - GPIO enable for STATE LED,
 //! - \b ESCSS_LED_CONFIG_ERR - GPIO enable for ERR LED,
 //! - \b ESCSS_LED_CONFIG_RUN - GPIO enable for RUN LED.
@@ -1303,11 +1301,11 @@ ESCSS_enableLEDOptions(uint32_t base, uint16_t ledSelectConfig)
     // Check the arguments.
     //
     ASSERT(ESCSS_isConfigBaseValid(base));
-    ASSERT((ledSelectConfig & ~(ESCSS_LED_CONFIG_LINKACT0 |
-                                ESCSS_LED_CONFIG_LINKACT1 |
-                                ESCSS_LED_CONFIG_STATE |
-                                ESCSS_LED_CONFIG_ERR |
-                                ESCSS_LED_CONFIG_RUN)) == 0U);
+    ASSERT((ledSelectConfig & ~(
+                         ESCSS_LED_CONFIG_STATE    |
+                         ESCSS_LED_CONFIG_ERR      |
+                         ESCSS_LED_CONFIG_RUN
+                        )) == 0U);
 
     if((bool)true != ESCSS_isConfigurationLockEnabled(ESC_SS_CONFIG_BASE))
     {
@@ -1340,8 +1338,6 @@ ESCSS_enableLEDOptions(uint32_t base, uint16_t ledSelectConfig)
 //!
 //! The LED Configuration Mask parameter can have the following valid options
 //! for \e ledSelectConfig can be OR'ed together:
-//! - \b ESCSS_LED_CONFIG_LINKACT0,
-//! - \b ESCSS_LED_CONFIG_LINKACT1,
 //! - \b ESCSS_LED_CONFIG_STATE,
 //! - \b ESCSS_LED_CONFIG_ERR,
 //! - \b ESCSS_LED_CONFIG_RUN.
@@ -1359,11 +1355,11 @@ ESCSS_disableLEDOptions(uint32_t base, uint16_t ledSelectConfig)
     // Check the arguments.
     //
     ASSERT(ESCSS_isConfigBaseValid(base));
-    ASSERT((ledSelectConfig & ~(ESCSS_LED_CONFIG_LINKACT0 |
-                                ESCSS_LED_CONFIG_LINKACT1 |
-                                ESCSS_LED_CONFIG_STATE |
-                                ESCSS_LED_CONFIG_ERR |
-                                ESCSS_LED_CONFIG_RUN)) == 0U);
+    ASSERT((ledSelectConfig & ~(
+                         ESCSS_LED_CONFIG_STATE    |
+                         ESCSS_LED_CONFIG_ERR      |
+                         ESCSS_LED_CONFIG_RUN
+                        )) == 0U);
 
     if((bool)true != ESCSS_isConfigurationLockEnabled(ESC_SS_CONFIG_BASE))
     {
@@ -2008,10 +2004,6 @@ ESCSS_disableResetToInterrupt(uint32_t base, uint16_t writeKey);
 //!                                              Interrupt
 //! - \b ESCSS_SYNC0_CONFIG_C28X_DMA_EN - Connects the SYNC0 to C28x
 //!                                              DMA Trigger
-//! - \b ESCSS_SYNC0_CONFIG_CM4_NVIC_EN - Connects the SYNC0 to CM4
-//!                                              NVIC Interrupt
-//! - \b ESCSS_SYNC0_CONFIG_UDMA_TRIG_EN - Connects the SYNC0 to uDMA
-//!                                               Trigger
 //!
 //! \return Returns \b ESCSS_API_SUCCESS if the Register Access is successful,
 //! \b ESCSS_API_FAIL if access to the Register Fails.
@@ -2040,10 +2032,6 @@ ESCSS_configureSync0Connections(uint32_t base, uint16_t connectionInterrupt,
 //!                                              Interrupt
 //! - \b ESCSS_SYNC1_CONFIG_C28X_DMA_EN - Connects the SYNC1 to C28x
 //!                                              DMA Trigger
-//! - \b ESCSS_SYNC1_CONFIG_CM4_NVIC_EN - Connects the SYNC1 to CM4
-//!                                              NVIC Interrupt
-//! - \b ESCSS_SYNC1_CONFIG_UDMA_TRIG_EN - Connects the SYNC1 to uDMA
-//!                                               Trigger
 //!
 //! \return Returns \b ESCSS_API_SUCCESS if the Register Access is successful,
 //! \b ESCSS_API_FAIL if access to the Register Fails.

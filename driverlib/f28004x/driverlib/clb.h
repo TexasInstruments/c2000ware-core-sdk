@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -1103,12 +1103,6 @@ static inline void CLB_configGlobalInputMux(uint32_t base, CLB_Inputs inID,
 //! The \e enable parameter can have one of the values from:
 //! false: Disable the respective CLB outputs
 //! true: Enable the respective CLB outputs
-//!
-//! \note Note that the 8 CLB outputs are replicated to create more output
-//!  paths. See your technical reference manual for more details.
-//!  If no further modifications are expected, then it is advised to set the
-//!  block writes bit of the MISC_ACCESS_CTRL Register. This will prevent
-//!  accidental writes.
 //!
 //! \return None.
 //

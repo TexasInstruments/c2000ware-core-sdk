@@ -1,0 +1,524 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>FLASH Module &mdash; F28P55x API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F28P55x API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="FSI Module" href="fsi.html"/>
+        <link rel="prev" title="ERAD Module" href="erad.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F28P55x API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v5.02.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="adc.html">ADC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aes.html">AES Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asysctl.html">ASysCtl Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla.html">CLA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clb.html">CLB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmpss.html">CMPSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dac.html">DAC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcc.html">DCC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dma.html">DMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ecap.html">ECAP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="epg.html">EPG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="epwm.html">EPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqep.html">EQEP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="erad.html">ERAD Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fsi.html">FSI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hrpwm.html">HRPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lin.html">LIN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcan.html">MCAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pga.html">PGA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pmbus.html">PMBUS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci.html">SCI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">SPI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version.html">Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xbar.html">XBAR Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F28P55x API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>FLASH Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="flash-module">
+<span id="flash"></span><h1>FLASH Module<a class="headerlink" href="#flash-module" title="Permalink to this headline">¶</a></h1>
+<p>The Flash driver provides functions to configure the fallback power modes and
+the active grace periods of flash banks and pump, and the pump wake-up time.
+This driver also provides functions to configure the flash wait-states,
+prefetch, cache and ECC features.  It also provides functions to access the
+Flash ECC test mode registers and the Flash ECC error status registers.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__flash__api"></span><em>group</em> <code class="sig-name descname">flash_api</code></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.FLASH_DELAY_CONFIG">
+<span class="target" id="group__flash__api_1ga1b984f8cbcb88236e6f28911516dca7c"></span><code class="sig-name descname">FLASH_DELAY_CONFIG</code> __asm(&quot; RPT #7 || NOP&quot;)<a class="headerlink" href="#c.FLASH_DELAY_CONFIG" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.FLASH_SINGLE_BIT_ECC_TEST_EN">
+<span class="target" id="group__flash__api_1gac431ec71921c91888807bcdac8c2697b"></span><code class="sig-name descname">FLASH_SINGLE_BIT_ECC_TEST_EN</code> 0x1U<a class="headerlink" href="#c.FLASH_SINGLE_BIT_ECC_TEST_EN" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.FLASH_DOUBLE_BIT_ECC_TEST_EN">
+<span class="target" id="group__flash__api_1ga8f1ca203684131e9f45084164f8df083"></span><code class="sig-name descname">FLASH_DOUBLE_BIT_ECC_TEST_EN</code> 0x3U<a class="headerlink" href="#c.FLASH_DOUBLE_BIT_ECC_TEST_EN" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv419Flash_setWaitstates8uint32_t8uint16_t">
+<span id="_CPPv319Flash_setWaitstates8uint32_t8uint16_t"></span><span id="_CPPv219Flash_setWaitstates8uint32_t8uint16_t"></span><span id="Flash_setWaitstates__uint32_t.uint16_t"></span><span class="target" id="group__flash__api_1gaeaf8c1707632e8d3e3c51e2b6f72ee05"></span>void <code class="sig-name descname">Flash_setWaitstates</code><span class="sig-paren">(</span>uint32_t <em>ctrlBase</em>, uint16_t <em>waitstates</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419Flash_setWaitstates8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the random read wait state amount.</p>
+<p><p>This function sets the number of wait states for a flash read access. The </p>
+<em>waitstates</em> parameter is a number between 0 and 15. It is <strong>important</strong> to look at your device’s datasheet for information about what the required minimum flash wait-state is for your selected SYSCLK frequency.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ctrlBase</span></code>: is the base address of the flash wrapper control registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">waitstates</span></code>: is the wait-state value.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>By default the wait state amount is configured to the maximum 15.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420Flash_enablePrefetch8uint32_t">
+<span id="_CPPv320Flash_enablePrefetch8uint32_t"></span><span id="_CPPv220Flash_enablePrefetch8uint32_t"></span><span id="Flash_enablePrefetch__uint32_t"></span><span class="target" id="group__flash__api_1gabbdf2cfb303a5b4cef08301ba7ad1bda"></span>void <code class="sig-name descname">Flash_enablePrefetch</code><span class="sig-paren">(</span>uint32_t <em>ctrlBase</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420Flash_enablePrefetch8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables prefetch mechanism.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ctrlBase</span></code>: is the base address of the flash wrapper control registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421Flash_disablePrefetch8uint32_t">
+<span id="_CPPv321Flash_disablePrefetch8uint32_t"></span><span id="_CPPv221Flash_disablePrefetch8uint32_t"></span><span id="Flash_disablePrefetch__uint32_t"></span><span class="target" id="group__flash__api_1ga8cb5785a86006f11ee84883f0a417e3b"></span>void <code class="sig-name descname">Flash_disablePrefetch</code><span class="sig-paren">(</span>uint32_t <em>ctrlBase</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421Flash_disablePrefetch8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables prefetch mechanism.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ctrlBase</span></code>: is the base address of the flash wrapper control registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417Flash_enableCache8uint32_t">
+<span id="_CPPv317Flash_enableCache8uint32_t"></span><span id="_CPPv217Flash_enableCache8uint32_t"></span><span id="Flash_enableCache__uint32_t"></span><span class="target" id="group__flash__api_1ga86d568ad7789cac51856e72f3dc715cf"></span>void <code class="sig-name descname">Flash_enableCache</code><span class="sig-paren">(</span>uint32_t <em>ctrlBase</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417Flash_enableCache8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables data cache.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ctrlBase</span></code>: is the base address of the flash wrapper control registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418Flash_disableCache8uint32_t">
+<span id="_CPPv318Flash_disableCache8uint32_t"></span><span id="_CPPv218Flash_disableCache8uint32_t"></span><span id="Flash_disableCache__uint32_t"></span><span class="target" id="group__flash__api_1ga17d66dc40412fe0565719d9f29c4f140"></span>void <code class="sig-name descname">Flash_disableCache</code><span class="sig-paren">(</span>uint32_t <em>ctrlBase</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418Flash_disableCache8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables data cache.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ctrlBase</span></code>: is the base address of the flash wrapper control registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417Flash_setFLWEPROT8uint32_t">
+<span id="_CPPv317Flash_setFLWEPROT8uint32_t"></span><span id="_CPPv217Flash_setFLWEPROT8uint32_t"></span><span id="Flash_setFLWEPROT__uint32_t"></span><span class="target" id="group__flash__api_1gab26b064b16eacd0e6dc6c52610c6002c"></span>void <code class="sig-name descname">Flash_setFLWEPROT</code><span class="sig-paren">(</span>uint32_t <em>ctrlBase</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417Flash_setFLWEPROT8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the FLWEPROT value of the FLPROT register.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ctrlBase</span></code>: is the base address of the flash wrapper control registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415Flash_enableECC8uint32_t">
+<span id="_CPPv315Flash_enableECC8uint32_t"></span><span id="_CPPv215Flash_enableECC8uint32_t"></span><span id="Flash_enableECC__uint32_t"></span><span class="target" id="group__flash__api_1ga4d08064a46bbd2440d8878308e740924"></span>void <code class="sig-name descname">Flash_enableECC</code><span class="sig-paren">(</span>uint32_t <em>eccBase</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415Flash_enableECC8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables flash error correction code (ECC) protection.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">eccBase</span></code>: is the base address of the flash wrapper ECC registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416Flash_disableECC8uint32_t">
+<span id="_CPPv316Flash_disableECC8uint32_t"></span><span id="_CPPv216Flash_disableECC8uint32_t"></span><span id="Flash_disableECC__uint32_t"></span><span class="target" id="group__flash__api_1ga75fd98a9d0e4e584572353fd834f6ee8"></span>void <code class="sig-name descname">Flash_disableECC</code><span class="sig-paren">(</span>uint32_t <em>eccBase</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416Flash_disableECC8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables flash error correction code (ECC) protection.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">eccBase</span></code>: is the base address of the flash wrapper ECC registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv432Flash_enableSingleBitECCTestMode8uint32_t">
+<span id="_CPPv332Flash_enableSingleBitECCTestMode8uint32_t"></span><span id="_CPPv232Flash_enableSingleBitECCTestMode8uint32_t"></span><span id="Flash_enableSingleBitECCTestMode__uint32_t"></span><span class="target" id="group__flash__api_1ga9b0624bfabb2c54c46e80fb8cb060da2"></span>void <code class="sig-name descname">Flash_enableSingleBitECCTestMode</code><span class="sig-paren">(</span>uint32_t <em>eccBase</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv432Flash_enableSingleBitECCTestMode8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables Single Bit ECC Test mode.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">eccBase</span></code>: is the base address of the flash wrapper ECC registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv432Flash_enableDoubleBitECCTestMode8uint32_t">
+<span id="_CPPv332Flash_enableDoubleBitECCTestMode8uint32_t"></span><span id="_CPPv232Flash_enableDoubleBitECCTestMode8uint32_t"></span><span id="Flash_enableDoubleBitECCTestMode__uint32_t"></span><span class="target" id="group__flash__api_1ga68a75f861d747b300499ae4622e52436"></span>void <code class="sig-name descname">Flash_enableDoubleBitECCTestMode</code><span class="sig-paren">(</span>uint32_t <em>eccBase</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv432Flash_enableDoubleBitECCTestMode8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables Double Bit ECC Test mode.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">eccBase</span></code>: is the base address of the flash wrapper ECC registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv433Flash_disableSingleBitECCTestMode8uint32_t">
+<span id="_CPPv333Flash_disableSingleBitECCTestMode8uint32_t"></span><span id="_CPPv233Flash_disableSingleBitECCTestMode8uint32_t"></span><span id="Flash_disableSingleBitECCTestMode__uint32_t"></span><span class="target" id="group__flash__api_1ga8f49b9ab79d8573bf52c544f39421189"></span>void <code class="sig-name descname">Flash_disableSingleBitECCTestMode</code><span class="sig-paren">(</span>uint32_t <em>eccBase</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433Flash_disableSingleBitECCTestMode8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables Single Bit ECC Test mode.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">eccBase</span></code>: is the base address of the flash wrapper ECC registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv433Flash_disableDoubleBitECCTestMode8uint32_t">
+<span id="_CPPv333Flash_disableDoubleBitECCTestMode8uint32_t"></span><span id="_CPPv233Flash_disableDoubleBitECCTestMode8uint32_t"></span><span id="Flash_disableDoubleBitECCTestMode__uint32_t"></span><span class="target" id="group__flash__api_1ga745320bf4ab87f1e31c70221b79aaa93"></span>void <code class="sig-name descname">Flash_disableDoubleBitECCTestMode</code><span class="sig-paren">(</span>uint32_t <em>eccBase</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433Flash_disableDoubleBitECCTestMode8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables Double Bit ECC Test mode.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">eccBase</span></code>: is the base address of the flash wrapper ECC registers.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416Flash_initModule8uint32_t8uint32_t8uint16_t">
+<span id="_CPPv316Flash_initModule8uint32_t8uint32_t8uint16_t"></span><span id="_CPPv216Flash_initModule8uint32_t8uint32_t8uint16_t"></span><span id="Flash_initModule__uint32_t.uint32_t.uint16_t"></span><span class="target" id="group__flash__api_1ga26ce567e2daf0410ce349629b70599df"></span>void <code class="sig-name descname">Flash_initModule</code><span class="sig-paren">(</span>uint32_t <em>ctrlBase</em>, uint32_t <em>eccBase</em>, uint16_t <em>waitstates</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416Flash_initModule8uint32_t8uint32_t8uint16_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Initializes the flash control registers.</p>
+<p><p>This function initializes the flash control registers. At reset bank and pump are in sleep. A flash access will power up the bank and pump automatically. This function will power up Flash bank and pump and set the fallback mode of flash and pump as active.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ctrlBase</span></code>: is the base address of the flash wrapper control registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">eccBase</span></code>: is the base address of the flash wrapper ECC registers. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">waitstates</span></code>: is the wait-state value.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>This function also sets the number of wait-states for a flash access (see <a class="reference internal" href="#group__flash__api_1gaeaf8c1707632e8d3e3c51e2b6f72ee05"><span class="std std-ref">Flash_setWaitstates()</span></a> for more details), and enables cache, the prefetch mechanism, and ECC.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>The code for this module is contained in driverlib/flash.c, with driverlib/flash.h containing the API declarations for use by applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="erad.html" class="btn btn-neutral float-left" title="ERAD Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="fsi.html" class="btn btn-neutral float-right" title="FSI Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+      <span class="lastupdated">Last updated on Mar 27, 2024.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v5.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

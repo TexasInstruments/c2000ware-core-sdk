@@ -28,7 +28,7 @@ void `instance.$name`_init(){
 		%let interruptPrefix = "SPI_INT_";
 		%var interrupts = "";
 	SPI_setConfig(`instance.$name`_BASE, DEVICE_LSPCLK_FREQ, `protocol`,
-				  `mode`, `parseInt(instance.bitRate)`, `instance.dataWidth`);
+				  `mode`, `instance.$name`_BITRATE, `instance.$name`_DATAWIDTH);
 		%if(!device_driverlib_peripheral.SPI_PTEPolarity)
 		%{
 	SPI_setPTESignalPolarity(`instance.$name`_BASE, `instance.ptePolarity`);
@@ -36,6 +36,10 @@ void `instance.$name`_init(){
 		%else
 		%{
 	SPI_setPTESignalPolarity(`instance.$name`_BASE, `instance.ptePolarity`);
+		%}
+		%if (instance.useHSMode)
+		%{
+	SPI_enableHighSpeedMode(`instance.$name`_BASE);
 		%}
 		%if (instance.useFifo)
 		%{

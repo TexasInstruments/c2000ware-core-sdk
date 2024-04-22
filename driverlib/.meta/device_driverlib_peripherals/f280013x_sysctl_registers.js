@@ -185,7 +185,7 @@ let SYSCTLRegisters = [
 			{ name: "SYSREF_LOST_MCD_EN", description: "Enable for PLL REF_CLK_LOST as MCD cause", size: "1", shift: "6", mask: "0x40" },
 		]
 	},
-	{ name: "X1CNT", description: "10-bit Counter on X1 Clock", offset: "0x30",
+	{ name: "X1CNT", description: "11-bit Counter on X1 Clock", offset: "0x30",
 		bits: [
 			{ name: "X1CNT", description: "X1 Counter", size: "11", shift: "0", mask: "0x7FF" },
 			{ name: "CLR", description: "X1 Counter Clear", size: "1", shift: "16", mask: "0x10000" },

@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -64,10 +64,8 @@
 #define EPWM6_BASE                0x00004500U
 #define EPWM7_BASE                0x00004600U
 #define EQEP1_BASE                0x00005100U
-#define EQEP2_BASE                0x00005140U
 #define ECAP1_BASE                0x00005200U
 #define ECAP2_BASE                0x00005240U
-#define ECAP3_BASE                0x00005280U
 #define CMPSS1_BASE               0x00005500U
 #define CMPSSLITE2_BASE           0x00005540U
 #define CMPSSLITE3_BASE           0x00005580U

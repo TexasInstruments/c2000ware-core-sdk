@@ -62,7 +62,7 @@ const Initilization_AGPIO_Dual_Core_Type0										= ["F28P65x"]
 
 //configuring the GPIO pins 11, 12, 13, 16, 17, 20, 21, 24, 
 // and 28 in digital mode, turn on all peripherals, and Lock VREGCTL Register for device initilization
-const Initilization_GPIO_20_21_Type1										= ["F28P55x"]
+const Initilization_GPIO_11_28										= ["F28P55x"]
 
 //
 // Available InitGPIO 
@@ -272,7 +272,7 @@ exports = {
 	Initilization_GPIO_22_23 : Initilization_GPIO_22_23,
 	Initilization_GPIO_20_21_Type0 : Initilization_GPIO_20_21_Type0,
 	Initilization_AGPIO_Dual_Core_Type0 : Initilization_AGPIO_Dual_Core_Type0,
-	Initilization_GPIO_20_21_Type1 : Initilization_GPIO_20_21_Type1,
+	Initilization_GPIO_11_28 : Initilization_GPIO_11_28,
 	Initilization_XTAL_Type0 : Initilization_XTAL_Type0,
 	Initilization_Device_initGPIO_Type0 : Initilization_Device_initGPIO_Type0,
 	InitGPIO_PortA_PortF_Type0 : InitGPIO_PortA_PortF_Type0,

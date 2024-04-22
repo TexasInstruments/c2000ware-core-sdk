@@ -108,7 +108,7 @@ function getBankNames(bank){
 
 function getLinkPointerInfo()
 {
-    if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(getDeviceName()))
+    if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(getDeviceName()))
     {
         return {
             startValue: "0x00003FFF",
@@ -196,8 +196,7 @@ function getLinkPointerConfigOptions(bank)
         {
             name        : 'CURRENT_LINKPOINTER' + bankName,
             displayName : 'Current LINKPOINTER' + dispBankName,
-            description : 'Please input the current LINKPOINTER value available'+
-                            ' at address ' + linkPointerAddressZone1 + ' for Zone1 and ' + linkPointerAddressZone2 + ' for Zone2 of the device memory.',
+            description : 'Input the current LINKPOINTER value for this zone',
             hidden      : false,
             default     : getLinkPointerInfo().startValue,
             onChange    : onChangeCurrentLinkPointer
@@ -206,10 +205,7 @@ function getLinkPointerConfigOptions(bank)
         {
             name        : 'UPDATE_LINKPOINTER' + bankName,
             displayName : 'Update the LINKPOINTER' + dispBankName,
-            description : 'Checkbox only available when the current LINKPOINTER is set to the default value.' +
-                          ' This increments the next LINKPOINTER, or leaves the default for' +
-                          ' first time programming. Uncheck this box if the LINKPOINTER value in the device memory is' + 
-                          ' set to the default value and you have not ever programmed the OTP in this device.',
+            description : 'Check to update the linkpointer. The value in the "Next LINKPOINTER" field will be programmed in USER OTP.',
             hidden      : false,
             default     : false,
             onChange    : onChangeCurrentLinkPointer
@@ -220,7 +216,7 @@ function getLinkPointerConfigOptions(bank)
             name        : 'NEXT_LINKPOINTER' + bankName,
             readOnly    : true,
             displayName : 'Next LINKPOINTER' + dispBankName,
-            description : 'The LINKPOINTER value which will be used with this update.',
+            description : 'This value will be programmed in USER OTP.',
             hidden      : false,
             default     : getLinkPointerInfo().startValue
         },
@@ -229,10 +225,11 @@ function getLinkPointerConfigOptions(bank)
             name        : 'NEXT_LINKPOINTER_OFFSET' + bankName,
             readOnly    : true,
             displayName : 'Zone Select Block (ZSB) Offset' + dispBankName,
-            description : 'The Zone Select Block (ZSB) value which will be used with this update.',
+            description : 'Starting address of the zone select block that will be programmed (relative to the beginning of USER OTP for this zone).' +
+                            ' This value is determined by the linkpointer that will be programmed.',
             hidden      : false,
             default     : '0x20'
-        },
+        }
     ]
 }
 
@@ -283,7 +280,7 @@ function getZone2Password1Mask(zsb_index){
             { zsb: 0x000783f0, mask: 0x1fffffff },
         ]
     }
-    else if (["F2838x", "F28003x", "F280013x", "F280015x","F28P65x"].includes(getDeviceName()))
+    else if (["F2838x", "F28003x", "F280013x", "F280015x","F28P65x", "F28P55x"].includes(getDeviceName()))
     {
         DEFAULT_ZONE2_PASSWORD_MASK =
         [
@@ -346,7 +343,7 @@ function getZone1Password1Mask(zsb_index){
             { zsb: 0x000781f0, mask: 0x53ffffff },
         ]
     }
-    else if (["F2838x", "F28003x", "F280013x", "F280015x","F28P65x"].includes(getDeviceName()))
+    else if (["F2838x", "F28003x", "F280013x", "F280015x","F28P65x", "F28P55x"].includes(getDeviceName()))
     {
         DEFAULT_ZONE1_PASSWORD_MASK = [
             { zsb: 0x00078020, mask: 0x4d7fffff },
@@ -383,7 +380,7 @@ function getDefaultPASSWORDLOCKValueMask(zone){
         DEFAULT_ZONE1_PASSWORDLOCK_MSW = "0x7FFFFFFF";
         DEFAULT_ZONE2_PASSWORDLOCK_MSW = "0x77FFFFFF";
     }
-    else if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(getDeviceName()))
+    else if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(getDeviceName()))
     {
         DEFAULT_ZONE1_PASSWORDLOCK_LSW = "0xFB7FFFFF";
         DEFAULT_ZONE2_PASSWORDLOCK_LSW = "0x1F7FFFFF";
@@ -400,6 +397,36 @@ function getDefaultPASSWORDLOCKValueMask(zone){
 }
 
 function getDefaultJTAGLOCKValueMask(zone){
+    if (["F28002x", "F28004x"].includes(getDeviceName()))
+    {
+        var DEFAULT_ZONE1_JTAGLOCK_LSW = "0x9FFFFFFF";
+        var DEFAULT_ZONE2_JTAGLOCK_LSW = "0xDBFFFFFF";
+        var DEFAULT_ZONE1_JTAGLOCK_MSW = "0x0FFFFFFF";
+        var DEFAULT_ZONE2_JTAGLOCK_MSW = "0x07FFFFFF";
+        if (zone == 1)
+        {
+            return [DEFAULT_ZONE1_JTAGLOCK_LSW, DEFAULT_ZONE1_JTAGLOCK_MSW]
+        }
+        else if (zone == 2)
+        {
+            return [DEFAULT_ZONE2_JTAGLOCK_LSW, DEFAULT_ZONE2_JTAGLOCK_MSW]
+        }
+    }
+    else if (["F2837xD", "F2837xS", "F2807x"].includes(getDeviceName()))
+    {
+        var DEFAULT_ZONE1_JTAGLOCK_LSW = "0xFFFFFFFF";
+        var DEFAULT_ZONE2_JTAGLOCK_LSW = "0xFFFFFFFF";
+        var DEFAULT_ZONE1_JTAGLOCK_MSW = "0xFFFFFFFF";
+        var DEFAULT_ZONE2_JTAGLOCK_MSW = "0xFFFFFFFF";
+        if (zone == 1)
+        {
+            return [DEFAULT_ZONE1_JTAGLOCK_LSW, DEFAULT_ZONE1_JTAGLOCK_MSW]
+        }
+        else if (zone == 2)
+        {
+            return [DEFAULT_ZONE2_JTAGLOCK_LSW, DEFAULT_ZONE2_JTAGLOCK_MSW]
+        }
+    }
     var DEFAULT_ZONE1_JTAGLOCK = "0xFFFF000F";
     return [DEFAULT_ZONE1_JTAGLOCK]
 }
@@ -413,7 +440,7 @@ function getDefaultJTAGPSWDHValueMask(zone){
 function getDefaultJTAGPSWDL1ValueMask(zsb_index){
     var DEFAULT_ZONE1_JTAGPSWDL1_MASK = "0x2BFFFFFF";
 
-    if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x"].includes(getDeviceName()))
+    if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(getDeviceName()))
     {
         DEFAULT_ZONE1_JTAGPSWDL1_MASK = [
             { zsb: 0x00078020, mask: 0x2bffffff },
@@ -450,7 +477,7 @@ function getDefaultCRCLOCKValueMask(zone){
         DEFAULT_ZONE1_CRCLOCK_MSW = "0x3FFFFFFF";
         DEFAULT_ZONE2_CRCLOCK_MSW = "0x37FFFFFF";
     }
-    else if (["F2838x", "F28003x", "F280013x", "F280015x","F28P65x"].includes(getDeviceName()))
+    else if (["F2838x", "F28003x", "F280013x", "F280015x","F28P65x", "F28P55x"].includes(getDeviceName()))
     {
         DEFAULT_ZONE1_CRCLOCK_LSW = "0x7FFFFFFF";
         DEFAULT_ZONE2_CRCLOCK_LSW = "0x3FFFFFFF";

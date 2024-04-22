@@ -8,7 +8,7 @@
 //
 // $Release Date:  $
 // $Copyright:
-// Copyright (C) 2014-2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2014-2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -325,6 +325,7 @@ typedef unsigned long bp_32 __attribute__((byte_peripheral));
 #include "F2807x_mcbsp.h"
 #include "F2807x_memconfig.h"
 #include "F2807x_nmiintrupt.h"          // NMI Interrupt Registers
+#include "F2807x_otp.h"
 #include "F2807x_output_xbar.h"
 #include "F2807x_piectrl.h"             // PIE Control Registers
 #include "F2807x_pievect.h"

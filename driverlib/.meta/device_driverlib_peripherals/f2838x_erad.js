@@ -64,7 +64,7 @@ let ERAD_Counter_Input_Event = [
 	{ name: "ERAD_EVENT_PIE_INT10", displayName: "EVENT PIE INT10" },
 	{ name: "ERAD_EVENT_PIE_INT11", displayName: "EVENT PIE INT11" },
 	{ name: "ERAD_EVENT_PIE_INT12", displayName: "EVENT PIE INT12" },
-	{ name: "ERAD_EVENT_TIMER1_TINT0", displayName: "EVENT TIMER1 TINT0" },
+	{ name: "ERAD_EVENT_TIMER0_TINT0", displayName: "EVENT TIMER0 TINT0" },
 	{ name: "ERAD_EVENT_TIMER1_TINT1", displayName: "EVENT TIMER1 TINT1" },
 	{ name: "ERAD_EVENT_TIMER2_TINT2", displayName: "EVENT TIMER2 TINT2" },
 	{ name: "ERAD_EVENT_CLA_INTERRUPT1", displayName: "EVENT CLA INTERRUPT1" },

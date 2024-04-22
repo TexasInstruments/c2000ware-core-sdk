@@ -2588,6 +2588,28 @@ any data from the winning master.</p>
 </dd></dl>
 
 <dl class="cpp function">
+<dt id="_CPPv427PMBus_configModuleClockMode8uint32_t8uint32_t8uint32_t15PMBus_ClockMode">
+<span id="_CPPv327PMBus_configModuleClockMode8uint32_t8uint32_t8uint32_t15PMBus_ClockMode"></span><span id="_CPPv227PMBus_configModuleClockMode8uint32_t8uint32_t8uint32_t15PMBus_ClockMode"></span><span id="PMBus_configModuleClockMode__uint32_t.uint32_t.uint32_t.PMBus_ClockMode"></span><span class="target" id="group__pmbus__api_1gaf364cddf3aca9fa4a8dc6f81bf7e9643"></span>uint32_t <code class="sig-name descname">PMBus_configModuleClockMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>moduleFrequency</em>, uint32_t <em>sysFrequency</em>, <a class="reference internal" href="#_CPPv415PMBus_ClockMode" title="PMBus_ClockMode">PMBus_ClockMode</a> <em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427PMBus_configModuleClockMode8uint32_t8uint32_t8uint32_t15PMBus_ClockMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configure the PMBus module clock</p>
+<p><p>The frequency to the PMBus module may not exceed PMBUS_MODULE_FREQ_MAX Hz, the appropriate clock divider is chosen to bring the module clock to the desired frequency - this value is then returned by the function. In the event that the desired bus frequency is unattainable, the clock divider is set to the maximum possible value</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the PMBus instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">moduleFrequency</span></code>: desired module frequency; can range from PMBUS_MODULE_FREQ_MIN Hz to PMBUS_MODULE_FREQ_MAX Hz. Please input the frequency in Hz, for example, 312500 for 312.4 kHz </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sysFrequency</span></code>: Frequency of the system clock (input to PMBus). The values may range anywhere from PMBUS_SYS_FREQ_MIN Hz to PMBUS_SYS_FREQ_MAX Hz. Please input the frequency in Hz, for example, 100000000 for 100 MHz. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: The Clock speed mode for baud rate</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>module frequency calculated from the system frequency and clock divider. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt id="_CPPv420PMBus_configBusClock8uint32_t15PMBus_ClockMode8uint32_t">
 <span id="_CPPv320PMBus_configBusClock8uint32_t15PMBus_ClockMode8uint32_t"></span><span id="_CPPv220PMBus_configBusClock8uint32_t15PMBus_ClockMode8uint32_t"></span><span id="PMBus_configBusClock__uint32_t.PMBus_ClockMode.uint32_t"></span><span class="target" id="group__pmbus__api_1ga95c484b26a43b4a955a52bc61aebbfd9"></span>bool <code class="sig-name descname">PMBus_configBusClock</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv415PMBus_ClockMode" title="PMBus_ClockMode">PMBus_ClockMode</a> <em>mode</em>, uint32_t <em>moduleFrequency</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420PMBus_configBusClock8uint32_t15PMBus_ClockMode8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Configure the bus clock by overriding the default settings</p>
@@ -2887,7 +2909,7 @@ the data byte(s).}
     <p>
       <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2021, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
       <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
-      <span class="lastupdated">Last updated on Nov 09, 2023.
+      <span class="lastupdated">Last updated on Mar 27, 2024.
       </span></p>
   </div>
 

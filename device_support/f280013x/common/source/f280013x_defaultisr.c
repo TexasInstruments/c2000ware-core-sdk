@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -897,55 +897,9 @@ interrupt void ECAP2_ISR(void)
 }
 
 //
-// 4.3 - eCAP3 Interrupt
-//
-interrupt void ECAP3_ISR(void)
-{
-    //
-    // Insert ISR Code here
-    //
-
-    //
-    // To receive more interrupts from this PIE group,
-    // acknowledge this interrupt.
-    // PieCtrlRegs.PIEACK.all = PIEACK_GROUP4;
-    //
-
-    //
-    // Next two lines for debug only to halt the processor here
-    // Remove after inserting ISR Code
-    //
-    asm ("      ESTOP0");
-    for(;;);
-}
-
-//
 // 5.1 - eQEP1 Interrupt
 //
 interrupt void EQEP1_ISR(void)
-{
-    //
-    // Insert ISR Code here
-    //
-
-    //
-    // To receive more interrupts from this PIE group,
-    // acknowledge this interrupt.
-    // PieCtrlRegs.PIEACK.all = PIEACK_GROUP5;
-    //
-
-    //
-    // Next two lines for debug only to halt the processor here
-    // Remove after inserting ISR Code
-    //
-    asm ("      ESTOP0");
-    for(;;);
-}
-
-//
-// 5.2 - eQEP2 Interrupt
-//
-interrupt void EQEP2_ISR(void)
 {
     //
     // Insert ISR Code here

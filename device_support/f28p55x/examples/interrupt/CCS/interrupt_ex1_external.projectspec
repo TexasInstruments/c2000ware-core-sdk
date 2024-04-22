@@ -1,0 +1,32 @@
+<projectSpec>
+  <project
+        name="interrupt_ex1_external"
+        device="TMS320F28P550SJ9"
+        cgtVersion="22.6.1.LTS"
+        products="C2000WARE"
+        outputFormat="ELF"
+        launchWizard="False"
+        linkerCommandFile=""
+        >
+    <configuration name="CPU1_RAM" compilerBuildOptions="--opt_level=off -I${C2000WARE_COMMON_INCLUDE} -I${C2000WARE_HEADERS_INCLUDE} -v28 -ml -mt --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu1 --define=DEBUG  --define=CPU1  --diag_warning=225  --diag_suppress=10063" linkerBuildOptions="--stack_size=0x100 --entry_point code_start" />
+    <configuration name="CPU1_FLASH" compilerBuildOptions="--opt_level=off -I${C2000WARE_COMMON_INCLUDE} -I${C2000WARE_HEADERS_INCLUDE} -v28 -ml -mt --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu1 --define=DEBUG  --define=CPU1 --define=_FLASH --diag_warning=225  --diag_suppress=10063" linkerBuildOptions="--stack_size=0x100 --entry_point code_start" />
+    <configuration name="CPU1_LAUNCHXL_RAM" compilerBuildOptions="--opt_level=off -I${C2000WARE_COMMON_INCLUDE} -I${C2000WARE_HEADERS_INCLUDE} -v28 -ml -mt --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu1 --define=DEBUG  --define=CPU1  --diag_warning=225  --diag_suppress=10063 --define=_LAUNCHXL_F28P55X" linkerBuildOptions="--stack_size=0x100 --entry_point code_start" />
+    <configuration name="CPU1_LAUNCHXL_FLASH" compilerBuildOptions="--opt_level=off -I${C2000WARE_COMMON_INCLUDE} -I${C2000WARE_HEADERS_INCLUDE} -v28 -ml -mt --cla_support=cla2 --float_support=fpu32 --tmu_support=tmu1 --define=DEBUG  --define=CPU1 --define=_FLASH --diag_warning=225  --diag_suppress=10063 --define=_LAUNCHXL_F28P55X" linkerBuildOptions="--stack_size=0x100 --entry_point code_start" />
+    <pathVariable name="C2000WARE_COMMON_INCLUDE" path="../../../common/include/" scope="project" />
+    <pathVariable name="C2000WARE_HEADERS_INCLUDE" path="../../../headers/include/" scope="project" />
+    <file action="copy" path="../../../common/source/f28p55x_codestartbranch.asm" targetDirectory="" />
+    <file action="copy" path="../../../common/source/f28p55x_defaultisr.c" targetDirectory="" />
+    <file action="copy" path="../../../common/source/f28p55x_gpio.c" targetDirectory="" />
+    <file action="copy" path="../../../common/source/f28p55x_piectrl.c" targetDirectory="" />
+    <file action="copy" path="../../../common/source/f28p55x_pievect.c" targetDirectory="" />
+    <file action="copy" path="../../../common/source/f28p55x_sysctrl.c" targetDirectory="" />
+    <file action="copy" path="../../../common/source/f28p55x_usdelay.asm" targetDirectory="" />
+    <file action="copy" path="../../../headers/cmd/f28p55x_headers_nonBIOS.cmd" targetDirectory="" />
+    <file action="copy" path="../../../headers/source/f28p55x_globalvariabledefs.c" targetDirectory="" />
+    <file action="copy" path="../../../common/targetConfigs/TMS320F28P550SJ9.ccxml" targetDirectory="targetConfigs" />
+    <file action="copy" path="../../../common/targetConfigs/TMS320F28P550SJ9_LaunchPad.ccxml" targetDirectory="targetConfigs" />
+    <file action="copy" path="../../../common/cmd/28p55x_generic_ram_lnk.cmd" targetDirectory="" applicableConfigurations="CPU1_RAM,CPU1_LAUNCHXL_RAM" />
+    <file action="copy" path="../../../common/cmd/28p55x_generic_flash_lnk.cmd" targetDirectory="" applicableConfigurations="CPU1_FLASH,CPU1_LAUNCHXL_FLASH" />
+    <file action="copy" path="../interrupt_ex1_external.c" targetDirectory="" />
+  </project>
+</projectSpec>

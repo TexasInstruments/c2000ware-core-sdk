@@ -217,15 +217,20 @@ let config = [
 function onValidate(inst, validation) 
 {
     var bitRateInt = parseInt(inst.baudRates);
+    let clockTree = Common.getClockTree();
+    let lspClk = (Common.SYSCLK_getMaxMHz()*1000000)/4;
+    if(clockTree){
+        lspClk = parseInt(parseFloat(clockTree["LSPCLK"].in)*1000000);
+    }
     var bitRateError = false;
-    if (bitRateInt < 1 || bitRateInt > 12500000)
+    if (bitRateInt < lspClk/65536 || bitRateInt > lspClk/16)
     {
         bitRateError = true;
     }
     if(bitRateError)
     {
         validation.logError(
-            "Enter an integer for baud rates between 1 and LSPCLK/16!", 
+            "Enter an integer for baud rates between LSPCLK/65536 and LSPCLK/16!", 
             inst, "baudRates");
     }
 }

@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -55,14 +55,6 @@
                                   " SUB    ACC,#1\n"                           \
                                   " BF     _SysCtl_delay, GEQ\n"               \
                                   " LRETR\n")
-
-
-//
-// Macro used for adding delay between 2 consecutive writes to CLKSRCCTL1
-// register.
-// Delay = 300 NOPs
-//
-#define SYSCTL_CLKSRCCTL1_DELAY  asm(" RPT #250 || NOP \n RPT #50 || NOP")
 
 //
 // Macro used to add wait cycles to allow load capacitors to charge
@@ -468,6 +460,7 @@ SysCtl_setClock(uint32_t config)
             EALLOW;
             HWREGH(CLKCFG_BASE + SYSCTL_O_SYSPLLCTL1) &=
                    ~SYSCTL_SYSPLLCTL1_PLLEN;
+            SYSCTL_REGWRITE_DELAY;
             EDIS;
 
             //
@@ -568,7 +561,9 @@ SysCtl_selectXTAL(void)
     // Turn on XTAL and select crystal mode
     //
     HWREGH(CLKCFG_BASE + SYSCTL_O_XTALCR) &= ~SYSCTL_XTALCR_OSCOFF;
+    SYSCTL_REGWRITE_DELAY;
     HWREGH(CLKCFG_BASE + SYSCTL_O_XTALCR) &= ~SYSCTL_XTALCR_SE;
+    SYSCTL_REGWRITE_DELAY;
     EDIS;
 
     //
@@ -584,6 +579,7 @@ SysCtl_selectXTAL(void)
     ((HWREGH(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL1) &
       (~SYSCTL_CLKSRCCTL1_OSCCLKSRCSEL_M)) |
      (SYSCTL_OSCSRC_XTAL >> SYSCTL_OSCSRC_S));
+    SYSCTL_CLKSRCCTL_DELAY;
     EDIS;
 
     //
@@ -638,7 +634,9 @@ SysCtl_selectXTALSingleEnded(void)
     //
     EALLOW;
     HWREGH(CLKCFG_BASE + SYSCTL_O_XTALCR) &= ~SYSCTL_XTALCR_OSCOFF;
+    SYSCTL_REGWRITE_DELAY;
     HWREGH(CLKCFG_BASE + SYSCTL_O_XTALCR) |= SYSCTL_XTALCR_SE;
+    SYSCTL_REGWRITE_DELAY;
     EDIS;
 
     //

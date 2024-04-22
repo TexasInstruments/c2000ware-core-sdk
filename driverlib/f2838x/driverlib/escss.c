@@ -520,9 +520,10 @@ ESCSS_configureSync0Connections(uint32_t base, uint16_t connectionInterrupt,
     ASSERT(ESCSS_isBaseValid(base));
     ASSERT((connectionInterrupt & ~(ESCSS_SYNC0_CONFIG_C28X_PIE_EN |
                                     ESCSS_SYNC0_CONFIG_CLA_INT_EN |
-                                    ESCSS_SYNC0_CONFIG_C28X_DMA_EN |
                                     ESCSS_SYNC0_CONFIG_CM4_NVIC_EN |
-                                    ESCSS_SYNC0_CONFIG_UDMA_TRIG_EN)) == 0U);
+                                    ESCSS_SYNC0_CONFIG_UDMA_TRIG_EN |
+                                    ESCSS_SYNC0_CONFIG_C28X_DMA_EN
+                                    )) == 0U);
 
 
     if((bool)true != ESCSS_isConfigurationLockEnabled(ESC_SS_CONFIG_BASE))
@@ -578,9 +579,10 @@ ESCSS_configureSync1Connections(uint32_t base, uint16_t connectionInterrupt,
     ASSERT(ESCSS_isBaseValid(base));
     ASSERT((connectionInterrupt & ~(ESCSS_SYNC1_CONFIG_C28X_PIE_EN |
                                     ESCSS_SYNC1_CONFIG_CLA_INT_EN |
-                                    ESCSS_SYNC1_CONFIG_C28X_DMA_EN |
                                     ESCSS_SYNC1_CONFIG_CM4_NVIC_EN |
-                                    ESCSS_SYNC1_CONFIG_UDMA_TRIG_EN)) == 0U);
+                                    ESCSS_SYNC1_CONFIG_UDMA_TRIG_EN |
+                                    ESCSS_SYNC1_CONFIG_C28X_DMA_EN
+                                    )) == 0U);
 
     if((bool)true != ESCSS_isConfigurationLockEnabled(ESC_SS_CONFIG_BASE))
     {

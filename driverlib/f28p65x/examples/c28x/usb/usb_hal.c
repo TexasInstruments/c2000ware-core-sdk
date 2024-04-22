@@ -58,6 +58,7 @@
 //******************************************************************************
 void USBGPIOEnable(void)
 {
+
     //
     // Set the USB DM and DP.
     //
@@ -84,7 +85,6 @@ void USBGPIOEnable(void)
     GPIO_setControllerCore(121, GPIO_CORE_CPU1);
 	GPIO_setDirectionMode(121, GPIO_DIR_MODE_OUT);
 	GPIO_writePin(121, 1);
-	
 #ifdef HOST_MODE
 	// To use the host mode capabilities on F28P65x Control Card, GPIO44 must be pulled high
     GPIO_setControllerCore(44, GPIO_CORE_CPU1);

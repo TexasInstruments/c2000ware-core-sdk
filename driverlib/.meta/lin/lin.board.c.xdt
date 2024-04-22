@@ -20,31 +20,55 @@ void `nameOfPeripheral`_init(){
 	% for(var i = 0; i < module.$instances.length; i++) {
 	    % var instance = module.$instances[i];
 void `instance.$name`_init(){
+    % if (instance.opMode == "LIN"){
     LIN_initModule(`instance.$name`_BASE);
-     % if (!instance.useDefaultLin){
+
 	//
     // Enter Software Reset State
     //
     LIN_enterSoftwareReset(`instance.$name`_BASE);
     LIN_setLINMode(`instance.$name`_BASE, `instance.linMode`);
+        % if (instance.linMode == "LIN_MODE_LIN_RESPONDER" && instance.setResponderID)
+	% {
+    LIN_setIDResponderTask(`instance.$name`_BASE, (uint16_t)(0x`instance.responderIdByte`U));
+	%}
     LIN_setCommMode(`instance.$name`_BASE, `instance.linCommMode`);
     LIN_setDebugSuspendMode(`instance.$name`_BASE, `instance.linDebugMode`);
     LIN_setChecksumType(`instance.$name`_BASE, `instance.linChecksumType`);
     LIN_setMessageFiltering(`instance.$name`_BASE, `instance.linMessageFilter`);
+    % if (instance.autoBaudRate && instance.linMode == "LIN_MODE_LIN_RESPONDER")
+	% {
+    LIN_enableAutomaticBaudrate(`instance.$name`_BASE);
+    LIN_setMaximumBaudRate(`instance.$name`_BASE, `instance.linClkValue`, `instance.mbrVal`);
+	%} else {
+	LIN_setBaudRatePrescaler(`instance.$name`_BASE, `instance.brPrescaler`U, `instance.brDivider`U);
+	%}
+    LIN_setFrameLength(`instance.$name`_BASE, `instance.linFrameLength`U);
+    LIN_setSyncFields(`instance.$name`_BASE, `instance.syncBreak`U, `instance.delimiter`U);
+    LIN_setTxMask(`instance.$name`_BASE, (uint16_t)(0x`instance.txMask`U));
+    LIN_setRxMask(`instance.$name`_BASE, (uint16_t)(0x`instance.rxMask`U));
 	% if (instance.enableParity)
 	% {
     LIN_enableParity(`instance.$name`_BASE);
 	%} else {
 	LIN_disableParity(`instance.$name`_BASE);
 	%}
+    % if (instance.enableMultibuffer)
+	% {
+    LIN_enableMultibufferMode(`instance.$name`_BASE);
+	%} else {
+	LIN_disableMultibufferMode(`instance.$name`_BASE);
+	%}
+
     //
     // Finally exit SW reset and enter LIN ready state
     //
     LIN_exitSoftwareReset(`instance.$name`_BASE);
-     %}
         % if (instance.enableLoopback){
+
     //
     // Enable LIN test mode
+    //
     	% if (instance.loopbackMode == "LIN_TEST_INTERNAL")
     	% {
     //
@@ -52,41 +76,164 @@ void `instance.$name`_init(){
     //
     LIN_enableIntLoopback(`instance.$name`_BASE);
     	%} else {
+
     //
     // Enable External Loopback mode
     //
 	LIN_enableExtLoopback(`instance.$name`_BASE, `instance.loopbackType`, `instance.analogLoopbackPath`);
     	%}
         %}
-      % if (instance.enableInterrupt){
+		%if (instance.enableInterrupt)
+		%{
+			% var interrupts = ""
+			% for (var int_index in instance.interruptFlags)
+			% {
+			%	interrupts += ((interrupts == "")?"":" | ") + instance.interruptFlags[int_index];
+			% }
+			%if (interrupts != "")
+			%{
+	LIN_enableInterrupt(`instance.$name`_BASE, `interrupts`);
+			%}
+        %{
+    		% var interrupts = ""
+			% for (var int_index in instance.interruptPriorityLine0)
+			% {
+			%	interrupts += ((interrupts == "")?"":" | ") + instance.interruptPriorityLine0[int_index];
+			% }
+			%if (interrupts != "")
+			%{ 
+
     //
-    // Enable LIN Interrupts
+    // Set the LIN interrupt priority Line 0
     //
-        % let x = String(instance.interruptFlags).split(",").join("|");
-        % if (!x) { x = "0";}
-    LIN_enableInterrupt(`instance.$name`_BASE, `x`);
-            % for (var int_index in instance.interruptLine)
-               %{
+    LIN_setInterruptLevel0(`instance.$name`_BASE, `interrupts`);
+    LIN_enableGlobalInterrupt(`instance.$name`_BASE, LIN_INTERRUPT_LINE0);
+    LIN_clearGlobalInterruptStatus(`instance.$name`_BASE, LIN_INTERRUPT_LINE0);  
+			%}
+        %}
+        %{
+
+    		% var interrupts = ""
+			% for (var int_index in instance.interruptPriorityLine1)
+			% {
+			%	interrupts += ((interrupts == "")?"":" | ") + instance.interruptPriorityLine1[int_index];
+			% }
+			%if (interrupts != "")
+			%{ 
+
     //
-    // Set the interrupt priority line
+    // Set the LIN interrupt priority Line 1
     //
-               % if (instance.interruptLine[int_index] == "LIN_INTERRUPT_LINE0")
-               %{
-               % let y = String(instance.interruptPriorityLine0).split(",").join("|");
-        	   % if (!y) { y = "LIN_INT_ALL";}
-    LIN_setInterruptLevel0(`instance.$name`_BASE, `y`);           
-               %}
-               %else if (instance.interruptLine[int_index] == "LIN_INTERRUPT_LINE1")
-               %{
-               % let y = String(instance.interruptPriorityLine1).split(",").join("|");
-        	   % if (!y) { y = "0";}
-    LIN_setInterruptLevel1(`instance.$name`_BASE, `y`);           
-               %}
-    LIN_enableGlobalInterrupt(`instance.$name`_BASE, `instance.interruptLine[int_index]`);
-    LIN_clearGlobalInterruptStatus(`instance.$name`_BASE, `instance.interruptLine[int_index]`);            
-               %}
-            %}   
-		% let instancePinmux = instance[nameOfModule];
+    LIN_setInterruptLevel1(`instance.$name`_BASE, `interrupts`);
+    LIN_enableGlobalInterrupt(`instance.$name`_BASE, LIN_INTERRUPT_LINE1);
+    LIN_clearGlobalInterruptStatus(`instance.$name`_BASE, LIN_INTERRUPT_LINE1);  
+			%}
+         %}
+        %}
+    % }
+    % else{
+    LIN_initSCIModule(`instance.$name`_BASE);
+
+	//
+    // Enter Software Reset State
+    //
+    LIN_enterSoftwareReset(`instance.$name`_BASE);
+    LIN_setSCICommMode(`instance.$name`_BASE, `instance.sciCommMode`);
+    % if (instance.sleepMode)
+	% {
+    LIN_enableSCISleepMode(`instance.$name`_BASE);
+	%}
+    LIN_setDebugSuspendMode(`instance.$name`_BASE, `instance.linDebugMode`);
+    LIN_setBaudRatePrescaler(`instance.$name`_BASE, `instance.brPrescaler`U, `instance.brDivider`U);
+    LIN_setSCIFrameLength(`instance.$name`_BASE, `instance.sciFrameLength`U);
+    LIN_setSCICharLength(`instance.$name`_BASE, `instance.sciCharLength`U);
+    LIN_setSCIStopBits(`instance.$name`_BASE, `instance.sciStopBits`);
+    % if (instance.enableSCIParity != "disabled")
+	% {
+    LIN_enableSCIParity(`instance.$name`_BASE, `instance.enableSCIParity`);
+	%} else {
+	LIN_disableSCIParity(`instance.$name`_BASE);
+	%}
+    % if (instance.enableMultibuffer)
+	% {
+    LIN_enableMultibufferMode(`instance.$name`_BASE);
+	%} else {
+	LIN_disableMultibufferMode(`instance.$name`_BASE);
+	%}
+
+    //
+    // Finally exit SW reset and enter LIN ready state
+    //
+    LIN_exitSoftwareReset(`instance.$name`_BASE);
+        % if (instance.enableLoopback){
+
+    //
+    // Enable SCI test mode
+    //
+    	% if (instance.loopbackMode == "LIN_TEST_INTERNAL")
+    	% {
+
+    //
+    // Enable Internal Loopback mode
+    //
+    LIN_enableIntLoopback(`instance.$name`_BASE);
+    	%} else {
+
+    //
+    // Enable External Loopback mode
+    //
+	LIN_enableExtLoopback(`instance.$name`_BASE, `instance.loopbackType`, `instance.analogLoopbackPath`);
+    	%}
+        %}
+        %if (instance.enableInterrupt)
+		%{
+			% var interrupts = ""
+			% for (var int_index in instance.sciInterruptFlags)
+			% {
+			%	interrupts += ((interrupts == "")?"":" | ") + instance.sciInterruptFlags[int_index];
+			% }
+			%if (interrupts != "")
+			%{
+	LIN_enableSCIInterrupt(`instance.$name`_BASE, `interrupts`);
+			%}
+        %{
+    		% var interrupts = ""
+			% for (var int_index in instance.sciInterruptPriorityLine0)
+			% {
+			%	interrupts += ((interrupts == "")?"":" | ") + instance.sciInterruptPriorityLine0[int_index];
+			% }
+			%if (interrupts != "")
+			%{ 
+
+    //
+    // Set the LIN SCI interrupt priority Line 0
+    //
+    LIN_setSCIInterruptLevel0(`instance.$name`_BASE, `interrupts`);
+    LIN_enableGlobalInterrupt(`instance.$name`_BASE, LIN_INTERRUPT_LINE0);
+    LIN_clearGlobalInterruptStatus(`instance.$name`_BASE, LIN_INTERRUPT_LINE0);  
+			%}
+         %}
+        %{
+    		% var interrupts = ""
+			% for (var int_index in instance.sciInterruptPriorityLine1)
+			% {
+			%	interrupts += ((interrupts == "")?"":" | ") + instance.sciInterruptPriorityLine1[int_index];
+			% }
+			%if (interrupts != "")
+			%{ 
+
+    //
+    // Set the LIN SCI interrupt priority Line 1
+    //
+    LIN_setSCIInterruptLevel1(`instance.$name`_BASE, `interrupts`);
+    LIN_enableGlobalInterrupt(`instance.$name`_BASE, LIN_INTERRUPT_LINE1);
+    LIN_clearGlobalInterruptStatus(`instance.$name`_BASE, LIN_INTERRUPT_LINE1);  
+			%}
+        %}
+          
+        %}  
+    % }
+        % let instancePinmux = instance[nameOfModule];
 		% let solution    = instancePinmux.$solution;
 		% let peripheral  = system.deviceData.peripherals[solution.peripheralName];
 }

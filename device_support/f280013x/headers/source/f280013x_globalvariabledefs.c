@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2023 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -246,14 +246,6 @@ volatile struct ECAP_REGS ECap2Regs;
 
 //----------------------------------------
 #ifdef __cplusplus
-#pragma DATA_SECTION("ECap3RegsFile")
-#else
-#pragma DATA_SECTION(ECap3Regs,"ECap3RegsFile");
-#endif
-volatile struct ECAP_REGS ECap3Regs;
-
-//----------------------------------------
-#ifdef __cplusplus
 #pragma DATA_SECTION("Epg1MuxRegsFile")
 #else
 #pragma DATA_SECTION(Epg1MuxRegs,"Epg1MuxRegsFile");
@@ -339,14 +331,6 @@ volatile struct EPWM_XBAR_REGS EPwmXbarRegs;
 #pragma DATA_SECTION(EQep1Regs,"EQep1RegsFile");
 #endif
 volatile struct EQEP_REGS EQep1Regs;
-
-//----------------------------------------
-#ifdef __cplusplus
-#pragma DATA_SECTION("EQep2RegsFile")
-#else
-#pragma DATA_SECTION(EQep2Regs,"EQep2RegsFile");
-#endif
-volatile struct EQEP_REGS EQep2Regs;
 
 //----------------------------------------
 #ifdef __cplusplus
@@ -515,6 +499,14 @@ volatile struct SYS_STATUS_REGS SysStatusRegs;
 #pragma DATA_SECTION(TestErrorRegs,"TestErrorRegsFile");
 #endif
 volatile struct TEST_ERROR_REGS TestErrorRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("UidRegsFile")
+#else
+#pragma DATA_SECTION(UidRegs,"UidRegsFile");
+#endif
+volatile struct UID_REGS UidRegs;
 
 //----------------------------------------
 #ifdef __cplusplus

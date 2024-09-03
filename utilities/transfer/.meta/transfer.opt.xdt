@@ -1,0 +1,14 @@
+% let transferCommon;
+% if (system.getProducts()[0].name.includes("C2000"))
+% { transferCommon = system.getScript("/utilities/transfer/transferCommon.js");
+% } else
+% { transferCommon = system.getScript("/transfer/transferCommon.js");}
+% 
+% var sdkPath = ""
+% sdkPath = transferCommon.getAbsoluteTransferPath()
+% 
+-I"`sdkPath`source/"
+% if (!transferCommon.isC2000()){
+-I"`sdkPath`source/`transferCommon.getDeviceTypeName()`"
+% }
+% 

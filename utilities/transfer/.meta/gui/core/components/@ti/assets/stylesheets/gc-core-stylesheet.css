@@ -1,0 +1,170 @@
+
+/* flex layout attribute definitions supported by the designer */
+
+[layout],
+[layout][horizontal],
+[layout][start-justified],
+[layout][start] {
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+
+    -ms-flex-pack: start;
+    -webkit-justify-content: flex-start;
+    justify-content: flex-start;
+
+    -ms-flex-align: start;
+    -webkit-align-items: flex-start;
+    align-items: flex-start;
+}
+[layout][horizontal][reverse] {
+    -ms-flex-direction: row-reverse;
+    -webkit-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+}
+[layout][vertical] {
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+[layout][vertical][reverse] {
+    -ms-flex-direction: column-reverse;
+    -webkit-flex-direction: column-reverse;
+    flex-direction: column-reverse;
+}
+[layout][center-justified] {
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+[layout][end-justified] {
+    -ms-flex-pack: end;
+    -webkit-justify-content: flex-end;
+    justify-content: flex-end;
+}
+[layout][around-justified] {
+    -ms-flex-pack: distribute;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+}
+[layout][justified] {
+    -ms-flex-pack: justify;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+}
+[layout][center] {
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+[layout][end] {
+    -ms-flex-align: end;
+    -webkit-align-items: flex-end;
+    align-items: flex-end;
+}
+[wrap] {
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
+}
+[wrap-reverse] {
+    -ms-flex-wrap: wrap-reverse;
+    -webkit-flex-wrap: wrap-reverse;
+    flex-wrap: wrap-reverse;
+}
+[layout] > * {
+    flex-shrink: 0;
+}
+[flex],
+[flex][one] {
+    -ms-flex: 1 1 0.000000001px;
+    -webkit-flex: 1;
+    flex: 1;
+    -webkit-flex-basis: 0.000000001px;
+    flex-basis: 0.000000001px;
+}
+[flex][two] {
+    -ms-flex: 2;
+    -webkit-flex: 2;
+    flex: 2;
+}
+[flex][three] {
+    -ms-flex: 3;
+    -webkit-flex: 3;
+    flex: 3;
+}
+[flex][four] {
+    -ms-flex: 4;
+    -webkit-flex: 4;
+    flex: 4;
+}
+[flex][five] {
+    -ms-flex: 5;
+    -webkit-flex: 5;
+    flex: 5;
+}
+[flex][six] {
+    -ms-flex: 6;
+    -webkit-flex: 6;
+    flex: 6;
+}
+[flex][seven] {
+    -ms-flex: 7;
+    -webkit-flex: 7;
+    flex: 7;
+}
+[flex][eight] {
+    -ms-flex: 8;
+    -webkit-flex: 8;
+    flex: 8;
+}
+[flex][nine] {
+    -ms-flex: 9;
+    -webkit-flex: 9;
+    flex: 9;
+}
+[flex][ten] {
+    -ms-flex: 10;
+    -webkit-flex: 10;
+    flex: 10;
+}
+[flex][eleven] {
+    -ms-flex: 11;
+    -webkit-flex: 11;
+    flex: 11;
+}
+[flex][twelve] {
+    -ms-flex: 12;
+    -webkit-flex: 12;
+    flex: 12;
+}
+
+html:not(.designer) *:not(#reactRoot) [hidden] {
+    display: none !important;
+}
+html:not(.designer) [nonvisible] {
+    visibility: hidden !important;
+}
+
+html.designer [keep-visible-in-designer],
+html.designer .keepVisibleInDesigner {
+    visibility: visible !important;
+}
+
+/* default designer grid lines */
+html.designer #viewport {
+    background-color: transparent !important;
+}
+html.designer body {
+    border: 3px solid #fff;
+    background-size: 10px 10px;
+    background-color: #fff;
+    background-position: top 3px left 3px;
+    background-image:
+        linear-gradient(to right, #f5f5f5 1px, transparent 1px),
+        linear-gradient(to bottom, #f5f5f5 1px, transparent 1px);
+}

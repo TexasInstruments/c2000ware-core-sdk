@@ -1,0 +1,2 @@
+function n(n){const e={get:(n,e,t)=>{let o=n[e];if(o===undefined){if(n.deviceId){const t=document.getElementById(n.deviceId);if(t){o=t[e]}}}return o}};return new Proxy(n,e)}export{n as c};
+//# sourceMappingURL=p-0c6e1a4c.js.map

@@ -199,7 +199,7 @@ ADC_setOffsetTrim(uint32_t base)
             moduleShiftVal = 0U;
             break;
         case ADCC_BASE:
-            moduleShiftVal = 1U;
+            moduleShiftVal = 2U;
             break;
         default:
             //

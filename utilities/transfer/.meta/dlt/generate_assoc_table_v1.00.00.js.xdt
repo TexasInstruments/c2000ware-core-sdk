@@ -1,0 +1,114 @@
+// Since we don't know where CCS will be installed, we must find files relative
+// to this script. To this end, we will need access to node.js's path.join function.
+const { join } = require ("path");
+const fs = require('fs');
+let astDumpFileLocation = "../../../dlt_astdump/ast_dump.txt"
+function getSourceDeclrFuncs(obj)
+{
+    obj_location = [];
+    obj.forEach((element, index) => {
+        if((obj[index]["kind"] == "FunctionDecl") && (obj[index]['inner']))
+        {
+            obj_location.push(index)
+        }
+    });
+    return obj_location;
+}
+
+function getAssocTable(elem)
+{
+    let begin_inner = elem["inner"];
+    let funcs_locations = getSourceDeclrFuncs(begin_inner);
+
+    // console.log(funcs_locations);
+    let assoc_table = [];
+    funcs_locations.forEach( (element, index) => {
+        // debugger;
+        let function_decl =  begin_inner[element];
+        let stack = [function_decl];
+        let visited_funcs = [];
+        func_name = begin_inner[element]["name"];
+        assoc_table_object = {};
+        assoc_table_object[func_name] = {"DLTAGS" : [], "DLREGS" : [], "inOrder": true, "useDLTFeature" : false};
+        while (stack.length > 0)
+        {
+            function_decl = stack.pop();
+            if (Array.isArray(function_decl))
+            {
+                function_decl.forEach( (element, index) => {
+                    if ("inner" in element)
+                    {
+                        stack.push(element);
+                    }else
+                    {
+                        if ("referencedDecl" in element && element["referencedDecl"]["name"] == "__builtin_c29_datalog_tag")
+                        {
+                            let tag_info = visited_funcs.pop();
+                            tag_value = tag_info.pop()["value"];
+                            assoc_table_object[func_name]["DLTAGS"].push(tag_value.toString(16));
+                            assoc_table_object[func_name]["useDLTFeature"] = true;
+                        }else if (("referencedDecl" in element && 
+                        (element["referencedDecl"]["name"] == "__builtin_c29_datalog_write")))
+                        {
+                            let reg_info = visited_funcs.pop();
+                            let reg_var_name = reg_info.pop();
+                            debugger;
+                            let var_name = reg_var_name["referencedDecl"]["name"];
+                            let reg_type = reg_var_name["referencedDecl"]["type"]["qualType"];
+                            reg_info_template = {
+                                [var_name] : reg_type
+                            }
+                            assoc_table_object[func_name]["DLREGS"].push(reg_info_template);
+                            assoc_table_object[func_name]["useDLTFeature"] = true;
+                        }
+                    }
+                });
+                visited_funcs.push(function_decl)
+            }            // console.log(function_decl);
+            else if (typeof(function_decl) === "object" && function_decl !== null)
+            {
+                if ("inner" in function_decl){
+                    stack.push(function_decl['inner']);
+                }
+            } 
+            if(assoc_table_object[func_name]["useDLTFeature"] == true)
+            {
+                assoc_table.push(assoc_table_object);
+            }
+        }
+    });
+    assoc_table = [...new Set(assoc_table)];
+    return assoc_table;
+}
+
+function processASTJSON(astJSON)
+{
+    let assoc_table_obj = [];
+    debugger;
+    astJSON.forEach( (elem) => {
+        assoc_table_elem = getAssocTable(elem);
+        if(assoc_table_elem.length > 0){
+            assoc_table_obj.push(assoc_table_elem);
+        }
+        
+        // debugger;
+    });
+    fs.writeFileSync('./assoc_table.json', JSON.stringify(assoc_table_obj), 'utf-8')
+    console.log("Finished creating Association Table!");
+
+}
+
+function main()
+{
+    json_data_arr = [];
+    assoc_table = {};
+    fs.readFile(join(__dirname, astDumpFileLocation), (err, data) => {
+        if (err) throw err;
+        data = data.toString().slice(0, data.length - 8) + data.toString().slice(-8).replace(",", "");
+        astJSON = JSON.parse(data);
+        processASTJSON(astJSON);
+      });
+
+}
+
+main();

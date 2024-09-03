@@ -896,11 +896,55 @@ function linPinmuxRequirements(inst)
     return [lin];
 }
 
+function spihs_filter_wrapper(devicePin, peripheralPin){
+    if (!(["F28P65x", "F2838x", "F2837xD", "F28P55x"].includes(Common.getDeviceName()))){
+        return true;
+    }
+    let filterType = true;
+    if (["F28P55x"].includes(Common.getDeviceName())){
+        filterType = false;
+    }
+    
+    if (["SPI@_PICO", "SPI@_SIMO", "SPISIMO@"].includes(peripheralPin.interfacePin.name)){
+        return spihs_filter(devicePin, peripheralPin, "PICO", filterType)
+    }
+    else if (["SPI@_POCI", "SPI@_SOMI", "SPISOMI@"].includes(peripheralPin.interfacePin.name)){
+        return spihs_filter(devicePin, peripheralPin, "POCI", filterType)
+    }
+    else if (["SPI@_PTE", "SPI@_STEn", "SPISTE@"].includes(peripheralPin.interfacePin.name)){
+        return spihs_filter(devicePin, peripheralPin, "PTE", filterType)
+    }
+    else if (["SPI@_CLK", "SPICLK@"].includes(peripheralPin.interfacePin.name)){
+        return spihs_filter(devicePin, peripheralPin, "CLK", filterType)
+    }
+    return false;
+}
 
 function spihs_filter(devicePin, peripheralPin, interfaceName, filterType){
     if(spihsPins[interfaceName][peripheralPin.peripheralName].pins.includes(devicePin.designSignalName))
         return filterType ? true : false;
     return filterType ? false : true;
+}
+
+function pmbus_fastplus_filter_wrapper(devicePin, peripheralPin){
+    if(!(["F28P55x"].includes(Common.getDeviceName()))) {
+        return true;
+    } else {
+        let filterType = true;
+        if(["PMBUS@_SDA"].includes(peripheralPin.interfacePin.name)) {
+            return pmbusFastPlusMode_filter(devicePin, peripheralPin, "SDA", filterType);
+        }
+        else if(["PMBUS@_SCL"].includes(peripheralPin.interfacePin.name)) {
+            return pmbusFastPlusMode_filter(devicePin, peripheralPin, "SCL", filterType);
+        }
+        else if(["PMBUS@_ALERT"].includes(peripheralPin.interfacePin.name)) {
+            return true;
+        }
+        else if(["PMBUS@_CTL"].includes(peripheralPin.interfacePin.name)) {
+            return true;
+        }
+        return false;
+    }
 }
 
 function pmbusFastPlusMode_filter(devicePin, peripheralPin, interfaceName, filterType){
@@ -959,30 +1003,10 @@ function spiPinmuxRequirements(inst)
                 legacyNames       : legacyInclusiveNames.legacyName,
                 displayName       : legacyInclusiveNames.inclusiveName.replace("#", "").replace("@", ""), /* GUI name */
                 interfaceNames    : [interfaceName]    /* pinmux tool name */,
-                filter            : inst.useHSMode == 0 ? ()=>{return true} : (devicePin, peripheralPin) => {
-                    if (!(["F28P65x", "F2838x", "F2837xD", "F28P55x"].includes(Common.getDeviceName()))){
-                        return true;
-                    }
-                    let filterType = true;
-                    if (["F28P55x"].includes(Common.getDeviceName())){
-                        filterType = false;
-                    }
-                    
-                    if (["SPI@_PICO", "SPI@_SIMO", "SPISIMO@"].includes(peripheralPin.interfacePin.name)){
-                        return spihs_filter(devicePin, peripheralPin, "PICO", filterType)
-                    }
-                    else if (["SPI@_POCI", "SPI@_SOMI", "SPISOMI@"].includes(peripheralPin.interfacePin.name)){
-                        return spihs_filter(devicePin, peripheralPin, "POCI", filterType)
-                    }
-                    else if (["SPI@_PTE", "SPI@_STEn", "SPISTE@"].includes(peripheralPin.interfacePin.name)){
-                        return spihs_filter(devicePin, peripheralPin, "PTE", filterType)
-                    }
-                    else if (["SPI@_CLK", "SPICLK@"].includes(peripheralPin.interfacePin.name)){
-                        return spihs_filter(devicePin, peripheralPin, "CLK", filterType)
-                    }
-                    return false;
-                }
             };
+
+            if(inst.useHSMode)
+                pt.filter = spihs_filter_wrapper
 
             resources.push(pt);
             signalTypes[pt.name] = interfaceName;
@@ -1290,77 +1314,91 @@ function eqepPinmuxRequirements(inst)
     return [eqep];
 }
 
+let soc_epwm_list = [
+    {
+        soc   : "F280013x",
+        epwm  : ["EPWM1", "EPWM2", "EPWM3", "EPWM4", "EPWM5", "EPWM6", "EPWM7"],
+        hrpwm : ["EPWM1"],
+    },
+    {
+        soc   : "F280015x",
+        epwm  : ["EPWM1", "EPWM2", "EPWM3", "EPWM4", "EPWM5", "EPWM6", "EPWM7"],
+        hrpwm : ["EPWM1","EPWM2"],
+    },
+    {
+        soc   : "F28002x",
+        epwm  : ["EPWM1", "EPWM2", "EPWM3", "EPWM4", "EPWM5", "EPWM6", "EPWM7"],
+        hrpwm : ["EPWM1", "EPWM2", "EPWM3", "EPWM4"],
+    },
+    {
+        soc   : "F28003x",
+        epwm  : ["EPWM1", "EPWM2", "EPWM3", "EPWM4", "EPWM5", "EPWM6", "EPWM7","EPWM8"],
+        hrpwm : ["EPWM1", "EPWM2", "EPWM3", "EPWM4"],
+    },
+    {
+        soc   : "F28004x",
+        epwm  : ["EPWM1", "EPWM2", "EPWM3", "EPWM4", "EPWM5", "EPWM6", "EPWM7","EPWM8"],
+        hrpwm : ["EPWM1", "EPWM2", "EPWM3", "EPWM4", "EPWM5", "EPWM6", "EPWM7","EPWM8"],
+    },
+    {
+        soc   : "F2807x",
+        epwm  : ["EPWM2", "EPWM3", "EPWM6", "EPWM7","EPWM8", "EPWM9", "EPWM10", "EPWM11"],
+        hrpwm : ["EPWM2", "EPWM3", "EPWM6", "EPWM7","EPWM8"],
+    },
+    {
+        soc   : "F2837xD",
+        epwm  : ["EPWM2", "EPWM3", "EPWM6", "EPWM7","EPWM8", "EPWM9", "EPWM10", "EPWM11"],
+        hrpwm : ["EPWM2", "EPWM3", "EPWM6", "EPWM7","EPWM8"],
+    },
+    {
+        soc   : "F2837xS",
+        epwm  : ["EPWM2", "EPWM3", "EPWM6", "EPWM7","EPWM8", "EPWM9", "EPWM10", "EPWM11"],
+        hrpwm : ["EPWM2", "EPWM3", "EPWM6", "EPWM7","EPWM8"],
+    },
+    {
+        soc   : "F2838x",
+        epwm  : ["EPWM1", "EPWM2", "EPWM3", "EPWM4", "EPWM5", "EPWM6", "EPWM7","EPWM8", "EPWM9", "EPWM10", "EPWM11", "EPWM12", "EPWM13","EPWM14", "EPWM15", "EPWM16"],
+        hrpwm : ["EPWM1", "EPWM2", "EPWM3", "EPWM4", "EPWM5", "EPWM6", "EPWM7","EPWM8"],
+    },
+    {
+        soc   : "F28P55x",
+        epwm  : ["EPWM1", "EPWM2", "EPWM3", "EPWM4", "EPWM5", "EPWM6", "EPWM7","EPWM8", "EPWM9", "EPWM10", "EPWM11", "EPWM12"],
+        hrpwm : ["EPWM1", "EPWM2", "EPWM3", "EPWM4", "EPWM5", "EPWM6"],
+    },
+    {
+        soc : "F28P65x",
+        epwm : ["EPWM1", "EPWM2", "EPWM3", "EPWM4", "EPWM5", "EPWM6", "EPWM7","EPWM8", "EPWM9", "EPWM10", "EPWM11", "EPWM12", "EPWM13","EPWM14", "EPWM15", "EPWM16", "EPWM17", "EPWM18"],
+        hrpwm : ["EPWM1", "EPWM2", "EPWM3", "EPWM4", "EPWM5", "EPWM6", "EPWM7","EPWM8", "EPWM9", "EPWM10", "EPWM11", "EPWM12", "EPWM13","EPWM14", "EPWM15", "EPWM16", "EPWM17", "EPWM18"],
+    },
+]
+
+function epwmHrpwm_pinCheck(){
+    // donot pass inst as parameter. if passed, the syscfg is expecting a change in the filter and resets to any.
+    let config = soc_epwm_list.find(o => o.soc === Common.getDeviceName())
+    // console.log((config.epwm).toString(),(config.hrpwm).toString())
+    // console.log((config.epwm).toString()==(config.hrpwm).toString())
+    if(config){
+        if ((config.epwm).toString() === (config.hrpwm).toString()){
+            return true
+        }
+    }
+    return false
+}
+
 function epwm_pinmux(periph){
     return true
 }
 
 function hrpwm_pinmux(periph){
-    if (["F28002x", "F28003x"].includes(Common.getDeviceName()))
-    {
-        if (["EPWM1", "EPWM2", "EPWM3", "EPWM4"].includes(periph.name))
-        {
-            return true;
+    let config = soc_epwm_list.find(o => o.soc === Common.getDeviceName())
+    if(config){
+        // console.log(config)
+        if((config.hrpwm).includes(periph.name)){
+            return true
         }
-        else
-        {
-            return false;
-        }
+        return false
     }
-    else if (["F280013x"].includes(Common.getDeviceName()))
-    {
-        if (["EPWM1"].includes(periph.name))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    else if (["F280015x"].includes(Common.getDeviceName()))
-    {
-        if (["EPWM1", "EPWM2"].includes(periph.name))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    else if (["F28P65x"].includes(Common.getDeviceName()))
-    {
-        if (["EPWM1", "EPWM2","EPWM3","EPWM4","EPWM5","EPWM6","EPWM7","EPWM8","EPWM9","EPWM10","EPWM11","EPWM12","EPWM13","EPWM14","EPWM15","EPWM16","EPWM17","EPWM18"].includes(periph.name))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    else if (["F28P55x"].includes(Common.getDeviceName()))
-    {
-        if (["EPWM1", "EPWM2","EPWM3","EPWM4","EPWM5","EPWM6"].includes(periph.name))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    else
-    {
-        if (["EPWM1", "EPWM2", "EPWM3", "EPWM4", "EPWM5", "EPWM6", "EPWM7", "EPWM8"].includes(periph.name))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+    return false
 }
 
 function epwmPinmuxRequirements(inst)
@@ -1417,10 +1455,15 @@ function epwmPinmuxRequirements(inst)
 //        signalTypes[pt.name] = interfaceName;
         i++;
     }
+
     var filter = epwm_pinmux
-    if (inst.hrpwm_enable)
-    {
-        filter = hrpwm_pinmux
+    
+    // a quick check if the filter change is required for this soc
+    if(! epwmHrpwm_pinCheck()){
+        if (inst.hrpwm_enable)
+        {
+            filter = hrpwm_pinmux
+        }
     }
     //console.log(resources)
     let epwm = {
@@ -1706,28 +1749,11 @@ function pmbusPinmuxRequirements(inst)
         let pt = {
             name              : interfaceName.toLowerCase().replace("#", "").replace("@", "") + "Pin",  /* config script name  THE ACTUAL NAME USED to find the pin*/
             displayName       : interfaceName.replace("#", "").replace("@", ""), /* GUI name */
-            interfaceNames    : [interfaceName]    /* pinmux tool name */,
-            filter            : inst.busClock != "PMBUS_CLOCKMODE_FAST_PLUS" ? () => {return true} : (devicePin, peripheralPin) => {
-                if(!(["F28P55x"].includes(Common.getDeviceName()))) {
-                    return true;
-                } else {
-                    let filterType = true;
-                    if(["PMBUS@_SDA"].includes(peripheralPin.interfacePin.name)) {
-                        return pmbusFastPlusMode_filter(devicePin, peripheralPin, "SDA", filterType);
-                    }
-                    else if(["PMBUS@_SCL"].includes(peripheralPin.interfacePin.name)) {
-                        return pmbusFastPlusMode_filter(devicePin, peripheralPin, "SCL", filterType);
-                    }
-                    else if(["PMBUS@_ALERT"].includes(peripheralPin.interfacePin.name)) {
-                        return true;
-                    }
-                    else if(["PMBUS@_CTL"].includes(peripheralPin.interfacePin.name)) {
-                        return true;
-                    }
-                    return false;
-                }
-            }
+            interfaceNames    : [interfaceName]    /* pinmux tool name */
         };
+
+        if(inst.busClock == "PMBUS_CLOCKMODE_FAST_PLUS")
+            pt.filter = pmbus_fastplus_filter_wrapper;
 
         resources.push(pt);
 

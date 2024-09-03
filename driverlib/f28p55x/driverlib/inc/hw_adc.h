@@ -5,8 +5,10 @@
 // TITLE:   Definitions for the ADC registers.
 //
 //###########################################################################
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -465,7 +467,7 @@
 //*************************************************************************************************
 #define ADC_SOC0CTL_ACQPS_S               0U
 #define ADC_SOC0CTL_ACQPS_M               0x1FFU        // SOC0 Acquisition Prescale
-#define ADC_SOC0CTL_SAMPCAPRESETDISABLE   0x200UL       // SOC0 Sample Cap Reset Select
+#define ADC_SOC0CTL_SAMPCAPRESETDISABLE   0x200U        // SOC0 Sample Cap Reset Select
 #define ADC_SOC0CTL_CHSEL_S               15U
 #define ADC_SOC0CTL_CHSEL_M               0xF8000U      // SOC0 Channel Select
 #define ADC_SOC0CTL_TRIGSEL_S             20U

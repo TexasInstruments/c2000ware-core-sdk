@@ -5,8 +5,10 @@
 // TITLE:   Definitions for the ADC registers.
 //
 //###########################################################################
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -312,7 +314,7 @@ union ADCSOCOVFCLR1_REG {
 
 struct ADCSOC0CTL_BITS {                // bits description
     Uint16 ACQPS:9;                     // 8:0 SOC0 Acquisition Prescale
-    Uint16 SAMPCAPRESETSEL:1;           // 9 SOC0 Sample Cap Reset Select
+    Uint16 SAMPCAPRESETDISABLE:1;       // 9 SOC0 Sample Cap Reset Select
     Uint16 rsvd1:2;                     // 11:10 Reserved
     Uint16 rsvd2:3;                     // 14:12 Reserved
     Uint32 CHSEL:5;                     // 19:15 SOC0 Channel Select
@@ -328,7 +330,7 @@ union ADCSOC0CTL_REG {
 
 struct ADCSOC1CTL_BITS {                // bits description
     Uint16 ACQPS:9;                     // 8:0 SOC1 Acquisition Prescale
-    Uint16 SAMPCAPRESETSEL:1;           // 9 SOC1 Sample Cap Reset Select
+    Uint16 SAMPCAPRESETDISABLE:1;       // 9 SOC1 Sample Cap Reset Select
     Uint16 rsvd1:2;                     // 11:10 Reserved
     Uint16 rsvd2:3;                     // 14:12 Reserved
     Uint32 CHSEL:5;                     // 19:15 SOC1 Channel Select
@@ -344,7 +346,7 @@ union ADCSOC1CTL_REG {
 
 struct ADCSOC2CTL_BITS {                // bits description
     Uint16 ACQPS:9;                     // 8:0 SOC2 Acquisition Prescale
-    Uint16 SAMPCAPRESETSEL:1;           // 9 SOC2 Sample Cap Reset Select
+    Uint16 SAMPCAPRESETDISABLE:1;       // 9 SOC2 Sample Cap Reset Select
     Uint16 rsvd1:2;                     // 11:10 Reserved
     Uint16 rsvd2:3;                     // 14:12 Reserved
     Uint32 CHSEL:5;                     // 19:15 SOC2 Channel Select
@@ -360,7 +362,7 @@ union ADCSOC2CTL_REG {
 
 struct ADCSOC3CTL_BITS {                // bits description
     Uint16 ACQPS:9;                     // 8:0 SOC3 Acquisition Prescale
-    Uint16 SAMPCAPRESETSEL:1;           // 9 SOC3 Sample Cap Reset Select
+    Uint16 SAMPCAPRESETDISABLE:1;       // 9 SOC3 Sample Cap Reset Select
     Uint16 rsvd1:2;                     // 11:10 Reserved
     Uint16 rsvd2:3;                     // 14:12 Reserved
     Uint32 CHSEL:5;                     // 19:15 SOC3 Channel Select
@@ -376,7 +378,7 @@ union ADCSOC3CTL_REG {
 
 struct ADCSOC4CTL_BITS {                // bits description
     Uint16 ACQPS:9;                     // 8:0 SOC4 Acquisition Prescale
-    Uint16 SAMPCAPRESETSEL:1;           // 9 SOC4 Sample Cap Reset Select
+    Uint16 SAMPCAPRESETDISABLE:1;       // 9 SOC4 Sample Cap Reset Select
     Uint16 rsvd1:2;                     // 11:10 Reserved
     Uint16 rsvd2:3;                     // 14:12 Reserved
     Uint32 CHSEL:5;                     // 19:15 SOC4 Channel Select
@@ -392,7 +394,7 @@ union ADCSOC4CTL_REG {
 
 struct ADCSOC5CTL_BITS {                // bits description
     Uint16 ACQPS:9;                     // 8:0 SOC5 Acquisition Prescale
-    Uint16 SAMPCAPRESETSEL:1;           // 9 SOC5 Sample Cap Reset Select
+    Uint16 SAMPCAPRESETDISABLE:1;       // 9 SOC5 Sample Cap Reset Select
     Uint16 rsvd1:2;                     // 11:10 Reserved
     Uint16 rsvd2:3;                     // 14:12 Reserved
     Uint32 CHSEL:5;                     // 19:15 SOC5 Channel Select
@@ -408,7 +410,7 @@ union ADCSOC5CTL_REG {
 
 struct ADCSOC6CTL_BITS {                // bits description
     Uint16 ACQPS:9;                     // 8:0 SOC6 Acquisition Prescale
-    Uint16 SAMPCAPRESETSEL:1;           // 9 SOC6 Sample Cap Reset Select
+    Uint16 SAMPCAPRESETDISABLE:1;       // 9 SOC6 Sample Cap Reset Select
     Uint16 rsvd1:2;                     // 11:10 Reserved
     Uint16 rsvd2:3;                     // 14:12 Reserved
     Uint32 CHSEL:5;                     // 19:15 SOC6 Channel Select
@@ -424,7 +426,7 @@ union ADCSOC6CTL_REG {
 
 struct ADCSOC7CTL_BITS {                // bits description
     Uint16 ACQPS:9;                     // 8:0 SOC7 Acquisition Prescale
-    Uint16 SAMPCAPRESETSEL:1;           // 9 SOC7 Sample Cap Reset Select
+    Uint16 SAMPCAPRESETDISABLE:1;       // 9 SOC7 Sample Cap Reset Select
     Uint16 rsvd1:2;                     // 11:10 Reserved
     Uint16 rsvd2:3;                     // 14:12 Reserved
     Uint32 CHSEL:5;                     // 19:15 SOC7 Channel Select
@@ -440,7 +442,7 @@ union ADCSOC7CTL_REG {
 
 struct ADCSOC8CTL_BITS {                // bits description
     Uint16 ACQPS:9;                     // 8:0 SOC8 Acquisition Prescale
-    Uint16 SAMPCAPRESETSEL:1;           // 9 SOC8 Sample Cap Reset Select
+    Uint16 SAMPCAPRESETDISABLE:1;       // 9 SOC8 Sample Cap Reset Select
     Uint16 rsvd1:2;                     // 11:10 Reserved
     Uint16 rsvd2:3;                     // 14:12 Reserved
     Uint32 CHSEL:5;                     // 19:15 SOC8 Channel Select
@@ -456,7 +458,7 @@ union ADCSOC8CTL_REG {
 
 struct ADCSOC9CTL_BITS {                // bits description
     Uint16 ACQPS:9;                     // 8:0 SOC9 Acquisition Prescale
-    Uint16 SAMPCAPRESETSEL:1;           // 9 SOC9 Sample Cap Reset Select
+    Uint16 SAMPCAPRESETDISABLE:1;       // 9 SOC9 Sample Cap Reset Select
     Uint16 rsvd1:2;                     // 11:10 Reserved
     Uint16 rsvd2:3;                     // 14:12 Reserved
     Uint32 CHSEL:5;                     // 19:15 SOC9 Channel Select
@@ -472,7 +474,7 @@ union ADCSOC9CTL_REG {
 
 struct ADCSOC10CTL_BITS {               // bits description
     Uint16 ACQPS:9;                     // 8:0 SOC10 Acquisition Prescale
-    Uint16 SAMPCAPRESETSEL:1;           // 9 SOC10 Sample Cap Reset Select
+    Uint16 SAMPCAPRESETDISABLE:1;       // 9 SOC10 Sample Cap Reset Select
     Uint16 rsvd1:2;                     // 11:10 Reserved
     Uint16 rsvd2:3;                     // 14:12 Reserved
     Uint32 CHSEL:5;                     // 19:15 SOC10 Channel Select
@@ -488,7 +490,7 @@ union ADCSOC10CTL_REG {
 
 struct ADCSOC11CTL_BITS {               // bits description
     Uint16 ACQPS:9;                     // 8:0 SOC11 Acquisition Prescale
-    Uint16 SAMPCAPRESETSEL:1;           // 9 SOC11 Sample Cap Reset Select
+    Uint16 SAMPCAPRESETDISABLE:1;       // 9 SOC11 Sample Cap Reset Select
     Uint16 rsvd1:2;                     // 11:10 Reserved
     Uint16 rsvd2:3;                     // 14:12 Reserved
     Uint32 CHSEL:5;                     // 19:15 SOC11 Channel Select
@@ -504,7 +506,7 @@ union ADCSOC11CTL_REG {
 
 struct ADCSOC12CTL_BITS {               // bits description
     Uint16 ACQPS:9;                     // 8:0 SOC12 Acquisition Prescale
-    Uint16 SAMPCAPRESETSEL:1;           // 9 SOC12 Sample Cap Reset Select
+    Uint16 SAMPCAPRESETDISABLE:1;       // 9 SOC12 Sample Cap Reset Select
     Uint16 rsvd1:2;                     // 11:10 Reserved
     Uint16 rsvd2:3;                     // 14:12 Reserved
     Uint32 CHSEL:5;                     // 19:15 SOC12 Channel Select
@@ -520,7 +522,7 @@ union ADCSOC12CTL_REG {
 
 struct ADCSOC13CTL_BITS {               // bits description
     Uint16 ACQPS:9;                     // 8:0 SOC13 Acquisition Prescale
-    Uint16 SAMPCAPRESETSEL:1;           // 9 SOC13 Sample Cap Reset Select
+    Uint16 SAMPCAPRESETDISABLE:1;       // 9 SOC13 Sample Cap Reset Select
     Uint16 rsvd1:2;                     // 11:10 Reserved
     Uint16 rsvd2:3;                     // 14:12 Reserved
     Uint32 CHSEL:5;                     // 19:15 SOC13 Channel Select
@@ -536,7 +538,7 @@ union ADCSOC13CTL_REG {
 
 struct ADCSOC14CTL_BITS {               // bits description
     Uint16 ACQPS:9;                     // 8:0 SOC14 Acquisition Prescale
-    Uint16 SAMPCAPRESETSEL:1;           // 9 SOC14 Sample Cap Reset Select
+    Uint16 SAMPCAPRESETDISABLE:1;       // 9 SOC14 Sample Cap Reset Select
     Uint16 rsvd1:2;                     // 11:10 Reserved
     Uint16 rsvd2:3;                     // 14:12 Reserved
     Uint32 CHSEL:5;                     // 19:15 SOC14 Channel Select
@@ -552,7 +554,7 @@ union ADCSOC14CTL_REG {
 
 struct ADCSOC15CTL_BITS {               // bits description
     Uint16 ACQPS:9;                     // 8:0 SOC15 Acquisition Prescale
-    Uint16 SAMPCAPRESETSEL:1;           // 9 SOC15 Sample Cap Reset Select
+    Uint16 SAMPCAPRESETDISABLE:1;       // 9 SOC15 Sample Cap Reset Select
     Uint16 rsvd1:2;                     // 11:10 Reserved
     Uint16 rsvd2:3;                     // 14:12 Reserved
     Uint32 CHSEL:5;                     // 19:15 SOC15 Channel Select
@@ -690,6 +692,17 @@ struct ADCOFFTRIM_BITS {                // bits description
 union ADCOFFTRIM_REG {
     Uint16  all;
     struct  ADCOFFTRIM_BITS  bit;
+};
+
+struct ADCCONFIG2_BITS {                // bits description
+    Uint16 TESTANA1_CONFIG:2;           // 1:0 TESTANA1 ADC Configuration
+    Uint16 rsvd1:14;                    // 15:2 Reserved
+    Uint16 rsvd2:16;                    // 31:16 Reserved
+};
+
+union ADCCONFIG2_REG {
+    Uint32  all;
+    struct  ADCCONFIG2_BITS  bit;
 };
 
 struct ADCPPB1CONFIG_BITS {             // bits description
@@ -1588,7 +1601,8 @@ struct ADC_REGS {
     union   ADCCOUNTER_REG                   ADCCOUNTER;                   // ADC Counter Register
     union   ADCREV_REG                       ADCREV;                       // ADC Revision Register
     union   ADCOFFTRIM_REG                   ADCOFFTRIM;                   // ADC Offset Trim Register
-    Uint16                                   rsvd12[4];                    // Reserved
+    union   ADCCONFIG2_REG                   ADCCONFIG2;                   // ADC Config Register Upper 32 bits
+    Uint16                                   rsvd12[2];                    // Reserved
     union   ADCPPB1CONFIG_REG                ADCPPB1CONFIG;                // ADC PPB{#} Config Register
     union   ADCPPB1STAMP_REG                 ADCPPB1STAMP;                 // ADC PPB1 Sample Delay Time Stamp Register
     union   ADCPPB1OFFCAL_REG                ADCPPB1OFFCAL;                // ADC PPB1 Offset Calibration Register

@@ -531,14 +531,14 @@ var uartModule = {
         {
             if(pinmuxQualMod.name.includes("rx"))
             {
-                pinmuxQualMod.requiredArgs = {
+                pinmuxQualMod.args = {
                     padConfig : "PULLUP",
                     qualMode : "GPIO_QUAL_ASYNC",
                 }
             }
             else
             {
-                pinmuxQualMod.requiredArgs = {
+                pinmuxQualMod.args = {
                     padConfig : "STD",
                     qualMode : "GPIO_QUAL_ASYNC",
                 }

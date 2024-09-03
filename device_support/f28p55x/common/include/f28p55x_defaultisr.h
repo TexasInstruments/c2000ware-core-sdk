@@ -5,8 +5,10 @@
 // TITLE:  f28p55x Device Default Interrupt Service Routines Definitions
 //
 //###########################################################################
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -147,8 +149,8 @@ interrupt void XINT4_ISR(void);
 interrupt void XINT5_ISR(void);
 interrupt void FLSS_ISR(void);
 interrupt void VCU_ISR(void);
-interrupt void MCANA_ECC_ISR(void);
 interrupt void MCANA_WAKE_ISR(void);
+interrupt void MCANA_ECC_ISR(void);
 interrupt void ADCD1_ISR(void);
 interrupt void ADCE1_ISR(void);
 interrupt void EPWM9_TZ_ISR(void);
@@ -167,8 +169,8 @@ interrupt void LINA_0_ISR(void);
 interrupt void LINA_1_ISR(void);
 interrupt void MCANB_0_ISR(void);
 interrupt void MCANB_1_ISR(void);
-interrupt void MCANB_ECC_ISR(void);
 interrupt void MCANB_WAKE_ISR(void);
+interrupt void MCANB_ECC_ISR(void);
 interrupt void USBA_ISR(void);
 interrupt void ADCC_EVT_ISR(void);
 interrupt void ADCC2_ISR(void);

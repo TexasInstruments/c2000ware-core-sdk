@@ -86,8 +86,8 @@ const void *destAddr = (const void *)rData;
 const void *srcAddr = (const void *)sData;
 
 // Place buffers in GSRAM
-#pragma DATA_SECTION(sData, "ramgs0");
-#pragma DATA_SECTION(rData, "ramgs0");
+#pragma DATA_SECTION(sData, "DMA_TX_SECTION");
+#pragma DATA_SECTION(rData, "DMA_RX_SECTION");
 
 volatile uint16_t done = 0;         // Flag to set when all data transferred
 

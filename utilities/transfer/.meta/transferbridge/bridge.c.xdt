@@ -1,0 +1,700 @@
+/*
+ * Copyright (c) 2020 Texas Instruments Incorporated - http://www.ti.com
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * *  Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ * *  Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * *  Neither the name of Texas Instruments Incorporated nor the names of
+ *    its contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ */
+%
+% let transferCommon;
+% if (system.getProducts()[0].name.includes("C2000"))
+% { transferCommon = system.getScript("/utilities/transfer/transferCommon.js");
+% } else
+% { transferCommon = system.getScript("/transfer/transferCommon.js");}
+% 
+% let transferBridgeMod = system.modules[transferCommon.getTransferPath() + "transferbridge.js"];
+% let transferBridgeInst = transferBridgeMod.$instances[0]
+% let comsLinkAModule = transferBridgeInst.comsLinkAModule;
+% let comsLinkBModule = transferBridgeInst.comsLinkBModule;
+% let comsLinkBModuleAlt = transferBridgeInst.comsLinkBModuleAlt;
+% let comsLinkBBufferModule = transferBridgeInst.comsLinkBBufferModule;
+
+#include <bridge/bridge.h>
+#include <board.h>
+
+% if (transferBridgeInst.mode.includes("Bidirectional"))
+% {
+void __attribute__((weak)) BRIDGE_comsLinkAReceivedData(uint16_t* receivedData, uint16_t receivedDataLength) {}
+volatile uint16_t comsLinkARXData [`transferBridgeInst.packetLength`] = {0};
+
+void BRIDGE_comsLinkBTransmitStringLengthBlocking(char *str, uint16_t strLength);
+% }
+void __attribute__((weak)) BRIDGE_comsLinkBReceivedData(uint16_t* receivedData, uint16_t receivedDataLength) {}
+volatile uint16_t comsLinkBRXData [`transferBridgeInst.packetLength`] = {0};
+% if ((transferBridgeInst["comsLinkB"] == "fsi") && (transferBridgeInst.mode.includes("Bidirectional"))) {
+volatile uint16_t `comsLinkBModuleAlt.$name`_transferInProgress = 0;
+% }
+% if ((transferBridgeInst["comsLinkB"] == "fsi") && (transferBridgeInst.comsLinkBErrorHandler)) {
+void __attribute__((weak)) BRIDGE_comsLinkBError(uint16_t status) {}
+% }
+% if ((transferBridgeInst.comsLinkBBuffer)){
+//*****************************************************************************
+//
+// Transfer Ring Buffer
+//
+//*****************************************************************************
+#include <transfer_ringbuffer.h>
+
+#define `comsLinkBBufferModule.$name`_BUFFER_SIZE `comsLinkBBufferModule.bufferSize`
+#define `comsLinkBBufferModule.$name`_ELEMENT_SIZE `comsLinkBBufferModule.elemPerBuffEntry`
+
+uint16_t `comsLinkBBufferModule.$name`_buffer[`comsLinkBBufferModule.$name`_BUFFER_SIZE][`comsLinkBBufferModule.$name`_ELEMENT_SIZE] = {0};
+TransferRingBuffer `comsLinkBBufferModule.$name`;
+TransferRingBuffer_Handle `comsLinkBBufferModule.$name`_Handle = &`comsLinkBBufferModule.$name`;
+void __attribute__((weak)) BRIDGE_transferBufferOverflow() {}
+% }
+
+% if (transferBridgeInst["comsLinkA"] == "usb") {
+//*****************************************************************************
+//
+// USB link A
+//
+//*****************************************************************************
+#include <c2000ware_libraries.h>
+//
+// USB global variable indicating whether USB is connected and configured
+//
+volatile bool g_bUSBConfigured = false;
+
+//
+// Device interrupt service routine wrapper to make ISR compatible with
+// C2000 PIE controller.
+//
+__interrupt void
+`comsLinkAModule.USBInt.interruptHandler`(void)
+{
+    USB0DeviceIntHandler();
+    Interrupt_clearACKGroup(`comsLinkAModule.USBInt.interruptName`_INTERRUPT_ACK_GROUP);
+}
+
+
+//
+// Get the communication parameters in use on the SCI.
+//
+static void
+GetLineCoding(tLineCoding *psLineCoding)
+{
+    //
+    // Get the current line coding set in the SCI.
+    //
+    writeusb32_t(&(psLineCoding->ui32Rate), 115200);
+
+    //
+    // Translate the configuration word length field into the format expected
+    // by the host.
+    //
+
+    psLineCoding->ui8Databits = 8;
+    psLineCoding->ui8Parity = USB_CDC_PARITY_NONE;
+    psLineCoding->ui8Stop = USB_CDC_STOP_BITS_1;
+}
+
+//
+// Handles CDC driver notifications related to control and setup of the device.
+//
+// \param pvCBData is the client-supplied callback pointer for this channel.
+// \param ui32Event identifies the event we are being notified about.
+// \param ui32MsgValue is an event-specific value.
+// \param pvMsgData is an event-specific pointer.
+//
+// This function is called by the CDC driver to perform control-related
+// operations on behalf of the USB host.  These functions include setting
+// and querying the serial communication parameters, setting handshake line
+// states and sending break conditions.
+//
+// \return The return value is event-specific.
+//
+uint32_t
+`comsLinkAModule.usbLib.usbCDCControlHandler`(void *pvCBData, uint32_t ui32Event,
+               uint32_t ui32MsgValue, void *pvMsgData)
+{
+    //
+    // Which event are we being asked to process?
+    //
+    switch(ui32Event)
+    {
+        //
+        // We are connected to a host and communication is now possible.
+        //
+        case USB_EVENT_CONNECTED:
+            g_bUSBConfigured = true;
+
+            //
+            // Flush our buffers.
+            //
+            USBBufferFlush(&`comsLinkAModule.usbLib.usbCDCTxStruct`);
+            USBBufferFlush(&`comsLinkAModule.usbLib.usbCDCRxStruct`);
+
+            break;
+
+        //
+        // The host has disconnected.
+        //
+        case USB_EVENT_DISCONNECTED:
+            g_bUSBConfigured = false;
+            break;
+
+        //
+        // Return the current serial communication parameters.
+        //
+        case USBD_CDC_EVENT_GET_LINE_CODING:
+            GetLineCoding(pvMsgData);
+            break;
+
+        //
+        // Set the current serial communication parameters.
+        //
+        case USBD_CDC_EVENT_SET_LINE_CODING:
+            break;
+
+        //
+        // Set the current serial communication parameters.
+        //
+        case USBD_CDC_EVENT_SET_CONTROL_LINE_STATE:
+            break;
+
+        //
+        // Send a break condition on the serial line.
+        //
+        case USBD_CDC_EVENT_SEND_BREAK:
+            break;
+
+        //
+        // Clear the break condition on the serial line.
+        //
+        case USBD_CDC_EVENT_CLEAR_BREAK:
+            break;
+
+        //
+        // Ignore SUSPEND and RESUME for now.
+        //
+        case USB_EVENT_SUSPEND:
+        case USB_EVENT_RESUME:
+            break;
+
+        //
+        // We don't expect to receive any other events.  Ignore any that show
+        // up in a release build or hang in a debug build.
+        //
+        default:
+            break;
+
+    }
+
+    return(0);
+}
+
+//
+// Handles CDC driver notifications related to the transmit channel (data to
+// the USB host).
+//
+// \param pvCBData is the client-supplied callback pointer for this channel.
+// \param ui32Event identifies the event we are being notified about.
+// \param ui32MsgValue is an event-specific value.
+// \param pvMsgData is an event-specific pointer.
+//
+// This function is called by the CDC driver to notify us of any events
+// related to operation of the transmit data channel (the IN channel carrying
+// data to the USB host).
+//
+// \return The return value is event-specific.
+//
+uint32_t
+`comsLinkAModule.usbLib.usbCDCTxHandler`(void *pvCBData, uint32_t ui32Event, 
+    uint32_t ui32MsgValue, void *pvMsgData)
+{
+    //
+    // Which event have we been sent?
+    //
+    switch(ui32Event)
+    {
+        case USB_EVENT_TX_COMPLETE:
+            //
+            // Since we are using the USBBuffer, we don't need to do anything
+            // here.
+            //
+            break;
+
+        //
+        // We don't expect to receive any other events.  Ignore any that show
+        // up in a release build or hang in a debug build.
+        //
+        default:
+            break;
+    }
+    return(0);
+}
+
+//
+// Handles CDC driver notifications related to the receive channel (data from
+// the USB host).
+//
+// \param pvCBData is the client-supplied callback data value for this channel.
+// \param ui32Event identifies the event we are being notified about.
+// \param ui32MsgValue is an event-specific value.
+// \param pvMsgData is an event-specific pointer.
+//
+// This function is called by the CDC driver to notify us of any events
+// related to operation of the receive data channel (the OUT channel carrying
+// data from the USB host).
+//
+// \return The return value is event-specific.
+//
+uint32_t
+`comsLinkAModule.usbLib.usbCDCRxHandler`(void *pvCBData, uint32_t ui32Event, 
+    uint32_t ui32MsgValue, void *pvMsgData)
+{
+    uint32_t ui32Count;
+    % if (transferBridgeInst.mode.includes("Bidirectional"))
+    % {
+    uint32_t ui32Read;
+    % }
+    uint32_t ui32Available;
+
+    //
+    // Which event are we being sent?
+    //
+    switch(ui32Event)
+    {
+        //
+        // A new packet has been received.
+        //
+        case USB_EVENT_RX_AVAILABLE:
+        {
+            ui32Available = USBBufferDataAvailable((tUSBBuffer *)&g_sRxBuffer);
+
+    % if (transferBridgeInst.mode.includes("Bidirectional"))
+    % {
+            if (ui32Available >= `transferBridgeInst.packetLength`)
+            {
+                ui32Read = USBBufferRead((tUSBBuffer *)&g_sRxBuffer, (uint16_t*)comsLinkARXData, `transferBridgeInst.packetLength`);
+                if (ui32Read != `transferBridgeInst.packetLength`)
+                {
+                    ESTOP0;
+                }
+                else
+                {
+                    BRIDGE_comsLinkBTransmitStringLengthBlocking((char *)comsLinkARXData, `transferBridgeInst.packetLength`);
+                    BRIDGE_comsLinkAReceivedData((uint16_t*)comsLinkARXData, `transferBridgeInst.packetLength`);
+                }
+            }
+    % }
+    % else
+    % {
+            USBBufferDataRemoved((tUSBBuffer *)&g_sRxBuffer, ui32Available);
+    % }
+            
+            break;
+        }
+
+        //
+        // We are being asked how much unprocessed data we have still to
+        // process.
+        //
+        case USB_EVENT_DATA_REMAINING:
+        {
+            //
+            // Possibly return available-read
+            //
+            ui32Count = 0;
+            return(ui32Count);
+        }
+
+        //
+        // We are being asked to provide a buffer into which the next packet
+        // can be read. We do not support this mode of receiving data so let
+        // the driver know by returning 0. The CDC driver should not be sending
+        // this message but this is included just for illustration and
+        // completeness.
+        //
+        case USB_EVENT_REQUEST_BUFFER:
+        {
+            return(0);
+        }
+
+        //
+        // We don't expect to receive any other events.  Ignore any that show
+        // up in a release build or hang in a debug build.
+        //
+        default:
+            break;
+    }
+
+    return(0);
+}
+% }
+
+//*****************************************************************************
+//
+// Bridge Transmit and Init
+//
+//*****************************************************************************
+void BRIDGE_comsLinkATransmitStringLengthBlocking(char *str, uint16_t strLength)
+{
+    % if (transferBridgeInst["comsLinkA"] == "sci") {
+    uint16_t i;
+
+    for (i = 0; i < strLength; i++) {
+        if (str[i] != 0) {
+            SCI_writeCharBlockingFIFO(`comsLinkAModule.$name`_BASE, str[i]);
+        }
+    }
+    % } else if (transferBridgeInst["comsLinkA"] == "spi") {
+    uint16_t i;
+
+    for (i = 0; i < strLength; i++) {
+        if (str[i] != 0) {
+            SPI_writeDataBlockingFIFO(`comsLinkAModule.$name`_BASE, str[i]);
+        }
+    }
+
+    % } else if (transferBridgeInst["comsLinkA"] == "usb") {
+    uint32_t ui32Space;
+    ui32Space = USBBufferSpaceAvailable((tUSBBuffer *)&`comsLinkAModule.usbLib.usbCDCTxStruct`);
+    if (ui32Space >= strLength) {
+        USBBufferWrite((tUSBBuffer *)&`comsLinkAModule.usbLib.usbCDCTxStruct`, (uint8_t *)str, strLength);
+    }
+    else
+    {
+        ESTOP0;
+    }
+    % }
+}
+
+% if (transferBridgeInst.mode.includes("Bidirectional"))
+% {
+
+void BRIDGE_comsLinkBTransmitStringLengthBlocking(char *str, uint16_t strLength)
+{
+    % if (transferBridgeInst["comsLinkB"] == "sci") {
+    uint16_t i;
+
+    for (i = 0; i < strLength; i++) {
+        if (str[i] != 0) {
+            SCI_writeCharBlockingFIFO(`comsLinkBModule.$name`_BASE, str[i]);
+        }
+    }
+    % }
+    % else if (transferBridgeInst["comsLinkB"] == "fsi") {
+    while(`comsLinkBModuleAlt.$name`_transferInProgress == 1);
+    FSI_writeTxBuffer(`comsLinkBModuleAlt.$name`_BASE, (const uint16_t *)str, strLength, 0);
+    //
+    // Start Transfer
+    //
+    FSI_startTxTransmit(`comsLinkBModuleAlt.$name`_BASE);
+    `comsLinkBModuleAlt.$name`_transferInProgress = 1;
+    % }
+}
+% }
+
+void BRIDGE_init()
+{
+    //
+    // Initialize the HW module (The functions below are also called in Board_init)
+    //
+    // `comsLinkAModule.$name`_init();
+    // `comsLinkBModule.$name`_init();
+
+    % if (transferBridgeInst["comsLinkA"] == "usb") {
+    //
+    // Initialize the transmit and receive buffers.
+    //
+    USBBufferInit(&`comsLinkAModule.usbLib.usbCDCTxStruct`);
+    USBBufferInit(&`comsLinkAModule.usbLib.usbCDCRxStruct`);
+    % }
+    % else if (transferBridgeInst["comsLinkB"] == "fsi") {
+        % if (transferBridgeInst.mode.includes("Bidirectional")) {
+    //
+    // Flush Sequence ensures flushing
+    // of Rx data/clock lines and prepares it for reception
+    //
+    FSI_executeTxFlushSequence(`comsLinkBModuleAlt.$name`_BASE, 
+        `comsLinkBModuleAlt.$name`_PRESCALER_VAL);
+
+    FSI_setTxUserDefinedData(`comsLinkBModuleAlt.$name`_BASE, 0);
+        % }
+    % }
+    % if (transferBridgeInst.comsLinkBBuffer) {
+    TransferRingBuffer_init(
+        `comsLinkBBufferModule.$name`_Handle, 
+        (uint16_t**)`comsLinkBBufferModule.$name`_buffer, 
+        `comsLinkBBufferModule.$name`_BUFFER_SIZE, 
+        `comsLinkBBufferModule.$name`_ELEMENT_SIZE);
+    % }
+}
+
+//*****************************************************************************
+//
+// Interrupts
+//
+//*****************************************************************************
+% if (transferBridgeInst.mode.includes("Bidirectional"))
+% {
+    % if (transferBridgeInst["comsLinkA"] == "sci") {
+//
+// COMs link A TX Interrupt (unused)
+//
+interrupt void `comsLinkAModule["sciTXInt"]["interruptHandler"]`(void)
+{
+    
+    SCI_clearOverflowStatus(`comsLinkAModule.$name`_BASE);
+    SCI_clearInterruptStatus(`comsLinkAModule.$name`_BASE, SCI_INT_TXFF);
+
+    //
+    // Issue PIE ack
+    //
+    Interrupt_clearACKGroup(INT_`comsLinkAModule.$name`_TX_INTERRUPT_ACK_GROUP);
+}
+
+//
+// COMs link A RX Interrupt
+//
+interrupt void `comsLinkAModule["sciRXInt"]["interruptHandler"]`(void)
+{
+    uint16_t rxIndex = 0;
+    //
+    // Read data
+    //
+    for (rxIndex = 0; rxIndex < `transferBridgeInst.packetLength`; rxIndex++){
+        comsLinkARXData[rxIndex] = SCI_readCharNonBlocking(`comsLinkAModule.$name`_BASE);
+    }
+
+    BRIDGE_comsLinkBTransmitStringLengthBlocking((char *)comsLinkARXData, `transferBridgeInst.packetLength`);
+    BRIDGE_comsLinkAReceivedData((uint16_t *)comsLinkARXData, `transferBridgeInst.packetLength`);
+
+    SCI_clearOverflowStatus(`comsLinkAModule.$name`_BASE);
+    SCI_clearInterruptStatus(`comsLinkAModule.$name`_BASE, SCI_INT_RXFF);
+
+    //
+    // Issue PIE ack
+    //
+    Interrupt_clearACKGroup(INT_`comsLinkAModule.$name`_RX_INTERRUPT_ACK_GROUP);
+}
+    % }
+% }
+
+% if (transferBridgeInst["comsLinkB"] == "sci") {
+//*****************************************************************************
+//
+// COMs link B - SCI
+//
+//*****************************************************************************
+
+//
+// COMs link B TX Interrupt (unused)
+//
+interrupt void `comsLinkBModule["sciTXInt"]["interruptHandler"]`(void)
+{
+    
+    SCI_clearOverflowStatus(`comsLinkBModule.$name`_BASE);
+    SCI_clearInterruptStatus(`comsLinkBModule.$name`_BASE, SCI_INT_TXFF);
+
+    //
+    // Issue PIE ack
+    //
+    Interrupt_clearACKGroup(INT_`comsLinkBModule.$name`_TX_INTERRUPT_ACK_GROUP);
+}
+
+//
+// COMs link B RX Interrupt
+//
+interrupt void `comsLinkBModule["sciRXInt"]["interruptHandler"]`(void)
+{
+    uint16_t rxIndex = 0;
+    //
+    // Read data
+    //
+    for (rxIndex = 0; rxIndex < `transferBridgeInst.packetLength`; rxIndex++){
+        comsLinkBRXData[rxIndex] = SCI_readCharNonBlocking(`comsLinkBModule.$name`_BASE);
+    }
+
+    BRIDGE_comsLinkATransmitStringLengthBlocking((char *)comsLinkBRXData, `transferBridgeInst.packetLength`);
+    BRIDGE_comsLinkBReceivedData((uint16_t *)comsLinkBRXData, `transferBridgeInst.packetLength`);
+
+    SCI_clearOverflowStatus(`comsLinkBModule.$name`_BASE);
+    SCI_clearInterruptStatus(`comsLinkBModule.$name`_BASE, SCI_INT_RXFF);
+
+    //
+    // Issue PIE ack
+    //
+    Interrupt_clearACKGroup(INT_`comsLinkBModule.$name`_RX_INTERRUPT_ACK_GROUP);
+}
+% }
+% if (transferBridgeInst["comsLinkB"] == "spi") {
+//*****************************************************************************
+//
+// COMs link B - SPI
+//
+//*****************************************************************************
+
+//
+// COMs link B TX Interrupt (unused)
+//
+interrupt void `comsLinkBModule["spiTXInt"]["interruptHandler"]`(void)
+{
+    SPI_clearInterruptStatus(`comsLinkBModule.$name`_BASE, SPI_INT_TXFF);
+
+    //
+    // Issue PIE ack
+    //
+    Interrupt_clearACKGroup(INT_`comsLinkBModule.$name`_TX_INTERRUPT_ACK_GROUP);
+}
+
+//
+// COMs link B RX Interrupt
+//
+interrupt void `comsLinkBModule["spiRXInt"]["interruptHandler"]`(void)
+{
+    uint16_t rxIndex = 0;
+    uint16_t ringBuffStatus;
+    //
+    // Read data
+    //
+    for (rxIndex = 0; rxIndex < `transferBridgeInst.packetLength / 2`; rxIndex++){
+        comsLinkBRXData[rxIndex] = SPI_readDataBlockingFIFO(`comsLinkBModule.$name`_BASE);
+    }
+
+    ringBuffStatus = TransferRingBuffer_write(myBridge0_ringBuff_Handle, (uint16_t *)comsLinkBRXData);
+    if (!ringBuffStatus) {
+        BRIDGE_transferBufferOverflow();
+    }
+    BRIDGE_comsLinkBReceivedData((uint16_t *)comsLinkBRXData, `transferBridgeInst.packetLength`);
+
+    SPI_clearInterruptStatus(`comsLinkBModule.$name`_BASE, SPI_INT_RX_OVERRUN);
+    SPI_clearInterruptStatus(`comsLinkBModule.$name`_BASE, SPI_INT_RXFF);
+
+    //
+    // Issue PIE ack
+    //
+    Interrupt_clearACKGroup(INT_`comsLinkBModule.$name`_RX_INTERRUPT_ACK_GROUP);
+}
+% }
+% if (transferBridgeInst["comsLinkB"] == "fsi") {
+//*****************************************************************************
+//
+// COMs link B - FSI
+//
+//*****************************************************************************
+
+% if (transferBridgeInst.mode.includes("Bidirectional")) {
+interrupt void `comsLinkBModuleAlt["fsiTxInt1"]["interruptHandler"]`(void)
+{
+    `comsLinkBModuleAlt.$name`_transferInProgress = 0;
+    FSI_clearTxEvents(`comsLinkBModuleAlt.$name`_BASE, FSI_TX_EVTMASK);
+
+    //
+    // Issue PIE ack
+    //
+    Interrupt_clearACKGroup(INT_`comsLinkBModuleAlt.$name`_1_INTERRUPT_ACK_GROUP);
+}
+%}
+//
+// COMs link B RX Interrupt
+//
+interrupt void `comsLinkBModule["fsiRxInt1"]["interruptHandler"]`(void)
+{
+    // FSI_FrameType rxFrameType; 
+    // uint16_t rxFrameTag;
+    // uint16_t rxUdata;
+    % if (transferBridgeInst.comsLinkBBuffer) {
+    uint16_t ringBuffStatus;
+    % }
+    
+    // rxFrameType = FSI_getRxFrameType(`comsLinkBModule.$name`_BASE);
+    // rxFrameTag = FSI_getRxFrameTag(`comsLinkBModule.$name`_BASE);
+    // rxUdata = FSI_getRxUserDefinedData(`comsLinkBModule.$name`_BASE);
+
+    //
+    // Read data
+    //
+    FSI_readRxBuffer(`comsLinkBModule.$name`_BASE, (uint16_t *)comsLinkBRXData, `transferBridgeInst.packetLength`, 0);
+    % if (!transferBridgeInst.comsLinkBBuffer) {
+    BRIDGE_comsLinkATransmitStringLengthBlocking((char *)comsLinkBRXData, `transferBridgeInst.packetLength`);
+    % }
+    % else {
+    ringBuffStatus = TransferRingBuffer_write(`comsLinkBBufferModule.$name`_Handle, (uint16_t *)comsLinkBRXData);
+    if (!ringBuffStatus) {
+        BRIDGE_transferBufferOverflow();
+    }
+    % }
+
+    BRIDGE_comsLinkBReceivedData((uint16_t *)comsLinkBRXData, `transferBridgeInst.packetLength`);
+
+    FSI_clearRxEvents(`comsLinkBModule.$name`_BASE, FSI_RX_EVT_FRAME_DONE | FSI_RX_EVT_DATA_FRAME);
+
+    //
+    // Issue PIE ack
+    //
+    Interrupt_clearACKGroup(INT_`comsLinkBModule.$name`_1_INTERRUPT_ACK_GROUP);
+}
+% if (transferBridgeInst.comsLinkBErrorHandler) {
+//
+// COMs link B RX Error Interrupt
+//
+interrupt void `comsLinkBModule["fsiRxInt2"]["interruptHandler"]`(void)
+{
+    uint16_t status = 0;
+    status = FSI_getRxEventStatus(`comsLinkBModule.$name`_BASE);
+    BRIDGE_comsLinkBError(status);
+
+    FSI_clearRxEvents(`comsLinkBModule.$name`_BASE, FSI_RX_EVTMASK);
+
+    //
+    // Issue PIE ack
+    //
+    Interrupt_clearACKGroup(INT_`comsLinkBModule.$name`_2_INTERRUPT_ACK_GROUP);
+}
+% }
+% }
+% if (transferBridgeInst.comsLinkBBuffer) {
+
+//*****************************************************************************
+//
+// Background Buffer Transfers
+//
+//*****************************************************************************
+void BRIDGE_transferBufferData()
+{
+    uint16_t bufferData[`comsLinkBBufferModule.$name`_ELEMENT_SIZE];
+    uint16_t buffReadResult = 0;
+    buffReadResult = TransferRingBuffer_read(`comsLinkBBufferModule.$name`_Handle, bufferData);
+    if (buffReadResult) {
+        BRIDGE_comsLinkATransmitStringLengthBlocking((char *)bufferData, `transferBridgeInst.packetLength`);
+    }
+}
+% }

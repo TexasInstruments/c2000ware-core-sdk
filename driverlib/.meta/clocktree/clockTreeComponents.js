@@ -1,4 +1,6 @@
 let Common   = system.getScript("/driverlib/Common.js");
+let clocktree_common   = system.getScript("/driverlib/clocktree/clocktree_common.js");
+const multi_core = clocktree_common.multi_core;
 if (("system" === system.context || "CPU1" === system.context) && system.deviceData.clockTree)
 {
 
@@ -76,7 +78,7 @@ if (("system" === system.context || "CPU1" === system.context) && system.deviceD
 			break
 	}
 
-	if(device == "F2837xD" || device == "F2838x" || device == "F28P65x")
+	if(multi_core.includes(device))
 	{
 		var myipInstance1 = ["CPU1CLK_domain", "CPU2CLK_domain", "CPU1_SYSCLK_domain", "CPU2_SYSCLK_domain"]
 		var myipInstance2 = ["CPU1_SYSCLK", "CPU2_SYSCLK"]
@@ -123,7 +125,7 @@ if (("system" === system.context || "CPU1" === system.context) && system.deviceD
 	var AUXPLLDevice = (system.deviceData.clockTree.ipInstances).filter(function(ipInst) {
 		return ipInst.name === "AUXCLKDIVSEL";
 	  });
-	if( AUXPLLDevice.length > 0){
+	if(( AUXPLLDevice.length > 0)& (multi_core.includes(device))){
 			tree = tree.concat ([
 				{
 					displayName: "PLLs",
@@ -144,6 +146,27 @@ if (("system" === system.context || "CPU1" === system.context) && system.deviceD
 				}
 			])
 	}
+	else if (( AUXPLLDevice.length > 0)& (!(multi_core.includes(device)))) {
+		tree = tree.concat ([
+			{
+				displayName: "PLLs",
+				entries: [
+					{
+						displayName: "System PLL",
+						ipInstances: ["SYSCLK"],
+						frequencyLabels: FreqLabels,
+						algorithm: "fanIn"
+					},
+					{
+						displayName: "Auxillary PLL",
+						ipInstances: ["AUXPLLCLK"],
+						frequencyLabels: FreqLabels,
+						algorithm: "fanIn"
+					},
+				],
+			}
+		])
+	} 
 		
 	tree = tree.concat ([
 		{

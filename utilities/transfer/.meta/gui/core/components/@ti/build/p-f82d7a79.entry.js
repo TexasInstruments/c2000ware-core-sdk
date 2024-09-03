@@ -1,0 +1,2 @@
+import{r as t,h as i}from"./p-ce1dc307.js";const o=":host div{display:flex;flex-direction:row;align-items:center}:host ::slotted(a){background-color:transparent;text-decoration:none;color:#007c8c;outline:0}:host svg{margin-right:8px;fill:#007c8c;width:24px;height:24px}:host ::slotted(ti-svg-icon){margin-right:8px}";let r=class{constructor(i){t(this,i);this.dataLid=""}render(){return i("div",null,this.iconUrl&&i("svg",{role:"img"},i("use",{xlinkHref:this.iconUrl})),i("slot",null))}};r.style=o;export{r as ti_featured_product_link};
+//# sourceMappingURL=p-f82d7a79.entry.js.map

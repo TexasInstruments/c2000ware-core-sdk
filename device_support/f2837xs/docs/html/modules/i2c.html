@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v5.01.00.00
+                v5.03.00.00
               </div>
             
           
@@ -1415,6 +1415,31 @@ to obtain status information, and to manage interrupts.</p>
 </dd></dl>
 
 <dl class="cpp function">
+<dt id="_CPPv433I2C_initControllerModuleFrequency8uint32_t8uint32_t8uint32_t13I2C_DutyCycle8uint32_t">
+<span id="_CPPv333I2C_initControllerModuleFrequency8uint32_t8uint32_t8uint32_t13I2C_DutyCycle8uint32_t"></span><span id="_CPPv233I2C_initControllerModuleFrequency8uint32_t8uint32_t8uint32_t13I2C_DutyCycle8uint32_t"></span><span id="I2C_initControllerModuleFrequency__uint32_t.uint32_t.uint32_t.I2C_DutyCycle.uint32_t"></span><span class="target" id="group__i2c__api_1ga1ad35e96b493acaeac50fb7a232bbd70"></span>void <code class="sig-name descname">I2C_initControllerModuleFrequency</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>sysclkHz</em>, uint32_t <em>bitRate</em>, <a class="reference internal" href="#_CPPv413I2C_DutyCycle" title="I2C_DutyCycle">I2C_DutyCycle</a> <em>dutyCycle</em>, uint32_t <em>moduleFrequency</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433I2C_initControllerModuleFrequency8uint32_t8uint32_t8uint32_t13I2C_DutyCycle8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Initializes the I2C Controller.</p>
+<p><p>This function initializes operation of the I2C Controller by configuring the bus speed for the controller. Note that the I2C module </p>
+<strong>must</strong> be put into reset before calling this function. You can do this with the function <a class="reference internal" href="#group__i2c__api_1ga63c72dcf216280a84725a8c2d538a20a"><span class="std std-ref">I2C_disableModule()</span></a>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the I2C instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sysclkHz</span></code>: is the rate of the clock supplied to the I2C module (SYSCLK) in Hz. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bitRate</span></code>: is the rate of the controller clock signal, SCL. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dutyCycle</span></code>: is duty cycle of the SCL signal. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">moduleFrequency</span></code>: is the module clock used by I2C module</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>A programmable prescaler in the I2C module divides down the input clock (rate specified by <em>sysclkHz</em>) to produce the module clock (calculated to be around 10 MHz in this function). That clock is then divided down further to configure the SCL signal to run at the rate specified by <em>bitRate</em>. The <em>dutyCycle</em> parameter determines the percentage of time high and time low on the clock signal. The valid values are <strong>I2C_DUTYCYCLE_33</strong> for 33% and <strong>I2C_DUTYCYCLE_50</strong> for 50%.</p>
+<p>The peripheral clock is the system clock. This value is returned by <a class="reference internal" href="sysctl.html#group__sysctl__api_1ga707d0a2ecffe9925e20d49362032b60e"><span class="std std-ref">SysCtl_getClock()</span></a>, or it can be explicitly hard coded if it is constant and known (to save the code/execution overhead of a call to <a class="reference internal" href="sysctl.html#group__sysctl__api_1ga707d0a2ecffe9925e20d49362032b60e"><span class="std std-ref">SysCtl_getClock()</span></a>).</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt id="_CPPv419I2C_enableInterrupt8uint32_t8uint32_t">
 <span id="_CPPv319I2C_enableInterrupt8uint32_t8uint32_t"></span><span id="_CPPv219I2C_enableInterrupt8uint32_t8uint32_t"></span><span id="I2C_enableInterrupt__uint32_t.uint32_t"></span><span class="target" id="group__i2c__api_1gac67a172bbf516ee43eaf963c42bcbebf"></span>void <code class="sig-name descname">I2C_enableInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419I2C_enableInterrupt8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Enables I2C interrupt sources.</p>
@@ -1547,6 +1572,23 @@ to obtain status information, and to manage interrupts.</p>
 </p>
 </dd></dl>
 
+<dl class="cpp function">
+<dt id="_CPPv433I2C_configureModuleClockFrequency8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv333I2C_configureModuleClockFrequency8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv233I2C_configureModuleClockFrequency8uint32_t8uint32_t8uint32_t"></span><span id="I2C_configureModuleClockFrequency__uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__i2c__api_1gaa702dcb68cb9572b92a2df66415d40df"></span>void <code class="sig-name descname">I2C_configureModuleClockFrequency</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>sysclkHz</em>, uint32_t <em>moduleFrequency</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433I2C_configureModuleClockFrequency8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures I2C Module Clock Frequency with a given module clock</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the I2C instance used. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sysclkHz</span></code>: is the rate of the clock supplied to the I2C module (SYSCLK) in Hz. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">moduleFrequency</span></code>: is the rate of the module clock used by I2C module This function configures I2C module clock frequency by initializing prescale register based on SYSCLK frequency. Note that the I2C module <strong>must</strong> be put into reset before calling this function. You can do this with the function <a class="reference internal" href="#group__i2c__api_1ga63c72dcf216280a84725a8c2d538a20a"><span class="std std-ref">I2C_disableModule()</span></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
 </div>
 </dd></dl>
 
@@ -1590,7 +1632,7 @@ will read the data from the receive buffer and return it.</p>
     <p>
       <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
       <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
-      <span class="lastupdated">Last updated on Mar 27, 2024.
+      <span class="lastupdated">Last updated on Aug 22, 2024.
       </span></p>
   </div>
 
@@ -1610,7 +1652,7 @@ will read the data from the receive buffer and return it.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v5.01.00.00',
+            VERSION:'v5.02.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

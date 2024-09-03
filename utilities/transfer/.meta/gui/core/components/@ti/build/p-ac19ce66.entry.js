@@ -1,0 +1,2 @@
+import{r as l,h as t}from"./p-ce1dc307.js";const s=":host{display:table-cell;vertical-align:top}";let r=class{constructor(t){l(this,t)}render(){return t("slot",null)}};r.style=s;export{r as ti_multicolumn_list_cell};
+//# sourceMappingURL=p-ac19ce66.entry.js.map

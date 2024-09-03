@@ -86,6 +86,7 @@
 #define GPIO_O_GPHQSEL2   0x1C4U   // GPIO H Qualifier Select 2 Register (GPIO240 to 255)
 #define GPIO_O_GPHMUX1    0x1C6U   // GPIO H Mux 1 Register (GPIO224 to 239)
 #define GPIO_O_GPHMUX2    0x1C8U   // GPIO H Mux 2 Register (GPIO240 to 255)
+#define GPIO_O_GPHPUD     0x1CCU   // GPIO H Pull Up Disable Register (GPIO224 to 255)
 #define GPIO_O_GPHINV     0x1D0U   // GPIO H Input Polarity Invert Registers (GPIO224 to 255)
 #define GPIO_O_GPHAMSEL   0x1D4U   // GPIO H Analog Mode Select register (GPIO224 to GPIO255)
 #define GPIO_O_GPHGMUX1   0x1E0U   // GPIO H Peripheral Group Mux (GPIO224 to 239)
@@ -1328,6 +1329,37 @@
 #define GPIO_GPHMUX2_GPIO245_M   0xC00U       // Defines pin-muxing selection for GPIO245
 #define GPIO_GPHMUX2_GPIO252_S   24U
 #define GPIO_GPHMUX2_GPIO252_M   0x3000000U   // Defines pin-muxing selection for GPIO252
+
+//*************************************************************************************************
+//
+// The following are defines for the bit fields in the GPHPUD register
+//
+//*************************************************************************************************
+#define GPIO_GPHPUD_GPIO224   0x1U          // Pull-Up Disable control for this pin
+#define GPIO_GPHPUD_GPIO225   0x2U          // Pull-Up Disable control for this pin
+#define GPIO_GPHPUD_GPIO226   0x4U          // Pull-Up Disable control for this pin
+#define GPIO_GPHPUD_GPIO227   0x8U          // Pull-Up Disable control for this pin
+#define GPIO_GPHPUD_GPIO228   0x10U         // Pull-Up Disable control for this pin
+#define GPIO_GPHPUD_GPIO229   0x20U         // Pull-Up Disable control for this pin
+#define GPIO_GPHPUD_GPIO230   0x40U         // Pull-Up Disable control for this pin
+#define GPIO_GPHPUD_GPIO231   0x80U         // Pull-Up Disable control for this pin
+#define GPIO_GPHPUD_GPIO232   0x100U        // Pull-Up Disable control for this pin
+#define GPIO_GPHPUD_GPIO233   0x200U        // Pull-Up Disable control for this pin
+#define GPIO_GPHPUD_GPIO236   0x1000U       // Pull-Up Disable control for this pin
+#define GPIO_GPHPUD_GPIO237   0x2000U       // Pull-Up Disable control for this pin
+#define GPIO_GPHPUD_GPIO238   0x4000U       // Pull-Up Disable control for this pin
+#define GPIO_GPHPUD_GPIO239   0x8000U       // Pull-Up Disable control for this pin
+#define GPIO_GPHPUD_GPIO240   0x10000U      // Pull-Up Disable control for this pin
+#define GPIO_GPHPUD_GPIO241   0x20000U      // Pull-Up Disable control for this pin
+#define GPIO_GPHPUD_GPIO242   0x40000U      // Pull-Up Disable control for this pin
+#define GPIO_GPHPUD_GPIO244   0x100000U     // Pull-Up Disable control for this pin
+#define GPIO_GPHPUD_GPIO245   0x200000U     // Pull-Up Disable control for this pin
+#define GPIO_GPHPUD_GPIO247   0x800000U     // Pull-Up Disable control for this pin
+#define GPIO_GPHPUD_GPIO248   0x1000000U    // Pull-Up Disable control for this pin
+#define GPIO_GPHPUD_GPIO249   0x2000000U    // Pull-Up Disable control for this pin
+#define GPIO_GPHPUD_GPIO251   0x8000000U    // Pull-Up Disable control for this pin
+#define GPIO_GPHPUD_GPIO252   0x10000000U   // Pull-Up Disable control for this pin
+#define GPIO_GPHPUD_GPIO253   0x20000000U   // Pull-Up Disable control for this pin
 
 //*************************************************************************************************
 //

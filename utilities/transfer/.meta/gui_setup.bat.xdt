@@ -1,0 +1,25 @@
+% let transferCommon;
+% if (system.getProducts()[0].name.includes("C2000"))
+% { transferCommon = system.getScript("/utilities/transfer/transferCommon.js");
+% } else
+% { transferCommon = system.getScript("/transfer/transferCommon.js");}
+% 
+% let gui = system.modules[transferCommon.getTransferPath() + "gui.js"].$static;
+% var nodePath = system.getNodePath();
+% var path = system.utils.path;
+% var nodeFolder = path.dirname(nodePath);
+% var ccsPath = path.join(nodeFolder, "..", "..");
+% var eclipsePath = path.join(ccsPath, "eclipse");
+% var theiaPath = path.join(ccsPath, "theia");
+% var eclipseDropInsGcPath = path.join(eclipsePath, "dropins-gc");
+% var theiaPlugInsGcPath = path.join(theiaPath, "ccs_plugins");
+% var absTransferPath = transferCommon.getAbsoluteTransferPath().replaceAll("/", "\\");
+if not exist "`eclipseDropInsGcPath`" mkdir "`eclipseDropInsGcPath`"
+if not exist "`theiaPlugInsGcPath`" mkdir "`theiaPlugInsGcPath`"
+xcopy ".\syscfg\gui\" "`eclipseDropInsGcPath`\`gui.guiProjectName.toLowerCase().replaceAll(" ", "_")`\" /E /Y
+xcopy "`absTransferPath`.meta\gui\core\" "`eclipseDropInsGcPath`\`gui.guiProjectName.toLowerCase().replaceAll(" ", "_")`\" /E /Y
+xcopy ".\syscfg\gui\" "`theiaPlugInsGcPath`\`gui.guiProjectName.toLowerCase().replaceAll(" ", "_")`\" /E /Y
+% if (gui.dltlogger){
+xcopy ".\syscfg\dlt\assoc_table.json" "`theiaPlugInsGcPath`\`gui.guiProjectName.toLowerCase().replaceAll(" ", "_")`\" /E /Y
+%}
+xcopy "`absTransferPath`.meta\gui\core\" "`theiaPlugInsGcPath`\`gui.guiProjectName.toLowerCase().replaceAll(" ", "_")`\" /E /Y

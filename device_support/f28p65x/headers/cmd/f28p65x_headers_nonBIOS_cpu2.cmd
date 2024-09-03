@@ -178,7 +178,7 @@ MEMORY
    SPIC                       : origin = 0x00006120, length = 0x00000010
    SPID                       : origin = 0x00006130, length = 0x00000010
    TESTERROR                  : origin = 0x0005F590, length = 0x00000010
-   UID                        : origin = 0x00072172, length = 0x00000010
+   UID                        : origin = 0x00072168, length = 0x00000010
    UARTA                      : origin = 0x0006A000, length = 0x00000800
    UARTB                      : origin = 0x0006A800, length = 0x00000800
    WD                         : origin = 0x00007000, length = 0x0000002C

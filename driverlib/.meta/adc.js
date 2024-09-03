@@ -157,6 +157,54 @@ function calculateChosenSampleTime(inst,sociX){
         }
 }
 
+var configNames = [
+    "IndependentNameMode",
+    "Channel",
+    "Trigger",
+    "InterruptTrigger",
+    "UseSampleTimeCalculator",
+    "InputCapacitance",
+    "InputResistance",
+    "SettlingError",
+    "UseCalculatedSampleTime",
+    "SampleWindow",
+    "SampleTime",
+];
+
+if (["F28P65x", "F28P55x"].includes(Common.getDeviceName())){
+    configNames.push(   
+        "Triggermode",
+        "ExtChannel",
+    )
+}
+
+function performCopy(inst, ui)
+{
+    for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){ 
+        var currentSOC = device_driverlib_peripheral.ADC_SOCNumber[socIndex].name
+        var soci = (currentSOC).replace(/[^0-9]/g,'')
+        if(((inst.enabledSOCs).includes(currentSOC)))
+        { 
+            var inst_copy_to = inst["soc" + soci.toString() + "Name"];
+            var inst_copy_from = inst["soc" + soci.toString() + "copyFrom"];
+            var copyFromIndex = inst["soc" + soci.toString() + "copyFrom"].replace("SOC", "");
+            if((inst_copy_to != inst_copy_from) && (inst_copy_from != ""))
+            {
+                //
+                // Copy all SOC config 
+                //
+                for (var configOptionIndex = 0; configOptionIndex<configNames.length; configOptionIndex++)
+                {
+                    var configName = configNames[configOptionIndex];
+                    inst["soc" + soci.toString() + configName] = inst["soc" + copyFromIndex + configName];
+                    // inst["soc" + soci.toString() + "Channel"] = inst["soc" + copyFromIndex + "Channel"]
+                    // inst["soc" + soci.toString() + "SampleWindow"] = inst["soc" + copyFromIndex + "SampleWindow"]
+                }
+            }
+        }
+    }
+}
+
 // function performCopy(inst, ui)
 // {
 //     for (var instance_index in inst.$module.$instances)
@@ -202,6 +250,7 @@ function onChangeEnabledSOCs(inst, ui){
             "soc" + soci.toString() + "InterruptTrigger",
             "soc" + soci.toString() + "UseSampleTimeCalculator",
             "soc" + soci.toString() + "SampleTime",
+            "soc" + soci.toString() + "copyUse",
         ]
         if ([ "F28P65x", "F28P55x"].includes(Common.getDeviceName())){
             socConfigs.push(   
@@ -433,6 +482,33 @@ function onChangeSampleTimeCalculator(inst, ui){
                 }
             }
            
+        }
+
+    }
+}
+
+function onChangeCopy(inst, ui){
+    for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){ 
+        var currentSOC = device_driverlib_peripheral.ADC_SOCNumber[socIndex].name
+        var soci = (currentSOC).replace(/[^0-9]/g,'')
+        var copyConfigs = [
+            "soc" + soci.toString() + "copyFrom",
+            "soc" + soci.toString() + "copyPerform"
+        ];
+
+        if (ui)
+        {
+            for (var cpConfig of copyConfigs)
+            {
+                if (inst["soc" + soci.toString() + "copyUse"])
+                {
+                    ui[cpConfig].hidden = false;
+                }
+                else
+                {
+                    ui[cpConfig].hidden = true;
+                }
+            }
         }
 
     }
@@ -831,6 +907,44 @@ function addSOCGroup(soci){
             hidden      : true,
             getValue    : (inst) => calculateChosenSampleTime(inst,soci),
             default     : ADC_SampleTime_SysClk_ns
+        },
+        {
+            name        : "GROUP_COPY" + soci.toString(),
+            displayName : "Copy Settings",
+            description : '',
+            config      : [
+                {
+                    name: "soc" + soci.toString() + "copyUse",
+                    displayName: "Use Copy Feature",
+                    hidden: true,
+                    default: false,
+                    onChange: onChangeCopy,
+                },
+                {
+                    name: "soc" + soci.toString() + "copyFrom",
+                    displayName: "Copy From",
+                    description : 'The SysConfig name for the ADC SOC to copy from',
+                    hidden: true,
+                    default: "",
+                },
+                {
+                    name: "soc" + soci.toString() + "copyPerform",
+                    displayName: "One-shot Copy",
+                    hidden: true,
+                    buttonText: "Copy SOC Configuration",
+                    onLaunch: (inst) => {
+                        return ({
+                            command: "../driverlib/.meta/epwm/epwmMemory.bat",
+                            args: ["inst.epwmMemoryFileBrowse", "$comFile"],
+                            initialData: "",
+                        });
+                    },
+                    onComplete: (inst, ui, result) => {
+                        performCopy(inst, ui)
+                    },
+                }
+
+            ]
         },
     ])
     soc_configs = soc_configs.concat([{
@@ -2000,6 +2114,84 @@ function onValidate(inst, validation) {
     //     }
     // }
 
+    var validCopyName = false;
+    for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){
+        var currentSOC = device_driverlib_peripheral.ADC_SOCNumber[socIndex].name
+        var soci = (currentSOC).replace(/[^0-9]/g,'')
+        if(((inst.enabledSOCs).includes(currentSOC)))
+        {
+            var inst_copy_to = inst["soc" + soci.toString() + "Name"];
+            var inst_copy_from = inst["soc" + soci.toString() + "copyFrom"];
+            if(inst["soc" + soci.toString() + "copyUse"])
+            {
+                if(inst_copy_to == inst_copy_from)
+                {
+                    //
+                    // Check if copy from SOC and copy to SOC are the same
+                    //
+                    validation.logError(
+                        "The copy from name is same SOC name as selected SOC", 
+                        inst, "soc" + soci.toString() + "copyFrom");
+                }
+
+                if(inst_copy_to != inst_copy_from)
+                {
+                    for(var copySOCIndex in device_driverlib_peripheral.ADC_SOCNumber){
+                        var copySOC = device_driverlib_peripheral.ADC_SOCNumber[copySOCIndex].name
+                        var copysoci = (copySOC).replace(/[^0-9]/g,'')
+                        if(((inst.enabledSOCs).includes(copySOC)))
+                        {                       
+                            if(inst["soc" + soci.toString() + "copyFrom"] == inst["soc" + copysoci.toString() + "Name"]){
+                            validCopyName = true;
+                            }
+                        }
+                    }
+                }
+
+                if(!validCopyName)
+                {
+                    //
+                    // Check if the selected SOC name is valid 
+                    //
+                    validation.logError(
+                        "The copy from name is not a valid SOC name", 
+                        inst, "soc" + soci.toString() + "copyFrom");
+                }
+            }
+        }
+    }
+    // for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){
+    //     var currentSOC = device_driverlib_peripheral.ADC_SOCNumber[socIndex].name
+    //     var soci = (currentSOC).replace(/[^0-9]/g,'')
+    //     if(((inst.enabledSOCs).includes(currentSOC)))
+    //     {
+    //         var inst_copy_to = inst["soc" + soci.toString() + "Name"];
+    //         var inst_copy_from = inst["soc" + soci.toString() + "copyFrom"];
+    //         if(inst["soc" + soci.toString() + "copyUse"])
+    //         {
+    //             if(inst_copy_to != inst_copy_from)
+    //             {
+    //                 for(var socIn in device_driverlib_peripheral.ADC_SOCNumber){
+    //                     var crtSOC = device_driverlib_peripheral.ADC_SOCNumber[socIn].name
+    //                     var soca = (crtSOC).replace(/[^0-9]/g,'')
+    //                     if(((inst.enabledSOCs).includes(crtSOC)))
+    //                     {                       
+    //                         if(inst["soc" + soci.toString() + "copyFrom"] == inst["soc" + soca.toString() + "Name"]){
+    //                         validCopyName = true;
+    //                         }
+    //                     }
+    //                 }
+    //             }
+
+    //             if(!validCopyName)
+    //             {
+    //                 validation.logError(
+    //                     "The copy from name is not a valid EPWM name", 
+    //                     inst, "soc" + soci.toString() + "copyFrom");
+    //             }
+    //         }
+    //     }
+    // }
     //
     // Copy Check End
     //

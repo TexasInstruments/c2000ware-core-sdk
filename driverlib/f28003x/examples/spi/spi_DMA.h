@@ -87,13 +87,14 @@ typedef enum
 }SPI_TransactionType;
 
 #define BUFFER_SIZE 64
+#define ADDL_WORDS  10
 
 #define DUMMY_DATA 0xFF
 #define NO_DELAY   0
 
 
-extern uint16_t DMATXbuff[BUFFER_SIZE];
-extern uint16_t DMARXbuff[BUFFER_SIZE];
+extern uint16_t DMATXbuff[BUFFER_SIZE + ADDL_WORDS];
+extern uint16_t DMARXbuff[BUFFER_SIZE + ADDL_WORDS];
 
 extern struct DMA_CH SPITXDMA;
 extern struct DMA_CH SPIRXDMA;

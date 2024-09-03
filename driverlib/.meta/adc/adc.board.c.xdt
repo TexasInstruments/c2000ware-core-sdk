@@ -25,6 +25,7 @@ void `nameOfPeripheral`_init(){
 		% var baseName = instance.$name + "_BASE";
 	`instance.$name`_init();
 %   }
+%}
 }
 
 %   for(var i = 0; i < module.$instances.length; i++) 
@@ -186,7 +187,7 @@ void `instance.$name`_init(){
 	// 		Repeater module `rptriNumber` parameters
 	//      base: 			`baseName`
 	// 		RepInstance: 	`instance["soc" + socNumber.toString() + "Trigger"]`
-	//      ADC_RepeaterConfig : {
+	//      ADC_RepeaterConfig :
 	//      mode			: `instance["repeater"+rptriNumber+" Mode"]`
 	// 	  	Trigger			: `instance["repeater"+rptriNumber+" Trigger"]`
 	//	  	SyncInput		: `instance["repeater"+rptriNumber+" SyncInput"]`
@@ -452,5 +453,5 @@ void `instance.$name`_init(){
 			% }
 		% }
 }
-	% }
+
 % }

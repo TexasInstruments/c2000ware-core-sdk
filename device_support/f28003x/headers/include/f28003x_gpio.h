@@ -1117,6 +1117,46 @@ union GPHMUX2_REG {
     struct  GPHMUX2_BITS  bit;
 };
 
+struct GPHPUD_BITS {                    // bits description
+    Uint16 GPIO224:1;                   // 0 Pull-Up Disable control for this pin
+    Uint16 GPIO225:1;                   // 1 Pull-Up Disable control for this pin
+    Uint16 GPIO226:1;                   // 2 Pull-Up Disable control for this pin
+    Uint16 GPIO227:1;                   // 3 Pull-Up Disable control for this pin
+    Uint16 GPIO228:1;                   // 4 Pull-Up Disable control for this pin
+    Uint16 GPIO229:1;                   // 5 Pull-Up Disable control for this pin
+    Uint16 GPIO230:1;                   // 6 Pull-Up Disable control for this pin
+    Uint16 GPIO231:1;                   // 7 Pull-Up Disable control for this pin
+    Uint16 GPIO232:1;                   // 8 Pull-Up Disable control for this pin
+    Uint16 GPIO233:1;                   // 9 Pull-Up Disable control for this pin
+    Uint16 rsvd1:1;                     // 10 Reserved
+    Uint16 rsvd2:1;                     // 11 Reserved
+    Uint16 GPIO236:1;                   // 12 Pull-Up Disable control for this pin
+    Uint16 GPIO237:1;                   // 13 Pull-Up Disable control for this pin
+    Uint16 GPIO238:1;                   // 14 Pull-Up Disable control for this pin
+    Uint16 GPIO239:1;                   // 15 Pull-Up Disable control for this pin
+    Uint16 GPIO240:1;                   // 16 Pull-Up Disable control for this pin
+    Uint16 GPIO241:1;                   // 17 Pull-Up Disable control for this pin
+    Uint16 GPIO242:1;                   // 18 Pull-Up Disable control for this pin
+    Uint16 rsvd3:1;                     // 19 Reserved
+    Uint16 GPIO244:1;                   // 20 Pull-Up Disable control for this pin
+    Uint16 GPIO245:1;                   // 21 Pull-Up Disable control for this pin
+    Uint16 rsvd4:1;                     // 22 Reserved
+    Uint16 GPIO247:1;                   // 23 Pull-Up Disable control for this pin
+    Uint16 GPIO248:1;                   // 24 Pull-Up Disable control for this pin
+    Uint16 GPIO249:1;                   // 25 Pull-Up Disable control for this pin
+    Uint16 rsvd5:1;                     // 26 Reserved
+    Uint16 GPIO251:1;                   // 27 Pull-Up Disable control for this pin
+    Uint16 GPIO252:1;                   // 28 Pull-Up Disable control for this pin
+    Uint16 GPIO253:1;                   // 29 Pull-Up Disable control for this pin
+    Uint16 rsvd6:1;                     // 30 Reserved
+    Uint16 rsvd7:1;                     // 31 Reserved
+};
+
+union GPHPUD_REG {
+    Uint32  all;
+    struct  GPHPUD_BITS  bit;
+};
+
 struct GPHINV_BITS {                    // bits description
     Uint16 GPIO224:1;                   // 0 Input inversion control for this pin
     Uint16 GPIO225:1;                   // 1 Input inversion control for this pin
@@ -1439,19 +1479,21 @@ struct GPIO_CTRL_REGS {
     union   GPHQSEL2_REG                     GPHQSEL2;                     // GPIO H Qualifier Select 2 Register (GPIO240 to 255)
     union   GPHMUX1_REG                      GPHMUX1;                      // GPIO H Mux 1 Register (GPIO224 to 239)
     union   GPHMUX2_REG                      GPHMUX2;                      // GPIO H Mux 2 Register (GPIO240 to 255)
-    Uint16                                   rsvd10[6];                    // Reserved
-    union   GPHINV_REG                       GPHINV;                       // GPIO H Input Polarity Invert Registers (GPIO224 to 255)
+    Uint16                                   rsvd10[2];                    // Reserved
+    union   GPHPUD_REG                       GPHPUD;                       // GPIO H Pull Up Disable Register (GPIO224 to 255)
     Uint16                                   rsvd11[2];                    // Reserved
+    union   GPHINV_REG                       GPHINV;                       // GPIO H Input Polarity Invert Registers (GPIO224 to 255)
+    Uint16                                   rsvd12[2];                    // Reserved
     union   GPHAMSEL_REG                     GPHAMSEL;                     // GPIO H Analog Mode Select register (GPIO224 to GPIO255)
-    Uint16                                   rsvd12[10];                   // Reserved
+    Uint16                                   rsvd13[10];                   // Reserved
     union   GPHGMUX1_REG                     GPHGMUX1;                     // GPIO H Peripheral Group Mux (GPIO224 to 239)
     union   GPHGMUX2_REG                     GPHGMUX2;                     // GPIO H Peripheral Group Mux (GPIO240 to 255)
-    Uint16                                   rsvd13[4];                    // Reserved
+    Uint16                                   rsvd14[4];                    // Reserved
     union   GPHCSEL1_REG                     GPHCSEL1;                     // GPIO H Core Select Register (GPIO224 to 231)
     union   GPHCSEL2_REG                     GPHCSEL2;                     // GPIO H Core Select Register (GPIO232 to 239)
     union   GPHCSEL3_REG                     GPHCSEL3;                     // GPIO H Core Select Register (GPIO240 to 247)
     union   GPHCSEL4_REG                     GPHCSEL4;                     // GPIO H Core Select Register (GPIO248 to 255)
-    Uint16                                   rsvd14[12];                   // Reserved
+    Uint16                                   rsvd15[12];                   // Reserved
     union   GPHLOCK_REG                      GPHLOCK;                      // GPIO H Lock Configuration Register (GPIO224 to 255)
     union   GPHCR_REG                        GPHCR;                        // GPIO H Lock Commit Register (GPIO224 to 255)
 };

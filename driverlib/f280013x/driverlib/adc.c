@@ -262,7 +262,7 @@ ADC_setOffsetTrim(uint32_t base)
         }
         else
         {
-            *offset = 0U;
+            offset = 0U;
         }
     }
 
@@ -316,7 +316,7 @@ ADC_setOffsetTrimAll(ADC_ReferenceMode refMode, ADC_ReferenceVoltage refVoltage)
         }
         else
         {
-            *offset = 0U;
+            offset = 0U;
         }
     }
 
@@ -343,7 +343,7 @@ ADC_setOffsetTrimAll(ADC_ReferenceMode refMode, ADC_ReferenceVoltage refVoltage)
         }
         else
         {
-            *offset = 0U;
+            offset = 0U;
         }
     }
 

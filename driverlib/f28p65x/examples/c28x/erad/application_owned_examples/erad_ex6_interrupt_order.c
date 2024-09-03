@@ -12,7 +12,7 @@
 //!  The expected order is CPUTimer0 ,then CPUTimer1 and then CPUTimer2
 //!
 //!  The counter is configured in Start-Stop Mode to count the number of times
-//!  CPUTimer interrupt occurs between the CPUTimer1 interrupt and CPUTimer2
+//!  CPUTimer2 interrupt occurs between the CPUTimer0 interrupt and CPUTimer1
 //!  ISRs. Ideally, this count should be zero if the interrupts are occurring
 //!  in the expected order. we configure a threshold value of 1 to generate an
 //!  RTOS interrupt. This indicates that the CPUTimer2 interrupt has come out
@@ -351,7 +351,7 @@ cpuTimer2ISR(void)
 }
 
 //
-// Interrupt is raised if CPUTimer1 occurs before CPUTimer2 and after
+// Interrupt is raised if CPUTimer2 occurs before CPUTimer1 and after
 // CPUTimer0
 //
 interrupt void

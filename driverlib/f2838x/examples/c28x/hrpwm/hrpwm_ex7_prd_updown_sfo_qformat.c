@@ -45,8 +45,10 @@
 //#############################################################################
 //
 //
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -113,8 +115,6 @@ int MEP_ScaleFactor = 0;
 //
 volatile uint32_t ePWM[PWM_CH + 1] = {0, EPWM1_BASE, EPWM2_BASE};
 
-
-
 //
 // Function Prototypes
 //
@@ -155,6 +155,7 @@ void main(void)
     updateFine = 1;
     periodFine = 0;
     status = SFO_INCOMPLETE;
+
 
     //
     // Calling SFO() updates the HRMSTEP register with calibrated

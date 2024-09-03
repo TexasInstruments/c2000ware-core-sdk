@@ -2367,7 +2367,7 @@ LIN_disableSCIInterrupt(uint32_t base, uint32_t intFlags)
     //
     // Set specified interrupts to be cleared
     //
-    HWREG_BP(base + LIN_O_SCICLEARINT) |= intFlags;
+    HWREG_BP(base + LIN_O_SCICLEARINT) = intFlags;
 }
 
 //*****************************************************************************
@@ -2411,7 +2411,7 @@ LIN_clearSCIInterruptStatus(uint32_t base, uint32_t intFlags)
     //
     // Clear the status flags
     //
-    HWREG_BP(base + LIN_O_SCIFLR) |= intFlags;
+    HWREG_BP(base + LIN_O_SCIFLR) = intFlags;
 }
 
 //*****************************************************************************
@@ -2456,7 +2456,7 @@ LIN_setSCIInterruptLevel0(uint32_t base, uint32_t intFlags)
     //
     // Clear interrupt levels to 0
     //
-    HWREG_BP(base + LIN_O_SCICLEARINTLVL) |= intFlags;
+    HWREG_BP(base + LIN_O_SCICLEARINTLVL) = intFlags;
 }
 
 //*****************************************************************************

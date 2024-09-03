@@ -1,0 +1,547 @@
+% let transferCommon;
+% if (system.getProducts()[0].name.includes("C2000"))
+% { transferCommon = system.getScript("/utilities/transfer/transferCommon.js");
+% } else
+% { transferCommon = system.getScript("/transfer/transferCommon.js");}
+% 
+% let gui = system.modules[transferCommon.getTransferPath() + "gui.js"].$static;
+% let exportCommon = system.getScript(transferCommon.getTransferPath() + "export/export_mods_common.js");
+% let expModuleNames = exportCommon.getExportModModuleNames();
+% let expAlwaysModuleNames = exportCommon.getExportAlwaysModModuleNames();
+% let Collateral = null;
+% if (transferCommon.isC28x()) { Collateral  = system.getScript("/driverlib/sysconfig_collateral_links.js"); }
+% let exporter = gui.exporter;
+% let buttonMode = "disabled";
+% let exportMod;
+% let expInst;
+% if (exporter) {
+%   buttonMode = exporter.mode.includes("Bidirectional")?"enabled":"disabled"
+%   exportMod = system.modules[transferCommon.getTransferPath() + "exporter.js"];
+%   expInst = exportMod.$instances[0];
+% }
+%
+%
+
+<link rel="import" href="components/ti-core-stylesheets/ti-core-stylesheets.html">
+<script type="module" src="./components/@ti/build/gc-components.esm.js"></script>
+<script type="module" src="./index.js"></script>
+% if (exporter && expInst.packageMode == "START/END"){
+<script type="module" src="./codec.js"></script>
+% }
+<style>
+    body {
+        margin: 0;
+    }
+    #editorRoot {
+        z-index: 0;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        overflow: hidden;
+        opacity: 1;
+        margin: 0;
+    }
+    #viewport {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        --gc-overflow: auto;
+    }
+    .container {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+    .tile {
+        margin: 10px;
+    }
+    .tile.instruments {
+        width: 300px;
+        min-width: 400px;
+        height: 320px;
+    }
+    .tile.info > * {
+        margin: 0;
+    }
+    #page_modules {
+        --gc-overflow: auto;
+    }
+    #page_data > gc-widget-container {
+        margin : 0 auto;
+    }
+    
+    .almost_full_width {
+        width: 98%;
+    }
+    
+    .page_module_tile {
+        --gc-padding: 10px;
+        width: 300px;
+        height: 300px;
+    }
+
+    .page_module_specific_register_button {
+        position: absolute;
+        right: 0px
+    }
+
+    .page_module_specific_tile {
+        --gc-padding: 10px;
+        width: 300px;
+        height: 300px;
+    }
+
+    .page_module_specific_export {
+        width: 90%;
+        --gc-padding: 0px;
+    }
+
+    .page_module_specific_con {
+        width: 90%;
+        --gc-padding: 0px;
+    }
+    #container {
+        width: 100%;
+    }
+
+    .connection_container {
+        height: 90%
+    }
+    .connection_panel {
+        width: 90%
+    }
+    .connection_div {
+        margin: 10px
+    }
+    .multiline {
+      white-space: pre-wrap;
+    }
+    .connection_led {
+        position: absolute;
+        right: 0px;
+        --gc-on-color: #00ff11;
+        --gc-off-color: #000000
+    }
+
+    #cust_logger_grid{
+        width: 98%
+    }
+    #cust_logger_controls_container {
+        height: 45px;
+        --gc-overflow: hidden
+    }
+% if (gui.dltlogger) {    
+    #plot {
+        position: absolute;
+        left: 3px;
+        top: 54px;
+        width: 589px
+    }
+    #DLT_plot_container {
+        height: 441px
+    }
+    #plot_1 {
+        position: absolute;
+        left: 4px;
+        top: 95px;
+        width: 602px
+    }
+    #led {
+        position: relative;
+        width: 93px
+    }
+    #led_1 {
+        position: relative;
+        width: 85px
+    }
+    #container_4 {
+        width: 142px;
+        height: 36px;
+    }
+    #DLT_plot {
+        width: 440px;
+        height: 405px;
+        position: static
+    }
+    #Plot/Check_container {
+        width: 470px;
+        height: 598px
+    }
+    #check_container {
+        width: 1222px;
+        height: 14px;
+        position: relative
+    }
+    #Table_container {
+        position: absolute;
+        left: 472px;
+        top: 51px;
+        width: 1099px;
+        height: 557px
+    }
+    #DLT_grid {
+        --gc-heading-font-size: 10;
+        height: 390px;
+        width: 902px;
+        position: static
+    }
+    #column0 {
+        --gc-font-weight: bold;
+        --gc-heading-text-align: start;
+        --gc-font-style: normal
+    }
+    #Page_container {
+        position: relative;
+        width: 1535px
+    }
+    #DLT_export {
+        position: absolute;
+        left: 0px;
+        top: 0px
+    }
+    #DLT_descending {
+        position: absolute;
+        left: 2px;
+        top: 4px
+    }
+    #container_1 {
+        position: relative;
+    }
+    #container_5 {
+        width: 87px;
+        height: 49px;
+        position: static;
+    }
+    #container_2 {
+        position: relative;
+    }
+% }    
+% if (gui.fsilogger) {
+    #fsi_logger_grid {
+        width: 98%
+    }
+    #fsi_logger_controls_container {
+        height: 45px;
+        --gc-overflow: hidden
+    }
+    #fsi_logger_exp_div {
+        width: 95%
+    }
+    #fsi_logger_exp_dialog {
+        display: flex
+    }
+% }
+
+% if (gui.customlogger) {
+    #cust_logger_grid{
+        width: 98%
+    }
+    #cust_logger_controls_container {
+        height: 45px;
+        --gc-overflow: hidden
+    }
+    #cust_logger_exp_div {
+        width: 95%
+    }
+    #cust_logger_exp_dialog {
+        display: flex
+    }
+% }
+
+</style>
+
+<div id="editorRoot" layout vertical one flex>
+    <gc-widget-theme id="theme" hidden></gc-widget-theme>
+    <gc-widget-about-dialog id="about_dialog"></gc-widget-about-dialog>
+    <gc-widget-cloudagent-dialog id="cloudagent_dialog"></gc-widget-cloudagent-dialog>
+
+    % let activeConfiguration = "";
+    % let delimiter = "";
+    % if (exporter && expInst.packageMode == "JSON")
+    % {
+    %   activeConfiguration += "usb+cr+json+streaming";
+    % }
+    % else if (exporter && expInst.packageMode == "START/END")
+    % {
+    %   activeConfiguration += "usb+custom+streaming";
+    % }
+    % if (gui.deviceDiagnosticExportMode == "xds") {
+    %   activeConfiguration += (activeConfiguration?",":"") + "xds+pm"
+    % }
+    <gc-target-connection-manager id="connection_manager" auto-connect active-configuration="`activeConfiguration`">
+    % if (exporter) {
+        <gc-transport-usb id="usb" default-baud-rate="115200"></gc-transport-usb>
+        <gc-codec-json id="json"></gc-codec-json>
+        <gc-codec-delimited-text id="cr"></gc-codec-delimited-text>
+        <gc-model-streaming id="streaming"></gc-model-streaming>
+    % }
+    % if (gui.deviceDiagnosticExportMode == "xds") {
+        <gc-model-program id="pm"></gc-model-program>
+        <gc-transport-xds id="xds"></gc-transport-xds>
+    % }
+    </gc-target-connection-manager>
+    
+    % if (exporter) {
+    <gc-widget-port-selection-dialog id="serial_port_element"></gc-widget-port-selection-dialog>
+    % }
+
+    <gc-widget-menubar id="mb" has-window-buttons product-name="`gui.guiProjectName`" product-icon="icons:ti-logo" layout horizontal product-icon-folder-path="./assets/">
+        <gc-widget-menuitem label="Options" layout vertical>
+            <gc-widget-menuaction id="ma_serial_port" label="Serial Port Settings ..." action-id="cmd_open_serial_port_dialog" icon="action:settings_input_component"></gc-widget-menuaction>
+        </gc-widget-menuitem>
+        <gc-widget-menuitem id="mm_help" label="Help" layout vertical>
+            <gc-widget-menuaction id="ma_about" label="About" action-id="cmd_open_about_dialog" icon="round:action:help"></gc-widget-menuaction>
+        </gc-widget-menuitem>
+    </gc-widget-menubar>
+
+    <gc-widget-container id="viewport" flex one vertical layout>
+        <gc-widget-tab-container id="modules_tab_container" class="container" layout horizontal position="top" index="0" initial-index="0">
+            
+% if (transferCommon.isC2000() && (gui.deviceDiagnosticExportMode != "none")) {
+            <gc-widget-tab-panel id="page_modules" class="container" label="Modules" icon-name="round:action:view_module" has-heading tooltip="Application Modules" layout vertical start-justified>
+                <gc-widget-container id="page_module_container" horizontal layout center-justified wrap>
+% for (var expModName of expModuleNames) {
+    % let mod = system.modules["/driverlib/" + expModName + ".js"];
+    % let modExports = system.getScript(transferCommon.getTransferPath() + "export/mods/export_mod_" + expModName + ".js");
+    %//
+    %// Module top level status page
+    %//
+    % if (mod && (exportCommon.getNonExporterInstances(mod).length > 0)) {
+                    <gc-widget-container id="page_module_`expModName`_tile" class="page_module_tile" heading="`expModName.toUpperCase()`" elevation="1" layout start-justified center vertical>
+        % for (var modInst of exportCommon.getNonExporterInstances(mod)) {
+                        <gc-widget-container id="page_module_`modInst.$name`_con" class="page_module_specific_con" elevation="0" layout horizontal justified center>
+                            <gc-widget-label id="page_module_`modInst.$name`_lbl" label="`modInst.$name`"></gc-widget-label>
+                            <gc-widget-led id="page_module_`modInst.$name`_led"></gc-widget-led>
+                        </gc-widget-container>
+        % }
+                    </gc-widget-container>
+
+    % }
+% }
+%
+% //
+% // Always Modules
+% //
+%
+% for (var expAlwaysModName of expAlwaysModuleNames) {
+    % let modExports = system.getScript(transferCommon.getTransferPath() + "export/mods/export_mod_" + expAlwaysModName + ".js");
+    %//
+    %// Always Module top level status page
+    %//
+                    <gc-widget-container id="page_module_`expAlwaysModName`_tile" class="page_module_tile" heading="`expAlwaysModName.toUpperCase()`" elevation="1" layout start-justified center vertical>
+                        <gc-widget-container id="page_module_`expAlwaysModName`_con" class="page_module_specific_con" elevation="0" layout horizontal justified center>
+                            <gc-widget-label id="page_module_`expAlwaysModName`_lbl" label="`expAlwaysModName`"></gc-widget-label>
+                            <gc-widget-led id="page_module_`expAlwaysModName`_led"></gc-widget-led>
+                        </gc-widget-container>
+                    </gc-widget-container>
+
+% }
+                </gc-widget-container>
+            </gc-widget-tab-panel>
+% }
+
+% if (transferCommon.isC2000() && (gui.deviceDiagnosticExportMode != "none")) {
+% for (var expModName of expModuleNames) {
+    % let mod = system.modules["/driverlib/" + expModName + ".js"];
+    % let modExports = system.getScript(transferCommon.getTransferPath() + "export/mods/export_mod_" + expModName + ".js");
+    %//
+    %// Module page individual entry status
+    %//
+    % if (mod && (exportCommon.getNonExporterInstances(mod).length > 0)) {
+            <gc-widget-tab-panel id="page_`expModName`" class="container" label="`expModName.toUpperCase()`" has-heading layout horizontal wrap>
+        % for (var modInst of exportCommon.getNonExporterInstances(mod)) {
+                <gc-widget-container>
+                    <gc-widget-button class="page_module_specific_register_button" id="page_`expModName`_save_`modInst.$name`_registers_b" button-type="primary" label="Save Registers" `buttonMode`></gc-widget-button>
+                    <gc-widget-container id="page_`expModName`_`modInst.$name`_tile" class="page_module_specific_tile" heading="`modInst.$name`" elevation="1" layout center-justified center vertical>
+            % for (let exportInfo of exportCommon.getInstanceExportModsInfo(modInst, modExports.exportsInfo)) {
+                        <gc-widget-container id="page_`expModName`_`modInst.$name`_`exportInfo.name`" class="page_module_specific_export" elevation="0" layout horizontal justified center>
+                            <gc-widget-label id="page_`expModName`_`modInst.$name`_`exportInfo.name`_lbl" label="`exportInfo.displayName`"></gc-widget-label>
+                            <gc-widget-led id="page_`expModName`_`modInst.$name`_`exportInfo.name`_led"></gc-widget-led>
+                        </gc-widget-container>
+            % }   
+                    </gc-widget-container>
+                </gc-widget-container>
+        % }
+            </gc-widget-tab-panel>
+            
+    % }
+% }
+%
+% //
+% // Always Modules
+% //
+%
+% for (var expAlwaysModName of expAlwaysModuleNames) {
+    % let modExports = system.getScript(transferCommon.getTransferPath() + "export/mods/export_mod_" + expAlwaysModName + ".js");
+    %//
+    %// Module page individual entry status
+    %//
+            <gc-widget-tab-panel id="page_`expAlwaysModName`" class="container" label="`expAlwaysModName.toUpperCase()`" has-heading layout horizontal wrap>
+                <gc-widget-container>
+                    <gc-widget-button class="page_module_specific_register_button" id="page_save_`expAlwaysModName`_registers_b" button-type="primary" label="Save Registers" disabled></gc-widget-button>
+                    <gc-widget-container id="page_`expAlwaysModName`_tile" class="page_module_specific_tile" heading="`expAlwaysModName`" elevation="1" layout center-justified center vertical>
+            % for (let exportInfo of modExports.exportsInfo) {
+                        <gc-widget-container id="page_`expAlwaysModName`_`exportInfo.name`" class="page_module_specific_export" elevation="0" layout horizontal justified center>
+                            <gc-widget-label id="page_`expAlwaysModName`_`exportInfo.name`_lbl" label="`exportInfo.displayName`"></gc-widget-label>
+                            <gc-widget-led id="page_`expAlwaysModName`_`exportInfo.name`_led"></gc-widget-led>
+                        </gc-widget-container>
+            % }   
+                    </gc-widget-container>
+                </gc-widget-container>
+            </gc-widget-tab-panel>
+    
+% }
+% }
+% if (gui.fsilogger) {
+            <gc-widget-tab-panel id="page_fsi_logger" class="container" label="FSI Logger" icon-name="round:action:timeline" vertical layout has-heading tooltip="FSI data logger">
+                <gc-widget-dialog id="fsi_logger_exp_dialog" close-on-esc>
+                    <gc-widget-container style="--gc-overflow: hidden; display: flex;" one flex vertical layout>
+                        <textarea id="fsi_logger_exp_div" one flex></textarea>
+                    </gc-widget-container>    
+                    <gc-widget-button slot="action-bar" class="dialog-dismiss" label="Close" button-type="link"></gc-widget-button>
+                </gc-widget-dialog>
+                <gc-widget-container id="fsi_logger_controls_container" layout class="container" horizontal center end-justified>
+                    <gc-widget-label label="Sort By"></gc-widget-label>
+                    <gc-widget-select id="fsi_logger_sort_by_column" labels=",Frame Type,User Data,Data Words,CRC,Frame Tag" values=",frame_type,user_data,data_words,crc,frame_tag" selected-index="0" initial-index="0"></gc-widget-select>
+                    <gc-widget-input-filter id="fsi_logger_filter_text" placeholder="Entries include this text" has-clear-icon has-search-icon hidden info-text="The selected Filter/Sort by column entries get filtered to show only the entries that include the text entered in this input box"></gc-widget-input-filter>
+                    <gc-widget-checkbox id="fsi_logger_sort_descending" label="Sort Decending"></gc-widget-checkbox>
+                    <gc-widget-button id="fsi_logger_export" label="Export"></gc-widget-button>
+                </gc-widget-container>
+                <gc-widget-grid id="fsi_logger_grid" layout horizontal selected-path="1" selected-row="1" one flex>
+                    <gc-widget-grid-data-column id="frame_type_col" name="frame_type" heading="Frame Type" layout></gc-widget-grid-data-column>
+                    <gc-widget-grid-data-column id="user_data_col" name="user_data" heading="User Data" layout></gc-widget-grid-data-column>
+                    <gc-widget-grid-tree-column id="data_words_col" name="data_words" hide-minimize-action heading="Data Words" layout one flex></gc-widget-grid-tree-column>
+                    <gc-widget-grid-data-column id="crc_col" name="crc" heading="CRC" layout></gc-widget-grid-data-column>
+                    <gc-widget-grid-data-column id="frame_tag_col" name="frame_tag" heading="Frame Tag" layout></gc-widget-grid-data-column>
+                </gc-widget-grid>
+            </gc-widget-tab-panel>
+% }
+% if (gui.customlogger) {
+            <gc-widget-tab-panel id="page_cust_logger" class="container" label="Custom Logger" icon-name="round:action:timeline" vertical layout has-heading tooltip="Custom data logger">
+                <gc-widget-dialog id="cust_logger_exp_dialog" close-on-esc>
+                    <gc-widget-container style="--gc-overflow: hidden; display: flex;" one flex vertical layout>
+                        <textarea id="cust_logger_exp_div" one flex></textarea>
+                    </gc-widget-container>    
+                    <gc-widget-button slot="action-bar" class="dialog-dismiss" label="Close" button-type="link"></gc-widget-button>
+                </gc-widget-dialog>
+                <gc-widget-container id="cust_logger_controls_container" layout class="container" horizontal center end-justified>
+                    <gc-widget-label label="Sort By"></gc-widget-label>
+                    <gc-widget-select id="cust_logger_sort_by_column" labels=",Timestamp,Data" values=",cust_logger_ts,cust_logger_d" selected-index="0" initial-index="0"></gc-widget-select>
+                    <gc-widget-input-filter id="cust_logger_filter_text" placeholder="Entries include this text" has-clear-icon has-search-icon hidden info-text="The selected Filter/Sort by column entries get filtered to show only the entries that include the text entered in this input box"></gc-widget-input-filter>
+                    <gc-widget-checkbox id="cust_logger_sort_descending" label="Sort Decending"></gc-widget-checkbox>
+                    <gc-widget-button id="cust_logger_export" label="Export"></gc-widget-button>
+                </gc-widget-container>
+                <gc-widget-grid id="cust_logger_grid" layout horizontal selected-path="1" selected-row="1" one flex>
+                    <gc-widget-grid-data-column id="cust_logger_ts_col" name="cust_logger_ts" heading="Timestamp" layout></gc-widget-grid-data-column>
+                    % if (exporter && expInst.packageMode == "JSON")
+                    % {
+                    <gc-widget-grid-data-column id="cust_logger_d_col" name="cust_logger_d" heading="DataString" layout one flex></gc-widget-grid-data-column>
+                    % }
+                    % else if (exporter && expInst.packageMode == "START/END")
+                    % {
+                    <gc-widget-grid-data-column id="cust_logger_ds_col" name="cust_logger_ds" heading="DataString" layout one flex></gc-widget-grid-data-column>
+                    <gc-widget-grid-data-column id="cust_logger_dr_col" name="cust_logger_dr" heading="DataRaw" layout one flex></gc-widget-grid-data-column>
+                    % }
+                    
+                </gc-widget-grid>
+            </gc-widget-tab-panel>
+% }
+
+% if (gui.dltlogger) {
+
+             <gc-widget-tab-panel id="DLT" class="container" label="DLT" icon-name="round:action:article" layout has-heading tooltip="Data Log and Trace" flex start vertical three>
+                <gc-widget-dialog id="dlt_logger_exp_dialog" close-on-esc>
+                    <gc-widget-container style="--gc-overflow: hidden; display: flex;" one flex vertical layout>
+                        <textarea id="dlt_logger_exp_div" one flex></textarea>
+                    </gc-widget-container>    
+                    <gc-widget-button slot="action-bar" class="dialog-dismiss" label="Close" button-type="link"></gc-widget-button>
+                </gc-widget-dialog>
+                <gc-widget-container id="container_2" layout flex one start vertical>
+                    <gc-widget-container id="container_1" one flex layout horizontal center>
+                        <gc-widget-container id="container_4">
+                            <gc-widget-checkbox id="DLT_descending" label="Sort Decending"></gc-widget-checkbox>
+                        </gc-widget-container>
+                        <gc-widget-container id="container_5">
+                            <gc-widget-button id="DLT_export" label="Export"></gc-widget-button>
+                        </gc-widget-container>
+                    </gc-widget-container>
+                    <gc-widget-container id="Page_container" justify-content: space-evenly layout start-justified flex six center-justified horizontal center>
+                        <gc-widget-plot id="DLT_plot" plot-title="Logging Variable vs. Time" x-axis-title="Time (ms)"  y-axis-title="Logging Variable" flex two>
+                        </gc-widget-plot> 
+                        <gc-widget-grid id="DLT_grid" flex start five>
+                            <gc-widget-grid-tree-column id="column0" heading="ABSOLUTE TIME (ms)" name="DLT_TTL_TIME" layout nine flex></gc-widget-grid-tree-column>
+                            <gc-widget-grid-tree-column id="column1" heading="RELATIVE TIME (ms)" name="DLT_TIME" layout nine flex></gc-widget-grid-tree-column>
+                            <gc-widget-grid-data-column id="column2" heading="TAG" name="DLT_TAG" layout nine flex></gc-widget-grid-data-column>
+                            <gc-widget-grid-data-column id="column3" heading="FUNCTION" name="DLT_FUNCTION" layout flex nine></gc-widget-grid-data-column>
+                            <gc-widget-grid-tree-column id="column4" heading="DATATYPE" name="DLT_DATATYPE" layout nine flex></gc-widget-grid-tree-column>
+                            <gc-widget-grid-data-column id="column5" heading="VARIABLE" name="DLT_VARIABLE" layout nine flex></gc-widget-grid-data-column>
+                            <gc-widget-grid-data-column id="column6" heading="REG" name="DLT_REG" layout flex nine></gc-widget-grid-data-column>
+                            <gc-widget-grid-tree-column id="column7" heading="TIMER_OVF" name="DLT_TIMER_OVF" layout minimized nine flex></gc-widget-grid-tree-column>
+                            <gc-widget-grid-data-column id="column8" heading="FIFO_OVF" name="DLT_FIFO_OVF" layout minimized nine flex></gc-widget-grid-data-column>
+                            <gc-widget-grid-data-column id="column9" heading="TAG/REG" name="DLT_TagReg" layout flex one hidden></gc-widget-grid-data-column>
+                        </gc-widget-grid>
+                    </gc-widget-container>
+                    <gc-widget-container id="check_container" layout flex horizontal one>
+                        <gc-widget-led id="led" caption="TIMER Overflow"></gc-widget-led>
+                        <gc-widget-led id="led_1" caption="FIFO Overflow"></gc-widget-led>
+                    </gc-widget-container>
+                </gc-widget-container>
+            </gc-widget-tab-panel>
+                            
+            <gc-widget-tab-panel id="page_collateral" class="container" label="Collateral" icon-name="round:action:article" vertical layout has-heading tooltip="User guide, datasheets, and more...">
+            </gc-widget-tab-panel>
+% }
+
+% if (Collateral) {
+            <gc-widget-tab-panel id="page_collateral" class="container" label="Collateral" icon-name="round:action:article" vertical layout has-heading tooltip="User guide, datasheets, and more...">
+% let collateralData = Collateral.getCollateralData();
+% let collateralLabelIndex = 0;
+% for (var expModName of expModuleNames) {
+    % let mod = system.modules["/driverlib/" + expModName + ".js"];
+    % if (mod && (exportCommon.getNonExporterInstances(mod).length > 0)) {
+        % let moduleCollateralData = collateralData[expModName.toUpperCase()];
+        % if (!moduleCollateralData) continue;
+                <gc-widget-tab-panel id="page_collateral_`expModName`" class="container" label="`expModName.toUpperCase()`" has-heading vertical layout>
+        % for (var moduleCollateralCat of moduleCollateralData) {
+            % if (!moduleCollateralCat.content) continue;
+            % for (var modCollateralCont of moduleCollateralCat.content) {
+                    <gc-widget-label id="page_collateral_lb_`collateralLabelIndex`" label="`modCollateralCont.name`"></gc-widget-label>
+                    <gc-widget-input id="page_collateral_lb_`collateralLabelIndex`_input" class="almost_full_width" value="`modCollateralCont.url`" disabled></gc-widget-input>
+                    % collateralLabelIndex++;
+            % }
+        % }
+                </gc-widget-tab-panel>
+    % }
+% }
+            </gc-widget-tab-panel>
+% }
+
+            <gc-widget-tab-panel id="page_connections" class="container" label="Connections" icon-name="content:link" has-heading tooltip="Connection Status" center-justified start>
+                <gc-widget-container id="page_connections_container" layout class="container" start horizontal>
+% if (gui.deviceDiagnosticExportMode == "xds") {
+                    <gc-widget-container class="connection_container" one flex>
+                        <gc-widget-led class="connection_led" id="xds_led"></gc-widget-led>
+                        <gc-widget-tab-panel label="XDS" class="connection_panel" has-heading>
+                            <div class="multiline connection_div" id="xds_connection_div">xds</div>
+                        </gc-widget-tab-panel>
+                    </gc-widget-container>
+% }
+% if (exporter) {
+                    <gc-widget-container class="connection_container" one flex>                        
+                        <gc-widget-led class="connection_led" id="usb_led"></gc-widget-led>
+                        <gc-widget-tab-panel label="USB" class="connection_panel" has-heading>
+                            <div class="multiline connection_div" id="usb_connection_div">usb</div>
+                        </gc-widget-tab-panel>
+                    </gc-widget-container>
+% }
+                </gc-widget-container>
+            </gc-widget-tab-panel>
+        </gc-widget-tab-container>
+    </gc-widget-container>
+
+    <gc-widget-statusbar id="statusbar" show-connections show-branding-image show-progress-bar show-progress-string>
+        <gc-widget-statusitem-connections slot="left"></gc-widget-statusitem-connections>
+    </gc-widget-statusbar>
+</div>

@@ -211,19 +211,19 @@ let MEMCFGRegisters = [
 			{ name: "FETCHPROT_GS0", description: "Fetch Protection For GS0 RAM", size: "1", shift: "0", mask: "0x1" },
 			{ name: "CPUWRPROT_GS0", description: "CPU WR Protection For GS0 RAM", size: "1", shift: "1", mask: "0x2" },
 			{ name: "DMAWRPROT_GS0", description: "DMA WR Protection For GS0 RAM", size: "1", shift: "2", mask: "0x4" },
-			{ name: "TINIE_WRPROT_GS0", description: "TINIE WR Protection For GS0 RAM", size: "1", shift: "3", mask: "0x8" },
+			{ name: "NPU_WRPROT_GS0", description: "NPU WR Protection For GS0 RAM", size: "1", shift: "3", mask: "0x8" },
 			{ name: "FETCHPROT_GS1", description: "Fetch Protection For GS1 RAM", size: "1", shift: "8", mask: "0x100" },
 			{ name: "CPUWRPROT_GS1", description: "CPU WR Protection For GS1 RAM", size: "1", shift: "9", mask: "0x200" },
 			{ name: "DMAWRPROT_GS1", description: "DMA WR Protection For GS1 RAM", size: "1", shift: "10", mask: "0x400" },
-			{ name: "TINIE_WRPROT_GS1", description: "TINIE WR Protection For GS1 RAM", size: "1", shift: "11", mask: "0x800" },
+			{ name: "NPU_WRPROT_GS1", description: "NPU WR Protection For GS1 RAM", size: "1", shift: "11", mask: "0x800" },
 			{ name: "FETCHPROT_GS2", description: "Fetch Protection For GS2 RAM", size: "1", shift: "16", mask: "0x10000" },
 			{ name: "CPUWRPROT_GS2", description: "CPU WR Protection For GS2 RAM", size: "1", shift: "17", mask: "0x20000" },
 			{ name: "DMAWRPROT_GS2", description: "DMA WR Protection For GS2 RAM", size: "1", shift: "18", mask: "0x40000" },
-			{ name: "TINIE_WRPROT_GS2", description: "TINIE WR Protection For GS2 RAM", size: "1", shift: "19", mask: "0x80000" },
+			{ name: "NPU_WRPROT_GS2", description: "NPU WR Protection For GS2 RAM", size: "1", shift: "19", mask: "0x80000" },
 			{ name: "FETCHPROT_GS3", description: "Fetch Protection For GS3 RAM", size: "1", shift: "24", mask: "0x1000000" },
 			{ name: "CPUWRPROT_GS3", description: "CPU WR Protection For GS3 RAM", size: "1", shift: "25", mask: "0x2000000" },
 			{ name: "DMAWRPROT_GS3", description: "DMA WR Protection For GS3 RAM", size: "1", shift: "26", mask: "0x4000000" },
-			{ name: "TINIE_WRPROT_GS3", description: "TINIE WR Protection For GS3 RAM", size: "1", shift: "27", mask: "0x8000000" },
+			{ name: "NPU_WRPROT_GS3", description: "NPU WR Protection For GS3 RAM", size: "1", shift: "27", mask: "0x8000000" },
 		]
 	},
 	{ name: "GSXTEST", description: "Global Shared RAM TEST Register", offset: "0x50",
@@ -340,8 +340,8 @@ let MEMCFGRegisters = [
 			{ name: "CLA1WRITE", description: "Non Controller CLA1 Write Access Violation Flag", size: "1", shift: "5", mask: "0x20" },
 			{ name: "CLA1FETCH", description: "Non Controller CLA1 Fetch Access Violation Flag", size: "1", shift: "6", mask: "0x40" },
 			{ name: "DMAREAD", description: "Non Controller DMA Read Access Violation Flag", size: "1", shift: "10", mask: "0x400" },
-			{ name: "TINIEREAD", description: "Non Controller TINIE Read Access Violation Flag", size: "1", shift: "11", mask: "0x800" },
-			{ name: "TINIEWRITE", description: "Non Controller TINIE Write Violation Flag", size: "1", shift: "12", mask: "0x1000" },
+			{ name: "NPUREAD", description: "Non Controller NPU Read Access Violation Flag", size: "1", shift: "11", mask: "0x800" },
+			{ name: "NPUWRITE", description: "Non Controller NPU Write Violation Flag", size: "1", shift: "12", mask: "0x1000" },
 		]
 	},
 	{ name: "NMAVSET", description: "Non-Controller Access Violation Flag Set Register", offset: "0x2",
@@ -351,25 +351,25 @@ let MEMCFGRegisters = [
 			{ name: "CPUFETCH", description: "Non Controller CPU Fetch Access Violation Flag Set", size: "1", shift: "2", mask: "0x4" },
 			{ name: "DMAWRITE", description: "Non Controller DMA Write Access Violation Flag Set", size: "1", shift: "3", mask: "0x8" },
 			{ name: "CLA1READ", description: "Non Controller CLA1 Read Access Violation Flag Set", size: "1", shift: "4", mask: "0x10" },
-			{ name: "CLA1WRITE", description: "Non Controller CLA1 Write Access Violation Flag", size: "1", shift: "5", mask: "0x20" },
-			{ name: "CLA1FETCH", description: "Non Controller CLA1 Fetch Access Violation Flag", size: "1", shift: "6", mask: "0x40" },
+			{ name: "CLA1WRITE", description: "Non Controller CLA1 Write Access Violation Flag Set", size: "1", shift: "5", mask: "0x20" },
+			{ name: "CLA1FETCH", description: "Non Controller CLA1 Fetch Access Violation Flag Set", size: "1", shift: "6", mask: "0x40" },
 			{ name: "DMAREAD", description: "Non Controller DMA Read Access Violation Flag Set", size: "1", shift: "10", mask: "0x400" },
-			{ name: "TINIEREAD", description: "Non Controller TINIE Read Access Violation Flag", size: "1", shift: "11", mask: "0x800" },
-			{ name: "TINIEWRITE", description: "Non Controller TINIE Write Access Violation Flag", size: "1", shift: "12", mask: "0x1000" },
+			{ name: "NPUREAD", description: "Non Controller NPU Read Access Violation Flag Set", size: "1", shift: "11", mask: "0x800" },
+			{ name: "NPUWRITE", description: "Non Controller NPU Write Access Violation Flag Set", size: "1", shift: "12", mask: "0x1000" },
 		]
 	},
 	{ name: "NMAVCLR", description: "Non-Controller Access Violation Flag Clear Register", offset: "0x4",
 		bits: [
-			{ name: "CPUREAD", description: "Non Controller CPU Read Access Violation Flag", size: "1", shift: "0", mask: "0x1" },
+			{ name: "CPUREAD", description: "Non Controller CPU Read Access Violation Flag Clear", size: "1", shift: "0", mask: "0x1" },
 			{ name: "CPUWRITE", description: "Non Controller CPU Write Access Violation Flag", size: "1", shift: "1", mask: "0x2" },
 			{ name: "CPUFETCH", description: "Non Controller CPU Fetch Access Violation Flag", size: "1", shift: "2", mask: "0x4" },
 			{ name: "DMAWRITE", description: "Non Controller DMA Write Access Violation Flag", size: "1", shift: "3", mask: "0x8" },
 			{ name: "CLA1READ", description: "Non Controller CLA1 Read Access Violation Flag", size: "1", shift: "4", mask: "0x10" },
 			{ name: "CLA1WRITE", description: "Non Controller CLA1 Write Access Violation Flag", size: "1", shift: "5", mask: "0x20" },
 			{ name: "CLA1FETCH", description: "Non Controller CLA1 Fetch Access Violation Flag", size: "1", shift: "6", mask: "0x40" },
-			{ name: "DMAREAD", description: "Non Controller DMA Read Access Violation Flag", size: "1", shift: "10", mask: "0x400" },
-			{ name: "TINIEREAD", description: "Non Controller TINIE Read Access Violation Flag", size: "1", shift: "11", mask: "0x800" },
-			{ name: "TINIEWRITE", description: "Non Controller TINIE Write Access Violation Flag", size: "1", shift: "12", mask: "0x1000" },
+			{ name: "DMAREAD", description: "Non Controller DMA Read Access Violation Flag Clear", size: "1", shift: "10", mask: "0x400" },
+			{ name: "NPUREAD", description: "Non Controller NPU Read Access Violation Flag Clear", size: "1", shift: "11", mask: "0x800" },
+			{ name: "NPUWRITE", description: "Non Controller NPU Write Access Violation Flag", size: "1", shift: "12", mask: "0x1000" },
 		]
 	},
 	{ name: "NMAVINTEN", description: "Non-Controller Access Violation Interrupt Enable", offset: "0x6",
@@ -382,8 +382,8 @@ let MEMCFGRegisters = [
 			{ name: "CLA1WRITE", description: "Non Controller CLA1 Write Access Violation", size: "1", shift: "5", mask: "0x20" },
 			{ name: "CLA1FETCH", description: "Non Controller CLA1 Fetch Access Violation", size: "1", shift: "6", mask: "0x40" },
 			{ name: "DMAREAD", description: "Non Controller DMA Read Access Violation", size: "1", shift: "10", mask: "0x400" },
-			{ name: "TINIEREAD", description: "Non Controller TINIE Read Access Violation", size: "1", shift: "11", mask: "0x800" },
-			{ name: "TINIEWRITE", description: "Non Controller TINIE Write Violation Interrupt", size: "1", shift: "12", mask: "0x1000" },
+			{ name: "NPUREAD", description: "Non Controller NPU Read Access Violation", size: "1", shift: "11", mask: "0x800" },
+			{ name: "NPUWRITE", description: "Non Controller NPU Write Violation Interrupt", size: "1", shift: "12", mask: "0x1000" },
 		]
 	},
 	{ name: "NMCPURDAVADDR", description: "Non-Controller CPU Read Access Violation Address", offset: "0x8",
@@ -458,11 +458,11 @@ let MEMCFGRegisters = [
 		bits: [
 		]
 	},
-	{ name: "NMTINIERDAVADDR", description: "Non-Controller TINIE Read Access Violation Address", offset: "0x3A",
+	{ name: "NMNPURDAVADDR", description: "Non-Controller NPU Read Access Violation Address", offset: "0x3A",
 		bits: [
 		]
 	},
-	{ name: "NMTINIEWRAVADDR", description: "Non-Controller TINIE Write Access Violation Address", offset: "0x3C",
+	{ name: "NMNPUWRAVADDR", description: "Non-Controller NPU Write Access Violation Address", offset: "0x3C",
 		bits: [
 		]
 	},
@@ -471,7 +471,7 @@ let MEMCFGRegisters = [
 			{ name: "CPURDERR", description: "CPU Uncorrectable Read Error Flag", size: "1", shift: "0", mask: "0x1" },
 			{ name: "DMARDERR", description: "DMA Uncorrectable Read Error Flag", size: "1", shift: "1", mask: "0x2" },
 			{ name: "CLA1RDERR", description: "CLA1 Uncorrectable Read Error Flag", size: "1", shift: "2", mask: "0x4" },
-			{ name: "TINIERDERR", description: "TINIE Uncorrectable Read Error Flag", size: "1", shift: "5", mask: "0x20" },
+			{ name: "NPURDERR", description: "NPU Uncorrectable Read Error Flag", size: "1", shift: "5", mask: "0x20" },
 		]
 	},
 	{ name: "UCERRSET", description: "Uncorrectable Error Flag Set Register", offset: "0x2",
@@ -479,7 +479,7 @@ let MEMCFGRegisters = [
 			{ name: "CPURDERR", description: "CPU Uncorrectable Read Error Flag Set", size: "1", shift: "0", mask: "0x1" },
 			{ name: "DMARDERR", description: "DMA Uncorrectable Read Error Flag Set", size: "1", shift: "1", mask: "0x2" },
 			{ name: "CLA1RDERR", description: "CLA1 Uncorrectable Read Error Flag Set", size: "1", shift: "2", mask: "0x4" },
-			{ name: "TINIERDERR", description: "TINIE Uncorrectable Read Error Flag Set", size: "1", shift: "5", mask: "0x20" },
+			{ name: "NPURDERR", description: "NPU Uncorrectable Read Error Flag Set", size: "1", shift: "5", mask: "0x20" },
 		]
 	},
 	{ name: "UCERRCLR", description: "Uncorrectable Error Flag Clear Register", offset: "0x4",
@@ -487,7 +487,7 @@ let MEMCFGRegisters = [
 			{ name: "CPURDERR", description: "CPU Uncorrectable Read Error Flag Clear", size: "1", shift: "0", mask: "0x1" },
 			{ name: "DMARDERR", description: "DMA Uncorrectable Read Error Flag Clear", size: "1", shift: "1", mask: "0x2" },
 			{ name: "CLA1RDERR", description: "CLA1 Uncorrectable Read Error Flag Clear", size: "1", shift: "2", mask: "0x4" },
-			{ name: "TINIERDERR", description: "TINIE Uncorrectable Read Error Flag Clear", size: "1", shift: "5", mask: "0x20" },
+			{ name: "NPURDERR", description: "NPU Uncorrectable Read Error Flag Clear", size: "1", shift: "5", mask: "0x20" },
 		]
 	},
 	{ name: "UCCPUREADDR", description: "Uncorrectable CPU Read Error Address", offset: "0x6",
@@ -502,7 +502,7 @@ let MEMCFGRegisters = [
 		bits: [
 		]
 	},
-	{ name: "UCTINIEREADDR", description: "Uncorrectable TINIE Read Error Address", offset: "0x10",
+	{ name: "UCNPUREADDR", description: "Uncorrectable NPU Read Error Address", offset: "0x10",
 		bits: [
 		]
 	},

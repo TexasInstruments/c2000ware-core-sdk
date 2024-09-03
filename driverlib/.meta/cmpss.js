@@ -71,7 +71,10 @@ function calculateDevicePinNameHigh(inst,ui){
         }
     }
     else if (["F28P55x"].includes(Common.getDeviceName())){
-        if((inst.cmpssBase == "CMPSS4_BASE") && (inst.asysCMPHPMXSELValue == 6))
+        if(((inst.cmpssBase == "CMPSS4_BASE") && (inst.asysCMPHPMXSELValue == 6)) || 
+            ((inst.cmpssBase == "CMPSS1_BASE") && (inst.asysCMPHPMXSELValue == 7)) ||
+            ((inst.cmpssBase == "CMPSS3_BASE") && (inst.asysCMPHPMXSELValue == 7)) ||
+            ((inst.cmpssBase == "CMPSS4_BASE") && (inst.asysCMPHPMXSELValue == 7)))
         {
             var tempPinInfoDesc = "No Device Pin Found"
             return tempPinInfoDesc
@@ -79,9 +82,29 @@ function calculateDevicePinNameHigh(inst,ui){
         else
         {
             var tempPinName = ComparatorInputs.CMPSS_comparatorInputSignals[Common.getDeviceName()][inst.cmpssBase][inst.asysCMPHPMXSELValue].displayName
-            var tempPinInfo = Pinmux.findAllAnalogPin(Pinmux.getDeviceADCName(tempPinName.split("/")[0]))
-            var tempPinInfoDesc = Pinmux.getDevicePinInfoDescription(tempPinInfo)
-            if(tempPinInfo.length == 0)     //SysConfig was unable to find any pins with this name, even though it exists as an input; remove error detection
+            // var tempPinInfo = Pinmux.findAllAnalogPin(Pinmux.getDeviceADCName(tempPinName.split("/")[0]))
+            let tempPinInfos = [];
+            let tempPinInfoDescs = [];
+            for (let splitItem of tempPinName.split("/")){
+                var temp = Pinmux.findAllAnalogPin(Pinmux.getDeviceADCName(splitItem))
+                if (temp && temp[0])
+                {
+                    if (tempPinInfos.includes(temp[0].PinName))
+                    {
+                        /* nothing */
+                    }else{
+                        tempPinInfos.push(temp[0].PinName)
+                        tempPinInfoDescs.push(Pinmux.getDevicePinInfoDescription(temp))
+                    }
+                }else{
+                    tempPinInfoDescs.push(Pinmux.getDevicePinInfoDescription(temp))
+                    break;
+                }
+            }
+            // console.log(tempPinInfos)
+            // var tempPinInfoDesc = Pinmux.getDevicePinInfoDescription(tempPinInfo)
+            var tempPinInfoDesc = tempPinInfoDescs.join(" | ") 
+            if(tempPinInfos.length == 0)     //SysConfig was unable to find any pins with this name, even though it exists as an input; remove error detection
             {
                 if(tempPinName.includes("TempSensor"))
                 {
@@ -1180,6 +1203,17 @@ function onValidate(inst, validation) {
                 inst, "deDACValHigh");
         }
     }
+    if((["F28P55x"].includes(Common.getDeviceName())))
+    {
+        if(inst.asysCMPHPMXSELValue == "No Device Pin Found")
+        {
+            validation.logError("There is no connection for the selected input!", inst, "asysCMPHPMXSELValue");
+        }
+        if(inst.asysCMPLPMXSELValue == "No Device Pin Found")
+        {
+            validation.logError("There is no connection for the selected input!", inst, "asysCMPLPMXSELValue");
+        }
+    }
 
     if (inst.maxRampVal < 0 || inst.maxRampVal > 65535)
     {
@@ -1427,6 +1461,13 @@ function onValidate(inst, validation) {
             validation.logError(
                 "Signal not available for this device, select a valid signal!",
                 inst, "asysCMPHPMXSELValue");
+        }
+        else if (["F28P55x"].includes(Common.getDeviceName()) && (inst.asysCMPHPMXSELPinInfo == Pinmux.NO_DEVICE_PIN_FOUND))
+        {
+
+                validation.logError(
+                    "Signal not available for this device, select a valid signal!",
+                    inst, "asysCMPHPMXSELValue");
         }
         else
         {

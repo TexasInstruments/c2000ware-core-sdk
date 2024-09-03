@@ -4,8 +4,8 @@
 //
 // TITLE:  AES ECB Decryption
 //
-//! \addtogroup driver_example_cm_list
-//! <h1>AES ECB De-cryption Example (CM)</h1>
+//! \addtogroup driver_example_list
+//! <h1>AES ECB De-cryption Example </h1>
 //!
 //! This example de-crypts block cipher-text using AES128 in ECB mode. It does
 //! the de-cryption first without uDMA and then with uDMA. The results are

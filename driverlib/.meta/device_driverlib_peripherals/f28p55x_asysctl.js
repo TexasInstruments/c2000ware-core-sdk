@@ -38,12 +38,6 @@ let AsysCtl_IO_Modesel_GPIO = [
 	{ name: "ASYSCTL_IO_MODESEL_GPIO9", displayName: "IO MODESEL GPIO9" },
 	{ name: "ASYSCTL_IO_MODESEL_GPIO32", displayName: "IO MODESEL GPIO32" },
 ]
-let ASYSCTL_AGPIOFILTER = [
-	{ name: "ASYSCTL_AGPIOFILTER_BYPASS", displayName: "Filter bypass (min ACQPS = 90ns)" },
-	{ name: "ASYSCTL_AGPIOFILTER_333OHM", displayName: "333Ohm filter (min ACQPS = 125ns)" },
-	{ name: "ASYSCTL_AGPIOFILTER_500OHM", displayName: "500 Ohm filter (min ACQPS = 160ns)" },
-	{ name: "ASYSCTL_AGPIOFILTER_1000OHM", displayName: "1KOhm filter  (min ACQPS = 230ns)" },
-]
 let ASYSCTL_ANAREF_INTREF = [
 	{ name: "ASYSCTL_ANAREF_INTREF_ADCA", displayName: "INTREFA" },
 	{ name: "ASYSCTL_ANAREF_INTREF_ADCB", displayName: "INTREFB" },
@@ -93,7 +87,6 @@ module.exports = {
 	ASysCtl_TestSelect: ASysCtl_TestSelect,
 	AsysCtl_IO_Drvsel_GPIO: AsysCtl_IO_Drvsel_GPIO,
 	AsysCtl_IO_Modesel_GPIO: AsysCtl_IO_Modesel_GPIO,
-	ASYSCTL_AGPIOFILTER: ASYSCTL_AGPIOFILTER,
 	ASYSCTL_ANAREF_INTREF: ASYSCTL_ANAREF_INTREF,
 	ASYSCTL_ANAREF_VREFHI: ASYSCTL_ANAREF_VREFHI,
 	ASYSCTL_ANAREF_VDDA: ASYSCTL_ANAREF_VDDA,

@@ -1,0 +1,2 @@
+import{r as c,g as s}from"./p-ce1dc307.js";import{Usb2anyGpioCodec as t}from"../gc-codec-usb2any-gpio/lib/Usb2anyGpioCodec";import{c as e}from"./p-0c6e1a4c.js";let o=class{constructor(s){c(this,s);this.refereshInterval=100;this.optional=false}connectedCallback(){this.impl=new t(new Proxy(e(this.el),{get:function(c,s){if(s==="pins"){return c.children}return c[s]}}))}disconnectedCallback(){this.impl.dispose()}get el(){return s(this)}};export{o as gc_codec_usb2any_gpio};
+//# sourceMappingURL=p-323b5038.entry.js.map

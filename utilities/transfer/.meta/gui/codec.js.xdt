@@ -1,0 +1,563 @@
+% let transferCommon;
+% if (system.getProducts()[0].name.includes("C2000"))
+% { transferCommon = system.getScript("/utilities/transfer/transferCommon.js");
+% } else
+% { transferCommon = system.getScript("/transfer/transferCommon.js");}
+% let gui = system.modules[transferCommon.getTransferPath() + "gui.js"].$static;
+% let exporter = gui.exporter;
+% let exportMod;
+% let expInst;
+% let buttonMode = "disabled";
+% if (exporter) {
+%   buttonMode = exporter.mode.includes("Bidirectional")?"enabled":"disabled";
+%   exportMod = system.modules[transferCommon.getTransferPath() + "exporter.js"];
+%   expInst = exportMod.$instances[0];
+% }
+% if (exporter && expInst.packageMode == "START/END") {
+% let exportKeys = system.modules[transferCommon.getTransferPath() + "logger/keys.js"].$instances;
+import { GcConsole } from "./components/@ti/gc-core-assets/lib/GcConsole";
+import {AbstractMessageBasedDecoder, AbstractFrameDecoder, AbstractDataCodecWithFrameDecoder, bufferDataType, stringDataType} from "./components/@ti/gc-target-configuration/lib/TargetConfiguration";
+import { streamingCodecDataType } from "./components/@ti/gc-model-streaming/lib/StreamingDataModel";
+import { GcPromise } from './components/@ti/gc-core-assets/lib/GcPromise';
+import { valueChangedEventType , WidgetModel } from './components/@ti/gc-core-databind/lib/CoreDatabind';
+import { GcWidget } from './components/@ti/gc-widget-base/lib/GcWidget';
+import { bindingRegistry } from './components/@ti/gc-core-databind/lib/CoreDatabind';
+
+import { GcFiles } from './components/@ti/gc-core-assets/lib/GcFiles';
+
+//
+// Globals
+//
+const START_BYTE = 0x`expInst.txStartByte.toString(16).toUpperCase()`; //'s'.charCodeAt(0);
+const END_BYTE = 0x`expInst.txEndByte.toString(16).toUpperCase()`; //'e'.charCodeAt(0);
+const NUMBER_OF_LENGTH_BYTES = `expInst.txLengthBytes`;  
+
+const NUMBER_OF_START_BYTES = 1;
+const NUMBER_OF_KEY_BYTES = 1;
+const NUMBER_OF_STOP_BYTES = 1;
+
+const dataTypes16bits = ["uint16", "int16", "bool"];
+const dataTypes32bits = ["uint32", "int32", "float", "uint32_t"];
+% if (gui.dltlogger) {   
+        //
+        // Global Variables and functions used in DLT 
+        //
+        let GlobalAssocTable;
+        let ClockFreq = 200000000;
+        let stack = [];
+        let var_arr = [];
+        let select_vals = {};
+        let DLT_Obj = {};
+        let tag_funcs;
+        let TAG_TIMER;
+        let line;
+
+    //
+    // Turning Hex value into 64 bit binary value
+    //
+    function Hex2Bin64(Hex){
+        let Bin = parseInt(Hex, 16).toString(2);
+        let length = Bin.length;
+        //
+        // Loop to pad 0's to reach 64 bits
+        //
+        for (let i = 64 - length ; i > 0 ; i--){
+        Bin = '0' + Bin;
+        }
+        return Bin;
+    }  
+
+    //
+    // Binary value to Hex value
+    //
+    function Bin2Hex (Bin){
+        let Hex = parseInt(Bin, 2).toString(16).toUpperCase();
+        Hex = "0x" + Hex;
+        return Hex; 
+    }
+
+    //
+    // Decimal to 32 bit binary value
+    //
+    function decimalToBinary32(N) {
+        let x = (N >>> 0).toString(2);
+        let length = x.length;
+        for (let i = 32 - length ; i > 0 ; i--){
+            x = '0' + x;
+        }
+        return (x);
+    }
+
+    function get_reg_variable(TAG_FUNC_NAME, json_obj){
+        return json_obj[TAG_FUNC_NAME]["DLTAGS"].copy();
+    }
+% }
+export class asmGUICodec extends AbstractDataCodecWithFrameDecoder {
+    
+  constructor(packetDecoder) {
+    super(packetDecoder.id, streamingCodecDataType, START_BYTE);
+    this.payloadLength = 0;
+    this.packetLength = 0;
+    this.params = {};
+  }
+  async onConnect() {  
+    //    
+    // Call startup of program 
+    // Load in hash table 
+    // Initialize all widget binding types
+    //    
+    let initObj = {};
+    this.hashTable = await GcFiles.readJsonFile('./hash_table.json');
+
+    % if (gui.dltlogger) {   
+        //
+        // Association table used for function calls
+        //
+        GlobalAssocTable = await GcFiles.readJsonFile('./assoc_table.json');
+    % }    
+
+    for(let hashVar in this.hashTable["TX"]){
+        if(hashVar.includes("clog")){  //clog <- special case
+            initObj["cLog"] = {};
+            initObj["cLog"]["ts"] = 0;
+            initObj["cLog"]["dr"] = [];
+            initObj["cLog"]["ds"] = "";
+        }else{
+            initObj[hashVar] = {};
+            initObj[hashVar]["dr"] = [];
+            initObj[hashVar]["ds"] = [];
+        }
+        //
+        // Initialize all streaming object types
+        //
+    }
+% if (gui.dltlogger) {   
+    //
+    // Creates an object with each variable as a key
+    // Each key relates to a 2d array within object
+    //
+    DLT_Obj["PlotDLTData"] = {};
+    for(let FuncObjects in GlobalAssocTable){
+        for(let funcName in GlobalAssocTable[FuncObjects])
+        {
+            let ValueArr = GlobalAssocTable[FuncObjects][funcName]["DLREGS"];
+            if (ValueArr){
+                for(let Index in ValueArr){
+                    let Variablename = Object.keys(ValueArr[Index])[0];
+                    DLT_Obj["PlotDLTData"][Variablename] = [];
+                    //
+                    // Create dynamic plot point 2d widget for each function
+                    // Dynmaically bind widgets to values in object
+                    //
+
+                    //
+                    // Querey for widget gc
+                    //
+                    let plot = document.querySelector("#DLT_plot");
+                    //
+                    // Create widget
+                    //
+                    let new_line = document.createElement("gc-widget-plot-data-points-2d");
+                    //
+                    // Assign ID and attributes to point Widget
+                    //
+                    new_line.id = "line" + Variablename;
+                    new_line.setAttribute('capacity', '0');
+                    new_line.setAttribute('mode', 'lines+markers');
+                    new_line.setAttribute('legend', 'show');
+                    //
+                    // Add widget as a child of plot widget
+                    //
+                    plot.appendChild(new_line);
+                    // console.log('Line Widget created');
+                    //
+                    // Wait for widget to be created
+                    // Bind value to widget
+                    //
+                    WidgetModel.whenWidgetReady("line" + Variablename).then(() => {
+                        bindingRegistry.bind("widget.line" + Variablename + ".point", 'streaming.PlotDLTData.' + Variablename);//bind widget
+                    });
+
+                    //
+                    // Dreating checkbox widgets for each function
+                    // Query for widget gc
+                    //
+                    let check_container = document.querySelector("#check_container");
+                    //
+                    // Create widget
+                    //
+                    let check = document.createElement("gc-widget-checkbox");
+                    //
+                    // Assign ID and attributes to point Widget
+                    //
+                    check.id = "check" + Variablename;
+                    check.setAttribute('label', Variablename);
+                    //
+                    // Add widget as a child of container widget
+                    //
+                    check_container.appendChild(check);
+                    // console.log('Check Widget created');
+                }
+            }
+            else {
+                
+            }
+        }
+    }
+
+    //
+    // Initialize all streaming object types
+    //
+    this.targetDecoder.decode(DLT_Obj);
+% }
+    return this.targetDecoder.decode(initObj);
+  }
+  getPacketLength(buffer, offset) {  
+    //
+    // Return length of packet to look for
+    //
+    if (buffer.length > offset+NUMBER_OF_LENGTH_BYTES) {  
+      //
+      // Return expected length of packet, will call decodePacket() below when it has this length
+      // Add -1 if no start byte
+      //
+      let lengthBytes = buffer.slice(offset + NUMBER_OF_START_BYTES, offset + NUMBER_OF_START_BYTES + NUMBER_OF_LENGTH_BYTES);
+      for(let i = 0; i < 4-NUMBER_OF_LENGTH_BYTES; i++){
+      // 
+      // Pad zeros 
+      //
+          lengthBytes.unshift(0);  
+      }
+      let packet = new Uint8Array(lengthBytes);
+      let dataView = new DataView(packet.buffer);
+      this.payloadLength = dataView.getUint32(0, false);
+      //
+      // Add errored condition checks
+      //
+
+      if(buffer[offset] != START_BYTE) { 
+        //
+        // Invalid command  (will ignore this packet)
+        // Add errored condition checks
+        //
+        return -1; 
+        //
+        // Invalid command  (will ignore this packet)
+        //
+      }
+      this.packetLength = NUMBER_OF_START_BYTES + NUMBER_OF_LENGTH_BYTES + this.payloadLength + NUMBER_OF_STOP_BYTES;  //adjust according to options in sysconfig
+      return this.packetLength;
+    }
+    else {
+      return 0; 
+      //
+      // Not enough data yet
+      //
+    }
+  }
+  
+  decodePacket(rawData) { 
+    //
+    // Initializations
+    // Full packet of length returned by getPacketLength
+    // Initializations
+    //
+    let valueKey = rawData[NUMBER_OF_LENGTH_BYTES+1];
+    //
+    // Find key in hash table and get corresponding data type
+    //
+
+    let valueType = this.hashTable["TX"][valueKey].type;
+    let valueName = this.hashTable["TX"][valueKey].name;
+    let streamObj = {};
+    streamObj[valueName] = {};
+    //
+    // DLT streaming Obj
+    //
+    streamObj["PlotDLTData"] = {};
+    //
+    // Find how much to iterate for the data type
+    // Default itr = 1, for one byte decoding 
+    //
+    let itr = 1;
+    if(dataTypes16bits.includes(valueType)){
+        itr = 2;
+    }
+    else if(dataTypes32bits.includes(valueType)){
+        itr = 4;
+    }
+    //
+    // Grab data, cast, and write to array
+    //    
+    let dataArray = [];
+    //
+    // Starts at first value byte and iterates as long as j is less than last value byte
+    //
+    let offsetToPayload = NUMBER_OF_START_BYTES + NUMBER_OF_LENGTH_BYTES; 
+    for(let j = offsetToPayload + NUMBER_OF_KEY_BYTES; j < offsetToPayload + this.payloadLength; j +=itr){
+        let valueSubset = rawData.slice(j, j+itr);
+        let buffer = new ArrayBuffer(itr);
+        let dataView = new DataView(buffer);
+        dataView.setUint8(0, valueSubset[0]);
+        if(itr == 2){
+            dataView.setUint8(1, valueSubset[1]);
+        }
+        if(itr == 4){
+            dataView.setUint8(1, valueSubset[1]);
+            dataView.setUint8(2, valueSubset[2]);
+            dataView.setUint8(3, valueSubset[3]);
+        }
+
+        /*let packet = new Uint8Array(valueSubset);
+        let dataView = new DataView(packet.buffer);*/
+        let data = 0;
+        if(valueType == "char"){
+            data = dataView.getUint8(0, false);
+            dataArray.push(data);
+        }
+        if(valueType == "uint16_t"){
+            data = dataView.getUint16(0, false);
+            dataArray.push(data);
+        }
+        else if(valueType == "int16_t"){
+            data = dataView.getInt16(0, false);
+            dataArray.push(data); 
+        }
+        else if(valueType == "uint32_t"){
+            data = dataView.getUint32(0, true)
+            dataArray.push(data);            
+        }
+        else if(valueType == "int32_t"){
+            
+        }
+        else if(valueType == "float32_t"){
+            data = dataView.getFloat32(0, false)
+            dataArray.push(data);
+        }
+        else if(valueType == "bool"){
+            data = dataView.getUint8(0, false);
+            dataArray.push(data);
+        }else{
+            data = dataView.getUint8(0, false);
+            dataArray.push(data);
+        }
+    }
+    //
+    // Write to streamObj which will be pushed to streaming model
+    //
+    let byteData = rawData.slice(offsetToPayload + NUMBER_OF_KEY_BYTES, offsetToPayload + this.payloadLength);
+    if(valueName === "cLog"){
+        let clog_packet = new Uint8Array(dataArray);
+        let clog_dataView = new DataView(clog_packet.buffer);
+        let ts = clog_dataView.getUint32(0, false);
+        let decoder = new TextDecoder("utf-8");
+        let str = decoder.decode(clog_packet.slice(4, offsetToPayload + this.payloadLength));
+        streamObj["cLog"] = {dr: byteData,  ds: str, ts : ts }; 
+    }
+    % if (gui.dltlogger) {
+        else if(valueName == "DLTlog"){
+            let memory_dump = new Uint32Array(dataArray);
+            let ind = 0;
+            let dlt_reg_value;
+            let data_array = [];
+            let select_val_names = [];
+            //
+            // First each pair of values in array make a TAG or REG
+            // Combine both to make a 64 bit value
+            //
+            for (let k = 0; k < memory_dump.length;){
+                let upper32 = decimalToBinary32(memory_dump[k]);
+                let lower32 = decimalToBinary32(memory_dump[k+1]);
+                let complete64 = upper32 + lower32;
+                data_array[ind] = complete64
+                ind += 1;
+                k += 2;
+            }
+            let index = 0;
+            let stop = 0;
+            //
+            // Check if end of array has been reached
+            //
+            while (data_array.length > index){
+                let check = 0;
+                let dlt_fifo_binary = (data_array[index]);
+                let tag = (dlt_fifo_binary.substring(63));
+                let data_array_length = data_array.length;
+                if (index == data_array_length){
+                    break;
+                }
+                if (tag == 1){
+                    let TIMER = dlt_fifo_binary.substring(0,16) + dlt_fifo_binary.substring(32,61);
+                    let Tag_Time = parseInt(TIMER, 2);
+                    let TAG_TIMES = Tag_Time * (1/ClockFreq);
+			        TAG_TIMER = (TAG_TIMES) / 100.0;
+                    let TAG_VALUE = Bin2Hex(dlt_fifo_binary.substring(16,32));
+                    let TAG_TIMER_OVF = dlt_fifo_binary.substring(61,62);
+                    let TAG_FIFO_OVF = dlt_fifo_binary.substring(62,63);
+                    let TAG_PC = Bin2Hex (dlt_fifo_binary.substring(32,62));
+                    for(let FuncObjects in GlobalAssocTable){
+                        for(let funcName in GlobalAssocTable[FuncObjects])
+                        {
+                            for(let tags in GlobalAssocTable[FuncObjects][funcName]["DLTAGS"]){
+                                if ("0x" + GlobalAssocTable[FuncObjects][funcName]["DLTAGS"][tags] == TAG_VALUE){
+                                    tag_funcs = funcName;
+                                    var_arr = JSON.parse(JSON.stringify(GlobalAssocTable[FuncObjects][tag_funcs]["DLREGS"]));
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    streamObj["DLTlog"] = {TTL_TIME: TAG_TIMER, TIME: TAG_TIMER,  TAG: TAG_VALUE, FUNCTION: tag_funcs, DATATYPE: "", VARIABLE: "", REG: "", TIMER_OVF: TAG_TIMER_OVF, FIFO_OVF: TAG_FIFO_OVF, TagReg: "Tag"};
+                    this.targetDecoder.decode(streamObj);
+                    index += 1;
+                    let var_func; 
+                    if (var_arr.length < 0){
+                        //
+                        // Two tags were places in the same function 
+                        //
+                    }
+                    while (1){
+                        dlt_fifo_binary = (data_array[index]);
+                        if (dlt_fifo_binary == undefined){
+                            break;
+                        }
+                        tag = parseInt(dlt_fifo_binary.substring(63), 2);
+                        if (tag && var_arr.length != 0){
+                            stack.append(var_arr);
+                            stack.append(tag_funcs);
+                            break;
+                        }
+                        else if (tag && var_arr.length == 0){
+                            break;
+                        }
+                        else if (!tag && stack.length != 0 && var_arr.length == 0){
+                            tag_funcs = stack.pop();
+                            var_arr = stack.pop()
+                        }
+                        else if (!tag && stack.length == 0 && var_arr.length == 0){
+                            //
+                            // Not tag before register logging
+                            //
+                            index = data_array.length + 1;
+                            break;
+                        }
+                        let var_name_type = var_arr.pop();
+                        let var_name = "";
+                        let var_type = "";
+                        for (let key in var_name_type){
+                            var_name = key;
+                            var_type = var_name_type[var_name];
+                        }
+                        let var_concat_name_type = var_type + " " + var_name;
+                        if (var_type.includes("int")){
+                            dlt_reg_value = dlt_fifo_binary.substring(0,32);
+                        }
+                        else if (var_type.includes("float")){
+                            let f = parseInt(dlt_fifo_binary.substring(0,32), 2); 
+                            //
+                            // Convert to a float
+                            //
+                        }
+                        let Reg_Time = parseInt(dlt_fifo_binary.substring(32,61), 2); 
+                        let REG_TIMER = Reg_Time * (1/ClockFreq);
+                        let TOTAL_TIMES = REG_TIMER + TAG_TIMER;
+				        let TOTAL_TIME = (TOTAL_TIMES) / 100.0;
+                        let REG_VALUE = parseInt(dlt_reg_value, 2); 
+                        let REG_TIMER_OVF = dlt_fifo_binary.substring(61,62);
+                        let REG_FIFO_OVF = dlt_fifo_binary.substring(62,63);
+                        let REG_PC = Bin2Hex (dlt_fifo_binary.substring(32,62));
+                        DLT_Obj["PlotDLTData"][var_name].push([TOTAL_TIME, REG_VALUE]);
+                        streamObj["DLTlog"] = {TTL_TIME: TOTAL_TIME, TIME: REG_TIMER,  TAG: "", FUNCTION: tag_funcs, DATATYPE: var_type, VARIABLE: var_name, REG: REG_VALUE, TIMER_OVF: REG_TIMER_OVF, FIFO_OVF: REG_FIFO_OVF, TagReg: "Reg", PlotVal: [TOTAL_TIME, REG_VALUE], SelectVal : select_val_names};
+                        this.targetDecoder.decode(streamObj);
+                        index += 1;
+                    }
+                }
+                
+                else if (tag == 0){
+                    let var_func; 
+                    if (var_arr.length < 0){
+                        //
+                        // Two tags were places in the same function 
+                        //
+                    }
+                    while (1){
+                        dlt_fifo_binary = (data_array[index]);
+                        if (dlt_fifo_binary == undefined){// orignally '0'
+                            break;
+                        }
+                        tag = parseInt(dlt_fifo_binary.substring(63), 2);
+                        if (tag && var_arr.length != 0){
+                            stack.append(var_arr);
+                            stack.append(tag_funcs);
+                            break;
+                        }
+                        else if (tag && var_arr.length == 0){
+                            break;
+                        }
+                        else if (!tag && stack.length != 0 && var_arr.length == 0){
+                            tag_funcs = stack.pop();
+                            var_arr = stack.pop()
+                        }
+                        else if (!tag && stack.length == 0 && var_arr.length == 0){
+                            //
+                            // Not tag before register logging
+                            //
+                            index = data_array.length + 1;
+                            break;
+                        }
+                        let var_name_type = var_arr.pop();
+                        let var_name = "";
+                        let var_type = "";
+                        for (let key in var_name_type){
+                            var_name = key;
+                            var_type = var_name_type[var_name];
+                        }
+                        let var_concat_name_type = var_type + " " + var_name;
+                        if (var_type.includes("int")){
+                            dlt_reg_value = dlt_fifo_binary.substring(0,32);
+                        }
+                        else if (var_type.includes("float")){
+                            let f = parseInt(dlt_fifo_binary.substring(0,32), 2); 
+                            //
+                            // Convert to a float
+                            //
+                        }
+                        let Reg_Time = parseInt(dlt_fifo_binary.substring(32,61), 2); 
+                        let REG_TIMER = Reg_Time * (1/ClockFreq);
+                        let TOTAL_TIMES = REG_TIMER + TAG_TIMER;
+				        let TOTAL_TIME = (TOTAL_TIMES * 100.0) / 100.0;
+                        let REG_VALUE = parseInt(dlt_reg_value, 2); 
+                        let REG_TIMER_OVF = dlt_fifo_binary.substring(61,62);
+                        let REG_FIFO_OVF = dlt_fifo_binary.substring(62,63);
+                        let REG_PC = Bin2Hex (dlt_fifo_binary.substring(32,62));
+                        DLT_Obj["PlotDLTData"][var_name].push([TOTAL_TIME, REG_VALUE]);
+                        streamObj["DLTlog"] = {TTL_TIME: TOTAL_TIME, TIME: REG_TIMER,  TAG: "", FUNCTION: tag_funcs, DATATYPE: var_type, VARIABLE: var_name, REG: REG_VALUE, TIMER_OVF: REG_TIMER_OVF, FIFO_OVF: REG_FIFO_OVF, TagReg: "Reg", PlotVal: [TOTAL_TIME, REG_VALUE], SelectVal : select_val_names};
+                        this.targetDecoder.decode(streamObj);
+                        index += 1;
+                    }
+                }
+            }
+            this.targetDecoder.decode(DLT_Obj);
+        }
+    % }    
+    else{
+        streamObj[valueName] = {dr: byteData,  ds: dataArray }; 
+    }
+    return this.targetDecoder.decode(streamObj);
+  }
+  encode(data){ 
+    //
+    // Bidirectional case - fill out later
+    //
+ 
+    let packetToSend = [];
+    this.targetEncoder.encode(packetToSend);
+  }
+}
+
+
+
+// Create a new instance of the codec
+new asmGUICodec({ id: "custom" });
+
+%}

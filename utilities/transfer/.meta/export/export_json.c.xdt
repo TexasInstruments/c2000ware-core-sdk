@@ -1,0 +1,872 @@
+/*
+ * Copyright (c) 2020 Texas Instruments Incorporated - http://www.ti.com
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * *  Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ * *  Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * *  Neither the name of Texas Instruments Incorporated nor the names of
+ *    its contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ */
+ 
+#include <stdbool.h>
+#include <stdint.h>
+#include <string.h>
+#include <stdlib.h>
+#include <export/export.h>
+#include <export/export_json.h>
+%
+% let transferCommon;
+% if (system.getProducts()[0].name.includes("C2000"))
+% { transferCommon = system.getScript("/utilities/transfer/transferCommon.js");
+% } else
+% { transferCommon = system.getScript("/transfer/transferCommon.js");}
+% 
+% let exportMod = system.modules[transferCommon.getTransferPath() + "exporter.js"];
+% let expInst = exportMod.$instances[0];
+% let comsLinkModule = expInst.comsLinkModule;
+% if (expInst.mode.includes("Bidirectional") && expInst["comsLinkModule"])
+% {
+#include <libraries/jsmn/jsmn.h>
+    % if (expInst.$ownedBy) {
+#include <export/export_mods.h>
+    % }
+
+jsmn_parser p;                  // parses JSON data
+jsmntok_t t[64];                // We expect no more than 64 tokens
+% }
+%
+% if (expInst.exportLogBufferModule){
+#include <export/export_buffer.h>
+% }
+
+static const char cmdTemplate[] = "{\"\":}\n";
+static char cATXString[20];
+
+//
+// These values are used to concatenate the command and data to the command template
+// when using the EXPORTJSON_send functions
+//
+#define CMD_INDEX 1
+#define DATA_INDEX 3
+#define CMD_TEMPLATE_LENGTH 6
+
+%
+% let charFunc = "EXPORT_transmitCharBlocking"
+% let stringLengthFunc = "EXPORT_transmitStringLengthBlocking"
+%
+% if (expInst.exportBuffer) {
+%   charFunc = "EXPORTBUFF_writeChar"
+%   stringLengthFunc = "EXPORTBUFF_writeStringLength"
+% }
+%
+%
+
+% if (expInst.exportCustomLog) {
+int EXPORTJSON_sendLog(uint32_t timestamp, char *data)
+{
+    char val[`expInst.maxExportLength`];
+
+    `charFunc`('{');
+
+    `charFunc`('"');
+    `stringLengthFunc`("cLog", strlen("cLog"));
+    `stringLengthFunc`("\":{", strlen("\":{"));
+
+    `stringLengthFunc`("\"ts\":", strlen("\"ts\":"));
+    utoa(timestamp, val);
+    `stringLengthFunc`(val, strlen(val));
+    `charFunc`(',');
+
+    `stringLengthFunc`("\"d\":\"", strlen("\"d\":\""));
+    `stringLengthFunc`(data, strlen(data));
+    `charFunc`('"');
+
+    `charFunc`('}');
+    `stringLengthFunc`("}\n", strlen("}\n"));
+    return 0;
+}
+
+int EXPORTJSON_sendLogFloat32Array(uint32_t timestamp, float* data, uint32_t size, int numDecimal)
+{
+    uint32_t datai;
+    char val[`expInst.maxExportLength`];
+
+    `charFunc`('{');
+
+    `charFunc`('"');
+    `stringLengthFunc`("cLog", strlen("cLog"));
+    `stringLengthFunc`("\":{", strlen("\":{"));
+
+    `stringLengthFunc`("\"ts\":", strlen("\"ts\":"));
+    utoa(timestamp, val);
+    `stringLengthFunc`(val, strlen(val));
+    `charFunc`(',');
+
+    `stringLengthFunc`("\"d\":\"", strlen("\"d\":\""));
+    for (datai = 0; datai < size; datai++) {
+        ftoa(data[datai], val, numDecimal);
+        `stringLengthFunc`(val, strlen(val));
+        if (datai < (size - 1))
+        {
+            `charFunc`(',');
+        }
+    }
+    `charFunc`('"');
+
+    `charFunc`('}');
+    `stringLengthFunc`("}\n", strlen("}\n"));
+    return 0;
+}
+
+int EXPORTJSON_sendLogUint32Array(uint32_t timestamp, uint32_t* data, uint32_t size)
+{
+    uint32_t datai;
+    char val[`expInst.maxExportLength`];
+
+    `charFunc`('{');
+
+    `charFunc`('"');
+    `stringLengthFunc`("cLog", strlen("cLog"));
+    `stringLengthFunc`("\":{", strlen("\":{"));
+
+    `stringLengthFunc`("\"ts\":", strlen("\"ts\":"));
+    utoa(timestamp, val);
+    `stringLengthFunc`(val, strlen(val));
+    `charFunc`(',');
+
+    `stringLengthFunc`("\"d\":\"", strlen("\"d\":\""));
+    for (datai = 0; datai < size; datai++) {
+        utoa(data[datai], val);
+        `stringLengthFunc`(val, strlen(val));
+        if (datai < (size - 1))
+        {
+            `charFunc`(',');
+        }
+    }
+    `charFunc`('"');
+
+    `charFunc`('}');
+    `stringLengthFunc`("}\n", strlen("}\n"));
+    return 0;
+}
+
+int EXPORTJSON_sendLogInt32Array(uint32_t timestamp, int32_t* data, uint32_t size)
+{
+    uint32_t datai;
+    char val[`expInst.maxExportLength`];
+
+    `charFunc`('{');
+
+    `charFunc`('"');
+    `stringLengthFunc`("cLog", strlen("cLog"));
+    `stringLengthFunc`("\":{", strlen("\":{"));
+
+    `stringLengthFunc`("\"ts\":", strlen("\"ts\":"));
+    utoa(timestamp, val);
+    `stringLengthFunc`(val, strlen(val));
+    `charFunc`(',');
+
+    `stringLengthFunc`("\"d\":\"", strlen("\"d\":\""));
+    for (datai = 0; datai < size; datai++) {
+        itoa(data[datai], val);
+        `stringLengthFunc`(val, strlen(val));
+        if (datai < (size - 1))
+        {
+            `charFunc`(',');
+        }
+    }
+    `charFunc`('"');
+
+    `charFunc`('}');
+    `stringLengthFunc`("}\n", strlen("}\n"));
+    return 0;
+}
+
+% }
+% if (expInst.$ownedBy && expInst.$ownedBy.fsilogger) {
+int EXPORTJSON_sendFsiFrame(uint16_t user_data, uint16_t frame_type, uint16_t frame_tag, uint16_t crc, uint16_t* words, uint16_t numWords)
+{
+    char val[`expInst.maxExportLength`];
+    uint16_t di = 0;
+
+    `charFunc`('{');
+
+    `charFunc`('"');
+    `stringLengthFunc`("fsiLog", strlen("fsiLog"));
+    `stringLengthFunc`("\":{", strlen("\":{"));
+
+    `stringLengthFunc`("\"u\":", strlen("\"u\":"));
+    utoa(user_data, val);
+    `stringLengthFunc`(val, strlen(val));
+    `charFunc`(',');
+
+    `stringLengthFunc`("\"ty\":", strlen("\"ty\":"));
+    utoa(frame_type, val);
+    `stringLengthFunc`(val, strlen(val));
+    `charFunc`(',');
+
+    `stringLengthFunc`("\"ta\":", strlen("\"ta\":"));
+    utoa(frame_tag, val);
+    `stringLengthFunc`(val, strlen(val));
+    `charFunc`(',');
+
+    `stringLengthFunc`("\"c\":", strlen("\"c\":"));
+    utoa(crc, val);
+    `stringLengthFunc`(val, strlen(val));
+    `charFunc`(',');
+
+    `stringLengthFunc`("\"d\":\"", strlen("\"d\":\""));
+    for (di = 0; di < numWords; di++) {
+        utoa(words[di], val);
+        `stringLengthFunc`(val, strlen(val));
+        if (di+1 < numWords)
+        {
+            `charFunc`(',');
+        }
+    }
+    `charFunc`('"');
+
+    `charFunc`('}');
+    `stringLengthFunc`("}\n", strlen("}\n"));
+    return 0;
+}
+% }
+
+int EXPORTJSON_sendKeyValuePointerPairs(ExportKeyValue** keyValues, uint16_t numKeyValues)
+{
+    uint16_t keyValueI = 0;
+    `charFunc`('{');
+    for (keyValueI = 0; keyValueI < numKeyValues; keyValueI++)
+    {
+        `charFunc`('"');
+        `stringLengthFunc`(keyValues[keyValueI]->key, strlen(keyValues[keyValueI]->key));
+        `stringLengthFunc`("\":\"", strlen("\":\""));
+        `stringLengthFunc`(keyValues[keyValueI]->value, strlen(keyValues[keyValueI]->value));
+        `charFunc`('"');
+
+        if (keyValueI != (numKeyValues - 1))
+        {
+            `charFunc`(',');
+        }
+    }
+    `stringLengthFunc`("}\n", strlen("}\n"));
+    return 0;
+}
+
+int EXPORTJSON_sendKeyValuePairs(ExportKeyValue* keyValues, uint16_t numKeyValues)
+{
+    uint16_t keyValueI = 0;
+    `charFunc`('{');
+    for (keyValueI = 0; keyValueI < numKeyValues; keyValueI++)
+    {
+        `charFunc`('"');
+        `stringLengthFunc`(keyValues[keyValueI].key, strlen(keyValues[keyValueI].key));
+        `stringLengthFunc`("\":\"", strlen("\":\""));
+        `stringLengthFunc`(keyValues[keyValueI].value, strlen(keyValues[keyValueI].value));
+        `charFunc`('"');
+
+        if (keyValueI != (numKeyValues - 1))
+        {
+            `charFunc`(',');
+        }
+    }
+    `stringLengthFunc`("}\n", strlen("}\n"));
+    return 0;
+}
+
+//
+// To send an object with objects
+// 1. Call EXPORTJSON_startSendObject with the key for the top level object
+// 2. Call EXPORTJSON_appendKeyValuePairWithEndingChar(kv, ',') for as many sub object key/value pairs
+// 2. On the last key/value EXPORTJSON_appendKeyValuePairWithEndingChar(kv, '') for as many sub object key/value pairs
+// 3. Call EXPORTJSON_endSendObject
+//
+int EXPORTJSON_startSendObject(char * key)
+{
+    `stringLengthFunc`("{\"", strlen("{\""));
+    `stringLengthFunc`(key, strlen(key));
+    `stringLengthFunc`("\":{", strlen("\":{"));
+    return 0;
+}
+int EXPORTJSON_endSendObject()
+{
+    `stringLengthFunc`("}}\n", strlen("}}\n"));
+    return 0;
+}
+
+int EXPORTJSON_appendKeyValuePairWithEndingChar(ExportKeyValue keyValue, bool isStr, char end)
+{
+    `charFunc`('"');
+    `stringLengthFunc`(keyValue.key, strlen(keyValue.key));
+    `stringLengthFunc`("\":", strlen("\":"));
+    if (isStr)
+    {
+        `charFunc`('"');
+    }
+    `stringLengthFunc`(keyValue.value, strlen(keyValue.value));
+    if (isStr)
+    {
+        `charFunc`('"');
+    }
+    
+    if (end) {
+        `charFunc`(end);
+    }
+
+    return 0;
+}
+
+int EXPORTJSON_sendKeyValuePair(ExportKeyValue keyValue)
+{
+    uint16_t i;
+
+    for (i = 0; i < CMD_TEMPLATE_LENGTH; i++) {
+        `charFunc`(cmdTemplate[i]);
+        if (i == CMD_INDEX) {
+            `stringLengthFunc`(keyValue.key, strlen(keyValue.key));
+        } else if (i == DATA_INDEX) {
+            `charFunc`('"');
+            `stringLengthFunc`(keyValue.value, strlen(keyValue.value));
+            `charFunc`('"');
+        }
+    }
+
+    return 0;
+}
+
+int EXPORTJSON_sendString(char *cmd, uint16_t cmdLength, char *value, uint16_t valueLength)
+{
+    uint16_t i;
+
+    for (i = 0; i < CMD_TEMPLATE_LENGTH; i++) {
+        `charFunc`(cmdTemplate[i]);
+        if (i == CMD_INDEX) {
+            `stringLengthFunc`(cmd, strlen(cmd));
+        } else if (i == DATA_INDEX) {
+            `charFunc`('"');
+            `stringLengthFunc`(value, strlen(value));
+            `charFunc`('"');
+        }
+    }
+
+    return 0;
+}
+
+int EXPORTJSON_sendInt16(char *cmd, uint16_t cmdLength, int16_t val)
+{
+    uint16_t i;
+
+    for (i = 0; i < CMD_TEMPLATE_LENGTH; i++) {
+        `charFunc`(cmdTemplate[i]);
+        if (i == CMD_INDEX) {
+            `stringLengthFunc`(cmd, strlen(cmd));
+        } else if (i == DATA_INDEX) {
+            itoa(val, cATXString);
+            `stringLengthFunc`(cATXString, strlen(cATXString));
+        }
+    }
+
+    return 0;
+}
+
+int EXPORTJSON_sendUInt16(char *cmd, uint16_t cmdLength, uint16_t val)
+{
+    uint16_t i;
+
+    for (i = 0; i < CMD_TEMPLATE_LENGTH; i++) {
+        `charFunc`(cmdTemplate[i]);
+        if (i == CMD_INDEX) {
+            `stringLengthFunc`(cmd, strlen(cmd));
+        } else if (i == DATA_INDEX) {
+            utoa(val, cATXString);
+            `stringLengthFunc`(cATXString, strlen(cATXString));
+        }
+    }
+
+    return 0;
+}
+
+int EXPORTJSON_sendUInt32AsByteArray(char *cmd, uint16_t cmdLength, uint32_t val)
+{
+    char valStr[`expInst.maxExportLength`];
+    uint16_t bytes[UINT32_BYTE_COUNT] = {0};
+    uint16_t byteIndex = 0;
+    uint16_t i;
+
+    u32toBytes(val, bytes);
+    for (i = 0; i < CMD_TEMPLATE_LENGTH; i++) {
+        `charFunc`(cmdTemplate[i]);
+        if (i == CMD_INDEX) {
+            `stringLengthFunc`(cmd, strlen(cmd));
+        } else if (i == DATA_INDEX) {
+            `charFunc`('[');
+            for (byteIndex = 0; byteIndex < UINT32_BYTE_COUNT; byteIndex++){
+                utoa(bytes[byteIndex], valStr);
+                `stringLengthFunc`(valStr, strlen(valStr));
+                if (byteIndex < (UINT32_BYTE_COUNT - 1)){
+                    `charFunc`(',');
+                }
+            }
+            `charFunc`(']');
+        }
+    }
+
+    return 0;
+}
+
+int EXPORTJSON_sendInt32AsByteArray(char *cmd, uint16_t cmdLength, int32_t val)
+{
+    char valStr[`expInst.maxExportLength`];
+    uint16_t bytes[INT32_BYTE_COUNT] = {0};
+    uint16_t byteIndex = 0;
+    uint16_t i;
+
+    i32toBytes(val, bytes);
+    for (i = 0; i < CMD_TEMPLATE_LENGTH; i++) {
+        `charFunc`(cmdTemplate[i]);
+        if (i == CMD_INDEX) {
+            `stringLengthFunc`(cmd, strlen(cmd));
+        } else if (i == DATA_INDEX) {
+            `charFunc`('[');
+            for (byteIndex = 0; byteIndex < INT32_BYTE_COUNT; byteIndex++){
+                utoa(bytes[byteIndex], valStr);
+                `stringLengthFunc`(valStr, strlen(valStr));
+                if (byteIndex < (INT32_BYTE_COUNT - 1)){
+                    `charFunc`(',');
+                }
+            }
+            `charFunc`(']');
+        }
+    }
+
+    return 0;
+}
+
+int EXPORTJSON_sendUInt16AsByteArray(char *cmd, uint16_t cmdLength, uint16_t val)
+{
+    char valStr[`expInst.maxExportLength`];
+    uint16_t bytes[UINT16_BYTE_COUNT] = {0};
+    uint16_t byteIndex = 0;
+    uint16_t i;
+
+    u16toBytes(val, bytes);
+    for (i = 0; i < CMD_TEMPLATE_LENGTH; i++) {
+        `charFunc`(cmdTemplate[i]);
+        if (i == CMD_INDEX) {
+            `stringLengthFunc`(cmd, strlen(cmd));
+        } else if (i == DATA_INDEX) {
+            `charFunc`('[');
+            for (byteIndex = 0; byteIndex < UINT16_BYTE_COUNT; byteIndex++){
+                utoa(bytes[byteIndex], valStr);
+                `stringLengthFunc`(valStr, strlen(valStr));
+                if (byteIndex < (UINT16_BYTE_COUNT - 1)){
+                    `charFunc`(',');
+                }
+            }
+            `charFunc`(']');
+        }
+    }
+
+    return 0;
+}
+
+int EXPORTJSON_sendInt16AsByteArray(char *cmd, uint16_t cmdLength, int16_t val)
+{
+    char valStr[`expInst.maxExportLength`];
+    uint16_t bytes[INT16_BYTE_COUNT] = {0};
+    uint16_t byteIndex = 0;
+    uint16_t i;
+
+    i16toBytes(val, bytes);
+    for (i = 0; i < CMD_TEMPLATE_LENGTH; i++) {
+        `charFunc`(cmdTemplate[i]);
+        if (i == CMD_INDEX) {
+            `stringLengthFunc`(cmd, strlen(cmd));
+        } else if (i == DATA_INDEX) {
+            `charFunc`('[');
+            for (byteIndex = 0; byteIndex < INT16_BYTE_COUNT; byteIndex++){
+                utoa(bytes[byteIndex], valStr);
+                `stringLengthFunc`(valStr, strlen(valStr));
+                if (byteIndex < (INT16_BYTE_COUNT - 1)){
+                    `charFunc`(',');
+                }
+            }
+            `charFunc`(']');
+        }
+    }
+
+    return 0;
+}
+
+int EXPORTJSON_sendFloatAsByteArray(char *cmd, uint16_t cmdLength, float val)
+{
+    char valStr[`expInst.maxExportLength`];
+    uint16_t bytes[FLOAT32_BYTE_COUNT] = {0};
+    uint16_t byteIndex = 0;
+    uint16_t i;
+
+    f32toBytes(val, bytes);
+    for (i = 0; i < CMD_TEMPLATE_LENGTH; i++) {
+        `charFunc`(cmdTemplate[i]);
+        if (i == CMD_INDEX) {
+            `stringLengthFunc`(cmd, strlen(cmd));
+        } else if (i == DATA_INDEX) {
+            `charFunc`('[');
+            for (byteIndex = 0; byteIndex < FLOAT32_BYTE_COUNT; byteIndex++){
+                utoa(bytes[byteIndex], valStr);
+                `stringLengthFunc`(valStr, strlen(valStr));
+                if (byteIndex < (FLOAT32_BYTE_COUNT - 1)){
+                    `charFunc`(',');
+                }
+            }
+            `charFunc`(']');
+        }
+    }
+
+    return 0;
+}
+
+int EXPORTJSON_sendUInt32ArrayAsByteArray(char *cmd, uint16_t cmdLength, uint32_t* data, uint32_t size)
+{
+    uint32_t datai;
+    char valStr[`expInst.maxExportLength`];
+    uint16_t bytes[UINT32_BYTE_COUNT] = {0};
+    uint16_t byteIndex = 0;
+    uint16_t i;
+
+    for (i = 0; i < CMD_TEMPLATE_LENGTH; i++) {
+        `charFunc`(cmdTemplate[i]);
+        if (i == CMD_INDEX) {
+            `stringLengthFunc`(cmd, strlen(cmd));
+        } else if (i == DATA_INDEX) {
+            `charFunc`('[');
+            
+            for (datai = 0; datai < size; datai++) {
+                u32toBytes(data[datai], bytes);
+                for (byteIndex = 0; byteIndex < UINT32_BYTE_COUNT; byteIndex++){
+                    utoa(bytes[byteIndex], valStr);
+                    `stringLengthFunc`(valStr, strlen(valStr));
+                    if ((datai < (size - 1)) || (byteIndex < (UINT32_BYTE_COUNT - 1))){
+                        `charFunc`(',');
+                    }
+                }
+            }
+
+            `charFunc`(']');
+        }
+    }
+    
+    return 0;
+}
+
+int EXPORTJSON_sendInt32ArrayAsByteArray(char *cmd, uint16_t cmdLength, int32_t* data, uint32_t size)
+{
+    uint32_t datai;
+    char valStr[`expInst.maxExportLength`];
+    uint16_t bytes[INT32_BYTE_COUNT] = {0};
+    uint16_t byteIndex = 0;
+    uint16_t i;
+
+    for (i = 0; i < CMD_TEMPLATE_LENGTH; i++) {
+        `charFunc`(cmdTemplate[i]);
+        if (i == CMD_INDEX) {
+            `stringLengthFunc`(cmd, strlen(cmd));
+        } else if (i == DATA_INDEX) {
+            `charFunc`('[');
+            
+            for (datai = 0; datai < size; datai++) {
+                i32toBytes(data[datai], bytes);
+                for (byteIndex = 0; byteIndex < INT32_BYTE_COUNT; byteIndex++){
+                    utoa(bytes[byteIndex], valStr);
+                    `stringLengthFunc`(valStr, strlen(valStr));
+                    if ((datai < (size - 1)) || (byteIndex < (INT32_BYTE_COUNT - 1))){
+                        `charFunc`(',');
+                    }
+                }
+            }
+
+            `charFunc`(']');
+        }
+    }
+    
+    return 0;
+}
+
+
+int EXPORTJSON_sendUInt16ArrayAsByteArray(char *cmd, uint16_t cmdLength, uint16_t* data, uint32_t size)
+{
+    uint32_t datai;
+    char valStr[`expInst.maxExportLength`];
+    uint16_t bytes[UINT16_BYTE_COUNT] = {0};
+    uint16_t byteIndex = 0;
+    uint16_t i;
+
+    for (i = 0; i < CMD_TEMPLATE_LENGTH; i++) {
+        `charFunc`(cmdTemplate[i]);
+        if (i == CMD_INDEX) {
+            `stringLengthFunc`(cmd, strlen(cmd));
+        } else if (i == DATA_INDEX) {
+            `charFunc`('[');
+            
+            for (datai = 0; datai < size; datai++) {
+                u16toBytes(data[datai], bytes);
+                for (byteIndex = 0; byteIndex < UINT16_BYTE_COUNT; byteIndex++){
+                    utoa(bytes[byteIndex], valStr);
+                    `stringLengthFunc`(valStr, strlen(valStr));
+                    if ((datai < (size - 1)) || (byteIndex < (UINT16_BYTE_COUNT - 1))){
+                        `charFunc`(',');
+                    }
+                }
+            }
+
+            `charFunc`(']');
+        }
+    }
+    
+    return 0;
+}
+
+int EXPORTJSON_sendInt16ArrayAsByteArray(char *cmd, uint16_t cmdLength, int16_t* data, uint32_t size)
+{
+    uint32_t datai;
+    char valStr[`expInst.maxExportLength`];
+    uint16_t bytes[INT16_BYTE_COUNT] = {0};
+    uint16_t byteIndex = 0;
+    uint16_t i;
+
+    for (i = 0; i < CMD_TEMPLATE_LENGTH; i++) {
+        `charFunc`(cmdTemplate[i]);
+        if (i == CMD_INDEX) {
+            `stringLengthFunc`(cmd, strlen(cmd));
+        } else if (i == DATA_INDEX) {
+            `charFunc`('[');
+            
+            for (datai = 0; datai < size; datai++) {
+                i16toBytes(data[datai], bytes);
+                for (byteIndex = 0; byteIndex < INT16_BYTE_COUNT; byteIndex++){
+                    utoa(bytes[byteIndex], valStr);
+                    `stringLengthFunc`(valStr, strlen(valStr));
+                    if ((datai < (size - 1)) || (byteIndex < (INT16_BYTE_COUNT - 1))){
+                        `charFunc`(',');
+                    }
+                }
+            }
+
+            `charFunc`(']');
+        }
+    }
+    
+    return 0;
+}
+
+int EXPORTJSON_sendFloatArrayAsByteArray(char *cmd, uint16_t cmdLength, float* data, uint32_t size)
+{
+    uint32_t datai;
+    char valStr[`expInst.maxExportLength`];
+    uint16_t bytes[FLOAT32_BYTE_COUNT] = {0};
+    uint16_t byteIndex = 0;
+    uint16_t i;
+
+    for (i = 0; i < CMD_TEMPLATE_LENGTH; i++) {
+        `charFunc`(cmdTemplate[i]);
+        if (i == CMD_INDEX) {
+            `stringLengthFunc`(cmd, strlen(cmd));
+        } else if (i == DATA_INDEX) {
+            `charFunc`('[');
+            
+            for (datai = 0; datai < size; datai++) {
+                f32toBytes(data[datai], bytes);
+                for (byteIndex = 0; byteIndex < FLOAT32_BYTE_COUNT; byteIndex++){
+                    utoa(bytes[byteIndex], valStr);
+                    `stringLengthFunc`(valStr, strlen(valStr));
+                    if ((datai < (size - 1)) || (byteIndex < (FLOAT32_BYTE_COUNT - 1))){
+                        `charFunc`(',');
+                    }
+                }
+            }
+
+            `charFunc`(']');
+        }
+    }
+    
+    return 0;
+}
+
+int EXPORTJSON_sendUInt32(char *cmd, uint16_t cmdLength, uint32_t val)
+{
+    uint16_t i;
+
+    for (i = 0; i < CMD_TEMPLATE_LENGTH; i++) {
+        `charFunc`(cmdTemplate[i]);
+        if (i == CMD_INDEX) {
+            `stringLengthFunc`(cmd, strlen(cmd));
+        } else if (i == DATA_INDEX) {
+            utoa(val, cATXString);
+            `stringLengthFunc`(cATXString, strlen(cATXString));
+        }
+    }
+
+    return 0;
+}
+
+int EXPORTJSON_sendInt32(char *cmd, uint16_t cmdLength, int32_t val)
+{
+    uint16_t i;
+
+    for (i = 0; i < CMD_TEMPLATE_LENGTH; i++) {
+        `charFunc`(cmdTemplate[i]);
+        if (i == CMD_INDEX) {
+            `stringLengthFunc`(cmd, strlen(cmd));
+        } else if (i == DATA_INDEX) {
+            itoa(val, cATXString);
+            `stringLengthFunc`(cATXString, strlen(cATXString));
+        }
+    }
+
+    return 0;
+}
+
+int EXPORTJSON_sendBool(char *cmd, uint16_t cmdLength, bool val)
+{
+    uint16_t i;
+
+    for (i = 0; i < CMD_TEMPLATE_LENGTH; i++) {
+        `charFunc`(cmdTemplate[i]);
+        if (i == CMD_INDEX) {
+            `stringLengthFunc`(cmd, strlen(cmd));
+        } else if (i == DATA_INDEX) {
+            if (val == true) {
+                `stringLengthFunc`("true", strlen("true"));
+            } else {
+                `stringLengthFunc`("false", strlen("false"));
+            }
+        }
+    }
+
+    return 0;
+}
+
+% if (expInst.mode.includes("Bidirectional") && expInst["comsLinkModule"])
+% {
+uint16_t EXPORTJSON_ReadUInt16(char *string)
+{
+    return (uint16_t) strtoul(string, 0, 10);
+}
+
+uint32_t EXPORTJSON_ReadUInt32(char *string)
+{
+    return (uint32_t) strtoul(string, 0, 10);
+}
+
+uint64_t EXPORTJSON_ReadUInt64(char *string)
+{
+    return (uint64_t) strtoul(string, 0, 10);
+}
+
+
+int16_t EXPORTJSON_ReadInt16(char *string)
+{
+    return (int16_t) strtol(string, 0, 10);
+}
+
+int32_t EXPORTJSON_ReadInt32(char *string)
+{
+    return (int32_t) strtol(string, 0, 10);
+}
+
+int64_t EXPORTJSON_ReadInt64(char *string)
+{
+    return (int64_t) strtol(string, 0, 10);
+}
+
+bool EXPORTJSON_ReadBool(char *string)
+{
+    if (strncmp(string, "true", 4) == 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+float EXPORTJSON_ReadFloat(char *string)
+{
+    return strtof(string, 0);
+}
+
+double EXPORTJSON_ReadDouble(char *string)
+{
+    return strtod(string, 0);
+}
+
+//
+// Compare JSON keys
+//
+// json is the JSON string.
+// tok is the JSON token.
+// s is the string to check for equality.
+//
+// return 0 if string found. -1 if not.
+//
+int jsoneq(const char *json, jsmntok_t *tok, const char *s)
+{
+    if (tok->type == JSMN_STRING && (int) strlen(s) == tok->end - tok->start &&
+        strncmp(json + tok->start, s, tok->end - tok->start) == 0) {
+        return 0;
+    }
+    return -1;
+}
+
+void EXPORTJSON_parseString(char * rxString, uint16_t rxStringSize)
+{
+    int i;
+    int r;
+    % if (expInst.$ownedBy) {
+    int j;
+    % }
+
+    jsmn_init(&p);
+
+    r = jsmn_parse(
+        &p, rxString, rxStringSize, t, sizeof(t) / sizeof(t[0]));
+
+    //
+    // Loop over keys of JSON object
+    //
+    for (i = 1; i < r; i++) {   
+    % if (expInst.$ownedBy) {
+        for (j = 0; j < EXPORTMOD_RXCOMMANDS_SIZE; j++) {
+            if (jsoneq(rxString, &t[i], EXPORTMOD_RXCommands[j].key) == 0) {
+                if (EXPORTMOD_RXCommands[j].callback != NULL) {
+                    EXPORTMOD_RXCommands[j].callback(rxString + t[i + 1].start);
+                }
+                break;
+            }
+        }
+    % }
+    }
+}
+
+% } // Bidirectional end

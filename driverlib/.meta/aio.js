@@ -53,7 +53,22 @@ let config = [
         hidden      : false,
         default     : device_driverlib_peripheral.GPIO_QualificationMode[0].name,
         options     : device_driverlib_peripheral.GPIO_QualificationMode
-    }
+    },
+
+    {
+        name        : "GROUP_XINT",
+        displayName : "External Interrupts",
+        description : 'Connect to an XINT for interrupts',
+        config     : [
+            {
+                name        : "useInterrupt",
+                displayName : "Use Interrupts",
+                description : 'Connect to an XINT for interrupts',
+                hidden      : false,
+                default     : false
+            },
+        ]
+    },
 ];
 
 if (!["F28002x", "F280013x", "F280015x"].includes(Common.getDeviceName()))
@@ -85,6 +100,56 @@ function filterHardware(component)
     return (Common.typeMatches(component.type, ["AIO"]));
 }
 
+function moduleInstances(inst)
+{
+    var ownedMods = []
+
+    if (inst.useInterrupt)
+    {
+        //GROUP_XINT
+        ownedMods.push({
+            name: "xint",      
+            displayName: "XINT",
+            moduleName: "/driverlib/xint.js",
+            collapsed: true,
+            group: "GROUP_XINT",
+            requiredArgs: {
+                $name : inst.$name + "_XINT",
+            }
+        })
+    }
+    return ownedMods
+}
+
+function onValidatePinmux(inst, validation) {
+    if (inst.useInterrupt){
+        var xint = inst.xint;
+        var xintNum = xint.xintNum;
+        var inputxbar = xint.inputxbar;
+
+        if (inst.aioPin.$solution)
+        {
+            var selectedAIOPeripheral = inst.aioPin.$solution.peripheralPinName;
+            if (!selectedAIOPeripheral)
+            {
+                selectedAIOPeripheral = inst.aioPin.$solution.peripheralName
+            }
+            if (selectedAIOPeripheral != inputxbar["inputxbarGpio"])
+            {
+                validation.logWarning(
+                    "Select " + selectedAIOPeripheral + " which is the selection in your AIO PinMux entry.", 
+                    inputxbar, "inputxbarGpio");
+            }
+        }
+        else
+        {
+            validation.logInfo(
+                "Select " + "the same AIO" + " as the one in your AIO PinMux entry.", 
+                inputxbar, "inputxbarGpio");
+        }
+    }
+}
+
 if (Common.onlyPinmux())
 {
     config = [];
@@ -96,12 +161,14 @@ var aioModule = {
     defaultInstanceName: "myAIO",
     description: "Analog IO Interface Peripheral",
     filterHardware : filterHardware,
+    moduleInstances: moduleInstances,
     config: config,
     templates: {
         boardc : "/driverlib/aio/aio.board.c.xdt",
         boardh : "/driverlib/aio/aio.board.h.xdt"
     },
-    pinmuxRequirements    : Pinmux.aioPinmuxRequirements
+    pinmuxRequirements    : Pinmux.aioPinmuxRequirements,
+    validatePinmux: onValidatePinmux
 };
 
 if (aioModule.maxInstances <= 0)

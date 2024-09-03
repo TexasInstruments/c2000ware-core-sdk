@@ -1,0 +1,2 @@
+import{r as s,g as t}from"./p-5bb37414.js";import{ProgramModel as e}from"../gc-model-program/lib/ProgramModel";import{c as r}from"./p-0c6e1a4c.js";let o=class{constructor(t){s(this,t);this.impl=undefined;this.optional=false;this.defaultRefreshInterval=100;this.sram=false;this.symbolsOnly=false}connectedCallback(){this.impl=new e(r(this.el))}disconnectedCallback(){this.impl.dispose()}get el(){return t(this)}};export{o as gc_model_program};
+//# sourceMappingURL=p-b7d2e8a5.entry.js.map

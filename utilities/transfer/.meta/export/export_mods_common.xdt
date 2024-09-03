@@ -1,0 +1,124 @@
+% let Common   = system.getScript("/driverlib/Common.js");
+% let modName = args[1];
+% let mod = system.modules["/driverlib/" + modName + ".js"];
+% let exportCommon = system.getScript("/utilities/transfer/export/export_mods_common.js");
+% let exportMod = system.getScript("/utilities/transfer/export/mods/export_mod_" + modName + ".js");
+% let exporter = system.modules["/utilities/transfer/exporter.js"];
+% let expInst = exporter.$instances[0]
+% let registersFile = system.getScript("/driverlib/device_driverlib_peripherals/" + 
+%                       Common.getDeviceName().toLowerCase() + "_" + modName + "_registers.js");
+% let registers = registersFile[modName.toUpperCase() + "Registers"];
+%
+% if (exportCommon.getNonExporterInstances(mod).length <= 0) {
+%   return;
+% }
+% 
+% let exportKeyValues = exportCommon.getExportKeyValuesForMod(mod, exportMod.exportsInfo);
+%
+% /*******************************************************************************************
+% ********************************************************************************************
+% Header File
+% ********************************************************************************************
+% *******************************************************************************************/
+% if (args[0] == "h")
+% {
+
+#define `mod.peripheralName`_EXPORT_KEY_VALUES_COUNT `exportKeyValues.length`
+extern ExportKeyValue * `mod.peripheralName`_exportKeyValues[];
+extern void EXPORTMOD_update_`mod.peripheralName`();
+extern void EXPORTMOD_send_`mod.peripheralName`();
+    
+    % if (expInst.mode.includes("Bidirectional")) {
+        % var modInstances = exportCommon.getNonExporterInstances(mod);
+        % for (var modInst of modInstances) {
+extern bool `modInst.$name`_srRequest;
+extern void EXPORTMOD_sendRegisters_`modInst.$name`();
+        % }
+    % }
+
+% }
+% /*******************************************************************************************
+% ********************************************************************************************
+% Source File
+% ********************************************************************************************
+% *******************************************************************************************/
+% else if (args[0] == "c") {
+    % 
+    % for (let expKV of exportKeyValues) {
+ExportKeyValue `expKV.name` = {
+    .key = "`expKV.name`",
+    .value = "",
+    .lengthKey = strlen("`expKV.name`"),
+    .lengthValue = strlen(""),
+};
+
+    % }
+ExportKeyValue * `mod.peripheralName`_exportKeyValues[`mod.peripheralName`_EXPORT_KEY_VALUES_COUNT] = {
+    `exportKeyValues.map(expKV => "&"+expKV.name).join(", ")`
+};
+
+    %
+//
+// Update the values of the key value pairs
+//
+    % let exportModUpdates = [];
+    % for (let expKV of exportKeyValues) {
+        % exportModUpdates.push("EXPORTMOD_update_" + expKV.name);
+void EXPORTMOD_update_`expKV.name`() {
+    % if (expKV.updateFunc) {
+    itoa(`expKV.updateFunc`, `expKV.name`.value);
+    % }
+}
+
+    % }
+void EXPORTMOD_update_`mod.peripheralName`(){
+    % for (var expUp of exportModUpdates) {
+    `expUp`();
+    % }
+} 
+
+//
+// Send the values of the key value pairs 
+//
+    % let exportModSends = [];
+    % for (let expKV of exportKeyValues) {
+        % exportModSends.push("EXPORTMOD_send_" + expKV.name);
+void EXPORTMOD_send_`expKV.name`() {
+    EXPORTJSON_sendKeyValuePair(`expKV.name`);
+}
+
+    % }
+void EXPORTMOD_send_`mod.peripheralName`(){
+    EXPORTJSON_sendKeyValuePointerPairs(`mod.peripheralName`_exportKeyValues, `mod.peripheralName`_EXPORT_KEY_VALUES_COUNT);
+} 
+
+    % if (expInst.mode.includes("Bidirectional")) {
+        % var modInstances = exportCommon.getNonExporterInstances(mod);
+        % for (var modInst of modInstances) {
+bool `modInst.$name`_srRequest = false;
+void EXPORTMOD_sendRegistersRequest_`modInst.$name`(char *val) {
+    `modInst.$name`_srRequest = true;
+}
+void EXPORTMOD_sendRegisters_`modInst.$name`() {
+    ExportKeyValue registerInfo;
+
+    EXPORTJSON_startSendObject("`modInst.$name`_sr");
+            % var regIndex = 0;
+            % var exportableRegisters = registers.filter(
+            %    reg => (exportMod.exportsRegisterSkips.filter(regSkip => regSkip.name == reg.name).length == 0))
+            % for (var reg of exportableRegisters) {
+    strcpy(registerInfo.key, "`reg.name`");
+    itoa(HWREGH(`modInst.$name`_BASE + `modName.toUpperCase()`_O_`reg.name`), registerInfo.value);
+                % if (regIndex < exportableRegisters.length - 1) {
+    EXPORTJSON_appendKeyValuePairWithEndingChar(registerInfo, false, ',');
+                % } else {
+    EXPORTJSON_appendKeyValuePairWithEndingChar(registerInfo, false, NULL);
+                % }
+                %regIndex++;
+            %}
+    EXPORTJSON_endSendObject();
+    `modInst.$name`_srRequest = false;
+}
+        % }
+    % }
+% }

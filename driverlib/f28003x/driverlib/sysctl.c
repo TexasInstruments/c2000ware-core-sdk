@@ -702,6 +702,7 @@ SysCtl_selectOscSource(uint32_t oscSource)
                     ~SYSCTL_CLKSRCCTL1_OSCCLKSRCSEL_M) |
                    (SYSCTL_OSCSRC_OSC1 >> SYSCTL_OSCSRC_S);
 
+            SYSCTL_CLKSRCCTL_DELAY;
             break;
 
         default:

@@ -5,8 +5,10 @@
 // TITLE:   Definitions for the LIN registers.
 //
 //###########################################################################
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -150,7 +152,7 @@ struct SCICLEARINT_BITS {               // bits description
     bp_16 CLRIDINT:1;                   // 13 Clear Identifier Interrupt (LIN only)
     bp_16 rsvd4:2;                      // 15:14 Reserved
     bp_32 CLRTXDMA:1;                   // 16 Clear transmit DMA
-    bp_32 SETRXDMA:1;                   // 17 Clear receiver DMA
+    bp_32 CLRRXDMA:1;                   // 17 Clear receiver DMA
     bp_32 rsvd5:1;                      // 18 Reserved
     bp_32 rsvd6:5;                      // 23:19 Reserved
     bp_32 CLRPEINT:1;                   // 24 Clear Parity Interrupt

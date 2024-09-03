@@ -170,7 +170,7 @@ let DeviceMemoryMap = [
 	{ name: "FLASH0CTRL_BASE", displayName: "FLASH0CTRL", baseAddress: "0x0005F800U" },
 	{ name: "FLASH0ECC_BASE", displayName: "FLASH0ECC", baseAddress: "0x0005FB00U" },
 	{ name: "ERAD_PCTRACE_BUFFER_BASE", displayName: "ERAD PCTRACE BUFFER", baseAddress: "0x0005FE00U" },
-	{ name: "UID_BASE", displayName: "UID", baseAddress: "0x00072172U" },
+	{ name: "UID_BASE", displayName: "UID", baseAddress: "0x00072168U" },
 	{ name: "DCSM_Z1OTP_BASE", displayName: "DCSM Z1OTP", baseAddress: "0x00078000U" },
 	{ name: "DCSM_Z2OTP_BASE", displayName: "DCSM Z2OTP", baseAddress: "0x00078200U" },
 ];
@@ -478,7 +478,7 @@ let ERADPCTRACEBUFFERMemoryMap = [
 	{ name: "ERAD_PCTRACE_BUFFER_BASE", displayName: "ERAD PCTRACE BUFFER", baseAddress: "0x0005FE00U" },
 ];
 let UIDMemoryMap = [
-	{ name: "UID_BASE", displayName: "UID", baseAddress: "0x00072172U" },
+	{ name: "UID_BASE", displayName: "UID", baseAddress: "0x00072168U" },
 ];
 let DCSM_OTPMemoryMap = [
 	{ name: "DCSM_Z1OTP_BASE", displayName: "DCSM Z1OTP", baseAddress: "0x00078000U" },

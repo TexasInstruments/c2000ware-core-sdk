@@ -5,8 +5,10 @@
 // TITLE:  C28x SCI driver.
 //
 //###########################################################################
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -382,10 +384,10 @@ SCI_lockAutobaud(uint32_t base)
 //! \param txLevel is the transmit FIFO interrupt level, specified as one of
 //! the following:
 //! \b SCI_FIFO_TX0, \b SCI_FIFO_TX1, \b SCI_FIFO_TX2, . . . or
-//! \b SCI_FIFO_TX15.
+//! \b SCI_FIFO_TX16.
 //! \param rxLevel is the receive FIFO interrupt level, specified as one of
 //! the following
-//! \b SCI_FIFO_RX0, \b SCI_FIFO_RX1, \b SCI_FIFO_RX2, ... or \b SCI_FIFO_RX15.
+//! \b SCI_FIFO_RX0, \b SCI_FIFO_RX1, \b SCI_FIFO_RX2, ... or \b SCI_FIFO_RX16.
 //!
 //! This function sets the FIFO level at which transmit and receive interrupts
 //! are generated.
@@ -418,10 +420,10 @@ SCI_setFIFOInterruptLevel(uint32_t base, SCI_TxFIFOLevel txLevel,
 //! \param base is the base address of the SCI port.
 //! \param txLevel is a pointer to storage for the transmit FIFO interrupt
 //! level, returned as one of the following:
-//! \b SCI_FIFO_TX0, \b SCI_FIFO_TX1, \b SCI_FIFO_TX2, ... or \b SCI_FIFO_TX15.
+//! \b SCI_FIFO_TX0, \b SCI_FIFO_TX1, \b SCI_FIFO_TX2, ... or \b SCI_FIFO_TX16.
 //! \param rxLevel is a pointer to storage for the receive FIFO interrupt
 //! level, returned as one of the following:
-//! \b SCI_FIFO_RX0, \b SCI_FIFO_RX1, \b SCI_FIFO_RX2, ... or \b SCI_FIFO_RX15.
+//! \b SCI_FIFO_RX0, \b SCI_FIFO_RX1, \b SCI_FIFO_RX2, ... or \b SCI_FIFO_RX16.
 //!
 //! This function gets the FIFO level at which transmit and receive interrupts
 //! are generated.
@@ -1124,10 +1126,6 @@ SCI_writeCharBlockingNonFIFO(uint32_t base, uint16_t data)
 //! \e data is a uint16_t but only 8 bits are written to the SCI port.  SCI
 //! only transmits 8 bit characters.
 //!
-//! This function replaces the original SCICharNonBlockingPut() API and
-//! performs the same actions.  A macro is provided in <tt>sci.h</tt> to map
-//! the original API to this API.
-//!
 //! \return None.
 //
 //*****************************************************************************
@@ -1267,10 +1265,6 @@ SCI_readCharBlockingNonFIFO(uint32_t base)
 //! function does not block and only reads the receive buffer.  The user should
 //! use SCI_isDataAvailableNonFIFO() or SCI_getRxFIFOStatus() to determine if
 //! the receive buffer or FIFO have data available.
-//!
-//! This function replaces the original SCICharNonBlockingGet() API and
-//! performs the same actions.  A macro is provided in <tt>sci.h</tt> to map
-//! the original API to this API.
 //!
 //! \return Returns \e uin16_t which is read from the receive buffer.
 //

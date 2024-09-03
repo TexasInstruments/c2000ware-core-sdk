@@ -127,7 +127,7 @@ MEMORY
    SYNCSOC                    : origin = 0x00007940, length = 0x00000006
    SYSSTATUS                  : origin = 0x0005D400, length = 0x00000040
    TESTERROR                  : origin = 0x0005F590, length = 0x00000010
-   UID                        : origin = 0x00072172, length = 0x00000010
+   UID                        : origin = 0x00072168, length = 0x00000010
    WD                         : origin = 0x00007000, length = 0x0000002C
    XBAR                       : origin = 0x00007920, length = 0x00000020
    XINT                       : origin = 0x00007070, length = 0x0000000C

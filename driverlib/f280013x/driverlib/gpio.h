@@ -216,7 +216,11 @@ typedef enum
 static inline bool
 GPIO_isPinValid(uint32_t pin)
 {
-    return((pin <= 41U) || ((pin >= 224U) && (pin <= 245U)));
+    return(((pin <= 41U) || ((pin >= 224U) && (pin <= 245U))) &&
+           (pin != 14U) && (pin != 15U) && (pin != 25U) && (pin != 26U) &&
+           (pin != 27U) && (pin != 30U) && (pin != 31U) && (pin != 34U) &&
+           (pin != 36U) && (pin != 38U) && (pin != 229U) && (pin != 234U) &&
+           (pin != 235U) && (pin != 236U) && (pin != 240U) && (pin != 243U));
 }
 #endif
 

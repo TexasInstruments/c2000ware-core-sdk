@@ -148,6 +148,8 @@ let ADC_ReferenceMode = [
 let ADC_ReferenceVoltage = [
 	{ name: "ADC_REFERENCE_3_3V", displayName: "REFERENCE 3 3V" },
 	{ name: "ADC_REFERENCE_2_5V", displayName: "REFERENCE 2 5V" },
+	{ name: "ADC_REFERENCE_VREFHI", displayName: "This value is valid when ADC reference" },
+	{ name: "ADC_REFERENCE_2xVREFHI", displayName: "This value is valid when ADC reference" },
 ]
 let ADC_SyncInput = [
 	{ name: "ADC_SYNCIN_DISABLE", displayName: "ADC Syncin is disabled" },

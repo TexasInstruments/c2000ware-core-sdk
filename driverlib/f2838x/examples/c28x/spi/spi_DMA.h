@@ -7,8 +7,10 @@
 //#############################################################################
 //
 //
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -87,13 +89,14 @@ typedef enum
 }SPI_TransactionType;
 
 #define BUFFER_SIZE 64
+#define ADDL_WORDS  10
 
 #define DUMMY_DATA 0xFF
 #define NO_DELAY   0
 
 
-extern uint16_t DMATXbuff[BUFFER_SIZE];
-extern uint16_t DMARXbuff[BUFFER_SIZE];
+extern uint16_t DMATXbuff[BUFFER_SIZE + ADDL_WORDS];
+extern uint16_t DMARXbuff[BUFFER_SIZE + ADDL_WORDS];
 
 extern struct DMA_CH SPITXDMA;
 extern struct DMA_CH SPIRXDMA;

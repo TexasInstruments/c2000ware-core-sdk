@@ -71,6 +71,14 @@ CMD1.sectionMemory_init_array = ["RAMM0"];
 CMD1.sectionMemory_switch     = ["RAMM0"];
 CMD1.sectionMemory_sysmem     = ["RAMLS4"];
 
+CMD1.userSection.create(2);
+CMD1.userSection[0].$name         = "userSection0";
+CMD1.userSection[0].sectionName   = "DMA_TX_SECTION";
+CMD1.userSection[0].sectionMemory = ["RAMGS0"];
+CMD1.userSection[1].$name         = "userSection1";
+CMD1.userSection[1].sectionName   = "DMA_RX_SECTION";
+CMD1.userSection[1].sectionMemory = ["RAMGS1"];
+
 CMD2.sectionAlignEnable_ramfunc    = true;
 CMD2.sectionAlignEnable_text       = true;
 CMD2.sectionAlignEnable_binit      = true;
@@ -95,3 +103,11 @@ CMD2.sectionMemory_ovly            = ["FLASH_BANK0"];
 CMD2.sectionRunFromDifferentAddr_ramfunc = true;
 CMD2.sectionRun_ramfunc                  = ["RAMLS0"];
 CMD2.sectionBinit_ramfunc                = false;
+
+CMD2.userSection.create(2);
+CMD2.userSection[0].$name                = "userSection2";
+CMD2.userSection[0].sectionName          = "DMA_TX_SECTION";
+CMD2.userSection[0].sectionMemory        = ["RAMGS0"];
+CMD2.userSection[1].$name                = "userSection3";
+CMD2.userSection[1].sectionName          = "DMA_RX_SECTION";
+CMD2.userSection[1].sectionMemory        = ["RAMGS1"];

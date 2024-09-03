@@ -12,6 +12,7 @@
         postBuildStep="
           ;if ${GENERATE_DIAGRAM} == 1  mkdir &quot;${BuildDirectory}/diagrams&quot;
           ;if ${GENERATE_DIAGRAM} == 1  ${NODE_TOOL} &quot;${C2000WARE_ROOT}/driverlib/.meta/generate_diagrams.js&quot; &quot;${C2000WARE_ROOT}&quot; &quot;${BuildDirectory}/diagrams&quot; &quot;${BuildDirectory}/syscfg&quot;
+          ;if ${GUI_SUPPORT} == 1  ${BuildDirectory}/syscfg/gui_setup.bat&quot;
         "
         >
     <configuration name="CPU1_RAM" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -v28 -ml -mt --float_support=fpu32 --gen_func_subsections=on --define=DEBUG --define=RAM --define=generic_ram_lnk --diag_warning=225 --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x200 --heap_size=0x100 --define=RAM -i${C2000WARE_ROOT} -i${PROJECT_BUILD_DIR}/syscfg -lc2000ware_libraries.cmd.genlibs -lboard.cmd.genlibs -ldevice_cmd.cmd.genlibs --define=generic_ram_lnk"/>
@@ -21,6 +22,7 @@
 
     <pathVariable name="C2000WARE_ROOT" path="../../../../../" scope="project" />
     <buildVariable name="GENERATE_DIAGRAM" value="0" scope="project" />
+    <buildVariable name="GUI_SUPPORT" value="0" scope="project" />
     <file action="copy" path="../i2c_ex1_loopback.c" targetDirectory="" />
     <file action="copy" path="../i2c_ex1_loopback.syscfg" targetDirectory="" />
   </project>

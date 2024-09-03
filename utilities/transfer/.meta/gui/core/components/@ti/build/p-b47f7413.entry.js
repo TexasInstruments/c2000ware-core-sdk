@@ -1,0 +1,2 @@
+import{r as e,g as t}from"./p-84e39b72.js";import{DeviceAgentHttpCodec as c}from"../gc-codec-deviceagent-edgeai-http/lib/DeviceAgentHttpCodec";let i=class{constructor(t){e(this,t);this.impl=undefined;this.optional=false}connectedCallback(){this.impl=new c(this.el)}disconnectedCallback(){this.impl.dispose()}get el(){return t(this)}};export{i as gc_codec_deviceagent_edgeai_http};
+//# sourceMappingURL=p-b47f7413.entry.js.map

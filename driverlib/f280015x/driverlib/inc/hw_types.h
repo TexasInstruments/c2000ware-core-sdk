@@ -129,10 +129,10 @@ typedef bool _Bool;
 
 /* To fix Misra-C errors */
 #ifndef TRUE
-#define TRUE  ((bool) 1)
+#define TRUE  1
 #endif
 #ifndef FALSE
-#define FALSE ((bool) 0)
+#define FALSE  0
 #endif
 
 #endif // HW_TYPES_H

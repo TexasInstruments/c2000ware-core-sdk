@@ -8,8 +8,10 @@
 //#############################################################################
 //
 //
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -51,8 +53,9 @@
 #include "spi_DMA.h"
 
 //Global variables
-uint16_t DMATXbuff[BUFFER_SIZE];
-uint16_t DMARXbuff[BUFFER_SIZE];
+uint16_t DMATXbuff[BUFFER_SIZE + ADDL_WORDS];
+uint16_t DMARXbuff[BUFFER_SIZE + ADDL_WORDS];   // Additional buffer space to
+                                                // hold response data
 
 #pragma DATA_SECTION(DMATXbuff, "ramgs0");  // map the TX data to memory
 #pragma DATA_SECTION(DMARXbuff, "ramgs0");  // map the RX data to memory
@@ -158,8 +161,6 @@ void SPI_DMA_StartTransaction(struct SPI_DMA_handle *pSPI_DMA_Handle, uint16_t c
 /********************************************************************************/
 // SPI configuration
 /********************************************************************************/
-
-    SPI_setcharLength(spibase, charlength);
 
     uint16_t TXbuff_pos = 0;
 

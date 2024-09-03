@@ -1,0 +1,2 @@
+import{r as t,h as e}from"./p-ce1dc307.js";const o=":host ul{margin:0;padding:0;list-style-type:none;border-top:1px dotted #b9b9b9}::slotted(li){margin:0 !important;padding:8px 0 calc(8px - 1px) 0;border-bottom:1px dotted #b9b9b9;background:no-repeat;list-style:none;line-height:24px}";let r=class{constructor(e){t(this,e);this.dataLid=""}render(){return e("ul",null,e("slot",null))}};r.style=o;export{r as ti_featured_product_list};
+//# sourceMappingURL=p-89c7173a.entry.js.map

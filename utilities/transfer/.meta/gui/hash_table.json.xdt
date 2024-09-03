@@ -1,0 +1,69 @@
+% let transferCommon;
+% if (system.getProducts()[0].name.includes("C2000"))
+% { transferCommon = system.getScript("/utilities/transfer/transferCommon.js");
+% } else
+% { transferCommon = system.getScript("/transfer/transferCommon.js");}
+% let gui = system.modules[transferCommon.getTransferPath() + "gui.js"].$static;
+% let exporter = gui.exporter;
+% let exportMod;
+% let expInst;
+% let buttonMode = "disabled";
+% if (exporter) {
+%   buttonMode = exporter.mode.includes("Bidirectional")?"enabled":"disabled"
+%   exportMod = system.modules[transferCommon.getTransferPath() + "exporter.js"];
+%   expInst = exportMod.$instances[0];
+% }
+% if (exporter && expInst.packageMode == "START/END") {
+% let exportMod = system.modules[transferCommon.getTransferPath() + "exporter.js"];
+% let expInst = exportMod.$instances[0];
+% if (expInst.packageMode == "START/END") {
+% let exportKeys = system.modules[transferCommon.getTransferPath() + "logger/keys.js"];
+
+% let expKeyInst = [];
+% let txKeys = [];
+% let rxKeys = [];
+% if (exportKeys){
+%    expKeyInst = exportKeys.$instances;
+%    for(let i = 0; i < expKeyInst.length; i++){
+%       if(expKeyInst[i].group == "txKeyValuePairs"){
+%           txKeys.push(expKeyInst[i]);
+%       }
+%       else if(expKeyInst[i].group == "rxKeyValuePairs"){
+%           rxKeys.push(expKeyInst[i]);
+%       }
+%    }
+% }
+{
+    "TX" : {
+%   for(let j = 0; j < txKeys.length; j++){
+%       let keyType = expKeyInst[j].valType;
+%       if(keyType == "uint8_t"){
+%            keyType = "char";
+%       }
+%       else if(keyType == "uint8_t_array"){
+%            keyType = "char_array";
+%       }
+        %if(j != txKeys.length - 1){
+            "`expKeyInst[j].keyValueID`" : {"name": "`expKeyInst[j].$name`", "type": "`keyType.replace("_array","")`" },
+        %}else{
+            "`expKeyInst[j].keyValueID`" : {"name": "`expKeyInst[j].$name`", "type": "`keyType.replace("_array","")`" }
+        %}
+        
+%   }
+    },
+    "RX" : {
+%   for(let j = 0; j < rxKeys.length; j++){
+%       let keyType = expKeyInst[j].valType;
+%       if(keyType == "uint8_t"){
+%            keyType = "char";
+%       }
+%       else if(keyType == "uint8_t_array"){
+%            keyType = "char_array";
+%       }
+        "`expKeyInst[j].keyValueID`" : {"name": "`expKeyInst[j].$name`", "type": "`keyType.replace("_array","")`" },
+%   }
+    }
+}
+
+%}
+%}

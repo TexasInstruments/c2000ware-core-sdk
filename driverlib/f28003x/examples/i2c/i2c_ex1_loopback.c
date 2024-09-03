@@ -130,6 +130,8 @@ void main(void)
     // Board initialization
     //
     Board_init();
+    I2C_setConfig(myI2C0_BASE, I2C_CONTROLLER_SEND_MODE);
+    I2C_sendStartCondition(myI2C0_BASE);
 
     //
     // Initialize the data buffers

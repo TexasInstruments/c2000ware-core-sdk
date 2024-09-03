@@ -5,8 +5,10 @@
 // TITLE:  C28x ADC driver.
 //
 //###########################################################################
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -517,8 +519,10 @@ typedef enum
 //*****************************************************************************
 typedef enum
 {
-    ADC_REFERENCE_3_3V = 0U,
-    ADC_REFERENCE_2_5V = 1U
+    ADC_REFERENCE_3_3V      = 0U,
+    ADC_REFERENCE_2_5V      = 1U,
+    ADC_REFERENCE_VREFHI    = 0U, //!< This value is valid when ADC reference
+                                  //!< mode is external
 } ADC_ReferenceVoltage;
 
 //*****************************************************************************

@@ -5,8 +5,10 @@
 // TITLE:  C28x RAM config driver.
 //
 //###########################################################################
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -85,7 +87,7 @@ extern "C"
 #define MEMCFG_SECT_NUM_MASK    0x00FFFFFFU
 #define MEMCFG_XACCPROTX_M      ((uint32_t)MEMCFG_GSXACCPROT0_FETCHPROT_GS0 | \
                                  (uint32_t)MEMCFG_GSXACCPROT0_CPUWRPROT_GS0 | \
-                                 (uint32_t)MEMCFG_GSXACCPROT0_TINIE_WRPROT_GS0 | \
+                                 (uint32_t)MEMCFG_GSXACCPROT0_NPU_WRPROT_GS0 | \
                                  (uint32_t)MEMCFG_GSXACCPROT0_DMAWRPROT_GS0)
 #define MEMCFG_XTEST_M          MEMCFG_DXTEST_TEST_M0_M
 
@@ -196,8 +198,8 @@ extern "C"
 #define MEMCFG_NMVIOL_CLA1WRITE  0x00000020U //!< Non-controller CLA1 write access
 #define MEMCFG_NMVIOL_CLA1FETCH  0x00000040U //!< Non-controller CLA1 fetch access
 #define MEMCFG_NMVIOL_DMAREAD    0x00000400U //!< Non-controller DMA read access
-#define MEMCFG_NMVIOL_TINIEREAD    0x00002000U //!< Non-controller TINIE read access
-#define MEMCFG_NMVIOL_TINIEWRITE   0x00004000U //!< Non-controller TINIE write access
+#define MEMCFG_NMVIOL_NPUREAD    0x00002000U //!< Non-controller NPU read access
+#define MEMCFG_NMVIOL_NPUWRITE   0x00004000U //!< Non-controller NPU write access
 
 //*****************************************************************************
 //
@@ -368,8 +370,8 @@ MemCfg_setCLAMemType(uint32_t ramSections, MemCfg_CLAMemoryType claMemType)
 //!  - \b MEMCFG_NMVIOL_CLA1WRITE - Non-controller CLA1 write access
 //!  - \b MEMCFG_NMVIOL_CLA1FETCH - Non-controller CLA1 fetch access
 //!  - \b MEMCFG_NMVIOL_DMAREAD   - Non-controller DMA read access
-//!  - \b MEMCFG_NMVIOL_TINIEREAD   - Non-controller TINIE read access
-//!  - \b MEMCFG_NMVIOL_TINIEWRITE  - Non-controller TINIE write access
+//!  - \b MEMCFG_NMVIOL_NPUREAD   - Non-controller NPU read access
+//!  - \b MEMCFG_NMVIOL_NPUWRITE  - Non-controller NPU write access
 //!  - \b MEMCFG_MVIOL_CPUFETCH   - Controller CPU fetch access
 //!  - \b MEMCFG_MVIOL_CPUWRITE   - Controller CPU write access
 //!  - \b MEMCFG_MVIOL_DMAWRITE   - Controller DMA write access
@@ -411,8 +413,8 @@ MemCfg_enableViolationInterrupt(uint32_t intFlags)
 //!  - \b MEMCFG_NMVIOL_CLA1WRITE - Non-controller CLA1 write access
 //!  - \b MEMCFG_NMVIOL_CLA1FETCH - Non-controller CLA1 fetch access
 //!  - \b MEMCFG_NMVIOL_DMAREAD   - Non-controller DMA read access
-//!  - \b MEMCFG_NMVIOL_TINIEREAD   - Non-controller TINIE read access
-//!  - \b MEMCFG_NMVIOL_TINIEWRITE  - Non-controller TINIE write access
+//!  - \b MEMCFG_NMVIOL_NPUREAD   - Non-controller NPU read access
+//!  - \b MEMCFG_NMVIOL_NPUWRITE  - Non-controller NPU write access
 //!  - \b MEMCFG_MVIOL_CPUFETCH   - Controller CPU fetch access
 //!  - \b MEMCFG_MVIOL_CPUWRITE   - Controller CPU write access
 //!  - \b MEMCFG_MVIOL_DMAWRITE   - Controller DMA write access
@@ -462,8 +464,8 @@ MemCfg_disableViolationInterrupt(uint32_t intFlags)
 //!  - \b MEMCFG_NMVIOL_CLA1WRITE - Non-controller CLA1 write access
 //!  - \b MEMCFG_NMVIOL_CLA1FETCH - Non-controller CLA1 fetch access
 //!  - \b MEMCFG_NMVIOL_DMAREAD   - Non-controller DMA read access
-//!  - \b MEMCFG_NMVIOL_TINIEREAD   - Non-controller TINIE read access
-//!  - \b MEMCFG_NMVIOL_TINIEWRITE  - Non-controller TINIE write access
+//!  - \b MEMCFG_NMVIOL_NPUREAD   - Non-controller NPU read access
+//!  - \b MEMCFG_NMVIOL_NPUWRITE  - Non-controller NPU write access
 //!  - \b MEMCFG_MVIOL_CPUFETCH   - Controller CPU fetch access
 //!  - \b MEMCFG_MVIOL_CPUWRITE   - Controller CPU write access
 //!  - \b MEMCFG_MVIOL_DMAWRITE   - Controller DMA write access
@@ -497,8 +499,8 @@ MemCfg_getViolationInterruptStatus(void)
 //!  - \b MEMCFG_NMVIOL_CLA1WRITE - Non-controller CLA1 write access
 //!  - \b MEMCFG_NMVIOL_CLA1FETCH - Non-controller CLA1 fetch access
 //!  - \b MEMCFG_NMVIOL_DMAREAD   - Non-controller DMA read access
-//!  - \b MEMCFG_NMVIOL_TINIEREAD   - Non-controller TINIE read access
-//!  - \b MEMCFG_NMVIOL_TINIEWRITE  - Non-controller TINIE write access
+//!  - \b MEMCFG_NMVIOL_NPUREAD   - Non-controller NPU read access
+//!  - \b MEMCFG_NMVIOL_NPUWRITE  - Non-controller NPU write access
 //!  - \b MEMCFG_MVIOL_CPUFETCH   - Controller CPU fetch access
 //!  - \b MEMCFG_MVIOL_CPUWRITE   - Controller CPU write access
 //!  - \b MEMCFG_MVIOL_DMAWRITE   - Controller DMA write access
@@ -542,8 +544,8 @@ MemCfg_forceViolationInterrupt(uint32_t intFlags)
 //!  - \b MEMCFG_NMVIOL_CLA1WRITE - Non-controller CLA1 write access
 //!  - \b MEMCFG_NMVIOL_CLA1FETCH - Non-controller CLA1 fetch access
 //!  - \b MEMCFG_NMVIOL_DMAREAD   - Non-controller DMA read access
-//!  - \b MEMCFG_NMVIOL_TINIEREAD   - Non-controller TINIE read access
-//!  - \b MEMCFG_NMVIOL_TINIEWRITE  - Non-controller TINIE write access
+//!  - \b MEMCFG_NMVIOL_NPUREAD   - Non-controller NPU read access
+//!  - \b MEMCFG_NMVIOL_NPUWRITE  - Non-controller NPU write access
 //!  - \b MEMCFG_MVIOL_CPUFETCH   - Controller CPU fetch access
 //!  - \b MEMCFG_MVIOL_CPUWRITE   - Controller CPU write access
 //!  - \b MEMCFG_MVIOL_DMAWRITE   - Controller DMA write access
@@ -1225,8 +1227,8 @@ MemCfg_getInitStatus(uint32_t ramSections);
 //!  - \b MEMCFG_NMVIOL_CLA1WRITE - Non-controller CLA1 write access
 //!  - \b MEMCFG_NMVIOL_CLA1FETCH - Non-controller CLA1 fetch access
 //!  - \b MEMCFG_NMVIOL_DMAREAD   - Non-controller DMA read access
-//!  - \b MEMCFG_NMVIOL_TINIEREAD   - Non-controller TINIE read access
-//!  - \b MEMCFG_NMVIOL_TINIEWRITE  - Non-controller TINIE write access
+//!  - \b MEMCFG_NMVIOL_NPUREAD   - Non-controller NPU read access
+//!  - \b MEMCFG_NMVIOL_NPUWRITE  - Non-controller NPU write access
 //!  - \b MEMCFG_MVIOL_CPUFETCH   - Controller CPU fetch access
 //!  - \b MEMCFG_MVIOL_CPUWRITE   - Controller CPU write access
 //!  - \b MEMCFG_MVIOL_DMAWRITE   - Controller DMA write access

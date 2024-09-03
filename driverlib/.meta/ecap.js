@@ -286,6 +286,19 @@ var globalConfig = [
     }
 ]
 
+let capIntSrc = []
+let apwmIntSrc = []
+for (let i of device_driverlib_peripheral.ECAP_ISR_SOURCE){
+    if ((i.name).includes("PERIOD") || (i.name).includes("COMPARE")){
+        apwmIntSrc.push(i)
+    }else if ((i.name).includes("OVERFLOW")){
+        apwmIntSrc.push(i)
+        capIntSrc.push(i)
+    }else{
+        capIntSrc.push(i)
+    }
+} 
+
 var ecapStatic = undefined;
 
 /* determine static module dependency */
@@ -533,7 +546,7 @@ let config = [
         hidden      : false,
         default     : [],
         minSelections: 0,
-        options     : device_driverlib_peripheral.ECAP_ISR_SOURCE
+        options     : capIntSrc
     },
     {
         name        : "interruptSourceAPWM",
@@ -542,10 +555,7 @@ let config = [
         hidden      : true,
         default     : [],
         minSelections: 0,
-        options     : [
-            {name: "ECAP_ISR_SOURCE_COUNTER_PERIOD", displayName: "Counter equals period ISR source"},
-            {name: "ECAP_ISR_SOURCE_COUNTER_COMPARE", displayName: "Counter equals compare ISR source"},
-        ],
+        options     : apwmIntSrc
     },
     {
         name        : "counterResetOnEvent",

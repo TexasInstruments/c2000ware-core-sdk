@@ -22,13 +22,13 @@
 %   var interrupts = []
 %
 %   if(stat["IntPri_Global_13"] != 0)
-%       interrupts.push({name : "CPU Timer 1 Interrupt", priority : 100*stat["IntPri_Global_13"], channel : "INT13", ISR : "TIMER1_ISR"})
+%       interrupts.push({name : "CPU Timer 1 Interrupt", priority : 10000*stat["IntPri_Global_13"], channel : "INT13", ISR : "TIMER1_ISR"})
 %   if(stat["IntPri_Global_14"] != 0)
-%       interrupts.push({name : "CPU Timer 2 Interrupt", priority : 100*stat["IntPri_Global_14"], channel : "INT14", ISR : "TIMER2_ISR"})
+%       interrupts.push({name : "CPU Timer 2 Interrupt", priority : 10000*stat["IntPri_Global_14"], channel : "INT14", ISR : "TIMER2_ISR"})
 %   if(stat["IntPri_Global_15"] != 0)
-%       interrupts.push({name : "DATALOG Interrupt",     priority : 100*stat["IntPri_Global_15"], channel : "INT15", ISR : "DATALOG_ISR"})
+%       interrupts.push({name : "DATALOG Interrupt",     priority : 10000*stat["IntPri_Global_15"], channel : "INT15", ISR : "DATALOG_ISR"})
 %   if(stat["IntPri_Global_16"] != 0)
-%       interrupts.push({name : "RTOS Interrupt",        priority : 100*stat["IntPri_Global_16"], channel : "INT16", ISR : "RTOS_ISR"})
+%       interrupts.push({name : "RTOS Interrupt",        priority : 10000*stat["IntPri_Global_16"], channel : "INT16", ISR : "RTOS_ISR"})
 %
 %   for (var i=0; i<=12; i++)
 %   {

@@ -3445,7 +3445,25 @@ var epwm_validation = [
 				"F28P55x",
 				"F28P65x"
 				]
-		}
+		},
+		{
+			type : validation_error,
+			name :  'When using HRPWM and XCMP, set HRPWM CMPx load on translator event CMPA/B-3 ',
+			func : (inst, validation, name) => {
+				if (inst.hrpwm_enable && inst.epwmXCMP_enable && inst.hrpwm_HRLoadA != 'HRPWM_LOAD_ON_CMPx_EQ' && inst.hrpwm_edgeModeA != 'HRPWM_MEP_CTRL_DISABLE')
+					{   validation.logError(name, inst, "hrpwm_HRLoadA");
+						
+					}
+				if (inst.hrpwm_enable && inst.epwmXCMP_enable && inst.hrpwm_HRLoadA != 'HRPWM_LOAD_ON_CMPx_EQ' && inst.hrpwm_edgeModeB != 'HRPWM_MEP_CTRL_DISABLE')
+					{
+						validation.logError(name, inst, "hrpwm_HRLoadB");
+					}
+			},
+			devices : [
+				
+				"F28P65x"
+				]
+		},
 		
 ]
 

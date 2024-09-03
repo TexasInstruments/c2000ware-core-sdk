@@ -21,11 +21,11 @@ MEMORY
    RAMLS5           : origin = 0x00A800, length = 0x000800
    RAMLS6           : origin = 0x00B000, length = 0x000800
    RAMLS7           : origin = 0x00B800, length = 0x000800
-   RAMLS8           : origin = 0x022000, length = 0x002000  // When configured as CLA program use the address 0x4000
-   RAMLS9           : origin = 0x024000, length = 0x002000  // When configured as CLA program use the address 0x6000
+   // RAMLS8           : origin = 0x022000, length = 0x002000  // When configured as CLA program use the address 0x4000
+   // RAMLS9           : origin = 0x024000, length = 0x002000  // When configured as CLA program use the address 0x6000
 
-   // RAMLS8_CLA    : origin = 0x004000, length = 0x002000  // Use only if configured as CLA program memory
-   // RAMLS9_CLA    : origin = 0x006000, length = 0x002000  // Use only if configured as CLA program memory
+   RAMLS8_CLA    : origin = 0x004000, length = 0x002000  // Use only if configured as CLA program memory
+   RAMLS9_CLA    : origin = 0x006000, length = 0x002000  // Use only if configured as CLA program memory
 
    RAMGS0           : origin = 0x010000, length = 0x002000
    RAMGS1           : origin = 0x012000, length = 0x002000
@@ -82,8 +82,8 @@ SECTIONS
    /* The following section definition are for SDFM examples */
    Filter1_RegsFile : > RAMLS7
    Filter2_RegsFile : > RAMLS7
-   Filter3_RegsFile : > RAMLS8
-   Filter4_RegsFile : > RAMLS8
+   Filter3_RegsFile : > RAMLS8_CLA
+   Filter4_RegsFile : > RAMLS8_CLA
 
    ramgs0 : > RAMGS0, type=NOINIT
    ramgs1 : > RAMGS1, type=NOINIT

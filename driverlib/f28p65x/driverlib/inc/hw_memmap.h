@@ -5,8 +5,10 @@
 // TITLE:   Macros defining the memory map of the C28x.
 //
 //###########################################################################
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -310,7 +312,7 @@
 #define ERAD_PCTRACE_CPU_BASE     0x0005FE00U
 #define UARTA_BASE                0x0006A000U
 #define UARTB_BASE                0x0006A800U
-#define UID_BASE                  0x00072172U
+#define UID_BASE                  0x00072168U
 #define DCSMBANK0_Z1OTP_BASE      0x00078000U
 #define DCSMBANK0_Z2OTP_BASE      0x00078200U
 #endif

@@ -28,8 +28,10 @@
 //
 //#############################################################################
 //
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -135,6 +137,7 @@ void main(void)
     //Interrupt_register(INT_EPWM2, &epwm2ISR);
     //Interrupt_register(INT_EPWM3, &epwm3ISR);
     //Interrupt_register(INT_EPWM4, &epwm4ISR);
+
 
     //
     // Calling SFO() updates the HRMSTEP register with calibrated MEP_ScaleFactor.

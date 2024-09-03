@@ -159,6 +159,52 @@ function onChangeMsgRamConfig(inst, ui)
         ui.rxFIFO1ElemSize.hidden = true;
     }
 }
+var flssa, flesa;
+var lss, lse; 
+var rxFIFO0startAddr, rxFIFO1startAddr, rxBufStartAddr;
+var rxFIFO0size, rxFIFO1size, rxBufNum;
+var rxFIFO0ElemSize, rxFIFO1ElemSize, rxBufElemSize;
+var txStartAddr, txEventFIFOStartAddr;
+var txBufNum, txFIFOSize, txBufElemSize;
+const objSize = [4, 5, 6, 7, 8, 10, 14, 18];
+function calcStartingAddress()
+{
+    flssa = 0;
+    flesa = lss * 4;
+    rxFIFO0startAddr = flesa + lse * 8;
+    rxFIFO1startAddr = rxFIFO0startAddr + rxFIFO0size * objSize[rxFIFO0ElemSize] * 4;
+    rxBufStartAddr = rxFIFO1startAddr + rxFIFO1size * objSize[rxFIFO1ElemSize] * 4;
+    txStartAddr = rxBufStartAddr + rxBufNum * objSize[rxBufElemSize] * 4;
+    txEventFIFOStartAddr = txStartAddr + (txBufNum + txFIFOSize) * objSize[txBufElemSize] * 4;
+}
+
+function onChangeUseCalcStartingAddress(inst, ui)
+{
+    if(inst.useCalcStartingAddress){
+        lss = inst.lss;
+        lse = inst.lse;
+        rxFIFO0size = inst.rxFIFO0size;
+        rxFIFO1size = inst.rxFIFO1size;
+        rxBufNum = inst.rxBufNum;
+        txBufNum = inst.txBufNum;
+        txFIFOSize = inst.txFIFOSize;
+        rxFIFO0size = inst.rxFIFO0size;
+        rxFIFO1size = inst.rxFIFO1size;
+        rxFIFO0ElemSize = inst.rxFIFO0ElemSize;
+        rxFIFO1ElemSize = inst.rxFIFO1ElemSize;
+        rxBufElemSize = inst.rxBufElemSize;
+        txBufElemSize = inst.txBufElemSize;
+        calcStartingAddress();
+        inst.flssa = flssa;
+        inst.flesa = flesa;
+        inst.rxFIFO0startAddr = rxFIFO0startAddr;
+        inst.rxFIFO1startAddr = rxFIFO1startAddr;
+        inst.rxBufStartAddr = rxBufStartAddr;
+        inst.txStartAddr = txStartAddr;
+        inst.txEventFIFOStartAddr = txEventFIFOStartAddr;
+    }
+        
+}
 
 let MCAN_InterruptFlags = [
         {name: "MCAN_INTR_MASK_ALL", displayName : "Enable All Interrupts "},
@@ -195,14 +241,14 @@ let MCAN_InterruptFlags = [
 ];
 
 let MCAN_elemSize = [
-        {name: "MCAN_ELEM_SIZE_8BYTES", displayName : "8 byte data field "},
-        {name: "MCAN_ELEM_SIZE_12BYTES", displayName : "12 byte data field "},
-        {name: "MCAN_ELEM_SIZE_16BYTES", displayName : "16 byte data field"},
-        {name: "MCAN_ELEM_SIZE_20BYTES", displayName : "20 byte data field"},
-        {name: "MCAN_ELEM_SIZE_24BYTES", displayName : "24 byte data field "},
-        {name: "MCAN_ELEM_SIZE_32BYTES", displayName : "32 byte data field "},
-        {name: "MCAN_ELEM_SIZE_48BYTES", displayName : "48 byte data field "},
-        {name: "MCAN_ELEM_SIZE_64BYTES", displayName : "64 byte data field"},
+        {name: "0", displayName : "8 byte data field "},
+        {name: "1", displayName : "12 byte data field "},
+        {name: "2", displayName : "16 byte data field"},
+        {name: "3", displayName : "20 byte data field"},
+        {name: "4", displayName : "24 byte data field "},
+        {name: "5", displayName : "32 byte data field "},
+        {name: "6", displayName : "48 byte data field "},
+        {name: "7", displayName : "64 byte data field"},
 ];
 
 let MCAN_fifoOPMode = [
@@ -616,7 +662,14 @@ let config = [
                 onChange    : onChangeMsgRamConfig,
                 default     : true,
             },
-
+            {
+                name        : "useCalcStartingAddress",
+                displayName : "Use Calculated Starting Addresses",
+                description : 'Use Calculated Starting Addresses',
+                hidden      : false,
+                onChange    : onChangeUseCalcStartingAddress,
+                default     : false,
+            },
             {
                 name        : "flssa",
                 displayName : "Standard ID Filter List Start Address",
@@ -661,12 +714,12 @@ let config = [
                         displayName : "Number of Dedicated Transmit Buffers",
                         description : 'Number of Dedicated Transmit Buffers.',
                         hidden      : false,
-                        default     : 10,
+                        default     : 0,
                     },
                     {
                         name        : "txFIFOSize",
-                        displayName : "No of Tx FIFO Elements",
-                        description : 'No of Tx FIFO Elements.',
+                        displayName : "No of Tx FIFO / Tx Queue Elements",
+                        description : 'No of Tx FIFO / Tx Queue Elements.',
                         hidden      : false,
                         default     : 0,
                     },
@@ -701,14 +754,14 @@ let config = [
                         displayName : "Tx Event FIFO Size",
                         description : 'Tx Event FIFO Size.',
                         hidden      : false,
-                        default     : 10,
+                        default     : 0,
                     },
                     {
                         name        : "txEventFIFOWaterMark",
                         displayName : "Level for Tx Event FIFO watermark interrupt",
                         description : 'Level for Tx Event FIFO watermark interrupt.',
                         hidden      : false,
-                        default     : 3,
+                        default     : 0,
                     },
                 ]
             },
@@ -728,14 +781,14 @@ let config = [
                         displayName : "Number of Rx FIFO0 elements",
                         description : 'Number of Rx FIFO0 elements.',
                         hidden      : false,
-                        default     : 10,
+                        default     : 0,
                     },
                     {
                         name        : "rxFIFO0waterMark",
                         displayName : "Rx FIFO0 Watermark",
                         description : 'Rx FIFO0 Watermark.',
                         hidden      : false,
-                        default     : 3,
+                        default     : 0,
                     },
                     {
                         name        : "rxFIFO0OpMode",
@@ -757,14 +810,14 @@ let config = [
                         displayName : "Number of Rx FIFO1 elements",
                         description : 'Number of Rx FIFO1 elements.',
                         hidden      : false,
-                        default     : 10,
+                        default     : 0,
                     },
                     {
                         name        : "rxFIFO1waterMark",
                         displayName : "Rx FIFO1 Watermark",
                         description : 'Rx FIFO1 Watermark.',
                         hidden      : false,
-                        default     : 3,
+                        default     : 0,
                     },
                     {
                         name        : "rxFIFO1OpMode",
@@ -780,6 +833,13 @@ let config = [
                         description : 'Rx Buffer Start Address.',
                         hidden      : false,
                         default     : 948,
+                    },
+                    {
+                        name        : "rxBufNum",
+                        displayName : "Rx Buffer Size (number of elements)",
+                        description : 'Rx Buffer Size (number of elements)',
+                        hidden      : false,
+                        default     : 0,
                     },
                     {
                         name        : "rxBufElemSize",
@@ -1105,20 +1165,7 @@ function onValidate(inst, validation) {
                 inst, "rxBufStartAddr");
         }
     }
-    let rxBufEndAddr = inst.rxBufStartAddr + (64)*6;
-    let rxFIFO0EndAddr = inst.rxFIFO0startAddr + inst.rxFIFO0size*6;
-    let rxFIFO1EndAddr = inst.rxFIFO1startAddr + inst.rxFIFO1size*6;
-    let txBufEndAddr = inst.txStartAddr + (inst.txBufNum+inst.txFIFOSize)*6;
-    let txEventFIFOEndAddr = inst.txEventFIFOStartAddr + inst.txEventFIFOSize*2;
-    let stdIDEndAddr = inst.flssa + inst.lss*1;
-    let extIDEndAddr = inst.flesa + inst.lse*2;
-    validation.logInfo("RX Buffer Start Address "+ String(inst.rxBufStartAddr) + " End Address " + String(rxBufEndAddr), inst, "rxBufStartAddr");
-    validation.logInfo("RX FIFO 0 Start Address "+ String(inst.rxFIFO0startAddr) + " End Address " + String(rxFIFO0EndAddr), inst, "rxFIFO0startAddr");
-    validation.logInfo("RX FIFO 1 Start Address "+ String(inst.rxFIFO1startAddr) + " End Address " + String(rxFIFO1EndAddr), inst, "rxFIFO1startAddr");
-    validation.logInfo("TX Buffer Start Address "+ String(inst.txStartAddr) + " End Address " + String(txBufEndAddr), inst, "txStartAddr");
-    validation.logInfo("TX Event FIFO Start Address "+ String(inst.txEventFIFOStartAddr) + " End Address " + String(txEventFIFOEndAddr), inst, "txEventFIFOStartAddr");
-    validation.logInfo("Standard ID Filter List Start Address "+ String(inst.flssa) + " End Address " + String(stdIDEndAddr), inst, "flssa");
-    validation.logInfo("Extended ID Filter List Start Address "+ String(inst.flesa) + " End Address " + String(extIDEndAddr), inst, "flesa");
+    validation.logInfo("Recheck the box after ALL Message RAM Configuration related changes have been made ", inst, "useCalcStartingAddress");
 
     if(inst.txBufNum + inst.txFIFOSize > 32)
     {

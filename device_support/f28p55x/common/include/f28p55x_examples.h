@@ -7,8 +7,10 @@
 //###########################################################################
 //
 //
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -390,7 +392,16 @@ extern "C" {
 // The following pointer to a function call calibrates the ADC reference,
 // DAC offset, and internal oscillators
 //
+#ifndef REVID_REV0
+#define REVID_REV0 1
+#define REVID_REVA 2
+
+#if (REV_ID == REVID_REV0)
 #define Device_cal ((void (*)(void))((uintptr_t)0x003fb1e7))
+#else
+#define Device_cal ((void (*)(void))((uintptr_t)0x003fb220))
+#endif
+#endif //REVID_REV0
 
 //
 // The following macro define the OTP locations where ADC INL trim values

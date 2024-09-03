@@ -1,0 +1,107 @@
+/**
+ *  Copyright (c) 2021 Texas Instruments Incorporated
+ *  All rights reserved.
+ *
+ *  Redistribution and use in source and binary forms, with or without
+ *  modification, are permitted provided that the following conditions
+ *  are met:
+ *
+ *  *   Redistributions of source code must retain the above copyright
+ *  notice, this list of conditions and the following disclaimer.
+ *  notice, this list of conditions and the following disclaimer in the
+ *  documentation and/or other materials provided with the distribution.
+ *  *   Neither the name of Texas Instruments Incorporated nor the names of
+ *  its contributors may be used to endorse or promote products derived
+ *  from this software without specific prior written permission.
+ *
+ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ *  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ *  THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ *  PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ *  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ *  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ *  PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ *  OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ *  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ *  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+/* enter theme values here */
+:root {
+    --theme-primary-color: #990000;
+    --theme-secondary-color: #115566;
+    --theme-tertiary-color: #63666a;
+    --theme-error-color: #dd0000;
+    --theme-warn-color: #ff9933;
+    --theme-success-color: #4caf50;
+    --theme-info-color: #1e90ff;
+    --theme-details-color: #f2f2f2;
+    --theme-background-color: #231f20;                              /* $gc-color-gray-9 */
+    --theme-background-color-disabled: #63666a;
+    --theme-background-color-highlighted: #98999b;                  /* $gc-color-gray-5 */
+    --theme-background-color-selected: #ffffb3;                     /* $gc-color-yellow-1 */
+    --theme-font-color: #f2f2f2;
+    --theme-font-color-highlighted: #f2f2f2;
+    --theme-font-color-selected: #555555;                           /* $gc-color-gray-8) */
+    --theme-header-font-color: #f2f2f2;
+    --theme-scroll-track-color: rgba(#eeeeee, 0.1);
+    --theme-scroll-thumb-color: rgba(#eeeeee, 0.5);
+    --theme-scroll-thumb-color-hover: rgba(#eeeeee, 0.8);
+}
+
+:root .no-theme {
+    --theme-primary-color: initial;
+    --theme-secondary-color: initial;
+    --theme-tertiary-color: initial;
+    --theme-error-color: initial;
+    --theme-warn-color: initial;
+    --theme-success-color: initial;
+    --theme-info-color: initial;
+    --theme-details-color: initial;
+    --theme-background-color: initial;
+    --theme-background-color-disabled: initial;
+    --theme-background-color-highlighted: initial;
+    --theme-background-color-selected: initial;
+    --theme-font-color: initial;
+    --theme-font-color-highlighted: initial;
+    --theme-font-color-selected: initial;
+    --theme-header-font-color: initial;
+    --theme-scroll-track-color: initial;
+    --theme-scroll-thumb-color: initial;
+    --theme-scroll-thumb-color-hover: initial;
+}
+
+/* override default designer grid lines */
+html.designer body {
+    border: 3px solid #fff;
+    background-size: 10px 10px;
+    background-color: var(--theme-background-color);
+    background-position: top 3px left 3px;
+    background-image:
+        linear-gradient(to right, #454545 1px, transparent 1px),
+        linear-gradient(to bottom, #454545 1px, transparent 1px);
+}
+
+/* background */
+body {
+    background: var(--theme-background-color);
+}
+
+/* tooltip */
+gc-widget-tooltip-shared {
+    --background-color: #333333;                                /* $gc-color-gray-10 */
+}
+
+/* gauge */
+gc-widget-gauge {
+    --gc-background-color: #333333;                             /* $gc-color-gray-10 */
+    --gc-detail-value-background-color: #231f20;                /* $gc-color-gray-9 */
+}
+
+/* grid */
+gc-widget-grid, ::part(grid) {
+    --gc-heading-color: #1c99c4;                                /* $gc-color-blue-7 */
+    --gc-focus-color: #000000;                                  /* $gc-color-black */
+    --gc-background-color-input-focus: #f7f7f7;                 /* $gc-color-gray-1 */
+}

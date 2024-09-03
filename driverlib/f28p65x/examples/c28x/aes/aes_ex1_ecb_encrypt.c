@@ -4,8 +4,8 @@
 //
 // TITLE:  AES ECB Encryption
 //
-//! \addtogroup driver_example_cm_list
-//! <h1>AES ECB Encryption Example (CM)</h1>
+//! \addtogroup driver_example_list
+//! <h1>AES ECB Encryption Example </h1>
 //!
 //! This example encrypts block cipher-text using AES128 in ECB mode. It does
 //! the encryption first without uDMA and then with uDMA. The results are
@@ -22,8 +22,10 @@
 //#############################################################################
 //
 //
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 

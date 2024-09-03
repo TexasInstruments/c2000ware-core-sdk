@@ -5,8 +5,10 @@
 // TITLE:  C28x ADC driver.
 //
 //###########################################################################
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -290,6 +292,32 @@ ADC_setVREF(uint32_t base, ADC_ReferenceMode refMode,
     //
     ASSERT(ADC_isBaseValid(base));
 
+
+    uint16_t moduleShiftVal;
+
+    //
+    // Assign a shift amount corresponding to which ADC module is being
+    // configured.
+    //
+    switch(base)
+    {
+        case ADCA_BASE:
+            moduleShiftVal = 0U;
+            break;
+        case ADCB_BASE:
+            moduleShiftVal = 1U;
+            break;
+        case ADCC_BASE:
+            moduleShiftVal = 2U;
+            break;
+        default:
+            //
+            // Invalid base address!!
+            //
+            moduleShiftVal = 0U;
+            break;
+    }
+
     EALLOW;
     //
     // Configure the reference mode (internal or external).
@@ -297,16 +325,14 @@ ADC_setVREF(uint32_t base, ADC_ReferenceMode refMode,
     if(refMode == ADC_REFERENCE_INTERNAL)
     {
         HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_ANAREFCTL) &=
-            ~(ASYSCTL_ANAREFCTL_ANAREFASEL | ASYSCTL_ANAREFCTL_ANAREFBSEL |
-              ASYSCTL_ANAREFCTL_ANAREFCSEL);
+            ~(ASYSCTL_ANAREFCTL_ANAREFASEL << moduleShiftVal);
     }
 
 
     else
     {
         HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_ANAREFCTL) |=
-            (ASYSCTL_ANAREFCTL_ANAREFASEL | ASYSCTL_ANAREFCTL_ANAREFBSEL |
-             ASYSCTL_ANAREFCTL_ANAREFCSEL);
+            ASYSCTL_ANAREFCTL_ANAREFASEL << moduleShiftVal;
     }
 
     //
@@ -315,14 +341,12 @@ ADC_setVREF(uint32_t base, ADC_ReferenceMode refMode,
     if(refVoltage == ADC_REFERENCE_3_3V)
     {
         HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_ANAREFCTL) &=
-          ~(ASYSCTL_ANAREFCTL_ANAREFA2P5SEL | ASYSCTL_ANAREFCTL_ANAREFB2P5SEL |
-            ASYSCTL_ANAREFCTL_ANAREFC2P5SEL);
+            ~(ASYSCTL_ANAREFCTL_ANAREFA2P5SEL << moduleShiftVal);
     }
     else
     {
         HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_ANAREFCTL) |=
-          (ASYSCTL_ANAREFCTL_ANAREFA2P5SEL | ASYSCTL_ANAREFCTL_ANAREFB2P5SEL |
-           ASYSCTL_ANAREFCTL_ANAREFC2P5SEL);
+            ASYSCTL_ANAREFCTL_ANAREFA2P5SEL << moduleShiftVal;
 
     }
     EDIS;

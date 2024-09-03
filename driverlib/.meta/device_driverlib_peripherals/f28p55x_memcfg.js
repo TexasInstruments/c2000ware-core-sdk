@@ -62,8 +62,8 @@ let MEMCFG_NMVIOL = [
 	{ name: "MEMCFG_NMVIOL_CLA1WRITE", displayName: "Non-controller CLA1 write access" },
 	{ name: "MEMCFG_NMVIOL_CLA1FETCH", displayName: "Non-controller CLA1 fetch access" },
 	{ name: "MEMCFG_NMVIOL_DMAREAD", displayName: "Non-controller DMA read access" },
-	{ name: "MEMCFG_NMVIOL_TINIEREAD", displayName: "Non-controller TINIE read access" },
-	{ name: "MEMCFG_NMVIOL_TINIEWRITE", displayName: "Non-controller TINIE write access" },
+	{ name: "MEMCFG_NMVIOL_NPUREAD", displayName: "Non-controller NPU read access" },
+	{ name: "MEMCFG_NMVIOL_NPUWRITE", displayName: "Non-controller NPU write access" },
 ]
 let MEMCFG_MVIOL = [
 	{ name: "MEMCFG_MVIOL_CPUFETCH", displayName: "Controller CPU fetch access" },

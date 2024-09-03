@@ -5,8 +5,10 @@
 // TITLE:   Definitions for the ANALOGSUBSYS registers.
 //
 //###########################################################################
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -49,6 +51,39 @@ extern "C" {
 //---------------------------------------------------------------------------
 // ANALOGSUBSYS Individual Register Bit Definitions:
 
+struct ADCOSDETECT_BITS {               // bits description
+    Uint16 rsvd1:4;                     // 3:0 Reserved
+    Uint16 OSDETECT_EN:1;               // 4 Enable OS Detect Logic
+    Uint16 DETECTCFG:3;                 // 7:5 OS detect config bits
+    Uint16 rsvd2:8;                     // 15:8 Reserved
+};
+
+union ADCOSDETECT_REG {
+    Uint16  all;
+    struct  ADCOSDETECT_BITS  bit;
+};
+
+struct REFCONFIGB_BITS {                // bits description
+    Uint16 rsvd1:1;                     // 0 Reserved
+    Uint16 rsvd2:1;                     // 1 Reserved
+    Uint16 rsvd3:1;                     // 2 Reserved
+    Uint16 rsvd4:2;                     // 4:3 Reserved
+    Uint16 ADC_ATB_ENA:2;               // 6:5 ADC testmux enable
+    Uint16 ADC_ATB_ENB:2;               // 8:7 ADC testmux enable
+    Uint16 ADC_ATB_ENC:2;               // 10:9 ADC testmux enable
+    Uint16 ADC_ATB_END:2;               // 12:11 ADC testmux enable
+    Uint16 ADC_ATB_ENE:2;               // 14:13 ADC testmux enable
+    Uint16 rsvd5:1;                     // 15 Reserved
+    Uint16 rsvd6:2;                     // 17:16 Reserved
+    Uint16 rsvd7:2;                     // 19:18 Reserved
+    Uint16 rsvd8:12;                    // 31:20 Reserved
+};
+
+union REFCONFIGB_REG {
+    Uint32  all;
+    struct  REFCONFIGB_BITS  bit;
+};
+
 struct INTERNALTESTCTL_BITS {           // bits description
     Uint16 TESTSEL:6;                   // 5:0 Test Select
     Uint16 rsvd1:3;                     // 8:6 Reserved
@@ -63,14 +98,14 @@ union INTERNALTESTCTL_REG {
 
 struct CONFIGLOCK_BITS {                // bits description
     Uint16 rsvd1:1;                     // 0 Reserved
-    Uint16 AGPIOFILTER:1;               // 1 Locks AGPIOFILTER Register
-    Uint16 rsvd2:1;                     // 2 Reserved
+    Uint16 rsvd2:1;                     // 1 Reserved
+    Uint16 rsvd3:1;                     // 2 Reserved
     Uint16 AGPIOCTRL:1;                 // 3 Locks all AGPIOCTRL Register
-    Uint16 rsvd3:1;                     // 4 Reserved
-    Uint16 rsvd4:1;                     // 5 Reserved
+    Uint16 rsvd4:1;                     // 4 Reserved
+    Uint16 rsvd5:1;                     // 5 Reserved
     Uint16 GPIOINENACTRL:1;             // 6 Locks all GPIOINENACTRL Register
-    Uint16 rsvd5:9;                     // 15:7 Reserved
-    Uint16 rsvd6:16;                    // 31:16 Reserved
+    Uint16 rsvd6:9;                     // 15:7 Reserved
+    Uint16 rsvd7:16;                    // 31:16 Reserved
 };
 
 union CONFIGLOCK_REG {
@@ -257,18 +292,6 @@ struct LOCK_BITS {                      // bits description
 union LOCK_REG {
     Uint32  all;
     struct  LOCK_BITS  bit;
-};
-
-struct AGPIOFILTER_BITS {               // bits description
-    Uint16 GROUP1:2;                    // 1:0 AGPIOFILTER Control for group1 side pins
-    Uint16 rsvd1:6;                     // 7:2 Reserved
-    Uint16 GROUP2:2;                    // 9:8 AGPIOFILTER Control for group2 side pins
-    Uint16 rsvd2:6;                     // 15:10 Reserved
-};
-
-union AGPIOFILTER_REG {
-    Uint16  all;
-    struct  AGPIOFILTER_BITS  bit;
 };
 
 struct AGPIOCTRLA_BITS {                // bits description
@@ -511,35 +534,37 @@ union ADCSOCFRCGBSEL_REG {
 };
 
 struct ANALOG_SUBSYS_REGS {
-    Uint16                                   rsvd1[74];                    // Reserved
+    Uint16                                   rsvd1[38];                    // Reserved
+    union   ADCOSDETECT_REG                  ADCOSDETECT;                  // I2V Logic Control
+    Uint16                                   rsvd2[15];                    // Reserved
+    union   REFCONFIGB_REG                   REFCONFIGB;                   // Config register for analog reference B.
+    Uint16                                   rsvd3[18];                    // Reserved
     union   INTERNALTESTCTL_REG              INTERNALTESTCTL;              // INTERNALTEST Node Control Register
-    Uint16                                   rsvd2[18];                    // Reserved
+    Uint16                                   rsvd4[18];                    // Reserved
     union   CONFIGLOCK_REG                   CONFIGLOCK;                   // Lock Register for all the config registers.
     union   TSNSCTL_REG                      TSNSCTL;                      // Temperature Sensor Control Register
-    Uint16                                   rsvd3[7];                     // Reserved
+    Uint16                                   rsvd5[7];                     // Reserved
     union   ANAREFPCTL_REG                   ANAREFPCTL;                   // Analog Reference Control Register for VREFHI
     union   ANAREFNCTL_REG                   ANAREFNCTL;                   // Analog Reference Control Register for VREFLO
-    Uint16                                   rsvd4[6];                     // Reserved
+    Uint16                                   rsvd6[6];                     // Reserved
     union   VMONCTL_REG                      VMONCTL;                      // Voltage Monitor Control Register
-    Uint16                                   rsvd5[17];                    // Reserved
+    Uint16                                   rsvd7[17];                    // Reserved
     union   CMPHPMXSEL_REG                   CMPHPMXSEL;                   // Bits to select one of the many sources on CompHP inputs. Refer to Pimux diagram for details.
     union   CMPLPMXSEL_REG                   CMPLPMXSEL;                   // Bits to select one of the many sources on CompLP inputs. Refer to Pimux diagram for details.
     union   CMPHNMXSEL_REG                   CMPHNMXSEL;                   // Bits to select one of the many sources on CompHN inputs. Refer to Pimux diagram for details.
     union   CMPLNMXSEL_REG                   CMPLNMXSEL;                   // Bits to select one of the many sources on CompLN inputs. Refer to Pimux diagram for details.
     union   ADCDACLOOPBACK_REG               ADCDACLOOPBACK;               // Enabble loopback from DAC to ADCs
-    Uint16                                   rsvd6;                        // Reserved
+    Uint16                                   rsvd8;                        // Reserved
     union   CMPSSCTL_REG                     CMPSSCTL;                     // CMPSS Control Register
     union   CMPSSDACBUFCONFIG_REG            CMPSSDACBUFCONFIG;            // Config bits for CMPSS DAC buffer
     union   LOCK_REG                         LOCK;                         // Lock Register
-    Uint16                                   rsvd7[120];                   // Reserved
-    union   AGPIOFILTER_REG                  AGPIOFILTER;                  // AGPIO Filter Control Register
-    Uint16                                   rsvd8;                        // Reserved
+    Uint16                                   rsvd9[122];                   // Reserved
     union   AGPIOCTRLA_REG                   AGPIOCTRLA;                   // AGPIO Control Register
     union   AGPIOCTRLB_REG                   AGPIOCTRLB;                   // AGPIO Control Register
-    Uint16                                   rsvd9[8];                     // Reserved
+    Uint16                                   rsvd10[8];                    // Reserved
     union   AGPIOCTRLG_REG                   AGPIOCTRLG;                   // AGPIO Control Register
     union   AGPIOCTRLH_REG                   AGPIOCTRLH;                   // AGPIO Control Register
-    Uint16                                   rsvd10[24];                   // Reserved
+    Uint16                                   rsvd11[24];                   // Reserved
     union   GPIOINENACTRL_REG                GPIOINENACTRL;                // GPIOINENACTRL Control Register
     union   IO_DRVSEL_REG                    IO_DRVSEL;                    // IO Drive strength select register
     union   IO_MODESEL_REG                   IO_MODESEL;                   // IO Mode select register

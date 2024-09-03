@@ -347,8 +347,10 @@ typedef enum
 //*****************************************************************************
 typedef enum
 {
-    ADC_REFERENCE_3_3V = 0U,
-    ADC_REFERENCE_2_5V = 1U
+    ADC_REFERENCE_3_3V      = 0U,
+    ADC_REFERENCE_2_5V      = 1U,
+    ADC_REFERENCE_VREFHI    = 0U, //!< This value is valid when ADC reference
+                                  //!< mode is external
 } ADC_ReferenceVoltage;
 
 //*****************************************************************************

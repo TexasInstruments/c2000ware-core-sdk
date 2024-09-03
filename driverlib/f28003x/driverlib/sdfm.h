@@ -96,7 +96,7 @@ extern "C"
 
 //! Macro to convert comparator over sampling ratio to acceptable bit location
 //!
-#define SDFM_SET_OSR(X)         (((X) - 1) << 8U)
+#define SDFM_SET_OSR(X)         (((X) - 1U) << 8U)
 //! Macro to convert the data shift bit values to acceptable bit location
 //!
 #define SDFM_SHIFT_VALUE(X)     ((X) << 2U)

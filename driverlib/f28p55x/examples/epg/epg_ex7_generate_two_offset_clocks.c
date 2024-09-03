@@ -13,15 +13,17 @@
 //! (EPG)](https://www.ti.com/lit/spracy7)
 //!
 //! \b External \b Connections \n
-//!  - None. Signal is generated on GPIO 24, 3. Can be visualized
+//!  - None. Signal is generated on GPIO 34, 3. Can be visualized
 //!    through oscilloscope.
 //!
 //
 //#############################################################################
 //
 //
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -75,14 +77,14 @@ void main(void)
     Device_init();
 
     //
-    // Initialize GPIO and configure GPIO pins 24, 3 for EPG OUT
+    // Initialize GPIO and configure GPIO pins 34, 3 for EPG OUT
     //
     Device_initGPIO();
     
-    GPIO_setPinConfig(GPIO_24_OUTPUTXBAR1);
-    GPIO_setDirectionMode(24, GPIO_DIR_MODE_OUT);
-    GPIO_setPadConfig(24, GPIO_PIN_TYPE_STD);
-    GPIO_setQualificationMode(24, GPIO_QUAL_SYNC);
+    GPIO_setPinConfig(GPIO_34_OUTPUTXBAR1);
+    GPIO_setDirectionMode(34, GPIO_DIR_MODE_OUT);
+    GPIO_setPadConfig(34, GPIO_PIN_TYPE_STD);
+    GPIO_setQualificationMode(34, GPIO_QUAL_SYNC);
 
     GPIO_setPinConfig(GPIO_3_OUTPUTXBAR2);
     GPIO_setDirectionMode(3, GPIO_DIR_MODE_OUT);

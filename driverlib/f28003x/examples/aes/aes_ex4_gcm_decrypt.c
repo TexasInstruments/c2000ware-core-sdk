@@ -4,8 +4,8 @@
 //
 // TITLE:  AES GCM Decryption
 //
-//! \addtogroup driver_example_cm_list
-//! <h1>AES GCM Decryption Example (CM)</h1>
+//! \addtogroup driver_example_list
+//! <h1>AES GCM Decryption Example </h1>
 //!
 //! This example decrypts block cipher-text using AES128 in GCM mode. It does
 //! the decryption first without uDMA and then with uDMA. The results are

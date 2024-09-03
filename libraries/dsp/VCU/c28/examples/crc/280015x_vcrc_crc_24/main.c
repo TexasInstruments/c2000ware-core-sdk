@@ -17,7 +17,7 @@
 //
 //#############################################################################
 // $TI Release: C28x VCU Library V2.28.00.00 $
-// $Release Date: Apr 7, 2024 $
+// $Release Date: Aug 25, 2024 $
 // $Copyright: Copyright (C) 2019 Texas Instruments Incorporated -
 //             http://www.ti.com/ ALL RIGHTS RESERVED $
 //#############################################################################

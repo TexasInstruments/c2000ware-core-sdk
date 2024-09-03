@@ -21,6 +21,10 @@ void `nameOfPeripheral`_init(){
 	    % var instance = module.$instances[i];
 void `instance.$name`_init(){
     % if (instance.opMode == "LIN"){
+    
+    //
+    // Initialize the LIN Module in LIN mode
+    //
     LIN_initModule(`instance.$name`_BASE);
 
 	//
@@ -71,6 +75,7 @@ void `instance.$name`_init(){
     //
     	% if (instance.loopbackMode == "LIN_TEST_INTERNAL")
     	% {
+
     //
     // Enable Internal Loopback mode
     //
@@ -83,55 +88,54 @@ void `instance.$name`_init(){
 	LIN_enableExtLoopback(`instance.$name`_BASE, `instance.loopbackType`, `instance.analogLoopbackPath`);
     	%}
         %}
-		%if (instance.enableInterrupt)
-		%{
-			% var interrupts = ""
-			% for (var int_index in instance.interruptFlags)
-			% {
-			%	interrupts += ((interrupts == "")?"":" | ") + instance.interruptFlags[int_index];
-			% }
-			%if (interrupts != "")
-			%{
-	LIN_enableInterrupt(`instance.$name`_BASE, `interrupts`);
-			%}
-        %{
-    		% var interrupts = ""
-			% for (var int_index in instance.interruptPriorityLine0)
-			% {
-			%	interrupts += ((interrupts == "")?"":" | ") + instance.interruptPriorityLine0[int_index];
-			% }
-			%if (interrupts != "")
-			%{ 
+%if (instance.enableInterrupt)
+%{
+    % let interrupts = ""
+    % for (let int_index in instance.interruptFlags)
+    % {
+    %	interrupts += ((interrupts == "")?"":" | ") + instance.interruptFlags[int_index];
+    % }
+    %if (interrupts != "")
+    %{
+    LIN_enableInterrupt(`instance.$name`_BASE, `interrupts`);
+    %}
+    % let interruptLine0Flags = ""
+    % for (var int_index in instance.interruptPriorityLine0)
+    % {
+    %	interruptLine0Flags += ((interruptLine0Flags == "")?"":" | ") + instance.interruptPriorityLine0[int_index];
+    % }
+    %if (interruptLine0Flags != "" && (instance.interruptLine.includes("LIN_INTERRUPT_LINE0")))
+    %{ 
 
     //
     // Set the LIN interrupt priority Line 0
     //
-    LIN_setInterruptLevel0(`instance.$name`_BASE, `interrupts`);
+    LIN_setInterruptLevel0(`instance.$name`_BASE, `interruptLine0Flags`);
     LIN_enableGlobalInterrupt(`instance.$name`_BASE, LIN_INTERRUPT_LINE0);
     LIN_clearGlobalInterruptStatus(`instance.$name`_BASE, LIN_INTERRUPT_LINE0);  
-			%}
-        %}
-        %{
-
-    		% var interrupts = ""
-			% for (var int_index in instance.interruptPriorityLine1)
-			% {
-			%	interrupts += ((interrupts == "")?"":" | ") + instance.interruptPriorityLine1[int_index];
-			% }
-			%if (interrupts != "")
+    %}
+        % let interruptLine1Flags = ""
+        % for (let int_index in instance.interruptPriorityLine1)
+        % {
+        %	interruptLine1Flags += ((interruptLine1Flags == "")?"":" | ") + instance.interruptPriorityLine1[int_index];
+        % }
+			%if (interruptLine1Flags != "" && (instance.interruptLine.includes("LIN_INTERRUPT_LINE1")))
 			%{ 
 
     //
     // Set the LIN interrupt priority Line 1
     //
-    LIN_setInterruptLevel1(`instance.$name`_BASE, `interrupts`);
+    LIN_setInterruptLevel1(`instance.$name`_BASE, `interruptLine1Flags`);
     LIN_enableGlobalInterrupt(`instance.$name`_BASE, LIN_INTERRUPT_LINE1);
     LIN_clearGlobalInterruptStatus(`instance.$name`_BASE, LIN_INTERRUPT_LINE1);  
 			%}
-         %}
-        %}
+%}
     % }
     % else{
+
+    //
+    // Initialize the LIN Module in SCI mode
+    //
     LIN_initSCIModule(`instance.$name`_BASE);
 
 	//
@@ -187,8 +191,8 @@ void `instance.$name`_init(){
         %}
         %if (instance.enableInterrupt)
 		%{
-			% var interrupts = ""
-			% for (var int_index in instance.sciInterruptFlags)
+			% let interrupts = ""
+			% for (let int_index in instance.sciInterruptFlags)
 			% {
 			%	interrupts += ((interrupts == "")?"":" | ") + instance.sciInterruptFlags[int_index];
 			% }
@@ -196,41 +200,36 @@ void `instance.$name`_init(){
 			%{
 	LIN_enableSCIInterrupt(`instance.$name`_BASE, `interrupts`);
 			%}
-        %{
-    		% var interrupts = ""
-			% for (var int_index in instance.sciInterruptPriorityLine0)
+    		% let interruptLine0Flags = ""
+			% for (let int_index in instance.sciInterruptPriorityLine0)
 			% {
-			%	interrupts += ((interrupts == "")?"":" | ") + instance.sciInterruptPriorityLine0[int_index];
+			%	interruptLine0Flags += ((interruptLine0Flags == "")?"":" | ") + instance.sciInterruptPriorityLine0[int_index];
 			% }
-			%if (interrupts != "")
+			%if (interruptLine0Flags != "" && (instance.sciInterruptLine.includes("LIN_INTERRUPT_LINE0")))
 			%{ 
 
     //
     // Set the LIN SCI interrupt priority Line 0
     //
-    LIN_setSCIInterruptLevel0(`instance.$name`_BASE, `interrupts`);
+    LIN_setSCIInterruptLevel0(`instance.$name`_BASE, `interruptLine0Flags`);
     LIN_enableGlobalInterrupt(`instance.$name`_BASE, LIN_INTERRUPT_LINE0);
     LIN_clearGlobalInterruptStatus(`instance.$name`_BASE, LIN_INTERRUPT_LINE0);  
 			%}
-         %}
-        %{
-    		% var interrupts = ""
-			% for (var int_index in instance.sciInterruptPriorityLine1)
+    		% let interruptLine1Flags = ""
+			% for (let int_index in instance.sciInterruptPriorityLine1)
 			% {
-			%	interrupts += ((interrupts == "")?"":" | ") + instance.sciInterruptPriorityLine1[int_index];
+			%	interruptLine1Flags += ((interruptLine1Flags == "")?"":" | ") + instance.sciInterruptPriorityLine1[int_index];
 			% }
-			%if (interrupts != "")
+			%if (interruptLine1Flags != "" && (instance.sciInterruptLine.includes("LIN_INTERRUPT_LINE1")))
 			%{ 
 
     //
     // Set the LIN SCI interrupt priority Line 1
     //
-    LIN_setSCIInterruptLevel1(`instance.$name`_BASE, `interrupts`);
+    LIN_setSCIInterruptLevel1(`instance.$name`_BASE, `interruptLine1Flags`);
     LIN_enableGlobalInterrupt(`instance.$name`_BASE, LIN_INTERRUPT_LINE1);
     LIN_clearGlobalInterruptStatus(`instance.$name`_BASE, LIN_INTERRUPT_LINE1);  
 			%}
-        %}
-          
         %}  
     % }
         % let instancePinmux = instance[nameOfModule];

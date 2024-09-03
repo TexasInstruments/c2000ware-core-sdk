@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v5.01.00.00
+                v5.03.00.00
               </div>
             
           
@@ -710,8 +710,8 @@ write functions to guarantee proper execution.</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">txLevel</span></code>: is the transmit FIFO interrupt level, specified as one of the following: <strong>SCI_FIFO_TX0</strong>, <strong>SCI_FIFO_TX1</strong>, <strong>SCI_FIFO_TX2</strong>, … or <strong>SCI_FIFO_TX15</strong>. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">rxLevel</span></code>: is the receive FIFO interrupt level, specified as one of the following <strong>SCI_FIFO_RX0</strong>, <strong>SCI_FIFO_RX1</strong>, <strong>SCI_FIFO_RX2</strong>, … or <strong>SCI_FIFO_RX15</strong>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">txLevel</span></code>: is the transmit FIFO interrupt level, specified as one of the following: <strong>SCI_FIFO_TX0</strong>, <strong>SCI_FIFO_TX1</strong>, <strong>SCI_FIFO_TX2</strong>, … or <strong>SCI_FIFO_TX16</strong>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rxLevel</span></code>: is the receive FIFO interrupt level, specified as one of the following <strong>SCI_FIFO_RX0</strong>, <strong>SCI_FIFO_RX1</strong>, <strong>SCI_FIFO_RX2</strong>, … or <strong>SCI_FIFO_RX16</strong>.</p></li>
 </ul>
 </dd>
 </dl>
@@ -731,8 +731,8 @@ write functions to guarantee proper execution.</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the SCI port. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">txLevel</span></code>: is a pointer to storage for the transmit FIFO interrupt level, returned as one of the following: <strong>SCI_FIFO_TX0</strong>, <strong>SCI_FIFO_TX1</strong>, <strong>SCI_FIFO_TX2</strong>, … or <strong>SCI_FIFO_TX15</strong>. </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">rxLevel</span></code>: is a pointer to storage for the receive FIFO interrupt level, returned as one of the following: <strong>SCI_FIFO_RX0</strong>, <strong>SCI_FIFO_RX1</strong>, <strong>SCI_FIFO_RX2</strong>, … or <strong>SCI_FIFO_RX15</strong>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">txLevel</span></code>: is a pointer to storage for the transmit FIFO interrupt level, returned as one of the following: <strong>SCI_FIFO_TX0</strong>, <strong>SCI_FIFO_TX1</strong>, <strong>SCI_FIFO_TX2</strong>, … or <strong>SCI_FIFO_TX16</strong>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rxLevel</span></code>: is a pointer to storage for the receive FIFO interrupt level, returned as one of the following: <strong>SCI_FIFO_RX0</strong>, <strong>SCI_FIFO_RX1</strong>, <strong>SCI_FIFO_RX2</strong>, … or <strong>SCI_FIFO_RX16</strong>.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1182,7 +1182,6 @@ official’ baud rate. The data format returned in <em>config</em> is enumerated
 </dd>
 </dl>
 </p>
-<p>This function replaces the original SCICharNonBlockingPut() API and performs the same actions. A macro is provided in <code class="docutils literal notranslate"><span class="pre">sci.h</span></code> to map the original API to this API.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -1259,7 +1258,6 @@ official’ baud rate. The data format returned in <em>config</em> is enumerated
 </dd>
 </dl>
 </p>
-<p>This function replaces the original SCICharNonBlockingGet() API and performs the same actions. A macro is provided in <code class="docutils literal notranslate"><span class="pre">sci.h</span></code> to map the original API to this API.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>Returns <em>uin16_t</em> which is read from the receive buffer. </p>
 </dd>
@@ -1579,7 +1577,7 @@ official’ baud rate. The data format returned in <em>config</em> is enumerated
     <p>
       <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
       <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
-      <span class="lastupdated">Last updated on Mar 27, 2024.
+      <span class="lastupdated">Last updated on Aug 22, 2024.
       </span></p>
   </div>
 
@@ -1599,7 +1597,7 @@ official’ baud rate. The data format returned in <em>config</em> is enumerated
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v5.01.00.00',
+            VERSION:'v5.02.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

@@ -1,0 +1,2 @@
+import{r as t}from"./p-ce1dc307.js";const i=":host{display:block;position:relative;visibility:hidden;width:0}";let r=class{constructor(i){t(this,i);this.isChapterNavEligible=true}render(){return null}};r.style=i;export{r as ti_chapter_nav_anchor};
+//# sourceMappingURL=p-180f6c3b.entry.js.map

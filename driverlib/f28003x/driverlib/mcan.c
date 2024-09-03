@@ -1027,6 +1027,8 @@ void MCAN_addStdMsgIDFilter(uint32_t                          baseAddr,
                               MCAN_SIDFC_LSS);
     ASSERT(filtNum <= totalFilt); 
 
+    (void)totalFilt;
+
     startAddr = HW_RD_FIELD32(baseAddr + MCAN_SIDFC,
                               MCAN_SIDFC_FLSSA);
     startAddr = (uint32_t) (startAddr << 2U);

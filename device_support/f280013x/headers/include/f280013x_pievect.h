@@ -110,50 +110,52 @@ struct PIE_VECT_TABLE {
     PINT PIE16_RESERVED_INT;        // 3.8 - Reserved
     PINT ECAP1_INT;                 // 4.1 - eCAP1 Interrupt
     PINT ECAP2_INT;                 // 4.2 - eCAP2 Interrupt
-    PINT PIE17_RESERVED_INT;        // 4.4 - Reserved
-    PINT PIE18_RESERVED_INT;        // 3.5 - Reserved
-    PINT PIE19_RESERVED_INT;        // 3.6 - Reserved
-    PINT PIE20_RESERVED_INT;        // 3.7 - Reserved
-    PINT PIE21_RESERVED_INT;        // 3.8 - Reserved
+    PINT PIE17_RESERVED_INT;        // 4.3 - Reserved
+    PINT PIE18_RESERVED_INT;        // 4.4 - Reserved
+    PINT PIE19_RESERVED_INT;        // 4.5 - Reserved
+    PINT PIE20_RESERVED_INT;        // 4.6 - Reserved
+    PINT PIE21_RESERVED_INT;        // 4.7 - Reserved
+    PINT PIE22_RESERVED_INT;        // 4.8 - Reserved
     PINT EQEP1_INT;                 // 5.1 - eQEP1 Interrupt
-    PINT PIE22_RESERVED_INT;        // 5.3 - Reserved
-    PINT PIE23_RESERVED_INT;        // 5.4 - Reserved
-    PINT PIE24_RESERVED_INT;        // 5.5 - Reserved
-    PINT PIE25_RESERVED_INT;        // 5.6 - Reserved
-    PINT PIE26_RESERVED_INT;        // 5.7 - Reserved
-    PINT PIE27_RESERVED_INT;        // 5.8 - Reserved
+    PINT PIE23_RESERVED_INT;        // 5.2 - Reserved
+    PINT PIE24_RESERVED_INT;        // 5.3 - Reserved
+    PINT PIE25_RESERVED_INT;        // 5.4 - Reserved
+    PINT PIE26_RESERVED_INT;        // 5.5 - Reserved
+    PINT PIE27_RESERVED_INT;        // 5.6 - Reserved
+    PINT PIE28_RESERVED_INT;        // 5.7 - Reserved
+    PINT PIE29_RESERVED_INT;        // 5.8 - Reserved
     PINT SPIA_RX_INT;               // 6.1 - SPIA Receive Interrupt
     PINT SPIA_TX_INT;               // 6.2 - SPIA Transmit Interrupt
-    PINT PIE28_RESERVED_INT;        // 6.3 - Reserved
-    PINT PIE29_RESERVED_INT;        // 6.4 - Reserved
-    PINT PIE30_RESERVED_INT;        // 6.5 - Reserved
-    PINT PIE31_RESERVED_INT;        // 6.6 - Reserved
+    PINT PIE30_RESERVED_INT;        // 6.3 - Reserved
+    PINT PIE31_RESERVED_INT;        // 6.4 - Reserved
+    PINT PIE32_RESERVED_INT;        // 6.5 - Reserved
+    PINT PIE33_RESERVED_INT;        // 6.6 - Reserved
     PINT DCC0_INT;                  // 6.7 - DCC0 Interrupt
-    PINT PIE32_RESERVED_INT;        // 6.8 - Reserved
-    PINT PIE33_RESERVED_INT;        // 7.1 - Reserved
-    PINT PIE34_RESERVED_INT;        // 7.2 - Reserved
-    PINT PIE35_RESERVED_INT;        // 7.3 - Reserved
-    PINT PIE36_RESERVED_INT;        // 7.4 - Reserved
-    PINT PIE37_RESERVED_INT;        // 7.5 - Reserved
-    PINT PIE38_RESERVED_INT;        // 7.6 - Reserved
-    PINT PIE39_RESERVED_INT;        // 7.7 - Reserved
-    PINT PIE40_RESERVED_INT;        // 7.8 - Reserved
+    PINT PIE34_RESERVED_INT;        // 6.8 - Reserved
+    PINT PIE35_RESERVED_INT;        // 7.1 - Reserved
+    PINT PIE36_RESERVED_INT;        // 7.2 - Reserved
+    PINT PIE37_RESERVED_INT;        // 7.3 - Reserved
+    PINT PIE38_RESERVED_INT;        // 7.4 - Reserved
+    PINT PIE39_RESERVED_INT;        // 7.5 - Reserved
+    PINT PIE40_RESERVED_INT;        // 7.6 - Reserved
+    PINT PIE41_RESERVED_INT;        // 7.7 - Reserved
+    PINT PIE42_RESERVED_INT;        // 7.8 - Reserved
     PINT I2CA_INT;                  // 8.1 - I2CA Interrupt 1
     PINT I2CA_FIFO_INT;             // 8.2 - I2CA Interrupt 2
     PINT I2CB_INT;                  // 8.3 - I2CB Interrupt 1
     PINT I2CB_FIFO_INT;             // 8.4 - I2CB Interrupt 2
     PINT SCIC_RX_INT;               // 8.5 - SCIC Receive Interrupt
     PINT SCIC_TX_INT;               // 8.6 - SCIC Transmit Interrupt
-    PINT PIE41_RESERVED_INT;        // 8.7 - Reserved
-    PINT PIE42_RESERVED_INT;        // 8.8 - Reserved
+    PINT PIE43_RESERVED_INT;        // 8.7 - Reserved
+    PINT PIE44_RESERVED_INT;        // 8.8 - Reserved
     PINT SCIA_RX_INT;               // 9.1 - SCIA Receive Interrupt
     PINT SCIA_TX_INT;               // 9.2 - SCIA Transmit Interrupt
     PINT SCIB_RX_INT;               // 9.3 - SCIB Receive Interrupt
     PINT SCIB_TX_INT;               // 9.4 - SCIB Transmit Interrupt
     PINT CANA0_INT;                 // 9.5 - CANA Interrupt 0
     PINT CANA1_INT;                 // 9.6 - CANA Interrupt 1
-    PINT PIE43_RESERVED_INT;        // 9.7 - Reserved
-    PINT PIE44_RESERVED_INT;        // 9.8 - Reserved
+    PINT PIE45_RESERVED_INT;        // 9.7 - Reserved
+    PINT PIE46_RESERVED_INT;        // 9.8 - Reserved
     PINT ADCA_EVT_INT;              // 10.1 - ADCA Event Interrupt
     PINT ADCA2_INT;                 // 10.2 - ADCA Interrupt 2
     PINT ADCA3_INT;                 // 10.3 - ADCA Interrupt 3
@@ -162,22 +164,22 @@ struct PIE_VECT_TABLE {
     PINT ADCC2_INT;                 // 10.6 - ADCC Interrupt 2
     PINT ADCC3_INT;                 // 10.7 - ADCC Interrupt 3
     PINT ADCC4_INT;                 // 10.8 - ADCC Interrupt 4
-    PINT PIE45_RESERVED_INT;        // 11.1 - Reserved
-    PINT PIE46_RESERVED_INT;        // 11.2 - Reserved
-    PINT PIE47_RESERVED_INT;        // 11.3 - Reserved
-    PINT PIE48_RESERVED_INT;        // 11.4 - Reserved
-    PINT PIE49_RESERVED_INT;        // 11.5 - Reserved
-    PINT PIE50_RESERVED_INT;        // 11.6 - Reserved
-    PINT PIE51_RESERVED_INT;        // 11.7 - Reserved
-    PINT PIE52_RESERVED_INT;        // 11.8 - Reserved
+    PINT PIE47_RESERVED_INT;        // 11.1 - Reserved
+    PINT PIE48_RESERVED_INT;        // 11.2 - Reserved
+    PINT PIE49_RESERVED_INT;        // 11.3 - Reserved
+    PINT PIE50_RESERVED_INT;        // 11.4 - Reserved
+    PINT PIE51_RESERVED_INT;        // 11.5 - Reserved
+    PINT PIE52_RESERVED_INT;        // 11.6 - Reserved
+    PINT PIE53_RESERVED_INT;        // 11.7 - Reserved
+    PINT PIE54_RESERVED_INT;        // 11.8 - Reserved
     PINT XINT3_INT;                 // 12.1 - XINT3 Interrupt
     PINT XINT4_INT;                 // 12.2 - XINT4 Interrupt
     PINT XINT5_INT;                 // 12.3 - XINT5 Interrupt
-    PINT PIE53_RESERVED_INT;        // 12.4 - Reserved
+    PINT PIE55_RESERVED_INT;        // 12.4 - Reserved
     PINT FLSS_INT;                  // 12.5 - Interrupt from flash sub-system
-    PINT PIE54_RESERVED_INT;        // 12.6 - Reserved
-    PINT PIE55_RESERVED_INT;        // 12.7 - Reserved
-    PINT PIE56_RESERVED_INT;        // 12.8 - Reserved
+    PINT PIE56_RESERVED_INT;        // 12.6 - Reserved
+    PINT PIE57_RESERVED_INT;        // 12.7 - Reserved
+    PINT PIE58_RESERVED_INT;        // 12.8 - Reserved
 };
 
 //---------------------------------------------------------------------------

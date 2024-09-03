@@ -1,0 +1,842 @@
+% let transferCommon;
+% if (system.getProducts()[0].name.includes("C2000"))
+% { transferCommon = system.getScript("/utilities/transfer/transferCommon.js");
+% } else
+% { transferCommon = system.getScript("/transfer/transferCommon.js");}
+% 
+% let gui = system.modules[transferCommon.getTransferPath() + "gui.js"].$static;
+% let exportCommon = system.getScript(transferCommon.getTransferPath() + "export/export_mods_common.js");
+% let expModuleNames = exportCommon.getExportModModuleNames();
+% let expAlwaysModuleNames = exportCommon.getExportAlwaysModModuleNames();
+% let exporter = gui.exporter;
+% let exportMod;
+% let expInst;
+% let buttonMode = "disabled";
+% if (exporter) {
+%   buttonMode = exporter.mode.includes("Bidirectional")?"enabled":"disabled"
+%   exportMod = system.modules[transferCommon.getTransferPath() + "exporter.js"];
+%   expInst = exportMod.$instances[0];
+% }
+%
+
+import { GcUtils } from './components/@ti/gc-core-assets/lib/GcUtils';
+import { GcFiles } from './components/@ti/gc-core-assets/lib/GcFiles';
+import { GcConsole } from './components/@ti/gc-core-assets/lib/GcConsole';
+import { bindingRegistry } from './components/@ti/gc-core-databind/lib/CoreDatabind';
+import { GcWidget } from './components/@ti/gc-widget-base/lib/GcWidget';
+import { ActionRegistry } from './components/@ti/gc-widget-menu/lib/ActionRegistry';
+import { codecRegistry } from './components/@ti/gc-target-configuration/lib/TargetConfiguration';
+import { valueChangedEventType } from './components/@ti/gc-core-databind/lib/CoreDatabind';
+import { connectionManager, activeConfigurationChangedEvent } from './components/@ti/gc-target-connection-manager/lib/ConnectionManager';
+import { connectedStateChangedEventType } from  './components/@ti/gc-target-configuration/lib/TargetConfiguration'
+
+const console = new GcConsole('myapp'); // creates a console instance with name 'myapp'
+GcConsole.setLevel('myapp', 4);         // enable console output for myapp console instance
+console.info('index.js is loaded...');
+
+
+/**
+ -------------------------------------------------------------------------------------------------------------------------------
+Connections Page
+-------------------------------------------------------------------------------------------------------------------------------
+**/
+
+var xdsConnectionDiv;
+var usbConnectionDiv;
+var xdsLed;
+var usbLed;
+var statusbar;
+
+let xdsTransport;
+function xdsTransportConnectionChangeHandler(details){
+    
+    if (details.transport.state == 'connected'){
+        xdsLed.on = true;
+    }
+    else
+    {        
+        xdsLed.on = false;
+    }
+    xdsConnectionDiv.innerHTML += "\n" + details.transport.state;
+    if (details.transport.lastLog.message) {
+        xdsConnectionDiv.innerHTML += "\n" + details.transport.lastLog.message;
+    }
+}
+let usbTransport;
+function usbTransportConnectionChangeHandler(details){
+
+    if (details.transport.state == 'connected'){
+        usbLed.on = true;
+    }
+    else
+    {        
+        usbLed.on = false;
+    }
+    usbConnectionDiv.innerHTML += "\n" + details.transport.state;
+    if (details.transport.lastLog.message) {
+        usbConnectionDiv.innerHTML += "\n" + details.transport.lastLog.message;
+    }
+}
+
+% let rtLogMsgTypes;
+% if (gui.rtlogger) {
+/**
+ -------------------------------------------------------------------------------------------------------------------------------
+RT Logger Globals
+-------------------------------------------------------------------------------------------------------------------------------
+**/
+    % let bufferReadMap = {
+    %   "uint16_t" : "readUInt16LE",
+    %   "int16_t" : "readInt16LE",
+    %   "uint32_t" : "readUInt32LE",
+    %   "int32_t" : "readInt32LE",
+    %   "float" : "readFloatLE"
+    % }
+    % let sizeOfType = {
+    %     "uint16_t" :    1,
+    %     "int16_t" :     1,
+    %     "uint32_t" :    2,
+    %     "int32_t" :     2,
+    %     "float" :       2,
+    % }
+    %
+    % let msgTypes;
+    % if (gui.rtloggerSelection == "file") {
+        % let rtLogJsonData = gui.rtloggerJsonData;
+        % try {
+        %   let rtLogJson = JSON.parse(rtLogJsonData);
+        %   msgTypes = rtLogJson.msgTypes;
+        % } catch (error) {
+        % }
+    % }
+    % else if (gui.rtloggerSelection) {
+        % let rtlogMod = system.modules[transferCommon.getTransferPath() + "realtimelog.js"];
+        % let rtlogInst = rtlogMod.$instances[0];
+        % msgTypes = rtlogInst.logMsgTypes;
+    % }
+    % if (msgTypes){         
+        % for (let mt of msgTypes){
+function RTLogParseMessage`mt.id`(dataArray) {
+            % let bufI = 0;
+            % for (let logVar of mt.logVariables) {
+    let `logVar.$name`;
+                % if (["uint16_t", "int16_t"].includes(logVar.varType)) {
+    let `logVar.$name`_wordArr = Uint16Array.from(dataArray.slice(`bufI`, `bufI` + 1));
+                    % bufI++;
+                % } else if (["uint32_t", "int32_t", "float"].includes(logVar.varType)) {
+    let `logVar.$name`_wordArr = Uint16Array.from(dataArray.slice(`bufI`, `bufI` + 2));
+                    % bufI += 2;
+                % } else if (["uint16_t*", "int16_t*"].includes(logVar.varType)) {
+    let `logVar.$name`_wordArr = Uint16Array.from(dataArray.slice(`bufI`, `bufI` + `logVar.length`));
+                    % bufI += logVar.length;
+                % } else if (["uint32_t*", "int32_t*", "float*"].includes(logVar.varType)) {
+    let `logVar.$name`_wordArr = Uint16Array.from(dataArray.slice(`bufI`, `bufI` + `logVar.length`*2));
+                    % bufI += logVar.length*2;
+                % }
+                % if (!logVar.varType.includes("*")) {
+    `logVar.$name` = Buffer.from(`logVar.$name`_wordArr.buffer).`bufferReadMap[logVar.varType]`(0);
+                % } else {
+    for (let arrI = 0; arrI < `logVar.length`; arrI++)
+    {   
+                    % let logVarSizeOfType = sizeOfType[logVar.varType.replace("*","")];
+        `logVar.$name`.push(Buffer.from(`logVar.$name`_wordArr.slice(arrI*`logVarSizeOfType`,arrI*`logVarSizeOfType`+`logVarSizeOfType`).buffer).`bufferReadMap[logVar.varType.replace("*","")]`(0));
+    }
+                % }
+            % }     
+}
+        % }
+    %}
+    % rtLogMsgTypes = msgTypes;
+% }
+
+% if (gui.fsilogger) {
+/**
+ -------------------------------------------------------------------------------------------------------------------------------
+FSI Logger Globals
+-------------------------------------------------------------------------------------------------------------------------------
+**/
+
+//
+// FSI Logger Controls
+//
+
+let fsiLoggerSortDescending;
+let fsiLoggerSortByColumn;
+let fsiLoggerFilterText;
+
+function fsiLoggerFilterSort(){
+    fsiLoggerGrid.sortByColumn = fsiLoggerSortByColumn.selectedValue;
+    fsiLoggerGrid.sortDescending = fsiLoggerSortDescending.checked;
+}
+
+
+//
+// The global FSI logger variable holding the received data
+//
+var fsiLoggerGridData = [
+    //
+    // Example entry below
+    //
+    // {
+    //     user_data: "UDATA1",
+    //     frame_tag: "FTAG1",
+    //     data_words: "DWORD1",
+    //     data_words_child: [
+    //         { data_words: "DWORD1-CHILD1" },
+    //         { data_words: "DWORD1-CHILD2" },
+    //         { data_words: "DWORD1-CHILD3" },
+    //         { data_words: "DWORD1-CHILD4" },
+    //     ]
+    // }
+];
+
+//
+// The data provider for FSI logger grid
+//
+var fsiLoggerDataProvider = {
+    rowCount: fsiLoggerGridData.length,
+    getValue(row, columnName) {
+        return fsiLoggerGridData[row][columnName]
+    },
+    isExpandable: function(row) {
+        return (fsiLoggerGridData[row]['data_words_child'] && (fsiLoggerGridData[row]['data_words_child'].length > 0));
+    }, 
+    getChildDataProvider: function(row) {
+        return {
+            rowCount: fsiLoggerGridData[row]['data_words_child'].length,
+            getValue: function (childRow, childColumn) {
+                if (childColumn === 'data_words') {
+                    return fsiLoggerGridData[row]['data_words_child'][childRow]['data_words'];
+                }
+            },
+        }
+    },
+}
+
+//
+// FSI Logger Widget
+//
+var fsiLoggerGrid;
+
+//
+// FSI Logger scroll hanlder
+//
+function fsiLoggerGridViewChanged({ detail }){
+    const { startRow, reason } = detail;
+    // console.log("gc-widget-grid viewport changed: startRow=${startRow}, reason=${reason}");
+}
+
+//
+// FSI Logger selected row changed handler
+//
+function fsiLoggerGridSelectedPathChanged(value){
+    // console.log("gc-widget-grid path changed: value=${Object.keys(value).join(", ")}");
+}
+
+//
+// FSI Logger GUI update function when new values have been received
+//
+function fsiLoggerGridUpdateUI(){
+    fsiLoggerDataProvider.rowCount = fsiLoggerGridData.length;
+    fsiLoggerGrid.setDataProvider(fsiLoggerDataProvider);
+}
+% }
+
+% if (gui.customlogger) {
+/**
+ -------------------------------------------------------------------------------------------------------------------------------
+Custom Logger Globals
+-------------------------------------------------------------------------------------------------------------------------------
+**/
+
+//
+// Custom Logger Controls
+//
+
+let customLoggerSortDescending;
+let customLoggerSortByColumn;
+let customLoggerFilterText;
+
+function custLoggerFilterSort(){
+    customLoggerGrid.sortByColumn = customLoggerSortByColumn.selectedValue;
+    customLoggerGrid.sortDescending = customLoggerSortDescending.checked;
+    // customLoggerGrid.filterText = customLoggerFilterText.value;
+}
+
+//
+// The global Custom logger variable holding the received data
+//
+var customLoggerGridData = [
+    //
+    // Example entry below
+    //
+    // {
+    //    cust_logger_ts: "000125600",
+    //    cust_logger_d: "Msg 1 arrived"
+    // }
+];
+
+//
+// The data provider for Custom logger grid
+//
+var customLoggerDataProvider = {
+    rowCount: customLoggerGridData.length,
+    getValue(row, columnName) {
+        return customLoggerGridData[row][columnName]
+    },
+    isExpandable: function(row) {
+        return false;
+    }, 
+}
+
+//
+// Custom Logger Widget
+//
+var customLoggerGrid;
+
+//
+// Custom Logger scroll hanlder
+//
+function customLoggerGridViewChanged({ detail }){
+    const { startRow, reason } = detail;
+    // console.log("gc-widget-grid viewport changed: startRow=${startRow}, reason=${reason}");
+}
+
+//
+// Custom Logger selected row changed handler
+//
+function customLoggerGridSelectedPathChanged(value){
+    // console.log("gc-widget-grid path changed: value=${Object.keys(value).join(", ")}");
+}
+
+//
+// Custom Logger GUI update function when new values have been received
+//
+function customLoggerGridUpdateUI(){
+    customLoggerDataProvider.rowCount = customLoggerGridData.length;
+    customLoggerGrid.setDataProvider(customLoggerDataProvider);
+}
+
+% }
+
+% if (gui.dltlogger) {
+/**
+ -------------------------------------------------------------------------------------------------------------------------------
+Data Log and Trace Globals
+-------------------------------------------------------------------------------------------------------------------------------
+**/
+
+function DLTFilterSort(){
+    DLTGrid.sortByColumn = DLTSortByColumn.selectedValue;
+    DLTGrid.sortDescending = DLTSortDescending.checked;
+    // customLoggerGrid.filterText = customLoggerFilterText.value;
+}
+
+//
+// The global DLT logger variable holding the received data
+//
+var DLTGridData = [
+    //
+    // Example entry below
+    //
+    // {
+    // }
+];
+
+var DLTPlotData = [
+
+];
+
+//
+// The data provider for DLT grid
+//
+var DLTDataProvider = {
+    rowCount: DLTGridData.length,
+    getValue(row, columnName) {
+        return DLTGridData[row][columnName]
+    },
+    isExpandable: function(row) {
+        return false;
+    }, 
+}
+
+//
+// DLT Logger Widget
+//
+var DLTGrid;
+
+//
+// DLT Logger scroll hanlder
+//
+function DLTGridViewChanged({ detail }){
+    const { startRow, reason } = detail;
+    // console.log("gc-widget-grid viewport changed: startRow=${startRow}, reason=${reason}");
+}
+
+//
+// DLT Logger selected row changed handler
+//
+function DLTGridSelectedPathChanged(value){
+    // console.log("gc-widget-grid path changed: value=${Object.keys(value).join(", ")}");
+}
+
+//
+// Custom Logger GUI update function when new values have been received
+//
+function DLTGridUpdateUI(){
+    DLTDataProvider.rowCount = DLTGridData.length;
+    DLTGrid.setDataProvider(DLTDataProvider);
+}
+
+% }
+
+/**
+ -------------------------------------------------------------------------------------------------------------------------------
+Bindings setup
+-------------------------------------------------------------------------------------------------------------------------------
+**/
+(async () => {
+    /* Wait for widget and target models to be ready */
+    await bindingRegistry.waitForModelReady('widget');
+    
+    % if (transferCommon.isC2000() && (gui.deviceDiagnosticExportMode != "none")) {
+    % for (var expModName of expModuleNames) {
+        % let mod = system.modules["/driverlib/" + expModName + ".js"];
+        % let modExports = system.getScript("/utilities/transfer/export/mods/export_mod_" + expModName + ".js");
+        % if (mod && (exportCommon.getNonExporterInstances(mod).length > 0)) {
+    //
+    // `expModName.toUpperCase()`
+    //
+            % for (var modInst of exportCommon.getNonExporterInstances(mod)) {
+    /* A simple computed values based on simple expression */
+    bindingRegistry.bind(
+        'widget.page_module_`modInst.$name`_led.on', {
+        /* Dependant bindings needed in order to compute the date, in name/value pairs */
+            % for (let exportInfo of exportCommon.getInstanceExportModsInfoWithType(modInst, modExports.exportsInfo, "led")) {
+            `exportInfo.name`: "widget.page_`expModName`_`modInst.$name`_`exportInfo.name`_led.on",
+            % }
+        },
+        /* Getter for date computation */
+        function(values) {
+            /* compute and return the string value to bind to the widget with id 'date' */
+            return `exportCommon.getInstanceExportModsInfoWithType(modInst, modExports.exportsInfo, "led").map(exportInfo => "values." + exportInfo.name).join(" || ")`;
+        }
+    );
+            % }
+        % }
+    % }
+    % for (var expAlwaysModName of expAlwaysModuleNames) {
+        % let modExports = system.getScript("/utilities/transfer/export/mods/export_mod_" + expAlwaysModName + ".js");
+    //
+    // `expAlwaysModName.toUpperCase()`
+    //
+    /* A simple computed values based on simple expression */
+    bindingRegistry.bind(
+        'widget.page_module_`expAlwaysModName`_led.on', {
+        /* Dependant bindings needed in order to compute the date, in name/value pairs */
+            % for (let exportInfo of exportCommon.getInstanceExportModsInfoWithType(null, modExports.exportsInfo, "led")) {
+            `exportInfo.name`: "widget.page_`expAlwaysModName`_`exportInfo.name`_led.on",
+            % }
+        },
+        /* Getter for date computation */
+        function(values) {
+            /* compute and return the string value to bind to the widget with id 'date' */
+            return `exportCommon.getInstanceExportModsInfoWithType(null, modExports.exportsInfo, "led").map(exportInfo => "values." + exportInfo.name).join(" || ")`;
+        }
+    );
+    % }
+    % }
+    
+    % if (gui.deviceDiagnosticExportMode == "xds") {
+    await bindingRegistry.waitForModelReady('pm');
+    % } 
+    % if (gui.exporter) {
+    await bindingRegistry.waitForModelReady('streaming');
+    % }
+
+    const activeConfigurationChangedHandler = () => {
+        for (let activeTransport of connectionManager.getActiveTransports()) {
+            if (activeTransport.id == "xds")
+            {
+                xdsTransport = activeTransport;
+                activeTransport.addEventListener(
+                    connectedStateChangedEventType, 
+                    xdsTransportConnectionChangeHandler);
+            }
+            if (activeTransport.id == "usb")
+            {
+                usbTransport = activeTransport;
+                activeTransport.addEventListener(
+                    connectedStateChangedEventType, 
+                    usbTransportConnectionChangeHandler);
+            }
+        }
+    };
+    connectionManager.addEventListener(activeConfigurationChangedEvent, activeConfigurationChangedHandler);
+
+    % if (transferCommon.isC2000() && (gui.deviceDiagnosticExportMode != "none")) {
+    % for (var expModName of expModuleNames) {
+        % let mod = system.modules["/driverlib/" + expModName + ".js"];
+        % let modExports = system.getScript("/utilities/transfer/export/mods/export_mod_" + expModName + ".js");
+        % if (gui.deviceDiagnosticExportMode == "xds") {
+    //
+    // `expModName.toUpperCase()`
+    //
+        % if (mod && (exportCommon.getNonExporterInstances(mod).length > 0)) {
+            % for (var modInst of exportCommon.getNonExporterInstances(mod)) {
+                % for (let exportInfo of exportCommon.getInstanceExportModsInfo(modInst, modExports.exportsInfo)) {
+                    % let regInstName = exportCommon.getExportModInfoBitfieldRegForInst(modInst, expModName, modExports.bitfiledInstanceNames, exportInfo);
+                    % if (exportInfo.type == "led") {
+    bindingRegistry.bind("widget.page_`expModName`_`modInst.$name`_`exportInfo.name`_led.on", 'pm.`regInstName`.`exportInfo.register`', 
+        function(value) {
+            /* compute and return the string value to bind to the widget with id 'date' */
+            return !!parseInt(value);
+        }
+    );
+                    % }
+                    % else {
+    bindingRegistry.bind("widget.page_`expModName`_`modInst.$name`_`exportInfo.name`_led.on", 'pm.`regInstName`.`exportInfo.register`');
+                    % }
+                % }
+            % }
+        % }
+    % } else if (gui.deviceDiagnosticExportMode == "exporter") {
+        % if (mod && (exportCommon.getNonExporterInstances(mod).length > 0)) {
+    //
+    // `expModName.toUpperCase()`
+    //
+            % for (var modInst of exportCommon.getNonExporterInstances(mod)) {
+                % for (let exportInfo of exportCommon.getInstanceExportModsInfo(modInst, modExports.exportsInfo)) {
+                    % if (exportInfo.type == "led") {
+    bindingRegistry.bind("widget.page_`expModName`_`modInst.$name`_`exportInfo.name`_led.on", "streaming.`modInst.$name`_`exportInfo.name`", 
+        function(value) {
+            /* compute and return the string value to bind to the widget with id 'date' */
+            return !!parseInt(value);
+        }
+    );
+                    % }
+                    % else {
+    bindingRegistry.bind("widget.page_`expModName`_`modInst.$name`_`exportInfo.name`_led.on", "streaming.`modInst.$name`_`exportInfo.name`");
+                    % }
+                % }
+            % }
+        % }
+    % }
+    % }
+    % //
+    % // Always Modules
+    % // 
+    % for (var expAlwaysModName of expAlwaysModuleNames) {
+        % let modExports = system.getScript("/utilities/transfer/export/mods/export_mod_" + expAlwaysModName + ".js");
+        % if (gui.deviceDiagnosticExportMode == "xds") {
+    //
+    // `expAlwaysModName.toUpperCase()`
+    //
+                % for (let exportInfo of modExports.exportsInfo) {
+                    % let regInstName = exportCommon.getExportModInfoBitfieldRegForInst(null, "", modExports.bitfiledInstanceNames, exportInfo);
+                    % if (exportInfo.type == "led") {
+    bindingRegistry.bind("widget.page_`expAlwaysModName`_`exportInfo.name`_led.on", 'pm.`regInstName`.`exportInfo.register`', 
+        function(value) {
+            /* compute and return the string value to bind to the widget with id 'date' */
+            return !!parseInt(value);
+        }
+    );
+                    % }
+                    % else {
+    bindingRegistry.bind("widget.page_`expAlwaysModName`_`exportInfo.name`_led.on", 'pm.`regInstName`.`exportInfo.register`');
+                    % }
+                % }
+        % }
+    % }
+    % }
+% if (gui.fsilogger) {
+    //
+    // FSI Logger bindings
+    //
+    bindingRegistry.getBinding('model.streaming.fsiLog').addEventListener(valueChangedEventType, e => {
+        var fsiLoggerElement = {
+            user_data: e.newValue.u,
+            frame_tag: e.newValue.ta,
+            frame_type: e.newValue.ty,
+            crc: e.newValue.c,
+            data_words: e.newValue.d,
+        };
+        if (e.newValue.d && (e.newValue.d.split(",").length > 0)){
+            fsiLoggerElement.data_words_child = []
+            for (var childDw of e.newValue.d.split(",")){
+                fsiLoggerElement.data_words_child.push({
+                    data_words: childDw
+                })
+            }
+        }
+        fsiLoggerGridData.push(fsiLoggerElement);
+        fsiLoggerGridUpdateUI();
+
+    % if (gui.rtlogger) {
+        let fsiFrame = e.newValue;
+        let fsiDataArray = fsiFrame.d.split(",").map(Number);
+
+        % let msgTypes = rtLogMsgTypes;
+        % if (msgTypes){         
+            % for (let mt of msgTypes){
+        if (fsiFrame.u == `mt.id`) {
+            RTLogParseMessage`mt.id`(fsiDataArray);
+        }
+            % }
+        % }
+    % }
+    });
+% }
+
+% if (gui.customlogger) {
+    //
+    // Custom Logger bindings
+    //
+    bindingRegistry.getBinding('model.streaming.cLog').addEventListener(valueChangedEventType, e => {
+        var customLoggerElement = {
+            cust_logger_ts: e.newValue.ts,
+            % if (exporter && expInst.packageMode == "JSON")
+            % {
+            cust_logger_d: e.newValue.d
+            % }
+            % else if (exporter && expInst.packageMode == "START/END")
+            % {
+            cust_logger_dr: e.newValue.dr,
+            cust_logger_ds: e.newValue.ds
+            % }
+
+        };
+        customLoggerGridData.push(customLoggerElement);
+        customLoggerGridUpdateUI();
+    });
+% }
+
+% if (gui.dltlogger) {
+    //
+    // DLT Logger Bindings
+    //
+    bindingRegistry.getBinding('model.streaming.DLTlog').addEventListener(valueChangedEventType, e => {
+        var DLTElement = {
+            DLT_TTL_TIME: e.newValue.TTL_TIME,
+            DLT_TIME: e.newValue.TIME,
+            DLT_TAG: e.newValue.TAG,
+            DLT_FUNCTION: e.newValue.FUNCTION,
+            DLT_DATATYPE: e.newValue.DATATYPE,
+            DLT_VARIABLE: e.newValue.VARIABLE,
+            DLT_REG: e.newValue.REG,
+            DLT_TIMER_OVF: e.newValue.TIMER_OVF,
+            DLT_FIFO_OVF: e.newValue.FIFO_OVF,
+            DLT_TagReg: e.newValue.TagReg,
+            DLT_PlotVal: e.newValue.PlotVal,
+            DLT_MAP_VALUES: e.newValue.MAP_VALUES,
+            DLT_SelectVal: e.newValue.SelectVal
+
+        };
+        DLTGridData.push(DLTElement);
+        DLTGridUpdateUI();
+    });
+
+    bindingRegistry.getBinding('model.streaming.PlotDLTData').addEventListener(valueChangedEventType, e => {
+    });
+
+% }
+
+})();
+
+
+% if (exporter && exporter.mode.includes("Bidirectional") && transferCommon.isC2000() && (gui.deviceDiagnosticExportMode != "none")) {
+    % for (var expModName of expModuleNames) {
+        % let mod = system.modules["/driverlib/" + expModName + ".js"];
+        % if (mod && (exportCommon.getNonExporterInstances(mod).length > 0)) {
+            % for (var modInst of exportCommon.getNonExporterInstances(mod)) {
+    //
+    //  `modInst.$name` Read Registers
+    //
+    bindingRegistry.getBinding('model.streaming.`modInst.$name`_sr').addEventListener(valueChangedEventType, e => {
+        alert(JSON.stringify(e, null, 4));
+    });
+            % }
+        % }
+    % }
+% }
+
+
+
+/**
+ -------------------------------------------------------------------------------------------------------------------------------
+Send to Device in the application
+-------------------------------------------------------------------------------------------------------------------------------
+**/
+% if (exporter && exporter.mode.includes("Bidirectional")) {
+//
+// Send JSON objects through the Encoder and package them with padding for the receiver size
+//
+function jsonSendWithPadding(o)
+{
+    var keys = Object.keys(o);
+    if (keys.length != 1)
+    {
+        console.error("Bad object in send")
+    }
+    
+    var lengthOfKey = keys[0].length;
+    var lengthOfVal = o[keys[0]].toString().length;
+    var jsonObjOverhead = "{\"\":}\n".length;
+    if (typeof o[keys[0]] == "string")
+    {
+        jsonObjOverhead = jsonObjOverhead + 2;
+    }
+    
+    var sendSize = lengthOfKey + lengthOfVal + jsonObjOverhead;
+    if (sendSize > 16)
+    {
+        console.log("Object longer than 16");
+        return false;
+    }
+    else if(sendSize == 16){
+        // console.log("Object exactly 16 chars");
+        codecRegistry.getInstance('json').encode(o);
+        return true;
+    }
+    else{
+        // console.log("Object small and needs padding " + (16-sendSize))
+        codecRegistry.getInstance('json').encode(o);
+        codecRegistry.getInstance('json').targetEncoder.encode(" ".repeat(16-sendSize-1));
+        return true;
+    }
+    
+}
+% }
+
+const init = () => {
+    // Add menubar product-name-clicked event listener
+    GcWidget.querySelector('gc-widget-menubar').then(menubar => {
+        menubar.addEventListener('product-name-clicked', () => window.open('https://dev.ti.com/gc', 'gc'));
+    });
+    
+% if (gui.fsilogger) {
+    GcWidget.querySelector('#fsi_logger_grid').then((grid) => {
+        fsiLoggerGrid = grid
+        fsiLoggerGrid.addEventListener('viewport-changed', fsiLoggerGridViewChanged);
+        fsiLoggerGrid.addEventListener('selected-path-changed', fsiLoggerGridSelectedPathChanged);
+        fsiLoggerGrid.setDataProvider(fsiLoggerDataProvider);
+    });
+
+    
+    GcWidget.querySelector('#fsi_logger_export').then((but) => {
+        but.addEventListener('click', () => {
+            // console.log(JSON.stringify(fsiLoggerGridData, null, 4));
+            GcFiles.writeTextFile("fsiLog.json", JSON.stringify(fsiLoggerGridData, null, 4));
+            statusbar.statusText = "fsiLog.json saved!"
+            document.querySelector('#fsi_logger_exp_div').innerHTML = JSON.stringify(fsiLoggerGridData, null, 4);
+            document.querySelector('#fsi_logger_exp_dialog').open();
+        });
+    })
+
+    GcWidget.querySelector('#fsi_logger_sort_descending').then((chb) => {
+        fsiLoggerSortDescending = chb;
+        chb.addEventListener('checked-changed', fsiLoggerFilterSort);
+    })
+    GcWidget.querySelector('#fsi_logger_sort_by_column').then((sel) => {
+        fsiLoggerSortByColumn = sel;
+        sel.addEventListener('selected-value-changed', fsiLoggerFilterSort);
+    });
+    GcWidget.querySelector('#fsi_logger_filter_text').then((filt) => {
+        fsiLoggerFilterText = filt;
+        filt.addEventListener('value-changed', fsiLoggerFilterSort);
+    });
+% }
+
+% if (gui.customlogger) {
+    GcWidget.querySelector('#cust_logger_grid').then((grid) => {
+        customLoggerGrid = grid
+        customLoggerGrid.addEventListener('viewport-changed', customLoggerGridViewChanged);
+        customLoggerGrid.addEventListener('selected-path-changed', customLoggerGridSelectedPathChanged);
+        customLoggerGrid.setDataProvider(customLoggerDataProvider);
+    });
+
+    
+    GcWidget.querySelector('#cust_logger_export').then((but) => {
+        but.addEventListener('click', () => {
+            // console.log(JSON.stringify(customLoggerGridData, null, 4));
+            GcFiles.writeTextFile("customLog.json", JSON.stringify(customLoggerGridData, null, 4));
+            statusbar.statusText = "customLog.json saved!"
+            document.querySelector('#cust_logger_exp_div').innerHTML = JSON.stringify(customLoggerGridData, null, 4);
+            document.querySelector('#cust_logger_exp_dialog').open();
+        });
+    })
+
+    GcWidget.querySelector('#cust_logger_sort_descending').then((chb) => {
+        customLoggerSortDescending = chb;
+        chb.addEventListener('checked-changed', custLoggerFilterSort);
+    })
+    GcWidget.querySelector('#cust_logger_sort_by_column').then((sel) => {
+        customLoggerSortByColumn = sel;
+        sel.addEventListener('selected-value-changed', custLoggerFilterSort);
+    });
+    GcWidget.querySelector('#cust_logger_filter_text').then((filt) => {
+        customLoggerFilterText = filt;
+        filt.addEventListener('value-changed', custLoggerFilterSort);
+    });
+% }
+
+% if (gui.dltlogger) {
+    GcWidget.querySelector('#DLT_grid').then((grid) => {
+        DLTGrid = grid
+        DLTGrid.addEventListener('viewport-changed', DLTGridViewChanged);
+        DLTGrid.addEventListener('selected-path-changed', DLTGridSelectedPathChanged);
+        DLTGrid.setDataProvider(DLTDataProvider);
+    });
+
+    GcWidget.querySelector('#DLT_export').then((but) => {
+        but.addEventListener('click', () => {
+            // console.log(JSON.stringify(customLoggerGridData, null, 4));
+            GcFiles.writeTextFile("DLTLog.json", JSON.stringify(DLTGridData, null, 4));
+            statusbar.statusText = "DLTLog.json saved!"
+            document.querySelector('#dlt_logger_exp_div').innerHTML = JSON.stringify(DLTGridData, null, 4);
+            document.querySelector('#dlt_logger_exp_dialog').open();
+        });
+    })
+
+% }
+
+% if (exporter && exporter.mode.includes("Bidirectional") && transferCommon.isC2000() && (gui.deviceDiagnosticExportMode != "none")) {
+    % for (var expModName of expModuleNames) {
+        % let mod = system.modules["/driverlib/" + expModName + ".js"];
+        % if (mod && (exportCommon.getNonExporterInstances(mod).length > 0)) {
+            % for (var modInst of exportCommon.getNonExporterInstances(mod)) {
+    //
+    //  `modInst.$name` Save Register Button Event Listeners
+    //
+    GcWidget.querySelector('#page_`expModName`_save_`modInst.$name`_registers_b').then(button => {
+        button.addEventListener('click', () => {
+            jsonSendWithPadding({`modInst.$name`_sr:1});
+        });
+    });
+            % }
+        % }
+    % }
+% }
+
+    GcWidget.querySelector('#statusbar').then((stb) => {
+        statusbar = stb;
+    });
+    GcWidget.querySelector('#xds_led').then((led) => {
+        xdsLed = led 
+    });
+    GcWidget.querySelector('#usb_led').then((led) => {
+        usbLed = led 
+    });
+    
+    xdsConnectionDiv = document.getElementById('xds_connection_div');
+    usbConnectionDiv = document.getElementById('usb_connection_div');   
+
+};
+document.readyState === 'complete' ? init() : document.addEventListener('DOMContentLoaded', init);
+
+
+/**
+ -------------------------------------------------------------------------------------------------------------------------------
+Boilerplate code for registering menu and toolbar action callback
+-------------------------------------------------------------------------------------------------------------------------------
+**/

@@ -499,11 +499,23 @@ SPI_disableModule(uint32_t base)
 static inline void
 SPI_setcharLength(uint32_t base, uint16_t charLength)
 {
+    //
+    // Check the arguments.
+    //
     ASSERT((charLength >= 1U) && (charLength <= 16U));
+
+    bool originalStatus = ((HWREGH(base + SPI_O_CCR) & (SPI_CCR_SPISWRESET))
+                                                    == SPI_CCR_SPISWRESET );
+
     SPI_disableModule(base);
     HWREGH(base + SPI_O_CCR) = (HWREGH(base + SPI_O_CCR) & ~SPI_CCR_SPICHAR_M) |
                                (charLength - 1U);
-    SPI_enableModule(base);
+    //
+    // Restore original status
+    //
+    if(originalStatus){
+        SPI_enableModule(base);
+    }
 }
 
 

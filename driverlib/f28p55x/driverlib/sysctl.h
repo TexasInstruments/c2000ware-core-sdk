@@ -1,12 +1,14 @@
 //###########################################################################
 //
-// FILE:   sysctl.h
+// FILE:   sysctl.h 
 //
 // TITLE:  C28x system control driver.
 //
 //###########################################################################
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -150,7 +152,16 @@ extern "C"
 // This function is called in SysCtl_resetPeripheral after resetting
 // analog peripherals
 //
+#ifndef REVID_REV0
+#define REVID_REV0 1
+#define REVID_REVA 2
+
+#if (REV_ID == REVID_REV0)
 #define Device_cal ((void (*)(void))((uintptr_t)0x003fb1e7))
+#else
+#define Device_cal ((void (*)(void))((uintptr_t)0x003fb220))
+#endif
+#endif //REVID_REV0
 
 //*****************************************************************************
 //
@@ -373,7 +384,7 @@ typedef enum
     SYSCTL_PERIPH_CLK_MCANA = 0x040A, //!< MCAN_A clock
     SYSCTL_PERIPH_CLK_MCANB = 0x050A, //!< MCAN_B clock
     SYSCTL_PERIPH_CLK_USBA = 0x100B, //!< USB_A clock
-    SYSCTL_PERIPH_CLK_TINIE = 0x000C, //!< TINIE clock
+    SYSCTL_PERIPH_CLK_NPU = 0x000C, //!< NPU clock
     SYSCTL_PERIPH_CLK_ADCA = 0x000D, //!< ADC_A clock
     SYSCTL_PERIPH_CLK_ADCB = 0x010D, //!< ADC_B clock
     SYSCTL_PERIPH_CLK_ADCC = 0x020D, //!< ADC_C clock
@@ -460,7 +471,7 @@ typedef enum
     SYSCTL_PERIPH_RES_AESA = 0x001A, //!< Reset AESA clock
     SYSCTL_PERIPH_RES_EPG1 = 0x001B, //!< Reset EPG1 clock
     SYSCTL_PERIPH_RES_FLASHA = 0x001C, //!< Reset FLASHA clock
-    SYSCTL_PERIPH_RES_TINIE = 0x001E  //!< Reset TINIE clock
+    SYSCTL_PERIPH_RES_NPU = 0x001E  //!< Reset NPU clock
 } SysCtl_PeripheralSOFTPRES;
 
 typedef enum
@@ -577,14 +588,14 @@ typedef enum
 //*****************************************************************************
 //
 //! The following are values that can be passed to 
-//! SysCtl_setTINIEClockDivider() as the \e divider parameter.
+//! SysCtl_setNPUClockDivider() as the \e divider parameter.
 //
 //*****************************************************************************
 typedef enum
 {
-    SYSCTL_TINIECLK_DIV_1,           //!< TINIECLK = PLLSYSCLK / 1
-    SYSCTL_TINIECLK_DIV_2            //!< TINIECLK = PLLSYSCLK / 2
-} SysCtl_TINIECLKDivider;
+    SYSCTL_NPUCLK_DIV_1,           //!< NPUCLK = PLLSYSCLK / 1
+    SYSCTL_NPUCLK_DIV_2            //!< NPUCLK = PLLSYSCLK / 2
+} SysCtl_NPUCLKDivider;
 
 //*****************************************************************************
 //
@@ -1412,20 +1423,20 @@ SysCtl_setLINAClockDivider(SysCtl_LINACLKDivider divider)
 
 //*****************************************************************************
 //
-//! Sets the TINIE clock divider.
+//! Sets the NPU clock divider.
 //!
 //! \param divider is the value by which PLLSYSCLK is divided
 //!
-//! This function configures the clock rate of the TINIECLK. The
+//! This function configures the clock rate of the NPUCLK. The
 //! \e divider parameter is the value by which the SYSCLK rate is divided to
-//! get the TINIECLK rate. For example, \b SYSCTL_TINIECLK_DIV_2 will 
-//! select an TINIECLK rate that is half the PLLSYSCLK rate.
+//! get the NPUCLK rate. For example, \b SYSCTL_NPUCLK_DIV_2 will 
+//! select an NPUCLK rate that is half the PLLSYSCLK rate.
 //!
 //! \return None.
 //
 //*****************************************************************************
 static inline void
-SysCtl_setTINIEClockDivider(SysCtl_TINIECLKDivider divider)
+SysCtl_setNPUClockDivider(SysCtl_NPUCLKDivider divider)
 {
     //
     // Write the divider selection to the appropriate register.
@@ -1433,7 +1444,7 @@ SysCtl_setTINIEClockDivider(SysCtl_TINIECLKDivider divider)
     EALLOW;
     HWREG(CLKCFG_BASE + SYSCTL_O_PERCLKDIVSEL) =
         (HWREG(CLKCFG_BASE + SYSCTL_O_PERCLKDIVSEL) &
-         ~SYSCTL_PERCLKDIVSEL_TINIECLKDIV) |
+         ~SYSCTL_PERCLKDIVSEL_NPUCLKDIV) |
          ((uint32_t)divider << 16U);
     SYSCTL_REGWRITE_DELAY;
     EDIS;

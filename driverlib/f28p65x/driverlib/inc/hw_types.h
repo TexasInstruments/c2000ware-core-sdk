@@ -5,8 +5,10 @@
 // TITLE:  Type definitions used in driverlib functions.
 //
 //###########################################################################
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -155,10 +157,10 @@ typedef bool _Bool;
 
 /* To fix Misra-C errors */
 #ifndef TRUE
-#define TRUE  ((bool) 1)
+#define TRUE  1
 #endif
 #ifndef FALSE
-#define FALSE ((bool) 0)
+#define FALSE  0
 #endif
 
 #endif // HW_TYPES_H

@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v5.02.00.00
+                v5.03.00.00
               </div>
             
           
@@ -1556,6 +1556,18 @@ ADC_REP1CTL_TRIGGEROVF)<a class="headerlink" href="#c.ADC_REPSTATUS_MASK" title=
 <dt id="_CPPv4N20ADC_ReferenceVoltage18ADC_REFERENCE_2_5VE">
 <span id="_CPPv3N20ADC_ReferenceVoltage18ADC_REFERENCE_2_5VE"></span><span id="_CPPv2N20ADC_ReferenceVoltage18ADC_REFERENCE_2_5VE"></span><span class="target" id="group__adc__api_1gga4513a58978c46b76510fbf645bf77922ac0b015eefabe43c59815ba330013acb7"></span><em class="property">enumerator </em><code class="sig-name descname">ADC_REFERENCE_2_5V</code> = 1U<a class="headerlink" href="#_CPPv4N20ADC_ReferenceVoltage18ADC_REFERENCE_2_5VE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20ADC_ReferenceVoltage20ADC_REFERENCE_VREFHIE">
+<span id="_CPPv3N20ADC_ReferenceVoltage20ADC_REFERENCE_VREFHIE"></span><span id="_CPPv2N20ADC_ReferenceVoltage20ADC_REFERENCE_VREFHIE"></span><span class="target" id="group__adc__api_1gga4513a58978c46b76510fbf645bf77922a7486ac63976ca4dd678ca8d47d089d6e"></span><em class="property">enumerator </em><code class="sig-name descname">ADC_REFERENCE_VREFHI</code> = 0U<a class="headerlink" href="#_CPPv4N20ADC_ReferenceVoltage20ADC_REFERENCE_VREFHIE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This value is valid when ADC reference mode is external </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20ADC_ReferenceVoltage22ADC_REFERENCE_2xVREFHIE">
+<span id="_CPPv3N20ADC_ReferenceVoltage22ADC_REFERENCE_2xVREFHIE"></span><span id="_CPPv2N20ADC_ReferenceVoltage22ADC_REFERENCE_2xVREFHIE"></span><span class="target" id="group__adc__api_1gga4513a58978c46b76510fbf645bf77922adab8aae7e24c18aaa2320411bc8af38b"></span><em class="property">enumerator </em><code class="sig-name descname">ADC_REFERENCE_2xVREFHI</code> = 1U<a class="headerlink" href="#_CPPv4N20ADC_ReferenceVoltage22ADC_REFERENCE_2xVREFHIE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>This value is valid when ADC reference mode is external </p>
+</dd></dl>
 
 </dd></dl>
 
@@ -3988,7 +4000,7 @@ ADC_REP1CTL_TRIGGEROVF)<a class="headerlink" href="#c.ADC_REPSTATUS_MASK" title=
 <p><dl class="simple">
 <dt><strong>Note</strong></dt><dd><p>In this device, the bandgaps are common for all the ADC instances, hence common Vref configuration needs to be done for all the ADCs. This API configures same Vref configuration for all the supported ADCs in the device.</p>
 </dd>
-<dt><strong>Note</strong></dt><dd><p>When the <em>refMode</em> parameter is <strong>ADC_REFERENCE_EXTERNAL</strong>, the value of the <em>refVoltage</em> parameter has no effect on the operation of the ADC.</p>
+<dt><strong>Note</strong></dt><dd><p><strong>ADC_REFERENCE_VREFHI</strong> and <strong>ADC_REFERENCE_2xVREFHI</strong> is only valid when ADC reference mode is external. When the <em>refMode</em> parameter is <strong>ADC_REFERENCE_VREFHI</strong>, the FSR will be equal to VREFHI. When the <em>refMode</em> parameter is <strong>ADC_REFERENCE_2xVREFHI</strong>, the FSR will be equal to 2x VREFHI.</p>
 </dd>
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -4117,7 +4129,7 @@ ADC_REP1CTL_TRIGGEROVF)<a class="headerlink" href="#c.ADC_REPSTATUS_MASK" title=
     <p>
       <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
       <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
-      <span class="lastupdated">Last updated on Mar 27, 2024.
+      <span class="lastupdated">Last updated on Aug 22, 2024.
       </span></p>
   </div>
 

@@ -5,8 +5,10 @@
 // TITLE:  C28x system control driver.
 //
 //###########################################################################
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -695,6 +697,7 @@ SysCtl_selectOscSource(uint32_t oscSource)
                     ~SYSCTL_CLKSRCCTL1_OSCCLKSRCSEL_M) |
                    (SYSCTL_OSCSRC_OSC1 >> SYSCTL_OSCSRC_S);
 
+            SYSCTL_CLKSRCCTL_DELAY;
             break;
 
         default:

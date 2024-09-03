@@ -7,8 +7,10 @@
 //###########################################################################
 //
 //
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -103,6 +105,9 @@ extern "C" {
 #define SYNC_IN_SRC_SYNCOUT_EPWM5    0x5
 #define SYNC_IN_SRC_SYNCOUT_EPWM6    0x6
 #define SYNC_IN_SRC_SYNCOUT_EPWM7    0x7
+#define SYNC_IN_SRC_SYNCOUT_EPWM8    0x8
+#define SYNC_IN_SRC_SYNCOUT_EPWM9    0x9
+#define SYNC_IN_SRC_SYNCOUT_EPWM10   0xA
 #define SYNC_IN_SRC_SYNCOUT_EPWM11   0xB
 #define SYNC_IN_SRC_SYNCOUT_EPWM12   0xC
 #define SYNC_IN_SRC_SYNCOUT_EPWM13   0xD
@@ -112,8 +117,20 @@ extern "C" {
 #define SYNC_IN_SRC_SYNCOUT_ECAP1    0x11
 #define SYNC_IN_SRC_SYNCOUT_ECAP2    0x12
 #define SYNC_IN_SRC_SYNCOUT_ECAP3    0x13
+#define SYNC_IN_SRC_SYNCOUT_ECAP4    0x14
+#define SYNC_IN_SRC_SYNCOUT_ECAP5    0x15
+#define SYNC_IN_SRC_SYNCOUT_ECAP6    0x16
+#define SYNC_IN_SRC_SYNCOUT_ECAP7    0x17
 #define SYNC_IN_SRC_INPUTXBAR_OUT5   0x18
 #define SYNC_IN_SRC_INPUTXBAR_OUT6   0x19
+#define SYNC_IN_SRC_ETHERCAT_SYNC0   0x1A
+#define SYNC_IN_SRC_ETHERCAT_SYNC1   0x1B
+#define SYNC_IN_SRC_SYNCOUT_EPWM17   0x1C
+#define SYNC_IN_SRC_SYNCOUT_EPWM18   0x1D
+#define SYNC_IN_SRC_FSIRXA_TRIG1     0x1E
+#define SYNC_IN_SRC_FSIRXB_TRIG1     0x1F
+#define SYNC_IN_SRC_FSIRXC_TRIG1     0x20
+#define SYNC_IN_SRC_FSIRXD_TRIG1     0x21
 
 //
 // EPWMSYNOUTEN (EPWMxSYNCOUT Source Enable) Register

@@ -140,8 +140,6 @@ void main(void)
         }              // steps/coarse step exceeds maximum of 255.
     }
 
-
-
     //
     // Disable sync(Freeze clock to PWM as well)
     //

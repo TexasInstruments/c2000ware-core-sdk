@@ -5,8 +5,10 @@
 // TITLE:   Definitions for the I2C registers.
 //
 //###########################################################################
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -68,7 +70,7 @@ struct I2CIER_BITS {                    // bits description
     Uint16 SCD:1;                       // 5 Stop condition detected interrupt enable
     Uint16 AAT:1;                       // 6 Addressed as TARGET interrupt enable
     Uint16 rsvd1:8;                     // 14:7 Reserved
-    Uint16 SCL_ECS:1;                   // 15 SCL Auto Clock Stretch interrupt enable
+    Uint16 SCL_ECS:1;                   // 15 SCL Extended Automatic Clock Stretch interrupt enable
 };
 
 union I2CIER_REG {
@@ -92,7 +94,7 @@ struct I2CSTR_BITS {                    // bits description
     Uint16 BB:1;                        // 12 Bus busy bit.
     Uint16 NACKSNT:1;                   // 13 NACK sent bit.
     Uint16 TDIR:1;                      // 14 TARGET direction bit
-    Uint16 SCL_ECS:1;                   // 15 SCL Auto Clock Stretch Status
+    Uint16 SCL_ECS:1;                   // 15 SCL Extended Automatic Clock Stretch Status
 };
 
 union I2CSTR_REG {
@@ -167,8 +169,8 @@ union I2CISRC_REG {
 struct I2CEMDR_BITS {                   // bits description
     Uint16 BC:1;                        // 0 Backwards compatibility mode
     Uint16 FCM:1;                       // 1 Forward Compatibility for Tx behav in Type1
-    Uint16 ECS:1;                       // 2 Extended automatic clock stretching mode
-    Uint16 MCS:1;                       // 3 Manual Override mode
+    Uint16 ECS:1;                       // 2 Extended Automatic Clock Stretching mode
+    Uint16 MCS:1;                       // 3 Manual Clock Stretching mode (Clock Override)
     Uint16 SCLKEY:4;                    // 7:4 Key to enable SCL (Clock Override)
     Uint16 NACK_CM:1;                   // 8 NACK Compatibility mode
     Uint16 rsvd1:6;                     // 14:9 Reserved

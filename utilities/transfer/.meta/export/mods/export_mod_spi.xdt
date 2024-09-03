@@ -1,0 +1,32 @@
+% let Common   = system.getScript("/driverlib/Common.js");
+% let modName = "spi";
+% let mod = system.modules["/driverlib/" + modName + ".js"];
+% let exportCommon = system.getScript("/utilities/transfer/export/export_mods_common.js");
+% let exportMod = system.getScript("/utilities/transfer/export/mods/export_mod_" + modName + ".js");
+% let exporter = system.modules["/utilities/transfer/exporter.js"];
+% let expInst = exporter.$instances[0]
+% let registersFile = system.getScript("/driverlib/device_driverlib_peripherals/" + 
+%                       Common.getDeviceName().toLowerCase() + "_" + modName + "_registers.js");
+% let registers = registersFile[modName.toUpperCase() + "Registers"];
+%
+% if (exportCommon.getNonExporterInstances(mod).length <= 0) {
+%   return;
+% }
+% 
+% let exportKeyValues = exportCommon.getExportKeyValuesForMod(mod, exportMod.exportsInfo);
+%
+% /*******************************************************************************************
+% ********************************************************************************************
+% Header File
+% ********************************************************************************************
+% *******************************************************************************************/
+% if (args[0] == "h")
+% {
+% }
+% /*******************************************************************************************
+% ********************************************************************************************
+% Source File
+% ********************************************************************************************
+% *******************************************************************************************/
+% else if (args[0] == "c") {
+% }

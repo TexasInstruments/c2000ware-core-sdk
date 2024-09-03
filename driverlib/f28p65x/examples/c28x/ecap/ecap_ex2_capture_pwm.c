@@ -27,8 +27,10 @@
 //#############################################################################
 //
 //
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -81,9 +83,9 @@
 uint32_t ecap1IntCount;
 uint32_t ecap1PassCount;
 uint32_t epwm3TimerDirection;
-volatile uint16_t cap2Count;
-volatile uint16_t cap3Count;
-volatile uint16_t cap4Count;
+volatile uint32_t cap2Count;
+volatile uint32_t cap3Count;
+volatile uint32_t cap4Count;
 volatile uint16_t epwm3PeriodCount;
 
 //

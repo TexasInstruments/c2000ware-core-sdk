@@ -1,0 +1,2 @@
+import{r,h as t,H as e}from"./p-ce1dc307.js";const s="";let a=class{constructor(t){r(this,t)}render(){return t(e,null,t("ti-card",{appearance:"plain-white"},t("slot",null)))}};a.style=s;export{a as ti_carousel_item};
+//# sourceMappingURL=p-6cf54e2f.entry.js.map

@@ -1,0 +1,70 @@
+/**
+ * Import the modules used in this configuration.
+ */
+const epwm             = scripting.addModule("/driverlib/epwm.js", {}, false);
+const epwm1            = epwm.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+const divider8       = system.clockTree["EPWMCLKDIV"];
+divider8.divideValue = 1;
+
+epwm1.$name                                         = "myEPWM0";
+epwm1.epwmTimebase_syncInPulseSource                = "EPWM_SYNC_IN_PULSE_SRC_DISABLE";
+epwm1.epwmCounterCompare_shadowLoadModeCMPC         = "EPWM_COMP_LOAD_ON_CNTR_PERIOD";
+epwm1.epwmCounterCompare_shadowLoadModeCMPD         = "EPWM_COMP_LOAD_ON_CNTR_PERIOD";
+epwm1.hrpwm_enable                                  = true;
+epwm1.epwmXCMP_setXCMPAHR_XCMP1_ACTIVE              = 1;
+epwm1.hrpwm_edgeModeA                               = "HRPWM_MEP_CTRL_RISING_AND_FALLING_EDGE";
+epwm1.hrpwm_HRLoadA                                 = "HRPWM_LOAD_ON_CMPx_EQ";
+epwm1.hrpwm_edgeModeB                               = "HRPWM_MEP_CTRL_RISING_AND_FALLING_EDGE";
+epwm1.hrpwm_HRLoadB                                 = "HRPWM_LOAD_ON_CMPx_EQ";
+epwm1.epwmTimebase_counterMode                      = "EPWM_COUNTER_MODE_UP";
+epwm1.epwmTimebase_period                           = 1000;
+epwm1.epwmXCMP_enable                               = true;
+epwm1.epwmXCMP_setXCMPA_XCMP6_ACTIVE                = 250;
+epwm1.epwmXCMP_setXCMPA_XCMP7_ACTIVE                = 500;
+epwm1.epwmXCMP_setXCMPA_XCMP8_ACTIVE                = 750;
+epwm1.XCMPA_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP2         = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.XCMPA_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP4         = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.XCMPA_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP5         = "EPWM_AQ_OUTPUT_LOW";
+epwm1.XCMPA_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP6         = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.XCMPA_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP7         = "EPWM_AQ_OUTPUT_LOW";
+epwm1.XCMPA_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP8         = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.epwmXCMP_setXCMPAHR_XCMP2_ACTIVE              = 1;
+epwm1.epwmXCMP_setXCMPAHR_XCMP3_ACTIVE              = 1;
+epwm1.epwmXCMP_setXCMPAHR_XCMP4_ACTIVE              = 1;
+epwm1.epwmXCMP_setXCMPAHR_XCMP5_ACTIVE              = 1;
+epwm1.epwmXCMP_setXCMPAHR_XCMP6_ACTIVE              = 1;
+epwm1.epwmXCMP_setXCMPAHR_XCMP7_ACTIVE              = 1;
+epwm1.epwmXCMP_setXCMPAHR_XCMP8_ACTIVE              = 1;
+epwm1.XCMPA_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP1         = "EPWM_AQ_OUTPUT_LOW";
+epwm1.XCMPA_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP3         = "EPWM_AQ_OUTPUT_LOW";
+epwm1.epwmXCMP_setXCMPA_XCMP2_ACTIVE                = 250;
+epwm1.epwmXCMP_setXCMPA_XCMP3_ACTIVE                = 500;
+epwm1.epwmXCMP_setXCMPA_XCMP4_ACTIVE                = 750;
+epwm1.epwmXCMP_selectAllocationXCMPA_NoSplitorSplit = "EPWM_XCMP_4_CMPA";
+epwm1.epwmXCMP_setXCMPBHR_XCMP5_ACTIVE              = 1;
+epwm1.epwmXCMP_setXCMPBHR_XCMP6_ACTIVE              = 1;
+epwm1.epwmXCMP_setXCMPBHR_XCMP7_ACTIVE              = 1;
+epwm1.epwmXCMP_setXCMPBHR_XCMP8_ACTIVE              = 1;
+epwm1.epwmXCMP_RegisterSplit_enable                 = true;
+epwm1.epwmCounterCompare_cmpB                       = 1;
+epwm1.epwmXCMP_selectAllocationXCMPB_Split          = "EPWM_XCMP_8_CMPB";
+epwm1.epwmXCMP_setXCMPB_XCMP6_ACTIVE                = 250;
+epwm1.epwmXCMP_setXCMPB_XCMP7_ACTIVE                = 500;
+epwm1.epwmXCMP_setXCMPB_XCMP8_ACTIVE                = 750;
+epwm1.XCMPB_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP5         = "EPWM_AQ_OUTPUT_LOW";
+epwm1.XCMPB_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP6         = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.XCMPB_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP7         = "EPWM_AQ_OUTPUT_LOW";
+epwm1.XCMPB_ACTIVE_OUTPUT_ON_TIMEBASE_XCMP8         = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.epwmTimebase_hsClockDiv                       = "EPWM_HSCLOCK_DIVIDER_1";
+epwm1.epwmXCMPHR_setRegisters_XTBPRD                = 1000;
+epwm1.hrpwm_autoConv                                = true;
+epwm1.epwmCounterCompare_cmpA                       = 1;
+epwm1.epwm.$assign                                  = "EPWM1";
+epwm1.epwm.epwm_aPin.$assign                        = "GPIO0";
+epwm1.epwm.epwm_bPin.$assign                        = "GPIO1";
+
+

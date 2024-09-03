@@ -40,8 +40,10 @@
 //#############################################################################
 //
 //
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -130,6 +132,8 @@ void main(void)
     // Board initialization
     //
     Board_init();
+    I2C_setConfig(myI2C0_BASE, I2C_CONTROLLER_SEND_MODE);
+    I2C_sendStartCondition(myI2C0_BASE);
 
     //
     // Initialize the data buffers

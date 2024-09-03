@@ -160,6 +160,7 @@ function calculateFEDHR(inst,ui)
     return fedhr
 }
 
+
 function hrpwmEnableSettings(inst, ui)
 {
     if(inst.hrpwm_enable)
@@ -169,7 +170,381 @@ function hrpwmEnableSettings(inst, ui)
         ui.hrpwm_controlModeA.hidden = false;
         ui.hrpwm_controlModeB.hidden = false;
         ui.hrpwm_edgeModeDB.hidden = false;
+        if (inst.epwmXCMP_enable)
+        {
+        
+        ui["epwmXCMPHR_setRegisters_XTBPRD"].hidden = false;
+        ui["epwmXCMPHR_setShadowRegisters1_XTBPRD"].hidden =false;
+        ui["epwmXCMPHR_setShadowRegisters2_XTBPRD"].hidden =false;
+        ui["epwmXCMPHR_setShadowRegisters3_XTBPRD"].hidden =false;
+       
+        ui["epwmXCMP_setXCMPAHR_XCMP1_ACTIVE"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP2_ACTIVE"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP3_ACTIVE"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP4_ACTIVE"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP5_ACTIVE"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP6_ACTIVE"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP7_ACTIVE"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP8_ACTIVE"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW1"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW1"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP3_SHADOW1"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP4_SHADOW1"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP5_SHADOW1"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP6_SHADOW1"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP7_SHADOW1"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP8_SHADOW1"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW2"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW2"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP3_SHADOW2"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP4_SHADOW2"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP5_SHADOW2"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP6_SHADOW2"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP7_SHADOW2"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP8_SHADOW2"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW3"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW3"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP3_SHADOW3"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP4_SHADOW3"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP5_SHADOW3"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP6_SHADOW3"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP7_SHADOW3"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP8_SHADOW3"].hidden =true;
+        ui["epwmXCMP_setXCMPBHR_XCMP5_ACTIVE"].hidden =true;
+        ui["epwmXCMP_setXCMPBHR_XCMP6_ACTIVE"].hidden =true;
+        ui["epwmXCMP_setXCMPBHR_XCMP7_ACTIVE"].hidden =true;
+        ui["epwmXCMP_setXCMPBHR_XCMP8_ACTIVE"].hidden =true;
+        ui["epwmXCMP_setXCMPBHR_XCMP5_SHADOW1"].hidden =true;
+        ui["epwmXCMP_setXCMPBHR_XCMP6_SHADOW1"].hidden =true;
+        ui["epwmXCMP_setXCMPBHR_XCMP7_SHADOW1"].hidden =true;
+        ui["epwmXCMP_setXCMPBHR_XCMP8_SHADOW1"].hidden =true;
+        ui["epwmXCMP_setXCMPBHR_XCMP5_SHADOW2"].hidden =true;
+        ui["epwmXCMP_setXCMPBHR_XCMP6_SHADOW2"].hidden =true;
+        ui["epwmXCMP_setXCMPBHR_XCMP7_SHADOW2"].hidden =true;
+        ui["epwmXCMP_setXCMPBHR_XCMP8_SHADOW2"].hidden =true;
+        ui["epwmXCMP_setXCMPBHR_XCMP5_SHADOW3"].hidden =true;
+        ui["epwmXCMP_setXCMPBHR_XCMP6_SHADOW3"].hidden =true;
+        ui["epwmXCMP_setXCMPBHR_XCMP7_SHADOW3"].hidden =true;
+        ui["epwmXCMP_setXCMPBHR_XCMP8_SHADOW3"].hidden =true;
+
+        
+        
+
+            if(inst.epwmXCMP_RegisterSplit_enable)
+                {
+                    
+                    
+
+                    if(inst["epwmXCMP_selectAllocationXCMPA_NoSplitorSplit"] == "EPWM_XCMP_1_CMPA")
+                        {
+                        ui["epwmXCMP_setXCMPAHR_XCMP1_ACTIVE"].hidden =false;
+                        ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW1"].hidden =false;
+                        ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW2"].hidden =false;
+                        ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW3"].hidden =false;
+
+                        }
+
+                    if(inst["epwmXCMP_selectAllocationXCMPA_NoSplitorSplit"] == "EPWM_XCMP_2_CMPA")
+                        {
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW3"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW3"].hidden =false;   
+                        }
+                    if(inst["epwmXCMP_selectAllocationXCMPA_NoSplitorSplit"] == "EPWM_XCMP_3_CMPA")
+                        {
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW3"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW3"].hidden =false; 
+                            ui["epwmXCMP_setXCMPAHR_XCMP3_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP3_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP3_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP3_SHADOW3"].hidden =false;   
+                        }
+                    if(inst["epwmXCMP_selectAllocationXCMPA_NoSplitorSplit"] == "EPWM_XCMP_4_CMPA")
+                        {
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW3"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW3"].hidden =false; 
+                            ui["epwmXCMP_setXCMPAHR_XCMP3_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP3_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP3_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP3_SHADOW3"].hidden =false;  
+                            ui["epwmXCMP_setXCMPAHR_XCMP4_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP4_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP4_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP4_SHADOW3"].hidden =false;   
+                        }
+                    if(inst["epwmXCMP_selectAllocationXCMPB_Split"] == "EPWM_XCMP_5_CMPB")
+                        {
+                        
+                        ui["epwmXCMP_setXCMPBHR_XCMP5_ACTIVE"].hidden =false;
+                        ui["epwmXCMP_setXCMPBHR_XCMP5_SHADOW1"].hidden =false;
+                        ui["epwmXCMP_setXCMPBHR_XCMP5_SHADOW2"].hidden =false;
+                        ui["epwmXCMP_setXCMPBHR_XCMP5_SHADOW3"].hidden =false;
+
+                        }
+
+                    if(inst["epwmXCMP_selectAllocationXCMPB_Split"] == "EPWM_XCMP_6_CMPB")
+                        {
+                            ui["epwmXCMP_setXCMPBHR_XCMP5_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP5_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP5_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP5_SHADOW3"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP6_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP6_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP6_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP6_SHADOW3"].hidden =false;   
+                        }
+                    if(inst["epwmXCMP_selectAllocationXCMPB_Split"] == "EPWM_XCMP_7_CMPB")
+                        {
+                            ui["epwmXCMP_setXCMPBHR_XCMP5_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP5_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP5_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP5_SHADOW3"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP6_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP6_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP6_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP6_SHADOW3"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP7_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP7_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP7_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP7_SHADOW3"].hidden =false;   
+                        }
+                    if(inst["epwmXCMP_selectAllocationXCMPB_Split"] == "EPWM_XCMP_8_CMPB")
+                        {
+                            ui["epwmXCMP_setXCMPBHR_XCMP5_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP5_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP5_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP5_SHADOW3"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP6_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP6_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP6_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP6_SHADOW3"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP7_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP7_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP7_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP7_SHADOW3"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP8_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP8_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP8_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPBHR_XCMP8_SHADOW3"].hidden =false;   
+                        }
+
+                    
+                    
+                }else if(!inst.epwmXCMP_RegisterSplit_enable)
+                {
+                    if(inst["epwmXCMP_selectAllocationXCMPA_NoSplitorSplit"] == "EPWM_XCMP_1_CMPA")
+                        {
+                        ui["epwmXCMP_setXCMPAHR_XCMP1_ACTIVE"].hidden =false;
+                        ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW1"].hidden =false;
+                        ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW2"].hidden =false;
+                        ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW3"].hidden =false;
+
+                        }
+
+                    if(inst["epwmXCMP_selectAllocationXCMPA_NoSplitorSplit"] == "EPWM_XCMP_2_CMPA")
+                        {
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW3"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW3"].hidden =false;   
+                        }
+                    if(inst["epwmXCMP_selectAllocationXCMPA_NoSplitorSplit"] == "EPWM_XCMP_3_CMPA")
+                        {
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW3"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW3"].hidden =false;  
+                            ui["epwmXCMP_setXCMPAHR_XCMP3_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP3_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP3_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP3_SHADOW3"].hidden =false;   
+                        }
+                    if(inst["epwmXCMP_selectAllocationXCMPA_NoSplitorSplit"] == "EPWM_XCMP_4_CMPA")
+                        {
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW3"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW3"].hidden =false;  
+                            ui["epwmXCMP_setXCMPAHR_XCMP3_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP3_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP3_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP3_SHADOW3"].hidden =false
+                            ui["epwmXCMP_setXCMPAHR_XCMP4_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP4_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP4_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP4_SHADOW3"].hidden =false;   
+                        }
+                    if(inst["epwmXCMP_selectAllocationXCMPA_NoSplitorSplit"] == "EPWM_XCMP_5_CMPA")
+                        {
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW3"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW3"].hidden =false;  
+                            ui["epwmXCMP_setXCMPAHR_XCMP3_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP3_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP3_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP3_SHADOW3"].hidden =false
+                            ui["epwmXCMP_setXCMPAHR_XCMP4_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP4_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP4_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP4_SHADOW3"].hidden =false; 
+                            ui["epwmXCMP_setXCMPAHR_XCMP5_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP5_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP5_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP5_SHADOW3"].hidden =false;
+
+                        }
+
+                    if(inst["epwmXCMP_selectAllocationXCMPA_NoSplitorSplit"] == "EPWM_XCMP_6_CMPA")
+                        {
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW3"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW3"].hidden =false;  
+                            ui["epwmXCMP_setXCMPAHR_XCMP3_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP3_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP3_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP3_SHADOW3"].hidden =false
+                            ui["epwmXCMP_setXCMPAHR_XCMP4_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP4_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP4_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP4_SHADOW3"].hidden =false; 
+                            ui["epwmXCMP_setXCMPAHR_XCMP5_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP5_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP5_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP5_SHADOW3"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP6_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP6_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP6_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP6_SHADOW3"].hidden =false;   
+                        }
+                    if(inst["epwmXCMP_selectAllocationXCMPA_NoSplitorSplit"] == "EPWM_XCMP_7_CMPA")
+                        {
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW3"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW3"].hidden =false;  
+                            ui["epwmXCMP_setXCMPAHR_XCMP3_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP3_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP3_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP3_SHADOW3"].hidden =false
+                            ui["epwmXCMP_setXCMPAHR_XCMP4_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP4_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP4_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP4_SHADOW3"].hidden =false; 
+                            ui["epwmXCMP_setXCMPAHR_XCMP5_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP5_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP5_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP5_SHADOW3"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP6_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP6_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP6_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP6_SHADOW3"].hidden =false
+                            ui["epwmXCMP_setXCMPAHR_XCMP7_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP7_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP7_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP7_SHADOW3"].hidden =false;   
+                        }
+                    if(inst["epwmXCMP_selectAllocationXCMPA_NoSplitorSplit"] == "EPWM_XCMP_8_CMPA")
+                        {
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW3"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW3"].hidden =false;  
+                            ui["epwmXCMP_setXCMPAHR_XCMP3_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP3_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP3_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP3_SHADOW3"].hidden =false
+                            ui["epwmXCMP_setXCMPAHR_XCMP4_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP4_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP4_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP4_SHADOW3"].hidden =false; 
+                            ui["epwmXCMP_setXCMPAHR_XCMP5_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP5_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP5_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP5_SHADOW3"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP6_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP6_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP6_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP6_SHADOW3"].hidden =false
+                            ui["epwmXCMP_setXCMPAHR_XCMP7_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP7_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP7_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP7_SHADOW3"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP8_ACTIVE"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP8_SHADOW1"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP8_SHADOW2"].hidden =false;
+                            ui["epwmXCMP_setXCMPAHR_XCMP8_SHADOW3"].hidden =false;   
+                        }
+
+                    ui["epwmXCMP_setXCMPBHR_XCMP5_ACTIVE"].hidden =true;
+                    ui["epwmXCMP_setXCMPBHR_XCMP6_ACTIVE"].hidden =true;
+                    ui["epwmXCMP_setXCMPBHR_XCMP7_ACTIVE"].hidden =true;
+                    ui["epwmXCMP_setXCMPBHR_XCMP8_ACTIVE"].hidden =true;
+                    ui["epwmXCMP_setXCMPBHR_XCMP5_SHADOW1"].hidden =true;
+                    ui["epwmXCMP_setXCMPBHR_XCMP6_SHADOW1"].hidden =true;
+                    ui["epwmXCMP_setXCMPBHR_XCMP7_SHADOW1"].hidden =true;
+                    ui["epwmXCMP_setXCMPBHR_XCMP8_SHADOW1"].hidden =true;
+                    ui["epwmXCMP_setXCMPBHR_XCMP5_SHADOW2"].hidden =true;
+                    ui["epwmXCMP_setXCMPBHR_XCMP6_SHADOW2"].hidden =true;
+                    ui["epwmXCMP_setXCMPBHR_XCMP7_SHADOW2"].hidden =true;
+                    ui["epwmXCMP_setXCMPBHR_XCMP8_SHADOW2"].hidden =true;
+                    ui["epwmXCMP_setXCMPBHR_XCMP5_SHADOW3"].hidden =true;
+                    ui["epwmXCMP_setXCMPBHR_XCMP6_SHADOW3"].hidden =true;
+                    ui["epwmXCMP_setXCMPBHR_XCMP7_SHADOW3"].hidden =true;
+                    ui["epwmXCMP_setXCMPBHR_XCMP8_SHADOW3"].hidden =true;
+                   
+                    
+                }
     }
+    
+}
+
     else
     {
         // Change everything to the default state:
@@ -181,6 +556,63 @@ function hrpwmEnableSettings(inst, ui)
         ui.hrpwm_controlModeA.hidden = true;
         ui.hrpwm_controlModeB.hidden = true;
         ui.hrpwm_edgeModeDB.hidden = true;
+        ui["epwmXCMPHR_setRegisters_XTBPRD"].hidden = true;
+        ui["epwmXCMPHR_setShadowRegisters1_XTBPRD"].hidden =true;
+        ui["epwmXCMPHR_setShadowRegisters2_XTBPRD"].hidden =true;
+        ui["epwmXCMPHR_setShadowRegisters3_XTBPRD"].hidden =true;
+      
+        
+        ui["epwmXCMP_setXCMPAHR_XCMP1_ACTIVE"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP2_ACTIVE"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP3_ACTIVE"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP4_ACTIVE"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP5_ACTIVE"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP6_ACTIVE"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP7_ACTIVE"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP8_ACTIVE"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW1"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW1"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP3_SHADOW1"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP4_SHADOW1"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP5_SHADOW1"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP6_SHADOW1"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP7_SHADOW1"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP8_SHADOW1"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW2"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW2"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP3_SHADOW2"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP4_SHADOW2"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP5_SHADOW2"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP6_SHADOW2"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP7_SHADOW2"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP8_SHADOW2"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP1_SHADOW3"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP2_SHADOW3"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP3_SHADOW3"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP4_SHADOW3"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP5_SHADOW3"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP6_SHADOW3"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP7_SHADOW3"].hidden =true;
+        ui["epwmXCMP_setXCMPAHR_XCMP8_SHADOW3"].hidden =true;
+
+
+        ui["epwmXCMP_setXCMPBHR_XCMP5_ACTIVE"].hidden =true;
+        ui["epwmXCMP_setXCMPBHR_XCMP6_ACTIVE"].hidden =true;
+        ui["epwmXCMP_setXCMPBHR_XCMP7_ACTIVE"].hidden =true;
+        ui["epwmXCMP_setXCMPBHR_XCMP8_ACTIVE"].hidden =true;
+        ui["epwmXCMP_setXCMPBHR_XCMP5_SHADOW1"].hidden =true;
+        ui["epwmXCMP_setXCMPBHR_XCMP6_SHADOW1"].hidden =true;
+        ui["epwmXCMP_setXCMPBHR_XCMP7_SHADOW1"].hidden =true;
+        ui["epwmXCMP_setXCMPBHR_XCMP8_SHADOW1"].hidden =true;
+        ui["epwmXCMP_setXCMPBHR_XCMP5_SHADOW2"].hidden =true;
+        ui["epwmXCMP_setXCMPBHR_XCMP6_SHADOW2"].hidden =true;
+        ui["epwmXCMP_setXCMPBHR_XCMP7_SHADOW2"].hidden =true;
+        ui["epwmXCMP_setXCMPBHR_XCMP8_SHADOW2"].hidden =true;
+        ui["epwmXCMP_setXCMPBHR_XCMP5_SHADOW3"].hidden =true;
+        ui["epwmXCMP_setXCMPBHR_XCMP6_SHADOW3"].hidden =true;
+        ui["epwmXCMP_setXCMPBHR_XCMP7_SHADOW3"].hidden =true;
+        ui["epwmXCMP_setXCMPBHR_XCMP8_SHADOW3"].hidden =true;
+        
     }
     checkSettings(inst,ui);
 }
@@ -228,7 +660,7 @@ function checkSettings(inst,ui)
         ui.hrpwm_calculatedFED.hidden = true;
         ui.hrpwm_calculatedFEDHR.hidden = true;
     }
-
+    
     //Check the control modes
     if (inst.hrpwm_controlModeA == 'HRPWM_MEP_DUTY_PERIOD_CTRL' || inst.hrpwm_controlModeB == 'HRPWM_MEP_DUTY_PERIOD_CTRL')
     {
@@ -387,6 +819,589 @@ var config = [
         options     : device_driverlib_peripheral.HRPWM_MEPCtrlMode,
         onChange    : checkSettings
     },
+    {
+        name: "GROUP_XCMPAHR",
+        displayName: "XCMPAHR",
+        description: "",
+       // hidden:true,
+        longDescription: "",
+        config: [
+            
+            
+            {
+                name: "GROUP_XCMPAHR_ACTIVE_REGISTERS",
+                displayName: "Active Registers",
+                description: "",
+                longDescription: "",
+                config: [
+                    {
+                        name: "epwmXCMP_setXCMPAHR_XCMP1_ACTIVE",
+                        displayName: "XCMP1HR",
+                        description: "",
+                        longDescription: "",
+                        hidden: true,
+                        default: 0,
+                        
+                    },
+                    {
+                        name: "epwmXCMP_setXCMPAHR_XCMP2_ACTIVE",
+                        displayName: "XCMP2HR",
+                        description: "",
+                        longDescription: "",
+                        hidden: true,
+                        default: 0,
+                        
+                    },
+                    {
+                        name: "epwmXCMP_setXCMPAHR_XCMP3_ACTIVE",
+                        displayName: "XCMP3HR",
+                        description: "",
+                        longDescription: "",
+                        hidden: true,
+                        default: 0,
+                        
+                    },
+                    {
+                        name: "epwmXCMP_setXCMPAHR_XCMP4_ACTIVE",
+                        displayName: "XCMP4HR",
+                        description: "",
+                        longDescription: "",
+                        hidden: true,
+                        default: 0,
+                        
+                    },
+                    {
+                        name: "epwmXCMP_setXCMPAHR_XCMP5_ACTIVE",
+                        displayName: "XCMP5HR",
+                        description: "",
+                        longDescription: "",
+                        hidden: true,
+                        default: 0,
+                        
+                    },
+                    {
+                        name: "epwmXCMP_setXCMPAHR_XCMP6_ACTIVE",
+                        displayName: "XCMP6HR",
+                        description: "",
+                        longDescription: "",
+                        hidden: true,
+                        default: 0,
+                        
+                    },
+                    {
+                        name: "epwmXCMP_setXCMPAHR_XCMP7_ACTIVE",
+                        displayName: "XCMP7HR",
+                        description: "",
+                        longDescription: "",
+                        hidden: true,
+                        default: 0,
+                        
+                    },
+                    {
+                        name: "epwmXCMP_setXCMPAHR_XCMP8_ACTIVE",
+                        displayName: "XCMP8HR",
+                        description: "",
+                        longDescription: "",
+                        hidden: true,
+                        default: 0,
+                        
+                    },
+                    
+                ]
+            },
+            {
+                name: "GROUP_XCMPAHR_SHDW_REGISTERS1",
+                displayName: "Shadow Buffer Set 1",
+                description: "",
+                longDescription: "",
+                config: [
+                    
+                        {
+                            name: "epwmXCMP_setXCMPAHR_XCMP1_SHADOW1",
+                            displayName: "XCMP1HR Shadow 1",
+                            description: "",
+                            longDescription: "",
+                            hidden: true,
+                            default: 0,
+                            
+                        },
+                        {
+                            name: "epwmXCMP_setXCMPAHR_XCMP2_SHADOW1",
+                            displayName: "XCMP2HR Shadow 1",
+                            description: "",
+                            longDescription: "",
+                            hidden: true,
+                            default: 0,
+                            
+                        },
+
+                        {
+                            name: "epwmXCMP_setXCMPAHR_XCMP3_SHADOW1",
+                            displayName: "XCMP3HR Shadow 1",
+                            description: "",
+                            longDescription: "",
+                            hidden: true,
+                            default: 0,
+                            
+                        },
+
+                        {
+                            name: "epwmXCMP_setXCMPAHR_XCMP4_SHADOW1",
+                            displayName: "XCMP4HR Shadow 1",
+                            description: "",
+                            longDescription: "",
+                            hidden: true,
+                            default: 0,
+                            
+                        },
+
+                        {
+                            name: "epwmXCMP_setXCMPAHR_XCMP5_SHADOW1",
+                            displayName: "XCMP5HR Shadow 1",
+                            description: "",
+                            longDescription: "",
+                            hidden: true,
+                            default: 0,
+                            
+                        },
+
+                        {
+                            name: "epwmXCMP_setXCMPAHR_XCMP6_SHADOW1",
+                            displayName: "XCMP6HR Shadow 1",
+                            description: "",
+                            longDescription: "",
+                            hidden: true,
+                            default: 0,
+                            
+                        },
+
+                        {
+                            name: "epwmXCMP_setXCMPAHR_XCMP7_SHADOW1",
+                            displayName: "XCMP7HR Shadow 1",
+                            description: "",
+                            longDescription: "",
+                            hidden: true,
+                            default: 0,
+                            
+                        },
+
+                        {
+                            name: "epwmXCMP_setXCMPAHR_XCMP8_SHADOW1",
+                            displayName: "XCMP8HR Shadow 1",
+                            description: "",
+                            longDescription: "",
+                            hidden: true,
+                            default: 0,
+                            
+                        },
+
+
+                    
+                ]
+            },
+            {
+                name: "GROUP_XCMPAHR_SHDW_REGISTERS2",
+                displayName: "Shadow Buffer Set 2",
+                description: "",
+                longDescription: "",
+                config: [
+                    {
+                        name: "epwmXCMP_setXCMPAHR_XCMP1_SHADOW2",
+                        displayName: "XCMP1HR Shadow 2",
+                        description: "",
+                        longDescription: "",
+                        hidden: true,
+                        default: 0,
+                        
+                    },
+                    {
+                        name: "epwmXCMP_setXCMPAHR_XCMP2_SHADOW2",
+                        displayName: "XCMP2HR Shadow 2",
+                        description: "",
+                        longDescription: "",
+                        hidden: true,
+                        default: 0,
+                        
+                    },
+
+                    {
+                        name: "epwmXCMP_setXCMPAHR_XCMP3_SHADOW2",
+                        displayName: "XCMP3HR Shadow 2",
+                        description: "",
+                        longDescription: "",
+                        hidden: true,
+                        default: 0,
+                        
+                    },
+
+                    {
+                        name: "epwmXCMP_setXCMPAHR_XCMP4_SHADOW2",
+                        displayName: "XCMP4HR Shadow 2",
+                        description: "",
+                        longDescription: "",
+                        hidden: true,
+                        default: 0,
+                        
+                    },
+                    {
+                        name: "epwmXCMP_setXCMPAHR_XCMP5_SHADOW2",
+                        displayName: "XCMP5HR Shadow 2",
+                        description: "",
+                        longDescription: "",
+                        hidden: true,
+                        default: 0,
+                        
+                    },
+
+                    {
+                        name: "epwmXCMP_setXCMPAHR_XCMP6_SHADOW2",
+                        displayName: "XCMP6HR Shadow 2",
+                        description: "",
+                        longDescription: "",
+                        hidden: true,
+                        default: 0,
+                        
+                    },
+
+                    {
+                        name: "epwmXCMP_setXCMPAHR_XCMP7_SHADOW2",
+                        displayName: "XCMP7HR Shadow 2",
+                        description: "",
+                        longDescription: "",
+                        hidden: true,
+                        default: 0,
+                        
+                    },
+
+                    {
+                        name: "epwmXCMP_setXCMPAHR_XCMP8_SHADOW2",
+                        displayName: "XCMP8HR Shadow 2",
+                        description: "",
+                        longDescription: "",
+                        hidden: true,
+                        default: 0,
+                        
+                    },
+
+
+                ]
+            },
+            {
+                name: "GROUP_XCMPAHR_SHDW_REGISTERS3",
+                displayName: "Shadow Buffer Set 3",
+                description: "",
+                longDescription: "",
+                config: [
+                    {
+                        name: "epwmXCMP_setXCMPAHR_XCMP1_SHADOW3",
+                        displayName: "XCMP1HR Shadow 3",
+                        description: "",
+                        longDescription: "",
+                        hidden: true,
+                        default: 0,
+                        
+                    },
+                    {
+                        name: "epwmXCMP_setXCMPAHR_XCMP2_SHADOW3",
+                        displayName: "XCMP2HR Shadow 3",
+                        description: "",
+                        longDescription: "",
+                        hidden: true,
+                        default: 0,
+                        
+                    },
+
+                    {
+                        name: "epwmXCMP_setXCMPAHR_XCMP3_SHADOW3",
+                        displayName: "XCMP3HR Shadow 3",
+                        description: "",
+                        longDescription: "",
+                        hidden: true,
+                        default: 0,
+                        
+                    },
+
+                    {
+                        name: "epwmXCMP_setXCMPAHR_XCMP4_SHADOW3",
+                        displayName: "XCMP4HR Shadow 3",
+                        description: "",
+                        longDescription: "",
+                        hidden: true,
+                        default: 0,
+                        
+                    },
+                    {
+                        name: "epwmXCMP_setXCMPAHR_XCMP5_SHADOW3",
+                        displayName: "XCMP5HR Shadow 3",
+                        description: "",
+                        longDescription: "",
+                        hidden: true,
+                        default: 0,
+                        
+                    },
+
+                    {
+                        name: "epwmXCMP_setXCMPAHR_XCMP6_SHADOW3",
+                        displayName: "XCMP6HR Shadow 3",
+                        description: "",
+                        longDescription: "",
+                        hidden: true,
+                        default: 0,
+                        
+                    },
+
+                    {
+                        name: "epwmXCMP_setXCMPAHR_XCMP7_SHADOW3",
+                        displayName: "XCMP7HR Shadow 3",
+                        description: "",
+                        longDescription: "",
+                        hidden: true,
+                        default: 0,
+                        
+                    },
+
+                    {
+                        name: "epwmXCMP_setXCMPAHR_XCMP8_SHADOW3",
+                        displayName: "XCMP8HR Shadow 3",
+                        description: "",
+                        longDescription: "",
+                        hidden: true,
+                        default: 0,
+                        
+                    },
+
+                ]
+            },
+        ]
+    },
+        {
+            name: "GROUP_XCMPBHR",
+            displayName: "XCMPBHR",
+            description: "",
+            longDescription: "",
+            config: [
+                
+                {
+                    name: "GROUP_XCMPBHR_ACTIVE_REGISTERS",
+                    displayName: "Active Registers",
+                    description: "",
+                    longDescription: "",
+                    config: [
+                        
+                            {
+                                name: "epwmXCMP_setXCMPBHR_XCMP5_ACTIVE",
+                                displayName: "XCMP5HR",
+                                description: "",
+                                longDescription: "",
+                                hidden: true,
+                                default: 0,
+                                
+                            },
+                            {
+                                name: "epwmXCMP_setXCMPBHR_XCMP6_ACTIVE",
+                                displayName: "XCMP6HR",
+                                description: "",
+                                longDescription: "",
+                                hidden: true,
+                                default: 0,
+                                
+                            },
+                            {
+                                name: "epwmXCMP_setXCMPBHR_XCMP7_ACTIVE",
+                                displayName: "XCMP7HR",
+                                description: "",
+                                longDescription: "",
+                                hidden: true,
+                                default: 0,
+                                
+                            },
+                            {
+                                name: "epwmXCMP_setXCMPBHR_XCMP8_ACTIVE",
+                                displayName: "XCMP8HR",
+                                description: "",
+                                longDescription: "",
+                                hidden: true,
+                                default: 0,
+                                
+                            },
+                        
+                        
+                    ]
+                },
+                {
+                    name: "GROUP_XCMPBHR_SHDW_REGISTERS1",
+                    displayName: "Shadow Buffer Set 1",
+                    description: "",
+                    longDescription: "",
+                    config: [
+                        {
+                            name: "epwmXCMP_setXCMPBHR_XCMP5_SHADOW1",
+                            displayName: "XCMP5HR",
+                            description: "",
+                            longDescription: "",
+                            hidden: true,
+                            default: 0,
+                            
+                        },
+                        {
+                            name: "epwmXCMP_setXCMPBHR_XCMP6_SHADOW1",
+                            displayName: "XCMP6HR",
+                            description: "",
+                            longDescription: "",
+                            hidden: true,
+                            default: 0,
+                            
+                        },
+                        {
+                            name: "epwmXCMP_setXCMPBHR_XCMP7_SHADOW1",
+                            displayName: "XCMP7HR",
+                            description: "",
+                            longDescription: "",
+                            hidden: true,
+                            default: 0,
+                            
+                        },
+                        {
+                            name: "epwmXCMP_setXCMPBHR_XCMP8_SHADOW1",
+                            displayName: "XCMP8HR",
+                            description: "",
+                            longDescription: "",
+                            hidden: true,
+                            default: 0,
+                            
+                        },
+                    ]
+                },
+                {
+                    name: "GROUP_XCMPBHR_SHDW_REGISTERS2",
+                    displayName: "Shadow Buffer Set 2",
+                    description: "",
+                    longDescription: "",
+                    config: [
+                        {
+                            name: "epwmXCMP_setXCMPBHR_XCMP5_SHADOW2",
+                            displayName: "XCMP5HR",
+                            description: "",
+                            longDescription: "",
+                            hidden: true,
+                            default: 0,
+                            
+                        },
+                        {
+                            name: "epwmXCMP_setXCMPBHR_XCMP6_SHADOW2",
+                            displayName: "XCMP6HR",
+                            description: "",
+                            longDescription: "",
+                            hidden: true,
+                            default: 0,
+                            
+                        },
+                        {
+                            name: "epwmXCMP_setXCMPBHR_XCMP7_SHADOW2",
+                            displayName: "XCMP7HR",
+                            description: "",
+                            longDescription: "",
+                            hidden: true,
+                            default: 0,
+                            
+                        },
+                        {
+                            name: "epwmXCMP_setXCMPBHR_XCMP8_SHADOW2",
+                            displayName: "XCMP8HR",
+                            description: "",
+                            longDescription: "",
+                            hidden: true,
+                            default: 0,
+                            
+                        },
+                    ]
+                },
+                {
+                    name: "GROUP_XCMPBHR_SHDW_REGISTERS3",
+                    displayName: "Shadow Buffer Set 3",
+                    description: "",
+                    longDescription: "",
+                    config: [
+                        {
+                            name: "epwmXCMP_setXCMPBHR_XCMP5_SHADOW3",
+                            displayName: "XCMP5HR",
+                            description: "",
+                            longDescription: "",
+                            hidden: true,
+                            default: 0,
+                            
+                        },
+                        {
+                            name: "epwmXCMP_setXCMPBHR_XCMP6_SHADOW3",
+                            displayName: "XCMP6HR",
+                            description: "",
+                            longDescription: "",
+                            hidden: true,
+                            default: 0,
+                            
+                        },
+                        {
+                            name: "epwmXCMP_setXCMPBHR_XCMP7_SHADOW3",
+                            displayName: "XCMP7HR",
+                            description: "",
+                            longDescription: "",
+                            hidden: true,
+                            default: 0,
+                            
+                        },
+                        {
+                            name: "epwmXCMP_setXCMPBHR_XCMP8_SHADOW3",
+                            displayName: "XCMP8HR",
+                            description: "",
+                            longDescription: "",
+                            hidden: true,
+                            default: 0,
+                            
+                        },
+                    ]
+                },
+    
+            ]
+        },
+        
+        {
+            name: "GROUP_XTBPRDHR",
+            displayName: "XTBPRDHR Configuration",
+            description: "",
+            longDescription: "XTBPRD will be used instead of TBPRD in type5, this includes having 3 shadow buffer sets and 1 active register",
+            config: [
+                {
+                    name: "epwmXCMPHR_setRegisters_XTBPRD",
+                    displayName: "Time Base Period",
+                    description: "Set XTBPRDHR Register to a value, during XCMP mode TBPRD is replaced with XTBPRD",
+                    hidden: true,
+                    default: 0,
+                },
+                {
+                    name: "epwmXCMPHR_setShadowRegisters1_XTBPRD",
+                    displayName: "Time Base Period Shadow 1",
+                    description: "Set XTBPRD Shadow Buffer to a value",
+                    hidden: true,
+                    default: 0,
+                },
+                {
+                    name: "epwmXCMPHR_setShadowRegisters2_XTBPRD",
+                    displayName: "Time Base Period Shadow 2",
+                    description: "Set XTBPRD Shadow Buffer to a value",
+                    hidden: true,
+                    default: 0,
+                },
+                {
+                    name: "epwmXCMPHR_setShadowRegisters3_XTBPRD",
+                    displayName: "Time Base Period Shadow 3",
+                    description: "Set XTBPRD Shadow Buffer to a value",
+                    hidden: true,
+                    default: 0,
+                }
+            ]
+        },
+            
+                
     {
         name: "hrpwm_SettingConfig",
         displayName: "HRPWM Timing Calculator",
@@ -590,7 +1605,8 @@ var config = [
                         description : 'Selects the event that loads CMPAHR shadow value into the active register',
                         hidden      : true,
                         default     : device_driverlib_peripheral.HRPWM_LoadMode[0].name,
-                        options     : device_driverlib_peripheral.HRPWM_LoadMode
+                        options     : device_driverlib_peripheral.HRPWM_LoadMode,
+                
                     }
                    ]
                 },
@@ -622,7 +1638,7 @@ var config = [
                             description : 'Selects the event that loads CMPBHR shadow value into the active register',
                             hidden      : true,
                             default     : device_driverlib_peripheral.HRPWM_LoadMode[0].name,
-                            options     : device_driverlib_peripheral.HRPWM_LoadMode
+                            options     : device_driverlib_peripheral.HRPWM_LoadMode,
                         },
                     ]
                 },
@@ -725,6 +1741,7 @@ var hrpwmExtension = {
         boardc : "", //"/gpio/gpio.board.c.xdt",
         boardh : ""//"/gpio/gpio.board.h.xdt"
     },
+    hrpwmEnableSettings
 };
 
 

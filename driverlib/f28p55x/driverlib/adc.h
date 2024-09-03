@@ -5,8 +5,10 @@
 // TITLE:  C28x ADC driver.
 //
 //###########################################################################
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -441,8 +443,12 @@ typedef enum
 //*****************************************************************************
 typedef enum
 {
-    ADC_REFERENCE_3_3V = 0U,
-    ADC_REFERENCE_2_5V = 1U
+    ADC_REFERENCE_3_3V      = 0U,
+    ADC_REFERENCE_2_5V      = 1U,
+    ADC_REFERENCE_VREFHI    = 0U, //!< This value is valid when ADC reference
+                                  //!< mode is external
+    ADC_REFERENCE_2xVREFHI  = 1U  //!< This value is valid when ADC reference
+                                  //!< mode is external
 } ADC_ReferenceVoltage;
 
 
@@ -3981,8 +3987,11 @@ ADC_configureRepeater(uint32_t base, uint16_t repInstance,
 //! API configures same Vref configuration for all the supported ADCs in the
 //! device.
 //!
-//! \note When the \e refMode parameter is \b ADC_REFERENCE_EXTERNAL, the value
-//! of the \e refVoltage parameter has no effect on the operation of the ADC.
+//! \note \b ADC_REFERENCE_VREFHI and \b ADC_REFERENCE_2xVREFHI is only valid
+//! when ADC reference mode is external. When the \e refMode parameter is
+//! \b ADC_REFERENCE_VREFHI, the FSR will be equal to VREFHI.
+//! When the \e refMode parameter is \b ADC_REFERENCE_2xVREFHI, the FSR will be
+//! equal to 2x VREFHI.
 //!
 //! \return None.
 //

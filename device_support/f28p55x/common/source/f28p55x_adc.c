@@ -7,8 +7,10 @@
 //###########################################################################
 //
 //
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -47,12 +49,8 @@
 #include "f28p55x_examples.h"
 
 //
-// AdcSetMode - Set the resolution and signalmode for a given ADC. This will
+// SetVREF - Set the resolution and signalmode for a given ADC. This will
 //              ensure that the correct trim is loaded.
-//
-// NOTE!!! There is no EALLOW/EDIS in this function! You need to make sure you
-// perform the EALLOW before calling this function or else the ADC registers
-// will not be configured.
 //
 void SetVREF(int module, int mode, int ref)
 {
@@ -119,8 +117,16 @@ void SetVREF(int module, int mode, int ref)
         // This Configures reference mode for ADCA (internal). Add other ADCs
         // to configure its reference mode
         //
-        AnalogSubsysRegs.ANAREFPCTL.bit.REFPMUXSELA = ~mode;
-        AnalogSubsysRegs.ANAREFNCTL.bit.REFNMUXSELA = ~mode;
+        AnalogSubsysRegs.ANAREFPCTL.bit.REFPMUXSELA = mode;
+        AnalogSubsysRegs.ANAREFNCTL.bit.REFNMUXSELA = mode;
+        AnalogSubsysRegs.ANAREFPCTL.bit.REFPMUXSELB = mode;
+        AnalogSubsysRegs.ANAREFNCTL.bit.REFNMUXSELB = mode;
+        AnalogSubsysRegs.ANAREFPCTL.bit.REFPMUXSELC = mode;
+        AnalogSubsysRegs.ANAREFNCTL.bit.REFNMUXSELC = mode;
+        AnalogSubsysRegs.ANAREFPCTL.bit.REFPMUXSELD = mode;
+        AnalogSubsysRegs.ANAREFNCTL.bit.REFNMUXSELD = mode;
+        AnalogSubsysRegs.ANAREFPCTL.bit.REFPMUXSELE = mode;
+        AnalogSubsysRegs.ANAREFNCTL.bit.REFNMUXSELE = mode;
     }
     else if(mode == ADC_EXTERNAL)
     {
@@ -128,10 +134,16 @@ void SetVREF(int module, int mode, int ref)
         // This configures reference mode for ADCA (external). Add other ADCs
         // to configure its reference mode
         //
-        AnalogSubsysRegs.ANAREFPCTL.bit.REFPMUXSELA = ~0xF;
         AnalogSubsysRegs.ANAREFPCTL.bit.REFPMUXSELA = mode;
-        AnalogSubsysRegs.ANAREFNCTL.bit.REFNMUXSELA = ~0xF;
         AnalogSubsysRegs.ANAREFNCTL.bit.REFNMUXSELA = mode;
+        AnalogSubsysRegs.ANAREFPCTL.bit.REFPMUXSELB = mode;
+        AnalogSubsysRegs.ANAREFNCTL.bit.REFNMUXSELB = mode;
+        AnalogSubsysRegs.ANAREFPCTL.bit.REFPMUXSELC = mode;
+        AnalogSubsysRegs.ANAREFNCTL.bit.REFNMUXSELC = mode;
+        AnalogSubsysRegs.ANAREFPCTL.bit.REFPMUXSELD = mode;
+        AnalogSubsysRegs.ANAREFNCTL.bit.REFNMUXSELD = mode;
+        AnalogSubsysRegs.ANAREFPCTL.bit.REFPMUXSELE = mode;
+        AnalogSubsysRegs.ANAREFNCTL.bit.REFNMUXSELE = mode;
     }
     else
     {
@@ -140,7 +152,15 @@ void SetVREF(int module, int mode, int ref)
         // to configure its reference mode
         //
         AnalogSubsysRegs.ANAREFPCTL.bit.REFPMUXSELA = mode;
-        AnalogSubsysRegs.ANAREFNCTL.bit.REFNMUXSELA = mode;        
+        AnalogSubsysRegs.ANAREFNCTL.bit.REFNMUXSELA = mode;
+        AnalogSubsysRegs.ANAREFPCTL.bit.REFPMUXSELB = mode;
+        AnalogSubsysRegs.ANAREFNCTL.bit.REFNMUXSELB = mode;
+        AnalogSubsysRegs.ANAREFPCTL.bit.REFPMUXSELC = mode;
+        AnalogSubsysRegs.ANAREFNCTL.bit.REFNMUXSELC = mode;
+        AnalogSubsysRegs.ANAREFPCTL.bit.REFPMUXSELD = mode;
+        AnalogSubsysRegs.ANAREFNCTL.bit.REFNMUXSELD = mode;
+        AnalogSubsysRegs.ANAREFPCTL.bit.REFPMUXSELE = mode;
+        AnalogSubsysRegs.ANAREFNCTL.bit.REFNMUXSELE = mode;        
     }
 
 

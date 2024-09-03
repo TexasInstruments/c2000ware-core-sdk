@@ -1,0 +1,29 @@
+% let transferCommon;
+% if (system.getProducts()[0].name.includes("C2000"))
+% { transferCommon = system.getScript("/utilities/transfer/transferCommon.js");
+% } else
+% { transferCommon = system.getScript("/transfer/transferCommon.js");}
+% 
+% let gui = system.modules[transferCommon.getTransferPath() + "gui.js"].$static;
+%
+{
+    "template": "Application v3",
+    "description": "GUI Composer v3 Template",
+    "version": "3.3.0",
+    "window": {
+        "frame": false
+    },
+    "projectName": "`gui.guiProjectName.toLowerCase().replaceAll(" ", "_")`",
+    "applicationName": "`gui.guiProjectName`",
+    "applicationIcon": "",
+    "windowIcon": "",
+    "splashImage": "",
+    "tiBrandingEnabled": true,
+    "disableAutoConnect": false,
+    "vendorName": "",
+    "technologyName": "",
+    "customLicense": "",
+    "customManifest": "",
+    "customAppInfo": "",
+    "nosplash": true
+}

@@ -5,8 +5,8 @@
 // TITLE:  Block Write (255 bytes)
 //
 //###########################################################################
-// $TI Release: C28x PMBus Communications Stack Library v1.09.00.00 $
-// $Release Date: 04-07-2024 $
+// $TI Release: C28x PMBus Communications Stack Library v1.10.00.00 $
+// $Release Date: 08-25-2024 $
 // $Copyright: Copyright (C) 2015-2021 Texas Instruments Incorporated -
 //             http://www.ti.com/ ALL RIGHTS RESERVED $
 //###########################################################################

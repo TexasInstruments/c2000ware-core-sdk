@@ -5,8 +5,10 @@
 // TITLE:   Definitions for the SYSCTL registers.
 //
 //###########################################################################
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -71,7 +73,7 @@
 #define SYSCTL_O_SOFTPRES26    0xB6U    // AES Software Reset register
 #define SYSCTL_O_SOFTPRES27    0xB8U    // EPG Software Reset register
 #define SYSCTL_O_SOFTPRES28    0xBAU    // Flash Software Reset register
-#define SYSCTL_O_SOFTPRES30    0xBEU    // TINIE Software reset register
+#define SYSCTL_O_SOFTPRES30    0xBEU    // NPU Software reset register
 #define SYSCTL_O_TAP_STATUS    0x130U   // Status of JTAG State machine & Debugger Connect
 #define SYSCTL_O_TAP_CONTROL   0x132U   // Disable TAP control
 #define SYSCTL_O_USBTYPE       0x19AU   // Configures USB Type for the device
@@ -467,7 +469,7 @@
 // The following are defines for the bit fields in the SOFTPRES30 register
 //
 //*************************************************************************************************
-#define SYSCTL_SOFTPRES30_TINIE   0x1U   // TINIE Module Reset Bit
+#define SYSCTL_SOFTPRES30_NPU   0x1U   // NPU Module Reset Bit
 
 //*************************************************************************************************
 //
@@ -784,7 +786,7 @@
 #define SYSCTL_PERCLKDIVSEL_USBCLKDIV_M    0x380U     // USB Clock Divide select
 #define SYSCTL_PERCLKDIVSEL_LINACLKDIV_S   10U
 #define SYSCTL_PERCLKDIVSEL_LINACLKDIV_M   0xFC00U    // LINA Clock Divide Select
-#define SYSCTL_PERCLKDIVSEL_TINIECLKDIV    0x10000U   // TINIE Clock Divide Select
+#define SYSCTL_PERCLKDIVSEL_NPUCLKDIV      0x10000U   // NPU Clock Divide Select
 
 //*************************************************************************************************
 //
@@ -1011,7 +1013,7 @@
 // The following are defines for the bit fields in the PCLKCR12 register
 //
 //*************************************************************************************************
-#define SYSCTL_PCLKCR12_TINIE   0x1U   // TINIE Clock Enable bit
+#define SYSCTL_PCLKCR12_NPU   0x1U   // NPU Clock Enable bit
 
 //*************************************************************************************************
 //

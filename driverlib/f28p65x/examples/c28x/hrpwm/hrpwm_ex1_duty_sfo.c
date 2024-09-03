@@ -23,6 +23,10 @@
 //! - returns 1 when complete for the specified channel
 //! - returns 0 if not complete for the specified channel
 //!
+//!  This example only uses 4 EPWMs. If all the EPWMs modules are being used
+//!  then all the 3 HRPWMCAL modules should be caliberated. Here only one is 
+//!  being caliberated. For more details you can refer to the bitfield example
+//!  C2000Ware\device_support\f28p65x\examples\cpu1\hrpwm_ex1_duty_sfo_v8.
 //! This example is intended to explain the HRPWM capabilities. The code can be
 //! optimized for code efficiency. Refer to TI's Digital power application
 //! examples and TI Digital Power Supply software libraries for details.
@@ -33,8 +37,10 @@
 //#############################################################################
 //
 //
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -93,6 +99,7 @@ int MEP_ScaleFactor; // Global variable used by the SFO library
 
 volatile uint32_t ePWM[] =
     {0, myEPWM1_BASE, myEPWM2_BASE, myEPWM3_BASE, myEPWM4_BASE};
+extern volatile uint32_t gHrpwmCal_base;
 //
 // Function Prototypes
 //
@@ -137,6 +144,10 @@ void main(void)
     //Interrupt_register(INT_EPWM2, &epwm2ISR);
     //Interrupt_register(INT_EPWM3, &epwm3ISR);
     //Interrupt_register(INT_EPWM4, &epwm4ISR);
+    //
+    // We are only required to calibrate HRPWMCAL1 as we using EPWMs between 1-8.
+    //
+    gHrpwmCal_base = HRPWMCAL1_BASE;
 
     //
     // Calling SFO() updates the HRMSTEP register with calibrated MEP_ScaleFactor.

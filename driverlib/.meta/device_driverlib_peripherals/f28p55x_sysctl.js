@@ -34,7 +34,7 @@ let SysCtl_PeripheralPCLOCKCR = [
 	{ name: "SYSCTL_PERIPH_CLK_MCANA", displayName: "MCAN_A clock" },
 	{ name: "SYSCTL_PERIPH_CLK_MCANB", displayName: "MCAN_B clock" },
 	{ name: "SYSCTL_PERIPH_CLK_USBA", displayName: "USB_A clock" },
-	{ name: "SYSCTL_PERIPH_CLK_TINIE", displayName: "TINIE clock" },
+	{ name: "SYSCTL_PERIPH_CLK_NPU", displayName: "NPU clock" },
 	{ name: "SYSCTL_PERIPH_CLK_ADCA", displayName: "ADC_A clock" },
 	{ name: "SYSCTL_PERIPH_CLK_ADCB", displayName: "ADC_B clock" },
 	{ name: "SYSCTL_PERIPH_CLK_ADCC", displayName: "ADC_C clock" },
@@ -113,7 +113,7 @@ let SysCtl_PeripheralSOFTPRES = [
 	{ name: "SYSCTL_PERIPH_RES_AESA", displayName: "Reset AESA clock" },
 	{ name: "SYSCTL_PERIPH_RES_EPG1", displayName: "Reset EPG1 clock" },
 	{ name: "SYSCTL_PERIPH_RES_FLASHA", displayName: "Reset FLASHA clock" },
-	{ name: "SYSCTL_PERIPH_RES_TINIE", displayName: "Reset TINIE clock" },
+	{ name: "SYSCTL_PERIPH_RES_NPU", displayName: "Reset NPU clock" },
 ]
 let SysCtl_FlashBank = [
 	{ name: "SYSCTL_FLASH_BANK0", displayName: "FLASH BANK0" },
@@ -174,9 +174,9 @@ let SysCtl_LINACLKDivider = [
 	{ name: "SYSCTL_LINACLK_DIV_2", displayName: "LINACLK = PLLSYSCLK / 2" },
 	{ name: "SYSCTL_LINACLK_DIV_4", displayName: "LINACLK = PLLSYSCLK / 4" },
 ]
-let SysCtl_TINIECLKDivider = [
-	{ name: "SYSCTL_TINIECLK_DIV_1", displayName: "TINIECLK = PLLSYSCLK / 1" },
-	{ name: "SYSCTL_TINIECLK_DIV_2", displayName: "TINIECLK = PLLSYSCLK / 2" },
+let SysCtl_NPUCLKDivider = [
+	{ name: "SYSCTL_NPUCLK_DIV_1", displayName: "NPUCLK = PLLSYSCLK / 1" },
+	{ name: "SYSCTL_NPUCLK_DIV_2", displayName: "NPUCLK = PLLSYSCLK / 2" },
 ]
 let SysCtl_AccessPeripheral = [
 	{ name: "SYSCTL_ACCESS_ADCA", displayName: "ADCA access" },
@@ -498,7 +498,7 @@ module.exports = {
 	SysCtl_LSPCLKPrescaler: SysCtl_LSPCLKPrescaler,
 	SysCtl_USBCLKDivider: SysCtl_USBCLKDivider,
 	SysCtl_LINACLKDivider: SysCtl_LINACLKDivider,
-	SysCtl_TINIECLKDivider: SysCtl_TINIECLKDivider,
+	SysCtl_NPUCLKDivider: SysCtl_NPUCLKDivider,
 	SysCtl_AccessPeripheral: SysCtl_AccessPeripheral,
 	SysCtl_AccessController: SysCtl_AccessController,
 	SysCtl_AccessPermission: SysCtl_AccessPermission,

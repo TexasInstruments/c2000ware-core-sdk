@@ -5,8 +5,10 @@
 // TITLE:  f28p55x Device PIE Vector Initialization Functions
 //
 //###########################################################################
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -174,8 +176,8 @@ const struct PIE_VECT_TABLE PieVectTableInit = {
     PIE_RESERVED_ISR,               // 12.4 - Reserved
     FLSS_ISR,                       // 12.5 - Interrupt from flash sub-system
     VCU_ISR,                        // 12.6 - VCU Interrupt (VCRC)
-    MCANA_ECC_ISR,                  // 12.7 - MCANSSA_ECC_CORR_PLS
-    MCANA_WAKE_ISR,                 // 12.8 - MCANSSA_WAKE_AND_TS_PLS
+    MCANA_WAKE_ISR,                 // 12.7 - MCANSSA_WAKE_AND_TS_PLS
+    MCANA_ECC_ISR,                  // 12.8 - MCANSSA_ECC_CORR_PLS
     ADCD1_ISR,                      // 1.9 - ADCD Interrupt 1
     ADCE1_ISR,                      // 1.10 - ADCE Interrupt 1
     PIE_RESERVED_ISR,               // 1.11 - Reserved
@@ -242,8 +244,8 @@ const struct PIE_VECT_TABLE PieVectTableInit = {
     PIE_RESERVED_ISR,               // 8.16 - Reserved
     MCANB_0_ISR,                    // 9.9 - MCANSSB0
     MCANB_1_ISR,                    // 9.10 - MCANSSB1
-    MCANB_ECC_ISR,                  // 9.11 - MCANSSB_ECC_CORR_PLS
-    MCANB_WAKE_ISR,                 // 9.12 - MCANSSB_WAKE_AND_TS_PLS
+    MCANB_WAKE_ISR,                 // 9.11 - MCANSSB_WAKE_AND_TS_PLS
+    MCANB_ECC_ISR,                  // 9.12 - MCANSSB_ECC_CORR_PLS
     PIE_RESERVED_ISR,               // 9.13 - Reserved
     PIE_RESERVED_ISR,               // 9.14 - Reserved
     USBA_ISR,                       // 9.15 - USBA Interrupt

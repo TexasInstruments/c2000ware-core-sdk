@@ -137,6 +137,13 @@
 %                	{
 %                   	indicies = [];
 %                   	indicies.push(modIndex, submodIndex);
+%                       if(inst.$module.config[modIndex].config[submodIndex].name == "epwmTimebase_phaseEnable" && inst["hrpwm_enable"]){
+%                           if(commentOutDefaultCode){
+    //EPWM_disablePhaseShiftLoad(`inst.$name`_BASE);
+%                           } else {
+    EPWM_disablePhaseShiftLoad(`inst.$name`_BASE);
+%                           }                            
+%                       }
 %                   	GenerateOutput(inst, inst.$module.config[modIndex].config[submodIndex].name, showAllCode, templateGen, duplicateList, commentOutDefaultCode, indicies);
 %                	}
 %               }

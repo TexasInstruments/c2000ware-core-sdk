@@ -1,0 +1,75 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F280013x" --package "64VPM" --part "F280013x_64VPM" --context "system" --product "C2000WARE@5.02.00.00"
+ * @versions {"tool":"1.0.0+dev"}
+ */
+/**
+ * Import the modules used in this configuration.
+ */
+const device_support = scripting.addModule("/driverlib/device_support.js");
+const sysctl         = scripting.addModule("/driverlib/sysctl.js");
+const CMD            = scripting.addModule("/utilities/cmd_tool/cmd_syscfg/source/CMD");
+const CMD1           = CMD.addInstance();
+const CMD2           = CMD.addInstance();
+const gui            = scripting.addModule("/utilities/transfer/gui.js");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+gui.customlogger                               = true;
+gui.guiProjectName                             = "transfer_customlog_export_sci_logArrays";
+gui.exporter.$name                             = "myEXPORT0";
+gui.exporter.exportCustomLogTimestamp          = true;
+gui.exporter.comsLinkModule.wordLenght         = scripting.forceWrite("8");
+gui.exporter.comsLinkModule.stop               = scripting.forceWrite("ONE");
+gui.exporter.comsLinkModule.parity             = scripting.forceWrite("SCI_CONFIG_PAR_NONE");
+gui.exporter.comsLinkModule.registerInterrupts = scripting.forceWrite(false);
+gui.exporter.comsLinkModule.useFifo            = scripting.forceWrite(true);
+gui.exporter.comsLinkModule.loopback           = scripting.forceWrite(false);
+gui.exporter.comsLinkModule.useCase            = scripting.forceWrite("ALL");
+
+const memcfg         = scripting.addModule("/driverlib/memcfg.js");
+/**
+ * Write custom configuration values to the imported modules.
+ */
+CMD1.$name                    = "generic_ram_lnk";
+CMD2.$name                    = "generic_flash_lnk";
+
+CMD1.sectionMemory_text       = ["RAMLS0","RAMLS1"];
+CMD1.sectionMemory_ramfunc    = ["RAMM0"];
+CMD1.sectionMemory_cinit      = ["RAMM0"];
+CMD1.sectionMemory_stack      = ["RAMM1"];
+CMD1.sectionMemory_init_array = ["RAMM0"];
+CMD1.sectionMemory_bss        = ["RAMLS0"];
+CMD1.sectionMemory_const      = ["RAMLS0"];
+CMD1.sectionMemory_data       = ["RAMLS0"];
+CMD1.sectionMemory_switch     = ["RAMM0"];
+CMD1.sectionMemory_sysmem     = ["RAMLS0"];
+
+CMD2.sectionAlignEnable_ramfunc    = true;
+CMD2.sectionAlignEnable_text       = true;
+CMD2.sectionAlignEnable_binit      = true;
+CMD2.sectionAlignEnable_cinit      = true;
+CMD2.sectionAlignEnable_switch     = true;
+CMD2.sectionAlignEnable_init_array = true;
+CMD2.sectionAlignEnable_const      = true;
+CMD2.sectionAlignEnable_ovly       = true;
+CMD2.sectionMemory_codestart       = "0x080000";
+CMD2.sectionMemory_stack           = ["RAMM1"];
+CMD2.sectionMemory_ramfunc         = ["FLASH_BANK0_SEC_0_7"];
+CMD2.sectionMemory_text            = ["FLASH_BANK0_SEC_16_23","FLASH_BANK0_SEC_24_31","FLASH_BANK0_SEC_8_15"];
+CMD2.sectionMemory_binit           = ["FLASH_BANK0_SEC_0_7"];
+CMD2.sectionMemory_cinit           = ["FLASH_BANK0_SEC_0_7"];
+CMD2.sectionMemory_switch          = ["FLASH_BANK0_SEC_0_7"];
+CMD2.sectionMemory_bss             = ["RAMLS0"];
+CMD2.sectionMemory_init_array      = ["FLASH_BANK0_SEC_0_7"];
+CMD2.sectionMemory_const           = ["FLASH_BANK0_SEC_32_29"];
+CMD2.sectionMemory_data            = ["RAMLS0"];
+CMD2.sectionMemory_sysmem          = ["RAMLS0"];
+CMD2.sectionMemory_ovly            = ["FLASH_BANK0_SEC_0_7"];
+CMD2.sectionRunFromDifferentAddr_ramfunc = true;
+CMD2.sectionRun_ramfunc                  = ["RAMLS0"];
+CMD2.sectionBinit_ramfunc                = false;
+
+

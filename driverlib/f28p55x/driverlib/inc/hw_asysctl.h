@@ -5,8 +5,10 @@
 // TITLE:   Definitions for the ASYSCTL registers.
 //
 //###########################################################################
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -46,6 +48,8 @@
 // The following are defines for the ASYSCTL register offsets
 //
 //*************************************************************************************************
+#define ASYSCTL_O_ADCOSDETECT         0x26U    // I2V Logic Control
+#define ASYSCTL_O_REFCONFIGB          0x36U    // Config register for analog reference B.
 #define ASYSCTL_O_INTERNALTESTCTL     0x4AU    // INTERNALTEST Node Control Register
 #define ASYSCTL_O_CONFIGLOCK          0x5EU    // Lock Register for all the config registers.
 #define ASYSCTL_O_TSNSCTL             0x60U    // Temperature Sensor Control Register
@@ -64,7 +68,6 @@
 #define ASYSCTL_O_CMPSSCTL            0x8BU    // CMPSS Control Register
 #define ASYSCTL_O_CMPSSDACBUFCONFIG   0x8CU    // Config bits for CMPSS DAC buffer
 #define ASYSCTL_O_LOCK                0x8EU    // Lock Register
-#define ASYSCTL_O_AGPIOFILTER         0x108U   // AGPIO Filter Control Register
 #define ASYSCTL_O_AGPIOCTRLA          0x10AU   // AGPIO Control Register
 #define ASYSCTL_O_AGPIOCTRLB          0x10CU   // AGPIO Control Register
 #define ASYSCTL_O_AGPIOCTRLG          0x116U   // AGPIO Control Register
@@ -75,6 +78,31 @@
 #define ASYSCTL_O_ADCSOCFRCGB         0x136U   // ADC Global SOC Force
 #define ASYSCTL_O_ADCSOCFRCGBSEL      0x138U   // ADC Global SOC Force Select
 
+
+//*************************************************************************************************
+//
+// The following are defines for the bit fields in the ADCOSDETECT register
+//
+//*************************************************************************************************
+#define ASYSCTL_ADCOSDETECT_OSDETECT_EN   0x10U   // Enable OS Detect Logic
+#define ASYSCTL_ADCOSDETECT_DETECTCFG_S   5U
+#define ASYSCTL_ADCOSDETECT_DETECTCFG_M   0xE0U   // OS detect config bits
+
+//*************************************************************************************************
+//
+// The following are defines for the bit fields in the REFCONFIGB register
+//
+//*************************************************************************************************
+#define ASYSCTL_REFCONFIGB_ADC_ATB_ENA_S   5U
+#define ASYSCTL_REFCONFIGB_ADC_ATB_ENA_M   0x60U     // ADC testmux enable
+#define ASYSCTL_REFCONFIGB_ADC_ATB_ENB_S   7U
+#define ASYSCTL_REFCONFIGB_ADC_ATB_ENB_M   0x180U    // ADC testmux enable
+#define ASYSCTL_REFCONFIGB_ADC_ATB_ENC_S   9U
+#define ASYSCTL_REFCONFIGB_ADC_ATB_ENC_M   0x600U    // ADC testmux enable
+#define ASYSCTL_REFCONFIGB_ADC_ATB_END_S   11U
+#define ASYSCTL_REFCONFIGB_ADC_ATB_END_M   0x1800U   // ADC testmux enable
+#define ASYSCTL_REFCONFIGB_ADC_ATB_ENE_S   13U
+#define ASYSCTL_REFCONFIGB_ADC_ATB_ENE_M   0x6000U   // ADC testmux enable
 
 //*************************************************************************************************
 //
@@ -91,7 +119,6 @@
 // The following are defines for the bit fields in the CONFIGLOCK register
 //
 //*************************************************************************************************
-#define ASYSCTL_CONFIGLOCK_AGPIOFILTER     0x2U    // Locks AGPIOFILTER Register
 #define ASYSCTL_CONFIGLOCK_AGPIOCTRL       0x8U    // Locks all AGPIOCTRL Register
 #define ASYSCTL_CONFIGLOCK_GPIOINENACTRL   0x40U   // Locks all GPIOINENACTRL Register
 
@@ -237,16 +264,6 @@
 #define ASYSCTL_LOCK_CMPHNMXSEL   0x80U    // CMPHNMXSEL Register lock bit
 #define ASYSCTL_LOCK_CMPLNMXSEL   0x100U   // CMPLNMXSEL Register lock bit
 #define ASYSCTL_LOCK_VREGCTL      0x200U   // VREGCTL Register lock bit
-
-//*************************************************************************************************
-//
-// The following are defines for the bit fields in the AGPIOFILTER register
-//
-//*************************************************************************************************
-#define ASYSCTL_AGPIOFILTER_GROUP1_S   0U
-#define ASYSCTL_AGPIOFILTER_GROUP1_M   0x3U     // AGPIOFILTER Control for group1 side pins
-#define ASYSCTL_AGPIOFILTER_GROUP2_S   8U
-#define ASYSCTL_AGPIOFILTER_GROUP2_M   0x300U   // AGPIOFILTER Control for group2 side pins
 
 //*************************************************************************************************
 //

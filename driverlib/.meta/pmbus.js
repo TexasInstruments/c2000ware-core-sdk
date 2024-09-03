@@ -21,6 +21,7 @@ var globalConfig = [
         description : 'Device System Clock Frequency',
         hidden      : false,
         default     : SysClk_MHz,
+        readOnly    : true,
     },
 ]
 var pmbus_fast_plus_supported_devices = ['f28p55x']
@@ -229,9 +230,9 @@ function onValidate(inst, validation)
     var pinmuxQualMods = Pinmux.getGpioQualificationModInstDefinitions("PMBUS", inst)
     for (var pinmuxQualMod of pinmuxQualMods)
     {
-        if ((inst[pinmuxQualMod.name].padConfig.includes("OD")) || (inst[pinmuxQualMod.name].padConfig.includes("INVERT")))
+        if ((!inst[pinmuxQualMod.name].padConfig.includes("OD")) || (inst[pinmuxQualMod.name].padConfig.includes("INVERT")))
         {
-            validation.logError("The open-drain and inverted pad configurations should not be used for the PMBus module.", inst);
+            validation.logError("The push-pull and inverted pad configurations should not be used for the PMBus module.", inst);
         }
     }
 }
@@ -463,9 +464,8 @@ var pmbusModule = {
         var pinmuxQualMods = Pinmux.getGpioQualificationModInstDefinitions("PMBUS", inst)
         for (var pinmuxQualMod of pinmuxQualMods)
         {
-            pinmuxQualMod.requiredArgs = {
-                qualMode : "GPIO_QUAL_ASYNC",
-            }
+            pinmuxQualMod.args.padConfig = "OD_PULLUP";
+            pinmuxQualMod.args.qualMode = "GPIO_QUAL_ASYNC";
         }
         ownedInstances = ownedInstances.concat(pinmuxQualMods)
 

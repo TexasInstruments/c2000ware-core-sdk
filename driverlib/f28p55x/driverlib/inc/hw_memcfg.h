@@ -5,8 +5,10 @@
 // TITLE:   Definitions for the MEMCFG registers.
 //
 //###########################################################################
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -99,28 +101,28 @@
 #define MEMCFG_O_ROM_TEST           0xA2U                    // ROM  TEST Register
 #define MEMCFG_O_ROM_FORCE_ERROR    0xA4U                    // ROM Force Error register
 
-#define MEMCFG_O_NMAVFLG           0x0U    // Non-Controller Access Violation Flag Register
-#define MEMCFG_O_NMAVSET           0x2U    // Non-Controller Access Violation Flag Set Register
-#define MEMCFG_O_NMAVCLR           0x4U    // Non-Controller Access Violation Flag Clear Register
-#define MEMCFG_O_NMAVINTEN         0x6U    // Non-Controller Access Violation Interrupt Enable
-                                           // Register
-#define MEMCFG_O_NMCPURDAVADDR     0x8U    // Non-Controller CPU Read Access Violation Address
-#define MEMCFG_O_NMCPUWRAVADDR     0xAU    // Non-Controller CPU Write Access Violation Address
-#define MEMCFG_O_NMCPUFAVADDR      0xCU    // Non-Controller CPU Fetch Access Violation Address
-#define MEMCFG_O_NMDMAWRAVADDR     0xEU    // Non-Controller DMA Write Access Violation Address
-#define MEMCFG_O_NMCLA1RDAVADDR    0x10U   // Non-Controller CLA1 Read Access Violation Address
-#define MEMCFG_O_NMCLA1WRAVADDR    0x12U   // Non-Controller CLA1 Write Access Violation Address
-#define MEMCFG_O_NMCLA1FAVADDR     0x14U   // Non-Controller CLA1 Fetch Access Violation Address
-#define MEMCFG_O_NMDMARDAVADDR     0x1CU   // Non-Controller DMA Read Access Violation Address
-#define MEMCFG_O_MAVFLG            0x20U   // Controller Access Violation Flag Register
-#define MEMCFG_O_MAVSET            0x22U   // Controller Access Violation Flag Set Register
-#define MEMCFG_O_MAVCLR            0x24U   // Controller Access Violation Flag Clear Register
-#define MEMCFG_O_MAVINTEN          0x26U   // Controller Access Violation Interrupt Enable Register
-#define MEMCFG_O_MCPUFAVADDR       0x28U   // Controller CPU Fetch Access Violation Address
-#define MEMCFG_O_MCPUWRAVADDR      0x2AU   // Controller CPU Write Access Violation Address
-#define MEMCFG_O_MDMAWRAVADDR      0x2CU   // Controller  DMA Write Access Violation Address
-#define MEMCFG_O_NMTINIERDAVADDR   0x3AU   // Non-Controller TINIE Read Access Violation Address
-#define MEMCFG_O_NMTINIEWRAVADDR   0x3CU   // Non-Controller TINIE Write Access Violation Address
+#define MEMCFG_O_NMAVFLG          0x0U    // Non-Controller Access Violation Flag Register
+#define MEMCFG_O_NMAVSET          0x2U    // Non-Controller Access Violation Flag Set Register
+#define MEMCFG_O_NMAVCLR          0x4U    // Non-Controller Access Violation Flag Clear Register
+#define MEMCFG_O_NMAVINTEN        0x6U    // Non-Controller Access Violation Interrupt Enable
+                                          // Register
+#define MEMCFG_O_NMCPURDAVADDR    0x8U    // Non-Controller CPU Read Access Violation Address
+#define MEMCFG_O_NMCPUWRAVADDR    0xAU    // Non-Controller CPU Write Access Violation Address
+#define MEMCFG_O_NMCPUFAVADDR     0xCU    // Non-Controller CPU Fetch Access Violation Address
+#define MEMCFG_O_NMDMAWRAVADDR    0xEU    // Non-Controller DMA Write Access Violation Address
+#define MEMCFG_O_NMCLA1RDAVADDR   0x10U   // Non-Controller CLA1 Read Access Violation Address
+#define MEMCFG_O_NMCLA1WRAVADDR   0x12U   // Non-Controller CLA1 Write Access Violation Address
+#define MEMCFG_O_NMCLA1FAVADDR    0x14U   // Non-Controller CLA1 Fetch Access Violation Address
+#define MEMCFG_O_NMDMARDAVADDR    0x1CU   // Non-Controller DMA Read Access Violation Address
+#define MEMCFG_O_MAVFLG           0x20U   // Controller Access Violation Flag Register
+#define MEMCFG_O_MAVSET           0x22U   // Controller Access Violation Flag Set Register
+#define MEMCFG_O_MAVCLR           0x24U   // Controller Access Violation Flag Clear Register
+#define MEMCFG_O_MAVINTEN         0x26U   // Controller Access Violation Interrupt Enable Register
+#define MEMCFG_O_MCPUFAVADDR      0x28U   // Controller CPU Fetch Access Violation Address
+#define MEMCFG_O_MCPUWRAVADDR     0x2AU   // Controller CPU Write Access Violation Address
+#define MEMCFG_O_MDMAWRAVADDR     0x2CU   // Controller  DMA Write Access Violation Address
+#define MEMCFG_O_NMNPURDAVADDR    0x3AU   // Non-Controller NPU Read Access Violation Address
+#define MEMCFG_O_NMNPUWRAVADDR    0x3CU   // Non-Controller NPU Write Access Violation Address
 
 #define MEMCFG_O_UCERRFLG        0x0U    // Uncorrectable Error Flag Register
 #define MEMCFG_O_UCERRSET        0x2U    // Uncorrectable Error Flag Set Register
@@ -128,7 +130,7 @@
 #define MEMCFG_O_UCCPUREADDR     0x6U    // Uncorrectable CPU Read Error Address
 #define MEMCFG_O_UCDMAREADDR     0x8U    // Uncorrectable DMA Read Error Address
 #define MEMCFG_O_UCCLA1READDR    0xAU    // Uncorrectable CLA1 Read Error Address
-#define MEMCFG_O_UCTINIEREADDR   0x10U   // Uncorrectable TINIE Read Error Address
+#define MEMCFG_O_UCNPUREADDR     0x10U   // Uncorrectable NPU Read Error Address
 #define MEMCFG_O_FLUCERRSTATUS   0x1CU   // Flash read uncorrectable ecc err status
 #define MEMCFG_O_FLCERRSTATUS    0x1EU   // Flash read correctable ecc err status
 #define MEMCFG_O_CERRFLG         0x20U   // Correctable Error Flag Register
@@ -432,22 +434,22 @@
 // The following are defines for the bit fields in the GSxACCPROT0 register
 //
 //*************************************************************************************************
-#define MEMCFG_GSXACCPROT0_FETCHPROT_GS0      0x1U         // Fetch Protection For GS0 RAM
-#define MEMCFG_GSXACCPROT0_CPUWRPROT_GS0      0x2U         // CPU WR Protection For GS0 RAM
-#define MEMCFG_GSXACCPROT0_DMAWRPROT_GS0      0x4U         // DMA WR Protection For GS0 RAM
-#define MEMCFG_GSXACCPROT0_TINIE_WRPROT_GS0   0x8U         // TINIE WR Protection For GS0 RAM
-#define MEMCFG_GSXACCPROT0_FETCHPROT_GS1      0x100U       // Fetch Protection For GS1 RAM
-#define MEMCFG_GSXACCPROT0_CPUWRPROT_GS1      0x200U       // CPU WR Protection For GS1 RAM
-#define MEMCFG_GSXACCPROT0_DMAWRPROT_GS1      0x400U       // DMA WR Protection For GS1 RAM
-#define MEMCFG_GSXACCPROT0_TINIE_WRPROT_GS1   0x800U       // TINIE WR Protection For GS1 RAM
-#define MEMCFG_GSXACCPROT0_FETCHPROT_GS2      0x10000U     // Fetch Protection For GS2 RAM
-#define MEMCFG_GSXACCPROT0_CPUWRPROT_GS2      0x20000U     // CPU WR Protection For GS2 RAM
-#define MEMCFG_GSXACCPROT0_DMAWRPROT_GS2      0x40000U     // DMA WR Protection For GS2 RAM
-#define MEMCFG_GSXACCPROT0_TINIE_WRPROT_GS2   0x80000U     // TINIE WR Protection For GS2 RAM
-#define MEMCFG_GSXACCPROT0_FETCHPROT_GS3      0x1000000U   // Fetch Protection For GS3 RAM
-#define MEMCFG_GSXACCPROT0_CPUWRPROT_GS3      0x2000000U   // CPU WR Protection For GS3 RAM
-#define MEMCFG_GSXACCPROT0_DMAWRPROT_GS3      0x4000000U   // DMA WR Protection For GS3 RAM
-#define MEMCFG_GSXACCPROT0_TINIE_WRPROT_GS3   0x8000000U   // TINIE WR Protection For GS3 RAM
+#define MEMCFG_GSXACCPROT0_FETCHPROT_GS0    0x1U         // Fetch Protection For GS0 RAM
+#define MEMCFG_GSXACCPROT0_CPUWRPROT_GS0    0x2U         // CPU WR Protection For GS0 RAM
+#define MEMCFG_GSXACCPROT0_DMAWRPROT_GS0    0x4U         // DMA WR Protection For GS0 RAM
+#define MEMCFG_GSXACCPROT0_NPU_WRPROT_GS0   0x8U         // NPU WR Protection For GS0 RAM
+#define MEMCFG_GSXACCPROT0_FETCHPROT_GS1    0x100U       // Fetch Protection For GS1 RAM
+#define MEMCFG_GSXACCPROT0_CPUWRPROT_GS1    0x200U       // CPU WR Protection For GS1 RAM
+#define MEMCFG_GSXACCPROT0_DMAWRPROT_GS1    0x400U       // DMA WR Protection For GS1 RAM
+#define MEMCFG_GSXACCPROT0_NPU_WRPROT_GS1   0x800U       // NPU WR Protection For GS1 RAM
+#define MEMCFG_GSXACCPROT0_FETCHPROT_GS2    0x10000U     // Fetch Protection For GS2 RAM
+#define MEMCFG_GSXACCPROT0_CPUWRPROT_GS2    0x20000U     // CPU WR Protection For GS2 RAM
+#define MEMCFG_GSXACCPROT0_DMAWRPROT_GS2    0x40000U     // DMA WR Protection For GS2 RAM
+#define MEMCFG_GSXACCPROT0_NPU_WRPROT_GS2   0x80000U     // NPU WR Protection For GS2 RAM
+#define MEMCFG_GSXACCPROT0_FETCHPROT_GS3    0x1000000U   // Fetch Protection For GS3 RAM
+#define MEMCFG_GSXACCPROT0_CPUWRPROT_GS3    0x2000000U   // CPU WR Protection For GS3 RAM
+#define MEMCFG_GSXACCPROT0_DMAWRPROT_GS3    0x4000000U   // DMA WR Protection For GS3 RAM
+#define MEMCFG_GSXACCPROT0_NPU_WRPROT_GS3   0x8000000U   // NPU WR Protection For GS3 RAM
 
 //*************************************************************************************************
 //
@@ -607,88 +609,81 @@
 // The following are defines for the bit fields in the NMAVFLG register
 //
 //*************************************************************************************************
-#define MEMCFG_NMAVFLG_CPUREAD      0x1U      // Non Controller CPU Read Access Violation Flag
-#define MEMCFG_NMAVFLG_CPUWRITE     0x2U      // Non Controller CPU Write Access Violation Flag
-#define MEMCFG_NMAVFLG_CPUFETCH     0x4U      // Non Controller CPU Fetch Access Violation Flag
-#define MEMCFG_NMAVFLG_DMAWRITE     0x8U      // Non Controller DMA Write Access Violation Flag
-#define MEMCFG_NMAVFLG_CLA1READ     0x10U     // Non Controller CLA1 Read Access Violation Flag
-#define MEMCFG_NMAVFLG_CLA1WRITE    0x20U     // Non Controller CLA1 Write Access Violation Flag
-#define MEMCFG_NMAVFLG_CLA1FETCH    0x40U     // Non Controller CLA1 Fetch Access Violation Flag
-#define MEMCFG_NMAVFLG_DMAREAD      0x400U    // Non Controller DMA Read Access Violation Flag
-#define MEMCFG_NMAVFLG_TINIEREAD    0x800U    // Non Controller TINIE Read Access Violation Flag
-#define MEMCFG_NMAVFLG_TINIEWRITE   0x1000U   // Non Controller TINIE Write Violation Flag
+#define MEMCFG_NMAVFLG_CPUREAD     0x1U      // Non Controller CPU Read Access Violation Flag
+#define MEMCFG_NMAVFLG_CPUWRITE    0x2U      // Non Controller CPU Write Access Violation Flag
+#define MEMCFG_NMAVFLG_CPUFETCH    0x4U      // Non Controller CPU Fetch Access Violation Flag
+#define MEMCFG_NMAVFLG_DMAWRITE    0x8U      // Non Controller DMA Write Access Violation Flag
+#define MEMCFG_NMAVFLG_CLA1READ    0x10U     // Non Controller CLA1 Read Access Violation Flag
+#define MEMCFG_NMAVFLG_CLA1WRITE   0x20U     // Non Controller CLA1 Write Access Violation Flag
+#define MEMCFG_NMAVFLG_CLA1FETCH   0x40U     // Non Controller CLA1 Fetch Access Violation Flag
+#define MEMCFG_NMAVFLG_DMAREAD     0x400U    // Non Controller DMA Read Access Violation Flag
+#define MEMCFG_NMAVFLG_NPUREAD     0x800U    // Non Controller NPU Read Access Violation Flag
+#define MEMCFG_NMAVFLG_NPUWRITE    0x1000U   // Non Controller NPU Write Violation Flag
 
 //*************************************************************************************************
 //
 // The following are defines for the bit fields in the NMAVSET register
 //
 //*************************************************************************************************
-#define MEMCFG_NMAVSET_CPUREAD      0x1U      // Non Controller CPU Read Access Violation Flag Set
-#define MEMCFG_NMAVSET_CPUWRITE     0x2U      // Non Controller CPU Write Access Violation Flag Set
-#define MEMCFG_NMAVSET_CPUFETCH     0x4U      // Non Controller CPU Fetch Access Violation Flag Set
-#define MEMCFG_NMAVSET_DMAWRITE     0x8U      // Non Controller DMA Write Access Violation Flag Set
-#define MEMCFG_NMAVSET_CLA1READ     0x10U     // Non Controller CLA1 Read Access Violation Flag Set
-#define MEMCFG_NMAVSET_CLA1WRITE    0x20U     // Non Controller CLA1 Write Access Violation Flag
-                                              // Set
-#define MEMCFG_NMAVSET_CLA1FETCH    0x40U     // Non Controller CLA1 Fetch Access Violation Flag
-                                              // Set
-#define MEMCFG_NMAVSET_DMAREAD      0x400U    // Non Controller DMA Read Access Violation Flag Set
-#define MEMCFG_NMAVSET_TINIEREAD    0x800U    // Non Controller TINIE Read Access Violation Flag
-                                              // Set
-#define MEMCFG_NMAVSET_TINIEWRITE   0x1000U   // Non Controller TINIE Write Access Violation Flag
-                                              // Set
+#define MEMCFG_NMAVSET_CPUREAD     0x1U      // Non Controller CPU Read Access Violation Flag Set
+#define MEMCFG_NMAVSET_CPUWRITE    0x2U      // Non Controller CPU Write Access Violation Flag Set
+#define MEMCFG_NMAVSET_CPUFETCH    0x4U      // Non Controller CPU Fetch Access Violation Flag Set
+#define MEMCFG_NMAVSET_DMAWRITE    0x8U      // Non Controller DMA Write Access Violation Flag Set
+#define MEMCFG_NMAVSET_CLA1READ    0x10U     // Non Controller CLA1 Read Access Violation Flag Set
+#define MEMCFG_NMAVSET_CLA1WRITE   0x20U     // Non Controller CLA1 Write Access Violation Flag Set
+#define MEMCFG_NMAVSET_CLA1FETCH   0x40U     // Non Controller CLA1 Fetch Access Violation Flag Set
+#define MEMCFG_NMAVSET_DMAREAD     0x400U    // Non Controller DMA Read Access Violation Flag Set
+#define MEMCFG_NMAVSET_NPUREAD     0x800U    // Non Controller NPU Read Access Violation Flag Set
+#define MEMCFG_NMAVSET_NPUWRITE    0x1000U   // Non Controller NPU Write Access Violation Flag Set
 
 //*************************************************************************************************
 //
 // The following are defines for the bit fields in the NMAVCLR register
 //
 //*************************************************************************************************
-#define MEMCFG_NMAVCLR_CPUREAD      0x1U      // Non Controller CPU Read Access Violation Flag
-                                              // Clear
-#define MEMCFG_NMAVCLR_CPUWRITE     0x2U      // Non Controller CPU Write Access Violation Flag
-                                              // Clear
-#define MEMCFG_NMAVCLR_CPUFETCH     0x4U      // Non Controller CPU Fetch Access Violation Flag
-                                              // Clear
-#define MEMCFG_NMAVCLR_DMAWRITE     0x8U      // Non Controller DMA Write Access Violation Flag
-                                              // Clear
-#define MEMCFG_NMAVCLR_CLA1READ     0x10U     // Non Controller CLA1 Read Access Violation Flag
-                                              // Clear
-#define MEMCFG_NMAVCLR_CLA1WRITE    0x20U     // Non Controller CLA1 Write Access Violation Flag
-                                              // Clear
-#define MEMCFG_NMAVCLR_CLA1FETCH    0x40U     // Non Controller CLA1 Fetch Access Violation Flag
-                                              // Clear
-#define MEMCFG_NMAVCLR_DMAREAD      0x400U    // Non Controller DMA Read Access Violation Flag
-                                              // Clear
-#define MEMCFG_NMAVCLR_TINIEREAD    0x800U    // Non Controller TINIE Read Access Violation Flag
-                                              // Clear
-#define MEMCFG_NMAVCLR_TINIEWRITE   0x1000U   // Non Controller TINIE Write Access Violation Flag
-                                              // Clear
+#define MEMCFG_NMAVCLR_CPUREAD     0x1U      // Non Controller CPU Read Access Violation Flag Clear
+#define MEMCFG_NMAVCLR_CPUWRITE    0x2U      // Non Controller CPU Write Access Violation Flag
+                                             // Clear
+#define MEMCFG_NMAVCLR_CPUFETCH    0x4U      // Non Controller CPU Fetch Access Violation Flag
+                                             // Clear
+#define MEMCFG_NMAVCLR_DMAWRITE    0x8U      // Non Controller DMA Write Access Violation Flag
+                                             // Clear
+#define MEMCFG_NMAVCLR_CLA1READ    0x10U     // Non Controller CLA1 Read Access Violation Flag
+                                             // Clear
+#define MEMCFG_NMAVCLR_CLA1WRITE   0x20U     // Non Controller CLA1 Write Access Violation Flag
+                                             // Clear
+#define MEMCFG_NMAVCLR_CLA1FETCH   0x40U     // Non Controller CLA1 Fetch Access Violation Flag
+                                             // Clear
+#define MEMCFG_NMAVCLR_DMAREAD     0x400U    // Non Controller DMA Read Access Violation Flag Clear
+#define MEMCFG_NMAVCLR_NPUREAD     0x800U    // Non Controller NPU Read Access Violation Flag Clear
+#define MEMCFG_NMAVCLR_NPUWRITE    0x1000U   // Non Controller NPU Write Access Violation Flag
+                                             // Clear
 
 //*************************************************************************************************
 //
 // The following are defines for the bit fields in the NMAVINTEN register
 //
 //*************************************************************************************************
-#define MEMCFG_NMAVINTEN_CPUREAD      0x1U      // Non Controller CPU Read Access Violation
-                                                // Interrupt Enable
-#define MEMCFG_NMAVINTEN_CPUWRITE     0x2U      // Non Controller CPU Write Access Violation
-                                                // Interrupt Enable
-#define MEMCFG_NMAVINTEN_CPUFETCH     0x4U      // Non Controller CPU Fetch Access Violation
-                                                // Interrupt Enable
-#define MEMCFG_NMAVINTEN_DMAWRITE     0x8U      // Non Controller DMA Write Access Violation
-                                                // Interrupt Enable
-#define MEMCFG_NMAVINTEN_CLA1READ     0x10U     // Non Controller CLA1 Read Access Violation
-                                                // Interrupt Enable
-#define MEMCFG_NMAVINTEN_CLA1WRITE    0x20U     // Non Controller CLA1 Write Access Violation
-                                                // Interrupt Enable
-#define MEMCFG_NMAVINTEN_CLA1FETCH    0x40U     // Non Controller CLA1 Fetch Access Violation
-                                                // Interrupt Enable
-#define MEMCFG_NMAVINTEN_DMAREAD      0x400U    // Non Controller DMA Read Access Violation
-                                                // Interrupt Enable
-#define MEMCFG_NMAVINTEN_TINIEREAD    0x800U    // Non Controller TINIE Read Access Violation
-                                                // Interrupt Enable
-#define MEMCFG_NMAVINTEN_TINIEWRITE   0x1000U   // Non Controller TINIE Write Violation Interrupt
-                                                // Enable
+#define MEMCFG_NMAVINTEN_CPUREAD     0x1U      // Non Controller CPU Read Access Violation
+                                               // Interrupt Enable
+#define MEMCFG_NMAVINTEN_CPUWRITE    0x2U      // Non Controller CPU Write Access Violation
+                                               // Interrupt Enable
+#define MEMCFG_NMAVINTEN_CPUFETCH    0x4U      // Non Controller CPU Fetch Access Violation
+                                               // Interrupt Enable
+#define MEMCFG_NMAVINTEN_DMAWRITE    0x8U      // Non Controller DMA Write Access Violation
+                                               // Interrupt Enable
+#define MEMCFG_NMAVINTEN_CLA1READ    0x10U     // Non Controller CLA1 Read Access Violation
+                                               // Interrupt Enable
+#define MEMCFG_NMAVINTEN_CLA1WRITE   0x20U     // Non Controller CLA1 Write Access Violation
+                                               // Interrupt Enable
+#define MEMCFG_NMAVINTEN_CLA1FETCH   0x40U     // Non Controller CLA1 Fetch Access Violation
+                                               // Interrupt Enable
+#define MEMCFG_NMAVINTEN_DMAREAD     0x400U    // Non Controller DMA Read Access Violation
+                                               // Interrupt Enable
+#define MEMCFG_NMAVINTEN_NPUREAD     0x800U    // Non Controller NPU Read Access Violation
+                                               // Interrupt Enable
+#define MEMCFG_NMAVINTEN_NPUWRITE    0x1000U   // Non Controller NPU Write Violation Interrupt
+                                               // Enable
 
 //*************************************************************************************************
 //
@@ -732,30 +727,30 @@
 // The following are defines for the bit fields in the UCERRFLG register
 //
 //*************************************************************************************************
-#define MEMCFG_UCERRFLG_CPURDERR     0x1U    // CPU Uncorrectable Read Error Flag
-#define MEMCFG_UCERRFLG_DMARDERR     0x2U    // DMA Uncorrectable Read Error Flag
-#define MEMCFG_UCERRFLG_CLA1RDERR    0x4U    // CLA1 Uncorrectable Read Error Flag
-#define MEMCFG_UCERRFLG_TINIERDERR   0x20U   // TINIE Uncorrectable Read Error Flag
+#define MEMCFG_UCERRFLG_CPURDERR    0x1U    // CPU Uncorrectable Read Error Flag
+#define MEMCFG_UCERRFLG_DMARDERR    0x2U    // DMA Uncorrectable Read Error Flag
+#define MEMCFG_UCERRFLG_CLA1RDERR   0x4U    // CLA1 Uncorrectable Read Error Flag
+#define MEMCFG_UCERRFLG_NPURDERR    0x20U   // NPU Uncorrectable Read Error Flag
 
 //*************************************************************************************************
 //
 // The following are defines for the bit fields in the UCERRSET register
 //
 //*************************************************************************************************
-#define MEMCFG_UCERRSET_CPURDERR     0x1U    // CPU Uncorrectable Read Error Flag Set
-#define MEMCFG_UCERRSET_DMARDERR     0x2U    // DMA Uncorrectable Read Error Flag Set
-#define MEMCFG_UCERRSET_CLA1RDERR    0x4U    // CLA1 Uncorrectable Read Error Flag Set
-#define MEMCFG_UCERRSET_TINIERDERR   0x20U   // TINIE Uncorrectable Read Error Flag Set
+#define MEMCFG_UCERRSET_CPURDERR    0x1U    // CPU Uncorrectable Read Error Flag Set
+#define MEMCFG_UCERRSET_DMARDERR    0x2U    // DMA Uncorrectable Read Error Flag Set
+#define MEMCFG_UCERRSET_CLA1RDERR   0x4U    // CLA1 Uncorrectable Read Error Flag Set
+#define MEMCFG_UCERRSET_NPURDERR    0x20U   // NPU Uncorrectable Read Error Flag Set
 
 //*************************************************************************************************
 //
 // The following are defines for the bit fields in the UCERRCLR register
 //
 //*************************************************************************************************
-#define MEMCFG_UCERRCLR_CPURDERR     0x1U    // CPU Uncorrectable Read Error Flag Clear
-#define MEMCFG_UCERRCLR_DMARDERR     0x2U    // DMA Uncorrectable Read Error Flag Clear
-#define MEMCFG_UCERRCLR_CLA1RDERR    0x4U    // CLA1 Uncorrectable Read Error Flag Clear
-#define MEMCFG_UCERRCLR_TINIERDERR   0x20U   // TINIE Uncorrectable Read Error Flag Clear
+#define MEMCFG_UCERRCLR_CPURDERR    0x1U    // CPU Uncorrectable Read Error Flag Clear
+#define MEMCFG_UCERRCLR_DMARDERR    0x2U    // DMA Uncorrectable Read Error Flag Clear
+#define MEMCFG_UCERRCLR_CLA1RDERR   0x4U    // CLA1 Uncorrectable Read Error Flag Clear
+#define MEMCFG_UCERRCLR_NPURDERR    0x20U   // NPU Uncorrectable Read Error Flag Clear
 
 //*************************************************************************************************
 //

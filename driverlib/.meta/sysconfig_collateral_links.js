@@ -19,7 +19,7 @@ var collateral = {
                 },
                 {
                     name:"C2000 Academy - ADC",
-                    url:"https://dev.ti.com/tirex/explore/node?node=A__AV1jxDLXhC2RSKVQ66OxTA__c2000Academy__jEBbtmC__LATEST",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_analog_subsystem_c2000_analog_to_digital_converter&amp;packageId=C2000-ACADEMY",
                     devices:[
                         "F280013x",
                         "F280015x",
@@ -30,8 +30,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                 },
                 {
@@ -101,8 +101,8 @@ var collateral = {
                         "F28004x",
                         "F2837x",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                     video:true,
                 },
@@ -160,8 +160,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                     appNote:true,
                 },
@@ -178,8 +178,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                     appNote:true,
                 },
@@ -200,8 +200,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                     appNote:true,
                 },
@@ -285,6 +285,22 @@ var collateral = {
     ],
     "BGCRC":[
         {
+            category_displayName: "Foundational Materials",
+            content:[
+                {
+                    name:"C2000 Academy - BGCRC",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_security_safety_c2000_bgcrc&amp;packageId=C2000-ACADEMY",
+                    devices:[
+                        "F28002x",
+                        "F28003x",
+                        "F28004x",
+                        "F2838x",
+                        "F28P65x",
+                    ],
+                },
+            ]
+        },
+        {
             category_displayName: "Getting Started Materials",
             content:[
                 {
@@ -295,13 +311,13 @@ var collateral = {
             ]
         },
     ],
-    "C28X":[
+    "BootROM":[
         {
             category_displayName: "Foundational Materials",
             content:[
                 {
-                    name:"C2000 Academy - C28x",
-                    url:"https://dev.ti.com/tirex/explore/node?node=A__AXquDxv5DJedfaJRiU5oFA__c2000Academy__jEBbtmC__LATEST&amp;chapter=c28x-cpu",
+                    name:"C2000 Academy - BootROM",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_system_c2000_boot&amp;packageId=C2000-ACADEMY",
                     devices:[
                         "F280013x",
                         "F280015x",
@@ -312,16 +328,53 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
                     ],
+                },
+            ]
+        },
+    ],
+    "C28X":[
+        {
+            category_displayName: "Foundational Materials",
+            content:[
+                {
+                    name:"C2000 Academy - C28x",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_overview_c2000_device_overview&amp;packageId=C2000-ACADEMY",
+                    devices:[
+                        "F280013x",
+                        "F280015x",
+                        "F28002x",
+                        "F28003x",
+                        "F28004x",
+                        "F2807x",
+                        "F2837xD",
+                        "F2837xS",
+                        "F2838x",
+                        "F28P55x",
+                        "F28P65x",
+                    ],
+                },
+                {
+                    name:"C2000 C28x Migration from COFF to EABI",
+                    url:"https://software-dl.ti.com/ccs/esd/documents/C2000_c28x_migration_from_coff_to_eabi.html",
                 },
                 {
                     name:"C2000 C28x Optimization Guide",
                     url:"https://software-dl.ti.com/C2000/docs/optimization_guide/index.html",
                 },
                 {
+                    name:"C2000 Performance Tips and Tricks ",
+                    url:"http://software-dl.ti.com/ccs/esd/documents/c2000_c2000-performance-tips-and-tricks.html",
+                },
+                {
                     name:"C2000 Software Guide",
                     url:"https://software-dl.ti.com/C2000/docs/software_guide/index.html",
+                },
+                {
+                    name:"CGT Data Blocking C2000",
+                    url:"https://software-dl.ti.com/ccs/esd/documents/cgt_data-blocking-c2000.html",
                 },
                 {
                     name:"Enhancing the Computational Performance of the C2000\u2122 Microcontroller Family Application Report",
@@ -354,6 +407,7 @@ var collateral = {
                         "F2807x",
                         "F2837xD",
                         "F2837xS",
+                        "F28P55x",
                         "F28P65x",
                         "LEGACY",
                     ],
@@ -388,8 +442,8 @@ var collateral = {
                     url:"https://dev.ti.com/tirex/explore/node?node=AMXKlFPARdBiAwrbthDVyQ__gYkahfz__LATEST",
                 },
                 {
-                    name:"C2000Ware Libraries Overview",
-                    url:"https://software-dl.ti.com/C2000/docs/software_guide/c2000ware/libraries.html",
+                    name:"C28x Context Save and Restore",
+                    url:"https://software-dl.ti.com/C2000/docs/c28x_context_save_restore/html/index.html",
                 },
                 {
                     name:"CRC Engines in C2000 Devices Application Report",
@@ -407,6 +461,7 @@ var collateral = {
                         "F2807x",
                         "F2837xD",
                         "F2837xS",
+                        "F28P55x",
                         "F28P65x",
                     ],
                     appNote:true,
@@ -421,6 +476,48 @@ var collateral = {
                     url:"https://ti.com/lit/SPRAAN9",
                     appNote:true,
                 },
+                {
+                    name:"Texas Instruments F28002x Peripheral Driver Library",
+                    url:"https://software-dl.ti.com/C2000/docs/C2000_driverlib_api_guide/f28002x/html/index.html",
+                    devices:[
+                        "F28002x",
+                    ],
+                },
+                {
+                    name:"Texas Instruments F28004x Peripheral Driver Library",
+                    url:"https://software-dl.ti.com/C2000/docs/C2000_driverlib_api_guide/f28004x/html/index.html",
+                    devices:[
+                        "F28004x",
+                    ],
+                },
+                {
+                    name:"Texas Instruments F2807x Peripheral Driver Library",
+                    url:"https://software-dl.ti.com/C2000/docs/C2000_driverlib_api_guide/f2807x/html/index.html",
+                    devices:[
+                        "F2807x",
+                    ],
+                },
+                {
+                    name:"Texas Instruments F2837xD Peripheral Driver Library",
+                    url:"https://software-dl.ti.com/C2000/docs/C2000_driverlib_api_guide/f2837xd/html/index.html",
+                    devices:[
+                        "F2837xD",
+                    ],
+                },
+                {
+                    name:"Texas Instruments F2837xS Peripheral Driver Library",
+                    url:"https://software-dl.ti.com/C2000/docs/C2000_driverlib_api_guide/f2837xs/html/index.html",
+                    devices:[
+                        "F2837xS",
+                    ],
+                },
+                {
+                    name:"Texas Instruments F2838x Peripheral Driver Library",
+                    url:"https://software-dl.ti.com/C2000/docs/C2000_driverlib_api_guide/f2838x/html/index.html",
+                    devices:[
+                        "F2838x",
+                    ],
+                },
             ]
         },
         {
@@ -433,8 +530,8 @@ var collateral = {
                         "F28002x",
                         "F28003x",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                     appNote:true,
                 },
@@ -447,7 +544,7 @@ var collateral = {
             content:[
                 {
                     name:"C2000 Academy - CLA",
-                    url:"https://dev.ti.com/tirex/explore/node?node=A__AfelkqrMmb9oII8vUTEapg__c2000Academy__jEBbtmC__LATEST",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_advanced_topics_c2000_control_law_accelerator&amp;packageId=C2000-ACADEMY",
                     devices:[
                         "F280013x",
                         "F280015x",
@@ -458,8 +555,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                 },
                 {
@@ -536,7 +633,7 @@ var collateral = {
             content:[
                 {
                     name:"C2000 Academy - CLB ",
-                    url:"https://dev.ti.com/tirex/explore/node?node=A__ATVtOTSDyRg83yV8AKJQhQ__c2000Academy__jEBbtmC__LATEST",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_advanced_topics_c2000_configurable_logic_block&amp;packageId=C2000-ACADEMY",
                     devices:[
                         "F280013x",
                         "F280015x",
@@ -547,8 +644,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                 },
                 {
@@ -633,7 +730,7 @@ var collateral = {
             content:[
                 {
                     name:"C2000 Academy - CMPSS",
-                    url:"https://dev.ti.com/tirex/explore/node?node=A__ARObnwhEmPuoVc2EPF24VQ__c2000Academy__jEBbtmC__LATEST",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_analog_subsystem_c2000_comparator_subsystem&amp;packageId=C2000-ACADEMY",
                     devices:[
                         "F280013x",
                         "F280015x",
@@ -644,8 +741,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                 },
                 {
@@ -693,7 +790,7 @@ var collateral = {
             content:[
                 {
                     name:"C2000 Academy - DAC",
-                    url:"https://dev.ti.com/tirex/explore/node?node=A__AVuxkzTD0dOyMwiSbYl70w__c2000Academy__jEBbtmC__LATEST",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_analog_subsystem_c2000_digital_to_analog_converter&amp;packageId=C2000-ACADEMY",
                     devices:[
                         "F280013x",
                         "F280015x",
@@ -704,8 +801,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                 },
                 {
@@ -755,7 +852,7 @@ var collateral = {
                 },
                 {
                     name:"C2000 Academy - CAN",
-                    url:"https://dev.ti.com/tirex/explore/node?node=A__AScVBEPv4AeDgX5amhJymg__c2000Academy__jEBbtmC__LATEST&amp;chapter=control-area-network-can-",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_communications_c2000_can&amp;packageId=C2000-ACADEMY",
                     description:"Refer to the DCAN section",
                     devices:[
                         "F280015x",
@@ -766,8 +863,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                 },
                 {
@@ -793,8 +890,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                     video:true,
                 },
@@ -814,7 +911,6 @@ var collateral = {
                         "F2837xS",
                         "F2838x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                     appNote:true,
                 },
@@ -833,8 +929,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                     appNote:true,
                 },
@@ -842,6 +938,28 @@ var collateral = {
         },
     ],
     "DCSM":[
+        {
+            category_displayName: "Foundational Materials",
+            content:[
+                {
+                    name:"C2000 Academy - DCSM",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_security_safety_c2000_dcsm&amp;packageId=C2000-ACADEMY",
+                    devices:[
+                        "F280013x",
+                        "F280015x",
+                        "F28002x",
+                        "F28003x",
+                        "F28004x",
+                        "F2807x",
+                        "F2837xD",
+                        "F2837xS",
+                        "F2838x",
+                        "F28P55x",
+                        "F28P65x",
+                    ],
+                },
+            ]
+        },
         {
             category_displayName: "Getting Started Materials",
             content:[
@@ -867,8 +985,8 @@ var collateral = {
                         "F280013x",
                         "F280015x",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                     appNote:true,
                 },
@@ -886,6 +1004,28 @@ var collateral = {
                         "F2837xS",
                     ],
                     appNote:true,
+                },
+            ]
+        },
+    ],
+    "DMA":[
+        {
+            category_displayName: "Foundational Materials",
+            content:[
+                {
+                    name:"C2000 Academy - DMA",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_advanced_topics_c2000_direct_memory_access&amp;packageId=C2000-ACADEMY",
+                    devices:[
+                        "F28002x",
+                        "F28003x",
+                        "F28004x",
+                        "F2807x",
+                        "F2837xD",
+                        "F2837xS",
+                        "F2838x",
+                        "F28P55x",
+                        "F28P65x",
+                    ],
                 },
             ]
         },
@@ -922,8 +1062,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                     video:true,
                 },
@@ -965,7 +1105,7 @@ var collateral = {
             content:[
                 {
                     name:"C2000 Academy - ECAP",
-                    url:"https://dev.ti.com/tirex/explore/node?node=A__AQ4L80G6PD7Ahhrz0HhBRg__c2000Academy__jEBbtmC__LATEST",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_control_peripherals_c2000_enhanced_capture_module&amp;packageId=C2000-ACADEMY",
                     devices:[
                         "F280013x",
                         "F280015x",
@@ -976,8 +1116,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                 },
             ]
@@ -999,7 +1139,7 @@ var collateral = {
             content:[
                 {
                     name:"C2000 Academy - EtherCAT",
-                    url:"https://dev.ti.com/tirex/explore/node?node=A__AdndLb4DtsRbXEhFBcmy8g__c2000Academy__jEBbtmC__LATEST&amp;chapter=ethernet-for-control-automation-technology-ethercat-",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_communications_c2000_ethercat&amp;packageId=C2000-ACADEMY",
                     devices:[
                         "F28002x",
                         "F28003x",
@@ -1009,7 +1149,6 @@ var collateral = {
                         "F2837xS",
                         "F2838x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                 },
                 {
@@ -1018,7 +1157,6 @@ var collateral = {
                     devices:[
                         "F2838x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                 },
                 {
@@ -1027,7 +1165,6 @@ var collateral = {
                     devices:[
                         "F2838x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                     video:true,
                 },
@@ -1042,7 +1179,6 @@ var collateral = {
                     devices:[
                         "F2838x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                 },
                 {
@@ -1051,7 +1187,6 @@ var collateral = {
                     devices:[
                         "F2838x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                 },
             ]
@@ -1069,7 +1204,6 @@ var collateral = {
                     devices:[
                         "F2838x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                     appNote:true,
                 },
@@ -1079,7 +1213,6 @@ var collateral = {
                     devices:[
                         "F2838x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                 },
                 {
@@ -1087,26 +1220,25 @@ var collateral = {
                     url:"https://download.beckhoff.com/download/Document/io/ethercat-development-products/ethercat_esc_datasheet_sec1_technology_2i3.pdf",
                     devices:[
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                 },
                 {
                     name:"Hardware Data Sheet Section II - Register Description",
-                    url:"https://download.beckhoff.com/download/Document/io/ethercat-development-products/ethercat_esc_datasheet_sec2_registers_2i9.pdf",
+                    url:"https://download.beckhoff.com/download/Document/io/ethercat-development-products/ethercat_esc_datasheet_sec2_registers_3i0.pdf",
                     devices:[
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                 },
                 {
                     name:"PHY Selection Guide",
-                    url:"https://download.beckhoff.com/download/Document/io/ethercat-development-products/an_phy_selection_guidev2.7.pdf",
+                    url:"https://download.beckhoff.com/download/document/io/ethercat-development-products/an_phy_selection_guidev3.0.pdf",
                     devices:[
                         "F2838x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                 },
             ]
@@ -1118,7 +1250,7 @@ var collateral = {
             content:[
                 {
                     name:"C2000 Academy - EMIF",
-                    url:"https://dev.ti.com/tirex/explore/node?node=A__AcII1nKlVjsJYgnhjir6GQ__c2000Academy__jEBbtmC__LATEST&amp;chapter=external-memory-interface-emif-",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_system_c2000_emif&amp;packageId=C2000-ACADEMY",
                     devices:[
                         "F28002x",
                         "F28003x",
@@ -1127,8 +1259,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                 },
             ]
@@ -1145,7 +1277,6 @@ var collateral = {
                         "F2837xS",
                         "F2838x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                     appNote:true,
                 },
@@ -1175,11 +1306,12 @@ var collateral = {
             content:[
                 {
                     name:"C2000 Academy - EPG",
-                    url:"https://dev.ti.com/tirex/explore/node?node=A__AerqwgDEtMa0zXNa8YZfgg__c2000Academy__jEBbtmC__LATEST",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_debug_systems_c2000_epg&amp;packageId=C2000-ACADEMY",
                     devices:[
                         "F280013x",
                         "F280015x",
                         "F28003x",
+                        "F28P55x",
                         "F28P65x",
                     ],
                 },
@@ -1207,7 +1339,7 @@ var collateral = {
             content:[
                 {
                     name:"C2000 Academy - EPWM",
-                    url:"https://dev.ti.com/tirex/explore/node?node=A__AUB.pbp.dvJfqKupH1pSCw__c2000Academy__jEBbtmC__LATEST",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_control_peripherals_c2000_enhanced_pulse_width_modulation&amp;packageId=C2000-ACADEMY",
                     devices:[
                         "F280013x",
                         "F280015x",
@@ -1218,8 +1350,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                 },
                 {
@@ -1233,6 +1365,14 @@ var collateral = {
             category_displayName: "Getting Started Materials",
             content:[
                 {
+                    name:"C2000 Enhanced Pulse Width Modulator (ePWM): Type-5 Feature Set",
+                    url:"https://www.ti.com/video/6337559794112",
+                    devices:[
+                        "F28P65x",
+                    ],
+                    video:true,
+                },
+                {
                     name:"C2000 ePWM Developer\u0027s Guide Application Report",
                     url:"https://www.ti.com/lit/sprad12",
                     devices:[
@@ -1244,8 +1384,8 @@ var collateral = {
                         "F2807x",
                         "F2837x",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                     appNote:true,
                 },
@@ -1260,8 +1400,8 @@ var collateral = {
                         "F28004x",
                         "F2837x",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                     video:true,
                 },
@@ -1307,6 +1447,7 @@ var collateral = {
                         "F28004x",
                         "F2837x",
                         "F2838x",
+                        "F28P55x",
                     ],
                     appNote:true,
                 },
@@ -1321,8 +1462,8 @@ var collateral = {
                         "F28004x",
                         "F2837x",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                     appNote:true,
                 },
@@ -1335,7 +1476,7 @@ var collateral = {
             content:[
                 {
                     name:"C2000 Academy - EQEP",
-                    url:"https://dev.ti.com/tirex/explore/node?node=A__ASmANHx6kMLvLoEkP5GDSg__c2000Academy__jEBbtmC__LATEST",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_control_peripherals_c2000_enhanced_quadrature_encoder_pulse&amp;packageId=C2000-ACADEMY",
                     devices:[
                         "F280013x",
                         "F280015x",
@@ -1346,8 +1487,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                 },
                 {
@@ -1389,7 +1530,7 @@ var collateral = {
             content:[
                 {
                     name:"C2000 Academy - ERAD",
-                    url:"https://dev.ti.com/tirex/explore/node?node=A__AfQVvZMwtDbhh6F3jtalXw__c2000Academy__jEBbtmC__LATEST",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_debug_systems_c2000_erad&amp;packageId=C2000-ACADEMY",
                     devices:[
                         "F28002x",
                         "F28003x",
@@ -1399,7 +1540,6 @@ var collateral = {
                         "F2837xS",
                         "F2838x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                 },
                 {
@@ -1410,8 +1550,8 @@ var collateral = {
                         "F28003x",
                         "F28004x",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                     video:true,
                 },
@@ -1433,8 +1573,8 @@ var collateral = {
                         "F28003x",
                         "F28004x",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                     appNote:true,
                 },
@@ -1447,7 +1587,7 @@ var collateral = {
             content:[
                 {
                     name:"C2000 Academy - FLASH",
-                    url:"https://dev.ti.com/tirex/explore/node?node=A__AcII1nKlVjsJYgnhjir6GQ__c2000Academy__jEBbtmC__LATEST&amp;chapter=flash-configuration-and-memory-performance",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_system_c2000_flash&amp;packageId=C2000-ACADEMY",
                     devices:[
                         "F280013x",
                         "F280015x",
@@ -1458,8 +1598,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                 },
                 {
@@ -1500,8 +1640,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                     appNote:true,
                 },
@@ -1529,6 +1669,7 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
                         "LEGACY",
                     ],
@@ -1585,7 +1726,7 @@ var collateral = {
             content:[
                 {
                     name:"C2000 Academy - FSI",
-                    url:"https://dev.ti.com/tirex/explore/node?node=A__AYD4c9a0jJVWHgSP9toCLA__c2000Academy__jEBbtmC__LATEST&amp;chapter=fast-serial-interface-fsi-",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_communications_c2000_fsi&amp;packageId=C2000-ACADEMY",
                     devices:[
                         "F28002x",
                         "F28003x",
@@ -1594,8 +1735,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                 },
             ]
@@ -1635,13 +1776,13 @@ var collateral = {
             ]
         },
     ],
-    "GPIO":[
+    "Functional Safety":[
         {
             category_displayName: "Foundational Materials",
             content:[
                 {
-                    name:"C2000 Academy - GPIO",
-                    url:"https://dev.ti.com/tirex/explore/node?node=A__AZUMo8wkJHiBmvGm9cQBew__c2000Academy__jEBbtmC__LATEST&amp;chapter=general-purpose-digital-i-o-",
+                    name:"C2000 Academy - Functional Safety",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_security_safety_c2000_fusa&amp;packageId=C2000-ACADEMY",
                     devices:[
                         "F280013x",
                         "F280015x",
@@ -1652,8 +1793,32 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
+                    ],
+                },
+            ]
+        },
+    ],
+    "GPIO":[
+        {
+            category_displayName: "Foundational Materials",
+            content:[
+                {
+                    name:"C2000 Academy - GPIO",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_system_c2000_gpio_xbar&amp;packageId=C2000-ACADEMY",
+                    devices:[
+                        "F280013x",
+                        "F280015x",
+                        "F28002x",
+                        "F28003x",
+                        "F28004x",
+                        "F2807x",
+                        "F2837xD",
+                        "F2837xS",
+                        "F2838x",
+                        "F28P55x",
+                        "F28P65x",
                     ],
                 },
             ]
@@ -1695,7 +1860,7 @@ var collateral = {
             content:[
                 {
                     name:"C2000 Academy - Control Peripherals",
-                    url:"https://dev.ti.com/tirex/explore/node?node=AaDxKBG1xaa4TTiAWSE3PQ__jEBbtmC__LATEST&amp;chapter=high-resolution-capture-hrcap-",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_control_peripherals_c2000_enhanced_capture_module&amp;packageId=C2000-ACADEMY#hrcap",
                     devices:[
                         "F28002x",
                         "F28003x",
@@ -1704,8 +1869,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                 },
             ]
@@ -1727,7 +1892,7 @@ var collateral = {
             content:[
                 {
                     name:"C2000 Academy - I2C",
-                    url:"https://dev.ti.com/tirex/explore/node?node=A__AZkmKuievlbn0y8mLujhKg__c2000Academy__jEBbtmC__LATEST&amp;chapter=inter-integrated-circuit-i2c-",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_communications_c2000_i2c&amp;packageId=C2000-ACADEMY",
                     devices:[
                         "F280013x",
                         "F280015x",
@@ -1738,8 +1903,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                 },
                 {
@@ -1810,30 +1975,72 @@ var collateral = {
             ]
         },
     ],
+    "IPC":[
+        {
+            category_displayName: "Foundational Materials",
+            content:[
+                {
+                    name:"C2000 Academy - IPC",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_advanced_topics_c2000_interprocessor_communications&amp;packageId=C2000-ACADEMY",
+                    devices:[
+                        "F2837xD",
+                        "F2838x",
+                        "F28P65x",
+                    ],
+                },
+            ]
+        },
+    ],
+    "Interrupts":[
+        {
+            category_displayName: "Foundational Materials",
+            content:[
+                {
+                    name:"C2000 Academy - Interrupts",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_system_c2000_interrupt&amp;packageId=C2000-ACADEMY",
+                    devices:[
+                        "F280013x",
+                        "F280015x",
+                        "F28002x",
+                        "F28003x",
+                        "F28004x",
+                        "F2807x",
+                        "F2837xD",
+                        "F2837xS",
+                        "F2838x",
+                        "F28P55x",
+                        "F28P65x",
+                    ],
+                },
+            ]
+        },
+    ],
     "LIN":[
         {
             category_displayName: "Foundational Materials",
             content:[
                 {
                     name:"C2000 Academy - LIN",
-                    url:"https://dev.ti.com/tirex/explore/node?node=A__AScVBEPv4AeDgX5amhJymg__c2000Academy__jEBbtmC__LATEST&amp;chapter=local-interconnect-network-lin-",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_communications_c2000_lin&amp;packageId=C2000-ACADEMY",
                     devices:[
                         "F280015x",
                         "F28002x",
                         "F28003x",
                         "F28004x",
+                        "F28P55x",
                         "F28P65x",
                         "LEGACY",
                     ],
                 },
                 {
                     name:"LIN Protocol and Physical Layer Requirements Application Report",
-                    url:"https://www.ti.com/lit/an/slla383a/slla383a.pdf",
+                    url:"https://www.ti.com/lit/slla383",
                     devices:[
                         "F280015x",
                         "F28002x",
                         "F28003x",
                         "F28004x",
+                        "F28P55x",
                         "F28P65x",
                         "LEGACY",
                     ],
@@ -1847,6 +2054,7 @@ var collateral = {
                         "F28002x",
                         "F28003x",
                         "F28004x",
+                        "F28P55x",
                         "F28P65x",
                         "LEGACY",
                     ],
@@ -1861,7 +2069,7 @@ var collateral = {
             content:[
                 {
                     name:"C2000 Academy - MCAN",
-                    url:"https://dev.ti.com/tirex/explore/node?node=A__AScVBEPv4AeDgX5amhJymg__c2000Academy__jEBbtmC__LATEST&amp;chapter=can-flexible-data-rate-can-fd-mcan",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_communications_c2000_mcan&amp;packageId=C2000-ACADEMY",
                     devices:[
                         "F280015x",
                         "F28002x",
@@ -1871,8 +2079,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                 },
                 {
@@ -1893,8 +2101,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                     video:true,
                 },
@@ -1910,8 +2118,8 @@ var collateral = {
                         "F280015x",
                         "F28003x",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                     appNote:true,
                 },
@@ -1924,7 +2132,7 @@ var collateral = {
             content:[
                 {
                     name:"C2000 Academy - McBSP",
-                    url:"https://dev.ti.com/tirex/explore/node?node=A__AZkmKuievlbn0y8mLujhKg__c2000Academy__jEBbtmC__LATEST&amp;chapter=multichannel-buffered-serial-port-mcbsp-",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_communications_c2000_mcbsp&amp;packageId=C2000-ACADEMY",
                     devices:[
                         "F28002x",
                         "F28003x",
@@ -1934,7 +2142,6 @@ var collateral = {
                         "F2837xS",
                         "F2838x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                 },
                 {
@@ -1964,6 +2171,30 @@ var collateral = {
             ]
         },
     ],
+    "Memory":[
+        {
+            category_displayName: "Foundational Materials",
+            content:[
+                {
+                    name:"C2000 Academy - Memory Controller",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_system_c2000_memory&amp;packageId=C2000-ACADEMY",
+                    devices:[
+                        "F280013x",
+                        "F280015x",
+                        "F28002x",
+                        "F28003x",
+                        "F28004x",
+                        "F2807x",
+                        "F2837xD",
+                        "F2837xS",
+                        "F2838x",
+                        "F28P55x",
+                        "F28P65x",
+                    ],
+                },
+            ]
+        },
+    ],
     "PGA":[
         {
             category_displayName: "Foundational Materials",
@@ -1973,14 +2204,15 @@ var collateral = {
                     url:"https://www.ti.com/lit/eb/slyy209/slyy209.pdf",
                     devices:[
                         "F28004x",
-                        "LEGACY",
+                        "F28P55x",
                     ],
                 },
                 {
                     name:"C2000 Academy - PGA",
-                    url:"https://dev.ti.com/tirex/explore/node?node=A__AVcsh9uaFICrQ4xo-42fKw__c2000Academy__jEBbtmC__LATEST",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_analog_subsystem_c2000_programmable_gain_amplifier&amp;packageId=C2000-ACADEMY",
                     devices:[
                         "F28004x",
+                        "F28P55x",
                         "LEGACY",
                     ],
                 },
@@ -1991,19 +2223,19 @@ var collateral = {
             content:[
                 {
                     name:"Inverting op amp with non-inverting positive reference voltage circuit Application Report",
-                    url:"https://www.ti.com/lit/an/sboa264a/sboa264a.pdf",
+                    url:"https://www.ti.com/lit/sboa264",
                     devices:[
                         "F28004x",
-                        "LEGACY",
+                        "F28P55x",
                     ],
                     appNote:true,
                 },
                 {
                     name:"Non-inverting op amp with inverting positive reference voltage circuit Application Report",
-                    url:"https://www.ti.com/lit/an/sboa262a/sboa262a.pdf",
+                    url:"https://www.ti.com/lit/sboa262",
                     devices:[
                         "F28004x",
-                        "LEGACY",
+                        "F28P55x",
                     ],
                     appNote:true,
                 },
@@ -2014,19 +2246,19 @@ var collateral = {
             content:[
                 {
                     name:"AN-20 An Applications Guide for Op Amps Application Report",
-                    url:"https://www.ti.com/lit/an/snoa621c/snoa621c.pdf",
+                    url:"https://www.ti.com/lit/snoa621",
                     devices:[
                         "F28004x",
-                        "LEGACY",
+                        "F28P55x",
                     ],
                     appNote:true,
                 },
                 {
                     name:"Using An Op Amp for High-Side Current Sensing Application Report",
-                    url:"https://www.ti.com/lit/an/sboa347a/sboa347a.pdf",
+                    url:"https://www.ti.com/lit/sboa347",
                     devices:[
                         "F28004x",
-                        "LEGACY",
+                        "F28P55x",
                     ],
                     appNote:true,
                 },
@@ -2039,7 +2271,7 @@ var collateral = {
             content:[
                 {
                     name:"C2000 Academy - PMBUS",
-                    url:"https://dev.ti.com/tirex/explore/node?node=A__AdndLb4DtsRbXEhFBcmy8g__c2000Academy__jEBbtmC__LATEST&amp;chapter=power-management-bus-pmbus-",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_communications_c2000_pmbus&amp;packageId=C2000-ACADEMY",
                     devices:[
                         "F280015x",
                         "F28002x",
@@ -2049,8 +2281,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                 },
                 {
@@ -2095,6 +2327,23 @@ var collateral = {
                     url:"https://www.ti.com/video/3871889296001",
                     video:true,
                 },
+                {
+                    name:"C2000 Academy - BootROM",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_system_c2000_boot&amp;packageId=C2000-ACADEMY",
+                    devices:[
+                        "F280013x",
+                        "F280015x",
+                        "F28002x",
+                        "F28003x",
+                        "F28004x",
+                        "F2807x",
+                        "F2837xD",
+                        "F2837xS",
+                        "F2838x",
+                        "F28P55x",
+                        "F28P65x",
+                    ],
+                },
             ]
         },
         {
@@ -2107,8 +2356,8 @@ var collateral = {
                         "F280013x",
                         "F280015x",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                     appNote:true,
                 },
@@ -2149,7 +2398,7 @@ var collateral = {
             content:[
                 {
                     name:"C2000 Academy - SCI",
-                    url:"https://dev.ti.com/tirex/explore/node?node=A__AYD4c9a0jJVWHgSP9toCLA__c2000Academy__jEBbtmC__LATEST&amp;chapter=serial-communications-interface-sci-",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_communications_c2000_sci&amp;packageId=C2000-ACADEMY",
                     devices:[
                         "F280013x",
                         "F280015x",
@@ -2160,8 +2409,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                 },
                 {
@@ -2192,7 +2441,7 @@ var collateral = {
             content:[
                 {
                     name:"C2000 Academy - SDFM",
-                    url:"https://dev.ti.com/tirex/explore/node?node=A__AQOmPYBCa9Xxg1wGkp-1jQ__c2000Academy__jEBbtmC__LATEST",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_control_peripherals_c2000_sigma_delta_filter&amp;packageId=C2000-ACADEMY",
                     devices:[
                         "F28003x",
                         "F28004x",
@@ -2256,6 +2505,20 @@ var collateral = {
                     ],
                 },
                 {
+                    name:"Clock Edge Delay Compensation With Isolated Modulators Digital Interface to MCUs Application Report",
+                    url:"https://www.ti.com/lit/sbaa607",
+                    devices:[
+                        "F28003x",
+                        "F28004x",
+                        "F2807x",
+                        "F2837xD",
+                        "F2837xS",
+                        "F2838x",
+                        "F28P65x",
+                    ],
+                    appNote:true,
+                },
+                {
                     name:"Diagnosing Delta-Sigma Modulator Bitstream Using C2000\u2122 Configurable Logic Block Application Report",
                     url:"https://www.ti.com/lit/SPRAD53",
                     appNote:true,
@@ -2303,13 +2566,99 @@ var collateral = {
             ]
         },
     ],
+    "SOFTWARE":[
+        {
+            category_displayName: "Foundational Materials",
+            content:[
+                {
+                    name:"C2000 C28x Migration from COFF to EABI",
+                    url:"https://software-dl.ti.com/ccs/esd/documents/C2000_c28x_migration_from_coff_to_eabi.html",
+                },
+                {
+                    name:"C2000 C28x Optimization Guide",
+                    url:"https://software-dl.ti.com/C2000/docs/optimization_guide/index.html",
+                },
+                {
+                    name:"C2000 Performance Tips and Tricks ",
+                    url:"http://software-dl.ti.com/ccs/esd/documents/c2000_c2000-performance-tips-and-tricks.html",
+                },
+                {
+                    name:"C2000 Software Guide",
+                    url:"https://software-dl.ti.com/C2000/docs/software_guide/index.html",
+                },
+                {
+                    name:"CGT Data Blocking C2000",
+                    url:"https://software-dl.ti.com/ccs/esd/documents/cgt_data-blocking-c2000.html",
+                },
+            ]
+        },
+        {
+            category_displayName: "Getting Started Materials",
+            content:[
+                {
+                    name:"C2000 Multicore Development User Guide",
+                    url:"https://software-dl.ti.com/C2000/docs/C2000_Multicore_Development_User_Guide/index.html",
+                },
+                {
+                    name:"C28x Context Save and Restore",
+                    url:"https://software-dl.ti.com/C2000/docs/c28x_context_save_restore/html/index.html",
+                },
+                {
+                    name:"Development Tool Versions for C2000 Support",
+                    url:"https://software-dl.ti.com/C2000/docs/sprac01/html/index.html",
+                },
+                {
+                    name:"Texas Instruments F28002x Peripheral Driver Library",
+                    url:"https://software-dl.ti.com/C2000/docs/C2000_driverlib_api_guide/f28002x/html/index.html",
+                    devices:[
+                        "F28002x",
+                    ],
+                },
+                {
+                    name:"Texas Instruments F28004x Peripheral Driver Library",
+                    url:"https://software-dl.ti.com/C2000/docs/C2000_driverlib_api_guide/f28004x/html/index.html",
+                    devices:[
+                        "F28004x",
+                    ],
+                },
+                {
+                    name:"Texas Instruments F2807x Peripheral Driver Library",
+                    url:"https://software-dl.ti.com/C2000/docs/C2000_driverlib_api_guide/f2807x/html/index.html",
+                    devices:[
+                        "F2807x",
+                    ],
+                },
+                {
+                    name:"Texas Instruments F2837xD Peripheral Driver Library",
+                    url:"https://software-dl.ti.com/C2000/docs/C2000_driverlib_api_guide/f2837xd/html/index.html",
+                    devices:[
+                        "F2837xD",
+                    ],
+                },
+                {
+                    name:"Texas Instruments F2837xS Peripheral Driver Library",
+                    url:"https://software-dl.ti.com/C2000/docs/C2000_driverlib_api_guide/f2837xs/html/index.html",
+                    devices:[
+                        "F2837xS",
+                    ],
+                },
+                {
+                    name:"Texas Instruments F2838x Peripheral Driver Library",
+                    url:"https://software-dl.ti.com/C2000/docs/C2000_driverlib_api_guide/f2838x/html/index.html",
+                    devices:[
+                        "F2838x",
+                    ],
+                },
+            ]
+        },
+    ],
     "SPI":[
         {
             category_displayName: "Foundational Materials",
             content:[
                 {
                     name:"C2000 Academy - SPI",
-                    url:"https://dev.ti.com/tirex/explore/node?node=A__AZkmKuievlbn0y8mLujhKg__c2000Academy__jEBbtmC__LATEST&amp;chapter=serial-peripheral-interface-spi-",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_communications_c2000_spi&amp;packageId=C2000-ACADEMY",
                     devices:[
                         "F280013x",
                         "F280015x",
@@ -2320,8 +2669,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                 },
                 {
@@ -2337,8 +2686,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                 },
             ]
@@ -2359,8 +2708,8 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                     video:true,
                 },
@@ -2395,6 +2744,10 @@ var collateral = {
                     appNote:true,
                 },
                 {
+                    name:"Interrupt FAQ for C2000",
+                    url:"https://software-dl.ti.com/C2000/docs/c28x_interrupt_faq/html/index.html",
+                },
+                {
                     name:"XDS Target Connection Guide",
                     url:"https://dev.ti.com/tirex/explore/node?node=AOi9Jj0vmBMJ0KQKaKITgg__FUz-xrs__LATEST",
                 },
@@ -2427,8 +2780,8 @@ var collateral = {
                     url:"https://ti.com/lit/SPRUIU9",
                     devices:[
                         "F28003x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
                     ],
                     appNote:true,
                 },
@@ -2445,13 +2798,13 @@ var collateral = {
             ]
         },
     ],
-    "USB":[
+    "Timers":[
         {
             category_displayName: "Foundational Materials",
             content:[
                 {
-                    name:"C2000 Academy - USB",
-                    url:"https://dev.ti.com/tirex/explore/node?node=A__AdndLb4DtsRbXEhFBcmy8g__c2000Academy__jEBbtmC__LATEST&amp;chapter=universal-serial-bus-usb-",
+                    name:"C2000 Academy - Timers",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_system_c2000_timers&amp;packageId=C2000-ACADEMY",
                     devices:[
                         "F280013x",
                         "F280015x",
@@ -2462,8 +2815,32 @@ var collateral = {
                         "F2837xD",
                         "F2837xS",
                         "F2838x",
+                        "F28P55x",
                         "F28P65x",
-                        "LEGACY",
+                    ],
+                },
+            ]
+        },
+    ],
+    "USB":[
+        {
+            category_displayName: "Foundational Materials",
+            content:[
+                {
+                    name:"C2000 Academy - USB",
+                    url:"https://dev.ti.com/tirex/local?id=source_c2000_communications_c2000_usb&amp;packageId=C2000-ACADEMY",
+                    devices:[
+                        "F280013x",
+                        "F280015x",
+                        "F28002x",
+                        "F28003x",
+                        "F28004x",
+                        "F2807x",
+                        "F2837xD",
+                        "F2837xS",
+                        "F2838x",
+                        "F28P55x",
+                        "F28P65x",
                     ],
                 },
                 {

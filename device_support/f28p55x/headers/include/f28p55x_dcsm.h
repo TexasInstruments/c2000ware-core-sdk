@@ -5,8 +5,10 @@
 // TITLE:   Definitions for the DCSM registers.
 //
 //###########################################################################
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -603,19 +605,6 @@ union FLSEM_REG {
     struct  FLSEM_BITS  bit;
 };
 
-struct BOOTERR_BITS {                   // bits description
-    Uint16 ILLTRIMPSWD:1;               // 0 Illegal Trim Password
-    Uint16 TRIMPSWDERR:1;               // 1 Trim Password Error
-    Uint16 SELOVRD:1;                   // 2 Password Select Override
-    Uint16 rsvd1:13;                    // 15:3 Reserved
-    Uint16 rsvd2:16;                    // 31:16 Reserved
-};
-
-union BOOTERR_REG {
-    Uint32  all;
-    struct  BOOTERR_BITS  bit;
-};
-
 struct SECTSTAT1_BITS {                 // bits description
     Uint16 STATUS_B0_SECT0:2;           // 1:0 Zone Status Flash Bank0 Sector 0
     Uint16 STATUS_B0_SECT1:2;           // 3:2 Zone Status Flash Bank0 Sector 1
@@ -749,50 +738,6 @@ union DENYCODE_REG {
     struct  DENYCODE_BITS  bit;
 };
 
-struct RAMOPENSTAT_BITS {               // bits description
-    Uint16 RAMOPEN:1;                   // 0 RAM Security Open
-    Uint16 rsvd1:15;                    // 15:1 Reserved
-    Uint16 rsvd2:16;                    // 31:16 Reserved
-};
-
-union RAMOPENSTAT_REG {
-    Uint32  all;
-    struct  RAMOPENSTAT_BITS  bit;
-};
-
-struct RAMOPENFRC_BITS {                // bits description
-    Uint16 SET:1;                       // 0 Set RAM Open request
-    Uint16 rsvd1:15;                    // 15:1 Reserved
-    Uint16 KEY:16;                      // 31:16 Valid Write KEY
-};
-
-union RAMOPENFRC_REG {
-    Uint32  all;
-    struct  RAMOPENFRC_BITS  bit;
-};
-
-struct RAMOPENCLR_BITS {                // bits description
-    Uint16 CLEAR:1;                     // 0 Clear RAM Open request
-    Uint16 rsvd1:15;                    // 15:1 Reserved
-    Uint16 KEY:16;                      // 31:16 Valid Write KEY
-};
-
-union RAMOPENCLR_REG {
-    Uint32  all;
-    struct  RAMOPENCLR_BITS  bit;
-};
-
-struct RAMOPENLOCK_BITS {               // bits description
-    Uint16 LOCK:1;                      // 0 RAMOPEN Lock
-    Uint16 rsvd1:15;                    // 15:1 Reserved
-    Uint16 rsvd2:16;                    // 31:16 Reserved
-};
-
-union RAMOPENLOCK_REG {
-    Uint32  all;
-    struct  RAMOPENLOCK_BITS  bit;
-};
-
 struct PERSEM1_BITS {                   // bits description
     Uint16 GRABWD:2;                    // 1:0 Grab Watchdog module
     Uint16 GRABNMIWD:2;                 // 3:2 GRAB NMIWD module
@@ -811,8 +756,7 @@ union PERSEM1_REG {
 
 struct DCSM_COMMON_REGS {
     union   FLSEM_REG                        FLSEM;                        // Flash Wrapper Semaphore Register
-    Uint16                                   rsvd1[4];                     // Reserved
-    union   BOOTERR_REG                      BOOTERR;                      // Boot Error Register
+    Uint16                                   rsvd1[6];                     // Reserved
     union   SECTSTAT1_REG                    SECTSTAT1;                    // Flash Sectors Status Register 1
     union   SECTSTAT2_REG                    SECTSTAT2;                    // Flash Sectors Status Register 2
     union   SECTSTAT3_REG                    SECTSTAT3;                    // Flash Sectors Status Register 3
@@ -823,10 +767,7 @@ struct DCSM_COMMON_REGS {
     union   SECERRCLR_REG                    SECERRCLR;                    // Security Error Clear Register
     union   SECERRFRC_REG                    SECERRFRC;                    // Security Error Force Register
     union   DENYCODE_REG                     DENYCODE;                     // Flash Authorization Denial Code
-    union   RAMOPENSTAT_REG                  RAMOPENSTAT;                  // RAM Security Open Status Register
-    union   RAMOPENFRC_REG                   RAMOPENFRC;                   // RAM Security Open Force Register
-    union   RAMOPENCLR_REG                   RAMOPENCLR;                   // RAM Security Open Clear Register
-    union   RAMOPENLOCK_REG                  RAMOPENLOCK;                  // RAMOPEN Lock Register
+    Uint16                                   rsvd4[8];                     // Reserved
     Uint32                                   UID_UNIQUE_31_0;              // Unique Identification Number Low
     Uint32                                   UID_UNIQUE_63_32;             // Unique Identification Number High
     Uint32                                   PARTIDH;                      // Part Identification High Register

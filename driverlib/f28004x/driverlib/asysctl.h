@@ -143,7 +143,6 @@ typedef enum
     ASYSCTL_CMPLPMUX_SELECT_7 = 19U  //!< CMPLPMUX select 7
 } ASysCtl_CMPLPMuxSelect;
 
-
 //*****************************************************************************
 //
 //! ASysCtl_getInductorFaultStatus &  ASysCtl_getSwitchSequenceStatus used

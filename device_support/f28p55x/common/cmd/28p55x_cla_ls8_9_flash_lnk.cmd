@@ -29,7 +29,7 @@ MEMORY
    FLASH_BANK1     : origin = 0x0A0000, length = 0x20000
    FLASH_BANK2     : origin = 0x0C0000, length = 0x20000
    FLASH_BANK3     : origin = 0x0E0000, length = 0x20000
-   FLASH_BANK4     : origin = 0x100000, length = 0x20000
+   FLASH_BANK4     : origin = 0x100000, length = 0x07FFF
 
 
    CLATOCPURAM      : origin = 0x001480,   length = 0x000080

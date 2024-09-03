@@ -1,0 +1,186 @@
+/*
+ * Copyright (c) 2020 Texas Instruments Incorporated - http://www.ti.com
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * *  Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ * *  Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * *  Neither the name of Texas Instruments Incorporated nor the names of
+ *    its contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ */
+
+#ifndef INCLUDE_EXPORTPACKAGE_H_
+#define INCLUDE_EXPORTPACKAGE_H_
+
+#include <stdbool.h>
+#include <stdint.h>
+#include <export/export.h>
+#include <transfer_utils.h>
+%
+% let transferCommon;
+% if (system.getProducts()[0].name.includes("C2000"))
+% { transferCommon = system.getScript("/utilities/transfer/transferCommon.js");
+% } else
+% { transferCommon = system.getScript("/transfer/transferCommon.js");}
+% 
+%
+% let exportMod = system.modules[transferCommon.getTransferPath() + "exporter.js"];
+% let expInst = exportMod.$instances[0]
+% let comsLinkModule = expInst.comsLinkModule;
+
+% let exportKeys = system.modules[transferCommon.getTransferPath() + "logger/keys.js"];
+% let expKeyInst;
+% let cLogKey;
+% let txKeys = [];
+% let rxKeys = [];
+%// if (exportKeys){
+%// Custom Function Prototypes *TO DO*
+%//    expKeyInst = exportKeys.$instances;
+%//    for(let i = 0; i < expKeyInst.length; i++){
+%//       if(expKeyInst[i].$name.includes("cLog")){
+%//           cLogKey = expKeyInst[0];
+%//       }
+%//       if(expKeyInst[i].group == "txKeyValuePairs"){
+%//           txKeys.push(expKeyInst[i]);
+%//       }
+%//       else if(expKeyInst[i].group == "rxKeyValuePairs"){
+%//           rxKeys.push(expKeyInst[i]);
+%//       }
+%//    }
+%// }
+%//
+%//  // Generate custom functions for each TX key type
+%//  for(let j = 0; j < txKeys.length; j++){
+%//       if(!(expKeyInst[j].$name.includes("cLog"))){  //Only generate for non-cLog functions
+%//           let functype;
+%//           let funcparameters;
+%//           let keyType = expKeyInst[j].valType;
+%//           if(keyType.includes("array")){
+%//              funcparameters = keyType.replace("_array","").concat("* values");
+%//              if(expKeyInst[j].lengthToggle  != "Predefine Message Length"){
+%//                   funcparameters = funcparameters.concat(", uint16_t valueArrayLength");
+%//              }
+%//           }
+%//           else {
+%//              funcparameters = keyType.concat(" value");
+%//           }   
+%//           if(keyType.includes("8")){
+%//               if(keyType.includes("array")){
+%//                   keyType = "Character_array";
+%//               }
+%//               else{
+%//                   keyType = "Character";
+%//               }
+%//           }
+%// extern int EXPORTPACKAGE_`expKeyInst[j].$name`(`funcparameters`);
+%//       }
+%//  }
+
+
+%if (expInst.exportCustomLog) {
+//
+// Logger Functions
+//
+%// if (expInst.exportCustomLog && expInst.packageMode == "START/END") {
+%// let funcparameters;
+%// for(let i = 1; i < expKeyInst.length; i++){
+%// if(expKeyInst[i].valType == "uint16_t"){
+%//   funcparameters = "uint16_t val";
+%//} else if(expKeyInst[i].valType == "uint32_t"){
+%//    
+%//} else if(expKeyInst[i].valType == "int16_t"){
+%//    
+%//} else if(expKeyInst[i].valType == "int32_t"){
+%//    
+%//} else if(expKeyInst[i].valType == "float"){
+%//    
+%//}
+%//extern int EXPORTPACKAGE_`expKeyInst[i].$name`(`funcparameters`);
+%//}
+%//}
+extern int EXPORTPACKAGE_sendcLog(uint32_t timestamp, char *data);
+extern int EXPORTPACKAGE_sendcLogInt32Array(uint32_t timestamp, int32_t* data, uint32_t size);
+extern int EXPORTPACKAGE_sendcLogUint32Array(uint32_t timestamp, uint32_t* data, uint32_t size);
+extern int EXPORTPACKAGE_sendcLogFloat32Array(uint32_t timestamp, float* data, uint32_t size, int numDecimal);
+% }
+% if (expInst.$ownedBy && expInst.$ownedBy.fsilogger) {
+//
+// FSI Logger Functions
+//
+extern int EXPORTPACKAGE_sendFsiFrame(uint16_t user_data, uint16_t frame_type, uint16_t frame_tag, uint16_t crc, uint16_t* words, uint16_t numWords);
+% }
+
+// Generic Function Prototypes
+
+extern int EXPORTPACKAGE_sendKeyValuePointerPairs(ExportKeyValue** keyValues, uint16_t numKeyValues);
+extern int EXPORTPACKAGE_sendKeyValuePairs(ExportKeyValue* keyValues, uint16_t numKeyValues);
+extern int EXPORTPACKAGE_sendKeyValuePair(ExportKeyValue keyValue);
+
+extern int EXPORTPACKAGE_startSendObject(char * key);
+extern int EXPORTPACKAGE_endSendObject();
+extern int EXPORTPACKAGE_appendKeyValuePairWithEndingChar(ExportKeyValue keyValue, bool isStr, char end);
+
+extern int EXPORTPACKAGE_sendString(char *cmd, uint16_t cmdLength, char *value, uint16_t valueLength);
+
+extern int EXPORTPACKAGE_sendUInt16(char *cmd, uint16_t cmdLength, uint16_t val);
+extern int EXPORTPACKAGE_sendInt16(char *cmd, uint16_t cmdLength, int16_t val);
+extern int EXPORTPACKAGE_sendUInt32(char *cmd, uint16_t cmdLength, uint32_t val);
+extern int EXPORTPACKAGE_sendInt32(char *cmd, uint16_t cmdLength, int32_t val);
+extern int EXPORTPACKAGE_sendUInt64(char *cmd, uint16_t cmdLength, uint64_t val);
+extern int EXPORTPACKAGE_sendInt64(char *cmd, uint16_t cmdLength, int64_t val);
+
+extern int EXPORTPACKAGE_sendCharacterArrayAsByteArray(char *cmd, uint16_t cmdLength, char* data, uint32_t size);
+extern int EXPORTPACKAGE_sendUInt32ArrayAsByteArray(char *cmd, uint16_t cmdLength, uint32_t* data, uint32_t size);
+extern int EXPORTPACKAGE_sendInt32ArrayAsByteArray(char *cmd, uint16_t cmdLength, int32_t* data, uint32_t size);
+extern int EXPORTPACKAGE_sendUInt16ArrayAsByteArray(char *cmd, uint16_t cmdLength, uint16_t* data, uint32_t size);
+extern int EXPORTPACKAGE_sendInt16ArrayAsByteArray(char *cmd, uint16_t cmdLength, int16_t* data, uint32_t size);
+extern int EXPORTPACKAGE_sendFloatArrayAsByteArray(char *cmd, uint16_t cmdLength, float* data, uint32_t size);
+
+extern int EXPORTPACKAGE_sendCharacterAsByteArray(char *cmd, uint16_t cmdLength, char val);
+extern int EXPORTPACKAGE_sendUInt32AsByteArray(char *cmd, uint16_t cmdLength, uint32_t val);
+extern int EXPORTPACKAGE_sendInt32AsByteArray(char *cmd, uint16_t cmdLength, int32_t val);
+extern int EXPORTPACKAGE_sendUInt16AsByteArray(char *cmd, uint16_t cmdLength, uint16_t val);
+extern int EXPORTPACKAGE_sendInt16AsByteArray(char *cmd, uint16_t cmdLength, int16_t val);
+extern int EXPORTPACKAGE_sendFloatAsByteArray(char *cmd, uint16_t cmdLength, float val);
+extern int EXPORTPACKAGE_sendBoolAsByteArray(char *cmd, uint16_t cmdLength, bool val);
+
+extern int EXPORTPACKAGE_sendBool(char *cmd, uint16_t cmdLength, bool val);
+
+% if (expInst.mode.includes("Bidirectional") && expInst["comsLinkModule"])
+% {
+extern uint16_t EXPORTPACKAGE_ReadUInt16(char *string);
+extern uint32_t EXPORTPACKAGE_ReadUInt32(char *string);
+extern uint64_t EXPORTPACKAGE_ReadUInt64(char *string);
+extern int16_t EXPORTPACKAGE_ReadInt16(char *string);
+extern int32_t EXPORTPACKAGE_ReadInt32(char *string);
+extern int64_t EXPORTPACKAGE_ReadInt64(char *string);
+
+extern bool EXPORTPACKAGE_ReadBool(char *string);
+extern float EXPORTPACKAGE_ReadFloat(char *string);
+extern double EXPORTPACKAGE_ReadDouble(char *string);
+extern void EXPORTPACKAGE_parseString(char * rxString, uint16_t rxStringSize);
+% }
+
+#endif /* INCLUDE_EXPORTPACKAGE_H_ */

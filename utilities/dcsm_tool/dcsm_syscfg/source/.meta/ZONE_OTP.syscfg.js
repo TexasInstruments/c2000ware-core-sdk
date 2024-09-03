@@ -393,6 +393,17 @@ else if ("F28003x".includes(Common.getDeviceName()))
     let RAM_BOOT_OPTIONS =[
         {name: "0x05", displayName:"(RAM) RAM Entry Point Address=0x00000000"},
     ]
+
+    let SECURE_FLASH_BOOT_OPTIONS = [
+        {name: "0x0A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x00080000, Bank 0 , Sector 0"},
+        {name: "0x2A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x00088000, Bank 0 , Sector 8"},
+        {name: "0x4A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x0008FFF0, Bank 0 , Sector 15"},
+        {name: "0x6A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x00090000, Bank 1 , Sector 0"},
+
+        {name: "0x8A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x00097FF0, Bank 1 , Sector 7"},
+        {name: "0xAA", displayName:"(SECURE FLASH) Flash-Entry-Address=0x0009FFF0, Bank 1 , Sector 15 "},
+        {name: "0xCA", displayName:"(SECURE FLASH) Flash-Entry-Address=0x000A0000, Bank 2 , Sector 0"},
+    ]
     
     ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(SCI_BOOT_OPTIONS)
     ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(CAN_BOOT_OPTIONS)
@@ -405,6 +416,7 @@ else if ("F28003x".includes(Common.getDeviceName()))
     ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(LFU_BOOT_OPTIONS)
     ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(SECURE_LFU_BOOT_OPTIONS)
     ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(RAM_BOOT_OPTIONS)
+    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(SECURE_FLASH_BOOT_OPTIONS)
     
     //console.log(ALL_BOOT_OPTIONS);
 }
@@ -954,10 +966,10 @@ function onChangeuseZone(inst, ui)
         {
             ui[configName].hidden = !inst.useZone;
         }
-        if (configName.includes("write_protect_bit"))
-        {
-            ui[configName].hidden = true
-        }
+        // if (configName.includes("write_protect_bit"))
+        // {
+        //     ui[configName].hidden = true
+        // }
     }
     
     if (inst['bootPinCount'] <= 2)

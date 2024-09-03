@@ -130,10 +130,6 @@ void main(void)
     // Configure GPIO13 to output CTRIPH (routed through ePWM TRIP4 and ePWM7)
     //
     GPIO_setPinConfig(GPIO_13_EPWM7_B);
-    //
-    // Configure GPIO13 as digital pins
-    //
-    GPIO_setAnalogMode(13U, GPIO_ANALOG_DISABLED);
 
     //
     // Enable Global Interrupt (INTM) and realtime interrupt (DBGM)

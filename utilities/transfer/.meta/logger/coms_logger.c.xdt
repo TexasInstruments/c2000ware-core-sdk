@@ -1,0 +1,362 @@
+/*
+ * Copyright (c) 2020 Texas Instruments Incorporated - http://www.ti.com
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * *  Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ * *  Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * *  Neither the name of Texas Instruments Incorporated nor the names of
+ *    its contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ */
+% let transferCommon;
+% if (system.getProducts()[0].name.includes("C2000"))
+% { transferCommon = system.getScript("/utilities/transfer/transferCommon.js");
+% } else
+% { transferCommon = system.getScript("/transfer/transferCommon.js");}
+% 
+% let comsloggerMod = system.modules[transferCommon.getTransferPath() + "comslogger.js"];
+% let comsloggerInst = comsloggerMod.$instances[0];
+% let comsLinkModule = comsloggerInst.comsLinkModule;
+% let comsLinkBufferModule = comsloggerInst.comsLinkBufferModule;
+% let comsloggerOwner = comsloggerInst.$ownedBy;
+% let comsloggerOwnerExport;
+% if (comsloggerOwner){
+% comsloggerOwnerExport = comsloggerOwner.exporter
+% }
+%
+#include <logger/coms_logger.h>
+% if (comsloggerOwner && comsloggerOwnerExport) {
+#include <export/export.h>
+#include <export/export_package.h>
+% }
+% if (transferCommon.isC2000()){
+#include <board.h>
+% } else {
+#include "ti_drivers_config.h"
+#include <drivers/hw_include/hw_types.h>
+% }
+
+% if (!transferCommon.isC2000()){
+#define `comsLinkModule.$name`_BASE `comsLinkModule.$name.toUpperCase()`_BASE_ADDR
+void INT_`comsLinkModule.$name`_1_ISR(void *args);
+void INT_`comsLinkModule.$name`_2_ISR(void *args);
+HwiP_Object `comsLinkModule.$name`_INTR1_HwiObject;
+HwiP_Object `comsLinkModule.$name`_INTR2_HwiObject;
+% }
+
+% if (transferCommon.isC2000()){
+void __attribute__((weak)) COMSLOG_comsLinkReceivedData(uint16_t* receivedData, uint16_t receivedDataLength) {}
+% } else {
+void __attribute__((weak)) COMSLOG_comsLinkReceivedData(uint16_t* receivedData, uint16_t receivedDataLength) {}
+% }
+% if ((comsloggerInst["comsLink"] == "fsi") && (comsloggerInst.comsLinkErrorHandler)) {
+    % if (transferCommon.isC2000()){
+void __attribute__((weak)) COMSLOG_comsLinkError(uint16_t status) {}
+    % } else {
+void __attribute__((weak)) COMSLOG_comsLinkError(uint16_t status) {}
+    % }
+% }
+volatile uint16_t comsLinkRXData [`comsloggerInst.packetLength`] = {0};
+//*****************************************************************************
+//
+// Transfer Ring Buffer
+//
+//*****************************************************************************
+#include <transfer_ringbuffer.h>
+
+#define `comsLinkBufferModule.$name`_BUFFER_SIZE `comsLinkBufferModule.bufferSize`
+#define `comsLinkBufferModule.$name`_ELEMENT_SIZE `comsLinkBufferModule.elemPerBuffEntry`
+
+uint16_t `comsLinkBufferModule.$name`_buffer[`comsLinkBufferModule.$name`_BUFFER_SIZE][`comsLinkBufferModule.$name`_ELEMENT_SIZE] = {0};
+TransferRingBuffer `comsLinkBufferModule.$name`;
+TransferRingBuffer_Handle `comsLinkBufferModule.$name`_Handle = &`comsLinkBufferModule.$name`;
+
+% if (comsloggerInst["comsLink"] == "fsi") {
+uint16_t `comsLinkBufferModule.$name`_tagUdata_buffer[`comsLinkBufferModule.$name`_BUFFER_SIZE][1] = {0};
+TransferRingBuffer `comsLinkBufferModule.$name`_tagUdata;
+TransferRingBuffer_Handle `comsLinkBufferModule.$name`_tagUdata_Handle = &`comsLinkBufferModule.$name`_tagUdata;
+% }
+
+% if (transferCommon.isC2000()) {
+void __attribute__((weak)) COMSLOG_transferBufferOverflow() {}
+% } else {
+void __attribute__((weak)) COMSLOG_transferBufferOverflow() {}
+% }
+
+//*****************************************************************************
+//
+// COMSLOG Init
+//
+//*****************************************************************************
+% if (!transferCommon.isC2000()) {
+void `comsLinkModule.$name`_init(){
+    HwiP_Params rxHwiPrms;
+    HwiP_Params rxErrHwiPrms;
+
+    //
+	// Setting for requested nWords and nLanes with transfers
+	//
+	FSI_setRxSoftwareFrameSize(`comsLinkModule.$name`_BASE, 16);
+	FSI_setRxDataWidth(`comsLinkModule.$name`_BASE, FSI_DATA_WIDTH_1_LANE);
+	//
+	// Configure interrupt for INT1 line
+	//
+	FSI_enableRxInterrupt(`comsLinkModule.$name`_BASE, FSI_INT1,
+				FSI_RX_EVT_FRAME_DONE);
+	//
+	// Configure interrupt for INT2 line
+	//
+	FSI_enableRxInterrupt(`comsLinkModule.$name`_BASE, FSI_INT2,
+				FSI_RX_EVT_CRC_ERR | FSI_RX_EVT_EOF_ERR | FSI_RX_EVT_ERR_FRAME | FSI_RX_EVT_FRAME_OVERRUN | FSI_RX_EVT_OVERRUN | FSI_RX_EVT_TYPE_ERR | FSI_RX_EVT_UNDERRUN);
+	//
+	// Configure for External Loopback
+	//
+	FSI_disableRxInternalLoopback(`comsLinkModule.$name`_BASE);
+	//
+	// Initialize Rx, reset sequence, clear events
+	//
+	FSI_performRxInitialization(`comsLinkModule.$name`_BASE);
+    
+    //
+    // RX interrupt config and registration
+    //
+    HwiP_Params_init(&rxHwiPrms);
+    rxHwiPrms.intNum = `comsLinkModule.$name.toUpperCase()`_INTR1;
+    rxHwiPrms.callback = INT_`comsLinkModule.$name`_1_ISR;
+    HwiP_construct(&`comsLinkModule.$name`_INTR1_HwiObject, &rxHwiPrms);
+    
+    % if (comsloggerInst.comsLinkErrorHandler) {
+    //
+    // RX Error interrupt config and registration
+    //
+    HwiP_Params_init(&rxErrHwiPrms);
+    rxErrHwiPrms.intNum = `comsLinkModule.$name.toUpperCase()`_INTR2;
+    rxErrHwiPrms.callback = INT_`comsLinkModule.$name`_2_ISR;
+    HwiP_construct(&`comsLinkModule.$name`_INTR2_HwiObject, &rxErrHwiPrms);
+    % }
+}
+
+
+void `comsLinkModule.$name`_deinit()
+{
+    //
+    // RX interrupt deinit
+    //
+    FSI_disableRxInterrupt(`comsLinkModule.$name`_BASE, FSI_INT1, FSI_RX_EVTMASK);
+    FSI_clearRxEvents(`comsLinkModule.$name`_BASE, FSI_RX_EVTMASK);
+    HwiP_destruct(&`comsLinkModule.$name`_INTR1_HwiObject);
+    //
+    // RX Error interrupt deinit
+    //
+    FSI_disableRxInterrupt(`comsLinkModule.$name`_BASE, FSI_INT2, FSI_RX_EVTMASK);
+    FSI_clearRxEvents(`comsLinkModule.$name`_BASE, FSI_RX_EVTMASK);
+    HwiP_destruct(&`comsLinkModule.$name`_INTR2_HwiObject);
+
+    return;
+}
+% }
+
+void COMSLOG_init()
+{
+    //
+    // Initialize the HW module (The functions below are also called in Board_init)
+    //
+% if (!transferCommon.isC2000()){
+    `comsLinkModule.$name`_init();
+% }
+
+    TransferRingBuffer_init(
+        `comsLinkBufferModule.$name`_Handle, 
+        (uint16_t**)`comsLinkBufferModule.$name`_buffer, 
+        `comsLinkBufferModule.$name`_BUFFER_SIZE, 
+        `comsLinkBufferModule.$name`_ELEMENT_SIZE);
+
+% if (comsloggerInst["comsLink"] == "fsi") {
+    TransferRingBuffer_init(
+        `comsLinkBufferModule.$name`_tagUdata_Handle, 
+        (uint16_t**)`comsLinkBufferModule.$name`_tagUdata_buffer, 
+        `comsLinkBufferModule.$name`_BUFFER_SIZE, 
+        1);
+% }
+}
+
+//*****************************************************************************
+//
+// Interrupts
+//
+//*****************************************************************************
+% if (comsloggerInst["comsLink"] == "spi") {
+//
+// COMs link RX Interrupt
+//
+% if (transferCommon.isC2000()) {
+interrupt void `comsLinkModule["spiRXInt"]["interruptHandler"]`(void)
+% } else {
+void INT_`comsLinkModule.$name`_1_ISR(void *args)
+% }
+{
+    // FSI_FrameType rxFrameType; 
+    // uint16_t rxFrameTag;
+    // uint16_t rxUdata;
+    uint16_t rxUdataFrameTag;
+    uint16_t ringBuffStatus;
+
+    //
+    // Read data
+    //
+    for (rxIndex = 0; rxIndex < `comsloggerInst.packetLength - 8`; rxIndex++){
+        comsLinkRXData[rxIndex] = SPI_readDataBlockingFIFO(`comsLinkModule.$name`_BASE);
+    }
+    ringBuffStatus = TransferRingBuffer_write(`comsLinkBufferModule.$name`_Handle, (uint16_t *)comsLinkRXData);
+    if (!ringBuffStatus && COMSLOG_transferBufferOverflow) {
+        COMSLOG_transferBufferOverflow();
+    }
+    ringBuffStatus = TransferRingBuffer_write(`comsLinkBufferModule.$name`_tagUdata_Handle, (uint16_t *)&rxUdataFrameTag);
+
+    COMSLOG_comsLinkReceivedData((uint16_t *)comsLinkRXData, `comsloggerInst.packetLength`);
+
+    SPI_clearInterruptStatus(`comsLinkBModule.$name`_BASE, SPI_INT_RX_OVERRUN);
+    SPI_clearInterruptStatus(`comsLinkBModule.$name`_BASE, SPI_INT_RXFF);
+
+    % if (transferCommon.isC2000()){
+    //
+    // Issue PIE ack
+    //
+    Interrupt_clearACKGroup(INT_`comsLinkModule.$name`_1_INTERRUPT_ACK_GROUP);
+    % }
+}
+
+% }
+% if (comsloggerInst["comsLink"] == "fsi") {
+//
+// COMs link RX Interrupt
+//
+% if (transferCommon.isC2000()) {
+interrupt void `comsLinkModule["fsiRxInt1"]["interruptHandler"]`(void)
+% } else {
+void INT_`comsLinkModule.$name`_1_ISR(void *args)
+% }
+{
+    // FSI_FrameType rxFrameType; 
+    // uint16_t rxFrameTag;
+    // uint16_t rxUdata;
+    uint16_t rxUdataFrameTag;
+    uint16_t ringBuffStatus;
+    
+    % if (transferCommon.isC2000()) {
+    // rxFrameType = FSI_getRxFrameType(`comsLinkModule.$name`_BASE);
+    // rxFrameTag = FSI_getRxFrameTag(`comsLinkModule.$name`_BASE);
+    // rxUdata = FSI_getRxUserDefinedData(`comsLinkModule.$name`_BASE);
+    rxUdataFrameTag = HWREGH(`comsLinkModule.$name`_BASE + FSI_O_RX_FRAME_TAG_UDATA);
+    % } else {
+    // FSI_getRxFrameType(`comsLinkModule.$name`_BASE, &rxFrameType);
+    // FSI_getRxFrameTag(`comsLinkModule.$name`_BASE, &rxFrameTag);
+    // FSI_getRxUserDefinedData(`comsLinkModule.$name`_BASE, &rxUdata);
+    rxUdataFrameTag = HW_RD_REG16(`comsLinkModule.$name`_BASE + CSL_FSI_RX_CFG_RX_FRAME_TAG_UDATA);
+    % }
+
+    //
+    // Read data
+    //
+    FSI_readRxBuffer(`comsLinkModule.$name`_BASE, (uint16_t *)comsLinkRXData, `comsloggerInst.packetLength`, 0);
+    
+    ringBuffStatus = TransferRingBuffer_write(`comsLinkBufferModule.$name`_Handle, (uint16_t *)comsLinkRXData);
+    if (!ringBuffStatus && COMSLOG_transferBufferOverflow) {
+        COMSLOG_transferBufferOverflow();
+    }
+    ringBuffStatus = TransferRingBuffer_write(`comsLinkBufferModule.$name`_tagUdata_Handle, (uint16_t *)&rxUdataFrameTag);
+
+    COMSLOG_comsLinkReceivedData((uint16_t *)comsLinkRXData, `comsloggerInst.packetLength`);
+
+    FSI_clearRxEvents(`comsLinkModule.$name`_BASE, FSI_RX_EVT_FRAME_DONE | FSI_RX_EVT_DATA_FRAME);
+
+    % if (transferCommon.isC2000()){
+    //
+    // Issue PIE ack
+    //
+    Interrupt_clearACKGroup(INT_`comsLinkModule.$name`_1_INTERRUPT_ACK_GROUP);
+    % }
+}
+% if (comsloggerInst.comsLinkErrorHandler) {
+//
+// COMs link RX Error Interrupt
+//
+% if (transferCommon.isC2000()) {
+interrupt void `comsLinkModule["fsiRxInt2"]["interruptHandler"]`(void)
+% } else {
+void INT_`comsLinkModule.$name`_2_ISR(void *args)
+% }
+{
+    uint16_t status = 0;
+    % if (transferCommon.isC2000()) {
+    status = FSI_getRxEventStatus(`comsLinkModule.$name`_BASE);
+    % } else {
+    FSI_getRxEventStatus(myCOMSLogger0_FSIRX_BASE, &status);
+    % }
+
+    COMSLOG_comsLinkError(status);
+
+    FSI_clearRxEvents(`comsLinkModule.$name`_BASE, FSI_RX_EVTMASK);
+
+    % if (transferCommon.isC2000()) {
+    //
+    // Issue PIE ack
+    //
+    Interrupt_clearACKGroup(INT_`comsLinkModule.$name`_2_INTERRUPT_ACK_GROUP);
+    % }
+}
+% }
+% }
+
+//*****************************************************************************
+//
+// Background Buffer Transfers
+//
+//*****************************************************************************
+void COMSLOG_transferBufferData()
+{
+    uint16_t bufferData[`comsLinkBufferModule.$name`_ELEMENT_SIZE];
+% if (comsloggerInst["comsLink"] == "fsi") {
+    uint16_t tagUdata[1];
+    uint16_t frameTag;
+    uint16_t uData;
+% }
+    uint16_t buffReadResult = 0;
+    buffReadResult = TransferRingBuffer_read(`comsLinkBufferModule.$name`_Handle, bufferData);
+% if (comsloggerInst["comsLink"] == "fsi") {
+    buffReadResult = TransferRingBuffer_read(`comsLinkBufferModule.$name`_tagUdata_Handle, tagUdata);
+% }
+    if (buffReadResult) {
+        % if (comsloggerOwner && comsloggerOwnerExport) {
+
+            % if (comsloggerInst["comsLink"] == "fsi" || comsloggerInst["comsLink"] == "spi") {
+        frameTag = tagUdata[0] & 0xF;
+        uData = (tagUdata[0] & 0xFF00) >> 8U;
+        EXPORTPACKAGE_sendFsiFrame(uData, FSI_FRAME_TYPE_NWORD_DATA, frameTag, 0, bufferData, `comsLinkBufferModule.$name`_ELEMENT_SIZE);
+            % }
+
+        % }
+    }
+}

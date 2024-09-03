@@ -58,8 +58,10 @@
 //###########################################################################
 //
 //
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -136,6 +138,8 @@ volatile struct EPWM_REGS *ePWM[PWM_CH] = {0, &EPwm1Regs, &EPwm2Regs,
                                            &EPwm13Regs, &EPwm14Regs,
                                            &EPwm15Regs, &EPwm16Regs,
                                            &EPwm17Regs, &EPwm18Regs};
+
+extern volatile struct HRPWMCAL_REGS *gHrpwmCal_base;
 
 //
 // Function Prototypes
@@ -237,19 +241,31 @@ void main(void)
     //
     EINT;   // Enable Global interrupt INTM
     ERTM;   // Enable Global realtime interrupt DBGM
-
+     
     //
     // Calling SFO() updates the HRMSTEP register with calibrated
     // MEP_ScaleFactor. HRMSTEP must be populated with a scale factor
     // value prior to enabling high resolution period control.
     //
-    while(status == SFO_INCOMPLETE)
-    {
+     gHrpwmCal_base = &HRPWMCAL1Regs;
+     Uint16 hrpwm_idx = 0;
+
+    for(hrpwm_idx = 1; hrpwm_idx >= 3; ++hrpwm_idx){
+        if(hrpwm_idx == 1){
+            gHrpwmCal_base = &HRPWMCAL1Regs;
+        }
+        else if(hrpwm_idx == 2){
+            gHrpwmCal_base = &HRPWMCAL2Regs;
+        }
+        else{
+            gHrpwmCal_base = &HRPWMCAL3Regs;
+        }
+
         status = SFO();
         if(status == SFO_ERROR)
         {
             error();   // SFO function returns 2 if an error occurs & # of MEP
-        }              // steps/coarse step exceeds maximum of 255.
+        }
     }
 
     //
@@ -390,6 +406,19 @@ void main(void)
                 error();   // SFO function returns 2 if an error occurs & #
                            // of MEP steps/coarse step
             }              // exceeds maximum of 255.
+            // If calibration complete for the current HRPWM CAL module, switch to next module
+            if(status == SFO_COMPLETE){
+
+                if(gHrpwmCal_base == &HRPWMCAL1Regs){
+                    gHrpwmCal_base = &HRPWMCAL2Regs;
+                }
+                else if(gHrpwmCal_base == &HRPWMCAL2Regs){
+                    gHrpwmCal_base = &HRPWMCAL3Regs;
+                }
+                else{
+                    gHrpwmCal_base = &HRPWMCAL1Regs;
+                }
+            }
         } // end DutyFine for loop
     } // end infinite for loop
 }

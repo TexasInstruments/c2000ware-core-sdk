@@ -129,7 +129,6 @@ typedef enum
     ASYSCTL_CMPLPMUX_SELECT_4 = 9U  //!< CMPLPMUX select 4
 } ASysCtl_CMPLPMuxSelect;
 
-
 //*****************************************************************************
 //
 // Prototypes for the APIs.

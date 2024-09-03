@@ -5,8 +5,10 @@
 // TITLE:  f28p55x Device Default Interrupt Service Routines
 //
 //###########################################################################
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -2139,9 +2141,9 @@ interrupt void VCU_ISR(void)
 }
 
 //
-// 12.7 - MCANSSA_ECC_CORR_PLS
+// 12.7 - MCANSSA_WAKE_AND_TS_PLS
 //
-interrupt void MCANA_ECC_ISR(void)
+interrupt void MCANA_WAKE_ISR(void)
 {
     //
     // Insert ISR Code here
@@ -2162,9 +2164,9 @@ interrupt void MCANA_ECC_ISR(void)
 }
 
 //
-// 12.8 - MCANSSA_WAKE_AND_TS_PLS
+// 12.8 - MCANSSA_ECC_CORR_PLS
 //
-interrupt void MCANA_WAKE_ISR(void)
+interrupt void MCANA_ECC_ISR(void)
 {
     //
     // Insert ISR Code here
@@ -2599,9 +2601,9 @@ interrupt void MCANB_1_ISR(void)
 }
 
 //
-// 9.11 - MCANSSB_ECC_CORR_PLS
+// 9.11 - MCANSSB_WAKE_AND_TS_PLS
 //
-interrupt void MCANB_ECC_ISR(void)
+interrupt void MCANB_WAKE_ISR(void)
 {
     //
     // Insert ISR Code here
@@ -2622,9 +2624,9 @@ interrupt void MCANB_ECC_ISR(void)
 }
 
 //
-// 9.12 - MCANSSB_WAKE_AND_TS_PLS
+// 9.12 - MCANSSB_ECC_CORR_PLS
 //
-interrupt void MCANB_WAKE_ISR(void)
+interrupt void MCANB_ECC_ISR(void)
 {
     //
     // Insert ISR Code here

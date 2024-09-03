@@ -5,8 +5,10 @@
 // TITLE:  C28x SCI driver.
 //
 //###########################################################################
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -117,7 +119,7 @@ SCI_writeCharArray(uint32_t base, const uint16_t * const array,
             //
             // Wait until space is available in the transmit FIFO.
             //
-            while(SCI_getTxFIFOStatus(base) == SCI_FIFO_TX15)
+            while(SCI_getTxFIFOStatus(base) == SCI_FIFO_TX16)
             {
             }
 

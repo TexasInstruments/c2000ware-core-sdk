@@ -307,6 +307,27 @@ function onValidate(inst, validation) {
                 "Selected analog reference not supported for configured gain mode.", 
                 stat, "analogReference");
         } // the case of [vrefhi, external, x,    gain 2x]
+        if(inst.referenceVoltage == "DAC_REF_ADC_VREFHI" && stat.analogReference == "INTERNAL" && stat.analogReferenceVoltage == "1P65"){
+            if(inst.shadowValue < 373 || inst.shadowValue > 3723){
+                validation.logWarning(
+                    "Recommended shadow value is between 373 to 3723. As valid DAC output voltage range is between 0.3V to (VDDA-0.3V)",
+                    inst, "shadowValue");
+            }
+        }
+        if(inst.referenceVoltage == "DAC_REF_ADC_VREFHI" && stat.analogReference == "INTERNAL" && stat.analogReferenceVoltage == "2P5"){
+            if(inst.shadowValue < 492 || inst.shadowValue > 4915){
+                validation.logWarning(
+                    "Recommended shadow value is between 492 to 4915 as valid DAC output voltage range is between 0.3V to (VDDA-0.3V)",
+                    inst, "shadowValue");
+            }
+        }
+        if(["F2838x","F28003x","F28004x","F2807x","F2837xS", "F2837xD","F28P65x"].includes(Common.getDeviceName())){
+            if(inst.referenceVoltage == "DAC_REF_VDAC"){
+                validation.logInfo(
+                    "Valid DAC output voltage range is between 0.3V to (VDDA-0.3V). Please select Reference voltage and shadow value accordingly",
+                    inst, "shadowValue");
+            }
+        }
     }
 
 

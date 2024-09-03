@@ -20,19 +20,20 @@
 //
 // Defines
 //
-#define `instance.$name`_MCAN_STD_ID_FILT_START_ADDR     (`instance.flssa`)
 #define `instance.$name`_MCAN_STD_ID_FILTER_NUM          (`instance.lss`)
-#define `instance.$name`_MCAN_EXT_ID_FILT_START_ADDR     (`instance.flesa`)
 #define `instance.$name`_MCAN_EXT_ID_FILTER_NUM          (`instance.lse`)
-#define `instance.$name`_MCAN_TX_BUFF_START_ADDR         (`instance.txStartAddr`)
-#define `instance.$name`_MCAN_TX_BUFF_SIZE               (`instance.txBufNum`)
-#define `instance.$name`_MCAN_FIFO_1_START_ADDR          (`instance.rxFIFO1startAddr`)
-#define `instance.$name`_MCAN_FIFO_1_NUM                 (`instance.rxFIFO1size`)
-#define `instance.$name`_MCAN_TX_EVENT_START_ADDR        (`instance.txEventFIFOStartAddr`)
-#define `instance.$name`_MCAN_TX_EVENT_SIZE              (`instance.txEventFIFOSize`)
-#define `instance.$name`_MCAN_RX_BUFF_START_ADDR         (`instance.rxBufStartAddr`)
-#define `instance.$name`_MCAN_FIFO_0_START_ADDR          (`instance.rxFIFO0startAddr`)
 #define `instance.$name`_MCAN_FIFO_0_NUM                 (`instance.rxFIFO0size`)
+#define `instance.$name`_MCAN_FIFO_1_NUM                 (`instance.rxFIFO1size`)
+#define `instance.$name`_MCAN_TX_BUFF_SIZE               (`instance.txBufNum`)
+#define `instance.$name`_MCAN_TX_EVENT_SIZE              (`instance.txEventFIFOSize`)
+
+#define `instance.$name`_MCAN_STD_ID_FILT_START_ADDR     (`instance.flssa`)
+#define `instance.$name`_MCAN_EXT_ID_FILT_START_ADDR     (`instance.flesa`)
+#define `instance.$name`_MCAN_FIFO_0_START_ADDR          (`instance.rxFIFO0startAddr`)
+#define `instance.$name`_MCAN_FIFO_1_START_ADDR          (`instance.rxFIFO1startAddr`)
+#define `instance.$name`_MCAN_RX_BUFF_START_ADDR         (`instance.rxBufStartAddr`)
+#define `instance.$name`_MCAN_TX_BUFF_START_ADDR         (`instance.txStartAddr`)
+#define `instance.$name`_MCAN_TX_EVENT_START_ADDR        (`instance.txEventFIFOStartAddr`)
 
     % if (instance.enableInterrupt){
         % for (var int_index in instance.interruptLine)

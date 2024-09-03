@@ -4,8 +4,8 @@
 //
 // TITLE:  AES GCM Encryption
 //
-//! \addtogroup driver_example_cm_list
-//! <h1>AES GCM Encryption Example (CM)</h1>
+//! \addtogroup driver_example_list
+//! <h1>AES GCM Encryption Example </h1>
 //!
 //! This example encrypts block cipher-text using AES128 in GCM mode. It does
 //! the encryption first without uDMA and then with uDMA. The results are

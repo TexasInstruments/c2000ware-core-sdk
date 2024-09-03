@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v5.02.00.00
+                v5.03.00.00
               </div>
             
           
@@ -229,7 +229,7 @@ interrupts that can be generated as a result of these issues.</p>
 <p>                                 (uint32_t)</p>
 MEMCFG_GSXACCPROT0_CPUWRPROT_GS0<p> | \</p>
 <p>                                 (uint32_t)</p>
-MEMCFG_GSXACCPROT0_TINIE_WRPROT_GS0<p> | \</p>
+MEMCFG_GSXACCPROT0_NPU_WRPROT_GS0<p> | \</p>
 <p>                                 (uint32_t)</p>
 MEMCFG_GSXACCPROT0_DMAWRPROT_GS0)<a class="headerlink" href="#c.MEMCFG_XACCPROTX_M" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
@@ -524,15 +524,15 @@ MEMCFG_GSXACCPROT0_DMAWRPROT_GS0)<a class="headerlink" href="#c.MEMCFG_XACCPROTX
 </dd></dl>
 
 <dl class="cpp macro">
-<dt id="c.MEMCFG_NMVIOL_TINIEREAD">
-<span class="target" id="group__memcfg__api_1gac036939bbf2156c15401d71808700d91"></span><code class="sig-name descname">MEMCFG_NMVIOL_TINIEREAD</code> 0x00002000U<a class="headerlink" href="#c.MEMCFG_NMVIOL_TINIEREAD" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Non-controller TINIE read access. </p>
+<dt id="c.MEMCFG_NMVIOL_NPUREAD">
+<span class="target" id="group__memcfg__api_1ga188b068752eeade99c6589fe4e5474e3"></span><code class="sig-name descname">MEMCFG_NMVIOL_NPUREAD</code> 0x00002000U<a class="headerlink" href="#c.MEMCFG_NMVIOL_NPUREAD" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Non-controller NPU read access. </p>
 </dd></dl>
 
 <dl class="cpp macro">
-<dt id="c.MEMCFG_NMVIOL_TINIEWRITE">
-<span class="target" id="group__memcfg__api_1ga13d0c1a17121fe1905ac2f09ea8269ba"></span><code class="sig-name descname">MEMCFG_NMVIOL_TINIEWRITE</code> 0x00004000U<a class="headerlink" href="#c.MEMCFG_NMVIOL_TINIEWRITE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Non-controller TINIE write access. </p>
+<dt id="c.MEMCFG_NMVIOL_NPUWRITE">
+<span class="target" id="group__memcfg__api_1ga6737fd0444cf247e1e0e6d573c457e26"></span><code class="sig-name descname">MEMCFG_NMVIOL_NPUWRITE</code> 0x00004000U<a class="headerlink" href="#c.MEMCFG_NMVIOL_NPUWRITE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Non-controller NPU write access. </p>
 </dd></dl>
 
 <dl class="cpp macro">
@@ -724,8 +724,8 @@ MEMCFG_GSXACCPROT0_DMAWRPROT_GS0)<a class="headerlink" href="#c.MEMCFG_XACCPROTX
 <li><p><strong>MEMCFG_NMVIOL_CLA1WRITE</strong> - Non-controller CLA1 write access</p></li>
 <li><p><strong>MEMCFG_NMVIOL_CLA1FETCH</strong> - Non-controller CLA1 fetch access</p></li>
 <li><p><strong>MEMCFG_NMVIOL_DMAREAD</strong> - Non-controller DMA read access</p></li>
-<li><p><strong>MEMCFG_NMVIOL_TINIEREAD</strong> - Non-controller TINIE read access</p></li>
-<li><p><strong>MEMCFG_NMVIOL_TINIEWRITE</strong> - Non-controller TINIE write access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_NPUREAD</strong> - Non-controller NPU read access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_NPUWRITE</strong> - Non-controller NPU write access</p></li>
 <li><p><strong>MEMCFG_MVIOL_CPUFETCH</strong> - Controller CPU fetch access</p></li>
 <li><p><strong>MEMCFG_MVIOL_CPUWRITE</strong> - Controller CPU write access</p></li>
 <li><p><strong>MEMCFG_MVIOL_DMAWRITE</strong> - Controller DMA write access This function enables the indicated RAM access violation interrupt sources. Only the sources that are enabled can be reflected to the processor interrupt; disabled sources have no effect on the processor.</p></li>
@@ -753,8 +753,8 @@ MEMCFG_GSXACCPROT0_DMAWRPROT_GS0)<a class="headerlink" href="#c.MEMCFG_XACCPROTX
 <li><p><strong>MEMCFG_NMVIOL_CLA1WRITE</strong> - Non-controller CLA1 write access</p></li>
 <li><p><strong>MEMCFG_NMVIOL_CLA1FETCH</strong> - Non-controller CLA1 fetch access</p></li>
 <li><p><strong>MEMCFG_NMVIOL_DMAREAD</strong> - Non-controller DMA read access</p></li>
-<li><p><strong>MEMCFG_NMVIOL_TINIEREAD</strong> - Non-controller TINIE read access</p></li>
-<li><p><strong>MEMCFG_NMVIOL_TINIEWRITE</strong> - Non-controller TINIE write access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_NPUREAD</strong> - Non-controller NPU read access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_NPUWRITE</strong> - Non-controller NPU write access</p></li>
 <li><p><strong>MEMCFG_MVIOL_CPUFETCH</strong> - Controller CPU fetch access</p></li>
 <li><p><strong>MEMCFG_MVIOL_CPUWRITE</strong> - Controller CPU write access</p></li>
 <li><p><strong>MEMCFG_MVIOL_DMAWRITE</strong> - Controller DMA write access</p></li>
@@ -788,8 +788,8 @@ MEMCFG_GSXACCPROT0_DMAWRPROT_GS0)<a class="headerlink" href="#c.MEMCFG_XACCPROTX
 <li><p><strong>MEMCFG_NMVIOL_CLA1WRITE</strong> - Non-controller CLA1 write access</p></li>
 <li><p><strong>MEMCFG_NMVIOL_CLA1FETCH</strong> - Non-controller CLA1 fetch access</p></li>
 <li><p><strong>MEMCFG_NMVIOL_DMAREAD</strong> - Non-controller DMA read access</p></li>
-<li><p><strong>MEMCFG_NMVIOL_TINIEREAD</strong> - Non-controller TINIE read access</p></li>
-<li><p><strong>MEMCFG_NMVIOL_TINIEWRITE</strong> - Non-controller TINIE write access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_NPUREAD</strong> - Non-controller NPU read access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_NPUWRITE</strong> - Non-controller NPU write access</p></li>
 <li><p><strong>MEMCFG_MVIOL_CPUFETCH</strong> - Controller CPU fetch access</p></li>
 <li><p><strong>MEMCFG_MVIOL_CPUWRITE</strong> - Controller CPU write access</p></li>
 <li><p><strong>MEMCFG_MVIOL_DMAWRITE</strong> - Controller DMA write access </p></li>
@@ -816,8 +816,8 @@ MEMCFG_GSXACCPROT0_DMAWRPROT_GS0)<a class="headerlink" href="#c.MEMCFG_XACCPROTX
 <li><p><strong>MEMCFG_NMVIOL_CLA1WRITE</strong> - Non-controller CLA1 write access</p></li>
 <li><p><strong>MEMCFG_NMVIOL_CLA1FETCH</strong> - Non-controller CLA1 fetch access</p></li>
 <li><p><strong>MEMCFG_NMVIOL_DMAREAD</strong> - Non-controller DMA read access</p></li>
-<li><p><strong>MEMCFG_NMVIOL_TINIEREAD</strong> - Non-controller TINIE read access</p></li>
-<li><p><strong>MEMCFG_NMVIOL_TINIEWRITE</strong> - Non-controller TINIE write access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_NPUREAD</strong> - Non-controller NPU read access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_NPUWRITE</strong> - Non-controller NPU write access</p></li>
 <li><p><strong>MEMCFG_MVIOL_CPUFETCH</strong> - Controller CPU fetch access</p></li>
 <li><p><strong>MEMCFG_MVIOL_CPUWRITE</strong> - Controller CPU write access</p></li>
 <li><p><strong>MEMCFG_MVIOL_DMAWRITE</strong> - Controller DMA write access</p></li>
@@ -851,8 +851,8 @@ MEMCFG_GSXACCPROT0_DMAWRPROT_GS0)<a class="headerlink" href="#c.MEMCFG_XACCPROTX
 <li><p><strong>MEMCFG_NMVIOL_CLA1WRITE</strong> - Non-controller CLA1 write access</p></li>
 <li><p><strong>MEMCFG_NMVIOL_CLA1FETCH</strong> - Non-controller CLA1 fetch access</p></li>
 <li><p><strong>MEMCFG_NMVIOL_DMAREAD</strong> - Non-controller DMA read access</p></li>
-<li><p><strong>MEMCFG_NMVIOL_TINIEREAD</strong> - Non-controller TINIE read access</p></li>
-<li><p><strong>MEMCFG_NMVIOL_TINIEWRITE</strong> - Non-controller TINIE write access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_NPUREAD</strong> - Non-controller NPU read access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_NPUWRITE</strong> - Non-controller NPU write access</p></li>
 <li><p><strong>MEMCFG_MVIOL_CPUFETCH</strong> - Controller CPU fetch access</p></li>
 <li><p><strong>MEMCFG_MVIOL_CPUWRITE</strong> - Controller CPU write access</p></li>
 <li><p><strong>MEMCFG_MVIOL_DMAWRITE</strong> - Controller DMA write access</p></li>
@@ -1426,8 +1426,8 @@ MEMCFG_GSXACCPROT0_DMAWRPROT_GS0)<a class="headerlink" href="#c.MEMCFG_XACCPROTX
 <li><p><strong>MEMCFG_NMVIOL_CLA1WRITE</strong> - Non-controller CLA1 write access</p></li>
 <li><p><strong>MEMCFG_NMVIOL_CLA1FETCH</strong> - Non-controller CLA1 fetch access</p></li>
 <li><p><strong>MEMCFG_NMVIOL_DMAREAD</strong> - Non-controller DMA read access</p></li>
-<li><p><strong>MEMCFG_NMVIOL_TINIEREAD</strong> - Non-controller TINIE read access</p></li>
-<li><p><strong>MEMCFG_NMVIOL_TINIEWRITE</strong> - Non-controller TINIE write access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_NPUREAD</strong> - Non-controller NPU read access</p></li>
+<li><p><strong>MEMCFG_NMVIOL_NPUWRITE</strong> - Non-controller NPU write access</p></li>
 <li><p><strong>MEMCFG_MVIOL_CPUFETCH</strong> - Controller CPU fetch access</p></li>
 <li><p><strong>MEMCFG_MVIOL_CPUWRITE</strong> - Controller CPU write access</p></li>
 <li><p><strong>MEMCFG_MVIOL_DMAWRITE</strong> - Controller DMA write access</p></li>
@@ -1523,7 +1523,7 @@ detailed description to be sure.</p>
     <p>
       <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
       <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
-      <span class="lastupdated">Last updated on Mar 27, 2024.
+      <span class="lastupdated">Last updated on Aug 22, 2024.
       </span></p>
   </div>
 

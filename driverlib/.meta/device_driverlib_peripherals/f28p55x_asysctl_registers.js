@@ -7,7 +7,6 @@ let ASYSCTLRegisters = [
 	},
 	{ name: "CONFIGLOCK", description: "Lock Register for all the config registers.", offset: "0x5E",
 		bits: [
-			{ name: "AGPIOFILTER", description: "Locks AGPIOFILTER Register", size: "1", shift: "1", mask: "0x2" },
 			{ name: "AGPIOCTRL", description: "Locks all AGPIOCTRL Register", size: "1", shift: "3", mask: "0x8" },
 			{ name: "GPIOINENACTRL", description: "Locks all GPIOINENACTRL Register", size: "1", shift: "6", mask: "0x40" },
 		]
@@ -108,12 +107,6 @@ let ASYSCTLRegisters = [
 			{ name: "CMPHNMXSEL", description: "CMPHNMXSEL Register lock bit", size: "1", shift: "7", mask: "0x80" },
 			{ name: "CMPLNMXSEL", description: "CMPLNMXSEL Register lock bit", size: "1", shift: "8", mask: "0x100" },
 			{ name: "VREGCTL", description: "VREGCTL Register lock bit", size: "1", shift: "9", mask: "0x200" },
-		]
-	},
-	{ name: "AGPIOFILTER", description: "AGPIO Filter Control Register", offset: "0x108",
-		bits: [
-			{ name: "GROUP1", description: "AGPIOFILTER Control for group1 side pins", size: "2", shift: "0", mask: "0x3" },
-			{ name: "GROUP2", description: "AGPIOFILTER Control for group2 side pins", size: "2", shift: "8", mask: "0x300" },
 		]
 	},
 	{ name: "AGPIOCTRLA", description: "AGPIO Control Register", offset: "0x10A",

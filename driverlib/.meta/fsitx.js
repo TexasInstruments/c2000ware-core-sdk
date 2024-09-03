@@ -405,7 +405,7 @@ var fsitxModule = {
         var pinmuxQualMods = Pinmux.getGpioQualificationModInstDefinitions("FSITX", inst)
         for (var pinmuxQualMod of pinmuxQualMods)
         {
-            pinmuxQualMod.requiredArgs = {
+            pinmuxQualMod.args = {
                 qualMode : "GPIO_QUAL_ASYNC",
                 padConfig : "STD",
             }

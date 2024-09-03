@@ -1,0 +1,2 @@
+import{r as e,g as s}from"./p-5bb37414.js";import{Base64PacketCodec as t}from"../gc-codec-base64/lib/Base64PacketCodec";let c=class{constructor(s){e(this,s);this.impl=undefined;this.optional=false}connectedCallback(){this.impl=new t(this.el)}disconnectedCallback(){this.impl.dispose()}get el(){return s(this)}};export{c as gc_codec_base64};
+//# sourceMappingURL=p-021acb35.entry.js.map

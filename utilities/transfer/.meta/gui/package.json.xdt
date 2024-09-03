@@ -1,0 +1,31 @@
+% let transferCommon;
+% if (system.getProducts()[0].name.includes("C2000"))
+% { transferCommon = system.getScript("/utilities/transfer/transferCommon.js");
+% } else
+% { transferCommon = system.getScript("/transfer/transferCommon.js");}
+% 
+% let gui = system.modules[transferCommon.getTransferPath() + "gui.js"].$static;
+{
+    "name": "`gui.guiProjectName.toLowerCase().replaceAll(" ", "_")`",
+    "chromium-args": "--ignore-certificate-errors --disable-web-security --user-data-dir --enable-features=SharedArrayBuffer",
+    "window": {
+        "title": "",
+        "frame": false,
+        "position": "center",
+        "width": 1280,
+        "height": 800,
+        "min_width": 600,
+        "min_height": 200,
+        "show_in_taskbar": true
+    },
+    "node-remote": "*://*/*",
+    "dependencies": {
+        "fs-extra": "8.1.0",
+        "open": "6.4.0",
+        "optimist": "0.6.1",
+        "serve-static": "1.14.1"
+    },
+    "devDependencies": {
+        "@types/node": "14.0.27"
+    }
+}

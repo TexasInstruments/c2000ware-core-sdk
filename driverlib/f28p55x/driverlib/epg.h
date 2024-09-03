@@ -5,8 +5,10 @@
 // TITLE:  C28x EPG driver.
 //
 //###########################################################################
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -41,9 +43,22 @@
 #ifndef EPG_H
 #define EPG_H
 
+//*****************************************************************************
+//
+// If building with a C++ compiler, make all of the definitions in this header
+// have a C binding.
+//
+//*****************************************************************************
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+//*****************************************************************************
+//
+//! \addtogroup epg_api EPG
+//! @{
+//
+//*****************************************************************************
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -1425,9 +1440,19 @@ extern void
 EPG_selectEPGDataOut(uint32_t muxbase, EPG_DataIn dataIn,
                      EPG_DataOutSel dataOutSel);
 
+
+//*****************************************************************************
 //
-// EPG External References & Function Declarations:
+// Close the Doxygen group.
+//! @}
 //
+//*****************************************************************************
+
+//*****************************************************************************
+//
+// Mark the end of the C bindings section for C++ compilers.
+//
+//*****************************************************************************
 #ifdef __cplusplus
 }
 #endif                                  /* extern "C" */

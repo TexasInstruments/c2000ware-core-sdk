@@ -25,7 +25,6 @@
 ;======================================================================
 ; #############################################################################
 ; $TI Release: F2838x Support Library v3.04.00.00 $
-; $Release Date: Fri Feb 12 19:08:49 IST 2021 $
 ; $Copyright:
 ;// Copyright (C) 2021 Texas Instruments Incorporated - http://www.ti.com/
 ;//

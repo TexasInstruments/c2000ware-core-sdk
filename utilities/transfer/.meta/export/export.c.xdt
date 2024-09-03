@@ -1,0 +1,9 @@
+% let transferCommon;
+% if (system.getProducts()[0].name.includes("C2000"))
+% { transferCommon = system.getScript("/utilities/transfer/transferCommon.js");
+% } else
+% { transferCommon = system.getScript("/transfer/transferCommon.js");}
+% 
+%
+% let exportCTemplate = system.getTemplate(transferCommon.getTransferPath() + "export/export_device/export_" + transferCommon.getDeviceTypeName() + ".xdt");
+`exportCTemplate()`

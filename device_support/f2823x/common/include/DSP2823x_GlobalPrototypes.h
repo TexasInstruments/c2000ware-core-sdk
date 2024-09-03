@@ -236,7 +236,7 @@ extern void InitSpiaGpio(void);
 extern void InitSysCtrl(void);
 extern void InitTzGpio(void);
 extern void InitXIntrupt(void);
-extern void XintfInit(void);
+extern void InitXintf(void);
 extern void InitXintf16Gpio();
 extern void InitXintf32Gpio();
 extern void InitPll(Uint16 pllcr, Uint16 clkindiv);

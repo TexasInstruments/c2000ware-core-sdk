@@ -41,9 +41,22 @@
 #ifndef EPG_H
 #define EPG_H
 
+//*****************************************************************************
+//
+// If building with a C++ compiler, make all of the definitions in this header
+// have a C binding.
+//
+//*****************************************************************************
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+//*****************************************************************************
+//
+//! \addtogroup epg_api EPG
+//! @{
+//
+//*****************************************************************************
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -1380,9 +1393,19 @@ extern void
 EPG_selectEPGDataOut(uint32_t muxbase, EPG_DataIn dataIn,
                      EPG_DataOutSel dataOutSel);
 
+
+//*****************************************************************************
 //
-// EPG External References & Function Declarations:
+// Close the Doxygen group.
+//! @}
 //
+//*****************************************************************************
+
+//*****************************************************************************
+//
+// Mark the end of the C bindings section for C++ compilers.
+//
+//*****************************************************************************
 #ifdef __cplusplus
 }
 #endif                                  /* extern "C" */

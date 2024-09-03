@@ -162,9 +162,9 @@ let SYSCTLRegisters = [
 			{ name: "FLASHA", description: "Flash Wrapper Module Reset Bit", size: "1", shift: "0", mask: "0x1" },
 		]
 	},
-	{ name: "SOFTPRES30", description: "TINIE Software reset register", offset: "0xBE",
+	{ name: "SOFTPRES30", description: "NPU Software reset register", offset: "0xBE",
 		bits: [
-			{ name: "TINIE", description: "TINIE Module Reset Bit", size: "1", shift: "0", mask: "0x1" },
+			{ name: "NPU", description: "NPU Module Reset Bit", size: "1", shift: "0", mask: "0x1" },
 		]
 	},
 	{ name: "TAP_STATUS", description: "Status of JTAG State machine & Debugger Connect", offset: "0x130",
@@ -402,7 +402,7 @@ let SYSCTLRegisters = [
 		bits: [
 			{ name: "USBCLKDIV", description: "USB Clock Divide select", size: "3", shift: "7", mask: "0x380" },
 			{ name: "LINACLKDIV", description: "LINA Clock Divide Select", size: "6", shift: "10", mask: "0xFC00" },
-			{ name: "TINIECLKDIV", description: "TINIE Clock Divide Select", size: "1", shift: "16", mask: "0x10000" },
+			{ name: "NPUCLKDIV", description: "NPU Clock Divide Select", size: "1", shift: "16", mask: "0x10000" },
 		]
 	},
 	{ name: "XCLKOUTDIVSEL", description: "XCLKOUT Divider Select register", offset: "0x28",
@@ -581,7 +581,7 @@ let SYSCTLRegisters = [
 	},
 	{ name: "PCLKCR12", description: "Peripheral Clock Gating Register - Upp", offset: "0x3A",
 		bits: [
-			{ name: "TINIE", description: "TINIE Clock Enable bit", size: "1", shift: "0", mask: "0x1" },
+			{ name: "NPU", description: "NPU Clock Enable bit", size: "1", shift: "0", mask: "0x1" },
 		]
 	},
 	{ name: "PCLKCR13", description: "Peripheral Clock Gating Register - ADC", offset: "0x3C",

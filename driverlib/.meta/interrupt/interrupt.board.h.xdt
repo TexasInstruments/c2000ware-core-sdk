@@ -50,6 +50,7 @@ if (module != null)
 %%}
 
 // Interrupt Settings for `instance.interruptName`
+// ISR need to be defined for the registered interrupts
 #define `instance.interruptName` `driverlibInt`
 % if (interupt_ack_group) {
 #define `instance.interruptName`_INTERRUPT_ACK_GROUP `interupt_ack_group`
@@ -74,7 +75,8 @@ if (module_sys_err != null)
         }
 %%}
 
-// Interrupt Setings for `instance.interruptName`
+// Interrupt Settings for `instance.interruptName`
+// ISR need to be defined for the registered interrupts
 % if (interupt_ack_group) {
 #define `instance.interruptName`_INTERRUPT_ACK_GROUP `interupt_ack_group`
 % }
@@ -98,7 +100,8 @@ if (module_wake != null)
         }
 %%}
 
-// Interrupt Setings for `instance.interruptName`
+// Interrupt Settings for `instance.interruptName`
+// ISR need to be defined for the registered interrupts
 % if (interupt_ack_group) {
 #define `instance.interruptName`_INTERRUPT_ACK_GROUP `interupt_ack_group`
 % }

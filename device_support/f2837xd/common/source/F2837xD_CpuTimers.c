@@ -145,7 +145,7 @@ void ConfigCpuTimer(struct CPUTIMER_VARS *Timer, float Freq, float Period)
     //
     Timer->CPUFreqInMHz = Freq;
     Timer->PeriodInUSec = Period;
-    temp = (long) (Freq * Period);
+    temp = (Uint32) (Freq * Period);
 
     //
     // Counter decrements PRD+1 times each period

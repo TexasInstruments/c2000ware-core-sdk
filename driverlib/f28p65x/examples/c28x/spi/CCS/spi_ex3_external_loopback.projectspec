@@ -14,6 +14,7 @@
           ;if ${GENERATE_DIAGRAM} == 1  ${NODE_TOOL} &quot;${C2000WARE_ROOT}/utilities/clb_tool/clb_syscfg/dot_file_libraries/clbDotUtility.js&quot;  &quot;${C2000WARE_ROOT}/utilities/clb_tool/clb_syscfg/&quot; &quot;${BuildDirectory}/syscfg&quot; &quot;${BuildDirectory}/syscfg/clb.dot&quot;
           ;if ${GENERATE_DIAGRAM} == 1  mkdir &quot;${BuildDirectory}/diagrams&quot;
           ;if ${GENERATE_DIAGRAM} == 1  ${NODE_TOOL} &quot;${C2000WARE_ROOT}/driverlib/.meta/generate_diagrams.js&quot; &quot;${C2000WARE_ROOT}&quot; &quot;${BuildDirectory}/diagrams&quot; &quot;${BuildDirectory}/syscfg&quot;
+          ;if ${GUI_SUPPORT} == 1  &quot;${BuildDirectory}/syscfg/gui_setup.bat&quot;
         "
         >
     <configuration name="CPU1_RAM" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -v28 -ml -mt --float_support=fpu64 --define=DEBUG --define=CPU1 --define=RAM --define=generic_ram_lnk --diag_warning=225 --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 -i${C2000WARE_ROOT} -i${PROJECT_BUILD_DIR}/syscfg -lc2000ware_libraries.cmd.genlibs -lboard.cmd.genlibs --define=generic_ram_lnk"/>
@@ -27,6 +28,7 @@
     <pathVariable name="CLB_SIM_COMPILER" path="C:/TDM-GCC-64/bin" scope="project" />
     <buildVariable name="CLB_DEBUG" value="0" scope="project" />
     <buildVariable name="GENERATE_DIAGRAM" value="0" scope="project" />
+    <buildVariable name="GUI_SUPPORT" value="0" scope="project" />
     <file action="copy" path="../spi_ex3_external_loopback.c" targetDirectory="" />
     <file action="copy" path="../spi_ex3_external_loopback.syscfg" targetDirectory="" />
   </project>

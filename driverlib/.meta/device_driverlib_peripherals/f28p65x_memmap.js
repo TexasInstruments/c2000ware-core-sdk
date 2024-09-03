@@ -262,7 +262,7 @@ let DeviceMemoryMap = [
 	{ name: "ERAD_PCTRACE_CPU_BASE", displayName: "ERAD PCTRACE CPU", baseAddress: "0x0005FE00U" },
 	{ name: "UARTA_BASE", displayName: "UARTA", baseAddress: "0x0006A000U" },
 	{ name: "UARTB_BASE", displayName: "UARTB", baseAddress: "0x0006A800U" },
-	{ name: "UID_BASE", displayName: "UID", baseAddress: "0x00072172U" },
+	{ name: "UID_BASE", displayName: "UID", baseAddress: "0x00072168U" },
 	{ name: "DCSMBANK0_Z1OTP_BASE", displayName: "DCSMBANK0 Z1OTP", baseAddress: "0x00078000U" },
 	{ name: "DCSMBANK0_Z2OTP_BASE", displayName: "DCSMBANK0 Z2OTP", baseAddress: "0x00078200U" },
 ];
@@ -706,7 +706,7 @@ let UARTMemoryMap = [
 	{ name: "UARTB_BASE", displayName: "UARTB", baseAddress: "0x0006A800U" },
 ];
 let UIDMemoryMap = [
-	{ name: "UID_BASE", displayName: "UID", baseAddress: "0x00072172U" },
+	{ name: "UID_BASE", displayName: "UID", baseAddress: "0x00072168U" },
 ];
 let DCSMBANK0MemoryMap = [
 	{ name: "DCSMBANK0_Z1OTP_BASE", displayName: "DCSMBANK0 Z1OTP", baseAddress: "0x00078000U" },

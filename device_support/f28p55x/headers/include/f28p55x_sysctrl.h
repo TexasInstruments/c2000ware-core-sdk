@@ -5,8 +5,10 @@
 // TITLE:   Definitions for the SYSCTRL registers.
 //
 //###########################################################################
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -421,6 +423,17 @@ union SOFTPRES28_REG {
     struct  SOFTPRES28_BITS  bit;
 };
 
+struct SOFTPRES30_BITS {                // bits description
+    Uint16 NPU:1;                       // 0 NPU Module Reset Bit
+    Uint16 rsvd1:15;                    // 15:1 Reserved
+    Uint16 rsvd2:16;                    // 31:16 Reserved
+};
+
+union SOFTPRES30_REG {
+    Uint32  all;
+    struct  SOFTPRES30_BITS  bit;
+};
+
 struct TAP_STATUS_BITS {                // bits description
     Uint16 TAP_STATE:16;                // 15:0 Present TAP State
     Uint16 rsvd1:15;                    // 30:16 Reserved
@@ -777,37 +790,39 @@ struct DEV_CFG_REGS {
     union   SOFTPRES26_REG                   SOFTPRES26;                   // AES Software Reset register
     union   SOFTPRES27_REG                   SOFTPRES27;                   // EPG Software Reset register
     union   SOFTPRES28_REG                   SOFTPRES28;                   // Flash Software Reset register
-    Uint16                                   rsvd8[116];                   // Reserved
+    Uint16                                   rsvd8[2];                     // Reserved
+    union   SOFTPRES30_REG                   SOFTPRES30;                   // NPU Software reset register
+    Uint16                                   rsvd9[112];                   // Reserved
     union   TAP_STATUS_REG                   TAP_STATUS;                   // Status of JTAG State machine & Debugger Connect
     union   TAP_CONTROL_REG                  TAP_CONTROL;                  // Disable TAP control
-    Uint16                                   rsvd9[102];                   // Reserved
+    Uint16                                   rsvd10[102];                  // Reserved
     union   USBTYPE_REG                      USBTYPE;                      // Configures USB Type for the device
     union   ECAPTYPE_REG                     ECAPTYPE;                     // Configures ECAP Type for the device
-    Uint16                                   rsvd10[10];                   // Reserved
+    Uint16                                   rsvd11[10];                   // Reserved
     union   MCUCNF3_REG                      MCUCNF3;                      // MCU Configuration: ETPWM
-    Uint16                                   rsvd11[8];                    // Reserved
+    Uint16                                   rsvd12[8];                    // Reserved
     union   MCUCNF8_REG                      MCUCNF8;                      // MCU Configuration: SCI
-    Uint16                                   rsvd12[4];                    // Reserved
+    Uint16                                   rsvd13[4];                    // Reserved
     union   MCUCNF11_REG                     MCUCNF11;                     // MCU Configuration: CAN
     union   MCUCNF12_REG                     MCUCNF12;                     // MCU Configuration: McBSP_USB
-    Uint16                                   rsvd13[2];                    // Reserved
-    union   MCUCNF14_REG                     MCUCNF14;                     // MCU Configuration: ADC
     Uint16                                   rsvd14[2];                    // Reserved
-    union   MCUCNF16_REG                     MCUCNF16;                     // MCU Configuration: PGA
+    union   MCUCNF14_REG                     MCUCNF14;                     // MCU Configuration: ADC
     Uint16                                   rsvd15[2];                    // Reserved
-    union   MCUCNF18_REG                     MCUCNF18;                     // MCU Configuration: Lx.1 SRAM Customization
+    union   MCUCNF16_REG                     MCUCNF16;                     // MCU Configuration: PGA
     Uint16                                   rsvd16[2];                    // Reserved
+    union   MCUCNF18_REG                     MCUCNF18;                     // MCU Configuration: Lx.1 SRAM Customization
+    Uint16                                   rsvd17[2];                    // Reserved
     union   MCUCNF20_REG                     MCUCNF20;                     // MCU Configuration: GSx SRAM Customization
     union   MCUCNF21_REG                     MCUCNF21;                     // MCU Configuration: CLB
-    Uint16                                   rsvd17[2];                    // Reserved
+    Uint16                                   rsvd18[2];                    // Reserved
     union   MCUCNF23_REG                     MCUCNF23;                     // MCU Configuration: LIN
-    Uint16                                   rsvd18[14];                   // Reserved
+    Uint16                                   rsvd19[14];                   // Reserved
     union   MCUCNF31_REG                     MCUCNF31;                     // MCU Configuration: Flash Bank0
     union   MCUCNF32_REG                     MCUCNF32;                     // MCU Configuration: Flash Bank1
     union   MCUCNF33_REG                     MCUCNF33;                     // MCU Configuration: Flash Bank2
     union   MCUCNF34_REG                     MCUCNF34;                     // MCU Configuration: Flash Bank3
     union   MCUCNF35_REG                     MCUCNF35;                     // MCU Configuration: Flash Bank4
-    Uint16                                   rsvd19[16];                   // Reserved
+    Uint16                                   rsvd20[16];                   // Reserved
     union   MCUCNFLOCK_REG                   MCUCNFLOCK;                   // Lock bit for MCUCNFx registers
 };
 
@@ -968,8 +983,8 @@ struct PERCLKDIVSEL_BITS {              // bits description
     Uint16 rsvd5:1;                     // 6 Reserved
     Uint16 USBCLKDIV:3;                 // 9:7 USB Clock Divide select
     Uint16 LINACLKDIV:6;                // 15:10 LINA Clock Divide Select
-    Uint16 rsvd6:1;                     // 16 Reserved
-    Uint16 rsvd7:15;                    // 31:17 Reserved
+    Uint16 NPUCLKDIV:1;                 // 16 NPU Clock Divide Select
+    Uint16 rsvd6:15;                    // 31:17 Reserved
 };
 
 union PERCLKDIVSEL_REG {
@@ -1350,6 +1365,17 @@ struct PCLKCR11_BITS {                  // bits description
 union PCLKCR11_REG {
     Uint32  all;
     struct  PCLKCR11_BITS  bit;
+};
+
+struct PCLKCR12_BITS {                  // bits description
+    Uint16 NPU:1;                       // 0 NPU Clock Enable bit
+    Uint16 rsvd1:15;                    // 15:1 Reserved
+    Uint16 rsvd2:16;                    // 31:16 Reserved
+};
+
+union PCLKCR12_REG {
+    Uint32  all;
+    struct  PCLKCR12_BITS  bit;
 };
 
 struct PCLKCR13_BITS {                  // bits description
@@ -1806,7 +1832,7 @@ struct CPU_SYS_REGS {
     union   PCLKCR9_REG                      PCLKCR9;                      // Peripheral Clock Gating Register - I2C
     union   PCLKCR10_REG                     PCLKCR10;                     // Peripheral Clock Gating Register - CAN
     union   PCLKCR11_REG                     PCLKCR11;                     // Peripheral Clock Gating Register - McBSP_USB
-    Uint16                                   rsvd5[2];                     // Reserved
+    union   PCLKCR12_REG                     PCLKCR12;                     // Peripheral Clock Gating Register - Upp
     union   PCLKCR13_REG                     PCLKCR13;                     // Peripheral Clock Gating Register - ADC
     union   PCLKCR14_REG                     PCLKCR14;                     // Peripheral Clock Gating Register - CMPSS
     union   PCLKCR15_REG                     PCLKCR15;                     // Peripheral Clock Gating Register - PGA
@@ -1816,23 +1842,23 @@ struct CPU_SYS_REGS {
     union   PCLKCR19_REG                     PCLKCR19;                     // Peripheral Clock Gating Register - LIN
     union   PCLKCR20_REG                     PCLKCR20;                     // Peripheral Clock Gating Register - PMBUS
     union   PCLKCR21_REG                     PCLKCR21;                     // Peripheral Clock Gating Register - DCC
-    Uint16                                   rsvd6[8];                     // Reserved
+    Uint16                                   rsvd5[8];                     // Reserved
     union   PCLKCR26_REG                     PCLKCR26;                     // Peripheral Clock Gating Register - AES
     union   PCLKCR27_REG                     PCLKCR27;                     // Peripheral Clock Gating Register - EPG
-    Uint16                                   rsvd7[22];                    // Reserved
+    Uint16                                   rsvd6[22];                    // Reserved
     union   SIMRESET_REG                     SIMRESET;                     // Simulated Reset Register
-    Uint16                                   rsvd8[4];                     // Reserved
+    Uint16                                   rsvd7[4];                     // Reserved
     union   LPMCR_REG                        LPMCR;                        // LPM Control Register
     union   GPIOLPMSEL0_REG                  GPIOLPMSEL0;                  // GPIO LPM Wakeup select registers
     union   GPIOLPMSEL1_REG                  GPIOLPMSEL1;                  // GPIO LPM Wakeup select registers
     union   TMR2CLKCTL_REG                   TMR2CLKCTL;                   // Timer2 Clock Measurement functionality control register
     union   RESCCLR_REG                      RESCCLR;                      // Reset Cause Clear Register
     union   RESC_REG                         RESC;                         // Reset Cause register
-    Uint16                                   rsvd9[2];                     // Reserved
+    Uint16                                   rsvd8[2];                     // Reserved
     union   CMPSSLPMSEL_REG                  CMPSSLPMSEL;                  // CMPSS LPM Wakeup select registers
-    Uint16                                   rsvd10[10];                   // Reserved
+    Uint16                                   rsvd9[10];                    // Reserved
     union   MCANRAMACC_REG                   MCANRAMACC;                   // MCAN RAM access control Register
-    Uint16                                   rsvd11[6];                    // Reserved
+    Uint16                                   rsvd10[6];                    // Reserved
     union   MCANWAKESTATUS_REG               MCANWAKESTATUS;               // MCAN Wake Status Register
     union   MCANWAKESTATUSCLR_REG            MCANWAKESTATUSCLR;            // MCAN Wake Status Clear Register
     union   CLKSTOPREQ_REG                   CLKSTOPREQ;                   // Peripheral Clock Stop Request Register

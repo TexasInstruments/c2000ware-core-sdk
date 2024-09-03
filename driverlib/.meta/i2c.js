@@ -10,8 +10,21 @@ let longDescription = "The I2C driver provides a simplified application"
         + " interface to access peripherals on an I2C bus.";
 
 var extended_clock_supported_devices = ['f28p55x'];
+var push_pull_pins_support = ['f2838x']
 var hide_extended_clock_stretching_options = null; 
 var extended_clock_stretching_support_available = null; 
+var open_drain_pins = null;
+var globalConfig = [
+
+    {
+        name: "sysClock",
+        displayName: "Device SYSCLK in MHz",
+        description : 'Device System Clock Frequency',
+        hidden      : false,
+        default     : Common.SYSCLK_getMaxMHz(),
+        readOnly    : true,
+    },
+];
 function setupFlags()
 {
     if (extended_clock_supported_devices.indexOf(Common.getDeviceName().toLowerCase()) === -1) 
@@ -23,6 +36,14 @@ function setupFlags()
     {
         hide_extended_clock_stretching_options = false;
         extended_clock_stretching_support_available = true;
+    }
+    if(push_pull_pins_support.indexOf(Common.getDeviceName().toLowerCase()) === -1) 
+    {
+        open_drain_pins = true;
+    }
+    else 
+    {
+        open_drain_pins = false;
     }
 }
 setupFlags();
@@ -134,9 +155,19 @@ function onValidate(inst, validation)
     var pinmuxQualMods = Pinmux.getGpioQualificationModInstDefinitions("I2C", inst)
     for (var pinmuxQualMod of pinmuxQualMods)
     {
-        if (((inst[pinmuxQualMod.name].padConfig.includes("PULLUP")) && !(inst[pinmuxQualMod.name].padConfig.includes("OD"))) || (inst[pinmuxQualMod.name].padConfig.includes("INVERT")))
+        if(open_drain_pins === true)
         {
-            validation.logError("The push-pull and inverted pad configurations should not be used for the I2C module.", inst);
+            if (((inst[pinmuxQualMod.name].padConfig.includes("PULLUP")) && !(inst[pinmuxQualMod.name].padConfig.includes("OD"))) || (inst[pinmuxQualMod.name].padConfig.includes("INVERT")))
+            {
+                validation.logError("The push-pull and inverted pad configurations should not be used for the I2C module.", inst);
+            }
+        }
+        else 
+        {
+            if (((inst[pinmuxQualMod.name].padConfig.includes("OD")) && !(inst[pinmuxQualMod.name].padConfig.includes("PULLUP"))) || (inst[pinmuxQualMod.name].padConfig.includes("INVERT")))
+            {
+                validation.logError("The open-drain and inverted pad configurations should not be used for the I2C module.", inst);
+            }
         }
     }
 }
@@ -176,14 +207,6 @@ function onModuleClockChange(inst, ui)
 
 /* Array of I2C configurables that are common across device families */
 let config = [
-    {
-        name        : "sysClk",
-        displayName : "Device System Clock",
-        description : "Device System clock in MHz",
-        hidden      : false,
-        default     : Common.SYSCLK_getMaxMHz(),
-        readOnly    : true,
-    },
     {
         name        : "mode",
         displayName : "I2C Device Mode",
@@ -421,8 +444,17 @@ var i2cModule = {
         var pinmuxQualMods = Pinmux.getGpioQualificationModInstDefinitions("I2C", inst)
         for (var pinmuxQualMod of pinmuxQualMods)
         {
-            pinmuxQualMod.args.padConfig = "OD_PULLUP";
-            pinmuxQualMod.args.qualMode = "GPIO_QUAL_ASYNC";
+            pinmuxQualMod.requiredArgs = {
+                qualMode : "GPIO_QUAL_ASYNC",
+            }
+            if(open_drain_pins === true)
+            {
+                pinmuxQualMod.args.padConfig = "OD_PULLUP";
+            } 
+            else 
+            {
+                pinmuxQualMod.args.padConfig = "STD";
+            }
         }
         ownedInstances = ownedInstances.concat(pinmuxQualMods)
 
@@ -465,6 +497,11 @@ var i2cModule = {
     templates: {
         boardc : "/driverlib/i2c/i2c.board.c.xdt",
         boardh : "/driverlib/i2c/i2c.board.h.xdt"
+    },
+	moduleStatic: {
+        name: "I2CGlobal",
+        displayName: "I2C Global",
+        config: globalConfig,
     },
     pinmuxRequirements    : Pinmux.i2cPinmuxRequirements,
     validate    : onValidate

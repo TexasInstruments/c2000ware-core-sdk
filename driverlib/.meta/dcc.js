@@ -341,6 +341,20 @@ function onValidate(inst, validation)
         usedDCCInsts.push(instance_obj.dccBase);
     }
 
+    var otherContexts = Common.getOtherContextNames()
+    for (var cntx of otherContexts)
+    {
+        var onOtherCntx = Common.getModuleForCore(inst.$module.$name, cntx);
+        if (onOtherCntx)
+        {
+            for (var instance_index in onOtherCntx.$instances)
+            {
+                var instance_obj = onOtherCntx.$instances[instance_index];
+                usedDCCInsts.push(instance_obj.dccBase);
+            }
+        }
+    }
+
     var duplicatesResult = Common.findDuplicates(usedDCCInsts)
 
     if (duplicatesResult.duplicates.length != 0)

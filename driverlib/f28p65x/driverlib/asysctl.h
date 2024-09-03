@@ -5,8 +5,10 @@
 // TITLE:  C28x driver for Analog System Control.
 //
 //###########################################################################
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -618,7 +620,7 @@ ASysCtl_selectCMPHPMux(ASysCtl_CMPHPMuxSelect select, uint32_t value)
     //
     // Set the value for the appropriate Mux Select.
     //
-    if((uint16_t)select > 32U)
+    if((uint16_t)select >= 32U)
     {
         HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPHPMXSEL1) =
         (HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPHPMXSEL1) &
@@ -669,7 +671,7 @@ ASysCtl_selectCMPLPMux(ASysCtl_CMPLPMuxSelect select, uint32_t value)
     //
     // Set the value for the appropriate Mux Select.
     //
-    if((uint16_t)select > 32U)
+    if((uint16_t)select >= 32U)
     {
         HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPLPMXSEL1) =
         (HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPLPMXSEL1) &

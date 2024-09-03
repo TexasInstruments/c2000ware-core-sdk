@@ -47,8 +47,10 @@
 //#############################################################################
 //
 //
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -126,6 +128,7 @@ int MEP_ScaleFactor;
 // Used by SFO library (ePWM[0] is a dummy value that isn't used)
 //
 volatile uint32_t ePWM[PWM_CH + 1] = {0, EPWM1_BASE, EPWM2_BASE};
+extern volatile uint32_t gHrpwmCal_base;
 
 //
 // Function Prototypes
@@ -168,6 +171,11 @@ void main(void)
     updateFine = 1;
     dutyFine = 0;
     status = SFO_INCOMPLETE;
+
+    //
+    // We are only required to calibrate HRPWMCAL1 as we using EPWMs between 1-8.
+    //
+    gHrpwmCal_base = HRPWMCAL1_BASE;
 
     //
     // Calling SFO() updates the HRMSTEP register with calibrated

@@ -5,8 +5,10 @@
 // TITLE:   Definitions for the PIE Vector Table.
 //
 //###########################################################################
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -178,8 +180,8 @@ struct PIE_VECT_TABLE {
     PINT PIE30_RESERVED_INT;        // 12.4 - Reserved
     PINT FLSS_INT;                  // 12.5 - Interrupt from flash sub-system
     PINT VCU_INT;                   // 12.6 - VCU Interrupt (VCRC)
-    PINT MCANA_ECC_INT;             // 12.7 - MCANSSA_ECC_CORR_PLS
-    PINT MCANA_WAKE_INT;            // 12.8 - MCANSSA_WAKE_AND_TS_PLS
+    PINT MCANA_WAKE_INT;            // 12.7 - MCANSSA_WAKE_AND_TS_PLS
+    PINT MCANA_ECC_INT;             // 12.8 - MCANSSA_ECC_CORR_PLS
     PINT ADCD1_INT;                 // 1.9 - ADCD Interrupt 1
     PINT ADCE1_INT;                 // 1.10 - ADCE Interrupt 1
     PINT PIE31_RESERVED_INT;        // 1.11 - Reserved
@@ -246,8 +248,8 @@ struct PIE_VECT_TABLE {
     PINT PIE78_RESERVED_INT;        // 8.16 - Reserved
     PINT MCANB_0_INT;               // 9.9 - MCANSSB0
     PINT MCANB_1_INT;               // 9.10 - MCANSSB1
-    PINT MCANB_ECC_INT;             // 9.11 - MCANSSB_ECC_CORR_PLS
-    PINT MCANB_WAKE_INT;            // 9.12 - MCANSSB_WAKE_AND_TS_PLS
+    PINT MCANB_WAKE_INT;            // 9.11 - MCANSSB_WAKE_AND_TS_PLS
+    PINT MCANB_ECC_INT;             // 9.12 - MCANSSB_ECC_CORR_PLS
     PINT PIE79_RESERVED_INT;        // 9.13 - Reserved
     PINT PIE80_RESERVED_INT;        // 9.14 - Reserved
     PINT USBA_INT;                  // 9.15 - USBA Interrupt

@@ -1,0 +1,1574 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>UART Module &mdash; F28P65x API Guide</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/tiicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="F28P65x API Guide" href="../index.html"/>
+        <link rel="up" title="Modules" href="index.html"/>
+        <link rel="next" title="USB Module" href="usb.html"/>
+        <link rel="prev" title="SYSCTL Module" href="sysctl.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+  <header id="tiHeader">
+    <div class="top">
+      <ul>
+        <li id="top_logo">
+          <a href="http://www.ti.com">
+            <img src="../_static/img/ti_logo.png"/>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="nav"></div>
+  </header>
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> F28P65x API Guide
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v5.03.00.00
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../model.html">Programming Models</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Driver Library Usage</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="adc.html">ADC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aes.html">AES Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="asysctl.html">ASysCtl Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bgcrc.html">BGCRC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="can.html">CAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cla.html">CLA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clb.html">CLB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmpss.html">CMPSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cputimer.html">CPU Timer Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dac.html">DAC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcc.html">DCC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dcsm.html">DCSM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dma.html">DMA Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ecap.html">ECAP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="emif.html">EMIF Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="epg.html">EPG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="epwm.html">EPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eqep.html">EQEP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="erad.html">ERAD Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="escss.html">ESCSS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flash.html">FLASH Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fsi.html">FSI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gpio.html">GPIO Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hrcap.html">HRCAP Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hrpwm.html">HRPWM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="i2c.html">I2C Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interrupt.html">Interrupt Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ipc.html">IPC Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lin.html">LIN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mcan.html">MCAN Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="memcfg.html">MEMCFG Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pmbus.html">PMBUS Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sci.html">SCI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sdfm.html">SDFM Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="spi.html">SPI Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sysctl.html">SYSCTL Module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">UART Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usb.html">USB Module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="version.html">Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xbar.html">XBAR Module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">F28P65x API Guide</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Modules</a> &raquo;</li>
+      <li>UART Module</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="uart-module">
+<span id="uart"></span><h1>UART Module<a class="headerlink" href="#uart-module" title="Permalink to this headline">¶</a></h1>
+<p>The UART driver provides functions which can configure the data word length,
+baud rate, parity, and stop bits of the UART communication. It can also be used
+to enable or disable loopback mode, enable the FIFO enhancement, configure
+interrupts, and send and receive data. If FIFO enhancement is enabled, we must
+use the provided FIFO functions to configure and guarantee proper execution.</p>
+<dl class="group">
+<dt>
+<span class="target" id="group__uart__api"></span><em>group</em> <code class="sig-name descname">uart_api</code></dt>
+<dd><p>The UART module is used for UART configurations. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Defines</p>
+<dl class="cpp macro">
+<dt id="c.UART_INT_DMATX">
+<span class="target" id="group__uart__api_1gaf22615dea4d48eacb0f6ff104266310f"></span><code class="sig-name descname">UART_INT_DMATX</code> 0x20000U<a class="headerlink" href="#c.UART_INT_DMATX" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>DMA TX interrupt. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_INT_DMARX">
+<span class="target" id="group__uart__api_1ga861345696404e36a7eb9a1e040de9c8a"></span><code class="sig-name descname">UART_INT_DMARX</code> 0x10000U<a class="headerlink" href="#c.UART_INT_DMARX" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>DMA RX interrupt. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_INT_9BIT">
+<span class="target" id="group__uart__api_1ga06b239c29b2e80d1e8ef7babbf54660a"></span><code class="sig-name descname">UART_INT_9BIT</code> 0x1000U<a class="headerlink" href="#c.UART_INT_9BIT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>9-bit address match interrupt </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_INT_EOT">
+<span class="target" id="group__uart__api_1ga5e2f021e1d6065d97ab266e2943b1036"></span><code class="sig-name descname">UART_INT_EOT</code> 0x800U<a class="headerlink" href="#c.UART_INT_EOT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive Interrupt Mask. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_INT_OE">
+<span class="target" id="group__uart__api_1gab9c41a9362abfd4e9546f1c70f3a05a9"></span><code class="sig-name descname">UART_INT_OE</code> 0x400U<a class="headerlink" href="#c.UART_INT_OE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Overrun Error Interrupt Mask. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_INT_BE">
+<span class="target" id="group__uart__api_1gaa8660bdf26ac08961125a6c950f4b76a"></span><code class="sig-name descname">UART_INT_BE</code> 0x200U<a class="headerlink" href="#c.UART_INT_BE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Break Error Interrupt Mask. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_INT_PE">
+<span class="target" id="group__uart__api_1gab944f4625a878ef1df89a7a6fd790cab"></span><code class="sig-name descname">UART_INT_PE</code> 0x100U<a class="headerlink" href="#c.UART_INT_PE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Parity Error Interrupt Mask. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_INT_FE">
+<span class="target" id="group__uart__api_1gab3da31fe08d3dbc7e40c8beb01ea1607"></span><code class="sig-name descname">UART_INT_FE</code> 0x080U<a class="headerlink" href="#c.UART_INT_FE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Framing Error Interrupt Mask. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_INT_RT">
+<span class="target" id="group__uart__api_1ga6d6d4d5d9fd23170c5f48fefa14e147c"></span><code class="sig-name descname">UART_INT_RT</code> 0x040U<a class="headerlink" href="#c.UART_INT_RT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive Timeout Interrupt Mask. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_INT_TX">
+<span class="target" id="group__uart__api_1ga5edf87050364febe668e42a5f973dd1a"></span><code class="sig-name descname">UART_INT_TX</code> 0x020U<a class="headerlink" href="#c.UART_INT_TX" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit Interrupt Mask. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_INT_RX">
+<span class="target" id="group__uart__api_1ga62a4b9cc83e120b3eee5a0a7636b558c"></span><code class="sig-name descname">UART_INT_RX</code> 0x010U<a class="headerlink" href="#c.UART_INT_RX" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive Interrupt Mask. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_CONFIG_WLEN_MASK">
+<span class="target" id="group__uart__api_1gaaefa9a300dceb6adf3d639b16bdd7555"></span><code class="sig-name descname">UART_CONFIG_WLEN_MASK</code> 0x00000060UL<a class="headerlink" href="#c.UART_CONFIG_WLEN_MASK" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for extracting wordlength. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_CONFIG_WLEN_8">
+<span class="target" id="group__uart__api_1ga00030434646d741635d32f955eb9460c"></span><code class="sig-name descname">UART_CONFIG_WLEN_8</code> 0x00000060UL<a class="headerlink" href="#c.UART_CONFIG_WLEN_8" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>8 bit data </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_CONFIG_WLEN_7">
+<span class="target" id="group__uart__api_1ga07e4ba186b8f4a590395efbf2802cbf9"></span><code class="sig-name descname">UART_CONFIG_WLEN_7</code> 0x00000040UL<a class="headerlink" href="#c.UART_CONFIG_WLEN_7" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>7 bit data </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_CONFIG_WLEN_6">
+<span class="target" id="group__uart__api_1ga936fb9f59d6cac65e5137a820e82b5d4"></span><code class="sig-name descname">UART_CONFIG_WLEN_6</code> 0x00000020UL<a class="headerlink" href="#c.UART_CONFIG_WLEN_6" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>6 bit data </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_CONFIG_WLEN_5">
+<span class="target" id="group__uart__api_1ga8c5bfbc758a5a22ec714c7cca68242d2"></span><code class="sig-name descname">UART_CONFIG_WLEN_5</code> 0x00000000UL<a class="headerlink" href="#c.UART_CONFIG_WLEN_5" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>5 bit data </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_CONFIG_STOP_MASK">
+<span class="target" id="group__uart__api_1gad4cadaf06e574cad80e5a954dcfe7ee7"></span><code class="sig-name descname">UART_CONFIG_STOP_MASK</code> 0x00000008UL<a class="headerlink" href="#c.UART_CONFIG_STOP_MASK" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for extracting stop bits. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_CONFIG_STOP_ONE">
+<span class="target" id="group__uart__api_1gaf7c4abbd28a43e145c39404aeba2043c"></span><code class="sig-name descname">UART_CONFIG_STOP_ONE</code> 0x00000000UL<a class="headerlink" href="#c.UART_CONFIG_STOP_ONE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>One stop bit. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_CONFIG_STOP_TWO">
+<span class="target" id="group__uart__api_1ga952e6af1351d0c9bf65faf91c86f8c55"></span><code class="sig-name descname">UART_CONFIG_STOP_TWO</code> 0x00000008UL<a class="headerlink" href="#c.UART_CONFIG_STOP_TWO" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Two stop bits. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_CONFIG_PAR_MASK">
+<span class="target" id="group__uart__api_1ga324205f2700c2ac03b35be45e84523f1"></span><code class="sig-name descname">UART_CONFIG_PAR_MASK</code> 0x00000086UL<a class="headerlink" href="#c.UART_CONFIG_PAR_MASK" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mask for extracting parity. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_CONFIG_PAR_NONE">
+<span class="target" id="group__uart__api_1ga195d4b28a36df1b8588ca5380a442174"></span><code class="sig-name descname">UART_CONFIG_PAR_NONE</code> 0x00000000UL<a class="headerlink" href="#c.UART_CONFIG_PAR_NONE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>No parity. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_CONFIG_PAR_EVEN">
+<span class="target" id="group__uart__api_1gab0b5949051df64b22671181391963e95"></span><code class="sig-name descname">UART_CONFIG_PAR_EVEN</code> 0x00000006UL<a class="headerlink" href="#c.UART_CONFIG_PAR_EVEN" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Even parity. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_CONFIG_PAR_ODD">
+<span class="target" id="group__uart__api_1ga539811fccbd8e4bf55e4041a7fdfb3d8"></span><code class="sig-name descname">UART_CONFIG_PAR_ODD</code> 0x00000002UL<a class="headerlink" href="#c.UART_CONFIG_PAR_ODD" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Odd parity. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_CONFIG_PAR_ONE">
+<span class="target" id="group__uart__api_1ga8f41997eb87d51c953d48fcfce366be7"></span><code class="sig-name descname">UART_CONFIG_PAR_ONE</code> 0x00000082UL<a class="headerlink" href="#c.UART_CONFIG_PAR_ONE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Parity bit is one. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_CONFIG_PAR_ZERO">
+<span class="target" id="group__uart__api_1ga47e9212c4de4dc69d2febced118e12ca"></span><code class="sig-name descname">UART_CONFIG_PAR_ZERO</code> 0x00000086UL<a class="headerlink" href="#c.UART_CONFIG_PAR_ZERO" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Parity bit is zero. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_FIFO_TX1_8">
+<span class="target" id="group__uart__api_1gaa84f336878fba36489b6f7d690f6bc16"></span><code class="sig-name descname">UART_FIFO_TX1_8</code> 0x00000000UL<a class="headerlink" href="#c.UART_FIFO_TX1_8" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit interrupt at 1/8 Full. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_FIFO_TX2_8">
+<span class="target" id="group__uart__api_1ga5e621861446c6a7de8cef41c7f1e936d"></span><code class="sig-name descname">UART_FIFO_TX2_8</code> 0x00000001UL<a class="headerlink" href="#c.UART_FIFO_TX2_8" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit interrupt at 1/4 Full. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_FIFO_TX4_8">
+<span class="target" id="group__uart__api_1ga8d6363e555d9e21d654872b8574d45d2"></span><code class="sig-name descname">UART_FIFO_TX4_8</code> 0x00000002UL<a class="headerlink" href="#c.UART_FIFO_TX4_8" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit interrupt at 1/2 Full. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_FIFO_TX6_8">
+<span class="target" id="group__uart__api_1gaebb138573237035b69119a730c57c6b7"></span><code class="sig-name descname">UART_FIFO_TX6_8</code> 0x00000003UL<a class="headerlink" href="#c.UART_FIFO_TX6_8" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit interrupt at 3/4 Full. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_FIFO_TX7_8">
+<span class="target" id="group__uart__api_1gaa14091d971253a08b2c47f5faacaf360"></span><code class="sig-name descname">UART_FIFO_TX7_8</code> 0x00000004UL<a class="headerlink" href="#c.UART_FIFO_TX7_8" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Transmit interrupt at 7/8 Full. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_FIFO_RX1_8">
+<span class="target" id="group__uart__api_1gad896f5a0717ed18124fb2b50d96574bb"></span><code class="sig-name descname">UART_FIFO_RX1_8</code> 0x00000000UL<a class="headerlink" href="#c.UART_FIFO_RX1_8" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive interrupt at 1/8 Full. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_FIFO_RX2_8">
+<span class="target" id="group__uart__api_1ga07c48011bc25cbeae8e703acb5b706b6"></span><code class="sig-name descname">UART_FIFO_RX2_8</code> 0x00000008UL<a class="headerlink" href="#c.UART_FIFO_RX2_8" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive interrupt at 1/4 Full. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_FIFO_RX4_8">
+<span class="target" id="group__uart__api_1ga616d7e565df3677a59e03bedf2dd63a2"></span><code class="sig-name descname">UART_FIFO_RX4_8</code> 0x00000010UL<a class="headerlink" href="#c.UART_FIFO_RX4_8" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive interrupt at 1/2 Full. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_FIFO_RX6_8">
+<span class="target" id="group__uart__api_1ga4f965a6624b8163d8d9ab9754bb74003"></span><code class="sig-name descname">UART_FIFO_RX6_8</code> 0x00000018UL<a class="headerlink" href="#c.UART_FIFO_RX6_8" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive interrupt at 3/4 Full. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_FIFO_RX7_8">
+<span class="target" id="group__uart__api_1gab55741e5b10b29d7449f37ee4a32ad68"></span><code class="sig-name descname">UART_FIFO_RX7_8</code> 0x00000020UL<a class="headerlink" href="#c.UART_FIFO_RX7_8" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receive interrupt at 7/8 Full. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_DMA_ERR_RXSTOP">
+<span class="target" id="group__uart__api_1gaed2d39213aef902d0f39ea2e9045d1a0"></span><code class="sig-name descname">UART_DMA_ERR_RXSTOP</code> 0x00000004UL<a class="headerlink" href="#c.UART_DMA_ERR_RXSTOP" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Stop DMA receive if UART error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_DMA_TX">
+<span class="target" id="group__uart__api_1ga603226a03ece38ce150462172182d797"></span><code class="sig-name descname">UART_DMA_TX</code> 0x00000002UL<a class="headerlink" href="#c.UART_DMA_TX" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable DMA for transmit. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_DMA_RX">
+<span class="target" id="group__uart__api_1ga3e101ab29814742381777e3524d5d48a"></span><code class="sig-name descname">UART_DMA_RX</code> 0x00000001UL<a class="headerlink" href="#c.UART_DMA_RX" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable DMA for receive. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_RXERROR_OVERRUN">
+<span class="target" id="group__uart__api_1ga7a2562de4e5843df65241e89c3ecf703"></span><code class="sig-name descname">UART_RXERROR_OVERRUN</code> 0x00000008UL<a class="headerlink" href="#c.UART_RXERROR_OVERRUN" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_RXERROR_BREAK">
+<span class="target" id="group__uart__api_1ga0095e719c755e72b325c60807bfc2947"></span><code class="sig-name descname">UART_RXERROR_BREAK</code> 0x00000004UL<a class="headerlink" href="#c.UART_RXERROR_BREAK" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_RXERROR_PARITY">
+<span class="target" id="group__uart__api_1ga090520942aaf297184dd074bfc24dc49"></span><code class="sig-name descname">UART_RXERROR_PARITY</code> 0x00000002UL<a class="headerlink" href="#c.UART_RXERROR_PARITY" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_RXERROR_FRAMING">
+<span class="target" id="group__uart__api_1gad55c474de785d45b840305e81fadcb91"></span><code class="sig-name descname">UART_RXERROR_FRAMING</code> 0x00000001UL<a class="headerlink" href="#c.UART_RXERROR_FRAMING" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_TXINT_MODE_FIFO">
+<span class="target" id="group__uart__api_1gab5ee365017c3faaaf210815bf9b60ca8"></span><code class="sig-name descname">UART_TXINT_MODE_FIFO</code> 0x00000000UL<a class="headerlink" href="#c.UART_TXINT_MODE_FIFO" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>trigger based on tx FIFOlevel </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_TXINT_MODE_EOT">
+<span class="target" id="group__uart__api_1ga358737e51b37be564b0cf5b9ef1b2f0c"></span><code class="sig-name descname">UART_TXINT_MODE_EOT</code> 0x00000010UL<a class="headerlink" href="#c.UART_TXINT_MODE_EOT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>trigger when transmitter idle </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_CLK_DIVIDER">
+<span class="target" id="group__uart__api_1ga3082604a4c1d62e98ac86f0f32cf34dd"></span><code class="sig-name descname">UART_CLK_DIVIDER</code> 8U<a class="headerlink" href="#c.UART_CLK_DIVIDER" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_CLK_FREQ">
+<span class="target" id="group__uart__api_1gacfca4084d0fefc311b562280a534e42d"></span><code class="sig-name descname">UART_CLK_FREQ</code> DEVICE_SYSCLK_FREQ<a class="headerlink" href="#c.UART_CLK_FREQ" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CPU SYSCLK frequency. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_RSR_ALL_M">
+<span class="target" id="group__uart__api_1gab94f580c9ea9c6e3f9bee2b5ef407a76"></span><code class="sig-name descname">UART_RSR_ALL_M</code> (UART_RSR_BE | UART_RSR_FE | UART_RSR_OE | UART_RSR_PE)<a class="headerlink" href="#c.UART_RSR_ALL_M" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_CLK_IRLPBAUD16">
+<span class="target" id="group__uart__api_1ga0473d32d10b9e3893732fdbbc631d806"></span><code class="sig-name descname">UART_CLK_IRLPBAUD16</code> 1843200U<a class="headerlink" href="#c.UART_CLK_IRLPBAUD16" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_RAW_INT">
+<span class="target" id="group__uart__api_1ga7a51e736fee9e46dba76e84b9c1f4da0"></span><code class="sig-name descname">UART_RAW_INT</code> false<a class="headerlink" href="#c.UART_RAW_INT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>raw interrupt </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_MASKED_INT">
+<span class="target" id="group__uart__api_1ga7fa11eb84526ed0c3ad9989c1833b1bb"></span><code class="sig-name descname">UART_MASKED_INT</code> true<a class="headerlink" href="#c.UART_MASKED_INT" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>masked interrupt </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_SIR_LOWPOWER_DISABLE">
+<span class="target" id="group__uart__api_1gaac900197cfff440faeb47edc632235cd"></span><code class="sig-name descname">UART_SIR_LOWPOWER_DISABLE</code> false<a class="headerlink" href="#c.UART_SIR_LOWPOWER_DISABLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>raw interrupt </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.UART_SIR_LOWPOWER_ENABLE">
+<span class="target" id="group__uart__api_1ga2ee948b1b9d193449a13193bc5337c74"></span><code class="sig-name descname">UART_SIR_LOWPOWER_ENABLE</code> true<a class="headerlink" href="#c.UART_SIR_LOWPOWER_ENABLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>masked interrupt </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Typedefs</p>
+<dl class="cpp type">
+<dt id="_CPPv412Uart_IntType">
+<span id="_CPPv312Uart_IntType"></span><span id="_CPPv212Uart_IntType"></span><span id="Uart_IntType"></span><span class="target" id="group__uart__api_1ga2d04e909e78e853e5000152922b5c1c6"></span><em class="property">typedef </em>bool <code class="sig-name descname">Uart_IntType</code><a class="headerlink" href="#_CPPv412Uart_IntType" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt id="_CPPv414Uart_SirLPMode">
+<span id="_CPPv314Uart_SirLPMode"></span><span id="_CPPv214Uart_SirLPMode"></span><span id="Uart_SirLPMode"></span><span class="target" id="group__uart__api_1gaf2929c1dccc1abd94641e9f07e7ab3f7"></span><em class="property">typedef </em>bool <code class="sig-name descname">Uart_SirLPMode</code><a class="headerlink" href="#_CPPv414Uart_SirLPMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric">Functions</p>
+<dl class="cpp function">
+<dt id="_CPPv418UART_setParityMode8uint32_t8uint32_t">
+<span id="_CPPv318UART_setParityMode8uint32_t8uint32_t"></span><span id="_CPPv218UART_setParityMode8uint32_t8uint32_t"></span><span id="UART_setParityMode__uint32_t.uint32_t"></span><span class="target" id="group__uart__api_1ga1024627a03692e9d419821edff5a97ae"></span>void <code class="sig-name descname">UART_setParityMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>parity</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418UART_setParityMode8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the type of parity.</p>
+<p><p>This function configures the type of parity to use for transmitting and expect when receiving. The </p>
+<em>parity</em> parameter must be one of <strong>UART_CONFIG_PAR_NONE</strong>, <strong>UART_CONFIG_PAR_EVEN</strong>, <strong>UART_CONFIG_PAR_ODD</strong>, <strong>UART_CONFIG_PAR_ONE</strong>, or <strong>UART_CONFIG_PAR_ZERO</strong>. The last two parameters allow direct control of the parity bit; it is always either one or zero based on the mode.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">parity</span></code>: specifies the type of parity to use.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418UART_getParityMode8uint32_t">
+<span id="_CPPv318UART_getParityMode8uint32_t"></span><span id="_CPPv218UART_getParityMode8uint32_t"></span><span id="UART_getParityMode__uint32_t"></span><span class="target" id="group__uart__api_1gaa6cc594eb42870897e501dc83e0687d0"></span>uint32_t <code class="sig-name descname">UART_getParityMode</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418UART_getParityMode8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the type of parity currently being used.</p>
+<p><p>This function gets the type of parity used for transmitting data and expected when receiving data.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the current parity settings, specified as one of <strong>UART_CONFIG_PAR_NONE</strong>, <strong>UART_CONFIG_PAR_EVEN</strong>, <strong>UART_CONFIG_PAR_ODD</strong>, <strong>UART_CONFIG_PAR_ONE</strong>, or <strong>UART_CONFIG_PAR_ZERO</strong>. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417UART_setFIFOLevel8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv317UART_setFIFOLevel8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv217UART_setFIFOLevel8uint32_t8uint32_t8uint32_t"></span><span id="UART_setFIFOLevel__uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__uart__api_1ga6dbc1b20f720d0e296313797667f3e7e"></span>void <code class="sig-name descname">UART_setFIFOLevel</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>txLevel</em>, uint32_t <em>rxLevel</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417UART_setFIFOLevel8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the FIFO level at which interrupts are generated.</p>
+<p><p>This function configures the FIFO level at which transmit and receive interrupts are generated.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">txLevel</span></code>: is the transmit FIFO interrupt level, specified as one of <strong>UART_FIFO_TX1_8</strong>, <strong>UART_FIFO_TX2_8</strong>, <strong>UART_FIFO_TX4_8</strong>, <strong>UART_FIFO_TX6_8</strong>, or <strong>UART_FIFO_TX7_8</strong>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rxLevel</span></code>: is the receive FIFO interrupt level, specified as one of <strong>UART_FIFO_RX1_8</strong>, <strong>UART_FIFO_RX2_8</strong>, <strong>UART_FIFO_RX4_8</strong>, <strong>UART_FIFO_RX6_8</strong>, or <strong>UART_FIFO_RX7_8</strong>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417UART_getFIFOLevel8uint32_tP8uint32_tP8uint32_t">
+<span id="_CPPv317UART_getFIFOLevel8uint32_tP8uint32_tP8uint32_t"></span><span id="_CPPv217UART_getFIFOLevel8uint32_tP8uint32_tP8uint32_t"></span><span id="UART_getFIFOLevel__uint32_t.uint32_tP.uint32_tP"></span><span class="target" id="group__uart__api_1ga470ef079a76e5bfc0c9956b934b09609"></span>void <code class="sig-name descname">UART_getFIFOLevel</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t *<em>txLevel</em>, uint32_t *<em>rxLevel</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417UART_getFIFOLevel8uint32_tP8uint32_tP8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the FIFO level at which interrupts are generated.</p>
+<p><p>This function gets the FIFO level at which transmit and receive interrupts are generated.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">txLevel</span></code>: is a pointer to storage for the transmit FIFO level, returned as one of <strong>UART_FIFO_TX1_8</strong>, <strong>UART_FIFO_TX2_8</strong>, <strong>UART_FIFO_TX4_8</strong>, <strong>UART_FIFO_TX6_8</strong>, or <strong>UART_FIFO_TX7_8</strong>. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rxLevel</span></code>: is a pointer to storage for the receive FIFO level, returned as one of <strong>UART_FIFO_RX1_8</strong>, <strong>UART_FIFO_RX2_8</strong>, <strong>UART_FIFO_RX4_8</strong>, <strong>UART_FIFO_RX6_8</strong>, or <strong>UART_FIFO_RX7_8</strong>.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417UART_enableModule8uint32_t">
+<span id="_CPPv317UART_enableModule8uint32_t"></span><span id="_CPPv217UART_enableModule8uint32_t"></span><span id="UART_enableModule__uint32_t"></span><span class="target" id="group__uart__api_1ga7ac3f9d9d81f7f0ea5e2764eb9807170"></span>void <code class="sig-name descname">UART_enableModule</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417UART_enableModule8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables transmitting and receiving.</p>
+<p><p>This function enables the UART and its transmit and receive FIFOs.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418UART_disableModule8uint32_t">
+<span id="_CPPv318UART_disableModule8uint32_t"></span><span id="_CPPv218UART_disableModule8uint32_t"></span><span id="UART_disableModule__uint32_t"></span><span class="target" id="group__uart__api_1gaaa817146ca1fd034daf6545605faabad"></span>void <code class="sig-name descname">UART_disableModule</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418UART_disableModule8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables transmitting and receiving.</p>
+<p><p>This function disables the UART, waits for the end of transmission of the current character, and flushes the transmit FIFO.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415UART_enableFIFO8uint32_t">
+<span id="_CPPv315UART_enableFIFO8uint32_t"></span><span id="_CPPv215UART_enableFIFO8uint32_t"></span><span id="UART_enableFIFO__uint32_t"></span><span class="target" id="group__uart__api_1ga3defc8b7fef049c75f216ee090d0fac7"></span>void <code class="sig-name descname">UART_enableFIFO</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415UART_enableFIFO8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables the transmit and receive FIFOs.</p>
+<p><p>This functions enables the transmit and receive FIFOs in the UART.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416UART_disableFIFO8uint32_t">
+<span id="_CPPv316UART_disableFIFO8uint32_t"></span><span id="_CPPv216UART_disableFIFO8uint32_t"></span><span id="UART_disableFIFO__uint32_t"></span><span class="target" id="group__uart__api_1gaf158f27d909c484c9e52b6cba789c2d9"></span>void <code class="sig-name descname">UART_disableFIFO</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416UART_disableFIFO8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables the transmit and receive FIFOs.</p>
+<p><p>This function disables the transmit and receive FIFOs in the UART.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424UART_enableModuleNonFIFO8uint32_t">
+<span id="_CPPv324UART_enableModuleNonFIFO8uint32_t"></span><span id="_CPPv224UART_enableModuleNonFIFO8uint32_t"></span><span id="UART_enableModuleNonFIFO__uint32_t"></span><span class="target" id="group__uart__api_1gab13fef2218033b7e3ee60ef3b8a260c6"></span>void <code class="sig-name descname">UART_enableModuleNonFIFO</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424UART_enableModuleNonFIFO8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables transmitting and receiving without FIFO.</p>
+<p><p>This function enables the UART.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425UART_disableModuleNonFIFO8uint32_t">
+<span id="_CPPv325UART_disableModuleNonFIFO8uint32_t"></span><span id="_CPPv225UART_disableModuleNonFIFO8uint32_t"></span><span id="UART_disableModuleNonFIFO__uint32_t"></span><span class="target" id="group__uart__api_1ga88496bbd26fee1f745a7fbad8b1b02b1"></span>void <code class="sig-name descname">UART_disableModuleNonFIFO</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425UART_disableModuleNonFIFO8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables transmitting and receiving without FIFO.</p>
+<p><p>This function disables the UART, waits for the end of transmission of the current character.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv418UART_isFIFOEnabled8uint32_t">
+<span id="_CPPv318UART_isFIFOEnabled8uint32_t"></span><span id="_CPPv218UART_isFIFOEnabled8uint32_t"></span><span id="UART_isFIFOEnabled__uint32_t"></span><span class="target" id="group__uart__api_1gaa4ddde21446fbf7df36c212995cb73f0"></span>bool <code class="sig-name descname">UART_isFIFOEnabled</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418UART_isFIFOEnabled8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Determines if the transmit and receive FIFOs are enabled</p>
+<p><p>This function returns a flag indicating whether or not the transmit and receive FIFOs are enabled.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if FIFOs are enabled or <strong>false</strong> if FIFOs are not enabled. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414UART_enableSIR8uint32_t14Uart_SirLPMode">
+<span id="_CPPv314UART_enableSIR8uint32_t14Uart_SirLPMode"></span><span id="_CPPv214UART_enableSIR8uint32_t14Uart_SirLPMode"></span><span id="UART_enableSIR__uint32_t.Uart_SirLPMode"></span><span class="target" id="group__uart__api_1gaf801b326c5aaa56174af3abb103f3070"></span>void <code class="sig-name descname">UART_enableSIR</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv414Uart_SirLPMode" title="Uart_SirLPMode">Uart_SirLPMode</a> <em>bLowPower</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414UART_enableSIR8uint32_t14Uart_SirLPMode" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables SIR (IrDA) mode on the specified UART.</p>
+<p><p>This function enables SIR (IrDA) mode on the UART. If the </p>
+<em>bLowPower</em> flag is set, then SIR low power mode will be selected as well. This function only has an effect if the UART has not been enabled by a call to <a class="reference internal" href="#group__uart__api_1ga7ac3f9d9d81f7f0ea5e2764eb9807170"><span class="std std-ref">UART_enableModule()</span></a>. The call <a class="reference internal" href="#group__uart__api_1gaf801b326c5aaa56174af3abb103f3070"><span class="std std-ref">UART_enableSIR()</span></a> must be made before a call to <a class="reference internal" href="#group__uart__api_1ga41c6d99b6e60b52d22729be7d6fc9e1d"><span class="std std-ref">UART_setConfig()</span></a> because the <a class="reference internal" href="#group__uart__api_1ga41c6d99b6e60b52d22729be7d6fc9e1d"><span class="std std-ref">UART_setConfig()</span></a> function calls the <a class="reference internal" href="#group__uart__api_1ga7ac3f9d9d81f7f0ea5e2764eb9807170"><span class="std std-ref">UART_enableModule()</span></a> function. Another option is to call <a class="reference internal" href="#group__uart__api_1gaaa817146ca1fd034daf6545605faabad"><span class="std std-ref">UART_disableModule()</span></a> followed by <a class="reference internal" href="#group__uart__api_1gaf801b326c5aaa56174af3abb103f3070"><span class="std std-ref">UART_enableSIR()</span></a> and then enable the UART by calling <a class="reference internal" href="#group__uart__api_1ga7ac3f9d9d81f7f0ea5e2764eb9807170"><span class="std std-ref">UART_enableModule()</span></a>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bLowPower</span></code>: indicates if SIR Low Power Mode is to be used. This parameter is of type UART_SirLPMode.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>The IrDA SIR physical layer specifies a minimum 10-ms delay between transmission and reception which needs to be provided.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415UART_disableSIR8uint32_t">
+<span id="_CPPv315UART_disableSIR8uint32_t"></span><span id="_CPPv215UART_disableSIR8uint32_t"></span><span id="UART_disableSIR__uint32_t"></span><span class="target" id="group__uart__api_1ga243a36f0aa1b97b2bf12c4eb2e700b88"></span>void <code class="sig-name descname">UART_disableSIR</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415UART_disableSIR8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables SIR (IrDA) mode on the specified UART.</p>
+<p><p>This function disables SIR(IrDA) mode on the UART. This function only has an effect if the UART has not been enabled by a call to </p>
+<a class="reference internal" href="#group__uart__api_1ga7ac3f9d9d81f7f0ea5e2764eb9807170"><span class="std std-ref">UART_enableModule()</span></a>. The call <a class="reference internal" href="#group__uart__api_1gaf801b326c5aaa56174af3abb103f3070"><span class="std std-ref">UART_enableSIR()</span></a> must be made before a call to <a class="reference internal" href="#group__uart__api_1ga41c6d99b6e60b52d22729be7d6fc9e1d"><span class="std std-ref">UART_setConfig()</span></a> because the <a class="reference internal" href="#group__uart__api_1ga41c6d99b6e60b52d22729be7d6fc9e1d"><span class="std std-ref">UART_setConfig()</span></a> function calls the <a class="reference internal" href="#group__uart__api_1ga7ac3f9d9d81f7f0ea5e2764eb9807170"><span class="std std-ref">UART_enableModule()</span></a> function. Another option is to call <a class="reference internal" href="#group__uart__api_1gaaa817146ca1fd034daf6545605faabad"><span class="std std-ref">UART_disableModule()</span></a> followed by <a class="reference internal" href="#group__uart__api_1gaf801b326c5aaa56174af3abb103f3070"><span class="std std-ref">UART_enableSIR()</span></a> and then enable the UART by calling <a class="reference internal" href="#group__uart__api_1ga7ac3f9d9d81f7f0ea5e2764eb9807170"><span class="std std-ref">UART_enableModule()</span></a>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>The IrDA SIR physical layer specifies a minimum 10-ms delay between transmission and reception which needs to be provided.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417UART_setTxIntMode8uint32_t8uint32_t">
+<span id="_CPPv317UART_setTxIntMode8uint32_t8uint32_t"></span><span id="_CPPv217UART_setTxIntMode8uint32_t8uint32_t"></span><span id="UART_setTxIntMode__uint32_t.uint32_t"></span><span class="target" id="group__uart__api_1ga6022af2b75308b540ca0728e7367364d"></span>void <code class="sig-name descname">UART_setTxIntMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417UART_setTxIntMode8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the operating mode for the UART transmit interrupt.</p>
+<p><p>This function allows the mode of the UART transmit interrupt to be set. By default, the transmit interrupt is asserted when the FIFO level falls past a threshold set via a call to </p>
+<a class="reference internal" href="#group__uart__api_1ga6dbc1b20f720d0e296313797667f3e7e"><span class="std std-ref">UART_setFIFOLevel()</span></a>. Alternatively, if this function is called with <em>mode</em> set to <strong>UART_TXINT_MODE_EOT</strong>, the transmit interrupt is asserted once the transmitter is completely idle - the transmit FIFO is empty and all bits, including any stop bits, have cleared the transmitter.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mode</span></code>: is the operating mode for the transmit interrupt. It may be <strong>UART_TXINT_MODE_EOT</strong> to trigger interrupts when the transmitter is idle or <strong>UART_TXINT_MODE_FIFO</strong> to trigger based on the current transmit FIFO level.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417UART_getTxIntMode8uint32_t">
+<span id="_CPPv317UART_getTxIntMode8uint32_t"></span><span id="_CPPv217UART_getTxIntMode8uint32_t"></span><span id="UART_getTxIntMode__uint32_t"></span><span class="target" id="group__uart__api_1ga990c74676401adfcf06003f110d529fc"></span>uint32_t <code class="sig-name descname">UART_getTxIntMode</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417UART_getTxIntMode8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the current operating mode for the UART transmit interrupt.</p>
+<p><p>This function returns the current operating mode for the UART transmit interrupt. The return value is </p>
+<strong>UART_TXINT_MODE_EOT</strong> if the transmit interrupt is currently configured to be asserted once the transmitter is completely idle - the transmit FIFO is empty and all bits, including any stop bits, have cleared the transmitter. The return value is <strong>UART_TXINT_MODE_FIFO</strong> if the interrupt is configured to be asserted based on the level of the transmit FIFO.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>UART_TXINT_MODE_FIFO</strong> or <strong>UART_TXINT_MODE_EOT</strong>. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420UART_isDataAvailable8uint32_t">
+<span id="_CPPv320UART_isDataAvailable8uint32_t"></span><span id="_CPPv220UART_isDataAvailable8uint32_t"></span><span id="UART_isDataAvailable__uint32_t"></span><span class="target" id="group__uart__api_1ga69383e3d6740d13f5df6f87a2172666d"></span>bool <code class="sig-name descname">UART_isDataAvailable</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420UART_isDataAvailable8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Determines if there are any characters in the receive FIFO.</p>
+<p><p>This function returns a flag indicating whether or not there is data available in the receive FIFO.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if there is data in the receive FIFO or <strong>false</strong> if there is no data in the receive FIFO. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421UART_isSpaceAvailable8uint32_t">
+<span id="_CPPv321UART_isSpaceAvailable8uint32_t"></span><span id="_CPPv221UART_isSpaceAvailable8uint32_t"></span><span id="UART_isSpaceAvailable__uint32_t"></span><span class="target" id="group__uart__api_1gaf37b6fdce7bfb6ecc131d641430953d6"></span>bool <code class="sig-name descname">UART_isSpaceAvailable</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421UART_isSpaceAvailable8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Determines if there is any space in the transmit FIFO.</p>
+<p><p>This function returns a flag indicating whether or not there is space available in the transmit FIFO.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if there is space available in the transmit FIFO or <strong>false</strong> if there is no space available in the transmit FIFO. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424UART_readCharNonBlocking8uint32_t">
+<span id="_CPPv324UART_readCharNonBlocking8uint32_t"></span><span id="_CPPv224UART_readCharNonBlocking8uint32_t"></span><span id="UART_readCharNonBlocking__uint32_t"></span><span class="target" id="group__uart__api_1ga57aa1a38da4bd19f0af3c000d7bfa655"></span>int32_t <code class="sig-name descname">UART_readCharNonBlocking</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424UART_readCharNonBlocking8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Receives a character from the specified port.</p>
+<p><p>This function gets a character from the receive FIFO for the specified port.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the character read from the specified port, cast as a <em>int32_t</em>. A <strong>-1</strong> is returned if there are no characters present in the receive FIFO. The <a class="reference internal" href="#group__uart__api_1ga69383e3d6740d13f5df6f87a2172666d"><span class="std std-ref">UART_isDataAvailable()</span></a> function should be called before attempting to call this function. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv413UART_readChar8uint32_t">
+<span id="_CPPv313UART_readChar8uint32_t"></span><span id="_CPPv213UART_readChar8uint32_t"></span><span id="UART_readChar__uint32_t"></span><span class="target" id="group__uart__api_1gab280d626f311ad6841cbcd89e176a825"></span>int32_t <code class="sig-name descname">UART_readChar</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413UART_readChar8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Waits for a character from the specified port.</p>
+<p><p>This function gets a character from the receive FIFO for the specified port. If there are no characters available, this function waits until a character is received before returning.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the character read from the specified port, cast as a <em>int32_t</em>. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414UART_writeChar8uint32_t7uint8_t">
+<span id="_CPPv314UART_writeChar8uint32_t7uint8_t"></span><span id="_CPPv214UART_writeChar8uint32_t7uint8_t"></span><span id="UART_writeChar__uint32_t.uint8_t"></span><span class="target" id="group__uart__api_1ga69f2389ebf3df6b229361640b1f66ed4"></span>void <code class="sig-name descname">UART_writeChar</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint8_t <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414UART_writeChar8uint32_t7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Waits to send a character from the specified port.</p>
+<p><p>This function sends the character </p>
+<em>data</em> to the transmit FIFO for the specified port. If there is no space available in the transmit FIFO, this function waits until there is space available before returning.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: is the character to be transmitted.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419UART_setBreakConfig8uint32_tb">
+<span id="_CPPv319UART_setBreakConfig8uint32_tb"></span><span id="_CPPv219UART_setBreakConfig8uint32_tb"></span><span id="UART_setBreakConfig__uint32_t.b"></span><span class="target" id="group__uart__api_1ga11b638c5ffd0ecfc705553fa0774e417"></span>void <code class="sig-name descname">UART_setBreakConfig</code><span class="sig-paren">(</span>uint32_t <em>base</em>, bool <em>breakState</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419UART_setBreakConfig8uint32_tb" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Causes a BREAK to be sent.</p>
+<p><p>Calling this function with </p>
+<em>bBreakState</em> set to <strong>true</strong> asserts a break condition on the UART. Calling this function with <em>bBreakState</em> set to <strong>false</strong> removes the break condition. For proper transmission of a break command, the break must be asserted for at least two complete frames.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">breakState</span></code>: controls the output level.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv411UART_isBusy8uint32_t">
+<span id="_CPPv311UART_isBusy8uint32_t"></span><span id="_CPPv211UART_isBusy8uint32_t"></span><span id="UART_isBusy__uint32_t"></span><span class="target" id="group__uart__api_1gaf843508ab7e1441d4812c74d32ec6cca"></span>bool <code class="sig-name descname">UART_isBusy</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411UART_isBusy8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Determines whether the UART transmitter is busy or not.</p>
+<p><p>This function allows the caller to determine whether all transmitted bytes have cleared the transmitter hardware. If </p>
+<strong>false</strong> is returned, the transmit FIFO is empty and all bits of the last transmitted character, including all stop bits, have left the hardware shift register.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if the UART is transmitting or <strong>false</strong> if all transmissions are complete. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv422UART_registerInterrupt8uint32_tPFvvE">
+<span id="_CPPv322UART_registerInterrupt8uint32_tPFvvE"></span><span id="_CPPv222UART_registerInterrupt8uint32_tPFvvE"></span><span class="target" id="group__uart__api_1ga2bb0296936b0a1f38539fe6ac69e93b1"></span>void <code class="sig-name descname">UART_registerInterrupt</code><span class="sig-paren">(</span>uint32_t <em>interruptNum</em>, void (*<em>pfnHandler</em>)<span class="sig-paren">(</span>void<span class="sig-paren">)</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422UART_registerInterrupt8uint32_tPFvvE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Registers an interrupt handler for a UART interrupt.</p>
+<p><p>This function does the actual registering of the interrupt handler. This function enables the global interrupt in the interrupt controller; specific UART interrupts must be enabled via </p>
+<a class="reference internal" href="#group__uart__api_1ga9de5e8befca0cf01695338c282736d44"><span class="std std-ref">UART_enableInterrupt()</span></a>. It is the interrupt handler’s responsibility to clear the interrupt source.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">interruptNum</span></code>: specifies the interrupt in question. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pfnHandler</span></code>: is a pointer to the function to be called when the UART interrupt occurs.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="interrupt.html#group__interrupt__api_1ga041a6f6f75c6679e0656245cab334eef"><span class="std std-ref">Interrupt_register()</span></a> for important information about registering interrupt handlers.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv424UART_unregisterInterrupt8uint32_t">
+<span id="_CPPv324UART_unregisterInterrupt8uint32_t"></span><span id="_CPPv224UART_unregisterInterrupt8uint32_t"></span><span id="UART_unregisterInterrupt__uint32_t"></span><span class="target" id="group__uart__api_1ga7097b557ec6a22d7ea0d231d725f8820"></span>void <code class="sig-name descname">UART_unregisterInterrupt</code><span class="sig-paren">(</span>uint32_t <em>interruptNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424UART_unregisterInterrupt8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Unregisters an interrupt handler for a UART interrupt.</p>
+<p><p>This function does the actual unregistering of the interrupt handler. It clears the handler to be called when a UART interrupt occurs. This function also masks off the interrupt in the interrupt controller so that the interrupt handler no longer is called.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">interruptNum</span></code>: specifies the interrupt in question.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>See</strong></dt><dd><p><a class="reference internal" href="interrupt.html#group__interrupt__api_1gac5472e8d75b447a2ceda1c560bd3cbc0"><span class="std std-ref">Interrupt_unregister()</span></a> for important information about registering interrupt handlers.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv429UART_clearGlobalInterruptFlag8uint32_t">
+<span id="_CPPv329UART_clearGlobalInterruptFlag8uint32_t"></span><span id="_CPPv229UART_clearGlobalInterruptFlag8uint32_t"></span><span id="UART_clearGlobalInterruptFlag__uint32_t"></span><span class="target" id="group__uart__api_1ga7a310ed6a3ecb066fd2f8ac00d4ca6ae"></span>void <code class="sig-name descname">UART_clearGlobalInterruptFlag</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429UART_clearGlobalInterruptFlag8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears UART global interrupt flag.</p>
+<p><p>This function clears the indicated UART global interrupt flag register.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv433UART_getGlobalInterruptFlagStatus8uint32_t">
+<span id="_CPPv333UART_getGlobalInterruptFlagStatus8uint32_t"></span><span id="_CPPv233UART_getGlobalInterruptFlagStatus8uint32_t"></span><span id="UART_getGlobalInterruptFlagStatus__uint32_t"></span><span class="target" id="group__uart__api_1ga1df126781851c901dffb3ed1578088d6"></span>bool <code class="sig-name descname">UART_getGlobalInterruptFlagStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433UART_getGlobalInterruptFlagStatus8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Returns the status of UART global interrupt flag.</p>
+<p><p>This function returns the status of UART global interrupt flag register.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the status of UART global interrupt flag register. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420UART_enableInterrupt8uint32_t8uint32_t">
+<span id="_CPPv320UART_enableInterrupt8uint32_t8uint32_t"></span><span id="_CPPv220UART_enableInterrupt8uint32_t8uint32_t"></span><span id="UART_enableInterrupt__uint32_t.uint32_t"></span><span class="target" id="group__uart__api_1ga9de5e8befca0cf01695338c282736d44"></span>void <code class="sig-name descname">UART_enableInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420UART_enableInterrupt8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables individual UART interrupt sources.</p>
+<p><p>This function enables the indicated UART interrupt sources. Only the sources that are enabled can be reflected to the processor interrupt disabled sources have no effect on the processor.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is the bit mask of the interrupt sources to be enabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>intFlags</em> parameter is the logical OR of any of the following:</p>
+<p><ul class="simple">
+<li><p><strong>UART_INT_DMATX</strong> - Transmit DMA interrupt</p></li>
+<li><p><strong>UART_INT_DMARX</strong> - Receive DMA interrupt</p></li>
+<li><p><strong>UART_INT_9BIT</strong> - 9-bit Address Match interrupt</p></li>
+<li><p><strong>UART_INT_EOT</strong> - End of Transmission interrupt</p></li>
+<li><p><strong>UART_INT_OE</strong> - Overrun Error interrupt</p></li>
+<li><p><strong>UART_INT_BE</strong> - Break Error interrupt</p></li>
+<li><p><strong>UART_INT_PE</strong> - Parity Error interrupt</p></li>
+<li><p><strong>UART_INT_FE</strong> - Framing Error interrupt</p></li>
+<li><p><strong>UART_INT_RT</strong> - Receive Timeout interrupt</p></li>
+<li><p><strong>UART_INT_TX</strong> - Transmit interrupt</p></li>
+<li><p><strong>UART_INT_RX</strong> - Receive interrupt</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421UART_disableInterrupt8uint32_t8uint32_t">
+<span id="_CPPv321UART_disableInterrupt8uint32_t8uint32_t"></span><span id="_CPPv221UART_disableInterrupt8uint32_t8uint32_t"></span><span id="UART_disableInterrupt__uint32_t.uint32_t"></span><span class="target" id="group__uart__api_1gaba49a4d5efc4f359cd5aa2097772511f"></span>void <code class="sig-name descname">UART_disableInterrupt</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421UART_disableInterrupt8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables individual UART interrupt sources.</p>
+<p><p>This function disables the indicated UART interrupt sources. Only the sources that are enabled can be reflected to the processor interrupt disabled sources have no effect on the processor.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is the bit mask of the interrupt sources to be disabled.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>intFlags</em> parameter has the same definition as the <em>intFlags</em> parameter to <a class="reference internal" href="#group__uart__api_1ga9de5e8befca0cf01695338c282736d44"><span class="std std-ref">UART_enableInterrupt()</span></a>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423UART_getInterruptStatus8uint32_t12Uart_IntType">
+<span id="_CPPv323UART_getInterruptStatus8uint32_t12Uart_IntType"></span><span id="_CPPv223UART_getInterruptStatus8uint32_t12Uart_IntType"></span><span id="UART_getInterruptStatus__uint32_t.Uart_IntType"></span><span class="target" id="group__uart__api_1ga7f57ab0057ffbf3629699583bfbdaa52"></span>uint32_t <code class="sig-name descname">UART_getInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv412Uart_IntType" title="Uart_IntType">Uart_IntType</a> <em>masked</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423UART_getInterruptStatus8uint32_t12Uart_IntType" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the current interrupt status.</p>
+<p><p>This function returns the interrupt status for the specified UART. Either the raw interrupt status or the status of interrupts that are allowed to reflect to the processor can be returned.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">masked</span></code>: of type Uart_IntType is UART_RAW_INT if the raw interrupt status is requested and UART_MASKED_INT if the masked interrupt status is requested.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the current interrupt status, enumerated as a bit field of values described in <a class="reference internal" href="#group__uart__api_1ga9de5e8befca0cf01695338c282736d44"><span class="std std-ref">UART_enableInterrupt()</span></a>. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425UART_clearInterruptStatus8uint32_t8uint32_t">
+<span id="_CPPv325UART_clearInterruptStatus8uint32_t8uint32_t"></span><span id="_CPPv225UART_clearInterruptStatus8uint32_t8uint32_t"></span><span id="UART_clearInterruptStatus__uint32_t.uint32_t"></span><span class="target" id="group__uart__api_1gadfd83274f5db1642e26347171f5e7af9"></span>void <code class="sig-name descname">UART_clearInterruptStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>intFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425UART_clearInterruptStatus8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears UART interrupt sources.</p>
+<p><p>The specified UART interrupt sources are cleared, so that they no longer assert. This function must be called in the interrupt handler to keep the interrupt from being triggered again immediately upon exit.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">intFlags</span></code>: is a bit mask of the interrupt sources to be cleared.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>intFlags</em> parameter has the same definition as the <em>intFlags</em> parameter to <a class="reference internal" href="#group__uart__api_1ga9de5e8befca0cf01695338c282736d44"><span class="std std-ref">UART_enableInterrupt()</span></a>.</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414UART_enableDMA8uint32_t8uint32_t">
+<span id="_CPPv314UART_enableDMA8uint32_t8uint32_t"></span><span id="_CPPv214UART_enableDMA8uint32_t8uint32_t"></span><span id="UART_enableDMA__uint32_t.uint32_t"></span><span class="target" id="group__uart__api_1ga0b22a960f4078592cc2b8df3a1dc2efe"></span>void <code class="sig-name descname">UART_enableDMA</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>dmaFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414UART_enableDMA8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enable UART uDMA operation.</p>
+<p><p>The specified UART uDMA features are enabled. The UART can be configured to use uDMA for transmit or receive and to disable receive if an error occurs. The </p>
+<em>dmaFlags</em> parameter is the logical OR of any of the following values:<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dmaFlags</span></code>: is a bit mask of the uDMA features to enable.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p><strong>UART_DMA_RX</strong> - enable uDMA for receive</p></li>
+<li><p><strong>UART_DMA_TX</strong> - enable uDMA for transmit</p></li>
+<li><p><strong>UART_DMA_ERR_RXSTOP</strong> - disable uDMA receive on UART error</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>The uDMA controller must also be set up before DMA can be used with the UART.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415UART_disableDMA8uint32_t8uint32_t">
+<span id="_CPPv315UART_disableDMA8uint32_t8uint32_t"></span><span id="_CPPv215UART_disableDMA8uint32_t8uint32_t"></span><span id="UART_disableDMA__uint32_t.uint32_t"></span><span class="target" id="group__uart__api_1ga586b3b145eb80ba08405f4546739dc24"></span>void <code class="sig-name descname">UART_disableDMA</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>dmaFlags</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415UART_disableDMA8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disable UART uDMA operation.</p>
+<p><p>This function is used to disable UART uDMA features that were enabled by </p>
+<a class="reference internal" href="#group__uart__api_1ga0b22a960f4078592cc2b8df3a1dc2efe"><span class="std std-ref">UART_enableDMA()</span></a>. The specified UART uDMA features are disabled. The <em>dmaFlags</em> parameter is the logical OR of any of the following values:<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dmaFlags</span></code>: is a bit mask of the uDMA features to disable.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><ul class="simple">
+<li><p><strong>UART_DMA_RX</strong> - disable uDMA for receive</p></li>
+<li><p><strong>UART_DMA_TX</strong> - disable uDMA for transmit</p></li>
+<li><p><strong>UART_DMA_ERR_RXSTOP</strong> - do not disable uDMA receive on UART error</p></li>
+</ul>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415UART_getRxError8uint32_t">
+<span id="_CPPv315UART_getRxError8uint32_t"></span><span id="_CPPv215UART_getRxError8uint32_t"></span><span id="UART_getRxError__uint32_t"></span><span class="target" id="group__uart__api_1ga695288a6baf385168c0a353e17fd8fb9"></span>uint32_t <code class="sig-name descname">UART_getRxError</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415UART_getRxError8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets current receiver errors.</p>
+<p><p>This function returns the current state of each of the 4 receiver error sources. The returned errors are equivalent to the four error bits returned via the previous call to </p>
+<a class="reference internal" href="#group__uart__api_1gab280d626f311ad6841cbcd89e176a825"><span class="std std-ref">UART_readChar()</span></a> or <a class="reference internal" href="#group__uart__api_1ga57aa1a38da4bd19f0af3c000d7bfa655"><span class="std std-ref">UART_readCharNonBlocking()</span></a> with the exception that the overrun error is set immediately when the overrun occurs rather than when a character is next read.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns a logical OR combination of the receiver error flags, <strong>UART_RXERROR_FRAMING</strong>, <strong>UART_RXERROR_PARITY</strong>, <strong>UART_RXERROR_BREAK</strong> and <strong>UART_RXERROR_OVERRUN</strong>. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv417UART_clearRxError8uint32_t">
+<span id="_CPPv317UART_clearRxError8uint32_t"></span><span id="_CPPv217UART_clearRxError8uint32_t"></span><span id="UART_clearRxError__uint32_t"></span><span class="target" id="group__uart__api_1ga67b620941cc8188641114d2a94196b21"></span>void <code class="sig-name descname">UART_clearRxError</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417UART_clearRxError8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Clears all reported receiver errors.</p>
+<p><p>This function is used to clear all receiver error conditions reported via </p>
+<a class="reference internal" href="#group__uart__api_1ga695288a6baf385168c0a353e17fd8fb9"><span class="std std-ref">UART_getRxError()</span></a>. If using the overrun, framing error, parity error or break interrupts, this function must be called after clearing the interrupt to ensure that later errors of the same type trigger another interrupt.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv415UART_enable9Bit8uint32_t">
+<span id="_CPPv315UART_enable9Bit8uint32_t"></span><span id="_CPPv215UART_enable9Bit8uint32_t"></span><span id="UART_enable9Bit__uint32_t"></span><span class="target" id="group__uart__api_1ga83869dc92057771e7b2123a33d2257f1"></span>void <code class="sig-name descname">UART_enable9Bit</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415UART_enable9Bit8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables 9-bit mode on the specified UART.</p>
+<p><p>This function enables the 9-bit operational mode of the UART.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv416UART_disable9Bit8uint32_t">
+<span id="_CPPv316UART_disable9Bit8uint32_t"></span><span id="_CPPv216UART_disable9Bit8uint32_t"></span><span id="UART_disable9Bit__uint32_t"></span><span class="target" id="group__uart__api_1ga7e37fb31889beac4d574bc625eef98d4"></span>void <code class="sig-name descname">UART_disable9Bit</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416UART_disable9Bit8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables 9-bit mode on the specified UART.</p>
+<p><p>This function disables the 9-bit operational mode of the UART.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419UART_set9BitAddress8uint32_t7uint8_t7uint8_t">
+<span id="_CPPv319UART_set9BitAddress8uint32_t7uint8_t7uint8_t"></span><span id="_CPPv219UART_set9BitAddress8uint32_t7uint8_t7uint8_t"></span><span id="UART_set9BitAddress__uint32_t.uint8_t.uint8_t"></span><span class="target" id="group__uart__api_1ga81d95c3b449f3b42fac0acb488f71505"></span>void <code class="sig-name descname">UART_set9BitAddress</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint8_t <em>addr</em>, uint8_t <em>mask</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419UART_set9BitAddress8uint32_t7uint8_t7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the device address(es) for 9-bit mode.</p>
+<p><p>This function configures the device address or range of device addresses that respond to requests on the 9-bit UART port. The received address is masked with the mask and then compared against the given address, allowing either a single address (if </p>
+<strong>mask</strong> is 0xff) or a set of addresses to be matched.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">addr</span></code>: is the device address. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mask</span></code>: is the device address mask.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421UART_setIrDALPDivisor8uint32_t8uint32_t">
+<span id="_CPPv321UART_setIrDALPDivisor8uint32_t8uint32_t"></span><span id="_CPPv221UART_setIrDALPDivisor8uint32_t8uint32_t"></span><span id="UART_setIrDALPDivisor__uint32_t.uint32_t"></span><span class="target" id="group__uart__api_1ga236d404bc264afd38326ece103d94e57"></span>void <code class="sig-name descname">UART_setIrDALPDivisor</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>uartClk</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421UART_setIrDALPDivisor8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the SIR (IrDA) Low Power Divisor.</p>
+<p><p>This function configures the SIR (IrDA) Low power divisor. This function is used only if the SIR ( IrDA ) is to be used in Low Power mode which is indicated as part of the </p>
+<a class="reference internal" href="#group__uart__api_1gaf801b326c5aaa56174af3abb103f3070"><span class="std std-ref">UART_enableSIR()</span></a>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uartClk</span></code>: is the rate of the clock supplied to the UART module. It should be provided as UART_CLK_FREQ using the updated clk rate.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419UART_enableLoopback8uint32_t">
+<span id="_CPPv319UART_enableLoopback8uint32_t"></span><span id="_CPPv219UART_enableLoopback8uint32_t"></span><span id="UART_enableLoopback__uint32_t"></span><span class="target" id="group__uart__api_1gafebef345f3d2cafe9090474639330780"></span>void <code class="sig-name descname">UART_enableLoopback</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419UART_enableLoopback8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Enables internal loopback mode for an UART port.</p>
+<p><p>This function configures an UART port in internal loopback mode to help with diagnostics and debug.In this mode, the UART Tx path is fed through the UARTRx path. This allows data to be transferred between the TX and RX of the same UART port, without having to go through I/O’s.UART_writeChar() &amp; </p>
+<a class="reference internal" href="#group__uart__api_1ga328c1865b935f22dce0e8932a91544ab"><span class="std std-ref">UART_writeCharNonBlocking()</span></a> can be used along with this function.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420UART_disableLoopback8uint32_t">
+<span id="_CPPv320UART_disableLoopback8uint32_t"></span><span id="_CPPv220UART_disableLoopback8uint32_t"></span><span id="UART_disableLoopback__uint32_t"></span><span class="target" id="group__uart__api_1gafee036d66a4ad82ebbb1eed2eb219304"></span>void <code class="sig-name descname">UART_disableLoopback</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420UART_disableLoopback8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Disables internal loopback mode for an UART port.</p>
+<p><p>This function disables internal loopback mode in an UART port. In this mode, the UARTTx path is not fed through the UARTRx path. This prevents data to be transferred between the TX and RX of the same UART port, without having to go through I/O’s.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART module.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv420UART_send9BitAddress8uint32_t7uint8_t">
+<span id="_CPPv320UART_send9BitAddress8uint32_t7uint8_t"></span><span id="_CPPv220UART_send9BitAddress8uint32_t7uint8_t"></span><span id="UART_send9BitAddress__uint32_t.uint8_t"></span><span class="target" id="group__uart__api_1ga4d8cb5a197ba502d2c035a81df72212d"></span>void <code class="sig-name descname">UART_send9BitAddress</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint8_t <em>addr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420UART_send9BitAddress8uint32_t7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sends an address character from the specified port when operating in 9-bit mode.</p>
+<p><p>This function waits until all data has been sent from the specified port and then sends the given address as an address byte. It then waits until the address byte has been transmitted before returning.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">addr</span></code>: is the address to be transmitted.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv421UART_stop9BitDataMode8uint32_t8uint32_t">
+<span id="_CPPv321UART_stop9BitDataMode8uint32_t8uint32_t"></span><span id="_CPPv221UART_stop9BitDataMode8uint32_t8uint32_t"></span><span id="UART_stop9BitDataMode__uint32_t.uint32_t"></span><span class="target" id="group__uart__api_1ga772f38644e1b2b6d69109e40c85fd11d"></span>void <code class="sig-name descname">UART_stop9BitDataMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>lcrh</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421UART_stop9BitDataMode8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Exits the 9-bit data transmission mode for the specified port.</p>
+<p><p>This function waits until all data has been sent from the specified port and then restores the settings for the normal transmission mode.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lcrh</span></code>: is the address/data setting needed to restore the normal transmission mode after the full 9-bit data transmission.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv426UART_configure9BitDataMode8uint32_t">
+<span id="_CPPv326UART_configure9BitDataMode8uint32_t"></span><span id="_CPPv226UART_configure9BitDataMode8uint32_t"></span><span id="UART_configure9BitDataMode__uint32_t"></span><span class="target" id="group__uart__api_1gae2d57b055741e4a7be47ecf5003836cd"></span>uint32_t <code class="sig-name descname">UART_configure9BitDataMode</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426UART_configure9BitDataMode8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Configures the specified port to operate in 9-bit data mode.</p>
+<p><p>This function waits until all data has been sent from the specified port and then configures to send 9-bit data.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>The 9-bit data is sent after the <a class="reference internal" href="#group__uart__api_1ga4d8cb5a197ba502d2c035a81df72212d"><span class="std std-ref">UART_send9BitAddress()</span></a> is complete. The data transmission is left to the user to handle outside this API. This can be done using <a class="reference internal" href="#group__uart__api_1ga69f2389ebf3df6b229361640b1f66ed4"><span class="std std-ref">UART_writeChar()</span></a> or <a class="reference internal" href="#group__uart__api_1ga328c1865b935f22dce0e8932a91544ab"><span class="std std-ref">UART_writeCharNonBlocking()</span></a>.</p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>Returns the address/data setting needed to restore the normal transmission mode after the full 9-bit data transmission. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414UART_setConfig8uint32_t8uint32_t8uint32_t8uint32_t">
+<span id="_CPPv314UART_setConfig8uint32_t8uint32_t8uint32_t8uint32_t"></span><span id="_CPPv214UART_setConfig8uint32_t8uint32_t8uint32_t8uint32_t"></span><span id="UART_setConfig__uint32_t.uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__uart__api_1ga41c6d99b6e60b52d22729be7d6fc9e1d"></span>void <code class="sig-name descname">UART_setConfig</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>uartClk</em>, uint32_t <em>baud</em>, uint32_t <em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414UART_setConfig8uint32_t8uint32_t8uint32_t8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets the configuration of a UART.</p>
+<p><p>This function configures the UART for operation in the specified data format. The baud rate is provided in the </p>
+<em>baud</em> parameter and the data format in the <em>config</em> parameter.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uartClk</span></code>: is the rate of the clock supplied to the UART module. It should be provided as UART_CLK_FREQ using the updated clk rate</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">baud</span></code>: is the desired baud rate. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code>: is the data format for the port (number of data bits, number of stop bits, and parity).</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>config</em> parameter is the logical OR of three values: the number of data bits, the number of stop bits, and the parity. <strong>UART_CONFIG_WLEN_8</strong>, <strong>UART_CONFIG_WLEN_7</strong>, <strong>UART_CONFIG_WLEN_6</strong>, and <strong>UART_CONFIG_WLEN_5</strong> select from eight to five data bits per byte (respectively). <strong>UART_CONFIG_STOP_ONE</strong> and <strong>UART_CONFIG_STOP_TWO</strong> select one or two stop bits (respectively). <strong>UART_CONFIG_PAR_NONE</strong> <strong>UART_CONFIG_PAR_EVEN</strong>, <strong>UART_CONFIG_PAR_ODD</strong>, <strong>UART_CONFIG_PAR_ONE</strong>, and <strong>UART_CONFIG_PAR_ZERO</strong> select the parity mode (no parity bit, even parity bit, odd parity bit, parity bit always one, and parity bit always zero, respectively).</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv414UART_getConfig8uint32_t8uint32_tP8uint32_tP8uint32_t">
+<span id="_CPPv314UART_getConfig8uint32_t8uint32_tP8uint32_tP8uint32_t"></span><span id="_CPPv214UART_getConfig8uint32_t8uint32_tP8uint32_tP8uint32_t"></span><span id="UART_getConfig__uint32_t.uint32_t.uint32_tP.uint32_tP"></span><span class="target" id="group__uart__api_1ga25f18a72192b6acb5f748333cab2f781"></span>void <code class="sig-name descname">UART_getConfig</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint32_t <em>uartClk</em>, uint32_t *<em>baud</em>, uint32_t *<em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414UART_getConfig8uint32_t8uint32_tP8uint32_tP8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Gets the current configuration of a UART.</p>
+<p><p>This function determines the baud rate and data format for the UART, given an explicitly provided peripheral clock. The returned baud rate is the actual baud rate; it may not be the exact baud rate requested or an `</p>
+official’ baud rate. The data format returned in <em>config</em> is enumerated the same as the <em>config</em> parameter of <a class="reference internal" href="#group__uart__api_1ga41c6d99b6e60b52d22729be7d6fc9e1d"><span class="std std-ref">UART_setConfig()</span></a>.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uartClk</span></code>: is the rate of the clock supplied to the UART module. It should be provided as UART_CLK_FREQ using the updated clk rate</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">baud</span></code>: is the desired baud rate. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">baud</span></code>: is a pointer to storage for the baud rate. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code>: is a pointer to storage for the data format.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv425UART_writeCharNonBlocking8uint32_t7uint8_t">
+<span id="_CPPv325UART_writeCharNonBlocking8uint32_t7uint8_t"></span><span id="_CPPv225UART_writeCharNonBlocking8uint32_t7uint8_t"></span><span id="UART_writeCharNonBlocking__uint32_t.uint8_t"></span><span class="target" id="group__uart__api_1ga328c1865b935f22dce0e8932a91544ab"></span>bool <code class="sig-name descname">UART_writeCharNonBlocking</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint8_t <em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425UART_writeCharNonBlocking8uint32_t7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sends a character to the specified port.</p>
+<p><p>This function writes the character </p>
+<em>data</em> to the transmit FIFO for the specified port. This function does not block, so if there is no space available, then a <strong>false</strong> is returned and the application must retry the function later.<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: is the base address of the UART port. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: is the character to be transmitted.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns <strong>true</strong> if the character was successfully placed in the transmit FIFO or <strong>false</strong> if there was no space available in the transmit FIFO. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<p>The code for this module is contained in driverlib/uart.c, with
+driverlib/uart.h containing the API declarations for use by
+applications.</p>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="sysctl.html" class="btn btn-neutral float-left" title="SYSCTL Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="usb.html" class="btn btn-neutral float-right" title="USB Module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+      <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
+      <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
+      <span class="lastupdated">Last updated on Aug 22, 2024.
+      </span></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'v5.02.00.00',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/language_data.js"></script>
+
+    <script type="text/javascript" src="_static/searchtools.js"></script>
+    <script src="http://www.ti.com/assets/js/headerfooter/analytics.js" type="text/javascript" charset="utf-8"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+        });
+
+      var menuHeight = window.innerHeight;
+
+      var contentOffset = $(".wy-nav-content-wrap").offset();
+      var contentHeight = $(".wy-nav-content-wrap").height();
+      var contentBottom = contentOffset.top + contentHeight;
+
+      function setNavbarTop() {
+          var scrollTop = $(window).scrollTop();
+          var maxTop = scrollTop + menuHeight;
+
+          // If past the header
+          if (scrollTop > contentOffset.top && maxTop < contentBottom) {
+            stickyTop = scrollTop - contentOffset.top;
+          } else if (maxTop > contentBottom) {
+            stickyTop = scrollTop - contentOffset.top - (maxTop - contentBottom);
+          } else {
+            stickyTop = 0;
+          }
+
+          $(".wy-nav-side").css("top", stickyTop);
+      }
+
+      $(document).ready(function() {
+        setNavbarTop();
+        $(window).scroll(function () {
+          setNavbarTop();
+        });
+
+        $('body').on("mousewheel", function () {
+            // Remove default behavior
+            event.preventDefault();
+            // Scroll without smoothing
+            var wheelDelta = event.wheelDelta;
+            var currentScrollPosition = window.pageYOffset;
+            window.scrollTo(0, currentScrollPosition - wheelDelta);
+        });
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -5,8 +5,10 @@
 // TITLE:   C28x SDFM Driver
 //
 //###########################################################################
-// $Copyright:
-// Copyright (C) 2022 Texas Instruments Incorporated - http://www.ti.com
+// 
+// C2000Ware v5.03.00.00
+//
+// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -83,7 +85,7 @@ extern "C"
 
 //! Macro to convert comparator over sampling ratio to acceptable bit location
 //!
-#define SDFM_SET_OSR(X)         (((X) - 1) << 8U)
+#define SDFM_SET_OSR(X)         (((X) - 1U) << 8U)
 //! Macro to convert the data shift bit values to acceptable bit location
 //!
 #define SDFM_SHIFT_VALUE(X)     ((X) << 2U)

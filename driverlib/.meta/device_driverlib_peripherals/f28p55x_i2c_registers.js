@@ -13,7 +13,7 @@ let I2CRegisters = [
 			{ name: "XRDY", description: "Transmit-data-ready interrupt enable", size: "1", shift: "4", mask: "0x10" },
 			{ name: "SCD", description: "Stop condition detected interrupt enable", size: "1", shift: "5", mask: "0x20" },
 			{ name: "AAT", description: "Addressed as TARGET interrupt enable", size: "1", shift: "6", mask: "0x40" },
-			{ name: "SCL_ECS", description: "SCL Auto Clock Stretch interrupt enable", size: "1", shift: "15", mask: "0x8000" },
+			{ name: "SCL_ECS", description: "SCL Extended Automatic Clock Stretch interrupt enable", size: "1", shift: "15", mask: "0x8000" },
 		]
 	},
 	{ name: "STR", description: "I2C Status", offset: "0x2",
@@ -32,7 +32,7 @@ let I2CRegisters = [
 			{ name: "BB", description: "Bus busy bit.", size: "1", shift: "12", mask: "0x1000" },
 			{ name: "NACKSNT", description: "NACK sent bit.", size: "1", shift: "13", mask: "0x2000" },
 			{ name: "TDIR", description: "TARGET direction bit", size: "1", shift: "14", mask: "0x4000" },
-			{ name: "SCL_ECS", description: "SCL Auto Clock Stretch Status", size: "1", shift: "15", mask: "0x8000" },
+			{ name: "SCL_ECS", description: "SCL Extended Automatic Clock Stretch Status", size: "1", shift: "15", mask: "0x8000" },
 		]
 	},
 	{ name: "CLKL", description: "I2C Clock low-time divider", offset: "0x3",
@@ -89,8 +89,8 @@ let I2CRegisters = [
 		bits: [
 			{ name: "BC", description: "Backwards compatibility mode", size: "1", shift: "0", mask: "0x1" },
 			{ name: "FCM", description: "Forward Compatibility for Tx behav in Type1", size: "1", shift: "1", mask: "0x2" },
-			{ name: "ECS", description: "Extended automatic clock stretching mode", size: "1", shift: "2", mask: "0x4" },
-			{ name: "MCS", description: "Manual Override mode", size: "1", shift: "3", mask: "0x8" },
+			{ name: "ECS", description: "Extended Automatic Clock Stretching mode", size: "1", shift: "2", mask: "0x4" },
+			{ name: "MCS", description: "Manual Clock Stretching mode (Clock Override)", size: "1", shift: "3", mask: "0x8" },
 			{ name: "SCLKEY", description: "Key to enable SCL (Clock Override)", size: "4", shift: "4", mask: "0xF0" },
 			{ name: "NACK_CM", description: "NACK Compatibility mode", size: "1", shift: "8", mask: "0x100" },
 		]

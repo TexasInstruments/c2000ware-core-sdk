@@ -117,7 +117,7 @@ SCI_writeCharArray(uint32_t base, const uint16_t * const array,
             //
             // Wait until space is available in the transmit FIFO.
             //
-            while(SCI_getTxFIFOStatus(base) == SCI_FIFO_TX15)
+            while(SCI_getTxFIFOStatus(base) == SCI_FIFO_TX16)
             {
             }
 

@@ -169,6 +169,7 @@ void main(void)
     dutyFine = 0;
     status = SFO_INCOMPLETE;
 
+
     //
     // Calling SFO() updates the HRMSTEP register with calibrated
     // MEP_ScaleFactor. HRMSTEP must be populated with a scale factor value

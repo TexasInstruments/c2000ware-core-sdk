@@ -363,7 +363,7 @@ var spiModule = {
         var pinmuxQualMods = Pinmux.getGpioQualificationModInstDefinitions("SPI", inst)
         for (var pinmuxQualMod of pinmuxQualMods)
         {
-            pinmuxQualMod.requiredArgs = {
+            pinmuxQualMod.args = {
                 qualMode : "GPIO_QUAL_ASYNC",
             }
             pinmuxQualMod.args.padConfig = "STD";

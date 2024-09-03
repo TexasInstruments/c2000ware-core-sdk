@@ -29,13 +29,13 @@ void `instance.$name`_init(){
         % var srcAddress = 0;
         % var destAddress = 0;
         % if (instance.srcAddressInputMode == "MANUAL") {
-        %   srcAddress = instance.srcAddressManual;
+        %   srcAddress = "(const void *)" + instance.srcAddressManual;
         % } if (instance.srcAddressInputMode == "VARIABLE") {
         %   srcAddress = instance.srcAddressVariable;      
         % } if (instance.srcAddressInputMode == "LINKED") {
         %   srcAddress = instance.$name + "_ADDRESS" ;      
         % } if (instance.destAddressInputMode == "MANUAL") {
-        %   destAddress = instance.destAddressManual;
+        %   destAddress = "(const void *)" + instance.destAddressManual;
         % } if (instance.destAddressInputMode == "VARIABLE") {
         %   destAddress = instance.destAddressVariable;      
         % } if (instance.destAddressInputMode == "LINKED") {  

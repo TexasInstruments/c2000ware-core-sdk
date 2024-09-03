@@ -1,0 +1,159 @@
+const fs = require('fs');
+const { join } = require("path");
+const path = require("path");
+const execSync = require('child_process').execSync;
+var re = new RegExp(".*\.\(cpp\|c\)$");
+const RestrictedDirs = ["Generated Source", "CPU1_RAM", "device", "targetConfigs", "dlt_astdump", ".settings"]
+let GeneratedDirsPath = []
+const path_to_dir = join(__dirname,'..','..','..');
+RestrictedDirs.forEach(dir => {
+    GeneratedDirsPath.push(join(path_to_dir,dir))
+});
+
+// Traverses the base project directories recursively appending all
+// *.c and *.cpp files that need to be checked for DLT to DltFiles 
+let DltFiles = []
+function Traverse(dir) {
+    fs.readdirSync(dir).forEach((file) => {
+        const fPath = path.resolve(dir, file);
+        const fileStats = { file, path: fPath };
+        // Checks to see if the file is a directory and then traverse 
+        // through it if it is not part of the restricted directories
+        if (fs.statSync(fPath).isDirectory()) {
+            if (GeneratedDirsPath.includes(fPath)) {
+                return;
+            }
+            return Traverse(fPath)
+        }
+        // Checks if file type is *.c or *.cpp before appending
+        if (re.test(file)) {
+            DltFiles.push(fileStats);
+        }
+    });
+}
+
+// Moves through the compiler ast-dump json files and only gets 
+// declarations related to the DltFile that is being cleaned removing 
+// included files and passing an array of parsed declarations
+function cleanAST(astJSON, source) {
+    obj_location = [];
+    astJSON.forEach((elem) => {
+        if (("kind" in elem) && (elem["kind"] == "FunctionDecl") && (elem['inner'])) {
+            if ("loc" in elem) {
+                let loc = elem["loc"]
+                if ("includedFrom" in loc && (loc["includedFrom"]["file"].includes('mcu_sdk') || loc["includedFrom"]["file"].includes('syscfg'))) {
+                    return;
+                }
+            }
+            let functionName = source + '-' + elem["name"];
+            elem['inner'].forEach(stmt => {
+                if (stmt['kind'] == 'CompoundStmt') {
+                    stmt['function_name'] = functionName;
+                    obj_location.push(stmt)
+                }
+            })
+        }
+    });
+    return obj_location;
+}
+
+// Generates a cleaned astjson array and appends it to the larger
+// cleanASTObjects file array 
+let cleanASTObjects = []
+function GenerateCleanAST(source) {
+    astParseJson = AstOutputFile;
+    let data = fs.readFileSync(astParseJson);
+    const astJSON = JSON.parse(data)["inner"]
+    const cleanAstJson = cleanAST(astJSON, source);
+    cleanAstJson.forEach(element => {
+        cleanASTObjects.push(element)
+    });
+}
+
+// Uses the cleaned file output array to traverse and find DLREGS/DLTAGS 
+// associated with each unique function before appending to the larger 
+// association table
+function BuildTable() {
+    let assoc_table = [];
+    cleanASTObjects.forEach((elem) => {
+        let functionDecl = elem;
+        let stack = [functionDecl];
+        func_name = functionDecl["function_name"];
+        assoc_table_object = {};
+        assoc_table_object[func_name] = { "DLTAGS": [], "DLREGS": [], "inOrder": true, "useDLTFeature": false };
+        while (stack.length > 0) {
+            functionDecl = stack.pop();
+            if (Array.isArray(functionDecl)) {
+                functionDecl.forEach(element => {
+                    // In order to check for DLREG/DLTAGS we must access a CallExpr
+                    // this is because all DLRGE/DLTAG __builtin calls will have a 
+                    // call expression which wraps the name of the call and variable.
+                    // Then we can access the tag and function call directly to examine
+                    // type of tag and the function name
+                    if ("kind" in element && element['kind'] == 'CallExpr' && element['inner'].length == 2) {
+                        let innerExpr = element['inner'];
+                        let func = innerExpr[0]['inner'][0];
+                        let tag = innerExpr[1];
+                        if ('referencedDecl' in func && func["referencedDecl"]["name"] == "__builtin_c29_datalog_tag") {
+                            if (tag['kind'] != 'IntegerLiteral') {
+                                console.error("Must use hex value integeres for datatagging")
+                            }
+                            assoc_table_object[func_name]["DLTAGS"].push(tag['value'].toString(16));
+                            assoc_table_object[func_name]["useDLTFeature"] = true;
+                        }
+                        else if (("referencedDecl" in func && func["referencedDecl"]["name"] == "__builtin_c29_datalog_write")) {
+                            if (tag['kind'] != 'DeclRefExpr') {
+                                console.error("Must use varible decleartions for datalogging")
+                            }
+                            let var_name = tag["referencedDecl"]["name"];
+                            let reg_type = tag["referencedDecl"]["type"]["qualType"];
+                            reg_info_template = {
+                                [var_name]: reg_type
+                            }
+                            assoc_table_object[func_name]["DLREGS"].push(reg_info_template);
+                            assoc_table_object[func_name]["useDLTFeature"] = true;
+                        }
+                    }
+                    else if ("inner" in element) {
+                        stack.push(element);
+                    }
+                });
+            }
+            else if (typeof (functionDecl) === "object" && functionDecl !== null) {
+                if ("inner" in functionDecl) {
+                    stack.push(functionDecl['inner']);
+                }
+            }
+            if (assoc_table_object[func_name]["useDLTFeature"] == true) {
+                assoc_table.push(assoc_table_object);
+            }
+        }
+    });
+    assoc_table = [...new Set(assoc_table)];
+    fs.writeFileSync(join(__dirname, './assoc_table.json'), JSON.stringify(assoc_table, null, 2), 'utf-8')
+}
+
+
+// Pulls the compiler and compilerIncludes dynamically through the CCS variables
+// Runs traversal of the directories retrieving files for DLT checks before 
+// then calling the compiler ast dump and piping it to the AstOutputFile.
+// Then cleans the output files and passes it into a larger cleaned objects array, 
+// which is then used to created the assoc table and output to ${astDumpDirectoryLocation}/assoc_table.json.
+// Finishes by removing the Ast Output file from the directory.
+const AstOutputFile = join(__dirname,"output.json");
+async function main() {
+    Traverse(path_to_dir);
+    Compiler = process.argv[2];
+    CompilerIncludes = process.argv[3];
+    DltFiles.forEach(({ file, path }) => {
+        let executable = Compiler + " " + path + " " + CompilerIncludes + " > " + AstOutputFile;
+        // Execute c29clang and pipes output to 'AstOutputFile'
+        execSync(executable, { encoding: 'utf-8' });
+        GenerateCleanAST(file);
+    })
+    BuildTable();
+    fs.unlinkSync(AstOutputFile);
+    console.log("Finished creating Association Table!");
+}
+
+main()

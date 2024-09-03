@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v5.02.00.00
+                v5.03.00.00
               </div>
             
           
@@ -183,26 +183,6 @@ additional functionality if available for that device.</p>
 <span class="target" id="group__asysctl__api"></span><em>group</em> <code class="sig-name descname">asysctl_api</code></dt>
 <dd><div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric">Defines</p>
-<dl class="cpp macro">
-<dt id="c.ASYSCTL_AGPIOFILTER_BYPASS">
-<span class="target" id="group__asysctl__api_1ga976e5d43c74f8654276078327b5929af"></span><code class="sig-name descname">ASYSCTL_AGPIOFILTER_BYPASS</code> 0U<a class="headerlink" href="#c.ASYSCTL_AGPIOFILTER_BYPASS" title="Permalink to this definition">¶</a><br /></dt>
-<dd></dd></dl>
-
-<dl class="cpp macro">
-<dt id="c.ASYSCTL_AGPIOFILTER_333OHM">
-<span class="target" id="group__asysctl__api_1ga963956adb71d9dcd3adfbf98ddf9eb96"></span><code class="sig-name descname">ASYSCTL_AGPIOFILTER_333OHM</code> 1U<a class="headerlink" href="#c.ASYSCTL_AGPIOFILTER_333OHM" title="Permalink to this definition">¶</a><br /></dt>
-<dd></dd></dl>
-
-<dl class="cpp macro">
-<dt id="c.ASYSCTL_AGPIOFILTER_500OHM">
-<span class="target" id="group__asysctl__api_1ga9fcaca4a2fd4cf87c1974e4f3995815e"></span><code class="sig-name descname">ASYSCTL_AGPIOFILTER_500OHM</code> 2U<a class="headerlink" href="#c.ASYSCTL_AGPIOFILTER_500OHM" title="Permalink to this definition">¶</a><br /></dt>
-<dd></dd></dl>
-
-<dl class="cpp macro">
-<dt id="c.ASYSCTL_AGPIOFILTER_1000OHM">
-<span class="target" id="group__asysctl__api_1ga8687a2b5db15969f28c992defdc1e646"></span><code class="sig-name descname">ASYSCTL_AGPIOFILTER_1000OHM</code> 3U<a class="headerlink" href="#c.ASYSCTL_AGPIOFILTER_1000OHM" title="Permalink to this definition">¶</a><br /></dt>
-<dd></dd></dl>
-
 <dl class="cpp macro">
 <dt id="c.ASYSCTL_ANAREF_INTREF_ADCA">
 <span class="target" id="group__asysctl__api_1gabb7f36080214b8d7b99e29817f1f3ce2"></span><code class="sig-name descname">ASYSCTL_ANAREF_INTREF_ADCA</code> 0x3U<a class="headerlink" href="#c.ASYSCTL_ANAREF_INTREF_ADCA" title="Permalink to this definition">¶</a><br /></dt>
@@ -1151,48 +1131,6 @@ additional functionality if available for that device.</p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv428ASysCtl_setAGPIOFilterGroup18uint32_t">
-<span id="_CPPv328ASysCtl_setAGPIOFilterGroup18uint32_t"></span><span id="_CPPv228ASysCtl_setAGPIOFilterGroup18uint32_t"></span><span id="ASysCtl_setAGPIOFilterGroup1__uint32_t"></span><span class="target" id="group__asysctl__api_1ga08fb51b12988467d715191df85c6b2dc"></span>void <code class="sig-name descname">ASysCtl_setAGPIOFilterGroup1</code><span class="sig-paren">(</span>uint32_t <em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428ASysCtl_setAGPIOFilterGroup18uint32_t" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Configure AGPIO Filter control for Group1 side pins</p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>None </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code>: can be bitwise OR of the following values:<ul>
-<li><p>ASYSCTL_AGPIOFILTER_BYPASS - Filter bypass configuration(min ACQPS = 90ns)</p></li>
-<li><p>ASYSCTL_AGPIOFILTER_333OHM - 333Ohm filter setting (min ACQPS = 125ns)</p></li>
-<li><p>ASYSCTL_AGPIOFILTER_500OHM - 500 Ohm filter setting (min ACQPS = 160ns)</p></li>
-<li><p>ASYSCTL_AGPIOFILTER_1000OHM - 1KOhm filter setting (min ACQPS = 230ns)</p></li>
-</ul>
-</p></li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-<dl class="cpp function">
-<dt id="_CPPv428ASysCtl_setAGPIOFilterGroup28uint32_t">
-<span id="_CPPv328ASysCtl_setAGPIOFilterGroup28uint32_t"></span><span id="_CPPv228ASysCtl_setAGPIOFilterGroup28uint32_t"></span><span id="ASysCtl_setAGPIOFilterGroup2__uint32_t"></span><span class="target" id="group__asysctl__api_1gac97e4d18e403886ab7fc2ce071aeebf9"></span>void <code class="sig-name descname">ASysCtl_setAGPIOFilterGroup2</code><span class="sig-paren">(</span>uint32_t <em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428ASysCtl_setAGPIOFilterGroup28uint32_t" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Configure AGPIO Filter control for Group2 side pins.</p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>None </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code>: can be bitwise OR of the following values:<ul>
-<li><p>ASYSCTL_AGPIOFILTER_BYPASS - Filter bypass configuration(min ACQPS = 90ns)</p></li>
-<li><p>ASYSCTL_AGPIOFILTER_333OHM - 333Ohm filter setting (min ACQPS = 125ns)</p></li>
-<li><p>ASYSCTL_AGPIOFILTER_500OHM - 500 Ohm filter setting (min ACQPS = 160ns)</p></li>
-<li><p>ASYSCTL_AGPIOFILTER_1000OHM - 1KOhm filter setting (min ACQPS = 230ns)</p></li>
-</ul>
-</p></li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-<dl class="cpp function">
 <dt id="_CPPv429ASysCtl_enableGPIOInputBuffer8uint32_t">
 <span id="_CPPv329ASysCtl_enableGPIOInputBuffer8uint32_t"></span><span id="_CPPv229ASysCtl_enableGPIOInputBuffer8uint32_t"></span><span id="ASysCtl_enableGPIOInputBuffer__uint32_t"></span><span class="target" id="group__asysctl__api_1ga5a0e882cddbe0f8ee036535fface0f70"></span>void <code class="sig-name descname">ASysCtl_enableGPIOInputBuffer</code><span class="sig-paren">(</span>uint32_t <em>pin</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429ASysCtl_enableGPIOInputBuffer8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Enable GPIO Input buffer (INENA control).</p>
@@ -1422,7 +1360,7 @@ additional functionality if available for that device.</p>
     <p>
       <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
       <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
-      <span class="lastupdated">Last updated on Mar 27, 2024.
+      <span class="lastupdated">Last updated on Aug 22, 2024.
       </span></p>
   </div>
 

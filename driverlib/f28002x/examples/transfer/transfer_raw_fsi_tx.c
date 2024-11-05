@@ -11,6 +11,9 @@
 //! on our C28x devices. 
 //!
 //! In this example, we are using FSI to export data out of the device.
+//! This will export raw FSI frames in no packaged format. This example can 
+//! be used with transfer_comslogger_rtlog_export_sci example to view the 
+//! FSI frames via SCI.
 //! If you're using a launchpad, you can enable board components to select
 //! the correct FSI base to visualize the data through the COM port.
 //!

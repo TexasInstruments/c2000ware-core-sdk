@@ -2995,9 +2995,9 @@ SysCtl_setCLBClk (SysCtl_CLBClkDivider divider, SysCtl_CLBTClkDivider tdivider,
     //
     HWREG(CLKCFG_BASE + SYSCTL_O_CLBCLKCTL) =
                         (HWREG(CLKCFG_BASE + SYSCTL_O_CLBCLKCTL) &
-                         ~(SYSCTL_CLBCLKCTL_CLBCLKDIV_M |
-                           SYSCTL_CLBCLKCTL_TILECLKDIV |
-                           (0x1UL << (uint16_t)inst)));
+                         ~(uint32_t)(SYSCTL_CLBCLKCTL_CLBCLKDIV_M |
+                                     SYSCTL_CLBCLKCTL_TILECLKDIV |
+                                     (0x1UL << (uint16_t)inst)));
     SYSCTL_REGWRITE_DELAY;
 
     //
@@ -3041,8 +3041,8 @@ SysCtl_setCLBClkDivider(SysCtl_CLBClkDivider divider,
     //
     HWREG(CLKCFG_BASE + SYSCTL_O_CLBCLKCTL) =
                         (HWREG(CLKCFG_BASE + SYSCTL_O_CLBCLKCTL) &
-                         ~(SYSCTL_CLBCLKCTL_CLBCLKDIV_M |
-                           SYSCTL_CLBCLKCTL_TILECLKDIV));
+                         ~(uint32_t)(SYSCTL_CLBCLKCTL_CLBCLKDIV_M |
+                                     SYSCTL_CLBCLKCTL_TILECLKDIV));
     SYSCTL_REGWRITE_DELAY;
 
     //
@@ -3232,6 +3232,39 @@ SysCtl_getDeviceUID(void)
     return(HWREG(UID_BASE + OTP_O_UID_UNIQUE));
 }
 
+//*****************************************************************************
+//
+//! Get the status of JTAG State machine and debugger connect
+//!
+//! This function returns the JTAG status
+//!
+//! \return Returns the JTAG status. The bits representing will be -
+//! 0:TLR,
+//! 1:IDLE,
+//! 2:SELECTDR,
+//! 3:CAPDR,
+//! 4:SHIFTDR,
+//! 5:EXIT1DR,
+//! 6:PAUSEDR,
+//! 7:EXIT2DR,
+//! 8:UPDTDR,
+//! 9:SLECTIR,
+//! 10:CAPIR,
+//! 11:SHIFTIR,
+//! 12:EXIT1IR,
+//! 13:PAUSEIR,
+//! 14:EXIT2IR,
+//! 15:UPDTIR
+//
+//*****************************************************************************
+static inline uint32_t
+SysCtl_getTapStatus(void)
+{
+    //
+    // Returns the Tap status
+    //
+    return(HWREG(DEVCFG_BASE + SYSCTL_O_TAP_STATUS));
+}
 //*****************************************************************************
 //
 //! Delays for a fixed number of cycles.

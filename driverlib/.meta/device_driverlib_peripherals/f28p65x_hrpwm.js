@@ -8,7 +8,6 @@ let HRPWM_MEPEdgeMode = [
 	{ name: "HRPWM_MEP_CTRL_FALLING_EDGE", displayName: "MEP controls falling edge" },
 	{ name: "HRPWM_MEP_CTRL_RISING_AND_FALLING_EDGE", displayName: "MEP controls both rising and falling edge" },
 ]
-
 let HRPWM_MEPCtrlMode = [
 	{ name: "HRPWM_MEP_DUTY_PERIOD_CTRL", displayName: "CMPAHR/CMPBHR or TBPRDHR controls MEP edge" },
 	{ name: "HRPWM_MEP_PHASE_CTRL", displayName: "TBPHSHR controls MEP edge" },
@@ -52,11 +51,10 @@ module.exports = {
 	HRPWM_Channel: HRPWM_Channel,
 	HRPWM_MEPEdgeMode: HRPWM_MEPEdgeMode,
 	HRPWM_MEPCtrlMode: HRPWM_MEPCtrlMode,
-	//HRPWM_XCMPReg :HRPWM_XCMPReg,
 	HRPWM_LoadMode: HRPWM_LoadMode,
 	HRPWM_ChannelBOutput: HRPWM_ChannelBOutput,
 	HRPWM_SyncPulseSource: HRPWM_SyncPulseSource,
 	HRPWM_CounterCompareModule: HRPWM_CounterCompareModule,
 	HRPWM_MEPDeadBandEdgeMode: HRPWM_MEPDeadBandEdgeMode,
 	HRPWM_LockRegisterGroup: HRPWM_LockRegisterGroup,
-   }
+}

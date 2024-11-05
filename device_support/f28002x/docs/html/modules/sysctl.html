@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v5.03.00.00
+                v5.04.00.00
               </div>
             
           
@@ -3629,6 +3629,18 @@ about resets and missing clock detection failures.</p>
 </dd></dl>
 
 <dl class="cpp function">
+<dt id="_CPPv419SysCtl_getTapStatusv">
+<span id="_CPPv319SysCtl_getTapStatusv"></span><span id="_CPPv219SysCtl_getTapStatusv"></span><span id="SysCtl_getTapStatus__void"></span><span class="target" id="group__sysctl__api_1gafd4d0e73cab56a07f4c14d9120e8f511"></span>uint32_t <code class="sig-name descname">SysCtl_getTapStatus</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419SysCtl_getTapStatusv" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Get the status of JTAG State machine and debugger connect</p>
+<p>This function returns the JTAG status</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Returns the JTAG status. The bits representing will be - 0:TLR, 1:IDLE, 2:SELECTDR, 3:CAPDR, 4:SHIFTDR, 5:EXIT1DR, 6:PAUSEDR, 7:EXIT2DR, 8:UPDTDR, 9:SLECTIR, 10:CAPIR, 11:SHIFTIR, 12:EXIT1IR, 13:PAUSEIR, 14:EXIT2IR, 15:UPDTIR </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt id="_CPPv412SysCtl_delay8uint32_t">
 <span id="_CPPv312SysCtl_delay8uint32_t"></span><span id="_CPPv212SysCtl_delay8uint32_t"></span><span id="SysCtl_delay__uint32_t"></span><span class="target" id="group__sysctl__api_1gaba2186034e7c3b3b219d3b7a3f33aa1d"></span>void <code class="sig-name descname">SysCtl_delay</code><span class="sig-paren">(</span>uint32_t <em>count</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412SysCtl_delay8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Delays for a fixed number of cycles.</p>
@@ -3947,7 +3959,7 @@ others used for the configuration of SysCtl.</p>
     <p>
       <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
       <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
-      <span class="lastupdated">Last updated on Aug 22, 2024.
+      <span class="lastupdated">Last updated on Oct 22, 2024.
       </span></p>
   </div>
 
@@ -3967,7 +3979,7 @@ others used for the configuration of SysCtl.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v5.02.00.00',
+            VERSION:'v5.04.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

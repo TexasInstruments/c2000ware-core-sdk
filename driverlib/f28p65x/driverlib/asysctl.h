@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.04.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -68,15 +68,6 @@ extern "C"
 #include "inc/hw_types.h"
 #include "debug.h"
 #include "cpu.h"
-
-//
-// These values can be used as the parameter \e config in the function
-// ASysCtl_setAGPIOFilter functions
-//
-#define ASYSCTL_AGPIOFILTER_BYPASS  0U // Filter bypass (min ACQPS = 90ns)
-#define ASYSCTL_AGPIOFILTER_333OHM  1U // 333Ohm filter (min ACQPS = 125ns)
-#define ASYSCTL_AGPIOFILTER_500OHM  2U // 500 Ohm filter (min ACQPS = 160ns)
-#define ASYSCTL_AGPIOFILTER_1000OHM 3U // 1KOhm filter  (min ACQPS = 230ns)
 
 //*****************************************************************************
 //
@@ -898,56 +889,6 @@ static inline void ASysCtl_disableADCDACLoopback(uint32_t config)
     HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_ADCDACLOOPBACK) =
             (HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_ADCDACLOOPBACK) & ~config) |
             (0xA5A5UL << ASYSCTL_ADCDACLOOPBACK_KEY_S);
-}
-
-//*****************************************************************************
-//
-//! Configure AGPIO Filter control for right side pins.
-//!
-//! \param config can be bitwise OR of the following values:
-//! - ASYSCTL_AGPIOFILTER_BYPASS - Filter bypass configuration(min ACQPS = 90ns)
-//! - ASYSCTL_AGPIOFILTER_333OHM - 333Ohm filter setting (min ACQPS = 125ns)
-//! - ASYSCTL_AGPIOFILTER_500OHM - 500 Ohm filter setting (min ACQPS = 160ns)
-//! - ASYSCTL_AGPIOFILTER_1000OHM - 1KOhm filter setting (min ACQPS = 230ns)
-//!
-//! \return None
-//
-//*****************************************************************************
-static inline void ASysCtl_setAGPIOFilterRight(uint32_t config)
-{
-    ASSERT(config <= 3U);
-
-    EALLOW;
-    HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_AGPIOFILTER) =
-            (HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_AGPIOFILTER) &
-             ~ASYSCTL_AGPIOFILTER_RIGHT_M) |
-            (config << ASYSCTL_AGPIOFILTER_RIGHT_S);
-    EDIS;
-}
-
-//*****************************************************************************
-//
-//! Configure AGPIO Filter control for bottom side pins.
-//!
-//! \param config can be bitwise OR of the following values:
-//! - ASYSCTL_AGPIOFILTER_BYPASS - Filter bypass configuration(min ACQPS = 90ns)
-//! - ASYSCTL_AGPIOFILTER_333OHM - 333Ohm filter setting (min ACQPS = 125ns)
-//! - ASYSCTL_AGPIOFILTER_500OHM - 500 Ohm filter setting (min ACQPS = 160ns)
-//! - ASYSCTL_AGPIOFILTER_1000OHM - 1KOhm filter setting (min ACQPS = 230ns)
-//!
-//! \return None
-//
-//*****************************************************************************
-static inline void ASysCtl_setAGPIOFilterBottom(uint32_t config)
-{
-    ASSERT(config <= 3U);
-
-    EALLOW;
-    HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_AGPIOFILTER) =
-            (HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_AGPIOFILTER) &
-             ~ASYSCTL_AGPIOFILTER_BOTTOM_M) |
-            (config << ASYSCTL_AGPIOFILTER_BOTTOM_S);
-    EDIS;
 }
 
 //*****************************************************************************

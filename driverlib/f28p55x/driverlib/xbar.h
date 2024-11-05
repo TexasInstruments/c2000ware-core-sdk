@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.04.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -94,7 +94,7 @@ extern "C"
 
 #define XBAR_GPIO_MAX_CNT                81U
 #define XBAR_GPIO_AIO_MIN_CNT            208U
-#define XBAR_GPIO_AIO_MAX_CNT            242U
+#define XBAR_GPIO_AIO_MAX_CNT            253U
 #define XBAR_NON_GPIO_MIN_CNT            0xFFFDU
 #define XBAR_NON_GPIO_MAX_CNT            0xFFFFU
 

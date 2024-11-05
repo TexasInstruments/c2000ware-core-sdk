@@ -1177,7 +1177,7 @@ var epwm_validation = [
 	// Validation #35
 	{
 		type : validation_warning,
-		name :  "In HR mode, if CTRMODE= up count mode, the deadband module is not supported",
+		name :  "In HR mode, if CTRMODE= up count mode, the DBFEDHR and DBREDHR registers are not supported",
 		func : (inst, validation, name) => {
 			if (inst["epwmTimebase_counterMode"] == "EPWM_COUNTER_MODE_UP" && inst["hrpwm_enable"] == true) 
 			{

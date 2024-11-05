@@ -155,7 +155,7 @@ function onValidate(inst, validation)
     var pinmuxQualMods = Pinmux.getGpioQualificationModInstDefinitions("I2C", inst)
     for (var pinmuxQualMod of pinmuxQualMods)
     {
-        if(open_drain_pins === true)
+        /* if(open_drain_pins === true)
         {
             if (((inst[pinmuxQualMod.name].padConfig.includes("PULLUP")) && !(inst[pinmuxQualMod.name].padConfig.includes("OD"))) || (inst[pinmuxQualMod.name].padConfig.includes("INVERT")))
             {
@@ -168,7 +168,7 @@ function onValidate(inst, validation)
             {
                 validation.logError("The open-drain and inverted pad configurations should not be used for the I2C module.", inst);
             }
-        }
+        } */
     }
 }
 
@@ -449,7 +449,7 @@ var i2cModule = {
             }
             if(open_drain_pins === true)
             {
-                pinmuxQualMod.args.padConfig = "OD_PULLUP";
+                pinmuxQualMod.args.padConfig = "PULLUP";
             } 
             else 
             {

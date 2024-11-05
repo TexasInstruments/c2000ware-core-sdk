@@ -7,7 +7,6 @@ let ASYSCTLRegisters = [
 	},
 	{ name: "CONFIGLOCK", description: "Lock Register for all the config registers.", offset: "0x5E",
 		bits: [
-			{ name: "AGPIOFILTER", description: "Locks AGPIOFILTER Register", size: "1", shift: "1", mask: "0x2" },
 			{ name: "AGPIOCTRL", description: "Locks all AGPIOCTRL Register", size: "1", shift: "3", mask: "0x8" },
 			{ name: "GPIOINENACTRL", description: "Locks all GPIOINENACTRL Register", size: "1", shift: "6", mask: "0x40" },
 		]
@@ -148,12 +147,6 @@ let ASYSCTLRegisters = [
 			{ name: "ADCA", description: "Generate synchronous SW trigger for ADCA", size: "1", shift: "0", mask: "0x1" },
 			{ name: "ADCB", description: "Generate synchronous SW trigger for ADCB", size: "1", shift: "1", mask: "0x2" },
 			{ name: "ADCC", description: "Generate synchronous SW trigger for ADCC", size: "1", shift: "2", mask: "0x4" },
-		]
-	},
-	{ name: "AGPIOFILTER", description: "AGPIO Filter Control Register", offset: "0x111",
-		bits: [
-			{ name: "RIGHT", description: "AGPIOFILTER Control for right side pins", size: "2", shift: "0", mask: "0x3" },
-			{ name: "BOTTOM", description: "AGPIOFILTER Control for bottom side pins", size: "2", shift: "8", mask: "0x300" },
 		]
 	},
 	{ name: "AGPIOCTRLG", description: "AGPIO Control Register", offset: "0x120",

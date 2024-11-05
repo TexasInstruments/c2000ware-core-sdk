@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.04.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -4704,9 +4704,9 @@ SysCtl_setCLBClk (SysCtl_CLBClkDivider divider, SysCtl_CLBTClkDivider tdivider,
     //
     HWREG(CLKCFG_BASE + SYSCTL_O_CLBCLKCTL) =
                         (HWREG(CLKCFG_BASE + SYSCTL_O_CLBCLKCTL) &
-                         ~(SYSCTL_CLBCLKCTL_CLBCLKDIV_M |
-                           SYSCTL_CLBCLKCTL_TILECLKDIV |
-                           (0x1UL << (uint16_t)inst)));
+                         ~(uint32_t)(SYSCTL_CLBCLKCTL_CLBCLKDIV_M |
+                                     SYSCTL_CLBCLKCTL_TILECLKDIV |
+                                     (0x1UL << (uint16_t)inst)));
     SYSCTL_REGWRITE_DELAY;
 
     //
@@ -4750,8 +4750,8 @@ SysCtl_setCLBClkDivider(SysCtl_CLBClkDivider divider,
     //
     HWREG(CLKCFG_BASE + SYSCTL_O_CLBCLKCTL) =
                         (HWREG(CLKCFG_BASE + SYSCTL_O_CLBCLKCTL) &
-                         ~(SYSCTL_CLBCLKCTL_CLBCLKDIV_M |
-                           SYSCTL_CLBCLKCTL_TILECLKDIV));
+                         ~(uint32_t)(SYSCTL_CLBCLKCTL_CLBCLKDIV_M |
+                                     SYSCTL_CLBCLKCTL_TILECLKDIV));
     SYSCTL_REGWRITE_DELAY;
 
     //

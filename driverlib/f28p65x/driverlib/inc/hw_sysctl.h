@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.04.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -90,6 +90,7 @@
 #define SYSCTL_O_SOFTPRES27    0xD2U    // EPG Software Reset register
 #define SYSCTL_O_SOFTPRES28    0xD4U    // Flash Software Reset register
 #define SYSCTL_O_SOFTPRES29    0xD6U    // ADCCHECKER Software Reset register
+#define SYSCTL_O_SOFTPRES40    0xECU    // Peripheral Software Reset register
 #define SYSCTL_O_CPUSEL0       0xF0U    // CPU Select register for common peripherals
 #define SYSCTL_O_CPUSEL1       0xF2U    // CPU Select register for common peripherals
 #define SYSCTL_O_CPUSEL2       0xF4U    // CPU Select register for common peripherals
@@ -781,6 +782,16 @@
 
 //*************************************************************************************************
 //
+// The following are defines for the bit fields in the SOFTPRES40 register
+//
+//*************************************************************************************************
+#define SYSCTL_SOFTPRES40_JTAG_NTRST_S       0U
+#define SYSCTL_SOFTPRES40_JTAG_NTRST_M       0xFU          // Multi Bit JTAG nTRST
+#define SYSCTL_SOFTPRES40_JTAG_NTRST_KEY_S   16U
+#define SYSCTL_SOFTPRES40_JTAG_NTRST_KEY_M   0xFFFF0000U   // JTAG nTRST Key
+
+//*************************************************************************************************
+//
 // The following are defines for the bit fields in the CPUSEL0 register
 //
 //*************************************************************************************************
@@ -1259,6 +1270,9 @@
 // The following are defines for the bit fields in the CLBCLKCTL register
 //
 //*************************************************************************************************
+#define SYSCTL_CLBCLKCTL_CLBCLKDIV_S   0U
+#define SYSCTL_CLBCLKCTL_CLBCLKDIV_M   0x7U        // CLB clock divider configuration.
+#define SYSCTL_CLBCLKCTL_TILECLKDIV    0x10U       // CLB Tile clock divider configuration.
 #define SYSCTL_CLBCLKCTL_CLKMODECLB1   0x10000U    // Clock mode of CLB1
 #define SYSCTL_CLBCLKCTL_CLKMODECLB2   0x20000U    // Clock mode of CLB2
 #define SYSCTL_CLBCLKCTL_CLKMODECLB3   0x40000U    // Clock mode of CLB3

@@ -68,7 +68,7 @@ let LINRegisters = [
 			{ name: "CLRRXINT", description: "Clear Receiver Interrupt", size: "1", shift: "9", mask: "0x200" },
 			{ name: "CLRIDINT", description: "Clear Identifier Interrupt (LIN only)", size: "1", shift: "13", mask: "0x2000" },
 			{ name: "CLRTXDMA", description: "Clear transmit DMA", size: "1", shift: "16", mask: "0x10000" },
-			{ name: "SETRXDMA", description: "Clear receiver DMA", size: "1", shift: "17", mask: "0x20000" },
+			{ name: "CLRRXDMA", description: "Clear receiver DMA", size: "1", shift: "17", mask: "0x20000" },
 			{ name: "CLRPEINT", description: "Clear Parity Interrupt", size: "1", shift: "24", mask: "0x1000000" },
 			{ name: "CLROEINT", description: "Clear Overrun-Error Interrupt", size: "1", shift: "25", mask: "0x2000000" },
 			{ name: "CLRFEINT", description: "Clear Framing-Error Interrupt", size: "1", shift: "26", mask: "0x4000000" },

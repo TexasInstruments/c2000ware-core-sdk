@@ -481,7 +481,6 @@ XBAR_enableOutputMux(uint32_t base, XBAR_OutputNum output, uint32_t muxes)
 //!
 //! The \e base parameter can take base addresses
 //! OUTPUTXBAR_BASE
-//! or CLBOUTPUTXBAR_BASE.
 //!
 //! The \e muxes parameter is a bit field of the muxes being disabled where bit
 //! 0 represents mux 0, bit 1 represents mux 1 and so on. Defines are provided
@@ -524,7 +523,6 @@ XBAR_disableOutputMux(uint32_t base, XBAR_OutputNum output, uint32_t muxes)
 //!
 //! The \e base parameter can take base addresses
 //! OUTPUTXBAR_BASE
-//! or CLBOUTPUTXBAR_BASE.
 //!
 //! This function sets the Output X-BAR output signal latch mode. If the
 //! \e enable parameter is \b true, the output specified by \e output will be
@@ -570,7 +568,6 @@ XBAR_setOutputLatchMode(uint32_t base, XBAR_OutputNum output, bool enable)
 //!
 //! The \e base parameter can take base addresses
 //! OUTPUTXBAR_BASE
-//! or CLBOUTPUTXBAR_BASE.
 //!
 //! \return Returns \b true if the output corresponding to \e output was
 //! triggered. If not, it will return \b false.
@@ -601,7 +598,6 @@ XBAR_getOutputLatchStatus(uint32_t base, XBAR_OutputNum output)
 //!
 //! The \e base parameter can take base addresses
 //! OUTPUTXBAR_BASE
-//! or CLBOUTPUTXBAR_BASE.
 //!
 //! This function clears the Output X-BAR output latch. The output to be
 //! configured is specified by the \e output parameter.
@@ -634,7 +630,6 @@ XBAR_clearOutputLatch(uint32_t base, XBAR_OutputNum output)
 //!
 //! The \e base parameter can take base addresses
 //! OUTPUTXBAR_BASE
-//! or CLBOUTPUTXBAR_BASE.
 //!
 //! This function forces the Output X-BAR output latch. The output to be
 //! configured is specified by the \e output parameter.
@@ -669,7 +664,6 @@ XBAR_forceOutputLatch(uint32_t base, XBAR_OutputNum output)
 //!
 //! The \e base parameter can take base addresses
 //! OUTPUTXBAR_BASE
-//! or CLBOUTPUTXBAR_BASE.
 //!
 //! This function inverts the Output X-BAR signal if the \e invert parameter is
 //! \b true. If \e invert is \b false, the signal will be passed as is. The

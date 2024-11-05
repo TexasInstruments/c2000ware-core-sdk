@@ -78,7 +78,7 @@
             
             
               <div class="version">
-                v5.03.00.00
+                v5.04.00.00
               </div>
             
           
@@ -1402,7 +1402,7 @@ in the configurations selected.</p>
 </dd>
 </dl>
 </p>
-<p>The <em>base</em> parameter can take base addresses OUTPUTXBAR_BASE or CLBOUTPUTXBAR_BASE.</p>
+<p>The <em>base</em> parameter can take base addresses OUTPUTXBAR_BASE</p>
 <p>The <em>muxes</em> parameter is a bit field of the muxes being disabled where bit 0 represents mux 0, bit 1 represents mux 1 and so on. Defines are provided in the form of <strong>XBAR_MUXnn</strong> that can be OR’d together to disable several muxes on an output at the same time. For example, passing this function ( <strong>XBAR_MUX04</strong> | <strong>XBAR_MUX10</strong> ) would disable muxes 4 and 10.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
@@ -1416,7 +1416,7 @@ in the configurations selected.</p>
 <span id="_CPPv323XBAR_setOutputLatchMode8uint32_t14XBAR_OutputNumb"></span><span id="_CPPv223XBAR_setOutputLatchMode8uint32_t14XBAR_OutputNumb"></span><span id="XBAR_setOutputLatchMode__uint32_t.XBAR_OutputNum.b"></span><span class="target" id="group__xbar__api_1ga3014d464ed29de6138afe4ca942f84e7"></span>void <code class="sig-name descname">XBAR_setOutputLatchMode</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv414XBAR_OutputNum" title="XBAR_OutputNum">XBAR_OutputNum</a> <em>output</em>, bool <em>enable</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423XBAR_setOutputLatchMode8uint32_t14XBAR_OutputNumb" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Enables or disables the output latch to drive the selected output.</p>
 <p><p>The </p>
-<em>base</em> parameter can take base addresses OUTPUTXBAR_BASE or CLBOUTPUTXBAR_BASE.<dl class="simple">
+<em>base</em> parameter can take base addresses OUTPUTXBAR_BASE<dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the X-BAR base address. </p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">output</span></code>: is the X-BAR output being configured. The valid inputs are XBAR_OUTPUTy where y is from 1 to 8. </p></li>
@@ -1438,7 +1438,7 @@ in the configurations selected.</p>
 <span id="_CPPv325XBAR_getOutputLatchStatus8uint32_t14XBAR_OutputNum"></span><span id="_CPPv225XBAR_getOutputLatchStatus8uint32_t14XBAR_OutputNum"></span><span id="XBAR_getOutputLatchStatus__uint32_t.XBAR_OutputNum"></span><span class="target" id="group__xbar__api_1gaba88b298884976b83b0aafa839fc10d4"></span>bool <code class="sig-name descname">XBAR_getOutputLatchStatus</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv414XBAR_OutputNum" title="XBAR_OutputNum">XBAR_OutputNum</a> <em>output</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425XBAR_getOutputLatchStatus8uint32_t14XBAR_OutputNum" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Returns the status of the output latch</p>
 <p><p>The </p>
-<em>base</em> parameter can take base addresses OUTPUTXBAR_BASE or CLBOUTPUTXBAR_BASE.<dl class="simple">
+<em>base</em> parameter can take base addresses OUTPUTXBAR_BASE<dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the X-BAR base address. </p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">output</span></code>: is the X-BAR output being checked. The valid inputs are XBAR_OUTPUTy where y is from 1 to 8.</p></li>
@@ -1458,7 +1458,7 @@ in the configurations selected.</p>
 <span id="_CPPv321XBAR_clearOutputLatch8uint32_t14XBAR_OutputNum"></span><span id="_CPPv221XBAR_clearOutputLatch8uint32_t14XBAR_OutputNum"></span><span id="XBAR_clearOutputLatch__uint32_t.XBAR_OutputNum"></span><span class="target" id="group__xbar__api_1gaa8b34364003bdf2110783473546fdce3"></span>void <code class="sig-name descname">XBAR_clearOutputLatch</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv414XBAR_OutputNum" title="XBAR_OutputNum">XBAR_OutputNum</a> <em>output</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421XBAR_clearOutputLatch8uint32_t14XBAR_OutputNum" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Clears the output latch for the specified output.</p>
 <p><p>The </p>
-<em>base</em> parameter can take base addresses OUTPUTXBAR_BASE or CLBOUTPUTXBAR_BASE.<dl class="simple">
+<em>base</em> parameter can take base addresses OUTPUTXBAR_BASE<dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the X-BAR base address. </p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">output</span></code>: is the X-BAR output being configured. The valid inputs are XBAR_OUTPUTy where y is from 1 to 8.</p></li>
@@ -1479,7 +1479,7 @@ in the configurations selected.</p>
 <span id="_CPPv321XBAR_forceOutputLatch8uint32_t14XBAR_OutputNum"></span><span id="_CPPv221XBAR_forceOutputLatch8uint32_t14XBAR_OutputNum"></span><span id="XBAR_forceOutputLatch__uint32_t.XBAR_OutputNum"></span><span class="target" id="group__xbar__api_1gab2dedeb028ecc75e6915550471a4eaca"></span>void <code class="sig-name descname">XBAR_forceOutputLatch</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv414XBAR_OutputNum" title="XBAR_OutputNum">XBAR_OutputNum</a> <em>output</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421XBAR_forceOutputLatch8uint32_t14XBAR_OutputNum" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Forces the output latch for the specified output.</p>
 <p><p>The </p>
-<em>base</em> parameter can take base addresses OUTPUTXBAR_BASE or CLBOUTPUTXBAR_BASE.<dl class="simple">
+<em>base</em> parameter can take base addresses OUTPUTXBAR_BASE<dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the X-BAR base address. </p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">output</span></code>: is the X-BAR output being configured. The valid inputs are XBAR_OUTPUTy where y is from 1 to 8.</p></li>
@@ -1500,7 +1500,7 @@ in the configurations selected.</p>
 <span id="_CPPv323XBAR_invertOutputSignal8uint32_t14XBAR_OutputNumb"></span><span id="_CPPv223XBAR_invertOutputSignal8uint32_t14XBAR_OutputNumb"></span><span id="XBAR_invertOutputSignal__uint32_t.XBAR_OutputNum.b"></span><span class="target" id="group__xbar__api_1ga2f21329c995c9b79ee8b99bfc7865eb9"></span>void <code class="sig-name descname">XBAR_invertOutputSignal</code><span class="sig-paren">(</span>uint32_t <em>base</em>, <a class="reference internal" href="#_CPPv414XBAR_OutputNum" title="XBAR_OutputNum">XBAR_OutputNum</a> <em>output</em>, bool <em>invert</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423XBAR_invertOutputSignal8uint32_t14XBAR_OutputNumb" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Configures the polarity of an Output X-BAR output.</p>
 <p><p>The </p>
-<em>base</em> parameter can take base addresses OUTPUTXBAR_BASE or CLBOUTPUTXBAR_BASE.<dl class="simple">
+<em>base</em> parameter can take base addresses OUTPUTXBAR_BASE<dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: specifies the X-BAR base address. </p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">output</span></code>: is the X-BAR output being configured. The valid inputs are XBAR_OUTPUTy where y is from 1 to 8. </p></li>
@@ -1773,7 +1773,7 @@ each input.</p>
     <p>
       <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2021, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
       <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
-      <span class="lastupdated">Last updated on Aug 22, 2024.
+      <span class="lastupdated">Last updated on Oct 22, 2024.
       </span></p>
   </div>
 
@@ -1793,7 +1793,7 @@ each input.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v5.02.00.00',
+            VERSION:'v5.04.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

@@ -132,7 +132,6 @@ UNION run = PIEVECTTABLE
    NmiIntruptRegsFile         : > NMIINTRUPT, type=NOINIT
    OutputXbarRegsFile         : > OUTPUTXBAR, type=NOINIT
    PieCtrlRegsFile            : > PIECTRL, type=NOINIT
-   PieVectTableFile           : > PIEVECTTABLE, type=NOINIT
    SciaRegsFile               : > SCIA, type=NOINIT
    ScibRegsFile               : > SCIB, type=NOINIT
    ScicRegsFile               : > SCIC, type=NOINIT

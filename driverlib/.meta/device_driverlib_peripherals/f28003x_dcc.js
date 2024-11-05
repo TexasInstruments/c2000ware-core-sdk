@@ -20,6 +20,7 @@ let DCC_Count0ClockSource = [
 	{ name: "DCC_COUNT0SRC_INTOSC2", displayName: "Internal Oscillator2 Clock Source" },
 	{ name: "DCC_COUNT0SRC_SYSCLK", displayName: "System Clock Source" },
 	{ name: "DCC_COUNT0SRC_AUXCLK", displayName: "AUX Clock Source" },
+	{ name: "DCC_COUNT0SRC_XBAR", displayName: "Input XBAR Clock Source" },
 ]
 module.exports = {
 	DCC_SingleShotMode: DCC_SingleShotMode,

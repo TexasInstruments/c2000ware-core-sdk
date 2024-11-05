@@ -1343,17 +1343,17 @@ let soc_epwm_list = [
     {
         soc   : "F2807x",
         epwm  : ["EPWM2", "EPWM3", "EPWM6", "EPWM7","EPWM8", "EPWM9", "EPWM10", "EPWM11"],
-        hrpwm : ["EPWM2", "EPWM3", "EPWM6", "EPWM7","EPWM8"],
+        hrpwm : ["EPWM1","EPWM2", "EPWM3","EPWM4", "EPWM5","EPWM6", "EPWM7","EPWM8"],
     },
     {
         soc   : "F2837xD",
         epwm  : ["EPWM2", "EPWM3", "EPWM6", "EPWM7","EPWM8", "EPWM9", "EPWM10", "EPWM11"],
-        hrpwm : ["EPWM2", "EPWM3", "EPWM6", "EPWM7","EPWM8"],
+        hrpwm : ["EPWM1","EPWM2", "EPWM3","EPWM4", "EPWM5","EPWM6", "EPWM7","EPWM8"],
     },
     {
         soc   : "F2837xS",
         epwm  : ["EPWM2", "EPWM3", "EPWM6", "EPWM7","EPWM8", "EPWM9", "EPWM10", "EPWM11"],
-        hrpwm : ["EPWM2", "EPWM3", "EPWM6", "EPWM7","EPWM8"],
+        hrpwm : ["EPWM1","EPWM2", "EPWM3","EPWM4", "EPWM5","EPWM6", "EPWM7","EPWM8"],
     },
     {
         soc   : "F2838x",

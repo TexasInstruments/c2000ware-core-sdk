@@ -14,13 +14,11 @@
 //! Flash the bridge device with this application code, and run the 
 //! transfer_raw_fsi_tx example from another device.
 //! 
-//! In this example, we are using SCI to export data out of the device while
-//! receiving FSI as the input. We can then visualize the FSI packets in a 
-//! GUI.
-//! View -> GUI Composer -> Applications -> 
-//!                                     transfer_comslogger_export_sci
 //! If you're using a launchpad, you can enable board components to select
-//! the correct SCI base to visualize the data through the COM port.
+//! the correct FSI header.
+//! Please ensure the project variable GUI_SUPPORT is set to 1.
+//! //! View -> GUI Composer -> Applications -> 
+//!                                     transfer_comslogger_export_sci
 //!
 //
 //#############################################################################

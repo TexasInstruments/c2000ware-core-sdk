@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.04.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -74,6 +74,7 @@
 #define SYSCTL_O_SOFTPRES27    0xB8U    // EPG Software Reset register
 #define SYSCTL_O_SOFTPRES28    0xBAU    // Flash Software Reset register
 #define SYSCTL_O_SOFTPRES30    0xBEU    // NPU Software reset register
+#define SYSCTL_O_SOFTPRES40    0xD2U    // Peripheral Software Reset register
 #define SYSCTL_O_TAP_STATUS    0x130U   // Status of JTAG State machine & Debugger Connect
 #define SYSCTL_O_TAP_CONTROL   0x132U   // Disable TAP control
 #define SYSCTL_O_USBTYPE       0x19AU   // Configures USB Type for the device
@@ -470,6 +471,16 @@
 //
 //*************************************************************************************************
 #define SYSCTL_SOFTPRES30_NPU   0x1U   // NPU Module Reset Bit
+
+//*************************************************************************************************
+//
+// The following are defines for the bit fields in the SOFTPRES40 register
+//
+//*************************************************************************************************
+#define SYSCTL_SOFTPRES40_JTAG_NTRST_S       0U
+#define SYSCTL_SOFTPRES40_JTAG_NTRST_M       0xFU          // Multi Bit JTAG nTRST
+#define SYSCTL_SOFTPRES40_JTAG_NTRST_KEY_S   16U
+#define SYSCTL_SOFTPRES40_JTAG_NTRST_KEY_M   0xFFFF0000U   // JTAG nTRST Key
 
 //*************************************************************************************************
 //

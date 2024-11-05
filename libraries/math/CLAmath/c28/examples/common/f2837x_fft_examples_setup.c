@@ -6,7 +6,7 @@
 //
 //#############################################################################
 // $TI Release: CLA Math Library 4.05.00.00 $
-// $Release Date: Aug 25, 2024 $
+// $Release Date: Oct 29, 2024 $
 // $Copyright: Copyright (C) 2024 Texas Instruments Incorporated -
 //             http://www.ti.com/ ALL RIGHTS RESERVED $
 //#############################################################################

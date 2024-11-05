@@ -1,0 +1,40 @@
+<projectSpec>
+  <project
+        name="ex_arc_fault_dataset_validation_f28004x"
+        device="TMS320F280049C"
+        products="sysconfig;C2000WARE"
+        cgtVersion="22.6.0.LTS"
+        outputFormat="ELF"
+        launchWizard="False"
+        linkerCommandFile=""
+        enableSysConfigTool="true"
+        sysConfigBuildOptions="--product ${C2000WARE_ROOT}/.metadata/sdk.json --device F28004x --package F28004x_100PZ --part F28004x_100PZ"
+        >
+    <configuration name="CPU1_LAUNCHXL_FLASH" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} -I${FEAT_EXT_CORE_FUNC_INCLUDE} -I${FEAT_EXT_USER_INTERFACE_INCLUDE} -I${PROJECT_ROOT}/artifacts -I${C2000WARE_LIBRARIES}/math/FPUfastRTS/c28/include -I${C2000WARE_LIBRARIES}/dsp/FPU/c28/include -I${C2000WARE_LIBRARIES}/dsp/FPU/c28/examples/common/ -v28 -ml -mt --float_support=fpu32 --tmu_support=tmu0 --define=_LAUNCHXL_F280049C	--define=DEBUG --define=_FLASH --diag_warning=225 --diag_suppress=10063"  linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 -I${C2000WARE_LIBRARIES}/dsp/FPU/c28/lib -I${C2000WARE_LIBRARIES}/math/FPUfastRTS/c28/lib -I${PROJECT_ROOT}/artifacts -l=mod.a -l=rts2800_fpu32_fast_supplement_eabi.lib -l=c28x_fpu_dsp_library_eabi.lib"/>
+    <configuration name="CPU1_FLASH" compilerBuildOptions="--opt_level=off -I${PROJECT_ROOT}/device -I${C2000WARE_DLIB_ROOT} -I${FEAT_EXT_CORE_FUNC_INCLUDE} -I${FEAT_EXT_USER_INTERFACE_INCLUDE} -I${PROJECT_ROOT}/artifacts -I${C2000WARE_LIBRARIES}/math/FPUfastRTS/c28/include -I${C2000WARE_LIBRARIES}/dsp/FPU/c28/include -I${C2000WARE_LIBRARIES}/dsp/FPU/c28/examples/common/ -v28 -ml -mt --float_support=fpu32 --tmu_support=tmu0	--define=DEBUG --define=_FLASH --diag_warning=225 --diag_suppress=10063"  linkerBuildOptions="--entry_point code_start --stack_size=0x3F8 --heap_size=0x200 -I${C2000WARE_LIBRARIES}/dsp/FPU/c28/lib -I${C2000WARE_LIBRARIES}/math/FPUfastRTS/c28/lib -I${PROJECT_ROOT}/artifacts -l=mod.a -l=rts2800_fpu32_fast_supplement_eabi.lib -l=c28x_fpu_dsp_library_eabi.lib"/>
+    <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../../../../../driverlib/f28004x/driverlib/" scope="project"/>
+    <pathVariable name="FEAT_EXT_CORE_FUNC_INCLUDE" path="${PROJECT_ROOT}/feature_extract/core" scope="project"/>
+    <pathVariable name="FEAT_EXT_USER_INTERFACE_INCLUDE" path="${PROJECT_ROOT}/feature_extract/interface" scope="project"/>
+	<pathVariable name="C2000WARE_DEVICE_SUPPORT" path="../../../../../../../device_support" scope="project"/>
+    <pathVariable name="C2000WARE_LIBRARIES" path="../../../../../../../libraries" scope="project"/>
+    <pathVariable name="C2000WARE_ROOT" path="../../../../../../../" scope="project" />
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT/f28004x/common/include/driverlib.h" targetDirectory="device"/>
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT/f28004x/common/include/device.h" targetDirectory="device"/>
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT/f28004x/common/source/device.c" targetDirectory="device"/>
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT/f28004x/common/source/f28004x_codestartbranch.asm" targetDirectory="device"/>
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT/f28004x/common/targetConfigs/TMS320F280049C_LaunchPad.ccxml" targetDirectory="targetConfigs"/>
+    <file action="copy" path="C2000WARE_DEVICE_SUPPORT/f28004x/common/targetConfigs/TMS320F280049C.ccxml" targetDirectory="targetConfigs" applicableConfigurations="CPU1_FLASH"/>
+    <file action="link" path="C2000WARE_DLIB_ROOT/ccs/Debug/driverlib.lib" targetDirectory=""/>  
+    <file action="copy" path="../artifacts" targetDirectory=""/>   
+    <file action="copy" path="../application_main.c" targetDirectory=""/>    
+    <file action="copy" path="../test_vector.c" targetDirectory=""/> 
+    <file action="copy" path="../user_input_config.h" targetDirectory=""/> 
+    <file action="copy" path="../../../include/feature_extract_priv.h" targetDirectory="feature_extract/core"/>
+    <file action="copy" path="../../../include/nn_utils.h" targetDirectory="feature_extract/core"/>
+    <file action="copy" path="../../../source/feature_extract.c" targetDirectory="feature_extract/core/"/>
+	<file action="copy" path="../../../source/nn_utils.c" targetDirectory="feature_extract/core/" />
+    <file action="copy" path="../../../include/feature_extract.h" targetDirectory="feature_extract/interface/"/>
+    <file action="copy" path="../28004x_arc_flash_lnk.cmd" targetDirectory=""/>
+    <file action="copy" path="../c2000.syscfg" targetDirectory=""/>
+	</project>
+</projectSpec>

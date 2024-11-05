@@ -1,4 +1,19 @@
 let ASYSCTLRegisters = [
+	{ name: "ADCOSDETECT", description: "I2V Logic Control", offset: "0x26",
+		bits: [
+			{ name: "OSDETECT_EN", description: "Enable OS Detect Logic", size: "1", shift: "4", mask: "0x10" },
+			{ name: "DETECTCFG", description: "OS detect config bits", size: "3", shift: "5", mask: "0xE0" },
+		]
+	},
+	{ name: "REFCONFIGB", description: "Config register for analog reference B.", offset: "0x36",
+		bits: [
+			{ name: "ADC_ATB_ENA", description: "ADC testmux enable", size: "2", shift: "5", mask: "0x60" },
+			{ name: "ADC_ATB_ENB", description: "ADC testmux enable", size: "2", shift: "7", mask: "0x180" },
+			{ name: "ADC_ATB_ENC", description: "ADC testmux enable", size: "2", shift: "9", mask: "0x600" },
+			{ name: "ADC_ATB_END", description: "ADC testmux enable", size: "2", shift: "11", mask: "0x1800" },
+			{ name: "ADC_ATB_ENE", description: "ADC testmux enable", size: "2", shift: "13", mask: "0x6000" },
+		]
+	},
 	{ name: "INTERNALTESTCTL", description: "INTERNALTEST Node Control Register", offset: "0x4A",
 		bits: [
 			{ name: "TESTSEL", description: "Test Select", size: "6", shift: "0", mask: "0x3F" },

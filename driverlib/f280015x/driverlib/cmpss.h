@@ -241,7 +241,6 @@ typedef enum
 } CMPSS_RampXTrigger;
 
 
-
 //*****************************************************************************
 //
 // Prototypes for the APIs.

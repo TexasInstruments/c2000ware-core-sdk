@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.04.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -253,7 +253,6 @@ typedef enum
                                            //!< configured PWMSYNCx signal and
                                            //!< RAMPH SOR trigger is RAMPL EOR
 } CMPSS_RampXTrigger;
-
 
 
 //*****************************************************************************

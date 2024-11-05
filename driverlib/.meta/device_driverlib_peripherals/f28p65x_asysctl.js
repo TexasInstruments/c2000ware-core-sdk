@@ -56,12 +56,6 @@ let ASysCtl_TestSelect = [
 	{ name: "ASYSCTL_TEST_NODE_CDAC11L", displayName: "CMPSS11 Low DAC output" },
 	{ name: "ASYSCTL_TEST_NODE_ENZ_CALIB_GAIN_3P3V", displayName: "All ADCs are placed in gain" },
 ]
-let ASYSCTL_AGPIOFILTER = [
-	{ name: "ASYSCTL_AGPIOFILTER_BYPASS", displayName: "Filter bypass (min ACQPS = 90ns)" },
-	{ name: "ASYSCTL_AGPIOFILTER_333OHM", displayName: "333Ohm filter (min ACQPS = 125ns)" },
-	{ name: "ASYSCTL_AGPIOFILTER_500OHM", displayName: "500 Ohm filter (min ACQPS = 160ns)" },
-	{ name: "ASYSCTL_AGPIOFILTER_1000OHM", displayName: "1KOhm filter  (min ACQPS = 230ns)" },
-]
 let ASYSCTL_CMPHNMUX_SELECT = [
 	{ name: "ASYSCTL_CMPHNMUX_SELECT_1", displayName: "CMPHNMUX select 1" },
 	{ name: "ASYSCTL_CMPHNMUX_SELECT_2", displayName: "CMPHNMUX select 2" },
@@ -92,7 +86,6 @@ module.exports = {
 	ASysCtl_CMPHPMuxSelect: ASysCtl_CMPHPMuxSelect,
 	ASysCtl_CMPLPMuxSelect: ASysCtl_CMPLPMuxSelect,
 	ASysCtl_TestSelect: ASysCtl_TestSelect,
-	ASYSCTL_AGPIOFILTER: ASYSCTL_AGPIOFILTER,
 	ASYSCTL_CMPHNMUX_SELECT: ASYSCTL_CMPHNMUX_SELECT,
 	ASYSCTL_CMPLNMUX_SELECT: ASYSCTL_CMPLNMUX_SELECT,
 }

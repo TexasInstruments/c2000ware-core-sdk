@@ -359,7 +359,6 @@ UNION run = PIEVECTTABLE
    OutputXbarRegsFile         : > OUTPUTXBAR, type=NOINIT
    ClbOutputXbarRegsFile      : > CLBOUTPUTXBAR, type=NOINIT
    PieCtrlRegsFile            : > PIECTRL, type=NOINIT
-   PieVectTableFile           : > PIEVECTTABLE, type=NOINIT
    PmbusaRegsFile             : > PMBUSA, type=NOINIT
    RomPrefetchRegsFile        : > ROMPREFETCH, type=NOINIT
    RomWaitStateRegsFile       : > ROMWAITSTATE, type=NOINIT

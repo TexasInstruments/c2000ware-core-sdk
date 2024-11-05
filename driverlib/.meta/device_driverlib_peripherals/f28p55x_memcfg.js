@@ -79,6 +79,7 @@ let MEMCFG_UCERR = [
 	{ name: "MEMCFG_UCERR_CPUREAD", displayName: "Uncorrectable CPU read error" },
 	{ name: "MEMCFG_UCERR_DMAREAD", displayName: "Uncorrectable DMA read error" },
 	{ name: "MEMCFG_UCERR_CLA1READ", displayName: "Uncorrectable CLA1 read error" },
+	{ name: "MEMCFG_UCERR_NPUREAD", displayName: "Uncorrectable NPU read error" },
 ]
 let MEMCFG_DIAGERR = [
 	{ name: "MEMCFG_DIAGERR_UNCORR", displayName: "Uncorr error in diag/test mode" },

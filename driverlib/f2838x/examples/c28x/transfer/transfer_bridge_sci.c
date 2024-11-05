@@ -19,11 +19,13 @@
 //! receiving FSI as the input. 
 //! If you're using a launchpad, you can enable board components to select
 //! the correct SCI base to visualize the data through the COM port.
+//! Open a serial terminal with the correct port selected to view the data
+//! coming out of the bridge device.
 //!
 //
 //#############################################################################
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.04.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //

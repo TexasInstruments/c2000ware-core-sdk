@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.04.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -69,7 +69,6 @@
                                              // inputs. Refer to Pimux diagram for details.
 #define ASYSCTL_O_ADCSOCFRCGB       0x10EU   // ADC Global SOC Force
 #define ASYSCTL_O_ADCSOCFRCGBSEL    0x110U   // ADC Global SOC Force Select
-#define ASYSCTL_O_AGPIOFILTER       0x111U   // AGPIO Filter Control Register
 #define ASYSCTL_O_AGPIOCTRLG        0x120U   // AGPIO Control Register
 #define ASYSCTL_O_AGPIOCTRLH        0x122U   // AGPIO Control Register
 #define ASYSCTL_O_GPIOINENACTRL     0x134U   // GPIOINENACTRL Control Register
@@ -90,7 +89,6 @@
 // The following are defines for the bit fields in the CONFIGLOCK register
 //
 //*************************************************************************************************
-#define ASYSCTL_CONFIGLOCK_AGPIOFILTER     0x2U    // Locks AGPIOFILTER Register
 #define ASYSCTL_CONFIGLOCK_AGPIOCTRL       0x8U    // Locks all AGPIOCTRL Register
 #define ASYSCTL_CONFIGLOCK_GPIOINENACTRL   0x40U   // Locks all GPIOINENACTRL Register
 
@@ -280,16 +278,6 @@
 #define ASYSCTL_ADCSOCFRCGBSEL_ADCA   0x1U   // Generate synchronous SW trigger for ADCA
 #define ASYSCTL_ADCSOCFRCGBSEL_ADCB   0x2U   // Generate synchronous SW trigger for ADCB
 #define ASYSCTL_ADCSOCFRCGBSEL_ADCC   0x4U   // Generate synchronous SW trigger for ADCC
-
-//*************************************************************************************************
-//
-// The following are defines for the bit fields in the AGPIOFILTER register
-//
-//*************************************************************************************************
-#define ASYSCTL_AGPIOFILTER_RIGHT_S    0U
-#define ASYSCTL_AGPIOFILTER_RIGHT_M    0x3U     // AGPIOFILTER Control for right side pins
-#define ASYSCTL_AGPIOFILTER_BOTTOM_S   8U
-#define ASYSCTL_AGPIOFILTER_BOTTOM_M   0x300U   // AGPIOFILTER Control for bottom side pins
 
 //*************************************************************************************************
 //

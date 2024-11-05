@@ -62,7 +62,7 @@ extern "C"
 
 //! Version number to be returned by Version_getLibVersion()
 //!
-#define VERSION_NUMBER      5030000U
+#define VERSION_NUMBER      5040000U
 
 //*****************************************************************************
 //

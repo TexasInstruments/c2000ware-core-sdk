@@ -337,6 +337,7 @@ var config = [
                                 ui["sectionBinit_ramfunc"].hidden = false
                                 inst["sectionRun_ramfunc"] = memoryInfo.flashDefault_cpu2[i]
                                 inst["sectionRunFromDifferentAddr_ramfunc"] = true
+                                inst["sectionBinit_ramfunc"] = false
                             }
                             if(memoryInfo.flashDefault_cpu2[i][0].startsWith("FLASH")){
                                 inst["sectionAlignEnable_"+i] = true

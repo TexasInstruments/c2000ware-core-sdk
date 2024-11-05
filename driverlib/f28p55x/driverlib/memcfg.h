@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.04.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -238,6 +238,7 @@ extern "C"
 #define MEMCFG_UCERR_CPUREAD     0x0001U //!< Uncorrectable CPU read error
 #define MEMCFG_UCERR_DMAREAD     0x0002U //!< Uncorrectable DMA read error
 #define MEMCFG_UCERR_CLA1READ    0x0004U //!< Uncorrectable CLA1 read error
+#define MEMCFG_UCERR_NPUREAD    0x0020U //!< Uncorrectable NPU read error
 //*****************************************************************************
 //
 // Values that can be passed to MemCfg_clearDiagErrorStatus() as stsFlags
@@ -765,7 +766,8 @@ MemCfg_getCorrErrorStatus(void)
 //! Gets the current uncorrectable RAM error status.
 //!
 //! \return Returns the current error status, enumerated as a bit field of
-//! \b MEMCFG_UCERR_CPUREAD, \b MEMCFG_UCERR_DMAREAD, \b MEMCFG_UCERR_CLA1READ
+//! \b MEMCFG_UCERR_CPUREAD, \b MEMCFG_UCERR_DMAREAD, \b MEMCFG_UCERR_CLA1READ,
+//! \b MEMCFG_UCERR_NPUREAD
 //
 //*****************************************************************************
 static inline uint32_t
@@ -809,7 +811,8 @@ MemCfg_forceCorrErrorStatus(uint32_t stsFlags)
 //!
 //! \param stsFlags is a bit mask of the error sources. This parameter can be
 //! any of the following values:
-//! \b MEMCFG_UCERR_CPUREAD, \b MEMCFG_UCERR_DMAREAD, \b MEMCFG_UCERR_CLA1READ
+//! \b MEMCFG_UCERR_CPUREAD, \b MEMCFG_UCERR_DMAREAD, \b MEMCFG_UCERR_CLA1READ,
+//! \b MEMCFG_UCERR_NPUREAD
 //!
 //! This function sets the specified uncorrectable RAM error status flag.
 //!
@@ -861,7 +864,8 @@ MemCfg_clearCorrErrorStatus(uint32_t stsFlags)
 //!
 //! \param stsFlags is a bit mask of the status flags to be cleared.
 //! This parameter can be any of the following :
-//! \b MEMCFG_UCERR_CPUREAD, \b MEMCFG_UCERR_DMAREAD, \b MEMCFG_UCERR_CLA1READ
+//! \b MEMCFG_UCERR_CPUREAD, \b MEMCFG_UCERR_DMAREAD, \b MEMCFG_UCERR_CLA1READ,
+//! \b MEMCFG_UCERR_NPUREAD
 //!
 //! This function clears the specified uncorrectable RAM error flags.
 //!

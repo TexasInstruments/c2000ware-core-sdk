@@ -84,9 +84,9 @@ extern "C"
 #define ADC_PPBxCONFIG_STEP         (ADC_O_PPB2CONFIG - ADC_O_PPB1CONFIG)
 #define ADC_PPBxTRIPHI_STEP         (ADC_O_PPB2TRIPHI - ADC_O_PPB1TRIPHI)
 #define ADC_PPBxTRIPLO_STEP         (ADC_O_PPB2TRIPLO - ADC_O_PPB1TRIPLO)
-#define ADC_PPBxSTAMP_STEP          (ADC_O_PPB2STAMP - ADC_O_PPB1STAMP)
 #define ADC_PPBxOFFCAL_STEP         (ADC_O_PPB2OFFCAL - ADC_O_PPB1OFFCAL)
 #define ADC_PPBxOFFREF_STEP         (ADC_O_PPB2OFFREF - ADC_O_PPB1OFFREF)
+#define ADC_PPBxSTAMP_STEP          (ADC_O_PPB2STAMP - ADC_O_PPB1STAMP)
 
 #define ADC_PPBTRIP_MASK            ((uint32_t)ADC_PPB1TRIPHI_LIMITHI_M      |\
                                      (uint32_t)ADC_PPB1TRIPHI_HSIGN)
@@ -1258,8 +1258,8 @@ ADC_disablePPBEvent(uint32_t base, ADC_PPBNumber ppbNumber, uint16_t evtFlags)
 //! This function enables the indicated ADC PPB interrupt sources.  Only the
 //! sources that are enabled can be reflected to the processor interrupt.
 //! Disabled sources have no effect on the processor.  The \e intFlags
-//! parameter can be any of the \b ADC_EVT_TRIPHI, \b ADC_EVT_TRIPLO, or
-//! \b ADC_EVT_ZERO values.
+//! parameter can be any of the \b ADC_EVT_TRIPHI, \b ADC_EVT_TRIPLO,
+//! or \b ADC_EVT_ZERO values.
 //!
 //! \return None.
 //
@@ -1293,8 +1293,8 @@ ADC_enablePPBEventInterrupt(uint32_t base, ADC_PPBNumber ppbNumber,
 //! This function disables the indicated ADC PPB interrupt sources.  Only the
 //! sources that are enabled can be reflected to the processor interrupt.
 //! Disabled sources have no effect on the processor.  The \e intFlags
-//! parameter can be any of the \b ADC_EVT_TRIPHI, \b ADC_EVT_TRIPLO, or
-//! \b ADC_EVT_ZERO values.
+//! parameter can be any of the \b ADC_EVT_TRIPHI, \b ADC_EVT_TRIPLO,
+//! or \b ADC_EVT_ZERO values.
 //!
 //! \return None.
 //

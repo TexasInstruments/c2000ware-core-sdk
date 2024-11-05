@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.04.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -123,38 +123,6 @@ extern "C"
 
 //*****************************************************************************
 //
-// Values that can be passed to UART_setFIFOLevel as the txLevel parameter
-// and returned by UART_getFIFOLevel in the txLevel.
-// These are 8 bit (1 byte) wide and 16 locations deep FIFOs.
-// For example, to get a transmit interrupt after 4 data bytes are transmitted,
-// we need a trigger after the transmit FIFO has 4 bytes with 4 locations deep,
-// that is, 4 out of 16 locations deep which is 1/4 full.(UART_FIFO_TX2_8)
-//
-//*****************************************************************************
-#define UART_FIFO_TX1_8      0x00000000UL  //!< Transmit interrupt at 1/8 Full
-#define UART_FIFO_TX2_8      0x00000001UL  //!< Transmit interrupt at 1/4 Full
-#define UART_FIFO_TX4_8      0x00000002UL  //!< Transmit interrupt at 1/2 Full
-#define UART_FIFO_TX6_8      0x00000003UL  //!< Transmit interrupt at 3/4 Full
-#define UART_FIFO_TX7_8      0x00000004UL  //!< Transmit interrupt at 7/8 Full
-
-//*****************************************************************************
-//
-// Values that can be passed to UART_setFIFOLevel as the rxLevel parameter
-// and returned by UART_getFIFOLevel in the rxLevel.
-// These are 8 bit (1 byte) wide and 16 locations deep FIFOs.
-// For example, to get a receive interrupt after 4 data bytes are received,
-// we need a trigger after the receive FIFO has 4 bytes with 4 locations deep,
-// that is, 4 out of 16 locations deep which is 1/4 full.(UART_FIFO_RX2_8)
-//
-//*****************************************************************************
-#define UART_FIFO_RX1_8         0x00000000UL  //!< Receive interrupt at 1/8 Full
-#define UART_FIFO_RX2_8         0x00000008UL  //!< Receive interrupt at 1/4 Full
-#define UART_FIFO_RX4_8         0x00000010UL  //!< Receive interrupt at 1/2 Full
-#define UART_FIFO_RX6_8         0x00000018UL  //!< Receive interrupt at 3/4 Full
-#define UART_FIFO_RX7_8         0x00000020UL  //!< Receive interrupt at 7/8 Full
-
-//*****************************************************************************
-//
 // Values that can be passed to UART_enableDMA() and UART_disableDMA().
 //
 //*****************************************************************************
@@ -204,7 +172,7 @@ extern "C"
 
 //*****************************************************************************
 //
-//SIR ( IrDA ) Low Power Baud macro . IrLPBaud16 is nominally 1.8432 MHz.
+// SIR ( IrDA ) Low Power Baud macro . IrLPBaud16 is nominally 1.8432 MHz.
 // Value that can be passed to  UART_setIrDALPDivisor().
 //
 //*****************************************************************************
@@ -229,6 +197,38 @@ typedef bool Uart_IntType;
 #define UART_SIR_LOWPOWER_DISABLE         false //!<raw interrupt
 #define UART_SIR_LOWPOWER_ENABLE          true  //!<masked interrupt
 typedef bool Uart_SirLPMode;
+
+//*****************************************************************************
+//
+// Values that can be passed to UART_setFIFOLevel as the txLevel parameter
+// and returned by UART_getFIFOLevel in the txLevel.
+// These are 8 bit (1 byte) wide and 16 locations deep FIFOs.
+// For example, to get a transmit interrupt after 4 data bytes are transmitted,
+// we need a trigger after the transmit FIFO has 4 bytes with 4 locations deep,
+// that is, 4 out of 16 locations deep which is 1/4 full.(UART_FIFO_TX2_8)
+//
+//*****************************************************************************
+#define UART_FIFO_TX1_8      0x00000000UL  //!< Transmit interrupt at 1/8 Full
+#define UART_FIFO_TX2_8      0x00000001UL  //!< Transmit interrupt at 1/4 Full
+#define UART_FIFO_TX4_8      0x00000002UL  //!< Transmit interrupt at 1/2 Full
+#define UART_FIFO_TX6_8      0x00000003UL  //!< Transmit interrupt at 3/4 Full
+#define UART_FIFO_TX7_8      0x00000004UL  //!< Transmit interrupt at 7/8 Full
+
+//*****************************************************************************
+//
+// Values that can be passed to UART_setFIFOLevel as the rxLevel parameter
+// and returned by UART_getFIFOLevel in the rxLevel.
+// These are 8 bit (1 byte) wide and 16 locations deep FIFOs.
+// For example, to get a receive interrupt after 4 data bytes are received,
+// we need a trigger after the receive FIFO has 4 bytes with 4 locations deep,
+// that is, 4 out of 16 locations deep which is 1/4 full.(UART_FIFO_RX2_8)
+//
+//*****************************************************************************
+#define UART_FIFO_RX1_8         0x00000000UL  //!< Receive interrupt at 1/8 Full
+#define UART_FIFO_RX2_8         0x00000008UL  //!< Receive interrupt at 1/4 Full
+#define UART_FIFO_RX4_8         0x00000010UL  //!< Receive interrupt at 1/2 Full
+#define UART_FIFO_RX6_8         0x00000018UL  //!< Receive interrupt at 3/4 Full
+#define UART_FIFO_RX7_8         0x00000020UL  //!< Receive interrupt at 7/8 Full
 
 //*****************************************************************************
 //

@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.04.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -99,24 +99,78 @@
 #define CLB6_LOGICCTRL_BASE       0x00002B00U
 #define CLB6_DATAEXCH_BASE        0x00002B80U
 #define EPWM17_BASE               0x00002C00U
+#define EPWM17XCMP_BASE           0x00002D00U
+#define EPWM17DE_BASE             0x00002DC0U
+#define EPWM17MINDBLUT_BASE       0x00002DE0U
 #define EPWM18_BASE               0x00002E00U
+#define EPWM18XCMP_BASE           0x00002F00U
+#define EPWM18DE_BASE             0x00002FC0U
+#define EPWM18MINDBLUT_BASE       0x00002FE0U
 #define EPWM1_BASE                0x00003000U
+#define EPWM1XCMP_BASE            0x00003100U
+#define EPWM1DE_BASE              0x000031C0U
+#define EPWM1MINDBLUT_BASE        0x000031E0U
 #define EPWM2_BASE                0x00003200U
+#define EPWM2XCMP_BASE            0x00003300U
+#define EPWM2DE_BASE              0x000033C0U
+#define EPWM2MINDBLUT_BASE        0x000033E0U
 #define EPWM3_BASE                0x00003400U
+#define EPWM3XCMP_BASE            0x00003500U
+#define EPWM3DE_BASE              0x000035C0U
+#define EPWM3MINDBLUT_BASE        0x000035E0U
 #define EPWM4_BASE                0x00003600U
+#define EPWM4XCMP_BASE            0x00003700U
+#define EPWM4DE_BASE              0x000037C0U
+#define EPWM4MINDBLUT_BASE        0x000037E0U
 #define EPWM5_BASE                0x00003800U
+#define EPWM5XCMP_BASE            0x00003900U
+#define EPWM5DE_BASE              0x000039C0U
+#define EPWM5MINDBLUT_BASE        0x000039E0U
 #define EPWM6_BASE                0x00003A00U
+#define EPWM6XCMP_BASE            0x00003B00U
+#define EPWM6DE_BASE              0x00003BC0U
+#define EPWM6MINDBLUT_BASE        0x00003BE0U
 #define EPWM7_BASE                0x00003C00U
+#define EPWM7XCMP_BASE            0x00003D00U
+#define EPWM7DE_BASE              0x00003DC0U
+#define EPWM7MINDBLUT_BASE        0x00003DE0U
 #define EPWM8_BASE                0x00003E00U
+#define EPWM8XCMP_BASE            0x00003F00U
+#define EPWM8DE_BASE              0x00003FC0U
+#define EPWM8MINDBLUT_BASE        0x00003FE0U
 #define EPWM9_BASE                0x00004000U
 #define LS8_RAM_BASE              0x00004000U
+#define EPWM9XCMP_BASE            0x00004100U
+#define EPWM9DE_BASE              0x000041C0U
+#define EPWM9MINDBLUT_BASE        0x000041E0U
 #define EPWM10_BASE               0x00004200U
+#define EPWM10XCMP_BASE           0x00004300U
+#define EPWM10DE_BASE             0x000043C0U
+#define EPWM10MINDBLUT_BASE       0x000043E0U
 #define EPWM11_BASE               0x00004400U
+#define EPWM11XCMP_BASE           0x00004500U
+#define EPWM11DE_BASE             0x000045C0U
+#define EPWM11MINDBLUT_BASE       0x000045E0U
 #define EPWM12_BASE               0x00004600U
+#define EPWM12XCMP_BASE           0x00004700U
+#define EPWM12DE_BASE             0x000047C0U
+#define EPWM12MINDBLUT_BASE       0x000047E0U
 #define EPWM13_BASE               0x00004800U
+#define EPWM13XCMP_BASE           0x00004900U
+#define EPWM13DE_BASE             0x000049C0U
+#define EPWM13MINDBLUT_BASE       0x000049E0U
 #define EPWM14_BASE               0x00004A00U
+#define EPWM14XCMP_BASE           0x00004B00U
+#define EPWM14DE_BASE             0x00004BC0U
+#define EPWM14MINDBLUT_BASE       0x00004BE0U
 #define EPWM15_BASE               0x00004C00U
+#define EPWM15XCMP_BASE           0x00004D00U
+#define EPWM15DE_BASE             0x00004DC0U
+#define EPWM15MINDBLUT_BASE       0x00004DE0U
 #define EPWM16_BASE               0x00004E00U
+#define EPWM16XCMP_BASE           0x00004F00U
+#define EPWM16DE_BASE             0x00004FC0U
+#define EPWM16MINDBLUT_BASE       0x00004FE0U
 #define EQEP1_BASE                0x00005080U
 #define EQEP2_BASE                0x000050C0U
 #define EQEP3_BASE                0x00005100U

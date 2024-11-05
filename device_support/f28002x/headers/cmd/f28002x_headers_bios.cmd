@@ -215,7 +215,6 @@ UNION run = PIEVECTTABLE
    ClbOutputXbarRegsFile      : > CLBOUTPUTXBAR, type=NOINIT
    SysPeriphAcRegsFile        : > SYSPERIPHAC, type=NOINIT
    PieCtrlRegsFile            : > PIECTRL, type=NOINIT
-   PieVectTableFile           : > PIEVECTTABLE, type=NOINIT
    PmbusaRegsFile             : > PMBUSA, type=NOINIT
    SciaRegsFile               : > SCIA, type=NOINIT
    SpiaRegsFile               : > SPIA, type=NOINIT

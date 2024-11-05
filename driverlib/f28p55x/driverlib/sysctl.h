@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.04.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -151,6 +151,14 @@ extern "C"
 // Device_cal function which is available in OTP memory
 // This function is called in SysCtl_resetPeripheral after resetting
 // analog peripherals
+//
+//
+// device_cal function address is different for different revisions of the
+// F28P55x device. If the revision ID (value at address 0x5D00C) is "1" then 
+// define the REV_ID as a predefined symbol in the projectspec 
+// (Add "--define=REV_ID=1" in the compiler flags, which correspond to REV0).
+// For REVID as REVA, the value will be 2, which will be the default value in 
+// the package.
 //
 #ifndef REVID_REV0
 #define REVID_REV0 1
@@ -1115,6 +1123,7 @@ SysCtl_resetPeripheral(SysCtl_PeripheralSOFTPRES peripheral)
     // Call Device_cal function
     //
     if((((uint16_t)peripheral & SYSCTL_PERIPH_REG_M) == 0xDU) ||      // ADCx
+       (((uint16_t)peripheral & SYSCTL_PERIPH_REG_M) == 0xFU) ||      // PGAx
        (((uint16_t)peripheral & SYSCTL_PERIPH_REG_M) == 0x10U)        // DACx
        )
     {
@@ -3500,9 +3509,9 @@ SysCtl_setCLBClk (SysCtl_CLBClkDivider divider, SysCtl_CLBTClkDivider tdivider,
     //
     HWREG(CLKCFG_BASE + SYSCTL_O_CLBCLKCTL) =
                         (HWREG(CLKCFG_BASE + SYSCTL_O_CLBCLKCTL) &
-                         ~(SYSCTL_CLBCLKCTL_CLBCLKDIV_M |
-                           SYSCTL_CLBCLKCTL_TILECLKDIV |
-                           (0x1UL << (uint16_t)inst)));
+                         ~(uint32_t)(SYSCTL_CLBCLKCTL_CLBCLKDIV_M |
+                                     SYSCTL_CLBCLKCTL_TILECLKDIV |
+                                     (0x1UL << (uint16_t)inst)));
     SYSCTL_REGWRITE_DELAY;
 
     //
@@ -3546,8 +3555,8 @@ SysCtl_setCLBClkDivider(SysCtl_CLBClkDivider divider,
     //
     HWREG(CLKCFG_BASE + SYSCTL_O_CLBCLKCTL) =
                         (HWREG(CLKCFG_BASE + SYSCTL_O_CLBCLKCTL) &
-                         ~(SYSCTL_CLBCLKCTL_CLBCLKDIV_M |
-                           SYSCTL_CLBCLKCTL_TILECLKDIV));
+                         ~(uint32_t)(SYSCTL_CLBCLKCTL_CLBCLKDIV_M |
+                                     SYSCTL_CLBCLKCTL_TILECLKDIV));
     SYSCTL_REGWRITE_DELAY;
 
     //
@@ -4139,6 +4148,39 @@ SysCtl_getDeviceUID1(void)
     return(HWREG(UID_BASE + OTP_O_UID_UNIQUE1));
 }
 
+//*****************************************************************************
+//
+//! Get the status of JTAG State machine and debugger connect
+//!
+//! This function returns the JTAG status
+//!
+//! \return Returns the JTAG status. The bits representing will be -
+//! 0:TLR,
+//! 1:IDLE,
+//! 2:SELECTDR,
+//! 3:CAPDR,
+//! 4:SHIFTDR,
+//! 5:EXIT1DR,
+//! 6:PAUSEDR,
+//! 7:EXIT2DR,
+//! 8:UPDTDR,
+//! 9:SLECTIR,
+//! 10:CAPIR,
+//! 11:SHIFTIR,
+//! 12:EXIT1IR,
+//! 13:PAUSEIR,
+//! 14:EXIT2IR,
+//! 15:UPDTIR
+//
+//*****************************************************************************
+static inline uint32_t
+SysCtl_getTapStatus(void)
+{
+    //
+    // Returns the Tap status
+    //
+    return(HWREG(DEVCFG_BASE + SYSCTL_O_TAP_STATUS));
+}
 //*****************************************************************************
 //
 //! Delays for a fixed number of cycles.

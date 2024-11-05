@@ -6,7 +6,7 @@
 //
 //#############################################################################
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.04.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -526,7 +526,9 @@ use HRPWM_forceActionQualifierSWAction*/
 #ifdef DEBUG
 static inline bool HRPWM_isBaseValid(uint32_t base)
 {
-    return((base == EPWM1_BASE) || (base == EPWM2_BASE));
+    return((base == EPWM1_BASE) || (base == EPWM2_BASE) ||
+           (base == EPWM3_BASE) || (base == EPWM4_BASE) ||
+           (base == EPWM5_BASE) || (base == EPWM6_BASE));
 }
 #endif
 //*****************************************************************************

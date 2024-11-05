@@ -122,8 +122,8 @@ SECTIONS
 
 #if defined(RAM)     
    .TI.ramfunc       : > RAMGS0,                 PAGE = 0
-   .text             : > RAMGS1,                 PAGE = 0
-   .cinit            : > RAMGS0,                 PAGE = 0
+   .text             : >> RAMGS0 | RAMGS1,       PAGE = 0
+   .cinit            : > RAMGS1,                 PAGE = 0
                      
    .pinit            : > RAMGS0,                 PAGE = 0
    .switch           : > RAMGS0,                 PAGE = 0

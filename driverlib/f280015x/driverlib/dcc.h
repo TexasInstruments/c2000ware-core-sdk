@@ -156,8 +156,10 @@ typedef enum
     DCC_COUNT0SRC_XTAL       = 0x0U,    //!< XTAL Clock Source
     DCC_COUNT0SRC_INTOSC1    = 0x1U,    //!< Internal Oscillator1 Clock Source
     DCC_COUNT0SRC_INTOSC2    = 0x2U,    //!< Internal Oscillator2 Clock Source
+    DCC_COUNT0SRC_TCK        = 0x4U,    //!< Preliminary Clock Source
     DCC_COUNT0SRC_SYSCLK     = 0x5U,    //!< System Clock Source
     DCC_COUNT0SRC_AUXCLK     = 0x8U,    //!< AUX Clock Source
+    DCC_COUNT0SRC_XBAR       = 0xCU,    //!< Input XBAR Clock Source
 } DCC_Count0ClockSource;
 
 //*****************************************************************************

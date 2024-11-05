@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.04.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -47,7 +47,6 @@
 // All the API functions are in-lined in pga.h
 //
 
-
 //
 // This macro calculates the PGA offset trim location in OTP memory required
 // to calibrate PGA offset. Use this in the PGA_setOffsetTrimNMOS() and
@@ -64,7 +63,6 @@
 // Macro to read the key value programmed in the device
 //
 #define TI_OTP_DEV_PRG_KEY                      (HWREGH(0x72092UL))
-
 
 //*****************************************************************************
 //

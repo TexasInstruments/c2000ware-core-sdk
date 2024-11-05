@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.04.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -693,7 +693,7 @@ typedef enum
     XBAR_EPWM_MUX19_ECATSYNC1              = 0x2603,
     XBAR_EPWM_MUX20_SD1FLT3_CEVT1          = 0x2800,
     XBAR_EPWM_MUX20_SD4FLT2_CEVT1          = 0x2801,
-    XBAR_EPWM_MUX20_INPUTXBAR1_INPUT9      = 0x2802,
+    XBAR_EPWM_MUX20_INPUTXBAR2_INPUT9      = 0x2802,
     XBAR_EPWM_MUX20_FSIA_RX_TRIG1          = 0x2803,
     XBAR_EPWM_MUX21_SD1FLT3_CEVT2          = 0x2A00,
     XBAR_EPWM_MUX21_INPUTXBAR1_INPUT9      = 0x2A01,
@@ -909,7 +909,7 @@ typedef enum
     XBAR_CLB_MUX22_SD1FLT4_COMPH           = 0x2C00,
     XBAR_CLB_MUX22_SD4FLT2_COMPL           = 0x2C01,
     XBAR_CLB_MUX22_FSID_RX_TRIG2           = 0x2C02,
-    XBAR_CLB_MUX22_FSIC_RX_TRIG3           = 0x2C03,
+    XBAR_CLB_MUX22_FSID_RX_TRIG3           = 0x2C03,
     XBAR_CLB_MUX23_SD1FLT4_COMPL           = 0x2E00,
     XBAR_CLB_MUX23_INPUTXBAR1_INPUT10      = 0x2E01,
     XBAR_CLB_MUX23_CLB6_OUT5               = 0x2E02,

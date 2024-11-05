@@ -349,6 +349,12 @@ let SYSCTLRegisters = [
 			{ name: "ADCSEAGGRCPU2", description: "ADCSEAGGRCPU2 software reset bit", size: "1", shift: "17", mask: "0x20000" },
 		]
 	},
+	{ name: "SOFTPRES40", description: "Peripheral Software Reset register", offset: "0xEC",
+		bits: [
+			{ name: "JTAG_NTRST", description: "Multi Bit JTAG nTRST", size: "4", shift: "0", mask: "0xF" },
+			{ name: "JTAG_NTRST_KEY", description: "JTAG nTRST Key", size: "16", shift: "16", mask: "0xFFFF0000" },
+		]
+	},
 	{ name: "CPUSEL0", description: "CPU Select register for common peripherals", offset: "0xF0",
 		bits: [
 			{ name: "EPWM1", description: "EPWM1 CPU select bit", size: "1", shift: "0", mask: "0x1" },
@@ -701,6 +707,8 @@ let SYSCTLRegisters = [
 	},
 	{ name: "CLBCLKCTL", description: "CLB Clocking Control Register", offset: "0x2A",
 		bits: [
+			{ name: "CLBCLKDIV", description: "CLB clock divider configuration.", size: "3", shift: "0", mask: "0x7" },
+			{ name: "TILECLKDIV", description: "CLB Tile clock divider configuration.", size: "1", shift: "4", mask: "0x10" },
 			{ name: "CLKMODECLB1", description: "Clock mode of CLB1", size: "1", shift: "16", mask: "0x10000" },
 			{ name: "CLKMODECLB2", description: "Clock mode of CLB2", size: "1", shift: "17", mask: "0x20000" },
 			{ name: "CLKMODECLB3", description: "Clock mode of CLB3", size: "1", shift: "18", mask: "0x40000" },

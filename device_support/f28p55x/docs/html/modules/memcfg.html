@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v5.03.00.00
+                v5.04.00.00
               </div>
             
           
@@ -590,6 +590,12 @@ MEMCFG_GSXACCPROT0_DMAWRPROT_GS0)<a class="headerlink" href="#c.MEMCFG_XACCPROTX
 </dd></dl>
 
 <dl class="cpp macro">
+<dt id="c.MEMCFG_UCERR_NPUREAD">
+<span class="target" id="group__memcfg__api_1gabca17a65d69bd48afe2793db3de71441"></span><code class="sig-name descname">MEMCFG_UCERR_NPUREAD</code> 0x0020U<a class="headerlink" href="#c.MEMCFG_UCERR_NPUREAD" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Uncorrectable NPU read error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
 <dt id="c.MEMCFG_DIAGERR_UNCORR">
 <span class="target" id="group__memcfg__api_1ga1ff86256f0f472441b65b808ca2124f9"></span><code class="sig-name descname">MEMCFG_DIAGERR_UNCORR</code> 0x00000002U<a class="headerlink" href="#c.MEMCFG_DIAGERR_UNCORR" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Uncorr error in diag/test mode. </p>
@@ -1005,7 +1011,7 @@ MEMCFG_GSXACCPROT0_DMAWRPROT_GS0)<a class="headerlink" href="#c.MEMCFG_XACCPROTX
 <span id="_CPPv327MemCfg_getUncorrErrorStatusv"></span><span id="_CPPv227MemCfg_getUncorrErrorStatusv"></span><span id="MemCfg_getUncorrErrorStatus__void"></span><span class="target" id="group__memcfg__api_1ga7a9728223107a0fd68e2e8c11f6969be"></span>uint32_t <code class="sig-name descname">MemCfg_getUncorrErrorStatus</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427MemCfg_getUncorrErrorStatusv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Gets the current uncorrectable RAM error status.</p>
 <p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>Returns the current error status, enumerated as a bit field of <strong>MEMCFG_UCERR_CPUREAD</strong>, <strong>MEMCFG_UCERR_DMAREAD</strong>, <strong>MEMCFG_UCERR_CLA1READ</strong> </p>
+<dt><strong>Return</strong></dt><dd><p>Returns the current error status, enumerated as a bit field of <strong>MEMCFG_UCERR_CPUREAD</strong>, <strong>MEMCFG_UCERR_DMAREAD</strong>, <strong>MEMCFG_UCERR_CLA1READ</strong>, <strong>MEMCFG_UCERR_NPUREAD</strong> </p>
 </dd>
 </dl>
 </p>
@@ -1037,7 +1043,7 @@ MEMCFG_GSXACCPROT0_DMAWRPROT_GS0)<a class="headerlink" href="#c.MEMCFG_XACCPROTX
 <p><p>This function sets the specified uncorrectable RAM error status flag.</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">stsFlags</span></code>: is a bit mask of the error sources. This parameter can be any of the following values: <strong>MEMCFG_UCERR_CPUREAD</strong>, <strong>MEMCFG_UCERR_DMAREAD</strong>, <strong>MEMCFG_UCERR_CLA1READ</strong> </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stsFlags</span></code>: is a bit mask of the error sources. This parameter can be any of the following values: <strong>MEMCFG_UCERR_CPUREAD</strong>, <strong>MEMCFG_UCERR_DMAREAD</strong>, <strong>MEMCFG_UCERR_CLA1READ</strong>, <strong>MEMCFG_UCERR_NPUREAD</strong> </p></li>
 </ul>
 </dd>
 </dl>
@@ -1075,7 +1081,7 @@ MEMCFG_GSXACCPROT0_DMAWRPROT_GS0)<a class="headerlink" href="#c.MEMCFG_XACCPROTX
 <p><p>This function clears the specified uncorrectable RAM error flags.</p>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">stsFlags</span></code>: is a bit mask of the status flags to be cleared. This parameter can be any of the following : <strong>MEMCFG_UCERR_CPUREAD</strong>, <strong>MEMCFG_UCERR_DMAREAD</strong>, <strong>MEMCFG_UCERR_CLA1READ</strong> </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stsFlags</span></code>: is a bit mask of the status flags to be cleared. This parameter can be any of the following : <strong>MEMCFG_UCERR_CPUREAD</strong>, <strong>MEMCFG_UCERR_DMAREAD</strong>, <strong>MEMCFG_UCERR_CLA1READ</strong>, <strong>MEMCFG_UCERR_NPUREAD</strong> </p></li>
 </ul>
 </dd>
 </dl>
@@ -1523,7 +1529,7 @@ detailed description to be sure.</p>
     <p>
       <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
       <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
-      <span class="lastupdated">Last updated on Aug 22, 2024.
+      <span class="lastupdated">Last updated on Oct 22, 2024.
       </span></p>
   </div>
 
@@ -1543,7 +1549,7 @@ detailed description to be sure.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v5.02.00.00',
+            VERSION:'v5.04.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

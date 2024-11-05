@@ -222,8 +222,6 @@ extern "C"
 #define SYSCTL_DCC_BASE_S    28U
 
 #define SYSCTL_DCC_BASE_0       0x00000000UL //!< DCC0 module
-#define SYSCTL_DCC_BASE_1       0x10000000UL //!< DCC1 module
-#define SYSCTL_DCC_BASE_2       0x20000000UL //!< DCC2 module
 
 
 //
@@ -3009,6 +3007,39 @@ SysCtl_getDeviceUID1(void)
     return(HWREG(UID_BASE + OTP_O_UID_UNIQUE1));
 }
 
+//*****************************************************************************
+//
+//! Get the status of JTAG State machine and debugger connect
+//!
+//! This function returns the JTAG status
+//!
+//! \return Returns the JTAG status. The bits representing will be -
+//! 0:TLR,
+//! 1:IDLE,
+//! 2:SELECTDR,
+//! 3:CAPDR,
+//! 4:SHIFTDR,
+//! 5:EXIT1DR,
+//! 6:PAUSEDR,
+//! 7:EXIT2DR,
+//! 8:UPDTDR,
+//! 9:SLECTIR,
+//! 10:CAPIR,
+//! 11:SHIFTIR,
+//! 12:EXIT1IR,
+//! 13:PAUSEIR,
+//! 14:EXIT2IR,
+//! 15:UPDTIR
+//
+//*****************************************************************************
+static inline uint32_t
+SysCtl_getTapStatus(void)
+{
+    //
+    // Returns the Tap status
+    //
+    return(HWREG(DEVCFG_BASE + SYSCTL_O_TAP_STATUS));
+}
 //*****************************************************************************
 //
 //! Delays for a fixed number of cycles.

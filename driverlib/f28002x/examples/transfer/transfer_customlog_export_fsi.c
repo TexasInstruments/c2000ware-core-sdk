@@ -10,7 +10,8 @@
 //! This example demonstrates how to use SysConfig to enable datalogging
 //! on our C28x devices. 
 //!
-//! In this example, we are using FSI to export data out of the device.
+//! In this example, we are using FSI to export data out of the device in 
+//! JSON format.
 //! If you're using a launchpad, you can enable board components to select
 //! the correct FSI base to visualize the data through the COM port.
 //!

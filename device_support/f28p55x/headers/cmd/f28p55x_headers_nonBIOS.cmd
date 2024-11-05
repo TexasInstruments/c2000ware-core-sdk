@@ -266,7 +266,6 @@ UNION run = PIEVECTTABLE
    Pga2RegsFile               : > PGA2, type=NOINIT
    Pga3RegsFile               : > PGA3, type=NOINIT
    PieCtrlRegsFile            : > PIECTRL, type=NOINIT
-   PieVectTableFile           : > PIEVECTTABLE, type=NOINIT
    PmbusaRegsFile             : > PMBUSA, type=NOINIT
    SciaRegsFile               : > SCIA, type=NOINIT
    ScibRegsFile               : > SCIB, type=NOINIT

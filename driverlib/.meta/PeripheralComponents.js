@@ -57,7 +57,7 @@ var supported_peripheralName_moduleFile = [
      { moduleCategory: CATEGORY_SYSTEM ,  peripheralName : "OUTPUTXBAR", moduleFile : "/driverlib/outputxbar.js"},
      { moduleCategory: CATEGORY_SYSTEM ,  peripheralName : "OTHER", moduleFile : "/driverlib/other.js"},
      { moduleCategory: CATEGORY_COMS   ,  peripheralName : "PMBUS", moduleFile : "/driverlib/pmbus.js"},
-     { moduleCategory: CATEGORY_COMS   ,  peripheralName : "SD", moduleFile : "/driverlib/sd.js"},
+     { moduleCategory: CATEGORY_CONTROL   ,  peripheralName : "SD", moduleFile : "/driverlib/sd.js"},
      { moduleCategory: CATEGORY_COMS   ,  peripheralName : "SPI", moduleFile : "/driverlib/spi.js"},
      { moduleCategory: CATEGORY_COMS   ,  peripheralName : "SCI", moduleFile : "/driverlib/sci.js"},
      { moduleCategory: CATEGORY_COMS   ,  peripheralName : "SSI", moduleFile : "/driverlib/ssi.js"},

@@ -313,7 +313,6 @@ UNION run = PIEVECTTABLE
    McbspbRegsFile             : > MCBSPB, type=NOINIT
    NmiIntruptRegsFile         : > NMIINTRUPT, type=NOINIT
    PieCtrlRegsFile            : > PIECTRL, type=NOINIT
-   PieVectTableFile           : > PIEVECTTABLE, type=NOINIT
    PmbusaRegsFile             : > PMBUSA, type=NOINIT
    RomPrefetchRegsFile        : > ROMPREFETCH, type=NOINIT
    RomWaitStateRegsFile       : > ROMWAITSTATE, type=NOINIT

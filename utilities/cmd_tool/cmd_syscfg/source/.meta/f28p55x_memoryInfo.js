@@ -43,7 +43,7 @@ var memoryInfo = {
         {name : "FLASH_BANK1",  group : "FLASH", origin : 0x0A0000, length : 0x20000},
         {name : "FLASH_BANK2",  group : "FLASH", origin : 0x0C0000, length : 0x20000},
         {name : "FLASH_BANK3",  group : "FLASH", origin : 0x0E0000, length : 0x20000},
-        {name : "FLASH_BANK4",  group : "FLASH", origin : 0x100000, length : 0x20000, description : "Last 16 words of Flash is reserved as per the errata advisory 'Memory: Prefetching Beyond Valid Memory'"},
+        {name : "FLASH_BANK4",  group : "FLASH", origin : 0x100000, length : 0x07FFF, description : "Last 16 words of Flash is reserved as per the errata advisory 'Memory: Prefetching Beyond Valid Memory'"},
 
         {name : "CLATOCPURAM", group : "CLATOCPUMSGRAM", origin : 0x001480, length : 0x000080}, // Following names from template linker.cmd files? 
         {name : "CPUTOCLARAM", group : "CPUTOCLAMSGRAM", origin : 0x001500, length : 0x000080},

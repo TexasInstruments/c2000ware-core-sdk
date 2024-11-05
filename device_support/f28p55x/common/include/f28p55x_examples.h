@@ -8,7 +8,7 @@
 //
 //
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.04.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -391,6 +391,13 @@ extern "C" {
 //
 // The following pointer to a function call calibrates the ADC reference,
 // DAC offset, and internal oscillators
+//
+// device_cal function address is different for different revisions of the
+// F28P55x device. If the revision ID (value at address 0x5D00C) is "1" then 
+// define the REV_ID as a predefined symbol in the projectspec 
+// (Add "--define=REV_ID=1" in the compiler flags, which correspond to REV0).
+// For REVID as REVA, the value will be 2, which will be the default value in 
+// the package.
 //
 #ifndef REVID_REV0
 #define REVID_REV0 1

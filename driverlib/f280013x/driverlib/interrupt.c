@@ -263,7 +263,7 @@ Interrupt_initVectorTable(void)
     // We skip the first three locations because they are initialized by Boot
     // ROM with boot variables.
     //
-    for(i = 3U; i < 224U; i++)
+    for(i = 3U; i < 128U; i++)
     {
         HWREG(PIEVECTTABLE_BASE + (2U * i)) =
             (uint32_t)Interrupt_defaultHandler;

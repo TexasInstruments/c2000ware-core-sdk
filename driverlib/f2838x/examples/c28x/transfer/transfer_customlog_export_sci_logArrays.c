@@ -12,7 +12,7 @@
 //! Build -> Variables and set GUI_SUPPORT to value of 1.
 //! This will create the GUI in CCS which can be opened under 
 //! View -> GUI Composer -> Applications -> 
-// !                                    transfer_customlog_export_sci_logArrays
+//!                                    transfer_customlog_export_sci_logArrays
 //!
 //! In this example, we are using SCI to export data out of the device. We
 //! export a few arrays to show case this example.
@@ -22,7 +22,7 @@
 //
 //#############################################################################
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.04.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //

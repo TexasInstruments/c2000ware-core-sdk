@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.04.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -92,7 +92,6 @@ extern "C"
 #define REPCTL_MASK                 (ADC_REP1CTL_MODE                        |\
                                      ADC_REP1CTL_TRIGGER_M                   |\
                                      ADC_REP1CTL_SYNCINSEL_M)
-
 #define ADC_PPBxPSUM_OFFSET_BASE     ADC_O_PPB1PSUM
 #define ADC_PPBxPCOUNT_OFFSET_BASE   ADC_O_PPBP1PCOUNT
 #define ADC_PPBxPMAX_OFFSET_BASE     ADC_O_PPB1PMAX
@@ -101,8 +100,6 @@ extern "C"
 #define ADC_PPBxPMINI_OFFSET_BASE    ADC_O_PPB1PMINI
 
 #define ADC_PPBxLIMIT_OFFSET_BASE   ADC_O_PPB1LIMIT
-#define ADC_PPBxSUM_OFFSET_BASE     ADC_O_PPB1SUM
-#define ADC_PPBxCOUNT_OFFSET_BASE   ADC_O_PPB1COUNT
 #define ADC_PPBxMAX_OFFSET_BASE     ADC_O_PPB1MAX
 #define ADC_PPBxMIN_OFFSET_BASE     ADC_O_PPB1MIN
 #define ADC_PPBxMAXI_OFFSET_BASE    ADC_O_PPB1MAXI
@@ -115,16 +112,18 @@ extern "C"
 #define ADC_REPxPHASE_STEP          (ADC_O_REP2PHASE - ADC_O_REP1PHASE)
 #define ADC_REPxSPREAD_STEP         (ADC_O_REP2SPREAD - ADC_O_REP1SPREAD)
 
-#define ADC_PPBTRIP_MASK            (uint32_t)ADC_PPB1TRIPHI_LIMITHI_M
 #define ADC_PPBxTRIPLO2_STEP        (ADC_O_PPB2TRIPLO2 - ADC_O_PPB1TRIPLO2)
+#define ADC_PPBxSUM_OFFSET_BASE     ADC_O_PPB1SUM
+#define ADC_PPBxCOUNT_OFFSET_BASE   ADC_O_PPB1COUNT
+#define ADC_PPBTRIP_MASK            (uint32_t)ADC_PPB1TRIPHI_LIMITHI_M
 
 
 #define ADC_PPBxCONFIG_STEP         (ADC_O_PPB2CONFIG - ADC_O_PPB1CONFIG)
 #define ADC_PPBxTRIPHI_STEP         (ADC_O_PPB2TRIPHI - ADC_O_PPB1TRIPHI)
 #define ADC_PPBxTRIPLO_STEP         (ADC_O_PPB2TRIPLO - ADC_O_PPB1TRIPLO)
-#define ADC_PPBxSTAMP_STEP          (ADC_O_PPB2STAMP - ADC_O_PPB1STAMP)
 #define ADC_PPBxOFFCAL_STEP         (ADC_O_PPB2OFFCAL - ADC_O_PPB1OFFCAL)
 #define ADC_PPBxOFFREF_STEP         (ADC_O_PPB2OFFREF - ADC_O_PPB1OFFREF)
+#define ADC_PPBxSTAMP_STEP          (ADC_O_PPB2STAMP - ADC_O_PPB1STAMP)
 
 #define ADC_INT_REF_TSSLOPE         (*(int16_t *)((uintptr_t)0x720C0))
 #define ADC_INT_REF_TSOFFSET        (*(int16_t *)((uintptr_t)0x720C1))
@@ -1115,8 +1114,8 @@ ADC_forceRepeaterTrigger(uint32_t base, uint16_t repInstance)
 //! This function returns the current status for the repeater block.
 //!
 //! \return Returns the current event status, enumerated as a bit field of
-//! \b ADC_REPEATER_MODULE_BUSY, \b ADC_REPEATER_PHASE_OVERFLOW, and
-//! \b ADC_REPEATER_TRIGGER_OVERFLOW.
+//! \b ADC_REPEATER_MODULE_BUSY, \b ADC_REPEATER_TRIGGER_OVERFLOW
+//! and \b ADC_REPEATER_PHASE_OVERFLOW.
 //
 //*****************************************************************************
 static inline uint16_t
@@ -2073,8 +2072,8 @@ ADC_disablePPBEvent(uint32_t base, ADC_PPBNumber ppbNumber, uint16_t evtFlags)
 //! This function enables the indicated ADC PPB interrupt sources.  Only the
 //! sources that are enabled can be reflected to the processor interrupt.
 //! Disabled sources have no effect on the processor.  The \e intFlags
-//! parameter can be any of the \b ADC_EVT_TRIPHI, \b ADC_EVT_TRIPLO, or
-//! \b ADC_EVT_ZERO values.
+//! parameter can be any of the \b ADC_EVT_TRIPHI, \b ADC_EVT_TRIPLO,
+//! or \b ADC_EVT_ZERO values.
 //!
 //! \return None.
 //
@@ -2108,8 +2107,8 @@ ADC_enablePPBEventInterrupt(uint32_t base, ADC_PPBNumber ppbNumber,
 //! This function disables the indicated ADC PPB interrupt sources.  Only the
 //! sources that are enabled can be reflected to the processor interrupt.
 //! Disabled sources have no effect on the processor.  The \e intFlags
-//! parameter can be any of the \b ADC_EVT_TRIPHI, \b ADC_EVT_TRIPLO, or
-//! \b ADC_EVT_ZERO values.
+//! parameter can be any of the \b ADC_EVT_TRIPHI, \b ADC_EVT_TRIPLO,
+//! or \b ADC_EVT_ZERO values.
 //!
 //! \return None.
 //
@@ -4370,7 +4369,8 @@ ADC_triggerRepeaterModuleBusy(uint32_t base, uint32_t repInstance)
 //! \param trigger the source to modify via oversampling or undersampling.
 //!
 //! This function configures ADC trigger repeater by selecting the trigger
-//! source passed into \e trigger to modify via oversampling or undersampling.
+//! source passed into \e trigger to modify via oversampling
+//! or undersampling.
 //!
 //! The \e repInstance is the repeater instance to be configured. Valid values
 //! for this parameter can be referred from the enum \e ADC_RepInstance.

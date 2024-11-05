@@ -220,7 +220,6 @@ UNION run = PIEVECTTABLE
    NmiIntruptRegsFile         : > NMIINTRUPT, type=NOINIT
    OutputXbarRegsFile         : > OUTPUTXBAR, type=NOINIT
    PieCtrlRegsFile            : > PIECTRL, type=NOINIT
-   PieVectTableFile           : > PIEVECTTABLE, type=NOINIT
    RomPrefetchRegsFile        : > ROMPREFETCH, type=NOINIT
    RomWaitStateRegsFile       : > ROMWAITSTATE, type=NOINIT
    SciaRegsFile               : > SCIA, type=NOINIT

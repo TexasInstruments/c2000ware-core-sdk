@@ -49,7 +49,6 @@ spi2.spi.$assign               = "SPIB";
 spi2.spiTXInt.enableInterrupt  = true;
 spi2.spiTXInt.$name            = "INT_SPIB_TX";
 spi2.spiTXInt.interruptHandler = "spibTxFIFOISR";
-//#####END_F2837XD_F2837XS_F2807X_F28004X#####
 spi2.spi.spi_picoPin.$assign = "GPIO24";
 spi2.spi.spi_pociPin.$assign = "GPIO25";
 spi2.spi.spi_clkPin.$assign  = "GPIO26";
@@ -65,7 +64,7 @@ CMD1.sectionMemory_stack      = ["RAMM1"];
 CMD1.sectionMemory_init_array = ["RAMM0"];
 CMD1.sectionMemory_bss        = ["RAMLS5"];
 CMD1.sectionMemory_const      = ["RAMLS5"];
-CMD1.sectionMemory_data       = ["RAMLS5"];
+CMD1.sectionMemory_data       = ["RAMGS0", "RAMGS1"];
 CMD1.sectionMemory_switch     = ["RAMM0"];
 CMD1.sectionMemory_sysmem     = ["RAMLS5"];
 
@@ -80,7 +79,7 @@ CMD2.sectionAlignEnable_ovly       = true;
 CMD2.sectionMemory_codestart       = "0x080000";
 CMD2.sectionMemory_stack           = ["RAMM1"];
 CMD2.sectionMemory_bss             = ["RAMLS5"];
-CMD2.sectionMemory_data            = ["RAMLS5"];
+CMD2.sectionMemory_data            = ["RAMLS6", "RAMLS7"];
 CMD2.sectionMemory_sysmem          = ["RAMLS5"];
 CMD2.sectionMemory_ramfunc         = ["FLASH3"];
 CMD2.sectionMemory_text            = ["FLASH1","FLASH2","FLASH3","FLASH4"];

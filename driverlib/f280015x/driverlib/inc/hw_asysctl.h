@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -46,7 +46,6 @@
 // The following are defines for the ASYSCTL register offsets
 //
 //*************************************************************************************************
-#define ASYSCTL_O_EXTROSCCSR1       0x24U    // ExtR Oscillator Status Register
 #define ASYSCTL_O_INTERNALTESTCTL   0x4AU    // INTERNALTEST Node Control Register
 #define ASYSCTL_O_CONFIGLOCK        0x5EU    // Lock Register for all the config registers.
 #define ASYSCTL_O_TSNSCTL           0x60U    // Temperature Sensor Control Register
@@ -67,14 +66,6 @@
 #define ASYSCTL_O_AGPIOCTRLA        0x10AU   // AGPIO Control Register
 #define ASYSCTL_O_AGPIOCTRLH        0x118U   // AGPIO Control Register
 
-
-//*************************************************************************************************
-//
-// The following are defines for the bit fields in the EXTROSCCSR1 register
-//
-//*************************************************************************************************
-#define ASYSCTL_EXTROSCCSR1_OSCSTATUS_S   24U
-#define ASYSCTL_EXTROSCCSR1_OSCSTATUS_M   0xFF000000U   // Running status of ExtR.
 
 //*************************************************************************************************
 //

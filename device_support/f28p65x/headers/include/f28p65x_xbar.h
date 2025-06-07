@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -1370,7 +1370,9 @@ struct XBAR_REGS {
 // XBAR External References & Function Declarations:
 //
 #ifdef CPU1
+#ifdef __TMS320C28XX__
 extern volatile struct XBAR_REGS XbarRegs __attribute__((noblocked));
+#endif
 #endif
 #ifdef __cplusplus
 }

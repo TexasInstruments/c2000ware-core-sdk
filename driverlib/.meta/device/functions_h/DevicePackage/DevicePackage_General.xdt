@@ -1,0 +1,32 @@
+//*****************************************************************************
+//
+// Defines related to Device package information
+//
+//*****************************************************************************
+
+//
+// The Unbonded GPIO pull ups is different for different package type. If the
+// package type is different from the default package tyep (48PT), then define 
+// the DEV_PKG_TYPE macro as a predefined symbol in the projectspec.
+// (Add "--define=DEV_PKG_TYPE=value(based on the package type defined below)" 
+// in the compiler flags).
+
+// 48PT
+// Unbonded GPIOs: 9, 10, 11, 23, 30, 39, 40, 41, 243
+//
+#define DEV_PKG_48PT 0
+
+// 32RHB
+// Unbonded GPIOs: 2, 6, 9, 10, 12, 13, 16, 23, 30, 33, 39, 40, 41, 45, 243
+//
+#define DEV_PKG_32RHB 1
+
+// 32VFC
+// Unbonded GPIOs: 2, 6, 7, 9, 10, 12, 13, 16, 23, 30, 33, 39, 40, 41, 43, 45, 
+//                 243
+//
+#define DEV_PKG_32VFC 2
+
+#ifndef DEV_PKG_TYPE
+#define DEV_PKG_TYPE DEV_PKG_48PT
+#endif

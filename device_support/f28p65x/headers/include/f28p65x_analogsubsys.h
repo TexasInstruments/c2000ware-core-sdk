@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -66,14 +66,14 @@ union INTERNALTESTCTL_REG {
 
 struct CONFIGLOCK_BITS {                // bits description
     Uint16 rsvd1:1;                     // 0 Reserved
-    Uint16 AGPIOFILTER:1;               // 1 Locks AGPIOFILTER Register
-    Uint16 rsvd2:1;                     // 2 Reserved
+    Uint16 rsvd2:1;                     // 1 Reserved
+    Uint16 rsvd3:1;                     // 2 Reserved
     Uint16 AGPIOCTRL:1;                 // 3 Locks all AGPIOCTRL Register
-    Uint16 rsvd3:1;                     // 4 Reserved
-    Uint16 rsvd4:1;                     // 5 Reserved
+    Uint16 rsvd4:1;                     // 4 Reserved
+    Uint16 rsvd5:1;                     // 5 Reserved
     Uint16 GPIOINENACTRL:1;             // 6 Locks all GPIOINENACTRL Register
-    Uint16 rsvd5:9;                     // 15:7 Reserved
-    Uint16 rsvd6:16;                    // 31:16 Reserved
+    Uint16 rsvd6:9;                     // 15:7 Reserved
+    Uint16 rsvd7:16;                    // 31:16 Reserved
 };
 
 union CONFIGLOCK_REG {
@@ -313,18 +313,6 @@ union ADCSOCFRCGBSEL_REG {
     struct  ADCSOCFRCGBSEL_BITS  bit;
 };
 
-struct AGPIOFILTER_BITS {               // bits description
-    Uint16 RIGHT:2;                     // 1:0 AGPIOFILTER Control for right side pins
-    Uint16 rsvd1:6;                     // 7:2 Reserved
-    Uint16 BOTTOM:2;                    // 9:8 AGPIOFILTER Control for bottom side pins
-    Uint16 rsvd2:6;                     // 15:10 Reserved
-};
-
-union AGPIOFILTER_REG {
-    Uint16  all;
-    struct  AGPIOFILTER_BITS  bit;
-};
-
 struct AGPIOCTRLG_BITS {                // bits description
     Uint16 rsvd1:1;                     // 0 Reserved
     Uint16 rsvd2:1;                     // 1 Reserved
@@ -444,8 +432,7 @@ struct ANALOG_SUBSYS_REGS {
     Uint16                                   rsvd7[122];                   // Reserved
     union   ADCSOCFRCGB_REG                  ADCSOCFRCGB;                  // ADC Global SOC Force
     union   ADCSOCFRCGBSEL_REG               ADCSOCFRCGBSEL;               // ADC Global SOC Force Select
-    union   AGPIOFILTER_REG                  AGPIOFILTER;                  // AGPIO Filter Control Register
-    Uint16                                   rsvd8[14];                    // Reserved
+    Uint16                                   rsvd8[15];                    // Reserved
     union   AGPIOCTRLG_REG                   AGPIOCTRLG;                   // AGPIO Control Register
     union   AGPIOCTRLH_REG                   AGPIOCTRLH;                   // AGPIO Control Register
     Uint16                                   rsvd9[16];                    // Reserved

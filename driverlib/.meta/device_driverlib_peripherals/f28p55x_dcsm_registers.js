@@ -171,7 +171,7 @@ let DCSMRegisters = [
 			{ name: "GRAB_B0_SECT31_4", description: "Grab Flash Bank0 Sector 31-4", size: "2", shift: "8", mask: "0x300" },
 			{ name: "GRAB_B0_SECT63_32", description: "Grab Flash Bank0 Sector 63-32", size: "2", shift: "10", mask: "0xC00" },
 			{ name: "GRAB_B0_SECT95_64", description: "Grab Flash Bank0 Sector 95-64", size: "2", shift: "12", mask: "0x3000" },
-			{ name: "GRAB_B0_SECT127_96", description: "Grab Flash Bank1 Sector 127-96", size: "2", shift: "14", mask: "0xC000" },
+			{ name: "GRAB_B0_SECT127_96", description: "Grab Flash Bank0 Sector 127-96", size: "2", shift: "14", mask: "0xC000" },
 			{ name: "GRAB_B1_SECT0", description: "Grab Flash Bank1 Sector 0", size: "2", shift: "16", mask: "0x30000" },
 			{ name: "GRAB_B1_SECT1", description: "Grab Flash Bank1 Sector 1", size: "2", shift: "18", mask: "0xC0000" },
 			{ name: "GRAB_B1_SECT2", description: "Grab Flash Bank1 Sector 2", size: "2", shift: "20", mask: "0x300000" },

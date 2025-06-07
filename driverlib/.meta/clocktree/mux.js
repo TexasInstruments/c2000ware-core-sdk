@@ -41,5 +41,12 @@ exports = {
 				logInfo("For enabling peripherals, use the " + system.getReference(sysctl.$static, "enable_SYSCTL_PERIPH_CLK_TIMER0"), inst, "cpu_sel_mux")
 			}
 		}
+
+		if (inst.inputSelect == "WROSCDIV8" && system.deviceData.device == "F28E12x") 
+		{
+			const derivedClock = inst[inst.$ipInstance.outPins[0].name];
+			let infoMsg = "When using " + inst.inputSelect + ", " + derivedClock + " MHz is not guaranteed and can range from 2.5 MHz to 8.75 MHz on every device.\n";
+			logInfo(infoMsg, inst, inst.$ipInstance.outPins[0].name)
+		}
 	}
 };

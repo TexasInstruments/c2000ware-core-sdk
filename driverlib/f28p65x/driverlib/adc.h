@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -603,7 +603,7 @@ typedef enum
     ADC_SYNCIN_EPWM16SYNCOUT    = 0x10U,  //!< ADC Syncin is EPWM16SYNCOUT
     ADC_SYNCIN_EPWM17SYNCOUT    = 0x11U,  //!< ADC Syncin is EPWM17SYNCOUT
     ADC_SYNCIN_EPWM18SYNCOUT    = 0x12U,  //!< ADC Syncin is EPWM18SYNCOUT
-    ADC_SYNCIN_ECAP1YNCOUT      = 0x13U,  //!< ADC Syncin is ECAP1YNCOUT
+    ADC_SYNCIN_ECAP1SYNCOUT      = 0x13U,  //!< ADC Syncin is ECAP1SYNCOUT
     ADC_SYNCIN_ECAP2SYNCOUT     = 0x14U,  //!< ADC Syncin is ECAP2SYNCOUT
     ADC_SYNCIN_ECAP3SYNCOUT     = 0x15U,  //!< ADC Syncin is ECAP3SYNCOUT
     ADC_SYNCIN_ECAP4SYNCOUT     = 0x16U,  //!< ADC Syncin is ECAP4SYNCOUT

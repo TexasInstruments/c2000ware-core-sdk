@@ -26,9 +26,6 @@ let ASysCtl_TestSelect = [
 	{ name: "ASYSCTL_TEST_NODE_VSSA", displayName: "VSSA - Analog ground pin" },
 	{ name: "ASYSCTL_TEST_NODE_ENZ_CALIB_GAIN_3P3V", displayName: "All ADCs are placed in gain" },
 ]
-let ASYSCTL_EXTR_ENABLE_COMPLETE = [
-	{ name: "ASYSCTL_EXTR_ENABLE_COMPLETE", displayName: "EXTR ENABLE COMPLETE" },
-]
 let ASYSCTL_VREFHI = [
 	{ name: "ASYSCTL_VREFHI", displayName: "VREFHI" },
 ]
@@ -51,7 +48,6 @@ module.exports = {
 	ASysCtl_CMPHPMuxSelect: ASysCtl_CMPHPMuxSelect,
 	ASysCtl_CMPLPMuxSelect: ASysCtl_CMPLPMuxSelect,
 	ASysCtl_TestSelect: ASysCtl_TestSelect,
-	ASYSCTL_EXTR_ENABLE_COMPLETE: ASYSCTL_EXTR_ENABLE_COMPLETE,
 	ASYSCTL_VREFHI: ASYSCTL_VREFHI,
 	ASYSCTL_CMPSS1_DACL: ASYSCTL_CMPSS1_DACL,
 	ASYSCTL_CMPHNMUX_SELECT: ASYSCTL_CMPHNMUX_SELECT,

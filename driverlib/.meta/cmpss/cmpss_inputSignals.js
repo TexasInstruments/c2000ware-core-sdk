@@ -466,6 +466,7 @@ let CMPSS_comparatorLowPositiveInputSignals = {
             {name: "1", displayName: "A12"},
             {name: "2", displayName: "A9"},
             {name: "3", displayName: "A10/B1/C10"},
+            {name: "4", displayName: "NA"},
             {name: "5", displayName: "A5"},
             {name: "6", displayName: "PGA3_OUT_INT"},
         ],

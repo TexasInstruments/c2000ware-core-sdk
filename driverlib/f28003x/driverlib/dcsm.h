@@ -6,7 +6,7 @@
 //
 //#############################################################################
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -259,13 +259,6 @@ typedef enum
     DCSM_BANK2_SECTOR15   //!< Bank 2 - Sector 15
 } DCSM_Sector;
 
-//*****************************************************************************
-//
-//! The following are values that can be passed to DCSM_getRAMZone(),
-//! DCSM_getZone2FlashEXEStatus() ,DCSM_getZone1FlashEXEStatus() &
-//! DCSM_getFlashSectorZone() as \e cpuInst parameter.
-//
-//*****************************************************************************
 
 //*****************************************************************************
 //

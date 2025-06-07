@@ -23,11 +23,14 @@
 #define `inst.$name`_CONFIG_STP2 `inst.stp2`
 #define `inst.$name`_CONFIG_EPS `inst.eps`
 #define `inst.$name`_CONFIG_SPS `inst.sps == true ? "1" : "0"`
-    % if (inst.enInterrupt && inst.fen)
+    % if (inst.fen)
     % {
     %   // if the user chose EOT, set txifsel to the default value of UART_FIFO_TX4_8
     %   // otherwise just use the value the user chose
-    %   var actual_txiflsel = (inst.txiflsel == "EOT") ? "UART_FIFO_TX4_8" : inst.txiflsel;
+    %   let actual_txiflsel = inst.txiflsel;
+    %   if(inst.txiflsel == "EOT"){
+    %       actual_txiflsel = (inst.fineGrainConfig) ? "UART_FIFO_TX4" : "UART_FIFO_TX4_8"
+    %   }
 #define `inst.$name`_FIFO_TXIFLSEL `actual_txiflsel`
 #define `inst.$name`_FIFO_RXIFLSEL `inst.rxiflsel`
     % }

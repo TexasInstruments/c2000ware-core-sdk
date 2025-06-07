@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -158,6 +158,7 @@ typedef enum
     DCC_COUNT0SRC_INTOSC2    = 0x2U,    //!< Internal Oscillator2 Clock Source
     DCC_COUNT0SRC_SYSCLK     = 0x5U,    //!< System Clock Source
     DCC_COUNT0SRC_AUXCLK     = 0x8U,    //!< AUX Clock Source
+    DCC_COUNT0SRC_XBAR       = 0xCU,    //!< Input XBAR Clock Source
 } DCC_Count0ClockSource;
 
 //*****************************************************************************

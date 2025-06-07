@@ -1,0 +1,212 @@
+%let transferCommon;
+%if (system.getProducts()[0].name.includes("C2000")) {
+%    transferCommon = system.getScript("/utilities/transfer/transferCommon.js");
+%} else { transferCommon = system.getScript("/transfer/transferCommon.js"); }
+
+% var hashTables = system.modules[transferCommon.getTransferPath() + 'signalsight/hash/hashTable.js'];
+% var hashElements = system.modules[transferCommon.getTransferPath() + 'signalsight/hash/hashElement.js'];
+% var hashBitfields = system.modules[transferCommon.getTransferPath() + 'signalsight/hash/hashBitFields.js'];
+%
+% let tableInstances = [];
+%
+% //Get all table instances
+% if(hashTables){
+    % for(let i = 0; i < hashTables.$instances.length; i++){
+            % //hash table instances
+            % tableInstances.push(hashTables.$instances[i])
+    % }
+% }
+% //if(hashElements){
+%//{
+% //}
+%
+% // Loop through each hash table
+% for(let i = 0; i < tableInstances.length; i++){
+%
+% if(tableInstances[i].buildEnable){
+    %let variableArray = [];
+    %let uint16_array = [];
+    %let int16_array = [];
+    %let uint32_array = [];
+    %let int32_array = [];
+    %let bool_array = [];
+    %let float_array = [];
+    %let pages = {};
+    %let bits = {};
+    %let diffRepeatNames = {};
+%   //Get all hash table elements for current instance
+%   let currentHashElements = [];
+    % if(hashElements){
+        % for(let j = 0; j < hashElements.$instances.length; j++){
+            % if(hashElements.$instances[j].hashTable == tableInstances[i].$name ){
+                % currentHashElements.push(hashElements.$instances[j]);
+            %}
+        % }
+    % }
+%
+    %   //Update arrays of each element type
+    % for (let k = 0; k < currentHashElements.length; k++) {
+        %  //Get all hash table bitfields for current element instance
+        % bits[currentHashElements[k].$name] = {};
+            % if(hashBitfields){
+                % for(let b = 0; b < hashBitfields.$instances.length; b++){
+                    % if(hashBitfields.$instances[b].hashElement == currentHashElements[k].$name ){
+                        % bits[currentHashElements[k].$name][hashBitfields.$instances[b].$name] = [];
+                        % if(hashBitfields.$instances[b].variableType == "uint16_t" || hashBitfields.$instances[b].variableType == "int16_t" || hashBitfields.$instances[b].variableType == "boolean"){
+                            % if(hashBitfields.$instances[b].singleBit){
+                                % bits[currentHashElements[k].$name][hashBitfields.$instances[b].$name].push(hashBitfields.$instances[b].sixteenBitOptionsStart);
+                            % }
+                            % else{
+                                % bits[currentHashElements[k].$name][hashBitfields.$instances[b].$name].push(hashBitfields.$instances[b].sixteenBitOptionsStart);
+                                % bits[currentHashElements[k].$name][hashBitfields.$instances[b].$name].push(hashBitfields.$instances[b].sixteenBitOptionsEnd);
+                            % }
+                        % }
+                        % else{
+                            % if(hashBitfields.$instances[b].singleBit){
+                                % bits[currentHashElements[k].$name][hashBitfields.$instances[b].$name].push(hashBitfields.$instances[b].thirtytwoBitOptionsStart);
+                            % }
+                            % else{
+                                % bits[currentHashElements[k].$name][hashBitfields.$instances[b].$name].push(hashBitfields.$instances[b].thirtytwoBitOptionsStart);
+                                % bits[currentHashElements[k].$name][hashBitfields.$instances[b].$name].push(hashBitfields.$instances[b].thirtytwoBitOptionsEnd);
+                            % }
+                        % }
+                        %if(hashBitfields.$instances[b].useDifferentName){
+                            % if(!(diffRepeatNames[currentHashElements[k].$name])){
+                                % diffRepeatNames[currentHashElements[k].$name] = {};
+                            % }
+                            % diffRepeatNames[currentHashElements[k].$name][hashBitfields.$instances[b].$name] = hashBitfields.$instances[b].diffName;
+                        % }
+                    %}
+                % }
+            % }
+        % pages[currentHashElements[k].$name] = [];
+        % if (currentHashElements[k].variableType == "uint16_t") {
+            % uint16_array.push(currentHashElements[k]);
+        % }
+        % else if (currentHashElements[k].variableType == "uint32_t") {
+            % uint32_array.push(currentHashElements[k]);
+        % }
+        % else if (currentHashElements[k].variableType == "int16_t") {
+            % int16_array.push(currentHashElements[k]);
+        % }
+        % else if (currentHashElements[k].variableType == "int32_t") {
+            % int32_array.push(currentHashElements[k]);
+        % }
+        % else if (currentHashElements[k].variableType == "bool") {
+            % bool_array.push(currentHashElements[k]);
+        % }
+        % else if (currentHashElements[k].variableType == "float") {
+            % float_array.push(currentHashElements[k]);
+        % }
+        %
+        % // Get current pages for element
+        % if(tableInstances[i].numberOfPollingPages){
+            % if(tableInstances[i].numberOfPollingPages == 1){
+                % for(let p = 0; p < currentHashElements[k].pollingPage1.length; p++){
+                    % let num = currentHashElements[k].pollingPage1[p].slice(7)
+                    % pages[currentHashElements[k].$name].push(num)
+                % }
+            % }
+            % else if(tableInstances[i].numberOfPollingPages == 2){
+                % for(let p = 0; p < currentHashElements[k].pollingPage2.length; p++){
+                    % let num = currentHashElements[k].pollingPage2[p].slice(7)
+                    % pages[currentHashElements[k].$name].push(num)
+                % }
+            % }
+            % else if(tableInstances[i].numberOfPollingPages == 3){
+                % for(let p = 0; p < currentHashElements[k].pollingPage3.length; p++){
+                    % let num = currentHashElements[k].pollingPage3[p].slice(7)
+                    % pages[currentHashElements[k].$name].push(num)
+                % }
+            % }
+            % else if(tableInstances[i].numberOfPollingPages == 4){
+                % for(let p = 0; p < currentHashElements[k].pollingPage4.length; p++){
+                    % let num = currentHashElements[k].pollingPage4[p].slice(7)
+                    % pages[currentHashElements[k].$name].push(num)
+                % }
+            % }
+            % else if(tableInstances[i].numberOfPollingPages == 5){
+                % for(let p = 0; p < currentHashElements[k].pollingPage5.length; p++){
+                    % let num = currentHashElements[k].pollingPage5[p].slice(7)
+                    % pages[currentHashElements[k].$name].push(num)
+                % }
+            % }
+            % else if(tableInstances[i].numberOfPollingPages == 6){
+                % for(let p = 0; p < currentHashElements[k].pollingPage6.length; p++){
+                    % let num = currentHashElements[k].pollingPage6[p].slice(7)
+                    % pages[currentHashElements[k].$name].push(num)
+                % }
+            % }
+            % else if(tableInstances[i].numberOfPollingPages == 7){
+                % for(let p = 0; p < currentHashElements[k].pollingPage7.length; p++){
+                    % let num = currentHashElements[k].pollingPage7[p].slice(7)
+                    % pages[currentHashElements[k].$name].push(num)
+                % }
+            % }
+            % else if(tableInstances[i].numberOfPollingPages == 8){
+                % for(let p = 0; p < currentHashElements[k].pollingPage8.length; p++){
+                    % let num = currentHashElements[k].pollingPage8[p].slice(7)
+                    % pages[currentHashElements[k].$name].push(num)
+                % }
+            % }
+            % else if(tableInstances[i].numberOfPollingPages == 9){
+                % for(let p = 0; p < currentHashElements[k].pollingPage9.length; p++){
+                    % let num = currentHashElements[k].pollingPage9[p].slice(7)
+                    % pages[currentHashElements[k].$name].push(num)
+                % }
+            % }
+            % else if(tableInstances[i].numberOfPollingPages == 10){
+                % for(let p = 0; p < currentHashElements[k].pollingPage10.length; p++){
+                    % let num = currentHashElements[k].pollingPage10[p].slice(7)
+                    % pages[currentHashElements[k].$name].push(num)
+                % }
+            % }
+        % }
+    % }
+    %variableArray = variableArray.concat(uint16_array).concat(uint32_array).concat(int16_array).concat(int32_array).concat(bool_array).concat(float_array);
+%
+%
+% if(currentHashElements.length != 0){
+    %//`tableInstances[i].$name`:    
+{
+    % let comma = ","
+    % for (let m = 0; m < variableArray.length; m++){
+        % if(m == variableArray.length-1){
+            % comma = ""
+        % }
+        % let bitsStr = '';
+         % if(hashBitfields){
+            % if(Object.keys(bits[variableArray[m].$name]).length != 0){
+                % bitsStr = ', "bits" : {';
+                % for(let f in bits[variableArray[m].$name]){
+                    % if(diffRepeatNames[variableArray[m].$name]){
+                        % if(diffRepeatNames[variableArray[m].$name][f]){
+                            % bitsStr = bitsStr + '"' + diffRepeatNames[variableArray[m].$name][f] + '" : [' + (bits[variableArray[m].$name][f]).toString() + '],'
+                        % }
+                        % else{
+                            % bitsStr = bitsStr + '"' + f + '" : [' + (bits[variableArray[m].$name][f]).toString() + '],'
+                        % }
+                    % }
+                    % else{
+                        % bitsStr = bitsStr + '"' + f + '" : [' + (bits[variableArray[m].$name][f]).toString() + '],'
+                    % }
+                % }
+                % bitsStr = bitsStr.slice(0, -1) + '}'
+            % }
+        % }
+        % let display = "";
+        % let varName = variableArray[m].$name;
+        % if(variableArray[m].useDifferentName){
+            % const regexSpecialChar = /[^a-zA-Z0-9_]/g;
+            % varName = (variableArray[m].diffName).replace(regexSpecialChar,'');
+        % }
+    "`varName`": {"index" : `m`,`display` "type" : "`variableArray[m].variableType.replace("_t", "")`", "permissions" : "`variableArray[m].permissions`", "streamable" : `variableArray[m].streamable`, "page" : [`pages[variableArray[m].$name]`]`bitsStr`}`comma`
+    %}
+}
+% }
+% break;
+% }
+% }
+% //if(hashElements){
+%//}
+% //}

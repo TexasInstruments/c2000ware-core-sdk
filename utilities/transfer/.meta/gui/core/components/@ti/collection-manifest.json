@@ -20,9 +20,13 @@
     "./gc-codec-usb2any-power/gc-codec-usb2any-power.js",
     "./gc-codec-usb2any-spi/gc-codec-usb2any-spi.js",
     "./gc-codec-usb2any-uart/gc-codec-usb2any-uart.js",
+    "./gc-widget-announcement/gc-widget-announcement.js",
+    "./gc-component-app-update-announcement/gc-component-app-update-announcement.js",
     "./gc-widget-markdown/gc-widget-markdown.js",
     "./gc-component-help/gc-component-help.js",
+    "./gc-core-streamsaver/gc-core-streamsaver.js",
     "./gc-model-program/gc-model-program.js",
+    "./gc-model-property/gc-model-property.js",
     "./gc-model-register/gc-model-register.js",
     "./gc-model-streaming/gc-model-streaming.js",
     "./gc-model-sysconfig/gc-model-sysconfig.js",
@@ -38,19 +42,19 @@
     "./gc-transport-xds/gc-transport-xds.js",
     "./gc-widget-dialog/gc-widget-dialog.js",
     "./gc-widget-about-dialog/gc-widget-about-dialog.js",
-    "./gc-widget-announcement/gc-widget-announcement.js",
     "./gc-widget-authentication/gc-widget-authentication.js",
     "./gc-widget-button/gc-widget-button.js",
     "./gc-widget-grid/gc-widget-grid.js",
     "./gc-widget-property-grid/gc-widget-property-grid.js",
+    "./gc-widget-input/gc-widget-input.js",
     "./gc-widget-ccxml-editor/gc-widget-ccxml-editor.js",
     "./gc-widget-checkbox/gc-widget-checkbox.js",
     "./gc-widget-cloudagent-dialog/gc-widget-cloudagent-dialog.js",
     "./gc-widget-color-input/gc-widget-color-input.js",
     "./gc-widget-container/gc-widget-container.js",
     "./gc-widget-context-menu/gc-widget-context-menu.js",
-    "./gc-widget-input/gc-widget-input.js",
     "./gc-widget-input-filter/gc-widget-input-filter.js",
+    "./gc-widget-select/internal/gc-widget-select-menu.js",
     "./gc-widget-select/gc-widget-select.js",
     "./gc-widget-device-detector/gc-widget-device-detector.js",
     "./gc-widget-device-detector-getting-started/gc-widget-device-detector-getting-started.js",
@@ -59,6 +63,7 @@
     "./gc-widget-disassembly-view/gc-widget-disassembly-view.js",
     "./gc-widget-disassembly-view/gc-widget-disassembly-view-annotation-column.js",
     "./gc-widget-file-select-dialog/gc-widget-file-select-dialog.js",
+    "./gc-widget-firmware-update-dialog/gc-widget-firmware-update-dialog.js",
     "./gc-widget-gauge/gc-widget-gauge.js",
     "./gc-widget-grid/gc-widget-grid-data-column.js",
     "./gc-widget-grid/gc-widget-grid-tree-column.js",
@@ -81,8 +86,11 @@
     "./gc-widget-port-selection-dialog/gc-widget-port-selection-dialog.js",
     "./gc-widget-progress-spinner/gc-widget-progress-spinner.js",
     "./gc-widget-progressbar/gc-widget-progressbar.js",
+    "./gc-widget-terminal/gc-widget-terminal.js",
+    "./gc-widget-project-build/gc-widget-project-build.js",
     "./gc-widget-radio/gc-widget-radio.js",
     "./gc-widget-radio/gc-widget-radio-group.js",
+    "./gc-widget-readme/gc-widget-readme.js",
     "./gc-widget-register-bitfield-viewer/gc-widget-register-bitfield-viewer.js",
     "./gc-widget-register-grid/gc-widget-register-bits-column.js",
     "./gc-widget-register-grid/gc-widget-register-grid.js",
@@ -92,7 +100,8 @@
     "./gc-widget-spinner/gc-widget-spinner.js",
     "./gc-widget-statusbar/gc-widget-statusbar.js",
     "./gc-widget-statusbar/gc-widget-statusitem-connections.js",
-    "./gc-widget-sysconfig/gc-widget-sysconfig.js",
+    "./gc-widget-sysconfig-device-view/gc-widget-sysconfig-device-view.js",
+    "./gc-widget-sysconfig-view/gc-widget-sysconfig-view.js",
     "./gc-widget-tab/gc-widget-link-tab-panel.js",
     "./gc-widget-tab/gc-widget-tab-panel.js",
     "./gc-widget-tooltip/gc-widget-tooltip.js",
@@ -128,12 +137,6 @@
     },
     {
       "components": [
-        "gc-model-sysconfig",
-        "gc-widget-sysconfig"
-      ]
-    },
-    {
-      "components": [
         "gc-widget-grid",
         "gc-widget-grid-data-column",
         "gc-widget-grid-tree-column"
@@ -144,6 +147,13 @@
         "gc-widget-disassembly-view",
         "gc-widget-disassembly-view-annotation-column",
         "gc-widget-xds-register-view"
+      ]
+    },
+    {
+      "components": [
+        "gc-model-sysconfig",
+        "gc-widget-sysconfig-device-view",
+        "gc-widget-sysconfig-view"
       ]
     },
     {
@@ -188,21 +198,22 @@
     },
     {
       "components": [
-        "gc-widget-about-dialog",
-        "gc-widget-cloudagent-dialog",
-        "gc-widget-dialog",
-        "gc-widget-message-dialog",
-        "gc-widget-port-selection-dialog"
-      ]
-    },
-    {
-      "components": [
         "gc-widget-input",
         "gc-widget-input-filter",
         "gc-widget-listbox",
         "gc-widget-select",
         "gc-widget-slider",
         "gc-widget-spinner"
+      ]
+    },
+    {
+      "components": [
+        "gc-widget-about-dialog",
+        "gc-widget-cloudagent-dialog",
+        "gc-widget-dialog",
+        "gc-widget-firmware-update-dialog",
+        "gc-widget-message-dialog",
+        "gc-widget-port-selection-dialog"
       ]
     },
     {

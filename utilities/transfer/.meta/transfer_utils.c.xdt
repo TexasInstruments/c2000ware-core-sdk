@@ -208,3 +208,14 @@ void ftoa(float value, char* result, int numDecimal)
     }
 }
 
+//
+// Convert char * to uint16_t * 
+//
+void chartoUint16arr(char * strToWrite, uint16_t * chartoUint16_t, uint16_t writeLength)
+{
+	int i;
+    for(i = 0; i < writeLength; i++)
+    {
+        chartoUint16_t[i] = strToWrite[i];
+    }
+}

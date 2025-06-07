@@ -9,7 +9,7 @@
 ;// $TI Release: f2806x Support Library v1.15 $ 
 ;// $Release Date: December 12, 2011 $ 
 ;// $Copyright:
-;// Copyright (C) 2009-2024 Texas Instruments Incorporated - http://www.ti.com/
+;// Copyright (C) 2009-2025 Texas Instruments Incorporated - http://www.ti.com/
 ;//
 ;// Redistribution and use in source and binary forms, with or without 
 ;// modification, are permitted provided that the following conditions 

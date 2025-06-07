@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -68,11 +68,11 @@ struct REFCONFIGB_BITS {                // bits description
     Uint16 rsvd2:1;                     // 1 Reserved
     Uint16 rsvd3:1;                     // 2 Reserved
     Uint16 rsvd4:2;                     // 4:3 Reserved
-    Uint16 ADC_ATB_ENA:2;               // 6:5 ADC testmux enable
-    Uint16 ADC_ATB_ENB:2;               // 8:7 ADC testmux enable
-    Uint16 ADC_ATB_ENC:2;               // 10:9 ADC testmux enable
-    Uint16 ADC_ATB_END:2;               // 12:11 ADC testmux enable
-    Uint16 ADC_ATB_ENE:2;               // 14:13 ADC testmux enable
+    Uint16 ADC_ATB_ENA:2;               // 6:5 ADC A testmux enable
+    Uint16 ADC_ATB_ENB:2;               // 8:7 ADC B testmux enable
+    Uint16 ADC_ATB_ENC:2;               // 10:9 ADC C testmux enable
+    Uint16 ADC_ATB_END:2;               // 12:11 ADC D testmux enable
+    Uint16 ADC_ATB_ENE:2;               // 14:13 ADC E testmux enable
     Uint16 rsvd5:1;                     // 15 Reserved
     Uint16 rsvd6:2;                     // 17:16 Reserved
     Uint16 rsvd7:2;                     // 19:18 Reserved
@@ -259,18 +259,6 @@ struct CMPSSCTL_BITS {                  // bits description
 union CMPSSCTL_REG {
     Uint16  all;
     struct  CMPSSCTL_BITS  bit;
-};
-
-struct CMPSSDACBUFCONFIG_BITS {         // bits description
-    Uint16 CMPSSADACL:8;                // 7:0 Configuration bits for CMPSS DACA
-    Uint16 rsvd1:8;                     // 15:8 Reserved
-    Uint16 rsvd2:8;                     // 23:16 Reserved
-    Uint16 rsvd3:8;                     // 31:24 Reserved
-};
-
-union CMPSSDACBUFCONFIG_REG {
-    Uint32  all;
-    struct  CMPSSDACBUFCONFIG_BITS  bit;
 };
 
 struct LOCK_BITS {                      // bits description
@@ -556,15 +544,15 @@ struct ANALOG_SUBSYS_REGS {
     union   ADCDACLOOPBACK_REG               ADCDACLOOPBACK;               // Enabble loopback from DAC to ADCs
     Uint16                                   rsvd8;                        // Reserved
     union   CMPSSCTL_REG                     CMPSSCTL;                     // CMPSS Control Register
-    union   CMPSSDACBUFCONFIG_REG            CMPSSDACBUFCONFIG;            // Config bits for CMPSS DAC buffer
+    Uint16                                   rsvd9[2];                     // Reserved
     union   LOCK_REG                         LOCK;                         // Lock Register
-    Uint16                                   rsvd9[122];                   // Reserved
+    Uint16                                   rsvd10[122];                  // Reserved
     union   AGPIOCTRLA_REG                   AGPIOCTRLA;                   // AGPIO Control Register
     union   AGPIOCTRLB_REG                   AGPIOCTRLB;                   // AGPIO Control Register
-    Uint16                                   rsvd10[8];                    // Reserved
+    Uint16                                   rsvd11[8];                    // Reserved
     union   AGPIOCTRLG_REG                   AGPIOCTRLG;                   // AGPIO Control Register
     union   AGPIOCTRLH_REG                   AGPIOCTRLH;                   // AGPIO Control Register
-    Uint16                                   rsvd11[24];                   // Reserved
+    Uint16                                   rsvd12[24];                   // Reserved
     union   GPIOINENACTRL_REG                GPIOINENACTRL;                // GPIOINENACTRL Control Register
     union   IO_DRVSEL_REG                    IO_DRVSEL;                    // IO Drive strength select register
     union   IO_MODESEL_REG                   IO_MODESEL;                   // IO Mode select register

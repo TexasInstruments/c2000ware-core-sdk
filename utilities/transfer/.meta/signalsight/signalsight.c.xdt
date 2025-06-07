@@ -1,0 +1,1196 @@
+/*
+ * Copyright (c) 2020 Texas Instruments Incorporated - http://www.ti.com
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * *  Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ * *  Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * *  Neither the name of Texas Instruments Incorporated nor the names of
+ *    its contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ */
+%let transferCommon;
+%if (system.getProducts()[0].name.includes("C2000")) {
+%    transferCommon = system.getScript("/utilities/transfer/transferCommon.js");
+%} else { transferCommon = system.getScript("/transfer/transferCommon.js"); }
+% var module = system.modules[transferCommon.getTransferPath() + 'signalsight.js'];
+% let currentInstance = module.$instances[0];
+% let includePolling = !currentInstance.pollingDisabled;
+% let validationModeEnabled = currentInstance.validationMode;
+
+#include <signalsight/signalsight.h>
+
+% if(!validationModeEnabled){
+//
+// Defines
+//
+#define SS_NUMBER_OF_SIMULTANEOUS_STREAM_VARIABLES 4
+#define SS_DEFAULT_STREAM_VAR_A 0
+#define SS_DEFAULT_STREAM_VAR_B 1
+#define SS_DEFAULT_STREAM_VAR_C 2
+#define SS_DEFAULT_STREAM_VAR_D 3
+#define SS_BUFFER_SIZE `currentInstance.bufferSize`
+#define SS_POLLING_VARIABLE_MAX 20
+#define SS_PING_PONG_BUFFERING `currentInstance.pingPongEnable`
+    %// if(currentInstance.bufferingDebugModeEnable) {
+%//#define RX_DEBUG_BUFFER_SIZE 200
+    %// }
+#define SS_DEFAULT_STREAM_VAR_A 0
+#if SSHASH_NUMBER_OF_VARIABLES == 1
+#define SS_DEFAULT_STREAM_VAR_B 0
+#define SS_DEFAULT_STREAM_VAR_C 0
+#define SS_DEFAULT_STREAM_VAR_D 0
+#elif SSHASH_NUMBER_OF_VARIABLES == 2
+#define SS_DEFAULT_STREAM_VAR_B 1
+#define SS_DEFAULT_STREAM_VAR_C 1
+#define SS_DEFAULT_STREAM_VAR_D 1
+#elif SSHASH_NUMBER_OF_VARIABLES == 3
+#define SS_DEFAULT_STREAM_VAR_B 1
+#define SS_DEFAULT_STREAM_VAR_C 2
+#define SS_DEFAULT_STREAM_VAR_D 2
+#elif SSHASH_NUMBER_OF_VARIABLES >= 4
+#define SS_DEFAULT_STREAM_VAR_B 1
+#define SS_DEFAULT_STREAM_VAR_C 2
+#define SS_DEFAULT_STREAM_VAR_D 3
+#endif
+
+//
+// Enumerations
+//
+enum SS_STREAMING_STATES {
+    STREAM_IDLE = 0,
+    STREAM1 = 1,
+    STREAM2 = 2,
+    STREAM3 = 3,
+    STREAM4 = 4,
+};
+    % if(includePolling){
+
+enum SS_VAR_TYPES {
+    UINT16 = 0,
+    UINT32 = 1,
+    INT16 = 2,
+    INT32 = 3,
+    BOOL = 4,
+    FLOAT = 5,
+};
+    % }
+enum SS_CMDS { 
+    NO_UPDATE = 0, //default
+    PACKET_ERROR = 39,
+    INITCMD = 40,
+        % if(includePolling){
+    WRITE_VAR = 43,
+        % }
+    INIT_STREAMING_VARS = 44,
+    START_STREAMING_A = 45,
+    START_STREAMING_B = 46,
+    START_STREAMING_C = 47,
+    START_STREAMING_D = 48,
+    STOP_STREAMING_A = 49,
+    STOP_STREAMING_B = 50,
+    STOP_STREAMING_C = 51,
+    STOP_STREAMING_D = 52,
+    STREAM_DATA_1_VAR = 53,
+    STREAM_DATA_2_VAR = 54,
+    STREAM_DATA_3_VAR = 55,
+    STREAM_DATA_4_VAR = 56,
+        % if(includePolling){
+    STREAM_DATA_WRITEACK_1_VAR = 57,
+    STREAM_DATA_WRITEACK_2_VAR = 58,
+    STREAM_DATA_WRITEACK_3_VAR = 59,
+    STREAM_DATA_WRITEACK_4_VAR = 60,
+    START_POLLING_1 = 63,
+    START_POLLING_2 = 64,
+    START_POLLING_3 = 65,
+    START_POLLING_4 = 66,
+    START_POLLING_5 = 67,
+    START_POLLING_6 = 68,
+    START_POLLING_7 = 69,
+    START_POLLING_8 = 70,
+    START_POLLING_9 = 71,
+    START_POLLING_10 = 72,
+    START_POLLING_11 = 73,
+    START_POLLING_12 = 74,
+    START_POLLING_13 = 75,
+    STOP_POLLING = 76,
+    POLLING_DATA = 77,
+        % }
+    CLEAR_STREAMING_PLOT = 78,
+};
+% }
+
+
+//
+// Stream State Global Variables
+//
+enum SS_STREAMING_STATES SS_currentStreamState = STREAM_IDLE;
+int16_t SS_currentPlotHashIndices[SS_NUMBER_OF_SIMULTANEOUS_STREAM_VARIABLES] = {SS_DEFAULT_STREAM_VAR_A, SS_DEFAULT_STREAM_VAR_B, SS_DEFAULT_STREAM_VAR_C, SS_DEFAULT_STREAM_VAR_D};
+bool SS_streamToggleStates[SS_NUMBER_OF_SIMULTANEOUS_STREAM_VARIABLES] = {false, false, false, false};
+enum SS_CMDS SS_nextTxCMD = NO_UPDATE;
+
+% if(currentInstance.bufferingDebugModeEnable){
+enum SS_CMDS SS_rxBufferDebug[RX_DEBUG_BUFFER_SIZE] = {NO_UPDATE};
+uint16_t SS_currentIndex = 0;
+
+% }
+//
+// Stream Buffering Global Variables
+//
+float SS_streamA_buffer[SS_BUFFER_SIZE] = {0};
+float SS_streamB_buffer[SS_BUFFER_SIZE] = {0};
+float SS_streamC_buffer[SS_BUFFER_SIZE] = {0};
+float SS_streamD_buffer[SS_BUFFER_SIZE] = {0};
+volatile uint16_t SS_bufferElementIndex = 0;
+bool SS_bufferIsFull = false;
+uint16_t SS_streamDataSkips = 0;
+bool SS_initiallyClearBuffer = true;
+% if(currentInstance.pingPongEnable){
+    
+float SS_streamA_buffer2[SS_BUFFER_SIZE] = {0};
+float SS_streamB_buffer2[SS_BUFFER_SIZE] = {0};
+float SS_streamC_buffer2[SS_BUFFER_SIZE] = {0};
+float SS_streamD_buffer2[SS_BUFFER_SIZE] = {0};
+volatile uint16_t SS_bufferElementIndex2 = 0;
+bool SS_bufferIsFull2 = false;
+bool SS_writeBuffer1readBuffer2 = true;
+uint16_t SS_streamDataSkips2 = 0;
+
+% }
+%
+% if(includePolling){
+//
+// Polling State Global Variables
+//
+uint16_t SS_pollingEnabledHashIndicesArray[SS_POLLING_VARIABLE_MAX] = {0};
+uint32_t SS_pollingEnabledHashIndices0 = 0;  //Up to 64 polling variables are available
+uint32_t SS_pollingEnabledHashIndices1 = 0;
+int16_t SS_pollingArraySize = 0;  //total number of polling variables enabled
+uint16_t SS_currentPollingIndex = 0;  //index indicating which variable is next to be sent
+bool SS_writeWhileStreaming = false;
+
+% }
+void SIGNALSIGHT_resetStates()
+{
+    //
+    //Initialize/clear buffer values
+    //
+    SS_bufferElementIndex = 0;
+    SS_bufferIsFull = false;
+% if(currentInstance.pingPongEnable){
+    SS_bufferElementIndex2 = 0;
+    SS_bufferIsFull2 = false;
+    SS_writeBuffer1readBuffer2 = true;
+% }
+% if(includePolling){
+    int pollingIndex;
+    for(pollingIndex = 0; pollingIndex < SS_POLLING_VARIABLE_MAX; pollingIndex++){
+        SS_pollingEnabledHashIndicesArray[pollingIndex] = 0xFF;
+    }
+% }
+}
+
+//*****************************************************************************
+//
+// Signal Sight Initialization function
+//
+// Call this function once in your initialization code. Call after
+// device initialization functions, interrupt initialization functions and  
+// Board_init() but before enabling interrupts globally.
+//
+//*****************************************************************************
+void SIGNALSIGHT_init()
+{
+    EXPORT_init();
+    SIGNALSIGHT_resetStates();
+}
+
+void SIGNALSIGHT_sendAcknowledge(enum SS_CMDS command)
+{
+    enum SS_CMDS* cmdPtr = &command;
+    EXPORTPACKAGE_sendFloatArrayAsByteArray((char*)cmdPtr, 1, NULL, 0);
+    SS_nextTxCMD = NO_UPDATE;
+}
+% if(includePolling){
+
+enum SS_VAR_TYPES SIGNALSIGHT_getVariableType(int16_t hashIndex)
+{
+    enum SS_VAR_TYPES varType = UINT16; //default
+    int16_t startIndices[SSHASH_AMOUNT_OF_VARIABLE_TYPES] = {SSHASH_uint16_t_startIndex, SSHASH_uint32_t_startIndex, SSHASH_int16_t_startIndex, SSHASH_int32_t_startIndex, SSHASH_bool_startIndex, SSHASH_float_startIndex};
+    int typeIndex;
+    for(typeIndex = 0; typeIndex < SSHASH_AMOUNT_OF_VARIABLE_TYPES; typeIndex++){
+        if((startIndices[typeIndex] != -1) && (hashIndex >= startIndices[typeIndex])){  //ignore if there are no variables of this type
+            varType = (enum SS_VAR_TYPES)typeIndex;
+        }
+    }
+    return varType;
+}
+% }
+
+% let funcParams = ""
+% if(includePolling){
+    %funcParams = "int16_t hashIndex, enum SS_VAR_TYPES variableType"
+% }
+% else {
+    %funcParams = "int16_t hashIndex"
+% }
+void* SIGNALSIGHT_getVariableAddressAtHashIndex(`funcParams`)
+{
+    const void* variableAddress = SSHASH_hash_table[hashIndex];
+% if(includePolling){
+    if(variableType == BOOL){
+        return (bool*)variableAddress;
+    }
+    else if(variableType == UINT16){
+        return (uint16_t*)variableAddress;
+    }
+    else if(variableType == UINT32){
+        return (uint32_t*)variableAddress;
+    }
+    else if(variableType == INT16){
+        return (int16_t*)variableAddress;
+    }
+    else if(variableType == INT32){
+        return (int32_t*)variableAddress;
+    }
+    else if(variableType == FLOAT){
+        return (float*)variableAddress;
+    }
+    return 0;
+% }
+% else{
+    return (float*)variableAddress;
+% }
+}
+
+int16_t SIGNALSIGHT_getHashIndexAtVariableAddress(void* variable)
+{
+    int16_t i;
+    for(i = 0; i < SSHASH_NUMBER_OF_VARIABLES; i++){
+        if(SSHASH_hash_table[i] == variable){
+            return i;
+        }
+    }
+    //
+    // Error: Variable not found in Hash table
+    //
+    return -1; 
+}
+
+void SIGNALSIGHT_queueUpStreamData(uint16_t numChannelsON, bool buffer1)
+{
+%
+% let varAddrFuncParams = '';
+%if(includePolling){
+% varAddrFuncParams = 'SS_currentPlotHashIndices[{I}], FLOAT';
+% }
+% else{
+% varAddrFuncParams = 'SS_currentPlotHashIndices[{I}]';
+% }
+%
+% if(!currentInstance.pingPongEnable){
+    //
+    // Read current stream toggle states into temp array in case state change happens during transmission
+    //
+    bool SS_streamToggleStatesTemp[4] = {false, false, false, false};
+    SS_streamToggleStatesTemp[0] = SS_streamToggleStates[0];
+    SS_streamToggleStatesTemp[1] = SS_streamToggleStates[1];
+    SS_streamToggleStatesTemp[2] = SS_streamToggleStates[2];
+    SS_streamToggleStatesTemp[3] = SS_streamToggleStates[3];
+    uint16_t channelsToStream = 0;
+    if(SS_streamToggleStatesTemp[0]){
+        //
+        // Channel A
+        //
+        float* dataPtr = SIGNALSIGHT_getVariableAddressAtHashIndex(`varAddrFuncParams.replace('{I}', '0')`);
+        SS_streamA_buffer[SS_bufferElementIndex] = *dataPtr;
+        channelsToStream++;
+    }
+    if(SS_streamToggleStatesTemp[1]){
+        //
+        // Channel B
+        //
+        float* dataPtr = SIGNALSIGHT_getVariableAddressAtHashIndex(`varAddrFuncParams.replace('{I}', '1')`);
+        SS_streamB_buffer[SS_bufferElementIndex] = *dataPtr;
+        channelsToStream++;
+    }
+    if(SS_streamToggleStatesTemp[2]){
+        //
+        // Channel C
+        //
+        float* dataPtr = SIGNALSIGHT_getVariableAddressAtHashIndex(`varAddrFuncParams.replace('{I}', '2')`);
+        SS_streamC_buffer[SS_bufferElementIndex] = *dataPtr;
+        channelsToStream++;
+    }
+    if(SS_streamToggleStatesTemp[3]){
+        //
+        // Channel D
+        //
+        float* dataPtr = SIGNALSIGHT_getVariableAddressAtHashIndex(`varAddrFuncParams.replace('{I}', '3')`);
+        SS_streamD_buffer[SS_bufferElementIndex] = *dataPtr;
+        channelsToStream++;
+    }
+    SS_bufferElementIndex++;
+    if(SS_bufferElementIndex == SS_BUFFER_SIZE){
+        SS_bufferIsFull = true;
+        SS_bufferElementIndex = 0;
+    }
+% } 
+% else {
+    //
+    // Read current stream toggle states into temp array in case state change happens during transmission
+    //
+    bool SS_streamToggleStatesTemp[4] = {false, false, false, false};
+    SS_streamToggleStatesTemp[0] = SS_streamToggleStates[0];
+    SS_streamToggleStatesTemp[1] = SS_streamToggleStates[1];
+    SS_streamToggleStatesTemp[2] = SS_streamToggleStates[2];
+    SS_streamToggleStatesTemp[3] = SS_streamToggleStates[3];
+    uint16_t channelsToStream = 0;
+    if(buffer1){
+        //
+        // Capture data and write to buffer 1
+        //
+        if(SS_streamToggleStatesTemp[0]){
+            //
+            // Channel A
+            //
+            float* dataPtr = SIGNALSIGHT_getVariableAddressAtHashIndex(`varAddrFuncParams.replace('{I}', '0')`);
+            SS_streamA_buffer[SS_bufferElementIndex] = *dataPtr;
+            channelsToStream++;
+        }
+        if(SS_streamToggleStatesTemp[1]){
+            //
+            // Channel B
+            //
+            float* dataPtr = SIGNALSIGHT_getVariableAddressAtHashIndex(`varAddrFuncParams.replace('{I}', '1')`);
+            SS_streamB_buffer[SS_bufferElementIndex] = *dataPtr;
+            channelsToStream++;
+        }
+        if(SS_streamToggleStatesTemp[2]){
+            //
+            // Channel C
+            //
+            float* dataPtr = SIGNALSIGHT_getVariableAddressAtHashIndex(`varAddrFuncParams.replace('{I}', '2')`);
+            SS_streamC_buffer[SS_bufferElementIndex] = *dataPtr;
+            channelsToStream++;
+        }
+        if(SS_streamToggleStatesTemp[3]){
+            //
+            // Channel D
+            //
+            float* dataPtr = SIGNALSIGHT_getVariableAddressAtHashIndex(`varAddrFuncParams.replace('{I}', '3')`);
+            SS_streamD_buffer[SS_bufferElementIndex] = *dataPtr;
+            channelsToStream++;
+        }
+        SS_bufferElementIndex++;
+        if(SS_bufferElementIndex == SS_BUFFER_SIZE){
+            SS_bufferIsFull = true;
+            SS_bufferElementIndex = 0;
+        }
+    }
+    else{
+        //
+        // Capture data and write to buffer 2
+        //
+        if(SS_streamToggleStatesTemp[0]){
+            //
+            // Channel A
+            //
+            float* dataPtr = SIGNALSIGHT_getVariableAddressAtHashIndex(`varAddrFuncParams.replace('{I}', '0')`);
+            SS_streamA_buffer2[SS_bufferElementIndex2] = *dataPtr;
+            channelsToStream++;
+        }
+        if(SS_streamToggleStatesTemp[1]){
+            //
+            // Channel B
+            //
+            float* dataPtr = SIGNALSIGHT_getVariableAddressAtHashIndex(`varAddrFuncParams.replace('{I}', '1')`);
+            SS_streamB_buffer2[SS_bufferElementIndex2] = *dataPtr;
+            channelsToStream++;
+        }
+        if(SS_streamToggleStatesTemp[2]){
+            //
+            // Channel C
+            //
+            float* dataPtr = SIGNALSIGHT_getVariableAddressAtHashIndex(`varAddrFuncParams.replace('{I}', '2')`);
+            SS_streamC_buffer2[SS_bufferElementIndex2] = *dataPtr;
+            channelsToStream++;
+        }
+        if(SS_streamToggleStatesTemp[3]){
+            //
+            // Channel D
+            //
+            float* dataPtr = SIGNALSIGHT_getVariableAddressAtHashIndex(`varAddrFuncParams.replace('{I}', '3')`);
+            SS_streamD_buffer2[SS_bufferElementIndex2] = *dataPtr;
+            channelsToStream++;
+        }
+        SS_bufferElementIndex2++;
+        if(SS_bufferElementIndex2 == SS_BUFFER_SIZE){
+            SS_bufferIsFull2 = true;
+            SS_bufferElementIndex2 = 0;
+        }
+    }
+% }
+}
+
+//*****************************************************************************
+//
+// Signal Sight Capture Plot Data function
+//
+// Call this function where data should be sampled in your application code.
+// A snapshot of the value of your plot variable will be captured and saved 
+// for transmission in a future call of SIGNALSIGHT_sendPlotData().
+// (example: in a CPU timer or ePWM ISR). 
+//
+//*****************************************************************************
+void SIGNALSIGHT_capturePlotData(){  //write process
+% if(!currentInstance.pingPongEnable){
+    //
+    // Sample streaming data if SCI isn't busy transmitting previous data
+    //
+    if(SS_bufferIsFull){
+        //
+        // Recently captured data is currently being transmitted
+        //
+        SS_streamDataSkips++;
+        return;
+    }
+    else{
+        if(SS_currentStreamState != STREAM_IDLE){
+            if(SS_currentStreamState == STREAM1){
+                SIGNALSIGHT_queueUpStreamData(1, true);
+            }
+            else if(SS_currentStreamState == STREAM2){
+                SIGNALSIGHT_queueUpStreamData(2, true);
+            }
+            else if(SS_currentStreamState == STREAM3){
+                SIGNALSIGHT_queueUpStreamData(3, true);
+            }
+            else if(SS_currentStreamState == STREAM4){
+                SIGNALSIGHT_queueUpStreamData(4, true);
+            }
+        }
+    }
+% }
+% else {
+    //
+    // Sample streaming data
+    //
+    if(SS_writeBuffer1readBuffer2){
+        //
+        // Write sampled data to buffer 1 (if not full)
+        //
+        if(SS_bufferIsFull){
+            SS_streamDataSkips++;
+            return;
+        }
+        else{
+            if(SS_currentStreamState != STREAM_IDLE){
+                if(SS_currentStreamState == STREAM1){
+                    SIGNALSIGHT_queueUpStreamData(1, true);
+                }
+                else if(SS_currentStreamState == STREAM2){
+                    SIGNALSIGHT_queueUpStreamData(2, true);
+                }
+                else if(SS_currentStreamState == STREAM3){
+                    SIGNALSIGHT_queueUpStreamData(3, true);
+                }
+                else if(SS_currentStreamState == STREAM4){
+                    SIGNALSIGHT_queueUpStreamData(4, true);
+                }
+            }
+        }
+    }
+    else{
+        //
+        // Write sampled data to buffer 2 (if not full)
+        //
+        if(SS_bufferIsFull2){
+            SS_streamDataSkips2++;
+            return;
+        }
+        else{
+            if(SS_currentStreamState != STREAM_IDLE){
+                if(SS_currentStreamState == STREAM1){
+                    SIGNALSIGHT_queueUpStreamData(1, false);
+                }
+                else if(SS_currentStreamState == STREAM2){
+                    SIGNALSIGHT_queueUpStreamData(2, false);
+                }
+                else if(SS_currentStreamState == STREAM3){
+                    SIGNALSIGHT_queueUpStreamData(3, false);
+                }
+                else if(SS_currentStreamState == STREAM4){
+                    SIGNALSIGHT_queueUpStreamData(4, false);
+                }
+            }
+        }
+    }
+% }
+
+}
+
+//*****************************************************************************
+//
+// Signal Sight Send Data function
+//
+// Call this function in your application where you want to send data to the 
+// GUI via a communication peripheral. It is recommended to place this function
+// call in a low priority location of your application, (in the main loop for 
+// example) since it could be blocked waiting.
+//
+//*****************************************************************************
+void SIGNALSIGHT_sendPlotData(){  
+    //
+    // Check SS_nextTxCMD - Sending ack takes priority over sending data
+    //
+    if(SS_nextTxCMD != NO_UPDATE){
+        SIGNALSIGHT_sendAcknowledge(SS_nextTxCMD);
+    }
+    else if(SS_currentStreamState != STREAM_IDLE){
+% if(!currentInstance.pingPongEnable){
+        if(SS_bufferIsFull){
+            //
+            // Read current stream toggle states into temp array in case state change happens during transmission
+            //
+            bool SS_streamToggleStatesTemp[4] = {false, false, false, false};
+            SS_streamToggleStatesTemp[0] = SS_streamToggleStates[0];
+            SS_streamToggleStatesTemp[1] = SS_streamToggleStates[1];
+            SS_streamToggleStatesTemp[2] = SS_streamToggleStates[2];
+            SS_streamToggleStatesTemp[3] = SS_streamToggleStates[3];
+            //Loop through all buffer elements
+            if(SS_initiallyClearBuffer){
+                SIGNALSIGHT_sendAcknowledge(CLEAR_STREAMING_PLOT);
+                SS_initiallyClearBuffer = false;
+            }
+            uint16_t bufferElementIndex;
+            for(bufferElementIndex = 0; bufferElementIndex < SS_BUFFER_SIZE; bufferElementIndex++){
+                //
+                // Send clear plot data command before sending first packet from buffer.
+                // Read in data from buffers at bufferElementIndex.
+                //
+                uint16_t insertIndex = 0;
+                float* dataArray = 0;
+                if(SS_streamToggleStatesTemp[0]){
+                    //
+                    // Channel A on
+                    //
+                    *(dataArray + insertIndex) = SS_streamA_buffer[bufferElementIndex];
+                    insertIndex++;
+                }
+                if(SS_streamToggleStatesTemp[1]){
+                    //
+                    // Channel B on
+                    //
+                    *(dataArray + insertIndex) = SS_streamB_buffer[bufferElementIndex];
+                    insertIndex++;
+                }
+                if(SS_streamToggleStatesTemp[2]){
+                    //
+                    // Channel C on
+                    //
+                    *(dataArray + insertIndex) = SS_streamC_buffer[bufferElementIndex];
+                    insertIndex++;
+                }
+                if(SS_streamToggleStatesTemp[3]){
+                    //
+                    // Channel D on
+                    //
+                    *(dataArray + insertIndex) = SS_streamD_buffer[bufferElementIndex];
+                    insertIndex++;
+                }
+                //
+                // Package and transmit data from buffers
+                //
+                if(insertIndex == 0){
+                    return; //error?
+                }
+                else if(insertIndex == 1){
+                    char cmd = (char)STREAM_DATA_1_VAR;
+% if(includePolling){
+                    if(SS_writeWhileStreaming){
+                        cmd = (char)STREAM_DATA_WRITEACK_1_VAR;
+                        SS_writeWhileStreaming = false;
+                    }
+% }
+                    EXPORTPACKAGE_sendFloatArrayAsByteArray(&cmd, 1, dataArray, 1);
+                }
+                else if(insertIndex == 2){
+                    char cmd = (char)STREAM_DATA_2_VAR;
+% if(includePolling){
+                    if(SS_writeWhileStreaming){
+                        cmd = (char)STREAM_DATA_WRITEACK_2_VAR;
+                        SS_writeWhileStreaming = false;
+                    }
+% }
+                    EXPORTPACKAGE_sendFloatArrayAsByteArray(&cmd, 1, dataArray, 2);
+                }
+                else if(insertIndex == 3){
+                    char cmd = (char)STREAM_DATA_3_VAR;
+% if(includePolling){
+                    if(SS_writeWhileStreaming){
+                        cmd = (char)STREAM_DATA_WRITEACK_3_VAR;
+                        SS_writeWhileStreaming = false;
+                    }
+% }
+                    EXPORTPACKAGE_sendFloatArrayAsByteArray(&cmd, 1, dataArray, 3);
+                }
+                else if(insertIndex == 4){
+                    char cmd = (char)STREAM_DATA_4_VAR;
+% if(includePolling){
+                    if(SS_writeWhileStreaming){
+                        cmd = (char)STREAM_DATA_WRITEACK_4_VAR;
+                        SS_writeWhileStreaming = false;
+                    }
+% }
+                    EXPORTPACKAGE_sendFloatArrayAsByteArray(&cmd, 1, dataArray, 4);
+                }
+            }
+            SS_bufferIsFull = false;
+        }
+        else{
+            return;
+        }
+% }
+% else {
+        if(SS_writeBuffer1readBuffer2){
+            //
+            // Read from buffer 2
+            //
+            if(SS_bufferIsFull2){
+                //
+                // Read current stream toggle states into temp array in case state change happens during transmission
+                //
+                bool SS_streamToggleStatesTemp[4] = {false, false, false, false};
+                SS_streamToggleStatesTemp[0] = SS_streamToggleStates[0];
+                SS_streamToggleStatesTemp[1] = SS_streamToggleStates[1];
+                SS_streamToggleStatesTemp[2] = SS_streamToggleStates[2];
+                SS_streamToggleStatesTemp[3] = SS_streamToggleStates[3];
+                //
+                // Loop through all buffer elements
+                //
+                if(SS_initiallyClearBuffer){
+                    SIGNALSIGHT_sendAcknowledge(CLEAR_STREAMING_PLOT);
+                    SS_initiallyClearBuffer = false;
+                }
+                uint16_t bufferElementIndex;
+                for(bufferElementIndex = 0; bufferElementIndex < SS_BUFFER_SIZE; bufferElementIndex++){
+                    //
+                    // Send clear plot data command before sending first packet from buffer.
+                    // Read in data from buffers at bufferElementIndex.
+                    //
+                    uint16_t insertIndex = 0;
+                    float* dataArray = 0;
+                    if(SS_streamToggleStatesTemp[0]){
+                        //
+                        // Channel A on
+                        //
+                        *(dataArray + insertIndex) = SS_streamA_buffer2[bufferElementIndex];
+                        insertIndex++;
+                    }
+                    if(SS_streamToggleStatesTemp[1]){
+                        //
+                        // Channel B on
+                        //
+                        *(dataArray + insertIndex) = SS_streamB_buffer2[bufferElementIndex];
+                        insertIndex++;
+                    }
+                    if(SS_streamToggleStatesTemp[2]){
+                        //
+                        // Channel C on
+                        //
+                        *(dataArray + insertIndex) = SS_streamC_buffer2[bufferElementIndex];
+                        insertIndex++;
+                    }
+                    if(SS_streamToggleStatesTemp[3]){
+                        //
+                        // Channel D on
+                        //
+                        *(dataArray + insertIndex) = SS_streamD_buffer2[bufferElementIndex];
+                        insertIndex++;
+                    }
+                    //
+                    // Package and transmit data from buffers
+                    //
+                    if(insertIndex == 1){
+                        char cmd = (char)STREAM_DATA_1_VAR;
+% if(includePolling){
+                    if(SS_writeWhileStreaming){
+                        cmd = (char)STREAM_DATA_WRITEACK_1_VAR;
+                        SS_writeWhileStreaming = false;
+                    }
+% }
+                        EXPORTPACKAGE_sendFloatArrayAsByteArray(&cmd, 1, dataArray, 1);
+                    }
+                    else if(insertIndex == 2){
+                        char cmd = (char)STREAM_DATA_2_VAR;
+% if(includePolling){
+                    if(SS_writeWhileStreaming){
+                        cmd = (char)STREAM_DATA_WRITEACK_2_VAR;
+                        SS_writeWhileStreaming = false;
+                    }
+% }
+                        EXPORTPACKAGE_sendFloatArrayAsByteArray(&cmd, 1, dataArray, 2);
+                    }
+                    else if(insertIndex == 3){
+                        char cmd = (char)STREAM_DATA_3_VAR;
+% if(includePolling){
+                    if(SS_writeWhileStreaming){
+                        cmd = (char)STREAM_DATA_WRITEACK_3_VAR;
+                        SS_writeWhileStreaming = false;
+                    }
+% }
+                        EXPORTPACKAGE_sendFloatArrayAsByteArray(&cmd, 1, dataArray, 3);
+                    }
+                    else if(insertIndex == 4){
+                        char cmd = (char)STREAM_DATA_4_VAR;
+% if(includePolling){
+                    if(SS_writeWhileStreaming){
+                        cmd = (char)STREAM_DATA_WRITEACK_4_VAR;
+                        SS_writeWhileStreaming = false;
+                    }
+% }
+                        EXPORTPACKAGE_sendFloatArrayAsByteArray(&cmd, 1, dataArray, 4);
+                    }
+                }
+                SS_bufferIsFull2 = false;
+            }
+            else{
+                if(!SS_bufferIsFull2 && SS_bufferIsFull){
+                    SS_writeBuffer1readBuffer2 = false;
+                }
+                return;
+            }
+        }
+        else{
+            //
+            // Read from buffer 1
+            //
+            if(SS_bufferIsFull){
+                //
+                // Read current stream toggle states into temp array in case state change happens during transmission
+                //
+                bool SS_streamToggleStatesTemp[4] = {false, false, false, false};
+                SS_streamToggleStatesTemp[0] = SS_streamToggleStates[0];
+                SS_streamToggleStatesTemp[1] = SS_streamToggleStates[1];
+                SS_streamToggleStatesTemp[2] = SS_streamToggleStates[2];
+                SS_streamToggleStatesTemp[3] = SS_streamToggleStates[3];
+                //
+                // Loop through all buffer elements
+                //
+                if(SS_initiallyClearBuffer){
+                    SIGNALSIGHT_sendAcknowledge(CLEAR_STREAMING_PLOT);
+                    SS_initiallyClearBuffer = false;
+                }
+                uint16_t bufferElementIndex;
+                for(bufferElementIndex = 0; bufferElementIndex < SS_BUFFER_SIZE; bufferElementIndex++){
+                    //
+                    // Send clear plot data command before sending first packet from buffer.
+                    // Read in data from buffers at bufferElementIndex.
+                    //
+                    uint16_t insertIndex = 0;
+                    float* dataArray = 0;
+                    if(SS_streamToggleStatesTemp[0]){
+                        //
+                        // Channel A on
+                        //
+                        *(dataArray + insertIndex) = SS_streamA_buffer[bufferElementIndex];
+                        insertIndex++;
+                    }
+                    if(SS_streamToggleStatesTemp[1]){
+                        //
+                        // Channel B on
+                        //
+                        *(dataArray + insertIndex) = SS_streamB_buffer[bufferElementIndex];
+                        insertIndex++;
+                    }
+                    if(SS_streamToggleStatesTemp[2]){
+                        //
+                        // Channel C on
+                        //
+                        *(dataArray + insertIndex) = SS_streamC_buffer[bufferElementIndex];
+                        insertIndex++;
+                    }
+                    if(SS_streamToggleStatesTemp[3]){
+                        //
+                        // Channel D on
+                        //
+                        *(dataArray + insertIndex) = SS_streamD_buffer[bufferElementIndex];
+                        insertIndex++;
+                    }
+                    //
+                    //Package and transmit data from buffers
+                    //
+                    if(insertIndex == 1){
+                        char cmd = (char)STREAM_DATA_1_VAR;
+% if(includePolling){
+                    if(SS_writeWhileStreaming){
+                        cmd = (char)STREAM_DATA_WRITEACK_1_VAR;
+                        SS_writeWhileStreaming = false;
+                    }
+% }
+                        EXPORTPACKAGE_sendFloatArrayAsByteArray(&cmd, 1, dataArray, 1);
+                    }
+                    else if(insertIndex == 2){
+                        char cmd = (char)STREAM_DATA_2_VAR;
+% if(includePolling){
+                    if(SS_writeWhileStreaming){
+                        cmd = (char)STREAM_DATA_WRITEACK_2_VAR;
+                        SS_writeWhileStreaming = false;
+                    }
+% }
+                        EXPORTPACKAGE_sendFloatArrayAsByteArray(&cmd, 1, dataArray, 2);
+                    }
+                    else if(insertIndex == 3){
+                        char cmd = (char)STREAM_DATA_3_VAR;
+% if(includePolling){
+                    if(SS_writeWhileStreaming){
+                        cmd = (char)STREAM_DATA_WRITEACK_3_VAR;
+                        SS_writeWhileStreaming = false;
+                    }
+% }
+                        EXPORTPACKAGE_sendFloatArrayAsByteArray(&cmd, 1, dataArray, 3);
+                    }
+                    else if(insertIndex == 4){
+                        char cmd = (char)STREAM_DATA_4_VAR;
+% if(includePolling){
+                    if(SS_writeWhileStreaming){
+                        cmd = (char)STREAM_DATA_WRITEACK_4_VAR;
+                        SS_writeWhileStreaming = false;
+                    }
+% }
+                        EXPORTPACKAGE_sendFloatArrayAsByteArray(&cmd, 1, dataArray, 4);
+                    }
+                }
+                SS_bufferIsFull = false;
+            }
+            else{
+                if(!SS_bufferIsFull && SS_bufferIsFull2){
+                    SS_writeBuffer1readBuffer2 = true;
+                }
+                return;
+            }
+        }
+% }
+    }
+}
+% if(includePolling){
+
+void SIGNALSIGHT_enableNewPollingVariable(uint16_t* indiceArray, uint16_t numberOfVariables){
+    int variableIndex;
+    for(variableIndex = 0; variableIndex < numberOfVariables; variableIndex++){
+        if(SS_pollingArraySize == SS_POLLING_VARIABLE_MAX){
+            ESTOP0;
+        }
+        SS_pollingEnabledHashIndicesArray[SS_pollingArraySize] = indiceArray[variableIndex];
+        SS_pollingArraySize++;
+    }
+}
+
+void SIGNALSIGHT_clearPollingVariables(){
+    SS_pollingArraySize = 0;
+    int pollingIndex;
+    for(pollingIndex = 0; pollingIndex < SS_POLLING_VARIABLE_MAX; pollingIndex++){
+        SS_pollingEnabledHashIndicesArray[pollingIndex] = 0xFF;
+    }
+}
+
+void SIGNALSIGHT_captureAndSendPollingData(){
+    if(SS_nextTxCMD != NO_UPDATE){ //send an ack
+        SIGNALSIGHT_sendAcknowledge(SS_nextTxCMD);
+    }
+    else if(SS_pollingArraySize == 0){
+        return;
+    }
+    else{
+        uint16_t hashIndex = 0;
+        //
+        // Find next polling index - first increment to next index and check if enabled
+        // ex. SS_pollingEnabledHashIndicesArray could be [ 3, 6, 10, 0xFF, 0xFF...]
+        //
+        if(SS_pollingEnabledHashIndicesArray[SS_currentPollingIndex] == 0xFF){
+            SS_currentPollingIndex = 0;
+        }
+        hashIndex = SS_pollingEnabledHashIndicesArray[SS_currentPollingIndex];
+        SS_currentPollingIndex++;
+        //
+        // Get polling variable data and send to packaging layer
+        //
+        enum SS_VAR_TYPES variableType = SIGNALSIGHT_getVariableType(hashIndex);
+        char cmdArray[2] = {(char)POLLING_DATA, (char)hashIndex};
+        if(variableType == BOOL){
+            bool* dataPtr = SIGNALSIGHT_getVariableAddressAtHashIndex(hashIndex, variableType);
+            EXPORTPACKAGE_sendBoolAsByteArray(&(cmdArray[0]), 2, *dataPtr);
+        }
+        else if(variableType == UINT16){
+            uint16_t* dataPtr = SIGNALSIGHT_getVariableAddressAtHashIndex(hashIndex, variableType);
+            EXPORTPACKAGE_sendUInt16AsByteArray(&(cmdArray[0]), 2, *dataPtr);
+        }
+        else if(variableType == UINT32){
+            uint32_t* dataPtr = SIGNALSIGHT_getVariableAddressAtHashIndex(hashIndex, variableType);
+            EXPORTPACKAGE_sendUInt32AsByteArray(&(cmdArray[0]), 2, *dataPtr);
+        }
+        else if(variableType == INT16){
+            int16_t* dataPtr = SIGNALSIGHT_getVariableAddressAtHashIndex(hashIndex, variableType);
+            EXPORTPACKAGE_sendInt16AsByteArray(&(cmdArray[0]), 2, *dataPtr);
+        }
+        else if(variableType == INT32){
+            int32_t* dataPtr = SIGNALSIGHT_getVariableAddressAtHashIndex(hashIndex, variableType);
+            EXPORTPACKAGE_sendInt32AsByteArray(&(cmdArray[0]), 2, *dataPtr);
+        }
+        else if(variableType == FLOAT){
+            float* dataPtr = SIGNALSIGHT_getVariableAddressAtHashIndex(hashIndex, variableType);
+            EXPORTPACKAGE_sendFloatAsByteArray(&(cmdArray[0]), 2, *dataPtr);
+        }
+    }
+}
+
+void SIGNALSIGHT_writePollingVariable(uint16_t hashIndex, uint16_t* dataArray){
+    uint16_t data3 = 0;
+    uint16_t data2 = 0;
+    uint16_t data1 = 0;
+    uint16_t data0 = 0;
+    enum SS_VAR_TYPES variableType = SIGNALSIGHT_getVariableType(hashIndex);
+    if(variableType == BOOL){
+        data0 = *(dataArray+1);
+        bool* ptr = (bool*)SSHASH_hash_table[hashIndex];
+        bool dataToWrite = (bool)data0;
+        *ptr = dataToWrite;
+    }
+    else if(variableType == UINT16){
+        data1 = *(dataArray);
+        data0 = *(dataArray+1);
+        uint16_t* ptr = (uint16_t*)SSHASH_hash_table[hashIndex];
+        uint16_t dataToWrite = (((uint16_t)data1 << 8) & 0xFF00) | ((uint16_t)data0) & 0xFF;
+        *ptr = dataToWrite;
+    }
+    else if(variableType == UINT32){
+        data3 = *(dataArray);
+        data2 = *(dataArray+1);
+        data1 = *(dataArray+2);
+        data0 = *(dataArray+3);
+        uint32_t* ptr = (uint32_t*)SSHASH_hash_table[hashIndex];
+        uint32_t dataToWrite = (((uint32_t)data3 << 24) & 0xFF000000) | (((uint32_t)data2 << 16) & 0xFF0000) | (((uint32_t)data1 << 8) & 0xFF00) | ((uint32_t)data0) & 0xFF;
+        *ptr = dataToWrite;
+    }
+    else if(variableType == INT16){
+        data1 = *(dataArray);
+        data0 = *(dataArray+1);
+        int16_t* ptr = (int16_t*)SSHASH_hash_table[hashIndex];
+        int16_t dataToWrite = (((int16_t)data1 << 8) & 0xFF00) | ((int16_t)data0) & 0xFF;
+        *ptr = dataToWrite;
+    }
+    else if(variableType == INT32){
+        data3 = *(dataArray);
+        data2 = *(dataArray+1);
+        data1 = *(dataArray+2);
+        data0 = *(dataArray+3);
+        int32_t* ptr = (int32_t*)SSHASH_hash_table[hashIndex];
+        int32_t dataToWrite = (((int32_t)data3 << 24) & 0xFF000000) | (((int32_t)data2 << 16) & 0xFF0000) | (((int32_t)data1 << 8) & 0xFF00) | ((int32_t)data0) & 0xFF;
+        *ptr = dataToWrite;
+    }
+    else if(variableType == FLOAT){
+        data3 = *(dataArray);
+        data2 = *(dataArray+1);
+        data1 = *(dataArray+2);
+        data0 = *(dataArray+3);
+        float* ptr = (float*)SSHASH_hash_table[hashIndex];
+        uint32_t dataToWrite = (((uint32_t)data3 << 24) & 0xFF000000) | (((uint32_t)data2 << 16) & 0xFF0000) | (((uint32_t)data1 << 8) & 0xFF00) | ((uint32_t)data0) & 0xFF;
+        memcpy(ptr, &dataToWrite, sizeof(float));
+    }
+    if(SS_currentStreamState != STREAM_IDLE){
+        SS_writeWhileStreaming = true;
+    }
+}
+% } //end of polling-specific functions
+
+void EXPORTPACKAGE_takeActionOnMessage(uint16_t cmdByte, uint16_t* msgData, bool error){
+% //if(currentInstance.bufferingDebugModeEnable){
+%    //if((SS_currentIndex+16) > RX_DEBUG_BUFFER_SIZE){
+%    //    SS_currentIndex = 0;
+%    //}
+%    //int i;
+%    //for(i = 0; i < 16; i++){
+%        //SS_rxBufferDebug[SS_currentIndex + i] = (enum SS_CMDS)EXPORTPACKAGE_rxPacketBuffer[i];
+%    //}
+%    //SS_currentIndex += 16;
+%    //SS_rxBufferDebug[SS_currentIndex] = BUFFER_DELIMETER;
+%    //SS_currentIndex++;
+% //}
+    if(error){
+        SS_nextTxCMD = PACKET_ERROR;
+    }
+    else{
+        bool streamVarAdd = false;
+        bool streamVarSubtract = false;
+        //
+        // Set up ack of CMD
+        //
+        SS_nextTxCMD = (enum SS_CMDS)cmdByte;
+        //
+        // Get CMD byte and perform action
+        //
+        if(cmdByte == INITCMD){
+            //
+            // Reinitialize all states
+            //
+            SS_currentPlotHashIndices[0] = SS_DEFAULT_STREAM_VAR_A;
+            SS_currentPlotHashIndices[1] = SS_DEFAULT_STREAM_VAR_B;
+            SS_currentPlotHashIndices[2] = SS_DEFAULT_STREAM_VAR_C;
+            SS_currentPlotHashIndices[3] = SS_DEFAULT_STREAM_VAR_D;
+            SS_currentStreamState = STREAM_IDLE;
+            int i;
+            for(i = 0; i < SS_NUMBER_OF_SIMULTANEOUS_STREAM_VARIABLES; i++){
+                SS_streamToggleStates[i] = false;
+            }
+            SIGNALSIGHT_resetStates();
+        }
+% if(includePolling){
+        else if(cmdByte == WRITE_VAR){
+            SIGNALSIGHT_writePollingVariable(msgData[0], &msgData[1]);
+        }
+% }
+        else if(cmdByte == INIT_STREAMING_VARS){  //read in variables to stream, only meaningful in streaming mode
+            SS_currentPlotHashIndices[0] = (int16_t)msgData[0];
+            SS_currentPlotHashIndices[1] = (int16_t)msgData[1];
+            SS_currentPlotHashIndices[2] = (int16_t)msgData[2];
+            SS_currentPlotHashIndices[3] = (int16_t)msgData[3];
+        }
+        else if(cmdByte == START_STREAMING_A){
+            SS_streamToggleStates[0] = true;
+            streamVarAdd = true;
+        }
+        else if(cmdByte == START_STREAMING_B){
+            SS_streamToggleStates[1] = true;
+            streamVarAdd = true;
+        }
+        else if(cmdByte == START_STREAMING_C){
+            SS_streamToggleStates[2] = true;
+            streamVarAdd = true;
+        }
+        else if(cmdByte == START_STREAMING_D){
+            SS_streamToggleStates[3] = true;
+            streamVarAdd = true;
+        }
+        else if(cmdByte == STOP_STREAMING_A){
+            SS_streamToggleStates[0] = false;
+            streamVarSubtract = true;
+        }
+        else if(cmdByte == STOP_STREAMING_B){
+            SS_streamToggleStates[1] = false;
+            streamVarSubtract = true;
+        }
+        else if(cmdByte == STOP_STREAMING_C){
+            SS_streamToggleStates[2] = false;
+            streamVarSubtract = true;
+        }
+        else if(cmdByte == STOP_STREAMING_D){
+            SS_streamToggleStates[3] = false;
+            streamVarSubtract = true;
+        }
+% if(includePolling){
+        else if(cmdByte == START_POLLING_1){
+            SIGNALSIGHT_enableNewPollingVariable(msgData, 1);
+        }
+        else if(cmdByte == START_POLLING_2){
+            SIGNALSIGHT_enableNewPollingVariable(msgData, 2);
+        }
+        else if(cmdByte == START_POLLING_3){
+            SIGNALSIGHT_enableNewPollingVariable(msgData, 3);
+        }
+        else if(cmdByte == START_POLLING_4){
+            SIGNALSIGHT_enableNewPollingVariable(msgData, 4);
+        }
+        else if(cmdByte == START_POLLING_5){
+            SIGNALSIGHT_enableNewPollingVariable(msgData, 5);
+        }
+        else if(cmdByte == START_POLLING_6){
+            SIGNALSIGHT_enableNewPollingVariable(msgData, 6);
+        }
+        else if(cmdByte == START_POLLING_7){
+            SIGNALSIGHT_enableNewPollingVariable(msgData, 7);
+        }
+        else if(cmdByte == START_POLLING_8){
+            SIGNALSIGHT_enableNewPollingVariable(msgData, 8);
+        }
+        else if(cmdByte == START_POLLING_9){
+            SIGNALSIGHT_enableNewPollingVariable(msgData, 9);
+        }
+        else if(cmdByte == START_POLLING_10){
+            SIGNALSIGHT_enableNewPollingVariable(msgData, 10);
+        }
+        else if(cmdByte == START_POLLING_11){
+            SIGNALSIGHT_enableNewPollingVariable(msgData, 11);
+        }
+        else if(cmdByte == START_POLLING_12){
+            SIGNALSIGHT_enableNewPollingVariable(msgData, 12);
+        }
+        else if(cmdByte == START_POLLING_13){
+            SIGNALSIGHT_enableNewPollingVariable(msgData, 13);
+        }
+        else if(cmdByte == STOP_POLLING){
+            SIGNALSIGHT_clearPollingVariables();
+        }
+% }
+        else{
+            SS_nextTxCMD = PACKET_ERROR;
+        }
+
+        //
+        // Update SS_currentStreamState 
+        //
+        if(streamVarAdd){
+            switch(SS_currentStreamState)
+            {
+                case STREAM_IDLE: SS_currentStreamState = STREAM1;
+                             break;
+                case STREAM1: SS_currentStreamState = STREAM2;
+                             break;
+                case STREAM2: SS_currentStreamState = STREAM3;
+                              break;
+                case STREAM3: SS_currentStreamState = STREAM4;
+                              break;
+                case STREAM4: SS_currentStreamState = STREAM4; SS_nextTxCMD = PACKET_ERROR;
+                              break;
+                default: SS_currentStreamState = STREAM_IDLE;
+            }
+        }
+        else if(streamVarSubtract){
+            switch(SS_currentStreamState)
+            {
+                case STREAM_IDLE: SS_currentStreamState = STREAM_IDLE; SS_nextTxCMD = PACKET_ERROR;
+                             break;
+                case STREAM1: SS_currentStreamState = STREAM_IDLE; SS_initiallyClearBuffer = true;
+                             break;
+                case STREAM2: SS_currentStreamState = STREAM1;
+                              break;
+                case STREAM3: SS_currentStreamState = STREAM2;
+                              break;
+                case STREAM4: SS_currentStreamState = STREAM3;
+                              break;
+                default: SS_currentStreamState = STREAM_IDLE;
+            }
+        }
+    }
+}

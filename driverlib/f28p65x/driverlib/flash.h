@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -85,13 +85,18 @@ extern "C"
 //
 //**********************************
 // Flash Configuration Base
+
+
 #define FLASHCONFIG_BASE                                    0x00057000U
+
 // Trim Control Register  
 #define FLASH_O_TRIMCTL                                     0x1600U
 // Trim Lock Register      
 #define FLASH_O_TRIMLOCK                                    0x1604U
 // Trim Commit Register      
-#define FLASH_O_TRIMCOMMIT                                  0x1608U      
+#define FLASH_O_TRIMCOMMIT                                  0x1608U
+
+
 #define FLASH_TRIMCTL_ENABLE_M                              0x1U      
 #define FLASH_TRIMCTL_ENABLE_S                              0x0U      
 #define FLASH_TRIMLOCK_TRIMLOCKREAD_TRIMLOCKOTHER_M         0x3U      

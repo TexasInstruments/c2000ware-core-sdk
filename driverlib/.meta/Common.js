@@ -645,7 +645,8 @@ function SYSCLK_getMaxMHz()
         F280013x    : 120,
         F280015x    : 120,
         F28P65x     : 200,
-        F28P55x     : 150
+        F28P55x     : 150,
+        F28E12x     : 160
     }
     return sysclk_max[getDeviceName()];
 }

@@ -101,8 +101,10 @@ let EPWMMemoryMap = [
 	{ name: "EPWM6_BASE", displayName: "EPWM6", baseAddress: "0x00004500U" },
 	{ name: "EPWM7_BASE", displayName: "EPWM7", baseAddress: "0x00004600U" },
 ];
-let EMemoryMap = [
+let EQEPMemoryMap = [
 	{ name: "EQEP1_BASE", displayName: "EQEP1", baseAddress: "0x00005100U" },
+];
+let ECAPMemoryMap = [
 	{ name: "ECAP1_BASE", displayName: "ECAP1", baseAddress: "0x00005200U" },
 	{ name: "ECAP2_BASE", displayName: "ECAP2", baseAddress: "0x00005240U" },
 ];
@@ -240,7 +242,8 @@ module.exports = {
 	CPUTIMERMemoryMap: CPUTIMERMemoryMap,
 	PIEMemoryMap: PIEMemoryMap,
 	EPWMMemoryMap: EPWMMemoryMap,
-	EMemoryMap: EMemoryMap,
+	EQEPMemoryMap: EQEPMemoryMap,
+	ECAPMemoryMap: ECAPMemoryMap,
 	CMPSSMemoryMap: CMPSSMemoryMap,
 	SPIAMemoryMap: SPIAMemoryMap,
 	PMBUSAMemoryMap: PMBUSAMemoryMap,

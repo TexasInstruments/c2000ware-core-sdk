@@ -115,14 +115,18 @@ groupSectionConfig = [
         displayName: "C28x Compiler Sections",
         collapsed: true,
         config: groupSectionConfig_C28x
-    },
-    {
-        name: "GROUP_CLA",
-        displayName: "CLA Compiler Sections",
-        collapsed: true,
-        config: groupSectionConfig_CLA
-    },
-]
+    }
+];
+if (!["F28E12x"].includes(Common.getDeviceName()))
+{
+    groupSectionConfig.push({                
+            name: "GROUP_CLA",
+            displayName: "CLA Compiler Sections",
+            collapsed: true,
+            config: groupSectionConfig_CLA       
+    })
+}
+
 function addSectionToGroup(section)
 {
     //
@@ -233,7 +237,7 @@ function addSectionToGroup(section)
                 },
             ]
         }
-    if(section.name.toLowerCase().includes("cla"))
+    if(section.name.toLowerCase().includes("cla") && !["F28E12x"].includes(Common.getDeviceName()))
         groupSectionConfig_CLA.push(config)
     else
         groupSectionConfig_C28x.push(config)

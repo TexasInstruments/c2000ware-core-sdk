@@ -105,10 +105,18 @@ typedef CFFT_F32_STRUCT* CFFT_F32_STRUCT_Handle;
 //!     as the table symbol.
 //!  2. The CFFT_f32_twiddleFactors is an alias for the new table. It is not
 //!     a separate table.
+//!  3. Higher size Complex FFTs can be supported by updating the twiddle   
+//!     factor tables in CFFT_f32_twiddleFactors.asm. For example, it can be
+//!     increased to a table of size 3072 (sin(2 pi n/4096),
+//!     n = 0 to 3071). Additionally, modify cfft_f32t.asm (Line 577, from 256 
+//!     to 1024) AND (if the CFFT is used to compute the RFFT), 
+//!     cfft_f32_unpack.asm - replace TABLE_SIZE and TABLE_SIZE_LOG2 
+//!     (Line 163 and Line 222) with 4096 and 12.
+//!
 //
 //*****************************************************************************
-extern float CFFT_f32_twiddleFactors[1536];
-extern float FPU32CFFTtwiddleFactors[1536];
+extern float CFFT_f32_twiddleFactors[];
+extern float FPU32CFFTtwiddleFactors[];
 
 //*****************************************************************************
 // 'inline' function

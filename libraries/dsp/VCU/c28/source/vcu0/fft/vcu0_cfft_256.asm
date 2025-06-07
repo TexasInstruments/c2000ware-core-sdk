@@ -75,6 +75,9 @@
 ;/*! \defgroup CFFT_256_FN (256pt CFFT Routines)
 ;  @{  .....starts the defintion block
 ;*/
+   .if  __TI_EABI__
+        .asg cfft16_256p_calc, _cfft16_256p_calc
+   .endif
       .global  _cfft16_256p_calc
 ;//###########################################################################      
 

@@ -7,7 +7,7 @@ import { dsServiceType, ccsDebugSessionChangedEventType } from '../../gc-service
 import { GcUtils } from '../../gc-core-assets/lib/GcUtils';
 
 /**
- *  Copyright (c) 2020, 2024 Texas Instruments Incorporated
+ *  Copyright (c) 2020, 2025 Texas Instruments Incorporated
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -551,7 +551,24 @@ class ConnectionManager extends AbstractTransport {
             const connected = activeTransports.reduce((count, transport) => count + (transport.isConnected ? 1 : 0), 0);
             if (connecting > 0) {
                 if (activeTransports.length > 1) {
-                    return `connecting to ${connected + 1} of ${activeTransports.length} targets`;
+                    const transport = activeTransports.sort((a, b) => {
+                        let result = (b.hasErrors ? 1 : 0) - (a.hasErrors ? 1 : 0);
+                        if (result === 0) {
+                            result = (b.hasWarnings ? 1 : 0) - (a.hasWarnings ? 1 : 0);
+                        }
+                        if (result === 0) {
+                            result = b.progressMessageTimestamp - a.progressMessageTimestamp;
+                        }
+                        return result;
+                    })[0];
+                    let activity = transport?.progressMessage ?? '';
+                    if (activity.startsWith('Connecting to target')) { // already have a connectin to 1 or n message
+                        activity = '';
+                    }
+                    if (activity) {
+                        activity = ` -- ${transport.id} - ${activity}`;
+                    }
+                    return `connecting to ${connected + 1} of ${activeTransports.length} targets.${activity}`;
                 }
                 return activeTransports[0].progressMessage;
             }

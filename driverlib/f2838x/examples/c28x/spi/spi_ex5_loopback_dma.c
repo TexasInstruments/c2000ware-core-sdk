@@ -37,7 +37,7 @@
 //
 //
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -166,7 +166,7 @@ void main(void)
 }
 
 //
-// DMA Channel 5 ISR
+// DMA Tx Channel ISR
 //
 __interrupt void INT_mySPI0_TX_DMA_ISR(void)
 {
@@ -176,7 +176,7 @@ __interrupt void INT_mySPI0_TX_DMA_ISR(void)
 }
 
 //
-// DMA Channel 6 ISR
+// DMA Rx Channel ISR
 //
  __interrupt void INT_mySPI0_RX_DMA_ISR(void)
 {

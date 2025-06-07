@@ -1,0 +1,335 @@
+% var moduleName = "mcpwm"
+% var module = system.modules['/driverlib/' + moduleName + '.js'];
+% let genInitFuncPerInst = false
+% var pinUseCase = "6CH"
+% let Common   = system.getScript("/driverlib/Common.js");
+% let device_driverlib_peripheral = system.getScript("/driverlib/device_driverlib_peripherals/" + Common.getDeviceName().toLowerCase() + "_mcpwm.js");
+% let commentOutDefaultCode = false
+%if (module != null)
+%{
+%       let moduleStat = module.$static
+%       commentOutDefaultCode = moduleStat.commentOutDefaultCode
+//*****************************************************************************
+//
+// MCPWM Configurations
+//
+//*****************************************************************************
+void `module.peripheralName`_init(){
+%    if(true == moduleStat.generateInitFunctions)
+%    {
+%       for(let inst of module.$instances)
+%       {
+%           if(true == inst.generateCodeTemplate)
+%           {
+    `inst.codeTemplateName`();
+%           }
+%           else
+%           {
+    `inst.$name`_init();
+%           }
+%       }
+%    }
+%    else
+%    {
+    mcpwmInit();    
+%    }
+}
+
+%   for(let inst of module.$instances){
+%       let solution = inst[moduleName]
+%       genInitFuncPerInst = moduleStat.generateInitFunctions
+%       pinUseCase = inst.useCase
+%       if(true == genInitFuncPerInst){
+%           if(true == inst.generateCodeTemplate)
+%           {
+void `inst.codeTemplateName`(){
+%           }else{
+void `inst.$name`_init(){
+%           }
+%getConfigCode(inst)
+}
+
+%       }
+%   }
+%   if(false == genInitFuncPerInst){
+void mcpwmInit(){
+%       for(let inst of module.$instances){
+%getConfigCode(inst)
+%       }
+}
+%   }
+%}
+%
+% function getDefaultConfig(config, elementName)
+% { 
+%     if(Array.isArray(config))
+%     {
+%         for(let subConfig of config)
+%         {
+%             let defaultValue = getDefaultConfig(subConfig, elementName);
+%             if(defaultValue !== undefined)
+%             {
+%                 return defaultValue;
+%             }
+%         }
+%     }
+%     else if(config.config){
+%            let defaultValue = getDefaultConfig(config.config, elementName);
+%            if(defaultValue !== undefined)
+%            {
+%                return defaultValue;
+%            }
+%     }
+%     else
+%     {
+%         if(config.name === elementName)
+%         { 
+%             return config.default;
+%         }
+%     }
+%     return undefined;
+% }
+%
+% function getDefaults(inst, elementName)
+%{
+%   
+%   return getDefaultConfig(inst.$module.config, elementName)
+%   
+%}
+%
+% function commentCheck(inst, elementName)
+%{  
+%   if(commentOutDefaultCode)
+%   {
+%       if(inst[elementName] === getDefaults(inst, elementName)){
+%           return "// "
+%       }
+%   }
+%}
+
+% function getConfigCode(inst){
+%   let base = inst.$name+"_BASE"
+
+    `commentCheck(inst, "mcpwmTimebase_emulationMode")`
+
+    //*************************************************************************
+    //
+    // Time Base Configurations
+    //
+    //*************************************************************************
+    `commentCheck(inst, "mcpwmTimebase_emulationMode")`MCPWM_setEmulationMode(`base`, `inst.mcpwmTimebase_emulationMode`);
+    `commentCheck(inst, "mcpwmTimebase_clockDiv")`MCPWM_setClockPrescaler(`base`, `inst.mcpwmTimebase_clockDiv`);
+    `commentCheck(inst, "mcpwmTimebase_counterMode")`MCPWM_setTimeBaseCounterMode(`base`, `inst.mcpwmTimebase_counterMode`);
+    `commentCheck(inst, "mcpwmTimebase_periodLoadMode")`MCPWM_setPeriodLoadMode(`base`, `inst.mcpwmTimebase_periodLoadMode`);
+%   if(inst.mcpwm_useShdwRegForCodeGen == true){
+    `commentCheck(inst, "mcpwmTimebase_period")`MCPWM_setTimeBasePeriodShadow(`base`, `inst.mcpwmTimebase_period`);
+%   }else{
+    `commentCheck(inst, "mcpwmTimebase_period")`MCPWM_setTimeBasePeriodActive(`base`, `inst.mcpwmTimebase_period`);
+%   }
+% 
+%   if(inst.mcpwmTimebase_phaseEnable == true){
+    MCPWM_enablePhaseShiftLoad(`base`);
+    `commentCheck(inst, "mcpwmTimebase_phaseShift")`MCPWM_setPhaseShift(`base`, `inst.mcpwmTimebase_phaseShift`);
+%       if(inst.mcpwmTimebase_counterMode.includes("UP_DOWN")){
+    `commentCheck(inst, "mcpwmTimebase_counterModeAfterSync")`MCPWM_setCountModeAfterSync(`base`, `inst.mcpwmTimebase_counterModeAfterSync`);
+%       }
+%   }
+%
+    `commentCheck(inst, "mcpwmTimebase_syncInPulseSource")`MCPWM_setSyncInPulseSource(`base`, `inst.mcpwmTimebase_syncInPulseSource`);
+    `commentCheck(inst, "mcpwmTimebase_syncOutPulseMode")`MCPWM_setSyncOutPulseMode(`base`, `inst.mcpwmTimebase_syncOutPulseMode`);
+    `commentCheck(inst, "hrpwm_syncSource")`MCPWM_setSyncPulseSource(`base`, `inst.hrpwm_syncSource`);
+
+    //*************************************************************************
+    //
+    // Counter Compare Configurations
+    //
+    //*************************************************************************
+%   for (let pwmInst of ["", "_pwm2", "_pwm3"]){
+%       for (let i of ["A","B"]){
+%           let pwmInstNumber = (pwmInst == "") ? "1" : (pwmInst == "_pwm2") ? "2" : "3"
+%           if(inst["mcpwmCounterCompare_enableShadowLoadModeCMP"+i]){
+    `commentCheck(inst, "mcpwmCounterCompare_shadowLoadModeCMP"+i+pwmInst)`MCPWM_setCounterCompareShadowLoadMode(`base`, MCPWM_COUNTER_COMPARE_`pwmInstNumber``i`, `inst["mcpwmCounterCompare_shadowLoadModeCMP"+i+pwmInst]`);
+%           }
+%           if(inst.mcpwm_useShdwRegForCodeGen){
+    `commentCheck(inst, "mcpwmCounterCompare_cmp"+i+pwmInst)`MCPWM_setCounterCompareShadowValue(`base`, MCPWM_COUNTER_COMPARE_`pwmInstNumber``i`, `inst["mcpwmCounterCompare_cmp"+i+pwmInst]`);
+%           }else{
+    `commentCheck(inst, "mcpwmCounterCompare_cmp"+i+pwmInst)`MCPWM_setCounterCompareActiveValue(`base`, MCPWM_COUNTER_COMPARE_`pwmInstNumber``i`, `inst["mcpwmCounterCompare_cmp"+i+pwmInst]`);
+%           }
+%       }
+
+%       if(inst.useCase === "2CH"){
+%           break;
+%       }
+%   }
+%       for (let i of ["C","D"]){
+%           if(inst["mcpwmCounterCompare_enableShadowLoadModeCMPA"]){
+    `commentCheck(inst, "mcpwmCounterCompare_shadowLoadModeCMP"+i)`MCPWM_setCounterCompareShadowLoadMode(`base`, MCPWM_COUNTER_COMPARE_`i`, `inst["mcpwmCounterCompare_shadowLoadModeCMP"+i]`);
+%           }
+%           if(inst.mcpwm_useShdwRegForCodeGen){
+    `commentCheck(inst, "mcpwmCounterCompare_cmp"+i)`MCPWM_setCounterCompareShadowValue(`base`, MCPWM_COUNTER_COMPARE_`i`, `inst["mcpwmCounterCompare_cmp"+i]`);
+%           }else{
+    `commentCheck(inst, "mcpwmCounterCompare_cmp"+i)`MCPWM_setCounterCompareActiveValue(`base`, MCPWM_COUNTER_COMPARE_`i`, `inst["mcpwmCounterCompare_cmp"+i]`);
+%           }
+%       }
+
+    //*************************************************************************
+    //
+    // Action Qualifier Configurations
+    //
+    //*************************************************************************
+%   for(let aqOutput of device_driverlib_peripheral.MCPWM_ActionQualifierOutputModule){
+%       if(true == inst["mcpwmActionQualifier_" + aqOutput.name + "_shadowMode"]){
+    `commentCheck(inst, "mcpwmActionQualifier_" + aqOutput.name + "_shadowEvent")`MCPWM_setActionQualifierShadowLoadMode(`base`, `aqOutput.name.replace("AQ_OUTPUT","ACTION_QUALIFIER")`, `inst["mcpwmActionQualifier_" + aqOutput.name + "_shadowEvent"]`);
+%       }
+    `commentCheck(inst, "mcpwmActionQualifier_"+ aqOutput.name +"_SWAForcection")`MCPWM_setActionQualifierSWAction(`base`, `aqOutput.name`, `inst["mcpwmActionQualifier_"+ aqOutput.name +"_SWAForcection"]`);
+%       for (let aqEvent of device_driverlib_peripheral.MCPWM_ActionQualifierOutputEvent){
+%           let elementName = "mcpwmActionQualifier_" + aqOutput.name + "_" + aqEvent.name.replace("MCPWM_AQ_OUTPUT_", "")
+%           let output      = inst[elementName]
+%           if(true == inst.mcpwm_useShdwRegForCodeGen)
+%           {
+    `commentCheck(inst, elementName)`MCPWM_setActionQualifierActionShadow(`base`, `aqOutput.name`, `output`, `aqEvent.name`);
+%           }else{
+    `commentCheck(inst, elementName)`MCPWM_setActionQualifierActionActive(`base`, `aqOutput.name`, `output`, `aqEvent.name`);
+%           }
+%       }
+
+%   }
+    
+    //*************************************************************************
+    //
+    // Dead Band Configurations
+    //
+    //*************************************************************************
+%   if(true == inst.mcpwmDeadband_redShadowMode){
+    `commentCheck(inst, "mcpwmDeadband_redShadowLoadEvent")`MCPWM_setRisingEdgeDelayCountShadowLoadMode(`base`,`inst.mcpwmDeadband_redShadowLoadEvent`);
+%   }
+%   if(true == inst.mcpwmDeadband_fedShadowMode){
+    `commentCheck(inst, "mcpwmDeadband_fedShadowLoadEvent")`MCPWM_setFallingEdgeDelayCountShadowLoadMode(`base`,`inst.mcpwmDeadband_fedShadowLoadEvent`);
+%   }
+    `commentCheck(inst, "mcpwmDeadband_enableRED")`MCPWM_setDeadBandDelayMode(`base`, MCPWM_DB_RED, `inst.mcpwmDeadband_enableRED`);
+    `commentCheck(inst, "mcpwmDeadband_enableFED")`MCPWM_setDeadBandDelayMode(`base`, MCPWM_DB_FED, `inst.mcpwmDeadband_enableFED`);
+%   if(true == inst.mcpwmDeadband_enableRED){
+    `commentCheck(inst, "mcpwmDeadband_polarityRED")`MCPWM_setDeadBandDelayPolarity(`base`, MCPWM_DB_RED, `inst.mcpwmDeadband_polarityRED`);
+    `commentCheck(inst, "mcpwmDeadband_inputRED")`MCPWM_setRisingEdgeDeadBandDelayInput(`base`, `inst.mcpwmDeadband_inputRED`);
+%       if(true == inst.mcpwm_useShdwRegForCodeGen){
+    `commentCheck(inst, "mcpwmDeadband_delayRED")`MCPWM_setRisingEdgeDelayCountShadow(`base`, `inst.mcpwmDeadband_delayRED`);
+%       }else{
+    `commentCheck(inst, "mcpwmDeadband_delayRED")`MCPWM_setRisingEdgeDelayCountActive(`base`, `inst.mcpwmDeadband_delayRED`);
+%       }
+%   }
+%   if(true == inst.mcpwmDeadband_enableFED){
+    `commentCheck(inst, "mcpwmDeadband_polarityFED")`MCPWM_setDeadBandDelayPolarity(`base`, MCPWM_DB_FED, `inst.mcpwmDeadband_polarityFED`);
+    `commentCheck(inst, "mcpwmDeadband_inputFED")`MCPWM_setFallingEdgeDeadBandDelayInput(`base`, `inst.mcpwmDeadband_inputFED`);
+%       if(true == inst.mcpwm_useShdwRegForCodeGen){
+    `commentCheck(inst, "mcpwmDeadband_delayFED")`MCPWM_setFallingEdgeDelayCountShadow(`base`, `inst.mcpwmDeadband_delayFED`);
+%       }else{
+    `commentCheck(inst, "mcpwmDeadband_delayFED")`MCPWM_setFallingEdgeDelayCountActive(`base`, `inst.mcpwmDeadband_delayFED`);
+%       }
+%   }
+
+    //*************************************************************************
+    //
+    // Trip Zone Configurations
+    //
+    //*************************************************************************
+%%{
+        let mcpwmTripZone_cbcSource_str = ""
+        let mcpwmTripZone_oneShotSource_str = ""
+
+        let tz_signals = ""
+
+        if(inst.mcpwmTripZone_cbcSource.length == 0){
+        }else{
+            for(let i of inst.mcpwmTripZone_cbcSource){
+                mcpwmTripZone_cbcSource_str += i
+                if( inst.mcpwmTripZone_cbcSource.indexOf(i) !=  (inst.mcpwmTripZone_cbcSource.length - 1)){
+                    mcpwmTripZone_cbcSource_str += " | "
+                }
+            }
+        }
+        if(inst.mcpwmTripZone_oneShotSource.length == 0){
+        }else{
+            for(let i of inst.mcpwmTripZone_oneShotSource){
+                mcpwmTripZone_oneShotSource_str += i
+                if( inst.mcpwmTripZone_oneShotSource.indexOf(i) !=  (inst.mcpwmTripZone_oneShotSource.length - 1)){
+                    mcpwmTripZone_oneShotSource_str += " | "
+                }
+            }
+        }
+
+        tz_signals = mcpwmTripZone_cbcSource_str
+        if(mcpwmTripZone_cbcSource_str == ""){
+            tz_signals = mcpwmTripZone_oneShotSource_str
+        }else if(mcpwmTripZone_oneShotSource_str != ""){
+            tz_signals += " | "+mcpwmTripZone_oneShotSource_str
+        }
+
+%%}
+%   if(tz_signals != ""){
+    MCPWM_enableTripZoneSignals(`base`, `tz_signals`);
+%}
+    `commentCheck(inst, "mcpwmTripZone_cbcPulse")`MCPWM_selectTripZoneCBCEvent(`base`, `inst.mcpwmTripZone_cbcPulse`);
+    `commentCheck(inst, "mcpwmTripZone_MCPWM_TZ_ACTION_EVENT_TZA")`MCPWM_setTripZoneAction(`base`, MCPWM_TZ_ACTION_EVENT_TZA, `inst.mcpwmTripZone_MCPWM_TZ_ACTION_EVENT_TZA`);
+    `commentCheck(inst, "mcpwmTripZone_MCPWM_TZ_ACTION_EVENT_TZB")`MCPWM_setTripZoneAction(`base`, MCPWM_TZ_ACTION_EVENT_TZB, `inst.mcpwmTripZone_MCPWM_TZ_ACTION_EVENT_TZB`);
+    
+    //*************************************************************************
+    //
+    // Events Configurations
+    //
+    //*************************************************************************
+%%{
+    let interrupts_enabled = ""
+    if(inst.mcpwmEventTrigger_interruptSource.length == 0){
+    }else{
+        for(let i of inst.mcpwmEventTrigger_interruptSource){
+            interrupts_enabled += i
+            if( inst.mcpwmEventTrigger_interruptSource.indexOf(i) !=  (inst.mcpwmEventTrigger_interruptSource.length - 1)){
+                interrupts_enabled += " | "
+            }
+        }
+    }
+%%}
+%   for(let soc of device_driverlib_peripheral.MCPWM_ADCStartOfConversionType){
+%       if(inst["mcpwmEventTrigger_" + soc.name + "_triggerEnable"]){
+    `commentCheck(inst, "mcpwmEventTrigger_" + soc.name + "_triggerEnable")`MCPWM_enableADCTrigger(`base`, `soc.name`);
+    `commentCheck(inst, "mcpwmEventTrigger_" + soc.name + "_triggerSource")`MCPWM_setADCTriggerSource(`base`, `soc.name`, `inst["mcpwmEventTrigger_" + soc.name + "_triggerSource"]`);
+    `commentCheck(inst, "mcpwmEventTrigger_" + soc.name + "_triggerEventPrescalar")`MCPWM_setADCTriggerEventPrescale(`base`, `soc.name`, `inst["mcpwmEventTrigger_" + soc.name + "_triggerEventPrescalar"]`);
+%       }else{
+    `commentCheck(inst, "mcpwmEventTrigger_" + soc.name + "_triggerEnable")`MCPWM_disableADCTrigger(`base`, `soc.name`);
+%       }
+%   }
+%   for(let et of device_driverlib_peripheral.MCPWM_EventTriggerType){
+%       if(inst["mcpwmEventTrigger_" + et.name + "_triggerEnable"]){
+    `commentCheck(inst, "mcpwmEventTrigger_" + et.name + "_triggerSource")`MCPWM_setEventTriggerSource(`base`, `et.name`, `inst["mcpwmEventTrigger_" + et.name + "_triggerSource"]`);
+    `commentCheck(inst, "mcpwmEventTrigger_" + et.name + "_triggerEventPrescalar")`MCPWM_setEventTriggerEventPrescale(`base`, `et.name`, `inst["mcpwmEventTrigger_" + et.name + "_triggerEventPrescalar"]`);
+%       }
+%   }
+    `commentCheck(inst, "mcpwmEventTrigger_enableInterrupt")`MCPWM_disableInterrupt(`base`, MCPWM_INT_SOURCE_ALL);
+%   if((true == inst.mcpwmEventTrigger_enableInterrupt) && interrupts_enabled != ""){
+    MCPWM_enableInterrupt(`base`, `interrupts_enabled`);
+%   }
+
+    //*************************************************************************
+    //
+    // Load Mode Configurations
+    //
+    //*************************************************************************
+%   if(true == inst.mcpwmGlobalLoad_gld){
+    MCPWM_enableGlobalLoad(`base`);
+    `commentCheck(inst, "mcpwmGlobalLoad_gldMode")`MCPWM_setGlobalLoadTrigger(`base`,`inst.mcpwmGlobalLoad_gldMode`);
+%       if(true == inst.mcpwmGlobalLoad_enableOneShot){
+    MCPWM_enableGlobalLoadOneShotMode(`base`);
+    MCPWM_clearGlobalLoadOneShotLatch(`base`);
+%           if(true == inst.mcpwmGlobalLoad_oneShotMode){
+    MCPWM_setGlobalLoadOneShotLatch(`base`);
+%           }
+%           if(true == inst.mcpwmGlobalLoad_oneShotForce){
+    MCPWM_forceGlobalLoadOneShotEvent(`base`);
+%           }
+%       }else{
+    MCPWM_disableGlobalLoadOneShotMode(`base`);
+%       }
+%   }else{
+    `commentCheck(inst, "mcpwmGlobalLoad_gldMode")`MCPWM_disableGlobalLoad(`base`);
+%   }
+%}

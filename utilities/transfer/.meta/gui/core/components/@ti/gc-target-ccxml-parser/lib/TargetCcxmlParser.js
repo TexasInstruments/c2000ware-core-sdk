@@ -172,7 +172,7 @@ HWDB.COMPONENT_NAME = 'uid';
 HWDB.SCHEMA_FILENAME = 'setup_parser.xsd';
 
 /**
- *  Copyright (c) 2022, Texas Instruments Incorporated
+ *  Copyright (c) 2022, 2025 Texas Instruments Incorporated
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -207,7 +207,7 @@ NodeTypes.TEXT_NODE = 3;
 NodeTypes.ELEMENT_NODE = 1;
 
 /**
- *  Copyright (c) 2022, Texas Instruments Incorporated
+ *  Copyright (c) 2022, 2024 Texas Instruments Incorporated
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -276,7 +276,7 @@ class XMLParser {
     }
     // ---------------------------------------------------------------------------
     CreateNewDocument(docName) {
-        this.ParseAndValidate(`<${docName}></${docName}>`, false);
+        this.ParseAndValidate(`<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n<${docName}></${docName}>`, false);
         const result = this.m_pWorkingDoc?.documentElement;
         if (!result) {
             throw new Error('Unable to create a new XML Document.');
@@ -335,6 +335,13 @@ class XMLParser {
             sibling = sibling.nextSibling;
         }
         return sibling ?? null;
+    }
+    static GetLastTextNode(elementWithChild) {
+        let child = elementWithChild.firstChild;
+        while (child?.nextSibling) {
+            child = child.nextSibling;
+        }
+        return child?.nodeType === NodeTypes.TEXT_NODE ? child : undefined;
     }
     static CountChildrenByName(elementWithChildren, pszNameOfChildrenToCount) {
         let child = XMLParser.GetFirstChild(elementWithChildren);
@@ -397,7 +404,7 @@ class XMLParser {
 }
 
 /**
- *  Copyright (c) 2022, Texas Instruments Incorporated
+ *  Copyright (c) 2022, 2025 Texas Instruments Incorporated
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -518,6 +525,9 @@ class Tag {
     getFirstChild() {
         return XMLParser.GetFirstChild(this.m_pNode);
     }
+    getLastTextNode() {
+        return XMLParser.GetLastTextNode(this.m_pNode);
+    }
     countChildrenByName(name) {
         return XMLParser.CountChildrenByName(this.m_pNode, name);
     }
@@ -564,6 +574,13 @@ class Tag {
         }
         return -1;
     }
+    getAllChildrenByName(name) {
+        const result = [];
+        for (let i = this.countChildrenByName(name); i-- > 0;) {
+            result.push(this.getChildByName(name, i));
+        }
+        return result;
+    }
     createChild(name, id, version, insertBefore) {
         // Need to handle the case for inserting in connections
         if (!insertBefore && this.getName().localeCompare(HWDB.CONNECTION_TAG) === 0) {
@@ -574,6 +591,10 @@ class Tag {
                 const nextInsertBefore = this.getChildByName(Tag.connectionChildTagNames[i], 0);
                 insertBefore = (nextInsertBefore === null) ? insertBefore : nextInsertBefore;
             }
+        }
+        // insert before text node, if there is one, which may contain line return and indentation specific to the parent sibling or closing tag.
+        if (!insertBefore) {
+            insertBefore = this.getLastTextNode();
         }
         // now create the child and set some common attributes
         const child = this.m_pXmlParser.CreateEntityNode(name);
@@ -738,7 +759,7 @@ class Tag {
         return this.m_pXmlParser.serializeXMLDocument();
     }
     toString() {
-        return `<${this.getName()} ${this.m_pNode.attributes.toString()}>`;
+        return `<${this.getName()} ${this.m_pNode.attributes?.toString() ?? ''}>`;
     }
     getNode() {
         return this.m_pNode;
@@ -776,7 +797,7 @@ Tag.connectionChildTagNames = [
 ];
 
 /**
- *  Copyright (c) 2022, Texas Instruments Incorporated
+ *  Copyright (c) 2022, 2025 Texas Instruments Incorporated
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -1044,7 +1065,7 @@ class HardwareDatabaseReader {
                 }
                 // get type of node
                 tag = childNode.getName();
-                const componentName = childNode.getAttribute(HWDB.NAME_ATTRIBUTE);
+                const componentName = childNode.getAttribute(HWDB.NAME_ATTRIBUTE) || childNode.getAttribute(HWDB.ID_ATTRIBUTE);
                 if (componentName) {
                     childNode.setAttribute(HWDB.COMPONENT_NAME, componentName);
                 }
@@ -1134,6 +1155,10 @@ class HardwareDatabaseReader {
             newChild = parent.createChild(includedRootNode.getName(), null, null, insertBefore);
         }
         const newChildTag = new Tag(parent, newChild);
+        const componentName = includedRootNode.getAttribute(HWDB.NAME_ATTRIBUTE) || includedRootNode.getAttribute(HWDB.ID_ATTRIBUTE);
+        if (componentName) {
+            newChildTag.setAttribute(HWDB.COMPONENT_NAME, componentName);
+        }
         await this.copyNode(includedRootNode, newChildTag, getParent(fileName), rootDirectories, true, false);
         newChildTag.setAttribute(HWDB.ID_ATTRIBUTE, id);
         newChildTag.setAttribute(HWDB.VER_ATTRIBUTE, HWDB.VERSION);
@@ -1561,7 +1586,7 @@ ProcessorID.CORTEX = 'Cortex ';
 ProcessorID.ARP32 = 'ARP32';
 
 /**
- *  Copyright (c) 2022, Texas Instruments Incorporated
+ *  Copyright (c) 2022, 2025 Texas Instruments Incorporated
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -1589,10 +1614,6 @@ ProcessorID.ARP32 = 'ARP32';
  *  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
  */
-const CCXML_FILEEXT = 'ccxml';
-const CACHE_FILENAME = 'targetdb.cache';
-const CACHE_TIMESTAMP_FILENAME = 'targetdb.timestamp';
-const TIMESTAMP_FILENAME = 'timestamp';
 class ErrorReport {
     constructor(errorMessage, location) {
         this.location = location;
@@ -2663,8 +2684,8 @@ function addToListOfCpuOperations(node, parentId, cpus, includeRouters, connecti
                 if (driverTag.getPropertyString('multiBoard', 'yes').toLowerCase().localeCompare('yes') === 0) {
                     driverFilename = null; // indicate multiBoard support with a null driver name (saves storage).
                 }
-                const capableMultiProccessor = driverTag.getPropertyString('multiProcessor', 'yes').toLowerCase().localeCompare('yes') === 0;
-                const driver = new Driver(isaType, procId, driverId, debuggable, isaDescription, driverFilename, capableMultiProccessor);
+                const capableMultiProcessor = driverTag.getPropertyString('multiProcessor', 'yes').toLowerCase().localeCompare('yes') === 0;
+                const driver = new Driver(isaType, procId, driverId, debuggable, isaDescription, driverFilename, capableMultiProcessor);
                 cpus.add(new AddDriverOperation(connectionTypeTag.getAttribute(HWDB.TYPE_ATTRIBUTE), driver, connection !== null ? connection.id : null));
             }
             const nProperties = driverTag.countChildrenByName(HWDB.PROPERTY_TAG);
@@ -2779,18 +2800,6 @@ class SystemSetupReader {
     static getRootDirectories() {
         return this.installDirectories;
     }
-    onTargetDBDirectoriesChanged() {
-    }
-    static findNode(flatRoot, forCpu) {
-        const id = forCpu instanceof Cpu ? forCpu.id : forCpu;
-        if (id.parent !== null) {
-            const flatParentNode = this.findNode(flatRoot, id.parent);
-            if (flatParentNode === null)
-                return null; // found: not,abort.
-            flatRoot = new Tag(flatRoot, flatParentNode);
-        }
-        return flatRoot.getChildByID(null, id.id);
-    }
     getErrorMessages(flatRootNode, fileName) {
         try {
             let cpuCacheItem = null;
@@ -2808,7 +2817,7 @@ class SystemSetupReader {
     }
     doGetErrorMessages(cpuCacheItem, fileName) {
         const connectionNames = new Array();
-        const cpuNames = new Array();
+        const cpuNames = new Map();
         const subpathNames = new Array();
         const errorMessages = new Array();
         let debuggableCpuCount = 0;
@@ -2816,10 +2825,9 @@ class SystemSetupReader {
         let lastMultiProcessorCapableCpu = null;
         if (cpuCacheItem !== null) {
             const setupElements = cpuCacheItem.getSetupElements(null, fileName, SystemSetupReader.installDirectories);
-            //    		Array<Connection> connections = cpuCacheItem.getConnections(fileName, installDirectories);
-            // test for unique connection names
             if (setupElements !== null) {
                 setupElements.forEach(setupElement => {
+                    // test for unique connection names
                     if (setupElement instanceof Connection) {
                         const connection = setupElement;
                         let connectionName = connection.toString();
@@ -2851,27 +2859,26 @@ class SystemSetupReader {
                     if (setupElement instanceof Cpu) {
                         const cpu = setupElement;
                         let name = cpu.getName();
-                        if (!name.match(/^[a-zA-Z][a-zA-Z0-9_]*$/)) {
+                        if (!name.match(/^[a-zA-Z_]\w*$/)) {
                             errorMessages.push(new ErrorReport('Name has invalid characters.  Cpu, router, and subpath names must begin with a letter and only contain numbers letters and the underscore character.', cpu.toString()));
                         }
                         // test for unique and valid names
                         name = cpu.toString().toLowerCase();
-                        if (cpu.isSubpath()) {
-                            if (subpathNames.includes(name)) {
-                                errorMessages.push(new ErrorReport('More than one subpath is named ' + cpu.getName(), cpu.toString()));
+                        // test for unique cpu names per connection
+                        const connectionName = cpu.getBoardName()?.toLowerCase();
+                        if (connectionName && !cpu.isSubpath() && !cpu.isRouter()) {
+                            if (!cpuNames.has(connectionName)) {
+                                cpuNames.set(connectionName, new Set());
                             }
-                            else {
-                                subpathNames.push(name);
-                            }
-                        }
-                        else {
-                            if (cpuNames.includes(name)) {
+                            if (cpuNames.get(connectionName).has(name)) {
                                 errorMessages.push(new ErrorReport('More than one cpu is named ' + cpu.getName(), cpu.toString()));
                             }
                             else {
-                                cpuNames.push(name);
+                                cpuNames.get(connectionName).add(name);
                             }
-                            // test for missing drivers
+                        }
+                        // test for missing drivers
+                        if (!cpu.isSubpath()) {
                             if (cpu.isMissingDriver()) {
                                 errorMessages.push(new ErrorReport('Cannot find a driver for Cpu ' + cpu.getName(), cpu.toString()));
                                 debuggableCpuCount++; // don't generate errors for no cpus.
@@ -2913,7 +2920,7 @@ SystemSetupReader.schemaDirectory = 'ccs_base/common/targetdb';
 SystemSetupReader.installDirectories = [SystemSetupReader.schemaDirectory];
 
 /**
- *  Copyright (c) 2022, Texas Instruments Incorporated
+ *  Copyright (c) 2022, 2025 Texas Instruments Incorporated
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -3029,12 +3036,6 @@ class SystemSetupWriter extends SystemSetupReader {
             SystemSetupWriter.instance = new SystemSetupWriter();
         return SystemSetupWriter.instance;
     }
-    /* (non-Javadoc)
-     * @see com.ti.ccstudio.system.setup.SystemSetupReader#onTargetDBDirectoriesChanged()
-     */
-    onTargetDBDirectoriesChanged() {
-        super.onTargetDBDirectoriesChanged();
-    }
     setDefaultJtagProperties(connectionDefaults, connectionOverrides, jtagDefaults) {
         if (jtagDefaults === undefined) {
             // get first board, device, or cpu if it exists.
@@ -3107,12 +3108,15 @@ class SystemSetupWriter extends SystemSetupReader {
                                 }
                                 const jtagDefaultChoiceNode = jtagDefault.getChildByID(HWDB.CHOICE_TAG, id, idAttribute);
                                 if (jtagDefaultChoiceNode !== null) {
-                                    // create override choice
-                                    const connectionOverrideChoice = new Tag(connectionOverride, connectionOverride.createChild(HWDB.CHOICE_TAG, null, null));
-                                    connectionOverrideChoice.copyAttribute(connectionDefaultChoice, HWDB.CHOICE_VALUE_ATTRIBUTE);
-                                    connectionOverrideChoice.copyAttribute(connectionDefaultChoice, HWDB.PROPERTY_NAME_ATTRIBUTE);
-                                    // recursively copy sub-properties
-                                    this.setDefaultJtagProperties(connectionDefaultChoice, connectionOverrideChoice, new Tag(jtagDefault, jtagDefaultChoiceNode));
+                                    const jtagDefaultChoice = new Tag(jtagDefault, jtagDefaultChoiceNode);
+                                    if (jtagDefaultChoice.countChildrenByName(HWDB.PROPERTY_TAG) > 0) {
+                                        // create override choice
+                                        const connectionOverrideChoice = new Tag(connectionOverride, connectionOverride.createChild(HWDB.CHOICE_TAG, null, null));
+                                        connectionOverrideChoice.copyAttribute(connectionDefaultChoice, HWDB.CHOICE_VALUE_ATTRIBUTE);
+                                        connectionOverrideChoice.copyAttribute(connectionDefaultChoice, HWDB.PROPERTY_NAME_ATTRIBUTE);
+                                        // recursively copy sub-properties
+                                        this.setDefaultJtagProperties(connectionDefaultChoice, connectionOverrideChoice, jtagDefaultChoice);
+                                    }
                                 }
                             }
                         }
@@ -3137,70 +3141,65 @@ class SystemSetupWriter extends SystemSetupReader {
         }
     }
     static createUniqueNames(parent, flatRootNode, rootNode, existingNames) {
-        let child = this.getFirstVisibleChild(parent);
-        while (child !== null) {
-            let childName = XMLParser.GetAttributeString(child, HWDB.NAME_ATTRIBUTE);
-            if (childName === null || childName.length === 0) {
-                childName = XMLParser.GetAttributeString(child, HWDB.ID_ATTRIBUTE);
-            }
-            if (childName !== null && childName.length > 0) {
-                let nameChanged = false;
-                while (existingNames.includes(childName.toLowerCase())) {
-                    // create unique name
-                    childName = this.generateUniqueString(childName);
-                    nameChanged = true;
+        if (parent.nodeName === 'connection') {
+            existingNames = [];
+        }
+        for (let child = this.getFirstVisibleChild(parent); child !== null; child = XMLParser.GetNextSibling(child)) {
+            if (child.nodeName === 'cpu') {
+                let childName = XMLParser.GetAttributeString(child, HWDB.NAME_ATTRIBUTE);
+                if (childName === null || childName.length === 0) {
+                    childName = XMLParser.GetAttributeString(child, HWDB.ID_ATTRIBUTE);
                 }
-                if (nameChanged && flatRootNode !== null) {
-                    // set new name in flat file
-                    const flatNode = new Tag(flatRootNode, child);
-                    flatNode.setAttribute(HWDB.NAME_ATTRIBUTE, childName);
-                    // set in top level system setup xml file as well.
-                    const topLevelNode = this.gotoNode(flatNode, flatRootNode, rootNode, true);
-                    topLevelNode?.setAttribute(HWDB.NAME_ATTRIBUTE, childName);
+                if (childName !== null && childName.length > 0) {
+                    let nameChanged = false;
+                    while (existingNames.includes(childName.toLowerCase())) {
+                        // create unique name
+                        childName = this.generateUniqueString(childName);
+                        nameChanged = true;
+                    }
+                    if (nameChanged) {
+                        // set new name in flat file
+                        const flatNode = new Tag(flatRootNode, child);
+                        flatNode.setAttribute(HWDB.NAME_ATTRIBUTE, childName);
+                        // set in top level system setup xml file as well.
+                        const topLevelNode = this.gotoNode(flatNode, flatRootNode, rootNode, true);
+                        topLevelNode?.setAttribute(HWDB.NAME_ATTRIBUTE, childName);
+                    }
+                    existingNames.push(childName.toLowerCase());
                 }
-                existingNames.push(childName.toLowerCase());
             }
             this.createUniqueNames(child, flatRootNode, rootNode, existingNames);
-            child = XMLParser.GetNextSibling(child);
         }
     }
     static createUniqueId(parent, name, existingNames) {
-        while (parent.getChildByID(null, name) !== null || (existingNames !== null && existingNames.includes(name.toLowerCase()))) {
+        while (parent.getChildByID(null, name) !== null || existingNames?.includes(name.toLowerCase())) {
             name = this.generateUniqueString(name);
         }
-        if (existingNames !== null) {
-            existingNames.push(name.toLowerCase());
-        }
+        existingNames?.push(name.toLowerCase());
         return name;
     }
     static generateUniqueString(name) {
-        const t = name.lastIndexOf('_');
-        let newSuffix = '_0';
-        if (t > 0) {
-            const suffix = name.substring(t + 1);
-            try {
-                newSuffix = (Number.parseInt(suffix) + 1).toString();
-                name = name.substring(0, t + 1);
+        const pos = name.lastIndexOf('_');
+        if (pos > 0) {
+            // may have an existing suffix
+            const suffix = name.substring(pos + 1);
+            if (!isNaN(+suffix)) {
+                // numeric suffix
+                return `${name.substring(0, pos)}_${+suffix + 1}`;
             }
-            catch (e) {
-                // it wasn't an integer
-                if (suffix.length === 1) {
-                    const lastCh = suffix.charAt(0);
-                    let lastChCode = suffix.charCodeAt(0);
-                    if ((lastCh <= 'Z' && lastCh >= 'A') || (lastCh <= 'z' && lastCh >= 'a')) {
-                        name = name.substring(0, t + 1);
-                        newSuffix = '' + String.fromCharCode(++lastChCode); // increment alpha suffix
-                    }
+            else if (suffix.length === 1) {
+                // it wasn't a number, and it is only one character.
+                const lastCh = suffix.charAt(0);
+                let lastChCode = suffix.charCodeAt(0);
+                if ((lastCh < 'Z' && lastCh >= 'A') || (lastCh < 'z' && lastCh >= 'a')) {
+                    return `${name.substring(0, pos)}_${String.fromCharCode(++lastChCode)}`; // increment alpha suffix
                 }
             }
         }
-        return name + newSuffix;
+        // default case, start a new numeric suffix
+        return `${name}_0`;
     }
     static gotoNode(flatNode, flatRootNode, rootNode, createNode) {
-        // do thing if the file is empty
-        if (flatRootNode === null) {
-            return null;
-        }
         if (flatNode.getNode() === flatRootNode.getNode()) {
             return rootNode;
         }
@@ -3265,19 +3264,17 @@ class SystemSetupWriter extends SystemSetupReader {
         else {
             const elementNames = flatRootNodeOrElementNames;
             const parent = parentNode;
-            let child = this.getFirstVisibleChild(parent);
-            while (child !== null) {
+            for (let child = this.getFirstVisibleChild(parent); child !== null; child = this.getNextVisibleChild(child)) {
                 let childName = XMLParser.GetAttributeString(child, HWDB.NAME_ATTRIBUTE);
                 if (childName === null || childName.length === 0) {
                     childName = XMLParser.GetAttributeString(child, HWDB.ID_ATTRIBUTE);
                 }
                 if (childName !== null && childName.length > 0) {
-                    elementNames.push(childName.toLowerCase());
+                    elementNames.push({ type: child.nodeName, name: childName.toLowerCase() });
                 }
                 if (recursive) {
                     this.getComponentNames(child, elementNames, true);
                 }
-                child = this.getNextVisibleChild(child);
             }
         }
         return result;
@@ -3319,10 +3316,51 @@ class SystemSetupWriter extends SystemSetupReader {
         }
         return child;
     }
+    addDeviceDriver(connection, relDriverXmlFile) {
+        // insert before connectionType, drivers, or platform which ever exists in that order.
+        const insertBefore = connection.getChildByName(HWDB.CONNECTION_TYPE_TAG, 0) ??
+            connection.getChildByName(HWDB.PROPERTY_TAG, 0) ??
+            connection.getChildByName(HWDB.DRIVERS_TAG, 0) ??
+            connection.getChildByName(HWDB.PLATFORM_TAG, 0) ??
+            undefined;
+        HardwareDatabaseReader.includeFile(connection, relDriverXmlFile, HWDB.DRIVERS_TAG, null, insertBefore);
+    }
+    async addDeviceDrivers(connection, connectionName, boardOrDevice) {
+        if (boardOrDevice.type === 'connection') {
+            return;
+        }
+        const targetConfig = ServicesRegistry.getService(targetConfigServiceType);
+        const ccxmlText = await targetConfig.getConfig(connectionName, boardOrDevice.id);
+        function reduce(result, element) {
+            for (let child = element?.firstChild; child; child = child.nextSibling) {
+                if (child.nodeType === NodeTypes.ELEMENT_NODE) {
+                    if (child.nodeName === HWDB.INSTANCE_TAG && child.attributes?.getNamedItem(HWDB.XMLPATH_ATTRIBUTE)?.value === HWDB.DRIVERS_TAG) {
+                        const href = child.attributes?.getNamedItem(HWDB.HREF_ATTRIBUTE);
+                        if (!href) {
+                            throw Error('Missing href attribute from driver <instance> tag.');
+                        }
+                        result.push(href.value);
+                    }
+                    else {
+                        reduce(result, child);
+                    }
+                }
+            }
+            return result;
+        }
+        const document = targetConfig.parseConfig(ccxmlText);
+        const driverXmlFiles = reduce([], document.documentElement);
+        if (driverXmlFiles.length === 0) {
+            throw Error('Device or Board does not contain any debuggable CPU\'s\nPlease select a different device or board');
+        }
+        driverXmlFiles.forEach(driverXmlFile => {
+            this.addDeviceDriver(connection, driverXmlFile);
+        });
+    }
 }
 
 /**
- *  Copyright (c) 2022, 2024 Texas Instruments Incorporated
+ *  Copyright (c) 2022, 2025 Texas Instruments Incorporated
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -3358,6 +3396,12 @@ const nullTreeDataProvider = new (class {
     getValue() {
         return;
     }
+    isExpandable() {
+        return false;
+    }
+    getChildDataProvider(row) {
+        return nullTreeDataProvider;
+    }
 })();
 class TreeElement {
     constructor(id, item, parent, systemSetup) {
@@ -3369,37 +3413,16 @@ class TreeElement {
     }
     get children() {
         if (this._children === null) {
-            this._children = this.systemSetup.getChildren(this);
+            const childNodes = this.systemSetup.getChildNodes(this.item);
+            this._children = childNodes.map(node => {
+                const childID = XMLParser.GetAttributeString(node, HWDB.ID_ATTRIBUTE);
+                return new TreeElement(childID, node, this, this.systemSetup);
+            });
         }
         return this._children;
     }
-    getChildren(rawChildren) {
-        if (rawChildren === null || rawChildren.length === 0) {
-            return [];
-        }
-        const newChildren = new Array(rawChildren.length);
-        let nOldChildren = this._children === null ? 0 : this._children.length;
-        for (let i = rawChildren.length; i-- > 0;) {
-            let newChild = null;
-            const childID = XMLParser.GetAttributeString(rawChildren[i], HWDB.ID_ATTRIBUTE);
-            // String childLabel = getLabel(rawChildren[i], systemSetup);
-            if (this._children !== null) {
-                for (let j = nOldChildren; j-- > 0;) {
-                    if (this._children[j].id.localeCompare(childID) === 0) {
-                        newChild = this._children[j];
-                        newChild.item = rawChildren[i];
-                        // remove child from list in case another new child has same label, don't want to share old child element.
-                        this._children[j] = this._children[--nOldChildren];
-                        break;
-                    }
-                }
-            }
-            if (newChild === null) {
-                newChild = new TreeElement(childID, rawChildren[i], this, this.systemSetup);
-            }
-            newChildren[i] = newChild;
-        }
-        return newChildren;
+    updateChildren() {
+        this._children = null;
     }
     getParent() {
         return this.parent;
@@ -3428,12 +3451,12 @@ class TreeElement {
         }
         return null;
     }
-    getTextToDisplay() {
+    getName() {
         return TreeElement.getLabel(this.item, this.systemSetup);
     }
     static getLabel(item, systemSetup) {
         let label = '';
-        if (item !== null && systemSetup.flatRootNode !== null) {
+        if (item !== null) {
             const node = new Tag(systemSetup.flatRootNode, item);
             label = node.getAttribute(HWDB.NAME_ATTRIBUTE);
             if (label === null || label.length === 0) {
@@ -3443,7 +3466,7 @@ class TreeElement {
         return label;
     }
     getDecoratorText() {
-        if (this.item !== null && this.systemSetup.flatRootNode !== null) {
+        if (this.item !== null) {
             const node = new Tag(this.systemSetup.flatRootNode, this.item);
             const name = node.getName();
             if (name.localeCompare(HWDB.CPU_TAG) === 0) {
@@ -3471,6 +3494,18 @@ class TreeElement {
         }
         return found;
     }
+    findElementByPath(path) {
+        if (!path) {
+            return this;
+        }
+        return path.split('/').reduce((result, segment) => {
+            if (!result) {
+                return result;
+            }
+            const row = result.lookupRowByName(segment);
+            return result.children[row] ?? null;
+        }, this);
+    }
     toString() {
         let result = null;
         if (this.item !== null) {
@@ -3482,37 +3517,37 @@ class TreeElement {
         return result === null ? '' + this : result;
     }
     get rowCount() {
-        return this.children?.length ?? 0;
+        return this.children.length;
     }
     getValue(childIndex, column) {
-        const child = this.children?.[childIndex];
+        const child = this.children[childIndex];
         if (!child) {
             return '';
         }
         const decoratorText = column === 'name' ? undefined : child.getDecoratorText();
         if (decoratorText) {
-            return `${child.getTextToDisplay()} (${decoratorText})`;
+            return `${child.getName()} (${decoratorText})`;
         }
-        return child.getTextToDisplay();
+        return child.getName();
     }
     setValue(childIndex, column, value) {
     }
     isExpandable(childIndex) {
-        const child = this.children?.[childIndex];
+        const child = this.children[childIndex];
         if (!child) {
             return false;
         }
-        return (child.children?.length ?? 0) > 0;
+        return child.children.length > 0;
     }
     getChildDataProvider(childIndex) {
-        const child = this.children?.[childIndex];
+        const child = this.children[childIndex];
         if (!child) {
             return nullTreeDataProvider;
         }
         return child;
     }
     lookupRowByName(name) {
-        return this.children?.findIndex(child => child.getTextToDisplay() === name) ?? -1;
+        return this.children.findIndex(child => child.getName() === name) ?? -1;
     }
     getIconName(childIndex) {
         const iconMap = {
@@ -3527,7 +3562,7 @@ class TreeElement {
             connection: 'content:link',
             device: 'hardware:memory'
         };
-        const child = this.children?.[childIndex];
+        const child = this.children[childIndex];
         const iconName = child ? this.systemSetup.getIconNameToDisplay(child) : 'nondebug';
         return iconMap[iconName] ?? '';
     }
@@ -3964,17 +3999,27 @@ class SystemSetupEditor extends SystemSetupWriter {
     constructor() {
         super();
         this.errorReports = null;
-        this.rootTreeElement = null;
         this.fileName = '';
-        this.rootNode = null;
-        this.flatRootNode = null;
         this.xmlReader.addAttributesToFilter([HWDB.COMPONENT_NAME, HWDB.XML_ATTRIBUTE]);
+        // create configurations tag
+        const xmlParser = new XMLParser();
+        const root = xmlParser.CreateNewDocument(HWDB.CONFIGURATIONS_TAG);
+        xmlParser.SetAttribute(root, HWDB.VER_ATTRIBUTE, HWDB.VERSION);
+        xmlParser.SetAttribute(root, HWDB.ID_ATTRIBUTE, 'configurations_0');
+        this.flatRootNode = new Tag(xmlParser, root);
+        const xmlParser1 = new XMLParser();
+        const root1 = xmlParser1.CreateNewDocument(HWDB.CONFIGURATIONS_TAG);
+        xmlParser1.SetAttribute(root1, HWDB.VER_ATTRIBUTE, HWDB.VERSION);
+        xmlParser1.SetAttribute(root1, HWDB.ID_ATTRIBUTE, 'configurations_0');
+        this.rootNode = new Tag(xmlParser1, root1);
+        this.rootTreeElement = new TreeElement(null, this.flatRootNode.getNode(), null, this);
     }
     async load(xmlInput, fileName, isCancelled) {
         this.fileName = fileName;
         const rootDirectories = SystemSetupReader.getRootDirectories();
         this.rootNode = await this.xmlReader.parseConfig(xmlInput, rootDirectories, SystemSetupReader.getSchemaDirectory());
         this.flatRootNode = await this.xmlReader.convertToFlatFile(this.rootNode, fileName, rootDirectories, isCancelled);
+        this.rootTreeElement = new TreeElement(null, this.flatRootNode.getNode(), null, this);
         // recalculate error messages and test that something has changed
         this.generateErrorReports();
     }
@@ -4164,11 +4209,6 @@ class SystemSetupEditor extends SystemSetupWriter {
         }
     }
     addBypassProperties(flatNode, properties) {
-        if (this.flatRootNode === null) {
-            throw new Error('No xml file loaded to add byPass properties on.');
-        }
-        // Create the root node in case the file is an empty file or invalid XML file
-        this.createFlatRootNode();
         const prop = new NumberProperty(new BypassBitsPropertyDescriptor(flatNode, this.flatRootNode));
         prop.description = 'Bypass Bits';
         prop.upperbound = 1024;
@@ -4241,43 +4281,41 @@ class SystemSetupEditor extends SystemSetupWriter {
     }
     getProperties(object, excludeHiddenProperty = true) {
         let properties = new Array();
-        if (this.flatRootNode !== null) {
-            const flatNode = new Tag(this.flatRootNode, object.item);
-            if (SystemSetupEditor.getBypassBits(flatNode) > 0) {
-                this.addBypassProperties(flatNode, properties);
-            }
-            else {
-                // add built-in properties
-                this.addBuiltInProperties(flatNode, properties);
-                const prop = properties.length > 0 ? properties[0] : null;
-                if (flatNode.getName().localeCompare(HWDB.CONNECTION_TAG) === 0) {
-                    // add connection properties
-                    if (prop === null || !(prop instanceof DropListProperty)
-                        || prop.description.localeCompare('dataFileRequired') !== 0
-                        || this.getProperty(prop).toString().localeCompare('specify custom') !== 0) {
-                        // don't add connection properties if we user specifying their own board.dat config file.
-                        this.addProperties(flatNode, flatNode, properties, excludeHiddenProperty, false, null);
-                    }
+        const flatNode = new Tag(this.flatRootNode, object.item);
+        if (SystemSetupEditor.getBypassBits(flatNode) > 0) {
+            this.addBypassProperties(flatNode, properties);
+        }
+        else {
+            // add built-in properties
+            this.addBuiltInProperties(flatNode, properties);
+            const prop = properties.length > 0 ? properties[0] : null;
+            if (flatNode.getName().localeCompare(HWDB.CONNECTION_TAG) === 0) {
+                // add connection properties
+                if (prop === null || !(prop instanceof DropListProperty)
+                    || prop.description.localeCompare('dataFileRequired') !== 0
+                    || this.getProperty(prop).toString().localeCompare('specify custom') !== 0) {
+                    // don't add connection properties if we user specifying their own board.dat config file.
+                    this.addProperties(flatNode, flatNode, properties, excludeHiddenProperty, false, null);
                 }
-                else if (prop !== null && prop.description.toLowerCase().localeCompare(HWDB.BYPASS_PROPERTY) === 0) {
-                    // indicate that it has sub-properties because if bypassed we skip other properties.
-                    prop.descriptor.setHasSubProperties(true);
-                    // determine if current state is bypassed
-                    if (this.getProperty(prop).toString().toLowerCase() === 'yes') {
-                        // remove all other default properties when bypass is selected
-                        while (properties.length > 1) {
-                            properties = properties.slice(1);
-                        }
-                    }
-                    else {
-                        // add driver properties unless device is bypassed
-                        this.addDriverProperties(flatNode, properties);
+            }
+            else if (prop !== null && prop.description.toLowerCase().localeCompare(HWDB.BYPASS_PROPERTY) === 0) {
+                // indicate that it has sub-properties because if bypassed we skip other properties.
+                prop.descriptor.setHasSubProperties(true);
+                // determine if current state is bypassed
+                if (this.getProperty(prop).toString().toLowerCase() === 'yes') {
+                    // remove all other default properties when bypass is selected
+                    while (properties.length > 1) {
+                        properties = properties.slice(1);
                     }
                 }
                 else {
-                    // add driver properties
+                    // add driver properties unless device is bypassed
                     this.addDriverProperties(flatNode, properties);
                 }
+            }
+            else {
+                // add driver properties
+                this.addDriverProperties(flatNode, properties);
             }
         }
         return properties;
@@ -4303,20 +4341,18 @@ class SystemSetupEditor extends SystemSetupWriter {
         return result;
     }
     getBoardName(object) {
-        if (this.flatRootNode !== null) {
-            const flatProperty = new Tag(this.flatRootNode, object.item);
-            const connectionNode = flatProperty.getParent(HWDB.CONNECTION_TAG);
-            const connection = connectionNode && this.rootTreeElement?.findElement(connectionNode);
-            if (connection) {
-                return connection.getTextToDisplay();
-            }
+        const flatProperty = new Tag(this.flatRootNode, object.item);
+        const connectionNode = flatProperty.getParent(HWDB.CONNECTION_TAG);
+        const connection = connectionNode && this.rootTreeElement.findElement(connectionNode);
+        if (connection) {
+            return connection.getName();
         }
         return null;
     }
     getRecommendedBoardName(object) {
         let boardName = null;
         let flatNode = null;
-        if (object instanceof TreeElement && this.flatRootNode !== null) {
+        if (object instanceof TreeElement) {
             flatNode = new Tag(this.flatRootNode, object.item);
             const type = flatNode.getName();
             let isaTag = null;
@@ -4350,60 +4386,39 @@ class SystemSetupEditor extends SystemSetupWriter {
         }
         if (flatNode !== null && boardName !== null && boardName.length > 0) {
             const configurationNode = flatNode.getParent(HWDB.CONFIGURATION_TAG);
-            if (configurationNode && this.flatRootNode !== null) {
+            if (configurationNode) {
                 const parent = new Tag(this.flatRootNode, configurationNode);
-                boardName = SystemSetupEditor.createUniqueId(parent, boardName, SystemSetupEditor.getComponentNames(parent, this.flatRootNode));
+                boardName = SystemSetupEditor.createUniqueId(parent, boardName, SystemSetupEditor.getComponentNames(parent, this.flatRootNode).map(item => item.name));
             }
         }
         return boardName;
     }
-    renameBoard(element, recommendedBoardName) {
-        if (this.flatRootNode === null) {
-            throw new Error('No xml file to rename board on.');
-        }
-        const cpuNode = new Tag(this.flatRootNode, element.item);
-        const connection = cpuNode.getParent(HWDB.CONNECTION_TAG);
-        const connectionNode = connection && this.rootTreeElement?.findElement(connection);
-        if (connectionNode) {
-            this.rename(connectionNode, recommendedBoardName);
-        }
-    }
     getNodeType(element) {
-        if (this.flatRootNode !== null) {
-            const tag = new Tag(this.flatRootNode, element.item);
-            return tag.getName();
-        }
-        return null;
+        const tag = new Tag(this.flatRootNode, element.item);
+        return tag.getName();
     }
     getAttributeString(element, name) {
         let attribute = null;
-        if (this.flatRootNode !== null) {
-            const tag = new Tag(this.flatRootNode, element.item);
-            attribute = tag.getAttribute(name);
-        }
+        const tag = new Tag(this.flatRootNode, element.item);
+        attribute = tag.getAttribute(name);
         return attribute === null ? '' : attribute;
     }
     getChildAttributeString(element, childName, attributeName) {
         let attribute = null;
-        if (this.flatRootNode !== null) {
-            const tag = new Tag(this.flatRootNode, element.item);
-            attribute = tag.getChildAttribute(childName, attributeName);
-        }
+        const tag = new Tag(this.flatRootNode, element.item);
+        attribute = tag.getChildAttribute(childName, attributeName);
         return attribute === null ? '' : attribute;
     }
     getNodeDescriptionToDisplay(element) {
         let description = this.getErrorMessage(element);
-        if (description === null && this.flatRootNode !== null) {
+        if (description === null) {
             const flatNode = new Tag(this.flatRootNode, element.item);
             description = flatNode.getAttribute(HWDB.DESCRIPTION_ATTRIBUTE);
         }
         return description === null ? '' : description;
     }
     findNodesOrIncludeTags(flatNode, includeTextNodes = false) {
-        if (this.rootNode === null) {
-            throw new Error('No xml file loaded to find nodes or include tags on.');
-        }
-        let retVal = null;
+        const retVal = [];
         // parent must exist in original file first
         const flatParentNode = flatNode.getParent(null) ?? null;
         const flatParent = flatParentNode && new Tag(flatNode, flatParentNode);
@@ -4411,50 +4426,42 @@ class SystemSetupEditor extends SystemSetupWriter {
         if (parent !== null && flatNode.getAttribute(HWDB.MOVABLE_ATTRIBUTE).localeCompare('no') !== 0) {
             const id = flatNode.getAttribute(HWDB.ID_ATTRIBUTE);
             // find child node with matching href
-            let child = parent.getFirstChild();
+            let child = parent.getNode().firstChild;
             let prevNode = null;
-            while (child !== null) {
-                if (id.localeCompare(XMLParser.GetAttributeString(child, HWDB.ID_ATTRIBUTE)) === 0) {
+            while (child) {
+                if (child.nodeType === NodeTypes.ELEMENT_NODE && id.localeCompare(XMLParser.GetAttributeString(child, HWDB.ID_ATTRIBUTE)) === 0) {
                     // found direct reference
-                    if (retVal === null) {
-                        retVal = new Array(2);
-                    }
                     if (includeTextNodes && prevNode !== null && prevNode.nodeType === NodeTypes.TEXT_NODE) {
                         retVal.push(new Tag(parent, prevNode));
                     }
                     retVal.push(new Tag(parent, child));
                 }
                 prevNode = child;
-                child = child.nextSibling ?? null;
+                child = child.nextSibling;
             }
         }
         return retVal;
     }
-    async setPropertyByName(root, cpuId, propId, value) {
-        if (root === null) {
-            root = this.getRoot();
-        }
+    setPropertyByName(rootElement, cpuId, propId, value) {
+        const root = rootElement ?? this.getRoot();
         // set property on the root
-        if (root !== null) {
-            const r = root;
-            if ((cpuId === null)
-                || (r.id !== null && cpuId.localeCompare(r.id) === 0)) {
-                const properties = await this.getProperties(root);
-                if (properties !== null) {
-                    properties.forEach(property => {
-                        if (propId.localeCompare(property.getName()) === 0) {
-                            this.setProperty(property, value);
-                        }
-                    });
-                }
-            }
-            // recursively set property on children of root
-            const children = this.getChildren(root);
-            if (children !== null) {
-                children.forEach(child => {
-                    this.setPropertyByName(child, cpuId, propId, value);
+        if ((cpuId === null)
+            || (root.id !== null && cpuId.localeCompare(root.id) === 0)) {
+            const properties = this.getProperties(root);
+            if (properties !== null) {
+                properties.forEach(property => {
+                    if (propId.localeCompare(property.getName()) === 0) {
+                        this.setProperty(property, value);
+                    }
                 });
             }
+        }
+        // recursively set property on children of root
+        const children = root.children;
+        if (children !== null) {
+            children.forEach(child => {
+                this.setPropertyByName(child, cpuId, propId, value);
+            });
         }
     }
     getPropertyError(prop) {
@@ -4464,9 +4471,6 @@ class SystemSetupEditor extends SystemSetupWriter {
         const descriptor = prop.descriptor;
         if (descriptor.isReadOnly()) {
             return false;
-        }
-        if (this.rootNode === null) {
-            throw new Error('No xml file loaded to set properties on.');
         }
         if (prop instanceof FileProperty && typeof value === 'string') {
             value = GcUtils.findAndReplace(value, '\\', '/');
@@ -4507,7 +4511,7 @@ class SystemSetupEditor extends SystemSetupWriter {
             // must set the value in the system setup xml file as well
             const newProperty = SystemSetupWriter.gotoNode(flatProperty, this.flatRootNode, this.rootNode, true);
             newProperty?.setAttribute(descriptor.getValueAttributeName(), flatProperty.getAttribute(descriptor.getValueAttributeName()));
-            if (descriptor.hasSubProperties() && this.rootTreeElement !== null) {
+            if (descriptor.hasSubProperties()) {
                 // special case if bypass property changed then errors could be
                 // generated or removed.
                 if (descriptor instanceof BypassBitsPropertyDescriptor) {
@@ -4517,28 +4521,21 @@ class SystemSetupEditor extends SystemSetupWriter {
         }
         return true;
     }
-    rename(element, value) {
-        if (this.flatRootNode !== null && this.rootNode !== null) {
-            const node = new Tag(this.flatRootNode, element.item);
-            // set new name in flat file
-            node.setAttribute(HWDB.NAME_ATTRIBUTE, value);
-            // set in top level system setup xml file as well.
-            const topLevelNode = SystemSetupWriter.gotoNode(node, this.flatRootNode, this.rootNode, true);
-            topLevelNode?.setAttribute(HWDB.NAME_ATTRIBUTE, value);
-            // regenerate Error Messages
-            this.generateErrorReports();
+    renameComponent(element, value) {
+        const node = new Tag(this.flatRootNode, element.item);
+        // set new name in flat file
+        node.setAttribute(HWDB.NAME_ATTRIBUTE, value);
+        // set in top level system setup xml file as well.
+        const topLevelNodes = this.findNodesOrIncludeTags(node, false).filter(element => element.getAttribute(HWDB.NAME_ATTRIBUTE));
+        if (topLevelNodes.length === 0) {
+            topLevelNodes.push(SystemSetupWriter.gotoNode(node, this.flatRootNode, this.rootNode, true));
         }
+        topLevelNodes.forEach(topLevelNode => topLevelNode.setAttribute(HWDB.NAME_ATTRIBUTE, value));
+        // regenerate Error Messages
+        this.generateErrorReports();
     }
     getRoot() {
-        if (this.rootTreeElement === null) {
-            if (this.flatRootNode !== null) {
-                this.rootTreeElement = new TreeElement(null, this.flatRootNode.getNode(), null, this);
-            }
-        }
-        return this.rootTreeElement === null ? null : this.rootTreeElement;
-    }
-    getChildren(element) {
-        return element.getChildren(this.getChildNodes(element.item));
+        return this.rootTreeElement;
     }
     getChildNodes(parentNode) {
         const count = this.countChildNodes(parentNode);
@@ -4551,7 +4548,7 @@ class SystemSetupEditor extends SystemSetupWriter {
             }
             return result;
         }
-        return null;
+        return [];
     }
     countChildren(element) {
         return this.countChildNodes(element.item);
@@ -4575,9 +4572,7 @@ class SystemSetupEditor extends SystemSetupWriter {
             parentNode = object.parentNode;
             while (parentNode !== null) {
                 if (nodesToShow.has(parentNode.nodeName)) {
-                    if (this.rootTreeElement !== null) {
-                        parent = this.rootTreeElement.findElement(parentNode);
-                    }
+                    parent = this.rootTreeElement.findElement(parentNode);
                     break; // found it
                 }
                 parentNode = parentNode.parentNode ?? null;
@@ -4586,14 +4581,14 @@ class SystemSetupEditor extends SystemSetupWriter {
         return parent === null ? this.getRoot() : parent;
     }
     findErrorLocation(errorLocation, parent) {
-        parent = parent ?? this.getRoot() ?? undefined;
+        parent = parent ?? this.getRoot();
         let result;
-        const thisErrorLocation = parent?.getErrorLocation();
+        const thisErrorLocation = parent.getErrorLocation();
         if (thisErrorLocation && thisErrorLocation.localeCompare(errorLocation) === 0)
             return parent;
-        const children = (parent && this.getChildren(parent)) ?? undefined;
+        const children = (parent && parent.children) ?? undefined;
         if (children) {
-            for (let i = 0; result === null && i < children.length; i++) {
+            for (let i = 0; result === undefined && i < children.length; i++) {
                 result = this.findErrorLocation(errorLocation, children[i]);
             }
         }
@@ -4620,15 +4615,12 @@ class SystemSetupEditor extends SystemSetupWriter {
         return this.errorReports !== null && this.errorReports.length > 0;
     }
     getXmlText() {
-        if (this.rootNode !== null) {
-            const result = this.rootNode.serializeXMLDocument();
-            const pos = result.indexOf('><configurations');
-            if (pos > 0 && pos < 100) {
-                return result.substring(0, pos + 1) + '\n' + result.substring(pos + 1);
-            }
-            return result;
+        const result = this.rootNode.serializeXMLDocument();
+        const pos = result.indexOf('><configurations');
+        if (pos > 0 && pos < 100) {
+            return result.substring(0, pos + 1) + '\n' + result.substring(pos + 1);
         }
-        return '';
+        return result;
     }
     static getBypassBits(node) {
         const isa = node.getAttribute(HWDB.ISA_ATTRIBUTE);
@@ -4645,7 +4637,7 @@ class SystemSetupEditor extends SystemSetupWriter {
         let iconName = hideConfigurations ? HWDB.CONNECTION_TAG : HWDB.CONFIGURATION_TAG;
         if (element !== null) {
             iconName = XMLParser.GetName(element.item);
-            if ((iconName.localeCompare(HWDB.CPU_TAG) === 0 || iconName.localeCompare(HWDB.ROUTER_TAG) === 0) && this.flatRootNode !== null) {
+            if ((iconName.localeCompare(HWDB.CPU_TAG) === 0 || iconName.localeCompare(HWDB.ROUTER_TAG) === 0)) {
                 const node = new Tag(this.flatRootNode, element.item);
                 if (SystemSetupEditor.getBypassBits(node) > 0 ||
                     node.getPropertyString(HWDB.BYPASS_PROPERTY, '0').localeCompare('1') === 0) {
@@ -4655,10 +4647,209 @@ class SystemSetupEditor extends SystemSetupWriter {
         }
         return iconName;
     }
-    generateErrorReports() {
-        if (this.flatRootNode === null || !this.fileName) {
+    canRemoveComponent(node) {
+        const flatChild = node.item;
+        const flatChildTag = new Tag(this.flatRootNode, flatChild);
+        return flatChildTag.getAttribute(HWDB.MOVABLE_ATTRIBUTE).localeCompare('no') !== 0;
+    }
+    removeComponent(node) {
+        let flatChild = node.item;
+        let flatChildTag = new Tag(this.flatRootNode, flatChild);
+        if (!this.canRemoveComponent(node)) {
+            throw Error(`${node.getName()} ${flatChild.nodeName} cannot be removed.`);
+        }
+        // remove configuration node when last connection is removed.
+        if (hideConfigurations && flatChildTag.getName() === HWDB.CONNECTION_TAG) {
+            const configuration = flatChildTag.getParent(HWDB.CONFIGURATION_TAG);
+            if (configuration !== null) {
+                const configurationTag = new Tag(this.flatRootNode, configuration);
+                if (configurationTag.countChildrenByName(HWDB.CONNECTION_TAG) === 1) {
+                    flatChild = configuration;
+                    flatChildTag = configurationTag;
+                }
+            }
+        }
+        // get child in top level file, assume first that it was included
+        const childTags = this.findNodesOrIncludeTags(flatChildTag, true);
+        if (childTags.length === 0) {
             return false;
         }
+        // remove all children from top level xml file
+        for (let i = childTags.length; i-- > 0;) {
+            const childTag = childTags[i];
+            const parent = childTag.getParent(null);
+            if (parent !== null) {
+                parent.removeChild(childTag.getNode());
+            }
+        }
+        // remove from flat file too
+        const flatParent = flatChildTag.getParent(null);
+        if (flatParent !== null) {
+            flatParent.removeChild(flatChild);
+        }
+        node.getParent()?.updateChildren();
+        this.generateErrorReports(); // removing things can clear errors
+        return true;
+    }
+    canMoveUp(node) {
+        return this.doMove(node, true);
+    }
+    canMoveDown(node) {
+        return this.doMove(node, false);
+    }
+    moveUp(node) {
+        this.doMove(node, true, true);
+    }
+    moveDown(node) {
+        this.doMove(node, false, true);
+    }
+    doMove(node, up, doit = false) {
+        const flatParent = this.getParent(node);
+        if (!flatParent) {
+            return false;
+        }
+        const siblings = flatParent.children;
+        if (siblings.length <= 1) {
+            return false;
+        }
+        // get first (up) or last (down) sibling and make sure its possible to move
+        const flatChild = node.item;
+        const index = siblings.findIndex(sibling => sibling.item === flatChild);
+        const flatSibling = siblings[up ? index - 1 : index + 1]?.item;
+        if (!flatSibling) {
+            return false; // already at the top or bottom of children list
+        }
+        const flatChildTag = new Tag(this.flatRootNode, flatChild);
+        const flatSiblingTag = new Tag(this.flatRootNode, flatSibling);
+        // get child in top level file, assume first that it was included
+        const childTags = this.findNodesOrIncludeTags(flatChildTag, true);
+        const siblingTags = this.findNodesOrIncludeTags(flatSiblingTag, true);
+        if (childTags.length === 0 || siblingTags.length === 0) {
+            return false;
+        }
+        if (doit) {
+            this.swapComponents(childTags, siblingTags);
+            this.swapComponents([flatChildTag], [flatSiblingTag]); // must modify flat xml file as well.
+            flatParent.updateChildren();
+        }
+        return true;
+    }
+    swapComponents(elements1, withElements2) {
+        // validate parameters
+        if (elements1.length === 0 || withElements2.length === 0) {
+            return; // nothing to do because there are no elements to swap with.
+        }
+        const parent1 = elements1[0].getParent(null);
+        const parent2 = withElements2[0].getParent(null);
+        if (!parent1 || !parent2) {
+            throw new Error('Cannot swapComponents that do not have parent elements.');
+        }
+        // insert a placeholder before elements1
+        const placeholder = new Tag(elements1[0], parent1).createChild('junk', null, null, elements1[0].getNode());
+        // move elements1 before elements2
+        const insertBefore = withElements2[0].getNode();
+        elements1.forEach(element1 => {
+            parent2.insertBefore(element1.getNode(), insertBefore);
+        });
+        // move elements2 before placeholder
+        withElements2.forEach(element2 => {
+            parent1.insertBefore(element2.getNode(), placeholder);
+        });
+        // remove placeholder
+        parent1.removeChild(placeholder);
+    }
+    async addComponent(parent, newComponent) {
+        parent = parent ?? this.getRoot();
+        let parentNode = parent.item;
+        if (newComponent.type === 'connection') {
+            // create a new configuration tag to include the connection in.
+            parentNode = this.flatRootNode.createChild(HWDB.CONFIGURATION_TAG, SystemSetupWriter.createUniqueId(this.flatRootNode, 'configuration_0', null), HWDB.VERSION);
+        }
+        const flatParent = new Tag(this.flatRootNode, parentNode);
+        await this.includeComponent(flatParent, newComponent);
+        this.setAllDefaultJtagProperties();
+        parent.updateChildren();
+    }
+    async includeComponent(flatParent, component) {
+        let flatConnection = null;
+        let id = component.id;
+        // test if parent is a connection
+        if (flatParent.getName().localeCompare(HWDB.CONNECTION_TAG) === 0) {
+            let platform = flatParent.getChildByName(HWDB.PLATFORM_TAG, 0);
+            if (platform === null) {
+                // create the platform node to add includeFiles to
+                platform = flatParent.createChild(HWDB.PLATFORM_TAG, 'platform_0', HWDB.VERSION);
+            }
+            flatConnection = flatParent;
+            flatParent = new Tag(flatParent, platform);
+        }
+        else {
+            // add device drivers
+            const connectionNode = flatParent.getParent(HWDB.CONNECTION_TAG);
+            if (connectionNode !== null) {
+                flatConnection = new Tag(flatParent, connectionNode);
+            }
+        }
+        if (flatConnection !== null && component.type !== 'connection') {
+            // get xml attribute of connection
+            const nodes = this.findNodesOrIncludeTags(flatConnection);
+            let connectionPath = nodes.reduce((xmlAttribute, node) => xmlAttribute || node.getAttribute(HWDB.XML_ATTRIBUTE), '');
+            if (!connectionPath) {
+                throw Error('Cannot add component because connection is missing from top level .ccxml');
+            }
+            connectionPath = connectionPath.substring(0, connectionPath.indexOf('.xml'));
+            const targetConfigService = ServicesRegistry.getService(targetConfigServiceType);
+            const connections = (await targetConfigService.getConnections(component.id));
+            const connection = connections.filter(connection => connection.xmlFile === connectionPath)[0];
+            if (!connection) {
+                throw Error(`Cannot add component to connection=${flatConnection.getAttribute(HWDB.ID_ATTRIBUTE)}`);
+            }
+            await this.addDeviceDrivers(flatConnection, connection.id, component);
+        }
+        // add child to top level system setup.
+        const parent = SystemSetupWriter.gotoNode(flatParent, this.flatRootNode, this.rootNode, true);
+        if (!parent) {
+            throw Error('Cannot add component because parent is missing from top level .ccxml');
+        }
+        const relFilePath = `${component.type}s/${component.xmlFile}.xml`;
+        let insertBefore = parent.getChildByName(HWDB.CONFIGURATION_TAG, 0) ?? parent.getChildByName(HWDB.CONNECTION_TAG, 0);
+        // Ensure name is unique
+        const existingNames = SystemSetupWriter.getComponentNames(flatParent, this.flatRootNode);
+        id = SystemSetupWriter.createUniqueId(flatParent, id, existingNames.map(item => item.name));
+        HardwareDatabaseReader.includeFile(parent, relFilePath, id, id, insertBefore ?? undefined);
+        // add child to flat file, by reading include file and inserting the node.
+        if (insertBefore !== null) {
+            insertBefore = flatParent.getChildByID(null, XMLParser.GetAttributeString(insertBefore, HWDB.ID_ATTRIBUTE));
+        }
+        const absFilePath = `${SystemSetupReader.getTargetDbDirectory()}${relFilePath}`;
+        const newFlatChild = await this.xmlReader.createFlatNodeFromFile(flatParent, absFilePath, id, id, SystemSetupReader.getRootDirectories(), insertBefore ?? undefined);
+        SystemSetupWriter.createUniqueNames(newFlatChild.getNode(), this.flatRootNode, this.rootNode, existingNames.filter(item => item.type === 'cpu').map(item => item.name));
+        this.generateErrorReports();
+    }
+    addDeviceDriver(flatConnection, relDriverXmlFile) {
+        relDriverXmlFile = relDriverXmlFile.split('\\').join('/');
+        const connection = SystemSetupWriter.gotoNode(flatConnection, this.flatRootNode, this.rootNode, true);
+        if (!connection) {
+            throw Error('Cannot add device driver because <connection> tag is missing.');
+        }
+        const existingDrivers = connection.getAllChildrenByName(HWDB.INSTANCE_TAG).map(driver => driver.attributes?.getNamedItem(HWDB.HREF_ATTRIBUTE)?.value ?? '');
+        if (existingDrivers.includes(relDriverXmlFile)) {
+            return; // done, driver is already included.
+        }
+        const platformTag = flatConnection.getChildByName(HWDB.PLATFORM_TAG, 0);
+        if (!platformTag) {
+            throw Error('Cannot add device driver because <platform> tag is missing.');
+        }
+        try {
+            const absDriverXmlFile = `${SystemSetupReader.getTargetDbDirectory()}${relDriverXmlFile}`;
+            this.xmlReader.createFlatNodeFromFile(flatConnection, absDriverXmlFile, 'drivers', null, SystemSetupReader.getRootDirectories(), platformTag);
+            super.addDeviceDriver(connection, relDriverXmlFile);
+        }
+        catch (e) {
+            throw Error(`Can't use device driver due to parsing errors in ${getFileName(relDriverXmlFile)}.\nPlease select a different driver or a different device.`);
+        }
+    }
+    generateErrorReports() {
         const newErrorReports = this.getErrorMessages(this.flatRootNode, this.fileName);
         if (newErrorReports !== null) {
             if (this.errorReports !== null) {
@@ -4688,9 +4879,6 @@ class SystemSetupEditor extends SystemSetupWriter {
         return false;
     }
     setAllDefaultJtagProperties() {
-        if (this.rootNode === null || this.flatRootNode === null) {
-            throw new Error('No xml file loaded to set all default jtag properties on.');
-        }
         // refresh overridden connection properties for all connections
         const nConfigurations = this.flatRootNode.countChildrenByName(HWDB.CONFIGURATION_TAG);
         for (let i = 0; i < nConfigurations; i++) {
@@ -4702,42 +4890,13 @@ class SystemSetupEditor extends SystemSetupWriter {
             }
         }
     }
-    getFlatConnections() {
-        const retVal = new Array(1);
-        if (this.flatRootNode !== null) {
-            const nConfigurations = this.flatRootNode.countChildrenByName(HWDB.CONFIGURATION_TAG);
-            for (let i = 0; i < nConfigurations; i++) {
-                const flatConfiguration = new Tag(this.flatRootNode, this.flatRootNode.getChildByName(HWDB.CONFIGURATION_TAG, i));
-                const nConnections = flatConfiguration.countChildrenByName(HWDB.CONNECTION_TAG);
-                for (let j = 0; j < nConnections; j++) {
-                    retVal.push(flatConfiguration.getChildByName(HWDB.CONNECTION_TAG, j));
-                }
-            }
-        }
-        return retVal;
-    }
-    createFlatRootNode() {
-        if (this.flatRootNode === null) {
-            // Regenerate the configuration node
-            const xmlParser = new XMLParser();
-            const root = xmlParser.CreateNewDocument(HWDB.CONFIGURATIONS_TAG);
-            xmlParser.SetAttribute(root, HWDB.VER_ATTRIBUTE, HWDB.VERSION);
-            xmlParser.SetAttribute(root, HWDB.ID_ATTRIBUTE, 'configurations_0');
-            this.flatRootNode = new Tag(xmlParser, root);
-            const xmlParser1 = new XMLParser();
-            const root1 = xmlParser1.CreateNewDocument(HWDB.CONFIGURATIONS_TAG);
-            xmlParser1.SetAttribute(root1, HWDB.VER_ATTRIBUTE, HWDB.VERSION);
-            xmlParser1.SetAttribute(root1, HWDB.ID_ATTRIBUTE, 'configurations_0');
-            this.rootNode = new Tag(xmlParser1, root1);
-        }
+    getCpusList() {
+        return this.getComponentList('cpu');
     }
     getComponentList(type, parent) {
         const result = [];
         this.addComponentsToList(type, parent ?? this.getRoot(), result);
         return result;
-    }
-    getCpusList() {
-        return this.getComponentList('cpu');
     }
     addComponentsToList(type, node, list) {
         if (!node) {
@@ -4747,23 +4906,15 @@ class SystemSetupEditor extends SystemSetupWriter {
             list.push(node);
             return;
         }
-        this.getChildren(node)?.forEach(childNode => this.addComponentsToList(type, childNode, list));
+        node.children.forEach(childNode => this.addComponentsToList(type, childNode, list));
     }
     getComponentName(component) {
-        if (component && this.flatRootNode) {
+        if (component) {
             return new Tag(this.flatRootNode, component.item).getAttribute(HWDB.COMPONENT_NAME);
         }
     }
     findElementByPath(path) {
-        let result = this.getRoot();
-        path.split('/').forEach(segment => {
-            if (!result) {
-                return null;
-            }
-            const row = result.lookupRowByName(segment);
-            result = result.children?.[row] ?? null;
-        });
-        return result;
+        return this.rootTreeElement.findElementByPath(path);
     }
     findElementTypeByPath(path) {
         const element = this.findElementByPath(path);
@@ -4773,7 +4924,7 @@ class SystemSetupEditor extends SystemSetupWriter {
 SystemSetupEditor.builtinProperties = new Map();
 
 /**
- *  Copyright (c) 2022, Texas Instruments Incorporated
+ *  Copyright (c) 2022, 2025 Texas Instruments Incorporated
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without

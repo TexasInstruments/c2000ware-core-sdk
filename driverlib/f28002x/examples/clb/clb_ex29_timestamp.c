@@ -34,10 +34,10 @@
 //! tz2Counter64bit: stores the counter value at the instant that TZ2 is tripped.
 //
 //#############################################################################
-// $TI Release: F28004x Support Library v5.03.00.00 $
+// $TI Release: F28004x Support Library v5.05.00.00 $
 // 
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 

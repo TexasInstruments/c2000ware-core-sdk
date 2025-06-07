@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -440,23 +440,23 @@ struct GSxACCPROT0_BITS {               // bits description
     Uint16 FETCHPROT_GS0:1;             // 0 Fetch Protection For GS0 RAM
     Uint16 CPUWRPROT_GS0:1;             // 1 CPU WR Protection For GS0 RAM
     Uint16 DMAWRPROT_GS0:1;             // 2 DMA WR Protection For GS0 RAM
-    Uint16 rsvd1:1;                     // 3 Reserved
-    Uint16 rsvd2:4;                     // 7:4 Reserved
+    Uint16 NPU_WRPROT_GS0:1;            // 3 NPU WR Protection For GS0 RAM
+    Uint16 rsvd1:4;                     // 7:4 Reserved
     Uint16 FETCHPROT_GS1:1;             // 8 Fetch Protection For GS1 RAM
     Uint16 CPUWRPROT_GS1:1;             // 9 CPU WR Protection For GS1 RAM
     Uint16 DMAWRPROT_GS1:1;             // 10 DMA WR Protection For GS1 RAM
-    Uint16 rsvd3:1;                     // 11 Reserved
-    Uint16 rsvd4:4;                     // 15:12 Reserved
+    Uint16 NPU_WRPROT_GS1:1;            // 11 NPU WR Protection For GS1 RAM
+    Uint16 rsvd2:4;                     // 15:12 Reserved
     Uint16 FETCHPROT_GS2:1;             // 16 Fetch Protection For GS2 RAM
     Uint16 CPUWRPROT_GS2:1;             // 17 CPU WR Protection For GS2 RAM
     Uint16 DMAWRPROT_GS2:1;             // 18 DMA WR Protection For GS2 RAM
-    Uint16 rsvd5:1;                     // 19 Reserved
-    Uint16 rsvd6:4;                     // 23:20 Reserved
+    Uint16 NPU_WRPROT_GS2:1;            // 19 NPU WR Protection For GS2 RAM
+    Uint16 rsvd3:4;                     // 23:20 Reserved
     Uint16 FETCHPROT_GS3:1;             // 24 Fetch Protection For GS3 RAM
     Uint16 CPUWRPROT_GS3:1;             // 25 CPU WR Protection For GS3 RAM
     Uint16 DMAWRPROT_GS3:1;             // 26 DMA WR Protection For GS3 RAM
-    Uint16 rsvd7:1;                     // 27 Reserved
-    Uint16 rsvd8:4;                     // 31:28 Reserved
+    Uint16 NPU_WRPROT_GS3:1;            // 27 NPU WR Protection For GS3 RAM
+    Uint16 rsvd4:4;                     // 31:28 Reserved
 };
 
 union GSxACCPROT0_REG {
@@ -795,10 +795,10 @@ struct NMAVFLG_BITS {                   // bits description
     Uint16 rsvd2:1;                     // 8 Reserved
     Uint16 rsvd3:1;                     // 9 Reserved
     Uint16 DMAREAD:1;                   // 10 Non Controller DMA Read Access Violation Flag
-    Uint16 rsvd4:1;                     // 11 Reserved
-    Uint16 rsvd5:1;                     // 12 Reserved
-    Uint16 rsvd6:3;                     // 15:13 Reserved
-    Uint16 rsvd7:16;                    // 31:16 Reserved
+    Uint16 NPUREAD:1;                   // 11 Non Controller NPU Read Access Violation Flag
+    Uint16 NPUWRITE:1;                  // 12 Non Controller NPU Write Violation Flag
+    Uint16 rsvd4:3;                     // 15:13 Reserved
+    Uint16 rsvd5:16;                    // 31:16 Reserved
 };
 
 union NMAVFLG_REG {
@@ -818,10 +818,10 @@ struct NMAVSET_BITS {                   // bits description
     Uint16 rsvd2:1;                     // 8 Reserved
     Uint16 rsvd3:1;                     // 9 Reserved
     Uint16 DMAREAD:1;                   // 10 Non Controller DMA Read Access Violation Flag Set
-    Uint16 rsvd4:1;                     // 11 Reserved
-    Uint16 rsvd5:1;                     // 12 Reserved
-    Uint16 rsvd6:3;                     // 15:13 Reserved
-    Uint16 rsvd7:16;                    // 31:16 Reserved
+    Uint16 NPUREAD:1;                   // 11 Non Controller NPU Read Access Violation Flag Set
+    Uint16 NPUWRITE:1;                  // 12 Non Controller NPU Write Access Violation Flag Set
+    Uint16 rsvd4:3;                     // 15:13 Reserved
+    Uint16 rsvd5:16;                    // 31:16 Reserved
 };
 
 union NMAVSET_REG {
@@ -841,10 +841,10 @@ struct NMAVCLR_BITS {                   // bits description
     Uint16 rsvd2:1;                     // 8 Reserved
     Uint16 rsvd3:1;                     // 9 Reserved
     Uint16 DMAREAD:1;                   // 10 Non Controller DMA Read Access Violation Flag Clear
-    Uint16 rsvd4:1;                     // 11 Reserved
-    Uint16 rsvd5:1;                     // 12 Reserved
-    Uint16 rsvd6:3;                     // 15:13 Reserved
-    Uint16 rsvd7:16;                    // 31:16 Reserved
+    Uint16 NPUREAD:1;                   // 11 Non Controller NPU Read Access Violation Flag Clear
+    Uint16 NPUWRITE:1;                  // 12 Non Controller NPU Write Access Violation Flag Clear
+    Uint16 rsvd4:3;                     // 15:13 Reserved
+    Uint16 rsvd5:16;                    // 31:16 Reserved
 };
 
 union NMAVCLR_REG {
@@ -864,10 +864,10 @@ struct NMAVINTEN_BITS {                 // bits description
     Uint16 rsvd2:1;                     // 8 Reserved
     Uint16 rsvd3:1;                     // 9 Reserved
     Uint16 DMAREAD:1;                   // 10 Non Controller DMA Read Access Violation Interrupt Enable
-    Uint16 rsvd4:1;                     // 11 Reserved
-    Uint16 rsvd5:1;                     // 12 Reserved
-    Uint16 rsvd6:3;                     // 15:13 Reserved
-    Uint16 rsvd7:16;                    // 31:16 Reserved
+    Uint16 NPUREAD:1;                   // 11 Non Controller NPU Read Access Violation Interrupt Enable
+    Uint16 NPUWRITE:1;                  // 12 Non Controller NPU Write Violation Interrupt Enable
+    Uint16 rsvd4:3;                     // 15:13 Reserved
+    Uint16 rsvd5:16;                    // 31:16 Reserved
 };
 
 union NMAVINTEN_REG {
@@ -953,6 +953,9 @@ struct ACCESS_PROTECTION_REGS {
     Uint32                                   MCPUFAVADDR;                  // Controller CPU Fetch Access Violation Address
     Uint32                                   MCPUWRAVADDR;                 // Controller CPU Write Access Violation Address
     Uint32                                   MDMAWRAVADDR;                 // Controller  DMA Write Access Violation Address
+    Uint16                                   rsvd3[12];                    // Reserved
+    Uint32                                   NMNPURDAVADDR;                // Non-Controller NPU Read Access Violation Address
+    Uint32                                   NMNPUWRAVADDR;                // Non-Controller NPU Write Access Violation Address
 };
 
 struct UCERRFLG_BITS {                  // bits description
@@ -961,9 +964,9 @@ struct UCERRFLG_BITS {                  // bits description
     Uint16 CLA1RDERR:1;                 // 2 CLA1 Uncorrectable Read Error Flag
     Uint16 rsvd1:1;                     // 3 Reserved
     Uint16 rsvd2:1;                     // 4 Reserved
-    Uint16 rsvd3:1;                     // 5 Reserved
-    Uint16 rsvd4:10;                    // 15:6 Reserved
-    Uint16 rsvd5:16;                    // 31:16 Reserved
+    Uint16 NPURDERR:1;                  // 5 NPU Uncorrectable Read Error Flag
+    Uint16 rsvd3:10;                    // 15:6 Reserved
+    Uint16 rsvd4:16;                    // 31:16 Reserved
 };
 
 union UCERRFLG_REG {
@@ -977,9 +980,9 @@ struct UCERRSET_BITS {                  // bits description
     Uint16 CLA1RDERR:1;                 // 2 CLA1 Uncorrectable Read Error Flag Set
     Uint16 rsvd1:1;                     // 3 Reserved
     Uint16 rsvd2:1;                     // 4 Reserved
-    Uint16 rsvd3:1;                     // 5 Reserved
-    Uint16 rsvd4:10;                    // 15:6 Reserved
-    Uint16 rsvd5:16;                    // 31:16 Reserved
+    Uint16 NPURDERR:1;                  // 5 NPU Uncorrectable Read Error Flag Set
+    Uint16 rsvd3:10;                    // 15:6 Reserved
+    Uint16 rsvd4:16;                    // 31:16 Reserved
 };
 
 union UCERRSET_REG {
@@ -993,9 +996,9 @@ struct UCERRCLR_BITS {                  // bits description
     Uint16 CLA1RDERR:1;                 // 2 CLA1 Uncorrectable Read Error Flag Clear
     Uint16 rsvd1:1;                     // 3 Reserved
     Uint16 rsvd2:1;                     // 4 Reserved
-    Uint16 rsvd3:1;                     // 5 Reserved
-    Uint16 rsvd4:10;                    // 15:6 Reserved
-    Uint16 rsvd5:16;                    // 31:16 Reserved
+    Uint16 NPURDERR:1;                  // 5 NPU Uncorrectable Read Error Flag Clear
+    Uint16 rsvd3:10;                    // 15:6 Reserved
+    Uint16 rsvd4:16;                    // 31:16 Reserved
 };
 
 union UCERRCLR_REG {
@@ -1141,7 +1144,9 @@ struct MEMORY_ERROR_REGS {
     Uint32                                   UCCPUREADDR;                  // Uncorrectable CPU Read Error Address
     Uint32                                   UCDMAREADDR;                  // Uncorrectable DMA Read Error Address
     Uint32                                   UCCLA1READDR;                 // Uncorrectable CLA1 Read Error Address
-    Uint16                                   rsvd1[16];                    // Reserved
+    Uint16                                   rsvd1[4];                     // Reserved
+    Uint32                                   UCNPUREADDR;                  // Uncorrectable NPU Read Error Address
+    Uint16                                   rsvd2[10];                    // Reserved
     union   FLUCERRSTATUS_REG                FLUCERRSTATUS;                // Flash read uncorrectable ecc err status
     union   FLCERRSTATUS_REG                 FLCERRSTATUS;                 // Flash read correctable ecc err status
     union   CERRFLG_REG                      CERRFLG;                      // Correctable Error Flag Register
@@ -1150,7 +1155,7 @@ struct MEMORY_ERROR_REGS {
     Uint32                                   CCPUREADDR;                   // Correctable CPU Read Error Address
     Uint32                                   CDMAREADDR;                   // Correctable DMA Read Error Address
     Uint32                                   CCLA1READDR;                  // Correctable CLA1 Read Error Address
-    Uint16                                   rsvd2[2];                     // Reserved
+    Uint16                                   rsvd3[2];                     // Reserved
     Uint32                                   CERRCNT;                      // Correctable Error Count Register
     union   CERRTHRES_REG                    CERRTHRES;                    // Correctable Error Threshold Value Register
     union   CEINTFLG_REG                     CEINTFLG;                     // Correctable Error Interrupt Flag Status Register

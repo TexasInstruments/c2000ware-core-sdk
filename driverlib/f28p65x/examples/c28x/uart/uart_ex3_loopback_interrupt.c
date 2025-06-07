@@ -39,7 +39,7 @@
 //
 //
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -225,9 +225,9 @@ __interrupt void UART_RX_IntHandler(void)
 
     loopCount++;
 
-    // TODO: Add a function to clear the global flag
-    HWREG(myUART0_BASE + 0x0044U) = 1;
-    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP8);
+    // Clear UART and PIPE interrupts
+    UART_clearGlobalInterruptFlag(myUART0_BASE);
+    Interrupt_clearACKGroup(INT_myUART0_INTERRUPT_ACK_GROUP);
 }
 
 //

@@ -23,15 +23,21 @@ if((Common.getDeviceName() == "F2807x") || (Common.getDeviceName() == "F28004x")
 (Common.getDeviceName() == "F2838x") || (Common.getDeviceName() == "F280013x") || (Common.getDeviceName() == "F280015x"))
 {
     TMU_TYPE = [
-        {name: "NONE",     displayName: "NONE"},
         {name: "TMU0",     displayName: "TMU0"},
+        {name: "NONE",     displayName: "NONE"},
     ];
 }
 else if((Common.getDeviceName() == "F28002x") || (Common.getDeviceName() == "F28003x") || (Common.getDeviceName() == "F28P55x") || (Common.getDeviceName() == "F28P65x"))
 {
     TMU_TYPE = [
-        {name: "NONE",     displayName: "NONE"},
         {name: "TMU1",     displayName: "TMU1"},
+        {name: "NONE",     displayName: "NONE"},
+    ];
+}
+else // F28E12x device without TMU support
+{
+    TMU_TYPE = [
+        {name: "NONE",     displayName: "NONE"},
     ];
 }
 
@@ -47,7 +53,7 @@ let config = [
         name: "tmuType",
         displayName : "TMU Configuration",
         description : "Choose to Enable TMU",
-        default     : TMU_TYPE[1].name,
+        default     : TMU_TYPE[0].name,
         options     : TMU_TYPE
     }
 ];

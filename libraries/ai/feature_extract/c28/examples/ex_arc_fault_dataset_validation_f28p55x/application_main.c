@@ -11,7 +11,7 @@
 //
 //
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -55,6 +55,7 @@
 #include "board.h"
 #include "c2000ware_libraries.h"
 #include "tvmgen_default.h"
+#include "math.h"
 
 #include "feature_extract.h"
 #include "user_input_config.h"
@@ -77,6 +78,8 @@
 
 #define PASS 1
 #define FAIL 0
+
+#define e 2.71828183F
 
 #pragma DATA_SECTION(scratch_buffer, "FFT_buffer_1")
 //float scratch_buffer[FFT_SIZE*4];
@@ -173,13 +176,13 @@ void main(void)
 
     //Essential initial parameter declaration for the example code to run
     init_params.version = 1;
-    #if defined(RAW)
+    #if defined(FE_RAW)
     init_params.type = FEATURE_EXTRACT_RAW;
-    #elif defined(FFT) && !defined(BIN) && !defined(WIN)
+    #elif defined(FE_FFT) && !defined(FE_BIN) && !defined(FE_WIN)
     init_params.type = FEATURE_EXTRACT_FFT;
-    #elif defined(FFT) && defined(BIN) && !defined(WIN)
+    #elif defined(FE_FFT) && defined(FE_BIN) && !defined(FE_WIN)
     init_params.type = FEATURE_EXTRACT_FFT_BIN;
-    #elif defined(FFT) && defined(BIN) && defined(WIN)
+    #elif defined(FE_FFT) && defined(FE_BIN) && defined(FE_WIN)
     init_params.type = FEATURE_EXTRACT_WIN_FFT_BIN;
     #endif
     init_params.min_fft_bin_size = FE_MIN_FFT_BIN;
@@ -194,6 +197,8 @@ void main(void)
     init_params.output_convert_bias = tvmgen_default_bias_data;
     init_params.output_convert_scale = tvmgen_default_scale_data;
     init_params.output_convert_shift = tvmgen_default_shift_data;
+    init_params.log_multiply = FE_LOG_MUL;
+    init_params.log_base = FE_LOG_BASE;
 
     //Remaining initial parameter declaration initialized with null value. These only for user's reference
     init_params.output_feature_height = 0;
@@ -233,7 +238,7 @@ void main(void)
     int i = 0;
     for(i=0;i<FE_NN_OUT_SIZE;i++)
     {
-        if(golden_output[i] != result.buf0[i])
+        if(abs(golden_output[i] - result.buf0[i])>2)
         {
             error++;
         }

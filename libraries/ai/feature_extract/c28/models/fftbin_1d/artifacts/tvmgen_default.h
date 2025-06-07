@@ -6,24 +6,29 @@
 extern "C" {
 #endif
 
+/* Symbol defined when running model on TI NPU hardware accelerator */
+#define TVMGEN_DEFAULT_TI_NPU
+#ifdef TVMGEN_DEFAULT_TI_NPU_SOFT
+	#error Conflicting definition for where model should run.
+#endif
+
 /* The generated model library expects the following inputs/outputs:
  * Inputs:
  *    Tensor[(1, 1, 384, 1), int8]
  * Outputs:
- *    Tensor[(1, 4), int8]
+ *    Tensor[(1, 6), int8]
  */
 
 /* Input feature normalization parameters:
  *   input_int = clip(((int32_t)((input_float + bias) * scale)) >> shift, min, max)
  *   where (min, max) = (-128, 127) if int8 type, (0, 255) if uint8 type
  */
-  #define TVMGEN_DEFAULT_TI_NPU
-
-  #define TVMGEN_DEFAULT_NUM_CHANNELS 1
-  #define TVMGEN_DEFAULT_INPUT_NORMALIZATION_IS_CHANNELWISE 0
-  extern const int32_t tvmgen_default_bias_data[] __attribute__((weak)) = {-89};
-  extern const int32_t tvmgen_default_scale_data[] __attribute__((weak)) = {223};
-  extern const int32_t tvmgen_default_shift_data[] __attribute__((weak)) = {6};
+#define TVMGEN_DEFAULT_BIAS_LEN 1
+#define TVMGEN_DEFAULT_SCALE_LEN 1
+#define TVMGEN_DEFAULT_SHIFT_LEN 1
+extern const int32_t tvmgen_default_bias_data[] __attribute__((weak)) = {-82};
+extern const int32_t tvmgen_default_scale_data[] __attribute__((weak)) = {181};
+extern const int32_t tvmgen_default_shift_data[] __attribute__((weak)) = {6};
 
 
 /* TI NPU hardware accelerator initialization */

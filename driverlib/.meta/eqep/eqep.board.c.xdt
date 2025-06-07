@@ -40,7 +40,7 @@ void `instance.$name`_init(){
 		EQEP_INT_POS_COMP_MATCH   	|
 		EQEP_INT_STROBE_EVNT_LATCH	| 
 		EQEP_INT_INDEX_EVNT_LATCH 	|
-			% if( ["F28002x", "F28003x", "F280013x", "F280015x", "F28004x","F2838x", "F28P65x", "F28P55x"].includes(system.deviceData.deviceId)){
+			% if( ["F28002x", "F28003x", "F280013x", "F280015x", "F28004x","F2838x", "F28P65x", "F28P55x", "F28E12x"].includes(system.deviceData.deviceId)){
 		EQEP_INT_UNIT_TIME_OUT   	|
 		EQEP_INT_QMA_ERROR));
 			% }
@@ -59,7 +59,7 @@ void `instance.$name`_init(){
 		EQEP_INT_POS_COMP_MATCH   	|
 		EQEP_INT_STROBE_EVNT_LATCH	| 
 		EQEP_INT_INDEX_EVNT_LATCH 	|
-			% if( ["F28002x", "F28003x", "F280013x", "F280015x", "F28004x","F2838x", "F28P65x", "F28P55x"].includes(system.deviceData.deviceId)){
+			% if( ["F28002x", "F28003x", "F280013x", "F280015x", "F28004x","F2838x", "F28P65x", "F28P55x", "F28E12x"].includes(system.deviceData.deviceId)){
 		EQEP_INT_UNIT_TIME_OUT   	|
 		EQEP_INT_QMA_ERROR));
 			% }
@@ -67,7 +67,7 @@ void `instance.$name`_init(){
 		EQEP_INT_UNIT_TIME_OUT));
 			% }
 		% }
-		% if( ["F28002x", "F28003x", "F280013x", "F280015x","F2838x", "F28P65x", "F28P55x"].includes(system.deviceData.deviceId)){
+		% if( ["F28002x", "F28003x", "F280013x", "F280015x","F2838x", "F28P65x", "F28P55x", "F28E12x"].includes(system.deviceData.deviceId)){
 	EQEP_SourceSelect source_`instance.$name` =
 	{
 		`instance.selectSourceA`, 		// eQEPA source
@@ -79,7 +79,7 @@ void `instance.$name`_init(){
 	//
 	EQEP_selectSource(`baseName`, source_`instance.$name`);
 		% }
-		% if( ["F28002x", "F28003x", "F280013x", "F280015x","F28004x","F2838x", "F28P65x", "F28P55x"].includes(system.deviceData.deviceId)){
+		% if( ["F28002x", "F28003x", "F280013x", "F280015x","F28004x","F2838x", "F28P65x", "F28P55x", "F28E12x"].includes(system.deviceData.deviceId)){
 	//
 	// Set the strobe input source of the eQEP module.
 	//
@@ -159,13 +159,13 @@ void `instance.$name`_init(){
 	// Configures the quadrature modes in which the position count can be latched.
 	//
 	EQEP_setLatchMode(`baseName`,(`instance.latchPositionCounter`|`instance.latchStrobePosition`|`instance.latchIndexPosition`));
-		% if( ["F28002x", "F28003x", "F280013x", "F280015x", "F28004x","F2838x", "F28P65x", "F28P55x"].includes(system.deviceData.deviceId)){
+		% if( ["F28002x", "F28003x", "F280013x", "F280015x", "F28004x","F2838x", "F28P65x", "F28P55x", "F28E12x"].includes(system.deviceData.deviceId)){
 	//
 	// Set the quadrature mode adapter (QMA) module mode.
 	//
 	EQEP_setQMAModuleMode(`baseName`,`instance.qmaModuleMode`);
 		% }
-		% if( ["F28002x", "F28003x", "F280013x", "F280015x", "F2838x", "F28P65x", "F28P55x"].includes(system.deviceData.deviceId)){
+		% if( ["F28002x", "F28003x", "F280013x", "F280015x", "F2838x", "F28P65x", "F28P55x", "F28E12x"].includes(system.deviceData.deviceId)){
 			% if(instance.enableDirectionChange){
 	//
 	// Enable Direction Change During Index

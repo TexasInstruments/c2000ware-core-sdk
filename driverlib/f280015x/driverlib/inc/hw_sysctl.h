@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -64,6 +64,7 @@
 #define SYSCTL_O_SOFTPRES21   0xACU    // DCC Software Reset register
 #define SYSCTL_O_SOFTPRES27   0xB8U    // EPG Software Reset register
 #define SYSCTL_O_SOFTPRES28   0xBAU    // Flash Software Reset register
+#define SYSCTL_O_SOFTPRES40   0xD2U    // Peripheral Software Reset register
 #define SYSCTL_O_TAP_STATUS   0x130U   // Status of JTAG State machine & Debugger Connect
 #define SYSCTL_O_ECAPTYPE     0x19BU   // Configures ECAP Type for the device
 
@@ -307,6 +308,16 @@
 
 //*************************************************************************************************
 //
+// The following are defines for the bit fields in the SOFTPRES40 register
+//
+//*************************************************************************************************
+#define SYSCTL_SOFTPRES40_JTAG_NTRST_S       0U
+#define SYSCTL_SOFTPRES40_JTAG_NTRST_M       0xFU          // Multi Bit JTAG nTRST
+#define SYSCTL_SOFTPRES40_JTAG_NTRST_KEY_S   16U
+#define SYSCTL_SOFTPRES40_JTAG_NTRST_KEY_M   0xFFFF0000U   // JTAG nTRST Key
+
+//*************************************************************************************************
+//
 // The following are defines for the bit fields in the TAP_STATUS register
 //
 //*************************************************************************************************
@@ -347,7 +358,6 @@
 #define SYSCTL_CLKSRCCTL1_OSCCLKSRCSEL_S   0U
 #define SYSCTL_CLKSRCCTL1_OSCCLKSRCSEL_M   0x3U    // OSCCLK Source Select Bit
 #define SYSCTL_CLKSRCCTL1_WDHALTI          0x20U   // Watchdog HALT Mode Ignore Bit
-#define SYSCTL_CLKSRCCTL1_INTOSC2CLKMODE   0x80U   // Select IntR or ExtR mode for INTOSC2
 
 //*************************************************************************************************
 //

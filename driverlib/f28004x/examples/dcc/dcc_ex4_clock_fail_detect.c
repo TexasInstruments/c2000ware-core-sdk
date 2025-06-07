@@ -17,7 +17,7 @@
 //!
 //! The Dual-Clock Comparator Module 0 is used for the clock monitoring.
 //! The clocksource0 is the reference clock (Fclk0 = 20Mhz) and the
-//! clocksource1 is the clock that needs to be monitored (Fclk1 = 200Mhz).
+//! clocksource1 is the clock that needs to be monitored (Fclk1 = 100Mhz).
 //! Seed is the value that gets loaded into the Counter.
 //!
 //! \note In the current example, the XTAL is expected to be a Resonator
@@ -40,7 +40,7 @@
 //
 //
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -137,7 +137,7 @@ void main(void)
 
     //
     // Continuous monitor of PLL clock using XTAL as reference clock
-    // CLk1 = PLLRAW (Frequency = 200MHz)
+    // CLk1 = PLLRAW (Frequency = 100MHz)
     // CLk0 = XTAL   (Frequency = 20MHz)
     // Tolerance = 1%
     // Allowable Frequency Tolerance = 0% (update as per the error in the XTAL frequency)
@@ -147,7 +147,7 @@ void main(void)
     // frequencies,
     //
     DCC_continuousMonitor(DCC0_BASE,
-                          DCC_COUNT1SRC_PLL, 200.0F,
+                          DCC_COUNT1SRC_PLL, 100.0F,
                           DCC_COUNT0SRC_XTAL, 20.0F,
                           1.0F, 0.0F, 100.0F);
 

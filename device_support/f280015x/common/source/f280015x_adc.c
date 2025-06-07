@@ -8,7 +8,7 @@
 //
 //
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -70,10 +70,33 @@ void SetVREF(int module, int mode, int ref)
         offsetShiftVal = 0U;        // All other modes
     }
 
+    uint32_t *offsetKey;
+
     //
     // Set up pointer to offset trim in OTP for ADCA.
     //
-    offset = (Uint16 *)((Uint32)0x7016CU);
+
+    //
+    // Check if MP3 trim key matches with 0x5A5A5A5A
+    // If not, check for MP1 trim key.
+    //
+    offsetKey = (uint32_t *)0x71114UL;
+    if(*offsetKey == 0x5A5A5A5AUL)
+    {
+        offset = (Uint16 *)((Uint32)0x71116U);
+    }
+    else
+    {
+        offsetKey = (uint32_t *)0x7103CUL;
+        if(*offsetKey == 0x5A5A5A5AUL)
+        {
+            offset = (Uint16 *)((Uint32)0x7103EU);
+        }
+        else
+        {
+            offset = 0U;
+        }
+    }
 
     EALLOW;
 
@@ -85,7 +108,28 @@ void SetVREF(int module, int mode, int ref)
     //
     // Set up pointer to offset trim in OTP for ADCC.
     //
-    offset = (Uint16 *)((Uint32)0x7016EU);
+
+    //
+    // Check if MP3 trim key matches with 0x5A5A5A5A
+    // If not, check for MP1 trim key.
+    //
+    offsetKey = (uint32_t *)0x71114UL;
+    if(*offsetKey == 0x5A5A5A5AUL)
+    {
+        offset = (Uint16 *)((Uint32)0x71117U);
+    }
+    else
+    {
+        offsetKey = (uint32_t *)0x7103CUL;
+        if(*offsetKey == 0x5A5A5A5AUL)
+        {
+            offset = (Uint16 *)((Uint32)0x7103FU);
+        }
+        else
+        {
+            offset = 0U;
+        }
+    }
 
     //
     // Get offset trim from OTP and write it to the register for ADCC.

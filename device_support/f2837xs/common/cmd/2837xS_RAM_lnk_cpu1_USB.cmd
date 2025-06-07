@@ -61,7 +61,7 @@ SECTIONS
    .bss:cio         : > RAMGS2,    PAGE = 1
    .init_array      : > RAMM0,     PAGE = 0
    .const           : >> RAMGS5 | RAMGS6to11_combined,    PAGE = 1
-   .data            : > RAMGS6to11_combined,    PAGE = 1
+   .data            : > RAMGS6to11_combined | RAMGS5,    PAGE = 1
    .sysmem          : > RAMGS6to11_combined,    PAGE = 1
 #else
    .pinit           : > RAMM0,     PAGE = 0

@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -46,22 +46,33 @@
 // The following are defines for the ASYSCTL register offsets
 //
 //*************************************************************************************************
-#define ASYSCTL_O_CONFIGLOCK       0x5EU    // Lock Register for all the config registers.
-#define ASYSCTL_O_TSNSCTL          0x60U    // Temperature Sensor Control Register
-#define ASYSCTL_O_ANAREFCTL        0x68U    // Analog Reference Control Register
-#define ASYSCTL_O_VMONCTL          0x70U    // Voltage Monitor Control Register
-#define ASYSCTL_O_CMPHPMXSEL       0x82U    // Bits to select one of the many sources on CompHP
-                                            // inputs. Refer to Pimux diagram for details.
-#define ASYSCTL_O_CMPLPMXSEL       0x84U    // Bits to select one of the many sources on CompLP
-                                            // inputs. Refer to Pimux diagram for details.
-#define ASYSCTL_O_CMPHNMXSEL       0x86U    // Bits to select one of the many sources on CompHN
-                                            // inputs. Refer to Pimux diagram for details.
-#define ASYSCTL_O_CMPLNMXSEL       0x87U    // Bits to select one of the many sources on CompLN
-                                            // inputs. Refer to Pimux diagram for details.
-#define ASYSCTL_O_ADCDACLOOPBACK   0x88U    // Enabble loopback from DAC to ADCs
-#define ASYSCTL_O_LOCK             0x8EU    // Lock Register
-#define ASYSCTL_O_AGPIOCTRLA       0x102U   // AGPIO Control Register
+#define ASYSCTL_O_INTERNALTESTCTL   0x4AU    // INTERNALTEST Node Control Register
+#define ASYSCTL_O_CONFIGLOCK        0x5EU    // Lock Register for all the config registers.
+#define ASYSCTL_O_TSNSCTL           0x60U    // Temperature Sensor Control Register
+#define ASYSCTL_O_ANAREFCTL         0x68U    // Analog Reference Control Register
+#define ASYSCTL_O_VMONCTL           0x70U    // Voltage Monitor Control Register
+#define ASYSCTL_O_CMPHPMXSEL        0x82U    // Bits to select one of the many sources on CompHP
+                                             // inputs. Refer to Pimux diagram for details.
+#define ASYSCTL_O_CMPLPMXSEL        0x84U    // Bits to select one of the many sources on CompLP
+                                             // inputs. Refer to Pimux diagram for details.
+#define ASYSCTL_O_CMPHNMXSEL        0x86U    // Bits to select one of the many sources on CompHN
+                                             // inputs. Refer to Pimux diagram for details.
+#define ASYSCTL_O_CMPLNMXSEL        0x87U    // Bits to select one of the many sources on CompLN
+                                             // inputs. Refer to Pimux diagram for details.
+#define ASYSCTL_O_ADCDACLOOPBACK    0x88U    // Enabble loopback from DAC to ADCs
+#define ASYSCTL_O_LOCK              0x8EU    // Lock Register
+#define ASYSCTL_O_AGPIOCTRLA        0x102U   // AGPIO Control Register
 
+
+//*************************************************************************************************
+//
+// The following are defines for the bit fields in the INTERNALTESTCTL register
+//
+//*************************************************************************************************
+#define ASYSCTL_INTERNALTESTCTL_TESTSEL_S   0U
+#define ASYSCTL_INTERNALTESTCTL_TESTSEL_M   0x1FU         // Test Select
+#define ASYSCTL_INTERNALTESTCTL_KEY_S       16U
+#define ASYSCTL_INTERNALTESTCTL_KEY_M       0xFFFF0000U   // Key to Enable writes
 
 //*************************************************************************************************
 //
@@ -146,7 +157,6 @@
 //
 //*************************************************************************************************
 #define ASYSCTL_ADCDACLOOPBACK_ENLB2ADCA   0x1U          // Enable DACL loopback to ADCA
-#define ASYSCTL_ADCDACLOOPBACK_ENLB2ADCB   0x2U          // Enable DACL loopback to ADCB
 #define ASYSCTL_ADCDACLOOPBACK_ENLB2ADCC   0x4U          // Enable DACL loopback to ADCC
 #define ASYSCTL_ADCDACLOOPBACK_KEY_S       16U
 #define ASYSCTL_ADCDACLOOPBACK_KEY_M       0xFFFF0000U   // Key to enable writes

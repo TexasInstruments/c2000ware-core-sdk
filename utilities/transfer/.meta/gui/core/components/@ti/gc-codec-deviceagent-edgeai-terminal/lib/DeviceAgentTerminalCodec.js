@@ -2,7 +2,7 @@ import { GcUtils } from '../../gc-core-assets/lib/GcUtils';
 import { AbstractDataDecoder, bufferOrStringDataType, stringDataType } from '../../gc-target-configuration/lib/TargetConfiguration';
 
 /**
- *  Copyright (c) 2023 Texas Instruments Incorporated
+ *  Copyright (c) 2023, 2024 Texas Instruments Incorporated
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without

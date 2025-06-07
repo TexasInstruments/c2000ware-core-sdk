@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -311,6 +311,17 @@ union SOFTPRES28_REG {
     struct  SOFTPRES28_BITS  bit;
 };
 
+struct SOFTPRES40_BITS {                // bits description
+    Uint16 JTAG_nTRST:4;                // 3:0 Multi Bit JTAG nTRST
+    Uint16 rsvd1:12;                    // 15:4 Reserved
+    Uint16 JTAG_nTRST_Key:16;           // 31:16 JTAG nTRST Key
+};
+
+union SOFTPRES40_REG {
+    Uint32  all;
+    struct  SOFTPRES40_BITS  bit;
+};
+
 struct TAP_STATUS_BITS {                // bits description
     Uint16 TAP_STATE:16;                // 15:0 Present TAP State
     Uint16 rsvd1:15;                    // 30:16 Reserved
@@ -359,9 +370,11 @@ struct DEV_CFG_REGS {
     Uint16                                   rsvd7[10];                    // Reserved
     union   SOFTPRES27_REG                   SOFTPRES27;                   // EPG Software Reset register
     union   SOFTPRES28_REG                   SOFTPRES28;                   // Flash Software Reset register
-    Uint16                                   rsvd8[116];                   // Reserved
+    Uint16                                   rsvd8[22];                    // Reserved
+    union   SOFTPRES40_REG                   SOFTPRES40;                   // Peripheral Software Reset register
+    Uint16                                   rsvd9[92];                    // Reserved
     union   TAP_STATUS_REG                   TAP_STATUS;                   // Status of JTAG State machine & Debugger Connect
-    Uint16                                   rsvd9[105];                   // Reserved
+    Uint16                                   rsvd10[105];                  // Reserved
     union   ECAPTYPE_REG                     ECAPTYPE;                     // Configures ECAP Type for the device
 };
 
@@ -630,7 +643,7 @@ struct CLK_CFG_REGS {
     Uint16                                   rsvd6[2];                     // Reserved
     union   LOSPCP_REG                       LOSPCP;                       // Low Speed Clock Source Prescalar
     union   MCDCR_REG                        MCDCR;                        // Missing Clock Detect Control Register
-    union   X1CNT_REG                        X1CNT;                        // 10-bit Counter on X1 Clock
+    union   X1CNT_REG                        X1CNT;                        // 11-bit Counter on X1 Clock
     union   XTALCR_REG                       XTALCR;                       // XTAL Control Register
     Uint16                                   rsvd7[6];                     // Reserved
     union   XTALCR2_REG                      XTALCR2;                      // XTAL Control Register for pad init

@@ -36,7 +36,7 @@
 //
 //#############################################################################
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -221,6 +221,7 @@ void main(void)
     //
     if(SysCtl_getClock(SYSCTL_DEFAULT_OSC_FREQ) != DEVICE_SYSCLK_FREQ)
         fail++;
+
 
     //
     // Status of a successful handling of missing clock detection

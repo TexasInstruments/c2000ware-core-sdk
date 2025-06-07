@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -271,12 +271,12 @@ struct UARTICR_BITS {                   // bits description
     Uint16 PEIC:1;                      // 8 Parity Error Interrupt Clear
     Uint16 BEIC:1;                      // 9 Break Error Interrupt Clear
     Uint16 OEIC:1;                      // 10 Overrun Error Interrupt Clear
-    Uint16 EOTIC:1;                     // 11 End of Transmission Interrupt Clear
+    Uint16 rsvd5:1;                     // 11 Reserved
     Uint16 _9BITIC:1;                   // 12 9-Bit Mode Interrupt Clear
-    Uint16 rsvd5:3;                     // 15:13 Reserved
+    Uint16 rsvd6:3;                     // 15:13 Reserved
     Uint16 DMARXIC:1;                   // 16 Receive DMA Interrupt Clear
     Uint16 DMATXIC:1;                   // 17 Transmit DMA Interrupt Clear
-    Uint16 rsvd6:14;                    // 31:18 Reserved
+    Uint16 rsvd7:14;                    // 31:18 Reserved
 };
 
 union UARTICR_REG {
@@ -345,10 +345,10 @@ union UART9BITAMASK_REG {
 struct UARTPP_BITS {                    // bits description
     Uint16 SC:1;                        // 0 Smart Card Support
     Uint16 NB:1;                        // 1 9-Bit Support
-    Uint16 MS:1;                        // 2 Modem Support
-    Uint16 MSE:1;                       // 3 Modem Support Extended
-    Uint16 rsvd1:12;                    // 15:4 Reserved
-    Uint16 rsvd2:16;                    // 31:16 Reserved
+    Uint16 rsvd1:1;                     // 2 Reserved
+    Uint16 rsvd2:1;                     // 3 Reserved
+    Uint16 rsvd3:12;                    // 15:4 Reserved
+    Uint16 rsvd4:16;                    // 31:16 Reserved
 };
 
 union UARTPP_REG {

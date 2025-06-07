@@ -43,7 +43,8 @@ var Flash_FClk_MHz = 50;
 if (["F28004x"].includes(Common.getDeviceName()) || ["F28002x"].includes(Common.getDeviceName()) || ["F28003x"].includes(Common.getDeviceName())){
     Flash_FClk_MHz = 20;
 } 
-if (["F280013x"].includes(Common.getDeviceName()) || ["F280015x"].includes(Common.getDeviceName()) || ["F28P65x"].includes(Common.getDeviceName())){
+if (["F280013x"].includes(Common.getDeviceName()) || ["F280015x"].includes(Common.getDeviceName()) || ["F28P65x"].includes(Common.getDeviceName())
+    || ["F28E12x"].includes(Common.getDeviceName())) {
     Flash_FClk_MHz = 40;
 } 
 
@@ -61,6 +62,7 @@ var numberOfInstance = {
     "F280015x"  : 1,
     "F28P65x"   : 1,
     "F28P55x"   : 1,
+    "F28E12x"   : 1,
 }
 
 var deviceNumberOfInstances = numberOfInstance[Common.getDeviceName()];
@@ -178,7 +180,7 @@ let config = [
         default     : false
     }
 ];
-if(!["F280015x", "F280013x", "F28P65x", "F28P55x"].includes(Common.getDeviceName())){
+if(!["F280015x", "F280013x", "F28P65x", "F28P55x", "F28E12x"].includes(Common.getDeviceName())){
     config.push(
         //ECC Error Threshold
         {
@@ -190,19 +192,6 @@ if(!["F280015x", "F280013x", "F28P65x", "F28P55x"].includes(Common.getDeviceName
         },
     )
 }
-/*
-if(["F280015x"].includes(Common.getDeviceName())){
-    config.push(
-        {
-            name: "engrWaitStates",
-            displayName: "Engr Wait States",
-            description: '',
-            hidden: false,
-            default: '0xF'
-        }
-    )
-}
-*/
 
 var globalConfig = [
     
@@ -220,7 +209,7 @@ var globalConfig = [
 
 var sharedModuleInstances = undefined;
 
-if(["F2838x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName()))
+if(["F2838x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28E12x"].includes(Common.getDeviceName()))
 {   
     sharedModuleInstances = function (inst) {
         if (inst.registerInterrupts)
@@ -291,7 +280,7 @@ function onValidate(inst, validation) {
             inst, waitstateConfigName);
     }
 
-    if(!["F280015x", "F280013x", "F28P65x", "F28P55x"].includes(Common.getDeviceName())){
+    if(!["F280015x", "F280013x", "F28P65x", "F28P55x", "F28E12x"].includes(Common.getDeviceName())){
         if (inst.errorThreshold < 0x0 || inst.errorThreshold > 0xFFFF ){
             validation.logError(
                 "Enter a value from 0x0 to 0xFFFF", 
@@ -334,15 +323,19 @@ function onValidateStatic(inst, validation){
                 "Enter a value from 1 to 100 MHz", 
                 inst, "flashSYSCLK");
         }
-    } 
-      else if (["F28P55x"].includes(Common.getDeviceName())){
+    } else if (["F28P55x"].includes(Common.getDeviceName())){
         if (inst.flashSYSCLK < 1 || inst.flashSYSCLK > 150 ){
             validation.logError(
                 "Enter a value from 1 to 150 MHz", 
                 inst, "flashSYSCLK");
         }
-    } 
-    else {
+    } else if (["F28E12x"].includes(Common.getDeviceName())) {
+        if (inst.flashSYSCLK < 1 || inst.flashSYSCLK >  Common.SYSCLK_getMaxMHz()){
+            validation.logError(
+                "Enter a value from 1 to " + Common.SYSCLK_getMaxMHz() + " MHz", 
+                inst, "flashSYSCLK");
+        }
+    } else {
         if (inst.flashSYSCLK < 1 || inst.flashSYSCLK > 200 ){
             validation.logError(
                 "Enter a value from 1 to 200 MHz", 

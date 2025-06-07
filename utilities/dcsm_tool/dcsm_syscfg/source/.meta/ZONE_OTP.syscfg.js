@@ -118,656 +118,55 @@ var ALL_BOOT_OPTIONS = [];
 
 if ("F28004x".includes(Common.getDeviceName()))
 {
-    let SCI_BOOT_OPTIONS =[
-        {name: "0x01", displayName:"(SCI) SCIATX=GPIO29 , SCIARX=GPIO28"},
-        {name: "0x21", displayName:"(SCI) SCIATX=GPIO16 , SCIARX=GPIO17"},
-        {name: "0x41", displayName:"(SCI) SCIATX=GPIO8  , SCIARX=GPIO9"},
-        {name: "0x61", displayName:"(SCI) SCIATX=GPIO48 , SCIARX=GPIO49"},
-        {name: "0x81", displayName:"(SCI) SCIATX=GPIO24 , SCIARX=GPIO25"},
-    ]
     
-    let CAN_BOOT_OPTIONS =[
-        {name: "0x02", displayName:"(CAN) CANTXA=GPIO32 , CANRXA=GPIO33"},
-        {name: "0x22", displayName:"(CAN) CANTXA=GPIO4  , CANRXA=GPIO5"},
-        {name: "0x42", displayName:"(CAN) CANTXA=GPIO31 , CANRXA=GPIO30"},
-        {name: "0x62", displayName:"(CAN) CANTXA=GPIO37 , CANRXA=GPIO35"},
-    ]
     
-    let WAIT_BOOT_OPTIONS =[
-        {name: "0x04", displayName:"(WAIT) watchdog is enabled"},
-        {name: "0x24", displayName:"(WAIT) Watchdog is disabled"},
-    ]
-    
-    let SPI_BOOT_OPTIONS =[
-        {name: "0x26", displayName:"(SPI) SPIA_SIMO=GPIO8  , SPIA_SOMI=GPIO10 , SPIA_CLK=GPIO9  , SPIA_STE=GPIO11"},
-        {name: "0x46", displayName:"(SPI) SPIA_SIMO=GPIO54 , SPIA_SOMI=GPIO55 , SPIA_CLK=GPIO56 , SPIA_STE=GPIO57"},
-        {name: "0x66", displayName:"(SPI) SPIA_SIMO=GPIO16 , SPIA_SOMI=GPIO17 , SPIA_CLK=GPIO56 , SPIA_STE=GPIO57"},
-        {name: "0x86", displayName:"(SPI) SPIA_SIMO=GPIO8  , SPIA_SOMI=GPIO17 , SPIA_CLK=GPIO9  , SPIA_STE=GPIO11"},
-    ]
-    
-    let I2C_BOOT_OPTIONS =[
-        {name: "0x07", displayName:"(I2C) SDAA=GPIO32 , SCLA=GPIO33"},
-        {name: "0x47", displayName:"(I2C) SDAA=GPIO26 , SCLA=GPIO27"},
-        {name: "0x67", displayName:"(I2C) SDAA=GPIO42 , SCLA=GPIO43"},
-    ]
-    
-    let PARALLEL_BOOT_OPTIONS =[
-        {name: "0x00", displayName:"(PARALLEL) D0-D7=GPIO0-GPIO7 , MCU-Control=GPIO10 , Host-Control=GPIO11"},
-    ]
-    
-    let FLASH_BOOT_OPTIONS =[
-        {name: "0x03", displayName:"(FLASH) Flash-Entry-Address=0x00080000, Bank 0 , Sector 0 "},
-        {name: "0x23", displayName:"(FLASH) Flash-Entry-Address=0x0008EFF0, Bank 0 , Sector 14"},
-        {name: "0x43", displayName:"(FLASH) Flash-Entry-Address=0x00090000, Bank 1 , Sector 0 "},
-        {name: "0x63", displayName:"(FLASH) Flash-Entry-Address=0x0009EFF0, Bank 1 , Sector 14"},
-    ] 
-    
-    let RAM_BOOT_OPTIONS =[
-        {name: "0x05", displayName:"(RAM) RAM Entry Point Address=0x00000000"},
-    ]
-    
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(SCI_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(CAN_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(WAIT_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(SPI_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(I2C_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(PARALLEL_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(FLASH_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(RAM_BOOT_OPTIONS)
+    ALL_BOOT_OPTIONS = Common.getBootOptions().f28004x_boot;
     
     //console.log(ALL_BOOT_OPTIONS);
 }
 else if ("F28002x".includes(Common.getDeviceName()))
 {
-    let SCI_BOOT_OPTIONS =[
-        {name: "0x01", displayName:"(SCI) SCIATX=GPIO29 , SCIARX=GPIO28"},
-        {name: "0x21", displayName:"(SCI) SCIATX=GPIO16 , SCIARX=GPIO17"},
-        {name: "0x41", displayName:"(SCI) SCIATX=GPIO8  , SCIARX=GPIO9"},
-        {name: "0x61", displayName:"(SCI) SCIATX=GPIO2  , SCIARX=GPIO3"},
-        {name: "0x81", displayName:"(SCI) SCIATX=GPIO16 , SCIARX=GPIO3"},
-    ]
     
-    let CAN_BOOT_OPTIONS =[
-        {name: "0x02", displayName:"(CAN) CANTXA=GPIO4  , CANRXA=GPIO5"},
-        {name: "0x22", displayName:"(CAN) CANTXA=GPIO32 , CANRXA=GPIO33"},
-        {name: "0x42", displayName:"(CAN) CANTXA=GPIO2  , CANRXA=GPIO3"},
-    ]
     
-    let WAIT_BOOT_OPTIONS =[
-        {name: "0x04", displayName:"(WAIT) watchdog is enabled"},
-        {name: "0x24", displayName:"(WAIT) Watchdog is disabled"},
-    ]
-    
-    let SPI_BOOT_OPTIONS =[
-        {name: "0x06", displayName:"(SPI) SPIA_SIMO=GPIO2  , SPIA_SOMI=GPIO1  , SPIA_CLK=GPIO3  , SPIA_STE=GPIO5"},
-        {name: "0x26", displayName:"(SPI) SPIA_SIMO=GPIO16 , SPIA_SOMI=GPIO1  , SPIA_CLK=GPIO3  , SPIA_STE=GPIO0"},
-        {name: "0x46", displayName:"(SPI) SPIA_SIMO=GPIO8  , SPIA_SOMI=GPIO10 , SPIA_CLK=GPIO9  , SPIA_STE=GPIO11"},
-        {name: "0x66", displayName:"(SPI) SPIA_SIMO=GPIO8  , SPIA_SOMI=GPIO17 , SPIA_CLK=GPIO9  , SPIA_STE=GPIO11"},
-    ]
-    
-    let I2C_BOOT_OPTIONS =[
-        {name: "0x07", displayName:"(I2C) SDAA=GPIO32 , SCLA=GPIO33"},
-        {name: "0x27", displayName:"(I2C) SDAA=GPIO0  , SCLA=GPIO1"},
-        {name: "0x47", displayName:"(I2C) SDAA=GPIO10 , SCLA=GPIO8"},
-    ]
-    
-    let PARALLEL_BOOT_OPTIONS =[
-        {name: "0x00", displayName:"(PARALLEL) D0=GPIO28, D1-D7=GPIO1-GPIO7 , MCU-Control=GPIO16 , Host-Control=GPIO29"},
-        {name: "0x20", displayName:"(PARALLEL) D0-D7=GPIO0-GPIO7 , MCU-Control=GPIO16 , Host-Control=GPIO11"},
-    ]
-    
-    let FLASH_BOOT_OPTIONS =[
-        {name: "0x03", displayName:"(FLASH) Flash-Entry-Address=0x00080000, Bank 0 , Sector 0 "},
-        {name: "0x23", displayName:"(FLASH) Flash-Entry-Address=0x00084000, Bank 0 , Sector 4"},
-        {name: "0x43", displayName:"(FLASH) Flash-Entry-Address=0x00088000, Bank 1 , Sector 8 "},
-        {name: "0x63", displayName:"(FLASH) Flash-Entry-Address=0x0008EFF0, Bank 0 , Sector 14"},
-    ] 
-    
-    let RAM_BOOT_OPTIONS =[
-        {name: "0x05", displayName:"(RAM) RAM Entry Point Address=0x00000000"},
-    ]
-    
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(SCI_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(CAN_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(WAIT_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(SPI_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(I2C_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(PARALLEL_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(FLASH_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(RAM_BOOT_OPTIONS)
+    ALL_BOOT_OPTIONS = Common.getBootOptions().f28002x_boot;
     
     //console.log(ALL_BOOT_OPTIONS);
 }
 else if ("F2838x".includes(Common.getDeviceName()))
 {
-    let SCI_BOOT_OPTIONS =[
-        {name: "0x01", displayName:"(SCI) SCIATX=GPIO29 , SCIARX=GPIO28"},
-        {name: "0x21", displayName:"(SCI) SCIATX=GPIO84 , SCIARX=GPIO85"},
-        {name: "0x41", displayName:"(SCI) SCIATX=GPIO36 , SCIARX=GPIO35"},
-        {name: "0x61", displayName:"(SCI) SCIATX=GPIO42 , SCIARX=GPIO43"},
-        {name: "0x81", displayName:"(SCI) SCIATX=GPIO65 , SCIARX=GPIO64"},
-        {name: "0xA1", displayName:"(SCI) SCIATX=GPIO135, SCIARX=GPIO136"},
-        {name: "0xC1", displayName:"(SCI) SCIATX=GPIO8  , SCIARX=GPIO9"},
-    ]
-    
-    let CAN_BOOT_OPTIONS =[
-        {name: "0x02", displayName:"(CAN) CANTXA=GPIO37 , CANRXA=GPIO36"},
-        {name: "0x22", displayName:"(CAN) CANTXA=GPIO71 , CANRXA=GPIO70"},
-        {name: "0x42", displayName:"(CAN) CANTXA=GPIO63 , CANRXA=GPIO62"},
-        {name: "0x62", displayName:"(CAN) CANTXA=GPIO19 , CANRXA=GPIO18"},
-        {name: "0x82", displayName:"(CAN) CANTXA=GPIO4  , CANRXA=GPIO5"},
-        {name: "0xA2", displayName:"(CAN) CANTXA=GPIO31 , CANRXA=GPIO30"},
-    ]
-    
-    let WAIT_BOOT_OPTIONS =[
-        {name: "0x04", displayName:"(WAIT) watchdog is enabled"},
-        {name: "0x24", displayName:"(WAIT) Watchdog is disabled"},
-    ]
-    
-    let SPI_BOOT_OPTIONS =[
-        {name: "0x06", displayName:"(SPI) SPIA_SIMO=GPIO58 , SPIA_SOMI=GPIO59 , SPIA_CLK=GPIO60 , SPIA_STE=GPIO61"},
-        {name: "0x26", displayName:"(SPI) SPIA_SIMO=GPIO16 , SPIA_SOMI=GPIO17 , SPIA_CLK=GPIO18 , SPIA_STE=GPIO19"},
-        {name: "0x46", displayName:"(SPI) SPIA_SIMO=GPIO32 , SPIA_SOMI=GPIO33 , SPIA_CLK=GPIO34 , SPIA_STE=GPIO35"},
-        {name: "0x66", displayName:"(SPI) SPIA_SIMO=GPIO16 , SPIA_SOMI=GPIO17 , SPIA_CLK=GPIO56 , SPIA_STE=GPIO57"},
-        {name: "0x86", displayName:"(SPI) SPIA_SIMO=GPIO54 , SPIA_SOMI=GPIO55 , SPIA_CLK=GPIO56 , SPIA_STE=GPIO57"},
-    ]
-    
-    let I2C_BOOT_OPTIONS =[
-        {name: "0x07", displayName:"(I2C) SDAA=GPIO91 , SCLA=GPIO92"},
-        {name: "0x27", displayName:"(I2C) SDAA=GPIO32 , SCLA=GPIO33"},
-        {name: "0x47", displayName:"(I2C) SDAA=GPIO42 , SCLA=GPIO43"},
-        {name: "0x67", displayName:"(I2C) SDAA=GPIO0  , SCLA=GPIO1"},
-        {name: "0x87", displayName:"(I2C) SDAA=GPIO104, SCLA=GPIO105"},
-    ]
-    
-    let PARALLEL_BOOT_OPTIONS =[
-        {name: "0x00", displayName:"(PARALLEL) D0=GPIO89, D1=GPIO90, D2-D6=GPIO58-GPIO62, D7=GPIO88, MCU-Control=GPIO91 , Host-Control=GPIO92"},
-    ]
-    
-    let FLASH_BOOT_OPTIONS =[
-        {name: "0x03", displayName:"(FLASH) Flash-Entry-Address=0x00080000, CPU1 Bank 0 , Sector 0"},
-        {name: "0x23", displayName:"(FLASH) Flash-Entry-Address=0x00088000, CPU1 Bank 0 , Sector 4"},
-        {name: "0x43", displayName:"(FLASH) Flash-Entry-Address=0x000A8000, CPU1 Bank 0 , Sector 8"},
-        {name: "0x63", displayName:"(FLASH) Flash-Entry-Address=0x000BE000, CPU1 Bank 0 , Sector 14"},
-    ] 
+    ALL_BOOT_OPTIONS = Common.getBootOptions().f2838x_boot; 
 
-    let SECURE_FLASH_BOOT_OPTIONS =[
-        {name: "0x0A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x00080000, CPU1 Bank 0 , Sector 0"},
-        {name: "0x2A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x00088000, CPU1 Bank 0 , Sector 4"},
-        {name: "0x4A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x000A8000, CPU1 Bank 0 , Sector 8"},
-        {name: "0x6A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x000BE000, CPU1 Bank 0 , Sector 13"},
-    ] 
-    
-    let USB_BOOT_OPTIONS =[
-        {name: "0x09", displayName:"(USB) USBDM=GPIO42, USBDP=GPIO43"},
-    ]
-
-    let RAM_BOOT_OPTIONS =[
-        {name: "0x05", displayName:"(RAM) RAM Entry Point Address=0x00000000"},
-    ]
-    
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(SCI_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(CAN_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(WAIT_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(SPI_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(I2C_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(PARALLEL_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(FLASH_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(SECURE_FLASH_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(USB_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(RAM_BOOT_OPTIONS)
 }
+
 else if ("F28003x".includes(Common.getDeviceName()))
 {
-    let SCI_BOOT_OPTIONS =[
-        {name: "0x01", displayName:"(SCI) SCIATX=GPIO29 , SCIARX=GPIO28"},
-        {name: "0x21", displayName:"(SCI) SCIATX=GPIO16 , SCIARX=GPIO17"},
-        {name: "0x41", displayName:"(SCI) SCIATX=GPIO8  , SCIARX=GPIO9"},
-        {name: "0x61", displayName:"(SCI) SCIATX=GPIO2  , SCIARX=GPIO3"},
-        {name: "0x81", displayName:"(SCI) SCIATX=GPIO16 , SCIARX=GPIO3"},
-    ]
-    
-    let CAN_BOOT_OPTIONS =[
-        {name: "0x02", displayName:"(CAN) CANTXA=GPIO4  , CANRXA=GPIO5"},
-        {name: "0x22", displayName:"(CAN) CANTXA=GPIO32 , CANRXA=GPIO33"},
-        {name: "0x42", displayName:"(CAN) CANTXA=GPIO2  , CANRXA=GPIO3"},
-        {name: "0x62", displayName:"(CAN) CANTXA=GPIO13 , CANRXA=GPIO12"},
-    ]
-
-    let MCAN_BOOT_OPTIONS =[
-        {name: "0x08", displayName:"(MCAN) MCANTXA=GPIO4  , MCANRXA=GPIO5"},
-        {name: "0x28", displayName:"(MCAN) MCANTXA=GPIO1  , MCANRXA=GPIO0"},
-        {name: "0x48", displayName:"(MCAN) MCANTXA=GPIO13 , MCANRXA=GPIO12"},
-    ]
-    
-    let WAIT_BOOT_OPTIONS =[
-        {name: "0x04", displayName:"(WAIT) watchdog is enabled"},
-        {name: "0x24", displayName:"(WAIT) Watchdog is disabled"},
-    ]
-    
-    let SPI_BOOT_OPTIONS =[
-        {name: "0x06", displayName:"(SPI) SPIA_SIMO=GPIO2  , SPIA_SOMI=GPIO1  , SPIA_CLK=GPIO3  , SPIA_STE=GPIO5"},
-        {name: "0x26", displayName:"(SPI) SPIA_SIMO=GPIO16 , SPIA_SOMI=GPIO1  , SPIA_CLK=GPIO3  , SPIA_STE=GPIO0"},
-        {name: "0x46", displayName:"(SPI) SPIA_SIMO=GPIO8  , SPIA_SOMI=GPIO10 , SPIA_CLK=GPIO9  , SPIA_STE=GPIO11"},
-        {name: "0x66", displayName:"(SPI) SPIA_SIMO=GPIO8  , SPIA_SOMI=GPIO17 , SPIA_CLK=GPIO9  , SPIA_STE=GPIO11"},
-    ]
-    
-    let I2C_BOOT_OPTIONS =[
-        {name: "0x07", displayName:"(I2C) SDAA=GPIO32 , SCLA=GPIO33"},
-        {name: "0x27", displayName:"(I2C) SDAA=GPIO0  , SCLA=GPIO1"},
-        {name: "0x47", displayName:"(I2C) SDAA=GPIO10 , SCLA=GPIO8"},
-    ]
-    
-    let PARALLEL_BOOT_OPTIONS =[
-        {name: "0x00", displayName:"(PARALLEL) D0-D7=GPIO0-GPIO7 , MCU-Control=GPIO16 , Host-Control=GPIO29"},
-        {name: "0x20", displayName:"(PARALLEL) D0-D7=GPIO0-GPIO7 , MCU-Control=GPIO16 , Host-Control=GPIO11"},
-    ]
-    
-    let FLASH_BOOT_OPTIONS =[
-        {name: "0x03", displayName:"(FLASH) Flash-Entry-Address=0x00080000, Bank 0 , Sector 0"},
-        {name: "0x23", displayName:"(FLASH) Flash-Entry-Address=0x00088000, Bank 0 , Sector 8"},
-        {name: "0x43", displayName:"(FLASH) Flash-Entry-Address=0x0008FFF0, Bank 0 , Sector 15"},
-        {name: "0x63", displayName:"(FLASH) Flash-Entry-Address=0x00090000, Bank 1 , Sector 0"},
-
-        {name: "0x83", displayName:"(FLASH) Flash-Entry-Address=0x00097FF0, Bank 1 , Sector 7"},
-        {name: "0xA3", displayName:"(FLASH) Flash-Entry-Address=0x0009FFF0, Bank 1 , Sector 15 "},
-        {name: "0xC3", displayName:"(FLASH) Flash-Entry-Address=0x000A0000, Bank 2 , Sector 0"},
-        {name: "0xE3", displayName:"(FLASH) Flash-Entry-Address=0x000AFFF0, Bank 2 , Sector 15"},
-    ] 
-
-    let LFU_BOOT_OPTIONS =[
-        {name: "0x0B", displayName:"(LFU FLASH) Flash-Entry-Address=0x00080000 for Bank 0, 0x00090000 for Bank 1, 0x000A0000 for Bank 2"},
-        {name: "0x2B", displayName:"(LFU FLASH) Flash-Entry-Address=0x00088000 for Bank 0, 0x00098000 for Bank 1, 0x000A8000 for Bank 2"},
-        {name: "0x4B", displayName:"(LFU FLASH) Flash-Entry-Address=0x0008FFF0 for Bank 0, 0x0009FFF0 for Bank 1, 0x000AFFF0 for Bank 2"},
-        {name: "0x6B", displayName:"(LFU FLASH) Flash-Entry-Address=0x00088000 for Bank 0, 0x00090000 for Bank 1, 0x000A0000 for Bank 2"},
-        {name: "0x8B", displayName:"(LFU FLASH) Flash-Entry-Address=0x0008EFF0 for Bank 0, 0x00097FF0 for Bank 1, 0x000A7FF0 for Bank 2"},
-    ] 
-
-    let SECURE_LFU_BOOT_OPTIONS =[
-        {name: "0x0C", displayName:"(SECURE LFU FLASH) Flash-Entry-Address=0x00080000 for Bank 0, 0x00090000 for Bank 1, 0x000A0000 for Bank 2"},
-        {name: "0x2C", displayName:"(SECURE LFU FLASH) Flash-Entry-Address=0x00088000 for Bank 0, 0x00098000 for Bank 1, 0x000A8000 for Bank 2"},
-        {name: "0x6C", displayName:"(SECURE LFU FLASH) Flash-Entry-Address=0x00088000 for Bank 0, 0x00090000 for Bank 1, 0x000A0000 for Bank 2"},
-        {name: "0x8C", displayName:"(SECURE LFU FLASH) Flash-Entry-Address=0x0008EFF0 for Bank 0, 0x00097FF0 for Bank 1, 0x000A7FF0 for Bank 2"},
-    ] 
-    
-    let RAM_BOOT_OPTIONS =[
-        {name: "0x05", displayName:"(RAM) RAM Entry Point Address=0x00000000"},
-    ]
-
-    let SECURE_FLASH_BOOT_OPTIONS = [
-        {name: "0x0A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x00080000, Bank 0 , Sector 0"},
-        {name: "0x2A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x00088000, Bank 0 , Sector 8"},
-        {name: "0x4A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x0008FFF0, Bank 0 , Sector 15"},
-        {name: "0x6A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x00090000, Bank 1 , Sector 0"},
-
-        {name: "0x8A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x00097FF0, Bank 1 , Sector 7"},
-        {name: "0xAA", displayName:"(SECURE FLASH) Flash-Entry-Address=0x0009FFF0, Bank 1 , Sector 15 "},
-        {name: "0xCA", displayName:"(SECURE FLASH) Flash-Entry-Address=0x000A0000, Bank 2 , Sector 0"},
-    ]
-    
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(SCI_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(CAN_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(MCAN_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(WAIT_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(SPI_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(I2C_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(PARALLEL_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(FLASH_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(LFU_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(SECURE_LFU_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(RAM_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(SECURE_FLASH_BOOT_OPTIONS)
+    ALL_BOOT_OPTIONS = Common.getBootOptions().f28003x_boot;
     
     //console.log(ALL_BOOT_OPTIONS);
 }
 else if ("F280013x".includes(Common.getDeviceName()))
 {
-    let SCI_BOOT_OPTIONS =[
-        {name: "0x01", displayName:"(SCI) SCIATX=GPIO29 , SCIARX=GPIO28"},
-        {name: "0x21", displayName:"(SCI) SCIATX=GPIO1  , SCIARX=GPIO0"},
-        {name: "0x41", displayName:"(SCI) SCIATX=GPIO8  , SCIARX=GPIO9"},
-        {name: "0x61", displayName:"(SCI) SCIATX=GPIO7  , SCIARX=GPIO3"},
-        {name: "0x81", displayName:"(SCI) SCIATX=GPIO16 , SCIARX=GPIO3"},
-    ]
-    
-    let CAN_BOOT_OPTIONS =[
-        {name: "0x02", displayName:"(CAN) CANTXA=GPIO4  , CANRXA=GPIO5"},
-        {name: "0x22", displayName:"(CAN) CANTXA=GPIO32 , CANRXA=GPIO33"},
-        {name: "0x42", displayName:"(CAN) CANTXA=GPIO2  , CANRXA=GPIO3"},
-        {name: "0x62", displayName:"(CAN) CANTXA=GPIO13 , CANRXA=GPIO12"},
-    ]
-
-    let WAIT_BOOT_OPTIONS =[
-        {name: "0x04", displayName:"(WAIT) watchdog is enabled"},
-        {name: "0x24", displayName:"(WAIT) Watchdog is disabled"},
-    ]
-    
-    let SPI_BOOT_OPTIONS =[
-        {name: "0x06", displayName:"(SPI) SPIA_SIMO=GPIO7  , SPIA_SOMI=GPIO1  , SPIA_CLK=GPIO3  , SPIA_STE=GPIO5"},
-        {name: "0x26", displayName:"(SPI) SPIA_SIMO=GPIO16 , SPIA_SOMI=GPIO1  , SPIA_CLK=GPIO3  , SPIA_STE=GPIO0"},
-        {name: "0x46", displayName:"(SPI) SPIA_SIMO=GPIO8  , SPIA_SOMI=GPIO10 , SPIA_CLK=GPIO9  , SPIA_STE=GPIO11"},
-        {name: "0x66", displayName:"(SPI) SPIA_SIMO=GPIO16 , SPIA_SOMI=GPIO13 , SPIA_CLK=GPIO12 , SPIA_STE=GPIO29"},
-    ]
-    
-    let I2C_BOOT_OPTIONS =[
-        {name: "0x07", displayName:"(I2C) SDAA=GPIO0  , SCLA=GPIO1"},
-        {name: "0x27", displayName:"(I2C) SDAA=GPIO32 , SCLA=GPIO33"},
-        {name: "0x47", displayName:"(I2C) SDAA=GPIO5  , SCLA=GPIO4"},
-    ]
-    
-    let PARALLEL_BOOT_OPTIONS =[
-        {name: "0x00", displayName:"(PARALLEL) D0-D7=GPIO(0,1,3,4,5,7,28,29) , MCU-Control=GPIO224 , Host-Control=GPIO242"},
-        {name: "0x20", displayName:"(PARALLEL) D0-D7=GPIO0-GPIO7 , MCU-Control=GPIO12 , Host-Control=GPIO13"},
-        {name: "0x40", displayName:"(PARALLEL) D0-D7=GPIO0-GPIO7 , MCU-Control=GPIO16 , Host-Control=GPIO29"},
-    ]
-    
-    let FLASH_BOOT_OPTIONS =[
-        {name: "0x03", displayName:"(FLASH) Flash-Entry-Address=0x00080000, Bank 0 , Sector 0"},
-        {name: "0x23", displayName:"(FLASH) Flash-Entry-Address=0x00088000, Bank 0 , Sector 32"},
-        {name: "0x43", displayName:"(FLASH) Flash-Entry-Address=0x0008FFF0, Bank 0 , Sector 63"},
-        {name: "0x63", displayName:"(FLASH) Flash-Entry-Address=0x00090000, Bank 0 , Sector 64"},
-
-        {name: "0x83", displayName:"(FLASH) Flash-Entry-Address=0x00098000, Bank 0 , Sector 96"},
-        {name: "0xA3", displayName:"(FLASH) Flash-Entry-Address=0x0009FFF0, Bank 0 , Sector 127"},
-    ] 
-
-    let SECURE_FLASH_BOOT_OPTIONS =[
-        {name: "0x0A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x00080000, Bank 0 , Sector 0"},
-        {name: "0x2A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x00088000, Bank 0 , Sector 32"},
-        {name: "0x4A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x0008FFF0, Bank 0 , Sector 63"},
-        {name: "0x6A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x00090000, Bank 0 , Sector 64"},
-        {name: "0x8A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x00098000, Bank 0 , Sector 96"},
-    ] 
-    
-    let RAM_BOOT_OPTIONS =[
-        {name: "0x05", displayName:"(RAM) RAM Entry Point Address=0x00000000"},
-    ]
-    
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(SCI_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(CAN_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(WAIT_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(SPI_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(I2C_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(PARALLEL_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(FLASH_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(SECURE_FLASH_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(RAM_BOOT_OPTIONS)
+    ALL_BOOT_OPTIONS = Common.getBootOptions().f280013x_boot; 
     
     //console.log(ALL_BOOT_OPTIONS);
 } 
 else if ("F280015x".includes(Common.getDeviceName()))
 {
-    let SCI_BOOT_OPTIONS =[
-        {name: "0x01", displayName:"(SCI) SCIATX=GPIO29 , SCIARX=GPIO28"},
-        {name: "0x21", displayName:"(SCI) SCIATX=GPIO1  , SCIARX=GPIO0"},
-        {name: "0x41", displayName:"(SCI) SCIATX=GPIO8  , SCIARX=GPIO9"},
-        {name: "0x61", displayName:"(SCI) SCIATX=GPIO7  , SCIARX=GPIO3"},
-        {name: "0x81", displayName:"(SCI) SCIATX=GPIO16 , SCIARX=GPIO3"},
-    ]
-    
-    let CAN_BOOT_OPTIONS =[
-        {name: "0x02", displayName:"(CAN) CANTXA=GPIO4  , CANRXA=GPIO5"},
-        {name: "0x22", displayName:"(CAN) CANTXA=GPIO32 , CANRXA=GPIO33"},
-        {name: "0x42", displayName:"(CAN) CANTXA=GPIO2  , CANRXA=GPIO3"},
-        {name: "0x62", displayName:"(CAN) CANTXA=GPIO13 , CANRXA=GPIO12"},
-    ]
-
-    let WAIT_BOOT_OPTIONS =[
-        {name: "0x04", displayName:"(WAIT) watchdog is enabled"},
-        {name: "0x24", displayName:"(WAIT) Watchdog is disabled"},
-    ]
-    
-    let SPI_BOOT_OPTIONS =[
-        {name: "0x06", displayName:"(SPI) SPIA_SIMO=GPIO7  , SPIA_SOMI=GPIO1  , SPIA_CLK=GPIO3  , SPIA_STE=GPIO5"},
-        {name: "0x26", displayName:"(SPI) SPIA_SIMO=GPIO16 , SPIA_SOMI=GPIO1  , SPIA_CLK=GPIO3  , SPIA_STE=GPIO0"},
-        {name: "0x46", displayName:"(SPI) SPIA_SIMO=GPIO8  , SPIA_SOMI=GPIO10 , SPIA_CLK=GPIO9  , SPIA_STE=GPIO11"},
-        {name: "0x66", displayName:"(SPI) SPIA_SIMO=GPIO16 , SPIA_SOMI=GPIO13 , SPIA_CLK=GPIO12 , SPIA_STE=GPIO29"},
-    ]
-    
-    let I2C_BOOT_OPTIONS =[
-        {name: "0x07", displayName:"(I2C) SDAA=GPIO0  , SCLA=GPIO1"},
-        {name: "0x27", displayName:"(I2C) SDAA=GPIO32 , SCLA=GPIO33"},
-        {name: "0x47", displayName:"(I2C) SDAA=GPIO5  , SCLA=GPIO4"},
-    ]
-
-    let MCAN_BOOT_OPTIONS =[
-        {name: "0x08", displayName:"(MCAN) MCANTXA=GPIO1  , MCANRXA=GPIO0"},
-        {name: "0x28", displayName:"(MCAN) MCANTXA=GPIO4  , MCANRXA=GPIO5"},
-        {name: "0x48", displayName:"(MCAN) MCANTXA=GPIO13 , MCANRXA=GPIO12"},
-    ]
-    
-    
-    let PARALLEL_BOOT_OPTIONS =[
-        {name: "0x00", displayName:"(PARALLEL) D0-D7=GPIO(0,1,3,4,5,7,28,29) , MCU-Control=GPIO224 , Host-Control=GPIO242"},
-        {name: "0x20", displayName:"(PARALLEL) D0-D7=GPIO0-GPIO7 , MCU-Control=GPIO12 , Host-Control=GPIO13"},
-        {name: "0x40", displayName:"(PARALLEL) D0-D7=GPIO0-GPIO7 , MCU-Control=GPIO16 , Host-Control=GPIO29"},
-    ]
-    
-    let FLASH_BOOT_OPTIONS =[
-        {name: "0x03", displayName:"(FLASH) Flash-Entry-Address=0x00080000, Bank 0 , Sector 0"},
-        {name: "0x23", displayName:"(FLASH) Flash-Entry-Address=0x00088000, Bank 0 , Sector 32"},
-        {name: "0x43", displayName:"(FLASH) Flash-Entry-Address=0x0008FFF0, Bank 0 , Sector 63"},
-        {name: "0x63", displayName:"(FLASH) Flash-Entry-Address=0x00090000, Bank 0 , Sector 64"},
-
-        {name: "0x83", displayName:"(FLASH) Flash-Entry-Address=0x00098000, Bank 0 , Sector 96"},
-        {name: "0xA3", displayName:"(FLASH) Flash-Entry-Address=0x0009FFF0, Bank 0 , Sector 127"},
-    ] 
-
-    let SECURE_FLASH_BOOT_OPTIONS =[
-        {name: "0x0A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x00080000, Bank 0 , Sector 0"},
-        {name: "0x2A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x00088000, Bank 0 , Sector 32"},
-        {name: "0x4A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x0008FFF0, Bank 0 , Sector 63"},
-        {name: "0x6A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x00090000, Bank 0 , Sector 64"},
-        {name: "0x8A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x00098000, Bank 0 , Sector 96"},
-    ] 
-    
-    let RAM_BOOT_OPTIONS =[
-        {name: "0x05", displayName:"(RAM) RAM Entry Point Address=0x00000000"},
-    ]
-    
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(SCI_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(CAN_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(WAIT_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(SPI_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(I2C_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(MCAN_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(PARALLEL_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(FLASH_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(SECURE_FLASH_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(RAM_BOOT_OPTIONS)
+    ALL_BOOT_OPTIONS = Common.getBootOptions().f280015x_boot; 
     
     //console.log(ALL_BOOT_OPTIONS);
 }
 else if ("F28P65x".includes(Common.getDeviceName()))
 {
-    let SCI_BOOT_OPTIONS =[
-        {name: "0x01", displayName:"(SCI) SCIATX=GPIO12 , SCIARX=GPIO13"},
-        {name: "0x21", displayName:"(SCI) SCIATX=GPIO84 , SCIARX=GPIO85"},
-        {name: "0x41", displayName:"(SCI) SCIATX=GPIO36 , SCIARX=GPIO35"},
-        {name: "0x61", displayName:"(SCI) SCIATX=GPIO42 , SCIARX=GPIO43"},
-        {name: "0x81", displayName:"(SCI) SCIATX=GPIO65 , SCIARX=GPIO64"},
-        {name: "0xA1", displayName:"(SCI) SCIATX=GPIO29 , SCIARX=GPIO28"},
-        {name: "0xC1", displayName:"(SCI) SCIATX=GPIO8  , SCIARX=GPIO9"},
-    ]
-    
-    let CAN_BOOT_OPTIONS =[
-        {name: "0x02", displayName:"(CAN) CANTXA=GPIO59 , CANRXA=GPIO58"},
-        {name: "0x22", displayName:"(CAN) CANTXA=GPIO4  , CANRXA=GPIO5"},
-        {name: "0x42", displayName:"(CAN) CANTXA=GPIO19 , CANRXA=GPIO18"},
-        {name: "0x62", displayName:"(CAN) CANTXA=GPIO37 , CANRXA=GPIO36"},
-        {name: "0x82", displayName:"(CAN) CANTXA=GPIO63 , CANRXA=GPIO62"},
-    ]
+    ALL_BOOT_OPTIONS = Common.getBootOptions().f28p65x_boot; 
 
-    let WAIT_BOOT_OPTIONS =[
-        {name: "0x04", displayName:"(WAIT) watchdog is enabled"},
-        {name: "0x24", displayName:"(WAIT) Watchdog is disabled"},
-    ]
-    
-    let SPI_BOOT_OPTIONS =[
-        {name: "0x06", displayName:"(SPI) SPIA_PICO=GPIO58  , SPIA_POCI=GPIO59  , SPIA_CLK=GPIO34  , SPIA_PTE=GPIO35"},
-        {name: "0x26", displayName:"(SPI) SPIA_PICO=GPIO198  , SPIA_POCI=GPIO203  , SPIA_CLK=GPIO204  , SPIA_PTE=GPIO205"},
-        {name: "0x46", displayName:"(SPI) SPIA_PICO=GPIO16  , SPIA_POCI=GPIO17  , SPIA_CLK=GPIO18  , SPIA_PTE=GPIO19"},
-        {name: "0x66", displayName:"(SPI) SPIA_PICO=GPIO54  , SPIA_POCI=GPIO55  , SPIA_CLK=GPIO56  , SPIA_PTE=GPIO57"},
-    ]
-    
-    let I2C_BOOT_OPTIONS =[
-        {name: "0x07", displayName:"(I2C) SDAA=GPIO0  , SCLA=GPIO1"},
-        {name: "0x27", displayName:"(I2C) SDAA=GPIO42 , SCLA=GPIO43"},
-        {name: "0x47", displayName:"(I2C) SDAA=GPIO91  , SCLA=GPIO92"},
-        {name: "0x67", displayName:"(I2C) SDAA=GPIO104  , SCLA=GPIO105"},
-    ]
-    
-    let PARALLEL_BOOT_OPTIONS =[
-        {name: "0x00", displayName:"(PARALLEL) D0-D7=GPIO0-7 , MCU-Control=GPIO10 , Host-Control=GPIO11"},
-        {name: "0x20", displayName:"(PARALLEL) D0-D7=GPIO(89,90,58-62,88) , MCU-Control=GPIO91 , Host-Control=GPIO92"},
-    ]
-    
-    let FLASH_BOOT_OPTIONS =[
-        {name: "0x03", displayName:"(FLASH) Flash-Entry-Address=0x00080000, CPU1 Bank 0 , Sector 0"},
-        {name: "0x23", displayName:"(FLASH) Flash-Entry-Address=0x0009FFF0, CPU1 Bank 0 , end of Sector 127"},
-        {name: "0x43", displayName:"(FLASH) Flash-Entry-Address=0x000A0000, CPU1 Bank 1 , Sector 0"},
-        {name: "0x63", displayName:"(FLASH) Flash-Entry-Address=0x000C0000, CPU1 Bank 2 , Sector 0"},
-        {name: "0x83", displayName:"(FLASH) Flash-Entry-Address=0x000E0000, CPU1 Bank 3 , Sector 0"},
-        {name: "0xA3", displayName:"(FLASH) Flash-Entry-Address=0x00100000, CPU1 Bank 4 , Sector 0"},
-        {name: "0xC3", displayName:"(FLASH) Flash-Entry-Address=0x0011FFF0, CPU1 Bank 4 , End of Sector 127"},
-    ] 
-
-    let SECURE_FLASH_BOOT_OPTIONS =[
-        {name: "0x0A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x00080000, CPU1 Bank 0 , Sector 0"},
-        {name: "0x4A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x000A0000, CPU1 Bank 1 , Sector 0"},
-        {name: "0x6A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x000C0000, CPU1 Bank 2 , Sector 0"},
-        {name: "0x8A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x000E0000, CPU1 Bank 3 , Sector 0"},
-        {name: "0xAA", displayName:"(SECURE FLASH) Flash-Entry-Address=0x00100000, CPU1 Bank 4 , Sector 0"},
-    ] 
-    
-    let RAM_BOOT_OPTIONS =[
-        {name: "0x05", displayName:"(RAM) RAM Entry Point Address=0x00000000"},
-    ]
-
-    let CAN_FD_BOOT_OPTIONS = [
-        {name: "0x08", displayName:"(CAN-FD) CANTXA=GPIO4 , CANRXA=GPIO10"},
-        {name: "0x18", displayName:"(CAN-FD) CANTXA=GPIO8 , CANRXA=GPIO10"},
-        {name: "0x28", displayName:"(CAN-FD) CANTXA=GPIO19 , CANRXA=GPIO18"},
-        {name: "0x38", displayName:"(CAN-FD) CANTXA=GPIO4 , CANRXA=GPIO5"},
-        {name: "0x48", displayName:"(CAN-FD) CANTXA=GPIO74 , CANRXA=GPIO75"},
-    ]
-
-    let USB_BOOT_OPTIONS = [
-        {name: "0x09", displayName:"(USB) USBDM=GPIO42 , USBDP=GPIO43"},
-    ]
-
-    let LFU_FLASH_BOOT_OPTIONS = [
-        {name: "0x0B", displayName:"(LFU FLASH) Flash-Entry-Address=0x00080000 for CPU1 Bank 0,0x000A0000 for CPU1 Bank 1,0x000C0000 for CPU1 Bank 2,0x000E0000 for CPU1 Bank 3,0x00100000 for CPU1 Bank 4"},
-        {name: "0x2B", displayName:"(LFU FLASH) Flash-Entry-Address=0x0008FFF0 for CPU1 Bank 0,0x000AFFF0 for CPU1 Bank 1,0x000CFFF0 for CPU1 Bank 2,0x000EFFF0 for CPU1 Bank 3,0x0010FFF0 for CPU1 Bank 4"},
-        {name: "0x4B", displayName:"(LFU FLASH) Flash-Entry-Address=0x00090000 for CPU1 Bank 0,0x000B0000 for CPU1 Bank 1,0x000D0000 for CPU1 Bank 2,0x000F0000 for CPU1 Bank 3,0x00110000 for CPU1 Bank 4"},
-        {name: "0x6B", displayName:"(LFU FLASH) Flash-Entry-Address=0x0009FFF0 for CPU1 Bank 0,0x000BFFF0 for CPU1 Bank 1,0x000DFFF0 for CPU1 Bank 2,0x000FFFF0 for CPU1 Bank 3,0x0011FFF0 for CPU1 Bank 4"},
-    ]
-    
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(SCI_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(CAN_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(CAN_FD_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(WAIT_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(SPI_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(I2C_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(PARALLEL_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(FLASH_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(SECURE_FLASH_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(RAM_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(USB_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(LFU_FLASH_BOOT_OPTIONS)
-
-    
     //console.log(ALL_BOOT_OPTIONS);
 }
 
 else if ("F28P55x".includes(Common.getDeviceName()))
 {
-    let SCI_BOOT_OPTIONS =[
-        {name: "0x01", displayName:"(SCI) SCIATX=GPIO29 , SCIARX=GPIO28"},
-        {name: "0x21", displayName:"(SCI) SCIATX=GPIO1 , SCIARX=GPIO0"},
-        {name: "0x41", displayName:"(SCI) SCIATX=GPIO8 , SCIARX=GPIO9"},
-        {name: "0x61", displayName:"(SCI) SCIATX=GPIO7 , SCIARX=GPIO3"},
-        {name: "0x81", displayName:"(SCI) SCIATX=GPIO16 , SCIARX=GPIO3"},
-    ]
-    
-    let CAN_BOOT_OPTIONS =[
-        {name: "0x02", displayName:"(CAN) CANTXA=GPIO4 , CANRXA=GPIO5"},
-        {name: "0x22", displayName:"(CAN) CANTXA=GPIO1 , CANRXA=GPIO0"},
-        {name: "0x42", displayName:"(CAN) CANTXA=GPIO13 , CANRXA=GPIO12"},
-    ]
+    ALL_BOOT_OPTIONS = Common.getBootOptions().f28p55x_boot;
 
-    let WAIT_BOOT_OPTIONS =[
-        {name: "0x04", displayName:"(WAIT) watchdog is enabled"},
-        {name: "0x24", displayName:"(WAIT) Watchdog is disabled"},
-    ]
-    
-    let SPI_BOOT_OPTIONS =[
-        {name: "0x06", displayName:"(SPI) SPIA_PICO=GPIO2  , SPIA_POCI=GPIO1 , SPIA_CLK=GPIO3 , SPIA_PTE=GPIO5"},
-        {name: "0x26", displayName:"(SPI) SPIA_PICO=GPIO16 , SPIA_POCI=GPIO1 , SPIA_CLK=GPIO3 , SPIA_PTE=GPIO0"},
-        {name: "0x46", displayName:"(SPI) SPIA_PICO=GPIO8 , SPIA_POCI=GPIO10 , SPIA_CLK=GPIO9 , SPIA_PTE=GPIO11"},
-        {name: "0x66", displayName:"(SPI) SPIA_PICO=GPIO16 , SPIA_POCI=GPIO12 , SPIA_CLK=GPIO9 , SPIA_PTE=GPIO24"},
-    ]
-    
-    let I2C_BOOT_OPTIONS =[
-        {name: "0x07", displayName:"(I2C) SDAA=GPIO0  , SCLA=GPIO1"},
-        {name: "0x27", displayName:"(I2C) SDAA=GPIO32 , SCLA=GPIO33"},
-        {name: "0x47", displayName:"(I2C) SDAA=GPIO5 , SCLA=GPIO4"},
-    ]
-    
-    let PARALLEL_BOOT_OPTIONS =[
-        {name: "0x00", displayName:"(PARALLEL) D0-D7=GPIO0-7 , MCU-Control=GPIO16 , Host-Control=GPIO29"},
-        {name: "0x20", displayName:"(PARALLEL) D0-D7=GPIO(0-3,5-7,24) , MCU-Control=GPIO12 , Host-Control=GPIO13"},
-    ]
-    
-    let FLASH_BOOT_OPTIONS =[
-        {name: "0x03", displayName:"(FLASH) Flash-Entry-Address=0x00080000, CPU1 Bank 0 , Sector 0"},
-        {name: "0x23", displayName:"(FLASH) Flash-Entry-Address=0x00088000, CPU1 Bank 0 , Sector 32"},
-        {name: "0x43", displayName:"(FLASH) Flash-Entry-Address=0x000C0000, CPU1 Bank 2 , Sector 0"},
-        {name: "0x63", displayName:"(FLASH) Flash-Entry-Address=0x000C8000, CPU1 Bank 2 , Sector 32"},
-        {name: "0x83", displayName:"(FLASH) Flash-Entry-Address=0x00100000, CPU1 Bank 4 , Sector 0"},
-    ] 
-
-    let SECURE_FLASH_BOOT_OPTIONS =[
-        {name: "0x0A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x00080000, CPU1 Bank 0 , Sector 0"},
-        {name: "0x2A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x00088000, CPU1 Bank 0 , Sector 32"},
-        {name: "0x4A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x000C0000, CPU1 Bank 2 , Sector 0"},
-        {name: "0x6A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x000C8000, CPU1 Bank 2 , Sector 32"},
-        {name: "0x8A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x00100000, CPU1 Bank 4 , Sector 0"},
-    ] 
-    
-    let RAM_BOOT_OPTIONS =[
-        {name: "0x05", displayName:"(RAM) RAM Entry Point Address=0x00000000"},
-    ]
-
-    let CAN_FD_BOOT_OPTIONS = [
-        {name: "0x08", displayName:"(CAN-FD) CANTXA=GPIO4 , CANRXA=GPIO5"},
-        {name: "0x28", displayName:"(CAN-FD) CANTXA=GPIO1 , CANRXA=GPIO0"},
-        {name: "0x48", displayName:"(CAN-FD) CANTXA=GPIO13 , CANRXA=GPIO12"},
-    ]
-
-    let USB_BOOT_OPTIONS = [
-        {name: "0x09", displayName:"(USB) USBDM=GPIO23 , USBDP=GPIO41"},
-    ]
-
-    let LFU_FLASH_BOOT_OPTIONS = [
-        {name: "0x0B", displayName:"(LFU FLASH) Flash-Entry-Address=0x00080000 for CPU1 Bank 0,0x000C0000 for CPU1 Bank 2"},
-        {name: "0x2B", displayName:"(LFU FLASH) Flash-Entry-Address=0x00088000 for CPU1 Bank 0,0x000C8000 for CPU1 Bank 2"},
-    ]
-    
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(SCI_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(CAN_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(CAN_FD_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(WAIT_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(SPI_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(I2C_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(PARALLEL_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(FLASH_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(SECURE_FLASH_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(RAM_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(USB_BOOT_OPTIONS)
-    ALL_BOOT_OPTIONS = ALL_BOOT_OPTIONS.concat(LFU_FLASH_BOOT_OPTIONS)
-
-    
     //console.log(ALL_BOOT_OPTIONS);
 }
 
@@ -944,16 +343,12 @@ function onChangeuseZone(inst, ui)
     }
     if (["F28P55x"].includes(Common.getDeviceName()))
     {
-        for (var j = 1; j < 3; j++)
-        {
-            for (var i = 1; i < 8; i++)
-            {
-                var bitnum = j*8+i
-                var lock_sector_name = "write_protect_bit" + bitnum.toString()
-                bootConfigs = bootConfigs.concat(lock_sector_name)
-            }
-        }
 
+        for (var i = 9; i < 24; i++)
+        {
+            var lock_sector_name = "write_protect_bit" + i.toString()
+            bootConfigs = bootConfigs.concat(lock_sector_name)
+        }
     }
     for(var uiConfigIndex = 3; uiConfigIndex < config.length; uiConfigIndex++)
     {
@@ -1393,7 +788,7 @@ if (["F28P55x"].includes(Common.getDeviceName()))
 {
     for (var j = 1; j < 3; j++)
     {
-        for (var i = 1; i < 8; i++)
+        for (var i = 1; i < 9; i++)
         {
             var lock_sect_min = i*4
             if (i == 1){
@@ -1402,20 +797,25 @@ if (["F28P55x"].includes(Common.getDeviceName()))
             var lock_sect_max = i*4 + 3
             var lock_sector_display_name = "Write-Protect Flash Bank " + ((j-1)*2).toString() + " Sectors " + lock_sect_min.toString() + "-" + lock_sect_max.toString()
             var bitnum = j*8+i
-            var lock_sector_name = "write_protect_bit" + bitnum.toString()
-            config = config.concat({
-                name        : lock_sector_name,
-                displayName : lock_sector_display_name,
-                description : "Enabling this feature will permanently block erase/program of these sectors.",
-                readOnly    : false,
-                hidden      : true,
-                default     : "1",
-                options     : [
-                    {name: "0", displayName: "Yes"},
-                    {name: "1", displayName: "No"}
-                ],
-                description : "Enabling this feature will permanently block any write or erase within the corresponding flash sector."
-            })
+            if (bitnum == 16){
+                var lock_sector_display_name = "Write-Protect Flash Bank 4 Sectors 0-31"
+            }
+            if (bitnum < 24 && (system.deviceData.gpn.includes("F28P551") || system.deviceData.gpn.includes("F28P552") || system.deviceData.gpn.includes("F28P558") || bitnum != 16)){
+                var lock_sector_name = "write_protect_bit" + bitnum.toString()
+                config = config.concat({
+                    name        : lock_sector_name,
+                    displayName : lock_sector_display_name,
+                    description : "Enabling this feature will permanently block erase/program of these sectors.",
+                    readOnly    : false,
+                    hidden      : true,
+                    default     : "1",
+                    options     : [
+                        {name: "0", displayName: "Yes"},
+                        {name: "1", displayName: "No"}
+                    ],
+                    description : "Enabling this feature will permanently block any write or erase within the corresponding flash sector."
+                })
+            }
         }
     }
 }

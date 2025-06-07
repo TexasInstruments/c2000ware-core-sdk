@@ -75,7 +75,7 @@ const bufferOrStringDataType = new CompositeDataType(stringDataType, bufferDataT
 const binaryOrBufferDataType = new CompositeDataType(binaryDataType, bufferDataType);
 
 /**
- *  Copyright (c) 2020, 2021 Texas Instruments Incorporated
+ *  Copyright (c) 2020, 2025 Texas Instruments Incorporated
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -112,29 +112,37 @@ class AbstractConnectionLogger extends Events {
         super(...arguments);
         this.lastLog = {
             message: '',
-            type: 'info'
+            type: 'info',
+            timestamp: Date.now()
         };
     }
-    addProgressMessage(message, tooltip) {
+    addProgressMessage(message, tooltip, percent = 0) {
+        if (this.lastLog.message !== message) {
+            this.console.info(message); // don't pollute the console log with the same message every time the percent is updated.
+        }
         if (this.lastLog.type === 'info') {
             this.lastLog.message = message;
             this.lastLog.tooltip = tooltip;
+            this.lastLog.timestamp = Date.now();
         }
-        this.console.info(message);
-        this.fireLoggingMessage('info', message);
+        this.fireLoggingMessage('info', message, percent);
     }
-    addErrorMessage(message, tooltip) {
-        this.lastLog.message = 'Error: ' + message;
-        this.lastLog.tooltip = tooltip;
-        this.lastLog.type = 'error';
+    addErrorMessage(message, tooltip, fatal = false) {
+        if (this.lastLog.type !== 'fatal' || fatal) {
+            this.lastLog.message = 'Error: ' + message;
+            this.lastLog.tooltip = tooltip;
+            this.lastLog.type = fatal ? 'fatal' : 'error';
+            this.lastLog.timestamp = Date.now();
+        }
         this.console.error(message);
         this.fireLoggingMessage('error', message);
     }
     addWarningMessage(message, tooltip) {
-        if (this.lastLog.type !== 'error') {
+        if (!this.hasErrors) {
             this.lastLog.message = 'Warning: ' + message;
             this.lastLog.tooltip = tooltip;
             this.lastLog.type = 'warning';
+            this.lastLog.timestamp = Date.now();
         }
         this.console.warning(message);
         this.fireLoggingMessage('warning', message);
@@ -143,25 +151,29 @@ class AbstractConnectionLogger extends Events {
         this.console.log(message);
         this.fireLoggingMessage('debug', message);
     }
-    fireLoggingMessage(type, message) {
+    fireLoggingMessage(type, message, percent) {
         if (message) {
-            this.fireEvent(connectionLogEventType, { type: type, message: capitalize(message), transportId: this.id });
+            this.fireEvent(connectionLogEventType, { type: type, message: capitalize(message), transportId: this.id, percent });
         }
     }
     clearProgressMessage() {
         this.lastLog = {
             message: '',
-            type: 'info'
+            type: 'info',
+            timestamp: Date.now()
         };
     }
     get progressMessage() {
         return this.lastLog.message.split('\n')[0];
     }
+    get progressMessageTimestamp() {
+        return this.lastLog.timestamp;
+    }
     get tooltipMessage() {
         return this.lastLog.tooltip || this.lastLog.message.split('\n').slice(1).join('\n');
     }
     get hasErrors() {
-        return this.lastLog.type === 'error';
+        return this.lastLog.type === 'error' || this.lastLog.type === 'fatal';
     }
     get hasWarnings() {
         return this.lastLog.type === 'warning';
@@ -245,6 +257,7 @@ class CodecInfo {
             }
             catch (err) {
                 transport.addDebugMessage(`${this.codec.toString()} failed to connect: ${err}`);
+                await this.codec.onDisconnect?.(transport);
                 throw err;
             }
         }
@@ -516,7 +529,7 @@ class CodecRegistry {
 const codecRegistry = new CodecRegistry();
 
 /**
- *  Copyright (c) 2020, 2023 Texas Instruments Incorporated
+ *  Copyright (c) 2020, 2025 Texas Instruments Incorporated
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -695,7 +708,7 @@ class DataDecoderTap extends AbstractDataDecoder {
 }
 
 /**
- *  Copyright (c) 2020, 2021 Texas Instruments Incorporated
+ *  Copyright (c) 2020, 2024 Texas Instruments Incorporated
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -757,14 +770,14 @@ class AbstractFrameDecoder extends AbstractDataDecoder {
      */
     detectPackets(rxData) {
         let result = this.isReceivingValidPackets;
-        let data; // = rxData instanceof Buffer ? [...rxData] : rxData;
+        let data = rxData instanceof Uint8Array ? [...rxData] : rxData;
         if (this.partialPacket) {
             // concatenate new data with saved partial data
-            data = this.partialPacket.concat(...rxData);
+            // FYI  _.push.apply(_, data) is faster than _.concat([...data])
+            // eslint-disable-next-line prefer-spread
+            Array.prototype.push.apply(this.partialPacket, data);
+            data = this.partialPacket;
             this.partialPacket = null;
-        }
-        else {
-            data = [...rxData];
         }
         let i = 0;
         const length = data.length;
@@ -893,11 +906,8 @@ class FIFOCommandResponseQueue {
     }
     addResponse(response, command, sequenceNumber, isError = false) {
         let step = -1;
-        let cur = this.first;
         let missingResponseLimit = sequenceNumber === this.last.seqNo ? 0 : -2;
-        while (cur !== this.last && step < 0) {
-            const prev = cur;
-            cur = cur.next;
+        for (let prev = this.first, cur = prev.next; cur && step < 0; prev = cur, cur = cur.next) {
             step = sequenceNumber === undefined ? 0 : cur.seqNo - sequenceNumber;
             if (step < -100) {
                 step += 255;
@@ -906,13 +916,21 @@ class FIFOCommandResponseQueue {
                 step -= 255;
             }
             if (step < missingResponseLimit) {
-                cur.deferred.reject(this.name + ' error: missing response for command sequence #' + cur.seqNo);
-                this.first = cur;
+                cur.deferred?.reject(this.name + ' error: missing response for command sequence #' + cur.seqNo);
+                // remove item from list
+                prev.next = cur.next;
+                if (!cur.next) {
+                    this.last = prev; // move end pointer when removing the last element.
+                }
+                cur = prev;
                 missingResponseLimit = -2;
             }
             else if (step === 0) {
                 if (cur.command !== command) {
                     cur.deferred.reject(this.name + ' error: Command Mismatch.  Expected ' + cur.command + ', but received ' + command);
+                    if (sequenceNumber === undefined) {
+                        step = -1; // continue looping until we find a command that matches
+                    }
                 }
                 else if (isError) {
                     cur.deferred.reject(response);
@@ -920,26 +938,27 @@ class FIFOCommandResponseQueue {
                 else {
                     cur.deferred.resolve(response);
                 }
+                // remove item from list
                 prev.next = cur.next; // remove item from list
-                if (this.last === cur) {
+                if (!cur.next) {
                     this.last = prev; // move end pointer when removing the last element.
                 }
+                cur = prev;
             }
         }
     }
     clearAll() {
-        while (this.first !== this.last) {
-            this.first = this.first.next;
-            this.first.deferred.reject('Skipping response from ' + this.name + ' due to reset operation');
+        for (let cur = this.first.next; cur !== undefined; cur = cur.next) {
+            cur.deferred.reject('Skipping response from ' + this.name + ' due to reset operation');
         }
         this.first = this.last = {};
     }
     isEmpty() {
-        return this.first === this.last;
+        return this.first.next === undefined;
     }
     get length() {
         let count = 0;
-        for (let cur = this.first; cur !== this.last; cur = cur.next) {
+        for (let cur = this.first.next; cur !== undefined; cur = cur.next) {
             count++;
         }
         return count;

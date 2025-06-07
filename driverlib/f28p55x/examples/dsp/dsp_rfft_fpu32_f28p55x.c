@@ -11,7 +11,7 @@
 //
 //#############################################################################
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -187,10 +187,10 @@ uint16_t fail = 0;
 //!     InBuf[0] = input[0]
 //!     InBuf[1] = input[1]
 //!     InBuf[2] = input[2]
-//!     â¦â¦â¦
+//!     ………
 //!     InBuf[N/2] = input[N/2]
 //!     InBuf[N/2+1] = input[N/2+1]
-//!     â¦â¦â¦
+//!     ………
 //!     InBuf[N-3] = input[N-3]
 //!     InBuf[N-2] = input[N-2]
 //!     InBuf[N-1] = input[N-1]
@@ -207,10 +207,10 @@ int rfft_fpu32_test(void)
     //       CFFTin1Buff[0] = real[0]
     //       CFFTin1Buff[1] = imag[0]
     //       CFFTin1Buff[2] = real[1]
-    //       â¦â¦â¦
+    //       ………
     //       CFFTin1Buff[N] = real[N/2]
     //       CFFTin1Buff[N+1] = imag[N/2]
-    //       â¦â¦â¦
+    //       ………
     //       CFFTin1Buff[2N-3] = imag[N-2]
     //       CFFTin1Buff[2N-2] = real[N-1]
     //       CFFTin1Buff[2N-1] = imag[N-1]
@@ -252,10 +252,10 @@ int rfft_fpu32_test(void)
     //   OutBuf[0] = real[0]
     //   OutBuf[1] = real[1]
     //   OutBuf[2] = real[2]
-    //   â¦â¦â¦
+    //   ………
     //   OutBuf[N/2] = real[N/2]
     //   OutBuf[N/2+1] = imag[N/2-1]
-    //   â¦â¦â¦
+    //   ………
     //   OutBuf[N-3] = imag[3]
     //   OutBuf[N-2] = imag[2]
     //   OutBuf[N-1] = imag[1]
@@ -277,7 +277,7 @@ int rfft_fpu32_test(void)
     //   MagBuf[0] = magnitude[0]
     //   MagBuf[1] = magnitude[1]
     //   MagBuf[2] = magnitude[2]
-    //   â¦â¦â¦
+    //   ………
     //   MagBuf[N/2] = magnitude[N/2]
     //   MagBuf[N/2+1] = magnitude[N/2+1]
 

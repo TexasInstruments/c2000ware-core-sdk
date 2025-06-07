@@ -423,7 +423,7 @@ gc$1.designer.editor = gc$1.designer.editor || {};
 }());
 
 /**
- *  Copyright (c) 2018, 2021 Texas Instruments Incorporated
+ *  Copyright (c) 2018, 2025 Texas Instruments Incorporated
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -2302,9 +2302,11 @@ gc.designer.editor.AbstractDom = gc.designer.editor.AbstractDom || window.gc.Abs
 
     AbstractElementBlock.prototype.renameAttribute = function(fromName, toName)
     {
+        fromName = convertAttributeToProperty(fromName);
+        toName = convertAttributeToProperty(toName);
         if (fromName !== toName && this.attributes[fromName]) {
             const oldAttrText = this.attributes[fromName].getText();
-            this.attributes[fromName].rename(toName);
+            this.attributes[fromName].rename(convertPropertyToAttribute(toName));
             this.attributes[toName] = this.attributes[fromName];
             delete this.attributes[fromName];
             this.updateContent(this.attributes[toName].getText(), oldAttrText);
@@ -2740,12 +2742,11 @@ gc.designer.editor.AbstractDom = gc.designer.editor.AbstractDom || window.gc.Abs
         }
 
         // 3. Get missing links that need to be inserted into the document, and insert them if skipInsert !== true
-        var gistStart = this.getStartOfGist();
+        const gistStart = this.getStartOfGist();
         if (!lastPath || lastPath.getDocumentPos() < gistStart.getDocumentPos())
         {
             lastPath = gistStart;
         }
-        var beforeIndex = lastPath.getDocumentPos() + 1;
 
         var newImports = '';
         var results = [];
@@ -2768,9 +2769,13 @@ gc.designer.editor.AbstractDom = gc.designer.editor.AbstractDom || window.gc.Abs
                 }
             }
         }
-        if (newImports !== '' && !skipInsert)
-        {
-            this.insertText(newImports, beforeIndex, true);
+        if (newImports !== '' && !skipInsert) {
+            const beforeIndex = lastPath.getDocumentPos();
+            if (beforeIndex > gistStart.getDocumentPos()) {
+                this.insertText(newImports, beforeIndex + 1, true);
+            } else {
+                this.insertText(newImports.trim() + '\n', beforeIndex, true);
+            }
         }
         return results;
     };
@@ -2809,7 +2814,7 @@ gc.designer.editor.AbstractDom = gc.designer.editor.AbstractDom || window.gc.Abs
             insertSnippet.expandInlineStyles(this);
             insertSnippet.expandInlineBindings();
 
-            beforeIndex = beforeIndex || this.blockList.length;
+            beforeIndex = beforeIndex ?? this.blockList.length;
             if (autoIndent)
             {
                 insertSnippet.applyIndentation(findIndentation(this.blockList, beforeIndex - 1));

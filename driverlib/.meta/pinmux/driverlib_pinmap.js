@@ -56,6 +56,10 @@ function getDriverlibName(interfaceName, peripheralInstanceName, peripheralName)
 	{
 		return getEPWMDriverlibName(interfaceName, peripheralInstanceName);
 	}
+	else if (peripheralInstanceName.includes("MCPWM"))
+	{
+		return getMCPWMDriverlibName(interfaceName, peripheralInstanceName);
+	}
 	else if (peripheralInstanceName.includes("OUTPUTXBAR"))
 	{
 		return getOUTPUTXBARDriverlibName(interfaceName, peripheralInstanceName);
@@ -181,6 +185,16 @@ function getEPWMDriverlibName(interfaceName, peripheralInstanceName)
 	var driverlibName = "";
 	
 	driverlibName = interfaceName.replace("#", peripheralInstanceName.substring(4));
+
+	return driverlibName;
+}
+
+//MCPWM
+function getMCPWMDriverlibName(interfaceName, peripheralInstanceName)
+{
+	var driverlibName = "";
+	
+	driverlibName = interfaceName.replace("#", peripheralInstanceName.substring(5));
 
 	return driverlibName;
 }

@@ -1,0 +1,89 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28003x" --package "100PZ" --part "F28003x_100PZ" --context "system" --product "C2000WARE@5.02.00.00"
+ * @versions {"tool":"1.0.0+dev"}
+ */
+/**
+ * Import the modules used in this configuration.
+ */
+const device_support = scripting.addModule("/driverlib/device_support.js");
+const sysctl         = scripting.addModule("/driverlib/sysctl.js");
+const CMD            = scripting.addModule("/utilities/cmd_tool/cmd_syscfg/source/CMD");
+const CMD1           = CMD.addInstance();
+const CMD2           = CMD.addInstance();
+const realtimelog    = scripting.addModule("/utilities/transfer/rtlog.js", {}, false);
+const realtimelog1   = realtimelog.addInstance();
+const cputimer       = scripting.addModule("/driverlib/cputimer.js", {}, false);
+const cputimer1      = cputimer.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+cputimer1.cputimerBase             = "CPUTIMER1_BASE";
+cputimer1.timerPrescaler           = 200;
+cputimer1.timerPeriod              = 1000000;
+cputimer1.registerInterrupts       = true;
+cputimer1.enableInterrupt          = true;
+cputimer1.$name                    = "myTimer1s";
+cputimer1.timerInt.enableInterrupt = true;
+CMD1.$name                    = "generic_ram_lnk";
+CMD2.$name                    = "generic_flash_lnk";
+
+CMD1.sectionMemory_text       = ["RAMGS0","RAMLS4","RAMLS5","RAMLS6","RAMLS7"];
+CMD1.sectionMemory_ramfunc    = ["RAMM0"];
+CMD1.sectionMemory_cinit      = ["RAMM0"];
+CMD1.sectionMemory_stack      = ["RAMM1"];
+CMD1.sectionMemory_init_array = ["RAMM0"];
+CMD1.sectionMemory_bss        = ["RAMLS4"];
+CMD1.sectionMemory_const      = ["RAMLS4"];
+CMD1.sectionMemory_data       = ["RAMLS4"];
+CMD1.sectionMemory_switch     = ["RAMM0"];
+CMD1.sectionMemory_sysmem     = ["RAMLS4"];
+
+CMD2.sectionAlignEnable_ramfunc    = true;
+CMD2.sectionAlignEnable_text       = true;
+CMD2.sectionAlignEnable_binit      = true;
+CMD2.sectionAlignEnable_cinit      = true;
+CMD2.sectionAlignEnable_switch     = true;
+CMD2.sectionAlignEnable_init_array = true;
+CMD2.sectionAlignEnable_const      = true;
+CMD2.sectionAlignEnable_ovly       = true;
+CMD2.sectionMemory_codestart       = "0x080000";
+CMD2.sectionMemory_stack           = ["RAMM1"];
+CMD2.sectionMemory_ramfunc         = ["FLASH_BANK0_SEC1"];
+CMD2.sectionMemory_text            = ["FLASH_BANK0_SEC2","FLASH_BANK0_SEC3","FLASH_BANK0_SEC4"];
+CMD2.sectionMemory_binit           = ["FLASH_BANK0_SEC1"];
+CMD2.sectionMemory_cinit           = ["FLASH_BANK0_SEC1"];
+CMD2.sectionMemory_switch          = ["FLASH_BANK0_SEC1"];
+CMD2.sectionMemory_bss             = ["RAMLS5"];
+CMD2.sectionMemory_data            = ["RAMLS5"];
+CMD2.sectionMemory_sysmem          = ["RAMLS5"];
+CMD2.sectionRunFromDifferentAddr_ramfunc = true;
+CMD1.sectionRun_ramfunc                  = ["RAMLS4"];
+CMD2.sectionBinit_ramfunc                = false;
+CMD2.sectionMemory_init_array      = ["FLASH_BANK0_SEC1"];
+CMD2.sectionMemory_const           = ["FLASH_BANK0_SEC4"];
+CMD2.sectionMemory_ovly            = ["FLASH_BANK0_SEC1"];
+
+realtimelog1.$name                                  = "myRTLOG0";
+realtimelog1.comsLinkModule.startOfTransmissionMode = scripting.forceWrite("FSI_TX_START_FRAME_CTRL");
+realtimelog1.comsLinkModule.d0Qual.$name            = "myGPIOQUAL0";
+realtimelog1.comsLinkModule.d1Qual.$name            = "myGPIOQUAL1";
+realtimelog1.comsLinkModule.clkQual.$name           = "myGPIOQUAL2";
+realtimelog1.logMsgTypes.create(2);
+realtimelog1.logMsgTypes[0].$name                   = "myLogMsgType0";
+realtimelog1.logMsgTypes[0].logVariables.create(4);
+realtimelog1.logMsgTypes[0].logVariables[0].$name   = "a";
+realtimelog1.logMsgTypes[0].logVariables[1].$name   = "b";
+realtimelog1.logMsgTypes[0].logVariables[1].varType = "uint32_t";
+realtimelog1.logMsgTypes[0].logVariables[2].$name   = "c";
+realtimelog1.logMsgTypes[0].logVariables[2].varType = "float";
+realtimelog1.logMsgTypes[0].logVariables[3].varType = "uint16_t*";
+realtimelog1.logMsgTypes[0].logVariables[3].length  = 2;
+realtimelog1.logMsgTypes[0].logVariables[3].$name   = "d";
+realtimelog1.logMsgTypes[1].$name                   = "myLogMsgType1";
+realtimelog1.logMsgTypes[1].id                      = 1;
+realtimelog1.logMsgTypes[1].logVariables[0].$name   = "e";
+realtimelog1.logMsgTypes[1].logVariables[0].varType = "float*";
+realtimelog1.logMsgTypes[1].logVariables[0].length  = 8;

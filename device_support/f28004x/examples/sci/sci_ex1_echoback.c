@@ -38,7 +38,7 @@
 //
 //
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -73,7 +73,7 @@
 //
 // Included Files
 //
-#include "F28x_Project.h"
+#include "f28x_project.h"
 
 //
 // Defines
@@ -116,7 +116,6 @@ void main(void)
     // For this example, only init the pins for the SCI-A port.
     // GPIO_SetupPinMux() - Sets the GPxMUX1/2 and GPyMUX1/2 register bits
     // GPIO_SetupPinOptions() - Sets the direction and configuration of GPIOs
-    // These functions are found in the F28X7x_Gpio.c file.
     //
     GPIO_SetupPinMux(28, GPIO_MUX_CPU1, 1);
     GPIO_SetupPinOptions(28, GPIO_INPUT, GPIO_PUSHPULL);

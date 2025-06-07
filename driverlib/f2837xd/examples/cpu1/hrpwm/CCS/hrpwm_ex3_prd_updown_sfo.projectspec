@@ -2,7 +2,7 @@
   <project
         name="hrpwm_ex3_prd_updown_sfo"
         device="TMS320F28377D"
-        cgtVersion="22.6.0.LTS"
+        cgtVersion="22.6.2.LTS"
         products="sysconfig;C2000WARE"
         outputFormat="ELF"
         launchWizard="False"
@@ -24,9 +24,9 @@
 
     <pathVariable name="C2000WARE_DLIB_ROOT" path="../../../../driverlib/" scope="project" />
     <pathVariable name="C2000WARE_ROOT" path="../../../../../../" scope="project" />
-    <pathVariable name="C2000WARE_SFO_INCLUDE" path="../../../../../../libraries/calibration/hrpwm/F2837xD/include/" scope="project" />
+    <pathVariable name="C2000WARE_SFO_INCLUDE" path="../../../../../../libraries/calibration/hrpwm/f2837xd/include/" scope="project" />
     
-    <file action="link" path="../../../../../../libraries/calibration/hrpwm/F2837xD/lib/SFO_v8_fpu_lib_build_c28_driverlib.lib" targetDirectory="" />
+    <file action="link" path="../../../../../../libraries/calibration/hrpwm/f2837xd/lib/SFO_v8_fpu_lib_build_c28_driverlib.lib" targetDirectory="" />
     <file action="copy" path="../../../../../../device_support/f2837xd/common/include/driverlib.h" targetDirectory="device" />
     <file action="copy" path="../../../../../../device_support/f2837xd/common/include/device.h" targetDirectory="device" />
     <file action="copy" path="../../../../../../device_support/f2837xd/common/source/device.c" targetDirectory="device" />

@@ -204,7 +204,7 @@ let SysCtl_AccessPermission = [
 ]
 let SysCtl_ClockOut = [
 	{ name: "SYSCTL_CLOCKOUT_PLLSYS", displayName: "PLL System Clock post SYSCLKDIV" },
-	{ name: "SYSCTL_CLOCKOUT_PLLRAW", displayName: "PLL Raw Clock" },
+	{ name: "SYSCTL_CLOCKOUT_PLLRAW", displayName: "PLL Clock after Bypass Mux" },
 	{ name: "SYSCTL_CLOCKOUT_SYSCLK", displayName: "CPU System Clock" },
 	{ name: "SYSCTL_CLOCKOUT_INTOSC1", displayName: "Internal Oscillator 1" },
 	{ name: "SYSCTL_CLOCKOUT_INTOSC2", displayName: "Internal Oscillator 2" },
@@ -289,6 +289,7 @@ let SysCtl_ClkRegSel = [
 	{ name: "SYSCTL_REG_SEL_SYSPLLMULT", displayName: "SYSPLLMULT lock" },
 	{ name: "SYSCTL_REG_SEL_SYSCLKDIVSEL", displayName: "SYSCLKDIVSEL lock" },
 	{ name: "SYSCTL_REG_SEL_AUXCLKDIVSEL", displayName: "AUXCLKDIVSEL lock" },
+	{ name: "SYSCTL_REG_SEL_CLBCLKCTL", displayName: "CLBCLKCTL lock" },
 	{ name: "SYSCTL_REG_SEL_LOSPCP", displayName: "LOSPCP lock" },
 	{ name: "SYSCTL_REG_SEL_XTALCR", displayName: "XTALCR lock" },
 ]
@@ -318,6 +319,30 @@ let SysCtl_CpuRegSel = [
 	{ name: "SYSCTL_REG_SEL_PCLKCR25", displayName: "PCLKCR25 lock" },
 	{ name: "SYSCTL_REG_SEL_PCLKCR26", displayName: "PCLKCR26 lock" },
 	{ name: "SYSCTL_REG_SEL_PCLKCR27", displayName: "PCLKCR27 lock" },
+]
+let SysCtl_CLBClkDivider = [
+	{ name: "SYSCTL_CLBCLKOUT_DIV_1", displayName: "CLB clock =  CLB clock / 1" },
+	{ name: "SYSCTL_CLBCLKOUT_DIV_2", displayName: "CLB clock =  CLB clock / 2" },
+	{ name: "SYSCTL_CLBCLKOUT_DIV_3", displayName: "CLB clock =  CLB clock / 3" },
+	{ name: "SYSCTL_CLBCLKOUT_DIV_4", displayName: "CLB clock =  CLB clock / 4" },
+	{ name: "SYSCTL_CLBCLKOUT_DIV_5", displayName: "CLB clock =  CLB clock / 5" },
+	{ name: "SYSCTL_CLBCLKOUT_DIV_6", displayName: "CLB clock =  CLB clock / 6" },
+	{ name: "SYSCTL_CLBCLKOUT_DIV_7", displayName: "CLB clock =  CLB clock / 7" },
+	{ name: "SYSCTL_CLBCLKOUT_DIV_8", displayName: "CLB clock =  CLB clock / 8" },
+]
+let SysCtl_CLBTClkDivider = [
+	{ name: "SYSCTL_CLBTCLKOUT_DIV_1", displayName: "CLBTCLKOUT =  CLB clock / 1" },
+	{ name: "SYSCTL_CLBTCLKOUT_DIV_2", displayName: "CLBTCLKOUT =  CLB clock / 2" },
+]
+let SysCtl_CLBInst = [
+	{ name: "SYSCTL_CLB1", displayName: "CLB 1 instance" },
+	{ name: "SYSCTL_CLB2", displayName: "CLB 2 instance" },
+	{ name: "SYSCTL_CLB3", displayName: "CLB 3 instance" },
+	{ name: "SYSCTL_CLB4", displayName: "CLB 4 instance" },
+]
+let SysCtl_CLBClkm = [
+	{ name: "SYSCTL_CLBCLK_SYNC", displayName: "CLB is synchronous to SYSCLK" },
+	{ name: "SYSCTL_CLBCLK_ASYNC", displayName: "CLB runs of asynchronous clock" },
 ]
 let SysCtl_LFUUserRegister = [
 	{ name: "SYSCTL_LFU_USER_REG1_SYSRSN", displayName: "User register reset by SYSRSn" },
@@ -392,6 +417,10 @@ module.exports = {
 	SysCtl_Cputimer2ClkSource: SysCtl_Cputimer2ClkSource,
 	SysCtl_ClkRegSel: SysCtl_ClkRegSel,
 	SysCtl_CpuRegSel: SysCtl_CpuRegSel,
+	SysCtl_CLBClkDivider: SysCtl_CLBClkDivider,
+	SysCtl_CLBTClkDivider: SysCtl_CLBTClkDivider,
+	SysCtl_CLBInst: SysCtl_CLBInst,
+	SysCtl_CLBClkm: SysCtl_CLBClkm,
 	SysCtl_LFUUserRegister: SysCtl_LFUUserRegister,
 	SYSCTL_NMI: SYSCTL_NMI,
 	SYSCTL_STATUS_SYS_ERR: SYSCTL_STATUS_SYS_ERR,

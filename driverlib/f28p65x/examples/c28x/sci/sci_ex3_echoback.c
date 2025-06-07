@@ -36,7 +36,7 @@
 //
 //
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -107,7 +107,7 @@ void main(void)
     Device_initGPIO();
 
     //
-    // GPIO28 is the SCI Rx pin.
+    // SCI Rx pin configuration.
     //
     GPIO_setControllerCore(DEVICE_GPIO_PIN_SCIRXDA, GPIO_CORE_CPU1);
     GPIO_setPinConfig(DEVICE_GPIO_CFG_SCIRXDA);
@@ -116,7 +116,7 @@ void main(void)
     GPIO_setQualificationMode(DEVICE_GPIO_PIN_SCIRXDA, GPIO_QUAL_ASYNC);
 
     //
-    // GPIO29 is the SCI Tx pin.
+    // SCI Tx pin configuration.
     //
     GPIO_setControllerCore(DEVICE_GPIO_PIN_SCITXDA, GPIO_CORE_CPU1);
     GPIO_setPinConfig(DEVICE_GPIO_CFG_SCITXDA);

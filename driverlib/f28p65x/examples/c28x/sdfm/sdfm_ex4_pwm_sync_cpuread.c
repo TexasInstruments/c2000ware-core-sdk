@@ -53,7 +53,7 @@
 //
 //
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -228,16 +228,16 @@ void main(void)
     //
     SDFM_configComparator(sdfmInstance,
         (SDFM_FILTER_1 | SDFM_FILTER_SINC_3 | SDFM_SET_OSR(32)),
-        (SDFM_GET_LOW_THRESHOLD(llt) | SDFM_GET_HIGH_THRESHOLD(hlt)), 0);
+        (SDFM_THRESHOLD(hlt,llt)), 0);
     SDFM_configComparator(sdfmInstance,
         (SDFM_FILTER_2 | SDFM_FILTER_SINC_3 | SDFM_SET_OSR(32)),
-        (SDFM_GET_LOW_THRESHOLD(llt) | SDFM_GET_HIGH_THRESHOLD(hlt)), 0);
+        (SDFM_THRESHOLD(hlt,llt)), 0);
     SDFM_configComparator(sdfmInstance,
         (SDFM_FILTER_3 | SDFM_FILTER_SINC_3 | SDFM_SET_OSR(32)),
-        (SDFM_GET_LOW_THRESHOLD(llt) | SDFM_GET_HIGH_THRESHOLD(hlt)), 0);
+        (SDFM_THRESHOLD(hlt,llt)), 0);
     SDFM_configComparator(sdfmInstance,
         (SDFM_FILTER_4 | SDFM_FILTER_SINC_3 | SDFM_SET_OSR(32)),
-        (SDFM_GET_LOW_THRESHOLD(llt) | SDFM_GET_HIGH_THRESHOLD(hlt)), 0);
+        (SDFM_THRESHOLD(hlt,llt)), 0);
 
     //
     // Data filter Module
@@ -278,6 +278,14 @@ void main(void)
     SDFM_enableExternalReset(sdfmInstance, SDFM_FILTER_2);
     SDFM_enableExternalReset(sdfmInstance, SDFM_FILTER_3);
     SDFM_enableExternalReset(sdfmInstance, SDFM_FILTER_4);
+
+    //
+    // Use PWM11.SOCA to provide SDSYNC pulse to SDFM
+    //
+    SDFM_setPWMSyncSource(sdfmInstance, SDFM_FILTER_1, SDFM_SYNC_PWM11_SOCA);
+    SDFM_setPWMSyncSource(sdfmInstance, SDFM_FILTER_2, SDFM_SYNC_PWM11_SOCA);
+    SDFM_setPWMSyncSource(sdfmInstance, SDFM_FILTER_3, SDFM_SYNC_PWM11_SOCA);
+    SDFM_setPWMSyncSource(sdfmInstance, SDFM_FILTER_4, SDFM_SYNC_PWM11_SOCA);
 
     //
     // Init EPWMs

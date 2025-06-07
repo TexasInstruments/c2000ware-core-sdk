@@ -51,7 +51,7 @@
 //
 //
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -193,16 +193,16 @@ void main(void)
     //
     SDFM_configComparator(SDFM1_BASE,
         (SDFM_FILTER_1 | SDFM_FILTER_SINC_3 | SDFM_SET_OSR(32)),
-        (SDFM_GET_LOW_THRESHOLD(llt) | SDFM_GET_HIGH_THRESHOLD(hlt)), 0);
+        (SDFM_THRESHOLD(hlt,llt)), 0);
     SDFM_configComparator(SDFM1_BASE,
         (SDFM_FILTER_2 | SDFM_FILTER_SINC_3 | SDFM_SET_OSR(32)),
-        (SDFM_GET_LOW_THRESHOLD(llt) | SDFM_GET_HIGH_THRESHOLD(hlt)), 0);
+        (SDFM_THRESHOLD(hlt,llt)), 0);
     SDFM_configComparator(SDFM1_BASE,
         (SDFM_FILTER_3 | SDFM_FILTER_SINC_3 | SDFM_SET_OSR(32)),
-        (SDFM_GET_LOW_THRESHOLD(llt) | SDFM_GET_HIGH_THRESHOLD(hlt)), 0);
+        (SDFM_THRESHOLD(hlt,llt)), 0);
     SDFM_configComparator(SDFM1_BASE,
         (SDFM_FILTER_4 | SDFM_FILTER_SINC_3 | SDFM_SET_OSR(32)),
-        (SDFM_GET_LOW_THRESHOLD(llt) | SDFM_GET_HIGH_THRESHOLD(hlt)), 0);
+        (SDFM_THRESHOLD(hlt,llt)), 0);
 
     //
     // Data Filter Unit

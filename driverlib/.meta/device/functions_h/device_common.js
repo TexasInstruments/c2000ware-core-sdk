@@ -43,6 +43,10 @@ const Initilization_GPIO_20_21_Type1											= ["F28P65x"]
 //configuring the GPIO pins 11, 12, 13, 16, 17, 20, 21, 24, 28 in digital mode for device initilization
 const Initilization_GPIO_11_28											= ["F28P55x"]
 
+//configuring the GPIO pins 12, 13 and 28 in digital mode, turn on all peripherals,
+//and Lock VREGCTL Register for device initilization
+const Initilization_GPIO_12_28										= ["F28E12x"]
+
 //configuring device initilization with Device_initGPIO() call
 const Initilization_Device_initGPIO_Type0										= ["F2838x"]
 
@@ -50,10 +54,15 @@ const Initilization_Device_initGPIO_Type0										= ["F2838x"]
 // Available VerifyXTAL 
 //
 // verifying the XTAL frequency
-const VerifyXTAL_Type1 															= ["F28002x", "F28003x", "F28004x", "F28P65x", "F28P55x"]
+const VerifyXTAL_Type1 															= ["F28002x", "F28003x", "F28004x", "F28P65x", "F28P55x", "F28E12x"]
 
 // verifying the XTAL frequency with endIf condition
 const VerifyXTAL_Type0														= ["F2838x"]
+
+//
+// Available Device Packages 
+//
+const DevicePackage_Type0												  = ["F28E12x"]
 
 //
 // Available Error_Handling 
@@ -62,7 +71,7 @@ const VerifyXTAL_Type0														= ["F2838x"]
 const Error_Handling_Type0 														= ["F2807x", "F2837xD", "F2837xS"]
 
 // Error handling function with "Close the Doxygen group"
-const Error_Handling_Type1 														= [ "F2838x", "F28002x", "F28003x", "F28004x","F280013x","F280015x", "F28P65x", "F28P55x"]
+const Error_Handling_Type1 														= [ "F2838x", "F28002x", "F28003x", "F28004x","F280013x","F280015x", "F28P65x", "F28P55x", "F28E12x"]
 
 //
 // Available BootCPU2 
@@ -85,6 +94,10 @@ const Enable_Unbounded_GPIO_Pullups_100PZ_176PTP_Type0							=["F2837xD", "F2837
 // enable pullups for the unbonded GPIOs on the 176PTP package.
 const Enable_Unbounded_GPIO_Pullups_176PTP_Type0							    =["F2838x"]
 
+// enable pullups for the unbonded GPIOs on the 48PT, 32RHB, 32VFC package.
+const Enable_Unbounded_GPIO_Pullups_48PT_32RHB_32VFC_Type0							=["F28E12x"]
+
+
 //
 // Available Configure_TMX_Analog_Trim 
 //
@@ -100,6 +113,9 @@ const Configure_TMX_Analog_Trim_Type2											=["F2837xD"]
 
 // Template for General Header
 var Include 	= system.getTemplate('Include/Include.xdt');
+
+// Template for verifying the Device Package
+var DevicePackage 	= system.getTemplate('DevicePackage/DevicePackage.xdt');
 
 // Template for Boot_CM
 var Boot_CM 	= system.getTemplate('BootCM/Boot_CM.xdt');
@@ -130,6 +146,7 @@ var Enable_All_Peripherals 	= system.getTemplate('EnableAllPeripherals/Enable_Al
 
 exports = {
 	Include : Include,
+	DevicePackage : DevicePackage,
 	Boot_CM : Boot_CM,
 	Initilization : Initilization,
 	InitGPIO : InitGPIO,
@@ -141,6 +158,7 @@ exports = {
 	Enable_All_Peripherals : Enable_All_Peripherals,
 	device : device,
 	multi_core : multi_core,
+	DevicePackage_Type0 : DevicePackage_Type0,
 	Device_Boot_CM : Device_Boot_CM ,
 	Initilization_General_Type0 : Initilization_General_Type0,
 	Initilization_General_Type1 : Initilization_General_Type1,
@@ -150,6 +168,7 @@ exports = {
 	Initilization_GPIO_20_21_Type0 : Initilization_GPIO_20_21_Type0,
 	Initilization_GPIO_20_21_Type1 : Initilization_GPIO_20_21_Type1,
 	Initilization_GPIO_11_28 : Initilization_GPIO_11_28,
+	Initilization_GPIO_12_28 : Initilization_GPIO_12_28,
 	Initilization_Device_initGPIO_Type0 : Initilization_Device_initGPIO_Type0,
 	VerifyXTAL_Type0 : VerifyXTAL_Type0,
 	VerifyXTAL_Type1 : VerifyXTAL_Type1,
@@ -159,6 +178,7 @@ exports = {
 	Boot_CPU2_Type1 : Boot_CPU2_Type1,
 	Boot_CPU2_Boot_Mode_Type0 : Boot_CPU2_Boot_Mode_Type0,
 	Enable_Unbounded_GPIO_Pullups_100PZ_176PTP_Type0 : Enable_Unbounded_GPIO_Pullups_100PZ_176PTP_Type0,
+	Enable_Unbounded_GPIO_Pullups_48PT_32RHB_32VFC_Type0 : Enable_Unbounded_GPIO_Pullups_48PT_32RHB_32VFC_Type0,
 	Enable_Unbounded_GPIO_Pullups_176PTP_Type0 : Enable_Unbounded_GPIO_Pullups_176PTP_Type0,
 	Configure_TMX_Analog_Trim_Type1 : Configure_TMX_Analog_Trim_Type1,
 	Configure_TMX_Analog_Trim_Type2 : Configure_TMX_Analog_Trim_Type2

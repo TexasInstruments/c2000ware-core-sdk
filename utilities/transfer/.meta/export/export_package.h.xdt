@@ -50,6 +50,7 @@
 % let expInst = exportMod.$instances[0]
 % let comsLinkModule = expInst.comsLinkModule;
 
+%
 % let exportKeys = system.modules[transferCommon.getTransferPath() + "logger/keys.js"];
 % let expKeyInst;
 % let cLogKey;
@@ -97,8 +98,8 @@
 %// extern int EXPORTPACKAGE_`expKeyInst[j].$name`(`funcparameters`);
 %//       }
 %//  }
-
-
+%
+%
 %if (expInst.exportCustomLog) {
 //
 // Logger Functions
@@ -132,8 +133,10 @@ extern int EXPORTPACKAGE_sendcLogFloat32Array(uint32_t timestamp, float* data, u
 extern int EXPORTPACKAGE_sendFsiFrame(uint16_t user_data, uint16_t frame_type, uint16_t frame_tag, uint16_t crc, uint16_t* words, uint16_t numWords);
 % }
 
+//
 // Generic Function Prototypes
-
+//
+% if(expInst.packageMode != "SIGNAL SIGHT"){
 extern int EXPORTPACKAGE_sendKeyValuePointerPairs(ExportKeyValue** keyValues, uint16_t numKeyValues);
 extern int EXPORTPACKAGE_sendKeyValuePairs(ExportKeyValue* keyValues, uint16_t numKeyValues);
 extern int EXPORTPACKAGE_sendKeyValuePair(ExportKeyValue keyValue);
@@ -156,9 +159,9 @@ extern int EXPORTPACKAGE_sendUInt32ArrayAsByteArray(char *cmd, uint16_t cmdLengt
 extern int EXPORTPACKAGE_sendInt32ArrayAsByteArray(char *cmd, uint16_t cmdLength, int32_t* data, uint32_t size);
 extern int EXPORTPACKAGE_sendUInt16ArrayAsByteArray(char *cmd, uint16_t cmdLength, uint16_t* data, uint32_t size);
 extern int EXPORTPACKAGE_sendInt16ArrayAsByteArray(char *cmd, uint16_t cmdLength, int16_t* data, uint32_t size);
-extern int EXPORTPACKAGE_sendFloatArrayAsByteArray(char *cmd, uint16_t cmdLength, float* data, uint32_t size);
-
 extern int EXPORTPACKAGE_sendCharacterAsByteArray(char *cmd, uint16_t cmdLength, char val);
+% }
+extern int EXPORTPACKAGE_sendFloatArrayAsByteArray(char *cmd, uint16_t cmdLength, float* data, uint32_t size);
 extern int EXPORTPACKAGE_sendUInt32AsByteArray(char *cmd, uint16_t cmdLength, uint32_t val);
 extern int EXPORTPACKAGE_sendInt32AsByteArray(char *cmd, uint16_t cmdLength, int32_t val);
 extern int EXPORTPACKAGE_sendUInt16AsByteArray(char *cmd, uint16_t cmdLength, uint16_t val);
@@ -166,9 +169,14 @@ extern int EXPORTPACKAGE_sendInt16AsByteArray(char *cmd, uint16_t cmdLength, int
 extern int EXPORTPACKAGE_sendFloatAsByteArray(char *cmd, uint16_t cmdLength, float val);
 extern int EXPORTPACKAGE_sendBoolAsByteArray(char *cmd, uint16_t cmdLength, bool val);
 
+% if(expInst.packageMode != "SIGNAL SIGHT"){
 extern int EXPORTPACKAGE_sendBool(char *cmd, uint16_t cmdLength, bool val);
-
-% if (expInst.mode.includes("Bidirectional") && expInst["comsLinkModule"])
+% }
+% else{
+extern void EXPORTPACKAGE_takeActionOnMessage(uint16_t cmdByte, uint16_t* msgData, bool error);
+% }
+%
+% if (expInst.mode.includes("Bidirectional") && expInst["comsLinkModule"] && expInst.packageMode != "SIGNAL SIGHT")
 % {
 extern uint16_t EXPORTPACKAGE_ReadUInt16(char *string);
 extern uint32_t EXPORTPACKAGE_ReadUInt32(char *string);

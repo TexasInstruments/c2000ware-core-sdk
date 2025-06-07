@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -949,7 +949,7 @@ union CLB_DBG_OUT_REG {
 };
 
 struct CLB_LOGIC_CONTROL_REGS {
-    union   CLB_LOAD_EN_REG                  CLB_LOAD_EN;                  // Global enable & indirect load enable control
+    union   CLB_LOAD_EN_REG                  CLB_LOAD_EN;                  // Global enable & indirect load enable control, only Global Enable Bit is LOCK  protected
     Uint16                                   rsvd1;                        // Reserved
     union   CLB_LOAD_ADDR_REG                CLB_LOAD_ADDR;                // Indirect address
     Uint32                                   CLB_LOAD_DATA;                // Data for indirect loads

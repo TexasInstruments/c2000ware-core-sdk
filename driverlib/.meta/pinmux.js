@@ -1342,17 +1342,17 @@ let soc_epwm_list = [
     },
     {
         soc   : "F2807x",
-        epwm  : ["EPWM2", "EPWM3", "EPWM6", "EPWM7","EPWM8", "EPWM9", "EPWM10", "EPWM11"],
-        hrpwm : ["EPWM1","EPWM2", "EPWM3","EPWM4", "EPWM5","EPWM6", "EPWM7","EPWM8"],
+        epwm  : ["EPWM1", "EPWM2", "EPWM3","EPWM4", "EPWM5", "EPWM6", "EPWM7","EPWM8", "EPWM9", "EPWM10", "EPWM11", "EPWM12"],
+        hrpwm : ["EPWM1", "EPWM2", "EPWM3","EPWM4", "EPWM5","EPWM6", "EPWM7","EPWM8"],
     },
     {
         soc   : "F2837xD",
-        epwm  : ["EPWM2", "EPWM3", "EPWM6", "EPWM7","EPWM8", "EPWM9", "EPWM10", "EPWM11"],
+        epwm  : ["EPWM1", "EPWM2", "EPWM3","EPWM4", "EPWM5", "EPWM6", "EPWM7","EPWM8", "EPWM9", "EPWM10", "EPWM11", "EPWM12"],
         hrpwm : ["EPWM1","EPWM2", "EPWM3","EPWM4", "EPWM5","EPWM6", "EPWM7","EPWM8"],
     },
     {
         soc   : "F2837xS",
-        epwm  : ["EPWM2", "EPWM3", "EPWM6", "EPWM7","EPWM8", "EPWM9", "EPWM10", "EPWM11"],
+        epwm  : ["EPWM1", "EPWM2", "EPWM3","EPWM4", "EPWM5", "EPWM6", "EPWM7","EPWM8", "EPWM9", "EPWM10", "EPWM11", "EPWM12"],
         hrpwm : ["EPWM1","EPWM2", "EPWM3","EPWM4", "EPWM5","EPWM6", "EPWM7","EPWM8"],
     },
     {
@@ -1475,6 +1475,71 @@ function epwmPinmuxRequirements(inst)
         filter        : filter
     };
     return [epwm];
+}
+
+function mcpwmPinmuxRequirements(inst)
+{
+    var peripheralName = "MCPWM";
+    let resources = [];
+    var signalTypes = {};
+    var useCaseName = inst.useCase;
+    var useCaseInterfaces = getPeripheralUseCaseInterfaces(inst, peripheralName, useCaseName);
+    var InterfaceNames = Object.keys(system.deviceData.interfaces[peripheralName].interfacePins);
+    var i = 1;
+
+    // console.log(InterfaceNames)
+
+    for (var interfaceNumber in InterfaceNames)
+    {
+        var interfaceName = InterfaceNames[interfaceNumber];
+        // if (useCaseInterfaces.indexOf(interfaceName) == -1)
+        if ((useCaseInterfaces.indexOf(interfaceName) == -1))
+        {
+            continue;
+        }
+
+        // console.log(useCaseInterfaces);
+
+        if(interfaceName.includes("_"))
+        {
+            let pt = {
+                name              : interfaceName.toLowerCase().replace("#", "").replace("@", "") + "Pin",  /* config script name  THE ACTUAL NAME USED to find the pin*/
+                legacyNames       : [interfaceName.toLowerCase().replace("#", "").replace("@", "").replace("_", "") + "Pin"],
+                displayName       : interfaceName.replace("#", "").replace("@", ""), /* GUI name */
+                interfaceNames    : [interfaceName]    /* pinmux tool name */
+            };
+    
+            resources.push(pt);
+            signalTypes[pt.name] = interfaceName;
+        }
+        else
+        {
+            let pt = {
+                name              : interfaceName.toLowerCase().replace("#", "_").replace("@", "") + "Pin",  /* config script name  THE ACTUAL NAME USED to find the pin*/
+                legacyNames       : [interfaceName.toLowerCase().replace("#", "").replace("@", "") + "Pin"],
+                displayName       : interfaceName.replace("#", "").replace("@", ""), /* GUI name */
+                interfaceNames    : [interfaceName]    /* pinmux tool name */
+            };
+    
+            resources.push(pt);
+            signalTypes[pt.name] = interfaceName;
+        }
+
+        i++;
+    }
+
+    var filter = epwm_pinmux
+
+    //console.log(resources)
+    let mcpwm = {
+        name          : "mcpwm",
+        displayName   : "MCPWM Peripheral",
+        interfaceName : "MCPWM",
+        resources     : resources,
+        signalTypes   : signalTypes,
+        filter        : filter
+    };
+    return [mcpwm];
 }
 
 function i2cPinmuxRequirements(inst)
@@ -1689,7 +1754,7 @@ function gpioWithPeripheralPinmuxRequirements(inst)
         displayName   : "GPIO Peripheral",
         interfaceName : "GPIO", 
         signalTypes   : {
-            "gpioPin" : GPIOInterfaceName
+            "GPIO#" : GPIOInterfaceName
         }       
     };
 
@@ -2126,6 +2191,7 @@ exports = {
     aioPinmuxRequirements : aioPinmuxRequirements,
     canPinmuxRequirements : canPinmuxRequirements,
     epwmPinmuxRequirements : epwmPinmuxRequirements,
+    mcpwmPinmuxRequirements : mcpwmPinmuxRequirements,
     eqepPinmuxRequirements : eqepPinmuxRequirements,
     mcbspPinmuxRequirements : mcbspPinmuxRequirements,
     sdPinmuxRequirements : sdPinmuxRequirements,

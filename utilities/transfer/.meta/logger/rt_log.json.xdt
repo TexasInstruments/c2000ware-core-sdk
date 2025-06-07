@@ -1,0 +1,34 @@
+% let transferCommon;
+% if (system.getProducts()[0].name.includes("C2000"))
+% { transferCommon = system.getScript("/utilities/transfer/transferCommon.js");
+% } else
+% { transferCommon = system.getScript("/transfer/transferCommon.js");}
+% 
+% let rtlogMod = system.modules[transferCommon.getTransferPath() + "rtlog.js"];
+% let rtlogInst = rtlogMod.$instances[0];
+% let comsLinkModule = rtlogInst.comsLinkModule;
+%
+%%{
+let logInfo = { msgTypes : [] };
+for (let mt of rtlogInst.logMsgTypes){
+    let msgType = {};
+    msgType.id = mt.id;
+    msgType.size = mt.size;
+    msgType.logVariables = []
+    for (let logVar of mt.logVariables) {
+        let length = undefined;
+        if (logVar.varType.includes("*"))
+        {
+            length = logVar.length;
+        }
+        msgType.logVariables.push({
+            $name: logVar.$name,
+            varType: logVar.varType,
+            length: length,
+            size: logVar.size,
+        })
+    }
+    logInfo.msgTypes.push(msgType);
+}
+%%}
+`JSON.stringify(logInfo, null, 4)`

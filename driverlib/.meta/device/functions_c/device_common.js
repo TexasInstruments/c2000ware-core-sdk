@@ -22,7 +22,7 @@ const Include_Headers_Type1														= ["F2837xD"]
 const Include_Headers_Type2														= ["F280015x"]
 
 // Include Header with driverlib.h  
-const Include_Headers_Type3														= ["F280013x", "F28002x", "F28003x", "F28004x", "F2837xS", "F2807x", "F28P65x", "F28P55x"]
+const Include_Headers_Type3														= ["F280013x", "F28002x", "F28003x", "F28004x", "F2837xS", "F2807x", "F28P65x", "F28P55x", "F28E12x"]
 
 //
 // Available Boot_CM 
@@ -64,6 +64,10 @@ const Initilization_AGPIO_Dual_Core_Type0										= ["F28P65x"]
 // and 28 in digital mode, turn on all peripherals, and Lock VREGCTL Register for device initilization
 const Initilization_GPIO_11_28										= ["F28P55x"]
 
+//configuring the GPIO pins 12, 13 and 28 in digital mode, turn on all peripherals,
+//and Lock VREGCTL Register for device initilization
+const Initilization_GPIO_12_28										= ["F28E12x"]
+
 //
 // Available InitGPIO 
 //
@@ -71,7 +75,7 @@ const Initilization_GPIO_11_28										= ["F28P55x"]
 const InitGPIO_PortA_PortF_Type0 											= ["F2838x", "F2837xD", "F2837xS", "F2807x"]
 
 // Disabling pin locks and enabling pullups on GPIOs only Ports A, B, and H.
-const InitGPIO_PortA_PortH_Type0 											= ["F28002x", "F28003x", "F28004x", "F280013x", "F280015x"]
+const InitGPIO_PortA_PortH_Type0 											= ["F28002x", "F28003x", "F28004x", "F280013x", "F280015x","F28E12x"]
 
 // Disabling pin locks and enabling pullups on GPIOs Ports A, B, C, D, E, F, and H.
 const InitGPIO_PortA_PortH_Type1 											= ["F28P65x"]
@@ -87,6 +91,9 @@ const VerifyXTAL_Type0														= ["F2838x"]
 
 // verifying the XTAL frequency with Turning-on XTAL
 const VerifyXTAL_Type1 														= ["F28002x", "F28003x", "F28004x", "F28P65x", "F28P55x"]
+
+// verifying the XTAL frequency
+const VerifyXTAL_Type2														= ["F28E12x"]
 
 //
 // Available BootCPU2 
@@ -108,6 +115,9 @@ const Enable_Unbounded_GPIO_Pullups_100PZ_176PTP_Type0						=["F2837xD", "F2837x
 
 // enable pullups for the unbonded GPIOs on the 176PTP package.
 const Enable_Unbounded_GPIO_Pullups_176PTP_Type0							=["F2838x"]
+
+// enable pullups for the unbonded GPIOs on the 48PT, 32RHB, 32VFC package.
+const Enable_Unbounded_GPIO_Pullups_48PT_32RHB_32VFC_Type0					=["F28E12x"]
 
 //
 // Available Configure_TMX_Analog_Trim 
@@ -189,6 +199,9 @@ const clocktree_PLL_Ctl_Dividers_Type1                                  =["F2838
 //and AUXPLL control and clock dividers needed for CMCLK
 const clocktree_PLL_Ctl_Dividers_Type2                                  =["F28P65x"]
 
+// clocktree Setting up PLL control and clock dividers
+const clocktree_PLL_Ctl_Dividers_Type3                                 		=["F28E12x"]
+
 // clocktree asserts will check that the #defines for the clock rates in device.h
 //set clock source for CANA, CANB, MCAN peripherals and EPWM and EMIF1 clock divider
 const clocktree_Asserts_Type0                                          =["F2837xD", "F2807x", "F2837xS"]
@@ -210,7 +223,11 @@ const clocktree_Asserts_Type3                                          =["F28003
 const clocktree_Asserts_Type4                                          =["F280013x", "F28002x", "F28004x"]
 
 // clocktree asserts will check that the #defines for the clock rates in device.h
+// CLK divider for LIN
 const clocktree_Asserts_Type5                                          =["F28P55x"]
+
+// clocktree asserts will check that the #defines for the clock rates in device.h
+const clocktree_Asserts_Type6                                          =["F28E12x"]
 
 ///////////////////////////List of Template Files For Different Functions///////////////////////////
 // If you want to add a new sub-function from available functions, you need to create a .xdt file in related function folder
@@ -273,6 +290,7 @@ exports = {
 	Initilization_GPIO_20_21_Type0 : Initilization_GPIO_20_21_Type0,
 	Initilization_AGPIO_Dual_Core_Type0 : Initilization_AGPIO_Dual_Core_Type0,
 	Initilization_GPIO_11_28 : Initilization_GPIO_11_28,
+	Initilization_GPIO_12_28 : Initilization_GPIO_12_28,
 	Initilization_XTAL_Type0 : Initilization_XTAL_Type0,
 	Initilization_Device_initGPIO_Type0 : Initilization_Device_initGPIO_Type0,
 	InitGPIO_PortA_PortF_Type0 : InitGPIO_PortA_PortF_Type0,
@@ -281,11 +299,13 @@ exports = {
 	InitGPIO_PortA_PortH_Type2 : InitGPIO_PortA_PortH_Type2,
 	VerifyXTAL_Type0 : VerifyXTAL_Type0,
 	VerifyXTAL_Type1 : VerifyXTAL_Type1,
+	VerifyXTAL_Type2 : VerifyXTAL_Type2,
     Boot_CPU2_Type0 : Boot_CPU2_Type0,
 	Boot_CPU2_Type1 : Boot_CPU2_Type1,
 	Boot_CPU2_Boot_Mode_Type0 : Boot_CPU2_Boot_Mode_Type0,
 	Enable_Unbounded_GPIO_Pullups_100PZ_176PTP_Type0 : Enable_Unbounded_GPIO_Pullups_100PZ_176PTP_Type0,
 	Enable_Unbounded_GPIO_Pullups_176PTP_Type0 : Enable_Unbounded_GPIO_Pullups_176PTP_Type0,
+	Enable_Unbounded_GPIO_Pullups_48PT_32RHB_32VFC_Type0 : Enable_Unbounded_GPIO_Pullups_48PT_32RHB_32VFC_Type0,
 	Configure_TMX_Analog_Trim_Type0 : Configure_TMX_Analog_Trim_Type0,
 	Configure_TMX_Analog_Trim_Type1 : Configure_TMX_Analog_Trim_Type1,
 	Configure_TMX_Analog_Trim_Type2 : Configure_TMX_Analog_Trim_Type2,
@@ -305,11 +325,13 @@ exports = {
 	clocktree_PLL_Ctl_Dividers_Type0 : clocktree_PLL_Ctl_Dividers_Type0,
 	clocktree_PLL_Ctl_Dividers_Type1 : clocktree_PLL_Ctl_Dividers_Type1,
 	clocktree_PLL_Ctl_Dividers_Type2 : clocktree_PLL_Ctl_Dividers_Type2,
+	clocktree_PLL_Ctl_Dividers_Type3 : clocktree_PLL_Ctl_Dividers_Type3,
 	clocktree_Asserts_Type0 : clocktree_Asserts_Type0,
 	clocktree_Asserts_Type1 : clocktree_Asserts_Type1,
 	clocktree_Asserts_Type2 : clocktree_Asserts_Type2, 
 	clocktree_Asserts_Type3 : clocktree_Asserts_Type3,
 	clocktree_Asserts_Type4 : clocktree_Asserts_Type4,
-	clocktree_Asserts_Type5 : clocktree_Asserts_Type5 
+	clocktree_Asserts_Type5 : clocktree_Asserts_Type5,
+	clocktree_Asserts_Type6 : clocktree_Asserts_Type6 
 
 }

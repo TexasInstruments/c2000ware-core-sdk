@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -481,11 +481,12 @@ typedef enum
 typedef enum
 {
     SYSCTL_CLOCKOUT_PLLSYS     = 0U,   //!< PLL System Clock post SYSCLKDIV
-    SYSCTL_CLOCKOUT_PLLRAW     = 1U,   //!< PLL Raw Clock
+    SYSCTL_CLOCKOUT_PLLRAW     = 1U,   //!< PLL Clock after Bypass Mux
     SYSCTL_CLOCKOUT_SYSCLK     = 2U,   //!< CPU System Clock
     SYSCTL_CLOCKOUT_INTOSC1    = 5U,   //!< Internal Oscillator 1
     SYSCTL_CLOCKOUT_INTOSC2    = 6U,   //!< Internal Oscillator 2
     SYSCTL_CLOCKOUT_XTALOSC    = 7U,   //!< External Oscillator
+    SYSCTL_SYSPLLCLKOUT        = 12U,  //!< PLL System Clock pre SYSCLKDIV
 } SysCtl_ClockOut;
 
 //*****************************************************************************
@@ -1012,6 +1013,7 @@ SysCtl_setLowSpeedClock(SysCtl_LSPCLKPrescaler prescaler)
 //! - \b SYSCTL_CLOCKOUT_INTOSC1
 //! - \b SYSCTL_CLOCKOUT_INTOSC2
 //! - \b SYSCTL_CLOCKOUT_XTALOSC
+//! - \b SYSCTL_SYSPLLCLKOUT
 //!
 //! \return None.
 //
@@ -2727,7 +2729,7 @@ SysCtl_getInterruptStatus(void)
 static inline void
 SysCtl_clearInterruptStatus(uint32_t intFlags)
 {
-    HWREGH(SYSSTAT_BASE + SYSCTL_O_SYS_ERR_INT_CLR) |= (uint16_t)intFlags;
+    HWREG(SYSSTAT_BASE + SYSCTL_O_SYS_ERR_INT_CLR) = intFlags;
 }
 //*****************************************************************************
 //

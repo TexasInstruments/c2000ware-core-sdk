@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -605,7 +605,7 @@ typedef enum
 typedef enum
 {
     SYSCTL_CLOCKOUT_PLLSYS     = 0U,   //!< PLL System Clock post SYSCLKDIV
-    SYSCTL_CLOCKOUT_PLLRAW     = 1U,   //!< PLL Raw Clock
+    SYSCTL_CLOCKOUT_PLLRAW     = 1U,   //!< PLL Clock after Bypass Mux
     SYSCTL_CLOCKOUT_SYSCLK     = 2U,   //!< CPU System Clock
     SYSCTL_CLOCKOUT_INTOSC1    = 5U,   //!< Internal Oscillator 1
     SYSCTL_CLOCKOUT_INTOSC2    = 6U,   //!< Internal Oscillator 2
@@ -2837,6 +2837,39 @@ SysCtl_getDeviceUID(void)
     return(HWREG(UID_BASE + OTP_O_UID_UNIQUE));
 }
 
+//*****************************************************************************
+//
+//! Get the status of JTAG State machine and debugger connect
+//!
+//! This function returns the JTAG status
+//!
+//! \return Returns the JTAG status. The bits representing will be -
+//! 0:TLR,
+//! 1:IDLE,
+//! 2:SELECTDR,
+//! 3:CAPDR,
+//! 4:SHIFTDR,
+//! 5:EXIT1DR,
+//! 6:PAUSEDR,
+//! 7:EXIT2DR,
+//! 8:UPDTDR,
+//! 9:SLECTIR,
+//! 10:CAPIR,
+//! 11:SHIFTIR,
+//! 12:EXIT1IR,
+//! 13:PAUSEIR,
+//! 14:EXIT2IR,
+//! 15:UPDTIR
+//
+//*****************************************************************************
+static inline uint32_t
+SysCtl_getTapStatus(void)
+{
+    //
+    // Returns the Tap status
+    //
+    return(HWREG(DEVCFG_BASE + SYSCTL_O_TAP_STATUS));
+}
 //*****************************************************************************
 //
 //! Delays for a fixed number of cycles.

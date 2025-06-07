@@ -116,6 +116,10 @@ ICFFT_CONTEXT_RESTORE    .macro
     POP       XAR1
     .endm
 
+    .if  __TI_EABI__
+        .asg ICFFT_run256Pt, _ICFFT_run256Pt        
+    .endif
+
 ;;*****************************************************************************
 ;; globals
 ;;*****************************************************************************
@@ -219,43 +223,43 @@ S12_LOOP_COUNT      .set S12_NBFLY - 2           ; Stage 1/2 loop count
     VMOV32    VR1, *BR0++                        ; VR1 := *(AR2 bradd AR0++) | VR1 := I1:R1
 
     VCFFT7    VR1, VR0, #0                       ; VR2 = I2:R2 <- XAR1
- || VMOV32    VR2, *BR0++                        ;[VR0H:VR0L] := [R0 - R1:R0 + R1] := [VR0L - VR1L:VR0L + VR1L]
+ || VMOV32    VR2, *BR0++                        ;[VR0H:VR0L] := [R0 - R1:R0 + R1] :=ï¿½[VR0L - VR1L:VR0L + VR1L]
                                                  ;[VR1H:VR1L] := [I0 - I1:I0 + I1] := [VR0H - VR1H:VR0H + VR1H]
 
 
     VMOV32    VR3, *BR0++                        ; VR3 := I3:R3 <- XAR1
 
-    VCFFT8    VR3, VR2, #0                       ;[VR2H:VR2L] := [R2 - R3:R2 + R3] := [VR2L - VR3L:VR2L + VR3L]
+    VCFFT8    VR3, VR2, #0                       ;[VR2H:VR2L] := [R2 - R3:R2 + R3] :=ï¿½[VR2L - VR3L:VR2L + VR3L]
                                                  ;[VR3H:VR3L] := [I2 - I3:I2 + I3] := [VR2H - VR3H:VR2H + VR3H]
 
-    VCFFT9    VR5, VR4, VR3, VR2, VR1, VR0, #0   ;[VR4H:VR4L] := [I0':R0'] := [(I0+I1) + (I2+I3):(R0+R1) + (R2+R3)] := [VR1L + VR3L:VR0L + VR2L]
-                                                 ;[VR5H:VR5L] := [I2':R2'] := [(I0+I1) - (I2+I3):(R0+R1) - (R2+R3)] := [VR1L – VR3L:VR0L – VR2L]
+    VCFFT9    VR5, VR4, VR3, VR2, VR1, VR0, #0   ;[VR4H:VR4L] := [I0':R0'] :=ï¿½[(I0+I1) + (I2+I3):(R0+R1) + (R2+R3)] := [VR1L + VR3L:VR0L + VR2L]
+                                                 ;[VR5H:VR5L] := [I2':R2'] := [(I0+I1) - (I2+I3):(R0+R1) - (R2+R3)] := [VR1L ï¿½ VR3L:VR0L ï¿½ VR2L]
 
     .align    2                                  ; align at 32-bit boundary to remove penalty
     RPTB      _ICFFT_run256Pt_stages1and2CombinedLoop, #S12_LOOP_COUNT
 
     VCFFT10   VR7, VR6, VR3, VR2, VR1, VR0, #0   ; VR0 := I0:R0 <- *(AR2 bradd AR0++)
- || VMOV32    VR0, *BR0++                        ;[VR6H:VR6L] := [I1':R1'] := [(I0-I1) - (R2-R3):(R0-R1) + (I2-I3)] := [VR1H – VR2H:VR0H + VR3H]
-                                                 ;[VR7H:VR7L] := [I3':R3'] := [(I0-I1) + (R2-R3):(R0-R1) - (I2-I3)] := [VR1H + VR2H:VR0H – VR3H]
+ || VMOV32    VR0, *BR0++                        ;[VR6H:VR6L] := [I1':R1'] :=ï¿½[(I0-I1) - (R2-R3):(R0-R1) + (I2-I3)] := [VR1H ï¿½ VR2H:VR0H + VR3H]
+                                                 ;[VR7H:VR7L] := [I3':R3'] := [(I0-I1) + (R2-R3):(R0-R1) - (I2-I3)] := [VR1H + VR2H:VR0H ï¿½ VR3H]
 
 
     VMOV32    VR1, *BR0++                        ; VR1 := I1:R1 <- *(AR2 bradd AR0++)
 
     VCFFT7    VR1, VR0, #0                       ; VR2 := I2:R2 <- *(AR2 bradd AR0++)
- || VMOV32    VR2, *BR0++                        ;[VR0H:VR0L] := [R0 - R1:R0 + R1] := [VR0L - VR1L:VR0L + VR1L]
+ || VMOV32    VR2, *BR0++                        ;[VR0H:VR0L] := [R0 - R1:R0 + R1] :=ï¿½[VR0L - VR1L:VR0L + VR1L]
                                                  ;[VR1H:VR1L] := [I0 - I1:I0 + I1] := [VR0H - VR1H:VR0H + VR1H]
 
 
     VMOV32    VR3, *BR0++                        ; VR3 := I3:R3 <- *(AR2 bradd AR0++)
 
     VCFFT8    VR3, VR2, #0                       ; Save I0':R0' -> XAR1
- || VMOV32    *XAR1++, VR4                       ;[VR2H:VR2L] := [R2 - R3:R2 + R3] := [VR2L - VR3L:VR2L + VR3L]
+ || VMOV32    *XAR1++, VR4                       ;[VR2H:VR2L] := [R2 - R3:R2 + R3] :=ï¿½[VR2L - VR3L:VR2L + VR3L]
                                                  ;[VR3H:VR3L] := [I2 - I3:I2 + I3] := [VR2H - VR3H:VR2H + VR3H]
 
     VMOV32    *XAR1++, VR6                       ; Save I1':R1' -> XAR1
     VCFFT9    VR5, VR4, VR3, VR2, VR1, VR0, #0   ; Save I2':R2' -> XAR1
- || VMOV32    *XAR1++, VR5                       ;[VR4H:VR4L] := [I0':R0'] := [(I0+I1) + (I2+I3):(R0+R1) + (R2+R3)] := [VR1L + VR3L:VR0L + VR2L]
-                                                 ;[VR5H:VR5L] := [I2':R2'] := [(I0+I1) - (I2+I3):(R0+R1) - (R2+R3)] := [VR1L – VR3L:VR0L – VR2L]
+ || VMOV32    *XAR1++, VR5                       ;[VR4H:VR4L] := [I0':R0'] :=ï¿½[(I0+I1) + (I2+I3):(R0+R1) + (R2+R3)] := [VR1L + VR3L:VR0L + VR2L]
+                                                 ;[VR5H:VR5L] := [I2':R2'] := [(I0+I1) - (I2+I3):(R0+R1) - (R2+R3)] := [VR1L ï¿½ VR3L:VR0L ï¿½ VR2L]
 
     VMOV32    *++, VR7, ARP2                     ; Save I3':R3' -> XAR1 | ARP -> XAR2
     ;VMOV32    *XAR1++, VR7, ARP2                ; Save I3':R3' -> XAR1 | ARP -> XAR2
@@ -263,8 +267,8 @@ S12_LOOP_COUNT      .set S12_NBFLY - 2           ; Stage 1/2 loop count
 
 _ICFFT_run256Pt_stages1and2CombinedLoop:
 
-    VCFFT10   VR7, VR6, VR3, VR2, VR1, VR0, #0   ;[VR6H:VR6L] := [I1':R1'] := [(I0-I1) - (R2-R3):(R0-R1) + (I2-I3)] := [VR1H – VR2H:VR0H + VR3H]
-                                                 ;[VR7H:VR7L] := [I3':R3'] := [(I0-I1) + (R2-R3):(R0-R1) - (I2-I3)] := [VR1H + VR2H:VR0H – VR3H]
+    VCFFT10   VR7, VR6, VR3, VR2, VR1, VR0, #0   ;[VR6H:VR6L] := [I1':R1'] :=ï¿½[(I0-I1) - (R2-R3):(R0-R1) + (I2-I3)] := [VR1H ï¿½ VR2H:VR0H + VR3H]
+                                                 ;[VR7H:VR7L] := [I3':R3'] := [(I0-I1) + (R2-R3):(R0-R1) - (I2-I3)] := [VR1H + VR2H:VR0H ï¿½ VR3H]
 
     VMOV32    *XAR1++, VR4                       ; Save I0':R0' -> XAR1
     VMOV32    *XAR1++, VR6                       ; Save I1':R1' -> XAR1
@@ -507,16 +511,16 @@ _ICFFT_run256Pt_stages3and4OuterLoop:
     VMOV32    VR6, *+XAR2[AR1]                   ; VR6 = I1:R1
     VCFFT4    VR4, VR2, VR1, VR0, #0             ; VR7 = I2:R2
  || VMOV32    VR7,  *XAR4++                      ;[VR2H:VR2L] = [R3'*Cos(2) + I3'*Sin(2): I3'*Cos(2) - R3'*Sin(2)]
-                                                 ;[VR0H:VR0L] = [I0'':R0'’] = [I0' + VR2H: R0' + VR2L]
-                                                 ;[VR1H:VR1L] = [I2'':R2'’] = [I0' - VR2H: R0' - VR2L]
+                                                 ;[VR0H:VR0L] = [I0'':R0'ï¿½] = [I0' + VR2H: R0' + VR2L]
+                                                 ;[VR1H:VR1L] = [I2'':R2'ï¿½] = [I0' - VR2H: R0' - VR2L]
 
     VMOV32    VR4, *XAR3++                       ; VR4 = Sin(1):Cos(1)
     VMOV32    *XAR6++, VR0                       ; [I0'':R0''] = VR0
 
     VCFFT5    VR5, VR4, VR3, VR2, VR1, VR0, #0   ;[I2'':R2''] = VR1
  || VMOV32    *XAR7++, VR1                       ;[VR2H:VR2L] = [I3*Cos(1) - R3*Sin(1):R3*Cos(1) + I3*Sin(1)]
-                                                 ;[VR0H:VR0L] = [I1'’:R1'’] = [I1' - VR2H: R1' + VR2L]
-                                                 ;[VR1H:VR1L] = [I3'’:R3'’] = [I1' + VR2H: R1' - VR2L]
+                                                 ;[VR0H:VR0L] = [I1'ï¿½:R1'ï¿½] = [I1' - VR2H: R1' + VR2L]
+                                                 ;[VR1H:VR1L] = [I3'ï¿½:R3'ï¿½] = [I1' + VR2H: R1' - VR2L]
     VMOV32    VR5, *XAR2++                       ; VR5 = I0:R0
     VMOV32    *+XAR6[AR0], VR0                   ;[I1'':R1''] = VR0
 
@@ -533,13 +537,13 @@ _ICFFT_run256Pt_stages3and4InnerLoop:
 
     NOP
     VCFFT4    VR4, VR2, VR1, VR0, #0             ;[VR2H:VR2L] = [R3'*Cos(2) + I3'*Sin(2):I3'*Cos(2) - R3'*Sin(2)]
-                                                 ;[VR0H:VR0L] = [I0'’:R0'’] = [I0' + VR2H: R0' + VR2L]
+                                                 ;[VR0H:VR0L] = [I0'ï¿½:R0'ï¿½] = [I0' + VR2H: R0' + VR2L]
                                                  ;[VR1H:VR1L] = [I2'':R2''] = [I0' - VR2H: R0' - VR2L]
 
     NOP
     VMOV32    *XAR6++, VR0                       ;[I0'':R0''] = VR0
     VCFFT6    VR3, VR2, VR1, VR0, #0             ;[I2'':R2''] = VR1
- || VMOV32    *XAR7++, VR1                       ;[VR0H:VR0L] = [I1'':R1'’] = [I1' - VR2H: R1' + VR2L]
+ || VMOV32    *XAR7++, VR1                       ;[VR0H:VR0L] = [I1'':R1'ï¿½] = [I1' - VR2H: R1' + VR2L]
                                                  ;[VR1H:VR1L] = [I3'':R3''] = [I1' + VR2H: R1' - VR2L]
 
     NOP
@@ -737,16 +741,16 @@ _ICFFT_run256Pt_stages5and6OuterLoop:
     VMOV32    VR6, *+XAR2[AR1]                   ; VR6 = I1:R1
     VCFFT4    VR4, VR2, VR1, VR0, #0             ; VR7 = I2:R2
  || VMOV32    VR7,  *XAR4++                      ;[VR2H:VR2L] = [R3'*Cos(2) + I3'*Sin(2): I3'*Cos(2) - R3'*Sin(2)]
-                                                 ;[VR0H:VR0L] = [I0'':R0'’] = [I0' + VR2H: R0' + VR2L]
-                                                 ;[VR1H:VR1L] = [I2'':R2'’] = [I0' - VR2H: R0' - VR2L]
+                                                 ;[VR0H:VR0L] = [I0'':R0'ï¿½] = [I0' + VR2H: R0' + VR2L]
+                                                 ;[VR1H:VR1L] = [I2'':R2'ï¿½] = [I0' - VR2H: R0' - VR2L]
 
     VMOV32    VR4, *XAR3++                       ; VR4 = Sin(1):Cos(1)
     VMOV32    *XAR6++, VR0                       ; [I0'':R0''] = VR0
 
     VCFFT5    VR5, VR4, VR3, VR2, VR1, VR0, #0   ;[I2'':R2''] = VR1
  || VMOV32    *XAR7++, VR1                       ;[VR2H:VR2L] = [I3*Cos(1) - R3*Sin(1):R3*Cos(1) + I3*Sin(1)]
-                                                 ;[VR0H:VR0L] = [I1'’:R1'’] = [I1' - VR2H: R1' + VR2L]
-                                                 ;[VR1H:VR1L] = [I3'’:R3'’] = [I1' + VR2H: R1' - VR2L]
+                                                 ;[VR0H:VR0L] = [I1'ï¿½:R1'ï¿½] = [I1' - VR2H: R1' + VR2L]
+                                                 ;[VR1H:VR1L] = [I3'ï¿½:R3'ï¿½] = [I1' + VR2H: R1' - VR2L]
     VMOV32    VR5, *XAR2++                       ; VR5 = I0:R0
     VMOV32    *+XAR6[AR0], VR0                   ;[I1'':R1''] = VR0
 
@@ -763,13 +767,13 @@ _ICFFT_run256Pt_stages5and6InnerLoop:
 
     NOP
     VCFFT4    VR4, VR2, VR1, VR0, #0             ;[VR2H:VR2L] = [R3'*Cos(2) + I3'*Sin(2):I3'*Cos(2) - R3'*Sin(2)]
-                                                 ;[VR0H:VR0L] = [I0'’:R0'’] = [I0' + VR2H: R0' + VR2L]
+                                                 ;[VR0H:VR0L] = [I0'ï¿½:R0'ï¿½] = [I0' + VR2H: R0' + VR2L]
                                                  ;[VR1H:VR1L] = [I2'':R2''] = [I0' - VR2H: R0' - VR2L]
 
     NOP
     VMOV32    *XAR6++, VR0                       ;[I0'':R0''] = VR0
     VCFFT6    VR3, VR2, VR1, VR0, #0             ;[I2'':R2''] = VR1
- || VMOV32    *XAR7++, VR1                       ;[VR0H:VR0L] = [I1'':R1'’] = [I1' - VR2H: R1' + VR2L]
+ || VMOV32    *XAR7++, VR1                       ;[VR0H:VR0L] = [I1'':R1'ï¿½] = [I1' - VR2H: R1' + VR2L]
                                                  ;[VR1H:VR1L] = [I3'':R3''] = [I1' + VR2H: R1' - VR2L]
 
     NOP
@@ -967,8 +971,8 @@ _ICFFT_run256Pt_stages7and8OuterLoop:
     VMOV32    VR6, *+XAR2[AR1]                   ; VR6 = I1:R1
     VCFFT4    VR4, VR2, VR1, VR0, #0             ; VR7 = I2:R2
  || VMOV32    VR7,  *XAR4++                      ;[VR2H:VR2L] = [R3'*Cos(2) + I3'*Sin(2): I3'*Cos(2) - R3'*Sin(2)]
-                                                 ;[VR0H:VR0L] = [I0'':R0'’] = [I0' + VR2H: R0' + VR2L]
-                                                 ;[VR1H:VR1L] = [I2'':R2'’] = [I0' - VR2H: R0' - VR2L]
+                                                 ;[VR0H:VR0L] = [I0'':R0'ï¿½] = [I0' + VR2H: R0' + VR2L]
+                                                 ;[VR1H:VR1L] = [I2'':R2'ï¿½] = [I0' - VR2H: R0' - VR2L]
 	NOP
 
 
@@ -977,8 +981,8 @@ _ICFFT_run256Pt_stages7and8OuterLoop:
 
     VCFFT5    VR5, VR4, VR3, VR2, VR1, VR0, #0   ;[I2'':R2''] = VR1
  || VMOV32    *+XAR7[0], VR1                     ;[VR2H:VR2L] = [I3*Cos(1) - R3*Sin(1):R3*Cos(1) + I3*Sin(1)]
-                                                 ;[VR0H:VR0L] = [I1'’:R1'’] = [I1' - VR2H: R1' + VR2L]
-                                                 ;[VR1H:VR1L] = [I3'’:R3'’] = [I1' + VR2H: R1' - VR2L]
+                                                 ;[VR0H:VR0L] = [I1'ï¿½:R1'ï¿½] = [I1' - VR2H: R1' + VR2L]
+                                                 ;[VR1H:VR1L] = [I3'ï¿½:R3'ï¿½] = [I1' + VR2H: R1' - VR2L]
 	NOP
 
 
@@ -1004,8 +1008,8 @@ _ICFFT_run256Pt_stages7and8OuterLoop:
     VMOV32    VR6, *+XAR2[AR1]                   ; VR6 = I1:R1
     VCFFT4    VR4, VR2, VR1, VR0, #0             ; VR7 = I2:R2
  || VMOV32    VR7,  *XAR4++                      ;[VR2H:VR2L] = [R3'*Cos(2) + I3'*Sin(2): I3'*Cos(2) - R3'*Sin(2)]
-                                                 ;[VR0H:VR0L] = [I0'':R0'’] = [I0' + VR2H: R0' + VR2L]
-                                                 ;[VR1H:VR1L] = [I2'':R2'’] = [I0' - VR2H: R0' - VR2L]
+                                                 ;[VR0H:VR0L] = [I0'':R0'ï¿½] = [I0' + VR2H: R0' + VR2L]
+                                                 ;[VR1H:VR1L] = [I2'':R2'ï¿½] = [I0' - VR2H: R0' - VR2L]
 	NOP
 
 
@@ -1014,8 +1018,8 @@ _ICFFT_run256Pt_stages7and8OuterLoop:
 
     VCFFT5    VR5, VR4, VR3, VR2, VR1, VR0, #0   ;[I2'':R2''] = VR1
  || VMOV32    *--XAR7, VR1                       ;[VR2H:VR2L] = [I3*Cos(1) - R3*Sin(1):R3*Cos(1) + I3*Sin(1)]
-                                                 ;[VR0H:VR0L] = [I1'’:R1'’] = [I1' - VR2H: R1' + VR2L]
-                                                 ;[VR1H:VR1L] = [I3'’:R3'’] = [I1' + VR2H: R1' - VR2L]
+                                                 ;[VR0H:VR0L] = [I1'ï¿½:R1'ï¿½] = [I1' - VR2H: R1' + VR2L]
+                                                 ;[VR1H:VR1L] = [I3'ï¿½:R3'ï¿½] = [I1' + VR2H: R1' - VR2L]
 	NOP
 
 
@@ -1035,7 +1039,7 @@ _ICFFT_run256Pt_stages7and8InnerLoop:
 
     NOP
     VCFFT4    VR4, VR2, VR1, VR0, #0             ;[VR2H:VR2L] = [R3'*Cos(2) + I3'*Sin(2):I3'*Cos(2) - R3'*Sin(2)]
-                                                 ;[VR0H:VR0L] = [I0'’:R0'’] = [I0' + VR2H: R0' + VR2L]
+                                                 ;[VR0H:VR0L] = [I0'ï¿½:R0'ï¿½] = [I0' + VR2H: R0' + VR2L]
                                                  ;[VR1H:VR1L] = [I2'':R2''] = [I0' - VR2H: R0' - VR2L]
 
     NOP
@@ -1043,7 +1047,7 @@ _ICFFT_run256Pt_stages7and8InnerLoop:
 
     VMOV32    *+XAR7[AR0], VR0                   ;[I0'':R0''] = VR0
     VCFFT6    VR3, VR2, VR1, VR0, #0             ;[I2'':R2''] = VR1
- || VMOV32    *--XAR7, VR1                       ;[VR0H:VR0L] = [I1'':R1'’] = [I1' - VR2H: R1' + VR2L]
+ || VMOV32    *--XAR7, VR1                       ;[VR0H:VR0L] = [I1'':R1'ï¿½] = [I1' - VR2H: R1' + VR2L]
                                                  ;[VR1H:VR1L] = [I3'':R3''] = [I1' + VR2H: R1' - VR2L]
 
     NOP

@@ -215,7 +215,7 @@ let SysCtl_AccessPermission = [
 ]
 let SysCtl_ClockOut = [
 	{ name: "SYSCTL_CLOCKOUT_PLLSYS", displayName: "PLL System Clock post SYSCLKDIV" },
-	{ name: "SYSCTL_CLOCKOUT_PLLRAW", displayName: "PLL Raw Clock" },
+	{ name: "SYSCTL_CLOCKOUT_PLLRAW", displayName: "PLL Clock after Bypass Mux" },
 	{ name: "SYSCTL_CLOCKOUT_SYSCLK", displayName: "CPU System Clock" },
 	{ name: "SYSCTL_CLOCKOUT_INTOSC1", displayName: "Internal Oscillator 1" },
 	{ name: "SYSCTL_CLOCKOUT_INTOSC2", displayName: "Internal Oscillator 2" },

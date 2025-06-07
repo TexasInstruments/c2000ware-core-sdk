@@ -51,7 +51,7 @@
 //
 //
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -112,7 +112,7 @@
 // Globals
 //
 uint32_t sdfmInstance;
-uint32_t pwmInstance = EPWM4_BASE; // ePWM 11 for synchronizing SDFM1 filters
+uint32_t pwmInstance = EPWM4_BASE; // ePWM 4 for synchronizing SDFM1 filters
 int16_t  filter1Result[MAX_SAMPLES];
 int16_t  filter2Result[MAX_SAMPLES];
 int16_t  filter3Result[MAX_SAMPLES];
@@ -220,16 +220,16 @@ void main(void)
     //
     SDFM_configComparator(sdfmInstance,
         (SDFM_FILTER_1 | SDFM_FILTER_SINC_3 | SDFM_SET_OSR(32)),
-        (SDFM_GET_LOW_THRESHOLD(llt) | SDFM_GET_HIGH_THRESHOLD(hlt)), 0);
+        (SDFM_THRESHOLD(hlt,llt)), 0);
     SDFM_configComparator(sdfmInstance,
         (SDFM_FILTER_2 | SDFM_FILTER_SINC_3 | SDFM_SET_OSR(32)),
-        (SDFM_GET_LOW_THRESHOLD(llt) | SDFM_GET_HIGH_THRESHOLD(hlt)), 0);
+        (SDFM_THRESHOLD(hlt,llt)), 0);
     SDFM_configComparator(sdfmInstance,
         (SDFM_FILTER_3 | SDFM_FILTER_SINC_3 | SDFM_SET_OSR(32)),
-        (SDFM_GET_LOW_THRESHOLD(llt) | SDFM_GET_HIGH_THRESHOLD(hlt)), 0);
+        (SDFM_THRESHOLD(hlt,llt)), 0);
     SDFM_configComparator(sdfmInstance,
         (SDFM_FILTER_4 | SDFM_FILTER_SINC_3 | SDFM_SET_OSR(32)),
-        (SDFM_GET_LOW_THRESHOLD(llt) | SDFM_GET_HIGH_THRESHOLD(hlt)), 0);
+        (SDFM_THRESHOLD(hlt,llt)), 0);
 
     //
     // Data filter Module
@@ -265,6 +265,14 @@ void main(void)
     SDFM_enableExternalReset(sdfmInstance, SDFM_FILTER_2);
     SDFM_enableExternalReset(sdfmInstance, SDFM_FILTER_3);
     SDFM_enableExternalReset(sdfmInstance, SDFM_FILTER_4);
+
+    //
+    // Use PWM4.SOCA to provide SDSYNC pulse to SDFM
+    //
+    SDFM_setPWMSyncSource(sdfmInstance, SDFM_FILTER_1, SDFM_SYNC_PWM4_SOCA);
+    SDFM_setPWMSyncSource(sdfmInstance, SDFM_FILTER_2, SDFM_SYNC_PWM4_SOCA);
+    SDFM_setPWMSyncSource(sdfmInstance, SDFM_FILTER_3, SDFM_SYNC_PWM4_SOCA);
+    SDFM_setPWMSyncSource(sdfmInstance, SDFM_FILTER_4, SDFM_SYNC_PWM4_SOCA);
 
     //
     // Init EPWMs

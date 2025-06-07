@@ -23,7 +23,7 @@ void `instance.$name`_init(){
 			% if (instance.useDefaultModuleFrequency){
 	I2C_initController(`instance.$name`_BASE, DEVICE_SYSCLK_FREQ, `instance.$name`_BITRATE, `instance.duty`);
 			%} else {
-	I2C_initControllerModuleFrequency(`instance.$name`_BASE, DEVICE_SYSCLK_FREQ, `instance.$name`_BITRATE, `instance.duty`, `instance.$name`_MODULE_CLOCK_FREQUENCY)
+	I2C_initControllerModuleFrequency(`instance.$name`_BASE, DEVICE_SYSCLK_FREQ, `instance.$name`_BITRATE, `instance.duty`, `instance.$name`_MODULE_CLOCK_FREQUENCY);
 			%}
 	I2C_setConfig(`instance.$name`_BASE, I2C_CONTROLLER_`instance.initialMode`);
 			% if (instance.loopback){

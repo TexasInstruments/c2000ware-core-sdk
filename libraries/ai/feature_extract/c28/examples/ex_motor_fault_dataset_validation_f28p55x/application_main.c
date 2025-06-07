@@ -12,7 +12,7 @@
 //
 //
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -159,10 +159,14 @@ void main(void)
     #if !defined(FE_RAW)
     {
         init_params.fft_stage_num = FE_FFT_STAGES;
+        init_params.log_multiply = FE_LOG_MUL;
+        init_params.log_base = FE_LOG_BASE;
     }
     #else
     {
         init_params.fft_stage_num = 0;
+        init_params.log_multiply = 1;
+        init_params.log_base = 1;
     }
     #endif
     init_params.fft_size = FE_FFT_SIZE;
@@ -174,6 +178,7 @@ void main(void)
     init_params.output_convert_shift_len = sizeof(tvmgen_default_shift_data) / sizeof(tvmgen_default_shift_data[0]);
     init_params.output_feature_size_per_channel = (init_params.num_frame_concat)*(init_params.feature_size_per_frame);
     init_params.output_feature_size = init_params.output_feature_size_per_channel*init_params.num_input_channels;
+
 
     //Remaining initial parameter declaration initialized with meaningful value. These only for user's reference
     init_params.fft_bin_size = 0;
@@ -216,7 +221,7 @@ void main(void)
     int n = 0;
     for(n=0;n<FE_NN_OUT_SIZE;n++)
     {
-       if(golden_output[n] != nnData.nn_output_int.buf0[n])
+       if(abs(golden_output[n] - nnData.nn_output_int.buf0[n])>2)
        {
           error++;
        }

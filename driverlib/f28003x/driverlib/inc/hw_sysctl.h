@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -70,6 +70,7 @@
 #define SYSCTL_O_SOFTPRES25   0xB4U    // HIC Software Reset register
 #define SYSCTL_O_SOFTPRES26   0xB6U    // AES Software Reset register
 #define SYSCTL_O_SOFTPRES27   0xB8U    // EPG Software Reset register
+#define SYSCTL_O_SOFTPRES40   0xD2U    // Peripheral Software Reset register
 #define SYSCTL_O_TAP_STATUS   0x130U   // Status of JTAG State machine & Debugger Connect
 #define SYSCTL_O_ECAPTYPE     0x19BU   // Configures ECAP Type for the device
 #define SYSCTL_O_SDFMTYPE     0x19CU   // Configures SDFM Type for the device
@@ -84,6 +85,7 @@
 #define SYSCTL_O_SYSCLKDIVSEL    0x22U   // System Clock Divider Select register
 #define SYSCTL_O_AUXCLKDIVSEL    0x24U   // Auxillary Clock Divider Select register
 #define SYSCTL_O_XCLKOUTDIVSEL   0x28U   // XCLKOUT Divider Select register
+#define SYSCTL_O_CLBCLKCTL       0x2AU   // CLB Clocking Control Register
 #define SYSCTL_O_LOSPCP          0x2CU   // Low Speed Clock Source Prescalar
 #define SYSCTL_O_MCDCR           0x2EU   // Missing Clock Detect Control Register
 #define SYSCTL_O_X1CNT           0x30U   // 10-bit Counter on X1 Clock
@@ -418,6 +420,16 @@
 
 //*************************************************************************************************
 //
+// The following are defines for the bit fields in the SOFTPRES40 register
+//
+//*************************************************************************************************
+#define SYSCTL_SOFTPRES40_JTAG_NTRST_S       0U
+#define SYSCTL_SOFTPRES40_JTAG_NTRST_M       0xFU          // Multi Bit JTAG nTRST
+#define SYSCTL_SOFTPRES40_JTAG_NTRST_KEY_S   16U
+#define SYSCTL_SOFTPRES40_JTAG_NTRST_KEY_M   0xFFFF0000U   // JTAG nTRST Key
+
+//*************************************************************************************************
+//
 // The following are defines for the bit fields in the TAP_STATUS register
 //
 //*************************************************************************************************
@@ -456,6 +468,7 @@
 #define SYSCTL_CLKCFGLOCK1_SYSPLLMULT     0x40U      // Lock bit for SYSPLLMULT register
 #define SYSCTL_CLKCFGLOCK1_SYSCLKDIVSEL   0x800U     // Lock bit for SYSCLKDIVSEL register
 #define SYSCTL_CLKCFGLOCK1_AUXCLKDIVSEL   0x1000U    // Lock bit for AUXCLKDIVSEL register
+#define SYSCTL_CLKCFGLOCK1_CLBCLKCTL      0x4000U    // Lock bit for CLBCLKCTL register
 #define SYSCTL_CLKCFGLOCK1_LOSPCP         0x8000U    // Lock bit for LOSPCP register
 #define SYSCTL_CLKCFGLOCK1_XTALCR         0x10000U   // Lock bit for XTALCR  & XTALCR2 register
 
@@ -542,6 +555,19 @@
 //*************************************************************************************************
 #define SYSCTL_XCLKOUTDIVSEL_XCLKOUTDIV_S   0U
 #define SYSCTL_XCLKOUTDIVSEL_XCLKOUTDIV_M   0x3U   // XCLKOUT Divide Select
+
+//*************************************************************************************************
+//
+// The following are defines for the bit fields in the CLBCLKCTL register
+//
+//*************************************************************************************************
+#define SYSCTL_CLBCLKCTL_CLBCLKDIV_S   0U
+#define SYSCTL_CLBCLKCTL_CLBCLKDIV_M   0x7U       // CLB clock divider configuration.
+#define SYSCTL_CLBCLKCTL_TILECLKDIV    0x10U      // CLB Tile clock divider configuration.
+#define SYSCTL_CLBCLKCTL_CLKMODECLB1   0x10000U   // Clock mode of CLB1
+#define SYSCTL_CLBCLKCTL_CLKMODECLB2   0x20000U   // Clock mode of CLB2
+#define SYSCTL_CLBCLKCTL_CLKMODECLB3   0x40000U   // Clock mode of CLB3
+#define SYSCTL_CLBCLKCTL_CLKMODECLB4   0x80000U   // Clock mode of CLB4
 
 //*************************************************************************************************
 //

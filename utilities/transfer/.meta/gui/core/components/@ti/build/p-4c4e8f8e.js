@@ -1,0 +1,2 @@
+function e(e){const r={get:(e,r,t)=>{let n=e[r];if(n===undefined){if(e.deviceId){const t=document.getElementById(e.deviceId);if(t){n=t[r]}}}return n},set:()=>{throw new Error("Programmer error: do not set params members, they should be read, and not written.")}};return new Proxy(e,r)}export{e as c};
+//# sourceMappingURL=p-4c4e8f8e.js.map

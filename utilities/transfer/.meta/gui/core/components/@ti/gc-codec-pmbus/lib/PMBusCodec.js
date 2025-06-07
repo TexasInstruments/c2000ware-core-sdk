@@ -393,13 +393,9 @@ class PMBusCodec extends AbstractMessageBasedDecoder {
     /**
      * @hidden
      */
-    deconfigure() {
-        this.frameDecoder.deconfigure();
-    }
-    /**
-     * @hidden
-     */
     async onConnect(transport) {
+        this.frameDecoder.deconfigure();
+        this.deviceAddress = this.params.deviceAddress;
         this.transport = transport;
         this.consecutiveErrorLimit = this.params.maxConsecutiveErrors ?? DEFAULT_MAX_CONSECUTIVE_ERRORS;
         this.isConnected = true;
@@ -420,8 +416,7 @@ class PMBusCodec extends AbstractMessageBasedDecoder {
                 this.params.clockTimeout ? this.setClockTimeout(this.params.clockTimeout) : Promise.resolve()
             ]), timeout, 'Timeout initializing the USB Interface Adapter');
             if (this.params.verifyCommandCode) {
-                const deviceAddress = typeof this.params.deviceAddress === 'number' ? `0x${this.params.deviceAddress.toString(16)}` : undefined;
-                const scanAddresses = this.params.scanDeviceAddresses || deviceAddress;
+                const scanAddresses = this.params.scanDeviceAddresses || (typeof this.deviceAddress === 'number' ? `0x${this.deviceAddress.toString(16)}` : undefined);
                 if (scanAddresses) {
                     const devices = await this.scanForDevices(scanAddresses);
                     if (devices.length < 1) {
@@ -430,9 +425,9 @@ class PMBusCodec extends AbstractMessageBasedDecoder {
                     // use the first one found, if more that one device detected.  This way the order
                     // deviceAddress ranges to be scanned matters, even though we don't stop scanning when
                     // first one is found.
-                    if (this.params.deviceAddress !== devices[0]) {
-                        this.params.deviceAddress = devices[0];
-                        this.fireEvent(deviceAddressChangedEvent, { deviceAddress: this.params.deviceAddress });
+                    if (this.deviceAddress !== devices[0]) {
+                        this.deviceAddress = devices[0];
+                        this.fireEvent(deviceAddressChangedEvent, { deviceAddress: this.deviceAddress });
                     }
                 }
                 else {
@@ -539,13 +534,13 @@ class PMBusCodec extends AbstractMessageBasedDecoder {
     }
     async sendByte(value, options = {}) {
         await this.sendCommandPacket(COMMANDS.SMBUS_SEND_BYTE, [
-            +(options.deviceAddress ?? this.params.deviceAddress ?? 0),
+            +(options.deviceAddress ?? this.deviceAddress ?? 0),
             value
         ]);
     }
     async writeByte(commandCode, value, options = {}) {
         await this.sendCommandPacket(COMMANDS.SMBUS_WRITE_BYTE, [
-            +(options.deviceAddress ?? this.params.deviceAddress ?? 0),
+            +(options.deviceAddress ?? this.deviceAddress ?? 0),
             commandCode,
             value & 0xFF
         ]);
@@ -567,14 +562,14 @@ class PMBusCodec extends AbstractMessageBasedDecoder {
             throw Error(`Invalid parameter.  ${wordSize} bit writes are not supported.`);
         }
         await this.sendCommandPacket(operation, [
-            +(options.deviceAddress ?? this.params.deviceAddress ?? 0),
+            +(options.deviceAddress ?? this.deviceAddress ?? 0),
             commandCode,
             ...buffer
         ]);
     }
     async writeBlock(commandCode, value, options = {}) {
         await this.sendCommandPacket(COMMANDS.SMBUS_WRITE_BLOCK, [
-            +(options.deviceAddress ?? this.params.deviceAddress ?? 0),
+            +(options.deviceAddress ?? this.deviceAddress ?? 0),
             commandCode,
             value.length,
             ...value
@@ -582,13 +577,13 @@ class PMBusCodec extends AbstractMessageBasedDecoder {
     }
     async receiveByte(options = {}) {
         const payload = await this.sendCommandPacket(COMMANDS.SMBUS_RECEIVE_BYTE, [
-            +(options.deviceAddress ?? this.params.deviceAddress ?? 0)
+            +(options.deviceAddress ?? this.deviceAddress ?? 0)
         ]);
         return payload[1];
     }
     async readByte(commandCode, options = {}) {
         const payload = await this.sendCommandPacket(COMMANDS.SMBUS_READ_BYTE, [
-            +(options.deviceAddress ?? this.params.deviceAddress ?? 0),
+            +(options.deviceAddress ?? this.deviceAddress ?? 0),
             commandCode
         ]);
         return payload[2];
@@ -600,7 +595,7 @@ class PMBusCodec extends AbstractMessageBasedDecoder {
         }
         const operation = wordSize === 16 ? COMMANDS.SMBUS_READ_WORD : COMMANDS.SMBUS_READ_32;
         const payload = await this.sendCommandPacket(operation, [
-            +(options.deviceAddress ?? this.params.deviceAddress ?? 0),
+            +(options.deviceAddress ?? this.deviceAddress ?? 0),
             commandCode
         ]);
         const data = new DataView((new Uint8Array(payload)).buffer);
@@ -609,7 +604,7 @@ class PMBusCodec extends AbstractMessageBasedDecoder {
     }
     async readBlock(commandCode, options = {}) {
         const payload = await this.sendCommandPacket(COMMANDS.SMBUS_READ_BLOCK, [
-            +(options.deviceAddress ?? this.params.deviceAddress ?? 0),
+            +(options.deviceAddress ?? this.deviceAddress ?? 0),
             commandCode
         ]);
         return payload.slice(1, 1 + payload[0]);

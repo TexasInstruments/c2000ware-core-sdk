@@ -13,7 +13,7 @@
 //#############################################################################
 //
 //
-// $Copyright: Copyright (C) 2024 Texas Instruments Incorporated -
+// $Copyright: Copyright (C) 2025 Texas Instruments Incorporated -
 //             http://www.ti.com/ ALL RIGHTS RESERVED $
 //#############################################################################
 // NOTES:
@@ -121,12 +121,21 @@ SECTIONS
    twiddleFactors   : > RAMLS5,    PAGE  = 1
 
 #elif defined(FLASH)
+   #if defined(__TI_EABI__)
    .TI.ramfunc      :  LOAD = FLASHD,
+                       RUN = RAMLS1,
+                       RUN_START(RamfuncsRunStart),
+                       LOAD_START(RamfuncsLoadStart),
+                       LOAD_SIZE(RamfuncsLoadSize),
+                       PAGE = 0
+	#else
+	.TI.ramfunc      :  LOAD = FLASHD,
                        RUN = RAMLS1,
                        RUN_START(_RamfuncsRunStart),
                        LOAD_START(_RamfuncsLoadStart),
                        LOAD_SIZE(_RamfuncsLoadSize),
                        PAGE = 0
+	#endif
 
    .text            : > FLASHN,    PAGE = 0
    .cinit           : > FLASHM,    PAGE = 0

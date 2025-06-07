@@ -2,7 +2,7 @@ import { connectionManager } from '../../gc-target-connection-manager/lib/Connec
 import { AbstractTransport, codecRegistry } from '../../gc-target-configuration/lib/TargetConfiguration';
 import { ServicesRegistry } from '../../gc-core-services/lib/ServicesRegistry';
 import { ProgramModelEncoderType, ProgramModelDecoderType, activeCoreChangedEventType } from '../../gc-model-program/lib/ProgramModel';
-import { dsServiceType, ccsDebugCoreChangedEventType, ccsSymbolsChangedEventType, debugCoreType, targetSupportProgressEventType, statusMessageEventType, Location } from '../../gc-service-ds/lib/DSService';
+import { dsServiceType, ccsDebugCoreChangedEventType, ccsSymbolsChangedEventType, debugCoreType, DSProgressUpdateEventType, targetSupportProgressEventType, statusMessageEventType, LOAD_PROGRAM_FILENAME, Location } from '../../gc-service-ds/lib/DSService';
 import { GcFiles } from '../../gc-core-assets/lib/GcFiles';
 import { programLoaderServiceType } from '../../gc-service-program-loader/lib/ProgramLoaderService';
 import { targetConfigServiceType } from '../../gc-service-target-config/lib/TargetConfigService';
@@ -12,7 +12,7 @@ import { backplaneServiceType } from '../../gc-service-backplane/lib/BackplaneSe
 import { GcUtils } from '../../gc-core-assets/lib/GcUtils';
 
 /**
- *  Copyright (c) 2020, 2023 Texas Instruments Incorporated
+ *  Copyright (c) 2020, 2025 Texas Instruments Incorporated
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -48,6 +48,24 @@ class XdsTransport extends AbstractTransport {
         this.encoderOutputType = ProgramModelDecoderType;
         this.activeCoreMap = new Map(); // map of core names and aliases to active debuggable cores.
         this.activeCoreList = []; // list of active debuggable cores currently connected.
+        this.isConfigured = false;
+        this.callbackForStatusMessageEvent = (details) => {
+            switch (details.type) {
+                case 'info':
+                    this.addProgressMessage(details.message);
+                    break;
+                case 'fatal':
+                case 'error':
+                    this.addErrorMessage(details.message, undefined, details.type === 'fatal');
+                    break;
+                case 'warning':
+                    this.addWarningMessage(details.message);
+                    break;
+            }
+        };
+        this.dsLiteProgressUpdateHandler = (details) => {
+            this.addProgressMessage(details.name, undefined, details.percent ?? 0);
+        };
         this.connectionDeferred = GcPromise.defer();
         this.connectionSequencer = this.connectionDeferred.promise;
         this.console = new GcConsole('gc-transport-xds', this.id);
@@ -144,12 +162,15 @@ class XdsTransport extends AbstractTransport {
             this.assertStillConnecting();
         }
         const targetSupportProgressListener = (eventData) => {
-            this.addProgressMessage(`${eventData.name} ${eventData.subActivity}`);
+            this.addProgressMessage(`${eventData.name} ${eventData.subActivity}`, undefined, eventData.percent);
         };
         const ds = ServicesRegistry.getService(dsServiceType);
+        ds.addEventListener(DSProgressUpdateEventType, this.dsLiteProgressUpdateHandler);
         ds.addEventListener(targetSupportProgressEventType, targetSupportProgressListener);
+        ds.addEventListener(statusMessageEventType, this.callbackForStatusMessageEvent);
         try {
             await ds.configure(ccxml);
+            this.isConfigured = true;
             this.console.debug('configured debug server');
             if (GcUtils.isCCS) {
                 const eventBroker = await this.getCloudAgentEventBroker();
@@ -158,7 +179,9 @@ class XdsTransport extends AbstractTransport {
             }
         }
         finally {
+            ds.removeEventListener(statusMessageEventType, this.callbackForStatusMessageEvent);
             ds.removeEventListener(targetSupportProgressEventType, targetSupportProgressListener);
+            ds.removeEventListener(DSProgressUpdateEventType, this.dsLiteProgressUpdateHandler);
         }
         // allow initCore() promises to start connecting, loading programs, and running.
         this.connectionDeferred.resolve();
@@ -181,7 +204,10 @@ class XdsTransport extends AbstractTransport {
         }
         this.activeCoreMap.clear();
         this.activeCoreList = [];
-        await ds.deConfigure();
+        if (this.isConfigured) {
+            this.isConfigured = false;
+            await ds.deConfigure();
+        }
     }
     addChildDecoder(decoder) {
     }
@@ -203,7 +229,7 @@ class XdsTransport extends AbstractTransport {
         if (!core) {
             throw Error('Cannot write value when target is disconnected');
         }
-        return core.writeValue(expression, value);
+        return await core.writeValue(expression, value);
     }
     async connectToTarget(params) {
         const ds = ServicesRegistry.getService(dsServiceType);
@@ -223,6 +249,8 @@ class XdsTransport extends AbstractTransport {
             this.assertStillConnecting();
             if (!this.serialPort) {
                 try {
+                    ds.addEventListener(DSProgressUpdateEventType, this.dsLiteProgressUpdateHandler);
+                    ds.addEventListener(statusMessageEventType, this.callbackForStatusMessageEvent);
                     await activeCore.connect();
                 }
                 catch (e) {
@@ -230,6 +258,10 @@ class XdsTransport extends AbstractTransport {
                     if (!(e.message || e.toString()).includes('already connected')) {
                         throw e;
                     }
+                }
+                finally {
+                    ds.removeEventListener(DSProgressUpdateEventType, this.dsLiteProgressUpdateHandler);
+                    ds.removeEventListener(statusMessageEventType, this.callbackForStatusMessageEvent);
                 }
             }
         }
@@ -239,39 +271,38 @@ class XdsTransport extends AbstractTransport {
         const loaderService = ServicesRegistry.getService(programLoaderServiceType);
         const coreDescription = params.coreName ? ` core="${params.coreName}"` : '';
         const description = `${this.deviceId || this.params.deviceName}${coreDescription}`;
-        const callback = (details) => {
-            switch (details.type) {
-                case 'info':
-                    this.addProgressMessage(details.message);
-                    break;
-                case 'error':
-                    this.addErrorMessage(details.message);
-                    break;
-                case 'warning':
-                    this.addWarningMessage(details.message);
-                    break;
+        let message = '';
+        const progressHandler = (details) => {
+            if (details.name.endsWith(LOAD_PROGRAM_FILENAME)) {
+                details = { ...details, name: message };
             }
+            this.dsLiteProgressUpdateHandler(details);
         };
         try {
-            loaderService.addEventListener(statusMessageEventType, callback);
+            loaderService.addEventListener(DSProgressUpdateEventType, progressHandler);
+            loaderService.addEventListener(statusMessageEventType, this.callbackForStatusMessageEvent);
             if (params.programOrBinPath.endsWith('.bin')) {
-                this.addProgressMessage(`Loading binary image for ${description} ...`);
+                message = `Loading binary image for ${description} ...`;
+                this.addProgressMessage(message);
                 await loaderService.loadBin(activeCore, params.programOrBinPath, new Location(params.loadAddress ?? 0), params.verifyProgramPath, params.timeout);
             }
             else if (params.symbolsOnly || programAlreadyLoaded || this.serialPort) {
-                this.addProgressMessage(`Loading symbols for ${description} ...`);
+                message = `Loading symbols for ${description} ...`;
+                this.addProgressMessage(message);
                 await loaderService.loadSymbols(activeCore, params.programOrBinPath, params.timeout);
             }
             else {
-                this.addProgressMessage(`Loading program for ${description} ...`);
+                message = `Loading program for ${description} ...`;
+                this.addProgressMessage(message);
                 await loaderService.loadProgram(activeCore, params.programOrBinPath, true, params.timeout);
             }
         }
         catch (e) {
-            throw Error(`Loading program for ${description} failed: ${e.message || e.toString()}`);
+            throw Error(message.replace('...', `failed: ${e.message || e.toString()}`));
         }
         finally {
-            loaderService.removeEventListener(statusMessageEventType, callback);
+            loaderService.removeEventListener(DSProgressUpdateEventType, progressHandler);
+            loaderService.removeEventListener(statusMessageEventType, this.callbackForStatusMessageEvent);
         }
     }
     async waitForSequencerThenDo(nextStep) {

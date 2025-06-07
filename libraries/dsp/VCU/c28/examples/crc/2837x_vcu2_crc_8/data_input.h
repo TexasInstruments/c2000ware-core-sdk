@@ -6,7 +6,7 @@
 //#############################################################################
 //
 //
-// $Copyright: Copyright (C) 2024 Texas Instruments Incorporated -
+// $Copyright: Copyright (C) 2025 Texas Instruments Incorporated -
 //             http://www.ti.com/ ALL RIGHTS RESERVED $
 //#############################################################################
 0x0102, 0x0304, 0x0506, 0x0708, 0x090A, 0x0B0C, 0x0D0E, 0x0F10, 0x1112, 0x1314, 0x1516, 0x1718, 0x191A, 0x1B1C, 0x1D1E, 0x1F20, 

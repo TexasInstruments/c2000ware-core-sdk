@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -321,7 +321,6 @@ typedef enum
     XBAR_EPWM_MUX31_INPUTXBAR14            = 0x3E01
 } XBAR_EPWMMuxConfig;
 
-//#####END_F28004X_F2837XD_F2837XS_F2807X_F2838X_F28002X_F28003X_F28P65X#####
 
 
 //*****************************************************************************

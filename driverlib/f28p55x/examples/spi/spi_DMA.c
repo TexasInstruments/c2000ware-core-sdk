@@ -9,7 +9,7 @@
 //
 //
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -286,7 +286,6 @@ uint32_t selectDMA_PIE_Interrupt(uint32_t dmachbase)
             DMA_Channel = INT_DMA_CH2;
             Interrupt_enable(DMA_Channel);
             break;
-
         case DMA_CH3_BASE:
             DMA_startChannel(DMA_CH3_BASE);
             DMA_Channel = INT_DMA_CH3;
@@ -321,6 +320,7 @@ uint32_t selectDMA_PIE_Interrupt(uint32_t dmachbase)
 //
 __interrupt void dmaTXISR(void)
 {
+    //Acknowledge CPU interrupt flag
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
 
     return;
@@ -427,7 +427,6 @@ __interrupt void dmaTXISR(void)
 
     //Acknowledge CPU interrupt flag
     Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
-
     return;
 }
 

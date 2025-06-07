@@ -1,0 +1,24 @@
+
+%let transferCommon;
+%if (system.getProducts()[0].name.includes("C2000")) {
+%    transferCommon = system.getScript("/utilities/transfer/transferCommon.js");
+%} else { transferCommon = system.getScript("/transfer/transferCommon.js"); }
+% var module = system.modules[transferCommon.getTransferPath() + 'signalsight.js'];
+% let currentInstance = module.$instances[0];
+{
+    "name": "`currentInstance.$name`",
+    "chromium-args": "--ignore-certificate-errors --disable-web-security --user-data-dir --enable-features=SharedArrayBuffer",
+    "window": {
+        "title": "",
+        "frame": false,
+        "position": "center",
+        "width": 1280,
+        "height": 800,
+        "min_width": 600,
+        "min_height": 200,
+        "show_in_taskbar": true
+    },
+    "node-remote": "*://*/*",
+    "dependencies": {},
+    "devDependencies": {}
+}

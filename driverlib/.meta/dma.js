@@ -417,7 +417,7 @@ config = config.concat([{
             displayName : "Source Wrap Size",
             description : "Set number of bursts before wrap on source address occurs.",
             hidden      : false,
-            default     : 65535,
+            default     : ["F28E12x"].includes(Common.getDeviceName()) ? 511 : 65535,
         },
     
         {
@@ -492,7 +492,7 @@ config = config.concat([{
             displayName : "Destination Wrap Size",
             description : "Set number of bursts before wrap on destination address occurs.",
             hidden      : false,
-            default     : 65535,
+            default     : ["F28E12x"].includes(Common.getDeviceName()) ? 511 : 65535,
         },
     
         {
@@ -594,7 +594,7 @@ function filterHardware(component)
 var dmaModule = {
     peripheralName: "DMA",
     displayName: "DMA",
-    maxInstances: 6,
+    maxInstances: ["F28E12x"].includes(Common.getDeviceName()) ? 2 : 6,
     defaultInstanceName: "myDMA",
     description: "DMA Peripheral",
     filterHardware : filterHardware,

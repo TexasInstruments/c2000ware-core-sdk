@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -258,7 +258,7 @@ I2C_getInterruptStatus(uint32_t base)
     //
     // Return only the status bits associated with interrupts.
     //
-    temp = (uint32_t)(HWREGH(base + I2C_O_STR) & I2C_STR_INTMASK);
+    temp = (uint32_t)HWREGH(base + I2C_O_STR) & (uint32_t)I2C_STR_INTMASK;
 
     //
     // Read FIFO interrupt flags.

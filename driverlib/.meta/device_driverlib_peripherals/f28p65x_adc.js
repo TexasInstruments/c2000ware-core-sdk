@@ -233,7 +233,7 @@ let ADC_SyncInput = [
 	{ name: "ADC_SYNCIN_EPWM16SYNCOUT", displayName: "ADC Syncin is EPWM16SYNCOUT" },
 	{ name: "ADC_SYNCIN_EPWM17SYNCOUT", displayName: "ADC Syncin is EPWM17SYNCOUT" },
 	{ name: "ADC_SYNCIN_EPWM18SYNCOUT", displayName: "ADC Syncin is EPWM18SYNCOUT" },
-	{ name: "ADC_SYNCIN_ECAP1YNCOUT", displayName: "ADC Syncin is ECAP1YNCOUT" },
+	{ name: "ADC_SYNCIN_ECAP1SYNCOUT", displayName: "ADC Syncin is ECAP1SYNCOUT" },
 	{ name: "ADC_SYNCIN_ECAP2SYNCOUT", displayName: "ADC Syncin is ECAP2SYNCOUT" },
 	{ name: "ADC_SYNCIN_ECAP3SYNCOUT", displayName: "ADC Syncin is ECAP3SYNCOUT" },
 	{ name: "ADC_SYNCIN_ECAP4SYNCOUT", displayName: "ADC Syncin is ECAP4SYNCOUT" },

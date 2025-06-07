@@ -1,12 +1,10 @@
 let transferCommon;
-if (system.getProducts()[0].name.includes("C2000"))
-{ transferCommon = system.getScript("/utilities/transfer/transferCommon.js");
-} else
-{ transferCommon = system.getScript("/transfer/transferCommon.js");}
+if (system.getProducts()[0].name.includes("C2000")) {
+    transferCommon = system.getScript("/utilities/transfer/transferCommon.js");
+} else { transferCommon = system.getScript("/transfer/transferCommon.js"); }
 
 let Common;
-if (transferCommon.isC2000())
-{
+if (transferCommon.isC2000()) {
     Common = system.getScript("/driverlib/Common.js");
 }
 
@@ -16,7 +14,7 @@ var rx_frame_structure = "END"
 
 
 
-function onChangeOperationMode(inst, ui){
+function onChangeOperationMode(inst, ui) {
     /*JSON FRAME SETTINGS*/
     ui["exportMods"].hidden = !(inst["mode"].includes("data") && inst["packageMode"] == "JSON")
     ui["exportCustomLog"].hidden = !(inst["mode"].includes("data") && (inst["packageMode"] == "JSON" || inst["packageMode"] == "START/END"))
@@ -42,6 +40,14 @@ function onChangeOperationMode(inst, ui){
     ui["rxStartByte"].hidden = !(inst["mode"].includes("Bidirectional") && inst["packageMode"] == "START/END" && inst["rxStartByteEnable"] == true)
     ui["rxChecksumEnable"].hidden = !(inst["mode"].includes("Bidirectional") && inst["packageMode"] == "START/END")
     ui["rxEndByte"].hidden = !(inst["mode"].includes("Bidirectional") && inst["packageMode"] == "START/END")
+
+    ui["mode"].readOnly = (inst["packageMode"] == "SIGNAL SIGHT");
+    ui["comsLink"].readOnly = (inst["packageMode"] == "SIGNAL SIGHT");
+    inst["exportCustomLog"] = !(inst["packageMode"] == "SIGNAL SIGHT");
+    if (inst["packageMode"] == "SIGNAL SIGHT") {
+        inst["mode"] = "dataBidirectional";
+        inst["comsLink"] = "sci";
+    }
 }
 
 let config = [
@@ -49,12 +55,12 @@ let config = [
         name: "mode",
         displayName: "Mode of Operation",
         options: [
-            { name: "data", displayName: "Data Exporter"},
-            { name: "dataBidirectional", displayName: "Data Export/Import - Bidirectional"},
+            { name: "data", displayName: "Data Exporter" },
+            { name: "dataBidirectional", displayName: "Data Export/Import - Bidirectional" },
         ],
         getDisabledOptions: (inst) => {
-            if (!transferCommon.isC2000()){
-                return [{ name: "dataBidirectional", reason: "Only supported in C2000 devices"}];
+            if (!transferCommon.isC2000()) {
+                return [{ name: "dataBidirectional", reason: "Only supported in C2000 devices" }];
             }
             return [];
         },
@@ -69,18 +75,18 @@ let config = [
             { name: "sci", displayName: "SCI" },
             { name: "usb", displayName: "USB" },
             { name: "fsi", displayName: "FSI" },
-			{ name: "spi", displayName: "SPI" }
+            { name: "spi", displayName: "SPI" }
             // TODO: Implement these communication peripherals
             //{ name: "mcan", displayName: "MCAN" },
-			//{ name: "i2c", displayName: "I2C" },
-			//{ name: "lin", displayName: "LIN" },
-			//{ name: "can", displayName: "CAN" },
-			//{ name: "ecat", displayName: "ECAT" },
+            //{ name: "i2c", displayName: "I2C" },
+            //{ name: "lin", displayName: "LIN" },
+            //{ name: "can", displayName: "CAN" },
+            //{ name: "ecat", displayName: "ECAT" },
 
         ],
         getDisabledOptions: (inst) => {
-		// need additional logic to disable or enable options from above list
-            if (transferCommon.isC2000()){
+            // need additional logic to disable or enable options from above list
+            if (transferCommon.isC2000()) {
                 return transferCommon.getCommPeripheralsOnDevice()
             }
             else {
@@ -90,8 +96,8 @@ let config = [
                 ]
             }
         },
-		// add logic to default to first available comm peripheral here
-        default: transferCommon.isC28x()?"sci":"uart"
+        // add logic to default to first available comm peripheral here
+        default: transferCommon.isC28x() ? "sci" : "uart"
     },
     {
         name: "packageMode",
@@ -100,6 +106,7 @@ let config = [
         options: [
             { name: "JSON" },
             { name: "START/END" },
+            { name: "SIGNAL SIGHT" },
             { name: "MSGPACK" }
         ],
         getDisabledOptions: (inst) => {
@@ -167,7 +174,7 @@ let config = [
                 hidden: !transferCommon.isC2000()
             },
         ]
-    },            
+    },
     {
         name: "exportBuffer",
         legacyNames: ["exportLogBuffer"],
@@ -200,7 +207,7 @@ let config = [
                     }*/
                     return "END"
                 }
-        
+
             },
             {
                 name: "txStartByte",
@@ -216,18 +223,18 @@ let config = [
                 default: false,
                 hidden: true,
                 onChange: (inst, ui) => {
-                    if(inst.txChecksumEnable){
-                        if(tx_frame_structure != "END"){
+                    if (inst.txChecksumEnable) {
+                        if (tx_frame_structure != "END") {
                             let splitStr = tx_frame_structure.split('|')
-                            tx_frame_structure = splitStr.splice(splitStr.length-1, 0, "CHECKSUM").join('|')
+                            tx_frame_structure = splitStr.splice(splitStr.length - 1, 0, "CHECKSUM").join('|')
                         }
-                        else{
+                        else {
                             tx_frame_structure = "CHECKSUM|END"
                         }
                     }
-                    else{
+                    else {
                         let splitStr = tx_frame_structure.split('|')
-                        tx_frame_structure = splitStr.splice(splitStr.length-1, 1).join('|')
+                        tx_frame_structure = splitStr.splice(splitStr.length - 1, 1).join('|')
                     }
                 }
             },
@@ -248,7 +255,7 @@ let config = [
                 getValue: (inst) => {
                     return 0;
                 }
-        
+
             },
             {
                 name: "txLengthBytes",  //length amount refers to key + values in bytes
@@ -264,22 +271,22 @@ let config = [
                     let checksum = 0;
                     let key = 1;  //add calculation later?
                     let end = 1; //always atleast 1
-                    if(inst.txChecksumEnable){
+                    if (inst.txChecksumEnable) {
                         checksum = 1;
                     }
                     maxlength1L = start + 1 + key + checksum + end + 255; //260
                     maxlength2L = start + 2 + key + checksum + end + 65535; //65541
-                    maxlength3L = start + 3 + key + checksum + end + 16777215;  
-                    if(inst.maxTXFrameLength  <= maxlength1L){
+                    maxlength3L = start + 3 + key + checksum + end + 16777215;
+                    if (inst.maxTXFrameLength <= maxlength1L) {
                         return 1;
                     }
-                    else if(inst.maxTXFrameLength <= maxlength2L){
+                    else if (inst.maxTXFrameLength <= maxlength2L) {
                         return 2;
                     }
-                    else if(inst.maxTXFrameLength <= maxlength3L){
+                    else if (inst.maxTXFrameLength <= maxlength3L) {
                         return 3;
                     }
-                    else{
+                    else {
                         return 0; //max length inputted is too big
                     }
                 }
@@ -299,14 +306,14 @@ let config = [
                 getValue: (inst) => {
                     let start = 0;
                     let checksum = 0;
-                    if(inst.txChecksumEnable){
+                    if (inst.txChecksumEnable) {
                         checksum = 1;
                     }
                     let key = 1;  //add calculation later?
                     let end = 1; //always atleast 1
                     return inst.maxTXFrameLength - start - checksum - key - end - inst.txLengthBytes;
                 }
-        
+
             },
         ]
 
@@ -324,7 +331,7 @@ let config = [
                 getValue: (inst) => {
                     return rx_frame_structure
                 }
-        
+
             },
             {
                 name: "rxStartByteEnable",
@@ -332,12 +339,12 @@ let config = [
                 description: "By default, no start byte will be sent.",
                 default: false,
                 hidden: true,
-                onChange: (inst, ui) =>{
-                    if(inst.rxStartByteEnable){
+                onChange: (inst, ui) => {
+                    if (inst.rxStartByteEnable) {
                         ui.rxStartByte.hidden = false
                         rx_frame_structure = "START|" + rx_frame_structure
                     }
-                    else{
+                    else {
                         ui.rxStartByte.hidden = true
                     }
                 },
@@ -375,7 +382,7 @@ let config = [
                 getValue: (inst) => {
                     return 0;
                 },
-      
+
             },
             {
                 name: "rxLengthBytes",
@@ -391,29 +398,29 @@ let config = [
                     let checksum = 0;
                     let key = 1;  //add calculation later?
                     let end = 1; //always atleast 1
-                    if(inst.rxStartByteEnable){
+                    if (inst.rxStartByteEnable) {
                         start = 1;
                     }
-                    if(inst.rxChecksumEnable){
+                    if (inst.rxChecksumEnable) {
                         checksum = 1;
                     }
                     maxlength1L = start + 1 + key + checksum + end + 255; //260
                     maxlength2L = start + 2 + key + checksum + end + 65535; //65541
-                    maxlength3L = start + 3 + key + checksum + end + 16777215;  
-                    if(inst.maxRXFrameLength  <= maxlength1L){
+                    maxlength3L = start + 3 + key + checksum + end + 16777215;
+                    if (inst.maxRXFrameLength <= maxlength1L) {
                         return 1;
                     }
-                    else if(inst.maxRXFrameLength <= maxlength2L){
+                    else if (inst.maxRXFrameLength <= maxlength2L) {
                         return 2;
                     }
-                    else if(inst.maxRXFrameLength <= maxlength3L){
+                    else if (inst.maxRXFrameLength <= maxlength3L) {
                         return 3;
                     }
-                    else{
+                    else {
                         return 0; //max length inputted is too big
-                    }                    
+                    }
                 }
-        
+
             },
             {
                 name: "rxLengthAvailable",
@@ -423,10 +430,10 @@ let config = [
                 getValue: (inst) => {
                     let start = 0;
                     let checksum = 0;
-                    if(inst.rxStartByteEnable){
+                    if (inst.rxStartByteEnable) {
                         start = 1;
                     }
-                    if(inst.rxChecksumEnable){
+                    if (inst.rxChecksumEnable) {
                         checksum = 1;
                     }
                     let key = 1;  //add calculation later?
@@ -439,12 +446,11 @@ let config = [
 
 ];
 
-function moduleInstances(inst)
-{
+function moduleInstances(inst) {
     var ownedInstances = []
 
-    if(inst["mode"].includes("data") && inst["packageMode"] == "START/END"){
-        if(inst.exportCustomLog){
+    if (inst["mode"].includes("data") && inst["packageMode"] == "START/END") {
+        if (inst.exportCustomLog) {
             ownedInstances.push({
                 name: "txKeyValuePairs",
                 displayName: " Key Types",
@@ -463,7 +469,7 @@ function moduleInstances(inst)
                     group: "txKeyValuePairs",
                 }
             })
-        }else{
+        } else {
             ownedInstances.push({
                 name: "txKeyValuePairs",
                 displayName: " Key Types",
@@ -480,7 +486,7 @@ function moduleInstances(inst)
 
     }
 
-    if(inst["mode"].includes("Bidirectional") && inst["packageMode"] == "START/END"){
+    if (inst["mode"].includes("Bidirectional") && inst["packageMode"] == "START/END") {
         ownedInstances.push({
             name: "rxKeyValuePairs",
             displayName: " Key Types",
@@ -496,36 +502,35 @@ function moduleInstances(inst)
     }
 
 
-    
-   /* if(inst.packageMode == "START/END")
-    {
-        ownedInstances.push({
-            name: "packageTXMsgTypes",
-            displayName: "Transmit Message Structure Definitions",
-            moduleName: transferCommon.getTransferPath() + "logger/packagedatatype.js",
-            useArray: true,
-            collapsed: true,
-        })      
-    }
-    if(inst.packageMode == "START/END" && (inst["mode"].includes("Bidirectional"))){
-        ownedInstances.push({            
-            name: "packageRXMsgTypes",
-            displayName: "Receive Message Structure Definitions",
-            moduleName: transferCommon.getTransferPath() + "logger/packagedatatype.js",
-            useArray: true,
-            collapsed: true
-        })
-    }*/
-    if (inst.comsLink == "uart"){
-        if (!transferCommon.isC2000())
-        {
+
+    /* if(inst.packageMode == "START/END")
+     {
+         ownedInstances.push({
+             name: "packageTXMsgTypes",
+             displayName: "Transmit Message Structure Definitions",
+             moduleName: transferCommon.getTransferPath() + "logger/packagedatatype.js",
+             useArray: true,
+             collapsed: true,
+         })      
+     }
+     if(inst.packageMode == "START/END" && (inst["mode"].includes("Bidirectional"))){
+         ownedInstances.push({            
+             name: "packageRXMsgTypes",
+             displayName: "Receive Message Structure Definitions",
+             moduleName: transferCommon.getTransferPath() + "logger/packagedatatype.js",
+             useArray: true,
+             collapsed: true
+         })
+     }*/
+    if (inst.comsLink == "uart") {
+        if (!transferCommon.isC2000()) {
             var uartModInst = {
-                name: "comsLinkModule",      
+                name: "comsLinkModule",
                 displayName: "UART Transfer Communication Link",
                 moduleName: "/drivers/uart/uart", // add Common function to check for drivers / driverlib ?
                 collapsed: true,
                 args: {
-                    $name : inst.$name + "_UART",
+                    $name: inst.$name + "_UART",
                 },
                 requiredArgs: {
                     dataLength: "8",
@@ -538,84 +543,82 @@ function moduleInstances(inst)
             }
             ownedInstances = ownedInstances.concat([uartModInst]);
         }
-        else
-        {
-			if(transferCommon.isC28x()){
-				var uartModInst = {
-            	    name: "comsLinkModule",      
-            	    displayName: "UART Transfer Communication Link",
-            	    moduleName: "/driverlib/uart.js",
-            	    collapsed: true,
-            	    args: {
-            	        $name : inst.$name + "_UART",
-            	    },
-            	    requiredArgs: {
-            	        baud: 115200,
-            	        wlen: "UART_CONFIG_WLEN_8",
-            	        stp2: 'UART_CONFIG_STOP_ONE',
-						fen: true,
-						loopback: false,
-						useCase: "ALL"
-            	    }
-            	}
-			}else{
-				var uartModInst = {
-            	    name: "comsLinkModule",      
-            	    displayName: "UART Transfer Communication Link",
-            	    moduleName: "/driverlib/uart.js",
-            	    collapsed: true,
-            	    args: {
-            	        $name : inst.$name + "_UART",
-            	    },
-            	    requiredArgs: {
-            	        baudSelect: "115200",
-            	        wlen: "UART_CONFIG_WLEN_8",
-            	        stp2: 'UART_CONFIG_STOP_ONE',
-						fen: true,
-						loopback: false,
-						useCase: "ALL"
-            	    }
-            	}
-			}
+        else {
+            if (transferCommon.isC28x()) {
+                var uartModInst = {
+                    name: "comsLinkModule",
+                    displayName: "UART Transfer Communication Link",
+                    moduleName: "/driverlib/uart.js",
+                    collapsed: true,
+                    args: {
+                        $name: inst.$name + "_UART",
+                    },
+                    requiredArgs: {
+                        baud: 115200,
+                        wlen: "UART_CONFIG_WLEN_8",
+                        stp2: 'UART_CONFIG_STOP_ONE',
+                        fen: true,
+                        loopback: false,
+                        useCase: "ALL"
+                    }
+                }
+            } else {
+                var uartModInst = {
+                    name: "comsLinkModule",
+                    displayName: "UART Transfer Communication Link",
+                    moduleName: "/driverlib/uart.js",
+                    collapsed: true,
+                    args: {
+                        $name: inst.$name + "_UART",
+                    },
+                    requiredArgs: {
+                        baudSelect: "115200",
+                        wlen: "UART_CONFIG_WLEN_8",
+                        stp2: 'UART_CONFIG_STOP_ONE',
+                        fen: true,
+                        loopback: false,
+                        useCase: "ALL"
+                    }
+                }
+            }
             ownedInstances = ownedInstances.concat([uartModInst]);
         }
     }
-	if (inst.comsLink == "spi"){
-		if(transferCommon.isC2000()){
-			var spiModInst = {
-        	    name: "comsLinkModule",      
-        	    displayName: "SPI Transfer Communication Link",
-        	    moduleName: "/driverlib/spi.js",
-        	    collapsed: true,
-        	    args: {
-        	        $name : inst.$name + "_SPI",
+    if (inst.comsLink == "spi") {
+        if (transferCommon.isC2000()) {
+            var spiModInst = {
+                name: "comsLinkModule",
+                displayName: "SPI Transfer Communication Link",
+                moduleName: "/driverlib/spi.js",
+                collapsed: true,
+                args: {
+                    $name: inst.$name + "_SPI",
                     bitRate: 1000000,
-        	    },
-        	    requiredArgs: {
-					dataWidth: "8",
-					useInterrupts: true,
+                },
+                requiredArgs: {
+                    dataWidth: "8",
+                    useInterrupts: true,
                     enabledFIFOInterrupts: ["SPI_INT_RXFF"],
                     registerInterrupts: true,
-					useFifo: true,
-					mode: "SPI_MODE_CONTROLLER",
-					useCase: "ALL",
+                    useFifo: true,
+                    mode: "SPI_MODE_CONTROLLER",
+                    useCase: "ALL",
                     spiRXInt: {
                         enableInterrupt: true,
                     }
-        	    }
-        	}
-		}
+                }
+            }
+        }
         ownedInstances = ownedInstances.concat([spiModInst]);
     }
-    if (inst.comsLink == "sci")
-    {
+    if (inst.comsLink == "sci") {
         var sciModInst = {
-            name: "comsLinkModule",      
+            name: "comsLinkModule",
             displayName: "SCI Transfer Communication Link",
             moduleName: "/driverlib/sci.js",
             collapsed: true,
             args: {
-                $name : inst.$name + "_SCI",
+                $name: inst.$name + "_SCI",
             },
             requiredArgs: {
                 wordLenght: '8',
@@ -627,29 +630,28 @@ function moduleInstances(inst)
             }
         }
 
-        if (inst.mode.includes("Bidirectional"))
-        {
+        if (inst.mode.includes("Bidirectional")) {
             sciModInst.requiredArgs = {
-                ...sciModInst.requiredArgs, 
+                ...sciModInst.requiredArgs,
                 ...{
                     useInterrupts: true,
-                    registerInterrupts: true,
+                    //registerInterrupts: true,
+                    selectRegisteredInterrupts: ["registerRxInt", "registerTxInt"],
                     rxFifo: "SCI_FIFO_RX" + inst.exportRXLength,
                     txFifo: "SCI_FIFO_TX0",
                     enabledFIFOInterrupts: ["SCI_INT_RXFF"],
-                    sciRXInt : {
+                    sciRXInt: {
                         enableInterrupt: true
                     },
-                    sciTXInt : {
+                    sciTXInt: {
                         enableInterrupt: false
                     }
                 }
             }
         }
-        else
-        {
+        else {
             sciModInst.requiredArgs = {
-                ...sciModInst.requiredArgs, 
+                ...sciModInst.requiredArgs,
                 ...{
                     useInterrupts: false,
                     // Removed in latest version of SysConfig
@@ -660,16 +662,15 @@ function moduleInstances(inst)
 
         ownedInstances = ownedInstances.concat([sciModInst]);
     }
-    if (inst.comsLink == "usb")
-    {
+    if (inst.comsLink == "usb") {
         if (transferCommon.isC2000()) {
             var usbModInst = {
-                name: "comsLinkModule",      
+                name: "comsLinkModule",
                 displayName: "USB Transfer Communication Link",
                 moduleName: "/driverlib/usb.js",
                 collapsed: true,
                 args: {
-                    $name : inst.$name + "_USB",
+                    $name: inst.$name + "_USB",
                     usbLib: {
                         $name: inst.$name + "_USB_LIB"
                     }
@@ -690,97 +691,121 @@ function moduleInstances(inst)
             ownedInstances = ownedInstances.concat([usbModInst]);
         } else {
             var usbModInst = {
-                name: "comsLinkModule",      
+                name: "comsLinkModule",
                 displayName: "USB Transfer Communication Link",
                 moduleName: "/usb/tinyusb/tinyusb",
                 collapsed: true,
                 args: {
-                    $name : inst.$name + "_USB",
+                    $name: inst.$name + "_USB",
                 },
             }
 
             ownedInstances = ownedInstances.concat([usbModInst]);
         }
     }
-    if (inst.comsLink == "fsi" && transferCommon.isC2000())
-    {
+    if (inst.comsLink == "fsi" && transferCommon.isC2000()) {
         ownedInstances = ownedInstances.concat([{
-            name: "comsLinkModule",      
+            name: "comsLinkModule",
             displayName: "FSI TX Communication",
             moduleName: "/driverlib/fsitx.js",
             collapsed: true,
             args: {
-                $name : inst.$name + "_FSITX",
+                $name: inst.$name + "_FSITX",
                 clkPres: 8
             },
             requiredArgs: {
                 startOfTransmissionMode: "FSI_TX_START_FRAME_CTRL",
                 frameType: "FSI_FRAME_TYPE_NWORD_DATA",
                 softwareFrameSize: inst.exportRXLength.toString(),
-                enableInterrupt: false,  
+                enableInterrupt: false,
                 userCRC: false,
-                eccComputeWidth: "FSI_32BIT_ECC_COMPUTE",                
+                eccComputeWidth: "FSI_32BIT_ECC_COMPUTE",
                 pingTimeout: false,
-                enableInterrupt        : true,
-                useInterrupts          : ["FSI_INT1"],
-                enabledINT1Interrupts  : ["FSI_TX_EVT_FRAME_DONE"],
-                registerInterruptLine1 : true,
+                enableInterrupt: true,
+                useInterrupts: ["FSI_INT1"],
+                enabledINT1Interrupts: ["FSI_TX_EVT_FRAME_DONE"],
+                registerInterruptLine1: true,
                 fsiTxInt1: {
-                    enableInterrupt : true
+                    enableInterrupt: true
                 }
             }
         }]);
-        if (inst.mode.includes("Bidirectional"))
-        {
-            let fsiLinkModInstAlt = {
-                name: "comsLinkModuleAlt",      
-                displayName: "FSI RX Communication",
-                moduleName: "/driverlib/fsirx.js",
-                collapsed: true,
-                args: {
-                    $name : inst.$name + "_FSIRX",
-                },
-                requiredArgs: {
-                    softwareFrameSize: inst.exportRXLength.toString(),
-                    enableLoopback: false,
-                    enableTagMatching: false,
-                    enableInterrupt: true,
-                    useInterrupts: ["FSI_INT1"],
-                    enabledINT1Interrupts: ["FSI_RX_EVT_FRAME_DONE"],
-                    registerInterruptLine1: true,
-                    pingTimeout: false,
-                    fsiRxInt1 : {
-                        enableInterrupt: true
-                    }
-                },
+        if (inst.mode.includes("Bidirectional")) {
+            let fsiLinkModInstAlt= {}
+            if(transferCommon.getDeviceName() != "F28004x"){
+                fsiLinkModInstAlt = {
+                    name: "comsLinkModuleAlt",
+                    displayName: "FSI RX Communication",
+                    moduleName: "/driverlib/fsirx.js",
+                    collapsed: true,
+                    args: {
+                        $name: inst.$name + "_FSIRX",
+                    },
+                    requiredArgs: {
+                        softwareFrameSize: inst.exportRXLength.toString(),
+                        enableLoopback: false,
+                        enableTagMatching: false,
+                        enableInterrupt: true,
+                        useInterrupts: ["FSI_INT1"],
+                        enabledINT1Interrupts: ["FSI_RX_EVT_FRAME_DONE"],
+                        registerInterruptLine1: true,
+                        pingTimeout: false,
+                        fsiRxInt1: {
+                            enableInterrupt: true
+                        }
+                    },
+                }
             }
+            else{
+                fsiLinkModInstAlt = {
+                    name: "comsLinkModuleAlt",
+                    displayName: "FSI RX Communication",
+                    moduleName: "/driverlib/fsirx.js",
+                    collapsed: true,
+                    args: {
+                        $name: inst.$name + "_FSIRX",
+                    },
+                    requiredArgs: {
+                        softwareFrameSize: inst.exportRXLength.toString(),
+                        enableLoopback: false,
+                        enableInterrupt: true,
+                        useInterrupts: ["FSI_INT1"],
+                        enabledINT1Interrupts: ["FSI_RX_EVT_FRAME_DONE"],
+                        registerInterruptLine1: true,
+                        pingTimeout: false,
+                        fsiRxInt1: {
+                            enableInterrupt: true
+                        }
+                    },
+                }
+            }
+
             ownedInstances = ownedInstances.concat([fsiLinkModInstAlt]);
         }
     }
-    if (inst.exportBuffer)
-    {
+    if (inst.exportBuffer) {
         ownedInstances = ownedInstances.concat([{
-            name: "exportLogBufferModule",      
+            name: "exportLogBufferModule",
             displayName: "Log Buffer",
             moduleName: transferCommon.getTransferPath() + "transferringbuff.js",
             collapsed: true,
             args: {
-                $name : inst.$name + "_logRingBuff",
+                $name: inst.$name + "_logRingBuff",
             },
             requiredArgs: {
                 elemPerBuffEntry: inst.exportRXLength
             },
         }]);
     }
-    if (inst.exportCustomLog && inst.exportCustomLogTimestamp){
+    if (inst.exportCustomLog && inst.exportCustomLogTimestamp) {
         if (transferCommon.isC2000()) {
             ownedInstances = ownedInstances.concat([{
-                name: "exportLogTimestampModule",      
+                name: "exportLogTimestampModule",
                 displayName: "Log Timestamp",
                 moduleName: "/driverlib/cputimer.js",
                 collapsed: true,
                 args: {
-                    $name : inst.$name + "_logTimestamp",
+                    $name: inst.$name + "_logTimestamp",
                 },
                 requiredArgs: {
                     emulationMode: "CPUTIMER_EMULATIONMODE_STOPAFTERNEXTDECREMENT",
@@ -798,27 +823,23 @@ function moduleInstances(inst)
     return ownedInstances
 }
 
-function modules(inst)
-{
+function modules(inst) {
     var staticOwnedInstances = []
-    if (inst.exportMods)
-    {
+    if (inst.exportMods) {
         staticOwnedInstances = staticOwnedInstances.concat([{
             name: "exportMods",
             moduleName: transferCommon.getTransferPath() + "export/export_mods.js",
         }]);
     }
 
-    if (inst.exportCustomLog)
-    {
+    if (inst.exportCustomLog) {
         staticOwnedInstances = staticOwnedInstances.concat([{
             name: "exportCustomLog",
             moduleName: transferCommon.getTransferPath() + "export/export_log.js",
         }]);
     }
 
-    if (inst.exportBuffer)
-    {
+    if (inst.exportBuffer) {
         staticOwnedInstances = staticOwnedInstances.concat([{
             name: "exportBuffer",
             moduleName: transferCommon.getTransferPath() + "export/export_buffer.js",
@@ -833,8 +854,7 @@ function modules(inst)
     //     }]);
     // }
 
-    if (inst.packageMode == "JSON" || inst.packageMode == "START/END")
-    {
+    if (inst.packageMode == "JSON" || inst.packageMode == "START/END" || inst.packageMode == "SIGNAL SIGHT") {
         staticOwnedInstances = staticOwnedInstances.concat([{
             name: "exportPackage",
             moduleName: transferCommon.getTransferPath() + "export/export_package.js",
@@ -844,11 +864,10 @@ function modules(inst)
     return staticOwnedInstances
 }
 
-function onValidate(inst, validation){
-    if ((inst["comsLink"] == "usb") && inst.exportBuffer && transferCommon.isC2000())
-    {
+function onValidate(inst, validation) {
+    if ((inst["comsLink"] == "usb") && inst.exportBuffer && transferCommon.isC2000()) {
         validation.logWarning(
-            "C2000 USB software stack already has an internal buffer, using a second buffer within the Data Transfer module is not necessary", 
+            "C2000 USB software stack already has an internal buffer, using a second buffer within the Data Transfer module is not necessary",
             inst, "exportBuffer");
     }
     /*if(inst.txLength > inst.maxTXFrameLength){
@@ -868,16 +887,16 @@ var exportModule = {
     maxInstances: 1,
     defaultInstanceName: "myEXPORT",
     description: "Data Transfer Module",
-    config          : config,
-    moduleInstances : moduleInstances,	
+    config: config,
+    moduleInstances: moduleInstances,
     modules: modules,
     templates: {
-		[transferCommon.getTransferPath() + "export/export.c.xdt"] : "",
-		[transferCommon.getTransferPath() + "export/export.h.xdt"] : "",
+        [transferCommon.getTransferPath() + "export/export.c.xdt"]: "",
+        [transferCommon.getTransferPath() + "export/export.h.xdt"]: "",
         [transferCommon.getTransferPath() + "transfer.opt.xdt"]: "",
         [transferCommon.getTransferPath() + "transfer_utils.h.xdt"]: "",
         [transferCommon.getTransferPath() + "transfer_utils.c.xdt"]: ""
-	},
+    },
     validate: onValidate
 };
 

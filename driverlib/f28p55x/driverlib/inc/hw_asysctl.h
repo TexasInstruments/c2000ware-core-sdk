@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -48,35 +48,34 @@
 // The following are defines for the ASYSCTL register offsets
 //
 //*************************************************************************************************
-#define ASYSCTL_O_ADCOSDETECT         0x26U    // I2V Logic Control
-#define ASYSCTL_O_REFCONFIGB          0x36U    // Config register for analog reference B.
-#define ASYSCTL_O_INTERNALTESTCTL     0x4AU    // INTERNALTEST Node Control Register
-#define ASYSCTL_O_CONFIGLOCK          0x5EU    // Lock Register for all the config registers.
-#define ASYSCTL_O_TSNSCTL             0x60U    // Temperature Sensor Control Register
-#define ASYSCTL_O_ANAREFPCTL          0x68U    // Analog Reference Control Register for VREFHI
-#define ASYSCTL_O_ANAREFNCTL          0x69U    // Analog Reference Control Register for VREFLO
-#define ASYSCTL_O_VMONCTL             0x70U    // Voltage Monitor Control Register
-#define ASYSCTL_O_CMPHPMXSEL          0x82U    // Bits to select one of the many sources on CompHP
-                                               // inputs. Refer to Pimux diagram for details.
-#define ASYSCTL_O_CMPLPMXSEL          0x84U    // Bits to select one of the many sources on CompLP
-                                               // inputs. Refer to Pimux diagram for details.
-#define ASYSCTL_O_CMPHNMXSEL          0x86U    // Bits to select one of the many sources on CompHN
-                                               // inputs. Refer to Pimux diagram for details.
-#define ASYSCTL_O_CMPLNMXSEL          0x87U    // Bits to select one of the many sources on CompLN
-                                               // inputs. Refer to Pimux diagram for details.
-#define ASYSCTL_O_ADCDACLOOPBACK      0x88U    // Enabble loopback from DAC to ADCs
-#define ASYSCTL_O_CMPSSCTL            0x8BU    // CMPSS Control Register
-#define ASYSCTL_O_CMPSSDACBUFCONFIG   0x8CU    // Config bits for CMPSS DAC buffer
-#define ASYSCTL_O_LOCK                0x8EU    // Lock Register
-#define ASYSCTL_O_AGPIOCTRLA          0x10AU   // AGPIO Control Register
-#define ASYSCTL_O_AGPIOCTRLB          0x10CU   // AGPIO Control Register
-#define ASYSCTL_O_AGPIOCTRLG          0x116U   // AGPIO Control Register
-#define ASYSCTL_O_AGPIOCTRLH          0x118U   // AGPIO Control Register
-#define ASYSCTL_O_GPIOINENACTRL       0x132U   // GPIOINENACTRL Control Register
-#define ASYSCTL_O_IO_DRVSEL           0x134U   // IO Drive strength select register
-#define ASYSCTL_O_IO_MODESEL          0x135U   // IO Mode select register
-#define ASYSCTL_O_ADCSOCFRCGB         0x136U   // ADC Global SOC Force
-#define ASYSCTL_O_ADCSOCFRCGBSEL      0x138U   // ADC Global SOC Force Select
+#define ASYSCTL_O_ADCOSDETECT       0x26U    // I2V Logic Control
+#define ASYSCTL_O_REFCONFIGB        0x36U    // Config register for analog reference B.
+#define ASYSCTL_O_INTERNALTESTCTL   0x4AU    // INTERNALTEST Node Control Register
+#define ASYSCTL_O_CONFIGLOCK        0x5EU    // Lock Register for all the config registers.
+#define ASYSCTL_O_TSNSCTL           0x60U    // Temperature Sensor Control Register
+#define ASYSCTL_O_ANAREFPCTL        0x68U    // Analog Reference Control Register for VREFHI
+#define ASYSCTL_O_ANAREFNCTL        0x69U    // Analog Reference Control Register for VREFLO
+#define ASYSCTL_O_VMONCTL           0x70U    // Voltage Monitor Control Register
+#define ASYSCTL_O_CMPHPMXSEL        0x82U    // Bits to select one of the many sources on CompHP
+                                             // inputs. Refer to Pimux diagram for details.
+#define ASYSCTL_O_CMPLPMXSEL        0x84U    // Bits to select one of the many sources on CompLP
+                                             // inputs. Refer to Pimux diagram for details.
+#define ASYSCTL_O_CMPHNMXSEL        0x86U    // Bits to select one of the many sources on CompHN
+                                             // inputs. Refer to Pimux diagram for details.
+#define ASYSCTL_O_CMPLNMXSEL        0x87U    // Bits to select one of the many sources on CompLN
+                                             // inputs. Refer to Pimux diagram for details.
+#define ASYSCTL_O_ADCDACLOOPBACK    0x88U    // Enabble loopback from DAC to ADCs
+#define ASYSCTL_O_CMPSSCTL          0x8BU    // CMPSS Control Register
+#define ASYSCTL_O_LOCK              0x8EU    // Lock Register
+#define ASYSCTL_O_AGPIOCTRLA        0x10AU   // AGPIO Control Register
+#define ASYSCTL_O_AGPIOCTRLB        0x10CU   // AGPIO Control Register
+#define ASYSCTL_O_AGPIOCTRLG        0x116U   // AGPIO Control Register
+#define ASYSCTL_O_AGPIOCTRLH        0x118U   // AGPIO Control Register
+#define ASYSCTL_O_GPIOINENACTRL     0x132U   // GPIOINENACTRL Control Register
+#define ASYSCTL_O_IO_DRVSEL         0x134U   // IO Drive strength select register
+#define ASYSCTL_O_IO_MODESEL        0x135U   // IO Mode select register
+#define ASYSCTL_O_ADCSOCFRCGB       0x136U   // ADC Global SOC Force
+#define ASYSCTL_O_ADCSOCFRCGBSEL    0x138U   // ADC Global SOC Force Select
 
 
 //*************************************************************************************************
@@ -94,15 +93,15 @@
 //
 //*************************************************************************************************
 #define ASYSCTL_REFCONFIGB_ADC_ATB_ENA_S   5U
-#define ASYSCTL_REFCONFIGB_ADC_ATB_ENA_M   0x60U     // ADC testmux enable
+#define ASYSCTL_REFCONFIGB_ADC_ATB_ENA_M   0x60U     // ADC A testmux enable
 #define ASYSCTL_REFCONFIGB_ADC_ATB_ENB_S   7U
-#define ASYSCTL_REFCONFIGB_ADC_ATB_ENB_M   0x180U    // ADC testmux enable
+#define ASYSCTL_REFCONFIGB_ADC_ATB_ENB_M   0x180U    // ADC B testmux enable
 #define ASYSCTL_REFCONFIGB_ADC_ATB_ENC_S   9U
-#define ASYSCTL_REFCONFIGB_ADC_ATB_ENC_M   0x600U    // ADC testmux enable
+#define ASYSCTL_REFCONFIGB_ADC_ATB_ENC_M   0x600U    // ADC C testmux enable
 #define ASYSCTL_REFCONFIGB_ADC_ATB_END_S   11U
-#define ASYSCTL_REFCONFIGB_ADC_ATB_END_M   0x1800U   // ADC testmux enable
+#define ASYSCTL_REFCONFIGB_ADC_ATB_END_M   0x1800U   // ADC D testmux enable
 #define ASYSCTL_REFCONFIGB_ADC_ATB_ENE_S   13U
-#define ASYSCTL_REFCONFIGB_ADC_ATB_ENE_M   0x6000U   // ADC testmux enable
+#define ASYSCTL_REFCONFIGB_ADC_ATB_ENE_M   0x6000U   // ADC E testmux enable
 
 //*************************************************************************************************
 //
@@ -242,14 +241,6 @@
 #define ASYSCTL_CMPSSCTL_CMP1LDACOUTEN   0x1U      // Enable general purpose DAC functionality for
                                                    // CMPSS1.COMPDACL
 #define ASYSCTL_CMPSSCTL_CMPSSCTLEN      0x8000U   // Enable the CMPSSCTL Register
-
-//*************************************************************************************************
-//
-// The following are defines for the bit fields in the CMPSSDACBUFCONFIG register
-//
-//*************************************************************************************************
-#define ASYSCTL_CMPSSDACBUFCONFIG_CMPSSADACL_S   0U
-#define ASYSCTL_CMPSSDACBUFCONFIG_CMPSSADACL_M   0xFFU   // Configuration bits for CMPSS DACA
 
 //*************************************************************************************************
 //

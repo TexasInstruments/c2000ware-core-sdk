@@ -38,7 +38,7 @@
 //
 //
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -118,7 +118,6 @@ void main(void)
     // For this example, only init the pins for the SCI-A port.
     // GPIO_SetupPinMux() - Sets the GPxMUX1/2 and GPyMUX1/2 register bits
     // GPIO_SetupPinOptions() - Sets the direction and configuration of GPIOs
-    // These functions are found in the F28X7x_Gpio.c file.
     //
     GPIO_SetupPinMux(28, GPIO_MUX_CPU1, 1);
     GPIO_SetupPinOptions(28, GPIO_INPUT, GPIO_PUSHPULL);

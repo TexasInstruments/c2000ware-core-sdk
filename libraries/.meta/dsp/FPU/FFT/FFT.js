@@ -23,7 +23,7 @@ Methods of Increasing Performance:
 *   Enabling the TMU (TMU0 or TMU1) for phase and magnitude calculations
 *   Utilizing twiddle factors 
 
-**NOTE: When using pre-generated twiddle factors (e.g. this option is true), use a function with a 't' after the CFFT_f32 or RFFT_f32**
+**NOTE: To calculate using a pre-generated twiddle factors (e.g. this option is true), use a function denoted with 't' (twiddle factors). (e.g. CFFT_f32i or RFFT_f32i)**
 
 ---
 

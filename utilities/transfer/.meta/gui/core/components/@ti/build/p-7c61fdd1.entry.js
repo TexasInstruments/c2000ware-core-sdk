@@ -1,0 +1,2 @@
+import{r as s,g as t}from"./p-823ca21f.js";import{Usb2anyUartCodec as c}from"../gc-codec-usb2any-uart/lib/Usb2anyUartCodec";import{c as a}from"./p-4c4e8f8e.js";let e=class{constructor(t){s(this,t);this.parity="none";this.bitDirection="lsb";this.characterLength=8;this.baudRate=9600;this.stopBits=1;this.optional=false}connectedCallback(){this.impl=new c(a(this.el))}disconnectedCallback(){this.impl.dispose()}get el(){return t(this)}};export{e as gc_codec_usb2any_uart};
+//# sourceMappingURL=p-7c61fdd1.entry.js.map

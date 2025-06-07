@@ -33,5 +33,20 @@ exports = {
 			}
 			return value / inst.divideValue;
 		},
-	}]
+	}],
+	validate: (inst, { $ipInstance, logError, logWarning }) => {
+		let sensitive_devices = ["F2838x", "F28P65x", "F2837xD", "F2837xS", "F2807x"];
+		let div_value = inst.divideValue;
+		let warningMsg1 = "ePWM TZFRC and TZCLR events will sometimes be missed when EPWMCLKDIV is divide by 2. Always program EPWMCLKDIV to divide by 1 if using TZFRC or TZCLR register. ";
+		let warningMsg2 = "Please refer to the " + system.deviceData.device + " Silicon Errata for more details.";
+		let warningMsg = warningMsg1 + warningMsg2;
+		
+		if (inst.$ipInstance.name == "EPWMCLKDIV") 
+		{
+			if (div_value == 2 && sensitive_devices.includes(system.deviceData.device)) 
+				{
+					logWarning(warningMsg, inst, inst.$ipInstance.outPins[0].name)
+				}
+		}
+	}
 };

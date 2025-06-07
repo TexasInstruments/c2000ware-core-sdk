@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -171,6 +171,7 @@
 #define INT_MCANB_WAKE              0x00C2090BU // 9.11 - MCANSSB_WAKE_AND_TS_PLS
 #define INT_MCANB_ECC               0x00C3090CU // 9.12 - MCANSSB_ECC_CORR_PLS
 #define INT_USBA                    0x00C6090FU // 9.15 - USBA Interrupt
+#define INT_NPU                     0x00C70910U // 9.16 - NPU_Interrupt
 #define INT_ADCC_EVT                0x00C80A09U // 10.9 - ADCC Event Interrupt
 #define INT_ADCC2                   0x00C90A0AU // 10.10 - ADCC Interrupt 2
 #define INT_ADCC3                   0x00CA0A0BU // 10.11 - ADCC Interrupt 3

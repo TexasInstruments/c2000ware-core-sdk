@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -240,8 +240,6 @@ extern "C"
 #define SYSCTL_OSCSRC_XTAL_SE   0x00030000U
 //! Internal oscillator INTOSC1
 #define SYSCTL_OSCSRC_OSC1      0x00020000UL
-//! External R precision Internal oscillator INTOSC2
-#define SYSCTL_OSCSRC_EXTROSC2  0x00008000UL
 
 //
 // Enable/disable PLL
@@ -493,11 +491,12 @@ typedef enum
 typedef enum
 {
     SYSCTL_CLOCKOUT_PLLSYS     = 0U,   //!< PLL System Clock post SYSCLKDIV
-    SYSCTL_CLOCKOUT_PLLRAW     = 1U,   //!< PLL Raw Clock
+    SYSCTL_CLOCKOUT_PLLRAW     = 1U,   //!< PLL Clock after Bypass Mux
     SYSCTL_CLOCKOUT_SYSCLK     = 2U,   //!< CPU System Clock
     SYSCTL_CLOCKOUT_INTOSC1    = 5U,   //!< Internal Oscillator 1
     SYSCTL_CLOCKOUT_INTOSC2    = 6U,   //!< Internal Oscillator 2
     SYSCTL_CLOCKOUT_XTALOSC    = 7U,   //!< External Oscillator
+    SYSCTL_SYSPLLCLKOUT        = 12U,  //!< PLL System Clock pre SYSCLKDIV
 } SysCtl_ClockOut;
 
 //*****************************************************************************
@@ -721,12 +720,6 @@ typedef enum
     SYSCTL_USER_REG3_PORESETN = 6U, //!< User register reset by PORESETn
     SYSCTL_USER_REG4_PORESETN = 7U  //!< User register reset by PORESETn
 }SysCtl_UserRegister;
-
-typedef enum
-{
-    SYSCTL_INTOSC2_MODE_INTR, // Intrenal Resistor mode
-    SYSCTL_INTOSC2_MODE_EXTR, // External Resistor mode
-}SysCtl_IntOSC2_Mode;
 
 //*****************************************************************************
 //
@@ -1077,6 +1070,7 @@ SysCtl_setLowSpeedClock(SysCtl_LSPCLKPrescaler prescaler)
 //! - \b SYSCTL_CLOCKOUT_INTOSC1
 //! - \b SYSCTL_CLOCKOUT_INTOSC2
 //! - \b SYSCTL_CLOCKOUT_XTALOSC
+//! - \b SYSCTL_SYSPLLCLKOUT
 //!
 //! \return None.
 //
@@ -1265,39 +1259,6 @@ SysCtl_turnOffOsc(uint32_t oscSource)
             //
             break;
     }
-
-    EDIS;
-}
-
-//*****************************************************************************
-//
-//! Configure IntR or ExtR mode for INTOSC2
-//!
-//! \param oscSource is the mode to be configured. \e SYSCTL_INTOSC2_MODE_INTR
-//!  or \e SYSCTL_INTOSC2_MODE_EXTR
-//!
-//! This function Selects between Internal Resistor mode and External Resistor
-//! mode for INTOSC2
-//!
-//! \return None.
-//
-//*****************************************************************************
-static inline void
-SysCtl_setIntOSC2_Mode(SysCtl_IntOSC2_Mode mode)
-{
-    EALLOW;
-
-    if(mode == SYSCTL_INTOSC2_MODE_EXTR)
-    {
-        HWREG(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL1) |=
-                                        SYSCTL_CLKSRCCTL1_INTOSC2CLKMODE;
-    }
-    else
-    {
-        HWREG(CLKCFG_BASE + SYSCTL_O_CLKSRCCTL1) &=
-                                        ~SYSCTL_CLKSRCCTL1_INTOSC2CLKMODE;
-    }
-    SYSCTL_CLKSRCCTL_DELAY;
 
     EDIS;
 }
@@ -2889,7 +2850,7 @@ SysCtl_getInterruptStatus(void)
 static inline void
 SysCtl_clearInterruptStatus(uint32_t intFlags)
 {
-    HWREGH(SYSSTAT_BASE + SYSCTL_O_SYS_ERR_INT_CLR) |= (uint16_t)intFlags;
+    HWREG(SYSSTAT_BASE + SYSCTL_O_SYS_ERR_INT_CLR) = intFlags;
 }
 //*****************************************************************************
 //

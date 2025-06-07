@@ -17,7 +17,7 @@
 // $TI Release: 2823x/2823x Header Files V1.32 $
 // $Release Date: June 28, 2010 $
 // $Copyright:
-// Copyright (C) 2009-2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2009-2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 

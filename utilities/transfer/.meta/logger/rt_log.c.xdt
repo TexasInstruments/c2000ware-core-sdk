@@ -1,0 +1,127 @@
+/*
+ * Copyright (c) 2020 Texas Instruments Incorporated - http://www.ti.com
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * *  Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ * *  Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * *  Neither the name of Texas Instruments Incorporated nor the names of
+ *    its contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ */
+%
+% let transferCommon;
+% if (system.getProducts()[0].name.includes("C2000"))
+% { transferCommon = system.getScript("/utilities/transfer/transferCommon.js");
+% } else
+% { transferCommon = system.getScript("/transfer/transferCommon.js");}
+% 
+% let rtlogMod = system.modules[transferCommon.getTransferPath() + "rtlog.js"];
+% let rtlogInst = rtlogMod.$instances[0];
+% let comsLinkModule = rtlogInst.comsLinkModule;
+%
+
+#include <stdbool.h>
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <logger/rt_log.h>
+% if (transferCommon.isC2000()){
+#include <board.h>
+% } else {
+#include "ti_drivers_config.h"
+#include <drivers/hw_include/hw_types.h>
+% }
+
+uint16_t * `comsLinkModule.$name`_bufPtr;
+
+void RTLOG_init(){
+    `comsLinkModule.$name`_bufPtr = (uint16_t *)FSI_getTxBufferAddress(`comsLinkModule.$name`_BASE);
+}
+
+% for (let mt of rtlogInst.logMsgTypes){
+    % let funcArgs = mt.logVariables.map((logVar) => { return (logVar.varType + " " + logVar.$name)})
+void RTLOG_writeLog_`mt.id`(`funcArgs.join(", ")`) {
+    uint16_t bufPtrI;
+    uint16_t* u16Ptr;
+    uint16_t arrIndex = 0;
+    % let bufI = 0;
+    % for (let logVar of mt.logVariables) {
+        % if (["uint16_t", "int16_t"].includes(logVar.varType)) {
+    //
+    // `logVar.$name`
+    //
+    u16Ptr = (uint16_t*)&`logVar.$name`;
+    `comsLinkModule.$name`_bufPtr[`bufI++`] = *u16Ptr;
+        % } else if (["uint32_t", "int32_t", "float"].includes(logVar.varType)) {
+    //
+    // `logVar.$name`
+    //
+    u16Ptr = (uint16_t*)&`logVar.$name`;
+    `comsLinkModule.$name`_bufPtr[`bufI++`] = *u16Ptr;
+    u16Ptr++;
+    `comsLinkModule.$name`_bufPtr[`bufI++`] = *u16Ptr;
+        % } else if (["uint16_t*", "int16_t*"].includes(logVar.varType)) {
+    bufPtrI = `bufI`;
+            % bufI += logVar.length;
+    for (arrIndex = 0; arrIndex < `logVar.length`; arrIndex++)
+    {
+        u16Ptr = (uint16_t*)&(`logVar.$name`[arrIndex]);
+        `comsLinkModule.$name`_bufPtr[bufPtrI++] = *u16Ptr;
+    }
+        % } else if (["uint32_t*", "int32_t*", "float*"].includes(logVar.varType)) {
+    bufPtrI = `bufI`;
+            % bufI += logVar.length*2;
+    for (arrIndex = 0; arrIndex < `logVar.length`; arrIndex++)
+    {
+        u16Ptr = (uint16_t*)&(`logVar.$name`[arrIndex]);
+        `comsLinkModule.$name`_bufPtr[bufPtrI++] = *u16Ptr;
+        u16Ptr++;
+        `comsLinkModule.$name`_bufPtr[bufPtrI++] = *u16Ptr;
+    }
+        % }
+    % }
+    //
+    // Variable packet length is not supported
+    //
+    // FSI_setTxSoftwareFrameSize(`comsLinkModule.$name`_BASE, `mt.size`);
+    % if (mt.size < rtlogInst.packetLength) {
+    //
+    // Fill the rest of the buffer
+    //
+    for (bufPtrI = `mt.size`; bufPtrI < `rtlogInst.packetLength`; bufPtrI++)
+    {
+        `comsLinkModule.$name`_bufPtr[bufPtrI] = 0;
+    }
+    % }
+    FSI_setTxFrameTag(`comsLinkModule.$name`_BASE, FSI_FRAME_TAG0);
+    FSI_setTxUserDefinedData(`comsLinkModule.$name`_BASE, `mt.id`);
+
+    //
+    // Start Transfer
+    //
+    FSI_startTxTransmit(`comsLinkModule.$name`_BASE);
+}
+% }

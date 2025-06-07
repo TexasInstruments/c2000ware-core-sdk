@@ -7,6 +7,7 @@ var SingleCore  = clocktree_common.SingleCore;
 const multi_core = clocktree_common.multi_core;
 const PLL_type1  = clocktree_common.PLL_type1;
 const PLL_type2  = clocktree_common.PLL_type2;
+const PLL_type3  = clocktree_common.PLL_type3;
 
 const device  = clocktree_common.device;
 
@@ -60,7 +61,7 @@ const device  = clocktree_common.device;
 %}
 %
 %
-% if(!multi_core.includes(device) && (PLL_type1.includes(device) || PLL_type2.includes(device)))
+% if(!multi_core.includes(device) && (PLL_type1.includes(device) || PLL_type2.includes(device) || PLL_type3.includes(device)))
 %{
 `SingleCore()`
 %}

@@ -1,0 +1,122 @@
+<!--
+    Copyright (c) 2014-2018, Texas Instruments Incorporated
+    All rights reserved.
+
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions
+    are met:
+
+    *   Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+    *   Neither the name of Texas Instruments Incorporated nor the names of
+    its contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+    THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+    PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+    CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+    EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+    PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+    OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+    WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+    OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+    EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=560, initial-scale=1.0, maximum-scale=1.0">
+<meta name="mobile-web-app-capable" content="yes">
+<style>
+    @-moz-keyframes fadeOut {
+    from {opacity: 1;}
+    to {opacity: 0;}
+    }
+    @-webkit-keyframes fadeOut {
+        from {opacity: 1;}
+        to {opacity: 0;}
+    }
+    @keyframes fadeOut {
+        from {opacity: 1;}
+        to {opacity: 0;}
+    }
+    body {
+        overflow: hidden;
+    }
+</style>
+
+<script>
+    /* node webkit */
+    var nw_win = undefined;
+    if (typeof process != "undefined") {
+        var gui = require("nw.gui");
+        nw_win = gui.Window.get();
+        nw_win.setAlwaysOnTop(true);
+    }
+</script>
+</head>
+<body>
+    <div id="splashContainer" style='top: 0; bottom: 0; left: 0; right: 0; z-index: 1900001; color: #fff; background-color: #fafafa; position: absolute;'>
+        <div id="splash" style="position: absolute; left: 0; right: 0; top: 0; bottom: 0; margin: auto; width: 600px; height: 300px;; background-color: #000; box-shadow: 3px 3px 3px #888888;">
+            <div style="width: 100%; height: 100%; background-image: url(''); background-size: cover; background-position: center; background-repeat: no-repeat"></div>
+
+            <div style="position: absolute; bottom: 30px; background-color: #cc0000; right: 0; left: 0; padding: 10px 20px; overflow: hidden; white-space: nowrap;">
+                <div style="float: right; max-width: 300px; font-size: 24px; font-weight: bold; overflow: hidden; white-space: nowrap; margin-left: 10px;"></div>
+                <div style="float: right; height: 30px; width: 300px; background-image: url('ti_horiz_banner_white.svg'); background-size: contain; background-position-x: right; background-repeat: no-repeat"></div>
+            </div>
+
+            <div style="position: absolute; top: 80px; text-align: right; right: 0; left: 0; padding-right: 30px; font-family: Helvetica; font-size: 40px;">
+                <div>MCU-Signal-Sight</div>
+                <div style="font-weight: bold;"></div>
+            </div>
+
+            <div id="splashProgress" style="position: absolute; bottom: 0px; background-color: #cc0000; width: 0%; height: 5px;"></div>
+        </div>
+    </div>
+
+    <script>
+        var splashLoadProgress = 0;
+        function initSplash() {
+            var splash = document.querySelector("#splashContainer")
+            var splashProgress = document.querySelector("#splashProgress");
+            var progressHdlr = null;
+            if (splash && splashProgress) {
+                progressHdlr = setInterval(function() {
+                    if (splashLoadProgress < 100) splashLoadProgress += 2;
+                    splashProgress.style.width = splashLoadProgress + "%";
+
+                    if (splashLoadProgress >= 100) {
+                        clearSplash();
+                    }
+                }, 100);
+
+                splash.addEventListener("webkitAnimationEnd", function() {
+                    clearInterval(progressHdlr);
+                    splash.parentNode.removeChild(splash);
+
+                    /* node webkit */
+                    if (nw_win != undefined) nw_win.hide();
+                    if (typeof process != "undefined") process.exit();
+                });
+            }
+        };
+
+        function clearSplash() {
+            var splash = document.querySelector("#splashContainer")
+            if (splash) {
+                setTimeout(function() {
+                    splashLoadProgress = 100;
+                    setTimeout(function() {splash.style.WebkitAnimation = "fadeOut 0.2s";}, 100);
+                }, 1);
+            }
+        }
+
+        initSplash();
+    </script>
+</body>
+</html>

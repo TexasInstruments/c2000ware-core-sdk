@@ -28,7 +28,7 @@ let Ch3_ClockSource =
 	
 let Ch4_ClockSource = 
 	[
-		{ name: "SDFM_CLK_SOURCE_CHANNEL_CLK", displayName: "SD3 channel clock" },
+		{ name: "SDFM_CLK_SOURCE_CHANNEL_CLK", displayName: "SD4 channel clock" },
 		{ name: "SDFM_CLK_SOURCE_SD1_CLK", displayName: "SD1 channel clock" },
 	]
 

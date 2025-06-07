@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v5.04.00.00
+                v5.05.00.00
               </div>
             
           
@@ -396,12 +396,6 @@ about resets and missing clock detection failures.</p>
 <dt id="c.SYSCTL_OSCSRC_OSC1">
 <span class="target" id="group__sysctl__api_1ga41ba7052bf4c7f6ca55ac3b0d0a6dad1"></span><code class="sig-name descname">SYSCTL_OSCSRC_OSC1</code> 0x00020000UL<a class="headerlink" href="#c.SYSCTL_OSCSRC_OSC1" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Internal oscillator INTOSC1. </p>
-</dd></dl>
-
-<dl class="cpp macro">
-<dt id="c.SYSCTL_OSCSRC_EXTROSC2">
-<span class="target" id="group__sysctl__api_1ga0309c1fd61d781ef1f8e98a0d4fe7a68"></span><code class="sig-name descname">SYSCTL_OSCSRC_EXTROSC2</code> 0x00008000UL<a class="headerlink" href="#c.SYSCTL_OSCSRC_EXTROSC2" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>External R precision Internal oscillator INTOSC2. </p>
 </dd></dl>
 
 <dl class="cpp macro">
@@ -1274,7 +1268,7 @@ about resets and missing clock detection failures.</p>
 <dl class="cpp enumerator">
 <dt id="_CPPv4N15SysCtl_ClockOut22SYSCTL_CLOCKOUT_PLLRAWE">
 <span id="_CPPv3N15SysCtl_ClockOut22SYSCTL_CLOCKOUT_PLLRAWE"></span><span id="_CPPv2N15SysCtl_ClockOut22SYSCTL_CLOCKOUT_PLLRAWE"></span><span class="target" id="group__sysctl__api_1gga6d6707580ed69295038d9eb68c52b114a7511b9d48a93873fe2915b34af57b6fe"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_CLOCKOUT_PLLRAW</code> = 1U<a class="headerlink" href="#_CPPv4N15SysCtl_ClockOut22SYSCTL_CLOCKOUT_PLLRAWE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>PLL Raw Clock. </p>
+<dd><p>PLL Clock after Bypass Mux. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
@@ -1299,6 +1293,12 @@ about resets and missing clock detection failures.</p>
 <dt id="_CPPv4N15SysCtl_ClockOut23SYSCTL_CLOCKOUT_XTALOSCE">
 <span id="_CPPv3N15SysCtl_ClockOut23SYSCTL_CLOCKOUT_XTALOSCE"></span><span id="_CPPv2N15SysCtl_ClockOut23SYSCTL_CLOCKOUT_XTALOSCE"></span><span class="target" id="group__sysctl__api_1gga6d6707580ed69295038d9eb68c52b114a5f8d430b09caa0b38235e0d80d743a47"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_CLOCKOUT_XTALOSC</code> = 7U<a class="headerlink" href="#_CPPv4N15SysCtl_ClockOut23SYSCTL_CLOCKOUT_XTALOSCE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>External Oscillator. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SysCtl_ClockOut19SYSCTL_SYSPLLCLKOUTE">
+<span id="_CPPv3N15SysCtl_ClockOut19SYSCTL_SYSPLLCLKOUTE"></span><span id="_CPPv2N15SysCtl_ClockOut19SYSCTL_SYSPLLCLKOUTE"></span><span class="target" id="group__sysctl__api_1gga6d6707580ed69295038d9eb68c52b114aa64b5d9a4be682191302d5bc9bf12ebc"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_SYSPLLCLKOUT</code> = 12U<a class="headerlink" href="#_CPPv4N15SysCtl_ClockOut19SYSCTL_SYSPLLCLKOUTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PLL System Clock pre SYSCLKDIV. </p>
 </dd></dl>
 
 </dd></dl>
@@ -1985,22 +1985,6 @@ about resets and missing clock detection failures.</p>
 </dd></dl>
 
 <dl class="cpp enum">
-<dt id="_CPPv419SysCtl_IntOSC2_Mode">
-<span id="_CPPv319SysCtl_IntOSC2_Mode"></span><span id="_CPPv219SysCtl_IntOSC2_Mode"></span><span class="target" id="group__sysctl__api_1ga04a4db577a7850a4dc5ed47c2427a157"></span><em class="property">enum </em><code class="sig-name descname">SysCtl_IntOSC2_Mode</code><a class="headerlink" href="#_CPPv419SysCtl_IntOSC2_Mode" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p><em>Values:</em></p>
-<dl class="cpp enumerator">
-<dt id="_CPPv4N19SysCtl_IntOSC2_Mode24SYSCTL_INTOSC2_MODE_INTRE">
-<span id="_CPPv3N19SysCtl_IntOSC2_Mode24SYSCTL_INTOSC2_MODE_INTRE"></span><span id="_CPPv2N19SysCtl_IntOSC2_Mode24SYSCTL_INTOSC2_MODE_INTRE"></span><span class="target" id="group__sysctl__api_1gga04a4db577a7850a4dc5ed47c2427a157a927760d72c90807f2317d69656fd2a50"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_INTOSC2_MODE_INTR</code><a class="headerlink" href="#_CPPv4N19SysCtl_IntOSC2_Mode24SYSCTL_INTOSC2_MODE_INTRE" title="Permalink to this definition">¶</a><br /></dt>
-<dd></dd></dl>
-
-<dl class="cpp enumerator">
-<dt id="_CPPv4N19SysCtl_IntOSC2_Mode24SYSCTL_INTOSC2_MODE_EXTRE">
-<span id="_CPPv3N19SysCtl_IntOSC2_Mode24SYSCTL_INTOSC2_MODE_EXTRE"></span><span id="_CPPv2N19SysCtl_IntOSC2_Mode24SYSCTL_INTOSC2_MODE_EXTRE"></span><span class="target" id="group__sysctl__api_1gga04a4db577a7850a4dc5ed47c2427a157a39254eae1862032ce9dd9f71306488b6"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_INTOSC2_MODE_EXTR</code><a class="headerlink" href="#_CPPv4N19SysCtl_IntOSC2_Mode24SYSCTL_INTOSC2_MODE_EXTRE" title="Permalink to this definition">¶</a><br /></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="cpp enum">
 <dt id="_CPPv418SysCtl_CMPSSLPMSel">
 <span id="_CPPv318SysCtl_CMPSSLPMSel"></span><span id="_CPPv218SysCtl_CMPSSLPMSel"></span><span class="target" id="group__sysctl__api_1gafda30b4db4ddffa31068967dc4d8d0e1"></span><em class="property">enum </em><code class="sig-name descname">SysCtl_CMPSSLPMSel</code><a class="headerlink" href="#_CPPv418SysCtl_CMPSSLPMSel" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Values that can be passed to <a class="reference internal" href="#group__sysctl__api_1ga5be74b1f8027aba01bd381ff50096bde"><span class="std std-ref">SysCtl_disableCMPSSLPMWakeupPin()</span></a> and <a class="reference internal" href="#group__sysctl__api_1ga72f8af4deb94743b1471c6211fee8ef9"><span class="std std-ref">SysCtl_enableCMPSSLPMWakeupPin()</span></a> as the <em>pin</em> input parameter. </p>
@@ -2222,6 +2206,7 @@ about resets and missing clock detection failures.</p>
 <li><p><strong>SYSCTL_CLOCKOUT_INTOSC1</strong> </p></li>
 <li><p><strong>SYSCTL_CLOCKOUT_INTOSC2</strong> </p></li>
 <li><p><strong>SYSCTL_CLOCKOUT_XTALOSC</strong> </p></li>
+<li><p><strong>SYSCTL_SYSPLLCLKOUT</strong> </p></li>
 </ul>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
@@ -2321,25 +2306,6 @@ about resets and missing clock detection failures.</p>
 <p><dl class="simple">
 <dt><strong>Note</strong></dt><dd><p><strong>SYSCTL_OSCSRC_OSC1</strong> is not a valid value for <em>oscSource</em>.</p>
 </dd>
-<dt><strong>Return</strong></dt><dd><p>None. </p>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-<dl class="cpp function">
-<dt id="_CPPv422SysCtl_setIntOSC2_Mode19SysCtl_IntOSC2_Mode">
-<span id="_CPPv322SysCtl_setIntOSC2_Mode19SysCtl_IntOSC2_Mode"></span><span id="_CPPv222SysCtl_setIntOSC2_Mode19SysCtl_IntOSC2_Mode"></span><span id="SysCtl_setIntOSC2_Mode__SysCtl_IntOSC2_Mode"></span><span class="target" id="group__sysctl__api_1ga05e2410b3b7b172ae190b418e5b5d482"></span>void <code class="sig-name descname">SysCtl_setIntOSC2_Mode</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv419SysCtl_IntOSC2_Mode" title="SysCtl_IntOSC2_Mode">SysCtl_IntOSC2_Mode</a> <em>mode</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422SysCtl_setIntOSC2_Mode19SysCtl_IntOSC2_Mode" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Configure IntR or ExtR mode for INTOSC2</p>
-<p><p>This function Selects between Internal Resistor mode and External Resistor mode for INTOSC2</p>
-<dl class="simple">
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">oscSource</span></code>: is the mode to be configured. <em>SYSCTL_INTOSC2_MODE_INTR</em> or <em>SYSCTL_INTOSC2_MODE_EXTR</em> </p></li>
-</ul>
-</dd>
-</dl>
-</p>
-<p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
 </dl>
@@ -4030,7 +3996,7 @@ others used for the configuration of SysCtl.</p>
     <p>
       <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2021, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
       <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
-      <span class="lastupdated">Last updated on Oct 22, 2024.
+      <span class="lastupdated">Last updated on May 29, 2025.
       </span></p>
   </div>
 
@@ -4050,7 +4016,7 @@ others used for the configuration of SysCtl.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v5.04.00.00',
+            VERSION:'v5.05.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

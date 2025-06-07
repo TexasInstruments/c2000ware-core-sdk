@@ -1,0 +1,302 @@
+/*
+ * Copyright (c) 2020 Texas Instruments Incorporated - http://www.ti.com
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * *  Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ * *  Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * *  Neither the name of Texas Instruments Incorporated nor the names of
+ *    its contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ */
+
+%let transferCommon;
+%if (system.getProducts()[0].name.includes("C2000")) {
+%    transferCommon = system.getScript("/utilities/transfer/transferCommon.js");
+%} else { transferCommon = system.getScript("/transfer/transferCommon.js"); }
+% var module = system.modules[transferCommon.getTransferPath() + 'signalsight.js'];
+% let currentInstance = module.$instances[0];
+% let includePolling = !currentInstance.pollingDisabled;
+% let validationModeEnabled = currentInstance.validationMode;
+%
+#ifndef SIGNAL_SIGHT_H_
+#define SIGNAL_SIGHT_H_
+
+#include <export/export_package.h>
+#include <signalsight/signalsight_hash.h>
+
+%//
+%// Stream State Variable Externs
+%//
+%//extern enum SS_STREAMING_STATES SS_currentStreamState;
+%//extern int16_t SS_currentPlotHashIndices[SS_NUMBER_OF_SIMULTANEOUS_STREAM_VARIABLES];
+%//extern bool SS_streamToggleStates[SS_NUMBER_OF_SIMULTANEOUS_STREAM_VARIABLES];
+%//extern enum SS_CMDS SS_nextTxCMD;
+%
+% let commentVar = ""
+% if(currentInstance.pingPongEnable) {
+    % commentVar = "SS_streamDataSkips and SS_streamDataSkips2";
+% }
+% else{
+    % commentVar = "SS_streamDataSkips";
+% }
+//
+// Stream Skip Variable Externs
+// Watch `commentVar` in the debug view to see how many samples are being skipped.
+// Ideally `commentVar` will be zero. If non-zero, consider:
+// 1. Lowering the sampling frequency
+// 2. Increasing the buffer size
+// 3. Increasing the baud rate
+//
+%//extern float SS_streamA_buffer[SIGNALSIGHT_BUFFER_SIZE];
+%//extern float SS_streamB_buffer[SIGNALSIGHT_BUFFER_SIZE];
+%//extern float SS_streamC_buffer[SIGNALSIGHT_BUFFER_SIZE];
+%//extern float SS_streamD_buffer[SIGNALSIGHT_BUFFER_SIZE];
+%//extern volatile uint16_t SS_bufferElementIndex;
+%//extern bool SS_bufferIsFull;
+extern uint16_t SS_streamDataSkips;
+%
+% if(currentInstance.pingPongEnable) {
+%//extern float SS_streamA_buffer2[SIGNALSIGHT_BUFFER_SIZE];
+%//extern float SS_streamB_buffer2[SIGNALSIGHT_BUFFER_SIZE];
+%//extern float SS_streamC_buffer2[SIGNALSIGHT_BUFFER_SIZE];
+%//extern float SS_streamD_buffer2[SIGNALSIGHT_BUFFER_SIZE];
+%//extern volatile uint16_t SS_bufferElementIndex2;
+%//extern bool SS_bufferIsFull2;
+%//extern bool SS_writeBuffer1readBuffer2;
+extern uint16_t SS_streamDataSkips2;
+% }
+% if(includePolling){
+
+//
+// Polling State Variable Externs
+//
+extern uint32_t SS_pollingEnabledHashIndices0;  //Up to 64 polling variables are available
+extern uint32_t SS_pollingEnabledHashIndices1;
+extern int16_t SS_pollingArraySize;  //total number of polling variables enabled
+extern uint16_t SS_currentPollingIndex;  //index indicating which variable is next to be sent
+extern bool SS_writeWhileStreaming;
+% }
+% if(validationModeEnabled){
+//
+// Defines
+//
+#define SS_NUMBER_OF_SIMULTANEOUS_STREAM_VARIABLES 4
+#define SS_DEFAULT_STREAM_VAR_A 0
+#define SS_DEFAULT_STREAM_VAR_B 1
+#define SS_DEFAULT_STREAM_VAR_C 2
+#define SS_DEFAULT_STREAM_VAR_D 3
+#define SS_BUFFER_SIZE 1
+#define SS_POLLING_VARIABLE_MAX 20
+#define SS_PING_PONG_BUFFERING true
+#define SS_DEFAULT_STREAM_VAR_A 0
+#if SSHASH_NUMBER_OF_VARIABLES == 1
+#define SS_DEFAULT_STREAM_VAR_B 0
+#define SS_DEFAULT_STREAM_VAR_C 0
+#define SS_DEFAULT_STREAM_VAR_D 0
+#elif SSHASH_NUMBER_OF_VARIABLES == 2
+#define SS_DEFAULT_STREAM_VAR_B 1
+#define SS_DEFAULT_STREAM_VAR_C 1
+#define SS_DEFAULT_STREAM_VAR_D 1
+#elif SSHASH_NUMBER_OF_VARIABLES == 3
+#define SS_DEFAULT_STREAM_VAR_B 1
+#define SS_DEFAULT_STREAM_VAR_C 2
+#define SS_DEFAULT_STREAM_VAR_D 2
+#elif SSHASH_NUMBER_OF_VARIABLES >= 4
+#define SS_DEFAULT_STREAM_VAR_B 1
+#define SS_DEFAULT_STREAM_VAR_C 2
+#define SS_DEFAULT_STREAM_VAR_D 3
+#endif
+//
+// Enumerations
+//
+enum SS_STREAMING_STATES {
+    STREAM_IDLE = 0,
+    STREAM1 = 1,
+    STREAM2 = 2,
+    STREAM3 = 3,
+    STREAM4 = 4,
+};
+    % if(includePolling){
+
+enum SS_VAR_TYPES {
+    UINT16 = 0,
+    UINT32 = 1,
+    INT16 = 2,
+    INT32 = 3,
+    BOOL = 4,
+    FLOAT = 5,
+};
+    % }
+enum SS_CMDS { 
+    NO_UPDATE = 0, //default
+    PACKET_ERROR = 39,
+    INITCMD = 40,
+    % if(includePolling){
+    WRITE_VAR = 43,
+    % }
+    INIT_STREAMING_VARS = 44,
+    START_STREAMING_A = 45,
+    START_STREAMING_B = 46,
+    START_STREAMING_C = 47,
+    START_STREAMING_D = 48,
+    STOP_STREAMING_A = 49,
+    STOP_STREAMING_B = 50,
+    STOP_STREAMING_C = 51,
+    STOP_STREAMING_D = 52,
+    STREAM_DATA_1_VAR = 53,
+    STREAM_DATA_2_VAR = 54,
+    STREAM_DATA_3_VAR = 55,
+    STREAM_DATA_4_VAR = 56,
+    % if(includePolling){
+    STREAM_DATA_WRITEACK_1_VAR = 57,
+    STREAM_DATA_WRITEACK_2_VAR = 58,
+    STREAM_DATA_WRITEACK_3_VAR = 59,
+    STREAM_DATA_WRITEACK_4_VAR = 60,
+    START_POLLING_1 = 63,
+    START_POLLING_2 = 64,
+    START_POLLING_3 = 65,
+    START_POLLING_4 = 66,
+    START_POLLING_5 = 67,
+    START_POLLING_6 = 68,
+    START_POLLING_7 = 69,
+    START_POLLING_8 = 70,
+    START_POLLING_9 = 71,
+    START_POLLING_10 = 72,
+    START_POLLING_11 = 73,
+    START_POLLING_12 = 74,
+    START_POLLING_13 = 75,
+    STOP_POLLING = 76,
+    POLLING_DATA = 77,
+    % }
+    CLEAR_STREAMING_PLOT = 78,
+};
+
+//
+// Stream State Global Variables
+//
+extern enum SS_STREAMING_STATES SS_currentStreamState;
+extern int16_t SS_currentPlotHashIndices[SS_NUMBER_OF_SIMULTANEOUS_STREAM_VARIABLES];
+extern bool SS_streamToggleStates[SS_NUMBER_OF_SIMULTANEOUS_STREAM_VARIABLES];
+extern enum SS_CMDS SS_nextTxCMD;
+
+    % if(currentInstance.bufferingDebugModeEnable){
+extern enum SS_CMDS SS_rxBufferDebug[RX_DEBUG_BUFFER_SIZE];
+extern uint16_t SS_currentIndex = 0;
+
+    % }
+//
+// Stream Buffering Global Variables
+//
+extern float SS_streamA_buffer[SS_BUFFER_SIZE];
+extern float SS_streamB_buffer[SS_BUFFER_SIZE];
+extern float SS_streamC_buffer[SS_BUFFER_SIZE];
+extern float SS_streamD_buffer[SS_BUFFER_SIZE];
+extern volatile uint16_t SS_bufferElementIndex;
+extern bool SS_bufferIsFull;
+extern uint16_t SS_streamDataSkips;
+extern bool SS_initiallyClearBuffer;
+    % if(currentInstance.pingPongEnable){
+    
+extern float SS_streamA_buffer2[SS_BUFFER_SIZE];
+extern float SS_streamB_buffer2[SS_BUFFER_SIZE];
+extern float SS_streamC_buffer2[SS_BUFFER_SIZE];
+extern float SS_streamD_buffer2[SS_BUFFER_SIZE];
+extern volatile uint16_t SS_bufferElementIndex2;
+extern bool SS_bufferIsFull2;
+extern bool SS_writeBuffer1readBuffer2;
+extern uint16_t SS_streamDataSkips2;
+
+    % }
+%
+    % if(includePolling){
+//
+// Polling State Global Variables
+//
+extern uint16_t SS_pollingEnabledHashIndicesArray[SS_POLLING_VARIABLE_MAX];
+extern uint32_t SS_pollingEnabledHashIndices0;  //Up to 64 polling variables are available
+extern uint32_t SS_pollingEnabledHashIndices1;
+extern int16_t SS_pollingArraySize;  //total number of polling variables enabled
+extern uint16_t SS_currentPollingIndex;  //index indicating which variable is next to be sent
+extern bool SS_writeWhileStreaming;
+    % }
+% }
+
+//
+// Function Prototypes - Call the below in your application code
+//
+
+//*****************************************************************************
+//
+// Signal Sight Initialization function
+//
+// Call this function once in your initialization code. Call after
+// device initialization functions, interrupt initialization functions and  
+// Board_init() but before enabling interrupts globally.
+//
+//*****************************************************************************
+void SIGNALSIGHT_init();
+
+//*****************************************************************************
+//
+// Signal Sight Capture Plot Data function
+//
+// Call this function where data should be sampled in your application code.
+// A snapshot of the value of your plot variable will be captured and saved 
+// for transmission in a future call of SIGNALSIGHT_sendPlotData().
+// (example: in a CPU timer or ePWM ISR). 
+//
+//*****************************************************************************
+void SIGNALSIGHT_capturePlotData();
+
+//*****************************************************************************
+//
+// Signal Sight Send Data function
+//
+// Call this function in your application where you want to send data to the 
+// GUI via a communication peripheral. It is recommended to place this function
+// call in a low priority location of your application, (in the main loop for 
+// example) since it could be blocked waiting.
+//
+//*****************************************************************************
+void SIGNALSIGHT_sendPlotData();
+
+% if(includePolling){
+//*****************************************************************************
+//
+// Signal Sight Capture and Send Polling Data function
+//
+// Call this function in your application where you want to capture and send
+// data from a low-priority/not time-critical variable to the  GUI via 
+// a communication peripheral. The function will find the next polling variable
+// that is enabled (round robin), capture the variables current data, and send
+// it to the GUI to be displayed by UI elements. It is recommended to place
+// this function call in a low priority location of your application, (in the
+// main loop for example) since it could be blocked waiting.
+//
+//*****************************************************************************
+void SIGNALSIGHT_captureAndSendPollingData();
+% }
+
+#endif /* SIGNAL_SIGHT_H_ */

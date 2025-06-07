@@ -30,7 +30,7 @@
 //
 //
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -179,9 +179,9 @@ void main(void)
     // Enable interrupts required for this example
     //
     PieCtrlRegs.PIECTRL.bit.ENPIE = 1; // Enable the PIE block
-    PieCtrlRegs.PIEIER7.bit.INTx5 = 1; // Enable PIE Group 7, INT 1 (DMA CH1)
-    PieCtrlRegs.PIEIER7.bit.INTx6 = 1; // Enable PIE Group 7, INT 2 (DMA CH2)
-    IER= M_INT7;                       // Enable CPU INT6
+    PieCtrlRegs.PIEIER7.bit.INTx5 = 1; // Enable PIE Group 7, INT 5 (DMA CH5)
+    PieCtrlRegs.PIEIER7.bit.INTx6 = 1; // Enable PIE Group 7, INT 6 (DMA CH6)
+    IER= M_INT7;                       // Enable CPU INT7
     EINT;                              // Enable Global Interrupts
 
     StartDMACH6();                   // Start SPI RX DMA channel
@@ -240,7 +240,7 @@ void dma_init()
     DMADest = (volatile uint16_t *)rData;
 
     //
-    // configure DMACH5 for TX
+    // configure DMA CH5 for TX
     //
     DMACH5AddrConfig(&SpiaRegs.SPITXBUF,DMASource);
     DMACH5BurstConfig(BURST,1,0);         // Burst size, src step, dest step
@@ -250,7 +250,7 @@ void dma_init()
                      CHINT_END,CHINT_ENABLE);
 
     //
-    // configure DMA CH2 for RX
+    // configure DMA CH6 for RX
     //
     DMACH6AddrConfig(DMADest,&SpiaRegs.SPIRXBUF);
     DMACH6BurstConfig(BURST,0,1);

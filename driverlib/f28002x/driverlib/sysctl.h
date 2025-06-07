@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -580,11 +580,14 @@ typedef enum
 typedef enum
 {
     SYSCTL_CLOCKOUT_PLLSYS     = 0U,   //!< PLL System Clock post SYSCLKDIV
-    SYSCTL_CLOCKOUT_PLLRAW     = 1U,   //!< PLL Raw Clock
+    SYSCTL_CLOCKOUT_PLLRAW     = 1U,   //!< PLL Clock after Bypass Mux
     SYSCTL_CLOCKOUT_SYSCLK     = 2U,   //!< CPU System Clock
     SYSCTL_CLOCKOUT_INTOSC1    = 5U,   //!< Internal Oscillator 1
     SYSCTL_CLOCKOUT_INTOSC2    = 6U,   //!< Internal Oscillator 2
     SYSCTL_CLOCKOUT_XTALOSC    = 7U,   //!< External Oscillator
+    SYSCTL_CLOCKOUT_PUMPOSC    = 9U,   //!< PUMPOSC
+    SYSCTL_SYSPLLCLK_AUX       = 10U,  //!< Test Clk of the System APLL
+    SYSCTL_SYSPLLCLKOUT        = 12U,  //!< PLL System Clock pre SYSCLKDIV
 } SysCtl_ClockOut;
 
 //*****************************************************************************
@@ -1137,6 +1140,9 @@ SysCtl_setLowSpeedClock(SysCtl_LSPCLKPrescaler prescaler)
 //! - \b SYSCTL_CLOCKOUT_INTOSC1
 //! - \b SYSCTL_CLOCKOUT_INTOSC2
 //! - \b SYSCTL_CLOCKOUT_XTALOSC
+//! - \b SYSCTL_CLOCKOUT_PUMPOSC
+//! - \b SYSCTL_SYSPLLCLK_AUX
+//! - \b SYSCTL_SYSPLLCLKOUT
 //!
 //! \return None.
 //

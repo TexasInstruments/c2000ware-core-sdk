@@ -36,7 +36,7 @@
 //
 //#############################################################################
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -219,6 +219,7 @@ void main(void)
     //
     if(SysCtl_getClock(SYSCTL_DEFAULT_OSC_FREQ) != DEVICE_SYSCLK_FREQ)
         fail++;
+
 
     //
     // Status of a successful handling of missing clock detection

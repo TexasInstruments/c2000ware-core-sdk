@@ -21,6 +21,7 @@ const clocktree_Asserts_Type2 			= device_common.clocktree_Asserts_Type2;
 const clocktree_Asserts_Type3 			= device_common.clocktree_Asserts_Type3;
 const clocktree_Asserts_Type4 			= device_common.clocktree_Asserts_Type4;
 const clocktree_Asserts_Type5 			= device_common.clocktree_Asserts_Type5;
+const clocktree_Asserts_Type6 			= device_common.clocktree_Asserts_Type6;
 const xtal_x1_macro 				= clocktree_common.xtal_x1_macro;
 const device  					= device_common.device;
 %%}
@@ -95,7 +96,7 @@ const device  					= device_common.device;
     CAN_selectClockSource(CANA_BASE, `canAclkSrc`);
     CAN_selectClockSource(CANB_BASE, `canBclkSrc`);
     SysCtl_setEPWMClockDivider(SYSCTL_EPWMCLK_DIV_`DEVICE_CLK_EPWM_DIV`);
-    SysCtl_setEMIF1ClockDivider(SYSCTL_EMIF1CLK_DIV_`DEVICE_CLK_EMIF_DIV`);
+    SysCtl_setEMIF1ClockDivider(`DEVICE_CLK_EMIF_DIV`);
     ASSERT(SysCtl_getClock(DEVICE_OSCSRC_FREQ) == DEVICE_SYSCLK_FREQ);
     ASSERT(SysCtl_getLowSpeedClock(DEVICE_OSCSRC_FREQ) == DEVICE_LSPCLK_FREQ);
 % 	}
@@ -409,6 +410,32 @@ const device  					= device_common.device;
     ASSERT(SysCtl_getLowSpeedClock(DEVICE_OSCSRC_FREQ) == DEVICE_LSPCLK_FREQ);
 % 	}
 % if(clocktree_Asserts_Type5.includes(device))
+%{
+%if(!system.clockTree.LINACLKDIV){
+%var DEVICE_CLK_LINA_DIV = 1;
+%}
+%else{
+%var DEVICE_CLK_LINA_DIV = system.clockTree.LINACLKDIV.divideValue;
+%}
+%if(!system.clockTree.NPUCLKDIV){
+%var DEVICE_CLK_NPU_DIV = 1;
+%}
+%else{
+%var DEVICE_CLK_NPU_DIV = system.clockTree.NPUCLKDIV.divideValue;
+%}
+    //
+    // These asserts will check that the #defines for the clock rates in
+    // device.h match the actual rates that have been configured. If they do
+    // not match, check that the calculations of DEVICE_SYSCLK_FREQ and
+    // DEVICE_LSPCLK_FREQ are accurate. Some examples will not perform as
+    // expected if these are not correct.
+    //
+    SysCtl_setLINAClockDivider(SYSCTL_LINACLK_DIV_`DEVICE_CLK_LINA_DIV`);
+    SysCtl_setNPUClockDivider(SYSCTL_NPUCLK_DIV_`DEVICE_CLK_NPU_DIV`);
+    ASSERT(SysCtl_getClock(DEVICE_OSCSRC_FREQ) == DEVICE_SYSCLK_FREQ);
+    ASSERT(SysCtl_getLowSpeedClock(DEVICE_OSCSRC_FREQ) == DEVICE_LSPCLK_FREQ);
+% 	}
+% if(clocktree_Asserts_Type6.includes(device))
 %{
     //
     // These asserts will check that the #defines for the clock rates in

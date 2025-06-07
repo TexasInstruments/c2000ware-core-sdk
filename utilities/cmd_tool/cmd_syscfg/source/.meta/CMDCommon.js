@@ -263,7 +263,7 @@ function getMemoryRangesInDetail(inst)
                         group  : memDiff.group,
                         config : memDiff.name.startsWith("RAMLS") ? getLSConfig(memDiff.name) :
                                 memDiff.name.startsWith("RAMGS") ? getGSConfig(memDiff.name) : 
-                                memDiff.name.includes("CLATOCPU","CPUTOCLA") ? getCLAMessageRAMConfig(memDiff.name) :
+                                (memDiff.name.includes("CLATOCPU") || memDiff.name.includes("CPUTOCLA")) ? getCLAMessageRAMConfig(memDiff.name) :
                                 memDiff.name.includes("FLASH") ? getFlashMuxConfig(memDiff.name) : undefined
                     });
                 }
@@ -276,7 +276,7 @@ function getMemoryRangesInDetail(inst)
                 group  : memRange.group,
                 config : memRange.name.startsWith("RAMLS") ? getLSConfig(memRange.name) :
                          memRange.name.startsWith("RAMGS") ? getGSConfig(memRange.name) : 
-                         memRange.name.includes("CLATOCPU","CPUTOCLA") ? getCLAMessageRAMConfig(memRange.name) :
+                         memRange.name.includes("CLATOCPU") || memRange.name.includes("CPUTOCLA") ? getCLAMessageRAMConfig(memRange.name) :
                          memRange.name.includes("FLASH") ? getFlashMuxConfig(memRange.name) : undefined
             });
             }

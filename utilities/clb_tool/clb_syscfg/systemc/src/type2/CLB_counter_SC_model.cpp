@@ -123,7 +123,7 @@ void POTENZA_CLB_COUNTER::counter_logic()
     count_plus  = counter_REG + 1;
     count_minus = counter_REG - 1;
 
-    counter_REG =  ( (glbl_en_S == 1) && (reset_S == 0) ) ? (sc_uint<32>)0 : //Highest priority
+    counter_REG =  ( (glbl_en_S == 1) && (reset_S == 1) ) ? (sc_uint<32>)0 : //Highest priority
                   ( (hlc_count_load_en_S == 1)    && (add_shift_on_event_en_S == 0)) ? hlc_count_load_val_S : // Next highest is the direct load
                   ( (glbl_serializer_mode_S == 0) && (glbl_en_S == 1) && (add_shift_on_event_en_S == 1) && (event_occurred == 1)) ? load_val:
                   ( (glbl_serializer_mode_S == 0) && (glbl_en_S == 1) && (add_shift_on_event_en_S == 0) && (event_occurred == 1)) ? event_load_val_S:

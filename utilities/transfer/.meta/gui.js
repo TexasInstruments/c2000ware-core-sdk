@@ -52,12 +52,14 @@ let config = [
             {
                 name: "fsilogger",
                 displayName: "Enable FSI Frame Logger",
-                default: false
+                default: false,
+                hidden: (transferCommon.isC29x())
             },
             {
                 name: "fsiComsLogger",
                 displayName: "Add FSIRX Communication Logger",
-                default: false
+                default: false,
+                hidden: (transferCommon.isC29x())
             },
         ]
     },
@@ -80,9 +82,9 @@ let config = [
         config: [
             {
                 name: "rtlogger",
-                displayName: "Enable Real-Time Logger",
+                displayName: "Enable Rapid Time Logger",
                 default: false,
-                hidden: true,
+                hidden: transferCommon.isC29x(),
                 onChange: rtLoggeronChange
             },
             {
@@ -95,7 +97,7 @@ let config = [
                     let opts = [
                         { name: "file" , displayName: "Selected JSON File"}
                     ]
-                    let rtMod = system.modules[transferCommon.getTransferPath() + "realtimelog.js"];
+                    let rtMod = system.modules[transferCommon.getTransferPath() + "rtlog.js"];
                     if (rtMod)
                     {
                         let rtInst = rtMod.$instances[0];
@@ -108,7 +110,7 @@ let config = [
             },
             {
                 name: "rtloggerJsonFile",
-                displayName: "Message Decode realtime_log.json",
+                displayName: "Message Decode rt_log.json",
                 default: "",
                 hidden: true,
                 checkExistence: true,
@@ -167,6 +169,7 @@ function moduleInstances(inst)
 
         ownedInstances = ownedInstances.concat([expModule]);
     }
+    
     if (inst["fsiComsLogger"] && inst["fsilogger"])
     {
         let comsLoggerModule = {
@@ -210,7 +213,7 @@ function onValidate(inst, validation){
     if (inst["rtlogger"] && !inst["fsilogger"])
     {
         validation.logError(
-            "FSI Frame Logger must be enabled to use Real-Time Logger", 
+            "FSI Frame Logger must be enabled to use Rapid Time Logger", 
             inst, "rtlogger");
     }
     if ((inst["customlogger"]) && !inst["exporter"]["exportCustomLog"])
@@ -239,6 +242,12 @@ if(transferCommon.isC29x())
                 default: false,
                 onChange: dltLoggeronChange
             },
+            {
+                name:"dltcpufreq",
+                displayName: "CPU Clock Freq",
+                default: 200000000,
+                hidden: false
+            }
         ]
     }
     )

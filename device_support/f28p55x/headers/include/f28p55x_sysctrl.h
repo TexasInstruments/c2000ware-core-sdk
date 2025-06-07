@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -434,6 +434,17 @@ union SOFTPRES30_REG {
     struct  SOFTPRES30_BITS  bit;
 };
 
+struct SOFTPRES40_BITS {                // bits description
+    Uint16 JTAG_nTRST:4;                // 3:0 Multi Bit JTAG nTRST
+    Uint16 rsvd1:12;                    // 15:4 Reserved
+    Uint16 JTAG_nTRST_Key:16;           // 31:16 JTAG nTRST Key
+};
+
+union SOFTPRES40_REG {
+    Uint32  all;
+    struct  SOFTPRES40_BITS  bit;
+};
+
 struct TAP_STATUS_BITS {                // bits description
     Uint16 TAP_STATE:16;                // 15:0 Present TAP State
     Uint16 rsvd1:15;                    // 30:16 Reserved
@@ -792,37 +803,39 @@ struct DEV_CFG_REGS {
     union   SOFTPRES28_REG                   SOFTPRES28;                   // Flash Software Reset register
     Uint16                                   rsvd8[2];                     // Reserved
     union   SOFTPRES30_REG                   SOFTPRES30;                   // NPU Software reset register
-    Uint16                                   rsvd9[112];                   // Reserved
+    Uint16                                   rsvd9[18];                    // Reserved
+    union   SOFTPRES40_REG                   SOFTPRES40;                   // Peripheral Software Reset register
+    Uint16                                   rsvd10[92];                   // Reserved
     union   TAP_STATUS_REG                   TAP_STATUS;                   // Status of JTAG State machine & Debugger Connect
     union   TAP_CONTROL_REG                  TAP_CONTROL;                  // Disable TAP control
-    Uint16                                   rsvd10[102];                  // Reserved
+    Uint16                                   rsvd11[102];                  // Reserved
     union   USBTYPE_REG                      USBTYPE;                      // Configures USB Type for the device
     union   ECAPTYPE_REG                     ECAPTYPE;                     // Configures ECAP Type for the device
-    Uint16                                   rsvd11[10];                   // Reserved
+    Uint16                                   rsvd12[10];                   // Reserved
     union   MCUCNF3_REG                      MCUCNF3;                      // MCU Configuration: ETPWM
-    Uint16                                   rsvd12[8];                    // Reserved
+    Uint16                                   rsvd13[8];                    // Reserved
     union   MCUCNF8_REG                      MCUCNF8;                      // MCU Configuration: SCI
-    Uint16                                   rsvd13[4];                    // Reserved
+    Uint16                                   rsvd14[4];                    // Reserved
     union   MCUCNF11_REG                     MCUCNF11;                     // MCU Configuration: CAN
     union   MCUCNF12_REG                     MCUCNF12;                     // MCU Configuration: McBSP_USB
-    Uint16                                   rsvd14[2];                    // Reserved
-    union   MCUCNF14_REG                     MCUCNF14;                     // MCU Configuration: ADC
     Uint16                                   rsvd15[2];                    // Reserved
-    union   MCUCNF16_REG                     MCUCNF16;                     // MCU Configuration: PGA
+    union   MCUCNF14_REG                     MCUCNF14;                     // MCU Configuration: ADC
     Uint16                                   rsvd16[2];                    // Reserved
-    union   MCUCNF18_REG                     MCUCNF18;                     // MCU Configuration: Lx.1 SRAM Customization
+    union   MCUCNF16_REG                     MCUCNF16;                     // MCU Configuration: PGA
     Uint16                                   rsvd17[2];                    // Reserved
+    union   MCUCNF18_REG                     MCUCNF18;                     // MCU Configuration: Lx.1 SRAM Customization
+    Uint16                                   rsvd18[2];                    // Reserved
     union   MCUCNF20_REG                     MCUCNF20;                     // MCU Configuration: GSx SRAM Customization
     union   MCUCNF21_REG                     MCUCNF21;                     // MCU Configuration: CLB
-    Uint16                                   rsvd18[2];                    // Reserved
+    Uint16                                   rsvd19[2];                    // Reserved
     union   MCUCNF23_REG                     MCUCNF23;                     // MCU Configuration: LIN
-    Uint16                                   rsvd19[14];                   // Reserved
+    Uint16                                   rsvd20[14];                   // Reserved
     union   MCUCNF31_REG                     MCUCNF31;                     // MCU Configuration: Flash Bank0
     union   MCUCNF32_REG                     MCUCNF32;                     // MCU Configuration: Flash Bank1
     union   MCUCNF33_REG                     MCUCNF33;                     // MCU Configuration: Flash Bank2
     union   MCUCNF34_REG                     MCUCNF34;                     // MCU Configuration: Flash Bank3
     union   MCUCNF35_REG                     MCUCNF35;                     // MCU Configuration: Flash Bank4
-    Uint16                                   rsvd20[16];                   // Reserved
+    Uint16                                   rsvd21[16];                   // Reserved
     union   MCUCNFLOCK_REG                   MCUCNFLOCK;                   // Lock bit for MCUCNFx registers
 };
 

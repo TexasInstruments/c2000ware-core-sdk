@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -84,12 +84,17 @@ extern "C"
 //**********************************
 // Flash Configuration Base
 #define FLASHCONFIG_BASE                                    0x00051000U
+
+
+
 // Trim Control Register  
 #define FLASH_O_TRIMCTL                                     0x1600U
 // Trim Lock Register      
 #define FLASH_O_TRIMLOCK                                    0x1604U
 // Trim Commit Register      
-#define FLASH_O_TRIMCOMMIT                                  0x1608U      
+#define FLASH_O_TRIMCOMMIT                                  0x1608U
+
+
 #define FLASH_TRIMCTL_ENABLE_M                              0x1U      
 #define FLASH_TRIMCTL_ENABLE_S                              0x0U      
 #define FLASH_TRIMLOCK_TRIMLOCKREAD_TRIMLOCKOTHER_M         0x3U      

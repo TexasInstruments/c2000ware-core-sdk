@@ -108,6 +108,12 @@ CFFT_CONTEXT_RESTORE    .macro
     POP       XAR1
     .endm
 
+    .if  __TI_EABI__
+        .asg CFFT_unpack, _CFFT_unpack
+        .asg CFFT_pack, _CFFT_pack
+        .asg CFFT_conjugate, _CFFT_conjugate
+        .asg vcu0_twiddleFactors, _vcu0_twiddleFactors
+    .endif
 ;;*****************************************************************************
 ;; globals
 ;;*****************************************************************************

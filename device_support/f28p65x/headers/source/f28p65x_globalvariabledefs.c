@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -185,6 +185,14 @@ volatile struct ADC_SAFECHECK_REGS ADCSafetyChk7Regs;
 #pragma DATA_SECTION(ADCSafetyChk8Regs,"ADCSafetyChk8RegsFile");
 #endif
 volatile struct ADC_SAFECHECK_REGS ADCSafetyChk8Regs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("AesaRegsFile")
+#else
+#pragma DATA_SECTION(AesaRegs,"AesaRegsFile");
+#endif
+volatile struct AES_REGS AesaRegs;
 
 #ifdef CPU1
 //----------------------------------------
@@ -674,6 +682,16 @@ volatile struct DCC_REGS Dcc2Regs;
 #endif
 volatile struct DCSM_COMMON_REGS DcsmCommonRegs;
 
+#ifdef CPU1
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("DcsmZ1OtpRegsFile")
+#else
+#pragma DATA_SECTION(DcsmZ1OtpRegs,"DcsmZ1OtpRegsFile");
+#endif
+volatile struct DCSM_Z1_OTP DcsmZ1OtpRegs;
+#endif //ifdef CPU1
+
 //----------------------------------------
 #ifdef __cplusplus
 #pragma DATA_SECTION("DcsmZ1RegsFile")
@@ -681,6 +699,16 @@ volatile struct DCSM_COMMON_REGS DcsmCommonRegs;
 #pragma DATA_SECTION(DcsmZ1Regs,"DcsmZ1RegsFile");
 #endif
 volatile struct DCSM_Z1_REGS DcsmZ1Regs;
+
+#ifdef CPU1
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("DcsmZ2OtpRegsFile")
+#else
+#pragma DATA_SECTION(DcsmZ2OtpRegs,"DcsmZ2OtpRegsFile");
+#endif
+volatile struct DCSM_Z2_OTP DcsmZ2OtpRegs;
+#endif //ifdef CPU1
 
 //----------------------------------------
 #ifdef __cplusplus
@@ -697,6 +725,150 @@ volatile struct DCSM_Z2_REGS DcsmZ2Regs;
 #pragma DATA_SECTION(DevCfgRegs,"DevCfgRegsFile");
 #endif
 volatile struct DEV_CFG_REGS DevCfgRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm17DeRegsFile")
+#else
+#pragma DATA_SECTION(EPwm17DeRegs,"EPwm17DeRegsFile");
+#endif
+volatile struct DE_REGS EPwm17DeRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm18DeRegsFile")
+#else
+#pragma DATA_SECTION(EPwm18DeRegs,"EPwm18DeRegsFile");
+#endif
+volatile struct DE_REGS EPwm18DeRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm1DeRegsFile")
+#else
+#pragma DATA_SECTION(EPwm1DeRegs,"EPwm1DeRegsFile");
+#endif
+volatile struct DE_REGS EPwm1DeRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm2DeRegsFile")
+#else
+#pragma DATA_SECTION(EPwm2DeRegs,"EPwm2DeRegsFile");
+#endif
+volatile struct DE_REGS EPwm2DeRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm3DeRegsFile")
+#else
+#pragma DATA_SECTION(EPwm3DeRegs,"EPwm3DeRegsFile");
+#endif
+volatile struct DE_REGS EPwm3DeRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm4DeRegsFile")
+#else
+#pragma DATA_SECTION(EPwm4DeRegs,"EPwm4DeRegsFile");
+#endif
+volatile struct DE_REGS EPwm4DeRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm5DeRegsFile")
+#else
+#pragma DATA_SECTION(EPwm5DeRegs,"EPwm5DeRegsFile");
+#endif
+volatile struct DE_REGS EPwm5DeRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm6DeRegsFile")
+#else
+#pragma DATA_SECTION(EPwm6DeRegs,"EPwm6DeRegsFile");
+#endif
+volatile struct DE_REGS EPwm6DeRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm7DeRegsFile")
+#else
+#pragma DATA_SECTION(EPwm7DeRegs,"EPwm7DeRegsFile");
+#endif
+volatile struct DE_REGS EPwm7DeRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm8DeRegsFile")
+#else
+#pragma DATA_SECTION(EPwm8DeRegs,"EPwm8DeRegsFile");
+#endif
+volatile struct DE_REGS EPwm8DeRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm9DeRegsFile")
+#else
+#pragma DATA_SECTION(EPwm9DeRegs,"EPwm9DeRegsFile");
+#endif
+volatile struct DE_REGS EPwm9DeRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm10DeRegsFile")
+#else
+#pragma DATA_SECTION(EPwm10DeRegs,"EPwm10DeRegsFile");
+#endif
+volatile struct DE_REGS EPwm10DeRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm11DeRegsFile")
+#else
+#pragma DATA_SECTION(EPwm11DeRegs,"EPwm11DeRegsFile");
+#endif
+volatile struct DE_REGS EPwm11DeRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm12DeRegsFile")
+#else
+#pragma DATA_SECTION(EPwm12DeRegs,"EPwm12DeRegsFile");
+#endif
+volatile struct DE_REGS EPwm12DeRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm13DeRegsFile")
+#else
+#pragma DATA_SECTION(EPwm13DeRegs,"EPwm13DeRegsFile");
+#endif
+volatile struct DE_REGS EPwm13DeRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm14DeRegsFile")
+#else
+#pragma DATA_SECTION(EPwm14DeRegs,"EPwm14DeRegsFile");
+#endif
+volatile struct DE_REGS EPwm14DeRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm15DeRegsFile")
+#else
+#pragma DATA_SECTION(EPwm15DeRegs,"EPwm15DeRegsFile");
+#endif
+volatile struct DE_REGS EPwm15DeRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm16DeRegsFile")
+#else
+#pragma DATA_SECTION(EPwm16DeRegs,"EPwm16DeRegsFile");
+#endif
+volatile struct DE_REGS EPwm16DeRegs;
 
 //----------------------------------------
 #ifdef __cplusplus
@@ -825,6 +997,30 @@ volatile struct ECAP_SIGNAL_MONITORING ECap7SignalMonitoringRegs;
 #pragma DATA_SECTION(Emif1ConfigRegs,"Emif1ConfigRegsFile");
 #endif
 volatile struct EMIF1_CONFIG_REGS Emif1ConfigRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EMIF1RegsFile")
+#else
+#pragma DATA_SECTION(EMIF1Regs,"EMIF1RegsFile");
+#endif
+volatile struct EMIF_REGS EMIF1Regs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPGMuxRegsFile")
+#else
+#pragma DATA_SECTION(EPGMuxRegs,"EPGMuxRegsFile");
+#endif
+volatile struct EPG_MUX_REGS EPGMuxRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPGRegsFile")
+#else
+#pragma DATA_SECTION(EPGRegs,"EPGRegsFile");
+#endif
+volatile struct EPG_REGS EPGRegs;
 
 //----------------------------------------
 #ifdef __cplusplus
@@ -989,6 +1185,150 @@ volatile struct EPWM_XBAR_REGS EPwmXbarBRegs;
 #endif
 volatile struct EPWM_XBAR_REGS EPwmXbarARegs;
 #endif // ifdef CPU1
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm17XcmpRegsFile")
+#else
+#pragma DATA_SECTION(EPwm17XcmpRegs,"EPwm17XcmpRegsFile");
+#endif
+volatile struct EPWM_XCMP_REGS EPwm17XcmpRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm18XcmpRegsFile")
+#else
+#pragma DATA_SECTION(EPwm18XcmpRegs,"EPwm18XcmpRegsFile");
+#endif
+volatile struct EPWM_XCMP_REGS EPwm18XcmpRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm1XcmpRegsFile")
+#else
+#pragma DATA_SECTION(EPwm1XcmpRegs,"EPwm1XcmpRegsFile");
+#endif
+volatile struct EPWM_XCMP_REGS EPwm1XcmpRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm2XcmpRegsFile")
+#else
+#pragma DATA_SECTION(EPwm2XcmpRegs,"EPwm2XcmpRegsFile");
+#endif
+volatile struct EPWM_XCMP_REGS EPwm2XcmpRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm3XcmpRegsFile")
+#else
+#pragma DATA_SECTION(EPwm3XcmpRegs,"EPwm3XcmpRegsFile");
+#endif
+volatile struct EPWM_XCMP_REGS EPwm3XcmpRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm4XcmpRegsFile")
+#else
+#pragma DATA_SECTION(EPwm4XcmpRegs,"EPwm4XcmpRegsFile");
+#endif
+volatile struct EPWM_XCMP_REGS EPwm4XcmpRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm5XcmpRegsFile")
+#else
+#pragma DATA_SECTION(EPwm5XcmpRegs,"EPwm5XcmpRegsFile");
+#endif
+volatile struct EPWM_XCMP_REGS EPwm5XcmpRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm6XcmpRegsFile")
+#else
+#pragma DATA_SECTION(EPwm6XcmpRegs,"EPwm6XcmpRegsFile");
+#endif
+volatile struct EPWM_XCMP_REGS EPwm6XcmpRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm7XcmpRegsFile")
+#else
+#pragma DATA_SECTION(EPwm7XcmpRegs,"EPwm7XcmpRegsFile");
+#endif
+volatile struct EPWM_XCMP_REGS EPwm7XcmpRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm8XcmpRegsFile")
+#else
+#pragma DATA_SECTION(EPwm8XcmpRegs,"EPwm8XcmpRegsFile");
+#endif
+volatile struct EPWM_XCMP_REGS EPwm8XcmpRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm9XcmpRegsFile")
+#else
+#pragma DATA_SECTION(EPwm9XcmpRegs,"EPwm9XcmpRegsFile");
+#endif
+volatile struct EPWM_XCMP_REGS EPwm9XcmpRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm10XcmpRegsFile")
+#else
+#pragma DATA_SECTION(EPwm10XcmpRegs,"EPwm10XcmpRegsFile");
+#endif
+volatile struct EPWM_XCMP_REGS EPwm10XcmpRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm11XcmpRegsFile")
+#else
+#pragma DATA_SECTION(EPwm11XcmpRegs,"EPwm11XcmpRegsFile");
+#endif
+volatile struct EPWM_XCMP_REGS EPwm11XcmpRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm12XcmpRegsFile")
+#else
+#pragma DATA_SECTION(EPwm12XcmpRegs,"EPwm12XcmpRegsFile");
+#endif
+volatile struct EPWM_XCMP_REGS EPwm12XcmpRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm13XcmpRegsFile")
+#else
+#pragma DATA_SECTION(EPwm13XcmpRegs,"EPwm13XcmpRegsFile");
+#endif
+volatile struct EPWM_XCMP_REGS EPwm13XcmpRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm14XcmpRegsFile")
+#else
+#pragma DATA_SECTION(EPwm14XcmpRegs,"EPwm14XcmpRegsFile");
+#endif
+volatile struct EPWM_XCMP_REGS EPwm14XcmpRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm15XcmpRegsFile")
+#else
+#pragma DATA_SECTION(EPwm15XcmpRegs,"EPwm15XcmpRegsFile");
+#endif
+volatile struct EPWM_XCMP_REGS EPwm15XcmpRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm16XcmpRegsFile")
+#else
+#pragma DATA_SECTION(EPwm16XcmpRegs,"EPwm16XcmpRegsFile");
+#endif
+volatile struct EPWM_XCMP_REGS EPwm16XcmpRegs;
 
 //----------------------------------------
 #ifdef __cplusplus
@@ -1524,6 +1864,160 @@ volatile struct HRPWMCAL_REGS HRPWMCAL2Regs;
 #endif
 volatile struct HRPWMCAL_REGS HRPWMCAL3Regs;
 
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm17MinDbLutRegsFile")
+#else
+#pragma DATA_SECTION(EPwm17MinDbLutRegs,"EPwm17MinDbLutRegsFile");
+#endif
+volatile struct MINDB_LUT_REGS EPwm17MinDbLutRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm18MinDbLutRegsFile")
+#else
+#pragma DATA_SECTION(EPwm18MinDbLutRegs,"EPwm18MinDbLutRegsFile");
+#endif
+volatile struct MINDB_LUT_REGS EPwm18MinDbLutRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm1MinDbLutRegsFile")
+#else
+#pragma DATA_SECTION(EPwm1MinDbLutRegs,"EPwm1MinDbLutRegsFile");
+#endif
+volatile struct MINDB_LUT_REGS EPwm1MinDbLutRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm2MinDbLutRegsFile")
+#else
+#pragma DATA_SECTION(EPwm2MinDbLutRegs,"EPwm2MinDbLutRegsFile");
+#endif
+volatile struct MINDB_LUT_REGS EPwm2MinDbLutRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm3MinDbLutRegsFile")
+#else
+#pragma DATA_SECTION(EPwm3MinDbLutRegs,"EPwm3MinDbLutRegsFile");
+#endif
+volatile struct MINDB_LUT_REGS EPwm3MinDbLutRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm4MinDbLutRegsFile")
+#else
+#pragma DATA_SECTION(EPwm4MinDbLutRegs,"EPwm4MinDbLutRegsFile");
+#endif
+volatile struct MINDB_LUT_REGS EPwm4MinDbLutRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm5MinDbLutRegsFile")
+#else
+#pragma DATA_SECTION(EPwm5MinDbLutRegs,"EPwm5MinDbLutRegsFile");
+#endif
+volatile struct MINDB_LUT_REGS EPwm5MinDbLutRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm6MinDbLutRegsFile")
+#else
+#pragma DATA_SECTION(EPwm6MinDbLutRegs,"EPwm6MinDbLutRegsFile");
+#endif
+volatile struct MINDB_LUT_REGS EPwm6MinDbLutRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm7MinDbLutRegsFile")
+#else
+#pragma DATA_SECTION(EPwm7MinDbLutRegs,"EPwm7MinDbLutRegsFile");
+#endif
+volatile struct MINDB_LUT_REGS EPwm7MinDbLutRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm8MinDbLutRegsFile")
+#else
+#pragma DATA_SECTION(EPwm8MinDbLutRegs,"EPwm8MinDbLutRegsFile");
+#endif
+volatile struct MINDB_LUT_REGS EPwm8MinDbLutRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm9MinDbLutRegsFile")
+#else
+#pragma DATA_SECTION(EPwm9MinDbLutRegs,"EPwm9MinDbLutRegsFile");
+#endif
+volatile struct MINDB_LUT_REGS EPwm9MinDbLutRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm10MinDbLutRegsFile")
+#else
+#pragma DATA_SECTION(EPwm10MinDbLutRegs,"EPwm10MinDbLutRegsFile");
+#endif
+volatile struct MINDB_LUT_REGS EPwm10MinDbLutRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm11MinDbLutRegsFile")
+#else
+#pragma DATA_SECTION(EPwm11MinDbLutRegs,"EPwm11MinDbLutRegsFile");
+#endif
+volatile struct MINDB_LUT_REGS EPwm11MinDbLutRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm12MinDbLutRegsFile")
+#else
+#pragma DATA_SECTION(EPwm12MinDbLutRegs,"EPwm12MinDbLutRegsFile");
+#endif
+volatile struct MINDB_LUT_REGS EPwm12MinDbLutRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm13MinDbLutRegsFile")
+#else
+#pragma DATA_SECTION(EPwm13MinDbLutRegs,"EPwm13MinDbLutRegsFile");
+#endif
+volatile struct MINDB_LUT_REGS EPwm13MinDbLutRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm14MinDbLutRegsFile")
+#else
+#pragma DATA_SECTION(EPwm14MinDbLutRegs,"EPwm14MinDbLutRegsFile");
+#endif
+volatile struct MINDB_LUT_REGS EPwm14MinDbLutRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm15MinDbLutRegsFile")
+#else
+#pragma DATA_SECTION(EPwm15MinDbLutRegs,"EPwm15MinDbLutRegsFile");
+#endif
+volatile struct MINDB_LUT_REGS EPwm15MinDbLutRegs;
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EPwm16MinDbLutRegsFile")
+#else
+#pragma DATA_SECTION(EPwm16MinDbLutRegs,"EPwm16MinDbLutRegsFile");
+#endif
+volatile struct MINDB_LUT_REGS EPwm16MinDbLutRegs;
+
+#ifdef CPU1
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("MindbXbarRegsFile")
+#else
+#pragma DATA_SECTION(MindbXbarRegs,"MindbXbarRegsFile");
+#endif
+volatile struct MDL_XBAR_REGS MindbXbarRegs;
+#endif //ifdef CPU1
+
 #ifdef CPU1
 //----------------------------------------
 #ifdef __cplusplus
@@ -1543,6 +2037,14 @@ volatile struct OUTPUT_XBAR_EXT64_REGS OutputXbarRegs;
 #endif
 volatile struct OUTPUT_XBAR_REGS ClbOutputXbarRegs;
 #endif // ifdef CPU1
+
+//----------------------------------------
+#ifdef __cplusplus
+#pragma DATA_SECTION("EradPCTraceBufferRegsFile")
+#else
+#pragma DATA_SECTION(EradPCTraceBufferRegs,"EradPCTraceBufferRegsFile");
+#endif
+volatile struct PCTRACE_BUFFER_REGS EradPCTraceBufferRegs;
 
 //----------------------------------------
 #ifdef __cplusplus

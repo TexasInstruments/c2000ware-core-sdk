@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -234,7 +234,8 @@ GPIO_isPinValid(uint32_t pin)
 {
     return((pin <= 81U) || ((pin >= 208U) && (pin <= 215U)) ||
            ((pin >= 224U) && (pin <= 253U) && (pin != 243U) &&
-            (pin != 246U) && (pin != 250U)));
+            (pin != 246U) && (pin != 250U) && (pin != 36U) && (pin != 38U) &&
+            (pin != 39U)));
 }
 #endif
 

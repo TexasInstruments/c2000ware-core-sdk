@@ -24,7 +24,7 @@
 ;
 ;======================================================================
 ; #############################################################################
-; $TI Release: F28004x Support Library v5.03.00.00 $
+; $TI Release: F28004x Support Library v5.05.00.00 $
 ; $Copyright:
 ;// Copyright (C) 2021 Texas Instruments Incorporated - http://www.ti.com/
 ;//

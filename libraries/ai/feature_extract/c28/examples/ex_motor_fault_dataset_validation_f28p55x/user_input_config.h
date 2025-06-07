@@ -43,6 +43,9 @@
 #define FE_FEATURE_SIZE_PER_FRAME         (FE_FFT_SIZE)
 #endif // end of RAW
 
-#define FE_NN_OUT_SIZE                    (4) // Number of output classes
+#define FE_LOG_MUL 20
+#define FE_LOG_BASE 10
+
+#define FE_NN_OUT_SIZE                    (6) // Number of output classes
 
 #endif /* INPUT_CONFIG_H_ */

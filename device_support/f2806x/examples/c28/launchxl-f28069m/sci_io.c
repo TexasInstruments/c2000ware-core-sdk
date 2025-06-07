@@ -12,7 +12,7 @@
 // $TI Release: LaunchPad f2802x Support Library v100 $
 // $Release Date: Wed Jul 25 10:45:39 CDT 2012 $
 // $Copyright:
-// Copyright (C) 2009-2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2009-2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 

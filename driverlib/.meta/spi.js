@@ -309,7 +309,7 @@ let config = [
     },
 ];
 
-if (["F28002x", "F28003x", "F28004x", "F2807x", "F2837xS", "F2837xD", "F2838x", "F28P65x","F28P55x"].includes(Common.getDeviceName())){
+if (["F28002x", "F28003x", "F28004x", "F2807x", "F2837xS", "F2837xD", "F2838x", "F28P65x","F28P55x", "F28E12x"].includes(Common.getDeviceName())){
     config = config.concat([
         {
             name        : "useDMARX",

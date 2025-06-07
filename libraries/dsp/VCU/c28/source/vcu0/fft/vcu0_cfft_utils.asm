@@ -63,7 +63,14 @@
 ;; global defines
 
 	  .if __TI_EABI__
-	  .asg CFFT16_TF,_CFFT16_TF
+      .asg CFFT16_TF, _CFFT16_TF
+	  .asg cfft16_init,_cfft16_init
+      .asg cfft16_brev,_cfft16_brev
+      .asg cfft16_tbl_brev,_cfft16_tbl_brev
+      .asg cfft16_flip_re_img,_cfft16_flip_re_img
+      .asg cfft16_flip_re_img_conj,_cfft16_flip_re_img_conj
+      .asg cfft16_unpack_asm,_cfft16_unpack_asm
+      .asg cifft16_pack_asm,_cifft16_pack_asm      
 	  .endif
 ;############################################################################
 ;

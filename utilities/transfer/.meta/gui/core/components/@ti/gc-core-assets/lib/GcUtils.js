@@ -275,6 +275,27 @@ class GcUtils {
         throw Error('applicationRoot is only available for NodeWebkit');
     }
     /**
+     * Helper method to map relative paths to the application server to URL.  This method is not available for NodeJS, where
+     * there is no concept of an application root.
+     * If the relative path points starts with workspace, it will be converted to absolute URL starting with /workspaceserver/app/Default/.
+     * Otherwise the relative path is unchanged.
+     *
+     * @param relativePath path relative to the application's root
+     * @param getProjectName asynchronous method to retrieve the name of the project if necessary.
+     */
+    static async resolveApplicationRelativePath(relativePath, getProjectName) {
+        if (GcUtils.isNodeJS) {
+            throw Error('resolveApplicationRelativePath is not available for NodeJS');
+        }
+        if (relativePath.startsWith('./workspace/') || relativePath.startsWith('workspace/')) {
+            const pos = relativePath.startsWith('./') ? './workspace/'.length : 'workspace/'.length;
+            relativePath = relativePath.substring(pos);
+            const projectName = await getProjectName();
+            return `/workspaceserver/app/Default/${projectName}/${relativePath}`;
+        }
+        return relativePath;
+    }
+    /**
      * Returns the current OS.
      */
     static get OS() {
@@ -659,11 +680,21 @@ class GcUtils {
         }
         return sign * 6.103515625e-5 * (fraction / 0x400); // Math.pow(2, -14) = 6.103515625e-5
     }
+    static closeWindow() {
+        if (GcUtils.isNW) {
+            // @ts-ignore
+            nw.Window.get().close();
+        }
+    }
 }
 /**
  * The bitfield helper class.
  */
 GcUtils.bitField = BitField;
+if (typeof window !== 'undefined') {
+    window.gc = window.gc || {};
+    window.gc.util = window.gc.util || GcUtils;
+}
 
 export { BitField, GcUtils };
 //# sourceMappingURL=GcUtils.js.map

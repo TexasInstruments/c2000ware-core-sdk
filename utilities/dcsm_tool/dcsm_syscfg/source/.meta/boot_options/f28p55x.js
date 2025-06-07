@@ -1,0 +1,42 @@
+let f28p55x_boot =[
+    {name: "0x00", displayName:"(PARALLEL) D0-D7=GPIO(0-7) , MCU-Control=GPIO16 , Host-Control=GPIO29"},
+    {name: "0x20", displayName:"(PARALLEL) D0-D7=GPIO(0-3,5-7,24) , MCU-Control=GPIO12 , Host-Control=GPIO13"},
+    {name: "0x01", displayName:"(SCI) SCIATX=GPIO29 , SCIARX=GPIO28"},
+    {name: "0x21", displayName:"(SCI) SCIATX=GPIO1 , SCIARX=GPIO0"},
+    {name: "0x41", displayName:"(SCI) SCIATX=GPIO8 , SCIARX=GPIO9"},
+    {name: "0x61", displayName:"(SCI) SCIATX=GPIO7 , SCIARX=GPIO3"},
+    {name: "0x81", displayName:"(SCI) SCIATX=GPIO16 , SCIARX=GPIO3"},
+    {name: "0x02", displayName:"(CAN) CANTXA=GPIO4 , CANRXA=GPIO5"},
+    {name: "0x22", displayName:"(CAN) CANTXA=GPIO1 , CANRXA=GPIO0"},
+    {name: "0x42", displayName:"(CAN) CANTXA=GPIO13 , CANRXA=GPIO12"},
+    {name: "0x03", displayName:"(FLASH) Flash-Entry-Address=0x00080000 , CPU1 Bank 0 , Sector 0"},
+    {name: "0x23", displayName:"(FLASH) Flash-Entry-Address=0x00088000 , CPU1 Bank 0 , Sector 32"},
+    {name: "0x43", displayName:"(FLASH) Flash-Entry-Address=0x000C0000 , CPU1 Bank 2 , Sector 0"},
+    {name: "0x63", displayName:"(FLASH) Flash-Entry-Address=0x000C8000 , CPU1 Bank 2 , Sector 32"},
+    {name: "0x83", displayName:"(FLASH) Flash-Entry-Address=0x00100000 , CPU1 Bank 4 , Sector 0"},
+    {name: "0x04", displayName:"(WAIT) Watchdog is Enabled"},
+    {name: "0x24", displayName:"(WAIT) Watchdog is Disabled"},
+    {name: "0x05", displayName:"(RAM) RAM-Entry-Point-Address=0x00000000"},
+    {name: "0x06", displayName:"(SPI) SPIA_PICO=GPIO2 , SPIA_POCI=GPIO1 , SPIA_CLK=GPIO3 , SPIA_PTE=GPIO5"},
+    {name: "0x26", displayName:"(SPI) SPIA_PICO=GPIO16 , SPIA_POCI=GPIO1 , SPIA_CLK=GPIO3 , SPIA_PTE=GPIO0"},
+    {name: "0x46", displayName:"(SPI) SPIA_PICO=GPIO8 , SPIA_POCI=GPIO10 , SPIA_CLK=GPIO9 , SPIA_PTE=GPIO11"},
+    {name: "0x66", displayName:"(SPI) SPIA_PICO=GPIO16 , SPIA_POCI=GPIO12 , SPIA_CLK=GPIO9 , SPIA_PTE=GPIO24"},
+    {name: "0x07", displayName:"(I2C) SDAA=GPIO0 , SCLA=GPIO1"},
+    {name: "0x27", displayName:"(I2C) SDAA=GPIO32 , SCLA=GPIO33"},
+    {name: "0x47", displayName:"(I2C) SDAA=GPIO5 , SCLA=GPIO4"},
+    {name: "0x08", displayName:"(CAN-FD) CANTXA=GPIO4 , CANRXA=GPIO5"},
+    {name: "0x28", displayName:"(CAN-FD) CANTXA=GPIO1 , CANRXA=GPIO0"},
+    {name: "0x48", displayName:"(CAN-FD) CANTXA=GPIO13 , CANRXA=GPIO12"},
+    {name: "0x09", displayName:"(USB) USBDM=GPIO23 , USBDP=GPIO41"},
+    {name: "0x0A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x00080000 , CPU1 Bank 0 , Sector 0"},
+    {name: "0x2A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x00088000 , CPU1 Bank 0 , Sector 32"},
+    {name: "0x4A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x000C0000 , CPU1 Bank 2 , Sector 0"},
+    {name: "0x6A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x000C8000 , CPU1 Bank 2 , Sector 32"},
+    {name: "0x8A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x00100000 , CPU1 Bank 4 , Sector 0"},
+    {name: "0x0B", displayName:"(LFU FLASH) Flash-Entry-Address=0x00080000 for CPU1 Bank 0 , 0x000C0000 for CPU1 Bank 2"},
+    {name: "0x2B", displayName:"(LFU FLASH) Flash-Entry-Address=0x00088000 for CPU1 Bank 0 , 0x000C8000 for CPU1 Bank 2"}
+]
+
+exports={
+    f28p55x_boot : f28p55x_boot
+};

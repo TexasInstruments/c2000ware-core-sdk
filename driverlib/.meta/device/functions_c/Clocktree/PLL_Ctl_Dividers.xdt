@@ -5,6 +5,7 @@ let Common   					= system.getScript("/driverlib/Common.js");
 const clocktree_PLL_Ctl_Dividers_Type0 		= device_common.clocktree_PLL_Ctl_Dividers_Type0;
 const clocktree_PLL_Ctl_Dividers_Type1 		= device_common.clocktree_PLL_Ctl_Dividers_Type1;
 const clocktree_PLL_Ctl_Dividers_Type2 		= device_common.clocktree_PLL_Ctl_Dividers_Type2;
+const clocktree_PLL_Ctl_Dividers_Type3 		= device_common.clocktree_PLL_Ctl_Dividers_Type3;
 const device  					= device_common.device;
 %%}
 % if(clocktree_PLL_Ctl_Dividers_Type0.includes(device))
@@ -47,4 +48,19 @@ const device  					= device_common.device;
     // Set up AUXPLL control and clock dividers needed for CMCLK
     //
     SysCtl_setAuxClock(DEVICE_AUXSETCLOCK_CFG);
+	% }
+% if(clocktree_PLL_Ctl_Dividers_Type3.includes(device))
+	% {
+    //
+    // Set up PLL control and clock dividers
+    //
+
+    SysCtl_setClock(OSC_CLK_SRC, SYSCTL_PLL_ENABLE, SYSCTL_PLL_PDIV,
+                    SYSCTL_PLL_QDIV, SYSCTL_PLL_RDIVCLK0, SYSCTL_PLL_SYSDIV,
+                    SYSCTL_DCC_BASE_0);
+
+    //
+    // Make sure the LSPCLK divider is set to the default (divide by 4)
+    //
+    SysCtl_setLowSpeedClock(DEVICE_LSPCLK_CFG);
 	% }

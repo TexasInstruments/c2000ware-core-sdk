@@ -14,6 +14,7 @@ system.getScript("/driverlib/device_driverlib_peripherals/" +
 var deviceNumberOfInstances = device_driverlib_memmap.CMPSSMemoryMap.length
 
 let CMPSS_INSTANCE = device_driverlib_memmap.CMPSSMemoryMap;
+CMPSS_INSTANCE = CMPSS_INSTANCE.filter(module => !module.name.includes("LITE"));
 CMPSS_INSTANCE = CMPSS_INSTANCE.map(({baseAddress, ...rest}) => {
     return rest;
 });
@@ -1661,6 +1662,12 @@ function onValidate(inst, validation) {
             var tempPinNameL = ComparatorInputs.CMPSS_comparatorInputSignals[Common.getDeviceName()][inst.cmpssBase][inst.asysCMPLPMXSELValue].displayName
             var tempPinInfoL = Pinmux.findAllAnalogPin(Pinmux.getDeviceADCName(tempPinName.split("/")[0]))
 
+            if (["F28P65x"].includes(Common.getDeviceName())){
+                tempPinName = ComparatorInputs.CMPSS_comparatorLowPositiveInputSignals[Common.getDeviceName()][inst.cmpssBase][inst.asysCMPLPMXSELValue].displayName
+                tempPinNameL = ComparatorInputs.CMPSS_comparatorLowPositiveInputSignals[Common.getDeviceName()][inst.cmpssBase][inst.asysCMPLPMXSELValue].displayName
+                tempPinInfoL = Pinmux.findAllAnalogPin(Pinmux.getDeviceADCName(tempPinName.split("/")[0]))
+            }
+            
             var allPinsMustBeConfigured = true;
 
             if ((tempPinName == "B5" || tempPinName == "B11") && Common.getDevicePart() == "F28003x_100PZ")

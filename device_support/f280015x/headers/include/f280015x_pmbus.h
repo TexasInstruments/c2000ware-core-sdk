@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -174,13 +174,13 @@ struct PMBCTRL_BITS {                   // bits description
     Uint16 SCL_MODE:1;                  // 15 Configures mode of PMBus Clock pin
     Uint16 SCL_VALUE:1;                 // 16 Configures output value of PMBus clock pin in GPIO Mode
     Uint16 SCL_DIR:1;                   // 17 Configures direction of PMBus clock pin in GPIO mode
-    Uint16 IBIAS_A_EN:1;                // 18 PMBus Current Source A Control
-    Uint16 IBIAS_B_EN:1;                // 19 PMBus Current Source B Control
+    Uint16 rsvd2:1;                     // 18 Reserved
+    Uint16 rsvd3:1;                     // 19 Reserved
     Uint16 CLK_LO_DIS:1;                // 20 Clock Low Timeout Disable
     Uint16 SLAVE_EN:1;                  // 21 PMBus Slave Enable
     Uint16 MASTER_EN:1;                 // 22 PMBus Master Enable
     Uint16 CLKDIV:5;                    // 27:23 PMBUS Clock Divide Value
-    Uint16 rsvd2:3;                     // 30:28 Reserved
+    Uint16 rsvd4:3;                     // 30:28 Reserved
     Uint16 I2CMODE:1;                   // 31 Bit to enable I2C mode
 };
 

@@ -87,7 +87,7 @@ class TargetConfigService extends Events {
     }
     async getConfig(connectionName, deviceName) {
         console.logAPI(this.getConfig.name, ...arguments);
-        const connectionXml = await this.getConnectionXml(connectionName);
+        const connectionXml = connectionName.endsWith('.xml') ? connectionName : await this.getConnectionXml(connectionName);
         const { xmlPath, xmlFile } = await this.getBoardOrDeviceXml(deviceName);
         if (connectionXml && xmlFile && xmlPath) {
             if (GcUtils.isNodeJS && this.targetConfig) {
@@ -263,7 +263,7 @@ class TargetConfigService extends Events {
     }
     formatChildren(doc, indent, node) {
         let child = node.firstChild;
-        const childIndent = indent += '    ';
+        const childIndent = indent + '    ';
         while (child) {
             if (child.nodeType === node.ELEMENT_NODE && child.previousSibling?.nodeType !== node.TEXT_NODE) {
                 node.insertBefore(doc.createTextNode(childIndent), child);

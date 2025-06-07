@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -2409,43 +2409,151 @@ struct MINDB_LUT_REGS {
 //
 #ifdef CPU1
 extern volatile struct EPWM_REGS EPwm17Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm17XcmpRegs;
+extern volatile struct DE_REGS EPwm17DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm17MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm18Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm18XcmpRegs;
+extern volatile struct DE_REGS EPwm18DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm18MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm1Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm1XcmpRegs;
+extern volatile struct DE_REGS EPwm1DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm1MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm2Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm2XcmpRegs;
+extern volatile struct DE_REGS EPwm2DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm2MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm3Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm3XcmpRegs;
+extern volatile struct DE_REGS EPwm3DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm3MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm4Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm4XcmpRegs;
+extern volatile struct DE_REGS EPwm4DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm4MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm5Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm5XcmpRegs;
+extern volatile struct DE_REGS EPwm5DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm5MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm6Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm6XcmpRegs;
+extern volatile struct DE_REGS EPwm6DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm6MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm7Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm7XcmpRegs;
+extern volatile struct DE_REGS EPwm7DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm7MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm8Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm8XcmpRegs;
+extern volatile struct DE_REGS EPwm8DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm8MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm9Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm9XcmpRegs;
+extern volatile struct DE_REGS EPwm9DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm9MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm10Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm10XcmpRegs;
+extern volatile struct DE_REGS EPwm10DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm10MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm11Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm11XcmpRegs;
+extern volatile struct DE_REGS EPwm11DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm11MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm12Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm12XcmpRegs;
+extern volatile struct DE_REGS EPwm12DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm12MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm13Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm13XcmpRegs;
+extern volatile struct DE_REGS EPwm13DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm13MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm14Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm14XcmpRegs;
+extern volatile struct DE_REGS EPwm14DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm14MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm15Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm15XcmpRegs;
+extern volatile struct DE_REGS EPwm15DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm15MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm16Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm16XcmpRegs;
+extern volatile struct DE_REGS EPwm16DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm16MinDbLutRegs;
 #endif
 #ifdef CPU2
 extern volatile struct EPWM_REGS EPwm17Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm17XcmpRegs;
+extern volatile struct DE_REGS EPwm17DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm17MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm18Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm18XcmpRegs;
+extern volatile struct DE_REGS EPwm18DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm18MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm1Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm1XcmpRegs;
+extern volatile struct DE_REGS EPwm1DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm1MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm2Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm2XcmpRegs;
+extern volatile struct DE_REGS EPwm2DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm2MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm3Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm3XcmpRegs;
+extern volatile struct DE_REGS EPwm3DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm3MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm4Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm4XcmpRegs;
+extern volatile struct DE_REGS EPwm4DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm4MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm5Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm5XcmpRegs;
+extern volatile struct DE_REGS EPwm5DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm5MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm6Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm6XcmpRegs;
+extern volatile struct DE_REGS EPwm6DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm6MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm7Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm7XcmpRegs;
+extern volatile struct DE_REGS EPwm7DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm7MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm8Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm8XcmpRegs;
+extern volatile struct DE_REGS EPwm8DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm8MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm9Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm9XcmpRegs;
+extern volatile struct DE_REGS EPwm9DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm9MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm10Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm10XcmpRegs;
+extern volatile struct DE_REGS EPwm10DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm10MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm11Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm11XcmpRegs;
+extern volatile struct DE_REGS EPwm11DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm11MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm12Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm12XcmpRegs;
+extern volatile struct DE_REGS EPwm12DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm12MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm13Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm13XcmpRegs;
+extern volatile struct DE_REGS EPwm13DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm13MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm14Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm14XcmpRegs;
+extern volatile struct DE_REGS EPwm14DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm14MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm15Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm15XcmpRegs;
+extern volatile struct DE_REGS EPwm15DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm15MinDbLutRegs;
 extern volatile struct EPWM_REGS EPwm16Regs;
+extern volatile struct EPWM_XCMP_REGS EPwm16XcmpRegs;
+extern volatile struct DE_REGS EPwm16DeRegs;
+extern volatile struct MINDB_LUT_REGS EPwm16MinDbLutRegs;
 #endif
 #ifdef __cplusplus
 }

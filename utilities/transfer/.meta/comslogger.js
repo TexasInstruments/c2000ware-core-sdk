@@ -49,25 +49,50 @@ function moduleInstances(inst)
     {
         let fsiLinkModInst;
         if (transferCommon.isC2000()) {
-            fsiLinkModInst = {
-                name: "comsLinkModule",      
-                displayName: "FSI RX Communication Link",
-                moduleName: "/driverlib/fsirx.js",
-                collapsed: true,
-                args: {
-                    $name : inst.$name + "_FSIRX",
-                },
-                requiredArgs: {
-                    softwareFrameSize: inst.packetLength.toString(),
-                    // enableLoopback: false,
-                    enableTagMatching: false,
-                    enableInterrupt: true,
-                    useInterrupts: ["FSI_INT1"],
-                    enabledINT1Interrupts: ["FSI_RX_EVT_FRAME_DONE"],
-                    registerInterruptLine1: true,
-                    pingTimeout: false,
-                    fsiRxInt1 : {
-                        enableInterrupt: true
+            if(transferCommon.getDeviceName() != "F28004x"){
+                fsiLinkModInst = {
+                    name: "comsLinkModule",      
+                    displayName: "FSI RX Communication Link",
+                    moduleName: "/driverlib/fsirx.js",
+                    collapsed: true,
+                    args: {
+                        $name : inst.$name + "_FSIRX",
+                    },
+                    requiredArgs: {
+                        softwareFrameSize: inst.packetLength.toString(),
+                        // enableLoopback: false,
+                        enableTagMatching: false,
+                        enableInterrupt: true,
+                        useInterrupts: ["FSI_INT1"],
+                        enabledINT1Interrupts: ["FSI_RX_EVT_FRAME_DONE"],
+                        registerInterruptLine1: true,
+                        pingTimeout: false,
+                        fsiRxInt1 : {
+                            enableInterrupt: true
+                        }
+                    }
+                }
+            }
+            else{
+                fsiLinkModInst = {
+                    name: "comsLinkModule",      
+                    displayName: "FSI RX Communication Link",
+                    moduleName: "/driverlib/fsirx.js",
+                    collapsed: true,
+                    args: {
+                        $name : inst.$name + "_FSIRX",
+                    },
+                    requiredArgs: {
+                        softwareFrameSize: inst.packetLength.toString(),
+                        // enableLoopback: false,
+                        enableInterrupt: true,
+                        useInterrupts: ["FSI_INT1"],
+                        enabledINT1Interrupts: ["FSI_RX_EVT_FRAME_DONE"],
+                        registerInterruptLine1: true,
+                        pingTimeout: false,
+                        fsiRxInt1 : {
+                            enableInterrupt: true
+                        }
                     }
                 }
             }

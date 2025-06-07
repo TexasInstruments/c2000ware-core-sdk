@@ -242,6 +242,7 @@ let DeviceMemoryMap = [
 	{ name: "LCM_CPU2_DMA1_BASE", displayName: "LCM CPU2 DMA1", baseAddress: "0x0004E800U" },
 	{ name: "ESC_SS_BASE", displayName: "ESC SS", baseAddress: "0x00057E00U" },
 	{ name: "ESC_SS_CONFIG_BASE", displayName: "ESC SS CONFIG", baseAddress: "0x00057F00U" },
+	{ name: "FLASH0CMD_BASE", displayName: "FLASH0CMD", baseAddress: "0x00058000U" },
 	{ name: "MCANA_DRIVER_BASE", displayName: "MCANA DRIVER", baseAddress: "0x00059000U" },
 	{ name: "MCANA_MSG_RAM_BASE", displayName: "MCANA MSG RAM", baseAddress: "0x00059000U" },
 	{ name: "MCANASS_BASE", displayName: "MCANASS", baseAddress: "0x0005A400U" },
@@ -260,6 +261,8 @@ let DeviceMemoryMap = [
 	{ name: "SYSSTAT_BASE", displayName: "SYSSTAT", baseAddress: "0x0005D400U" },
 	{ name: "PERIPHAC_BASE", displayName: "PERIPHAC", baseAddress: "0x0005D500U" },
 	{ name: "ANALOGSUBSYS_BASE", displayName: "ANALOGSUBSYS", baseAddress: "0x0005D700U" },
+	{ name: "HWBIST_BASE", displayName: "HWBIST", baseAddress: "0x0005E000U" },
+	{ name: "MPOST_BASE", displayName: "MPOST", baseAddress: "0x0005E200U" },
 	{ name: "DCC0_BASE", displayName: "DCC0", baseAddress: "0x0005E700U" },
 	{ name: "DCC1_BASE", displayName: "DCC1", baseAddress: "0x0005E740U" },
 	{ name: "DCC2_BASE", displayName: "DCC2", baseAddress: "0x0005E780U" },
@@ -306,6 +309,7 @@ let DeviceMemoryMap = [
 	{ name: "ACCESSPROTECTION_BASE", displayName: "ACCESSPROTECTION", baseAddress: "0x0005F500U" },
 	{ name: "MEMORYERROR_BASE", displayName: "MEMORYERROR", baseAddress: "0x0005F540U" },
 	{ name: "ROMWAITSTATE_BASE", displayName: "ROMWAITSTATE", baseAddress: "0x0005F580U" },
+	{ name: "ROMPREFETCH_BASE", displayName: "ROMPREFETCH", baseAddress: "0x0005F588U" },
 	{ name: "TESTERROR_BASE", displayName: "TESTERROR", baseAddress: "0x0005F590U" },
 	{ name: "FLASH0CTRL_BASE", displayName: "FLASH0CTRL", baseAddress: "0x0005F800U" },
 	{ name: "FLASH0ECC_BASE", displayName: "FLASH0ECC", baseAddress: "0x0005FB00U" },
@@ -683,6 +687,9 @@ let ESCMemoryMap = [
 	{ name: "ESC_SS_BASE", displayName: "ESC SS", baseAddress: "0x00057E00U" },
 	{ name: "ESC_SS_CONFIG_BASE", displayName: "ESC SS CONFIG", baseAddress: "0x00057F00U" },
 ];
+let FLASH0CMDMemoryMap = [
+	{ name: "FLASH0CMD_BASE", displayName: "FLASH0CMD", baseAddress: "0x00058000U" },
+];
 let MCANAMemoryMap = [
 	{ name: "MCANA_DRIVER_BASE", displayName: "MCANA DRIVER", baseAddress: "0x00059000U" },
 	{ name: "MCANA_MSG_RAM_BASE", displayName: "MCANA MSG RAM", baseAddress: "0x00059000U" },
@@ -716,6 +723,12 @@ let PERIPHACMemoryMap = [
 ];
 let ANALOGSUBSYSMemoryMap = [
 	{ name: "ANALOGSUBSYS_BASE", displayName: "ANALOGSUBSYS", baseAddress: "0x0005D700U" },
+];
+let HWBISTMemoryMap = [
+	{ name: "HWBIST_BASE", displayName: "HWBIST", baseAddress: "0x0005E000U" },
+];
+let MPOSTMemoryMap = [
+	{ name: "MPOST_BASE", displayName: "MPOST", baseAddress: "0x0005E200U" },
 ];
 let DCCMemoryMap = [
 	{ name: "DCC0_BASE", displayName: "DCC0", baseAddress: "0x0005E700U" },
@@ -782,8 +795,9 @@ let ACCESSPROTECTIONMemoryMap = [
 let MEMORYERRORMemoryMap = [
 	{ name: "MEMORYERROR_BASE", displayName: "MEMORYERROR", baseAddress: "0x0005F540U" },
 ];
-let ROMWAITSTATEMemoryMap = [
+let ROMMemoryMap = [
 	{ name: "ROMWAITSTATE_BASE", displayName: "ROMWAITSTATE", baseAddress: "0x0005F580U" },
+	{ name: "ROMPREFETCH_BASE", displayName: "ROMPREFETCH", baseAddress: "0x0005F588U" },
 ];
 let TESTERRORMemoryMap = [
 	{ name: "TESTERROR_BASE", displayName: "TESTERROR", baseAddress: "0x0005F590U" },
@@ -869,6 +883,7 @@ module.exports = {
 	CANAMemoryMap: CANAMemoryMap,
 	LCMMemoryMap: LCMMemoryMap,
 	ESCMemoryMap: ESCMemoryMap,
+	FLASH0CMDMemoryMap: FLASH0CMDMemoryMap,
 	MCANAMemoryMap: MCANAMemoryMap,
 	IPCMemoryMap: IPCMemoryMap,
 	DEVCFGMemoryMap: DEVCFGMemoryMap,
@@ -877,6 +892,8 @@ module.exports = {
 	SYSSTATMemoryMap: SYSSTATMemoryMap,
 	PERIPHACMemoryMap: PERIPHACMemoryMap,
 	ANALOGSUBSYSMemoryMap: ANALOGSUBSYSMemoryMap,
+	HWBISTMemoryMap: HWBISTMemoryMap,
+	MPOSTMemoryMap: MPOSTMemoryMap,
 	DCCMemoryMap: DCCMemoryMap,
 	ERADMemoryMap: ERADMemoryMap,
 	EPGMemoryMap: EPGMemoryMap,
@@ -887,7 +904,7 @@ module.exports = {
 	EMIF1CONFIGMemoryMap: EMIF1CONFIGMemoryMap,
 	ACCESSPROTECTIONMemoryMap: ACCESSPROTECTIONMemoryMap,
 	MEMORYERRORMemoryMap: MEMORYERRORMemoryMap,
-	ROMWAITSTATEMemoryMap: ROMWAITSTATEMemoryMap,
+	ROMMemoryMap: ROMMemoryMap,
 	TESTERRORMemoryMap: TESTERRORMemoryMap,
 	FLASH0MemoryMap: FLASH0MemoryMap,
 	ERADPCTRACECPUMemoryMap: ERADPCTRACECPUMemoryMap,

@@ -1,0 +1,42 @@
+let f2838x_boot =[
+    {name: "0x00", displayName:"(PARALLEL) D0-D7=GPIO(89,90,58-62,88) , MCU-Control=GPIO91 , Host-Control=GPIO92"},
+    {name: "0x01", displayName:"(SCI) SCIATX=GPIO29 , SCIARX=GPIO28"},
+    {name: "0x21", displayName:"(SCI) SCIATX=GPIO84 , SCIARX=GPIO85"},
+    {name: "0x41", displayName:"(SCI) SCIATX=GPIO36 , SCIARX=GPIO35"},
+    {name: "0x61", displayName:"(SCI) SCIATX=GPIO42 , SCIARX=GPIO43"},
+    {name: "0x81", displayName:"(SCI) SCIATX=GPIO65 , SCIARX=GPIO64"},
+    {name: "0xA1", displayName:"(SCI) SCIATX=GPIO135 , SCIARX=GPIO136"},
+    {name: "0xC1", displayName:"(SCI) SCIATX=GPIO8 , SCIARX=GPIO9"},
+    {name: "0x02", displayName:"(CAN) CANTXA=GPIO37 , CANRXA=GPIO36"},
+    {name: "0x22", displayName:"(CAN) CANTXA=GPIO71 , CANRXA=GPIO70"},
+    {name: "0x42", displayName:"(CAN) CANTXA=GPIO63 , CANRXA=GPIO62"},
+    {name: "0x62", displayName:"(CAN) CANTXA=GPIO19 , CANRXA=GPIO18"},
+    {name: "0x82", displayName:"(CAN) CANTXA=GPIO4 , CANRXA=GPIO5"},
+    {name: "0xA2", displayName:"(CAN) CANTXA=GPIO31 , CANRXA=GPIO30"},
+    {name: "0x03", displayName:"(FLASH) Flash-Entry-Address=0x00080000 , CPU1 Bank 0 , Sector 0"},
+    {name: "0x23", displayName:"(FLASH) Flash-Entry-Address=0x00088000 , CPU1 Bank 0 , Sector 4"},
+    {name: "0x43", displayName:"(FLASH) Flash-Entry-Address=0x000A8000 , CPU1 Bank 0 , Sector 8"},
+    {name: "0x63", displayName:"(FLASH) Flash-Entry-Address=0x000BE000 , CPU1 Bank 0 , Sector 13"},
+    {name: "0x04", displayName:"(WAIT) Watchdog is Enabled"},
+    {name: "0x24", displayName:"(WAIT) Watchdog is Disabled"},
+    {name: "0x05", displayName:"(RAM) RAM-Entry-Point-Address=0x00000000"},
+    {name: "0x06", displayName:"(SPI) SPIA_SIMO=GPIO58 , SPIA_SOMI=GPIO59 , SPIA_CLK=GPIO60 , SPIA_STE=GPIO61"},
+    {name: "0x26", displayName:"(SPI) SPIA_SIMO=GPIO16 , SPIA_SOMI=GPIO17 , SPIA_CLK=GPIO18 , SPIA_STE=GPIO19"},
+    {name: "0x46", displayName:"(SPI) SPIA_SIMO=GPIO32 , SPIA_SOMI=GPIO33 , SPIA_CLK=GPIO34 , SPIA_STE=GPIO35"},
+    {name: "0x66", displayName:"(SPI) SPIA_SIMO=GPIO16 , SPIA_SOMI=GPIO17 , SPIA_CLK=GPIO56 , SPIA_STE=GPIO57"},
+    {name: "0x86", displayName:"(SPI) SPIA_SIMO=GPIO54 , SPIA_SOMI=GPIO55 , SPIA_CLK=GPIO56 , SPIA_STE=GPIO57"},
+    {name: "0x07", displayName:"(I2C) SDAA=GPIO91 , SCLA=GPIO92"},
+    {name: "0x27", displayName:"(I2C) SDAA=GPIO32 , SCLA=GPIO33"},
+    {name: "0x47", displayName:"(I2C) SDAA=GPIO42 , SCLA=GPIO43"},
+    {name: "0x67", displayName:"(I2C) SDAA=GPIO0 , SCLA=GPIO1"},
+    {name: "0x87", displayName:"(I2C) SDAA=GPIO104 , SCLA=GPIO105"},
+    {name: "0x09", displayName:"(USB) USBDM=GPIO42 , USBDP=GPIO43"},
+    {name: "0x0A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x00080000 , CPU1 Bank 0 , Sector 0"},
+    {name: "0x2A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x00088000 , CPU1 Bank 0 , Sector 4"},
+    {name: "0x4A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x000A8000 , CPU1 Bank 0 , Sector 8"},
+    {name: "0x6A", displayName:"(SECURE FLASH) Flash-Entry-Address=0x000BE000 , CPU1 Bank 0 , Sector 13"}
+]
+
+exports={
+    f2838x_boot : f2838x_boot
+};

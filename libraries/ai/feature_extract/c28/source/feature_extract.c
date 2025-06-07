@@ -14,7 +14,7 @@
 //
 //
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -258,7 +258,16 @@ void run_data_reframe(Feature_Extract_State_Params *state_params)
     volatile int idx_bin = 0;
 
     float temp_buf_sum, temp_model_input_float;
-    float fft_offset = 10*logf(frame_size1);
+    float32_t exp = 2.71828183f;
+    float fft_offset = 0;
+    if(state_params->init_params.log_base != (float)exp)
+    {
+        fft_offset = (state_params->init_params.log_multiply)*(logf(frame_size1)/logf(state_params->init_params.log_base));
+    }
+    else
+    {
+        fft_offset = (state_params->init_params.log_multiply)*logf(frame_size1);
+    }
      //input model buffer shifting by feature_size_per_frame units
     for (idx = 0; idx < feature_shift_stop_idx; idx++)
     {
@@ -272,7 +281,14 @@ void run_data_reframe(Feature_Extract_State_Params *state_params)
         {   // FFT binning
             temp_buf_sum = temp_buf_sum + data_reframe_inputPtr[idx*fft_bin_size1 + minimum_bin_size + idx_bin];
         }
-        temp_model_input_float = 10*logf(temp_buf_sum) - fft_offset; // Calculate FFT/N in logarithm   //###ask Lei
+        if(state_params->init_params.log_base != (float)exp)
+        {
+            temp_model_input_float = (state_params->init_params.log_multiply)*(logf(temp_buf_sum)/logf(state_params->init_params.log_base)) - fft_offset; // Calculate FFT/N in logarithm
+        }
+        else
+        {
+            temp_model_input_float = (state_params->init_params.log_multiply)*logf(temp_buf_sum) - fft_offset; // Calculate FFT/N in logarithm
+        }
         data_reframe_outputPtr[idx+feature_shift_stop_idx] = model_input_conversion(temp_model_input_float);
     }
 #endif
@@ -337,7 +353,7 @@ void run_BIN(Feature_Extract_State_Params *state_params)
     int j=0;
     for(j=0; j<total_feature_size_per_frame1; j++)
     {
-        binOutPtr[j] = 20*log10f(binOutPtr[j]);
+        binOutPtr[j] = (state_params->init_params.log_multiply)*(logf(binOutPtr[j])/logf(state_params->init_params.log_base));
     }
     //#endif
 }
@@ -449,9 +465,9 @@ int run_feature_extract(Feature_Extract_Handle_Params *handle_params, void* inpu
     float *vib_b = &xyz_buff[state_params->init_params.fft_size];
     float *vib_c = &xyz_buff[(state_params->init_params.fft_size)*2];
 
-    memcpy(vib_a, &input_ptr[0], (state_params->init_params.fft_size)*2);
-    memcpy(vib_b, &input_ptr[state_params->init_params.fft_size], (state_params->init_params.fft_size)*2);
-    memcpy(vib_c, &input_ptr[(state_params->init_params.fft_size)*2], (state_params->init_params.fft_size)*2);
+    memcpy(vib_a, &input_ptr[0], (state_params->init_params.fft_size)*sizeof(float));
+    memcpy(vib_b, &input_ptr[state_params->init_params.fft_size], (state_params->init_params.fft_size)*sizeof(float));
+    memcpy(vib_c, &input_ptr[(state_params->init_params.fft_size)*2], (state_params->init_params.fft_size)*sizeof(float));
 
 
     if(state_params->init_params.type == FEATURE_EXTRACT_RAW) {
@@ -500,7 +516,7 @@ int run_feature_extract(Feature_Extract_Handle_Params *handle_params, void* inpu
 
             for(i1=0;i1<state_params->init_params.feature_size_per_frame;i1++)
             {
-                Temp_resultBuff[i1+(num_channel*(state_params->init_params.feature_size_per_frame))] = 20*log10f(RFFTmagBuff[i1+1]);
+                Temp_resultBuff[i1+(num_channel*(state_params->init_params.feature_size_per_frame))] = (state_params->init_params.log_multiply)*(logf(RFFTmagBuff[i1+1])/logf(state_params->init_params.log_base));
             }
         }
 

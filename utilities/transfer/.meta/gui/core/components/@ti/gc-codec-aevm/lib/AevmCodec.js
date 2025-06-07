@@ -6,7 +6,7 @@ import { GcUtils } from '../../gc-core-assets/lib/GcUtils';
 import { GcConsole } from '../../gc-core-assets/lib/GcConsole';
 
 /**
- *  Copyright (c) 2020, 2023 Texas Instruments Incorporated
+ *  Copyright (c) 2020, 2024 Texas Instruments Incorporated
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -103,6 +103,7 @@ class AevmCodec extends AbstractMessageBasedDecoder {
      * @hidden
      */
     async onConnect(transport) {
+        this.frameDecoder.deconfigure();
         this.transport = transport;
         this.sentPacketCount = 0;
         this.receivedPacketCount = 0;

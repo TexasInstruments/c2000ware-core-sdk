@@ -22,7 +22,7 @@
 //
 //
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -57,7 +57,7 @@
 //
 // Included Files
 //
-#include "F28x_Project.h"
+#include "f28x_project.h"
 
 //
 // DMA data sections
@@ -152,7 +152,7 @@ void main(void)
 // Enable interrupts required for this example
 //
    PieCtrlRegs.PIECTRL.bit.ENPIE = 1;   // Enable the PIE block
-   PieCtrlRegs.PIEIER7.bit.INTx6 = 1;   // Enable PIE Group 7, INT 2 (DMA CH2)
+   PieCtrlRegs.PIEIER7.bit.INTx6 = 1;   // Enable PIE Group 7, INT 6 (DMA CH6)
    IER= M_INT7;                         // Enable CPU INT6
    EINT;                                // Enable Global Interrupts
 

@@ -46,7 +46,7 @@ let config = [
                         { name: "fsi", reason: "Not yet implemented" },
                     ]
                 },
-                default: "fsi"
+                default: "sci"
             },
         ]
     },
@@ -64,11 +64,16 @@ let config = [
                     { name: "can", displayName: "CAN" },
                 ],
                 getDisabledOptions: (inst) => {
-                    return [
+                    let disOpts = [
                         { name: "can", reason: "Not yet implemented" },
                     ]
+                    if (!transferCommon.hasFSISupport())
+                    {
+                        disOpts.push({ name: "fsi", reason: "Not yet implemented"});
+                    }
+                    return disOpts;
                 },
-                default: "fsi"
+                default: transferCommon.hasFSISupport()?"fsi":"sci"
             },
             {
                 name: "comsLinkBBuffer",
@@ -200,29 +205,57 @@ function moduleInstances(inst)
     
     if (inst.comsLinkB == "fsi")
     {
-        let fsiLinkBModInst = {
-            name: "comsLinkBModule",      
-            displayName: "FSI RX Communication Link B",
-            moduleName: "/driverlib/fsirx.js",
-            collapsed: true,
-            args: {
-                $name : inst.$name + "_FSIRX_LINKB",
-            },
-            requiredArgs: {
-                softwareFrameSize: inst.packetLength.toString(),
-                enableLoopback: false,
-                enableTagMatching: false,
-                enableInterrupt: true,
-                useInterrupts: ["FSI_INT1"],
-                enabledINT1Interrupts: ["FSI_RX_EVT_FRAME_DONE"],
-                registerInterruptLine1: true,
-                pingTimeout: false,
-                fsiRxInt1 : {
-                    enableInterrupt: true
-                }
-            },
-            group: "GROUP_COMS_LINK_B"
+        let fsiLinkBModInst = {}
+        if(transferCommon.getDeviceName() != "F28004x"){
+            fsiLinkBModInst = {
+                name: "comsLinkBModule",      
+                displayName: "FSI RX Communication Link B",
+                moduleName: "/driverlib/fsirx.js",
+                collapsed: true,
+                args: {
+                    $name : inst.$name + "_FSIRX_LINKB",
+                },
+                requiredArgs: {
+                    softwareFrameSize: inst.packetLength.toString(),
+                    enableLoopback: false,
+                    enableTagMatching: false,
+                    enableInterrupt: true,
+                    useInterrupts: ["FSI_INT1"],
+                    enabledINT1Interrupts: ["FSI_RX_EVT_FRAME_DONE"],
+                    registerInterruptLine1: true,
+                    pingTimeout: false,
+                    fsiRxInt1 : {
+                        enableInterrupt: true
+                    }
+                },
+                group: "GROUP_COMS_LINK_B"
+            }
         }
+        else{
+            fsiLinkBModInst = {
+                name: "comsLinkBModule",      
+                displayName: "FSI RX Communication Link B",
+                moduleName: "/driverlib/fsirx.js",
+                collapsed: true,
+                args: {
+                    $name : inst.$name + "_FSIRX_LINKB",
+                },
+                requiredArgs: {
+                    softwareFrameSize: inst.packetLength.toString(),
+                    enableLoopback: false,
+                    enableInterrupt: true,
+                    useInterrupts: ["FSI_INT1"],
+                    enabledINT1Interrupts: ["FSI_RX_EVT_FRAME_DONE"],
+                    registerInterruptLine1: true,
+                    pingTimeout: false,
+                    fsiRxInt1 : {
+                        enableInterrupt: true
+                    }
+                },
+                group: "GROUP_COMS_LINK_B"
+            }
+        }
+        
 
         if (inst.comsLinkBErrorHandler)
         {
@@ -319,6 +352,7 @@ function moduleInstances(inst)
             ...{
                 useInterrupts: true,
                 registerInterrupts: true,
+                selectRegisteredInterrupts: ["registerRxInt", "registerTxInt"],
                 rxFifo: "SCI_FIFO_RX" + inst.packetLength,
                 txFifo: "SCI_FIFO_TX0",
                 enabledFIFOInterrupts: ["SCI_INT_RXFF"],

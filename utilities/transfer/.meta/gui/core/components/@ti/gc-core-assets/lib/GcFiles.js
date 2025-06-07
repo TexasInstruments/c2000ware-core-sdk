@@ -50,7 +50,7 @@ const saveFile = (fileURL, data, formatter) => {
         /* browser save */
     }
     else {
-        cache[fileURL] = new Promise((resolve, reject) => {
+        cache[fileURL] = GcUtils.resolveApplicationRelativePath(fileURL, GcFiles.getProjectName).then(fileURL => new Promise((resolve, reject) => {
             const req = new XMLHttpRequest();
             req.onerror = (event) => {
                 const message = `file failed to write file contents due to: ${event.error}`;
@@ -62,7 +62,7 @@ const saveFile = (fileURL, data, formatter) => {
             };
             req.open('PUT', fileURL, true);
             req.send(formatter(data));
-        });
+        }));
     }
     return cache[fileURL];
 };
@@ -71,9 +71,9 @@ const unloadFile = (fileURL) => {
 };
 const loadFile = (fileURL, parser, responseType, force) => {
     // TODO: do we need to handle nw differently?
+    fileURL = fileURL.trim();
     if (force)
         unloadFile(fileURL);
-    fileURL = fileURL.trim();
     let promise = cache[fileURL];
     if (!promise) {
         /* NodeJS read */
@@ -84,7 +84,7 @@ const loadFile = (fileURL, parser, responseType, force) => {
             /* browser read */
         }
         else {
-            promise = new Promise((resolve, reject) => {
+            promise = GcUtils.resolveApplicationRelativePath(fileURL, GcFiles.getProjectName).then(fileURL => new Promise((resolve, reject) => {
                 const xmlHttp = new XMLHttpRequest();
                 xmlHttp.onloadend = () => {
                     if (xmlHttp.readyState === 4 && (xmlHttp.status === 200 || xmlHttp.status === 0)) {
@@ -104,7 +104,7 @@ const loadFile = (fileURL, parser, responseType, force) => {
                     xmlHttp.responseType = responseType;
                 }
                 xmlHttp.send();
-            });
+            }));
         }
         cache[fileURL] = promise = promise.then((data) => {
             try {

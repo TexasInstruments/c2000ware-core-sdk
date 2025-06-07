@@ -2291,11 +2291,15 @@ var epwm_validation = [
 		// Validation #84
 		{
 			type : validation_error,
-			name :  "If you enabled Minimum Deadband, there must be a delay of atleast 1 SYSCLK cycle and you cannot have a negative delay",
+			name :  "If you enabled Minimum Deadband, there must be a delay of atleast 2 TBCLK cycle and you cannot have a negative delay",
 			func : (inst, validation, name) => {
-				if (inst["epwmMinDeadBand_EnableA"] && inst["epwmMinDeadBand_A_setDelay"] <= 0)
+				if (inst["epwmMinDeadBand_EnableA"] && inst["epwmMinDeadBand_A_setDelay"] <= 1)
 				{
 					validation.logError(name, inst, "epwmMinDeadBand_A_setDelay");
+				}
+				if (inst["epwmMinDeadBand_EnableB"] && inst["epwmMinDeadBand_B_setDelay"] <= 1)
+				{
+					validation.logError(name, inst, "epwmMinDeadBand_B_setDelay");
 				}
 			},
 			devices : [

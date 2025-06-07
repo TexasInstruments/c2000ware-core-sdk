@@ -52,7 +52,19 @@ void `instance.$name`_init(){
 %{
 	GPIO_setPadConfig(`instance.$name`, GPIO_PIN_TYPE_OD | GPIO_PIN_TYPE_PULLUP | GPIO_PIN_TYPE_INVERT);
 %}
-		% if (!["F28002x", "F280013x", "F280015x"].includes(Common.getDeviceName())) {
+%else if(instance.padConfig == "ODO_PULLUP")
+%{
+	GPIO_setPadConfig(`instance.$name`, GPIO_PIN_TYPE_PULLUP);
+%}
+%else if(instance.padConfig == "ODO_INVERT")
+%{
+	GPIO_setPadConfig(`instance.$name`, GPIO_PIN_TYPE_INVERT);
+%}
+%else if(instance.padConfig == "ODO_PULLUP_INVERT")
+%{
+	GPIO_setPadConfig(`instance.$name`, GPIO_PIN_TYPE_PULLUP | GPIO_PIN_TYPE_INVERT);
+%}
+		% if (!["F28002x", "F280013x", "F280015x","F28E12x"].includes(Common.getDeviceName())) {
 	GPIO_setControllerCore(`instance.$name`, `instance.controllerCore`);
 		% }
 	GPIO_setQualificationMode(`instance.$name`, `instance.qualMode`);

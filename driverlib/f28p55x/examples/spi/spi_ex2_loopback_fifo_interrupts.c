@@ -38,7 +38,7 @@
 //
 //#############################################################################
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -162,7 +162,7 @@ __interrupt void spiTxFIFOISR(void)
     //
     for(i = 0; i < 2; i++)
     {
-       SPI_writeDataNonBlocking(SPIA_BASE, sData[i]);
+       SPI_writeDataNonBlocking(mySPI0_BASE, sData[i]);
     }
 
     //
@@ -176,8 +176,8 @@ __interrupt void spiTxFIFOISR(void)
     //
     // Clear interrupt flag and issue ACK
     //
-    SPI_clearInterruptStatus(SPIA_BASE, SPI_INT_TXFF);
-    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP6);
+    SPI_clearInterruptStatus(mySPI0_BASE, SPI_INT_TXFF);
+    Interrupt_clearACKGroup(INT_mySPI0_TX_INTERRUPT_ACK_GROUP);
 }
 
 //
@@ -192,7 +192,7 @@ __interrupt void spiTxFIFOISR(void)
     //
     for(i = 0; i < 2; i++)
     {
-        rData[i] = SPI_readDataNonBlocking(SPIA_BASE);
+        rData[i] = SPI_readDataNonBlocking(mySPI0_BASE);
     }
 
     //
@@ -212,6 +212,6 @@ __interrupt void spiTxFIFOISR(void)
     //
     // Clear interrupt flag and issue ACK
     //
-    SPI_clearInterruptStatus(SPIA_BASE, SPI_INT_RXFF);
-    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP6);
+    SPI_clearInterruptStatus(mySPI0_BASE, SPI_INT_RXFF);
+    Interrupt_clearACKGroup(INT_mySPI0_RX_INTERRUPT_ACK_GROUP);
 }

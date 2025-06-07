@@ -1,0 +1,2 @@
+import{r as t,g as r}from"./p-823ca21f.js";import{c as s}from"./p-4c4e8f8e.js";import{NetworkTransport as e}from"../gc-transport-network/lib/NetworkTransport";let o=class{constructor(r){t(this,r);this.impl=undefined;this.optional=false}connectedCallback(){this.impl=new e(s(this.el))}disconnectedCallback(){this.impl.dispose()}get el(){return r(this)}};export{o as gc_transport_network};
+//# sourceMappingURL=p-8184f262.entry.js.map

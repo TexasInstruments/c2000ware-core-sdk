@@ -39,7 +39,7 @@
 //
 //
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -244,13 +244,11 @@ void main(void)
         // Set GPIO16
         //
         GPIO_writePin(16, 1);
-
         //
         // Lower GPIO10, trigger XINT1
         //
         GPIO_clearPortPins(GPIO_PORT_A, GPIO_GPADIR_GPIO10);
         while(xint1Count == tempX1Count) {}
-
         //
         // Set GPIO16
         //
@@ -260,7 +258,6 @@ void main(void)
         // Wait for Qual period
         //
         DEVICE_DELAY_US(DELAY);
-
         //
         // Raise GPIO11, trigger XINT2
         //
@@ -284,6 +281,7 @@ void main(void)
             // Lower GPIO11
             //
             GPIO_writePin(11, 0);
+
         }
         else
         {

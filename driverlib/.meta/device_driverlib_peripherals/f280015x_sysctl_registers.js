@@ -110,6 +110,12 @@ let SYSCTLRegisters = [
 			{ name: "FLASHA", description: "Flash Wrapper Module Reset Bit", size: "1", shift: "0", mask: "0x1" },
 		]
 	},
+	{ name: "SOFTPRES40", description: "Peripheral Software Reset register", offset: "0xD2",
+		bits: [
+			{ name: "JTAG_NTRST", description: "Multi Bit JTAG nTRST", size: "4", shift: "0", mask: "0xF" },
+			{ name: "JTAG_NTRST_KEY", description: "JTAG nTRST Key", size: "16", shift: "16", mask: "0xFFFF0000" },
+		]
+	},
 	{ name: "TAP_STATUS", description: "Status of JTAG State machine & Debugger Connect", offset: "0x130",
 		bits: [
 			{ name: "TAP_STATE", description: "Present TAP State", size: "16", shift: "0", mask: "0xFFFF" },
@@ -139,7 +145,6 @@ let SYSCTLRegisters = [
 		bits: [
 			{ name: "OSCCLKSRCSEL", description: "OSCCLK Source Select Bit", size: "2", shift: "0", mask: "0x3" },
 			{ name: "WDHALTI", description: "Watchdog HALT Mode Ignore Bit", size: "1", shift: "5", mask: "0x20" },
-			{ name: "INTOSC2CLKMODE", description: "Select IntR or ExtR mode for INTOSC2", size: "1", shift: "7", mask: "0x80" },
 		]
 	},
 	{ name: "CLKSRCCTL2", description: "Clock Source Control register-2", offset: "0xA",

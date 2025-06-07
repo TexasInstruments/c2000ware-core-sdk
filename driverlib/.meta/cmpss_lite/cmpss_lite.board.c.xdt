@@ -27,7 +27,7 @@ void `nameOfPeripheral`_init(){
     %   var instance = module.$instances[i];
     %   var instanceNumber = instance.cmpssLiteBase.match(/\d+/)[0]
 void `instance.$name`_init(){
-%   if( ["F280013x", "F280015x"].includes(system.deviceData.deviceId)){
+%   if( ["F280013x", "F280015x", "F28E12x"].includes(system.deviceData.deviceId)){
 %%{
         
             if (i == 0)
@@ -105,7 +105,7 @@ void `instance.$name`_init(){
     //  - ePWM module must be configured before using here.
     //
         % }
-        % if(["F280013x", "F280015x"].includes(system.deviceData.deviceId)){
+        % if(["F280013x", "F280015x", "F28E12x"].includes(system.deviceData.deviceId)){
     CMPSSLITE_configDAC(`baseName`, `instance.dacValLoad`);
         % }
         % else{
@@ -179,7 +179,7 @@ void `instance.$name`_init(){
     //
     CMPSSLITE_disableLatchResetOnPWMSYNCLow(`baseName`);
         % }
-        % if( ["F28002x", "F28003x", "F28004x","F2838x", "F280013x", "F280015x"].includes(Common.getDeviceName())){
+        % if( ["F280013x", "F280015x"].includes(Common.getDeviceName())){
     //
     // Sets the ePWM module blanking signal that holds trip in reset.
     //

@@ -7,11 +7,11 @@ let ASYSCTLRegisters = [
 	},
 	{ name: "REFCONFIGB", description: "Config register for analog reference B.", offset: "0x36",
 		bits: [
-			{ name: "ADC_ATB_ENA", description: "ADC testmux enable", size: "2", shift: "5", mask: "0x60" },
-			{ name: "ADC_ATB_ENB", description: "ADC testmux enable", size: "2", shift: "7", mask: "0x180" },
-			{ name: "ADC_ATB_ENC", description: "ADC testmux enable", size: "2", shift: "9", mask: "0x600" },
-			{ name: "ADC_ATB_END", description: "ADC testmux enable", size: "2", shift: "11", mask: "0x1800" },
-			{ name: "ADC_ATB_ENE", description: "ADC testmux enable", size: "2", shift: "13", mask: "0x6000" },
+			{ name: "ADC_ATB_ENA", description: "ADC A testmux enable", size: "2", shift: "5", mask: "0x60" },
+			{ name: "ADC_ATB_ENB", description: "ADC B testmux enable", size: "2", shift: "7", mask: "0x180" },
+			{ name: "ADC_ATB_ENC", description: "ADC C testmux enable", size: "2", shift: "9", mask: "0x600" },
+			{ name: "ADC_ATB_END", description: "ADC D testmux enable", size: "2", shift: "11", mask: "0x1800" },
+			{ name: "ADC_ATB_ENE", description: "ADC E testmux enable", size: "2", shift: "13", mask: "0x6000" },
 		]
 	},
 	{ name: "INTERNALTESTCTL", description: "INTERNALTEST Node Control Register", offset: "0x4A",
@@ -105,11 +105,6 @@ let ASYSCTLRegisters = [
 		bits: [
 			{ name: "CMP1LDACOUTEN", description: "Enable general purpose DAC functionality for", size: "1", shift: "0", mask: "0x1" },
 			{ name: "CMPSSCTLEN", description: "Enable the CMPSSCTL Register", size: "1", shift: "15", mask: "0x8000" },
-		]
-	},
-	{ name: "CMPSSDACBUFCONFIG", description: "Config bits for CMPSS DAC buffer", offset: "0x8C",
-		bits: [
-			{ name: "CMPSSADACL", description: "Configuration bits for CMPSS DACA", size: "8", shift: "0", mask: "0xFF" },
 		]
 	},
 	{ name: "LOCK", description: "Lock Register", offset: "0x8E",

@@ -10,7 +10,7 @@
 //
 //
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -62,8 +62,6 @@
 //  THROWING AN EXCEPTION WHEN A CALL TO DELAY_US() IS MADE.
 //
 #pragma CODE_SECTION(InitFlash, ".TI.ramfunc");
-#pragma CODE_SECTION(FlashOff, ".TI.ramfunc");
-
 
 // The following values are used to validate PLL Frequency using DCC
 //
@@ -277,25 +275,46 @@ void DisablePeripheralClocks(void)
 #endif
 void InitFlash(void)
 {
-//TODO :Add InitFlash code here
-}
+    EALLOW;
 
-//
-// FlashOff - This function powers down the flash
-//
-//      *CAUTION*
-// This function MUST be executed out of RAM. Executing it out of OTP/Flash
-// will yield unpredictable results. Also you must seize the flash pump in
-// order to power it down.
-//
-#ifdef __cplusplus
-#pragma CODE_SECTION(".TI.ramfunc");
+    //
+    // Disable Cache and prefetch mechanism before changing wait states
+    //
+    Flash0CtrlRegs.FRD_INTF_CTRL.bit.DATA_CACHE_EN = 0;
+    Flash0CtrlRegs.FRD_INTF_CTRL.bit.PREFETCH_EN = 0;
+
+    //
+    // Set waitstates according to frequency.
+    //
+    //      *CAUTION*
+    // Minimum waitstates required for the flash operating at a given CPU rate
+    // must be characterized by TI. Refer to the datasheet for the latest
+    // information.
+    //
+#if CPU_FRQ_150MHZ
+        Flash0CtrlRegs.FRDCNTL.bit.RWAIT = 0x3;
+
 #endif
-void FlashOff(void)
-{
-//TODO :Add FlashOff code here
-}
+    //
+    // Enable cache and prefetch mechanism to improve performance of code
+    // executed from flash.
+    //
+    Flash0CtrlRegs.FRD_INTF_CTRL.bit.DATA_CACHE_EN = 1;
+    Flash0CtrlRegs.FRD_INTF_CTRL.bit.PREFETCH_EN = 1;
 
+    //
+    // At reset, ECC is enabled.  If it is disabled by application software and
+    // if application again wants to enable ECC. This may not be possible? Check
+    //
+    Flash0EccRegs.ECC_ENABLE.bit.ENABLE = 0xA;
+    EDIS;
+
+    //
+    // Force a pipeline flush to ensure that the write to the last register
+    // configured occurs before returning.
+    //
+    __asm(" RPT #7 || NOP");
+}
 
 //
 // ServiceDog - This function resets the watchdog timer.

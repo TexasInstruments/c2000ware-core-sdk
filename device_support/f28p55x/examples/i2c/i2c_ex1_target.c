@@ -29,7 +29,7 @@
 //
 //#############################################################################
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -120,10 +120,10 @@ void main(void)
      //Configure I2C pins
      //
 
-     GPIO_SetupPinMux(GPIO_PIN_SDAA, GPIO_MUX_CPU1, 11);
-     GPIO_SetupPinOptions(GPIO_PIN_SDAA, GPIO_OUTPUT, GPIO_PULLUP);
-     GPIO_SetupPinMux(GPIO_PIN_SCLA, GPIO_MUX_CPU1, 11);
-     GPIO_SetupPinOptions(GPIO_PIN_SCLA, GPIO_OUTPUT, GPIO_PULLUP);
+        GPIO_SetupPinMux(GPIO_PIN_SDAA, GPIO_MUX_CPU1, 11);
+        GPIO_SetupPinOptions(GPIO_PIN_SDAA, GPIO_OUTPUT, GPIO_PULLUP);
+        GPIO_SetupPinMux(GPIO_PIN_SCLA, GPIO_MUX_CPU1, 11);
+        GPIO_SetupPinOptions(GPIO_PIN_SCLA, GPIO_OUTPUT, GPIO_PULLUP);
 
 
     //
@@ -203,7 +203,11 @@ void I2CTarget_Init(uint16_t I2CTarget_OwnAddress)
     //
     I2caRegs.I2CMDR.bit.CNT = 0x0U;
     I2caRegs.I2CMDR.bit.TRX = 0x0U;
-
+    //
+    // Configure I2C Clock Settings
+    I2caRegs.I2CPSC.all = 0x11;        // Prescaler - need 7-12 Mhz on module clk
+    I2caRegs.I2CCLKL = 0x7;          // NOTE: must be non zero
+    I2caRegs.I2CCLKH = 0x8;           // NOTE: must be non zero
     //
     // Set the bit count to 8 bits per data byte
     //
@@ -354,7 +358,7 @@ __interrupt void I2CISR(void)
      //
      // Clear the current interrupt and enable future I2C (PIE Group 8) interrupts
      //
-     PieCtrlRegs.PIEACK.all = PIEACK_GROUP8;
+    PieCtrlRegs.PIEACK.all = PIEACK_GROUP8;
  }
 
 //

@@ -1,0 +1,240 @@
+:root {
+    --clr-light-blue: #f2f8fb;
+    --clr-medium-blue: #d4e5ee;
+    --clr-dark-blue: #189;
+    --clr-red: #c00;
+    --clr-white: #fff;
+    --f-clr-black: #231f20;
+    --f-clr-gray: #9ca3a8;
+    --f-clr-darkgray: #7e7e7e;
+    --f-clr-blue: #189;
+
+    /* Containers Styles */
+    --styled-container-theme: #fff;
+    --styled-container-shadow-theme: #00000033; 
+    --disable-container-gray-theme: rgba(249,249,249,0.5);
+    --disable-container-white-theme: rgba(256,256,256,0.75);
+    --background-container-theme: #f9f9f9;
+    --home-background-container-theme: var(--clr-dark-blue);
+    --container_header_text_theme: #555555;
+
+    /* Menubar */
+    --menubar-text-theme: #f9f9f9;
+    --menubar-theme: var(--clr-red);
+    --menubar-text-hover-theme: #555;
+    --menubar-hover-theme: #f9f9f9;
+
+    /* Dialog */
+    --dialog-background-theme: #f9f9f9;
+
+    /* Button */
+    --button-text-theme: var(--clr-white);
+    --button-text-disabled-theme: var(--clr-white);
+    --button-text-hover-theme: var(--clr-white);
+    --button-background-theme: var(--clr-red);
+    --button-background-disabled-theme: #ccc;
+    --button-background-hover-theme: #e00;
+    --button-border-theme: var(--clr-red);
+    --button-border-disabled-theme: #ccc;
+    --button-border-hover-theme: #e00;
+
+    /* Misc */
+    --invert-image-theme: invert(1);
+}
+#editorRoot gc-widget-dialog {
+    --gc-widget-dialog-background-color: var(--dialog-background-theme);
+    /* transition: .2s ease-in-out; */
+}
+#editorRoot gc-widget-menubar {
+    background-color: var(--menubar-theme);
+    transition: .2s ease-in-out;
+}
+#editorRoot gc-widget-menuitem {
+    color: var(--menubar-text-theme);
+    background-color: var(--menubar-theme);
+    transition: .2s ease-in-out;
+}
+#editorRoot gc-widget-menuitem:hover {
+    color: var(--menubar-text-hover-theme);
+    background-color: var(--menubar-hover-theme);
+    transition: .2s ease-in-out;
+}
+#editorRoot gc-widget-menuaction:not(:hover) {
+    color: var(--menubar-text-hover-theme);
+    background-color: var(--menubar-hover-theme);
+    transition: .2s ease-in-out;
+}
+/* #editorRoot gc-widget-menuaction:hover {
+    color: var(--menubar-text-hover-theme);
+    background-color: var(--menubar-hover-theme);
+} */
+.theme_styled_container {
+    background: var(--styled-container-theme);
+    transition: .2s ease-in-out;
+}
+.theme_background_container {
+    background: var(--background-container-theme);
+    transition: .2s ease-in-out;
+}
+.theme_home_background_container {
+    background: var(--home-background-container-theme);
+    transition: .2s ease-in-out;
+}
+.theme_container_header_text {
+    color: var(--container_header_text_theme);
+    transition: .2s ease-in-out;
+}
+.theme_button {
+    --gc-color: var(--button-text-theme);
+    --gc-color-disabled: var(--button-text-disabled-theme);
+    --gc-color-hover: var(--button-text-hover-theme);
+    --gc-background-color: var(--button-background-theme);
+    --gc-background-color-disabled: var(--button-background-disabled-theme);
+    --gc-background-color-hover: var(--button-background-hover-theme);
+    --gc-border-color: var(--button-border-theme);
+    --gc-border-color-disabled: var(--button-border-disabled-theme);
+    --gc-border-color-hover: var(--button-border-hover-theme);
+    transition: .2s ease-in-out;
+}
+.container {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+.tile {
+    margin: 10px;
+}
+.tile.instruments {
+    width: 300px;
+    min-width: 400px;
+    height: 320px;
+}
+.tile.info > * {
+    margin: 0;
+}
+.transparent_container {
+    background-color: rgb(0, 0, 0, 0);
+}
+.invert_image {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    filter: var(--invert-image-theme);
+}
+.system_status_widget {
+    margin: 5px 10px 5px 10px
+}
+.system_status_widget_led {
+    margin: 5px 10px 5px 10px;
+    --gc-on-color: #ff0000;
+    --gc-off-color: #00ff00;
+}
+.darker_input {
+    border-width: 2px;
+    border-color: black;
+}
+.alignment_time {
+    color: cyan;
+    font-weight: bold;
+}
+.openloop_start {
+    color: magenta;
+    font-weight: bold;
+}
+.closedloop_run {
+    color: orange;
+    font-weight: bold;
+}
+.circle_div {
+    align-items: center;
+    background-color: var(--clr-white);
+    border-radius: 100%;
+    border-width: 1px;
+    box-shadow: 0 3px 12px -2px rgba(0,0,0,0.5);
+    height: 50px;
+    width: 50px;
+}
+.circle_text {
+    color: var(--clr-dark-blue);
+    text-align: center;
+    font-size: 18pt;
+    font-weight: 800;
+}
+.styled_box {
+    background: var(--styled-container-theme);
+    border-radius: 12px;
+    box-shadow: 0 2px 5px -3px rgba(0, 0, 0, .5);
+    transition: .2s ease-in-out;
+}
+.styled_box:hover {
+    box-shadow: 6px 6px 6px 0 var(--styled-container-shadow-theme);
+}
+.styled_box_header_text {
+    font-weight: 600;
+}
+.styled_box_body_text {
+    
+}
+.animated_next_container{
+    /*background: rgb(94, 94, 242);*/
+    background: #4CAF50;
+    animation: blink 2s infinite;
+    border-radius: 50px;
+    height: 15px;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    width: 50px;
+    padding: 0;
+    --gc-padding: 0;
+}
+.animated_next_text{
+    color: #fff;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 0;
+    --gc-padding: 0;
+    margin: 0;
+}
+@keyframes blink {
+    0%, to{
+        opacity: 0
+    }
+    50% {
+        opacity: 1
+    }
+}
+.gray_bg {
+    background-color: var(--background-container-theme);
+    --gc-background-color: var(--background-container-theme);
+}
+.disable_container_gray {
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    margin: 0;
+    background-color: var(--disable-container-gray-theme);
+    position: absolute;
+}
+.disable_container_white {
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    margin: 0;
+    background-color: var(--disable-container-white-theme);
+    position: absolute;
+}
+.clickable_hover {
+    cursor: pointer;
+}
+.red_highlight_box {
+    position: absolute;
+    border-color: #ff0000;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 10%;
+    background-color: rgba(256,0,0,0.5);
+}
+
+.darken_overlay {
+    background-color: rgba(0, 0, 0, .8);
+}

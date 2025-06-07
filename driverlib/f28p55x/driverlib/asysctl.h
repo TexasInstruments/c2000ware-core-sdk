@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -181,6 +181,39 @@ typedef enum
     ASYSCTL_CMPLPMUX_SELECT_3 = 6U, //!< CMPLPMUX select 3
     ASYSCTL_CMPLPMUX_SELECT_4 = 9U  //!< CMPLPMUX select 4
 } ASysCtl_CMPLPMuxSelect;
+
+//*****************************************************************************
+//
+//! Values that can be passed to ASysCtl_setAnalogReferenceB() as the
+//! \e adcInst parameter.
+//
+//*****************************************************************************
+typedef enum
+{
+     ASYSCTL_ADCA = 0U,    //!< Select ADCA instance
+     ASYSCTL_ADCB = 2U,    //!< Select ADCB instance
+     ASYSCTL_ADCC = 4U,    //!< Select ADCC instance
+     ASYSCTL_ADCD = 6U,    //!< Select ADCD instance
+     ASYSCTL_ADCE = 8U     //!< Select ADCE instance
+} ASysCtl_AdcInst;
+
+//*****************************************************************************
+//
+//! Values that can be passed to ASysCtl_setAnalogReferenceB() as the
+//! \e modeVal parameter.
+//
+//*****************************************************************************
+typedef enum
+{
+     ASYSCTL_TESTANA0_TESTANA1_DISABLE = 0U, //!< TESTANA0 and TESTANA1
+                                             //!< are disabled
+     ASYSCTL_TESTANA1_ENABLE = 1U,           //!< TESTANA0 is disabled and
+                                             //!< TESTANA1 is enabled
+     ASYSCTL_TESTANA0_ENABLE = 2U,           //!< TESTANA0 is enabled and
+                                             //!< TESTANA1 is disabled
+     ASYSCTL_TESTANA0_TESTANA1_ENABLE = 3U  //!< TESTANA0 and TESTANA1
+                                             //!< are enabled
+} ASysCtl_ADCTestMuxMode;
 
 //*****************************************************************************
 //
@@ -528,6 +561,35 @@ static inline void ASysCtl_setVrefLoReferenceVSSA(uint16_t reference)
 
     EDIS;
 }
+
+//*****************************************************************************
+//
+//! Configure the analog reference B.
+//!
+//! \param adcInst is the instance of the ADC.
+//! \param modeVal is the desired ADC Test Mux mode.
+//!
+//! This function configures the analog reference B for ADC. The \e modeVal
+//! parameter selects which mode needs to be configured for the desired
+//! \e adcInst. Valid values for \e modeVal can be referred from the enum
+//! \e ASysCtl_ADCTestMuxMode.
+//!
+//! \return None.
+//
+//*****************************************************************************
+static inline void ASysCtl_setAnalogReferenceB(ASysCtl_AdcInst adcInst,
+                                                ASysCtl_ADCTestMuxMode modeVal)
+{
+    uint32_t shiftVal;
+
+    shiftVal = adcInst + ASYSCTL_REFCONFIGB_ADC_ATB_ENA_S;
+
+    HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_REFCONFIGB) = 
+                    (HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_REFCONFIGB) &
+                    ~((uint32_t)ASYSCTL_REFCONFIGB_ADC_ATB_ENA_M << shiftVal)) |
+                    ((uint32_t)modeVal << shiftVal);
+}
+
 //*****************************************************************************
 //
 //! Select internal test node for ADC.

@@ -35,7 +35,7 @@ CMD1.sectionMemory_stack      = ["RAMM1"];
 CMD1.sectionMemory_init_array = ["RAMM0"];
 CMD1.sectionMemory_bss        = ["RAMLS5"];
 CMD1.sectionMemory_const      = ["RAMLS5"];
-CMD1.sectionMemory_data       = ["RAMLS5"];
+CMD1.sectionMemory_data       = ["RAMGS0", "RAMGS1"];
 CMD1.sectionMemory_switch     = ["RAMM0"];
 CMD1.sectionMemory_sysmem     = ["RAMLS5"];
 
@@ -50,7 +50,7 @@ CMD2.sectionAlignEnable_ovly       = true;
 CMD2.sectionMemory_codestart       = "0x080000";
 CMD2.sectionMemory_stack           = ["RAMM1"];
 CMD2.sectionMemory_bss             = ["RAMLS5"];
-CMD2.sectionMemory_data            = ["RAMLS5"];
+CMD2.sectionMemory_data            = ["RAMLS6", "RAMLS7"];
 CMD2.sectionMemory_sysmem          = ["RAMLS5"];
 CMD2.sectionMemory_ramfunc         = ["FLASH3"];
 CMD2.sectionMemory_text            = ["FLASH1","FLASH2","FLASH3","FLASH4"];

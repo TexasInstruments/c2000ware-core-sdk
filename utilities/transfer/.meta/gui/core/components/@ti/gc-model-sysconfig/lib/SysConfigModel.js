@@ -3451,6 +3451,28 @@ function coerce(partialVersion) {
     }
     return partialVersion;
 }
+// Convert args string to argv array
+// Adapted from
+// https://github.com/mccormicka/string-argv/blob/master/index.js
+function parseArgsStringToArgv(value) {
+    const myArray = [];
+    let match;
+    do {
+        // Each call to exec returns the next regex match as an array
+        match = myRegexp.exec(value);
+        if (match !== null) {
+            // Index 1 in the array is the captured group if it exists
+            // Index 0 is the matched text, which we use if no captured group exists
+            myArray.push(match[1] || match[5] || match[0]);
+        }
+    } while (match !== null);
+    return myArray;
+}
+// ([^\s'"]+(['"])([^\2]*?)\2) Match `text"quotes text"`
+// [^\s'"] or Match if not a space ' or "
+// (['"])([^\4]*?)\4 or Match "quoted text" without quotes
+// `\2` and `\4` are a back reference to the quote style (' or ") captured
+const myRegexp = /([^\s'"]+(['"])([^\2]*?)\2)|[^\s'"]+|(['"])([^\4]*?)\4/gi;
 class ConfigurableBind extends AbstractLookupBindValue {
     constructor(model, configPath) {
         super();
@@ -3478,8 +3500,7 @@ class ConfigurableBind extends AbstractLookupBindValue {
         return this.configPath.endsWith('.$name');
     }
     onIndexChanged(indices) {
-        indices = indices.filter(index => index !== undefined);
-        this.configPath = [this.name, ...indices.map(index => index.toString())].join('.');
+        this.configPath = [this.name, ...indices.map(index => index?.toString() ?? 'undefined')].join('.');
         this.refresh();
     }
 }
@@ -3562,7 +3583,7 @@ class InstanceLabelsBind extends AbstractLookupBindValue {
  * ```typescript
  * import { SysConfigModel } from '<path-to>/gc-model-sysconfig/lib/SysConfigModel';
  *
- * const model = new SysConfigModel({ sdkName: 'simplelink_cc13x0_sdk', scriptPath: 'myconfig.syscfg' deviceName: 'CC1350RSM' });
+ * const model = new SysConfigModel({ sdkId: 'simplelink_cc13x0_sdk', scriptPath: 'myconfig.syscfg' deviceName: 'CC1350RSM' });
  * const script = model.getConfigScript();
  * const output = model.getGeneratedFile('templateName');
  * ```
@@ -3570,10 +3591,11 @@ class InstanceLabelsBind extends AbstractLookupBindValue {
  * @packageDocumentation
  */
 class SysConfigModel extends AbstractBindFactory {
-    constructor(params, asyncCreateEnv) {
+    constructor(params, asyncCreateEnv, getGcTheme = () => 'light') {
         super(params.id || 'sysconfig');
         this.params = params;
         this.asyncCreateEnv = asyncCreateEnv;
+        this.getGcTheme = getGcTheme;
         this.loadingScriptPromise = GcPromise.defer();
         this.hasConfigurables = (inst) => {
             const instances = inst.module?.$instances ?? [];
@@ -3612,8 +3634,8 @@ class SysConfigModel extends AbstractBindFactory {
         try {
             // for backward compatibility, use deviceId in the absence of deviceId.
             const deviceName = this.params.deviceName || this.params.deviceId;
-            if (!(deviceName || this.params.boardPath)) {
-                throw new Error(`Missing a property for deviceName or boardPath on gc-model-sysconfig#${this.id}`);
+            if (!(deviceName || this.params.boardPath || this.params.scriptPath)) {
+                throw new Error(`Missing a property for deviceName, boardPath or scriptPath on gc-model-sysconfig#${this.id}`);
             }
             const args = [];
             if (this.params.boardPath) {
@@ -3636,8 +3658,16 @@ class SysConfigModel extends AbstractBindFactory {
                     args.push(this.params.variant);
                 }
             }
+            if (this.params.theme) {
+                args.push('--theme');
+                args.push(this.params.theme);
+            }
+            else if (this.getGcTheme) {
+                args.push('--theme');
+                args.push(this.getGcTheme());
+            }
             let productPath = this.params.metadataPath;
-            const { sdkName, sdkVersion } = this.params;
+            const { sdkId, sdkVersion } = this.params;
             if (productPath) {
                 if (GcUtils.isNW) {
                     // convert to absolute path when running in NodeWebkit
@@ -3645,14 +3675,14 @@ class SysConfigModel extends AbstractBindFactory {
                     productPath = `${GcUtils.getApplicationRoot(projectName)}/${productPath}`;
                 }
             }
-            else if (sdkName) {
+            else if (sdkId) {
                 if (GcUtils.isNodeJS) {
-                    throw new Error('Cannot use sdkName and sdkVersion when running from the command line.  Please specify a full metadataPath to the product.json file of the sdk you wish to use.');
+                    throw new Error('Cannot use sdkId and sdkVersion when running from the command line.  Please specify a full metadataPath to the product.json file of the sdk you wish to use.');
                 }
                 let sdks = await GcFiles.readJsonFile('/sysconfig/fetchAvailableProducts');
-                sdks = sdks.filter(sdk => sdk.name.toLowerCase() === sdkName.toLowerCase());
+                sdks = sdks.filter(sdk => sdk.name.toLowerCase() === sdkId.toLowerCase());
                 if (sdks.length < 1) {
-                    throw new Error(`Cannot find SDK ${sdkName}`);
+                    throw new Error(`Cannot find SDK ${sdkId}`);
                 }
                 // filter on SDKs that satisfy sdkVersion
                 if (sdkVersion) {
@@ -3664,7 +3694,7 @@ class SysConfigModel extends AbstractBindFactory {
                         return semver.satisfies(version, sdkVersion);
                     });
                     if (sdks.length < 1) {
-                        throw new Error(`Cannot find SDK ${sdkName} that matches version ${sdkVersion}`);
+                        throw new Error(`Cannot find SDK ${sdkId} that matches version ${sdkVersion}`);
                     }
                 }
                 // reduce the remaining sdks to find the one with the latest version number
@@ -3698,9 +3728,17 @@ class SysConfigModel extends AbstractBindFactory {
                     args.push('--script');
                     args.push(scriptPath);
                 }
-                else {
-                    script = await GcFiles.readTextFile(this.params.scriptPath);
+                else if (GcUtils.isNodeJS) {
+                    args.push('--script');
+                    args.push(this.params.scriptPath);
                 }
+                else {
+                    args.push('--script');
+                    args.push(await this.getWorkspacePathForSysconfig(this.params.scriptPath));
+                }
+            }
+            if (this.params.otherFlags) {
+                args.push(...parseArgsStringToArgv(this.params.otherFlags));
             }
             this.console.debug(`Loading script ${script ? 'dynamically' : ('from ' + this.params.scriptPath)}`);
             const modalRoot = GcUtils.isNodeJS ? null : document.getElementById('modalRoot');
@@ -3728,6 +3766,25 @@ class SysConfigModel extends AbstractBindFactory {
             }
         }
         return this.loadingScriptPromise.promise;
+    }
+    async getWorkspacePathForSysconfig(url) {
+        return (await GcUtils.resolveApplicationRelativePath(this.params.scriptPath, GcFiles.getProjectName)).replace('/workspaceserver', '');
+    }
+    /**
+     * Method to save the Sysconfig Script file.
+     * @param scriptPath optional file path of Sysconfig script to be saved. If one is not provided, the path from scriptPath property will be used.
+     */
+    async saveConfigScript(scriptPath) {
+        return new Promise((resolve, reject) => {
+            if (this.script) {
+                if (scriptPath)
+                    resolve(this.script.internals.asyncSave(scriptPath));
+                else if (this.params.scriptPath)
+                    resolve(this.script.internals.asyncSave());
+            }
+            else
+                reject('Unable to save Sysconfig Script');
+        });
     }
     findTopModuleInstancesByName(filter, exactMatch = false) {
         const result = [];
@@ -3798,8 +3855,8 @@ class SysConfigModel extends AbstractBindFactory {
         return [];
     }
     /**
-     * @hidden
-     */
+    * @hidden
+    */
     lookupSuggestedBindings(filter = '') {
         if (!this.script) {
             return [];
@@ -3841,8 +3898,8 @@ class SysConfigModel extends AbstractBindFactory {
         return [];
     }
     /**
-     * @hidden
-     */
+    * @hidden
+    */
     refreshConfigurableValueBind(bind, uri) {
         if (uri.startsWith('$') || !this.script) {
             return;

@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -825,7 +825,7 @@ static inline void ASysCtl_lockCMPSSCTL(void)
 //! \return Ext-R OSC Status.
 //
 //*****************************************************************************
-static inline uint16_t ASysCtl_getExtROscStatus()
+static inline uint16_t ASysCtl_getExtROscStatus(void)
 {
     return((HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_EXTROSCCSR1) &
            ASYSCTL_EXTROSCCSR1_OSCSTATUS_M) >> ASYSCTL_EXTROSCCSR1_OSCSTATUS_S);

@@ -44,6 +44,7 @@
 % } else
 % { transferCommon = system.getScript("/transfer/transferCommon.js");}
 % 
+% 
 % let exportMod = system.modules[transferCommon.getTransferPath() + "exporter.js"];
 % let expInst = exportMod.$instances[0];
 % let comsLinkModule = expInst.comsLinkModule;
@@ -67,7 +68,7 @@
 %    }
 % }
 % console.log(expKeyInst);
-% if (expInst.mode.includes("Bidirectional") && expInst["comsLinkModule"])
+% if (expInst.mode.includes("Bidirectional") && expInst["comsLinkModule"] && !expInst.packageMode == "SIGNAL SIGHT")
 % {
 #include <libraries/jsmn/jsmn.h>
     % if (expInst.$ownedBy) {
@@ -82,11 +83,21 @@ jsmntok_t t[64];                // We expect no more than 64 tokens
 #include <export/export_buffer.h>
 % }
 %
+% // let bufferDebugEnable = false;
+% let terminalDebugEnable = false;
 %
 %if(expInst.packageMode == "JSON"){
 static const char cmdTemplate[] = "{\"\":}\n";
 %}
+% if(expInst.packageMode == "SIGNAL SIGHT"){
+% let ssMod = system.modules[transferCommon.getTransferPath() + "signalsight.js"];
+% if(ssMod){
+    % // bufferDebugEnable = ssMod.$instances[0].bufferingDebugModeEnable;
+    % terminalDebugEnable = ssMod.$instances[0].terminalDebugModeEnable;
+% }
+%}
 
+% if(expInst.packageMode != "SIGNAL SIGHT"){
 static char cATXString[20];
 
 //
@@ -96,6 +107,10 @@ static char cATXString[20];
 #define CMD_INDEX 1
 #define DATA_INDEX 3
 #define CMD_TEMPLATE_LENGTH 6
+% }
+% else{
+void __attribute__((weak)) EXPORTPACKAGE_takeActionOnMessage(uint16_t cmdByte, uint16_t* msgData, bool error) {};
+% }
 
 %
 % let charFunc = "EXPORT_transmitCharBlocking"
@@ -164,8 +179,40 @@ static char cATXString[20];
 %//            }
 %//       }
 %//  }
+%
+%
+% if (expInst.packageMode == "SIGNAL SIGHT"){
+//
+// Defines
+//
+#define EP_START_BYTE 115
+#define EP_END_BYTE 101
 
+void EXPORT_receivedData(uint16_t* receivedData, uint16_t receivedDataLength){
+% //if(bufferDebugEnable) {
+
+   % //int i;
+   % //for(i = 0; i < 16; i++){
+   % //   EXPORTPACKAGE_rxPacketBuffer[i] = receivedData[i];
+   % //}
+% //}
+
+    uint16_t cmdByte = receivedData[1];
+    //
+    // Check received data
+    //
+    if(receivedData[0] != EP_START_BYTE  || receivedData[15] != EP_END_BYTE){ //verify proper start and end byte
+        //Error event
+        EXPORTPACKAGE_takeActionOnMessage(cmdByte, &receivedData[2], true);
+    }
+    else{
+        EXPORTPACKAGE_takeActionOnMessage(cmdByte, &receivedData[2], false);
+    }
+}
+% }
+%
 % if (expInst.exportCustomLog) {
+
 int EXPORTPACKAGE_sendcLog(uint32_t timestamp, char *data)
 {
 % if (expInst.packageMode == "START/END") {
@@ -448,6 +495,7 @@ int EXPORTPACKAGE_sendFsiFrame(uint16_t user_data, uint16_t frame_type, uint16_t
 }
 % }
 
+% if(!expInst.packageMode == "SIGNAL SIGHT"){
 int EXPORTPACKAGE_sendKeyValuePointerPairs(ExportKeyValue** keyValues, uint16_t numKeyValues)
 {
 % if (expInst.packageMode == "START/END") {
@@ -714,7 +762,7 @@ int EXPORTPACKAGE_sendCharacterAsByteArray(char *cmd, uint16_t cmdLength, char v
     //
     return 0;
 }
-
+% } // endif not SIGNAL SIGHT mode
 int EXPORTPACKAGE_sendUInt32AsByteArray(char *cmd, uint16_t cmdLength, uint32_t val)
 {
     uint16_t bytes[UINT32_BYTE_COUNT] = {0};
@@ -757,6 +805,32 @@ int EXPORTPACKAGE_sendUInt32AsByteArray(char *cmd, uint16_t cmdLength, uint32_t 
         }
     }
 % }
+% else if(expInst.packageMode == "SIGNAL SIGHT"){
+    // Send start byte
+    EXPORT_transmitCharBlocking(EP_START_BYTE);
+    // Key IDs
+    uint16_t cmdIndex;
+    for(cmdIndex = 0; cmdIndex < cmdLength; cmdIndex++){
+        % if(terminalDebugEnable){
+        EXPORT_transmitCharBlocking(cmd[cmdIndex] + 48);
+        % }
+        % else{
+        EXPORT_transmitCharBlocking(cmd[cmdIndex]);
+        % }
+    }
+    // Send data payload
+    u32toBytes(val, bytes);
+    for (byteIndex = 0; byteIndex < UINT32_BYTE_COUNT; byteIndex++){
+        % if(terminalDebugEnable){
+        EXPORT_transmitCharBlocking(bytes[byteIndex] + 48);
+        % }
+        % else{
+        EXPORT_transmitCharBlocking(bytes[byteIndex]);
+        % }  
+    }
+    // Send end byte
+    EXPORT_transmitCharBlocking(EP_END_BYTE);
+% }  
     return 0;
 }
 
@@ -803,8 +877,33 @@ int EXPORTPACKAGE_sendInt32AsByteArray(char *cmd, uint16_t cmdLength, int32_t va
             `charFunc`(']');
         }
     }
-
-%}
+% }
+% else if(expInst.packageMode == "SIGNAL SIGHT"){
+    // Send start byte
+    EXPORT_transmitCharBlocking(EP_START_BYTE);
+    // Key IDs
+    uint16_t cmdIndex;
+    for(cmdIndex = 0; cmdIndex < cmdLength; cmdIndex++){
+        % if(terminalDebugEnable){
+        EXPORT_transmitCharBlocking(cmd[cmdIndex] + 48);
+        % }
+        % else{
+        EXPORT_transmitCharBlocking(cmd[cmdIndex]);
+        % }
+    }
+    // Send data payload
+    i32toBytes(val, bytes);
+    for (byteIndex = 0; byteIndex < INT32_BYTE_COUNT; byteIndex++){
+        % if(terminalDebugEnable){
+        EXPORT_transmitCharBlocking(bytes[byteIndex] + 48);
+        % }
+        % else{
+        EXPORT_transmitCharBlocking(bytes[byteIndex]);
+        % }     
+    }
+    // Send end byte
+    EXPORT_transmitCharBlocking(EP_END_BYTE);
+% }
     return 0;
 }
 
@@ -851,8 +950,33 @@ int EXPORTPACKAGE_sendUInt16AsByteArray(char *cmd, uint16_t cmdLength, uint16_t 
             `charFunc`(']');
         }
     }
-
-%}
+% }
+% else if(expInst.packageMode == "SIGNAL SIGHT"){
+    // Send start byte
+    EXPORT_transmitCharBlocking(EP_START_BYTE);
+    // Key IDs
+    uint16_t cmdIndex;
+    for(cmdIndex = 0; cmdIndex < cmdLength; cmdIndex++){
+        % if(terminalDebugEnable){
+        EXPORT_transmitCharBlocking(cmd[cmdIndex] + 48);
+        % }
+        % else{
+        EXPORT_transmitCharBlocking(cmd[cmdIndex]);
+        % }
+    }
+    // Send data payload
+    u16toBytes(val, bytes);
+    for (byteIndex = 0; byteIndex < INT16_BYTE_COUNT; byteIndex++){
+        % if(terminalDebugEnable){
+        EXPORT_transmitCharBlocking(bytes[byteIndex] + 48);
+        % }
+        % else{
+        EXPORT_transmitCharBlocking(bytes[byteIndex]);
+        % }     
+    }
+    // Send end byte
+    EXPORT_transmitCharBlocking(EP_END_BYTE);
+% }
     return 0;
 }
 
@@ -900,8 +1024,33 @@ int EXPORTPACKAGE_sendInt16AsByteArray(char *cmd, uint16_t cmdLength, int16_t va
             `charFunc`(']');
         }
     }
-
-%}
+% }
+% else if(expInst.packageMode == "SIGNAL SIGHT"){
+    // Send start byte
+    EXPORT_transmitCharBlocking(EP_START_BYTE);
+    // Key IDs
+    uint16_t cmdIndex;
+    for(cmdIndex = 0; cmdIndex < cmdLength; cmdIndex++){
+        % if(terminalDebugEnable){
+        EXPORT_transmitCharBlocking(cmd[cmdIndex] + 48);
+        % }
+        % else{
+        EXPORT_transmitCharBlocking(cmd[cmdIndex]);
+        % }
+    }
+    // Send data payload
+    i16toBytes(val, bytes);
+    for (byteIndex = 0; byteIndex < INT16_BYTE_COUNT; byteIndex++){
+        % if(terminalDebugEnable){
+        EXPORT_transmitCharBlocking(bytes[byteIndex] + 48);
+        % }
+        % else{
+        EXPORT_transmitCharBlocking(bytes[byteIndex]);
+        % }     
+    }
+    // Send end byte
+    EXPORT_transmitCharBlocking(EP_END_BYTE);
+% }
     return 0;
 }
 
@@ -948,19 +1097,75 @@ int EXPORTPACKAGE_sendFloatAsByteArray(char *cmd, uint16_t cmdLength, float val)
             `charFunc`(']');
         }
     }
-
-%}
+% }
+% else if(expInst.packageMode == "SIGNAL SIGHT"){
+    // Send start byte
+    EXPORT_transmitCharBlocking(EP_START_BYTE);
+    // Key IDs
+    uint16_t cmdIndex;
+    for(cmdIndex = 0; cmdIndex < cmdLength; cmdIndex++){
+        % if(terminalDebugEnable){
+        EXPORT_transmitCharBlocking(cmd[cmdIndex] + 48);
+        % }
+        % else{
+        EXPORT_transmitCharBlocking(cmd[cmdIndex]);
+        % }
+    }
+    // Send data payload
+    f32toBytes(val, bytes);
+    for (byteIndex = 0; byteIndex < FLOAT32_BYTE_COUNT; byteIndex++){
+        % if(terminalDebugEnable){
+        EXPORT_transmitCharBlocking(bytes[byteIndex] + 48);
+        % }
+        % else{
+        EXPORT_transmitCharBlocking(bytes[byteIndex]);
+        % } 
+    }
+    // Send end byte
+    EXPORT_transmitCharBlocking(EP_END_BYTE);
+% }
     return 0;
 }
 
 int EXPORTPACKAGE_sendBoolAsByteArray(char *cmd, uint16_t cmdLength, bool val)
 {
-    //
-    // Work in progress
-    //
+%
+% if(expInst.packageMode == "SIGNAL SIGHT"){
+    % // TODO: change to BOOL_BYTE_COUNT
+    #define BOOL_BYTE_COUNT_TEMP 2
+    uint16_t bytes[BOOL_BYTE_COUNT_TEMP] = {0};
+    uint16_t byteIndex = 0;
+    // Send start byte
+    EXPORT_transmitCharBlocking(EP_START_BYTE);
+    // Key IDs
+    uint16_t cmdIndex;
+    for(cmdIndex = 0; cmdIndex < cmdLength; cmdIndex++){
+        % if(terminalDebugEnable){
+        EXPORT_transmitCharBlocking(cmd[cmdIndex] + 48);
+        % }
+        % else{
+        EXPORT_transmitCharBlocking(cmd[cmdIndex]);
+        % }
+    }
+    // Send data payload
+    u16toBytes(val, bytes);
+    for (byteIndex = 0; byteIndex < BOOL_BYTE_COUNT_TEMP; byteIndex++){
+        % if(terminalDebugEnable){
+        EXPORT_transmitCharBlocking(bytes[byteIndex] + 48);
+        % }
+        % else{
+        EXPORT_transmitCharBlocking(bytes[byteIndex]);
+        % }    
+    }
+    // Send end byte
+    EXPORT_transmitCharBlocking(EP_END_BYTE);
+% }
+% else{
+        //Work in Progress
+% }
     return 0;
 }
-
+% if(!expInst.packageMode == "SIGNAL SIGHT"){
 int EXPORTPACKAGE_sendCharacterArrayAsByteArray(char *cmd, uint16_t cmdLength, char* data, uint32_t size)
 {
     //
@@ -1190,6 +1395,7 @@ int EXPORTPACKAGE_sendInt16ArrayAsByteArray(char *cmd, uint16_t cmdLength, int16
 %}
     return 0;
 }
+% } // endif !SIGNAL SIGHT
 
 int EXPORTPACKAGE_sendFloatArrayAsByteArray(char *cmd, uint16_t cmdLength, float* data, uint32_t size)
 {
@@ -1240,10 +1446,29 @@ int EXPORTPACKAGE_sendFloatArrayAsByteArray(char *cmd, uint16_t cmdLength, float
             `charFunc`(']');
         }
     }
-%}   
+% } else if(expInst.packageMode == "SIGNAL SIGHT"){
+    // Send start byte
+    EXPORT_transmitCharBlocking(EP_START_BYTE);
+    EXPORT_transmitCharBlocking(cmd[0]);
+    // Send data payload
+    for (datai = 0; datai < size; datai++) {
+        f32toBytes(data[datai], bytes);
+        for (byteIndex = 0; byteIndex < FLOAT32_BYTE_COUNT; byteIndex++){
+            %if(terminalDebugEnable){
+            EXPORT_transmitCharBlocking(bytes[byteIndex] + 48);
+            %}
+            %else{
+            EXPORT_transmitCharBlocking(bytes[byteIndex]);
+            %}
+        }
+    }
+    // Send end byte
+    EXPORT_transmitCharBlocking(EP_END_BYTE);
+% }
     return 0;
 }
 
+%if(expInst.packageMode != "SIGNAL SIGHT"){
 int EXPORTPACKAGE_sendBoolArrayAsByteArray(char *cmd, uint16_t cmdLength, bool* data, uint32_t size)
 {
     //
@@ -1312,7 +1537,6 @@ int EXPORTPACKAGE_sendInt32(char *cmd, uint16_t cmdLength, int32_t val)
             `stringLengthFunc`(cATXString, strlen(cATXString));
         }
     }
-
 %}
     return 0;
 }
@@ -1461,5 +1685,5 @@ void EXPORTPACKAGE_parseString(char * rxString, uint16_t rxStringSize)
     % }
     }
 }
-
 % } // Bidirectional end
+% } // endif !SIGNAL SIGHT 

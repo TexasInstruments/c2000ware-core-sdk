@@ -1,0 +1,1 @@
+Put the "ai" folder in C:\ti\c2000\C2000Ware_5_02_00_00\libraries and then test

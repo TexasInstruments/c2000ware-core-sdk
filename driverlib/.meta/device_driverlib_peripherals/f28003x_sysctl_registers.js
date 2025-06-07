@@ -155,6 +155,12 @@ let SYSCTLRegisters = [
 			{ name: "EPG1", description: "EPG Module Reset Bit", size: "1", shift: "0", mask: "0x1" },
 		]
 	},
+	{ name: "SOFTPRES40", description: "Peripheral Software Reset register", offset: "0xD2",
+		bits: [
+			{ name: "JTAG_NTRST", description: "Multi Bit JTAG nTRST", size: "4", shift: "0", mask: "0xF" },
+			{ name: "JTAG_NTRST_KEY", description: "JTAG nTRST Key", size: "16", shift: "16", mask: "0xFFFF0000" },
+		]
+	},
 	{ name: "TAP_STATUS", description: "Status of JTAG State machine & Debugger Connect", offset: "0x130",
 		bits: [
 			{ name: "TAP_STATE", description: "Present TAP State", size: "16", shift: "0", mask: "0xFFFF" },
@@ -182,6 +188,7 @@ let SYSCTLRegisters = [
 			{ name: "SYSPLLMULT", description: "Lock bit for SYSPLLMULT register", size: "1", shift: "6", mask: "0x40" },
 			{ name: "SYSCLKDIVSEL", description: "Lock bit for SYSCLKDIVSEL register", size: "1", shift: "11", mask: "0x800" },
 			{ name: "AUXCLKDIVSEL", description: "Lock bit for AUXCLKDIVSEL register", size: "1", shift: "12", mask: "0x1000" },
+			{ name: "CLBCLKCTL", description: "Lock bit for CLBCLKCTL register", size: "1", shift: "14", mask: "0x4000" },
 			{ name: "LOSPCP", description: "Lock bit for LOSPCP register", size: "1", shift: "15", mask: "0x8000" },
 			{ name: "XTALCR", description: "Lock bit for XTALCR  & XTALCR2 register", size: "1", shift: "16", mask: "0x10000" },
 		]
@@ -238,6 +245,16 @@ let SYSCTLRegisters = [
 	{ name: "XCLKOUTDIVSEL", description: "XCLKOUT Divider Select register", offset: "0x28",
 		bits: [
 			{ name: "XCLKOUTDIV", description: "XCLKOUT Divide Select", size: "2", shift: "0", mask: "0x3" },
+		]
+	},
+	{ name: "CLBCLKCTL", description: "CLB Clocking Control Register", offset: "0x2A",
+		bits: [
+			{ name: "CLBCLKDIV", description: "CLB clock divider configuration.", size: "3", shift: "0", mask: "0x7" },
+			{ name: "TILECLKDIV", description: "CLB Tile clock divider configuration.", size: "1", shift: "4", mask: "0x10" },
+			{ name: "CLKMODECLB1", description: "Clock mode of CLB1", size: "1", shift: "16", mask: "0x10000" },
+			{ name: "CLKMODECLB2", description: "Clock mode of CLB2", size: "1", shift: "17", mask: "0x20000" },
+			{ name: "CLKMODECLB3", description: "Clock mode of CLB3", size: "1", shift: "18", mask: "0x40000" },
+			{ name: "CLKMODECLB4", description: "Clock mode of CLB4", size: "1", shift: "19", mask: "0x80000" },
 		]
 	},
 	{ name: "LOSPCP", description: "Low Speed Clock Source Prescalar", offset: "0x2C",

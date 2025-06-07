@@ -127,7 +127,7 @@ function onChangeEnableDisable(inst, ui)
             ui["epwmMinDeadBand_" + dbOutput.name.replace("EPWM_DB_OUTPUT_", "") + "_configANDOR"].hidden = true;
             inst["epwmMinDeadBand_" + dbOutput.name.replace("EPWM_DB_OUTPUT_", "") + "_inputRefSignal"] = "EPWM_MINDB_SEL_DEPWM";
             inst["epwmMinDeadBand_" + dbOutput.name.replace("EPWM_DB_OUTPUT_", "") + "_invertInput"] = "EPWM_MINDB_REF_SIG";
-            inst["epwmMinDeadBand_" + dbOutput.name.replace("EPWM_DB_OUTPUT_", "") + "_setDelay"] = 1;
+            inst["epwmMinDeadBand_" + dbOutput.name.replace("EPWM_DB_OUTPUT_", "") + "_setDelay"] = 2;
             inst["epwmMinDeadBand_" + dbOutput.name.replace("EPWM_DB_OUTPUT_", "") + "_configBlockSignal"] = "EPWM_MINDB_BLOCKING_SIGNAL_BYPASS";
             inst["epwmMinDeadBand_" + dbOutput.name.replace("EPWM_DB_OUTPUT_", "") + "_configANDOR"] = "EPWM_MINDB_POLSEL_INVERT_LOGICAL_AND";
         }
@@ -203,7 +203,7 @@ for (var dbOutputIndex in device_driverlib_peripheral.EPWM_DeadBandOutput)
             displayName : "Minimum Dead-Band Delay for" + dbOutput.displayName.replace("DB output is", "") + " (SYSCLK Cycles)",
             description : 'Set minimum dead-band delay applied to reference signal',
             hidden      : true,
-            default     : 1            
+            default     : 2            
         },
         {
             name: "epwmMinDeadBand_" + dbOutput.name.replace("EPWM_DB_OUTPUT_", "") + "_configBlockSignal",

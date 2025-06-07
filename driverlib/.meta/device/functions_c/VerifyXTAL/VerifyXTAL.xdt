@@ -3,10 +3,12 @@ let 	device_common   					= system.getScript("/driverlib/.meta/device/functions_
 let 	Common   						= system.getScript("/driverlib/Common.js");
 var	VerifyXTAL_General					= system.getTemplate('./VerifyXTAL_General.xdt');
 var	VerifyXTAL_TurnON_XTAL					= system.getTemplate('./VerifyXTAL_TurnON_XTAL.xdt');
+var	VerifyXTAL_Sysoscdiv4					= system.getTemplate('./VerifyXTAL_Sysoscdiv4.xdt');
 
 const 	device  						= device_common.device;
 const	VerifyXTAL_Type0					= device_common.VerifyXTAL_Type0;
 const	VerifyXTAL_Type1					= device_common.VerifyXTAL_Type1;
+const	VerifyXTAL_Type2					= device_common.VerifyXTAL_Type2;
 %%}
 % if(VerifyXTAL_Type0.includes(device)&& Common.isContextCPU1())
 %{
@@ -15,5 +17,9 @@ const	VerifyXTAL_Type1					= device_common.VerifyXTAL_Type1;
 % if(VerifyXTAL_Type1.includes(device)&& Common.isContextCPU1())
 %{
 `VerifyXTAL_TurnON_XTAL()`
+%}
+% if(VerifyXTAL_Type2.includes(device)&& Common.isContextCPU1())
+%{
+`VerifyXTAL_Sysoscdiv4()`
 %}
 %else{}

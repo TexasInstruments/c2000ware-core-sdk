@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v5.04.00.00
+                v5.05.00.00
               </div>
             
           
@@ -1609,7 +1609,7 @@ about resets and missing clock detection failures.</p>
 <dl class="cpp enumerator">
 <dt id="_CPPv4N15SysCtl_ClockOut22SYSCTL_CLOCKOUT_PLLRAWE">
 <span id="_CPPv3N15SysCtl_ClockOut22SYSCTL_CLOCKOUT_PLLRAWE"></span><span id="_CPPv2N15SysCtl_ClockOut22SYSCTL_CLOCKOUT_PLLRAWE"></span><span class="target" id="group__sysctl__api_1gga6d6707580ed69295038d9eb68c52b114a7511b9d48a93873fe2915b34af57b6fe"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_CLOCKOUT_PLLRAW</code> = 1U<a class="headerlink" href="#_CPPv4N15SysCtl_ClockOut22SYSCTL_CLOCKOUT_PLLRAWE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>PLL Raw Clock. </p>
+<dd><p>PLL Clock after Bypass Mux. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
@@ -1634,6 +1634,24 @@ about resets and missing clock detection failures.</p>
 <dt id="_CPPv4N15SysCtl_ClockOut23SYSCTL_CLOCKOUT_XTALOSCE">
 <span id="_CPPv3N15SysCtl_ClockOut23SYSCTL_CLOCKOUT_XTALOSCE"></span><span id="_CPPv2N15SysCtl_ClockOut23SYSCTL_CLOCKOUT_XTALOSCE"></span><span class="target" id="group__sysctl__api_1gga6d6707580ed69295038d9eb68c52b114a5f8d430b09caa0b38235e0d80d743a47"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_CLOCKOUT_XTALOSC</code> = 7U<a class="headerlink" href="#_CPPv4N15SysCtl_ClockOut23SYSCTL_CLOCKOUT_XTALOSCE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>External Oscillator. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SysCtl_ClockOut23SYSCTL_CLOCKOUT_PUMPOSCE">
+<span id="_CPPv3N15SysCtl_ClockOut23SYSCTL_CLOCKOUT_PUMPOSCE"></span><span id="_CPPv2N15SysCtl_ClockOut23SYSCTL_CLOCKOUT_PUMPOSCE"></span><span class="target" id="group__sysctl__api_1gga6d6707580ed69295038d9eb68c52b114a8c70e018f8875c53b64dd3d75d0503a2"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_CLOCKOUT_PUMPOSC</code> = 9U<a class="headerlink" href="#_CPPv4N15SysCtl_ClockOut23SYSCTL_CLOCKOUT_PUMPOSCE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PUMPOSC. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SysCtl_ClockOut20SYSCTL_SYSPLLCLK_AUXE">
+<span id="_CPPv3N15SysCtl_ClockOut20SYSCTL_SYSPLLCLK_AUXE"></span><span id="_CPPv2N15SysCtl_ClockOut20SYSCTL_SYSPLLCLK_AUXE"></span><span class="target" id="group__sysctl__api_1gga6d6707580ed69295038d9eb68c52b114a84f5e561d7cfb632d4dbe4b806bd423c"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_SYSPLLCLK_AUX</code> = 10U<a class="headerlink" href="#_CPPv4N15SysCtl_ClockOut20SYSCTL_SYSPLLCLK_AUXE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Test Clk of the System APLL. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N15SysCtl_ClockOut19SYSCTL_SYSPLLCLKOUTE">
+<span id="_CPPv3N15SysCtl_ClockOut19SYSCTL_SYSPLLCLKOUTE"></span><span id="_CPPv2N15SysCtl_ClockOut19SYSCTL_SYSPLLCLKOUTE"></span><span class="target" id="group__sysctl__api_1gga6d6707580ed69295038d9eb68c52b114aa64b5d9a4be682191302d5bc9bf12ebc"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_SYSPLLCLKOUT</code> = 12U<a class="headerlink" href="#_CPPv4N15SysCtl_ClockOut19SYSCTL_SYSPLLCLKOUTE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>PLL System Clock pre SYSCLKDIV. </p>
 </dd></dl>
 
 </dd></dl>
@@ -2387,6 +2405,9 @@ about resets and missing clock detection failures.</p>
 <li><p><strong>SYSCTL_CLOCKOUT_INTOSC1</strong> </p></li>
 <li><p><strong>SYSCTL_CLOCKOUT_INTOSC2</strong> </p></li>
 <li><p><strong>SYSCTL_CLOCKOUT_XTALOSC</strong> </p></li>
+<li><p><strong>SYSCTL_CLOCKOUT_PUMPOSC</strong> </p></li>
+<li><p><strong>SYSCTL_SYSPLLCLK_AUX</strong> </p></li>
+<li><p><strong>SYSCTL_SYSPLLCLKOUT</strong> </p></li>
 </ul>
 <dl class="simple">
 <dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
@@ -3959,7 +3980,7 @@ others used for the configuration of SysCtl.</p>
     <p>
       <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
       <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
-      <span class="lastupdated">Last updated on Oct 22, 2024.
+      <span class="lastupdated">Last updated on May 29, 2025.
       </span></p>
   </div>
 
@@ -3979,7 +4000,7 @@ others used for the configuration of SysCtl.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v5.04.00.00',
+            VERSION:'v5.05.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -170,8 +170,8 @@ struct I2CEMDR_BITS {                   // bits description
     Uint16 BC:1;                        // 0 Backwards compatibility mode
     Uint16 FCM:1;                       // 1 Forward Compatibility for Tx behav in Type1
     Uint16 ECS:1;                       // 2 Extended Automatic Clock Stretching mode
-    Uint16 MCS:1;                       // 3 Manual Clock Stretching mode (Clock Override)
-    Uint16 SCLKEY:4;                    // 7:4 Key to enable SCL (Clock Override)
+    Uint16 MCS:1;                       // 3 Manual Clock Stretching mode
+    Uint16 SCLKEY:4;                    // 7:4 KEY
     Uint16 NACK_CM:1;                   // 8 NACK Compatibility mode
     Uint16 rsvd1:6;                     // 14:9 Reserved
     Uint16 rsvd2:1;                     // 15 Reserved

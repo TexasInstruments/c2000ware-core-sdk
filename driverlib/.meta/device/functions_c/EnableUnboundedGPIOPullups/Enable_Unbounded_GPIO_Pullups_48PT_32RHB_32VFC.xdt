@@ -1,0 +1,56 @@
+
+//*****************************************************************************
+//
+// Function to enable pullups for the unbonded GPIOs
+//
+//*****************************************************************************
+void Device_enableUnbondedGPIOPullups(uint16_t packageType)
+{
+    EALLOW;
+    #if (packageType == DEV_PKG_32RHB)
+    {
+        *(unsigned long *)(GPIOCTRL_BASE + GPIO_O_GPAPUD) &= 0xBF7EC9BBUL;
+        *(unsigned long *)(GPIOCTRL_BASE + GPIO_O_GPBPUD) &= 0xFFFFDC7DUL;
+        *(unsigned long *)(GPIOCTRL_BASE + GPIO_O_GPHPUD) &= 0xFFF7FFFFUL;
+    }
+    #elif (packageType == DEV_PKG_32VFC)
+    {
+        *(unsigned long *)(GPIOCTRL_BASE + GPIO_O_GPAPUD) &= 0xBF7EC93BUL;
+        *(unsigned long *)(GPIOCTRL_BASE + GPIO_O_GPBPUD) &= 0xFFFFD47DUL;
+        *(unsigned long *)(GPIOCTRL_BASE + GPIO_O_GPHPUD) &= 0xFFF7FFFFUL;
+    }
+    #else
+    {
+        //
+        // Package type is 48PT
+        //
+        *(unsigned long *)(GPIOCTRL_BASE + GPIO_O_GPAPUD) &= 0xBF7FF1FFUL;
+        *(unsigned long *)(GPIOCTRL_BASE + GPIO_O_GPBPUD) &= 0xFFFFDC7DUL;
+        *(unsigned long *)(GPIOCTRL_BASE + GPIO_O_GPHPUD) &= 0xFFF7FFFFUL;
+    }
+    #endif
+    EDIS;
+}
+
+//*****************************************************************************
+//
+// Function to update peripheral configuraiton register. These bits are used to 
+// provide the protection for the package when the GPIOs are double boned
+//
+//*****************************************************************************
+void Device_updatePeripheralConfig(uint16_t packageType)
+{
+
+    #if ((packageType == DEV_PKG_32RHB) || (packageType == DEV_PKG_32VFC))
+    {
+        
+        *(unsigned long *)(DEVCFG_BASE + SYSCTL_O_PERCNF) |= 0x00000003UL;
+    }
+    #else
+    {
+
+        *(unsigned long *)(DEVCFG_BASE + SYSCTL_O_PERCNF) |= 0x00000001UL;
+    }
+    #endif
+
+}

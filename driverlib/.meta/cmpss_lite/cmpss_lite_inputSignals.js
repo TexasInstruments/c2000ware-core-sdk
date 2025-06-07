@@ -23,6 +23,29 @@ let CMPSSLITE_comparatorInputSignals = {
             {name: "4", displayName: "A8/C11"},
         ]
     },
+    F28E12x: {
+        CMPSSLITE1_BASE: [
+            {name: "0", displayName: "A2"},
+            {name: "1", displayName: "A11"},
+            {name: "2", displayName: "A6"},
+            {name: "3", displayName: "A15"},
+            {name: "4", displayName: "A1"},
+        ],
+        CMPSSLITE2_BASE: [
+            {name: "0", displayName: "A4"},
+            {name: "1", displayName: "A12"},
+            {name: "2", displayName: "A9"},
+            {name: "3", displayName: "A10"},
+            {name: "4", displayName: "A8"},
+        ],
+        CMPSSLITE3_BASE: [
+            {name: "0", displayName: "A21"},
+            {name: "1", displayName: "A5"},
+            {name: "2", displayName: "A0"},
+            {name: "3", displayName: "A3"},
+            {name: "4", displayName: "A14"},
+        ]
+    },
 
     F280015x: {
         CMPSSLITE2_BASE: [
@@ -63,6 +86,21 @@ let CMPSSLITE_comparatorNegInputSignals = {
         CMPSSLITE4_BASE: [
             {name: "0", displayName: "A4/C14"},
             {name: "1", displayName: "A7/C3"},
+        ]
+    },
+
+    F28E12x: {
+        CMPSSLITE1_BASE: [
+            {name: "0", displayName: "A15"},
+            {name: "1", displayName: "A11"},
+        ],
+        CMPSSLITE2_BASE: [
+            {name: "0", displayName: "A10"},
+            {name: "1", displayName: "A12"},
+        ],
+        CMPSSLITE3_BASE: [
+            {name: "0", displayName: "A3"},
+            {name: "1", displayName: "A5"},
         ]
     },
 

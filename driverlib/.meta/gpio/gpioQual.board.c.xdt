@@ -35,5 +35,17 @@
 %{
 	GPIO_setPadConfig(`gpioMacro`, GPIO_PIN_TYPE_OD | GPIO_PIN_TYPE_PULLUP | GPIO_PIN_TYPE_INVERT);
 %}
+%else if(instance.padConfig == "ODO_PULLUP")
+%{
+	GPIO_setPadConfig(`gpioMacro`, GPIO_PIN_TYPE_PULLUP);
+%}
+%else if(instance.padConfig == "ODO_INVERT")
+%{
+	GPIO_setPadConfig(`gpioMacro`, GPIO_PIN_TYPE_INVERT);
+%}
+%else if(instance.padConfig == "ODO_PULLUP_INVERT")
+%{
+	GPIO_setPadConfig(`gpioMacro`, GPIO_PIN_TYPE_PULLUP | GPIO_PIN_TYPE_INVERT);
+%}
 	GPIO_setQualificationMode(`gpioMacro`, `instance.qualMode`);
 %}

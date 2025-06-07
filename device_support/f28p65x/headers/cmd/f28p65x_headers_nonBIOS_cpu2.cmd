@@ -18,6 +18,7 @@ MEMORY
    ADCSAFETYCHK6              : origin = 0x0005EED0, length = 0x00000010
    ADCSAFETYCHK7              : origin = 0x0005EEE0, length = 0x00000010
    ADCSAFETYCHK8              : origin = 0x0005EEF0, length = 0x00000010
+   AESA                       : origin = 0x00042000, length = 0x00001000
    BGCRCCPU                   : origin = 0x00006340, length = 0x00000040
    CANA                       : origin = 0x00048000, length = 0x00000200
    CLB1DATAEXCH               : origin = 0x00002180, length = 0x00000080
@@ -68,6 +69,24 @@ MEMORY
    DCSMZ1                     : origin = 0x0005F000, length = 0x00000040
    DCSMZ2                     : origin = 0x0005F080, length = 0x00000040
    DEVCFG                     : origin = 0x0005D000, length = 0x000001E8
+   EPWM17DE                   : origin = 0x00002DC0, length = 0x00000020
+   EPWM18DE                   : origin = 0x00002FC0, length = 0x00000020
+   EPWM1DE                    : origin = 0x000031C0, length = 0x00000020
+   EPWM2DE                    : origin = 0x000033C0, length = 0x00000020
+   EPWM3DE                    : origin = 0x000035C0, length = 0x00000020
+   EPWM4DE                    : origin = 0x000037C0, length = 0x00000020
+   EPWM5DE                    : origin = 0x000039C0, length = 0x00000020
+   EPWM6DE                    : origin = 0x00003BC0, length = 0x00000020
+   EPWM7DE                    : origin = 0x00003DC0, length = 0x00000020
+   EPWM8DE                    : origin = 0x00003FC0, length = 0x00000020
+   EPWM9DE                    : origin = 0x000041C0, length = 0x00000020
+   EPWM10DE                   : origin = 0x000043C0, length = 0x00000020
+   EPWM11DE                   : origin = 0x000045C0, length = 0x00000020
+   EPWM12DE                   : origin = 0x000047C0, length = 0x00000020
+   EPWM13DE                   : origin = 0x000049C0, length = 0x00000020
+   EPWM14DE                   : origin = 0x00004BC0, length = 0x00000020
+   EPWM15DE                   : origin = 0x00004DC0, length = 0x00000020
+   EPWM16DE                   : origin = 0x00004FC0, length = 0x00000020
    DMA                        : origin = 0x00001000, length = 0x00000200
    ECAP1                      : origin = 0x00005200, length = 0x00000020
    ECAP2                      : origin = 0x00005300, length = 0x00000020
@@ -84,6 +103,9 @@ MEMORY
    ECAP6SIGNALMONITORING      : origin = 0x00005740, length = 0x00000060
    ECAP7SIGNALMONITORING      : origin = 0x00005840, length = 0x00000060
    EMIF1CONFIG                : origin = 0x0005F4C0, length = 0x00000020
+   EMIF1                      : origin = 0x00047000, length = 0x00000070
+   EPGMUX                     : origin = 0x0005ECD0, length = 0x00000010
+   EPG                        : origin = 0x0005EC00, length = 0x00000052
    EPWM17                     : origin = 0x00002C00, length = 0x00000100
    EPWM18                     : origin = 0x00002E00, length = 0x00000100
    EPWM1                      : origin = 0x00003000, length = 0x00000100
@@ -102,6 +124,26 @@ MEMORY
    EPWM14                     : origin = 0x00004A00, length = 0x00000100
    EPWM15                     : origin = 0x00004C00, length = 0x00000100
    EPWM16                     : origin = 0x00004E00, length = 0x00000100
+   EPWMXBARB                  : origin = 0x00007800, length = 0x00000070
+   EPWMXBARA                  : origin = 0x00007A00, length = 0x00000070
+   EPWM17XCMP                 : origin = 0x00002D00, length = 0x000000C0
+   EPWM18XCMP                 : origin = 0x00002F00, length = 0x000000C0
+   EPWM1XCMP                  : origin = 0x00003100, length = 0x000000C0
+   EPWM2XCMP                  : origin = 0x00003300, length = 0x000000C0
+   EPWM3XCMP                  : origin = 0x00003500, length = 0x000000C0
+   EPWM4XCMP                  : origin = 0x00003700, length = 0x000000C0
+   EPWM5XCMP                  : origin = 0x00003900, length = 0x000000C0
+   EPWM6XCMP                  : origin = 0x00003B00, length = 0x000000C0
+   EPWM7XCMP                  : origin = 0x00003D00, length = 0x000000C0
+   EPWM8XCMP                  : origin = 0x00003F00, length = 0x000000C0
+   EPWM9XCMP                  : origin = 0x00004100, length = 0x000000C0
+   EPWM10XCMP                 : origin = 0x00004300, length = 0x000000C0
+   EPWM11XCMP                 : origin = 0x00004500, length = 0x000000C0
+   EPWM12XCMP                 : origin = 0x00004700, length = 0x000000C0
+   EPWM13XCMP                 : origin = 0x00004900, length = 0x000000C0
+   EPWM14XCMP                 : origin = 0x00004B00, length = 0x000000C0
+   EPWM15XCMP                 : origin = 0x00004D00, length = 0x000000C0
+   EPWM16XCMP                 : origin = 0x00004F00, length = 0x000000C0
    EQEP1                      : origin = 0x00005080, length = 0x00000040
    EQEP2                      : origin = 0x000050C0, length = 0x00000040
    EQEP3                      : origin = 0x00005100, length = 0x00000040
@@ -158,10 +200,29 @@ MEMORY
    MCANB                      : origin = 0x0005C600, length = 0x00000100
    MEMORYERROR                : origin = 0x0005F540, length = 0x00000040
    MEMCFG                     : origin = 0x0005F400, length = 0x000000C0
+   EPWM17MINDBLUT             : origin = 0x00002DE0, length = 0x00000020
+   EPWM18MINDBLUT             : origin = 0x00002FE0, length = 0x00000020
+   EPWM1MINDBLUT              : origin = 0x000031E0, length = 0x00000020
+   EPWM2MINDBLUT              : origin = 0x000033E0, length = 0x00000020
+   EPWM3MINDBLUT              : origin = 0x000035E0, length = 0x00000020
+   EPWM4MINDBLUT              : origin = 0x000037E0, length = 0x00000020
+   EPWM5MINDBLUT              : origin = 0x000039E0, length = 0x00000020
+   EPWM6MINDBLUT              : origin = 0x00003BE0, length = 0x00000020
+   EPWM7MINDBLUT              : origin = 0x00003DE0, length = 0x00000020
+   EPWM8MINDBLUT              : origin = 0x00003FE0, length = 0x00000020
+   EPWM9MINDBLUT              : origin = 0x000041E0, length = 0x00000020
+   EPWM10MINDBLUT             : origin = 0x000043E0, length = 0x00000020
+   EPWM11MINDBLUT             : origin = 0x000045E0, length = 0x00000020
+   EPWM12MINDBLUT             : origin = 0x000047E0, length = 0x00000020
+   EPWM13MINDBLUT             : origin = 0x000049E0, length = 0x00000020
+   EPWM14MINDBLUT             : origin = 0x00004BE0, length = 0x00000020
+   EPWM15MINDBLUT             : origin = 0x00004DE0, length = 0x00000020
+   EPWM16MINDBLUT             : origin = 0x00004FE0, length = 0x00000020
    NMIINTRUPT                 : origin = 0x00007060, length = 0x00000010
    HRPWMCAL1                   : origin = 0x00005C80, length = 0x00000040
    HRPWMCAL2                   : origin = 0x00005CC0, length = 0x00000040
    HRPWMCAL3                   : origin = 0x00005D00, length = 0x00000040
+   ERADPCTRACEBUFFER          : origin = 0x0005FE00, length = 0x00000800
    ERADPCTRACE                : origin = 0x0005EAD0, length = 0x0000000A
    PIECTRL                    : origin = 0x00000CE0, length = 0x0000001A
    PIEVECTTABLE               : origin = 0x00000D00, length = 0x00000200
@@ -219,6 +280,7 @@ UNION run = PIEVECTTABLE
    ADCSafetyChk6RegsFile      : > ADCSAFETYCHK6, type=NOINIT
    ADCSafetyChk7RegsFile      : > ADCSAFETYCHK7, type=NOINIT
    ADCSafetyChk8RegsFile      : > ADCSAFETYCHK8, type=NOINIT
+   AesaRegsFile               : > AESA, type=NOINIT
    BgcrcCpuRegsFile           : > BGCRCCPU, type=NOINIT
    CanaRegsFile               : > CANA, type=NOINIT
    Clb1DataExchRegsFile       : > CLB1DATAEXCH, type=NOINIT
@@ -269,6 +331,24 @@ UNION run = PIEVECTTABLE
    DcsmZ1RegsFile             : > DCSMZ1, type=NOINIT
    DcsmZ2RegsFile             : > DCSMZ2, type=NOINIT
    DevCfgRegsFile             : > DEVCFG, type=NOINIT
+   EPwm17DeRegsFile           : > EPWM17DE, type=NOINIT
+   EPwm18DeRegsFile           : > EPWM18DE, type=NOINIT
+   EPwm1DeRegsFile            : > EPWM1DE, type=NOINIT
+   EPwm2DeRegsFile            : > EPWM2DE, type=NOINIT
+   EPwm3DeRegsFile            : > EPWM3DE, type=NOINIT
+   EPwm4DeRegsFile            : > EPWM4DE, type=NOINIT
+   EPwm5DeRegsFile            : > EPWM5DE, type=NOINIT
+   EPwm6DeRegsFile            : > EPWM6DE, type=NOINIT
+   EPwm7DeRegsFile            : > EPWM7DE, type=NOINIT
+   EPwm8DeRegsFile            : > EPWM8DE, type=NOINIT
+   EPwm9DeRegsFile            : > EPWM9DE, type=NOINIT
+   EPwm10DeRegsFile           : > EPWM10DE, type=NOINIT
+   EPwm11DeRegsFile           : > EPWM11DE, type=NOINIT
+   EPwm12DeRegsFile           : > EPWM12DE, type=NOINIT
+   EPwm13DeRegsFile           : > EPWM13DE, type=NOINIT
+   EPwm14DeRegsFile           : > EPWM14DE, type=NOINIT
+   EPwm15DeRegsFile           : > EPWM15DE, type=NOINIT
+   EPwm16DeRegsFile           : > EPWM16DE, type=NOINIT
    DmaRegsFile                : > DMA, type=NOINIT
    ECap1RegsFile              : > ECAP1, type=NOINIT
    ECap2RegsFile              : > ECAP2, type=NOINIT
@@ -285,6 +365,9 @@ UNION run = PIEVECTTABLE
    ECap6SignalMonitoringRegsFile: > ECAP6SIGNALMONITORING, type=NOINIT
    ECap7SignalMonitoringRegsFile: > ECAP7SIGNALMONITORING, type=NOINIT
    Emif1ConfigRegsFile        : > EMIF1CONFIG, type=NOINIT
+   EMIF1RegsFile              : > EMIF1, type=NOINIT
+   EPGMuxRegsFile             : > EPGMUX, type=NOINIT
+   EPGRegsFile                : > EPG, type=NOINIT
    EPwm17RegsFile             : > EPWM17, type=NOINIT
    EPwm18RegsFile             : > EPWM18, type=NOINIT
    EPwm1RegsFile              : > EPWM1, type=NOINIT
@@ -303,6 +386,26 @@ UNION run = PIEVECTTABLE
    EPwm14RegsFile             : > EPWM14, type=NOINIT
    EPwm15RegsFile             : > EPWM15, type=NOINIT
    EPwm16RegsFile             : > EPWM16, type=NOINIT
+   EPwmXbarBRegsFile          : > EPWMXBARB, type=NOINIT
+   EPwmXbarARegsFile          : > EPWMXBARA, type=NOINIT
+   EPwm17XcmpRegsFile         : > EPWM17XCMP, type=NOINIT
+   EPwm18XcmpRegsFile         : > EPWM18XCMP, type=NOINIT
+   EPwm1XcmpRegsFile          : > EPWM1XCMP, type=NOINIT
+   EPwm2XcmpRegsFile          : > EPWM2XCMP, type=NOINIT
+   EPwm3XcmpRegsFile          : > EPWM3XCMP, type=NOINIT
+   EPwm4XcmpRegsFile          : > EPWM4XCMP, type=NOINIT
+   EPwm5XcmpRegsFile          : > EPWM5XCMP, type=NOINIT
+   EPwm6XcmpRegsFile          : > EPWM6XCMP, type=NOINIT
+   EPwm7XcmpRegsFile          : > EPWM7XCMP, type=NOINIT
+   EPwm8XcmpRegsFile          : > EPWM8XCMP, type=NOINIT
+   EPwm9XcmpRegsFile          : > EPWM9XCMP, type=NOINIT
+   EPwm10XcmpRegsFile         : > EPWM10XCMP, type=NOINIT
+   EPwm11XcmpRegsFile         : > EPWM11XCMP, type=NOINIT
+   EPwm12XcmpRegsFile         : > EPWM12XCMP, type=NOINIT
+   EPwm13XcmpRegsFile         : > EPWM13XCMP, type=NOINIT
+   EPwm14XcmpRegsFile         : > EPWM14XCMP, type=NOINIT
+   EPwm15XcmpRegsFile         : > EPWM15XCMP, type=NOINIT
+   EPwm16XcmpRegsFile         : > EPWM16XCMP, type=NOINIT
    EQep1RegsFile              : > EQEP1, type=NOINIT
    EQep2RegsFile              : > EQEP2, type=NOINIT
    EQep3RegsFile              : > EQEP3, type=NOINIT
@@ -359,13 +462,32 @@ UNION run = PIEVECTTABLE
    McanbRegsFile              : > MCANB, type=NOINIT
    MemoryErrorRegsFile        : > MEMORYERROR, type=NOINIT
    MemCfgRegsFile             : > MEMCFG, type=NOINIT
+   EPwm17MinDbLutRegsFile     : > EPWM17MINDBLUT, type=NOINIT
+   EPwm18MinDbLutRegsFile     : > EPWM18MINDBLUT, type=NOINIT
+   EPwm1MinDbLutRegsFile      : > EPWM1MINDBLUT, type=NOINIT
+   EPwm2MinDbLutRegsFile      : > EPWM2MINDBLUT, type=NOINIT
+   EPwm3MinDbLutRegsFile      : > EPWM3MINDBLUT, type=NOINIT
+   EPwm4MinDbLutRegsFile      : > EPWM4MINDBLUT, type=NOINIT
+   EPwm5MinDbLutRegsFile      : > EPWM5MINDBLUT, type=NOINIT
+   EPwm6MinDbLutRegsFile      : > EPWM6MINDBLUT, type=NOINIT
+   EPwm7MinDbLutRegsFile      : > EPWM7MINDBLUT, type=NOINIT
+   EPwm8MinDbLutRegsFile      : > EPWM8MINDBLUT, type=NOINIT
+   EPwm9MinDbLutRegsFile      : > EPWM9MINDBLUT, type=NOINIT
+   EPwm10MinDbLutRegsFile     : > EPWM10MINDBLUT, type=NOINIT
+   EPwm11MinDbLutRegsFile     : > EPWM11MINDBLUT, type=NOINIT
+   EPwm12MinDbLutRegsFile     : > EPWM12MINDBLUT, type=NOINIT
+   EPwm13MinDbLutRegsFile     : > EPWM13MINDBLUT, type=NOINIT
+   EPwm14MinDbLutRegsFile     : > EPWM14MINDBLUT, type=NOINIT
+   EPwm15MinDbLutRegsFile     : > EPWM15MINDBLUT, type=NOINIT
+   EPwm16MinDbLutRegsFile     : > EPWM16MINDBLUT, type=NOINIT
    NmiIntruptRegsFile         : > NMIINTRUPT, type=NOINIT
    HRPWMCAL1RegsFile           : > HRPWMCAL1, type=NOINIT
    HRPWMCAL2RegsFile           : > HRPWMCAL2, type=NOINIT
    HRPWMCAL3RegsFile           : > HRPWMCAL3, type=NOINIT
+   EradPCTraceBufferRegsFile  : > ERADPCTRACEBUFFER, type=NOINIT
    EradPCTraceRegsFile        : > ERADPCTRACE, type=NOINIT
    PieCtrlRegsFile            : > PIECTRL, type=NOINIT
-   PieVectTableMainFile       : > PIEVECTTABLE type=NOINIT
+   PieVectTableMainFile       : > PIEVECTTABLE, type=NOINIT
    PmbusaRegsFile             : > PMBUSA, type=NOINIT
    RomWaitStateRegsFile       : > ROMWAITSTATE, type=NOINIT
    SciaRegsFile               : > SCIA, type=NOINIT

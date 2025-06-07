@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -774,7 +774,7 @@ union TRIPOUTINV_REG {
 };
 
 struct TRIPLOCK_BITS {                  // bits description
-    Uint16 LOCK:1;                      // 0 Locks the configuration for EPWM-XBAR
+    Uint16 LOCK:1;                      // 0 Locks the configuration for PWM-XBAR
     Uint16 rsvd1:15;                    // 15:1 Reserved
     Uint16 KEY:16;                      // 31:16 Write protection KEY
 };

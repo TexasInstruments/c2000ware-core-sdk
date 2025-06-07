@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -714,6 +714,17 @@ union SOFTPRES29_REG {
     struct  SOFTPRES29_BITS  bit;
 };
 
+struct SOFTPRES40_BITS {                // bits description
+    Uint16 JTAG_nTRST:4;                // 3:0 Multi Bit JTAG nTRST
+    Uint16 rsvd1:12;                    // 15:4 Reserved
+    Uint16 JTAG_nTRST_Key:16;           // 31:16 JTAG nTRST Key
+};
+
+union SOFTPRES40_REG {
+    Uint32  all;
+    struct  SOFTPRES40_BITS  bit;
+};
+
 struct CPUSEL0_BITS {                   // bits description
     Uint16 EPWM1:1;                     // 0 EPWM1 CPU select bit
     Uint16 EPWM2:1;                     // 1 EPWM2 CPU select bit
@@ -1186,7 +1197,7 @@ struct DEV_CFG_REGS {
     union   BANKMUXSEL_REG                   BANKMUXSEL;                   // Flash Bank allocation to CPU. Internal note : This register is accessible (read-only) by CPU2, for devices with CPU2
     Uint16                                   rsvd3[22];                    // Reserved
     union   MCUCNF0_REG                      MCUCNF0;                      // MCU Configuration register for DC0.DUAL_CORE
-    union   MCUCNF1_REG                      MCUCNF1;                      // MCU Configuration register for LockStep Feature on device
+    union   MCUCNF1_REG                      MCUCNF1;                      // MCU Configuration register for MSEL for Dx Memory
     union   MCUCNF2_REG                      MCUCNF2;                      // MCU Configuration register for EtherCAT
     union   MCUCNF3_REG                      MCUCNF3;                      // MCU Configuration register for Flash Bank 1
     union   MCUCNF4_REG                      MCUCNF4;                      // MCU Configuration register for Flash Bank 2
@@ -1226,7 +1237,9 @@ struct DEV_CFG_REGS {
     union   SOFTPRES27_REG                   SOFTPRES27;                   // EPG Software Reset register
     union   SOFTPRES28_REG                   SOFTPRES28;                   // Flash Software Reset register
     union   SOFTPRES29_REG                   SOFTPRES29;                   // ADCCHECKER Software Reset register
-    Uint16                                   rsvd12[24];                   // Reserved
+    Uint16                                   rsvd12[20];                   // Reserved
+    union   SOFTPRES40_REG                   SOFTPRES40;                   // Peripheral Software Reset register
+    Uint16                                   rsvd13[2];                    // Reserved
     union   CPUSEL0_REG                      CPUSEL0;                      // CPU Select register for common peripherals
     union   CPUSEL1_REG                      CPUSEL1;                      // CPU Select register for common peripherals
     union   CPUSEL2_REG                      CPUSEL2;                      // CPU Select register for common peripherals
@@ -1237,7 +1250,7 @@ struct DEV_CFG_REGS {
     union   CPUSEL7_REG                      CPUSEL7;                      // CPU Select register for common peripherals
     union   CPUSEL8_REG                      CPUSEL8;                      // CPU Select register for common peripherals
     union   CPUSEL9_REG                      CPUSEL9;                      // CPU Select register for common peripherals
-    Uint16                                   rsvd13[2];                    // Reserved
+    Uint16                                   rsvd14[2];                    // Reserved
     union   CPUSEL11_REG                     CPUSEL11;                     // CPU Select register for common peripherals
     union   CPUSEL12_REG                     CPUSEL12;                     // CPU Select register for common peripherals
     union   CPUSEL13_REG                     CPUSEL13;                     // CPU select register for DCC
@@ -1245,25 +1258,25 @@ struct DEV_CFG_REGS {
     union   CPUSEL15_REG                     CPUSEL15;                     // CPU select register for CLB tiles
     union   CPUSEL16_REG                     CPUSEL16;                     // CPU select register for FSI
     union   CPUSEL17_REG                     CPUSEL17;                     // CPU select register for LIN
-    Uint16                                   rsvd14[10];                   // Reserved
+    Uint16                                   rsvd15[10];                   // Reserved
     union   CPUSEL23_REG                     CPUSEL23;                     // CPU select register for EtherCAT
-    Uint16                                   rsvd15[2];                    // Reserved
+    Uint16                                   rsvd16[2];                    // Reserved
     union   CPUSEL25_REG                     CPUSEL25;                     // CPU select register for HRCAL
     union   CPUSEL26_REG                     CPUSEL26;                     // CPU select register for AES
     union   CPUSEL27_REG                     CPUSEL27;                     // CPU select register for EPG
     union   CPUSEL28_REG                     CPUSEL28;                     // CPU select register for ADCCHECKER tiles
-    Uint16                                   rsvd16[18];                   // Reserved
+    Uint16                                   rsvd17[18];                   // Reserved
     union   CPU2RESCTL_REG                   CPU2RESCTL;                   // CPU2 Reset Control Register
     union   RSTSTAT_REG                      RSTSTAT;                      // Reset Status register for secondary C28x CPUs
     union   LPMSTAT_REG                      LPMSTAT;                      // LPM Status Register for secondary C28x CPUs
-    Uint16                                   rsvd17[10];                   // Reserved
+    Uint16                                   rsvd18[10];                   // Reserved
     union   TAP_STATUS_REG                   TAP_STATUS;                   // Status of JTAG State machine & Debugger Connect
     union   TAP_CONTROL_REG                  TAP_CONTROL;                  // Disable TAP control
-    Uint16                                   rsvd18[132];                  // Reserved
+    Uint16                                   rsvd19[132];                  // Reserved
     union   USBTYPE_REG                      USBTYPE;                      // Configures USB Type for the device
     union   ECAPTYPE_REG                     ECAPTYPE;                     // Configures ECAP Type for the device
     union   SDFMTYPE_REG                     SDFMTYPE;                     // Configures SDFM Type for the device
-    Uint16                                   rsvd19;                       // Reserved
+    Uint16                                   rsvd20;                       // Reserved
     union   MEMMAPTYPE_REG                   MEMMAPTYPE;                   // Configures Memory Map Type for the device
 };
 
@@ -1508,19 +1521,19 @@ union XCLKOUTDIVSEL_REG {
 };
 
 struct CLBCLKCTL_BITS {                 // bits description
-    Uint16 rsvd1:3;                     // 2:0 Reserved
-    Uint16 rsvd2:1;                     // 3 Reserved
-    Uint16 rsvd3:1;                     // 4 Reserved
-    Uint16 rsvd4:11;                    // 15:5 Reserved
+    Uint16 CLBCLKDIV:3;                 // 2:0 CLB clock divider configuration.
+    Uint16 rsvd1:1;                     // 3 Reserved
+    Uint16 TILECLKDIV:1;                // 4 CLB Tile clock divider configuration.
+    Uint16 rsvd2:11;                    // 15:5 Reserved
     Uint16 CLKMODECLB1:1;               // 16 Clock mode of CLB1
     Uint16 CLKMODECLB2:1;               // 17 Clock mode of CLB2
     Uint16 CLKMODECLB3:1;               // 18 Clock mode of CLB3
     Uint16 CLKMODECLB4:1;               // 19 Clock mode of CLB4
     Uint16 CLKMODECLB5:1;               // 20 Clock mode of CLB5
     Uint16 CLKMODECLB6:1;               // 21 Clock mode of CLB6
-    Uint16 rsvd5:1;                     // 22 Reserved
-    Uint16 rsvd6:1;                     // 23 Reserved
-    Uint16 rsvd7:8;                     // 31:24 Reserved
+    Uint16 rsvd3:1;                     // 22 Reserved
+    Uint16 rsvd4:1;                     // 23 Reserved
+    Uint16 rsvd5:8;                     // 31:24 Reserved
 };
 
 union CLBCLKCTL_REG {

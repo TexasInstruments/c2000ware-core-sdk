@@ -1,0 +1,2 @@
+import{r as s,g as e}from"./p-823ca21f.js";import{Usb2anyPowerCodec as t}from"../gc-codec-usb2any-power/lib/Usb2anyPowerCodec";import{c}from"./p-4c4e8f8e.js";let a=class{constructor(e){s(this,e);this.v33=false;this.v50=false;this.vAdj=false;this.optional=false}connectedCallback(){this.impl=new t(c(this.el))}disconnectedCallback(){this.impl.dispose()}get el(){return e(this)}};export{a as gc_codec_usb2any_power};
+//# sourceMappingURL=p-b8c8877b.entry.js.map

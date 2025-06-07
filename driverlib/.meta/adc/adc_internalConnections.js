@@ -86,6 +86,17 @@ let ADC_internalSignals = {
         C13: "VREFLO",
         D13: "VREFLO",
         E13: "VREFLO",
+        A21: "PGA1_OUT_INT",
+        B21: "PGA1_OUT_INT",
+        B22: "PGA2_OUT_INT",
+        C21: "PGA2_OUT_INT",
+        A22: "PGA3_OUT_INT",
+        C22: "PGA3_OUT_INT",
+    },
+    F28E12x: {
+        A13: "VREFLO",
+        A22: "TempSensor",
+        A25: "PGA1_OUT_INT",
     }
 }
 

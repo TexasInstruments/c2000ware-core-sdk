@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -66,11 +66,6 @@ extern "C"
 #include "inc/hw_types.h"
 #include "debug.h"
 #include "cpu.h"
-
-//
-// OSCSTATUS value on completion
-//
-#define ASYSCTL_EXTR_ENABLE_COMPLETE (0xE7U)
 
 //*****************************************************************************
 //
@@ -816,19 +811,6 @@ static inline void ASysCtl_lockCMPSSCTL(void)
     HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_LOCK) |= ASYSCTL_LOCK_CMPSSCTL;
 
     EDIS;
-}
-
-//*****************************************************************************
-//
-//! Gets the Ext-R OSC Status.
-//!
-//! \return Ext-R OSC Status.
-//
-//*****************************************************************************
-static inline uint16_t ASysCtl_getExtROscStatus()
-{
-    return((HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_EXTROSCCSR1) &
-           ASYSCTL_EXTROSCCSR1_OSCSTATUS_M) >> ASYSCTL_EXTROSCCSR1_OSCSTATUS_S);
 }
 
 //*****************************************************************************

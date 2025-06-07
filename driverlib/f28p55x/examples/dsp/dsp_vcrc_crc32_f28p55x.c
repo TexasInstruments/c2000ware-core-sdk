@@ -16,7 +16,7 @@
 //
 //#############################################################################
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -61,7 +61,7 @@
 
 #include "crc_tbl.h"
 #include "common/crctable0x1edc6f41.h"
-#include "common/crctable0x1edc6f41Reflected.h"
+#include "common/crctable0x1edc6f41reflected.h"
 
 //!
 //! \defgroup CRC32_EXAMPLES Cyclic Redundancy Check 32-bit Example

@@ -22,7 +22,7 @@
 //
 //
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -184,7 +184,7 @@ void initDMA()
     destAddr = (const void *)rData;
 
     //
-    // configure DMA CH6
+    // configure DMA CHANNEL
     //
     transfParams.transferTrigger  = DMA_TRIGGER_SOFTWARE;
     transfParams.interruptMode    = DMA_INT_AT_END;

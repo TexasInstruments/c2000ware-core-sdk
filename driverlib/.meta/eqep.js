@@ -124,7 +124,7 @@ conditionalConfig = conditionalConfig.concat([
         ]
     },
 ])
-if (["F28002x","F28003x","F280013x","F280015x","F2838x", "F28P65x", "F28P55x"].includes(Common.getDeviceName())){
+if (["F28002x","F28003x","F280013x","F280015x","F2838x", "F28P65x", "F28P55x", "F28E12x"].includes(Common.getDeviceName())){
     conditionalConfig = conditionalConfig.concat([
         // enableDirectionChangeDuringIndex /disableDirectionChangeDuringIndex
         {

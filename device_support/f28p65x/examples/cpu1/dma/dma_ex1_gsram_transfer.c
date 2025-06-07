@@ -22,7 +22,7 @@
 //
 //
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -154,7 +154,7 @@ void main(void)
 // Enable interrupts required for this example
 //
    PieCtrlRegs.PIECTRL.bit.ENPIE = 1;   // Enable the PIE block
-   PieCtrlRegs.PIEIER7.bit.INTx6 = 1;   // Enable PIE Group 7, INT 2 (DMA CH2)
+   PieCtrlRegs.PIEIER7.bit.INTx6 = 1;   // Enable PIE Group 7, INT 6 (DMA CH6)
    IER= M_INT7;                         // Enable CPU INT6
    EINT;                                // Enable Global Interrupts
 

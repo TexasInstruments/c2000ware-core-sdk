@@ -123,6 +123,14 @@ function interfaceMigrationRename(interfaceName, peripheralName)
 			"EPWM#A" : "EPWM#_A",
 			"EPWM#B" : "EPWM#_B",
 		},
+		"MCPWM" : {
+			"MCPWM#1A" : "MCPWM#_1A",
+			"MCPWM#2A" : "MCPWM#_2A",
+			"MCPWM#3A" : "MCPWM#_3A",
+			"MCPWM#1B" : "MCPWM#_1B",
+			"MCPWM#2B" : "MCPWM#_2B",
+			"MCPWM#3B" : "MCPWM#_3B",
+		},
 		"EQEP" : {
 			"EQEP#A" : "EQEP#_A", 
 			"EQEP#B" : "EQEP#_B", 

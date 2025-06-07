@@ -263,8 +263,6 @@
 		"name": "epwmTimebase_phaseEnable",
 		"driverlibFunction": "EPWM_enablePhaseShiftLoad",
 		"driverlibFunctionAlt": "EPWM_disablePhaseShiftLoad",
-		"driverlibFunctionHR": "HRPWM_enablePhaseShiftLoad",
-		"driverlibFunctionHRAlt": "HRPWM_disablePhaseShiftLoad",
 		"driverlibFunctionArg": {
 		  "base": ""
 		},
@@ -286,7 +284,7 @@
 	  {
 		"name": "epwmTimebase_phaseShift",
 		"driverlibFunction": "EPWM_setPhaseShift",
-		"driverlibFunctionHR": "HRPWM_setPhaseShift",
+		"driverlibFunctionHR": "EPWM_setPhaseShift",
 		"driverlibFunctionArg": {
 		  "base": "",
 		  "phaseCount": "this"
@@ -2221,6 +2219,36 @@
 		]
 	  },
 	  {
+		"name" :  "epwmTripZone_oneShotSourceAdditional",
+		"driverlibFunction" : "EPWM_enableTripZone2Signals",
+		"driverlibFunctionAlt": "EPWM_disableTripZone2Signals",
+		"driverlibFunctionArg" : {
+			"base" : "",
+			"tzSignal" : "this"
+		},
+		"register": [
+			"TZSEL2.CAPEVTOST"
+		],
+		"devices" : [
+			"F28P65x"
+		]
+	},
+	{
+		"name" :  "epwmTripZone_cbcSourceAdditional",
+		"driverlibFunction" : "EPWM_enableTripZone2Signals",
+		"driverlibFunctionAlt": "EPWM_disableTripZone2Signals",
+		"driverlibFunctionArg" : {
+			"base" : "",
+			"tzSignal" : "this"
+		},
+		"register": [
+			"TZSEL2.CAPEVTCBC"
+		],
+		"devices" : [
+			"F28P65x"
+		]
+	},
+	  {
 		"name": "epwmTripZone_cbcPulse",
 		"driverlibFunction": "EPWM_selectCycleByCycleTripZoneClearEvent",
 		"driverlibFunctionHR": "HRPWM_selectCycleByCycleTripZoneClearEvent",
@@ -3835,7 +3863,7 @@
 	  {
 		"name": "epwmDeadband_fedShadowLoadEvent",
 		"driverlibFunction": "EPWM_setFallingEdgeDelayCountShadowLoadMode",
-		"driverlibFunctionHR": "HRPWM_setFallingEdgeDeadBandDelayInput",
+		"driverlibFunctionHR": "HRPWM_setFallingEdgeDelayCountShadowLoadMode",
 		"driverlibFunctionArg": {
 		  "base": "",
 		  "loadMode": "this"
@@ -7362,9 +7390,9 @@
 			"driverlibFunctionHR": "EPWM_setXCMPActionQualifierAction",
 			"driverlibFunctionArg": {
 			"base": "",
-			"output": "this",
 			"shadowset": "EPWM_XCMP_SHADOW2",
 			"epwmOutput": "EPWM_AQ_OUTPUT_A",
+			"output": "this",
 			"event": "EPWM_AQ_OUTPUT_ON_TIMEBASE_XCMP8"
 			},
 			"register": "XAQCTLA_SHDW2.XCMP8",

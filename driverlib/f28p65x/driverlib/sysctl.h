@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -1096,13 +1096,15 @@ typedef enum
 typedef enum
 {
     SYSCTL_CLOCKOUT_PLLSYS     = 0U,   //!< PLL System Clock post SYSCLKDIV
-    SYSCTL_CLOCKOUT_PLLRAW     = 1U,   //!< PLL Raw Clock
+    SYSCTL_CLOCKOUT_PLLRAW     = 1U,   //!< PLL Clock after Bypass Mux
     SYSCTL_CLOCKOUT_SYSCLK     = 2U,   //!< CPU System Clock
     SYSCTL_CLOCKOUT_SYSCLK2    = 3U,   //!< CPU 2 System Clock
     SYSCTL_CLOCKOUT_AUXPLLCLK  = 4U,   //!< Aux PLL Clock
     SYSCTL_CLOCKOUT_INTOSC1    = 5U,   //!< Internal Oscillator 1
     SYSCTL_CLOCKOUT_INTOSC2    = 6U,   //!< Internal Oscillator 2
     SYSCTL_CLOCKOUT_XTALOSC    = 7U,   //!< External Oscillator
+    SYSCTL_SYSPLLCLKOUT        = 12U,  //!< PLL System Clock pre SYSCLKDIV
+    SYSCTL_AUXPLLCLKOUT        = 13U,  //!< PLL System Clock pre AUXCLKDIV
 } SysCtl_ClockOut;
 
 //*****************************************************************************
@@ -2043,6 +2045,8 @@ SysCtl_setLINBClockDivider(SysCtl_LINBCLKDivider divider)
 //! - \b SYSCTL_CLOCKOUT_INTOSC1
 //! - \b SYSCTL_CLOCKOUT_INTOSC2
 //! - \b SYSCTL_CLOCKOUT_XTALOSC
+//! - \b SYSCTL_SYSPLLCLKOUT
+//! - \b SYSCTL_AUXPLLCLKOUT
 //!
 //! \return None.
 //
@@ -4349,7 +4353,7 @@ SysCtl_getInterruptStatus(void)
 static inline void
 SysCtl_clearInterruptStatus(uint32_t intFlags)
 {
-    HWREGH(SYSSTAT_BASE + SYSCTL_O_SYS_ERR_INT_CLR) |= (uint16_t)intFlags;
+    HWREG(SYSSTAT_BASE + SYSCTL_O_SYS_ERR_INT_CLR) = intFlags;
 }
 //*****************************************************************************
 //

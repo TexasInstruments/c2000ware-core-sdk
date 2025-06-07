@@ -11,7 +11,7 @@
 //#############################################################################
 //
 //
-// $Copyright: Copyright (C) 2024 Texas Instruments Incorporated -
+// $Copyright: Copyright (C) 2025 Texas Instruments Incorporated -
 //             http://www.ti.com/ ALL RIGHTS RESERVED $
 //#############################################################################
 const float test_golden[512] = {

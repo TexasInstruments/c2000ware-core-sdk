@@ -42,7 +42,8 @@ const SYSCLK_d	 	 = system.clockTree.SYSCLK.in
 // `system.clockTree.SYSCLK_domain.$ipInstance.modulePins[i].name`
 	% }
 //	
-
+% if (device != "F28E12x")
+% {
 /////////////////////	
 // Gated CPU1 SYSCLK
 /////////////////////
@@ -64,7 +65,7 @@ const SYSCLK_d	 	 = system.clockTree.SYSCLK.in
 // `system.clockTree.PERx_SYSCLK_domain.$ipInstance.modulePins[i].name`
 	% }
 //	
-
+% }
 //*****************************************************************************
 //
 // Gated LSPCLK Domain (`LSPCLK_d` MHz) 

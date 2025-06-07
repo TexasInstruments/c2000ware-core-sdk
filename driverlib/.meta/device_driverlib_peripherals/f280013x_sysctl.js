@@ -97,11 +97,12 @@ let SysCtl_LSPCLKPrescaler = [
 ]
 let SysCtl_ClockOut = [
 	{ name: "SYSCTL_CLOCKOUT_PLLSYS", displayName: "PLL System Clock post SYSCLKDIV" },
-	{ name: "SYSCTL_CLOCKOUT_PLLRAW", displayName: "PLL Raw Clock" },
+	{ name: "SYSCTL_CLOCKOUT_PLLRAW", displayName: "PLL Clock after Bypass Mux" },
 	{ name: "SYSCTL_CLOCKOUT_SYSCLK", displayName: "CPU System Clock" },
 	{ name: "SYSCTL_CLOCKOUT_INTOSC1", displayName: "Internal Oscillator 1" },
 	{ name: "SYSCTL_CLOCKOUT_INTOSC2", displayName: "Internal Oscillator 2" },
 	{ name: "SYSCTL_CLOCKOUT_XTALOSC", displayName: "External Oscillator" },
+	{ name: "SYSCTL_SYSPLLCLKOUT", displayName: "PLL System Clock pre SYSCLKDIV" },
 ]
 let SysCtl_ExternalOscMode = [
 	{ name: "SYSCTL_XTALMODE_CRYSTAL", displayName: "XTAL Oscillator Crystal Mode" },

@@ -4,22 +4,69 @@
 % } else
 % { transferCommon = system.getScript("/transfer/transferCommon.js");}
 % 
-% let gui = system.modules[transferCommon.getTransferPath() + "gui.js"].$static;
 % var nodePath = system.getNodePath();
 % var path = system.utils.path;
 % var nodeFolder = path.dirname(nodePath);
+% // Node folder: `nodeFolder`
 % var ccsPath = path.join(nodeFolder, "..", "..");
+% // CCS folder: `ccsPath`
 % var eclipsePath = path.join(ccsPath, "eclipse");
 % var theiaPath = path.join(ccsPath, "theia");
 % var eclipseDropInsGcPath = path.join(eclipsePath, "dropins-gc");
 % var theiaPlugInsGcPath = path.join(theiaPath, "ccs_plugins");
 % var absTransferPath = transferCommon.getAbsoluteTransferPath().replaceAll("/", "\\");
+%
+% let guiMod = system.modules[transferCommon.getTransferPath() + "gui.js"];
+% if(guiMod){
+    % let gui = guiMod.$static;
 if not exist "`eclipseDropInsGcPath`" mkdir "`eclipseDropInsGcPath`"
 if not exist "`theiaPlugInsGcPath`" mkdir "`theiaPlugInsGcPath`"
 xcopy ".\syscfg\gui\" "`eclipseDropInsGcPath`\`gui.guiProjectName.toLowerCase().replaceAll(" ", "_")`\" /E /Y
 xcopy "`absTransferPath`.meta\gui\core\" "`eclipseDropInsGcPath`\`gui.guiProjectName.toLowerCase().replaceAll(" ", "_")`\" /E /Y
 xcopy ".\syscfg\gui\" "`theiaPlugInsGcPath`\`gui.guiProjectName.toLowerCase().replaceAll(" ", "_")`\" /E /Y
-% if (gui.dltlogger){
-xcopy ".\syscfg\dlt\assoc_table.json" "`theiaPlugInsGcPath`\`gui.guiProjectName.toLowerCase().replaceAll(" ", "_")`\" /E /Y
-%}
+    % if (gui.dltlogger){
+    xcopy ".\syscfg\dlt\assoc_table.json" "`theiaPlugInsGcPath`\`gui.guiProjectName.toLowerCase().replaceAll(" ", "_")`\" /E /Y
+    %}
 xcopy "`absTransferPath`.meta\gui\core\" "`theiaPlugInsGcPath`\`gui.guiProjectName.toLowerCase().replaceAll(" ", "_")`\" /E /Y
+% }
+%
+% let signalSightGuiMod = system.modules[transferCommon.getTransferPath() + "signalsight.js"];
+% if(signalSightGuiMod){
+% let signalSightGuiInst = signalSightGuiMod.$instances[0];
+    % if(signalSightGuiInst.validationMode){
+if not exist "`signalSightGuiInst.eclipseHardcodedPath`" mkdir "`signalSightGuiInst.eclipseHardcodedPath`"
+if not exist "`signalSightGuiInst.theiaHardcodedPath`" mkdir "`signalSightGuiInst.theiaHardcodedPath`"
+        % //copy generated files
+xcopy ".\syscfg\signalsight\gui\" "`signalSightGuiInst.eclipseHardcodedPath``signalSightGuiInst.$name.toLowerCase().replaceAll(" ", "_")`\" /E /Y
+xcopy ".\syscfg\signalsight\gui\" "`signalSightGuiInst.theiaHardcodedPath``signalSightGuiInst.$name.toLowerCase().replaceAll(" ", "_")`\" /E /Y
+        % //copy components folder
+xcopy "`absTransferPath`.meta\gui\core\" "`signalSightGuiInst.eclipseHardcodedPath``signalSightGuiInst.$name.toLowerCase().replaceAll(" ", "_")`\" /E /Y
+xcopy "`absTransferPath`.meta\gui\core\" "`signalSightGuiInst.theiaHardcodedPath``signalSightGuiInst.$name.toLowerCase().replaceAll(" ", "_")`\" /E /Y
+        % //make new assets folder and copy contents of assets folder
+if not exist "`signalSightGuiInst.eclipseHardcodedPath``signalSightGuiInst.$name.toLowerCase().replaceAll(" ", "_")`\assets" mkdir "`signalSightGuiInst.eclipseHardcodedPath``signalSightGuiInst.$name.toLowerCase().replaceAll(" ", "_")`\assets"
+if not exist "`signalSightGuiInst.theiaHardcodedPath``signalSightGuiInst.$name.toLowerCase().replaceAll(" ", "_")`\assets" mkdir "`signalSightGuiInst.theiaHardcodedPath``signalSightGuiInst.$name.toLowerCase().replaceAll(" ", "_")`\assets"
+xcopy "`absTransferPath`.meta\gui\assets\" "`signalSightGuiInst.eclipseHardcodedPath``signalSightGuiInst.$name.toLowerCase().replaceAll(" ", "_")`\assets\" /E /Y
+xcopy "`absTransferPath`.meta\gui\assets\" "`signalSightGuiInst.theiaHardcodedPath``signalSightGuiInst.$name.toLowerCase().replaceAll(" ", "_")`\assets\" /E /Y
+        % //copy static files
+xcopy "`absTransferPath`.meta\signalsight\plugin_static\" "`signalSightGuiInst.eclipseHardcodedPath``signalSightGuiInst.$name.toLowerCase().replaceAll(" ", "_")`\" /E /Y
+xcopy "`absTransferPath`.meta\signalsight\plugin_static\" "`signalSightGuiInst.theiaHardcodedPath``signalSightGuiInst.$name.toLowerCase().replaceAll(" ", "_")`\" /E /Y
+    % }
+    % else{
+if not exist "`eclipseDropInsGcPath`" mkdir "`eclipseDropInsGcPath`"
+if not exist "`theiaPlugInsGcPath`" mkdir "`theiaPlugInsGcPath`"
+        % //copy generated files
+xcopy ".\syscfg\signalsight\gui\" "`eclipseDropInsGcPath`\`signalSightGuiInst.$name.toLowerCase().replaceAll(" ", "_")`\" /E /Y
+xcopy ".\syscfg\signalsight\gui\" "`theiaPlugInsGcPath`\`signalSightGuiInst.$name.toLowerCase().replaceAll(" ", "_")`\" /E /Y
+        % //copy components folder
+xcopy "`absTransferPath`.meta\gui\core\" "`eclipseDropInsGcPath`\`signalSightGuiInst.$name.toLowerCase().replaceAll(" ", "_")`\" /E /Y
+xcopy "`absTransferPath`.meta\gui\core\" "`theiaPlugInsGcPath`\`signalSightGuiInst.$name.toLowerCase().replaceAll(" ", "_")`\" /E /Y
+        % //make new assets folder and copy contents of assets folder
+if not exist "`eclipseDropInsGcPath`\`signalSightGuiInst.$name.toLowerCase().replaceAll(" ", "_")`\assets" mkdir "`eclipseDropInsGcPath`\`signalSightGuiInst.$name.toLowerCase().replaceAll(" ", "_")`\assets"
+if not exist "`theiaPlugInsGcPath`\`signalSightGuiInst.$name.toLowerCase().replaceAll(" ", "_")`\assets" mkdir "`theiaPlugInsGcPath`\`signalSightGuiInst.$name.toLowerCase().replaceAll(" ", "_")`\assets"
+xcopy "`absTransferPath`.meta\gui\assets\" "`eclipseDropInsGcPath`\`signalSightGuiInst.$name.toLowerCase().replaceAll(" ", "_")`\assets\" /E /Y
+xcopy "`absTransferPath`.meta\gui\assets\" "`theiaPlugInsGcPath`\`signalSightGuiInst.$name.toLowerCase().replaceAll(" ", "_")`\assets\" /E /Y
+        % //copy static files
+xcopy "`absTransferPath`.meta\signalsight\plugin_static\" "`eclipseDropInsGcPath`\`signalSightGuiInst.$name.toLowerCase().replaceAll(" ", "_")`\" /E /Y
+xcopy "`absTransferPath`.meta\signalsight\plugin_static\" "`theiaPlugInsGcPath`\`signalSightGuiInst.$name.toLowerCase().replaceAll(" ", "_")`\" /E /Y
+    % }
+% }

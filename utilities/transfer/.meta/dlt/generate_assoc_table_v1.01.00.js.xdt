@@ -3,7 +3,7 @@ const { join } = require("path");
 const path = require("path");
 const execSync = require('child_process').execSync;
 var re = new RegExp(".*\.\(cpp\|c\)$");
-const RestrictedDirs = ["Generated Source", "CPU1_RAM", "device", "targetConfigs", "dlt_astdump", ".settings"]
+const RestrictedDirs = ["Generated Source", "RAM", "FLASH", "CPU1_RAM", "CPU1_FLASH", "device", "targetConfigs", "dlt_astdump", ".settings"]
 let GeneratedDirsPath = []
 const path_to_dir = join(__dirname,'..','..','..');
 RestrictedDirs.forEach(dir => {
@@ -59,8 +59,11 @@ function cleanAST(astJSON, source) {
 
 // Generates a cleaned astjson array and appends it to the larger
 // cleanASTObjects file array 
-let cleanASTObjects = []
+// let cleanASTObjects = [];
+let cleanASTObjectsMap = {};
 function GenerateCleanAST(source) {
+    let cleanASTObjects = [];
+
     astParseJson = AstOutputFile;
     let data = fs.readFileSync(astParseJson);
     const astJSON = JSON.parse(data)["inner"]
@@ -68,6 +71,7 @@ function GenerateCleanAST(source) {
     cleanAstJson.forEach(element => {
         cleanASTObjects.push(element)
     });
+    cleanASTObjectsMap[source] = cleanASTObjects;
 }
 
 // Uses the cleaned file output array to traverse and find DLREGS/DLTAGS 
@@ -75,60 +79,82 @@ function GenerateCleanAST(source) {
 // association table
 function BuildTable() {
     let assoc_table = [];
-    cleanASTObjects.forEach((elem) => {
-        let functionDecl = elem;
-        let stack = [functionDecl];
-        func_name = functionDecl["function_name"];
-        assoc_table_object = {};
-        assoc_table_object[func_name] = { "DLTAGS": [], "DLREGS": [], "inOrder": true, "useDLTFeature": false };
-        while (stack.length > 0) {
-            functionDecl = stack.pop();
-            if (Array.isArray(functionDecl)) {
-                functionDecl.forEach(element => {
-                    // In order to check for DLREG/DLTAGS we must access a CallExpr
-                    // this is because all DLRGE/DLTAG __builtin calls will have a 
-                    // call expression which wraps the name of the call and variable.
-                    // Then we can access the tag and function call directly to examine
-                    // type of tag and the function name
-                    if ("kind" in element && element['kind'] == 'CallExpr' && element['inner'].length == 2) {
-                        let innerExpr = element['inner'];
-                        let func = innerExpr[0]['inner'][0];
-                        let tag = innerExpr[1];
-                        if ('referencedDecl' in func && func["referencedDecl"]["name"] == "__builtin_c29_datalog_tag") {
-                            if (tag['kind'] != 'IntegerLiteral') {
-                                console.error("Must use hex value integeres for datatagging")
+    let index_dltfiles = 0;
+
+    for(const fileName in cleanASTObjectsMap){
+        cleanASTObjectsMap[fileName].forEach((elem) => {
+            let functionDecl = elem;
+            let stack = [functionDecl];
+            let path = join(path_to_dir,fileName);
+            func_name = functionDecl["function_name"];
+            assoc_table_object = {};
+            assoc_table_object[func_name] = { "DLTAGS": [], "DLREGS": [], "inOrder": true, "useDLTFeature": false };
+            while (stack.length > 0) {
+                functionDecl = stack.pop();
+                if (Array.isArray(functionDecl)) {
+                    functionDecl.forEach(element => {
+                        // In order to check for DLREG/DLTAGS we must access a CallExpr
+                        // this is because all DLRGE/DLTAG __builtin calls will have a 
+                        // call expression which wraps the name of the call and variable.
+                        // Then we can access the tag and function call directly to examine
+                        // type of tag and the function name
+                        if ("kind" in element && element['kind'] == 'CallExpr' && element['inner'].length == 2) {
+                            let innerExpr = element['inner'];
+                            let func = innerExpr[0]['inner'][0];
+                            let tag = innerExpr[1];
+                            if ('referencedDecl' in func && func["referencedDecl"]["name"] == "__builtin_c29_datalog_tag") {
+                                if (tag['kind'] != 'IntegerLiteral') {
+                                    console.error("Must use hex value integeres for datatagging")
+                                }
+                                assoc_table_object[func_name]["DLTAGS"].push(tag['value'].toString(16));
+                                assoc_table_object[func_name]["useDLTFeature"] = true;
                             }
-                            assoc_table_object[func_name]["DLTAGS"].push(tag['value'].toString(16));
-                            assoc_table_object[func_name]["useDLTFeature"] = true;
+                            else if (("referencedDecl" in func && func["referencedDecl"]["name"] == "__builtin_c29_datalog_write")) {
+                                let var_name;
+                                let reg_type;
+                                if (tag['kind'] == 'DeclRefExpr') {
+                                    var_name = tag["referencedDecl"]["name"];
+                                    reg_type = tag["referencedDecl"]["type"]["qualType"];
+
+                                }else
+                                {
+                                    let offset_begin = tag["range"]["begin"]["offset"];
+                                    let offset_end = tag["range"]["end"]["offset"];
+                                    let buffer_length = offset_end - offset_begin;
+                                    let test = fs.openSync(path, 'r');
+                                    let stats = fs.fstatSync(test);
+                                    var bufferSize = stats.size;
+                                    var buffer = new Buffer(buffer_length + 1);  
+                                    let data = fs.readSync(test, buffer, 0, buffer_length + 1, offset_begin);
+                                    var_name = buffer.toString("utf8").replace(/(\r\n|\n|\r)/gm,"");;
+                                    reg_type = tag["type"]["qualType"];
+
+                                }
+
+                                reg_info_template = {
+                                    [var_name]: reg_type
+                                }
+                                assoc_table_object[func_name]["DLREGS"].push(reg_info_template);
+                                assoc_table_object[func_name]["useDLTFeature"] = true;
+                            }
                         }
-                        else if (("referencedDecl" in func && func["referencedDecl"]["name"] == "__builtin_c29_datalog_write")) {
-                            if (tag['kind'] != 'DeclRefExpr') {
-                                console.error("Must use varible decleartions for datalogging")
-                            }
-                            let var_name = tag["referencedDecl"]["name"];
-                            let reg_type = tag["referencedDecl"]["type"]["qualType"];
-                            reg_info_template = {
-                                [var_name]: reg_type
-                            }
-                            assoc_table_object[func_name]["DLREGS"].push(reg_info_template);
-                            assoc_table_object[func_name]["useDLTFeature"] = true;
+                        else if ("inner" in element) {
+                            stack.push(element);
                         }
+                    });
+                }
+                else if (typeof (functionDecl) === "object" && functionDecl !== null) {
+                    if ("inner" in functionDecl) {
+                        stack.push(functionDecl['inner']);
                     }
-                    else if ("inner" in element) {
-                        stack.push(element);
-                    }
-                });
-            }
-            else if (typeof (functionDecl) === "object" && functionDecl !== null) {
-                if ("inner" in functionDecl) {
-                    stack.push(functionDecl['inner']);
+                }
+                if (assoc_table_object[func_name]["useDLTFeature"] == true) {
+                    assoc_table.push(assoc_table_object);
                 }
             }
-            if (assoc_table_object[func_name]["useDLTFeature"] == true) {
-                assoc_table.push(assoc_table_object);
-            }
-        }
-    });
+            index_dltfiles += 1;
+        });
+    }
     assoc_table = [...new Set(assoc_table)];
     fs.writeFileSync(join(__dirname, './assoc_table.json'), JSON.stringify(assoc_table, null, 2), 'utf-8')
 }
@@ -141,7 +167,7 @@ function BuildTable() {
 // which is then used to created the assoc table and output to ${astDumpDirectoryLocation}/assoc_table.json.
 // Finishes by removing the Ast Output file from the directory.
 const AstOutputFile = join(__dirname,"output.json");
-async function main() {
+function main() {
     Traverse(path_to_dir);
     Compiler = process.argv[2];
     CompilerIncludes = process.argv[3];

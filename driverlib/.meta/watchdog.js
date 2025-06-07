@@ -157,7 +157,7 @@ let config = [
     },
 ];
 
-if (["F2838x", "F28004x" ,"F28003x", "F28002x", "F280013x", "F280015x", "F28P55x"].includes(Common.getDeviceName()))
+if (["F2838x", "F28004x" ,"F28003x", "F28002x", "F280013x", "F280015x", "F28P55x","F28E12x"].includes(Common.getDeviceName()))
 {
     
     config = config.concat([

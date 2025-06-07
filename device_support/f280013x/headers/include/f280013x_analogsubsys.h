@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -66,6 +66,18 @@ struct EXTROSCCSR1_BITS {               // bits description
 union EXTROSCCSR1_REG {
     Uint32  all;
     struct  EXTROSCCSR1_BITS  bit;
+};
+
+struct INTERNALTESTCTL_BITS {           // bits description
+    Uint16 TESTSEL:5;                   // 4:0 Test Select
+    Uint16 rsvd1:3;                     // 7:5 Reserved
+    Uint16 rsvd2:8;                     // 15:8 Reserved
+    Uint16 KEY:16;                      // 31:16 Key to Enable writes
+};
+
+union INTERNALTESTCTL_REG {
+    Uint32  all;
+    struct  INTERNALTESTCTL_BITS  bit;
 };
 
 struct CONFIGLOCK_BITS {                // bits description
@@ -318,26 +330,28 @@ union AGPIOCTRLH_REG {
 struct ANALOG_SUBSYS_REGS {
     Uint16                                   rsvd1[36];                    // Reserved
     union   EXTROSCCSR1_REG                  EXTROSCCSR1;                  // ExtR Oscillator Status Register
-    Uint16                                   rsvd2[56];                    // Reserved
+    Uint16                                   rsvd2[36];                    // Reserved
+    union   INTERNALTESTCTL_REG              INTERNALTESTCTL;              // INTERNALTEST Node Control Register
+    Uint16                                   rsvd3[18];                    // Reserved
     union   CONFIGLOCK_REG                   CONFIGLOCK;                   // Lock Register for all the config registers.
     union   TSNSCTL_REG                      TSNSCTL;                      // Temperature Sensor Control Register
-    Uint16                                   rsvd3[7];                     // Reserved
-    union   ANAREFCTL_REG                    ANAREFCTL;                    // Analog Reference Control Register. This register is not configurable for 32QFN package
     Uint16                                   rsvd4[7];                     // Reserved
+    union   ANAREFCTL_REG                    ANAREFCTL;                    // Analog Reference Control Register. This register is not configurable for 32QFN package
+    Uint16                                   rsvd5[7];                     // Reserved
     union   VMONCTL_REG                      VMONCTL;                      // Voltage Monitor Control Register
-    Uint16                                   rsvd5[17];                    // Reserved
+    Uint16                                   rsvd6[17];                    // Reserved
     union   CMPHPMXSEL_REG                   CMPHPMXSEL;                   // Bits to select one of the many sources on CompHP inputs. Refer to Pimux diagram for details.
     union   CMPLPMXSEL_REG                   CMPLPMXSEL;                   // Bits to select one of the many sources on CompLP inputs. Refer to Pimux diagram for details.
     union   CMPHNMXSEL_REG                   CMPHNMXSEL;                   // Bits to select one of the many sources on CompHN inputs. Refer to Pimux diagram for details.
     union   CMPLNMXSEL_REG                   CMPLNMXSEL;                   // Bits to select one of the many sources on CompLN inputs. Refer to Pimux diagram for details.
     union   ADCDACLOOPBACK_REG               ADCDACLOOPBACK;               // Enabble loopback from DAC to ADCs
-    Uint16                                   rsvd6;                        // Reserved
+    Uint16                                   rsvd7;                        // Reserved
     union   CMPSSCTL_REG                     CMPSSCTL;                     // CMPSS Control Register
-    Uint16                                   rsvd7[2];                     // Reserved
+    Uint16                                   rsvd8[2];                     // Reserved
     union   LOCK_REG                         LOCK;                         // Lock Register
-    Uint16                                   rsvd8[122];                   // Reserved
+    Uint16                                   rsvd9[122];                   // Reserved
     union   AGPIOCTRLA_REG                   AGPIOCTRLA;                   // AGPIO Control Register
-    Uint16                                   rsvd9[12];                    // Reserved
+    Uint16                                   rsvd10[12];                   // Reserved
     union   AGPIOCTRLH_REG                   AGPIOCTRLH;                   // AGPIO Control Register
 };
 

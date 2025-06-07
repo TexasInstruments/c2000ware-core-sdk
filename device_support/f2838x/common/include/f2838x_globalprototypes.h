@@ -8,7 +8,7 @@
 //
 //
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -136,7 +136,7 @@ extern void ReleaseFlashPump(void);
 //
 void IDLE();
 void STANDBY();
-void HALT();
+
 
 //
 //ADC functions
@@ -270,8 +270,7 @@ extern void GPIO_SetupXINT3Gpio(Uint16 gpioNumber);
 extern void GPIO_SetupXINT4Gpio(Uint16 gpioNumber);
 extern void GPIO_SetupXINT5Gpio(Uint16 gpioNumber);
 extern void GPIO_SelectIpcInt(Uint16 newFlag);
-extern void GPIO_EnableUnbondedIOPullupsFor100Pin(void);
-extern void GPIO_EnableUnbondedIOPullupsFor100Pin(void);
+extern void GPIO_EnableUnbondedIOPullupsFor176Pin(void);
 extern void GPIO_EnableUnbondedIOPullups(void);
 Uint16 GPIO_ReadPin(Uint16 gpioNumber);
 void GPIO_WritePin(Uint16 gpioNumber, Uint16 outVal);

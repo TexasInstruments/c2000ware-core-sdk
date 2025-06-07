@@ -56,7 +56,7 @@
 //
 //
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -712,7 +712,7 @@ void configurePWMPins(void)
 //
 void generateSD_clock_MHz(float sdclk_MHz, uint16_t oscclkInMHz)
 {
-    ASSERT(oscclkInMHz <= 20);
+    ASSERT(oscclkInMHz <= 25);
 
     uint32_t sysclk_in_MHz   = SysCtl_getClock(oscclkInMHz);
     uint16_t period          = (uint16_t)(sysclk_in_MHz / sdclk_MHz)-1;

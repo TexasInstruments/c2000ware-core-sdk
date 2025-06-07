@@ -14,7 +14,7 @@
 //
 //
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -74,20 +74,22 @@ typedef enum {
 typedef struct {
     int32_t version;
     uint16_t type;     //!< Feature Extraction Type
-    uint16_t min_fft_bin_size;             //!< Minimum size of FFT BIN
-    uint16_t num_input_channels;           //!< Number of input channels
-    uint16_t fft_stage_num;                //!< Number of FFT stages
-    uint16_t fft_size;                     //!< Size of FFT
-    uint16_t fft_bin_size;                 //!< FFT bin size
-    uint16_t feature_size_per_frame;       //!< Size of Feature per frame
-    uint16_t total_feature_size_per_frame; //!< Size of Total frame
-    uint16_t size_of_frame;                //!< Size of frame
-    uint16_t output_feature_width;                //!< Width of feature extract output data
-    uint16_t output_feature_height;               //!< Height of feature extract output data
+    uint16_t min_fft_bin_size;                  //!< Minimum size of FFT BIN  --> FE_MIN_FFT_BIN
+    uint16_t num_input_channels;                //!< Number of input channels --> FE_
+    uint16_t fft_stage_num;                     //!< Number of FFT stages --> FE_FFT_STAGES
+    uint16_t fft_size;                          //!< Size of FFT
+    uint16_t fft_bin_size;                      //!< FFT bin size
+    uint16_t feature_size_per_frame;            //!< Size of Feature per frame
+    uint16_t total_feature_size_per_frame;      //!< Size of Total frame
+    uint16_t size_of_frame;                     //!< Size of frame
+    uint16_t output_feature_width;              //!< Width of feature extract output data
+    uint16_t output_feature_height;             //!< Height of feature extract output data
     uint16_t output_feature_size_per_channel;   //!< Size of feature output per channel
-    uint16_t output_feature_size;             //!< Size of total feature
-    uint16_t num_frame_concat;          //!< Number of frames to be concatinated
-    uint16_t nn_output_size;               //!< Size of neural_network output buffer
+    uint16_t output_feature_size;               //!< Size of total feature
+    uint16_t num_frame_concat;                  //!< Number of frames to be concatenated
+    uint16_t nn_output_size;                    //!< Size of neural_network output buffer
+    uint16_t log_multiply;                      //!< Multiplication factor of log operation --> FE_LOG_MUL
+    float log_base;                             //!< Base of log operation --> FE_LOG_BASE
 
     const int32_t *output_convert_bias;
     const int32_t *output_convert_scale;

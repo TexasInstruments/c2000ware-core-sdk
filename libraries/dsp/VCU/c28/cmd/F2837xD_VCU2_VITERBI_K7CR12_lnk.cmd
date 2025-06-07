@@ -168,12 +168,21 @@ SECTIONS
    .switch          : > RAMLS1,    PAGE = 0
    .econst          : > RAMLS4,    PAGE = 1
 #elif defined(FLASH)
+   #if defined(__TI_EABI__)
    .TI.ramfunc      :  LOAD = FLASHC,
+                       RUN = RAMLS1,
+                       RUN_START(RamfuncsRunStart),
+                       LOAD_START(RamfuncsLoadStart),
+                       LOAD_SIZE(RamfuncsLoadSize),
+                       PAGE = 0
+	#else
+	.TI.ramfunc      :  LOAD = FLASHC,
                        RUN = RAMLS1,
                        RUN_START(_RamfuncsRunStart),
                        LOAD_START(_RamfuncsLoadStart),
                        LOAD_SIZE(_RamfuncsLoadSize),
                        PAGE = 0
+	#endif
 
    .text            : > FLASHN,    PAGE = 0
    .cinit           : > FLASHM,    PAGE = 0

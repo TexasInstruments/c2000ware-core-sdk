@@ -97,6 +97,12 @@ let SYSCTLRegisters = [
 			{ name: "FLASHA", description: "Flash Wrapper Module Reset Bit", size: "1", shift: "0", mask: "0x1" },
 		]
 	},
+	{ name: "SOFTPRES40", description: "Peripheral Software Reset register", offset: "0xD2",
+		bits: [
+			{ name: "JTAG_NTRST", description: "Multi Bit JTAG nTRST", size: "4", shift: "0", mask: "0xF" },
+			{ name: "JTAG_NTRST_KEY", description: "JTAG nTRST Key", size: "16", shift: "16", mask: "0xFFFF0000" },
+		]
+	},
 	{ name: "TAP_STATUS", description: "Status of JTAG State machine & Debugger Connect", offset: "0x130",
 		bits: [
 			{ name: "TAP_STATE", description: "Present TAP State", size: "16", shift: "0", mask: "0xFFFF" },

@@ -178,6 +178,12 @@ if (["F28P65x", "F28P55x"].includes(Common.getDeviceName())){
     )
 }
 
+if (["F28E12x"].includes(Common.getDeviceName())){
+    configNames.push(   
+        "Triggermode",
+    )
+}
+
 function performCopy(inst, ui)
 {
     for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){ 
@@ -252,13 +258,22 @@ function onChangeEnabledSOCs(inst, ui){
             "soc" + soci.toString() + "SampleTime",
             "soc" + soci.toString() + "copyUse",
         ]
+        if (["F28P55x","F28E12x"].includes(Common.getDeviceName())){
+            socConfigs.push(   
+                "soc" + soci.toString() + "EnableSampleCAPReset",
+            )
+        }
         if ([ "F28P65x", "F28P55x"].includes(Common.getDeviceName())){
             socConfigs.push(   
                 "soc" + soci.toString() + "Triggermode",
                 "soc" + soci.toString() + "ExtChannel",
             )
         }
-
+        if (["F28E12x"].includes(Common.getDeviceName())){
+            socConfigs.push(   
+                "soc" + soci.toString() + "Triggermode",
+            )
+        }
        
         var sampleCalculatorConfigs = [
             "soc" + soci.toString() + "InputCapacitance",
@@ -354,6 +369,51 @@ function onChangeEnabledInts(inst, ui){
     }
 }
 
+function onChangeSampleCAPReset(inst, ui){
+    for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){ 
+        var currentSOC = device_driverlib_peripheral.ADC_SOCNumber[socIndex].name
+        var soci = (currentSOC).replace(/[^0-9]/g,'')
+        if (((inst.enabledSOCs).includes(currentSOC)))
+        {
+            if (["F28E12x"].includes(Common.getDeviceName())){
+                if(inst["soc" + soci.toString() + "EnableSampleCAPReset"]){
+                    ui["soc" + soci.toString() + "sampleCAPResetSelect"].hidden = false;
+                }
+                else{
+                    ui["soc" + soci.toString() + "sampleCAPResetSelect"].hidden = true;
+                }
+            }
+        }
+    }
+}
+
+function onChangeEnabledDMAInts(inst, ui){
+    for(var intIndex in device_driverlib_peripheral.ADC_IntNumber){ 
+        var currentINT = device_driverlib_peripheral.ADC_IntNumber[intIndex].name
+        var inti = (currentINT).replace(/[^0-9]/g,'')
+        var intConfigs = [
+            "enableDMAInterrupt" + inti.toString(),
+            "dmaInterrupt" + inti.toString() + "SOCSource",
+            "enableDMAInterrupt" + inti.toString() + "ContinuousMode",
+        ]
+
+        if (ui)
+        {
+            for (var intConfig of intConfigs)
+            {
+                if((inst.enabledDMAInts).includes(currentINT))
+                {
+                    ui[intConfig].hidden = false;
+                }
+                else
+                {
+                    ui[intConfig].hidden = true;
+                }
+            }
+        }
+    }
+}
+
 function onChangeEnabledPPBs(inst, ui){
     for(var ppbIndex in device_driverlib_peripheral.ADC_PPBNumber)
     {
@@ -372,14 +432,18 @@ function onChangeEnabledPPBs(inst, ui){
             "ppb" + ppbi.toString() + "LowTripLimit",
         ]
 
-        if ([ "F28P65x", "F28P55x"].includes(Common.getDeviceName())){
+        if ([ "F28P65x", "F28P55x", "F28E12x"].includes(Common.getDeviceName())){
             ppbConfigs.push(   
             "ppb" + ppbi.toString() + "CompSource", 
             "ppb" + ppbi.toString() + "SyncInput", 
             "ppb" + ppbi.toString() + "Rightshift", 
             "ppb" + ppbi.toString() + "AccumulationLimit",
             "ppb" + ppbi.toString() + "SelectOSINTSource",
-            "ppb" + ppbi.toString() + "AbsValue",        
+            )
+        }
+        if ([ "F28P65x", "F28P55x"].includes(Common.getDeviceName())){
+            ppbConfigs.push(
+            "ppb" + ppbi.toString() + "AbsValue",
             )
         }
         if (!["F2807x", "F2837xS", "F2837xD"].includes(Common.getDeviceName())){
@@ -582,6 +646,9 @@ var DEVICES_ADC_INSTANCES = {
         { name: "ADCB_BASE", displayName: "ADCB"},
         { name: "ADCC_BASE", displayName: "ADCC"},
     ],
+    F28E12x : [
+        { name: "ADCA_BASE", displayName: "ADCA"},
+    ],
 }
 
 var ADC_INSTANCE = DEVICES_ADC_INSTANCES[Common.getDeviceName()]
@@ -775,6 +842,32 @@ function addSOCGroup(soci){
             default     : Pinmux.getDevicePinInfoDescription(defaultADCPinInfos)
         },
     ]
+    if (["F28P55x", "F28E12x"].includes(Common.getDeviceName())){
+        eachSocConfig = eachSocConfig.concat(
+        [
+            {
+                name: "soc" + soci.toString() + "EnableSampleCAPReset",
+                displayName : "Enable Sample Capacitor Reset",
+                description : 'Enable the sample capacitor to reset after each conversion.',
+                hidden      : true,
+                default     : false,
+                onChange    : onChangeSampleCAPReset,
+            },
+        ])
+    }
+    if (["F28E12x"].includes(Common.getDeviceName())){
+        eachSocConfig = eachSocConfig.concat(
+        [
+            {
+                name: "soc" + soci.toString() + "sampleCAPResetSelect",
+                displayName : "Sample Capacitor Reset Select",
+                description : 'Reset Sample capacitor to either vrefhi/2 or vreflo.',
+                hidden      : true,
+                default     : device_driverlib_peripheral.ADC_SampleCAPResetValue[0].name,
+                options     : device_driverlib_peripheral.ADC_SampleCAPResetValue,
+            },
+        ])
+    }
     if (["F28P65x", "F28P55x"].includes(Common.getDeviceName())){
         eachSocConfig = eachSocConfig.concat(
         [
@@ -961,7 +1054,7 @@ for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){
     var currentSOC = device_driverlib_peripheral.ADC_SOCNumber[socIndex].name
     var soci = (currentSOC).replace(/[^0-9]/g,'')
     var SOCTrigger_configs =[]
-    if (["F28P65x", "F28P55x"].includes(Common.getDeviceName())){
+    if (["F28P65x", "F28P55x", "F28E12x"].includes(Common.getDeviceName())){
     SOCTrigger_configs = SOCTrigger_configs.concat([
         // Trigger mode
         {
@@ -1215,117 +1308,132 @@ config = config.concat([
 
 ])
 
-if (["F28P65x", "F28P55x"].includes(Common.getDeviceName()))
+var eachRepeaterConfig = []
+if (["F28P65x", "F28P55x", "F28E12x"].includes(Common.getDeviceName()))
 {
     var repeatermoduledescription ='The ADC contains two trigger repeater modules. These modules can select any of the regular ADC triggers that are selectable by Trigger, and generate a number of repeat pulses as configured in Count field. Each repeater module can apply four types of trigger modifications: oversampling, undersampling, phase delay and re-trigger spread.The ADC trigger repeater module is shown here: ![an offline image](../../driverlib/.meta/adc/docs/adcrepeater.png)'
     var repeatermodedescription ='In oversampling mode, the repeater module passes the initial trigger through to the output. As soon as all SOCs configured to receive the trigger are in progress or completed, it issues the trigger again. The process repeats until the configured number of trigger pulses (NSEL + 1) have been issued.In undersampling mode, the repeater module passes the initial trigger through to the output, and then blocks subsequent triggers until it has received the configured number of trigger pulses (NSEL + 1). The result is that only 1 in every (NSEL + 1) pulses passes through to the output.'
     var repeaterphasedescription = 'The repeater module can delay the initial trigger by a specified number of SYSCLK cycles. The phase delay does not affect the timing between subsequent repeated oversampled triggers—it only delays the initial trigger.'
     var repeaterspreaddescription = 'If additional time between samples is desired, the application may configure SPREAD equal to the number of SYSCLK cycles desired between samples.'
-    var repeaterConfigs=[]
-    for(var rptrIndex in device_driverlib_peripheral.ADC_RepInstance)
-    { 
+
+function addRepeaterGroup(rptri){
+    eachRepeaterConfig = eachRepeaterConfig.concat ([
+        {
+            name:"repeater"+ rptri.toString(), 
+            displayName: "Repeater Module"+ rptri.toString(),
+            longDescription: repeatermoduledescription,
+            collapsed: true,
+            config : repeaterConfigs
+        },
+    ])
+}
+
+    for(var rptrIndex in device_driverlib_peripheral.ADC_RepInstance){ 
         var currentRPTR = device_driverlib_peripheral.ADC_RepInstance[rptrIndex].name
         let rptri = (currentRPTR).replace(/[^0-9]/g,'')
-        repeaterConfigs= repeaterConfigs.concat
-        ([
+        var repeaterConfigs=[]
+        if (["F28P65x", "F28P55x"].includes(Common.getDeviceName())){
+            repeaterConfigs = repeaterConfigs.concat([
+                {
+                    name: "repeater" + rptri.toString()+ " Mode",
+                    displayName :  "Mode",
+                    longDescription : repeatermodedescription,
+                    default     : device_driverlib_peripheral.ADC_RepMode[0].name,
+                    options     : device_driverlib_peripheral.ADC_RepMode,   
+                },
+        ])
+        }
+        repeaterConfigs = repeaterConfigs.concat([
             {
-                name:"repeater"+ rptri.toString(), 
-                displayName: "Repeater Module"+ rptri.toString(),
-                longDescription: repeatermoduledescription,
-                collapsed: true,
-                config:
-                [ 
+                name: "repeater" + rptri.toString()+ " Trigger",
+                displayName :  "Trigger",
+                description : 'Select the trigger source for this Repeater',
+                default     : "ADC_TRIGGER_SW_ONLY",
+                options     : /*device_driverlib_peripheral.ADC_Trigger,*/ (inst)=> 
+                {
+                    var triggeroptions=[]
+                    for (var option of device_driverlib_peripheral.ADC_Trigger)
                     {
-                        name: "repeater" + rptri.toString()+ " Mode",
-                        displayName :  "Mode",
-                        longDescription : repeatermodedescription,
-                        default     : device_driverlib_peripheral.ADC_RepMode[0].name,
-                        options     : device_driverlib_peripheral.ADC_RepMode,   
-                    },
-                    {
-                        name: "repeater" + rptri.toString()+ " Trigger",
-                        displayName :  "Trigger",
-                        description : 'Select the trigger source for this Repeater',
-                        default     : "ADC_TRIGGER_SW_ONLY",
-                        options     : /*device_driverlib_peripheral.ADC_Trigger,*/ (inst)=> 
+                        if (!["ADC_TRIGGER_REPEATER1","ADC_TRIGGER_REPEATER2",].includes(option.name))
                         {
-                            var triggeroptions=[]
-                            for (var option of device_driverlib_peripheral.ADC_Trigger)
-                            {
-                                if (!["ADC_TRIGGER_REPEATER1","ADC_TRIGGER_REPEATER2",].includes(option.name))
-                                {
-                                    triggeroptions.push({name:option.name, displayName: option.displayName})
-                                }
-                            }
-                            return triggeroptions;                       
-                        }, 
-                        
-                    },
-                    {
-                        name: "repeater" + rptri.toString()+ " SyncInput",
-                        displayName : "Sync Input Source",
-                        description : 'Select the Sync source for this Repeater',
-                        default     : device_driverlib_peripheral.ADC_SyncInput[0].name,
-                        options     : device_driverlib_peripheral.ADC_SyncInput
-                        
-        
-                    },
-                    {
-                        name: "repeater" + rptri.toString()+ " Count",
-                        displayName : "Trigger Count",
-                        description : 'Select the count for this Repeater',
-                        default     : 1,
-                        
-        
-                    },
-                    {
-                        name: "repeater"  + rptri.toString()+ " Phase",
-                        displayName : "Trigger Phase Delay in SYSCLK Cycles",
-                        longDescription : repeaterphasedescription,
-                        default     : 0,
-        
-        
-                    },
-                    {
-                        name: "repeater" + rptri.toString()+ " Spread",
-                        displayName : "Trigger Spread in SYSCLK Cycles",
-                        longDescription : repeaterspreaddescription,
-                        default     : 0,
-        
-                    },
-                    {
-                        name: "repeater" + rptri.toString()+ " SelectedSocs",
-                        displayName : "Selected SOCs",
-                        description : 'Selected SOCs for this repeater',
-                        default     : "",
-                        getValue: (inst)=> 
-                        {
-                            var selectedsocs= ""
-                            for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber)
-                            { 
-                                var currentSOC = device_driverlib_peripheral.ADC_SOCNumber[socIndex].name
-                                var soci = (currentSOC).replace(/[^0-9]/g,'')
-                                if(((inst.enabledSOCs).includes(currentSOC)) && ((inst["soc" + soci.toString() + "Trigger"]) == ("ADC_TRIGGER_REPEATER"+rptri.toString())))
-                                { 
-                                    selectedsocs += (selectedsocs != "")?", ": "";
-                                    selectedsocs+= "SOC " + soci.toString();                                    
-                                }
-                            }
-                            return selectedsocs;
+                            triggeroptions.push({name:option.name, displayName: option.displayName})
                         }
-                    },
-                ]
+                    }
+                    return triggeroptions;                       
+                }, 
+                
             },
-        ])  
+            {
+                name: "repeater" + rptri.toString()+ " SyncInput",
+                displayName : "Sync Input Source",
+                description : 'Select the Sync source for this Repeater',
+                default     : device_driverlib_peripheral.ADC_SyncInput[0].name,
+                options     : device_driverlib_peripheral.ADC_SyncInput
+                
+
+            },
+            {
+                name: "repeater" + rptri.toString()+ " Count",
+                displayName : "Trigger Count",
+                description : 'Select the count for this Repeater',
+                default     : 1,
+
+            },
+        ])
+        if (["F28P65x", "F28P55x"].includes(Common.getDeviceName())){
+        repeaterConfigs = repeaterConfigs.concat([
+            {
+                name: "repeater"  + rptri.toString()+ " Phase",
+                displayName : "Trigger Phase Delay in SYSCLK Cycles",
+                longDescription : repeaterphasedescription,
+                default     : 0,
+
+
+            },
+        ])
+        }
+        repeaterConfigs = repeaterConfigs.concat([
+            {
+                name: "repeater" + rptri.toString()+ " Spread",
+                displayName : "Trigger Spread in SYSCLK Cycles",
+                longDescription : repeaterspreaddescription,
+                default     : 0,
+
+            },
+            {
+                name: "repeater" + rptri.toString()+ " SelectedSocs",
+                displayName : "Selected SOCs",
+                description : 'Selected SOCs for this repeater',
+                default     : "",
+                getValue: (inst)=> 
+                {
+                    var selectedsocs= ""
+                    for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber)
+                    { 
+                        var currentSOC = device_driverlib_peripheral.ADC_SOCNumber[socIndex].name
+                        var soci = (currentSOC).replace(/[^0-9]/g,'')
+                        if(((inst.enabledSOCs).includes(currentSOC)) && ((inst["soc" + soci.toString() + "Trigger"]) == ("ADC_TRIGGER_REPEATER"+rptri.toString())))
+                        { 
+                            selectedsocs += (selectedsocs != "")?", ": "";
+                            selectedsocs+= "SOC " + soci.toString();                                    
+                        }
+                    }
+                    return selectedsocs;
+                }
+            },
+        ])
+
+    addRepeaterGroup(rptri);
     }
+
     config = config.concat
     ([
         { 
             name: "GROUP_REPEATER_MODULE",
             displayName: "ADC Repeater Module",
-            config: repeaterConfigs
+            config: eachRepeaterConfig
          },
-    ])  
+    ])
 }
 
 var ppb_configs = []
@@ -1343,6 +1451,19 @@ ppb_configs = ppb_configs.concat([
     },
 ])
 
+let ppbEvents = [
+    {name: "ADC_EVT_TRIPHI", displayName: "ADC Event TRIP HIGH"},
+    {name: "ADC_EVT_TRIPLO", displayName: "ADC Event TRIP LOW"},
+    {name: "ADC_EVT_ZERO", displayName: "ADC Event ZERO CROSSING"},
+]
+if (["F28E12x"].includes(Common.getDeviceName())){
+    ppbEvents = [
+        {name: "ADC_EVT_TRIPHI", displayName: "ADC Event TRIP HIGH"},
+        {name: "ADC_EVT_TRIPLO", displayName: "ADC Event TRIP LOW"},
+        {name: "ADC_EVT_ZERO", displayName: "ADC Event ZERO CROSSING"},
+        {name: "ADC_EVT_NLIMIT", displayName: "ADC Event Within Trip Limit"},
+    ]  
+}
 for(var ppbIndex in device_driverlib_peripheral.ADC_PPBNumber)
 {
     var currentPPB = device_driverlib_peripheral.ADC_PPBNumber[ppbIndex].name
@@ -1382,11 +1503,7 @@ for(var ppbIndex in device_driverlib_peripheral.ADC_PPBNumber)
             hidden      : true,
             minSelections: 0,
             default     : [],
-            options     : [
-                {name: "ADC_EVT_TRIPHI", displayName: "ADC Event TRIP HIGH"},
-                {name: "ADC_EVT_TRIPLO", displayName: "ADC Event TRIP LOW"},
-                {name: "ADC_EVT_ZERO", displayName: "ADC Event ZERO CROSSING"},
-            ],
+            options     : ppbEvents
         },
         // ADC_enablePPBEventInterrupt() / ADC_disablePPBEventInterrupt(), intFlags
         {
@@ -1396,11 +1513,7 @@ for(var ppbIndex in device_driverlib_peripheral.ADC_PPBNumber)
             hidden      : true,
             minSelections: 0,
             default     : [],
-            options     : [
-                {name: "ADC_EVT_TRIPHI", displayName: "ADC Event TRIP HIGH"},
-                {name: "ADC_EVT_TRIPLO", displayName: "ADC Event TRIP LOW"},
-                {name: "ADC_EVT_ZERO", displayName: "ADC Event ZERO CROSSING"},
-            ],
+            options     : ppbEvents
         },
         // ADC_setPPBCalibrationOffset(), offset
         {
@@ -1443,7 +1556,7 @@ for(var ppbIndex in device_driverlib_peripheral.ADC_PPBNumber)
             default     : 0
         },   
     ]
-    if (["F28P65x", "F28P55x"].includes(Common.getDeviceName())) {
+    if (["F28P65x", "F28P55x", "F28E12x"].includes(Common.getDeviceName())) {
         ppbx_configs = ppbx_configs.concat([
             //ADC_PPBIntSrcSelect(), osIntSrc
             {
@@ -1492,14 +1605,18 @@ for(var ppbIndex in device_driverlib_peripheral.ADC_PPBNumber)
                 hidden: true,
                 default: 0,
             },
-            // ADC_enablePPBAbsoluteValue, AbsVal
-            {
-                name: "ppb" + ppbi.toString() + "AbsValue",
-                displayName: "Calculate absolute value",
-                description: "This function enables absolute value capability in the PPB",
-                hidden: true,
-                default: false,
-            },
+        ]);
+    }
+    if (["F28P65x", "F28P55x"].includes(Common.getDeviceName())) {
+        ppbx_configs = ppbx_configs.concat([
+        // ADC_enablePPBAbsoluteValue, AbsVal
+        {
+            name: "ppb" + ppbi.toString() + "AbsValue",
+            displayName: "Calculate absolute value",
+            description: "This function enables absolute value capability in the PPB",
+            hidden: true,
+            default: false,
+        },
         ]);
     }
 
@@ -1583,7 +1700,7 @@ int_configs = int_configs.concat([
     },
 ])
 var interruptSourceOption = device_driverlib_peripheral.ADC_SOCNumber;
-if (["F28P65x", "F28P55x"].includes(Common.getDeviceName())){
+if (["F28P65x", "F28P55x", "F28E12x"].includes(Common.getDeviceName())){
     interruptSourceOption = device_driverlib_peripheral.ADC_IntTrigger;
 }
     for(var intIndex in device_driverlib_peripheral.ADC_IntNumber){ 
@@ -1626,6 +1743,61 @@ if (["F28P65x", "F28P55x"].includes(Common.getDeviceName())){
         ])
     }
 
+if (["F28E12x"].includes(Common.getDeviceName())){
+int_configs = int_configs.concat([
+    {
+        name        : "enabledDMAInts",
+        displayName : "Enable ADC DMA Interrupts",
+        description : 'Select which INTs to enable.',
+        hidden      : false,
+        default     : [],
+        minSelections: 0,
+        options     : device_driverlib_peripheral.ADC_IntNumber,
+        onChange    : onChangeEnabledDMAInts
+    },
+])
+
+interruptSourceOption = device_driverlib_peripheral.ADC_IntTrigger;
+    for(var intIndex in device_driverlib_peripheral.ADC_IntNumber){ 
+        var currentINT = device_driverlib_peripheral.ADC_IntNumber[intIndex].name
+        var inti = (currentINT).replace(/[^0-9]/g,'')
+        int_configs = int_configs.concat([
+            {
+                name: "GROUP_DMAINT" + inti.toString(),
+                displayName: "DMAINT" + inti.toString(),
+                description: "ADC DMA Interrupt " + inti.toString(),
+                longDescription: "",
+                config: [
+                    // ADC_enableDMAInterrupt() / ADC_disableDMAInterrupt(), adcIntNum
+                    {
+                        name: "enableDMAInterrupt" + inti.toString(),
+                        displayName : "Enable ADC DMA Interrupt " + inti.toString(),
+                        description : 'Enable the interrupt for DMA' + inti.toString() + ' for this ADC',
+                        hidden      : true,
+                        default     : false
+                    },
+                    // ADC_setDMAInterruptSource(), socNumber
+                    {
+                        name: "dmaInterrupt" + inti.toString() + "SOCSource",
+                        displayName : "DMA Interrupt " + inti.toString() + " SOC Source",
+                        description : 'Select the source for DMA interrupt' + inti.toString() + ' of this ADC',
+                        hidden      : true,
+                        default     : interruptSourceOption[0].name,
+                        options     : interruptSourceOption,
+                    },
+                    // ADC_enableDMAContinuousMode()
+                    {
+                        name: "enableDMAInterrupt" + inti.toString() + "ContinuousMode",
+                        displayName : "Continuous DMA Interrupt Mode",
+                        description : 'When this is enabled, every EOC signal generates an interrupt regardless of whether the DMA interrupt flag has been cleared or not. When this is disabled, interrupts are suppressed while there is an existing DMA interrupt flag.',
+                        hidden      : true,
+                        default     : false
+                    },
+                ]
+            }
+        ])
+    }
+}
 config = config.concat([
     {
         name: "GROUP_INT",
@@ -1659,58 +1831,64 @@ config = config.concat([
         longDescription: "",
         config: ppb_configs
     },
-    {
-        name: "GROUP_BURST",
-        displayName: "Burst Mode",
-        description: "ADC Burst Mode",
-        longDescription: "",
-        config: [
-             // ADC_enableBurstMode() / ADC_disableBurstMode()
-             {
-                name        : "enableBurstMode",
-                displayName : "Enable Burst Mode",
-                description : 'Enable ADC burst mode.',
-                hidden      : false,
-                default     : false,
-            },
-            // ADC_setBurstModeConfig(), trigger
-            {
-                name        : "burstTrigger",
-                displayName : "Burst Mode Trigger Signal",
-                description : 'The trigger signal for the ADC burst mode.',
-                hidden      : false,
-                default     : device_driverlib_peripheral.ADC_Trigger[0].name,
-                options     : device_driverlib_peripheral.ADC_Trigger,
-            },
-            // ADC_setBurstModeConfig(), burstSize
-            {
-                name        : "burstSize",
-                displayName : "Burst Size",
-                description : 'The size of the burst for the ADC burst mode.',
-                hidden      : false,
-                default     : 0,
-                options     :
-                [
-                    { name : 0, displayName: "Conversion bursts are 1 SOC long" },
-                    { name : 1, displayName: "Conversion bursts are 2 SOC long" },
-                    { name : 2, displayName: "Conversion bursts are 3 SOC long" },
-                    { name : 3, displayName: "Conversion bursts are 4 SOC long" },
-                    { name : 4, displayName: "Conversion bursts are 5 SOC long" },
-                    { name : 5, displayName: "Conversion bursts are 6 SOC long" },
-                    { name : 6, displayName: "Conversion bursts are 7 SOC long" },
-                    { name : 7, displayName: "Conversion bursts are 8 SOC long" },
-                    { name : 8, displayName: "Conversion bursts are 9 SOC long" },
-                    { name : 9, displayName:  "Conversion bursts are 10 SOC long" },
-                    { name : 10, displayName: "Conversion bursts are 11 SOC long" },
-                    { name : 11, displayName: "Conversion bursts are 12 SOC long" },
-                    { name : 12, displayName: "Conversion bursts are 13 SOC long" },
-                    { name : 13, displayName: "Conversion bursts are 14 SOC long" },
-                    { name : 14, displayName: "Conversion bursts are 15 SOC long" },
-                    { name : 15, displayName: "Conversion bursts are 16 SOC long" },
-                ],
-            },
-        ]
-    },
+])
+if (!["F28E12x"].includes(Common.getDeviceName())) {
+    config = config.concat([
+        {
+            name: "GROUP_BURST",
+            displayName: "Burst Mode",
+            description: "ADC Burst Mode",
+            longDescription: "",
+            config: [
+                // ADC_enableBurstMode() / ADC_disableBurstMode()
+                {
+                    name        : "enableBurstMode",
+                    displayName : "Enable Burst Mode",
+                    description : 'Enable ADC burst mode.',
+                    hidden      : false,
+                    default     : false,
+                },
+                // ADC_setBurstModeConfig(), trigger
+                {
+                    name        : "burstTrigger",
+                    displayName : "Burst Mode Trigger Signal",
+                    description : 'The trigger signal for the ADC burst mode.',
+                    hidden      : false,
+                    default     : device_driverlib_peripheral.ADC_Trigger[0].name,
+                    options     : device_driverlib_peripheral.ADC_Trigger,
+                },
+                // ADC_setBurstModeConfig(), burstSize
+                {
+                    name        : "burstSize",
+                    displayName : "Burst Size",
+                    description : 'The size of the burst for the ADC burst mode.',
+                    hidden      : false,
+                    default     : 0,
+                    options     :
+                    [
+                        { name : 0, displayName: "Conversion bursts are 1 SOC long" },
+                        { name : 1, displayName: "Conversion bursts are 2 SOC long" },
+                        { name : 2, displayName: "Conversion bursts are 3 SOC long" },
+                        { name : 3, displayName: "Conversion bursts are 4 SOC long" },
+                        { name : 4, displayName: "Conversion bursts are 5 SOC long" },
+                        { name : 5, displayName: "Conversion bursts are 6 SOC long" },
+                        { name : 6, displayName: "Conversion bursts are 7 SOC long" },
+                        { name : 7, displayName: "Conversion bursts are 8 SOC long" },
+                        { name : 8, displayName: "Conversion bursts are 9 SOC long" },
+                        { name : 9, displayName:  "Conversion bursts are 10 SOC long" },
+                        { name : 10, displayName: "Conversion bursts are 11 SOC long" },
+                        { name : 11, displayName: "Conversion bursts are 12 SOC long" },
+                        { name : 12, displayName: "Conversion bursts are 13 SOC long" },
+                        { name : 13, displayName: "Conversion bursts are 14 SOC long" },
+                        { name : 14, displayName: "Conversion bursts are 15 SOC long" },
+                        { name : 15, displayName: "Conversion bursts are 16 SOC long" },
+                    ],
+                },
+            ]
+        },
+    ])
+}
+config = config.concat([
     {
         name: "GROUP_REGISTER_INT",
         displayName: "Register PIE Interrupt Handlers",
@@ -1956,31 +2134,33 @@ function onValidate(inst, validation) {
                         instance_obj, "socHighPriorityMode");
                     synchronousModeErrorFound = true;
                 }
-                if (instance_obj["enableBurstMode"] != inst["enableBurstMode"])
-                {
-                    validation.logError(
-                        "In synchronous mode all burst modes must match! " + inst.$name + " and " + instance_obj.$name +
-                        " do not match!",
-                        instance_obj, "enableBurstMode");
-                    synchronousModeErrorFound = true;
-                }
-                if (instance_obj["enableBurstMode"] && inst["enableBurstMode"])
-                {
-                    if (instance_obj["burstSize"] != inst["burstSize"])
+                if (!["F28E12x"].includes(Common.getDeviceName())) {
+                    if (instance_obj["enableBurstMode"] != inst["enableBurstMode"])
                     {
                         validation.logError(
-                            "In synchronous mode all burst sizes must match! " + inst.$name + " and " + instance_obj.$name +
+                            "In synchronous mode all burst modes must match! " + inst.$name + " and " + instance_obj.$name +
                             " do not match!",
-                            instance_obj, "burstSize");
+                            instance_obj, "enableBurstMode");
                         synchronousModeErrorFound = true;
                     }
-                    if (instance_obj["burstTrigger"] != inst["burstTrigger"])
+                    if (instance_obj["enableBurstMode"] && inst["enableBurstMode"])
                     {
-                        validation.logError(
-                            "In synchronous mode all burst triggers must match! " + inst.$name + " and " + instance_obj.$name +
-                            " do not match!",
-                            instance_obj, "burstTrigger");
-                        synchronousModeErrorFound = true;
+                        if (instance_obj["burstSize"] != inst["burstSize"])
+                        {
+                            validation.logError(
+                                "In synchronous mode all burst sizes must match! " + inst.$name + " and " + instance_obj.$name +
+                                " do not match!",
+                                instance_obj, "burstSize");
+                            synchronousModeErrorFound = true;
+                        }
+                        if (instance_obj["burstTrigger"] != inst["burstTrigger"])
+                        {
+                            validation.logError(
+                                "In synchronous mode all burst triggers must match! " + inst.$name + " and " + instance_obj.$name +
+                                " do not match!",
+                                instance_obj, "burstTrigger");
+                            synchronousModeErrorFound = true;
+                        }
                     }
                 }
 
@@ -2362,26 +2542,28 @@ function onValidate(inst, validation) {
     // Burst Trigger warnings
     //
 
-    var highPri = inst.socHighPriorityMode;
-    var number_highpri_socs = device_driverlib_peripheral.ADC_PriorityMode.findIndex(x => x.name == highPri);
-    for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){ 
-        var currentSOC = device_driverlib_peripheral.ADC_SOCNumber[socIndex].name
-        var soci = (currentSOC).replace(/[^0-9]/g,'')
-        if((inst.enabledSOCs).includes(currentSOC)){
-            if (soci < number_highpri_socs)
-            {
-
-            }
-            else
-            {
-                if (inst.enableBurstMode)
+    if (!["F28E12x"].includes(Common.getDeviceName())) {
+        var highPri = inst.socHighPriorityMode;
+        var number_highpri_socs = device_driverlib_peripheral.ADC_PriorityMode.findIndex(x => x.name == highPri);
+        for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){ 
+            var currentSOC = device_driverlib_peripheral.ADC_SOCNumber[socIndex].name
+            var soci = (currentSOC).replace(/[^0-9]/g,'')
+            if((inst.enabledSOCs).includes(currentSOC)){
+                if (soci < number_highpri_socs)
                 {
-                    if (inst.burstTrigger != inst["soc" + soci.toString() + "Trigger"])
+
+                }
+                else
+                {
+                    if (inst.enableBurstMode)
                     {
-                        validation.logWarning(
-                            "SOC" + soci.toString() + " is configured for Round Robin. With burst mode enabled, the " +
-                            " burst mode trigger will override the selected trigger for this SOC",
-                            inst, "soc" + soci.toString() + "Trigger");
+                        if (inst.burstTrigger != inst["soc" + soci.toString() + "Trigger"])
+                        {
+                            validation.logWarning(
+                                "SOC" + soci.toString() + " is configured for Round Robin. With burst mode enabled, the " +
+                                " burst mode trigger will override the selected trigger for this SOC",
+                                inst, "soc" + soci.toString() + "Trigger");
+                        }
                     }
                 }
             }
@@ -2439,7 +2621,7 @@ function onValidate(inst, validation) {
   // repeater module
   //
 
-  if (["F28P65x", "F28P55x"].includes(Common.getDeviceName()))
+  if (["F28P65x", "F28P55x", "F28E12x"].includes(Common.getDeviceName()))
         {
             for(var rptrIndex in device_driverlib_peripheral.ADC_RepInstance){ 
                 var currentRPTR = device_driverlib_peripheral.ADC_RepInstance[rptrIndex].name
@@ -2490,6 +2672,9 @@ function onValidate(inst, validation) {
                     }
                 }
             }
+        }
+        if (["F28P65x", "F28P55x"].includes(Common.getDeviceName()))
+        {
             if(inst.enableEXTMUX)
             {
                 for (var xbari=0; xbari< inst["adcNumExtPins"]; xbari++){
@@ -2530,6 +2715,16 @@ function onValidate(inst, validation) {
                 // validation.logInfo(
                 //     "To use the external channel, you must first enable external MUX for this SOC via" + soci.toString()+ ": " + system.getReference(inst,"enableEXTMUX"),
                 //     inst, "soc" + soci.toString() + "ExtChannel");  
+            }
+            if (["F28E12x"].includes(Common.getDeviceName())) 
+            {
+                if(((inst["soc" + soci.toString() + "Triggermode"]) == "repeatermode")&& 
+                ((inst["soc" + soci.toString() + "Trigger"]) == ("ADC_TRIGGER_REPEATER1")))
+                {
+                    validation.logInfo(
+                        "Repeater Module 1 should be configured for SOC" + soci.toString()+ ": " + system.getReference(inst,"repeater1 Trigger"),
+                        inst, "soc" + soci.toString() + "Triggermode");
+                }
             }
             if (inst["soc" + soci.toString() + "UseCalculatedSampleTime"] &&
             inst["soc" + soci.toString() + "UseSampleTimeCalculator"])
@@ -2646,6 +2841,55 @@ function onValidate(inst, validation) {
                             inst, "soc" + soci.toString() + "SampleWindow");                        
                     }
                 }
+                else if(["F28E12x"].includes(Common.getDeviceName()))
+                {
+                    if (inst["soc" + soci.toString() + "SampleWindow"] < 4 &&
+                    inst["soc" + soci.toString() + "SampleWindow"] > 0)
+                    {
+                        validation.logWarning(
+                            "SOC" + soci.toString() + " sample window must be at least 4",
+                            inst, "soc" + soci.toString() + "SampleWindow");                        
+                    }
+
+
+                    if (inst["soc" + soci.toString() + "SampleWindow"] > 448)
+                    {
+                        var value = parseInt(((inst["soc" + soci.toString() + "SampleWindow"] - 448) >> 4) - 1);
+                        var newValue = 448 + ((value + 1) *16);
+                        if(inst["soc" + soci.toString() + "SampleWindow"] != newValue)
+                        {
+                            validation.logWarning(
+                                "Configured SOC" + soci.toString() + " sample window is not possible. The corresponding sample window will be " + newValue,
+                                inst, "soc" + soci.toString() + "SampleWindow");
+                        }
+                    }
+                    else if (inst["soc" + soci.toString() + "SampleWindow"] > 192)
+                    {
+                        var value = parseInt(((inst["soc" + soci.toString() + "SampleWindow"] - 192) >> 2) - 1);
+                        var newValue = 192 + ((value + 1) *4);
+                        if(inst["soc" + soci.toString() + "SampleWindow"] != newValue)
+                        {
+                            validation.logWarning(
+                                "Configured SOC" + soci.toString() + " sample window is not possible. The corresponding sample window will be " + newValue,
+                                inst, "soc" + soci.toString() + "SampleWindow");
+                        }
+                    }
+                    else if (inst["soc" + soci.toString() + "SampleWindow"] > 64)
+                    {
+                        var value = parseInt(((inst["soc" + soci.toString() + "SampleWindow"] - 64) >> 1) - 1);
+                        var newValue = 64 + ((value + 1) *2);
+                        if(inst["soc" + soci.toString() + "SampleWindow"] != newValue)
+                        {
+                            validation.logWarning(
+                                "Configured SOC" + soci.toString() + " sample window is not possible. The corresponding sample window will be " + newValue,
+                                inst, "soc" + soci.toString() + "SampleWindow");
+                        }
+                    }
+                    else
+                    {
+                        // do nothing
+                    }
+                }
                 else
                 {
                     if (inst["soc" + soci.toString() + "SampleWindow"] <= 7 && 
@@ -2656,13 +2900,24 @@ function onValidate(inst, validation) {
                             inst, "soc" + soci.toString() + "SampleWindow");
                     }
                 }
-                if (inst["soc" + soci.toString() + "SampleWindow"] <= 0 ||
-                    inst["soc" + soci.toString() + "SampleWindow"] > 512)
-                {
-                    validation.logError(
-                        "SOC" + soci.toString() + " sample window must be between 1 and 512",
-                        inst, "soc" + soci.toString() + "SampleWindow");
-                } 
+                if (!["F28E12x"].includes(Common.getDeviceName())){
+                    if (inst["soc" + soci.toString() + "SampleWindow"] <= 0 ||
+                        inst["soc" + soci.toString() + "SampleWindow"] > 512)
+                    {
+                        validation.logError(
+                            "SOC" + soci.toString() + " sample window must be between 1 and 512",
+                            inst, "soc" + soci.toString() + "SampleWindow");
+                    }
+                }
+                else{
+                    if (inst["soc" + soci.toString() + "SampleWindow"] <= 0 ||
+                        inst["soc" + soci.toString() + "SampleWindow"] > 1472)
+                    {
+                        validation.logError(
+                            "SOC" + soci.toString() + " sample window must be between 1 and 1472",
+                            inst, "soc" + soci.toString() + "SampleWindow");
+                    }
+                }
                 if (!Number.isInteger(inst["soc" + soci.toString() + "SampleWindow"]))
                 {
                     validation.logError(
@@ -2721,7 +2976,24 @@ function onValidate(inst, validation) {
                         "Repeater Module 1 or Repeater Module 2 should be selected as Tigger source for SOC"+ soci.toString(),
                         inst, "soc" + soci.toString() + "Trigger");
                 } 
-            }    
+            }   
+            if (["F28E12x"].includes(Common.getDeviceName()))
+            {
+                if((inst["soc" + soci.toString() + "Triggermode"]) == "singlemode") 
+                {
+                    if ((inst["soc" + soci.toString() + "Trigger"])== "ADC_TRIGGER_REPEATER1") 
+                    validation.logError(
+                        "Repeater Module 1 can not be selected as Tigger source for SOC" + soci.toString()+ ". If you want to use repeater module, you need to select Use Repeater Trigger in Trigger mode",
+                        inst, "soc" + soci.toString() + "Trigger");
+                }
+                if((inst["soc" + soci.toString() + "Triggermode"]) == "repeatermode") 
+                {
+                    if ((inst["soc" + soci.toString() + "Trigger"])!= "ADC_TRIGGER_REPEATER1") 
+                    validation.logError(
+                        "Repeater Module 1 should be selected as Tigger source for SOC"+ soci.toString(),
+                        inst, "soc" + soci.toString() + "Trigger");
+                } 
+            } 
         }     
     }
 
@@ -2757,25 +3029,44 @@ function onValidate(inst, validation) {
         var currentPPB = device_driverlib_peripheral.ADC_PPBNumber[ppbIndex].name
         var ppbi = (currentPPB).replace(/[^0-9]/g,'')
         if((inst.enabledPPBs).includes(currentPPB)){
-            if (inst["ppb" + ppbi.toString() + "CalibrationOffset"] < -512 ||
-                inst["ppb" + ppbi.toString() + "CalibrationOffset"] > 511)
+            if (!["F28E12x"].includes(Common.getDeviceName()))
             {
-                validation.logError(
-                    "The calibration offset value must be between -512 and 511",
-                    inst,"ppb" + ppbi.toString() +  "CalibrationOffset");
+                if (inst["ppb" + ppbi.toString() + "CalibrationOffset"] < -512 ||
+                    inst["ppb" + ppbi.toString() + "CalibrationOffset"] > 511)
+                {
+                    validation.logError(
+                        "The calibration offset value must be between -512 and 511",
+                        inst,"ppb" + ppbi.toString() +  "CalibrationOffset");
+                }
+                if (inst["ppb" + ppbi.toString() + "ReferenceOffset"] < 0 ||
+                inst["ppb" + ppbi.toString() + "CalibrationOffset"] > 0xFFFF)
+                {
+                    validation.logError(
+                        "The reference offset value must be between 0 and 0xFFFF",
+                        inst,"ppb" + ppbi.toString() +  "CalibrationOffset");
+                }
+            }
+            else
+            {
+                if (inst["ppb" + ppbi.toString() + "CalibrationOffset"] < -32 ||
+                inst["ppb" + ppbi.toString() + "CalibrationOffset"] > 31)
+                {
+                    validation.logError(
+                        "The calibration offset value must be between -32 and 31",
+                        inst,"ppb" + ppbi.toString() +  "CalibrationOffset");
+                }
+                if (inst["ppb" + ppbi.toString() + "ReferenceOffset"] < 0 ||
+                inst["ppb" + ppbi.toString() + "CalibrationOffset"] > 0xFFF)
+                {
+                    validation.logError(
+                        "The reference offset value must be between 0 and 0xFFF",
+                        inst,"ppb" + ppbi.toString() +  "CalibrationOffset");
+                }
             }
             if (!Number.isInteger(inst["ppb" + ppbi.toString() + "CalibrationOffset"]))
             {
                 validation.logError(
                     "The calibration offset value must be an integer",
-                    inst,"ppb" + ppbi.toString() +  "CalibrationOffset");
-            }
-
-            if (inst["ppb" + ppbi.toString() + "ReferenceOffset"] < 0 ||
-                inst["ppb" + ppbi.toString() + "CalibrationOffset"] > 0xFFFF)
-            {
-                validation.logError(
-                    "The reference offset value must be between 0 and 0xFFFF",
                     inst,"ppb" + ppbi.toString() +  "CalibrationOffset");
             }
             if (!Number.isInteger(inst["ppb" + ppbi.toString() + "ReferenceOffset"]))
@@ -2834,6 +3125,15 @@ function onValidate(inst, validation) {
                 validation.logError(
                     "The low trip limit value must be an integer",
                     inst,"ppb" + ppbi.toString() +  "LowTripLimit");
+            }
+        }
+        if (["F28E12x"].includes(Common.getDeviceName()))
+        {
+            if(((inst["ppb2AccumulationLimit"] || inst["ppb3AccumulationLimit"] )!= 0))
+            {
+                validation.logError(
+                    "This feature is only supported in PPB1.",
+                    inst,"ppb" + ppbi.toString() +  "AccumulationLimit");
             }
         }
     }

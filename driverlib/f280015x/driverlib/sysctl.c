@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -263,29 +263,6 @@ SysCtl_setClock(uint32_t config)
     }
     else
     {
-        if((config & SYSCTL_OSCSRC_EXTROSC2) != 0U)
-        {
-            //
-            // Switch OSCCLKSRC to INTOSC1 before switching INTOSC2 from INTR
-            // to EXTR
-            //
-            SysCtl_selectOscSource(SYSCTL_OSCSRC_OSC1);
-            SysCtl_delay(200U);
-
-            //
-            // Write EXTROSCCSR1 delay based on 10nf cap.
-            //
-            HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_EXTROSCCSR1) = 0x0000C00U;
-
-            //
-            // Switch INTOSC to XROSC
-            //
-            SysCtl_setIntOSC2_Mode(SYSCTL_INTOSC2_MODE_EXTR);
-            SysCtl_delay(10000U);
-
-            while(ASysCtl_getExtROscStatus() != ASYSCTL_EXTR_ENABLE_COMPLETE);
-        }
-
         //
         // Bypass PLL
         //
@@ -586,7 +563,7 @@ SysCtl_selectXTAL(void)
     // If a missing clock failure was detected, try waiting for the X1 counter
     // to saturate again. Consider modifying this code to add a 10ms timeout.
     //
-    while(SysCtl_isMCDClockFailureDetected() && (status == FALSE) &&
+    while(SysCtl_isMCDClockFailureDetected() && (status == (bool)FALSE) &&
           (loopCount < 4U))
     {
         //
@@ -610,7 +587,7 @@ SysCtl_selectXTAL(void)
         EDIS;
         loopCount ++;
     }
-    while(status == FALSE)
+    while(status == (bool)FALSE)
     {         
         // If code is stuck here, it means crystal has not started.  
         //Replace crystal or update code below to take necessary actions if 
@@ -658,7 +635,7 @@ SysCtl_selectXTALSingleEnded(void)
     // Something is wrong with the oscillator module. Replace the ESTOP0 with
     // an appropriate error-handling routine.
     //
-    while(SysCtl_isMCDClockFailureDetected() && (status == FALSE))
+    while(SysCtl_isMCDClockFailureDetected() && (status == (bool)FALSE))
     {
         // If code is stuck here, it means crystal has not started.  
         //Replace crystal or update code below to take necessary actions if 

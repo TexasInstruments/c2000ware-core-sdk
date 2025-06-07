@@ -161,8 +161,8 @@
         height: 36px;
     }
     #DLT_plot {
-        width: 440px;
-        height: 405px;
+        width: 70%;
+        height: 100%;
         position: static
     }
     #Plot/Check_container {
@@ -183,14 +183,17 @@
     }
     #DLT_grid {
         --gc-heading-font-size: 10;
-        height: 390px;
-        width: 902px;
+        height: 100%;
+        width: 50%;
         position: static
     }
-    #column0 {
-        --gc-font-weight: bold;
-        --gc-heading-text-align: start;
-        --gc-font-style: normal
+    #column5 {
+        --gc-column-width: 30%;	
+
+    }
+    #column3 {
+        --gc-column-width: 30%;	
+
     }
     #Page_container {
         position: relative;
@@ -250,6 +253,21 @@
     }
 % }
 
+% if (gui.rtlogger){
+    #rt_logger_grid {
+        width: 98%;
+    }
+    #rt_logger_controls_container {
+        height: 45px;
+        --gc-overflow: hidden;
+    }
+    #rt_logger_exp_div {
+        width: 95%;
+    }
+    #rt_logger_exp_dialog {
+        display: flex;
+    }    
+%}
 </style>
 
 <div id="editorRoot" layout vertical one flex>
@@ -417,6 +435,33 @@
                     <gc-widget-grid-data-column id="frame_tag_col" name="frame_tag" heading="Frame Tag" layout></gc-widget-grid-data-column>
                 </gc-widget-grid>
             </gc-widget-tab-panel>
+% if (gui.rtlogger){
+            <gc-widget-tab-panel id="page_rt_logger" class="container" label="RT Logger" icon-name="round:action:timeline" vertical layout has-heading tooltip="Real-Time data logger">
+                <gc-widget-dialog id="rt_logger_exp_dialog" close-on-esc>
+                    <gc-widget-container style="--gc-overflow: hidden; display: flex;" one flex vertical layout>
+                        <textarea id="rt_logger_exp_div" one flex></textarea>
+                    </gc-widget-container>    
+                    <gc-widget-button slot="action-bar" class="dialog-dismiss" label="Close" button-type="link"></gc-widget-button>
+                </gc-widget-dialog>
+                <gc-widget-container id="rt_logger_controls_container" layout class="container" horizontal center end-justified>
+                    <gc-widget-label label="Sort By"></gc-widget-label>
+                    <gc-widget-select id="rt_logger_sort_by_column" labels=",Frame Type,User Data,Data Words,CRC,Frame Tag" values=",frame_type,user_data,data_words,crc,frame_tag" selected-index="0" initial-index="0"></gc-widget-select>
+                    <gc-widget-input-filter id="rt_logger_filter_text" placeholder="Entries include this text" has-clear-icon has-search-icon hidden info-text="The selected Filter/Sort by column entries get filtered to show only the entries that include the text entered in this input box"></gc-widget-input-filter>
+                    <gc-widget-checkbox id="rt_logger_sort_descending" label="Sort Decending"></gc-widget-checkbox>
+                    <gc-widget-button id="rt_logger_export" label="Export"></gc-widget-button>
+                </gc-widget-container>
+                <gc-widget-grid id="rt_logger_grid" layout horizontal selected-path="1" selected-row="1" one flex>
+                    <gc-widget-grid-data-column id="rt_frame_type_col" name="frame_type" heading="Frame Type" layout></gc-widget-grid-data-column>
+                    <gc-widget-grid-data-column id="rt_user_data_col" name="user_data" heading="User Data" layout></gc-widget-grid-data-column>
+                    <gc-widget-grid-tree-column id="rt_log_var_name_col" name="log_var_name" heading="Log Variable" layout></gc-widget-grid-tree-column>
+                    <gc-widget-grid-data-column id="rt_log_varval_col" name="log_varval" heading="Log Value" layout></gc-widget-grid-data-column>
+                    <!--<gc-widget-grid-tree-column id="rt_data_words_col" name="data_words" heading="Data Words" layout one flex></gc-widget-grid-tree-column>-->
+                    <gc-widget-grid-data-column id="rt_crc_col" name="crc" heading="CRC" layout></gc-widget-grid-data-column>
+                    <gc-widget-grid-data-column id="rt_frame_tag_col" name="frame_tag" heading="Frame Tag" layout></gc-widget-grid-data-column>
+                </gc-widget-grid>
+                
+            </gc-widget-tab-panel>
+%}
 % }
 % if (gui.customlogger) {
             <gc-widget-tab-panel id="page_cust_logger" class="container" label="Custom Logger" icon-name="round:action:timeline" vertical layout has-heading tooltip="Custom data logger">
@@ -471,14 +516,14 @@
                         <gc-widget-plot id="DLT_plot" plot-title="Logging Variable vs. Time" x-axis-title="Time (ms)"  y-axis-title="Logging Variable" flex two>
                         </gc-widget-plot> 
                         <gc-widget-grid id="DLT_grid" flex start five>
-                            <gc-widget-grid-tree-column id="column0" heading="ABSOLUTE TIME (ms)" name="DLT_TTL_TIME" layout nine flex></gc-widget-grid-tree-column>
-                            <gc-widget-grid-tree-column id="column1" heading="RELATIVE TIME (ms)" name="DLT_TIME" layout nine flex></gc-widget-grid-tree-column>
+                            <gc-widget-grid-data-column id="column0" heading="ABSOLUTE TIME (ms)" name="DLT_TTL_TIME" layout nine flex></gc-widget-grid-data-column>
+                            <gc-widget-grid-data-column id="column1" heading="RELATIVE TIME (ms)" name="DLT_TIME" minimized layout nine flex></gc-widget-grid-data-column>
                             <gc-widget-grid-data-column id="column2" heading="TAG" name="DLT_TAG" layout nine flex></gc-widget-grid-data-column>
                             <gc-widget-grid-data-column id="column3" heading="FUNCTION" name="DLT_FUNCTION" layout flex nine></gc-widget-grid-data-column>
-                            <gc-widget-grid-tree-column id="column4" heading="DATATYPE" name="DLT_DATATYPE" layout nine flex></gc-widget-grid-tree-column>
+                            <gc-widget-grid-data-column id="column4" heading="DATATYPE" name="DLT_DATATYPE" layout nine flex></gc-widget-grid-data-column>
                             <gc-widget-grid-data-column id="column5" heading="VARIABLE" name="DLT_VARIABLE" layout nine flex></gc-widget-grid-data-column>
                             <gc-widget-grid-data-column id="column6" heading="REG" name="DLT_REG" layout flex nine></gc-widget-grid-data-column>
-                            <gc-widget-grid-tree-column id="column7" heading="TIMER_OVF" name="DLT_TIMER_OVF" layout minimized nine flex></gc-widget-grid-tree-column>
+                            <gc-widget-grid-data-column id="column7" heading="TIMER_OVF" name="DLT_TIMER_OVF" layout minimized nine flex></gc-widget-grid-data-column>
                             <gc-widget-grid-data-column id="column8" heading="FIFO_OVF" name="DLT_FIFO_OVF" layout minimized nine flex></gc-widget-grid-data-column>
                             <gc-widget-grid-data-column id="column9" heading="TAG/REG" name="DLT_TagReg" layout flex one hidden></gc-widget-grid-data-column>
                         </gc-widget-grid>

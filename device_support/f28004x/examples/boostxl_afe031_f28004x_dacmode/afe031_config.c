@@ -8,7 +8,7 @@
 //
 //
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -44,7 +44,7 @@
 // Included Files
 //
 #include "afe031_config.h"
-#include "F28x_Project.h"     // Device Header File and Examples Include File
+#include "f28x_project.h"     // Device Header File and Examples Include File
 
 //
 // Platform-dependent GPIO

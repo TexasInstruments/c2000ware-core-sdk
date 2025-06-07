@@ -35,13 +35,13 @@
 //! 
 //!  \note The pin muxing for the UARTA port needs to be done by the master 
 //!  CPU1. The common configuration example provided in the C28x folder can be 
-//!  used for making GPIO85 as the UART Rx pin and GPIO84 as the UART Tx pin.
+//!  used for assigning appropriate GPIO pins for UART RX and TX.
 //
 //#############################################################################
 //
 //
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -132,14 +132,14 @@ void main(void)
     // Put a character to show start of example.  This will display on the
     // terminal.
     //
-    UART_writeChar(UARTA_BASE, '!');
-    UART_writeChar(UARTA_BASE, '!');
+    UART_writeChar(myUART0_BASE, '!');
+    UART_writeChar(myUART0_BASE, '!');
 
     //
     // FIFO receive interrupt configuration
     //
-    UART_clearInterruptStatus(UARTA_BASE,UART_INT_RX | UART_INT_RT);   
-    UART_enableInterrupt(UARTA_BASE,UART_INT_RX);
+    UART_clearInterruptStatus(myUART0_BASE, UART_INT_RX | UART_INT_RT);   
+    UART_enableInterrupt(myUART0_BASE, UART_INT_RX);
 
     //
     // Loop forever echoing data through the UART.
@@ -157,28 +157,28 @@ __interrupt void UART_RX_IntHandler(void)
     //
     // Get the interrupt status.
     //
-    ui32Status = UART_getInterruptStatus(UARTA_BASE, UART_RAW_INT);
+    ui32Status = UART_getInterruptStatus(myUART0_BASE, UART_RAW_INT);
 
     //
     // Clear the asserted interrupts.
     //
-    UART_clearInterruptStatus(UARTA_BASE, ui32Status);
+    UART_clearInterruptStatus(myUART0_BASE, ui32Status);
 
     //
     // Loop while there are characters in the receive FIFO.
     //
-    while(UART_isDataAvailable(UARTA_BASE))
+    while(UART_isDataAvailable(myUART0_BASE))
     {
         //
         // Read the next character from the UART and write it back to the UART.
         //
-        UART_writeCharNonBlocking(UARTA_BASE,
-                                  UART_readCharNonBlocking(UARTA_BASE));
+        UART_writeCharNonBlocking(myUART0_BASE,
+                                  UART_readCharNonBlocking(myUART0_BASE));
     }
 
-    // TODO: Add a function to clear the global flag
-    HWREG(myUART0_BASE + 0x0044U) = 1;
-    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP8);
+    // Clear UART and PIPE interrupts
+    UART_clearGlobalInterruptFlag(myUART0_BASE);
+    Interrupt_clearACKGroup(INT_myUART0_INTERRUPT_ACK_GROUP);
 
 }
 

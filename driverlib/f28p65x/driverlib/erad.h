@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -468,9 +468,9 @@ typedef enum
 typedef enum
 {
     ERAD_COUNTER_COUNT_INPUT = 0,
-    ERAD_COUNTER_START_INPUT = 1,
-    ERAD_COUNTER_STOP_INPUT  = 2,
-    ERAD_COUNTER_RESET_INPUT = 3
+    ERAD_COUNTER_START_INPUT = 4,
+    ERAD_COUNTER_STOP_INPUT  = 8,
+    ERAD_COUNTER_RESET_INPUT = 12
 } ERAD_Counter_Input_Type;
 
 //*****************************************************************************
@@ -1178,6 +1178,11 @@ ERAD_enableCounterResetInput(uint32_t base,
     // Setup up the counter such that the reset event is set and enabled
     //
     EALLOW;
+    HWREG(base + ERAD_O_CTM_CNTL) |= ERAD_CTM_CNTL_RST_EN;
+    HWREG(base + ERAD_O_CTM_INPUT_SEL_2) =
+                (HWREG(base + ERAD_O_CTM_INPUT_SEL_2) &
+                ~ERAD_CTM_INPUT_SEL_2_RST_INP_SEL_M) |
+                ((uint16_t)reset_event << ERAD_CTM_INPUT_SEL_2_RST_INP_SEL_S);
     EDIS;
 }
 

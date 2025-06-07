@@ -3,7 +3,7 @@ import { DecoderType, EncoderType, codecRegistry, connectedStateChangedEventType
 import { EventType } from '../../gc-core-assets/lib/Events';
 
 /**
- *  Copyright (c) 2020, 2022 Texas Instruments Incorporated
+ *  Copyright (c) 2020, 2025 Texas Instruments Incorporated
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -53,7 +53,7 @@ class DSEvalBind extends AbstractAsyncBindValue {
         if (!this.parentModel.isConnected()) {
             await this.parentModel.whenConnected();
         }
-        this.parentModel.codec?.writeValue(this.getTargetExpression(), this.cachedValue, this.parentModel.coreName).catch(this.onFailure);
+        return this.parentModel.codec?.writeValue(this.getTargetExpression(), this.cachedValue, this.parentModel.coreName).catch(this.onFailure);
     }
     async readValue() {
         if (!this.parentModel.isConnected()) {

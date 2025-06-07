@@ -7,7 +7,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -40,7 +40,8 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // $
 //###########################################################################
-
+#ifndef F2838x_MEMCTRL_DEFINES_H
+#define F2838x_MEMCTRL_DEFINES_H
 #define FPGA
 
 //#define PASS      0xABCDABCD
@@ -94,7 +95,7 @@
 #define CLA1TOCPUMSGRAM_START_ADDR 0x1480
 #define CLA1TOCPUMSGRAM_END_ADDR 0x14FF
 
-
+#endif
 //===========================================================================
 // End of file.
 //===========================================================================

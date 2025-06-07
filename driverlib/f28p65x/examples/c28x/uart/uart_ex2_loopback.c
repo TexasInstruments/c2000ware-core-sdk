@@ -2,18 +2,18 @@
 //
 // FILE:   UART_ex2_loopback.c
 //
-// TITLE:  UART loopback with interrupt example.
+// TITLE:  UART loopback example.
 //
 //! \addtogroup driver_example_list
-//! <h1>UART Loopback with interrupt</h1>
+//! <h1>UART Loopback</h1>
 //!
 //!  This test receives and loop-backs data through the UARTA port.
 //!
 //!  \b Watch \b Variables \n
+//!  - \b sData - Data being sent
+//!  - \b rData - Data received
 //!  - \b loopCount - Number of characters sent
 //!  - \b errorCount - Number of errors detected
-//!  - \b sendChar - Character sent
-//!  - \b receivedChar - Character received
 //!
 //! Note: Avoid keeping the memory browser open while the execution
 //! is in progress.
@@ -27,7 +27,7 @@
 //
 //
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //

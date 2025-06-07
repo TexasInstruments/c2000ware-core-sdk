@@ -171,7 +171,7 @@ ERAD_configCounterInStartStopMode(uint32_t base,
         HWREGH(base + ERAD_O_CTM_INPUT_SEL) =
                 ((uint16_t)start_event << ERAD_CTM_INPUT_SEL_STA_INP_SEL_S);
 
-        HWREGH(base + ERAD_O_CTM_INPUT_SEL_2) |=
+        HWREGH(base + ERAD_O_CTM_INPUT_SEL_2) =
                 ((uint16_t)stop_event << ERAD_CTM_INPUT_SEL_2_STO_INP_SEL_S);
 
     }
@@ -188,7 +188,7 @@ ERAD_configCounterInStartStopMode(uint32_t base,
            ((uint16_t)config_params.event << ERAD_CTM_INPUT_SEL_CNT_INP_SEL_S) |
            ((uint16_t)start_event         << ERAD_CTM_INPUT_SEL_STA_INP_SEL_S);
 
-        HWREGH(base + ERAD_O_CTM_INPUT_SEL_2) |=
+        HWREGH(base + ERAD_O_CTM_INPUT_SEL_2) =
            ((uint16_t)stop_event << ERAD_CTM_INPUT_SEL_2_STO_INP_SEL_S);
 
     }
@@ -260,7 +260,7 @@ ERAD_configCounterInCumulativeMode(uint32_t base,
         HWREGH(base + ERAD_O_CTM_INPUT_SEL) =
                 ((uint16_t)start_event << ERAD_CTM_INPUT_SEL_STA_INP_SEL_S);
 
-        HWREGH(base + ERAD_O_CTM_INPUT_SEL_2) |=
+        HWREGH(base + ERAD_O_CTM_INPUT_SEL_2) =
                 ((uint16_t)stop_event << ERAD_CTM_INPUT_SEL_2_STO_INP_SEL_S);
 
     }
@@ -277,7 +277,7 @@ ERAD_configCounterInCumulativeMode(uint32_t base,
            ((uint16_t)config_params.event << ERAD_CTM_INPUT_SEL_CNT_INP_SEL_S) |
            ((uint16_t)start_event         << ERAD_CTM_INPUT_SEL_STA_INP_SEL_S);
 
-        HWREGH(base + ERAD_O_CTM_INPUT_SEL_2) |=
+        HWREGH(base + ERAD_O_CTM_INPUT_SEL_2) =
             ((uint16_t)stop_event << ERAD_CTM_INPUT_SEL_2_STO_INP_SEL_S);
 
     }
@@ -329,13 +329,13 @@ ERAD_configMask(ERAD_Mask mask, uint32_t instances, bool enable_int)
 
         if(enable_int)
         {
-            HWREGH(ERAD_GLOBAL_BASE + ERAD_O_GLBL_AND_EVENT_INT_MASK) &=
-                    ~(1U << bitpos);
+            HWREGH(ERAD_GLOBAL_BASE + ERAD_O_GLBL_AND_EVENT_INT_MASK) |=
+                    (1U << bitpos);
         }
         else
         {
-            HWREGH(ERAD_GLOBAL_BASE + ERAD_O_GLBL_AND_EVENT_INT_MASK) |=
-                    (1U << bitpos);
+            HWREGH(ERAD_GLOBAL_BASE + ERAD_O_GLBL_AND_EVENT_INT_MASK) &=
+                    ~(1U << bitpos);
         }
     }
     else
@@ -350,13 +350,13 @@ ERAD_configMask(ERAD_Mask mask, uint32_t instances, bool enable_int)
 
         if(enable_int)
         {
-            HWREGH(ERAD_GLOBAL_BASE + ERAD_O_GLBL_OR_EVENT_INT_MASK) &=
-                    ~(1U << bitpos);
+            HWREGH(ERAD_GLOBAL_BASE + ERAD_O_GLBL_OR_EVENT_INT_MASK) |=
+                    (1U << bitpos);
         }
         else
         {
-            HWREGH(ERAD_GLOBAL_BASE + ERAD_O_GLBL_OR_EVENT_INT_MASK) |=
-                    (1U << bitpos);
+            HWREGH(ERAD_GLOBAL_BASE + ERAD_O_GLBL_OR_EVENT_INT_MASK) &=
+                    ~(1U << bitpos);
         }
     }
     EDIS;

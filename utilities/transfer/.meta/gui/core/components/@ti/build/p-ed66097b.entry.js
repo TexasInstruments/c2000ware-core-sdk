@@ -1,0 +1,2 @@
+import{r as e,g as t}from"./p-823ca21f.js";import{DeviceAgentTerminalCodec as c}from"../gc-codec-deviceagent-edgeai-terminal/lib/DeviceAgentTerminalCodec";let i=class{constructor(t){e(this,t);this.impl=undefined;this.optional=false}connectedCallback(){this.impl=new c(this.el)}disconnectedCallback(){this.impl.dispose()}get el(){return t(this)}};export{i as gc_codec_deviceagent_edgeai_terminal};
+//# sourceMappingURL=p-ed66097b.entry.js.map

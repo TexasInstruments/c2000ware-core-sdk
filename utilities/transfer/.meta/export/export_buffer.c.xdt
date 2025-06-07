@@ -57,7 +57,7 @@
 #define `expLogBuff.$name`_BUFFER_SIZE `expLogBuff.bufferSize`
 #define `expLogBuff.$name`_ELEMENT_SIZE `expLogBuff.elemPerBuffEntry`
 
-uint16_t `expLogBuff.$name`_buffer[`expLogBuff.$name`_BUFFER_SIZE][`expLogBuff.$name`_ELEMENT_SIZE] = {0};
+char `expLogBuff.$name`_buffer[`expLogBuff.$name`_BUFFER_SIZE][`expLogBuff.$name`_ELEMENT_SIZE] = {0};
 TransferRingBuffer `expLogBuff.$name`;
 TransferRingBuffer_Handle `expLogBuff.$name`_Handle = &`expLogBuff.$name`;
 volatile uint16_t `expLogBuff.$name`_bufferElementIndex = 0;
@@ -73,9 +73,9 @@ void EXPORTBUFF_init()
     % if (expLogBuff) {
     TransferRingBuffer_init(
         `expLogBuff.$name`_Handle, 
-        (uint16_t**)`expLogBuff.$name`_buffer, 
+        (char**)`expLogBuff.$name`_buffer, 
         `expLogBuff.$name`_BUFFER_SIZE, 
-        `expLogBuff.$name`_ELEMENT_SIZE);
+        sizeof(`expLogBuff.$name`_buffer[0]));
     % }
 }
 
@@ -88,7 +88,7 @@ void EXPORTBUFF_writeChar(char c)
 {
     uint16_t status = 0;
     status = TransferRingBuffer_writePartialElement(`expLogBuff.$name`_Handle, 
-        `expLogBuff.$name`_bufferElementIndex, (uint16_t *)&c, 1);
+        `expLogBuff.$name`_bufferElementIndex, (char *)&c, 1);
     if (!status)
     {
         EXPORTBUFF_transferBufferOverflow();
@@ -124,7 +124,7 @@ void EXPORTBUFF_writeStringLength(char *str, uint16_t strLength)
         }
         
         status = TransferRingBuffer_writePartialElement(`expLogBuff.$name`_Handle, 
-            `expLogBuff.$name`_bufferElementIndex, (uint16_t *)strToWrite, writeLength);
+            `expLogBuff.$name`_bufferElementIndex, strToWrite, writeLength);
         if (!status)
         {
             EXPORTBUFF_transferBufferOverflow();
@@ -173,7 +173,7 @@ void EXPORTBUFF_flushBufferElement()
 //*****************************************************************************
 void EXPORTBUFF_transferBufferData()
 {
-    uint16_t bufferData[`expLogBuff.$name`_ELEMENT_SIZE];
+    char bufferData[`expLogBuff.$name`_ELEMENT_SIZE];
     uint16_t buffReadResult = 0;
     buffReadResult = TransferRingBuffer_read(`expLogBuff.$name`_Handle, bufferData);
     if (buffReadResult) {
@@ -183,7 +183,7 @@ void EXPORTBUFF_transferBufferData()
 
 void EXPORTBUFF_transferAllBufferData()
 {
-    uint16_t bufferData[`expLogBuff.$name`_ELEMENT_SIZE];
+    char bufferData[`expLogBuff.$name`_ELEMENT_SIZE];
     uint16_t buffReadResult = 0;
     do {
         buffReadResult = TransferRingBuffer_read(`expLogBuff.$name`_Handle, bufferData);

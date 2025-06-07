@@ -1,6 +1,6 @@
 import { connectionManager } from '../../gc-target-connection-manager/lib/ConnectionManager';
-import { usbHidPortType, dataEventType, usbSerialPortType, usbServiceType, deviceDetachedEventType, deviceAttachedEventType } from '../../gc-service-usb/lib/ServiceUsb';
-export { usbHidPortType, usbSerialPortType } from '../../gc-service-usb/lib/ServiceUsb';
+import { usbHidPortType, dataEventType, usbSerialPortType, usbWebSerialPortType, usbServiceType, UsbWebSerialPort, deviceDetachedEventType, deviceAttachedEventType } from '../../gc-service-usb/lib/ServiceUsb';
+export { usbHidPortType, usbSerialPortType, usbWebSerialPortType } from '../../gc-service-usb/lib/ServiceUsb';
 import { AbstractTransport, bufferOrStringDataType, bufferDataType, AbstractConnectionLogger, TRANSPORT_STATE, codecRegistry, capitalize, connectedStateChangedEventType, connectionLogEventType } from '../../gc-target-configuration/lib/TargetConfiguration';
 import { ServicesRegistry } from '../../gc-core-services/lib/ServicesRegistry';
 import { EventType } from '../../gc-core-assets/lib/Events';
@@ -11,7 +11,7 @@ import { GcPromise } from '../../gc-core-assets/lib/GcPromise';
 import { GcConsole } from '../../gc-core-assets/lib/GcConsole';
 
 /**
- *  Copyright (c) 2021, Texas Instruments Incorporated
+ *  Copyright (c) 2021, 2024 Texas Instruments Incorporated
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -106,11 +106,11 @@ class AbstractUsbTransport extends AbstractTransport {
     deconfigure() {
         this.codec = undefined;
     }
-    async doOpenUsbPort(usbPort, baudRate) {
+    async doOpenUsbPort(usbPort, options) {
         this.rxDataHandler = usbPort.type === usbHidPortType ? this.hidPacketDataHandler : this.serialPacketDataHandler;
-        this.baudRate = baudRate;
+        this.baudRate = options.baudRate;
         usbPort.addEventListener(dataEventType, this.rxDataHandler);
-        await usbPort.open({ baudRate: baudRate });
+        await usbPort.open({ baudRate: options.baudRate, highWaterMark: options.bufferSize, rtscts: options.flowControl });
         this.usbPort = usbPort;
     }
     async onDisconnect(logger) {
@@ -260,7 +260,7 @@ class TargetConfigurationBuilder {
 }
 
 /**
- *  Copyright (c) 2021, Texas Instruments Incorporated
+ *  Copyright (c) 2021, 2024 Texas Instruments Incorporated
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -289,15 +289,16 @@ class TargetConfigurationBuilder {
  */
 const console = new GcConsole('gc-transport-usb');
 class UsbPortIdentityTransport extends AbstractUsbTransport {
-    constructor(selectedUsbPort, selectedBaudRate) {
+    constructor(selectedUsbPort, options) {
         super();
         this.selectedUsbPort = selectedUsbPort;
-        this.selectedBaudRate = selectedBaudRate;
+        this.options = options;
         this.params = {};
         this.console = new GcConsole('gc-transport-usb');
     }
     doConnect(failedDevicesList = []) {
-        return this.doOpenUsbPort(this.selectedUsbPort, this.selectedBaudRate);
+        const options = typeof this.options === 'number' ? { baudRate: this.options } : this.options;
+        return this.doOpenUsbPort(this.selectedUsbPort, options);
     }
     dispose() {
     }
@@ -312,9 +313,11 @@ class AutoDetectPortIdentityHelper {
         this.isUsb = usbPort.type === usbSerialPortType;
         this.isHid = usbPort.type === usbHidPortType;
     }
-    async serialPortConnect(baudRate) {
+    async serialPortConnect(options) {
         if (!this.usbTransport) {
-            this.usbTransport = new UsbPortIdentityTransport(this.usbPort, baudRate || 9600);
+            const portOptions = typeof options === 'number' ? { baudRate: options } : options ?? {};
+            portOptions.baudRate = portOptions.baudRate || 9600;
+            this.usbTransport = new UsbPortIdentityTransport(this.usbPort, portOptions);
         }
         await this.usbTransport.connect();
         this.configBuilder = new TargetConfigurationBuilder(this.usbTransport);
@@ -464,7 +467,7 @@ AutoDetectPortIdentityRegistry.portIdentityHandlers = [];
 AutoDetectPortIdentityRegistry.portIdentityMap = new Map();
 
 /**
- *  Copyright (c) 2020, 2023 Texas Instruments Incorporated
+ *  Copyright (c) 2020, 2025 Texas Instruments Incorporated
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -527,8 +530,22 @@ class UsbTransport extends AbstractUsbTransport {
         super();
         this.params = params;
         this.availablePorts = [];
+        this.webSerialOnDisconnect = () => {
+            this.disconnect();
+            // The web serialPort.connected state is false at this point, and so it cannot be re-opened.
+            // There is a need to enforce acquirePort to go through navigator.serial.getPorts() to obtain a valid object.
+            this.recentlyAcquiredPort = undefined;
+        };
         this.console = new GcConsole(MODULE_NAME, this.id);
-        if (params.pm) {
+        if (params.web) {
+            if (params.pm) {
+                this.console.warning('Ignoring pm flag.  This is not supported in conjunction with the web parameter.');
+            }
+            if (params.hid) {
+                this.console.warning('Ignoring hid flag.  This is not supported in conjunction with the web parameter.');
+            }
+        }
+        else if (params.pm) {
             this.pmTransport = new XdsTransport(params, async () => {
                 if (params.hid) {
                     throw Error(`${capitalize(this.toString())} cannot have both pm and hid properties set.`);
@@ -566,8 +583,14 @@ class UsbTransport extends AbstractUsbTransport {
             return super.connect(failedDevicesList);
         }
     }
+    get useWebSerial() {
+        return (this.params.web && !GcUtils.isNodeJS && navigator?.serial !== undefined) ?? false;
+    }
+    get disableDeviceDetection() {
+        return this.params.disableDeviceDetection || this.useWebSerial;
+    }
     async onConnect(logger) {
-        if (!this.params.disableDeviceDetection) {
+        if (!this.disableDeviceDetection) {
             UsbTransport.startDeviceDetection();
         }
         const acquiredPortSelection = await UsbTransport.acquirePort(this);
@@ -583,15 +606,21 @@ class UsbTransport extends AbstractUsbTransport {
             description += ':' + selectedBaudRate;
         }
         this.setConnectionDescription(description);
+        if (selectedPort.type === usbWebSerialPortType) {
+            selectedPort.serialPort.addEventListener('disconnect', this.webSerialOnDisconnect);
+        }
         this.fireEvent(selectedPortEventType, {
             port: selectedPort,
             baudRate: selectedBaudRate,
             availablePorts: this.availablePorts,
             transport: this
         });
-        await this.doOpenUsbPort(selectedPort, selectedBaudRate);
+        await this.doOpenUsbPort(selectedPort, { baudRate: selectedBaudRate, bufferSize: this.params.bufferSize, flowControl: this.params.flowControl });
     }
     disconnect() {
+        if (this.recentlyAcquiredPort?.type === usbWebSerialPortType) {
+            this.recentlyAcquiredPort?.serialPort.removeEventListener('disconnect', this.webSerialOnDisconnect);
+        }
         if (this.pmTransport) {
             return this.pmTransport.disconnect();
         }
@@ -626,7 +655,7 @@ class UsbTransport extends AbstractUsbTransport {
         return details;
     }
     onDeviceDetachedEvent(ports) {
-        if (!this.params.disableDeviceDetection && codecRegistry.isActive(this.id) && this.canDisconnect) {
+        if (!this.disableDeviceDetection && codecRegistry.isActive(this.id) && this.canDisconnect) {
             const inUsePort = this.usbPort;
             if (inUsePort && ports.reduce((notFound, port) => notFound && UsbTransport.comparePortsByComName(inUsePort, port) !== 0, true)) {
                 this.disconnect();
@@ -795,6 +824,26 @@ class UsbTransport extends AbstractUsbTransport {
         return this.listPortsPromise;
     }
     static async acquirePort(forTransport) {
+        if (forTransport.useWebSerial) {
+            let port = forTransport.recentlyAcquiredPort;
+            port = port && port.type === usbWebSerialPortType ? port : undefined;
+            // special case, only one active transport and one paired web serial port.  Use this until user changes.
+            if (!port && this.activeTransports.length === 1) {
+                const ports = await navigator.serial.getPorts();
+                if (ports.length === 1) {
+                    port = new UsbWebSerialPort(ports[0]);
+                }
+            }
+            if (!port) {
+                return undefined;
+            }
+            return {
+                port,
+                transport: forTransport,
+                score: 1,
+                baudRate: forTransport.userSelectedBaudRate || forTransport.params.defaultBaudRate || 9600
+            };
+        }
         if (!this.acquirePortsForList.includes(forTransport)) {
             this.acquirePortsForList.push(forTransport);
         }
@@ -845,7 +894,7 @@ class UsbTransport extends AbstractUsbTransport {
                 const acquiredPorts = await UsbTransport.acquireAllPorts();
                 const transportsToConnect = acquiredPorts.reduce((transports, portSelection) => {
                     const transport = portSelection.transport;
-                    if (!transport.params.disableDeviceDetection && codecRegistry.isActive(transport.id) && (transport.isDisconnected || transport.isDisconnecting)) {
+                    if (!transport.disableDeviceDetection && codecRegistry.isActive(transport.id) && (transport.isDisconnected || transport.isDisconnecting)) {
                         if (portSelection.port && portSelection.port !== transport.recentlyAcquiredPort) {
                             transports.push(transport);
                         }
@@ -866,7 +915,7 @@ class UsbTransport extends AbstractUsbTransport {
         else if (connectionManager.allowAutoConnectOnDeviceDetection && connectionManager.isDisconnected) { // do full connect only if enough ports were allocated.
             const acquiredPorts = await UsbTransport.acquireAllPorts();
             const requiredPorts = acquiredPorts.filter(portSelection => !codecRegistry.isOptional(portSelection.transport.id));
-            const missingRequiredPorts = requiredPorts.filter(portSelection => portSelection.port === undefined || portSelection.transport.params.disableDeviceDetection);
+            const missingRequiredPorts = requiredPorts.filter(portSelection => portSelection.port === undefined || portSelection.transport.disableDeviceDetection);
             const changedPorts = requiredPorts.filter(portSelection => portSelection.port !== portSelection.transport.recentlyAcquiredPort);
             if (changedPorts.length > 0 && missingRequiredPorts.length === 0) {
                 try {
@@ -892,7 +941,7 @@ class UsbTransport extends AbstractUsbTransport {
         }
     }
     static stopDeviceDetection() {
-        if (this.autoDetectDeviceEnabled && this.instances.reduce((off, transport) => transport.params.disableDeviceDetection ? off : false, true)) {
+        if (this.autoDetectDeviceEnabled && this.instances.reduce((off, transport) => transport.disableDeviceDetection ? off : false, true)) {
             const usbService = ServicesRegistry.getService(usbServiceType);
             usbService.removeEventListener(deviceDetachedEventType, this.onDeviceDetachedEvent);
             usbService.removeEventListener(deviceAttachedEventType, this.onDeviceAttachedEvent);
@@ -920,7 +969,7 @@ class UsbTransport extends AbstractUsbTransport {
                 return {
                     availablePorts: transport.availablePorts,
                     port: result && result.port,
-                    baudRate: result && result.baudRate,
+                    baudRate: (result && result.baudRate) ?? transport.params.defaultBaudRate,
                     transport: transport
                 };
             })());
@@ -940,6 +989,7 @@ class UsbTransport extends AbstractUsbTransport {
         userPortSelections.forEach(userSelection => {
             userSelection.transport.userSelectedPortName = userSelection.port?.comName;
             userSelection.transport.userSelectedBaudRate = userSelection.baudRate;
+            userSelection.transport.recentlyAcquiredPort = userSelection.port;
         });
         const allOptional = userPortSelections.reduce((optional, selection) => optional && (selection.transport.params.optional || false), true);
         try {

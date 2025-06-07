@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -159,7 +159,7 @@ struct Z1_GRABSECT1R_BITS {             // bits description
     Uint16 GRAB_B0_SECT31_4:2;          // 9:8 Grab Flash Bank0 Sector 31-4
     Uint16 GRAB_B0_SECT63_32:2;         // 11:10 Grab Flash Bank0 Sector 63-32
     Uint16 GRAB_B0_SECT95_64:2;         // 13:12 Grab Flash Bank0 Sector 95-64
-    Uint16 GRAB_B0_SECT127_96:2;        // 15:14 Grab Flash Bank1 Sector 127-96
+    Uint16 GRAB_B0_SECT127_96:2;        // 15:14 Grab Flash Bank0 Sector 127-96
     Uint16 GRAB_B1_SECT0:2;             // 17:16 Grab Flash Bank1 Sector 0
     Uint16 GRAB_B1_SECT1:2;             // 19:18 Grab Flash Bank1 Sector 1
     Uint16 GRAB_B1_SECT2:2;             // 21:20 Grab Flash Bank1 Sector 2

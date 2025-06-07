@@ -4,11 +4,6 @@ if (system.getProducts()[0].name.includes("C2000"))
 } else
 { transferCommon = system.getScript("/transfer/transferCommon.js");}
 
-let Common;
-if (transferCommon.isC2000())
-{
-    Common = system.getScript("/driverlib/Common.js");
-}
 
 let config = [
     {

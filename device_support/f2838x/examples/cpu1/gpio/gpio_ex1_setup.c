@@ -17,7 +17,7 @@
 //
 //
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -185,7 +185,7 @@ void setup1GPIO(void)
     GpioCtrlRegs.GPAPUD.bit.GPIO7 = 0;    // Enable pullup on GPIO7
     GpioCtrlRegs.GPAQSEL1.bit.GPIO7 = 0;  // Synch to SYSCLKOUT
     InputXbarRegs.INPUT7SELECT = 7;       // INPUT7 = GPIO7
-    ECap1Regs.ECCTL0.bit.INPUTSEL = 7;    // Select eCAP1 TO INPUT7
+    ECap1Regs.ECCTL0.bit.INPUTSEL = 7;    // Select eCAP1 TO INPUTXBAR8
 
     //
     // Enable GPIO outputs on GPIO8 - GPIO11, set it high
@@ -261,7 +261,7 @@ void setup1GPIO(void)
     GpioCtrlRegs.GPAPUD.bit.GPIO24 = 0;   // Enable pullup on GPIO24
     GpioCtrlRegs.GPAQSEL2.bit.GPIO24 = 0; // Synch to SYSCLKOUT
     InputXbarRegs.INPUT8SELECT = 24;      // INPUT8 = GPIO24
-    ECap1Regs.ECCTL0.bit.INPUTSEL=8;      // Select eCAP1 TO INPUT8
+    ECap1Regs.ECCTL0.bit.INPUTSEL=8;      // Select eCAP1 TO INPUTXBAR9
 
     //
     // Set input qualification period for GPIO25 & GPIO26
@@ -376,7 +376,7 @@ void setup2GPIO(void)
     GpioCtrlRegs.GPAPUD.bit.GPIO7 = 0;    // Enable pullup on GPIO7
     GpioCtrlRegs.GPAQSEL1.bit.GPIO7 = 0;  // Synch to SYSCLKOUT
     InputXbarRegs.INPUT7SELECT = 7;       // INPUT7 = GPIO7
-    ECap1Regs.ECCTL0.bit.INPUTSEL=7;      // Select eCAP1 TO INPUT7
+    ECap1Regs.ECCTL0.bit.INPUTSEL=7;      // Select eCAP1 TO INPUTXBAR8
 
     //
     // Enable GPIO outputs on GPIO8 - GPIO11, set it high
@@ -439,7 +439,7 @@ void setup2GPIO(void)
     GpioCtrlRegs.GPAPUD.bit.GPIO24 = 0;   // Enable pullup on GPIO24
     GpioCtrlRegs.GPAQSEL2.bit.GPIO24 = 0; // Synch to SYSCLKOUT
     InputXbarRegs.INPUT8SELECT = 24;      // INPUT8 = GPIO24
-    ECap2Regs.ECCTL0.bit.INPUTSEL=8;      // Select eCAP2 TO INPUT8
+    ECap2Regs.ECCTL0.bit.INPUTSEL=8;      // Select eCAP2 TO INPUTXBAR9
 
     //
     // Set input qualifcation period for GPIO25 & GPIO26

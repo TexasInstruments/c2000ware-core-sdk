@@ -156,84 +156,87 @@ if(["F2838x", "F2837xD", "F2837xS", "F2807x","F28P65x"].includes(system.deviceDa
 }
 
 /* Section : Access Protection  */
-AccProt.AcessProtectionRAMs[system.deviceData.deviceId.toLowerCase()].
-    forEach((element, index) =>
-        {
-            var ramMacro = "MEMCFG_SECT_" + element.name
-            if (ramMacro[12]!="G" && ((Common.isContextCPU1() || (ramMacro[12]!="D" && ramMacro[12]!="L")) || !["F28P65x"].includes(system.deviceData.deviceId)))    // Global ram has own if statement so description is only on GSRAM
-               {
-                    if(device_driverlib_peripheral.MEMCFG_SECT.map(a=>a.name).includes(ramMacro) && (Common.isContextCPU1() || !ramMacro.includes("TOCM")))
+if(!["F28E12x"].includes(system.deviceData.deviceId))
+{
+    AccProt.AcessProtectionRAMs[system.deviceData.deviceId.toLowerCase()].
+        forEach((element, index) =>
+            {
+                var ramMacro = "MEMCFG_SECT_" + element.name
+                if (ramMacro[12]!="G" && ((Common.isContextCPU1() || (ramMacro[12]!="D" && ramMacro[12]!="L")) || !["F28P65x"].includes(system.deviceData.deviceId)))    // Global ram has own if statement so description is only on GSRAM
+                {
+                        if(device_driverlib_peripheral.MEMCFG_SECT.map(a=>a.name).includes(ramMacro) && (Common.isContextCPU1() || !ramMacro.includes("TOCM")))
+                        {
+                            var AvailableOptions = []
+                            if(element.access.includes("FETCHPROT"))
+                            AvailableOptions.push({name : "MEMCFG_PROT_ALLOWCPUFETCH", displayName: "CPU fetch allowed"})
+                            if(element.access.includes("CPUWRPROT"))
+                                AvailableOptions.push({name : "MEMCFG_PROT_ALLOWCPUWRITE", displayName: "CPU write allowed"})
+                            if(element.access.includes("DMAWRPROT"))
+                            AvailableOptions.push({name : "MEMCFG_PROT_ALLOWDMAWRITE", displayName: "DMA write allowed"})
+                            if(element.access.includes("HICWRPROT"))
+                                AvailableOptions.push({name : "MEMCFG_PROT_ALLOWHICWRITE", displayName: "HIC write allowed"})
+                            if (ramMacro.includes("MSGCPUTOCPU")){
+                                let ramNumber = ramMacro[23]; // get number from end of ram macro
+                                AccessConfig.push(
+                                {
+                                    name         : "access_" + ramMacro,
+                                    displayName  : "CPU-to-CPU message RAM"+ ramNumber.toString() + " Access",
+                                    minSelections: 0,
+                                    options      : AvailableOptions,
+                                    default      : AvailableOptions.map(a=>a.name)
+                                })
+                            }
+                            if (ramMacro.includes("MSGCPUTOCM")){ // get number from end of ram macro
+                                let ramNumber = ramMacro[22];
+                                AccessConfig.push(
+                                {
+                                    name         : "access_" + ramMacro,
+                                    displayName  : "CPU-to-CM message RAM"+ ramNumber.toString() + " Access",
+                                    minSelections: 0,
+                                    options      : AvailableOptions,
+                                    default      : AvailableOptions.map(a=>a.name)
+                                })
+                            }
+                            if ((!ramMacro.includes("MSGCPUTOCPU")) && (!ramMacro.includes("MSGCPUTOCM"))){
+                                AccessConfig.push(
+                                {
+                                    name         : "access_" + ramMacro,
+                                    displayName  : element.name + " RAM Access",
+                                    minSelections: 0,
+                                    options      : AvailableOptions,
+                                    default      : AvailableOptions.map(a=>a.name)
+                                })
+                            }
+                        }
+                    }   
+                if (ramMacro[12]=="G" && (Common.isContextCPU1()))
                     {
-                        var AvailableOptions = []
-                        if(element.access.includes("FETCHPROT"))
-                        AvailableOptions.push({name : "MEMCFG_PROT_ALLOWCPUFETCH", displayName: "CPU fetch allowed"})
-                        if(element.access.includes("CPUWRPROT"))
-                            AvailableOptions.push({name : "MEMCFG_PROT_ALLOWCPUWRITE", displayName: "CPU write allowed"})
-                        if(element.access.includes("DMAWRPROT"))
-                        AvailableOptions.push({name : "MEMCFG_PROT_ALLOWDMAWRITE", displayName: "DMA write allowed"})
-                        if(element.access.includes("HICWRPROT"))
-                            AvailableOptions.push({name : "MEMCFG_PROT_ALLOWHICWRITE", displayName: "HIC write allowed"})
-                        if (ramMacro.includes("MSGCPUTOCPU")){
-                            let ramNumber = ramMacro[23]; // get number from end of ram macro
-                            AccessConfig.push(
-                            {
-                                name         : "access_" + ramMacro,
-                                displayName  : "CPU-to-CPU message RAM"+ ramNumber.toString() + " Access",
-                                minSelections: 0,
-                                options      : AvailableOptions,
-                                default      : AvailableOptions.map(a=>a.name)
-                            })
-                        }
-                        if (ramMacro.includes("MSGCPUTOCM")){ // get number from end of ram macro
-                            let ramNumber = ramMacro[22];
-                            AccessConfig.push(
-                            {
-                                name         : "access_" + ramMacro,
-                                displayName  : "CPU-to-CM message RAM"+ ramNumber.toString() + " Access",
-                                minSelections: 0,
-                                options      : AvailableOptions,
-                                default      : AvailableOptions.map(a=>a.name)
-                            })
-                        }
-                        if ((!ramMacro.includes("MSGCPUTOCPU")) && (!ramMacro.includes("MSGCPUTOCM"))){
+                        if(device_driverlib_peripheral.MEMCFG_SECT.map(a=>a.name).includes(ramMacro))
+                        {
+                            var AvailableOptions = []
+                            if(element.access.includes("FETCHPROT"))
+                            AvailableOptions.push({name : "MEMCFG_PROT_ALLOWCPUFETCH", displayName: "CPU fetch allowed"})
+                            if(element.access.includes("CPUWRPROT"))
+                                AvailableOptions.push({name : "MEMCFG_PROT_ALLOWCPUWRITE", displayName: "CPU write allowed"})
+                            if(element.access.includes("DMAWRPROT"))
+                            AvailableOptions.push({name : "MEMCFG_PROT_ALLOWDMAWRITE", displayName: "DMA write allowed"})
+                            if(element.access.includes("HICWRPROT"))
+                                AvailableOptions.push({name : "MEMCFG_PROT_ALLOWHICWRITE", displayName: "HIC write allowed"})
+
                             AccessConfig.push(
                             {
                                 name         : "access_" + ramMacro,
                                 displayName  : element.name + " RAM Access",
+                                description: "For GSRAM owned by CPU2: this code will be generated on CPU2",
                                 minSelections: 0,
                                 options      : AvailableOptions,
                                 default      : AvailableOptions.map(a=>a.name)
                             })
                         }
-                    }
-                }   
-            if (ramMacro[12]=="G" && (Common.isContextCPU1()))
-                {
-                    if(device_driverlib_peripheral.MEMCFG_SECT.map(a=>a.name).includes(ramMacro))
-                    {
-                        var AvailableOptions = []
-                        if(element.access.includes("FETCHPROT"))
-                        AvailableOptions.push({name : "MEMCFG_PROT_ALLOWCPUFETCH", displayName: "CPU fetch allowed"})
-                        if(element.access.includes("CPUWRPROT"))
-                            AvailableOptions.push({name : "MEMCFG_PROT_ALLOWCPUWRITE", displayName: "CPU write allowed"})
-                        if(element.access.includes("DMAWRPROT"))
-                        AvailableOptions.push({name : "MEMCFG_PROT_ALLOWDMAWRITE", displayName: "DMA write allowed"})
-                        if(element.access.includes("HICWRPROT"))
-                            AvailableOptions.push({name : "MEMCFG_PROT_ALLOWHICWRITE", displayName: "HIC write allowed"})
-
-                        AccessConfig.push(
-                        {
-                            name         : "access_" + ramMacro,
-                            displayName  : element.name + " RAM Access",
-                            description: "For GSRAM owned by CPU2: this code will be generated on CPU2",
-                            minSelections: 0,
-                            options      : AvailableOptions,
-                            default      : AvailableOptions.map(a=>a.name)
-                        })
-                    }
-                } 
-        }
-    );
+                    } 
+            }
+        );
+}
 
 
 /* Section : RAM Initialization */
@@ -317,18 +320,21 @@ forEach((element, index) =>
 
 
 /* Section : Access Violation Interrupt */
-device_driverlib_peripheral.MEMCFG_MVIOL.     // Controller access violation interrupts                 
-    forEach((element, index) =>
-        {
-            ViolIntConfig.push(
-                {
-                    name       : "int_" + element.name,
-                    displayName: "Enable " + element.displayName + " violation interrupt",
-                    default    : false
-                }
-            )
-        }
-    );       
+if(device_driverlib_peripheral.MEMCFG_MVIOL)
+{
+    device_driverlib_peripheral.MEMCFG_MVIOL.     // Controller access violation interrupts                 
+        forEach((element, index) =>
+            {
+                ViolIntConfig.push(
+                    {
+                        name       : "int_" + element.name,
+                        displayName: "Enable " + element.displayName + " violation interrupt",
+                        default    : false
+                    }
+                )
+            }
+        );
+}
 if(device_driverlib_peripheral.MEMCFG_NMVIOL)    // Non-controller access violation interrupts
 {
     device_driverlib_peripheral.MEMCFG_NMVIOL.
@@ -367,14 +373,20 @@ staticConfig.push(
         displayName    : "RAM Initialization",
         longDescription: "Initialize the memory block.\n - MULTICORE NOTE: Initialization code for GSRAMs owned by CPU2 will be generated for CPU2",
         config         : InitRAM
-    },
-    {
-        name           : "LSRAM_Config",
-        displayName    : "LSRAM Configuration",
-        longDescription: "",
-        config         : LSRAMOwnerConfig
     }
 )
+
+if(!["F28E12x"].includes((Common.getDeviceName())))
+{
+    staticConfig.push(
+        {
+            name           : "LSRAM_Config",
+            displayName    : "LSRAM Configuration",
+            longDescription: "",
+            config         : LSRAMOwnerConfig
+        }
+    )  
+}
 
 if (Common.isContextCPU1())
 {
@@ -419,26 +431,40 @@ if(yesROM)
     )
 }
 
+if(!["F28E12x"].includes((Common.getDeviceName())))
+{
+    staticConfig.push(
+        {
+            name           : "Access_Config",
+            displayName    : "Access Protection for RAMs",
+            longDescription: "MULTICORE NOTE: Access Protection code for GSRAMs owned by CPU2 will be generated on CPU2",
+            config         : AccessConfig
+        }
+    )  
+}
 
 staticConfig.push(
-    {
-        name           : "Access_Config",
-        displayName    : "Access Protection for RAMs",
-        longDescription: "MULTICORE NOTE: Access Protection code for GSRAMs owned by CPU2 will be generated on CPU2",
-        config         : AccessConfig
-    },
     {
         name           : "Lock_Config",
         displayName    : "Lock RAM Config Registers",
         longDescription: " - Do not lock : Writes to ACCPROT, TEST, INIT and MSEL fields are allowed\n - Lock :  Writes to ACCPROT, TEST, INIT and MSEL fields are blocked. Application can unlock it using the function MemCfg_unlockConfig()\n - Lock and commit :  Writes to ACCPROT, TEST, INIT and MSEL fields are permanently blocked.\n - MULTICORE NOTE: Lock Config code for GSRAMs owned by CPU2 will be generated on CPU2",
         config         : LockConfig
-    },
-    {
-        name           : "ViolInt_Config",
-        displayName    : "Access Violation Interrupt",
-        longDescription: "",
-        config         : ViolIntConfig
-    },
+    }
+)
+
+if(!["F28E12x"].includes(Common.getDeviceName()))
+{
+    staticConfig.push(
+        {
+            name           : "ViolInt_Config",
+            displayName    : "Access Violation Interrupt",
+            longDescription: "",
+            config         : ViolIntConfig
+        }
+    )
+}
+
+staticConfig.push(
     {
         name           : "CorrError_Int",
         displayName    : "Correctable Error Interrupt",

@@ -10,7 +10,8 @@ if ([ "F2837xD",
       "F280013x",
       "F280015x",
       "F28P65x",
-      "F28P55x"
+      "F28P55x",
+      "F28E12x"
     ].includes(system.deviceData.deviceId))
 {
 

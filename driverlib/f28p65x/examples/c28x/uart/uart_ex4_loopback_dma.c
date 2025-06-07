@@ -67,7 +67,7 @@
 //
 // 
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -366,7 +366,7 @@ void main(void)
 //
 __interrupt void INT_myDMA0_ISR(void)
 {
-    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
+    Interrupt_clearACKGroup(INT_myDMA0_INTERRUPT_ACK_GROUP);
     txDone = 1;
     return;
 }
@@ -378,7 +378,7 @@ __interrupt void INT_myDMA0_ISR(void)
 //
 __interrupt void INT_myDMA1_ISR(void)
 {
-    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
+    Interrupt_clearACKGroup(INT_myDMA1_INTERRUPT_ACK_GROUP);
     rxDone = 1;
     return;
 }

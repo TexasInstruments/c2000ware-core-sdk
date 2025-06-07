@@ -42,6 +42,18 @@
 % let comsLinkModule = expInst.comsLinkModule;
 % let comsLinkModuleAlt = expInst.comsLinkModuleAlt;
 % let exportBuffer = expInst.exportBuffer;
+% let signalSightPackageMode = false;
+% let signalSightTerminalDebug = false;
+% if(expInst.packageMode == "SIGNAL SIGHT"){
+    % signalSightPackageMode = true;
+    % var ssMod = system.modules[transferCommon.getTransferPath() + 'signalsight.js'];
+    % let ssInst = ssMod.$instances[0];
+    %if(ssInst){
+        %if(ssInst.terminalDebugModeEnable){
+            % signalSightTerminalDebug = true;
+        %}
+    % }
+% }
 
 #include <export/export.h>
 #include <board.h>
@@ -574,12 +586,21 @@ interrupt void `expInst["comsLinkModule"]["sciRXInt"]["interruptHandler"]`(void)
     for (rxIndex = 0; rxIndex < `expInst.exportRXLength`; rxIndex++){
         exportRXData[rxIndex] = SCI_readCharNonBlocking(`expInst["comsLinkModule"].$name`_BASE);
     }
+% if(signalSightTerminalDebug){
+    //
+    // Convert characters from ASCII -> decimal
+    //
+    uint16_t i;
+    for(i = 2; i < 15; i++){
+        exportRXData[i] = exportRXData[i] - 48;
+    }
+% }
 
     if (EXPORT_receivedData) {
         EXPORT_receivedData((uint16_t *)exportRXData, `expInst.exportRXLength`);
     }
 %
-% if (expInst.$ownedBy) {
+% if (expInst.$ownedBy && !signalSightPackageMode) {
     % var gui = expInst.$ownedBy;
     EXPORTPACKAGE_parseString((char *)exportRXData, `expInst.exportRXLength`);
 % }

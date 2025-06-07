@@ -26,7 +26,7 @@ let config = [
             { name: "IN" }
         ]
     },
-    
+
     {
         name        : "padConfig",
         displayName : "Pin Type",
@@ -38,13 +38,12 @@ let config = [
             { name: "PULLUP", displayName : "Push-pull output/pull-up enabled on input"  },
             { name: "INVERT", displayName : "Push-pull output/floating INVERTED polarity on an input"  },
             { name: "PULLUP_INVERT", displayName : "Push-pull output/pull-up enabled on INVERTED input"  },
-            { name: "OD", displayName : "Open-drain output/floating input" },
-            { name: "OD_PULLUP", displayName : "Open-drain output with pull-up enabled output and input" },
-            { name: "OD_INVERT", displayName : "Open-drain output/floating inverted input" },
-            { name: "OD_PULLUP_INVERT", displayName : "Open-drain output with pull-up enabled output and INVERTED input" }
-        ]
+            { name: ["F28E12x"].includes(Common.getDeviceName()) ? "ODO" : "OD" , displayName : "Open-drain output/floating input" },
+            { name: ["F28E12x"].includes(Common.getDeviceName()) ? "ODO_PULLUP" : "OD_PULLUP" , displayName : "Open-drain output with pull-up enabled output and input" },
+            { name: ["F28E12x"].includes(Common.getDeviceName()) ? "ODO_INVERT" : "OD_INVERT" , displayName : "Open-drain output/floating inverted input" },
+            { name: ["F28E12x"].includes(Common.getDeviceName()) ? "ODO_PULLUP_INVERT" : "OD_PULLUP_INVERT" , displayName : "Open-drain output with pull-up enabled output and INVERTED input" }
+       ]
     },
-
 
     {
         name        : "qualMode",
@@ -71,7 +70,7 @@ let config = [
     },
 ];
 
-if (!["F28002x", "F280013x", "F280015x"].includes(Common.getDeviceName()))
+if (!["F28002x", "F280013x", "F280015x", "F28E12x"].includes(Common.getDeviceName()))
 {
     var coreSelectConfig = {
         name        : "controllerCore",
@@ -120,6 +119,15 @@ function moduleInstances(inst)
     }
     return ownedMods
 }
+function onValidate(inst, validation)
+{
+    if (["ODO_PULLUP", "ODO", "ODO_INVERT", "ODO_PULLUP_INVERT"].includes(inst.padConfig))
+    {
+        validation.logWarning(
+                "Use GPIO_writeODPin function to enable OD feature and should be called in Runtime instead of GPIO_writePin." +
+                " Refer to TRM for more details",inst,"padConfig");
+    }    
+}
 
 function onValidatePinmux(inst, validation) {
     if (inst.useInterrupt){
@@ -161,6 +169,7 @@ var aioModule = {
     defaultInstanceName: "myAIO",
     description: "Analog IO Interface Peripheral",
     filterHardware : filterHardware,
+    validate: onValidate,
     moduleInstances: moduleInstances,
     config: config,
     templates: {

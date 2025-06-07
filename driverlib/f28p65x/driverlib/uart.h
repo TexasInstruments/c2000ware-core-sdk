@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -230,6 +230,7 @@ typedef bool Uart_SirLPMode;
 #define UART_FIFO_RX6_8         0x00000018UL  //!< Receive interrupt at 3/4 Full
 #define UART_FIFO_RX7_8         0x00000020UL  //!< Receive interrupt at 7/8 Full
 
+
 //*****************************************************************************
 //
 //! \internal
@@ -408,6 +409,7 @@ UART_getFIFOLevel(uint32_t base, uint32_t *txLevel,
     *txLevel = temp & UART_IFLS_TXIFLSEL_M;
     *rxLevel = temp & UART_IFLS_RXIFLSEL_M;
 }
+
 
 //*****************************************************************************
 //
@@ -1475,8 +1477,8 @@ UART_set9BitAddress(uint32_t base, uint8_t addr,
     //
     // Set the address and mask.
     //
-    HWREG(base + UART_O_9BITADDR) = addr << UART_9BITADDR_ADDR_S;
-    HWREG(base + UART_O_9BITAMASK) = mask << UART_9BITAMASK_MASK_S;
+    HWREG(base + UART_O_9BITADDR) = ((uint32_t)addr << UART_9BITADDR_ADDR_S);
+    HWREG(base + UART_O_9BITAMASK) = ((uint32_t)mask << UART_9BITAMASK_MASK_S);
 }
 
 //*****************************************************************************

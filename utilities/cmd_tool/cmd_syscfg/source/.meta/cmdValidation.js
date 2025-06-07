@@ -19,7 +19,8 @@ var AllDevices = [
 	"F280015x",
 	"F2838x",
 	"F28P65x",
-	"F28P55x"
+	"F28P55x",
+	"F28E12x"
 ]
 
 
@@ -37,12 +38,94 @@ function sectionValidationWarning(validation, section, option, message)
 	else
 		validation.logWarning(message, section.inst, option)
 }
+
 function sectionValidationInfo(validation, section, option, message)
 {
 	if(section.type == "compiler")
 		validation.logInfo(message, section.inst, option + "_" + section.name)
 	else
 		validation.logInfo(message, section.inst, option)
+}
+
+/*
+ Checks if the target memory region is any memory combination.
+ Returns the list of memory regions involved in the combination (if any, else returns null)
+*/
+function findinArray(flashMemsObj, target){
+
+	for(let obj of flashMemsObj){
+
+		if(obj.name == target){
+			return obj.combination
+		}
+	}
+
+	return null;
+
+}
+
+/*
+  Eg: Params: sectionList: [FLASH_BANK0, memoryCombination0, RAM0]
+  	  memoryCombination0 has [FLASH_BANK2, FLASH_BANK3]
+
+	  This function will return an array like below:
+	  [
+	  	{
+			name: FLASH_BANK0,
+			associated: false
+		},
+		{
+			name: FLASH_BANK2,
+			comboName: memoryCombination0,
+			associated: true
+		},
+		{
+			name: FLASH_BANK3,
+			comboName: memoryCombination0,
+			associated: true
+		},
+		{
+			name: RAM0,
+			associated: false
+		}
+	  ]
+*/
+
+function expandSectionList(sectionList){
+
+	var memComboInstances = system.modules["/utilities/cmd_tool/cmd_syscfg/source/memoryCombination.js"]?.$instances;
+	var flashComboArr =  _.filter(memComboInstances, (inst) => inst.group === "FLASH")
+	var flashComboDetailsArr = []
+
+	for(var flashCombo of flashComboArr){
+		flashComboDetailsArr.push({
+			name: flashCombo.$name,
+			combination: flashCombo.combination,
+			associated: true,
+		})
+	}
+
+	var expandedSectionList = []
+
+	for(var memReg of sectionList){
+		var associatedRegions = findinArray(flashComboDetailsArr, memReg); // 
+		if(associatedRegions){ // if this is a combined memory, then get back the list of memory regions inside
+			//Expand the list of memory regions involved and mark "associated" as true and store which combo they belong to.
+			for( var associatedRegion of associatedRegions){
+				expandedSectionList = expandedSectionList.concat({
+					name: associatedRegion, 
+					associated: true, 
+					comboName: memReg})
+			}
+		}
+		else{
+			expandedSectionList = expandedSectionList.concat({
+				name: memReg, 
+				associated: false})
+		}
+	}
+
+	return expandedSectionList;
 }
 
 var cmdValidation = [
@@ -326,9 +409,13 @@ var cmdValidation = [
 					}
 					
 					if (!["cla1Prog", "claConst", "claScratchpad", "bssCla"].includes(section.name)){
-						for(var i of sectionList)
+
+						var expandedSectionList = expandSectionList(sectionList); // Check the function description
+
+						for(var memReg of expandedSectionList)
 						{
 							var stat_filt = null;
+							i =  memReg.name
 							if(stat_1)
 							{
 								if (i.includes("FLASH")){
@@ -369,7 +456,11 @@ var cmdValidation = [
 									}
 								}
 							}
-							if(MemGroup[i] == ("FLASH"))
+							/*
+								If i is a FLASH type OR
+								i belongs to a combo that is a FLASH type
+							*/
+							if(MemGroup[i] == ("FLASH") || (memReg.comboName !== undefined && MemGroup[memReg.comboName] == ("FLASH")) )
 							{
 								if (Common.isContextCPU1())
 								{

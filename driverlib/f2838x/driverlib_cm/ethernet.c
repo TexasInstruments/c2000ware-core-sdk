@@ -23,7 +23,7 @@
 //      22-Apr-2020 : MAC Filter Configuration added in _getHandle API
 //###########################################################################
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -259,19 +259,6 @@ static void Ethernet_performPushPacketQueueChain(
         Ethernet_Pkt_Desc *firstPktHdrPtr,
         Ethernet_Pkt_Desc *lastPktHdrPtr,
         uint32_t count);
-//**************************************************************************
-//! Ethernet_performPopOnPacketQueue()
-//!
-//! \param
-//! pktQueuePtr - Pointer to the Packet Queue
-//!
-//! This function Dequeues a packet from Queue. This function is called in both
-//! Tx and Rx Paths. This function returns the element at the head of Queue
-//! \return Pointer to the packet that is popped
-//***************************************************************************
-static Ethernet_Pkt_Desc *Ethernet_performPopOnPacketQueue(
-                    Ethernet_PKT_Queue_T *pktQueuePtr);
-
 
 /** ==========================================================================
  *  @n@b Ethernet_returnTopOfPacketQueue()
@@ -301,16 +288,6 @@ static Ethernet_Pkt_Desc *Ethernet_performPopOnPacketQueue(
  */
 static Ethernet_Pkt_Desc *Ethernet_returnTopOfPacketQueue(
             Ethernet_PKT_Queue_T *pktQueuePtr);
-//***************************************************************************
-//! Ethernet_performPushOnPacketQueue ()
-//!
-//! This function does a Enqueue on Packet Queue
-//! It does an enqueue which adds a packet to the Rear of the queue
-//! This is called in both Tx and Rx Paths
-//! \return None
-//***************************************************************************
-static void Ethernet_performPushOnPacketQueue(Ethernet_PKT_Queue_T *pq,
-        Ethernet_Pkt_Desc *pPktHdr);
 
 //**************************************************************************
 //!    Ethernet_resetModule()
@@ -3649,7 +3626,7 @@ static void Ethernet_performPushPacketQueueChain(
     @endverbatim
  * ============================================================================
  */
-static Ethernet_Pkt_Desc *Ethernet_performPopOnPacketQueue(
+Ethernet_Pkt_Desc *Ethernet_performPopOnPacketQueue(
             Ethernet_PKT_Queue_T *pktQueuePtr)
 {
     Ethernet_Pkt_Desc *pktDescHdrPtr;
@@ -3727,7 +3704,7 @@ static Ethernet_Pkt_Desc *Ethernet_returnTopOfPacketQueue(
     @endverbatim
  * ============================================================================
  */
-static void Ethernet_performPushOnPacketQueue(
+void Ethernet_performPushOnPacketQueue(
         Ethernet_PKT_Queue_T *pktQueuePtr,
         Ethernet_Pkt_Desc *pktDescHdrPtr)
 {

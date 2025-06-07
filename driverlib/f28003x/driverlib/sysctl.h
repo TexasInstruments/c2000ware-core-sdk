@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -121,6 +121,7 @@ extern "C"
 //
 //Values to help access shifting of bits
 //
+#define SYSCTL_CLBCLKCTL_TILECLKDIV_S   0x4U
 #define SYSCTL_TYPE_LOCK_S              0xFU
 
 
@@ -615,7 +616,7 @@ typedef enum
 typedef enum
 {
     SYSCTL_CLOCKOUT_PLLSYS     = 0U,   //!< PLL System Clock post SYSCLKDIV
-    SYSCTL_CLOCKOUT_PLLRAW     = 1U,   //!< PLL Raw Clock
+    SYSCTL_CLOCKOUT_PLLRAW     = 1U,   //!< PLL Clock after Bypass Mux
     SYSCTL_CLOCKOUT_SYSCLK     = 2U,   //!< CPU System Clock
     SYSCTL_CLOCKOUT_INTOSC1    = 5U,   //!< Internal Oscillator 1
     SYSCTL_CLOCKOUT_INTOSC2    = 6U,   //!< Internal Oscillator 2
@@ -791,6 +792,7 @@ typedef enum
     SYSCTL_REG_SEL_SYSPLLMULT  = 0x0600,  //!< SYSPLLMULT lock
     SYSCTL_REG_SEL_SYSCLKDIVSEL  = 0x0B00,  //!< SYSCLKDIVSEL lock
     SYSCTL_REG_SEL_AUXCLKDIVSEL  = 0x0C00,  //!< AUXCLKDIVSEL lock
+    SYSCTL_REG_SEL_CLBCLKCTL  = 0x0E00,  //!< CLBCLKCTL lock
     SYSCTL_REG_SEL_LOSPCP  = 0x0F00,  //!< LOSPCP lock
     SYSCTL_REG_SEL_XTALCR  = 0x1000   //!< XTALCR lock
 } SysCtl_ClkRegSel;
@@ -829,6 +831,47 @@ typedef enum
     SYSCTL_REG_SEL_PCLKCR26  = 0x0201,  //!< PCLKCR26 lock
     SYSCTL_REG_SEL_PCLKCR27  = 0x0301   //!< PCLKCR27 lock
 } SysCtl_CpuRegSel;
+
+//*****************************************************************************
+//
+//! The following are values that can be passed to
+//! SysCtl_setCLBClk() as \e cpuInst parameter.
+//
+//*****************************************************************************
+typedef enum
+{
+    SYSCTL_CLBCLKOUT_DIV_1,      //!<  CLB clock =  CLB clock / 1
+    SYSCTL_CLBCLKOUT_DIV_2,      //!<  CLB clock =  CLB clock / 2
+    SYSCTL_CLBCLKOUT_DIV_3,      //!<  CLB clock =  CLB clock / 3
+    SYSCTL_CLBCLKOUT_DIV_4,      //!<  CLB clock =  CLB clock / 4
+    SYSCTL_CLBCLKOUT_DIV_5,      //!<  CLB clock =  CLB clock / 5
+    SYSCTL_CLBCLKOUT_DIV_6,      //!<  CLB clock =  CLB clock / 6
+    SYSCTL_CLBCLKOUT_DIV_7,      //!<  CLB clock =  CLB clock / 7
+    SYSCTL_CLBCLKOUT_DIV_8       //!<  CLB clock =  CLB clock / 8
+
+}SysCtl_CLBClkDivider;
+
+typedef enum
+{
+    SYSCTL_CLBTCLKOUT_DIV_1,      //!<  CLBTCLKOUT =  CLB clock / 1
+    SYSCTL_CLBTCLKOUT_DIV_2       //!<  CLBTCLKOUT =  CLB clock / 2
+
+}SysCtl_CLBTClkDivider;
+
+typedef enum
+{
+    SYSCTL_CLB1 = 0x10,    //!< CLB 1 instance
+    SYSCTL_CLB2 = 0x11,    //!< CLB 2 instance
+    SYSCTL_CLB3 = 0x12,    //!< CLB 3 instance
+    SYSCTL_CLB4 = 0x13     //!< CLB 4 instance
+}SysCtl_CLBInst;
+
+typedef enum
+{
+    SYSCTL_CLBCLK_SYNC,       //!<  CLB is synchronous to SYSCLK
+    SYSCTL_CLBCLK_ASYNC       //!<  CLB runs of asynchronous clock
+
+}SysCtl_CLBClkm;
 
 
 //*****************************************************************************
@@ -3093,7 +3136,7 @@ SysCtl_getInterruptStatus(void)
 static inline void
 SysCtl_clearInterruptStatus(uint32_t intFlags)
 {
-    HWREGH(SYSSTAT_BASE + SYSCTL_O_SYS_ERR_INT_CLR) |= (uint16_t)intFlags;
+    HWREG(SYSSTAT_BASE + SYSCTL_O_SYS_ERR_INT_CLR) = intFlags;
 }
 //*****************************************************************************
 //
@@ -3162,6 +3205,142 @@ SysCtl_setInterruptStatusMask(uint32_t intFlags)
     EDIS;
 }
 
+//*****************************************************************************
+//
+//! Sets up CLB CLK dividers & configurations for a particuler CLB.
+//!
+//! \param divider is the value that configures the clock divider.
+//! \param tdivider is the value that configures the tile clock divider.
+//! \param inst is the CLB instance that needs clock settings.
+//! \param config is the mode for the clock
+//!
+//! This function sets up the CLB CLK configurations based on the instance
+//! that is selected. There are 2 dividers that scales the "source" to CLB
+//! CLK. The first one is the divider & the other the tile divider.
+//!
+//! The \e divider parameter can have one enumerated value from
+//! SysCtl_CLBClkDivider
+//! The \e tdivider parameter can have one enumerated value from
+//! SysCtl_CLBTClkDivider
+//! The \e inst parameter can have one enumerated value from
+//! SysCtl_CLBInst
+//! The \e config parameter can have one enumerated value from
+//! SysCtl_CLBClkm
+//!
+//! \note See also \e SysCtl_setCLBClkDivider() and \e SysCtl_CLBClkConfig()
+//!
+//! \return None.
+//
+//*****************************************************************************
+static inline void
+SysCtl_setCLBClk (SysCtl_CLBClkDivider divider, SysCtl_CLBTClkDivider tdivider,
+                  SysCtl_CLBInst inst, SysCtl_CLBClkm config)
+{
+    EALLOW;
+    //
+    //clear the CLB clk configurations
+    //
+    HWREG(CLKCFG_BASE + SYSCTL_O_CLBCLKCTL) =
+                        (HWREG(CLKCFG_BASE + SYSCTL_O_CLBCLKCTL) &
+                         ~(uint32_t)(SYSCTL_CLBCLKCTL_CLBCLKDIV_M |
+                                     SYSCTL_CLBCLKCTL_TILECLKDIV |
+                                     (0x1UL << (uint16_t)inst)));
+    SYSCTL_REGWRITE_DELAY;
+
+    //
+    //set the clock configurations for the particular CLB
+    //
+    HWREG(CLKCFG_BASE + SYSCTL_O_CLBCLKCTL) |=
+                ((uint32_t)divider << SYSCTL_CLBCLKCTL_CLBCLKDIV_S) |
+                ((uint32_t)tdivider << SYSCTL_CLBCLKCTL_TILECLKDIV_S) |
+                ((uint32_t)config  << (uint16_t)inst);
+    SYSCTL_REGWRITE_DELAY;
+    EDIS;
+}
+
+//*****************************************************************************
+//
+//! Sets up CLB CLK dividers
+//!
+//! \param divider is the value that configures the clock divider.
+//! \param tdivider is the value that configures the tile clock divider.
+//!
+//! This function sets up the CLB CLK dividers.
+//! There are 2 dividers that scales the "source" to CLB CLK. The first one is
+//! the divider & the other the tile divider.
+//!
+//! The \e divider parameter can have one enumerated value from
+//! SysCtl_CLBClkDivider
+//! The \e tdivider parameter can have one enumerated value from
+//! SysCtl_CLBTClkDivider
+//!
+//! \return None.
+//
+//*****************************************************************************
+static inline void
+SysCtl_setCLBClkDivider(SysCtl_CLBClkDivider divider,
+                        SysCtl_CLBTClkDivider tdivider)
+{
+    EALLOW;
+
+    //
+    // Clear the CLB clk configurations
+    //
+    HWREG(CLKCFG_BASE + SYSCTL_O_CLBCLKCTL) =
+                        (HWREG(CLKCFG_BASE + SYSCTL_O_CLBCLKCTL) &
+                         ~(uint32_t)(SYSCTL_CLBCLKCTL_CLBCLKDIV_M |
+                                     SYSCTL_CLBCLKCTL_TILECLKDIV));
+    SYSCTL_REGWRITE_DELAY;
+
+    //
+    // Set the clock dividers
+    //
+    HWREG(CLKCFG_BASE + SYSCTL_O_CLBCLKCTL) |=
+                ((uint32_t)divider << SYSCTL_CLBCLKCTL_CLBCLKDIV_S) |
+                ((uint32_t)tdivider << SYSCTL_CLBCLKCTL_TILECLKDIV_S);
+    SYSCTL_REGWRITE_DELAY;
+    EDIS;
+}
+
+//*****************************************************************************
+//
+//! Sets up CLB CLK configurations for a particuler CLB.
+//!
+//! \param inst is the CLB instance that needs clock settings.
+//! \param config is the mode for the clock
+//!
+//! This function sets up the CLB CLK configurations based on the instance
+//! that is selected.
+//!
+//! The \e inst parameter can have one enumerated value from
+//! SysCtl_CLBInst
+//! The \e config parameter can have one enumerated value from
+//! SysCtl_CLBClkm
+//!
+//! \return None.
+//
+//*****************************************************************************
+static inline void
+SysCtl_CLBClkConfig(SysCtl_CLBInst inst, SysCtl_CLBClkm config)
+{
+    EALLOW;
+
+    //
+    // Clear the CLB clk configurations
+    //
+    HWREG(CLKCFG_BASE + SYSCTL_O_CLBCLKCTL) =
+                        (HWREG(CLKCFG_BASE + SYSCTL_O_CLBCLKCTL) &
+                         ~(0x1UL << (uint16_t)inst));
+    SYSCTL_REGWRITE_DELAY;
+
+    //
+    // Set the clock configurations for the particular CLB
+    //
+    HWREG(CLKCFG_BASE + SYSCTL_O_CLBCLKCTL) |=
+                        ((uint32_t)config  << (uint16_t)inst);
+    SYSCTL_REGWRITE_DELAY;
+    EDIS;
+}
 //*****************************************************************************
 //
 //!  Check if One or more of the error sources triggered
@@ -3669,6 +3848,39 @@ SysCtl_getDeviceUID(void)
     return(HWREG(UID_BASE + OTP_O_UID_UNIQUE));
 }
 
+//*****************************************************************************
+//
+//! Get the status of JTAG State machine and debugger connect
+//!
+//! This function returns the JTAG status
+//!
+//! \return Returns the JTAG status. The bits representing will be -
+//! 0:TLR,
+//! 1:IDLE,
+//! 2:SELECTDR,
+//! 3:CAPDR,
+//! 4:SHIFTDR,
+//! 5:EXIT1DR,
+//! 6:PAUSEDR,
+//! 7:EXIT2DR,
+//! 8:UPDTDR,
+//! 9:SLECTIR,
+//! 10:CAPIR,
+//! 11:SHIFTIR,
+//! 12:EXIT1IR,
+//! 13:PAUSEIR,
+//! 14:EXIT2IR,
+//! 15:UPDTIR
+//
+//*****************************************************************************
+static inline uint32_t
+SysCtl_getTapStatus(void)
+{
+    //
+    // Returns the Tap status
+    //
+    return(HWREG(DEVCFG_BASE + SYSCTL_O_TAP_STATUS));
+}
 //*****************************************************************************
 //
 //! Delays for a fixed number of cycles.

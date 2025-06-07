@@ -63,6 +63,10 @@
 ;;! Total space requirement = 2032 words(16-bit) or 4064 bytes
 ;;!
 ;;! The twiddle factors are organized real part first
+    .if  __TI_EABI__
+        .asg vcu2_twiddleFactors, _vcu2_twiddleFactors
+        .asg vcu0_twiddleFactors, _vcu0_twiddleFactors
+    .endif
     .sect "twiddleFactors"
     .global _vcu2_twiddleFactors
 _vcu2_twiddleFactors:

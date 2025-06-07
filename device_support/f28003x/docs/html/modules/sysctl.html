@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v5.04.00.00
+                v5.05.00.00
               </div>
             
           
@@ -239,6 +239,11 @@ about resets and missing clock detection failures.</p>
 <dl class="cpp macro">
 <dt id="c.SYSCTL_PLL_KEY">
 <span class="target" id="group__sysctl__api_1ga8e88386569f70481d235c843bc10c56a"></span><code class="sig-name descname">SYSCTL_PLL_KEY</code> 0XCAFE0000U<a class="headerlink" href="#c.SYSCTL_PLL_KEY" title="Permalink to this definition">¶</a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.SYSCTL_CLBCLKCTL_TILECLKDIV_S">
+<span class="target" id="group__sysctl__api_1ga06df7a419be8204a6ee23a927307bb23"></span><code class="sig-name descname">SYSCTL_CLBCLKCTL_TILECLKDIV_S</code> 0x4U<a class="headerlink" href="#c.SYSCTL_CLBCLKCTL_TILECLKDIV_S" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
@@ -1863,7 +1868,7 @@ about resets and missing clock detection failures.</p>
 <dl class="cpp enumerator">
 <dt id="_CPPv4N15SysCtl_ClockOut22SYSCTL_CLOCKOUT_PLLRAWE">
 <span id="_CPPv3N15SysCtl_ClockOut22SYSCTL_CLOCKOUT_PLLRAWE"></span><span id="_CPPv2N15SysCtl_ClockOut22SYSCTL_CLOCKOUT_PLLRAWE"></span><span class="target" id="group__sysctl__api_1gga6d6707580ed69295038d9eb68c52b114a7511b9d48a93873fe2915b34af57b6fe"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_CLOCKOUT_PLLRAW</code> = 1U<a class="headerlink" href="#_CPPv4N15SysCtl_ClockOut22SYSCTL_CLOCKOUT_PLLRAWE" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>PLL Raw Clock. </p>
+<dd><p>PLL Clock after Bypass Mux. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
@@ -2334,6 +2339,12 @@ about resets and missing clock detection failures.</p>
 </dd></dl>
 
 <dl class="cpp enumerator">
+<dt id="_CPPv4N16SysCtl_ClkRegSel24SYSCTL_REG_SEL_CLBCLKCTLE">
+<span id="_CPPv3N16SysCtl_ClkRegSel24SYSCTL_REG_SEL_CLBCLKCTLE"></span><span id="_CPPv2N16SysCtl_ClkRegSel24SYSCTL_REG_SEL_CLBCLKCTLE"></span><span class="target" id="group__sysctl__api_1gga45e2c59387a65f005d050e25b29def89aa7d24b5735b1e0b9b60f41a166823fb6"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_REG_SEL_CLBCLKCTL</code> = 0x0E00<a class="headerlink" href="#_CPPv4N16SysCtl_ClkRegSel24SYSCTL_REG_SEL_CLBCLKCTLE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLBCLKCTL lock. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
 <dt id="_CPPv4N16SysCtl_ClkRegSel21SYSCTL_REG_SEL_LOSPCPE">
 <span id="_CPPv3N16SysCtl_ClkRegSel21SYSCTL_REG_SEL_LOSPCPE"></span><span id="_CPPv2N16SysCtl_ClkRegSel21SYSCTL_REG_SEL_LOSPCPE"></span><span class="target" id="group__sysctl__api_1gga45e2c59387a65f005d050e25b29def89ab8691be6cbab1f3d5571faca5e2fcb0c"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_REG_SEL_LOSPCP</code> = 0x0F00<a class="headerlink" href="#_CPPv4N16SysCtl_ClkRegSel21SYSCTL_REG_SEL_LOSPCPE" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>LOSPCP lock. </p>
@@ -2500,6 +2511,127 @@ about resets and missing clock detection failures.</p>
 <dt id="_CPPv4N16SysCtl_CpuRegSel23SYSCTL_REG_SEL_PCLKCR27E">
 <span id="_CPPv3N16SysCtl_CpuRegSel23SYSCTL_REG_SEL_PCLKCR27E"></span><span id="_CPPv2N16SysCtl_CpuRegSel23SYSCTL_REG_SEL_PCLKCR27E"></span><span class="target" id="group__sysctl__api_1ggafb42a258e99bcfb4a183fe70e5def269a19eb84a7a45e6c778fa1a2eee26deab3"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_REG_SEL_PCLKCR27</code> = 0x0301<a class="headerlink" href="#_CPPv4N16SysCtl_CpuRegSel23SYSCTL_REG_SEL_PCLKCR27E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>PCLKCR27 lock. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv420SysCtl_CLBClkDivider">
+<span id="_CPPv320SysCtl_CLBClkDivider"></span><span id="_CPPv220SysCtl_CLBClkDivider"></span><span class="target" id="group__sysctl__api_1ga1947af0621cecd4f224cbfefac7e88d6"></span><em class="property">enum </em><code class="sig-name descname">SysCtl_CLBClkDivider</code><a class="headerlink" href="#_CPPv420SysCtl_CLBClkDivider" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>The following are values that can be passed to <a class="reference internal" href="#group__sysctl__api_1ga07620d2ac8d764c8796998804c6f87b3"><span class="std std-ref">SysCtl_setCLBClk()</span></a> as <em>cpuInst</em> parameter. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20SysCtl_CLBClkDivider22SYSCTL_CLBCLKOUT_DIV_1E">
+<span id="_CPPv3N20SysCtl_CLBClkDivider22SYSCTL_CLBCLKOUT_DIV_1E"></span><span id="_CPPv2N20SysCtl_CLBClkDivider22SYSCTL_CLBCLKOUT_DIV_1E"></span><span class="target" id="group__sysctl__api_1gga1947af0621cecd4f224cbfefac7e88d6ac9514cec70cd97da1b21e307ac1d7d5e"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_CLBCLKOUT_DIV_1</code><a class="headerlink" href="#_CPPv4N20SysCtl_CLBClkDivider22SYSCTL_CLBCLKOUT_DIV_1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLB clock = CLB clock / 1. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20SysCtl_CLBClkDivider22SYSCTL_CLBCLKOUT_DIV_2E">
+<span id="_CPPv3N20SysCtl_CLBClkDivider22SYSCTL_CLBCLKOUT_DIV_2E"></span><span id="_CPPv2N20SysCtl_CLBClkDivider22SYSCTL_CLBCLKOUT_DIV_2E"></span><span class="target" id="group__sysctl__api_1gga1947af0621cecd4f224cbfefac7e88d6a9014ee4f8b6a4c6e83ad350d9a1f2c2e"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_CLBCLKOUT_DIV_2</code><a class="headerlink" href="#_CPPv4N20SysCtl_CLBClkDivider22SYSCTL_CLBCLKOUT_DIV_2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLB clock = CLB clock / 2. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20SysCtl_CLBClkDivider22SYSCTL_CLBCLKOUT_DIV_3E">
+<span id="_CPPv3N20SysCtl_CLBClkDivider22SYSCTL_CLBCLKOUT_DIV_3E"></span><span id="_CPPv2N20SysCtl_CLBClkDivider22SYSCTL_CLBCLKOUT_DIV_3E"></span><span class="target" id="group__sysctl__api_1gga1947af0621cecd4f224cbfefac7e88d6aaaad06585fceaa7c5a5a366a8e8b66c3"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_CLBCLKOUT_DIV_3</code><a class="headerlink" href="#_CPPv4N20SysCtl_CLBClkDivider22SYSCTL_CLBCLKOUT_DIV_3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLB clock = CLB clock / 3. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20SysCtl_CLBClkDivider22SYSCTL_CLBCLKOUT_DIV_4E">
+<span id="_CPPv3N20SysCtl_CLBClkDivider22SYSCTL_CLBCLKOUT_DIV_4E"></span><span id="_CPPv2N20SysCtl_CLBClkDivider22SYSCTL_CLBCLKOUT_DIV_4E"></span><span class="target" id="group__sysctl__api_1gga1947af0621cecd4f224cbfefac7e88d6ab6ec7d410bafbeeaa30158438ce8c37d"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_CLBCLKOUT_DIV_4</code><a class="headerlink" href="#_CPPv4N20SysCtl_CLBClkDivider22SYSCTL_CLBCLKOUT_DIV_4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLB clock = CLB clock / 4. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20SysCtl_CLBClkDivider22SYSCTL_CLBCLKOUT_DIV_5E">
+<span id="_CPPv3N20SysCtl_CLBClkDivider22SYSCTL_CLBCLKOUT_DIV_5E"></span><span id="_CPPv2N20SysCtl_CLBClkDivider22SYSCTL_CLBCLKOUT_DIV_5E"></span><span class="target" id="group__sysctl__api_1gga1947af0621cecd4f224cbfefac7e88d6a0b14604d64852b964198a68e76f2cdc9"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_CLBCLKOUT_DIV_5</code><a class="headerlink" href="#_CPPv4N20SysCtl_CLBClkDivider22SYSCTL_CLBCLKOUT_DIV_5E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLB clock = CLB clock / 5. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20SysCtl_CLBClkDivider22SYSCTL_CLBCLKOUT_DIV_6E">
+<span id="_CPPv3N20SysCtl_CLBClkDivider22SYSCTL_CLBCLKOUT_DIV_6E"></span><span id="_CPPv2N20SysCtl_CLBClkDivider22SYSCTL_CLBCLKOUT_DIV_6E"></span><span class="target" id="group__sysctl__api_1gga1947af0621cecd4f224cbfefac7e88d6aad41c72439370e9f2b893d6d3f027958"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_CLBCLKOUT_DIV_6</code><a class="headerlink" href="#_CPPv4N20SysCtl_CLBClkDivider22SYSCTL_CLBCLKOUT_DIV_6E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLB clock = CLB clock / 6. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20SysCtl_CLBClkDivider22SYSCTL_CLBCLKOUT_DIV_7E">
+<span id="_CPPv3N20SysCtl_CLBClkDivider22SYSCTL_CLBCLKOUT_DIV_7E"></span><span id="_CPPv2N20SysCtl_CLBClkDivider22SYSCTL_CLBCLKOUT_DIV_7E"></span><span class="target" id="group__sysctl__api_1gga1947af0621cecd4f224cbfefac7e88d6ac077383859625d0413d98f302c240f43"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_CLBCLKOUT_DIV_7</code><a class="headerlink" href="#_CPPv4N20SysCtl_CLBClkDivider22SYSCTL_CLBCLKOUT_DIV_7E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLB clock = CLB clock / 7. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N20SysCtl_CLBClkDivider22SYSCTL_CLBCLKOUT_DIV_8E">
+<span id="_CPPv3N20SysCtl_CLBClkDivider22SYSCTL_CLBCLKOUT_DIV_8E"></span><span id="_CPPv2N20SysCtl_CLBClkDivider22SYSCTL_CLBCLKOUT_DIV_8E"></span><span class="target" id="group__sysctl__api_1gga1947af0621cecd4f224cbfefac7e88d6adf846ea33d6fb6d446da6e703fb91e2c"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_CLBCLKOUT_DIV_8</code><a class="headerlink" href="#_CPPv4N20SysCtl_CLBClkDivider22SYSCTL_CLBCLKOUT_DIV_8E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLB clock = CLB clock / 8. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv421SysCtl_CLBTClkDivider">
+<span id="_CPPv321SysCtl_CLBTClkDivider"></span><span id="_CPPv221SysCtl_CLBTClkDivider"></span><span class="target" id="group__sysctl__api_1ga2ada17d202dfd0c827409fb7c5d4f195"></span><em class="property">enum </em><code class="sig-name descname">SysCtl_CLBTClkDivider</code><a class="headerlink" href="#_CPPv421SysCtl_CLBTClkDivider" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N21SysCtl_CLBTClkDivider23SYSCTL_CLBTCLKOUT_DIV_1E">
+<span id="_CPPv3N21SysCtl_CLBTClkDivider23SYSCTL_CLBTCLKOUT_DIV_1E"></span><span id="_CPPv2N21SysCtl_CLBTClkDivider23SYSCTL_CLBTCLKOUT_DIV_1E"></span><span class="target" id="group__sysctl__api_1gga2ada17d202dfd0c827409fb7c5d4f195ac7a0ea90d03d2c30f359d37920aef45f"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_CLBTCLKOUT_DIV_1</code><a class="headerlink" href="#_CPPv4N21SysCtl_CLBTClkDivider23SYSCTL_CLBTCLKOUT_DIV_1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLBTCLKOUT = CLB clock / 1. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N21SysCtl_CLBTClkDivider23SYSCTL_CLBTCLKOUT_DIV_2E">
+<span id="_CPPv3N21SysCtl_CLBTClkDivider23SYSCTL_CLBTCLKOUT_DIV_2E"></span><span id="_CPPv2N21SysCtl_CLBTClkDivider23SYSCTL_CLBTCLKOUT_DIV_2E"></span><span class="target" id="group__sysctl__api_1gga2ada17d202dfd0c827409fb7c5d4f195ae9e0279b9ddac48a8dc6a182bcfa7558"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_CLBTCLKOUT_DIV_2</code><a class="headerlink" href="#_CPPv4N21SysCtl_CLBTClkDivider23SYSCTL_CLBTCLKOUT_DIV_2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLBTCLKOUT = CLB clock / 2. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv414SysCtl_CLBInst">
+<span id="_CPPv314SysCtl_CLBInst"></span><span id="_CPPv214SysCtl_CLBInst"></span><span class="target" id="group__sysctl__api_1ga67695065c384fb2064c0b2a6f2b12c45"></span><em class="property">enum </em><code class="sig-name descname">SysCtl_CLBInst</code><a class="headerlink" href="#_CPPv414SysCtl_CLBInst" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14SysCtl_CLBInst11SYSCTL_CLB1E">
+<span id="_CPPv3N14SysCtl_CLBInst11SYSCTL_CLB1E"></span><span id="_CPPv2N14SysCtl_CLBInst11SYSCTL_CLB1E"></span><span class="target" id="group__sysctl__api_1gga67695065c384fb2064c0b2a6f2b12c45a56a116a41d2fa5538ecc96fa97886027"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_CLB1</code> = 0x10<a class="headerlink" href="#_CPPv4N14SysCtl_CLBInst11SYSCTL_CLB1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLB 1 instance. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14SysCtl_CLBInst11SYSCTL_CLB2E">
+<span id="_CPPv3N14SysCtl_CLBInst11SYSCTL_CLB2E"></span><span id="_CPPv2N14SysCtl_CLBInst11SYSCTL_CLB2E"></span><span class="target" id="group__sysctl__api_1gga67695065c384fb2064c0b2a6f2b12c45a9aa9a2211a24f3ca7f8f1222827200e5"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_CLB2</code> = 0x11<a class="headerlink" href="#_CPPv4N14SysCtl_CLBInst11SYSCTL_CLB2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLB 2 instance. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14SysCtl_CLBInst11SYSCTL_CLB3E">
+<span id="_CPPv3N14SysCtl_CLBInst11SYSCTL_CLB3E"></span><span id="_CPPv2N14SysCtl_CLBInst11SYSCTL_CLB3E"></span><span class="target" id="group__sysctl__api_1gga67695065c384fb2064c0b2a6f2b12c45ade29a7277e7fb20209b399db3d98d7db"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_CLB3</code> = 0x12<a class="headerlink" href="#_CPPv4N14SysCtl_CLBInst11SYSCTL_CLB3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLB 3 instance. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14SysCtl_CLBInst11SYSCTL_CLB4E">
+<span id="_CPPv3N14SysCtl_CLBInst11SYSCTL_CLB4E"></span><span id="_CPPv2N14SysCtl_CLBInst11SYSCTL_CLB4E"></span><span class="target" id="group__sysctl__api_1gga67695065c384fb2064c0b2a6f2b12c45afeccd736e0242bd4452442130842c93b"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_CLB4</code> = 0x13<a class="headerlink" href="#_CPPv4N14SysCtl_CLBInst11SYSCTL_CLB4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLB 4 instance. </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt id="_CPPv414SysCtl_CLBClkm">
+<span id="_CPPv314SysCtl_CLBClkm"></span><span id="_CPPv214SysCtl_CLBClkm"></span><span class="target" id="group__sysctl__api_1ga4a76de01f8b6e671205124ca1268e1ed"></span><em class="property">enum </em><code class="sig-name descname">SysCtl_CLBClkm</code><a class="headerlink" href="#_CPPv414SysCtl_CLBClkm" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14SysCtl_CLBClkm18SYSCTL_CLBCLK_SYNCE">
+<span id="_CPPv3N14SysCtl_CLBClkm18SYSCTL_CLBCLK_SYNCE"></span><span id="_CPPv2N14SysCtl_CLBClkm18SYSCTL_CLBCLK_SYNCE"></span><span class="target" id="group__sysctl__api_1gga4a76de01f8b6e671205124ca1268e1eda7116d77a7ffdf945515ef637acd92674"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_CLBCLK_SYNC</code><a class="headerlink" href="#_CPPv4N14SysCtl_CLBClkm18SYSCTL_CLBCLK_SYNCE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLB is synchronous to SYSCLK. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N14SysCtl_CLBClkm19SYSCTL_CLBCLK_ASYNCE">
+<span id="_CPPv3N14SysCtl_CLBClkm19SYSCTL_CLBCLK_ASYNCE"></span><span id="_CPPv2N14SysCtl_CLBClkm19SYSCTL_CLBCLK_ASYNCE"></span><span class="target" id="group__sysctl__api_1gga4a76de01f8b6e671205124ca1268e1eda4fe6d9ed2fdab24ea7f38c586629084b"></span><em class="property">enumerator </em><code class="sig-name descname">SYSCTL_CLBCLK_ASYNC</code><a class="headerlink" href="#_CPPv4N14SysCtl_CLBClkm19SYSCTL_CLBCLK_ASYNCE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>CLB runs of asynchronous clock. </p>
 </dd></dl>
 
 </dd></dl>
@@ -3927,6 +4059,73 @@ about resets and missing clock detection failures.</p>
 </dd></dl>
 
 <dl class="cpp function">
+<dt id="_CPPv416SysCtl_setCLBClk20SysCtl_CLBClkDivider21SysCtl_CLBTClkDivider14SysCtl_CLBInst14SysCtl_CLBClkm">
+<span id="_CPPv316SysCtl_setCLBClk20SysCtl_CLBClkDivider21SysCtl_CLBTClkDivider14SysCtl_CLBInst14SysCtl_CLBClkm"></span><span id="_CPPv216SysCtl_setCLBClk20SysCtl_CLBClkDivider21SysCtl_CLBTClkDivider14SysCtl_CLBInst14SysCtl_CLBClkm"></span><span id="SysCtl_setCLBClk__SysCtl_CLBClkDivider.SysCtl_CLBTClkDivider.SysCtl_CLBInst.SysCtl_CLBClkm"></span><span class="target" id="group__sysctl__api_1ga07620d2ac8d764c8796998804c6f87b3"></span>void <code class="sig-name descname">SysCtl_setCLBClk</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv420SysCtl_CLBClkDivider" title="SysCtl_CLBClkDivider">SysCtl_CLBClkDivider</a> <em>divider</em>, <a class="reference internal" href="#_CPPv421SysCtl_CLBTClkDivider" title="SysCtl_CLBTClkDivider">SysCtl_CLBTClkDivider</a> <em>tdivider</em>, <a class="reference internal" href="#_CPPv414SysCtl_CLBInst" title="SysCtl_CLBInst">SysCtl_CLBInst</a> <em>inst</em>, <a class="reference internal" href="#_CPPv414SysCtl_CLBClkm" title="SysCtl_CLBClkm">SysCtl_CLBClkm</a> <em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416SysCtl_setCLBClk20SysCtl_CLBClkDivider21SysCtl_CLBTClkDivider14SysCtl_CLBInst14SysCtl_CLBClkm" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets up CLB CLK dividers &amp; configurations for a particuler CLB.</p>
+<p><p>This function sets up the CLB CLK configurations based on the instance that is selected. There are 2 dividers that scales the “source” to CLB CLK. The first one is the divider &amp; the other the tile divider.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">divider</span></code>: is the value that configures the clock divider. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tdivider</span></code>: is the value that configures the tile clock divider. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">inst</span></code>: is the CLB instance that needs clock settings. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code>: is the mode for the clock</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>divider</em> parameter can have one enumerated value from SysCtl_CLBClkDivider The <em>tdivider</em> parameter can have one enumerated value from SysCtl_CLBTClkDivider The <em>inst</em> parameter can have one enumerated value from SysCtl_CLBInst The <em>config</em> parameter can have one enumerated value from SysCtl_CLBClkm</p>
+<p><dl class="simple">
+<dt><strong>Note</strong></dt><dd><p>See also <em><a class="reference internal" href="#group__sysctl__api_1ga962bb1d7b4cba2b5fdeb181b8068b99a"><span class="std std-ref">SysCtl_setCLBClkDivider()</span></a></em> and <em><a class="reference internal" href="#group__sysctl__api_1ga13ec442875a714a7f34bdf3af7e11844"><span class="std std-ref">SysCtl_CLBClkConfig()</span></a></em> </p>
+</dd>
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv423SysCtl_setCLBClkDivider20SysCtl_CLBClkDivider21SysCtl_CLBTClkDivider">
+<span id="_CPPv323SysCtl_setCLBClkDivider20SysCtl_CLBClkDivider21SysCtl_CLBTClkDivider"></span><span id="_CPPv223SysCtl_setCLBClkDivider20SysCtl_CLBClkDivider21SysCtl_CLBTClkDivider"></span><span id="SysCtl_setCLBClkDivider__SysCtl_CLBClkDivider.SysCtl_CLBTClkDivider"></span><span class="target" id="group__sysctl__api_1ga962bb1d7b4cba2b5fdeb181b8068b99a"></span>void <code class="sig-name descname">SysCtl_setCLBClkDivider</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv420SysCtl_CLBClkDivider" title="SysCtl_CLBClkDivider">SysCtl_CLBClkDivider</a> <em>divider</em>, <a class="reference internal" href="#_CPPv421SysCtl_CLBTClkDivider" title="SysCtl_CLBTClkDivider">SysCtl_CLBTClkDivider</a> <em>tdivider</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423SysCtl_setCLBClkDivider20SysCtl_CLBClkDivider21SysCtl_CLBTClkDivider" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets up CLB CLK dividers</p>
+<p><p>This function sets up the CLB CLK dividers. There are 2 dividers that scales the “source” to CLB CLK. The first one is the divider &amp; the other the tile divider.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">divider</span></code>: is the value that configures the clock divider. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tdivider</span></code>: is the value that configures the tile clock divider.</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>divider</em> parameter can have one enumerated value from SysCtl_CLBClkDivider The <em>tdivider</em> parameter can have one enumerated value from SysCtl_CLBTClkDivider</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv419SysCtl_CLBClkConfig14SysCtl_CLBInst14SysCtl_CLBClkm">
+<span id="_CPPv319SysCtl_CLBClkConfig14SysCtl_CLBInst14SysCtl_CLBClkm"></span><span id="_CPPv219SysCtl_CLBClkConfig14SysCtl_CLBInst14SysCtl_CLBClkm"></span><span id="SysCtl_CLBClkConfig__SysCtl_CLBInst.SysCtl_CLBClkm"></span><span class="target" id="group__sysctl__api_1ga13ec442875a714a7f34bdf3af7e11844"></span>void <code class="sig-name descname">SysCtl_CLBClkConfig</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv414SysCtl_CLBInst" title="SysCtl_CLBInst">SysCtl_CLBInst</a> <em>inst</em>, <a class="reference internal" href="#_CPPv414SysCtl_CLBClkm" title="SysCtl_CLBClkm">SysCtl_CLBClkm</a> <em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419SysCtl_CLBClkConfig14SysCtl_CLBInst14SysCtl_CLBClkm" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Sets up CLB CLK configurations for a particuler CLB.</p>
+<p><p>This function sets up the CLB CLK configurations based on the instance that is selected.</p>
+<dl class="simple">
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">inst</span></code>: is the CLB instance that needs clock settings. </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">config</span></code>: is the mode for the clock</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p>The <em>inst</em> parameter can have one enumerated value from SysCtl_CLBInst The <em>config</em> parameter can have one enumerated value from SysCtl_CLBClkm</p>
+<p><dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt id="_CPPv423SysCtl_isErrorTriggeredv">
 <span id="_CPPv323SysCtl_isErrorTriggeredv"></span><span id="_CPPv223SysCtl_isErrorTriggeredv"></span><span id="SysCtl_isErrorTriggered__void"></span><span class="target" id="group__sysctl__api_1ga75d6b4dd17b3a537f79fb5c96c5bf049"></span>bool <code class="sig-name descname">SysCtl_isErrorTriggered</code><span class="sig-paren">(</span>void<span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423SysCtl_isErrorTriggeredv" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Check if One or more of the error sources triggered</p>
@@ -4652,7 +4851,7 @@ others used for the configuration of SysCtl.</p>
     <p>
       <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2021, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
       <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
-      <span class="lastupdated">Last updated on Oct 22, 2024.
+      <span class="lastupdated">Last updated on May 29, 2025.
       </span></p>
   </div>
 
@@ -4672,7 +4871,7 @@ others used for the configuration of SysCtl.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v5.04.00.00',
+            VERSION:'v5.05.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

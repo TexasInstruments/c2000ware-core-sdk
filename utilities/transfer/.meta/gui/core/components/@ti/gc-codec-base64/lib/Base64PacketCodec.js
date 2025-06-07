@@ -1,7 +1,7 @@
 import { AbstractDataCodec, bufferOrStringDataType, stringDataType } from '../../gc-target-configuration/lib/TargetConfiguration';
 
 /**
- *  Copyright (c) 2020, 2021 Texas Instruments Incorporated
+ *  Copyright (c) 2020, 2024 Texas Instruments Incorporated
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without

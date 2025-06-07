@@ -58,7 +58,7 @@
 //
 //
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -107,7 +107,7 @@
 #define SDFM_PIN_MUX_OPTION3      3
 #define WAITSTEP                  asm(" RPT #255 || NOP")
 
-#define OSCLK_INPUT_CLOCK_MHz     20
+#define OSCLK_INPUT_CLOCK_MHz     25
 #define EPWM_TIMER_TBPRD          65535
 
 //
@@ -757,7 +757,7 @@ void configurePWMPins(void)
 //
 void generateSD_clock_MHz(float sdclk_MHz, uint16_t oscclkInMHz)
 {
-    ASSERT(oscclkInMHz <= 20);
+    ASSERT(oscclkInMHz <= 25);
 
     uint32_t sysclk_in_MHz   = SysCtl_getClock(oscclkInMHz);
     uint16_t period          = (uint16_t)(sysclk_in_MHz / sdclk_MHz)-1;

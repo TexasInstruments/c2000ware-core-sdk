@@ -15,7 +15,7 @@
 //! the timer is started, stopped or changes direction. The output of the timer 
 //! event (1-clock cycle) is exported to a GPIO. Interrupts are generated from the 
 //! timer event using the HLC module. A GPIO is also toggled inside the CLB ISR. The 
-//! indirect CLB register access is used to update the timerâs event match value and 
+//! indirect CLB register access is used to update the timer’s event match value and 
 //! the active counter register to modify the frequency of the timer.
 //!
 //
@@ -24,7 +24,7 @@
 // $TI Release: $
 // 
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //

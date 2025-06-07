@@ -1,0 +1,103 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F280015x" --package "80PN" --part "F280015x_80PN" --context "system" --product "C2000WARE@5.02.00.00"
+ * @versions {"tool":"1.0.0+dev"}
+ */
+/**
+ * Import the modules used in this configuration.
+ */
+const cputimer     = scripting.addModule("/driverlib/cputimer.js", {}, false);
+const cputimer1    = cputimer.addInstance();
+const signalsight  = scripting.addModule("/utilities/transfer/signalsight.js", {}, false);
+const signalsight1 = signalsight.addInstance();
+const device_support = scripting.addModule("/driverlib/device_support.js");
+const CMD            = scripting.addModule("/utilities/cmd_tool/cmd_syscfg/source/CMD");
+const CMD1           = CMD.addInstance();
+const CMD2           = CMD.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+cputimer1.$name                     = "myCPUTIMER0";
+cputimer1.enableInterrupt           = true;
+cputimer1.registerInterrupts        = true;
+cputimer1.timerPeriod               = 119999;
+cputimer1.timerInt.interruptHandler = "cpuTimer1ISR";
+cputimer1.timerInt.enableInterrupt  = true;
+
+const divider11       = system.clockTree["LOSPCP"];
+divider11.divideValue = 2;
+
+signalsight1.$name                                         = "myMCUSignalSight0";
+signalsight1.bufferSize                                    = 200;
+signalsight1.exporter.comsLinkModule.loopback              = scripting.forceWrite(false);
+signalsight1.exporter.comsLinkModule.wordLenght            = scripting.forceWrite("8");
+signalsight1.exporter.comsLinkModule.stop                  = scripting.forceWrite("ONE");
+signalsight1.exporter.comsLinkModule.parity                = scripting.forceWrite("SCI_CONFIG_PAR_NONE");
+signalsight1.exporter.comsLinkModule.useFifo               = scripting.forceWrite(true);
+signalsight1.exporter.comsLinkModule.txFifo                = scripting.forceWrite("SCI_FIFO_TX0");
+signalsight1.exporter.comsLinkModule.useCase               = scripting.forceWrite("ALL");
+signalsight1.exporter.comsLinkModule.baudRates             = 460800;
+signalsight1.exporter.comsLinkModule.sci.$assign           = "SCIA";
+signalsight1.exporter.comsLinkModule.sci.sci_rxPin.$assign = "A16/C16, GPIO28";
+signalsight1.exporter.comsLinkModule.sci.sci_txPin.$assign = "GPIO29";
+signalsight1.exporter.comsLinkModule.rxQual.$name          = "myGPIOQUAL0";
+signalsight1.exporter.comsLinkModule.txQual.$name          = "myGPIOQUAL1";
+signalsight1.hash.$name                                    = "myHashTable0";
+signalsight1.hash.hashElements.create(6);
+signalsight1.hash.hashElements[0].$name                    = "sineWave1";
+signalsight1.hash.hashElements[1].$name                    = "squareWave1";
+signalsight1.hash.hashElements[2].$name                    = "triangleWave1";
+signalsight1.hash.hashElements[3].$name                    = "sineWave2";
+signalsight1.hash.hashElements[4].$name                    = "squareWave2";
+signalsight1.hash.hashElements[5].$name                    = "triangleWave2";
+
+/**
+ * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
+ * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
+ * re-solve from scratch.
+ */
+signalsight1.exporter.comsLinkModule.sci.sci_rxPin.$suggestSolution = "A16/C16, GPIO28";
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+CMD1.$name                    = "generic_ram_lnk";
+CMD2.$name                    = "generic_flash_lnk";
+
+CMD1.sectionMemory_text       = ["RAMLS0","RAMLS1"];
+CMD1.sectionMemory_ramfunc    = ["RAMM0"];
+CMD1.sectionMemory_cinit      = ["RAMM0"];
+CMD1.sectionMemory_stack      = ["RAMM1"];
+CMD1.sectionMemory_init_array = ["RAMM0"];
+CMD1.sectionMemory_bss        = ["RAMLS0"];
+CMD1.sectionMemory_const      = ["RAMLS0"];
+CMD1.sectionMemory_data       = ["RAMLS0", "RAMLS1"];
+CMD1.sectionMemory_switch     = ["RAMM0"];
+CMD1.sectionMemory_sysmem     = ["RAMLS0"];
+
+CMD2.sectionAlignEnable_ramfunc    = true;
+CMD2.sectionAlignEnable_text       = true;
+CMD2.sectionAlignEnable_binit      = true;
+CMD2.sectionAlignEnable_cinit      = true;
+CMD2.sectionAlignEnable_switch     = true;
+CMD2.sectionAlignEnable_init_array = true;
+CMD2.sectionAlignEnable_const      = true;
+CMD2.sectionAlignEnable_ovly       = true;
+CMD2.sectionMemory_codestart       = "0x080000";
+CMD2.sectionMemory_stack           = ["RAMM1"];
+CMD2.sectionMemory_ramfunc         = ["FLASH_BANK0_SEC_0_7"];
+CMD2.sectionMemory_text            = ["FLASH_BANK0_SEC_16_23","FLASH_BANK0_SEC_24_31","FLASH_BANK0_SEC_8_15"];
+CMD2.sectionMemory_binit           = ["FLASH_BANK0_SEC_0_7"];
+CMD2.sectionMemory_cinit           = ["FLASH_BANK0_SEC_0_7"];
+CMD2.sectionMemory_switch          = ["FLASH_BANK0_SEC_0_7"];
+CMD2.sectionMemory_bss             = ["RAMLS0"];
+CMD2.sectionMemory_init_array      = ["FLASH_BANK0_SEC_0_7"];
+CMD2.sectionMemory_const           = ["FLASH_BANK0_SEC_32_29"];
+CMD2.sectionMemory_data            = ["RAMLS0", "RAMLS1"];
+CMD2.sectionMemory_sysmem          = ["RAMLS0"];
+CMD2.sectionMemory_ovly            = ["FLASH_BANK0_SEC_0_7"];
+CMD2.sectionRunFromDifferentAddr_ramfunc = true;
+CMD2.sectionRun_ramfunc                  = ["RAMLS0"];
+CMD2.sectionBinit_ramfunc                = false;

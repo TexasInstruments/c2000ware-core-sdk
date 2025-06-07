@@ -11,7 +11,7 @@
 //!  `C2000Ware_PATH\utilities\clb_tool\clb_syscfg\doc\CLB Tool Users Guide.pdf`
 //!
 //! This example demonstrates use of finite state machines (FSMs) and counters 
-//! to implement a simple âglitchâ filter which might, for example, be applied 
+//! to implement a simple ‘glitch’ filter which might, for example, be applied 
 //! to an incoming GPIO signal to remove unwanted short duration pulses.
 //!
 //
@@ -20,7 +20,7 @@
 // $TI Release: $
 // 
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //

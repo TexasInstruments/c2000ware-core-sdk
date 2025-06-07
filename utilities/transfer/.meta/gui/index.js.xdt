@@ -28,7 +28,7 @@ import { ActionRegistry } from './components/@ti/gc-widget-menu/lib/ActionRegist
 import { codecRegistry } from './components/@ti/gc-target-configuration/lib/TargetConfiguration';
 import { valueChangedEventType } from './components/@ti/gc-core-databind/lib/CoreDatabind';
 import { connectionManager, activeConfigurationChangedEvent } from './components/@ti/gc-target-connection-manager/lib/ConnectionManager';
-import { connectedStateChangedEventType } from  './components/@ti/gc-target-configuration/lib/TargetConfiguration'
+import { connectedStateChangedEventType } from  './components/@ti/gc-target-configuration/lib/TargetConfiguration';
 
 const console = new GcConsole('myapp'); // creates a console instance with name 'myapp'
 GcConsole.setLevel('myapp', 4);         // enable console output for myapp console instance
@@ -86,11 +86,11 @@ RT Logger Globals
 -------------------------------------------------------------------------------------------------------------------------------
 **/
     % let bufferReadMap = {
-    %   "uint16_t" : "readUInt16LE",
-    %   "int16_t" : "readInt16LE",
-    %   "uint32_t" : "readUInt32LE",
-    %   "int32_t" : "readInt32LE",
-    %   "float" : "readFloatLE"
+    %   "uint16_t" : "getUint16",
+    %   "int16_t" : "getInt16",
+    %   "uint32_t" : "getUint32",
+    %   "int32_t" : "getInt32",
+    %   "float" : "getFloat32"
     % }
     % let sizeOfType = {
     %     "uint16_t" :    1,
@@ -114,12 +114,17 @@ RT Logger Globals
         % let rtlogInst = rtlogMod.$instances[0];
         % msgTypes = rtlogInst.logMsgTypes;
     % }
-    % if (msgTypes){         
+    % if (msgTypes){      
         % for (let mt of msgTypes){
 function RTLogParseMessage`mt.id`(dataArray) {
             % let bufI = 0;
+    let variable_values = [];
             % for (let logVar of mt.logVariables) {
+    % if (!logVar.varType.includes("*")) {
     let `logVar.$name`;
+    % } else {
+    let `logVar.$name` = [];
+    %}
                 % if (["uint16_t", "int16_t"].includes(logVar.varType)) {
     let `logVar.$name`_wordArr = Uint16Array.from(dataArray.slice(`bufI`, `bufI` + 1));
                     % bufI++;
@@ -134,15 +139,18 @@ function RTLogParseMessage`mt.id`(dataArray) {
                     % bufI += logVar.length*2;
                 % }
                 % if (!logVar.varType.includes("*")) {
-    `logVar.$name` = Buffer.from(`logVar.$name`_wordArr.buffer).`bufferReadMap[logVar.varType]`(0);
+    `logVar.$name` = new DataView(`logVar.$name`_wordArr.buffer).`bufferReadMap[logVar.varType]`(0, true);
+    variable_values.push(`logVar.$name`)
                 % } else {
     for (let arrI = 0; arrI < `logVar.length`; arrI++)
     {   
                     % let logVarSizeOfType = sizeOfType[logVar.varType.replace("*","")];
-        `logVar.$name`.push(Buffer.from(`logVar.$name`_wordArr.slice(arrI*`logVarSizeOfType`,arrI*`logVarSizeOfType`+`logVarSizeOfType`).buffer).`bufferReadMap[logVar.varType.replace("*","")]`(0));
+        `logVar.$name`.push(new DataView(`logVar.$name`_wordArr.slice(arrI*`logVarSizeOfType`,arrI*`logVarSizeOfType`+`logVarSizeOfType`).buffer).`bufferReadMap[logVar.varType.replace("*","")]`(0, true));
     }
+    variable_values.push(`logVar.$name`)
                 % }
-            % }     
+            % }   
+    return variable_values;  
 }
         % }
     %}
@@ -241,6 +249,93 @@ function fsiLoggerGridUpdateUI(){
     fsiLoggerGrid.setDataProvider(fsiLoggerDataProvider);
 }
 % }
+
+%if(gui.rtlogger)
+%{
+//
+// RT Logger Controls
+//
+
+let rtLoggerSortDescending;
+let rtLoggerSortByColumn;
+let rtLoggerFilterText;
+
+function rtLoggerFilterSort(){
+    rtLoggerGrid.sortByColumn = rtLoggerSortByColumn.selectedValue;
+    rtLoggerGrid.sortDescending = rtLoggerSortDescending.checked;
+}
+//
+// The global FSI logger variable holding the received data
+//
+var rtLoggerGridData = [
+    //
+    // Example entry below
+    //
+    // {
+    //     user_data: "UDATA1",
+    //     frame_tag: "FTAG1",
+    //     data_words: "DWORD1",
+    //     data_words_child: [
+    //         { data_words: "DWORD1-CHILD1" },
+    //         { data_words: "DWORD1-CHILD2" },
+    //         { data_words: "DWORD1-CHILD3" },
+    //         { data_words: "DWORD1-CHILD4" },
+    //     ]
+    // }
+];
+//
+// The data provider for FSI logger grid
+//
+var rtLoggerDataProvider = {
+    rowCount: rtLoggerGridData.length,
+    getValue(row, columnName) {
+        return rtLoggerGridData[row][columnName]
+    },
+    isExpandable: function(row) {
+        return (rtLoggerGridData[row]['data_words_child'] && (rtLoggerGridData[row]['data_words_child'].length > 0));
+    }, 
+    getChildDataProvider: function(row) {
+        return {
+            rowCount: rtLoggerGridData[row]['data_words_child'].length,
+            getValue: function (childRow, childColumn) {
+                if (childColumn === 'log_var_name') {
+                    return rtLoggerGridData[row]['data_words_child'][childRow]['log_var_name'];
+                }
+                if (childColumn === 'log_varval') {
+                    return rtLoggerGridData[row]['data_words_child'][childRow]['log_varval'];
+                }
+            },
+        }
+    },
+}
+//
+// RT Logger Widget
+//
+var rtLoggerGrid;
+
+//
+// FSI Logger scroll hanlder
+//
+function rtLoggerGridViewChanged({ detail }){
+    const { startRow, reason } = detail;
+    // console.log("gc-widget-grid viewport changed: startRow=${startRow}, reason=${reason}");
+}
+
+//
+// RT Logger selected row changed handler
+//
+function rtLoggerGridSelectedPathChanged(value){
+    // console.log("gc-widget-grid path changed: value=${Object.keys(value).join(", ")}");
+}
+
+//
+// RT Logger GUI update function when new values have been received
+//
+function rtLoggerGridUpdateUI(){
+    rtLoggerDataProvider.rowCount = rtLoggerGridData.length;
+    rtLoggerGrid.setDataProvider(rtLoggerDataProvider);
+}
+%}
 
 % if (gui.customlogger) {
 /**
@@ -385,6 +480,15 @@ function DLTGridSelectedPathChanged(value){
 //
 function DLTGridUpdateUI(){
     DLTDataProvider.rowCount = DLTGridData.length;
+    if(DLTGridData.length > 150)
+    {
+        let elementsRemove = 20;
+        for(let i = 0; i < elementsRemove; i++)
+        {
+            DLTGridData.shift();
+        }
+
+    }
     DLTGrid.setDataProvider(DLTDataProvider);
 }
 
@@ -401,7 +505,7 @@ Bindings setup
     
     % if (transferCommon.isC2000() && (gui.deviceDiagnosticExportMode != "none")) {
     % for (var expModName of expModuleNames) {
-        % let mod = system.modules["/driverlib/" + expModName + ".js"];
+        % let mod = system.modules[transferCommon.getTransferPath() + expModName + ".js"];
         % let modExports = system.getScript("/utilities/transfer/export/mods/export_mod_" + expModName + ".js");
         % if (mod && (exportCommon.getNonExporterInstances(mod).length > 0)) {
     //
@@ -476,7 +580,7 @@ Bindings setup
 
     % if (transferCommon.isC2000() && (gui.deviceDiagnosticExportMode != "none")) {
     % for (var expModName of expModuleNames) {
-        % let mod = system.modules["/driverlib/" + expModName + ".js"];
+        % let mod = system.modules[transferCommon.getTransferPath() + expModName + ".js"];
         % let modExports = system.getScript("/utilities/transfer/export/mods/export_mod_" + expModName + ".js");
         % if (gui.deviceDiagnosticExportMode == "xds") {
     //
@@ -573,18 +677,40 @@ Bindings setup
         fsiLoggerGridUpdateUI();
 
     % if (gui.rtlogger) {
+        var rtLoggerElement = {
+            user_data: e.newValue.u,
+            frame_tag: e.newValue.ta,
+            frame_type: e.newValue.ty,
+            crc: e.newValue.c,
+            data_words: e.newValue.d,
+            log_var_name: "",
+            log_varval: "",
+        };           
+        rtLoggerElement.data_words_child = [];
+        % let index = 0;
         let fsiFrame = e.newValue;
         let fsiDataArray = fsiFrame.d.split(",").map(Number);
 
         % let msgTypes = rtLogMsgTypes;
         % if (msgTypes){         
-            % for (let mt of msgTypes){
-        if (fsiFrame.u == `mt.id`) {
-            RTLogParseMessage`mt.id`(fsiDataArray);
+        % for (let mt of msgTypes){
+        if (fsiFrame.u == `mt.id`) {            
+        let variables = RTLogParseMessage`mt.id`(fsiDataArray);
+        % for (let logVar of mt.logVariables) {
+        rtLoggerElement.data_words_child.push({
+        log_var_name: "`logVar.$name`",
+        log_varval: variables[`index`]
+        })
+            % index++;
+        % }
         }
+
+            % index = 0;
             % }
         % }
     % }
+        rtLoggerGridData.push(rtLoggerElement);
+        rtLoggerGridUpdateUI();
     });
 % }
 
@@ -646,7 +772,7 @@ Bindings setup
 
 % if (exporter && exporter.mode.includes("Bidirectional") && transferCommon.isC2000() && (gui.deviceDiagnosticExportMode != "none")) {
     % for (var expModName of expModuleNames) {
-        % let mod = system.modules["/driverlib/" + expModName + ".js"];
+        % let mod = system.modules[transferCommon.getTransferPath() + expModName + ".js"];
         % if (mod && (exportCommon.getNonExporterInstances(mod).length > 0)) {
             % for (var modInst of exportCommon.getNonExporterInstances(mod)) {
     //
@@ -747,6 +873,37 @@ const init = () => {
     });
 % }
 
+% if (gui.rtlogger){
+    GcWidget.querySelector('#rt_logger_grid').then((grid) => {
+        rtLoggerGrid = grid
+        rtLoggerGrid.addEventListener('viewport-changed', rtLoggerGridViewChanged);
+        rtLoggerGrid.addEventListener('selected-path-changed', rtLoggerGridSelectedPathChanged);
+        rtLoggerGrid.setDataProvider(rtLoggerDataProvider);
+    });
+    GcWidget.querySelector('#rt_logger_export').then((but) => {
+        but.addEventListener('click', () => {
+            // console.log(JSON.stringify(fsiLoggerGridData, null, 4));
+            GcFiles.writeTextFile("rtLog.json", JSON.stringify(rtLoggerGridData, null, 4));
+            statusbar.statusText = "rtLog.json saved!"
+            document.querySelector('#rt_logger_exp_div').innerHTML = JSON.stringify(rtLoggerGridData, null, 4);
+            document.querySelector('#rt_logger_exp_dialog').open();
+        });
+    })
+
+    GcWidget.querySelector('#rt_logger_sort_descending').then((chb) => {
+        rtLoggerSortDescending = chb;
+        chb.addEventListener('checked-changed', rtLoggerFilterSort);
+    })
+    GcWidget.querySelector('#rt_logger_sort_by_column').then((sel) => {
+        rtLoggerSortByColumn = sel;
+        sel.addEventListener('selected-value-changed', rtLoggerFilterSort);
+    });
+    GcWidget.querySelector('#rt_logger_filter_text').then((filt) => {
+        rtLoggerFilterText = filt;
+        filt.addEventListener('value-changed', rtLoggerFilterSort);
+    });
+%}
+
 % if (gui.customlogger) {
     GcWidget.querySelector('#cust_logger_grid').then((grid) => {
         customLoggerGrid = grid
@@ -802,7 +959,7 @@ const init = () => {
 
 % if (exporter && exporter.mode.includes("Bidirectional") && transferCommon.isC2000() && (gui.deviceDiagnosticExportMode != "none")) {
     % for (var expModName of expModuleNames) {
-        % let mod = system.modules["/driverlib/" + expModName + ".js"];
+        % let mod = system.modules[transferCommon.getTransferPath() + expModName + ".js"];
         % if (mod && (exportCommon.getNonExporterInstances(mod).length > 0)) {
             % for (var modInst of exportCommon.getNonExporterInstances(mod)) {
     //

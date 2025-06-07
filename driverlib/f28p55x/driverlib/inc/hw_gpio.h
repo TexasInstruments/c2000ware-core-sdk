@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -1676,9 +1676,6 @@
 // The following are defines for the bit fields in the GPGDIR register
 //
 //*************************************************************************************************
-#define GPIO_GPGDIR_GPIO208   0x10000U    // Defines direction for this pin in GPIO mode
-#define GPIO_GPGDIR_GPIO209   0x20000U    // Defines direction for this pin in GPIO mode
-#define GPIO_GPGDIR_GPIO210   0x40000U    // Defines direction for this pin in GPIO mode
 #define GPIO_GPGDIR_GPIO211   0x80000U    // Defines direction for this pin in GPIO mode
 #define GPIO_GPGDIR_GPIO212   0x100000U   // Defines direction for this pin in GPIO mode
 #define GPIO_GPGDIR_GPIO213   0x200000U   // Defines direction for this pin in GPIO mode
@@ -1718,9 +1715,6 @@
 // The following are defines for the bit fields in the GPGODR register
 //
 //*************************************************************************************************
-#define GPIO_GPGODR_GPIO208   0x10000U    // Output Open-Drain control for this pin
-#define GPIO_GPGODR_GPIO209   0x20000U    // Output Open-Drain control for this pin
-#define GPIO_GPGODR_GPIO210   0x40000U    // Output Open-Drain control for this pin
 #define GPIO_GPGODR_GPIO211   0x80000U    // Output Open-Drain control for this pin
 #define GPIO_GPGODR_GPIO212   0x100000U   // Output Open-Drain control for this pin
 #define GPIO_GPGODR_GPIO213   0x200000U   // Output Open-Drain control for this pin
@@ -1985,31 +1979,13 @@
 //
 //*************************************************************************************************
 #define GPIO_GPHDIR_GPIO224   0x1U          // Defines direction for this pin in GPIO mode
-#define GPIO_GPHDIR_GPIO225   0x2U          // Defines direction for this pin in GPIO mode
 #define GPIO_GPHDIR_GPIO226   0x4U          // Defines direction for this pin in GPIO mode
 #define GPIO_GPHDIR_GPIO227   0x8U          // Defines direction for this pin in GPIO mode
 #define GPIO_GPHDIR_GPIO228   0x10U         // Defines direction for this pin in GPIO mode
-#define GPIO_GPHDIR_GPIO229   0x20U         // Defines direction for this pin in GPIO mode
 #define GPIO_GPHDIR_GPIO230   0x40U         // Defines direction for this pin in GPIO mode
-#define GPIO_GPHDIR_GPIO231   0x80U         // Defines direction for this pin in GPIO mode
-#define GPIO_GPHDIR_GPIO232   0x100U        // Defines direction for this pin in GPIO mode
-#define GPIO_GPHDIR_GPIO233   0x200U        // Defines direction for this pin in GPIO mode
-#define GPIO_GPHDIR_GPIO234   0x400U        // Defines direction for this pin in GPIO mode
-#define GPIO_GPHDIR_GPIO235   0x800U        // Defines direction for this pin in GPIO mode
 #define GPIO_GPHDIR_GPIO236   0x1000U       // Defines direction for this pin in GPIO mode
-#define GPIO_GPHDIR_GPIO237   0x2000U       // Defines direction for this pin in GPIO mode
-#define GPIO_GPHDIR_GPIO238   0x4000U       // Defines direction for this pin in GPIO mode
-#define GPIO_GPHDIR_GPIO239   0x8000U       // Defines direction for this pin in GPIO mode
-#define GPIO_GPHDIR_GPIO240   0x10000U      // Defines direction for this pin in GPIO mode
-#define GPIO_GPHDIR_GPIO241   0x20000U      // Defines direction for this pin in GPIO mode
 #define GPIO_GPHDIR_GPIO242   0x40000U      // Defines direction for this pin in GPIO mode
-#define GPIO_GPHDIR_GPIO244   0x100000U     // Defines direction for this pin in GPIO mode
-#define GPIO_GPHDIR_GPIO245   0x200000U     // Defines direction for this pin in GPIO mode
 #define GPIO_GPHDIR_GPIO247   0x800000U     // Defines direction for this pin in GPIO mode
-#define GPIO_GPHDIR_GPIO248   0x1000000U    // Defines direction for this pin in GPIO mode
-#define GPIO_GPHDIR_GPIO249   0x2000000U    // Defines direction for this pin in GPIO mode
-#define GPIO_GPHDIR_GPIO251   0x8000000U    // Defines direction for this pin in GPIO mode
-#define GPIO_GPHDIR_GPIO252   0x10000000U   // Defines direction for this pin in GPIO mode
 #define GPIO_GPHDIR_GPIO253   0x20000000U   // Defines direction for this pin in GPIO mode
 
 //*************************************************************************************************
@@ -2084,31 +2060,13 @@
 //
 //*************************************************************************************************
 #define GPIO_GPHODR_GPIO224   0x1U          // Output Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO225   0x2U          // Output Open-Drain control for this pin
 #define GPIO_GPHODR_GPIO226   0x4U          // Output Open-Drain control for this pin
 #define GPIO_GPHODR_GPIO227   0x8U          // Output Open-Drain control for this pin
 #define GPIO_GPHODR_GPIO228   0x10U         // Output Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO229   0x20U         // Output Open-Drain control for this pin
 #define GPIO_GPHODR_GPIO230   0x40U         // Output Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO231   0x80U         // Output Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO232   0x100U        // Output Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO233   0x200U        // Output Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO234   0x400U        // Output Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO235   0x800U        // Output Open-Drain control for this pin
 #define GPIO_GPHODR_GPIO236   0x1000U       // Output Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO237   0x2000U       // Output Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO238   0x4000U       // Output Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO239   0x8000U       // Output Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO240   0x10000U      // Output Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO241   0x20000U      // Output Open-Drain control for this pin
 #define GPIO_GPHODR_GPIO242   0x40000U      // Output Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO244   0x100000U     // Output Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO245   0x200000U     // Output Open-Drain control for this pin
 #define GPIO_GPHODR_GPIO247   0x800000U     // Output Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO248   0x1000000U    // Output Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO249   0x2000000U    // Output Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO251   0x8000000U    // Output Open-Drain control for this pin
-#define GPIO_GPHODR_GPIO252   0x10000000U   // Output Open-Drain control for this pin
 #define GPIO_GPHODR_GPIO253   0x20000000U   // Output Open-Drain control for this pin
 
 //*************************************************************************************************

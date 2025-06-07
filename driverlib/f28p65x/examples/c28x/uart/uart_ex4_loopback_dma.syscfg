@@ -1,11 +1,4 @@
 /**
- * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
- * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
- * @cliArgs --device "F28P65x" --package "256ZEJ" --part "F28P65x_256ZEJ" --context "CPU1" --product "C2000WARE@5.01.00.00"
- * @versions {"tool":"1.19.0+3288"}
- */
-
-/**
  * Import the modules used in this configuration.
  */
 const dma   = scripting.addModule("/driverlib/dma.js", {}, false);
@@ -58,5 +51,5 @@ uart1.loopback                = true;
 uart1.enInterrupt             = false;
 uart1.fen                     = true;
 uart1.uart.$assign            = "UARTA";
-uart1.uart.uart_txPin.$assign = "GPIO84";
-uart1.uart.uart_rxPin.$assign = "GPIO85";
+uart1.uart.uart_txPin.$assign  = "GPIO84";
+uart1.uart.uart_rxPin.$assign  = "GPIO85";

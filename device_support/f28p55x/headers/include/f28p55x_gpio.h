@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -1572,22 +1572,22 @@ struct GPGDIR_BITS {                    // bits description
     Uint16 rsvd14:1;                    // 13 Reserved
     Uint16 rsvd15:1;                    // 14 Reserved
     Uint16 rsvd16:1;                    // 15 Reserved
-    Uint16 GPIO208:1;                   // 16 Defines direction for this pin in GPIO mode
-    Uint16 GPIO209:1;                   // 17 Defines direction for this pin in GPIO mode
-    Uint16 GPIO210:1;                   // 18 Defines direction for this pin in GPIO mode
+    Uint16 rsvd17:1;                    // 16 Reserved
+    Uint16 rsvd18:1;                    // 17 Reserved
+    Uint16 rsvd19:1;                    // 18 Reserved
     Uint16 GPIO211:1;                   // 19 Defines direction for this pin in GPIO mode
     Uint16 GPIO212:1;                   // 20 Defines direction for this pin in GPIO mode
     Uint16 GPIO213:1;                   // 21 Defines direction for this pin in GPIO mode
     Uint16 GPIO214:1;                   // 22 Defines direction for this pin in GPIO mode
     Uint16 GPIO215:1;                   // 23 Defines direction for this pin in GPIO mode
-    Uint16 rsvd17:1;                    // 24 Reserved
-    Uint16 rsvd18:1;                    // 25 Reserved
-    Uint16 rsvd19:1;                    // 26 Reserved
-    Uint16 rsvd20:1;                    // 27 Reserved
-    Uint16 rsvd21:1;                    // 28 Reserved
-    Uint16 rsvd22:1;                    // 29 Reserved
-    Uint16 rsvd23:1;                    // 30 Reserved
-    Uint16 rsvd24:1;                    // 31 Reserved
+    Uint16 rsvd20:1;                    // 24 Reserved
+    Uint16 rsvd21:1;                    // 25 Reserved
+    Uint16 rsvd22:1;                    // 26 Reserved
+    Uint16 rsvd23:1;                    // 27 Reserved
+    Uint16 rsvd24:1;                    // 28 Reserved
+    Uint16 rsvd25:1;                    // 29 Reserved
+    Uint16 rsvd26:1;                    // 30 Reserved
+    Uint16 rsvd27:1;                    // 31 Reserved
 };
 
 union GPGDIR_REG {
@@ -1692,22 +1692,22 @@ struct GPGODR_BITS {                    // bits description
     Uint16 rsvd14:1;                    // 13 Reserved
     Uint16 rsvd15:1;                    // 14 Reserved
     Uint16 rsvd16:1;                    // 15 Reserved
-    Uint16 GPIO208:1;                   // 16 Output Open-Drain control for this pin
-    Uint16 GPIO209:1;                   // 17 Output Open-Drain control for this pin
-    Uint16 GPIO210:1;                   // 18 Output Open-Drain control for this pin
+    Uint16 rsvd17:1;                    // 16 Reserved
+    Uint16 rsvd18:1;                    // 17 Reserved
+    Uint16 rsvd19:1;                    // 18 Reserved
     Uint16 GPIO211:1;                   // 19 Output Open-Drain control for this pin
     Uint16 GPIO212:1;                   // 20 Output Open-Drain control for this pin
     Uint16 GPIO213:1;                   // 21 Output Open-Drain control for this pin
     Uint16 GPIO214:1;                   // 22 Output Open-Drain control for this pin
     Uint16 GPIO215:1;                   // 23 Output Open-Drain control for this pin
-    Uint16 rsvd17:1;                    // 24 Reserved
-    Uint16 rsvd18:1;                    // 25 Reserved
-    Uint16 rsvd19:1;                    // 26 Reserved
-    Uint16 rsvd20:1;                    // 27 Reserved
-    Uint16 rsvd21:1;                    // 28 Reserved
-    Uint16 rsvd22:1;                    // 29 Reserved
-    Uint16 rsvd23:1;                    // 30 Reserved
-    Uint16 rsvd24:1;                    // 31 Reserved
+    Uint16 rsvd20:1;                    // 24 Reserved
+    Uint16 rsvd21:1;                    // 25 Reserved
+    Uint16 rsvd22:1;                    // 26 Reserved
+    Uint16 rsvd23:1;                    // 27 Reserved
+    Uint16 rsvd24:1;                    // 28 Reserved
+    Uint16 rsvd25:1;                    // 29 Reserved
+    Uint16 rsvd26:1;                    // 30 Reserved
+    Uint16 rsvd27:1;                    // 31 Reserved
 };
 
 union GPGODR_REG {
@@ -1985,37 +1985,37 @@ union GPHMUX2_REG {
 
 struct GPHDIR_BITS {                    // bits description
     Uint16 GPIO224:1;                   // 0 Defines direction for this pin in GPIO mode
-    Uint16 GPIO225:1;                   // 1 Defines direction for this pin in GPIO mode
+    Uint16 rsvd1:1;                     // 1 Reserved
     Uint16 GPIO226:1;                   // 2 Defines direction for this pin in GPIO mode
     Uint16 GPIO227:1;                   // 3 Defines direction for this pin in GPIO mode
     Uint16 GPIO228:1;                   // 4 Defines direction for this pin in GPIO mode
-    Uint16 GPIO229:1;                   // 5 Defines direction for this pin in GPIO mode
+    Uint16 rsvd2:1;                     // 5 Reserved
     Uint16 GPIO230:1;                   // 6 Defines direction for this pin in GPIO mode
-    Uint16 GPIO231:1;                   // 7 Defines direction for this pin in GPIO mode
-    Uint16 GPIO232:1;                   // 8 Defines direction for this pin in GPIO mode
-    Uint16 GPIO233:1;                   // 9 Defines direction for this pin in GPIO mode
-    Uint16 GPIO234:1;                   // 10 Defines direction for this pin in GPIO mode
-    Uint16 GPIO235:1;                   // 11 Defines direction for this pin in GPIO mode
+    Uint16 rsvd3:1;                     // 7 Reserved
+    Uint16 rsvd4:1;                     // 8 Reserved
+    Uint16 rsvd5:1;                     // 9 Reserved
+    Uint16 rsvd6:1;                     // 10 Reserved
+    Uint16 rsvd7:1;                     // 11 Reserved
     Uint16 GPIO236:1;                   // 12 Defines direction for this pin in GPIO mode
-    Uint16 GPIO237:1;                   // 13 Defines direction for this pin in GPIO mode
-    Uint16 GPIO238:1;                   // 14 Defines direction for this pin in GPIO mode
-    Uint16 GPIO239:1;                   // 15 Defines direction for this pin in GPIO mode
-    Uint16 GPIO240:1;                   // 16 Defines direction for this pin in GPIO mode
-    Uint16 GPIO241:1;                   // 17 Defines direction for this pin in GPIO mode
+    Uint16 rsvd8:1;                     // 13 Reserved
+    Uint16 rsvd9:1;                     // 14 Reserved
+    Uint16 rsvd10:1;                    // 15 Reserved
+    Uint16 rsvd11:1;                    // 16 Reserved
+    Uint16 rsvd12:1;                    // 17 Reserved
     Uint16 GPIO242:1;                   // 18 Defines direction for this pin in GPIO mode
-    Uint16 rsvd1:1;                     // 19 Reserved
-    Uint16 GPIO244:1;                   // 20 Defines direction for this pin in GPIO mode
-    Uint16 GPIO245:1;                   // 21 Defines direction for this pin in GPIO mode
-    Uint16 rsvd2:1;                     // 22 Reserved
+    Uint16 rsvd13:1;                    // 19 Reserved
+    Uint16 rsvd14:1;                    // 20 Reserved
+    Uint16 rsvd15:1;                    // 21 Reserved
+    Uint16 rsvd16:1;                    // 22 Reserved
     Uint16 GPIO247:1;                   // 23 Defines direction for this pin in GPIO mode
-    Uint16 GPIO248:1;                   // 24 Defines direction for this pin in GPIO mode
-    Uint16 GPIO249:1;                   // 25 Defines direction for this pin in GPIO mode
-    Uint16 rsvd3:1;                     // 26 Reserved
-    Uint16 GPIO251:1;                   // 27 Defines direction for this pin in GPIO mode
-    Uint16 GPIO252:1;                   // 28 Defines direction for this pin in GPIO mode
+    Uint16 rsvd17:1;                    // 24 Reserved
+    Uint16 rsvd18:1;                    // 25 Reserved
+    Uint16 rsvd19:1;                    // 26 Reserved
+    Uint16 rsvd20:1;                    // 27 Reserved
+    Uint16 rsvd21:1;                    // 28 Reserved
     Uint16 GPIO253:1;                   // 29 Defines direction for this pin in GPIO mode
-    Uint16 rsvd4:1;                     // 30 Reserved
-    Uint16 rsvd5:1;                     // 31 Reserved
+    Uint16 rsvd22:1;                    // 30 Reserved
+    Uint16 rsvd23:1;                    // 31 Reserved
 };
 
 union GPHDIR_REG {
@@ -2105,37 +2105,37 @@ union GPHINV_REG {
 
 struct GPHODR_BITS {                    // bits description
     Uint16 GPIO224:1;                   // 0 Output Open-Drain control for this pin
-    Uint16 GPIO225:1;                   // 1 Output Open-Drain control for this pin
+    Uint16 rsvd1:1;                     // 1 Reserved
     Uint16 GPIO226:1;                   // 2 Output Open-Drain control for this pin
     Uint16 GPIO227:1;                   // 3 Output Open-Drain control for this pin
     Uint16 GPIO228:1;                   // 4 Output Open-Drain control for this pin
-    Uint16 GPIO229:1;                   // 5 Output Open-Drain control for this pin
+    Uint16 rsvd2:1;                     // 5 Reserved
     Uint16 GPIO230:1;                   // 6 Output Open-Drain control for this pin
-    Uint16 GPIO231:1;                   // 7 Output Open-Drain control for this pin
-    Uint16 GPIO232:1;                   // 8 Output Open-Drain control for this pin
-    Uint16 GPIO233:1;                   // 9 Output Open-Drain control for this pin
-    Uint16 GPIO234:1;                   // 10 Output Open-Drain control for this pin
-    Uint16 GPIO235:1;                   // 11 Output Open-Drain control for this pin
+    Uint16 rsvd3:1;                     // 7 Reserved
+    Uint16 rsvd4:1;                     // 8 Reserved
+    Uint16 rsvd5:1;                     // 9 Reserved
+    Uint16 rsvd6:1;                     // 10 Reserved
+    Uint16 rsvd7:1;                     // 11 Reserved
     Uint16 GPIO236:1;                   // 12 Output Open-Drain control for this pin
-    Uint16 GPIO237:1;                   // 13 Output Open-Drain control for this pin
-    Uint16 GPIO238:1;                   // 14 Output Open-Drain control for this pin
-    Uint16 GPIO239:1;                   // 15 Output Open-Drain control for this pin
-    Uint16 GPIO240:1;                   // 16 Output Open-Drain control for this pin
-    Uint16 GPIO241:1;                   // 17 Output Open-Drain control for this pin
+    Uint16 rsvd8:1;                     // 13 Reserved
+    Uint16 rsvd9:1;                     // 14 Reserved
+    Uint16 rsvd10:1;                    // 15 Reserved
+    Uint16 rsvd11:1;                    // 16 Reserved
+    Uint16 rsvd12:1;                    // 17 Reserved
     Uint16 GPIO242:1;                   // 18 Output Open-Drain control for this pin
-    Uint16 rsvd1:1;                     // 19 Reserved
-    Uint16 GPIO244:1;                   // 20 Output Open-Drain control for this pin
-    Uint16 GPIO245:1;                   // 21 Output Open-Drain control for this pin
-    Uint16 rsvd2:1;                     // 22 Reserved
+    Uint16 rsvd13:1;                    // 19 Reserved
+    Uint16 rsvd14:1;                    // 20 Reserved
+    Uint16 rsvd15:1;                    // 21 Reserved
+    Uint16 rsvd16:1;                    // 22 Reserved
     Uint16 GPIO247:1;                   // 23 Output Open-Drain control for this pin
-    Uint16 GPIO248:1;                   // 24 Output Open-Drain control for this pin
-    Uint16 GPIO249:1;                   // 25 Output Open-Drain control for this pin
-    Uint16 rsvd3:1;                     // 26 Reserved
-    Uint16 GPIO251:1;                   // 27 Output Open-Drain control for this pin
-    Uint16 GPIO252:1;                   // 28 Output Open-Drain control for this pin
+    Uint16 rsvd17:1;                    // 24 Reserved
+    Uint16 rsvd18:1;                    // 25 Reserved
+    Uint16 rsvd19:1;                    // 26 Reserved
+    Uint16 rsvd20:1;                    // 27 Reserved
+    Uint16 rsvd21:1;                    // 28 Reserved
     Uint16 GPIO253:1;                   // 29 Output Open-Drain control for this pin
-    Uint16 rsvd4:1;                     // 30 Reserved
-    Uint16 rsvd5:1;                     // 31 Reserved
+    Uint16 rsvd22:1;                    // 30 Reserved
+    Uint16 rsvd23:1;                    // 31 Reserved
 };
 
 union GPHODR_REG {

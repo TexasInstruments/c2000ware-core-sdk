@@ -17,6 +17,7 @@ adc1.soc0SampleWindow         = 10;
 adc1.enabledInts              = ["ADC_INT_NUMBER1"];
 adc1.enableInterrupt1         = true;
 adc1.registerInterrupts       = ["1"];
+adc1["repeater1 Mode"]        = "ADC_REPMODE_UNDERSAMPLING";
 adc1["repeater1 Trigger"]     = "ADC_TRIGGER_EPWM1_SOCA";
 adc1.enabledPPBs              = ["ADC_PPB_NUMBER1"];
 adc1.ppb1SelectOSINTSource    = "ADC_PPB_OS_INT_2";

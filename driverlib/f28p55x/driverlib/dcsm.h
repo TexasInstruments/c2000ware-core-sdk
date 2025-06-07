@@ -6,7 +6,7 @@
 //
 //#############################################################################
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -252,13 +252,6 @@ typedef enum
     DCSM_BANK4_SECTOR_3,        //!< Bank 4 - Sector 3
     DCSM_BANK4_SECTOR_31_4,     //!< Bank 4 - Sector 31-4
 }DCSM_Sector;
-//*****************************************************************************
-//
-//! The following are values that can be passed to DCSM_getRAMZone(),
-//! DCSM_getZone2FlashEXEStatus() ,DCSM_getZone1FlashEXEStatus() &
-//! DCSM_getFlashSectorZone() as \e cpuInst parameter.
-//
-//*****************************************************************************
 
 //*****************************************************************************
 //
@@ -899,7 +892,7 @@ DCSM_forcePerSemStatus(DCSM_PERSem grabType, uint16_t value)
     //
     // Writes into the Flash wrapper semaphore register value
     //
-    HWREG(DCSMCOMMON_BASE + DCSM_O_PERSEM1) = ((value & 0x3U) <<
+    HWREG(DCSMCOMMON_BASE + DCSM_O_PERSEM1) = (((uint32_t)value & 0x3U) <<
                                                (uint32_t)grabType)|
                                               ((uint32_t)FLSEM_KEY <<
                                                DCSM_PERSEM1_KEY_S);

@@ -142,12 +142,20 @@ if (["F2837xD", "F2837xS", "F2807x", "F28004x"].includes(Common.getDeviceName())
 }
 
 var ePWMInstances = Common.peripheralCount("EPWM")
+var mcpwmInstances = Common.peripheralNames("MCPWM")
 var enable_ADCSOCA = [];
 var enable_ADCSOCB = [];
 for(var i = 0; i < ePWMInstances; i++) {
     enable_ADCSOCA.push({ name: "SYSCTL_ADCSOC_SRC_PWM" + (i+1) + "SOC" + "A", displayName: "Enable EPWM"+ (i+1) + " ADC SOCA" });
     enable_ADCSOCB.push({ name: "SYSCTL_ADCSOC_SRC_PWM" + (i+1) + "SOC" + "B", displayName: "Enable EPWM"+ (i+1) + " ADC SOCB" });
 }
+
+for (let i of mcpwmInstances){
+    console.log(i)
+    enable_ADCSOCA.push({ name: "SYSCTL_ADCSOC_SRC_PWM" + (i.name.replace("MCPWM","")) + "SOC" + "A", displayName: "Enable "+ (i.name) + " ADC SOCA" });
+    enable_ADCSOCB.push({ name: "SYSCTL_ADCSOC_SRC_PWM" + (i.name.replace("MCPWM","")) + "SOC" + "B", displayName: "Enable "+ (i.name) + " ADC SOCB" }); 
+}
+
 
 staticConfig = staticConfig.concat([
     {

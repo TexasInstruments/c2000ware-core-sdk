@@ -1,6 +1,6 @@
 import { ServiceType, ServicesRegistry } from '../../gc-core-services/lib/ServicesRegistry';
 import { Events } from '../../gc-core-assets/lib/Events';
-import { dsServiceType, statusMessageEventType, targetSupportProgressEventType, debugCoreType, Location } from '../../gc-service-ds/lib/DSService';
+import { dsServiceType, DSProgressUpdateEventType, statusMessageEventType, targetSupportProgressEventType, debugCoreType, Location } from '../../gc-service-ds/lib/DSService';
 export { statusMessageEventType } from '../../gc-service-ds/lib/DSService';
 import { GcFiles } from '../../gc-core-assets/lib/GcFiles';
 import { GcConsole } from '../../gc-core-assets/lib/GcConsole';
@@ -8,7 +8,7 @@ import { GcPromise } from '../../gc-core-assets/lib/GcPromise';
 import { targetConfigServiceType } from '../../gc-service-target-config/lib/TargetConfigService';
 
 /**
- *  Copyright (c) 2019, 2021 Texas Instruments Incorporated
+ *  Copyright (c) 2019, 2025 Texas Instruments Incorporated
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -70,6 +70,9 @@ class ProgramLoaderService extends Events {
             case statusMessageEventType:
                 this.dsService.addEventListener(statusMessageEventType, listener);
                 break;
+            case DSProgressUpdateEventType:
+                this.dsService.addEventListener(DSProgressUpdateEventType, listener);
+                break;
         }
         super.addEventListener(type, listener);
     }
@@ -78,6 +81,9 @@ class ProgramLoaderService extends Events {
         switch (type) {
             case statusMessageEventType:
                 this.dsService.removeEventListener(statusMessageEventType, listener);
+                break;
+            case DSProgressUpdateEventType:
+                this.dsService.removeEventListener(DSProgressUpdateEventType, listener);
                 break;
         }
         super.removeEventListener(type, listener);
@@ -149,7 +155,7 @@ class ProgramLoaderService extends Events {
                 throw Error(`No debuggable cores found for ${params.deviceName} device".`);
             }
             if (params.coreName) {
-                cores = cores.filter(core => core.name === params.coreName);
+                cores = cores.filter(core => core.name.endsWith(params.coreName));
             }
             const core = cores[0];
             if (!core) {

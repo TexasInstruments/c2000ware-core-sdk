@@ -5,7 +5,7 @@
 // TITLE:  Send Byte Test
 //
 //###########################################################################
-// $Copyright: Copyright (C) 2015-2024 Texas Instruments Incorporated -
+// $Copyright: Copyright (C) 2015-2025 Texas Instruments Incorporated -
 //             http://www.ti.com/ ALL RIGHTS RESERVED $
 //###########################################################################
 

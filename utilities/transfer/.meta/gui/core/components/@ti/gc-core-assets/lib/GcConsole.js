@@ -2,7 +2,7 @@ import { GcUtils } from './GcUtils';
 import { GcLocalStorage } from './GcLocalStorage';
 
 /**
- *  Copyright (c) 2019, 2021 Texas Instruments Incorporated
+ *  Copyright (c) 2019, 2024 Texas Instruments Incorporated
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -31,19 +31,16 @@ import { GcLocalStorage } from './GcLocalStorage';
  */
 let outputListener = console;
 const STORAGE_NAME = 'GcConsole';
-const OFF_LEVEL = 0;
+const OFF_LEVEL = -1;
+const ERROR_LEVEL = 0;
 const WARNING_LEVEL = 1;
 const INFO_LEVEL = 2;
 const LOG_LEVEL = 3;
 const DEBUG_LEVEL = 4;
 const ALL_LEVEL = DEBUG_LEVEL;
-const ERROR_LEVEL = 100;
 const getStorageItem = () => JSON.parse(GcLocalStorage.getItem(STORAGE_NAME) || '{}');
 let moduleLogLevels = getStorageItem();
 const getModuleLogLevel = (moduleName) => {
-    if (moduleLogLevels.all) {
-        return moduleLogLevels.all;
-    }
     for (const module in moduleLogLevels) {
         if (Object.prototype.hasOwnProperty.call(moduleLogLevels, module)) {
             if (moduleName.match(new RegExp(module))) {
@@ -51,15 +48,18 @@ const getModuleLogLevel = (moduleName) => {
             }
         }
     }
+    if (moduleLogLevels.all) {
+        return moduleLogLevels.all;
+    }
     return 0;
 };
 const trace = (options, message, params) => {
     const { moduleName, type, level, style } = options;
     const moduleErrorLevel = getModuleLogLevel(moduleName);
-    if (moduleErrorLevel === -1) {
+    if (moduleErrorLevel === OFF_LEVEL) {
         return;
     }
-    if ((level === 100) || (getModuleLogLevel('all') >= level) || (moduleErrorLevel >= level)) {
+    if (moduleErrorLevel >= level) {
         const msg = '[' + moduleName + '] ' + type + ': ' + (typeof message === 'function' ? message.call(null, ...params) : message);
         if (!GcUtils.isNodeJS && typeof outputListener.groupCollapsed !== 'undefined' && typeof outputListener.trace !== 'undefined' && typeof outputListener.groupEnd !== 'undefined') {
             outputListener.groupCollapsed('%c' + msg, style);
@@ -231,6 +231,9 @@ class GcConsole {
                 case OFF_LEVEL:
                     tmp += ' (off)';
                     break;
+                case ERROR_LEVEL:
+                    tmp += ' (errors)';
+                    break;
                 case WARNING_LEVEL:
                     tmp += ' (warnings)';
                     break;
@@ -252,15 +255,18 @@ class GcConsole {
      * Sets the logging level for a specific module.
      *
      * @param {string} moduleName the module name (can be regex) to enable logging, `all` to enable for all modules.
-     * @param {string|number} level one of the supported log level, errors|warnings|info|logs|debug|off or 0-4
+     * @param {string|number} level one of the supported log level, errors|warnings|info|log|debug|off or -1 to 4
      */
     static setLevel(moduleName, level) {
-        let val = OFF_LEVEL; // default == 'off'
+        let val = ERROR_LEVEL; // default == 'error'
         if (typeof level === 'number') {
-            val = level;
+            val = Math.max(-1, Math.min(4, level));
         }
         else {
             switch (level) {
+                case 'off':
+                    val = OFF_LEVEL;
+                    break;
                 case 'warning':
                     val = WARNING_LEVEL;
                     break;
@@ -275,7 +281,7 @@ class GcConsole {
                     break;
             }
         }
-        if (val === OFF_LEVEL)
+        if (val === ERROR_LEVEL)
             delete moduleLogLevels[moduleName];
         else
             moduleLogLevels[moduleName] = val;

@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -209,7 +209,7 @@
 #define DCSM_Z1_GRABSECT1R_GRAB_B0_SECT95_64_S    12U
 #define DCSM_Z1_GRABSECT1R_GRAB_B0_SECT95_64_M    0x3000U       // Grab Flash Bank0 Sector 95-64
 #define DCSM_Z1_GRABSECT1R_GRAB_B0_SECT127_96_S   14U
-#define DCSM_Z1_GRABSECT1R_GRAB_B0_SECT127_96_M   0xC000U       // Grab Flash Bank1 Sector 127-96
+#define DCSM_Z1_GRABSECT1R_GRAB_B0_SECT127_96_M   0xC000U       // Grab Flash Bank0 Sector 127-96
 #define DCSM_Z1_GRABSECT1R_GRAB_B1_SECT0_S        16U
 #define DCSM_Z1_GRABSECT1R_GRAB_B1_SECT0_M        0x30000U      // Grab Flash Bank1 Sector 0
 #define DCSM_Z1_GRABSECT1R_GRAB_B1_SECT1_S        18U

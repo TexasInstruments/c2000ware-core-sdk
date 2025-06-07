@@ -1,4 +1,10 @@
 let ASYSCTLRegisters = [
+	{ name: "INTERNALTESTCTL", description: "INTERNALTEST Node Control Register", offset: "0x4A",
+		bits: [
+			{ name: "TESTSEL", description: "Test Select", size: "5", shift: "0", mask: "0x1F" },
+			{ name: "KEY", description: "Key to Enable writes", size: "16", shift: "16", mask: "0xFFFF0000" },
+		]
+	},
 	{ name: "CONFIGLOCK", description: "Lock Register for all the config registers.", offset: "0x5E",
 		bits: [
 			{ name: "AGPIOCTRL", description: "Locks all AGPIOCTRL Register", size: "1", shift: "3", mask: "0x8" },
@@ -55,7 +61,6 @@ let ASYSCTLRegisters = [
 	{ name: "ADCDACLOOPBACK", description: "Enabble loopback from DAC to ADCs", offset: "0x88",
 		bits: [
 			{ name: "ENLB2ADCA", description: "Enable DACL loopback to ADCA", size: "1", shift: "0", mask: "0x1" },
-			{ name: "ENLB2ADCB", description: "Enable DACL loopback to ADCB", size: "1", shift: "1", mask: "0x2" },
 			{ name: "ENLB2ADCC", description: "Enable DACL loopback to ADCC", size: "1", shift: "2", mask: "0x4" },
 			{ name: "KEY", description: "Key to enable writes", size: "16", shift: "16", mask: "0xFFFF0000" },
 		]

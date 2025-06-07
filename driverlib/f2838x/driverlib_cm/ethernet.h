@@ -8,7 +8,7 @@
 //
 //
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -896,6 +896,8 @@ typedef struct Ethernet_Pkt_Desc_T
     struct Ethernet_Pkt_Desc_T     *nextPacketDesc;
     /** < Pointer to the Buffer/Header if TSO is enabled                      */
     uint8_t                            *dataBuffer;
+    /** < Pointer to the Application Data                                     */
+    void                               *pAppData;
     /** < Pointer to Second Buffer               */
     uint8_t                             *dataBuffer2;
      /**< Physical Length of the buffer (read only)                         */
@@ -3293,6 +3295,30 @@ extern void Ethernet_addPacketsIntoRxQueue(Ethernet_DescCh *channelDescPtr);
 //**********************************************************************
 extern void Ethernet_removePacketsFromRxQueue(Ethernet_DescCh *channelDescPtr,
                             Ethernet_CompletionMode completionMode);
+
+//***************************************************************************
+//! Ethernet_performPushOnPacketQueue ()
+//!
+//! This function does a Enqueue on Packet Queue
+//! It does an enqueue which adds a packet to the Rear of the queue
+//! This is called in both Tx and Rx Paths
+//! \return None
+//***************************************************************************
+extern void Ethernet_performPushOnPacketQueue(Ethernet_PKT_Queue_T *pq,
+        Ethernet_Pkt_Desc *pPktHdr);
+
+//**************************************************************************
+//! Ethernet_performPopOnPacketQueue()
+//!
+//! \param
+//! pktQueuePtr - Pointer to the Packet Queue
+//!
+//! This function Dequeues a packet from Queue. This function is called in both
+//! Tx and Rx Paths. This function returns the element at the head of Queue
+//! \return Pointer to the packet that is popped
+//***************************************************************************
+extern Ethernet_Pkt_Desc *Ethernet_performPopOnPacketQueue(
+                    Ethernet_PKT_Queue_T *pktQueuePtr);
 
 //*************************************************************************
 //

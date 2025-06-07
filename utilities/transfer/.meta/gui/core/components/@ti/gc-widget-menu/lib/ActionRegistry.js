@@ -2,7 +2,7 @@ import { GcConsole } from '../../gc-core-assets/lib/GcConsole';
 import { GcUtils } from '../../gc-core-assets/lib/GcUtils';
 
 /**
- *  Copyright (c) 2020, 2022 Texas Instruments Incorporated
+ *  Copyright (c) 2020, 2024 Texas Instruments Incorporated
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -87,6 +87,12 @@ class ActionRegistry {
     static isChecked(id) {
         const runnable = registry[id];
         return runnable?.isChecked ? runnable.isChecked() : false;
+    }
+    static run(detail) {
+        const runnable = registry[detail.id];
+        if (runnable && this.isEnabled(detail.id) && this.isVisible(detail.id) && !GcUtils.isInDesigner) {
+            runnable.run(detail);
+        }
     }
 }
 

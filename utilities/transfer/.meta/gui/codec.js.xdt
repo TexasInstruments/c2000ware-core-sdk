@@ -39,58 +39,113 @@ const NUMBER_OF_STOP_BYTES = 1;
 const dataTypes16bits = ["uint16", "int16", "bool"];
 const dataTypes32bits = ["uint32", "int32", "float", "uint32_t"];
 % if (gui.dltlogger) {   
-        //
-        // Global Variables and functions used in DLT 
-        //
-        let GlobalAssocTable;
-        let ClockFreq = 200000000;
-        let stack = [];
-        let var_arr = [];
-        let select_vals = {};
-        let DLT_Obj = {};
-        let tag_funcs;
-        let TAG_TIMER;
-        let line;
+//
+// Global Variables and functions used in DLT 
+//
+let GlobalAssocTable;
+let ClockFreq = `gui.dltcpufreq`;
+let stack = [];
+let var_arr = [];
+let select_vals = {};
+let DLT_Obj = {};
+let tag_funcs;
+let TAG_TIMER;
+let line;
+let BUFFER_GUI = 0;
 
-    //
-    // Turning Hex value into 64 bit binary value
-    //
-    function Hex2Bin64(Hex){
-        let Bin = parseInt(Hex, 16).toString(2);
-        let length = Bin.length;
-        //
-        // Loop to pad 0's to reach 64 bits
-        //
-        for (let i = 64 - length ; i > 0 ; i--){
-        Bin = '0' + Bin;
+//
+// Convert 2's complement to Decimal
+//
+function getSignedInteger(bits) {
+    let negative = (bits[0] === '1');
+    if (negative) {
+        let inverse = '';
+        for (let i = 0; i < bits.length; i++) {
+            inverse += (bits[i] === '0' ? '1' : '0');
         }
-        return Bin;
-    }  
-
+        return (parseInt(inverse, 2) + 1) * -1;
+    } else {
+        return parseInt(bits, 2);
+    }
+}
+//
+// Turning Hex value into 64 bit binary value
+//
+function Hex2Bin64(Hex){
+    let Bin = parseInt(Hex, 16).toString(2);
+    let length = Bin.length;
     //
-    // Binary value to Hex value
+    // Loop to pad 0's to reach 64 bits
     //
-    function Bin2Hex (Bin){
-        let Hex = parseInt(Bin, 2).toString(16).toUpperCase();
-        Hex = "0x" + Hex;
-        return Hex; 
+    for (let i = 64 - length ; i > 0 ; i--){
+    Bin = '0' + Bin;
+    }
+    return Bin;
+}  
+//
+// Convert binary (IEEE 754 format) to float
+//
+function binaryToFloat32(binaryString) {
+    // Ensure the binary string is 32 bits
+    if (binaryString.length !== 32) {
+        throw new Error("Invalid binary string. Must be 32 bits.");
     }
 
-    //
-    // Decimal to 32 bit binary value
-    //
-    function decimalToBinary32(N) {
-        let x = (N >>> 0).toString(2);
-        let length = x.length;
-        for (let i = 32 - length ; i > 0 ; i--){
-            x = '0' + x;
+    // Extract the sign, exponent, and mantissa
+    const signBit = binaryString[0];
+    const exponentBits = binaryString.slice(1, 9);
+    const mantissaBits = binaryString.slice(9);
+
+    // Convert sign bit to number
+    const sign = signBit === "1" ? -1 : 1;
+
+    // Convert exponent bits to decimal
+    const exponent = parseInt(exponentBits, 2) - 127;
+
+    // Convert mantissa bits to decimal
+    let mantissa = 1;
+    for (let i = 0; i < mantissaBits.length; i++) {
+        if (mantissaBits[i] === "1") {
+        mantissa += Math.pow(2, -(i + 1));
         }
-        return (x);
     }
 
-    function get_reg_variable(TAG_FUNC_NAME, json_obj){
-        return json_obj[TAG_FUNC_NAME]["DLTAGS"].copy();
+    // Calculate the float value
+    if (exponent === 128) {
+        // Special cases: Infinity or NaN
+        return mantissa === 0 ? sign * Infinity : NaN;
+    } else if (exponent === -127) {
+        // Special case: Subnormal numbers
+        return sign * mantissa * Math.pow(2, -126);
+    } else {
+        // Normal numbers
+        return sign * mantissa * Math.pow(2, exponent);
     }
+}
+//
+// Binary value to Hex value
+//
+function Bin2Hex (Bin){
+    let Hex = parseInt(Bin, 2).toString(16).toUpperCase();
+    Hex = "0x" + Hex;
+    return Hex; 
+}
+
+//
+// Decimal to 32 bit binary value
+//
+function decimalToBinary32(N) {
+    let x = (N >>> 0).toString(2);
+    let length = x.length;
+    for (let i = 32 - length ; i > 0 ; i--){
+        x = '0' + x;
+    }
+    return (x);
+}
+
+function get_reg_variable(TAG_FUNC_NAME, json_obj){
+    return json_obj[TAG_FUNC_NAME]["DLTAGS"].copy();
+}
 % }
 export class asmGUICodec extends AbstractDataCodecWithFrameDecoder {
     
@@ -143,8 +198,9 @@ export class asmGUICodec extends AbstractDataCodecWithFrameDecoder {
             let ValueArr = GlobalAssocTable[FuncObjects][funcName]["DLREGS"];
             if (ValueArr){
                 for(let Index in ValueArr){
-                    let Variablename = Object.keys(ValueArr[Index])[0];
-                    DLT_Obj["PlotDLTData"][Variablename] = [];
+                    let Variablenamewspcialchar = Object.keys(ValueArr[Index])[0];
+                    let Variablename = Variablenamewspcialchar.replaceAll("[", "_").replaceAll("]", "_");
+                    DLT_Obj["PlotDLTData"][Variablename] = [[0,0]];
                     //
                     // Create dynamic plot point 2d widget for each function
                     // Dynmaically bind widgets to values in object
@@ -162,9 +218,10 @@ export class asmGUICodec extends AbstractDataCodecWithFrameDecoder {
                     // Assign ID and attributes to point Widget
                     //
                     new_line.id = "line" + Variablename;
-                    new_line.setAttribute('capacity', '0');
+                    new_line.setAttribute('capacity', '300');
                     new_line.setAttribute('mode', 'lines+markers');
                     new_line.setAttribute('legend', 'show');
+                    new_line.setAttribute('legend-name', Variablenamewspcialchar);
                     //
                     // Add widget as a child of plot widget
                     //
@@ -401,7 +458,7 @@ export class asmGUICodec extends AbstractDataCodecWithFrameDecoder {
                             for(let tags in GlobalAssocTable[FuncObjects][funcName]["DLTAGS"]){
                                 if ("0x" + GlobalAssocTable[FuncObjects][funcName]["DLTAGS"][tags] == TAG_VALUE){
                                     tag_funcs = funcName;
-                                    var_arr = JSON.parse(JSON.stringify(GlobalAssocTable[FuncObjects][tag_funcs]["DLREGS"]));
+                                    var_arr = JSON.parse(JSON.stringify(GlobalAssocTable[FuncObjects][tag_funcs]["DLREGS"])).reverse();
                                     break;
                                 }
                             }
@@ -449,24 +506,45 @@ export class asmGUICodec extends AbstractDataCodecWithFrameDecoder {
                             var_type = var_name_type[var_name];
                         }
                         let var_concat_name_type = var_type + " " + var_name;
-                        if (var_type.includes("int")){
+                        // 
+                        // Convert uint32_t, uint16_t, uint8_t to decimal
+                        //
+                        if (var_type.includes("uint8_t") || var_type.includes("uint16_t") || var_type.includes("uint32_t")){
                             dlt_reg_value = dlt_fifo_binary.substring(0,32);
+                            dlt_reg_value = parseInt(dlt_reg_value, 2)
                         }
                         else if (var_type.includes("float")){
-                            let f = parseInt(dlt_fifo_binary.substring(0,32), 2); 
-                            //
-                            // Convert to a float
-                            //
+                        // 
+                        // Convert float32_t IEE 754 format to decimal
+                        //
+                            dlt_reg_value = dlt_fifo_binary.substring(0,32);
+                            dlt_reg_value = binaryToFloat32(dlt_reg_value);
+
+                        }
+                        // 
+                        // Convert int32_t, int16_t, int8_t 2's complement to decimal
+                        //
+                        else if (var_type.includes("int32_t") || var_type == "int"){
+                            dlt_reg_value = dlt_fifo_binary.substring(0,32);
+                            dlt_reg_value = getSignedInteger(dlt_reg_value); 
+                        }else if (var_type.includes("int16_t")){
+                            dlt_reg_value = dlt_fifo_binary.substring(16,32);
+                            dlt_reg_value = getSignedInteger(dlt_reg_value); 
+                        }else if (var_type.includes("int8_t")){
+                            dlt_reg_value = dlt_fifo_binary.substring(24,32);
+                            dlt_reg_value = getSignedInteger(dlt_reg_value); 
+                        }else{
+                            dlt_reg_value = "Not supported data type";
                         }
                         let Reg_Time = parseInt(dlt_fifo_binary.substring(32,61), 2); 
                         let REG_TIMER = Reg_Time * (1/ClockFreq);
                         let TOTAL_TIMES = REG_TIMER + TAG_TIMER;
 				        let TOTAL_TIME = (TOTAL_TIMES) / 100.0;
-                        let REG_VALUE = parseInt(dlt_reg_value, 2); 
+                        let REG_VALUE = dlt_reg_value; 
                         let REG_TIMER_OVF = dlt_fifo_binary.substring(61,62);
                         let REG_FIFO_OVF = dlt_fifo_binary.substring(62,63);
                         let REG_PC = Bin2Hex (dlt_fifo_binary.substring(32,62));
-                        DLT_Obj["PlotDLTData"][var_name].push([TOTAL_TIME, REG_VALUE]);
+                        DLT_Obj["PlotDLTData"][var_name.replaceAll("[", "_").replaceAll("]", "_")][0] = [TOTAL_TIME, REG_VALUE];                       
                         streamObj["DLTlog"] = {TTL_TIME: TOTAL_TIME, TIME: REG_TIMER,  TAG: "", FUNCTION: tag_funcs, DATATYPE: var_type, VARIABLE: var_name, REG: REG_VALUE, TIMER_OVF: REG_TIMER_OVF, FIFO_OVF: REG_FIFO_OVF, TagReg: "Reg", PlotVal: [TOTAL_TIME, REG_VALUE], SelectVal : select_val_names};
                         this.targetDecoder.decode(streamObj);
                         index += 1;
@@ -513,24 +591,45 @@ export class asmGUICodec extends AbstractDataCodecWithFrameDecoder {
                             var_type = var_name_type[var_name];
                         }
                         let var_concat_name_type = var_type + " " + var_name;
-                        if (var_type.includes("int")){
+                        // 
+                        // Convert uint32_t, uint16_t, uint8_t to decimal
+                        //
+                        if (var_type.includes("uint8_t") || var_type.includes("uint16_t") || var_type.includes("uint32_t")){
                             dlt_reg_value = dlt_fifo_binary.substring(0,32);
+                            dlt_reg_value = parseInt(dlt_reg_value, 2)
                         }
                         else if (var_type.includes("float")){
-                            let f = parseInt(dlt_fifo_binary.substring(0,32), 2); 
-                            //
-                            // Convert to a float
-                            //
+                        // 
+                        // Convert float32_t IEE 754 format to decimal
+                        //
+                            dlt_reg_value = dlt_fifo_binary.substring(0,32);
+                            dlt_reg_value = binaryToFloat32(dlt_reg_value);
+
+                        }
+                        // 
+                        // Convert int32_t, int16_t, int8_t 2's complement to decimal
+                        //
+                        else if (var_type.includes("int32_t") || var_type == "int"){
+                            dlt_reg_value = dlt_fifo_binary.substring(0,32);
+                            dlt_reg_value = getSignedInteger(dlt_reg_value); 
+                        }else if (var_type.includes("int16_t")){
+                            dlt_reg_value = dlt_fifo_binary.substring(16,32);
+                            dlt_reg_value = getSignedInteger(dlt_reg_value); 
+                        }else if (var_type.includes("int8_t")){
+                            dlt_reg_value = dlt_fifo_binary.substring(24,32);
+                            dlt_reg_value = getSignedInteger(dlt_reg_value); 
+                        }else{
+                            dlt_reg_value = "Not supported data type";
                         }
                         let Reg_Time = parseInt(dlt_fifo_binary.substring(32,61), 2); 
                         let REG_TIMER = Reg_Time * (1/ClockFreq);
                         let TOTAL_TIMES = REG_TIMER + TAG_TIMER;
 				        let TOTAL_TIME = (TOTAL_TIMES * 100.0) / 100.0;
-                        let REG_VALUE = parseInt(dlt_reg_value, 2); 
+                        let REG_VALUE = dlt_reg_value; 
                         let REG_TIMER_OVF = dlt_fifo_binary.substring(61,62);
                         let REG_FIFO_OVF = dlt_fifo_binary.substring(62,63);
                         let REG_PC = Bin2Hex (dlt_fifo_binary.substring(32,62));
-                        DLT_Obj["PlotDLTData"][var_name].push([TOTAL_TIME, REG_VALUE]);
+                        DLT_Obj["PlotDLTData"][var_name.replaceAll("[", "_").replaceAll("]", "_")][0] = [TOTAL_TIME, REG_VALUE];                       
                         streamObj["DLTlog"] = {TTL_TIME: TOTAL_TIME, TIME: REG_TIMER,  TAG: "", FUNCTION: tag_funcs, DATATYPE: var_type, VARIABLE: var_name, REG: REG_VALUE, TIMER_OVF: REG_TIMER_OVF, FIFO_OVF: REG_FIFO_OVF, TagReg: "Reg", PlotVal: [TOTAL_TIME, REG_VALUE], SelectVal : select_val_names};
                         this.targetDecoder.decode(streamObj);
                         index += 1;

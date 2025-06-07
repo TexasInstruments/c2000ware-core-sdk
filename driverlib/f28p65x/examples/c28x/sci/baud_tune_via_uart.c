@@ -87,7 +87,8 @@
 //
 // Defines
 //
-// must replace with the GPIO number of the SCIRX pin chosen in .syscfg
+
+// Must replace with the GPIO number of the SCIRX pin chosen in .syscfg
 #define GPIO_SCIRX_NUMBER   9
 
 //

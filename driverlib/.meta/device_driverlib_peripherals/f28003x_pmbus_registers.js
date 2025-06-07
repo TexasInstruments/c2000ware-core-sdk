@@ -99,8 +99,6 @@ let PMBUSRegisters = [
 			{ name: "SCL_MODE", description: "Configures mode of PMBus Clock pin", size: "1", shift: "15", mask: "0x8000" },
 			{ name: "SCL_VALUE", description: "Configures output value of PMBus clock pin", size: "1", shift: "16", mask: "0x10000" },
 			{ name: "SCL_DIR", description: "Configures direction of PMBus clock pin in", size: "1", shift: "17", mask: "0x20000" },
-			{ name: "IBIAS_A_EN", description: "PMBus Current Source A Control", size: "1", shift: "18", mask: "0x40000" },
-			{ name: "IBIAS_B_EN", description: "PMBus Current Source B Control", size: "1", shift: "19", mask: "0x80000" },
 			{ name: "CLK_LO_DIS", description: "Clock Low Timeout Disable", size: "1", shift: "20", mask: "0x100000" },
 			{ name: "SLAVE_EN", description: "PMBus Slave Enable", size: "1", shift: "21", mask: "0x200000" },
 			{ name: "MASTER_EN", description: "PMBus Master Enable", size: "1", shift: "22", mask: "0x400000" },

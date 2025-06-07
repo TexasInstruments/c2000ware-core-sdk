@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -238,7 +238,6 @@
 #define UART_ICR_PEIC      0x100U     // Parity Error Interrupt Clear
 #define UART_ICR_BEIC      0x200U     // Break Error Interrupt Clear
 #define UART_ICR_OEIC      0x400U     // Overrun Error Interrupt Clear
-#define UART_ICR_EOTIC     0x800U     // End of Transmission Interrupt Clear
 #define UART_ICR_9BITIC    0x1000U    // 9-Bit Mode Interrupt Clear
 #define UART_ICR_DMARXIC   0x10000U   // Receive DMA Interrupt Clear
 #define UART_ICR_DMATXIC   0x20000U   // Transmit DMA Interrupt Clear
@@ -288,10 +287,8 @@
 // The following are defines for the bit fields in the UARTPP register
 //
 //*************************************************************************************************
-#define UART_PP_SC    0x1U   // Smart Card Support
-#define UART_PP_NB    0x2U   // 9-Bit Support
-#define UART_PP_MS    0x4U   // Modem Support
-#define UART_PP_MSE   0x8U   // Modem Support Extended
+#define UART_PP_SC   0x1U   // Smart Card Support
+#define UART_PP_NB   0x2U   // 9-Bit Support
 
 //*************************************************************************************************
 //

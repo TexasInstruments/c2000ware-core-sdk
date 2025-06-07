@@ -29,7 +29,7 @@
 //
 // 
 // $Copyright:
-// Copyright (C) 2014-2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2014-2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -252,6 +252,10 @@ void initADCSOCs(void)
                  ADC_CH_ADCIN2, 15);
     ADC_setupSOC(ADCD_BASE, ADC_SOC_NUMBER1, ADC_TRIGGER_SW_ONLY,
                  ADC_CH_ADCIN3, 15);
+    
+                 
+    
+                 
 
 
     //

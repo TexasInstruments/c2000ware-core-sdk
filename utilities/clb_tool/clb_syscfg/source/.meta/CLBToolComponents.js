@@ -10,7 +10,8 @@ if ([ "F2837xD",
       "F2838x",
       "F28002x",
       "F28P65x",
-      "F28P55x"].includes(Common.getDeviceName()))
+      "F28P55x",
+      "F29H85x"].includes(Common.getDeviceName()))
 {
     clb_export = {
         displayName: "C2000 CLB Configuration Tool",

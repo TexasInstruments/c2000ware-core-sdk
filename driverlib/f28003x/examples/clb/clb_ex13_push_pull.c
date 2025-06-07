@@ -13,15 +13,15 @@
 //! In this example, the use of the PUSH-PULL interface is shown. Multiple 
 //! COUNTER submodules, HLC submodule, FSM submodules, and OUTLUT submodules 
 //! are used. The PUSH-PULL interface is used alongside the GP register to 
-//! update the COUNTER submodulesâ event frequencies.
+//! update the COUNTER submodules’ event frequencies.
 //!
 //
 //
 //#############################################################################
-// $TI Release: F28003x Support Library v5.03.00.00 $
+// $TI Release: F28003x Support Library v5.05.00.00 $
 // 
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 

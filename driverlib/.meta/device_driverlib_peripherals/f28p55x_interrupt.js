@@ -118,6 +118,7 @@ let interrupts = [
 	{ int_define_name: "INT_MCANB_WAKE", int_group_channel_number: "9.11", int_group_number: "9", int_channel_number: "11", int_description: "MCANSSB_WAKE_AND_TS_PLS" },
 	{ int_define_name: "INT_MCANB_ECC", int_group_channel_number: "9.12", int_group_number: "9", int_channel_number: "12", int_description: "MCANSSB_ECC_CORR_PLS" },
 	{ int_define_name: "INT_USBA", int_group_channel_number: "9.15", int_group_number: "9", int_channel_number: "15", int_description: "USBA Interrupt" },
+	{ int_define_name: "INT_NPU", int_group_channel_number: "9.16", int_group_number: "9", int_channel_number: "16", int_description: "NPU_Interrupt" },
 	{ int_define_name: "INT_ADCC_EVT", int_group_channel_number: "10.9", int_group_number: "10", int_channel_number: "9", int_description: "ADCC Event Interrupt" },
 	{ int_define_name: "INT_ADCC2", int_group_channel_number: "10.10", int_group_number: "10", int_channel_number: "10", int_description: "ADCC Interrupt 2" },
 	{ int_define_name: "INT_ADCC3", int_group_channel_number: "10.11", int_group_number: "10", int_channel_number: "11", int_description: "ADCC Interrupt 3" },

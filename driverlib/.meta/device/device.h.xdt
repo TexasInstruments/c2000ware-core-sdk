@@ -6,6 +6,7 @@ var	Boot_CM							= device_common.Boot_CM;
 var	Initilization						= device_common.Initilization;
 var	InitGPIO						= device_common.InitGPIO;
 var	VerifyXTAL						= device_common.VerifyXTAL;
+var	DevicePackage						= device_common.DevicePackage;
 var	Error_Handling						= device_common.Error_Handling;
 var	Boot_CPU2						= device_common.Boot_CPU2;
 var	Enable_Unbounded_GPIO_Pullups				= device_common.Enable_Unbounded_GPIO_Pullups;
@@ -17,6 +18,7 @@ const 	device  						= device_common.device;
 const	Device_Boot_CM						= device_common.Device_Boot_CM;
 %%}
 `Include()`
+`DevicePackage()`
 `Initilization()`
 `Enable_All_Peripherals()`
 `InitGPIO()`

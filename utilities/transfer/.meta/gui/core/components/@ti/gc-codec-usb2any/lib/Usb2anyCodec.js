@@ -599,14 +599,12 @@ class Usb2anyCodec extends AbstractMessageBasedDecoder {
     addChildDecoder(child) {
         // called by CodecRegistry, after deconfigure but before connect
     }
-    deconfigure() {
-        this.frameDecoder.deconfigure();
-    }
     /**
      * @hidden
      */
     async onConnect(transport) {
         this.transport = transport;
+        this.frameDecoder.deconfigure();
         // Since checkFirmware will wait for user's input, it should have no timeout. Hence u2aOpen has one timeout,
         // and the sequence of Interface(s).control has another timeout.
         this.consecutiveErrorLimit = this.params.maxConsecutiveErrors ?? DEFAULT_MAX_CONSECUTIVE_ERRORS;
@@ -772,7 +770,7 @@ class Usb2anyCodec extends AbstractMessageBasedDecoder {
             if (diff < 0) {
                 diff += 255;
             }
-            return diff > (this.params.maxOutstandingCommands ?? 30);
+            return diff > (this.params.maxOutstandingCommands || 30); // 0 will block all transmissions, so use default of 30.
         }
         return false;
     }

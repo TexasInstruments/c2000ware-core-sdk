@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v5.04.00.00
+                v5.05.00.00
               </div>
             
           
@@ -3790,6 +3790,60 @@ needs.</p>
 </dd></dl>
 
 <dl class="cpp function">
+<dt id="_CPPv433Ethernet_performPushOnPacketQueueP20Ethernet_PKT_Queue_TP17Ethernet_Pkt_Desc">
+<span id="_CPPv333Ethernet_performPushOnPacketQueueP20Ethernet_PKT_Queue_TP17Ethernet_Pkt_Desc"></span><span id="_CPPv233Ethernet_performPushOnPacketQueueP20Ethernet_PKT_Queue_TP17Ethernet_Pkt_Desc"></span><span id="Ethernet_performPushOnPacketQueue__Ethernet_PKT_Queue_TP.Ethernet_Pkt_DescP"></span><span class="target" id="group__ethernet__api_1gab221475ef807ab48791e316bb8baa608"></span>void <code class="sig-name descname">Ethernet_performPushOnPacketQueue</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv420Ethernet_PKT_Queue_T" title="Ethernet_PKT_Queue_T">Ethernet_PKT_Queue_T</a> *<em>pq</em>, <a class="reference internal" href="#_CPPv417Ethernet_Pkt_Desc" title="Ethernet_Pkt_Desc">Ethernet_Pkt_Desc</a> *<em>pPktHdr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433Ethernet_performPushOnPacketQueueP20Ethernet_PKT_Queue_TP17Ethernet_Pkt_Desc" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Ethernet_performPushOnPacketQueue ()</p>
+<p>This function does a Enqueue on Packet Queue It does an enqueue which adds a packet to the Rear of the queue This is called in both Tx and Rx Paths <p>========================================================================== </p>
+<strong><a class="reference internal" href="#group__ethernet__api_1gab221475ef807ab48791e316bb8baa608"><span class="std std-ref">Ethernet_performPushOnPacketQueue()</span></a></strong> <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>None</p>
+</dd>
+</dl>
+</p>
+<p><strong>Description</strong> <p> Push a desc buffer onto a queue</p>
+</p>
+<p><strong>Arguments</strong> <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>     <span class="n">pktQueuePtr</span>      <span class="n">pointer</span> <span class="n">to</span> <span class="n">packet</span> <span class="n">queue</span>
+     <span class="n">pktDescHdrPtr</span> <span class="n">pointer</span> <span class="n">to</span> <span class="n">the</span> <span class="n">EMAC</span> <span class="n">packet</span>
+</pre></div>
+</div>
+</p>
+<p><strong> Return Value </strong> None</p>
+<p><strong> Pre Condition </strong> <p> None</p>
+</p>
+<p><strong> Post Condition </strong> <p> Descriptor buffer from the Queue is added</p>
+</p>
+<p><strong>Example</strong> </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt id="_CPPv432Ethernet_performPopOnPacketQueueP20Ethernet_PKT_Queue_T">
+<span id="_CPPv332Ethernet_performPopOnPacketQueueP20Ethernet_PKT_Queue_T"></span><span id="_CPPv232Ethernet_performPopOnPacketQueueP20Ethernet_PKT_Queue_T"></span><span id="Ethernet_performPopOnPacketQueue__Ethernet_PKT_Queue_TP"></span><span class="target" id="group__ethernet__api_1gac162cbc63b9c79bc1a31ef64aa96b87c"></span><a class="reference internal" href="#_CPPv417Ethernet_Pkt_Desc" title="Ethernet_Pkt_Desc">Ethernet_Pkt_Desc</a> *<code class="sig-name descname">Ethernet_performPopOnPacketQueue</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv420Ethernet_PKT_Queue_T" title="Ethernet_PKT_Queue_T">Ethernet_PKT_Queue_T</a> *<em>pktQueuePtr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv432Ethernet_performPopOnPacketQueueP20Ethernet_PKT_Queue_T" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p><a class="reference internal" href="#group__ethernet__api_1gac162cbc63b9c79bc1a31ef64aa96b87c"><span class="std std-ref">Ethernet_performPopOnPacketQueue()</span></a></p>
+<p><p>This function Dequeues a packet from Queue. This function is called in both Tx and Rx Paths. This function returns the element at the head of Queue </p>
+<p>========================================================================== </p>
+<strong><a class="reference internal" href="#group__ethernet__api_1gac162cbc63b9c79bc1a31ef64aa96b87c"><span class="std std-ref">Ethernet_performPopOnPacketQueue()</span></a></strong> <dl class="simple">
+<dt><strong>Return</strong></dt><dd><p>Pointer to the packet that is popped</p>
+</dd>
+<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pktQueuePtr</span></code>: - Pointer to the Packet Queue</p></li>
+</ul>
+</dd>
+</dl>
+</p>
+<p><strong>Description</strong> <p> Pop a desc buffer off a queue</p>
+</p>
+<p><strong>Arguments</strong> <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span>     <span class="n">pktQueuePtr</span>      <span class="n">pointer</span> <span class="n">to</span> <span class="n">packet</span> <span class="n">queue</span>
+</pre></div>
+</div>
+</p>
+<p><strong> Return Value </strong> Pointer to EMAC packet</p>
+<p><strong> Pre Condition </strong> <p> None</p>
+</p>
+<p><strong> Post Condition </strong> <p> Descriptor buffer from the Queue is removed</p>
+</p>
+<p><strong>Example</strong> </p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt id="_CPPv431Ethernet_writeRxDescTailPointer8uint32_t8uint32_tP22Ethernet_HW_descriptor">
 <span id="_CPPv331Ethernet_writeRxDescTailPointer8uint32_t8uint32_tP22Ethernet_HW_descriptor"></span><span id="_CPPv231Ethernet_writeRxDescTailPointer8uint32_t8uint32_tP22Ethernet_HW_descriptor"></span><span id="Ethernet_writeRxDescTailPointer__uint32_t.uint32_t.Ethernet_HW_descriptorP"></span><span class="target" id="group__ethernet__api_1gacdd9424189af5a420cfc9a12e5fe7779"></span>void <code class="sig-name descname">Ethernet_writeRxDescTailPointer</code><span class="sig-paren">(</span>uint32_t <em>baseAddress</em>, uint32_t <em>channelNum</em>, <a class="reference internal" href="#_CPPv422Ethernet_HW_descriptor" title="Ethernet_HW_descriptor">Ethernet_HW_descriptor</a> *<em>write_data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431Ethernet_writeRxDescTailPointer8uint32_t8uint32_tP22Ethernet_HW_descriptor" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p><dl class="simple">
@@ -4205,7 +4259,7 @@ applications.</p>
     <p>
       <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
       <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
-      <span class="lastupdated">Last updated on Oct 22, 2024.
+      <span class="lastupdated">Last updated on May 29, 2025.
       </span></p>
   </div>
 
@@ -4225,7 +4279,7 @@ applications.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v5.04.00.00',
+            VERSION:'v5.05.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

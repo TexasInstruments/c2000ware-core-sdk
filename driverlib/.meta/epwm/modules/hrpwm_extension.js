@@ -542,7 +542,7 @@ function hrpwmEnableSettings(inst, ui)
                     
                 }
     }
-    
+    checkSettings(inst,ui);   
 }
 
     else
@@ -613,8 +613,121 @@ function hrpwmEnableSettings(inst, ui)
         ui["epwmXCMP_setXCMPBHR_XCMP7_SHADOW3"].hidden =true;
         ui["epwmXCMP_setXCMPBHR_XCMP8_SHADOW3"].hidden =true;
         
+        // reset to defaults if disabled. and hide if disabled
+        {
+            inst.hrpwm_autoConv = false;
+            inst.hrpwm_enableCalculator = false;
+            inst.hrpwm_controlModeA = device_driverlib_peripheral.HRPWM_MEPCtrlMode[0].name;
+            inst.hrpwm_controlModeB = device_driverlib_peripheral.HRPWM_MEPCtrlMode[0].name;
+            {
+                ui.hrpwm_autoConv.hidden = true;
+                ui.hrpwm_enableCalculator.hidden = true;
+                ui.hrpwm_controlModeA.hidden = true;
+                ui.hrpwm_controlModeB.hidden = true;
+            }
+
+            inst.hrpwm_epwmclk  = 100;
+            inst.hrpwm_period   = 800;
+            inst.hrpwm_duty     = 50;
+            inst.hrpwm_requiredRED      = 0;  
+            inst.hrpwm_requiredFED      = 0;  
+            inst.hrpwm_scaleFactor      = 180;
+            {
+                ui.hrpwm_epwmclk.hidden = true;
+                ui.hrpwm_tbclk.hidden = true;
+                ui.hrpwm_period.hidden = true;
+                ui.hrpwm_duty.hidden = true;
+                ui.hrpwm_requiredRED.hidden = true;
+                ui.hrpwm_requiredFED.hidden = true;
+                ui.hrpwm_scaleFactor.hidden = true;
+                ui.hrpwm_mepSteps.hidden = true;
+                ui.hrpwm_coarseSteps.hidden = true;
+                ui.hrpwm_periodCoarseSteps.hidden = true;
+                ui.hrpwm_calculatedCMPX.hidden = true;
+                ui.hrpwm_calculatedCMPXHR.hidden = true;
+                ui.hrpwm_calculatedTBPRD.hidden = true;
+                ui.hrpwm_calculatedTBPRDHR.hidden = true;
+                ui.hrpwm_calculatedRED.hidden = true;
+                ui.hrpwm_calculatedREDHR.hidden = true;
+                ui.hrpwm_calculatedFED.hidden = true;
+                ui.hrpwm_calculatedFEDHR.hidden = true;
+            }
+            
+            inst.hrpwm_tbphsHR = 0;
+            inst.hrpwm_phaseLoadEnable = false;
+            {
+                ui.hrpwm_tbphsHR.hidden = true;
+                ui.hrpwm_phaseLoadEnable.hidden = true;
+            }
+
+            inst.epwmXCMPHR_setRegisters_XTBPRD = 0;
+            inst.epwmXCMPHR_setShadowRegisters1_XTBPRD = 0;
+            inst.epwmXCMPHR_setShadowRegisters2_XTBPRD = 0;
+            inst.epwmXCMPHR_setShadowRegisters3_XTBPRD = 0;
+            {
+                ui.epwmXCMPHR_setRegisters_XTBPRD.hidden = true;
+                ui.epwmXCMPHR_setShadowRegisters1_XTBPRD.hidden = true;
+                ui.epwmXCMPHR_setShadowRegisters2_XTBPRD.hidden = true;
+                ui.epwmXCMPHR_setShadowRegisters3_XTBPRD.hidden = true;
+            }
+
+            for(let i = 1; i <= 8; i++){
+                let group = ["ACTIVE", "SHADOW1", "SHADOW2", "SHADOW3"];
+                for(let grp of group){
+                    
+                    // XCMPHR_XCMPAn (n is 1-8)
+                    inst["epwmXCMP_"+"setXCMPAHR_XCMP"+i.toString()+"_"+grp] = 0
+                    ui["epwmXCMP_"+"setXCMPAHR_XCMP"+i.toString()+"_"+grp].hidden = true
+                    // XCMPHR_XCMPBn (n is 5-8)
+                    if(i >= 5){
+                        inst["epwmXCMP_"+"setXCMPBHR_XCMP"+i.toString()+"_"+grp] = 0
+                        ui["epwmXCMP_"+"setXCMPBHR_XCMP"+i.toString()+"_"+grp].hidden = true
+                    
+                    }
+                }
+            }
+
+            inst.hrpwm_edgeModeA    =   device_driverlib_peripheral.HRPWM_MEPEdgeMode[0].name;    
+            inst.hrpwm_edgeModeB    =   device_driverlib_peripheral.HRPWM_MEPEdgeMode[0].name;    
+            inst.hrpwm_cmpaHR       =   1;
+            inst.hrpwm_cmpbHR       =   1;
+            inst.hrpwm_HRLoadA      =   device_driverlib_peripheral.HRPWM_LoadMode[0].name;
+            inst.hrpwm_HRLoadB      =   device_driverlib_peripheral.HRPWM_LoadMode[0].name;
+            {
+                ui.hrpwm_edgeModeA.hidden = true;
+                ui.hrpwm_edgeModeB.hidden = true;
+                ui.hrpwm_cmpaHR.hidden = true;
+                ui.hrpwm_cmpbHR.hidden = true;
+                ui.hrpwm_HRLoadA.hidden = true;
+                ui.hrpwm_HRLoadB.hidden = true;
+            }
+
+            inst.hrpwm_periodEnable = false;
+            inst.hrpwm_tbprdHR      = 0;
+            {
+                ui.hrpwm_periodEnable.hidden = true;
+                ui.hrpwm_tbprdHR.hidden = true;
+            }
+
+            inst.hrpwm_edgeModeDB   =   device_driverlib_peripheral.HRPWM_MEPDeadBandEdgeMode[0].name;
+            inst.hrpwm_DBredHR      =   0;
+            inst.hrpwm_DBfedHR      =   0;
+            inst.hrpwm_controlModeDBA   = device_driverlib_peripheral.HRPWM_LoadMode[0].name;
+            inst.hrpwm_controlModeDBB   = device_driverlib_peripheral.HRPWM_LoadMode[0].name;
+            inst.hrpwm_swapDBOutputs    = false;
+            inst.hrpwm_DBBOutput    =   device_driverlib_peripheral.HRPWM_ChannelBOutput[0].name;
+            {
+                ui.hrpwm_edgeModeDB.hidden = true;
+                ui.hrpwm_DBredHR.hidden = true;
+                ui.hrpwm_DBfedHR.hidden = true;
+                ui.hrpwm_controlModeDBA.hidden = true;
+                ui.hrpwm_controlModeDBB.hidden = true;
+                ui.hrpwm_swapDBOutputs.hidden = true;
+                ui.hrpwm_DBBOutput.hidden = true;
+            }
+        }
     }
-    checkSettings(inst,ui);
+    
 }
 
 function checkSettings(inst,ui)

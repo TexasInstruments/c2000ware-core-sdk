@@ -8,6 +8,7 @@ var	Initilization_AGPIO_Enable_Lockstep			= system.getTemplate('./Initilization_
 var	Initilization_GPIO_22_23_Disable_DCDC			= system.getTemplate('./Initilization_GPIO_22_23_Disable_DCDC.xdt');
 var	Initilization_GPIO_20_21_Lock_VREGCTL_Type0		= system.getTemplate('./Initilization_GPIO_20_21_Lock_VREGCTL_Type0.xdt');
 var	Initilization_Lock_VREGCTL_Dual_Core_Type0		= system.getTemplate('./Initilization_Lock_VREGCTL_Dual_Core_Type0.xdt');
+var	Initilization_UBGPIO_Pull_Up		= system.getTemplate('./Initilization_UBGPIO_Pull_Up.xdt');
 var	Initilization_Lock_VREGCTL_EnablePeripherals		= system.getTemplate('./Initilization_Lock_VREGCTL_EnablePeripherals.xdt');
 var	Initilization_XTAL					= system.getTemplate('./Initilization_XTAL.xdt');
 var	Initilization_Device_initGPIO				= system.getTemplate('./Initilization_Device_initGPIO.xdt');
@@ -26,6 +27,7 @@ const	Initilization_GPIO_22_23				= device_common.Initilization_GPIO_22_23;
 const	Initilization_GPIO_20_21_Type0				= device_common.Initilization_GPIO_20_21_Type0;
 const	Initilization_AGPIO_Dual_Core_Type0			= device_common.Initilization_AGPIO_Dual_Core_Type0;
 const	Initilization_GPIO_11_28				= device_common.Initilization_GPIO_11_28;
+const	Initilization_GPIO_12_28				= device_common.Initilization_GPIO_12_28;
 const	Initilization_XTAL_Type0				= device_common.Initilization_XTAL_Type0;
 const	Initilization_Device_initGPIO_Type0			= device_common.Initilization_Device_initGPIO_Type0;
 %%}
@@ -60,6 +62,10 @@ const	Initilization_Device_initGPIO_Type0			= device_common.Initilization_Device
 % if(Initilization_GPIO_11_28.includes(device))
 %{
 `Initilization_Lock_VREGCTL_EnablePeripherals()`
+%}
+% if(Initilization_GPIO_12_28.includes(device))
+%{
+`Initilization_UBGPIO_Pull_Up()`
 %}
 % if(Initilization_XTAL_Type0.includes(device))
 %{

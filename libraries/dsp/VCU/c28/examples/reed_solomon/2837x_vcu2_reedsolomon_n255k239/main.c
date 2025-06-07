@@ -15,7 +15,7 @@
 //#############################################################################
 //
 //
-// $Copyright: Copyright (C) 2024 Texas Instruments Incorporated -
+// $Copyright: Copyright (C) 2025 Texas Instruments Incorporated -
 //             http://www.ti.com/ ALL RIGHTS RESERVED $
 //#############################################################################
 
@@ -26,7 +26,7 @@
 #include "reedsolomon_encoder.h"
 #include "vcu2_reedsolomon_decoder.h"
 #include "examples_setup.h"
-#include "rs_tablesn255k239.h"
+#include "RS_TablesN255K239.h"
 
 //!
 //! \defgroup REEDSOLOMON_EXAMPLES Reed-Solomon Decoder n=255, k=239 Example

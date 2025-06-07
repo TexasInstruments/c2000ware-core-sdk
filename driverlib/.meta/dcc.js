@@ -102,7 +102,7 @@ function AutoCalculate(localDCCerrtol, localFclk1, localFclk0, localFsysclk, loc
     }
 }
 
-var SysClk_MHz = Common.SYSCLK_getMaxMHz();
+var SysClk_MHz = Common.getSYSCLK();
 var fclk0_default = 10;
 var fclk1_default = SysClk_MHz;
 var dccerrtol_default = 0.25;
@@ -334,6 +334,8 @@ let config = [
 
 function onValidate(inst, validation)
 {
+    var SysClk_MHz = Common.getSYSCLK();
+    var fclk1_default = SysClk_MHz;
     var usedDCCInsts = [];
     for (var instance_index in inst.$module.$instances)
     {
@@ -512,7 +514,7 @@ var dccModule = {
                     }
                 }]
             }
-            else if (['f28002x', 'f28003x', 'f28p55x', 'f280013x', 'f280015x'].includes(Common.getDeviceName().toLowerCase()))
+            else if (['f28002x', 'f28003x', 'f28p55x', 'f280013x', 'f280015x','f28e12x'].includes(Common.getDeviceName().toLowerCase()))
             {
                 var interruptName = inst.dccBase.replace("_BASE", "");
                 return [{

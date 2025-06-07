@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -290,7 +290,7 @@ SPI_pollingNonFIFOTransaction(uint32_t base, uint16_t charLength, uint16_t data)
 {
     uint16_t rxData;
 
-    ASSERT(((HWREGH(base + SPI_O_CCR) & SPI_CCR_SPICHAR_M) + 1) == charLength);
+    ASSERT(((HWREGH(base + SPI_O_CCR) & SPI_CCR_SPICHAR_M) + 1U) == charLength);
     ASSERT(data < ((uint32_t)1U << charLength));
 
     //
@@ -316,7 +316,7 @@ SPI_pollingFIFOTransaction(uint32_t base, uint16_t charLength,
                            uint16_t *pTxBuffer, uint16_t *pRxBuffer,
                            uint16_t numOfWords, uint16_t txDelay)
 {
-    ASSERT(((HWREGH(base + SPI_O_CCR) & SPI_CCR_SPICHAR_M) + 1) == charLength);
+    ASSERT(((HWREGH(base + SPI_O_CCR) & SPI_CCR_SPICHAR_M) + 1U) == charLength);
 
     //
     // Reset the TX / RX FIFO buffers to default state

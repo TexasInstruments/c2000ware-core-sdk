@@ -232,10 +232,6 @@ class UsbSerialPort extends AbstractUsbPort {
         }
         super.close();
     }
-    async setBaudRate(baudRate) {
-        this.console.logAPI(`${UsbSerialPort}::${this.setBaudRate.name}`, ...arguments);
-        await this.usbModule.overrideBaudRate(this.descriptor, baudRate);
-    }
     async setSignals(signals) {
         this.console.logAPI(`${UsbSerialPort}::${this.setSignals.name}`, ...arguments);
         await this.usbModule.setSignals(this.descriptor, signals);
@@ -293,10 +289,12 @@ class UsbHidPort extends AbstractUsbPort {
     }
     async close() {
         this.console.logAPI(`${UsbHidPort.name}::${this.close.name}`, ...arguments);
-        // TODO: [JIRA???] workaround, usbhid::closePort() is not the same as serial::close(), need to override the base method and call closePort
-        await this.usbModule.closePort(this.descriptor);
-        // TODO: [JIRA???] workaround, USBHID not firing close event, serial.js is suppressing the event by setting isCloseQuietly
-        this.onClosedHandler({ port: this.descriptor });
+        if (this.isOpened) {
+            // TODO: [JIRA???] workaround, usbhid::closePort() is not the same as serial::close(), need to override the base method and call closePort
+            await this.usbModule.closePort(this.descriptor);
+            // TODO: [JIRA???] workaround, USBHID not firing close event, serial.js is suppressing the event by setting isCloseQuietly
+            this.onClosedHandler({ port: this.descriptor });
+        }
         super.close();
     }
 }
@@ -519,7 +517,134 @@ class UsbDevice extends AbstractDevice {
 }
 
 /**
- *  Copyright (c) 2019, 2023 Texas Instruments Incorporated
+ *  Copyright (c) 2024, 2025 Texas Instruments Incorporated
+ *  All rights reserved.
+ *
+ *  Redistribution and use in source and binary forms, with or without
+ *  modification, are permitted provided that the following conditions
+ *  are met:
+ *
+ *  *   Redistributions of source code must retain the above copyright
+ *  notice, this list of conditions and the following disclaimer.
+ *  notice, this list of conditions and the following disclaimer in the
+ *  documentation and/or other materials provided with the distribution.
+ *  *   Neither the name of Texas Instruments Incorporated nor the names of
+ *  its contributors may be used to endorse or promote products derived
+ *  from this software without specific prior written permission.
+ *
+ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ *  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ *  THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ *  PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ *  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ *  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ *  PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ *  OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ *  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ *  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+const usbWebSerialPortType = new UsbPortType();
+/**
+ * @hidden
+ */
+class UsbWebSerialPort extends Events {
+    constructor(serialPort) {
+        super();
+        this.serialPort = serialPort;
+        this._isOpened = false;
+        this.type = usbWebSerialPortType;
+        this.comName = 'unknown';
+        this.name = 'unknown';
+        this.busy = Promise.resolve();
+        this.console = new GcConsole('gc-service-usb', this.comName);
+        this.descriptor = serialPort.getInfo();
+    }
+    isEqual(port) {
+        return this.serialPort === port.serialPort;
+    }
+    get isOpened() {
+        return this._isOpened;
+    }
+    async open(options) {
+        this.console.logAPI(`${UsbWebSerialPort.name}::${this.open.name}`, ...arguments);
+        if (this._isOpened) {
+            throw Error('Serial port already opened.');
+        }
+        await this.serialPort.open({ baudRate: options.baudRate ?? 9600, bufferSize: options.highWaterMark ?? 64000, flowControl: options.rtscts ? 'hardware' : 'none' });
+        this._isOpened = true;
+        this.fireEvent(openedEventType, {});
+        this.busy = this.doReadAll();
+    }
+    async doReadAll() {
+        while (this._isOpened && this.serialPort.readable) {
+            this.reader = this.serialPort.readable.getReader();
+            try {
+                while (this._isOpened) {
+                    const { value, done } = await this.reader.read();
+                    if (done) {
+                        break;
+                    }
+                    else if (value) {
+                        this.fireEvent(dataEventType, { data: Array.from(value) });
+                    }
+                }
+            }
+            catch (error) {
+                this.fireEvent(errorEventType, { error });
+            }
+            finally {
+                this.reader.releaseLock();
+                this.reader = undefined;
+            }
+        }
+    }
+    async write(data) {
+        if (!this.writer) {
+            this.encoder = new TextEncoder();
+            this.writer = this.serialPort.writable.getWriter();
+        }
+        if (typeof data === 'string') {
+            if (this.encoder && this.writer) {
+                const bytes = this.encoder.encode(data);
+                await this.writer.write(bytes);
+            }
+        }
+        else {
+            await this.writer?.write(new Uint8Array(data));
+        }
+    }
+    async close() {
+        this.console.logAPI(`${UsbWebSerialPort.name}::${this.close.name}`, ...arguments);
+        if (this._isOpened) {
+            this._isOpened = false;
+            await this.reader?.cancel();
+            await this.busy;
+            this.writer?.releaseLock();
+            this.writer = undefined;
+            await this.serialPort.close();
+            this.fireEvent(closedEventType, {});
+        }
+    }
+    async setSignals(signals) {
+        this.console.logAPI(`${UsbWebSerialPort}::${this.setSignals.name}`, ...arguments);
+        //@ts-ignore
+        await this.serialPort.setSignals({
+            dataTerminalReady: signals.dtr,
+            requestToSend: signals.rts,
+            break: signals.brk
+        });
+    }
+    async getSignals() {
+        this.console.logAPI(`${UsbWebSerialPort}::${this.getSignals.name}`, ...arguments);
+        //@ts-ignore
+        const result = await this.serialPort.getSignals();
+        return { cts: result.clearToSend, dcd: result.dataCarrierDetect, dsr: result.dataSetReady };
+    }
+}
+
+/**
+ *  Copyright (c) 2019, 2024 Texas Instruments Incorporated
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -622,9 +747,7 @@ class UsbService extends Events {
         this.deviceDetachedHdlr = (key) => {
             // find device in existing list and fire event
             const device = this.devices.find(device => device.key === key);
-            if (device) {
-                this.fireEvent(deviceDetachedEventType, { device: device });
-            }
+            this.fireEvent(deviceDetachedEventType, { device: device });
         };
     }
     async init() {
@@ -647,6 +770,10 @@ class UsbService extends Events {
     }
     async listPorts(type, vendorIdFilter) {
         console.logAPI(`${UsbService.name}::${this.listPorts.name}`, ...arguments);
+        if (type === usbWebSerialPortType) {
+            const ports = await navigator?.serial?.getPorts() ?? [];
+            return ports.map(port => new UsbWebSerialPort(port));
+        }
         await this.init();
         /* list serial ports */
         if (type === usbSerialPortType) {
@@ -801,5 +928,5 @@ ServicesRegistry.register(usbServiceType, UsbService);
  *  EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-export { AbstractDevice, AbstractUsbPort, BAUD_RATES, MAX_BAUD, UsbDevice, UsbDeviceInterface, UsbHidPort, UsbPortType, UsbSerialPort, UsbService, closedEventType, dataEventType, deviceAttachedEventType, deviceDetachedEventType, errorEventType, openedEventType, rxDataEventType, rxErrorEventType, usbHidPortType, usbSerialPortType, usbServiceType };
+export { AbstractDevice, AbstractUsbPort, BAUD_RATES, MAX_BAUD, UsbDevice, UsbDeviceInterface, UsbHidPort, UsbPortType, UsbSerialPort, UsbService, UsbWebSerialPort, closedEventType, dataEventType, deviceAttachedEventType, deviceDetachedEventType, errorEventType, openedEventType, rxDataEventType, rxErrorEventType, usbHidPortType, usbSerialPortType, usbServiceType, usbWebSerialPortType };
 //# sourceMappingURL=ServiceUsb.js.map

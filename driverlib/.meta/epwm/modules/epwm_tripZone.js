@@ -119,6 +119,21 @@ var oneShotConfig = [
 
 ];
 
+if(["F28P65x"].includes(Common.getDeviceName()))
+{
+    oneShotConfig.push(
+        {
+            name: "epwmTripZone_oneShotSourceAdditional",
+            displayName : "Additional One-Shot Source",
+            description : 'Check to enable the source to the One-Shot OR gate',
+            hidden      : false,
+            minSelections : 0,
+            default     : [],
+            options     : [{ name: "EPWM_TZ_SIGNAL_CAPEVT_OST", displayName: "One-shot Capture event" }],
+        },     
+    )
+}
+
 var cbcConfig = [
     {
         name: "epwmTripZone_cbcSource",
@@ -139,6 +154,22 @@ var cbcConfig = [
     },
 
 ];
+
+if(["F28P65x"].includes(Common.getDeviceName()))
+{
+    cbcConfig.push(
+        {
+            name: "epwmTripZone_cbcSourceAdditional",
+            displayName : "Additional CBC Source",
+            description : 'Check to enable the source to the CBC OR gate',
+            hidden      : false,
+            minSelections : 0,
+            default     : [],
+            options     : [{ name: "EPWM_TZ_SIGNAL_CAPEVT_OST", displayName: "One-shot Capture event" }],
+        },
+    )
+}
+
 
 var interruptConfig = [
     {

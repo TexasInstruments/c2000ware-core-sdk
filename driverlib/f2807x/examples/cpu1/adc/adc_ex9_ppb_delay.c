@@ -26,7 +26,7 @@
 //
 // 
 // $Copyright:
-// Copyright (C) 2014-2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2014-2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -273,10 +273,7 @@ void initADCSOC(void)
                  ADC_CH_ADCIN0, 15);
     ADC_setupSOC(ADCA_BASE, ADC_SOC_NUMBER1, ADC_TRIGGER_EPWM2_SOCA,
                  ADC_CH_ADCIN0, 15);
-    ADC_setupSOC(ADCA_BASE, ADC_SOC_NUMBER0, ADC_TRIGGER_EPWM1_SOCA,
-                 
-    ADC_setupSOC(ADCA_BASE, ADC_SOC_NUMBER1, ADC_TRIGGER_EPWM2_SOCA,
-                 ADC_CH_ADCIN0, 64);
+
 
 
     //
@@ -373,7 +370,6 @@ void configureADCSOC(uint32_t adcBase, uint16_t channel)
     //
     // Determine minimum acquisition window (in SYSCLKS) based on resolution
     //
-    if(EX_ADC_RESOLUTION == 12)
     
         acqps = 14; // 75ns
     

@@ -3,9 +3,10 @@ import { ServicesRegistry } from '../../gc-core-services/lib/ServicesRegistry';
 import { Events } from '../../gc-core-assets/lib/Events';
 import { programLoaderServiceType, statusMessageEventType } from '../../gc-service-program-loader/lib/ProgramLoaderService';
 import { GcUtils } from '../../gc-core-assets/lib/GcUtils';
+import { LOAD_PROGRAM_FILENAME, DSProgressUpdateEventType } from '../../gc-service-ds/lib/DSService';
 
 /**
- *  Copyright (c) 2020, 2021 Texas Instruments Incorporated
+ *  Copyright (c) 2020, 2025 Texas Instruments Incorporated
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -79,20 +80,28 @@ class TargetProgramLoader extends Events {
         const description = `Loading program for ${this.toString()}`;
         if (force || (this.params.autoProgram && !this.alreadyLoaded && !GcUtils.isCCS && !GcUtils.isInDesigner)) {
             const loaderService = ServicesRegistry.getService(programLoaderServiceType);
-            const callback = (details) => {
+            const statusMessageHandler = (details) => {
                 switch (details.type) {
                     case 'info':
                         logger.addProgressMessage(details.message);
                         break;
+                    case 'fatal':
                     case 'error':
-                        logger.addErrorMessage(details.message);
+                        logger.addErrorMessage(details.message, undefined, details.type === 'fatal');
                         break;
                     case 'warning':
                         logger.addWarningMessage(details.message);
                         break;
                 }
             };
-            loaderService.addEventListener(statusMessageEventType, callback);
+            loaderService.addEventListener(statusMessageEventType, statusMessageHandler);
+            const progressHandler = (details) => {
+                if (details.name.endsWith(LOAD_PROGRAM_FILENAME)) {
+                    details = { ...details, name: `${description} ...` };
+                }
+                logger.addProgressMessage(details.name, undefined, details.percent ?? 0);
+            };
+            loaderService.addEventListener(DSProgressUpdateEventType, progressHandler);
             try {
                 logger.addProgressMessage(`${description} ...`);
                 await loaderService.flash(this.params, {
@@ -119,7 +128,8 @@ class TargetProgramLoader extends Events {
                 throw Error(`${description} failed: ${e.message || e.toString()}`);
             }
             finally {
-                loaderService.removeEventListener(statusMessageEventType, callback);
+                loaderService.removeEventListener(statusMessageEventType, statusMessageHandler);
+                loaderService.removeEventListener(DSProgressUpdateEventType, progressHandler);
             }
         }
         else if (this.params.autoProgram) {

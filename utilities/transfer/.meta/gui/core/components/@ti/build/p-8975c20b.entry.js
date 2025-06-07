@@ -1,0 +1,2 @@
+import{r as t,g as e}from"./p-823ca21f.js";import{PropertyModel as s}from"../gc-core-databind/lib/CoreDatabind";let a=class{constructor(e){t(this,e);this.impl=undefined;this.persist=false}connectedCallback(){this.impl=new s(this.el)}disconnectedCallback(){this.impl.dispose()}get el(){return e(this)}};export{a as gc_model_property};
+//# sourceMappingURL=p-8975c20b.entry.js.map

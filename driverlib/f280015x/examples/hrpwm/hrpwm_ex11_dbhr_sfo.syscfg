@@ -1,0 +1,64 @@
+
+/**
+ * Import the modules used in this configuration.
+ */
+const epwm             = scripting.addModule("/driverlib/epwm.js", {}, false);
+const epwm1            = epwm.addInstance();
+const epwm2            = epwm.addInstance();
+
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+epwm1.$name                                                      = "myEPWM1";
+epwm1.epwmTimebase_emulationMode                                 = "EPWM_EMULATION_FREE_RUN";
+epwm1.epwmTimebase_hsClockDiv                                    = "EPWM_HSCLOCK_DIVIDER_1";
+epwm1.hrpwm_cmpaHR                                               = 50;
+epwm1.hrpwm_cmpbHR                                               = 50;
+epwm1.epwmTimebase_counterMode                                   = "EPWM_COUNTER_MODE_UP_DOWN";
+epwm1.epwmTimebase_counterModeAfterSync                          = "EPWM_COUNT_MODE_UP_AFTER_SYNC";
+epwm1.epwmCounterCompare_cmpA                                    = 50;
+epwm1.epwmTimebase_syncOutPulseMode                            = ["EPWM_SYNC_OUT_PULSE_ON_CNTR_ZERO"];
+epwm1.epwmTimebase_syncInPulseSource                             = "EPWM_SYNC_IN_PULSE_SRC_DISABLE";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_UP_CMPA   = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_DOWN_CMPA = "EPWM_AQ_OUTPUT_LOW";
+epwm1.epwmTimebase_period                                        = 100;
+epwm1.epwmDeadband_enableRED                                     = true;
+epwm1.epwmDeadband_polarityFED                                   = "EPWM_DB_POLARITY_ACTIVE_LOW";
+epwm1.epwmDeadband_inputFED                                      = "EPWM_DB_INPUT_EPWMB";
+epwm1.epwmDeadband_enableFED                                     = true;
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_UP_CMPB   = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_DOWN_CMPB = "EPWM_AQ_OUTPUT_LOW";
+epwm1.epwmCounterCompare_cmpB                                    = 50;
+epwm1.epwm.$assign                                               = "EPWM1";
+epwm1.epwm.epwm_aPin.$assign                                      = "GPIO0";
+epwm1.epwm.epwm_bPin.$assign                                      = "GPIO1";
+
+
+epwm2.$name                                                      = "myEPWM2";
+epwm2.epwmTimebase_emulationMode                                 = "EPWM_EMULATION_FREE_RUN";
+epwm2.epwmTimebase_period                                        = 100;
+epwm2.hrpwm_enable                                               = true;
+epwm2.hrpwm_autoConv                                             = true;
+epwm2.epwmCounterCompare_cmpA                                    = 50;
+epwm2.epwmCounterCompare_cmpB                                    = 50;
+epwm2.epwmTimebase_hsClockDiv                                    = "EPWM_HSCLOCK_DIVIDER_1";
+epwm2.epwmTimebase_counterMode                                   = "EPWM_COUNTER_MODE_UP_DOWN";
+epwm2.epwmTimebase_counterModeAfterSync                          = "EPWM_COUNT_MODE_UP_AFTER_SYNC";
+epwm2.epwmCounterCompare_cmpA                                    = 50;
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_UP_CMPA   = "EPWM_AQ_OUTPUT_HIGH";
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_DOWN_CMPA = "EPWM_AQ_OUTPUT_LOW";
+epwm2.epwmDeadband_enableRED                                     = true;
+epwm2.epwmDeadband_deadbandCounterClockRate                      = "EPWM_DB_COUNTER_CLOCK_HALF_CYCLE";
+epwm2.hrpwm_edgeModeDB                                           = "HRPWM_DB_MEP_CTRL_RED_FED";
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_UP_CMPB   = "EPWM_AQ_OUTPUT_HIGH";
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_DOWN_CMPB = "EPWM_AQ_OUTPUT_LOW";
+epwm2.epwmCounterCompare_cmpB                                    = 50;
+epwm2.epwmDeadband_polarityFED                                   = "EPWM_DB_POLARITY_ACTIVE_LOW";
+epwm2.epwmDeadband_inputFED                                      = "EPWM_DB_INPUT_EPWMB";
+epwm2.epwmDeadband_enableFED                                     = true;
+epwm2.epwmTimebase_phaseEnable                                   = true;
+epwm2.epwm.$assign                                               = "EPWM2";
+epwm2.epwm.epwm_aPin.$assign                                      = "GPIO2";
+epwm2.epwm.epwm_bPin.$assign                                      = "GPIO3";
+

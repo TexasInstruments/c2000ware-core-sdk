@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -462,7 +462,7 @@ static inline void PGA_selectPMUXInput(uint32_t base, PGA_PMUXInput pmuxinput)
 
     EALLOW;
     HWREGH(base + PGA_O_MUXSEL) = (HWREGH(base + PGA_O_MUXSEL) &
-                                    ~PGA_MUXSEL_PMUXSEL_M) | pmuxinput;
+                                ~PGA_MUXSEL_PMUXSEL_M) | (uint16_t)pmuxinput;
     EDIS;
 
 }
@@ -492,7 +492,7 @@ static inline void PGA_selectNMUXInput(uint32_t base, PGA_NMUXInput nmuxinput)
     EALLOW;
     HWREGH(base + PGA_O_MUXSEL) =
                         (HWREGH(base + PGA_O_MUXSEL) & ~(PGA_MUXSEL_NMUXSEL_M)) |
-                        (nmuxinput << PGA_MUXSEL_NMUXSEL_S);
+                        ((uint16_t)nmuxinput << PGA_MUXSEL_NMUXSEL_S);
     EDIS;
 
 }
@@ -524,7 +524,7 @@ static inline void PGA_selectMMUXInput(uint32_t base, PGA_MMUXInput mmuxinput)
     EALLOW;
     HWREGH(base + PGA_O_MUXSEL) =
                         (HWREGH(base + PGA_O_MUXSEL) & ~(PGA_MUXSEL_MMUXSEL_M)) |
-                        (mmuxinput << PGA_MUXSEL_MMUXSEL_S);
+                        ((uint16_t)mmuxinput << PGA_MUXSEL_MMUXSEL_S);
     EDIS;
 
 }
@@ -574,7 +574,7 @@ static inline void PGA_chop(uint32_t base, PGA_Chop chop)
     EALLOW;
     HWREGH(base + PGA_O_MUXSEL) =
                        (HWREGH(base + PGA_O_MUXSEL) & ~(PGA_MUXSEL_PGA_CHOP_M)) |
-                       (chop << PGA_MUXSEL_PGA_CHOP_S);
+                       ((uint16_t)chop << PGA_MUXSEL_PGA_CHOP_S);
     EDIS;
 }
 

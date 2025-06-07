@@ -1,0 +1,194 @@
+/*
+ * Copyright (c) 2020 Texas Instruments Incorporated - http://www.ti.com
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ * *  Redistributions of source code must retain the above copyright
+ *    notice, this list of conditions and the following disclaimer.
+ *
+ * *  Redistributions in binary form must reproduce the above copyright
+ *    notice, this list of conditions and the following disclaimer in the
+ *    documentation and/or other materials provided with the distribution.
+ *
+ * *  Neither the name of Texas Instruments Incorporated nor the names of
+ *    its contributors may be used to endorse or promote products derived
+ *    from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+ * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+ * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
+ * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ */
+ 
+%let transferCommon;
+%if (system.getProducts()[0].name.includes("C2000")) {
+%    transferCommon = system.getScript("/utilities/transfer/transferCommon.js");
+%} else { transferCommon = system.getScript("/transfer/transferCommon.js"); }
+
+% var hashTables = system.modules[transferCommon.getTransferPath() + 'signalsight/hash/hashTable.js'];
+% var hashElements = system.modules[transferCommon.getTransferPath() + 'signalsight/hash/hashElement.js'];
+%
+% let tableInstances = [];
+%
+% //Get all table instances
+% if(hashTables){
+    % for(let i = 0; i < hashTables.$instances.length; i++){
+            % //hash table instances
+            % tableInstances.push(hashTables.$instances[i])
+    % }
+#include "signalsight_hash.h"
+#include "driverlib.h"
+#include "device.h"
+#include <stdio.h>
+#include <stdbool.h>
+% }
+%
+% if(hashElements){
+
+//
+//Hash Table Definitions
+//
+%}
+% // Loop through each hash table
+% for(let i = 0; i < tableInstances.length; i++){
+%
+%
+    %let variableArray = [];
+    %let uint16_array = [];
+    %let int16_array = [];
+    %let uint32_array = [];
+    %let int32_array = [];
+    %let bool_array = [];
+    %let float_array = [];
+    %let uint16_t_startIndex = -1;
+    %let int16_t_startIndex = -1;
+    %let uint32_t_startIndex = -1;
+    %let int32_t_startIndex = -1;
+    %let bool_startIndex = -1;
+    %let float_startIndex = -1;
+%   //Get all hash table elements for current instance
+%   let currentHashElements = [];
+    % if(hashElements){
+        % for(let j = 0; j < hashElements.$instances.length; j++){
+            % if(hashElements.$instances[j].hashTable == tableInstances[i].$name ){
+                % currentHashElements.push(hashElements.$instances[j]);
+            %}
+        % }
+    % }
+%
+    %   //Update arrays of each element type
+        % for (let i = 0; i < currentHashElements.length; i++) {
+            % if (currentHashElements[i].variableType == "uint16_t") {
+                % uint16_array.push(currentHashElements[i]);
+            % }
+            % else if (currentHashElements[i].variableType == "uint32_t") {
+                % uint32_array.push(currentHashElements[i]);
+            % }
+            % else if (currentHashElements[i].variableType == "int16_t") {
+                % int16_array.push(currentHashElements[i]);
+            % }
+            % else if (currentHashElements[i].variableType == "int32_t") {
+                % int32_array.push(currentHashElements[i]);
+            % }
+            % else if (currentHashElements[i].variableType == "bool") {
+                % bool_array.push(currentHashElements[i]);
+            % }
+            % else if (currentHashElements[i].variableType == "float") {
+                % float_array.push(currentHashElements[i]);
+            % }
+        % }
+        %variableArray = variableArray.concat(uint16_array).concat(uint32_array).concat(int16_array).concat(int32_array).concat(bool_array).concat(float_array);
+        % //Get all start indices 
+        % if (uint16_array.length != 0) {
+            % uint16_t_startIndex = 0;
+        % }
+        % if (uint32_array.length != 0) {
+            % uint32_t_startIndex = uint16_array.length;
+        % }
+        % if (int16_array.length != 0) {
+            % int16_t_startIndex = uint16_array.length + uint32_array.length;
+        % }
+        % if (int32_array.length != 0) {
+            % int32_t_startIndex = uint16_array.length + uint32_array.length + int16_array.length;
+        % }
+        % if (bool_array.length != 0) {
+            % bool_startIndex = uint16_array.length + uint32_array.length + int16_array.length + int32_array.length;
+        % }
+        % if (float_array.length != 0) {
+            % float_startIndex = uint16_array.length + uint32_array.length + int16_array.length + int32_array.length + bool_array.length;
+        % }
+%
+%
+%
+% if(currentHashElements.length != 0){
+#if(SSHASH_HASH_TABLE_SELECTED == HASH_TABLE_`tableInstances[i].$name`)
+    //
+    //Hash Table Variables Externs
+    //
+    % if(variableArray.length != 0){
+        % for(let j = 0; j < variableArray.length; j++){
+            % let var_name = variableArray[j].$name;
+            % if(variableArray[j].useDifferentName){
+                % var_name = variableArray[j].diffName;
+            % }
+    extern `variableArray[j].variableType` `var_name`;
+        % }
+    % }
+
+    //
+    //Hash Table Indices - indices are inclusive
+    //
+    int16_t SSHASH_uint16_t_startIndex = `uint16_t_startIndex`;
+    int16_t SSHASH_uint32_t_startIndex = `uint32_t_startIndex`;
+    int16_t SSHASH_int16_t_startIndex = `int16_t_startIndex`;
+    int16_t SSHASH_int32_t_startIndex = `int32_t_startIndex`;
+    int16_t SSHASH_bool_startIndex = `bool_startIndex`;
+    int16_t SSHASH_float_startIndex = `float_startIndex`;
+
+    //
+    // Hash Table arrays
+    //
+    const void* SSHASH_hash_table[SSHASH_NUMBER_OF_VARIABLES] = {
+        %for (let i = 0; i < variableArray.length; i++){
+            % let hashEntry = "";
+            % if(variableArray[i].variableType == "uint16_t"){
+                % hashEntry = hashEntry.concat("/*uint16_t variable*/")
+            % }
+            % else if(variableArray[i].variableType == "uint32_t"){
+                % hashEntry = hashEntry.concat("/*uint32_t variable*/")
+            % }
+            % else if(variableArray[i].variableType == "int16_t"){
+                % hashEntry = hashEntry.concat("/*int16_t variable*/")
+            % }
+            % else if(variableArray[i].variableType == "int32_t"){
+                % hashEntry = hashEntry.concat("/*int32_t variable*/")
+            % }
+            % else if(variableArray[i].variableType == "bool"){
+                % hashEntry = hashEntry.concat("/*boolean variable*/")
+            % }
+            % else if(variableArray[i].variableType == "float"){
+                % hashEntry = hashEntry.concat("/*float variable*/")
+            % }
+            % hashEntry = hashEntry.concat("                         &")
+            % let var_name = variableArray[i].$name;
+            % if(variableArray[i].useDifferentName){
+                % var_name = variableArray[i].diffName;
+            % }
+    `hashEntry``var_name`,
+        %}
+    };
+#endif //HASH_TABLE_`tableInstances[i].$name`
+
+% }
+% }

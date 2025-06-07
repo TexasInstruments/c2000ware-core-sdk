@@ -107,11 +107,12 @@ let SysCtl_LSPCLKPrescaler = [
 ]
 let SysCtl_ClockOut = [
 	{ name: "SYSCTL_CLOCKOUT_PLLSYS", displayName: "PLL System Clock post SYSCLKDIV" },
-	{ name: "SYSCTL_CLOCKOUT_PLLRAW", displayName: "PLL Raw Clock" },
+	{ name: "SYSCTL_CLOCKOUT_PLLRAW", displayName: "PLL Clock after Bypass Mux" },
 	{ name: "SYSCTL_CLOCKOUT_SYSCLK", displayName: "CPU System Clock" },
 	{ name: "SYSCTL_CLOCKOUT_INTOSC1", displayName: "Internal Oscillator 1" },
 	{ name: "SYSCTL_CLOCKOUT_INTOSC2", displayName: "Internal Oscillator 2" },
 	{ name: "SYSCTL_CLOCKOUT_XTALOSC", displayName: "External Oscillator" },
+	{ name: "SYSCTL_SYSPLLCLKOUT", displayName: "PLL System Clock pre SYSCLKDIV" },
 ]
 let SysCtl_ExternalOscMode = [
 	{ name: "SYSCTL_XTALMODE_CRYSTAL", displayName: "XTAL Oscillator Crystal Mode" },
@@ -235,10 +236,6 @@ let SysCtl_UserRegister = [
 	{ name: "SYSCTL_USER_REG3_PORESETN", displayName: "User register reset by PORESETn" },
 	{ name: "SYSCTL_USER_REG4_PORESETN", displayName: "User register reset by PORESETn" },
 ]
-let SysCtl_IntOSC2_Mode = [
-	{ name: "SYSCTL_INTOSC2_MODE_INTR", displayName: "Intrenal Resistor mode" },
-	{ name: "SYSCTL_INTOSC2_MODE_EXTR", displayName: "External Resistor mode" },
-]
 let SysCtl_CMPSSLPMSel = [
 	{ name: "SYSCTL_CMPSSLPMSEL_CMPSS_1H", displayName: "CMPSSLPMSEL CMPSS 1H" },
 	{ name: "SYSCTL_CMPSSLPMSEL_CMPSS_1L", displayName: "CMPSSLPMSEL CMPSS 1L" },
@@ -309,7 +306,6 @@ module.exports = {
 	SysCtl_ClkRegSel: SysCtl_ClkRegSel,
 	SysCtl_CpuRegSel: SysCtl_CpuRegSel,
 	SysCtl_UserRegister: SysCtl_UserRegister,
-	SysCtl_IntOSC2_Mode: SysCtl_IntOSC2_Mode,
 	SysCtl_CMPSSLPMSel: SysCtl_CMPSSLPMSel,
 	SYSCTL_NMI: SYSCTL_NMI,
 	SYSCTL_STATUS_SYS_ERR: SYSCTL_STATUS_SYS_ERR,

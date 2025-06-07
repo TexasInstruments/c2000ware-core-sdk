@@ -130,7 +130,7 @@ class AbstractDSModule extends Events {
 }
 
 /**
- *  Copyright (c) 2020, 2021 Texas Instruments Incorporated
+ *  Copyright (c) 2020, 2025 Texas Instruments Incorporated
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -162,6 +162,7 @@ const ERR_CONNECT = new Error('Communication with target failed, no response.');
 const backplaneService$1 = ServicesRegistry.getService(backplaneServiceType);
 const refreshEventType = new DSEventType('refresh');
 const targetStateChangedEventType = new DSEventType('changed', 'targetState');
+const LOAD_PROGRAM_FILENAME = 'ds-service-firmware.data';
 /**
  * @hidden
  */
@@ -244,7 +245,7 @@ class DebugCore extends AbstractDebugCore {
     }
     async loadProgram(data, symbolOnly, verifyProgram = false) {
         this.prolog(this.loadProgram.name, '[...]', symbolOnly, verifyProgram);
-        const { path: outPath } = await this.fileModule.write('ds-service-firmware.data', await (await backplaneService$1.getUtil()).encodeAsBase64(data));
+        const { path: outPath } = await this.fileModule.write(LOAD_PROGRAM_FILENAME, await (await backplaneService$1.getUtil()).encodeAsBase64(data));
         const defaultSettings = await this.getDsModuleSettings();
         await this.setDsModuleSettings({
             VerifyAfterProgramLoad: verifyProgram ? 'Fast verification' : 'No verification'
@@ -258,7 +259,7 @@ class DebugCore extends AbstractDebugCore {
             }
         }
         finally {
-            this.setDsModuleSettings(defaultSettings);
+            await this.setDsModuleSettings(defaultSettings);
         }
     }
     async verifyProgram(data) {
@@ -287,16 +288,16 @@ class DebugCore extends AbstractDebugCore {
     get registers() {
         return this.dsModule.registers;
     }
-    getDsModuleSettings() {
-        return this.dsModule.settings.get([
+    async getDsModuleSettings() {
+        return (await this.dsModule.settings.get([
             'VerifyAfterProgramLoad',
             'AutoRunToLabelName',
             'AutoRunToLabelOnRestart',
             'AutoRunToLabelOnReset'
-        ]);
+        ])).nameValueMap;
     }
-    setDsModuleSettings(settings) {
-        return this.dsModule.settings.set({
+    async setDsModuleSettings(settings) {
+        await this.dsModule.settings.set({
             VerifyAfterProgramLoad: 'No verification',
             AutoRunToLabelName: '',
             AutoRunToLabelOnRestart: 'false',
@@ -450,7 +451,7 @@ class NonDebugCore extends AbstractDebugCore {
 }
 
 /**
- *  Copyright (c) 2020, 2023 Texas Instruments Incorporated
+ *  Copyright (c) 2020, 2025 Texas Instruments Incorporated
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -484,6 +485,8 @@ const gelOutputEventType = new DSEventType('gelOutput');
 const configChangedEventType = new DSEventType('configChanged');
 const statusMessageEventType = new DSEventType('statusMessage');
 const targetSupportProgressEventType = new EventType('targetSupportProgress');
+const DSProgressUpdateEventType = new EventType('DSProgressUpdate');
+const DSDialogEventType = new EventType('DSDialogEvent');
 const dsServiceType = new ServiceType(MODULE_NAME);
 /**
  * DS service implementation
@@ -495,14 +498,13 @@ class DSService extends AbstractDSModule {
         this.cores = cores;
         this._timeOfLastDeConfigure = 0;
         this._ccxml = undefined;
+        this.dsModuleListenersAdded = false;
     }
     async configure(ccxml) {
         this.prolog(this.configure.name, ...arguments);
         this._ccxml = ccxml;
         let cores = [];
         let nonDebugCores = [];
-        // cache the DS module
-        await this.ensureDsModule();
         const fileModule = await backplaneService.getSubModule('File');
         if (ccxml) {
             // create temporary ccxml file
@@ -524,12 +526,18 @@ class DSService extends AbstractDSModule {
             if (delay > 0) {
                 await GcUtils.delay(delay); // make sure at least 250ms has elapsed since calling deConfigure().
             }
+            await this.ensureDsModule(); // get the the DS module, if we haven't already.
+            if (!this.dsModuleListenersAdded) {
+                this.addDSModuleListeners();
+            }
+            this.dsModule.dialogs.willHandleDialogs(this.hasAnyListeners(DSDialogEventType));
             // configure the ds module with the ccxml path
             const result = await this.dsModule.configure(ccxmlPath);
             cores = result.cores;
             nonDebugCores = result.nonDebugCores;
         }
         else {
+            await this.ensureDsModule(); // get the the DS module, if we haven't already.
             const result = await this.dsModule.listCores();
             cores = result.cores;
             nonDebugCores = result.nonDebugCores;
@@ -546,6 +554,16 @@ class DSService extends AbstractDSModule {
             }
         }));
         this.cores.push(...optionalNonDebugCores.filter(core => core !== null));
+    }
+    addDSModuleListeners() {
+        this.dsModule.dialogs.addListener('new', (params) => {
+            const DSDialogParams = { ...params, response: this.dsModule.dialogs.setButtonResponse };
+            this.fireEvent(DSDialogEventType, DSDialogParams);
+        });
+        this.dsModule.progress.addListener('update', (params) => {
+            this.fireEvent(DSProgressUpdateEventType, params);
+        });
+        this.dsModuleListenersAdded = true;
     }
     async deConfigure() {
         this.prolog(this.deConfigure.name, ...arguments);
@@ -593,8 +611,11 @@ class DSService extends AbstractDSModule {
         const backplaneService = ServicesRegistry.getService(backplaneServiceType);
         return backplaneService.getSubModule('EventBroker');
     }
+    changeDSDialogHandler(willHandle) {
+        this.dsModule.dialogs.willHandleDialogs(willHandle);
+    }
 }
 ServicesRegistry.register(dsServiceType, DSService);
 
-export { AbstractDSModule, CoreType, DSEventBrokerType, DSEventType, DebugCore, Location, MODULE_NAME, NonDebugCore, ccsDebugCoreChangedEventType, ccsDebugSessionChangedEventType, ccsSymbolsChangedEventType, configChangedEventType, debugCoreType, dsServiceType, gelOutputEventType, nonDebugCoreType, refreshEventType, statusMessageEventType, targetStateChangedEventType, targetSupportProgressEventType };
+export { AbstractDSModule, CoreType, DSDialogEventType, DSEventBrokerType, DSEventType, DSProgressUpdateEventType, DebugCore, LOAD_PROGRAM_FILENAME, Location, MODULE_NAME, NonDebugCore, ccsDebugCoreChangedEventType, ccsDebugSessionChangedEventType, ccsSymbolsChangedEventType, configChangedEventType, debugCoreType, dsServiceType, gelOutputEventType, nonDebugCoreType, refreshEventType, statusMessageEventType, targetStateChangedEventType, targetSupportProgressEventType };
 //# sourceMappingURL=DSService.js.map

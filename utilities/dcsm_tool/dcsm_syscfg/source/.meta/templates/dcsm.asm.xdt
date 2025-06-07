@@ -59,8 +59,7 @@
             for (var i = 15; i >= 1; i--)
             {
                 var param_name = "write_protect_bit" + (i+8).toString()
-                if (i%8 == 0)
-                {
+                if (!zone1_OTP.hasOwnProperty(param_name)){
                     binary_write_protect_bits = binary_write_protect_bits + "1"
                 }
                 else{
@@ -161,12 +160,32 @@
         if (zone2_OTP['bootPinCount'] > 2) { BMSP2 = (parseInt(zone2_OTP["BMSP2"].substring(4)) + 0).toString(16).padStart(2, '0') }     
         ZONE2_BOOTPIN_CONFIG = "0x5A" + BMSP2 + BMSP1 + BMSP0;
 
+        var write_protect_bits = parseInt("1111111111111111",2)
+        if (["F28P55x"].includes(Common.getDeviceName()))
+        {
+            var binary_write_protect_bits = ""
+            for (var i = 15; i >= 1; i--)
+            {
+                var param_name = "write_protect_bit" + (i+8).toString()
+                if (!zone2_OTP.hasOwnProperty(param_name)){
+                    binary_write_protect_bits = binary_write_protect_bits + "1"
+                }
+                else{
+                    binary_write_protect_bits = binary_write_protect_bits + zone2_OTP[param_name]
+                }
+            }
+            write_protect_bits = parseInt(binary_write_protect_bits, 2)
+        }
+        var mpost_shift = 2
+        if (["F28P55x"].includes(Common.getDeviceName())){
+            mpost_shift = 3
+        }
         if (["F28004x", "F28002x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName())){
-            ZONE2_GPREG2 = "0x5A" +"FFFF" + (parseInt(12 + parseInt(zone2_OTP["ERRORSTSPIN"])).toString(16)) + "F";
+            ZONE2_GPREG2 = "0x5AFFFF" + (parseInt(12 + parseInt(zone2_OTP["ERRORSTSPIN"])).toString(16)) + "F";
             if (["F28002x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName()))
             {
-                var runmpost_errorsts = (parseInt(zone2_OTP["RUNMPOST"] << 2) + parseInt(zone2_OTP["ERRORSTSPIN"])).toString(16)
-                ZONE2_GPREG2 = "0x5A" + "FFFF" + runmpost_errorsts + parseInt(zone2_OTP["CJTAGNODEID"]).toString(16);
+                var writeprotect_runmpost_errorsts = ((write_protect_bits << (mpost_shift + 2)) + (parseInt(zone2_OTP["RUNMPOST"]) << mpost_shift) + parseInt(zone2_OTP["ERRORSTSPIN"])).toString(16)
+                ZONE2_GPREG2 = "0x5A" + writeprotect_runmpost_errorsts + parseInt(zone2_OTP["CJTAGNODEID"]).toString(16);
             }
         }
         else if ("F2838x".includes(Common.getDeviceName()))

@@ -21,11 +21,11 @@ let config = [
             { name: "PULLUP", displayName : "Push-pull output/pull-up enabled on input"  },
             { name: "INVERT", displayName : "Push-pull output/floating INVERTED polarity on an input"  },
             { name: "PULLUP_INVERT", displayName : "Push-pull output/pull-up enabled on INVERTED input"  },
-            { name: "OD", displayName : "Open-drain output/floating input" },
-            { name: "OD_PULLUP", displayName : "Open-drain output with pull-up enabled output and input" },
-            { name: "OD_INVERT", displayName : "Open-drain output/floating inverted input" },
-            { name: "OD_PULLUP_INVERT", displayName : "Open-drain output with pull-up enabled output and INVERTED input" }
-        ]
+            { name: ["F28E12x"].includes(Common.getDeviceName()) ? "ODO" : "OD" , displayName : "Open-drain output/floating input" },
+            { name: ["F28E12x"].includes(Common.getDeviceName()) ? "ODO_PULLUP" : "OD_PULLUP" , displayName : "Open-drain output with pull-up enabled output and input" },
+            { name: ["F28E12x"].includes(Common.getDeviceName()) ? "ODO_INVERT" : "OD_INVERT" , displayName : "Open-drain output/floating inverted input" },
+            { name: ["F28E12x"].includes(Common.getDeviceName()) ? "ODO_PULLUP_INVERT" : "OD_PULLUP_INVERT" , displayName : "Open-drain output with pull-up enabled output and INVERTED input" }
+       ]
     },
     {
         name        : "qualMode",
@@ -54,7 +54,12 @@ function filterHardware(component)
 
 function onValidate(inst, validation)
 {
-    
+    if (["ODO_PULLUP", "ODO", "ODO_INVERT", "ODO_PULLUP_INVERT"].includes(inst.padConfig))
+    {
+        validation.logWarning(
+                "Use GPIO_writeODPin function to enable OD feature and should be called in Runtime instead of GPIO_writePin." +
+                " Refer to TRM for more details",inst,"padConfig");
+    }
 }
 
 function onValidatePinmux(inst, validation) {

@@ -2,7 +2,7 @@ import { EncoderType, bufferOrStringDataType } from '../../gc-target-configurati
 import { Events, EventType } from '../../gc-core-assets/lib/Events';
 
 /**
- *  Copyright (c) 2023, Texas Instruments Incorporated
+ *  Copyright (c) 2023, 2024 Texas Instruments Incorporated
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without

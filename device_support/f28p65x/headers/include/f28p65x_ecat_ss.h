@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -239,11 +239,11 @@ struct ESCSS_SYNC0_CONFIG_BITS {        // bits description
     Uint16 C28x_PIE_EN:1;               // 0 Connects the SYNC0 to C28x PIE Interrupt
     Uint16 CLA_INT_EN:1;                // 1 Connects the SYNC0 to CLA Interrupt
     Uint16 C28x_DMA_EN:1;               // 2 Connects the SYNC0 to C28x DMA Trigger
-    Uint16 CM4_NVIC_EN:1;               // 3 Connects the SYNC0 to CM4 NVIC Interrupt
-    Uint16 uDMA_TRIG_EN:1;              // 4 Connects the SYNC0 to uDMA Trigger
-    Uint16 rsvd1:3;                     // 7:5 Reserved
+    Uint16 rsvd1:1;                     // 3 Reserved
+    Uint16 rsvd2:1;                     // 4 Reserved
+    Uint16 rsvd3:3;                     // 7:5 Reserved
     Uint16 WRITE_KEY:8;                 // 15:8 Key to enable writing lock
-    Uint16 rsvd2:16;                    // 31:16 Reserved
+    Uint16 rsvd4:16;                    // 31:16 Reserved
 };
 
 union ESCSS_SYNC0_CONFIG_REG {
@@ -255,11 +255,11 @@ struct ESCSS_SYNC1_CONFIG_BITS {        // bits description
     Uint16 C28x_PIE_EN:1;               // 0 Connects the SYNC1 to C28x PIE Interrupt
     Uint16 CLA_INT_EN:1;                // 1 Connects the SYNC1 to CLA Interrupt
     Uint16 C28x_DMA_EN:1;               // 2 Connects the SYNC1 to C28x DMA Trigger
-    Uint16 CM4_NVIC_EN:1;               // 3 Connects the SYNC1 to CM4 NVIC Interrupt
-    Uint16 uDMA_TRIG_EN:1;              // 4 Connects the SYNC1 to uDMA Trigger
-    Uint16 rsvd1:3;                     // 7:5 Reserved
+    Uint16 rsvd1:1;                     // 3 Reserved
+    Uint16 rsvd2:1;                     // 4 Reserved
+    Uint16 rsvd3:3;                     // 7:5 Reserved
     Uint16 WRITE_KEY:8;                 // 15:8 Key to enable writing lock
-    Uint16 rsvd2:16;                    // 31:16 Reserved
+    Uint16 rsvd4:16;                    // 31:16 Reserved
 };
 
 union ESCSS_SYNC1_CONFIG_REG {
@@ -318,11 +318,11 @@ union ESCSS_MISC_IO_CONFIG_REG {
 struct ESCSS_PHY_IO_CONFIG_BITS {       // bits description
     Uint16 rsvd1:2;                     // 1:0 Reserved
     Uint16 PHY_PORT_CNT:2;              // 3:2 Number of PHY port counts
-    Uint16 PHY_INTF_IOPAD_SEL:2;        // 5:4 IO Combination select for PHY Interface
+    Uint16 rsvd2:2;                     // 5:4 Reserved
     Uint16 TX_CLK_AUTO_COMP:1;          // 6 Selects TX_CLK IO to do Auto compensation
-    Uint16 rsvd2:1;                     // 7 Reserved
+    Uint16 rsvd3:1;                     // 7 Reserved
     Uint16 WRITE_KEY:8;                 // 15:8 Key to enable writing lock
-    Uint16 rsvd3:16;                    // 31:16 Reserved
+    Uint16 rsvd4:16;                    // 31:16 Reserved
 };
 
 union ESCSS_PHY_IO_CONFIG_REG {
@@ -331,14 +331,14 @@ union ESCSS_PHY_IO_CONFIG_REG {
 };
 
 struct ESCSS_SYNC_IO_CONFIG_BITS {      // bits description
-    Uint16 SYNC0_IOPAD_SEL:2;           // 1:0 SYNC0 IO PAD select option
-    Uint16 rsvd1:1;                     // 2 Reserved
+    Uint16 rsvd1:2;                     // 1:0 Reserved
+    Uint16 rsvd2:1;                     // 2 Reserved
     Uint16 SYNC0_GPIO_EN:1;             // 3 SYNC0 connection to OUT pad enabled
-    Uint16 SYNC1_IOPAD_SEL:2;           // 5:4 SYNC1 IO PAD select option
-    Uint16 rsvd2:1;                     // 6 Reserved
+    Uint16 rsvd3:2;                     // 5:4 Reserved
+    Uint16 rsvd4:1;                     // 6 Reserved
     Uint16 SYNC1_GPIO_EN:1;             // 7 SYNC1 connection to OUT pad enabled
     Uint16 WRITE_KEY:8;                 // 15:8 Key to enable writing lock
-    Uint16 rsvd3:16;                    // 31:16 Reserved
+    Uint16 rsvd5:16;                    // 31:16 Reserved
 };
 
 union ESCSS_SYNC_IO_CONFIG_REG {
@@ -347,14 +347,14 @@ union ESCSS_SYNC_IO_CONFIG_REG {
 };
 
 struct ESCSS_LATCH_IO_CONFIG_BITS {     // bits description
-    Uint16 LATCH0_IOPAD_SEL:2;          // 1:0 LATCH0 IO PAD select option
-    Uint16 rsvd1:1;                     // 2 Reserved
+    Uint16 rsvd1:2;                     // 1:0 Reserved
+    Uint16 rsvd2:1;                     // 2 Reserved
     Uint16 LATCH0_GPIO_EN:1;            // 3 LATCH0 connection to IN pad enabled
-    Uint16 LATCH1_IOPAD_SEL:2;          // 5:4 LATCH1 IO PAD select option
-    Uint16 rsvd2:1;                     // 6 Reserved
+    Uint16 rsvd3:2;                     // 5:4 Reserved
+    Uint16 rsvd4:1;                     // 6 Reserved
     Uint16 LATCH1_GPIO_EN:1;            // 7 LATCH1 connection to IN pad enabled
     Uint16 WRITE_KEY:8;                 // 15:8 Key to enable writing lock
-    Uint16 rsvd3:16;                    // 31:16 Reserved
+    Uint16 rsvd5:16;                    // 31:16 Reserved
 };
 
 union ESCSS_LATCH_IO_CONFIG_REG {
@@ -363,18 +363,18 @@ union ESCSS_LATCH_IO_CONFIG_REG {
 };
 
 struct ESCSS_LED_CONFIG_BITS {          // bits description
-    Uint16 LINKACT0:1;                  // 0 GPIO enable for LINKACT0 LED
-    Uint16 LINKACT1:1;                  // 1 GPIO enable for LINKACT1 LED
+    Uint16 rsvd1:1;                     // 0 Reserved
+    Uint16 rsvd2:1;                     // 1 Reserved
     Uint16 STATE:1;                     // 2 GPIO enable for STATE LED
     Uint16 ERR:1;                       // 3 GPIO enable for ERR LED
     Uint16 RUN:1;                       // 4 GPIO enable for RUN LED
-    Uint16 rsvd1:1;                     // 5 Reserved
-    Uint16 LINKACT0_IOPAD_SEL:2;        // 7:6 LINKACT0 LED IO PAD select
-    Uint16 LINKACT1_IOPAD_SEL:2;        // 9:8 LINKACT1 LED IO PAD select
-    Uint16 STATE_IOPAD_SEL:2;           // 11:10 STATE LED IO PAD select
-    Uint16 ERR_IOPAD_SEL:2;             // 13:12 ERROR LED IO PAD select
-    Uint16 RUN_IOPAD_SEL:2;             // 15:14 RUN LED IO PAD select
-    Uint16 rsvd2:16;                    // 31:16 Reserved
+    Uint16 rsvd3:1;                     // 5 Reserved
+    Uint16 rsvd4:2;                     // 7:6 Reserved
+    Uint16 rsvd5:2;                     // 9:8 Reserved
+    Uint16 rsvd6:2;                     // 11:10 Reserved
+    Uint16 rsvd7:2;                     // 13:12 Reserved
+    Uint16 rsvd8:2;                     // 15:14 Reserved
+    Uint16 rsvd9:16;                    // 31:16 Reserved
 };
 
 union ESCSS_LED_CONFIG_REG {
@@ -404,9 +404,9 @@ struct ESCSS_CONFIG_REGS {
     union   ESCSS_SYNC_IO_CONFIG_REG         ESCSS_SYNC_IO_CONFIG;         // SYNC Signals IO configurations
     union   ESCSS_LATCH_IO_CONFIG_REG        ESCSS_LATCH_IO_CONFIG;        // LATCH inputs IO pad select
     Uint32                                   ESCSS_GPIN_SEL;               // GPIN Select between IO PAD & tieoff
-    Uint32                                   ESCSS_GPIN_IOPAD_SEL;         // GPIN IO pad Select
+    Uint16                                   rsvd1[2];                     // Reserved
     Uint32                                   ESCSS_GPOUT_SEL;              // GPOUT IO pad connect select
-    Uint32                                   ESCSS_GPOUT_IOPAD_SEL;        // GPOUT IO pad select
+    Uint16                                   rsvd2[2];                     // Reserved
     union   ESCSS_LED_CONFIG_REG             ESCSS_LED_CONFIG;             // Selection of LED o/p connect to IO pad
     union   ESCSS_MISC_CONFIG_REG            ESCSS_MISC_CONFIG;            // Miscelleneous Configuration
 };

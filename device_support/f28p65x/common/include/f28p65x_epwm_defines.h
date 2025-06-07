@@ -8,7 +8,7 @@
 //
 //
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -83,6 +83,30 @@ extern "C" {
 #define TB_DIV1   0x0
 #define TB_DIV2   0x1
 #define TB_DIV4   0x2
+
+//
+// HSPCLKDIV bits 
+//
+#define TB_HSDIV1  0x0
+#define TB_HSDIV2  0x1
+#define TB_HSDIV4  0x2
+#define TB_HSDIV6  0x3
+#define TB_HSDIV8  0x4
+#define TB_HSDIV10  0x5
+#define TB_HSDIV12  0x6
+#define TB_HSDIV14  0x7
+
+//
+// CLKDIV bits
+//
+#define TB_CLOCK_DIV1   0x0
+#define TB_CLOCK_DIV2   0x1
+#define TB_CLOCK_DIV4   0x2
+#define TB_CLOCK_DIV8   0x3
+#define TB_CLOCK_DIV16  0x4
+#define TB_CLOCK_DIV32  0x5
+#define TB_CLOCK_DIV64  0x6
+#define TB_CLOCK_DIV128 0x7
 
 //
 // PHSDIR bit

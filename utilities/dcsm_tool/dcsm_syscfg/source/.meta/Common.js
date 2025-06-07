@@ -101,6 +101,11 @@ function getSECTs(){
         getDeviceName().toLowerCase() + "_sect.js");
 }
 
+function getBootOptions(){
+    return system.getScript("/utilities/dcsm_tool/dcsm_syscfg/source/boot_options/" + 
+        getDeviceName().toLowerCase() + ".js");
+}
+
 function getBankNames(bank){
     let BANK_NAMES = ["", "_BANK1", "_BANK2", "_BANK3", "_BANK4"];
     return BANK_NAMES[bank];
@@ -504,6 +509,7 @@ exports = {
     getCLAOptions : getCLAOptions,
     getRAMs : getRAMs,
     getSECTs : getSECTs,
+    getBootOptions : getBootOptions,
     onChangeCurrentLinkPointer : onChangeCurrentLinkPointer,
     getLinkPointerConfigOptions : getLinkPointerConfigOptions,
     getBankNames : getBankNames,

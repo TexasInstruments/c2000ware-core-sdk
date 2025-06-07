@@ -1,9 +1,4 @@
 let ASYSCTLRegisters = [
-	{ name: "EXTROSCCSR1", description: "ExtR Oscillator Status Register", offset: "0x24",
-		bits: [
-			{ name: "OSCSTATUS", description: "Running status of ExtR.", size: "8", shift: "24", mask: "0xFF000000" },
-		]
-	},
 	{ name: "INTERNALTESTCTL", description: "INTERNALTEST Node Control Register", offset: "0x4A",
 		bits: [
 			{ name: "TESTSEL", description: "Test Select", size: "5", shift: "0", mask: "0x1F" },

@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -165,7 +165,7 @@
 #define LIN_SCICLEARINT_CLRRXINT        0x200U        // Clear Receiver Interrupt
 #define LIN_SCICLEARINT_CLRIDINT        0x2000U       // Clear Identifier Interrupt (LIN only)
 #define LIN_SCICLEARINT_CLRTXDMA        0x10000U      // Clear transmit DMA
-#define LIN_SCICLEARINT_SETRXDMA        0x20000U      // Clear receiver DMA
+#define LIN_SCICLEARINT_CLRRXDMA        0x20000U      // Clear receiver DMA
 #define LIN_SCICLEARINT_CLRPEINT        0x1000000U    // Clear Parity Interrupt
 #define LIN_SCICLEARINT_CLROEINT        0x2000000U    // Clear Overrun-Error Interrupt
 #define LIN_SCICLEARINT_CLRFEINT        0x4000000U    // Clear Framing-Error Interrupt

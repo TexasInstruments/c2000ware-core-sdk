@@ -12,7 +12,7 @@
 //
 //#############################################################################
 // 
-// C2000Ware v5.03.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -182,10 +182,10 @@ int icfft_fpu32_test(void)
     //       CFFTin1Buff[0] = real[0]
     //       CFFTin1Buff[1] = imag[0]
     //       CFFTin1Buff[2] = real[1]
-    //       â¦â¦â¦
+    //       ………
     //       CFFTin1Buff[N] = real[N/2]
     //       CFFTin1Buff[N+1] = imag[N/2]
-    //       â¦â¦â¦
+    //       ………
     //       CFFTin1Buff[2N-3] = imag[N-2]
     //       CFFTin1Buff[2N-2] = real[N-1]
     //       CFFTin1Buff[2N-1] = imag[N-1]
@@ -218,10 +218,10 @@ int icfft_fpu32_test(void)
     //     CurrentInPtr[0] = real[0]
     //     CurrentInPtr[1] = imag[0]
     //     CurrentInPtr[2] = real[1]
-    //     â¦â¦â¦
+    //     ………
     //     CurrentInPtr[N] = real[N/2]
     //     CurrentInPtr[N+1] = imag[N/2]
-    //     â¦â¦â¦
+    //     ………
     //     CurrentInPtr[2N-3] = imag[N-2]
     //     CurrentInPtr[2N-2] = real[N-1]
     //     CurrentInPtr[2N-1] = imag[N-1]
@@ -263,7 +263,7 @@ int icfft_fpu32_test(void)
     //       CurrentOutPtr[0] = Mag[0]
     //       CurrentOutPtr[1] = Mag[1]
     //       CurrentOutPtr[2] = Mag[2]
-    //       â¦â¦â¦
+    //       ………
     //       CurrentOutPtr[N-1] = Mag[N-1]
 
     // Perform the iCFFT to recover the input data

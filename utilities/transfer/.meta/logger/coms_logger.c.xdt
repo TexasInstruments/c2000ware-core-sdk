@@ -189,16 +189,16 @@ void COMSLOG_init()
 
     TransferRingBuffer_init(
         `comsLinkBufferModule.$name`_Handle, 
-        (uint16_t**)`comsLinkBufferModule.$name`_buffer, 
+        (char**)`comsLinkBufferModule.$name`_buffer, 
         `comsLinkBufferModule.$name`_BUFFER_SIZE, 
-        `comsLinkBufferModule.$name`_ELEMENT_SIZE);
+        sizeof(`comsLinkBufferModule.$name`_buffer[0]));
 
 % if (comsloggerInst["comsLink"] == "fsi") {
     TransferRingBuffer_init(
         `comsLinkBufferModule.$name`_tagUdata_Handle, 
-        (uint16_t**)`comsLinkBufferModule.$name`_tagUdata_buffer, 
+        (char**)`comsLinkBufferModule.$name`_tagUdata_buffer, 
         `comsLinkBufferModule.$name`_BUFFER_SIZE, 
-        1);
+        sizeof(`comsLinkBufferModule.$name`_tagUdata_buffer[0]));
 % }
 }
 
@@ -211,9 +211,11 @@ void COMSLOG_init()
 //
 // COMs link RX Interrupt
 //
-% if (transferCommon.isC2000()) {
+% if (transferCommon.isC2000() && !transferCommon.isC29x()) {
 interrupt void `comsLinkModule["spiRXInt"]["interruptHandler"]`(void)
-% } else {
+% } else if (transferCommon.isC29x()){
+void INT_`comsLinkModule.$name`_1_ISR(void)
+% } else{
 void INT_`comsLinkModule.$name`_1_ISR(void *args)
 % }
 {
@@ -253,9 +255,11 @@ void INT_`comsLinkModule.$name`_1_ISR(void *args)
 //
 // COMs link RX Interrupt
 //
-% if (transferCommon.isC2000()) {
+% if (transferCommon.isC2000() && !transferCommon.isC29x()) {
 interrupt void `comsLinkModule["fsiRxInt1"]["interruptHandler"]`(void)
-% } else {
+% } else if (transferCommon.isC29x()){
+void INT_`comsLinkModule.$name`_1_ISR(void)
+% } else{
 void INT_`comsLinkModule.$name`_1_ISR(void *args)
 % }
 {
@@ -292,7 +296,7 @@ void INT_`comsLinkModule.$name`_1_ISR(void *args)
 
     FSI_clearRxEvents(`comsLinkModule.$name`_BASE, FSI_RX_EVT_FRAME_DONE | FSI_RX_EVT_DATA_FRAME);
 
-    % if (transferCommon.isC2000()){
+    % if (transferCommon.isC2000() && !transferCommon.isC29x()){
     //
     // Issue PIE ack
     //
@@ -303,14 +307,16 @@ void INT_`comsLinkModule.$name`_1_ISR(void *args)
 //
 // COMs link RX Error Interrupt
 //
-% if (transferCommon.isC2000()) {
+% if (transferCommon.isC2000() && !transferCommon.isC29x()) {
 interrupt void `comsLinkModule["fsiRxInt2"]["interruptHandler"]`(void)
-% } else {
+% } else if (transferCommon.isC29x()){
+void INT_`comsLinkModule.$name`_2_ISR(void)
+% } else{
 void INT_`comsLinkModule.$name`_2_ISR(void *args)
 % }
 {
     uint16_t status = 0;
-    % if (transferCommon.isC2000()) {
+    % if (transferCommon.isC2000() && !transferCommon.isC29x()) {
     status = FSI_getRxEventStatus(`comsLinkModule.$name`_BASE);
     % } else {
     FSI_getRxEventStatus(myCOMSLogger0_FSIRX_BASE, &status);
@@ -320,7 +326,7 @@ void INT_`comsLinkModule.$name`_2_ISR(void *args)
 
     FSI_clearRxEvents(`comsLinkModule.$name`_BASE, FSI_RX_EVTMASK);
 
-    % if (transferCommon.isC2000()) {
+    % if (transferCommon.isC2000() && !transferCommon.isC29x()) {
     //
     // Issue PIE ack
     //
@@ -342,13 +348,17 @@ void COMSLOG_transferBufferData()
     uint16_t tagUdata[1];
     uint16_t frameTag;
     uint16_t uData;
+    uint16_t buffReadResult_tu = 0;
 % }
     uint16_t buffReadResult = 0;
     buffReadResult = TransferRingBuffer_read(`comsLinkBufferModule.$name`_Handle, bufferData);
-% if (comsloggerInst["comsLink"] == "fsi") {
-    buffReadResult = TransferRingBuffer_read(`comsLinkBufferModule.$name`_tagUdata_Handle, tagUdata);
-% }
     if (buffReadResult) {
+% if (comsloggerInst["comsLink"] == "fsi") {
+        buffReadResult_tu = TransferRingBuffer_read(`comsLinkBufferModule.$name`_tagUdata_Handle, tagUdata);
+        if (buffReadResult != buffReadResult_tu){
+            ESTOP0;
+        }
+% }
         % if (comsloggerOwner && comsloggerOwnerExport) {
 
             % if (comsloggerInst["comsLink"] == "fsi" || comsloggerInst["comsLink"] == "spi") {

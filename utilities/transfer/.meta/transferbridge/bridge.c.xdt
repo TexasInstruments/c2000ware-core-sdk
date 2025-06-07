@@ -454,7 +454,7 @@ void BRIDGE_init()
         `comsLinkBBufferModule.$name`_Handle, 
         (uint16_t**)`comsLinkBBufferModule.$name`_buffer, 
         `comsLinkBBufferModule.$name`_BUFFER_SIZE, 
-        `comsLinkBBufferModule.$name`_ELEMENT_SIZE);
+        sizeof(`comsLinkBBufferModule.$name`_buffer[0]));
     % }
 }
 

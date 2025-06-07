@@ -742,6 +742,10 @@ let EPWM_TZ_SIGNAL = [
 	{ name: "EPWM_TZ_SIGNAL_DCAEVT1", displayName: "One-shot DCAEVT1" },
 	{ name: "EPWM_TZ_SIGNAL_DCBEVT1", displayName: "One-shot DCBEVT1" },
 ]
+let EPWM_TZ_SIGNAL_CAPEVT = [
+	{ name: "EPWM_TZ_SIGNAL_CAPEVT_CBC", displayName: "Cycle by cycle capture event" },
+	{ name: "EPWM_TZ_SIGNAL_CAPEVT_OST", displayName: "One-shot Capture event" },
+]
 let EPWM_XCMP = [
 	{ name: "EPWM_XCMP_ACTIVE", displayName: "XCMP set = Active" },
 	{ name: "EPWM_XCMP_SHADOW1", displayName: "XCMP set = Shadow 1" },
@@ -1000,6 +1004,7 @@ module.exports = {
 	EPWM_TIME_BASE_STATUS_COUNT: EPWM_TIME_BASE_STATUS_COUNT,
 	EPWM_DB_INPUT: EPWM_DB_INPUT,
 	EPWM_TZ_SIGNAL: EPWM_TZ_SIGNAL,
+	EPWM_TZ_SIGNAL_CAPEVT: EPWM_TZ_SIGNAL_CAPEVT,
 	EPWM_XCMP: EPWM_XCMP,
 	EPWM_MINDB_BLOCK: EPWM_MINDB_BLOCK,
 	EPWM_MINDB_REF: EPWM_MINDB_REF,

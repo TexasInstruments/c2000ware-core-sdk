@@ -1,0 +1,2 @@
+import{r as t,g as a}from"./p-823ca21f.js";import{connectionManager as e}from"../gc-target-connection-manager/lib/ConnectionManager";let c=class{constructor(a){t(this,a);this.connectSequentially=false}connectedCallback(){e.registerConfiguration(this.el.id||"default",this.el.innerHTML,this.connectSequentially)}disconnectedCallback(){e.unregisterConfiguration(this.el.id||"default")}get el(){return a(this)}};export{c as gc_target_configuration};
+//# sourceMappingURL=p-6083957f.entry.js.map

@@ -1,0 +1,15 @@
+//*****************************************************************************
+//
+// @brief Function to enable pullups for the unbonded GPIOs
+//
+//*****************************************************************************
+extern void Device_enableUnbondedGPIOPullups(uint16_t packageType);
+
+//*****************************************************************************
+//
+// @brief Function to update peripheral configuraiton register. These bits are 
+// used to provide the protection for the package when the GPIOs are double boned
+//
+//*****************************************************************************
+extern void Device_updatePeripheralConfig(uint16_t packageType);
+

@@ -22,7 +22,7 @@
 //
 //
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -186,7 +186,7 @@ void initDMA()
     destAddr = (const void *)rData;
 
     //
-    // configure DMA CH6
+    // configure DMA CHANNEL
     //
     transfParams.transferTrigger  = DMA_TRIGGER_SOFTWARE;
     transfParams.interruptMode    = DMA_INT_AT_END;

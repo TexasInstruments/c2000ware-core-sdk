@@ -14,7 +14,7 @@
 //
 //
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -336,6 +336,27 @@ static inline uint16_t feature_extract_getnumframeconcat(Feature_Extract_State_P
     return(fh->init_params.num_frame_concat);
 }
 
+static inline void feature_extract_setlogmul(Feature_Extract_State_Params *fh,
+                      const uint16_t st)
+{
+    fh->init_params.log_multiply= st;
+}
+
+static inline uint16_t feature_extract_getlogmul(Feature_Extract_State_Params *fh)
+{
+    return(fh->init_params.log_multiply);
+}
+
+static inline void feature_extract_setlogbase(Feature_Extract_State_Params *fh,
+                      const float st)
+{
+    fh->init_params.log_base= st;
+}
+
+static inline float feature_extract_getlogbase(Feature_Extract_State_Params *fh)
+{
+    return(fh->init_params.log_base);
+}
 
 static inline void feature_extract_setconcatframe_inPtr(Feature_Extract_State_Params *fh,
         int8_t *pi)

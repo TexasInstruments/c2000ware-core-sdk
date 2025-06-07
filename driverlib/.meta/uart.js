@@ -4,60 +4,204 @@ let Pinmux   = system.getScript("/driverlib/pinmux.js");
 /* Intro splash on GUI */
 let longDescription = "UART";
 let pinmuxOnlyDevices = ["F2838x"];
+let fineGrainedFifoDevices = ["F28E12x"]
 
 function burstSizeMapping(fifoLevel, inst){
     if(inst.fen == false){
         return 1;
     }
-    switch(fifoLevel) {
-        case "UART_FIFO_TX7_8":
-        case "UART_FIFO_RX1_8":
-            return 2;
-        case "UART_FIFO_TX6_8":
-        case "UART_FIFO_RX2_8":
-            return 4;
-        case "UART_FIFO_TX4_8":
-        case "UART_FIFO_RX4_8":
-            return 8;
-        case "UART_FIFO_TX2_8":
-        case "UART_FIFO_RX6_8":
-            return 12;
-        case "UART_FIFO_TX1_8":
-        case "UART_FIFO_RX7_8":
-            return 14;
-        default:
-          return 1;
+    if(inst.fineGrainConfig){
+        return fgBurstMapUtil(fifoLevel, inst)
+    }
+    else{
+        switch(fifoLevel) {
+            case "UART_FIFO_TX7_8":
+            case "UART_FIFO_RX1_8":
+                return 2;
+            case "UART_FIFO_TX6_8":
+            case "UART_FIFO_RX2_8":
+                return 4;
+            case "UART_FIFO_TX4_8":
+            case "UART_FIFO_RX4_8":
+                return 8;
+            case "UART_FIFO_TX2_8":
+            case "UART_FIFO_RX6_8":
+                return 12;
+            case "UART_FIFO_TX1_8":
+            case "UART_FIFO_RX7_8":
+                return 14;
+            default:
+              return 1;
+        }
     }
 }
 
-function onChangeFIFOInterrupts(inst, ui)
+function fgBurstMapUtil(fifoLevel){
+    let type = fifoLevel.includes("_RX") ? "RX" : "TX"
+    switch (fifoLevel) {
+        case "EOT": 
+            return 8;
+        case "UART_FIFO_TXEMPTY": 
+            return 16;
+        case "UART_FIFO_RXFULL": 
+            return 16;
+        default:
+            return diffUtil(fifoLevel, type)
+    }
+}
+
+function diffUtil(fifoLevel, type){
+    let numericValue = Number(fifoLevel.split("_").pop().replace(type, ""))
+    if(type == "TX")
+        return (16 - numericValue)
+    else
+        return (numericValue)
+}
+
+let fifoSettingNFG =  [                                                     // Devices without fine grained FIFO
+    {
+        name        : "fineGrainConfig",
+        displayName : "Internal Use: Used to indicate if fine grained FIFO is available for device",
+        hidden      : true,
+        default     : false
+    },
+    {
+        name        : "fen",
+        displayName : "Enable FIFO",
+        description : 'Whether or not to use FIFO mode.',
+        hidden      : false,
+        onChange    : onChangeFIFO,
+        default     : false
+    },
+    {
+        name        : "txiflsel",
+        displayName : "Transmit FIFO Trigger Level",
+        description : 'Transmit FIFO trigger level used. UART will generate an interrupt at this level if module interrupts are enabled. If End of Transmission (EOT) is chosen, then TXRIS bit and interrupt is set only after all transmitted data, including stop bits, have cleared the serializer.',
+        hidden      : true,
+        default     : "UART_FIFO_TX4_8",
+        options     : [
+            {name: "EOT", displayName: "End of Transmission"},
+            {name: "UART_FIFO_TX1_8", displayName: "2 or Less Words in TX-FIFO"},
+            {name: "UART_FIFO_TX2_8", displayName: "4 or Less Words in TX-FIFO"},
+            {name: "UART_FIFO_TX4_8", displayName: "8 or Less Words in TX-FIFO"},
+            {name: "UART_FIFO_TX6_8", displayName: "12 or Less Words in TX-FIFO"},
+            {name: "UART_FIFO_TX7_8", displayName: "14 or Less Words in TX-FIFO"},
+        ]
+    },
+    {
+        name        : "rxiflsel",
+        displayName : "Receive FIFO Trigger Level",
+        description : 'Receive FIFO trigger level used. UART will generate an interrupt at this level if module interrupts are enabled.',
+        hidden      : true,
+        default     : "UART_FIFO_RX4_8",
+        options     : [
+            {name: "UART_FIFO_RX1_8", displayName: "2 or More Words in RX-FIFO"},
+            {name: "UART_FIFO_RX2_8", displayName: "4 or More Words in RX-FIFO"},
+            {name: "UART_FIFO_RX4_8", displayName: "8 or More Words in RX-FIFO"},
+            {name: "UART_FIFO_RX6_8", displayName: "12 or More Words in RX-FIFO"},
+            {name: "UART_FIFO_RX7_8", displayName: "14 or More Words in RX-FIFO"},
+        ]
+    }
+]
+
+let fifoSettingFG = [                                                                   // Devices having fine grained FIFO
+    {
+        name        : "fineGrainConfig",
+        displayName : "Internal Use: Used to indicate if fine grained FIFO is available for device",
+        hidden      : true,
+        default     : true
+    },
+    {
+        name        : "fen",
+        displayName : "Enable FIFO",
+        description : 'Whether or not to use FIFO mode.',
+        hidden      : false,
+        onChange    : onChangeFIFO,
+        default     : false
+    },
+    {
+        name        : "txiflsel",
+        displayName : "Transmit FIFO Trigger Level",
+        description : 'Transmit FIFO trigger level used. UART will generate an interrupt at this level if module interrupts are enabled. If End of Transmission (EOT) is chosen, then TXRIS bit and interrupt is set only after all transmitted data, including stop bits, have cleared the serializer.',
+        hidden      : true,
+        default     : "UART_FIFO_TX8",
+        options     : [
+            { name: "EOT",                  displayName: "End of Transmission"},
+            { name: "UART_FIFO_TXEMPTY",    displayName: "Transmit interrupt empty" },
+            { name: "UART_FIFO_TX0",        displayName: "Transmit interrupt empty" },
+            { name: "UART_FIFO_TX1",        displayName: "Transmit interrupt 1/16 full" },
+            { name: "UART_FIFO_TX2",        displayName: "Transmit interrupt 2/16 full" },
+            { name: "UART_FIFO_TX3",        displayName: "Transmit interrupt 3/16 full" },
+            { name: "UART_FIFO_TX4",        displayName: "Transmit interrupt 4/16 full" },
+            { name: "UART_FIFO_TX5",        displayName: "Transmit interrupt 5/16 full" },
+            { name: "UART_FIFO_TX6",        displayName: "Transmit interrupt 6/16 full" },
+            { name: "UART_FIFO_TX7",        displayName: "Transmit interrupt 7/16 full" },
+            { name: "UART_FIFO_TX8",        displayName: "Transmit interrupt 8/16 full" },
+            { name: "UART_FIFO_TX9",        displayName: "Transmit interrupt 9/16 full" },
+            { name: "UART_FIFO_TX10",       displayName: "Transmit interrupt 10/16 full" },
+            { name: "UART_FIFO_TX11",       displayName: "Transmit interrupt 11/16 full" },
+            { name: "UART_FIFO_TX12",       displayName: "Transmit interrupt 12/16 full" },
+            { name: "UART_FIFO_TX13",       displayName: "Transmit interrupt 13/16 full" },
+            { name: "UART_FIFO_TX14",       displayName: "Transmit interrupt 14/16 full" },
+            { name: "UART_FIFO_TX15",       displayName: "Transmit interrupt 15/16 full" },    
+        ]
+    },
+    {
+        name        : "rxiflsel",
+        displayName : "Receive FIFO Trigger Level",
+        description : 'Receive FIFO trigger level used. UART will generate an interrupt at this level if module interrupts are enabled.',
+        hidden      : true,
+        default     : "UART_FIFO_RX8",
+        options     : [
+            { name: "UART_FIFO_RXFULL", displayName: "Receive interrupt full" },
+            { name: "UART_FIFO_RX0",    displayName: "Receive interrupt full" },
+            { name: "UART_FIFO_RX1",    displayName: "Receive interrupt 1/16 full" },
+            { name: "UART_FIFO_RX2",    displayName: "Receive interrupt 2/16 full" },
+            { name: "UART_FIFO_RX3",    displayName: "Receive interrupt 3/16 full" },
+            { name: "UART_FIFO_RX4",    displayName: "Receive interrupt 4/16 full" },
+            { name: "UART_FIFO_RX5",    displayName: "Receive interrupt 5/16 full" },
+            { name: "UART_FIFO_RX6",    displayName: "Receive interrupt 6/16 full" },
+            { name: "UART_FIFO_RX7",    displayName: "Receive interrupt 7/16 full" },
+            { name: "UART_FIFO_RX8",    displayName: "Receive interrupt 8/16 full" },
+            { name: "UART_FIFO_RX9",    displayName: "Receive interrupt 9/16 full" },
+            { name: "UART_FIFO_RX10",   displayName: "Receive interrupt 10/16 full" },
+            { name: "UART_FIFO_RX11",   displayName: "Receive interrupt 11/16 full" },
+            { name: "UART_FIFO_RX12",   displayName: "Receive interrupt 12/16 full" },
+            { name: "UART_FIFO_RX13",   displayName: "Receive interrupt 13/16 full" },
+            { name: "UART_FIFO_RX14",   displayName: "Receive interrupt 14/16 full" },
+            { name: "UART_FIFO_RX15",   displayName: "Receive interrupt 15/16 full" },
+        ]
+    }
+]
+
+let fifoSettingFinal = fifoSettingNFG
+if(fineGrainedFifoDevices.includes(Common.getDeviceName())){
+    fifoSettingFinal = fifoSettingFG
+}
+
+function onChangeFIFO(inst, ui){
+    if( inst.fen ){
+        ui.txiflsel.hidden = false;
+        ui.rxiflsel.hidden = false;
+    }
+    else
+    {
+        ui.txiflsel.hidden = true;
+        ui.rxiflsel.hidden = true;
+    }
+}
+
+function onChangeInterrupts(inst, ui)
 {
-    // if interrupt enabled, unhide everything, let later if-statements re-
-    // hide necessary items
     if (inst.enInterrupt) 
     {
         ui.registerInterrupts.hidden = false;
         ui.enabledInterrupts.hidden = false;
-        ui.txiflsel.hidden = false;
-        ui.rxiflsel.hidden = false;
     }
     else
     {
         ui.registerInterrupts.hidden = true;
         ui.enabledInterrupts.hidden = true;
-        ui.txiflsel.hidden = true;
-        ui.rxiflsel.hidden = true;
-    }
-    // hide fifo-related interrupts based on fen
-    if (inst.enInterrupt && inst.fen)
-    {
-        ui.txiflsel.hidden = false;
-        ui.rxiflsel.hidden = false;
-    }
-    else
-    {
-        ui.txiflsel.hidden = true;
-        ui.rxiflsel.hidden = true;
     }
 }
 
@@ -239,192 +383,7 @@ let config = [
         default     : 115200,
     },
     //**********************************************************************
-    // Word Settings
-    {    
-        name        : "GROUP_WORD_SETTINGS",
-        displayName : "Word Settings",
-        collapsed   : false,
-        config      : [
-            {
-                name        : "wlen",
-                displayName : "Word Length",
-                description : 'The number of data bits transmitted or received in a frame.',
-                hidden      : false,
-                default     : 'UART_CONFIG_WLEN_8',
-                options     : [
-                    { name: "UART_CONFIG_WLEN_5", displayName:"5" },
-                    { name: "UART_CONFIG_WLEN_6", displayName:"6" },
-                    { name: "UART_CONFIG_WLEN_7", displayName:"7" },
-                    { name: "UART_CONFIG_WLEN_8", displayName:"8" }
-                ]
-            },
-            {
-                name        : "stp2",
-                displayName : "Stop Bits",
-                description : 'Number of stop bits transmitted at end of a frame. The receive logic does not check for two stop bits being received.',
-                hidden      : false,
-                default     : 'UART_CONFIG_STOP_ONE',
-                options     : [
-                    { name: "UART_CONFIG_STOP_ONE", displayName: "1" },
-                    { name: "UART_CONFIG_STOP_TWO", displayName: "2" }
-                ]
-            },
-            //**********************************************************************
-            // Parity
-            // parity enable
-            {
-                name        : "pen",
-                displayName : "Parity Enable",
-                description : 'Parity enable.',
-                hidden      : false,
-                default     : false,
-                onChange    : onChangeParity,
-            },
-            // even parity select
-            {
-                name        : "eps",
-                displayName : "Parity Select",
-                description : 'Choose even or odd parity.',
-                hidden      : true,
-                default     : 'UART_CONFIG_PAR_ODD',
-                options     : [
-                    { name: "UART_CONFIG_PAR_ODD",  displayName: "Odd Parity" },
-                    { name: "UART_CONFIG_PAR_EVEN", displayName: "Even Parity" }
-                ],
-            },
-            // stick parity select
-            {
-                name        : "sps",
-                displayName : "Stick Parity",
-                description : 'Force parity bit to be a certain value regardless of word sent.',
-                hidden      : true,
-                default     : false,
-                onChange    : onChangeParity,
-            },
-            // output a value to user to know what the stick parity value will be, 
-            // based on PEN, EPS, and SPS bits of UARTLCRH
-            {
-                name        : "stickParityVal",
-                displayName : "Stick Parity Value",
-                description : 'When stick parity is enabled the parity bit is transmitted and checked as this value. This is based on even/odd parity selection.',
-                hidden      : true,
-                getValue    : (inst) => {
-                    if (    inst.pen == true    &&  // parity enabled
-                            inst.sps == true    &&  // stick parity enabled
-                            inst.eps == "UART_CONFIG_PAR_EVEN")     // even parity selected
-                        
-                    {
-                        return "0"; // always output 0 for even stick parity
-                    }
-                    else if (   inst.pen == true    &&  // parity enabled
-                                inst.sps == true    &&  // stick parity enabled
-                                inst.eps == "UART_CONFIG_PAR_ODD")      // odd parity selected
-                    {
-                        return "1"; // always output 1 for odd stick parity
-                    }
-                    return "X"
-                },
-                default     : "X",
-            },
-        ]
-    },
-    //**********************************************************************
-    // General Interrupts Settings
-    {
-        name        : "GROUP_INTERRUPT_SETTINGS",
-        displayName : "Interrupt Settings",
-        collapsed   : false,
-        config      : [
-            {
-                name        : "enInterrupt",
-                displayName : "Enable Interrupts",
-                description : 'Choose whether or not to use interrupts.',
-                hidden      : false,
-                default     : true,
-                onChange    : onChangeFIFOInterrupts,
-                
-            },
-            {
-                name        : "registerInterrupts",
-                displayName : "Register Interrupt Handler",
-                description : 'Whether or not to register interrupt handlers in the interrupt module.',
-                hidden      : false,
-                default     : false,
-                
-            },
-            {
-                name        : "enabledInterrupts",
-                displayName : "Enabled Interrupts",
-                description : 'Choose interrupts to enable.',
-                hidden      : false,
-                default     : ["UART_INT_TX","UART_INT_RX",],
-                minSelections: 0,
-                options     : [
-                    // {name: "UART_INT_DMATX",    displayName: "DMA TX interrupt"},
-                    // {name: "UART_INT_DMARX",    displayName: "DMA RX interrupt"},
-                    // moved UART_INT_EOT to txiflsel because it is mutually exlcusive with those bits
-                    // {name: "UART_INT_EOT",      displayName: "End of Transmission Interrupt"},
-                    {name: "UART_INT_TX",       displayName: "Transmit Interrupt"},
-                    {name: "UART_INT_RX",       displayName: "Receive Interrupt"},
-                    {name: "UART_INT_OE",       displayName: "Overrun Error Interrupt"},
-                    {name: "UART_INT_BE",       displayName: "Break Error Interrupt"},
-                    {name: "UART_INT_PE",       displayName: "Parity Error Interrupt"},
-                    {name: "UART_INT_FE",       displayName: "Framing Error Interrupt"},
-                    {name: "UART_INT_RT",       displayName: "Receive Timeout Interrupt"},
-                    {name: "UART_INT_9BIT",     displayName: "9-bit Address Match Interrupt"},
-                ],
-                
-            },
-        ]
-    },
-    //**********************************************************************
-    // FIFO settings
-    {
-        name        : "GROUP_FIFO_SETTINGS",
-        displayName : "FIFO Settings",
-        collapsed   : false,
-        config      : [
-            {
-                name        : "fen",
-                displayName : "Enable FIFO",
-                description : 'Whether or not to use FIFO mode.',
-                hidden      : false,
-                onChange    : onChangeFIFOInterrupts,
-                default     : false
-            },
-            {
-                name        : "txiflsel",
-                displayName : "Transmit FIFO Interrupt Level",
-                description : 'Transmit FIFO interrupt level used. If End of Transmission (EOT) is chosen, then TXRIS bit and interrupt is set only after all transmitted data, including stop bits, have cleared the serializer.',
-                hidden      : true,
-                default     : "UART_FIFO_TX4_8",
-                options     : [
-                    {name: "EOT", displayName: "End of Transmission"},
-                    {name: "UART_FIFO_TX1_8", displayName: "2 or Less Words in TX-FIFO"},
-                    {name: "UART_FIFO_TX2_8", displayName: "4 or Less Words in TX-FIFO"},
-                    {name: "UART_FIFO_TX4_8", displayName: "8 or Less Words in TX-FIFO"},
-                    {name: "UART_FIFO_TX6_8", displayName: "12 or Less Words in TX-FIFO"},
-                    {name: "UART_FIFO_TX7_8", displayName: "14 or Less Words in TX-FIFO"},
-                ]
-            },
-            {
-                name        : "rxiflsel",
-                displayName : "Receive FIFO Interrupt Level",
-                description : 'Receive FIFO interrupt level used.',
-                hidden      : true,
-                default     : "UART_FIFO_RX4_8",
-                options     : [
-                    {name: "UART_FIFO_RX1_8", displayName: "2 or More Words in RX-FIFO"},
-                    {name: "UART_FIFO_RX2_8", displayName: "4 or More Words in RX-FIFO"},
-                    {name: "UART_FIFO_RX4_8", displayName: "8 or More Words in RX-FIFO"},
-                    {name: "UART_FIFO_RX6_8", displayName: "12 or More Words in RX-FIFO"},
-                    {name: "UART_FIFO_RX7_8", displayName: "14 or More Words in RX-FIFO"},
-                ]
-            },
-        ]
-    },
-    //**********************************************************************
-    // Debug
+    // Loopback
     {
         name        : "loopback",
         displayName : "Enable Loopback Mode",
@@ -433,6 +392,138 @@ let config = [
         default     : false
         
     },
+    //**********************************************************************
+    // Word Settings
+    {
+        name        : "wlen",
+        displayName : "Word Length",
+        description : 'The number of data bits transmitted or received in a frame.',
+        hidden      : false,
+        default     : 'UART_CONFIG_WLEN_8',
+        options     : [
+            { name: "UART_CONFIG_WLEN_5", displayName:"5" },
+            { name: "UART_CONFIG_WLEN_6", displayName:"6" },
+            { name: "UART_CONFIG_WLEN_7", displayName:"7" },
+            { name: "UART_CONFIG_WLEN_8", displayName:"8" }
+        ]
+    },
+    {
+        name        : "stp2",
+        displayName : "Stop Bits",
+        description : 'Number of stop bits transmitted at end of a frame. The receive logic does not check for two stop bits being received.',
+        hidden      : false,
+        default     : 'UART_CONFIG_STOP_ONE',
+        options     : [
+            { name: "UART_CONFIG_STOP_ONE", displayName: "1" },
+            { name: "UART_CONFIG_STOP_TWO", displayName: "2" }
+        ]
+    },
+    //**********************************************************************
+    // Parity
+    // parity enable
+    {
+        name        : "pen",
+        displayName : "Parity Enable",
+        description : 'Parity enable.',
+        hidden      : false,
+        default     : false,
+        onChange    : onChangeParity,
+    },
+    // even parity select
+    {
+        name        : "eps",
+        displayName : "Parity Select",
+        description : 'Choose even or odd parity.',
+        hidden      : true,
+        default     : 'UART_CONFIG_PAR_ODD',
+        options     : [
+            { name: "UART_CONFIG_PAR_ODD",  displayName: "Odd Parity" },
+            { name: "UART_CONFIG_PAR_EVEN", displayName: "Even Parity" }
+        ],
+    },
+    // stick parity select
+    {
+        name        : "sps",
+        displayName : "Stick Parity",
+        description : 'Force parity bit to be a certain value regardless of word sent.',
+        hidden      : true,
+        default     : false,
+        onChange    : onChangeParity,
+    },
+    // output a value to user to know what the stick parity value will be, 
+    // based on PEN, EPS, and SPS bits of UARTLCRH
+    {
+        name        : "stickParityVal",
+        displayName : "Stick Parity Value",
+        description : 'When stick parity is enabled the parity bit is transmitted and checked as this value. This is based on even/odd parity selection.',
+        hidden      : true,
+        getValue    : (inst) => {
+            if (    inst.pen == true    &&  // parity enabled
+                    inst.sps == true    &&  // stick parity enabled
+                    inst.eps == "UART_CONFIG_PAR_EVEN")     // even parity selected
+                
+            {
+                return "0"; // always output 0 for even stick parity
+            }
+            else if (   inst.pen == true    &&  // parity enabled
+                        inst.sps == true    &&  // stick parity enabled
+                        inst.eps == "UART_CONFIG_PAR_ODD")      // odd parity selected
+            {
+                return "1"; // always output 1 for odd stick parity
+            }
+            return "X"
+        },
+        default     : "X",
+    },
+    //**********************************************************************
+    // General Interrupt Settings
+    {
+        name        : "enInterrupt",
+        displayName : "Enable Interrupts",
+        description : 'Choose whether or not to use interrupts.',
+        hidden      : false,
+        default     : true,
+        onChange    : onChangeInterrupts,
+        
+    },
+    {
+        name        : "registerInterrupts",
+        displayName : "Register Interrupt Handler",
+        description : 'Whether or not to register interrupt handlers in the interrupt module.',
+        hidden      : false,
+        default     : false,
+        
+    },
+    {
+        name        : "enabledInterrupts",
+        displayName : "Enabled Interrupts",
+        description : 'Choose interrupts to enable.',
+        hidden      : false,
+        default     : ["UART_INT_TX","UART_INT_RX",],
+        minSelections: 0,
+        options     : [
+            // {name: "UART_INT_DMATX",    displayName: "DMA TX interrupt"},
+            // {name: "UART_INT_DMARX",    displayName: "DMA RX interrupt"},
+            // moved UART_INT_EOT to txiflsel because it is mutually exlcusive with those bits
+            // {name: "UART_INT_EOT",      displayName: "End of Transmission Interrupt"},
+            {name: "UART_INT_TX",       displayName: "Transmit Interrupt"},
+            {name: "UART_INT_RX",       displayName: "Receive Interrupt"},
+            {name: "UART_INT_OE",       displayName: "Overrun Error Interrupt"},
+            {name: "UART_INT_BE",       displayName: "Break Error Interrupt"},
+            {name: "UART_INT_PE",       displayName: "Parity Error Interrupt"},
+            {name: "UART_INT_FE",       displayName: "Framing Error Interrupt"},
+            {name: "UART_INT_RT",       displayName: "Receive Timeout Interrupt"},
+            {name: "UART_INT_9BIT",     displayName: "9-bit Address Match Interrupt"},
+        ],
+        
+    },
+]
+
+
+// FIFO settings - Varies depending on fine-grained FIFO availability
+config = config.concat(fifoSettingFinal)   
+
+config = config.concat([
     //**********************************************************************
     // Pinmux
     {
@@ -445,13 +536,12 @@ let config = [
         onChange    : Pinmux.useCaseChanged,
         
     },
-
     //**********************************************************************
     // DMA settings
     {
         name        : "GROUP_DMA_SETTINGS",
         displayName : "DMA Settings",
-        collapsed   : false,
+        collapsed   : true,
         config      : [
                 //**********************************************************************
         // DMA RX
@@ -473,8 +563,7 @@ let config = [
         },  
         ]
     },
-  
-];
+])
 
 // for F2838x, only include the Pinmux portion (no CM support)
 if (pinmuxOnlyDevices.includes(Common.getDeviceName()))

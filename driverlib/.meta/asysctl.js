@@ -7,7 +7,7 @@ let device_driverlib_peripheral =
 
 function onChangeAnalogRef(inst, ui)
 {
-    if (["F28004x","F28002x", "F28003x","F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName())){
+    if (["F28004x","F28002x", "F28003x","F280013x", "F280015x", "F28P65x", "F28P55x", "F28E12x"].includes(Common.getDeviceName())){
         if (inst.analogReference == "INTERNAL"){
             ui.analogReferenceVoltage.hidden = false
         }
@@ -80,7 +80,7 @@ else
     ];
 }
 
-if (["F28004x","F28002x", "F28003x","F280013x","F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName()))
+if (["F28004x","F28002x", "F28003x","F280013x","F280015x", "F28P65x", "F28P55x", "F28E12x"].includes(Common.getDeviceName()))
 {
     staticConfig.push(
         {
@@ -114,7 +114,7 @@ if (["F28004x","F28002x", "F28003x","F280013x","F280015x", "F28P65x", "F28P55x"]
         }, 
     );
 }
-if (["F28P55x","F280013x","F280015x"].includes(Common.getDeviceName()))
+if (["F28P55x","F280013x","F280015x", "F28E12x"].includes(Common.getDeviceName()))
 {
     staticConfig.push(
         {
@@ -134,6 +134,18 @@ if (["F28P55x","F280013x","F280015x"].includes(Common.getDeviceName()))
     );
 }
 
+function onValidate(inst, validation) {
+    if ((Common.getDevicePackage() == "32RHB") && 
+        ["F280013x","F280015x"].includes(Common.getDeviceName())) // for F280013x/15x
+    {
+        if (inst["analogReference"] == "EXTERNAL")
+        {
+            validation.logInfo(
+                "For 32RHB package, VREFHI is internally tied to VDDA and VREFLO is internally connected to VSSA.",
+                inst, "analogReference");
+        }
+    }
+}
 
 var sharedModuleInstances = undefined;
 
@@ -161,6 +173,7 @@ var asysctlModule = {
     filterHardware : filterHardware,
     moduleStatic : {
         config          : staticConfig,
+        validate    : onValidate,
     },
     //config: config,
     templates: {

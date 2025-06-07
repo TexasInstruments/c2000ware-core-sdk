@@ -21,8 +21,17 @@ void `instance.$name`_init(){
 		% if (instance.analogMode == "GPIO_ANALOG_ENABLED"){
 	GPIO_setAnalogMode(`instance.$name`, `instance.analogMode`);
 		%} else {
-% if (instance.writeInitialValue){
+% if (instance.writeInitialValue && (!["ODO_PULLUP", "ODO", "ODO_INVERT", "ODO_PULLUP_INVERT"].includes(instance.padConfig))){
 	GPIO_writePin(`instance.$name`, `instance.initialValue`);
+% }
+% if (["ODO_PULLUP", "ODO", "ODO_INVERT", "ODO_PULLUP_INVERT"].includes(instance.padConfig)){
+	//
+	// Use GPIO_writeODPin function to enable OD feature and should be called
+	// in Runtime instead of GPIO_writePin. Refer to TRM for more details
+	//
+% }
+% if (instance.writeInitialValue && (["ODO_PULLUP", "ODO", "ODO_INVERT", "ODO_PULLUP_INVERT"].includes(instance.padConfig))){
+	GPIO_writeODPin(`instance.$name`, `instance.initialValue`);
 % }
 %if(instance.padConfig == "STD")
 %{
@@ -56,9 +65,26 @@ void `instance.$name`_init(){
 %{
 	GPIO_setPadConfig(`instance.$name`, GPIO_PIN_TYPE_OD | GPIO_PIN_TYPE_PULLUP | GPIO_PIN_TYPE_INVERT);
 %}
+%else if(instance.padConfig == "ODO_PULLUP")
+%{
+	GPIO_setPadConfig(`instance.$name`, GPIO_PIN_TYPE_PULLUP);
+%}
+%else if(instance.padConfig == "ODO_INVERT")
+%{
+	GPIO_setPadConfig(`instance.$name`, GPIO_PIN_TYPE_INVERT);
+%}
+%else if(instance.padConfig == "ODO_PULLUP_INVERT")
+%{
+	GPIO_setPadConfig(`instance.$name`, GPIO_PIN_TYPE_PULLUP | GPIO_PIN_TYPE_INVERT);
+%}
 	GPIO_setQualificationMode(`instance.$name`, `instance.qualMode`);
+% if (!["ODO_PULLUP", "ODO", "ODO_INVERT", "ODO_PULLUP_INVERT"].includes(instance.padConfig)){
 	GPIO_setDirectionMode(`instance.$name`, `instance.direction`);
-		% if (!["F28002x", "F280013x", "F280015x"].includes(Common.getDeviceName())) {
+% }
+% if (!instance.writeInitialValue && ["ODO_PULLUP", "ODO", "ODO_INVERT", "ODO_PULLUP_INVERT"].includes(instance.padConfig)){
+	GPIO_setDirectionMode(`instance.$name`, `instance.direction`);
+% }
+		% if (!["F28002x", "F280013x", "F280015x","F28E12x"].includes(Common.getDeviceName())) {
 	GPIO_setControllerCore(`instance.$name`, `instance.controllerCore`);
 		% }
 		%}

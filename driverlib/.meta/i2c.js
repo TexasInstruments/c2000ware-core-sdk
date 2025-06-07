@@ -9,7 +9,7 @@ let device_driverlib_peripheral =
 let longDescription = "The I2C driver provides a simplified application"
         + " interface to access peripherals on an I2C bus.";
 
-var extended_clock_supported_devices = ['f28p55x'];
+var extended_clock_supported_devices = ['f28p55x','f28e12x'];
 var push_pull_pins_support = ['f2838x']
 var hide_extended_clock_stretching_options = null; 
 var extended_clock_stretching_support_available = null; 
@@ -18,10 +18,11 @@ var globalConfig = [
 
     {
         name: "sysClock",
-        displayName: "Device SYSCLK in MHz",
+        displayName: "Device SYSCLK in Hz",
         description : 'Device System Clock Frequency',
         hidden      : false,
-        default     : Common.SYSCLK_getMaxMHz(),
+        default     : Common.getSYSCLK() * 1e6,
+        getValue    : () => {return Common.getSYSCLK()*(1e6)},
         readOnly    : true,
     },
 ];

@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.04.00.00
+// C2000Ware v5.05.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -402,9 +402,9 @@ typedef enum
 typedef enum
 {
     ERAD_COUNTER_COUNT_INPUT = 0,
-    ERAD_COUNTER_START_INPUT = 1,
-    ERAD_COUNTER_STOP_INPUT  = 2,
-    ERAD_COUNTER_RESET_INPUT = 3
+    ERAD_COUNTER_START_INPUT = 4,
+    ERAD_COUNTER_STOP_INPUT  = 8,
+    ERAD_COUNTER_RESET_INPUT = 12
 } ERAD_Counter_Input_Type;
 
 //*****************************************************************************

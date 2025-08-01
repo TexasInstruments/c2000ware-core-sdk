@@ -492,7 +492,7 @@ ADC_setupSOC(uint32_t base, ADC_SOCNumber socNumber, ADC_Trigger trigger,
     ASSERT((sampleWindow >= 1U) && (sampleWindow <= 512U));
 
     mask = (ADC_SOC0CTL_CHSEL_M | ADC_SOC0CTL_TRIGSEL_M | ADC_SOC0CTL_ACQPS_M);
-    
+
     //
     // Calculate address for the SOC control register.
     //

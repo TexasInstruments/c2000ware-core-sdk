@@ -87,6 +87,7 @@ typedef struct {
 #define EPWM1_FREQ          1000000UL   // 1 MHz
 #define EPWM4_FREQ          200000UL    // 200 KHz
 #define EPWM5_FREQ          20000UL     // 20 KHz
+
 #define EPWM1_PERIOD        (uint16_t)(DEVICE_SYSCLK_FREQ / (2 * EPWM1_FREQ))
 #define EPWM4_PERIOD        (uint16_t)(DEVICE_SYSCLK_FREQ / EPWM4_FREQ)
 #define EPWM5_PERIOD        (uint16_t)(DEVICE_SYSCLK_FREQ / EPWM5_FREQ)

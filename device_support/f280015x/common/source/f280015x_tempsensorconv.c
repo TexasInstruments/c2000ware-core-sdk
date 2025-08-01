@@ -50,11 +50,11 @@
 // Defines
 //
 
-#define ADC_EXT_REF_TSSLOPE  (*(int16_t *)((uintptr_t)0x701C8)) //Slope of temperature sensor
-#define ADC_EXT_REF_TSOFFSET (*(int16_t *)((uintptr_t)0x701C9)) //Temperature offset
+#define ADC_EXT_REF_TSSLOPE  (*(int16_t *)((uintptr_t)0x710D3)) //Slope of temperature sensor
+#define ADC_EXT_REF_TSOFFSET (*(int16_t *)((uintptr_t)0x710D4)) //Temperature offset
 
-#define ADC_INT_REF_TSSLOPE  (*(int16_t *)((uintptr_t)0x701CA))
-#define ADC_INT_REF_TSOFFSET (*(int16_t *)((uintptr_t)0x701CB))
+#define ADC_INT_REF_TSSLOPE  (*(int16_t *)((uintptr_t)0x710D5))
+#define ADC_INT_REF_TSOFFSET (*(int16_t *)((uintptr_t)0x710D6))
 
 
 //

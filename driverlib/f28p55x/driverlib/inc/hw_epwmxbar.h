@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.05.00.00
+// C2000Ware v6.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -1183,7 +1183,7 @@
 // The following are defines for the bit fields in the TRIPLOCK register
 //
 //*************************************************************************************************
-#define XBAR_TRIPLOCK_LOCK    0x1U          // Locks the configuration for EPWM-XBAR
+#define XBAR_TRIPLOCK_LOCK    0x1U          // Locks the configuration for PWM-XBAR
 #define XBAR_TRIPLOCK_KEY_S   16U
 #define XBAR_TRIPLOCK_KEY_M   0xFFFF0000U   // Write protection KEY
 

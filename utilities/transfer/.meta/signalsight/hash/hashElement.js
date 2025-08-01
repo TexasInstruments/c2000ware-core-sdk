@@ -304,6 +304,12 @@ let config = [
             { name: "polling9", displayName: "Enable Polling on Page 9" },
         ],
     },
+    {
+        name: "hiddenTextFieldForInstanceAdderArgs",
+        displayName: "Instance Adder Arguments (JSON)",
+        hidden: true,
+        default: JSON.stringify([]),
+    },
 ];
 
 function moduleInstances(inst) {
@@ -314,8 +320,9 @@ function moduleInstances(inst) {
             displayName: " Hash Table Element Bitfields ",
             moduleName: transferCommon.getTransferPath() + "signalsight/hash/hashBitFields.js",
             useArray: true,
-            minInstanceCount: 0,
+            minInstanceCount: Object.keys(JSON.parse(inst.hiddenTextFieldForInstanceAdderArgs)).length,
             collapsed: true,
+            fixedArgs: JSON.parse(inst.hiddenTextFieldForInstanceAdderArgs),
             requiredArgs: {
                 hashTable: inst.hashTable,
                 hashElement: inst.$name,

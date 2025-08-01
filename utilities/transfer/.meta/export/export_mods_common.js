@@ -83,7 +83,27 @@ function isExportModInfoApplicableForInst(inst, expInfo)
 }
 
 function getExportModModuleNames(){
-   let expModuleNames = ["sci", "spi"];
+    let deviceName = transferCommon.getDeviceName();
+    let expModuleNames;
+    switch(deviceName)
+    {
+        case "F280013x":
+            expModuleNames = ["sci", "spi", "i2c", "eqep", "can"];
+            break;
+        
+        case "F280015x":
+            expModuleNames = ["sci", "spi", "i2c", "eqep", "can", "lin"];
+            break;
+        
+        case "F28003x":
+            expModuleNames = ["sci", "spi", "i2c", "eqep", "can", "lin", "fsitx", "fsirx"];
+            break;
+        
+        default:
+            expModuleNames = ["sci", "spi", "i2c", "eqep", "can"];
+            break;
+    }
+   
    return expModuleNames;
 }
 

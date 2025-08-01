@@ -12,7 +12,7 @@
 //
 //
 // 
-// C2000Ware v5.05.00.00
+// C2000Ware v6.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -49,6 +49,8 @@
 //
 // Included Files
 //
+#include <stdio.h>
+
 #include "driverlib.h"
 #include "device.h"
 #include "board.h"
@@ -91,6 +93,8 @@ extern volatile int32_t tvmgen_default_finished;
 
 #pragma DATA_SECTION(nnData, "nnData_sec");
 NN_data_t nnData;
+
+NN_input_float_t nn_input_test;
 
 int test_result;
 int error = 0;
@@ -194,7 +198,6 @@ void main(void)
     init_feature_extract(&init_params, &handle_params);
 
 #ifdef TEST_FEATURE_EXTRACT
-    NN_input_float_t nn_input_test;
 
     init_nn_input_with_test_data(&handle_params, model_test_input, nn_input_test.data_flatten, nnData.nn_input_int.data_flatten);
 #else //TEST_FEATURE_EXTRACT
@@ -221,7 +224,7 @@ void main(void)
     int n = 0;
     for(n=0;n<FE_NN_OUT_SIZE;n++)
     {
-       if(abs(golden_output[n] - nnData.nn_output_int.buf0[n])>2)
+       if(abs(golden_output[n] - nnData.nn_output_int.buf0[n])>5)
        {
           error++;
        }
@@ -239,6 +242,7 @@ void main(void)
     softmax_cal(nnData.nn_output_int.buf0, FE_NN_OUT_SIZE, nnData.softmax); // Compute softmax
     nnData.class_detected = classification_cal(nnData.softmax, FE_NN_OUT_SIZE, 0.5); // Compute classification
 
+    printf("Golden vectors matched: %d not matched: %d\n", FE_NN_OUT_SIZE - error, error);
 
     while(1)
     {

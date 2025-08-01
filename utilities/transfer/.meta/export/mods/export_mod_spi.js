@@ -1,3 +1,4 @@
+var deviceName = system.deviceData.device;
 let exportsInfo = [
     {
         name: "ffovf",
@@ -5,7 +6,9 @@ let exportsInfo = [
         type: 'led',
         register: "SPIFFRX.RXFFOVF",
         updateFunc: (instBase) => `((HWREGH(${instBase} + SPI_O_FFRX) & SPI_FFRX_RXFFOVF) == SPI_FFRX_RXFFOVF)`,
-        applicable: (inst) => inst.useFifo
+        applicable: (inst) => {
+            return (["F280013x", "F280015x", "F28003x"].includes(deviceName) && inst.useFifo)? true: false;
+        }
     },
     {
         name: "overrun",
@@ -13,8 +16,11 @@ let exportsInfo = [
         type: 'led',
         register: "SPISTS.OVERRUN_FLAG",
         updateFunc: (instBase) => `((HWREGH(${instBase} + SPI_O_STS) & SPI_STS_OVERRUN_FLAG) == SPI_STS_OVERRUN_FLAG)`,
-        applicable: (inst) => !inst.useFifo
+        applicable: (inst) => {
+            return (["F280013x", "F280015x", "F28003x"].includes(deviceName) && !inst.useFifo)? true: false;
+        }   
     },
+    
 ]
 
 let bitfiledInstanceNames = {
@@ -23,7 +29,8 @@ let bitfiledInstanceNames = {
 
 let exportsRegisterSkips = [
     {
-        name: "RXBUF"
+        name: "RXBUF",
+        register: "SPIRXBUF"
     }
 ]
 

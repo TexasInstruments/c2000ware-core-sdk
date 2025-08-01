@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">f28p55x Driverib and Example User Guide
-   &#160;<span id="projectnumber">5.05.00.00</span>
+   &#160;<span id="projectnumber">6.00.00.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -117,6 +117,8 @@ Functions</h2></td></tr>
 <tr class="separator:ga6e7b33f08abab1becc09f89c08163b05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gab150c558f455615e14445e2cabf2e76f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__asysctl__api.html#gab150c558f455615e14445e2cabf2e76f">ASysCtl_setVrefLoReferenceVSSA</a> (uint16_t reference)</td></tr>
 <tr class="separator:gab150c558f455615e14445e2cabf2e76f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4e52c0e766718fae5b58e4b9a13474db"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__asysctl__api.html#ga4e52c0e766718fae5b58e4b9a13474db">ASysCtl_setAnalogReferenceB</a> (<a class="el" href="group__asysctl__api.html#ga02b0252cf4fcbe6030d3b4e6252790b4">ASysCtl_AdcInst</a> adcInst, <a class="el" href="group__asysctl__api.html#gac1f7bde55840e488118c2130718b7a1f">ASysCtl_ADCTestMuxMode</a> modeVal)</td></tr>
+<tr class="separator:ga4e52c0e766718fae5b58e4b9a13474db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5d6f9c27178256978abed05226d8cd92"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__asysctl__api.html#ga5d6f9c27178256978abed05226d8cd92">ASysCtl_selectInternalTestNode</a> (<a class="el" href="group__asysctl__api.html#ga571a66eaee545a31aaa278ef82ab7a8f">ASysCtl_TestSelect</a> testSelect)</td></tr>
 <tr class="separator:ga5d6f9c27178256978abed05226d8cd92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga77d8f427f280db5c300664d859d73356"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__asysctl__api.html#ga77d8f427f280db5c300664d859d73356">ASysCtl_selectCMPHNMux</a> (uint16_t select)</td></tr>
@@ -194,6 +196,22 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:ga16525824b37b4bd85ea3eadef0cb365f"><td class="mdescLeft">&#160;</td><td class="mdescRight">ASysCtl_CMPLPMuxSelect used for function <a class="el" href="group__asysctl__api.html#ga203e690fc3f07ce2ea737ae3ce4eacb8">ASysCtl_selectCMPLPMux()</a>.  <a href="group__asysctl__api.html#ga16525824b37b4bd85ea3eadef0cb365f">More...</a><br /></td></tr>
 <tr class="separator:ga16525824b37b4bd85ea3eadef0cb365f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga02b0252cf4fcbe6030d3b4e6252790b4"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__asysctl__api.html#ga02b0252cf4fcbe6030d3b4e6252790b4">ASysCtl_AdcInst</a> { <br />
+&#160;&#160;<a class="el" href="group__asysctl__api.html#gga02b0252cf4fcbe6030d3b4e6252790b4a25ddcc004e55a4bd091d8cf8a08652d2">ASYSCTL_ADCA</a> = 0U
+, <a class="el" href="group__asysctl__api.html#gga02b0252cf4fcbe6030d3b4e6252790b4ab78d336d1f9f5bc186f5dfcef39130cd">ASYSCTL_ADCB</a> = 2U
+, <a class="el" href="group__asysctl__api.html#gga02b0252cf4fcbe6030d3b4e6252790b4a7eb5901ef304484b31a57b5351c6de21">ASYSCTL_ADCC</a> = 4U
+, <a class="el" href="group__asysctl__api.html#gga02b0252cf4fcbe6030d3b4e6252790b4a3fd40b7aa5fe60240ddee9efb27db3a2">ASYSCTL_ADCD</a> = 6U
+, <br />
+&#160;&#160;<a class="el" href="group__asysctl__api.html#gga02b0252cf4fcbe6030d3b4e6252790b4a9cd31a4d6a5e493250b161aa28e5fd60">ASYSCTL_ADCE</a> = 8U
+<br />
+ }</td></tr>
+<tr class="separator:ga02b0252cf4fcbe6030d3b4e6252790b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac1f7bde55840e488118c2130718b7a1f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__asysctl__api.html#gac1f7bde55840e488118c2130718b7a1f">ASysCtl_ADCTestMuxMode</a> { <a class="el" href="group__asysctl__api.html#ggac1f7bde55840e488118c2130718b7a1fadcb1f7ca7d9f9e9d90a9d20be0b7e831">ASYSCTL_TESTANA0_TESTANA1_DISABLE</a> = 0U
+, <a class="el" href="group__asysctl__api.html#ggac1f7bde55840e488118c2130718b7a1fa3e36e605fe6a2ac0a86d7248e137cfd4">ASYSCTL_TESTANA1_ENABLE</a> = 1U
+, <a class="el" href="group__asysctl__api.html#ggac1f7bde55840e488118c2130718b7a1fa11c24d2940c0225ebfeaaf3f7966cb15">ASYSCTL_TESTANA0_ENABLE</a> = 2U
+, <a class="el" href="group__asysctl__api.html#ggac1f7bde55840e488118c2130718b7a1fa89eed93e216b065875444cdd0bb27e9e">ASYSCTL_TESTANA0_TESTANA1_ENABLE</a> = 3U
+ }</td></tr>
+<tr class="separator:gac1f7bde55840e488118c2130718b7a1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga571a66eaee545a31aaa278ef82ab7a8f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__asysctl__api.html#ga571a66eaee545a31aaa278ef82ab7a8f">ASysCtl_TestSelect</a> { <br />
 &#160;&#160;<a class="el" href="group__asysctl__api.html#gga571a66eaee545a31aaa278ef82ab7a8facf5cc5f2efc819541d472f9929e695f9">ASYSCTL_TEST_NODE_NO_CONN</a> = 0U
 , <a class="el" href="group__asysctl__api.html#gga571a66eaee545a31aaa278ef82ab7a8fae7898409426fb05c9f7ff59c6ea667b8">ASYSCTL_TEST_NODE_VDDCORE</a> = 1U
@@ -807,6 +825,59 @@ Macros</h2></td></tr>
 
 </div>
 </div>
+<a id="ga02b0252cf4fcbe6030d3b4e6252790b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga02b0252cf4fcbe6030d3b4e6252790b4">&#9670;&nbsp;</a></span>ASysCtl_AdcInst</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__asysctl__api.html#ga02b0252cf4fcbe6030d3b4e6252790b4">ASysCtl_AdcInst</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Values that can be passed to <a class="el" href="group__asysctl__api.html#ga4e52c0e766718fae5b58e4b9a13474db">ASysCtl_setAnalogReferenceB()</a> as the <em>adcInst</em> parameter. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga02b0252cf4fcbe6030d3b4e6252790b4a25ddcc004e55a4bd091d8cf8a08652d2"></a>ASYSCTL_ADCA&#160;</td><td class="fielddoc"><p>Select ADCA instance. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga02b0252cf4fcbe6030d3b4e6252790b4ab78d336d1f9f5bc186f5dfcef39130cd"></a>ASYSCTL_ADCB&#160;</td><td class="fielddoc"><p>Select ADCB instance. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga02b0252cf4fcbe6030d3b4e6252790b4a7eb5901ef304484b31a57b5351c6de21"></a>ASYSCTL_ADCC&#160;</td><td class="fielddoc"><p>Select ADCC instance. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga02b0252cf4fcbe6030d3b4e6252790b4a3fd40b7aa5fe60240ddee9efb27db3a2"></a>ASYSCTL_ADCD&#160;</td><td class="fielddoc"><p>Select ADCD instance. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga02b0252cf4fcbe6030d3b4e6252790b4a9cd31a4d6a5e493250b161aa28e5fd60"></a>ASYSCTL_ADCE&#160;</td><td class="fielddoc"><p>Select ADCE instance. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="gac1f7bde55840e488118c2130718b7a1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac1f7bde55840e488118c2130718b7a1f">&#9670;&nbsp;</a></span>ASysCtl_ADCTestMuxMode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__asysctl__api.html#gac1f7bde55840e488118c2130718b7a1f">ASysCtl_ADCTestMuxMode</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Values that can be passed to <a class="el" href="group__asysctl__api.html#ga4e52c0e766718fae5b58e4b9a13474db">ASysCtl_setAnalogReferenceB()</a> as the <em>modeVal</em> parameter. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggac1f7bde55840e488118c2130718b7a1fadcb1f7ca7d9f9e9d90a9d20be0b7e831"></a>ASYSCTL_TESTANA0_TESTANA1_DISABLE&#160;</td><td class="fielddoc"><p>TESTANA0 and TESTANA1 are disabled </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggac1f7bde55840e488118c2130718b7a1fa3e36e605fe6a2ac0a86d7248e137cfd4"></a>ASYSCTL_TESTANA1_ENABLE&#160;</td><td class="fielddoc"><p>TESTANA0 is disabled and TESTANA1 is enabled </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggac1f7bde55840e488118c2130718b7a1fa11c24d2940c0225ebfeaaf3f7966cb15"></a>ASYSCTL_TESTANA0_ENABLE&#160;</td><td class="fielddoc"><p>TESTANA0 is enabled and TESTANA1 is disabled </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggac1f7bde55840e488118c2130718b7a1fa89eed93e216b065875444cdd0bb27e9e"></a>ASYSCTL_TESTANA0_TESTANA1_ENABLE&#160;</td><td class="fielddoc"><p>are enabled </p>
+<p>TESTANA0 and TESTANA1 </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 <a id="ga571a66eaee545a31aaa278ef82ab7a8f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga571a66eaee545a31aaa278ef82ab7a8f">&#9670;&nbsp;</a></span>ASysCtl_TestSelect</h2>
 
@@ -1244,6 +1315,52 @@ Macros</h2></td></tr>
 <li><b>ASYSCTL_ANAREF_VDDA_ADCD</b> </li>
 <li><b>ASYSCTL_ANAREF_VDDA_ADCE</b> </li>
 </ul>
+<dl class="section return"><dt>Returns</dt><dd>None. </dd></dl>
+
+</div>
+</div>
+<a id="ga4e52c0e766718fae5b58e4b9a13474db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4e52c0e766718fae5b58e4b9a13474db">&#9670;&nbsp;</a></span>ASysCtl_setAnalogReferenceB()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void ASysCtl_setAnalogReferenceB </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="group__asysctl__api.html#ga02b0252cf4fcbe6030d3b4e6252790b4">ASysCtl_AdcInst</a>&#160;</td>
+          <td class="paramname"><em>adcInst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__asysctl__api.html#gac1f7bde55840e488118c2130718b7a1f">ASysCtl_ADCTestMuxMode</a>&#160;</td>
+          <td class="paramname"><em>modeVal</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Configure the analog reference B.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">adcInst</td><td>is the instance of the ADC. </td></tr>
+    <tr><td class="paramname">modeVal</td><td>is the desired ADC Test Mux mode.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This function configures the analog reference B for ADC. The <em>modeVal</em> parameter selects which mode needs to be configured for the desired <em>adcInst</em>. Valid values for <em>modeVal</em> can be referred from the enum <em>ASysCtl_ADCTestMuxMode</em>.</p>
 <dl class="section return"><dt>Returns</dt><dd>None. </dd></dl>
 
 </div>

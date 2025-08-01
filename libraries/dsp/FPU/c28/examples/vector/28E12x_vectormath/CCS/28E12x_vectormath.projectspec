@@ -1,0 +1,38 @@
+<projectSpec>
+  <project
+        name="28E12x_vectormath"
+        device="TMS320F28E120SCS"
+        cgtVersion="22.6.2.LTS"
+        products="sysconfig;C2000WARE"
+        outputFormat="ELF"
+        launchWizard="False"
+        linkerCommandFile=""
+        enableSysConfigTool="true"
+        sysConfigBuildOptions="--product ${C2000WARE_ROOT}/.metadata/sdk.json --device F28E12x --package 48PT --part F28E12x_48PT"
+        >
+    <configuration name="CPU1_FLASH" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -v28 -ml -mt  --float_support=fpu32 --fp_mode=relaxed --gen_func_subsections=on --define=DEBUG --define=_FLASH --define=generic_flash_lnk --diag_warning=225 --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x200 --heap_size=0x100  --define=_FLASH -i${C2000WARE_ROOT} -i${PROJECT_BUILD_DIR}/syscfg -lc2000ware_libraries.cmd.genlibs -lboard.cmd.genlibs -ldevice_cmd.cmd.genlibs --define=generic_flash_lnk"/>
+    <pathVariable name="C2000WARE_ROOT" path="../../../../../../../../" scope="project" />
+    <buildVariable name="GENERATE_DIAGRAM" value="0" scope="project" />
+    <file action="copy" path="../../../../../../../../device_support/f28e12x/common/targetConfigs/TMS320F28E120SCS.ccxml" targetDirectory="targetConfigs" />
+    <file action="copy" path="../28E12x_vectormath.c" targetDirectory="" />
+    <file action="copy" path="../VectorMath.syscfg" targetDirectory="" />
+    <file action="copy" path="../data/data_input_vec1.h" targetDirectory="" />
+    <file action="copy" path="../data/data_input_vec2.h" targetDirectory="" />
+    <file action="copy" path="../data/data_input_vec3.h" targetDirectory="" />
+    <file action="copy" path="../data/data_input_vec4.h" targetDirectory="" />
+    <file action="copy" path="../data/data_input_vec5.h" targetDirectory="" />
+    <file action="copy" path="../data/data_input_vec6.h" targetDirectory="" />
+    <file action="copy" path="../data/data_input_vec7.h" targetDirectory="" />
+    <file action="copy" path="../data/data_input_vec8.h" targetDirectory="" />
+    <file action="copy" path="../data/data_output_vec1.h" targetDirectory="" />
+    <file action="copy" path="../data/data_output_vec2.h" targetDirectory="" />
+    <file action="copy" path="../data/data_output_vec3.h" targetDirectory="" />
+    <file action="copy" path="../data/data_output_vec4.h" targetDirectory="" />
+    <file action="copy" path="../data/data_output_vec5.h" targetDirectory="" />
+    <file action="copy" path="../data/data_output_vec6.h" targetDirectory="" />
+    <file action="copy" path="../data/data_output_vec7.h" targetDirectory="" />
+    <file action="copy" path="../data/data_output_vec8.h" targetDirectory="" />
+    <file action="copy" path="../data/data_output_vec9.h" targetDirectory="" />
+    <file action="copy" path="../data/data_output_vec10.h" targetDirectory="" />
+  </project>
+</projectSpec>

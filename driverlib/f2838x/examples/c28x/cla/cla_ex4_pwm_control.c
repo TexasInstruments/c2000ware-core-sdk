@@ -29,7 +29,7 @@
 //
 //
 // 
-// C2000Ware v5.05.00.00
+// C2000Ware v6.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -102,6 +102,7 @@ void main(void)
     GPIO_setControllerCore(1, GPIO_CORE_CPU1);
     GPIO_setPadConfig(1,GPIO_PIN_TYPE_STD);
     GPIO_setPinConfig(GPIO_1_EPWM1B);
+
 
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.

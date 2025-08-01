@@ -23,7 +23,7 @@
 //      22-Apr-2020 : MAC Filter Configuration added in _getHandle API
 //###########################################################################
 // 
-// C2000Ware v5.05.00.00
+// C2000Ware v6.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -2248,6 +2248,7 @@ void Ethernet_addPacketsIntoTxQueue(Ethernet_DescCh *channelDescPtr)
     if(0xffffffffU == channelDescPtr->indexWrite)
     {
         channelDescPtr->indexWrite = channelDescPtr->indexFirst;
+        channelDescPtr->descCount = 0U;
     }
     //
     //Disable the interrupts when operating on Queue
@@ -2330,6 +2331,7 @@ void Ethernet_addPacketsIntoTxQueue(Ethernet_DescCh *channelDescPtr)
                 channelDescPtr->indexWrite =
                     (channelDescPtr->indexWrite + 1U) %
                      channelDescPtr->descMax;
+                channelDescPtr->descCount += 1U;
 
                 /*
                  * Program the context descriptor
@@ -2493,6 +2495,7 @@ void Ethernet_addPacketsIntoTxQueue(Ethernet_DescCh *channelDescPtr)
             {
                 channelDescPtr->indexWrite = channelDescPtr->indexWrite + 1U;
             }
+            channelDescPtr->descCount += 1U;
             if(ETHERNET_PKT_FLAG_TSE == (pktPtr->flags &
                 ETHERNET_PKT_FLAG_TSE))
             {
@@ -2668,6 +2671,7 @@ void Ethernet_removePacketsFromTxQueue
             channelDescPtr->indexRead = (channelDescPtr->indexRead + 1U) %
                                         channelDescPtr->descMax;
             descRead = &channelDescPtr->descFirst[channelDescPtr->indexRead];
+            channelDescPtr->descCount -= 1U;
         }
         newDescRead = descRead;
 

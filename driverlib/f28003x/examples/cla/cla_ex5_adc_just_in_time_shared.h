@@ -60,6 +60,7 @@ extern "C" {
 // Defines
 //
 #define EPWM1_FREQ          1000000UL   // 1 MHz
+
 #define EPWM1_PERIOD        (uint16_t)(DEVICE_SYSCLK_FREQ / (EPWM1_FREQ))
 
 //

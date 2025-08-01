@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.05.00.00
+// C2000Ware v6.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -388,6 +388,12 @@
 //*************************************************************************************************
 #define MEMCFG_LSXINITDONE_INITDONE_LS0   0x1U     // RAM Initialization status for LS0 RAM.
 #define MEMCFG_LSXINITDONE_INITDONE_LS1   0x2U     // RAM Initialization status for LS1 RAM.
+#define MEMCFG_LSXINITDONE_INITDONE_LS2   0x4U     // RAM Initialization status for LS2 RAM.
+#define MEMCFG_LSXINITDONE_INITDONE_LS3   0x8U     // RAM Initialization status for LS3 RAM.
+#define MEMCFG_LSXINITDONE_INITDONE_LS4   0x10U    // RAM Initialization status for LS4 RAM.
+#define MEMCFG_LSXINITDONE_INITDONE_LS5   0x20U    // RAM Initialization status for LS5 RAM.
+#define MEMCFG_LSXINITDONE_INITDONE_LS6   0x40U    // RAM Initialization status for LS6 RAM.
+#define MEMCFG_LSXINITDONE_INITDONE_LS7   0x80U    // RAM Initialization status for LS7 RAM.
 #define MEMCFG_LSXINITDONE_INITDONE_LS8   0x100U   // RAM Initialization status for LS8 RAM.
 #define MEMCFG_LSXINITDONE_INITDONE_LS9   0x200U   // RAM Initialization status for LS9 RAM.
 

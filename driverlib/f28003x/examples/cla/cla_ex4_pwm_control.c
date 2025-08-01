@@ -101,6 +101,7 @@ void main(void)
     GPIO_setPadConfig(1,GPIO_PIN_TYPE_STD);
     GPIO_setPinConfig(GPIO_1_EPWM1_B);
 
+
     //
     // Initialize PIE and clear PIE registers. Disables CPU interrupts.
     //

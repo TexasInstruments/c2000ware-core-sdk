@@ -1,0 +1,66 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28E12x" --package "48PT" --part "F28E12x_48PT" --context "system" --product "C2000WARE@5.04.00.00"
+ * @v2CliArgs --device "F28E120SC" --package "48PT" --product "C2000WARE@6.00.00.00"
+ * @versions {"tool":"1.21.0+dev"}
+ */
+
+
+/**
+ * Import the modules used in this configuration.
+ */
+const inputxbar_input  = scripting.addModule("/driverlib/inputxbar_input.js", {}, false);
+const inputxbar_input1 = inputxbar_input.addInstance();
+const mcpwm            = scripting.addModule("/driverlib/mcpwm.js", {}, false);
+const mcpwm1           = mcpwm.addInstance();
+const mcpwm2           = mcpwm.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+inputxbar_input1.$name          = "myINPUTXBARINPUT0";
+inputxbar_input1.inputxbarInput = "XBAR_INPUT5";
+inputxbar_input1.inputxbarGpio  = "GPIO43";
+
+mcpwm1.$name                                                       = "myMCPWM0";
+mcpwm1.mcpwmTimebase_period                                        = 15999;
+mcpwm1.mcpwmTimebase_counterMode                                   = "MCPWM_COUNTER_MODE_UP";
+mcpwm1.mcpwmTimebase_phaseEnable                                   = true;
+mcpwm1.mcpwmTimebase_syncInPulseSource                             = "MCPWM_SYNC_IN_PULSE_SRC_INPUTXBAR_OUT5";
+mcpwm1.mcpwmTimebase_syncOutPulseMode                              = "MCPWM_SYNC_OUT_PULSE_ON_COUNTER_ZERO";
+mcpwm1.mcpwmCounterCompare_cmpA                                    = 7999;
+mcpwm1.mcpwmCounterCompare_cmpB                                    = 7999;
+mcpwm1.mcpwmActionQualifier_MCPWM_AQ_OUTPUT_1B_ON_TIMEBASE_ZERO    = "MCPWM_AQ_OUTPUT_HIGH";
+mcpwm1.mcpwmActionQualifier_MCPWM_AQ_OUTPUT_1B_ON_TIMEBASE_UP_CMPB = "MCPWM_AQ_OUTPUT_LOW";
+mcpwm1.mcpwmActionQualifier_MCPWM_AQ_OUTPUT_1A_ON_TIMEBASE_ZERO    = "MCPWM_AQ_OUTPUT_HIGH";
+mcpwm1.mcpwmActionQualifier_MCPWM_AQ_OUTPUT_1A_ON_TIMEBASE_UP_CMPA = "MCPWM_AQ_OUTPUT_LOW";
+mcpwm1.useCase                                                     = "2CH";
+mcpwm1.mcpwmEventTrigger_enableInterrupt                           = true;
+mcpwm1.mcpwmEventTrigger_registerInterrupts                        = true;
+mcpwm1.mcpwmEventTrigger_interruptSource                           = ["MCPWM_INT_ET_1"];
+mcpwm1.mcpwmEventTrigger_MCPWM_ET_1_triggerEnable                  = true;
+mcpwm1.mcpwmEventTrigger_MCPWM_ET_1_triggerSource                  = "MCPWM_EVT_TBCTR_PERIOD";
+mcpwm1.mcpwmEventTrigger_MCPWM_ET_1_triggerEventPrescalar          = "5";
+mcpwm1.mcpwm.$assign                                               = "MCPWM1";
+mcpwm1.mcpwm.mcpwm_1aPin.$assign                                   = "GPIO0";
+mcpwm1.mcpwm.mcpwm_1bPin.$assign                                   = "GPIO1";
+mcpwm1.mcpwmInt.enableInterrupt                                    = true;
+
+mcpwm2.$name                                                       = "myMCPWM1";
+mcpwm2.mcpwmTimebase_phaseEnable                                   = true;
+mcpwm2.mcpwmActionQualifier_MCPWM_AQ_OUTPUT_1A_ON_TIMEBASE_ZERO    = "MCPWM_AQ_OUTPUT_HIGH";
+mcpwm2.mcpwmActionQualifier_MCPWM_AQ_OUTPUT_1B_ON_TIMEBASE_ZERO    = "MCPWM_AQ_OUTPUT_HIGH";
+mcpwm2.mcpwmActionQualifier_MCPWM_AQ_OUTPUT_1B_ON_TIMEBASE_UP_CMPB = "MCPWM_AQ_OUTPUT_LOW";
+mcpwm2.mcpwmTimebase_counterMode                                   = "MCPWM_COUNTER_MODE_UP_DOWN";
+mcpwm2.mcpwmTimebase_period                                        = 8000;
+mcpwm2.mcpwmTimebase_syncInPulseSource                             = "MCPWM_SYNC_IN_PULSE_SRC_SYNCOUT_MCPWM1";
+mcpwm2.mcpwmTimebase_syncOutPulseMode                              = "MCPWM_SYNC_OUT_PULSE_DISABLED";
+mcpwm2.mcpwmCounterCompare_cmpA                                    = 4000;
+mcpwm2.mcpwmTimebase_phaseShift                                    = 100;
+mcpwm2.mcpwmCounterCompare_cmpB                                    = 4000;
+mcpwm2.mcpwmActionQualifier_MCPWM_AQ_OUTPUT_1A_ON_TIMEBASE_UP_CMPA = "MCPWM_AQ_OUTPUT_LOW";
+mcpwm2.useCase                                                     = "2CH";
+mcpwm2.mcpwm.$assign                                               = "MCPWM3";
+mcpwm2.mcpwm.mcpwm_1aPin.$assign                                   = "A20, GPIO12";
+mcpwm2.mcpwm.mcpwm_1bPin.$assign                                   = "GPIO29";

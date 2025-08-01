@@ -18,12 +18,9 @@ let config = [
         hidden: false,
         options: [
             { name: "fsi", displayName: "FSI" },
-            { name: "spi", displayName: "SPI" },
-            { name: "can", displayName: "CAN" },
         ],
         getDisabledOptions: (inst) => {
             return [
-                { name: "can", reason: "Not yet implemented" },
             ]
         },
         default: "fsi"
@@ -40,6 +37,11 @@ let config = [
         default: false,
     },
 ];
+
+
+/* Intro splash on GUI */
+let longDescription = "The Communication Logger module provides a software layer to receive and (optionally) buffer high-speed FSI messages, extract and package all elements of the message contents, and transmit via the UART or USB peripheral. " +
+"Optionally, add the MCU Control Center module for easy visualization of the custom log messages in a graphical interface powered by GUI Composer.";
 
 function moduleInstances(inst)
 {
@@ -195,10 +197,11 @@ var comsloggerModule = {
     displayName: "Communication Logger (BETA)",
     maxInstances: 1,
     defaultInstanceName: "myCOMSLogger",
-    description: "Communication Logger",
+    description: "Communication Logger Module",
     config          : config,
     moduleInstances : moduleInstances,	
     modules: modules,
+    longDescription: longDescription,
     templates: {
 		[transferCommon.getTransferPath() + "logger/coms_logger.c.xdt"] : "",
 		[transferCommon.getTransferPath() + "logger/coms_logger.h.xdt"] : "",

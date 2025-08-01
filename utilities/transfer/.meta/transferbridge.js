@@ -9,6 +9,11 @@ let Pinmux   = system.getScript("/driverlib/pinmux.js");
 
 let options = [];
 
+
+/* Intro splash on GUI */
+let longDescription = "The Transfer Bridge module provides a software layer to receive and (optionally) buffer messages with one communication peripheral and directly transmit the payload via another communication peripheral. " +
+"Messages are received using Communication Link B, (optionally buffered), and transmitted by Communication Link A.";
+
 let config = [
     {
         name: "mode",
@@ -123,6 +128,7 @@ function moduleInstances(inst)
                     registerInterrupts: true,
                     rxFifo: "SCI_FIFO_RX" + inst.packetLength,
                     txFifo: "SCI_FIFO_TX0",
+                    selectRegisteredInterrupts : ["registerRxInt", "registerTxInt"],
                     enabledFIFOInterrupts: ["SCI_INT_RXFF"],
                     sciRXInt : {
                         enableInterrupt: true
@@ -443,11 +449,12 @@ var bridgeModule = {
     displayName: "Transfer Bridge (BETA)",
     maxInstances: 1,
     defaultInstanceName: "myBridge",
-    description: "Bridge Module",
+    description: "Transfer Bridge Module",
     filterHardware : filterHardware,
     config          : config,
     moduleInstances : moduleInstances,	
     modules: modules,
+    longDescription: longDescription,
     templates: {
 		[transferCommon.getTransferPath() + "transferbridge/bridge.c.xdt"] : "",
 		[transferCommon.getTransferPath() + "transferbridge/bridge.h.xdt"] : "",

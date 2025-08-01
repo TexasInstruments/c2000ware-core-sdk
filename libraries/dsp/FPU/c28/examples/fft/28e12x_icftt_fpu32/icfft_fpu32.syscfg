@@ -1,0 +1,66 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28E12x" --part "F28E12x_48PT" --package "48PT" --context "system" --product "C2000WARE@6.00.00.00"
+ * @v2CliArgs --device "F28E120SC" --package "48PT" --context "system" --product "C2000WARE@6.00.00.00"
+ * @versions {"tool":"1.24.0+4110"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const device_support = scripting.addModule("/driverlib/device_support.js");
+const sysctl         = scripting.addModule("/driverlib/sysctl.js");
+const FFT            = scripting.addModule("/libraries/dsp/FPU/FFT/FFT.js", {}, false);
+const FFT1           = FFT.addInstance();
+const CMD            = scripting.addModule("/utilities/cmd_tool/cmd_syscfg/source/CMD");
+const CMD1           = CMD.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+FFT1.$name                  = "myFFT0";
+FFT1.CFFT.create(1);
+FFT1.CFFT[0].$name          = "myCFFT0";
+FFT1.CFFT[0].outPtr         = "outPtr";
+FFT1.CFFT[0].inPtr          = "in1Ptr";
+FFT1.CFFT[0].sincosFunction = false;
+FFT1.CFFT[0].coeffPtr       = "twiddlePtr";
+FFT1.CFFT[0].numStages      = 8;
+
+CMD1.$name                               = "generic_flash_lnk";
+CMD1.sectionAlignEnable_ramfunc          = true;
+CMD1.sectionAlignEnable_text             = true;
+CMD1.sectionAlignEnable_binit            = true;
+CMD1.sectionAlignEnable_cinit            = true;
+CMD1.sectionAlignEnable_switch           = true;
+CMD1.sectionAlignEnable_init_array       = true;
+CMD1.sectionAlignEnable_const            = true;
+CMD1.sectionAlignEnable_ovly             = true;
+CMD1.sectionMemory_codestart             = "0x080000";
+CMD1.sectionRunFromDifferentAddr_ramfunc = true;
+CMD1.sectionBinit_ramfunc                = false;
+CMD1.sectionMemory_text                  = ["FLASH_BANK0_SEC_0_63"];
+CMD1.sectionMemory_ramfunc               = ["FLASH_BANK0_SEC_0_63"];
+CMD1.sectionMemory_binit                 = ["FLASH_BANK0_SEC_0_63"];
+CMD1.sectionMemory_ovly                  = ["FLASH_BANK0_SEC_0_63"];
+CMD1.sectionMemory_cinit                 = ["FLASH_BANK0_SEC_0_63"];
+CMD1.sectionMemory_init_array            = ["FLASH_BANK0_SEC_0_63"];
+CMD1.sectionMemory_const                 = ["FLASH_BANK0_SEC_0_63"];
+CMD1.sectionMemory_bss                   = ["RAMM1"];
+CMD1.sectionMemory_data                  = ["RAMGS0"];
+CMD1.sectionMemory_switch                = ["FLASH_BANK0_SEC_0_63"];
+CMD1.sectionMemory_sysmem                = ["RAMGS0"];
+CMD1.sectionRun_ramfunc                  = ["RAMGS0"];
+CMD1.sectionMemory_stack                 = ["RAMGS0"];
+CMD1.userSection.create(3);
+CMD1.userSection[0].$name                = "CFFTdata1";
+CMD1.userSection[0].sectionAlignEnable   = true;
+CMD1.userSection[0].sectionMemory        = ["RAMGS0"];
+CMD1.userSection[0].sectionAlign         = 1024;
+CMD1.userSection[1].$name                = "CFFTdata2";
+CMD1.userSection[1].sectionMemory        = ["RAMGS0"];
+CMD1.userSection[1].sectionAlign         = 512;
+CMD1.userSection[2].$name                = "CFFTdata3";
+CMD1.userSection[2].sectionMemory        = ["RAMGS0"];
+CMD1.userSection[2].sectionAlign         = 512;

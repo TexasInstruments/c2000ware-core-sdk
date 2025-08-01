@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.05.00.00
+// C2000Ware v6.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -251,5 +251,12 @@
 #define INT_CLA_OVERFLOW            0x00DE0C0FU // 12.15 - CLA Overflow Interrupt
 #define INT_CLA_UNDERFLOW           0x00DF0C10U // 12.16 - CLA Underflow Interrupt
 
+//*****************************************************************************
+//
+// The following interrupts are added manually
+// DO NOT EDIT / REMOVE !!!
+//
+//*****************************************************************************
+#define INT_FREERTOS                0x00DB0C0CU // 12.12 - FreeRTOS SW interrupt
 
 #endif // HW_INTS_H

@@ -113,7 +113,7 @@ function getBankNames(bank){
 
 function getLinkPointerInfo()
 {
-    if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(getDeviceName()))
+    if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28E12x"].includes(getDeviceName()))
     {
         return {
             startValue: "0x00003FFF",
@@ -285,7 +285,7 @@ function getZone2Password1Mask(zsb_index){
             { zsb: 0x000783f0, mask: 0x1fffffff },
         ]
     }
-    else if (["F2838x", "F28003x", "F280013x", "F280015x","F28P65x", "F28P55x"].includes(getDeviceName()))
+    else if (["F2838x", "F28003x", "F280013x", "F280015x","F28P65x", "F28P55x", "F28E12x"].includes(getDeviceName()))
     {
         DEFAULT_ZONE2_PASSWORD_MASK =
         [
@@ -348,7 +348,7 @@ function getZone1Password1Mask(zsb_index){
             { zsb: 0x000781f0, mask: 0x53ffffff },
         ]
     }
-    else if (["F2838x", "F28003x", "F280013x", "F280015x","F28P65x", "F28P55x"].includes(getDeviceName()))
+    else if (["F2838x", "F28003x", "F280013x", "F280015x","F28P65x", "F28P55x", "F28E12x"].includes(getDeviceName()))
     {
         DEFAULT_ZONE1_PASSWORD_MASK = [
             { zsb: 0x00078020, mask: 0x4d7fffff },
@@ -385,7 +385,7 @@ function getDefaultPASSWORDLOCKValueMask(zone){
         DEFAULT_ZONE1_PASSWORDLOCK_MSW = "0x7FFFFFFF";
         DEFAULT_ZONE2_PASSWORDLOCK_MSW = "0x77FFFFFF";
     }
-    else if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(getDeviceName()))
+    else if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28E12x"].includes(getDeviceName()))
     {
         DEFAULT_ZONE1_PASSWORDLOCK_LSW = "0xFB7FFFFF";
         DEFAULT_ZONE2_PASSWORDLOCK_LSW = "0x1F7FFFFF";
@@ -445,7 +445,7 @@ function getDefaultJTAGPSWDHValueMask(zone){
 function getDefaultJTAGPSWDL1ValueMask(zsb_index){
     var DEFAULT_ZONE1_JTAGPSWDL1_MASK = "0x2BFFFFFF";
 
-    if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(getDeviceName()))
+    if (["F2838x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28E12x"].includes(getDeviceName()))
     {
         DEFAULT_ZONE1_JTAGPSWDL1_MASK = [
             { zsb: 0x00078020, mask: 0x2bffffff },
@@ -482,7 +482,7 @@ function getDefaultCRCLOCKValueMask(zone){
         DEFAULT_ZONE1_CRCLOCK_MSW = "0x3FFFFFFF";
         DEFAULT_ZONE2_CRCLOCK_MSW = "0x37FFFFFF";
     }
-    else if (["F2838x", "F28003x", "F280013x", "F280015x","F28P65x", "F28P55x"].includes(getDeviceName()))
+    else if (["F2838x", "F28003x", "F280013x", "F280015x","F28P65x", "F28P55x", "F28E12x"].includes(getDeviceName()))
     {
         DEFAULT_ZONE1_CRCLOCK_LSW = "0x7FFFFFFF";
         DEFAULT_ZONE2_CRCLOCK_LSW = "0x3FFFFFFF";

@@ -1,0 +1,23 @@
+var modules =
+[
+    [ "ADC", "group__adc__api.html", "group__adc__api" ],
+    [ "ASysCtl", "group__asysctl__api.html", "group__asysctl__api" ],
+    [ "CPUTimer", "group__cputimer__api.html", "group__cputimer__api" ],
+    [ "DCC", "group__dcc__api.html", "group__dcc__api" ],
+    [ "DCSM", "group__dcsm__api.html", "group__dcsm__api" ],
+    [ "DMA", "group__dma__api.html", "group__dma__api" ],
+    [ "Flash", "group__flash__api.html", "group__flash__api" ],
+    [ "GPIO", "group__gpio__api.html", "group__gpio__api" ],
+    [ "I2C", "group__i2c__api.html", "group__i2c__api" ],
+    [ "Interrupt", "group__interrupt__api.html", "group__interrupt__api" ],
+    [ "MCPWM", "group__mcpwm__api.html", "group__mcpwm__api" ],
+    [ "MemCfg", "group__memcfg__api.html", "group__memcfg__api" ],
+    [ "PGA", "group__pga__api.html", "group__pga__api" ],
+    [ "SCI", "group__sci__api.html", "group__sci__api" ],
+    [ "SPI", "group__spi__api.html", "group__spi__api" ],
+    [ "SysCtl", "group__sysctl__api.html", "group__sysctl__api" ],
+    [ "UART", "group__uart__api.html", "group__uart__api" ],
+    [ "XBAR", "group__xbar__api.html", "group__xbar__api" ],
+    [ "eCAP", "group__ecap__api.html", "group__ecap__api" ],
+    [ "eQEP", "group__eqep__api.html", "group__eqep__api" ]
+];

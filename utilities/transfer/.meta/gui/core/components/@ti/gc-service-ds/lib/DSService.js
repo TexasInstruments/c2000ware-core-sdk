@@ -425,6 +425,13 @@ class DebugCore extends AbstractDebugCore {
         const data = await this.dsModule.memory.read(location.toString(), typeOrBytes, size);
         return data && data.values ? Uint8Array.from(data.values) : new Uint8Array();
     }
+    async readMemoryRaw(location, typeOrBytes, size) {
+        this.prolog(this.readMemory.name, ...arguments);
+        size = size || 1;
+        typeOrBytes = typeOrBytes || 'int';
+        const data = await this.dsModule.memory.read(location.toString(), typeOrBytes, size);
+        return data && data.values ? data.values: [];
+    }
     async writeMemory(location, typeOrBytes, arrayOfValues) {
         this.prolog(this.writeMemory.name, location, typeOrBytes, '[...]');
         typeOrBytes = typeOrBytes || 'int';

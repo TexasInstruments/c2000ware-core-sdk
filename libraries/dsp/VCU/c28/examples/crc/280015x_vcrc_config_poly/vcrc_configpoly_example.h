@@ -10,8 +10,8 @@
 //  Target Family:     F2838x
 //
 //#############################################################################
-// $TI Release: C28x VCU Library V2.28.00.00 $
-// $Release Date: Jun 6, 2025 $
+// $TI Release: C28x VCU Library V2.29.00.00 $
+// $Release Date: Jul 30, 2025 $
 // $Copyright: Copyright (C) 2019 Texas Instruments Incorporated -
 //             http://www.ti.com/ ALL RIGHTS RESERVED $
 //#############################################################################

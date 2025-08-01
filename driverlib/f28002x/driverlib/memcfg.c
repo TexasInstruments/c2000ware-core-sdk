@@ -634,11 +634,11 @@ MemCfg_getInitStatus(uint32_t ramSections)
             // Return the overall status.
             //
             if((HWREG(MEMCFG_BASE + MEMCFG_O_DXINITDONE) ==
-                MEMCFG_SECT_DX_ALL) &&
+                (MEMCFG_SECT_DX_ALL & MEMCFG_SECT_NUM_MASK)) &&
                (HWREG(MEMCFG_BASE + MEMCFG_O_LSXINITDONE) ==
-                MEMCFG_SECT_LSX_ALL) &&
+                (MEMCFG_SECT_LSX_ALL & MEMCFG_SECT_NUM_MASK)) &&
                (HWREG(MEMCFG_BASE + MEMCFG_O_GSXINITDONE) ==
-                MEMCFG_SECT_GSX_ALL))
+                (MEMCFG_SECT_GSX_ALL & MEMCFG_SECT_NUM_MASK)))
             {
                 status = MEMCFG_SECT_NUM_MASK;
             }

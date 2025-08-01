@@ -18,6 +18,8 @@
 %   expInst = exportMod.$instances[0];
 % }
 %
+% let clockingClinic = system.getScript(transferCommon.getTransferPath() + "clinic/f28x/clocking_clinic.js");
+% let errataClinic = system.getScript(transferCommon.getTransferPath() + "clinic/f28x/errata_clinic.js");
 
 import { GcUtils } from './components/@ti/gc-core-assets/lib/GcUtils';
 import { GcFiles } from './components/@ti/gc-core-assets/lib/GcFiles';
@@ -412,6 +414,45 @@ function customLoggerGridUpdateUI(){
     customLoggerGrid.setDataProvider(customLoggerDataProvider);
 }
 
+
+function jsonToCsv(jsonData, withHeader) {
+  if (!jsonData || jsonData.length === 0) {
+    return '';
+  }
+
+  // Extract headers from the first JSON object's keys
+  const headers = Object.keys(jsonData[0]);
+
+  // Create CSV header row
+  const csvHeader = headers.map(header => '"' + header +'"').join(',');
+
+
+  // Create CSV data rows
+  const csvRows = jsonData.map(row => {
+    return headers.map(header => {
+      let value = row[header];
+      // Handle null or undefined values
+      if (value === null || typeof value === 'undefined') {
+        value = '';
+      }
+      // Escape values containing commas, double quotes, or newlines
+      if (typeof value === 'string' && (value.includes(',') || value.includes('"') || value.includes('\n'))) {
+        value = '"' + value.replace(/"/g, '""') + '"';
+      }
+      return value;
+    }).join(',');
+  });
+
+  // Combine header and rows
+  if (withHeader) {
+    return [csvHeader, ...csvRows].join('\n');
+  }
+  else
+  {
+    return csvRows.join('\n')
+  }
+}
+
 % }
 
 % if (gui.dltlogger) {
@@ -494,6 +535,143 @@ function DLTGridUpdateUI(){
 
 % }
 
+% if (gui.deviceDiagnosticExportMode == "debugger") {
+%%{
+        var current = 1;
+        var prereqRegisters = clockingClinic.prereqRegisters;
+        var clockCalculators = clockingClinic.clockCalculators;
+        var clockingChecks = clockingClinic.clockingChecks;
+
+        var errataPrereqRegisters = errataClinic.errataPrereqRegisters;
+        var errataChecks = errataClinic.errataChecks;
+        var errataPrereqMemoryLocs = errataClinic.errataPrereqMemoryLocs;
+        var memoryValueCalculators = errataClinic.memoryValueCalculators;
+%%}
+/**
+ -------------------------------------------------------------------------------------------------------------------------------
+Clinic
+-------------------------------------------------------------------------------------------------------------------------------
+**/
+% let transferCommon;
+% if (system.getProducts()[0].name.includes("C2000")){ 
+%   transferCommon = system.getScript("/utilities/transfer/transferCommon.js");} 
+% else { transferCommon = system.getScript("/transfer/transferCommon.js");}
+% var deviceName = transferCommon.getDeviceName();
+
+% for (var clockCheck of clockingChecks) {
+    % if (clockCheck.applicable(deviceName)){
+var `clockCheck.name`_led;
+    % }
+% }
+
+% for (var errataCheck of errataChecks) {
+    % if (errataCheck.applicable(deviceName)){
+var `errataCheck.name`_led;
+    % }
+% }
+
+
+async function clinicUpdate() {
+    var xtal = 10000000
+    //
+    // Pre req register reads
+    //
+    % for (var prereqReg of prereqRegisters) {
+        % if (prereqReg.applicable(deviceName)){
+    let `prereqReg.name` =  await xdsTransport.readValue('`prereqReg.register`');
+    `prereqReg.name` = parseInt(`prereqReg.name`);
+    console.log("`prereqReg.name`");
+    console.log(`prereqReg.name`)
+        % }
+    % }
+    
+    //
+    // Clock Calculators
+    //
+    % for (var clockCalc of clockCalculators) {
+        % if (clockCalc.applicable(deviceName)){
+        % let getFuncString = clockCalc.get.toString();
+    let `clockCalc.name` =  (`getFuncString`)`getFuncString.substring(getFuncString.indexOf("("), getFuncString.indexOf(")")+1)`;
+    console.log("`clockCalc.name`");
+    console.log(`clockCalc.name`)    
+        % }
+    % }
+
+    //
+    // Clocking checks
+    //
+    % for (var clockCheck of clockingChecks) {
+        % if (clockCheck.applicable(deviceName)){
+       % let checkFuncString = clockCheck.check.toString();
+    //
+    // `clockCheck.displayName`
+    //
+    let `clockCheck.name` =  (`checkFuncString`)`checkFuncString.substring(checkFuncString.indexOf("("), checkFuncString.indexOf(")")+1)`;
+    `clockCheck.name`_led.on = !`clockCheck.name`;
+        % }
+    % }
+
+}
+
+async function errataUpdate() {
+
+     //Errata 
+
+    //Errata Pre Register Reads
+
+    % for (var prereqReg of errataPrereqRegisters) {
+        % if (prereqReg.applicable(deviceName)){
+    let `prereqReg.name` =  await xdsTransport.readValue('`prereqReg.register`');
+    `prereqReg.name` = parseInt(`prereqReg.name`);
+    console.log("`prereqReg.name`");
+    console.log(`prereqReg.name`)
+        % }
+    % }
+
+    await xdsTransport.initCore({});
+    const core = xdsTransport.activeCoreMap.get('active');
+    
+    
+    //Errata Pre Memory Reads
+
+    % for (var prereqMemory of errataPrereqMemoryLocs) {
+        % if (prereqMemory.applicable(deviceName)){
+    let `prereqMemory.name` = await core.readMemoryRaw("`prereqMemory.address`", "unsigned int", 1); 
+    `prereqMemory.name` = parseInt(`prereqMemory.name`);
+    console.log("`prereqMemory.name`");
+    console.log(`prereqMemory.name`)
+        % }
+    % } 
+
+     //
+    // Value Calculators
+    //
+    % for (var valueCalc of memoryValueCalculators) {
+        % if (valueCalc.applicable(deviceName)){
+        % let getFuncString = valueCalc.get.toString();
+    let `valueCalc.name` =  (`getFuncString`)`getFuncString.substring(getFuncString.indexOf("("), getFuncString.indexOf(")")+1)`;
+    console.log("`valueCalc.name`");
+    console.log(`valueCalc.name`)  
+        % }  
+    % }  
+
+    //Errata checks
+
+    % for (var errataCheck of errataChecks) {
+        % if (errataCheck.applicable(deviceName)){
+       % let checkFuncString = errataCheck.check.toString();
+    //
+    // `errataCheck.displayName`
+    //
+    let `errataCheck.name` =  (`checkFuncString`)`checkFuncString.substring(checkFuncString.indexOf("("), checkFuncString.indexOf(")")+1)`;
+    `errataCheck.name`_led.on = !`errataCheck.name`;
+        % }
+    % }
+
+
+}
+% }
+
 /**
  -------------------------------------------------------------------------------------------------------------------------------
 Bindings setup
@@ -505,7 +683,7 @@ Bindings setup
     
     % if (transferCommon.isC2000() && (gui.deviceDiagnosticExportMode != "none")) {
     % for (var expModName of expModuleNames) {
-        % let mod = system.modules[transferCommon.getTransferPath() + expModName + ".js"];
+        % let mod = system.modules["/driverlib/" + expModName + ".js"];
         % let modExports = system.getScript("/utilities/transfer/export/mods/export_mod_" + expModName + ".js");
         % if (mod && (exportCommon.getNonExporterInstances(mod).length > 0)) {
     //
@@ -551,7 +729,7 @@ Bindings setup
     % }
     % }
     
-    % if (gui.deviceDiagnosticExportMode == "xds") {
+    % if (gui.deviceDiagnosticExportMode == "debugger") {
     await bindingRegistry.waitForModelReady('pm');
     % } 
     % if (gui.exporter) {
@@ -580,13 +758,13 @@ Bindings setup
 
     % if (transferCommon.isC2000() && (gui.deviceDiagnosticExportMode != "none")) {
     % for (var expModName of expModuleNames) {
-        % let mod = system.modules[transferCommon.getTransferPath() + expModName + ".js"];
+        % let mod = system.modules["/driverlib/" + expModName + ".js"];
         % let modExports = system.getScript("/utilities/transfer/export/mods/export_mod_" + expModName + ".js");
-        % if (gui.deviceDiagnosticExportMode == "xds") {
+        % if (gui.deviceDiagnosticExportMode == "debugger") {
     //
     // `expModName.toUpperCase()`
     //
-        % if (mod && (exportCommon.getNonExporterInstances(mod).length > 0)) {
+        % if (mod) {
             % for (var modInst of exportCommon.getNonExporterInstances(mod)) {
                 % for (let exportInfo of exportCommon.getInstanceExportModsInfo(modInst, modExports.exportsInfo)) {
                     % let regInstName = exportCommon.getExportModInfoBitfieldRegForInst(modInst, expModName, modExports.bitfiledInstanceNames, exportInfo);
@@ -632,11 +810,11 @@ Bindings setup
     % // 
     % for (var expAlwaysModName of expAlwaysModuleNames) {
         % let modExports = system.getScript("/utilities/transfer/export/mods/export_mod_" + expAlwaysModName + ".js");
-        % if (gui.deviceDiagnosticExportMode == "xds") {
+        % if (gui.deviceDiagnosticExportMode == "debugger") {
     //
     // `expAlwaysModName.toUpperCase()`
     //
-                % for (let exportInfo of modExports.exportsInfo) {
+                % for (let exportInfo of exportCommon.getInstanceExportModsInfoWithType(null, modExports.exportsInfo, "led")) {
                     % let regInstName = exportCommon.getExportModInfoBitfieldRegForInst(null, "", modExports.bitfiledInstanceNames, exportInfo);
                     % if (exportInfo.type == "led") {
     bindingRegistry.bind("widget.page_`expAlwaysModName`_`exportInfo.name`_led.on", 'pm.`regInstName`.`exportInfo.register`', 
@@ -772,7 +950,7 @@ Bindings setup
 
 % if (exporter && exporter.mode.includes("Bidirectional") && transferCommon.isC2000() && (gui.deviceDiagnosticExportMode != "none")) {
     % for (var expModName of expModuleNames) {
-        % let mod = system.modules[transferCommon.getTransferPath() + expModName + ".js"];
+        % let mod = system.modules["/driverlib/" + expModName + ".js"];
         % if (mod && (exportCommon.getNonExporterInstances(mod).length > 0)) {
             % for (var modInst of exportCommon.getNonExporterInstances(mod)) {
     //
@@ -913,13 +1091,30 @@ const init = () => {
     });
 
     
-    GcWidget.querySelector('#cust_logger_export').then((but) => {
+        
+    GcWidget.querySelector('#cust_logger_export_csv').then((but) => {
         but.addEventListener('click', () => {
-            // console.log(JSON.stringify(customLoggerGridData, null, 4));
+            
+            const myExportDataCSV = document.querySelector("#cust_logger_export_dialog_csv");
+            GcFiles.writeTextFile("customLog.csv", jsonToCsv(customLoggerGridData));
+            statusbar.statusText = "customLog.csv saved!"
+            document.querySelector('#cust_logger_exp_div').innerHTML = jsonToCsv(customLoggerGridData);
+            document.querySelector('#cust_logger_exp_dialog').open();
+            
+            myExportDataCSV.browseAndSave(jsonToCsv(customLoggerGridData), "customLog.csv", "text/csv");
+        });
+    })
+    
+    GcWidget.querySelector('#cust_logger_export_json').then((but) => {
+        but.addEventListener('click', () => {
+
+            const myExportDataJSON = document.querySelector("#cust_logger_export_dialog_json");
             GcFiles.writeTextFile("customLog.json", JSON.stringify(customLoggerGridData, null, 4));
             statusbar.statusText = "customLog.json saved!"
             document.querySelector('#cust_logger_exp_div').innerHTML = JSON.stringify(customLoggerGridData, null, 4);
             document.querySelector('#cust_logger_exp_dialog').open();
+            
+            myExportDataJSON.browseAndSave(JSON.stringify(customLoggerGridData, null, 4), "customLog.json", "text/json");
         });
     })
 
@@ -959,7 +1154,7 @@ const init = () => {
 
 % if (exporter && exporter.mode.includes("Bidirectional") && transferCommon.isC2000() && (gui.deviceDiagnosticExportMode != "none")) {
     % for (var expModName of expModuleNames) {
-        % let mod = system.modules[transferCommon.getTransferPath() + expModName + ".js"];
+        % let mod = system.modules["/driverlib/" + expModName + ".js"];
         % if (mod && (exportCommon.getNonExporterInstances(mod).length > 0)) {
             % for (var modInst of exportCommon.getNonExporterInstances(mod)) {
     //
@@ -987,6 +1182,104 @@ const init = () => {
     
     xdsConnectionDiv = document.getElementById('xds_connection_div');
     usbConnectionDiv = document.getElementById('usb_connection_div');   
+
+    % if (gui.deviceDiagnosticExportMode == "debugger") {
+    //
+    // Clinic
+    //
+        % for (var clockCheck of clockingChecks) {
+            % if (clockCheck.applicable(deviceName)){
+    GcWidget.querySelector('#page_module_clocking_`clockCheck.name`_led').then((led) => {
+        `clockCheck.name`_led = led;
+    });
+            % }
+        % }
+        % for (var errataCheck of errataChecks) {
+            % if (errataCheck.applicable(deviceName)){ 
+    GcWidget.querySelector('#page_module_errata_`errataCheck.name`_led').then((led) => {
+        `errataCheck.name`_led = led;
+    });
+            % }
+        % }
+    GcWidget.querySelector('#page_module_clocking_update_b').then(button => {
+        button.addEventListener('click', () => {
+            clinicUpdate();
+        });
+    });
+
+    GcWidget.querySelector('#page_module_errata_update_b').then(button => {
+        button.addEventListener('click', () => {
+            errataUpdate();
+        });
+    });
+
+    % function getBitfieldRegisterName(expModName, regName){
+        % if(["adc","dcc","i2c","nmi","sci","spi","xbar"].includes(expModName)){
+            % return expModName.toUpperCase() + regName;
+        % }
+        % else if(["can"].includes(expModName)){
+            % return expModName.toUpperCase() + "_" + regName;
+        % }
+        % else if(["lin"].includes(expModName)){
+            % if(["COMP","RD0","RD1","MASK","ID","TD0","TD1"].includes(regName)){
+                % return expModName.toUpperCase() + regName;
+            % }
+            % else if(["GLB_INT_EN","GLB_INT_FLG","GLB_INT_CLR"].includes(regName)){
+                % return expModName.toUpperCase() + "_" + regName;
+            % }
+            % else{
+                % return regName;
+            % }
+        % }
+        % else {
+            % return regName;   
+        % }
+    % }
+    % let Common   = system.getScript("/driverlib/Common.js");
+    % for (var expModName of expModuleNames) {
+        % let mod = system.modules["/driverlib/" + expModName + ".js"];
+        % if (["fsirx", "fsitx"].includes(expModName)) {
+        % var registersFile = system.getScript("/driverlib/device_driverlib_peripherals/" + 
+        %                       Common.getDeviceName().toLowerCase() + "_" + "fsi" + "_registers.js");
+        % var registers = registersFile["FSIRegisters"];
+        % }
+        % else {
+        % var registersFile = system.getScript("/driverlib/device_driverlib_peripherals/" + 
+        %                       Common.getDeviceName().toLowerCase() + "_" + expModName + "_registers.js");
+        % var registers = registersFile[expModName.toUpperCase() + "Registers"];
+        % }
+        % let modExports = system.getScript("/utilities/transfer/export/mods/export_mod_" + expModName + ".js");
+        % if (mod && (exportCommon.getNonExporterInstances(mod).length > 0)) {
+            % for (var modInst of exportCommon.getNonExporterInstances(mod)) {
+                % let regInstName = exportCommon.getExportModInfoBitfieldRegForInst(modInst, expModName, modExports.bitfiledInstanceNames,{});
+    
+    //
+    //  `modInst.$name` Save Register Function
+    //
+    async function saveRegisters_`modInst.$name`() {
+        let registerInfo = {};
+        registerInfo['`modInst.$name`_sr'] = {};
+                        % let exportableRegisters = registers.filter(
+                        %    reg => (modExports.exportsRegisterSkips.filter(regSkip => regSkip.name == reg.name).length == 0));
+                        % for (let reg of exportableRegisters) {
+        registerInfo['`modInst.$name`_sr']['`getBitfieldRegisterName(expModName,reg.name)`'] = await xdsTransport.readValue('`regInstName`.`getBitfieldRegisterName(expModName,reg.name)`');
+                        % }
+        window.alert(JSON.stringify(registerInfo['`modInst.$name`_sr'], null, 4));
+    }
+
+    //
+    //  `modInst.$name` Save Register Button Event Listeners
+    //
+    GcWidget.querySelector('#page_`expModName`_save_`modInst.$name`_registers_b').then(button => {
+        button.addEventListener('click', () => {
+                saveRegisters_`modInst.$name`();
+        });
+    });
+            % }
+        % }
+    % }
+        
+    % }
 
 };
 document.readyState === 'complete' ? init() : document.addEventListener('DOMContentLoaded', init);

@@ -11,7 +11,7 @@
 //
 //
 // 
-// C2000Ware v5.05.00.00
+// C2000Ware v6.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -251,7 +251,8 @@ void main(void)
     {
         test_result = FAIL;
     }
-
+    
+    printf("Golden vectors matched: %d not matched: %d\n", FE_NN_OUT_SIZE - error, error);
 
     while(1)
     {

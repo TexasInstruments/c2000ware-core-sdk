@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.05.00.00
+// C2000Ware v6.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -742,7 +742,7 @@ ADC_setupSOC(uint32_t base, ADC_SOCNumber socNumber, ADC_Trigger trigger,
     ASSERT((sampleWindow >= 1U) && (sampleWindow <= 512U));
 
     mask = (ADC_SOC0CTL_CHSEL_M | ADC_SOC0CTL_TRIGSEL_M | ADC_SOC0CTL_ACQPS_M);
-    
+
     //
     // Calculate address for the SOC control register.
     //
@@ -1730,7 +1730,7 @@ ADC_configOSDetectMode(uint32_t base, ADC_OSDetectMode modeVal)
     // Configure open/shorts detection circuit mode.
     //
     EALLOW;
-    HWREGH(base + ASYSCTL_O_ADCOSDETECT) = 
+    HWREGH(base + ASYSCTL_O_ADCOSDETECT) =
                         ((HWREGH(base + ASYSCTL_O_ADCOSDETECT) &
                         (~ASYSCTL_ADCOSDETECT_DETECTCFG_M)) |
                         ((uint16_t)modeVal << ASYSCTL_ADCOSDETECT_DETECTCFG_S));

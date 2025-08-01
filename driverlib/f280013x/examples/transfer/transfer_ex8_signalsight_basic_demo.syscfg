@@ -29,6 +29,7 @@ cputimer1.timerInt.enableInterrupt  = true;
 const divider11       = system.clockTree["LOSPCP"];
 divider11.divideValue = 2;
 
+
 signalsight1.$name                                         = "myMCUSignalSight0";
 signalsight1.bufferSize                                    = 200;
 signalsight1.exporter.comsLinkModule.loopback              = scripting.forceWrite(false);
@@ -39,6 +40,7 @@ signalsight1.exporter.comsLinkModule.useFifo               = scripting.forceWrit
 signalsight1.exporter.comsLinkModule.txFifo                = scripting.forceWrite("SCI_FIFO_TX0");
 signalsight1.exporter.comsLinkModule.useCase               = scripting.forceWrite("ALL");
 signalsight1.exporter.comsLinkModule.baudRates             = 460800;
+
 signalsight1.exporter.comsLinkModule.sci.$assign           = "SCIA";
 signalsight1.exporter.comsLinkModule.sci.sci_rxPin.$assign = "A16/C16, GPIO28";
 signalsight1.exporter.comsLinkModule.sci.sci_txPin.$assign = "GPIO29";

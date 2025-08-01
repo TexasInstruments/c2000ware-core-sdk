@@ -30,7 +30,7 @@
 //! CLB_SCLK_1          GPIO01      SCLK
 //
 //#############################################################################
-// $TI Release: F28004x Support Library v5.05.00.00 $
+// $TI Release: F28004x Support Library v6.00.00.00 $
 // 
 // $Copyright:
 // Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/

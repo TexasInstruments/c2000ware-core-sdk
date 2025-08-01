@@ -38,6 +38,13 @@ float32_t `arrName`[`inst["totSize"]`];
     % if(arrName==""){arrName=(inst.$name+"_arr");}
     % if(fdlogName==""){fdlogName=(inst.$name+"_fdlog");}
 void `inst.$name`_init(){
+    % if (inst.arrEn==true) 
+    % {
+    //
+    // initalize FDLOG `fdlogName` by assigning it with `arrName` 
+    //
+    DCL_initLog(&`fdlogName`, `arrName`, `inst["totSize"]`);
+    % }
     //
     // `inst.$name` settings
     //

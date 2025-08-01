@@ -203,4 +203,12 @@
 #define INT_USER11                  0x001E0000U // User Defined Trap 11
 #define INT_USER12                  0x001F0000U // User Defined Trap 12
 
+//*****************************************************************************
+//
+// The following interrupts are added manually
+// DO NOT EDIT / REMOVE !!!
+//
+//*****************************************************************************
+#define INT_FREERTOS                0x00D70B10U // 11.16 - FreeRTOS SW interrupt
+
 #endif // HW_INTS_H

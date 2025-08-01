@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.05.00.00
+// C2000Ware v6.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -186,5 +186,12 @@
 #define INT_ADCE4                   0x00D30B0CU // 11.12 - ADCE Interrupt 4
 #define INT_AES_SINTREQUEST         0x00DC0C0DU // 12.13 - AES Interrupt
 
+//*****************************************************************************
+//
+// The following interrupts are added manually
+// DO NOT EDIT / REMOVE !!!
+//
+//*****************************************************************************
+#define INT_FREERTOS                0x00DF0C10U // 12.16 - FreeRTOS SW interrupt
 
 #endif // HW_INTS_H

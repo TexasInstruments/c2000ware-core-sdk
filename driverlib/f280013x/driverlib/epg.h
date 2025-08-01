@@ -78,7 +78,7 @@ extern "C" {
 #define EPG_GCTL2_EPGOUT_CLKOUTSEL_BIT_L    4U
 #define EPG_GCTL1_SIGGEN_CLKSEL_BIT_L       4U
 #define EPG_CLKDIV_REG_OFF                  12U
-#define EPG_SIGGEN_REG_OFF                  32U
+#define EPG_SIGGEN_REG_OFF                  16U
 #define EPG_CLKDIV_CLKOFFSET_BIT_L          8U
 
 //*****************************************************************************
@@ -233,6 +233,7 @@ typedef enum
     EPG_OUT4 = 0x4U,    //!< EPG Output 4
     EPG_OUT5 = 0x5U,    //!< EPG Output 5
     EPG_OUT6 = 0x6U,    //!< EPG Output 6
+    EPG_OUT7 = 0x7U,    //!< EPG Output 7
 } EPG_OUT;
 
 //*****************************************************************************

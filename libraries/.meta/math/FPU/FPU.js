@@ -27,7 +27,7 @@ if((Common.getDeviceName() == "F2807x") || (Common.getDeviceName() == "F28004x")
         {name: "NONE",     displayName: "NONE"},
     ];
 }
-else if((Common.getDeviceName() == "F28002x") || (Common.getDeviceName() == "F28003x") || (Common.getDeviceName() == "F28P55x") || (Common.getDeviceName() == "F28P65x"))
+else if((Common.getDeviceName() == "F28002x") || (Common.getDeviceName() == "F28003x") || (Common.getDeviceName() == "F28P55x") || (Common.getDeviceName() == "F28P551x") || (Common.getDeviceName() == "F28P65x"))
 {
     TMU_TYPE = [
         {name: "TMU1",     displayName: "TMU1"},

@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.05.00.00
+// C2000Ware v6.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -533,7 +533,7 @@ ADC_setupSOC(uint32_t base, ADC_SOCNumber socNumber, ADC_Trigger trigger,
     ASSERT((sampleWindow >= 1U) && (sampleWindow <= 512U));
 
     mask = (ADC_SOC0CTL_CHSEL_M | ADC_SOC0CTL_TRIGSEL_M | ADC_SOC0CTL_ACQPS_M);
-    
+
     //
     // Calculate address for the SOC control register.
     //

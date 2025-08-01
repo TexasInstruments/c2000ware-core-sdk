@@ -19,8 +19,19 @@
 %   exportMod = system.modules[transferCommon.getTransferPath() + "exporter.js"];
 %   expInst = exportMod.$instances[0];
 % }
+% if (gui.deviceDiagnosticExportMode == "debugger"){
+%   buttonMode = "enabled";
+% }
 %
+% let clockingClinic = system.getScript(transferCommon.getTransferPath() + "clinic/f28x/clocking_clinic.js");
+% let errataClinic = system.getScript(transferCommon.getTransferPath() + "clinic/f28x/errata_clinic.js");
 %
+% var prereqRegisters = clockingClinic.prereqRegisters;
+% var clockCalculators = clockingClinic.clockCalculators;
+% var clockingChecks = clockingClinic.clockingChecks;
+% var errataChecks = errataClinic.errataChecks;
+% var errataPrereqRegisters = errataClinic.errataPrereqRegisters;
+
 
 <link rel="import" href="components/ti-core-stylesheets/ti-core-stylesheets.html">
 <script type="module" src="./components/@ti/build/gc-components.esm.js"></script>
@@ -75,11 +86,17 @@
     .almost_full_width {
         width: 98%;
     }
-    
+
     .page_module_tile {
         --gc-padding: 10px;
         width: 300px;
         height: 300px;
+    }
+
+    .page_module_tile_long {
+        --gc-padding: 10px;
+        width: 300px;
+        height: 600px;
     }
 
     .page_module_specific_register_button {
@@ -102,6 +119,20 @@
         width: 90%;
         --gc-padding: 0px;
     }
+    
+    .page_module_lbl {
+        width: 70%
+    }
+
+    .errata_display_button{
+        width: 70%;
+        z-index: 1; 
+        color: #555555; 
+        text-decoration: none; 
+        position: relative; 
+        left: 5px;
+    }
+
     #container {
         width: 100%;
     }
@@ -285,7 +316,7 @@
     % {
     %   activeConfiguration += "usb+custom+streaming";
     % }
-    % if (gui.deviceDiagnosticExportMode == "xds") {
+    % if (gui.deviceDiagnosticExportMode == "debugger") {
     %   activeConfiguration += (activeConfiguration?",":"") + "xds+pm"
     % }
     <gc-target-connection-manager id="connection_manager" auto-connect active-configuration="`activeConfiguration`">
@@ -295,7 +326,7 @@
         <gc-codec-delimited-text id="cr"></gc-codec-delimited-text>
         <gc-model-streaming id="streaming"></gc-model-streaming>
     % }
-    % if (gui.deviceDiagnosticExportMode == "xds") {
+    % if (gui.deviceDiagnosticExportMode == "debugger") {
         <gc-model-program id="pm"></gc-model-program>
         <gc-transport-xds id="xds"></gc-transport-xds>
     % }
@@ -318,8 +349,38 @@
         <gc-widget-tab-container id="modules_tab_container" class="container" layout horizontal position="top" index="0" initial-index="0">
             
 % if (transferCommon.isC2000() && (gui.deviceDiagnosticExportMode != "none")) {
-            <gc-widget-tab-panel id="page_modules" class="container" label="Modules" icon-name="round:action:view_module" has-heading tooltip="Application Modules" layout vertical start-justified>
+            <gc-widget-tab-panel id="page_modules" class="container" label="Clinic" icon-name="maps:medical_services" has-heading tooltip="Device Health" layout vertical start-justified>
                 <gc-widget-container id="page_module_container" horizontal layout center-justified wrap>
+                    <gc-widget-container>
+                        <gc-widget-button id="page_module_clocking_update_b" class="page_module_specific_register_button" button-type="primary" label="Update" enabled style="z-index: 1;"></gc-widget-button>
+                        <gc-widget-container id="page_module_clocking_tile" class="page_module_tile_long" heading="Clocking" elevation="1" layout start-justified center vertical>
+    % var deviceName = transferCommon.getDeviceName();
+    % for (var clockCheck of clockingChecks) {
+        % if (clockCheck.applicable(deviceName)){
+            <gc-widget-container id="page_module_clocking_`clockCheck.name`_con" class="page_module_specific_con" elevation="0" layout horizontal justified center>
+                                <gc-widget-label id="page_module_clocking_`clockCheck.name`_lbl"  class="page_module_lbl" label="`clockCheck.displayName`"></gc-widget-label>
+                                <gc-widget-led id="page_module_clocking_`clockCheck.name`_led"></gc-widget-led>
+                            </gc-widget-container>     
+        % }                  
+    % }
+                        </gc-widget-container>
+                    </gc-widget-container>
+        <gc-widget-container>
+            <gc-widget-button id="page_module_errata_update_b" class="page_module_specific_register_button" button-type="primary" label="Update" enabled style="z-index: 1;"></gc-widget-button>
+            <gc-widget-container id="page_module_errata_tile" class="page_module_tile_long" heading="Errata" elevation="1" layout start-justified center vertical>
+    % for (var errataCheck of errataChecks) {
+        % if (errataCheck.applicable(deviceName)){                    
+            <gc-widget-container id="page_module_errata_`errataCheck.name`_con" class="page_module_specific_con" elevation="0" layout horizontal justified center>
+                                <a id="page_module_errata_viewmore_`errataCheck.name`_b" class="errata_display_button" href = "`errataCheck.referenceLink[deviceName]? errataCheck.referenceLink[deviceName] : errataCheck.referenceLink["default"]`" target="_blank">`errataCheck.displayName`</a>
+                                <gc-widget-led id="page_module_errata_`errataCheck.name`_led"></gc-widget-led>
+                            </gc-widget-container>
+            <gc-widget-container id="page_module_errata_`errataCheck.name`_description_con" class="page_module_specific_con" elevation="0" layout horizontal justified center>
+                               
+                        </gc-widget-container>        
+        % }
+    % }
+            </gc-widget-container>
+        </gc-widget-container>
 % for (var expModName of expModuleNames) {
     % let mod = system.modules["/driverlib/" + expModName + ".js"];
     % let modExports = system.getScript(transferCommon.getTransferPath() + "export/mods/export_mod_" + expModName + ".js");
@@ -343,23 +404,22 @@
 % // Always Modules
 % //
 %
+                    <gc-widget-container id="page_module_system_tile" class="page_module_tile" heading="System" elevation="1" layout start-justified center vertical>
+                        <gc-widget-container id="page_module_system_con" class="page_module_specific_con" elevation="0" layout horizontal justified center>
 % for (var expAlwaysModName of expAlwaysModuleNames) {
     % let modExports = system.getScript(transferCommon.getTransferPath() + "export/mods/export_mod_" + expAlwaysModName + ".js");
     %//
     %// Always Module top level status page
     %//
-                    <gc-widget-container id="page_module_`expAlwaysModName`_tile" class="page_module_tile" heading="`expAlwaysModName.toUpperCase()`" elevation="1" layout start-justified center vertical>
-                        <gc-widget-container id="page_module_`expAlwaysModName`_con" class="page_module_specific_con" elevation="0" layout horizontal justified center>
-                            <gc-widget-label id="page_module_`expAlwaysModName`_lbl" label="`expAlwaysModName`"></gc-widget-label>
+                            <gc-widget-label id="page_module_`expAlwaysModName`_lbl" label="`expAlwaysModName.toUpperCase()`"></gc-widget-label>
                             <gc-widget-led id="page_module_`expAlwaysModName`_led"></gc-widget-led>
+
+% }
                         </gc-widget-container>
                     </gc-widget-container>
-
-% }
                 </gc-widget-container>
-            </gc-widget-tab-panel>
-% }
-
+                <gc-widget-tab-container  id="clinic_tab_container" class="container" layout horizontal position="top" index="1" initial-index="0">
+                
 % if (transferCommon.isC2000() && (gui.deviceDiagnosticExportMode != "none")) {
 % for (var expModName of expModuleNames) {
     % let mod = system.modules["/driverlib/" + expModName + ".js"];
@@ -368,10 +428,10 @@
     %// Module page individual entry status
     %//
     % if (mod && (exportCommon.getNonExporterInstances(mod).length > 0)) {
-            <gc-widget-tab-panel id="page_`expModName`" class="container" label="`expModName.toUpperCase()`" has-heading layout horizontal wrap>
+            <gc-widget-tab-panel id="page_`expModName`" class="container" label="`expModName.toUpperCase()`" layout horizontal wrap>
         % for (var modInst of exportCommon.getNonExporterInstances(mod)) {
                 <gc-widget-container>
-                    <gc-widget-button class="page_module_specific_register_button" id="page_`expModName`_save_`modInst.$name`_registers_b" button-type="primary" label="Save Registers" `buttonMode`></gc-widget-button>
+                    <gc-widget-button class="page_module_specific_register_button" id="page_`expModName`_save_`modInst.$name`_registers_b" button-type="primary" label="Save Registers" `buttonMode` style="z-index: 1;" ></gc-widget-button>
                     <gc-widget-container id="page_`expModName`_`modInst.$name`_tile" class="page_module_specific_tile" heading="`modInst.$name`" elevation="1" layout center-justified center vertical>
             % for (let exportInfo of exportCommon.getInstanceExportModsInfo(modInst, modExports.exportsInfo)) {
                         <gc-widget-container id="page_`expModName`_`modInst.$name`_`exportInfo.name`" class="page_module_specific_export" elevation="0" layout horizontal justified center>
@@ -391,27 +451,33 @@
 % // Always Modules
 % //
 %
+            <gc-widget-tab-panel id="page_system" class="container" label="System" layout horizontal wrap>
 % for (var expAlwaysModName of expAlwaysModuleNames) {
     % let modExports = system.getScript(transferCommon.getTransferPath() + "export/mods/export_mod_" + expAlwaysModName + ".js");
     %//
     %// Module page individual entry status
     %//
-            <gc-widget-tab-panel id="page_`expAlwaysModName`" class="container" label="`expAlwaysModName.toUpperCase()`" has-heading layout horizontal wrap>
                 <gc-widget-container>
-                    <gc-widget-button class="page_module_specific_register_button" id="page_save_`expAlwaysModName`_registers_b" button-type="primary" label="Save Registers" disabled></gc-widget-button>
-                    <gc-widget-container id="page_`expAlwaysModName`_tile" class="page_module_specific_tile" heading="`expAlwaysModName`" elevation="1" layout center-justified center vertical>
-            % for (let exportInfo of modExports.exportsInfo) {
+                % if (expAlwaysModName != "sysctl") {
+                    <gc-widget-button class="page_module_specific_register_button" id="page_save_`expAlwaysModName`_registers_b" button-type="primary" label="Save Registers" `buttonMode` style="z-index: 1;" ></gc-widget-button>
+                % }
+                    <gc-widget-container id="page_`expAlwaysModName`_tile" class="page_module_specific_tile" heading="`expAlwaysModName.toUpperCase()`" elevation="1" layout center-justified center vertical>
+            % for (let exportInfo of exportCommon.getInstanceExportModsInfoWithType(null, modExports.exportsInfo, "led")) {
                         <gc-widget-container id="page_`expAlwaysModName`_`exportInfo.name`" class="page_module_specific_export" elevation="0" layout horizontal justified center>
-                            <gc-widget-label id="page_`expAlwaysModName`_`exportInfo.name`_lbl" label="`exportInfo.displayName`"></gc-widget-label>
+                            <gc-widget-label id="page_`expAlwaysModName`_`exportInfo.name`_lbl" class="page_module_lbl" label="`exportInfo.displayName`"></gc-widget-label>
                             <gc-widget-led id="page_`expAlwaysModName`_`exportInfo.name`_led"></gc-widget-led>
                         </gc-widget-container>
             % }   
                     </gc-widget-container>
                 </gc-widget-container>
-            </gc-widget-tab-panel>
     
 % }
+            </gc-widget-tab-panel>
 % }
+                </gc-widget-tab-container>
+            </gc-widget-tab-panel>
+% }
+
 % if (gui.fsilogger) {
             <gc-widget-tab-panel id="page_fsi_logger" class="container" label="FSI Logger" icon-name="round:action:timeline" vertical layout has-heading tooltip="FSI data logger">
                 <gc-widget-dialog id="fsi_logger_exp_dialog" close-on-esc>
@@ -476,7 +542,10 @@
                     <gc-widget-select id="cust_logger_sort_by_column" labels=",Timestamp,Data" values=",cust_logger_ts,cust_logger_d" selected-index="0" initial-index="0"></gc-widget-select>
                     <gc-widget-input-filter id="cust_logger_filter_text" placeholder="Entries include this text" has-clear-icon has-search-icon hidden info-text="The selected Filter/Sort by column entries get filtered to show only the entries that include the text entered in this input box"></gc-widget-input-filter>
                     <gc-widget-checkbox id="cust_logger_sort_descending" label="Sort Decending"></gc-widget-checkbox>
-                    <gc-widget-button id="cust_logger_export" label="Export"></gc-widget-button>
+                    <gc-widget-button id="cust_logger_export_json" label="Export JSON"></gc-widget-button>
+                    <gc-widget-button id="cust_logger_export_csv" label="Export CSV"></gc-widget-button>
+                    <gc-widget-file-select-dialog id="cust_logger_export_dialog_csv" file-extensions=".csv"></gc-widget-file-select-dialog>
+                    <gc-widget-file-select-dialog id="cust_logger_export_dialog_json" file-extensions=".json"></gc-widget-file-select-dialog>
                 </gc-widget-container>
                 <gc-widget-grid id="cust_logger_grid" layout horizontal selected-path="1" selected-row="1" one flex>
                     <gc-widget-grid-data-column id="cust_logger_ts_col" name="cust_logger_ts" heading="Timestamp" layout></gc-widget-grid-data-column>
@@ -565,7 +634,7 @@
 
             <gc-widget-tab-panel id="page_connections" class="container" label="Connections" icon-name="content:link" has-heading tooltip="Connection Status" center-justified start>
                 <gc-widget-container id="page_connections_container" layout class="container" start horizontal>
-% if (gui.deviceDiagnosticExportMode == "xds") {
+% if (gui.deviceDiagnosticExportMode == "debugger"){
                     <gc-widget-container class="connection_container" one flex>
                         <gc-widget-led class="connection_led" id="xds_led"></gc-widget-led>
                         <gc-widget-tab-panel label="XDS" class="connection_panel" has-heading>

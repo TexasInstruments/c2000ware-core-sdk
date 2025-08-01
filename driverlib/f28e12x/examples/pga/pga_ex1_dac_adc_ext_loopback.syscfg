@@ -1,0 +1,48 @@
+
+/**
+ * Import the modules used in this configuration.
+ */
+const adc         = scripting.addModule("/driverlib/adc.js", {}, false);
+const adc1        = adc.addInstance();
+const asysctl     = scripting.addModule("/driverlib/asysctl.js");
+const cmpss_lite  = scripting.addModule("/driverlib/cmpss_lite.js", {}, false);
+const cmpss_lite1 = cmpss_lite.addInstance();
+const pga         = scripting.addModule("/driverlib/pga.js", {}, false);
+const pga1        = pga.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+adc1.$name               = "myADC0";
+adc1.adcClockPrescaler   = "ADC_CLK_DIV_1_0";
+adc1.enabledSOCs         = ["ADC_SOC_NUMBER0","ADC_SOC_NUMBER1"];
+adc1.soc0SampleWindow    = 4;
+adc1.soc1SampleWindow    = 4;
+adc1.interruptPulseMode  = "ADC_PULSE_END_OF_CONV";
+adc1.enabledInts         = ["ADC_INT_NUMBER1"];
+adc1.enableInterrupt1    = true;
+adc1.interrupt1SOCSource = "ADC_INT_TRIGGER_EOC1";
+adc1.soc1Channel         = "ADC_CH_ADCIN8";
+adc1.registerInterrupts  = ["1"];
+adc1.useInterrupts       = false;
+
+asysctl.externalDACLEnable     = true;
+asysctl.analogReference        = "INTERNAL";
+asysctl.analogReferenceVoltage = "1P65";
+
+cmpss_lite1.$name         = "myCMPSSLite0";
+cmpss_lite1.cmpssLiteBase = "CMPSSLITE3_BASE";
+cmpss_lite1.enableModule  = true;
+cmpss_lite1.dacValLow     = 1000;
+
+const analog       = scripting.addModule("/driverlib/analog.js", {}, false);
+const analog1      = analog.addInstance({}, false);
+analog1.$name      = "myANALOGPinMux0";
+cmpss_lite1.analog = analog1;
+adc1.analog        = analog1;
+
+pga1.$name     = "myPGA0";
+pga1.pgaBase   = "PGA1_BASE";
+pga1.pgaEnable = true;
+pga1.gainMode  = "PGA_GAIN_2";
+pga1.modeSelection = "Non-invertingMode";

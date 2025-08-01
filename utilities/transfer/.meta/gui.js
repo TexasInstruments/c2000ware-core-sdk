@@ -6,7 +6,7 @@ if (system.getProducts()[0].name.includes("C2000"))
 
 
 const DEVICE_DIAGNOSTIC_EXPORT_NONE = "none";
-const DEVICE_DIAGNOSTIC_EXPORT_XDS = "xds";
+const DEVICE_DIAGNOSTIC_EXPORT_DEBUGGER = "debugger";
 const DEVICE_DIAGNOSTIC_EXPORT_EXPORTER = "exporter";
 
 function rtLoggeronChange(inst, ui){
@@ -29,6 +29,11 @@ function dltLoggeronChange(inst, ui){
 
 }
 
+let longDescription = "The MCU Control Center tool provides a " +
+"software-driven, high-performance graphical user interface (GUI) powered by GUI Composer that unlocks customizable data logging via a variety of different communication protocols and formatting modes. " +
+"The MCU Control Center module will autogenerate a custom GUI application that can be launched inside CCS. " +
+"This module is designed to be used with an application logging, communication logging, or rapid-time logging implementation.";
+
 let config = [
     {
         name: "guiProjectName",
@@ -37,14 +42,14 @@ let config = [
     },
     {
         name: "deviceDiagnosticExportMode",
-        displayName: "Device Diagnostic Export Mode",
+        displayName: "Clinic - Device Diagnostic Export Mode",
         default: DEVICE_DIAGNOSTIC_EXPORT_NONE,
         options: [
             { name: DEVICE_DIAGNOSTIC_EXPORT_NONE, displayName: "No device diagnostic export"},
-            { name: DEVICE_DIAGNOSTIC_EXPORT_XDS, displayName: "Use XDS debugger for device diagnostic export"},
-            { name: DEVICE_DIAGNOSTIC_EXPORT_EXPORTER, displayName: "Use COMS exporter for device diagnostic export"},
+            { name: DEVICE_DIAGNOSTIC_EXPORT_DEBUGGER, displayName: "Use debugger for device diagnostic export"},
+            //{ name: DEVICE_DIAGNOSTIC_EXPORT_EXPORTER, displayName: "Use COMS exporter for device diagnostic export"},
         ],
-        hidden: transferCommon.isC2000()
+        hidden: (!(transferCommon.isC28x() && ["F280013x", "F280015x", "F28003x"].includes(transferCommon.getDeviceName())))
     },
     {
         name: "GRPOUP_FSI_FRAME_LOGGER",
@@ -53,13 +58,13 @@ let config = [
                 name: "fsilogger",
                 displayName: "Enable FSI Frame Logger",
                 default: false,
-                hidden: (transferCommon.isC29x())
+                hidden: (transferCommon.isC29x() || (transferCommon.isC2000() && !transferCommon.hasFSISupport()))
             },
             {
                 name: "fsiComsLogger",
                 displayName: "Add FSIRX Communication Logger",
                 default: false,
-                hidden: (transferCommon.isC29x())
+                hidden: (transferCommon.isC29x() || (transferCommon.isC2000() && !transferCommon.hasFSISupport()))
             },
         ]
     },
@@ -228,6 +233,25 @@ function onValidate(inst, validation){
             "Custom Export Logger must be enabled to use DLT Logger", 
             inst, "dltlogger");	
 	}
+    if (inst["fsilogger"] && inst["exporter"]["packageMode"] == "START/END")
+    {
+        validation.logError(
+            "START/END mode does not support FSI Frame Logger", 
+            inst.exporter, "packageMode");
+    }
+    if (inst["fsilogger"] && inst["exporter"]["packageMode"] == "START/END")
+    {
+        validation.logError(
+            "START/END mode does not support FSI Frame Logger", 
+            inst.exporter, "packageMode");
+    }
+    var signalsightInst = system.modules[transferCommon.getTransferPath() + 'signalsight.js'];
+    if (signalsightInst)
+    {
+        validation.logError(
+            "MCU Control Center and MCU Signal Sight cannot be added to the same project.", 
+            inst);
+    }
 }
 
 if(transferCommon.isC29x())
@@ -253,15 +277,16 @@ if(transferCommon.isC29x())
     )
 }
 var guiModule = {
-    displayName: "MCU Mission Control (BETA)",
+    displayName: "MCU Control Center (BETA)",
     maxInstances: 1,
     defaultInstanceName: "myGUI",
-    description: "GUI Visualization and Debugging",
+    description: "Data Logging and Debugging GUI",
     moduleStatic: {
         config          : config,
         moduleInstances : moduleInstances,	
         validate: onValidate
     },
+    longDescription: longDescription,
     templates: {
 		[transferCommon.getTransferPath() + "gui/assets/icons.svg.xdt"] : "",
 		[transferCommon.getTransferPath() + "gui/index.gui.xdt"] : "",

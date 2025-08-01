@@ -50,6 +50,9 @@ function onChangeOperationMode(inst, ui) {
     }
 }
 
+/* Intro splash on GUI */
+let longDescription = "The Data Transfer module provides a data logging software layer via a communication peripheral with a customizable packaging method.";
+
 let config = [
     {
         name: "mode",
@@ -112,6 +115,7 @@ let config = [
         getDisabledOptions: (inst) => {
             return [
                 { name: "MSGPACK", reason: "Not yet implemented" },
+                { name: "SIGNAL SIGHT", reason: "Package mode only available as submodule of MCU Signal Sight."}
             ]
         },
         onChange: onChangeOperationMode,
@@ -890,6 +894,7 @@ var exportModule = {
     config: config,
     moduleInstances: moduleInstances,
     modules: modules,
+    longDescription: longDescription,
     templates: {
         [transferCommon.getTransferPath() + "export/export.c.xdt"]: "",
         [transferCommon.getTransferPath() + "export/export.h.xdt"]: "",

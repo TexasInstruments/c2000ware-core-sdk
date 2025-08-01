@@ -58,7 +58,7 @@
 //
 //
 // 
-// C2000Ware v5.05.00.00
+// C2000Ware v6.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -249,6 +249,7 @@ void initEPWM(void)
     EPWM_setTimeBaseCounterMode(EPWM4_BASE, EPWM_COUNTER_MODE_UP);
     EPWM_setTimeBaseCounter(EPWM4_BASE, 0U);
 #if phase_shift_ON == 1U
+
     EPWM_enableSyncOutPulseSource(EPWM4_BASE, EPWM_SYNC_OUT_PULSE_ON_CNTR_ZERO);
 #endif
     EPWM_setInterruptSource(EPWM4_BASE, EPWM_INT_TBCTR_ZERO);
@@ -270,6 +271,7 @@ void initEPWM(void)
     EPWM_setTimeBaseCounter(EPWM5_BASE, 0U);
 #if phase_shift_ON == 1U
     EPWM_enablePhaseShiftLoad(EPWM5_BASE);
+
     EPWM_setSyncInPulseSource(EPWM5_BASE, EPWM_SYNC_IN_PULSE_SRC_SYNCOUT_EPWM4);
     EPWM_setPhaseShift(EPWM5_BASE, 20U);
     EPWM_enableOneShotSync(EPWM5_BASE);

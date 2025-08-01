@@ -1,7 +1,7 @@
 <div align="center">
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/TexasInstruments-Logo.svg" width="150"><br/>
-# C2000Ware v5.05.00.00
+# C2000Ware v6.00.00.00
 
 [Introduction](#introduction) | [Layout](#repositorylayout) | [Overview](#overview) | [Contribute](#contributing-to-the-project)
 
@@ -12,6 +12,7 @@
 C2000Ware for C2000 microcontrollers is a cohesive set of development software and documentation designed to minimize software development time. 
 It includes device-specific drivers and device peripheral examples, C2000Ware provides a solid foundation to begin development and evaluation.
 List of devices supported
+- [F28E12x](https://www.ti.com/product/TMS320F28E120SBS).
 - [F28P55x](https://www.ti.com/product/TMS320F28P559SJ-Q1).
 - [F28P65x](https://www.ti.com/product/TMS320F28P650DK) . 
 - [F280015x](https://www.ti.com/product/TMS320F2800157). 

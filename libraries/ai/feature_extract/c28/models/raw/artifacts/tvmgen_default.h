@@ -26,9 +26,9 @@ extern "C" {
 #define TVMGEN_DEFAULT_BIAS_LEN 3
 #define TVMGEN_DEFAULT_SCALE_LEN 3
 #define TVMGEN_DEFAULT_SHIFT_LEN 3
-extern const int32_t tvmgen_default_bias_data[] __attribute__((weak)) = {213, 160, 160};
-extern const int32_t tvmgen_default_scale_data[] __attribute__((weak)) = {193, 187, 226};
-extern const int32_t tvmgen_default_shift_data[] __attribute__((weak)) = {17, 16, 16};
+extern const float tvmgen_default_bias_data[] __attribute__((weak)) = {605.14886, 388.80402, 268.32208};
+extern const int32_t tvmgen_default_scale_data[] __attribute__((weak)) = {218, 177, 227};
+extern const int32_t tvmgen_default_shift_data[] __attribute__((weak)) = {18, 17, 17};
 
 
 /* TI NPU hardware accelerator initialization */

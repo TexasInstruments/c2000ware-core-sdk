@@ -304,7 +304,7 @@ var transfer_export = {
     topModules:
         [
             {
-                displayName: "MCU Mission Control and Transfer (BETA)",
+                displayName: "MCU Control Center and Transfer (BETA)",
                 description: "Tranfer data in and out of the device with ease",
                 modules: modules
             }

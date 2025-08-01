@@ -147,6 +147,7 @@ void main(void)
     GPIO_setPadConfig(1,GPIO_PIN_TYPE_STD);
     GPIO_setPinConfig(GPIO_1_EPWM1_B);
 
+
     //
     // Setup Profiling GPIOs for loop1 and loop2
     //
@@ -248,6 +249,7 @@ void initEPWM(void)
     EPWM_setTimeBaseCounter(EPWM4_BASE, 0U);
 #if phase_shift_ON == 1U
     EPWM_setSyncOutPulseMode(EPWM4_BASE, EPWM_SYNC_OUT_PULSE_ON_COUNTER_ZERO);
+
 #endif
     EPWM_setInterruptSource(EPWM4_BASE, EPWM_INT_TBCTR_ZERO);
     EPWM_enableInterrupt(EPWM4_BASE);
@@ -268,6 +270,7 @@ void initEPWM(void)
     EPWM_setTimeBaseCounter(EPWM5_BASE, 0U);
 #if phase_shift_ON == 1U
     EPWM_enablePhaseShiftLoad(EPWM5_BASE);
+
     EPWM_setPhaseShift(EPWM5_BASE, 20U);
     EPWM_enableOneShotSync(EPWM5_BASE);
 #endif

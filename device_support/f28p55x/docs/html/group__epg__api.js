@@ -11,6 +11,8 @@ var group__epg__api =
     [ "EPG_INT_GLOBAL_INT", "group__epg__api.html#ga3aea8a3dd5949d8b4a3dafe0d3c9497a", null ],
     [ "EPG_INT_SIGGEN0_DONE", "group__epg__api.html#gabc4c60e8bcb2073b19082b30727ad414", null ],
     [ "EPG_INT_SIGGEN0_FILL", "group__epg__api.html#gab6cdb11400127599f6b9b449e2efa164", null ],
+    [ "EPG_INT_SIGGEN1_DONE", "group__epg__api.html#ga3e65e1f9495b83a02b8cec9806687d91", null ],
+    [ "EPG_INT_SIGGEN1_FILL", "group__epg__api.html#ga97631a94e9a5a08c43e4251ac20d50f5", null ],
     [ "EPG_LOCK_REG_GCTL0", "group__epg__api.html#ga784e0e9efe151217490098b7357b81b8", null ],
     [ "EPG_LOCK_REG_GCTL1", "group__epg__api.html#gaf19916b6dc822068805a6ff4fc27b88f", null ],
     [ "EPG_LOCK_REG_GCTL2", "group__epg__api.html#gabbd225227a5c5e4d4090db08095e088b", null ],
@@ -19,7 +21,10 @@ var group__epg__api =
     [ "EPG_LOCK_REG_CLKDIV1_CTL0", "group__epg__api.html#ga4e4689cb70ceb0d2d6bfe7b9b4312b15", null ],
     [ "EPG_LOCK_REG_SIGGEN0_CTL0", "group__epg__api.html#gaf47eb81554477ff6da611a7aba8c45ff", null ],
     [ "EPG_LOCK_REG_SIGGEN0_CTL1", "group__epg__api.html#ga9d90f7dc7c45d505cf0b472a190d093a", null ],
+    [ "EPG_LOCK_REG_SIGGEN1_CTL0", "group__epg__api.html#gaf371ba0edefac7062be94210b998370f", null ],
+    [ "EPG_LOCK_REG_SIGGEN1_CTL1", "group__epg__api.html#gaa0f77bc02552e8c0ef671bbcfe838217", null ],
     [ "EPG_MX_SEL_LOCK_REG_MXSEL0", "group__epg__api.html#ga3056a2eb56e5d90e26bc2fd87591b6ce", null ],
+    [ "EPG_MX_SEL_LOCK_REG_MXSEL1", "group__epg__api.html#ga80b6619cae6294d2712fdc4f869d5982", null ],
     [ "EPG_OutputSelect", "group__epg__api.html#gae7c961d803ddc92f60c1c858825aa065", [
       [ "EPG_OUT_SEL_SIG", "group__epg__api.html#ggae7c961d803ddc92f60c1c858825aa065aadcaea2cb6d91a81183415736f0fd299", null ],
       [ "EPG_OUT_SEL_CLK", "group__epg__api.html#ggae7c961d803ddc92f60c1c858825aa065a11be119011140158d5d00e3c49df5854", null ]
@@ -32,7 +37,15 @@ var group__epg__api =
       [ "EPG_SIGGEN0_DATATRANOUT4", "group__epg__api.html#ggaa4d3844e887be97ed20ba25a174c48edad34c08cbb8f41db8acd04e4fac92b17f", null ],
       [ "EPG_SIGGEN0_DATATRANOUT5", "group__epg__api.html#ggaa4d3844e887be97ed20ba25a174c48eda8797f0faaa668608eff86da5a72ad9ee", null ],
       [ "EPG_SIGGEN0_DATATRANOUT6", "group__epg__api.html#ggaa4d3844e887be97ed20ba25a174c48eda79693fb339b3317e456cb7343ca8e017", null ],
-      [ "EPG_SIGGEN0_DATATRANOUT7", "group__epg__api.html#ggaa4d3844e887be97ed20ba25a174c48edae4e7ca245559cc9e48439fe8065be4c8", null ]
+      [ "EPG_SIGGEN0_DATATRANOUT7", "group__epg__api.html#ggaa4d3844e887be97ed20ba25a174c48edae4e7ca245559cc9e48439fe8065be4c8", null ],
+      [ "EPG_SIGGEN1_DATATRANOUT0", "group__epg__api.html#ggaa4d3844e887be97ed20ba25a174c48edaf3135b76798b60fe5cc6a255e96379cf", null ],
+      [ "EPG_SIGGEN1_DATATRANOUT1", "group__epg__api.html#ggaa4d3844e887be97ed20ba25a174c48eda1b326cb37d1a4155ca818278677d2d3e", null ],
+      [ "EPG_SIGGEN1_DATATRANOUT2", "group__epg__api.html#ggaa4d3844e887be97ed20ba25a174c48edae814dd89faa21e509205c316c6ce2b78", null ],
+      [ "EPG_SIGGEN1_DATATRANOUT3", "group__epg__api.html#ggaa4d3844e887be97ed20ba25a174c48eda4ff191319511fbce48dbca52b48d5642", null ],
+      [ "EPG_SIGGEN1_DATATRANOUT4", "group__epg__api.html#ggaa4d3844e887be97ed20ba25a174c48eda4d818a5603a4eaa6e3dd92c8e60e2d17", null ],
+      [ "EPG_SIGGEN1_DATATRANOUT5", "group__epg__api.html#ggaa4d3844e887be97ed20ba25a174c48eda9a2efedaeeb16ad73cf0ebfc520dd9a1", null ],
+      [ "EPG_SIGGEN1_DATATRANOUT6", "group__epg__api.html#ggaa4d3844e887be97ed20ba25a174c48edaada200e55ed868c9ee5acefd546022f1", null ],
+      [ "EPG_SIGGEN1_DATATRANOUT7", "group__epg__api.html#ggaa4d3844e887be97ed20ba25a174c48eda223502610850af52a6586c9f84a28b3e", null ]
     ] ],
     [ "EPG_ClockGenOut", "group__epg__api.html#ga39c864d0e5ea16d6af4222d20bc3cbd3", [
       [ "EPG_CLKGEN0_CLKOUT0_DCLK", "group__epg__api.html#gga39c864d0e5ea16d6af4222d20bc3cbd3a0006de09f066b43943c0928c8168275e", null ],
@@ -100,7 +113,8 @@ var group__epg__api =
       [ "EPG_OUT3", "group__epg__api.html#ggaf4bcab456695299ed8480cf6977138c5a20b4d99dd33de2d5f61f5982dc93f97c", null ],
       [ "EPG_OUT4", "group__epg__api.html#ggaf4bcab456695299ed8480cf6977138c5a48e4a6fec2365bf006f4a558e3ab3766", null ],
       [ "EPG_OUT5", "group__epg__api.html#ggaf4bcab456695299ed8480cf6977138c5a7de1b13ffbb1c6b8a048a1272a9d1f0d", null ],
-      [ "EPG_OUT6", "group__epg__api.html#ggaf4bcab456695299ed8480cf6977138c5a7a918ca4e53ae3a5a775a19297863806", null ]
+      [ "EPG_OUT6", "group__epg__api.html#ggaf4bcab456695299ed8480cf6977138c5a7a918ca4e53ae3a5a775a19297863806", null ],
+      [ "EPG_OUT7", "group__epg__api.html#ggaf4bcab456695299ed8480cf6977138c5a7ecd123b77874f96184abdad521f2d2e", null ]
     ] ],
     [ "EPG_SIGGEN", "group__epg__api.html#gad3fc0aafcdca91db23e5ad15cea0bc36", [
       [ "EPG_SIGGEN0", "group__epg__api.html#ggad3fc0aafcdca91db23e5ad15cea0bc36a73be6deb1a67af55e77ef4a9aa53a85e", null ],

@@ -1,0 +1,64 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28E12x" --package "48PT" --part "F28E12x_48PT" --context "system" --product "C2000WARE@5.04.00.00"
+ * @v2CliArgs --device "F28E120SC" --package "48PT" --product "C2000WARE@6.00.00.00"
+ * @versions {"tool":"1.21.0+dev"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const device_support = scripting.addModule("/driverlib/device_support.js");
+const sysctl         = scripting.addModule("/driverlib/sysctl.js");
+const CMD            = scripting.addModule("/utilities/cmd_tool/cmd_syscfg/source/CMD");
+const CMD1           = CMD.addInstance();
+const CMD2           = CMD.addInstance();
+const gpio           = scripting.addModule("/driverlib/gpio.js", {}, false);
+const gpio1          = gpio.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+CMD1.$name                    = "generic_ram_lnk";
+CMD2.$name                    = "generic_flash_lnk";
+
+CMD1.sectionMemory_text       = ["RAMM1","RAMGS0"];
+CMD1.sectionMemory_bss        = ["RAMGS0","RAMM1"];
+CMD1.sectionMemory_const      = ["RAMM1","RAMGS0","RAMM0"];
+CMD1.sectionMemory_data       = ["RAMGS0","RAMM1"];
+CMD1.sectionMemory_ramfunc    = ["RAMM0"];
+CMD1.sectionMemory_cinit      = ["RAMM0"];
+CMD1.sectionMemory_stack      = ["RAMM1"];
+CMD1.sectionMemory_init_array = ["RAMM0"];
+CMD1.sectionMemory_switch     = ["RAMM0"];
+CMD1.sectionMemory_sysmem     = ["RAMGS0"];
+
+CMD2.sectionAlignEnable_ramfunc    = true;
+CMD2.sectionAlignEnable_text       = true;
+CMD2.sectionAlignEnable_binit      = true;
+CMD2.sectionAlignEnable_cinit      = true;
+CMD2.sectionAlignEnable_switch     = true;
+CMD2.sectionAlignEnable_init_array = true;
+CMD2.sectionAlignEnable_const      = true;
+CMD2.sectionAlignEnable_ovly       = true;
+CMD2.sectionMemory_codestart       = "0x080000";
+CMD2.sectionMemory_stack           = ["RAMM0"];
+CMD2.sectionMemory_bss             = ["RAMGS0"];
+CMD2.sectionMemory_data            = ["RAMGS0"];
+CMD2.sectionMemory_sysmem          = ["RAMGS0"];
+CMD2.sectionMemory_ramfunc         = ["FLASH_BANK0_SEC_0_63"];
+CMD2.sectionMemory_text            = ["FLASH_BANK0_SEC_0_63"];
+CMD2.sectionMemory_binit           = ["FLASH_BANK0_SEC_0_63"];
+CMD2.sectionMemory_cinit           = ["FLASH_BANK0_SEC_0_63"];
+CMD2.sectionMemory_switch          = ["FLASH_BANK0_SEC_0_63"];
+CMD2.sectionMemory_init_array      = ["FLASH_BANK0_SEC_0_63"];
+CMD2.sectionMemory_const           = ["FLASH_BANK0_SEC_0_63"];
+CMD2.sectionMemory_ovly            = ["FLASH_BANK0_SEC_0_63"];
+CMD2.sectionRunFromDifferentAddr_ramfunc = true;
+CMD2.sectionRun_ramfunc                  = ["RAMGS0"];
+CMD2.sectionBinit_ramfunc                = false;
+
+gpio1.direction = "GPIO_DIR_MODE_OUT";
+gpio1.$name     = "myGPIOOutput0";
+gpio1.gpioPin.$assign = "GPIO24";

@@ -148,5 +148,12 @@
 #define INT_RAM_ACC_VIOL            0x00DB0C0CU // 12.12 - RAM Access Violation Interrupt
 #define INT_SYS_PLL_SLIP            0x00DC0C0DU // 12.13 - System PLL Interrupt
 
+//*****************************************************************************
+//
+// The following interrupts are added manually
+// DO NOT EDIT / REMOVE !!!
+//
+//*****************************************************************************
+#define INT_FREERTOS                0x00DD0C0EU // 12.14 - FreeRTOS SW interrupt
 
 #endif // HW_INTS_H

@@ -197,6 +197,7 @@ void main(void)
     //
     GPIO_setControllerCore(0, GPIO_CORE_CPU1);
     GPIO_setPadConfig(0,GPIO_PIN_TYPE_STD);
+
     GPIO_setPinConfig(GPIO_0_EPWM1_A);
 
     //

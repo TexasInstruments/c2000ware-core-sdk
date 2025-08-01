@@ -11,7 +11,7 @@
 //
 //
 // 
-// C2000Ware v5.05.00.00
+// C2000Ware v6.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -65,6 +65,7 @@ extern "C" {
 #define EPWM4_FREQ          10000UL    // 10 KHz
 #define EPWM1_PERIOD        (uint16_t)(DEVICE_SYSCLK_FREQ / (2 * 2 * EPWM1_FREQ))
 #define EPWM4_PERIOD        (uint16_t)(DEVICE_SYSCLK_FREQ / (2 * EPWM4_FREQ))
+
 
 //
 // Globals

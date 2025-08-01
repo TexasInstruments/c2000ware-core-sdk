@@ -33,7 +33,7 @@
 //!
 //
 //#############################################################################
-// $TI Release: F280013x Support Library v5.05.00.00 $
+// $TI Release: F280013x Support Library v6.00.00.00 $
 // 
 // $Copyright:
 // Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/

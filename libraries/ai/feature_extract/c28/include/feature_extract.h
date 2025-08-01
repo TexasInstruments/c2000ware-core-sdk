@@ -14,7 +14,7 @@
 //
 //
 // 
-// C2000Ware v5.05.00.00
+// C2000Ware v6.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -91,7 +91,7 @@ typedef struct {
     uint16_t log_multiply;                      //!< Multiplication factor of log operation --> FE_LOG_MUL
     float log_base;                             //!< Base of log operation --> FE_LOG_BASE
 
-    const int32_t *output_convert_bias;
+    const float *output_convert_bias;
     const int32_t *output_convert_scale;
     const int32_t *output_convert_shift;
     int32_t output_convert_shift_len;

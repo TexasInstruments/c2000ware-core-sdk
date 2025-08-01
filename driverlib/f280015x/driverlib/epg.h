@@ -78,7 +78,7 @@ extern "C" {
 #define EPG_GCTL2_EPGOUT_CLKOUTSEL_BIT_L    4U
 #define EPG_GCTL1_SIGGEN_CLKSEL_BIT_L       4U
 #define EPG_CLKDIV_REG_OFF                  12U
-#define EPG_SIGGEN_REG_OFF                  32U
+#define EPG_SIGGEN_REG_OFF                  16U
 #define EPG_CLKDIV_CLKOFFSET_BIT_L          8U
 
 //*****************************************************************************
@@ -233,6 +233,7 @@ typedef enum
     EPG_OUT4 = 0x4U,    //!< EPG Output 4
     EPG_OUT5 = 0x5U,    //!< EPG Output 5
     EPG_OUT6 = 0x6U,    //!< EPG Output 6
+    EPG_OUT7 = 0x7U,    //!< EPG Output 7
 } EPG_OUT;
 
 //*****************************************************************************
@@ -312,7 +313,6 @@ typedef enum{
 //
 //*****************************************************************************
 #define EPG_MX_SEL_LOCK_REG_MXSEL0   0x1U    //!< Mux Select 0 Register
-#define EPG_MX_SEL_LOCK_REG_MXSEL1   0x2U    //!< Mux Select 1 Register
 
 //*****************************************************************************
 //
@@ -1318,7 +1318,6 @@ EPG_commitRegLock(uint32_t base, uint32_t regFlags)
 //! This function Locks EPG Mux Select Register from being written further.
 //!
 //! The \e regFlags parameter can be of the \b EPG_MX_SEL_LOCK_REG_MXSEL0
-//! or \b EPG_MX_SEL_LOCK_REG_MXSEL1 values.
 //!
 //! \return None.
 //
@@ -1342,7 +1341,6 @@ EPG_lockMXSelReg(uint32_t muxbase, uint32_t regFlags)
 //! the registers.
 //!
 //! The \e regFlags parameter can be of the \b EPG_MX_SEL_LOCK_REG_MXSEL0
-//! or \b EPG_MX_SEL_LOCK_REG_MXSEL1 values.
 //!
 //! \return None.
 //
@@ -1366,7 +1364,6 @@ EPG_releaseLockMXSelReg(uint32_t muxbase, uint32_t regFlags)
 //! cannot be updated further.
 //!
 //! The \e regFlags parameter can be of the \b EPG_MX_SEL_LOCK_REG_MXSEL0
-//! or \b EPG_MX_SEL_LOCK_REG_MXSEL1 values.
 //!
 //! \return None.
 //

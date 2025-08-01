@@ -8,6 +8,13 @@ let Pinmux = system.getScript("/driverlib/pinmux.js");
 
 let options = [];
 
+/* Intro splash on GUI */
+let longDescription = "The MCU Signal Sight tool provides a " +
+"software-driven, high-performance graphical user interface (GUI) powered by GUI Composer that unlocks real-time plotting and advanced debugging tools. " +
+"The MCU Signal Sight module will autogenerate a custom GUI application that can be launched inside CCS, as well as the necessary software layer that utilizes the SCI communication peripheral. " +
+"The tool enables precise, real-time signal visualization in a " +
+"familiar oscilloscope interface, with powerful features such as data exporting and real-time statistical analysis. ";
+
 let config = [
     {
         name: "$name",
@@ -103,14 +110,26 @@ function moduleInstances(inst) {
     return ownedInstances
 }
 
+function onValidate(inst, validation){
+    var controlcenterInst = system.modules[transferCommon.getTransferPath() + 'gui.js'];
+    if (controlcenterInst)
+    {
+        validation.logError(
+            "MCU Control Center and MCU Signal Sight cannot be added to the same project.", 
+            inst);
+    }
+}
+
 var signalsight = {
     displayName: "MCU Signal Sight (BETA)",
     defaultInstanceName: "myMCUSignalSight",
     maxInstances: 1,
-    description: "Signal Sight Module",
     config: config,
     moduleInstances: moduleInstances,
     modules: modules,
+    validate: onValidate,
+    description: "Virtual Oscilloscope GUI",
+    longDescription: longDescription,
     templates: {
         [transferCommon.getTransferPath() + "signalsight/signalsight.c.xdt"]: "",
         [transferCommon.getTransferPath() + "signalsight/signalsight.h.xdt"]: "",

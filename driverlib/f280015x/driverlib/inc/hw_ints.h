@@ -131,5 +131,12 @@
 #define INT_MCANA_WAKE              0x007E0C07U // 12.7 - MCAN Sub-System wakeup Interrupt
 #define INT_MCANA_ECC               0x007F0C08U // 12.8 - MCAN Sub-System ECC error Interrupt
 
+//*****************************************************************************
+//
+// The following interrupts are added manually
+// DO NOT EDIT / REMOVE !!!
+//
+//*****************************************************************************
+#define INT_FREERTOS                0x007B0C04U // 12.4 - FreeRTOS SW interrupt
 
 #endif // HW_INTS_H

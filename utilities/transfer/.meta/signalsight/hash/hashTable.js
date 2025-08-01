@@ -62,6 +62,12 @@ let config = [
         hidden: false,
         default: 1,
     },
+    {
+        name: "hiddenTextFieldForInstanceAdderArgs",
+        displayName: "Instance Adder Arguments (JSON)",
+        hidden: true,
+        default: JSON.stringify([]),
+    },
 ];
 
 function moduleInstances(inst) {
@@ -72,8 +78,9 @@ function moduleInstances(inst) {
         longDescription: "Add a Hash Table Element for each global variable from the application to plot in the MCU Signal Sight virtual oscilloscope. Input the name of the Hash Table Element as it appears in your application. More than four variables can be added here, but only four at a time can be simultaneously plotted in the MCU Signal Sight GUI. Note that currently only variables with a float type are supported for plotting.",
         moduleName: transferCommon.getTransferPath() + "signalsight/hash/hashElement.js",
         useArray: true,
-        minInstanceCount: 0,
+        minInstanceCount: Object.keys(JSON.parse(inst.hiddenTextFieldForInstanceAdderArgs)).length,
         collapsed: false,
+        fixedRequiredArgs: JSON.parse(inst.hiddenTextFieldForInstanceAdderArgs),
         requiredArgs: {
             hashTable: inst.$name,
             totalPagesForTable: inst.numberOfPollingPages,

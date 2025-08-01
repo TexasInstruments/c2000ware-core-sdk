@@ -1,3 +1,4 @@
+var deviceName = system.deviceData.device;
 let exportsInfo = [
     {
         name: "fe",
@@ -5,7 +6,9 @@ let exportsInfo = [
         type: 'led',
         register: "SCIRXST.FE",
         updateFunc: (instBase) => `((HWREGH(${instBase} + SCI_O_RXST) & SCI_RXST_FE) == SCI_RXST_FE)`,
-        applicable: (inst) => true
+        applicable: (inst) => {
+            return (["F280013x", "F280015x", "F28003x"].includes(deviceName)? true: false);
+        }
     },
     {
         name: "pe",
@@ -13,7 +16,19 @@ let exportsInfo = [
         type: 'led',
         register: "SCIRXST.PE",
         updateFunc: (instBase) => `((HWREGH(${instBase} + SCI_O_RXST) & SCI_RXST_PE) == SCI_RXST_PE)`,
-        applicable: (inst) => true
+        applicable: (inst) => {
+            return (["F280013x", "F280015x", "F28003x"].includes(deviceName)? true: false);
+        }
+    },
+    {
+        name: "oe",
+        displayName: "Overrun Error",
+        type: 'led',
+        register: "SCIRXST.OE",
+        updateFunc: (instBase) => `((HWREGH(${instBase} + SCI_O_RXST) & SCI_RXST_OE) == SCI_RXST_OE)`,
+        applicable: (inst) => {
+            return (["F280013x", "F280015x", "F28003x"].includes(deviceName)? true: false);
+        }
     },  
     {
         name: "rxffovf",
@@ -21,7 +36,9 @@ let exportsInfo = [
         type: 'led',
         register: "SCIFFRX.RXFFOVF",
         updateFunc: (instBase) => `((HWREGH(${instBase} + SCI_O_FFRX) & SCI_FFRX_RXFFOVF) == SCI_FFRX_RXFFOVF)`,
-        applicable: (inst) => inst.useFifo
+        applicable: (inst) => {
+            return (["F280013x", "F280015x", "F28003x"].includes(deviceName) && inst.useFifo)? true: false;
+        }
     },    
 ]
 
@@ -31,7 +48,8 @@ let bitfiledInstanceNames = {
 
 let exportsRegisterSkips = [
     {
-        name: "RXBUF"
+        name: "RXBUF",
+        register: "SCIRXBUF"
     }
 ]
 

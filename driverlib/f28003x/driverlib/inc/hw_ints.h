@@ -185,5 +185,12 @@
 #define INT_CLA_OVERFLOW            0x00DE0C0FU // 12.15 - CLA Overflow Interrupt
 #define INT_CLA_UNDERFLOW           0x00DF0C10U // 12.16 - CLA Underflow Interrupt
 
+//*****************************************************************************
+//
+// The following interrupts are added manually
+// DO NOT EDIT / REMOVE !!!
+//
+//*****************************************************************************
+#define INT_FREERTOS                0x00D80C09U // 12.9 - FreeRTOS SW interrupt
 
 #endif // HW_INTS_H

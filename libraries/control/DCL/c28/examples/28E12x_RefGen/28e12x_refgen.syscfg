@@ -1,0 +1,92 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28E12x" --part "F28E12x_48PT" --package "48PT" --context "system" --product "C2000WARE@6.00.00.00"
+ * @v2CliArgs --device "F28E120SC" --package "48PT" --context "system" --product "C2000WARE@6.00.00.00"
+ * @versions {"tool":"1.24.0+4110"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const cputimer       = scripting.addModule("/driverlib/cputimer.js", {}, false);
+const cputimer1      = cputimer.addInstance();
+const device_support = scripting.addModule("/driverlib/device_support.js");
+const sysctl         = scripting.addModule("/driverlib/sysctl.js");
+const logger         = scripting.addModule("/libraries/control/dcl/logger.js", {}, false);
+const logger1        = logger.addInstance();
+const logger2        = logger.addInstance();
+const logger3        = logger.addInstance();
+const refgen         = scripting.addModule("/libraries/control/dcl/refgen.js", {}, false);
+const refgen1        = refgen.addInstance();
+const CMD            = scripting.addModule("/utilities/cmd_tool/cmd_syscfg/source/CMD");
+const CMD1           = CMD.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+cputimer1.$name                     = "myCPUTIMER0";
+cputimer1.timerPeriod               = 100;
+cputimer1.enableInterrupt           = true;
+cputimer1.registerInterrupts        = true;
+cputimer1.startTimer                = true;
+cputimer1.timerInt.enableInterrupt  = true;
+cputimer1.timerInt.$name            = "timer_Isr";
+cputimer1.timerInt.interruptHandler = "timer_Isr";
+
+logger1.$name     = "LoggerSineA";
+logger1.logSize   = 400;
+logger1.fillEn    = true;
+logger1.linkerEn  = true;
+logger1.linkerVal = "LoggerDataSection";
+
+logger2.logSize   = 400;
+logger2.fillEn    = true;
+logger2.linkerEn  = true;
+logger2.linkerVal = "LoggerDataSection";
+logger2.$name     = "LoggerSineB";
+
+logger3.linkerEn  = true;
+logger3.fillEn    = true;
+logger3.linkerVal = "LoggerDataSection";
+logger3.$name     = "LoggerSineC";
+logger3.logSize   = 400;
+
+refgen1.$name = "myREFGEN0";
+refgen1.umax  = 1;
+refgen1.umin  = -1;
+refgen1.mode  = "SINE3";
+refgen1.offs  = 0;
+
+CMD1.$name                                      = "generic_flash_lnk";
+CMD1.sectionMemory_ramfunc                      = ["FLASH_BANK0_SEC_0_63"];
+CMD1.sectionAlignEnable_ramfunc                 = true;
+CMD1.sectionRun_ramfunc                         = ["RAMGS0"];
+CMD1.sectionRunFromDifferentAddr_ramfunc        = true;
+CMD1.sectionMemory_text                         = ["FLASH_BANK0_SEC_0_63"];
+CMD1.sectionAlignEnable_text                    = true;
+CMD1.sectionMemory_binit                        = ["FLASH_BANK0_SEC_0_63"];
+CMD1.sectionAlignEnable_binit                   = true;
+CMD1.sectionMemory_cinit                        = ["FLASH_BANK0_SEC_0_63"];
+CMD1.sectionAlignEnable_cinit                   = true;
+CMD1.sectionMemory_switch                       = ["FLASH_BANK0_SEC_0_63"];
+CMD1.sectionAlignEnable_switch                  = true;
+CMD1.sectionMemory_stack                        = ["RAMM1"];
+CMD1.sectionMemory_bss                          = ["RAMGS0"];
+CMD1.sectionMemory_init_array                   = ["FLASH_BANK0_SEC_0_63"];
+CMD1.sectionAlignEnable_init_array              = true;
+CMD1.sectionMemory_const                        = ["FLASH_BANK0_SEC_0_63"];
+CMD1.sectionAlignEnable_const                   = true;
+CMD1.sectionMemory_data                         = ["RAMGS0"];
+CMD1.sectionMemory_sysmem                       = ["RAMGS0"];
+CMD1.sectionMemory_ovly                         = ["FLASH_BANK0_SEC_0_63"];
+CMD1.sectionAlignEnable_ovly                    = true;
+CMD1.sectionMemory_codestart                    = "0x080000";
+CMD1.sectionBinit_ramfunc                       = false;
+CMD1.userSection.create(2);
+CMD1.userSection[0].$name                = "LoggerDataSection";
+CMD1.userSection[0].sectionMemory        = ["FLASH_BANK0_SEC_0_63"];
+CMD1.userSection[0].sectionAlignEnable   = true;
+CMD1.userSection[1].$name                = "dclfuncs";
+CMD1.userSection[1].sectionMemory        = ["FLASH_BANK0_SEC_0_63"];
+CMD1.userSection[1].sectionAlignEnable   = true;

@@ -1,0 +1,102 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28E12x" --part "F28E12x_48PT" --package "48PT" --context "system" --product "C2000WARE@6.00.00.00"
+ * @v2CliArgs --device "F28E120SC" --package "48PT" --context "system" --product "C2000WARE@6.00.00.00"
+ * @versions {"tool":"1.24.0+4110"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const cputimer       = scripting.addModule("/driverlib/cputimer.js", {}, false);
+const cputimer1      = cputimer.addInstance();
+const device_support = scripting.addModule("/driverlib/device_support.js");
+const sysctl         = scripting.addModule("/driverlib/sysctl.js");
+const controller     = scripting.addModule("/libraries/control/dcl/controller.js", {}, false);
+const controller1    = controller.addInstance();
+const logger         = scripting.addModule("/libraries/control/dcl/logger.js", {}, false);
+const logger1        = logger.addInstance();
+const logger2        = logger.addInstance();
+const logger3        = logger.addInstance();
+const logger4        = logger.addInstance();
+const CMD            = scripting.addModule("/utilities/cmd_tool/cmd_syscfg/source/CMD");
+const CMD1           = CMD.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+cputimer1.$name                     = "myCPUTIMER0";
+cputimer1.enableInterrupt           = true;
+cputimer1.startTimer                = true;
+cputimer1.timerPeriod               = 10;
+cputimer1.registerInterrupts        = true;
+cputimer1.emulationMode             = "CPUTIMER_EMULATIONMODE_STOPATZERO";
+cputimer1.timerInt.$name            = "control_Isr";
+cputimer1.timerInt.interruptHandler = "control_Isr";
+cputimer1.timerInt.enableInterrupt  = true;
+
+controller1.controllerChoice = "PI";
+controller1.$name            = "myController0";
+controller1.Kp               = "2.5f";
+controller1.Ki               = "0.01f";
+controller1.Umax             = "2.0f";
+controller1.Umin             = "-2.0f";
+
+logger1.$name     = "rkLog";
+logger1.arrEn     = false;
+logger1.linkerVal = "LoggerDataSection";
+logger1.logSize   = 800;
+
+logger2.arrEn     = false;
+logger2.$name     = "ykLog";
+logger2.linkerVal = "LoggerDataSection";
+logger2.logSize   = 800;
+
+logger3.arrEn     = false;
+logger3.$name     = "ctlLog";
+logger3.linkerVal = "LoggerDataSection";
+logger3.logSize   = 800;
+
+logger4.$name     = "outLog";
+logger4.logSize   = 800;
+logger4.linkerEn  = true;
+logger4.linkerVal = "LoggeroutDataSection";
+
+CMD1.sectionMemory_ramfunc               = ["FLASH_BANK0_SEC_0_63"];
+CMD1.sectionRun_ramfunc                  = ["RAMGS0"];
+CMD1.sectionRunFromDifferentAddr_ramfunc = true;
+CMD1.sectionMemory_text                  = ["FLASH_BANK0_SEC_0_63"];
+CMD1.sectionAlignEnable_text             = true;
+CMD1.sectionMemory_binit                 = ["FLASH_BANK0_SEC_0_63"];
+CMD1.sectionAlignEnable_binit            = true;
+CMD1.sectionMemory_cinit                 = ["FLASH_BANK0_SEC_0_63"];
+CMD1.sectionAlignEnable_cinit            = true;
+CMD1.sectionMemory_switch                = ["FLASH_BANK0_SEC_0_63"];
+CMD1.sectionAlignEnable_switch           = true;
+CMD1.sectionMemory_stack                 = ["RAMM1"];
+CMD1.sectionMemory_bss                   = ["RAMGS0"];
+CMD1.sectionMemory_init_array            = ["FLASH_BANK0_SEC_0_63"];
+CMD1.sectionAlignEnable_init_array       = true;
+CMD1.sectionMemory_const                 = ["FLASH_BANK0_SEC_0_63"];
+CMD1.sectionAlignEnable_const            = true;
+CMD1.sectionMemory_data                  = ["RAMGS0"];
+CMD1.sectionMemory_sysmem                = ["RAMGS0"];
+CMD1.sectionMemory_ovly                  = ["FLASH_BANK0_SEC_0_63"];
+CMD1.sectionAlignEnable_ovly             = true;
+CMD1.sectionMemory_codestart             = "0x080000";
+CMD1.$name                               = "generic_flash_lnk";
+CMD1.sectionAlignEnable_ramfunc          = true;
+CMD1.userSection.create(3);
+CMD1.userSection[0].$name                = "LoggerDataSection";
+CMD1.userSection[0].sectionRun           = ["RAMGS0"];
+CMD1.userSection[0].sectionBinit         = false;
+CMD1.userSection[0].sectionMemory        = ["FLASH_BANK0_SEC_0_63"];
+CMD1.userSection[0].sectionAlignEnable   = true;
+CMD1.userSection[0].sectionType          = "NOINIT";
+CMD1.userSection[1].$name                = "dclfuncs";
+CMD1.userSection[1].sectionMemory        = ["FLASH_BANK0_SEC_0_63"];
+CMD1.userSection[1].sectionAlignEnable   = true;
+CMD1.userSection[2].$name                = "LoggeroutDataSection";
+CMD1.userSection[2].sectionMemory        = ["RAMGS0"];
+CMD1.userSection[2].sectionType          = "NOINIT";

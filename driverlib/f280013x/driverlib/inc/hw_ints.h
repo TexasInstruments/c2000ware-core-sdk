@@ -121,5 +121,12 @@
 #define INT_XINT5                   0x007A0C03U // 12.3 - XINT5 Interrupt
 #define INT_FLSS                    0x007C0C05U // 12.5 - Interrupt from flash sub-system
 
+//*****************************************************************************
+//
+// The following interrupts are added manually
+// DO NOT EDIT / REMOVE !!!
+//
+//*****************************************************************************
+#define INT_FREERTOS                0x007D0C06U // 12.6 - FreeRTOS SW interrupt
 
 #endif // HW_INTS_H

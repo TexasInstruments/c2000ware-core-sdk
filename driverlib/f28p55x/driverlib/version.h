@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v5.05.00.00
+// C2000Ware v6.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -64,7 +64,7 @@ extern "C"
 
 //! Version number to be returned by Version_getLibVersion()
 //!
-#define VERSION_NUMBER      5050000U
+#define VERSION_NUMBER      6000000U
 
 //*****************************************************************************
 //

@@ -98,7 +98,7 @@ function getCommPeripheralsOnDevice() {
 
         ]
     }
-    if (["F2807xD", "F2807xS", "F2807x"].includes(getDeviceName())) {
+    if(["F2837xD", "F2837xS", "F2807x"].includes(getDeviceName())){
         return [
             { name: "uart", reason: "Not supported on this device" },
             { name: "fsi", reason: "Not supported on this device" }

@@ -1,0 +1,70 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28E12x" --package "48PT" --part "F28E12x_48PT" --context "system" --product "C2000WARE@5.04.00.00"
+ * @v2CliArgs --device "F28E120SC" --package "48PT" --product "C2000WARE@6.00.00.00"
+ * @versions {"tool":"1.21.0+dev"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const mcpwm  = scripting.addModule("/driverlib/mcpwm.js", {}, false);
+const mcpwm1 = mcpwm.addInstance();
+const mcpwm2 = mcpwm.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+mcpwm1.$name                                                         = "myMCPWM0";
+mcpwm1.mcpwmTimebase_period                                          = 4999;
+mcpwm1.mcpwmCounterCompare_cmpB                                      = 2499;
+mcpwm1.mcpwmCounterCompare_cmpB_pwm2                                 = 2499;
+mcpwm1.mcpwmCounterCompare_cmpB_pwm3                                 = 2499;
+mcpwm1.mcpwmActionQualifier_MCPWM_AQ_OUTPUT_1A_ON_TIMEBASE_UP_CMPA   = "MCPWM_AQ_OUTPUT_HIGH";
+mcpwm1.mcpwmActionQualifier_MCPWM_AQ_OUTPUT_1B_ON_TIMEBASE_UP_CMPA   = "MCPWM_AQ_OUTPUT_HIGH";
+mcpwm1.mcpwmActionQualifier_MCPWM_AQ_OUTPUT_2A_ON_TIMEBASE_UP_CMPA   = "MCPWM_AQ_OUTPUT_HIGH";
+mcpwm1.mcpwmActionQualifier_MCPWM_AQ_OUTPUT_2B_ON_TIMEBASE_UP_CMPA   = "MCPWM_AQ_OUTPUT_HIGH";
+mcpwm1.mcpwmActionQualifier_MCPWM_AQ_OUTPUT_3A_ON_TIMEBASE_UP_CMPA   = "MCPWM_AQ_OUTPUT_HIGH";
+mcpwm1.mcpwmActionQualifier_MCPWM_AQ_OUTPUT_3B_ON_TIMEBASE_UP_CMPA   = "MCPWM_AQ_OUTPUT_HIGH";
+mcpwm1.mcpwmEventTrigger_MCPWM_SOC_A_triggerEnable                   = true;
+mcpwm1.mcpwmEventTrigger_MCPWM_SOC_A_triggerSource                   = "MCPWM_SOC_TBCTR_ZERO";
+mcpwm1.mcpwmEventTrigger_MCPWM_SOC_A_triggerEventPrescalar           = "3";
+mcpwm1.mcpwmTripZone_MCPWM_TZ_ACTION_EVENT_TZA                       = "MCPWM_TZ_ACTION_DISABLE";
+mcpwm1.mcpwmTripZone_MCPWM_TZ_ACTION_EVENT_TZB                       = "MCPWM_TZ_ACTION_DISABLE";
+mcpwm1.mcpwmTimebase_counterMode                                     = "MCPWM_COUNTER_MODE_UP_DOWN";
+mcpwm1.mcpwmActionQualifier_MCPWM_AQ_OUTPUT_3B_ON_TIMEBASE_DOWN_CMPA = "MCPWM_AQ_OUTPUT_LOW";
+mcpwm1.mcpwmActionQualifier_MCPWM_AQ_OUTPUT_3A_ON_TIMEBASE_DOWN_CMPA = "MCPWM_AQ_OUTPUT_LOW";
+mcpwm1.mcpwmActionQualifier_MCPWM_AQ_OUTPUT_2B_ON_TIMEBASE_DOWN_CMPA = "MCPWM_AQ_OUTPUT_LOW";
+mcpwm1.mcpwmActionQualifier_MCPWM_AQ_OUTPUT_2A_ON_TIMEBASE_DOWN_CMPA = "MCPWM_AQ_OUTPUT_LOW";
+mcpwm1.mcpwmActionQualifier_MCPWM_AQ_OUTPUT_1B_ON_TIMEBASE_DOWN_CMPA = "MCPWM_AQ_OUTPUT_LOW";
+mcpwm1.mcpwmActionQualifier_MCPWM_AQ_OUTPUT_1A_ON_TIMEBASE_DOWN_CMPA = "MCPWM_AQ_OUTPUT_LOW";
+mcpwm1.mcpwm.mcpwm_1aPin.$assign                                     = "GPIO0";
+mcpwm1.mcpwm.mcpwm_1bPin.$assign                                     = "GPIO1";
+mcpwm1.mcpwm.mcpwm_2aPin.$assign                                     = "GPIO2";
+mcpwm1.mcpwm.mcpwm_2bPin.$assign                                     = "GPIO3";
+mcpwm1.mcpwm.mcpwm_3aPin.$assign                                     = "GPIO4";
+mcpwm1.mcpwm.mcpwm_3bPin.$assign                                     = "GPIO5";
+
+mcpwm2.$name                                                         = "myMCPWM1";
+mcpwm2.useCase                                                       = "2CH";
+mcpwm2.mcpwmTimebase_period                                          = 4999;
+mcpwm2.mcpwmCounterCompare_cmpB                                      = 2499;
+mcpwm2.mcpwmActionQualifier_MCPWM_AQ_OUTPUT_1A_ON_TIMEBASE_UP_CMPA   = "MCPWM_AQ_OUTPUT_HIGH";
+mcpwm2.mcpwmActionQualifier_MCPWM_AQ_OUTPUT_1B_ON_TIMEBASE_UP_CMPA   = "MCPWM_AQ_OUTPUT_HIGH";
+mcpwm2.mcpwmEventTrigger_MCPWM_SOC_A_triggerEnable                   = true;
+mcpwm2.mcpwmEventTrigger_MCPWM_SOC_A_triggerSource                   = "MCPWM_SOC_TBCTR_ZERO";
+mcpwm2.mcpwmEventTrigger_MCPWM_SOC_A_triggerEventPrescalar           = "3";
+mcpwm2.mcpwmTimebase_counterMode                                     = "MCPWM_COUNTER_MODE_UP_DOWN";
+mcpwm2.mcpwmActionQualifier_MCPWM_AQ_OUTPUT_1A_ON_TIMEBASE_DOWN_CMPA = "MCPWM_AQ_OUTPUT_LOW";
+mcpwm2.mcpwmActionQualifier_MCPWM_AQ_OUTPUT_1B_ON_TIMEBASE_DOWN_CMPA = "MCPWM_AQ_OUTPUT_LOW";
+mcpwm2.mcpwm.mcpwm_1aPin.$assign                                     = "A20, GPIO12";
+mcpwm2.mcpwm.mcpwm_1bPin.$assign                                     = "GPIO29";
+
+/**
+ * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
+ * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
+ * re-solve from scratch.
+ */
+mcpwm1.mcpwm.$suggestSolution = "MCPWM1";
+mcpwm2.mcpwm.$suggestSolution = "MCPWM3";

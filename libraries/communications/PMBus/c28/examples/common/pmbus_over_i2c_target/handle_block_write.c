@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $TI Release: C28x PMBus Communications Stack Library v1.10.00.00 $
-// $Release Date: 06-06-2025 $
+// $Release Date: 07-30-2025 $
 // $Copyright: Copyright (C) 2015-2021 Texas Instruments Incorporated -
 //             http://www.ti.com/ ALL RIGHTS RESERVED $
 //###########################################################################

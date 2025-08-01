@@ -11,7 +11,7 @@
 //
 //
 // 
-// C2000Ware v5.05.00.00
+// C2000Ware v6.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -65,6 +65,7 @@ extern "C" {
 #define EPWM5_FREQ          100000UL   // 100 KHz
 #define EPWM4_PERIOD        (uint16_t)(DEVICE_SYSCLK_FREQ / (2 * EPWM4_FREQ))
 #define EPWM5_PERIOD        (uint16_t)(DEVICE_SYSCLK_FREQ / (2 * EPWM5_FREQ))
+
 
 //CLA C Tasks defined in Cla1Tasks_C.cla
 __attribute__((interrupt))  void Cla1Task1();

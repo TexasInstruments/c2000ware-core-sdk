@@ -14,7 +14,7 @@
 //
 //
 // 
-// C2000Ware v5.05.00.00
+// C2000Ware v6.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -107,7 +107,7 @@ typedef struct {
 /*****************************************************************************/
 extern struct tvmgen_default_outputs outputs;
 
-extern const int32_t tvmgen_default_bias_data[] __attribute__((weak));
+extern const float tvmgen_default_bias_data[] __attribute__((weak));
 extern const int32_t tvmgen_default_scale_data[] __attribute__((weak));
 extern const int32_t tvmgen_default_shift_data[] __attribute__((weak));
 

@@ -26,8 +26,8 @@ extern "C" {
 #define TVMGEN_DEFAULT_BIAS_LEN 3
 #define TVMGEN_DEFAULT_SCALE_LEN 3
 #define TVMGEN_DEFAULT_SHIFT_LEN 1
-extern const int32_t tvmgen_default_bias_data[] __attribute__((weak)) = {-83, -80, -79};
-extern const int32_t tvmgen_default_scale_data[] __attribute__((weak)) = {163, 165, 160};
+extern const float tvmgen_default_bias_data[] __attribute__((weak)) = {-83.36356, -79.90445, -78.79437};
+extern const int32_t tvmgen_default_scale_data[] __attribute__((weak)) = {156, 185, 152};
 extern const int32_t tvmgen_default_shift_data[] __attribute__((weak)) = {7};
 
 

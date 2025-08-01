@@ -8,7 +8,7 @@
 //
 //
 // 
-// C2000Ware v5.05.00.00
+// C2000Ware v6.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -304,6 +304,9 @@ typedef unsigned long   	Uint32;
 typedef unsigned long long	Uint64;
 typedef float           	float32;
 typedef long double     	float64;
+// c2000 types for IEEE754 (same as defined in <device>/inc/hw_types.h)
+#ifndef C2000_IEEE754_TYPES
+#define C2000_IEEE754_TYPES
 #ifdef __TI_EABI__
 typedef float         float32_t;
 typedef double        float64_t;
@@ -311,6 +314,7 @@ typedef double        float64_t;
 typedef float         float32_t;
 typedef long double   float64_t;
 #endif // __TI_EABI__
+#endif // C2000_IEEE754_TYPES
 #endif
 
 #endif //(!defined(DSP28_DATA_TYPES) && !defined(F28_DATA_TYPES))

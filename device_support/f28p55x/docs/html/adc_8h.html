@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">f28p55x Driverib and Example User Guide
-   &#160;<span id="projectnumber">5.05.00.00</span>
+   &#160;<span id="projectnumber">6.00.00.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -443,6 +443,19 @@ Enumerations</h2></td></tr>
 , <a class="el" href="group__adc__api.html#gga4513a58978c46b76510fbf645bf77922adab8aae7e24c18aaa2320411bc8af38b">ADC_REFERENCE_2xVREFHI</a> = 1U
  }</td></tr>
 <tr class="separator:ga4513a58978c46b76510fbf645bf77922"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1382e9ae48e28340cff1ea75f6f59ac8"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__adc__api.html#ga1382e9ae48e28340cff1ea75f6f59ac8">ADC_OSDetectMode</a> { <br />
+&#160;&#160;<a class="el" href="group__adc__api.html#gga1382e9ae48e28340cff1ea75f6f59ac8a8b7b4cab894595c4d1056ef488ad50d2">ADC_OSDETECT_MODE_DISABLED</a> = 0x0U
+, <a class="el" href="group__adc__api.html#gga1382e9ae48e28340cff1ea75f6f59ac8a0bc8c376217079542283f8c91774e536">ADC_OSDETECT_MODE_VSSA</a> = 0x1U
+, <a class="el" href="group__adc__api.html#gga1382e9ae48e28340cff1ea75f6f59ac8ae10bc136097e9958d5b5617ba8428859">ADC_OSDETECT_MODE_VDDA</a> = 0x2U
+, <a class="el" href="group__adc__api.html#gga1382e9ae48e28340cff1ea75f6f59ac8aec7f2b4f867bc685084680e5dbe67e22">ADC_OSDETECT_MODE_5BY12_VDDA</a> = 0x3U
+, <br />
+&#160;&#160;<a class="el" href="group__adc__api.html#gga1382e9ae48e28340cff1ea75f6f59ac8a8a9ee2f5a0ea746b1fb8eee9863d1f58">ADC_OSDETECT_MODE_7BY12_VDDA</a> = 0x4U
+, <a class="el" href="group__adc__api.html#gga1382e9ae48e28340cff1ea75f6f59ac8ab5a9dfa551c7bf77f6a820d52f87ec2b">ADC_OSDETECT_MODE_5K_PULLDOWN_TO_VSSA</a> = 0x5U
+, <a class="el" href="group__adc__api.html#gga1382e9ae48e28340cff1ea75f6f59ac8a7b452e69971703733b16f83812f3b8f3">ADC_OSDETECT_MODE_5K_PULLUP_TO_VDDA</a> = 0x6U
+, <a class="el" href="group__adc__api.html#gga1382e9ae48e28340cff1ea75f6f59ac8a942323fa80bf386ebfed4649d032ba9b">ADC_OSDETECT_MODE_7K_PULLDOWN_TO_VSSA</a> = 0x7U
+<br />
+ }</td></tr>
+<tr class="separator:ga1382e9ae48e28340cff1ea75f6f59ac8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga51ed1bc5073c7ef6394c3538b007e730"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__adc__api.html#ga51ed1bc5073c7ef6394c3538b007e730">ADC_SyncInput</a> { <br />
 &#160;&#160;<a class="el" href="group__adc__api.html#gga51ed1bc5073c7ef6394c3538b007e730a41950eda6b33032b1ed1796e261c5e46">ADC_SYNCIN_DISABLE</a> = 0x0
 , <a class="el" href="group__adc__api.html#gga51ed1bc5073c7ef6394c3538b007e730ae13163396045d4e31f09fd751fa0b642">ADC_SYNCIN_EPWM1SYNCOUT</a> = 0x1
@@ -597,6 +610,12 @@ Functions</h2></td></tr>
 <tr class="separator:ga6d5c909c386ecdc943af7228fbfced2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3e32e7d5a6618ac054685004a7f0a9ae"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__adc__api.html#ga3e32e7d5a6618ac054685004a7f0a9ae">ADC_setSOCPriority</a> (uint32_t base, <a class="el" href="group__adc__api.html#ga4f60e7ea55578eb4eb621f31b0b8d434">ADC_PriorityMode</a> priMode)</td></tr>
 <tr class="separator:ga3e32e7d5a6618ac054685004a7f0a9ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa78853849893166467a9786799a689df"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__adc__api.html#gaa78853849893166467a9786799a689df">ADC_configOSDetectMode</a> (uint32_t base, <a class="el" href="group__adc__api.html#ga1382e9ae48e28340cff1ea75f6f59ac8">ADC_OSDetectMode</a> modeVal)</td></tr>
+<tr class="separator:gaa78853849893166467a9786799a689df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9115cce3fea54bd833a50203ade7b1ce"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__adc__api.html#ga9115cce3fea54bd833a50203ade7b1ce">ADC_enableOSDetectMode</a> (uint32_t base)</td></tr>
+<tr class="separator:ga9115cce3fea54bd833a50203ade7b1ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac2806ead8415c9bce85abb61e728dd5c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__adc__api.html#gac2806ead8415c9bce85abb61e728dd5c">ADC_disableOSDetectMode</a> (uint32_t base)</td></tr>
+<tr class="separator:gac2806ead8415c9bce85abb61e728dd5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3d1903175f9643e20d98597894b66982"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__adc__api.html#ga3d1903175f9643e20d98597894b66982">ADC_setupPPB</a> (uint32_t base, <a class="el" href="group__adc__api.html#ga17f0c071ab2c71a40e3d95c9eeadf3b9">ADC_PPBNumber</a> ppbNumber, <a class="el" href="group__adc__api.html#ga254fedc72090784dcfcdcebebdf3ea39">ADC_SOCNumber</a> socNumber)</td></tr>
 <tr class="separator:ga3d1903175f9643e20d98597894b66982"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gadc2372da3f307307e45b3e5575ae28f5"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__adc__api.html#gadc2372da3f307307e45b3e5575ae28f5">ADC_enablePPBEvent</a> (uint32_t base, <a class="el" href="group__adc__api.html#ga17f0c071ab2c71a40e3d95c9eeadf3b9">ADC_PPBNumber</a> ppbNumber, uint16_t evtFlags)</td></tr>

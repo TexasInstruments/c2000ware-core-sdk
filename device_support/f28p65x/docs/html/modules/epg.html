@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v5.05.00.00
+                v6.00.00.00
               </div>
             
           
@@ -223,7 +223,7 @@ EPG driver provides functions for independent clock generation and clock divisio
 
 <dl class="cpp macro">
 <dt id="c.EPG_SIGGEN_REG_OFF">
-<span class="target" id="group__epg__api_1gabbe2181c23033fcc7b7a1a2176e8f3e6"></span><code class="sig-name descname">EPG_SIGGEN_REG_OFF</code> 32U<a class="headerlink" href="#c.EPG_SIGGEN_REG_OFF" title="Permalink to this definition">¶</a><br /></dt>
+<span class="target" id="group__epg__api_1gabbe2181c23033fcc7b7a1a2176e8f3e6"></span><code class="sig-name descname">EPG_SIGGEN_REG_OFF</code> 16U<a class="headerlink" href="#c.EPG_SIGGEN_REG_OFF" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
@@ -248,6 +248,18 @@ EPG driver provides functions for independent clock generation and clock divisio
 <dt id="c.EPG_INT_SIGGEN0_FILL">
 <span class="target" id="group__epg__api_1gab6cdb11400127599f6b9b449e2efa164"></span><code class="sig-name descname">EPG_INT_SIGGEN0_FILL</code> 0x4U<a class="headerlink" href="#c.EPG_INT_SIGGEN0_FILL" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Signal Generator 0 Data Fill. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EPG_INT_SIGGEN1_DONE">
+<span class="target" id="group__epg__api_1ga3e65e1f9495b83a02b8cec9806687d91"></span><code class="sig-name descname">EPG_INT_SIGGEN1_DONE</code> 0x8U<a class="headerlink" href="#c.EPG_INT_SIGGEN1_DONE" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Signal Generator 1 Operation Done. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EPG_INT_SIGGEN1_FILL">
+<span class="target" id="group__epg__api_1ga97631a94e9a5a08c43e4251ac20d50f5"></span><code class="sig-name descname">EPG_INT_SIGGEN1_FILL</code> 0x10U<a class="headerlink" href="#c.EPG_INT_SIGGEN1_FILL" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Signal Generator 1 Data Fill. </p>
 </dd></dl>
 
 <dl class="cpp macro">
@@ -300,10 +312,28 @@ EPG driver provides functions for independent clock generation and clock divisio
 </dd></dl>
 
 <dl class="cpp macro">
+<dt id="c.EPG_LOCK_REG_SIGGEN1_CTL0">
+<span class="target" id="group__epg__api_1gaf371ba0edefac7062be94210b998370f"></span><code class="sig-name descname">EPG_LOCK_REG_SIGGEN1_CTL0</code> 0x100U<a class="headerlink" href="#c.EPG_LOCK_REG_SIGGEN1_CTL0" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Signal gen 1 CTL0 Register. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EPG_LOCK_REG_SIGGEN1_CTL1">
+<span class="target" id="group__epg__api_1gaa0f77bc02552e8c0ef671bbcfe838217"></span><code class="sig-name descname">EPG_LOCK_REG_SIGGEN1_CTL1</code> 0x200U<a class="headerlink" href="#c.EPG_LOCK_REG_SIGGEN1_CTL1" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Signal gen 1 CTL1 Register. </p>
+</dd></dl>
+
+<dl class="cpp macro">
 <dt id="c.EPG_MX_SEL_LOCK_REG_MXSEL0">
 <span class="target" id="group__epg__api_1ga3056a2eb56e5d90e26bc2fd87591b6ce"></span><code class="sig-name descname">EPG_MX_SEL_LOCK_REG_MXSEL0</code> 0x1U<a class="headerlink" href="#c.EPG_MX_SEL_LOCK_REG_MXSEL0" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Mux Select 0 Register. </p>
 <p>Register Flags that can be passed to EPG_releaseLockMXSelReg, EPG_lockMXSelReg, EPG_commitMXSelRegLock as <em>regFlags</em> parameter. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt id="c.EPG_MX_SEL_LOCK_REG_MXSEL1">
+<span class="target" id="group__epg__api_1ga80b6619cae6294d2712fdc4f869d5982"></span><code class="sig-name descname">EPG_MX_SEL_LOCK_REG_MXSEL1</code> 0x2U<a class="headerlink" href="#c.EPG_MX_SEL_LOCK_REG_MXSEL1" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Mux Select 1 Register. </p>
 </dd></dl>
 
 </div>
@@ -379,6 +409,54 @@ EPG driver provides functions for independent clock generation and clock divisio
 <dt id="_CPPv4N16EPG_SignalGenOut24EPG_SIGGEN0_DATATRANOUT7E">
 <span id="_CPPv3N16EPG_SignalGenOut24EPG_SIGGEN0_DATATRANOUT7E"></span><span id="_CPPv2N16EPG_SignalGenOut24EPG_SIGGEN0_DATATRANOUT7E"></span><span class="target" id="group__epg__api_1ggaa4d3844e887be97ed20ba25a174c48edae4e7ca245559cc9e48439fe8065be4c8"></span><em class="property">enumerator </em><code class="sig-name descname">EPG_SIGGEN0_DATATRANOUT7</code> = 0x7U<a class="headerlink" href="#_CPPv4N16EPG_SignalGenOut24EPG_SIGGEN0_DATATRANOUT7E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>Signal Generator 0 Data Transform out 7. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N16EPG_SignalGenOut24EPG_SIGGEN1_DATATRANOUT0E">
+<span id="_CPPv3N16EPG_SignalGenOut24EPG_SIGGEN1_DATATRANOUT0E"></span><span id="_CPPv2N16EPG_SignalGenOut24EPG_SIGGEN1_DATATRANOUT0E"></span><span class="target" id="group__epg__api_1ggaa4d3844e887be97ed20ba25a174c48edaf3135b76798b60fe5cc6a255e96379cf"></span><em class="property">enumerator </em><code class="sig-name descname">EPG_SIGGEN1_DATATRANOUT0</code> = 0x8U<a class="headerlink" href="#_CPPv4N16EPG_SignalGenOut24EPG_SIGGEN1_DATATRANOUT0E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Signal Generator 1 Data Transform out 0. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N16EPG_SignalGenOut24EPG_SIGGEN1_DATATRANOUT1E">
+<span id="_CPPv3N16EPG_SignalGenOut24EPG_SIGGEN1_DATATRANOUT1E"></span><span id="_CPPv2N16EPG_SignalGenOut24EPG_SIGGEN1_DATATRANOUT1E"></span><span class="target" id="group__epg__api_1ggaa4d3844e887be97ed20ba25a174c48eda1b326cb37d1a4155ca818278677d2d3e"></span><em class="property">enumerator </em><code class="sig-name descname">EPG_SIGGEN1_DATATRANOUT1</code> = 0x9U<a class="headerlink" href="#_CPPv4N16EPG_SignalGenOut24EPG_SIGGEN1_DATATRANOUT1E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Signal Generator 1 Data Transform out 1. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N16EPG_SignalGenOut24EPG_SIGGEN1_DATATRANOUT2E">
+<span id="_CPPv3N16EPG_SignalGenOut24EPG_SIGGEN1_DATATRANOUT2E"></span><span id="_CPPv2N16EPG_SignalGenOut24EPG_SIGGEN1_DATATRANOUT2E"></span><span class="target" id="group__epg__api_1ggaa4d3844e887be97ed20ba25a174c48edae814dd89faa21e509205c316c6ce2b78"></span><em class="property">enumerator </em><code class="sig-name descname">EPG_SIGGEN1_DATATRANOUT2</code> = 0xAU<a class="headerlink" href="#_CPPv4N16EPG_SignalGenOut24EPG_SIGGEN1_DATATRANOUT2E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Signal Generator 1 Data Transform out 2. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N16EPG_SignalGenOut24EPG_SIGGEN1_DATATRANOUT3E">
+<span id="_CPPv3N16EPG_SignalGenOut24EPG_SIGGEN1_DATATRANOUT3E"></span><span id="_CPPv2N16EPG_SignalGenOut24EPG_SIGGEN1_DATATRANOUT3E"></span><span class="target" id="group__epg__api_1ggaa4d3844e887be97ed20ba25a174c48eda4ff191319511fbce48dbca52b48d5642"></span><em class="property">enumerator </em><code class="sig-name descname">EPG_SIGGEN1_DATATRANOUT3</code> = 0xBU<a class="headerlink" href="#_CPPv4N16EPG_SignalGenOut24EPG_SIGGEN1_DATATRANOUT3E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Signal Generator 1 Data Transform out 3. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N16EPG_SignalGenOut24EPG_SIGGEN1_DATATRANOUT4E">
+<span id="_CPPv3N16EPG_SignalGenOut24EPG_SIGGEN1_DATATRANOUT4E"></span><span id="_CPPv2N16EPG_SignalGenOut24EPG_SIGGEN1_DATATRANOUT4E"></span><span class="target" id="group__epg__api_1ggaa4d3844e887be97ed20ba25a174c48eda4d818a5603a4eaa6e3dd92c8e60e2d17"></span><em class="property">enumerator </em><code class="sig-name descname">EPG_SIGGEN1_DATATRANOUT4</code> = 0xCU<a class="headerlink" href="#_CPPv4N16EPG_SignalGenOut24EPG_SIGGEN1_DATATRANOUT4E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Signal Generator 1 Data Transform out 4. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N16EPG_SignalGenOut24EPG_SIGGEN1_DATATRANOUT5E">
+<span id="_CPPv3N16EPG_SignalGenOut24EPG_SIGGEN1_DATATRANOUT5E"></span><span id="_CPPv2N16EPG_SignalGenOut24EPG_SIGGEN1_DATATRANOUT5E"></span><span class="target" id="group__epg__api_1ggaa4d3844e887be97ed20ba25a174c48eda9a2efedaeeb16ad73cf0ebfc520dd9a1"></span><em class="property">enumerator </em><code class="sig-name descname">EPG_SIGGEN1_DATATRANOUT5</code> = 0xDU<a class="headerlink" href="#_CPPv4N16EPG_SignalGenOut24EPG_SIGGEN1_DATATRANOUT5E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Signal Generator 1 Data Transform out 5. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N16EPG_SignalGenOut24EPG_SIGGEN1_DATATRANOUT6E">
+<span id="_CPPv3N16EPG_SignalGenOut24EPG_SIGGEN1_DATATRANOUT6E"></span><span id="_CPPv2N16EPG_SignalGenOut24EPG_SIGGEN1_DATATRANOUT6E"></span><span class="target" id="group__epg__api_1ggaa4d3844e887be97ed20ba25a174c48edaada200e55ed868c9ee5acefd546022f1"></span><em class="property">enumerator </em><code class="sig-name descname">EPG_SIGGEN1_DATATRANOUT6</code> = 0xEU<a class="headerlink" href="#_CPPv4N16EPG_SignalGenOut24EPG_SIGGEN1_DATATRANOUT6E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Signal Generator 1 Data Transform out 6. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N16EPG_SignalGenOut24EPG_SIGGEN1_DATATRANOUT7E">
+<span id="_CPPv3N16EPG_SignalGenOut24EPG_SIGGEN1_DATATRANOUT7E"></span><span id="_CPPv2N16EPG_SignalGenOut24EPG_SIGGEN1_DATATRANOUT7E"></span><span class="target" id="group__epg__api_1ggaa4d3844e887be97ed20ba25a174c48eda223502610850af52a6586c9f84a28b3e"></span><em class="property">enumerator </em><code class="sig-name descname">EPG_SIGGEN1_DATATRANOUT7</code> = 0xFU<a class="headerlink" href="#_CPPv4N16EPG_SignalGenOut24EPG_SIGGEN1_DATATRANOUT7E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>Signal Generator 1 Data Transform out 7. </p>
 </dd></dl>
 
 </dd></dl>
@@ -752,6 +830,12 @@ EPG driver provides functions for independent clock generation and clock divisio
 <dt id="_CPPv4N7EPG_OUT8EPG_OUT6E">
 <span id="_CPPv3N7EPG_OUT8EPG_OUT6E"></span><span id="_CPPv2N7EPG_OUT8EPG_OUT6E"></span><span class="target" id="group__epg__api_1ggaf4bcab456695299ed8480cf6977138c5a7a918ca4e53ae3a5a775a19297863806"></span><em class="property">enumerator </em><code class="sig-name descname">EPG_OUT6</code> = 0x6U<a class="headerlink" href="#_CPPv4N7EPG_OUT8EPG_OUT6E" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>EPG Output 6. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt id="_CPPv4N7EPG_OUT8EPG_OUT7E">
+<span id="_CPPv3N7EPG_OUT8EPG_OUT7E"></span><span id="_CPPv2N7EPG_OUT8EPG_OUT7E"></span><span class="target" id="group__epg__api_1ggaf4bcab456695299ed8480cf6977138c5a7ecd123b77874f96184abdad521f2d2e"></span><em class="property">enumerator </em><code class="sig-name descname">EPG_OUT7</code> = 0x7U<a class="headerlink" href="#_CPPv4N7EPG_OUT8EPG_OUT7E" title="Permalink to this definition">¶</a><br /></dt>
+<dd><p>EPG Output 7. </p>
 </dd></dl>
 
 </dd></dl>
@@ -1692,7 +1776,7 @@ EPG driver provides functions for independent clock generation and clock divisio
 </dd>
 </dl>
 </p>
-<p>The <em>intFlags</em> parameter can be any of the <strong>EPG_INT_GLOBAL_INT</strong>, <strong>EPG_INT_SIGGEN0_DONE</strong>, or <strong>EPG_INT_SIGGEN0_FILL</strong> values.</p>
+<p>The <em>intFlags</em> parameter can be any of the <strong>EPG_INT_GLOBAL_INT</strong>, <strong>EPG_INT_SIGGEN0_DONE</strong>, or <strong>EPG_INT_SIGGEN0_FILL</strong>, or <strong>EPG_INT_SIGGEN1_DONE</strong>, or <strong>EPG_INT_SIGGEN1_FILL</strong> values.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -1713,7 +1797,7 @@ EPG driver provides functions for independent clock generation and clock divisio
 </dd>
 </dl>
 </p>
-<p>The <em>intFlags</em> parameter can be any of the <strong>EPG_INT_GLOBAL_INT</strong>, <strong>EPG_INT_SIGGEN0_DONE</strong>, or <strong>EPG_INT_SIGGEN0_FILL</strong> values.</p>
+<p>The <em>intFlags</em> parameter can be any of the <strong>EPG_INT_GLOBAL_INT</strong>, <strong>EPG_INT_SIGGEN0_DONE</strong>, or <strong>EPG_INT_SIGGEN0_FILL</strong>, or <strong>EPG_INT_SIGGEN1_DONE</strong>, or <strong>EPG_INT_SIGGEN1_FILL</strong> values.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -1753,7 +1837,7 @@ EPG driver provides functions for independent clock generation and clock divisio
 </dd>
 </dl>
 </p>
-<p>The <em>intFlags</em> parameter can be any of the <strong>EPG_INT_GLOBAL_INT</strong>, <strong>EPG_INT_SIGGEN0_DONE</strong>, or <strong>EPG_INT_SIGGEN0_FILL</strong> values.</p>
+<p>The <em>intFlags</em> parameter can be any of the <strong>EPG_INT_GLOBAL_INT</strong>, <strong>EPG_INT_SIGGEN0_DONE</strong>, or <strong>EPG_INT_SIGGEN0_FILL</strong>, or <strong>EPG_INT_SIGGEN1_DONE</strong>, or <strong>EPG_INT_SIGGEN1_FILL</strong> values.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -1774,7 +1858,7 @@ EPG driver provides functions for independent clock generation and clock divisio
 </dd>
 </dl>
 </p>
-<p>The <em>intFlags</em> parameter can be any of the <strong>EPG_INT_GLOBAL_INT</strong>, <strong>EPG_INT_SIGGEN0_DONE</strong>, or <strong>EPG_INT_SIGGEN0_FILL</strong> values.</p>
+<p>The <em>intFlags</em> parameter can be any of the <strong>EPG_INT_GLOBAL_INT</strong>, <strong>EPG_INT_SIGGEN0_DONE</strong>, or <strong>EPG_INT_SIGGEN0_FILL</strong>, or <strong>EPG_INT_SIGGEN1_DONE</strong>, or <strong>EPG_INT_SIGGEN1_FILL</strong> values.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -1795,7 +1879,7 @@ EPG driver provides functions for independent clock generation and clock divisio
 </dd>
 </dl>
 </p>
-<p>The <em>regFlags</em> parameter can be any of the <strong>EPG_LOCK_REG_GCTL0</strong>, <strong>EPG_LOCK_REG_GCTL1</strong>, <strong>EPG_LOCK_REG_GCTL2</strong> <strong>EPG_LOCK_REG_GCTL3</strong>, <strong>EPG_LOCK_REG_CLKDIV0_CTL0</strong>, <strong>EPG_LOCK_REG_CLKDIV1_CTL0</strong>, <strong>EPG_LOCK_REG_SIGGEN0_CTL0</strong>, <strong>EPG_LOCK_REG_SIGGEN0_CTL1</strong> values.</p>
+<p>The <em>regFlags</em> parameter can be any of the <strong>EPG_LOCK_REG_GCTL0</strong>, <strong>EPG_LOCK_REG_GCTL1</strong>, <strong>EPG_LOCK_REG_GCTL2</strong> <strong>EPG_LOCK_REG_GCTL3</strong>, <strong>EPG_LOCK_REG_CLKDIV0_CTL0</strong>, <strong>EPG_LOCK_REG_CLKDIV1_CTL0</strong>, <strong>EPG_LOCK_REG_SIGGEN0_CTL0</strong>, <strong>EPG_LOCK_REG_SIGGEN0_CTL1</strong>, <strong>EPG_LOCK_REG_SIGGEN1_CTL0</strong>, <strong>EPG_LOCK_REG_SIGGEN1_CTL1</strong> values.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -1816,7 +1900,7 @@ EPG driver provides functions for independent clock generation and clock divisio
 </dd>
 </dl>
 </p>
-<p>The <em>regFlags</em> parameter can be any of the <strong>EPG_LOCK_REG_GCTL0</strong>, <strong>EPG_LOCK_REG_GCTL1</strong>, <strong>EPG_LOCK_REG_GCTL2</strong> <strong>EPG_LOCK_REG_GCTL3</strong>, <strong>EPG_LOCK_REG_CLKDIV0_CTL0</strong>, <strong>EPG_LOCK_REG_CLKDIV1_CTL0</strong>, <strong>EPG_LOCK_REG_SIGGEN0_CTL0</strong>, <strong>EPG_LOCK_REG_SIGGEN0_CTL1</strong> values.</p>
+<p>The <em>regFlags</em> parameter can be any of the <strong>EPG_LOCK_REG_GCTL0</strong>, <strong>EPG_LOCK_REG_GCTL1</strong>, <strong>EPG_LOCK_REG_GCTL2</strong> <strong>EPG_LOCK_REG_GCTL3</strong>, <strong>EPG_LOCK_REG_CLKDIV0_CTL0</strong>, <strong>EPG_LOCK_REG_CLKDIV1_CTL0</strong>, <strong>EPG_LOCK_REG_SIGGEN0_CTL0</strong>, <strong>EPG_LOCK_REG_SIGGEN0_CTL1</strong>, <strong>EPG_LOCK_REG_SIGGEN1_CTL0</strong>, <strong>EPG_LOCK_REG_SIGGEN1_CTL1</strong> values.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -1837,7 +1921,7 @@ EPG driver provides functions for independent clock generation and clock divisio
 </dd>
 </dl>
 </p>
-<p>The <em>regFlags</em> parameter can be any of the <strong>EPG_LOCK_REG_GCTL0</strong>, <strong>EPG_LOCK_REG_GCTL1</strong>, <strong>EPG_LOCK_REG_GCTL2</strong> <strong>EPG_LOCK_REG_GCTL3</strong>, <strong>EPG_LOCK_REG_CLKDIV0_CTL0</strong>, <strong>EPG_LOCK_REG_CLKDIV1_CTL0</strong>, <strong>EPG_LOCK_REG_SIGGEN0_CTL0</strong>, <strong>EPG_LOCK_REG_SIGGEN0_CTL1</strong> values.</p>
+<p>The <em>regFlags</em> parameter can be any of the <strong>EPG_LOCK_REG_GCTL0</strong>, <strong>EPG_LOCK_REG_GCTL1</strong>, <strong>EPG_LOCK_REG_GCTL2</strong> <strong>EPG_LOCK_REG_GCTL3</strong>, <strong>EPG_LOCK_REG_CLKDIV0_CTL0</strong>, <strong>EPG_LOCK_REG_CLKDIV1_CTL0</strong>, <strong>EPG_LOCK_REG_SIGGEN0_CTL0</strong>, <strong>EPG_LOCK_REG_SIGGEN0_CTL1</strong>, <strong>EPG_LOCK_REG_SIGGEN1_CTL0</strong>, <strong>EPG_LOCK_REG_SIGGEN1_CTL1</strong> values.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -1858,7 +1942,7 @@ EPG driver provides functions for independent clock generation and clock divisio
 </dd>
 </dl>
 </p>
-<p>The <em>regFlags</em> parameter can be of the <strong>EPG_MX_SEL_LOCK_REG_MXSEL0</strong> </p>
+<p>The <em>regFlags</em> parameter can be of the <strong>EPG_MX_SEL_LOCK_REG_MXSEL0</strong> or <strong>EPG_MX_SEL_LOCK_REG_MXSEL1</strong> values.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -1879,7 +1963,7 @@ EPG driver provides functions for independent clock generation and clock divisio
 </dd>
 </dl>
 </p>
-<p>The <em>regFlags</em> parameter can be of the <strong>EPG_MX_SEL_LOCK_REG_MXSEL0</strong> </p>
+<p>The <em>regFlags</em> parameter can be of the <strong>EPG_MX_SEL_LOCK_REG_MXSEL0</strong> or <strong>EPG_MX_SEL_LOCK_REG_MXSEL1</strong> values.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -1900,7 +1984,7 @@ EPG driver provides functions for independent clock generation and clock divisio
 </dd>
 </dl>
 </p>
-<p>The <em>regFlags</em> parameter can be of the <strong>EPG_MX_SEL_LOCK_REG_MXSEL0</strong> </p>
+<p>The <em>regFlags</em> parameter can be of the <strong>EPG_MX_SEL_LOCK_REG_MXSEL0</strong> or <strong>EPG_MX_SEL_LOCK_REG_MXSEL1</strong> values.</p>
 <p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
@@ -1950,7 +2034,7 @@ EPG driver provides functions for independent clock generation and clock divisio
     <p>
       <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
       <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
-      <span class="lastupdated">Last updated on May 29, 2025.
+      <span class="lastupdated">Last updated on Jul 25, 2025.
       </span></p>
   </div>
 
@@ -1970,7 +2054,7 @@ EPG driver provides functions for independent clock generation and clock divisio
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v5.05.00.00',
+            VERSION:'v6.00.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

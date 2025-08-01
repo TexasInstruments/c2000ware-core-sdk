@@ -1,3 +1,5 @@
+-stack 0x300
+-heap 0x300
 
 MEMORY
 {
@@ -77,7 +79,7 @@ PAGE 1 :
 SECTIONS
 {
    codestart        : > BEGIN,     PAGE = 0, ALIGN(4)
-   .text            : >> FLASH_BANK0_SEC2 | FLASH_BANK0_SEC3 | FLASH_BANK0_SEC4,   PAGE = 0, ALIGN(4)
+   .text            : >> FLASH_BANK0_SEC2 | FLASH_BANK0_SEC3 | FLASH_BANK0_SEC4 | FLASH_BANK0_SEC5,   PAGE = 0, ALIGN(4)
    .cinit           : > FLASH_BANK0_SEC0,     PAGE = 0, ALIGN(4)
    .switch          : > FLASH_BANK0_SEC1,     PAGE = 0, ALIGN(4)
    .reset           : > RESET,     PAGE = 0, TYPE = DSECT /* not used, */

@@ -1,0 +1,29 @@
+<projectSpec>
+  <project
+        name="led_ex1_blinky"
+        device="TMS320F28E120SCS"
+        cgtVersion="22.6.2.LTS"
+        products="sysconfig;C2000WARE"
+        outputFormat="ELF"
+        launchWizard="False"
+        linkerCommandFile=""
+        enableSysConfigTool="true"
+        sysConfigBuildOptions="--product ${C2000WARE_ROOT}/.metadata/sdk.json"
+        postBuildStep="
+           echo &quot;========= Build of the CLB simulation has moved to the CLB Tool. Click the '?' icon by the _Generate CLB Simulation File_ enable for more details (located in the Global Parameters of the Tile Design SysConfig module) =============&quot;
+          ;if ${GENERATE_DIAGRAM} == 1  mkdir &quot;${BuildDirectory}/diagrams&quot;
+          ;if ${GENERATE_DIAGRAM} == 1  ${NODE_TOOL} &quot;${C2000WARE_ROOT}/driverlib/.meta/generate_diagrams.js&quot; &quot;${C2000WARE_ROOT}&quot; &quot;${BuildDirectory}/diagrams&quot; &quot;${BuildDirectory}/syscfg&quot;
+        "
+        >
+    <configuration name="CPU1_LAUNCHXL_RAM" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -v28 -ml -mt  --float_support=fpu32 --fp_mode=relaxed --gen_func_subsections=on --define=DEBUG --define=RAM --define=generic_ram_lnk --diag_warning=225 --diag_suppress=10063 --define=_LAUNCHXL_F28E12X" linkerBuildOptions="--entry_point code_start --stack_size=0x200 --heap_size=0x100 --define=RAM -i${C2000WARE_ROOT} -i${PROJECT_BUILD_DIR}/syscfg -lc2000ware_libraries.cmd.genlibs -lboard.cmd.genlibs --define=generic_ram_lnk"/>
+    <configuration name="CPU1_LAUNCHXL_FLASH" compilerBuildOptions="--opt_level=off -I${C2000WARE_ROOT} -v28 -ml -mt  --float_support=fpu32 --fp_mode=relaxed --gen_func_subsections=on --define=DEBUG --define=_FLASH --define=generic_flash_lnk --diag_warning=225 --diag_suppress=10063 --define=_LAUNCHXL_F28E12X" linkerBuildOptions="--entry_point code_start --stack_size=0x200 --heap_size=0x100  --define=_FLASH -i${C2000WARE_ROOT} -i${PROJECT_BUILD_DIR}/syscfg -lc2000ware_libraries.cmd.genlibs -lboard.cmd.genlibs --define=generic_flash_lnk"/>
+
+ 
+    <pathVariable name="C2000WARE_ROOT" path="../../../../../" scope="project" />
+    <buildVariable name="GENERATE_DIAGRAM" value="0" scope="project" />
+    <buildVariable name="GUI_SUPPORT" value="0" scope="project" />
+    <file action="copy" path="../../../../../device_support/f28e12x/common/targetConfigs/TMS320F28E120SCS.ccxml" targetDirectory="targetConfigs"  applicableConfigurations="CPU1_LAUNCHXL_RAM,CPU1_LAUNCHXL_FLASH" />
+    <file action="copy" path="../led_ex1_blinky.c" targetDirectory="" />
+    <file action="copy" path="../led_ex1_blinky.syscfg" targetDirectory="" />
+  </project>
+</projectSpec>

@@ -41,6 +41,19 @@ var group__asysctl__api =
       [ "ASYSCTL_CMPLPMUX_SELECT_3", "group__asysctl__api.html#gga16525824b37b4bd85ea3eadef0cb365fabf53ba8d38d4fd83ddf314eac230f538", null ],
       [ "ASYSCTL_CMPLPMUX_SELECT_4", "group__asysctl__api.html#gga16525824b37b4bd85ea3eadef0cb365fad65f3b04ceceef85332696ea9e97c8e7", null ]
     ] ],
+    [ "ASysCtl_AdcInst", "group__asysctl__api.html#ga02b0252cf4fcbe6030d3b4e6252790b4", [
+      [ "ASYSCTL_ADCA", "group__asysctl__api.html#gga02b0252cf4fcbe6030d3b4e6252790b4a25ddcc004e55a4bd091d8cf8a08652d2", null ],
+      [ "ASYSCTL_ADCB", "group__asysctl__api.html#gga02b0252cf4fcbe6030d3b4e6252790b4ab78d336d1f9f5bc186f5dfcef39130cd", null ],
+      [ "ASYSCTL_ADCC", "group__asysctl__api.html#gga02b0252cf4fcbe6030d3b4e6252790b4a7eb5901ef304484b31a57b5351c6de21", null ],
+      [ "ASYSCTL_ADCD", "group__asysctl__api.html#gga02b0252cf4fcbe6030d3b4e6252790b4a3fd40b7aa5fe60240ddee9efb27db3a2", null ],
+      [ "ASYSCTL_ADCE", "group__asysctl__api.html#gga02b0252cf4fcbe6030d3b4e6252790b4a9cd31a4d6a5e493250b161aa28e5fd60", null ]
+    ] ],
+    [ "ASysCtl_ADCTestMuxMode", "group__asysctl__api.html#gac1f7bde55840e488118c2130718b7a1f", [
+      [ "ASYSCTL_TESTANA0_TESTANA1_DISABLE", "group__asysctl__api.html#ggac1f7bde55840e488118c2130718b7a1fadcb1f7ca7d9f9e9d90a9d20be0b7e831", null ],
+      [ "ASYSCTL_TESTANA1_ENABLE", "group__asysctl__api.html#ggac1f7bde55840e488118c2130718b7a1fa3e36e605fe6a2ac0a86d7248e137cfd4", null ],
+      [ "ASYSCTL_TESTANA0_ENABLE", "group__asysctl__api.html#ggac1f7bde55840e488118c2130718b7a1fa11c24d2940c0225ebfeaaf3f7966cb15", null ],
+      [ "ASYSCTL_TESTANA0_TESTANA1_ENABLE", "group__asysctl__api.html#ggac1f7bde55840e488118c2130718b7a1fa89eed93e216b065875444cdd0bb27e9e", null ]
+    ] ],
     [ "ASysCtl_TestSelect", "group__asysctl__api.html#ga571a66eaee545a31aaa278ef82ab7a8f", [
       [ "ASYSCTL_TEST_NODE_NO_CONN", "group__asysctl__api.html#gga571a66eaee545a31aaa278ef82ab7a8facf5cc5f2efc819541d472f9929e695f9", null ],
       [ "ASYSCTL_TEST_NODE_VDDCORE", "group__asysctl__api.html#gga571a66eaee545a31aaa278ef82ab7a8fae7898409426fb05c9f7ff59c6ea667b8", null ],
@@ -78,6 +91,7 @@ var group__asysctl__api =
     [ "ASysCtl_setAnalogReference1P65", "group__asysctl__api.html#gaefab98468690a4e6af84ca05b350ad5a", null ],
     [ "ASysCtl_setVrefLoReferenceVREFLO", "group__asysctl__api.html#ga6e7b33f08abab1becc09f89c08163b05", null ],
     [ "ASysCtl_setVrefLoReferenceVSSA", "group__asysctl__api.html#gab150c558f455615e14445e2cabf2e76f", null ],
+    [ "ASysCtl_setAnalogReferenceB", "group__asysctl__api.html#ga4e52c0e766718fae5b58e4b9a13474db", null ],
     [ "ASysCtl_selectInternalTestNode", "group__asysctl__api.html#ga5d6f9c27178256978abed05226d8cd92", null ],
     [ "ASysCtl_selectCMPHNMux", "group__asysctl__api.html#ga77d8f427f280db5c300664d859d73356", null ],
     [ "ASysCtl_selectCMPHNMuxValue", "group__asysctl__api.html#ga944f02a6cff3fff1653a0ff65c6b7b36", null ],

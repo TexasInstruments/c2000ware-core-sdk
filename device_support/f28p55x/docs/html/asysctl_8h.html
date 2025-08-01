@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">f28p55x Driverib and Example User Guide
-   &#160;<span id="projectnumber">5.05.00.00</span>
+   &#160;<span id="projectnumber">6.00.00.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -194,6 +194,22 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:ga16525824b37b4bd85ea3eadef0cb365f"><td class="mdescLeft">&#160;</td><td class="mdescRight">ASysCtl_CMPLPMuxSelect used for function <a class="el" href="group__asysctl__api.html#ga203e690fc3f07ce2ea737ae3ce4eacb8">ASysCtl_selectCMPLPMux()</a>.  <a href="group__asysctl__api.html#ga16525824b37b4bd85ea3eadef0cb365f">More...</a><br /></td></tr>
 <tr class="separator:ga16525824b37b4bd85ea3eadef0cb365f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga02b0252cf4fcbe6030d3b4e6252790b4"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__asysctl__api.html#ga02b0252cf4fcbe6030d3b4e6252790b4">ASysCtl_AdcInst</a> { <br />
+&#160;&#160;<a class="el" href="group__asysctl__api.html#gga02b0252cf4fcbe6030d3b4e6252790b4a25ddcc004e55a4bd091d8cf8a08652d2">ASYSCTL_ADCA</a> = 0U
+, <a class="el" href="group__asysctl__api.html#gga02b0252cf4fcbe6030d3b4e6252790b4ab78d336d1f9f5bc186f5dfcef39130cd">ASYSCTL_ADCB</a> = 2U
+, <a class="el" href="group__asysctl__api.html#gga02b0252cf4fcbe6030d3b4e6252790b4a7eb5901ef304484b31a57b5351c6de21">ASYSCTL_ADCC</a> = 4U
+, <a class="el" href="group__asysctl__api.html#gga02b0252cf4fcbe6030d3b4e6252790b4a3fd40b7aa5fe60240ddee9efb27db3a2">ASYSCTL_ADCD</a> = 6U
+, <br />
+&#160;&#160;<a class="el" href="group__asysctl__api.html#gga02b0252cf4fcbe6030d3b4e6252790b4a9cd31a4d6a5e493250b161aa28e5fd60">ASYSCTL_ADCE</a> = 8U
+<br />
+ }</td></tr>
+<tr class="separator:ga02b0252cf4fcbe6030d3b4e6252790b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac1f7bde55840e488118c2130718b7a1f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__asysctl__api.html#gac1f7bde55840e488118c2130718b7a1f">ASysCtl_ADCTestMuxMode</a> { <a class="el" href="group__asysctl__api.html#ggac1f7bde55840e488118c2130718b7a1fadcb1f7ca7d9f9e9d90a9d20be0b7e831">ASYSCTL_TESTANA0_TESTANA1_DISABLE</a> = 0U
+, <a class="el" href="group__asysctl__api.html#ggac1f7bde55840e488118c2130718b7a1fa3e36e605fe6a2ac0a86d7248e137cfd4">ASYSCTL_TESTANA1_ENABLE</a> = 1U
+, <a class="el" href="group__asysctl__api.html#ggac1f7bde55840e488118c2130718b7a1fa11c24d2940c0225ebfeaaf3f7966cb15">ASYSCTL_TESTANA0_ENABLE</a> = 2U
+, <a class="el" href="group__asysctl__api.html#ggac1f7bde55840e488118c2130718b7a1fa89eed93e216b065875444cdd0bb27e9e">ASYSCTL_TESTANA0_TESTANA1_ENABLE</a> = 3U
+ }</td></tr>
+<tr class="separator:gac1f7bde55840e488118c2130718b7a1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga571a66eaee545a31aaa278ef82ab7a8f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__asysctl__api.html#ga571a66eaee545a31aaa278ef82ab7a8f">ASysCtl_TestSelect</a> { <br />
 &#160;&#160;<a class="el" href="group__asysctl__api.html#gga571a66eaee545a31aaa278ef82ab7a8facf5cc5f2efc819541d472f9929e695f9">ASYSCTL_TEST_NODE_NO_CONN</a> = 0U
 , <a class="el" href="group__asysctl__api.html#gga571a66eaee545a31aaa278ef82ab7a8fae7898409426fb05c9f7ff59c6ea667b8">ASYSCTL_TEST_NODE_VDDCORE</a> = 1U
@@ -249,6 +265,8 @@ Functions</h2></td></tr>
 <tr class="separator:ga6e7b33f08abab1becc09f89c08163b05"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gab150c558f455615e14445e2cabf2e76f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__asysctl__api.html#gab150c558f455615e14445e2cabf2e76f">ASysCtl_setVrefLoReferenceVSSA</a> (uint16_t reference)</td></tr>
 <tr class="separator:gab150c558f455615e14445e2cabf2e76f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4e52c0e766718fae5b58e4b9a13474db"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__asysctl__api.html#ga4e52c0e766718fae5b58e4b9a13474db">ASysCtl_setAnalogReferenceB</a> (<a class="el" href="group__asysctl__api.html#ga02b0252cf4fcbe6030d3b4e6252790b4">ASysCtl_AdcInst</a> adcInst, <a class="el" href="group__asysctl__api.html#gac1f7bde55840e488118c2130718b7a1f">ASysCtl_ADCTestMuxMode</a> modeVal)</td></tr>
+<tr class="separator:ga4e52c0e766718fae5b58e4b9a13474db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5d6f9c27178256978abed05226d8cd92"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__asysctl__api.html#ga5d6f9c27178256978abed05226d8cd92">ASysCtl_selectInternalTestNode</a> (<a class="el" href="group__asysctl__api.html#ga571a66eaee545a31aaa278ef82ab7a8f">ASysCtl_TestSelect</a> testSelect)</td></tr>
 <tr class="separator:ga5d6f9c27178256978abed05226d8cd92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga77d8f427f280db5c300664d859d73356"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__asysctl__api.html#ga77d8f427f280db5c300664d859d73356">ASysCtl_selectCMPHNMux</a> (uint16_t select)</td></tr>

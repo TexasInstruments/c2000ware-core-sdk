@@ -1,3 +1,6 @@
+-stack 0x300
+-heap 0x300
+
 MEMORY
 {
    BEGIN            : origin = 0x080000, length = 0x000002  // Update the codestart location as needed

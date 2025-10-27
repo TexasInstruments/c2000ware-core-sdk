@@ -49,25 +49,6 @@ extern "C" {
 //---------------------------------------------------------------------------
 // ANALOGSUBSYS Individual Register Bit Definitions:
 
-struct EXTROSCCSR1_BITS {               // bits description
-    Uint16 rsvd1:1;                     // 0 Reserved
-    Uint16 rsvd2:1;                     // 1 Reserved
-    Uint16 rsvd3:2;                     // 3:2 Reserved
-    Uint16 rsvd4:3;                     // 6:4 Reserved
-    Uint16 rsvd5:2;                     // 8:7 Reserved
-    Uint16 rsvd6:3;                     // 11:9 Reserved
-    Uint16 rsvd7:2;                     // 13:12 Reserved
-    Uint16 rsvd8:1;                     // 14 Reserved
-    Uint16 rsvd9:1;                     // 15 Reserved
-    Uint16 rsvd10:8;                    // 23:16 Reserved
-    Uint16 OSCSTATUS:8;                 // 31:24 Running status of ExtR.
-};
-
-union EXTROSCCSR1_REG {
-    Uint32  all;
-    struct  EXTROSCCSR1_BITS  bit;
-};
-
 struct ADCOSDETECT_BITS {               // bits description
     Uint16 rsvd1:4;                     // 3:0 Reserved
     Uint16 OSDETECT_EN:1;               // 4 Enable OS Detect Logic
@@ -91,7 +72,7 @@ struct REFCONFIGA_BITS {                // bits description
     Uint16 rsvd8:1;                     // 15 Reserved
     Uint16 rsvd9:3;                     // 18:16 Reserved
     Uint16 rsvd10:1;                    // 19 Reserved
-    Uint16 CONFIG8:1;                   // 20 Analog reference mode select
+    Uint16 ANAREFSEL:1;                 // 20 Analog reference mode select
     Uint16 rsvd11:6;                    // 26:21 Reserved
     Uint16 rsvd12:1;                    // 27 Reserved
     Uint16 rsvd13:2;                    // 29:28 Reserved
@@ -378,8 +359,7 @@ union GPIOINENACTRL_REG {
 };
 
 struct ANALOG_SUBSYS_REGS {
-    Uint16                                   rsvd1[42];                    // Reserved
-    union   EXTROSCCSR1_REG                  EXTROSCCSR1;                  // ExtR Oscillator Status Register
+    Uint16                                   rsvd1[44];                    // Reserved
     union   ADCOSDETECT_REG                  ADCOSDETECT;                  // I2V Logic Control
     Uint16                                   rsvd2[13];                    // Reserved
     union   REFCONFIGA_REG                   REFCONFIGA;                   // Config register for analog reference A.

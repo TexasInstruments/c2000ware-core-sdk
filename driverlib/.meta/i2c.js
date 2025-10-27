@@ -9,7 +9,7 @@ let device_driverlib_peripheral =
 let longDescription = "The I2C driver provides a simplified application"
         + " interface to access peripherals on an I2C bus.";
 
-var extended_clock_supported_devices = ['f28p55x','f28e12x'];
+var extended_clock_supported_devices = ['f28p551x','f28p55x','f28e12x'];
 var push_pull_pins_support = ['f2838x']
 var hide_extended_clock_stretching_options = null; 
 var extended_clock_stretching_support_available = null; 

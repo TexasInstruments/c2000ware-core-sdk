@@ -1,5 +1,6 @@
 var NAVTREEINDEX26 =
 {
+"group__xbar__api.html#gga9264f8dfaf11f6161459b58f5514594ca912e535b797c2558a25af2a6ce92154b":[12,26,53,59],
 "group__xbar__api.html#gga9264f8dfaf11f6161459b58f5514594ca93308db9fdaf9e043d7c8395341cadf6":[12,26,53,32],
 "group__xbar__api.html#gga9264f8dfaf11f6161459b58f5514594ca94a0544bcf579d18c35e2d464c7fd951":[12,26,53,12],
 "group__xbar__api.html#gga9264f8dfaf11f6161459b58f5514594ca99a2bcf9d6a9e746476472c0ee64d325":[12,26,53,16],
@@ -248,6 +249,5 @@ var NAVTREEINDEX26 =
 "structMCAN__MsgRAMConfigParams.html#a420fa7666e7812b280a7202e72ad8ed4":[12,19,7,16],
 "structMCAN__MsgRAMConfigParams.html#a433542597f4a76dd6c6b30f7985da151":[12,19,7,10],
 "structMCAN__MsgRAMConfigParams.html#a46068a0ce2c3af23dc1e553ae56144fd":[12,19,7,21],
-"structMCAN__MsgRAMConfigParams.html#a7935092765a87f320d72f40a9fe23b1a":[12,19,7,23],
-"structMCAN__MsgRAMConfigParams.html#a7c102abec1b97e46fcb051b59adb7588":[12,19,7,18]
+"structMCAN__MsgRAMConfigParams.html#a7935092765a87f320d72f40a9fe23b1a":[12,19,7,23]
 };

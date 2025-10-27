@@ -20,7 +20,7 @@ exports = {
 	{
 		name: "divideValue",
 		displayName: "Divide Value",
-		default: $ipInstance.resetValue,
+		default: (system.deviceData.gpn == "TMS320F2800132") && ($ipInstance.name == "PLL_ODIV") ? 2 : $ipInstance.resetValue,
 		options: _.map($ipInstance.divideValues, (v) => ({ name: v, displayName: `/ ${v}` })),
 	}, 
 	{

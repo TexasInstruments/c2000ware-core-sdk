@@ -25,7 +25,7 @@ var group__memcfg__api =
     [ "MemCfg_TestMode", "group__memcfg__api.html#ga962a00b98ede70d1e8edf086694cd9bc", [
       [ "MEMCFG_TEST_FUNCTIONAL", "group__memcfg__api.html#gga962a00b98ede70d1e8edf086694cd9bca59d9b92bce37a364e0ba336e48ac113a", null ],
       [ "MEMCFG_TEST_WRITE_DATA", "group__memcfg__api.html#gga962a00b98ede70d1e8edf086694cd9bca703eb59f0c6bc3f6637292969a6ea31c", null ],
-      [ "MEMCFG_TEST_WRITE_ECC", "group__memcfg__api.html#gga962a00b98ede70d1e8edf086694cd9bca79ee067642ce8beff3ce5bf3a5eee635", null ],
+      [ "MEMCFG_TEST_WRITE_PARITY", "group__memcfg__api.html#gga962a00b98ede70d1e8edf086694cd9bcab2c446ffdc22ab474cdfc650c47cd050", null ],
       [ "MEMCFG_TEST_FUNC_DIAG", "group__memcfg__api.html#gga962a00b98ede70d1e8edf086694cd9bca46f7bd0914e9a419542af3c33442d8c9", null ]
     ] ],
     [ "MemCfg_setCorrErrorThreshold", "group__memcfg__api.html#ga8496e659e6df1b5d8320b96726251ef0", null ],

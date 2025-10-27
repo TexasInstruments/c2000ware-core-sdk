@@ -67,11 +67,6 @@ extern "C"
 #include "debug.h"
 #include "cpu.h"
 
-//
-// OSCSTATUS value on completion
-//
-#define ASYSCTL_EXTR_ENABLE_COMPLETE (0xE7U)
-
 //*****************************************************************************
 //
 // Defines used for setting AnalogReference functions.
@@ -806,19 +801,6 @@ static inline void ASysCtl_lockCMPSSCTL(void)
     HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_LOCK) |= ASYSCTL_LOCK_CMPSSCTL;
 
     EDIS;
-}
-
-//*****************************************************************************
-//
-//! Gets the Ext-R OSC Status.
-//!
-//! \return Ext-R OSC Status.
-//
-//*****************************************************************************
-static inline uint16_t ASysCtl_getExtROscStatus(void)
-{
-    return((HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_EXTROSCCSR1) &
-           ASYSCTL_EXTROSCCSR1_OSCSTATUS_M) >> ASYSCTL_EXTROSCCSR1_OSCSTATUS_S);
 }
 
 //*****************************************************************************

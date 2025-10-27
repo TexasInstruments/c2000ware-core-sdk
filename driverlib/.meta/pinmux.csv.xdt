@@ -15,6 +15,7 @@ for (var devicePinIndex in deviceData.devicePins){
     if (devicePin.mux == null)
     {
         output += "," + devicePin.designSignalName.replace(/,/g, replaceCommaWith) + "\n"
+        output += "," + devicePin.designSignalName.replace(/,/g, replaceCommaWith) + "\n"
         continue
     }
     var muxSetting = devicePin.mux.muxSetting
@@ -27,10 +28,12 @@ for (var devicePinIndex in deviceData.devicePins){
             var gpioNumber = Common.gpioNameToNumber(gpioNumber);
             var gpioName = "GPIO" + gpioNumber
             output += "," + pinmuxContent("function", gpioName).replace("\n", "").replace("\r", "").replace(/,/g, replaceCommaWith)
+            output += "," + pinmuxContent("function_inst", gpioName).replace("\n", "").replace("\r", "").replace(/,/g, replaceCommaWith)
         }
         else
         {
             var selectedMode = ""
+            var selectedModeInst = ""
             for (var muxSettingIndex in muxSetting)
             {
                 var muxSettingMode = muxSetting[muxSettingIndex].mode;
@@ -38,6 +41,7 @@ for (var devicePinIndex in deviceData.devicePins){
                 if ((muxSettingMode.includes("ALT") && !muxSettingMode.includes("_")) && muxSettingName.includes("AIO"))
                 {
                     selectedMode = pinmuxContent("function", muxSettingName).replace("\n", "").replace("\r", "").replace(/,/g, replaceCommaWith)
+                    selectedModeInst = pinmuxContent("function_inst", muxSettingName).replace("\n", "").replace("\r", "").replace(/,/g, replaceCommaWith)
                     if (selectedMode.length > 0)
                     {
                         break;
@@ -46,6 +50,7 @@ for (var devicePinIndex in deviceData.devicePins){
                 
             }
             output += "," + selectedMode;
+            output += "," + selectedModeInst;
         }
         for (var mode = 0; mode < 16; mode++)
         {
@@ -127,6 +132,7 @@ for (var devicePinIndex in deviceData.devicePins){
                     gpioName = per_type + gpio_num
                     var muxSettingName = muxSetting[muxSettingIndex].peripheralPin.name;
                     output += "," + pinmuxContent("function", muxSettingName).replace("\n", "").replace("\r", "").replace(/,/g, replaceCommaWith)
+                    output += "," + pinmuxContent("function_inst", muxSettingName).replace("\n", "").replace("\r", "").replace(/,/g, replaceCommaWith)
                     // now iterate through the columns and add them where applicable
                     for (var mode = 0; mode < 16; mode++)
                     {
@@ -146,13 +152,14 @@ for (var devicePinIndex in deviceData.devicePins){
     else
     {
         output += "," + devicePin.designSignalName.replace(/,/g, replaceCommaWith)
+        output += "," + devicePin.designSignalName.replace(/,/g, replaceCommaWith)
     }
     output += "\n"
 }
 %%}
 % if (Common.isContextCPU1()){
 All device pins and their pinmux options
-Pin,Name,Selected Mode,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15
+Pin,Name, Selected Mode, Used By,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15
 `output`
 % } else {
 PinMux is done on CPU1  

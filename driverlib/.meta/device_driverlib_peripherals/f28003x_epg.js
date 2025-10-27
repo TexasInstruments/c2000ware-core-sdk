@@ -79,6 +79,7 @@ let EPG_OUT = [
 	{ name: "EPG_OUT4", displayName: "EPG Output 4" },
 	{ name: "EPG_OUT5", displayName: "EPG Output 5" },
 	{ name: "EPG_OUT6", displayName: "EPG Output 6" },
+	{ name: "EPG_OUT7", displayName: "EPG Output 7" },
 ]
 let EPG_SIGGEN = [
 	{ name: "EPG_SIGGEN0", displayName: "Signal Generator 0" },

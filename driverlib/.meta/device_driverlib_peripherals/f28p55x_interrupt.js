@@ -132,6 +132,7 @@ let interrupts = [
 	{ int_define_name: "INT_ADCE3", int_group_channel_number: "11.11", int_group_number: "11", int_channel_number: "11", int_description: "ADCE Interrupt 3" },
 	{ int_define_name: "INT_ADCE4", int_group_channel_number: "11.12", int_group_number: "11", int_channel_number: "12", int_description: "ADCE Interrupt 4" },
 	{ int_define_name: "INT_AES_SINTREQUEST", int_group_channel_number: "12.13", int_group_number: "12", int_channel_number: "13", int_description: "AES Interrupt" },
+	{ int_define_name: "INT_FREERTOS", int_group_channel_number: "12.16", int_group_number: "12", int_channel_number: "16", int_description: "FreeRTOS SW interrupt" },
 ];
 module.exports = {
 	interrupts: interrupts,

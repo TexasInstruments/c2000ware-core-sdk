@@ -94,6 +94,12 @@ int main(void)
     PMBusExample_setupInterrupts(pmbusIntHandler);
 
     //
+    // Device initialization
+    //
+    //
+    
+    //Device_init();
+
     // Board initialization
     //
     Board_init();

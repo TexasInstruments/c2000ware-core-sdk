@@ -133,16 +133,18 @@
 %
 % if(currentHashElements.length != 0){
 #if(SSHASH_HASH_TABLE_SELECTED == HASH_TABLE_`tableInstances[i].$name`)
+    % if(tableInstances[i].enableVariableExterns){
     //
     //Hash Table Variables Externs
     //
-    % if(variableArray.length != 0){
-        % for(let j = 0; j < variableArray.length; j++){
-            % let var_name = variableArray[j].$name;
-            % if(variableArray[j].useDifferentName){
-                % var_name = variableArray[j].diffName;
-            % }
+        % if(variableArray.length != 0){
+            % for(let j = 0; j < variableArray.length; j++){
+                % let var_name = variableArray[j].$name;
+                % if(variableArray[j].useDifferentName){
+                    % var_name = variableArray[j].diffName;
+                % }
     extern `variableArray[j].variableType` `var_name`;
+            % }
         % }
     % }
 
@@ -159,7 +161,11 @@
     //
     // Hash Table arrays
     //
+    % if(tableInstances[i].allowVolatileVariables){
+    volatile void* SSHASH_hash_table[SSHASH_NUMBER_OF_VARIABLES] = {
+    % } else {
     const void* SSHASH_hash_table[SSHASH_NUMBER_OF_VARIABLES] = {
+    % }
         %for (let i = 0; i < variableArray.length; i++){
             % let hashEntry = "";
             % if(variableArray[i].variableType == "uint16_t"){

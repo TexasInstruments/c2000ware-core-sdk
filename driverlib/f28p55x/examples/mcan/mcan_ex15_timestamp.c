@@ -519,11 +519,6 @@ static void MCANConfig(void)
     MCAN_extTSCounterEnable(MCANA_DRIVER_BASE, 1U);
 
     //
-    // Enable internal loopback mode
-    //
-    MCAN_lpbkModeEnable(MCANA_DRIVER_BASE, MCAN_LPBK_MODE_EXTERNAL, TRUE);
-
-    //
     // Take MCAN out of the SW initialization mode
     //
     MCAN_setOpMode(MCANA_DRIVER_BASE, MCAN_OPERATION_MODE_NORMAL);

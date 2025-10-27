@@ -13,7 +13,7 @@ if (["F28P65x", "F2838x", "F2837xD"].includes(Common.getDeviceName())){
 
     spihsPins = hsPinScript.hsModePins;
 }
-if (["F28P55x"].includes(Common.getDeviceName())){
+if (["F28P55x","F28P551x"].includes(Common.getDeviceName())){
     hsPinScript = 
     system.getScript("/driverlib/device_driverlib_peripherals/" + 
         Common.getDeviceName().toLowerCase() + "_spi_hspins.js");
@@ -23,7 +23,7 @@ if (["F28P55x"].includes(Common.getDeviceName())){
 
 // PMBUS Filter
 let fastPlusModeScript, fastPlusModePins;
-if (["F28P55x"].includes(Common.getDeviceName())){
+if (["F28P55x","F28P551x"].includes(Common.getDeviceName())){
     fastPlusModeScript = 
     system.getScript("/driverlib/device_driverlib_peripherals/" + 
         Common.getDeviceName().toLowerCase() + "_pmbus_fast_plus_pins.js");
@@ -897,11 +897,11 @@ function linPinmuxRequirements(inst)
 }
 
 function spihs_filter_wrapper(devicePin, peripheralPin){
-    if (!(["F28P65x", "F2838x", "F2837xD", "F28P55x"].includes(Common.getDeviceName()))){
+    if (!(["F28P65x", "F2838x", "F2837xD", "F28P55x","F28P551x"].includes(Common.getDeviceName()))){
         return true;
     }
     let filterType = true;
-    if (["F28P55x"].includes(Common.getDeviceName())){
+    if (["F28P55x","F28P551x"].includes(Common.getDeviceName())){
         filterType = false;
     }
     
@@ -927,7 +927,7 @@ function spihs_filter(devicePin, peripheralPin, interfaceName, filterType){
 }
 
 function pmbus_fastplus_filter_wrapper(devicePin, peripheralPin){
-    if(!(["F28P55x"].includes(Common.getDeviceName()))) {
+    if(!(["F28P55x","F28P551x"].includes(Common.getDeviceName()))) {
         return true;
     } else {
         let filterType = true;
@@ -1362,6 +1362,11 @@ let soc_epwm_list = [
     },
     {
         soc   : "F28P55x",
+        epwm  : ["EPWM1", "EPWM2", "EPWM3", "EPWM4", "EPWM5", "EPWM6", "EPWM7","EPWM8", "EPWM9", "EPWM10", "EPWM11", "EPWM12"],
+        hrpwm : ["EPWM1", "EPWM2", "EPWM3", "EPWM4", "EPWM5", "EPWM6"],
+    },
+    {
+        soc   : "F28P551x",
         epwm  : ["EPWM1", "EPWM2", "EPWM3", "EPWM4", "EPWM5", "EPWM6", "EPWM7","EPWM8", "EPWM9", "EPWM10", "EPWM11", "EPWM12"],
         hrpwm : ["EPWM1", "EPWM2", "EPWM3", "EPWM4", "EPWM5", "EPWM6"],
     },

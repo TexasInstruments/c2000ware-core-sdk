@@ -3,10 +3,10 @@
 // FILE:    f28p55x_cla_c_lnk.cmd
 //
 // TITLE:   Linker Command File for CLA Math library examples that run
-//          on the f28003x platform
+//          on the f28P55x platform
 //
 //          This file includes all RAM and FLASH blocks present on the
-//          f28003x and depending on the active build configuration
+//          f28P55x and depending on the active build configuration
 //          (RAM or FLASH) the appropriate sections will either be loaded
 //          into RAM or FLASH blocks
 //
@@ -64,14 +64,20 @@ MEMORY
 
    RAMGS0           : origin = 0x00C000, length = 0x002000
    RAMGS1           : origin = 0x00E000, length = 0x002000
-   RAMGS2           : origin = 0x010000, length = 0x002000
-   RAMGS3           : origin = 0x012000, length = 0x002000
+   #if defined(f28p55x)
+   RAMGS2           : origin = 0x010000, length = 0x002000 // Not available on P551x 
+   RAMGS3           : origin = 0x012000, length = 0x002000 // Not available on P551x
+   #endif
 
    /* Flash Banks (128 sectors each) */
    FLASH_BANK0     : origin = 0x080002, length = 0x1fffd
-   FLASH_BANK1     : origin = 0x0A0000, length = 0x20000
+   #if defined(f28p55x)
+   FLASH_BANK1     : origin = 0x0A0000, length = 0x20000   // Not available on P551x
+   #endif
    FLASH_BANK2     : origin = 0x0C0000, length = 0x20000
-   FLASH_BANK3     : origin = 0x0E0000, length = 0x20000
+   #if defined(f28p55x)
+   FLASH_BANK3     : origin = 0x0E0000, length = 0x20000   // Not available on P551x
+   #endif
    FLASH_BANK4     : origin = 0x100000, length = 0x20000
 
 
@@ -100,7 +106,7 @@ SECTIONS
    .pinit            : > RAMGS0
    .switch           : > RAMGS0
 
-   .econst           : > RAMGS3
+   .econst           : > RAMGS1
 
 #if !(CLA_MATH_TABLES_IN_ROM)
    CLA1mathTables    : > RAMLS4
@@ -113,7 +119,7 @@ SECTIONS
 
 #if defined(__TI_EABI__)
    .TI.ramfunc       :  LOAD = FLASH_BANK0,
-                        RUN = RAMGS2,
+                        RUN = RAMGS1,
                         RUN_START(RamfuncsRunStart),
                         LOAD_START(RamfuncsLoadStart),
                         LOAD_SIZE(RamfuncsLoadSize)
@@ -121,7 +127,7 @@ SECTIONS
 
 #else
    .TI.ramfunc       :  LOAD = FLASH_BANK0,
-                        RUN = RAMGS2,
+                        RUN = RAMGS1,
                         RUN_START(_RamfuncsRunStart),
                         LOAD_START(_RamfuncsLoadStart),
                         LOAD_SIZE(_RamfuncsLoadSize)
@@ -158,14 +164,14 @@ SECTIONS
 
 #endif
 #if defined(__TI_EABI__)
-   Cla1Prog          :  LOAD = FLASH_BANK1,
+   Cla1Prog          :  LOAD = FLASH_BANK2,
                         RUN = RAMLS0,
                         RUN_START(Cla1ProgRunStart),
                         LOAD_START(Cla1ProgLoadStart),
                         LOAD_SIZE(Cla1ProgLoadSize)
 
 #else
-   Cla1Prog          :  LOAD = FLASH_BANK1,
+   Cla1Prog          :  LOAD = FLASH_BANK2,
                         RUN = RAMLS0,
                         RUN_START(_Cla1ProgRunStart),
                         LOAD_START(_Cla1ProgLoadStart),
@@ -195,13 +201,13 @@ SECTIONS
                      
    .reset            : > RESET,      TYPE = DSECT /* not used, */
                      
-   .cio              : > RAMGS3
-   .sysmem           : > RAMGS3
+   .cio              : > RAMGS0
+   .sysmem           : > RAMGS0
                      
    .stack            : > RAMM1        /* Needs to be in lower 64K memory */
 
-   .ebss             : > RAMGS3
-   .esysmem          : > RAMGS3
+   .ebss             : > RAMGS0
+   .esysmem          : > RAMGS0
 }
 
 /*

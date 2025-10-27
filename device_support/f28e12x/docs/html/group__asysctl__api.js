@@ -1,6 +1,5 @@
 var group__asysctl__api =
 [
-    [ "ASYSCTL_EXTR_ENABLE_COMPLETE", "group__asysctl__api.html#gaf05127d5f12634659f3d5c64de5b506d", null ],
     [ "ASYSCTL_VREFHI", "group__asysctl__api.html#gaabfcece3e39a369b716d41debf1fd6ed", null ],
     [ "ASYSCTL_CMPSS3_DACL", "group__asysctl__api.html#ga199bd7224a50a9b33c039f4fea8d4862", null ],
     [ "ASYSCTL_CMPHNMUX_SELECT_1", "group__asysctl__api.html#gabe866a55244f154e26c117b0c2d703fc", null ],
@@ -63,7 +62,6 @@ var group__asysctl__api =
     [ "ASysCtl_lockCMPLNMux", "group__asysctl__api.html#gaee4dd5dcb08401f50683296a6f00d2f4", null ],
     [ "ASysCtl_lockVREG", "group__asysctl__api.html#ga3c525d5f7619b736ebf31ad126648dc4", null ],
     [ "ASysCtl_lockCMPSSCTL", "group__asysctl__api.html#ga54c2f6cd978a3179f3d89b1a70071eca", null ],
-    [ "ASysCtl_getExtROscStatus", "group__asysctl__api.html#ga9da3e4125c325c2b44a4fca65279eb13", null ],
     [ "ASysCtl_enableADCDACLoopback", "group__asysctl__api.html#ga2ecd0767c338c6177cce4fc6c6727392", null ],
     [ "ASysCtl_disableADCDACLoopback", "group__asysctl__api.html#gab850f059b68b7b347cefab0f7ab07121", null ],
     [ "ASysCtl_enableGPIOInputBuffer", "group__asysctl__api.html#ga5a0e882cddbe0f8ee036535fface0f70", null ],

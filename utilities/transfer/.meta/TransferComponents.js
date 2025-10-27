@@ -296,7 +296,9 @@ if (transferCommon.isC2000())
     
 }
 
-var transfer_export = {
+const checkIfInResourceAllocationSetupMode =  transferCommon.isC29x() && transferCommon.isAllocationSetupMode()
+
+var transfer_export = checkIfInResourceAllocationSetupMode ? {} : {
     displayName: "Transfer",
     templates: templates,
     views: views,

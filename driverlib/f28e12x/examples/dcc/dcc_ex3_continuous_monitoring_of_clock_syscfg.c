@@ -33,7 +33,7 @@
 //!
 //
 //#############################################################################
-// $TI Release: F28E12x Support Library v6.00.00.00 $
+// $TI Release: F28E12x Support Library v6.00.01.00 $
 // 
 // $Copyright:
 // Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/

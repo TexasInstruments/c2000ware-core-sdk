@@ -620,7 +620,7 @@ function isType1() {
 }
 
 function isType2() {
-    return ["F28002x", "F2838x", "F28003x", "F28P65x", "F28P55x"].includes(getDeviceName());
+    return ["F28002x", "F2838x", "F28003x", "F28P65x", "F28P55x", "F28P551x"].includes(getDeviceName());
 }
 
 function isType0_Type1(){

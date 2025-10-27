@@ -20,7 +20,7 @@ CMPSS_INSTANCE = CMPSS_INSTANCE.map(({baseAddress, ...rest}) => {
 });
 
 
-if (["F28004x","F28002x","F28003x","F28P55x","F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName())){
+if (["F28004x","F28002x","F28003x","F28P55x","F28P551x","F280013x", "F280015x", "F28P65x"].includes(Common.getDeviceName())){
     var defaultCMPSSPinInfos = Pinmux.findAllAnalogPin(Pinmux.getDeviceADCName(ComparatorInputs.CMPSS_comparatorInputSignals[Common.getDeviceName()]["CMPSS1_BASE"][0].displayName.split("/")[0]));
 
     var defaultCMPSSNegPinInfos = Pinmux.findAllAnalogPin(Pinmux.getDeviceADCName(ComparatorInputs.CMPSS_comparatorNegInputSignals[Common.getDeviceName()]["CMPSS1_BASE"][1].displayName.split("/")[0]));
@@ -71,7 +71,7 @@ function calculateDevicePinNameHigh(inst,ui){
                 return tempPinInfoDesc
         }
     }
-    else if (["F28P55x"].includes(Common.getDeviceName())){
+    else if (["F28P55x","F28P551x"].includes(Common.getDeviceName())){
         if(((inst.cmpssBase == "CMPSS4_BASE") && (inst.asysCMPHPMXSELValue == 6)) || 
             ((inst.cmpssBase == "CMPSS1_BASE") && (inst.asysCMPHPMXSELValue == 7)) ||
             ((inst.cmpssBase == "CMPSS3_BASE") && (inst.asysCMPHPMXSELValue == 7)) ||
@@ -140,7 +140,7 @@ function calculateDevicePinNameHighNeg(inst,ui){
     if ((["F28004x"].includes(Common.getDeviceName())) && (tempPinInfoDesc == Pinmux.NO_DEVICE_PIN_FOUND) && (inst.asysCMPHNMXSELValue == 4)){
         return "PGA"+(inst.cmpssBase.match(/\d+/)[0])+"_OUT"
     }
-    else if ((["F28P55x"].includes(Common.getDeviceName())) && (tempPinInfoDesc == Pinmux.NO_DEVICE_PIN_FOUND) && (inst.asysCMPHNMXSELValue == 6) && (inst.cmpssBase!= "CMPSS4_BASE")){
+    else if ((["F28P55x","F28P551x"].includes(Common.getDeviceName())) && (tempPinInfoDesc == Pinmux.NO_DEVICE_PIN_FOUND) && (inst.asysCMPHNMXSELValue == 6) && (inst.cmpssBase!= "CMPSS4_BASE")){
         return "PGA"+(inst.cmpssBase.match(/\d+/)[0])+"_OUT"
     }
     else{
@@ -168,7 +168,7 @@ function calculateDevicePinNameLow(inst,ui){
                 return tempPinInfoDesc
         }
     }
-    else if(["F28P55x"].includes(Common.getDeviceName()))
+    else if(["F28P55x","F28P551x"].includes(Common.getDeviceName()))
     {
         if((inst.cmpssBase == "CMPSS4_BASE") && (inst.asysCMPLPMXSELValue == 6))
         {
@@ -208,7 +208,7 @@ function calculateDevicePinNameLowNeg(inst,ui){
     if ((["F28004x"].includes(Common.getDeviceName())) && (tempPinInfoDesc == Pinmux.NO_DEVICE_PIN_FOUND) && (inst.asysCMPLNMXSELValue == 4)){
         return "PGA"+(inst.cmpssBase.match(/\d+/)[0])+"_OUT"
     }
-    else if ((["F28P55x"].includes(Common.getDeviceName())) && (tempPinInfoDesc == Pinmux.NO_DEVICE_PIN_FOUND) && (inst.asysCMPLNMXSELValue == 6) && (inst.cmpssBase!= "CMPSS4_BASE") ){
+    else if ((["F28P55x","F28P551x"].includes(Common.getDeviceName())) && (tempPinInfoDesc == Pinmux.NO_DEVICE_PIN_FOUND) && (inst.asysCMPLNMXSELValue == 6) && (inst.cmpssBase!= "CMPSS4_BASE") ){
         return "PGA"+(inst.cmpssBase.match(/\d+/)[0])+"_OUT_INT"
     }
     else{
@@ -241,7 +241,7 @@ else if (["F28003x"].includes(Common.getDeviceName())){
 else if (["F28P65x"].includes(Common.getDeviceName())){
     numberOfPosInputSignals = 4
 }
-else if (["F28P55x"].includes(Common.getDeviceName())){
+else if (["F28P55x","F28P551x"].includes(Common.getDeviceName())){
     numberOfPosInputSignals = 8
 }
 
@@ -385,7 +385,7 @@ var highConfig =[
     },
 ]
 var highConfigDevice = []
-if (["F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName()))
+if (["F280015x", "F28P65x", "F28P55x","F28P551x"].includes(Common.getDeviceName()))
 {
     highConfigDevice = highConfigDevice.concat([
         {
@@ -408,7 +408,7 @@ highConfigDevice = highConfigDevice.concat([
             default     : 0
         },
 ])
-if (["F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName()))
+if (["F280015x", "F28P65x", "F28P55x","F28P551x"].includes(Common.getDeviceName()))
 {
     highConfigDevice = highConfigDevice.concat([
         // -setRampDecValue
@@ -444,7 +444,7 @@ highConfigDevice = highConfigDevice.concat([
         },
 ])
 
-if (["F28P65x","F28P55x"].includes(Common.getDeviceName()))
+if (["F28P65x","F28P55x","F28P551x"].includes(Common.getDeviceName()))
 {
     highConfigDevice = highConfigDevice.concat([
         // -CMPSS_setRampClockDividerHigh/CMPSS_setRampClockDividerLow
@@ -511,7 +511,7 @@ highConfig = highConfig.concat([
     },
 ])
 
-if (["F28002x","F28003x","F28P55x","F280013x","F280015x","F28004x", "F28P65x"].includes(Common.getDeviceName())){
+if (["F28002x","F28003x","F28P55x","F28P551x","F280013x","F280015x","F28004x", "F28P65x"].includes(Common.getDeviceName())){
     highConfig = highConfig.concat([
         {
             name: "GROUP_CMPSS_MUX_HIGH",
@@ -685,7 +685,7 @@ var lowConfig =[
 ]
 
 var lowConfigDevice = []
-if (["F280015x", "F28P65x" , "F28P55x"].includes(Common.getDeviceName())){
+if (["F280015x", "F28P65x" , "F28P55x","F28P551x"].includes(Common.getDeviceName())){
     lowConfigDevice = lowConfigDevice.concat([
         {
             name        : "rampLowDir",
@@ -722,7 +722,7 @@ if (["F280015x", "F28P65x" , "F28P55x"].includes(Common.getDeviceName())){
     ])
 }
 
-if (["F28P65x","F28P55x"].includes(Common.getDeviceName())){
+if (["F28P65x","F28P55x","F28P551x"].includes(Common.getDeviceName())){
     lowConfigDevice = lowConfigDevice.concat([
          // -CMPSS_setRampClockDividerHigh/CMPSS_setRampClockDividerLow
          {
@@ -754,7 +754,7 @@ if (["F28P65x","F28P55x"].includes(Common.getDeviceName())){
     ])
 }
 
-if (["F280015x", "F28P65x" , "F28P55x"].includes(Common.getDeviceName())){
+if (["F280015x", "F28P65x" , "F28P55x","F28P551x"].includes(Common.getDeviceName())){
     lowConfigDevice = lowConfigDevice.concat([
         {
             name        : "pwmSyncSrcLow",
@@ -792,7 +792,7 @@ lowConfig = lowConfig.concat([
 
 
 
-if (["F28002x","F28003x","F280013x","F280015x","F28004x", "F28P65x","F28P55x"].includes(Common.getDeviceName())){
+if (["F28002x","F28003x","F280013x","F280015x","F28004x", "F28P65x","F28P55x","F28P551x"].includes(Common.getDeviceName())){
     lowConfig = lowConfig.concat([
         {
             name: "GROUP_CMPSS_MUX_LOW",
@@ -878,7 +878,7 @@ config = config.concat([
     },
 ]);
 
-if (["F28002x","F28003x","F280013x","F280015x","F28004x","F2838x","F28P55x","F28P65x"].includes(Common.getDeviceName())){
+if (["F28002x","F28003x","F280013x","F280015x","F28004x","F2838x","F28P55x","F28P551x","F28P65x"].includes(Common.getDeviceName())){
     config = config.concat([
         // configBlanking
         {
@@ -934,7 +934,7 @@ var cmpss_dac_config = [
     },
 ]
 
-if (!["F280013x", "F280015x", "F28P55x"].includes(Common.getDeviceName())){
+if (!["F280013x", "F280015x", "F28P55x","F28P551x"].includes(Common.getDeviceName())){
     cmpss_dac_config.push(
         {
             name        : "dacRefVoltage",
@@ -975,7 +975,7 @@ if (["F2807x", "F2837xS", "F2837xD", "F2838x", "F280013x", "F28002x", "F28003x",
         },
     ]);
 }
-if (["F280015x", "F28P55x", "F28P65x"].includes(Common.getDeviceName())){
+if (["F280015x", "F28P55x","F28P551x","F28P65x"].includes(Common.getDeviceName())){
     config = config.concat([
         // DAC Group
         {
@@ -989,7 +989,7 @@ if (["F280015x", "F28P55x", "F28P65x"].includes(Common.getDeviceName())){
     ]);
 }
 
-if (["F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName())){
+if (["F280015x", "F28P65x", "F28P55x","F28P551x"].includes(Common.getDeviceName())){
     // configDACLow
     var cmpss_dac_lowConfig = [
         {
@@ -1204,7 +1204,7 @@ function onValidate(inst, validation) {
                 inst, "deDACValHigh");
         }
     }
-    if((["F28P55x"].includes(Common.getDeviceName())))
+    if((["F28P55x","F28P551x"].includes(Common.getDeviceName())))
     {
         if(inst.asysCMPHPMXSELValue == "No Device Pin Found")
         {
@@ -1260,7 +1260,7 @@ function onValidate(inst, validation) {
         validation.logInfo("Diode Emulation support is not enabled; the settings can be configured and then Diode Emulation can be enabled at any point", inst, "deEnable");
     }
 
-    if(["F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName()))
+    if(["F280015x", "F28P65x", "F28P55x","F28P551x"].includes(Common.getDeviceName()))
     {
         if (inst.maxRampValLow < 0 || inst.maxRampValLow > 65535)
         {
@@ -1302,7 +1302,7 @@ function onValidate(inst, validation) {
         }
     }
 
-    if (["F28002x","F28003x","F280013x","F280015x","F28004x","F2838x", "F28P65x","F28P55x"].includes(Common.getDeviceName())){
+    if (["F28002x","F28003x","F280013x","F280015x","F28004x","F2838x", "F28P65x","F28P55x","F28P551x"].includes(Common.getDeviceName())){
         if (inst.configBlanking < 1 || inst.configBlanking > 16)
         {
             validation.logError(
@@ -1310,7 +1310,7 @@ function onValidate(inst, validation) {
                 inst, "configBlanking");
         }
     }
-    if (["F28P65x","F28P55x"].includes(Common.getDeviceName()))
+    if (["F28P65x","F28P55x","F28P551x"].includes(Common.getDeviceName()))
     {
         if (inst.samplePrescaleHigh < 0 || inst.samplePrescaleHigh > 16777215)
         {
@@ -1342,7 +1342,7 @@ function onValidate(inst, validation) {
             "Digital Filter Sample Prescale must be an integer",
             inst, "samplePrescaleHigh");
     }
-    if (["F28P65x","F28P55x"].includes(Common.getDeviceName()))
+    if (["F28P65x","F28P55x","F28P551x"].includes(Common.getDeviceName()))
     {
         if (inst.sampleWindowHigh < 1 || inst.sampleWindowHigh > 64)
         {
@@ -1380,7 +1380,7 @@ function onValidate(inst, validation) {
             inst, "thresholdHigh");
     }
 
-    if (["F28P65x","F28P55x"].includes(Common.getDeviceName()))
+    if (["F28P65x","F28P55x","F28P551x"].includes(Common.getDeviceName()))
     {
         if(inst.samplePrescaleLow < 0 || inst.samplePrescaleLow > 16777215)
         {
@@ -1410,7 +1410,7 @@ function onValidate(inst, validation) {
             "Digital Filter Sample Prescale must be an integer",
             inst, "samplePrescaleLow");
     }
-    if (["F28P65x","F28P55x"].includes(Common.getDeviceName()))
+    if (["F28P65x","F28P55x","F28P551x"].includes(Common.getDeviceName()))
     {
         if (inst.sampleWindowLow < 1 || inst.sampleWindowLow > 64)
         {
@@ -1456,14 +1456,14 @@ function onValidate(inst, validation) {
             allInterfaces = Pinmux.getPeripheralUseCaseInterfaces(inst.analog, "ANALOG", "ALL");
         }
     }
-    if (["F28002x","F28003x","F28P55x","F280013x","F280015x","F28004x", "F28P65x"].includes(Common.getDeviceName())){
+    if (["F28002x","F28003x","F28P55x","F28P551x","F280013x","F280015x","F28004x", "F28P65x"].includes(Common.getDeviceName())){
         if ((inst.asysCMPHPMXSELPinInfo == Pinmux.NO_DEVICE_PIN_FOUND) && (inst.asysCMPLPMXSELPinInfo == Pinmux.NO_DEVICE_PIN_FOUND))
         {
             validation.logError(
                 "Signal not available for this device, select a valid signal!",
                 inst, "asysCMPHPMXSELValue");
         }
-        else if (["F28P55x"].includes(Common.getDeviceName()) && (inst.asysCMPHPMXSELPinInfo == Pinmux.NO_DEVICE_PIN_FOUND))
+        else if (["F28P55x","F28P551x"].includes(Common.getDeviceName()) && (inst.asysCMPHPMXSELPinInfo == Pinmux.NO_DEVICE_PIN_FOUND))
         {
 
                 validation.logError(

@@ -135,7 +135,7 @@ else
 //
 //	Input Clock to AUXPLL (AUXOSCCLK) = `auxoscclksource` = `AUXOSCCLK_d` MHz
 //
-#define DEVICE_AUXOSCSRC_FREQ 		`AUXOSCCLK_d`000000U
+#define DEVICE_AUXOSCSRC_FREQ 		`AUXOSCCLK_d*1000000`U
 %
 % if(PLL_type1.includes(device))
 % {

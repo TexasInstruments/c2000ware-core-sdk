@@ -92,9 +92,18 @@ exports = {
     getModuleForTheFirstAvailableCore : getModuleForTheFirstAvailableCore,
     removeArrayFromArray : removeArrayFromArray,
     getSYSCLK: getSYSCLK,
+    getPLLBypass: getPLLBypass,
     getClockTree : getClockTree,
     getC2000WarePath: getC2000WarePath
 };
+
+function getPLLBypass(){
+    var clockTree = getClockTree();
+    if (clockTree)
+    {
+        return clockTree["SYSPLLCTL1"].inputSelect == "OSCCLK"
+    }
+}
 
 function getSYSCLK(cpu)
 {
@@ -625,7 +634,7 @@ function CLB_isType1() {
 }
 
 function CLB_isType2() {
-    return ["F28002x", "F2838x", "F28003x", "F28P55x", "F28P65x"].includes(getDeviceName());
+    return ["F28002x", "F2838x", "F28003x", "F28P55x","F28P551x","F28P65x"].includes(getDeviceName());
 }
 
 function CLB_isType1_Type2(){
@@ -646,7 +655,8 @@ function SYSCLK_getMaxMHz()
         F280015x    : 120,
         F28P65x     : 200,
         F28P55x     : 150,
-        F28E12x     : 160
+        F28E12x     : 160,
+        F28P551x    : 160
     }
     return sysclk_max[getDeviceName()];
 }

@@ -22,7 +22,7 @@ void `nameOfPeripheral`_init(){
             % var instance = module.$instances[i];
             % var instanceNumber = instance.cmpssBase.match(/\d+/)[0]
 void `instance.$name`_init(){
-    % if( ["F28002x", "F28003x", "F28004x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(system.deviceData.deviceId)){
+    % if( ["F28002x", "F28003x", "F28004x", "F280013x", "F280015x", "F28P65x", "F28P55x","F28P551x"].includes(system.deviceData.deviceId)){
     //
     // Select the value for CMP`instanceNumber`HPMXSEL.
     //
@@ -96,10 +96,10 @@ void `instance.$name`_init(){
 	% if(["F28P65x"].includes(system.deviceData.deviceId)){
     CMPSS_configDACHigh(`baseName`,(`instance.dacValLoad` | `instance.dacRefVoltage` | `instance.dacValSource`));
         % }
-	% if(["F280015x", "F28P55x"].includes(system.deviceData.deviceId)){
+	% if(["F280015x", "F28P55x","F28P551x"].includes(system.deviceData.deviceId)){
     CMPSS_configDACHigh(`baseName`,(`instance.dacValLoad` | `instance.dacValSource`));
         % }
-	% if(["F280015x", "F28P65x", "F28P55x"].includes(system.deviceData.deviceId)){
+	% if(["F280015x", "F28P65x", "F28P55x","F28P551x"].includes(system.deviceData.deviceId)){
     CMPSS_configDACLow(`baseName`, `instance.lowDacValSource`);
         % }
     //
@@ -162,7 +162,7 @@ void `instance.$name`_init(){
     // Sets the comparator hysteresis settings.
     //
     CMPSS_setHysteresis(`baseName`,`instance.hysteresisVal`U);
-    % if(["F280015x", "F28P65x", "F28P55x"].includes(system.deviceData.deviceId)){
+    % if(["F280015x", "F28P65x", "F28P55x","F28P551x"].includes(system.deviceData.deviceId)){
     //
     // Configures the comparator subsystem's high ramp generator.
     //
@@ -179,7 +179,7 @@ void `instance.$name`_init(){
     //
     CMPSS_configRamp(`baseName`,`instance.maxRampVal`U,`instance.ramDecVal`U,`instance.rampDelayVal`U,`instance.pwmSyncSrc`U,`instance.useRampValShdw`);
     %}
-    % if( ["F28P65x", "F28P55x"].includes(system.deviceData.deviceId)){
+    % if( ["F28P65x", "F28P55x","F28P551x"].includes(system.deviceData.deviceId)){
     //
     // Configures the high comparator's ramp generator clock divider
     //
@@ -213,7 +213,7 @@ void `instance.$name`_init(){
     //
     CMPSS_disableLatchResetOnPWMSYNCLow(`baseName`);
         % }
-        % if( ["F28002x", "F28003x", "F28004x","F2838x", "F280013x", "F280015x", "F28P65x", "F28P55x"].includes(Common.getDeviceName())){
+        % if( ["F28002x", "F28003x", "F28004x","F2838x", "F280013x", "F280015x", "F28P65x", "F28P55x","F28P551x"].includes(Common.getDeviceName())){
     //
     // Sets the ePWM module blanking signal that holds trip in reset.
     //

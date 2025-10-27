@@ -80,6 +80,8 @@ var DeviceInfo =
     {device: "F2838x" , Type: "Type2", numberOfInstances : 2},
     {device: "F28003x", Type: "Type2", numberOfInstances : 4},
     {device: "F28P65x", Type: "Type2", numberOfInstances : 4},
+    {device: "F28P551x", Type: "Type2", numberOfInstances : 2},
+	
 ];
 
 

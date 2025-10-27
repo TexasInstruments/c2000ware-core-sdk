@@ -187,14 +187,14 @@ ADC_setVREF(uint32_t base, ADC_ReferenceMode refMode,
     if(refMode == ADC_REFERENCE_INTERNAL)
     {
         HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_REFCONFIGA) &=
-             ~(ASYSCTL_REFCONFIGA_CONFIG8);
+             ~(ASYSCTL_REFCONFIGA_ANAREFSEL);
     }
 
 
     else
     {
         HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_REFCONFIGA) |=
-            ASYSCTL_REFCONFIGA_CONFIG8;
+            ASYSCTL_REFCONFIGA_ANAREFSEL;
     }
 
     //

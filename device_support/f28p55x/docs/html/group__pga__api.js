@@ -2,6 +2,7 @@ var group__pga__api =
 [
     [ "PGA_REGISTER_PGACTL", "group__pga__api.html#ga8ff63cae0277ff75de1053991bbad225", null ],
     [ "PGA_REGISTER_MUXSEL", "group__pga__api.html#gadf5ee80aa455117460a047ea4fa4f60c", null ],
+    [ "PGA_REGISTER_OFFSETTRIM", "group__pga__api.html#ga93cd1c34e78bda74e03c553a22dc4136", null ],
     [ "PGA_GainValue", "group__pga__api.html#gaee02ca5cbf724e634d3dcd61a92694d7", [
       [ "PGA_GAIN_1", "group__pga__api.html#ggaee02ca5cbf724e634d3dcd61a92694d7a11e83a211ab6b9e4459e1c95e79855af", null ],
       [ "PGA_GAIN_2", "group__pga__api.html#ggaee02ca5cbf724e634d3dcd61a92694d7abfd3d40c901d15038c46808ef84a6fb1", null ],

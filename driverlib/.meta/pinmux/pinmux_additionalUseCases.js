@@ -18,6 +18,7 @@ var ALL_DEVICES = [
     "F2807x",
     "F28P65x",
     "F28P55x",
+    "F28P551x",
     "F28E12x"
 ]
 

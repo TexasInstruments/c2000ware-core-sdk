@@ -60,6 +60,10 @@
 #include <stdbool.h>
 
 %for(let i = 0; i < tableInstances.length; i++){
+% if (tableInstances[i].motorControlWorkbenchGui){
+#include "sys_settings.h"
+#include "sys_main.h"
+% }
         % if(tableInstances[i].buildEnable){
 #define SSHASH_HASH_TABLE_SELECTED HASH_TABLE_`tableInstances[i].$name`
                 %break
@@ -95,7 +99,13 @@
 //
 //Globals
 //
+%for(let i = 0; i < tableInstances.length; i++){
+    % if(tableInstances[i].allowVolatileVariables){
+extern volatile void* SSHASH_hash_table[SSHASH_NUMBER_OF_VARIABLES];
+    % } else {
 extern const void* SSHASH_hash_table[SSHASH_NUMBER_OF_VARIABLES];
+    % }
+% }
 
 extern int16_t SSHASH_uint16_t_startIndex;
 extern int16_t SSHASH_uint32_t_startIndex;

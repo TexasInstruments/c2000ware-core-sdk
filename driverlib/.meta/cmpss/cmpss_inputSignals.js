@@ -236,6 +236,44 @@ let CMPSS_comparatorInputSignals = {
             {name: "5", displayName: "B11/D16/E16"},
         ]
     },
+    F28P551x: {
+        CMPSS1_BASE: [
+            {name: "0", displayName: "A2/B6/C9/PGA1_INP"},
+            {name: "1", displayName: "A11/B10/C0/PGA2_OUT"},
+            {name: "2", displayName: "A6/D14/E14"},
+            {name: "3", displayName: "A15"},
+            {name: "4", displayName: "A1/B7/D11/DACB_OUT"},
+            {name: "5", displayName: "B5/D15/E15"},
+            {name: "6", displayName: "PGA1_OUT_INT"},
+        ],
+        CMPSS2_BASE: [
+            {name: "0", displayName: "A4/B8"},
+            {name: "1", displayName: "A12"},
+            {name: "2", displayName: "A9"},
+            {name: "3", displayName: "A10/B1/C10/B0/C11/GPIO253"},
+            {name: "4", displayName: "NA"},
+            {name: "5", displayName: "A5"},
+            {name: "6", displayName: "PGA3_OUT_INT"},
+            {name: "7", displayName: "TempSensor"},
+        ],
+        CMPSS3_BASE: [
+            {name: "0", displayName: "B2/C6/E12"},
+            {name: "1", displayName: "B12/C2/PGA2_INM"},
+            {name: "2", displayName: "A0/B15/C15/DACA_OUT"},
+            {name: "3", displayName: "B3/PGA2_INP"},
+            {name: "4", displayName: "A14/B14/C4/PGA1_OUT"},
+            {name: "5", displayName: "A3"},
+            {name: "6", displayName: "PGA2_OUT_INT"},
+        ],
+        CMPSS4_BASE: [
+            {name: "0", displayName: "B4/C8"},
+            {name: "1", displayName: "A7/B30/C3/D12/E30"},
+            {name: "2", displayName: "C1/E11/PGA3_INP"},
+            {name: "3", displayName: "C14"},
+            {name: "4", displayName: "A8/B0/C11"},
+            {name: "5", displayName: "B11/D16/E16"},
+        ]
+    },
 }
 
 /* Stucture for comparator negative input signals per device & CMPSS Instance*/
@@ -382,6 +420,24 @@ let CMPSS_comparatorNegInputSignals = {
             {name: "1", displayName: "A7/B30/C3/D12/E30"},
         ],
     },
+    F28P551x: {
+        CMPSS1_BASE: [
+            {name: "0", displayName: "A15"}, /* not avl in 100PZ*/
+            {name: "1", displayName: "A11/B10/C0/PGA2_OUT"},
+        ],
+        CMPSS2_BASE: [
+            {name: "0", displayName: "A10/B1/C10"},
+            {name: "1", displayName: "A12"},
+        ],
+        CMPSS3_BASE: [
+            {name: "0", displayName: "B3/PGA2_INP"},
+            {name: "1", displayName: "B12/C2/PGA2_INM"},
+        ],
+        CMPSS4_BASE: [
+            {name: "0", displayName: "C14"},
+            {name: "1", displayName: "A7/B30/C3/D12/E30"},
+        ],
+    },
 }
 
 /* Stucture for comparator low positive input signals per device & CMPSS Instance (currently only for F28P65x)*/
@@ -452,6 +508,43 @@ let CMPSS_comparatorLowPositiveInputSignals = {
         ],
     },
     F28P55x: {
+        CMPSS1_BASE: [
+            {name: "0", displayName: "A2/B6/C9/PGA1_INP"},
+            {name: "1", displayName: "A11/B10/C0/PGA2_OUT"},
+            {name: "2", displayName: "A6/D14/E14"},
+            {name: "3", displayName: "A15"},
+            {name: "4", displayName: "A1/B7/D11/DACB_OUT"},
+            {name: "5", displayName: "B5/D15/E15"},
+            {name: "6", displayName: "PGA1_OUT_INT"},
+        ],
+        CMPSS2_BASE: [
+            {name: "0", displayName: "A4/B8"},
+            {name: "1", displayName: "A12"},
+            {name: "2", displayName: "A9"},
+            {name: "3", displayName: "A10/B1/C10"},
+            {name: "4", displayName: "NA"},
+            {name: "5", displayName: "A5"},
+            {name: "6", displayName: "PGA3_OUT_INT"},
+        ],
+        CMPSS3_BASE: [
+            {name: "0", displayName: "B2/C6/E12"},
+            {name: "1", displayName: "B12/C2/PGA2_INM"},
+            {name: "2", displayName: "A0/B15/C15/DACA_OUT"},
+            {name: "3", displayName: "B3/PGA2_INP"},
+            {name: "4", displayName: "A14/B14/C4/PGA1_OUT"},
+            {name: "5", displayName: "A3"},
+            {name: "6", displayName: "PGA2_OUT_INT"},
+        ],
+        CMPSS4_BASE: [
+            {name: "0", displayName: "B4/C8"},
+            {name: "1", displayName: "A7/B30/C3/D12/E30"},
+            {name: "2", displayName: "C1/E11/PGA3_INP"},
+            {name: "3", displayName: "C14"},
+            {name: "4", displayName: "A8/B0/C11"},
+            {name: "5", displayName: "B11/D16/E16"},
+        ]
+    },
+    F28P551x: {
         CMPSS1_BASE: [
             {name: "0", displayName: "A2/B6/C9/PGA1_INP"},
             {name: "1", displayName: "A11/B10/C0/PGA2_OUT"},

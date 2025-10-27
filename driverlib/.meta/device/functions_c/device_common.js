@@ -22,7 +22,7 @@ const Include_Headers_Type1														= ["F2837xD"]
 const Include_Headers_Type2														= ["F280015x"]
 
 // Include Header with driverlib.h  
-const Include_Headers_Type3														= ["F280013x", "F28002x", "F28003x", "F28004x", "F2837xS", "F2807x", "F28P65x", "F28P55x", "F28E12x"]
+const Include_Headers_Type3														= ["F280013x", "F28002x", "F28003x", "F28004x", "F2837xS", "F2807x", "F28P65x", "F28P55x","F28P551x","F28E12x"]
 
 //
 // Available Boot_CM 
@@ -64,6 +64,10 @@ const Initilization_AGPIO_Dual_Core_Type0										= ["F28P65x"]
 // and 28 in digital mode, turn on all peripherals, and Lock VREGCTL Register for device initilization
 const Initilization_GPIO_11_28										= ["F28P55x"]
 
+//configuring the GPIO pins 11, 12, 13, 16, 17, 20, 21, 24, 
+// and 28 in digital mode, turn on all peripherals, and Lock VREGCTL Register for device initilization
+const Initilization_GPIO_11_28_Type0									= ["F28P551x"]
+
 //configuring the GPIO pins 12, 13 and 28 in digital mode, turn on all peripherals,
 //and Lock VREGCTL Register for device initilization
 const Initilization_GPIO_12_28										= ["F28E12x"]
@@ -75,7 +79,7 @@ const Initilization_GPIO_12_28										= ["F28E12x"]
 const InitGPIO_PortA_PortF_Type0 											= ["F2838x", "F2837xD", "F2837xS", "F2807x"]
 
 // Disabling pin locks and enabling pullups on GPIOs only Ports A, B, and H.
-const InitGPIO_PortA_PortH_Type0 											= ["F28002x", "F28003x", "F28004x", "F280013x", "F280015x","F28E12x"]
+const InitGPIO_PortA_PortH_Type0 											= ["F28002x", "F28003x", "F28004x", "F280013x", "F280015x","F28E12x","F28P551x"]
 
 // Disabling pin locks and enabling pullups on GPIOs Ports A, B, C, D, E, F, and H.
 const InitGPIO_PortA_PortH_Type1 											= ["F28P65x"]
@@ -90,7 +94,7 @@ const InitGPIO_PortA_PortH_Type2 											= ["F28P55x"]
 const VerifyXTAL_Type0														= ["F2838x"]
 
 // verifying the XTAL frequency with Turning-on XTAL
-const VerifyXTAL_Type1 														= ["F28002x", "F28003x", "F28004x", "F28P65x", "F28P55x"]
+const VerifyXTAL_Type1 														= ["F28002x", "F28003x", "F28004x", "F28P65x", "F28P55x","F28P551x"]
 
 // verifying the XTAL frequency
 const VerifyXTAL_Type2														= ["F28E12x"]
@@ -176,11 +180,11 @@ const EnableAllPeripherals_CLK_CLA1BGCRC							= ["F2838x", "F28003x"]
 
 // Enabling PMBUSA with checking if context is on CPU1. If enabling PMBUSA  
 //in your device needs to be done only in CPU1, add your device to this list.
-const EnableAllPeripherals_CLK_PMBUSA									= [ "F2838x", "F280015x", "F28002x", "F28003x", "F28004x", "F28P55x"]
+const EnableAllPeripherals_CLK_PMBUSA									= [ "F2838x", "F280015x", "F28002x", "F28003x", "F28004x", "F28P55x","F28P551x"]
 
 // Enabling CLA1 with checking if context is on CPU1. If enabling CLA1  
 //in your device needs to be done only in CPU1, add your device to this list.
-const EnableAllPeripherals_CLK_CLA1									= ["F2838x", "F2837xD", "F2837xS", "F2807x", "F28003x", "F28004x", "F28P55x"]
+const EnableAllPeripherals_CLK_CLA1									= ["F2838x", "F2837xD", "F2837xS", "F2807x", "F28003x", "F28004x", "F28P55x","F28P551x"]
 
 //
 // Clocktree 
@@ -189,7 +193,7 @@ const EnableAllPeripherals_CLK_CLA1									= ["F2838x", "F2837xD", "F2837xS", "
 const clocktree_Analog_Trim_Type0                                         	=["F2837xD", "F2807x", "F2837xS"]
 
 // clocktree Setting up PLL control and clock dividers
-const clocktree_PLL_Ctl_Dividers_Type0                                 		=["F2837xD", "F2807x", "F2837xS","F280013x", "F280015x", "F28002x", "F28003x", "F28004x", "F28P55x"]
+const clocktree_PLL_Ctl_Dividers_Type0                                 		=["F2837xD", "F2807x", "F2837xS","F280013x", "F280015x", "F28002x", "F28003x", "F28004x", "F28P55x","F28P551x"]
 
 // clocktree Setting up PLL and AUXPLL control and clock dividers
 //and AUXPLL control and clock dividers needed for CMCLK
@@ -207,7 +211,7 @@ const clocktree_PLL_Ctl_Dividers_Type3                                 		=["F28E
 const clocktree_Asserts_Type0                                          =["F2837xD", "F2807x", "F2837xS"]
 
 // clocktree asserts will check that the #defines for the clock rates in device.h
-//set clock source for CANA, CANB, MCAN, ECAT, ENET peripherals and EPWM and EMIF1 clock divider
+//set clock source for CLB, CANA, CANB, MCAN, ECAT, ENET peripherals and EPWM and EMIF1 clock divider
 const clocktree_Asserts_Type1                                          =["F2838x"]
 
 // clocktree asserts will check that the #defines for the clock rates in device.h
@@ -215,19 +219,31 @@ const clocktree_Asserts_Type1                                          =["F2838x
 const clocktree_Asserts_Type2                                          =["F28P65x"]
 
 // clocktree asserts will check that the #defines for the clock rates in device.h
-//set clock source for CANA and MCAN peripherals
-const clocktree_Asserts_Type3                                          =["F28003x","F280015x"]
+//set clock source for CANA, CLB and MCAN peripherals
+const clocktree_Asserts_Type3                                          =["F28003x"]
 
 // clocktree asserts will check that the #defines for the clock rates in device.h
 //set clock source for CANA peripheral
-const clocktree_Asserts_Type4                                          =["F280013x", "F28002x", "F28004x"]
+const clocktree_Asserts_Type4                                          =["F280013x", "F28004x"]
 
 // clocktree asserts will check that the #defines for the clock rates in device.h
-// CLK divider for LIN
+// CLK divider for LIN, MCANA, MCANB
 const clocktree_Asserts_Type5                                          =["F28P55x"]
 
 // clocktree asserts will check that the #defines for the clock rates in device.h
 const clocktree_Asserts_Type6                                          =["F28E12x"]
+
+// clocktree asserts will check that the #defines for the clock rates in device.h
+// CLK divider for LIN, MCANA
+const clocktree_Asserts_Type7                                          =["F28P551x"]
+
+// clocktree asserts will check that the #defines for the clock rates in device.h
+//set clock source for CANA and MCAN peripherals
+const clocktree_Asserts_Type8                                          =["F280015x"]
+
+// clocktree asserts will check that the #defines for the clock rates in device.h
+//set clock source for CANA and CLB peripheral
+const clocktree_Asserts_Type9                                          =["F28002x"]
 
 ///////////////////////////List of Template Files For Different Functions///////////////////////////
 // If you want to add a new sub-function from available functions, you need to create a .xdt file in related function folder
@@ -290,6 +306,7 @@ exports = {
 	Initilization_GPIO_20_21_Type0 : Initilization_GPIO_20_21_Type0,
 	Initilization_AGPIO_Dual_Core_Type0 : Initilization_AGPIO_Dual_Core_Type0,
 	Initilization_GPIO_11_28 : Initilization_GPIO_11_28,
+	Initilization_GPIO_11_28_Type0 : Initilization_GPIO_11_28_Type0,
 	Initilization_GPIO_12_28 : Initilization_GPIO_12_28,
 	Initilization_XTAL_Type0 : Initilization_XTAL_Type0,
 	Initilization_Device_initGPIO_Type0 : Initilization_Device_initGPIO_Type0,
@@ -332,6 +349,9 @@ exports = {
 	clocktree_Asserts_Type3 : clocktree_Asserts_Type3,
 	clocktree_Asserts_Type4 : clocktree_Asserts_Type4,
 	clocktree_Asserts_Type5 : clocktree_Asserts_Type5,
-	clocktree_Asserts_Type6 : clocktree_Asserts_Type6 
+	clocktree_Asserts_Type6 : clocktree_Asserts_Type6,
+	clocktree_Asserts_Type7 : clocktree_Asserts_Type7,
+	clocktree_Asserts_Type8 : clocktree_Asserts_Type8,
+	clocktree_Asserts_Type9 : clocktree_Asserts_Type9
 
 }

@@ -5,25 +5,40 @@
 // TITLE: SysConfig SCI exhoback example
 //
 //! \addtogroup driver_dual_example_list
-//! <h1> NMI handling</h1>
+//! <h1>SCI Echoback SysConfig CPU2</h1>
 //!
-//! This example demonstrates how to handle an NMI.
+//!  This test receives and echo-backs data through the SCI port.
 //!
-//! The watchdog of CPU2 is configured to reset the core once the watchdog
-//! overflows and in the CPU1 the NMI is triggered.
-//! The NMI status is read and is verified to be due to CPU2 Watchdog reset.
-//! The NMI ISR reboots the CPU2 core and the process is repeated.
+//!  A terminal such as 'putty' can be used to view the data from
+//!  the SCI and to send information to the SCI. Characters received
+//!  by the SCI port are sent back to the host.
 //!
-//! \b  Watch \b Variables
-//!  - \e nmi_isr_count Indicates the number of times the NMI ISR was hit
-//!                     because of CPU2 watchdog reset.
+//!  \b Running \b the \b Application
+//!  Open a COM port with the following settings using a terminal:
+//!  -  Find correct COM port
+//!  -  Bits per second = 9600 (or Sysconfig-configured value)
+//!  -  Data Bits = 8 (or Sysconfig-configured value)
+//!  -  Parity = None (or Sysconfig-configured value)
+//!  -  Stop Bits = 1 (or Sysconfig-configured value)
+//!  -  Hardware Control = None
+//!
+//!  The program will print out a greeting and then ask you to
+//!  enter a character which it will echo back to the terminal.
+//!
+//!  \b Watch \b Variables \n
+//!  - loopCounter - the number of characters sent
+//!
+//! \b External \b Connections \n
+//!  Connect the SCI port to a PC via a transceiver and cable.
+//!  - GPIO chosen in Sysconfig for SCI-RX (Connect to PC-TX of DB9)
+//!  - GPIO chosen in Sysconfig for SCI-TX (Connect to PC-RX of DB9)
 //!
 //
 //#############################################################################
 //
 //
 // 
-// C2000Ware v6.00.00.00
+// C2000Ware v6.00.01.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //

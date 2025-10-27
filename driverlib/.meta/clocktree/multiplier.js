@@ -20,7 +20,7 @@ exports = {
 	{
 		name: "multiplyValue",
 		displayName: "Multiply Value",
-		default: $ipInstance.resetValue,
+		default: (system.deviceData.gpn == "TMS320F2800132") && ($ipInstance.name == "PLL_IMULT") ? 40 : $ipInstance.resetValue,
 		options: _.map($ipInstance.multiplyValues, (v) => ({ name: v, displayName: `X ${v}` })),
 	}, 
 	{

@@ -2,7 +2,7 @@
 //
 // FILE:   sdfm_ex4_pwm_sync_cpuread.c
 //
-// TITLE:  SDFM PWM sync Example for f28p65x.
+// TITLE:  SDFM PWM sync Example.
 //
 //! \addtogroup cpu01_example_list
 //! <h1> SDFM PWM Sync </h1>
@@ -52,7 +52,7 @@
 //
 //
 // 
-// C2000Ware v6.00.00.00
+// C2000Ware v6.00.01.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -137,9 +137,16 @@ void main(void)
     //
     // Initialize System Control:
     // PLL, WatchDog, enable Peripheral Clocks
-    // This example function is found in the f28p65x_sysctrl.c file.
+    // This example function is found in the <device>_sysctrl.c file.
     //
     InitSysCtrl();
+    
+    //
+    // Initialize GPIO:
+    // This example function is found in the <device>_gpio.c file and
+    // illustrates how to set the GPIO to it's default state.
+    //
+    InitGpio();
 
     //
     // Clear all __interrupts and initialize PIE vector table:
@@ -151,7 +158,7 @@ void main(void)
     // Initialize PIE control registers to their default state.
     // The default state is all PIE __interrupts disabled and flags
     // are cleared.
-    // This function is found in the f28p65x_piectrl.c file.
+    // This function is found in the <device>_piectrl.c file.
     //
     InitPieCtrl();
 
@@ -166,8 +173,8 @@ void main(void)
     // Service Routines (ISR).
     // This will populate the entire table, even if the __interrupt
     // is not used in this example.  This is useful for debug purposes.
-    // The shell ISR routines are found in f28p65x_sysctrl.c.
-    // This function is found in f28p65x_sysctrl.c.
+    // The shell ISR routines are found in <device>_sysctrl.c.
+    // This function is found in <device>_sysctrl.c.
     //
     InitPieVectTable();
 

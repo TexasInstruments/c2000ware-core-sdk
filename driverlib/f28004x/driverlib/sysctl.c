@@ -257,11 +257,6 @@ SysCtl_setClock(uint32_t config)
     }
     else
     {
-        //
-        // Configure oscillator source
-        //
-        oscSource = config & SYSCTL_OSCSRC_M;
-        SysCtl_selectOscSource(oscSource);
 
         //
         // Bypass PLL
@@ -270,6 +265,12 @@ SysCtl_setClock(uint32_t config)
         HWREGH(CLKCFG_BASE + SYSCTL_O_SYSPLLCTL1) &=
             ~SYSCTL_SYSPLLCTL1_PLLCLKEN;
         EDIS;
+        
+        //
+        // Configure oscillator source
+        //
+        oscSource = config & SYSCTL_OSCSRC_M;
+        SysCtl_selectOscSource(oscSource);
 
         //
         // Delay of at least 60 OSCCLK cycles required post PLL bypass

@@ -11,6 +11,14 @@ let EPG_SignalGenOut = [
 	{ name: "EPG_SIGGEN0_DATATRANOUT5", displayName: "Signal Generator 0 Data Transform out 5" },
 	{ name: "EPG_SIGGEN0_DATATRANOUT6", displayName: "Signal Generator 0 Data Transform out 6" },
 	{ name: "EPG_SIGGEN0_DATATRANOUT7", displayName: "Signal Generator 0 Data Transform out 7" },
+	{ name: "EPG_SIGGEN1_DATATRANOUT0", displayName: "Signal Generator 1 Data Transform out 0" },
+	{ name: "EPG_SIGGEN1_DATATRANOUT1", displayName: "Signal Generator 1 Data Transform out 1" },
+	{ name: "EPG_SIGGEN1_DATATRANOUT2", displayName: "Signal Generator 1 Data Transform out 2" },
+	{ name: "EPG_SIGGEN1_DATATRANOUT3", displayName: "Signal Generator 1 Data Transform out 3" },
+	{ name: "EPG_SIGGEN1_DATATRANOUT4", displayName: "Signal Generator 1 Data Transform out 4" },
+	{ name: "EPG_SIGGEN1_DATATRANOUT5", displayName: "Signal Generator 1 Data Transform out 5" },
+	{ name: "EPG_SIGGEN1_DATATRANOUT6", displayName: "Signal Generator 1 Data Transform out 6" },
+	{ name: "EPG_SIGGEN1_DATATRANOUT7", displayName: "Signal Generator 1 Data Transform out 7" },
 ]
 let EPG_ClockGenOut = [
 	{ name: "EPG_CLKGEN0_CLKOUT0_DCLK", displayName: "Clock Generator 0 Clk output 0 DCLK" },
@@ -79,6 +87,7 @@ let EPG_OUT = [
 	{ name: "EPG_OUT4", displayName: "EPG Output 4" },
 	{ name: "EPG_OUT5", displayName: "EPG Output 5" },
 	{ name: "EPG_OUT6", displayName: "EPG Output 6" },
+	{ name: "EPG_OUT7", displayName: "EPG Output 7" },
 ]
 let EPG_SIGGEN = [
 	{ name: "EPG_SIGGEN0", displayName: "Signal Generator 0" },
@@ -129,6 +138,8 @@ let EPG_INT = [
 	{ name: "EPG_INT_GLOBAL_INT", displayName: "Global Interrupt Flag" },
 	{ name: "EPG_INT_SIGGEN0_DONE", displayName: "Signal Generator 0 Operation Done" },
 	{ name: "EPG_INT_SIGGEN0_FILL", displayName: "Signal Generator 0 Data Fill" },
+	{ name: "EPG_INT_SIGGEN1_DONE", displayName: "Signal Generator 1 Operation Done" },
+	{ name: "EPG_INT_SIGGEN1_FILL", displayName: "Signal Generator 1 Data Fill" },
 ]
 let EPG_LOCK_REG = [
 	{ name: "EPG_LOCK_REG_GCTL0", displayName: "GCTL0 Register" },
@@ -139,9 +150,12 @@ let EPG_LOCK_REG = [
 	{ name: "EPG_LOCK_REG_CLKDIV1_CTL0", displayName: "CLK divider 1 CTL0 Register" },
 	{ name: "EPG_LOCK_REG_SIGGEN0_CTL0", displayName: "Signal gen 0 CTL0 Register" },
 	{ name: "EPG_LOCK_REG_SIGGEN0_CTL1", displayName: "Signal gen 0 CTL1 Register" },
+	{ name: "EPG_LOCK_REG_SIGGEN1_CTL0", displayName: "Signal gen 1 CTL0 Register" },
+	{ name: "EPG_LOCK_REG_SIGGEN1_CTL1", displayName: "Signal gen 1 CTL1 Register" },
 ]
-let EPG_MX_SEL_LOCK_REG_MXSEL0 = [
+let EPG_MX_SEL_LOCK_REG = [
 	{ name: "EPG_MX_SEL_LOCK_REG_MXSEL0", displayName: "Mux Select 0 Register" },
+	{ name: "EPG_MX_SEL_LOCK_REG_MXSEL1", displayName: "Mux Select 1 Register" },
 ]
 module.exports = {
 	EPG_OutputSelect: EPG_OutputSelect,
@@ -159,5 +173,5 @@ module.exports = {
 	EPG_DataOutSel: EPG_DataOutSel,
 	EPG_INT: EPG_INT,
 	EPG_LOCK_REG: EPG_LOCK_REG,
-	EPG_MX_SEL_LOCK_REG_MXSEL0: EPG_MX_SEL_LOCK_REG_MXSEL0,
+	EPG_MX_SEL_LOCK_REG: EPG_MX_SEL_LOCK_REG,
 }

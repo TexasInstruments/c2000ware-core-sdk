@@ -149,7 +149,6 @@ void main()
     // Configure the divisor for the MCAN bit-clock
     //
     SysCtl_setMCANClk(SYSCTL_MCANCLK_DIV_3);
-
     //
     // ISR Configuration.
     //

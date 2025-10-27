@@ -4,8 +4,8 @@
 //! \brief  Input Data for the 8-bit CRC (Large)
 //
 //#############################################################################
-// $TI Release: C28x VCU Library V2.29.00.00 $
-// $Release Date: Jul 30, 2025 $
+// $TI Release: C28x VCU Library V2.30.00.00 $
+// $Release Date: Oct 24, 2025 $
 // $Copyright: Copyright (C) 2019 Texas Instruments Incorporated -
 //             http://www.ti.com/ ALL RIGHTS RESERVED $
 //#############################################################################

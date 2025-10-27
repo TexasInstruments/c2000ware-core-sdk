@@ -1,5 +1,6 @@
 var NAVTREEINDEX21 =
 {
+"group__sysctl__api.html#ga28ba35e8e37870fbccda20be41a22371":[12,24,148],
 "group__sysctl__api.html#ga2aa9f0b220c2f10a892268686c7ffc27":[12,24,74],
 "group__sysctl__api.html#ga2ada17d202dfd0c827409fb7c5d4f195":[12,24,122],
 "group__sysctl__api.html#ga2fc267f38b1bc13f485fb129364f8f98":[12,24,114],
@@ -248,6 +249,5 @@ var NAVTREEINDEX21 =
 "group__sysctl__api.html#gga31d67715f0625a756ee649adb7c9430da22949bdefd949a9577f4a8ddaa675a86":[12,24,99,10],
 "group__sysctl__api.html#gga31d67715f0625a756ee649adb7c9430da61fdab06e3ee42e67f4b2e36bdee7659":[12,24,99,0],
 "group__sysctl__api.html#gga31d67715f0625a756ee649adb7c9430da7d5a20d84eb9ee595963dda1e6b80775":[12,24,99,8],
-"group__sysctl__api.html#gga31d67715f0625a756ee649adb7c9430da7e9e3ff10b6667ca06ab31caf0d60056":[12,24,99,6],
-"group__sysctl__api.html#gga31d67715f0625a756ee649adb7c9430da8e595406615573fbaac22ede64231560":[12,24,99,5]
+"group__sysctl__api.html#gga31d67715f0625a756ee649adb7c9430da7e9e3ff10b6667ca06ab31caf0d60056":[12,24,99,6]
 };

@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v6.00.00.00
+// C2000Ware v6.00.01.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -806,7 +806,7 @@ ADC_selectSOCExtChannel(uint32_t base, ADC_SOCNumber socNumber,
     EALLOW;
     HWREG(ctlRegAddr) =
                    (HWREG(ctlRegAddr) & ~((uint32_t)ADC_SOC0CTL_EXTCHSEL_M)) |
-                   (uint32_t)extChannel;
+                   ((uint32_t)extChannel << ADC_SOC0CTL_EXTCHSEL_S);
     EDIS;
 }
 

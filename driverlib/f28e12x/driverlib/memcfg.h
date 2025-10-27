@@ -175,8 +175,8 @@ typedef enum
     MEMCFG_TEST_FUNCTIONAL   = 0,
     //! Writes allowed to data only
     MEMCFG_TEST_WRITE_DATA   = 1,
-    //! Writes allowed to ECC only (for DxRAM/MxRAM/PIEVECT RAM)
-    MEMCFG_TEST_WRITE_ECC    = 2,
+    //! Writes allowed to Parity only (for DxRAM/MxRAM/GSxRAM/PIEVECT RAM)
+    MEMCFG_TEST_WRITE_PARITY    = 2,
     //! Diagnostic mode, similar to functional mode but NMI is not generated.
     MEMCFG_TEST_FUNC_DIAG    = 3
 } MemCfg_TestMode;
@@ -735,7 +735,7 @@ MemCfg_unlockTestConfig(uint32_t memSections);
 //! \e testMode parameter can take one of the following values:
 //! - \b MEMCFG_TEST_FUNCTIONAL
 //! - \b MEMCFG_TEST_WRITE_DATA
-//! - \b MEMCFG_TEST_WRITE_ECC
+//! - \b MEMCFG_TEST_WRITE_PARITY
 //! - \b MEMCFG_TEST_FUNC_DIAG
 //!
 //! The \e memSection parameter is one of the following indicators:

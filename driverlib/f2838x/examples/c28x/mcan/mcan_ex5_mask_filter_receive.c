@@ -41,7 +41,7 @@
 //
 //
 // 
-// C2000Ware v6.00.00.00
+// C2000Ware v6.00.01.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -156,7 +156,6 @@ void main()
     // Configure the divisor for the MCAN bit-clock
     //
     SysCtl_setMCANClk(SYSCTL_MCANCLK_DIV_5);
-
     //
     // ISR Configuration.
     //

@@ -46,7 +46,7 @@ function onChangeECAPMode(inst, ui)
         ui.eventStop.hidden = false
         ui.counterResetOnEvent.hidden = false
         ui.reArm.hidden = false
-        if (["F28004x","F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x", "F28P55x","F28E12x"].includes(Common.getDeviceName())){
+        if (["F28004x","F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x", "F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName())){
             ui.ecapInput.hidden = false
             ui.resetCounters.hidden = false
 			if (!["F280013x","F280015x"].includes(Common.getDeviceName()))
@@ -87,7 +87,7 @@ function onChangeECAPMode(inst, ui)
         ui.eventStop.hidden = true
         ui.counterResetOnEvent.hidden = true
         ui.reArm.hidden = true
-        if (["F28004x","F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x", "F28P55x","F28E12x"].includes(Common.getDeviceName())){
+        if (["F28004x","F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x", "F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName())){
             ui.ecapInput.hidden = true
             ui.resetCounters.hidden = true
 			if (!["F280013x","F280015x"].includes(Common.getDeviceName()))
@@ -258,7 +258,7 @@ else if (["F28002x","F28003x"].includes(Common.getDeviceName()))
     numberOfECAPs = 3;
     ECAP_INSTANCES_WITH_HRCAP = ["ECAP3_BASE"];
 }
-else if (["F280013x", "F28P55x"].includes(Common.getDeviceName()))
+else if (["F280013x", "F28P55x","F28P551x"].includes(Common.getDeviceName()))
 {
     ECAP_INSTANCE = [
         { name: "ECAP1_BASE", displayName: "ECAP1"},
@@ -310,7 +310,7 @@ for (let i of device_driverlib_peripheral.ECAP_ISR_SOURCE){
 var ecapStatic = undefined;
 
 /* determine static module dependency */
-if (["F2838x","F28002x","F28003x","F280013x","F280015x", "F28P65x", "F28P55x","F28E12x"].includes(Common.getDeviceName()))
+if (["F2838x","F28002x","F28003x","F280013x","F280015x", "F28P65x", "F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName()))
 {
     if (ECAP_INSTANCES_WITH_HRCAP.length > 0){
         ecapStatic = {
@@ -655,13 +655,13 @@ if (["F28004x"].includes(Common.getDeviceName())){
     )
 }
 var defaultInput = ""
-if (["F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x", "F28P55x"].includes(Common.getDeviceName())){
+if (["F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x", "F28P55x","F28P551x"].includes(Common.getDeviceName())){
     defaultInput = "ECAP_INPUT_ECAP1_GPTRIP7"
 }
 else if (["F28004x"].includes(Common.getDeviceName())){
     defaultInput = "127"
 }
-if (["F28004x","F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x", "F28P55x"].includes(Common.getDeviceName())){
+if (["F28004x","F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x", "F28P55x","F28P551x"].includes(Common.getDeviceName())){
     config.push(
         {
             name        : "ecapInput",
@@ -700,7 +700,7 @@ if (["F28E12x"].includes(Common.getDeviceName())){
         },
     )
 }
-if (["F28004x","F28002x","F28003x","F2838x","F28P65x", "F28P55x","F28E12x"].includes(Common.getDeviceName())){
+if (["F28004x","F28002x","F28003x","F2838x","F28P65x", "F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName())){
     config.push(
         {
             name        : "useDMA",
@@ -719,7 +719,7 @@ if (["F28004x","F28002x","F28003x","F2838x","F28P65x", "F28P55x","F28E12x"].incl
         },
     )
 }
-if (["F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x", "F28P55x","F28E12x"].includes(Common.getDeviceName())){
+if (["F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x", "F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName())){
     config.push(
         {
             name        : "syncInPulseSource",

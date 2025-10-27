@@ -197,7 +197,7 @@ void main(void)
     //
     EINT;   // Enable Global interrupt INTM
     ERTM;   // Enable Global realtime interrupt DBGM
-     
+
     //
     // Calling SFO() updates the HRMSTEP register with calibrated
     // MEP_ScaleFactor. HRMSTEP must be populated with a scale factor

@@ -10,7 +10,7 @@
 // default object initializers for Signal Generator Modules
 //
 //#############################################################################
-// $TI Release: F28004x Support Library v6.00.00.00 $
+// $TI Release: F28004x Support Library v6.00.01.00 $
 // $Copyright:
 // Copyright (C) 2021 Texas Instruments Incorporated - http://www.ti.com/
 //

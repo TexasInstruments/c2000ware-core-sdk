@@ -31,7 +31,7 @@ void `nameOfPeripheral`_init(){
     //
     Flash_setBankPowerUpDelay(`instance.$name`_BASE, 0x14);
         %}
-        %if (!["F280015x", "F280013x", "F28P65x", "F28P55x", "F28E12x"].includes(Common.getDeviceName())){
+        %if (!["F280015x", "F280013x", "F28P65x", "F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName())){
     //
     // This function sets the fallback power mode of the flash bank specified by
     // the bank parameter. The power mode is specified by the powerMode
@@ -104,7 +104,7 @@ void `nameOfPeripheral`_init(){
     //
     Flash_disableECC(`instance.$name`_ECCBASE);           
             % } 
-        %if (!["F280015x", "F280013x", "F28P65x", "F28P55x", "F28E12x"].includes(Common.getDeviceName())){
+        %if (!["F280015x", "F280013x", "F28P65x", "F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName())){
     //
     // Sets the single bit error threshold. Valid ranges are from 0-65535.
     //

@@ -43,6 +43,9 @@ const Initilization_GPIO_20_21_Type1											= ["F28P65x"]
 //configuring the GPIO pins 11, 12, 13, 16, 17, 20, 21, 24, 28 in digital mode for device initilization
 const Initilization_GPIO_11_28											= ["F28P55x"]
 
+//configuring the GPIO pins 11, 12, 13, 16, 17, 20, 21, 24, 28 in digital mode for device initilization
+const Initilization_GPIO_11_28_Type0									= ["F28P551x"]
+
 //configuring the GPIO pins 12, 13 and 28 in digital mode, turn on all peripherals,
 //and Lock VREGCTL Register for device initilization
 const Initilization_GPIO_12_28										= ["F28E12x"]
@@ -54,7 +57,7 @@ const Initilization_Device_initGPIO_Type0										= ["F2838x"]
 // Available VerifyXTAL 
 //
 // verifying the XTAL frequency
-const VerifyXTAL_Type1 															= ["F28002x", "F28003x", "F28004x", "F28P65x", "F28P55x", "F28E12x"]
+const VerifyXTAL_Type1 															= ["F28002x", "F28003x", "F28004x", "F28P65x", "F28P55x","F28P551x","F28E12x"]
 
 // verifying the XTAL frequency with endIf condition
 const VerifyXTAL_Type0														= ["F2838x"]
@@ -71,7 +74,7 @@ const DevicePackage_Type0												  = ["F28E12x"]
 const Error_Handling_Type0 														= ["F2807x", "F2837xD", "F2837xS"]
 
 // Error handling function with "Close the Doxygen group"
-const Error_Handling_Type1 														= [ "F2838x", "F28002x", "F28003x", "F28004x","F280013x","F280015x", "F28P65x", "F28P55x", "F28E12x"]
+const Error_Handling_Type1 														= [ "F2838x", "F28002x", "F28003x", "F28004x","F280013x","F280015x", "F28P65x", "F28P55x","F28P551x","F28E12x"]
 
 //
 // Available BootCPU2 
@@ -168,6 +171,7 @@ exports = {
 	Initilization_GPIO_20_21_Type0 : Initilization_GPIO_20_21_Type0,
 	Initilization_GPIO_20_21_Type1 : Initilization_GPIO_20_21_Type1,
 	Initilization_GPIO_11_28 : Initilization_GPIO_11_28,
+	Initilization_GPIO_11_28_Type0 : Initilization_GPIO_11_28_Type0,
 	Initilization_GPIO_12_28 : Initilization_GPIO_12_28,
 	Initilization_Device_initGPIO_Type0 : Initilization_Device_initGPIO_Type0,
 	VerifyXTAL_Type0 : VerifyXTAL_Type0,

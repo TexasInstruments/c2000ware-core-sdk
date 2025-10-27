@@ -44,7 +44,7 @@
 //
 //
 // 
-// C2000Ware v6.00.00.00
+// C2000Ware v6.00.01.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -236,7 +236,7 @@ void configureWaveform(void)
     //
     // Fill Sine Table
     //
-    for(j=0;j<SINE_TBL_SIZE;j++) 
+    for(j=0;j<SINE_TBL_SIZE;j++)
     {
         SINE_TBL[j] = (sin(j*PI/180.0F)+1.0F)*2047.5F;
     }
@@ -246,7 +246,7 @@ void configureWaveform(void)
     //
     offset = (SINE_TBL[0] - (SINE_TBL[0]*waveformGain)) + (SINE_TBL[0]*waveformOffset);
 
-    for(j=0;j<SINE_TBL_SIZE;j++) 
+    for(j=0;j<SINE_TBL_SIZE;j++)
     {
         waveformValue = (SINE_TBL[j]*waveformGain)+offset;
         SINE_TBL[j] = waveformValue < 0 ? 0 : waveformValue > 4095 ? 4095 : waveformValue;

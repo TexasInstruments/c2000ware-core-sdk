@@ -32,7 +32,7 @@
 //
 //
 // 
-// C2000Ware v6.00.00.00
+// C2000Ware v6.00.01.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -216,7 +216,8 @@ __interrupt void adcABurstISR(void)
     //
     //Read the round-robin pointer to determine which burst just completed
     //
-    rrPointer = (HWREGH(ADCA_BASE + ADC_O_SOCPRICTL) & 0x03E0) >> 5;
+    rrPointer = (HWREGH(ADCA_BASE + ADC_O_SOCPRICTL) & 0x07C0) >> 6;
+
     switch(rrPointer){
         //
         // Burst 1

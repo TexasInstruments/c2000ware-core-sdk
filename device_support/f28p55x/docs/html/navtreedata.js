@@ -86,14 +86,14 @@ var NAVTREEINDEX =
 "group__hrpwm__api.html#ga3b0d770d5637117882d8f55c856840a9",
 "group__i2c__api.html#gaead628804e759db595f4c9ac655ce80c",
 "group__mcan__api.html#gga74dec9f93ee026f811d5359a2ce4bd14a33cbb7fd677030b1b6d042002294a144",
-"group__sci__api.html#ga546268bb163766e345fdda2fe3046b76",
-"group__sysctl__api.html#ga2aa9f0b220c2f10a892268686c7ffc27",
-"group__sysctl__api.html#gga31d67715f0625a756ee649adb7c9430da9ac7a652e2457b05bf70514483d2c80b",
-"group__sysctl__api.html#ggabda7c864eeed2819e9dfecf398397632aad970b6c860da6bde1f51df91cd9b9e7",
-"group__usb__api.html#ga846bc92782d8f9ea75f023ca3642d62d",
-"group__xbar__api.html#gga0e74405c5ebbd87324000177efcc1789a4f36a22ea14dfa5f197fc297c63d4860",
-"group__xbar__api.html#gga9264f8dfaf11f6161459b58f5514594ca93308db9fdaf9e043d7c8395341cadf6",
-"structMCAN__MsgRAMConfigParams.html#aa8ddaf61d486f93d236dc0d730ed2108"
+"group__sci__api.html#ga524c9a45f1c6acbde5f6a2a54f1088af",
+"group__sysctl__api.html#ga28ba35e8e37870fbccda20be41a22371",
+"group__sysctl__api.html#gga31d67715f0625a756ee649adb7c9430da8e595406615573fbaac22ede64231560",
+"group__sysctl__api.html#ggabda7c864eeed2819e9dfecf398397632aacc5f678239e49e493bd903d22df99e7",
+"group__usb__api.html#ga83b6ccf731c71c3b387c86ba2d232cd2",
+"group__xbar__api.html#gga0e74405c5ebbd87324000177efcc1789a4d607fb8cb35f3526c4ca46f86c561b0",
+"group__xbar__api.html#gga9264f8dfaf11f6161459b58f5514594ca912e535b797c2558a25af2a6ce92154b",
+"structMCAN__MsgRAMConfigParams.html#a7c102abec1b97e46fcb051b59adb7588"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

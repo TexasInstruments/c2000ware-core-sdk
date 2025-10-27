@@ -20,6 +20,13 @@ function onChangePollingFunctionality(inst, ui) {
     inst["numberOfPollingPages"] = !(inst["pollingEnabled"]) ? 0 : 1;
 }
 
+function onChangeMotorControlWorkbenchGui(inst, ui) {
+    ui["enableVariableExterns"].readOnly = inst["motorControlWorkbenchGui"];
+    ui["allowVolatileVariables"].readOnly = inst["motorControlWorkbenchGui"];
+    inst["enableVariableExterns"] = false;
+    inst["allowVolatileVariables"] = true;
+}
+
 let config = [
     {
         name: "$name",
@@ -68,6 +75,25 @@ let config = [
         hidden: true,
         default: JSON.stringify([]),
     },
+    {
+        name: "motorControlWorkbenchGui",
+        displayName: "MotorControl Workbench GUI",
+        hidden: true,
+        default: false,
+        onChange: onChangeMotorControlWorkbenchGui,
+    },
+    {
+        name: "enableVariableExterns",
+        displayName: "Enable Variable Externs",
+        hidden: true,
+        default: true
+    },
+    {
+        name: "allowVolatileVariables",
+        displayName: "Allow Volatile Variables",
+        hidden: true,
+        default: false
+    }
 ];
 
 function moduleInstances(inst) {

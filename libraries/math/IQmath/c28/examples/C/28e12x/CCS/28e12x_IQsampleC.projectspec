@@ -10,7 +10,7 @@
         enableSysConfigTool="true"
         sysConfigBuildOptions="--product ${C2000WARE_ROOT}/.metadata/sdk.json --device F28E12x --package 48PT --part F28E12x_48PT"
         >
-    <configuration name="CPU1_FLASH" compilerBuildOptions="--opt_level=4 --opt_for_speed=2 -I${C2000WARE_ROOT} -v28 -ml -mt  --float_support=fpu32 --fp_mode=relaxed --gen_func_subsections=on --define=DEBUG --define=_FLASH --define=SYCONFIG --define=generic_flash_lnk --define=LARGE_MODEL -g --optimize_with_debug=on --diag_warning=225 --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x200 --heap_size=0x100  --define=_FLASH -i${C2000WARE_ROOT} -i${PROJECT_BUILD_DIR}/syscfg -lc2000ware_libraries.cmd.genlibs -lboard.cmd.genlibs -ldevice_cmd.cmd.genlibs --define=generic_flash_lnk"/>
+    <configuration name="CPU1_LAUNCHXL_FLASH" compilerBuildOptions="--opt_level=4 --opt_for_speed=2 -I${C2000WARE_ROOT} -v28 -ml -mt  --float_support=fpu32 --fp_mode=relaxed --gen_func_subsections=on --define=DEBUG --define=_FLASH --define=SYCONFIG --define=generic_flash_lnk --define=LARGE_MODEL -g --optimize_with_debug=on --diag_warning=225 --diag_suppress=10063" linkerBuildOptions="--entry_point code_start --stack_size=0x200 --heap_size=0x100  --define=_FLASH -i${C2000WARE_ROOT} -i${PROJECT_BUILD_DIR}/syscfg -lc2000ware_libraries.cmd.genlibs -lboard.cmd.genlibs -ldevice_cmd.cmd.genlibs --define=generic_flash_lnk"/>
     <pathVariable name="C2000WARE_ROOT" path="../../../../../../../../" scope="project" />
     <buildVariable name="GENERATE_DIAGRAM" value="0" scope="project" />
     <file action="copy" path="../../../../../../../../device_support/f28e12x/common/targetConfigs/TMS320F28E120SCS.ccxml" targetDirectory="targetConfigs" />

@@ -10,6 +10,19 @@ let ASysCtl_CMPLPMuxSelect = [
 	{ name: "ASYSCTL_CMPLPMUX_SELECT_3", displayName: "CMPLPMUX select 3" },
 	{ name: "ASYSCTL_CMPLPMUX_SELECT_4", displayName: "CMPLPMUX select 4" },
 ]
+let ASysCtl_AdcInst = [
+	{ name: "ASYSCTL_ADCA", displayName: "Select ADCA instance" },
+	{ name: "ASYSCTL_ADCB", displayName: "Select ADCB instance" },
+	{ name: "ASYSCTL_ADCC", displayName: "Select ADCC instance" },
+	{ name: "ASYSCTL_ADCD", displayName: "Select ADCD instance" },
+	{ name: "ASYSCTL_ADCE", displayName: "Select ADCE instance" },
+]
+let ASysCtl_ADCTestMuxMode = [
+	{ name: "ASYSCTL_TESTANA0_TESTANA1_DISABLE", displayName: "TESTANA0 and TESTANA1" },
+	{ name: "ASYSCTL_TESTANA1_ENABLE", displayName: "TESTANA0 is disabled and" },
+	{ name: "ASYSCTL_TESTANA0_ENABLE", displayName: "TESTANA0 is enabled and" },
+	{ name: "ASYSCTL_TESTANA0_TESTANA1_ENABLE", displayName: "TESTANA0 and TESTANA1" },
+]
 let ASysCtl_TestSelect = [
 	{ name: "ASYSCTL_TEST_NODE_NO_CONN", displayName: "No Internal Connection" },
 	{ name: "ASYSCTL_TEST_NODE_VDDCORE", displayName: "Core VDD (1.2V) voltage" },
@@ -84,6 +97,8 @@ let ASYSCTL_CMPLNMUX_SELECT = [
 module.exports = {
 	ASysCtl_CMPHPMuxSelect: ASysCtl_CMPHPMuxSelect,
 	ASysCtl_CMPLPMuxSelect: ASysCtl_CMPLPMuxSelect,
+	ASysCtl_AdcInst: ASysCtl_AdcInst,
+	ASysCtl_ADCTestMuxMode: ASysCtl_ADCTestMuxMode,
 	ASysCtl_TestSelect: ASysCtl_TestSelect,
 	AsysCtl_IO_Drvsel_GPIO: AsysCtl_IO_Drvsel_GPIO,
 	AsysCtl_IO_Modesel_GPIO: AsysCtl_IO_Modesel_GPIO,

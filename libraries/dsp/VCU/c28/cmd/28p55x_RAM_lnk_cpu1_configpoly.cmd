@@ -55,7 +55,7 @@ SECTIONS
    .bss             : > RAMLS5
    .bss:output      : > RAMLS3
    .init_array      : > RAMM0
-   .const           : > RAMLS5 | RAMGS3
+   .const           : > RAMLS5 | RAMGS1
    .data            : > RAMLS5
    .sysmem          : > RAMLS4
     testInput	    : > RAMGS0

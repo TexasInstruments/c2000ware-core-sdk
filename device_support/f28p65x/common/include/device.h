@@ -8,7 +8,7 @@
 //
 //
 // 
-// C2000Ware v6.00.00.00
+// C2000Ware v6.00.01.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -364,10 +364,10 @@ a single CPU should be defined."
 #define BOOTMODE_BOOT_TO_SECURE_FLASH_BANK4_SECTOR0  0xAAU
 #define BOOTMODE_IPC_MSGRAM_COPY_BOOT_TO_M1RAM       0x01U
 #define BOOTMODE_BOOT_TO_M0RAM                       0x05U
-#define BOOTMODE_BOOT_TO_FWU_FLASH                   0x0BU
-#define BOOTMODE_BOOT_TO_FWU_FLASH_ALT1              0x2BU
-#define BOOTMODE_BOOT_TO_FWU_FLASH_ALT2              0x4BU
-#define BOOTMODE_BOOT_TO_FWU_FLASH_ALT3              0x6BU
+#define BOOTMODE_BOOT_TO_FWU_FLASH                   0x06U
+#define BOOTMODE_BOOT_TO_FWU_FLASH_ALT1              0x26U
+#define BOOTMODE_BOOT_TO_FWU_FLASH_ALT2              0x46U
+#define BOOTMODE_BOOT_TO_FWU_FLASH_ALT3              0x66U
 
 #define BOOTMODE_IPC_MSGRAM_COPY_LENGTH_100W    0x10000U
 #define BOOTMODE_IPC_MSGRAM_COPY_LENGTH_200W    0x20000U

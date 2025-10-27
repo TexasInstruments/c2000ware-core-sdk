@@ -18,7 +18,7 @@
 //
 //
 // 
-// C2000Ware v6.00.00.00
+// C2000Ware v6.00.01.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -124,7 +124,7 @@ void configureDAC(Uint16 dac_num)
 {
     EALLOW;
     DAC_PTR[dac_num]->DACCTL.bit.DACREFSEL = REFERENCE;
-    DAC_PTR[dac_num]->DACCTL.bit.MODE = 2;
+    DAC_PTR[dac_num]->DACCTL.bit.MODE = 1;
     DAC_PTR[dac_num]->DACOUTEN.bit.DACOUTEN = 1;
     DAC_PTR[dac_num]->DACVALS.all = 0;
     DELAY_US(10); // Delay for buffered DAC to power up

@@ -34,6 +34,15 @@
 %if (system.getProducts()[0].name.includes("C2000")) {
 %    transferCommon = system.getScript("/utilities/transfer/transferCommon.js");
 %} else { transferCommon = system.getScript("/transfer/transferCommon.js"); }
+% var hashTables = system.modules[transferCommon.getTransferPath() + 'signalsight/hash/hashTable.js'];
+% let tableInstances = [];
+% //Get all table instances
+% if(hashTables){
+    % for(let i = 0; i < hashTables.$instances.length; i++){
+            % //hash table instances
+            % tableInstances.push(hashTables.$instances[i])
+    % }
+% }
 % var module = system.modules[transferCommon.getTransferPath() + 'signalsight.js'];
 % let currentInstance = module.$instances[0];
 % let includePolling = !currentInstance.pollingDisabled;
@@ -257,7 +266,13 @@ enum SS_VAR_TYPES SIGNALSIGHT_getVariableType(int16_t hashIndex)
 % }
 void* SIGNALSIGHT_getVariableAddressAtHashIndex(`funcParams`)
 {
+% for(let i = 0; i < tableInstances.length; i++){
+    % if(tableInstances[i].allowVolatileVariables){
+    volatile void* variableAddress = SSHASH_hash_table[hashIndex];
+    % } else {
     const void* variableAddress = SSHASH_hash_table[hashIndex];
+    % }
+% }
 % if(includePolling){
     if(variableType == BOOL){
         return (bool*)variableAddress;

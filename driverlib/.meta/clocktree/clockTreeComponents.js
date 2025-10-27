@@ -1,9 +1,10 @@
 let Common   = system.getScript("/driverlib/Common.js");
 let clocktree_common   = system.getScript("/driverlib/clocktree/clocktree_common.js");
 const multi_core = clocktree_common.multi_core;
+
 if (("system" === system.context || "CPU1" === system.context) && system.deviceData.clockTree)
 {
-
+	var device = system.deviceData.device;
 	let Support = system.getScript("./support.js");
 
 	const typeMap = {
@@ -27,11 +28,230 @@ if (("system" === system.context || "CPU1" === system.context) && system.deviceD
 	FreqLabels = FreqLabels.concat(namedConnection)
 
 	function defaultView(ipInstance) {
-		return {
-			displayName: (ipInstance.description ?? ipInstance.name).replace(/domain/ig,''),
-			ipInstances: [ipInstance.name],
-			algorithm: "fanIn",//"fanInAndOut",
-			frequencyLabels: FreqLabels,
+		//CAN - include Auxillary and External Clocks
+		if (ipInstance.name == "CANA_CLOCK_domain" || ipInstance.name == "CANB_CLOCK_domain") {
+			if (device == "F28P65x" || device == "F2837xD")
+			{
+				return {
+					displayName: (ipInstance.description ?? ipInstance.name).replace(/domain/ig,''),
+					ipInstances: ["CPU2_SYSCLK", ipInstance.name, "CPU1_SYSCLK", ipInstance.name, "AUXCLKIN", "AUXCLKIN", "External_Clock", "External_Clock"],
+					algorithm: "everythingBetween",
+					frequencyLabels: FreqLabels,
+				}
+			}
+			else if (device == "F2838x")
+			{
+				return {
+					displayName: (ipInstance.description ?? ipInstance.name).replace(/domain/ig,''),
+					ipInstances: ["CPU2_SYSCLK", ipInstance.name, "CPU1_SYSCLK", ipInstance.name, "AUXCLKIN", "AUXCLKIN", "External_Clock", "External_Clock", "CMCLK", ipInstance.name],
+					algorithm: "everythingBetween",
+					frequencyLabels: FreqLabels,
+				}
+			}
+			else if (device == "F28003x" || device == "F2807x" || "F2837xS") {
+				return {
+					displayName: (ipInstance.description ?? ipInstance.name).replace(/domain/ig,''),
+					ipInstances: ["SYSCLK", ipInstance.name, "External_Clock", "External_Clock", "AUXCLKIN", "AUXCLKIN"],
+					algorithm: "everythingBetween",
+					frequencyLabels: FreqLabels,
+				}
+			}
+			else {
+				return {
+					displayName: (ipInstance.description ?? ipInstance.name).replace(/domain/ig,''),
+					ipInstances: ["SYSCLK", ipInstance.name, "External_Clock", "External_Clock"],
+					algorithm: "everythingBetween",
+					frequencyLabels: FreqLabels,
+				}
+			}
+		}
+		//MCAN - include PLL and Auxillary Clocks
+		if (ipInstance.name == "MCANA_CLOCK_domain" || ipInstance.name == "MCANB_CLOCK_domain" || ipInstance.name == "MCANA_domain" || ipInstance.name == "MCANB_domain" || ipInstance.name == "MCAN_domain") {
+			if (device == "F2838x")
+			{
+				return {
+					displayName: (ipInstance.description ?? ipInstance.name).replace(/domain/ig,''),
+					ipInstances: ["CMCLK", ipInstance.name, "CPU1_SYSCLK", ipInstance.name, "AUXCLKIN", "AUXCLKIN", "AUXPLLRAWCLK", "AUXPLLRAWCLK"],
+					algorithm: "everythingBetween",
+					frequencyLabels: FreqLabels,
+				}
+			}
+			else if (device == "F28P65x") {
+				return {
+					displayName: (ipInstance.description ?? ipInstance.name).replace(/domain/ig,''),
+					ipInstances: ["PLLCLK", "PLLCLK", "AUXPLLRAWCLK", "AUXPLLRAWCLK", "AUXCLKIN", "AUXCLKIN", "CPU1_SYSCLK", ipInstance.name, "CPU2_SYSCLK", ipInstance.name],
+					algorithm: "everythingBetween",
+					frequencyLabels: FreqLabels,
+				}
+			}
+			else {
+				return {
+					displayName: (ipInstance.description ?? ipInstance.name).replace(/domain/ig,''),
+					ipInstances: ["SYSCLK", ipInstance.name, "PLLCLK", "PLLCLK", "AUXCLKIN", ipInstance.name],
+					algorithm: "everythingBetween",
+					frequencyLabels: FreqLabels,
+				}
+			}
+		}
+		//ETHERNET - include AUXPLLRAWCLK and PLLSYSCLK
+		if (ipInstance.name == "ETHCLK_domain") {
+			return {
+				displayName: (ipInstance.description ?? ipInstance.name).replace(/domain/ig,''),
+				ipInstances: ["PLLSYSCLK", ipInstance.name, "AUXPLLRAWCLK", ipInstance.name],
+				algorithm: "everythingBetween",
+				frequencyLabels: FreqLabels,
+			}
+		}
+		//EtherCAT - include AUXPLLRAWCLK and PLLCLK
+		if (ipInstance.name == "EtherCAT_domain") {
+			return {
+				displayName: (ipInstance.description ?? ipInstance.name).replace(/domain/ig,''),
+				ipInstances: ["PLLCLK", ipInstance.name, "AUXPLLRAWCLK", ipInstance.name],
+				algorithm: "everythingBetween",
+				frequencyLabels: FreqLabels,
+			}
+		}
+		//CLB - include AUXPLLRAWCLK or SYSPLLCLK depending on device
+		if (ipInstance.name == "CLB_domain") {
+			if (device == "F28P65x" || device == "F2838x")
+			{
+				return {
+					displayName: (ipInstance.description ?? ipInstance.name).replace(/domain/ig,''),
+					ipInstances: ["AUXPLLRAWCLK", ipInstance.name],
+					algorithm: "everythingBetween",
+					frequencyLabels: FreqLabels,
+				}
+			} 
+			else {
+				return {
+					displayName: (ipInstance.description ?? ipInstance.name).replace(/domain/ig,''),
+					ipInstances: ["PLLCLK", ipInstance.name],
+					algorithm: "everythingBetween",
+					frequencyLabels: FreqLabels,
+				}
+			} 
+		}
+		//USB - include AUXPLLRAWCLK
+		if (ipInstance.name == "USB_domain") {
+			if (device == "F28P55x") {
+				return {
+					displayName: (ipInstance.description ?? ipInstance.name).replace(/domain/ig,''),
+					ipInstances: ["PLLCLK", ipInstance.name],
+					algorithm: "everythingBetween",
+					frequencyLabels: FreqLabels,
+				}
+			}
+			if (device == "F2837xD" || device == "F2837xS" || device == "F2807x") {
+				return {
+					displayName: (ipInstance.description ?? ipInstance.name).replace(/domain/ig,''),
+					ipInstances: ["AUXPLLRAWCLK", ipInstance.name, "AUXOSCCLK", "AUXOSCCLK"],
+					algorithm: "everythingBetween",
+					frequencyLabels: FreqLabels,
+				}
+			}
+			else {
+				return {
+					displayName: (ipInstance.description ?? ipInstance.name).replace(/domain/ig,''),
+					ipInstances: ["AUXPLLRAWCLK", ipInstance.name, "PLLSYSCLK", ipInstance.name],
+					algorithm: "everythingBetween",
+					frequencyLabels: FreqLabels,
+				}
+			}
+		}
+		//EMIF1/2 - include PLLSYSCLK
+		if (ipInstance.name == "EMIF1_Clock_domain" || ipInstance.name == "EMIF2_Clock_domain") {
+			return {
+				displayName: (ipInstance.description ?? ipInstance.name).replace(/domain/ig,''),
+				ipInstances: ["PLLSYSCLK", ipInstance.name],
+				algorithm: "everythingBetween",
+				frequencyLabels: FreqLabels,
+			}
+		}
+		//LINA/B - include CPU1/2_SYSCLK
+		if (ipInstance.name == "LINCLK_domain" || ipInstance.name == "LINACLK_domain" || ipInstance.name == "LINBCLK_domain") {
+			if (device == "F28P55x" || device == "F28P551x")
+			{
+				return {
+					displayName: (ipInstance.description ?? ipInstance.name).replace(/domain/ig,''),
+					ipInstances: ["SYSCLK", ipInstance.name],
+					algorithm: "everythingBetween",
+					frequencyLabels: FreqLabels,
+				}
+			}
+			else {
+				return {
+					displayName: (ipInstance.description ?? ipInstance.name).replace(/domain/ig,''),
+					ipInstances: ["CPU1_SYSCLK", ipInstance.name, "CPU2_SYSCLK", ipInstance.name],
+					algorithm: "everythingBetween",
+					frequencyLabels: FreqLabels,
+				}
+			}
+		}
+		//EPWM - include CPU1/2_SYSCLK
+		if (ipInstance.name == "EPWM_Clock_domain") {
+			if (device == "F2838x" || device == "F28P65x" || device == "F2837xD") {
+				return {
+					displayName: (ipInstance.description ?? ipInstance.name).replace(/domain/ig,''),
+					ipInstances: ["CPU1_SYSCLK", ipInstance.name, "CPU2_SYSCLK", ipInstance.name],
+					algorithm: "everythingBetween",
+					frequencyLabels: FreqLabels,
+				}
+			}
+			else {
+				return {
+					displayName: (ipInstance.description ?? ipInstance.name).replace(/domain/ig,''),
+					ipInstances: ["PLLSYSCLK", ipInstance.name],
+					algorithm: "everythingBetween",
+					frequencyLabels: FreqLabels,
+				}
+			}			
+		}
+		//LSPCLK - include CPU1/2_SYSCLK
+		if (ipInstance.name == "LSPCLK_domain" || ipInstance.name == "PERx_SYSCLK_domain") {
+			if (device == "F2838x" || device == "F28P65x" || device == "F2837xD") {
+				return {
+					displayName: (ipInstance.description ?? ipInstance.name).replace(/domain/ig,''),
+					ipInstances: ["CPU1_SYSCLK", ipInstance.name, "CPU2_SYSCLK", ipInstance.name],
+					algorithm: "everythingBetween",
+					frequencyLabels: FreqLabels,
+				}
+			}
+			else {
+				return {
+					displayName: (ipInstance.description ?? ipInstance.name).replace(/domain/ig,''),
+					ipInstances: ["SYSCLK", ipInstance.name],
+					algorithm: "everythingBetween",
+					frequencyLabels: FreqLabels,
+				}
+			}
+		}
+		//NPU - include SSYCLK
+		if (ipInstance.name == "NPUCLK_domain") {
+			return {
+				displayName: (ipInstance.description ?? ipInstance.name).replace(/domain/ig,''),
+				ipInstances: ["SYSCLK", ipInstance.name],
+				algorithm: "everythingBetween",
+				frequencyLabels: FreqLabels,
+			}
+		}
+			
+		//CM - include AUXPLLRAWCLK
+		if (ipInstance.name == "CMCLK_domain" || ipInstance.name == "CM_PERCLK_domain") {
+			return {
+				displayName: (ipInstance.description ?? ipInstance.name).replace(/domain/ig,''),
+				ipInstances: ["AUXPLLRAWCLK", ipInstance.name, "PLLSYSCLK", ipInstance.name],
+				algorithm: "everythingBetween",
+				frequencyLabels: FreqLabels,
+			}
+		}
+		// OTHER - from PLLCLK
+		else {
+			return {
+				displayName: (ipInstance.description ?? ipInstance.name).replace(/domain/ig,''),
+				ipInstances: [ipInstance.name],
+				algorithm: "fanIn",
+				frequencyLabels: FreqLabels,
+			}
 		}
 	}
 
@@ -43,8 +263,6 @@ if (("system" === system.context || "CPU1" === system.context) && system.deviceD
 	]
 
 	let CPUCLK_Entries = ["PLLSYSCLK", "CPU", "CPUCLK", "SYSCLK", "CPUCLK_domain"]
-
-	var device = system.deviceData.device
 
 	var brokenConnection1
 

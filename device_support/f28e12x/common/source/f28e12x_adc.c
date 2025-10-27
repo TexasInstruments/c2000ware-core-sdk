@@ -78,7 +78,7 @@ void SetVREF(int module, int mode, int ref)
     //
     // Configure the reference mode for all ADCs (internal or external).
     //
-    AnalogSubsysRegs.REFCONFIGA.bit.CONFIG8 = mode;
+    AnalogSubsysRegs.REFCONFIGA.bit.ANAREFSEL = mode;
 
     //
     // Configure the reference voltage for all ADCs (3.3V or 2.5V).

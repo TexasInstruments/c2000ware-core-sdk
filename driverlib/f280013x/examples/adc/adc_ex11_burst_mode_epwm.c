@@ -215,6 +215,7 @@ __interrupt void adcABurstISR(void)
     //Read the round-robin pointer to determine which burst just completed
     //
     rrPointer = (HWREGH(ADCA_BASE + ADC_O_SOCPRICTL) & 0x03E0) >> 5;
+
     switch(rrPointer){
         //
         // Burst 1

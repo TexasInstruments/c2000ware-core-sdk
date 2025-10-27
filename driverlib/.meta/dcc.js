@@ -435,7 +435,7 @@ function onValidate(inst, validation)
     }
 
     /* This is warning for NMI, can add some NMI integration if needed */
-    if(Common.getDeviceName() == 'F28002x' || Common.getDeviceName() == 'F28003x' || Common.getDeviceName() == 'F28P55x')
+    if(Common.getDeviceName() == 'F28002x' || Common.getDeviceName() == 'F28003x' || Common.getDeviceName() == 'F28P55x' || Common.getDeviceName() == 'F28P551x')
     {
         if (inst.enableErrorSignalInterrupt && inst.registerInterrupts)
         {
@@ -514,7 +514,7 @@ var dccModule = {
                     }
                 }]
             }
-            else if (['f28002x', 'f28003x', 'f28p55x', 'f280013x', 'f280015x','f28e12x'].includes(Common.getDeviceName().toLowerCase()))
+            else if (['f28002x', 'f28003x', 'f28p55x', 'f28p551x','f280013x', 'f280015x','f28e12x'].includes(Common.getDeviceName().toLowerCase()))
             {
                 var interruptName = inst.dccBase.replace("_BASE", "");
                 return [{

@@ -55,7 +55,12 @@ function calculateDevicePinNameHigh(inst,ui){
     var tempPinName = ComparatorInputs.CMPSSLITE_comparatorInputSignals[Common.getDeviceName()][inst.cmpssLiteBase][inst.asysCMPHPMXSELValue].displayName
     var tempPinInfo = Pinmux.findAllAnalogPin(Pinmux.getDeviceADCName(tempPinName.split("/")[0]))
     var tempPinInfoDesc = Pinmux.getDevicePinInfoDescription(tempPinInfo)
-    return tempPinInfoDesc
+    if(["F28E12x"].includes(Common.getDeviceName()) && (inst.asysCMPHPMXSELValue == 6) && (inst.cmpssLiteBase == "CMPSSLITE2_BASE") && (tempPinInfoDesc == Pinmux.NO_DEVICE_PIN_FOUND)){
+            return ComparatorInputs.CMPSSLITE_comparatorInputSignals[Common.getDeviceName()][inst.cmpssLiteBase][inst.asysCMPHPMXSELValue].displayName
+        }
+    else{
+        return tempPinInfoDesc
+    }
 }
 
 function calculateDevicePinNameHighNeg(inst,ui){
@@ -69,7 +74,12 @@ function calculateDevicePinNameLow(inst,ui){
     var tempPinName = ComparatorInputs.CMPSSLITE_comparatorInputSignals[Common.getDeviceName()][inst.cmpssLiteBase][inst.asysCMPLPMXSELValue].displayName
     var tempPinInfo = Pinmux.findAllAnalogPin(Pinmux.getDeviceADCName(tempPinName.split("/")[0]))
     var tempPinInfoDesc = Pinmux.getDevicePinInfoDescription(tempPinInfo)
-    return tempPinInfoDesc
+    if(["F28E12x"].includes(Common.getDeviceName()) && (inst.asysCMPHPMXSELValue == 6) && (inst.cmpssLiteBase == "CMPSSLITE2_BASE") && (tempPinInfoDesc == Pinmux.NO_DEVICE_PIN_FOUND)){
+        return ComparatorInputs.CMPSSLITE_comparatorInputSignals[Common.getDeviceName()][inst.cmpssLiteBase][inst.asysCMPLPMXSELValue].displayName
+    }
+    else{
+        return tempPinInfoDesc
+    }
 }
 
 function calculateDevicePinNameLowNeg(inst,ui){
@@ -104,8 +114,12 @@ var numberOfPosInputSignals = 0
 var numberOfNegInputSignals = 0
 var asysLitePosSignalOptions = []
 var asysLiteNegSignalOptions = []
-if (["F280013x", "F280015x","F28E12x"].includes(Common.getDeviceName())){
+if (["F280013x", "F280015x"].includes(Common.getDeviceName())){
     numberOfPosInputSignals = 5
+    numberOfNegInputSignals = 2
+}
+if (["F28E12x"].includes(Common.getDeviceName())){
+    numberOfPosInputSignals = 7
     numberOfNegInputSignals = 2
 }
 

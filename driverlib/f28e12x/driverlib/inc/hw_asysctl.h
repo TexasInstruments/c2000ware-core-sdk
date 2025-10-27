@@ -46,7 +46,6 @@
 // The following are defines for the ASYSCTL register offsets
 //
 //*************************************************************************************************
-#define ASYSCTL_O_EXTROSCCSR1       0x2AU    // ExtR Oscillator Status Register
 #define ASYSCTL_O_ADCOSDETECT       0x2CU    // I2V Logic Control
 #define ASYSCTL_O_REFCONFIGA        0x3AU    // Config register for analog reference A.
 #define ASYSCTL_O_INTERNALTESTCTL   0x56U    // INTERNALTEST Node Control Register
@@ -73,14 +72,6 @@
 
 //*************************************************************************************************
 //
-// The following are defines for the bit fields in the EXTROSCCSR1 register
-//
-//*************************************************************************************************
-#define ASYSCTL_EXTROSCCSR1_OSCSTATUS_S   24U
-#define ASYSCTL_EXTROSCCSR1_OSCSTATUS_M   0xFF000000U   // Running status of ExtR.
-
-//*************************************************************************************************
-//
 // The following are defines for the bit fields in the ADCOSDETECT register
 //
 //*************************************************************************************************
@@ -93,7 +84,7 @@
 // The following are defines for the bit fields in the REFCONFIGA register
 //
 //*************************************************************************************************
-#define ASYSCTL_REFCONFIGA_CONFIG8   0x100000U   // Analog reference mode select
+#define ASYSCTL_REFCONFIGA_ANAREFSEL   0x100000U   // Analog reference mode select
 
 //*************************************************************************************************
 //

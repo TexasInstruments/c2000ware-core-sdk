@@ -2,8 +2,6 @@
 //! \file $FOLDER_EXAMPLES$/$DEVICE$_FixedPoint_FIR16/fir16d.c
 //!
 //! \brief  16-bit FIR Filter Example
-//!
-//! \date   Aug 12, 2014
 //! 
 //! This examples shows how to implement a 16-bit FIR filter using the optimized
 //! FIR library routines. This version of the FIR filter has a limitation of 256 
@@ -41,12 +39,10 @@
 //  Group:            C2000
 //  Target Family:    C28x
 //
-//#############################################################################
-//
-//
-// $Copyright: Copyright (C) 2014-2023 Texas Instruments Incorporated -
+//###########################################################################
+// $Copyright: Copyright (C) 2014-2025 Texas Instruments Incorporated -
 //             http://www.ti.com/ ALL RIGHTS RESERVED $
-//#############################################################################
+//###########################################################################
 
 //*****************************************************************************
 // includes
@@ -66,6 +62,8 @@
 #else
 #define FIR_ORDER_REV   (FIR_ORDER + 2) // even
 #endif
+
+#define EPSILON         0.0001f
 //*****************************************************************************
 // globals
 //*****************************************************************************                                        
@@ -133,6 +131,7 @@ int16_t coeff[FIR_ORDER+2];
 
 int16_t revCoeff[FIR_ORDER+2];                                   
 
+int pass = 0, fail=0;
 // Start of main()     
 int main(void)
 {    
@@ -161,6 +160,7 @@ int main(void)
     for(i = 0; i < FIR_ORDER + 2; i++){
         coeff[i] = FIR16_LPF32_TEST[i];
     }
+    coeff[FIR_ORDER] = 0;
     coeff[FIR_ORDER + 1] = 0;
 
       // if the order of the coefficients is even, you will have 
@@ -205,6 +205,16 @@ int main(void)
       Rad        = Rad + RadStep;
     }
       
+    // Check the output
+    for(i = 0; i < SIGNAL_LENGTH; i++){
+        if(fabsf(FIR16_LPF32_TESTOUT[i] - sigOut[i]) <= EPSILON){
+            pass++;
+        }
+        else
+        {
+            fail++;
+        }
+    }
 
     //asm("   ESTOP0");
     for(;;);

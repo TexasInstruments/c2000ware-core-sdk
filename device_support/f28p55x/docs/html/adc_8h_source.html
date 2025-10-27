@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">f28p55x Driverib and Example User Guide
-   &#160;<span id="projectnumber">6.00.00.00</span>
+   &#160;<span id="projectnumber">6.00.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -99,7 +99,7 @@ $(document).ready(function(){initNavTree('adc_8h_source.html',''); initResizable
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">//###########################################################################</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">// </span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// C2000Ware v6.00.00.00</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// C2000Ware v6.00.01.00</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">//</span></div>
@@ -720,7 +720,7 @@ $(document).ready(function(){initNavTree('adc_8h_source.html',''); initResizable
 <div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;    ASSERT((sampleWindow &gt;= 1U) &amp;&amp; (sampleWindow &lt;= 512U));</div>
 <div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160; </div>
 <div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;    mask = (ADC_SOC0CTL_CHSEL_M | ADC_SOC0CTL_TRIGSEL_M | ADC_SOC0CTL_ACQPS_M);</div>
-<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160;    </div>
+<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160; </div>
 <div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l00747"></a><span class="lineno">  747</span>&#160;    <span class="comment">// Calculate address for the SOC control register.</span></div>
 <div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;    <span class="comment">//</span></div>
@@ -766,7 +766,7 @@ $(document).ready(function(){initNavTree('adc_8h_source.html',''); initResizable
 <div class="line"><a name="l00806"></a><span class="lineno">  806</span>&#160;    EALLOW;</div>
 <div class="line"><a name="l00807"></a><span class="lineno">  807</span>&#160;    HWREG(ctlRegAddr) =</div>
 <div class="line"><a name="l00808"></a><span class="lineno">  808</span>&#160;                   (HWREG(ctlRegAddr) &amp; ~((uint32_t)ADC_SOC0CTL_EXTCHSEL_M)) |</div>
-<div class="line"><a name="l00809"></a><span class="lineno">  809</span>&#160;                   (uint32_t)extChannel;</div>
+<div class="line"><a name="l00809"></a><span class="lineno">  809</span>&#160;                   ((uint32_t)extChannel &lt;&lt; ADC_SOC0CTL_EXTCHSEL_S);</div>
 <div class="line"><a name="l00810"></a><span class="lineno">  810</span>&#160;    EDIS;</div>
 <div class="line"><a name="l00811"></a><span class="lineno">  811</span>&#160;}</div>
 <div class="line"><a name="l00812"></a><span class="lineno">  812</span>&#160; </div>
@@ -1343,7 +1343,7 @@ $(document).ready(function(){initNavTree('adc_8h_source.html',''); initResizable
 <div class="line"><a name="l01730"></a><span class="lineno"> 1730</span>&#160;    <span class="comment">// Configure open/shorts detection circuit mode.</span></div>
 <div class="line"><a name="l01731"></a><span class="lineno"> 1731</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l01732"></a><span class="lineno"> 1732</span>&#160;    EALLOW;</div>
-<div class="line"><a name="l01733"></a><span class="lineno"> 1733</span>&#160;    HWREGH(base + ASYSCTL_O_ADCOSDETECT) = </div>
+<div class="line"><a name="l01733"></a><span class="lineno"> 1733</span>&#160;    HWREGH(base + ASYSCTL_O_ADCOSDETECT) =</div>
 <div class="line"><a name="l01734"></a><span class="lineno"> 1734</span>&#160;                        ((HWREGH(base + ASYSCTL_O_ADCOSDETECT) &amp;</div>
 <div class="line"><a name="l01735"></a><span class="lineno"> 1735</span>&#160;                        (~ASYSCTL_ADCOSDETECT_DETECTCFG_M)) |</div>
 <div class="line"><a name="l01736"></a><span class="lineno"> 1736</span>&#160;                        ((uint16_t)modeVal &lt;&lt; ASYSCTL_ADCOSDETECT_DETECTCFG_S));</div>

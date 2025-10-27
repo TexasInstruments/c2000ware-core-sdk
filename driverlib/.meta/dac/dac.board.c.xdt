@@ -3,7 +3,7 @@ var module = system.modules['/driverlib/dac.js'];
 let Common   = system.getScript("/driverlib/Common.js");
 var nameOfModule = "dac";
 var nameOfPeripheral = module.peripheralName;
-if( ["F28004x", "F28003x", "F28P65x", "F28P55x"].includes(Common.getDeviceName())){
+if( ["F28004x", "F28003x", "F28P65x", "F28P55x","F28P551x"].includes(Common.getDeviceName())){
 	var staticModule = system.modules['/driverlib/asysctl.js']
 	var stat = staticModule.$static
 }
@@ -33,7 +33,7 @@ void `instance.$name`_init(){
 	// Set DAC reference voltage.
 	//
 	DAC_setReferenceVoltage(`baseName`, `instance.referenceVoltage`);
-			%if(["F28004x", "F28003x", "F28P65x", "F28P55x"].includes(Common.getDeviceName())&& (instance.referenceVoltage == "DAC_REF_ADC_VREFHI")){
+			%if(["F28004x", "F28003x", "F28P65x", "F28P55x","F28P551x"].includes(Common.getDeviceName())&& (instance.referenceVoltage == "DAC_REF_ADC_VREFHI")){
 	//
 	// Set DAC gain mode.
 	//
@@ -96,7 +96,7 @@ void `instance.$name`_init(){
 	//
 	// delay depends on analog reference
 	//
-	if( ["F28004x", "F28003x", "F28P65x", "F28P55x"].includes(Common.getDeviceName())){
+	if( ["F28004x", "F28003x", "F28P65x", "F28P55x","F28P551x"].includes(Common.getDeviceName())){
 	 if(stat.analogReference == "EXTERNAL"){
 		varDelay = 500
 		}

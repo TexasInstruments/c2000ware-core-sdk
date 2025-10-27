@@ -31,7 +31,7 @@ void `instance.$name`_init(){
     PGA_setFilterResistor(`instance.$name`_BASE, PGA_LOW_PASS_FILTER_DISABLED);
         % }
         % }
-        %if (["F28P55x"].includes(Common.getDeviceName())){
+        %if (["F28P55x","F28P551x"].includes(Common.getDeviceName())){
             % if (instance.enableFilterMode)
             % {
     PGA_selectPMUXInput(`instance.$name`_BASE, PGA_PMUX_VSSA);

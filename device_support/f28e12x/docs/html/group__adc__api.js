@@ -12,6 +12,7 @@ var group__adc__api =
     [ "ADC_INTSEL_OFFSET_BASE", "group__adc__api.html#gafa41e5a79a5acf3a8bbef1f347bae22e", null ],
     [ "ADC_DMAINTSEL_OFFSET_BASE", "group__adc__api.html#gac561e8c8cd77c96253ba1d96e8b3655d", null ],
     [ "ADC_PPBxRESULT_OFFSET_BASE", "group__adc__api.html#gab93b3d59039266605bee26e11b6077be", null ],
+    [ "ASYSCTL_REFCONFIGA_CONFIG8", "group__adc__api.html#gae4170875a6c7461953a7452f13cf4024", null ],
     [ "REPCTL_MASK", "group__adc__api.html#ga176a93bffba08939c5605585de69e991", null ],
     [ "ADC_PPBxPSUM_OFFSET_BASE", "group__adc__api.html#ga0d1b5698287de79f5f1577fcda816386", null ],
     [ "ADC_PPBxPCOUNT_OFFSET_BASE", "group__adc__api.html#ga437d861f409a157db3f2d9a07344dfca", null ],
@@ -166,6 +167,16 @@ var group__adc__api =
       [ "ADC_REFERENCE_2_5V", "group__adc__api.html#gga4513a58978c46b76510fbf645bf77922ac0b015eefabe43c59815ba330013acb7", null ],
       [ "ADC_REFERENCE_VREFHI", "group__adc__api.html#gga4513a58978c46b76510fbf645bf77922a7486ac63976ca4dd678ca8d47d089d6e", null ]
     ] ],
+    [ "ADC_OSDetectMode", "group__adc__api.html#ga1382e9ae48e28340cff1ea75f6f59ac8", [
+      [ "ADC_OSDETECT_MODE_DISABLED", "group__adc__api.html#gga1382e9ae48e28340cff1ea75f6f59ac8a8b7b4cab894595c4d1056ef488ad50d2", null ],
+      [ "ADC_OSDETECT_MODE_VSSA", "group__adc__api.html#gga1382e9ae48e28340cff1ea75f6f59ac8a0bc8c376217079542283f8c91774e536", null ],
+      [ "ADC_OSDETECT_MODE_VDDA", "group__adc__api.html#gga1382e9ae48e28340cff1ea75f6f59ac8ae10bc136097e9958d5b5617ba8428859", null ],
+      [ "ADC_OSDETECT_MODE_5BY12_VDDA", "group__adc__api.html#gga1382e9ae48e28340cff1ea75f6f59ac8aec7f2b4f867bc685084680e5dbe67e22", null ],
+      [ "ADC_OSDETECT_MODE_7BY12_VDDA", "group__adc__api.html#gga1382e9ae48e28340cff1ea75f6f59ac8a8a9ee2f5a0ea746b1fb8eee9863d1f58", null ],
+      [ "ADC_OSDETECT_MODE_5K_PULLDOWN_TO_VSSA", "group__adc__api.html#gga1382e9ae48e28340cff1ea75f6f59ac8ab5a9dfa551c7bf77f6a820d52f87ec2b", null ],
+      [ "ADC_OSDETECT_MODE_5K_PULLUP_TO_VDDA", "group__adc__api.html#gga1382e9ae48e28340cff1ea75f6f59ac8a7b452e69971703733b16f83812f3b8f3", null ],
+      [ "ADC_OSDETECT_MODE_7K_PULLDOWN_TO_VSSA", "group__adc__api.html#gga1382e9ae48e28340cff1ea75f6f59ac8a942323fa80bf386ebfed4649d032ba9b", null ]
+    ] ],
     [ "ADC_SyncInput", "group__adc__api.html#ga51ed1bc5073c7ef6394c3538b007e730", [
       [ "ADC_SYNCIN_DISABLE", "group__adc__api.html#gga51ed1bc5073c7ef6394c3538b007e730a41950eda6b33032b1ed1796e261c5e46", null ],
       [ "ADC_SYNCIN_INPUTXBAROUTPUT5", "group__adc__api.html#gga51ed1bc5073c7ef6394c3538b007e730a656ffa7dc83419044269a595880dc7b9", null ],
@@ -232,6 +243,9 @@ var group__adc__api =
     [ "ADC_readResult", "group__adc__api.html#gad08fa23cfc0caf97b88e4cfa853c22f1", null ],
     [ "ADC_isBusy", "group__adc__api.html#ga98e2f552716281f947255e5ca763d74a", null ],
     [ "ADC_setSOCPriority", "group__adc__api.html#ga3e32e7d5a6618ac054685004a7f0a9ae", null ],
+    [ "ADC_configOSDetectMode", "group__adc__api.html#gaa78853849893166467a9786799a689df", null ],
+    [ "ADC_enableOSDetectMode", "group__adc__api.html#ga9115cce3fea54bd833a50203ade7b1ce", null ],
+    [ "ADC_disableOSDetectMode", "group__adc__api.html#gac2806ead8415c9bce85abb61e728dd5c", null ],
     [ "ADC_setupPPB", "group__adc__api.html#ga3d1903175f9643e20d98597894b66982", null ],
     [ "ADC_enablePPBEvent", "group__adc__api.html#gadc2372da3f307307e45b3e5575ae28f5", null ],
     [ "ADC_disablePPBEvent", "group__adc__api.html#ga376f84196313556c889bd93c6f67a3cb", null ],

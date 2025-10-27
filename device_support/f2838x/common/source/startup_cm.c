@@ -8,7 +8,7 @@
 //
 //
 // 
-// C2000Ware v6.00.00.00
+// C2000Ware v6.00.01.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -210,7 +210,7 @@ static void nmiISR(void)
                 }
             } else
             {
-                //FalseECCErrorCount++;
+                
                 HWREG(FLASH0ECC_BASE + FLASH_O_ERR_STATUS_CLR) = 0x4;
                 HWREG(FLASH0ECC_BASE + FLASH_O_ERR_INTCLR) = 0x2;
                 HWREG(NMI_BASE + NMI_O_CMNMIFLGCLR) = 0x56740009;
@@ -227,7 +227,7 @@ static void nmiISR(void)
                 }
             } else
             {
-                //FalseECCErrorCount++;
+                
                 HWREG(FLASH0ECC_BASE + FLASH_O_ERR_STATUS_CLR) = 0x40000;
                 HWREG(FLASH0ECC_BASE + FLASH_O_ERR_INTCLR) = 0x2;
                 HWREG(NMI_BASE + NMI_O_CMNMIFLGCLR) = 0x56740009;

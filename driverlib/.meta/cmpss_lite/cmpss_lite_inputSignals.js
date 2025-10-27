@@ -30,6 +30,8 @@ let CMPSSLITE_comparatorInputSignals = {
             {name: "2", displayName: "A6"},
             {name: "3", displayName: "A15"},
             {name: "4", displayName: "A1"},
+            {name: "5", displayName: "NA"},
+            {name: "6", displayName: "NA"},
         ],
         CMPSSLITE2_BASE: [
             {name: "0", displayName: "A4"},
@@ -37,6 +39,8 @@ let CMPSSLITE_comparatorInputSignals = {
             {name: "2", displayName: "A9"},
             {name: "3", displayName: "A10"},
             {name: "4", displayName: "A8"},
+            {name: "5", displayName: "NA"},
+            {name: "6", displayName: "PGA1_OUT_INT"},
         ],
         CMPSSLITE3_BASE: [
             {name: "0", displayName: "A21"},
@@ -44,6 +48,8 @@ let CMPSSLITE_comparatorInputSignals = {
             {name: "2", displayName: "A0"},
             {name: "3", displayName: "A3"},
             {name: "4", displayName: "A14"},
+            {name: "5", displayName: "NA"},
+            {name: "6", displayName: "NA"},
         ]
     },
 

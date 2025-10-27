@@ -38,7 +38,7 @@
 //
 //
 // 
-// C2000Ware v6.00.00.00
+// C2000Ware v6.00.01.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -253,6 +253,8 @@ static void MCANConfig(void)
     bitTimes.dataTimeSeg1       = 0x9U; // Data Time segment before SP
     bitTimes.dataTimeSeg2       = 0x8U; // Data Time segment after SP
     bitTimes.dataSynchJumpWidth = 0x8U; // Data SJW
+    
+
     //
     // Wait for memory initialization to happen.
     //

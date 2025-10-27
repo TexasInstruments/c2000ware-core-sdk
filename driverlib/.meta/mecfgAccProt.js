@@ -46,6 +46,23 @@ let AcessProtectionRAMs = {
         {name : "GS2", access : ['FETCHPROT', 'CPUWRPROT', 'DMAWRPROT']},
         {name : "GS3", access : ['FETCHPROT', 'CPUWRPROT', 'DMAWRPROT']},
         ],
+    
+    "f28p551x" : [
+        {name : "M0", access : ['FETCHPROT', 'CPUWRPROT']},
+        {name : "M1", access : ['FETCHPROT', 'CPUWRPROT']},
+        {name : "LS0", access : ['FETCHPROT', 'CPUWRPROT']},
+        {name : "LS1", access : ['FETCHPROT', 'CPUWRPROT']},
+        {name : "LS2", access : ['FETCHPROT', 'CPUWRPROT']},
+        {name : "LS3", access : ['FETCHPROT', 'CPUWRPROT']},
+        {name : "LS4", access : ['FETCHPROT', 'CPUWRPROT']},
+        {name : "LS5", access : ['FETCHPROT', 'CPUWRPROT']},
+        {name : "LS6", access : ['FETCHPROT', 'CPUWRPROT']},
+        {name : "LS7", access : ['FETCHPROT', 'CPUWRPROT']},
+        {name : "LS8", access : ['FETCHPROT', 'CPUWRPROT']},
+        {name : "LS9", access : ['FETCHPROT', 'CPUWRPROT']},
+        {name : "GS0", access : ['FETCHPROT', 'CPUWRPROT', 'DMAWRPROT']},
+        {name : "GS1", access : ['FETCHPROT', 'CPUWRPROT', 'DMAWRPROT']},
+        ],
 
     "f280013x" : [
     {name : "M0", access : ['FETCHPROT', 'CPUWRPROT']},

@@ -7,7 +7,7 @@ let device_driverlib_peripheral =
 
 function onChangeAnalogRef(inst, ui)
 {
-    if (["F28004x","F28002x", "F28003x","F280013x", "F280015x", "F28P65x", "F28P55x", "F28E12x"].includes(Common.getDeviceName())){
+    if (["F28004x","F28002x", "F28003x","F280013x", "F280015x", "F28P65x", "F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName())){
         if (inst.analogReference == "INTERNAL"){
             ui.analogReferenceVoltage.hidden = false
         }
@@ -64,7 +64,7 @@ if ((Common.getDevicePackage() == "32RHB") &&                   // 32pin package
 // }
 // All other device+package combos that have "analogReference" option have 
 // both external and internal options
-else if (["F28P55x"].includes(Common.getDeviceName()))
+else if (["F28P55x","F28P551x"].includes(Common.getDeviceName()))
 {
     analogReference_opts = [
         {name: "INTERNAL", displayName: "Internal"},
@@ -80,7 +80,7 @@ else
     ];
 }
 
-if (["F28004x","F28002x", "F28003x","F280013x","F280015x", "F28P65x", "F28P55x", "F28E12x"].includes(Common.getDeviceName()))
+if (["F28004x","F28002x", "F28003x","F280013x","F280015x", "F28P65x", "F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName()))
 {
     staticConfig.push(
         {
@@ -114,7 +114,7 @@ if (["F28004x","F28002x", "F28003x","F280013x","F280015x", "F28P65x", "F28P55x",
         }, 
     );
 }
-if (["F28P55x","F280013x","F280015x", "F28E12x"].includes(Common.getDeviceName()))
+if (["F28P55x","F28P551x","F280013x","F280015x", "F28E12x"].includes(Common.getDeviceName()))
 {
     staticConfig.push(
         {

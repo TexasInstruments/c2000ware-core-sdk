@@ -69,6 +69,10 @@ extern "C" {
 #define ADC_VREF3P3     0
 #define ADC_VREF2P5     1
 
+//
+// CONFIG8 register bitfield was renamed to ANAREFSEL
+//
+#define CONFIG8     ANAREFSEL
 
 #ifdef __cplusplus
 }

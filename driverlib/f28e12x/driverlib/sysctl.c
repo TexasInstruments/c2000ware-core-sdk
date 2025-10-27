@@ -236,6 +236,7 @@ SysCtl_setClock(uint32_t oscSource, Sysctl_PLLConfig pllConfig,
 {
     uint16_t divSel, pllen, oscclksrcsel, pllLockStatus, xtalval;
     uint32_t pllMult, mult, timeout;
+    uint32_t retries = 0U;
     bool status = false;
 
     //
@@ -353,56 +354,64 @@ SysCtl_setClock(uint32_t oscSource, Sysctl_PLLConfig pllConfig,
             //
             if((mult !=  pllMult) || (pllen != 1U))
             {
-                //
-                // Turn off PLL
-                //
-                EALLOW;
-                HWREGH(CLKCFG_BASE + SYSCTL_O_SYSPLLCTL) &=
-                    ~SYSCTL_SYSPLLCTL_PLLEN;
-                EDIS;
-
-                //
-                // Delay of at least 66 OSCCLK cycles required between
-                // powerdown to powerup of PLL
-                //
-                SysCtl_delay(12U);
-
-                //
-                // Write multiplier, which automatically turns on the PLL
-                //
-                EALLOW;
-                HWREG(CLKCFG_BASE + SYSCTL_O_SYSPLLMULT) = pllMult;
-
-                //
-                // Enable/ turn on PLL
-                //
-                HWREGH(CLKCFG_BASE + SYSCTL_O_SYSPLLCTL) |=
-                       SYSCTL_SYSPLLCTL_PLLEN;
-
-                //
-                // Wait for the SYSPLL lock counter or a timeout
-                // This timeout needs to be computed based on OSCCLK
-                // with a factor of PDIV.
-                // Lock time is 1024 OSCCLK * (PDIV)
-                //
-
-                timeout = (1024U * (uint32_t)pDiv);
-                pllLockStatus = HWREGH(CLKCFG_BASE + SYSCTL_O_SYSPLLSTS) &
-                                SYSCTL_SYSPLLSTS_LOCKS;
-
-                while((pllLockStatus != 1U) && (timeout != 0U))
+                while(retries < SYSCTL_PLL_RETRIES)
                 {
+                    //
+                    // Turn off PLL
+                    //
+                    EALLOW;
+                    HWREGH(CLKCFG_BASE + SYSCTL_O_SYSPLLCTL) &=
+                        ~SYSCTL_SYSPLLCTL_PLLEN;
+                    EDIS;
+
+                    //
+                    // Delay of at least 66 OSCCLK cycles required between
+                    // powerdown to powerup of PLL
+                    //
+                    SysCtl_delay(12U);
+
+                    //
+                    // Write multiplier, which automatically turns on the PLL
+                    //
+                    EALLOW;
+                    HWREG(CLKCFG_BASE + SYSCTL_O_SYSPLLMULT) = pllMult;
+
+                    //
+                    // Enable/ turn on PLL
+                    //
+                    HWREGH(CLKCFG_BASE + SYSCTL_O_SYSPLLCTL) |=
+                        SYSCTL_SYSPLLCTL_PLLEN;
+
+                    //
+                    // Wait for the SYSPLL lock counter or a timeout
+                    // This timeout needs to be computed based on OSCCLK
+                    // with a factor of PDIV.
+                    // Lock time is 1024 OSCCLK * (PDIV)
+                    //
+
+                    timeout = (1024U * (uint32_t)pDiv);
                     pllLockStatus = HWREGH(CLKCFG_BASE + SYSCTL_O_SYSPLLSTS) &
                                     SYSCTL_SYSPLLSTS_LOCKS;
-                    timeout--;
+
+                    while((pllLockStatus != 1U) && (timeout != 0U))
+                    {
+                        pllLockStatus = HWREGH(CLKCFG_BASE + SYSCTL_O_SYSPLLSTS) &
+                                        SYSCTL_SYSPLLSTS_LOCKS;
+                        timeout--;
+                    }
+                    EDIS;
+
+                    //
+                    // Check PLL Frequency using DCC
+                    //
+                    status = SysCtl_isPLLValid(dccBase, oscSource, pDiv, multiplier, rDiv);
+
+                    if(status)
+                    {
+                        break;
+                    }
+                    retries ++;
                 }
-                EDIS;
-
-                //
-                // Check PLL Frequency using DCC
-                //
-               status = SysCtl_isPLLValid(dccBase, oscSource, pDiv, multiplier, rDiv);
-
             }
             else
             {

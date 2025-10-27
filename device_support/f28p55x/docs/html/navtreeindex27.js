@@ -1,5 +1,6 @@
 var NAVTREEINDEX27 =
 {
+"structMCAN__MsgRAMConfigParams.html#a7c102abec1b97e46fcb051b59adb7588":[12,19,7,18],
 "structMCAN__MsgRAMConfigParams.html#aa8ddaf61d486f93d236dc0d730ed2108":[12,19,7,22],
 "structMCAN__MsgRAMConfigParams.html#aaafd459791700818247f92d071941fc4":[12,19,7,0],
 "structMCAN__MsgRAMConfigParams.html#ab08791e5458343e119d91b5981d83115":[12,19,7,4],

@@ -17,6 +17,7 @@ let EPGRegisters = [
 	{ name: "GCTL1", description: "EPG Global control register 1", offset: "0x2",
 		bits: [
 			{ name: "SIGGEN0_CLKSEL", description: "Clock source select of SIGGEN0", size: "3", shift: "0", mask: "0x7" },
+			{ name: "SIGGEN1_CLKSEL", description: "Clock source select of SIGGEN1", size: "3", shift: "4", mask: "0x70" },
 		]
 	},
 	{ name: "GCTL2", description: "EPG Global control register 2", offset: "0x4",
@@ -53,6 +54,8 @@ let EPGRegisters = [
 			{ name: "CLKDIV1_CTL0", description: "CLKDIV1_CTL0 Lock bit", size: "1", shift: "5", mask: "0x20" },
 			{ name: "SIGGEN0_CTL0", description: "SIGGEN0_CTL0 Lock bit", size: "1", shift: "6", mask: "0x40" },
 			{ name: "SIGGEN0_CTL1", description: "SIGGEN0_CTL1 Lock bit", size: "1", shift: "7", mask: "0x80" },
+			{ name: "SIGGEN1_CTL0", description: "SIGGEN1_CTL0 Lock bit", size: "1", shift: "8", mask: "0x100" },
+			{ name: "SIGGEN1_CTL1", description: "SIGGEN1_CTL1 Lock bit", size: "1", shift: "9", mask: "0x200" },
 		]
 	},
 	{ name: "COMMIT", description: "EPG COMMIT register", offset: "0xA",
@@ -65,6 +68,8 @@ let EPGRegisters = [
 			{ name: "CLKDIV1_CTL0", description: "CLKDIV1_CTL0 Commit bit", size: "1", shift: "5", mask: "0x20" },
 			{ name: "SIGGEN0_CTL0", description: "SIGGEN0_CTL0 Commit bit", size: "1", shift: "6", mask: "0x40" },
 			{ name: "SIGGEN0_CTL1", description: "SIGGEN0_CTL1 Commit bit", size: "1", shift: "7", mask: "0x80" },
+			{ name: "SIGGEN1_CTL0", description: "SIGGEN1_CTL0 Commit bit", size: "1", shift: "8", mask: "0x100" },
+			{ name: "SIGGEN1_CTL1", description: "SIGGEN1_CTL1 Commit bit", size: "1", shift: "9", mask: "0x200" },
 		]
 	},
 	{ name: "GINTSTS", description: "EPG Global interrupt status register.", offset: "0xC",
@@ -72,12 +77,16 @@ let EPGRegisters = [
 			{ name: "INT", description: "Global interrupt flag register", size: "1", shift: "0", mask: "0x1" },
 			{ name: "SIGGEN0_DONE", description: "SIGGEN0 operation done status", size: "1", shift: "1", mask: "0x2" },
 			{ name: "SIGGEN0_FILL", description: "SIGGEN0 data fill status", size: "1", shift: "2", mask: "0x4" },
+			{ name: "SIGGEN1_DONE", description: "SIGGEN1 operation done status", size: "1", shift: "3", mask: "0x8" },
+			{ name: "SIGGEN1_FILL", description: "SIGGEN1 data fill status", size: "1", shift: "4", mask: "0x10" },
 		]
 	},
 	{ name: "GINTEN", description: "EPG Global interrupt enable register.", offset: "0xE",
 		bits: [
 			{ name: "SIGGEN0_DONE", description: "SIGGEN0 operation done interrupt enable", size: "1", shift: "1", mask: "0x2" },
 			{ name: "SIGGEN0_FILL", description: "SIGGEN0 data fill interrupt enable", size: "1", shift: "2", mask: "0x4" },
+			{ name: "SIGGEN1_DONE", description: "SIGGEN1 operation done interrupt enable", size: "1", shift: "3", mask: "0x8" },
+			{ name: "SIGGEN1_FILL", description: "SIGGEN1 data fill interrupt enable", size: "1", shift: "4", mask: "0x10" },
 		]
 	},
 	{ name: "GINTCLR", description: "EPG Global interrupt clear register.", offset: "0x10",
@@ -85,12 +94,16 @@ let EPGRegisters = [
 			{ name: "INT", description: "Global interrupt flag clear", size: "1", shift: "0", mask: "0x1" },
 			{ name: "SIGGEN0_DONE", description: "SIGGEN0 operation done interrupt flag clear", size: "1", shift: "1", mask: "0x2" },
 			{ name: "SIGGEN0_FILL", description: "SIGGEN0 data fill interrupt flag clear", size: "1", shift: "2", mask: "0x4" },
+			{ name: "SIGGEN1_DONE", description: "SIGGEN0 data fill interrupt flag clear", size: "1", shift: "3", mask: "0x8" },
+			{ name: "SIGGEN1_FILL", description: "SIGGEN1 data fill interrupt flag clear", size: "1", shift: "4", mask: "0x10" },
 		]
 	},
 	{ name: "GINTFRC", description: "EPG Global interrupt force register.", offset: "0x12",
 		bits: [
 			{ name: "SIGGEN0_DONE", description: "SIGGEN0 operation done interrupt flag set", size: "1", shift: "1", mask: "0x2" },
 			{ name: "SIGGEN0_FILL", description: "SIGGEN0 data fill interrupt flag set", size: "1", shift: "2", mask: "0x4" },
+			{ name: "SIGGEN1_DONE", description: "SIGGEN1 operation done interrupt flag set", size: "1", shift: "3", mask: "0x8" },
+			{ name: "SIGGEN1_FILL", description: "SIGGEN1 data fill interrupt flag set", size: "1", shift: "4", mask: "0x10" },
 		]
 	},
 	{ name: "CLKDIV0_CTL0", description: "Clock divider 0's control register 0", offset: "0x18",
@@ -151,6 +164,36 @@ let EPGRegisters = [
 		bits: [
 		]
 	},
+	{ name: "SIGGEN1_CTL0", description: "Signal generator 1's control register 0", offset: "0x40",
+		bits: [
+			{ name: "MODE", description: "Signal generator modes", size: "4", shift: "0", mask: "0xF" },
+			{ name: "BRIN", description: "Reverse bits before transform", size: "1", shift: "5", mask: "0x20" },
+			{ name: "BROUT", description: "Reverse bits after transform", size: "1", shift: "6", mask: "0x40" },
+			{ name: "BITLENGTH", description: "Length of bit stream", size: "8", shift: "16", mask: "0xFF0000" },
+		]
+	},
+	{ name: "SIGGEN1_CTL1", description: "Signal generator 1's control register 1", offset: "0x42",
+		bits: [
+			{ name: "DATA0_INSEL", description: "Select the source of DATA[0] bit.", size: "4", shift: "0", mask: "0xF" },
+			{ name: "DATA63_INSEL", description: "Select the source of DATA[63] bit.", size: "4", shift: "28", mask: "0xF0000000" },
+		]
+	},
+	{ name: "SIGGEN1_DATA0", description: "Signal generator 1's data register 0", offset: "0x48",
+		bits: [
+		]
+	},
+	{ name: "SIGGEN1_DATA1", description: "Signal generator 1's data register 1", offset: "0x4A",
+		bits: [
+		]
+	},
+	{ name: "SIGGEN1_DATA0_ACTIVE", description: "Signal generator 1's data active register 0", offset: "0x4C",
+		bits: [
+		]
+	},
+	{ name: "SIGGEN1_DATA1_ACTIVE", description: "Signal generator 1's data active register 1", offset: "0x4E",
+		bits: [
+		]
+	},
 	{ name: "REVISION", description: "IP Revision tie-off value", offset: "0x50",
 		bits: [
 			{ name: "MINOR", description: "Minor Revision Number", size: "6", shift: "0", mask: "0x3F" },
@@ -196,14 +239,52 @@ let EPGRegisters = [
 			{ name: "SEL31", description: "DATAOUT[31] mux select.", size: "1", shift: "31", mask: "0x80000000" },
 		]
 	},
+	{ name: "MXSEL1", description: "EPG Mux select register 1", offset: "0x2",
+		bits: [
+			{ name: "SEL32", description: "DATAOUT[32] mux select.", size: "1", shift: "0", mask: "0x1" },
+			{ name: "SEL33", description: "DATAOUT[33] mux select.", size: "1", shift: "1", mask: "0x2" },
+			{ name: "SEL34", description: "DATAOUT[34] mux select.", size: "1", shift: "2", mask: "0x4" },
+			{ name: "SEL35", description: "DATAOUT[35] mux select.", size: "1", shift: "3", mask: "0x8" },
+			{ name: "SEL36", description: "DATAOUT[36] mux select.", size: "1", shift: "4", mask: "0x10" },
+			{ name: "SEL37", description: "DATAOUT[37] mux select.", size: "1", shift: "5", mask: "0x20" },
+			{ name: "SEL38", description: "DATAOUT[38] mux select.", size: "1", shift: "6", mask: "0x40" },
+			{ name: "SEL39", description: "DATAOUT[39] mux select.", size: "1", shift: "7", mask: "0x80" },
+			{ name: "SEL40", description: "DATAOUT[40] mux select.", size: "1", shift: "8", mask: "0x100" },
+			{ name: "SEL41", description: "DATAOUT[41] mux select.", size: "1", shift: "9", mask: "0x200" },
+			{ name: "SEL42", description: "DATAOUT[42] mux select.", size: "1", shift: "10", mask: "0x400" },
+			{ name: "SEL43", description: "DATAOUT[43] mux select.", size: "1", shift: "11", mask: "0x800" },
+			{ name: "SEL44", description: "DATAOUT[44] mux select.", size: "1", shift: "12", mask: "0x1000" },
+			{ name: "SEL45", description: "DATAOUT[45] mux select.", size: "1", shift: "13", mask: "0x2000" },
+			{ name: "SEL46", description: "DATAOUT[46] mux select.", size: "1", shift: "14", mask: "0x4000" },
+			{ name: "SEL47", description: "DATAOUT[47] mux select.", size: "1", shift: "15", mask: "0x8000" },
+			{ name: "SEL48", description: "DATAOUT[48] mux select.", size: "1", shift: "16", mask: "0x10000" },
+			{ name: "SEL49", description: "DATAOUT[49] mux select.", size: "1", shift: "17", mask: "0x20000" },
+			{ name: "SEL50", description: "DATAOUT[50] mux select.", size: "1", shift: "18", mask: "0x40000" },
+			{ name: "SEL51", description: "DATAOUT[51] mux select.", size: "1", shift: "19", mask: "0x80000" },
+			{ name: "SEL52", description: "DATAOUT[52] mux select.", size: "1", shift: "20", mask: "0x100000" },
+			{ name: "SEL53", description: "DATAOUT[53] mux select.", size: "1", shift: "21", mask: "0x200000" },
+			{ name: "SEL54", description: "DATAOUT[54] mux select.", size: "1", shift: "22", mask: "0x400000" },
+			{ name: "SEL55", description: "DATAOUT[55] mux select.", size: "1", shift: "23", mask: "0x800000" },
+			{ name: "SEL56", description: "DATAOUT[56] mux select.", size: "1", shift: "24", mask: "0x1000000" },
+			{ name: "SEL57", description: "DATAOUT[57] mux select.", size: "1", shift: "25", mask: "0x2000000" },
+			{ name: "SEL58", description: "DATAOUT[58] mux select.", size: "1", shift: "26", mask: "0x4000000" },
+			{ name: "SEL59", description: "DATAOUT[59] mux select.", size: "1", shift: "27", mask: "0x8000000" },
+			{ name: "SEL60", description: "DATAOUT[60] mux select.", size: "1", shift: "28", mask: "0x10000000" },
+			{ name: "SEL61", description: "DATAOUT[61] mux select.", size: "1", shift: "29", mask: "0x20000000" },
+			{ name: "SEL62", description: "DATAOUT[62] mux select.", size: "1", shift: "30", mask: "0x40000000" },
+			{ name: "SEL63", description: "DATAOUT[63] mux select.", size: "1", shift: "31", mask: "0x80000000" },
+		]
+	},
 	{ name: "MXSELLOCK", description: "EPG Mux select register lock", offset: "0xC",
 		bits: [
 			{ name: "EPGMXSEL0", description: "EPGMXSEL0 lock bit", size: "1", shift: "0", mask: "0x1" },
+			{ name: "EPGMXSEL1", description: "EPGMXSEL1 lock bit", size: "1", shift: "1", mask: "0x2" },
 		]
 	},
 	{ name: "MXSELCOMMIT", description: "EPG Mux select register commit", offset: "0xE",
 		bits: [
 			{ name: "EPGMXSEL0", description: "EPGMXSEL0 commit bit", size: "1", shift: "0", mask: "0x1" },
+			{ name: "EPGMXSEL1", description: "EPGMXSEL1 commit bit", size: "1", shift: "1", mask: "0x2" },
 		]
 	},
 ];

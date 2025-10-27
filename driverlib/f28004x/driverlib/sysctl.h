@@ -662,6 +662,8 @@ typedef enum
     SYSCTL_SYNC_IN_SRC_EXTSYNCIN1       = 5,
     //! EXTSYNCIN2--Valid for all values of syncInput
     SYSCTL_SYNC_IN_SRC_EXTSYNCIN2       = 6,
+    //! ECAP4SYNCOUT
+    SYSCTL_SYNC_IN_SRC_ECAP4SYNCOUT     = 7    
 } SysCtl_SyncInputSource;
 
 //*****************************************************************************

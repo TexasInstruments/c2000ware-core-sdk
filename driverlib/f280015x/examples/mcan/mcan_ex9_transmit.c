@@ -251,6 +251,8 @@ static void MCANConfig(void)
     bitTimes.dataTimeSeg1       = 0x9U; // Data Time segment before SP
     bitTimes.dataTimeSeg2       = 0x8U; // Data Time segment after SP
     bitTimes.dataSynchJumpWidth = 0x8U; // Data SJW
+    
+
     //
     // Wait for memory initialization to happen.
     //

@@ -139,6 +139,18 @@ function getNumberHashTableInstances() {
     return 0;
 }
 
+
+//
+// Check if tool is loaded in SETUP mode in system context
+//
+
+function isAllocationSetupMode() {
+
+    let val = system.resourceAllocation ? (system.resourceAllocation.mode == "SETUP") : false    
+    return ( val && system.context == "system");
+}
+
+
 module.exports = {
     isC2000: isC2000,
     isC28x: isC28x,
@@ -153,4 +165,5 @@ module.exports = {
     getDeviceName: getDeviceName,
     hasFSISupport: hasFSISupport,
     getNumberHashTableInstances: getNumberHashTableInstances,
+    isAllocationSetupMode: isAllocationSetupMode
 }

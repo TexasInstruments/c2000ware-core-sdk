@@ -75,6 +75,11 @@
 #define SYSCTRL_CLKSRCCTL1_DELAY  asm(" RPT #250 || NOP \n RPT #50 || NOP")
 
 //
+// Number of PLL retries for SW work around
+//
+#define SYSCTL_PLL_RETRIES              100U    // Number of PLL retries
+
+//
 // To use SYSOSCDIV4 as the clock source, comment the #define USE_PLL_SRC_XTAL,
 // and uncomment the #define USE_PLL_SRC_SYSOSCDIV4
 //
@@ -263,6 +268,7 @@ void InitSysPll(Uint16 clock_source, Uint16 multiplier, Uint32 pdiv, Uint32 rdiv
 {
     Uint32 timeout,temp_syspllmult, pllLockStatus;
     bool status;
+    Uint32 retries = 0U;
 
     if(((clock_source & 0x3) == ClkCfgRegs.CLKSRCCTL1.bit.OSCCLKSRCSEL)    &&
        (((clock_source & 0x4) >> 2) == ClkCfgRegs.XTALCR.bit.SE)           &&
@@ -303,84 +309,92 @@ void InitSysPll(Uint16 clock_source, Uint16 multiplier, Uint32 pdiv, Uint32 rdiv
         //
         temp_syspllmult = ((pdiv << 16U) | (rdiv << 8U)| multiplier);
 
-        //
-        // Turnoff the PLL
-        //
-        ClkCfgRegs.SYSPLLCTL.bit.PLLEN = 0;
-        EDIS;
-
-        //
-        // Delay of at least 66 OSCCLK cycles
-        //
-        asm(" RPT #66 || NOP");
-
-        if(((clock_source & 0x3) != ClkCfgRegs.CLKSRCCTL1.bit.OSCCLKSRCSEL) ||
-          (((clock_source & 0x4) >> 2) != ClkCfgRegs.XTALCR.bit.SE))
+        while(retries < SYSCTL_PLL_RETRIES)
         {
-            switch (clock_source)
+            //
+            // Turnoff the PLL
+            //
+            ClkCfgRegs.SYSPLLCTL.bit.PLLEN = 0;
+            EDIS;
+
+            //
+            // Delay of at least 66 OSCCLK cycles
+            //
+            asm(" RPT #66 || NOP");
+
+            if(((clock_source & 0x3) != ClkCfgRegs.CLKSRCCTL1.bit.OSCCLKSRCSEL) ||
+              (((clock_source & 0x4) >> 2) != ClkCfgRegs.XTALCR.bit.SE))
             {
-                case INT_WROSCDIV8:
-                    WrOscdiv8Sel();
-                    break;
+                switch (clock_source)
+                {
+                    case INT_WROSCDIV8:
+                        WrOscdiv8Sel();
+                        break;
 
-                case INT_SYSOSCDIV4:
-                    SysOscdiv4Sel();
-                    break;
+                    case INT_SYSOSCDIV4:
+                        SysOscdiv4Sel();
+                        break;
 
-                case XTAL_OSC:
-                    SysXtalOscSel();
-                    break;
+                    case XTAL_OSC:
+                        SysXtalOscSel();
+                        break;
 
-                case XTAL_OSC_SE:
-                    SysXtalOscSESel();
-                    break;
+                    case XTAL_OSC_SE:
+                        SysXtalOscSESel();
+                        break;
+                }
             }
-        }
 
-        //
-        // Delay of at least 60 OSCCLK cycles
-        //
-        asm(" RPT #60 || NOP");
+            //
+            // Delay of at least 60 OSCCLK cycles
+            //
+            asm(" RPT #60 || NOP");
 
-        EALLOW;
+            EALLOW;
 
-        //
-        // Set dividers to /1 to ensure the fastest PLL configuration
-        //
-        ClkCfgRegs.SYSCLKDIVSEL.bit.PLLSYSCLKDIV = 0;
+            //
+            // Set dividers to /1 to ensure the fastest PLL configuration
+            //
+            ClkCfgRegs.SYSCLKDIVSEL.bit.PLLSYSCLKDIV = 0;
 
-        //
-        // Program PLL multipliers
-        //
-        ClkCfgRegs.SYSPLLMULT.all = temp_syspllmult;
+            //
+            // Program PLL multipliers
+            //
+            ClkCfgRegs.SYSPLLMULT.all = temp_syspllmult;
 
-        //
-        // Enable SYSPLL
-        //
-        ClkCfgRegs.SYSPLLCTL.bit.PLLEN = 1;
+            //
+            // Enable SYSPLL
+            //
+            ClkCfgRegs.SYSPLLCTL.bit.PLLEN = 1;
 
-        //
-        // Lock time is 1024 OSCCLK * (PDIV+1)
-        //
-        timeout = (1024U * (pdiv + 1U));
-        pllLockStatus = ClkCfgRegs.SYSPLLSTS.bit.LOCKS;
-
-        //
-        // Wait for the SYSPLL lock
-        //
-        while((pllLockStatus != 1) && (timeout != 0U))
-        {
+            //
+            // Lock time is 1024 OSCCLK * (PDIV+1)
+            //
+            timeout = (1024U * (pdiv + 1U));
             pllLockStatus = ClkCfgRegs.SYSPLLSTS.bit.LOCKS;
-            timeout--;
+
+            //
+            // Wait for the SYSPLL lock
+            //
+            while((pllLockStatus != 1) && (timeout != 0U))
+            {
+                pllLockStatus = ClkCfgRegs.SYSPLLSTS.bit.LOCKS;
+                timeout--;
+            }
+
+            EDIS;
+
+            //
+            // Check PLL Frequency using DCC
+            //
+            status = IsPLLValid(dccbase, clock_source, INT_PLL_SYSPLL,
+                                multiplier, rdiv , pdiv);
+            if(status)
+            {
+                break;
+            }
+            retries ++;
         }
-
-        EDIS;
-
-        //
-        // Check PLL Frequency using DCC
-        //
-        status = IsPLLValid(dccbase, clock_source, INT_PLL_SYSPLL,
-                            multiplier, rdiv , pdiv);
 
     }
     else

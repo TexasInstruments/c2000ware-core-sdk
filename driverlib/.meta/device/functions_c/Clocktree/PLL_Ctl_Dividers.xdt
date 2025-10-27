@@ -32,9 +32,15 @@ const device  					= device_common.device;
 
     //
     // Set up CMCLK to use AUXPLL as the clock source and set the
-    // clock divider to 1.
+    // clock divider.
     //
-    SysCtl_setCMClk(SYSCTL_CMCLKOUT_DIV_1,SYSCTL_SOURCE_AUXPLL);
+    %if(!system.clockTree.CMCLKDIV){
+    %var DEVICE_CMCLK_DIV = 1;
+    %}
+    %else{
+    %var DEVICE_CMCLK_DIV = system.clockTree.CMCLKDIV.divideValue;
+    %}    
+    SysCtl_setCMClk(SYSCTL_CMCLKOUT_DIV_`DEVICE_CMCLK_DIV`,SYSCTL_SOURCE_AUXPLL);
 	% }
 % if(clocktree_PLL_Ctl_Dividers_Type2.includes(device))
 	% {

@@ -61,7 +61,7 @@
 //
 //
 // 
-// C2000Ware v6.00.00.00
+// C2000Ware v6.00.01.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -132,7 +132,7 @@ volatile struct EPWM_REGS *ePWM[PWM_CH] = {0, &EPwm1Regs, &EPwm2Regs,
                                            &EPwm15Regs, &EPwm16Regs,
                                            &EPwm17Regs, &EPwm18Regs};
 
-extern volatile struct HRPWMCAL_REGS *gHrpwmCal_base;                                        
+extern volatile struct HRPWMCAL_REGS *gHrpwmCal_base;
 
 //
 // Function Prototypes

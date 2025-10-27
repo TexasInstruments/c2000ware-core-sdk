@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">F28E12x Driverib and Example User Guide
-   &#160;<span id="projectnumber">6.00.00.00</span>
+   &#160;<span id="projectnumber">6.00.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -161,6 +161,12 @@ Functions</h2></td></tr>
 <tr class="separator:ga98e2f552716281f947255e5ca763d74a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3e32e7d5a6618ac054685004a7f0a9ae"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__adc__api.html#ga3e32e7d5a6618ac054685004a7f0a9ae">ADC_setSOCPriority</a> (uint32_t base, <a class="el" href="group__adc__api.html#ga4f60e7ea55578eb4eb621f31b0b8d434">ADC_PriorityMode</a> priMode)</td></tr>
 <tr class="separator:ga3e32e7d5a6618ac054685004a7f0a9ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa78853849893166467a9786799a689df"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__adc__api.html#gaa78853849893166467a9786799a689df">ADC_configOSDetectMode</a> (uint32_t base, <a class="el" href="group__adc__api.html#ga1382e9ae48e28340cff1ea75f6f59ac8">ADC_OSDetectMode</a> modeVal)</td></tr>
+<tr class="separator:gaa78853849893166467a9786799a689df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9115cce3fea54bd833a50203ade7b1ce"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__adc__api.html#ga9115cce3fea54bd833a50203ade7b1ce">ADC_enableOSDetectMode</a> (uint32_t base)</td></tr>
+<tr class="separator:ga9115cce3fea54bd833a50203ade7b1ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac2806ead8415c9bce85abb61e728dd5c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__adc__api.html#gac2806ead8415c9bce85abb61e728dd5c">ADC_disableOSDetectMode</a> (uint32_t base)</td></tr>
+<tr class="separator:gac2806ead8415c9bce85abb61e728dd5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3d1903175f9643e20d98597894b66982"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__adc__api.html#ga3d1903175f9643e20d98597894b66982">ADC_setupPPB</a> (uint32_t base, <a class="el" href="group__adc__api.html#ga17f0c071ab2c71a40e3d95c9eeadf3b9">ADC_PPBNumber</a> ppbNumber, <a class="el" href="group__adc__api.html#ga254fedc72090784dcfcdcebebdf3ea39">ADC_SOCNumber</a> socNumber)</td></tr>
 <tr class="separator:ga3d1903175f9643e20d98597894b66982"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gadc2372da3f307307e45b3e5575ae28f5"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__adc__api.html#gadc2372da3f307307e45b3e5575ae28f5">ADC_enablePPBEvent</a> (uint32_t base, <a class="el" href="group__adc__api.html#ga17f0c071ab2c71a40e3d95c9eeadf3b9">ADC_PPBNumber</a> ppbNumber, uint16_t evtFlags)</td></tr>
@@ -397,6 +403,19 @@ Enumerations</h2></td></tr>
 , <a class="el" href="group__adc__api.html#gga4513a58978c46b76510fbf645bf77922a7486ac63976ca4dd678ca8d47d089d6e">ADC_REFERENCE_VREFHI</a> = 0U
  }</td></tr>
 <tr class="separator:ga4513a58978c46b76510fbf645bf77922"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1382e9ae48e28340cff1ea75f6f59ac8"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__adc__api.html#ga1382e9ae48e28340cff1ea75f6f59ac8">ADC_OSDetectMode</a> { <br />
+&#160;&#160;<a class="el" href="group__adc__api.html#gga1382e9ae48e28340cff1ea75f6f59ac8a8b7b4cab894595c4d1056ef488ad50d2">ADC_OSDETECT_MODE_DISABLED</a> = 0x0U
+, <a class="el" href="group__adc__api.html#gga1382e9ae48e28340cff1ea75f6f59ac8a0bc8c376217079542283f8c91774e536">ADC_OSDETECT_MODE_VSSA</a> = 0x1U
+, <a class="el" href="group__adc__api.html#gga1382e9ae48e28340cff1ea75f6f59ac8ae10bc136097e9958d5b5617ba8428859">ADC_OSDETECT_MODE_VDDA</a> = 0x2U
+, <a class="el" href="group__adc__api.html#gga1382e9ae48e28340cff1ea75f6f59ac8aec7f2b4f867bc685084680e5dbe67e22">ADC_OSDETECT_MODE_5BY12_VDDA</a> = 0x3U
+, <br />
+&#160;&#160;<a class="el" href="group__adc__api.html#gga1382e9ae48e28340cff1ea75f6f59ac8a8a9ee2f5a0ea746b1fb8eee9863d1f58">ADC_OSDETECT_MODE_7BY12_VDDA</a> = 0x4U
+, <a class="el" href="group__adc__api.html#gga1382e9ae48e28340cff1ea75f6f59ac8ab5a9dfa551c7bf77f6a820d52f87ec2b">ADC_OSDETECT_MODE_5K_PULLDOWN_TO_VSSA</a> = 0x5U
+, <a class="el" href="group__adc__api.html#gga1382e9ae48e28340cff1ea75f6f59ac8a7b452e69971703733b16f83812f3b8f3">ADC_OSDETECT_MODE_5K_PULLUP_TO_VDDA</a> = 0x6U
+, <a class="el" href="group__adc__api.html#gga1382e9ae48e28340cff1ea75f6f59ac8a942323fa80bf386ebfed4649d032ba9b">ADC_OSDETECT_MODE_7K_PULLDOWN_TO_VSSA</a> = 0x7U
+<br />
+ }</td></tr>
+<tr class="separator:ga1382e9ae48e28340cff1ea75f6f59ac8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga51ed1bc5073c7ef6394c3538b007e730"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__adc__api.html#ga51ed1bc5073c7ef6394c3538b007e730">ADC_SyncInput</a> { <br />
 &#160;&#160;<a class="el" href="group__adc__api.html#gga51ed1bc5073c7ef6394c3538b007e730a41950eda6b33032b1ed1796e261c5e46">ADC_SYNCIN_DISABLE</a> = 0x0
 , <a class="el" href="group__adc__api.html#gga51ed1bc5073c7ef6394c3538b007e730a656ffa7dc83419044269a595880dc7b9">ADC_SYNCIN_INPUTXBAROUTPUT5</a> = 0x1
@@ -459,6 +478,8 @@ Macros</h2></td></tr>
 <tr class="separator:gac561e8c8cd77c96253ba1d96e8b3655d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gab93b3d59039266605bee26e11b6077be"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__adc__api.html#gab93b3d59039266605bee26e11b6077be">ADC_PPBxRESULT_OFFSET_BASE</a>&#160;&#160;&#160;ADC_O_PPB1RESULT</td></tr>
 <tr class="separator:gab93b3d59039266605bee26e11b6077be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae4170875a6c7461953a7452f13cf4024"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__adc__api.html#gae4170875a6c7461953a7452f13cf4024">ASYSCTL_REFCONFIGA_CONFIG8</a>&#160;&#160;&#160;ASYSCTL_REFCONFIGA_ANAREFSEL</td></tr>
+<tr class="separator:gae4170875a6c7461953a7452f13cf4024"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga176a93bffba08939c5605585de69e991"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__adc__api.html#ga176a93bffba08939c5605585de69e991">REPCTL_MASK</a></td></tr>
 <tr class="separator:ga176a93bffba08939c5605585de69e991"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0d1b5698287de79f5f1577fcda816386"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__adc__api.html#ga0d1b5698287de79f5f1577fcda816386">ADC_PPBxPSUM_OFFSET_BASE</a>&#160;&#160;&#160;ADC_O_PPB1PSUM</td></tr>
@@ -637,6 +658,20 @@ Macros</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">#define ADC_PPBxRESULT_OFFSET_BASE&#160;&#160;&#160;ADC_O_PPB1RESULT</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gae4170875a6c7461953a7452f13cf4024"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae4170875a6c7461953a7452f13cf4024">&#9670;&nbsp;</a></span>ASYSCTL_REFCONFIGA_CONFIG8</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ASYSCTL_REFCONFIGA_CONFIG8&#160;&#160;&#160;ASYSCTL_REFCONFIGA_ANAREFSEL</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1614,6 +1649,39 @@ Macros</h2></td></tr>
 
 </div>
 </div>
+<a id="ga1382e9ae48e28340cff1ea75f6f59ac8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1382e9ae48e28340cff1ea75f6f59ac8">&#9670;&nbsp;</a></span>ADC_OSDetectMode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="group__adc__api.html#ga1382e9ae48e28340cff1ea75f6f59ac8">ADC_OSDetectMode</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Values that can be passed to <a class="el" href="group__adc__api.html#gaa78853849893166467a9786799a689df">ADC_configOSDetectMode()</a> as the <em>modeVal</em> parameter. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga1382e9ae48e28340cff1ea75f6f59ac8a8b7b4cab894595c4d1056ef488ad50d2"></a>ADC_OSDETECT_MODE_DISABLED&#160;</td><td class="fielddoc"><p>Open/Shorts detection cir- cuit(O/S DC) is disabled </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga1382e9ae48e28340cff1ea75f6f59ac8a0bc8c376217079542283f8c91774e536"></a>ADC_OSDETECT_MODE_VSSA&#160;</td><td class="fielddoc"><p>O/S DC is enabled at zero scale </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga1382e9ae48e28340cff1ea75f6f59ac8ae10bc136097e9958d5b5617ba8428859"></a>ADC_OSDETECT_MODE_VDDA&#160;</td><td class="fielddoc"><p>O/S DC is enabled at full scale </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga1382e9ae48e28340cff1ea75f6f59ac8aec7f2b4f867bc685084680e5dbe67e22"></a>ADC_OSDETECT_MODE_5BY12_VDDA&#160;</td><td class="fielddoc"><p>O/S DC is enabled at 5/12 scale </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga1382e9ae48e28340cff1ea75f6f59ac8a8a9ee2f5a0ea746b1fb8eee9863d1f58"></a>ADC_OSDETECT_MODE_7BY12_VDDA&#160;</td><td class="fielddoc"><p>O/S DC is enabled at 7/12 scale </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga1382e9ae48e28340cff1ea75f6f59ac8ab5a9dfa551c7bf77f6a820d52f87ec2b"></a>ADC_OSDETECT_MODE_5K_PULLDOWN_TO_VSSA&#160;</td><td class="fielddoc"><p>O/S DC is enabled at 5K pulldown to VSSA </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga1382e9ae48e28340cff1ea75f6f59ac8a7b452e69971703733b16f83812f3b8f3"></a>ADC_OSDETECT_MODE_5K_PULLUP_TO_VDDA&#160;</td><td class="fielddoc"><p>O/S DC is enabled at 5K pullup to VDDA </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga1382e9ae48e28340cff1ea75f6f59ac8a942323fa80bf386ebfed4649d032ba9b"></a>ADC_OSDETECT_MODE_7K_PULLDOWN_TO_VSSA&#160;</td><td class="fielddoc"><p>O/S DC is enabled at 7K pulldown to VSSA </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 <a id="ga51ed1bc5073c7ef6394c3538b007e730"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga51ed1bc5073c7ef6394c3538b007e730">&#9670;&nbsp;</a></span>ADC_SyncInput</h2>
 
@@ -1866,7 +1934,7 @@ Macros</h2></td></tr>
 </dl>
 <p>This function configures the a start-of-conversion (SOC) in the ADC module.</p>
 <p>The <em>socNumber</em> number is a value <b>ADC_SOC_NUMBERX</b> where X is a number from 0 to 15 specifying which SOC is to be configured on the ADC module specified by <em>base</em>.</p>
-<p>The <em>trigger</em> specifies the event that causes the SOC such as software, a timer interrupt, an PWM event, or an ADC interrupt. It should be a value in the format of <b>ADC_TRIGGER_XXXX</b> where XXXX is the event such as <b>ADC_TRIGGER_SW_ONLY</b>, <b>ADC_TRIGGER_CPU1_TINT0</b>, <b>ADC_TRIGGER_GPIO</b>, <b>ADC_TRIGGER_PWM1_SOCA</b>, and so on.</p>
+<p>The <em>trigger</em> specifies the event that causes the SOC such as software, a timer interrupt, an MCPWM event, or an ADC interrupt. It should be a value in the format of <b>ADC_TRIGGER_XXXX</b> where XXXX is the event such as <b>ADC_TRIGGER_SW_ONLY</b>, <b>ADC_TRIGGER_CPU1_TINT0</b>, <b>ADC_TRIGGER_GPIO</b>, <b>ADC_TRIGGER_MCPWM1_SOCA</b>, and so on.</p>
 <p>The <em>channel</em> parameter specifies the channel to be converted. In single-ended mode this is a single pin given by <b>ADC_CH_ADCINx</b> where x is the number identifying the pin between 0 and 15 inclusive.</p>
 <p>The <em>sampleWindow</em> parameter is the acquisition window duration in SYSCLK cycles. The selected duration must be at least as long as one ADCCLK cycle. Also, the datasheet will specify a minimum window duration requirement in nanoseconds. The sample window value is calculated based on the combination of ACQPS[7:6] and ACQPS[5:0], where ACQPS[7:6] determines scale and ACQPS[7:6] determines offset. If ACQPS[7:6] value is: "00" -&gt; sample window = ACQPS[5:0] + 1 sysclk cycles "01" -&gt; sample window = 64 + ((ACQPS[5:0] +1) * 2) sysclk cycles "10" -&gt; sample window = 192 + ((ACQPS[5:0] +1) * 4) sysclk cycles "11" -&gt; sample window = 448 + ((ACQPS[5:0] +1) * 16) sysclk cycles Based on the <em>sampleWindow</em> corresponding ACQPS value will be calculated and configured in ADCSOCxCTL register.</p>
 <dl class="section return"><dt>Returns</dt><dd>None. </dd></dl>
@@ -3081,6 +3149,122 @@ Macros</h2></td></tr>
 <li>All priorities are in high priority mode. This means that the priority of the SOC is determined by its SOC number. This option is selected by passing in the value <b>ADC_PRI_ALL_HIPRI</b>.</li>
 <li>A range of SOCs are assigned high priority, with all others in round robin mode. High priority mode means that an SOC with high priority will interrupt the round robin wheel and insert itself as the next conversion. Passing in the value <b>ADC_PRI_SOC0_HIPRI</b> will make SOC0 highest priority, <b>ADC_PRI_THRU_SOC1_HIPRI</b> will put SOC0 and SOC 1 in high priority, and so on up to <b>ADC_PRI_THRU_SOC2_HIPRI</b> where SOCs 0 through 2 are in high priority.</li>
 </ul>
+<dl class="section return"><dt>Returns</dt><dd>None. </dd></dl>
+
+</div>
+</div>
+<a id="gaa78853849893166467a9786799a689df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa78853849893166467a9786799a689df">&#9670;&nbsp;</a></span>ADC_configOSDetectMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void ADC_configOSDetectMode </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>base</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__adc__api.html#ga1382e9ae48e28340cff1ea75f6f59ac8">ADC_OSDetectMode</a>&#160;</td>
+          <td class="paramname"><em>modeVal</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Configures Open/Shorts Detection Circuit Mode.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">base</td><td>is the base address of the ASYSCTL. </td></tr>
+    <tr><td class="paramname">modeVal</td><td>is the desired open/shorts detection circuit mode.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This function configures the open/shorts detection circuit mode of the ADC. Use <a class="el" href="group__adc__api.html#ga9115cce3fea54bd833a50203ade7b1ce">ADC_enableOSDetectMode()</a> API to enable the OSDETECT logic.</p>
+<dl class="section return"><dt>Returns</dt><dd>None. </dd></dl>
+
+</div>
+</div>
+<a id="ga9115cce3fea54bd833a50203ade7b1ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9115cce3fea54bd833a50203ade7b1ce">&#9670;&nbsp;</a></span>ADC_enableOSDetectMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void ADC_enableOSDetectMode </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>base</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Enables Open/Shorts Detection Circuit logic.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">base</td><td>is the base address of the ASYSCTL.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This function enables the open/short detection circuit logic. Use <a class="el" href="group__adc__api.html#gaa78853849893166467a9786799a689df">ADC_configOSDetectMode()</a> to configure the mode of open/shorts detection circuit.</p>
+<dl class="section return"><dt>Returns</dt><dd>None. </dd></dl>
+
+</div>
+</div>
+<a id="gac2806ead8415c9bce85abb61e728dd5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac2806ead8415c9bce85abb61e728dd5c">&#9670;&nbsp;</a></span>ADC_disableOSDetectMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void ADC_disableOSDetectMode </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>base</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Disables Open/Shorts Detection Circuit logic.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">base</td><td>is the base address of the ASYSCTL.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>This function disables the open/short detection circuit logic.</p>
 <dl class="section return"><dt>Returns</dt><dd>None. </dd></dl>
 
 </div>

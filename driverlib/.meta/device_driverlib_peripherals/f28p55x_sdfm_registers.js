@@ -25,7 +25,7 @@ let SDFMRegisters = [
 			{ name: "SDFFINT2", description: "SDFIFO interrupt for Ch2", size: "1", shift: "21", mask: "0x200000" },
 			{ name: "SDFFINT3", description: "SDFIFO interrupt for Ch3", size: "1", shift: "22", mask: "0x400000" },
 			{ name: "SDFFINT4", description: "SDFIFO interrupt for Ch4", size: "1", shift: "23", mask: "0x800000" },
-			{ name: "MIF", description: "Main Interrupt Flag", size: "1", shift: "31", mask: "0x80000000" },
+			{ name: "MIF", description: "Master Interrupt Flag", size: "1", shift: "31", mask: "0x80000000" },
 		]
 	},
 	{ name: "SDIFLGCLR", description: "SD Interrupt Flag Clear Register", offset: "0x2",
@@ -54,7 +54,7 @@ let SDFMRegisters = [
 			{ name: "SDFFINT2", description: "SDFIFO Interrupt flag-clear bit for Ch2", size: "1", shift: "21", mask: "0x200000" },
 			{ name: "SDFFINT3", description: "SDFIFO Interrupt flag-clear bit for Ch3", size: "1", shift: "22", mask: "0x400000" },
 			{ name: "SDFFINT4", description: "SDFIFO Interrupt flag-clear bit for Ch4", size: "1", shift: "23", mask: "0x800000" },
-			{ name: "MIF", description: "Main Interrupt Flag", size: "1", shift: "31", mask: "0x80000000" },
+			{ name: "MIF", description: "Master Interrupt Flag", size: "1", shift: "31", mask: "0x80000000" },
 		]
 	},
 	{ name: "SDCTL", description: "SD Control Register", offset: "0x4",
@@ -63,12 +63,12 @@ let SDFMRegisters = [
 			{ name: "HZ2", description: "High-level Threshold crossing (Z) flag Ch2", size: "1", shift: "1", mask: "0x2" },
 			{ name: "HZ3", description: "High-level Threshold crossing (Z) flag Ch3", size: "1", shift: "2", mask: "0x4" },
 			{ name: "HZ4", description: "High-level Threshold crossing (Z) flag Ch4", size: "1", shift: "3", mask: "0x8" },
-			{ name: "MIE", description: "Main SDy_ERR Interrupt enable", size: "1", shift: "13", mask: "0x2000" },
+			{ name: "MIE", description: "Master SDy_ERR Interrupt enable", size: "1", shift: "13", mask: "0x2000" },
 		]
 	},
-	{ name: "SDMFILEN", description: "SD Main Filter Enable", offset: "0x6",
+	{ name: "SDMFILEN", description: "SD Master Filter Enable", offset: "0x6",
 		bits: [
-			{ name: "MFE", description: "Main Filter Enable.", size: "1", shift: "11", mask: "0x800" },
+			{ name: "MFE", description: "Master Filter Enable.", size: "1", shift: "11", mask: "0x800" },
 		]
 	},
 	{ name: "SDSTATUS", description: "SD Status Register", offset: "0x7",

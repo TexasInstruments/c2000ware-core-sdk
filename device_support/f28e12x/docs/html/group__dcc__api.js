@@ -21,7 +21,7 @@ var group__dcc__api =
       [ "DCC_COUNT1SRC_SYSCLK", "group__dcc__api.html#gga7add4a61bd1021a4544f99b59180c076a61d7b0f279103e3c0999e39ca4347f73", null ],
       [ "DCC_COUNT1SRC_XBAR_IN15", "group__dcc__api.html#gga7add4a61bd1021a4544f99b59180c076aac4db1120e78eb67cd0be3703e46aaf2", null ],
       [ "DCC_COUNT1SRC_AUXCLKIN", "group__dcc__api.html#gga7add4a61bd1021a4544f99b59180c076a7830cf952fd5de743857e5293d55745e", null ],
-      [ "DCC_COUNT1SRC_EPWM", "group__dcc__api.html#gga7add4a61bd1021a4544f99b59180c076a9376073a28339d5302348d7d63c08436", null ],
+      [ "DCC_COUNT1SRC_MCPWM", "group__dcc__api.html#gga7add4a61bd1021a4544f99b59180c076a244bd2733e51d1b97bf2474f094b300d", null ],
       [ "DCC_COUNT1SRC_LSPCLK", "group__dcc__api.html#gga7add4a61bd1021a4544f99b59180c076ae9ed75b664aafb4bab22ec9f43d8b2c4", null ],
       [ "DCC_COUNT1SRC_ADCCLK", "group__dcc__api.html#gga7add4a61bd1021a4544f99b59180c076a77cd3be86e7f672aa6600beec468de3f", null ],
       [ "DCC_COUNT1SRC_WDCLK", "group__dcc__api.html#gga7add4a61bd1021a4544f99b59180c076ad906f548bd30b7095633c49a6227779c", null ],

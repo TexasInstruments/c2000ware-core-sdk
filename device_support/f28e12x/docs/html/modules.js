@@ -2,6 +2,8 @@ var modules =
 [
     [ "ADC", "group__adc__api.html", "group__adc__api" ],
     [ "ASysCtl", "group__asysctl__api.html", "group__asysctl__api" ],
+    [ "CMPSS", "group__cmpss__api.html", "group__cmpss__api" ],
+    [ "CMPSS-Lite", "group__cmpss__lite__api.html", "group__cmpss__lite__api" ],
     [ "CPUTimer", "group__cputimer__api.html", "group__cputimer__api" ],
     [ "DCC", "group__dcc__api.html", "group__dcc__api" ],
     [ "DCSM", "group__dcsm__api.html", "group__dcsm__api" ],

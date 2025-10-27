@@ -153,6 +153,10 @@ if (["F28P55x"].includes(Common.getDeviceName())){
     if (!["100PZ","128PDT"].includes(Common.getDevicePackage()))
     pinMuxReq = Pinmux.gpioWithPeripheralPinmuxRequirements;
 }
+if (["F28P551x"].includes(Common.getDeviceName())){
+    if (!["100PZ"].includes(Common.getDevicePackage()))
+    pinMuxReq = Pinmux.gpioWithPeripheralPinmuxRequirements;
+}
 
 if (["F28E12x"].includes(Common.getDeviceName())){
     pinMuxReq = Pinmux.gpioWithPeripheralPinmuxRequirements;

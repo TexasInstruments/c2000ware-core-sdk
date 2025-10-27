@@ -34,7 +34,7 @@ Data (Re)Synchronization Jump Width Range (DSJW) at Cell C60\n
 
 var Line0IntName = "INT_MCANA_0";
 var Line1IntName = "INT_MCANA_1";
-if ((["F28006x"].includes(Common.getDeviceName())) || (["F28P55x"].includes(Common.getDeviceName()))){
+if ((["F28006x"].includes(Common.getDeviceName())) || (["F28P55x","F28P551x"].includes(Common.getDeviceName()))){
     Line0IntName = "INT_#_0";
     Line1IntName = "INT_#_1";
 }

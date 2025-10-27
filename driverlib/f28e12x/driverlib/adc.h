@@ -82,6 +82,11 @@ extern "C"
 #define ADC_DMAINTSEL_OFFSET_BASE   ADC_O_DMAINTSEL
 #define ADC_PPBxRESULT_OFFSET_BASE  ADC_O_PPB1RESULT
 
+//
+// CONFIG8 register bitfield was renamed to ANAREFSEL
+//
+#define ASYSCTL_REFCONFIGA_CONFIG8      ASYSCTL_REFCONFIGA_ANAREFSEL
+
 //*****************************************************************************
 //
 // Define to mask out the bits in the REPxCTL register that aren't associated
@@ -393,6 +398,32 @@ typedef enum
     ADC_REFERENCE_VREFHI    = 0U, //!< This value is valid when ADC reference
                                   //!< mode is external
 } ADC_ReferenceVoltage;
+
+//*****************************************************************************
+//
+//! Values that can be passed to ADC_configOSDetectMode() as the \e modeVal
+//! parameter.
+//
+//*****************************************************************************
+typedef enum
+{
+    ADC_OSDETECT_MODE_DISABLED            = 0x0U,//!< Open/Shorts detection cir-
+                                                 //!< cuit(O/S DC) is disabled
+    ADC_OSDETECT_MODE_VSSA                = 0x1U,//!< O/S DC is enabled at zero
+                                                 //!< scale
+    ADC_OSDETECT_MODE_VDDA                = 0x2U,//!< O/S DC is enabled at full
+                                                 //!< scale
+    ADC_OSDETECT_MODE_5BY12_VDDA          = 0x3U,//!< O/S DC is enabled at 5/12
+                                                 //!< scale
+    ADC_OSDETECT_MODE_7BY12_VDDA          = 0x4U,//!< O/S DC is enabled at 7/12
+                                                 //!< scale
+    ADC_OSDETECT_MODE_5K_PULLDOWN_TO_VSSA = 0x5U,//!< O/S DC is enabled at 5K
+                                                 //!< pulldown to VSSA
+    ADC_OSDETECT_MODE_5K_PULLUP_TO_VDDA   = 0x6U,//!< O/S DC is enabled at 5K
+                                                 //!< pullup to VDDA
+    ADC_OSDETECT_MODE_7K_PULLDOWN_TO_VSSA = 0x7U //!< O/S DC is enabled at 7K
+                                                 //!< pulldown to VSSA
+} ADC_OSDetectMode;
 
 
 //*****************************************************************************
@@ -1548,6 +1579,96 @@ ADC_setSOCPriority(uint32_t base, ADC_PriorityMode priMode)
     EDIS;
 }
 
+//*****************************************************************************
+//
+//! Configures Open/Shorts Detection Circuit Mode.
+//!
+//! \param base is the base address of the ASYSCTL.
+//! \param modeVal is the desired open/shorts detection circuit mode.
+//!
+//! This function configures the open/shorts detection circuit mode of the ADC.
+//! Use ADC_enableOSDetectMode() API to enable the OSDETECT logic.
+//!
+//! \return None.
+//
+//*****************************************************************************
+static inline void
+ADC_configOSDetectMode(uint32_t base, ADC_OSDetectMode modeVal)
+{
+
+    //
+    // Check the arguments.
+    //
+    ASSERT(base == ANALOGSUBSYS_BASE);
+
+    //
+    // Configure open/shorts detection circuit mode.
+    //
+    EALLOW;
+    HWREGH(base + ASYSCTL_O_ADCOSDETECT) =
+                        ((HWREGH(base + ASYSCTL_O_ADCOSDETECT) &
+                        (~ASYSCTL_ADCOSDETECT_DETECTCFG_M)) |
+                        ((uint16_t)modeVal << ASYSCTL_ADCOSDETECT_DETECTCFG_S));
+    EDIS;
+}
+
+//*****************************************************************************
+//
+//! Enables Open/Shorts Detection Circuit logic.
+//!
+//! \param base is the base address of the ASYSCTL.
+//!
+//! This function enables the open/short detection circuit logic. Use
+//! ADC_configOSDetectMode() to configure the mode of open/shorts detection
+//! circuit.
+//!
+//! \return None.
+//
+//*****************************************************************************
+static inline void
+ADC_enableOSDetectMode(uint32_t base)
+{
+    //
+    // Check the arguments.
+    //
+    ASSERT(base == ANALOGSUBSYS_BASE);
+
+    //
+    // Enable open/shorts detection circuit.
+    //
+
+    EALLOW;
+    HWREGH(base + ASYSCTL_O_ADCOSDETECT) |= ASYSCTL_ADCOSDETECT_OSDETECT_EN;
+    EDIS;
+}
+
+//*****************************************************************************
+//
+//! Disables Open/Shorts Detection Circuit logic.
+//!
+//! \param base is the base address of the ASYSCTL.
+//!
+//! This function disables the open/short detection circuit logic.
+//!
+//! \return None.
+//
+//*****************************************************************************
+static inline void
+ADC_disableOSDetectMode(uint32_t base)
+{
+    //
+    // Check the arguments.
+    //
+    ASSERT(base == ANALOGSUBSYS_BASE);
+
+    //
+    // Disable open/shorts detection circuit.
+    //
+
+    EALLOW;
+    HWREGH(base + ASYSCTL_O_ADCOSDETECT) &= ~ASYSCTL_ADCOSDETECT_OSDETECT_EN;
+    EDIS;
+}
 //*****************************************************************************
 //
 //! Configures a post-processing block (PPB) in the ADC.

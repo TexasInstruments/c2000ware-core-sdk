@@ -24,9 +24,9 @@ var globalConfig = [
         readOnly    : true,
     },
 ]
-var pmbus_fast_plus_supported_devices = ['f28p55x']
-var pmbus_fast_supported_devices = ['f28p55x', 'f28p65x', 'f2838x', 'f28002x', 'f28003x', 'f28004x', 'f280015x']
-var pmbus_zero_hold_supported_devices = ['f28p55x']
+var pmbus_fast_plus_supported_devices = ['f28p55x','f28p551x']
+var pmbus_fast_supported_devices = ['f28p55x', 'f28p551x','f28p65x', 'f2838x', 'f28002x', 'f28003x', 'f28004x', 'f280015x']
+var pmbus_zero_hold_supported_devices = ['f28p55x','f28p551x']
 
 var hide_pmbus_fast_plus_options = null;
 var hide_pmbus_fast_options = null;
@@ -230,9 +230,9 @@ function onValidate(inst, validation)
     var pinmuxQualMods = Pinmux.getGpioQualificationModInstDefinitions("PMBUS", inst)
     for (var pinmuxQualMod of pinmuxQualMods)
     {
-        if ((!inst[pinmuxQualMod.name].padConfig.includes("OD")) || (inst[pinmuxQualMod.name].padConfig.includes("INVERT")))
+        if ((inst[pinmuxQualMod.name].padConfig.includes("INVERT")))
         {
-            validation.logError("The push-pull and inverted pad configurations should not be used for the PMBus module.", inst);
+            validation.logError("The inverted pad configurations should not be used for the PMBus module.", inst);
         }
     }
 }
@@ -464,7 +464,7 @@ var pmbusModule = {
         var pinmuxQualMods = Pinmux.getGpioQualificationModInstDefinitions("PMBUS", inst)
         for (var pinmuxQualMod of pinmuxQualMods)
         {
-            pinmuxQualMod.args.padConfig = "OD_PULLUP";
+            pinmuxQualMod.args.padConfig = "PULLUP";
             pinmuxQualMod.args.qualMode = "GPIO_QUAL_ASYNC";
         }
         ownedInstances = ownedInstances.concat(pinmuxQualMods)

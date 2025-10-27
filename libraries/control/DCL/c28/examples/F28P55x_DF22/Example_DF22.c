@@ -14,7 +14,10 @@
 
 // input data
 #pragma DATA_SECTION(e_array, "PDataLogSection")
-float e_array[DATA_LENGTH];
+const float e_array[DATA_LENGTH]=
+{
+#include "DF22_edata.dat"
+};
 FDLOG eBuf = FDLOG_DEFAULTS;
 
 // full controller results
@@ -39,7 +42,7 @@ extern interrupt void control_Isr(void);
 // global  variables
 long IdleLoopCount = 0;
 long IsrCount = 0;
-int complete = 0;
+int complete = 0, fail=0;
 float ek;
 float u1k;
 float u2k;
@@ -66,7 +69,7 @@ main()
     Interrupt_enable(INT_TIMER0);
 
 	// initialise data arrays
-	DCL_initLog(&eBuf, e_array, DATA_LENGTH);
+	DCL_initLog(&eBuf, (float32_t *)e_array, DATA_LENGTH);
 	DCL_initLog(&u1Buf, u1_array, DATA_LENGTH);
 	DCL_initLog(&u2Buf, u2_array, DATA_LENGTH);
 	DCL_initLog(&dBuf, d_array, DATA_LENGTH);
@@ -147,6 +150,13 @@ interrupt void control_Isr(void)
 
 		// compute difference
 		dk = u1k - u2k;
+
+		// compute difference
+		dk = u1k - u2k;
+		if(dk!=0)
+		{
+			fail++;
+		}
 
 		// store results
 		DCL_writeLog(&u1Buf, u1k);

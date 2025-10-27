@@ -43,7 +43,7 @@
 //!  - Interrupt occurrence count (COUNTER_2)
 //!  - ISR execution count (COUNTER_3)
 //!  - ISR entry delay cycle count (maximum value of COUNTER_4)
-//!  - x - To show that the ISR executed
+//!  - RTOSintCount - To show that the ISR executed
 //!
 //
 //##############################################################################

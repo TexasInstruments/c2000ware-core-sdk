@@ -108,7 +108,7 @@ device_driverlib_peripheral.CLA_TaskNumber.
 
 
 // If device has CLA version 2, add task 8 background task configuration option
-var CLA2_device_list = ["f28004x", "f2838x", "f28003x", "f28p65x", "f28p55x"];
+var CLA2_device_list = ["f28004x", "f2838x", "f28003x", "f28p65x", "f28p55x", "f28p551x"];
 
 if (CLA2_device_list.includes(Common.getDeviceName().toLowerCase()))
 {

@@ -134,10 +134,10 @@ void done(void)
 // __error__
 //
 //*****************************************************************************
-void __error__(const char *filename, uint32_t line)
-{
-    __asm(" ESTOP0");
-}
+//void __error__(const char *filename, uint32_t line)
+//{
+//    __asm(" ESTOP0");
+//}
 
 //
 // End of File

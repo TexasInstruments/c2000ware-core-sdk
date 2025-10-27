@@ -28,7 +28,7 @@
 //
 //
 // 
-// C2000Ware v6.00.00.00
+// C2000Ware v6.00.01.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -109,7 +109,7 @@ void main(void)
 
     //
     // Verify the frequency of PLL clock using the XTAL as reference clock
-    // FClk1 = PLL frequency = 150MHz
+    // FClk1 = PLL frequency = 300MHz
     // FClk0 = XTAL frequency = 20MHz
     // Tolerance = 1%
     // Allowable Frequency Tolerance = 0% (update as per the error in the XTAL frequency)

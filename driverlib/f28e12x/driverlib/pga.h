@@ -67,6 +67,10 @@ extern "C"
 #include "cpu.h"
 #include "debug.h"
 
+#define PGA_MMUX_NAKED_OPAMP                    PGA_MMUX_STANDALONE_OPAMP
+#define PGA_MMUX_INVERTING_GAIN_NEG             PGA_MMUX_INVERTING_GAIN_INM1
+#define PGA_MMUX_INVERTING_GAIN_NEG_SHARED      PGA_MMUX_INVERTING_GAIN_INM2
+
 //*****************************************************************************
 //
 //! Values that can be passed to PGA_setGain() as the \e gainValue parameter.
@@ -140,13 +144,13 @@ typedef enum
 //*****************************************************************************
 typedef enum
 {
-    PGA_MMUX_NAKED_OPAMP               = 0x00U, //!< Naked op-amp mode
+    PGA_MMUX_STANDALONE_OPAMP          = 0x00U, //!< Stand alone op-amp mode
     PGA_MMUX_NON_INVERTING_GAIN_VSSA   = 0x01U, //!< VSSA as MMUX input for
                                                 //!< Non-Inverting gain mode
-    PGA_MMUX_INVERTING_GAIN_NEG        = 0x02U, //!< PGA_NEG as MMUX input for
+    PGA_MMUX_INVERTING_GAIN_INM1       = 0x02U, //!< PGA_INM1 as MMUX input for
                                                 //!< Inverting gain mode
-    PGA_MMUX_INVERTING_GAIN_NEG_SHARED = 0x03U //!< PGA_NEG_SHARED as MMUX input
-                                               //!< for Inverting gain mode
+    PGA_MMUX_INVERTING_GAIN_INM2       = 0x03U  //!< PGA_INM2 as MMUX input
+                                                //!< for Inverting gain mode
 }PGA_MMUXInput;
 
 //*****************************************************************************

@@ -22,6 +22,9 @@ const clocktree_Asserts_Type3 			= device_common.clocktree_Asserts_Type3;
 const clocktree_Asserts_Type4 			= device_common.clocktree_Asserts_Type4;
 const clocktree_Asserts_Type5 			= device_common.clocktree_Asserts_Type5;
 const clocktree_Asserts_Type6 			= device_common.clocktree_Asserts_Type6;
+const clocktree_Asserts_Type7 			= device_common.clocktree_Asserts_Type7;
+const clocktree_Asserts_Type8 			= device_common.clocktree_Asserts_Type8;
+const clocktree_Asserts_Type9 			= device_common.clocktree_Asserts_Type9;
 const xtal_x1_macro 				= clocktree_common.xtal_x1_macro;
 const device  					= device_common.device;
 %%}
@@ -183,6 +186,18 @@ const device  					= device_common.device;
 %		canBclkSrc 	 	= "CAN_CLOCK_SOURCE_AUX"
 %		break
 %}
+%if(!system.clockTree.CLBCLKDIV){
+%var DEVICE_CLK_CLB_DIV = 6;
+%}
+%else{
+%var DEVICE_CLK_CLB_DIV = system.clockTree.CLBCLKDIV.divideValue;
+%}
+%if(!system.clockTree.TILECLKDIV){
+%var DEVICE_CLK_CLBT_DIV = 1;
+%}
+%else{
+%var DEVICE_CLK_CLBT_DIV = system.clockTree.TILECLKDIV.divideValue;
+%}
     //
     // These asserts will check that the #defines for the clock rates in
     // device.h match the actual rates that have been configured. If they do
@@ -202,6 +217,7 @@ const device  					= device_common.device;
     SysCtl_setEMIF2ClockDivider(SYSCTL_EMIF2CLK_DIV_`DEVICE_CLK_EMIF2_DIV`);
     SysCtl_setECatClk(SYSCTL_ECATCLKOUT_DIV_`DEVICE_CLK_ECAT_DIV`, `ecatclkSrc`, 0x1U);
     SysCtl_setEnetClk(SYSCTL_ENETCLKOUT_DIV_`DEVICE_CLK_ENET_DIV`, `enetclkSrc`);
+    SysCtl_setCLBClkDivider(SYSCTL_CLBCLKOUT_DIV_`DEVICE_CLK_CLB_DIV`,SYSCTL_CLBTCLKOUT_DIV_`DEVICE_CLK_CLBT_DIV`);
     ASSERT(SysCtl_getClock(DEVICE_OSCSRC_FREQ) == DEVICE_SYSCLK_FREQ);
     ASSERT(SysCtl_getLowSpeedClock(DEVICE_OSCSRC_FREQ) == DEVICE_LSPCLK_FREQ);
     ASSERT(SysCtl_getAuxClock(DEVICE_OSCSRC_FREQ) == DEVICE_AUXCLK_FREQ);
@@ -233,6 +249,18 @@ const device  					= device_common.device;
 %}
 %else{
 %var DEVICE_CLK_LINB_DIV = system.clockTree.LINBCLKDIV.divideValue;
+%}
+%if(!system.clockTree.CLBCLKDIV){
+%var DEVICE_CLK_CLB_DIV = 6;
+%}
+%else{
+%var DEVICE_CLK_CLB_DIV = system.clockTree.CLBCLKDIV.divideValue;
+%}
+%if(!system.clockTree.TILECLKDIV){
+%var DEVICE_CLK_CLBT_DIV = 1;
+%}
+%else{
+%var DEVICE_CLK_CLBT_DIV = system.clockTree.TILECLKDIV.divideValue;
 %}
 %var DEVICE_CLK_MCANA_DIV = system.clockTree.MCANACLKDIV.divideValue;
 %var DEVICE_CLK_MCANB_DIV = system.clockTree.MCANBCLKDIV.divideValue;
@@ -302,6 +330,7 @@ const device  					= device_common.device;
     CAN_selectClockSource(CANA_BASE, `canAclkSrc`);
     SysCtl_setMCANClk(SYSCTL_MCANA, SYSCTL_MCANCLK_DIV_`DEVICE_CLK_MCANA_DIV`);
     SysCtl_setMCANClk(SYSCTL_MCANB, SYSCTL_MCANCLK_DIV_`DEVICE_CLK_MCANB_DIV`);
+    SysCtl_setCLBClkDivider(SYSCTL_CLBCLKOUT_DIV_`DEVICE_CLK_CLB_DIV`,SYSCTL_CLBTCLKOUT_DIV_`DEVICE_CLK_CLBT_DIV`);
     SysCtl_setEPWMClockDivider(SYSCTL_EPWMCLK_DIV_`DEVICE_CLK_EPWM_DIV`);
     SysCtl_setEMIF1ClockDivider(SYSCTL_EMIF1CLK_DIV_`DEVICE_CLK_EMIF_DIV`);
     SysCtl_setECatClk(SYSCTL_ECATCLKOUT_DIV_`DEVICE_CLK_ECAT_DIV`, `ecatclkSrc`, 0x1U);
@@ -349,6 +378,18 @@ const device  					= device_common.device;
 %		canAclkSrc 	 	= "CAN_CLOCK_SOURCE_AUX"
 %		break
 %}
+%if(!system.clockTree.CLBCLKDIV){
+%var DEVICE_CLK_CLB_DIV = 6;
+%}
+%else{
+%var DEVICE_CLK_CLB_DIV = system.clockTree.CLBCLKDIV.divideValue;
+%}
+%if(!system.clockTree.TILECLKDIV){
+%var DEVICE_CLK_CLBT_DIV = 1;
+%}
+%else{
+%var DEVICE_CLK_CLBT_DIV = system.clockTree.TILECLKDIV.divideValue;
+%}
     //
     // These asserts will check that the #defines for the clock rates in
     // device.h match the actual rates that have been configured. If they do
@@ -358,6 +399,7 @@ const device  					= device_common.device;
     //
     CAN_selectClockSource(CANA_BASE, `canAclkSrc`);
     SysCtl_setMCANClk(SYSCTL_MCANCLK_DIV_`DEVICE_CLK_MCANA_DIV`);
+    SysCtl_setCLBClkDivider(SYSCTL_CLBCLKOUT_DIV_`DEVICE_CLK_CLB_DIV`,SYSCTL_CLBTCLKOUT_DIV_`DEVICE_CLK_CLBT_DIV`);
     ASSERT(SysCtl_getClock(DEVICE_OSCSRC_FREQ) == DEVICE_SYSCLK_FREQ);
     ASSERT(SysCtl_getLowSpeedClock(DEVICE_OSCSRC_FREQ) == DEVICE_LSPCLK_FREQ);
 % }
@@ -417,6 +459,20 @@ const device  					= device_common.device;
 %else{
 %var DEVICE_CLK_LINA_DIV = system.clockTree.LINACLKDIV.divideValue;
 %}
+%if(!system.clockTree.CLBCLKDIV){
+%var DEVICE_CLK_CLB_DIV = 6;
+%}
+%else{
+%var DEVICE_CLK_CLB_DIV = system.clockTree.CLBCLKDIV.divideValue;
+%}
+%if(!system.clockTree.TILECLKDIV){
+%var DEVICE_CLK_CLBT_DIV = 1;
+%}
+%else{
+%var DEVICE_CLK_CLBT_DIV = system.clockTree.TILECLKDIV.divideValue;
+%}
+%var DEVICE_CLK_MCANA_DIV = system.clockTree.MCANACLKDIV.divideValue;
+%var DEVICE_CLK_MCANB_DIV = system.clockTree.MCANBCLKDIV.divideValue;
 %if(!system.clockTree.NPUCLKDIV){
 %var DEVICE_CLK_NPU_DIV = 1;
 %}
@@ -431,6 +487,9 @@ const device  					= device_common.device;
     // expected if these are not correct.
     //
     SysCtl_setLINAClockDivider(SYSCTL_LINACLK_DIV_`DEVICE_CLK_LINA_DIV`);
+    SysCtl_setCLBClkDivider(SYSCTL_CLBCLKOUT_DIV_`DEVICE_CLK_CLB_DIV`,SYSCTL_CLBTCLKOUT_DIV_`DEVICE_CLK_CLBT_DIV`);
+    SysCtl_setMCANClk(SYSCTL_MCANA, SYSCTL_MCANCLK_DIV_`DEVICE_CLK_MCANA_DIV`);
+    SysCtl_setMCANClk(SYSCTL_MCANB, SYSCTL_MCANCLK_DIV_`DEVICE_CLK_MCANB_DIV`);
     SysCtl_setNPUClockDivider(SYSCTL_NPUCLK_DIV_`DEVICE_CLK_NPU_DIV`);
     ASSERT(SysCtl_getClock(DEVICE_OSCSRC_FREQ) == DEVICE_SYSCLK_FREQ);
     ASSERT(SysCtl_getLowSpeedClock(DEVICE_OSCSRC_FREQ) == DEVICE_LSPCLK_FREQ);
@@ -444,6 +503,159 @@ const device  					= device_common.device;
     // DEVICE_LSPCLK_FREQ are accurate. Some examples will not perform as
     // expected if these are not correct.
     //
+    ASSERT(SysCtl_getClock(DEVICE_OSCSRC_FREQ) == DEVICE_SYSCLK_FREQ);
+    ASSERT(SysCtl_getLowSpeedClock(DEVICE_OSCSRC_FREQ) == DEVICE_LSPCLK_FREQ);
+% 	}
+% if(clocktree_Asserts_Type7.includes(device))
+%{
+%if(!system.clockTree.LINACLKDIV){
+%var DEVICE_CLK_LINA_DIV = 1;
+%}
+%else{
+%var DEVICE_CLK_LINA_DIV = system.clockTree.LINACLKDIV.divideValue;
+%}
+%if(!system.clockTree.CLBCLKDIV){
+%var DEVICE_CLK_CLB_DIV = 6;
+%}
+%else{
+%var DEVICE_CLK_CLB_DIV = system.clockTree.CLBCLKDIV.divideValue;
+%}
+%if(!system.clockTree.TILECLKDIV){
+%var DEVICE_CLK_CLBT_DIV = 1;
+%}
+%else{
+%var DEVICE_CLK_CLBT_DIV = system.clockTree.TILECLKDIV.divideValue;
+%}
+%var DEVICE_CLK_MCANA_DIV = system.clockTree.MCANACLKDIV.divideValue;
+%if(!system.clockTree.NPUCLKDIV){
+%var DEVICE_CLK_NPU_DIV = 1;
+%}
+%else{
+%var DEVICE_CLK_NPU_DIV = system.clockTree.NPUCLKDIV.divideValue;
+%}
+    //
+    // These asserts will check that the #defines for the clock rates in
+    // device.h match the actual rates that have been configured. If they do
+    // not match, check that the calculations of DEVICE_SYSCLK_FREQ and
+    // DEVICE_LSPCLK_FREQ are accurate. Some examples will not perform as
+    // expected if these are not correct.
+    //
+    SysCtl_setLINAClockDivider(SYSCTL_LINACLK_DIV_`DEVICE_CLK_LINA_DIV`);
+    SysCtl_setCLBClkDivider(SYSCTL_CLBCLKOUT_DIV_`DEVICE_CLK_CLB_DIV`,SYSCTL_CLBTCLKOUT_DIV_`DEVICE_CLK_CLBT_DIV`);
+    SysCtl_setMCANClk(SYSCTL_MCANA, SYSCTL_MCANCLK_DIV_`DEVICE_CLK_MCANA_DIV`);
+    SysCtl_setNPUClockDivider(SYSCTL_NPUCLK_DIV_`DEVICE_CLK_NPU_DIV`);
+    ASSERT(SysCtl_getClock(DEVICE_OSCSRC_FREQ) == DEVICE_SYSCLK_FREQ);
+    ASSERT(SysCtl_getLowSpeedClock(DEVICE_OSCSRC_FREQ) == DEVICE_LSPCLK_FREQ);
+% 	}
+% if(clocktree_Asserts_Type8.includes(device))
+% 	{
+%var DEVICE_CLK_MCANA_DIV = system.clockTree.MCANACLKDIV.divideValue;
+%switch(OSCCLKSRCSEL.inputSelect){
+%	case "INTOSC1":
+%		oscclkSrc 		= "SYSCTL_OSCSRC_OSC1"
+%		oscclksource 	= OSCCLKSRCSEL.inputSelect
+%		oscclk = 10
+%		break
+%	case "INTOSC2":
+%		oscclkSrc 	 	= "SYSCTL_OSCSRC_OSC2"
+%		oscclksource 	= OSCCLKSRCSEL.inputSelect
+%		oscclk = 10
+%		break
+%	case "X1_XTAL":
+%		if((XTAL_OR_X1.inputSelect == "XTAL") || xtal_x1_macro.includes(device))
+%		{
+%			oscclkSrc 	 	= "SYSCTL_OSCSRC_XTAL"
+%		}
+%		else
+%		{
+%			oscclkSrc 	 	= "SYSCTL_OSCSRC_XTAL_SE"
+%		}
+%			oscclksource 	= XTAL_OR_X1.inputSelect
+%			oscclk 			= XTAL_OR_X1.External_Clock
+%			break
+%}
+%switch(CANASRCSEL.inputSelect){
+%	case "SYSCLK":
+%		canAclkSrc 		= "CAN_CLOCK_SOURCE_SYS"
+%		break
+%	case "XTAL":
+%		canAclkSrc 	 	= "CAN_CLOCK_SOURCE_XTAL"
+%		break
+%   	case "AUXCLKIN":
+%		canAclkSrc 	 	= "CAN_CLOCK_SOURCE_AUX"
+%		break
+%}
+    //
+    // These asserts will check that the #defines for the clock rates in
+    // device.h match the actual rates that have been configured. If they do
+    // not match, check that the calculations of DEVICE_SYSCLK_FREQ and
+    // DEVICE_LSPCLK_FREQ are accurate. Some examples will not perform as
+    // expected if these are not correct.
+    //
+    CAN_selectClockSource(CANA_BASE, `canAclkSrc`);
+    SysCtl_setMCANClk(SYSCTL_MCANCLK_DIV_`DEVICE_CLK_MCANA_DIV`);
+    ASSERT(SysCtl_getClock(DEVICE_OSCSRC_FREQ) == DEVICE_SYSCLK_FREQ);
+    ASSERT(SysCtl_getLowSpeedClock(DEVICE_OSCSRC_FREQ) == DEVICE_LSPCLK_FREQ);
+% }
+% if(clocktree_Asserts_Type9.includes(device))
+% {
+%switch(OSCCLKSRCSEL.inputSelect){
+%	case "INTOSC1":
+%		oscclkSrc 		= "SYSCTL_OSCSRC_OSC1"
+%		oscclksource 	= OSCCLKSRCSEL.inputSelect
+%		oscclk = 10
+%		break
+%	case "INTOSC2":
+%		oscclkSrc 	 	= "SYSCTL_OSCSRC_OSC2"
+%		oscclksource 	= OSCCLKSRCSEL.inputSelect
+%		oscclk = 10
+%		break
+%	case "X1_XTAL":
+%		if((XTAL_OR_X1.inputSelect == "XTAL") || xtal_x1_macro.includes(device))
+%		{
+%			oscclkSrc 	 	= "SYSCTL_OSCSRC_XTAL"
+%		}
+%		else
+%		{
+%			oscclkSrc 	 	= "SYSCTL_OSCSRC_XTAL_SE"
+%		}
+%			oscclksource 	= XTAL_OR_X1.inputSelect
+%			oscclk 			= XTAL_OR_X1.External_Clock
+%			break
+%}
+%switch(CANASRCSEL.inputSelect){
+%	case "SYSCLK":
+%		canAclkSrc 		= "CAN_CLOCK_SOURCE_SYS"
+%		break
+%	case "XTAL":
+%		canAclkSrc 	 	= "CAN_CLOCK_SOURCE_XTAL"
+%		break
+%   	case "AUXCLKIN":
+%		canAclkSrc 	 	= "CAN_CLOCK_SOURCE_AUX"
+%		break
+%}
+%if(!system.clockTree.CLBCLKDIV){
+%var DEVICE_CLK_CLB_DIV = 6;
+%}
+%else{
+%var DEVICE_CLK_CLB_DIV = system.clockTree.CLBCLKDIV.divideValue;
+%}
+%if(!system.clockTree.TILECLKDIV){
+%var DEVICE_CLK_CLBT_DIV = 1;
+%}
+%else{
+%var DEVICE_CLK_CLBT_DIV = system.clockTree.TILECLKDIV.divideValue;
+%}
+
+    //
+    // These asserts will check that the #defines for the clock rates in
+    // device.h match the actual rates that have been configured. If they do
+    // not match, check that the calculations of DEVICE_SYSCLK_FREQ and
+    // DEVICE_LSPCLK_FREQ are accurate. Some examples will not perform as
+    // expected if these are not correct.
+    //
+    CAN_selectClockSource(CANA_BASE, `canAclkSrc`);
+    SysCtl_setCLBClkDivider(SYSCTL_CLBCLKOUT_DIV_`DEVICE_CLK_CLB_DIV`,SYSCTL_CLBTCLKOUT_DIV_`DEVICE_CLK_CLBT_DIV`);
     ASSERT(SysCtl_getClock(DEVICE_OSCSRC_FREQ) == DEVICE_SYSCLK_FREQ);
     ASSERT(SysCtl_getLowSpeedClock(DEVICE_OSCSRC_FREQ) == DEVICE_LSPCLK_FREQ);
 % 	}

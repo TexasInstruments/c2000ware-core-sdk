@@ -72,7 +72,7 @@ void main(void)
 
     //
     // Step 2. Initialize GPIO:
-    // This example function illustrates how to set the GPIO to 
+    // This example function illustrates how to set the GPIO to
     // its default state
     //
     // InitGpio();  // Skipped for this example

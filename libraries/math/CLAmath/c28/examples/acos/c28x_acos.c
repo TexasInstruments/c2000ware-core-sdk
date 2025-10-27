@@ -21,7 +21,7 @@
 #include "DSP28x_Project.h"
 #elif defined (F2837x) || defined (F2807x)
 #include "F28x_Project.h"
-#elif  defined (F28004x) || defined (F2838x) || defined (F28003x) || defined (f28p65x) || defined (f28p55x)
+#elif  defined (F28004x) || defined (F2838x) || defined (F28003x) || defined (f28p65x) || defined (f28p55x) || defined (f28p551x)
 #include "driverlib.h"
 #endif
 #include "CLAmath.h"
@@ -106,7 +106,7 @@ float32_t resExpected[BUFFER_SIZE] = {
 //
 // Prototypes
 //
-#if  defined (F28004x) || defined (F2838x) || defined (F28003x) || defined (f28p65x) || defined (f28p55x)
+#if  defined (F28004x) || defined (F2838x) || defined (F28003x) || defined (f28p65x) || defined (f28p55x)|| defined (f28p551x)
 void Cla1ForceTask1andWait(void);
 void Cla1ForceTask2andWait(void);
 void Cla1ForceTask3andWait(void);
@@ -194,7 +194,7 @@ void test_error(void)
 //
 // void Cla1ForceTask1andWait(void)
 //
-#if  defined (F28004x) || defined (F2838x) || defined (F28003x) || defined (f28p65x) || defined (f28p55x)
+#if  defined (F28004x) || defined (F2838x) || defined (F28003x) || defined (f28p65x) || defined (f28p55x) || defined (f28p551x)
 void Cla1ForceTask1andWait(void)
 {
     __asm("  IACK  #0x0001");

@@ -8,6 +8,7 @@
 % let pinmux_h_source_mode = 3
 % let csv_mode = 1
 % let function_mode = 2
+% let function_mode_instance = 4
 % let pinmux_c_source_mode = 0
 % var output_mode = pinmux_c_source_mode
 % var gpio_to_find = ""
@@ -19,6 +20,11 @@ Used GPIO,Selected Mode
 % else if (args[0] == "function")
 % {
 %	output_mode = function_mode
+%	gpio_to_find = args[1]
+% }
+% else if (args[0] == "function_inst")
+% {
+%	output_mode = function_mode_instance
 %	gpio_to_find = args[1]
 % }
 % else if (args[0] == "header")
@@ -253,6 +259,10 @@ Used GPIO,Selected Mode
 				%		if (gpio_to_find == ("GPIO"+gpioNumber)) {
 `DriverlibPinmap.getDriverlibName(interfaceName, peripheral.name, nameOfPeripheral)`
 				%		}
+				%   } else if (output_mode == function_mode_instance) { 
+				%		if (gpio_to_find == ("GPIO"+gpioNumber)) {
+`instance.$name`
+				%		}
 				% 	} else if (output_mode == csv_mode) {
 GPIO`gpioNumber`,`DriverlibPinmap.getDriverlibName(interfaceName, peripheral.name, nameOfPeripheral)`
 				%	}
@@ -311,6 +321,10 @@ GPIO`gpioNumber`,`DriverlibPinmap.getDriverlibName(interfaceName, peripheral.nam
 			%		if (gpio_to_find == "GPIO"+gpioNumber) {
 GPIO`gpioNumber`
 			%		}
+			% } else if (output_mode == function_mode_instance) {
+			%		if (gpio_to_find == "GPIO"+gpioNumber) {
+`instance.$name`
+			%		}
 			% }	else if (output_mode == csv_mode){
 GPIO`gpioNumber`,GPIO`gpioNumber`
 			% }
@@ -340,6 +354,10 @@ GPIO`gpioNumber`,GPIO`gpioNumber`
 			%		if (gpio_to_find == "AIO"+gpioNumber) {
 AIO`gpioNumber`
 			%		}
+			% } else if (output_mode == function_mode_instance) {
+			%		if (gpio_to_find == "AIO"+gpioNumber) {
+`instance.$name`
+			%		}
 			% } else if (output_mode == csv_mode){
 GPIO`gpioNumber`,GPIO`gpioNumber` 
 			% }
@@ -350,7 +368,7 @@ GPIO`gpioNumber`,GPIO`gpioNumber`
 		% for(var i = 0; i < module.$instances.length; i++) {
 			% var instance = module.$instances[i];
 			% if (output_mode == pinmux_c_source_mode) {
-				% if (!["F28P55x"].includes(Common.getDeviceName())) {
+				% if (!["F28P55x","F28P551x"].includes(Common.getDeviceName())) {
 	// USB pinmux
 	GPIO_setAnalogMode(42, GPIO_ANALOG_ENABLED);
 	GPIO_setAnalogMode(43, GPIO_ANALOG_ENABLED);
@@ -360,8 +378,8 @@ GPIO`gpioNumber`,GPIO`gpioNumber`
 	GPIO_setAnalogMode(23, GPIO_ANALOG_ENABLED);
 	GPIO_setAnalogMode(41, GPIO_ANALOG_ENABLED);
 				% }
-			% } else if (output_mode == function_mode) {
-				% if (!["F28P55x"].includes(Common.getDeviceName())) {
+			% } else if (output_mode == function_mode || output_mode == function_mode_instance) {
+				% if (!["F28P55x","F28P551x"].includes(Common.getDeviceName())) {
 			%		if (gpio_to_find == "GPIO42") {
 USB
 			%		}
@@ -377,7 +395,7 @@ USB
 			%		}
 				% }				
 			%} else if (output_mode == csv_mode){
-				% if (!["F28P55x"].includes(Common.getDeviceName())) {
+				% if (!["F28P55x","F28P551x"].includes(Common.getDeviceName())) {
 GPIO42,USB
 GPIO43,USB
 				% } else {
@@ -395,7 +413,7 @@ GPIO41,USB
 	// DC-DC pinmux
 	GPIO_setAnalogMode(22, GPIO_ANALOG_ENABLED);
 	GPIO_setAnalogMode(23, GPIO_ANALOG_ENABLED);
-			% } else if (output_mode == function_mode) {
+			% } else if (output_mode == function_mode || output_mode == function_mode_instance) {
 			%		if (gpio_to_find == "GPIO22_VFBSW") {
 DCDC
 			%		}

@@ -77,7 +77,7 @@ void InitTempSensor(float vrefhi_voltage)
     //
     //configure internal reference voltage
     //
-    AnalogSubsysRegs.REFCONFIGA.bit.CONFIG8 = 0;
+    AnalogSubsysRegs.REFCONFIGA.bit.ANAREFSEL = 0;
     AnalogSubsysRegs.ANAREFCTL.bit.ANAREF2P5SEL = 0;
     //
     //power up the the temperature sensor

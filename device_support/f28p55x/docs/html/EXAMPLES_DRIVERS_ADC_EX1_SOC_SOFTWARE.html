@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">f28p55x Driverib and Example User Guide
-   &#160;<span id="projectnumber">6.00.00.00</span>
+   &#160;<span id="projectnumber">6.00.01.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -101,6 +101,7 @@ $(document).ready(function(){initNavTree('EXAMPLES_DRIVERS_ADC_EX1_SOC_SOFTWARE.
 <div class="textblock"><p><a class="anchor" id="md__home_siddharth_ti_repos_c29_sdk_docs_docs_src_docs_api_guide_examples_drivers_adc_ex1_soc_software"></a></p>
 <h1><a class="anchor" id="autotoc_md180"></a>
 Introduction</h1>
+<p>This example converts some voltages on ADCA and ADCC based on a software trigger. The ADCC will not convert until ADCA is complete, so the ADCs will not run asynchronously. However, this is much less efficient than allowing the ADCs to convert synchronously in parallel (for example, by using an ePWM trigger).</p>
 <p>This example converts some voltages on ADCA and ADCC based on a software trigger. The ADCC will not convert until ADCA is complete, so the ADCs will not run asynchronously. However, this is much less efficient than allowing the ADCs to convert synchronously in parallel (for example, by using an ePWM trigger).</p>
 <p>Watch Variables</p><ul>
 <li>myADC0Result0 - Digital representation of the voltage on pin A0</li>

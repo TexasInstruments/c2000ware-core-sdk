@@ -15,7 +15,7 @@
 //
 //
 // 
-// C2000Ware v6.00.00.00
+// C2000Ware v6.00.01.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -74,7 +74,7 @@ void main(void)
 
     //
     // Step 2. Initialize GPIO:
-    // This example function illustrates how to set the GPIO to 
+    // This example function illustrates how to set the GPIO to
     // its default state
     //
     // InitGpio();  // Skipped for this example

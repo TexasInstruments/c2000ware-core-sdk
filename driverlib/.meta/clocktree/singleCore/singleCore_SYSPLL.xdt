@@ -14,7 +14,7 @@ const device  = system.deviceData.device
 
 
 //////////////////////////////////////////////////
-// Frequency lables
+// Frequency labels
 //////////////////////////////////////////////////
 const OSCCLK_d 		 = system.clockTree.OSCCLK.in
 const PLLRAWCLK_d	 = system.clockTree.PLLRAWCLK.in
@@ -71,7 +71,7 @@ var oscclksource
 var oscclk = 10
 
 //
-// XTAL Single-Ended replaces X1 for F2838x, F28002x, F28003x, F28004x, F280013x, F280015x, F28P65x, F28P55x
+// XTAL Single-Ended replaces X1 for F2838x, F28002x, F28003x, F28004x, F280013x, F280015x, F28P65x, F28P55x, F28P551x
 //
 switch(OSCCLKSRCSEL.inputSelect){
 	case "INTOSC1":
@@ -214,7 +214,7 @@ if(PLL_type3.includes(device))
 //
 //	Input Clock to SYSPLL (OSCCLK) = `oscclksource` = `OSCCLK_d` MHz
 //
-#define DEVICE_OSCSRC_FREQ          `OSCCLK_d`000000U
+#define DEVICE_OSCSRC_FREQ          `OSCCLK_d*1000000`U
 %
 % /////////////////////////////////////////////////////////////////////////////////////////
 %

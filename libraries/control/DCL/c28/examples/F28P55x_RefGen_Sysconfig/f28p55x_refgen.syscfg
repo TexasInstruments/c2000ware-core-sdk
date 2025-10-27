@@ -18,8 +18,6 @@ const logger2        = logger.addInstance();
 const logger3        = logger.addInstance();
 const refgen         = scripting.addModule("/libraries/control/dcl/refgen.js", {}, false);
 const refgen1        = refgen.addInstance();
-const FPUfastRTS     = scripting.addModule("/libraries/math/FPUfastRTS/FPUfastRTS.js", {}, false);
-const FPUfastRTS1    = FPUfastRTS.addInstance();
 const CMD            = scripting.addModule("/utilities/cmd_tool/cmd_syscfg/source/CMD");
 const CMD1           = CMD.addInstance();
 
@@ -57,9 +55,8 @@ refgen1.$name = "myREFGEN0";
 refgen1.umax  = 1;
 refgen1.umin  = -1;
 refgen1.mode  = "SINE3";
-refgen1.ampl  = 2;
+refgen1.offs  = 0;
 
-FPUfastRTS1.$name = "myFFR0";
 
 CMD1.$name                        = "generic_ram_lnk";
 CMD1.sectionMemory_const          = ["RAMLS5","RAMLS6"];
@@ -69,11 +66,11 @@ CMD1.sectionMemory_switch         = ["RAMM0"];
 CMD1.sectionMemory_sysmem         = ["RAMLS4"];
 CMD1.sectionMemory_stack          = ["RAMLS0"];
 CMD1.sectionMemory_bss            = ["RAMGS1","RAMLS3","RAMLS4","RAMLS5"];
-CMD1.sectionMemory_data           = ["RAMGS2","RAMLS5","RAMLS6","RAMLS7","RAMLS8"];
 CMD1.sectionMemory_cinit          = ["RAMGS1"];
 CMD1.sectionMemory_text           = ["RAMLS0","RAMLS1","RAMLS2","RAMLS3","RAMLS4","RAMLS5","RAMLS6","RAMLS7","RAMLS8","RAMLS9"];
+CMD1.sectionMemory_data           = ["RAMGS1","RAMLS5","RAMLS6","RAMLS7","RAMLS8"];
 CMD1.userSection.create(2);
 CMD1.userSection[0].$name         = "LoggerDataSection";
-CMD1.userSection[0].sectionMemory = ["RAMGS3"];
+CMD1.userSection[0].sectionMemory = ["RAMGS0"];
 CMD1.userSection[1].$name         = "dclfuncs";
-CMD1.userSection[1].sectionMemory = ["RAMGS3"];
+CMD1.userSection[1].sectionMemory = ["RAMGS0"];

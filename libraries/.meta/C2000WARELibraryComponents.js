@@ -38,7 +38,7 @@ var supported_library_moduleFile = [
 ];
 
 var device_specific_modules = [
-    { moduleCategory: CATEGORY_DSP ,  moduleName : "VCU VCRC", moduleFile : "/libraries/dsp/VCU/VCRC/vcrc.js",              devices: ["F28P65x", "F28P55x", "F28002x", "F28003x", "F2838x"]},
+    { moduleCategory: CATEGORY_DSP ,  moduleName : "VCU VCRC", moduleFile : "/libraries/dsp/VCU/VCRC/vcrc.js",              devices: ["F28P65x", "F28P55x", "F28P551x","F28002x", "F28003x", "F2838x"]},
     { moduleCategory: CATEGORY_MATH ,  moduleName : "FASTINTDIV", moduleFile : "/libraries/math/FASTINTDIV/fastintdiv.js",  devices: ["F28P65x", "F28002x", "F28003x", "F2838x"]},
     { moduleCategory: CATEGORY_COMMS ,  moduleName : "USB", moduleFile : "/libraries/communications/usb/usb.js",              devices: ["F2807x","F2837xD", "F2837xS", "F2838x", "F28P65x", "F28P55x" ]},
 ]

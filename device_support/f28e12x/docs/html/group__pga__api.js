@@ -1,7 +1,11 @@
 var group__pga__api =
 [
+    [ "PGA_MMUX_NAKED_OPAMP", "group__pga__api.html#ga514b75639106aa6179e982389ff0bc2d", null ],
+    [ "PGA_MMUX_INVERTING_GAIN_NEG", "group__pga__api.html#ga6534ba2411a3d0aab5a39354ce7eee3e", null ],
+    [ "PGA_MMUX_INVERTING_GAIN_NEG_SHARED", "group__pga__api.html#ga3cdff931071a23c60c2714c317e3d2c5", null ],
     [ "PGA_REGISTER_PGACTL", "group__pga__api.html#ga8ff63cae0277ff75de1053991bbad225", null ],
     [ "PGA_REGISTER_MUXSEL", "group__pga__api.html#gadf5ee80aa455117460a047ea4fa4f60c", null ],
+    [ "PGA_REGISTER_OFFSETTRIM", "group__pga__api.html#ga93cd1c34e78bda74e03c553a22dc4136", null ],
     [ "PGA_GainValue", "group__pga__api.html#gaee02ca5cbf724e634d3dcd61a92694d7", [
       [ "PGA_GAIN_1", "group__pga__api.html#ggaee02ca5cbf724e634d3dcd61a92694d7a11e83a211ab6b9e4459e1c95e79855af", null ],
       [ "PGA_GAIN_2", "group__pga__api.html#ggaee02ca5cbf724e634d3dcd61a92694d7abfd3d40c901d15038c46808ef84a6fb1", null ],
@@ -31,10 +35,10 @@ var group__pga__api =
       [ "PGA_NMUX_INM2", "group__pga__api.html#ggac73959f2a2354cc572d8ceb9f66d0760a7f28dfa434e98c141dc6dca636d34847", null ]
     ] ],
     [ "PGA_MMUXInput", "group__pga__api.html#ga60a73c488a3b1791ca061ad76911be2b", [
-      [ "PGA_MMUX_NAKED_OPAMP", "group__pga__api.html#gga60a73c488a3b1791ca061ad76911be2ba9db58a159c74099b7f451199273c0ec2", null ],
+      [ "PGA_MMUX_STANDALONE_OPAMP", "group__pga__api.html#gga60a73c488a3b1791ca061ad76911be2baef3d2badfb9af784a3112739900b4437", null ],
       [ "PGA_MMUX_NON_INVERTING_GAIN_VSSA", "group__pga__api.html#gga60a73c488a3b1791ca061ad76911be2baf69d8576d058f2d3eec6fb767251c700", null ],
-      [ "PGA_MMUX_INVERTING_GAIN_NEG", "group__pga__api.html#gga60a73c488a3b1791ca061ad76911be2bace7f46eaa5e26ddd1c035c53cf3588c2", null ],
-      [ "PGA_MMUX_INVERTING_GAIN_NEG_SHARED", "group__pga__api.html#gga60a73c488a3b1791ca061ad76911be2baf9b11ba38451da324420f06de25eaa4a", null ]
+      [ "PGA_MMUX_INVERTING_GAIN_INM1", "group__pga__api.html#gga60a73c488a3b1791ca061ad76911be2bae6ab717d2bf0ad621825cc462d7568c0", null ],
+      [ "PGA_MMUX_INVERTING_GAIN_INM2", "group__pga__api.html#gga60a73c488a3b1791ca061ad76911be2ba8b988ab5b19ff1cba4ececa552973a3d", null ]
     ] ],
     [ "PGA_Chop", "group__pga__api.html#ga51ae2596f6eec6f61eed726d9f67d7cc", [
       [ "PGA_CHOP_DISABLE", "group__pga__api.html#gga51ae2596f6eec6f61eed726d9f67d7ccad6e52438ff8d77539599c88c1240d6bb", null ],

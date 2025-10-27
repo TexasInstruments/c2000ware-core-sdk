@@ -1,5 +1,6 @@
 var NAVTREEINDEX24 =
 {
+"group__usb__api.html#ga83b6ccf731c71c3b387c86ba2d232cd2":[12,25,44],
 "group__usb__api.html#ga846bc92782d8f9ea75f023ca3642d62d":[12,25,20],
 "group__usb__api.html#ga84eb859ba09c6c7ec4874906fa1cad84":[12,25,105],
 "group__usb__api.html#ga8579bb894ea36736e1a0ccfd2deba803":[12,25,238],
@@ -248,6 +249,5 @@ var NAVTREEINDEX24 =
 "group__xbar__api.html#gga0e74405c5ebbd87324000177efcc1789a41018c7317e4a496799fb0579b417066":[12,26,51,23],
 "group__xbar__api.html#gga0e74405c5ebbd87324000177efcc1789a43e6eb4e269baa7166c9ae06805c6425":[12,26,51,63],
 "group__xbar__api.html#gga0e74405c5ebbd87324000177efcc1789a4809e1000c419f97d5442b3cff1b1961":[12,26,51,86],
-"group__xbar__api.html#gga0e74405c5ebbd87324000177efcc1789a494916c44711a25f664e93d12d70b687":[12,26,51,43],
-"group__xbar__api.html#gga0e74405c5ebbd87324000177efcc1789a4d607fb8cb35f3526c4ca46f86c561b0":[12,26,51,76]
+"group__xbar__api.html#gga0e74405c5ebbd87324000177efcc1789a494916c44711a25f664e93d12d70b687":[12,26,51,43]
 };

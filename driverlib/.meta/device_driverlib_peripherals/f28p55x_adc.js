@@ -151,6 +151,16 @@ let ADC_ReferenceVoltage = [
 	{ name: "ADC_REFERENCE_VREFHI", displayName: "This value is valid when ADC reference" },
 	{ name: "ADC_REFERENCE_2xVREFHI", displayName: "This value is valid when ADC reference" },
 ]
+let ADC_OSDetectMode = [
+	{ name: "ADC_OSDETECT_MODE_DISABLED", displayName: "Open/Shorts detection cir-" },
+	{ name: "ADC_OSDETECT_MODE_VSSA", displayName: "O/S DC is enabled at zero" },
+	{ name: "ADC_OSDETECT_MODE_VDDA", displayName: "O/S DC is enabled at full" },
+	{ name: "ADC_OSDETECT_MODE_5BY12_VDDA", displayName: "O/S DC is enabled at 5/12" },
+	{ name: "ADC_OSDETECT_MODE_7BY12_VDDA", displayName: "O/S DC is enabled at 7/12" },
+	{ name: "ADC_OSDETECT_MODE_5K_PULLDOWN_TO_VSSA", displayName: "O/S DC is enabled at 5K" },
+	{ name: "ADC_OSDETECT_MODE_5K_PULLUP_TO_VDDA", displayName: "O/S DC is enabled at 5K" },
+	{ name: "ADC_OSDETECT_MODE_7K_PULLDOWN_TO_VSSA", displayName: "O/S DC is enabled at 7K" },
+]
 let ADC_SyncInput = [
 	{ name: "ADC_SYNCIN_DISABLE", displayName: "ADC Syncin is disabled" },
 	{ name: "ADC_SYNCIN_EPWM1SYNCOUT", displayName: "ADC Syncin is EPWM1SYNCOUT" },
@@ -274,6 +284,7 @@ module.exports = {
 	ADC_PriorityMode: ADC_PriorityMode,
 	ADC_ReferenceMode: ADC_ReferenceMode,
 	ADC_ReferenceVoltage: ADC_ReferenceVoltage,
+	ADC_OSDetectMode: ADC_OSDetectMode,
 	ADC_SyncInput: ADC_SyncInput,
 	ADC_PPBIntSrcSelect: ADC_PPBIntSrcSelect,
 	ADC_ExtChannel: ADC_ExtChannel,

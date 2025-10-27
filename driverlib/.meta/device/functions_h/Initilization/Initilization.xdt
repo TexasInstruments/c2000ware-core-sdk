@@ -9,6 +9,7 @@ var	Initilization_GPIO_22_23_Disable_DCDC			= system.getTemplate('./Initilizatio
 var	Initilization_GPIO_20_21_Waitstate4			= system.getTemplate('./Initilization_GPIO_20_21_Waitstate4.xdt');
 var	Initilization_GPIO_20_21_Waitstate5			= system.getTemplate('./Initilization_GPIO_20_21_Waitstate5.xdt');
 var	Initilization_GPIO_11_28_Waitstate3			= system.getTemplate('./Initilization_GPIO_11_28_Waitstate3.xdt');
+var	Initilization_GPIO_11_28_Waitstate3_Type0	= system.getTemplate('./Initilization_GPIO_11_28_Waitstate3_Type0.xdt');
 var	Initilization_GPIO_12_28_Waitstate3			= system.getTemplate('./Initilization_GPIO_12_28_Waitstate3.xdt');
 var	Initilization_Device_initGPIO				= system.getTemplate('./Initilization_Device_initGPIO.xdt');
 
@@ -22,6 +23,7 @@ const	Initilization_GPIO_22_23				= device_common.Initilization_GPIO_22_23;
 const	Initilization_GPIO_20_21_Type0				= device_common.Initilization_GPIO_20_21_Type0;
 const	Initilization_GPIO_20_21_Type1				= device_common.Initilization_GPIO_20_21_Type1;
 const	Initilization_GPIO_11_28				= device_common.Initilization_GPIO_11_28;
+const	Initilization_GPIO_11_28_Type0				= device_common.Initilization_GPIO_11_28_Type0;
 const	Initilization_GPIO_12_28				= device_common.Initilization_GPIO_12_28;
 const	Initilization_Device_initGPIO_Type0			= device_common.Initilization_Device_initGPIO_Type0;
 %%}
@@ -56,6 +58,10 @@ const	Initilization_Device_initGPIO_Type0			= device_common.Initilization_Device
 % if(Initilization_GPIO_11_28.includes(device))
 %{
 `Initilization_GPIO_11_28_Waitstate3()`
+%}
+% if(Initilization_GPIO_11_28_Type0.includes(device))
+%{
+`Initilization_GPIO_11_28_Waitstate3_Type0()`
 %}
 % if(Initilization_GPIO_12_28.includes(device))
 %{

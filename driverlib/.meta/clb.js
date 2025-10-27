@@ -130,6 +130,16 @@ else if (Common.getDeviceName().includes("F28P55x"))
     ];
     numberOfCLBs = 2;
 }
+else if (Common.getDeviceName().includes("F28P551x"))
+{
+    CLB_INSTANCE = [
+        { name: "CLB1_BASE", displayName: "CLB1"},
+        { name: "CLB2_BASE", displayName: "CLB2"},
+        { name: "CLB3_BASE", displayName: "CLB3"},
+        { name: "CLB4_BASE", displayName: "CLB4"}
+    ];
+    numberOfCLBs = 4;
+}
 
 let INPUT_TYPES = [
     {name: "GP", displayName: "Use Memory Mapped GPREG BIT"},

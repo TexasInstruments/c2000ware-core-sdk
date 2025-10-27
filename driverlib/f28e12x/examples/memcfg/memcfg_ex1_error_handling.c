@@ -93,7 +93,7 @@ volatile uint32_t uncorrErrIntFlg = 0;
 // Function Prototypes
 //
 void writeCAFE(uint32_t startAddress, uint32_t endAddress);
-uint32_t generateECCMemUncorrError(void);
+uint32_t generateParityMemUncorrError(void);
 
 //
 // ISRs
@@ -148,9 +148,9 @@ void main(void)
     SysCtl_enableNMIGlobalInterrupt();
 
     //
-    // ECC memory uncorrectable error generation & handling
+    // Parity memory uncorrectable error generation & handling
     //
-    errCountLocal = generateECCMemUncorrError();
+    errCountLocal = generateParityMemUncorrError();
     errCountGlobal = errCountGlobal + errCountLocal;
 
     if(errCountGlobal == 0x0)
@@ -167,15 +167,15 @@ void main(void)
 }
 
 //
-// generateECCMemUncorrError - Generate uncorrectable error in ECC memory &
-// demonstrate the interrupt handling in case of uncorr error in ECC memories.
-// Note - Double bit errors in ECC memories generate uncorrectable errors.
+// generateParityMemUncorrError - Generate uncorrectable error in parity memory &
+// demonstrate the interrupt handling in case of uncorr error in parity memories.
+// Note - Single bit errors in parity memories generate uncorrectable errors.
 //
-uint32_t generateECCMemUncorrError()
+uint32_t generateParityMemUncorrError()
 {
     uint32_t i, memOffset;
     uint32_t readMemData = 0, testPassCnt = 0;
-    uint32_t eccRead1 = 0;
+    uint32_t parityRead1 = 0;
 
     //
     // Clear uncorrectable error status.
@@ -214,15 +214,15 @@ uint32_t generateECCMemUncorrError()
         memOffset = 0x10U + (i * 8U);
 
         //
-        // Set the memory in ECC write mode.
+        // Set the memory in Parity write mode.
         //
-        MemCfg_setTestMode(MEMCFG_SECT_M1, MEMCFG_TEST_WRITE_ECC);
-        eccRead1 = HWREGH(M1_RAM_BASE + memOffset);
+        MemCfg_setTestMode(MEMCFG_SECT_M1, MEMCFG_TEST_WRITE_PARITY);
+        parityRead1 = HWREGH(M1_RAM_BASE + memOffset);
 
         //
         // Set the memory in Data write mode & flip 1 bit in data to generate
         // uncorrectable error. Writing the data to memory in test mode
-        // doesn't modify the ECC.
+        // doesn't modify the Parity.
         //
         MemCfg_setTestMode(MEMCFG_SECT_M1, MEMCFG_TEST_WRITE_DATA);
         HWREGH(M1_RAM_BASE + memOffset) = HWREGH(M1_RAM_BASE + memOffset) ^
@@ -231,7 +231,7 @@ uint32_t generateECCMemUncorrError()
         //
         // Go to functional mode and try to read data from memory to generate
         // uncorrectable error as 1 bits of data were flipped in data write
-        // mode but ECC was unchanged.
+        // mode but Parity was unchanged.
         //
         MemCfg_setTestMode(MEMCFG_SECT_M1, MEMCFG_TEST_FUNCTIONAL);
         readMemData = HWREGH(M1_RAM_BASE + memOffset);

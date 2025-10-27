@@ -41,7 +41,7 @@ function onChangeLoadMode(inst, ui)
 var dacStatic = undefined;
 
 /* determine ASYSCTL static module dependency */
-if (["F28004x","F28003x", "F28P65x", "F28P55x"].includes(Common.getDeviceName()))
+if (["F28004x","F28003x", "F28P65x", "F28P55x","F28P551x"].includes(Common.getDeviceName()))
 {
     dacStatic = {
         name: "dacGlobal",
@@ -52,7 +52,7 @@ if (["F28004x","F28003x", "F28P65x", "F28P55x"].includes(Common.getDeviceName())
 
 var numberOfDACs = 3;
 
-if (["F28004x", "F28003x"].includes(Common.getDeviceName()))
+if (["F28004x", "F28003x", "F28P551x"].includes(Common.getDeviceName()))
 {
     DAC_INSTANCE = [
 	    { name: "DACA_BASE", displayName: "DACA"},
@@ -184,7 +184,7 @@ if (["F28004x", "F28003x", "F28P65x"].includes(Common.getDeviceName()))
         }
     );
 }
-if (["F28P55x"].includes(Common.getDeviceName()))
+if (["F28P55x","F28P551x"].includes(Common.getDeviceName()))
 {
     config.splice(2, 0, 
         {

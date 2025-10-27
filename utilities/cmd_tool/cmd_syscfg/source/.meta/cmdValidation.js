@@ -20,7 +20,8 @@ var AllDevices = [
 	"F2838x",
 	"F28P65x",
 	"F28P55x",
-	"F28E12x"
+	"F28E12x",
+	"F28P551x"
 ]
 
 

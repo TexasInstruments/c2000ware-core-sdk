@@ -26,7 +26,7 @@ function is_hexadecimal(str) {
 var linAClk = Common.getSYSCLK(), linBClk = Common.getSYSCLK()
 var linADivider = 1, linBDivider = 1
 
-let newLINClockDividers = ["F28P55x", "F28P65x"];
+let newLINClockDividers = ["F28P55x","F28P551x","F28P65x"];
 let LIN2_Instances = ["F28P65x", "F28002x", "F28003x"];
 let linDividers = newLINClockDividers.includes(Common.getDeviceName())
 let linBexists = LIN2_Instances.includes(Common.getDeviceName())
@@ -830,7 +830,21 @@ function onValidate(inst, validation) {
             inst, "mbrPrescaler");
     }
 
-    if (inst.opMode == "SCI") {
+    if (inst.opMode == "LIN" && inst.enableInterrupt && inst.interruptFlags.indexOf(device_driverlib_peripheral.LIN_INT[0].name) == -1 && inst.interruptFlags.indexOf(device_driverlib_peripheral.LIN_INT[1].name) == -1) {
+        "At least one interrupt should be enabled when 'Enable Interrupts' is checked.",
+            inst, "interruptFlags"
+    }
+    if (inst.opMode == "SCI" && inst.enableInterrupt && inst.sciInterruptFlags.indexOf(device_driverlib_peripheral.LIN_INT.name) != -1) {
+        "At least one interrupt should be enabled when 'Enable Interrupts' is checked.",
+            inst, "sciInterruptFlags"
+    }
+
+}
+
+function onValidatePinmux(inst, validation){
+
+    if(inst.lin.$solution != null && inst.opMode == "SCI")
+    {
         let linCLK = Common.getSYSCLK();
         let clocktree = Common.getClockTree()
         if (clocktree) {
@@ -852,16 +866,6 @@ function onValidate(inst, validation) {
                 inst, "brVal");
         }
     }
-
-    if (inst.opMode == "LIN" && inst.enableInterrupt && inst.interruptFlags.indexOf(device_driverlib_peripheral.LIN_INT[0].name) == -1 && inst.interruptFlags.indexOf(device_driverlib_peripheral.LIN_INT[1].name) == -1) {
-        "At least one interrupt should be enabled when 'Enable Interrupts' is checked.",
-            inst, "interruptFlags"
-    }
-    if (inst.opMode == "SCI" && inst.enableInterrupt && inst.sciInterruptFlags.indexOf(device_driverlib_peripheral.LIN_INT.name) != -1) {
-        "At least one interrupt should be enabled when 'Enable Interrupts' is checked.",
-            inst, "sciInterruptFlags"
-    }
-
 }
 
 
@@ -978,6 +982,7 @@ var linModule = {
     },
     config: config,
     validate: onValidate,
+    validatePinmux: onValidatePinmux,
     moduleStatic: {
         name: "LinGlobal",
         displayName: "LIN Global",

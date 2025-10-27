@@ -9,7 +9,7 @@ let CTM_MODES = [
     {name: "0", displayName: "Counter Mode"},
     {name: "1", displayName: "Stopwatch Mode"}
 ];
-if(["F2838x", "F28002x", "F28003x", "F28P65x", "F28P55x"].includes(system.deviceData.deviceId))
+if(["F2838x", "F28002x", "F28003x", "F28P65x", "F28P55x","F28P551x"].includes(system.deviceData.deviceId))
 {
     CTM_MODES.push({name: "3", displayName: "Cumulative Mode"})
 }
@@ -195,7 +195,7 @@ var commonConfig = [
         default     : false
     }
 ]
-if(["F2838x", "F28002x", "F28003x", "F28P65x", "F28P55x"].includes(system.deviceData.deviceId))
+if(["F2838x", "F28002x", "F28003x", "F28P65x", "F28P55x","F28P551x"].includes(system.deviceData.deviceId))
 {
     commonConfig.push({
         name        : "NMIInterrupt",

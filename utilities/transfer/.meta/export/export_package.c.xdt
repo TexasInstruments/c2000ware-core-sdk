@@ -68,7 +68,7 @@
 %    }
 % }
 % console.log(expKeyInst);
-% if (expInst.mode.includes("Bidirectional") && expInst["comsLinkModule"] && !expInst.packageMode == "SIGNAL SIGHT")
+% if (expInst.mode.includes("Bidirectional") && expInst["comsLinkModule"] && expInst.packageMode != "SIGNAL SIGHT")
 % {
 #include <libraries/jsmn/jsmn.h>
     % if (expInst.$ownedBy) {
@@ -495,7 +495,7 @@ int EXPORTPACKAGE_sendFsiFrame(uint16_t user_data, uint16_t frame_type, uint16_t
 }
 % }
 
-% if(!expInst.packageMode == "SIGNAL SIGHT"){
+% if(expInst.packageMode != "SIGNAL SIGHT"){
 int EXPORTPACKAGE_sendKeyValuePointerPairs(ExportKeyValue** keyValues, uint16_t numKeyValues)
 {
 % if (expInst.packageMode == "START/END") {
@@ -1165,7 +1165,7 @@ int EXPORTPACKAGE_sendBoolAsByteArray(char *cmd, uint16_t cmdLength, bool val)
 % }
     return 0;
 }
-% if(!expInst.packageMode == "SIGNAL SIGHT"){
+% if(expInst.packageMode != "SIGNAL SIGHT"){
 int EXPORTPACKAGE_sendCharacterArrayAsByteArray(char *cmd, uint16_t cmdLength, char* data, uint32_t size)
 {
     //

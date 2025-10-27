@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v6.00.00.00
+// C2000Ware v6.00.01.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -203,23 +203,24 @@ typedef enum
 //*****************************************************************************
 typedef enum
 {
-    XBAR_INPUT1,            //!< ePWM[TZ1], ePWM[TRIP1], X-BARs, eCAPs
-    XBAR_INPUT2,            //!< ePWM[TZ2], ePWM[TRIP2], X-BARs, eCAPs
-    XBAR_INPUT3,            //!< ePWM[TZ3], ePWM[TRIP3], X-BARs, eCAPs
-    XBAR_INPUT4,            //!< ADC wrappers, X-BARs, XINT1, eCAPs
-    XBAR_INPUT5,            //!< EXTSYNCIN1, X-BARs, XINT2, eCAPs
-    XBAR_INPUT6,            //!< EXTSYNCIN2, ePWM[TRIP6], X-BARs, XINT3, eCAPs
-    XBAR_INPUT7,            //!< X-BARs, eCAPs
-    XBAR_INPUT8,            //!< X-BARs, eCAPs
-    XBAR_INPUT9,            //!< X-BARs, eCAPs
-    XBAR_INPUT10,           //!< X-BARs, eCAPs
-    XBAR_INPUT11,           //!< X-BARs, eCAPs
-    XBAR_INPUT12,           //!< X-BARs, eCAPs
-    XBAR_INPUT13,           //!< XINT4, X-BARs, eCAPs
-    XBAR_INPUT14,           //!< XINT5, X-BARs, eCAPs
-    XBAR_INPUT15,           //!< eCAPs
-    XBAR_INPUT16            //!< eCAPs
+	XBAR_INPUT1,			//!< ECAP, X-BARs, CLB XBAR, OUTPUT XBAR, EPWM TRIP[TZ1, TRIP1], ERAD
+	XBAR_INPUT2,			//!< ECAP, X-BARs, CLB XBAR, ERAD, CMPSS[CMPSS2/4. EXT_FILTIN_L]
+	XBAR_INPUT3,			//!< ECAP, X-BARs, CLB XBAR, ERAD, DCCx[CLK1]
+	XBAR_INPUT4,			//!< ECAP, X-BARs, CLB XBAR, ERAD, DCCx[CLK1]
+	XBAR_INPUT5,			//!< ECAP, X-BARs, CLB XBAR, ERAD, CPU XINT[XINT4], EPG[EPGAIN1]
+	XBAR_INPUT6,			//!< ECAP, X-BARs, CLB XBAR, ERAD, CPU XINT[XINT5], EPG[EPGAIN2]
+	XBAR_INPUT7,			//!< ECAP, ERAD, DCCx[CLK1], EPG[EPGAIN3]
+	XBAR_INPUT8,			//!< ECAP, ERAD, DCCx[CLK0], EPG[EPGAIN4]
+	XBAR_INPUT9,			//!< ECAP, X-BARs, CLB XBAR, OUTPUT XBAR, EPWM TRIP[TZ2, TRIP2], ERAD
+	XBAR_INPUT10,			//!< ECAP, X-BARs, CLB XBAR, OUTPUT XBAR, EPWM TRIP[TZ3, TRIP3], ERAD
+	XBAR_INPUT11,			//!< ECAP, X-BARs, CLB XBAR, OUTPUT XBAR, ERAD, CPU XINT[XINT1]
+	XBAR_INPUT12,			//!< ECAP, X-BARs, CLB XBAR, OUTPUT XBAR, ERAD, CPU XINT[XINT2], ADC SOC[ADCEXTSOC], EPWM / ECAP SYNC[EXTSYNCIN1]
+	XBAR_INPUT13,			//!< ECAP, X-BARs, CLB XBAR, OUTPUT XBAR, EPWM TRIP[TRIP6], ERAD, CPU XINT[XINT3], EPWM / ECAP SYNC[EXTSYNCIN2]
+	XBAR_INPUT14,			//!< ECAP, X-BARs, CLB XBAR, ERAD, CMPSS[CMPSS1/3. EXT_FILTIN_H]
+	XBAR_INPUT15,			//!< ECAP, X-BARs, CLB XBAR, ERAD, CMPSS[CMPSS1/3. EXT_FILTIN_L]
+	XBAR_INPUT16			//!< ECAP, X-BARs, CLB XBAR, ERAD CMPSS[CMPSS2/4. EXT_FILTIN_H]
 } XBAR_InputNum;
+
 
 #ifndef DOXYGEN_PDF_IGNORE
 //*****************************************************************************

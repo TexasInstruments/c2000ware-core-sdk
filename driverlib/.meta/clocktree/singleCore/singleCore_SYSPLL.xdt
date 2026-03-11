@@ -16,12 +16,12 @@ const device  = system.deviceData.device
 //////////////////////////////////////////////////
 // Frequency labels
 //////////////////////////////////////////////////
-const OSCCLK_d 		 = system.clockTree.OSCCLK.in
-const PLLRAWCLK_d	 = system.clockTree.PLLRAWCLK.in
-const PLLSYSCLK_d	 = system.clockTree.PLLSYSCLK.in
-const CPUCLK_d	 	 = system.clockTree.CPUCLK.in
-const SYSCLK_d		 = system.clockTree.SYSCLK.in
-const LSPCLK_d 		 = system.clockTree.LSPCLK.in
+const OSCCLK_d 		 = (system.clockTree.OSCCLK.in).toFixed(2)
+const PLLRAWCLK_d	 = (system.clockTree.PLLRAWCLK.in).toFixed(2)
+const PLLSYSCLK_d	 = (system.clockTree.PLLSYSCLK.in).toFixed(2)
+const CPUCLK_d	 	 = (system.clockTree.CPUCLK.in).toFixed(2)
+const SYSCLK_d		 = (system.clockTree.SYSCLK.in).toFixed(2)
+const LSPCLK_d 		 = (system.clockTree.LSPCLK.in).toFixed(2)
 
 //////////////////////////////////////////////////
 // OSCCLK source
@@ -37,7 +37,7 @@ var oscclksource
 var oscclk = 8
 
 //
-// XTAL Single-Ended replaces X1 for F28E12x
+// XTAL Single-Ended replaces X1 for F28E12x, MCPC029
 //
 switch(OSCCLKSRCSEL.inputSelect){
 	case "WROSCDIV8":
@@ -167,7 +167,7 @@ if(PLL_type2.includes(device))
 {
 	var PLL_REFDIV_dv = system.clockTree.PLL_REFDIV.divideValue
 	var PLL_REFDIV    = "SYSCTL_REFDIV(" + PLL_REFDIV_dv + ")"
-	
+
 	var PLL_ODIV_dv = system.clockTree.PLL_ODIV.divideValue
 	var PLL_ODIV    = "SYSCTL_ODIV(" + PLL_ODIV_dv + ")"
 }
@@ -176,7 +176,7 @@ if(PLL_type3.includes(device))
 {
 	var PLL_PDIV_dv = system.clockTree.PLL_PDIV.divideValue
 	var PLL_PDIV    = "SYSCTL_PDIV_" + PLL_PDIV_dv
-	
+
 	var PLL_RDIVCLK0_dv = system.clockTree.PLL_RDIVCLK0.divideValue
 	var PLL_RDIVCLK0    = "SYSCTL_RDIVCLK0_" + PLL_RDIVCLK0_dv
 }
@@ -194,18 +194,18 @@ if(PLL_type3.includes(device))
 //
 //##### SYSPLL `SYSPLL_STS` #####
 //
-// PLLRAWCLK				= `PLLRAWCLK_d` MHz   (Output of SYSPLL if enabled) 
+// PLLRAWCLK				= `PLLRAWCLK_d` MHz   (Output of SYSPLL if enabled)
 // PLLSYSCLK				= `PLLSYSCLK_d` MHz
 // CPUCLK					= `CPUCLK_d` MHz
 // SYSCLK					= `SYSCLK_d` MHz
-// LSPCLK					= `LSPCLK_d` MHz 
+// LSPCLK					= `LSPCLK_d` MHz
 	%
 	%if(EPWM_div_support.includes(device))
 	%{
 	% var   EPWMCLK_d       = system.clockTree.PLLSYSCLK.in / system.clockTree.EPWMCLKDIV.divideValue
-// EPWMCLK 					= `EPWMCLK_d` MHz	
+// EPWMCLK 					= `EPWMCLK_d` MHz
 	%}
-	
+
 //*****************************************************************************
 //
 // Macro definitions used in device.c (SYSPLL / LSPCLK)
@@ -227,13 +227,13 @@ if(PLL_type3.includes(device))
 			%if(device == "F28004x")
 				%{
 // SYSPLL ENABLED
-// SYSCLK = `PLLSYSCLK_d` MHz = `OSCCLK_d` MHz (OSCCLK) * (`PLL_IMULT_mv` (IMULT) + `PLL_FMULT_mv` (FMULT)) / (`PLL_ODIV_dv` (ODIV) * `SYSCLKDIVSEL_dv` (SYSCLKDIVSEL))	
+// SYSCLK = `PLLSYSCLK_d` MHz = `OSCCLK_d` MHz (OSCCLK) * (`PLL_IMULT_mv` (IMULT) + `PLL_FMULT_mv` (FMULT)) / (`PLL_ODIV_dv` (ODIV) * `SYSCLKDIVSEL_dv` (SYSCLKDIVSEL))
 #define DEVICE_SYSCLK_FREQ          ((DEVICE_OSCSRC_FREQ * (`PLL_IMULT_mv` + `PLL_FMULT_mv`)) / (`PLL_ODIV_dv` * `SYSCLKDIVSEL_dv`))
 				%}
 			%else
 				%{
 // SYSPLL ENABLED
-// SYSCLK = `PLLSYSCLK_d` MHz = `OSCCLK_d` MHz (OSCCLK) * (`PLL_IMULT_mv` (IMULT) + `PLL_FMULT_mv` (FMULT)) / `SYSCLKDIVSEL_dv` (SYSCLKDIVSEL)	
+// SYSCLK = `PLLSYSCLK_d` MHz = `OSCCLK_d` MHz (OSCCLK) * (`PLL_IMULT_mv` (IMULT) + `PLL_FMULT_mv` (FMULT)) / `SYSCLKDIVSEL_dv` (SYSCLKDIVSEL)
 #define DEVICE_SYSCLK_FREQ          ((DEVICE_OSCSRC_FREQ * (`PLL_IMULT_mv` + `PLL_FMULT_mv`)) / `SYSCLKDIVSEL_dv`)
 				%}
 		%   }
@@ -253,10 +253,10 @@ if(PLL_type3.includes(device))
 % else
 %{
 #define DEVICE_SETCLOCK_CFG         (`oscclkSrc` | `PLL_IMULT` | \
-									 `PLL_FMULT` | `PLL_DIVSEL`| \ 
+									 `PLL_FMULT` | `PLL_DIVSEL`| \
 									 `PLL_STS`)
 %}
-%}						
+%}
 % /////////////////////////////////////////////////////////////////////////////////////////
 %
 % if(PLL_type2.includes(device))
@@ -274,13 +274,13 @@ if(PLL_type3.includes(device))
 // SYSPLL DISABLED
 // SYSCLK = `OSCCLK_d` MHz(`oscclksource`) / `SYSCLKDIVSEL_dv` (SYSCLKDIVSEL) = `PLLSYSCLK_d` MHz
 #define DEVICE_SYSCLK_FREQ          (DEVICE_OSCSRC_FREQ / `SYSCLKDIVSEL_dv`)
-		%   }	
+		%   }
 //
 #define DEVICE_SETCLOCK_CFG         (`oscclkSrc`  | `PLL_IMULT` | \
 									 `PLL_REFDIV` | `PLL_ODIV`| \
 									 `PLL_DIVSEL` | `PLL_STS` | \
 									 SYSCTL_DCC_BASE_0)
-									 
+
 % }
 % /////////////////////////////////////////////////////////////////////////////////////////
 %
@@ -299,7 +299,7 @@ if(PLL_type3.includes(device))
 // SYSPLL DISABLED
 // SYSCLK = `OSCCLK_d` MHz(`oscclksource`) / `SYSCLKDIVSEL_dv` (SYSCLKDIVSEL) = `PLLSYSCLK_d` MHz
 #define DEVICE_SYSCLK_FREQ          (DEVICE_OSCSRC_FREQ / `SYSCLKDIVSEL_dv`)
-		%   }	
+		%   }
 //
 
 #define OSC_CLK_SRC 			`oscclkSrc`
@@ -308,7 +308,7 @@ if(PLL_type3.includes(device))
 #define	SYSCTL_PLL_QDIV			`PLL_QDIV`
 #define	SYSCTL_PLL_RDIVCLK0 	`PLL_RDIVCLK0`
 #define SYSCTL_PLL_SYSDIV		`PLL_DIVSEL`
-									 
+
 % }
 % /////////////////////////////////////////////////////////////////////////////////////////
 

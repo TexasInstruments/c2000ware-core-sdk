@@ -5,10 +5,10 @@
 // TITLE:  User configurable system settings.
 //
 //#############################################################################
-// $TI Release: F28003x Support Library v6.00.01.00 $
+// $TI Release: F28003x Support Library v6.01.00.00 $
 // 
 // $Copyright:
-// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 

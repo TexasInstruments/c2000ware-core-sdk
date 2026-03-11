@@ -8,7 +8,7 @@
 //
 //
 // 
-// C2000Ware v6.00.01.00
+// C2000Ware v26.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -77,7 +77,7 @@
 typedef short                                   int16;
 typedef long                                    int32;
 typedef unsigned char                           Uint8;
-typedef unsigned short                          Uint16;
+typedef uint16_t                                Uint16;
 typedef unsigned long                           Uint32;
 typedef float                                   float32;
 typedef long double                             float64;

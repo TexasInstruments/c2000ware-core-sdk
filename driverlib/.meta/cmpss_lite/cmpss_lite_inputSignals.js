@@ -53,6 +53,36 @@ let CMPSSLITE_comparatorInputSignals = {
         ]
     },
 
+    MCPC029: {
+        CMPSSLITE1_BASE: [
+            {name: "0", displayName: "A2"},
+            {name: "1", displayName: "A11"},
+            {name: "2", displayName: "A6"},
+            {name: "3", displayName: "A15"},
+            {name: "4", displayName: "A1"},
+            {name: "5", displayName: "NA"},
+            {name: "6", displayName: "NA"},
+        ],
+        CMPSSLITE2_BASE: [
+            {name: "0", displayName: "A4"},
+            {name: "1", displayName: "A12"},
+            {name: "2", displayName: "A9"},
+            {name: "3", displayName: "A10"},
+            {name: "4", displayName: "A8"},
+            {name: "5", displayName: "NA"},
+            {name: "6", displayName: "PGA1_OUT_INT"},
+        ],
+        CMPSSLITE3_BASE: [
+            {name: "0", displayName: "A21"},
+            {name: "1", displayName: "A5"},
+            {name: "2", displayName: "A0"},
+            {name: "3", displayName: "A3"},
+            {name: "4", displayName: "A14"},
+            {name: "5", displayName: "NA"},
+            {name: "6", displayName: "NA"},
+        ]
+    },
+
     F280015x: {
         CMPSSLITE2_BASE: [
             {name: "0", displayName: "A4/C14"},
@@ -96,6 +126,21 @@ let CMPSSLITE_comparatorNegInputSignals = {
     },
 
     F28E12x: {
+        CMPSSLITE1_BASE: [
+            {name: "0", displayName: "A15"},
+            {name: "1", displayName: "A11"},
+        ],
+        CMPSSLITE2_BASE: [
+            {name: "0", displayName: "A10"},
+            {name: "1", displayName: "A12"},
+        ],
+        CMPSSLITE3_BASE: [
+            {name: "0", displayName: "A3"},
+            {name: "1", displayName: "A5"},
+        ]
+    },
+
+    MCPC029: {
         CMPSSLITE1_BASE: [
             {name: "0", displayName: "A15"},
             {name: "1", displayName: "A11"},

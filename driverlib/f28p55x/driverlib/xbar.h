@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v6.00.01.00
+// C2000Ware v26.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -218,7 +218,7 @@ typedef enum
 	XBAR_INPUT13,			//!< ECAP, X-BARs, CLB XBAR, OUTPUT XBAR, EPWM TRIP[TRIP6], ERAD, CPU XINT[XINT3], EPWM / ECAP SYNC[EXTSYNCIN2]
 	XBAR_INPUT14,			//!< ECAP, X-BARs, CLB XBAR, ERAD, CMPSS[CMPSS1/3. EXT_FILTIN_H]
 	XBAR_INPUT15,			//!< ECAP, X-BARs, CLB XBAR, ERAD, CMPSS[CMPSS1/3. EXT_FILTIN_L]
-	XBAR_INPUT16			//!< ECAP, X-BARs, CLB XBAR, ERAD CMPSS[CMPSS2/4. EXT_FILTIN_H]
+	XBAR_INPUT16,			//!< ECAP, X-BARs, CLB XBAR, ERAD CMPSS[CMPSS2/4. EXT_FILTIN_H]
 } XBAR_InputNum;
 
 

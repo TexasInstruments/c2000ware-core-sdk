@@ -8,7 +8,7 @@
 //
 //
 // $Copyright:
-// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -147,13 +147,6 @@ void Device_init(void)
     // Turn on PWM Time Base Clock sync
     //
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
-
-    //
-    // Lock VREGCTL Register
-    // The register VREGCTL is not supported in this device. It is locked to
-    // prevent any writes to this register
-    //
-    ASysCtl_lockVREG();
 
     //
     // Configure GPIO 12, 13 and 28 as digital pins

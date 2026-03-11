@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -302,17 +302,6 @@ union CLKSRCCTL1_REG {
     struct  CLKSRCCTL1_BITS  bit;
 };
 
-struct CLKSRCCTL2_BITS {                // bits description
-    Uint16 CANABCLKSEL:2;               // 1:0 CANA Bit Clock Source Select Bit
-    Uint16 rsvd1:14;                    // 15:2 Reserved
-    Uint16 rsvd2:16;                    // 31:16 Reserved
-};
-
-union CLKSRCCTL2_REG {
-    Uint32  all;
-    struct  CLKSRCCTL2_BITS  bit;
-};
-
 struct CLKSRCCTL3_BITS {                // bits description
     Uint16 XCLKOUTSEL:4;                // 3:0 XCLKOUT Source Select Bit
     Uint16 rsvd1:12;                    // 15:4 Reserved
@@ -475,13 +464,13 @@ union CLKSRCSTS_REG {
 struct CLK_CFG_REGS {
     union   CLKCFGLOCK_REG                   CLKCFGLOCK;                   // Lock bit for CLKCFG registers
     union   CLKSRCCTL1_REG                   CLKSRCCTL1;                   // Clock Source Control register-1
-    union   CLKSRCCTL2_REG                   CLKSRCCTL2;                   // Clock Source Control register-2
+    Uint16                                   rsvd1[2];                     // Reserved
     union   CLKSRCCTL3_REG                   CLKSRCCTL3;                   // Clock Source Control register-3
     union   SYSPLLCTL_REG                    SYSPLLCTL;                    // SYSPLL Control register
     union   SYSPLLMULT_REG                   SYSPLLMULT;                   // SYSPLL Multiplier register
     union   SYSPLLSTS_REG                    SYSPLLSTS;                    // SYSPLL Status register
     union   SYSCLKDIVSEL_REG                 SYSCLKDIVSEL;                 // System Clock Divider Select register
-    Uint16                                   rsvd1[2];                     // Reserved
+    Uint16                                   rsvd2[2];                     // Reserved
     union   XCLKOUTDIVSEL_REG                XCLKOUTDIVSEL;                // XCLKOUT Divider Select register
     union   LOSPCP_REG                       LOSPCP;                       // Low Speed Clock Source Prescalar
     union   MCDCR_REG                        MCDCR;                        // Missing Clock Detect Control Register
@@ -686,32 +675,32 @@ struct CMPSSLPMSEL_BITS {               // bits description
     Uint16 CMPSS2L:1;                   // 3 CMPSS2L Enable for LPM Wakeup
     Uint16 CMPSS3H:1;                   // 4 CMPSS3H Enable for LPM Wakeup
     Uint16 CMPSS3L:1;                   // 5 CMPSS3L Enable for LPM Wakeup
-    Uint16 CMPSS4H:1;                   // 6 CMPSS4H Enable for LPM Wakeup
-    Uint16 CMPSS4L:1;                   // 7 CMPSS4L Enable for LPM Wakeup
-    Uint16 CMPSS5H:1;                   // 8 CMPSS5H Enable for LPM Wakeup
-    Uint16 CMPSS5L:1;                   // 9 CMPSS5L Enable for LPM Wakeup
-    Uint16 CMPSS6H:1;                   // 10 CMPSS6H Enable for LPM Wakeup
-    Uint16 CMPSS6L:1;                   // 11 CMPSS6L Enable for LPM Wakeup
-    Uint16 rsvd1:1;                     // 12 Reserved
-    Uint16 rsvd2:1;                     // 13 Reserved
-    Uint16 rsvd3:1;                     // 14 Reserved
-    Uint16 rsvd4:1;                     // 15 Reserved
-    Uint16 rsvd5:1;                     // 16 Reserved
-    Uint16 rsvd6:1;                     // 17 Reserved
-    Uint16 rsvd7:1;                     // 18 Reserved
-    Uint16 rsvd8:1;                     // 19 Reserved
-    Uint16 rsvd9:1;                     // 20 Reserved
-    Uint16 rsvd10:1;                    // 21 Reserved
-    Uint16 rsvd11:1;                    // 22 Reserved
-    Uint16 rsvd12:1;                    // 23 Reserved
-    Uint16 rsvd13:1;                    // 24 Reserved
-    Uint16 rsvd14:1;                    // 25 Reserved
-    Uint16 rsvd15:1;                    // 26 Reserved
-    Uint16 rsvd16:1;                    // 27 Reserved
-    Uint16 rsvd17:1;                    // 28 Reserved
-    Uint16 rsvd18:1;                    // 29 Reserved
-    Uint16 rsvd19:1;                    // 30 Reserved
-    Uint16 rsvd20:1;                    // 31 Reserved
+    Uint16 rsvd1:1;                     // 6 Reserved
+    Uint16 rsvd2:1;                     // 7 Reserved
+    Uint16 rsvd3:1;                     // 8 Reserved
+    Uint16 rsvd4:1;                     // 9 Reserved
+    Uint16 rsvd5:1;                     // 10 Reserved
+    Uint16 rsvd6:1;                     // 11 Reserved
+    Uint16 rsvd7:1;                     // 12 Reserved
+    Uint16 rsvd8:1;                     // 13 Reserved
+    Uint16 rsvd9:1;                     // 14 Reserved
+    Uint16 rsvd10:1;                    // 15 Reserved
+    Uint16 rsvd11:1;                    // 16 Reserved
+    Uint16 rsvd12:1;                    // 17 Reserved
+    Uint16 rsvd13:1;                    // 18 Reserved
+    Uint16 rsvd14:1;                    // 19 Reserved
+    Uint16 rsvd15:1;                    // 20 Reserved
+    Uint16 rsvd16:1;                    // 21 Reserved
+    Uint16 rsvd17:1;                    // 22 Reserved
+    Uint16 rsvd18:1;                    // 23 Reserved
+    Uint16 rsvd19:1;                    // 24 Reserved
+    Uint16 rsvd20:1;                    // 25 Reserved
+    Uint16 rsvd21:1;                    // 26 Reserved
+    Uint16 rsvd22:1;                    // 27 Reserved
+    Uint16 rsvd23:1;                    // 28 Reserved
+    Uint16 rsvd24:1;                    // 29 Reserved
+    Uint16 rsvd25:1;                    // 30 Reserved
+    Uint16 rsvd26:1;                    // 31 Reserved
 };
 
 union CMPSSLPMSEL_REG {

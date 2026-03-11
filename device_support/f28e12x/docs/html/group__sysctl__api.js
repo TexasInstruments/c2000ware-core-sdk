@@ -406,13 +406,7 @@ var group__sysctl__api =
       [ "SYSCTL_CMPSSLPMSEL_CMPSS_2H", "group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1ab413eeddf46a3fff2a0bd697c6961c8a", null ],
       [ "SYSCTL_CMPSSLPMSEL_CMPSS_2L", "group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1a2766bc91581559853938ca95882859af", null ],
       [ "SYSCTL_CMPSSLPMSEL_CMPSS_3H", "group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1aa987869fee427dfe25351469f1209897", null ],
-      [ "SYSCTL_CMPSSLPMSEL_CMPSS_3L", "group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1af05dfb4d29e74b7e69fc686363018110", null ],
-      [ "SYSCTL_CMPSSLPMSEL_CMPSS_4H", "group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1ad899c21117f35307665bf45b1780b506", null ],
-      [ "SYSCTL_CMPSSLPMSEL_CMPSS_4L", "group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1a0180e97bc2be1049a6123ef1b351431d", null ],
-      [ "SYSCTL_CMPSSLPMSEL_CMPSS_5H", "group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1a4300b057a38d7d1d2a64ff778fc74c8d", null ],
-      [ "SYSCTL_CMPSSLPMSEL_CMPSS_5L", "group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1aed02af2f04f9fe396503f3b46d096ae7", null ],
-      [ "SYSCTL_CMPSSLPMSEL_CMPSS_6H", "group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1a4b6e2c0defb06211f211b88f36fcb219", null ],
-      [ "SYSCTL_CMPSSLPMSEL_CMPSS_6L", "group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1a390ab2bc3710bbc41fbc031e26d069af", null ]
+      [ "SYSCTL_CMPSSLPMSEL_CMPSS_3L", "group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1af05dfb4d29e74b7e69fc686363018110", null ]
     ] ],
     [ "SysCtl_deviceCal", "group__sysctl__api.html#gaa0dbdec83dafa5a28445478ab2bb4e84", null ],
     [ "SysCtl_resetPeripheral", "group__sysctl__api.html#gaa27c6396066aaef8f555fc26a62472ca", null ],

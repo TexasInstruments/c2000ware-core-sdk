@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v6.00.01.00
+// C2000Ware v26.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -584,10 +584,13 @@ static inline void ASysCtl_setAnalogReferenceB(ASysCtl_AdcInst adcInst,
 
     shiftVal = adcInst + ASYSCTL_REFCONFIGB_ADC_ATB_ENA_S;
 
+    EALLOW;
+
     HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_REFCONFIGB) = 
                     (HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_REFCONFIGB) &
-                    ~((uint32_t)ASYSCTL_REFCONFIGB_ADC_ATB_ENA_M << shiftVal)) |
+                    ~((uint32_t)ASYSCTL_REFCONFIGB_ADC_ATB_ENA_M << adcInst)) |
                     ((uint32_t)modeVal << shiftVal);
+    EDIS;
 }
 
 //*****************************************************************************
@@ -1101,8 +1104,12 @@ static inline void ASysCtl_disableADCDACLoopback(uint32_t config)
 //*****************************************************************************
 static inline void ASysCtl_enableGPIOInputBuffer(uint32_t pin)
 {
-    ASSERT((pin == 0U)  || (pin == 23U) || (pin == 25U) ||
-           (pin == 32U) || (pin == 46U) || (pin == 103U));
+    ASSERT(
+           (pin == 20U) ||
+           (pin == 21U) ||
+           (pin == 62U) ||
+           (pin == 63U)
+    );
 
     uint16_t mask =
                     (pin == 20U)   ? ASYSCTL_GPIOINENACTRL_GPIO20   :
@@ -1127,8 +1134,12 @@ static inline void ASysCtl_enableGPIOInputBuffer(uint32_t pin)
 //*****************************************************************************
 static inline void ASysCtl_disableGPIOInputBuffer(uint32_t pin)
 {
-    ASSERT((pin == 0U)  || (pin == 23U) || (pin == 25U) ||
-           (pin == 32U) || (pin == 46U) || (pin == 103U));
+    ASSERT(
+           (pin == 20U) ||
+           (pin == 21U) ||
+           (pin == 62U) ||
+           (pin == 63U)
+    );
 
     uint16_t mask =
                     (pin == 20U)   ? ASYSCTL_GPIOINENACTRL_GPIO20   :

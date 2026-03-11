@@ -30,7 +30,7 @@
 //
 //
 // $Copyright:
-// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -180,11 +180,6 @@ void main(void)
     // Wait until space is available in the transmit buffer.
     //
     while(!LIN_isSCISpaceAvailable(LINA_BASE)){}
-
-    //
-    //Initiate transfer through a CPU write
-    //
-    LIN_sendData(LINA_BASE,(unsigned int*)0xFFFF);
 
     //
     // Start the DMA receive channel

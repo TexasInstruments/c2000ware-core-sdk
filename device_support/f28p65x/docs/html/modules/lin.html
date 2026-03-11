@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v6.00.01.00
+                v26.00.00.00
               </div>
             
           
@@ -2562,8 +2562,10 @@ send and receive data, and setup interrupt event handling.</p>
 </dl>
 </p>
 <p>P = Prescaler <p>M = Fractional Divider </p>
-<p>Bitrate = (SYSCLOCK) / ((P + 1 + M/16) * 16) </p>
-<dl class="simple">
+<p>Bitrate = (VCLK) / ((P + 1 + M/16) * 16) </p>
+<p>VCLK = (SYSCLOCK/LINxCLKDIV)</p>
+</p>
+<p><dl class="simple">
 <dt><strong>Return</strong></dt><dd><p>None. </p>
 </dd>
 </dl>
@@ -3328,7 +3330,7 @@ applications.</p>
     <p>
       <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
       <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
-      <span class="lastupdated">Last updated on Oct 14, 2025.
+      <span class="lastupdated">Last updated on Mar 04, 2026.
       </span></p>
   </div>
 
@@ -3348,7 +3350,7 @@ applications.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v6.00.01.00',
+            VERSION:'v26.00.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

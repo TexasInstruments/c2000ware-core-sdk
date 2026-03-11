@@ -20,8 +20,7 @@ var AllDevices = [
 	"F2838x",
 	"F28P65x",
 	"F28P55x",
-	"F28E12x",
-	"F28P551x"
+	"F28E12x"
 ]
 
 
@@ -38,14 +37,6 @@ function sectionValidationWarning(validation, section, option, message)
 		validation.logWarning(message, section.inst, option + "_" + section.name)
 	else
 		validation.logWarning(message, section.inst, option)
-}
-
-function sectionValidationInfo(validation, section, option, message)
-{
-	if(section.type == "compiler")
-		validation.logInfo(message, section.inst, option + "_" + section.name)
-	else
-		validation.logInfo(message, section.inst, option)
 }
 
 /*
@@ -109,19 +100,19 @@ function expandSectionList(sectionList){
 	var expandedSectionList = []
 
 	for(var memReg of sectionList){
-		var associatedRegions = findinArray(flashComboDetailsArr, memReg); // 
+		var associatedRegions = findinArray(flashComboDetailsArr, memReg); //
 		if(associatedRegions){ // if this is a combined memory, then get back the list of memory regions inside
 			//Expand the list of memory regions involved and mark "associated" as true and store which combo they belong to.
 			for( var associatedRegion of associatedRegions){
 				expandedSectionList = expandedSectionList.concat({
-					name: associatedRegion, 
-					associated: true, 
+					name: associatedRegion,
+					associated: true,
 					comboName: memReg})
 			}
 		}
 		else{
 			expandedSectionList = expandedSectionList.concat({
-				name: memReg, 
+				name: memReg,
 				associated: false})
 		}
 	}
@@ -293,6 +284,23 @@ var cmdValidation = [
 				var sectionName = section.sectionRunFromDifferentAddr ? "sectionRun" : "sectionMemory"
 				if(["cla1Prog", "claConst", "claScratchpad", "bssCla"].includes(section.name))
 				{
+					// Check if RAMLS8_CLA or RAMLS9_CLA are present and validate their combinations
+					var hasRAMLS8_CLA = sectionList.includes("RAMLS8_CLA");
+					var hasRAMLS9_CLA = sectionList.includes("RAMLS9_CLA");
+
+					if ((hasRAMLS8_CLA || hasRAMLS9_CLA) && sectionList.length > 1)
+					{
+						// RAMLS8_CLA and RAMLS9_CLA can only be combined with each other
+						for(var i of sectionList)
+						{
+							if (i != "RAMLS8_CLA" && i != "RAMLS9_CLA")
+							{
+								sectionValidationError(validation, section, sectionName, "RAMLS8_CLA and RAMLS9_CLA can only be used alone or combined with each other. They cannot be combined with other memories.");
+								break;
+							}
+						}
+					}
+
 					for(var i of sectionList)
 					{
 						if(MemGroup[i] != "RAMLS")
@@ -391,24 +399,24 @@ var cmdValidation = [
 					var contextNames = Common.getContextNames();
 					var context1 = null;
 					var context2 = null;
-					for (var cntx of contextNames) 
+					for (var cntx of contextNames)
 					{
-						if (cntx.slice(-1) == "1")       // Look for CPU1 Context 
+						if (cntx.slice(-1) == "1")       // Look for CPU1 Context
 						{
 						context1 = cntx;
-						}	
-			
-						if (cntx.slice(-1) == "2")       // Look for CPU2 Context 
+						}
+
+						if (cntx.slice(-1) == "2")       // Look for CPU2 Context
 						{
 						context2 = cntx;
-						}	
+						}
 					}
 					var CPU1_mod = Common.getModuleForCore("/driverlib/memcfg.js", context1);   // get module from core 1
 					if (CPU1_mod != null)
 					{
 						var stat_1 = CPU1_mod.$static;
 					}
-					
+
 					if (!["cla1Prog", "claConst", "claScratchpad", "bssCla"].includes(section.name)){
 
 						var expandedSectionList = expandSectionList(sectionList); // Check the function description
@@ -436,8 +444,8 @@ var cmdValidation = [
 							{
 								if (Common.isContextCPU1())
 								{
-									if (MemConfig[i]){
-										if ((MemConfig[i] != "MEMCFG_GSRAMCONTROLLER_CPU1")){
+									if (stat_filt){
+										if ((stat_filt != "MEMCFG_GSRAMCONTROLLER_CPU1")){
 											sectionValidationWarning(validation, section, sectionName, i + " is not configured to be owned by CPU1 in " + system.getReference(stat_1, varName) + ". CPU1 will only have read access to this memory.");
 										}
 									}
@@ -447,8 +455,8 @@ var cmdValidation = [
 								}
 								else if (Common.isContextCPU2())
 								{
-									if (MemConfig[i]){
-										if ((MemConfig[i] != "MEMCFG_GSRAMCONTROLLER_CPU2")){
+									if (stat_filt){
+										if ((stat_filt != "MEMCFG_GSRAMCONTROLLER_CPU2")){
 											sectionValidationWarning(validation, section, sectionName, i + " is not configured to be owned by CPU2 in " + system.getReference(stat_1, varName) + ". CPU2 will only have read access to this memory.");
 										}
 									}
@@ -486,7 +494,7 @@ var cmdValidation = [
 									}
 								}
 							}
-							
+
 						}
 					}
 				}
@@ -506,6 +514,28 @@ var cmdValidation = [
 		devices :AllDevices
 	},
 
+	{
+		id   : "ID_0010",
+		type : validation_error,
+		name :  "Cannot combine cla ls8/ ls9 with other memories",
+		func : (inst, validation, name) => {
+			var ranges = CMDCommon.getMemoryRangesInDetail(inst)
+
+			if (inst["sectionMemory_stack"].length != 0)
+			{
+				for(var i of ranges)
+				{
+					if ((i.name == inst["sectionMemory_stack"][0]) && (i.origin >= 0x10000))
+					{
+						validation.logError("Stack should be allocated only to lower 64k address", inst, "sectionMemory_stack");
+					}
+				}
+			}
+		},
+		devices :["F28P65x",
+				"F28P55x",
+				"F28P551x",]
+	},
 
 
 ]

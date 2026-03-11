@@ -4,7 +4,7 @@ let Pinmux   = system.getScript("/driverlib/pinmux.js");
 /* Intro splash on GUI */
 let longDescription = "UART";
 let pinmuxOnlyDevices = ["F2838x"];
-let fineGrainedFifoDevices = ["F28E12x"]
+let fineGrainedFifoDevices = ["F28E12x", "MCPC029"]
 
 function burstSizeMapping(fifoLevel, inst){
     if(inst.fen == false){
@@ -39,11 +39,11 @@ function burstSizeMapping(fifoLevel, inst){
 function fgBurstMapUtil(fifoLevel){
     let type = fifoLevel.includes("_RX") ? "RX" : "TX"
     switch (fifoLevel) {
-        case "EOT": 
+        case "EOT":
             return 8;
-        case "UART_FIFO_TXEMPTY": 
+        case "UART_FIFO_TXEMPTY":
             return 16;
-        case "UART_FIFO_RXFULL": 
+        case "UART_FIFO_RXFULL":
             return 16;
         default:
             return diffUtil(fifoLevel, type)
@@ -143,7 +143,7 @@ let fifoSettingFG = [                                                           
             { name: "UART_FIFO_TX12",       displayName: "Transmit interrupt 12/16 full" },
             { name: "UART_FIFO_TX13",       displayName: "Transmit interrupt 13/16 full" },
             { name: "UART_FIFO_TX14",       displayName: "Transmit interrupt 14/16 full" },
-            { name: "UART_FIFO_TX15",       displayName: "Transmit interrupt 15/16 full" },    
+            { name: "UART_FIFO_TX15",       displayName: "Transmit interrupt 15/16 full" },
         ]
     },
     {
@@ -193,7 +193,7 @@ function onChangeFIFO(inst, ui){
 
 function onChangeInterrupts(inst, ui)
 {
-    if (inst.enInterrupt) 
+    if (inst.enInterrupt)
     {
         ui.registerInterrupts.hidden = false;
         ui.enabledInterrupts.hidden = false;
@@ -239,7 +239,7 @@ function onValidate(inst, validation)
     if (pinmuxOnlyDevices.includes(Common.getDeviceName()))
     {
         validation.logWarning(
-            "No Sysconfig support for CM core", 
+            "No Sysconfig support for CM core",
             inst, "useCase");
         return;
     }
@@ -247,7 +247,7 @@ function onValidate(inst, validation)
     if ((inst.enInterrupt) && (inst.enabledInterrupts.length <= 0) && (inst.txiflsel != "EOT"))
     {
         validation.logWarning(
-            "At least one interrupt should be enabled when 'Enable Interrupts' is checked. Either choose one here, or Enable FIFO and choose Transmit FIFO Interrupt Level 'End of Transmission'.", 
+            "At least one interrupt should be enabled when 'Enable Interrupts' is checked. Either choose one here, or Enable FIFO and choose Transmit FIFO Interrupt Level 'End of Transmission'.",
             inst, "enabledInterrupts");
     }
 
@@ -263,7 +263,7 @@ function onValidate(inst, validation)
             "Baud rate out of range, max baud rate given current UART source clock is " + String(maxBaud),
             inst, "baud");
     }
-    
+
     else if (inst.baud < minBaud)
     {
         validation.logError(
@@ -274,7 +274,7 @@ function onValidate(inst, validation)
     //Validate UART+DMA settings
     //Add filters for F2838x, F28P65x, and F29H65x in the future if IP is updated
     if ((inst.dmarx || inst.dmatx) && !inst.fen) {
-        validation.logError("FIFO must be enabled for DMA linking!", inst, "fen");   
+        validation.logError("FIFO must be enabled for DMA linking!", inst, "fen");
     }
     if(inst.dmarx && (inst.uartRXDMA.burstSize != burstSizeMapping(inst.rxiflsel, inst)))
     {
@@ -289,7 +289,7 @@ function onValidate(inst, validation)
 
     if (inst.dmarx && (inst.uartRXDMA.numberWordsToTransfer)%2 !== 0){
         validation.logWarning(
-            "Total number of bytes to receive must be even", inst.uartRXDMA, "numberWordsToTransfer");            
+            "Total number of bytes to receive must be even", inst.uartRXDMA, "numberWordsToTransfer");
     }
     if (inst.dmatx && (inst.uartTXDMA.numberWordsToTransfer)%2 !== 0){
         validation.logWarning(
@@ -335,14 +335,14 @@ let config = [
                 baudrtDiv = baudrtDiv/2;
             }
             var div = parseInt((((inst.$module.$static["baudSYSCLK"] * 8) / baudrtDiv) + 1) / 2);
-            
+
             // high speed mode (source clock /8) if needed for this baud
             var ClkDiv = ((baudrt * 16) > inst.$module.$static["baudSYSCLK"] ? 8 : 16)
 
             // get the values that would get stored into the regs
             var integerBaudRateDivider = parseInt(div / 64);
             var fractionalBaudRateDivider = parseInt(div % 64);
-            
+
             // compute the resultant baud rate of the values that got put
             // into the registers
             var baudActual = (inst.$module.$static["baudSYSCLK"]/((integerBaudRateDivider + (fractionalBaudRateDivider/64))*ClkDiv));
@@ -367,14 +367,14 @@ let config = [
                 baudrtDiv = baudrtDiv/2;
             }
             var div = parseInt((((inst.$module.$static["baudSYSCLK"] * 8) / baudrtDiv) + 1) / 2);
-            
+
             // high speed mode (source clock /8) if needed for this baud
             var ClkDiv = ((baudrt * 16) > inst.$module.$static["baudSYSCLK"] ? 8 : 16)
 
             // get the values that would get stored into the regs
             var integerBaudRateDivider = parseInt(div / 64);
             var fractionalBaudRateDivider = parseInt(div % 64);
-            
+
             // compute the resultant baud rate of the values that got put
             // into the registers
             var baudActual = (inst.$module.$static["baudSYSCLK"]/((integerBaudRateDivider + (fractionalBaudRateDivider/64))*ClkDiv));
@@ -390,7 +390,7 @@ let config = [
         description : 'Internal loopback mode for diagnostic or debug work.',
         hidden      : false,
         default     : false
-        
+
     },
     //**********************************************************************
     // Word Settings
@@ -450,7 +450,7 @@ let config = [
         default     : false,
         onChange    : onChangeParity,
     },
-    // output a value to user to know what the stick parity value will be, 
+    // output a value to user to know what the stick parity value will be,
     // based on PEN, EPS, and SPS bits of UARTLCRH
     {
         name        : "stickParityVal",
@@ -461,7 +461,7 @@ let config = [
             if (    inst.pen == true    &&  // parity enabled
                     inst.sps == true    &&  // stick parity enabled
                     inst.eps == "UART_CONFIG_PAR_EVEN")     // even parity selected
-                
+
             {
                 return "0"; // always output 0 for even stick parity
             }
@@ -484,7 +484,7 @@ let config = [
         hidden      : false,
         default     : true,
         onChange    : onChangeInterrupts,
-        
+
     },
     {
         name        : "registerInterrupts",
@@ -492,7 +492,7 @@ let config = [
         description : 'Whether or not to register interrupt handlers in the interrupt module.',
         hidden      : false,
         default     : false,
-        
+
     },
     {
         name        : "enabledInterrupts",
@@ -515,13 +515,13 @@ let config = [
             {name: "UART_INT_RT",       displayName: "Receive Timeout Interrupt"},
             {name: "UART_INT_9BIT",     displayName: "9-bit Address Match Interrupt"},
         ],
-        
+
     },
 ]
 
 
 // FIFO settings - Varies depending on fine-grained FIFO availability
-config = config.concat(fifoSettingFinal)   
+config = config.concat(fifoSettingFinal)
 
 config = config.concat([
     //**********************************************************************
@@ -534,7 +534,7 @@ config = config.concat([
         default     : 'ALL',
         options     : Pinmux.getPeripheralUseCaseNames("UART"),
         onChange    : Pinmux.useCaseChanged,
-        
+
     },
     //**********************************************************************
     // DMA settings
@@ -560,7 +560,7 @@ config = config.concat([
             description : 'Use a DMA channel to transfer data to the TX FIFO',
             hidden      : false,
             default     : false,
-        },  
+        },
         ]
     },
 ])
@@ -579,7 +579,7 @@ if (pinmuxOnlyDevices.includes(Common.getDeviceName()))
             default     : 'ALL',
             options     : Pinmux.getPeripheralUseCaseNames("UART"),
             onChange    : Pinmux.useCaseChanged,
-            
+
         },
     ];
 }
@@ -613,7 +613,7 @@ var uartModule = {
     filterHardware : filterHardware,
     moduleInstances: (inst) => {
         var ownedInstances = []
-        
+
         // pinmux qualification
         var pinmuxQualMods = Pinmux.getGpioQualificationModInstDefinitions("UART", inst)
         for (var pinmuxQualMod of pinmuxQualMods)
@@ -639,7 +639,7 @@ var uartModule = {
         if (inst.enInterrupt && inst.registerInterrupts)
     	{
 	        ownedInstances = ownedInstances.concat([{
-	            name: "uartInt",      
+	            name: "uartInt",
 	            displayName: "UART Interrupt",
 	            moduleName: "/driverlib/interrupt.js",
 	            collapsed: true,

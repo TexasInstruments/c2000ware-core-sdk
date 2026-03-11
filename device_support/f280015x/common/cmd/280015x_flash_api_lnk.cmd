@@ -102,5 +102,5 @@ SECTIONS
    IQmath           : > FLASH_BANK0_SEC_32_39, ALIGN(8)
    IQmathTables     : > FLASH_BANK0_SEC_32_39, ALIGN(8)
 
-   DataBufferSection : > RAMLS1, ALIGN(2)
+   DataBufferSection : > RAMLS1, ALIGN(8)
 }

@@ -19,7 +19,8 @@ var ALL_DEVICES = [
     "F28P65x",
     "F28P55x",
     "F28P551x",
-    "F28E12x"
+    "F28E12x",
+    "MCPC029"
 ]
 
 
@@ -38,9 +39,9 @@ let ADDITIONAL_USECASES = {
         {
             name: "NO STROBE",
             interfaces: [
-                "EQEP#_A", 
-                "EQEP#_B", 
-                "EQEP#_INDEX", 
+                "EQEP#_A",
+                "EQEP#_B",
+                "EQEP#_INDEX",
             ],
             devices: Common.removeArrayFromArray(ALL_DEVICES, F28X7X_SERIES)
         }
@@ -99,7 +100,7 @@ function getAdditionalUseCase(periph)
         return ADDITIONAL_USECASES[periph].filter(useCase => useCase.devices.includes(Common.getDeviceName()))
     }
     return null
-    
+
 }
 
 
@@ -109,7 +110,7 @@ function getAdditionalUseCaseNames(periph)
         return ADDITIONAL_USECASES[periph].filter(useCase => useCase.devices.includes(Common.getDeviceName())).map(useCase => useCase.name)
     }
     return null
-    
+
 }
 
 function getAdditionalUseCaseInterfaces(periph, useCase)
@@ -122,7 +123,7 @@ function getAdditionalUseCaseInterfaces(periph, useCase)
             return selectedAddUseCase[0].interfaces
         }
     }
-        
+
     return null
 }
 

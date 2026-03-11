@@ -38,7 +38,7 @@ let ADC_internalSignals = {
         C9: "VREFLOC",
         D8: "VREFLOD",
         D9: "VREFLOD",
-    }, 
+    },
     F2837xD: {
         A8: "VREFLOA",
         A9: "VREFLOA",
@@ -49,7 +49,7 @@ let ADC_internalSignals = {
         C9: "VREFLOC",
         D8: "VREFLOD",
         D9: "VREFLOD",
-    }, 
+    },
     F2837xS: {
         A8: "VREFLOA",
         A9: "VREFLOA",
@@ -108,6 +108,11 @@ let ADC_internalSignals = {
         C22: "PGA3_OUT_INT",
     },
     F28E12x: {
+        A13: "VREFLO",
+        A22: "TempSensor",
+        A25: "PGA1_OUT_INT",
+    },
+    MCPC029: {
         A13: "VREFLO",
         A22: "TempSensor",
         A25: "PGA1_OUT_INT",

@@ -161,6 +161,11 @@ SECTIONS
                        LOAD_START(RamfuncsLoadStart),
                        LOAD_SIZE(RamfuncsLoadSize),
                        PAGE = 0
+   .bss             : > RAMGS0_2
+   .init_array      : > FLASHN
+   .const           : > FLASHN
+   .data            : > RAMGS0_2
+   .sysmem          : > RAMGS0_2
 #else
    ramfuncs         :  LOAD = FLASHD,
                        RUN = RAMD0,

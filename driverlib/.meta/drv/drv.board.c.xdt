@@ -1,0 +1,106 @@
+% let nameOfModule = "drv";
+% let module = system.modules['/driverlib/' + nameOfModule + '.js'];
+% let Common   = system.getScript("/driverlib/Common.js");
+% let nameOfPeripheral = module.peripheralName;
+
+//*****************************************************************************
+//
+// DRV Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_init(){
+%   for(let i = 0; i < module.$instances.length; i++)
+%   {
+%      let instance = module.$instances[i];
+    `instance.$name`_init();
+%   }
+}
+
+%if (module != null)
+%{
+    % for(let i = 0; i < module.$instances.length; i++) {
+        % let instance = module.$instances[i];
+void `instance.$name`_init(){
+    % console.log(instance.debug_readbackTest)
+    % let instanceConfig = instance[nameOfModule];
+    %
+    % if (instance.CLRFLT){
+    DRV_ClearFaults();
+    % }
+    % if (instance.disableBSTFault) {
+    DRV_DisableBstFault();
+    %   if (instance.debug_readbackTest){
+    ASSERT((DRV_Interface_ReadRegister(DRV8329_O_CTRL2) & DRV8329_CTRL2_DIS_BST_FLT) == DRV8329_CTRL2_DIS_BST_FLT);
+    %   }
+    % } else {
+    DRV_EnableBstFault();
+    %   if (instance.debug_readbackTest){
+    ASSERT((DRV_Interface_ReadRegister(DRV8329_O_CTRL2) & DRV8329_CTRL2_DIS_BST_FLT) == 0x0U);
+    %   }
+    % }
+    % if (instance.disableSNSFault) {
+    DRV_DisableSnsFault();
+    %   if (instance.debug_readbackTest){
+    ASSERT((DRV_Interface_ReadRegister(DRV8329_O_CTRL1) & DRV8329_CTRL1_DIS_SNS_FLT) == DRV8329_CTRL1_DIS_SNS_FLT);
+    %   }
+    % } else {
+    DRV_EnableSnsFault();
+    %   if (instance.debug_readbackTest){
+    ASSERT((DRV_Interface_ReadRegister(DRV8329_O_CTRL1) & DRV8329_CTRL1_DIS_SNS_FLT) == 0x0);
+    %   }
+    % }
+    % if (instance.disableVDSFault) {
+    DRV_DisableVdsFault();
+    %   if (instance.debug_readbackTest){
+    ASSERT((DRV_Interface_ReadRegister(DRV8329_O_CTRL1) & DRV8329_CTRL1_DIS_VDS_FLT) == DRV8329_CTRL1_DIS_VDS_FLT);
+    %   }
+    % } else {
+    DRV_EnableVdsFault();
+    %   if (instance.debug_readbackTest){
+    ASSERT((DRV_Interface_ReadRegister(DRV8329_O_CTRL1) & DRV8329_CTRL1_DIS_VDS_FLT) == 0x0);
+    %   }
+    % }
+    % if (instance.disTcp) {
+    DRV_DisableTcp();
+    %   if (instance.debug_readbackTest){
+    ASSERT((DRV_Interface_ReadRegister(DRV8329_O_CTRL2) & DRV8329_CTRL2_DIS_TCP) == DRV8329_CTRL2_DIS_TCP);
+    %   }
+    % } else {
+    DRV_EnableTcp();
+    %   if (instance.debug_readbackTest){
+    ASSERT((DRV_Interface_ReadRegister(DRV8329_O_CTRL2) & DRV8329_CTRL2_DIS_TCP) == 0x0);
+    %   }
+    % }
+    % if (instance.disDrv) {
+    DRV_DisableDrv();
+    %   if (instance.debug_readbackTest){
+    ASSERT((DRV_Interface_ReadRegister(DRV8329_O_CTRL2) & DRV8329_CTRL2_DIS_DRV) == DRV8329_CTRL2_DIS_DRV);
+    %   }
+    % } else {
+    DRV_EnableDrv();
+    %   if (instance.debug_readbackTest){
+    ASSERT((DRV_Interface_ReadRegister(DRV8329_O_CTRL2) & DRV8329_CTRL2_DIS_DRV) == 0x0);
+    %   }
+    % }
+    % if (instance.enableVdsLvlSelection) {
+    DRV_EnableVdsLevelSelection();
+    %   if (instance.debug_readbackTest){
+    ASSERT((DRV_Interface_ReadRegister(DRV8329_O_CTRL1) & DRV8329_CTRL1_SEL_VDS_SPI) == DRV8329_CTRL1_SEL_VDS_SPI);
+    %   }
+    DRV_SetVdsLevel(`instance.selectVDSLVL`);
+    %   if (instance.debug_readbackTest){
+    ASSERT(((DRV_Interface_ReadRegister(DRV8329_O_CTRL1) & DRV8329_CTRL1_SEL_VDSLVL_M) >> DRV8329_CTRL1_SEL_VDSLVL_S ) == `instance.selectVDSLVL`);
+    %   }
+    % } else {
+    DRV_DisableVdsLevelSelection();
+    %   if (instance.debug_readbackTest){
+    ASSERT((DRV_Interface_ReadRegister(DRV8329_O_CTRL1) & DRV8329_CTRL1_SEL_VDS_SPI) == 0x0);
+    %   }
+    % }
+    DRV_SetOtsRecoveryMode(`instance.OTSRECO`);
+    %   if (instance.debug_readbackTest){
+    ASSERT((DRV_Interface_ReadRegister(DRV8329_O_CTRL2) & DRV8329_CTRL2_OTS_AUTO_RECOVER) == `instance.OTSRECO`);
+    %   }
+}
+    % }
+%}

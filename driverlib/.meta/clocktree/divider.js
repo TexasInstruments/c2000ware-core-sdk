@@ -35,7 +35,7 @@ exports = {
 		},
 	}],
 	validate: (inst, { $ipInstance, logError, logWarning }) => {
-		let sensitive_devices = ["F2838x", "F28P65x", "F2837xD", "F2837xS", "F2807x"];
+		let sensitive_devices = ["F2838x", "F28P65x"];
 		let div_value = inst.divideValue;
 		let warningMsg1 = "ePWM TZFRC and TZCLR events will sometimes be missed when EPWMCLKDIV is divide by 2. Always program EPWMCLKDIV to divide by 1 if using TZFRC or TZCLR register. ";
 		let warningMsg2 = "Please refer to the " + system.deviceData.device + " Silicon Errata for more details.";

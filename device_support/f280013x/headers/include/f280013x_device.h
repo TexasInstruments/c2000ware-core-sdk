@@ -8,7 +8,7 @@
 //
 //
 // $Copyright:
-// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -47,13 +47,13 @@
 extern "C" {
 #endif
 
-
+#include "stdint.h"
 #ifndef __TMS320C28XX__
 #define __cregister
 #endif  //__TMS320C28xx__
 
-extern __cregister volatile unsigned int IFR;
-extern __cregister volatile unsigned int IER;
+extern __cregister volatile uint16_t IFR;
+extern __cregister volatile uint16_t IER;
 
 #define  EINT   __asm(" clrc INTM")
 #define  DINT   __asm(" setc INTM")
@@ -174,22 +174,22 @@ typedef _Bool status_t;
 #define F28_DATA_TYPES
 
 #ifdef __TMS320C28XX_CLA__
-typedef short                                   int16;
-typedef long                                    int32;
+typedef int16_t                                 int16;
+typedef int32_t                                 int32;
 typedef unsigned char                           Uint8;
-typedef unsigned short                          Uint16;
-typedef unsigned long                           Uint32;
+typedef uint16_t                                Uint16;
+typedef uint32_t                               Uint32;
 typedef float                                   float32;
 typedef long double                             float64;
 typedef struct { Uint32 low32; Uint32 high32; } Uint64;
 typedef struct { int32  low32; int32  high32; } int64;
 #else // __TMS320C28XX__
-typedef int                                     int16;
-typedef long                                    int32;
-typedef long long                               int64;
-typedef unsigned int                            Uint16;
-typedef unsigned long                           Uint32;
-typedef unsigned long long                      Uint64;
+typedef int16_t                                 int16;
+typedef int32_t                                 int32;
+typedef int64_t                                 int64;
+typedef uint16_t                                Uint16;
+typedef uint32_t                                Uint32;
+typedef uint64_t                                Uint64;
 #ifndef C2000_IEEE754_TYPES
 #define C2000_IEEE754_TYPES
 #ifdef __TI_EABI__
@@ -211,6 +211,7 @@ typedef long double   float64_t;
 #ifndef __TMS320C28XX_CLA__
 typedef unsigned int bp_16 __attribute__((byte_peripheral));
 typedef unsigned long bp_32 __attribute__((byte_peripheral));
+
 #endif
 
 //

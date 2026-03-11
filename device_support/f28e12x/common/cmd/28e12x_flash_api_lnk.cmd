@@ -77,7 +77,7 @@ SECTIONS
    IQmath           : > FLASH_BANK0_SEC_0_31, ALIGN(8)
    IQmathTables     : > FLASH_BANK0_SEC_0_31, ALIGN(8)
 
-   DataBufferSection : > RAMGS0, ALIGN(2)
+   DataBufferSection : > RAMGS0, ALIGN(8)
 
 }
 

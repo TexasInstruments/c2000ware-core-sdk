@@ -4,10 +4,10 @@ let Common   = system.getScript("/driverlib/Common.js");
 var nameOfModule = "uart";
 var nameOfPeripheral = module.peripheralName;
 let pinmuxOnlyDevices = ["F2838x"];
-let fgFifoDevices = ["F28E12x"]
+let fgFifoDevices = ["F28E12x", "MCPC029"]
 var data = []
 
-/** given an array of [[name1:desc1],[name2:desc2],[name3:desc3]] pairs, return a string of 
+/** given an array of [[name1:desc1],[name2:desc2],[name3:desc3]] pairs, return a string of
  * the format:
  * (name1 | // desc1
  *  name2 | // desc2
@@ -32,7 +32,7 @@ function orSeparatedVars(arr)
         {
             configVal           = valAndDesc;
         }
-        
+
         // start the string with a parentheses
         if (i==0){s += "(";}
         // add the value
@@ -48,7 +48,7 @@ function orSeparatedVars(arr)
             s += ")";
         }
 
-        // add the description as a comment after all the symbols 
+        // add the description as a comment after all the symbols
         // (if it exists)
         if (configDescription)
         {
@@ -71,18 +71,18 @@ if (!pinmuxOnlyDevices.includes(Common.getDeviceName()))
     {
         // store the data for this instance in an object
         var idat = {};
-        
+
         idat['BASE']    = inst.$name + "_BASE";
         idat['baud']    = inst.baud;
         idat['uartclk'] = parseInt(Common.getSYSCLK())*1e6;
-        
+
         //******************************************************************
         // CONFIG STRING FOR UART_setConfig()
         // gather up all the configuration names based on sysconfig input
         idat['configArr']    = [];
         idat['configArr'].push([inst.wlen, "word length"]);
         idat['configArr'].push([inst.stp2, "stop bits"]);
-        
+
         // PARITY SELECTION
         // stick parity 0
         if (inst.sps && inst.stickParityVal == "0")
@@ -123,7 +123,7 @@ if (!pinmuxOnlyDevices.includes(Common.getDeviceName()))
 
         // set rxiflsel
         idat.rxiflsel = inst.rxiflsel;
-        
+
         //******************************************************************
         // INTERRUPT RELATED ITEMS
         var allInts = inst.enabledInterrupts;
@@ -157,7 +157,7 @@ if (!pinmuxOnlyDevices.includes(Common.getDeviceName()))
 //
 //*****************************************************************************
 void `nameOfPeripheral`_init(){
-%   for(var inst of module.$instances) 
+%   for(var inst of module.$instances)
 %   {
     `inst.$name`_init();
 %   }
@@ -165,7 +165,7 @@ void `nameOfPeripheral`_init(){
 
 % if (module != null)
 % {
-    % for(var inst of module.$instances) 
+    % for(var inst of module.$instances)
     % {
 void `inst.$name`_init(){
     % // determine which devices should get full configurability
@@ -183,12 +183,12 @@ void `inst.$name`_init(){
         );
         % if (inst.fen)
         % {
-        
+
         //
         // FIFO enable
         //
         UART_enableFIFO(`idat['BASE']`);
-        
+
         //
         // FIFO trigger levels
         //
@@ -203,7 +203,7 @@ void `inst.$name`_init(){
         % }
         % else
         % {
-        
+
         //
         // FIFO disable
         //
@@ -211,7 +211,7 @@ void `inst.$name`_init(){
         % }
         % if (inst.enInterrupt)
         % {
-        
+
         //
         // Configure interrupts
         //
@@ -222,7 +222,7 @@ void `inst.$name`_init(){
         % }
         % if (inst.loopback)
         % {
-        
+
         //
         // Enable loopback mode
         //
@@ -230,10 +230,10 @@ void `inst.$name`_init(){
         % }
         % else
         % {
-            
+
         UART_disableLoopback(`idat['BASE']`);
         % }
-        
+
         % // NOTE: replace this code with UART_enableModuleNonFIFO when this
         % // function is created
         //

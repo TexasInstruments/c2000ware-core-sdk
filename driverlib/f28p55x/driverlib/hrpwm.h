@@ -6,7 +6,7 @@
 //
 //#############################################################################
 // 
-// C2000Ware v6.00.01.00
+// C2000Ware v26.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -226,7 +226,7 @@ typedef enum
 #define HRPWM_setCountModeAfterSync              EPWM_setCountModeAfterSync
 #define HRPWM_setClockPrescaler                  EPWM_setClockPrescaler
 #define HRPWM_swForceSyncPulse                   EPWM_forceSyncPulse
-#define HRPWM_setSyncOutPulseMode                EPWM_setSyncOutPulseMode
+#define HRPWM_setSyncOutPulseMode                EPWM_enableSyncOutPulseSource
 #define HRPWM_setPeriodLoadMode                  EPWM_setPeriodLoadMode
 #define HRPWM_setTimeBaseCounterMode             EPWM_setTimeBaseCounterMode
 #define HRPWM_selectPeriodLoadEvent              EPWM_selectPeriodLoadEvent

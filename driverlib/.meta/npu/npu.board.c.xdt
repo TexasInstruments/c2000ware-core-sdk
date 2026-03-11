@@ -1,0 +1,14 @@
+% var nameOfModule = "npu";
+% var module = system.modules['/driverlib/' + nameOfModule + '.js'];
+% var nameOfPeripheral = module.peripheralName;
+
+extern NPU_enableInterrupt();
+
+//*****************************************************************************
+//
+// NPU Configurations
+//
+//*****************************************************************************
+void `nameOfPeripheral`_init(){
+	NPU_enableInterrupt();
+}

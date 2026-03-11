@@ -4,15 +4,15 @@ const device  = system.deviceData.device
 // and add it to the list.
 // If a new subcategory is needed, just define a new variable and address that in the related function.xdt file.
 // For example, if you need a new Include Header type, you can add Include_Headers_Typex to the list and then go to Include folder and add that
-//variable to the Include.xdt. Also, you need to copy and past your content to a new file, let's call Include_Headers_xxx.xdt. 
+//variable to the Include.xdt. Also, you need to copy and past your content to a new file, let's call Include_Headers_xxx.xdt.
 
 // Multi-core devices list
 const multi_core 																= ["F2837xD", "F2838x", "F28P65x"]
 
 //
-// Available Include Header 
+// Available Include Header
 //
-// General Include Header 
+// General Include Header
 const Include_Headers_Type0														= ["F2838x"]
 
 // Include Header with hw_ipc.h
@@ -21,17 +21,17 @@ const Include_Headers_Type1														= ["F2837xD"]
 // Include Header with hw_lcm.h
 const Include_Headers_Type2														= ["F280015x"]
 
-// Include Header with driverlib.h  
-const Include_Headers_Type3														= ["F280013x", "F28002x", "F28003x", "F28004x", "F2837xS", "F2807x", "F28P65x", "F28P55x","F28P551x","F28E12x"]
+// Include Header with driverlib.h
+const Include_Headers_Type3														= ["F280013x", "F28002x", "F28003x", "F28004x", "F2837xS", "F2807x", "F28P65x", "F28P55x","F28P551x","F28E12x", "MCPC029"]
 
 //
-// Available Boot_CM 
+// Available Boot_CM
 //
 // Devices with Boot_CM
 const Device_Boot_CM 															= ["F2838x"]
 
 //
-// Available Initilization 
+// Available Initilization
 //
 //Function to initialize the device (suprano dual-core devices, Type0)
 const Initilization_General_Type0												= ["F2837xD"]
@@ -60,26 +60,26 @@ const Initilization_GPIO_20_21_Type0										= ["F28003x"]
 //configuring the Lock VREGCTL Register for device initilization
 const Initilization_AGPIO_Dual_Core_Type0										= ["F28P65x"]
 
-//configuring the GPIO pins 11, 12, 13, 16, 17, 20, 21, 24, 
+//configuring the GPIO pins 11, 12, 13, 16, 17, 20, 21, 24,
 // and 28 in digital mode, turn on all peripherals, and Lock VREGCTL Register for device initilization
 const Initilization_GPIO_11_28										= ["F28P55x"]
 
-//configuring the GPIO pins 11, 12, 13, 16, 17, 20, 21, 24, 
+//configuring the GPIO pins 11, 12, 13, 16, 17, 20, 21, 24,
 // and 28 in digital mode, turn on all peripherals, and Lock VREGCTL Register for device initilization
 const Initilization_GPIO_11_28_Type0									= ["F28P551x"]
 
 //configuring the GPIO pins 12, 13 and 28 in digital mode, turn on all peripherals,
 //and Lock VREGCTL Register for device initilization
-const Initilization_GPIO_12_28										= ["F28E12x"]
+const Initilization_GPIO_12_28										= ["F28E12x", "MCPC029"]
 
 //
-// Available InitGPIO 
+// Available InitGPIO
 //
 // Disabling pin locks and enabling pullups on GPIOs Port A-Port F.
 const InitGPIO_PortA_PortF_Type0 											= ["F2838x", "F2837xD", "F2837xS", "F2807x"]
 
 // Disabling pin locks and enabling pullups on GPIOs only Ports A, B, and H.
-const InitGPIO_PortA_PortH_Type0 											= ["F28002x", "F28003x", "F28004x", "F280013x", "F280015x","F28E12x","F28P551x"]
+const InitGPIO_PortA_PortH_Type0 											= ["F28002x", "F28003x", "F28004x", "F280013x", "F280015x","F28E12x", "MCPC029","F28P551x"]
 
 // Disabling pin locks and enabling pullups on GPIOs Ports A, B, C, D, E, F, and H.
 const InitGPIO_PortA_PortH_Type1 											= ["F28P65x"]
@@ -88,7 +88,7 @@ const InitGPIO_PortA_PortH_Type1 											= ["F28P65x"]
 const InitGPIO_PortA_PortH_Type2 											= ["F28P55x"]
 
 //
-// Available VerifyXTAL 
+// Available VerifyXTAL
 //
 // verifying the XTAL frequency
 const VerifyXTAL_Type0														= ["F2838x"]
@@ -97,12 +97,12 @@ const VerifyXTAL_Type0														= ["F2838x"]
 const VerifyXTAL_Type1 														= ["F28002x", "F28003x", "F28004x", "F28P65x", "F28P55x","F28P551x"]
 
 // verifying the XTAL frequency
-const VerifyXTAL_Type2														= ["F28E12x"]
+const VerifyXTAL_Type2														= ["F28E12x", "MCPC029"]
 
 //
-// Available BootCPU2 
+// Available BootCPU2
 //
-// Boot CPU2 to Flash Sector 0 to Sector 13 
+// Boot CPU2 to Flash Sector 0 to Sector 13
 const Boot_CPU2_Type0														=["F2838x"]
 
 // Boot CPU2 to Flash Bank 0 to Bank 4
@@ -112,7 +112,7 @@ const Boot_CPU2_Type1														=["F28P65x"]
 const Boot_CPU2_Boot_Mode_Type0												=["F2837xD"]
 
 //
-// Available Enable_Unbounded_GPIO_Pullups 
+// Available Enable_Unbounded_GPIO_Pullups
 //
 // enable pullups for the unbonded GPIOs on the 100PZ or 176PTP package.
 const Enable_Unbounded_GPIO_Pullups_100PZ_176PTP_Type0						=["F2837xD", "F2837xS", "F2807x"]
@@ -121,10 +121,10 @@ const Enable_Unbounded_GPIO_Pullups_100PZ_176PTP_Type0						=["F2837xD", "F2837x
 const Enable_Unbounded_GPIO_Pullups_176PTP_Type0							=["F2838x"]
 
 // enable pullups for the unbonded GPIOs on the 48PT, 32RHB, 32VFC package.
-const Enable_Unbounded_GPIO_Pullups_48PT_32RHB_32VFC_Type0					=["F28E12x"]
+const Enable_Unbounded_GPIO_Pullups_48PT_32RHB_32VFC_Type0					=["F28E12x", "MCPC029"]
 
 //
-// Available Configure_TMX_Analog_Trim 
+// Available Configure_TMX_Analog_Trim
 //
 // Implementing Analog trim of TMX devices with ADC A, ADC B, and ADC D
 const Configure_TMX_Analog_Trim_Type0										=["F2807x"]
@@ -136,58 +136,58 @@ const Configure_TMX_Analog_Trim_Type1										=["F2837xS"]
 const Configure_TMX_Analog_Trim_Type2										=["F2837xD"]
 
 //
-// Available EnableAllPeripherals 
+// Available EnableAllPeripherals
 //
-// Enabling HRCAL for F2838x with checking if context is on CPU1. If enabling HRCAL in your device needs 
+// Enabling HRCAL for F2838x with checking if context is on CPU1. If enabling HRCAL in your device needs
 //to be done only in CPU1, add your device to this list.
 const EnableAllPeripherals_CLK_HRCAL								= ["F2838x"]
 
-// Enabling HRPWM for F2837xD with checking if context is on CPU1. If enabling HRPWM in your device needs 
+// Enabling HRPWM for F2837xD with checking if context is on CPU1. If enabling HRPWM in your device needs
 //to be done only in CPU1, add your device to this list.
 const EnableAllPeripherals_CLK_HRPWM								= ["F2837xD"]
 
-// Enabling EMIF with checking if context is on CPU1. If enabling EMIF in your device needs 
+// Enabling EMIF with checking if context is on CPU1. If enabling EMIF in your device needs
 //to be done only in CPU1, add your device to this list.
 const EnableAllPeripherals_CLK_EMIF_With_If									= ["F2837xD", "F2838x", "F28P65x"]
 
-// Checking devices need enabling peripheral EMIF1. If peripheral EMIF1 needs to be enabled 
+// Checking devices need enabling peripheral EMIF1. If peripheral EMIF1 needs to be enabled
 //in your device, add your device to this list.
 const EnableAllPeripherals_CLK_EMIF1										= [ "F2837xS", "F2807x" ]
 
-// Checking devices need enabling peripheral EMIF2. If peripheral EMIF2 needs to be enabled 
+// Checking devices need enabling peripheral EMIF2. If peripheral EMIF2 needs to be enabled
 //in your device, add your device to this list.
 const EnableAllPeripherals_CLK_EMIF2										= ["F2837xS"]
 
-// Enabling USB and UPPA with checking if context is on CPU1. If enabling USB or UPPA in your device needs 
+// Enabling USB and UPPA with checking if context is on CPU1. If enabling USB or UPPA in your device needs
 //to be done only in CPU1, add your device to this list.
 const EnableAllPeripherals_CLK_USB_UPPA							= ["F2838x", "F2837xD"]
 
-// Checking devices with SysCtl_enablePeripheral for peripheral USBA. If peripheral USBA needs to be enabled 
+// Checking devices with SysCtl_enablePeripheral for peripheral USBA. If peripheral USBA needs to be enabled
 //in your device, add your device to this list.
 const EnableAllPeripherals_CLK_USBA											= ["F2837xS", "F2807x", "F28P65x", "F28P55x"]
 
-// Checking devices with SysCtl_enablePeripheral for peripheral UPPA. If peripheral UPPA needs to be enabled 
+// Checking devices with SysCtl_enablePeripheral for peripheral UPPA. If peripheral UPPA needs to be enabled
 //in your device, add your device to this list.
 const EnableAllPeripherals_CLK_UPPA											= ["F2837xS"]
 
-// Enabling DCC and ECAT, and MCAN with checking if context is on CPU1. If enabling DCC and ECAT, and MCAN  
+// Enabling DCC and ECAT, and MCAN with checking if context is on CPU1. If enabling DCC and ECAT, and MCAN
 //in your device needs to be done only in CPU1, add your device to this list.
 const EnableAllPeripherals_CLK_DCC_ECAT_MCAN							= ["F2838x"]
 
-// Enabling CLA1BGCRC with checking if context is on CPU1. If enabling CLA1BGCRC  
+// Enabling CLA1BGCRC with checking if context is on CPU1. If enabling CLA1BGCRC
 //in your device needs to be done only in CPU1, add your device to this list.
 const EnableAllPeripherals_CLK_CLA1BGCRC							= ["F2838x", "F28003x"]
 
-// Enabling PMBUSA with checking if context is on CPU1. If enabling PMBUSA  
+// Enabling PMBUSA with checking if context is on CPU1. If enabling PMBUSA
 //in your device needs to be done only in CPU1, add your device to this list.
 const EnableAllPeripherals_CLK_PMBUSA									= [ "F2838x", "F280015x", "F28002x", "F28003x", "F28004x", "F28P55x","F28P551x"]
 
-// Enabling CLA1 with checking if context is on CPU1. If enabling CLA1  
+// Enabling CLA1 with checking if context is on CPU1. If enabling CLA1
 //in your device needs to be done only in CPU1, add your device to this list.
 const EnableAllPeripherals_CLK_CLA1									= ["F2838x", "F2837xD", "F2837xS", "F2807x", "F28003x", "F28004x", "F28P55x","F28P551x"]
 
 //
-// Clocktree 
+// Clocktree
 //
 // clocktree Configuring Analog Trim in case of untrimmed or TMX sample
 const clocktree_Analog_Trim_Type0                                         	=["F2837xD", "F2807x", "F2837xS"]
@@ -204,7 +204,7 @@ const clocktree_PLL_Ctl_Dividers_Type1                                  =["F2838
 const clocktree_PLL_Ctl_Dividers_Type2                                  =["F28P65x"]
 
 // clocktree Setting up PLL control and clock dividers
-const clocktree_PLL_Ctl_Dividers_Type3                                 		=["F28E12x"]
+const clocktree_PLL_Ctl_Dividers_Type3                                 		=["F28E12x", "MCPC029"]
 
 // clocktree asserts will check that the #defines for the clock rates in device.h
 //set clock source for CANA, CANB, MCAN peripherals and EPWM and EMIF1 clock divider
@@ -231,7 +231,7 @@ const clocktree_Asserts_Type4                                          =["F28001
 const clocktree_Asserts_Type5                                          =["F28P55x"]
 
 // clocktree asserts will check that the #defines for the clock rates in device.h
-const clocktree_Asserts_Type6                                          =["F28E12x"]
+const clocktree_Asserts_Type6                                          =["F28E12x", "MCPC029"]
 
 // clocktree asserts will check that the #defines for the clock rates in device.h
 // CLK divider for LIN, MCANA
@@ -267,13 +267,13 @@ var VerifyXTAL = system.getTemplate('VerifyXTAL/VerifyXTAL.xdt');
 // Template for Error handling function
 var Error_Handling = system.getTemplate('ErrorChecking/Error_Handling.xdt');
 
-// Template for boot CPU2 
+// Template for boot CPU2
 var Boot_CPU2 = system.getTemplate('BootCPU2/Boot_CPU2.xdt');
 
 // Template for enable unbounded GPIO pullups
 var Enable_Unbounded_GPIO_Pullups = system.getTemplate('EnableUnboundedGPIOPullups/Enable_Unbounded_GPIO_Pullups.xdt');
 
-// Template for implementing Analog trim of TMX devices 
+// Template for implementing Analog trim of TMX devices
 var Configure_TMX_Analog_Trim = system.getTemplate('ConfigureTMXAnalogTrim/Configure_TMX_Analog_Trim.xdt');
 
 // Template for enabling all the peripherals
@@ -345,7 +345,7 @@ exports = {
 	clocktree_PLL_Ctl_Dividers_Type3 : clocktree_PLL_Ctl_Dividers_Type3,
 	clocktree_Asserts_Type0 : clocktree_Asserts_Type0,
 	clocktree_Asserts_Type1 : clocktree_Asserts_Type1,
-	clocktree_Asserts_Type2 : clocktree_Asserts_Type2, 
+	clocktree_Asserts_Type2 : clocktree_Asserts_Type2,
 	clocktree_Asserts_Type3 : clocktree_Asserts_Type3,
 	clocktree_Asserts_Type4 : clocktree_Asserts_Type4,
 	clocktree_Asserts_Type5 : clocktree_Asserts_Type5,

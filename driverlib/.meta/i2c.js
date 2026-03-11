@@ -1,18 +1,18 @@
 let Common   = system.getScript("/driverlib/Common.js");
 let Pinmux   = system.getScript("/driverlib/pinmux.js");
 
-let device_driverlib_peripheral = 
-    system.getScript("/driverlib/device_driverlib_peripherals/" + 
+let device_driverlib_peripheral =
+    system.getScript("/driverlib/device_driverlib_peripherals/" +
         Common.getDeviceName().toLowerCase() + "_i2c.js");
 
 /* Intro splash on GUI */
 let longDescription = "The I2C driver provides a simplified application"
         + " interface to access peripherals on an I2C bus.";
 
-var extended_clock_supported_devices = ['f28p551x','f28p55x','f28e12x'];
+var extended_clock_supported_devices = ['f28p551x','f28p55x','f28e12x', 'mcpc029'];
 var push_pull_pins_support = ['f2838x']
-var hide_extended_clock_stretching_options = null; 
-var extended_clock_stretching_support_available = null; 
+var hide_extended_clock_stretching_options = null;
+var extended_clock_stretching_support_available = null;
 var open_drain_pins = null;
 var globalConfig = [
 
@@ -28,21 +28,21 @@ var globalConfig = [
 ];
 function setupFlags()
 {
-    if (extended_clock_supported_devices.indexOf(Common.getDeviceName().toLowerCase()) === -1) 
+    if (extended_clock_supported_devices.indexOf(Common.getDeviceName().toLowerCase()) === -1)
     {
         hide_extended_clock_stretching_options = true;
         extended_clock_stretching_support_available = false;
-    } 
+    }
     else
     {
         hide_extended_clock_stretching_options = false;
         extended_clock_stretching_support_available = true;
     }
-    if(push_pull_pins_support.indexOf(Common.getDeviceName().toLowerCase()) === -1) 
+    if(push_pull_pins_support.indexOf(Common.getDeviceName().toLowerCase()) === -1)
     {
         open_drain_pins = true;
     }
-    else 
+    else
     {
         open_drain_pins = false;
     }
@@ -71,10 +71,10 @@ function onChangeUseInterrupts(inst, ui)
         ui.enabledInterrupts.hidden = false;
         ui.enabledFIFOInterrupts.hidden = false;
         ui.registerInterrupts.hidden = false;
-        
+
         ui.txFifo.hidden = false;
         ui.rxFifo.hidden = false;
-        
+
         if (!inst.useFifo) {
             ui.enabledFIFOInterrupts.hidden = true;
             ui.txFifo.hidden = true;
@@ -86,15 +86,15 @@ function onChangeUseInterrupts(inst, ui)
         ui.enabledInterrupts.hidden = true;
         ui.enabledFIFOInterrupts.hidden = true;
         ui.registerInterrupts.hidden = true;
-        
+
         ui.txFifo.hidden = true;
         ui.rxFifo.hidden = true;
     }
 
 }
 
-function onValidate(inst, validation) 
-{   
+function onValidate(inst, validation)
+{
     var bitRateError = false;
     var targetAddrError = false;
     var ownAddrError = false;
@@ -104,7 +104,7 @@ function onValidate(inst, validation)
     var customModuleFrequencyError = false;
     if(customModuleFrequencyInt < 7000000 || customModuleFrequencyInt > 12000000)
     {
-       customModuleFrequencyError = true; 
+       customModuleFrequencyError = true;
     }
     if (bitRateInt < 1 || bitRateInt > 400000)
     {
@@ -125,31 +125,31 @@ function onValidate(inst, validation)
     if(inst.dataCount > 0xFFFF | inst.dataCount < 0)
     {
         validation.logError(
-            "Enter an integer for data count between 0 and 65535!", 
+            "Enter an integer for data count between 0 and 65535!",
             inst, "dataCount");
     }
     if(bitRateError)
     {
         validation.logError(
-            "Enter an integer for bit rates between 1 and 400000!", 
+            "Enter an integer for bit rates between 1 and 400000!",
             inst, "bitRate");
     }
     if(targetAddrError && inst.mode == "CONTROLLER")
     {
         validation.logError(
-            "Target address must be between 0 and " + maxAddress + "!", 
+            "Target address must be between 0 and " + maxAddress + "!",
             inst, "targetAddress");
     }
     if(ownAddrError && inst.mode != "CONTROLLER")
     {
         validation.logError(
-            "Own Target address must be between 0 and " + maxAddress + "!", 
+            "Own Target address must be between 0 and " + maxAddress + "!",
             inst, "ownAddress");
     }
     if(customModuleFrequencyError)
     {
         validation.logError(
-            "Module Clock Frequency must be between 7 MHz and 12 MHz", 
+            "Module Clock Frequency must be between 7 MHz and 12 MHz",
             inst, "customModuleFrequency");
     }
 
@@ -163,7 +163,7 @@ function onValidate(inst, validation)
                 validation.logError("The push-pull and inverted pad configurations should not be used for the I2C module.", inst);
             }
         }
-        else 
+        else
         {
             if (((inst[pinmuxQualMod.name].padConfig.includes("OD")) && !(inst[pinmuxQualMod.name].padConfig.includes("PULLUP"))) || (inst[pinmuxQualMod.name].padConfig.includes("INVERT")))
             {
@@ -184,7 +184,7 @@ function I2C_InterruptList(hide_clock_stretching_option_flag)
         {name: "I2C_INT_STOP_CONDITION", displayName : "Stop condition detected"},
         {name: "I2C_INT_ADDR_TARGET", legacyNames: ["I2C_INT_ADDR_SLAVE"], displayName : "Addressed as target interrupt"}
     ];
-    if (hide_clock_stretching_option_flag == false) 
+    if (hide_clock_stretching_option_flag == false)
     {
         base_interrupt.push(
 	        {name: "I2C_INT_SCL_ECS", displayName: "Extended clock stretching interrupt"}
@@ -200,7 +200,7 @@ function onModuleClockChange(inst, ui)
     {
         ui.customModuleFrequency.hidden = true;
     }
-    else 
+    else
     {
         ui.customModuleFrequency.hidden = false;
     }
@@ -317,7 +317,7 @@ let config = [
         hidden      : false,
         onChange    : onChangeUseInterrupts,
         default     : true
-        
+
     },
     {
         name        : "registerInterrupts",
@@ -325,7 +325,7 @@ let config = [
         description : 'Whether or not to register interrupt handlers in the interrupt module.',
         hidden      : false,
         default     : false
-        
+
     },
     {
         name        : "enabledInterrupts",
@@ -334,8 +334,8 @@ let config = [
         hidden      : false,
         default     : [],
         minSelections: 0,
-        options     : I2C_InterruptList(hide_extended_clock_stretching_options), 
-        
+        options     : I2C_InterruptList(hide_extended_clock_stretching_options),
+
     },
     {
         name        : "enabledFIFOInterrupts",
@@ -348,7 +348,7 @@ let config = [
             {name: "I2C_INT_RXFF", displayName: "Receive Interrupt"},
             {name: "I2C_INT_TXFF", displayName: "Transmit Interrupt"},
         ],
-        
+
     },
     {
         name        : "useFifo",
@@ -447,14 +447,7 @@ var i2cModule = {
         {
             pinmuxQualMod.requiredArgs = {
                 qualMode : "GPIO_QUAL_ASYNC",
-            }
-            if(open_drain_pins === true)
-            {
-                pinmuxQualMod.args.padConfig = "PULLUP";
-            } 
-            else 
-            {
-                pinmuxQualMod.args.padConfig = "STD";
+                padConfig:  "PULLUP"
             }
         }
         ownedInstances = ownedInstances.concat(pinmuxQualMods)
@@ -463,7 +456,7 @@ var i2cModule = {
         if (inst.useInterrupts && inst.registerInterrupts)
         {
             ownedInstances = ownedInstances.concat([{
-                name: "i2cInt",      
+                name: "i2cInt",
                 displayName: "I2C Interrupt",
                 moduleName: "/driverlib/interrupt.js",
                 collapsed: true,
@@ -478,7 +471,7 @@ var i2cModule = {
             if(inst.useFifo)
             {
                 ownedInstances = ownedInstances.concat([{
-                name: "i2cFIFOInt",      
+                name: "i2cFIFOInt",
                 displayName: "FIFO Interrupt",
                 moduleName: "/driverlib/interrupt.js",
                 collapsed: true,

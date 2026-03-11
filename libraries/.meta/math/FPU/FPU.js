@@ -19,7 +19,7 @@ else
 }
 
 let TMU_TYPE;
-if((Common.getDeviceName() == "F2807x") || (Common.getDeviceName() == "F28004x") || (Common.getDeviceName() == "F2837xD") || (Common.getDeviceName() == "F2837xS") || 
+if((Common.getDeviceName() == "F2807x") || (Common.getDeviceName() == "F28004x") || (Common.getDeviceName() == "F2837xD") || (Common.getDeviceName() == "F2837xS") ||
 (Common.getDeviceName() == "F2838x") || (Common.getDeviceName() == "F280013x") || (Common.getDeviceName() == "F280015x"))
 {
     TMU_TYPE = [
@@ -34,7 +34,7 @@ else if((Common.getDeviceName() == "F28002x") || (Common.getDeviceName() == "F28
         {name: "NONE",     displayName: "NONE"},
     ];
 }
-else // F28E12x device without TMU support
+else // F28E12x,MCPC029 device without TMU support
 {
     TMU_TYPE = [
         {name: "NONE",     displayName: "NONE"},

@@ -1,12 +1,12 @@
 //###########################################################################
 //
-// FILE:   sysctl.h 
+// FILE:   sysctl.h
 //
 // TITLE:  C28x system control driver.
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -79,7 +79,7 @@ extern "C"
 #define SYSCTL_CLKSRCCTL_DELAY  asm(" RPT #250 || NOP \n RPT #50 || NOP")
 
 //
-// Macro used for adding delay between 2 consecutive writes to memory mapped 
+// Macro used for adding delay between 2 consecutive writes to memory mapped
 // register in System control
 // Total delay = 3 * (DEVICE_SYSCLK_FREQ / INTOSC1 Freq) + 9
 //
@@ -1787,7 +1787,7 @@ SysCtl_enableWatchdog(void)
 //!
 //! This function returns the watchdog status whether it is enabled or disabled
 //!
-//! \return \b true if the watchdog is enabled & \b false if the watchdog is 
+//! \return \b true if the watchdog is enabled & \b false if the watchdog is
 //! disabled
 //
 //*****************************************************************************

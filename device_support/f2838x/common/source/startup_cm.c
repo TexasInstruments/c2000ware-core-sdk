@@ -8,7 +8,7 @@
 //
 //
 // 
-// C2000Ware v6.00.01.00
+// C2000Ware v26.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -43,6 +43,7 @@
 //#############################################################################
 
 #include <stdint.h>
+#include "driverlib_cm.h"
 
 //
 // Forward declaration of the default fault handlers.
@@ -81,7 +82,7 @@ void (* const vectorTableFlash[])(void) =
 #pragma RETAIN(vectorTableRAM)
 #pragma DATA_ALIGN(vectorTableRAM, 1024U)
 #pragma DATA_SECTION(vectorTableRAM, ".vtable")
-void (* const vectorTableRAM[])(void) =
+void (* vectorTableRAM[])(void) =
 #endif
 {
     (void (*)(void))((uint32_t)&__STACK_END),

@@ -6,7 +6,7 @@
 //
 //*****************************************************************************
 void `module.peripheralName`_init(){
-%   for(var i = 0; i < module.$instances.length; i++) 
+%   for(var i = 0; i < module.$instances.length; i++)
 %   {
 %      var instance = module.$instances[i];
 	`instance.$name`_init();
@@ -84,7 +84,7 @@ void `instance.$name`_init(){
 % if (!instance.writeInitialValue && ["ODO_PULLUP", "ODO", "ODO_INVERT", "ODO_PULLUP_INVERT"].includes(instance.padConfig)){
 	GPIO_setDirectionMode(`instance.$name`, `instance.direction`);
 % }
-		% if (!["F28002x", "F280013x", "F280015x","F28E12x"].includes(Common.getDeviceName())) {
+		% if (!["F28002x", "F280013x", "F280015x","F28E12x", "MCPC029"].includes(Common.getDeviceName())) {
 	GPIO_setControllerCore(`instance.$name`, `instance.controllerCore`);
 		% }
 		%}

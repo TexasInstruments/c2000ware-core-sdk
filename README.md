@@ -1,7 +1,7 @@
 <div align="center">
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/TexasInstruments-Logo.svg" width="150"><br/>
-# C2000Ware v6.00.01.00
+# C2000Ware v26.00.00.00.STS
 
 [Introduction](#introduction) | [Layout](#repositorylayout) | [Overview](#overview) | [Contribute](#contributing-to-the-project)
 

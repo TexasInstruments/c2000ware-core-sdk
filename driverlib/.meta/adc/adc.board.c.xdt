@@ -4,7 +4,7 @@
 % var nameOfPeripheral = module.peripheralName;
 % var device_driverlib_peripheral = system.getScript("/driverlib/device_driverlib_peripherals/" + Common.getDeviceName().toLowerCase() + "_adc.js");
 %%{
-if((["F28002x", "F28003x", "F280013x", "F280015x", "F28004x", "F28P65x", "F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName()))&&(Common.isContextCPU1())){
+if((["F28002x", "F28003x", "F280013x", "F280015x", "F28004x", "F28P65x", "F28P55x","F28P551x","F28E12x", "MCPC029"].includes(Common.getDeviceName()))&&(Common.isContextCPU1())){
 	var staticModule = system.modules['/driverlib/asysctl.js']
 	var stat = staticModule.$static
 }
@@ -28,7 +28,7 @@ void `nameOfPeripheral`_init(){
 %}
 }
 
-%   for(var i = 0; i < module.$instances.length; i++) 
+%   for(var i = 0; i < module.$instances.length; i++)
 %	{
 %     let flag1, flag2 = ""
 %     var instance = module.$instances[i];
@@ -36,9 +36,12 @@ void `nameOfPeripheral`_init(){
 %     let instancePinmux = instance[nameOfModule];
 void `instance.$name`_init(){
 % 	// delay depends on analog reference
-% 		if((["F28002x", "F28003x", "F280013x", "F280015x", "F28004x", "F28P65x", "F28P55x","F28P551x", "F28E12x"].includes(Common.getDeviceName()))&&(Common.isContextCPU1())){
+% 		if((["F28002x", "F28003x", "F280013x", "F280015x", "F28004x", "F28P65x", "F28P55x","F28P551x", "F28E12x", "MCPC029"].includes(Common.getDeviceName()))&&(Common.isContextCPU1())){
 % 			if(stat.analogReference == "EXTERNAL"){
 % 				refMode = "ADC_REFERENCE_EXTERNAL"
+% 			}
+% 			else if(stat.analogReference == "VDDA"){
+% 				refMode = "ADC_REFERENCE_VDDA"
 % 			}
 % 			else{
 % 				refMode = "ADC_REFERENCE_INTERNAL"
@@ -96,7 +99,7 @@ void `instance.$name`_init(){
 	//
 	// delay depends on analog reference
 	//
-		if((["F28002x", "F28003x", "F280013x", "F280015x", "F28004x", "F28P65x", "F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName()))&&(Common.isContextCPU1())){
+		if((["F28002x", "F28003x", "F280013x", "F280015x", "F28004x", "F28P65x", "F28P55x","F28P551x","F28E12x", "MCPC029"].includes(Common.getDeviceName()))&&(Common.isContextCPU1())){
 			if(stat.analogReference == "EXTERNAL"){
 			varDelay = 500
 			}
@@ -135,12 +138,12 @@ void `instance.$name`_init(){
 	//
 	ADC_disableExtMuxPreselect(`baseName`);
 			% }
-		% }	
+		% }
 	% }
-	%if(!["F28E12x"].includes(Common.getDeviceName())){
+	%if(!["F28E12x", "MCPC029"].includes(Common.getDeviceName())){
 	//
 	// SOC Configuration: Setup ADC EPWM channel and trigger settings
-		% if(instance.enableBurstMode){ 
+		% if(instance.enableBurstMode){
 	//
 	// Enables SOC burst mode.
 	//
@@ -161,10 +164,10 @@ void `instance.$name`_init(){
 	// Sets the priority mode of the SOCs.
 	//
 	ADC_setSOCPriority(`baseName`, `instance.socHighPriorityMode`);
-		% for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){ 
+		% for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){
 			% var currentSOC = device_driverlib_peripheral.ADC_SOCNumber[socIndex].name
 			% var socNumber = (currentSOC).replace(/[^0-9]/g,'')
-			% if((instance.enabledSOCs).includes(currentSOC)){ 
+			% if((instance.enabledSOCs).includes(currentSOC)){
 	//
 	// Start of Conversion `socNumber` Configuration
 	//
@@ -179,17 +182,17 @@ void `instance.$name`_init(){
 	ADC_selectSOCExtChannel(`baseName`, ADC_SOC_NUMBER`socNumber`,`instance["soc"+socNumber+"ExtChannel"]`);
 					% }
 				% }
-				% if(["F28P65x", "F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName())){
+				% if(["F28P65x", "F28P55x","F28P551x","F28E12x", "MCPC029"].includes(Common.getDeviceName())){
 					% if(((instance["soc" + socNumber.toString() + "Triggermode"]=="repeatermode") || (instance.enableBurstMode && (instance.burstTrigger == "ADC_TRIGGER_REPEATER1" || instance.burstTrigger == "ADC_TRIGGER_REPEATER2")))){
-	                
-						% for(var rptrIndex in device_driverlib_peripheral.ADC_RepInstance){ 
+
+						% for(var rptrIndex in device_driverlib_peripheral.ADC_RepInstance){
 							% var currentRPTR = device_driverlib_peripheral.ADC_RepInstance[rptrIndex].name
 							% var rptriNumber = (currentRPTR).replace(/[^0-9]/g,'')
-							% if((instance["soc" + socNumber.toString() + "Trigger"].replace(/[^0-9]/g,'') == rptriNumber) || (instance.enableBurstMode && (instance[`burstTrigger`].replace(/[^0-9]/g,'')==rptriNumber))){	
+							% if((instance["soc" + socNumber.toString() + "Trigger"].replace(/[^0-9]/g,'') == rptriNumber) || (instance.enableBurstMode && (instance[`burstTrigger`].replace(/[^0-9]/g,'')==rptriNumber))){
 
 
     % if((flag1 != "SET" && rptriNumber == "1") || (flag2 != "SET" && rptriNumber == "2")){
-	//                 
+	//
 	// Configures Repeater Modules
 	//
 
@@ -205,7 +208,7 @@ void `instance.$name`_init(){
 	//	  	Count			: `instance["repeater"+rptriNumber+" Count"]`
 	//	  	phase			: `instance["repeater"+rptriNumber+" Phase"]`
 	//	  	spread			: `instance["repeater"+rptriNumber+" Spread"]`
-	//							
+	//
 	ADC_triggerRepeaterSelect(`baseName`, ADC_REPINST`rptriNumber`, `instance["repeater"+rptriNumber+" Trigger"]`);
 	ADC_triggerRepeaterMode(`baseName`, ADC_REPINST`rptriNumber`, `instance["repeater"+rptriNumber+" Mode"]`);
 	ADC_triggerRepeaterSyncIn(`baseName`, ADC_REPINST`rptriNumber`, `instance["repeater"+rptriNumber+" SyncInput"]`);
@@ -213,7 +216,7 @@ void `instance.$name`_init(){
 	ADC_triggerRepeaterPhase(`baseName`, ADC_REPINST`rptriNumber`, `instance["repeater"+rptriNumber+" Phase"]`);
 	ADC_triggerRepeaterSpread(`baseName`, ADC_REPINST`rptriNumber`, `instance["repeater"+rptriNumber+" Spread"]`);
 								% }
-								% if(["F28E12x"].includes(Common.getDeviceName())){
+								% if(["F28E12x", "MCPC029"].includes(Common.getDeviceName())){
 	//      base: 			`baseName`
 	// 		RepInstance: 	`instance["soc" + socNumber.toString() + "Trigger"]`
 	//      ADC_RepeaterConfig :
@@ -221,7 +224,7 @@ void `instance.$name`_init(){
 	//	  	SyncInput		: `instance["repeater"+rptriNumber+" SyncInput"]`
 	//	  	Count			: `instance["repeater"+rptriNumber+" Count"]`
 	//	  	spread			: `instance["repeater"+rptriNumber+" Spread"]`
-	//							
+	//
 	ADC_triggerRepeaterSelect(`baseName`, ADC_REPINST`rptriNumber`, `instance["repeater"+rptriNumber+" Trigger"]`);
 	ADC_triggerRepeaterSyncIn(`baseName`, ADC_REPINST`rptriNumber`, `instance["repeater"+rptriNumber+" SyncInput"]`);
 	ADC_triggerRepeaterCount(`baseName`, ADC_REPINST`rptriNumber`, `instance["repeater"+rptriNumber+" Count"]`);
@@ -243,13 +246,13 @@ void `instance.$name`_init(){
 						% }
 					% }
 				% }
-				% if(["F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName())){
+				% if(["F28P55x","F28P551x","F28E12x", "MCPC029"].includes(Common.getDeviceName())){
 					% if(instance["soc" + socNumber.toString() + "EnableSampleCAPReset"]){
 	//
 	// Enables Sample Capacitor to reset after each conversion.
 	//
 	ADC_enableSampleCAPReset(`baseName`, ADC_SOC_NUMBER`socNumber`);
-					% if(["F28E12x"].includes(Common.getDeviceName())){
+					% if(["F28E12x", "MCPC029"].includes(Common.getDeviceName())){
 	//
 	// Configure Sample Capacitor reset value.
 	//
@@ -287,7 +290,7 @@ void `instance.$name`_init(){
 	ADC_setInterruptSOCTrigger(`baseName`, ADC_SOC_NUMBER`socNumber`, `instance["soc"+socNumber+"InterruptTrigger"]`);
 			% }
 		% }
-		% for(var intIndex in device_driverlib_peripheral.ADC_IntNumber){ 
+		% for(var intIndex in device_driverlib_peripheral.ADC_IntNumber){
 			% var currentINT = device_driverlib_peripheral.ADC_IntNumber[intIndex].name
 			% var intNumber = (currentINT).replace(/[^0-9]/g,'')
 			% if((instance.enabledInts).includes(currentINT)){
@@ -341,8 +344,8 @@ void `instance.$name`_init(){
 				% }
 			% }
 		% }
-		% if(["F28E12x"].includes(Common.getDeviceName())){
-			% for(var intIndex in device_driverlib_peripheral.ADC_IntNumber){ 
+		% if(["F28E12x", "MCPC029"].includes(Common.getDeviceName())){
+			% for(var intIndex in device_driverlib_peripheral.ADC_IntNumber){
 				% var currentDMAINT = device_driverlib_peripheral.ADC_IntNumber[intIndex].name
 				% var dmaIntNumber = (currentDMAINT).replace(/[^0-9]/g,'')
 				% if((instance.enabledDMAInts).includes(currentDMAINT)){
@@ -398,15 +401,15 @@ void `instance.$name`_init(){
 			% }
 		% }
 		% if ((instance.enabledPPBs).length>0){
-			
+
 	//
 	// PPB Configuration: Configure high and low limits detection for ADCPPB
 		% }
-		% var ppbiTotal = 4 
-		% for(var ppbIndex in device_driverlib_peripheral.ADC_PPBNumber){ 
+		% var ppbiTotal = 4
+		% for(var ppbIndex in device_driverlib_peripheral.ADC_PPBNumber){
 			% var currentPPB = device_driverlib_peripheral.ADC_PPBNumber[ppbIndex].name
 			% var ppbNumber  = (currentPPB).replace(/[^0-9]/g,'')
-			% if((instance.enabledPPBs).includes(currentPPB)){ 
+			% if((instance.enabledPPBs).includes(currentPPB)){
 	//
 	// Post Processing Block `ppbNumber` Configuration
 	// 		Configures a post-processing block (PPB) in the ADC.
@@ -436,7 +439,7 @@ void `instance.$name`_init(){
 	// 		Clear PPB Event Flags	: Disabled
 					% }
 				% }
-				% if(["F28P65x", "F28P55x","F28P551x","F28E12x"].includes(system.deviceData.deviceId)){
+				% if(["F28P65x", "F28P55x","F28P551x","F28E12x", "MCPC029"].includes(system.deviceData.deviceId)){
 	// 		Accumulation Limit		: `instance["ppb"+ppbNumber+"AccumulationLimit"]`
 	// 		SyncInput Source		: `instance["ppb"+ppbNumber+"SyncInput"]`
 	// 		Comparator Source		: `instance["ppb"+ppbNumber+"CompSource"]`
@@ -447,7 +450,7 @@ void `instance.$name`_init(){
 	ADC_setupPPB(`baseName`, ADC_PPB_NUMBER`ppbNumber`, `instance["ppb"+ppbNumber+"SOCNumber"]`);
 %%{
 				var eventOptions = ["ADC_EVT_TRIPHI","ADC_EVT_TRIPLO","ADC_EVT_ZERO"]
-				if(["F28E12x"].includes(system.deviceData.deviceId)){
+				if(["F28E12x", "MCPC029"].includes(system.deviceData.deviceId)){
 					eventOptions = ["ADC_EVT_TRIPHI","ADC_EVT_TRIPLO","ADC_EVT_ZERO","ADC_EVT_NLIMIT"]
 				}
 				var currentEvent = ""
@@ -495,7 +498,7 @@ void `instance.$name`_init(){
 				% }
 %%{
 				var eventInterruptOptions = ["ADC_EVT_TRIPHI","ADC_EVT_TRIPLO","ADC_EVT_ZERO"]
-				if(["F28E12x"].includes(system.deviceData.deviceId)){
+				if(["F28E12x", "MCPC029"].includes(system.deviceData.deviceId)){
 					eventInterruptOptions = ["ADC_EVT_TRIPHI","ADC_EVT_TRIPLO","ADC_EVT_ZERO","ADC_EVT_NLIMIT"]
 				}
 				var currentEventInterrupt = ""
@@ -558,7 +561,7 @@ void `instance.$name`_init(){
 	ADC_disablePPBEventCBCClear(`baseName`, ADC_PPB_NUMBER`ppbNumber`);
 					% }
 				% }
-				% if(["F28P65x", "F28P55x","F28P551x", "F28E12x"].includes(Common.getDeviceName())){
+				% if(["F28P65x", "F28P55x","F28P551x", "F28E12x", "MCPC029"].includes(Common.getDeviceName())){
 	ADC_setPPBCountLimit(`baseName`, ADC_PPB_NUMBER`ppbNumber`,`instance["ppb"+ppbNumber+"AccumulationLimit"]`);
 	ADC_selectPPBSyncInput(`baseName`, ADC_PPB_NUMBER`ppbNumber`,`instance["ppb"+ppbNumber+"SyncInput"]`);
 	ADC_selectPPBCompareSource(`baseName`, ADC_PPB_NUMBER`ppbNumber`,`instance["ppb"+ppbNumber+"CompSource"]`);

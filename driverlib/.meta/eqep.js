@@ -78,7 +78,7 @@ conditionalConfig = conditionalConfig.concat([
                         should be hard-wired for a single direction with QEPA used for input.`,
         hidden      : false,
         default     : "EQEP_CONFIG_QUADRATURE",
-        options     : 
+        options     :
         [
             {name: "EQEP_CONFIG_QUADRATURE",    displayName: "Quadrature-clock mode"},
             {name: "EQEP_CONFIG_CLOCK_DIR",     displayName: "Direction-count mode"},
@@ -92,7 +92,7 @@ conditionalConfig = conditionalConfig.concat([
         description : "Specify if both rising and falling edges should be counted or just rising edges",
         hidden      : false,
         default     : "EQEP_CONFIG_2X_RESOLUTION",
-        options     : 
+        options     :
         [
             {name: "EQEP_CONFIG_2X_RESOLUTION", displayName: "2X Resolution: Count rising and falling edge"},
             {name: "EQEP_CONFIG_1X_RESOLUTION", displayName: "1X Resolution: Count rising edge only"},
@@ -101,7 +101,7 @@ conditionalConfig = conditionalConfig.concat([
     {
         name        : "eqepSwap",
         displayName : "Swap QEPA and QEPB",
-        description : `Specify if the signals provided on QEPA and QEPB should be swapped 
+        description : `Specify if the signals provided on QEPA and QEPB should be swapped
                         before being processed.`,
         hidden      : false,
         default     : "EQEP_CONFIG_NO_SWAP",
@@ -124,7 +124,7 @@ conditionalConfig = conditionalConfig.concat([
         ]
     },
 ])
-if (["F28002x","F28003x","F280013x","F280015x","F2838x", "F28P65x", "F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName())){
+if (["F28002x","F28003x","F280013x","F280015x","F2838x", "F28P65x", "F28P55x","F28P551x","F28E12x", "MCPC029"].includes(Common.getDeviceName())){
     conditionalConfig = conditionalConfig.concat([
         // enableDirectionChangeDuringIndex /disableDirectionChangeDuringIndex
         {
@@ -220,7 +220,7 @@ config = config.concat([
                         ]
                     },
                 ]
-            }, 
+            },
             // setPositionInitMode
             {
                 name        : "positionStrobeEvents",
@@ -336,7 +336,7 @@ config = config.concat([
                         default     : false
                     },
                 ]
-            }, 
+            },
         ]
     },
     {
@@ -435,7 +435,7 @@ config = config.concat([
                 name        : "unitTimerValNS",
                 displayName : "Unit Timer Period [ns]",
                 description : "Value of Unit Timer in nanoseconds.",
-                getValue    : (inst) => 
+                getValue    : (inst) =>
                 {
                     return ((inst.unitTimerPeriod / Common.getSYSCLK()) * 1000);
                 },
@@ -443,7 +443,7 @@ config = config.concat([
             },
         ]
     },
-    
+
     {
         name            : "GROUP_WATCHDOG",
         displayName     : "EQEP Watchdog Timer",
@@ -477,7 +477,7 @@ config = config.concat([
                 name        : "watchdogTimerValueNS",
                 displayName : "EQEP Watchdog Timer Value [ns]",
                 description : "Value of EQEP Watchdog Timer in nanoseconds.",
-                getValue    : (inst) => 
+                getValue    : (inst) =>
                 {
                     return ((1 / Common.getSYSCLK()) * 1000);
                 },
@@ -522,11 +522,11 @@ config = config.concat([
                 hidden      : false,
                 default     : [],
                 minSelections: 0,
-                options     : device_driverlib_peripheral.EQEP_INT 
+                options     : device_driverlib_peripheral.EQEP_INT
             },
         ]
     },
-    
+
     // setEmulationMode
     {
         name        : "emulationMode",
@@ -554,7 +554,7 @@ if (device_driverlib_peripheral.EQEP_QMAMode){
 if (device_driverlib_peripheral.EQEP_Source){
 //(["F28002x","F28003x","F280013x","F280015x","F2838x", "F28P65x"].includes(Common.getDeviceName())){
     config.push(
-        
+
         // selectSource
         {
             name        : "selectSourceA",
@@ -618,13 +618,13 @@ function onValidate(inst, validation) {
     if (inst.positionCounterMax < 0 || inst.positionCounterMax > 4294967295)
     {
         validation.logError(
-            "Enter an integer for Position Counter Maximum between 0 and 4,294,967,295!", 
+            "Enter an integer for Position Counter Maximum between 0 and 4,294,967,295!",
             inst, "positionCounterMax");
     }
     if (!Number.isInteger(inst.positionCounterMax))
     {
         validation.logError(
-            "Position Counter Maximum must be an integer", 
+            "Position Counter Maximum must be an integer",
             inst, "positionCounterMax");
     }
 
@@ -632,27 +632,27 @@ function onValidate(inst, validation) {
     if (inst.initialPosition < 0 || inst.initialPosition > 4294967295)
     {
         validation.logError(
-            "Enter an integer for Position Counter Initialization Value between 0 and 4,294,967,295!", 
+            "Enter an integer for Position Counter Initialization Value between 0 and 4,294,967,295!",
             inst, "initialPosition");
     }
     if (!Number.isInteger(inst.initialPosition))
     {
         validation.logError(
-            "Position Counter Initialization Value must be an integer", 
+            "Position Counter Initialization Value must be an integer",
             inst, "initialPosition");
     }
-    
+
     /* Validate Unit Timer Period up to 32 bit unsigned int */
     if (inst.unitTimerPeriod < 0 || inst.unitTimerPeriod > 4294967295)
     {
         validation.logError(
-            "Enter an integer for Unit Timer Period between 0 and 4,294,967,295!", 
+            "Enter an integer for Unit Timer Period between 0 and 4,294,967,295!",
             inst, "unitTimerPeriod");
     }
     if (!Number.isInteger(inst.unitTimerPeriod))
     {
         validation.logError(
-            "Unit Timer Period must be an integer", 
+            "Unit Timer Period must be an integer",
             inst, "unitTimerPeriod");
     }
 
@@ -660,41 +660,41 @@ function onValidate(inst, validation) {
     if (inst.setPosition < 0 || inst.setPosition > 4294967295)
     {
         validation.logError(
-            "Enter an integer for Encoder Position between 0 and 4,294,967,295!", 
+            "Enter an integer for Encoder Position between 0 and 4,294,967,295!",
             inst, "setPosition");
     }
     if (!Number.isInteger(inst.setPosition))
     {
         validation.logError(
-            "Encoder Position must be an integer", 
+            "Encoder Position must be an integer",
             inst, "setPosition");
     }
-    
+
     /* Validate Watchdog Timer Period up to 16 bit unsigned int */
     if (inst.watchdogTimerPeriod < 0 || inst.watchdogTimerPeriod > 65535)
     {
         validation.logError(
-            "Enter an integer for EQEP Watchdog Timer Period between 0 and 65,535!", 
+            "Enter an integer for EQEP Watchdog Timer Period between 0 and 65,535!",
             inst, "watchdogTimerPeriod");
     }
     if (!Number.isInteger(inst.watchdogTimerPeriod))
     {
         validation.logError(
-            "EQEP Watchdog Timer Period must be an integer", 
+            "EQEP Watchdog Timer Period must be an integer",
             inst, "watchdogTimerPeriod");
     }
-    
+
     /* Validate Watchdog Timer Value up to 16 bit unsigned int */
     if (inst.watchdogTimerValue < 0 || inst.watchdogTimerValue > 65535)
     {
         validation.logError(
-            "Enter an integer for EQEP Watchdog Timer Value between 0 and 65,535!", 
+            "Enter an integer for EQEP Watchdog Timer Value between 0 and 65,535!",
             inst, "watchdogTimerValue");
     }
     if (!Number.isInteger(inst.watchdogTimerValue))
     {
         validation.logError(
-            "EQEP Watchdog Timer Value must be an integer", 
+            "EQEP Watchdog Timer Value must be an integer",
             inst, "watchdogTimerValue");
     }
 
@@ -702,13 +702,13 @@ function onValidate(inst, validation) {
     if (inst.compareValue < 0 || inst.compareValue > 4294967295)
     {
         validation.logError(
-            "Enter an integer for Compare Value between 0 and 4,294,967,295!", 
+            "Enter an integer for Compare Value between 0 and 4,294,967,295!",
             inst, "compareValue");
     }
     if (!Number.isInteger(inst.compareValue))
     {
         validation.logError(
-            "Compare Value between must be an integer", 
+            "Compare Value between must be an integer",
             inst, "compareValue");
     }
 
@@ -716,13 +716,13 @@ function onValidate(inst, validation) {
     if (inst.compareCycles < 0 || inst.compareCycles > 65535)
     {
         validation.logError(
-            "Enter an integer for Compare Cycles between 0 and 65,535!", 
+            "Enter an integer for Compare Cycles between 0 and 65,535!",
             inst, "compareCycles");
     }
     if (!Number.isInteger(inst.compareCycles))
     {
         validation.logError(
-            "Compare Cycles must be an integer", 
+            "Compare Cycles must be an integer",
             inst, "compareCycles");
     }
 
@@ -774,11 +774,11 @@ var eqepModule = {
             pinmuxQualMod.args.qualMode = "GPIO_QUAL_SYNC";
         }
         ownedInstances = ownedInstances.concat(pinmuxQualMods)
-        
+
         if (inst.useInterrupts && inst.registerInterrupts)
         {
 	        ownedInstances = ownedInstances.concat([{
-                name: "eqepInt",      
+                name: "eqepInt",
                 displayName: "EQEP Interrupt",
                 moduleName: "/driverlib/interrupt.js",
                 collapsed: true,

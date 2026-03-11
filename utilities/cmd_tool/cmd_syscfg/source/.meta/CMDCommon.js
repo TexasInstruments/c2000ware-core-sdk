@@ -4,12 +4,12 @@ var memoryInfo = meminfo.memoryInfo;
 
 
 var LinkerSymbols = [
-    {name : "loadStart", displayName : "LOAD_START"},
-    {name : "loadEnd",   displayName : "LOAD_END"},
-    {name : "loadSize",  displayName : "LOAD_SIZE"},
-    {name : "runStart",  displayName : "RUN_START"},
-    {name : "runEnd",    displayName : "RUN_END"},
-    {name : "runSize",   displayName : "RUN_SIZE"}
+    {name : "LoadStart", displayName : "LOAD_START"},
+    {name : "LoadEnd",   displayName : "LOAD_END"},
+    {name : "LoadSize",  displayName : "LOAD_SIZE"},
+    {name : "RunStart",  displayName : "RUN_START"},
+    {name : "RunEnd",    displayName : "RUN_END"},
+    {name : "RunSize",   displayName : "RUN_SIZE"}
 ]
 
 let memoryNotCPU2Gattino = ["RAMD0", "RAMD1", "RAMLS0", "RAMLS1", "RAMLS2", "RAMLS3", "RAMLS4", "RAMLS5",
@@ -73,7 +73,34 @@ function getDeviceMemoryInfo(){
 }
 
 function getDeviceMemoryRanges(){
-    return memoryInfo.memoryRanges;
+    /*
+        Check from the memcfg if the ls8 and ls9 RAM are dedicated to cla or cpu.
+        If they are dedicated to CLA, then remove the RAMLS8 and RAMLS9 from the memory ranges.
+        Else, remove the RAMLS8_CLA and RAMLS9_CLA from the memory ranges.
+    */
+   let mem_cfg_module = system.modules["/driverlib/memcfg.js"];
+   let mem_cfg_inst = mem_cfg_module ? mem_cfg_module.$static : undefined;
+   let memoryList = memoryInfo.memoryRanges
+   if (mem_cfg_inst)
+   {
+        if(mem_cfg_inst["config_MEMCFG_SECT_LS8"] == "CLA_prog"){
+            memoryList = memoryList.filter((mem) => !["RAMLS8"].includes(mem.name));
+        }
+        else{
+            memoryList = memoryList.filter((mem) => !["RAMLS8_CLA"].includes(mem.name));
+        }
+        if(mem_cfg_inst["config_MEMCFG_SECT_LS9"] == "CLA_prog"){
+            memoryList = memoryList.filter((mem) => !["RAMLS9"].includes(mem.name));
+        }
+        else{
+            memoryList = memoryList.filter((mem) => !["RAMLS9_CLA"].includes(mem.name));
+        }
+   }
+   else
+   {
+       memoryList = memoryList.filter((mem) => !["RAMLS8_CLA", "RAMLS9_CLA"].includes(mem.name));
+   }
+    return memoryList;
 }
 
 function getDeviceMemorySections(){
@@ -239,7 +266,7 @@ function getMemoryRangesInDetail(inst)
     var MemRanges = [];
     var CPU2mems = getCPU2MemoryDiff();
     var CPU2memNames = [];
-    CPU2mems.forEach((element, index) => 
+    CPU2mems.forEach((element, index) =>
     {
         CPU2memNames.push(element.name)
     });
@@ -248,11 +275,11 @@ function getMemoryRangesInDetail(inst)
         if (!isMemoryRangeUsedInCombination(inst, memRange.name))
         {
             var memDiff = {};
-            CPU2mems.forEach((element, index) => 
+            CPU2mems.forEach((element, index) =>
             {
                 if (element.name == memRange.name){
                     memDiff = element
-                } 
+                }
             });
             if (Common.isContextCPU2() && CPU2memNames.includes(memRange.name)){
                 if (memDiff.group != "DELETE"){
@@ -262,7 +289,7 @@ function getMemoryRangesInDetail(inst)
                         length : numberToHex24(memDiff.length),
                         group  : memDiff.group,
                         config : memDiff.name.startsWith("RAMLS") ? getLSConfig(memDiff.name) :
-                                memDiff.name.startsWith("RAMGS") ? getGSConfig(memDiff.name) : 
+                                memDiff.name.startsWith("RAMGS") ? getGSConfig(memDiff.name) :
                                 (memDiff.name.includes("CLATOCPU") || memDiff.name.includes("CPUTOCLA")) ? getCLAMessageRAMConfig(memDiff.name) :
                                 memDiff.name.includes("FLASH") ? getFlashMuxConfig(memDiff.name) : undefined
                     });
@@ -275,7 +302,7 @@ function getMemoryRangesInDetail(inst)
                 length : numberToHex24(memRange.length),
                 group  : memRange.group,
                 config : memRange.name.startsWith("RAMLS") ? getLSConfig(memRange.name) :
-                         memRange.name.startsWith("RAMGS") ? getGSConfig(memRange.name) : 
+                         memRange.name.startsWith("RAMGS") ? getGSConfig(memRange.name) :
                          memRange.name.includes("CLATOCPU") || memRange.name.includes("CPUTOCLA") ? getCLAMessageRAMConfig(memRange.name) :
                          memRange.name.includes("FLASH") ? getFlashMuxConfig(memRange.name) : undefined
             });
@@ -385,6 +412,7 @@ function getSectionsInDetail(inst){
 {
     var spaces = " ".repeat(Math.max(20 - section.sectionName.length, 1))
     var text   = "    "
+    var comment = "   "
 
     // codestart will use absolute address
     if(section.name == "codestart")
@@ -413,6 +441,23 @@ function getSectionsInDetail(inst){
         text += section.sectionName + spaces + colon + "   LOAD " + arrowLoad + " " + section.sectionMemory.join(" | ") +",\n" +
                              " ".repeat(30) + "RUN  " + arrowRun  + " " + section.sectionRun.join(" | ") + ",\n" +
                              " ".repeat(30) + "TABLE(" + copyTable + ")"
+
+        comment = "/* \n \
+      Flash build using the CLA need to include a memcpy from FLASH to RAM in the initialization. Example: \n \
+      memcpy((uint32_t *)((uint32_t)&Clas1ProgRunStart), (uint32_t *)&Clas1ProgLoadStart, /\n  \
+      (uint32_t)&Clas1ProgLoadSize); \n \
+    */ \n"
+       if(["F28P65x", "F28P55x", "F28P551x"].includes(system.deviceData.deviceId)) {
+            if(["RAMLS8_CLA", "RAMLS9_CLA"].includes(section.sectionRun[0])){
+                    comment = "/* \n \
+    Flash build using the CLA need to include a memcpy from FLASH to RAM in the initialization. Example: \n \
+    memcpy((uint32_t *)((uint32_t)&Cla1ProgRunStart + (0x1E000U)), (uint32_t *)&Cla1ProgLoadStart, /\n  \
+    (uint32_t)&Clas1ProgLoadSize); \n \
+    */ \n"
+            }
+        }
+
+        text =  comment + text
     }
     else
     {
@@ -423,7 +468,8 @@ function getSectionsInDetail(inst){
     for (var sym of LinkerSymbols)
     {
         if (section.sectionSymbols.includes(sym.name))
-            text += ",\n" + " ".repeat(30) + sym.displayName + "(" + sym.name  + "_" + section.name + ")"
+            // text += ",\n" + " ".repeat(30) + sym.displayName + "(" + sym.name  + "_" + section.name + ")"
+            text += ",\n" + " ".repeat(30) + sym.displayName + "(" + section.sectionName  + sym.name + ")"
     }
 
 
@@ -448,6 +494,9 @@ function getLSConfig(mem)
     }
     if(stat)
     {
+        if(mem.endsWith("_CLA")){
+            mem = mem.replace("_CLA", "")
+        }
         var varName = "config_MEMCFG_SECT_" + mem.replace("RAM", "")
         return stat[varName]
     }
@@ -458,7 +507,7 @@ function getLSConfig(mem)
 }
 
 function getGSConfig(mem)
-{    
+{
     let memcfg   = system.modules["/driverlib/memcfg.js"];
     var stat = undefined;
     if (memcfg && memcfg.$static){
@@ -481,7 +530,7 @@ function getGSConfig(mem)
 }
 
 function getFlashMuxConfig(mem)
-{    
+{
     let memcfg   = system.modules["/driverlib/memcfg.js"];
     var stat = undefined;
     if (memcfg && memcfg.$static){

@@ -94,10 +94,3 @@ mcpwm2.mcpwmInt.enableInterrupt                                      = true;
 pwmxbar1.$name           = "myPWMXBAR0";
 pwmxbar1.useSourceSelect = true;
 pwmxbar1.sourceSignals   = ["INPUTXBAR_INPUT13"];
-
-/**
- * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
- * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
- * re-solve from scratch.
- */
-gpio1.gpioPin["GPIO#"].$suggestSolution = "GPIO6";

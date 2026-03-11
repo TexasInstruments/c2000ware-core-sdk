@@ -68,5 +68,5 @@ SECTIONS
    IQmath           : > RAMLS1
    IQmathTables     : > RAMLS1
 
-   DataBufferSection : > RAMLS1, ALIGN(2)
+   DataBufferSection : > RAMLS1, ALIGN(8)
 }

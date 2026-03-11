@@ -319,7 +319,7 @@ var config = [
         name: "epwmDeadband_controlShadowMode",
         displayName : "Enable Deadband Control Shadow Mode",
         description : 'Enable shadowing of the DBCTL (Deadband Control) register.',
-        hidden      : true,
+        hidden      : false,
         default     : false,
         //onChange    : onChangeShadowModes,
     },

@@ -7,22 +7,15 @@
 //! \addtogroup driver_example_list
 //! <h1> ERAD Stack Overflow </h1>
 //!
-//! This example shows the basic setup of CAN in order to transmit and receive
-//! messages on the CAN bus.  The CAN peripheral is configured to transmit
-//! messages with a specific CAN ID.  A message is then transmitted once per
-//! second, using a simple delay loop for timing.  The message that is sent is
-//! a 2 byte message that contains an incrementing pattern.
+//! This example uses BUSCOMP1 to monitor the stack. The Bus comparator is
+//! set to monitor the data write access bus and generate an interrupt to
+//! CPU when a write is detected to end of the STACK within a threshold.
+//! A recursive function call is intentionally made to allow the stack
+//! to overflow.
 //!
-//! This example sets up the CAN controller in External Loopback test mode.
-//! Data transmitted is visible on the CANTXA pin and is received internally
-//! back to the CAN Core.
-//!
-//! A buffer is created to store message history up to 50 messages for the
-//! duration of the program. A logic error is intentionally made to allow the
-//! buffer to overflow, eventually causing a stack overflow. The included
-//! JavaScript file, stack_overflow.js, programs ERAD registers in order to
-//! detect the stack overflow and halt the CPU once the illegal write is made.
-//! The illegal write is made after 507 messages are received.
+//! The included JavaScript file, erad_ex3_stack_overflow.js, programs
+//! ERAD registers in order to detect the stack overflow and halt the CPU
+//! once the pointer reaches the threshold at the end of stack.
 //!
 //! To properly use the provided ERAD script, the following variables must be
 //! set in the scripting environment prior to launching the ERAD script:
@@ -35,7 +28,7 @@
 //! - loadJSFile("<proj_workspace_path>\\erad_debugger_ex3_stackoverflow\\erad_ex3_stack_overflow.js", 0);
 //!
 //! Note that the script must be run after loading and running the .out on the
-//! C28x core. 
+//! C28x core.
 //!
 //! The included JavaScript file, erad_ex3_stack_overflow.js, uses Debug Server
 //! Scripting (DSS) features. For information on using the DSS, please visit:
@@ -48,10 +41,8 @@
 //!  - None.
 //!
 //! \b Watch \b Variables \n
-//!  - msgCount - A counter for the number of successful messages received
-//!  - txMsgData - An array with the data being sent
-//!  - rxMsgData - An array with the data that was received
-//!  - msgHistoryBuff - An array meant to store the last 50 messages received
+//!  - functionCallCount - the number of times the recursive function
+//!    overflowing the STACK is called.
 //!
 //! \b Profiling \b Script \b Output
 //!  - "STACK OVERFLOW detected. Halting CPU." will be printed in the scripting
@@ -61,7 +52,7 @@
 //
 //
 // 
-// C2000Ware v6.00.01.00
+// C2000Ware v26.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //

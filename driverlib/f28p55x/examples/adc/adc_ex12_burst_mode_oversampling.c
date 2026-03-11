@@ -1,6 +1,6 @@
 //#############################################################################
 //
-// FILE:   adc_ex13_burst_mode_oversampling.c
+// FILE:   adc_ex12_burst_mode_oversampling.c
 //
 // TITLE:  ADC burst mode oversampling example
 //
@@ -23,7 +23,7 @@
 //
 //
 // 
-// C2000Ware v6.00.01.00
+// C2000Ware v26.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //

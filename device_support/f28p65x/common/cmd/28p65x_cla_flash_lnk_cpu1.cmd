@@ -109,10 +109,16 @@ SECTIONS
 
 /* CLA specific sections */
 
+//
+// Flash builds using the CLA need to include a memcpy from FLASH to RAM in the initialization. Example:
+//     memcpy((uint32_t *)((uint32_t)&Cla1ProgRunStart), (uint32_t *)&Cla1ProgLoadStart,
+//           (uint32_t)&Cla1ProgLoadSize);
+// Note: This line is automatically included in Sysconfig projects with CLA.
+//
 #if defined(__TI_EABI__)
     /* CLA specific sections */
     Cla1Prog        : LOAD = FLASH_BANK0,
-                      RUN = RAMLS0,
+                      RUN = RAMLS0, // To use LS8 or LS9 instead, use RAMLS8_CLA or RAMLS9_CLA (see 28p65x_cla_ls8_9_flash_lnk.cmd linker implementation)
                       LOAD_START(Cla1ProgLoadStart),
                       RUN_START(Cla1ProgRunStart),
                       LOAD_SIZE(Cla1ProgLoadSize),
@@ -120,7 +126,7 @@ SECTIONS
 #else
     /* CLA specific sections */
     Cla1Prog        : LOAD = FLASH_BANK0,
-                      RUN = RAMLS0,
+                      RUN = RAMLS0, // To use LS8 or LS9 instead, use RAMLS8_CLA or RAMLS9_CLA (see 28p65x_cla_ls8_9_flash_lnk.cmd linker implementation)
                       LOAD_START(_Cla1ProgLoadStart),
                       RUN_START(_Cla1ProgRunStart),
                       LOAD_SIZE(_Cla1ProgLoadSize),

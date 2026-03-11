@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -254,10 +254,10 @@ struct LOCK_BITS {                      // bits description
     Uint16 CMPLPMXSEL:1;                // 6 CMPLPMXSEL Register lock bit
     Uint16 CMPHNMXSEL:1;                // 7 CMPHNMXSEL Register lock bit
     Uint16 CMPLNMXSEL:1;                // 8 CMPLNMXSEL Register lock bit
-    Uint16 VREGCTL:1;                   // 9 VREGCTL Register lock bit
+    Uint16 rsvd3:1;                     // 9 Reserved
     Uint16 CMPSSCTL:1;                  // 10 CMPSSCTL Register lock bit
-    Uint16 rsvd3:5;                     // 15:11 Reserved
-    Uint16 rsvd4:16;                    // 31:16 Reserved
+    Uint16 rsvd4:5;                     // 15:11 Reserved
+    Uint16 rsvd5:16;                    // 31:16 Reserved
 };
 
 union LOCK_REG {

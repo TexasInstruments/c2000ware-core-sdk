@@ -8,7 +8,7 @@
 //
 //*****************************************************************************
 void `nameOfPeripheral`_init(){
-%   for(var i = 0; i < module.$instances.length; i++) 
+%   for(var i = 0; i < module.$instances.length; i++)
 %   {
 %      var instance = module.$instances[i];
 	`instance.$name`_init();
@@ -38,7 +38,7 @@ void `instance.$name`_init(){
     PGA_selectNMUXInput(`instance.$name`_BASE, PGA_NMUX_RTAP);
     PGA_selectMMUXInput(`instance.$name`_BASE, PGA_MMUX_NON_INVERTING_GAIN_VSSA);
     PGA_setGain(`instance.$name`_BASE, `instance.gainMode`);
-    PGA_configurefeedbackOnPin(`instance.$name`_BASE);               
+    PGA_configurefeedbackOnPin(`instance.$name`_BASE);
             % }
             % if (!instance.enableFilterMode) {
             % if (instance.modeSelection == "BufferMode")
@@ -83,7 +83,7 @@ void `instance.$name`_init(){
             % }
         %}
         %}
-        %if (["F28E12x"].includes(Common.getDeviceName())){
+        %if (["F28E12x", "MCPC029"].includes(Common.getDeviceName())){
             % var pgaINP = instance.PGA_INPinInfo.split(":").slice(1)[0].split("/").find(x => x.includes("INP"));
             % var pgaINM = instance.PGA_GNDPinInfo.split(":").slice(1)[0].split("/").find(x => x.includes("INM"));
             % var pgaInst = instance.pgaBase.replace("BASE","");
@@ -93,7 +93,7 @@ void `instance.$name`_init(){
     PGA_selectNMUXInput(`instance.$name`_BASE, PGA_NMUX_RTAP);
     PGA_selectMMUXInput(`instance.$name`_BASE, PGA_MMUX_NON_INVERTING_GAIN_VSSA);
     PGA_setGain(`instance.$name`_BASE, `instance.gainMode`);
-    PGA_configurefeedbackOnPin(`instance.$name`_BASE);               
+    PGA_configurefeedbackOnPin(`instance.$name`_BASE);
             % }
             % if (!instance.enableFilterMode) {
             % if (instance.modeSelection == "BufferMode")
@@ -142,7 +142,7 @@ void `instance.$name`_init(){
         % // preparing `registersToLockOR` for PGA_lockRegisters()
         % if (instance.lockedRegisters.length>0)
         %{
-%%{		
+%%{
         var regCount = 0
         var registersToLockOR = "("
         for (var registerToLock in instance.lockedRegisters)
@@ -163,11 +163,11 @@ void `instance.$name`_init(){
     // Lock write-access to PGA Registers
     //
     PGA_lockRegisters(`instance.$name`_BASE, `registersToLockOR`);
-        % }	
+        % }
         % if (instance.pgaEnable) {
     PGA_enable(`instance.$name`_BASE);
         % } else {
-    PGA_disable(`instance.$name`_BASE);    
+    PGA_disable(`instance.$name`_BASE);
         % }
     //
     // Delay for PGA to power up.

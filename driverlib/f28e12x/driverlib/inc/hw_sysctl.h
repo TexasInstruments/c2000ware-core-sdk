@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -66,7 +66,6 @@
 
 #define SYSCTL_O_CLKCFGLOCK      0x0U    // Lock bit for CLKCFG registers
 #define SYSCTL_O_CLKSRCCTL1      0x2U    // Clock Source Control register-1
-#define SYSCTL_O_CLKSRCCTL2      0x4U    // Clock Source Control register-2
 #define SYSCTL_O_CLKSRCCTL3      0x6U    // Clock Source Control register-3
 #define SYSCTL_O_SYSPLLCTL       0x8U    // SYSPLL Control register
 #define SYSCTL_O_SYSPLLMULT      0xAU    // SYSPLL Multiplier register
@@ -285,14 +284,6 @@
 #define SYSCTL_CLKSRCCTL1_OSCCLKSRCSEL_M   0x3U    // OSCCLK Source Select Bits
 #define SYSCTL_CLKSRCCTL1_SECCLKSRCSEL     0x4U    // SECCLK Source Select Bit
 #define SYSCTL_CLKSRCCTL1_WDHALTI          0x20U   // Watchdog HALT Mode Ignore Bit
-
-//*************************************************************************************************
-//
-// The following are defines for the bit fields in the CLKSRCCTL2 register
-//
-//*************************************************************************************************
-#define SYSCTL_CLKSRCCTL2_CANABCLKSEL_S   0U
-#define SYSCTL_CLKSRCCTL2_CANABCLKSEL_M   0x3U   // CANA Bit Clock Source Select Bit
 
 //*************************************************************************************************
 //
@@ -562,18 +553,12 @@
 // The following are defines for the bit fields in the CMPSSLPMSEL register
 //
 //*************************************************************************************************
-#define SYSCTL_CMPSSLPMSEL_CMPSS1H   0x1U     // CMPSS1H Enable for LPM Wakeup
-#define SYSCTL_CMPSSLPMSEL_CMPSS1L   0x2U     // CMPSS1L Enable for LPM Wakeup
-#define SYSCTL_CMPSSLPMSEL_CMPSS2H   0x4U     // CMPSS2H Enable for LPM Wakeup
-#define SYSCTL_CMPSSLPMSEL_CMPSS2L   0x8U     // CMPSS2L Enable for LPM Wakeup
-#define SYSCTL_CMPSSLPMSEL_CMPSS3H   0x10U    // CMPSS3H Enable for LPM Wakeup
-#define SYSCTL_CMPSSLPMSEL_CMPSS3L   0x20U    // CMPSS3L Enable for LPM Wakeup
-#define SYSCTL_CMPSSLPMSEL_CMPSS4H   0x40U    // CMPSS4H Enable for LPM Wakeup
-#define SYSCTL_CMPSSLPMSEL_CMPSS4L   0x80U    // CMPSS4L Enable for LPM Wakeup
-#define SYSCTL_CMPSSLPMSEL_CMPSS5H   0x100U   // CMPSS5H Enable for LPM Wakeup
-#define SYSCTL_CMPSSLPMSEL_CMPSS5L   0x200U   // CMPSS5L Enable for LPM Wakeup
-#define SYSCTL_CMPSSLPMSEL_CMPSS6H   0x400U   // CMPSS6H Enable for LPM Wakeup
-#define SYSCTL_CMPSSLPMSEL_CMPSS6L   0x800U   // CMPSS6L Enable for LPM Wakeup
+#define SYSCTL_CMPSSLPMSEL_CMPSS1H   0x1U    // CMPSS1H Enable for LPM Wakeup
+#define SYSCTL_CMPSSLPMSEL_CMPSS1L   0x2U    // CMPSS1L Enable for LPM Wakeup
+#define SYSCTL_CMPSSLPMSEL_CMPSS2H   0x4U    // CMPSS2H Enable for LPM Wakeup
+#define SYSCTL_CMPSSLPMSEL_CMPSS2L   0x8U    // CMPSS2L Enable for LPM Wakeup
+#define SYSCTL_CMPSSLPMSEL_CMPSS3H   0x10U   // CMPSS3H Enable for LPM Wakeup
+#define SYSCTL_CMPSSLPMSEL_CMPSS3L   0x20U   // CMPSS3L Enable for LPM Wakeup
 
 //*************************************************************************************************
 //

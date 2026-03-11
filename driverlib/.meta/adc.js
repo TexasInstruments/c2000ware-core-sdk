@@ -11,7 +11,7 @@ let device_adc_char =
 
 var device_adc_Ron = device_adc_char.Ron[Common.getDeviceName()]
 var device_adc_Cp = device_adc_char.Cp[Common.getDeviceName()]
-var device_adc_Ch = device_adc_char.Ch[Common.getDeviceName()]	
+var device_adc_Ch = device_adc_char.Ch[Common.getDeviceName()]
 
 var ESTIMATED_CP = 10.00001;
 var ADC_SysClk_MHz = Common.SYSCLK_getMaxMHz();
@@ -172,32 +172,32 @@ var configNames = [
 ];
 
 if (["F28P65x", "F28P55x","F28P551x"].includes(Common.getDeviceName())){
-    configNames.push(   
+    configNames.push(
         "Triggermode",
         "ExtChannel",
     )
 }
 
-if (["F28E12x"].includes(Common.getDeviceName())){
-    configNames.push(   
+if (["F28E12x", "MCPC029"].includes(Common.getDeviceName())){
+    configNames.push(
         "Triggermode",
     )
 }
 
 function performCopy(inst, ui)
 {
-    for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){ 
+    for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){
         var currentSOC = device_driverlib_peripheral.ADC_SOCNumber[socIndex].name
         var soci = (currentSOC).replace(/[^0-9]/g,'')
         if(((inst.enabledSOCs).includes(currentSOC)))
-        { 
+        {
             var inst_copy_to = inst["soc" + soci.toString() + "Name"];
             var inst_copy_from = inst["soc" + soci.toString() + "copyFrom"];
             var copyFromIndex = inst["soc" + soci.toString() + "copyFrom"].replace("SOC", "");
             if((inst_copy_to != inst_copy_from) && (inst_copy_from != ""))
             {
                 //
-                // Copy all SOC config 
+                // Copy all SOC config
                 //
                 for (var configOptionIndex = 0; configOptionIndex<configNames.length; configOptionIndex++)
                 {
@@ -243,12 +243,12 @@ function performCopy(inst, ui)
 // }
 
 function onChangeEnabledSOCs(inst, ui){
-    for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){ 
+    for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){
         var currentSOC = device_driverlib_peripheral.ADC_SOCNumber[socIndex].name
         var soci = (currentSOC).replace(/[^0-9]/g,'')
         var socConfigs = [
             "soc" + soci.toString() + "Name",
-            "soc" + soci.toString() + "IndependentNameMode", 
+            "soc" + soci.toString() + "IndependentNameMode",
             "soc" + soci.toString() + "Channel",
             "soc" + soci.toString() + "ModuleChannelName",
             "soc" + soci.toString() + "DevicePinName",
@@ -258,23 +258,23 @@ function onChangeEnabledSOCs(inst, ui){
             "soc" + soci.toString() + "SampleTime",
             "soc" + soci.toString() + "copyUse",
         ]
-        if (["F28P55x","F28P551x","F28P551x","F28E12x"].includes(Common.getDeviceName())){
-            socConfigs.push(   
+        if (["F28P55x","F28P551x","F28P551x","F28E12x", "MCPC029"].includes(Common.getDeviceName())){
+            socConfigs.push(
                 "soc" + soci.toString() + "EnableSampleCAPReset",
             )
         }
         if ([ "F28P65x", "F28P55x","F28P551x"].includes(Common.getDeviceName())){
-            socConfigs.push(   
+            socConfigs.push(
                 "soc" + soci.toString() + "Triggermode",
                 "soc" + soci.toString() + "ExtChannel",
             )
         }
-        if (["F28E12x"].includes(Common.getDeviceName())){
-            socConfigs.push(   
+        if (["F28E12x", "MCPC029"].includes(Common.getDeviceName())){
+            socConfigs.push(
                 "soc" + soci.toString() + "Triggermode",
             )
         }
-       
+
         var sampleCalculatorConfigs = [
             "soc" + soci.toString() + "InputCapacitance",
             "soc" + soci.toString() + "InputResistance",
@@ -308,8 +308,8 @@ function onChangeEnabledSOCs(inst, ui){
             // {
             //     ui["soc" + soci.toString() + "ExtChannel"].hidden = true;
             // }
-           
-            
+
+
             for (var sampCalcConfig of sampleCalculatorConfigs)
             {
                 if (((inst.enabledSOCs).includes(currentSOC))&&(inst["soc" + soci.toString() + "UseSampleTimeCalculator"]))
@@ -343,7 +343,7 @@ function onChangeEnabledSOCs(inst, ui){
 }
 
 function onChangeEnabledInts(inst, ui){
-    for(var intIndex in device_driverlib_peripheral.ADC_IntNumber){ 
+    for(var intIndex in device_driverlib_peripheral.ADC_IntNumber){
         var currentINT = device_driverlib_peripheral.ADC_IntNumber[intIndex].name
         var inti = (currentINT).replace(/[^0-9]/g,'')
         var intConfigs = [
@@ -370,12 +370,12 @@ function onChangeEnabledInts(inst, ui){
 }
 
 function onChangeSampleCAPReset(inst, ui){
-    for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){ 
+    for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){
         var currentSOC = device_driverlib_peripheral.ADC_SOCNumber[socIndex].name
         var soci = (currentSOC).replace(/[^0-9]/g,'')
         if (((inst.enabledSOCs).includes(currentSOC)))
         {
-            if (["F28E12x"].includes(Common.getDeviceName())){
+            if (["F28E12x", "MCPC029"].includes(Common.getDeviceName())){
                 if(inst["soc" + soci.toString() + "EnableSampleCAPReset"]){
                     ui["soc" + soci.toString() + "sampleCAPResetSelect"].hidden = false;
                 }
@@ -388,7 +388,7 @@ function onChangeSampleCAPReset(inst, ui){
 }
 
 function onChangeEnabledDMAInts(inst, ui){
-    for(var intIndex in device_driverlib_peripheral.ADC_IntNumber){ 
+    for(var intIndex in device_driverlib_peripheral.ADC_IntNumber){
         var currentINT = device_driverlib_peripheral.ADC_IntNumber[intIndex].name
         var inti = (currentINT).replace(/[^0-9]/g,'')
         var intConfigs = [
@@ -432,11 +432,11 @@ function onChangeEnabledPPBs(inst, ui){
             "ppb" + ppbi.toString() + "LowTripLimit",
         ]
 
-        if ([ "F28P65x", "F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName())){
-            ppbConfigs.push(   
-            "ppb" + ppbi.toString() + "CompSource", 
-            "ppb" + ppbi.toString() + "SyncInput", 
-            "ppb" + ppbi.toString() + "Rightshift", 
+        if ([ "F28P65x", "F28P55x","F28P551x","F28E12x", "MCPC029"].includes(Common.getDeviceName())){
+            ppbConfigs.push(
+            "ppb" + ppbi.toString() + "CompSource",
+            "ppb" + ppbi.toString() + "SyncInput",
+            "ppb" + ppbi.toString() + "Rightshift",
             "ppb" + ppbi.toString() + "AccumulationLimit",
             "ppb" + ppbi.toString() + "SelectOSINTSource",
             )
@@ -476,7 +476,7 @@ function onChangeSampleTimeCalculator(inst, ui){
     //         n = 16
     //     }
     // }
-    for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){ 
+    for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){
         var currentSOC = device_driverlib_peripheral.ADC_SOCNumber[socIndex].name
         var soci = (currentSOC).replace(/[^0-9]/g,'')
         var sampleCalculatorConfigs = [
@@ -506,7 +506,7 @@ function onChangeSampleTimeCalculator(inst, ui){
         }
 
 // TODO: will likely be removed, done by the getValue function for CalculatedSampleTime
-        
+
         // if (inst["soc" + soci.toString() + "UseSampleTimeCalculator"])
         // {
         //     var Rs = inst["soc" + soci.toString() + "InputResistance"];
@@ -534,7 +534,7 @@ function onChangeSampleTimeCalculator(inst, ui){
                 }
             }
 
-            
+
         }
         else
         {
@@ -545,14 +545,14 @@ function onChangeSampleTimeCalculator(inst, ui){
                     ui["soc" + soci.toString() + "SampleWindowCalculated"].hidden = true;
                 }
             }
-           
+
         }
 
     }
 }
 
 function onChangeCopy(inst, ui){
-    for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){ 
+    for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){
         var currentSOC = device_driverlib_peripheral.ADC_SOCNumber[socIndex].name
         var soci = (currentSOC).replace(/[^0-9]/g,'')
         var copyConfigs = [
@@ -656,6 +656,9 @@ var DEVICES_ADC_INSTANCES = {
         { name: "ADCD_BASE", displayName: "ADCD"},
         { name: "ADCE_BASE", displayName: "ADCE"},
     ],
+    MCPC029 : [
+        { name: "ADCA_BASE", displayName: "ADCA"},
+    ],
 }
 
 var ADC_INSTANCE = DEVICES_ADC_INSTANCES[Common.getDeviceName()]
@@ -756,7 +759,7 @@ if (["F2837xD", "F2837xS" ,"F2838x","F28P65x"].includes(Common.getDeviceName()))
             default     : device_driverlib_peripheral.ADC_SignalMode[0].name,
             options     : device_driverlib_peripheral.ADC_SignalMode,
         },
-        
+
     ]);
 }
 
@@ -829,7 +832,7 @@ function addSOCGroup(soci){
             // TODO: decide if total or partial removal of onChangeADC
             // onChange    : onChangeADC,
         },
-       
+
         {
             name: "soc" + soci.toString() + "ModuleChannelName",
             displayName : "SOC" + soci.toString() + " Module Channel Name",
@@ -849,7 +852,7 @@ function addSOCGroup(soci){
             default     : Pinmux.getDevicePinInfoDescription(defaultADCPinInfos)
         },
     ]
-    if (["F28P55x","F28P551x", "F28E12x"].includes(Common.getDeviceName())){
+    if (["F28P55x","F28P551x", "F28E12x", "MCPC029"].includes(Common.getDeviceName())){
         eachSocConfig = eachSocConfig.concat(
         [
             {
@@ -862,7 +865,7 @@ function addSOCGroup(soci){
             },
         ])
     }
-    if (["F28E12x"].includes(Common.getDeviceName())){
+    if (["F28E12x", "MCPC029"].includes(Common.getDeviceName())){
         eachSocConfig = eachSocConfig.concat(
         [
             {
@@ -884,7 +887,7 @@ function addSOCGroup(soci){
                 description : 'Select the channel associated to external MUX for this SOC. To use the external channel, you must first enable External MUX',
                 hidden      : true,
                 default     : device_driverlib_peripheral.ADC_ExtChannel[0].name,
-                options     : (inst) => 
+                options     : (inst) =>
                     {
                         var numberofpins = inst["adcNumExtPins"];
                         var numberofchannel = Math.pow(2, numberofpins);
@@ -895,13 +898,13 @@ function addSOCGroup(soci){
                                 if (number_mux_channel < numberofchannel) {
                                     channel.push({name:option.name, displayName: option.displayName})
                                 }
-                            
+
                             }
                             return channel;
                         }
                         return channel;
                     },
-               
+
             },
         ])
     }
@@ -910,8 +913,8 @@ function addSOCGroup(soci){
             name: "GROUP_SOC" + soci.toString() + "_TRIGS",
             displayName: "SOC Triggers",
             longDescription: longDescriptionSocTriggers,
-            config : SOCTrigger_configs 
-        }, 
+            config : SOCTrigger_configs
+        },
         {
             name        : "GROUP_SOC" + soci.toString() + "_SAMPLE_TIME_CALCULATOR",
             displayName : "Sample Time Calculator",
@@ -1057,11 +1060,11 @@ function addSOCGroup(soci){
 ]);
 }
 
-for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){ 
+for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){
     var currentSOC = device_driverlib_peripheral.ADC_SOCNumber[socIndex].name
     var soci = (currentSOC).replace(/[^0-9]/g,'')
     var SOCTrigger_configs =[]
-    if (["F28P65x", "F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName())){
+    if (["F28P65x", "F28P55x","F28P551x","F28E12x", "MCPC029"].includes(Common.getDeviceName())){
     SOCTrigger_configs = SOCTrigger_configs.concat([
         // Trigger mode
         {
@@ -1073,7 +1076,7 @@ for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){
             options: [
                 {name:"singlemode", displayName:"Single Trigger"},
                 {name:"repeatermode", displayName:"Use Repeater Trigger"},
-            ],  
+            ],
         },
     ])
     }
@@ -1120,7 +1123,7 @@ if (["F28P65x", "F28P55x","F28P551x"].includes(Common.getDeviceName()))
             hidden      : false,
             default     : false,
             onChange: extChanOnChange,
-            
+
         },
         {
             name        : "extTiming",
@@ -1134,7 +1137,7 @@ if (["F28P65x", "F28P55x","F28P551x"].includes(Common.getDeviceName()))
             ],
             onChange: extChanOnChange,
         },
-        
+
     ]);
 }
 
@@ -1154,11 +1157,11 @@ config = config.concat([
 if (["F28P65x", "F28P55x","F28P551x"].includes(Common.getDeviceName()))
 {
 var adcextmuxdescription = `
-The External MUX Selected Channel field in each SOC can be used to automatically control an external mux via digital output pins indicated by OUTPUTXBAR. 
+The External MUX Selected Channel field in each SOC can be used to automatically control an external mux via digital output pins indicated by OUTPUTXBAR.
 
-This allows the user the flexibility to increase the ADC channel count via an external mux with minimal SW overhead. The External Channel pins are made available by mapping them to GPIO mux positions just like any other peripheral.  This could include AIO pins if the device allows peripherals to be muxed onto these pins and the AIOs support output mode.  The user also does not need to mux out all 4 pins if they have a small mux. To select a specific muxed channel, the user sets an SOC to use the SOC Channel that the mux output is connected to along with the SOC External MUX Selected Channel value that will select the desired channel. 
+This allows the user the flexibility to increase the ADC channel count via an external mux with minimal SW overhead. The External Channel pins are made available by mapping them to GPIO mux positions just like any other peripheral.  This could include AIO pins if the device allows peripherals to be muxed onto these pins and the AIOs support output mode.  The user also does not need to mux out all 4 pins if they have a small mux. To select a specific muxed channel, the user sets an SOC to use the SOC Channel that the mux output is connected to along with the SOC External MUX Selected Channel value that will select the desired channel.
 
-There are a variety of potential mux topologies the customer could use.  The most basic would be a single external mux connected to a single ADC input channel. 
+There are a variety of potential mux topologies the customer could use.  The most basic would be a single external mux connected to a single ADC input channel.
 
 •	To select ADCIN0.4, the user configures the SOC with Channel = 0 and External MUX Selected Channel = 4.
 
@@ -1175,7 +1178,7 @@ var adcextchConfigs =
                 hidden: true,
                 default: 0,
                 options:
-                [ 
+                [
                 {
                     name: 0
                 },
@@ -1199,24 +1202,24 @@ var adcextchConfigs =
             //     name: "extchannel0pin",
             //     displayName: "External Channel Pin",
             //     default: "",
-                
+
             //     getValue: (inst) =>
             //     {
             //         /*for (var xbari=0; xbari< inst["adcNumExtPins"]; xbari++)*/
-                    
-            //             if (inst.adcextchan0) 
+
+            //             if (inst.adcextchan0)
             //             {
             //                 Common.printDebugObject(inst.adcextchan0.outputxbar.outputxbarPin.$solution.devicePinName)
-                            
+
             //                 return inst.adcextchan0.outputxbar.outputxbarPin.$solution.devicePinName.toString()
             //             }
-                        
+
             //             return ""
-                    
-                    
+
+
             //     }
             // },
-            
+
         for (let xbari=0; xbari< 4; xbari++){
             adcextchConfigs= adcextchConfigs.concat([
                 {
@@ -1225,17 +1228,17 @@ var adcextchConfigs =
                     default     : "",
                     hidden      : true,
                     getValue    : (inst)=>
-                    
+
                     {
                         if (Common.isContextCPU1()) {
-                            if (inst["adcextchan"+xbari]) 
-                            { 
+                            if (inst["adcextchan"+xbari])
+                            {
                                 if (inst["adcextchan"+xbari].outputxbar.outputxbarPin.$solution.devicePinName){
                                     return inst["adcextchan"+xbari].outputxbar.outputxbarPin.$solution.devicePinName.toString()
                                 }
                                 else {
                                     return ""
-                                }   
+                                }
                             }
                             return ""
                         }
@@ -1244,30 +1247,30 @@ var adcextchConfigs =
                             {
                                 let outputxbar = system.contexts.CPU1.system.modules["/driverlib/outputxbar.js"];
                                 if (outputxbar!=null) {
-                                        
+
                                     var selectedoutputxbarinstance = null
                                     for ( var outputxbar_inst of outputxbar.$instances) {
-                                        if ((outputxbar_inst.sourceSignals).includes(inst.adcBase.replace("_BASE", "_EXTMUXSEL") + xbari)) 
+                                        if ((outputxbar_inst.sourceSignals).includes(inst.adcBase.replace("_BASE", "_EXTMUXSEL") + xbari))
                                         {
                                             selectedoutputxbarinstance = outputxbar_inst
-                                            break    
+                                            break
                                         }
                                         if (selectedoutputxbarinstance != null) {
-                                            
-                                            return selectedoutputxbarinstance.outputxbar.outputxbarPin.$solution.devicePinName.toString() 
-                                        }          
+
+                                            return selectedoutputxbarinstance.outputxbar.outputxbarPin.$solution.devicePinName.toString()
+                                        }
                                     }
-    
-                                    if (selectedoutputxbarinstance != null) 
+
+                                    if (selectedoutputxbarinstance != null)
                                     {
                                         return selectedoutputxbarinstance.outputxbar.outputxbarPin.$solution.devicePinName.toString()
-                                        
+
                                     }
-                                    if (selectedoutputxbarinstance == null) 
+                                    if (selectedoutputxbarinstance == null)
                                     {
                                         return""
                                     }
-                                                
+
                                 }
                                 else {
                                     return ""
@@ -1277,10 +1280,10 @@ var adcextchConfigs =
                                 return ""
                             }
                         }
-                                        
+
                     }
                 }
-            ])  
+            ])
         }
 
 
@@ -1289,7 +1292,7 @@ var adcextchConfigs =
             name: "GROUP_ADC_EXT_CHAN",
             displayName: "ADC External Mux Channel",
             longDescription: adcextmuxdescription,
-            config: adcextchConfigs,    
+            config: adcextchConfigs,
         },
     ])
 }
@@ -1316,7 +1319,7 @@ config = config.concat([
 ])
 
 var eachRepeaterConfig = []
-if (["F28P65x", "F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName()))
+if (["F28P65x", "F28P55x","F28P551x","F28E12x", "MCPC029"].includes(Common.getDeviceName()))
 {
     var repeatermoduledescription ='The ADC contains two trigger repeater modules. These modules can select any of the regular ADC triggers that are selectable by Trigger, and generate a number of repeat pulses as configured in Count field. Each repeater module can apply four types of trigger modifications: oversampling, undersampling, phase delay and re-trigger spread.The ADC trigger repeater module is shown here: ![an offline image](../../driverlib/.meta/adc/docs/adcrepeater.png)'
     var repeatermodedescription ='In oversampling mode, the repeater module passes the initial trigger through to the output. As soon as all SOCs configured to receive the trigger are in progress or completed, it issues the trigger again. The process repeats until the configured number of trigger pulses (NSEL + 1) have been issued.In undersampling mode, the repeater module passes the initial trigger through to the output, and then blocks subsequent triggers until it has received the configured number of trigger pulses (NSEL + 1). The result is that only 1 in every (NSEL + 1) pulses passes through to the output.'
@@ -1326,7 +1329,7 @@ if (["F28P65x", "F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName())
 function addRepeaterGroup(rptri){
     eachRepeaterConfig = eachRepeaterConfig.concat ([
         {
-            name:"repeater"+ rptri.toString(), 
+            name:"repeater"+ rptri.toString(),
             displayName: "Repeater Module"+ rptri.toString(),
             longDescription: repeatermoduledescription,
             collapsed: true,
@@ -1335,7 +1338,7 @@ function addRepeaterGroup(rptri){
     ])
 }
 
-    for(var rptrIndex in device_driverlib_peripheral.ADC_RepInstance){ 
+    for(var rptrIndex in device_driverlib_peripheral.ADC_RepInstance){
         var currentRPTR = device_driverlib_peripheral.ADC_RepInstance[rptrIndex].name
         let rptri = (currentRPTR).replace(/[^0-9]/g,'')
         var repeaterConfigs=[]
@@ -1346,7 +1349,7 @@ function addRepeaterGroup(rptri){
                     displayName :  "Mode",
                     longDescription : repeatermodedescription,
                     default     : device_driverlib_peripheral.ADC_RepMode[0].name,
-                    options     : device_driverlib_peripheral.ADC_RepMode,   
+                    options     : device_driverlib_peripheral.ADC_RepMode,
                 },
         ])
         }
@@ -1356,7 +1359,7 @@ function addRepeaterGroup(rptri){
                 displayName :  "Trigger",
                 description : 'Select the trigger source for this Repeater',
                 default     : "ADC_TRIGGER_SW_ONLY",
-                options     : /*device_driverlib_peripheral.ADC_Trigger,*/ (inst)=> 
+                options     : /*device_driverlib_peripheral.ADC_Trigger,*/ (inst)=>
                 {
                     var triggeroptions=[]
                     for (var option of device_driverlib_peripheral.ADC_Trigger)
@@ -1366,9 +1369,9 @@ function addRepeaterGroup(rptri){
                             triggeroptions.push({name:option.name, displayName: option.displayName})
                         }
                     }
-                    return triggeroptions;                       
-                }, 
-                
+                    return triggeroptions;
+                },
+
             },
             {
                 name: "repeater" + rptri.toString()+ " SyncInput",
@@ -1376,7 +1379,7 @@ function addRepeaterGroup(rptri){
                 description : 'Select the Sync source for this Repeater',
                 default     : device_driverlib_peripheral.ADC_SyncInput[0].name,
                 options     : device_driverlib_peripheral.ADC_SyncInput
-                
+
 
             },
             {
@@ -1412,17 +1415,17 @@ function addRepeaterGroup(rptri){
                 displayName : "Selected SOCs",
                 description : 'Selected SOCs for this repeater',
                 default     : "",
-                getValue: (inst)=> 
+                getValue: (inst)=>
                 {
                     var selectedsocs= ""
                     for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber)
-                    { 
+                    {
                         var currentSOC = device_driverlib_peripheral.ADC_SOCNumber[socIndex].name
                         var soci = (currentSOC).replace(/[^0-9]/g,'')
                         if(((inst.enabledSOCs).includes(currentSOC)) && ((inst["soc" + soci.toString() + "Trigger"]) == ("ADC_TRIGGER_REPEATER"+rptri.toString())))
-                        { 
+                        {
                             selectedsocs += (selectedsocs != "")?", ": "";
-                            selectedsocs+= "SOC " + soci.toString();                                    
+                            selectedsocs+= "SOC " + soci.toString();
                         }
                     }
                     return selectedsocs;
@@ -1435,7 +1438,7 @@ function addRepeaterGroup(rptri){
 
     config = config.concat
     ([
-        { 
+        {
             name: "GROUP_REPEATER_MODULE",
             displayName: "ADC Repeater Module",
             config: eachRepeaterConfig
@@ -1463,13 +1466,13 @@ let ppbEvents = [
     {name: "ADC_EVT_TRIPLO", displayName: "ADC Event TRIP LOW"},
     {name: "ADC_EVT_ZERO", displayName: "ADC Event ZERO CROSSING"},
 ]
-if (["F28E12x"].includes(Common.getDeviceName())){
+if (["F28E12x", "MCPC029"].includes(Common.getDeviceName())){
     ppbEvents = [
         {name: "ADC_EVT_TRIPHI", displayName: "ADC Event TRIP HIGH"},
         {name: "ADC_EVT_TRIPLO", displayName: "ADC Event TRIP LOW"},
         {name: "ADC_EVT_ZERO", displayName: "ADC Event ZERO CROSSING"},
         {name: "ADC_EVT_NLIMIT", displayName: "ADC Event Within Trip Limit"},
-    ]  
+    ]
 }
 for(var ppbIndex in device_driverlib_peripheral.ADC_PPBNumber)
 {
@@ -1501,7 +1504,7 @@ for(var ppbIndex in device_driverlib_peripheral.ADC_PPBNumber)
             default     : device_driverlib_peripheral.ADC_SOCNumber[0].name,
             options     : device_driverlib_peripheral.ADC_SOCNumber,
         },
-        
+
         // ADC_enablePPBEvent() / ADC_disablePPBEvent, evtFlags
         {
             name: "ppb" + ppbi.toString() + "EventEnable",
@@ -1561,9 +1564,9 @@ for(var ppbIndex in device_driverlib_peripheral.ADC_PPBNumber)
             description : 'Low Trip limit for this PPB',
             hidden      : true,
             default     : 0
-        },   
+        },
     ]
-    if (["F28P65x", "F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName())) {
+    if (["F28P65x", "F28P55x","F28P551x","F28E12x", "MCPC029"].includes(Common.getDeviceName())) {
         ppbx_configs = ppbx_configs.concat([
             //ADC_PPBIntSrcSelect(), osIntSrc
             {
@@ -1707,10 +1710,10 @@ int_configs = int_configs.concat([
     },
 ])
 var interruptSourceOption = device_driverlib_peripheral.ADC_SOCNumber;
-if (["F28P65x", "F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName())){
+if (["F28P65x", "F28P55x","F28P551x","F28E12x", "MCPC029"].includes(Common.getDeviceName())){
     interruptSourceOption = device_driverlib_peripheral.ADC_IntTrigger;
 }
-    for(var intIndex in device_driverlib_peripheral.ADC_IntNumber){ 
+    for(var intIndex in device_driverlib_peripheral.ADC_IntNumber){
         var currentINT = device_driverlib_peripheral.ADC_IntNumber[intIndex].name
         var inti = (currentINT).replace(/[^0-9]/g,'')
         int_configs = int_configs.concat([
@@ -1750,7 +1753,7 @@ if (["F28P65x", "F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName())
         ])
     }
 
-if (["F28E12x"].includes(Common.getDeviceName())){
+if (["F28E12x", "MCPC029"].includes(Common.getDeviceName())){
 int_configs = int_configs.concat([
     {
         name        : "enabledDMAInts",
@@ -1765,7 +1768,7 @@ int_configs = int_configs.concat([
 ])
 
 interruptSourceOption = device_driverlib_peripheral.ADC_IntTrigger;
-    for(var intIndex in device_driverlib_peripheral.ADC_IntNumber){ 
+    for(var intIndex in device_driverlib_peripheral.ADC_IntNumber){
         var currentINT = device_driverlib_peripheral.ADC_IntNumber[intIndex].name
         var inti = (currentINT).replace(/[^0-9]/g,'')
         int_configs = int_configs.concat([
@@ -1829,8 +1832,8 @@ One PIE interrupt is shared between all the PPBs for a given ADC module.
 `;
 
 config = config.concat([
-    
-              
+
+
     {
         name: "GROUP_PPB",
         displayName: "PPB Configurations",
@@ -1839,7 +1842,7 @@ config = config.concat([
         config: ppb_configs
     },
 ])
-if (!["F28E12x"].includes(Common.getDeviceName())) {
+if (!["F28E12x", "MCPC029"].includes(Common.getDeviceName())) {
     config = config.concat([
         {
             name: "GROUP_BURST",
@@ -1940,7 +1943,7 @@ var globalConfig = [
         description: "This is the SYSCLK value assumed for sample window calculation and block diagram generation",
         default: ADC_SysClk_MHz,
         onChange : (inst, ui) => {
-            
+
         }
     },
     {
@@ -1963,7 +1966,7 @@ function onChangeUseInterrupts(inst, ui){
 function onChangeADC(inst, ui){
     var adcMod = inst.adcBase.replace("_BASE", "").replace("ADC", "");
 
-    for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){ 
+    for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){
         var currentSOC = device_driverlib_peripheral.ADC_SOCNumber[socIndex].name
         var soci = (currentSOC).replace(/[^0-9]/g,'')
         var sociChannel = inst["soc" + soci.toString() + "Channel"].replace("ADC_CH_ADCIN", "").replace("ADCIN", "");
@@ -2022,7 +2025,7 @@ function onValidateStatic(mod, stat){
 }
 
 function onValidate(inst, validation) {
-  
+
     if (Common.isContextCPU2()) {
         if (Common.isMultiCoreSysConfig()) {
             //
@@ -2045,7 +2048,7 @@ function onValidate(inst, validation) {
             if (inst.enableEXTMUX) {
                 if (Common.isModuleOnOtherContext("/driverlib/outputxbar.js") == false)
                 {
-                    for (let xbari=0; xbari< inst["adcNumExtPins"]; xbari++){ 
+                    for (let xbari=0; xbari< inst["adcNumExtPins"]; xbari++){
                         validation.logError(
                             "The OUTPUTXBAR module needs to be added on CPU1 when an external MUX is added on CPU2",inst,"enableEXTMUX");
                     }
@@ -2054,26 +2057,26 @@ function onValidate(inst, validation) {
                     let outputxbar = system.contexts.CPU1.system.modules["/driverlib/outputxbar.js"];
                     if (outputxbar!=null)
                     {
-                        
-                        for (let xbari=0; xbari< inst["adcNumExtPins"]; xbari++) { 
+
+                        for (let xbari=0; xbari< inst["adcNumExtPins"]; xbari++) {
                             var selectedoutputxbarinstance = null
                             for ( var outputxbar_inst of outputxbar.$instances) {
 
-                                if ((outputxbar_inst.sourceSignals).includes(inst.adcBase.replace("_BASE", "_EXTMUXSEL") + xbari)) 
+                                if ((outputxbar_inst.sourceSignals).includes(inst.adcBase.replace("_BASE", "_EXTMUXSEL") + xbari))
                                 {
                                     selectedoutputxbarinstance = outputxbar_inst
                                     break
-                                } 
+                                }
                             }
                             if (selectedoutputxbarinstance == null) {
                                 validation.logError(
                                     "OUTPUTXBAR module needs to be added on CPU1 when an external MUX is added on CPU2", inst, "extchannel"+ xbari+" pin");
-                            }  
-                        } 
-                    } 
+                            }
+                        }
+                    }
                 }
             }
-        } 
+        }
         else {
             if (inst.enableEXTMUX)
             {
@@ -2084,7 +2087,7 @@ function onValidate(inst, validation) {
                 "The ASYSCTL module needs to be added on CPU1 when an ADC instance is added on CPU2",inst,"adcBase");
             validation.logWarning(
                 "The ANALOG PinMux module needs to be added on CPU1 when an ADC instance is added on CPU2",inst,"adcBase");
-        } 
+        }
     }
 
     //
@@ -2141,7 +2144,7 @@ function onValidate(inst, validation) {
                         instance_obj, "socHighPriorityMode");
                     synchronousModeErrorFound = true;
                 }
-                if (!["F28E12x"].includes(Common.getDeviceName())) {
+                if (!["F28E12x", "MCPC029"].includes(Common.getDeviceName())) {
                     if (instance_obj["enableBurstMode"] != inst["enableBurstMode"])
                     {
                         validation.logError(
@@ -2175,7 +2178,7 @@ function onValidate(inst, validation) {
 
             if (!synchronousModeErrorFound)
             {
-                for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){ 
+                for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){
                     var currentSOC = device_driverlib_peripheral.ADC_SOCNumber[socIndex].name
                     var soci = (currentSOC).replace(/[^0-9]/g,'')
                     if((inst.enabledSOCs).includes(currentSOC)){
@@ -2261,7 +2264,7 @@ function onValidate(inst, validation) {
                                             " do not match!" + " The maximum value found is " + maxWindow.toString(),
                                             instance_obj, "soc" + soci.toString() + "SampleWindow");
                                     }
-                                    
+
                                 }
                             }
                         }
@@ -2317,7 +2320,7 @@ function onValidate(inst, validation) {
                     // Check if copy from SOC and copy to SOC are the same
                     //
                     validation.logError(
-                        "The copy from name is same SOC name as selected SOC", 
+                        "The copy from name is same SOC name as selected SOC",
                         inst, "soc" + soci.toString() + "copyFrom");
                 }
 
@@ -2327,7 +2330,7 @@ function onValidate(inst, validation) {
                         var copySOC = device_driverlib_peripheral.ADC_SOCNumber[copySOCIndex].name
                         var copysoci = (copySOC).replace(/[^0-9]/g,'')
                         if(((inst.enabledSOCs).includes(copySOC)))
-                        {                       
+                        {
                             if(inst["soc" + soci.toString() + "copyFrom"] == inst["soc" + copysoci.toString() + "Name"]){
                             validCopyName = true;
                             }
@@ -2338,10 +2341,10 @@ function onValidate(inst, validation) {
                 if(!validCopyName)
                 {
                     //
-                    // Check if the selected SOC name is valid 
+                    // Check if the selected SOC name is valid
                     //
                     validation.logError(
-                        "The copy from name is not a valid SOC name", 
+                        "The copy from name is not a valid SOC name",
                         inst, "soc" + soci.toString() + "copyFrom");
                 }
             }
@@ -2362,7 +2365,7 @@ function onValidate(inst, validation) {
     //                     var crtSOC = device_driverlib_peripheral.ADC_SOCNumber[socIn].name
     //                     var soca = (crtSOC).replace(/[^0-9]/g,'')
     //                     if(((inst.enabledSOCs).includes(crtSOC)))
-    //                     {                       
+    //                     {
     //                         if(inst["soc" + soci.toString() + "copyFrom"] == inst["soc" + soca.toString() + "Name"]){
     //                         validCopyName = true;
     //                         }
@@ -2373,7 +2376,7 @@ function onValidate(inst, validation) {
     //             if(!validCopyName)
     //             {
     //                 validation.logError(
-    //                     "The copy from name is not a valid EPWM name", 
+    //                     "The copy from name is not a valid EPWM name",
     //                     inst, "soc" + soci.toString() + "copyFrom");
     //             }
     //         }
@@ -2514,7 +2517,7 @@ function onValidate(inst, validation) {
     }
     if (["F2837xD", "F2837xS", "F2838x", "F28P65x"].includes(Common.getDeviceName()))
     {
-        for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){ 
+        for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){
             var currentSOC = device_driverlib_peripheral.ADC_SOCNumber[socIndex].name
             var soci = (currentSOC).replace(/[^0-9]/g,'')
             if((inst.enabledSOCs).includes(currentSOC)){
@@ -2549,10 +2552,10 @@ function onValidate(inst, validation) {
     // Burst Trigger warnings
     //
 
-    if (!["F28E12x"].includes(Common.getDeviceName())) {
+    if (!["F28E12x", "MCPC029"].includes(Common.getDeviceName())) {
         var highPri = inst.socHighPriorityMode;
         var number_highpri_socs = device_driverlib_peripheral.ADC_PriorityMode.findIndex(x => x.name == highPri);
-        for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){ 
+        for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){
             var currentSOC = device_driverlib_peripheral.ADC_SOCNumber[socIndex].name
             var soci = (currentSOC).replace(/[^0-9]/g,'')
             if((inst.enabledSOCs).includes(currentSOC)){
@@ -2581,7 +2584,7 @@ function onValidate(inst, validation) {
     // SOC Name
     //
     var validSocNames = []
-    for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){ 
+    for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){
         var currentSOC = device_driverlib_peripheral.ADC_SOCNumber[socIndex].name
         var soci = (currentSOC).replace(/[^0-9]/g,'')
         if((inst.enabledSOCs).includes(currentSOC))
@@ -2603,7 +2606,7 @@ function onValidate(inst, validation) {
         {
             var duplicateSocName = duplicateSocNames.duplicates[duplicateSocNamesIndex];
 
-            for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){ 
+            for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){
                 var currentSOC = device_driverlib_peripheral.ADC_SOCNumber[socIndex].name
                 var soci = (currentSOC).replace(/[^0-9]/g,'')
                 if((inst.enabledSOCs).includes(currentSOC))
@@ -2628,9 +2631,9 @@ function onValidate(inst, validation) {
   // repeater module
   //
 
-  if (["F28P65x", "F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName()))
+  if (["F28P65x", "F28P55x","F28P551x","F28E12x", "MCPC029"].includes(Common.getDeviceName()))
         {
-            for(var rptrIndex in device_driverlib_peripheral.ADC_RepInstance){ 
+            for(var rptrIndex in device_driverlib_peripheral.ADC_RepInstance){
                 var currentRPTR = device_driverlib_peripheral.ADC_RepInstance[rptrIndex].name
                 let rptri = (currentRPTR).replace(/[^0-9]/g,'')
                 if (inst["repeater" + rptri.toString()+ " Count"] <= 0)
@@ -2644,24 +2647,24 @@ function onValidate(inst, validation) {
                     validation.logError(
                         "Trigger count must be an integer value.",
                         inst, "repeater" + rptri.toString()+ " Count");
-                } 
+                }
                 if (inst["repeater"  + rptri.toString()+ " Phase"] < 0)
                 {
                     validation.logError(
                         "Phase delay  must be larger than 0",
                         inst, "repeater"  + rptri.toString()+ " Phase");
-                }  
+                }
                 if (inst["repeater" + rptri.toString()+ " Spread"] < 0)
                 {
                     validation.logError(
                         "Spread value must be larger than 0",
                         inst,"repeater" + rptri.toString()+ " Spread");
-                }  
+                }
             }
             //
             //Loginfo for Oversampling Interrupt OSINT
             //
-            for(var intIndex in device_driverlib_peripheral.ADC_IntNumber){ 
+            for(var intIndex in device_driverlib_peripheral.ADC_IntNumber){
                 var currentINT = device_driverlib_peripheral.ADC_IntNumber[intIndex].name
                 var inti = (currentINT).replace(/[^0-9]/g,'')
                 for(var ppbIndex in device_driverlib_peripheral.ADC_PPBNumber){
@@ -2692,10 +2695,10 @@ function onValidate(inst, validation) {
                                 inst, "extchannel"+ xbari+" pin");
                     }
                 }
-            }  
-        } 
+            }
+        }
 
-    for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){ 
+    for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){
         var currentSOC = device_driverlib_peripheral.ADC_SOCNumber[socIndex].name
         var soci = (currentSOC).replace(/[^0-9]/g,'')
         if((inst.enabledSOCs).includes(currentSOC))
@@ -2703,9 +2706,9 @@ function onValidate(inst, validation) {
             //
             //Information for setting up the repeater modules if repeater mode is selected for trigger
             //
-            if (["F28P65x", "F28P55x","F28P551x"].includes(Common.getDeviceName())) 
+            if (["F28P65x", "F28P55x","F28P551x"].includes(Common.getDeviceName()))
             {
-                if(((inst["soc" + soci.toString() + "Triggermode"]) == "repeatermode")&& 
+                if(((inst["soc" + soci.toString() + "Triggermode"]) == "repeatermode")&&
                 ((inst["soc" + soci.toString() + "Trigger"]) == ("ADC_TRIGGER_REPEATER1")))
                 {
                     validation.logInfo(
@@ -2721,11 +2724,11 @@ function onValidate(inst, validation) {
                 }
                 // validation.logInfo(
                 //     "To use the external channel, you must first enable external MUX for this SOC via" + soci.toString()+ ": " + system.getReference(inst,"enableEXTMUX"),
-                //     inst, "soc" + soci.toString() + "ExtChannel");  
+                //     inst, "soc" + soci.toString() + "ExtChannel");
             }
-            if (["F28E12x"].includes(Common.getDeviceName())) 
+            if (["F28E12x", "MCPC029"].includes(Common.getDeviceName()))
             {
-                if(((inst["soc" + soci.toString() + "Triggermode"]) == "repeatermode")&& 
+                if(((inst["soc" + soci.toString() + "Triggermode"]) == "repeatermode")&&
                 ((inst["soc" + soci.toString() + "Trigger"]) == ("ADC_TRIGGER_REPEATER1")))
                 {
                     validation.logInfo(
@@ -2740,7 +2743,7 @@ function onValidate(inst, validation) {
                 {
                     if (inst["adcResolutionMode"] == "ADC_RESOLUTION_16BIT")
                     {
-                        if (inst["soc" + soci.toString() + "SampleWindowCalculated"] <= 63 && 
+                        if (inst["soc" + soci.toString() + "SampleWindowCalculated"] <= 63 &&
                         inst["soc" + soci.toString() + "SampleWindowCalculated"] > 0)
                         {
                             validation.logWarning(
@@ -2750,7 +2753,7 @@ function onValidate(inst, validation) {
                     }
                     else
                     {
-                        if (inst["soc" + soci.toString() + "SampleWindowCalculated"] <= 14 && 
+                        if (inst["soc" + soci.toString() + "SampleWindowCalculated"] <= 14 &&
                         inst["soc" + soci.toString() + "SampleWindowCalculated"] > 0)
                         {
                             validation.logWarning(
@@ -2761,7 +2764,7 @@ function onValidate(inst, validation) {
                 }
                 else if (["F28003x", "F280013x" ,"F280015x","F2807x"].includes(Common.getDeviceName()))
                 {
-                    if (inst["soc" + soci.toString() + "SampleWindowCalculated"] <= 8 && 
+                    if (inst["soc" + soci.toString() + "SampleWindowCalculated"] <= 8 &&
                     inst["soc" + soci.toString() + "SampleWindowCalculated"] > 0)
                     {
                         validation.logWarning(
@@ -2776,7 +2779,7 @@ function onValidate(inst, validation) {
                     {
                         validation.logWarning(
                             "SOC" + soci.toString() + " sample window must be at least 10",
-                            inst, "soc" + soci.toString() + "SampleWindowCalculated");                        
+                            inst, "soc" + soci.toString() + "SampleWindowCalculated");
                     }
                 }
                 else if(["F28P551x"].includes(Common.getDeviceName()))
@@ -2786,12 +2789,12 @@ function onValidate(inst, validation) {
                     {
                         validation.logWarning(
                             "SOC" + soci.toString() + " sample window must be at least 11",
-                            inst, "soc" + soci.toString() + "SampleWindowCalculated");                        
+                            inst, "soc" + soci.toString() + "SampleWindowCalculated");
                     }
                 }
                 else
                 {
-                    if (inst["soc" + soci.toString() + "SampleWindowCalculated"] <= 7 && 
+                    if (inst["soc" + soci.toString() + "SampleWindowCalculated"] <= 7 &&
                     inst["soc" + soci.toString() + "SampleWindowCalculated"] > 0)
                     {
                         validation.logWarning(
@@ -2819,7 +2822,7 @@ function onValidate(inst, validation) {
                 {
                     if (inst["adcResolutionMode"] == "ADC_RESOLUTION_16BIT")
                     {
-                        if (inst["soc" + soci.toString() + "SampleWindow"] <= 63 && 
+                        if (inst["soc" + soci.toString() + "SampleWindow"] <= 63 &&
                         inst["soc" + soci.toString() + "SampleWindow"] > 0)
                         {
                             validation.logWarning(
@@ -2829,7 +2832,7 @@ function onValidate(inst, validation) {
                     }
                     else
                     {
-                        if (inst["soc" + soci.toString() + "SampleWindow"] <= 14 && 
+                        if (inst["soc" + soci.toString() + "SampleWindow"] <= 14 &&
                         inst["soc" + soci.toString() + "SampleWindow"] > 0)
                         {
                             validation.logWarning(
@@ -2840,7 +2843,7 @@ function onValidate(inst, validation) {
                 }
                 else if (["F28003x", "F280013x" ,"F280015x","F2807x"].includes(Common.getDeviceName()))
                 {
-                    if (inst["soc" + soci.toString() + "SampleWindow"] <= 8 && 
+                    if (inst["soc" + soci.toString() + "SampleWindow"] <= 8 &&
                     inst["soc" + soci.toString() + "SampleWindow"] > 0)
                     {
                         validation.logWarning(
@@ -2855,7 +2858,7 @@ function onValidate(inst, validation) {
                     {
                         validation.logWarning(
                             "SOC" + soci.toString() + " sample window must be at least 10",
-                            inst, "soc" + soci.toString() + "SampleWindow");                        
+                            inst, "soc" + soci.toString() + "SampleWindow");
                     }
                 }
                 else if(["F28P551x"].includes(Common.getDeviceName()))
@@ -2865,17 +2868,17 @@ function onValidate(inst, validation) {
                     {
                         validation.logWarning(
                             "SOC" + soci.toString() + " sample window must be at least 11",
-                            inst, "soc" + soci.toString() + "SampleWindow");                        
+                            inst, "soc" + soci.toString() + "SampleWindow");
                     }
                 }
-                else if(["F28E12x"].includes(Common.getDeviceName()))
+                else if(["F28E12x", "MCPC029"].includes(Common.getDeviceName()))
                 {
                     if (inst["soc" + soci.toString() + "SampleWindow"] < 4 &&
                     inst["soc" + soci.toString() + "SampleWindow"] > 0)
                     {
                         validation.logWarning(
                             "SOC" + soci.toString() + " sample window must be at least 4",
-                            inst, "soc" + soci.toString() + "SampleWindow");                        
+                            inst, "soc" + soci.toString() + "SampleWindow");
                     }
 
 
@@ -2919,7 +2922,7 @@ function onValidate(inst, validation) {
                 }
                 else
                 {
-                    if (inst["soc" + soci.toString() + "SampleWindow"] <= 7 && 
+                    if (inst["soc" + soci.toString() + "SampleWindow"] <= 7 &&
                     inst["soc" + soci.toString() + "SampleWindow"] > 0)
                     {
                         validation.logWarning(
@@ -2927,7 +2930,7 @@ function onValidate(inst, validation) {
                             inst, "soc" + soci.toString() + "SampleWindow");
                     }
                 }
-                if (!["F28E12x"].includes(Common.getDeviceName())){
+                if (!["F28E12x", "MCPC029"].includes(Common.getDeviceName())){
                     if (inst["soc" + soci.toString() + "SampleWindow"] <= 0 ||
                         inst["soc" + soci.toString() + "SampleWindow"] > 512)
                     {
@@ -2989,39 +2992,39 @@ function onValidate(inst, validation) {
             // Error for trigger of Repeater modules
             if (["F28P65x", "F28P55x","F28P551x"].includes(Common.getDeviceName()))
             {
-                if((inst["soc" + soci.toString() + "Triggermode"]) == "singlemode") 
+                if((inst["soc" + soci.toString() + "Triggermode"]) == "singlemode")
                 {
-                    if ((((inst["soc" + soci.toString() + "Trigger"])== "ADC_TRIGGER_REPEATER1") || ((inst["soc" + soci.toString() + "Trigger"])== "ADC_TRIGGER_REPEATER2"))) 
+                    if ((((inst["soc" + soci.toString() + "Trigger"])== "ADC_TRIGGER_REPEATER1") || ((inst["soc" + soci.toString() + "Trigger"])== "ADC_TRIGGER_REPEATER2")))
                     validation.logError(
                         "Repeater Module 1 and Repeater Module 2 can not be selected as Tigger source for SOC" + soci.toString()+ ". If you want to use repeater modules, you need to select Use Repeater Trigger in Trigger mode",
                         inst, "soc" + soci.toString() + "Trigger");
                 }
-                if((inst["soc" + soci.toString() + "Triggermode"]) == "repeatermode") 
+                if((inst["soc" + soci.toString() + "Triggermode"]) == "repeatermode")
                 {
-                    if ((((inst["soc" + soci.toString() + "Trigger"])!= "ADC_TRIGGER_REPEATER1") && ((inst["soc" + soci.toString() + "Trigger"])!= "ADC_TRIGGER_REPEATER2"))) 
+                    if ((((inst["soc" + soci.toString() + "Trigger"])!= "ADC_TRIGGER_REPEATER1") && ((inst["soc" + soci.toString() + "Trigger"])!= "ADC_TRIGGER_REPEATER2")))
                     validation.logError(
                         "Repeater Module 1 or Repeater Module 2 should be selected as Tigger source for SOC"+ soci.toString(),
                         inst, "soc" + soci.toString() + "Trigger");
-                } 
-            }   
-            if (["F28E12x"].includes(Common.getDeviceName()))
+                }
+            }
+            if (["F28E12x", "MCPC029"].includes(Common.getDeviceName()))
             {
-                if((inst["soc" + soci.toString() + "Triggermode"]) == "singlemode") 
+                if((inst["soc" + soci.toString() + "Triggermode"]) == "singlemode")
                 {
-                    if ((inst["soc" + soci.toString() + "Trigger"])== "ADC_TRIGGER_REPEATER1") 
+                    if ((inst["soc" + soci.toString() + "Trigger"])== "ADC_TRIGGER_REPEATER1")
                     validation.logError(
                         "Repeater Module 1 can not be selected as Tigger source for SOC" + soci.toString()+ ". If you want to use repeater module, you need to select Use Repeater Trigger in Trigger mode",
                         inst, "soc" + soci.toString() + "Trigger");
                 }
-                if((inst["soc" + soci.toString() + "Triggermode"]) == "repeatermode") 
+                if((inst["soc" + soci.toString() + "Triggermode"]) == "repeatermode")
                 {
-                    if ((inst["soc" + soci.toString() + "Trigger"])!= "ADC_TRIGGER_REPEATER1") 
+                    if ((inst["soc" + soci.toString() + "Trigger"])!= "ADC_TRIGGER_REPEATER1")
                     validation.logError(
                         "Repeater Module 1 should be selected as Tigger source for SOC"+ soci.toString(),
                         inst, "soc" + soci.toString() + "Trigger");
-                } 
-            } 
-        }     
+                }
+            }
+        }
     }
 
     //
@@ -3056,7 +3059,7 @@ function onValidate(inst, validation) {
         var currentPPB = device_driverlib_peripheral.ADC_PPBNumber[ppbIndex].name
         var ppbi = (currentPPB).replace(/[^0-9]/g,'')
         if((inst.enabledPPBs).includes(currentPPB)){
-            if (!["F28E12x"].includes(Common.getDeviceName()))
+            if (!["F28E12x", "MCPC029"].includes(Common.getDeviceName()))
             {
                 if (inst["ppb" + ppbi.toString() + "CalibrationOffset"] < -512 ||
                     inst["ppb" + ppbi.toString() + "CalibrationOffset"] > 511)
@@ -3137,7 +3140,7 @@ function onValidate(inst, validation) {
                     validation.logError(
                         "The low trip limit value must be between 8388607 and -8388607",
                         inst,"ppb" + ppbi.toString() +  "LowTripLimit");
-                }                
+                }
             }
 
             if (!Number.isInteger(inst["ppb" + ppbi.toString() + "HighTripLimit"]))
@@ -3154,7 +3157,7 @@ function onValidate(inst, validation) {
                     inst,"ppb" + ppbi.toString() +  "LowTripLimit");
             }
         }
-        if (["F28E12x"].includes(Common.getDeviceName()))
+        if (["F28E12x", "MCPC029"].includes(Common.getDeviceName()))
         {
             if(((inst["ppb2AccumulationLimit"] || inst["ppb3AccumulationLimit"] )!= 0))
             {
@@ -3171,7 +3174,7 @@ function onValidate(inst, validation) {
     if (Common.isContextCPU1()) {
         if (Common.peripheralCount("ANALOG") > 0)
         {
-            for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){ 
+            for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){
                 var currentSOC = device_driverlib_peripheral.ADC_SOCNumber[socIndex].name
                 var soci = (currentSOC).replace(/[^0-9]/g,'')
                 if((inst.enabledSOCs).includes(currentSOC)){
@@ -3187,10 +3190,10 @@ function onValidate(inst, validation) {
                     else{
                         var selectedInterfaces = Pinmux.getPeripheralUseCaseInterfaces(inst.analog,"ANALOG",inst.analog.useCase);
                         var allInterfaces = Pinmux.getPeripheralUseCaseInterfaces(inst.analog, "ANALOG", "ALL");
-                    }   
+                    }
 
                     var allPinsMustBeConfigured = true;
-    
+
                     if ((channelArray.includes("B5") || channelArray.includes("B11")) && Common.getDevicePart() == "F28003x_100PZ")
                     {
                         validation.logInfo(
@@ -3199,21 +3202,21 @@ function onValidate(inst, validation) {
                             inst,"soc" + soci.toString() + "DevicePinName");
                         allPinsMustBeConfigured = false;
                     }
-    
+
                     var configurationStatus = [];
                     var finalFail = true;
-                    
+
                     for (var pinSelected of pinSelectedArray)
                     {
                         configurationStatus.push(
                             {
-                                fail: (!selectedInterfaces.includes(pinSelected) && allInterfaces.includes(pinSelected)), 
+                                fail: (!selectedInterfaces.includes(pinSelected) && allInterfaces.includes(pinSelected)),
                                 pinSelected: pinSelected
                             }
                         )
                     }
                     for (var cstat of configurationStatus){finalFail &= cstat.fail}
-    
+
                     if (allPinsMustBeConfigured)
                     {
                         for (var cstat of configurationStatus)
@@ -3234,7 +3237,7 @@ function onValidate(inst, validation) {
                             validation.logError(
                                 "At least one of the following ANALOG PinMux pins must be selected.",
                                 inst,"soc" + soci.toString() + "DevicePinName");
-    
+
                             for (var cstat of configurationStatus)
                             {
                                 if (cstat.fail)
@@ -3251,7 +3254,7 @@ function onValidate(inst, validation) {
             }
         }
     }
-    
+
 }
 
 /*
@@ -3302,7 +3305,7 @@ if (!["F2807x", "F2837xD", "F2837xS", "F2838x"].includes(Common.getDeviceName())
                     },
                 ];
             };
-        } 
+        }
         else {
             moduleStaticModules = Common.autoForceMultiple([
                 {
@@ -3312,7 +3315,7 @@ if (!["F2807x", "F2837xD", "F2837xS", "F2838x"].includes(Common.getDeviceName())
                 },
             ]
             );
-        }  
+        }
     }
 }
 
@@ -3326,7 +3329,7 @@ var adcModule = {
     filterHardware : filterHardware,
     config: config,
     moduleInstances: (inst) => {
-        
+
         var intReturn =  []
 
         if (Common.isContextCPU1() &&

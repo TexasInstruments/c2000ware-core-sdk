@@ -2,7 +2,7 @@
 /*global exports, system*/
 let meminfo   = system.getScript("/utilities/cmd_tool/cmd_syscfg/source/" + system.deviceData.device.toLowerCase() + "_memoryInfo.js");
 let CMDCommon = system.getScript("/utilities/cmd_tool/cmd_syscfg/source/CMDCommon.js");
-let cmdValidation = 
+let cmdValidation =
     system.getScript("/utilities/cmd_tool/cmd_syscfg/source/cmdValidation.js");
 let Common   = system.getScript("/driverlib/Common.js");
 
@@ -58,12 +58,12 @@ function addMemoryInfoDisplay(memInfo)
                 }
             ]
         }
-    )    
+    )
 }
 
 // for (var memInfo of CMDCommon.getDeviceMemoryRanges())
 // {
-//     addMemoryInfoDisplay(memInfo)    
+//     addMemoryInfoDisplay(memInfo)
 // }
 
 var groupMemoryConfig = []
@@ -117,13 +117,13 @@ groupSectionConfig = [
         config: groupSectionConfig_C28x
     }
 ];
-if (!["F28E12x"].includes(Common.getDeviceName()))
+if (!["F28E12x","MCPC029"].includes(Common.getDeviceName()))
 {
-    groupSectionConfig.push({                
+    groupSectionConfig.push({
             name: "GROUP_CLA",
             displayName: "CLA Compiler Sections",
             collapsed: true,
-            config: groupSectionConfig_CLA       
+            config: groupSectionConfig_CLA
     })
 }
 
@@ -150,12 +150,12 @@ function addSectionToGroup(section)
                     options: (inst) => {
                         if (section.memoryGroup != undefined)
                         {
-                            const currentOptions = CMDCommon.getMemoryRangesByGroup(inst, section.memoryGroup);
+                            let currentOptions = CMDCommon.getMemoryRangesByGroup(inst, section.memoryGroup);
                             return currentOptions;
                         }
                         else
                         {
-                            const currentOptions = CMDCommon.getMemoryRanges(inst);
+                            let currentOptions = CMDCommon.getMemoryRanges(inst);
                             return currentOptions;
                         }
                     },
@@ -237,7 +237,7 @@ function addSectionToGroup(section)
                 },
             ]
         }
-    if(section.name.toLowerCase().includes("cla") && !["F28E12x"].includes(Common.getDeviceName()))
+    if(section.name.toLowerCase().includes("cla") && !["F28E12x","MCPC029"].includes(Common.getDeviceName()))
         groupSectionConfig_CLA.push(config)
     else
         groupSectionConfig_C28x.push(config)
@@ -320,7 +320,7 @@ var config = [
                 },
             },
             {
-                name: "Flash_default", 
+                name: "Flash_default",
                 displayName: "Flash default Configuration",
                 description : '',
                 buttonText: "Setup Flash default",
@@ -519,7 +519,7 @@ exports = {
                     name: "pullInTemplateCMD",
                     moduleName: "/utilities/cmd_tool/cmd_syscfg/source/templates/device_cmd.cmd.dynamic.js",
                 }
-            ];  
+            ];
         }
         return [];
     },

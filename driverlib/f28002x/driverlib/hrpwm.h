@@ -6,7 +6,7 @@
 //
 //#############################################################################
 // $Copyright:
-// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -224,7 +224,6 @@ typedef enum
 #define HRPWM_setCountModeAfterSync              EPWM_setCountModeAfterSync
 #define HRPWM_setClockPrescaler                  EPWM_setClockPrescaler
 #define HRPWM_swForceSyncPulse                   EPWM_forceSyncPulse
-#define HRPWM_setSyncOutPulseMode                EPWM_setSyncOutPulseMode
 #define HRPWM_setPeriodLoadMode                  EPWM_setPeriodLoadMode
 #define HRPWM_setTimeBaseCounterMode             EPWM_setTimeBaseCounterMode
 #define HRPWM_selectPeriodLoadEvent              EPWM_selectPeriodLoadEvent

@@ -6,7 +6,7 @@
 //
 //#############################################################################
 // $Copyright:
-// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -516,7 +516,7 @@ PMBus_verifyPEC(uint32_t base, uint16_t *buffer, const uint16_t *crcTable,
         // hence parity is always even (0) and incremented by 2
         //
 
-        tableIndex = accumulator ^ (uint16_t)__byte((int16_t *)buffer, parity);
+        tableIndex = accumulator ^ (uint16_t)__byte((int *)buffer, parity);
         accumulator = crcTable[tableIndex];
         parity += 2U;
     }

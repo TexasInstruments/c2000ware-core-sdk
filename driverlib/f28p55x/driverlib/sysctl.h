@@ -1,12 +1,12 @@
 //###########################################################################
 //
-// FILE:   sysctl.h 
+// FILE:   sysctl.h
 //
 // TITLE:  C28x system control driver.
 //
 //###########################################################################
 // 
-// C2000Ware v6.00.01.00
+// C2000Ware v26.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -81,7 +81,7 @@ extern "C"
 #define SYSCTL_CLKSRCCTL_DELAY  asm(" RPT #250 || NOP \n RPT #50 || NOP")
 
 //
-// Macro used for adding delay between 2 consecutive writes to memory mapped 
+// Macro used for adding delay between 2 consecutive writes to memory mapped
 // register in System control
 // Total delay = 3 * (DEVICE_SYSCLK_FREQ / INTOSC1 Freq) + 9
 //
@@ -154,10 +154,10 @@ extern "C"
 //
 //
 // device_cal function address is different for different revisions of the
-// F28P55x device. If the revision ID (value at address 0x5D00C) is "1" then 
-// define the REV_ID as a predefined symbol in the projectspec 
+// F28P55x device. If the revision ID (value at address 0x5D00C) is "1" then
+// define the REV_ID as a predefined symbol in the projectspec
 // (Add "--define=REV_ID=1" in the compiler flags, which correspond to REV0).
-// For REVID as REVA, the value will be 2, which will be the default value in 
+// For REVID as REVA, the value will be 2, which will be the default value in
 // the package.
 //
 #ifndef REVID_REV0
@@ -595,7 +595,7 @@ typedef enum
 
 //*****************************************************************************
 //
-//! The following are values that can be passed to 
+//! The following are values that can be passed to
 //! SysCtl_setNPUClockDivider() as the \e divider parameter.
 //
 //*****************************************************************************
@@ -1040,19 +1040,19 @@ typedef enum
 
 //*****************************************************************************
 //
-//! Values that can be passed to SysCtl_disableCMPSSLPMWakeupPin() and 
+//! Values that can be passed to SysCtl_disableCMPSSLPMWakeupPin() and
 //! SysCtl_enableCMPSSLPMWakeupPin() as the \e pin input parameter.
 //
 //*****************************************************************************
 typedef enum
 {
-    SYSCTL_CMPSSLPMSEL_CMPSS_1H = 0x00,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_1L = 0x01,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_2H = 0x02,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_2L = 0x03,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_3H = 0x04,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_3L = 0x05,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_4H = 0x06,   
+    SYSCTL_CMPSSLPMSEL_CMPSS_1H = 0x00,
+    SYSCTL_CMPSSLPMSEL_CMPSS_1L = 0x01,
+    SYSCTL_CMPSSLPMSEL_CMPSS_2H = 0x02,
+    SYSCTL_CMPSSLPMSEL_CMPSS_2L = 0x03,
+    SYSCTL_CMPSSLPMSEL_CMPSS_3H = 0x04,
+    SYSCTL_CMPSSLPMSEL_CMPSS_3L = 0x05,
+    SYSCTL_CMPSSLPMSEL_CMPSS_4H = 0x06,
     SYSCTL_CMPSSLPMSEL_CMPSS_4L = 0x07
 } SysCtl_CMPSSLPMSel;
 
@@ -1441,7 +1441,7 @@ SysCtl_setLINAClockDivider(SysCtl_LINACLKDivider divider)
 //!
 //! This function configures the clock rate of the NPUCLK. The
 //! \e divider parameter is the value by which the SYSCLK rate is divided to
-//! get the NPUCLK rate. For example, \b SYSCTL_NPUCLK_DIV_2 will 
+//! get the NPUCLK rate. For example, \b SYSCTL_NPUCLK_DIV_2 will
 //! select an NPUCLK rate that is half the PLLSYSCLK rate.
 //!
 //! \return None.
@@ -2170,7 +2170,7 @@ SysCtl_enableWatchdog(void)
 //!
 //! This function returns the watchdog status whether it is enabled or disabled
 //!
-//! \return \b true if the watchdog is enabled & \b false if the watchdog is 
+//! \return \b true if the watchdog is enabled & \b false if the watchdog is
 //! disabled
 //
 //*****************************************************************************

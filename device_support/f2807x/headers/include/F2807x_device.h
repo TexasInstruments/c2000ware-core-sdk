@@ -8,7 +8,7 @@
 //
 // $Release Date:  $
 // $Copyright:
-// Copyright (C) 2014-2025 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2014-2026 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -61,8 +61,9 @@ extern "C" {
 #define __cregister
 #endif  //__TMS320C28xx__
 
-extern __cregister volatile unsigned int IFR;
-extern __cregister volatile unsigned int IER;
+#include <stdint.h>
+extern __cregister volatile uint16_t IFR;
+extern __cregister volatile uint16_t IER;
 
 #define  EINT   __asm(" clrc INTM")
 #define  DINT   __asm(" setc INTM")

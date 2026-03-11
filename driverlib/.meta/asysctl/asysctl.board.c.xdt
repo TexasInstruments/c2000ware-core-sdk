@@ -84,7 +84,7 @@ void `nameOfPeripheral`_init(){
 	ASysCtl_setAnalogReference1P65( ASYSCTL_VREFHIA | ASYSCTL_VREFHIC );
 %			}
 %		}
-% 		else if( ["F28003x", "F280013x", "F280015x", "F28E12x"].includes(system.deviceData.deviceId)){
+% 		else if( ["F28003x", "F280013x", "F280015x", "F28E12x", "MCPC029"].includes(system.deviceData.deviceId)){
 %			if(stat.analogReference == "INTERNAL"){
 	//
 	// Set the analog voltage reference selection to internal.
@@ -154,7 +154,7 @@ void `nameOfPeripheral`_init(){
 	//
 	ASysCtl_enableCMPSSExternalDAC(ASYSCTL_CMPSS1_DACL);
 %}
-%if((system.deviceData.deviceId.includes("F28E12x")) && (stat.externalDACLEnable == true))
+%if((["F28E12x", "MCPC029"].includes(system.deviceData.deviceId)) && (stat.externalDACLEnable == true))
 %{
 	//
 	// This function disables CMPSSx.COMPL and the associated DAC will act as a

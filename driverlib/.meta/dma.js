@@ -41,7 +41,7 @@ function onChangePeripheralTXLinked(inst,ui)
         //ui.destTransferStep.readOnly = true;
         inst.destWrapStep = 0;
         //ui.destWrapStep.readOnly = true;
-        
+
 
         ui.destAddressManual.hidden = true;
         inst.destAddressInputMode = INPUT_MODE_LINKED
@@ -177,7 +177,7 @@ function calculateWordsToTransfer(inst, ui)
     }
     return tempWords
 }
- 
+
 /* Array of DMA configurables that are common across device families */
 let config = [
     {
@@ -352,7 +352,7 @@ let config = [
         description : "Start channel immediately at runtime.",
         hidden      : false,
         default     : false,
-    }, 
+    },
 ]
 
 config = config.concat([{
@@ -379,7 +379,7 @@ config = config.concat([{
             displayFormat: "hex",
             default     : 0x00
         },
-    
+
         {
             name: "srcAddressVariable",
             displayName : "Source Address Variable",
@@ -387,7 +387,7 @@ config = config.concat([{
             hidden      : true,
             default     : "",
         },
-    
+
         {
             name: "srcAddressLinked",
             displayName : "Source Address Of Linked Peripheral",
@@ -395,7 +395,7 @@ config = config.concat([{
             hidden      : true,
             default     : "",
         },
-    
+
         {
             name        : "srcBurstStep",
             displayName : "Source Address Burst Step",
@@ -403,7 +403,7 @@ config = config.concat([{
             hidden      : false,
             default     : 0,
         },
-    
+
         {
             name        : "srcTransferStep",
             displayName : "Source Address Transfer Step",
@@ -411,15 +411,15 @@ config = config.concat([{
             hidden      : false,
             default     : 0,
         },
-    
+
         {
             name        : "srcWrapSize",
             displayName : "Source Wrap Size",
             description : "Set number of bursts before wrap on source address occurs.",
             hidden      : false,
-            default     : ["F28E12x"].includes(Common.getDeviceName()) ? 511 : 65535,
+            default     : ["F28E12x", "MCPC029"].includes(Common.getDeviceName()) ? 511 : 65535,
         },
-    
+
         {
             name        : "srcWrapStep",
             displayName : "Source Address Wrap Step",
@@ -445,7 +445,7 @@ config = config.concat([{
             options     : ADDRESS_INPUT_MODE,
             onChange    : onChangeDestAddressInputMode
         },
-    
+
         {
             name        : "destAddressManual",
             displayName : "Destination Address",
@@ -454,7 +454,7 @@ config = config.concat([{
             displayFormat: "hex",
             default     : 0x00
         },
-    
+
         {
             name: "destAddressVariable",
             displayName : "Destination Address Variable",
@@ -462,7 +462,7 @@ config = config.concat([{
             hidden      : true,
             default     : "",
         },
-    
+
         {
             name: "destAddressLinked",
             displayName : "Destination Address Of Linked Peripheral",
@@ -470,7 +470,7 @@ config = config.concat([{
             hidden      : true,
             default     : "",
         },
-    
+
         {
             name        : "destBurstStep",
             displayName : "Destination Address Burst Step",
@@ -478,7 +478,7 @@ config = config.concat([{
             hidden      : false,
             default     : 0,
         },
-    
+
         {
             name        : "destTransferStep",
             displayName : "Destination Address Transfer Step",
@@ -486,15 +486,15 @@ config = config.concat([{
             hidden      : false,
             default     : 0,
         },
-    
+
         {
             name        : "destWrapSize",
             displayName : "Destination Wrap Size",
             description : "Set number of bursts before wrap on destination address occurs.",
             hidden      : false,
-            default     : ["F28E12x"].includes(Common.getDeviceName()) ? 511 : 65535,
+            default     : ["F28E12x", "MCPC029"].includes(Common.getDeviceName()) ? 511 : 65535,
         },
-    
+
         {
             name        : "destWrapStep",
             displayName : "Destination Address Wrap Step",
@@ -513,9 +513,9 @@ function onValidate(inst, validation)
         var instance_obj = inst.$module.$instances[instance_index];
         usedDMAInsts.push(instance_obj.dmaBase);
     }
-    
+
     var duplicatesResult = Common.findDuplicates(usedDMAInsts)
-    
+
     if (duplicatesResult.duplicates.length != 0)
     {
         var allDuplicates = "";
@@ -570,19 +570,19 @@ function onValidate(inst, validation)
     }
 
     if (inst.oneShotConfig == device_driverlib_peripheral.DMA_CFG[1].name && inst.enablePriority) {
-        validation.logError("One-Shot mode and High-priority mode must not be used at the same time on channel 1!", inst, "enablePriority");   
+        validation.logError("One-Shot mode and High-priority mode must not be used at the same time on channel 1!", inst, "enablePriority");
     }
 
     if (inst.peripheralTXLinked == 0 && inst.destAddressInputMode == INPUT_MODE_LINKED) {
-        validation.logError("Linking to a peripheral must be configured as a submodule of that peripheral!", inst, "destAddressInputMode");   
+        validation.logError("Linking to a peripheral must be configured as a submodule of that peripheral!", inst, "destAddressInputMode");
     }
 
     if (inst.peripheralRXLinked == 0 && inst.srcAddressInputMode == INPUT_MODE_LINKED) {
-        validation.logError("Linking to a peripheral must be configured as a submodule of that peripheral!", inst, "srcAddressInputMode");   
+        validation.logError("Linking to a peripheral must be configured as a submodule of that peripheral!", inst, "srcAddressInputMode");
     }
 
     if (inst.peripheralTXLinked == 0 && inst.peripheralRXLinked == 0 && inst.triggerSource == "DMA_TRIGGER_LINKED") {
-        validation.logError("Linking to a peripheral must be configured as a submodule of that peripheral!", inst, "triggerSource");   
+        validation.logError("Linking to a peripheral must be configured as a submodule of that peripheral!", inst, "triggerSource");
     }
 }
 
@@ -590,11 +590,11 @@ function filterHardware(component)
 {
     return (Common.typeMatches(component.type, ["DMA"]));
 }
- 
+
 var dmaModule = {
     peripheralName: "DMA",
     displayName: "DMA",
-    maxInstances: ["F28E12x"].includes(Common.getDeviceName()) ? 2 : 6,
+    maxInstances: ["F28E12x", "MCPC029"].includes(Common.getDeviceName()) ? 2 : 6,
     defaultInstanceName: "myDMA",
     description: "DMA Peripheral",
     filterHardware : filterHardware,
@@ -603,7 +603,7 @@ var dmaModule = {
         if (inst.useInterrupts && inst.registerInterrupts)
         {
             return [{
-                name: "dmaInt",      
+                name: "dmaInt",
                 displayName: "DMA Interrupt",
                 moduleName: "/driverlib/interrupt.js",
                 collapsed: true,
@@ -624,11 +624,11 @@ var dmaModule = {
     },
     validate : onValidate
 };
- 
- 
+
+
 if (dmaModule.maxInstances <= 0)
 {
     delete dmaModule.pinmuxRequirements;
 }
- 
+
 exports = dmaModule;

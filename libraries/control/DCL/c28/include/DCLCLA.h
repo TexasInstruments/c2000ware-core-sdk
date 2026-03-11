@@ -119,7 +119,7 @@ typedef struct {
 
 //! \brief  Defines default values to initialize the PI_CLA structure
 //!
-#define PI_CLA_DEFAULTS { 1.0f, 0.0f, 0.0f, 1.0f, -1.0f, 1.0f, 1.0f, -1.0f }
+#define PI_CLA_DEFAULTS { 1.0f, 0.0f, 0.0f, 1.0f, -1.0f, 1.0f, 0.0f, 1.0f, -1.0f }
 
 //! \brief          Executes a series form PI controller on the CLA
 //! \param[in] p    Pointer to the DCL_PI_CLA structure

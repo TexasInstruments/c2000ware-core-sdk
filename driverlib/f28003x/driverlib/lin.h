@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -2708,7 +2708,8 @@ LIN_disableModule(uint32_t base)
 //!
 //! P = Prescaler  \n
 //! M = Fractional Divider \n
-//! Bitrate = (SYSCLOCK) / ((P + 1 + M/16) * 16) \n
+//! Bitrate = (VCLK) / ((P + 1 + M/16) * 16) \n
+//! VCLK = (SYSCLOCK/LINxCLKDIV)
 //!
 //! \return None.
 //

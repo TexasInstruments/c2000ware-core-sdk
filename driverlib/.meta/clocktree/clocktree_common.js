@@ -7,7 +7,7 @@ const xtal_x1_macro = ["F2837xS", "F2837xD", "F2807x"]                          
 
 const PLL_type1  = ["F2837xS", "F2837xD", "F2807x", "F28004x"]					            //FMULT available 	| REFDIV unavailable
 const PLL_type2  = ["F2838x", "F28002x", "F28003x", "F280013x", "F280015x", "F28P65x", "F28P55x", "F28P551x"] //FMULT unavailable	| REFDIV available
-const PLL_type3  = ["F28E12x"] //QDIV, PDIV, RDIVCLK0
+const PLL_type3  = ["F28E12x", "MCPC029"] //QDIV, PDIV, RDIVCLK0
 
 const AUXPLL_Support 		= ["F2837xS", "F2807x", "F2837xD", "F2838x", "F28P65x"]
 const EPWM_div_support 		= ["F2837xS", "F2837xD", "F2807x", "F28P65x"]                   //ePWM clock divider support

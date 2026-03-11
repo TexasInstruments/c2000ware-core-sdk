@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -767,25 +767,6 @@ static inline void ASysCtl_lockCMPLNMux(void)
 
 //*****************************************************************************
 //
-//! Locks the VREG control register.
-//!
-//! \return None.
-//
-//*****************************************************************************
-static inline void ASysCtl_lockVREG(void)
-{
-    EALLOW;
-
-    //
-    // Write a 1 to the lock bit in the LOCK register.
-    //
-    HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_LOCK) |= ASYSCTL_LOCK_VREGCTL;
-
-    EDIS;
-}
-
-//*****************************************************************************
-//
 //! Locks the CMPSSCTL register.
 //!
 //! \return None.
@@ -848,8 +829,11 @@ static inline void ASysCtl_disableADCDACLoopback(uint32_t config)
 //*****************************************************************************
 static inline void ASysCtl_enableGPIOInputBuffer(uint32_t pin)
 {
-    ASSERT((pin == 0U)  || (pin == 23U) || (pin == 25U) ||
-           (pin == 32U) || (pin == 46U) || (pin == 103U));
+    ASSERT(
+           (pin == 43U) ||
+           (pin == 44U) ||
+           (pin == 45U)
+    );
 
     uint16_t mask =
                     (pin == 43U)   ? ASYSCTL_GPIOINENACTRL_GPIO43   :
@@ -873,8 +857,11 @@ static inline void ASysCtl_enableGPIOInputBuffer(uint32_t pin)
 //*****************************************************************************
 static inline void ASysCtl_disableGPIOInputBuffer(uint32_t pin)
 {
-    ASSERT((pin == 0U)  || (pin == 23U) || (pin == 25U) ||
-           (pin == 32U) || (pin == 46U) || (pin == 103U));
+    ASSERT(
+           (pin == 43U) ||
+           (pin == 44U) ||
+           (pin == 45U)
+    );
 
     uint16_t mask =
                     (pin == 43U)   ? ASYSCTL_GPIOINENACTRL_GPIO43   :

@@ -1,12 +1,12 @@
 //###########################################################################
 //
-// FILE:   sysctl.h 
+// FILE:   sysctl.h
 //
 // TITLE:  C28x system control driver.
 //
 //###########################################################################
 // 
-// C2000Ware v6.00.01.00
+// C2000Ware v26.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -82,7 +82,7 @@ extern "C"
 #define SYSCTL_CLKSRCCTL_DELAY  asm(" RPT #250 || NOP \n RPT #50 || NOP")
 
 //
-// Macro used for adding delay between 2 consecutive writes to memory mapped 
+// Macro used for adding delay between 2 consecutive writes to memory mapped
 // register in System control
 // Total delay = 3 * (DEVICE_SYSCLK_FREQ / INTOSC1 Freq) + 9
 //
@@ -1550,33 +1550,33 @@ typedef enum
 
 //*****************************************************************************
 //
-//! Values that can be passed to SysCtl_disableCMPSSLPMWakeupPin() and 
+//! Values that can be passed to SysCtl_disableCMPSSLPMWakeupPin() and
 //! SysCtl_enableCMPSSLPMWakeupPin() as the \e pin input parameter.
 //
 //*****************************************************************************
 typedef enum
 {
-    SYSCTL_CMPSSLPMSEL_CMPSS_1H = 0x00,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_1L = 0x01,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_2H = 0x02,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_2L = 0x03,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_3H = 0x04,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_3L = 0x05,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_4H = 0x06,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_4L = 0x07,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_5H = 0x08,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_5L = 0x09,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_6H = 0x0A,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_6L = 0x0B,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_7H = 0x0C,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_7L = 0x0D,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_8H = 0x0E,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_8L = 0x0F,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_9H = 0x10,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_9L = 0x11,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_10H = 0x12,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_10L = 0x13,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_11H = 0x14,   
+    SYSCTL_CMPSSLPMSEL_CMPSS_1H = 0x00,
+    SYSCTL_CMPSSLPMSEL_CMPSS_1L = 0x01,
+    SYSCTL_CMPSSLPMSEL_CMPSS_2H = 0x02,
+    SYSCTL_CMPSSLPMSEL_CMPSS_2L = 0x03,
+    SYSCTL_CMPSSLPMSEL_CMPSS_3H = 0x04,
+    SYSCTL_CMPSSLPMSEL_CMPSS_3L = 0x05,
+    SYSCTL_CMPSSLPMSEL_CMPSS_4H = 0x06,
+    SYSCTL_CMPSSLPMSEL_CMPSS_4L = 0x07,
+    SYSCTL_CMPSSLPMSEL_CMPSS_5H = 0x08,
+    SYSCTL_CMPSSLPMSEL_CMPSS_5L = 0x09,
+    SYSCTL_CMPSSLPMSEL_CMPSS_6H = 0x0A,
+    SYSCTL_CMPSSLPMSEL_CMPSS_6L = 0x0B,
+    SYSCTL_CMPSSLPMSEL_CMPSS_7H = 0x0C,
+    SYSCTL_CMPSSLPMSEL_CMPSS_7L = 0x0D,
+    SYSCTL_CMPSSLPMSEL_CMPSS_8H = 0x0E,
+    SYSCTL_CMPSSLPMSEL_CMPSS_8L = 0x0F,
+    SYSCTL_CMPSSLPMSEL_CMPSS_9H = 0x10,
+    SYSCTL_CMPSSLPMSEL_CMPSS_9L = 0x11,
+    SYSCTL_CMPSSLPMSEL_CMPSS_10H = 0x12,
+    SYSCTL_CMPSSLPMSEL_CMPSS_10L = 0x13,
+    SYSCTL_CMPSSLPMSEL_CMPSS_11H = 0x14,
     SYSCTL_CMPSSLPMSEL_CMPSS_11L = 0x15
 } SysCtl_CMPSSLPMSel;
 
@@ -2752,7 +2752,7 @@ SysCtl_enableWatchdog(void)
 //!
 //! This function returns the watchdog status whether it is enabled or disabled
 //!
-//! \return \b true if the watchdog is enabled & \b false if the watchdog is 
+//! \return \b true if the watchdog is enabled & \b false if the watchdog is
 //! disabled
 //
 //*****************************************************************************
@@ -4042,13 +4042,10 @@ SysCtl_setECatClk(SysCtl_ECatClkDivider divider, SysCtl_PLLClockSource source,
                     (HWREGH(CLKCFG_BASE + SYSCTL_O_ETHERCATCLKCTL) &
                      ~(SYSCTL_ETHERCATCLKCTL_PHYCLKEN  |
                        SYSCTL_ETHERCATCLKCTL_ECATDIV_M |
-                       SYSCTL_ETHERCATCLKCTL_DIVSRCSEL));
-    SYSCTL_REGWRITE_DELAY;
-
-    HWREGH(CLKCFG_BASE + SYSCTL_O_ETHERCATCLKCTL) |=
-                ((uint16_t)divider << SYSCTL_ETHERCATCLKCTL_ECATDIV_S) |
-                ((uint16_t)source << SYSCTL_ETHERCATCLKCTL_DIVSRCSEL_S) |
-                (enable << SYSCTL_ETHERCATCLKCTL_PHYCLKEN_S);
+                       SYSCTL_ETHERCATCLKCTL_DIVSRCSEL)) |
+                    (((uint16_t)divider << SYSCTL_ETHERCATCLKCTL_ECATDIV_S) |
+                     ((uint16_t)source << SYSCTL_ETHERCATCLKCTL_DIVSRCSEL_S) |
+                     (enable << SYSCTL_ETHERCATCLKCTL_PHYCLKEN_S));
     SYSCTL_REGWRITE_DELAY;
     EDIS;
 }

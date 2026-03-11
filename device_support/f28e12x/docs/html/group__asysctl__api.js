@@ -60,7 +60,6 @@ var group__asysctl__api =
     [ "ASysCtl_lockCMPLPMux", "group__asysctl__api.html#ga05adef817a1bd0c6dde99e3c85cec279", null ],
     [ "ASysCtl_lockCMPHNMux", "group__asysctl__api.html#gad95ddae2b2afd6792e675538e5c4d39a", null ],
     [ "ASysCtl_lockCMPLNMux", "group__asysctl__api.html#gaee4dd5dcb08401f50683296a6f00d2f4", null ],
-    [ "ASysCtl_lockVREG", "group__asysctl__api.html#ga3c525d5f7619b736ebf31ad126648dc4", null ],
     [ "ASysCtl_lockCMPSSCTL", "group__asysctl__api.html#ga54c2f6cd978a3179f3d89b1a70071eca", null ],
     [ "ASysCtl_enableADCDACLoopback", "group__asysctl__api.html#ga2ecd0767c338c6177cce4fc6c6727392", null ],
     [ "ASysCtl_disableADCDACLoopback", "group__asysctl__api.html#gab850f059b68b7b347cefab0f7ab07121", null ],

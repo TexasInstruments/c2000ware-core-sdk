@@ -26,26 +26,22 @@ void `instance.$name`_init(){
     //
     // Select the value for CMP`instanceNumber`HPMXSEL.
     //
-            % var tempPositiveInstance = "ASYSCTL_CMPHPMUX_SELECT_"+instanceNumber
-    ASysCtl_selectCMPHPMux(`tempPositiveInstance`,`instance.asysCMPHPMXSELValue`U);
+    ASysCtl_selectCMPHPMux(`instance.$name`_CMPHPMUX_SELECT,`instance.asysCMPHPMXSELValue`U);
         %if (instance.highCompNegative != "CMPSS_INSRC_DAC"){
     //
     // Select the value for CMP`instanceNumber`HNMXSEL.
     //
-            % var tempNegativeInstance = "ASYSCTL_CMPHNMUX_SELECT_"+instanceNumber
-    ASysCtl_selectCMPHNMuxValue(`tempNegativeInstance`,`instance.asysCMPHNMXSELValue`U);
+    ASysCtl_selectCMPHNMuxValue(`instance.$name`_CMPHNMUX_SELECT,`instance.asysCMPHNMXSELValue`U);
         %}
     //
     // Select the value for CMP`instanceNumber`LPMXSEL.
     //
-            % tempPositiveInstance = "ASYSCTL_CMPLPMUX_SELECT_"+instanceNumber
-    ASysCtl_selectCMPLPMux(`tempPositiveInstance`,`instance.asysCMPLPMXSELValue`U);
+    ASysCtl_selectCMPLPMux(`instance.$name`_CMPLPMUX_SELECT,`instance.asysCMPLPMXSELValue`U);
         %if (instance.lowCompNegative != "CMPSS_INSRC_DAC"){
     //
     // Select the value for CMP`instanceNumber`LNMXSEL.
     //
-            % tempNegativeInstance = "ASYSCTL_CMPLNMUX_SELECT_"+instanceNumber
-    ASysCtl_selectCMPLNMuxValue(`tempNegativeInstance`,`instance.asysCMPLNMXSELValue`U);
+    ASysCtl_selectCMPLNMuxValue(`instance.$name`_CMPLNMUX_SELECT,`instance.asysCMPLNMXSELValue`U);
         %}
     % }
         % var baseName = instance.$name + "_BASE";

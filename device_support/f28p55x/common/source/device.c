@@ -8,7 +8,7 @@
 //
 //
 // 
-// C2000Ware v6.00.01.00
+// C2000Ware v26.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -276,6 +276,8 @@ void Device_enableAllPeripherals(void)
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_DCC1);
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_AESA);
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EPG1);
+
+    SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_NPU);
 }
 
 //*****************************************************************************

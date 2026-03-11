@@ -3,6 +3,7 @@ var module = system.modules['/driverlib/cla.js'];
 let Common   = system.getScript("/driverlib/Common.js");
 var nameOfModule = "cla";
 var nameOfPeripheral = module.peripheralName;
+var cmdModule = system.modules['/utilities/cmd_tool/cmd_syscfg/source/CMD'];
 //var device_driverlib_peripheral = system.getScript("/driverlib/device_driverlib_peripherals/" + Common.getDeviceName().toLowerCase() + "_cla.js");
 //var device_driverlib_interrupt = system.getScript("/driverlib/device_driverlib_peripherals/" + Common.getDeviceName().toLowerCase() + "_interrupt.js");
 %%}
@@ -21,7 +22,7 @@ var nameOfPeripheral = module.peripheralName;
 %	{
 %    	configs[element.name] = element.config
 %	});
-%   
+%
 %
 %	for(var i = 0; i < module.$instances.length; i++)
 %	{
@@ -60,7 +61,7 @@ void `instance.$name`_init(){
 %               var bgname = element.name.replace("group_", "background_");
 %
 %               if (element.name.includes("8") && typeof instance[bgname] !== 'undefined')
-%               {               
+%               {
 %                   if (instance[bgname]) // Background task enabled
 %                   {
     //
@@ -82,7 +83,7 @@ void `instance.$name`_init(){
 %                   {
     //
     // CLA Task `element.name[element.name.length-1]`
-    //      
+    //
     CLA_mapTaskVector(`baseName`, `instance[mvectname]`, (uint16_t)&`instance[isrname]`);
     CLA_setTriggerSource(`taskname`, `instance[trigname]`);
     //
@@ -156,17 +157,31 @@ void `nameOfPeripheral`_init()
     // Copy the program and constants from FLASH to RAM before configuring
     // the CLA
     //
-    memcpy((uint32_t *)&Cla1ProgRunStart, (uint32_t *)&Cla1ProgLoadStart,
-           (uint32_t)&Cla1ProgLoadSize);
-    memcpy((uint32_t *)&Cla1ConstRunStart, (uint32_t *)&Cla1ConstLoadStart,
-        (uint32_t)&Cla1ConstLoadSize );
+%var CLAProgRunStart_device_exception_list = ["f28p55x","f28p65x","f28p551x"];
+% var offset = ""
 
+%if (CLAProgRunStart_device_exception_list.includes(Common.getDeviceName().toLowerCase()) ) {
+    %if(cmdModule?.$instances[0]){
+        % var sectionRun_cla1Prog_memory_list = cmdModule.$instances[0]['sectionRun_cla1Prog']
+        %if (["RAMLS8_CLA", "RAMLS9_CLA"].some(item => sectionRun_cla1Prog_memory_list.includes(item)) ) {
+        %    if(["f28p55x", "f28p551x"].includes(Common.getDeviceName().toLowerCase())){
+        % offset = "+ (0x10000U)"
+        %} else {
+        % offset = "+ (0x1E000U)"
+        %}
+        %}
+    %}
+%}
+    memcpy((uint32_t *)((uint32_t)&Cla1ProgRunStart `offset`) , (uint32_t *)&Cla1ProgLoadStart,
+           (uint32_t)&Cla1ProgLoadSize);
+    memcpy((uint32_t *)((uint32_t)&Cla1ConstRunStart `offset`), (uint32_t *)&Cla1ConstLoadStart,
+        (uint32_t)&Cla1ConstLoadSize );
 %}
 
 #endif //CMDTOOL
 #endif //_FLASH
 
-%   for(var i = 0; i < module.$instances.length; i++) 
+%   for(var i = 0; i < module.$instances.length; i++)
 %   {
 %      var instance = module.$instances[i];
 	`instance.$name`_init();

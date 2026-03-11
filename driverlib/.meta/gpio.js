@@ -1,8 +1,8 @@
 let Common   = system.getScript("/driverlib/Common.js");
 let Pinmux   = system.getScript("/driverlib/pinmux.js");
 
-let device_driverlib_peripheral = 
-    system.getScript("/driverlib/device_driverlib_peripherals/" + 
+let device_driverlib_peripheral =
+    system.getScript("/driverlib/device_driverlib_peripherals/" +
         Common.getDeviceName().toLowerCase() + "_gpio.js");
 
 
@@ -72,10 +72,10 @@ let config = [
             { name: "PULLUP", displayName : "Push-pull output/pull-up enabled on input"  },
             { name: "INVERT", displayName : "Push-pull output/floating INVERTED polarity on an input"  },
             { name: "PULLUP_INVERT", displayName : "Push-pull output/pull-up enabled on INVERTED input"  },
-            { name: ["F28E12x"].includes(Common.getDeviceName()) ? "ODO" : "OD" , displayName : "Open-drain output/floating input" },
-            { name: ["F28E12x"].includes(Common.getDeviceName()) ? "ODO_PULLUP" : "OD_PULLUP" , displayName : "Open-drain output with pull-up enabled output and input" },
-            { name: ["F28E12x"].includes(Common.getDeviceName()) ? "ODO_INVERT" : "OD_INVERT" , displayName : "Open-drain output/floating inverted input" },
-            { name: ["F28E12x"].includes(Common.getDeviceName()) ? "ODO_PULLUP_INVERT" : "OD_PULLUP_INVERT" , displayName : "Open-drain output with pull-up enabled output and INVERTED input" }
+            { name: ["F28E12x", "MCPC029"].includes(Common.getDeviceName()) ? "ODO" : "OD" , displayName : "Open-drain output/floating input" },
+            { name: ["F28E12x", "MCPC029"].includes(Common.getDeviceName()) ? "ODO_PULLUP" : "OD_PULLUP" , displayName : "Open-drain output with pull-up enabled output and input" },
+            { name: ["F28E12x", "MCPC029"].includes(Common.getDeviceName()) ? "ODO_INVERT" : "OD_INVERT" , displayName : "Open-drain output/floating inverted input" },
+            { name: ["F28E12x", "MCPC029"].includes(Common.getDeviceName()) ? "ODO_PULLUP_INVERT" : "OD_PULLUP_INVERT" , displayName : "Open-drain output with pull-up enabled output and INVERTED input" }
         ]
     },
 
@@ -102,11 +102,11 @@ let config = [
             },
         ]
     },
-    
+
 ];
 
 
-if (!["F28002x", "F280013x", "F280015x", "F28E12x"].includes(Common.getDeviceName()))
+if (!["F28002x", "F280013x", "F280015x", "F28E12x", "MCPC029"].includes(Common.getDeviceName()))
 {
     var coreSelectConfig = {
         name        : "controllerCore",
@@ -185,7 +185,7 @@ function moduleInstances(inst)
     {
         //GROUP_XINT
         ownedMods.push({
-            name: "xint",      
+            name: "xint",
             displayName: "XINT",
             moduleName: "/driverlib/xint.js",
             collapsed: true,
@@ -203,7 +203,7 @@ function onValidate(inst, validation)
     // if (inst.positionCounterMax < 0 || inst.positionCounterMax > 4294967295)
     // {
     //     validation.logError(
-    //         "Enter an integer for Position Counter Maximum between 0 and 4,294,967,295!", 
+    //         "Enter an integer for Position Counter Maximum between 0 and 4,294,967,295!",
     //         inst, "positionCounterMax");
     // }
 
@@ -217,10 +217,10 @@ function onValidate(inst, validation)
     //     if (!inputxbar.inputsUsed.includes(inputXbarINPUTforXINT))
     //     {
     //         validation.logError(
-    //             "For " + xintNum + " the INPUT" + inputXbarINPUTNum + " of INPUT XBAR must be configured.", 
+    //             "For " + xintNum + " the INPUT" + inputXbarINPUTNum + " of INPUT XBAR must be configured.",
     //             xint, "xintNum");
     //         validation.logError(
-    //             "For " + xintNum + " the INPUT" + inputXbarINPUTNum + " of INPUT XBAR must be configured.", 
+    //             "For " + xintNum + " the INPUT" + inputXbarINPUTNum + " of INPUT XBAR must be configured.",
     //             inputxbar, "inputsUsed");
     //     }
 
@@ -249,14 +249,14 @@ function onValidatePinmux(inst, validation) {
             if (selectedGPIOPeripheral != inputxbar["inputxbarGpio"])
             {
                 validation.logWarning(
-                    "Select " + selectedGPIOPeripheral + " which is the selection in your GPIO PinMux entry.", 
+                    "Select " + selectedGPIOPeripheral + " which is the selection in your GPIO PinMux entry.",
                     inputxbar, "inputxbarGpio");
             }
         }
         else
-        {                
+        {
             validation.logInfo(
-                "Select " + "the same GPIO" + " as the one in your GPIO PinMux entry.", 
+                "Select " + "the same GPIO" + " as the one in your GPIO PinMux entry.",
                 inputxbar, "inputxbarGpio");
         }
     }

@@ -5,19 +5,19 @@ const device  = system.deviceData.device
 // and add it to the list.
 // If a new subcategory is needed, just define a new variable and address that in the related function.xdt file.
 // For example, if you need a new Include Header type, you can add Initilization_Typex to the list and then go to Include folder and add that
-//variable to the Initilization.xdt. Also, you need to copy and past your content to a new file, let's call Initilization_xxx.xdt. 
+//variable to the Initilization.xdt. Also, you need to copy and past your content to a new file, let's call Initilization_xxx.xdt.
 
 // Multi-core devices list
 const multi_core 																= ["F2837xD", "F2838x", "F28P65x"]
 
 //
-// Available BootCM 
+// Available BootCM
 //
 // Devices with Boot_CM
 const Device_Boot_CM 															= ["F2838x"]
 
 //
-// Available Initialization 
+// Available Initialization
 //
 //Function to initialize the device (legacy dual core device)
 const Initilization_General_DualCore_Type0										= ["F2837xD"]
@@ -48,38 +48,38 @@ const Initilization_GPIO_11_28_Type0									= ["F28P551x"]
 
 //configuring the GPIO pins 12, 13 and 28 in digital mode, turn on all peripherals,
 //and Lock VREGCTL Register for device initilization
-const Initilization_GPIO_12_28										= ["F28E12x"]
+const Initilization_GPIO_12_28										= ["F28E12x", "MCPC029"]
 
 //configuring device initilization with Device_initGPIO() call
 const Initilization_Device_initGPIO_Type0										= ["F2838x"]
 
 //
-// Available VerifyXTAL 
+// Available VerifyXTAL
 //
 // verifying the XTAL frequency
-const VerifyXTAL_Type1 															= ["F28002x", "F28003x", "F28004x", "F28P65x", "F28P55x","F28P551x","F28E12x"]
+const VerifyXTAL_Type1 															= ["F28002x", "F28003x", "F28004x", "F28P65x", "F28P55x","F28P551x","F28E12x", "MCPC029"]
 
 // verifying the XTAL frequency with endIf condition
 const VerifyXTAL_Type0														= ["F2838x"]
 
 //
-// Available Device Packages 
+// Available Device Packages
 //
-const DevicePackage_Type0												  = ["F28E12x"]
+const DevicePackage_Type0												  = ["F28E12x", "MCPC029"]
 
 //
-// Available Error_Handling 
+// Available Error_Handling
 //
 // Error handling function
 const Error_Handling_Type0 														= ["F2807x", "F2837xD", "F2837xS"]
 
 // Error handling function with "Close the Doxygen group"
-const Error_Handling_Type1 														= [ "F2838x", "F28002x", "F28003x", "F28004x","F280013x","F280015x", "F28P65x", "F28P55x","F28P551x","F28E12x"]
+const Error_Handling_Type1 														= [ "F2838x", "F28002x", "F28003x", "F28004x","F280013x","F280015x", "F28P65x", "F28P55x","F28P551x","F28E12x", "MCPC029"]
 
 //
-// Available BootCPU2 
+// Available BootCPU2
 //
-// Boot CPU2 to Flash Sector 0 to Sector 13 
+// Boot CPU2 to Flash Sector 0 to Sector 13
 const Boot_CPU2_Type0															=["F2838x"]
 
 // Boot CPU2 to Flash Bank 0 to Bank 4
@@ -89,7 +89,7 @@ const Boot_CPU2_Type1														=["F28P65x"]
 const Boot_CPU2_Boot_Mode_Type0													=["F2837xD"]
 
 //
-// Available Enable_Unbounded_GPIO_Pullups 
+// Available Enable_Unbounded_GPIO_Pullups
 //
 // enable pullups for the unbonded GPIOs on the 100PZ or 176PTP package.
 const Enable_Unbounded_GPIO_Pullups_100PZ_176PTP_Type0							=["F2837xD", "F2837xS", "F2807x"]
@@ -98,11 +98,11 @@ const Enable_Unbounded_GPIO_Pullups_100PZ_176PTP_Type0							=["F2837xD", "F2837
 const Enable_Unbounded_GPIO_Pullups_176PTP_Type0							    =["F2838x"]
 
 // enable pullups for the unbonded GPIOs on the 48PT, 32RHB, 32VFC package.
-const Enable_Unbounded_GPIO_Pullups_48PT_32RHB_32VFC_Type0							=["F28E12x"]
+const Enable_Unbounded_GPIO_Pullups_48PT_32RHB_32VFC_Type0							=["F28E12x", "MCPC029"]
 
 
 //
-// Available Configure_TMX_Analog_Trim 
+// Available Configure_TMX_Analog_Trim
 //
 // Implementing Analog trim of TMX devices with ADC A, ADC B, ADC C, and ADC D
 const Configure_TMX_Analog_Trim_Type1											=["F2837xS","F2807x"]

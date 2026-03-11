@@ -1,4 +1,4 @@
-function onValidate (inst, { $ipInstance, logInfo, logWarning }) 
+function onValidate (inst, { $ipInstance, logInfo, logWarning })
 {
 	var sysctl = system.modules['/driverlib/sysctl.js']
 	if (sysctl)
@@ -9,17 +9,17 @@ function onValidate (inst, { $ipInstance, logInfo, logWarning })
 		}
 	}
 
-	if (inst.inputSelect == "WROSCDIV8" && system.deviceData.device == "F28E12x") 
+	if (inst.inputSelect == "WROSCDIV8" && system.deviceData.device == "F28E12x")
 	{
 		const derivedClock = inst[inst.$ipInstance.outPins[0].name];
 		let infoMsg = "When using " + inst.inputSelect + ", " + derivedClock + " MHz is not guaranteed and can range from 2.5 MHz to 8.75 MHz on every device.";
 		logInfo(infoMsg, inst, inst.$ipInstance.outPins[0].name)
 	}
-	if (inst.inputSelect == "OSCCLK" && inst.$ipInstance.name == "SYSPLLCTL1") 
+	if (inst.inputSelect == "OSCCLK" && inst.$ipInstance.name == "SYSPLLCTL1")
 	{
 		let infoMsg = "When bypassing the SYSPLL, the system clock is directly sourced from " + inst.inputSelect + ". The functional impact of PLL bypass mode on the device clocking will need to be considered.";
 		logWarning(infoMsg, inst, inst.$ipInstance.outPins[0].name)
-	} 
+	}
 }
 
 exports = {
@@ -47,9 +47,9 @@ exports = {
 		if ($ipInstance.name == "CPUSELx")
 		{
 				pinConfig.push({
-				name: "cpu_sel_mux", 
-				displayName: "CPU Select Mux", 
-				default: "Click the hyper link for SYSCLK GATES", 
+				name: "cpu_sel_mux",
+				displayName: "CPU Select Mux",
+				default: "Click the hyper link for SYSCLK GATES",
 				getValue: (inst) => { return "Click the hyper link for SYSCLK GATES" },
 			})
 		}

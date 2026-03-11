@@ -37,7 +37,7 @@
 //
 //
 // $Copyright:
-// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -140,7 +140,6 @@ void main(void)
     //
     // Initialize GPIOs for EPWM1A
     //
-
     GPIO_setPinConfig(GPIO_0_MCPWM1_1A);
     GPIO_setPadConfig(0, GPIO_PIN_TYPE_STD);
 

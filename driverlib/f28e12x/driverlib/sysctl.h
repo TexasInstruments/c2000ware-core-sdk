@@ -1,12 +1,12 @@
 //###########################################################################
 //
-// FILE:   sysctl.h 
+// FILE:   sysctl.h
 //
 // TITLE:  C28x system control driver.
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -79,7 +79,7 @@ extern "C"
 #define SYSCTL_CLKSRCCTL_DELAY  asm(" RPT #250 || NOP \n RPT #50 || NOP")
 
 //
-// Macro used for adding delay between 2 consecutive writes to memory mapped 
+// Macro used for adding delay between 2 consecutive writes to memory mapped
 // register in System control
 // Total delay = 3 * (DEVICE_SYSCLK_FREQ / WROSCDIV8 Freq) + 9
 //
@@ -788,24 +788,18 @@ typedef enum
 
 //*****************************************************************************
 //
-//! Values that can be passed to SysCtl_disableCMPSSLPMWakeupPin() and 
+//! Values that can be passed to SysCtl_disableCMPSSLPMWakeupPin() and
 //! SysCtl_enableCMPSSLPMWakeupPin() as the \e pin input parameter.
 //
 //*****************************************************************************
 typedef enum
 {
-    SYSCTL_CMPSSLPMSEL_CMPSS_1H = 0x00,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_1L = 0x01,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_2H = 0x02,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_2L = 0x03,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_3H = 0x04,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_3L = 0x05,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_4H = 0x06,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_4L = 0x07,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_5H = 0x08,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_5L = 0x09,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_6H = 0x0A,   
-    SYSCTL_CMPSSLPMSEL_CMPSS_6L = 0x0B
+    SYSCTL_CMPSSLPMSEL_CMPSS_1H = 0x00,
+    SYSCTL_CMPSSLPMSEL_CMPSS_1L = 0x01,
+    SYSCTL_CMPSSLPMSEL_CMPSS_2H = 0x02,
+    SYSCTL_CMPSSLPMSEL_CMPSS_2L = 0x03,
+    SYSCTL_CMPSSLPMSEL_CMPSS_3H = 0x04,
+    SYSCTL_CMPSSLPMSEL_CMPSS_3L = 0x05
 } SysCtl_CMPSSLPMSel;
 
 //*****************************************************************************
@@ -1835,7 +1829,7 @@ SysCtl_enableWatchdog(void)
 //!
 //! This function returns the watchdog status whether it is enabled or disabled
 //!
-//! \return \b true if the watchdog is enabled & \b false if the watchdog is 
+//! \return \b true if the watchdog is enabled & \b false if the watchdog is
 //! disabled
 //
 //*****************************************************************************

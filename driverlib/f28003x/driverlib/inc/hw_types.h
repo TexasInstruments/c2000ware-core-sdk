@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -40,7 +40,6 @@
 
 #ifndef HW_TYPES_H
 #define HW_TYPES_H
-
 //*****************************************************************************
 //
 // Macros for hardware access
@@ -61,7 +60,7 @@
 #define HWREG_BP(x)                                                           \
         __byte_peripheral_32((uint32_t *)(x))
 #define HWREGB(x)                                                             \
-        __byte((int16_t *)(x),0)
+        __byte((int *)(x),0)
 
 //*****************************************************************************
 //

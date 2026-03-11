@@ -8,7 +8,7 @@
 //
 //
 // 
-// C2000Ware v6.00.01.00
+// C2000Ware v26.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -556,6 +556,11 @@ extern "C"
 #define ETHERNET_PKT_FLAG_CS_IP_INS                         0x00010000U
 #define ETHERNET_PKT_FLAG_CS_IP_PAYLOAD_INS_NO_PSEUDO       0x00020000U
 #define ETHERNET_PKT_FLAG_CS_IP_PAYLOAD_PSEUDO_INS          0x00030000U
+//
+//COE CONTROL FLAG
+//
+#define ETHERNET_RX_COE_ENABLE              0x00010000U
+#define ETHERNET_TX_COE_ENABLE              0x00004000U
 
 #define ETHERNET_NUM_PORTS                  1U
 
@@ -1234,6 +1239,10 @@ typedef struct
     /** Platform specific Interrupt Numbers for Ethernet interrupts that
     should be passed to ptrPlatformInterruptEnable() and
     ptrPlatformInterruptDisable() APIs*/
+    void             (*ptrCoreInterruptDisable)(void);
+    /** Core specific interrupt Disable function */
+    void             (*ptrCoreInterruptEnable)(void);
+    /*  Core specific interrupt Enable function */
     uint32_t interruptNum[ETHERNET_NUM_INTERRUPTS];
 }Ethernet_InitInterfaceConfig;
 //*****************************************************************************
@@ -1372,6 +1381,8 @@ struct Ethernet_Devicest{
     void             (*ptrPlatformPeripheralReset)(uint32_t PeripheralName);
     void             (*ptrPlatformInterruptEnable)(uint32_t interruptNumber);
     void             (*ptrPlatformInterruptDisable)(uint32_t interruptNumber);
+    void             (*ptrCoreInterruptDisable)();
+    void             (*ptrCoreInterruptEnable)();
     uint32_t interruptNum[ETHERNET_NUM_INTERRUPTS];
 };
 
@@ -3226,6 +3237,25 @@ extern void Ethernet_disableRxDMAReception(uint32_t base,
 //**************************************************************************
 extern void Ethernet_enableRxDMAReception(uint32_t base,
                 uint8_t channelNum);
+//***************************************************************************
+//! This function disables the DMA from receiving anymore packets from fifo
+//!
+//! \param baseAddress Base Address of the Ethernet modules
+//! \param channelNum Channel number which has to be programmed 0 or 1
+//! \return none
+//**************************************************************************
+extern void Ethernet_disableTxDMAReception(uint32_t base,
+                uint8_t channelNum);
+
+//***************************************************************************
+//! This function enables the DMA for receiving packets from fifo
+//!
+//! \param baseAddress Base Address of the Ethernet modules
+//! \param channelNum Channel number which has to be programmed 0 or 1
+//! \return none
+//**************************************************************************
+extern void Ethernet_enableTxDMAReception(uint32_t base,
+                uint8_t channelNum);
 
 //*************************************************************************
 //! This function sets the Transmit Descriptor Tail Pointer of the Transmit
@@ -3279,22 +3309,6 @@ extern uint16_t Ethernet_getRxERICount(uint32_t base, uint32_t channelNum);
 //***********************************************************************
 extern void Ethernet_addPacketsIntoRxQueue(Ethernet_DescCh *channelDescPtr);
 
-//**********************************************************************
-//! Ethernet_removePacketsFromRxQueue()
-//!
-//! \param
-//! channelDescPtr - Receive channel Desctiptor Pointer from which the
-//! Packet has to be Defines
-//! completionMode
-//!
-//! This function is called from the Receive Completion Interrupt Handler
-//! This fills the PacketDescriptor Structure for handing over the packet
-//! And fills with the received packet details
-//! Calls the Receive Packet Callback function provided by higher layer
-//! \return None
-//**********************************************************************
-extern void Ethernet_removePacketsFromRxQueue(Ethernet_DescCh *channelDescPtr,
-                            Ethernet_CompletionMode completionMode);
 
 //***************************************************************************
 //! Ethernet_performPushOnPacketQueue ()
@@ -3584,6 +3598,98 @@ static inline void Ethernet_disableUnicastPauseFrameDetect(uint32_t base)
     HWREG(base + ETHERNET_O_MAC_RX_FLOW_CTRL) &=
          ~ETHERNET_MAC_RX_FLOW_CTRL_UP;
 }
+
+//*************************************************************************
+//! Ethernet_removePacketsFromTxQueue()
+//!
+//! \param
+//! channelDescPtr - Pointer to the Channel Descriptor  Structure
+//! from which the Packet has to be Dequeued
+//! Description:
+//! This function is called from the Transmit completion ISR to
+//! remove a packet from Desc Queue and call the Callback function registered
+//! by the higher layer to signal the Transmit Completion
+//! After calling the callback if there are packets pending in WaitQueue to be
+//! transmitted this routine submits them to the DescQueue and prepare
+//!
+//! \return none
+//************************************************************************
+
+void Ethernet_removePacketsFromTxQueue(Ethernet_DescCh *channelDescPtr,
+                                       Ethernet_CompletionMode completionMode);
+//**********************************************************************
+//! Ethernet_removePacketsFromRxQueue()
+//!
+//! \param
+//! channelDescPtr - Receive channel Desctiptor Pointer from which the
+//! Packet has to be Defines
+//! completionMode
+//!
+//! This function is called from the Receive Completion Interrupt Handler
+//! This fills the PacketDescriptor Structure for handing over the packet
+//! And fills with the received packet details
+//! Calls the Receive Packet Callback function provided by higher layer
+//! \return None
+//**********************************************************************
+void Ethernet_removePacketsFromRxQueue(Ethernet_DescCh *channelDescPtr,
+                            Ethernet_CompletionMode completionMode);
+//**********************************************************************
+//! Ethernet_HW_descQueueGetCount
+//! 
+//! \param
+//! channelDescPtr - Receive channel Desctiptor Pointer from which the
+//! Packet has to be Defines
+//! 
+//! This function is called to identify the number of packet with the 
+//! Hardware queue
+//! \return 32 bit number : represents number of packet with the H/W Q
+//**********************************************************************
+uint32_t Ethernet_HW_descQueueGetCount(Ethernet_DescCh* channelDescPtr);
+//**********************************************************************
+//! Ethernet_nextDescAvailable
+//! 
+//! \param
+//! channelDescPtr - Receive channel Desctiptor Pointer from which the
+//! Packet has to be Defines
+//! 
+//! This function is called to identify whether the next packet is 
+//! available for retrieving.
+//! \return 8 bit number :  True if the next packet is not with H/W
+//! False if the next packet is with the H/W
+//**********************************************************************
+uint8_t Ethernet_nextDescAvailable(Ethernet_DescCh* channelDescPtr);
+//**********************************************************************
+//! Ethernet_retrieveRxPacket
+//! 
+//! \param
+//! channelDescPtr - Receive channel Desctiptor Pointer from which the
+//! Packet has to be Defines
+//! earlyFlag
+//! 
+//! This function is called to retrive the Rx packet from the H/W Q
+//! \return Ethernet_Pkt_Desc* :  Pointer to the retrieved Packet descriptor
+//**********************************************************************
+Ethernet_Pkt_Desc* Ethernet_retrieveRxPacket(Ethernet_DescCh *channelDescPtr, Ethernet_CompletionMode earlyFlag);
+//**********************************************************************
+//! Ethernet_submitRxPacket
+//! 
+//! \param
+//! channelDescPtr - Receive channel Desctiptor Pointer from which the
+//! Packet has to be Defines
+//! newPktPtr - Fresh Packet descriptor to submit to the H/W Q
+//! 
+//! This function is called to submit the fresh Rx packet to the H/W Q
+//**********************************************************************
+void Ethernet_submitRxPacket(Ethernet_DescCh* channelDescPtr, Ethernet_Pkt_Desc* newPktPtr);
+//**********************************************************************
+//! Ethernet_checksumOffloadEngineEnable
+//! 
+//! \param
+//! base - EMAC base address
+//! 
+//! This function is to enable Checksum Offload Engine
+//**********************************************************************
+void Ethernet_checksumOffloadEngineEnable(uint32_t base);
 
 //*****************************************************************************
 //

@@ -51,6 +51,9 @@ extern "C"
 
 #include "driverlib.h"
 #include "device.h"
+% if(Object.keys(system.modules).includes("/driverlib/drv.js")){
+#include "gateDriver.h"
+% } 
 
 % let Common   = system.getScript("/driverlib/Common.js");
 % let pinmuxContent = system.getTemplate("/driverlib/pinmux/pinmux.board.c.xdt");

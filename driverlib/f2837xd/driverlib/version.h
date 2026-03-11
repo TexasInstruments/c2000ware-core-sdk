@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v6.00.01.00
+// C2000Ware v26.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -64,16 +64,17 @@ extern "C"
 
 //! Version number to be returned by Version_getLibVersion()
 //!
-#define VERSION_NUMBER      6000100U
+#define VERSION_NUMBER      26000000U
 
 //*****************************************************************************
 //
 //! Returns the driverlib version number
 //!
 //! This function can be used to check the version number of the driverlib.lib
-//! that is in use. The version number will take the format x.xx.xx.xx, so for
-//! example, if the function returns 2100200, the driverlib version being used
-//! is 2.10.02.00.
+//! that is in use. The version number will take the format yy.mm.pp.bb, so for
+//! yy-Year, mm-Major Release version, pp-Patch Release Version, bb- Build Number.
+//! example, if the function returns 26000000, the driverlib version being used
+//! is 26.00.00.00.
 //!
 //! \return Returns an integer value indicating the driverlib version.
 //

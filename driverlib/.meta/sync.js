@@ -151,7 +151,6 @@ for(var i = 0; i < ePWMInstances; i++) {
 }
 
 for (let i of mcpwmInstances){
-    console.log(i)
     enable_ADCSOCA.push({ name: "SYSCTL_ADCSOC_SRC_PWM" + (i.name.replace("MCPWM","")) + "SOC" + "A", displayName: "Enable "+ (i.name) + " ADC SOCA" });
     enable_ADCSOCB.push({ name: "SYSCTL_ADCSOC_SRC_PWM" + (i.name.replace("MCPWM","")) + "SOC" + "B", displayName: "Enable "+ (i.name) + " ADC SOCB" }); 
 }

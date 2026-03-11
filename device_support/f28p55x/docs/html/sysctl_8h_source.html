@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">f28p55x Driverib and Example User Guide
-   &#160;<span id="projectnumber">6.00.01.00</span>
+   &#160;<span id="projectnumber">26.00.00.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -93,13 +93,13 @@ $(document).ready(function(){initNavTree('sysctl_8h_source.html',''); initResiza
 <div class="contents">
 <a href="sysctl_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//###########################################################################</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// FILE:   sysctl.h </span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// FILE:   sysctl.h</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">// TITLE:  C28x system control driver.</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">//###########################################################################</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">// </span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// C2000Ware v6.00.01.00</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// C2000Ware v26.00.00.00</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">//</span></div>
@@ -172,7 +172,7 @@ $(document).ready(function(){initNavTree('sysctl_8h_source.html',''); initResiza
 <div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="group__sysctl__api.html#gaca4b83c4a34d578cfee1dad6600a24c0">   81</a></span>&#160;<span class="preprocessor">#define SYSCTL_CLKSRCCTL_DELAY  asm(&quot; RPT #250 || NOP \n RPT #50 || NOP&quot;</span>)</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">// Macro used for adding delay between 2 consecutive writes to memory mapped </span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">// Macro used for adding delay between 2 consecutive writes to memory mapped</span></div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">// register in System control</span></div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">// Total delay = 3 * (DEVICE_SYSCLK_FREQ / INTOSC1 Freq) + 9</span></div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">//</span></div>
@@ -245,10 +245,10 @@ $(document).ready(function(){initNavTree('sysctl_8h_source.html',''); initResiza
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="comment">// device_cal function address is different for different revisions of the</span></div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="comment">// F28P55x device. If the revision ID (value at address 0x5D00C) is &quot;1&quot; then </span></div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="comment">// define the REV_ID as a predefined symbol in the projectspec </span></div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="comment">// F28P55x device. If the revision ID (value at address 0x5D00C) is &quot;1&quot; then</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="comment">// define the REV_ID as a predefined symbol in the projectspec</span></div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="comment">// (Add &quot;--define=REV_ID=1&quot; in the compiler flags, which correspond to REV0).</span></div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="comment">// For REVID as REVA, the value will be 2, which will be the default value in </span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="comment">// For REVID as REVA, the value will be 2, which will be the default value in</span></div>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="comment">// the package.</span></div>
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="preprocessor">#ifndef REVID_REV0</span></div>
@@ -1052,13 +1052,13 @@ $(document).ready(function(){initNavTree('sysctl_8h_source.html',''); initResiza
 <div class="line"><a name="l01046"></a><span class="lineno"> 1046</span>&#160;<span class="comment">//*****************************************************************************</span></div>
 <div class="line"><a name="l01047"></a><span class="lineno"><a class="line" href="group__sysctl__api.html#gafda30b4db4ddffa31068967dc4d8d0e1"> 1047</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span></div>
 <div class="line"><a name="l01048"></a><span class="lineno"> 1048</span>&#160;{</div>
-<div class="line"><a name="l01049"></a><span class="lineno"><a class="line" href="group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1ac48ddf673680234a759ddd4842ff547c"> 1049</a></span>&#160;    <a class="code" href="group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1ac48ddf673680234a759ddd4842ff547c">SYSCTL_CMPSSLPMSEL_CMPSS_1H</a> = 0x00,   </div>
-<div class="line"><a name="l01050"></a><span class="lineno"><a class="line" href="group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1afa44dfb5e9274eb89fbec70b16cc9db5"> 1050</a></span>&#160;    <a class="code" href="group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1afa44dfb5e9274eb89fbec70b16cc9db5">SYSCTL_CMPSSLPMSEL_CMPSS_1L</a> = 0x01,   </div>
-<div class="line"><a name="l01051"></a><span class="lineno"><a class="line" href="group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1ab413eeddf46a3fff2a0bd697c6961c8a"> 1051</a></span>&#160;    <a class="code" href="group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1ab413eeddf46a3fff2a0bd697c6961c8a">SYSCTL_CMPSSLPMSEL_CMPSS_2H</a> = 0x02,   </div>
-<div class="line"><a name="l01052"></a><span class="lineno"><a class="line" href="group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1a2766bc91581559853938ca95882859af"> 1052</a></span>&#160;    <a class="code" href="group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1a2766bc91581559853938ca95882859af">SYSCTL_CMPSSLPMSEL_CMPSS_2L</a> = 0x03,   </div>
-<div class="line"><a name="l01053"></a><span class="lineno"><a class="line" href="group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1aa987869fee427dfe25351469f1209897"> 1053</a></span>&#160;    <a class="code" href="group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1aa987869fee427dfe25351469f1209897">SYSCTL_CMPSSLPMSEL_CMPSS_3H</a> = 0x04,   </div>
-<div class="line"><a name="l01054"></a><span class="lineno"><a class="line" href="group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1af05dfb4d29e74b7e69fc686363018110"> 1054</a></span>&#160;    <a class="code" href="group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1af05dfb4d29e74b7e69fc686363018110">SYSCTL_CMPSSLPMSEL_CMPSS_3L</a> = 0x05,   </div>
-<div class="line"><a name="l01055"></a><span class="lineno"><a class="line" href="group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1ad899c21117f35307665bf45b1780b506"> 1055</a></span>&#160;    <a class="code" href="group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1ad899c21117f35307665bf45b1780b506">SYSCTL_CMPSSLPMSEL_CMPSS_4H</a> = 0x06,   </div>
+<div class="line"><a name="l01049"></a><span class="lineno"><a class="line" href="group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1ac48ddf673680234a759ddd4842ff547c"> 1049</a></span>&#160;    <a class="code" href="group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1ac48ddf673680234a759ddd4842ff547c">SYSCTL_CMPSSLPMSEL_CMPSS_1H</a> = 0x00,</div>
+<div class="line"><a name="l01050"></a><span class="lineno"><a class="line" href="group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1afa44dfb5e9274eb89fbec70b16cc9db5"> 1050</a></span>&#160;    <a class="code" href="group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1afa44dfb5e9274eb89fbec70b16cc9db5">SYSCTL_CMPSSLPMSEL_CMPSS_1L</a> = 0x01,</div>
+<div class="line"><a name="l01051"></a><span class="lineno"><a class="line" href="group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1ab413eeddf46a3fff2a0bd697c6961c8a"> 1051</a></span>&#160;    <a class="code" href="group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1ab413eeddf46a3fff2a0bd697c6961c8a">SYSCTL_CMPSSLPMSEL_CMPSS_2H</a> = 0x02,</div>
+<div class="line"><a name="l01052"></a><span class="lineno"><a class="line" href="group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1a2766bc91581559853938ca95882859af"> 1052</a></span>&#160;    <a class="code" href="group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1a2766bc91581559853938ca95882859af">SYSCTL_CMPSSLPMSEL_CMPSS_2L</a> = 0x03,</div>
+<div class="line"><a name="l01053"></a><span class="lineno"><a class="line" href="group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1aa987869fee427dfe25351469f1209897"> 1053</a></span>&#160;    <a class="code" href="group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1aa987869fee427dfe25351469f1209897">SYSCTL_CMPSSLPMSEL_CMPSS_3H</a> = 0x04,</div>
+<div class="line"><a name="l01054"></a><span class="lineno"><a class="line" href="group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1af05dfb4d29e74b7e69fc686363018110"> 1054</a></span>&#160;    <a class="code" href="group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1af05dfb4d29e74b7e69fc686363018110">SYSCTL_CMPSSLPMSEL_CMPSS_3L</a> = 0x05,</div>
+<div class="line"><a name="l01055"></a><span class="lineno"><a class="line" href="group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1ad899c21117f35307665bf45b1780b506"> 1055</a></span>&#160;    <a class="code" href="group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1ad899c21117f35307665bf45b1780b506">SYSCTL_CMPSSLPMSEL_CMPSS_4H</a> = 0x06,</div>
 <div class="line"><a name="l01056"></a><span class="lineno"> 1056</span>&#160;    <a class="code" href="group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1a0180e97bc2be1049a6123ef1b351431d">SYSCTL_CMPSSLPMSEL_CMPSS_4L</a> = 0x07</div>
 <div class="line"><a name="l01057"></a><span class="lineno"><a class="line" href="group__sysctl__api.html#ggafda30b4db4ddffa31068967dc4d8d0e1a0180e97bc2be1049a6123ef1b351431d"> 1057</a></span>&#160;} <a class="code" href="group__sysctl__api.html#gafda30b4db4ddffa31068967dc4d8d0e1">SysCtl_CMPSSLPMSel</a>;</div>
 <div class="line"><a name="l01058"></a><span class="lineno"> 1058</span>&#160; </div>

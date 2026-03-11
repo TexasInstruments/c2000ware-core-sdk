@@ -8,7 +8,7 @@
 //
 //
 // 
-// C2000Ware v6.00.01.00
+// C2000Ware v26.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -66,12 +66,12 @@ extern "C" {
 // User To Select Target Device:
 //
 #define   F28_2838x    TARGET
-
+#include "stdint.h"
 //
 // Common CPU Definitions:
 //
-extern __cregister volatile unsigned int IFR;
-extern __cregister volatile unsigned int IER;
+extern __cregister volatile uint16_t IFR;
+extern __cregister volatile uint16_t IER;
 
 #define  EINT   __asm(" clrc INTM")
 #define  DINT   __asm(" setc INTM")

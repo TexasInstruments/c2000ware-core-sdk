@@ -1,8 +1,8 @@
 let Common   = system.getScript("/driverlib/Common.js");
 let Pinmux   = system.getScript("/driverlib/pinmux.js");
 
-let device_driverlib_peripheral = 
-    system.getScript("/driverlib/device_driverlib_peripherals/" + 
+let device_driverlib_peripheral =
+    system.getScript("/driverlib/device_driverlib_peripherals/" +
         Common.getDeviceName().toLowerCase() + "_gpio.js");
 
 /* Intro splash on GUI */
@@ -38,10 +38,10 @@ let config = [
             { name: "PULLUP", displayName : "Push-pull output/pull-up enabled on input"  },
             { name: "INVERT", displayName : "Push-pull output/floating INVERTED polarity on an input"  },
             { name: "PULLUP_INVERT", displayName : "Push-pull output/pull-up enabled on INVERTED input"  },
-            { name: ["F28E12x"].includes(Common.getDeviceName()) ? "ODO" : "OD" , displayName : "Open-drain output/floating input" },
-            { name: ["F28E12x"].includes(Common.getDeviceName()) ? "ODO_PULLUP" : "OD_PULLUP" , displayName : "Open-drain output with pull-up enabled output and input" },
-            { name: ["F28E12x"].includes(Common.getDeviceName()) ? "ODO_INVERT" : "OD_INVERT" , displayName : "Open-drain output/floating inverted input" },
-            { name: ["F28E12x"].includes(Common.getDeviceName()) ? "ODO_PULLUP_INVERT" : "OD_PULLUP_INVERT" , displayName : "Open-drain output with pull-up enabled output and INVERTED input" }
+            { name: ["F28E12x", "MCPC029"].includes(Common.getDeviceName()) ? "ODO" : "OD" , displayName : "Open-drain output/floating input" },
+            { name: ["F28E12x", "MCPC029"].includes(Common.getDeviceName()) ? "ODO_PULLUP" : "OD_PULLUP" , displayName : "Open-drain output with pull-up enabled output and input" },
+            { name: ["F28E12x", "MCPC029"].includes(Common.getDeviceName()) ? "ODO_INVERT" : "OD_INVERT" , displayName : "Open-drain output/floating inverted input" },
+            { name: ["F28E12x", "MCPC029"].includes(Common.getDeviceName()) ? "ODO_PULLUP_INVERT" : "OD_PULLUP_INVERT" , displayName : "Open-drain output with pull-up enabled output and INVERTED input" }
        ]
     },
 
@@ -70,7 +70,7 @@ let config = [
     },
 ];
 
-if (!["F28002x", "F280013x", "F280015x", "F28E12x"].includes(Common.getDeviceName()))
+if (!["F28002x", "F280013x", "F280015x", "F28E12x", "MCPC029"].includes(Common.getDeviceName()))
 {
     var coreSelectConfig = {
         name        : "controllerCore",
@@ -107,7 +107,7 @@ function moduleInstances(inst)
     {
         //GROUP_XINT
         ownedMods.push({
-            name: "xint",      
+            name: "xint",
             displayName: "XINT",
             moduleName: "/driverlib/xint.js",
             collapsed: true,
@@ -126,7 +126,7 @@ function onValidate(inst, validation)
         validation.logWarning(
                 "Use GPIO_writeODPin function to enable OD feature and should be called in Runtime instead of GPIO_writePin." +
                 " Refer to TRM for more details",inst,"padConfig");
-    }    
+    }
 }
 
 function onValidatePinmux(inst, validation) {
@@ -145,14 +145,14 @@ function onValidatePinmux(inst, validation) {
             if (selectedAIOPeripheral != inputxbar["inputxbarGpio"])
             {
                 validation.logWarning(
-                    "Select " + selectedAIOPeripheral + " which is the selection in your AIO PinMux entry.", 
+                    "Select " + selectedAIOPeripheral + " which is the selection in your AIO PinMux entry.",
                     inputxbar, "inputxbarGpio");
             }
         }
         else
         {
             validation.logInfo(
-                "Select " + "the same AIO" + " as the one in your AIO PinMux entry.", 
+                "Select " + "the same AIO" + " as the one in your AIO PinMux entry.",
                 inputxbar, "inputxbarGpio");
         }
     }

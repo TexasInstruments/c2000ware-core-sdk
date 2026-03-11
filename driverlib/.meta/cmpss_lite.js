@@ -46,7 +46,7 @@ if (["F280013x", "F280015x"].includes(Common.getDeviceName())){
     var defaultCMPSSLITEPinInfos = Pinmux.findAllAnalogPin(Pinmux.getDeviceADCName(ComparatorInputs.CMPSSLITE_comparatorInputSignals[Common.getDeviceName()]["CMPSSLITE2_BASE"][0].displayName.split("/")[0]));
     var defaultCMPSSLITENegPinInfos = Pinmux.findAllAnalogPin(Pinmux.getDeviceADCName(ComparatorInputs.CMPSSLITE_comparatorNegInputSignals[Common.getDeviceName()]["CMPSSLITE2_BASE"][1].displayName.split("/")[0]));
 }
-if (["F28E12x"].includes(Common.getDeviceName())){
+if (["F28E12x", "MCPC029"].includes(Common.getDeviceName())){
     var defaultCMPSSLITEPinInfos = Pinmux.findAllAnalogPin(Pinmux.getDeviceADCName(ComparatorInputs.CMPSSLITE_comparatorInputSignals[Common.getDeviceName()]["CMPSSLITE1_BASE"][0].displayName.split("/")[0]));
     var defaultCMPSSLITENegPinInfos = Pinmux.findAllAnalogPin(Pinmux.getDeviceADCName(ComparatorInputs.CMPSSLITE_comparatorNegInputSignals[Common.getDeviceName()]["CMPSSLITE1_BASE"][1].displayName.split("/")[0]));
 }
@@ -55,7 +55,7 @@ function calculateDevicePinNameHigh(inst,ui){
     var tempPinName = ComparatorInputs.CMPSSLITE_comparatorInputSignals[Common.getDeviceName()][inst.cmpssLiteBase][inst.asysCMPHPMXSELValue].displayName
     var tempPinInfo = Pinmux.findAllAnalogPin(Pinmux.getDeviceADCName(tempPinName.split("/")[0]))
     var tempPinInfoDesc = Pinmux.getDevicePinInfoDescription(tempPinInfo)
-    if(["F28E12x"].includes(Common.getDeviceName()) && (inst.asysCMPHPMXSELValue == 6) && (inst.cmpssLiteBase == "CMPSSLITE2_BASE") && (tempPinInfoDesc == Pinmux.NO_DEVICE_PIN_FOUND)){
+    if(["F28E12x", "MCPC029"].includes(Common.getDeviceName()) && (inst.asysCMPHPMXSELValue == 6) && (inst.cmpssLiteBase == "CMPSSLITE2_BASE") && (tempPinInfoDesc == Pinmux.NO_DEVICE_PIN_FOUND)){
             return ComparatorInputs.CMPSSLITE_comparatorInputSignals[Common.getDeviceName()][inst.cmpssLiteBase][inst.asysCMPHPMXSELValue].displayName
         }
     else{
@@ -74,7 +74,7 @@ function calculateDevicePinNameLow(inst,ui){
     var tempPinName = ComparatorInputs.CMPSSLITE_comparatorInputSignals[Common.getDeviceName()][inst.cmpssLiteBase][inst.asysCMPLPMXSELValue].displayName
     var tempPinInfo = Pinmux.findAllAnalogPin(Pinmux.getDeviceADCName(tempPinName.split("/")[0]))
     var tempPinInfoDesc = Pinmux.getDevicePinInfoDescription(tempPinInfo)
-    if(["F28E12x"].includes(Common.getDeviceName()) && (inst.asysCMPHPMXSELValue == 6) && (inst.cmpssLiteBase == "CMPSSLITE2_BASE") && (tempPinInfoDesc == Pinmux.NO_DEVICE_PIN_FOUND)){
+    if(["F28E12x", "MCPC029"].includes(Common.getDeviceName()) && (inst.asysCMPHPMXSELValue == 6) && (inst.cmpssLiteBase == "CMPSSLITE2_BASE") && (tempPinInfoDesc == Pinmux.NO_DEVICE_PIN_FOUND)){
         return ComparatorInputs.CMPSSLITE_comparatorInputSignals[Common.getDeviceName()][inst.cmpssLiteBase][inst.asysCMPLPMXSELValue].displayName
     }
     else{
@@ -101,7 +101,7 @@ for(var i = 0; i < ePWMInstances; i++) {
     ePWMArrayBlank.push({ name: ""+(i+1), displayName: "EPWM"+(i+1)+"BLANK" })
 }
 }
-if (["F28E12x"].includes(Common.getDeviceName())){
+if (["F28E12x", "MCPC029"].includes(Common.getDeviceName())){
     var ePWMInstances = Common.peripheralCount("MCPWM")
     var ePWMArraySync = [];
     for(var i = 0; i < ePWMInstances; i++) {
@@ -118,7 +118,7 @@ if (["F280013x", "F280015x"].includes(Common.getDeviceName())){
     numberOfPosInputSignals = 5
     numberOfNegInputSignals = 2
 }
-if (["F28E12x"].includes(Common.getDeviceName())){
+if (["F28E12x", "MCPC029"].includes(Common.getDeviceName())){
     numberOfPosInputSignals = 7
     numberOfNegInputSignals = 2
 }
@@ -270,7 +270,7 @@ var highConfig =[
     },
 ]
 
-if (["F280013x","F280015x","F28E12x"].includes(Common.getDeviceName())){
+if (["F280013x","F280015x","F28E12x", "MCPC029"].includes(Common.getDeviceName())){
     highConfig = highConfig.concat([
         {
             name: "GROUP_CMPSS_MUX_HIGH",
@@ -435,7 +435,7 @@ var lowConfig =[
         ]
     },
 ]
-if (["F280013x", "F280015x","F28E12x"].includes(Common.getDeviceName())){
+if (["F280013x", "F280015x","F28E12x", "MCPC029"].includes(Common.getDeviceName())){
     lowConfig = lowConfig.concat([
         {
             name: "GROUP_CMPSS_MUX_LOW",
@@ -574,7 +574,7 @@ var cmpss_dac_config = [
         ],
     },
 ]
-if (!["F280013x", "F280015x", "F28E12x"].includes(Common.getDeviceName())){
+if (!["F280013x", "F280015x", "F28E12x", "MCPC029"].includes(Common.getDeviceName())){
     cmpss_dac_config.push(
         {
             name        : "dacRefVoltage",
@@ -713,7 +713,7 @@ function onValidate(inst, validation) {
                 inst, "samplePrescaleHigh");
         }
     }
-    else if (["F28E12x"].includes(Common.getDeviceName()))
+    else if (["F28E12x", "MCPC029"].includes(Common.getDeviceName()))
     {
         if (inst.samplePrescaleHigh < 0 || inst.samplePrescaleHigh > 16777215)
         {
@@ -818,7 +818,7 @@ function onValidate(inst, validation) {
         allInterfaces = Pinmux.getPeripheralUseCaseInterfaces(inst.analog, "ANALOG", "ALL");
     }
 
-    if (["F280013x","F280015x", "F28E12x"].includes(Common.getDeviceName())){
+    if (["F280013x","F280015x", "F28E12x", "MCPC029"].includes(Common.getDeviceName())){
         if (inst.asysCMPHPMXSELPinInfo == Pinmux.NO_DEVICE_PIN_FOUND)
         {
             validation.logError(

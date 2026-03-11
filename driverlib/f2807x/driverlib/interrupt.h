@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v6.00.01.00
+// C2000Ware v26.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -475,13 +475,6 @@ Interrupt_enable(uint32_t interruptNumber);
 extern void
 Interrupt_disable(uint32_t interruptNumber);
 
-//*****************************************************************************
-//
-// Extern compiler intrinsic prototypes. See compiler User's Guide for details.
-//
-//*****************************************************************************
-extern uint16_t __disable_interrupts(void);
-extern uint16_t __enable_interrupts(void);
 
 //*****************************************************************************
 //

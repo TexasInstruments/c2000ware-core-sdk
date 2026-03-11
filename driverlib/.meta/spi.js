@@ -1,8 +1,8 @@
 let Common   = system.getScript("/driverlib/Common.js");
 let Pinmux   = system.getScript("/driverlib/pinmux.js");
 
-let device_driverlib_peripheral = 
-    system.getScript("/driverlib/device_driverlib_peripherals/" + 
+let device_driverlib_peripheral =
+    system.getScript("/driverlib/device_driverlib_peripherals/" +
         Common.getDeviceName().toLowerCase() + "_spi.js");
 
 var pteOption = device_driverlib_peripheral.SPI_PTEPolarity;
@@ -27,8 +27,8 @@ function onChangeUseFIFO(inst, ui)
 }
 
 
-function onValidate(inst, validation) 
-{   
+function onValidate(inst, validation)
+{
     var bitRateError = false;
     var bitRateInt;
 
@@ -50,38 +50,38 @@ function onValidate(inst, validation)
     if(bitRateError)
     {
         validation.logError(
-            "Enter an integer for bit rates between LSPCLK/128 and LSPCLK/4!", 
+            "Enter an integer for bit rates between LSPCLK/128 and LSPCLK/4!",
             inst, "bitRate");
     }
 
     if(bitRateInt >= 12500000 && !inst.useHSMode && !bitRateError){
         validation.logInfo(
-            "Use High Speed mode for maximum performance", 
+            "Use High Speed mode for maximum performance",
             inst, "bitRate");
     }
 
     if(bitRateInt < 12500000 && inst.useHSMode && !bitRateError){
         validation.logInfo(
-            "Consider disabling High Speed mode", 
+            "Consider disabling High Speed mode",
             inst, "bitRate");
     }
 
     if(inst.useHSMode){
         validation.logInfo(
-            "Pinmux options are limited to GPIO supporting high speed mode", 
+            "Pinmux options are limited to GPIO supporting high speed mode",
             inst, "useHSMode");
     }
 
     if (inst.useDMARX && inst.spiRXDMA.databusWidthConfig == "DMA_CFG_SIZE_32BIT") {
-        validation.logError("32 bit databus width is not valid while linked to SPI!", inst.spiRXDMA, "databusWidthConfig");   
+        validation.logError("32 bit databus width is not valid while linked to SPI!", inst.spiRXDMA, "databusWidthConfig");
     }
 
     if (inst.useDMATX && inst.spiTXDMA.databusWidthConfig == "DMA_CFG_SIZE_32BIT") {
-        validation.logError("32 bit databus width is not valid while linked to SPI!", inst.spiTXDMA, "databusWidthConfig");   
+        validation.logError("32 bit databus width is not valid while linked to SPI!", inst.spiTXDMA, "databusWidthConfig");
     }
 
     if ((inst.useDMATX || inst.useDMARX) && !inst.useFifo) {
-        validation.logError("FIFO must be enabled for DMA linking!", inst, "useFifo");   
+        validation.logError("FIFO must be enabled for DMA linking!", inst, "useFifo");
     }
 
     var pinmuxQualMods = Pinmux.getGpioQualificationModInstDefinitions("SPI", inst)
@@ -116,7 +116,7 @@ function onChangeUseInterrupts(inst, ui)
             ui.txFifo.hidden = true;
             ui.rxFifo.hidden = true;
         }
-        
+
     }
     else
     {
@@ -124,7 +124,7 @@ function onChangeUseInterrupts(inst, ui)
 
         ui.enabledFIFOInterrupts.hidden = true;
         ui.enabledInterrupts.hidden = true;
-        
+
         ui.txFifo.hidden = true;
         ui.rxFifo.hidden = true;
     }
@@ -133,7 +133,7 @@ function onChangeUseInterrupts(inst, ui)
 
 /* Array of SPI configurables that are common across device families */
 let config = [
-    
+
     {
         name        : "transferProtocol",
         displayName : "Transfer Protocol",
@@ -185,7 +185,7 @@ let config = [
         description : 'Whether or not to use SPI in High Speed mode.',
         hidden      : false,
         default     : false
-        
+
     },
 
     {
@@ -213,7 +213,7 @@ let config = [
             {name: "16"}
         ]
     },
-    
+
     {
         name        : "useFifo",
         displayName : "Use FIFO",
@@ -221,7 +221,7 @@ let config = [
         hidden      : false,
         onChange    : onChangeUseFIFO,
         default     : true
-        
+
     },
 
     {
@@ -231,7 +231,7 @@ let config = [
         hidden      : false,
         onChange    : onChangeUseInterrupts,
         default     : true
-        
+
     },
     {
         name        : "registerInterrupts",
@@ -239,7 +239,7 @@ let config = [
         description : 'Whether or not to register interrupt handlers in the interrupt module.',
         hidden      : false,
         default     : false
-        
+
     },
 
     {
@@ -253,7 +253,7 @@ let config = [
             {name: "SPI_INT_RX_DATA_TX_EMPTY", displayName: "Receive Interrupt"},
             {name: "SPI_INT_RX_OVERRUN", displayName: "Receive Overrun Interrupt"},
         ],
-        
+
     },
 
     {
@@ -268,7 +268,7 @@ let config = [
             {name: "SPI_INT_RXFF_OVERFLOW", displayName: "Receive Overflow Interrupt"},
             {name: "SPI_INT_TXFF", displayName: "Transmit Interrupt"},
         ],
-        
+
     },
 
     {
@@ -295,9 +295,9 @@ let config = [
         description : 'Whether or not to use loopback mode.',
         hidden      : false,
         default     : false
-        
+
     },
-    
+
     {
         name: "useCase",
         displayName : "Use Case",
@@ -309,7 +309,7 @@ let config = [
     },
 ];
 
-if (["F28002x", "F28003x", "F28004x", "F2807x", "F2837xS", "F2837xD", "F2838x", "F28P65x","F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName())){
+if (["F28002x", "F28003x", "F28004x", "F2807x", "F2837xS", "F2837xD", "F2838x", "F28P65x","F28P55x","F28P551x","F28E12x", "MCPC029"].includes(Common.getDeviceName())){
     config = config.concat([
         {
             name        : "useDMARX",
@@ -318,7 +318,7 @@ if (["F28002x", "F28003x", "F28004x", "F2807x", "F2837xS", "F2837xD", "F2838x", 
             hidden      : false,
             default     : false
         },
-    
+
         {
             name        : "useDMATX",
             displayName : "Use DMA for Transmit",
@@ -369,11 +369,11 @@ var spiModule = {
             pinmuxQualMod.args.padConfig = "STD";
         }
         submodules = submodules.concat(pinmuxQualMods)
-        
+
         if (inst.useInterrupts && inst.registerInterrupts)
         {
             submodules = submodules.concat([{
-                name: "spiRXInt",      
+                name: "spiRXInt",
                 displayName: "RX Interrupt",
                 moduleName: "/driverlib/interrupt.js",
                 collapsed: true,
@@ -385,7 +385,7 @@ var spiModule = {
                 }
             },
             {
-                name: "spiTXInt",      
+                name: "spiTXInt",
                 displayName: "TX Interrupt",
                 moduleName: "/driverlib/interrupt.js",
                 collapsed: true,
@@ -402,7 +402,7 @@ var spiModule = {
         {
             submodules = submodules.concat([
                 {
-                    name: "spiRXDMA",      
+                    name: "spiRXDMA",
                     displayName: "RX DMA",
                     moduleName: "/driverlib/dma.js",
                     collapsed: true,

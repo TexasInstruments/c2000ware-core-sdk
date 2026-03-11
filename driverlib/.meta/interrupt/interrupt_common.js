@@ -31,6 +31,12 @@ var interruptRename = {
 			name: "SD",
 			rename: "SDFM"
 		}
+	},
+	F28P551x: {
+		sd: {
+			name: "SD",
+			rename: "SDFM"
+		}
 	}
 
 }

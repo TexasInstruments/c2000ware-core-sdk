@@ -514,7 +514,7 @@ var dccModule = {
                     }
                 }]
             }
-            else if (['f28002x', 'f28003x', 'f28p55x', 'f28p551x','f280013x', 'f280015x','f28e12x'].includes(Common.getDeviceName().toLowerCase()))
+            else if (['f28002x', 'f28003x', 'f28p55x', 'f28p551x','f280013x', 'f280015x','f28e12x', 'mcpc029'].includes(Common.getDeviceName().toLowerCase()))
             {
                 var interruptName = inst.dccBase.replace("_BASE", "");
                 return [{

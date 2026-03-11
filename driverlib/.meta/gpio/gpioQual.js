@@ -1,8 +1,8 @@
 let Common   = system.getScript("/driverlib/Common.js");
 let Pinmux   = system.getScript("/driverlib/pinmux.js");
 
-let device_driverlib_peripheral = 
-    system.getScript("/driverlib/device_driverlib_peripherals/" + 
+let device_driverlib_peripheral =
+    system.getScript("/driverlib/device_driverlib_peripherals/" +
         Common.getDeviceName().toLowerCase() + "_gpio.js");
 
 
@@ -21,10 +21,10 @@ let config = [
             { name: "PULLUP", displayName : "Push-pull output/pull-up enabled on input"  },
             { name: "INVERT", displayName : "Push-pull output/floating INVERTED polarity on an input"  },
             { name: "PULLUP_INVERT", displayName : "Push-pull output/pull-up enabled on INVERTED input"  },
-            { name: ["F28E12x"].includes(Common.getDeviceName()) ? "ODO" : "OD" , displayName : "Open-drain output/floating input" },
-            { name: ["F28E12x"].includes(Common.getDeviceName()) ? "ODO_PULLUP" : "OD_PULLUP" , displayName : "Open-drain output with pull-up enabled output and input" },
-            { name: ["F28E12x"].includes(Common.getDeviceName()) ? "ODO_INVERT" : "OD_INVERT" , displayName : "Open-drain output/floating inverted input" },
-            { name: ["F28E12x"].includes(Common.getDeviceName()) ? "ODO_PULLUP_INVERT" : "OD_PULLUP_INVERT" , displayName : "Open-drain output with pull-up enabled output and INVERTED input" }
+            { name: ["F28E12x", "MCPC029"].includes(Common.getDeviceName()) ? "ODO" : "OD" , displayName : "Open-drain output/floating input" },
+            { name: ["F28E12x", "MCPC029"].includes(Common.getDeviceName()) ? "ODO_PULLUP" : "OD_PULLUP" , displayName : "Open-drain output with pull-up enabled output and input" },
+            { name: ["F28E12x", "MCPC029"].includes(Common.getDeviceName()) ? "ODO_INVERT" : "OD_INVERT" , displayName : "Open-drain output/floating inverted input" },
+            { name: ["F28E12x", "MCPC029"].includes(Common.getDeviceName()) ? "ODO_PULLUP_INVERT" : "OD_PULLUP_INVERT" , displayName : "Open-drain output with pull-up enabled output and INVERTED input" }
        ]
     },
     {

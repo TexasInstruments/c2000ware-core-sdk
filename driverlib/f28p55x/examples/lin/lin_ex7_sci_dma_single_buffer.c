@@ -30,7 +30,7 @@
 //
 //
 // 
-// C2000Ware v6.00.01.00
+// C2000Ware v26.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -180,11 +180,6 @@ void main(void)
     // Wait until space is available in the transmit buffer.
     //
     while(!LIN_isSCISpaceAvailable(LINA_BASE)){}
-
-    //
-    //Initiate transfer through a CPU write
-    //
-    LIN_sendData(LINA_BASE,(unsigned int*)0xFFFF);
 
     //
     // Start the DMA receive channel

@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -69,16 +69,12 @@
 #define XBAR_FLG1_CMPSS2_CTRIPH      0x8U        // Input Flag for CMPSS2.CTRIPH Signal
 #define XBAR_FLG1_CMPSS3_CTRIPL      0x10U       // Input Flag for CMPSS3.CTRIPL Signal
 #define XBAR_FLG1_CMPSS3_CTRIPH      0x20U       // Input Flag for CMPSS3.CTRIPH Signal
-#define XBAR_FLG1_CMPSS4_CTRIPL      0x40U       // Input Flag for CMPSS4.CTRIPL Signal
-#define XBAR_FLG1_CMPSS4_CTRIPH      0x80U       // Input Flag for CMPSS4.CTRIPH Signal
 #define XBAR_FLG1_CMPSS1_CTRIPOUTL   0x10000U    // Input Flag for CMPSS1.CTRIPOUTL Signal
 #define XBAR_FLG1_CMPSS1_CTRIPOUTH   0x20000U    // Input Flag for CMPSS1.CTRIPOUTH Signal
 #define XBAR_FLG1_CMPSS2_CTRIPOUTL   0x40000U    // Input Flag for CMPSS2.CTRIPOUTL Signal
 #define XBAR_FLG1_CMPSS2_CTRIPOUTH   0x80000U    // Input Flag for CMPSS2.CTRIPOUTH Signal
 #define XBAR_FLG1_CMPSS3_CTRIPOUTL   0x100000U   // Input Flag for CMPSS3.CTRIPOUTL Signal
 #define XBAR_FLG1_CMPSS3_CTRIPOUTH   0x200000U   // Input Flag for CMPSS3.CTRIPOUTH Signal
-#define XBAR_FLG1_CMPSS4_CTRIPOUTL   0x400000U   // Input Flag for CMPSS4.CTRIPOUTL Signal
-#define XBAR_FLG1_CMPSS4_CTRIPOUTH   0x800000U   // Input Flag for CMPSS4.CTRIPOUTH Signal
 
 //*************************************************************************************************
 //
@@ -146,16 +142,12 @@
 #define XBAR_CLR1_CMPSS2_CTRIPH      0x8U        // Input Flag Clear for CMPSS2.CTRIPH Signal
 #define XBAR_CLR1_CMPSS3_CTRIPL      0x10U       // Input Flag Clear for CMPSS3.CTRIPL Signal
 #define XBAR_CLR1_CMPSS3_CTRIPH      0x20U       // Input Flag Clear for CMPSS3.CTRIPH Signal
-#define XBAR_CLR1_CMPSS4_CTRIPL      0x40U       // Input Flag Clear for CMPSS4.CTRIPL Signal
-#define XBAR_CLR1_CMPSS4_CTRIPH      0x80U       // Input Flag Clear for CMPSS4.CTRIPH Signal
 #define XBAR_CLR1_CMPSS1_CTRIPOUTL   0x10000U    // Input Flag Clear for CMPSS1.CTRIPOUTL Signal
 #define XBAR_CLR1_CMPSS1_CTRIPOUTH   0x20000U    // Input Flag Clear for CMPSS1.CTRIPOUTH Signal
 #define XBAR_CLR1_CMPSS2_CTRIPOUTL   0x40000U    // Input Flag Clear for CMPSS2.CTRIPOUTL Signal
 #define XBAR_CLR1_CMPSS2_CTRIPOUTH   0x80000U    // Input Flag Clear for CMPSS2.CTRIPOUTH Signal
 #define XBAR_CLR1_CMPSS3_CTRIPOUTL   0x100000U   // Input Flag Clear for CMPSS3.CTRIPOUTL Signal
 #define XBAR_CLR1_CMPSS3_CTRIPOUTH   0x200000U   // Input Flag Clear for CMPSS3.CTRIPOUTH Signal
-#define XBAR_CLR1_CMPSS4_CTRIPOUTL   0x400000U   // Input Flag Clear for CMPSS4.CTRIPOUTL Signal
-#define XBAR_CLR1_CMPSS4_CTRIPOUTH   0x800000U   // Input Flag Clear for CMPSS4.CTRIPOUTH Signal
 
 //*************************************************************************************************
 //

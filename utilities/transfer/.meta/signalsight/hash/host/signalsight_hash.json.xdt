@@ -194,7 +194,7 @@
                 % bitsStr = bitsStr.slice(0, -1) + '}'
             % }
         % }
-        % let display = "";
+        % let display = variableArray[m].displayName != "" ? ` "display" : "${variableArray[m].displayName}",` : "";
         % let varName = variableArray[m].$name;
         % if(variableArray[m].useDifferentName){
             % const regexSpecialChar = /[^a-zA-Z0-9_]/g;

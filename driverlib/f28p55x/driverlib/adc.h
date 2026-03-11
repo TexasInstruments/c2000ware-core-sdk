@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v6.00.01.00
+// C2000Ware v26.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -1741,7 +1741,7 @@ ADC_configOSDetectMode(uint32_t base, ADC_OSDetectMode modeVal)
 //
 //! Enables Open/Shorts Detection Circuit logic.
 //!
-//! \param base is the base address of the ASYSCTL.
+//! \param base is the base address of the ADC module.
 //!
 //! This function enables the open/short detection circuit logic. Use
 //! ADC_configOSDetectMode() to configure the mode of open/shorts detection
@@ -1756,14 +1756,15 @@ ADC_enableOSDetectMode(uint32_t base)
     //
     // Check the arguments.
     //
-    ASSERT(base == ANALOGSUBSYS_BASE);
+    ASSERT(ADC_isBaseValid(base));
 
     //
     // Enable open/shorts detection circuit.
     //
 
     EALLOW;
-    HWREGH(base + ASYSCTL_O_ADCOSDETECT) |= ASYSCTL_ADCOSDETECT_OSDETECT_EN;
+    HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_ADCOSDETECT) |= ASYSCTL_ADCOSDETECT_OSDETECT_EN;
+    HWREGH(base + ADC_O_CONFIG2) = 0x0002; 
     EDIS;
 }
 
@@ -1771,7 +1772,7 @@ ADC_enableOSDetectMode(uint32_t base)
 //
 //! Disables Open/Shorts Detection Circuit logic.
 //!
-//! \param base is the base address of the ASYSCTL.
+//! \param base is the base address of the ADC module.
 //!
 //! This function disables the open/short detection circuit logic.
 //!
@@ -1784,14 +1785,15 @@ ADC_disableOSDetectMode(uint32_t base)
     //
     // Check the arguments.
     //
-    ASSERT(base == ANALOGSUBSYS_BASE);
+    ASSERT(ADC_isBaseValid(base));
 
     //
     // Disable open/shorts detection circuit.
     //
 
     EALLOW;
-    HWREGH(base + ASYSCTL_O_ADCOSDETECT) &= ~ASYSCTL_ADCOSDETECT_OSDETECT_EN;
+    HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_ADCOSDETECT) &= ~ASYSCTL_ADCOSDETECT_OSDETECT_EN;
+    HWREGH(base + ADC_O_CONFIG2) = 0x0000;
     EDIS;
 }
 //*****************************************************************************

@@ -10,7 +10,7 @@
 //  Target Family:     F28E12x
 //
 //#############################################################################
-// $Copyright: Copyright (C) 2025 Texas Instruments Incorporated -
+// $Copyright: Copyright (C) 2026 Texas Instruments Incorporated -
 //             http://www.ti.com/ ALL RIGHTS RESERVED $
 //#############################################################################
 

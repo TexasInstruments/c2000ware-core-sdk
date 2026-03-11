@@ -464,8 +464,10 @@ var pmbusModule = {
         var pinmuxQualMods = Pinmux.getGpioQualificationModInstDefinitions("PMBUS", inst)
         for (var pinmuxQualMod of pinmuxQualMods)
         {
-            pinmuxQualMod.args.padConfig = "PULLUP";
-            pinmuxQualMod.args.qualMode = "GPIO_QUAL_ASYNC";
+            pinmuxQualMod.requiredArgs = {
+                qualMode : "GPIO_QUAL_ASYNC",
+                padConfig:  "PULLUP"
+            }
         }
         ownedInstances = ownedInstances.concat(pinmuxQualMods)
 

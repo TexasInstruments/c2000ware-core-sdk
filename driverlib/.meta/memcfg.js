@@ -156,7 +156,7 @@ if(["F2838x", "F2837xD", "F2837xS", "F2807x","F28P65x"].includes(system.deviceDa
 }
 
 /* Section : Access Protection  */
-if(!["F28E12x"].includes(system.deviceData.deviceId))
+if(!["F28E12x", "MCPC029"].includes(system.deviceData.deviceId))
 {
     AccProt.AcessProtectionRAMs[system.deviceData.deviceId.toLowerCase()].
         forEach((element, index) =>
@@ -208,7 +208,7 @@ if(!["F28E12x"].includes(system.deviceData.deviceId))
                                 })
                             }
                         }
-                    }   
+                    }
                 if (ramMacro[12]=="G" && (Common.isContextCPU1()))
                     {
                         if(device_driverlib_peripheral.MEMCFG_SECT.map(a=>a.name).includes(ramMacro))
@@ -233,7 +233,7 @@ if(!["F28E12x"].includes(system.deviceData.deviceId))
                                 default      : AvailableOptions.map(a=>a.name)
                             })
                         }
-                    } 
+                    }
             }
         );
 }
@@ -245,7 +245,7 @@ device_driverlib_peripheral.MEMCFG_SECT.
         {
             if (!element.name.includes("_ALL"))
             {
-                if (Common.isContextCPU1())       
+                if (Common.isContextCPU1())
                     {
                         if (element.name.includes("MEMCFG_SECT_GS"))
                         InitRAM.push(
@@ -258,7 +258,7 @@ device_driverlib_peripheral.MEMCFG_SECT.
                     }
                 // only GS/LS/D/M/MSG RAMs. check for MEMCFG_SECT_M covers MSGRAM as well
                 if ((((element.name.includes("MEMCFG_SECT_D") || element.name.includes("MEMCFG_SECT_LS")) && (Common.isContextCPU1() || !["F28P65x"].includes(system.deviceData.deviceId))) ||
-                    element.name.includes("MEMCFG_SECT_M")) && (Common.isContextCPU1() || !element.name.includes("CM"))) 
+                    element.name.includes("MEMCFG_SECT_M")) && (Common.isContextCPU1() || !element.name.includes("CM")))
                     {
                         InitRAM.push(
                             {
@@ -296,7 +296,7 @@ forEach((element, index) =>
                     default: "NoLock"
                 })
             }
-            if (Common.isContextCPU1()) 
+            if (Common.isContextCPU1())
            {
                 if(element.name.includes("MEMCFG_SECT_GS") && (Common.isContextCPU1() || !element.name.includes("CM")))
                 {
@@ -312,7 +312,7 @@ forEach((element, index) =>
                         ],
                         default: "NoLock"
                     })
-                }  
+                }
             }
         }
     }
@@ -322,7 +322,7 @@ forEach((element, index) =>
 /* Section : Access Violation Interrupt */
 if(device_driverlib_peripheral.MEMCFG_MVIOL)
 {
-    device_driverlib_peripheral.MEMCFG_MVIOL.     // Controller access violation interrupts                 
+    device_driverlib_peripheral.MEMCFG_MVIOL.     // Controller access violation interrupts
         forEach((element, index) =>
             {
                 ViolIntConfig.push(
@@ -376,7 +376,7 @@ staticConfig.push(
     }
 )
 
-if(!["F28E12x"].includes((Common.getDeviceName())))
+if(!["F28E12x", "MCPC029"].includes((Common.getDeviceName())))
 {
     staticConfig.push(
         {
@@ -385,7 +385,7 @@ if(!["F28E12x"].includes((Common.getDeviceName())))
             longDescription: "",
             config         : LSRAMOwnerConfig
         }
-    )  
+    )
 }
 
 if (Common.isContextCPU1())
@@ -431,7 +431,7 @@ if(yesROM)
     )
 }
 
-if(!["F28E12x"].includes((Common.getDeviceName())))
+if(!["F28E12x", "MCPC029"].includes((Common.getDeviceName())))
 {
     staticConfig.push(
         {
@@ -440,7 +440,7 @@ if(!["F28E12x"].includes((Common.getDeviceName())))
             longDescription: "MULTICORE NOTE: Access Protection code for GSRAMs owned by CPU2 will be generated on CPU2",
             config         : AccessConfig
         }
-    )  
+    )
 }
 
 staticConfig.push(
@@ -452,7 +452,7 @@ staticConfig.push(
     }
 )
 
-if(!["F28E12x"].includes(Common.getDeviceName()))
+if(!["F28E12x", "MCPC029"].includes(Common.getDeviceName()))
 {
     staticConfig.push(
         {
@@ -525,17 +525,17 @@ function onValidate(inst, validation)
         var contextNames = Common.getContextNames();
         var context1 = null;
         var context2 = null;
-        for (var cntx of contextNames) 
+        for (var cntx of contextNames)
         {
-            if (cntx.slice(-1) == "1")       // Look for CPU1 Context 
+            if (cntx.slice(-1) == "1")       // Look for CPU1 Context
             {
             context1 = cntx;
-            }	
+            }
 
-            if (cntx.slice(-1) == "2")       // Look for CPU2 Context 
+            if (cntx.slice(-1) == "2")       // Look for CPU2 Context
             {
             context2 = cntx;
-            }	
+            }
         }
         var CPU1_mod = Common.getModuleForCore("/driverlib/memcfg.js", context1);   // get module from core 1
         var CPU2_mod = Common.getModuleForCore("/driverlib/memcfg.js", context2);   // get module from core 1
@@ -560,6 +560,19 @@ function onValidate(inst, validation)
     else if (Common.isContextCPU2()){
 
         validation.logWarning("Error checking and code generation are limited for single core SysConfig on a multicore device.", inst, "init_MEMCFG_SECT_M0");
+    }
+
+    // device is in the list and inst.config_MEMCFG_SECT_LS8 == "CLA_prog"
+    var device_exceptiion_list = ["f28p55x","f28p65x","f28p551x"]
+    var deviceName = system.deviceData.deviceId.toLowerCase()
+    var cmdModulePresent = system.modules["/utilities/cmd_tool/cmd_syscfg/source/CMD"]
+    if(device_exceptiion_list.includes(deviceName)) {
+        if (inst.config_MEMCFG_SECT_LS8 == "CLA_prog" && !cmdModulePresent) {
+            validation.logWarning(`Make sure your linker cmd file uses the Cla1Prog SECTION definitions used in the corresponding ${deviceName}_cla_ls8_9_flash_lnk.cmd or ${deviceName}_cla_ls8_9_ram_lnk.cmd file from path /device_support/${deviceName}/common/cmd/.`, inst, "config_MEMCFG_SECT_LS8");
+        }
+        if (inst.config_MEMCFG_SECT_LS9 == "CLA_prog" && !cmdModulePresent) {
+            validation.logWarning(`Make sure your linker cmd file uses the Cla1Prog SECTION definitions used in the corresponding ${deviceName}_cla_ls8_9_flash_lnk.cmd or ${deviceName}_cla_ls8_9_ram_lnk.cmd file from path /device_support/${deviceName}/common/cmd/.`, inst, "config_MEMCFG_SECT_LS9");
+        }
     }
 
 }

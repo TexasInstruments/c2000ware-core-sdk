@@ -1,0 +1,14 @@
+% let moduleName = "drv";
+% let module = system.modules['/driverlib/' + moduleName + '.js'];
+%if (module != null)
+%{
+//*****************************************************************************
+//
+// DRV Configurations
+//
+//*****************************************************************************
+    % for(let i = 0; i < module.$instances.length; i++) {
+        % let instance = module.$instances[i];
+void `instance.$name`_init();
+    % }
+%}

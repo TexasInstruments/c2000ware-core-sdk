@@ -43,7 +43,5 @@ var group__interrupt__api =
     [ "Interrupt_initModule", "group__interrupt__api.html#ga5ed592e5db2f93ce1e3f049b92740d82", null ],
     [ "Interrupt_initVectorTable", "group__interrupt__api.html#gab36687326952b2131939a7ccae276cda", null ],
     [ "Interrupt_enable", "group__interrupt__api.html#ga9d2e78b67270f64253ed520cc74a9064", null ],
-    [ "Interrupt_disable", "group__interrupt__api.html#ga9a3a8f11adc85d5e3669f9332c7fd3f9", null ],
-    [ "__disable_interrupts", "group__interrupt__api.html#gaf3a05ab9f4821ba02bb7c942869cedfc", null ],
-    [ "__enable_interrupts", "group__interrupt__api.html#gaae1cc466889260d958fa2d68d4541ce1", null ]
+    [ "Interrupt_disable", "group__interrupt__api.html#ga9a3a8f11adc85d5e3669f9332c7fd3f9", null ]
 ];

@@ -122,7 +122,7 @@ function getSYSCLK(cpu)
                 else
                 {
                     cpu = "2"
-                    
+
                     return clockTree["CPU" + cpu + "_SYSCLK"].in
                 }
             }
@@ -236,12 +236,12 @@ function getContextNames()
 // If a multi-core device is launched in signle view it wont return true.
 //
 function isMultiCoreSysConfig()
-{   
+{
     return (getContextNames().length > 1);
 }
 
 function isMultiCoreDevice()
-{   
+{
     return (system.context.includes("CPU"));
 }
 
@@ -323,7 +323,7 @@ function getConfigNameRecursive(arrayConfigs)
 {
     var configNames = [];
     for (var modConfig of arrayConfigs)
-    {        
+    {
         if (modConfig.config)
         {
             configNames = configNames.concat(getConfigNameRecursive(modConfig.config))
@@ -341,7 +341,7 @@ function getConfigsRecursive(arrayConfigs)
 {
     var configNames = [];
     for (var modConfig of arrayConfigs)
-    {        
+    {
         if (modConfig.config)
         {
             configNames = configNames.concat(getConfigsRecursive(modConfig.config))
@@ -656,7 +656,8 @@ function SYSCLK_getMaxMHz()
         F28P65x     : 200,
         F28P55x     : 150,
         F28E12x     : 160,
-        F28P551x    : 160
+        F28P551x    : 160,
+        MCPC029     : 160,
     }
     return sysclk_max[getDeviceName()];
 }

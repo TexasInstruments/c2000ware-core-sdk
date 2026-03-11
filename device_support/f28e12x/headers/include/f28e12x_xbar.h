@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -56,32 +56,32 @@ struct XBARFLG1_BITS {                  // bits description
     Uint16 CMPSS2_CTRIPH:1;             // 3 Input Flag for CMPSS2.CTRIPH Signal
     Uint16 CMPSS3_CTRIPL:1;             // 4 Input Flag for CMPSS3.CTRIPL Signal
     Uint16 CMPSS3_CTRIPH:1;             // 5 Input Flag for CMPSS3.CTRIPH Signal
-    Uint16 CMPSS4_CTRIPL:1;             // 6 Input Flag for CMPSS4.CTRIPL Signal
-    Uint16 CMPSS4_CTRIPH:1;             // 7 Input Flag for CMPSS4.CTRIPH Signal
-    Uint16 rsvd1:1;                     // 8 Reserved
-    Uint16 rsvd2:1;                     // 9 Reserved
-    Uint16 rsvd3:1;                     // 10 Reserved
-    Uint16 rsvd4:1;                     // 11 Reserved
-    Uint16 rsvd5:1;                     // 12 Reserved
-    Uint16 rsvd6:1;                     // 13 Reserved
-    Uint16 rsvd7:1;                     // 14 Reserved
-    Uint16 rsvd8:1;                     // 15 Reserved
+    Uint16 rsvd1:1;                     // 6 Reserved
+    Uint16 rsvd2:1;                     // 7 Reserved
+    Uint16 rsvd3:1;                     // 8 Reserved
+    Uint16 rsvd4:1;                     // 9 Reserved
+    Uint16 rsvd5:1;                     // 10 Reserved
+    Uint16 rsvd6:1;                     // 11 Reserved
+    Uint16 rsvd7:1;                     // 12 Reserved
+    Uint16 rsvd8:1;                     // 13 Reserved
+    Uint16 rsvd9:1;                     // 14 Reserved
+    Uint16 rsvd10:1;                    // 15 Reserved
     Uint16 CMPSS1_CTRIPOUTL:1;          // 16 Input Flag for CMPSS1.CTRIPOUTL Signal
     Uint16 CMPSS1_CTRIPOUTH:1;          // 17 Input Flag for CMPSS1.CTRIPOUTH Signal
     Uint16 CMPSS2_CTRIPOUTL:1;          // 18 Input Flag for CMPSS2.CTRIPOUTL Signal
     Uint16 CMPSS2_CTRIPOUTH:1;          // 19 Input Flag for CMPSS2.CTRIPOUTH Signal
     Uint16 CMPSS3_CTRIPOUTL:1;          // 20 Input Flag for CMPSS3.CTRIPOUTL Signal
     Uint16 CMPSS3_CTRIPOUTH:1;          // 21 Input Flag for CMPSS3.CTRIPOUTH Signal
-    Uint16 CMPSS4_CTRIPOUTL:1;          // 22 Input Flag for CMPSS4.CTRIPOUTL Signal
-    Uint16 CMPSS4_CTRIPOUTH:1;          // 23 Input Flag for CMPSS4.CTRIPOUTH Signal
-    Uint16 rsvd9:1;                     // 24 Reserved
-    Uint16 rsvd10:1;                    // 25 Reserved
-    Uint16 rsvd11:1;                    // 26 Reserved
-    Uint16 rsvd12:1;                    // 27 Reserved
-    Uint16 rsvd13:1;                    // 28 Reserved
-    Uint16 rsvd14:1;                    // 29 Reserved
-    Uint16 rsvd15:1;                    // 30 Reserved
-    Uint16 rsvd16:1;                    // 31 Reserved
+    Uint16 rsvd11:1;                    // 22 Reserved
+    Uint16 rsvd12:1;                    // 23 Reserved
+    Uint16 rsvd13:1;                    // 24 Reserved
+    Uint16 rsvd14:1;                    // 25 Reserved
+    Uint16 rsvd15:1;                    // 26 Reserved
+    Uint16 rsvd16:1;                    // 27 Reserved
+    Uint16 rsvd17:1;                    // 28 Reserved
+    Uint16 rsvd18:1;                    // 29 Reserved
+    Uint16 rsvd19:1;                    // 30 Reserved
+    Uint16 rsvd20:1;                    // 31 Reserved
 };
 
 union XBARFLG1_REG {
@@ -232,32 +232,32 @@ struct XBARCLR1_BITS {                  // bits description
     Uint16 CMPSS2_CTRIPH:1;             // 3 Input Flag Clear for CMPSS2.CTRIPH Signal
     Uint16 CMPSS3_CTRIPL:1;             // 4 Input Flag Clear for CMPSS3.CTRIPL Signal
     Uint16 CMPSS3_CTRIPH:1;             // 5 Input Flag Clear for CMPSS3.CTRIPH Signal
-    Uint16 CMPSS4_CTRIPL:1;             // 6 Input Flag Clear for CMPSS4.CTRIPL Signal
-    Uint16 CMPSS4_CTRIPH:1;             // 7 Input Flag Clear for CMPSS4.CTRIPH Signal
-    Uint16 rsvd1:1;                     // 8 Reserved
-    Uint16 rsvd2:1;                     // 9 Reserved
-    Uint16 rsvd3:1;                     // 10 Reserved
-    Uint16 rsvd4:1;                     // 11 Reserved
-    Uint16 rsvd5:1;                     // 12 Reserved
-    Uint16 rsvd6:1;                     // 13 Reserved
-    Uint16 rsvd7:1;                     // 14 Reserved
-    Uint16 rsvd8:1;                     // 15 Reserved
+    Uint16 rsvd1:1;                     // 6 Reserved
+    Uint16 rsvd2:1;                     // 7 Reserved
+    Uint16 rsvd3:1;                     // 8 Reserved
+    Uint16 rsvd4:1;                     // 9 Reserved
+    Uint16 rsvd5:1;                     // 10 Reserved
+    Uint16 rsvd6:1;                     // 11 Reserved
+    Uint16 rsvd7:1;                     // 12 Reserved
+    Uint16 rsvd8:1;                     // 13 Reserved
+    Uint16 rsvd9:1;                     // 14 Reserved
+    Uint16 rsvd10:1;                    // 15 Reserved
     Uint16 CMPSS1_CTRIPOUTL:1;          // 16 Input Flag Clear for CMPSS1.CTRIPOUTL Signal
     Uint16 CMPSS1_CTRIPOUTH:1;          // 17 Input Flag Clear for CMPSS1.CTRIPOUTH Signal
     Uint16 CMPSS2_CTRIPOUTL:1;          // 18 Input Flag Clear for CMPSS2.CTRIPOUTL Signal
     Uint16 CMPSS2_CTRIPOUTH:1;          // 19 Input Flag Clear for CMPSS2.CTRIPOUTH Signal
     Uint16 CMPSS3_CTRIPOUTL:1;          // 20 Input Flag Clear for CMPSS3.CTRIPOUTL Signal
     Uint16 CMPSS3_CTRIPOUTH:1;          // 21 Input Flag Clear for CMPSS3.CTRIPOUTH Signal
-    Uint16 CMPSS4_CTRIPOUTL:1;          // 22 Input Flag Clear for CMPSS4.CTRIPOUTL Signal
-    Uint16 CMPSS4_CTRIPOUTH:1;          // 23 Input Flag Clear for CMPSS4.CTRIPOUTH Signal
-    Uint16 rsvd9:1;                     // 24 Reserved
-    Uint16 rsvd10:1;                    // 25 Reserved
-    Uint16 rsvd11:1;                    // 26 Reserved
-    Uint16 rsvd12:1;                    // 27 Reserved
-    Uint16 rsvd13:1;                    // 28 Reserved
-    Uint16 rsvd14:1;                    // 29 Reserved
-    Uint16 rsvd15:1;                    // 30 Reserved
-    Uint16 rsvd16:1;                    // 31 Reserved
+    Uint16 rsvd11:1;                    // 22 Reserved
+    Uint16 rsvd12:1;                    // 23 Reserved
+    Uint16 rsvd13:1;                    // 24 Reserved
+    Uint16 rsvd14:1;                    // 25 Reserved
+    Uint16 rsvd15:1;                    // 26 Reserved
+    Uint16 rsvd16:1;                    // 27 Reserved
+    Uint16 rsvd17:1;                    // 28 Reserved
+    Uint16 rsvd18:1;                    // 29 Reserved
+    Uint16 rsvd19:1;                    // 30 Reserved
+    Uint16 rsvd20:1;                    // 31 Reserved
 };
 
 union XBARCLR1_REG {

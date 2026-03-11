@@ -6,7 +6,7 @@
 //
 //#############################################################################
 // 
-// C2000Ware v6.00.01.00
+// C2000Ware v26.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -3398,7 +3398,7 @@ EPWM_setupEPWMLinks(uint32_t base, EPWM_CurrentLink epwmLink,
     }
     else if((uint16_t)linkComp > 63U)
     {
-        registerOffset = base + EPWM_O_XLINKXLOAD;
+        registerOffset = base + EPWM_O_XCMP + EPWM_O_XLINKXLOAD;
         link = (uint32_t)linkComp - 64U;
     }
     else

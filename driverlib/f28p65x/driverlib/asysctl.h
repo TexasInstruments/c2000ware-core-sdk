@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v6.00.01.00
+// C2000Ware v26.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -902,8 +902,14 @@ static inline void ASysCtl_disableADCDACLoopback(uint32_t config)
 //*****************************************************************************
 static inline void ASysCtl_enableGPIOInputBuffer(uint32_t pin)
 {
-    ASSERT((pin == 0U)  || (pin == 23U) || (pin == 25U) ||
-           (pin == 32U) || (pin == 46U) || (pin == 103U));
+    ASSERT(
+           (pin == 0U) ||
+           (pin == 23U) ||
+           (pin == 25U) ||
+           (pin == 31U) ||
+           (pin == 46U) ||
+           (pin == 103U)
+    );
 
     uint16_t mask =
                     (pin == 0U)   ? ASYSCTL_GPIOINENACTRL_GPIO0   :
@@ -930,8 +936,14 @@ static inline void ASysCtl_enableGPIOInputBuffer(uint32_t pin)
 //*****************************************************************************
 static inline void ASysCtl_disableGPIOInputBuffer(uint32_t pin)
 {
-    ASSERT((pin == 0U)  || (pin == 23U) || (pin == 25U) ||
-           (pin == 32U) || (pin == 46U) || (pin == 103U));
+    ASSERT(
+           (pin == 0U) ||
+           (pin == 23U) ||
+           (pin == 25U) ||
+           (pin == 31U) ||
+           (pin == 46U) ||
+           (pin == 103U)
+    );
 
     uint16_t mask =
                     (pin == 0U)   ? ASYSCTL_GPIOINENACTRL_GPIO0   :

@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -473,13 +473,6 @@ Interrupt_enable(uint32_t interruptNumber);
 extern void
 Interrupt_disable(uint32_t interruptNumber);
 
-//*****************************************************************************
-//
-// Extern compiler intrinsic prototypes. See compiler User's Guide for details.
-//
-//*****************************************************************************
-extern uint16_t __disable_interrupts(void);
-extern uint16_t __enable_interrupts(void);
 
 //*****************************************************************************
 //

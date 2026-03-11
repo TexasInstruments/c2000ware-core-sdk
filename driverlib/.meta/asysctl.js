@@ -1,13 +1,13 @@
 let Common   = system.getScript("/driverlib/Common.js");
 let Pinmux   = system.getScript("/driverlib/pinmux.js");
 
-let device_driverlib_peripheral = 
-    system.getScript("/driverlib/device_driverlib_peripherals/" + 
+let device_driverlib_peripheral =
+    system.getScript("/driverlib/device_driverlib_peripherals/" +
         Common.getDeviceName().toLowerCase() + "_asysctl.js");
 
 function onChangeAnalogRef(inst, ui)
 {
-    if (["F28004x","F28002x", "F28003x","F280013x", "F280015x", "F28P65x", "F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName())){
+    if (["F28004x","F28002x", "F28003x","F280013x", "F280015x", "F28P65x", "F28P55x","F28P551x","F28E12x", "MCPC029"].includes(Common.getDeviceName())){
         if (inst.analogReference == "INTERNAL"){
             ui.analogReferenceVoltage.hidden = false
         }
@@ -39,11 +39,11 @@ let staticConfig = [
                 default: false,
             },
         ]
-    },   
+    },
 ];
 
 //**************************************************************************
-// analogReference OPTIONS - choose which device+package combinations have 
+// analogReference OPTIONS - choose which device+package combinations have
 // only one reference mode option
 
 var analogReference_opts = [];
@@ -57,12 +57,12 @@ if ((Common.getDevicePackage() == "32RHB") &&                   // 32pin package
         {name: "EXTERNAL", displayName: "External"}
     ];
 }
-// use below else-if statement for future devices that don't have 
+// use below else-if statement for future devices that don't have
 // VREFHI/VREFLO, so we don't complicate the logic above
 // else if()
 // {
 // }
-// All other device+package combos that have "analogReference" option have 
+// All other device+package combos that have "analogReference" option have
 // both external and internal options
 else if (["F28P55x","F28P551x"].includes(Common.getDeviceName()))
 {
@@ -80,7 +80,7 @@ else
     ];
 }
 
-if (["F28004x","F28002x", "F28003x","F280013x","F280015x", "F28P65x", "F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName()))
+if (["F28004x","F28002x", "F28003x","F280013x","F280015x", "F28P65x", "F28P55x","F28P551x","F28E12x", "MCPC029"].includes(Common.getDeviceName()))
 {
     staticConfig.push(
         {
@@ -94,7 +94,7 @@ if (["F28004x","F28002x", "F28003x","F280013x","F280015x", "F28P65x", "F28P55x",
                 {
                     name        : "analogReference",
                     displayName : "Analog Reference",
-                    onChange    : onChangeAnalogRef, 
+                    onChange    : onChangeAnalogRef,
                     default     : "EXTERNAL",
                     options     : analogReference_opts
                 },
@@ -102,19 +102,19 @@ if (["F28004x","F28002x", "F28003x","F280013x","F280015x", "F28P65x", "F28P55x",
                 {
                     name        : "analogReferenceVoltage",
                     displayName : "Analog Reference Voltage",
-                    hidden      : true, 
+                    hidden      : true,
                     default     : "2P5",
-                    options     : 
+                    options     :
                     [
                         {name: "2P5", displayName: "2.5V"},
                         {name: "1P65", displayName: "1.65V"},
                     ]
                 },
             ]
-        }, 
+        },
     );
 }
-if (["F28P55x","F28P551x","F280013x","F280015x", "F28E12x"].includes(Common.getDeviceName()))
+if (["F28P55x","F28P551x","F280013x","F280015x", "F28E12x", "MCPC029"].includes(Common.getDeviceName()))
 {
     staticConfig.push(
         {
@@ -130,12 +130,12 @@ if (["F28P55x","F28P551x","F280013x","F280015x", "F28E12x"].includes(Common.getD
                     default     : false,
                 },
             ]
-        }, 
+        },
     );
 }
 
 function onValidate(inst, validation) {
-    if ((Common.getDevicePackage() == "32RHB") && 
+    if ((Common.getDevicePackage() == "32RHB") &&
         ["F280013x","F280015x"].includes(Common.getDeviceName())) // for F280013x/15x
     {
         if (inst["analogReference"] == "EXTERNAL")

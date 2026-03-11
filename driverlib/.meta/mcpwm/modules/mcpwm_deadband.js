@@ -1,7 +1,7 @@
 let Common   = system.getScript("/driverlib/Common.js");
 let Pinmux   = system.getScript("/driverlib/pinmux.js");
-let device_driverlib_peripheral = 
-    system.getScript("/driverlib/device_driverlib_peripherals/" + 
+let device_driverlib_peripheral =
+    system.getScript("/driverlib/device_driverlib_peripherals/" +
         Common.getDeviceName().toLowerCase() + "_mcpwm.js");
 
 function onChangeDeadbandMode(inst, ui, mode)
@@ -21,7 +21,7 @@ function onChangeDeadbandMode(inst, ui, mode)
         inst.mcpwmDeadband_outputSwapOutB = false;
     }
     else if (mode == "AL")
-    {        
+    {
         inst.mcpwmDeadband_inputRED = "MCPWM_DB_INPUT_MCPWMA";
         inst.mcpwmDeadband_inputFED = "MCPWM_DB_INPUT_MCPWMA";
 
@@ -131,7 +131,7 @@ var config = [
         description : 'Mode for the Dead-Band Submodule',
         config     : [
             {
-                name: "AH", 
+                name: "AH",
                 displayName: "Active High",
                 description : '',
                 buttonText: "Setup the Dead-Band Module",
@@ -140,7 +140,7 @@ var config = [
                 },
             },
             {
-                name: "AL", 
+                name: "AL",
                 displayName: "Active Low",
                 description : '',
                 buttonText: "Setup the Dead-Band Module",
@@ -149,7 +149,7 @@ var config = [
                 },
             },
             {
-                name: "AHC", 
+                name: "AHC",
                 displayName: "Active High Complementary",
                 description : '',
                 buttonText: "Setup the Dead-Band Module",
@@ -158,7 +158,7 @@ var config = [
                 },
             },
             {
-                name: "ALC", 
+                name: "ALC",
                 displayName: "Active Low Complementary",
                 description : '',
                 buttonText: "Setup the Dead-Band Module",
@@ -167,7 +167,7 @@ var config = [
                 },
             },
             {
-                name: "DUAL", 
+                name: "DUAL",
                 displayName: "Dual Edge Delay Mode",
                 description : '',
                 buttonText: "Setup the Dead-Band Module",
@@ -183,7 +183,7 @@ var config = [
         description : 'Select the source for DBRED (Rising Edge Delay)',
         hidden      : false,
         default     : device_driverlib_peripheral.MCPWM_DB_INPUT[0].name,
-        options     : device_driverlib_peripheral.MCPWM_DB_INPUT.slice(0,2) 
+        options     : device_driverlib_peripheral.MCPWM_DB_INPUT.slice(0,2)
     },
     {
         name: "mcpwmDeadband_inputFED",
@@ -251,7 +251,7 @@ var config = [
         hidden      : false,
         default     : false,
         onChange    : onChangeEnableDelays
-    },    
+    },
     {
         name: "mcpwmDeadband_fedShadowLoadEvent",
         displayName : "FED Shadow Load Event",
@@ -340,7 +340,7 @@ var config = [
 
 ];
 
-if(["F28E12x"].includes(Common.getDeviceName()))
+if(["F28E12x", "MCPC029"].includes(Common.getDeviceName()))
 {
     // config = config.concat(
     //     {

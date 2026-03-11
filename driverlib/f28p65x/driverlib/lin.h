@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v6.00.01.00
+// C2000Ware v26.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -2709,7 +2709,8 @@ LIN_disableModule(uint32_t base)
 //!
 //! P = Prescaler  \n
 //! M = Fractional Divider \n
-//! Bitrate = (SYSCLOCK) / ((P + 1 + M/16) * 16) \n
+//! Bitrate = (VCLK) / ((P + 1 + M/16) * 16) \n
+//! VCLK = (SYSCLOCK/LINxCLKDIV)
 //!
 //! \return None.
 //

@@ -6,7 +6,7 @@
 //
 //*****************************************************************************
 void `module.peripheralName`_init(){
-%   for(var i = 0; i < module.$instances.length; i++) 
+%   for(var i = 0; i < module.$instances.length; i++)
 %   {
 %      var instance = module.$instances[i];
 	`instance.$name`_init();
@@ -64,7 +64,7 @@ void `instance.$name`_init(){
 %{
 	GPIO_setPadConfig(`instance.$name`, GPIO_PIN_TYPE_PULLUP | GPIO_PIN_TYPE_INVERT);
 %}
-		% if (!["F28002x", "F280013x", "F280015x","F28E12x"].includes(Common.getDeviceName())) {
+		% if (!["F28002x", "F280013x", "F280015x","F28E12x", "MCPC029"].includes(Common.getDeviceName())) {
 	GPIO_setControllerCore(`instance.$name`, `instance.controllerCore`);
 		% }
 	GPIO_setQualificationMode(`instance.$name`, `instance.qualMode`);

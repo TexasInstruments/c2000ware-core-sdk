@@ -11,6 +11,7 @@ if ([ "F2837xD",
       "F28002x",
       "F28P65x",
       "F28P55x",
+      "F28P551x",
       "F29H85x"].includes(Common.getDeviceName()))
 {
     clb_export = {

@@ -14,7 +14,7 @@ var lnMuxesOR = ""
 //
 //*****************************************************************************
 void `nameOfPeripheral`_init(){
-%   for(var i = 0; i < module.$instances.length; i++) 
+%   for(var i = 0; i < module.$instances.length; i++)
 %   {
 %      var instance = module.$instances[i];
 	`instance.$name`_init();
@@ -27,9 +27,9 @@ void `nameOfPeripheral`_init(){
     %   var instance = module.$instances[i];
     %   var instanceNumber = instance.cmpssLiteBase.match(/\d+/)[0]
 void `instance.$name`_init(){
-%   if( ["F280013x", "F280015x", "F28E12x"].includes(system.deviceData.deviceId)){
+%   if( ["F280013x", "F280015x", "F28E12x", "MCPC029"].includes(system.deviceData.deviceId)){
 %%{
-        
+
             if (i == 0)
             {
                 lnMuxesOR += "ASYSCTL_CMPLNMUX_SELECT_"+instanceNumber
@@ -105,7 +105,7 @@ void `instance.$name`_init(){
     //  - ePWM module must be configured before using here.
     //
         % }
-        % if(["F280013x", "F280015x", "F28E12x"].includes(system.deviceData.deviceId)){
+        % if(["F280013x", "F280015x", "F28E12x", "MCPC029"].includes(system.deviceData.deviceId)){
     CMPSSLITE_configDAC(`baseName`, `instance.dacValLoad`);
         % }
         % else{

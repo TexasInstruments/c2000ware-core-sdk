@@ -37,10 +37,10 @@
 //*****************************************************************************
 //
 // Board Configurations
-// Initializes the rest of the modules. 
-// Call this function in your application if you wish to do all module 
+// Initializes the rest of the modules.
+// Call this function in your application if you wish to do all module
 // initialization.
-// If you wish to not use some of the initializations, instead of the 
+// If you wish to not use some of the initializations, instead of the
 // Board_init use the individual Module_inits
 //
 //*****************************************************************************
@@ -54,7 +54,7 @@ void Board_init()
 % if (!Common.onlyPinmux())
 % {
 %	let keys = Object.keys(system.modules).sort();
-%	
+%
 %%{
 	// Ordered list of peripherals to initialize first, any peripherals outside will be added after in alphabetical order
 	var prioritizedPeripherals = [
@@ -68,17 +68,17 @@ void Board_init()
     var prioritizedPeripheralsNames = prioritizedPeripherals.map(element => element.name)
     var prioritizedPeripheralsPeripheralNames = prioritizedPeripherals.map(element => element.peripheralName)
 	// Ordered list for prioritize last
-	var lastPrioritized = ["INTERRUPT"]
+	var lastPrioritized = ["INTERRUPT", "DRV"]
 	// Skip in list
 	var skipPeripherals = ["ANALOG"]
 %%}
 % for(var currentPer in prioritizedPeripherals){
-    % let mod = system.modules["/driverlib/"+prioritizedPeripherals[currentPer].name.toLowerCase()+".js"] 
+    % let mod = system.modules["/driverlib/"+prioritizedPeripherals[currentPer].name.toLowerCase()+".js"]
 	% if (mod != null) {
 	`mod.peripheralName.replace("-","_")`_init();
 	% }
 % }
-%   
+%
 %	var peripheralsCodeGenerated = []
 %	for (let i = 0; i < keys.length; i++) {
 %		let mod = system.modules[keys[i]];
@@ -92,15 +92,15 @@ void Board_init()
 %		if (mod.peripheralName != null) {
 %			if (mod.peripheralName == "FLASH"){
 	// FLASH Initialization:
-	// The "FLASH_init()" should be called after or during initialization functions like 
+	// The "FLASH_init()" should be called after or during initialization functions like
 	// Device_init() or Device_enableAllPeripherals().
 %			}
 % 			else if (mod.peripheralName == "DC-DC"){
 	// DC-DC Initialization:
-	// The procedure to enable the internal DC-DC regulator should be completed 
+	// The procedure to enable the internal DC-DC regulator should be completed
 	// prior to other initialization functions. This is in order for the
-	// DC-DC initialization to happen during low current operation. 
-	// "DC_DC_init()" should be called before initialization functions like 
+	// DC-DC initialization to happen during low current operation.
+	// "DC_DC_init()" should be called before initialization functions like
 	// Device_init() or Device_enableAllPeripherals().
 %			}
 %			else if (mod.peripheralName == "IPC"){
@@ -148,7 +148,7 @@ void PinMux_init()
 % if (!Common.onlyPinmux())
 % {
 %	let keys = Object.keys(system.modules).sort();
-%	
+%
 %   var interruptCodeGenerated = false;
 %	for (let i = 0; i < keys.length; i++) {
 %		let mod = system.modules[keys[i]];

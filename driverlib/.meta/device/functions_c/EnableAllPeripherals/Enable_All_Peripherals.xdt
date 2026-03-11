@@ -1,4 +1,4 @@
-%%{ 
+%%{
 let 	Common   							= system.getScript("/driverlib/Common.js");
 let 	device_driverlib_peripheral 					= system.getScript("/driverlib/device_driverlib_peripherals/" +
         								  Common.getDeviceName().toLowerCase() + "_sysctl.js");
@@ -30,7 +30,7 @@ void Device_enableAllPeripherals(void)
 {
 % for (let perphEnable of device_driverlib_peripheral.SysCtl_PeripheralPCLOCKCR)
 % {
-% if (!["SYSCTL_PERIPH_CLK_GTBCLKSYNC","SYSCTL_PERIPH_CLK_CLA1BGCRC","SYSCTL_PERIPH_CLK_MPOST0",
+% if (!["SYSCTL_PERIPH_CLK_GTBCLKSYNC","SYSCTL_PERIPH_CLK_TBCLKSYNC","SYSCTL_PERIPH_CLK_CLA1BGCRC","SYSCTL_PERIPH_CLK_MPOST0",
 %"SYSCTL_PERIPH_CLK_PMBUSA","SYSCTL_PERIPH_CLK_CLA1","SYSCTL_PERIPH_CLK_PBIST","SYSCTL_PERIPH_CLK_HRCAL","SYSCTL_PERIPH_CLK_HRPWM",
 %"SYSCTL_PERIPH_CLK_EMIF1","SYSCTL_PERIPH_CLK_EMIF2","SYSCTL_PERIPH_CLK_USBA","SYSCTL_PERIPH_CLK_UPPA",
 %"SYSCTL_PERIPH_CLK_DCC0","SYSCTL_PERIPH_CLK_DCC1","SYSCTL_PERIPH_CLK_DCC2","SYSCTL_PERIPH_CLK_ECAT",
@@ -55,9 +55,9 @@ void Device_enableAllPeripherals(void)
 %{
 #ifdef CPU1
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_HRCAL);
-#endif 
+#endif
 %}
-% else 
+% else
 %{
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_HRCAL);
 %}
@@ -68,9 +68,9 @@ void Device_enableAllPeripherals(void)
 %{
 #ifdef CPU1
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_HRPWM);
-#endif 
+#endif
 %}
-% else 
+% else
 %{
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_HRPWM);
 %}
@@ -81,9 +81,9 @@ void Device_enableAllPeripherals(void)
 %{
 #ifdef CPU1
     SysCtl_enablePeripheral(`perphEnable.name`);
-#endif 
+#endif
 %}
-% if (EnableAllPeripherals_CLK_EMIF1.includes(device)&& (Common.isContextCPU1())) 
+% if (EnableAllPeripherals_CLK_EMIF1.includes(device)&& (Common.isContextCPU1()))
 %{
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EMIF1);
 %}
@@ -94,9 +94,9 @@ void Device_enableAllPeripherals(void)
 %{
 #ifdef CPU1
     SysCtl_enablePeripheral(`perphEnable.name`);
-#endif 
+#endif
 %}
-% if (EnableAllPeripherals_CLK_EMIF2.includes(device)&& (Common.isContextCPU1())) 
+% if (EnableAllPeripherals_CLK_EMIF2.includes(device)&& (Common.isContextCPU1()))
 %{
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_EMIF2);
 %}
@@ -107,7 +107,7 @@ void Device_enableAllPeripherals(void)
 %{
 #ifdef CPU1
     SysCtl_enablePeripheral(`perphEnable.name`);
-#endif 
+#endif
 %}
 % if (EnableAllPeripherals_CLK_USBA.includes(device)&& (Common.isContextCPU1()))
 %{
@@ -120,9 +120,9 @@ void Device_enableAllPeripherals(void)
 %{
 #ifdef CPU1
     SysCtl_enablePeripheral(`perphEnable.name`);
-#endif 
+#endif
 %}
-% if (EnableAllPeripherals_CLK_UPPA.includes(device)) 
+% if (EnableAllPeripherals_CLK_UPPA.includes(device))
 %{
     SysCtl_enablePeripheral(`perphEnable.name`);
 %}
@@ -133,9 +133,9 @@ void Device_enableAllPeripherals(void)
 %{
 #ifdef CPU1
     SysCtl_enablePeripheral(`perphEnable.name`);
-#endif 
+#endif
 %}
-% else 
+% else
 %{
     SysCtl_enablePeripheral(`perphEnable.name`);
 %}

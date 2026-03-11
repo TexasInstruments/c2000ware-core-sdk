@@ -7,25 +7,32 @@ let PINMUX_QUAL_GROUPNAME = "GROUP_pinmuxQual"
 
 let hsPinScript, spihsPins;
 if (["F28P65x", "F2838x", "F2837xD"].includes(Common.getDeviceName())){
-    hsPinScript = 
-    system.getScript("/driverlib/device_driverlib_peripherals/" + 
+    hsPinScript =
+    system.getScript("/driverlib/device_driverlib_peripherals/" +
         Common.getDeviceName().toLowerCase() + "_spi_hspins.js");
 
     spihsPins = hsPinScript.hsModePins;
 }
 if (["F28P55x","F28P551x"].includes(Common.getDeviceName())){
-    hsPinScript = 
-    system.getScript("/driverlib/device_driverlib_peripherals/" + 
+    hsPinScript =
+    system.getScript("/driverlib/device_driverlib_peripherals/" +
         Common.getDeviceName().toLowerCase() + "_spi_hspins.js");
 
     spihsPins = hsPinScript.nonHsModePins;
 }
 
+let drvPinScript, spidrvPins;
+if (["MCPC029"].includes(Common.getDeviceName())) {
+    drvPinScript = system.getScript("/driverlib/device_driverlib_peripherals/" +
+        Common.getDeviceName().toLowerCase() + "_drv_spi_pins.js");
+    spidrvPins=  drvPinScript.drvPins;
+}
+
 // PMBUS Filter
 let fastPlusModeScript, fastPlusModePins;
 if (["F28P55x","F28P551x"].includes(Common.getDeviceName())){
-    fastPlusModeScript = 
-    system.getScript("/driverlib/device_driverlib_peripherals/" + 
+    fastPlusModeScript =
+    system.getScript("/driverlib/device_driverlib_peripherals/" +
         Common.getDeviceName().toLowerCase() + "_pmbus_fast_plus_pins.js");
 
     fastPlusModePins = fastPlusModeScript.fastPlusModePins;
@@ -48,7 +55,7 @@ function getGpioQualificationModInstDefinitions(peripheralName, inst){
         if(!legacyInclusiveNames.legacyName)
         {
             ownedInstances.push({
-                name: qualModName,      
+                name: qualModName,
                 displayName: qualModDisplayName + " Pin Qualification",
                 //legacyNames: legacyInclusiveNames.legacyName,
                 moduleName: "/driverlib/gpio/gpioQual.js",
@@ -75,7 +82,7 @@ function getGpioQualificationModInstDefinitions(peripheralName, inst){
             }
 
             ownedInstances.push({
-                name: qualModName,      
+                name: qualModName,
                 displayName: qualModDisplayName + " Pin Qualification",
                 legacyNames: legacyNamesArray,
                 moduleName: "/driverlib/gpio/gpioQual.js",
@@ -85,7 +92,7 @@ function getGpioQualificationModInstDefinitions(peripheralName, inst){
                     $name : inst.$name + "_" + qualModName,
                 },
                 requiredArgs : {
-    
+
                 }
             })
         }
@@ -266,7 +273,7 @@ function getADCPinsUsed()
     {
         for (var modInst of mods.$instances)
         {
-            for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){ 
+            for(var socIndex in device_driverlib_peripheral.ADC_SOCNumber){
                 var currentSOC = device_driverlib_peripheral.ADC_SOCNumber[socIndex].name
                 var soci = (currentSOC).replace(/[^0-9]/g,'')
                 if((modInst.enabledSOCs).includes(currentSOC)){
@@ -500,7 +507,7 @@ function usbPinmuxRequirements(inst)
         name          : "usb",
         displayName   : "USB Peripheral",
         interfaceName : "USB",
-        
+
         resources     : resources,
         signalTypes   : signalTypes
     };
@@ -544,7 +551,7 @@ function uppPinmuxRequirements(inst)
         name          : "upp",
         displayName   : "UPP Peripheral",
         interfaceName : "UPP",
-        
+
         resources     : resources,
         signalTypes   : signalTypes
     };
@@ -585,7 +592,7 @@ function fsitxPinmuxRequirements(inst)
         name          : "fsitx",
         displayName   : "FSITX Peripheral",
         interfaceName : "FSITX",
-        
+
         resources     : resources,
         signalTypes   : signalTypes
     };
@@ -625,7 +632,7 @@ function fsirxPinmuxRequirements(inst)
         name          : "fsirx",
         displayName   : "FSIRX Peripheral",
         interfaceName : "FSIRX",
-        
+
         resources     : resources,
         signalTypes   : signalTypes
     };
@@ -668,7 +675,7 @@ function emif1PinmuxRequirements(inst)
         name          : "emif1",
         displayName   : "EMIF1 Peripheral",
         interfaceName : "EMIF1",
-        
+
         resources     : resources,
         signalTypes   : signalTypes
     };
@@ -710,7 +717,7 @@ function emif2PinmuxRequirements(inst)
         name          : "emif2",
         displayName   : "EMIF2 Peripheral",
         interfaceName : "EMIF2",
-        
+
         resources     : resources,
         signalTypes   : signalTypes
     };
@@ -739,7 +746,7 @@ function otherPinmuxRequirements(inst)
             interfaceName.includes("EMU")  ||
             // No AUXCLKIN
             // Special Case
-            interfaceName.includes("AUXCLKIN") 
+            interfaceName.includes("AUXCLKIN")
         )
         {
            continue;
@@ -760,7 +767,7 @@ function otherPinmuxRequirements(inst)
         name          : "other",
         displayName   : "Other Peripheral",
         interfaceName : "OTHER",
-        
+
         resources     : resources,
         signalTypes   : signalTypes
     };
@@ -784,7 +791,7 @@ function analogPinmuxRequirements(inst)
 
         if (useCaseInterfaces.indexOf(interfaceName) == -1 ||
             // No options available
-            system.deviceData.interfaces[peripheralName].interfacePins[interfaceName].pinMappings[0].pinMappings.length <= 0 
+            system.deviceData.interfaces[peripheralName].interfacePins[interfaceName].pinMappings[0].pinMappings.length <= 0
         )
         {
            continue;
@@ -805,7 +812,7 @@ function analogPinmuxRequirements(inst)
         name          : "analog",
         displayName   : "ANALOG Peripheral",
         interfaceName : "ANALOG",
-        
+
         resources     : resources,
         signalTypes   : signalTypes
     };
@@ -847,7 +854,7 @@ function dcdcPinmuxRequirements(inst)
         name          : "dcdc",
         displayName   : "DC-DC Peripheral",
         interfaceName : "DC-DC",
-        
+
         resources     : resources,
         signalTypes   : signalTypes
     };
@@ -888,7 +895,7 @@ function linPinmuxRequirements(inst)
         name          : "lin",
         displayName   : "LIN Peripheral",
         interfaceName : "LIN",
-        
+
         resources     : resources,
         signalTypes   : signalTypes
     };
@@ -904,7 +911,7 @@ function spihs_filter_wrapper(devicePin, peripheralPin){
     if (["F28P55x","F28P551x"].includes(Common.getDeviceName())){
         filterType = false;
     }
-    
+
     if (["SPI@_PICO", "SPI@_SIMO", "SPISIMO@"].includes(peripheralPin.interfacePin.name)){
         return spihs_filter(devicePin, peripheralPin, "PICO", filterType)
     }
@@ -924,6 +931,30 @@ function spihs_filter(devicePin, peripheralPin, interfaceName, filterType){
     if(spihsPins[interfaceName][peripheralPin.peripheralName].pins.includes(devicePin.designSignalName))
         return filterType ? true : false;
     return filterType ? false : true;
+}
+
+function spidrv_filter_wrapper(devicePin, peripheralPin){
+    if(!["MCPC029"].includes(Common.getDeviceName()))
+        return true;
+    if (["SPI@_PICO", "SPI@_SIMO", "SPISIMO@"].includes(peripheralPin.interfacePin.name)){
+        return spidrv_filter(devicePin, peripheralPin, "PICO")
+    }
+    else if (["SPI@_POCI", "SPI@_SOMI", "SPISOMI@"].includes(peripheralPin.interfacePin.name)){
+        return spidrv_filter(devicePin, peripheralPin, "POCI")
+    }
+    else if (["SPI@_PTE", "SPI@_STEn", "SPISTE@"].includes(peripheralPin.interfacePin.name)){
+        return spidrv_filter(devicePin, peripheralPin, "PTE")
+    }
+    else if (["SPI@_CLK", "SPICLK@"].includes(peripheralPin.interfacePin.name)){
+        return spidrv_filter(devicePin, peripheralPin, "CLK")
+    }
+    return false;
+}
+
+function spidrv_filter(devicePin, peripheralPin, interfaceName){
+    if(spidrvPins[interfaceName][peripheralPin.peripheralName].pins.includes(devicePin.designSignalName))
+        return true;
+    return false;
 }
 
 function pmbus_fastplus_filter_wrapper(devicePin, peripheralPin){
@@ -1008,6 +1039,9 @@ function spiPinmuxRequirements(inst)
             if(inst.useHSMode)
                 pt.filter = spihs_filter_wrapper
 
+            // if(["MCPC029"].includes(Common.getDeviceName()))
+            //     pt.filter = spidrv_filter_wrapper
+
             resources.push(pt);
             signalTypes[pt.name] = interfaceName;
             i++;
@@ -1021,7 +1055,7 @@ function spiPinmuxRequirements(inst)
         name          : "spi",
         displayName   : "SPI Peripheral",
         interfaceName : "SPI",
-        
+
         resources     : resources,
         signalTypes   : signalTypes
     };
@@ -1056,7 +1090,7 @@ function getPeripheralUseCaseNames(peripheralName)
 
 function addPeripheralUseCaseCustom()
 {
-    
+
 }
 
 function getAdditionalUseCaseNameConfigsNotInDeviceData(periph)
@@ -1099,7 +1133,7 @@ function getPeripheralUseCaseInterfaces(inst, peripheralName, useCaseName)
         {
             return additionalUseCaseInterface
         }
-        
+
         return getPeripheralInterfaces(peripheralName);
     }
 
@@ -1111,7 +1145,7 @@ function getPeripheralUseCaseInterfaces(inst, peripheralName, useCaseName)
 
     //console.log("Use case found. Showing only relevant interfaces!");
     var numberOfPinsInUseCase = system.deviceData.interfaces[peripheralName].useCases[useCaseName].useCasePin.length;
-    
+
     for (var useCasePinNumber = 0; useCasePinNumber < numberOfPinsInUseCase; useCasePinNumber++)
     {
         if (!system.deviceData.interfaces[peripheralName].useCases[useCaseName].useCasePin[useCasePinNumber].optional)
@@ -1433,7 +1467,7 @@ function epwmPinmuxRequirements(inst)
                 displayName       : interfaceName.replace("#", "").replace("@", ""), /* GUI name */
                 interfaceNames    : [interfaceName]    /* pinmux tool name */
             };
-    
+
             resources.push(pt);
             signalTypes[pt.name] = interfaceName;
         }
@@ -1445,7 +1479,7 @@ function epwmPinmuxRequirements(inst)
                 displayName       : interfaceName.replace("#", "").replace("@", ""), /* GUI name */
                 interfaceNames    : [interfaceName]    /* pinmux tool name */
             };
-    
+
             resources.push(pt);
             signalTypes[pt.name] = interfaceName;
         }
@@ -1462,7 +1496,7 @@ function epwmPinmuxRequirements(inst)
     }
 
     var filter = epwm_pinmux
-    
+
     // a quick check if the filter change is required for this soc
     if(! epwmHrpwm_pinCheck()){
         if (inst.hrpwm_enable)
@@ -1513,7 +1547,7 @@ function mcpwmPinmuxRequirements(inst)
                 displayName       : interfaceName.replace("#", "").replace("@", ""), /* GUI name */
                 interfaceNames    : [interfaceName]    /* pinmux tool name */
             };
-    
+
             resources.push(pt);
             signalTypes[pt.name] = interfaceName;
         }
@@ -1525,7 +1559,7 @@ function mcpwmPinmuxRequirements(inst)
                 displayName       : interfaceName.replace("#", "").replace("@", ""), /* GUI name */
                 interfaceNames    : [interfaceName]    /* pinmux tool name */
             };
-    
+
             resources.push(pt);
             signalTypes[pt.name] = interfaceName;
         }
@@ -1753,14 +1787,14 @@ function gpioWithPeripheralPinmuxRequirements(inst)
     let resources = [];
 
     var GPIOInterfaceName = "GPIO#";
-    
+
     let gpio = {
         name          : "gpioPin",
         displayName   : "GPIO Peripheral",
-        interfaceName : "GPIO", 
+        interfaceName : "GPIO",
         signalTypes   : {
             "GPIO#" : GPIOInterfaceName
-        }       
+        }
     };
 
     return [gpio];
@@ -1772,13 +1806,13 @@ function gpioPinmuxRequirements(inst)
     let resources = [];
 
     var GPIOInterfaceName = "GPIO#";
-    
+
     let gpio = {
         name          : "gpioPin",
         displayName   : "GPIO",
         interfaceName : "GPIO",
         signalTypes   : [GPIOInterfaceName]
-        
+
     };
 
     return [gpio];
@@ -1793,7 +1827,7 @@ function aioPinmuxRequirements(inst)
     let aio = {
         name          : "aioPin",
         displayName   : "AIO Peripheral",
-        interfaceName : "AIO",        
+        interfaceName : "AIO",
     };
 
     return [aio];
@@ -1835,7 +1869,7 @@ function pmbusPinmuxRequirements(inst)
         name          : "pmbus",
         displayName   : "PMBUS Peripheral",
         interfaceName : "PMBUS",
-        
+
         resources     : resources,
         signalTypes   : signalTypes
     };
@@ -1877,7 +1911,7 @@ function cmi2cPinmuxRequirements(inst)
         name          : "cmi2c",
         displayName   : "CM-I2C Peripheral",
         interfaceName : "CM-I2C",
-        
+
         resources     : resources,
         signalTypes   : signalTypes
     };
@@ -1919,7 +1953,7 @@ function mcanPinmuxRequirements(inst)
         name          : "mcan",
         displayName   : "MCAN Peripheral",
         interfaceName : "MCAN",
-        
+
         resources     : resources,
         signalTypes   : signalTypes
     };
@@ -1960,7 +1994,7 @@ function uartPinmuxRequirements(inst)
         name          : "uart",
         displayName   : "UART Peripheral",
         interfaceName : "UART",
-        
+
         resources     : resources,
         signalTypes   : signalTypes
     };
@@ -2001,7 +2035,7 @@ function ssiPinmuxRequirements(inst)
         name          : "ssi",
         displayName   : "SSI Peripheral",
         interfaceName : "SSI",
-        
+
         resources     : resources,
         signalTypes   : signalTypes
     };
@@ -2043,7 +2077,7 @@ function ecatPinmuxRequirements(inst)
         name          : "ecat",
         displayName   : "ECAT Peripheral",
         interfaceName : "ECAT",
-        
+
         resources     : resources,
         signalTypes   : signalTypes
     };
@@ -2066,7 +2100,7 @@ function ethernetPinmuxRequirements(inst)
 
         if (useCaseInterfaces.indexOf(interfaceName) == -1 ||
             // No options available
-            system.deviceData.interfaces[peripheralName].interfacePins[interfaceName].pinMappings[0].pinMappings.length <= 0    
+            system.deviceData.interfaces[peripheralName].interfacePins[interfaceName].pinMappings[0].pinMappings.length <= 0
         )
         {
            continue;
@@ -2087,7 +2121,7 @@ function ethernetPinmuxRequirements(inst)
         name          : "ethernet",
         displayName   : "ETHERNET Peripheral",
         interfaceName : "ETHERNET",
-        
+
         resources     : resources,
         signalTypes   : signalTypes
     };
@@ -2111,7 +2145,7 @@ function hicPinmuxRequirements(inst)
 
         if (useCaseInterfaces.indexOf(interfaceName) == -1 ||
             // No options available
-            system.deviceData.interfaces[peripheralName].interfacePins[interfaceName].pinMappings[0].pinMappings.length <= 0    
+            system.deviceData.interfaces[peripheralName].interfacePins[interfaceName].pinMappings[0].pinMappings.length <= 0
         )
         {
            continue;
@@ -2132,7 +2166,7 @@ function hicPinmuxRequirements(inst)
         name          : "hic",
         displayName   : "HIC Peripheral",
         interfaceName : "HIC",
-        
+
         resources     : resources,
         signalTypes   : signalTypes
     };
@@ -2146,12 +2180,12 @@ function getGPIOFromDevicePinName(devicePinName)
     var isAgpioPin = false
     var gpioName = devicePinName;
     if (!gpioName.startsWith("GPIO"))
-    { 
-        isAgpioPin = true 
+    {
+        isAgpioPin = true
     }
     gpioName = gpioName.substring(gpioName.indexOf("GPIO"))
     if ((gpioName.match(/GPIO/g) || []).length > 1)
-    { 
+    {
         //
         // Double bonded
         //
@@ -2163,7 +2197,7 @@ function getGPIOFromDevicePinName(devicePinName)
             gpioNames.push("GPIO" + gpioNumberOnThisPin)
         }
         return gpioNames
-        
+
     }
     gpioName = gpioName.substring(4); // determine which GPIO
     var gpioNumber = Common.gpioNameToNumber(gpioName);

@@ -108,6 +108,12 @@ SECTIONS
 
 /* CLA specific sections */
 
+//
+// Flash builds using the CLA need to include a memcpy from FLASH to RAM in the initialization. Example:
+//     memcpy((uint32_t *)((uint32_t)&Cla1ProgRunStart + (0x1E000U)), (uint32_t *)&Cla1ProgLoadStart,
+//           (uint32_t)&Cla1ProgLoadSize);
+// Note: This line is automatically included in Sysconfig projects with CLA.
+//
 #if defined(__TI_EABI__)
     /* CLA specific sections */
     Cla1Prog        : LOAD = FLASH_BANK0,

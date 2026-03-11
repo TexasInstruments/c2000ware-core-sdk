@@ -1,0 +1,140 @@
+//#############################################################################
+//
+// FILE:    sw_workaround_6x_mcpwm.c
+//
+// TITLE:   Software workaround for fixing 6x MCPWM configuration
+//
+//#############################################################################
+// $Copyright:
+// Copyright (C) `new Date().getFullYear()` Texas Instruments Incorporated - http://www.ti.com
+//
+// Redistribution and use in source and binary forms, with or without 
+// modification, are permitted provided that the following conditions 
+// are met:
+// 
+//   Redistributions of source code must retain the above copyright 
+//   notice, this list of conditions and the following disclaimer.
+// 
+//   Redistributions in binary form must reproduce the above copyright
+//   notice, this list of conditions and the following disclaimer in the 
+//   documentation and/or other materials provided with the   
+//   distribution.
+// 
+//   Neither the name of Texas Instruments Incorporated nor the names of
+//   its contributors may be used to endorse or promote products derived
+//   from this software without specific prior written permission.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+// A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT 
+// OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+// SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT 
+// LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+// DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+// THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT 
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
+// OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+// $
+//###########################################################################
+#ifdef MCPC029_GATE_DRIVER
+
+#include "sw_workaround_6x_mcpwm.h"
+#include "driverlib.h"
+#include "gateDriver.h"
+
+
+void SW_Workaround_6x_MCPWM_Config(void){
+    uint16_t registerValue;
+
+    //
+    // PinMux and XBAR configurations
+    //
+    
+    // MCPWM1_3A : GPIO0->INPUTXBAR1->OUTXBAR6->GPIO29
+    GPIO_setPinConfig(GPIO_0_MCPWM1_3A); 
+    GPIO_setQualificationMode(0, GPIO_QUAL_ASYNC);
+    GPIO_setDirectionMode(0, GPIO_DIR_MODE_OUT);
+    GPIO_setPadConfig(0, GPIO_PIN_TYPE_STD);
+
+    XBAR_setInputPin(INPUTXBAR_BASE ,XBAR_INPUT1, 0U);                                  
+    XBAR_enableOutputMux(OUTPUTXBAR_BASE, XBAR_OUTPUT6, XBAR_MUX01);                    
+    XBAR_setOutputMuxConfig(OUTPUTXBAR_BASE, XBAR_OUTPUT6, XBAR_OUT_MUX01_INPUTXBAR1);  
+
+    GPIO_setPinConfig(GPIO_29_OUTPUTXBAR6); 
+    GPIO_setQualificationMode(29, GPIO_QUAL_ASYNC);
+    GPIO_writePin(29, 0);
+    GPIO_setDirectionMode(29, GPIO_DIR_MODE_OUT);
+    GPIO_setPadConfig(29, GPIO_PIN_TYPE_STD);
+
+    // MCPWM1_3B : GPIO1->INPUTXBAR2->OUTXBAR7->GPIO30
+    GPIO_setPinConfig(GPIO_1_MCPWM1_3B); 
+    GPIO_setQualificationMode(1, GPIO_QUAL_ASYNC);
+    GPIO_setDirectionMode(1, GPIO_DIR_MODE_OUT);
+    GPIO_setPadConfig(1, GPIO_PIN_TYPE_STD);
+
+    XBAR_setInputPin(INPUTXBAR_BASE ,XBAR_INPUT2, 1U);                                 
+    XBAR_enableOutputMux(OUTPUTXBAR_BASE, XBAR_OUTPUT7, XBAR_MUX03);                    
+    XBAR_setOutputMuxConfig(OUTPUTXBAR_BASE, XBAR_OUTPUT7, XBAR_OUT_MUX03_INPUTXBAR2);  
+
+    GPIO_setPinConfig(GPIO_30_OUTPUTXBAR7); 
+    GPIO_setQualificationMode(30, GPIO_QUAL_ASYNC);
+    GPIO_writePin(30, 0);
+    GPIO_setDirectionMode(30, GPIO_DIR_MODE_OUT);
+    GPIO_setPadConfig(30, GPIO_PIN_TYPE_STD);
+
+    // MCPWM1_2A : GPIO6
+    GPIO_setPinConfig(GPIO_6_MCPWM1_2A); 
+    GPIO_writePin(6, 0);
+    GPIO_setQualificationMode(6, GPIO_QUAL_ASYNC);
+    GPIO_setDirectionMode(6, GPIO_DIR_MODE_OUT);
+    GPIO_setPadConfig(6, GPIO_PIN_TYPE_STD);
+
+
+    // MCPWM1_2B : GPIO10
+    GPIO_setPinConfig(GPIO_10_MCPWM1_2B); 
+    GPIO_writePin(10, 0);
+    GPIO_setQualificationMode(6, GPIO_QUAL_ASYNC);
+    GPIO_setDirectionMode(10, GPIO_DIR_MODE_OUT);
+    GPIO_setPadConfig(10, GPIO_PIN_TYPE_STD);
+
+
+    // MCPWM1_1B : GPIO9
+    GPIO_setPinConfig(GPIO_9_MCPWM1_1B); 
+    GPIO_writePin(9, 0);
+    GPIO_setQualificationMode(9, GPIO_QUAL_ASYNC);
+    GPIO_setDirectionMode(9, GPIO_DIR_MODE_OUT);
+    GPIO_setPadConfig(9, GPIO_PIN_TYPE_STD);
+
+    // MCPWM1_1A : GPIO4->INPUTXBAR3->OUTXBAR3->GPIO5
+    GPIO_setPinConfig(GPIO_4_MCPWM1_1A); 
+    GPIO_setQualificationMode(4, GPIO_QUAL_ASYNC);
+    GPIO_setDirectionMode(4, GPIO_DIR_MODE_OUT);
+    GPIO_setPadConfig(4, GPIO_PIN_TYPE_STD);
+
+    XBAR_setInputPin(INPUTXBAR_BASE ,XBAR_INPUT3, 4U);                               
+    XBAR_enableOutputMux(OUTPUTXBAR_BASE, XBAR_OUTPUT3, XBAR_MUX05);                    
+    XBAR_setOutputMuxConfig(OUTPUTXBAR_BASE, XBAR_OUTPUT3, XBAR_OUT_MUX05_INPUTXBAR3); 
+
+    GPIO_setPinConfig(GPIO_5_OUTPUTXBAR3); 
+    GPIO_setQualificationMode(5, GPIO_QUAL_ASYNC);
+    GPIO_writePin(5, 0);
+    GPIO_setDirectionMode(5, GPIO_DIR_MODE_OUT);
+    GPIO_setPadConfig(5, GPIO_PIN_TYPE_STD);
+
+    //
+    // DRV configurations
+    //
+
+    registerValue = DRV_Interface_ReadRegister(0x23U);
+    registerValue = registerValue | (0x01U);
+    DRV_Interface_WriteRegister(0x23U, registerValue);
+
+    DRV8329_enableVdsLevelSelectionThroughSpi();
+    DRV8329_setVdsLevel(DRV8329_VDSLVL_2_00V);
+}
+
+//
+// End of file
+//
+#endif

@@ -1,8 +1,8 @@
 let Common   = system.getScript("/driverlib/Common.js");
 let Pinmux   = system.getScript("/driverlib/pinmux.js");
 
-let device_driverlib_peripheral = 
-    system.getScript("/driverlib/device_driverlib_peripherals/" + 
+let device_driverlib_peripheral =
+    system.getScript("/driverlib/device_driverlib_peripherals/" +
         Common.getDeviceName().toLowerCase() + "_ecap.js");
 
 function onChangeECAPInstance(inst, ui)
@@ -39,14 +39,14 @@ function onChangeECAPMode(inst, ui)
         ui.eventThreePolarity.hidden = false
         ui.eventFourPolarity.hidden = false
         ui.captureMode.hidden = false
-        if (inst.useInterrupts){       
+        if (inst.useInterrupts){
             ui.interruptSourceCapture.hidden = false
             ui.interruptSourceAPWM.hidden = true
         }
         ui.eventStop.hidden = false
         ui.counterResetOnEvent.hidden = false
         ui.reArm.hidden = false
-        if (["F28004x","F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x", "F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName())){
+        if (["F28004x","F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x", "F28P55x","F28P551x","F28E12x", "MCPC029"].includes(Common.getDeviceName())){
             ui.ecapInput.hidden = false
             ui.resetCounters.hidden = false
 			if (!["F280013x","F280015x"].includes(Common.getDeviceName()))
@@ -87,7 +87,7 @@ function onChangeECAPMode(inst, ui)
         ui.eventStop.hidden = true
         ui.counterResetOnEvent.hidden = true
         ui.reArm.hidden = true
-        if (["F28004x","F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x", "F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName())){
+        if (["F28004x","F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x", "F28P55x","F28P551x","F28E12x", "MCPC029"].includes(Common.getDeviceName())){
             ui.ecapInput.hidden = true
             ui.resetCounters.hidden = true
 			if (!["F280013x","F280015x"].includes(Common.getDeviceName()))
@@ -106,7 +106,7 @@ function onChangeECAPMode(inst, ui)
                 var currentRPTR = device_driverlib_peripheral.ECAP_MONITORING_UNIT[rptrIndex].name
                 let rptri = (currentRPTR).replace(/[^0-9]/g,'')
 
-                ui["enable_monitorunit"+ rptri.toString()].hidden = true;            
+                ui["enable_monitorunit"+ rptri.toString()].hidden = true;
                 ui["monitorSelect_"+ rptri.toString()].hidden = true;
                 ui["minValue_"+ rptri.toString()].hidden = true;
                 ui["maxValue_"+ rptri.toString()].hidden = true;
@@ -139,7 +139,7 @@ function onChangeUseInterrupts(inst, ui)
             ui.interruptSourceCapture.hidden = true
             ui.interruptSourceAPWM.hidden = false
         }
-        
+
     }
     else{
         ui.enableInterrupt.hidden = true
@@ -277,7 +277,7 @@ else if (["F280015x"].includes(Common.getDeviceName()))
     numberOfECAPs = 3;
     ECAP_INSTANCES_WITH_HRCAP = [];
 }
-else if (["F28E12x"].includes(Common.getDeviceName()))
+else if (["F28E12x", "MCPC029"].includes(Common.getDeviceName()))
 {
     ECAP_INSTANCE = [
         { name: "ECAP1_BASE", displayName: "ECAP1"},
@@ -305,12 +305,12 @@ for (let i of device_driverlib_peripheral.ECAP_ISR_SOURCE){
     }else{
         capIntSrc.push(i)
     }
-} 
+}
 
 var ecapStatic = undefined;
 
 /* determine static module dependency */
-if (["F2838x","F28002x","F28003x","F280013x","F280015x", "F28P65x", "F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName()))
+if (["F2838x","F28002x","F28003x","F280013x","F280015x", "F28P65x", "F28P55x","F28P551x","F28E12x", "MCPC029"].includes(Common.getDeviceName()))
 {
     if (ECAP_INSTANCES_WITH_HRCAP.length > 0){
         ecapStatic = {
@@ -338,7 +338,7 @@ else{
         ecapStatic = {
             name: "ecapGlobal",
             displayName: "ECAP Global",
-            //config: [{name:"a", default:false}], 
+            //config: [{name:"a", default:false}],
             // don't add a config for chosenSYSCLK if HRCAP is not available
             modules: Common.autoForce("sync", "/driverlib/sync.js") // add the sync module for this device
         }
@@ -382,7 +382,7 @@ function onChangeHRCAPCalEnable(inst, ui)
 }
 
 var calibrationPerLongDesc = `
-This calibration period in milliseconds assumes a sysclk of ` + Common.SYSCLK_getMaxMHz() +` MHz. 
+This calibration period in milliseconds assumes a sysclk of ` + Common.SYSCLK_getMaxMHz() +` MHz.
 Please change the SYSCLK value in the "Global Parameters" tab above for the appropriate MHz value of your system.
 
 Calibration period is recommended to be 1.6ms.
@@ -396,7 +396,7 @@ Calibration for relative-time measurements is not required.
 
 All values captured by the HRCAP submodule are in number of HRCLK cycles.
 The HRCLK speed varies widely with temperature and voltage, thus a scale factor is required to convert the capture value to the SYSCLK domain.
-For the same reason, it is required to periodically recalculate the scale factor. 
+For the same reason, it is required to periodically recalculate the scale factor.
 The HRCAP submodule has a calibration block to reduce software overhead when calculating a scale factor between HRCLK and SYSCLK.
 `
 
@@ -445,7 +445,7 @@ let config = [
     {
         name        : "ecapBase",
         displayName : "eCAP Instance",
-        onChange    : onChangeECAPInstance, 
+        onChange    : onChangeECAPInstance,
         description : 'Instance of the ECAP used.',
         hidden      : false,
         default     : ECAP_INSTANCE[0].name,
@@ -462,9 +462,9 @@ let config = [
     {
         name        : "ecapMode",
         displayName : "eCAP Mode",
-        onChange    : onChangeECAPMode, 
+        onChange    : onChangeECAPMode,
         default     : "CAPTURE",
-        options     : 
+        options     :
         [
             {name: "CAPTURE", displayName: "Capture"},
             {name: "APWM", displayName: "APWM"},
@@ -635,7 +635,7 @@ if (["F2837xD","F2837xS","F2807x"].includes(Common.getDeviceName())){
             hidden      : false,
             default     : "ECAP_INPUT_INPUTXBAR7",
             readOnly    : true,
-            options     : 
+            options     :
             [
                 { name: "ECAP_INPUT_INPUTXBAR7", displayName: "GPIO Input Crossbar output signal-7" },
                 { name: "ECAP_INPUT_INPUTXBAR8", displayName: "GPIO Input Crossbar output signal-8" },
@@ -647,8 +647,8 @@ if (["F2837xD","F2837xS","F2807x"].includes(Common.getDeviceName())){
         },
     )
 }
-//TODO: only for F28004x, default value (this will throw WARNING) temp solotion. 
-// TODO: followup, remove this once the new option is added on driverlib!! already in development. 
+//TODO: only for F28004x, default value (this will throw WARNING) temp solotion.
+// TODO: followup, remove this once the new option is added on driverlib!! already in development.
 if (["F28004x"].includes(Common.getDeviceName())){
     device_driverlib_peripheral.ECAP_InputCaptureSignals.push(
         {name:"127",displayName:"RESERVED"}
@@ -680,7 +680,7 @@ if (["F28004x","F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x", "F2
         },
     )
 }
-if (["F28E12x"].includes(Common.getDeviceName())){
+if (["F28E12x", "MCPC029"].includes(Common.getDeviceName())){
     defaultInput = "ECAP_INPUT_INPUTXBAR1"
     config.push(
         {
@@ -700,7 +700,7 @@ if (["F28E12x"].includes(Common.getDeviceName())){
         },
     )
 }
-if (["F28004x","F28002x","F28003x","F2838x","F28P65x", "F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName())){
+if (["F28004x","F28002x","F28003x","F2838x","F28P65x", "F28P55x","F28P551x","F28E12x", "MCPC029"].includes(Common.getDeviceName())){
     config.push(
         {
             name        : "useDMA",
@@ -719,7 +719,7 @@ if (["F28004x","F28002x","F28003x","F2838x","F28P65x", "F28P55x","F28P551x","F28
         },
     )
 }
-if (["F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x", "F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName())){
+if (["F28002x","F28003x","F280013x","F280015x","F2838x","F28P65x", "F28P55x","F28P551x","F28E12x", "MCPC029"].includes(Common.getDeviceName())){
     config.push(
         {
             name        : "syncInPulseSource",
@@ -771,7 +771,7 @@ if (["F28P65x"].includes(Common.getDeviceName()))
         let rptri = (currentRPTR).replace(/[^0-9]/g,'')
         signal_monitoring_unit_config =  signal_monitoring_unit_config.concat ([
             {
-                name:"signalMonitoringUnit"+ rptri.toString(), 
+                name:"signalMonitoringUnit"+ rptri.toString(),
                 displayName: "Signal Monitoring Unit"+ rptri.toString(),
                 config:
             [
@@ -912,11 +912,11 @@ function onValidate(inst, validation) {
         var allDuplicates = "";
         for (var duplicateNamesIndex in duplicatesResult.duplicates)
         {
-            allDuplicates = allDuplicates + Common.stringOrEmpty(allDuplicates, ", ") 
+            allDuplicates = allDuplicates + Common.stringOrEmpty(allDuplicates, ", ")
                             + duplicatesResult.duplicates[duplicateNamesIndex];
         }
         validation.logError(
-            "The ECAP Instance used. Duplicates: " + allDuplicates, 
+            "The ECAP Instance used. Duplicates: " + allDuplicates,
             inst, "ecapBase");
     }
 
@@ -924,13 +924,13 @@ function onValidate(inst, validation) {
     if (inst.eventPrescaler < 0 || inst.eventPrescaler > 65535)
     {
         validation.logError(
-            "Enter an integer for Event Prescaler between 0 and 65,535!", 
+            "Enter an integer for Event Prescaler between 0 and 65,535!",
             inst, "eventPrescaler");
     }
     if (!Number.isInteger(inst.eventPrescaler))
     {
         validation.logError(
-            "Event Prescaler must be an integer", 
+            "Event Prescaler must be an integer",
             inst, "eventPrescaler");
     }
 
@@ -938,13 +938,13 @@ function onValidate(inst, validation) {
     if (inst.phaseShiftCount < 0 || inst.phaseShiftCount > 4294967295)
     {
         validation.logError(
-            "Enter an integer for Phase Shift Count between 0 and 4,294,967,295!", 
+            "Enter an integer for Phase Shift Count between 0 and 4,294,967,295!",
             inst, "phaseShiftCount");
     }
     if (!Number.isInteger(inst.phaseShiftCount))
     {
         validation.logError(
-            "Phase Shift Count must be an integer", 
+            "Phase Shift Count must be an integer",
             inst, "phaseShiftCount");
     }
 
@@ -952,13 +952,13 @@ function onValidate(inst, validation) {
     if (inst.apwmPeriod < 0 || inst.apwmPeriod > 4294967295)
     {
         validation.logError(
-            "Enter an integer for APWM Period between 0 and 4,294,967,295!", 
+            "Enter an integer for APWM Period between 0 and 4,294,967,295!",
             inst, "apwmPeriod");
     }
     if (!Number.isInteger(inst.apwmPeriod))
     {
         validation.logError(
-            "APWM Period must be an integer", 
+            "APWM Period must be an integer",
             inst, "apwmPeriod");
     }
 
@@ -966,13 +966,13 @@ function onValidate(inst, validation) {
     if (inst.apwmCompare < 0 || inst.apwmCompare > 4294967295)
     {
         validation.logError(
-            "Enter an integer for APWM Compare between 0 and 4,294,967,295!", 
+            "Enter an integer for APWM Compare between 0 and 4,294,967,295!",
             inst, "apwmCompare");
     }
     if (!Number.isInteger(inst.apwmCompare))
     {
         validation.logError(
-            "APWM Compare must be an integer", 
+            "APWM Compare must be an integer",
             inst, "apwmCompare");
     }
 
@@ -1023,7 +1023,7 @@ function onValidate(inst, validation) {
         var calculatedHrcapCalibrationValue = inst.$module.$static["chosenSYSCLK"] * (inst.hrcapCalibrationPeriod/1000);
         if ((calculatedHrcapCalibrationValue < 0) || (calculatedHrcapCalibrationValue > 4294967295))
         {
-            
+
             var minHrcapCalibrationValue = (0/inst.$module.$static["chosenSYSCLK"])*1000;
             var maxHrcapCalibrationValue = (4294967295/inst.$module.$static["chosenSYSCLK"])*1000 - 1;
 
@@ -1066,7 +1066,7 @@ important. Uses for eCAP include:
 *   Period and duty cycle measurements of pulse train signals
 *   Decoding current or voltage amplitude derived from duty cycle encoded current/voltage sensors
 `
-//module static on a variable, null if not needed, otherwise the object we have now. 
+//module static on a variable, null if not needed, otherwise the object we have now.
 var ecapModule = {
     peripheralName: "ECAP",
     displayName: "ECAP",
@@ -1081,7 +1081,7 @@ var ecapModule = {
         if (inst.useInterrupts && inst.registerInterrupts)
         {
             intReturn.push({
-                name: "ecapInt",      
+                name: "ecapInt",
                 displayName: "eCAP Interrupt",
                 moduleName: "/driverlib/interrupt.js",
                 collapsed: true,
@@ -1097,7 +1097,7 @@ var ecapModule = {
         if (inst.registerInterrupts && inst.hrcapEnable && inst.hrcapCalibrationEnable && inst.enabledCalibrationInterrupts.length > 0)
         {
             intReturn.push({
-                name: "hrcapCalibrationInt",      
+                name: "hrcapCalibrationInt",
                 displayName: "HRCAP Calibration Interrupt",
                 moduleName: "/driverlib/interrupt.js",
                 collapsed: true,
@@ -1110,7 +1110,7 @@ var ecapModule = {
                 }
             });
         }
-        
+
         return intReturn;
     },
     templates: {

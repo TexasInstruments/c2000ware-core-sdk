@@ -19,7 +19,7 @@ function orArrayValues(arr)
 	//		3rd, 4th, etc. items.
 	//		Example: "(HRCAP_CALIBRATION_DONE
 	//	 			| HRCAP_CALIBRATION_PERIOD_OVERFLOW)"
-	// 
+	//
 	var sourceCount = 0
 	var sourcesToEnableOR = "("
 	for (var sourceToEnable in arr)
@@ -45,7 +45,7 @@ function orArrayValues(arr)
 //
 //*****************************************************************************
 void `nameOfPeripheral`_init(){
-%   for(var i = 0; i < module.$instances.length; i++) 
+%   for(var i = 0; i < module.$instances.length; i++)
 %   {
 %      var instance = module.$instances[i];
 	`instance.$name`_init();
@@ -80,7 +80,7 @@ void `instance.$name`_init(){
 	HRCAP_enableHighResolution(`hrcapBaseName`);
 	DEVICE_DELAY_US(1); // 1us delay as mentioned in HRCAP chapter of TRM
 				% }
-			% 
+			%
 			% // END HRCAP SECTION 1
 			% /////////////////////////////////////////////////////////////////////////
 			% let instancePinmux = instance[nameOfModule];
@@ -151,15 +151,15 @@ void `instance.$name`_init(){
 	%			var eventStr = ""
 	%			for(var anEvent in allEcapEvents){
 	%				eventStr = ""+allEcapEvents[eventCount]
-	%				if(instance.counterResetOnEvent.includes(eventStr)){		
-	ECAP_enableCounterResetOnEvent(`baseName`,`eventStr`);	
+	%				if(instance.counterResetOnEvent.includes(eventStr)){
+	ECAP_enableCounterResetOnEvent(`baseName`,`eventStr`);
 	%				}
 	%				else{
 	ECAP_disableCounterResetOnEvent(`baseName`,`eventStr`);
 	%				}
 	%				eventCount++
 	%			}
-				% if( ["F28002x", "F28003x", "F280013x", "F280015x", "F28004x","F2838x","F28P65x", "F28P55x","F28P551x","F28E12x"].includes(system.deviceData.deviceId)){
+				% if( ["F28002x", "F28003x", "F280013x", "F280015x", "F28004x","F2838x","F28P65x", "F28P55x","F28P551x","F28E12x", "MCPC029"].includes(system.deviceData.deviceId)){
 	//
 	// Select eCAP input.
 	//
@@ -206,8 +206,8 @@ void `instance.$name`_init(){
 	// Configures Sync out signal mode.
 	//
 	ECAP_setSyncOutMode(`baseName`,`instance.syncOutMode`);
-			% if( (instance.ecapMode == "CAPTURE") && 
-			% ( ["F28002x", "F28003x", "F280013x", "F280015x", "F28004x","F2838x","F28P65x", "F28P55x","F28P551x","F28E12x"].includes(system.deviceData.deviceId))){
+			% if( (instance.ecapMode == "CAPTURE") &&
+			% ( ["F28002x", "F28003x", "F280013x", "F280015x", "F28004x","F2838x","F28P65x", "F28P55x","F28P551x","F28E12x", "MCPC029"].includes(system.deviceData.deviceId))){
 				% if(instance.resetCounters){
 	//
 	// Resets eCAP counters and flags.
@@ -215,8 +215,8 @@ void `instance.$name`_init(){
 	ECAP_resetCounters(`baseName`);
 				% }
 			% }
-			% if( (instance.ecapMode == "CAPTURE") && 
-			% ( ["F28002x", "F28003x", "F28004x","F2838x","F28P65x", "F28P55x","F28P551x","F28E12x"].includes(system.deviceData.deviceId))){
+			% if( (instance.ecapMode == "CAPTURE") &&
+			% ( ["F28002x", "F28003x", "F28004x","F2838x","F28P65x", "F28P55x","F28P551x","F28E12x", "MCPC029"].includes(system.deviceData.deviceId))){
 				% if (instance.useDMA){
 	//
 	// Sets the eCAP DMA source.
@@ -228,7 +228,7 @@ void `instance.$name`_init(){
 	// Configures emulation mode.
 	//
 	ECAP_setEmulationMode(`baseName`,`instance.emulationMode`);
-			% if( ["F28002x", "F28003x", "F280013x", "F280015x", "F2838x","F28P65x", "F28P55x","F28P551x","F28E12x"].includes(system.deviceData.deviceId)){
+			% if( ["F28002x", "F28003x", "F280013x", "F280015x", "F2838x","F28P65x", "F28P55x","F28P551x","F28E12x", "MCPC029"].includes(system.deviceData.deviceId)){
 	//
 	// Set up the source for sync-in pulse..
 	//

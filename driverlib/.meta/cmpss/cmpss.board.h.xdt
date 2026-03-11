@@ -9,6 +9,7 @@
 //*****************************************************************************
     % for(var i = 0; i < module.$instances.length; i++) {
         % var instance = module.$instances[i];
+        % var instanceNumber = instance.cmpssBase.match(/\d+/)[0]
 #define `instance.$name`_BASE `instance.cmpssBase`
 % if (instance["cmpssHighName"] != "")
 % {
@@ -24,6 +25,20 @@
 % else {
 #define `instance.$name`_LOW_COMP_BASE `instance.cmpssBase`    
 % }
+    % if( ["F28002x", "F28003x", "F28004x", "F280013x", "F280015x", "F28P65x", "F28P55x","F28P551x"].includes(system.deviceData.deviceId)){
+        % var tempPositiveInstance = "ASYSCTL_CMPHPMUX_SELECT_"+instanceNumber
+#define `instance.$name`_CMPHPMUX_SELECT `tempPositiveInstance`
+        %if (instance.highCompNegative != "CMPSS_INSRC_DAC"){
+        % var tempNegativeInstance = "ASYSCTL_CMPHNMUX_SELECT_"+instanceNumber
+#define `instance.$name`_CMPHNMUX_SELECT `tempNegativeInstance`
+        %}
+        % tempPositiveInstance = "ASYSCTL_CMPLPMUX_SELECT_"+instanceNumber
+#define `instance.$name`_CMPLPMUX_SELECT `tempPositiveInstance`
+        %if (instance.lowCompNegative != "CMPSS_INSRC_DAC"){
+        % tempNegativeInstance = "ASYSCTL_CMPLNMUX_SELECT_"+instanceNumber
+#define `instance.$name`_CMPLNMUX_SELECT `tempNegativeInstance`
+        %}
+    % }
 void `instance.$name`_init();
     % }
 %}

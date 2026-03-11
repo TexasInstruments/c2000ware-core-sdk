@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // $Copyright:
-// Copyright (C) 2025 Texas Instruments Incorporated - http://www.ti.com/
+// Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/
 //
 // Redistribution and use in source and binary forms, with or without 
 // modification, are permitted provided that the following conditions 
@@ -199,7 +199,7 @@ typedef enum
 	XBAR_INPUT13,			//!< ECAP, X-BARs, CPU XINT[XINT4]
 	XBAR_INPUT14,			//!< ECAP, X-BARs, CPU XINT[XINT5]
 	XBAR_INPUT15,			//!< ECAP, DCCx[CLK1]
-	XBAR_INPUT16			//!< ECAP DCCx[CLK0]
+	XBAR_INPUT16,			//!< ECAP DCCx[CLK0]
 } XBAR_InputNum;
 
 

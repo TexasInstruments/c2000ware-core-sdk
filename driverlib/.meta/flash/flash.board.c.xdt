@@ -23,7 +23,7 @@ void `nameOfPeripheral`_init(){
         %
     //
     // `instance.$name` Initialization
-    // 
+    //
         %if (["F2837xS"].includes(Common.getDeviceName()) || ["F2837xD"].includes(Common.getDeviceName()))
         %{
     //
@@ -31,17 +31,17 @@ void `nameOfPeripheral`_init(){
     //
     Flash_setBankPowerUpDelay(`instance.$name`_BASE, 0x14);
         %}
-        %if (!["F280015x", "F280013x", "F28P65x", "F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName())){
+        %if (!["F280015x", "F280013x", "F28P65x", "F28P55x","F28P551x","F28E12x", "MCPC029"].includes(Common.getDeviceName())){
     //
     // This function sets the fallback power mode of the flash bank specified by
     // the bank parameter. The power mode is specified by the powerMode
     // parameter
     //
-    
+
             % if (device_driverlib_peripheral.Flash_BankNumber) {
     //
     // Set available banks to active power mode
-    // 
+    //
                 % for (var j = 0; j < device_driverlib_peripheral.Flash_BankNumber.length; j++){
     Flash_setBankPowerMode(`instance.$name`_BASE, `device_driverlib_peripheral.Flash_BankNumber[j].name`, FLASH_BANK_PWR_ACTIVE);
                 % }
@@ -64,11 +64,11 @@ void `nameOfPeripheral`_init(){
     // to look at your device's datasheet for information about what the required
     // minimum flash wait-state is for your selected SYSCLK frequency.
     //
-    // By default the wait state amount is configured to the maximum 15. 
+    // By default the wait state amount is configured to the maximum 15.
     //
     // Set flash wait states
     //
-    Flash_setWaitstates(`instance.$name`_BASE, `instance.$name`_WAITSTATES); 
+    Flash_setWaitstates(`instance.$name`_BASE, `instance.$name`_WAITSTATES);
             % if (instance.enablePrefetch){
     //
     // Enable prefetch
@@ -78,7 +78,7 @@ void `nameOfPeripheral`_init(){
     //
     // Disable prefetch
     //
-    Flash_disablePrefetch(`instance.$name`_BASE);           
+    Flash_disablePrefetch(`instance.$name`_BASE);
             % }
             %
             % if (instance.enableCache){
@@ -90,8 +90,8 @@ void `nameOfPeripheral`_init(){
     //
     // Disable cache
     //
-    Flash_disableCache(`instance.$name`_BASE);           
-            % }  
+    Flash_disableCache(`instance.$name`_BASE);
+            % }
             %
             % if (instance.enableECC){
     //
@@ -102,9 +102,9 @@ void `nameOfPeripheral`_init(){
     //
     // Disables flash error correction code (ECC) protection.
     //
-    Flash_disableECC(`instance.$name`_ECCBASE);           
-            % } 
-        %if (!["F280015x", "F280013x", "F28P65x", "F28P55x","F28P551x","F28E12x"].includes(Common.getDeviceName())){
+    Flash_disableECC(`instance.$name`_ECCBASE);
+            % }
+        %if (!["F280015x", "F280013x", "F28P65x", "F28P55x","F28P551x","F28E12x", "MCPC029"].includes(Common.getDeviceName())){
     //
     // Sets the single bit error threshold. Valid ranges are from 0-65535.
     //

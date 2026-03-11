@@ -58,13 +58,6 @@ void Device_init(void)
     SysCtl_enablePeripheral(SYSCTL_PERIPH_CLK_TBCLKSYNC);
 
     //
-    // Lock VREGCTL Register
-    // The register VREGCTL is not supported in this device. It is locked to
-    // prevent any writes to this register
-    //
-    ASysCtl_lockVREG();
-
-    //
     // Configure GPIO 12, 13 and 28 as digital pins
     //
     GPIO_setAnalogMode(12U, GPIO_ANALOG_DISABLED);

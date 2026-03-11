@@ -1,6 +1,6 @@
 let Common   = system.getScript("/driverlib/Common.js");
-let device_driverlib_peripheral = 
-    system.getScript("/driverlib/device_driverlib_peripherals/" + 
+let device_driverlib_peripheral =
+    system.getScript("/driverlib/device_driverlib_peripherals/" +
         Common.getDeviceName().toLowerCase() + "_mcpwm.js");
 
 var validation_warning = "warning"
@@ -61,7 +61,7 @@ var mcpwm_validation = [
 				}
 			}
 		},
-		devices : ["F28E12x"],
+		devices : ["F28E12x", "MCPC029"],
 	},
 	// Validation #0a
 	{
@@ -120,56 +120,56 @@ var mcpwm_validation = [
 				}
 			}
 		},
-		devices : ["F28E12x"],
+		devices : ["F28E12x", "MCPC029"],
 	},
 	// Validation #1
 	{
 		type : validation_warning,
 		name :  "CMP value is out of range of TBPRD. Refer to table, Behavior if CMPA/CMPB is Greater than the Period, within the TRM",
 		func : (inst, validation, name) => {
-			if (inst["mcpwmTimebase_period"] < 
-				inst["mcpwmCounterCompare_cmpA"]) 
+			if (inst["mcpwmTimebase_period"] <
+				inst["mcpwmCounterCompare_cmpA"])
 			{
 				validation.logWarning(name, inst, "mcpwmCounterCompare_cmpA");
 			}
-			if (inst["mcpwmTimebase_period"] < 
-				inst["mcpwmCounterCompare_cmpB"]) 
+			if (inst["mcpwmTimebase_period"] <
+				inst["mcpwmCounterCompare_cmpB"])
 			{
 				validation.logWarning(name, inst, "mcpwmCounterCompare_cmpB");
 			}
-			if (inst["mcpwmTimebase_period"] < 
-				inst["mcpwmCounterCompare_cmpA_pwm2"]) 
+			if (inst["mcpwmTimebase_period"] <
+				inst["mcpwmCounterCompare_cmpA_pwm2"])
 			{
 				validation.logWarning(name, inst, "mcpwmCounterCompare_cmpA_pwm2");
 			}
-			if (inst["mcpwmTimebase_period"] < 
-				inst["mcpwmCounterCompare_cmpB_pwm2"]) 
+			if (inst["mcpwmTimebase_period"] <
+				inst["mcpwmCounterCompare_cmpB_pwm2"])
 			{
 				validation.logWarning(name, inst, "mcpwmCounterCompare_cmpB_pwm2");
 			}
-			if (inst["mcpwmTimebase_period"] < 
-				inst["mcpwmCounterCompare_cmpA_pwm3"]) 
+			if (inst["mcpwmTimebase_period"] <
+				inst["mcpwmCounterCompare_cmpA_pwm3"])
 			{
 				validation.logWarning(name, inst, "mcpwmCounterCompare_cmpA_pwm3");
 			}
-			if (inst["mcpwmTimebase_period"] < 
-				inst["mcpwmCounterCompare_cmpB_pwm3"]) 
+			if (inst["mcpwmTimebase_period"] <
+				inst["mcpwmCounterCompare_cmpB_pwm3"])
 			{
 				validation.logWarning(name, inst, "mcpwmCounterCompare_cmpB_pwm3");
 			}
-			if (inst["mcpwmTimebase_period"] < 
-				inst["mcpwmCounterCompare_cmpC"]) 
+			if (inst["mcpwmTimebase_period"] <
+				inst["mcpwmCounterCompare_cmpC"])
 			{
 				validation.logWarning(name, inst, "mcpwmCounterCompare_cmpC");
 			}
-			if (inst["mcpwmTimebase_period"] < 
-				inst["mcpwmCounterCompare_cmpD"]) 
+			if (inst["mcpwmTimebase_period"] <
+				inst["mcpwmCounterCompare_cmpD"])
 			{
 				validation.logWarning(name, inst, "mcpwmCounterCompare_cmpD");
 			}
-			
+
 		},
-			devices : ["F28E12x"]
+			devices : ["F28E12x", "MCPC029"]
 		},
 
     // Validation #2
@@ -177,36 +177,36 @@ var mcpwm_validation = [
 	// 	type : validation_warning,
 	// 	name :  "It is recommended to use a non-zero counter compare value when using shadow to active load of action qualifier A/B control register on TBCTR=0 boundary",
 	// 	func : (inst, validation, name) => {
-	// 		if ((inst["mcpwmCounterCompare_cmpA"] == 0  || inst["mcpwmCounterCompare_cmpB"] == 0) 
-	// 			&& 
-	// 			(inst["mcpwmActionQualifier_MCPWM_AQ_OUTPUT_1A_shadowMode"] == true 
+	// 		if ((inst["mcpwmCounterCompare_cmpA"] == 0  || inst["mcpwmCounterCompare_cmpB"] == 0)
+	// 			&&
+	// 			(inst["mcpwmActionQualifier_MCPWM_AQ_OUTPUT_1A_shadowMode"] == true
 	// 			&& (inst["mcpwmActionQualifier_MCPWM_AQ_OUTPUT_1A_shadowEvent"] != "MCPWM_AQ_LOAD_FREEZE"))
 	// 			||
-	// 			(inst["mcpwmActionQualifier_MCPWM_AQ_OUTPUT_1B_shadowMode"] == true 
+	// 			(inst["mcpwmActionQualifier_MCPWM_AQ_OUTPUT_1B_shadowMode"] == true
 	// 			&& (inst["mcpwmActionQualifier_MCPWM_AQ_OUTPUT_1B_shadowEvent"] != "MCPWM_AQ_LOAD_FREEZE")))
 	// 		{
 	// 			validation.logWarning(name, inst, "mcpwmCounterCompare_cmpA");
 	// 			validation.logWarning(name, inst, "mcpwmCounterCompare_cmpB");
 	// 		}
-			
-	// 		if ((inst["mcpwmCounterCompare_cmpA_pwm2"] == 0  || inst["mcpwmCounterCompare_cmpB_pwm2"] == 0) 
-	// 			&& 
-	// 			(inst["mcpwmActionQualifier_MCPWM_AQ_OUTPUT_2A_shadowMode"] == true 
+
+	// 		if ((inst["mcpwmCounterCompare_cmpA_pwm2"] == 0  || inst["mcpwmCounterCompare_cmpB_pwm2"] == 0)
+	// 			&&
+	// 			(inst["mcpwmActionQualifier_MCPWM_AQ_OUTPUT_2A_shadowMode"] == true
 	// 			&& (inst["mcpwmActionQualifier_MCPWM_AQ_OUTPUT_2A_shadowEvent"] != "MCPWM_AQ_LOAD_FREEZE"))
 	// 			||
-	// 			(inst["mcpwmActionQualifier_MCPWM_AQ_OUTPUT_2B_shadowMode"] == true 
+	// 			(inst["mcpwmActionQualifier_MCPWM_AQ_OUTPUT_2B_shadowMode"] == true
 	// 			&& (inst["mcpwmActionQualifier_MCPWM_AQ_OUTPUT_2B_shadowEvent"] != "MCPWM_AQ_LOAD_FREEZE")))
 	// 		{
 	// 			validation.logWarning(name, inst, "mcpwmCounterCompare_cmpA_pwm2");
 	// 			validation.logWarning(name, inst, "mcpwmCounterCompare_cmpB_pwm2");
 	// 		}
 
-	// 		if ((inst["mcpwmCounterCompare_cmpA_pwm3"] == 0  || inst["mcpwmCounterCompare_cmpB_pwm3"] == 0) 
-	// 			&& 
-	// 			(inst["mcpwmActionQualifier_MCPWM_AQ_OUTPUT_3A_shadowMode"] == true 
+	// 		if ((inst["mcpwmCounterCompare_cmpA_pwm3"] == 0  || inst["mcpwmCounterCompare_cmpB_pwm3"] == 0)
+	// 			&&
+	// 			(inst["mcpwmActionQualifier_MCPWM_AQ_OUTPUT_3A_shadowMode"] == true
 	// 			&& (inst["mcpwmActionQualifier_MCPWM_AQ_OUTPUT_3A_shadowEvent"] != "MCPWM_AQ_LOAD_FREEZE"))
 	// 			||
-	// 			(inst["mcpwmActionQualifier_MCPWM_AQ_OUTPUT_3B_shadowMode"] == true 
+	// 			(inst["mcpwmActionQualifier_MCPWM_AQ_OUTPUT_3B_shadowMode"] == true
 	// 			&& (inst["mcpwmActionQualifier_MCPWM_AQ_OUTPUT_3B_shadowEvent"] != "MCPWM_AQ_LOAD_FREEZE")))
 	// 		{
 	// 			validation.logWarning(name, inst, "mcpwmCounterCompare_cmpA_pwm3");
@@ -214,7 +214,7 @@ var mcpwm_validation = [
 	// 		}
 
 	// 	},
-	// 		devices : ["F28E12x"]
+	// 		devices : ["F28E12x", "MCPC029"]
 	// 	},
 
 	// Validation #3
@@ -224,7 +224,7 @@ var mcpwm_validation = [
 		func : (inst, validation, name) => {
 			var noChangeOutput = "MCPWM_AQ_OUTPUT_NO_CHANGE";
 			var mcpwm_outX = ["1A", "1B", "2A", "2B", "3A", "3B"];
-			if (inst["mcpwmTimebase_counterMode"] == "MCPWM_COUNTER_MODE_DOWN") 
+			if (inst["mcpwmTimebase_counterMode"] == "MCPWM_COUNTER_MODE_DOWN")
 			{
 				for (var mcpwm_out of mcpwm_outX)
 				{
@@ -240,7 +240,7 @@ var mcpwm_validation = [
 					}
 				}
 			}
-			else if (inst["mcpwmTimebase_counterMode"] == "MCPWM_COUNTER_MODE_UP") 
+			else if (inst["mcpwmTimebase_counterMode"] == "MCPWM_COUNTER_MODE_UP")
 			{
 				for (var mcpwm_out of mcpwm_outX)
 				{
@@ -256,9 +256,9 @@ var mcpwm_validation = [
 					}
 				}
 			}
-			
+
 		},
-			devices : ["F28E12x"]
+			devices : ["F28E12x", "MCPC029"]
 		},
 
 	// Validation #4
@@ -267,58 +267,58 @@ var mcpwm_validation = [
 		name :  "Input value is out of range (16-bit value)",
 		func : (inst, validation, name) => {
 			if (inst["mcpwmCounterCompare_cmpA"] < 0 ||
-				inst["mcpwmCounterCompare_cmpA"] > 65535) 
+				inst["mcpwmCounterCompare_cmpA"] > 65535)
 			{
 				validation.logError(name, inst, "mcpwmCounterCompare_cmpA");
 			}
 			if (inst["mcpwmCounterCompare_cmpB"] < 0 ||
-				inst["mcpwmCounterCompare_cmpB"] > 65535) 
+				inst["mcpwmCounterCompare_cmpB"] > 65535)
 			{
 				validation.logError(name, inst, "mcpwmCounterCompare_cmpB");
 			}
 			if (inst["mcpwmCounterCompare_cmpA_pwm2"] < 0 ||
-				inst["mcpwmCounterCompare_cmpA_pwm2"] > 65535) 
+				inst["mcpwmCounterCompare_cmpA_pwm2"] > 65535)
 			{
 				validation.logError(name, inst, "mcpwmCounterCompare_cmpA_pwm2");
 			}
 			if (inst["mcpwmCounterCompare_cmpB_pwm2"] < 0 ||
-				inst["mcpwmCounterCompare_cmpB_pwm2"] > 65535) 
+				inst["mcpwmCounterCompare_cmpB_pwm2"] > 65535)
 			{
 				validation.logError(name, inst, "mcpwmCounterCompare_cmpB_pwm2");
 			}
 			if (inst["mcpwmCounterCompare_cmpA_pwm3"] < 0 ||
-				inst["mcpwmCounterCompare_cmpA_pwm3"] > 65535) 
+				inst["mcpwmCounterCompare_cmpA_pwm3"] > 65535)
 			{
 				validation.logError(name, inst, "mcpwmCounterCompare_cmpA_pwm3");
 			}
 			if (inst["mcpwmCounterCompare_cmpB_pwm3"] < 0 ||
-				inst["mcpwmCounterCompare_cmpB_pwm3"] > 65535) 
+				inst["mcpwmCounterCompare_cmpB_pwm3"] > 65535)
 			{
 				validation.logError(name, inst, "mcpwmCounterCompare_cmpB_pwm3");
 			}
 			if (inst["mcpwmCounterCompare_cmpC"] < 0 ||
-				inst["mcpwmCounterCompare_cmpC"] > 65535)  
+				inst["mcpwmCounterCompare_cmpC"] > 65535)
 			{
 				validation.logError(name, inst, "mcpwmCounterCompare_cmpC");
 			}
 			if (inst["mcpwmCounterCompare_cmpD"] < 0 ||
-				inst["mcpwmCounterCompare_cmpD"] > 65535) 
+				inst["mcpwmCounterCompare_cmpD"] > 65535)
 			{
 				validation.logError(name, inst, "mcpwmCounterCompare_cmpD");
 			}
 			// Time Base
 			if (inst["mcpwmTimebase_period"] < 0 ||
-				inst["mcpwmTimebase_period"] > 65535) 
+				inst["mcpwmTimebase_period"] > 65535)
 			{
 				validation.logError(name, inst, "mcpwmTimebase_period");
 			}
 			if (inst["mcpwmTimebase_phaseShift"] < 0 ||
-				inst["mcpwmTimebase_phaseShift"] > 65535)  
+				inst["mcpwmTimebase_phaseShift"] > 65535)
 			{
 				validation.logError(name, inst, "mcpwmTimebase_phaseShift");
 			}
 		},
-		devices : ["F28E12x"]
+		devices : ["F28E12x", "MCPC029"]
 		},
 
     // Validation #5
@@ -327,17 +327,17 @@ var mcpwm_validation = [
 		name :  "Input value is out of range (14-bit value)",
 		func : (inst, validation, name) => {
 			if (inst["mcpwmDeadband_delayRED"] < 0 ||
-				inst["mcpwmDeadband_delayRED"] > 16384) 
+				inst["mcpwmDeadband_delayRED"] > 16384)
 			{
 				validation.logError(name, inst, "mcpwmDeadband_delayRED");
 			}
 			if (inst["mcpwmDeadband_delayFED"] < 0 ||
-				inst["mcpwmDeadband_delayFED"] > 16384) 
+				inst["mcpwmDeadband_delayFED"] > 16384)
 			{
 				validation.logError(name, inst, "mcpwmDeadband_delayFED");
 			}
 		},
-		devices : ["F28E12x"]
+		devices : ["F28E12x", "MCPC029"]
 		},
 
     // Validation #7
@@ -354,7 +354,7 @@ var mcpwm_validation = [
 				validation.logInfo(name, inst, "mcpwmTripZone_cbcSource");
 			}
 		},
-		devices : ["F28E12x"]
+		devices : ["F28E12x", "MCPC029"]
 		},
 
 	// Validation #10
@@ -367,7 +367,7 @@ var mcpwm_validation = [
 		         validation.logError(name, inst, "mcpwmDeadband_inputFED");
 			}
 		},
-		devices : ["F28E12x"]
+		devices : ["F28E12x", "MCPC029"]
 		},
 
     // Validation #11
@@ -381,7 +381,7 @@ var mcpwm_validation = [
 			}
 
 		},
-		devices : ["F28E12x"]
+		devices : ["F28E12x", "MCPC029"]
 		},
 
     // Validation #12
@@ -392,7 +392,7 @@ var mcpwm_validation = [
 		        validation.logInfo(name, inst, "mcpwmTimebase_clockDiv");
 
 		},
-		devices : ["F28E12x"]
+		devices : ["F28E12x", "MCPC029"]
 		},
 
     // Validation #13
@@ -406,7 +406,7 @@ var mcpwm_validation = [
 		    }
 
 		},
-		devices : ["F28E12x"]
+		devices : ["F28E12x", "MCPC029"]
 		},
 
 	// Validation #14
@@ -414,15 +414,15 @@ var mcpwm_validation = [
 		type : validation_warning,
 		name :  "The SYNCEVT signal is only propagated through when PHSEN is SET.",
 		func : (inst, validation, name) => {
-			if (inst["mcpwmGlobalLoad_gld"] == 1 && (inst["mcpwmGlobalLoad_gldMode"] == "MCPWM_GL_LOAD_PULSE_SYNC" || inst["mcpwmGlobalLoad_gldMode"] == "MCPWM_GL_LOAD_PULSE_SYNC_OR_CNTR_ZERO" 
-				|| inst["mcpwmGlobalLoad_gldMode"] == "MCPWM_GL_LOAD_PULSE_SYNC_OR_CNTR_PERIOD" || inst["mcpwmGlobalLoad_gldMode"] == "MCPWM_GL_LOAD_PULSE_SYNC_CNTR_ZERO_PERIOD") && 
+			if (inst["mcpwmGlobalLoad_gld"] == 1 && (inst["mcpwmGlobalLoad_gldMode"] == "MCPWM_GL_LOAD_PULSE_SYNC" || inst["mcpwmGlobalLoad_gldMode"] == "MCPWM_GL_LOAD_PULSE_SYNC_OR_CNTR_ZERO"
+				|| inst["mcpwmGlobalLoad_gldMode"] == "MCPWM_GL_LOAD_PULSE_SYNC_OR_CNTR_PERIOD" || inst["mcpwmGlobalLoad_gldMode"] == "MCPWM_GL_LOAD_PULSE_SYNC_CNTR_ZERO_PERIOD") &&
 				inst["mcpwmTimebase_phaseEnable"] == 1 && inst["mcpwmTimebase_phaseShift"] == 0)
 			{
 		        validation.logWarning(name, inst, "mcpwmGlobalLoad_gldMode");
 		    }
 
 		},
-		devices : ["F28E12x"]
+		devices : ["F28E12x", "MCPC029"]
 		},
 
 	// Validation #16
@@ -435,7 +435,7 @@ var mcpwm_validation = [
 		        validation.logInfo(name, inst, "mcpwmDeadband_delayRED");
 		    }
 		},
-		devices : ["F28E12x"]
+		devices : ["F28E12x", "MCPC029"]
 		},
 
 	// Validation #19
@@ -443,14 +443,14 @@ var mcpwm_validation = [
 		type : validation_error,
 		name :  "Count down direction with a phase value of 0 and in up-down counter mode is invalid.",
 		func : (inst, validation, name) => {
-			if (inst["mcpwmTimebase_phaseEnable"] == true && inst["mcpwmTimebase_phaseShift"] == 0 && inst["mcpwmTimebase_counterMode"] == "MCPWM_COUNTER_MODE_UP_DOWN" 
+			if (inst["mcpwmTimebase_phaseEnable"] == true && inst["mcpwmTimebase_phaseShift"] == 0 && inst["mcpwmTimebase_counterMode"] == "MCPWM_COUNTER_MODE_UP_DOWN"
 				&& inst["mcpwmTimebase_counterModeAfterSync"] == "MCPWM_COUNT_MODE_DOWN_AFTER_SYNC")
 			{
 		         validation.logError(name, inst, "mcpwmTimebase_counterMode");
 			}
 
 		},
-		devices : ["F28E12x"]
+		devices : ["F28E12x", "MCPC029"]
 		},
 
 	// Validation #22
@@ -467,7 +467,7 @@ var mcpwm_validation = [
 		         validation.logInfo(name, inst, "mcpwmDeadband_fedShadowMode");
 			}
 		},
-		devices : ["F28E12x"]
+		devices : ["F28E12x", "MCPC029"]
 		},
 
 	// Validation #23
@@ -475,15 +475,15 @@ var mcpwm_validation = [
 		type : validation_error,
 		name :  "A deadband value of ZERO should not be used when the Global Shadow to Active Load is set to occur at CTR=ZERO",
 		func : (inst, validation, name) => {
-			
-			if (inst["mcpwmDeadband_enableRED"] == 1 && inst["mcpwmDeadband_delayRED"] == 0 && inst["mcpwmGlobalLoad_gld"] ==1 
+
+			if (inst["mcpwmDeadband_enableRED"] == 1 && inst["mcpwmDeadband_delayRED"] == 0 && inst["mcpwmGlobalLoad_gld"] ==1
 				&& (inst["mcpwmGlobalLoad_gldMode"] == "MCPWM_GL_LOAD_PULSE_CNTR_ZERO" ||
 				inst["mcpwmGlobalLoad_gldMode"] == "MCPWM_GL_LOAD_PULSE_CNTR_ZERO_PERIOD" ||
 				inst["mcpwmGlobalLoad_gldMode"] == "MCPWM_GL_LOAD_PULSE_SYNC_CNTR_ZERO_PERIOD"))
 			{
 		         validation.logError(name, inst, "mcpwmDeadband_delayRED");
 			}
-			if (inst["mcpwmDeadband_enableFED"] == 1 && inst["mcpwmDeadband_delayFED"] == 0 && inst["mcpwmGlobalLoad_gld"] ==1 
+			if (inst["mcpwmDeadband_enableFED"] == 1 && inst["mcpwmDeadband_delayFED"] == 0 && inst["mcpwmGlobalLoad_gld"] ==1
 				&& (inst["mcpwmGlobalLoad_gldMode"] == "MCPWM_GL_LOAD_PULSE_CNTR_ZERO" ||
 				inst["mcpwmGlobalLoad_gldMode"] == "MCPWM_GL_LOAD_PULSE_CNTR_ZERO_PERIOD" ||
 				inst["mcpwmGlobalLoad_gldMode"] == "MCPWM_GL_LOAD_PULSE_SYNC_CNTR_ZERO_PERIOD"))
@@ -491,7 +491,7 @@ var mcpwm_validation = [
 		         validation.logError(name, inst, "mcpwmDeadband_delayFED");
 			}
 		},
-		devices : ["F28E12x"]
+		devices : ["F28E12x", "MCPC029"]
 		},
 
 	// Validation #24
@@ -499,20 +499,20 @@ var mcpwm_validation = [
 		type : validation_error,
 		name :  "A deadband value of PERIOD should not be used when the Global Shadow to Active Load is set to occur at CTR=PRD",
 		func : (inst, validation, name) => {
-			if (inst["mcpwmDeadband_enableRED"] == 1 && inst["mcpwmDeadband_delayRED"] == inst["mcpwmTimebase_period"] && inst["mcpwmGlobalLoad_gld"] ==1 
+			if (inst["mcpwmDeadband_enableRED"] == 1 && inst["mcpwmDeadband_delayRED"] == inst["mcpwmTimebase_period"] && inst["mcpwmGlobalLoad_gld"] ==1
 				&& (inst["mcpwmGlobalLoad_gldMode"] == "MCPWM_GL_LOAD_PULSE_CNTR_PERIOD" ||
 				inst["mcpwmGlobalLoad_gldMode"] == "MCPWM_GL_LOAD_PULSE_CNTR_ZERO_PERIOD"))
 			{
 		         validation.logError(name, inst, "mcpwmDeadband_delayRED");
 			}
-			if (inst["mcpwmDeadband_enableFED"] == 1 && inst["mcpwmDeadband_delayFED"] == inst["mcpwmTimebase_period"] && inst["mcpwmGlobalLoad_gld"] ==1 
+			if (inst["mcpwmDeadband_enableFED"] == 1 && inst["mcpwmDeadband_delayFED"] == inst["mcpwmTimebase_period"] && inst["mcpwmGlobalLoad_gld"] ==1
 				&& (inst["mcpwmGlobalLoad_gldMode"] == "MCPWM_GL_LOAD_PULSE_CNTR_PERIOD" ||
 				inst["mcpwmGlobalLoad_gldMode"] == "MCPWM_GL_LOAD_PULSE_CNTR_ZERO_PERIOD"))
 			{
 		         validation.logError(name, inst, "mcpwmDeadband_delayFED");
 			}
 		},
-		devices : ["F28E12x"]
+		devices : ["F28E12x", "MCPC029"]
 		},
 
 	// Validation #25
@@ -525,7 +525,7 @@ var mcpwm_validation = [
 		         validation.logInfo(name, inst, "mcpwmTripZone_oneShotSource");
 			}
 		},
-		devices : ["F28E12x"]
+		devices : ["F28E12x", "MCPC029"]
 		},
 
 	// Validation #31
@@ -538,7 +538,7 @@ var mcpwm_validation = [
 				validation.logInfo(name, inst, "mcpwmTimebase_phaseEnable");
 			}
 		},
-		devices : ["F28E12x"]
+		devices : ["F28E12x", "MCPC029"]
 		},
 
 	// Validation #66
@@ -551,19 +551,19 @@ var mcpwm_validation = [
 				validation.logWarning(name, inst, "mcpwmGlobalLoad_oneShotMode");
 			}
 		},
-		devices : ["F28E12x"]
+		devices : ["F28E12x", "MCPC029"]
 		},
 	// Validation #67
 		{
 		type : validation_warning,
 		name :  "When global loading is enabled and the one-shot mode feature is used, shadow loading for AQCTLx needs to be enabled in order to move initialized content from shadow to active registers",
 		func : (inst, validation, name) => {
-			if (inst["mcpwmGlobalLoad_gld"] == true && inst["mcpwmGlobalLoad_enableOneShot"] == true && 
-			(inst["mcpwmActionQualifier_MCPWM_AQ_OUTPUT_1A_shadowMode"] == false || 
-	 		 inst["mcpwmActionQualifier_MCPWM_AQ_OUTPUT_1B_shadowMode"] == false || 
-			 inst["mcpwmActionQualifier_MCPWM_AQ_OUTPUT_2A_shadowMode"] == false || 
-			 inst["mcpwmActionQualifier_MCPWM_AQ_OUTPUT_2B_shadowMode"] == false || 
-			 inst["mcpwmActionQualifier_MCPWM_AQ_OUTPUT_3A_shadowMode"] == false || 
+			if (inst["mcpwmGlobalLoad_gld"] == true && inst["mcpwmGlobalLoad_enableOneShot"] == true &&
+			(inst["mcpwmActionQualifier_MCPWM_AQ_OUTPUT_1A_shadowMode"] == false ||
+	 		 inst["mcpwmActionQualifier_MCPWM_AQ_OUTPUT_1B_shadowMode"] == false ||
+			 inst["mcpwmActionQualifier_MCPWM_AQ_OUTPUT_2A_shadowMode"] == false ||
+			 inst["mcpwmActionQualifier_MCPWM_AQ_OUTPUT_2B_shadowMode"] == false ||
+			 inst["mcpwmActionQualifier_MCPWM_AQ_OUTPUT_3A_shadowMode"] == false ||
 			 inst["mcpwmActionQualifier_MCPWM_AQ_OUTPUT_3B_shadowMode"] == false))
 			{
 				validation.logWarning(name, inst, "mcpwmActionQualifier_MCPWM_AQ_OUTPUT_1A_shadowMode");
@@ -574,7 +574,7 @@ var mcpwm_validation = [
 				validation.logWarning(name, inst, "mcpwmActionQualifier_MCPWM_AQ_OUTPUT_3B_shadowMode");
 			}
 		},
-		devices : ["F28E12x"]
+		devices : ["F28E12x", "MCPC029"]
 		},
 	// Validation #68
 		{
@@ -586,7 +586,7 @@ var mcpwm_validation = [
 				validation.logWarning(name, inst, "mcpwmGlobalLoad_gldPeriod");
 			}
 		},
-		devices : ["F28E12x"]
+		devices : ["F28E12x", "MCPC029"]
 		},
 ]
 

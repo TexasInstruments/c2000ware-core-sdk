@@ -2,28 +2,35 @@
 //
 // FILE:   aes_ex7_cmac_auth.c
 //
-// TITLE:  AES CBCMAC Encryption
+// TITLE:  AES CMAC Authentication Example
 //
 //! \addtogroup driver_example_list
 //! <h1>AES CMAC Authentication Example </h1>
 //!
-//! This example encrypts block cipher-text using AES128 and AES256 in CMAC mode and authenticates the result. It does
-//! the encryption first without uDMA and then with uDMA. The results are
-//! checked after each operation.
+//! This example demonstrates AES Cipher-based Message Authentication Code (CMAC)
+//! generation using both AES-128 and AES-256 key sizes. The example processes
+//! test vectors and verifies the output tags against expected results.
+//!
+//! The example implements the following operations:
+//!  - Generation of CMAC subkeys (k1 and k2) from the encryption key
+//!  - CMAC authentication with proper padding for block-aligned data
+//!  - Processing of multiple test vectors for verification
+//!
 //!
 //! \b External \b Connections \n
 //!  - None
 //!
 //! \b Watch \b Variables \n
-//! - \b errCountGlobal - Error Counter. It should be zero.
-//! - \b testStatusGlobal - Test status. It should be equal to PASS.
+//! - \b errCountGlobal - Error counter. Should be zero for successful verification.
+//! - \b testStatusGlobal - Test status. Should be equal to TEST_PASS (0xABCDABCD).
+//! - \b TagOutArray - Generated authentication tags for verification.
 //!
 //
 //#############################################################################
 //
 //
 // 
-// C2000Ware v6.00.01.00
+// C2000Ware v26.00.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -100,16 +107,6 @@
 #define TEST_PASS 0xABCDABCD
 #define TEST_FAIL 0xDEADDEAD
 
-#define BURST_SIZE         0x8
-#define BURST_SRCSTEP      0x2
-#define BURST_DESTSTEP     0x2
-#define TRANSFER_SIZE      0x4
-#define TRANSFER_SRCSTEP   0x2
-#define TRANSFER_DESTSTEP  0x2
-#define SRCWRAPSIZE        0x100
-#define WRAP_SRCSTEP       0x10
-#define DESTWRAPSIZE       0x100
-#define WRAP_DESTSTEP      0x10
 //
 // Global Variables
 //
@@ -138,10 +135,6 @@ static volatile bool contextInIntFlag;
 static volatile bool dataInIntFlag;
 static volatile bool contextOutIntFlag;
 static volatile bool dataOutIntFlag;
-static volatile bool contextInDMADoneIntFlag;
-static volatile bool dataInDMADoneIntFlag;
-static volatile bool contextOutDMADoneIntFlag;
-static volatile bool dataOutDMADoneIntFlag;
 
 //
 // Structure for NIST AES CBCMAC tests
@@ -168,14 +161,14 @@ testVectorCBCMAC testVectorCBCMACArray[] =
  //
  {
   .keySize  = AES_KEY_SIZE_128BIT,
-  .cmackey = { 0x10eb3d60,0xbe71ca15,0xf0ae732b,0x81777d85 },
+  .cmackey = { 0x16157e2b, 0xa6d2ae28, 0x8815f7ab, 0x3c4fcf09 },
   .dataLength = 64U,
   .iv = { 0x00000000,0x00000000,0x00000000,0x00000000 },
   .plainTextArray  = { 0xe2bec16b, 0x969f402e, 0x117e3de9, 0x2a179373,
                        0x578a2dae, 0x9cac031e, 0xac6fb79e, 0x518eaf45,
                        0x461cc830, 0x11e45ca3, 0x19c1fbe5, 0xef520a1a,
                        0x45249ff6, 0x179b4fdf, 0x7b412bad, 0x10376ce6 },
-  .ExpectedTagOutArray = { 0x34D9A0D0,0x9C30F216,0xD67F99F6,0x7FCA511E }
+  .ExpectedTagOutArray = { 0xbfbef051, 0x929d3b7e, 0x177449fc, 0xfe3c3679 },
  },
 
  //
@@ -190,7 +183,7 @@ testVectorCBCMAC testVectorCBCMACArray[] =
                        0x578a2dae, 0x9cac031e, 0xac6fb79e, 0x518eaf45,
                        0x461cc830, 0x11e45ca3, 0x19c1fbe5, 0xef520a1a,
                        0x45249ff6, 0x179b4fdf, 0x7b412bad, 0x10376ce6 },
-  .ExpectedTagOutArray = { 0x7498147E,0x55F594D9,0x6DD6CB0B,0xD6157391 }
+  .ExpectedTagOutArray = { 0x902199e1, 0xd56e9f54, 0x052c6a69, 0x1054316c}
  }
 };
 
@@ -199,128 +192,16 @@ testVectorCBCMAC testVectorCBCMACArray[] =
 //
 void performCMACAuthentication(AES_KeySize keySize, uint32_t *srcArray,
                           uint32_t *dstTagArray,   uint32_t *cmackey,
-                          uint32_t *iv, uint32_t dataLength, bool useDMA);
-uint32_t roundUpDataLength(uint32_t dataLength);
-void initializeDMACH1(void);
-void initializeDMACH2(void);
-void configureDMACH1(const void *src, const void *dst, uint32_t transferSize);
-void configureDMACH2(const void *src, const void *dst, uint32_t transferSize);
-void configurreDMAInterruptCH1(void);
-void configureDMAInteruptCH2(void);
+                          uint32_t *iv, uint32_t dataLength);
+void performECBEncryption(AES_KeySize keySize, uint32_t *srcArray,
+                          uint32_t *dstArray,   uint32_t *keyArray,
+                          uint32_t dataLength);
+void generateSubKey(AES_KeySize keySize, uint32_t *cmackey, uint32_t *iv, uint32_t* subKey1, uint32_t* subKey2);
+
+void array_shift_and_generate(const uint32_t input[], uint32_t output[]);
+
+void array_xor_inplace_generic(uint32_t* data, const uint32_t* xor, uint32_t size);
 void initilizeAES(void);
-void startAES(void);
-
-interrupt void AESDMADataInISR(void)
-{
-    AES_disableDMARequest(AESA_BASE, AES_DMA_EN_DATA_IN);
-    dataInDMADoneIntFlag = true;
-    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
-}
-
-interrupt void AESDMADataOutISR(void)
-{
-    AES_disableDMARequest(AESA_BASE, AES_DMA_EN_CONTEXT_OUT );
-    dataOutDMADoneIntFlag = true;
-    Interrupt_clearACKGroup(INTERRUPT_ACK_GROUP7);
-}
-
-void initializeDMACH1(void)
-{
-    DMA_disableTrigger(DMA_CH1_BASE);
-    DMA_clearTriggerFlag(DMA_CH1_BASE);
-    DMA_clearErrorFlag(DMA_CH1_BASE);
-}
-
-void initializeDMACH2(void)
-{
-    DMA_disableTrigger(DMA_CH2_BASE);
-    DMA_clearTriggerFlag(DMA_CH2_BASE);
-    DMA_clearErrorFlag(DMA_CH2_BASE);
-}
-
-void configureDMACH1(const void *src, const void *dst, uint32_t transferSize)
-{
-    //
-    //Configure DMA Channel 1 as needed
-    //
-    DMA_configAddresses(DMA_CH1_BASE,dst,src);
-    //
-    // Burst configuration with 4 32 bit words/burst. Destination is not moving.
-    //
-    DMA_configBurst(DMA_CH1_BASE,BURST_SIZE,BURST_SRCSTEP,0);
-    //
-    // Transfer configuration with 4 bursts/transfer. Destination is not moving.
-    //
-    DMA_configTransfer(DMA_CH1_BASE,transferSize,TRANSFER_SRCSTEP,0);
-    //
-    // Wrap condition enabled if more than 256 bursts/transfer
-    //
-    DMA_configWrap(DMA_CH1_BASE,SRCWRAPSIZE,WRAP_SRCSTEP,DESTWRAPSIZE,WRAP_DESTSTEP);
-    DMA_configMode(DMA_CH1_BASE,DMA_TRIGGER_AESA_DATAIN,DMA_CFG_ONESHOT_DISABLE |
-                   DMA_CFG_CONTINUOUS_DISABLE | DMA_CFG_SIZE_32BIT);
-    DMA_enableTrigger(DMA_CH1_BASE);
-}
-
-void configureDMACH2(const void *src, const void *dst, uint32_t transferSize)
-{
-    //
-    //Configure DMA Channel 2 as needed
-    //
-    DMA_configAddresses(DMA_CH2_BASE,dst,src);
-    //
-    // Burst configuration with 4 32 words/burst. Source is moving.
-    //
-    DMA_configBurst(DMA_CH2_BASE,16,1,1);
-    //
-    // Transfer configuration with 4 bursts/transfer. Source is not moving.
-    //
-    DMA_configTransfer(DMA_CH2_BASE,transferSize,0,TRANSFER_DESTSTEP);
-    //
-    // Wrap condition enabled if more than 256 bursts/transfer
-    //
-    DMA_configWrap(DMA_CH2_BASE,SRCWRAPSIZE,WRAP_SRCSTEP,DESTWRAPSIZE,WRAP_DESTSTEP);
-    DMA_configMode(DMA_CH2_BASE,DMA_TRIGGER_AESA_CONTEXTOUT,DMA_CFG_ONESHOT_DISABLE |
-                   DMA_CFG_CONTINUOUS_DISABLE | DMA_CFG_SIZE_32BIT);
-    DMA_enableTrigger(DMA_CH2_BASE);
-}
-
-void configureDMAInterruptCH1(void)
-{
-    //
-    // Register the interrupt handler.
-    //
-    Interrupt_register(INT_DMA_CH1, AESDMADataInISR);
-
-    //
-    // Enable the DMA interrupt.
-    //
-    Interrupt_enable(INT_DMA_CH1);
-    Interrupt_enableGlobal();
-    DMA_enableInterrupt(DMA_CH1_BASE);
-    //
-    // generate the interrupt at the end of the transfer.
-    //
-    DMA_setInterruptMode(DMA_CH1_BASE,DMA_INT_AT_END);
-}
-
-void configureDMAInterruptCH2(void)
-{
-    //
-    // Register the interrupt handler.
-    //
-    Interrupt_register(INT_DMA_CH2, AESDMADataOutISR);
-
-    //
-    // Enable the DMA interrupt.
-    //
-    Interrupt_enable(INT_DMA_CH2);
-    Interrupt_enableGlobal();
-    DMA_enableInterrupt(DMA_CH2_BASE);
-    //
-    // generate the interrupt at the end of the transfer.
-    //
-    DMA_setInterruptMode(DMA_CH2_BASE,DMA_INT_AT_END);
-}
 
 void initilizeAES(void)
 {
@@ -328,21 +209,6 @@ void initilizeAES(void)
     AES_disableGlobalInterrupt(AESA_SS_BASE);
     AES_performSoftReset(AESA_BASE);
 }
-
-void startAES(void)
-{
-    //
-    //start the DMA Channel and wait for the trigger event.
-    //
-    DMA_startChannel(DMA_CH1_BASE);
-    //
-    //start the DMA Channel and wait for the trigger event.
-    //
-    DMA_startChannel(DMA_CH2_BASE);
-
-    AES_enableDMARequest(AESA_BASE, AES_DMA_EN_DATA_IN | AES_DMA_EN_CONTEXT_OUT);
-}
-
 //
 // Main
 //
@@ -419,46 +285,10 @@ void main(void)
         }
 
         //
-        // Perform Encryption without DMA.
+        // Perform Encryption
+        //
 
-        performCMACAuthentication(keySize, plainTextArray, TagOutArray, cmackey, iv, dataLength, false);
-
-        //
-        // Check the results
-        //
-        for(cnt = 0; cnt < 4U; cnt++)
-        {
-            if(TagOutArray[cnt] != ExpectedTagOutArray[cnt])
-            {
-                errCountLocal++;
-            }
-        }
-
-        //
-        // Update the global error counter.
-        //
-        if(errCountLocal > 0)
-        {
-            errCountGlobal++;
-        }
-
-        //
-        // Clear the local error counter.
-        //
-        errCountLocal = 0;
-
-        //
-        // Clear the array containing the cipher text.
-        //
-        for(cnt = 0; cnt < 4; cnt++)
-        {
-            TagOutArray[cnt] = 0;
-        }
-
-        //
-        // Perform Encryption with DMA.
-        //
-        performCMACAuthentication(keySize, plainTextArray, TagOutArray, cmackey, iv, dataLength, true);
+        performCMACAuthentication(keySize, plainTextArray, TagOutArray, cmackey, iv, dataLength);
 
         //
         // Check the results
@@ -516,8 +346,23 @@ void main(void)
 //
 void performCMACAuthentication(AES_KeySize keySize, uint32_t *srcArray,
                           uint32_t *dstTagArray,   uint32_t *cmackey,
-                          uint32_t *iv, uint32_t dataLength, bool useDMA)
+                          uint32_t *iv, uint32_t dataLength)
 {
+    uint32_t subKey1[4] = {0};
+    uint32_t subKey2[4] = {0};
+    bool dataSizeAligned = true;// Set this to false if data is not 16 byte aligned. Padding with 0x80 is required.
+
+    generateSubKey(keySize, cmackey, iv, subKey1, subKey2);
+
+    if(dataSizeAligned)
+    {
+
+        array_xor_inplace_generic(srcArray + ((dataLength/4U) - 4U), subKey1, 4U );
+    }
+    else 
+    {
+        array_xor_inplace_generic(srcArray + ((dataLength/4U) - 4U), subKey2, 4U );
+    }
     //
     // Clear the interrupt flags.
     //
@@ -525,10 +370,6 @@ void performCMACAuthentication(AES_KeySize keySize, uint32_t *srcArray,
     dataInIntFlag = false;
     contextOutIntFlag = false;
     dataOutIntFlag = false;
-    contextInDMADoneIntFlag = false;
-    dataInDMADoneIntFlag = false;
-    contextOutDMADoneIntFlag = false;
-    dataOutDMADoneIntFlag = false;
 
     //
     // Perform a soft reset.
@@ -561,80 +402,116 @@ void performCMACAuthentication(AES_KeySize keySize, uint32_t *srcArray,
     AES_setKey1(AESA_BASE,cmackey,keySize);
 
     //
-    // Depending on the argument, perform the decryption
-    // with or without uDMA.
+    // Enable all interrupts.
     //
-    if(useDMA)
-    {
+    AES_enableInterrupt(AESA_BASE, (AES_INT_CONTEXT_IN |
+                        AES_INT_CONTEXT_OUT | AES_INT_DATA_IN    |
+                        AES_INT_DATA_OUT));
 
-        DMA_initController();
+    //
+    // Perform the authentication.
+    //
+    AES_authenticateData(AESA_BASE, srcArray, dataLength, dstTagArray);
 
-        initializeDMACH1();
-        configureDMACH1((const void*)srcArray,
-                        (const void*)(AESA_BASE + AES_O_DATA_IN_OUT_0),
-                        (roundUpDataLength(dataLength) / 16U));
-        configureDMAInterruptCH1();
-
-        initializeDMACH2();
-        configureDMACH2((const void*)(AESA_BASE + AES_O_TAG_OUT_0),
-                        (const void*)TagOutArray,
-                        1);
-        configureDMAInterruptCH2();
-
-        AES_setDataLength(AESA_BASE, dataLength);
-
-        /*trigger dma*/
-        startAES();
-
-        //
-        // Wait for the data in DMA done interrupt.
-        //
-        while(!dataInDMADoneIntFlag)
-        {
-        }
-
-        //
-        // Wait for the data out DMA done interrupt.
-        //
-        while(!dataOutDMADoneIntFlag)
-        {
-        }
-    }
-    else
-    {
-        //
-        // Enable all interrupts.
-        //
-        AES_enableInterrupt(AESA_BASE, (AES_INT_CONTEXT_IN |
-                            AES_INT_CONTEXT_OUT | AES_INT_DATA_IN    |
-                            AES_INT_DATA_OUT));
-
-        //
-        // Perform the authentication.
-        //
-        AES_authenticateData(AESA_BASE, srcArray, dataLength, dstTagArray);
-
-    }
 
 }
-
-//
-// roundUpDataLength - Round up length to nearest 16 byte boundary.  This is
-// needed because all four data registers must be written at once.  This is
-// handled in the AES driver, but if using uDMA, the length must rounded up.
-//
-uint32_t roundUpDataLength(uint32_t dataLength)
+void performECBEncryption(AES_KeySize keySize, uint32_t *srcArray,
+                          uint32_t *dstArray,   uint32_t *keyArray,
+                          uint32_t dataLength)
 {
-    uint32_t remainder;
+    //
+    // Clear the interrupt flags.
+    //
+    contextInIntFlag = false;
+    dataInIntFlag = false;
+    contextOutIntFlag = false;
+    dataOutIntFlag = false;
 
-    remainder = dataLength % 16U;
-    if(remainder == 0U)
-    {
-        return(dataLength);
+    //
+    // Perform a soft reset.
+    //
+    initilizeAES();
+
+    //
+    // Configure the AES module.
+    //
+    AES_ConfigParams aesConfig;
+    memset(&aesConfig, 0, sizeof(AES_ConfigParams));
+    aesConfig.direction = AES_DIRECTION_ENCRYPT;
+    aesConfig.keySize = keySize;
+    aesConfig.opMode = AES_OPMODE_ECB;
+    aesConfig.ctrWidth = AES_CTR_WIDTH_32BIT;
+    aesConfig.ccmLenWidth = AES_CCM_L_1;
+    aesConfig.ccmAuthLenWidth = AES_CCM_M_0;
+
+
+    AES_configureModule(AESA_BASE, &aesConfig);
+
+    //
+    // Write the key.
+    //
+    AES_setKey1(AESA_BASE, keyArray, keySize);
+
+    //
+    //
+    // Enable all interrupts.
+    //
+    AES_enableInterrupt(AESA_BASE, (AES_INT_CONTEXT_IN |
+                        AES_INT_CONTEXT_OUT | AES_INT_DATA_IN    |
+                        AES_INT_DATA_OUT));
+
+    //
+    // Perform the encryption.
+    //
+    AES_processData(AESA_BASE, srcArray, dstArray, dataLength);
+}
+void generateSubKey(AES_KeySize keySize, uint32_t *cmackey, uint32_t *iv, uint32_t* subKey1, uint32_t* subKey2){
+    uint32_t L[4];
+    performECBEncryption(keySize, iv, L, cmackey, 16U);
+
+    array_shift_and_generate(L, subKey1);
+
+    array_shift_and_generate(subKey1, subKey2);
+
+}
+void array_shift_and_generate(const uint32_t input[], uint32_t output[]) {
+    uint32_t temp[4];
+    uint32_t carry = 0;
+    int i;
+    uint32_t msbCheck = 0x80;
+    uint32_t Rb = 0x87;
+    
+    // Copy and convert endianness
+    for (i = 0; i < 4; i++) {
+        temp[i] = ((input[i] & 0xFF000000) >> 24) |
+                  ((input[i] & 0x00FF0000) >> 8)  |
+                  ((input[i] & 0x0000FF00) << 8)  |
+                  ((input[i] & 0x000000FF) << 24);
     }
-    else
-    {
-        return(dataLength + (16U - remainder));
+    
+    // Left shift the entire 128-bit value by 1
+    for (i = 3; i >= 0; i--) {
+        uint32_t next_carry = (temp[i] & 0x80000000U) ? 1U : 0U;
+        temp[i] = (temp[i] << 1) | carry;
+        carry = next_carry;
+    }
+
+    if((input[0] & msbCheck) == msbCheck){
+        temp[3] = temp[3] ^ Rb;
+    }
+    
+    // Convert back to original endianness
+    for (i = 0; i < 4; i++) {
+        output[i] = ((temp[i] & 0xFF000000) >> 24) |
+                    ((temp[i] & 0x00FF0000) >> 8)  |
+                    ((temp[i] & 0x0000FF00) << 8)  |
+                    ((temp[i] & 0x000000FF) << 24);
+    }
+}
+void array_xor_inplace_generic(uint32_t* array1, const uint32_t* array2, uint32_t size) {
+    uint32_t i;
+    for (i = 0; i < size; i++) {
+        array1[i] ^= array2[i];
     }
 }
 //

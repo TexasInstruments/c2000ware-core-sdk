@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v26.00.00.00
+// C2000Ware v26.01.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -582,13 +582,13 @@ static inline void ASysCtl_setAnalogReferenceB(ASysCtl_AdcInst adcInst,
 {
     uint32_t shiftVal;
 
-    shiftVal = adcInst + ASYSCTL_REFCONFIGB_ADC_ATB_ENA_S;
+    shiftVal = (uint32_t)adcInst + ASYSCTL_REFCONFIGB_ADC_ATB_ENA_S;
 
     EALLOW;
 
     HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_REFCONFIGB) = 
                     (HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_REFCONFIGB) &
-                    ~((uint32_t)ASYSCTL_REFCONFIGB_ADC_ATB_ENA_M << adcInst)) |
+                    ~((uint32_t)ASYSCTL_REFCONFIGB_ADC_ATB_ENA_M << (uint32_t)adcInst)) |
                     ((uint32_t)modeVal << shiftVal);
     EDIS;
 }
@@ -615,7 +615,7 @@ static inline void ASysCtl_selectInternalTestNode(ASysCtl_TestSelect testSelect)
     HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_INTERNALTESTCTL) = 
         (HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_INTERNALTESTCTL) &
         ~(ASYSCTL_INTERNALTESTCTL_TESTSEL_M | ASYSCTL_INTERNALTESTCTL_KEY_M)) | 
-        (0xA5A50000UL | testSelect);
+        (0xA5A50000UL | (uint32_t)testSelect);
 
     EDIS;
 }
@@ -863,7 +863,7 @@ ASysCtl_enableCMPSSExternalDAC(uint32_t select)
     //
     EALLOW;
     HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPSSCTL) =
-                    (HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPSSCTL) | select) |
+                    (HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPSSCTL) | (uint16_t)select) |
                     ASYSCTL_CMPSSCTL_CMPSSCTLEN;
     EDIS;
 }
@@ -894,7 +894,7 @@ ASysCtl_disableCMPSSExternalDAC(uint32_t select)
     //
     EALLOW;
     HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPSSCTL) =
-                    (HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPSSCTL) & ~select) |
+                    (HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPSSCTL) & ~(uint16_t)select) |
                     ASYSCTL_CMPSSCTL_CMPSSCTLEN;
     EDIS;
 }
@@ -1306,6 +1306,9 @@ static inline void AsysCtl_setDriveStrength(AsysCtl_IO_Drvsel_GPIO gpioNumber)
         case ASYSCTL_IO_DRVSEL_GPIO32:
         gpio = ASYSCTL_IO_DRVSEL_DRVSEL_GPIO32;
         break;
+
+        default:
+        break;
     }
     ASSERT(gpio > 0U);
     EALLOW;
@@ -1332,6 +1335,9 @@ static inline void AsysCtl_clearDriveStrength(AsysCtl_IO_Drvsel_GPIO gpioNumber)
 
         case ASYSCTL_IO_DRVSEL_GPIO32:
         gpio = ASYSCTL_IO_DRVSEL_DRVSEL_GPIO32;
+        break;
+
+        default:
         break;
     }
     ASSERT(gpio > 0U);
@@ -1384,6 +1390,9 @@ static inline void AsysCtl_setDriveMode(AsysCtl_IO_Modesel_GPIO gpioNumber)
         case ASYSCTL_IO_MODESEL_GPIO32:
         gpio = ASYSCTL_IO_MODESEL_MODESEL_GPIO32;
         break;
+
+        default:
+        break;
     }
     ASSERT(gpio > 0U);
     EALLOW;
@@ -1410,6 +1419,9 @@ static inline void AsysCtl_clearDriveMode(AsysCtl_IO_Modesel_GPIO gpioNumber)
 
         case ASYSCTL_IO_MODESEL_GPIO32:
         gpio = ASYSCTL_IO_MODESEL_MODESEL_GPIO32;
+        break;
+
+        default:
         break;
     }
     ASSERT(gpio > 0U);

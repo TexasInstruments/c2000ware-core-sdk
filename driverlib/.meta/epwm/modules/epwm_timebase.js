@@ -7,6 +7,17 @@ let device_driverlib_hrpwm =
     system.getScript("/driverlib/device_driverlib_peripherals/" + 
         Common.getDeviceName().toLowerCase() + "_hrpwm.js");
 
+function updateGlobalLoadStatusTB(inst) {
+    if (inst.epwmGlobalLoad_gld) {
+        let registers = [];
+        if (inst.epwmTimebase_periodGld) registers.push("TBPRD/TBPRDHR");
+        inst.epwmGlobalLoad_statusTimeBase = registers.length > 0 ? registers.join(", ") : "(none enabled)";
+    }
+}
+
+function onTBGldChange(inst, ui) {
+    updateGlobalLoadStatusTB(inst);
+}
 
 function onChangeEnableDisable(inst, ui)
 {
@@ -106,6 +117,7 @@ var config = [
         description : 'Use global load configuration for PRD',
         hidden      : false,
         default     : false,
+        onChange    : onTBGldChange,
     },
     {
         name: "epwmTimebase_counterValue",

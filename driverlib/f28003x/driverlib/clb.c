@@ -93,7 +93,7 @@ void CLB_clearFIFOs(uint32_t base)
 
     for(i = 0U; i < CLB_FIFO_SIZE; i++)
     {
-        HWREG(base + CLB_DATAEXCH + CLB_O_PULL(i)) = 0U;
+        HWREG(base + CLB_DATAEXCH + (uint32_t)CLB_O_PULL(i)) = 0U;
     }
 
     HWREG(base + CLB_LOGICCTL + CLB_O_BUF_PTR) = 0U;

@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v26.00.00.00
+// C2000Ware v26.01.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -109,38 +109,47 @@ void EPWM_configureSignal(uint32_t base, const EPWM_SignalParams *signalParams)
 
     if(signalParams->tbHSClkDiv <= EPWM_HSCLOCK_DIVIDER_4)
     {
-        tbClkInHz /= (float32_t)(1U << (uint16_t)signalParams->tbHSClkDiv);
+        tbClkInHz /= (float32_t)((uint32_t)(1U << (uint16_t)signalParams->tbHSClkDiv));
     }
     else
     {
-        tbClkInHz /= (float32_t)(2U * (uint16_t)signalParams->tbHSClkDiv);
+        tbClkInHz /= (float32_t)((uint32_t)(2U * (uint16_t)signalParams->tbHSClkDiv));
     }
 
     if(signalParams->tbCtrMode == EPWM_COUNTER_MODE_UP)
     {
-        tbPrdVal = (uint16_t)((tbClkInHz / signalParams->freqInHz) - 1.0f);
-        cmpAVal = (uint16_t)(signalParams->dutyValA *
-                             (float32_t)(tbPrdVal + 1U));
-        cmpBVal = (uint16_t)(signalParams->dutyValB *
-                             (float32_t)(tbPrdVal + 1U));
+        float32_t tbPrdValF = (tbClkInHz / signalParams->freqInHz) - 1.0f;
+        tbPrdVal = (uint16_t)(int32_t)tbPrdValF;
+        float32_t cmpAValF = signalParams->dutyValA *
+                             (float32_t)((uint32_t)(tbPrdVal + 1U));
+        cmpAVal = (uint16_t)(int32_t)cmpAValF;
+        float32_t cmpBValF = signalParams->dutyValB *
+                             (float32_t)((uint32_t)(tbPrdVal + 1U));
+        cmpBVal = (uint16_t)(int32_t)cmpBValF;
     }
     else if(signalParams->tbCtrMode == EPWM_COUNTER_MODE_DOWN)
     {
-        tbPrdVal = (uint16_t)((tbClkInHz / signalParams->freqInHz) - 1.0f);
-        cmpAVal = (uint16_t)((float32_t)(tbPrdVal + 1U) -
-                       (signalParams->dutyValA * (float32_t)(tbPrdVal + 1U)));
-        cmpBVal = (uint16_t)((float32_t)(tbPrdVal + 1U) -
-                       (signalParams->dutyValB * (float32_t)(tbPrdVal + 1U)));
+        float32_t tbPrdValF = (tbClkInHz / signalParams->freqInHz) - 1.0f;
+        tbPrdVal = (uint16_t)(int32_t)tbPrdValF;
+        float32_t cmpAValF = (float32_t)((uint32_t)(tbPrdVal + 1U)) -
+                       (signalParams->dutyValA * (float32_t)((uint32_t)(tbPrdVal + 1U)));
+        cmpAVal = (uint16_t)(int32_t)cmpAValF;
+        float32_t cmpBValF = (float32_t)((uint32_t)(tbPrdVal + 1U)) -
+                       (signalParams->dutyValB * (float32_t)((uint32_t)(tbPrdVal + 1U)));
+        cmpBVal = (uint16_t)(int32_t)cmpBValF;
     }
     else
     {
-        tbPrdVal = (uint16_t)(tbClkInHz / (2.0f * signalParams->freqInHz));
-        cmpAVal = (uint16_t)(((float32_t)tbPrdVal -
+        float32_t tbPrdValF = tbClkInHz / (2.0f * signalParams->freqInHz);
+        tbPrdVal = (uint16_t)(int32_t)tbPrdValF;
+        float32_t cmpAValF = ((float32_t)((uint32_t)tbPrdVal) -
                              ((signalParams->dutyValA *
-                              (float32_t)tbPrdVal))) + 0.5f);
-        cmpBVal = (uint16_t)(((float32_t)tbPrdVal -
+                              (float32_t)((uint32_t)tbPrdVal)))) + 0.5f;
+        cmpAVal = (uint16_t)(int32_t)cmpAValF;
+        float32_t cmpBValF = ((float32_t)((uint32_t)tbPrdVal) -
                              ((signalParams->dutyValB *
-                              (float32_t)tbPrdVal))) + 0.5f);
+                              (float32_t)((uint32_t)tbPrdVal)))) + 0.5f;
+        cmpBVal = (uint16_t)(int32_t)cmpBValF;
     }
 
     //
@@ -193,7 +202,7 @@ void EPWM_configureSignal(uint32_t base, const EPWM_SignalParams *signalParams)
                                       EPWM_AQ_OUTPUT_LOW,
                                       EPWM_AQ_OUTPUT_ON_TIMEBASE_UP_CMPA);
 
-        if(signalParams->invertSignalB == true)
+        if(signalParams->invertSignalB)
         {
             //
             // Clear PWMxB on Zero
@@ -247,7 +256,7 @@ void EPWM_configureSignal(uint32_t base, const EPWM_SignalParams *signalParams)
                                       EPWM_AQ_OUTPUT_LOW,
                                       EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPA);
 
-        if(signalParams->invertSignalB == true)
+        if(signalParams->invertSignalB)
         {
             //
             // Clear PWMxB on Zero
@@ -308,7 +317,7 @@ void EPWM_configureSignal(uint32_t base, const EPWM_SignalParams *signalParams)
                                       EPWM_AQ_OUTPUT_LOW,
                                       EPWM_AQ_OUTPUT_ON_TIMEBASE_DOWN_CMPA);
 
-        if(signalParams->invertSignalB == true)
+        if(signalParams->invertSignalB)
         {
             //
             // Set PWMxB on Zero

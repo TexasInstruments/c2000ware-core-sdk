@@ -70,7 +70,7 @@ DAC_tuneOffsetTrim(uint32_t base, float32_t referenceVoltage)
     // voltage other than 2.5v.
     //
     newOffsetTrim = ((float32_t)(2.5 / referenceVoltage) *
-                     (int16_t)oldOffsetTrim);
+                     (float32_t)(int16_t)oldOffsetTrim);
 
     //
     // Check if the new offset trim value is valid
@@ -83,7 +83,7 @@ DAC_tuneOffsetTrim(uint32_t base, float32_t referenceVoltage)
     EALLOW;
     HWREGH(base + DAC_O_TRIM) = (HWREGH(base + DAC_O_TRIM) &
                                  ~DAC_TRIM_OFFSET_TRIM_M) |
-                                 (int16_t)newOffsetTrim;
+                                 (uint16_t)(int16_t)newOffsetTrim;
 
     EDIS;
 

@@ -2091,7 +2091,7 @@ ADC_readPPBPCount(uint32_t base, ADC_PPBNumber ppbNumber)
     //
     // Returns the partial count of the selected PPB.
     //
-    return(HWREG(base + (uint32_t)ADC_PPBxPCOUNT_OFFSET_BASE +
+    return((uint32_t)HWREG(base + (uint32_t)ADC_PPBxPCOUNT_OFFSET_BASE +
             ((uint32_t)ppbNumber * 26UL)));
 }
 
@@ -3131,8 +3131,8 @@ ADC_triggerRepeaterModuleBusy(uint32_t base, uint32_t repInstance)
     //
     // get the specified repeater trigger active mode status.
     //
-    return(HWREG(regOffset + ADC_O_REP1CTL) &
-                (1U << ADC_REP1CTL_MODULEBUSY_S));
+    return((HWREG(regOffset + ADC_O_REP1CTL) &
+                (1U << ADC_REP1CTL_MODULEBUSY_S)) ? true : false);
 }
 
 //*****************************************************************************

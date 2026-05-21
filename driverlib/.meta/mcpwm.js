@@ -274,7 +274,12 @@ config.push(
         description : 'Peripheral use case',
         hidden      : false,
         default     : 'ALL',
-        options     : Pinmux.getPeripheralUseCaseNames("MCPWM"),
+        options     : (inst) => {
+            if (inst && inst.mcpwm && inst.mcpwm.$assign === "MCPWM3") {
+                return [{name: "2CH", displayName: "2CH"}];
+            }
+            return Pinmux.getPeripheralUseCaseNames("MCPWM");
+        },
         onChange    : Pinmux.useCaseChanged,
     }
 )
@@ -318,6 +323,11 @@ var moduleStatic = {
 
 function onValidate(inst, validation)
 {
+    if (inst.mcpwm && inst.mcpwm.$assign === "MCPWM3" && inst.useCase !== "2CH") {
+        validation.logError(
+            "PWM3 only supports the 2CH use case", inst, "useCase");
+    }
+
     // Check if the sync module is added on CPU1 if the current context is CPU2
     if (Common.isMultiCoreDevice() && Common.isMultiCoreSysConfig())
     {

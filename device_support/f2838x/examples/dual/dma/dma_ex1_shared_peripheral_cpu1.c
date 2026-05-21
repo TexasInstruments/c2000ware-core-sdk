@@ -20,7 +20,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v26.00.00.00
+// C2000Ware v26.01.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -261,14 +261,17 @@ void ExampleInitSysCtrl(void)
     //  AUXPLLCLK = (XTAL_OSC) * (IMULT) /(REFDIV) * (ODIV) * (AUXPLLDIV)
     //
     InitAuxPll(XTAL_OSC, IMULT_40, REFDIV_2, ODIV_4, AUXPLLRAWCLK_BY_1, SYSCTL_DCC_BASE1);
+    EALLOW;
+    MemCfgRegs.GSxMSEL.bit.MSEL_GS1 = 1;    // Give CPU2 control of GS1
+    EDIS;
+
 
 
     //
-    //Give control of SPI-A and GS1 to CPU2
+    //Give control of SPI-A 
     //
     EALLOW;
     DevCfgRegs.CPUSEL6.bit.SPI_A = 1;       // Give CPU2 control to SPIA
-    MemCfgRegs.GSxMSEL.bit.MSEL_GS1 = 1;    // Give CPU2 control of GS1
     EDIS;
 
     //

@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">F28E12x Driverib and Example User Guide
-   &#160;<span id="projectnumber">26.00.00.00</span>
+   &#160;<span id="projectnumber">26.01.00.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -1521,7 +1521,7 @@ $(document).ready(function(){initNavTree('adc_8h_source.html',''); initResizable
 <div class="line"><a name="l02091"></a><span class="lineno"> 2091</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l02092"></a><span class="lineno"> 2092</span>&#160;    <span class="comment">// Returns the partial count of the selected PPB.</span></div>
 <div class="line"><a name="l02093"></a><span class="lineno"> 2093</span>&#160;    <span class="comment">//</span></div>
-<div class="line"><a name="l02094"></a><span class="lineno"> 2094</span>&#160;    <span class="keywordflow">return</span>(HWREG(base + (uint32_t)<a class="code" href="group__adc__api.html#ga437d861f409a157db3f2d9a07344dfca">ADC_PPBxPCOUNT_OFFSET_BASE</a> +</div>
+<div class="line"><a name="l02094"></a><span class="lineno"> 2094</span>&#160;    <span class="keywordflow">return</span>((uint32_t)HWREG(base + (uint32_t)<a class="code" href="group__adc__api.html#ga437d861f409a157db3f2d9a07344dfca">ADC_PPBxPCOUNT_OFFSET_BASE</a> +</div>
 <div class="line"><a name="l02095"></a><span class="lineno"> 2095</span>&#160;            ((uint32_t)ppbNumber * 26UL)));</div>
 <div class="line"><a name="l02096"></a><span class="lineno"> 2096</span>&#160;}</div>
 <div class="line"><a name="l02097"></a><span class="lineno"> 2097</span>&#160; </div>
@@ -2187,8 +2187,8 @@ $(document).ready(function(){initNavTree('adc_8h_source.html',''); initResizable
 <div class="line"><a name="l03131"></a><span class="lineno"> 3131</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l03132"></a><span class="lineno"> 3132</span>&#160;    <span class="comment">// get the specified repeater trigger active mode status.</span></div>
 <div class="line"><a name="l03133"></a><span class="lineno"> 3133</span>&#160;    <span class="comment">//</span></div>
-<div class="line"><a name="l03134"></a><span class="lineno"> 3134</span>&#160;    <span class="keywordflow">return</span>(HWREG(regOffset + ADC_O_REP1CTL) &amp;</div>
-<div class="line"><a name="l03135"></a><span class="lineno"> 3135</span>&#160;                (1U &lt;&lt; <a class="code" href="group__adc__api.html#gab842e8dcd72fbf8a8b0d2278ed737701">ADC_REP1CTL_MODULEBUSY_S</a>));</div>
+<div class="line"><a name="l03134"></a><span class="lineno"> 3134</span>&#160;    <span class="keywordflow">return</span>((HWREG(regOffset + ADC_O_REP1CTL) &amp;</div>
+<div class="line"><a name="l03135"></a><span class="lineno"> 3135</span>&#160;                (1U &lt;&lt; <a class="code" href="group__adc__api.html#gab842e8dcd72fbf8a8b0d2278ed737701">ADC_REP1CTL_MODULEBUSY_S</a>)) ? <span class="keyword">true</span> : <span class="keyword">false</span>);</div>
 <div class="line"><a name="l03136"></a><span class="lineno"> 3136</span>&#160;}</div>
 <div class="line"><a name="l03137"></a><span class="lineno"> 3137</span>&#160; </div>
 <div class="line"><a name="l03138"></a><span class="lineno"> 3138</span>&#160;<span class="comment">//*****************************************************************************</span></div>

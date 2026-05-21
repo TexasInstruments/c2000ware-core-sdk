@@ -1,0 +1,34 @@
+
+/**
+ * Import the modules used in this configuration.
+ */
+const erad             = scripting.addModule("/driverlib/erad.js", {}, false);
+const erad1            = erad.addInstance();
+const gpio             = scripting.addModule("/driverlib/gpio.js", {}, false);
+const gpio1            = gpio.addInstance();
+const inputxbar_input  = scripting.addModule("/driverlib/inputxbar_input.js", {}, false);
+const inputxbar_input1 = inputxbar_input.addInstance();
+const sysctl           = scripting.addModule("/driverlib/sysctl.js");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+erad1.$name                            = "myERAD0";
+erad1.ctmsUsed                         = ["COUNTER1"];
+erad1.eradCOUNTER1.$name               = "ERAD_CTM0";
+erad1.eradCOUNTER1.clockSource         = "1";
+erad1.eradCOUNTER1.externalClockSource = "ERAD_EVENT_INPUTXBAR0";
+erad1.eradCOUNTER1.counterMode         = true;
+erad1.eradCOUNTER1.NMIInterrupt        = true;
+erad1.eradCOUNTER1.counterPeriod       = 1;
+
+gpio1.$name             = "myGPIO0";
+gpio1.writeInitialValue = true;
+gpio1.initialValue      = 1;
+gpio1.padConfig         = "PULLUP";
+gpio1.gpioPin.$assign   = "GPIO0";
+
+inputxbar_input1.$name         = "myINPUTXBARINPUT0";
+inputxbar_input1.inputxbarGpio = "GPIO0";
+
+sysctl.enableNMIGlobalInterrupt = true;

@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">f28p55x Driverib and Example User Guide
-   &#160;<span id="projectnumber">26.00.00.00</span>
+   &#160;<span id="projectnumber">26.01.00.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -99,7 +99,7 @@ $(document).ready(function(){initNavTree('asysctl_8h_source.html',''); initResiz
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">//###########################################################################</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">// </span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// C2000Ware v26.00.00.00</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// C2000Ware v26.01.00.00</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">//</span></div>
@@ -543,13 +543,13 @@ $(document).ready(function(){initNavTree('asysctl_8h_source.html',''); initResiz
 <div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;{</div>
 <div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;    uint32_t shiftVal;</div>
 <div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160; </div>
-<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;    shiftVal = adcInst + ASYSCTL_REFCONFIGB_ADC_ATB_ENA_S;</div>
+<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;    shiftVal = (uint32_t)adcInst + ASYSCTL_REFCONFIGB_ADC_ATB_ENA_S;</div>
 <div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160; </div>
 <div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;    EALLOW;</div>
 <div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160; </div>
 <div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;    HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_REFCONFIGB) = </div>
 <div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;                    (HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_REFCONFIGB) &amp;</div>
-<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;                    ~((uint32_t)ASYSCTL_REFCONFIGB_ADC_ATB_ENA_M &lt;&lt; adcInst)) |</div>
+<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;                    ~((uint32_t)ASYSCTL_REFCONFIGB_ADC_ATB_ENA_M &lt;&lt; (uint32_t)adcInst)) |</div>
 <div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;                    ((uint32_t)modeVal &lt;&lt; shiftVal);</div>
 <div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160;    EDIS;</div>
 <div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;}</div>
@@ -567,7 +567,7 @@ $(document).ready(function(){initNavTree('asysctl_8h_source.html',''); initResiz
 <div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;    HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_INTERNALTESTCTL) = </div>
 <div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;        (HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_INTERNALTESTCTL) &amp;</div>
 <div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;        ~(ASYSCTL_INTERNALTESTCTL_TESTSEL_M | ASYSCTL_INTERNALTESTCTL_KEY_M)) | </div>
-<div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;        (0xA5A50000UL | testSelect);</div>
+<div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;        (0xA5A50000UL | (uint32_t)testSelect);</div>
 <div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160; </div>
 <div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;    EDIS;</div>
 <div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;}</div>
@@ -725,7 +725,7 @@ $(document).ready(function(){initNavTree('asysctl_8h_source.html',''); initResiz
 <div class="line"><a name="l00863"></a><span class="lineno">  863</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l00864"></a><span class="lineno">  864</span>&#160;    EALLOW;</div>
 <div class="line"><a name="l00865"></a><span class="lineno">  865</span>&#160;    HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPSSCTL) =</div>
-<div class="line"><a name="l00866"></a><span class="lineno">  866</span>&#160;                    (HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPSSCTL) | select) |</div>
+<div class="line"><a name="l00866"></a><span class="lineno">  866</span>&#160;                    (HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPSSCTL) | (uint16_t)select) |</div>
 <div class="line"><a name="l00867"></a><span class="lineno">  867</span>&#160;                    ASYSCTL_CMPSSCTL_CMPSSCTLEN;</div>
 <div class="line"><a name="l00868"></a><span class="lineno">  868</span>&#160;    EDIS;</div>
 <div class="line"><a name="l00869"></a><span class="lineno">  869</span>&#160;}</div>
@@ -746,7 +746,7 @@ $(document).ready(function(){initNavTree('asysctl_8h_source.html',''); initResiz
 <div class="line"><a name="l00894"></a><span class="lineno">  894</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l00895"></a><span class="lineno">  895</span>&#160;    EALLOW;</div>
 <div class="line"><a name="l00896"></a><span class="lineno">  896</span>&#160;    HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPSSCTL) =</div>
-<div class="line"><a name="l00897"></a><span class="lineno">  897</span>&#160;                    (HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPSSCTL) &amp; ~select) |</div>
+<div class="line"><a name="l00897"></a><span class="lineno">  897</span>&#160;                    (HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPSSCTL) &amp; ~(uint16_t)select) |</div>
 <div class="line"><a name="l00898"></a><span class="lineno">  898</span>&#160;                    ASYSCTL_CMPSSCTL_CMPSSCTLEN;</div>
 <div class="line"><a name="l00899"></a><span class="lineno">  899</span>&#160;    EDIS;</div>
 <div class="line"><a name="l00900"></a><span class="lineno">  900</span>&#160;}</div>
@@ -1027,134 +1027,146 @@ $(document).ready(function(){initNavTree('asysctl_8h_source.html',''); initResiz
 <div class="line"><a name="l01306"></a><span class="lineno"> 1306</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="group__asysctl__api.html#gga42fd382fce0d576324a69ec341e3ada8a9bd005396e19bb1032c7a4f782dc6774">ASYSCTL_IO_DRVSEL_GPIO32</a>:</div>
 <div class="line"><a name="l01307"></a><span class="lineno"> 1307</span>&#160;        gpio = ASYSCTL_IO_DRVSEL_DRVSEL_GPIO32;</div>
 <div class="line"><a name="l01308"></a><span class="lineno"> 1308</span>&#160;        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l01309"></a><span class="lineno"> 1309</span>&#160;    }</div>
-<div class="line"><a name="l01310"></a><span class="lineno"> 1310</span>&#160;    ASSERT(gpio &gt; 0U);</div>
-<div class="line"><a name="l01311"></a><span class="lineno"> 1311</span>&#160;    EALLOW;</div>
-<div class="line"><a name="l01312"></a><span class="lineno"> 1312</span>&#160;    HWREG(ASYSCTL_O_IO_DRVSEL) |= gpio;</div>
-<div class="line"><a name="l01313"></a><span class="lineno"> 1313</span>&#160;    EDIS;</div>
-<div class="line"><a name="l01314"></a><span class="lineno"> 1314</span>&#160;}</div>
-<div class="line"><a name="l01315"></a><span class="lineno"> 1315</span>&#160; </div>
-<div class="line"><a name="l01316"></a><span class="lineno"><a class="line" href="group__asysctl__api.html#ga171555b58991dc29c7a620b87da65c65"> 1316</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__asysctl__api.html#ga171555b58991dc29c7a620b87da65c65">AsysCtl_clearDriveStrength</a>(<a class="code" href="group__asysctl__api.html#ga42fd382fce0d576324a69ec341e3ada8">AsysCtl_IO_Drvsel_GPIO</a> gpioNumber)</div>
-<div class="line"><a name="l01317"></a><span class="lineno"> 1317</span>&#160;{</div>
-<div class="line"><a name="l01318"></a><span class="lineno"> 1318</span>&#160;    uint16_t gpio = 0;</div>
-<div class="line"><a name="l01319"></a><span class="lineno"> 1319</span>&#160;    <span class="keywordflow">switch</span> (gpioNumber)</div>
-<div class="line"><a name="l01320"></a><span class="lineno"> 1320</span>&#160;    {</div>
-<div class="line"><a name="l01321"></a><span class="lineno"> 1321</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="group__asysctl__api.html#gga42fd382fce0d576324a69ec341e3ada8a339cbf134a63b909a992736efc1b84d5">ASYSCTL_IO_DRVSEL_GPIO2</a>:</div>
-<div class="line"><a name="l01322"></a><span class="lineno"> 1322</span>&#160;        gpio = ASYSCTL_IO_DRVSEL_DRVSEL_GPIO2;</div>
-<div class="line"><a name="l01323"></a><span class="lineno"> 1323</span>&#160;        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l01324"></a><span class="lineno"> 1324</span>&#160; </div>
-<div class="line"><a name="l01325"></a><span class="lineno"> 1325</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="group__asysctl__api.html#gga42fd382fce0d576324a69ec341e3ada8ac20e53a29930a7662710cf60ea82c3bf">ASYSCTL_IO_DRVSEL_GPIO3</a>:</div>
-<div class="line"><a name="l01326"></a><span class="lineno"> 1326</span>&#160;        gpio = ASYSCTL_IO_DRVSEL_DRVSEL_GPIO3;</div>
-<div class="line"><a name="l01327"></a><span class="lineno"> 1327</span>&#160;        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l01328"></a><span class="lineno"> 1328</span>&#160; </div>
-<div class="line"><a name="l01329"></a><span class="lineno"> 1329</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="group__asysctl__api.html#gga42fd382fce0d576324a69ec341e3ada8a3144774e00704d458c1dffdc7e9a9fe5">ASYSCTL_IO_DRVSEL_GPIO9</a>:</div>
-<div class="line"><a name="l01330"></a><span class="lineno"> 1330</span>&#160;        gpio = ASYSCTL_IO_DRVSEL_DRVSEL_GPIO9;</div>
-<div class="line"><a name="l01331"></a><span class="lineno"> 1331</span>&#160;        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l01332"></a><span class="lineno"> 1332</span>&#160; </div>
-<div class="line"><a name="l01333"></a><span class="lineno"> 1333</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="group__asysctl__api.html#gga42fd382fce0d576324a69ec341e3ada8a9bd005396e19bb1032c7a4f782dc6774">ASYSCTL_IO_DRVSEL_GPIO32</a>:</div>
-<div class="line"><a name="l01334"></a><span class="lineno"> 1334</span>&#160;        gpio = ASYSCTL_IO_DRVSEL_DRVSEL_GPIO32;</div>
-<div class="line"><a name="l01335"></a><span class="lineno"> 1335</span>&#160;        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l01336"></a><span class="lineno"> 1336</span>&#160;    }</div>
-<div class="line"><a name="l01337"></a><span class="lineno"> 1337</span>&#160;    ASSERT(gpio &gt; 0U);</div>
-<div class="line"><a name="l01338"></a><span class="lineno"> 1338</span>&#160;    EALLOW;</div>
-<div class="line"><a name="l01339"></a><span class="lineno"> 1339</span>&#160;    HWREG(ASYSCTL_O_IO_DRVSEL) &amp;= ~(gpio);</div>
-<div class="line"><a name="l01340"></a><span class="lineno"> 1340</span>&#160;    EDIS;</div>
-<div class="line"><a name="l01341"></a><span class="lineno"> 1341</span>&#160;}</div>
-<div class="line"><a name="l01342"></a><span class="lineno"> 1342</span>&#160; </div>
-<div class="line"><a name="l01343"></a><span class="lineno"><a class="line" href="group__asysctl__api.html#ga229732830e16cac70ab3bd024492518f"> 1343</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> </div>
-<div class="line"><a name="l01344"></a><span class="lineno"> 1344</span>&#160;{</div>
-<div class="line"><a name="l01345"></a><span class="lineno"><a class="line" href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fa925da55b50f1759b1824ae0eb0342f6a"> 1345</a></span>&#160;    <a class="code" href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fa925da55b50f1759b1824ae0eb0342f6a">ASYSCTL_IO_MODESEL_GPIO2</a>,</div>
-<div class="line"><a name="l01346"></a><span class="lineno"><a class="line" href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fa58338bb8a1ce4294a08ba02b7dcaa819"> 1346</a></span>&#160;    <a class="code" href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fa58338bb8a1ce4294a08ba02b7dcaa819">ASYSCTL_IO_MODESEL_GPIO3</a>,</div>
-<div class="line"><a name="l01347"></a><span class="lineno"><a class="line" href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fa1dec5f77260b3d899dba5947ca87a053"> 1347</a></span>&#160;    <a class="code" href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fa1dec5f77260b3d899dba5947ca87a053">ASYSCTL_IO_MODESEL_GPIO9</a>,</div>
-<div class="line"><a name="l01348"></a><span class="lineno"> 1348</span>&#160;    <a class="code" href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fad3a568b4ab71aa1939e769d72a88a5cd">ASYSCTL_IO_MODESEL_GPIO32</a></div>
-<div class="line"><a name="l01349"></a><span class="lineno"><a class="line" href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fad3a568b4ab71aa1939e769d72a88a5cd"> 1349</a></span>&#160;} <a class="code" href="group__asysctl__api.html#ga229732830e16cac70ab3bd024492518f">AsysCtl_IO_Modesel_GPIO</a>;</div>
-<div class="line"><a name="l01350"></a><span class="lineno"> 1350</span>&#160;<span class="comment">//*****************************************************************************</span></div>
-<div class="line"><a name="l01351"></a><span class="lineno"> 1351</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l01365"></a><span class="lineno"> 1365</span>&#160;<span class="comment"></span><span class="comment">//</span></div>
-<div class="line"><a name="l01366"></a><span class="lineno"> 1366</span>&#160;<span class="comment">//*****************************************************************************</span></div>
-<div class="line"><a name="l01367"></a><span class="lineno"><a class="line" href="group__asysctl__api.html#ga3fbc9c08455203abce89458948e8013b"> 1367</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__asysctl__api.html#ga3fbc9c08455203abce89458948e8013b">AsysCtl_setDriveMode</a>(<a class="code" href="group__asysctl__api.html#ga229732830e16cac70ab3bd024492518f">AsysCtl_IO_Modesel_GPIO</a> gpioNumber)</div>
-<div class="line"><a name="l01368"></a><span class="lineno"> 1368</span>&#160;{</div>
-<div class="line"><a name="l01369"></a><span class="lineno"> 1369</span>&#160;    uint16_t gpio = 0;</div>
-<div class="line"><a name="l01370"></a><span class="lineno"> 1370</span>&#160;    <span class="keywordflow">switch</span> (gpioNumber)</div>
-<div class="line"><a name="l01371"></a><span class="lineno"> 1371</span>&#160;    {</div>
-<div class="line"><a name="l01372"></a><span class="lineno"> 1372</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fa925da55b50f1759b1824ae0eb0342f6a">ASYSCTL_IO_MODESEL_GPIO2</a>:</div>
-<div class="line"><a name="l01373"></a><span class="lineno"> 1373</span>&#160;        gpio = ASYSCTL_IO_MODESEL_MODESEL_GPIO2;</div>
-<div class="line"><a name="l01374"></a><span class="lineno"> 1374</span>&#160;        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l01375"></a><span class="lineno"> 1375</span>&#160; </div>
-<div class="line"><a name="l01376"></a><span class="lineno"> 1376</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fa58338bb8a1ce4294a08ba02b7dcaa819">ASYSCTL_IO_MODESEL_GPIO3</a>:</div>
-<div class="line"><a name="l01377"></a><span class="lineno"> 1377</span>&#160;        gpio = ASYSCTL_IO_MODESEL_MODESEL_GPIO3;</div>
-<div class="line"><a name="l01378"></a><span class="lineno"> 1378</span>&#160;        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l01379"></a><span class="lineno"> 1379</span>&#160; </div>
-<div class="line"><a name="l01380"></a><span class="lineno"> 1380</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fa1dec5f77260b3d899dba5947ca87a053">ASYSCTL_IO_MODESEL_GPIO9</a>:</div>
-<div class="line"><a name="l01381"></a><span class="lineno"> 1381</span>&#160;        gpio = ASYSCTL_IO_MODESEL_MODESEL_GPIO9;</div>
-<div class="line"><a name="l01382"></a><span class="lineno"> 1382</span>&#160;        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l01383"></a><span class="lineno"> 1383</span>&#160; </div>
-<div class="line"><a name="l01384"></a><span class="lineno"> 1384</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fad3a568b4ab71aa1939e769d72a88a5cd">ASYSCTL_IO_MODESEL_GPIO32</a>:</div>
-<div class="line"><a name="l01385"></a><span class="lineno"> 1385</span>&#160;        gpio = ASYSCTL_IO_MODESEL_MODESEL_GPIO32;</div>
-<div class="line"><a name="l01386"></a><span class="lineno"> 1386</span>&#160;        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l01387"></a><span class="lineno"> 1387</span>&#160;    }</div>
-<div class="line"><a name="l01388"></a><span class="lineno"> 1388</span>&#160;    ASSERT(gpio &gt; 0U);</div>
-<div class="line"><a name="l01389"></a><span class="lineno"> 1389</span>&#160;    EALLOW;</div>
-<div class="line"><a name="l01390"></a><span class="lineno"> 1390</span>&#160;    HWREG(ASYSCTL_O_IO_MODESEL) |= gpio;</div>
-<div class="line"><a name="l01391"></a><span class="lineno"> 1391</span>&#160;    EDIS;</div>
-<div class="line"><a name="l01392"></a><span class="lineno"> 1392</span>&#160;}</div>
+<div class="line"><a name="l01309"></a><span class="lineno"> 1309</span>&#160; </div>
+<div class="line"><a name="l01310"></a><span class="lineno"> 1310</span>&#160;        <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l01311"></a><span class="lineno"> 1311</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l01312"></a><span class="lineno"> 1312</span>&#160;    }</div>
+<div class="line"><a name="l01313"></a><span class="lineno"> 1313</span>&#160;    ASSERT(gpio &gt; 0U);</div>
+<div class="line"><a name="l01314"></a><span class="lineno"> 1314</span>&#160;    EALLOW;</div>
+<div class="line"><a name="l01315"></a><span class="lineno"> 1315</span>&#160;    HWREG(ASYSCTL_O_IO_DRVSEL) |= gpio;</div>
+<div class="line"><a name="l01316"></a><span class="lineno"> 1316</span>&#160;    EDIS;</div>
+<div class="line"><a name="l01317"></a><span class="lineno"> 1317</span>&#160;}</div>
+<div class="line"><a name="l01318"></a><span class="lineno"> 1318</span>&#160; </div>
+<div class="line"><a name="l01319"></a><span class="lineno"><a class="line" href="group__asysctl__api.html#ga171555b58991dc29c7a620b87da65c65"> 1319</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__asysctl__api.html#ga171555b58991dc29c7a620b87da65c65">AsysCtl_clearDriveStrength</a>(<a class="code" href="group__asysctl__api.html#ga42fd382fce0d576324a69ec341e3ada8">AsysCtl_IO_Drvsel_GPIO</a> gpioNumber)</div>
+<div class="line"><a name="l01320"></a><span class="lineno"> 1320</span>&#160;{</div>
+<div class="line"><a name="l01321"></a><span class="lineno"> 1321</span>&#160;    uint16_t gpio = 0;</div>
+<div class="line"><a name="l01322"></a><span class="lineno"> 1322</span>&#160;    <span class="keywordflow">switch</span> (gpioNumber)</div>
+<div class="line"><a name="l01323"></a><span class="lineno"> 1323</span>&#160;    {</div>
+<div class="line"><a name="l01324"></a><span class="lineno"> 1324</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="group__asysctl__api.html#gga42fd382fce0d576324a69ec341e3ada8a339cbf134a63b909a992736efc1b84d5">ASYSCTL_IO_DRVSEL_GPIO2</a>:</div>
+<div class="line"><a name="l01325"></a><span class="lineno"> 1325</span>&#160;        gpio = ASYSCTL_IO_DRVSEL_DRVSEL_GPIO2;</div>
+<div class="line"><a name="l01326"></a><span class="lineno"> 1326</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l01327"></a><span class="lineno"> 1327</span>&#160; </div>
+<div class="line"><a name="l01328"></a><span class="lineno"> 1328</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="group__asysctl__api.html#gga42fd382fce0d576324a69ec341e3ada8ac20e53a29930a7662710cf60ea82c3bf">ASYSCTL_IO_DRVSEL_GPIO3</a>:</div>
+<div class="line"><a name="l01329"></a><span class="lineno"> 1329</span>&#160;        gpio = ASYSCTL_IO_DRVSEL_DRVSEL_GPIO3;</div>
+<div class="line"><a name="l01330"></a><span class="lineno"> 1330</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l01331"></a><span class="lineno"> 1331</span>&#160; </div>
+<div class="line"><a name="l01332"></a><span class="lineno"> 1332</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="group__asysctl__api.html#gga42fd382fce0d576324a69ec341e3ada8a3144774e00704d458c1dffdc7e9a9fe5">ASYSCTL_IO_DRVSEL_GPIO9</a>:</div>
+<div class="line"><a name="l01333"></a><span class="lineno"> 1333</span>&#160;        gpio = ASYSCTL_IO_DRVSEL_DRVSEL_GPIO9;</div>
+<div class="line"><a name="l01334"></a><span class="lineno"> 1334</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l01335"></a><span class="lineno"> 1335</span>&#160; </div>
+<div class="line"><a name="l01336"></a><span class="lineno"> 1336</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="group__asysctl__api.html#gga42fd382fce0d576324a69ec341e3ada8a9bd005396e19bb1032c7a4f782dc6774">ASYSCTL_IO_DRVSEL_GPIO32</a>:</div>
+<div class="line"><a name="l01337"></a><span class="lineno"> 1337</span>&#160;        gpio = ASYSCTL_IO_DRVSEL_DRVSEL_GPIO32;</div>
+<div class="line"><a name="l01338"></a><span class="lineno"> 1338</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l01339"></a><span class="lineno"> 1339</span>&#160; </div>
+<div class="line"><a name="l01340"></a><span class="lineno"> 1340</span>&#160;        <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l01341"></a><span class="lineno"> 1341</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l01342"></a><span class="lineno"> 1342</span>&#160;    }</div>
+<div class="line"><a name="l01343"></a><span class="lineno"> 1343</span>&#160;    ASSERT(gpio &gt; 0U);</div>
+<div class="line"><a name="l01344"></a><span class="lineno"> 1344</span>&#160;    EALLOW;</div>
+<div class="line"><a name="l01345"></a><span class="lineno"> 1345</span>&#160;    HWREG(ASYSCTL_O_IO_DRVSEL) &amp;= ~(gpio);</div>
+<div class="line"><a name="l01346"></a><span class="lineno"> 1346</span>&#160;    EDIS;</div>
+<div class="line"><a name="l01347"></a><span class="lineno"> 1347</span>&#160;}</div>
+<div class="line"><a name="l01348"></a><span class="lineno"> 1348</span>&#160; </div>
+<div class="line"><a name="l01349"></a><span class="lineno"><a class="line" href="group__asysctl__api.html#ga229732830e16cac70ab3bd024492518f"> 1349</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> </div>
+<div class="line"><a name="l01350"></a><span class="lineno"> 1350</span>&#160;{</div>
+<div class="line"><a name="l01351"></a><span class="lineno"><a class="line" href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fa925da55b50f1759b1824ae0eb0342f6a"> 1351</a></span>&#160;    <a class="code" href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fa925da55b50f1759b1824ae0eb0342f6a">ASYSCTL_IO_MODESEL_GPIO2</a>,</div>
+<div class="line"><a name="l01352"></a><span class="lineno"><a class="line" href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fa58338bb8a1ce4294a08ba02b7dcaa819"> 1352</a></span>&#160;    <a class="code" href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fa58338bb8a1ce4294a08ba02b7dcaa819">ASYSCTL_IO_MODESEL_GPIO3</a>,</div>
+<div class="line"><a name="l01353"></a><span class="lineno"><a class="line" href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fa1dec5f77260b3d899dba5947ca87a053"> 1353</a></span>&#160;    <a class="code" href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fa1dec5f77260b3d899dba5947ca87a053">ASYSCTL_IO_MODESEL_GPIO9</a>,</div>
+<div class="line"><a name="l01354"></a><span class="lineno"> 1354</span>&#160;    <a class="code" href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fad3a568b4ab71aa1939e769d72a88a5cd">ASYSCTL_IO_MODESEL_GPIO32</a></div>
+<div class="line"><a name="l01355"></a><span class="lineno"><a class="line" href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fad3a568b4ab71aa1939e769d72a88a5cd"> 1355</a></span>&#160;} <a class="code" href="group__asysctl__api.html#ga229732830e16cac70ab3bd024492518f">AsysCtl_IO_Modesel_GPIO</a>;</div>
+<div class="line"><a name="l01356"></a><span class="lineno"> 1356</span>&#160;<span class="comment">//*****************************************************************************</span></div>
+<div class="line"><a name="l01357"></a><span class="lineno"> 1357</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l01371"></a><span class="lineno"> 1371</span>&#160;<span class="comment"></span><span class="comment">//</span></div>
+<div class="line"><a name="l01372"></a><span class="lineno"> 1372</span>&#160;<span class="comment">//*****************************************************************************</span></div>
+<div class="line"><a name="l01373"></a><span class="lineno"><a class="line" href="group__asysctl__api.html#ga3fbc9c08455203abce89458948e8013b"> 1373</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__asysctl__api.html#ga3fbc9c08455203abce89458948e8013b">AsysCtl_setDriveMode</a>(<a class="code" href="group__asysctl__api.html#ga229732830e16cac70ab3bd024492518f">AsysCtl_IO_Modesel_GPIO</a> gpioNumber)</div>
+<div class="line"><a name="l01374"></a><span class="lineno"> 1374</span>&#160;{</div>
+<div class="line"><a name="l01375"></a><span class="lineno"> 1375</span>&#160;    uint16_t gpio = 0;</div>
+<div class="line"><a name="l01376"></a><span class="lineno"> 1376</span>&#160;    <span class="keywordflow">switch</span> (gpioNumber)</div>
+<div class="line"><a name="l01377"></a><span class="lineno"> 1377</span>&#160;    {</div>
+<div class="line"><a name="l01378"></a><span class="lineno"> 1378</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fa925da55b50f1759b1824ae0eb0342f6a">ASYSCTL_IO_MODESEL_GPIO2</a>:</div>
+<div class="line"><a name="l01379"></a><span class="lineno"> 1379</span>&#160;        gpio = ASYSCTL_IO_MODESEL_MODESEL_GPIO2;</div>
+<div class="line"><a name="l01380"></a><span class="lineno"> 1380</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l01381"></a><span class="lineno"> 1381</span>&#160; </div>
+<div class="line"><a name="l01382"></a><span class="lineno"> 1382</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fa58338bb8a1ce4294a08ba02b7dcaa819">ASYSCTL_IO_MODESEL_GPIO3</a>:</div>
+<div class="line"><a name="l01383"></a><span class="lineno"> 1383</span>&#160;        gpio = ASYSCTL_IO_MODESEL_MODESEL_GPIO3;</div>
+<div class="line"><a name="l01384"></a><span class="lineno"> 1384</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l01385"></a><span class="lineno"> 1385</span>&#160; </div>
+<div class="line"><a name="l01386"></a><span class="lineno"> 1386</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fa1dec5f77260b3d899dba5947ca87a053">ASYSCTL_IO_MODESEL_GPIO9</a>:</div>
+<div class="line"><a name="l01387"></a><span class="lineno"> 1387</span>&#160;        gpio = ASYSCTL_IO_MODESEL_MODESEL_GPIO9;</div>
+<div class="line"><a name="l01388"></a><span class="lineno"> 1388</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l01389"></a><span class="lineno"> 1389</span>&#160; </div>
+<div class="line"><a name="l01390"></a><span class="lineno"> 1390</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fad3a568b4ab71aa1939e769d72a88a5cd">ASYSCTL_IO_MODESEL_GPIO32</a>:</div>
+<div class="line"><a name="l01391"></a><span class="lineno"> 1391</span>&#160;        gpio = ASYSCTL_IO_MODESEL_MODESEL_GPIO32;</div>
+<div class="line"><a name="l01392"></a><span class="lineno"> 1392</span>&#160;        <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l01393"></a><span class="lineno"> 1393</span>&#160; </div>
-<div class="line"><a name="l01394"></a><span class="lineno"><a class="line" href="group__asysctl__api.html#ga77a1c1e4cb436b9020486c6a07e43673"> 1394</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__asysctl__api.html#ga77a1c1e4cb436b9020486c6a07e43673">AsysCtl_clearDriveMode</a>(<a class="code" href="group__asysctl__api.html#ga229732830e16cac70ab3bd024492518f">AsysCtl_IO_Modesel_GPIO</a> gpioNumber)</div>
-<div class="line"><a name="l01395"></a><span class="lineno"> 1395</span>&#160;{</div>
-<div class="line"><a name="l01396"></a><span class="lineno"> 1396</span>&#160;    uint16_t gpio = 0;</div>
-<div class="line"><a name="l01397"></a><span class="lineno"> 1397</span>&#160;    <span class="keywordflow">switch</span> (gpioNumber)</div>
-<div class="line"><a name="l01398"></a><span class="lineno"> 1398</span>&#160;    {</div>
-<div class="line"><a name="l01399"></a><span class="lineno"> 1399</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fa925da55b50f1759b1824ae0eb0342f6a">ASYSCTL_IO_MODESEL_GPIO2</a>:</div>
-<div class="line"><a name="l01400"></a><span class="lineno"> 1400</span>&#160;        gpio = ASYSCTL_IO_MODESEL_MODESEL_GPIO2;</div>
-<div class="line"><a name="l01401"></a><span class="lineno"> 1401</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l01394"></a><span class="lineno"> 1394</span>&#160;        <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l01395"></a><span class="lineno"> 1395</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l01396"></a><span class="lineno"> 1396</span>&#160;    }</div>
+<div class="line"><a name="l01397"></a><span class="lineno"> 1397</span>&#160;    ASSERT(gpio &gt; 0U);</div>
+<div class="line"><a name="l01398"></a><span class="lineno"> 1398</span>&#160;    EALLOW;</div>
+<div class="line"><a name="l01399"></a><span class="lineno"> 1399</span>&#160;    HWREG(ASYSCTL_O_IO_MODESEL) |= gpio;</div>
+<div class="line"><a name="l01400"></a><span class="lineno"> 1400</span>&#160;    EDIS;</div>
+<div class="line"><a name="l01401"></a><span class="lineno"> 1401</span>&#160;}</div>
 <div class="line"><a name="l01402"></a><span class="lineno"> 1402</span>&#160; </div>
-<div class="line"><a name="l01403"></a><span class="lineno"> 1403</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fa58338bb8a1ce4294a08ba02b7dcaa819">ASYSCTL_IO_MODESEL_GPIO3</a>:</div>
-<div class="line"><a name="l01404"></a><span class="lineno"> 1404</span>&#160;        gpio = ASYSCTL_IO_MODESEL_MODESEL_GPIO3;</div>
-<div class="line"><a name="l01405"></a><span class="lineno"> 1405</span>&#160;        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l01406"></a><span class="lineno"> 1406</span>&#160; </div>
-<div class="line"><a name="l01407"></a><span class="lineno"> 1407</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fa1dec5f77260b3d899dba5947ca87a053">ASYSCTL_IO_MODESEL_GPIO9</a>:</div>
-<div class="line"><a name="l01408"></a><span class="lineno"> 1408</span>&#160;        gpio = ASYSCTL_IO_MODESEL_MODESEL_GPIO9;</div>
-<div class="line"><a name="l01409"></a><span class="lineno"> 1409</span>&#160;        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l01410"></a><span class="lineno"> 1410</span>&#160; </div>
-<div class="line"><a name="l01411"></a><span class="lineno"> 1411</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fad3a568b4ab71aa1939e769d72a88a5cd">ASYSCTL_IO_MODESEL_GPIO32</a>:</div>
-<div class="line"><a name="l01412"></a><span class="lineno"> 1412</span>&#160;        gpio = ASYSCTL_IO_MODESEL_MODESEL_GPIO32;</div>
-<div class="line"><a name="l01413"></a><span class="lineno"> 1413</span>&#160;        <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l01414"></a><span class="lineno"> 1414</span>&#160;    }</div>
-<div class="line"><a name="l01415"></a><span class="lineno"> 1415</span>&#160;    ASSERT(gpio &gt; 0U);</div>
-<div class="line"><a name="l01416"></a><span class="lineno"> 1416</span>&#160;    EALLOW;</div>
-<div class="line"><a name="l01417"></a><span class="lineno"> 1417</span>&#160;    HWREG(ASYSCTL_O_IO_MODESEL) &amp;= ~(gpio);</div>
-<div class="line"><a name="l01418"></a><span class="lineno"> 1418</span>&#160;    EDIS;</div>
-<div class="line"><a name="l01419"></a><span class="lineno"> 1419</span>&#160;}</div>
-<div class="line"><a name="l01420"></a><span class="lineno"> 1420</span>&#160;<span class="comment">//*****************************************************************************</span></div>
-<div class="line"><a name="l01421"></a><span class="lineno"> 1421</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l01422"></a><span class="lineno"> 1422</span>&#160;<span class="comment">// Close the Doxygen group.</span></div>
-<div class="line"><a name="l01424"></a><span class="lineno"> 1424</span>&#160;<span class="comment"></span><span class="comment">//</span></div>
-<div class="line"><a name="l01425"></a><span class="lineno"> 1425</span>&#160;<span class="comment">//*****************************************************************************</span></div>
-<div class="line"><a name="l01426"></a><span class="lineno"> 1426</span>&#160; </div>
-<div class="line"><a name="l01427"></a><span class="lineno"> 1427</span>&#160;<span class="comment">//*****************************************************************************</span></div>
-<div class="line"><a name="l01428"></a><span class="lineno"> 1428</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l01429"></a><span class="lineno"> 1429</span>&#160;<span class="comment">// Mark the end of the C bindings section for C++ compilers.</span></div>
-<div class="line"><a name="l01430"></a><span class="lineno"> 1430</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l01431"></a><span class="lineno"> 1431</span>&#160;<span class="comment">//*****************************************************************************</span></div>
-<div class="line"><a name="l01432"></a><span class="lineno"> 1432</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l01433"></a><span class="lineno"> 1433</span>&#160;}</div>
-<div class="line"><a name="l01434"></a><span class="lineno"> 1434</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l01435"></a><span class="lineno"> 1435</span>&#160; </div>
-<div class="line"><a name="l01436"></a><span class="lineno"> 1436</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// ASYSCTL_H</span></div>
+<div class="line"><a name="l01403"></a><span class="lineno"><a class="line" href="group__asysctl__api.html#ga77a1c1e4cb436b9020486c6a07e43673"> 1403</a></span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code" href="group__asysctl__api.html#ga77a1c1e4cb436b9020486c6a07e43673">AsysCtl_clearDriveMode</a>(<a class="code" href="group__asysctl__api.html#ga229732830e16cac70ab3bd024492518f">AsysCtl_IO_Modesel_GPIO</a> gpioNumber)</div>
+<div class="line"><a name="l01404"></a><span class="lineno"> 1404</span>&#160;{</div>
+<div class="line"><a name="l01405"></a><span class="lineno"> 1405</span>&#160;    uint16_t gpio = 0;</div>
+<div class="line"><a name="l01406"></a><span class="lineno"> 1406</span>&#160;    <span class="keywordflow">switch</span> (gpioNumber)</div>
+<div class="line"><a name="l01407"></a><span class="lineno"> 1407</span>&#160;    {</div>
+<div class="line"><a name="l01408"></a><span class="lineno"> 1408</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fa925da55b50f1759b1824ae0eb0342f6a">ASYSCTL_IO_MODESEL_GPIO2</a>:</div>
+<div class="line"><a name="l01409"></a><span class="lineno"> 1409</span>&#160;        gpio = ASYSCTL_IO_MODESEL_MODESEL_GPIO2;</div>
+<div class="line"><a name="l01410"></a><span class="lineno"> 1410</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l01411"></a><span class="lineno"> 1411</span>&#160; </div>
+<div class="line"><a name="l01412"></a><span class="lineno"> 1412</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fa58338bb8a1ce4294a08ba02b7dcaa819">ASYSCTL_IO_MODESEL_GPIO3</a>:</div>
+<div class="line"><a name="l01413"></a><span class="lineno"> 1413</span>&#160;        gpio = ASYSCTL_IO_MODESEL_MODESEL_GPIO3;</div>
+<div class="line"><a name="l01414"></a><span class="lineno"> 1414</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l01415"></a><span class="lineno"> 1415</span>&#160; </div>
+<div class="line"><a name="l01416"></a><span class="lineno"> 1416</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fa1dec5f77260b3d899dba5947ca87a053">ASYSCTL_IO_MODESEL_GPIO9</a>:</div>
+<div class="line"><a name="l01417"></a><span class="lineno"> 1417</span>&#160;        gpio = ASYSCTL_IO_MODESEL_MODESEL_GPIO9;</div>
+<div class="line"><a name="l01418"></a><span class="lineno"> 1418</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l01419"></a><span class="lineno"> 1419</span>&#160; </div>
+<div class="line"><a name="l01420"></a><span class="lineno"> 1420</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fad3a568b4ab71aa1939e769d72a88a5cd">ASYSCTL_IO_MODESEL_GPIO32</a>:</div>
+<div class="line"><a name="l01421"></a><span class="lineno"> 1421</span>&#160;        gpio = ASYSCTL_IO_MODESEL_MODESEL_GPIO32;</div>
+<div class="line"><a name="l01422"></a><span class="lineno"> 1422</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l01423"></a><span class="lineno"> 1423</span>&#160; </div>
+<div class="line"><a name="l01424"></a><span class="lineno"> 1424</span>&#160;        <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l01425"></a><span class="lineno"> 1425</span>&#160;        <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l01426"></a><span class="lineno"> 1426</span>&#160;    }</div>
+<div class="line"><a name="l01427"></a><span class="lineno"> 1427</span>&#160;    ASSERT(gpio &gt; 0U);</div>
+<div class="line"><a name="l01428"></a><span class="lineno"> 1428</span>&#160;    EALLOW;</div>
+<div class="line"><a name="l01429"></a><span class="lineno"> 1429</span>&#160;    HWREG(ASYSCTL_O_IO_MODESEL) &amp;= ~(gpio);</div>
+<div class="line"><a name="l01430"></a><span class="lineno"> 1430</span>&#160;    EDIS;</div>
+<div class="line"><a name="l01431"></a><span class="lineno"> 1431</span>&#160;}</div>
+<div class="line"><a name="l01432"></a><span class="lineno"> 1432</span>&#160;<span class="comment">//*****************************************************************************</span></div>
+<div class="line"><a name="l01433"></a><span class="lineno"> 1433</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l01434"></a><span class="lineno"> 1434</span>&#160;<span class="comment">// Close the Doxygen group.</span></div>
+<div class="line"><a name="l01436"></a><span class="lineno"> 1436</span>&#160;<span class="comment"></span><span class="comment">//</span></div>
+<div class="line"><a name="l01437"></a><span class="lineno"> 1437</span>&#160;<span class="comment">//*****************************************************************************</span></div>
+<div class="line"><a name="l01438"></a><span class="lineno"> 1438</span>&#160; </div>
+<div class="line"><a name="l01439"></a><span class="lineno"> 1439</span>&#160;<span class="comment">//*****************************************************************************</span></div>
+<div class="line"><a name="l01440"></a><span class="lineno"> 1440</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l01441"></a><span class="lineno"> 1441</span>&#160;<span class="comment">// Mark the end of the C bindings section for C++ compilers.</span></div>
+<div class="line"><a name="l01442"></a><span class="lineno"> 1442</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l01443"></a><span class="lineno"> 1443</span>&#160;<span class="comment">//*****************************************************************************</span></div>
+<div class="line"><a name="l01444"></a><span class="lineno"> 1444</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l01445"></a><span class="lineno"> 1445</span>&#160;}</div>
+<div class="line"><a name="l01446"></a><span class="lineno"> 1446</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l01447"></a><span class="lineno"> 1447</span>&#160; </div>
+<div class="line"><a name="l01448"></a><span class="lineno"> 1448</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// ASYSCTL_H</span></div>
 <div class="ttc" id="agroup__asysctl__api_html_ga0026b17f22cabb6bb70f4b6764171496"><div class="ttname"><a href="group__asysctl__api.html#ga0026b17f22cabb6bb70f4b6764171496">ASysCtl_selectCMPLNMux</a></div><div class="ttdeci">static void ASysCtl_selectCMPLNMux(uint16_t select)</div><div class="ttdef"><b>Definition:</b> asysctl.h:712</div></div>
 <div class="ttc" id="agroup__asysctl__api_html_ga00f788ee7ed3aacd9bd9e9ed44a1cb5a"><div class="ttname"><a href="group__asysctl__api.html#ga00f788ee7ed3aacd9bd9e9ed44a1cb5a">ASysCtl_selectCMPHPMux</a></div><div class="ttdeci">static void ASysCtl_selectCMPHPMux(ASysCtl_CMPHPMuxSelect select, uint32_t value)</div><div class="ttdef"><b>Definition:</b> asysctl.h:787</div></div>
 <div class="ttc" id="agroup__asysctl__api_html_ga02b0252cf4fcbe6030d3b4e6252790b4"><div class="ttname"><a href="group__asysctl__api.html#ga02b0252cf4fcbe6030d3b4e6252790b4">ASysCtl_AdcInst</a></div><div class="ttdeci">ASysCtl_AdcInst</div><div class="ttdef"><b>Definition:</b> asysctl.h:192</div></div>
 <div class="ttc" id="agroup__asysctl__api_html_ga05adef817a1bd0c6dde99e3c85cec279"><div class="ttname"><a href="group__asysctl__api.html#ga05adef817a1bd0c6dde99e3c85cec279">ASysCtl_lockCMPLPMux</a></div><div class="ttdeci">static void ASysCtl_lockCMPLPMux(void)</div><div class="ttdef"><b>Definition:</b> asysctl.h:985</div></div>
 <div class="ttc" id="agroup__asysctl__api_html_ga16525824b37b4bd85ea3eadef0cb365f"><div class="ttname"><a href="group__asysctl__api.html#ga16525824b37b4bd85ea3eadef0cb365f">ASysCtl_CMPLPMuxSelect</a></div><div class="ttdeci">ASysCtl_CMPLPMuxSelect</div><div class="ttdoc">ASysCtl_CMPLPMuxSelect used for function ASysCtl_selectCMPLPMux().</div><div class="ttdef"><b>Definition:</b> asysctl.h:178</div></div>
-<div class="ttc" id="agroup__asysctl__api_html_ga171555b58991dc29c7a620b87da65c65"><div class="ttname"><a href="group__asysctl__api.html#ga171555b58991dc29c7a620b87da65c65">AsysCtl_clearDriveStrength</a></div><div class="ttdeci">static void AsysCtl_clearDriveStrength(AsysCtl_IO_Drvsel_GPIO gpioNumber)</div><div class="ttdef"><b>Definition:</b> asysctl.h:1316</div></div>
+<div class="ttc" id="agroup__asysctl__api_html_ga171555b58991dc29c7a620b87da65c65"><div class="ttname"><a href="group__asysctl__api.html#ga171555b58991dc29c7a620b87da65c65">AsysCtl_clearDriveStrength</a></div><div class="ttdeci">static void AsysCtl_clearDriveStrength(AsysCtl_IO_Drvsel_GPIO gpioNumber)</div><div class="ttdef"><b>Definition:</b> asysctl.h:1319</div></div>
 <div class="ttc" id="agroup__asysctl__api_html_ga19b455fb3553e6e586d0fc6b5004a2db"><div class="ttname"><a href="group__asysctl__api.html#ga19b455fb3553e6e586d0fc6b5004a2db">ASYSCTL_CMPSS1_DACL</a></div><div class="ttdeci">#define ASYSCTL_CMPSS1_DACL</div><div class="ttdoc">CMPSS1.DACL.</div><div class="ttdef"><b>Definition:</b> asysctl.h:133</div></div>
 <div class="ttc" id="agroup__asysctl__api_html_ga203e690fc3f07ce2ea737ae3ce4eacb8"><div class="ttname"><a href="group__asysctl__api.html#ga203e690fc3f07ce2ea737ae3ce4eacb8">ASysCtl_selectCMPLPMux</a></div><div class="ttdeci">static void ASysCtl_selectCMPLPMux(ASysCtl_CMPLPMuxSelect select, uint32_t value)</div><div class="ttdef"><b>Definition:</b> asysctl.h:821</div></div>
-<div class="ttc" id="agroup__asysctl__api_html_ga229732830e16cac70ab3bd024492518f"><div class="ttname"><a href="group__asysctl__api.html#ga229732830e16cac70ab3bd024492518f">AsysCtl_IO_Modesel_GPIO</a></div><div class="ttdeci">AsysCtl_IO_Modesel_GPIO</div><div class="ttdef"><b>Definition:</b> asysctl.h:1344</div></div>
+<div class="ttc" id="agroup__asysctl__api_html_ga229732830e16cac70ab3bd024492518f"><div class="ttname"><a href="group__asysctl__api.html#ga229732830e16cac70ab3bd024492518f">AsysCtl_IO_Modesel_GPIO</a></div><div class="ttdeci">AsysCtl_IO_Modesel_GPIO</div><div class="ttdef"><b>Definition:</b> asysctl.h:1350</div></div>
 <div class="ttc" id="agroup__asysctl__api_html_ga2352fb42ecc446474ca33ec0e5fdf7d7"><div class="ttname"><a href="group__asysctl__api.html#ga2352fb42ecc446474ca33ec0e5fdf7d7">ASysCtl_lockVMON</a></div><div class="ttdeci">static void ASysCtl_lockVMON(void)</div><div class="ttdef"><b>Definition:</b> asysctl.h:947</div></div>
 <div class="ttc" id="agroup__asysctl__api_html_ga2ecd0767c338c6177cce4fc6c6727392"><div class="ttname"><a href="group__asysctl__api.html#ga2ecd0767c338c6177cce4fc6c6727392">ASysCtl_enableADCDACLoopback</a></div><div class="ttdeci">static void ASysCtl_enableADCDACLoopback(uint32_t config)</div><div class="ttdef"><b>Definition:</b> asysctl.h:1068</div></div>
 <div class="ttc" id="agroup__asysctl__api_html_ga355f03bd62f56ec5eae40e8f6cbfd92e"><div class="ttname"><a href="group__asysctl__api.html#ga355f03bd62f56ec5eae40e8f6cbfd92e">ASysCtl_disableGPIOInputBuffer</a></div><div class="ttdeci">static void ASysCtl_disableGPIOInputBuffer(uint32_t pin)</div><div class="ttdef"><b>Definition:</b> asysctl.h:1135</div></div>
 <div class="ttc" id="agroup__asysctl__api_html_ga3c525d5f7619b736ebf31ad126648dc4"><div class="ttname"><a href="group__asysctl__api.html#ga3c525d5f7619b736ebf31ad126648dc4">ASysCtl_lockVREG</a></div><div class="ttdeci">static void ASysCtl_lockVREG(void)</div><div class="ttdef"><b>Definition:</b> asysctl.h:1042</div></div>
-<div class="ttc" id="agroup__asysctl__api_html_ga3fbc9c08455203abce89458948e8013b"><div class="ttname"><a href="group__asysctl__api.html#ga3fbc9c08455203abce89458948e8013b">AsysCtl_setDriveMode</a></div><div class="ttdeci">static void AsysCtl_setDriveMode(AsysCtl_IO_Modesel_GPIO gpioNumber)</div><div class="ttdef"><b>Definition:</b> asysctl.h:1367</div></div>
+<div class="ttc" id="agroup__asysctl__api_html_ga3fbc9c08455203abce89458948e8013b"><div class="ttname"><a href="group__asysctl__api.html#ga3fbc9c08455203abce89458948e8013b">AsysCtl_setDriveMode</a></div><div class="ttdeci">static void AsysCtl_setDriveMode(AsysCtl_IO_Modesel_GPIO gpioNumber)</div><div class="ttdef"><b>Definition:</b> asysctl.h:1373</div></div>
 <div class="ttc" id="agroup__asysctl__api_html_ga40667c5b07bc96c551d9341979ef6408"><div class="ttname"><a href="group__asysctl__api.html#ga40667c5b07bc96c551d9341979ef6408">ASysCtl_setVrefHiReferenceVREFHI</a></div><div class="ttdeci">static void ASysCtl_setVrefHiReferenceVREFHI(uint16_t reference)</div><div class="ttdef"><b>Definition:</b> asysctl.h:353</div></div>
 <div class="ttc" id="agroup__asysctl__api_html_ga42fd382fce0d576324a69ec341e3ada8"><div class="ttname"><a href="group__asysctl__api.html#ga42fd382fce0d576324a69ec341e3ada8">AsysCtl_IO_Drvsel_GPIO</a></div><div class="ttdeci">AsysCtl_IO_Drvsel_GPIO</div><div class="ttdef"><b>Definition:</b> asysctl.h:1266</div></div>
 <div class="ttc" id="agroup__asysctl__api_html_ga438da343d00099c3fd419aff9eb91ae1"><div class="ttname"><a href="group__asysctl__api.html#ga438da343d00099c3fd419aff9eb91ae1">ASYSCTL_ANAREF_VREFHI_ADCB</a></div><div class="ttdeci">#define ASYSCTL_ANAREF_VREFHI_ADCB</div><div class="ttdef"><b>Definition:</b> asysctl.h:94</div></div>
@@ -1172,7 +1184,7 @@ $(document).ready(function(){initNavTree('asysctl_8h_source.html',''); initResiz
 <div class="ttc" id="agroup__asysctl__api_html_ga6dc76cd4d87b8cdb9166b23bd8273a38"><div class="ttname"><a href="group__asysctl__api.html#ga6dc76cd4d87b8cdb9166b23bd8273a38">ASYSCTL_ANAREF_VREFHI_ADCD</a></div><div class="ttdeci">#define ASYSCTL_ANAREF_VREFHI_ADCD</div><div class="ttdef"><b>Definition:</b> asysctl.h:96</div></div>
 <div class="ttc" id="agroup__asysctl__api_html_ga6e1e7b57d61cf611d2645c6822f0aaa9"><div class="ttname"><a href="group__asysctl__api.html#ga6e1e7b57d61cf611d2645c6822f0aaa9">ASYSCTL_ANAREF_ADCE</a></div><div class="ttdeci">#define ASYSCTL_ANAREF_ADCE</div><div class="ttdef"><b>Definition:</b> asysctl.h:124</div></div>
 <div class="ttc" id="agroup__asysctl__api_html_ga6e7b33f08abab1becc09f89c08163b05"><div class="ttname"><a href="group__asysctl__api.html#ga6e7b33f08abab1becc09f89c08163b05">ASysCtl_setVrefLoReferenceVREFLO</a></div><div class="ttdeci">static void ASysCtl_setVrefLoReferenceVREFLO(uint16_t reference)</div><div class="ttdef"><b>Definition:</b> asysctl.h:507</div></div>
-<div class="ttc" id="agroup__asysctl__api_html_ga77a1c1e4cb436b9020486c6a07e43673"><div class="ttname"><a href="group__asysctl__api.html#ga77a1c1e4cb436b9020486c6a07e43673">AsysCtl_clearDriveMode</a></div><div class="ttdeci">static void AsysCtl_clearDriveMode(AsysCtl_IO_Modesel_GPIO gpioNumber)</div><div class="ttdef"><b>Definition:</b> asysctl.h:1394</div></div>
+<div class="ttc" id="agroup__asysctl__api_html_ga77a1c1e4cb436b9020486c6a07e43673"><div class="ttname"><a href="group__asysctl__api.html#ga77a1c1e4cb436b9020486c6a07e43673">AsysCtl_clearDriveMode</a></div><div class="ttdeci">static void AsysCtl_clearDriveMode(AsysCtl_IO_Modesel_GPIO gpioNumber)</div><div class="ttdef"><b>Definition:</b> asysctl.h:1403</div></div>
 <div class="ttc" id="agroup__asysctl__api_html_ga77d8f427f280db5c300664d859d73356"><div class="ttname"><a href="group__asysctl__api.html#ga77d8f427f280db5c300664d859d73356">ASysCtl_selectCMPHNMux</a></div><div class="ttdeci">static void ASysCtl_selectCMPHNMux(uint16_t select)</div><div class="ttdef"><b>Definition:</b> asysctl.h:639</div></div>
 <div class="ttc" id="agroup__asysctl__api_html_ga79bf46ed47ada6accdc48bb6888fbc32"><div class="ttname"><a href="group__asysctl__api.html#ga79bf46ed47ada6accdc48bb6888fbc32">ASysCtl_setAnalogReference2P5</a></div><div class="ttdeci">static void ASysCtl_setAnalogReference2P5(uint16_t reference)</div><div class="ttdef"><b>Definition:</b> asysctl.h:433</div></div>
 <div class="ttc" id="agroup__asysctl__api_html_ga7c8245cb4286a7cd88c0ed7df63dc257"><div class="ttname"><a href="group__asysctl__api.html#ga7c8245cb4286a7cd88c0ed7df63dc257">ASysCtl_CMPHPMuxSelect</a></div><div class="ttdeci">ASysCtl_CMPHPMuxSelect</div><div class="ttdoc">ASysCtl_CMPHPMuxSelect used for function ASysCtl_selectCMPHPMux().</div><div class="ttdef"><b>Definition:</b> asysctl.h:165</div></div>
@@ -1218,10 +1230,10 @@ $(document).ready(function(){initNavTree('asysctl_8h_source.html',''); initResiz
 <div class="ttc" id="agroup__asysctl__api_html_gga16525824b37b4bd85ea3eadef0cb365fa812d75dc36b9a25e75935b31d1685dd6"><div class="ttname"><a href="group__asysctl__api.html#gga16525824b37b4bd85ea3eadef0cb365fa812d75dc36b9a25e75935b31d1685dd6">ASYSCTL_CMPLPMUX_SELECT_2</a></div><div class="ttdeci">@ ASYSCTL_CMPLPMUX_SELECT_2</div><div class="ttdoc">CMPLPMUX select 2.</div><div class="ttdef"><b>Definition:</b> asysctl.h:180</div></div>
 <div class="ttc" id="agroup__asysctl__api_html_gga16525824b37b4bd85ea3eadef0cb365fabf53ba8d38d4fd83ddf314eac230f538"><div class="ttname"><a href="group__asysctl__api.html#gga16525824b37b4bd85ea3eadef0cb365fabf53ba8d38d4fd83ddf314eac230f538">ASYSCTL_CMPLPMUX_SELECT_3</a></div><div class="ttdeci">@ ASYSCTL_CMPLPMUX_SELECT_3</div><div class="ttdoc">CMPLPMUX select 3.</div><div class="ttdef"><b>Definition:</b> asysctl.h:181</div></div>
 <div class="ttc" id="agroup__asysctl__api_html_gga16525824b37b4bd85ea3eadef0cb365fad65f3b04ceceef85332696ea9e97c8e7"><div class="ttname"><a href="group__asysctl__api.html#gga16525824b37b4bd85ea3eadef0cb365fad65f3b04ceceef85332696ea9e97c8e7">ASYSCTL_CMPLPMUX_SELECT_4</a></div><div class="ttdeci">@ ASYSCTL_CMPLPMUX_SELECT_4</div><div class="ttdoc">CMPLPMUX select 4.</div><div class="ttdef"><b>Definition:</b> asysctl.h:182</div></div>
-<div class="ttc" id="agroup__asysctl__api_html_gga229732830e16cac70ab3bd024492518fa1dec5f77260b3d899dba5947ca87a053"><div class="ttname"><a href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fa1dec5f77260b3d899dba5947ca87a053">ASYSCTL_IO_MODESEL_GPIO9</a></div><div class="ttdeci">@ ASYSCTL_IO_MODESEL_GPIO9</div><div class="ttdef"><b>Definition:</b> asysctl.h:1347</div></div>
-<div class="ttc" id="agroup__asysctl__api_html_gga229732830e16cac70ab3bd024492518fa58338bb8a1ce4294a08ba02b7dcaa819"><div class="ttname"><a href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fa58338bb8a1ce4294a08ba02b7dcaa819">ASYSCTL_IO_MODESEL_GPIO3</a></div><div class="ttdeci">@ ASYSCTL_IO_MODESEL_GPIO3</div><div class="ttdef"><b>Definition:</b> asysctl.h:1346</div></div>
-<div class="ttc" id="agroup__asysctl__api_html_gga229732830e16cac70ab3bd024492518fa925da55b50f1759b1824ae0eb0342f6a"><div class="ttname"><a href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fa925da55b50f1759b1824ae0eb0342f6a">ASYSCTL_IO_MODESEL_GPIO2</a></div><div class="ttdeci">@ ASYSCTL_IO_MODESEL_GPIO2</div><div class="ttdef"><b>Definition:</b> asysctl.h:1345</div></div>
-<div class="ttc" id="agroup__asysctl__api_html_gga229732830e16cac70ab3bd024492518fad3a568b4ab71aa1939e769d72a88a5cd"><div class="ttname"><a href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fad3a568b4ab71aa1939e769d72a88a5cd">ASYSCTL_IO_MODESEL_GPIO32</a></div><div class="ttdeci">@ ASYSCTL_IO_MODESEL_GPIO32</div><div class="ttdef"><b>Definition:</b> asysctl.h:1348</div></div>
+<div class="ttc" id="agroup__asysctl__api_html_gga229732830e16cac70ab3bd024492518fa1dec5f77260b3d899dba5947ca87a053"><div class="ttname"><a href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fa1dec5f77260b3d899dba5947ca87a053">ASYSCTL_IO_MODESEL_GPIO9</a></div><div class="ttdeci">@ ASYSCTL_IO_MODESEL_GPIO9</div><div class="ttdef"><b>Definition:</b> asysctl.h:1353</div></div>
+<div class="ttc" id="agroup__asysctl__api_html_gga229732830e16cac70ab3bd024492518fa58338bb8a1ce4294a08ba02b7dcaa819"><div class="ttname"><a href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fa58338bb8a1ce4294a08ba02b7dcaa819">ASYSCTL_IO_MODESEL_GPIO3</a></div><div class="ttdeci">@ ASYSCTL_IO_MODESEL_GPIO3</div><div class="ttdef"><b>Definition:</b> asysctl.h:1352</div></div>
+<div class="ttc" id="agroup__asysctl__api_html_gga229732830e16cac70ab3bd024492518fa925da55b50f1759b1824ae0eb0342f6a"><div class="ttname"><a href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fa925da55b50f1759b1824ae0eb0342f6a">ASYSCTL_IO_MODESEL_GPIO2</a></div><div class="ttdeci">@ ASYSCTL_IO_MODESEL_GPIO2</div><div class="ttdef"><b>Definition:</b> asysctl.h:1351</div></div>
+<div class="ttc" id="agroup__asysctl__api_html_gga229732830e16cac70ab3bd024492518fad3a568b4ab71aa1939e769d72a88a5cd"><div class="ttname"><a href="group__asysctl__api.html#gga229732830e16cac70ab3bd024492518fad3a568b4ab71aa1939e769d72a88a5cd">ASYSCTL_IO_MODESEL_GPIO32</a></div><div class="ttdeci">@ ASYSCTL_IO_MODESEL_GPIO32</div><div class="ttdef"><b>Definition:</b> asysctl.h:1354</div></div>
 <div class="ttc" id="agroup__asysctl__api_html_gga42fd382fce0d576324a69ec341e3ada8a3144774e00704d458c1dffdc7e9a9fe5"><div class="ttname"><a href="group__asysctl__api.html#gga42fd382fce0d576324a69ec341e3ada8a3144774e00704d458c1dffdc7e9a9fe5">ASYSCTL_IO_DRVSEL_GPIO9</a></div><div class="ttdeci">@ ASYSCTL_IO_DRVSEL_GPIO9</div><div class="ttdef"><b>Definition:</b> asysctl.h:1269</div></div>
 <div class="ttc" id="agroup__asysctl__api_html_gga42fd382fce0d576324a69ec341e3ada8a339cbf134a63b909a992736efc1b84d5"><div class="ttname"><a href="group__asysctl__api.html#gga42fd382fce0d576324a69ec341e3ada8a339cbf134a63b909a992736efc1b84d5">ASYSCTL_IO_DRVSEL_GPIO2</a></div><div class="ttdeci">@ ASYSCTL_IO_DRVSEL_GPIO2</div><div class="ttdef"><b>Definition:</b> asysctl.h:1267</div></div>
 <div class="ttc" id="agroup__asysctl__api_html_gga42fd382fce0d576324a69ec341e3ada8a9bd005396e19bb1032c7a4f782dc6774"><div class="ttname"><a href="group__asysctl__api.html#gga42fd382fce0d576324a69ec341e3ada8a9bd005396e19bb1032c7a4f782dc6774">ASYSCTL_IO_DRVSEL_GPIO32</a></div><div class="ttdeci">@ ASYSCTL_IO_DRVSEL_GPIO32</div><div class="ttdef"><b>Definition:</b> asysctl.h:1270</div></div>

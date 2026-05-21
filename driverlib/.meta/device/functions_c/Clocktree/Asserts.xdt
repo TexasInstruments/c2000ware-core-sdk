@@ -32,7 +32,7 @@ const device  					= device_common.device;
 % 	{
 %if(!system.clockTree.EMIF1CLKDIV){
 %console.log("In here")
-%var DEVICE_CLK_EMIF_DIV = "SYSCTL_EMIF1CLK_DIV_1";
+%var DEVICE_CLK_EMIF_DIV = "1";
 %}
 %else{
 %console.log("should not be In here")
@@ -99,7 +99,7 @@ const device  					= device_common.device;
     CAN_selectClockSource(CANA_BASE, `canAclkSrc`);
     CAN_selectClockSource(CANB_BASE, `canBclkSrc`);
     SysCtl_setEPWMClockDivider(SYSCTL_EPWMCLK_DIV_`DEVICE_CLK_EPWM_DIV`);
-    SysCtl_setEMIF1ClockDivider(`DEVICE_CLK_EMIF_DIV`);
+    SysCtl_setEMIF1ClockDivider(SYSCTL_EMIF1CLK_DIV_`DEVICE_CLK_EMIF_DIV`);
     ASSERT(SysCtl_getClock(DEVICE_OSCSRC_FREQ) == DEVICE_SYSCLK_FREQ);
     ASSERT(SysCtl_getLowSpeedClock(DEVICE_OSCSRC_FREQ) == DEVICE_LSPCLK_FREQ);
 % 	}
@@ -107,7 +107,7 @@ const device  					= device_common.device;
 % 	{
 %if(!system.clockTree.EMIF1CLKDIV){
 %console.log("In here")
-%var DEVICE_CLK_EMIF1_DIV = "SYSCTL_EMIF1CLK_DIV_1";
+%var DEVICE_CLK_EMIF1_DIV = "1";
 %}
 %else{
 %console.log("should not be In here")
@@ -213,7 +213,7 @@ const device  					= device_common.device;
     CAN_selectClockSource(CANB_BASE, `canBclkSrc`);
     SysCtl_setMCANClk(SYSCTL_MCANCLK_DIV_`DEVICE_CLK_MCAN_DIV`);
     SysCtl_setEPWMClockDivider(SYSCTL_EPWMCLK_DIV_`DEVICE_CLK_EPWM_DIV`);
-    SysCtl_setEMIF1ClockDivider(`DEVICE_CLK_EMIF1_DIV`);
+    SysCtl_setEMIF1ClockDivider(SYSCTL_EMIF1CLK_DIV_`DEVICE_CLK_EMIF1_DIV`);
     SysCtl_setEMIF2ClockDivider(SYSCTL_EMIF2CLK_DIV_`DEVICE_CLK_EMIF2_DIV`);
     SysCtl_setECatClk(SYSCTL_ECATCLKOUT_DIV_`DEVICE_CLK_ECAT_DIV`, `ecatclkSrc`, 0x1U);
     SysCtl_setEnetClk(SYSCTL_ENETCLKOUT_DIV_`DEVICE_CLK_ENET_DIV`, `enetclkSrc`);
@@ -226,7 +226,7 @@ const device  					= device_common.device;
 % 	{
 %if(!system.clockTree.EMIF1CLKDIV){
 %console.log("In here")
-%var DEVICE_CLK_EMIF_DIV = "SYSCTL_EMIF1CLK_DIV_1";
+%var DEVICE_CLK_EMIF_DIV = "1";
 %}
 %else{
 %console.log("should not be In here")
@@ -332,7 +332,7 @@ const device  					= device_common.device;
     SysCtl_setMCANClk(SYSCTL_MCANB, SYSCTL_MCANCLK_DIV_`DEVICE_CLK_MCANB_DIV`);
     SysCtl_setCLBClkDivider(SYSCTL_CLBCLKOUT_DIV_`DEVICE_CLK_CLB_DIV`,SYSCTL_CLBTCLKOUT_DIV_`DEVICE_CLK_CLBT_DIV`);
     SysCtl_setEPWMClockDivider(SYSCTL_EPWMCLK_DIV_`DEVICE_CLK_EPWM_DIV`);
-    SysCtl_setEMIF1ClockDivider(`DEVICE_CLK_EMIF_DIV`);
+    SysCtl_setEMIF1ClockDivider(SYSCTL_EMIF1CLK_DIV_`DEVICE_CLK_EMIF_DIV`);
     SysCtl_setECatClk(SYSCTL_ECATCLKOUT_DIV_`DEVICE_CLK_ECAT_DIV`, `ecatclkSrc`, 0x1U);
     SysCtl_setLINAClockDivider(SYSCTL_LINACLK_DIV_`DEVICE_CLK_LINA_DIV`);
     SysCtl_setLINBClockDivider(SYSCTL_LINBCLK_DIV_`DEVICE_CLK_LINB_DIV`);
@@ -527,12 +527,6 @@ const device  					= device_common.device;
 %var DEVICE_CLK_CLBT_DIV = system.clockTree.TILECLKDIV.divideValue;
 %}
 %var DEVICE_CLK_MCANA_DIV = system.clockTree.MCANACLKDIV.divideValue;
-%if(!system.clockTree.NPUCLKDIV){
-%var DEVICE_CLK_NPU_DIV = 1;
-%}
-%else{
-%var DEVICE_CLK_NPU_DIV = system.clockTree.NPUCLKDIV.divideValue;
-%}
     //
     // These asserts will check that the #defines for the clock rates in
     // device.h match the actual rates that have been configured. If they do
@@ -543,7 +537,6 @@ const device  					= device_common.device;
     SysCtl_setLINAClockDivider(SYSCTL_LINACLK_DIV_`DEVICE_CLK_LINA_DIV`);
     SysCtl_setCLBClkDivider(SYSCTL_CLBCLKOUT_DIV_`DEVICE_CLK_CLB_DIV`,SYSCTL_CLBTCLKOUT_DIV_`DEVICE_CLK_CLBT_DIV`);
     SysCtl_setMCANClk(SYSCTL_MCANA, SYSCTL_MCANCLK_DIV_`DEVICE_CLK_MCANA_DIV`);
-    SysCtl_setNPUClockDivider(SYSCTL_NPUCLK_DIV_`DEVICE_CLK_NPU_DIV`);
     ASSERT(SysCtl_getClock(DEVICE_OSCSRC_FREQ) == DEVICE_SYSCLK_FREQ);
     ASSERT(SysCtl_getLowSpeedClock(DEVICE_OSCSRC_FREQ) == DEVICE_LSPCLK_FREQ);
 % 	}

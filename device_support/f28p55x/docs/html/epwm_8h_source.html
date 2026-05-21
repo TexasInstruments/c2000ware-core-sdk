@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">f28p55x Driverib and Example User Guide
-   &#160;<span id="projectnumber">26.00.00.00</span>
+   &#160;<span id="projectnumber">26.01.00.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -99,7 +99,7 @@ $(document).ready(function(){initNavTree('epwm_8h_source.html',''); initResizabl
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">//#############################################################################</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">// </span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// C2000Ware v26.00.00.00</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// C2000Ware v26.01.00.00</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">//</span></div>
@@ -1823,7 +1823,7 @@ $(document).ready(function(){initNavTree('epwm_8h_source.html',''); initResizabl
 <div class="line"><a name="l02601"></a><span class="lineno"> 2601</span>&#160;    <span class="comment">// Disable shadow load mode.</span></div>
 <div class="line"><a name="l02602"></a><span class="lineno"> 2602</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l02603"></a><span class="lineno"> 2603</span>&#160;    HWREGH(registerOffset) = (HWREGH(registerOffset) |</div>
-<div class="line"><a name="l02604"></a><span class="lineno"> 2604</span>&#160;                             (0x1U &lt;&lt; shadowModeOffset));</div>
+<div class="line"><a name="l02604"></a><span class="lineno"> 2604</span>&#160;                             (uint16_t)(0x1U &lt;&lt; shadowModeOffset));</div>
 <div class="line"><a name="l02605"></a><span class="lineno"> 2605</span>&#160;}</div>
 <div class="line"><a name="l02606"></a><span class="lineno"> 2606</span>&#160; </div>
 <div class="line"><a name="l02607"></a><span class="lineno"> 2607</span>&#160;<span class="comment">//*****************************************************************************</span></div>
@@ -3602,7 +3602,7 @@ $(document).ready(function(){initNavTree('epwm_8h_source.html',''); initResizabl
 <div class="line"><a name="l05571"></a><span class="lineno"> 5571</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l05572"></a><span class="lineno"> 5572</span>&#160;    <span class="comment">// Clear SOC A/B bit of ETCLR register</span></div>
 <div class="line"><a name="l05573"></a><span class="lineno"> 5573</span>&#160;    <span class="comment">//</span></div>
-<div class="line"><a name="l05574"></a><span class="lineno"> 5574</span>&#160;    HWREGH(base + EPWM_O_ETCLR) |= 1U &lt;&lt; ((uint16_t)adcSOCType + 2U);</div>
+<div class="line"><a name="l05574"></a><span class="lineno"> 5574</span>&#160;    HWREGH(base + EPWM_O_ETCLR) |= (uint16_t)(1U &lt;&lt; ((uint16_t)adcSOCType + 2U));</div>
 <div class="line"><a name="l05575"></a><span class="lineno"> 5575</span>&#160;}</div>
 <div class="line"><a name="l05576"></a><span class="lineno"> 5576</span>&#160; </div>
 <div class="line"><a name="l05577"></a><span class="lineno"> 5577</span>&#160;<span class="comment">//*****************************************************************************</span></div>
@@ -3621,7 +3621,7 @@ $(document).ready(function(){initNavTree('epwm_8h_source.html',''); initResizabl
 <div class="line"><a name="l05605"></a><span class="lineno"> 5605</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l05606"></a><span class="lineno"> 5606</span>&#160;    <span class="comment">// Enable SOC event count initializing/loading</span></div>
 <div class="line"><a name="l05607"></a><span class="lineno"> 5607</span>&#160;    <span class="comment">//</span></div>
-<div class="line"><a name="l05608"></a><span class="lineno"> 5608</span>&#160;    HWREGH(base + EPWM_O_ETCNTINITCTL) |= 1U &lt;&lt; ((uint16_t)adcSOCType + 14U);</div>
+<div class="line"><a name="l05608"></a><span class="lineno"> 5608</span>&#160;    HWREGH(base + EPWM_O_ETCNTINITCTL) |= (uint16_t)(1U &lt;&lt; ((uint16_t)adcSOCType + 14U));</div>
 <div class="line"><a name="l05609"></a><span class="lineno"> 5609</span>&#160;}</div>
 <div class="line"><a name="l05610"></a><span class="lineno"> 5610</span>&#160; </div>
 <div class="line"><a name="l05611"></a><span class="lineno"> 5611</span>&#160;<span class="comment">//*****************************************************************************</span></div>
@@ -3660,7 +3660,7 @@ $(document).ready(function(){initNavTree('epwm_8h_source.html',''); initResizabl
 <div class="line"><a name="l05670"></a><span class="lineno"> 5670</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l05671"></a><span class="lineno"> 5671</span>&#160;    <span class="comment">// Load the Interrupt Event counter value</span></div>
 <div class="line"><a name="l05672"></a><span class="lineno"> 5672</span>&#160;    <span class="comment">//</span></div>
-<div class="line"><a name="l05673"></a><span class="lineno"> 5673</span>&#160;    HWREGH(base + EPWM_O_ETCNTINITCTL) |= 1U &lt;&lt; ((uint16_t)adcSOCType + 11U);</div>
+<div class="line"><a name="l05673"></a><span class="lineno"> 5673</span>&#160;    HWREGH(base + EPWM_O_ETCNTINITCTL) |= (uint16_t)(1U &lt;&lt; ((uint16_t)adcSOCType + 11U));</div>
 <div class="line"><a name="l05674"></a><span class="lineno"> 5674</span>&#160;}</div>
 <div class="line"><a name="l05675"></a><span class="lineno"> 5675</span>&#160; </div>
 <div class="line"><a name="l05676"></a><span class="lineno"> 5676</span>&#160;<span class="comment">//*****************************************************************************</span></div>
@@ -3741,7 +3741,7 @@ $(document).ready(function(){initNavTree('epwm_8h_source.html',''); initResizabl
 <div class="line"><a name="l05786"></a><span class="lineno"> 5786</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l05787"></a><span class="lineno"> 5787</span>&#160;    <span class="comment">// Set SOC A/B bit of ETFRC register</span></div>
 <div class="line"><a name="l05788"></a><span class="lineno"> 5788</span>&#160;    <span class="comment">//</span></div>
-<div class="line"><a name="l05789"></a><span class="lineno"> 5789</span>&#160;    HWREGH(base + EPWM_O_ETFRC) |= 1U &lt;&lt; ((uint16_t)adcSOCType + 2U);</div>
+<div class="line"><a name="l05789"></a><span class="lineno"> 5789</span>&#160;    HWREGH(base + EPWM_O_ETFRC) |= (uint16_t)(1U &lt;&lt; ((uint16_t)adcSOCType + 2U));</div>
 <div class="line"><a name="l05790"></a><span class="lineno"> 5790</span>&#160;}</div>
 <div class="line"><a name="l05791"></a><span class="lineno"> 5791</span>&#160; </div>
 <div class="line"><a name="l05792"></a><span class="lineno"> 5792</span>&#160;<span class="comment">//</span></div>
@@ -4579,7 +4579,7 @@ $(document).ready(function(){initNavTree('epwm_8h_source.html',''); initResizabl
 <div class="line"><a name="l07034"></a><span class="lineno"> 7034</span>&#160;    <span class="comment">// Enable the combination input</span></div>
 <div class="line"><a name="l07035"></a><span class="lineno"> 7035</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l07036"></a><span class="lineno"> 7036</span>&#160;    HWREGH(base + EPWM_O_DCTRIPSEL) =</div>
-<div class="line"><a name="l07037"></a><span class="lineno"> 7037</span>&#160;      (HWREGH(base + EPWM_O_DCTRIPSEL) | (0xFU &lt;&lt; ((uint16_t)dcType &lt;&lt; 2U)));</div>
+<div class="line"><a name="l07037"></a><span class="lineno"> 7037</span>&#160;      (HWREGH(base + EPWM_O_DCTRIPSEL) | (uint16_t)(0xFU &lt;&lt; ((uint16_t)dcType &lt;&lt; 2U)));</div>
 <div class="line"><a name="l07038"></a><span class="lineno"> 7038</span>&#160;    EDIS;</div>
 <div class="line"><a name="l07039"></a><span class="lineno"> 7039</span>&#160;}</div>
 <div class="line"><a name="l07040"></a><span class="lineno"> 7040</span>&#160; </div>

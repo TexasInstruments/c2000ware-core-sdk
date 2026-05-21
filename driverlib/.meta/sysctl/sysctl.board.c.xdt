@@ -3,6 +3,9 @@
 % let device_driverlib_peripheral = 
 %    system.getScript("/driverlib/device_driverlib_peripherals/" + 
 %        Common.getDeviceName().toLowerCase() + "_sysctl.js");
+% let sysctl_common = system.getScript("/driverlib/device_driverlib_peripherals/common/sysctl_common.js")
+% let groupedCpuSelPeripherals = sysctl_common.groupedCpuSelPeripherals;
+% let groupedCpuSelPeripheralIndices = sysctl_common.groupedCpuSelPeripheralIndices;
 % var nameOfModule = "sysctl";
 % var nameOfPeripheral = module.peripheralName;
 % if ((args[1] != null) || ((args[1] == null) && (module != null) && (!module.$static.splitCode))) {
@@ -97,9 +100,18 @@ void `nameOfPeripheral`_init(){
 %           device_driverlib_peripheral.SysCtl_CPUSelPeripheral.
 %           forEach((element, index) => 
 %           {
-%               var peripheralInsts = Common.peripheralListFromSysCtl(element.name.split("_").slice(-1)[0], device_driverlib_peripheral)
+%               var periType = element.name.split("_").slice(-1)[0];
+%               var peripheralInsts = Common.peripheralListFromSysCtl(periType, device_driverlib_peripheral)
+%               var devGrouped = groupedCpuSelPeripherals[Common.getDeviceName()];
+%               if (devGrouped && devGrouped[periType]) {
+%                   peripheralInsts = peripheralInsts.concat(devGrouped[periType]);
+%               }
 %               peripheralInsts.forEach((element_periphInst, index) => {
+%                   if(groupedCpuSelPeripheralIndices[element_periphInst]){
+    SysCtl_selectCPUForPeripheral(`element.name`, `groupedCpuSelPeripheralIndices[element_periphInst]`, `stat["cpuSel_" + element_periphInst]`);
+%                   }else{
     SysCtl_selectCPUForPeripheral(`element.name`, `index+1`, `stat["cpuSel_" + element_periphInst]`);
+%                   }
 %                   });
 %               }
 %           );
@@ -125,7 +137,12 @@ void `nameOfPeripheral`_init(){
 %           device_driverlib_peripheral.SysCtl_CPUSelPeripheral.
 %           forEach((element, index) => 
 %           {
-%               var peripheralInsts = Common.peripheralListFromSysCtl(element.name.split("_").slice(-1)[0], device_driverlib_peripheral)
+%               var periType = element.name.split("_").slice(-1)[0];
+%               var peripheralInsts = Common.peripheralListFromSysCtl(periType, device_driverlib_peripheral)
+%               var devGrouped = groupedCpuSelPeripherals[Common.getDeviceName()];
+%               if (devGrouped && devGrouped[periType]) {
+%                   peripheralInsts = peripheralInsts.concat(devGrouped[periType]);
+%               }
 %               peripheralInsts.forEach((element_periphInst, index) => {
 %                   if(inInstanceEnumsEnd.includes(element_periphInst)){
     SysCtl_selectCPUForPeripheralInstance(`inInstanceEnumsFull[element_periphInst]`, `stat["cpuSel_" + element_periphInst]`);

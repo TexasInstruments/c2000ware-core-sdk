@@ -1,0 +1,41 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28P551x" --part "F28P551x_100PZ" --package "100PZ" --product "C2000WARE@6.02.00.00_EA1"
+ * @v2CliArgs --device "TMS320F28P551SG" --package "100PZ" --product "C2000WARE@6.02.00.00_EA1"
+ * @versions {"tool":"1.25.999+297"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const device_support = scripting.addModule("/driverlib/device_support.js");
+const pmbus          = scripting.addModule("/driverlib/pmbus.js");
+const pmbus1         = pmbus.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+pmbus1.$name                      = "myPMBUS0";
+pmbus1.registerInterrupts         = true;
+pmbus1.mode                       = "Target";
+pmbus1.OwnAddress                 = 0x6A;
+pmbus1.TargetAddress              = 0x1A;
+pmbus1.configTarget               = ["PMBUS_TARGET_AUTO_ACK_4_BYTES","PMBUS_TARGET_ENABLE_PEC_PROCESSING"];
+pmbus1.useCase                    = "2-WIRE";
+pmbus1.enabledInterrupts          = ["PMBUS_INT_DATA_READY","PMBUS_INT_DATA_REQUEST","PMBUS_INT_EOM","PMBUS_INT_TARGET_ADDR_READY"];
+pmbus1.BaudRate                   = 9000000;
+pmbus1.useInterrupts              = true;
+pmbus1.sclQual.padConfig          = "PULLUP";
+pmbus1.sdaQual.padConfig          = "PULLUP";
+pmbus1.pmbus.pmbus_sclPin.$assign = "GPIO47";
+pmbus1.pmbus.pmbus_sdaPin.$assign = "GPIO25";
+pmbus1.PMBusInt.enableInterrupt   = true;
+pmbus1.PMBusInt.interruptHandler  = "pmbusIntHandler";
+
+/**
+ * Pinmux solution for unlocked pins/peripherals. This ensures that minor changes to the automatic solver in a future
+ * version of the tool will not impact the pinmux you originally saw.  These lines can be completely deleted in order to
+ * re-solve from scratch.
+ */
+pmbus1.pmbus.$suggestSolution = "PMBUSA";

@@ -224,6 +224,7 @@ let SysCtl_CPUSelPeripheral = [
 	{ name: "SYSCTL_CPUSEL6_SPI", displayName: "Configure CPU Select for SPI" },
 	{ name: "SYSCTL_CPUSEL7_I2C", displayName: "Configure CPU Select for I2C" },
 	{ name: "SYSCTL_CPUSEL8_CAN", displayName: "Configure CPU Select for CAN" },
+	{ name: "SYSCTL_CPUSEL9_USB", displayName: "Configure CPU Select for USB" },
 	{ name: "SYSCTL_CPUSEL11_ADC", displayName: "Configure CPU Select for ADC" },
 	{ name: "SYSCTL_CPUSEL12_CMPSS", displayName: "Configure CPU Select for CMPSS" },
 	{ name: "SYSCTL_CPUSEL13_DCC", displayName: "Configure CPU Select for DCC" },

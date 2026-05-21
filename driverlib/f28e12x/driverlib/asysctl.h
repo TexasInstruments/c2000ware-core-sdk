@@ -596,7 +596,7 @@ ASysCtl_enableCMPSSExternalDAC(uint32_t select)
     //
     EALLOW;
     HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPSSCTL) =
-                    (HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPSSCTL) | select) |
+                    (HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPSSCTL) | (uint16_t)select) |
                     ASYSCTL_CMPSSCTL_CMPSSCTLEN;
     EDIS;
 }
@@ -627,7 +627,7 @@ ASysCtl_disableCMPSSExternalDAC(uint32_t select)
     //
     EALLOW;
     HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPSSCTL) =
-                    (HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPSSCTL) & ~select) |
+                    (HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPSSCTL) & ~(uint16_t)select) |
                     ASYSCTL_CMPSSCTL_CMPSSCTLEN;
     EDIS;
 }

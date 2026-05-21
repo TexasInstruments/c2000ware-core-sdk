@@ -46,11 +46,17 @@ void `instance.$name`_init(){
 % 			else{
 % 				refMode = "ADC_REFERENCE_INTERNAL"
 % 			}
-% 			if(stat.analogReferenceVoltage == "2P5"){
+% 			if(stat.analogReference == "EXTERNAL"){
 % 				refVoltage = "ADC_REFERENCE_2_5V"
 % 			}
-% 			else{
+% 			else if(stat.analogReferenceVoltage == "2P5"){
+% 				refVoltage = "ADC_REFERENCE_2_5V"
+% 			}
+% 			else if(stat.analogReferenceVoltage == "1P65"){
 % 				refVoltage = "ADC_REFERENCE_3_3V"
+% 			}
+% 			else{
+% 				refVoltage = "ADC_REFERENCE_2_5V"
 % 			}
 	//
 	// ADC Initialization: Write ADC configurations and power up the ADC
@@ -112,7 +118,7 @@ void `instance.$name`_init(){
 	// Delay for 1ms to allow ADC time to power up
 	//
 	DEVICE_DELAY_US(`varDelay`);
-	%if(["F28P65x", "F28P55x","F28P551x"].includes(Common.getDeviceName())){
+	%if(["F28P65x", "F28P55x"].includes(Common.getDeviceName())){
 		% if(instance.enableTDMA){
 	//
 	// Enable alternate timings for DMA trigger

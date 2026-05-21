@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v26.00.00.00
+// C2000Ware v26.01.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -156,7 +156,7 @@ ADC_setINLTrim(uint32_t base)
         EALLOW;
         for(i = 0U; i < 6U; i++)
         {
-            HWREG(base + ADC_O_INLTRIM1 + (i * 2U)) = (*inlTrimAddress++);
+            HWREG(base + ADC_O_INLTRIM1 + ((uint32_t)i * 2U)) = (*inlTrimAddress++);
         }
 
         //

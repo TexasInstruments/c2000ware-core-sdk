@@ -10,7 +10,7 @@
 //
 //
 // 
-// C2000Ware v26.00.00.00
+// C2000Ware v26.01.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -379,7 +379,9 @@ void InitSysPll(Uint16 clock_source, Uint16 imult, Uint32 refdiv, Uint32 odiv,
     if((imult != ClkCfgRegs.SYSPLLMULT.bit.IMULT) ||
        (refdiv != ClkCfgRegs.SYSPLLMULT.bit.REFDIV)||
        (odiv != ClkCfgRegs.SYSPLLMULT.bit.ODIV) ||
-       (1U != ClkCfgRegs.SYSPLLCTL1.bit.PLLEN))
+       (1U != ClkCfgRegs.SYSPLLCTL1.bit.PLLEN) ||
+       ((clock_source & 0x3) != ClkCfgRegs.CLKSRCCTL1.bit.OSCCLKSRCSEL) ||
+       (((clock_source & 0x4) >> 2) != ClkCfgRegs.XTALCR.bit.SE))
     {
         //
         // Bypass PLL and set dividers to /1

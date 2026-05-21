@@ -4,6 +4,21 @@ let device_driverlib_peripheral =
     system.getScript("/driverlib/device_driverlib_peripherals/" + 
         Common.getDeviceName().toLowerCase() + "_epwm.js");
 
+function updateGlobalLoadStatusCMP(inst) {
+    if (inst.epwmGlobalLoad_gld) {
+        let registers = [];
+        if (inst.epwmCounterCompare_cmpAGld) registers.push("CMPA/CMPAHR");
+        if (inst.epwmCounterCompare_cmpBGld) registers.push("CMPB/CMPBHR");
+        if (inst.epwmCounterCompare_cmpCGld) registers.push("CMPC");
+        if (inst.epwmCounterCompare_cmpDGld) registers.push("CMPD");
+        inst.epwmGlobalLoad_statusCounterCompare = registers.length > 0 ? registers.join(", ") : "(none enabled)";
+    }
+}
+
+function onCMPGldChange(inst, ui) {
+    updateGlobalLoadStatusCMP(inst);
+}
+
 function onChangeCMPXShadowLoadMode(inst, ui)
 {
     // CMPA
@@ -73,6 +88,7 @@ var config = [
                 description : 'Use global load configuration for CMPA',
                 hidden      : false,
                 default     : false,
+                onChange    : onCMPGldChange,
             },
             {
                 name: "epwmCounterCompare_enableShadowLoadModeCMPA",
@@ -119,6 +135,7 @@ var config = [
                 description : 'Use global load configuration for CMPB',
                 hidden      : false,
                 default     : false,
+                onChange    : onCMPGldChange,
             },
             {
                 name: "epwmCounterCompare_enableShadowLoadModeCMPB",
@@ -165,6 +182,7 @@ var config = [
                 description : 'Use global load configuration for CMPC',
                 hidden      : false,
                 default     : false,
+                onChange    : onCMPGldChange,
             },
             {
                 name: "epwmCounterCompare_enableShadowLoadModeCMPC",
@@ -211,6 +229,7 @@ var config = [
                 description : 'Use global load configuration for CMPD',
                 hidden      : false,
                 default     : false,
+                onChange    : onCMPGldChange,
             },
             {
                 name: "epwmCounterCompare_enableShadowLoadModeCMPD",

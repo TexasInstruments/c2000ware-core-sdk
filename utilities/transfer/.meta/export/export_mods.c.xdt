@@ -40,6 +40,9 @@
 
 % let exportCommon = system.getScript("/utilities/transfer/export/export_mods_common.js");
 % let exportMod = system.modules["/utilities/transfer/exporter.js"];
+% if (!exportMod || exportMod.$instances.length === 0) {
+%     throw new Error("CDT: Exporter module not found or not instantiated. Add an Exporter instance to your SysConfig configuration.");
+% }
 % let expInst = exportMod.$instances[0]
 
 %   let exportCommonTemplate = system.getTemplate("/utilities/transfer/export/export_mods_common.xdt");
@@ -47,9 +50,15 @@
 `exportCommonTemplate("c", modName)`
 % }
 % for (var modName of exportCommon.getExportModModuleNames()) {
-    % let exportModTemplate = system.getTemplate("/utilities/transfer/export/mods/export_mod_" + modName + ".xdt");
-    % if (exportModTemplate) {
+    % try {
+    %   let exportModTemplate = system.getTemplate("/utilities/transfer/export/mods/export_mod_" + modName + ".xdt");
+    %   if (exportModTemplate) {
 `exportModTemplate("c")`
+    %   }
+    % } catch (e) {
+    %   /* CDT: No module-specific template for '`modName`' - using common template.
+    %    * If this is unexpected, check that export/mods/export_mod_`modName`.xdt exists.
+    %    * Error: `e.message` */
     % }
 % }
 

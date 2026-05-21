@@ -1,0 +1,26 @@
+
+/**
+ * Import the modules used in this configuration.
+ */
+const cmpss       = scripting.addModule("/driverlib/cmpss.js", {}, false);
+const cmpss1      = cmpss.addInstance();
+const outputxbar  = scripting.addModule("/driverlib/outputxbar.js", {}, false);
+const outputxbar1 = outputxbar.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+cmpss1.$name              = "myCMPSS0";
+cmpss1.enableModule       = true;
+cmpss1.dacValHigh         = 2048;
+cmpss1.samplePrescaleHigh = 1023;
+cmpss1.sampleWindowHigh   = 32;
+cmpss1.thresholdHigh      = 31;
+cmpss1.initFilterHigh     = true;
+cmpss1.highCTRIPOUT       = "CMPSS_TRIPOUT_FILTER";
+cmpss1.highCTRIP          = "CMPSS_TRIP_FILTER";
+
+outputxbar1.$name                            = "myOUTPUTXBAR0";
+outputxbar1.muxesUsed                        = ["XBAR_MUX00"];
+outputxbar1.outputxbar.$assign               = "OUTPUTXBAR3";
+outputxbar1.outputxbar.outputxbarPin.$assign = "GPIO14";

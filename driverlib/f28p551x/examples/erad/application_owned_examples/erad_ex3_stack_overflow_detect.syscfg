@@ -1,0 +1,16 @@
+/**
+ * Import the modules used in this configuration.
+ */
+const erad  = scripting.addModule("/driverlib/erad.js", {}, false);
+const erad1 = erad.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+erad1.$name                             = "myERAD0";
+erad1.hwbpsUsed                         = ["BUSCOMP1"];
+erad1.eradBUSCOMP1.$name                = "ERAD_HWBP0";
+erad1.eradBUSCOMP1.hwbpBusSel           = "ERAD_BUSCOMP_BUS_DWAB";
+erad1.eradBUSCOMP1.hwbpAddressInputMode = "CODE";
+erad1.eradBUSCOMP1.hwbpRefCodeName      = "address";
+erad1.eradBUSCOMP1.rtosInterrupt        = true;

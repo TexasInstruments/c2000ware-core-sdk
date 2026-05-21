@@ -1,0 +1,16 @@
+
+/**
+ * Import the modules used in this configuration.
+ */
+const gpio  = scripting.addModule("/driverlib/gpio.js", {}, false);
+const gpio1 = gpio.addInstance();
+const gpio2 = gpio.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+gpio1.$name     = "myGPIOInputInterrupt0";
+gpio1.padConfig = "PULLUP";
+
+gpio2.$name     = "myGPIOOutput0";
+gpio2.direction = "GPIO_DIR_MODE_OUT";

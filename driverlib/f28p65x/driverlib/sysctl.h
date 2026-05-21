@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v26.00.00.00
+// C2000Ware v26.01.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -676,6 +676,8 @@ typedef enum
     SYSCTL_CPUSEL7_I2C       = 0x7U,
     //! Configure CPU Select for CAN
     SYSCTL_CPUSEL8_CAN       = 0x8U,
+    //! Configure CPU Select for USB
+    SYSCTL_CPUSEL9_USB       = 0x9U,
     //! Configure CPU Select for ADC
     SYSCTL_CPUSEL11_ADC      = 0xBU,
     //! Configure CPU Select for CMPSS

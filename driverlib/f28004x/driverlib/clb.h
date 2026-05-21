@@ -766,7 +766,7 @@ static inline void CLB_configAOC(uint32_t base, CLB_AOCs aocID,
     ASSERT(CLB_isBaseValid(base));
 
     EALLOW;
-    HWREG(base + CLB_O_OUTPUT_COND_CTRL_0 + (sizeof(uint32_t) * aocID)) = aocCfg;
+    HWREG(base + CLB_O_OUTPUT_COND_CTRL_0 + ((uint32_t)sizeof(uint32_t) * (uint32_t)aocID)) = aocCfg;
     EDIS;
 }
 
@@ -874,7 +874,7 @@ static inline void CLB_enableSynchronization(uint32_t base, CLB_Inputs inID)
     ASSERT(CLB_isBaseValid(base));
 
     HWREGH(base + CLB_LOGICCTL + CLB_O_INPUT_FILTER + 1U) |=
-                                                    (1U << (uint16_t)inID);
+                                                    ((uint16_t)1U << (uint16_t)inID);
 }
 
 //*****************************************************************************
@@ -1112,7 +1112,7 @@ static inline void CLB_setOutputMask(uint32_t base, uint32_t outputMask ,
 {
     ASSERT(CLB_isBaseValid(base));
 
-    if(enable == true)
+    if(enable == (bool)true)
      {
         HWREG(base + CLB_LOGICCTL + CLB_O_OUT_EN) |= outputMask;
      }
@@ -1385,7 +1385,7 @@ static inline void CLB_configOutputLUT(uint32_t base, CLB_Outputs outID,
     ASSERT(CLB_isBaseValid(base));
 
     EALLOW;
-    HWREG(base + CLB_O_OUTPUT_LUT_0 + (sizeof(uint32_t) * outID)) = outputCfg;
+    HWREG(base + CLB_O_OUTPUT_LUT_0 + ((uint32_t)sizeof(uint32_t) * (uint32_t)outID)) = outputCfg;
     EDIS;
 }
 

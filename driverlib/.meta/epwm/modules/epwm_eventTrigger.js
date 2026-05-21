@@ -13,7 +13,9 @@ function onChangeInterrupt (inst, ui)
         for(var uiConfigIndex = 1; uiConfigIndex < config.length; uiConfigIndex++)
         {
             var configName = config[uiConfigIndex].name;
-            if (!configName.startsWith("GROUP_")){
+            if (!configName.startsWith("GROUP_") &&
+                configName !== "epwmEventTrigger_EPWM_SOC_A_etmixTriggerSource" &&
+                configName !== "epwmEventTrigger_EPWM_SOC_B_etmixTriggerSource"){
                 ui[configName].hidden = false;
             }
         }
@@ -27,12 +29,18 @@ function onChangeInterrupt (inst, ui)
             ui.epwmEventTrigger_interruptEventCountInitValue.hidden = true;
             inst.epwmEventTrigger_interruptEventCountInitValue = ePWMCountInitial[0].name;
         }
+        if (ui.epwmEventTrigger_etmixinterruptSource !== undefined) {
+            ui.epwmEventTrigger_etmixinterruptSource.hidden =
+                (inst.epwmEventTrigger_interruptSource !== "EPWM_INT_TBCTR_ETINTMIX");
+        }
     }
     else if (inst.epwmEventTrigger_enableInterrupt == false){
         for(var uiConfigIndex = 2; uiConfigIndex < config.length; uiConfigIndex++)
         {
             var configName = config[uiConfigIndex].name;
-            if (!configName.startsWith("GROUP_")){
+            if (!configName.startsWith("GROUP_") &&
+                configName !== "epwmEventTrigger_EPWM_SOC_A_etmixTriggerSource" &&
+                configName !== "epwmEventTrigger_EPWM_SOC_B_etmixTriggerSource"){
                 ui[configName].hidden = true;
             }
         }
@@ -44,6 +52,38 @@ function onChangeInterrupt (inst, ui)
         inst.epwmEventTrigger_interruptEventCountInitEnable = false;
         inst.epwmEventTrigger_interruptEventCountInitValue = ePWMCountInitial[0].name;
         inst.epwmEventTrigger_interruptEventCountInitForce = false;
+        if (inst.hasOwnProperty("epwmEventTrigger_etmixinterruptSource")) {
+            inst.epwmEventTrigger_etmixinterruptSource = [];
+        }
+    }
+}
+
+function onChangeInterruptSource(inst, ui)
+{
+    if (ui.epwmEventTrigger_etmixinterruptSource !== undefined) {
+        var isETINTMIX = (inst.epwmEventTrigger_interruptSource === "EPWM_INT_TBCTR_ETINTMIX");
+        ui.epwmEventTrigger_etmixinterruptSource.hidden = !isETINTMIX;
+        if (!isETINTMIX) {
+            inst.epwmEventTrigger_etmixinterruptSource = [];
+        }
+    }
+}
+
+function onChangeSOCTriggerSource(inst, ui)
+{
+    if (ui.epwmEventTrigger_EPWM_SOC_A_etmixTriggerSource !== undefined) {
+        var isMixA = (inst.epwmEventTrigger_EPWM_SOC_A_triggerSource === "EPWM_SOC_TBCTR_ETSOCAMIX");
+        ui.epwmEventTrigger_EPWM_SOC_A_etmixTriggerSource.hidden = !isMixA;
+        if (!isMixA) {
+            inst.epwmEventTrigger_EPWM_SOC_A_etmixTriggerSource = [];
+        }
+    }
+    if (ui.epwmEventTrigger_EPWM_SOC_B_etmixTriggerSource !== undefined) {
+        var isMixB = (inst.epwmEventTrigger_EPWM_SOC_B_triggerSource === "EPWM_SOC_TBCTR_ETSOCBMIX");
+        ui.epwmEventTrigger_EPWM_SOC_B_etmixTriggerSource.hidden = !isMixB;
+        if (!isMixB) {
+            inst.epwmEventTrigger_EPWM_SOC_B_etmixTriggerSource = [];
+        }
     }
 }
 
@@ -86,6 +126,10 @@ function onChangeADCEnableDisable (inst, ui)
             inst.epwmEventTrigger_EPWM_SOC_A_triggerEventCountInitEnable = false;
             inst.epwmEventTrigger_EPWM_SOC_A_triggerEventCountInitValue = ePWMCountInitial[0].name;
             inst.epwmEventTrigger_EPWM_SOC_A_triggerEventCountInitForce = false;
+            if (ui.epwmEventTrigger_EPWM_SOC_A_etmixTriggerSource !== undefined) {
+                ui.epwmEventTrigger_EPWM_SOC_A_etmixTriggerSource.hidden = true;
+                inst.epwmEventTrigger_EPWM_SOC_A_etmixTriggerSource = [];
+            }
         }
     }
 
@@ -122,11 +166,17 @@ function onChangeADCEnableDisable (inst, ui)
         {
             ui[configName].hidden = true;
             // Reset values to their defaults
-            inst.epwmEventTrigger_EPWM_SOC_B_triggerSource = device_driverlib_peripheral.EPWM_ADCStartOfConversionSource[0].name;
+            inst.epwmEventTrigger_EPWM_SOC_B_triggerSource = (device_driverlib_peripheral.EPWM_ADCStartOfConversionSourceB)
+                ? device_driverlib_peripheral.EPWM_ADCStartOfConversionSourceB[0].name
+                : device_driverlib_peripheral.EPWM_ADCStartOfConversionSource[0].name;
             inst.epwmEventTrigger_EPWM_SOC_B_triggerEventPrescalar = ePWMCount[0].name;
             inst.epwmEventTrigger_EPWM_SOC_B_triggerEventCountInitEnable = false;
             inst.epwmEventTrigger_EPWM_SOC_B_triggerEventCountInitValue = ePWMCountInitial[0].name;
             inst.epwmEventTrigger_EPWM_SOC_B_triggerEventCountInitForce = false;
+            if (ui.epwmEventTrigger_EPWM_SOC_B_etmixTriggerSource !== undefined) {
+                ui.epwmEventTrigger_EPWM_SOC_B_etmixTriggerSource.hidden = true;
+                inst.epwmEventTrigger_EPWM_SOC_B_etmixTriggerSource = [];
+            }
         }
     }
 }
@@ -194,7 +244,8 @@ var config = [
         description : 'Select all events that must be enabled to generate an EPWM interrupt',
         hidden      : true,
         default     : device_driverlib_peripheral.EPWM_INT_TBCTR[0].name,
-        options     : device_driverlib_peripheral.EPWM_INT_TBCTR
+        options     : device_driverlib_peripheral.EPWM_INT_TBCTR,
+        onChange    : onChangeInterruptSource
     },
     {
         name: "epwmEventTrigger_interruptEventCount",
@@ -227,10 +278,20 @@ var config = [
         hidden      : true,
         default     : false,
     },
-    
+
 ];
 
-
+if (Common.getDeviceName() === "F28P65x") {
+    config.splice(3, 0, {
+        name        : "epwmEventTrigger_etmixinterruptSource",
+        displayName : "ETINTMIX Interrupt Sources",
+        description : "Select the mixed event sources that generate an EPWM interrupt when ETINTMIX mode is selected",
+        hidden      : true,
+        default     : [],
+        minSelections: 0,
+        options     : device_driverlib_peripheral.EPWM_ETMixTriggerSource
+    });
+}
 
 for (var socIndex in device_driverlib_peripheral.EPWM_ADCStartOfConversionType)
 {
@@ -245,13 +306,18 @@ for (var socIndex in device_driverlib_peripheral.EPWM_ADCStartOfConversionType)
             default     : false,
             onChange    : onChangeADCEnableDisable
         },
-        { 
-            name: "epwmEventTrigger_" + soc.name + "_triggerSource", 
+        {
+            name: "epwmEventTrigger_" + soc.name + "_triggerSource",
             displayName : soc_name + " Trigger Source",
             description : 'Select the SOC trigger source for ' + soc_name,
             hidden      : true,
-            default     : device_driverlib_peripheral.EPWM_ADCStartOfConversionSource[0].name,
-            options     : device_driverlib_peripheral.EPWM_ADCStartOfConversionSource
+            default     : (soc.name === "EPWM_SOC_B" && device_driverlib_peripheral.EPWM_ADCStartOfConversionSourceB)
+                            ? device_driverlib_peripheral.EPWM_ADCStartOfConversionSourceB[0].name
+                            : device_driverlib_peripheral.EPWM_ADCStartOfConversionSource[0].name,
+            options     : (soc.name === "EPWM_SOC_B" && device_driverlib_peripheral.EPWM_ADCStartOfConversionSourceB)
+                            ? device_driverlib_peripheral.EPWM_ADCStartOfConversionSourceB
+                            : device_driverlib_peripheral.EPWM_ADCStartOfConversionSource,
+            onChange    : onChangeSOCTriggerSource
         },
         {
             name: "epwmEventTrigger_" + soc.name + "_triggerEventPrescalar",
@@ -298,6 +364,27 @@ config = config.concat([
         config: ADC_SOC_configs
     }
 ]);
+
+if (Common.getDeviceName() === "F28P65x") {
+    config.push({
+        name        : "epwmEventTrigger_EPWM_SOC_A_etmixTriggerSource",
+        displayName : "ETSOCAMIX Trigger Sources",
+        description : "Select the mixed event sources that trigger SOCA when ETSOCAMIX mode is selected",
+        hidden      : true,
+        default     : [],
+        minSelections: 0,
+        options     : device_driverlib_peripheral.EPWM_ETMixTriggerSource
+    });
+    config.push({
+        name        : "epwmEventTrigger_EPWM_SOC_B_etmixTriggerSource",
+        displayName : "ETSOCBMIX Trigger Sources",
+        description : "Select the mixed event sources that trigger SOCB when ETSOCBMIX mode is selected",
+        hidden      : true,
+        default     : [],
+        minSelections: 0,
+        options     : device_driverlib_peripheral.EPWM_ETMixTriggerSource
+    });
+}
 
 
 var epwmEventTriggerSubmodule = {

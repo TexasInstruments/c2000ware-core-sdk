@@ -9,7 +9,8 @@ let device_driverlib_peripheral_registers =
     system.getScript("/driverlib/device_driverlib_peripherals/" + 
         Common.getDeviceName().toLowerCase() + "_sysctl_registers.js");
 
-
+let sysctl_common = system.getScript("/driverlib/device_driverlib_peripherals/common/sysctl_common.js")
+let groupedCpuSelPeripherals = sysctl_common.groupedCpuSelPeripherals;
 
 var selectAccessOption = device_driverlib_peripheral.SysCtl_AccessController
 if(!selectAccessOption)
@@ -153,6 +154,7 @@ let staticConfig = [
     }
 ];
 
+
 var enableCpuSel = true;
 if (["F2837xD", "F2838x", "F28P65x"].includes(Common.getDeviceName()) && Common.isContextCPU2()){
     enableCpuSel = false;
@@ -173,7 +175,12 @@ if (device_driverlib_peripheral.SysCtl_CPUSelPeripheral && enableCpuSel)
     device_driverlib_peripheral.SysCtl_CPUSelPeripheral.
     forEach((element, index) => 
         {
-            var peripheralInsts = Common.peripheralListFromSysCtl(element.name.split("_").slice(-1)[0], device_driverlib_peripheral)
+            var periType = element.name.split("_").slice(-1)[0];
+            var peripheralInsts = Common.peripheralListFromSysCtl(periType, device_driverlib_peripheral)
+            var devGrouped = groupedCpuSelPeripherals[Common.getDeviceName()];
+            if (devGrouped && devGrouped[periType]) {
+                peripheralInsts = peripheralInsts.concat(devGrouped[periType]);
+            }
             var cpuSelPerupheralInstsConfigs = []
             peripheralInsts.forEach((element_periphInst, index) => {
                 var matchesInstances = 1;

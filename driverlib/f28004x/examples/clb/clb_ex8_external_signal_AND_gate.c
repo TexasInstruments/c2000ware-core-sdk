@@ -18,7 +18,7 @@
 //
 //
 //#############################################################################
-// $TI Release: F28004x Support Library v6.01.00.00 $
+// $TI Release: F28004x Support Library v26.01.00.00 $
 // 
 // $Copyright:
 // Copyright (C) 2026 Texas Instruments Incorporated - http://www.ti.com/

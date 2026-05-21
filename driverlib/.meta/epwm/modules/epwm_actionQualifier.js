@@ -9,6 +9,20 @@ var UsedAQEventConfigs = [];
 var UsedAQOutput_Configs = [];
 var UsedAqOutput_aqEvent_Configs = [];
 
+function updateGlobalLoadStatusAQ(inst) {
+    if (inst.epwmGlobalLoad_gld) {
+        let registers = [];
+        if (inst.epwmActionQualifier_EPWM_AQ_OUTPUT_A_gld) registers.push("AQCTLA/AQCTLA2");
+        if (inst.epwmActionQualifier_EPWM_AQ_OUTPUT_B_gld) registers.push("AQCTLB/AQCTLB2");
+        if (inst.epwmActionQualifier_continousSwForceReloadModeGld) registers.push("AQCSFRC");
+        inst.epwmGlobalLoad_statusActionQualifier = registers.length > 0 ? registers.join(", ") : "(none enabled)";
+    }
+}
+
+function onAQGldChange(inst, ui) {
+    updateGlobalLoadStatusAQ(inst);
+}
+
 function onChangeUsedOutputs(inst, ui)
 {
     for (var aqOutputIndex in device_driverlib_peripheral.EPWM_ActionQualifierOutputModule)
@@ -48,6 +62,7 @@ var config = [
         description : 'Use global load configuration for AQCSFRC',
         hidden      : false,
         default     : false,
+        onChange    : onAQGldChange,
     },
     {
         name: "epwmActionQualifier_continousSwForceReloadMode",
@@ -87,6 +102,7 @@ for (var aqOutputIndex in device_driverlib_peripheral.EPWM_ActionQualifierOutput
             description : 'Use global load configuration for ' + aqOutput.displayName.replace("output", ""),
             hidden      : false,
             default     : false,
+            onChange    : onAQGldChange,
         },
         {
             name: "epwmActionQualifier_" + aqOutput.name + "_shadowMode",

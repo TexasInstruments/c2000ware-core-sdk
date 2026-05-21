@@ -536,7 +536,6 @@ let EPWM_ADCStartOfConversionType = [
 	{ name: "EPWM_SOC_B", displayName: "SOC B" },
 ]
 let EPWM_ADCStartOfConversionSource = [
-	{ name: "EPWM_SOC_DCxEVT1", displayName: "Event is based on DCxEVT1" },
 	{ name: "EPWM_SOC_TBCTR_ZERO", displayName: "Time-base counter equal to zero" },
 	{ name: "EPWM_SOC_TBCTR_PERIOD", displayName: "Time-base counter equal to period" },
 	{ name: "EPWM_SOC_TBCTR_ETSOCAMIX", displayName: "Time-base counter based on mixed events (ETSOCAMIX)" },
@@ -548,6 +547,21 @@ let EPWM_ADCStartOfConversionSource = [
 	{ name: "EPWM_SOC_TBCTR_U_CMPD", displayName: "Time-base counter equal to CMPD when the timer is incrementing" },
 	{ name: "EPWM_SOC_TBCTR_D_CMPB", displayName: "Time-base counter equal to CMPB when the timer is decrementing" },
 	{ name: "EPWM_SOC_TBCTR_D_CMPD", displayName: "Time-base counter equal to CMPD when the timer is decrementing" },
+	{ name: "EPWM_SOC_DCxEVT1", displayName: "Event is based on DCxEVT1" },
+]
+let EPWM_ADCStartOfConversionSourceB = [
+	{ name: "EPWM_SOC_TBCTR_ZERO", displayName: "Time-base counter equal to zero" },
+	{ name: "EPWM_SOC_TBCTR_PERIOD", displayName: "Time-base counter equal to period" },
+	{ name: "EPWM_SOC_TBCTR_ETSOCBMIX", displayName: "Time-base counter based on mixed events (ETSOCBMIX)" },
+	{ name: "EPWM_SOC_TBCTR_U_CMPA", displayName: "Time-base counter equal to CMPA when the timer is incrementing" },
+	{ name: "EPWM_SOC_TBCTR_U_CMPC", displayName: "Time-base counter equal to CMPC when the timer is incrementing" },
+	{ name: "EPWM_SOC_TBCTR_D_CMPA", displayName: "Time-base counter equal to CMPA when the timer is decrementing" },
+	{ name: "EPWM_SOC_TBCTR_D_CMPC", displayName: "Time-base counter equal to CMPC when the timer is decrementing" },
+	{ name: "EPWM_SOC_TBCTR_U_CMPB", displayName: "Time-base counter equal to CMPB when the timer is incrementing" },
+	{ name: "EPWM_SOC_TBCTR_U_CMPD", displayName: "Time-base counter equal to CMPD when the timer is incrementing" },
+	{ name: "EPWM_SOC_TBCTR_D_CMPB", displayName: "Time-base counter equal to CMPB when the timer is decrementing" },
+	{ name: "EPWM_SOC_TBCTR_D_CMPD", displayName: "Time-base counter equal to CMPD when the timer is decrementing" },
+	{ name: "EPWM_SOC_DCxEVT1", displayName: "Event is based on DCxEVT1" },
 ]
 let EPWM_DigitalCompareType = [
 	{ name: "EPWM_DC_TYPE_DCAH", displayName: "Digital Compare A High" },
@@ -976,6 +990,7 @@ module.exports = {
 	EPWM_selectTripOutSource: EPWM_selectTripOutSource,
 	EPWM_ADCStartOfConversionType: EPWM_ADCStartOfConversionType,
 	EPWM_ADCStartOfConversionSource: EPWM_ADCStartOfConversionSource,
+	EPWM_ADCStartOfConversionSourceB: EPWM_ADCStartOfConversionSourceB,
 	EPWM_DigitalCompareType: EPWM_DigitalCompareType,
 	EPWM_DigitalCompareTripInput: EPWM_DigitalCompareTripInput,
 	EPWM_DigitalCompareBlankingPulse: EPWM_DigitalCompareBlankingPulse,

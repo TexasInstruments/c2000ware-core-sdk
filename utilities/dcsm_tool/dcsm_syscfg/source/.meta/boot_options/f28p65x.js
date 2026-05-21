@@ -1,5 +1,5 @@
 let f28p65x_boot =[
-    {name: "0x00", displayName:"(PARALLEL) D0-D7=GPIO(0-7) , MCU-Control=GPIO10 , Host-Control=GPIO11"},
+    {name: "0x00", displayName:"(PARALLEL) D0-D7=GPIO(0-4,GPIO10-12) , MCU-Control=GPIO13 , Host-Control=GPIO14"},
     {name: "0x20", displayName:"(PARALLEL) D0-D7=GPIO(89,90,58-62,88) , MCU-Control=GPIO91 , Host-Control=GPIO92"},
     {name: "0x01", displayName:"(SCI) SCIATX=GPIO12 , SCIARX=GPIO13"},
     {name: "0x21", displayName:"(SCI) SCIATX=GPIO84 , SCIARX=GPIO85"},

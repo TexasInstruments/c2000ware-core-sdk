@@ -89,7 +89,7 @@ ERAD_configCounterInCountingMode(uint32_t base,
         // If ERAD_EVENT_NO_EVENT is selected, clear the counter input select
         // enable bit. The counter will count CPU cycles.
         //
-        HWREGH(base + ERAD_O_CTM_CNTL) &= ERAD_CTM_CNTL_CNT_INP_SEL_EN;
+        HWREGH(base + ERAD_O_CTM_CNTL) &= ~ERAD_CTM_CNTL_CNT_INP_SEL_EN;
     }
     else
     {

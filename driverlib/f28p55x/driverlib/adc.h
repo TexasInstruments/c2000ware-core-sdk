@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v26.00.00.00
+// C2000Ware v26.01.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -914,7 +914,7 @@ ADC_forceRepeaterTrigger(uint32_t base, uint16_t repInstance)
   //
   ASSERT(ADC_isBaseValid(base));
 
-  regOffset = base + (repInstance * (ADC_REPxCTL_STEP));
+  regOffset = base + ((uint32_t)repInstance * (ADC_REPxCTL_STEP));
   EALLOW;
   //
   // Triggers the selected repeater instance
@@ -946,7 +946,7 @@ ADC_getRepeaterStatus(uint32_t base, uint16_t repInstance)
     //
     ASSERT(ADC_isBaseValid(base));
 
-    regOffset = base + (repInstance * (ADC_REPxCTL_STEP));
+    regOffset = base + ((uint32_t)repInstance * (ADC_REPxCTL_STEP));
 
     //
     // Return the status of repeater.
@@ -1231,7 +1231,7 @@ ADC_getIntResultStatus(uint32_t base, ADC_IntNumber adcIntNum)
     // Get the specified ADC interrupt result ready status.
     //
     return((HWREGH(base + ADC_O_INTFLG) &
-                 (1U << ((uint16_t)adcIntNum + 4U))) != 0U);
+                 ((uint16_t)1U << ((uint16_t)adcIntNum + 4U))) != 0U);
 }
 
 //*****************************************************************************
@@ -1384,7 +1384,7 @@ ADC_getInterruptStatus(uint32_t base, ADC_IntNumber adcIntNum)
     //
     // Get the specified ADC interrupt status.
     //
-    return((HWREGH(base + ADC_O_INTFLG) & (1U << (uint16_t)adcIntNum)) != 0U);
+    return((HWREGH(base + ADC_O_INTFLG) & ((uint16_t)1U << (uint16_t)adcIntNum)) != 0U);
 }
 
 //*****************************************************************************
@@ -1450,7 +1450,7 @@ ADC_getInterruptOverflowStatus(uint32_t base, ADC_IntNumber adcIntNum)
     //
     // Get the specified ADC interrupt status.
     //
-    return((HWREGH(base + ADC_O_INTOVF) & (1U << (uint16_t)adcIntNum)) != 0U);
+    return((HWREGH(base + ADC_O_INTOVF) & ((uint16_t)1U << (uint16_t)adcIntNum)) != 0U);
 }
 
 //*****************************************************************************
@@ -2220,7 +2220,7 @@ ADC_readPPBPCount(uint32_t base, ADC_PPBNumber ppbNumber)
     //
     // Returns the partial count of the selected PPB.
     //
-    return(HWREG(base + (uint32_t)ADC_PPBxPCOUNT_OFFSET_BASE +
+    return((uint16_t)HWREG(base + (uint32_t)ADC_PPBxPCOUNT_OFFSET_BASE +
             ((uint32_t)ppbNumber * 26UL)));
 }
 
@@ -2826,7 +2826,7 @@ ADC_readPPBMaxIndex(uint32_t resultBase, ADC_PPBNumber ppbNumber)
     //
     // Returns the index of the final maximum value of selected PPB.
     //
-    return(HWREG(resultBase + (uint32_t)ADC_PPBxMAXI_OFFSET_BASE +
+    return((uint16_t)HWREG(resultBase + (uint32_t)ADC_PPBxMAXI_OFFSET_BASE +
            ((uint32_t)ppbNumber * 8UL)));
 }
 
@@ -2864,7 +2864,7 @@ ADC_readPPBMinIndex(uint32_t resultBase, ADC_PPBNumber ppbNumber)
     //
     // Returns the index of the final minimum value of the selected PPB.
     //
-    return(HWREG(resultBase + (uint32_t)ADC_PPBxMINI_OFFSET_BASE +
+    return((uint16_t)HWREG(resultBase + (uint32_t)ADC_PPBxMINI_OFFSET_BASE +
             ((uint32_t)ppbNumber * 8UL)));
 }
 
@@ -3431,7 +3431,7 @@ ADC_enableInterrupt(uint32_t base, ADC_IntNumber adcIntNum)
     //
     EALLOW;
 
-    HWREGH(intRegAddr) |= ADC_INTSEL1N2_INT1E << shiftVal;
+    HWREGH(intRegAddr) |= ((uint16_t)(ADC_INTSEL1N2_INT1E << shiftVal));
 
     EDIS;
 }
@@ -3577,7 +3577,7 @@ ADC_enableContinuousMode(uint32_t base, ADC_IntNumber adcIntNum)
     //
     EALLOW;
 
-    HWREGH(intRegAddr) |= ADC_INTSEL1N2_INT1CONT << shiftVal;
+    HWREGH(intRegAddr) |= ((uint16_t)(ADC_INTSEL1N2_INT1CONT << shiftVal));
 
     EDIS;
 }
@@ -3777,8 +3777,8 @@ ADC_triggerRepeaterActiveMode(uint32_t base, uint32_t repInstance)
     //
     // get the specified repeater trigger active mode status.
     //
-    return(HWREG(regOffset + ADC_O_REP1CTL) &
-                (1U << ADC_REP1CTL_ACTIVEMODE_S));
+    return((HWREG(regOffset + ADC_O_REP1CTL) &
+                (1U << ADC_REP1CTL_ACTIVEMODE_S)) ? true : false);
 }
 
 //*****************************************************************************
@@ -3811,8 +3811,8 @@ ADC_triggerRepeaterModuleBusy(uint32_t base, uint32_t repInstance)
     //
     // get the specified repeater trigger active mode status.
     //
-    return(HWREG(regOffset + ADC_O_REP1CTL) &
-                (1U << ADC_REP1CTL_MODULEBUSY_S));
+    return((HWREG(regOffset + ADC_O_REP1CTL) &
+                (1U << ADC_REP1CTL_MODULEBUSY_S)) ? true : false);
 }
 
 //*****************************************************************************
@@ -3843,7 +3843,7 @@ ADC_triggerRepeaterSelect(uint32_t base, uint16_t repInstance,
     //
     ASSERT(ADC_isBaseValid(base));
 
-    regOffset = base + (repInstance * (ADC_REPxCTL_STEP));
+    regOffset = base + ((uint32_t)repInstance * (ADC_REPxCTL_STEP));
 
     //
     // Set the specified repeater trigger source to modify.
@@ -3883,7 +3883,7 @@ ADC_triggerRepeaterSyncIn(uint32_t base, uint16_t repInstance,
     //
     ASSERT(ADC_isBaseValid(base));
 
-    regOffset = base + (repInstance * (ADC_REPxCTL_STEP));
+    regOffset = base + ((uint32_t)repInstance * (ADC_REPxCTL_STEP));
 
     //
     // Set the specified trigger sync input.
@@ -3920,7 +3920,7 @@ ADC_forceRepeaterTriggerSync(uint32_t base, uint16_t repInstance)
     //
     ASSERT(ADC_isBaseValid(base));
 
-    regOffset = base + (repInstance * (ADC_REPxCTL_STEP));
+    regOffset = base + ((uint32_t)repInstance * (ADC_REPxCTL_STEP));
 
     //
     // Force software sync for the trigger repeater block.
@@ -3967,7 +3967,7 @@ ADC_triggerRepeaterCount(uint32_t base, uint16_t repInstance,
     ASSERT(ADC_isBaseValid(base));
     ASSERT(repCount <= 127U);
 
-    regOffset = base + (repInstance * (ADC_REPxN_STEP));
+    regOffset = base + ((uint32_t)repInstance * (ADC_REPxN_STEP));
 
     //
     // Configure repeater count.
@@ -4009,7 +4009,7 @@ ADC_triggerRepeaterPhase(uint32_t base, uint16_t repInstance,
     //
     ASSERT(ADC_isBaseValid(base));
 
-    regOffset = base + (repInstance * (ADC_REPxPHASE_STEP));
+    regOffset = base + ((uint32_t)repInstance * (ADC_REPxPHASE_STEP));
 
     //
     // Configure repeater phase.
@@ -4051,7 +4051,7 @@ ADC_triggerRepeaterSpread(uint32_t base, uint16_t repInstance,
     //
     ASSERT(ADC_isBaseValid(base));
 
-    regOffset = base + (repInstance * (ADC_REPxSPREAD_STEP));
+    regOffset = base + ((uint32_t)repInstance * (ADC_REPxSPREAD_STEP));
 
     //
     // Configure repeater spread.

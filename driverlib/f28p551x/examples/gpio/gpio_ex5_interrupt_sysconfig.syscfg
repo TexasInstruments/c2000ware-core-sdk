@@ -1,0 +1,33 @@
+
+/**
+ * Import the modules used in this configuration.
+ */
+const gpio             = scripting.addModule("/driverlib/gpio.js", {}, false);
+const gpio1            = gpio.addInstance();
+const inputxbar_input  = scripting.addModule("/driverlib/inputxbar_input.js", {}, false);
+const inputxbar_input1 = inputxbar_input.addInstance();
+const outputxbar       = scripting.addModule("/driverlib/outputxbar.js", {}, false);
+const outputxbar1      = outputxbar.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+
+gpio1.padConfig                 = "PULLUP";
+gpio1.$name                     = "myGPIO_INPUT";
+gpio1.useInterrupt              = true;
+gpio1.gpioPin.$assign           = "GPIO4";
+gpio1.xint.registerInterrupts   = true;
+gpio1.xint.enableInt            = true;
+gpio1.xint.xInt.enableInterrupt = true;
+
+inputxbar_input1.$name         = "myINPUTXBARINPUT1";
+gpio1.xint.inputxbar           = inputxbar_input1;
+inputxbar_input1.inputxbarLock = true;
+inputxbar_input1.inputxbarGpio = "GPIO4";
+outputxbar1.$name              = "myOUTPUTXBAR0";
+outputxbar1.mux1Config         = "XBAR_OUT_MUX01_INPUTXBAR1";
+outputxbar1.sourceSignals      = ["INPUTXBAR4"];
+outputxbar1.useSourceSelect    = true;
+outputxbar1.outputxbar.$assign = "OUTPUTXBAR3";
+outputxbar1.outputxbar.outputxbarPin.$assign = "GPIO5";

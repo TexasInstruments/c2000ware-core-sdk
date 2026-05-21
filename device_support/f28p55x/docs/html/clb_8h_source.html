@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">f28p55x Driverib and Example User Guide
-   &#160;<span id="projectnumber">26.00.00.00</span>
+   &#160;<span id="projectnumber">26.01.00.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -99,7 +99,7 @@ $(document).ready(function(){initNavTree('clb_8h_source.html',''); initResizable
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">//###########################################################################</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">// </span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// C2000Ware v26.00.00.00</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// C2000Ware v26.01.00.00</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">//</span></div>
@@ -760,7 +760,7 @@ $(document).ready(function(){initNavTree('clb_8h_source.html',''); initResizable
 <div class="line"><a name="l00793"></a><span class="lineno">  793</span>&#160;    ASSERT(CLB_isBaseValid(base));</div>
 <div class="line"><a name="l00794"></a><span class="lineno">  794</span>&#160; </div>
 <div class="line"><a name="l00795"></a><span class="lineno">  795</span>&#160;    EALLOW;</div>
-<div class="line"><a name="l00796"></a><span class="lineno">  796</span>&#160;    HWREG(base + CLB_O_OUTPUT_COND_CTRL_0 + (<span class="keyword">sizeof</span>(uint32_t) * aocID)) = aocCfg;</div>
+<div class="line"><a name="l00796"></a><span class="lineno">  796</span>&#160;    HWREG(base + CLB_O_OUTPUT_COND_CTRL_0 + ((uint32_t)<span class="keyword">sizeof</span>(uint32_t) * (uint32_t)aocID)) = aocCfg;</div>
 <div class="line"><a name="l00797"></a><span class="lineno">  797</span>&#160;    EDIS;</div>
 <div class="line"><a name="l00798"></a><span class="lineno">  798</span>&#160;}</div>
 <div class="line"><a name="l00799"></a><span class="lineno">  799</span>&#160; </div>
@@ -830,7 +830,7 @@ $(document).ready(function(){initNavTree('clb_8h_source.html',''); initResizable
 <div class="line"><a name="l00901"></a><span class="lineno">  901</span>&#160;    ASSERT(CLB_isBaseValid(base));</div>
 <div class="line"><a name="l00902"></a><span class="lineno">  902</span>&#160; </div>
 <div class="line"><a name="l00903"></a><span class="lineno">  903</span>&#160;    HWREGH(base + <a class="code" href="group__clb__api.html#ga138ccfa623b2856c296a400677eb1c2b">CLB_LOGICCTL</a> + CLB_O_INPUT_FILTER + 1U) |=</div>
-<div class="line"><a name="l00904"></a><span class="lineno">  904</span>&#160;                                                    (1U &lt;&lt; (uint16_t)inID);</div>
+<div class="line"><a name="l00904"></a><span class="lineno">  904</span>&#160;                                                    ((uint16_t)1U &lt;&lt; (uint16_t)inID);</div>
 <div class="line"><a name="l00905"></a><span class="lineno">  905</span>&#160;}</div>
 <div class="line"><a name="l00906"></a><span class="lineno">  906</span>&#160; </div>
 <div class="line"><a name="l00907"></a><span class="lineno">  907</span>&#160;<span class="comment">//*****************************************************************************</span></div>
@@ -1006,7 +1006,7 @@ $(document).ready(function(){initNavTree('clb_8h_source.html',''); initResizable
 <div class="line"><a name="l01189"></a><span class="lineno"> 1189</span>&#160;{</div>
 <div class="line"><a name="l01190"></a><span class="lineno"> 1190</span>&#160;    ASSERT(CLB_isBaseValid(base));</div>
 <div class="line"><a name="l01191"></a><span class="lineno"> 1191</span>&#160; </div>
-<div class="line"><a name="l01192"></a><span class="lineno"> 1192</span>&#160;    <span class="keywordflow">if</span>(enable == <span class="keyword">true</span>)</div>
+<div class="line"><a name="l01192"></a><span class="lineno"> 1192</span>&#160;    <span class="keywordflow">if</span>(enable == (<span class="keywordtype">bool</span>)<span class="keyword">true</span>)</div>
 <div class="line"><a name="l01193"></a><span class="lineno"> 1193</span>&#160;     {</div>
 <div class="line"><a name="l01194"></a><span class="lineno"> 1194</span>&#160;        HWREG(base + <a class="code" href="group__clb__api.html#ga138ccfa623b2856c296a400677eb1c2b">CLB_LOGICCTL</a> + CLB_O_OUT_EN) |= outputMask;</div>
 <div class="line"><a name="l01195"></a><span class="lineno"> 1195</span>&#160;     }</div>
@@ -1162,7 +1162,7 @@ $(document).ready(function(){initNavTree('clb_8h_source.html',''); initResizable
 <div class="line"><a name="l01462"></a><span class="lineno"> 1462</span>&#160;    ASSERT(CLB_isBaseValid(base));</div>
 <div class="line"><a name="l01463"></a><span class="lineno"> 1463</span>&#160; </div>
 <div class="line"><a name="l01464"></a><span class="lineno"> 1464</span>&#160;    EALLOW;</div>
-<div class="line"><a name="l01465"></a><span class="lineno"> 1465</span>&#160;    HWREG(base + CLB_O_OUTPUT_LUT_0 + (<span class="keyword">sizeof</span>(uint32_t) * outID)) = outputCfg;</div>
+<div class="line"><a name="l01465"></a><span class="lineno"> 1465</span>&#160;    HWREG(base + CLB_O_OUTPUT_LUT_0 + ((uint32_t)<span class="keyword">sizeof</span>(uint32_t) * (uint32_t)outID)) = outputCfg;</div>
 <div class="line"><a name="l01466"></a><span class="lineno"> 1466</span>&#160;    EDIS;</div>
 <div class="line"><a name="l01467"></a><span class="lineno"> 1467</span>&#160;}</div>
 <div class="line"><a name="l01468"></a><span class="lineno"> 1468</span>&#160; </div>
@@ -1292,7 +1292,7 @@ $(document).ready(function(){initNavTree('clb_8h_source.html',''); initResizable
 <div class="line"><a name="l01681"></a><span class="lineno"> 1681</span>&#160;    ASSERT(CLB_isBaseValid(base));</div>
 <div class="line"><a name="l01682"></a><span class="lineno"> 1682</span>&#160; </div>
 <div class="line"><a name="l01683"></a><span class="lineno"> 1683</span>&#160;    HWREG(base + <a class="code" href="group__clb__api.html#ga138ccfa623b2856c296a400677eb1c2b">CLB_LOGICCTL</a> + CLB_O_INPUT_FILTER) |=</div>
-<div class="line"><a name="l01684"></a><span class="lineno"> 1684</span>&#160;            (CLB_INPUT_FILTER_PIPE0 &lt;&lt; (uint32_t)inID);</div>
+<div class="line"><a name="l01684"></a><span class="lineno"> 1684</span>&#160;            ((uint32_t)CLB_INPUT_FILTER_PIPE0 &lt;&lt; (uint32_t)inID);</div>
 <div class="line"><a name="l01685"></a><span class="lineno"> 1685</span>&#160;}</div>
 <div class="line"><a name="l01686"></a><span class="lineno"> 1686</span>&#160; </div>
 <div class="line"><a name="l01687"></a><span class="lineno"> 1687</span>&#160;<span class="comment">//*****************************************************************************</span></div>

@@ -57,9 +57,7 @@ var NAVTREE =
     ] ],
     [ "Project: Adding Bit-field or DriverLib Support", "project_adding_bit_driver.html", null ],
     [ "Troubleshooting", "troubleshooting.html", null ],
-    [ "Examples and Demos", "EXAMPLES.html", null ],
-    [ "Driver Examples", "EXAMPLES_DRIVERS.html", "EXAMPLES_DRIVERS" ],
-    [ "FreeRTOS Examples", "EXAMPLES_FREERTOS.html", "EXAMPLES_FREERTOS" ],
+    [ "Examples and Demos", "EXAMPLES.html", "EXAMPLES" ],
     [ "API Reference", "modules.html", "modules" ]
   ] ]
 ];

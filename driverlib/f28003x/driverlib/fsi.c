@@ -94,7 +94,7 @@ FSI_resetTxModule(uint32_t base, FSI_TxSubmoduleInReset submodule)
             //
             // Invalid submodule input
             //
-            ASSERT(false);
+            ASSERT((bool)false);
             break;
     }
     EDIS;
@@ -139,7 +139,7 @@ FSI_clearTxModuleReset(uint32_t base, FSI_TxSubmoduleInReset submodule)
             //
             // Invalid submodule input
             //
-            ASSERT(false);
+            ASSERT((bool)false);
             break;
     }
     EDIS;
@@ -219,7 +219,7 @@ FSI_resetRxModule(uint32_t base, FSI_RxSubmoduleInReset submodule)
             //
             // Invalid submodule input
             //
-            ASSERT(false);
+            ASSERT((bool)false);
             break;
     }
     EDIS;
@@ -262,7 +262,7 @@ FSI_clearRxModuleReset(uint32_t base, FSI_RxSubmoduleInReset submodule)
             //
             // Invalid submodule input
             //
-            ASSERT(false);
+            ASSERT((bool)false);
             break;
     }
     EDIS;
@@ -349,7 +349,7 @@ FSI_configRxDelayLine(uint32_t base, FSI_RxDelayTapType delayTapType,
             //
             // Invalid tap selection input
             //
-            ASSERT(false);
+            ASSERT((bool)false);
             break;
     }
     EDIS;

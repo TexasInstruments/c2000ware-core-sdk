@@ -1,0 +1,62 @@
+/**
+ * Import the modules used in this configuration.
+ */
+const epwm  = scripting.addModule("/driverlib/epwm.js", {}, false);
+const epwm1 = epwm.addInstance();
+const epwm2 = epwm.addInstance();
+const epwm3 = epwm.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+epwm1.$name                                                    = "myEPWM1";
+epwm1.epwmTimebase_counterMode                                 = "EPWM_COUNTER_MODE_UP";
+epwm1.epwmTimebase_period                                      = 2000;
+epwm1.epwmTimebase_clockDiv                                    = "EPWM_CLOCK_DIVIDER_2";
+epwm1.epwmTimebase_hsClockDiv                                  = "EPWM_HSCLOCK_DIVIDER_2";
+epwm1.epwmCounterCompare_cmpA                                  = 50;
+epwm1.epwmCounterCompare_cmpB                                  = 50;
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_ZERO    = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_UP_CMPA = "EPWM_AQ_OUTPUT_LOW";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_ZERO    = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_UP_CMPB = "EPWM_AQ_OUTPUT_LOW";
+epwm1.epwmEventTrigger_enableInterrupt                         = true;
+epwm1.epwmEventTrigger_interruptEventCount                     = "3";
+epwm1.epwmEventTrigger_interruptSource                         = "EPWM_INT_TBCTR_ZERO";
+epwm1.epwm.$assign                                             = "EPWM1";
+epwm1.epwm.epwm_aPin.$assign                                      = "GPIO0";
+epwm1.epwm.epwm_bPin.$assign                                      = "GPIO1";
+
+epwm2.$name                                                    = "myEPWM2";
+epwm2.epwmTimebase_counterMode                                 = "EPWM_COUNTER_MODE_UP";
+epwm2.epwmTimebase_clockDiv                                    = "EPWM_CLOCK_DIVIDER_2";
+epwm2.epwmTimebase_hsClockDiv                                  = "EPWM_HSCLOCK_DIVIDER_2";
+epwm2.epwmTimebase_period                                      = 2000;
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_PERIOD  = "EPWM_AQ_OUTPUT_LOW";
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_UP_CMPA = "EPWM_AQ_OUTPUT_HIGH";
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_PERIOD  = "EPWM_AQ_OUTPUT_LOW";
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_UP_CMPB = "EPWM_AQ_OUTPUT_HIGH";
+epwm2.epwmEventTrigger_enableInterrupt                         = true;
+epwm2.epwmEventTrigger_interruptEventCount                     = "3";
+epwm2.epwmEventTrigger_interruptSource                         = "EPWM_INT_TBCTR_ZERO";
+epwm2.epwmCounterCompare_cmpA                                  = 50;
+epwm2.epwmCounterCompare_cmpB                                  = 1950;
+epwm2.epwm.$assign                                             = "EPWM2";
+epwm2.epwm.epwm_aPin.$assign                                      = "GPIO2";
+epwm2.epwm.epwm_bPin.$assign                                      = "GPIO3";
+
+epwm3.$name                                                    = "myEPWM3";
+epwm3.epwmTimebase_counterMode                                 = "EPWM_COUNTER_MODE_UP";
+epwm3.epwmTimebase_period                                      = 2000;
+epwm3.epwmTimebase_hsClockDiv                                  = "EPWM_HSCLOCK_DIVIDER_1";
+epwm3.epwmCounterCompare_cmpA                                  = 50;
+epwm3.epwmCounterCompare_cmpB                                  = 1950;
+epwm3.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_UP_CMPA = "EPWM_AQ_OUTPUT_HIGH";
+epwm3.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_UP_CMPB = "EPWM_AQ_OUTPUT_LOW";
+epwm3.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_ZERO    = "EPWM_AQ_OUTPUT_TOGGLE";
+epwm3.epwmEventTrigger_enableInterrupt                         = true;
+epwm3.epwmEventTrigger_interruptEventCount                     = "3";
+epwm3.epwmEventTrigger_interruptSource                         = "EPWM_INT_TBCTR_ZERO";
+epwm3.epwm.$assign                                             = "EPWM3";
+epwm3.epwm.epwm_aPin.$assign                                      = "GPIO4";
+epwm3.epwm.epwm_bPin.$assign                                      = "GPIO5";

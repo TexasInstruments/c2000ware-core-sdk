@@ -8,7 +8,7 @@
 //
 //
 // 
-// C2000Ware v26.00.00.00
+// C2000Ware v26.01.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -53,7 +53,7 @@ extern "C" {
 #ifndef __TMS320C28XX__
 #define __cregister
 #endif  //__TMS320C28xx__
-
+#include "stdint.h"
 extern __cregister volatile uint16_t IFR;
 extern __cregister volatile uint16_t IER;
 

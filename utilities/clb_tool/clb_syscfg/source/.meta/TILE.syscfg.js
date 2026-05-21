@@ -81,7 +81,6 @@ function moduleInstances(inst)
         {
             moduleName: "/utilities/clb_tool/clb_syscfg/source/BOUNDARY",
             displayName: "Boundary Inputs (Simulation Only)",
-            description: inst.$name,
             name: "BOUNDARY",
             collapsed: true,
             args: {
@@ -91,7 +90,6 @@ function moduleInstances(inst)
         {
             moduleName: "/utilities/clb_tool/clb_syscfg/source/LUT",
             displayName: "Look-Up Table 0",
-            description: inst.$name,
             name: "LUT_0",
             collapsed: true,
             hidden: (inst.streamlineMode && !inst.lutBlocks.includes("LUT_0")),
@@ -102,7 +100,6 @@ function moduleInstances(inst)
         {
             moduleName: "/utilities/clb_tool/clb_syscfg/source/LUT",
             displayName: "Look-Up Table 1",
-            description: inst.$name,
             name: "LUT_1",
             collapsed: true,
             hidden: (inst.streamlineMode && !inst.lutBlocks.includes("LUT_1")),
@@ -113,7 +110,6 @@ function moduleInstances(inst)
         {
             moduleName: "/utilities/clb_tool/clb_syscfg/source/LUT",
             displayName: "Look-Up Table 2",
-            description: inst.$name,
             name: "LUT_2",
             collapsed: true,
             hidden: (inst.streamlineMode && !inst.lutBlocks.includes("LUT_2")),
@@ -124,7 +120,6 @@ function moduleInstances(inst)
         {
             moduleName: "/utilities/clb_tool/clb_syscfg/source/FSM",
             displayName: "Finite State Machine 0",
-            description: inst.$name,
             name: "FSM_0",
             collapsed: true,
             hidden: (inst.streamlineMode && !inst.fsmBlocks.includes("FSM_0")),
@@ -135,7 +130,6 @@ function moduleInstances(inst)
         {
             moduleName: "/utilities/clb_tool/clb_syscfg/source/FSM",
             displayName: "Finite State Machine 1",
-            description: inst.$name,
             name: "FSM_1",
             collapsed: true,
             hidden: (inst.streamlineMode && !inst.fsmBlocks.includes("FSM_1")),
@@ -146,7 +140,6 @@ function moduleInstances(inst)
         {
             moduleName: "/utilities/clb_tool/clb_syscfg/source/FSM",
             displayName: "Finite State Machine 2",
-            description: inst.$name,
             name: "FSM_2",
             collapsed: true,
             hidden: (inst.streamlineMode && !inst.fsmBlocks.includes("FSM_2")),
@@ -157,7 +150,6 @@ function moduleInstances(inst)
         {
             moduleName: "/utilities/clb_tool/clb_syscfg/source/COUNTER",
             displayName: " Counter 0",
-            description: inst.$name,
             name: "COUNTER_0",
             collapsed: true,
             hidden: (inst.streamlineMode && !inst.counterBlocks.includes("COUNTER_0")),
@@ -168,7 +160,6 @@ function moduleInstances(inst)
         {
             moduleName: "/utilities/clb_tool/clb_syscfg/source/COUNTER",
             displayName: "Counter 1",
-            description: inst.$name,
             name: "COUNTER_1",
             collapsed: true,
             hidden: (inst.streamlineMode && !inst.counterBlocks.includes("COUNTER_1")),
@@ -179,7 +170,6 @@ function moduleInstances(inst)
         {
             moduleName: "/utilities/clb_tool/clb_syscfg/source/COUNTER",
             displayName: "Counter 2",
-            description: inst.$name,
             name: "COUNTER_2",
             collapsed: true,
             hidden: (inst.streamlineMode && !inst.counterBlocks.includes("COUNTER_2")),
@@ -190,7 +180,6 @@ function moduleInstances(inst)
         {
             moduleName: "/utilities/clb_tool/clb_syscfg/source/OUTLUT",
             displayName: "Output Look-Up Table 0",
-            description: inst.$name,
             name: "OUTLUT_0",
             collapsed: true,
             hidden: (inst.streamlineMode && !inst.outlutBlocks.includes("OUTLUT_0")),
@@ -201,7 +190,6 @@ function moduleInstances(inst)
         {
             moduleName: "/utilities/clb_tool/clb_syscfg/source/OUTLUT",
             displayName: "Output Look-Up Table 1",
-            description: inst.$name,
             name: "OUTLUT_1",
             collapsed: true,
             hidden: (inst.streamlineMode && !inst.outlutBlocks.includes("OUTLUT_1")),
@@ -212,7 +200,6 @@ function moduleInstances(inst)
         {
             moduleName: "/utilities/clb_tool/clb_syscfg/source/OUTLUT",
             displayName: "Output Look-Up Table 2",
-            description: inst.$name,
             name: "OUTLUT_2",
             collapsed: true,
             hidden: (inst.streamlineMode && !inst.outlutBlocks.includes("OUTLUT_2")),
@@ -223,7 +210,6 @@ function moduleInstances(inst)
         {
             moduleName: "/utilities/clb_tool/clb_syscfg/source/OUTLUT",
             displayName: "Output Look-Up Table 3",
-            description: inst.$name,
             name: "OUTLUT_3",
             collapsed: true,
             hidden: (inst.streamlineMode && !inst.outlutBlocks.includes("OUTLUT_3")),
@@ -234,7 +220,6 @@ function moduleInstances(inst)
         {
             moduleName: "/utilities/clb_tool/clb_syscfg/source/OUTLUT",
             displayName: "Output Look-Up Table 4",
-            description: inst.$name,
             name: "OUTLUT_4",
             collapsed: true,
             hidden: (inst.streamlineMode && !inst.outlutBlocks.includes("OUTLUT_4")),
@@ -245,7 +230,6 @@ function moduleInstances(inst)
         {
             moduleName: "/utilities/clb_tool/clb_syscfg/source/OUTLUT",
             displayName: "Output Look-Up Table 5",
-            description: inst.$name,
             name: "OUTLUT_5",
             collapsed: true,
             hidden: (inst.streamlineMode && !inst.outlutBlocks.includes("OUTLUT_5")),
@@ -256,7 +240,6 @@ function moduleInstances(inst)
         {
             moduleName: "/utilities/clb_tool/clb_syscfg/source/OUTLUT",
             displayName: "Output Look-Up Table 6",
-            description: inst.$name,
             name: "OUTLUT_6",
             collapsed: true,
             hidden: (inst.streamlineMode && !inst.outlutBlocks.includes("OUTLUT_6")),
@@ -267,7 +250,6 @@ function moduleInstances(inst)
         {
             moduleName: "/utilities/clb_tool/clb_syscfg/source/OUTLUT",
             displayName: "Output Look-Up Table 7",
-            description: inst.$name,
             name: "OUTLUT_7",
             collapsed: true,
             hidden: (inst.streamlineMode && !inst.outlutBlocks.includes("OUTLUT_7")),
@@ -278,7 +260,6 @@ function moduleInstances(inst)
         {
             moduleName: "/utilities/clb_tool/clb_syscfg/source/HLC",
             displayName: "High Level Controller",
-            description: inst.$name,
             name: "HLC",
             collapsed: true,
             args: {
@@ -293,8 +274,7 @@ function moduleInstances(inst)
             {
                 moduleName: "/utilities/clb_tool/clb_syscfg/source/AOC",
                 displayName: "Asynchronous Output Conditioning Block 0",
-                description: inst.$name,
-                name: "AOC_0",
+                    name: "AOC_0",
                 collapsed: true,
                 hidden: (inst.streamlineMode && !inst.aocBlocks.includes("AOC_0")),
                 args: {
@@ -304,8 +284,7 @@ function moduleInstances(inst)
             {
                 moduleName: "/utilities/clb_tool/clb_syscfg/source/AOC",
                 displayName: "Asynchronous Output Conditioning Block 1",
-                description: inst.$name,
-                name: "AOC_1",
+                    name: "AOC_1",
                 collapsed: true,
                 hidden: (inst.streamlineMode && !inst.aocBlocks.includes("AOC_1")),
                 args: {
@@ -315,8 +294,7 @@ function moduleInstances(inst)
             {
                 moduleName: "/utilities/clb_tool/clb_syscfg/source/AOC",
                 displayName: "Asynchronous Output Conditioning Block 2",
-                description: inst.$name,
-                name: "AOC_2",
+                    name: "AOC_2",
                 collapsed: true,
                 hidden: (inst.streamlineMode && !inst.aocBlocks.includes("AOC_2")),
                 args: {
@@ -326,8 +304,7 @@ function moduleInstances(inst)
             {
                 moduleName: "/utilities/clb_tool/clb_syscfg/source/AOC",
                 displayName: "Asynchronous Output Conditioning Block 3",
-                description: inst.$name,
-                name: "AOC_3",
+                    name: "AOC_3",
                 collapsed: true,
                 hidden: (inst.streamlineMode && !inst.aocBlocks.includes("AOC_3")),
                 args: {
@@ -337,8 +314,7 @@ function moduleInstances(inst)
             {
                 moduleName: "/utilities/clb_tool/clb_syscfg/source/AOC",
                 displayName: "Asynchronous Output Conditioning Block 4",
-                description: inst.$name,
-                name: "AOC_4",
+                    name: "AOC_4",
                 collapsed: true,
                 hidden: (inst.streamlineMode && !inst.aocBlocks.includes("AOC_4")),
                 args: {
@@ -348,8 +324,7 @@ function moduleInstances(inst)
             {
                 moduleName: "/utilities/clb_tool/clb_syscfg/source/AOC",
                 displayName: "Asynchronous Output Conditioning Block 5",
-                description: inst.$name,
-                name: "AOC_5",
+                    name: "AOC_5",
                 collapsed: true,
                 hidden: (inst.streamlineMode && !inst.aocBlocks.includes("AOC_5")),
                 args: {
@@ -359,8 +334,7 @@ function moduleInstances(inst)
             {
                 moduleName: "/utilities/clb_tool/clb_syscfg/source/AOC",
                 displayName: "Asynchronous Output Conditioning Block 6",
-                description: inst.$name,
-                name: "AOC_6",
+                    name: "AOC_6",
                 collapsed: true,
                 hidden: (inst.streamlineMode && !inst.aocBlocks.includes("AOC_6")),
                 args: {
@@ -370,8 +344,7 @@ function moduleInstances(inst)
             {
                 moduleName: "/utilities/clb_tool/clb_syscfg/source/AOC",
                 displayName: "Asynchronous Output Conditioning Block 7",
-                description: inst.$name,
-                name: "AOC_7",
+                    name: "AOC_7",
                 collapsed: true,
                 hidden: (inst.streamlineMode && !inst.aocBlocks.includes("AOC_7")),
                 args: {

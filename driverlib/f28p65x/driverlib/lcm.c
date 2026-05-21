@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v26.00.00.00
+// C2000Ware v26.01.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -75,10 +75,13 @@ LCM_Status LCM_runSelfTest(uint32_t base)
         // Use timeout for the wait
         //
         HWREG_BP(base + LCM_O_CONTROL) |= LCM_CONTROL_STEN;
-        while(((HWREG_BP(base + LCM_O_STATUS) & LCM_STATUS_STDONE) == 0U) || 
-              (count == 20U))
+        while((HWREG_BP(base + LCM_O_STATUS) & LCM_STATUS_STDONE) == 0U)
         {
             count++;
+            if(count == 20U)
+            {
+                break;
+            }
         };
 
         if((HWREG_BP(base + LCM_O_STATUS) & LCM_STATUS_STPASS) == 0U)
@@ -132,10 +135,14 @@ LCM_Status LCM_runComp1ErrorForceTest(uint32_t base)
         // Use timeout for the wait
         //
         HWREG_BP(base + LCM_O_CONTROL) |= LCM_CONTROL_CMP1_ERR_FORCE;
-        while(((HWREG_BP(base + LCM_O_STATUS) & LCM_STATUS_CMP1_ERR_FORCE_DONE)
-                == 0U) || (count == 20U))
+        while((HWREG_BP(base + LCM_O_STATUS) & LCM_STATUS_CMP1_ERR_FORCE_DONE)
+                == 0U)
         {
             count++;
+            if(count == 20U)
+            {
+                break;
+            }
         }
 
         if((HWREG_BP(base + LCM_O_STATUS) & LCM_STATUS_CMP1_ERR_FORCE_PASS) == 0U)
@@ -188,10 +195,14 @@ LCM_Status LCM_runComp2ErrorForceTest(uint32_t base)
         // Use timeout for the wait
         //
         HWREG_BP(base + LCM_O_CONTROL) |= LCM_CONTROL_CMP2_ERR_FORCE;
-        while(((HWREG_BP(base + LCM_O_STATUS) & LCM_STATUS_CMP2_ERR_FORCE_DONE)
-                == 0U) || (count == 20U))
+        while((HWREG_BP(base + LCM_O_STATUS) & LCM_STATUS_CMP2_ERR_FORCE_DONE)
+                == 0U)
         {
             count++;
+            if(count == 20U)
+            {
+                break;
+            }
         }
 
         if((HWREG_BP(base + LCM_O_STATUS) & LCM_STATUS_CMP2_ERR_FORCE_PASS) == 0U)

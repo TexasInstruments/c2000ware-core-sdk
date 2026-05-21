@@ -1,0 +1,118 @@
+
+/**
+ * Import the modules used in this configuration.
+ */
+const clb                              = scripting.addModule("/driverlib/clb.js", {}, false);
+const clb1                             = clb.addInstance();
+const clbxbar                          = scripting.addModule("/driverlib/clbxbar.js", {}, false);
+const clbxbar1                         = clbxbar.addInstance();
+const epwm                             = scripting.addModule("/driverlib/epwm.js", {}, false);
+const epwm1                            = epwm.addInstance();
+const inputxbar                        = scripting.addModule("/driverlib/inputxbar.js", {}, false);
+const inputxbar1                       = inputxbar.addInstance();
+const outputxbar                       = scripting.addModule("/driverlib/outputxbar.js", {}, false);
+const outputxbar1                      = outputxbar.addInstance();
+const TILE                             = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/TILE");
+const TILE1                            = TILE.addInstance();
+const clb_run_dynamic_template_clb_c   = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/clb_run_dynamic_template_clb_c.js");
+const clb_run_dynamic_template_clb_dot = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/clb_run_dynamic_template_clb_dot.js");
+const clb_run_dynamic_template_clb_h   = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/clb_run_dynamic_template_clb_h.js");
+const clb_run_dynamic_template_clb_sim = scripting.addModule("/utilities/clb_tool/clb_syscfg/source/clb_run_dynamic_template_clb_sim.js");
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+clb1.$name     = "myTILE1";
+clb1.enableCLB = true;
+
+clbxbar1.$name      = "myCLBXBAR0";
+clbxbar1.muxesUsed  = ["XBAR_MUX01"];
+clbxbar1.mux1Config = "XBAR_CLB_MUX01_INPUTXBAR1_INPUT1";
+
+epwm1.$name                  = "myEPWM1";
+epwm1.useCase                = "CUSTOM";
+epwm1.useInterfacePins       = ["EPWM#_A"];
+epwm1.epwm.$assign           = "EPWM1";
+epwm1.epwm.epwm_aPin.$assign = "GPIO0";
+
+inputxbar1.$name          = "myINPUTXBAR0";
+inputxbar1.inputsUsed     = ["inputxbar1Gpio"];
+inputxbar1.inputxbar1Gpio = "GPIO0";
+
+outputxbar1.$name                            = "myOUTPUTXBAR1";
+outputxbar1.muxesUsed                        = ["XBAR_MUX01"];
+outputxbar1.mux1Config                       = "XBAR_OUT_MUX01_CLB1_OUT4";
+outputxbar1.outputxbar.$assign               = "OUTPUTXBAR1";
+outputxbar1.outputxbar.outputxbarPin.$assign = "GPIO2";
+
+TILE.clock_period = 10000;
+TILE.sim_duration = 100000000;
+
+TILE1.$name                     = "TILE1";
+TILE1.BOUNDARY.$name            = "BOUNDARY0";
+TILE1.BOUNDARY.boundaryInput0              = "squareWave";
+TILE1.BOUNDARY.in_duty1         = 50;
+TILE1.BOUNDARY.in_period1       = 100;
+TILE1.BOUNDARY.in_repeat_count3 = 1;
+TILE1.BOUNDARY.in_repeat_count1 = 1000;
+TILE1.BOUNDARY.in_period0       = 100;
+TILE1.BOUNDARY.in_repeat_count0 = 1000;
+TILE1.LUT_0.$name               = "LUT_0";
+TILE1.LUT_0.i0                  = "FSM_0.S0";
+TILE1.LUT_0.eqn                 = "~i0";
+TILE1.LUT_1.$name               = "LUT_1";
+TILE1.LUT_2.$name               = "LUT_2";
+TILE1.FSM_0.$name               = "FSM_0";
+TILE1.FSM_0.e1                  = "COUNTER_0.count_match2";
+TILE1.FSM_0.eqn_s0              = "(~e0 & (~e1) & s0) |  e0";
+TILE1.FSM_0.e0                  = "COUNTER_2.count_match1";
+TILE1.FSM_1.$name               = "FSM_1";
+TILE1.FSM_2.$name               = "FSM_2";
+TILE1.COUNTER_0.$name           = "COUNTER_0";
+TILE1.COUNTER_0.mode1           = "1";
+TILE1.COUNTER_0.match1_val      = "";
+TILE1.COUNTER_0.mode0           = "FSM_0.S0";
+TILE1.COUNTER_0.reset           = "COUNTER_0.count_match2";
+TILE1.COUNTER_0.match2_val      = "20";
+TILE1.COUNTER_1.$name           = "COUNTER_1";
+TILE1.COUNTER_1.mode1           = "1";
+TILE1.COUNTER_1.action          = "Add";
+TILE1.COUNTER_1.event_load_val  = "1";
+TILE1.COUNTER_1.reset           = "COUNTER_1.count_match1";
+TILE1.COUNTER_1.event           = "BOUNDARY.in0";
+TILE1.COUNTER_1.match1_val      = "3";
+TILE1.COUNTER_2.$name           = "COUNTER_2";
+TILE1.COUNTER_2.event           = "BOUNDARY.in0";
+TILE1.COUNTER_2.action          = "Load";
+TILE1.COUNTER_2.event_load_val  = "1";
+TILE1.COUNTER_2.match1_val      = "1";
+TILE1.COUNTER_2.reset           = "COUNTER_2.count_match1";
+TILE1.OUTLUT_0.$name            = "OUTLUT_0";
+TILE1.OUTLUT_1.$name            = "OUTLUT_1";
+TILE1.OUTLUT_2.$name            = "OUTLUT_2";
+TILE1.OUTLUT_3.$name            = "OUTLUT_3";
+TILE1.OUTLUT_4.$name            = "OUTLUT_4";
+TILE1.OUTLUT_4.i0               = "FSM_0.S0";
+TILE1.OUTLUT_4.i1               = "COUNTER_0.count_match2";
+TILE1.OUTLUT_4.eqn              = "i0 & (~i1)";
+TILE1.OUTLUT_5.$name            = "OUTLUT_5";
+TILE1.OUTLUT_6.$name            = "OUTLUT_6";
+TILE1.OUTLUT_7.$name            = "OUTLUT_7";
+TILE1.HLC.$name                 = "HLC_0";
+TILE1.HLC.e0                    = "BOUNDARY.in0";
+TILE1.HLC.e1                    = "COUNTER_1.count_match1";
+TILE1.HLC.R0_init               = "20";
+TILE1.HLC.program0.$name        = "HLCP_0";
+TILE1.HLC.program0.instruct0    = "MOV_T2 R0, C0";
+TILE1.HLC.program1.$name        = "HLCP_1";
+TILE1.HLC.program1.instruct0    = "INTR 1";
+TILE1.HLC.program2.$name        = "HLCP_2";
+TILE1.HLC.program3.$name        = "HLCP_3";
+TILE1.AOC_0.$name               = "AOC_0";
+TILE1.AOC_1.$name               = "AOC_1";
+TILE1.AOC_2.$name               = "AOC_2";
+TILE1.AOC_3.$name               = "AOC_3";
+TILE1.AOC_4.$name               = "AOC_4";
+TILE1.AOC_5.$name               = "AOC_5";
+TILE1.AOC_6.$name               = "AOC_6";
+TILE1.AOC_7.$name               = "AOC_7";

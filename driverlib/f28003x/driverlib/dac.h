@@ -496,7 +496,7 @@ DAC_setOffsetTrim(uint32_t base, int16_t offset)
     EALLOW;
 
     HWREGH(base + DAC_O_TRIM) = (HWREGH(base + DAC_O_TRIM) &
-                                 ~DAC_TRIM_OFFSET_TRIM_M) | (int16_t)offset;
+                                 ~DAC_TRIM_OFFSET_TRIM_M) | (uint16_t)offset;
 
     EDIS;
 }
@@ -604,7 +604,7 @@ DAC_isRegisterLocked(uint32_t base, uint16_t reg)
     //
     // Return the lock status on the specified registers
     //
-    return((bool)((HWREGH(base + DAC_O_LOCK) & reg) != 0U));
+    return(((HWREGH(base + DAC_O_LOCK) & reg) != 0U) ? true : false);
 }
 
 //*****************************************************************************

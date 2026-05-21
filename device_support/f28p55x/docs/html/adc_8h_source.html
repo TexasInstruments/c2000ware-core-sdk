@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">f28p55x Driverib and Example User Guide
-   &#160;<span id="projectnumber">26.00.00.00</span>
+   &#160;<span id="projectnumber">26.01.00.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -99,7 +99,7 @@ $(document).ready(function(){initNavTree('adc_8h_source.html',''); initResizable
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">//###########################################################################</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">// </span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// C2000Ware v26.00.00.00</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// C2000Ware v26.01.00.00</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">//</span></div>
@@ -837,7 +837,7 @@ $(document).ready(function(){initNavTree('adc_8h_source.html',''); initResizable
 <div class="line"><a name="l00914"></a><span class="lineno">  914</span>&#160;  <span class="comment">//</span></div>
 <div class="line"><a name="l00915"></a><span class="lineno">  915</span>&#160;  ASSERT(ADC_isBaseValid(base));</div>
 <div class="line"><a name="l00916"></a><span class="lineno">  916</span>&#160; </div>
-<div class="line"><a name="l00917"></a><span class="lineno">  917</span>&#160;  regOffset = base + (repInstance * (<a class="code" href="group__adc__api.html#ga18b630821695c4f84107fefaf46029fd">ADC_REPxCTL_STEP</a>));</div>
+<div class="line"><a name="l00917"></a><span class="lineno">  917</span>&#160;  regOffset = base + ((uint32_t)repInstance * (<a class="code" href="group__adc__api.html#ga18b630821695c4f84107fefaf46029fd">ADC_REPxCTL_STEP</a>));</div>
 <div class="line"><a name="l00918"></a><span class="lineno">  918</span>&#160;  EALLOW;</div>
 <div class="line"><a name="l00919"></a><span class="lineno">  919</span>&#160;  <span class="comment">//</span></div>
 <div class="line"><a name="l00920"></a><span class="lineno">  920</span>&#160;  <span class="comment">// Triggers the selected repeater instance</span></div>
@@ -859,7 +859,7 @@ $(document).ready(function(){initNavTree('adc_8h_source.html',''); initResizable
 <div class="line"><a name="l00946"></a><span class="lineno">  946</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l00947"></a><span class="lineno">  947</span>&#160;    ASSERT(ADC_isBaseValid(base));</div>
 <div class="line"><a name="l00948"></a><span class="lineno">  948</span>&#160; </div>
-<div class="line"><a name="l00949"></a><span class="lineno">  949</span>&#160;    regOffset = base + (repInstance * (<a class="code" href="group__adc__api.html#ga18b630821695c4f84107fefaf46029fd">ADC_REPxCTL_STEP</a>));</div>
+<div class="line"><a name="l00949"></a><span class="lineno">  949</span>&#160;    regOffset = base + ((uint32_t)repInstance * (<a class="code" href="group__adc__api.html#ga18b630821695c4f84107fefaf46029fd">ADC_REPxCTL_STEP</a>));</div>
 <div class="line"><a name="l00950"></a><span class="lineno">  950</span>&#160; </div>
 <div class="line"><a name="l00951"></a><span class="lineno">  951</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l00952"></a><span class="lineno">  952</span>&#160;    <span class="comment">// Return the status of repeater.</span></div>
@@ -1041,7 +1041,7 @@ $(document).ready(function(){initNavTree('adc_8h_source.html',''); initResizable
 <div class="line"><a name="l01231"></a><span class="lineno"> 1231</span>&#160;    <span class="comment">// Get the specified ADC interrupt result ready status.</span></div>
 <div class="line"><a name="l01232"></a><span class="lineno"> 1232</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l01233"></a><span class="lineno"> 1233</span>&#160;    <span class="keywordflow">return</span>((HWREGH(base + ADC_O_INTFLG) &amp;</div>
-<div class="line"><a name="l01234"></a><span class="lineno"> 1234</span>&#160;                 (1U &lt;&lt; ((uint16_t)adcIntNum + 4U))) != 0U);</div>
+<div class="line"><a name="l01234"></a><span class="lineno"> 1234</span>&#160;                 ((uint16_t)1U &lt;&lt; ((uint16_t)adcIntNum + 4U))) != 0U);</div>
 <div class="line"><a name="l01235"></a><span class="lineno"> 1235</span>&#160;}</div>
 <div class="line"><a name="l01236"></a><span class="lineno"> 1236</span>&#160; </div>
 <div class="line"><a name="l01237"></a><span class="lineno"> 1237</span>&#160;<span class="comment">//*****************************************************************************</span></div>
@@ -1134,7 +1134,7 @@ $(document).ready(function(){initNavTree('adc_8h_source.html',''); initResizable
 <div class="line"><a name="l01384"></a><span class="lineno"> 1384</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l01385"></a><span class="lineno"> 1385</span>&#160;    <span class="comment">// Get the specified ADC interrupt status.</span></div>
 <div class="line"><a name="l01386"></a><span class="lineno"> 1386</span>&#160;    <span class="comment">//</span></div>
-<div class="line"><a name="l01387"></a><span class="lineno"> 1387</span>&#160;    <span class="keywordflow">return</span>((HWREGH(base + ADC_O_INTFLG) &amp; (1U &lt;&lt; (uint16_t)adcIntNum)) != 0U);</div>
+<div class="line"><a name="l01387"></a><span class="lineno"> 1387</span>&#160;    <span class="keywordflow">return</span>((HWREGH(base + ADC_O_INTFLG) &amp; ((uint16_t)1U &lt;&lt; (uint16_t)adcIntNum)) != 0U);</div>
 <div class="line"><a name="l01388"></a><span class="lineno"> 1388</span>&#160;}</div>
 <div class="line"><a name="l01389"></a><span class="lineno"> 1389</span>&#160; </div>
 <div class="line"><a name="l01390"></a><span class="lineno"> 1390</span>&#160;<span class="comment">//*****************************************************************************</span></div>
@@ -1171,7 +1171,7 @@ $(document).ready(function(){initNavTree('adc_8h_source.html',''); initResizable
 <div class="line"><a name="l01450"></a><span class="lineno"> 1450</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l01451"></a><span class="lineno"> 1451</span>&#160;    <span class="comment">// Get the specified ADC interrupt status.</span></div>
 <div class="line"><a name="l01452"></a><span class="lineno"> 1452</span>&#160;    <span class="comment">//</span></div>
-<div class="line"><a name="l01453"></a><span class="lineno"> 1453</span>&#160;    <span class="keywordflow">return</span>((HWREGH(base + ADC_O_INTOVF) &amp; (1U &lt;&lt; (uint16_t)adcIntNum)) != 0U);</div>
+<div class="line"><a name="l01453"></a><span class="lineno"> 1453</span>&#160;    <span class="keywordflow">return</span>((HWREGH(base + ADC_O_INTOVF) &amp; ((uint16_t)1U &lt;&lt; (uint16_t)adcIntNum)) != 0U);</div>
 <div class="line"><a name="l01454"></a><span class="lineno"> 1454</span>&#160;}</div>
 <div class="line"><a name="l01455"></a><span class="lineno"> 1455</span>&#160; </div>
 <div class="line"><a name="l01456"></a><span class="lineno"> 1456</span>&#160;<span class="comment">//*****************************************************************************</span></div>
@@ -1673,7 +1673,7 @@ $(document).ready(function(){initNavTree('adc_8h_source.html',''); initResizable
 <div class="line"><a name="l02220"></a><span class="lineno"> 2220</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l02221"></a><span class="lineno"> 2221</span>&#160;    <span class="comment">// Returns the partial count of the selected PPB.</span></div>
 <div class="line"><a name="l02222"></a><span class="lineno"> 2222</span>&#160;    <span class="comment">//</span></div>
-<div class="line"><a name="l02223"></a><span class="lineno"> 2223</span>&#160;    <span class="keywordflow">return</span>(HWREG(base + (uint32_t)<a class="code" href="group__adc__api.html#ga437d861f409a157db3f2d9a07344dfca">ADC_PPBxPCOUNT_OFFSET_BASE</a> +</div>
+<div class="line"><a name="l02223"></a><span class="lineno"> 2223</span>&#160;    <span class="keywordflow">return</span>((uint16_t)HWREG(base + (uint32_t)<a class="code" href="group__adc__api.html#ga437d861f409a157db3f2d9a07344dfca">ADC_PPBxPCOUNT_OFFSET_BASE</a> +</div>
 <div class="line"><a name="l02224"></a><span class="lineno"> 2224</span>&#160;            ((uint32_t)ppbNumber * 26UL)));</div>
 <div class="line"><a name="l02225"></a><span class="lineno"> 2225</span>&#160;}</div>
 <div class="line"><a name="l02226"></a><span class="lineno"> 2226</span>&#160; </div>
@@ -2087,7 +2087,7 @@ $(document).ready(function(){initNavTree('adc_8h_source.html',''); initResizable
 <div class="line"><a name="l02826"></a><span class="lineno"> 2826</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l02827"></a><span class="lineno"> 2827</span>&#160;    <span class="comment">// Returns the index of the final maximum value of selected PPB.</span></div>
 <div class="line"><a name="l02828"></a><span class="lineno"> 2828</span>&#160;    <span class="comment">//</span></div>
-<div class="line"><a name="l02829"></a><span class="lineno"> 2829</span>&#160;    <span class="keywordflow">return</span>(HWREG(resultBase + (uint32_t)<a class="code" href="group__adc__api.html#ga5092b64861c237074c57a7218890fc87">ADC_PPBxMAXI_OFFSET_BASE</a> +</div>
+<div class="line"><a name="l02829"></a><span class="lineno"> 2829</span>&#160;    <span class="keywordflow">return</span>((uint16_t)HWREG(resultBase + (uint32_t)<a class="code" href="group__adc__api.html#ga5092b64861c237074c57a7218890fc87">ADC_PPBxMAXI_OFFSET_BASE</a> +</div>
 <div class="line"><a name="l02830"></a><span class="lineno"> 2830</span>&#160;           ((uint32_t)ppbNumber * 8UL)));</div>
 <div class="line"><a name="l02831"></a><span class="lineno"> 2831</span>&#160;}</div>
 <div class="line"><a name="l02832"></a><span class="lineno"> 2832</span>&#160; </div>
@@ -2112,7 +2112,7 @@ $(document).ready(function(){initNavTree('adc_8h_source.html',''); initResizable
 <div class="line"><a name="l02864"></a><span class="lineno"> 2864</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l02865"></a><span class="lineno"> 2865</span>&#160;    <span class="comment">// Returns the index of the final minimum value of the selected PPB.</span></div>
 <div class="line"><a name="l02866"></a><span class="lineno"> 2866</span>&#160;    <span class="comment">//</span></div>
-<div class="line"><a name="l02867"></a><span class="lineno"> 2867</span>&#160;    <span class="keywordflow">return</span>(HWREG(resultBase + (uint32_t)<a class="code" href="group__adc__api.html#ga732d9c8c6ef51e36ad606c480c0908f7">ADC_PPBxMINI_OFFSET_BASE</a> +</div>
+<div class="line"><a name="l02867"></a><span class="lineno"> 2867</span>&#160;    <span class="keywordflow">return</span>((uint16_t)HWREG(resultBase + (uint32_t)<a class="code" href="group__adc__api.html#ga732d9c8c6ef51e36ad606c480c0908f7">ADC_PPBxMINI_OFFSET_BASE</a> +</div>
 <div class="line"><a name="l02868"></a><span class="lineno"> 2868</span>&#160;            ((uint32_t)ppbNumber * 8UL)));</div>
 <div class="line"><a name="l02869"></a><span class="lineno"> 2869</span>&#160;}</div>
 <div class="line"><a name="l02870"></a><span class="lineno"> 2870</span>&#160; </div>
@@ -2495,7 +2495,7 @@ $(document).ready(function(){initNavTree('adc_8h_source.html',''); initResizable
 <div class="line"><a name="l03431"></a><span class="lineno"> 3431</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l03432"></a><span class="lineno"> 3432</span>&#160;    EALLOW;</div>
 <div class="line"><a name="l03433"></a><span class="lineno"> 3433</span>&#160; </div>
-<div class="line"><a name="l03434"></a><span class="lineno"> 3434</span>&#160;    HWREGH(intRegAddr) |= ADC_INTSEL1N2_INT1E &lt;&lt; shiftVal;</div>
+<div class="line"><a name="l03434"></a><span class="lineno"> 3434</span>&#160;    HWREGH(intRegAddr) |= ((uint16_t)(ADC_INTSEL1N2_INT1E &lt;&lt; shiftVal));</div>
 <div class="line"><a name="l03435"></a><span class="lineno"> 3435</span>&#160; </div>
 <div class="line"><a name="l03436"></a><span class="lineno"> 3436</span>&#160;    EDIS;</div>
 <div class="line"><a name="l03437"></a><span class="lineno"> 3437</span>&#160;}</div>
@@ -2595,7 +2595,7 @@ $(document).ready(function(){initNavTree('adc_8h_source.html',''); initResizable
 <div class="line"><a name="l03577"></a><span class="lineno"> 3577</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l03578"></a><span class="lineno"> 3578</span>&#160;    EALLOW;</div>
 <div class="line"><a name="l03579"></a><span class="lineno"> 3579</span>&#160; </div>
-<div class="line"><a name="l03580"></a><span class="lineno"> 3580</span>&#160;    HWREGH(intRegAddr) |= ADC_INTSEL1N2_INT1CONT &lt;&lt; shiftVal;</div>
+<div class="line"><a name="l03580"></a><span class="lineno"> 3580</span>&#160;    HWREGH(intRegAddr) |= ((uint16_t)(ADC_INTSEL1N2_INT1CONT &lt;&lt; shiftVal));</div>
 <div class="line"><a name="l03581"></a><span class="lineno"> 3581</span>&#160; </div>
 <div class="line"><a name="l03582"></a><span class="lineno"> 3582</span>&#160;    EDIS;</div>
 <div class="line"><a name="l03583"></a><span class="lineno"> 3583</span>&#160;}</div>
@@ -2726,8 +2726,8 @@ $(document).ready(function(){initNavTree('adc_8h_source.html',''); initResizable
 <div class="line"><a name="l03777"></a><span class="lineno"> 3777</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l03778"></a><span class="lineno"> 3778</span>&#160;    <span class="comment">// get the specified repeater trigger active mode status.</span></div>
 <div class="line"><a name="l03779"></a><span class="lineno"> 3779</span>&#160;    <span class="comment">//</span></div>
-<div class="line"><a name="l03780"></a><span class="lineno"> 3780</span>&#160;    <span class="keywordflow">return</span>(HWREG(regOffset + ADC_O_REP1CTL) &amp;</div>
-<div class="line"><a name="l03781"></a><span class="lineno"> 3781</span>&#160;                (1U &lt;&lt; <a class="code" href="group__adc__api.html#ga869b25bb4e431bfcd0eb9e1665e89284">ADC_REP1CTL_ACTIVEMODE_S</a>));</div>
+<div class="line"><a name="l03780"></a><span class="lineno"> 3780</span>&#160;    <span class="keywordflow">return</span>((HWREG(regOffset + ADC_O_REP1CTL) &amp;</div>
+<div class="line"><a name="l03781"></a><span class="lineno"> 3781</span>&#160;                (1U &lt;&lt; <a class="code" href="group__adc__api.html#ga869b25bb4e431bfcd0eb9e1665e89284">ADC_REP1CTL_ACTIVEMODE_S</a>)) ? <span class="keyword">true</span> : <span class="keyword">false</span>);</div>
 <div class="line"><a name="l03782"></a><span class="lineno"> 3782</span>&#160;}</div>
 <div class="line"><a name="l03783"></a><span class="lineno"> 3783</span>&#160; </div>
 <div class="line"><a name="l03784"></a><span class="lineno"> 3784</span>&#160;<span class="comment">//*****************************************************************************</span></div>
@@ -2748,8 +2748,8 @@ $(document).ready(function(){initNavTree('adc_8h_source.html',''); initResizable
 <div class="line"><a name="l03811"></a><span class="lineno"> 3811</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l03812"></a><span class="lineno"> 3812</span>&#160;    <span class="comment">// get the specified repeater trigger active mode status.</span></div>
 <div class="line"><a name="l03813"></a><span class="lineno"> 3813</span>&#160;    <span class="comment">//</span></div>
-<div class="line"><a name="l03814"></a><span class="lineno"> 3814</span>&#160;    <span class="keywordflow">return</span>(HWREG(regOffset + ADC_O_REP1CTL) &amp;</div>
-<div class="line"><a name="l03815"></a><span class="lineno"> 3815</span>&#160;                (1U &lt;&lt; <a class="code" href="group__adc__api.html#gab842e8dcd72fbf8a8b0d2278ed737701">ADC_REP1CTL_MODULEBUSY_S</a>));</div>
+<div class="line"><a name="l03814"></a><span class="lineno"> 3814</span>&#160;    <span class="keywordflow">return</span>((HWREG(regOffset + ADC_O_REP1CTL) &amp;</div>
+<div class="line"><a name="l03815"></a><span class="lineno"> 3815</span>&#160;                (1U &lt;&lt; <a class="code" href="group__adc__api.html#gab842e8dcd72fbf8a8b0d2278ed737701">ADC_REP1CTL_MODULEBUSY_S</a>)) ? <span class="keyword">true</span> : <span class="keyword">false</span>);</div>
 <div class="line"><a name="l03816"></a><span class="lineno"> 3816</span>&#160;}</div>
 <div class="line"><a name="l03817"></a><span class="lineno"> 3817</span>&#160; </div>
 <div class="line"><a name="l03818"></a><span class="lineno"> 3818</span>&#160;<span class="comment">//*****************************************************************************</span></div>
@@ -2766,7 +2766,7 @@ $(document).ready(function(){initNavTree('adc_8h_source.html',''); initResizable
 <div class="line"><a name="l03843"></a><span class="lineno"> 3843</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l03844"></a><span class="lineno"> 3844</span>&#160;    ASSERT(ADC_isBaseValid(base));</div>
 <div class="line"><a name="l03845"></a><span class="lineno"> 3845</span>&#160; </div>
-<div class="line"><a name="l03846"></a><span class="lineno"> 3846</span>&#160;    regOffset = base + (repInstance * (<a class="code" href="group__adc__api.html#ga18b630821695c4f84107fefaf46029fd">ADC_REPxCTL_STEP</a>));</div>
+<div class="line"><a name="l03846"></a><span class="lineno"> 3846</span>&#160;    regOffset = base + ((uint32_t)repInstance * (<a class="code" href="group__adc__api.html#ga18b630821695c4f84107fefaf46029fd">ADC_REPxCTL_STEP</a>));</div>
 <div class="line"><a name="l03847"></a><span class="lineno"> 3847</span>&#160; </div>
 <div class="line"><a name="l03848"></a><span class="lineno"> 3848</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l03849"></a><span class="lineno"> 3849</span>&#160;    <span class="comment">// Set the specified repeater trigger source to modify.</span></div>
@@ -2792,7 +2792,7 @@ $(document).ready(function(){initNavTree('adc_8h_source.html',''); initResizable
 <div class="line"><a name="l03883"></a><span class="lineno"> 3883</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l03884"></a><span class="lineno"> 3884</span>&#160;    ASSERT(ADC_isBaseValid(base));</div>
 <div class="line"><a name="l03885"></a><span class="lineno"> 3885</span>&#160; </div>
-<div class="line"><a name="l03886"></a><span class="lineno"> 3886</span>&#160;    regOffset = base + (repInstance * (<a class="code" href="group__adc__api.html#ga18b630821695c4f84107fefaf46029fd">ADC_REPxCTL_STEP</a>));</div>
+<div class="line"><a name="l03886"></a><span class="lineno"> 3886</span>&#160;    regOffset = base + ((uint32_t)repInstance * (<a class="code" href="group__adc__api.html#ga18b630821695c4f84107fefaf46029fd">ADC_REPxCTL_STEP</a>));</div>
 <div class="line"><a name="l03887"></a><span class="lineno"> 3887</span>&#160; </div>
 <div class="line"><a name="l03888"></a><span class="lineno"> 3888</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l03889"></a><span class="lineno"> 3889</span>&#160;    <span class="comment">// Set the specified trigger sync input.</span></div>
@@ -2817,7 +2817,7 @@ $(document).ready(function(){initNavTree('adc_8h_source.html',''); initResizable
 <div class="line"><a name="l03920"></a><span class="lineno"> 3920</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l03921"></a><span class="lineno"> 3921</span>&#160;    ASSERT(ADC_isBaseValid(base));</div>
 <div class="line"><a name="l03922"></a><span class="lineno"> 3922</span>&#160; </div>
-<div class="line"><a name="l03923"></a><span class="lineno"> 3923</span>&#160;    regOffset = base + (repInstance * (<a class="code" href="group__adc__api.html#ga18b630821695c4f84107fefaf46029fd">ADC_REPxCTL_STEP</a>));</div>
+<div class="line"><a name="l03923"></a><span class="lineno"> 3923</span>&#160;    regOffset = base + ((uint32_t)repInstance * (<a class="code" href="group__adc__api.html#ga18b630821695c4f84107fefaf46029fd">ADC_REPxCTL_STEP</a>));</div>
 <div class="line"><a name="l03924"></a><span class="lineno"> 3924</span>&#160; </div>
 <div class="line"><a name="l03925"></a><span class="lineno"> 3925</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l03926"></a><span class="lineno"> 3926</span>&#160;    <span class="comment">// Force software sync for the trigger repeater block.</span></div>
@@ -2842,7 +2842,7 @@ $(document).ready(function(){initNavTree('adc_8h_source.html',''); initResizable
 <div class="line"><a name="l03967"></a><span class="lineno"> 3967</span>&#160;    ASSERT(ADC_isBaseValid(base));</div>
 <div class="line"><a name="l03968"></a><span class="lineno"> 3968</span>&#160;    ASSERT(repCount &lt;= 127U);</div>
 <div class="line"><a name="l03969"></a><span class="lineno"> 3969</span>&#160; </div>
-<div class="line"><a name="l03970"></a><span class="lineno"> 3970</span>&#160;    regOffset = base + (repInstance * (<a class="code" href="group__adc__api.html#gab0167dca0841afbbc9e025637777f823">ADC_REPxN_STEP</a>));</div>
+<div class="line"><a name="l03970"></a><span class="lineno"> 3970</span>&#160;    regOffset = base + ((uint32_t)repInstance * (<a class="code" href="group__adc__api.html#gab0167dca0841afbbc9e025637777f823">ADC_REPxN_STEP</a>));</div>
 <div class="line"><a name="l03971"></a><span class="lineno"> 3971</span>&#160; </div>
 <div class="line"><a name="l03972"></a><span class="lineno"> 3972</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l03973"></a><span class="lineno"> 3973</span>&#160;    <span class="comment">// Configure repeater count.</span></div>
@@ -2867,7 +2867,7 @@ $(document).ready(function(){initNavTree('adc_8h_source.html',''); initResizable
 <div class="line"><a name="l04009"></a><span class="lineno"> 4009</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l04010"></a><span class="lineno"> 4010</span>&#160;    ASSERT(ADC_isBaseValid(base));</div>
 <div class="line"><a name="l04011"></a><span class="lineno"> 4011</span>&#160; </div>
-<div class="line"><a name="l04012"></a><span class="lineno"> 4012</span>&#160;    regOffset = base + (repInstance * (<a class="code" href="group__adc__api.html#ga195cf6f40375fe236fdee8ad5c518c05">ADC_REPxPHASE_STEP</a>));</div>
+<div class="line"><a name="l04012"></a><span class="lineno"> 4012</span>&#160;    regOffset = base + ((uint32_t)repInstance * (<a class="code" href="group__adc__api.html#ga195cf6f40375fe236fdee8ad5c518c05">ADC_REPxPHASE_STEP</a>));</div>
 <div class="line"><a name="l04013"></a><span class="lineno"> 4013</span>&#160; </div>
 <div class="line"><a name="l04014"></a><span class="lineno"> 4014</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l04015"></a><span class="lineno"> 4015</span>&#160;    <span class="comment">// Configure repeater phase.</span></div>
@@ -2892,7 +2892,7 @@ $(document).ready(function(){initNavTree('adc_8h_source.html',''); initResizable
 <div class="line"><a name="l04051"></a><span class="lineno"> 4051</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l04052"></a><span class="lineno"> 4052</span>&#160;    ASSERT(ADC_isBaseValid(base));</div>
 <div class="line"><a name="l04053"></a><span class="lineno"> 4053</span>&#160; </div>
-<div class="line"><a name="l04054"></a><span class="lineno"> 4054</span>&#160;    regOffset = base + (repInstance * (<a class="code" href="group__adc__api.html#gaee8cbd5f49478d43ffacae4dd6d7e455">ADC_REPxSPREAD_STEP</a>));</div>
+<div class="line"><a name="l04054"></a><span class="lineno"> 4054</span>&#160;    regOffset = base + ((uint32_t)repInstance * (<a class="code" href="group__adc__api.html#gaee8cbd5f49478d43ffacae4dd6d7e455">ADC_REPxSPREAD_STEP</a>));</div>
 <div class="line"><a name="l04055"></a><span class="lineno"> 4055</span>&#160; </div>
 <div class="line"><a name="l04056"></a><span class="lineno"> 4056</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l04057"></a><span class="lineno"> 4057</span>&#160;    <span class="comment">// Configure repeater spread.</span></div>

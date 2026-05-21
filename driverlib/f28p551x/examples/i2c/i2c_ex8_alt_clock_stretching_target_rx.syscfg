@@ -1,0 +1,74 @@
+/**
+ * These arguments were used when this file was generated. They will be automatically applied on subsequent loads
+ * via the GUI or CLI. Run CLI with '--help' for additional information on how to override these arguments.
+ * @cliArgs --device "F28P551x" --package "100PZ" --part "F28P551x_100PZ" --context "system" --product "C2000WARE@5.02.00.00"
+ * @versions {"tool":"1.18.0+dev"}
+ */
+
+/**
+ * Import the modules used in this configuration.
+ */
+const i2c  = scripting.addModule("/driverlib/i2c.js", {}, false);
+const i2c1 = i2c.addInstance();
+const device_support = scripting.addModule("/driverlib/device_support.js");
+const sysctl         = scripting.addModule("/driverlib/sysctl.js");
+const CMD            = scripting.addModule("/utilities/cmd_tool/cmd_syscfg/source/CMD");
+const CMD1           = CMD.addInstance();
+const CMD2           = CMD.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+i2c1.$name                  = "myI2C0";
+i2c1.duty                   = "I2C_DUTYCYCLE_50";
+i2c1.bitCount               = "I2C_BITCOUNT_8";
+i2c1.ownAddress             = 0x3C;
+i2c1.registerInterrupts     = true;
+i2c1.rxFifo                 = "I2C_FIFO_RX16";
+i2c1.enabledFIFOInterrupts  = ["I2C_INT_RXFF"];
+i2c1.mode                   = "TARGET";
+i2c1.initialMode            = "RECEIVE_MODE";
+i2c1.dataCount              = 18;
+i2c1.useFifo                = false;
+i2c1.enabledInterrupts      = ["I2C_INT_SCL_ECS","I2C_INT_STOP_CONDITION"];
+i2c1.i2c.$assign            = "I2CA";
+i2c1.i2c.i2c_sdaPin.$assign = "GPIO35/TDI";
+i2c1.i2c.i2c_sclPin.$assign = "GPIO37/TDO";
+
+CMD1.$name                    = "generic_ram_lnk";
+CMD2.$name                    = "generic_flash_lnk";
+
+CMD1.sectionMemory_text       = ["RAMLS0","RAMLS1","RAMLS2","RAMLS3","RAMLS8"];
+CMD1.sectionMemory_bss        = ["RAMLS5"];
+CMD1.sectionMemory_const      = ["RAMLS5","RAMLS6"];
+CMD1.sectionMemory_data       = ["RAMLS5"];
+CMD1.sectionMemory_ramfunc    = ["RAMM0"];
+CMD1.sectionMemory_cinit      = ["RAMM0"];
+CMD1.sectionMemory_stack      = ["RAMM1"];
+CMD1.sectionMemory_init_array = ["RAMM0"];
+CMD1.sectionMemory_switch     = ["RAMM0"];
+CMD1.sectionMemory_sysmem     = ["RAMLS4"];
+CMD2.sectionAlignEnable_ramfunc    = true;
+CMD2.sectionAlignEnable_text       = true;
+CMD2.sectionAlignEnable_binit      = true;
+CMD2.sectionAlignEnable_cinit      = true;
+CMD2.sectionAlignEnable_switch     = true;
+CMD2.sectionAlignEnable_init_array = true;
+CMD2.sectionAlignEnable_const      = true;
+CMD2.sectionAlignEnable_ovly       = true;
+CMD2.sectionMemory_codestart       = "0x080000";
+CMD2.sectionMemory_stack           = ["RAMM1"];
+CMD2.sectionMemory_bss             = ["RAMLS5"];
+CMD2.sectionMemory_data            = ["RAMLS5"];
+CMD2.sectionMemory_sysmem          = ["RAMLS5"];
+CMD2.sectionMemory_ramfunc         = ["FLASH_BANK0"];
+CMD2.sectionMemory_text            = ["FLASH_BANK0","FLASH_BANK2"];
+CMD2.sectionMemory_binit           = ["FLASH_BANK0"];
+CMD2.sectionMemory_cinit           = ["FLASH_BANK0"];
+CMD2.sectionMemory_switch          = ["FLASH_BANK0"];
+CMD2.sectionMemory_init_array      = ["FLASH_BANK0"];
+CMD2.sectionMemory_const           = ["FLASH_BANK0"];
+CMD2.sectionMemory_ovly            = ["FLASH_BANK0"];
+CMD2.sectionRunFromDifferentAddr_ramfunc = true;
+CMD2.sectionRun_ramfunc                  = ["RAMLS0"];
+CMD2.sectionBinit_ramfunc                = false;

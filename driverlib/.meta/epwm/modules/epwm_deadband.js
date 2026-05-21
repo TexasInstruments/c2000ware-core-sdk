@@ -4,6 +4,20 @@ let device_driverlib_peripheral =
     system.getScript("/driverlib/device_driverlib_peripherals/" + 
         Common.getDeviceName().toLowerCase() + "_epwm.js");
 
+function updateGlobalLoadStatusDB(inst) {
+    if (inst.epwmGlobalLoad_gld) {
+        let registers = [];
+        if (inst.epwmDeadband_redGld) registers.push("DBRED/DBREDHR");
+        if (inst.epwmDeadband_fedGld) registers.push("DBFED/DBFEDHR");
+        if (inst.epwmDeadband_dbControlGld) registers.push("DBCTL");
+        inst.epwmGlobalLoad_statusDeadBand = registers.length > 0 ? registers.join(", ") : "(none enabled)";
+    }
+}
+
+function onDBGldChange(inst, ui) {
+    updateGlobalLoadStatusDB(inst);
+}
+
 function onChangeDeadbandMode(inst, ui, mode)
 {
     if (mode == "AH")
@@ -306,6 +320,7 @@ var config = [
         description : 'Use global load configuration for deadband control',
         hidden      : false,
         default     : false,
+        onChange    : onDBGldChange,
     },
     {
         name: "epwmDeadband_controlShadowLoadEvent",
@@ -329,6 +344,7 @@ var config = [
         description : 'Use global load configuration for RED',
         hidden      : false,
         default     : false,
+        onChange    : onDBGldChange,
     },
     {
         name: "epwmDeadband_fedGld",
@@ -336,6 +352,7 @@ var config = [
         description : 'Use global load configuration for FED',
         hidden      : false,
         default     : false,
+        onChange    : onDBGldChange,
     },
     {
         name: "epwmDeadband_deadbandCounterClockRate",

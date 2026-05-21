@@ -781,7 +781,7 @@ ADC_getInterruptStatus(uint32_t base, ADC_IntNumber adcIntNum)
     //
     // Get the specified ADC interrupt status.
     //
-    return((HWREGH(base + ADC_O_INTFLG) & (1U << (uint16_t)adcIntNum)) != 0U);
+    return((HWREGH(base + ADC_O_INTFLG) & ((uint16_t)1U << (uint16_t)adcIntNum)) != 0U);
 }
 
 //*****************************************************************************
@@ -847,7 +847,7 @@ ADC_getInterruptOverflowStatus(uint32_t base, ADC_IntNumber adcIntNum)
     //
     // Get the specified ADC interrupt status.
     //
-    return((HWREGH(base + ADC_O_INTOVF) & (1U << (uint16_t)adcIntNum)) != 0U);
+    return((HWREGH(base + ADC_O_INTOVF) & ((uint16_t)1U << (uint16_t)adcIntNum)) != 0U);
 }
 
 //*****************************************************************************
@@ -1734,7 +1734,7 @@ ADC_enableInterrupt(uint32_t base, ADC_IntNumber adcIntNum)
     //
     EALLOW;
 
-    HWREGH(intRegAddr) |= ADC_INTSEL1N2_INT1E << shiftVal;
+    HWREGH(intRegAddr) |= ((uint16_t)(ADC_INTSEL1N2_INT1E << shiftVal));
 
     EDIS;
 }
@@ -1881,7 +1881,7 @@ ADC_enableContinuousMode(uint32_t base, ADC_IntNumber adcIntNum)
     //
     EALLOW;
 
-    HWREGH(intRegAddr) |= ADC_INTSEL1N2_INT1CONT << shiftVal;
+    HWREGH(intRegAddr) |= ((uint16_t)(ADC_INTSEL1N2_INT1CONT << shiftVal));
 
     EDIS;
 }

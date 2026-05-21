@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v26.00.00.00
+// C2000Ware v26.01.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -267,20 +267,20 @@ ADC_setVREF(uint32_t base, ADC_ReferenceMode refMode,
     if(refVoltage == ADC_REFERENCE_3_3V)
     {
         HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_ANAREFPCTL) |=
-          ((ASYSCTL_ANAREF_ADCA |
+          (((uint16_t)(ASYSCTL_ANAREF_ADCA |
             ASYSCTL_ANAREF_ADCB |
             ASYSCTL_ANAREF_ADCC |
             ASYSCTL_ANAREF_ADCD |
-            ASYSCTL_ANAREF_ADCE) << 10);
+            ASYSCTL_ANAREF_ADCE)) << 10);
     }
     else
     {
         HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_ANAREFPCTL) &=
-          ~((ASYSCTL_ANAREF_ADCA |
+          ~(((uint16_t)(ASYSCTL_ANAREF_ADCA |
              ASYSCTL_ANAREF_ADCB |
              ASYSCTL_ANAREF_ADCC |
              ASYSCTL_ANAREF_ADCD |
-             ASYSCTL_ANAREF_ADCE) << 10);
+             ASYSCTL_ANAREF_ADCE)) << 10);
 
     }
     EDIS;
@@ -354,7 +354,7 @@ ADC_configureRepeater(uint32_t base, uint16_t repInstance,
     ASSERT(repInstance <= 2U);
     ASSERT(config->repCount <= 127U);
 
-    regOffset = base + (repInstance * (ADC_REPxCTL_STEP));
+    regOffset = base + ((uint32_t)repInstance * (ADC_REPxCTL_STEP));
     EALLOW;
     //
     // Configure repeater mode, trigger and syncin source.

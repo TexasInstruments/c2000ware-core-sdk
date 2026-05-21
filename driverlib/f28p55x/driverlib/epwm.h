@@ -6,7 +6,7 @@
 //
 //#############################################################################
 // 
-// C2000Ware v26.00.00.00
+// C2000Ware v26.01.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -2601,7 +2601,7 @@ EPWM_disableCounterCompareShadowLoadMode(uint32_t base,
     // Disable shadow load mode.
     //
     HWREGH(registerOffset) = (HWREGH(registerOffset) |
-                             (0x1U << shadowModeOffset));
+                             (uint16_t)(0x1U << shadowModeOffset));
 }
 
 //*****************************************************************************
@@ -5571,7 +5571,7 @@ EPWM_clearADCTriggerFlag(uint32_t base,
     //
     // Clear SOC A/B bit of ETCLR register
     //
-    HWREGH(base + EPWM_O_ETCLR) |= 1U << ((uint16_t)adcSOCType + 2U);
+    HWREGH(base + EPWM_O_ETCLR) |= (uint16_t)(1U << ((uint16_t)adcSOCType + 2U));
 }
 
 //*****************************************************************************
@@ -5605,7 +5605,7 @@ EPWM_enableADCTriggerEventCountInit(uint32_t base,
     //
     // Enable SOC event count initializing/loading
     //
-    HWREGH(base + EPWM_O_ETCNTINITCTL) |= 1U << ((uint16_t)adcSOCType + 14U);
+    HWREGH(base + EPWM_O_ETCNTINITCTL) |= (uint16_t)(1U << ((uint16_t)adcSOCType + 14U));
 }
 
 //*****************************************************************************
@@ -5670,7 +5670,7 @@ EPWM_forceADCTriggerEventCountInit(uint32_t base,
     //
     // Load the Interrupt Event counter value
     //
-    HWREGH(base + EPWM_O_ETCNTINITCTL) |= 1U << ((uint16_t)adcSOCType + 11U);
+    HWREGH(base + EPWM_O_ETCNTINITCTL) |= (uint16_t)(1U << ((uint16_t)adcSOCType + 11U));
 }
 
 //*****************************************************************************
@@ -5786,7 +5786,7 @@ EPWM_forceADCTrigger(uint32_t base, EPWM_ADCStartOfConversionType adcSOCType)
     //
     // Set SOC A/B bit of ETFRC register
     //
-    HWREGH(base + EPWM_O_ETFRC) |= 1U << ((uint16_t)adcSOCType + 2U);
+    HWREGH(base + EPWM_O_ETFRC) |= (uint16_t)(1U << ((uint16_t)adcSOCType + 2U));
 }
 
 //
@@ -7034,7 +7034,7 @@ EPWM_enableDigitalCompareTripCombinationInput(uint32_t base,
     // Enable the combination input
     //
     HWREGH(base + EPWM_O_DCTRIPSEL) =
-      (HWREGH(base + EPWM_O_DCTRIPSEL) | (0xFU << ((uint16_t)dcType << 2U)));
+      (HWREGH(base + EPWM_O_DCTRIPSEL) | (uint16_t)(0xFU << ((uint16_t)dcType << 2U)));
     EDIS;
 }
 

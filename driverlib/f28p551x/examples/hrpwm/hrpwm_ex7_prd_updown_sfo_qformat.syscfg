@@ -1,0 +1,55 @@
+/**
+ * Import the modules used in this configuration.
+ */
+const epwm  = scripting.addModule("/driverlib/epwm.js", {}, false);
+const epwm1 = epwm.addInstance();
+const epwm2 = epwm.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+epwm1.$name                                                      = "myEPWM1";
+epwm1.epwmTimebase_counterMode                                   = "EPWM_COUNTER_MODE_UP_DOWN";
+epwm1.epwmTimebase_period                                        = 20;
+epwm1.epwmCounterCompare_cmpA                                    = 10;
+epwm1.epwmCounterCompare_cmpB                                    = 10;
+epwm1.epwmTimebase_hsClockDiv                                    = "EPWM_HSCLOCK_DIVIDER_1";
+epwm1.epwmTimebase_emulationMode                                 = "EPWM_EMULATION_FREE_RUN";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_UP_CMPA   = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_DOWN_CMPA = "EPWM_AQ_OUTPUT_LOW";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_UP_CMPA   = "EPWM_AQ_OUTPUT_HIGH";
+epwm1.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_DOWN_CMPA = "EPWM_AQ_OUTPUT_LOW";
+epwm1.hrpwm_enable                                               = true;
+epwm1.hrpwm_autoConv                                             = true;
+epwm1.hrpwm_periodEnable                                         = true;
+epwm1.hrpwm_edgeModeA                                            = "HRPWM_MEP_CTRL_FALLING_EDGE";
+epwm1.hrpwm_edgeModeB                                            = "HRPWM_MEP_CTRL_FALLING_EDGE";
+epwm1.epwmCounterCompare_shadowLoadModeCMPA                      = "EPWM_COMP_LOAD_ON_CNTR_ZERO_PERIOD";
+epwm1.epwmCounterCompare_shadowLoadModeCMPB                      = "EPWM_COMP_LOAD_ON_CNTR_ZERO_PERIOD";
+epwm1.epwmTimebase_forceSyncPulse                                = true;
+epwm1.epwm.$assign                                               = "EPWM1";
+epwm1.epwm.epwm_aPin.$assign                                      = "GPIO0";
+epwm1.epwm.epwm_bPin.$assign                                      = "GPIO1";
+
+epwm2.$name                                                      = "myEPWM2";
+epwm2.epwmTimebase_counterMode                                   = "EPWM_COUNTER_MODE_UP_DOWN";
+epwm2.epwmTimebase_period                                        = 20;
+epwm2.epwmCounterCompare_cmpA                                    = 10;
+epwm2.epwmCounterCompare_cmpB                                    = 10;
+epwm2.epwmTimebase_hsClockDiv                                    = "EPWM_HSCLOCK_DIVIDER_1";
+epwm2.epwmTimebase_emulationMode                                 = "EPWM_EMULATION_FREE_RUN";
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_UP_CMPA   = "EPWM_AQ_OUTPUT_HIGH";
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_A_ON_TIMEBASE_DOWN_CMPA = "EPWM_AQ_OUTPUT_LOW";
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_UP_CMPA   = "EPWM_AQ_OUTPUT_HIGH";
+epwm2.epwmActionQualifier_EPWM_AQ_OUTPUT_B_ON_TIMEBASE_DOWN_CMPA = "EPWM_AQ_OUTPUT_LOW";
+epwm2.hrpwm_enable                                               = true;
+epwm2.hrpwm_autoConv                                             = true;
+epwm2.hrpwm_periodEnable                                         = true;
+epwm2.hrpwm_edgeModeA                                            = "HRPWM_MEP_CTRL_FALLING_EDGE";
+epwm2.hrpwm_edgeModeB                                            = "HRPWM_MEP_CTRL_FALLING_EDGE";
+epwm2.epwmCounterCompare_shadowLoadModeCMPA                      = "EPWM_COMP_LOAD_ON_CNTR_ZERO_PERIOD";
+epwm2.epwmCounterCompare_shadowLoadModeCMPB                      = "EPWM_COMP_LOAD_ON_CNTR_ZERO_PERIOD";
+epwm2.epwmTimebase_forceSyncPulse                                = true;
+epwm2.epwm.$assign                                               = "EPWM2";
+epwm2.epwm.epwm_aPin.$assign                                      = "GPIO2";
+epwm2.epwm.epwm_bPin.$assign                                      = "GPIO3";

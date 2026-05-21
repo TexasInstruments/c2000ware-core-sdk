@@ -1,0 +1,98 @@
+var group__aes__api =
+[
+    [ "AES_ConfigParams", "structAES__ConfigParams.html", [
+      [ "direction", "structAES__ConfigParams.html#a1deb3955fb2b30d314f7a9129b4c814f", null ],
+      [ "keySize", "structAES__ConfigParams.html#a4b727c86bed1501ec687024f242714bd", null ],
+      [ "opMode", "structAES__ConfigParams.html#aa148ae1ce93e41474b74e34908a7c292", null ],
+      [ "ctrWidth", "structAES__ConfigParams.html#ab2c59c116c35c1ccff29f74f6ff407c3", null ],
+      [ "ccmLenWidth", "structAES__ConfigParams.html#abf3d4ffc88e7440b5f38a5d8adcb1648", null ],
+      [ "ccmAuthLenWidth", "structAES__ConfigParams.html#a7dcc0e398155b364992908a8591f33ca", null ]
+    ] ],
+    [ "AES_INT_CONTEXT_IN", "group__aes__api.html#ga6a9485c56026d28ef0cee0fafc927d3c", null ],
+    [ "AES_INT_CONTEXT_OUT", "group__aes__api.html#ga6d9ce4fe929455385442af3abb77095f", null ],
+    [ "AES_INT_DATA_IN", "group__aes__api.html#gaac319c6717e02ad68242a709c49e993d", null ],
+    [ "AES_INT_DATA_OUT", "group__aes__api.html#ga4d0a07f758be95ca11ed6535d4c431eb", null ],
+    [ "AES_AESINT_M", "group__aes__api.html#ga8d9685e765258fa2b0200f0096cad365", null ],
+    [ "AES_DMA_EN_DATA_IN", "group__aes__api.html#gaa2cba35a8c21d70b4f41f5903a3336c5", null ],
+    [ "AES_DMA_EN_DATA_OUT", "group__aes__api.html#gaa286557a22a868b2811b10f7d2c561ae", null ],
+    [ "AES_DMA_EN_CONTEXT_IN", "group__aes__api.html#ga8d64c57693af5c3e2eba750de257c141", null ],
+    [ "AES_DMA_EN_CONTEXT_OUT", "group__aes__api.html#gaad03ee7ebb978e5823eda333d3c73ed4", null ],
+    [ "AES_DMA_EN_M", "group__aes__api.html#gad91936e5ae83ba404da7628a6c1e03d6", null ],
+    [ "AES_CONFIG_M", "group__aes__api.html#ga51da454ceceadfcb43375ffe0960044c", null ],
+    [ "AES_Direction", "group__aes__api.html#ga0d342ced0ff6e58f7576ce59111b83fc", [
+      [ "AES_DIRECTION_DECRYPT", "group__aes__api.html#gga0d342ced0ff6e58f7576ce59111b83fcab18ada6186a0367e9c42cece60884381", null ],
+      [ "AES_DIRECTION_ENCRYPT", "group__aes__api.html#gga0d342ced0ff6e58f7576ce59111b83fca1784ac8e2bd853117317aa3b0c4eb043", null ]
+    ] ],
+    [ "AES_KeySize", "group__aes__api.html#gab0c56e675e44627414eda90364e5854e", [
+      [ "AES_KEY_SIZE_128BIT", "group__aes__api.html#ggab0c56e675e44627414eda90364e5854ea4479cbc2b3a54a742eb05636e0b8edf4", null ],
+      [ "AES_KEY_SIZE_192BIT", "group__aes__api.html#ggab0c56e675e44627414eda90364e5854ea511304002cab67735282e58b79ac6734", null ],
+      [ "AES_KEY_SIZE_256BIT", "group__aes__api.html#ggab0c56e675e44627414eda90364e5854ea63db0d55350094ac6ba9e4d2e7f75bbd", null ]
+    ] ],
+    [ "AES_OpMode", "group__aes__api.html#ga54c3bf70f89e8144b82ff89abd9f1eba", [
+      [ "AES_OPMODE_ECB", "group__aes__api.html#gga54c3bf70f89e8144b82ff89abd9f1ebaadeec4d84a90771fc8244e00ab54d68f3", null ],
+      [ "AES_OPMODE_CBC", "group__aes__api.html#gga54c3bf70f89e8144b82ff89abd9f1ebaadb8ffdafc4af0fa9e7813329ec46675d", null ],
+      [ "AES_OPMODE_CTR", "group__aes__api.html#gga54c3bf70f89e8144b82ff89abd9f1ebaace79cd4b3e230772afdbbb3324b6c62b", null ],
+      [ "AES_OPMODE_ICM", "group__aes__api.html#gga54c3bf70f89e8144b82ff89abd9f1ebaa0407c22fc1de082a4b25be19cf9a39ea", null ],
+      [ "AES_OPMODE_CFB", "group__aes__api.html#gga54c3bf70f89e8144b82ff89abd9f1ebaa37ae90fe15e01b6f582110c77e1519db", null ],
+      [ "AES_OPMODE_XTS_TWEAKJL", "group__aes__api.html#gga54c3bf70f89e8144b82ff89abd9f1ebaaef7febc0523c4ef71c3e846b7dde559a", null ],
+      [ "AES_OPMODE_XTS_K2NJL", "group__aes__api.html#gga54c3bf70f89e8144b82ff89abd9f1ebaa03145ea796a1ee1a6364f39ccb6c5565", null ],
+      [ "AES_OPMODE_XTS_K2NLJ0", "group__aes__api.html#gga54c3bf70f89e8144b82ff89abd9f1ebaaee968f8c20f04ff585d9835cb543bf1e", null ],
+      [ "AES_OPMODE_F8", "group__aes__api.html#gga54c3bf70f89e8144b82ff89abd9f1ebaa06bd02d804183e4987091c9a123d1706", null ],
+      [ "AES_OPMODE_F9", "group__aes__api.html#gga54c3bf70f89e8144b82ff89abd9f1ebaae0cbc9b7e2589798dfb015440c9508bb", null ],
+      [ "AES_OPMODE_CBCMAC", "group__aes__api.html#gga54c3bf70f89e8144b82ff89abd9f1ebaa199334928fdc8fb4c9c1b6cce86f3445", null ],
+      [ "AES_OPMODE_GCM_HLY0ZERO", "group__aes__api.html#gga54c3bf70f89e8144b82ff89abd9f1ebaa713e1b52a7a73f6538195bdb8d018e20", null ],
+      [ "AES_OPMODE_GCM_HLY0CALC", "group__aes__api.html#gga54c3bf70f89e8144b82ff89abd9f1ebaa8bc0f02ca2e7b7ba6e6e166be26dc074", null ],
+      [ "AES_OPMODE_GCM_HY0CALC", "group__aes__api.html#gga54c3bf70f89e8144b82ff89abd9f1ebaa00167609ae45e7d782e3a7efeed73124", null ],
+      [ "AES_OPMODE_CCM", "group__aes__api.html#gga54c3bf70f89e8144b82ff89abd9f1ebaae9f3768931e1ee2e520750d767046140", null ]
+    ] ],
+    [ "AES_CounterWidth", "group__aes__api.html#gabd7764dc2c6a2e7f21a3a43f0650d747", [
+      [ "AES_CTR_WIDTH_32BIT", "group__aes__api.html#ggabd7764dc2c6a2e7f21a3a43f0650d747acc8fda9b6e5dc4e2c3f34743f272ab6d", null ],
+      [ "AES_CTR_WIDTH_64BIT", "group__aes__api.html#ggabd7764dc2c6a2e7f21a3a43f0650d747ae51f879d9e46555f694ccf8e90a69c7c", null ],
+      [ "AES_CTR_WIDTH_96BIT", "group__aes__api.html#ggabd7764dc2c6a2e7f21a3a43f0650d747aebdfaaac13c9fe71ca323b9a5021e2ae", null ],
+      [ "AES_CTR_WIDTH_128BIT", "group__aes__api.html#ggabd7764dc2c6a2e7f21a3a43f0650d747a1e7c89b98312b41439a83a45130681db", null ]
+    ] ],
+    [ "AES_CCMLenWidth", "group__aes__api.html#ga4367e390e30d8e4d9c7d784f249beb0b", [
+      [ "AES_CCM_L_1", "group__aes__api.html#gga4367e390e30d8e4d9c7d784f249beb0ba901ff08ae7352322af3970bc096b23d6", null ],
+      [ "AES_CCM_L_2", "group__aes__api.html#gga4367e390e30d8e4d9c7d784f249beb0baa6e5ffe2b377744a1dfb5ef2e5e0bd21", null ],
+      [ "AES_CCM_L_4", "group__aes__api.html#gga4367e390e30d8e4d9c7d784f249beb0ba3b337299c4e14e4ae4b7c3ab0a09f687", null ],
+      [ "AES_CCM_L_8", "group__aes__api.html#gga4367e390e30d8e4d9c7d784f249beb0ba962c8b2d7a16647acc02c017d769e36b", null ]
+    ] ],
+    [ "AES_CCMAuthLenWidth", "group__aes__api.html#ga4a08c774c27a04d63a23afe779800739", [
+      [ "AES_CCM_M_0", "group__aes__api.html#gga4a08c774c27a04d63a23afe779800739a0ca1776e4cac75eb23dabaebb12923f3", null ],
+      [ "AES_CCM_M_4", "group__aes__api.html#gga4a08c774c27a04d63a23afe779800739ab771427dbab3dbec2f2b4c60b2af3374", null ],
+      [ "AES_CCM_M_6", "group__aes__api.html#gga4a08c774c27a04d63a23afe779800739a00a9db68cd81832446019d8dfc2c54ac", null ],
+      [ "AES_CCM_M_8", "group__aes__api.html#gga4a08c774c27a04d63a23afe779800739abee89dc44d6ef5d1b596de7e67728d7a", null ],
+      [ "AES_CCM_M_10", "group__aes__api.html#gga4a08c774c27a04d63a23afe779800739a3991b7cc8180e1729ee4bfd8f558de2f", null ],
+      [ "AES_CCM_M_12", "group__aes__api.html#gga4a08c774c27a04d63a23afe779800739a5cecf9e522bfa3ae10a1266dcef19a73", null ],
+      [ "AES_CCM_M_14", "group__aes__api.html#gga4a08c774c27a04d63a23afe779800739a083817abb9de3c24902d932de22a1618", null ],
+      [ "AES_CCM_M_16", "group__aes__api.html#gga4a08c774c27a04d63a23afe779800739aeae76972a491cf69194270fcdd5b8f46", null ]
+    ] ],
+    [ "AES_performSoftReset", "group__aes__api.html#gab585da7f6315ef20db2d44930b997dee", null ],
+    [ "AES_setDataLength", "group__aes__api.html#ga0738d695cab1df17c5343a988d28661c", null ],
+    [ "AES_setAuthDataLength", "group__aes__api.html#ga48f59713364d915df3b8bf22a14d6900", null ],
+    [ "AES_enableInterrupt", "group__aes__api.html#gacdae84eda2a76948bef7c597e35441b7", null ],
+    [ "AES_disableInterrupt", "group__aes__api.html#gab2588a67e4ad68832a2e1579e31be0d5", null ],
+    [ "AES_enableGlobalInterrupt", "group__aes__api.html#ga51e2cb0639c61b36137bfd82a07a8d10", null ],
+    [ "AES_disableGlobalInterrupt", "group__aes__api.html#gabf4d7c2c36507fb5d34dfd90a4bf02cf", null ],
+    [ "AES_clearGlobalInterrupt", "group__aes__api.html#ga893689bf1bf92bbb4b9a43d469e42233", null ],
+    [ "AES_getGlobalInterruptStatus", "group__aes__api.html#gadf66428704904d7a193db5d7124097c5", null ],
+    [ "AES_registerInterrupt", "group__aes__api.html#gafced492e4a8f0f2d3da014eb4ed639a3", null ],
+    [ "AES_unregisterInterrupt", "group__aes__api.html#ga2829e3ed30b2b4faad389687d5b87b02", null ],
+    [ "AES_enableDMARequest", "group__aes__api.html#gae782c608260b9613cebd94d1c8a46098", null ],
+    [ "AES_disableDMARequest", "group__aes__api.html#ga4ffaa8615076cfebac1c0d5359cba53f", null ],
+    [ "AES_configureModule", "group__aes__api.html#ga3fbe6d00e84181bcda315dd87b8af1b5", null ],
+    [ "AES_setKey1", "group__aes__api.html#gaf164662f87c3129ee29fadca0a6a1819", null ],
+    [ "AES_setKey2", "group__aes__api.html#ga6625eab0103645247a122b85728ce99d", null ],
+    [ "AES_setKey3", "group__aes__api.html#gac20382ba40f6059dbdaa6cbe791fce22", null ],
+    [ "AES_setInitializationVector", "group__aes__api.html#gadf1872766e883577a086c5ceab5d2b4b", null ],
+    [ "AES_readInitializationVector", "group__aes__api.html#gad62feafd29751e8a3a787d656c00e031", null ],
+    [ "AES_readTag", "group__aes__api.html#ga8e509bc5e6df490bec9ac33d2a8b6f05", null ],
+    [ "AES_readDataNonBlocking", "group__aes__api.html#ga0a61fb6ac85589096499182914fcc4dd", null ],
+    [ "AES_readDataBlocking", "group__aes__api.html#ga526744fa8ac4b6ad06902fb5f1db7d11", null ],
+    [ "AES_writeDataNonBlocking", "group__aes__api.html#gaa9f79466497851b2185e7b0d11bc677b", null ],
+    [ "AES_writeDataBlocking", "group__aes__api.html#ga2099241652cf01e885cd1714653b2c33", null ],
+    [ "AES_processData", "group__aes__api.html#gaf92e282544572dbc8888a72e412c9f1f", null ],
+    [ "AES_authenticateData", "group__aes__api.html#gac8015de56a5fa6bb9e8de6d310e75009", null ],
+    [ "AES_processDatainAuthMode", "group__aes__api.html#gae0f6daec48e147ab287966aeb8ae1f55", null ],
+    [ "AES_getInterruptStatus", "group__aes__api.html#ga3f93ace26df3a8ef49b8f07a3a9eca70", null ]
+];

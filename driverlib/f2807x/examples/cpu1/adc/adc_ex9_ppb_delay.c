@@ -273,7 +273,10 @@ void initADCSOC(void)
                  ADC_CH_ADCIN0, 15);
     ADC_setupSOC(ADCA_BASE, ADC_SOC_NUMBER1, ADC_TRIGGER_EPWM2_SOCA,
                  ADC_CH_ADCIN0, 15);
-
+    ADC_setupSOC(ADCA_BASE, ADC_SOC_NUMBER0, ADC_TRIGGER_EPWM1_SOCA,
+                 
+    ADC_setupSOC(ADCA_BASE, ADC_SOC_NUMBER1, ADC_TRIGGER_EPWM2_SOCA,
+                 
 
 
     //
@@ -370,7 +373,7 @@ void configureADCSOC(uint32_t adcBase, uint16_t channel)
     //
     // Determine minimum acquisition window (in SYSCLKS) based on resolution
     //
-    
+    {
         acqps = 14; // 75ns
     
     

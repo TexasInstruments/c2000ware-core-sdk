@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v26.00.00.00
+// C2000Ware v26.01.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -405,7 +405,7 @@ static inline void ASysCtl_selectInternalTestNode(ASysCtl_TestSelect testSelect)
     HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_INTERNALTESTCTL) = 
         (HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_INTERNALTESTCTL) &
         ~(ASYSCTL_INTERNALTESTCTL_TESTSEL_M | ASYSCTL_INTERNALTESTCTL_KEY_M)) | 
-        (0xA5A50000UL | testSelect);
+        (0xA5A50000UL | (uint32_t)testSelect);
 
     EDIS;
 }

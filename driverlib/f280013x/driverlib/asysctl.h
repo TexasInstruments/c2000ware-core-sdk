@@ -359,7 +359,7 @@ static inline void ASysCtl_selectInternalTestNode(ASysCtl_TestSelect testSelect)
     HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_INTERNALTESTCTL) = 
         (HWREG(ANALOGSUBSYS_BASE + ASYSCTL_O_INTERNALTESTCTL) &
         ~(ASYSCTL_INTERNALTESTCTL_TESTSEL_M | ASYSCTL_INTERNALTESTCTL_KEY_M)) | 
-        (0xA5A50000UL | testSelect);
+        (0xA5A50000UL | (uint32_t)testSelect);
 
     EDIS;
 }
@@ -611,7 +611,7 @@ ASysCtl_enableCMPSSExternalDAC(uint32_t select)
     //
     EALLOW;
     HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPSSCTL) =
-                    (HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPSSCTL) | select) |
+                    (HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPSSCTL) | (uint16_t)select) |
                     ASYSCTL_CMPSSCTL_CMPSSCTLEN;
     EDIS;
 }
@@ -642,7 +642,7 @@ ASysCtl_disableCMPSSExternalDAC(uint32_t select)
     //
     EALLOW;
     HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPSSCTL) =
-                    (HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPSSCTL) & ~select) |
+                    (HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPSSCTL) & ~(uint16_t)select) |
                     ASYSCTL_CMPSSCTL_CMPSSCTLEN;
     EDIS;
 }

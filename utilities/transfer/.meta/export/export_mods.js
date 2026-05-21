@@ -9,5 +9,7 @@ exports = {
 	templates: {
 		[transferCommon.getTransferPath() + "export/export_mods.c.xdt"] : "",
 		[transferCommon.getTransferPath() + "export/export_mods.h.xdt"] : "",
+		[transferCommon.getTransferPath() + "export/export_json.c.xdt"] : "",
+		[transferCommon.getTransferPath() + "export/export_json.h.xdt"] : "",
 	}
 };

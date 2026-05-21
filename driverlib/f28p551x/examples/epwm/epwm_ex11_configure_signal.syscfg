@@ -1,0 +1,25 @@
+/**
+ * Import the modules used in this configuration.
+ */
+const epwm  = scripting.addModule("/driverlib/epwm.js", {}, false);
+const epwm1 = epwm.addInstance();
+const epwm2 = epwm.addInstance();
+const epwm3 = epwm.addInstance();
+
+/**
+ * Write custom configuration values to the imported modules.
+ */
+epwm1.$name                  = "myEPWM1";
+epwm1.epwm.$assign           = "EPWM1";
+epwm1.epwm.epwm_aPin.$assign = "GPIO0";
+epwm1.epwm.epwm_bPin.$assign = "GPIO1";
+
+epwm2.$name                  = "myEPWM2";
+epwm2.epwm.$assign           = "EPWM2";
+epwm2.epwm.epwm_aPin.$assign = "GPIO2";
+epwm2.epwm.epwm_bPin.$assign = "GPIO3";
+
+epwm3.$name                  = "myEPWM3";
+epwm3.epwm.$assign           = "EPWM3";
+epwm3.epwm.epwm_aPin.$assign = "GPIO4";
+epwm3.epwm.epwm_bPin.$assign = "GPIO5";

@@ -6,7 +6,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v26.00.00.00
+// C2000Ware v26.01.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -677,7 +677,7 @@ typedef enum
     XBAR_EPWM_MUX15_CLB4_OUT5              = 0x1E02,
     XBAR_EPWM_MUX16_SD1FLT1_CEVT1          = 0x2000,
     XBAR_EPWM_MUX16_SD4FLT1_CEVT1          = 0x2001,
-    XBAR_EPWM_MUX16_INPUTXBAR2_INPUT7      = 0x2202,
+    XBAR_EPWM_MUX16_INPUTXBAR2_INPUT7      = 0x2002,
     XBAR_EPWM_MUX16_ERRORSTS               = 0x2003,
     XBAR_EPWM_MUX17_SD1FLT1_CEVT2          = 0x2200,
     XBAR_EPWM_MUX17_INPUTXBAR1_INPUT7      = 0x2201,

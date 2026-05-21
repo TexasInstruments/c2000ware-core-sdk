@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">f28p55x Driverib and Example User Guide
-   &#160;<span id="projectnumber">26.00.00.00</span>
+   &#160;<span id="projectnumber">26.01.00.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -99,7 +99,7 @@ $(document).ready(function(){initNavTree('dac_8h_source.html',''); initResizable
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">//###########################################################################</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">// </span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// C2000Ware v26.00.00.00</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// C2000Ware v26.01.00.00</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">// Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">//</span></div>
@@ -464,7 +464,7 @@ $(document).ready(function(){initNavTree('dac_8h_source.html',''); initResizable
 <div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;    EALLOW;</div>
 <div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160; </div>
 <div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;    HWREGH(base + DAC_O_TRIM) = (HWREGH(base + DAC_O_TRIM) &amp;</div>
-<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;                                 ~DAC_TRIM_OFFSET_TRIM_M) | (int16_t)offset;</div>
+<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;                                 ~DAC_TRIM_OFFSET_TRIM_M) | (uint16_t)offset;</div>
 <div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160; </div>
 <div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;    EDIS;</div>
 <div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;}</div>
@@ -534,7 +534,7 @@ $(document).ready(function(){initNavTree('dac_8h_source.html',''); initResizable
 <div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;    <span class="comment">// Return the lock status on the specified registers</span></div>
 <div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;    <span class="comment">//</span></div>
-<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;    <span class="keywordflow">return</span>((<span class="keywordtype">bool</span>)((HWREGH(base + DAC_O_LOCK) &amp; reg) != 0U));</div>
+<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;    <span class="keywordflow">return</span>(((HWREGH(base + DAC_O_LOCK) &amp; reg) != 0U) ? <span class="keyword">true</span> : <span class="keyword">false</span>);</div>
 <div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;}</div>
 <div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160; </div>
 <div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;<span class="comment">//*****************************************************************************</span></div>

@@ -7,6 +7,8 @@
 %
 % function GenerateOutput(inst, name, showCode, template, duplicates, commentStatus, indicies)
 % {
+%    if (name == "epwmActionQualifier_EPWM_AQ_OUTPUT_A_shadowEvent" && !inst.epwmActionQualifier_EPWM_AQ_OUTPUT_A_shadowMode) return;
+%    if (name == "epwmActionQualifier_EPWM_AQ_OUTPUT_B_shadowEvent" && !inst.epwmActionQualifier_EPWM_AQ_OUTPUT_B_shadowMode) return;
 %    if (!template)
 %      {
 %	      var code = epwm_json_resolver.getCode(inst, inst, name, commentStatus, indicies); 
@@ -227,6 +229,27 @@ void `instance.$name`_init(){
 %     var outputComment = instance.$module.$static["commentOutDefaultCode"];
 %     var duplicate_inst = ["epwmTimebase_hsClockDiv", "epwmDigitalCompare_stopValleyCaptureTriggerCount"];
 %     defaultStatus(instance, output, outputComment, genCodeTemplate, duplicate_inst, nonCommented);
+%     if (Common.getDeviceName() === "F28P65x" &&
+%         instance.epwmEventTrigger_interruptSource === "EPWM_INT_TBCTR_ETINTMIX" &&
+%         instance.epwmEventTrigger_etmixinterruptSource &&
+%         instance.epwmEventTrigger_etmixinterruptSource.length > 0) {
+%         var etmixSrcs = instance.epwmEventTrigger_etmixinterruptSource.join(" | ");
+    EPWM_setMixEvtTriggerSource(`instance.$name`_BASE, EPWM_ETMIX_INTERRUPT, `etmixSrcs`);
+%     }
+%     if (Common.getDeviceName() === "F28P65x" &&
+%         instance.epwmEventTrigger_EPWM_SOC_A_triggerSource === "EPWM_SOC_TBCTR_ETSOCAMIX" &&
+%         instance.epwmEventTrigger_EPWM_SOC_A_etmixTriggerSource &&
+%         instance.epwmEventTrigger_EPWM_SOC_A_etmixTriggerSource.length > 0) {
+%         var etmixSocASrcs = instance.epwmEventTrigger_EPWM_SOC_A_etmixTriggerSource.join(" | ");
+    EPWM_setMixEvtTriggerSource(`instance.$name`_BASE, EPWM_ETMIX_SOCA, `etmixSocASrcs`);
+%     }
+%     if (Common.getDeviceName() === "F28P65x" &&
+%         instance.epwmEventTrigger_EPWM_SOC_B_triggerSource === "EPWM_SOC_TBCTR_ETSOCBMIX" &&
+%         instance.epwmEventTrigger_EPWM_SOC_B_etmixTriggerSource &&
+%         instance.epwmEventTrigger_EPWM_SOC_B_etmixTriggerSource.length > 0) {
+%         var etmixSocBSrcs = instance.epwmEventTrigger_EPWM_SOC_B_etmixTriggerSource.join(" | ");
+    EPWM_setMixEvtTriggerSource(`instance.$name`_BASE, EPWM_ETMIX_SOCB, `etmixSocBSrcs`);
+%     }
 }
 %
 %  }
@@ -249,6 +272,27 @@ void `nameOfPeripheral`_init(){
 % 	var outputComment = instance.$module.$static["commentOutDefaultCode"];
 % 	var duplicate_inst = ["epwmTimebase_hsClockDiv", "epwmDigitalCompare_stopValleyCaptureTriggerCount"];
 % 	defaultStatus(instance, output, outputComment, genCodeTemplate, duplicate_inst, nonCommented);
+%     if (Common.getDeviceName() === "F28P65x" &&
+%         instance.epwmEventTrigger_interruptSource === "EPWM_INT_TBCTR_ETINTMIX" &&
+%         instance.epwmEventTrigger_etmixinterruptSource &&
+%         instance.epwmEventTrigger_etmixinterruptSource.length > 0) {
+%         var etmixSrcs = instance.epwmEventTrigger_etmixinterruptSource.join(" | ");
+    EPWM_setMixEvtTriggerSource(`instance.$name`_BASE, EPWM_ETMIX_INTERRUPT, `etmixSrcs`);
+%     }
+%     if (Common.getDeviceName() === "F28P65x" &&
+%         instance.epwmEventTrigger_EPWM_SOC_A_triggerSource === "EPWM_SOC_TBCTR_ETSOCAMIX" &&
+%         instance.epwmEventTrigger_EPWM_SOC_A_etmixTriggerSource &&
+%         instance.epwmEventTrigger_EPWM_SOC_A_etmixTriggerSource.length > 0) {
+%         var etmixSocASrcs = instance.epwmEventTrigger_EPWM_SOC_A_etmixTriggerSource.join(" | ");
+    EPWM_setMixEvtTriggerSource(`instance.$name`_BASE, EPWM_ETMIX_SOCA, `etmixSocASrcs`);
+%     }
+%     if (Common.getDeviceName() === "F28P65x" &&
+%         instance.epwmEventTrigger_EPWM_SOC_B_triggerSource === "EPWM_SOC_TBCTR_ETSOCBMIX" &&
+%         instance.epwmEventTrigger_EPWM_SOC_B_etmixTriggerSource &&
+%         instance.epwmEventTrigger_EPWM_SOC_B_etmixTriggerSource.length > 0) {
+%         var etmixSocBSrcs = instance.epwmEventTrigger_EPWM_SOC_B_etmixTriggerSource.join(" | ");
+    EPWM_setMixEvtTriggerSource(`instance.$name`_BASE, EPWM_ETMIX_SOCB, `etmixSocBSrcs`);
+%     }
 % 	}
 }
 %}
@@ -266,6 +310,27 @@ void `nameOfPeripheral`_init(){
 // `instance.$name` Configuration Template
 void `instance.codeTemplateName`(uint32_t base){
 % 		defaultStatus(instance, output, outputComment, genCodeTemplate,duplicate_inst, nonCommented);
+%     if (Common.getDeviceName() === "F28P65x" &&
+%         instance.epwmEventTrigger_interruptSource === "EPWM_INT_TBCTR_ETINTMIX" &&
+%         instance.epwmEventTrigger_etmixinterruptSource &&
+%         instance.epwmEventTrigger_etmixinterruptSource.length > 0) {
+%         var etmixSrcs = instance.epwmEventTrigger_etmixinterruptSource.join(" | ");
+    EPWM_setMixEvtTriggerSource(base, EPWM_ETMIX_INTERRUPT, `etmixSrcs`);
+%     }
+%     if (Common.getDeviceName() === "F28P65x" &&
+%         instance.epwmEventTrigger_EPWM_SOC_A_triggerSource === "EPWM_SOC_TBCTR_ETSOCAMIX" &&
+%         instance.epwmEventTrigger_EPWM_SOC_A_etmixTriggerSource &&
+%         instance.epwmEventTrigger_EPWM_SOC_A_etmixTriggerSource.length > 0) {
+%         var etmixSocASrcs = instance.epwmEventTrigger_EPWM_SOC_A_etmixTriggerSource.join(" | ");
+    EPWM_setMixEvtTriggerSource(base, EPWM_ETMIX_SOCA, `etmixSocASrcs`);
+%     }
+%     if (Common.getDeviceName() === "F28P65x" &&
+%         instance.epwmEventTrigger_EPWM_SOC_B_triggerSource === "EPWM_SOC_TBCTR_ETSOCBMIX" &&
+%         instance.epwmEventTrigger_EPWM_SOC_B_etmixTriggerSource &&
+%         instance.epwmEventTrigger_EPWM_SOC_B_etmixTriggerSource.length > 0) {
+%         var etmixSocBSrcs = instance.epwmEventTrigger_EPWM_SOC_B_etmixTriggerSource.join(" | ");
+    EPWM_setMixEvtTriggerSource(base, EPWM_ETMIX_SOCB, `etmixSocBSrcs`);
+%     }
 }
 %  	}
 %  }

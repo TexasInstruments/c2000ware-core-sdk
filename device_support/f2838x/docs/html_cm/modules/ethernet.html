@@ -79,7 +79,7 @@
             
             
               <div class="version">
-                v26.00.00.00
+                v26.01.00.00
               </div>
             
           
@@ -1539,16 +1539,6 @@ needs.</p>
 <dl class="cpp macro">
 <dt id="c.ETHERNET_PKT_FLAG_CS_IP_PAYLOAD_PSEUDO_INS">
 <span class="target" id="group__ethernet__api_1gaec2c2fc4229e70757732c54d852e0356"></span><code class="sig-name descname">ETHERNET_PKT_FLAG_CS_IP_PAYLOAD_PSEUDO_INS</code> 0x00030000U<a class="headerlink" href="#c.ETHERNET_PKT_FLAG_CS_IP_PAYLOAD_PSEUDO_INS" title="Permalink to this definition">¶</a><br /></dt>
-<dd></dd></dl>
-
-<dl class="cpp macro">
-<dt id="c.ETHERNET_RX_COE_ENABLE">
-<span class="target" id="group__ethernet__api_1ga48cd332d218bd4caf2aa88b07bf6a14b"></span><code class="sig-name descname">ETHERNET_RX_COE_ENABLE</code> 0x00010000U<a class="headerlink" href="#c.ETHERNET_RX_COE_ENABLE" title="Permalink to this definition">¶</a><br /></dt>
-<dd></dd></dl>
-
-<dl class="cpp macro">
-<dt id="c.ETHERNET_TX_COE_ENABLE">
-<span class="target" id="group__ethernet__api_1gab9e98b93f8f1daa43bcc252b2a65d9d0"></span><code class="sig-name descname">ETHERNET_TX_COE_ENABLE</code> 0x00004000U<a class="headerlink" href="#c.ETHERNET_TX_COE_ENABLE" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
@@ -3722,38 +3712,6 @@ needs.</p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt id="_CPPv430Ethernet_disableTxDMAReception8uint32_t7uint8_t">
-<span id="_CPPv330Ethernet_disableTxDMAReception8uint32_t7uint8_t"></span><span id="_CPPv230Ethernet_disableTxDMAReception8uint32_t7uint8_t"></span><span id="Ethernet_disableTxDMAReception__uint32_t.uint8_t"></span><span class="target" id="group__ethernet__api_1ga5c34cc5905a54faa96a2b3976e21cf37"></span>void <code class="sig-name descname">Ethernet_disableTxDMAReception</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint8_t <em>channelNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430Ethernet_disableTxDMAReception8uint32_t7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>This function disables the DMA from receiving anymore packets from fifo</p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">baseAddress</span></code>: Base Address of the Ethernet modules </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">channelNum</span></code>: Channel number which has to be programmed 0 or 1 </p></li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-<dl class="cpp function">
-<dt id="_CPPv429Ethernet_enableTxDMAReception8uint32_t7uint8_t">
-<span id="_CPPv329Ethernet_enableTxDMAReception8uint32_t7uint8_t"></span><span id="_CPPv229Ethernet_enableTxDMAReception8uint32_t7uint8_t"></span><span id="Ethernet_enableTxDMAReception__uint32_t.uint8_t"></span><span class="target" id="group__ethernet__api_1ga1355949fba14dd257b70c05c1e38f738"></span>void <code class="sig-name descname">Ethernet_enableTxDMAReception</code><span class="sig-paren">(</span>uint32_t <em>base</em>, uint8_t <em>channelNum</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429Ethernet_enableTxDMAReception8uint32_t7uint8_t" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>This function enables the DMA for receiving packets from fifo</p>
-<p><dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>none </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">baseAddress</span></code>: Base Address of the Ethernet modules </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">channelNum</span></code>: Channel number which has to be programmed 0 or 1 </p></li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-<dl class="cpp function">
 <dt id="_CPPv431Ethernet_writeTxDescTailPointer8uint32_t8uint32_tP22Ethernet_HW_descriptor">
 <span id="_CPPv331Ethernet_writeTxDescTailPointer8uint32_t8uint32_tP22Ethernet_HW_descriptor"></span><span id="_CPPv231Ethernet_writeTxDescTailPointer8uint32_t8uint32_tP22Ethernet_HW_descriptor"></span><span id="Ethernet_writeTxDescTailPointer__uint32_t.uint32_t.Ethernet_HW_descriptorP"></span><span class="target" id="group__ethernet__api_1ga51ce87deb272c2cf31eeb0ab13dc4d00"></span>void <code class="sig-name descname">Ethernet_writeTxDescTailPointer</code><span class="sig-paren">(</span>uint32_t <em>baseAddress</em>, uint32_t <em>channelNum</em>, <a class="reference internal" href="#_CPPv422Ethernet_HW_descriptor" title="Ethernet_HW_descriptor">Ethernet_HW_descriptor</a> *<em>write_data</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431Ethernet_writeTxDescTailPointer8uint32_t8uint32_tP22Ethernet_HW_descriptor" title="Permalink to this definition">¶</a><br /></dt>
 <dd><p>This function sets the Transmit Descriptor Tail Pointer of the Transmit DMA Ring. Configures the End of Tx Descriptor Ring <dl class="simple">
@@ -4119,66 +4077,6 @@ needs.</p>
 </p>
 </dd></dl>
 
-<dl class="cpp function">
-<dt id="_CPPv426Ethernet_nextDescAvailableP15Ethernet_DescCh">
-<span id="_CPPv326Ethernet_nextDescAvailableP15Ethernet_DescCh"></span><span id="_CPPv226Ethernet_nextDescAvailableP15Ethernet_DescCh"></span><span id="Ethernet_nextDescAvailable__Ethernet_DescChP"></span><span class="target" id="group__ethernet__api_1gab76d06d28cc551652cad6d3d6f3ff78d"></span>uint8_t <code class="sig-name descname">Ethernet_nextDescAvailable</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv415Ethernet_DescCh" title="Ethernet_DescCh">Ethernet_DescCh</a> *<em>channelDescPtr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426Ethernet_nextDescAvailableP15Ethernet_DescCh" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Ethernet_nextDescAvailable</p>
-<p><p>This function is called to identify whether the next packet is available for retrieving. </p>
-<dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>8 bit number : True if the next packet is not with H/W False if the next packet is with the H/W </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">channelDescPtr</span></code>: - Receive channel Desctiptor Pointer from which the Packet has to be Defines</p></li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-<dl class="cpp function">
-<dt id="_CPPv425Ethernet_retrieveRxPacketP15Ethernet_DescCh23Ethernet_CompletionMode">
-<span id="_CPPv325Ethernet_retrieveRxPacketP15Ethernet_DescCh23Ethernet_CompletionMode"></span><span id="_CPPv225Ethernet_retrieveRxPacketP15Ethernet_DescCh23Ethernet_CompletionMode"></span><span id="Ethernet_retrieveRxPacket__Ethernet_DescChP.Ethernet_CompletionMode"></span><span class="target" id="group__ethernet__api_1ga444119a35c8b7729c8e908e739e1dd9b"></span><a class="reference internal" href="#_CPPv417Ethernet_Pkt_Desc" title="Ethernet_Pkt_Desc">Ethernet_Pkt_Desc</a> *<code class="sig-name descname">Ethernet_retrieveRxPacket</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv415Ethernet_DescCh" title="Ethernet_DescCh">Ethernet_DescCh</a> *<em>channelDescPtr</em>, <a class="reference internal" href="#_CPPv423Ethernet_CompletionMode" title="Ethernet_CompletionMode">Ethernet_CompletionMode</a> <em>earlyFlag</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425Ethernet_retrieveRxPacketP15Ethernet_DescCh23Ethernet_CompletionMode" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Ethernet_retrieveRxPacket</p>
-<p><p>This function is called to retrive the Rx packet from the H/W Q </p>
-<dl class="simple">
-<dt><strong>Return</strong></dt><dd><p>Ethernet_Pkt_Desc* : Pointer to the retrieved Packet descriptor </p>
-</dd>
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">channelDescPtr</span></code>: - Receive channel Desctiptor Pointer from which the Packet has to be Defines earlyFlag</p></li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-<dl class="cpp function">
-<dt id="_CPPv423Ethernet_submitRxPacketP15Ethernet_DescChP17Ethernet_Pkt_Desc">
-<span id="_CPPv323Ethernet_submitRxPacketP15Ethernet_DescChP17Ethernet_Pkt_Desc"></span><span id="_CPPv223Ethernet_submitRxPacketP15Ethernet_DescChP17Ethernet_Pkt_Desc"></span><span id="Ethernet_submitRxPacket__Ethernet_DescChP.Ethernet_Pkt_DescP"></span><span class="target" id="group__ethernet__api_1ga0ec2270f148f8d654721dd3e6c2a3dfc"></span>void <code class="sig-name descname">Ethernet_submitRxPacket</code><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv415Ethernet_DescCh" title="Ethernet_DescCh">Ethernet_DescCh</a> *<em>channelDescPtr</em>, <a class="reference internal" href="#_CPPv417Ethernet_Pkt_Desc" title="Ethernet_Pkt_Desc">Ethernet_Pkt_Desc</a> *<em>newPktPtr</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423Ethernet_submitRxPacketP15Ethernet_DescChP17Ethernet_Pkt_Desc" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Ethernet_submitRxPacket</p>
-<p><p>This function is called to submit the fresh Rx packet to the H/W Q </p>
-<dl class="simple">
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">channelDescPtr</span></code>: - Receive channel Desctiptor Pointer from which the Packet has to be Defines newPktPtr - Fresh Packet descriptor to submit to the H/W Q</p></li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
-<dl class="cpp function">
-<dt id="_CPPv436Ethernet_checksumOffloadEngineEnable8uint32_t">
-<span id="_CPPv336Ethernet_checksumOffloadEngineEnable8uint32_t"></span><span id="_CPPv236Ethernet_checksumOffloadEngineEnable8uint32_t"></span><span id="Ethernet_checksumOffloadEngineEnable__uint32_t"></span><span class="target" id="group__ethernet__api_1ga59c951678d5d746da1ed45c56d62bd4f"></span>void <code class="sig-name descname">Ethernet_checksumOffloadEngineEnable</code><span class="sig-paren">(</span>uint32_t <em>base</em><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv436Ethernet_checksumOffloadEngineEnable8uint32_t" title="Permalink to this definition">¶</a><br /></dt>
-<dd><p>Ethernet_checksumOffloadEngineEnable</p>
-<p><p>This function is to enable Checksum Offload Engine </p>
-<dl class="simple">
-<dt><strong>Parameters</strong></dt><dd><ul class="breatheparameterlist simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">base</span></code>: - EMAC base address</p></li>
-</ul>
-</dd>
-</dl>
-</p>
-</dd></dl>
-
 </div>
 <dl class="cpp struct">
 <dt id="_CPPv429Ethernet_LogMsgIntervalConfig">
@@ -4392,7 +4290,7 @@ applications.</p>
     <p>
       <a href="https://www.ti.com/corp/docs/legal/copyright.shtml">2023, Texas Instruments Incorporated</a>, Texas Instruments Incorporated. All rights reserved. <br/>
       <a href="https://www.ti.com/corp/docs/legal/trademark/trademrk.htm">Trademarks</a> | <a href="https://www.ti.com/corp/docs/legal/privacy.shtml">Privacy policy</a> | <a href="https://www.ti.com/corp/docs/legal/termsofuse.shtml">Terms of use</a> | <a href="https://www.ti.com/lsds/ti/legal/termsofsale.page">Terms of sale</a>
-      <span class="lastupdated">Last updated on Mar 04, 2026.
+      <span class="lastupdated">Last updated on Apr 27, 2026.
       </span></p>
   </div>
 
@@ -4412,7 +4310,7 @@ applications.</p>
     <script type="text/javascript">
         var DOCUMENTATION_OPTIONS = {
             URL_ROOT:'../',
-            VERSION:'v26.00.00.00',
+            VERSION:'v26.01.00.00',
             COLLAPSE_INDEX:false,
             FILE_SUFFIX:'.html',
             HAS_SOURCE:  false,

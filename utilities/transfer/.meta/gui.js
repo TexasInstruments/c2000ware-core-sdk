@@ -6,7 +6,7 @@ if (system.getProducts()[0].name.includes("C2000"))
 
 
 const DEVICE_DIAGNOSTIC_EXPORT_NONE = "none";
-const DEVICE_DIAGNOSTIC_EXPORT_DEBUGGER = "debugger";
+const DEVICE_DIAGNOSTIC_EXPORT_XDS = "xds";
 const DEVICE_DIAGNOSTIC_EXPORT_EXPORTER = "exporter";
 
 function rtLoggeronChange(inst, ui){
@@ -26,7 +26,7 @@ function rtLoggeronChange(inst, ui){
 }
 
 function dltLoggeronChange(inst, ui){
-
+    ui.dltcpufreq.hidden = !inst.dltlogger;
 }
 
 let longDescription = "The MCU Control Center tool provides a " +
@@ -42,17 +42,17 @@ let config = [
     },
     {
         name: "deviceDiagnosticExportMode",
-        displayName: "Clinic - Device Diagnostic Export Mode",
+        displayName: "Device Diagnostic Export Mode",
         default: DEVICE_DIAGNOSTIC_EXPORT_NONE,
         options: [
             { name: DEVICE_DIAGNOSTIC_EXPORT_NONE, displayName: "No device diagnostic export"},
-            { name: DEVICE_DIAGNOSTIC_EXPORT_DEBUGGER, displayName: "Use debugger for device diagnostic export"},
-            //{ name: DEVICE_DIAGNOSTIC_EXPORT_EXPORTER, displayName: "Use COMS exporter for device diagnostic export"},
+            { name: DEVICE_DIAGNOSTIC_EXPORT_XDS, displayName: "Use XDS debugger for device diagnostic export"},
+            { name: DEVICE_DIAGNOSTIC_EXPORT_EXPORTER, displayName: "Use COMS exporter for device diagnostic export"},
         ],
-        hidden: (!(transferCommon.isC28x() && ["F280013x", "F280015x", "F28003x"].includes(transferCommon.getDeviceName())))
+        hidden: transferCommon.isC29x()
     },
     {
-        name: "GRPOUP_FSI_FRAME_LOGGER",
+        name: "GROUP_FSI_FRAME_LOGGER",
         config: [
             {
                 name: "fsilogger",
@@ -69,7 +69,7 @@ let config = [
         ]
     },
     {
-        name: "GRPOUP_CUSTOM_LOGGER",
+        name: "GROUP_CUSTOM_LOGGER",
         config: [
             {
                 name: "customlogger",
@@ -188,7 +188,7 @@ function moduleInstances(inst)
             requiredArgs: {
                 comsLink : "fsi"
             },
-            group: "GRPOUP_FSI_FRAME_LOGGER"
+            group: "GROUP_FSI_FRAME_LOGGER"
         };
 
         ownedInstances = ownedInstances.concat([comsLoggerModule]);
@@ -204,7 +204,7 @@ function moduleInstances(inst)
                 args: {
     
                 },
-                group: "GRPOUP_DLT_LOGGER"
+                group: "GROUP_DLT_LOGGER"
             };
     
             ownedInstances = ownedInstances.concat([DLTModule]);
@@ -221,7 +221,7 @@ function onValidate(inst, validation){
             "FSI Frame Logger must be enabled to use Rapid Time Logger", 
             inst, "rtlogger");
     }
-    if ((inst["customlogger"]) && !inst["exporter"]["exportCustomLog"])
+    if (inst["customlogger"] && inst["exporter"] && !inst["exporter"]["exportCustomLog"])
     {
         validation.logError(
             "Export logs must be enabled since Custom log has been enabled in the owner GUI", 
@@ -270,7 +270,7 @@ if(transferCommon.isC29x())
                 name:"dltcpufreq",
                 displayName: "CPU Clock Freq",
                 default: 200000000,
-                hidden: false
+                hidden: (inst) => !inst.dltlogger
             }
         ]
     }

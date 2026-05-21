@@ -46,7 +46,7 @@
 //
 //###########################################################################
 // 
-// C2000Ware v26.00.00.00
+// C2000Ware v26.01.00.00
 //
 // Copyright (C) 2024 Texas Instruments Incorporated - http://www.ti.com
 //
@@ -140,6 +140,26 @@ void main(void)
 
     DevCfgRegs.BANKMUXSEL.bit.BANK3 = 3U;
     DevCfgRegs.BANKMUXSEL.bit.BANK4 = 3U;
+
+#ifdef _FLASH
+    //
+    // Configure the CPU1TOCPU2IPCBOOTMODE register
+    //
+    Cpu1toCpu2IpcRegs.CPU1TOCPU2IPCBOOTMODE = (0x5A000000UL | 0x83U);
+
+    //
+    // Set IPC Flag 0
+    //
+    IPCLtoRFlagSet(IPC_FLAG0);
+
+    //
+    // Bring CPU2 out of reset. Wait for CPU2 to go out of reset.
+    //
+    EALLOW;
+    DevCfgRegs.CPU2RESCTL.all = 0xA5A50000UL;
+    EDIS;
+    while(DevCfgRegs.RSTSTAT.bit.CPU2RES == 0U);
+#endif
 
 #ifdef _STANDALONE
 #ifdef _FLASH

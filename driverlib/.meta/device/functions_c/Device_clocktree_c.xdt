@@ -26,7 +26,7 @@
 %if (["F2838x", "F2837xD", "F2807x", "F2837xS", "F28P65x"].includes(Common.getDeviceName())){
 %if(!system.clockTree.EMIF1CLKDIV){
 %//console.log("In here")
-%var DEVICE_CLK_EMIF_DIV = "SYSCTL_EMIF1CLK_DIV_1";
+%var DEVICE_CLK_EMIF_DIV = "1";
 %}
 %else{
 %//console.log("should not be In here")
@@ -230,7 +230,7 @@
     SysCtl_setEPWMClockDivider(`DEVICE_CLK_EPWM_DIV`);
 %}
 %if(["F2838x", "F2837xD", "F2807x", "F2837xS", "F28P65x"].includes(Common.getDeviceName())){
-    SysCtl_setEMIF1ClockDivider(`DEVICE_CLK_EMIF_DIV`);
+    SysCtl_setEMIF1ClockDivider(SYSCTL_EMIF1CLK_DIV_`DEVICE_CLK_EMIF_DIV`);
 %}
 %if(["F2838x", "F28P65x"].includes(Common.getDeviceName())){
     SysCtl_setECatClk(`DEVICE_CLK_ECAT_DIV`, `ecatclkSrc`, 0x1U);

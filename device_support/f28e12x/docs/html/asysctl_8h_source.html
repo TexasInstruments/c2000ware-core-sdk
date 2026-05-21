@@ -43,7 +43,7 @@
   <td id="projectlogo"><a href="https://www.ti.com"><img alt="Logo" src="ti_logo.svg"/></a></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">F28E12x Driverib and Example User Guide
-   &#160;<span id="projectnumber">26.00.00.00</span>
+   &#160;<span id="projectnumber">26.01.00.00</span>
    </div>
   </td>
    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -539,7 +539,7 @@ $(document).ready(function(){initNavTree('asysctl_8h_source.html',''); initResiz
 <div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;    EALLOW;</div>
 <div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160;    HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPSSCTL) =</div>
-<div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;                    (HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPSSCTL) | select) |</div>
+<div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;                    (HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPSSCTL) | (uint16_t)select) |</div>
 <div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;                    ASYSCTL_CMPSSCTL_CMPSSCTLEN;</div>
 <div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160;    EDIS;</div>
 <div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;}</div>
@@ -560,7 +560,7 @@ $(document).ready(function(){initNavTree('asysctl_8h_source.html',''); initResiz
 <div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160;    <span class="comment">//</span></div>
 <div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160;    EALLOW;</div>
 <div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160;    HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPSSCTL) =</div>
-<div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;                    (HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPSSCTL) &amp; ~select) |</div>
+<div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;                    (HWREGH(ANALOGSUBSYS_BASE + ASYSCTL_O_CMPSSCTL) &amp; ~(uint16_t)select) |</div>
 <div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;                    ASYSCTL_CMPSSCTL_CMPSSCTLEN;</div>
 <div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160;    EDIS;</div>
 <div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160;}</div>

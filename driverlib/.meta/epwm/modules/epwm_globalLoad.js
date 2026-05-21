@@ -12,6 +12,34 @@ function onChangeEnableDisable(inst, ui)
         ui.epwmGlobalLoad_gldPeriod.hidden = false;
         ui.epwmGlobalLoad_enableOneShot.hidden = false;
         ui.epwmGlobalLoad_globalePWMLoadLink.hidden = false;
+        ui.epwmGlobalLoad_statusTimeBase.hidden = false;
+        ui.epwmGlobalLoad_statusCounterCompare.hidden = false;
+        ui.epwmGlobalLoad_statusDeadBand.hidden = false;
+        ui.epwmGlobalLoad_statusActionQualifier.hidden = false;
+
+        let tbRegisters = [];
+        if (inst.epwmTimebase_periodGld) tbRegisters.push("TBPRD/TBPRDHR");
+        inst.epwmGlobalLoad_statusTimeBase = tbRegisters.length > 0 ? tbRegisters.join(", ") : "(none enabled)";
+
+        let cmpRegisters = [];
+        if (inst.epwmCounterCompare_cmpAGld) cmpRegisters.push("CMPA/CMPAHR");
+        if (inst.epwmCounterCompare_cmpBGld) cmpRegisters.push("CMPB/CMPBHR");
+        if (inst.epwmCounterCompare_cmpCGld) cmpRegisters.push("CMPC");
+        if (inst.epwmCounterCompare_cmpDGld) cmpRegisters.push("CMPD");
+        inst.epwmGlobalLoad_statusCounterCompare = cmpRegisters.length > 0 ? cmpRegisters.join(", ") : "(none enabled)";
+
+        let dbRegisters = [];
+        if (inst.epwmDeadband_redGld) dbRegisters.push("DBRED/DBREDHR");
+        if (inst.epwmDeadband_fedGld) dbRegisters.push("DBFED/DBFEDHR");
+        if (inst.epwmDeadband_dbControlGld) dbRegisters.push("DBCTL");
+        inst.epwmGlobalLoad_statusDeadBand = dbRegisters.length > 0 ? dbRegisters.join(", ") : "(none enabled)";
+
+        let aqRegisters = [];
+        if (inst.epwmActionQualifier_EPWM_AQ_OUTPUT_A_gld) aqRegisters.push("AQCTLA/AQCTLA2");
+        if (inst.epwmActionQualifier_EPWM_AQ_OUTPUT_B_gld) aqRegisters.push("AQCTLB/AQCTLB2");
+        if (inst.epwmActionQualifier_continousSwForceReloadModeGld) aqRegisters.push("AQCSFRC");
+        inst.epwmGlobalLoad_statusActionQualifier = aqRegisters.length > 0 ? aqRegisters.join(", ") : "(none enabled)";
+
         if (inst.epwmGlobalLoad_enableOneShot)
         {
             ui.epwmGlobalLoad_oneShotMode.hidden = false;
@@ -35,6 +63,10 @@ function onChangeEnableDisable(inst, ui)
         ui.epwmGlobalLoad_oneShotMode.hidden = true;
         ui.epwmGlobalLoad_oneShotForce.hidden = true;
         ui.epwmGlobalLoad_globalePWMLoadLink.hidden = true;
+        ui.epwmGlobalLoad_statusTimeBase.hidden = true;
+        ui.epwmGlobalLoad_statusCounterCompare.hidden = true;
+        ui.epwmGlobalLoad_statusDeadBand.hidden = true;
+        ui.epwmGlobalLoad_statusActionQualifier.hidden = true;
 
         // Set to default 
         inst.epwmGlobalLoad_gldMode = device_driverlib_peripheral.EPWM_GlobalLoadTrigger[0].name;
@@ -112,6 +144,34 @@ var config = [
         hidden      : true,
         default     : device_driverlib_peripheral.EPWM_CurrentLink[0].name,
         options     : device_driverlib_peripheral.EPWM_CurrentLink,
+    },
+    {
+        name: "epwmGlobalLoad_statusTimeBase",
+        displayName : "Time Base",
+        description : "Time Base registers participating in global load",
+        hidden      : true,
+        default     : ""
+    },
+    {
+        name: "epwmGlobalLoad_statusCounterCompare",
+        displayName : "Counter Compare",
+        description : "Counter Compare registers participating in global load",
+        hidden      : true,
+        default     : ""
+    },
+    {
+        name: "epwmGlobalLoad_statusDeadBand",
+        displayName : "Dead Band",
+        description : "Dead Band registers participating in global load",
+        hidden      : true,
+        default     : ""
+    },
+    {
+        name: "epwmGlobalLoad_statusActionQualifier",
+        displayName : "Action Qualifier",
+        description : "Action Qualifier registers participating in global load",
+        hidden      : true,
+        default     : ""
     },
 
 ];

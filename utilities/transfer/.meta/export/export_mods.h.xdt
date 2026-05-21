@@ -35,15 +35,33 @@
 #define INCLUDE_EXPORTMODS_H_
 
 % let exportMod = system.modules["/utilities/transfer/exporter.js"];
+% if (!exportMod || exportMod.$instances.length === 0) {
+%     throw new Error("CDT: Exporter module not found or not instantiated. Add an Exporter instance to your SysConfig configuration.");
+% }
 % let expInst = exportMod.$instances[0]
 %
 #include <stdbool.h>
 #include <stdint.h>
 #include <export/export.h>
+#include <transfer_utils.h>
 % if (expInst.packageMode == "JSON") {
 #include <export/export_json.h>
 % }
 % let exportCommon = system.getScript("/utilities/transfer/export/export_mods_common.js");
+
+//-----------------------------------------------------------------------------
+// Portable bit counting macro (replacement for GCC __builtin_popcount)
+// Compatible with TI cl2000 compiler
+//-----------------------------------------------------------------------------
+static inline uint16_t CDT_POPCOUNT32(uint32_t x)
+{
+    x = x - ((x >> 1) & 0x55555555UL);
+    x = (x & 0x33333333UL) + ((x >> 2) & 0x33333333UL);
+    x = (x + (x >> 4)) & 0x0F0F0F0FUL;
+    x = x + (x >> 8);
+    x = x + (x >> 16);
+    return (uint16_t)(x & 0x3F);
+}
 
 % if (expInst.mode.includes("Bidirectional")) {
     % var modInstanceCount = 0;
@@ -62,9 +80,15 @@ extern void EXPORTMOD_sendRegisters();
 `exportCommonTemplate("h", modName)`
 % }
 % for (var modName of exportCommon.getExportModModuleNames()) {
-    % let exportModTemplate = system.getTemplate("/utilities/transfer/export/mods/export_mod_" + modName + ".xdt");
-    % if (exportModTemplate) {
+    % try {
+    %   let exportModTemplate = system.getTemplate("/utilities/transfer/export/mods/export_mod_" + modName + ".xdt");
+    %   if (exportModTemplate) {
 `exportModTemplate("h")`
+    %   }
+    % } catch (e) {
+    %   /* CDT: No module-specific template for '`modName`' - using common template.
+    %    * If this is unexpected, check that export/mods/export_mod_`modName`.xdt exists.
+    %    * Error: `e.message` */
     % }
 % }
 
